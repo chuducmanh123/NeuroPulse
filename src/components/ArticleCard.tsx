@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Article } from "../types/article";
 
 interface ArticleCardProps {
@@ -9,6 +9,10 @@ interface ArticleCardProps {
   onSubspecialtyClick?: (sub: string) => void;
   isBookmarked?: boolean;
   onToggleBookmark?: (id: string) => void;
+  clinicalNote?: string;
+  onSaveNote?: (id: string, note: string) => void;
+  darkMode?: boolean;
+  compactMode?: boolean;
 }
 
 export interface JournalTheme {
@@ -17,12 +21,16 @@ export interface JournalTheme {
   badgeBg: string;
   badgeText: string;
   borderCard: string;
+  darkBorderCard: string;
   takeawayBorder: string;
   takeawayBg: string;
+  darkTakeawayBg: string;
   takeawayTitle: string;
+  darkTakeawayTitle: string;
   groupDot: string;
   groupBorder: string;
   groupBg: string;
+  darkGroupBg: string;
 }
 
 export const JOURNAL_THEMES: Record<string, JournalTheme> = {
@@ -32,12 +40,16 @@ export const JOURNAL_THEMES: Record<string, JournalTheme> = {
     badgeBg: "bg-white text-blue-900",
     badgeText: "text-blue-950 font-black",
     borderCard: "border-blue-200 hover:border-blue-400",
+    darkBorderCard: "border-blue-900/70 hover:border-blue-600",
     takeawayBorder: "border-l-blue-600",
     takeawayBg: "bg-blue-50/70",
+    darkTakeawayBg: "bg-blue-950/40",
     takeawayTitle: "text-blue-900",
+    darkTakeawayTitle: "text-blue-300",
     groupDot: "bg-blue-600",
     groupBorder: "border-blue-200",
     groupBg: "bg-blue-50/80 text-blue-900",
+    darkGroupBg: "bg-blue-950/60 text-blue-200 border-blue-800",
   },
   "lancet neurol": {
     headerBg: "bg-gradient-to-r from-cyan-800 to-teal-800",
@@ -45,12 +57,16 @@ export const JOURNAL_THEMES: Record<string, JournalTheme> = {
     badgeBg: "bg-white text-teal-900",
     badgeText: "text-teal-950 font-black",
     borderCard: "border-cyan-200 hover:border-cyan-400",
+    darkBorderCard: "border-cyan-900/70 hover:border-cyan-600",
     takeawayBorder: "border-l-cyan-600",
     takeawayBg: "bg-cyan-50/70",
+    darkTakeawayBg: "bg-cyan-950/40",
     takeawayTitle: "text-cyan-900",
+    darkTakeawayTitle: "text-cyan-300",
     groupDot: "bg-cyan-700",
     groupBorder: "border-cyan-200",
     groupBg: "bg-cyan-50/80 text-cyan-900",
+    darkGroupBg: "bg-cyan-950/60 text-cyan-200 border-cyan-800",
   },
   "nejm": {
     headerBg: "bg-gradient-to-r from-orange-600 to-amber-700",
@@ -58,12 +74,16 @@ export const JOURNAL_THEMES: Record<string, JournalTheme> = {
     badgeBg: "bg-white text-orange-950",
     badgeText: "text-orange-950 font-black",
     borderCard: "border-orange-200 hover:border-orange-400",
+    darkBorderCard: "border-orange-900/70 hover:border-orange-600",
     takeawayBorder: "border-l-orange-600",
     takeawayBg: "bg-orange-50/70",
+    darkTakeawayBg: "bg-orange-950/40",
     takeawayTitle: "text-orange-950",
+    darkTakeawayTitle: "text-orange-300",
     groupDot: "bg-orange-600",
     groupBorder: "border-orange-200",
     groupBg: "bg-orange-50/80 text-orange-900",
+    darkGroupBg: "bg-orange-950/60 text-orange-200 border-orange-800",
   },
   "jama": {
     headerBg: "bg-gradient-to-r from-red-600 to-red-700",
@@ -71,12 +91,16 @@ export const JOURNAL_THEMES: Record<string, JournalTheme> = {
     badgeBg: "bg-white text-red-950",
     badgeText: "text-red-950 font-black",
     borderCard: "border-red-200 hover:border-red-400",
+    darkBorderCard: "border-red-900/70 hover:border-red-600",
     takeawayBorder: "border-l-red-600",
     takeawayBg: "bg-red-50/70",
+    darkTakeawayBg: "bg-red-950/40",
     takeawayTitle: "text-red-950",
+    darkTakeawayTitle: "text-red-300",
     groupDot: "bg-red-600",
     groupBorder: "border-red-200",
     groupBg: "bg-red-50/80 text-red-900",
+    darkGroupBg: "bg-red-950/60 text-red-200 border-red-800",
   },
   "jama neurol": {
     headerBg: "bg-gradient-to-r from-rose-600 to-pink-700",
@@ -84,12 +108,16 @@ export const JOURNAL_THEMES: Record<string, JournalTheme> = {
     badgeBg: "bg-white text-rose-950",
     badgeText: "text-rose-950 font-black",
     borderCard: "border-rose-200 hover:border-rose-400",
+    darkBorderCard: "border-rose-900/70 hover:border-rose-600",
     takeawayBorder: "border-l-rose-600",
     takeawayBg: "bg-rose-50/70",
+    darkTakeawayBg: "bg-rose-950/40",
     takeawayTitle: "text-rose-950",
+    darkTakeawayTitle: "text-rose-300",
     groupDot: "bg-rose-600",
     groupBorder: "border-rose-200",
     groupBg: "bg-rose-50/80 text-rose-900",
+    darkGroupBg: "bg-rose-950/60 text-rose-200 border-rose-800",
   },
   "stroke": {
     headerBg: "bg-gradient-to-r from-red-800 to-red-950",
@@ -97,12 +125,16 @@ export const JOURNAL_THEMES: Record<string, JournalTheme> = {
     badgeBg: "bg-white text-red-950",
     badgeText: "text-red-950 font-black",
     borderCard: "border-red-300 hover:border-red-500",
+    darkBorderCard: "border-red-900/80 hover:border-red-600",
     takeawayBorder: "border-l-red-800",
     takeawayBg: "bg-red-50/70",
+    darkTakeawayBg: "bg-red-950/40",
     takeawayTitle: "text-red-950",
+    darkTakeawayTitle: "text-red-300",
     groupDot: "bg-red-800",
     groupBorder: "border-red-300",
     groupBg: "bg-red-50/80 text-red-950",
+    darkGroupBg: "bg-red-950/60 text-red-200 border-red-800",
   },
   "neurology": {
     headerBg: "bg-gradient-to-r from-emerald-700 to-green-800",
@@ -110,12 +142,16 @@ export const JOURNAL_THEMES: Record<string, JournalTheme> = {
     badgeBg: "bg-white text-emerald-950",
     badgeText: "text-emerald-950 font-black",
     borderCard: "border-emerald-200 hover:border-emerald-400",
+    darkBorderCard: "border-emerald-900/70 hover:border-emerald-600",
     takeawayBorder: "border-l-emerald-600",
     takeawayBg: "bg-emerald-50/70",
+    darkTakeawayBg: "bg-emerald-950/40",
     takeawayTitle: "text-emerald-950",
+    darkTakeawayTitle: "text-emerald-300",
     groupDot: "bg-emerald-700",
     groupBorder: "border-emerald-200",
     groupBg: "bg-emerald-50/80 text-emerald-900",
+    darkGroupBg: "bg-emerald-950/60 text-emerald-200 border-emerald-800",
   },
   "ann neurol": {
     headerBg: "bg-gradient-to-r from-violet-700 to-purple-800",
@@ -123,18 +159,51 @@ export const JOURNAL_THEMES: Record<string, JournalTheme> = {
     badgeBg: "bg-white text-violet-950",
     badgeText: "text-violet-950 font-black",
     borderCard: "border-violet-200 hover:border-violet-400",
+    darkBorderCard: "border-violet-900/70 hover:border-violet-600",
     takeawayBorder: "border-l-violet-600",
     takeawayBg: "bg-violet-50/70",
+    darkTakeawayBg: "bg-violet-950/40",
     takeawayTitle: "text-violet-950",
+    darkTakeawayTitle: "text-violet-300",
     groupDot: "bg-violet-700",
     groupBorder: "border-violet-200",
     groupBg: "bg-violet-50/80 text-violet-950",
+    darkGroupBg: "bg-violet-950/60 text-violet-200 border-violet-800",
   },
 };
 
 export function getJournalTheme(shortName?: string): JournalTheme {
   const key = (shortName || "").toLowerCase();
   return JOURNAL_THEMES[key] || JOURNAL_THEMES["nejm"];
+}
+
+// Tự động làm nổi bật các chỉ số thống kê lâm sàng (HR, OR, RR, 95% CI, p-value, mRS, NIHSS, %)
+const STAT_HIGHLIGHT_REGEX =
+  /(\b(?:a?HR|a?OR|a?RR|IRR|95%\s*CI|C-index|mRS|NIHSS|NNT|NNH)\b(?:\s*[:=]?\s*\d+(?:\.\d+)?(?:\s*(?:to|–|-)\s*\d+(?:\.\d+)?)?)?|\b[pP]\s*[<=>]\s*0\.\d+|\b\d+(?:\.\d+)?%)/g;
+
+export function highlightClinicalStats(text: string, darkMode = false): React.ReactNode {
+  if (!text) return null;
+  const parts = text.split(STAT_HIGHLIGHT_REGEX);
+  if (parts.length <= 1) return text;
+
+  const matcher = new RegExp(STAT_HIGHLIGHT_REGEX.source);
+  return parts.map((part, idx) => {
+    if (matcher.test(part)) {
+      return (
+        <span
+          key={idx}
+          className={`font-extrabold px-1 py-0.2 rounded ${
+            darkMode
+              ? "bg-amber-500/20 text-amber-300"
+              : "bg-amber-100/90 text-slate-950"
+          }`}
+        >
+          {part}
+        </span>
+      );
+    }
+    return <React.Fragment key={idx}>{part}</React.Fragment>;
+  });
 }
 
 const STRUCTURED_SECTION_REGEX =
@@ -175,9 +244,20 @@ export function ArticleCard({
   onSubspecialtyClick,
   isBookmarked = false,
   onToggleBookmark,
+  clinicalNote = "",
+  onSaveNote,
+  darkMode = false,
+  compactMode = false,
 }: ArticleCardProps) {
   const [showFullAbstract, setShowFullAbstract] = useState(false);
+  const [expandedInCompact, setExpandedInCompact] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [noteInput, setNoteInput] = useState(clinicalNote);
+  const [isEditingNote, setIsEditingNote] = useState(false);
+
+  useEffect(() => {
+    setNoteInput(clinicalNote);
+  }, [clinicalNote]);
 
   const isRecentArticle = () => {
     if ((article as any).is_new) return true;
@@ -224,6 +304,9 @@ export function ArticleCard({
     if (takeawayText) {
       lines.push(`💡 Key Takeaway: ${takeawayText}`);
     }
+    if (clinicalNote.trim()) {
+      lines.push(`📝 Clinical Note: ${clinicalNote.trim()}`);
+    }
     lines.push(`🔗 DOI: ${article.doi_url}`);
 
     navigator.clipboard.writeText(lines.join("\n")).then(() => {
@@ -232,32 +315,48 @@ export function ArticleCard({
     });
   };
 
+  const pubmedSearchUrl = `https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent(
+    article.id || article.title
+  )}`;
+
   const formatStructuredAbstract = (text: string) => {
     if (!text) return null;
 
     if (!showFullAbstract) {
-      return <p className="leading-relaxed text-slate-700 line-clamp-3">{text}</p>;
+      return (
+        <p className={`leading-relaxed line-clamp-3 ${darkMode ? "text-slate-300" : "text-slate-700"}`}>
+          {highlightClinicalStats(text, darkMode)}
+        </p>
+      );
     }
 
     const sections = parseAbstractSections(text);
 
     if (sections.length <= 1 && !sections[0]?.header) {
-      return <p className="leading-relaxed text-slate-700">{text}</p>;
+      return (
+        <p className={`leading-relaxed ${darkMode ? "text-slate-300" : "text-slate-700"}`}>
+          {highlightClinicalStats(text, darkMode)}
+        </p>
+      );
     }
 
     return (
       <div className="space-y-2.5">
         {sections.map((sec, idx) =>
           sec.header ? (
-            <div key={idx} className="leading-relaxed text-slate-700">
-              <span className="font-bold text-slate-900 uppercase text-[11px] tracking-wide bg-slate-200/70 px-1.5 py-0.5 rounded mr-1.5 inline-block">
+            <div key={idx} className={`leading-relaxed ${darkMode ? "text-slate-300" : "text-slate-700"}`}>
+              <span
+                className={`font-bold uppercase text-[11px] tracking-wide px-1.5 py-0.5 rounded mr-1.5 inline-block ${
+                  darkMode ? "bg-slate-700 text-slate-100" : "bg-slate-200/70 text-slate-900"
+                }`}
+              >
                 {sec.header}:
               </span>
-              <span>{sec.body}</span>
+              <span>{highlightClinicalStats(sec.body, darkMode)}</span>
             </div>
           ) : (
-            <p key={idx} className="leading-relaxed text-slate-700">
-              {sec.body}
+            <p key={idx} className={`leading-relaxed ${darkMode ? "text-slate-300" : "text-slate-700"}`}>
+              {highlightClinicalStats(sec.body, darkMode)}
             </p>
           )
         )}
@@ -265,9 +364,103 @@ export function ArticleCard({
     );
   };
 
+  // CHẾ ĐỘ XEM RÚT GỌN (COMPACT VIEW) KHI CHƯA BẤM MỞ RỘNG
+  if (compactMode && !expandedInCompact) {
+    return (
+      <div
+        className={`rounded-xl border transition-all duration-150 px-4 py-3 flex flex-col gap-1.5 ${
+          darkMode
+            ? `bg-slate-900 ${theme.darkBorderCard}`
+            : `bg-white ${theme.borderCard} shadow-xs hover:shadow-sm`
+        }`}
+      >
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <div className="flex flex-wrap items-center gap-2">
+            <span
+              className="px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider"
+              style={{
+                backgroundColor: article.journal.badge_bg,
+                color: article.journal.badge_text,
+              }}
+            >
+              {article.journal.short_name || article.journal.name}
+            </span>
+            {isNew && (
+              <span className="px-1.5 py-0.5 rounded-full text-[9px] font-black uppercase bg-emerald-500 text-white">
+                NEW
+              </span>
+            )}
+            <span
+              className={`text-[11px] font-semibold px-2 py-0.5 rounded ${
+                darkMode ? "bg-slate-800 text-slate-300" : "bg-slate-100 text-slate-600"
+              }`}
+            >
+              {article.article_type}
+            </span>
+            <span
+              onClick={() => onSubspecialtyClick?.(article.neurology_classification.subspecialty)}
+              className={`cursor-pointer text-[11px] font-medium px-2 py-0.5 rounded ${
+                darkMode
+                  ? "bg-slate-800/70 text-slate-400 hover:text-slate-200"
+                  : "bg-slate-50 text-slate-500 hover:bg-slate-100"
+              }`}
+            >
+              {article.neurology_classification.subspecialty}
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2.5">
+            <button
+              onClick={() => setExpandedInCompact(true)}
+              className={`text-[11px] font-bold px-2 py-0.5 rounded ${
+                darkMode
+                  ? "text-blue-400 hover:bg-slate-800"
+                  : "text-blue-600 hover:bg-blue-50"
+              }`}
+            >
+              Details ▼
+            </button>
+            {onToggleBookmark && (
+              <button
+                onClick={() => onToggleBookmark(article.id)}
+                className={`text-sm ${isBookmarked ? "text-amber-400" : "text-slate-400"}`}
+              >
+                {isBookmarked ? "★" : "☆"}
+              </button>
+            )}
+          </div>
+        </div>
+
+        <h3
+          className={`text-sm sm:text-base font-bold leading-snug ${
+            darkMode ? "text-slate-100 hover:text-blue-400" : "text-slate-900 hover:text-blue-600"
+          }`}
+        >
+          <a href={article.doi_url} target="_blank" rel="noopener noreferrer">
+            {article.title}
+          </a>
+        </h3>
+
+        {takeawayText && (
+          <p
+            className={`text-xs line-clamp-2 pl-2.5 border-l-2 ${theme.takeawayBorder} ${
+              darkMode ? "text-slate-300" : "text-slate-700"
+            }`}
+          >
+            {highlightClinicalStats(takeawayText, darkMode)}
+          </p>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div
-      className={`bg-white rounded-xl border ${theme.borderCard} overflow-hidden shadow-sm hover:shadow-md transition-all duration-200`}
+      className={`rounded-xl border overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 ${
+        darkMode
+          ? `bg-slate-900 ${theme.darkBorderCard}`
+          : `bg-white ${theme.borderCard}`
+      }`}
     >
       {/* KHỐI HEADER ĐẦU BÀI BÁO */}
       <div
@@ -298,6 +491,14 @@ export function ArticleCard({
         </div>
 
         <div className="flex items-center gap-3">
+          {compactMode && expandedInCompact && (
+            <button
+              onClick={() => setExpandedInCompact(false)}
+              className="text-[11px] font-bold px-2 py-0.5 rounded bg-black/25 text-white hover:bg-black/40"
+            >
+              Collapse Card ▲
+            </button>
+          )}
           {formattedDate && (
             <span className={`text-xs font-medium ${theme.headerText} tracking-wide`}>
               {formattedDate}
@@ -317,7 +518,13 @@ export function ArticleCard({
 
       {/* THÂN THẺ BÀI BÁO */}
       <div className="p-5">
-        <h3 className="text-base sm:text-lg font-bold text-slate-900 leading-snug mb-2 hover:text-blue-600 transition-colors">
+        <h3
+          className={`text-base sm:text-lg font-bold leading-snug mb-2 transition-colors ${
+            darkMode
+              ? "text-slate-100 hover:text-blue-400"
+              : "text-slate-900 hover:text-blue-600"
+          }`}
+        >
           <a href={article.doi_url} target="_blank" rel="noopener noreferrer">
             {article.title}
           </a>
@@ -333,7 +540,11 @@ export function ArticleCard({
         <div className="flex flex-wrap items-center gap-1.5 mb-3.5">
           <span
             onClick={() => onSubspecialtyClick?.(article.neurology_classification.subspecialty)}
-            className="cursor-pointer text-[11px] font-semibold px-2.5 py-0.5 rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors"
+            className={`cursor-pointer text-[11px] font-semibold px-2.5 py-0.5 rounded-md transition-colors ${
+              darkMode
+                ? "bg-slate-800 text-slate-200 hover:bg-slate-700"
+                : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+            }`}
           >
             {article.neurology_classification.subspecialty}
           </span>
@@ -341,46 +552,142 @@ export function ArticleCard({
             <span
               key={i}
               onClick={() => onTagClick?.(topic)}
-              className="cursor-pointer text-[11px] px-2 py-0.5 rounded-md bg-slate-50 text-slate-600 border border-slate-200 hover:bg-slate-100 transition-colors"
+              className={`cursor-pointer text-[11px] px-2 py-0.5 rounded-md border transition-colors ${
+                darkMode
+                  ? "bg-slate-800/50 text-slate-300 border-slate-700 hover:bg-slate-800"
+                  : "bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100"
+              }`}
             >
               #{topic}
             </span>
           ))}
         </div>
 
-        {/* Key Findings / Clinical Takeaway Box */}
+        {/* Key Findings / Clinical Takeaway Box (với Tô đậm Thống kê tự động) */}
         {takeawayText && (
           <div
-            className={`${theme.takeawayBg} border-l-4 ${theme.takeawayBorder} rounded-r-lg p-3.5 mb-3`}
+            className={`${
+              darkMode ? theme.darkTakeawayBg : theme.takeawayBg
+            } border-l-4 ${theme.takeawayBorder} rounded-r-lg p-3.5 mb-3`}
           >
             <div className="flex items-center justify-between mb-1">
               <span
-                className={`text-[11px] font-bold ${theme.takeawayTitle} uppercase tracking-wider`}
+                className={`text-[11px] font-bold uppercase tracking-wider ${
+                  darkMode ? theme.darkTakeawayTitle : theme.takeawayTitle
+                }`}
               >
                 KEY FINDINGS / CLINICAL TAKEAWAY
               </span>
               {article.ai_takeaways?.ai_verified && (
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-white/80 text-indigo-700 border border-indigo-200">
+                <span
+                  className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
+                    darkMode
+                      ? "bg-indigo-950/80 text-indigo-300 border-indigo-800"
+                      : "bg-white/80 text-indigo-700 border-indigo-200"
+                  }`}
+                >
                   ✨ Gemini AI
                 </span>
               )}
             </div>
-            <p className="text-xs sm:text-sm text-slate-800 leading-relaxed font-medium">
-              {takeawayText}
+            <p
+              className={`text-xs sm:text-sm leading-relaxed font-medium ${
+                darkMode ? "text-slate-200" : "text-slate-800"
+              }`}
+            >
+              {highlightClinicalStats(takeawayText, darkMode)}
             </p>
+          </div>
+        )}
+
+        {/* GHI CHÚ LÂM SÀNG CÁ NHÂN (PERSONAL CLINICAL NOTE) KHI BÀI ĐÃ LƯU HOẶC CÓ GHI CHÚ */}
+        {(isBookmarked || clinicalNote) && onSaveNote && (
+          <div
+            className={`mb-3 p-3 rounded-lg border text-xs ${
+              darkMode
+                ? "bg-amber-950/30 border-amber-800/60 text-amber-200"
+                : "bg-amber-50/70 border-amber-200 text-slate-800"
+            }`}
+          >
+            <div className="flex items-center justify-between mb-1.5">
+              <span className="font-bold text-[11px] uppercase tracking-wider text-amber-600 dark:text-amber-400">
+                📝 Personal Clinical Note
+              </span>
+              {!isEditingNote && (
+                <button
+                  onClick={() => setIsEditingNote(true)}
+                  className="text-[11px] font-semibold text-blue-600 hover:underline"
+                >
+                  {clinicalNote ? "Edit Note" : "+ Add Note"}
+                </button>
+              )}
+            </div>
+
+            {isEditingNote ? (
+              <div className="space-y-2">
+                <textarea
+                  rows={2}
+                  value={noteInput}
+                  onChange={(e) => setNoteInput(e.target.value)}
+                  placeholder="Ghi chú lâm sàng (VD: Báo cáo giao ban thứ 5, áp dụng cho BN rung nhĩ + tiền sử XHN)..."
+                  className={`w-full p-2 rounded border text-xs focus:outline-none focus:ring-2 focus:ring-amber-500 ${
+                    darkMode
+                      ? "bg-slate-900 border-slate-700 text-slate-100"
+                      : "bg-white border-amber-300 text-slate-900"
+                  }`}
+                />
+                <div className="flex justify-end gap-2">
+                  <button
+                    onClick={() => {
+                      setNoteInput(clinicalNote);
+                      setIsEditingNote(false);
+                    }}
+                    className="px-2.5 py-1 rounded text-[11px] font-semibold text-slate-500 hover:bg-slate-200/50"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={() => {
+                      onSaveNote(article.id, noteInput);
+                      setIsEditingNote(false);
+                    }}
+                    className="px-3 py-1 rounded text-[11px] font-bold bg-amber-500 text-white hover:bg-amber-600"
+                  >
+                    Save Note
+                  </button>
+                </div>
+              </div>
+            ) : clinicalNote ? (
+              <p className="italic leading-relaxed">{clinicalNote}</p>
+            ) : (
+              <p
+                onClick={() => setIsEditingNote(true)}
+                className="cursor-pointer text-slate-400 italic"
+              >
+                Click &quot;+ Add Note&quot; to attach a personal clinical memo for this saved study...
+              </p>
+            )}
           </div>
         )}
 
         {/* Structured Abstract (chỉ hiển thị khi có Abstract thật) */}
         {hasRealAbstract ? (
-          <div className="mt-3 text-xs bg-slate-50/80 p-3.5 rounded-lg border border-slate-200/80">
+          <div
+            className={`mt-3 text-xs p-3.5 rounded-lg border ${
+              darkMode
+                ? "bg-slate-800/50 border-slate-700/80"
+                : "bg-slate-50/80 border-slate-200/80"
+            }`}
+          >
             <div className="flex items-center justify-between mb-2">
               <span className="font-bold text-slate-500 uppercase tracking-wider text-[11px]">
                 Structured Abstract
               </span>
               <button
                 onClick={() => setShowFullAbstract(!showFullAbstract)}
-                className="text-blue-600 hover:text-blue-800 text-[11px] font-semibold transition-colors"
+                className={`text-[11px] font-semibold transition-colors ${
+                  darkMode ? "text-blue-400 hover:text-blue-300" : "text-blue-600 hover:text-blue-800"
+                }`}
               >
                 {showFullAbstract ? "Collapse ▲" : "Expand Full Abstract ▼"}
               </button>
@@ -389,10 +696,16 @@ export function ArticleCard({
             {formatStructuredAbstract(article.abstract)}
           </div>
         ) : (
-          <div className="mt-2 py-2 px-3 rounded-lg bg-slate-50 border border-dashed border-slate-200 text-[11px] text-slate-500 flex items-center justify-between">
+          <div
+            className={`mt-2 py-2 px-3 rounded-lg border border-dashed text-[11px] flex items-center justify-between ${
+              darkMode
+                ? "bg-slate-800/30 border-slate-700 text-slate-400"
+                : "bg-slate-50 border-slate-200 text-slate-500"
+            }`}
+          >
             <span>
               Publisher preview only — full manuscript &amp; abstract available on{" "}
-              <strong className="text-slate-700">
+              <strong className={darkMode ? "text-slate-300" : "text-slate-700"}>
                 {article.journal.short_name || article.journal.name}
               </strong>
               .
@@ -400,18 +713,24 @@ export function ArticleCard({
           </div>
         )}
 
-        {/* Bottom Action: DOI + 1-Click Copy for Journal Club + View Full Article */}
-        <div className="mt-4 pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2">
-          <span className="text-[11px] text-slate-400 font-mono truncate max-w-[45%]">
+        {/* Bottom Action: DOI + 1-Click Copy for Journal Club + PubMed + View Full Article */}
+        <div
+          className={`mt-4 pt-3 border-t flex flex-wrap items-center justify-between gap-2 ${
+            darkMode ? "border-slate-800" : "border-slate-100"
+          }`}
+        >
+          <span className="text-[11px] text-slate-400 font-mono truncate max-w-[40%]">
             DOI: {article.id}
           </span>
 
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-2.5">
             <button
               onClick={handleCopyForJournalClub}
               className={`px-2.5 py-1 rounded-md text-[11px] font-bold border transition-all flex items-center gap-1 ${
                 copied
                   ? "bg-emerald-600 text-white border-emerald-600 shadow-xs"
+                  : darkMode
+                  ? "bg-slate-800 text-slate-200 border-slate-700 hover:bg-slate-700"
                   : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
               }`}
               title="Copy formatted summary & citation for Zalo, Telegram, or Journal Club slides"
@@ -420,10 +739,26 @@ export function ArticleCard({
             </button>
 
             <a
+              href={pubmedSearchUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`px-2 py-1 rounded-md text-[11px] font-semibold border transition-colors ${
+                darkMode
+                  ? "bg-slate-800/60 text-slate-300 border-slate-700 hover:bg-slate-800"
+                  : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50"
+              }`}
+              title="Search this article on PubMed"
+            >
+              PubMed ↗
+            </a>
+
+            <a
               href={article.doi_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs font-semibold text-blue-600 hover:text-blue-800 flex items-center gap-1 group"
+              className={`text-xs font-semibold flex items-center gap-1 group ${
+                darkMode ? "text-blue-400 hover:text-blue-300" : "text-blue-600 hover:text-blue-800"
+              }`}
             >
               View Article
               <span className="transition-transform group-hover:translate-x-0.5">→</span>
