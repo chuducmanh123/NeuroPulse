@@ -1,0 +1,41 @@
+name: Daily Multi-Journal Medical Aggregator
+
+on:
+  schedule:
+    # Chạy tự động lúc 6:00 sáng giờ VN (23:00 UTC)
+    - cron: '0 23 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Fetch Latest Articles & AI Digest
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python scripts/fetch_nejm.py
+
+      - name: Commit and Push Updated Data
+        run: |
+          git config --global user.name "Journal-Bot"
+          git config --global user.email "bot@journaltracker.org"
+          git add public/data/articles.json
+          if ! git diff --staged --quiet; then
+            git commit -m "chore(data): auto-update latest neurology articles"
+            git pull --rebase origin main || true
+            git push
+          else
+            echo "Không có thay đổi dữ liệu mới."
+          fi
