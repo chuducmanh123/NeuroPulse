@@ -6,7 +6,10 @@ import { ClinicalCase, CaseDifficulty, CaseStatus } from "../../types/clinicalCa
 import { Article } from "../../types/article";
 import { AppSwitcher } from "../../components/ecosystem/AppSwitcher";
 import { NeuroImagingViewer } from "../../components/neurocase/NeuroImagingViewer";
-import { extractClinicalCaseFromArticleText } from "../../utils/aiCaseExtractor";
+import {
+  extractClinicalCaseFromArticleText,
+  extractTextFromUploadedDocument,
+} from "../../utils/aiCaseExtractor";
 
 const SUBSPECIALTY_TABS = [
   { label: "All Subspecialties", value: "All" },
@@ -71,27 +74,52 @@ export default function NeuroCasePage() {
   const [subTitle, setSubTitle] = useState("");
   const [subSpecialty, setSubSpecialty] = useState("Vascular & Stroke");
   const [subDifficulty, setSubDifficulty] = useState<CaseDifficulty>("Resident");
+  const [subPublishedDate, setSubPublishedDate] = useState(() =>
+    new Date().toISOString().slice(0, 10)
+  );
   const [subDemographics, setSubDemographics] = useState("58-year-old right-handed male");
+  const [subPmh, setSubPmh] = useState("");
   const [subChiefComplaint, setSubChiefComplaint] = useState("");
   const [subHistory, setSubHistory] = useState("");
   const [subNeuroExam, setSubNeuroExam] = useState("");
+  const [subLabsCsf, setSubLabsCsf] = useState("");
   const [subModality, setSubModality] = useState("Brain MRI (DWI / FLAIR)");
+  const [subFigCaption, setSubFigCaption] = useState("");
   const [subFindings, setSubFindings] = useState("");
+  const [subVitalBp, setSubVitalBp] = useState("130/80 mmHg");
+  const [subVitalHr, setSubVitalHr] = useState("80 bpm");
+  const [subVitalRr, setSubVitalRr] = useState("18 /min");
+  const [subVitalTemp, setSubVitalTemp] = useState("36.8 °C");
+  const [subVitalSpo2, setSubVitalSpo2] = useState("98%");
   const [subQuestion, setSubQuestion] = useState("");
   const [subOptA, setSubOptA] = useState("");
   const [subOptB, setSubOptB] = useState("");
   const [subOptC, setSubOptC] = useState("");
   const [subOptD, setSubOptD] = useState("");
+  const [subOptARationale, setSubOptARationale] = useState("");
+  const [subOptBRationale, setSubOptBRationale] = useState("");
+  const [subOptCRationale, setSubOptCRationale] = useState("");
+  const [subOptDRationale, setSubOptDRationale] = useState("");
+  const [subPeerA, setSubPeerA] = useState<number>(64);
+  const [subPeerB, setSubPeerB] = useState<number>(16);
+  const [subPeerC, setSubPeerC] = useState<number>(12);
+  const [subPeerD, setSubPeerD] = useState<number>(8);
   const [subCorrect, setSubCorrect] = useState<"A" | "B" | "C" | "D">("A");
   const [subDiagnosis, setSubDiagnosis] = useState("");
   const [subDiscussion, setSubDiscussion] = useState("");
   const [subTeachingPoint, setSubTeachingPoint] = useState("");
   const [subPitfall, setSubPitfall] = useState("");
   const [subAuthor, setSubAuthor] = useState("");
+  const [subDoiUrl, setSubDoiUrl] = useState("");
   const [subImageWebpUrl, setSubImageWebpUrl] = useState<string>("");
   const [subImageSizeKb, setSubImageSizeKb] = useState<number>(0);
   const [submitSuccessMsg, setSubmitSuccessMsg] = useState<string>("");
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+
+  // Collapsible Optional Sections in Submit Case (collapsed by default so form stays clean)
+  const [showSubMcqSection, setShowSubMcqSection] = useState(false);
+  const [showSubResolutionSection, setShowSubResolutionSection] = useState(false);
+  const [showSubMetadataVitalsSection, setShowSubMetadataVitalsSection] = useState(false);
 
   // Admin Verification & Full Case Editing State
   const [isAdminVerified, setIsAdminVerified] = useState(false);
@@ -104,9 +132,12 @@ export default function NeuroCasePage() {
   const [editingCaseId, setEditingCaseId] = useState<string | null>(null);
   const [editDraft, setEditDraft] = useState<ClinicalCase | null>(null);
 
-  // AI Article / Text Case Extractor State (for NEJM, JAMA, Neurology, Stroke, Lancet)
+  // AI Article / Document Case Extractor State (.pdf, .docx, .doc, .txt)
   const [showAiExtractor, setShowAiExtractor] = useState(false);
   const [aiRawText, setAiRawText] = useState("");
+  const [aiPdfBase64, setAiPdfBase64] = useState<string | undefined>(undefined);
+  const [uploadedDocName, setUploadedDocName] = useState<string>("");
+  const [isReadingDoc, setIsReadingDoc] = useState(false);
   const [geminiApiKey, setGeminiApiKey] = useState("");
   const [isExtractingAi, setIsExtractingAi] = useState(false);
 
@@ -411,45 +442,73 @@ export default function NeuroCasePage() {
     setSubImageSizeKb(Math.round(approxBytes / 102.4) / 10);
   };
 
-  const handleArticleTextFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleArticleTextFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (ev) => {
-      const content = String(ev.target?.result || "");
-      setAiRawText(content);
-    };
-    reader.readAsText(file);
+    setIsReadingDoc(true);
+    setUploadedDocName(file.name);
+    try {
+      const res = await extractTextFromUploadedDocument(file);
+      if (res.text) {
+        setAiRawText(res.text);
+      } else if (res.pdfBase64) {
+        setAiRawText(
+          `[Uploaded PDF Document: ${file.name}] — Click "Auto-Extract & Populate Form" to parse with Gemini AI.`
+        );
+      }
+      setAiPdfBase64(res.pdfBase64);
+    } catch (err) {
+      console.error("Failed to read uploaded article document:", err);
+    } finally {
+      setIsReadingDoc(false);
+    }
   };
 
   const handleRunAiExtraction = async () => {
-    if (!aiRawText.trim()) return;
+    if (!aiRawText.trim() && !aiPdfBase64) return;
     setIsExtractingAi(true);
     try {
       if (geminiApiKey.trim()) {
         localStorage.setItem("neurocase_gemini_api_key", geminiApiKey.trim());
       }
-      const extracted = await extractClinicalCaseFromArticleText(aiRawText, geminiApiKey);
+      const extracted = await extractClinicalCaseFromArticleText(
+        aiRawText,
+        geminiApiKey,
+        aiPdfBase64
+      );
       setSubTitle(extracted.title);
       setSubSpecialty(extracted.subspecialty);
       setSubDifficulty(extracted.difficulty);
       setSubAuthor(extracted.author_credit);
       setSubDemographics(extracted.demographics);
+      setSubPmh(extracted.past_medical_history);
       setSubChiefComplaint(extracted.chief_complaint);
       setSubHistory(extracted.history_of_present_illness);
-      setSubNeuroExam(`${extracted.neuro_exam}\n\nWorkup / CSF: ${extracted.key_labs_csf}`);
+      setSubNeuroExam(extracted.neuro_exam);
+      setSubLabsCsf(extracted.key_labs_csf);
       setSubModality(extracted.modality);
+      setSubFigCaption(extracted.figure_caption);
       setSubFindings(extracted.findings_summary);
       setSubQuestion(extracted.question);
       setSubOptA(extracted.optA);
       setSubOptB(extracted.optB);
       setSubOptC(extracted.optC);
       setSubOptD(extracted.optD);
+      setSubOptARationale(extracted.optARationale);
+      setSubOptBRationale(extracted.optBRationale);
+      setSubOptCRationale(extracted.optCRationale);
+      setSubOptDRationale(extracted.optDRationale);
       setSubCorrect(extracted.correctOption);
       setSubDiagnosis(extracted.final_diagnosis);
       setSubDiscussion(extracted.clinical_discussion);
-      setSubTeachingPoint(extracted.teaching_points.join(" • "));
-      setSubPitfall(extracted.clinical_pitfalls.join(" • "));
+      setSubTeachingPoint(extracted.teaching_points.join("\n"));
+      setSubPitfall(extracted.clinical_pitfalls.join("\n"));
+
+      // Automatically expand the optional sections when AI populates them so the user can review
+      setShowSubMcqSection(true);
+      setShowSubResolutionSection(true);
+      setShowSubMetadataVitalsSection(true);
+
       setSubmitSuccessMsg(
         `✨ Successfully structured clinical case from ${extracted.journal_short}! Review the populated fields below and click Submit Case.`
       );
@@ -462,6 +521,15 @@ export default function NeuroCasePage() {
     e.preventDefault();
     if (!subTitle.trim()) return;
 
+    const parsedTeachingPoints = subTeachingPoint
+      .split(/\n|•/)
+      .map((s) => s.trim())
+      .filter(Boolean);
+    const parsedPitfalls = subPitfall
+      .split(/\n|•/)
+      .map((s) => s.trim())
+      .filter(Boolean);
+
     const newCase: ClinicalCase = {
       id: `nc-user-${Date.now()}`,
       case_code: `NC-USER-${Math.floor(100 + Math.random() * 900)}`,
@@ -471,23 +539,32 @@ export default function NeuroCasePage() {
       difficulty: subDifficulty,
       estimated_time_sec: 90,
       is_daily_challenge: false,
-      published_date: new Date().toISOString().slice(0, 10),
+      published_date: subPublishedDate || new Date().toISOString().slice(0, 10),
       status: "pending",
       author_credit: subAuthor.trim() || "Community Clinician Contributor",
+      source_journal: subDoiUrl.trim()
+        ? {
+            name: subAuthor.trim() || "Clinical Submission",
+            short_name: "DOI Source",
+            doi_url: subDoiUrl.trim(),
+            pub_year: (subPublishedDate || new Date().toISOString()).slice(0, 4),
+          }
+        : undefined,
       presentation: {
         demographics: subDemographics.trim() || "Adult Patient",
         chief_complaint: subChiefComplaint.trim() || subTitle.trim(),
-        history_of_present_illness: subHistory.trim() || "Clinical history provided by contributing author.",
-        past_medical_history: "As documented in clinical vignette",
+        history_of_present_illness:
+          subHistory.trim() || "Clinical history provided by contributing author.",
+        past_medical_history: subPmh.trim() || "As documented in clinical vignette",
         vitals: {
-          bp: "130/80 mmHg",
-          hr: "80 bpm",
-          rr: "18 /min",
-          temp: "36.8 °C",
-          spo2: "98%",
+          bp: subVitalBp.trim() || "130/80 mmHg",
+          hr: subVitalHr.trim() || "80 bpm",
+          rr: subVitalRr.trim() || "18 /min",
+          temp: subVitalTemp.trim() || "36.8 °C",
+          spo2: subVitalSpo2.trim() || "98%",
         },
         neuro_exam: subNeuroExam.trim() || "Focal neurological findings as described.",
-        key_labs_csf: "Baseline metabolic and CSF workup as indicated.",
+        key_labs_csf: subLabsCsf.trim() || "Baseline metabolic and CSF workup as indicated.",
         imaging: [
           {
             modality: subModality.trim() || "Brain CT / MRI",
@@ -496,8 +573,11 @@ export default function NeuroCasePage() {
             image_url:
               subImageWebpUrl ||
               (approvedCases[0]?.presentation.imaging[0]?.image_url ?? ""),
-            caption: "Client-side de-identified clinical neuroimaging figure (.webp).",
-            findings_summary: subFindings.trim() || "Characteristic neuroimaging abnormality.",
+            caption:
+              subFigCaption.trim() ||
+              "Client-side de-identified clinical neuroimaging figure (.webp).",
+            findings_summary:
+              subFindings.trim() || "Characteristic neuroimaging abnormality.",
           },
         ],
       },
@@ -511,34 +591,57 @@ export default function NeuroCasePage() {
           {
             id: "A",
             text: subOptA.trim() || "Primary clinical diagnosis / management option A",
-            peer_percentage: subCorrect === "A" ? 65 : 15,
-            rationale: subCorrect === "A" ? "Correct option per case author." : "Plausible clinical distractor.",
+            peer_percentage: Number(subPeerA) || (subCorrect === "A" ? 64 : 16),
+            rationale:
+              subOptARationale.trim() ||
+              (subCorrect === "A"
+                ? "Correct option per case author."
+                : "Plausible clinical distractor."),
           },
           {
             id: "B",
             text: subOptB.trim() || "Alternative differential diagnosis B",
-            peer_percentage: subCorrect === "B" ? 65 : 15,
-            rationale: subCorrect === "B" ? "Correct option per case author." : "Plausible clinical distractor.",
+            peer_percentage: Number(subPeerB) || (subCorrect === "B" ? 64 : 16),
+            rationale:
+              subOptBRationale.trim() ||
+              (subCorrect === "B"
+                ? "Correct option per case author."
+                : "Plausible clinical distractor."),
           },
           {
             id: "C",
             text: subOptC.trim() || "Alternative differential diagnosis C",
-            peer_percentage: subCorrect === "C" ? 65 : 10,
-            rationale: subCorrect === "C" ? "Correct option per case author." : "Plausible clinical distractor.",
+            peer_percentage: Number(subPeerC) || (subCorrect === "C" ? 64 : 12),
+            rationale:
+              subOptCRationale.trim() ||
+              (subCorrect === "C"
+                ? "Correct option per case author."
+                : "Plausible clinical distractor."),
           },
           {
             id: "D",
             text: subOptD.trim() || "Alternative differential diagnosis D",
-            peer_percentage: subCorrect === "D" ? 65 : 10,
-            rationale: subCorrect === "D" ? "Correct option per case author." : "Plausible clinical distractor.",
+            peer_percentage: Number(subPeerD) || (subCorrect === "D" ? 64 : 8),
+            rationale:
+              subOptDRationale.trim() ||
+              (subCorrect === "D"
+                ? "Correct option per case author."
+                : "Plausible clinical distractor."),
           },
         ],
       },
       resolution: {
         final_diagnosis: subDiagnosis.trim() || subTitle.trim(),
-        clinical_discussion: subDiscussion.trim() || "Clinical discussion provided by contributing clinician.",
-        teaching_points: [subTeachingPoint.trim() || "Core clinical takeaway from this case."],
-        clinical_pitfalls: [subPitfall.trim() || "Diagnostic pitfall to avoid in clinical practice."],
+        clinical_discussion:
+          subDiscussion.trim() || "Clinical discussion provided by contributing clinician.",
+        teaching_points:
+          parsedTeachingPoints.length > 0
+            ? parsedTeachingPoints
+            : ["Core clinical takeaway from this case."],
+        clinical_pitfalls:
+          parsedPitfalls.length > 0
+            ? parsedPitfalls
+            : ["Diagnostic pitfall to avoid in clinical practice."],
         related_keywords: [subSpecialty.toLowerCase(), "stroke", "neurology"],
       },
     };
@@ -555,6 +658,7 @@ export default function NeuroCasePage() {
     setSubChiefComplaint("");
     setSubHistory("");
     setSubNeuroExam("");
+    setSubLabsCsf("");
     setSubQuestion("");
     setSubOptA("");
     setSubOptB("");
@@ -1583,7 +1687,7 @@ export default function NeuroCasePage() {
               </button>
             </div>
 
-            {/* 1-CLICK AI CASE EXTRACTOR FOR PAYWALLED / TOP JOURNALS */}
+            {/* 1-CLICK AI CASE EXTRACTOR FOR PAYWALLED / TOP JOURNALS (.pdf, .docx, .doc, .txt) */}
             {showAiExtractor && (
               <div
                 className={`p-4 rounded-xl border-2 border-indigo-500/40 space-y-3 ${
@@ -1596,27 +1700,34 @@ export default function NeuroCasePage() {
                       ✨ SEMI-AUTOMATED HIGH-IMPACT JOURNAL IMPORTER
                     </span>
                     <p className="text-xs text-slate-500 dark:text-slate-400">
-                      Paste the Case Presentation &amp; Discussion text (or upload a <code>.txt</code> / <code>.md</code> file) from{" "}
-                      <strong>NEJM Clinical Problem-Solving</strong>, <strong>JAMA Neurology</strong>,{" "}
-                      <strong>Neurology Resident &amp; Fellow Section</strong>, or <strong>The Lancet Neurology</strong> to auto-populate all fields below.
+                      Upload a journal article file (<code>.pdf</code>, <code>.docx</code>, <code>.doc</code>, <code>.txt</code>, <code>.md</code>) or paste the Case Presentation &amp; Discussion from{" "}
+                      <strong>NEJM</strong>, <strong>JAMA Neurology</strong>,{" "}
+                      <strong>Neurology</strong>, or <strong>The Lancet Neurology</strong> to auto-populate all fields below.
                     </p>
                   </div>
-                  <label className="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-white cursor-pointer hover:bg-slate-700 shrink-0">
-                    📄 Upload Article Text File
-                    <input
-                      type="file"
-                      accept=".txt,.md,.xml,.json"
-                      onChange={handleArticleTextFileUpload}
-                      className="hidden"
-                    />
-                  </label>
+                  <div className="flex flex-wrap items-center gap-2 shrink-0">
+                    {uploadedDocName && (
+                      <span className="px-2 py-1 rounded bg-emerald-500/15 text-emerald-500 text-[11px] font-bold">
+                        {isReadingDoc ? "⏳ Reading..." : `✓ ${uploadedDocName}`}
+                      </span>
+                    )}
+                    <label className="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-white cursor-pointer hover:bg-slate-700 shrink-0">
+                      📄 Upload Article (.pdf, .docx, .doc, .txt)
+                      <input
+                        type="file"
+                        accept=".pdf,.doc,.docx,.txt,.md,.xml,.json"
+                        onChange={handleArticleTextFileUpload}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
                 </div>
 
                 <textarea
                   rows={5}
                   value={aiRawText}
                   onChange={(e) => setAiRawText(e.target.value)}
-                  placeholder="Paste full case presentation, MRI findings, discussion, and DOI (e.g., 10.1056/NEJMcps... or 10.1212/WNL...) here..."
+                  placeholder="Paste full case presentation, MRI findings, discussion, and DOI (or upload a .pdf / .docx / .doc file above)..."
                   className={`w-full p-3 rounded-lg border text-xs leading-relaxed ${
                     darkMode
                       ? "bg-slate-900 border-slate-700 text-slate-100"
@@ -1629,7 +1740,7 @@ export default function NeuroCasePage() {
                     type="password"
                     value={geminiApiKey}
                     onChange={(e) => setGeminiApiKey(e.target.value)}
-                    placeholder="Optional: Gemini API Key (AIza...) for LLM Board-Style MCQ generation"
+                    placeholder="Optional: Gemini API Key (AIza...) for LLM Board-Style MCQ & PDF parsing"
                     className={`px-3 py-2 rounded-lg border text-xs flex-1 min-w-[240px] ${
                       darkMode
                         ? "bg-slate-900 border-slate-700 text-slate-200"
@@ -1638,7 +1749,7 @@ export default function NeuroCasePage() {
                   />
                   <button
                     type="button"
-                    disabled={isExtractingAi || !aiRawText.trim()}
+                    disabled={isExtractingAi || isReadingDoc || (!aiRawText.trim() && !aiPdfBase64)}
                     onClick={handleRunAiExtraction}
                     className="px-4 py-2 rounded-lg text-xs font-black bg-indigo-600 text-white hover:bg-indigo-700 disabled:opacity-50"
                   >
@@ -1666,6 +1777,7 @@ export default function NeuroCasePage() {
             )}
 
             <form onSubmit={handleUserSubmitCase} className="space-y-4 text-xs sm:text-sm">
+              {/* CORE ESSENTIAL FIELDS (ALWAYS VISIBLE) */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div className="sm:col-span-2">
                   <label className="font-bold block mb-1">Case Title *</label>
@@ -1737,9 +1849,9 @@ export default function NeuroCasePage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
-                  <label className="font-bold block mb-1">History of Present Illness</label>
+                  <label className="font-bold block mb-1">History of Present Illness (HPI)</label>
                   <textarea
                     rows={3}
                     value={subHistory}
@@ -1751,12 +1863,24 @@ export default function NeuroCasePage() {
                   />
                 </div>
                 <div>
-                  <label className="font-bold block mb-1">Neurological Exam &amp; Workup</label>
+                  <label className="font-bold block mb-1">Neurological Examination</label>
                   <textarea
                     rows={3}
                     value={subNeuroExam}
                     onChange={(e) => setSubNeuroExam(e.target.value)}
-                    placeholder="GCS, NIHSS, focal deficits, CSF, and MRI/CT findings..."
+                    placeholder="GCS, NIHSS, cranial nerves, motor/sensory/cerebellar findings..."
+                    className={`w-full p-2.5 rounded-lg border ${
+                      darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"
+                    }`}
+                  />
+                </div>
+                <div>
+                  <label className="font-bold block mb-1">Key Labs, CSF &amp; Workup</label>
+                  <textarea
+                    rows={3}
+                    value={subLabsCsf}
+                    onChange={(e) => setSubLabsCsf(e.target.value)}
+                    placeholder="CSF cell count/protein, autoimmune panel, EEG/EMG, or labs..."
                     className={`w-full p-2.5 rounded-lg border ${
                       darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"
                     }`}
@@ -1825,87 +1949,430 @@ export default function NeuroCasePage() {
               </div>
 
               <div>
-                <label className="font-bold block mb-1">Multiple-Choice Question Prompt</label>
+                <label className="font-bold block mb-1">Final Clinical Diagnosis</label>
                 <input
-                  value={subQuestion}
-                  onChange={(e) => setSubQuestion(e.target.value)}
-                  placeholder="What is the most likely diagnosis or next best management step?"
+                  value={subDiagnosis}
+                  onChange={(e) => setSubDiagnosis(e.target.value)}
+                  placeholder="Definitive diagnosis (e.g., Percheron Artery Bilateral Paramedian Thalamic Infarction)..."
                   className={`w-full p-2.5 rounded-lg border ${
                     darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"
                   }`}
                 />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label className="font-bold block mb-1">Option A</label>
-                  <input
-                    value={subOptA}
-                    onChange={(e) => setSubOptA(e.target.value)}
-                    className={`w-full p-2.5 rounded-lg border ${
-                      darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"
-                    }`}
-                  />
-                </div>
-                <div>
-                  <label className="font-bold block mb-1">Option B</label>
-                  <input
-                    value={subOptB}
-                    onChange={(e) => setSubOptB(e.target.value)}
-                    className={`w-full p-2.5 rounded-lg border ${
-                      darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"
-                    }`}
-                  />
-                </div>
-                <div>
-                  <label className="font-bold block mb-1">Option C</label>
-                  <input
-                    value={subOptC}
-                    onChange={(e) => setSubOptC(e.target.value)}
-                    className={`w-full p-2.5 rounded-lg border ${
-                      darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"
-                    }`}
-                  />
-                </div>
-                <div>
-                  <label className="font-bold block mb-1">Option D</label>
-                  <input
-                    value={subOptD}
-                    onChange={(e) => setSubOptD(e.target.value)}
-                    className={`w-full p-2.5 rounded-lg border ${
-                      darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"
-                    }`}
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                <div>
-                  <label className="font-bold block mb-1">Correct Option</label>
-                  <select
-                    value={subCorrect}
-                    onChange={(e) => setSubCorrect(e.target.value as "A" | "B" | "C" | "D")}
-                    aria-label="Select correct option"
-                    className={`w-full p-2.5 rounded-lg border font-black ${
-                      darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"
-                    }`}
+              {/* ===============================================================
+                  COLLAPSIBLE OPTIONAL SECTIONS (Matching Full Admin Case Editor)
+                 =============================================================== */}
+              <div className="space-y-3 pt-1">
+                {/* 1. COLLAPSIBLE: MULTIPLE-CHOICE QUESTION, 4 OPTIONS, PEER % & RATIONALES */}
+                <div
+                  className={`rounded-xl border overflow-hidden ${
+                    darkMode ? "border-slate-800 bg-slate-900/50" : "border-slate-200 bg-slate-50/60"
+                  }`}
+                >
+                  <button
+                    type="button"
+                    onClick={() => setShowSubMcqSection((prev) => !prev)}
+                    className="w-full px-4 py-3 text-left flex items-center justify-between gap-2 text-xs font-black uppercase tracking-wide hover:bg-indigo-500/5 transition-colors"
                   >
-                    <option value="A">Option A</option>
-                    <option value="B">Option B</option>
-                    <option value="C">Option C</option>
-                    <option value="D">Option D</option>
-                  </select>
+                    <span className="text-indigo-500">
+                      {showSubMcqSection ? "▼" : "▶"} Optional: Multiple-Choice Question Prompt, 4 Options (A–D), Peer % &amp; Rationales
+                    </span>
+                    <span className="text-[11px] font-semibold text-slate-400">
+                      {showSubMcqSection ? "Click to collapse" : "Collapsed (Optional)"}
+                    </span>
+                  </button>
+
+                  {showSubMcqSection && (
+                    <div
+                      className={`p-4 border-t space-y-3 text-xs ${
+                        darkMode ? "border-slate-800" : "border-slate-200"
+                      }`}
+                    >
+                      <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
+                        <div className="sm:col-span-3">
+                          <label className="font-bold block mb-1">
+                            Multiple-Choice Question Prompt (Optional)
+                          </label>
+                          <input
+                            value={subQuestion}
+                            onChange={(e) => setSubQuestion(e.target.value)}
+                            placeholder="What is the most likely diagnosis or next best management step?"
+                            className={`w-full p-2 rounded border ${
+                              darkMode
+                                ? "bg-slate-800 border-slate-700"
+                                : "bg-white border-slate-300"
+                            }`}
+                          />
+                        </div>
+                        <div>
+                          <label className="font-bold block mb-1">Correct Option</label>
+                          <select
+                            value={subCorrect}
+                            onChange={(e) =>
+                              setSubCorrect(e.target.value as "A" | "B" | "C" | "D")
+                            }
+                            aria-label="Select correct option"
+                            className={`w-full p-2 rounded border font-black ${
+                              darkMode
+                                ? "bg-slate-800 border-slate-700 text-emerald-400"
+                                : "bg-white border-slate-300 text-emerald-700"
+                            }`}
+                          >
+                            <option value="A">Option A</option>
+                            <option value="B">Option B</option>
+                            <option value="C">Option C</option>
+                            <option value="D">Option D</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        {[
+                          {
+                            id: "A" as const,
+                            val: subOptA,
+                            setVal: setSubOptA,
+                            rat: subOptARationale,
+                            setRat: setSubOptARationale,
+                            peer: subPeerA,
+                            setPeer: setSubPeerA,
+                          },
+                          {
+                            id: "B" as const,
+                            val: subOptB,
+                            setVal: setSubOptB,
+                            rat: subOptBRationale,
+                            setRat: setSubOptBRationale,
+                            peer: subPeerB,
+                            setPeer: setSubPeerB,
+                          },
+                          {
+                            id: "C" as const,
+                            val: subOptC,
+                            setVal: setSubOptC,
+                            rat: subOptCRationale,
+                            setRat: setSubOptCRationale,
+                            peer: subPeerC,
+                            setPeer: setSubPeerC,
+                          },
+                          {
+                            id: "D" as const,
+                            val: subOptD,
+                            setVal: setSubOptD,
+                            rat: subOptDRationale,
+                            setRat: setSubOptDRationale,
+                            peer: subPeerD,
+                            setPeer: setSubPeerD,
+                          },
+                        ].map((item) => (
+                          <div
+                            key={item.id}
+                            className={`p-3 rounded-lg border space-y-1.5 ${
+                              subCorrect === item.id
+                                ? "border-emerald-500/60 bg-emerald-500/5"
+                                : darkMode
+                                ? "border-slate-800 bg-slate-950"
+                                : "border-slate-200 bg-white"
+                            }`}
+                          >
+                            <div className="flex items-center justify-between">
+                              <span className="font-black">Option {item.id} Text</span>
+                              <span className="text-[10px] text-slate-400">
+                                Peer %:{" "}
+                                <input
+                                  type="number"
+                                  min={0}
+                                  max={100}
+                                  value={item.peer}
+                                  onChange={(e) => item.setPeer(Number(e.target.value) || 0)}
+                                  className="w-12 px-1 py-0.5 rounded border text-center bg-transparent"
+                                />
+                              </span>
+                            </div>
+                            <input
+                              value={item.val}
+                              onChange={(e) => item.setVal(e.target.value)}
+                              placeholder={`Option ${item.id} choice...`}
+                              className={`w-full p-1.5 rounded border ${
+                                darkMode
+                                  ? "bg-slate-900 border-slate-700 text-white"
+                                  : "bg-slate-50 border-slate-300"
+                              }`}
+                            />
+                            <textarea
+                              rows={2}
+                              value={item.rat}
+                              onChange={(e) => item.setRat(e.target.value)}
+                              placeholder={`Rationale / explanation for Option ${item.id} (Optional)...`}
+                              className={`w-full p-1.5 rounded border ${
+                                darkMode
+                                  ? "bg-slate-900 border-slate-700 text-slate-300"
+                                  : "bg-slate-50 border-slate-300"
+                              }`}
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
-                <div className="sm:col-span-2">
-                  <label className="font-bold block mb-1">Final Diagnosis &amp; Key Teaching Point</label>
-                  <input
-                    value={subDiagnosis}
-                    onChange={(e) => setSubDiagnosis(e.target.value)}
-                    placeholder="Definitive diagnosis and core clinical pearl..."
-                    className={`w-full p-2.5 rounded-lg border ${
-                      darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"
-                    }`}
-                  />
+
+                {/* 2. COLLAPSIBLE: CLINICAL DISCUSSION, HIGH-YIELD TEACHING POINTS & PITFALLS */}
+                <div
+                  className={`rounded-xl border overflow-hidden ${
+                    darkMode ? "border-slate-800 bg-slate-900/50" : "border-slate-200 bg-slate-50/60"
+                  }`}
+                >
+                  <button
+                    type="button"
+                    onClick={() => setShowSubResolutionSection((prev) => !prev)}
+                    className="w-full px-4 py-3 text-left flex items-center justify-between gap-2 text-xs font-black uppercase tracking-wide hover:bg-indigo-500/5 transition-colors"
+                  >
+                    <span className="text-indigo-500">
+                      {showSubResolutionSection ? "▼" : "▶"} Optional: Clinical Discussion, High-Yield Teaching Points &amp; Pitfalls
+                    </span>
+                    <span className="text-[11px] font-semibold text-slate-400">
+                      {showSubResolutionSection ? "Click to collapse" : "Collapsed (Optional)"}
+                    </span>
+                  </button>
+
+                  {showSubResolutionSection && (
+                    <div
+                      className={`p-4 border-t space-y-3 text-xs ${
+                        darkMode ? "border-slate-800" : "border-slate-200"
+                      }`}
+                    >
+                      <div>
+                        <label className="font-bold block mb-1">Clinical Discussion</label>
+                        <textarea
+                          rows={4}
+                          value={subDiscussion}
+                          onChange={(e) => setSubDiscussion(e.target.value)}
+                          placeholder="Pathophysiology, neuroimaging correlation, and evidence-based management..."
+                          className={`w-full p-2 rounded border ${
+                            darkMode
+                              ? "bg-slate-800 border-slate-700 text-white"
+                              : "bg-white border-slate-300"
+                          }`}
+                        />
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                          <label className="font-bold block mb-1">
+                            High-Yield Teaching Points (one per line)
+                          </label>
+                          <textarea
+                            rows={3}
+                            value={subTeachingPoint}
+                            onChange={(e) => setSubTeachingPoint(e.target.value)}
+                            placeholder="Key board-style clinical takeaways..."
+                            className={`w-full p-2 rounded border ${
+                              darkMode
+                                ? "bg-slate-800 border-slate-700 text-white"
+                                : "bg-white border-slate-300"
+                            }`}
+                          />
+                        </div>
+                        <div>
+                          <label className="font-bold block mb-1">
+                            Clinical Pitfalls to Avoid (one per line)
+                          </label>
+                          <textarea
+                            rows={3}
+                            value={subPitfall}
+                            onChange={(e) => setSubPitfall(e.target.value)}
+                            placeholder="Diagnostic or management pitfalls to avoid..."
+                            className={`w-full p-2 rounded border ${
+                              darkMode
+                                ? "bg-slate-800 border-slate-700 text-white"
+                                : "bg-white border-slate-300"
+                            }`}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* 3. COLLAPSIBLE: FIGURE CAPTION/MODALITY, PAST MEDICAL HISTORY, VITAL SIGNS & DOI */}
+                <div
+                  className={`rounded-xl border overflow-hidden ${
+                    darkMode ? "border-slate-800 bg-slate-900/50" : "border-slate-200 bg-slate-50/60"
+                  }`}
+                >
+                  <button
+                    type="button"
+                    onClick={() => setShowSubMetadataVitalsSection((prev) => !prev)}
+                    className="w-full px-4 py-3 text-left flex items-center justify-between gap-2 text-xs font-black uppercase tracking-wide hover:bg-indigo-500/5 transition-colors"
+                  >
+                    <span className="text-indigo-500">
+                      {showSubMetadataVitalsSection ? "▼" : "▶"} Optional: Figure Caption &amp; Modality, Past Medical History, Vital Signs &amp; DOI
+                    </span>
+                    <span className="text-[11px] font-semibold text-slate-400">
+                      {showSubMetadataVitalsSection ? "Click to collapse" : "Collapsed (Optional)"}
+                    </span>
+                  </button>
+
+                  {showSubMetadataVitalsSection && (
+                    <div
+                      className={`p-4 border-t space-y-3 text-xs ${
+                        darkMode ? "border-slate-800" : "border-slate-200"
+                      }`}
+                    >
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div>
+                          <label className="font-bold block mb-1">Figure Modality</label>
+                          <input
+                            value={subModality}
+                            onChange={(e) => setSubModality(e.target.value)}
+                            placeholder="e.g., Brain MRI (DWI / FLAIR)"
+                            className={`w-full p-2 rounded border ${
+                              darkMode
+                                ? "bg-slate-800 border-slate-700 text-white"
+                                : "bg-white border-slate-300"
+                            }`}
+                          />
+                        </div>
+                        <div>
+                          <label className="font-bold block mb-1">
+                            Original Figure Caption (Hidden until solved)
+                          </label>
+                          <input
+                            value={subFigCaption}
+                            onChange={(e) => setSubFigCaption(e.target.value)}
+                            placeholder="Figure 1 legend from manuscript..."
+                            className={`w-full p-2 rounded border ${
+                              darkMode
+                                ? "bg-slate-800 border-slate-700 text-white"
+                                : "bg-white border-slate-300"
+                            }`}
+                          />
+                        </div>
+                        <div>
+                          <label className="font-bold block mb-1">
+                            Key Radiological / Electrographic Findings
+                          </label>
+                          <input
+                            value={subFindings}
+                            onChange={(e) => setSubFindings(e.target.value)}
+                            placeholder="Radiological interpretation summary..."
+                            className={`w-full p-2 rounded border ${
+                              darkMode
+                                ? "bg-slate-800 border-slate-700 text-white"
+                                : "bg-white border-slate-300"
+                            }`}
+                          />
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div>
+                          <label className="font-bold block mb-1">Past Medical History</label>
+                          <input
+                            value={subPmh}
+                            onChange={(e) => setSubPmh(e.target.value)}
+                            placeholder="Hypertension, atrial fibrillation, etc."
+                            className={`w-full p-2 rounded border ${
+                              darkMode
+                                ? "bg-slate-800 border-slate-700 text-white"
+                                : "bg-white border-slate-300"
+                            }`}
+                          />
+                        </div>
+                        <div>
+                          <label className="font-bold block mb-1">Published Date</label>
+                          <input
+                            type="date"
+                            value={subPublishedDate}
+                            onChange={(e) => setSubPublishedDate(e.target.value)}
+                            className={`w-full p-2 rounded border ${
+                              darkMode
+                                ? "bg-slate-800 border-slate-700 text-white"
+                                : "bg-white border-slate-300"
+                            }`}
+                          />
+                        </div>
+                        <div>
+                          <label className="font-bold block mb-1">Source DOI / URL</label>
+                          <input
+                            value={subDoiUrl}
+                            onChange={(e) => setSubDoiUrl(e.target.value)}
+                            placeholder="https://doi.org/10.1212/..."
+                            className={`w-full p-2 rounded border ${
+                              darkMode
+                                ? "bg-slate-800 border-slate-700 text-white"
+                                : "bg-white border-slate-300"
+                            }`}
+                          />
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                        <div>
+                          <label className="font-bold block mb-1">BP</label>
+                          <input
+                            value={subVitalBp}
+                            onChange={(e) => setSubVitalBp(e.target.value)}
+                            className={`w-full p-1.5 rounded border ${
+                              darkMode
+                                ? "bg-slate-800 border-slate-700 text-white"
+                                : "bg-white border-slate-300"
+                            }`}
+                          />
+                        </div>
+                        <div>
+                          <label className="font-bold block mb-1">HR</label>
+                          <input
+                            value={subVitalHr}
+                            onChange={(e) => setSubVitalHr(e.target.value)}
+                            className={`w-full p-1.5 rounded border ${
+                              darkMode
+                                ? "bg-slate-800 border-slate-700 text-white"
+                                : "bg-white border-slate-300"
+                            }`}
+                          />
+                        </div>
+                        <div>
+                          <label className="font-bold block mb-1">RR</label>
+                          <input
+                            value={subVitalRr}
+                            onChange={(e) => setSubVitalRr(e.target.value)}
+                            className={`w-full p-1.5 rounded border ${
+                              darkMode
+                                ? "bg-slate-800 border-slate-700 text-white"
+                                : "bg-white border-slate-300"
+                            }`}
+                          />
+                        </div>
+                        <div>
+                          <label className="font-bold block mb-1">Temp</label>
+                          <input
+                            value={subVitalTemp}
+                            onChange={(e) => setSubVitalTemp(e.target.value)}
+                            className={`w-full p-1.5 rounded border ${
+                              darkMode
+                                ? "bg-slate-800 border-slate-700 text-white"
+                                : "bg-white border-slate-300"
+                            }`}
+                          />
+                        </div>
+                        <div>
+                          <label className="font-bold block mb-1">SpO2</label>
+                          <input
+                            value={subVitalSpo2}
+                            onChange={(e) => setSubVitalSpo2(e.target.value)}
+                            className={`w-full p-1.5 rounded border ${
+                              darkMode
+                                ? "bg-slate-800 border-slate-700 text-white"
+                                : "bg-white border-slate-300"
+                            }`}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
 
