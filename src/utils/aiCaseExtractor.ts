@@ -351,37 +351,59 @@ ${cleaned.slice(0, 14000)}`;
   }
 
   // Deterministic Clinical NLP Rule-Based Extraction (works offline / without API key)
-  const sentences = cleaned
+  // Strip PDF download watermarks, publisher copyright footers, and trailing References section
+  const bodyWithoutRefs = cleaned
+    .replace(/\n\s*(?:References|Bibliography|Acknowledgments|Disclosures|Author Contributions)\s*\n[\s\S]*$/i, "")
+    .replace(/NEJM Evidence is produced by NEJM Group[^.\n]*\.?/gi, "")
+    .replace(/Downloaded from [^\s]+ by [^\n]+/gi, "")
+    .replace(/Copyright © \d{4}[^.\n]*\.?/gi, "")
+    .replace(/-\s+/g, "");
+
+  const sentences = bodyWithoutRefs
     .split(/(?<=[.!?])\s+/)
     .map((s) => s.trim())
-    .filter((s) => s.length > 25);
+    .filter(
+      (s) =>
+        s.length > 30 &&
+        !/\b(DOI:\s*10\.|et al\.|JAMA|Stroke\s+\d{4};\d+|N Engl J Med\s+\d{4}|Morning Report is a time-honored tradition)\b/i.test(
+          s
+        )
+    );
 
-  const demoMatch = cleaned.match(
-    /\b(\d{1,2}-year-old\s+(?:right-handed\s+|left-handed\s+|previously healthy\s+)?(?:man|woman|male|female|boy|girl|patient))\b/i
+  const demoMatch = bodyWithoutRefs.match(
+    /\b(\d{1,2}-year-\s*old\s+(?:right-handed\s+|left-handed\s+|previously healthy\s+)?(?:man|woman|male|female|boy|girl|patient))\b/i
   );
-  const demographics = demoMatch ? demoMatch[1] : "Adult Patient";
+  const demographics = demoMatch ? demoMatch[1].replace(/\s+/g, " ") : "Adult Patient";
 
-  const subspecialty = detectSubspecialty(cleaned);
+  const subspecialty = detectSubspecialty(bodyWithoutRefs);
 
   const hpiSentences = sentences.filter((s) =>
-    /\b(presented|admitted|history|developed|onset|complained|awoke|experienced|brought to)\b/i.test(s)
+    /\b(presented|admitted|history|developed|onset|complained|awoke|experienced|brought to|preceding\s+\d+\s+months)\b/i.test(
+      s
+    )
   );
   const examSentences = sentences.filter((s) =>
-    /\b(examination|neurological exam|pupils|cranial nerve|NIHSS|GCS|reflex|weakness|hemiparesis|ataxia|aphasia|nystagmus|sensory|Babinski)\b/i.test(
+    /\b(examination|neurological exam|pupils|cranial nerve|NIHSS|GCS|reflex|weakness|hemiparesis|ataxia|aphasia|nystagmus|sensory|Babinski|blood pressure|vital signs)\b/i.test(
       s
     )
   );
   const imagingSentences = sentences.filter((s) =>
-    /\b(MRI|FLAIR|DWI|CT|CTA|MRA|DSA|angiography|EEG|hyperintensity|diffusion restriction|occlusion|enhancement)\b/i.test(
+    /\b(MRI|FLAIR|DWI|CT|CTA|MRA|DSA|angiography|EEG|hyperintensity|diffusion restriction|occlusion|enhancement|stenosis|infarct)\b/i.test(
       s
     )
   );
   const labSentences = sentences.filter((s) =>
-    /\b(CSF|cerebrospinal|pleocytosis|protein|oligoclonal|antibody|autoantibodies|serum|D-dimer|platelets|titer)\b/i.test(
+    /\b(CSF|cerebrospinal|pleocytosis|protein|oligoclonal|antibody|autoantibodies|serum|D-dimer|platelets|titer|ESR|CRP|biopsy)\b/i.test(
       s
     )
   );
-  const diagMatch = cleaned.match(
+  const discussionSentences = sentences.filter((s) =>
+    /\b(pathophysiology|mechanism|characterized by|management|treatment|diagnosis|syndrome|vasculitis|moyamoya|arteritis|takayasu|hallmark|distinguish|differential)\b/i.test(
+      s
+    )
+  );
+
+  const diagMatch = bodyWithoutRefs.match(
     /\b(?:diagnosed with|diagnosis of|consistent with|confirmed\s+(?:a\s+diagnosis\s+of)?|final diagnosis[:\s]+)\s*([^.;\n]{8,110})/i
   );
 
@@ -389,9 +411,11 @@ ${cleaned.slice(0, 14000)}`;
     ? diagMatch[1].trim().replace(/^(a|an|the)\s+/i, "")
     : `${subspecialty} Clinical Syndrome`;
 
-  const firstLine = cleaned.split("\n")[0]?.trim() || "";
+  const firstLine = bodyWithoutRefs.split("\n")[0]?.trim() || "";
   const title =
-    firstLine.length > 20 && firstLine.length < 180
+    firstLine.length > 20 &&
+    firstLine.length < 160 &&
+    !/published|morning report|abstract/i.test(firstLine)
       ? firstLine
       : `Acute ${subspecialty} Presentation in a ${demographics}`;
 
@@ -405,7 +429,7 @@ ${cleaned.slice(0, 14000)}`;
     demographics,
     chief_complaint: hpiSentences[0]?.slice(0, 160) || title,
     history_of_present_illness:
-      hpiSentences.slice(0, 4).join(" ") || sentences.slice(0, 3).join(" ") || cleaned.slice(0, 500),
+      hpiSentences.slice(0, 4).join(" ") || sentences.slice(0, 3).join(" ") || bodyWithoutRefs.slice(0, 500),
     past_medical_history: "As documented in clinical vignette.",
     neuro_exam:
       examSentences.slice(0, 3).join(" ") ||
@@ -431,7 +455,10 @@ ${cleaned.slice(0, 14000)}`;
     optDRationale: "Excluded by acute/subacute evolution and imaging characteristics.",
     correctOption: "A",
     final_diagnosis: finalDiagnosis,
-    clinical_discussion: sentences.slice(-4).join(" ") || cleaned.slice(-600),
+    clinical_discussion:
+      discussionSentences.slice(-4).join(" ") ||
+      sentences.slice(Math.max(0, sentences.length - 5), sentences.length - 1).join(" ") ||
+      bodyWithoutRefs.slice(0, 600),
     teaching_points: [
       "Correlate acute neuroanatomical localization with targeted MRI sequences (DWI/ADC, FLAIR, SWI, and vessel imaging).",
       "Early recognition of characteristic neuroimaging signatures prevents unnecessary invasive procedures and guides timely therapy.",

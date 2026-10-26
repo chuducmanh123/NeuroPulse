@@ -74,23 +74,21 @@ export default function NeuroCasePage() {
   const [subTitle, setSubTitle] = useState("");
   const [subSpecialty, setSubSpecialty] = useState("Vascular & Stroke");
   const [subDifficulty, setSubDifficulty] = useState<CaseDifficulty>("Resident");
-  const [subPublishedDate, setSubPublishedDate] = useState(() =>
-    new Date().toISOString().slice(0, 10)
-  );
-  const [subDemographics, setSubDemographics] = useState("58-year-old right-handed male");
+  const [subPublishedDate, setSubPublishedDate] = useState("");
+  const [subDemographics, setSubDemographics] = useState("");
   const [subPmh, setSubPmh] = useState("");
   const [subChiefComplaint, setSubChiefComplaint] = useState("");
   const [subHistory, setSubHistory] = useState("");
   const [subNeuroExam, setSubNeuroExam] = useState("");
   const [subLabsCsf, setSubLabsCsf] = useState("");
-  const [subModality, setSubModality] = useState("Brain MRI (DWI / FLAIR)");
+  const [subModality, setSubModality] = useState("");
   const [subFigCaption, setSubFigCaption] = useState("");
   const [subFindings, setSubFindings] = useState("");
-  const [subVitalBp, setSubVitalBp] = useState("130/80 mmHg");
-  const [subVitalHr, setSubVitalHr] = useState("80 bpm");
-  const [subVitalRr, setSubVitalRr] = useState("18 /min");
-  const [subVitalTemp, setSubVitalTemp] = useState("36.8 °C");
-  const [subVitalSpo2, setSubVitalSpo2] = useState("98%");
+  const [subVitalBp, setSubVitalBp] = useState("");
+  const [subVitalHr, setSubVitalHr] = useState("");
+  const [subVitalRr, setSubVitalRr] = useState("");
+  const [subVitalTemp, setSubVitalTemp] = useState("");
+  const [subVitalSpo2, setSubVitalSpo2] = useState("");
   const [subQuestion, setSubQuestion] = useState("");
   const [subOptA, setSubOptA] = useState("");
   const [subOptB, setSubOptB] = useState("");
@@ -115,6 +113,8 @@ export default function NeuroCasePage() {
   const [subImageSizeKb, setSubImageSizeKb] = useState<number>(0);
   const [submitSuccessMsg, setSubmitSuccessMsg] = useState<string>("");
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const docFileInputRef = useRef<HTMLInputElement | null>(null);
+  const imageFileInputRef = useRef<HTMLInputElement | null>(null);
 
   // Collapsible Optional Sections in Submit Case (collapsed by default so form stays clean)
   const [showSubMcqSection, setShowSubMcqSection] = useState(false);
@@ -131,6 +131,7 @@ export default function NeuroCasePage() {
   );
   const [editingCaseId, setEditingCaseId] = useState<string | null>(null);
   const [editDraft, setEditDraft] = useState<ClinicalCase | null>(null);
+  const [adminScheduleDates, setAdminScheduleDates] = useState<Record<string, string>>({});
 
   // AI Article / Document Case Extractor State (.pdf, .docx, .doc, .txt)
   const [showAiExtractor, setShowAiExtractor] = useState(false);
@@ -201,7 +202,7 @@ export default function NeuroCasePage() {
           }
         }
         let overridesMap: Record<string, ClinicalCase> = {};
-        const savedOverrides = localStorage.getItem("neurocase_admin_overrides_v2");
+        const savedOverrides = localStorage.getItem("neurocase_admin_overrides_v3");
         if (savedOverrides) {
           try {
             overridesMap = JSON.parse(savedOverrides);
@@ -211,8 +212,24 @@ export default function NeuroCasePage() {
         }
         const merged = [...customCases, ...loadedCases].map((c) => overridesMap[c.id] || c);
         setCases(merged);
-        const daily = merged.find((c) => c.is_daily_challenge && c.status !== "pending") || merged[0];
-        if (daily) setActiveCaseId(daily.id);
+
+        const todayIso = new Date().toISOString().slice(0, 10);
+        const activeDailies = merged
+          .filter(
+            (c) =>
+              (!c.status || c.status === "approved") &&
+              c.is_daily_challenge === true &&
+              c.published_date <= todayIso
+          )
+          .sort((a, b) => b.published_date.localeCompare(a.published_date));
+
+        const firstDaily =
+          activeDailies[0] ||
+          merged
+            .filter((c) => (!c.status || c.status === "approved") && c.is_daily_challenge)
+            .sort((a, b) => b.published_date.localeCompare(a.published_date))[0] ||
+          merged[0];
+        if (firstDaily) setActiveCaseId(firstDaily.id);
         setArticles(Array.isArray(loadedArticles) ? loadedArticles : []);
         setLoading(false);
       })
@@ -247,13 +264,48 @@ export default function NeuroCasePage() {
   };
 
   const approvedCases = useMemo(
-    () => cases.filter((c) => !c.status || c.status === "approved"),
+    () =>
+      cases
+        .filter((c) => !c.status || c.status === "approved")
+        .sort((a, b) => b.published_date.localeCompare(a.published_date)),
     [cases]
   );
 
+  // Daily Challenge Track: ONLY approved cases with is_daily_challenge === true whose scheduled date has arrived,
+  // sorted descending by published_date so index 0 is ALWAYS "⭐ Daily" and subsequent items are past Daily dates.
+  const dailyChallengeCases = useMemo(() => {
+    const todayIso = new Date().toISOString().slice(0, 10);
+    const eligible = approvedCases.filter(
+      (c) => c.is_daily_challenge === true && c.published_date <= todayIso
+    );
+    const pool =
+      eligible.length > 0
+        ? eligible
+        : approvedCases.filter((c) => c.is_daily_challenge === true);
+
+    // If an Admin scheduled a custom Daily Challenge for a given date, it supersedes the auto-fetched one on that date
+    const byDate = new Map<string, ClinicalCase>();
+    const sorted = [...pool].sort((a, b) => {
+      const dateCmp = b.published_date.localeCompare(a.published_date);
+      if (dateCmp !== 0) return dateCmp;
+      const aCustom = a.id.startsWith("nc-user-") ? 1 : 0;
+      const bCustom = b.id.startsWith("nc-user-") ? 1 : 0;
+      return bCustom - aCustom;
+    });
+    for (const item of sorted) {
+      if (!byDate.has(item.published_date)) {
+        byDate.set(item.published_date, item);
+      }
+    }
+    return Array.from(byDate.values());
+  }, [approvedCases]);
+
   const currentCase = useMemo(
-    () => approvedCases.find((c) => c.id === activeCaseId) || approvedCases[0],
-    [approvedCases, activeCaseId]
+    () =>
+      approvedCases.find((c) => c.id === activeCaseId) ||
+      dailyChallengeCases[0] ||
+      approvedCases[0],
+    [approvedCases, dailyChallengeCases, activeCaseId]
   );
 
   const handleSelectOption = (caseItem: ClinicalCase, optionId: "A" | "B" | "C" | "D") => {
@@ -305,10 +357,11 @@ export default function NeuroCasePage() {
   };
 
   const handleNextChallenge = () => {
-    if (!currentCase || approvedCases.length === 0) return;
-    const idx = approvedCases.findIndex((c) => c.id === currentCase.id);
-    const nextIdx = (idx + 1) % approvedCases.length;
-    setActiveCaseId(approvedCases[nextIdx].id);
+    const list = dailyChallengeCases.length > 0 ? dailyChallengeCases : approvedCases;
+    if (!currentCase || list.length === 0) return;
+    const idx = list.findIndex((c) => c.id === currentCase.id);
+    const nextIdx = idx >= 0 ? (idx + 1) % list.length : 0;
+    setActiveCaseId(list[nextIdx].id);
     setShowDetailedWorkup(false);
   };
 
@@ -464,6 +517,65 @@ export default function NeuroCasePage() {
     }
   };
 
+  const resetAiImporterInputs = () => {
+    setAiRawText("");
+    setAiPdfBase64(undefined);
+    setUploadedDocName("");
+    if (docFileInputRef.current) {
+      docFileInputRef.current.value = "";
+    }
+  };
+
+  const resetAllSubmitFormFields = () => {
+    setSubTitle("");
+    setSubSpecialty("Vascular & Stroke");
+    setSubDifficulty("Resident");
+    setSubPublishedDate("");
+    setSubDemographics("");
+    setSubPmh("");
+    setSubChiefComplaint("");
+    setSubHistory("");
+    setSubNeuroExam("");
+    setSubLabsCsf("");
+    setSubModality("");
+    setSubFigCaption("");
+    setSubFindings("");
+    setSubVitalBp("");
+    setSubVitalHr("");
+    setSubVitalRr("");
+    setSubVitalTemp("");
+    setSubVitalSpo2("");
+    setSubQuestion("");
+    setSubOptA("");
+    setSubOptB("");
+    setSubOptC("");
+    setSubOptD("");
+    setSubOptARationale("");
+    setSubOptBRationale("");
+    setSubOptCRationale("");
+    setSubOptDRationale("");
+    setSubPeerA(64);
+    setSubPeerB(16);
+    setSubPeerC(12);
+    setSubPeerD(8);
+    setSubCorrect("A");
+    setSubDiagnosis("");
+    setSubDiscussion("");
+    setSubTeachingPoint("");
+    setSubPitfall("");
+    setSubAuthor("");
+    setSubDoiUrl("");
+    setSubImageWebpUrl("");
+    setSubImageSizeKb(0);
+    if (imageFileInputRef.current) {
+      imageFileInputRef.current.value = "";
+    }
+    setShowSubMcqSection(false);
+    setShowSubResolutionSection(false);
+    setShowSubMetadataVitalsSection(false);
+    resetAiImporterInputs();
+  };
+
   const handleRunAiExtraction = async () => {
     if (!aiRawText.trim() && !aiPdfBase64) return;
     setIsExtractingAi(true);
@@ -480,6 +592,7 @@ export default function NeuroCasePage() {
       setSubSpecialty(extracted.subspecialty);
       setSubDifficulty(extracted.difficulty);
       setSubAuthor(extracted.author_credit);
+      setSubDoiUrl(extracted.doi_url || "");
       setSubDemographics(extracted.demographics);
       setSubPmh(extracted.past_medical_history);
       setSubChiefComplaint(extracted.chief_complaint);
@@ -504,10 +617,8 @@ export default function NeuroCasePage() {
       setSubTeachingPoint(extracted.teaching_points.join("\n"));
       setSubPitfall(extracted.clinical_pitfalls.join("\n"));
 
-      // Automatically expand the optional sections when AI populates them so the user can review
-      setShowSubMcqSection(true);
-      setShowSubResolutionSection(true);
-      setShowSubMetadataVitalsSection(true);
+      // Clear the AI Importer inputs (file badge & raw text box) back to their initial empty state
+      resetAiImporterInputs();
 
       setSubmitSuccessMsg(
         `✨ Successfully structured clinical case from ${extracted.journal_short}! Review the populated fields below and click Submit Case.`
@@ -654,16 +765,7 @@ export default function NeuroCasePage() {
     setSubmitSuccessMsg(
       `Case "${newCase.case_code}" submitted with PENDING status! You can review and publish it in the Admin Review tab.`
     );
-    setSubTitle("");
-    setSubChiefComplaint("");
-    setSubHistory("");
-    setSubNeuroExam("");
-    setSubLabsCsf("");
-    setSubQuestion("");
-    setSubOptA("");
-    setSubOptB("");
-    setSubOptC("");
-    setSubOptD("");
+    resetAllSubmitFormFields();
   };
 
   const persistAdminCases = (nextCases: ClinicalCase[]) => {
@@ -675,22 +777,37 @@ export default function NeuroCasePage() {
     for (const item of nextCases) {
       overridesMap[item.id] = item;
     }
-    localStorage.setItem("neurocase_admin_overrides_v2", JSON.stringify(overridesMap));
+    localStorage.setItem("neurocase_admin_overrides_v3", JSON.stringify(overridesMap));
   };
 
-  const handleAdminUpdateStatus = (caseId: string, newStatus: CaseStatus, makeDaily = false) => {
+  const handleAdminUpdateStatus = (
+    caseId: string,
+    newStatus: CaseStatus,
+    makeDaily = false,
+    targetDailyDate?: string
+  ) => {
+    const todayIso = new Date().toISOString().slice(0, 10);
+    const targetCase = cases.find((c) => c.id === caseId);
+    const chosenDate =
+      targetDailyDate || targetCase?.published_date || todayIso;
+
     const nextCases = cases.map((c) => {
       if (c.id === caseId) {
         return {
           ...c,
           status: newStatus,
-          is_daily_challenge: makeDaily ? true : c.is_daily_challenge,
+          is_daily_challenge: newStatus === "approved" ? makeDaily : false,
+          published_date: makeDaily ? chosenDate : c.published_date,
         };
       }
-      return makeDaily ? { ...c, is_daily_challenge: false } : c;
+      // If setting this case as Daily Challenge for `chosenDate`, demote any other case on the exact same `chosenDate` to Archive Only
+      if (makeDaily && c.is_daily_challenge && c.published_date === chosenDate) {
+        return { ...c, is_daily_challenge: false };
+      }
+      return c;
     });
     persistAdminCases(nextCases);
-    if (makeDaily) {
+    if (makeDaily && chosenDate <= todayIso) {
       setActiveCaseId(caseId);
     }
   };
@@ -887,7 +1004,7 @@ export default function NeuroCasePage() {
               }`}
             >
               <div className="flex items-center gap-1.5 shrink-0">
-                {approvedCases.map((c) => {
+                {dailyChallengeCases.map((c, idx) => {
                   const prog = progressMap[c.id];
                   const isSelected = c.id === currentCase.id;
                   return (
@@ -914,7 +1031,7 @@ export default function NeuroCasePage() {
                           : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
                       }`}
                     >
-                      <span>{c.is_daily_challenge ? "⭐ Daily" : c.published_date}</span>
+                      <span>{idx === 0 ? "⭐ Daily" : c.published_date}</span>
                       {prog && <span>{prog.isCorrect ? "✓" : "✗"}</span>}
                     </button>
                   );
@@ -1714,6 +1831,7 @@ export default function NeuroCasePage() {
                     <label className="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-white cursor-pointer hover:bg-slate-700 shrink-0">
                       📄 Upload Article (.pdf, .docx, .doc, .txt)
                       <input
+                        ref={docFileInputRef}
                         type="file"
                         accept=".pdf,.doc,.docx,.txt,.md,.xml,.json"
                         onChange={handleArticleTextFileUpload}
@@ -1816,6 +1934,7 @@ export default function NeuroCasePage() {
                   <input
                     value={subDemographics}
                     onChange={(e) => setSubDemographics(e.target.value)}
+                    placeholder="e.g., 58-year-old right-handed male"
                     className={`w-full p-2.5 rounded-lg border ${
                       darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"
                     }`}
@@ -1907,6 +2026,7 @@ export default function NeuroCasePage() {
 
                 <div className="flex flex-wrap items-center gap-2 mb-3">
                   <input
+                    ref={imageFileInputRef}
                     type="file"
                     accept="image/*"
                     aria-label="Upload CT or MRI image for de-identification"
@@ -2315,6 +2435,7 @@ export default function NeuroCasePage() {
                           <input
                             value={subVitalBp}
                             onChange={(e) => setSubVitalBp(e.target.value)}
+                            placeholder="130/80 mmHg"
                             className={`w-full p-1.5 rounded border ${
                               darkMode
                                 ? "bg-slate-800 border-slate-700 text-white"
@@ -2327,6 +2448,7 @@ export default function NeuroCasePage() {
                           <input
                             value={subVitalHr}
                             onChange={(e) => setSubVitalHr(e.target.value)}
+                            placeholder="80 bpm"
                             className={`w-full p-1.5 rounded border ${
                               darkMode
                                 ? "bg-slate-800 border-slate-700 text-white"
@@ -2339,6 +2461,7 @@ export default function NeuroCasePage() {
                           <input
                             value={subVitalRr}
                             onChange={(e) => setSubVitalRr(e.target.value)}
+                            placeholder="18 /min"
                             className={`w-full p-1.5 rounded border ${
                               darkMode
                                 ? "bg-slate-800 border-slate-700 text-white"
@@ -2351,6 +2474,7 @@ export default function NeuroCasePage() {
                           <input
                             value={subVitalTemp}
                             onChange={(e) => setSubVitalTemp(e.target.value)}
+                            placeholder="36.8 °C"
                             className={`w-full p-1.5 rounded border ${
                               darkMode
                                 ? "bg-slate-800 border-slate-700 text-white"
@@ -2363,6 +2487,7 @@ export default function NeuroCasePage() {
                           <input
                             value={subVitalSpo2}
                             onChange={(e) => setSubVitalSpo2(e.target.value)}
+                            placeholder="98%"
                             className={`w-full p-1.5 rounded border ${
                               darkMode
                                 ? "bg-slate-800 border-slate-700 text-white"
@@ -2558,32 +2683,64 @@ export default function NeuroCasePage() {
                           >
                             {c.difficulty}
                           </span>
-                          {c.is_daily_challenge && (
+                          {st === "approved" && c.is_daily_challenge ? (
                             <span className="px-2 py-0.5 rounded text-[10px] font-black bg-indigo-600 text-white">
-                              ⭐ Active Daily Challenge
+                              {dailyChallengeCases[0]?.id === c.id
+                                ? `⭐ Active Daily (${c.published_date})`
+                                : c.published_date > new Date().toISOString().slice(0, 10)
+                                ? `📅 Scheduled Daily (${c.published_date})`
+                                : `🔥 Daily Track (${c.published_date})`}
                             </span>
-                          )}
+                          ) : st === "approved" ? (
+                            <span className="px-2 py-0.5 rounded text-[10px] font-black bg-slate-600 text-white">
+                              📚 Case Archive Only
+                            </span>
+                          ) : null}
                         </div>
 
                         <div className="flex flex-wrap items-center gap-1.5">
-                          {st !== "approved" && (
+                          {(st !== "approved" || c.is_daily_challenge) && (
                             <button
                               type="button"
                               onClick={() => handleAdminUpdateStatus(c.id, "approved", false)}
                               className="px-2.5 py-1 rounded text-[11px] font-bold bg-emerald-600 text-white hover:bg-emerald-700"
+                              title="Approve and store in Case Archive without placing in Daily Challenge"
                             >
-                              ✓ Approve &amp; Publish
+                              {st !== "approved"
+                                ? "📚 Approve to Archive"
+                                : "📚 Move to Archive Only"}
                             </button>
                           )}
-                          {!c.is_daily_challenge && (
+
+                          <div className="flex items-center gap-1 bg-indigo-500/10 border border-indigo-500/30 rounded px-1.5 py-0.5">
+                            <input
+                              type="date"
+                              aria-label="Select Daily Challenge date"
+                              value={adminScheduleDates[c.id] || c.published_date}
+                              onChange={(e) =>
+                                setAdminScheduleDates((prev) => ({
+                                  ...prev,
+                                  [c.id]: e.target.value,
+                                }))
+                              }
+                              className="text-[11px] font-bold bg-transparent outline-none"
+                            />
                             <button
                               type="button"
-                              onClick={() => handleAdminUpdateStatus(c.id, "approved", true)}
-                              className="px-2.5 py-1 rounded text-[11px] font-bold bg-indigo-600 text-white hover:bg-indigo-700"
+                              onClick={() =>
+                                handleAdminUpdateStatus(
+                                  c.id,
+                                  "approved",
+                                  true,
+                                  adminScheduleDates[c.id] || c.published_date
+                                )
+                              }
+                              className="px-2 py-0.5 rounded text-[11px] font-bold bg-indigo-600 text-white hover:bg-indigo-700"
+                              title="Publish or schedule as Daily Challenge on the selected date"
                             >
-                              🔥 Set as Daily Challenge
+                              🔥 Set Daily Challenge
                             </button>
-                          )}
+                          </div>
                           <button
                             type="button"
                             onClick={() => {

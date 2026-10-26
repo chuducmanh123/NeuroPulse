@@ -227,6 +227,30 @@ const RE_FETCH_TOPICS = [
 ];
 
 async function main() {
+  const targetDate = process.env.TARGET_DATE || new Date().toISOString().slice(0, 10);
+  const forceFetch = process.argv.includes("--force");
+  const casesPath = path.join(process.cwd(), "public", "data", "cases.json");
+
+  if (!forceFetch && fs.existsSync(casesPath)) {
+    try {
+      const currentCases = JSON.parse(fs.readFileSync(casesPath, "utf-8"));
+      const existingDailyForDate = currentCases.find(
+        (c) =>
+          c.is_daily_challenge === true &&
+          (!c.status || c.status === "approved") &&
+          c.published_date === targetDate
+      );
+      if (existingDailyForDate) {
+        console.log(
+          `✅ Daily Challenge already scheduled for ${targetDate} (${existingDailyForDate.case_code}: "${existingDailyForDate.title}"). Skipping automated AI/PMC case fetch for this date.`
+        );
+        return;
+      }
+    } catch (err) {
+      console.warn("Could not check existing cases.json schedule:", err);
+    }
+  }
+
   const outPath = path.join(process.cwd(), "public", "data", "pmc_extracted_figures.json");
   const existing = fs.existsSync(outPath)
     ? JSON.parse(fs.readFileSync(outPath, "utf-8"))
