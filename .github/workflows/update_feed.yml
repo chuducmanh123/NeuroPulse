@@ -21,19 +21,20 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Fetch Latest Articles & AI Digest
+      - name: Fetch Latest Articles (NeuroPulse) & Daily Clinical Case (NeuroCase)
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           python scripts/fetch_nejm.py
+          python scripts/fetch_cases.py
 
       - name: Commit and Push Updated Data
         run: |
           git config --global user.name "Journal-Bot"
           git config --global user.email "bot@journaltracker.org"
-          git add public/data/articles.json
+          git add public/data/articles.json public/data/cases.json public/data/figures/
           if ! git diff --staged --quiet; then
-            git commit -m "chore(data): auto-update latest neurology articles"
+            git commit -m "chore(data): auto-update NeuroPulse articles & NeuroCase daily challenge"
             git pull --rebase origin main || true
             git push
           else
