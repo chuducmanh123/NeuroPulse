@@ -93,14 +93,16 @@ export default function NeuroCasePage() {
   const [submitSuccessMsg, setSubmitSuccessMsg] = useState<string>("");
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
-  // Admin Verification & Editing State
+  // Admin Verification & Full Case Editing State
   const [isAdminVerified, setIsAdminVerified] = useState(false);
   const [showAdminAuthModal, setShowAdminAuthModal] = useState(false);
   const [adminPasscodeInput, setAdminPasscodeInput] = useState("");
   const [adminAuthError, setAdminAuthError] = useState("");
+  const [adminStatusFilter, setAdminStatusFilter] = useState<"pending" | "approved" | "rejected">(
+    "pending"
+  );
   const [editingCaseId, setEditingCaseId] = useState<string | null>(null);
-  const [editTitle, setEditTitle] = useState("");
-  const [editQuestion, setEditQuestion] = useState("");
+  const [editDraft, setEditDraft] = useState<ClinicalCase | null>(null);
 
   // AI Article / Text Case Extractor State (for NEJM, JAMA, Neurology, Stroke, Lancet)
   const [showAiExtractor, setShowAiExtractor] = useState(false);
@@ -167,7 +169,16 @@ export default function NeuroCasePage() {
             console.error(e);
           }
         }
-        const merged = [...customCases, ...loadedCases];
+        let overridesMap: Record<string, ClinicalCase> = {};
+        const savedOverrides = localStorage.getItem("neurocase_admin_overrides_v2");
+        if (savedOverrides) {
+          try {
+            overridesMap = JSON.parse(savedOverrides);
+          } catch (e) {
+            console.error(e);
+          }
+        }
+        const merged = [...customCases, ...loadedCases].map((c) => overridesMap[c.id] || c);
         setCases(merged);
         const daily = merged.find((c) => c.is_daily_challenge && c.status !== "pending") || merged[0];
         if (daily) setActiveCaseId(daily.id);
@@ -551,6 +562,18 @@ export default function NeuroCasePage() {
     setSubOptD("");
   };
 
+  const persistAdminCases = (nextCases: ClinicalCase[]) => {
+    setCases(nextCases);
+    const savedCustom = nextCases.filter((c) => c.id.startsWith("nc-user-"));
+    localStorage.setItem("neurocase_custom_submissions_v1", JSON.stringify(savedCustom));
+
+    const overridesMap: Record<string, ClinicalCase> = {};
+    for (const item of nextCases) {
+      overridesMap[item.id] = item;
+    }
+    localStorage.setItem("neurocase_admin_overrides_v2", JSON.stringify(overridesMap));
+  };
+
   const handleAdminUpdateStatus = (caseId: string, newStatus: CaseStatus, makeDaily = false) => {
     const nextCases = cases.map((c) => {
       if (c.id === caseId) {
@@ -562,33 +585,32 @@ export default function NeuroCasePage() {
       }
       return makeDaily ? { ...c, is_daily_challenge: false } : c;
     });
-    setCases(nextCases);
-    const savedCustom = nextCases.filter((c) => c.id.startsWith("nc-user-"));
-    localStorage.setItem("neurocase_custom_submissions_v1", JSON.stringify(savedCustom));
+    persistAdminCases(nextCases);
     if (makeDaily) {
       setActiveCaseId(caseId);
     }
   };
 
+  const handleStartFullEdit = (caseItem: ClinicalCase) => {
+    setEditingCaseId(caseItem.id);
+    setEditDraft(JSON.parse(JSON.stringify(caseItem)));
+  };
+
   const handleSaveAdminEdit = (caseId: string) => {
-    const nextCases = cases.map((c) =>
-      c.id === caseId
-        ? {
-            ...c,
-            title: editTitle.trim() || c.title,
-            challenge: {
-              ...c.challenge,
-              question: editQuestion.trim() || c.challenge.question,
-            },
-          }
-        : c
-    );
-    setCases(nextCases);
+    if (!editDraft) return;
+    const nextCases = cases.map((c) => (c.id === caseId ? editDraft : c));
+    persistAdminCases(nextCases);
     setEditingCaseId(null);
+    setEditDraft(null);
   };
 
   const pendingCount = useMemo(
     () => cases.filter((c) => c.status === "pending" || c.status === "needs_revision").length,
+    [cases]
+  );
+
+  const rejectedCount = useMemo(
+    () => cases.filter((c) => c.status === "rejected").length,
     [cases]
   );
 
@@ -1906,14 +1928,12 @@ export default function NeuroCasePage() {
               darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
             }`}
           >
-            <div className="flex flex-wrap items-center justify-between gap-2">
+            <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
                 <span className="text-xs font-black uppercase text-sky-500">
                   MODERATION &amp; CURATION WORKFLOW
                 </span>
-                <h2 className="text-xl font-black">
-                  Admin Case Moderation Queue (pending → approved)
-                </h2>
+                <h2 className="text-xl font-black">Admin Case Moderation &amp; Full Editor</h2>
               </div>
               <div className="flex flex-wrap items-center gap-2">
                 <button
@@ -1922,136 +1942,799 @@ export default function NeuroCasePage() {
                     setActiveTab("submit");
                     setShowAiExtractor(true);
                   }}
-                  className="px-3 py-1.5 rounded-lg text-xs font-black bg-indigo-600 text-white hover:bg-indigo-700"
+                  className="px-3.5 py-2 rounded-lg text-xs font-black bg-indigo-600 text-white hover:bg-indigo-700"
                 >
                   ✨ AI Import from Article (NEJM / JAMA / Neurology)
                 </button>
-                <span className="text-xs font-bold px-3 py-1 rounded-full bg-amber-500/15 text-amber-500">
-                  {pendingCount} Pending Review
-                </span>
               </div>
             </div>
 
-            <div className="space-y-3">
-              {cases.map((c) => {
-                const st: CaseStatus = c.status || "approved";
-                const isEditing = editingCaseId === c.id;
+            {/* Grouped Status Sub-Tabs (Pending vs Approved vs Rejected) */}
+            <div className="flex flex-wrap items-center gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
+              {[
+                {
+                  id: "pending" as const,
+                  label: "⏳ Pending Review",
+                  count: pendingCount,
+                  activeClass: "bg-amber-500 text-slate-950",
+                },
+                {
+                  id: "approved" as const,
+                  label: "✅ Approved & Published",
+                  count: approvedCases.length,
+                  activeClass: "bg-emerald-600 text-white",
+                },
+                {
+                  id: "rejected" as const,
+                  label: "🚫 Rejected",
+                  count: rejectedCount,
+                  activeClass: "bg-rose-600 text-white",
+                },
+              ].map((group) => {
+                const isSelected = adminStatusFilter === group.id;
                 return (
-                  <div
-                    key={c.id}
-                    className={`p-4 rounded-xl border transition-all ${
-                      st === "pending"
-                        ? "border-amber-500/70 bg-amber-500/5"
-                        : st === "rejected"
-                        ? "border-rose-500/40 opacity-60"
+                  <button
+                    key={group.id}
+                    type="button"
+                    onClick={() => {
+                      setAdminStatusFilter(group.id);
+                      setEditingCaseId(null);
+                      setEditDraft(null);
+                    }}
+                    className={`px-3.5 py-2 rounded-xl text-xs font-black transition-all flex items-center gap-2 ${
+                      isSelected
+                        ? group.activeClass
                         : darkMode
-                        ? "border-slate-800 bg-slate-800/40"
-                        : "border-slate-200 bg-slate-50"
+                        ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
+                        : "bg-slate-100 text-slate-700 hover:bg-slate-200"
                     }`}
                   >
-                    <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span
-                          className={`px-2 py-0.5 rounded text-[10px] font-black uppercase ${
-                            st === "approved"
-                              ? "bg-emerald-600 text-white"
-                              : st === "pending"
-                              ? "bg-amber-400 text-slate-950"
-                              : st === "needs_revision"
-                              ? "bg-orange-500 text-white"
-                              : "bg-rose-600 text-white"
-                          }`}
-                        >
-                          {st}
-                        </span>
-                        <span className="text-xs font-black">{c.case_code}</span>
-                        <span className="text-xs text-indigo-500 font-bold">{c.subspecialty}</span>
-                        {c.is_daily_challenge && (
-                          <span className="px-2 py-0.5 rounded text-[10px] font-black bg-indigo-600 text-white">
-                            ⭐ Active Daily Challenge
-                          </span>
-                        )}
-                      </div>
-
-                      <div className="flex flex-wrap items-center gap-1.5">
-                        <button
-                          type="button"
-                          onClick={() => handleAdminUpdateStatus(c.id, "approved", false)}
-                          className="px-2.5 py-1 rounded text-[11px] font-bold bg-emerald-600 text-white hover:bg-emerald-700"
-                        >
-                          ✓ Approve &amp; Publish
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => handleAdminUpdateStatus(c.id, "approved", true)}
-                          className="px-2.5 py-1 rounded text-[11px] font-bold bg-indigo-600 text-white hover:bg-indigo-700"
-                        >
-                          🔥 Set as Daily Challenge
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setEditingCaseId(c.id);
-                            setEditTitle(c.title);
-                            setEditQuestion(c.challenge.question);
-                          }}
-                          className="px-2.5 py-1 rounded text-[11px] font-bold bg-slate-700 text-white hover:bg-slate-600"
-                        >
-                          ✏️ Edit Prompt
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => handleAdminUpdateStatus(c.id, "rejected", false)}
-                          className="px-2.5 py-1 rounded text-[11px] font-bold bg-rose-600/80 text-white hover:bg-rose-600"
-                        >
-                          ✗ Reject
-                        </button>
-                      </div>
-                    </div>
-
-                    {isEditing ? (
-                      <div className="mt-3 space-y-2 pt-3 border-t border-slate-700">
-                        <input
-                          value={editTitle}
-                          onChange={(e) => setEditTitle(e.target.value)}
-                          aria-label="Edit case title"
-                          className="w-full p-2 rounded border text-xs bg-slate-900 text-white border-slate-700"
-                        />
-                        <textarea
-                          rows={2}
-                          value={editQuestion}
-                          onChange={(e) => setEditQuestion(e.target.value)}
-                          aria-label="Edit question prompt"
-                          className="w-full p-2 rounded border text-xs bg-slate-900 text-white border-slate-700"
-                        />
-                        <div className="flex gap-2">
-                          <button
-                            type="button"
-                            onClick={() => handleSaveAdminEdit(c.id)}
-                            className="px-3 py-1 rounded text-xs font-bold bg-emerald-600 text-white"
-                          >
-                            Save Changes
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setEditingCaseId(null)}
-                            className="px-3 py-1 rounded text-xs font-bold bg-slate-600 text-white"
-                          >
-                            Cancel
-                          </button>
-                        </div>
-                      </div>
-                    ) : (
-                      <div>
-                        <p className="text-sm font-bold">{c.title}</p>
-                        <p className="text-xs text-slate-400 mt-0.5">
-                          Prompt: {c.challenge.question}
-                        </p>
-                      </div>
-                    )}
-                  </div>
+                    <span>{group.label}</span>
+                    <span
+                      className={`px-1.5 py-0.2 rounded text-[10px] font-black ${
+                        isSelected
+                          ? "bg-black/20 text-current"
+                          : darkMode
+                          ? "bg-slate-700 text-slate-300"
+                          : "bg-white text-slate-600"
+                      }`}
+                    >
+                      {group.count}
+                    </span>
+                  </button>
                 );
               })}
+            </div>
+
+            {/* Filtered Case List by Status Group */}
+            <div className="space-y-3">
+              {(() => {
+                const groupCases = cases.filter((c) => {
+                  const st: CaseStatus = c.status || "approved";
+                  if (adminStatusFilter === "pending") {
+                    return st === "pending" || st === "needs_revision";
+                  }
+                  return st === adminStatusFilter;
+                });
+
+                if (groupCases.length === 0) {
+                  return (
+                    <div
+                      className={`p-8 rounded-xl border border-dashed text-center space-y-2 ${
+                        darkMode
+                          ? "border-slate-800 text-slate-400"
+                          : "border-slate-200 text-slate-500"
+                      }`}
+                    >
+                      <p className="text-sm font-bold">
+                        {adminStatusFilter === "pending"
+                          ? "🎉 No cases waiting in the Pending Review queue."
+                          : adminStatusFilter === "approved"
+                          ? "No approved cases found."
+                          : "No rejected cases."}
+                      </p>
+                      {adminStatusFilter === "pending" && (
+                        <button
+                          type="button"
+                          onClick={() => setAdminStatusFilter("approved")}
+                          className="text-xs font-bold text-indigo-500 hover:underline"
+                        >
+                          View {approvedCases.length} Approved &amp; Published Cases →
+                        </button>
+                      )}
+                    </div>
+                  );
+                }
+
+                return groupCases.map((c) => {
+                  const st: CaseStatus = c.status || "approved";
+                  const isEditing = editingCaseId === c.id && editDraft !== null;
+                  return (
+                    <div
+                      key={c.id}
+                      className={`p-4 rounded-xl border transition-all ${
+                        st === "pending"
+                          ? "border-amber-500/70 bg-amber-500/5"
+                          : st === "rejected"
+                          ? "border-rose-500/40 opacity-75"
+                          : darkMode
+                          ? "border-slate-800 bg-slate-800/40"
+                          : "border-slate-200 bg-slate-50"
+                      }`}
+                    >
+                      <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span
+                            className={`px-2 py-0.5 rounded text-[10px] font-black uppercase ${
+                              st === "approved"
+                                ? "bg-emerald-600 text-white"
+                                : st === "pending"
+                                ? "bg-amber-400 text-slate-950"
+                                : st === "needs_revision"
+                                ? "bg-orange-500 text-white"
+                                : "bg-rose-600 text-white"
+                            }`}
+                          >
+                            {st}
+                          </span>
+                          <span className="text-xs font-black">{c.case_code}</span>
+                          <span className="text-xs text-slate-400 font-semibold">
+                            {c.published_date}
+                          </span>
+                          <span className="text-xs text-indigo-500 font-bold">
+                            {c.subspecialty}
+                          </span>
+                          <span
+                            className={`px-2 py-0.5 rounded text-[10px] font-bold border ${
+                              DIFFICULTY_BADGES[c.difficulty]
+                            }`}
+                          >
+                            {c.difficulty}
+                          </span>
+                          {c.is_daily_challenge && (
+                            <span className="px-2 py-0.5 rounded text-[10px] font-black bg-indigo-600 text-white">
+                              ⭐ Active Daily Challenge
+                            </span>
+                          )}
+                        </div>
+
+                        <div className="flex flex-wrap items-center gap-1.5">
+                          {st !== "approved" && (
+                            <button
+                              type="button"
+                              onClick={() => handleAdminUpdateStatus(c.id, "approved", false)}
+                              className="px-2.5 py-1 rounded text-[11px] font-bold bg-emerald-600 text-white hover:bg-emerald-700"
+                            >
+                              ✓ Approve &amp; Publish
+                            </button>
+                          )}
+                          {!c.is_daily_challenge && (
+                            <button
+                              type="button"
+                              onClick={() => handleAdminUpdateStatus(c.id, "approved", true)}
+                              className="px-2.5 py-1 rounded text-[11px] font-bold bg-indigo-600 text-white hover:bg-indigo-700"
+                            >
+                              🔥 Set as Daily Challenge
+                            </button>
+                          )}
+                          <button
+                            type="button"
+                            onClick={() => {
+                              if (isEditing) {
+                                setEditingCaseId(null);
+                                setEditDraft(null);
+                              } else {
+                                handleStartFullEdit(c);
+                              }
+                            }}
+                            className="px-2.5 py-1 rounded text-[11px] font-bold bg-slate-700 text-white hover:bg-slate-600"
+                          >
+                            {isEditing ? "✕ Close Editor" : "✏️ Edit Case"}
+                          </button>
+                          {st === "approved" && (
+                            <button
+                              type="button"
+                              onClick={() => handleAdminUpdateStatus(c.id, "pending", false)}
+                              className="px-2.5 py-1 rounded text-[11px] font-bold bg-amber-500/20 text-amber-500 hover:bg-amber-500/30"
+                            >
+                              ↩ Move to Pending
+                            </button>
+                          )}
+                          {st !== "rejected" && (
+                            <button
+                              type="button"
+                              onClick={() => handleAdminUpdateStatus(c.id, "rejected", false)}
+                              className="px-2.5 py-1 rounded text-[11px] font-bold bg-rose-600/80 text-white hover:bg-rose-600"
+                            >
+                              ✗ Reject
+                            </button>
+                          )}
+                        </div>
+                      </div>
+
+                      {isEditing && editDraft ? (
+                        <div
+                          className={`mt-4 pt-4 border-t space-y-4 text-xs ${
+                            darkMode ? "border-slate-700" : "border-slate-200"
+                          }`}
+                        >
+                          {/* 1. Metadata & Classification */}
+                          <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
+                            <div className="sm:col-span-2">
+                              <label className="font-bold block mb-1">Case Title</label>
+                              <input
+                                value={editDraft.title}
+                                onChange={(e) =>
+                                  setEditDraft({ ...editDraft, title: e.target.value })
+                                }
+                                className={`w-full p-2 rounded border ${
+                                  darkMode
+                                    ? "bg-slate-900 border-slate-700 text-white"
+                                    : "bg-white border-slate-300 text-slate-900"
+                                }`}
+                              />
+                            </div>
+                            <div>
+                              <label className="font-bold block mb-1">Subspecialty</label>
+                              <select
+                                value={editDraft.subspecialty}
+                                aria-label="Edit subspecialty"
+                                onChange={(e) =>
+                                  setEditDraft({
+                                    ...editDraft,
+                                    subspecialty: e.target.value,
+                                    subspecialties: [e.target.value],
+                                  })
+                                }
+                                className={`w-full p-2 rounded border ${
+                                  darkMode
+                                    ? "bg-slate-900 border-slate-700 text-white"
+                                    : "bg-white border-slate-300 text-slate-900"
+                                }`}
+                              >
+                                {SUBSPECIALTY_TABS.filter((t) => t.value !== "All").map((t) => (
+                                  <option key={t.value} value={t.value}>
+                                    {t.label}
+                                  </option>
+                                ))}
+                              </select>
+                            </div>
+                            <div className="grid grid-cols-2 gap-2">
+                              <div>
+                                <label className="font-bold block mb-1">Difficulty</label>
+                                <select
+                                  value={editDraft.difficulty}
+                                  aria-label="Edit difficulty"
+                                  onChange={(e) =>
+                                    setEditDraft({
+                                      ...editDraft,
+                                      difficulty: e.target.value as CaseDifficulty,
+                                    })
+                                  }
+                                  className={`w-full p-2 rounded border ${
+                                    darkMode
+                                      ? "bg-slate-900 border-slate-700 text-white"
+                                      : "bg-white border-slate-300 text-slate-900"
+                                  }`}
+                                >
+                                  <option value="Resident">Resident</option>
+                                  <option value="Fellow">Fellow</option>
+                                  <option value="Attending">Attending</option>
+                                </select>
+                              </div>
+                              <div>
+                                <label className="font-bold block mb-1">Published Date</label>
+                                <input
+                                  type="date"
+                                  value={editDraft.published_date}
+                                  onChange={(e) =>
+                                    setEditDraft({
+                                      ...editDraft,
+                                      published_date: e.target.value,
+                                    })
+                                  }
+                                  className={`w-full p-2 rounded border ${
+                                    darkMode
+                                      ? "bg-slate-900 border-slate-700 text-white"
+                                      : "bg-white border-slate-300 text-slate-900"
+                                  }`}
+                                />
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* 2. Clinical Presentation (Demographics, HPI, Exam, Workup) */}
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                              <label className="font-bold block mb-1">Patient Demographics</label>
+                              <input
+                                value={editDraft.presentation.demographics}
+                                onChange={(e) =>
+                                  setEditDraft({
+                                    ...editDraft,
+                                    presentation: {
+                                      ...editDraft.presentation,
+                                      demographics: e.target.value,
+                                    },
+                                  })
+                                }
+                                className={`w-full p-2 rounded border ${
+                                  darkMode
+                                    ? "bg-slate-900 border-slate-700 text-white"
+                                    : "bg-white border-slate-300 text-slate-900"
+                                }`}
+                              />
+                            </div>
+                            <div>
+                              <label className="font-bold block mb-1">Past Medical History</label>
+                              <input
+                                value={editDraft.presentation.past_medical_history}
+                                onChange={(e) =>
+                                  setEditDraft({
+                                    ...editDraft,
+                                    presentation: {
+                                      ...editDraft.presentation,
+                                      past_medical_history: e.target.value,
+                                    },
+                                  })
+                                }
+                                className={`w-full p-2 rounded border ${
+                                  darkMode
+                                    ? "bg-slate-900 border-slate-700 text-white"
+                                    : "bg-white border-slate-300 text-slate-900"
+                                }`}
+                              />
+                            </div>
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <div>
+                              <label className="font-bold block mb-1">
+                                History of Present Illness (HPI)
+                              </label>
+                              <textarea
+                                rows={4}
+                                value={editDraft.presentation.history_of_present_illness}
+                                onChange={(e) =>
+                                  setEditDraft({
+                                    ...editDraft,
+                                    presentation: {
+                                      ...editDraft.presentation,
+                                      history_of_present_illness: e.target.value,
+                                    },
+                                  })
+                                }
+                                className={`w-full p-2 rounded border ${
+                                  darkMode
+                                    ? "bg-slate-900 border-slate-700 text-white"
+                                    : "bg-white border-slate-300 text-slate-900"
+                                }`}
+                              />
+                            </div>
+                            <div>
+                              <label className="font-bold block mb-1">
+                                Neurological Examination
+                              </label>
+                              <textarea
+                                rows={4}
+                                value={editDraft.presentation.neuro_exam}
+                                onChange={(e) =>
+                                  setEditDraft({
+                                    ...editDraft,
+                                    presentation: {
+                                      ...editDraft.presentation,
+                                      neuro_exam: e.target.value,
+                                    },
+                                  })
+                                }
+                                className={`w-full p-2 rounded border ${
+                                  darkMode
+                                    ? "bg-slate-900 border-slate-700 text-white"
+                                    : "bg-white border-slate-300 text-slate-900"
+                                }`}
+                              />
+                            </div>
+                            <div>
+                              <label className="font-bold block mb-1">
+                                Key Labs, CSF &amp; Workup
+                              </label>
+                              <textarea
+                                rows={4}
+                                value={editDraft.presentation.key_labs_csf}
+                                onChange={(e) =>
+                                  setEditDraft({
+                                    ...editDraft,
+                                    presentation: {
+                                      ...editDraft.presentation,
+                                      key_labs_csf: e.target.value,
+                                    },
+                                  })
+                                }
+                                className={`w-full p-2 rounded border ${
+                                  darkMode
+                                    ? "bg-slate-900 border-slate-700 text-white"
+                                    : "bg-white border-slate-300 text-slate-900"
+                                }`}
+                              />
+                            </div>
+                          </div>
+
+                          {/* 3. Figures Editor */}
+                          <div className="space-y-2">
+                            <label className="font-black uppercase text-indigo-500 block">
+                              Clinical Figures ({editDraft.presentation.imaging.length})
+                            </label>
+                            {editDraft.presentation.imaging.map((fig, fIdx) => (
+                              <div
+                                key={fIdx}
+                                className={`p-3 rounded-lg border grid grid-cols-1 sm:grid-cols-3 gap-2 ${
+                                  darkMode
+                                    ? "bg-slate-950 border-slate-800"
+                                    : "bg-white border-slate-200"
+                                }`}
+                              >
+                                <div>
+                                  <span className="text-[10px] font-bold text-slate-400 block">
+                                    Figure {fIdx + 1} Modality &amp; Image Path/URL
+                                  </span>
+                                  <input
+                                    value={fig.modality}
+                                    onChange={(e) => {
+                                      const nextImgs = [...editDraft.presentation.imaging];
+                                      nextImgs[fIdx] = { ...fig, modality: e.target.value };
+                                      setEditDraft({
+                                        ...editDraft,
+                                        presentation: {
+                                          ...editDraft.presentation,
+                                          imaging: nextImgs,
+                                        },
+                                      });
+                                    }}
+                                    placeholder="Modality"
+                                    className={`w-full p-1.5 rounded border mt-1 ${
+                                      darkMode
+                                        ? "bg-slate-900 border-slate-700 text-white"
+                                        : "bg-slate-50 border-slate-300"
+                                    }`}
+                                  />
+                                  <input
+                                    value={fig.image_url}
+                                    onChange={(e) => {
+                                      const nextImgs = [...editDraft.presentation.imaging];
+                                      nextImgs[fIdx] = { ...fig, image_url: e.target.value };
+                                      setEditDraft({
+                                        ...editDraft,
+                                        presentation: {
+                                          ...editDraft.presentation,
+                                          imaging: nextImgs,
+                                        },
+                                      });
+                                    }}
+                                    placeholder="Image URL"
+                                    className={`w-full p-1.5 rounded border mt-1 ${
+                                      darkMode
+                                        ? "bg-slate-900 border-slate-700 text-white"
+                                        : "bg-slate-50 border-slate-300"
+                                    }`}
+                                  />
+                                </div>
+                                <div>
+                                  <span className="text-[10px] font-bold text-slate-400 block">
+                                    Original Published Caption
+                                  </span>
+                                  <textarea
+                                    rows={3}
+                                    value={fig.caption}
+                                    onChange={(e) => {
+                                      const nextImgs = [...editDraft.presentation.imaging];
+                                      nextImgs[fIdx] = { ...fig, caption: e.target.value };
+                                      setEditDraft({
+                                        ...editDraft,
+                                        presentation: {
+                                          ...editDraft.presentation,
+                                          imaging: nextImgs,
+                                        },
+                                      });
+                                    }}
+                                    className={`w-full p-1.5 rounded border mt-1 ${
+                                      darkMode
+                                        ? "bg-slate-900 border-slate-700 text-white"
+                                        : "bg-slate-50 border-slate-300"
+                                    }`}
+                                  />
+                                </div>
+                                <div>
+                                  <span className="text-[10px] font-bold text-slate-400 block">
+                                    Key Radiological / Electrographic Interpretation
+                                  </span>
+                                  <textarea
+                                    rows={3}
+                                    value={fig.findings_summary}
+                                    onChange={(e) => {
+                                      const nextImgs = [...editDraft.presentation.imaging];
+                                      nextImgs[fIdx] = {
+                                        ...fig,
+                                        findings_summary: e.target.value,
+                                      };
+                                      setEditDraft({
+                                        ...editDraft,
+                                        presentation: {
+                                          ...editDraft.presentation,
+                                          imaging: nextImgs,
+                                        },
+                                      });
+                                    }}
+                                    className={`w-full p-1.5 rounded border mt-1 ${
+                                      darkMode
+                                        ? "bg-slate-900 border-slate-700 text-white"
+                                        : "bg-slate-50 border-slate-300"
+                                    }`}
+                                  />
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+
+                          {/* 4. Question Prompt, Correct Option & All 4 Options (A, B, C, D) */}
+                          <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
+                            <div className="sm:col-span-3">
+                              <label className="font-bold block mb-1">
+                                Multiple-Choice Question Prompt
+                              </label>
+                              <input
+                                value={editDraft.challenge.question}
+                                onChange={(e) =>
+                                  setEditDraft({
+                                    ...editDraft,
+                                    challenge: {
+                                      ...editDraft.challenge,
+                                      question: e.target.value,
+                                    },
+                                  })
+                                }
+                                className={`w-full p-2 rounded border ${
+                                  darkMode
+                                    ? "bg-slate-900 border-slate-700 text-white"
+                                    : "bg-white border-slate-300 text-slate-900"
+                                }`}
+                              />
+                            </div>
+                            <div>
+                              <label className="font-bold block mb-1">Correct Option</label>
+                              <select
+                                value={editDraft.challenge.correct_option}
+                                aria-label="Edit correct option"
+                                onChange={(e) =>
+                                  setEditDraft({
+                                    ...editDraft,
+                                    challenge: {
+                                      ...editDraft.challenge,
+                                      correct_option: e.target.value as "A" | "B" | "C" | "D",
+                                    },
+                                  })
+                                }
+                                className={`w-full p-2 rounded border font-black ${
+                                  darkMode
+                                    ? "bg-slate-900 border-slate-700 text-emerald-400"
+                                    : "bg-white border-slate-300 text-emerald-700"
+                                }`}
+                              >
+                                <option value="A">Option A</option>
+                                <option value="B">Option B</option>
+                                <option value="C">Option C</option>
+                                <option value="D">Option D</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            {editDraft.challenge.options.map((opt, oIdx) => (
+                              <div
+                                key={opt.id}
+                                className={`p-3 rounded-lg border space-y-1.5 ${
+                                  editDraft.challenge.correct_option === opt.id
+                                    ? "border-emerald-500/60 bg-emerald-500/5"
+                                    : darkMode
+                                    ? "border-slate-800 bg-slate-950"
+                                    : "border-slate-200 bg-white"
+                                }`}
+                              >
+                                <div className="flex items-center justify-between">
+                                  <span className="font-black">Option {opt.id} Text</span>
+                                  <span className="text-[10px] text-slate-400">
+                                    Peer %:{" "}
+                                    <input
+                                      type="number"
+                                      min={0}
+                                      max={100}
+                                      value={opt.peer_percentage}
+                                      onChange={(e) => {
+                                        const nextOpts = [...editDraft.challenge.options];
+                                        nextOpts[oIdx] = {
+                                          ...opt,
+                                          peer_percentage: Number(e.target.value) || 0,
+                                        };
+                                        setEditDraft({
+                                          ...editDraft,
+                                          challenge: {
+                                            ...editDraft.challenge,
+                                            options: nextOpts,
+                                          },
+                                        });
+                                      }}
+                                      className="w-12 px-1 py-0.5 rounded border text-center bg-transparent"
+                                    />
+                                  </span>
+                                </div>
+                                <input
+                                  value={opt.text}
+                                  onChange={(e) => {
+                                    const nextOpts = [...editDraft.challenge.options];
+                                    nextOpts[oIdx] = { ...opt, text: e.target.value };
+                                    setEditDraft({
+                                      ...editDraft,
+                                      challenge: { ...editDraft.challenge, options: nextOpts },
+                                    });
+                                  }}
+                                  className={`w-full p-1.5 rounded border ${
+                                    darkMode
+                                      ? "bg-slate-900 border-slate-700 text-white"
+                                      : "bg-slate-50 border-slate-300"
+                                  }`}
+                                />
+                                <textarea
+                                  rows={2}
+                                  value={opt.rationale}
+                                  onChange={(e) => {
+                                    const nextOpts = [...editDraft.challenge.options];
+                                    nextOpts[oIdx] = { ...opt, rationale: e.target.value };
+                                    setEditDraft({
+                                      ...editDraft,
+                                      challenge: { ...editDraft.challenge, options: nextOpts },
+                                    });
+                                  }}
+                                  placeholder={`Rationale for Option ${opt.id}...`}
+                                  className={`w-full p-1.5 rounded border ${
+                                    darkMode
+                                      ? "bg-slate-900 border-slate-700 text-slate-300"
+                                      : "bg-slate-50 border-slate-300"
+                                  }`}
+                                />
+                              </div>
+                            ))}
+                          </div>
+
+                          {/* 5. Final Diagnosis, Clinical Discussion, Teaching Points & Pitfalls */}
+                          <div>
+                            <label className="font-bold block mb-1">Final Clinical Diagnosis</label>
+                            <input
+                              value={editDraft.resolution.final_diagnosis}
+                              onChange={(e) =>
+                                setEditDraft({
+                                  ...editDraft,
+                                  resolution: {
+                                    ...editDraft.resolution,
+                                    final_diagnosis: e.target.value,
+                                  },
+                                })
+                              }
+                              className={`w-full p-2 rounded border font-bold ${
+                                darkMode
+                                  ? "bg-slate-900 border-slate-700 text-emerald-400"
+                                  : "bg-white border-slate-300 text-emerald-700"
+                              }`}
+                            />
+                          </div>
+
+                          <div>
+                            <label className="font-bold block mb-1">Clinical Discussion</label>
+                            <textarea
+                              rows={4}
+                              value={editDraft.resolution.clinical_discussion}
+                              onChange={(e) =>
+                                setEditDraft({
+                                  ...editDraft,
+                                  resolution: {
+                                    ...editDraft.resolution,
+                                    clinical_discussion: e.target.value,
+                                  },
+                                })
+                              }
+                              className={`w-full p-2 rounded border ${
+                                darkMode
+                                  ? "bg-slate-900 border-slate-700 text-white"
+                                  : "bg-white border-slate-300 text-slate-900"
+                              }`}
+                            />
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                              <label className="font-bold block mb-1">
+                                High-Yield Teaching Points (one per line)
+                              </label>
+                              <textarea
+                                rows={3}
+                                value={editDraft.resolution.teaching_points.join("\n")}
+                                onChange={(e) =>
+                                  setEditDraft({
+                                    ...editDraft,
+                                    resolution: {
+                                      ...editDraft.resolution,
+                                      teaching_points: e.target.value
+                                        .split("\n")
+                                        .map((s) => s.trim())
+                                        .filter(Boolean),
+                                    },
+                                  })
+                                }
+                                className={`w-full p-2 rounded border ${
+                                  darkMode
+                                    ? "bg-slate-900 border-slate-700 text-white"
+                                    : "bg-white border-slate-300 text-slate-900"
+                                }`}
+                              />
+                            </div>
+                            <div>
+                              <label className="font-bold block mb-1">
+                                Clinical Pitfalls to Avoid (one per line)
+                              </label>
+                              <textarea
+                                rows={3}
+                                value={editDraft.resolution.clinical_pitfalls.join("\n")}
+                                onChange={(e) =>
+                                  setEditDraft({
+                                    ...editDraft,
+                                    resolution: {
+                                      ...editDraft.resolution,
+                                      clinical_pitfalls: e.target.value
+                                        .split("\n")
+                                        .map((s) => s.trim())
+                                        .filter(Boolean),
+                                    },
+                                  })
+                                }
+                                className={`w-full p-2 rounded border ${
+                                  darkMode
+                                    ? "bg-slate-900 border-slate-700 text-white"
+                                    : "bg-white border-slate-300 text-slate-900"
+                                }`}
+                              />
+                            </div>
+                          </div>
+
+                          <div className="flex items-center justify-end gap-2 pt-2">
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setEditingCaseId(null);
+                                setEditDraft(null);
+                              }}
+                              className="px-4 py-2 rounded-lg text-xs font-bold bg-slate-600 text-white hover:bg-slate-500"
+                            >
+                              Cancel
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => handleSaveAdminEdit(c.id)}
+                              className="px-5 py-2 rounded-lg text-xs font-black bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm"
+                            >
+                              💾 Save All Case Changes
+                            </button>
+                          </div>
+                        </div>
+                      ) : (
+                        <div>
+                          <p className="text-sm font-bold">{c.title}</p>
+                          <p className="text-xs text-slate-400 mt-0.5">
+                            Prompt: {c.challenge.question}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  );
+                });
+              })()}
             </div>
           </div>
         )}
