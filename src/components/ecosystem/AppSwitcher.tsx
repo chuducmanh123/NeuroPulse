@@ -87,6 +87,49 @@ export function AppSwitcher({
         </svg>
       ),
     },
+    {
+      id: "neurovision",
+      name: "NeuroVision",
+      subtitle: "ASPECTS & Imaging",
+      href: "#",
+      badge: "SOON",
+      gradient: "from-blue-500 to-indigo-700",
+      isComingSoon: true,
+      icon: (
+        <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+        </svg>
+      ),
+    },
+    {
+      id: "neuroguide",
+      name: "NeuroGuide",
+      subtitle: "Guidelines & Conf",
+      href: "#",
+      badge: "SOON",
+      gradient: "from-amber-500 to-orange-600",
+      isComingSoon: true,
+      icon: (
+        <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+        </svg>
+      ),
+    },
+    {
+      id: "neurorx",
+      name: "NeuroRx",
+      subtitle: "Drugs & Dosing",
+      href: "#",
+      badge: "SOON",
+      gradient: "from-sky-500 to-cyan-700",
+      isComingSoon: true,
+      icon: (
+        <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+        </svg>
+      ),
+    },
   ];
 
   return (
@@ -123,8 +166,8 @@ export function AppSwitcher({
       {/* Google Workspace-Style App Launcher Popover */}
       {open && (
         <div
-          style={{ width: "336px" }}
-          className={`absolute right-0 top-full mt-2 w-80 sm:w-96 rounded-2xl border shadow-2xl z-50 overflow-hidden transition-all ${
+          style={{ width: "356px" }}
+          className={`absolute right-0 top-full mt-2 rounded-2xl border shadow-2xl z-50 overflow-hidden transition-all ${
             darkMode
               ? "bg-slate-900 border-slate-700 text-slate-100 shadow-black/70"
               : "bg-white border-slate-200 text-slate-900 shadow-slate-400/30"
@@ -143,11 +186,11 @@ export function AppSwitcher({
                 darkMode ? "bg-slate-800 text-slate-300" : "bg-slate-200 text-slate-700"
               }`}
             >
-              Apps
+              6 Apps
             </span>
           </div>
 
-          <div className="p-3.5 grid grid-cols-3 gap-3">
+          <div className="p-3.5 grid grid-cols-3 gap-2.5">
             {ecosystemApps.map((app) => (
               <Link
                 key={app.id}
@@ -159,9 +202,9 @@ export function AppSwitcher({
                   }
                   setOpen(false);
                 }}
-                className={`group relative px-2 py-3 rounded-xl flex flex-col items-center text-center transition-all ${
+                className={`group relative px-1.5 py-3 rounded-xl flex flex-col items-center text-center transition-all ${
                   app.isComingSoon
-                    ? "opacity-55 cursor-not-allowed"
+                    ? "opacity-65 cursor-not-allowed"
                     : app.isCurrent
                     ? darkMode
                       ? "bg-indigo-950/70 ring-1 ring-indigo-500/60"
