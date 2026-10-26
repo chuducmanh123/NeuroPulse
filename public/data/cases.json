@@ -4,10 +4,13 @@
     "case_code": "NC-2026-001",
     "title": "Acute Somnolence, Vertical Gaze Palsy, and Severe Memory Impairment Following Left Vertebral Artery V4 Stent Deployment",
     "subspecialty": "Vascular & Stroke",
-    "subspecialties": ["Vascular & Stroke", "Neurocritical Care"],
+    "subspecialties": [
+      "Vascular & Stroke",
+      "Neurocritical Care"
+    ],
     "difficulty": "Fellow",
     "estimated_time_sec": 120,
-    "is_daily_challenge": true,
+    "is_daily_challenge": false,
     "published_date": "2026-10-26",
     "status": "approved",
     "author_credit": "BMC Neurology • PMC13539806",
@@ -99,7 +102,13 @@
         "Misattributing postoperative somnolence after general anesthesia to delayed anesthetic clearance or metabolic encephalopathy when focal motor deficits are absent.",
         "Assuming a normal completion angiogram of the basilar trunk and PCAs excludes perforator occlusion after posterior circulation angioplasty/stenting."
       ],
-      "related_keywords": ["percheron", "thalamic", "vertebral", "stroke", "ischemic"]
+      "related_keywords": [
+        "percheron",
+        "thalamic",
+        "vertebral",
+        "stroke",
+        "ischemic"
+      ]
     }
   },
   {
@@ -107,10 +116,13 @@
     "case_code": "NC-2026-002",
     "title": "Acute Urinary Retention, Right Leg Thermal Hypesthesia, and Rapidly Progressive Encephalomyelitis with Coma in a 38-Year-Old Lactating Woman",
     "subspecialty": "Neuroimmunology",
-    "subspecialties": ["Neuroimmunology", "Neurocritical Care"],
+    "subspecialties": [
+      "Neuroimmunology",
+      "Neurocritical Care"
+    ],
     "difficulty": "Fellow",
     "estimated_time_sec": 110,
-    "is_daily_challenge": true,
+    "is_daily_challenge": false,
     "published_date": "2026-10-25",
     "status": "approved",
     "author_credit": "Neurology: Neuroimmunology & Neuroinflammation (AAN) • PMC13510213",
@@ -192,7 +204,13 @@
         "Dismissing autoimmune demyelination because CSF leukocyte counts exceed 500 cells/μL and withholding high-dose corticosteroids/plasma exchange once infectious PCRs return negative.",
         "Relying solely on fixed cell-based assays when clinical and MRI features (conus LETM + H-sign + fluffy thalamic lesions) strongly point to MOGAD."
       ],
-      "related_keywords": ["mogad", "demyelinating", "myelitis", "neuroimmunology", "multiple sclerosis"]
+      "related_keywords": [
+        "mogad",
+        "demyelinating",
+        "myelitis",
+        "neuroimmunology",
+        "multiple sclerosis"
+      ]
     }
   },
   {
@@ -200,10 +218,14 @@
     "case_code": "NC-2026-003",
     "title": "Focal Motor Seizures, Subacute Cognitive Decline, Asymmetric Lobar Vasogenic Edema, and Cortical Superficial Siderosis in a 71-Year-Old Patient",
     "subspecialty": "Cognitive & Dementia",
-    "subspecialties": ["Cognitive & Dementia", "Vascular & Stroke", "Neuroimmunology"],
+    "subspecialties": [
+      "Cognitive & Dementia",
+      "Vascular & Stroke",
+      "Neuroimmunology"
+    ],
     "difficulty": "Attending",
     "estimated_time_sec": 115,
-    "is_daily_challenge": true,
+    "is_daily_challenge": false,
     "published_date": "2026-10-24",
     "status": "approved",
     "author_credit": "Neurology: Neuroimmunology & Neuroinflammation (AAN) • PMC13560943",
@@ -285,7 +307,13 @@
         "Ordering only conventional T1/T2/FLAIR MRI without SWI/T2* sequences, resulting in misdiagnosis of CAA-ri as a primary brain tumor and subjecting the patient to neurosurgical biopsy.",
         "Delaying corticosteroid therapy beyond 6 weeks from symptom onset, which significantly worsens functional recovery and prolongs vasogenic edema."
       ],
-      "related_keywords": ["amyloid", "caa", "siderosis", "dementia", "hemorrhage"]
+      "related_keywords": [
+        "amyloid",
+        "caa",
+        "siderosis",
+        "dementia",
+        "hemorrhage"
+      ]
     }
   },
   {
@@ -293,7 +321,10 @@
     "case_code": "NC-2026-004",
     "title": "Rapidly Progressive Consciousness Impairment, Seizures, and Bilateral Venous Infarction Refractory to Systemic Heparin in a 20-Year-Old Male with Nephrotic Relapse",
     "subspecialty": "Vascular & Stroke",
-    "subspecialties": ["Vascular & Stroke", "Neurocritical Care"],
+    "subspecialties": [
+      "Vascular & Stroke",
+      "Neurocritical Care"
+    ],
     "difficulty": "Fellow",
     "estimated_time_sec": 105,
     "is_daily_challenge": true,
@@ -388,7 +419,13 @@
         "Using unfractionated heparin without checking or repletive monitoring for Antithrombin III deficiency in severely nephrotic patients.",
         "Waiting for irreversible transtentorial herniation before consulting neurointerventional surgery in pan-sinus CVST refractory to systemic anticoagulation."
       ],
-      "related_keywords": ["venous", "sinus", "thrombosis", "cvst", "anticoagulation"]
+      "related_keywords": [
+        "venous",
+        "sinus",
+        "thrombosis",
+        "cvst",
+        "anticoagulation"
+      ]
     }
   },
   {
@@ -396,10 +433,13 @@
     "case_code": "NC-2026-005",
     "title": "Refractory Severe Hyponatremia (109 mmol/L), Drowsiness, and Brief Involuntary Left Faciobrachial Spasms Without Ictal EEG Correlate in a 77-Year-Old Man",
     "subspecialty": "Neuroimmunology",
-    "subspecialties": ["Neuroimmunology", "Epilepsy"],
+    "subspecialties": [
+      "Neuroimmunology",
+      "Epilepsy"
+    ],
     "difficulty": "Fellow",
     "estimated_time_sec": 100,
-    "is_daily_challenge": true,
+    "is_daily_challenge": false,
     "published_date": "2026-10-22",
     "status": "approved",
     "author_credit": "BMC Neurology • PMC13312679",
@@ -491,7 +531,13 @@
         "Misdiagnosing scalp-EEG-negative faciobrachial dystonic seizures as psychogenic nonepileptic seizures, tics, or benign myoclonus.",
         "Treating chronic hyponatremia symptomatically with fluid restriction and salt tablets without investigating for underlying limbic encephalitis when cognitive drowsiness or brief limb jerks emerge."
       ],
-      "related_keywords": ["lgi1", "encephalitis", "epilepsy", "seizure", "autoimmune"]
+      "related_keywords": [
+        "lgi1",
+        "encephalitis",
+        "epilepsy",
+        "seizure",
+        "autoimmune"
+      ]
     }
   },
   {
@@ -499,10 +545,12 @@
     "case_code": "NC-2026-006",
     "title": "Recurrent Brief Positional Vertigo Triggered by Turning in Bed Mimicking Benign Paroxysmal Positional Vertigo in a 63-Year-Old Hypertensive Man",
     "subspecialty": "Vascular & Stroke",
-    "subspecialties": ["Vascular & Stroke"],
+    "subspecialties": [
+      "Vascular & Stroke"
+    ],
     "difficulty": "Resident",
     "estimated_time_sec": 95,
-    "is_daily_challenge": true,
+    "is_daily_challenge": false,
     "published_date": "2026-10-21",
     "status": "approved",
     "author_credit": "BMC Neurology • PMC13491773",
@@ -594,7 +642,13 @@
         "Discharging a hypertensive patient with 'BPPV' based on positional symptom triggers and a normal head CT without verifying characteristic peripheral nystagmus on positional maneuvers.",
         "Assuming all PICA strokes must exhibit Wallenberg syndrome (dysphagia, hoarseness, Horner syndrome, crossed sensory loss), which only occurs when the medullary perforators are involved."
       ],
-      "related_keywords": ["cerebellar", "pica", "vertigo", "stroke", "posterior"]
+      "related_keywords": [
+        "cerebellar",
+        "pica",
+        "vertigo",
+        "stroke",
+        "posterior"
+      ]
     }
   },
   {
@@ -602,10 +656,13 @@
     "case_code": "NC-2026-007",
     "title": "Rapidly Progressive Cognitive Decline, Myoclonus, Generalized Periodic Triphasic Discharges with Anterior-Posterior Lag, and Cortical Ribboning",
     "subspecialty": "Cognitive & Dementia",
-    "subspecialties": ["Cognitive & Dementia", "Epilepsy"],
+    "subspecialties": [
+      "Cognitive & Dementia",
+      "Epilepsy"
+    ],
     "difficulty": "Attending",
     "estimated_time_sec": 100,
-    "is_daily_challenge": true,
+    "is_daily_challenge": false,
     "published_date": "2026-10-20",
     "status": "approved",
     "author_credit": "Frontiers in Neurology • PMC13445854",
@@ -697,7 +754,13 @@
         "Misinterpreting DWI cortical ribboning as an acute arterial ischemic stroke or post-ictal cortical edema without checking whether the signal crosses vascular territories.",
         "Relying solely on CSF 14-3-3 protein (which can be falsely positive in viral/autoimmune encephalitis or acute stroke) without correlating with DWI cortical ribboning and CSF RT-QuIC."
       ],
-      "related_keywords": ["creutzfeldt", "prion", "dementia", "eeg", "encephalitis"]
+      "related_keywords": [
+        "creutzfeldt",
+        "prion",
+        "dementia",
+        "eeg",
+        "encephalitis"
+      ]
     }
   },
   {
@@ -705,10 +768,13 @@
     "case_code": "NC-2026-008",
     "title": "Two Months of Isolated Intractable Hiccups Followed by Acute Ophthalmoplegia, Bulbar Palsy, and Autonomic Instability Without Cutaneous Rash in a 35-Year-Old Man",
     "subspecialty": "Neuromuscular",
-    "subspecialties": ["Neuromuscular", "Neurocritical Care"],
+    "subspecialties": [
+      "Neuromuscular",
+      "Neurocritical Care"
+    ],
     "difficulty": "Attending",
     "estimated_time_sec": 115,
-    "is_daily_challenge": true,
+    "is_daily_challenge": false,
     "published_date": "2026-10-19",
     "status": "approved",
     "author_credit": "BMC Neurology • PMC13063731",
@@ -790,7 +856,13 @@
         "Assuming Varicella-Zoster Virus CNS infection is excluded simply because the patient is young, immunocompetent, and lacks a vesicular dermatomal rash.",
         "Attributing persistent hiccups solely to gastroesophageal reflux or stress without performing a cranial nerve exam and posterior fossa MRI."
       ],
-      "related_keywords": ["bickerstaff", "gq1b", "brainstem", "neuromuscular", "encephalitis"]
+      "related_keywords": [
+        "bickerstaff",
+        "gq1b",
+        "brainstem",
+        "neuromuscular",
+        "encephalitis"
+      ]
     }
   }
 ]
