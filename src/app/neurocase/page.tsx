@@ -6,6 +6,7 @@ import { ClinicalCase, CaseDifficulty, CaseStatus } from "../../types/clinicalCa
 import { Article } from "../../types/article";
 import { AppSwitcher } from "../../components/ecosystem/AppSwitcher";
 import { NeuroImagingViewer } from "../../components/neurocase/NeuroImagingViewer";
+import { extractClinicalCaseFromArticleText } from "../../utils/aiCaseExtractor";
 
 const SUBSPECIALTY_TABS = [
   { label: "All Subspecialties", value: "All" },
@@ -46,6 +47,10 @@ export default function NeuroCasePage() {
 
   // User Progress & Streak
   const [progressMap, setProgressMap] = useState<Record<string, UserCaseProgress>>({});
+  const [wrongAttemptsMap, setWrongAttemptsMap] = useState<
+    Record<string, ("A" | "B" | "C" | "D")[]>
+  >({});
+  const [showDetailedWorkup, setShowDetailedWorkup] = useState(false);
   const [streakDays, setStreakDays] = useState<number>(1);
 
   // Archive Filters
@@ -97,12 +102,21 @@ export default function NeuroCasePage() {
   const [editTitle, setEditTitle] = useState("");
   const [editQuestion, setEditQuestion] = useState("");
 
+  // AI Article / Text Case Extractor State (for NEJM, JAMA, Neurology, Stroke, Lancet)
+  const [showAiExtractor, setShowAiExtractor] = useState(false);
+  const [aiRawText, setAiRawText] = useState("");
+  const [geminiApiKey, setGeminiApiKey] = useState("");
+  const [isExtractingAi, setIsExtractingAi] = useState(false);
+
   useEffect(() => {
     const savedDark = localStorage.getItem("neuro_dark_mode");
     if (savedDark === "true") setDarkMode(true);
 
     const savedAdmin = localStorage.getItem("neurocase_admin_verified") === "true";
     if (savedAdmin) setIsAdminVerified(true);
+
+    const savedKey = localStorage.getItem("neurocase_gemini_api_key") || "";
+    if (savedKey) setGeminiApiKey(savedKey);
 
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
@@ -202,26 +216,37 @@ export default function NeuroCasePage() {
 
   const handleSelectOption = (caseItem: ClinicalCase, optionId: "A" | "B" | "C" | "D") => {
     const isCorrect = optionId === caseItem.challenge.correct_option;
+
+    // NEJM Image Challenge Multi-Attempt ("Try Again!") behavior:
+    // If incorrect, record the wrong option for this case so the user sees "Try again! That is not the correct answer."
+    // without spoiling the correct answer or unlocking the final diagnosis yet.
+    if (!isCorrect) {
+      setWrongAttemptsMap((prev) => {
+        const existing = prev[caseItem.id] || [];
+        if (existing.includes(optionId)) return prev;
+        return { ...prev, [caseItem.id]: [...existing, optionId] };
+      });
+      return;
+    }
+
     const nextProgress: Record<string, UserCaseProgress> = {
       ...progressMap,
       [caseItem.id]: {
         selectedOption: optionId,
-        isCorrect,
+        isCorrect: true,
         answeredAt: new Date().toISOString(),
       },
     };
     setProgressMap(nextProgress);
     localStorage.setItem("neurocase_progress_v1", JSON.stringify(nextProgress));
 
-    if (isCorrect) {
-      const todayKey = new Date().toISOString().slice(0, 10);
-      const lastStreakDate = localStorage.getItem("neurocase_last_streak_date");
-      if (lastStreakDate !== todayKey) {
-        const nextStreak = streakDays + 1;
-        setStreakDays(nextStreak);
-        localStorage.setItem("neurocase_streak_days", String(nextStreak));
-        localStorage.setItem("neurocase_last_streak_date", todayKey);
-      }
+    const todayKey = new Date().toISOString().slice(0, 10);
+    const lastStreakDate = localStorage.getItem("neurocase_last_streak_date");
+    if (lastStreakDate !== todayKey) {
+      const nextStreak = streakDays + 1;
+      setStreakDays(nextStreak);
+      localStorage.setItem("neurocase_streak_days", String(nextStreak));
+      localStorage.setItem("neurocase_last_streak_date", todayKey);
     }
   };
 
@@ -230,6 +255,33 @@ export default function NeuroCasePage() {
     delete next[caseId];
     setProgressMap(next);
     localStorage.setItem("neurocase_progress_v1", JSON.stringify(next));
+    setWrongAttemptsMap((prev) => {
+      const copy = { ...prev };
+      delete copy[caseId];
+      return copy;
+    });
+  };
+
+  const handleNextChallenge = () => {
+    if (!currentCase || approvedCases.length === 0) return;
+    const idx = approvedCases.findIndex((c) => c.id === currentCase.id);
+    const nextIdx = (idx + 1) % approvedCases.length;
+    setActiveCaseId(approvedCases[nextIdx].id);
+    setShowDetailedWorkup(false);
+  };
+
+  const formatChallengeDate = (isoDate: string) => {
+    try {
+      const d = new Date(`${isoDate}T00:00:00`);
+      if (isNaN(d.getTime())) return isoDate;
+      return d.toLocaleDateString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+      });
+    } catch {
+      return isoDate;
+    }
   };
 
   const stats = useMemo(() => {
@@ -346,6 +398,53 @@ export default function NeuroCasePage() {
     setSubImageWebpUrl(webpDataUrl);
     const approxBytes = Math.round((webpDataUrl.length * 3) / 4);
     setSubImageSizeKb(Math.round(approxBytes / 102.4) / 10);
+  };
+
+  const handleArticleTextFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      const content = String(ev.target?.result || "");
+      setAiRawText(content);
+    };
+    reader.readAsText(file);
+  };
+
+  const handleRunAiExtraction = async () => {
+    if (!aiRawText.trim()) return;
+    setIsExtractingAi(true);
+    try {
+      if (geminiApiKey.trim()) {
+        localStorage.setItem("neurocase_gemini_api_key", geminiApiKey.trim());
+      }
+      const extracted = await extractClinicalCaseFromArticleText(aiRawText, geminiApiKey);
+      setSubTitle(extracted.title);
+      setSubSpecialty(extracted.subspecialty);
+      setSubDifficulty(extracted.difficulty);
+      setSubAuthor(extracted.author_credit);
+      setSubDemographics(extracted.demographics);
+      setSubChiefComplaint(extracted.chief_complaint);
+      setSubHistory(extracted.history_of_present_illness);
+      setSubNeuroExam(`${extracted.neuro_exam}\n\nWorkup / CSF: ${extracted.key_labs_csf}`);
+      setSubModality(extracted.modality);
+      setSubFindings(extracted.findings_summary);
+      setSubQuestion(extracted.question);
+      setSubOptA(extracted.optA);
+      setSubOptB(extracted.optB);
+      setSubOptC(extracted.optC);
+      setSubOptD(extracted.optD);
+      setSubCorrect(extracted.correctOption);
+      setSubDiagnosis(extracted.final_diagnosis);
+      setSubDiscussion(extracted.clinical_discussion);
+      setSubTeachingPoint(extracted.teaching_points.join(" • "));
+      setSubPitfall(extracted.clinical_pitfalls.join(" • "));
+      setSubmitSuccessMsg(
+        `✨ Successfully structured clinical case from ${extracted.journal_short}! Review the populated fields below and click Submit Case.`
+      );
+    } finally {
+      setIsExtractingAi(false);
+    }
   };
 
   const handleUserSubmitCase = (e: React.FormEvent) => {
@@ -499,7 +598,7 @@ export default function NeuroCasePage() {
         darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-100 text-slate-900"
       }`}
     >
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         {/* NEUROCASE HEADER */}
         <header className="mb-6 pt-1 flex flex-wrap items-end justify-between gap-4">
           <div>
@@ -651,7 +750,7 @@ export default function NeuroCasePage() {
         )}
 
         {/* =====================================================================
-            TAB 1: DAILY CHALLENGE & 3-STEP INTERACTIVE CLINICAL SOLVER
+            TAB 1: DAILY CHALLENGE (NEJM IMAGE CHALLENGE SPLIT-SCREEN ARCHITECTURE)
            ===================================================================== */}
         {!loading && activeTab === "daily" && currentCase && (
           <div className="space-y-6">
@@ -669,7 +768,10 @@ export default function NeuroCasePage() {
                     <button
                       key={c.id}
                       type="button"
-                      onClick={() => setActiveCaseId(c.id)}
+                      onClick={() => {
+                        setActiveCaseId(c.id);
+                        setShowDetailedWorkup(false);
+                      }}
                       className={`px-2.5 py-1.5 rounded-lg text-xs font-bold border transition-all flex items-center gap-1 ${
                         isSelected
                           ? "bg-indigo-600 text-white border-indigo-500 shadow-xs"
@@ -702,266 +804,217 @@ export default function NeuroCasePage() {
               </button>
             </div>
 
-            {/* MAIN CLINICAL CASE CARD */}
+            {/* MAIN NEJM-STYLE CLINICAL & IMAGING CHALLENGE CARD */}
             <article
               className={`rounded-2xl border shadow-sm overflow-hidden ${
                 darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
               }`}
             >
-              {/* Case Header Banner */}
-              <div className="p-5 sm:p-6 border-b border-slate-200 dark:border-slate-800 bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white">
-                <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-                  <div className="flex flex-wrap items-center gap-2">
-                    {currentCase.is_daily_challenge && (
-                      <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase bg-amber-400 text-slate-950">
-                        🔥 Daily Challenge
-                      </span>
-                    )}
-                    <span className="px-2.5 py-0.5 rounded text-[11px] font-bold bg-white/10 text-indigo-200">
-                      {currentCase.case_code}
-                    </span>
-                    <span className="px-2.5 py-0.5 rounded text-[11px] font-bold bg-indigo-500/30 text-indigo-100 border border-indigo-400/30">
-                      {currentCase.subspecialty}
-                    </span>
-                    <span
-                      className={`px-2.5 py-0.5 rounded text-[11px] font-bold border ${
-                        DIFFICULTY_BADGES[currentCase.difficulty]
-                      }`}
-                    >
-                      {currentCase.difficulty}
-                    </span>
-                  </div>
-
-                  {currentCase.source_journal && (
-                    <a
-                      href={currentCase.source_journal.doi_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs font-bold text-indigo-300 hover:text-white underline"
-                    >
-                      Source: {currentCase.source_journal.short_name} (
-                      {currentCase.source_journal.pmcid || currentCase.source_journal.pub_year}) ↗
-                    </a>
-                  )}
+              {/* Centered NEJM-Style Challenge Date Header */}
+              <div
+                className={`px-6 py-5 border-b text-center ${
+                  darkMode ? "border-slate-800 bg-slate-900/60" : "border-slate-100 bg-slate-50/50"
+                }`}
+              >
+                <div className="flex flex-wrap items-center justify-center gap-2 mb-1.5">
+                  <span className="text-[11px] font-black uppercase tracking-[0.2em] text-rose-600 dark:text-rose-400">
+                    CLINICAL &amp; IMAGING CHALLENGE
+                  </span>
+                  <span className="text-slate-300 dark:text-slate-700">•</span>
+                  <span className="text-[11px] font-bold text-indigo-600 dark:text-indigo-400">
+                    {currentCase.subspecialty}
+                  </span>
+                  <span
+                    className={`px-2 py-0.5 rounded text-[10px] font-bold border ${
+                      DIFFICULTY_BADGES[currentCase.difficulty]
+                    }`}
+                  >
+                    {currentCase.difficulty}
+                  </span>
                 </div>
-
-                <h2 className="text-lg sm:text-xl font-black leading-snug">{currentCase.title}</h2>
+                <h2 className="text-2xl sm:text-3xl font-serif font-bold tracking-tight">
+                  {formatChallengeDate(currentCase.published_date)}
+                </h2>
               </div>
 
-              <div className="p-5 sm:p-6 space-y-6">
-                {/* =================================================
-                    CLINICAL PRESENTATION & ARTICLE FIGURES
-                   ================================================= */}
-                <section className="space-y-4">
-                  <div className="flex items-center gap-2">
-                    <h3 className="text-sm font-black uppercase tracking-wider text-indigo-500">
-                      Clinical Presentation, Neurological Exam &amp; Published Article Figures
-                    </h3>
-                  </div>
-
-                  {/* Demographics & Chief Complaint */}
-                  <div
-                    className={`p-4 rounded-xl border grid grid-cols-1 sm:grid-cols-2 gap-3 ${
-                      darkMode ? "bg-slate-800/60 border-slate-700" : "bg-slate-50 border-slate-200"
-                    }`}
-                  >
-                    <div>
-                      <span className="text-[10px] font-bold uppercase text-slate-400 block">
-                        Patient Demographics
-                      </span>
-                      <span className="text-xs sm:text-sm font-bold">
-                        {currentCase.presentation.demographics}
-                      </span>
-                    </div>
-                    <div>
-                      <span className="text-[10px] font-bold uppercase text-slate-400 block">
-                        Chief Complaint
-                      </span>
-                      <span className="text-xs sm:text-sm font-bold text-rose-500">
-                        {currentCase.presentation.chief_complaint}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* HPI & PMH */}
-                  <div className="space-y-2 text-sm leading-relaxed">
-                    <p>
-                      <strong className="font-bold">History of Present Illness: </strong>
-                      {currentCase.presentation.history_of_present_illness}
-                    </p>
-                    <p>
-                      <strong className="font-bold">Past Medical History: </strong>
-                      {currentCase.presentation.past_medical_history}
-                    </p>
-                  </div>
-
-                  {/* Vitals Strip */}
-                  <div
-                    className={`p-3 rounded-xl border grid grid-cols-2 sm:grid-cols-5 gap-2 text-center ${
-                      darkMode ? "bg-slate-950 border-slate-800" : "bg-slate-900 text-white border-slate-800"
-                    }`}
-                  >
-                    <div>
-                      <span className="text-[10px] text-slate-400 uppercase block">Blood Pressure</span>
-                      <span className="text-xs font-black text-emerald-400">
-                        {currentCase.presentation.vitals.bp}
-                      </span>
-                    </div>
-                    <div>
-                      <span className="text-[10px] text-slate-400 uppercase block">Heart Rate</span>
-                      <span className="text-xs font-black text-amber-300">
-                        {currentCase.presentation.vitals.hr}
-                      </span>
-                    </div>
-                    <div>
-                      <span className="text-[10px] text-slate-400 uppercase block">Resp Rate</span>
-                      <span className="text-xs font-black text-sky-300">
-                        {currentCase.presentation.vitals.rr}
-                      </span>
-                    </div>
-                    <div>
-                      <span className="text-[10px] text-slate-400 uppercase block">Temperature</span>
-                      <span className="text-xs font-black text-slate-200">
-                        {currentCase.presentation.vitals.temp}
-                      </span>
-                    </div>
-                    <div>
-                      <span className="text-[10px] text-slate-400 uppercase block">SpO2</span>
-                      <span className="text-xs font-black text-cyan-300">
-                        {currentCase.presentation.vitals.spo2}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Neurological Exam & Labs/CSF */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-                    <div
-                      className={`p-4 rounded-xl border text-xs sm:text-sm leading-relaxed ${
-                        darkMode ? "bg-slate-800/50 border-slate-700" : "bg-indigo-50/50 border-indigo-200/80"
-                      }`}
-                    >
-                      <span className="text-xs font-black uppercase text-indigo-500 block mb-1">
-                        🩺 Neurological Examination
-                      </span>
-                      {currentCase.presentation.neuro_exam}
-                    </div>
-
-                    <div
-                      className={`p-4 rounded-xl border text-xs sm:text-sm leading-relaxed ${
-                        darkMode ? "bg-slate-800/50 border-slate-700" : "bg-amber-50/50 border-amber-200/80"
-                      }`}
-                    >
-                      <span className="text-xs font-black uppercase text-amber-600 dark:text-amber-400 block mb-1">
-                        🧪 Laboratory, CSF &amp; Bedside Workup
-                      </span>
-                      {currentCase.presentation.key_labs_csf}
-                    </div>
-                  </div>
-
-                  {/* Published Article Figure Viewer */}
+              {/* 2-COLUMN SPLIT VIEW: LEFT = NEUROIMAGING FIGURES | RIGHT = VIGNETTE & MCQ */}
+              <div className="p-5 sm:p-7 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+                {/* LEFT COLUMN (7/12): STICKY NEUROIMAGING VIEWER */}
+                <div className="lg:col-span-7 lg:sticky lg:top-6">
                   <NeuroImagingViewer
                     imagingList={currentCase.presentation.imaging}
-                    isSolved={Boolean(progressMap[currentCase.id])}
+                    isSolved={Boolean(progressMap[currentCase.id]?.isCorrect)}
                     darkMode={darkMode}
                   />
-                </section>
+                </div>
 
-                <hr className="border-slate-200 dark:border-slate-800" />
+                {/* RIGHT COLUMN (5/12): CONCISE CLINICAL VIGNETTE + MULTI-ATTEMPT MCQ + ACTION BUTTONS */}
+                <div className="lg:col-span-5 space-y-5">
+                  {/* Single Cohesive Clinical Vignette Paragraph (NEJM Style) */}
+                  <div className="space-y-3 text-sm sm:text-[15px] leading-relaxed">
+                    <p
+                      className={
+                        darkMode ? "text-slate-200 font-normal" : "text-slate-800 font-normal"
+                      }
+                    >
+                      {currentCase.presentation.history_of_present_illness}{" "}
+                      {currentCase.presentation.neuro_exam}{" "}
+                      {currentCase.presentation.key_labs_csf}
+                    </p>
 
-                {/* =================================================
-                    4-OPTION CLINICAL CHALLENGE (A, B, C, D)
-                   ================================================= */}
-                <section className="space-y-4">
-                  <div className="flex flex-wrap items-center justify-between gap-2">
-                    <div className="flex items-center gap-2">
-                      <h3 className="text-sm font-black uppercase tracking-wider text-indigo-500">
-                        Clinical Decision Challenge ({currentCase.challenge.question_type})
-                      </h3>
-                    </div>
-
-                    {progressMap[currentCase.id] && (
+                    {/* Optional Expandable Vitals & PMH Toggle */}
+                    <div>
                       <button
                         type="button"
-                        onClick={() => handleResetCaseAttempt(currentCase.id)}
-                        className="text-xs font-bold text-slate-400 hover:text-indigo-500 underline"
+                        onClick={() => setShowDetailedWorkup((prev) => !prev)}
+                        className="text-xs font-bold text-indigo-500 hover:underline flex items-center gap-1"
                       >
-                        Reset Attempt ↺
+                        <span>
+                          {showDetailedWorkup
+                            ? "− Hide Vital Signs & Past Medical History"
+                            : "+ View Vital Signs & Past Medical History"}
+                        </span>
                       </button>
-                    )}
+
+                      {showDetailedWorkup && (
+                        <div
+                          className={`mt-2.5 p-3.5 rounded-xl border text-xs space-y-2.5 ${
+                            darkMode
+                              ? "bg-slate-800/60 border-slate-700 text-slate-200"
+                              : "bg-slate-50 border-slate-200 text-slate-700"
+                          }`}
+                        >
+                          <div>
+                            <strong className="font-bold">Demographics: </strong>
+                            {currentCase.presentation.demographics}
+                          </div>
+                          <div>
+                            <strong className="font-bold">Past Medical History: </strong>
+                            {currentCase.presentation.past_medical_history}
+                          </div>
+                          <div className="grid grid-cols-3 sm:grid-cols-5 gap-1.5 pt-1 text-center">
+                            <div className="p-1.5 rounded bg-slate-900 text-white">
+                              <span className="text-[9px] text-slate-400 block">BP</span>
+                              <span className="font-bold text-[11px] text-emerald-400">
+                                {currentCase.presentation.vitals.bp}
+                              </span>
+                            </div>
+                            <div className="p-1.5 rounded bg-slate-900 text-white">
+                              <span className="text-[9px] text-slate-400 block">HR</span>
+                              <span className="font-bold text-[11px] text-amber-300">
+                                {currentCase.presentation.vitals.hr}
+                              </span>
+                            </div>
+                            <div className="p-1.5 rounded bg-slate-900 text-white">
+                              <span className="text-[9px] text-slate-400 block">RR</span>
+                              <span className="font-bold text-[11px] text-sky-300">
+                                {currentCase.presentation.vitals.rr}
+                              </span>
+                            </div>
+                            <div className="p-1.5 rounded bg-slate-900 text-white">
+                              <span className="text-[9px] text-slate-400 block">Temp</span>
+                              <span className="font-bold text-[11px]">
+                                {currentCase.presentation.vitals.temp}
+                              </span>
+                            </div>
+                            <div className="p-1.5 rounded bg-slate-900 text-white">
+                              <span className="text-[9px] text-slate-400 block">SpO2</span>
+                              <span className="font-bold text-[11px] text-cyan-300">
+                                {currentCase.presentation.vitals.spo2}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Question Prompt */}
+                    <p
+                      className={`font-bold pt-1 ${
+                        darkMode ? "text-white" : "text-slate-900"
+                      }`}
+                    >
+                      {currentCase.challenge.question}
+                    </p>
                   </div>
 
-                  <p className="text-sm sm:text-base font-bold leading-relaxed">
-                    {currentCase.challenge.question}
-                  </p>
-
-                  <div className="space-y-3">
+                  {/* NEJM-Style Option List with Multi-Attempt "Try again!" Feedback */}
+                  <div className="divide-y divide-slate-200 dark:divide-slate-800 border-t border-b border-slate-200 dark:border-slate-800">
                     {currentCase.challenge.options.map((opt) => {
                       const attempt = progressMap[currentCase.id];
-                      const isAnswered = Boolean(attempt);
-                      const isUserChoice = attempt?.selectedOption === opt.id;
+                      const isCaseSolved = Boolean(attempt?.isCorrect);
+                      const wrongList = wrongAttemptsMap[currentCase.id] || [];
+                      const isWrongAttempt = wrongList.includes(opt.id);
                       const isCorrectOption = opt.id === currentCase.challenge.correct_option;
-
-                      let cardStyle = darkMode
-                        ? "bg-slate-800/80 border-slate-700 hover:border-indigo-500"
-                        : "bg-white border-slate-200 hover:border-indigo-500 hover:bg-indigo-50/30";
-
-                      if (isAnswered) {
-                        if (isCorrectOption) {
-                          cardStyle = darkMode
-                            ? "bg-emerald-950/60 border-emerald-500 text-emerald-100"
-                            : "bg-emerald-50 border-emerald-500 text-emerald-950";
-                        } else if (isUserChoice && !isCorrectOption) {
-                          cardStyle = darkMode
-                            ? "bg-rose-950/60 border-rose-500 text-rose-100"
-                            : "bg-rose-50 border-rose-500 text-rose-950";
-                        } else {
-                          cardStyle = darkMode
-                            ? "bg-slate-900/60 border-slate-800 opacity-75"
-                            : "bg-slate-50 border-slate-200 opacity-80";
-                        }
-                      }
 
                       return (
                         <div
                           key={opt.id}
                           onClick={() => {
-                            if (!isAnswered) handleSelectOption(currentCase, opt.id);
+                            if (!isCaseSolved && !isWrongAttempt) {
+                              handleSelectOption(currentCase, opt.id);
+                            }
                           }}
-                          className={`p-4 rounded-xl border-2 transition-all ${
-                            isAnswered ? "cursor-default" : "cursor-pointer"
-                          } ${cardStyle}`}
+                          className={`py-3.5 px-2 transition-colors ${
+                            isCaseSolved || isWrongAttempt
+                              ? "cursor-default"
+                              : "cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/50"
+                          }`}
                         >
                           <div className="flex items-start justify-between gap-3">
                             <div className="flex items-start gap-3">
-                              <span
-                                className={`w-7 h-7 rounded-lg text-xs font-black flex items-center justify-center shrink-0 mt-0.5 ${
-                                  isAnswered && isCorrectOption
-                                    ? "bg-emerald-600 text-white"
-                                    : isAnswered && isUserChoice
-                                    ? "bg-rose-600 text-white"
-                                    : darkMode
-                                    ? "bg-slate-700 text-slate-200"
-                                    : "bg-slate-200 text-slate-800"
-                                }`}
-                              >
-                                {opt.id}
-                              </span>
-                              <span className="text-xs sm:text-sm font-bold leading-relaxed">
-                                {opt.text}
-                              </span>
+                              {/* Radio / Status Icon */}
+                              {isCaseSolved && isCorrectOption ? (
+                                <span className="w-5 h-5 rounded-full bg-emerald-600 text-white text-xs font-black flex items-center justify-center shrink-0 mt-0.5">
+                                  ✓
+                                </span>
+                              ) : isWrongAttempt ? (
+                                <span className="w-5 h-5 rounded-full bg-rose-600 text-white text-xs font-black flex items-center justify-center shrink-0 mt-0.5">
+                                  ✕
+                                </span>
+                              ) : (
+                                <span
+                                  className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 mt-0.5 ${
+                                    darkMode ? "border-slate-600" : "border-slate-300"
+                                  }`}
+                                />
+                              )}
+
+                              <div className="space-y-1">
+                                <span
+                                  className={`text-sm leading-snug block ${
+                                    isCaseSolved && isCorrectOption
+                                      ? "font-black text-emerald-600 dark:text-emerald-400"
+                                      : isWrongAttempt
+                                      ? "font-bold text-rose-600 dark:text-rose-400"
+                                      : darkMode
+                                      ? "font-medium text-slate-200"
+                                      : "font-medium text-slate-700"
+                                  }`}
+                                >
+                                  {opt.text}
+                                </span>
+
+                                {/* NEJM "Try again! That is not the correct answer." */}
+                                {isWrongAttempt && !isCaseSolved && (
+                                  <p className="text-xs text-rose-600 dark:text-rose-400 animate-fadeIn">
+                                    <strong className="font-black">Try again!</strong> That is not the correct answer.
+                                  </p>
+                                )}
+                              </div>
                             </div>
 
-                            {isAnswered && (
-                              <span className="text-xs font-black shrink-0">
-                                {opt.peer_percentage}% peers
+                            {isCaseSolved && (
+                              <span className="text-xs font-black text-slate-500 dark:text-slate-400 shrink-0">
+                                {opt.peer_percentage}%
                               </span>
                             )}
                           </div>
 
-                          {/* Peer Distribution & Option Rationale */}
-                          {isAnswered && (
-                            <div className="mt-3 pt-3 border-t border-slate-300/40 dark:border-slate-700/60 space-y-2">
-                              <div className="w-full h-2 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
+                          {/* Peer Distribution & Option Rationale (Unlocked when solved) */}
+                          {isCaseSolved && (
+                            <div className="mt-2.5 pl-8 space-y-1.5">
+                              <div className="w-full h-1.5 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
                                 <div
                                   className={`h-full rounded-full transition-all duration-500 ${
                                     isCorrectOption ? "bg-emerald-500" : "bg-slate-400"
@@ -969,9 +1022,13 @@ export default function NeuroCasePage() {
                                   style={{ width: `${opt.peer_percentage}%` }}
                                 />
                               </div>
-                              <p className="text-xs leading-relaxed">
-                                <strong className="font-black">
-                                  {isCorrectOption ? "✓ Correct Answer: " : "✗ Differential Analysis: "}
+                              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                <strong
+                                  className={`font-black ${
+                                    isCorrectOption ? "text-emerald-600 dark:text-emerald-400" : ""
+                                  }`}
+                                >
+                                  {isCorrectOption ? "Correct Answer: " : "Differential Note: "}
                                 </strong>
                                 {opt.rationale}
                               </p>
@@ -981,132 +1038,159 @@ export default function NeuroCasePage() {
                       );
                     })}
                   </div>
-                </section>
 
-                {/* =================================================
-                    DISCUSSION, TEACHING POINTS & NEUROPULSE LINKS
-                   ================================================= */}
-                {progressMap[currentCase.id] ? (
-                  <section className="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-5 animate-fadeIn">
-                    <div className="flex items-center gap-2">
-                      <h3 className="text-sm font-black uppercase tracking-wider text-emerald-500">
-                        Final Diagnosis, Teaching Points &amp; Clinical Pitfalls
-                      </h3>
-                    </div>
+                  {/* NEJM-STYLE BOTTOM ACTION BAR: NEXT CHALLENGE & TRY AGAIN */}
+                  <div className="flex items-center justify-between gap-3 pt-2">
+                    <button
+                      type="button"
+                      onClick={handleNextChallenge}
+                      className={`flex-1 py-2.5 px-4 rounded-lg border text-xs font-black uppercase tracking-wider transition-colors ${
+                        darkMode
+                          ? "border-slate-700 text-slate-200 hover:bg-slate-800"
+                          : "border-slate-300 text-slate-800 hover:bg-slate-100"
+                      }`}
+                    >
+                      NEXT CHALLENGE
+                    </button>
 
-                    {/* Final Diagnosis Box */}
-                    <div className="p-4 rounded-xl bg-gradient-to-r from-emerald-950 via-slate-900 to-indigo-950 text-white border border-emerald-600/50">
-                      <span className="text-[10px] font-black uppercase tracking-wider text-emerald-400 block mb-1">
-                        FINAL CLINICAL DIAGNOSIS
-                      </span>
-                      <p className="text-base sm:text-lg font-black">{currentCase.resolution.final_diagnosis}</p>
-                    </div>
-
-                    {/* Clinical Discussion */}
-                    <div className="text-xs sm:text-sm leading-relaxed space-y-2 whitespace-pre-line">
-                      <h4 className="font-black uppercase text-xs text-indigo-500">
-                        📖 Clinical Discussion:
-                      </h4>
-                      <p>{currentCase.resolution.clinical_discussion}</p>
-                    </div>
-
-                    {/* Teaching Points & Clinical Pitfalls */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div
-                        className={`p-4 rounded-xl border ${
-                          darkMode
-                            ? "bg-emerald-950/30 border-emerald-800/70"
-                            : "bg-emerald-50/70 border-emerald-200"
-                        }`}
-                      >
-                        <h4 className="text-xs font-black uppercase text-emerald-600 dark:text-emerald-400 mb-2">
-                          💡 High-Yield Teaching Points
-                        </h4>
-                        <ul className="space-y-2 text-xs leading-relaxed list-disc pl-4">
-                          {currentCase.resolution.teaching_points.map((tp, i) => (
-                            <li key={i}>{tp}</li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      <div
-                        className={`p-4 rounded-xl border ${
-                          darkMode
-                            ? "bg-rose-950/30 border-rose-800/70"
-                            : "bg-rose-50/70 border-rose-200"
-                        }`}
-                      >
-                        <h4 className="text-xs font-black uppercase text-rose-600 dark:text-rose-400 mb-2">
-                          ⚠️ Clinical Pitfalls to Avoid
-                        </h4>
-                        <ul className="space-y-2 text-xs leading-relaxed list-disc pl-4">
-                          {currentCase.resolution.clinical_pitfalls.map((pf, i) => (
-                            <li key={i}>{pf}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-
-                    {/* CROSS-ECOSYSTEM LINK: RELATED ARTICLES FROM NEUROPULSE */}
-                    {relatedPulseArticles.length > 0 && (
-                      <div
-                        className={`p-4 rounded-xl border ${
-                          darkMode ? "bg-slate-800/70 border-slate-700" : "bg-slate-50 border-slate-200"
-                        }`}
-                      >
-                        <div className="flex items-center justify-between mb-3">
-                          <span className="text-xs font-black uppercase text-indigo-500 flex items-center gap-1.5">
-                            <span>🔗 Related Literature on NeuroPulse</span>
-                          </span>
-                          <Link href="/" className="text-xs font-bold text-indigo-500 hover:underline">
-                            Open NeuroPulse →
-                          </Link>
-                        </div>
-                        <div className="space-y-2">
-                          {relatedPulseArticles.map((art) => (
-                            <a
-                              key={art.id}
-                              href={art.doi_url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className={`p-3 rounded-lg border block transition-all ${
-                                darkMode
-                                  ? "bg-slate-900 border-slate-700 hover:border-indigo-500"
-                                  : "bg-white border-slate-200 hover:border-indigo-400"
-                              }`}
-                            >
-                              <div className="flex items-center gap-2 mb-1">
-                                <span
-                                  className="px-1.5 py-0.5 rounded text-[9px] font-black uppercase"
-                                  style={{
-                                    backgroundColor: art.journal.badge_bg,
-                                    color: art.journal.badge_text,
-                                  }}
-                                >
-                                  {art.journal.short_name}
-                                </span>
-                                <span className="text-[10px] text-slate-400">{art.pub_date}</span>
-                              </div>
-                              <p className="text-xs font-bold leading-snug">{art.title}</p>
-                            </a>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </section>
-                ) : (
-                  <div
-                    className={`p-4 rounded-xl border border-dashed text-center text-xs font-semibold ${
-                      darkMode
-                        ? "border-slate-800 text-slate-400 bg-slate-950/40"
-                        : "border-slate-300 text-slate-500 bg-slate-50"
-                    }`}
-                  >
-                    🔒 Select one of the 4 options (A, B, C, D) above to unlock{" "}
-                    <strong>Final Diagnosis, Teaching Points &amp; Clinical Pitfalls</strong>.
+                    <button
+                      type="button"
+                      onClick={() => handleResetCaseAttempt(currentCase.id)}
+                      className="py-2.5 px-5 rounded-lg text-xs font-black uppercase tracking-wider bg-sky-800 hover:bg-sky-900 text-white transition-colors flex items-center gap-1.5"
+                    >
+                      <span>↻</span>
+                      <span>TRY AGAIN</span>
+                    </button>
                   </div>
-                )}
+                </div>
               </div>
+
+              {/* =================================================
+                  UNLOCKED RESOLUTION: FINAL DIAGNOSIS, DISCUSSION, TEACHING POINTS & NEUROPULSE LINKS
+                 ================================================= */}
+              {progressMap[currentCase.id]?.isCorrect && (
+                <div className="p-5 sm:p-7 border-t border-slate-200 dark:border-slate-800 space-y-6 animate-fadeIn">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <h3 className="text-sm font-black uppercase tracking-wider text-emerald-500">
+                      Final Diagnosis, Teaching Points &amp; Clinical Pitfalls
+                    </h3>
+
+                    {currentCase.source_journal && (
+                      <a
+                        href={currentCase.source_journal.doi_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs font-bold text-indigo-500 hover:underline"
+                      >
+                        Published Source: {currentCase.source_journal.name} (
+                        {currentCase.source_journal.pmcid || currentCase.source_journal.pub_year}) ↗
+                      </a>
+                    )}
+                  </div>
+
+                  {/* Final Diagnosis Box */}
+                  <div className="p-4 rounded-xl bg-gradient-to-r from-emerald-950 via-slate-900 to-indigo-950 text-white border border-emerald-600/50">
+                    <span className="text-[10px] font-black uppercase tracking-wider text-emerald-400 block mb-1">
+                      FINAL CLINICAL DIAGNOSIS • {currentCase.case_code}
+                    </span>
+                    <p className="text-base sm:text-lg font-black">
+                      {currentCase.resolution.final_diagnosis}
+                    </p>
+                  </div>
+
+                  {/* Clinical Discussion */}
+                  <div className="text-xs sm:text-sm leading-relaxed space-y-2 whitespace-pre-line">
+                    <h4 className="font-black uppercase text-xs text-indigo-500">
+                      📖 Clinical Discussion:
+                    </h4>
+                    <p>{currentCase.resolution.clinical_discussion}</p>
+                  </div>
+
+                  {/* Teaching Points & Clinical Pitfalls */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div
+                      className={`p-4 rounded-xl border ${
+                        darkMode
+                          ? "bg-emerald-950/30 border-emerald-800/70"
+                          : "bg-emerald-50/70 border-emerald-200"
+                      }`}
+                    >
+                      <h4 className="text-xs font-black uppercase text-emerald-600 dark:text-emerald-400 mb-2">
+                        💡 High-Yield Teaching Points
+                      </h4>
+                      <ul className="space-y-2 text-xs leading-relaxed list-disc pl-4">
+                        {currentCase.resolution.teaching_points.map((tp, i) => (
+                          <li key={i}>{tp}</li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div
+                      className={`p-4 rounded-xl border ${
+                        darkMode
+                          ? "bg-rose-950/30 border-rose-800/70"
+                          : "bg-rose-50/70 border-rose-200"
+                      }`}
+                    >
+                      <h4 className="text-xs font-black uppercase text-rose-600 dark:text-rose-400 mb-2">
+                        ⚠️ Clinical Pitfalls to Avoid
+                      </h4>
+                      <ul className="space-y-2 text-xs leading-relaxed list-disc pl-4">
+                        {currentCase.resolution.clinical_pitfalls.map((pf, i) => (
+                          <li key={i}>{pf}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* CROSS-ECOSYSTEM LINK: RELATED ARTICLES FROM NEUROPULSE */}
+                  {relatedPulseArticles.length > 0 && (
+                    <div
+                      className={`p-4 rounded-xl border ${
+                        darkMode ? "bg-slate-800/70 border-slate-700" : "bg-slate-50 border-slate-200"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="text-xs font-black uppercase text-indigo-500 flex items-center gap-1.5">
+                          <span>🔗 Related Literature on NeuroPulse</span>
+                        </span>
+                        <Link href="/" className="text-xs font-bold text-indigo-500 hover:underline">
+                          Open NeuroPulse →
+                        </Link>
+                      </div>
+                      <div className="space-y-2">
+                        {relatedPulseArticles.map((art) => (
+                          <a
+                            key={art.id}
+                            href={art.doi_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`p-3 rounded-lg border block transition-all ${
+                              darkMode
+                                ? "bg-slate-900 border-slate-700 hover:border-indigo-500"
+                                : "bg-white border-slate-200 hover:border-indigo-400"
+                            }`}
+                          >
+                            <div className="flex items-center gap-2 mb-1">
+                              <span
+                                className="px-1.5 py-0.5 rounded text-[9px] font-black uppercase"
+                                style={{
+                                  backgroundColor: art.journal.badge_bg,
+                                  color: art.journal.badge_text,
+                                }}
+                              >
+                                {art.journal.short_name}
+                              </span>
+                              <span className="text-[10px] text-slate-400">{art.pub_date}</span>
+                            </div>
+                            <p className="text-xs font-bold leading-snug">{art.title}</p>
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
             </article>
           </div>
         )}
@@ -1453,17 +1537,96 @@ export default function NeuroCasePage() {
               darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
             }`}
           >
-            <div>
-              <span className="text-xs font-black uppercase text-amber-500">
-                COMMUNITY CLINICAL PIPELINE
-              </span>
-              <h2 className="text-xl font-black mt-0.5">
-                Submit a Clinical Case &amp; De-identify Neuroimaging
-              </h2>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                Uploaded CT/MRI images are processed 100% in your browser to strip EXIF metadata and mask patient identifiers before entering the <code>pending</code> moderation queue.
-              </p>
+            <div className="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <span className="text-xs font-black uppercase text-amber-500">
+                  COMMUNITY CLINICAL PIPELINE
+                </span>
+                <h2 className="text-xl font-black mt-0.5">
+                  Submit a Clinical Case &amp; De-identify Neuroimaging
+                </h2>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                  Uploaded CT/MRI images are processed 100% in your browser to strip EXIF metadata and mask patient identifiers before entering the <code>pending</code> moderation queue.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setShowAiExtractor((prev) => !prev)}
+                className="px-3.5 py-2 rounded-xl text-xs font-black bg-gradient-to-r from-indigo-600 to-violet-600 text-white shadow-sm hover:opacity-95 shrink-0"
+              >
+                {showAiExtractor
+                  ? "✕ Close AI Article Importer"
+                  : "✨ AI Auto-Extract from Article (NEJM / JAMA / Neurology)"}
+              </button>
             </div>
+
+            {/* 1-CLICK AI CASE EXTRACTOR FOR PAYWALLED / TOP JOURNALS */}
+            {showAiExtractor && (
+              <div
+                className={`p-4 rounded-xl border-2 border-indigo-500/40 space-y-3 ${
+                  darkMode ? "bg-indigo-950/25" : "bg-indigo-50/50"
+                }`}
+              >
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div>
+                    <span className="text-[11px] font-black uppercase tracking-wider text-indigo-500">
+                      ✨ SEMI-AUTOMATED HIGH-IMPACT JOURNAL IMPORTER
+                    </span>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">
+                      Paste the Case Presentation &amp; Discussion text (or upload a <code>.txt</code> / <code>.md</code> file) from{" "}
+                      <strong>NEJM Clinical Problem-Solving</strong>, <strong>JAMA Neurology</strong>,{" "}
+                      <strong>Neurology Resident &amp; Fellow Section</strong>, or <strong>The Lancet Neurology</strong> to auto-populate all fields below.
+                    </p>
+                  </div>
+                  <label className="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-white cursor-pointer hover:bg-slate-700 shrink-0">
+                    📄 Upload Article Text File
+                    <input
+                      type="file"
+                      accept=".txt,.md,.xml,.json"
+                      onChange={handleArticleTextFileUpload}
+                      className="hidden"
+                    />
+                  </label>
+                </div>
+
+                <textarea
+                  rows={5}
+                  value={aiRawText}
+                  onChange={(e) => setAiRawText(e.target.value)}
+                  placeholder="Paste full case presentation, MRI findings, discussion, and DOI (e.g., 10.1056/NEJMcps... or 10.1212/WNL...) here..."
+                  className={`w-full p-3 rounded-lg border text-xs leading-relaxed ${
+                    darkMode
+                      ? "bg-slate-900 border-slate-700 text-slate-100"
+                      : "bg-white border-slate-300 text-slate-900"
+                  }`}
+                />
+
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <input
+                    type="password"
+                    value={geminiApiKey}
+                    onChange={(e) => setGeminiApiKey(e.target.value)}
+                    placeholder="Optional: Gemini API Key (AIza...) for LLM Board-Style MCQ generation"
+                    className={`px-3 py-2 rounded-lg border text-xs flex-1 min-w-[240px] ${
+                      darkMode
+                        ? "bg-slate-900 border-slate-700 text-slate-200"
+                        : "bg-white border-slate-300 text-slate-800"
+                    }`}
+                  />
+                  <button
+                    type="button"
+                    disabled={isExtractingAi || !aiRawText.trim()}
+                    onClick={handleRunAiExtraction}
+                    className="px-4 py-2 rounded-lg text-xs font-black bg-indigo-600 text-white hover:bg-indigo-700 disabled:opacity-50"
+                  >
+                    {isExtractingAi
+                      ? "⏳ Structuring Clinical Case..."
+                      : "⚡ Auto-Extract & Populate Form"}
+                  </button>
+                </div>
+              </div>
+            )}
 
             {submitSuccessMsg && (
               <div className="p-4 rounded-xl bg-emerald-500/15 border border-emerald-500 text-emerald-500 text-xs font-bold flex items-center justify-between">
@@ -1752,9 +1915,21 @@ export default function NeuroCasePage() {
                   Admin Case Moderation Queue (pending → approved)
                 </h2>
               </div>
-              <span className="text-xs font-bold px-3 py-1 rounded-full bg-amber-500/15 text-amber-500">
-                {pendingCount} Pending Review
-              </span>
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveTab("submit");
+                    setShowAiExtractor(true);
+                  }}
+                  className="px-3 py-1.5 rounded-lg text-xs font-black bg-indigo-600 text-white hover:bg-indigo-700"
+                >
+                  ✨ AI Import from Article (NEJM / JAMA / Neurology)
+                </button>
+                <span className="text-xs font-bold px-3 py-1 rounded-full bg-amber-500/15 text-amber-500">
+                  {pendingCount} Pending Review
+                </span>
+              </div>
             </div>
 
             <div className="space-y-3">

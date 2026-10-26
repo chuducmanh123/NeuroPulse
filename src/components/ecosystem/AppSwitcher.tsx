@@ -25,7 +25,16 @@ export function AppSwitcher({
   darkMode = false,
 }: AppSwitcherProps) {
   const [open, setOpen] = useState(false);
+  const [mobileTop, setMobileTop] = useState<number>(116);
+  const [alignLeftOnDesktop, setAlignLeftOnDesktop] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  const updatePopoverPosition = () => {
+    if (!menuRef.current) return;
+    const rect = menuRef.current.getBoundingClientRect();
+    setMobileTop(Math.round(rect.bottom + 8));
+    setAlignLeftOnDesktop(rect.right < 372);
+  };
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -43,6 +52,17 @@ export function AppSwitcher({
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    updatePopoverPosition();
+    window.addEventListener("resize", updatePopoverPosition);
+    window.addEventListener("scroll", updatePopoverPosition, { passive: true });
+    return () => {
+      window.removeEventListener("resize", updatePopoverPosition);
+      window.removeEventListener("scroll", updatePopoverPosition);
+    };
+  }, [open]);
 
   const ecosystemApps: EcosystemAppItem[] = [
     {
@@ -137,7 +157,10 @@ export function AppSwitcher({
       {/* 9-Dots Google-Style Ecosystem App Launcher Button */}
       <button
         type="button"
-        onClick={() => setOpen((prev) => !prev)}
+        onClick={() => {
+          updatePopoverPosition();
+          setOpen((prev) => !prev);
+        }}
         aria-label="Neuro Ecosystem Apps"
         title="Neuro Ecosystem Apps"
         className={`p-2 rounded-lg border transition-all flex items-center justify-center ${
@@ -163,11 +186,13 @@ export function AppSwitcher({
         </svg>
       </button>
 
-      {/* Google Workspace-Style App Launcher Popover */}
+      {/* Google Workspace-Style App Launcher Popover (Mobile-Safe + Desktop-Anchored) */}
       {open && (
         <div
-          style={{ width: "356px" }}
-          className={`absolute right-0 top-full mt-2 rounded-2xl border shadow-2xl z-50 overflow-hidden transition-all ${
+          style={{ top: `${mobileTop}px` }}
+          className={`fixed left-3 right-3 mx-auto max-w-[356px] sm:absolute sm:!top-full sm:mt-2 sm:w-[356px] sm:max-w-none sm:mx-0 ${
+            alignLeftOnDesktop ? "sm:left-0 sm:right-auto" : "sm:right-0 sm:left-auto"
+          } rounded-2xl border shadow-2xl z-50 overflow-hidden transition-all ${
             darkMode
               ? "bg-slate-900 border-slate-700 text-slate-100 shadow-black/70"
               : "bg-white border-slate-200 text-slate-900 shadow-slate-400/30"
@@ -190,7 +215,7 @@ export function AppSwitcher({
             </span>
           </div>
 
-          <div className="p-3.5 grid grid-cols-3 gap-2.5">
+          <div className="p-3 sm:p-3.5 grid grid-cols-3 gap-2 sm:gap-2.5">
             {ecosystemApps.map((app) => (
               <Link
                 key={app.id}
@@ -202,7 +227,7 @@ export function AppSwitcher({
                   }
                   setOpen(false);
                 }}
-                className={`group relative px-1.5 py-3 rounded-xl flex flex-col items-center text-center transition-all ${
+                className={`group relative px-1 py-2.5 sm:px-1.5 sm:py-3 rounded-xl flex flex-col items-center text-center transition-all ${
                   app.isComingSoon
                     ? "opacity-65 cursor-not-allowed"
                     : app.isCurrent
@@ -214,9 +239,9 @@ export function AppSwitcher({
                     : "hover:bg-slate-100/90"
                 }`}
               >
-                <div className="relative mb-2.5">
+                <div className="relative mb-2 sm:mb-2.5">
                   <div
-                    className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${app.gradient} flex items-center justify-center shadow-md group-hover:scale-105 transition-transform`}
+                    className={`w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br ${app.gradient} flex items-center justify-center shadow-md group-hover:scale-105 transition-transform`}
                   >
                     {app.icon}
                   </div>
@@ -235,11 +260,11 @@ export function AppSwitcher({
                   )}
                 </div>
 
-                <span className="text-xs font-bold leading-tight whitespace-nowrap">
+                <span className="text-[11px] sm:text-xs font-bold leading-tight whitespace-nowrap">
                   {app.name}
                 </span>
                 <span
-                  className={`text-[10px] leading-tight mt-1 whitespace-nowrap ${
+                  className={`text-[9.5px] sm:text-[10px] leading-tight mt-1 whitespace-nowrap ${
                     darkMode ? "text-slate-400" : "text-slate-500"
                   }`}
                 >
