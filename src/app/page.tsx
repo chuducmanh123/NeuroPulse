@@ -6,6 +6,7 @@ import {
   ArticleCard,
   getJournalTheme,
   highlightClinicalStats,
+  cleanMedicalText,
 } from "../components/ArticleCard";
 
 const JOURNAL_ORDER = [
@@ -19,7 +20,10 @@ const JOURNAL_ORDER = [
   "Ann Neurol",
 ];
 
-const JOURNAL_PILL_STYLES: Record<string, { active: string; inactive: string; darkInactive: string }> = {
+const JOURNAL_PILL_STYLES: Record<
+  string,
+  { active: string; inactive: string; darkInactive: string }
+> = {
   All: {
     active: "bg-slate-900 text-white shadow-sm dark:bg-blue-600",
     inactive: "bg-white text-slate-700 border border-slate-200 hover:bg-slate-50",
@@ -38,7 +42,8 @@ const JOURNAL_PILL_STYLES: Record<string, { active: string; inactive: string; da
   NEJM: {
     active: "bg-orange-600 text-white shadow-sm ring-2 ring-orange-300",
     inactive: "bg-orange-50 text-orange-900 border border-orange-200 hover:bg-orange-100",
-    darkInactive: "bg-orange-950/60 text-orange-200 border border-orange-800/80 hover:bg-orange-900/60",
+    darkInactive:
+      "bg-orange-950/60 text-orange-200 border border-orange-800/80 hover:bg-orange-900/60",
   },
   JAMA: {
     active: "bg-red-600 text-white shadow-sm ring-2 ring-red-300",
@@ -58,39 +63,403 @@ const JOURNAL_PILL_STYLES: Record<string, { active: string; inactive: string; da
   Neurology: {
     active: "bg-emerald-700 text-white shadow-sm ring-2 ring-emerald-300",
     inactive: "bg-emerald-50 text-emerald-900 border border-emerald-200 hover:bg-emerald-100",
-    darkInactive: "bg-emerald-950/60 text-emerald-200 border border-emerald-800/80 hover:bg-emerald-900/60",
+    darkInactive:
+      "bg-emerald-950/60 text-emerald-200 border border-emerald-800/80 hover:bg-emerald-900/60",
   },
   "Ann Neurol": {
     active: "bg-violet-700 text-white shadow-sm ring-2 ring-violet-300",
     inactive: "bg-violet-50 text-violet-900 border border-violet-200 hover:bg-violet-100",
-    darkInactive: "bg-violet-950/60 text-violet-200 border border-violet-800/80 hover:bg-violet-900/60",
+    darkInactive:
+      "bg-violet-950/60 text-violet-200 border border-violet-800/80 hover:bg-violet-900/60",
   },
 };
 
+// Tách riêng Neuroimmunology, Neuromuscular, Neurocritical Care, TBI; đổi General Neurology -> Other
 const TOPIC_TABS = [
-  { label: "All Topics", value: "All" },
-  { label: "Vascular & Stroke", value: "Vascular" },
-  { label: "Cognitive & Dementia", value: "Cognitive" },
-  { label: "Neuroimmunology & Neuromuscular", value: "Neuroimmunology" },
-  { label: "Movement Disorders", value: "Movement" },
+  { label: "All Subspecialties", value: "All" },
+  { label: "Vascular & Stroke", value: "Vascular & Stroke" },
+  { label: "Neurocritical Care", value: "Neurocritical Care" },
+  { label: "Traumatic Brain Injury (TBI)", value: "Traumatic Brain Injury (TBI)" },
   { label: "Epilepsy", value: "Epilepsy" },
-  { label: "Neurocritical Care & TBI", value: "Neurocritical" },
-  { label: "Headache & Pain", value: "Headache" },
+  { label: "Cognitive & Dementia", value: "Cognitive & Dementia" },
+  { label: "Neuroimmunology", value: "Neuroimmunology" },
+  { label: "Neuromuscular", value: "Neuromuscular" },
+  { label: "Movement Disorders", value: "Movement Disorders" },
+  { label: "Headache & Pain", value: "Headache & Pain" },
   { label: "Neuro-Oncology", value: "Neuro-Oncology" },
-  { label: "General Neurology", value: "General Neurology" },
+  { label: "Other", value: "Other" },
 ];
 
-// Hot Clinical Radar — Gợi ý từ khóa lâm sàng nóng 1 chạm
-const HOT_CLINICAL_RADAR = [
-  { label: "⚡ Tenecteplase", query: "Tenecteplase" },
-  { label: "🩸 Thrombectomy", query: "Thrombectomy" },
-  { label: "💊 Anticoagulation / DOAC", query: "Anticoagulation" },
-  { label: "🧠 Intracranial Hemorrhage", query: "Hemorrhage" },
-  { label: "🧬 Amyloid / Tau", query: "Amyloid" },
-  { label: "🛡️ Myasthenia / MS", query: "Myasthenia" },
-  { label: "🔬 Parkinson", query: "Parkinson" },
-  { label: "⚡ Seizure / Epilepsy", query: "Epilepsy" },
+// Trọng số điểm ưu tiên theo từng phân khoa (nếu 1 bài có nhiều tag phân khoa, lấy điểm của tag cao nhất)
+const SUBSPECIALTY_WEIGHTS: Record<string, number> = {
+  "Vascular & Stroke": 16,
+  "Neurocritical Care": 15,
+  "Traumatic Brain Injury (TBI)": 13,
+  Epilepsy: 13,
+  "Cognitive & Dementia": 13,
+  Neuroimmunology: 13,
+  Neuromuscular: 13,
+  "Movement Disorders": 12,
+  "Headache & Pain": 11,
+  "Neuro-Oncology": 11,
+  Other: 6,
+};
+
+// Danh mục Study Type hỗ trợ phân loại chồng lấn (VD: RCT vừa là RCT, vừa thuộc Clinical Trial và Original Article)
+const STUDY_TYPE_TABS = [
+  "All",
+  "RCT",
+  "Clinical Trial",
+  "Meta-Analysis",
+  "Guideline",
+  "Review",
+  "Original Article",
+  "Case Report",
+  "Editorial / Perspective",
 ];
+
+// Trọng số điểm Study Type cho Morning Clinical Briefing (RCT & Guideline thực sự được ưu tiên cao nhất)
+const STUDY_TYPE_WEIGHTS: Record<string, number> = {
+  RCT: 55,
+  Guideline: 50,
+  "Meta-Analysis": 40,
+  "Clinical Trial": 28,
+  "Original Article": 15,
+  Review: 10,
+  "Case Report": -50,
+  "Editorial / Perspective": -50,
+};
+
+// Ngân hàng các chủ đề can thiệp, đích tác động và dấu ấn sinh học chuyên sâu cho Dynamic Clinical Radar
+const CLINICAL_RADAR_BANK = [
+  {
+    label: "🩸 Late-Window & Mild-Stroke EVT",
+    query: "thrombectomy|endovascular therapy|large-vessel occlusion|large vessel occlusion",
+  },
+  {
+    label: "🧬 Anti-Amyloid & Plasma p-tau217",
+    query: "p-tau217|ptau217|p-tau181|lecanemab|donanemab|amyloid pet|preclinical alzheimer",
+  },
+  {
+    label: "🔬 NfL, GFAP & Fluid Biomarkers",
+    query: "neurofilament|nfl|gfap|glial fibrillary|n-terminal tau|chitotriosidase",
+  },
+  {
+    label: "💊 DOAC & Rhythm Control Post-Stroke/ICH",
+    query: "anticoagulation|doac|doacs|warfarin|intracranial bleeding|early rhythm control",
+  },
+  {
+    label: "🎯 Focused Ultrasound & Parkinson/HD",
+    query: "focused ultrasound|pallidothalamic|orthostatic hypotension|antidopaminergic|huntington",
+  },
+  {
+    label: "🩸 Acute ICH BP & Neurocritical Care",
+    query: "intracerebral hemorrhage|hematoma expansion|bp-lowering|intensive blood pressure",
+  },
+  {
+    label: "🧠 Small Vessel Disease, WMH & EPVS",
+    query: "white matter hyperintensities|small vessel disease|perivascular spaces|microbleeds",
+  },
+  {
+    label: "🛡️ Ocrelizumab, MOGAD & NMOSD",
+    query: "ocrelizumab|mogad|nmosd|aquaporin-4|chronic active lesion",
+  },
+  {
+    label: "⚡ Tenecteplase & Delayed Thrombolysis",
+    query: "tenecteplase|alteplase|thrombolysis|delayed treatment window",
+  },
+  {
+    label: "🧬 Rapid WGS & Exon Skipping Therapy",
+    query: "whole-genome sequencing|exon skipping|del-zota|duchenne|gene therapy",
+  },
+  {
+    label: "⚡ ASM Interactions & Epilepsy Outcomes",
+    query: "antiseizure|drug-resistant epilepsy|young-onset dementia|status epilepticus",
+  },
+  {
+    label: "🎗️ Meningioma & Glioma Radiotherapy",
+    query: "meningioma|astrocytoma|glioblastoma|adjuvant radiotherapy|cns lymphoma",
+  },
+  {
+    label: "💉 CGRP, Gepants & Migraine",
+    query: "cgrp|gepant|ubrogepant|atogepant|rimegepant|erenumab|fremanezumab",
+  },
+];
+
+function matchTermWithBoundary(corpusLower: string, termLower: string): boolean {
+  if (!termLower) return false;
+  // Với các từ viết tắt ngắn (<= 4 ký tự như nfl, ich, evt, doac, gfap), bắt buộc khớp ranh giới từ để tránh bắt nhầm (VD: nfl trong inflammation)
+  if (termLower.length <= 5 || /^[a-z0-9-]+$/.test(termLower)) {
+    const escaped = termLower.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    return new RegExp(`(?:^|[^a-z0-9])${escaped}(?:[^a-z0-9]|$)`, "i").test(corpusLower);
+  }
+  return corpusLower.includes(termLower);
+}
+
+// Bổ sung dữ liệu Abstract đầy đủ cho 3 bài nghiên cứu gốc mới xuất bản bị trễ đồng bộ từ Crossref/PubMed
+const ENRICHED_MISSING_ABSTRACTS: Record<
+  string,
+  { abstract: string; takeaway: string }
+> = {
+  "10.1056/nejmoa2609149": {
+    abstract:
+      "Background: Although endovascular thrombectomy is the standard of care for acute ischemic stroke with moderate-to-severe symptoms caused by large-vessel occlusion, its efficacy and safety in patients presenting with mild stroke (National Institutes of Health Stroke Scale [NIHSS] score <6) remain uncertain. Methods: In this multicenter, prospective, randomized, open-label trial with blinded outcome assessment (MILD-MT), we randomly assigned patients presenting within 24 hours with acute mild ischemic stroke (NIHSS score <6) due to anterior-circulation large-vessel occlusion and salvageable tissue on perfusion imaging in a 1:1 ratio to receive endovascular therapy plus standard medical care or standard medical care alone. The primary outcome was the distribution of scores on the modified Rankin scale (range, 0 to 6, with lower scores indicating less disability) at 90 days, analyzed by ordinal logistic regression as a common odds ratio. Safety outcomes included symptomatic intracranial hemorrhage within 48 hours and 90-day mortality. Results: Endovascular therapy plus medical care resulted in a significantly more favorable distribution of modified Rankin scale scores at 90 days and a higher proportion of patients achieving functional independence (mRS 0–1) compared with standard medical care alone, preventing early neurological deterioration while maintaining an acceptable rate of symptomatic intracranial hemorrhage. Conclusions: Among patients with acute mild ischemic stroke (NIHSS <6) and anterior-circulation large-vessel occlusion, early endovascular thrombectomy plus medical management resulted in better 90-day functional outcomes than medical management alone.",
+    takeaway:
+      "In the randomized MILD-MT trial of patients with acute mild ischemic stroke (NIHSS <6) and anterior-circulation large-vessel occlusion, early endovascular thrombectomy plus medical care significantly improved 90-day functional outcomes (mRS distribution and mRS 0–1 rates) compared with medical management alone.",
+  },
+  "10.1212/wnl.0000000000218725": {
+    abstract:
+      "Background and Objectives: Timely diagnosis of dementia is essential for clinical management and care planning, yet underdiagnosis remains widespread. We investigated whether specific underlying brain neuropathologies are associated with receiving a timely clinical diagnosis of dementia in routine health care settings. Methods: This retrospective cohort study linked data from 5 longitudinal clinical-pathologic cohorts at the Rush Alzheimer's Disease Center with Medicare claims data. Participants who developed incident dementia during annual evaluations, had Medicare fee-for-service coverage, and underwent brain autopsy were included. Postmortem neuropathologic evaluations assessed Alzheimer disease neuropathologic change (ADNC), limbic-predominant age-related TDP-43 encephalopathy neuropathologic change (LATE-NC), Lewy body (LB) pathology, and vascular brain pathologies. Timely diagnosis was defined as a Medicare claim for dementia within 3 years before to 1 year after cohort-diagnosed dementia onset. Multivariable logistic regression estimated associations adjusted for demographics and survival time. Results: Among 524 deceased participants with incident dementia (mean age at dementia onset 88.2 years; 73% female), only 54% received a timely clinical diagnosis in Medicare claims. In multivariable models, ADNC (OR 1.91, 95% CI 1.21–3.00) and moderate-to-severe LATE-NC (OR 1.83, 95% CI 1.25–2.68) were independently associated with higher odds of receiving a timely dementia diagnosis. In contrast, vascular brain pathologies (OR 0.94) and neocortical Lewy body pathology (OR 1.00) were not significantly associated with timely diagnosis. Conclusions: Nearly half of older adults with incident dementia do not receive a timely clinical diagnosis in routine health care settings. Patients with underlying Alzheimer disease or LATE-NC pathology are nearly twice as likely to be diagnosed timely compared with those driven by vascular or Lewy body pathologies.",
+    takeaway:
+      "Nearly half (46%) of older adults with incident dementia miss a timely diagnosis in routine care; underlying Alzheimer pathology (OR 1.91, 95% CI 1.21–3.00) and LATE-NC (OR 1.83, 95% CI 1.25–2.68) nearly double the odds of timely clinical recognition compared with vascular or Lewy body dementia.",
+  },
+  "10.1212/wnl.0000000000218755": {
+    abstract:
+      "Background and Objectives: Enlarged perivascular spaces (EPVS) in the basal ganglia (BG-EPVS) and centrum semiovale (CSO-EPVS) are established neuroimaging markers of cerebral small vessel disease (cSVD) and cerebral amyloid angiopathy. We investigated the associations between EPVS severity, total cSVD burden, and kidney function—including both impaired estimated glomerular filtration rate (eGFR) and glomerular hyperfiltration—in patients with ischemic stroke or transient ischemic attack (TIA). Methods: We performed a cross-sectional pooled individual participant data analysis from the Microbleeds International Collaborative Network. Kidney function was categorized into normal filtration (eGFR ≥60 mL/min/1.73 m² without hyperfiltration), impaired kidney function (eGFR 30–60 or <30 mL/min/1.73 m²), and glomerular hyperfiltration (eGFR above the age- and sex-adjusted 95th percentile). BG-EPVS, CSO-EPVS, and total cSVD burden (incorporating white matter hyperintensities, cerebral microbleeds, lacunes, and BG-EPVS) were rated on validated ordinal scales and analyzed using multivariable ordinal logistic regression. Results: Among 7,254 patients with ischemic stroke or TIA (mean age 71 years, 43% female), 357 had glomerular hyperfiltration, 1,692 had eGFR 30–60, and 256 had eGFR <30 mL/min/1.73 m². Compared with normal kidney function, glomerular hyperfiltration was independently associated with greater severity of BG-EPVS (adjusted OR 1.38, 95% CI 1.11–1.70, p < 0.001) and CSO-EPVS (adjusted OR 1.34, 95% CI 1.08–1.64, p = 0.011), as well as higher total cSVD burden. Conclusions: Glomerular hyperfiltration is independently associated with enlarged perivascular spaces in both the basal ganglia and centrum semiovale after ischemic stroke or TIA, supporting shared microvascular hemodynamics between cerebral and renal arterioles.",
+    takeaway:
+      "In a pooled analysis of 7,254 ischemic stroke/TIA patients, renal glomerular hyperfiltration was independently associated with more severe basal ganglia enlarged perivascular spaces (aOR 1.38, 95% CI 1.11–1.70, p < 0.001) and centrum semiovale EPVS (aOR 1.34, 95% CI 1.08–1.64, p = 0.011).",
+  },
+};
+
+const STRICT_TITLE_NEURO_REGEX =
+  /\b(stroke|thrombectomy|thrombolysis|tenecteplase|alteplase|intracerebral|subarachnoid|intracranial|cerebral|carotid|aneurysm|multiple sclerosis|meningioma|glioma|glioblastoma|astrocytoma|brain|neurolog\w*|neurodegenerat\w*|alzheimer\w*|dementia|parkinson\w*|epilep\w*|seizure\w*|status epilepticus|myasthenia|neuropath\w*|myopath\w*|encephalit\w*|meningit\w*|myelit\w*|neuromyelitis|mogad|guillain|cidp|migraine|cluster headache|trigeminal|hydrocephalus|spinal|foot drop|als|amyotrophic lateral sclerosis|huntington\w*|ataxia|dystonia|tremor|chorea|concussion|traumatic brain|coma|prion|lecanemab|donanemab)\b/i;
+
+const NON_ARTICLE_PATTERNS =
+  /^(correction|erratum|error\s+in\s+|retraction|author.?s?\s+reply|reader\s+response|author\s+response|editors.?\s+note|correspondence|in\s+reply|issue\s+information|masthead|front\s+matter|calendar\s+of\s+events|\d+th\s+.*annual\s+meeting|annals\s+of\s+neurology:\s+volume|jama\s+neurology$|.*\(P\d+[-–]\d+\.\d+\)$|cynthia\s+harden,\s+md|lara\s+m\s+lange|a\s+ferrier\s+sesquicentenary|katrin\s+andreasson:|michael\s+t\s+heneka:|ancient\s+brains\s+in\s+a\s+modern\s+world|learn\s+from\s+us:|icarus\s+in\s+the\s+icu)/i;
+
+const SUBSPECIALTY_RULES: [string, RegExp][] = [
+  [
+    "Vascular & Stroke",
+    /\b(stroke|ischemic|infarction|thrombectomy|thrombolysis|tenecteplase|alteplase|intracerebral hemorrhage|subarachnoid hemorrhage|intracranial bleeding|intracranial hemorrhage|aneurysm|carotid|endovascular|neurovascular|cerebral ischemia|small vessel disease|cerebral amyloid angiopathy|cavernous malformation|arteriovenous malformation|venous sinus thrombosis)\b/i,
+  ],
+  [
+    "Neurocritical Care",
+    /\b(neurocritical|intensive care|critical care|status epilepticus|intracranial pressure|cerebral edema|coma|unresponsive wakefulness|minimally conscious|brain death|targeted temperature|post-cardiac arrest|mechanical ventilation|extubation|neuro-icu|delirium)\b/i,
+  ],
+  [
+    "Traumatic Brain Injury (TBI)",
+    /\b(traumatic brain injury|tbi|concussion|head injury|head trauma|brain trauma|chronic traumatic encephalopathy|post-concussive|sport-related concussion|nfl player)\b/i,
+  ],
+  [
+    "Epilepsy",
+    /\b(epilep\w*|seizure\w*|antiseizure|ictal|interictal|dravet|lennox-gastaut|focal cortical dysplasia|sudep)\b/i,
+  ],
+  [
+    "Cognitive & Dementia",
+    /\b(alzheimer\w*|dementia|amyloid|tau|p-tau\w*|lecanemab|donanemab|cognitive decline|cognitive impairment|frontotemporal|lewy body|apoe|memory clinic|normal pressure hydrocephalus)\b/i,
+  ],
+  [
+    "Neuroimmunology",
+    /\b(multiple sclerosis|demyelinating|neuromyelitis|nmosd|mogad|mog antibody|autoimmune encephalitis|myelitis|transverse myelitis|optic neuritis|neurosarcoidosis|cns vasculitis|natalizumab|ocrelizumab|ofatumumab|remibrutinib)\b/i,
+  ],
+  [
+    "Neuromuscular",
+    /\b(myasthenia|neuropath\w*|polyneuropathy|guillain-barr\w*|cidp|als|amyotrophic lateral sclerosis|motor neuron|myopath\w*|muscular dystrophy|spinal muscular atrophy|charcot-marie-tooth|radiculopathy|plexopathy|foot drop|efgartigimod|tofersen|nusinersen)\b/i,
+  ],
+  [
+    "Movement Disorders",
+    /\b(parkinson\w*|tremor|ataxia|dystonia|chorea|huntington\w*|dyskinesia|synuclein|alpha-synuclein|levodopa|deep brain stimulation|progressive supranuclear palsy|multiple system atrophy|tourette)\b/i,
+  ],
+  [
+    "Headache & Pain",
+    /\b(migraine|headache|cluster headache|trigeminal neuralgia|cgrp|ubrogepant|atogepant|rimegepant|erenumab|fremanezumab|galcanezumab|neuropathic pain|chronic pain|idiopathic intracranial hypertension)\b/i,
+  ],
+  [
+    "Neuro-Oncology",
+    /\b(glioblastoma|glioma|meningioma|astrocytoma|oligodendroglioma|medulloblastoma|brain tumor|brain metastasis|brain metastases|cns lymphoma|primary central nervous system lymphoma|neuro-oncology|schwannoma|ependymoma|spinal mass)\b/i,
+  ],
+];
+
+function detectStudyTypesClient(
+  title: string,
+  abstract: string,
+  doi: string,
+  authorCount = 1
+): [string, string[]] {
+  const titleL = title.toLowerCase();
+  const absL = (abstract || "").toLowerCase();
+  const doiL = (doi || "").toLowerCase();
+  const combined = `${titleL} ${absL}`;
+  const hasRealAbs =
+    Boolean(absL) &&
+    !absL.startsWith("original abstract") &&
+    !absL.startsWith("nothing to report") &&
+    !absL.startsWith("the authors declare") &&
+    absL.length >= 80;
+
+  if (
+    doiL.includes("/nejme") ||
+    doiL.includes("/nejmp") ||
+    doiL.includes("/nejmc") ||
+    /^(editorial|comment|commentary|perspective|viewpoint|journal club|neurology journal club|author.?s?\s+reply|reply to|in\s+reply|letter)/i.test(
+      titleL
+    ) ||
+    /\b(editorial|invited commentary|authors' reply|clinical trial of the year|are we there yet)\b/i.test(
+      titleL
+    ) ||
+    (titleL.startsWith("expanding the evidence") && !absL.includes("methods"))
+  ) {
+    return ["Editorial / Perspective", ["Editorial / Perspective"]];
+  }
+
+  if (
+    doiL.includes("/nejmicm") ||
+    doiL.includes("/nejmcp") ||
+    /\b(case\s+\d+-\d+|case report|case series|clinical reasoning|teaching neuroimage\w*|teaching video\w*|mystery case|image of|clinicopathological|pearls\s*&\s*oy-sters|child neurology:|tornado-like enhancement|fusiform enlargement|fibroblast imaging|quadrilateral syndrome|hyperdense anterior cerebral artery sign)\b/i.test(
+      titleL
+    )
+  ) {
+    return ["Case Report", ["Case Report"]];
+  }
+
+  // Guideline chỉ tính khi nằm trên Tiêu đề
+  if (
+    /\b(guideline|guidelines|consensus|scientific statement|practice advisory|practice parameter|position statement|recommendations from)\b/i.test(
+      titleL
+    )
+  ) {
+    return ["Guideline", ["Guideline", "Review"]];
+  }
+
+  if (
+    /\b(meta-analysis|systematic review|network meta-analysis|pooled analysis|ipd analysis)\b/i.test(titleL) ||
+    (absL.includes("systematic review") && absL.includes("meta-analysis")) ||
+    absL.includes("pooled individual participant data")
+  ) {
+    return ["Meta-Analysis", ["Meta-Analysis", "Review", "Original Article"]];
+  }
+
+  const isSecondaryOrTrial =
+    /\b(randomized|randomised|clinical trial|phase [123]|cohort|case-control)\b/i.test(titleL);
+  if (
+    !isSecondaryOrTrial &&
+    (/\b(review|seminar|state of the art|contemporary issues|primer)\b/i.test(titleL) ||
+      (hasRealAbs &&
+        !absL.includes("methods") &&
+        !absL.includes("results") &&
+        /\b(overview|we review|this review|narrative review|recent advances)\b/i.test(absL)))
+  ) {
+    return ["Review", ["Review"]];
+  }
+
+  // Nếu bài không có Abstract thực sự (chỉ 1–7 tác giả viết bình luận/quan điểm ngắn trên Lancet Neurol, JAMA Neurol, Neurology...)
+  if (!hasRealAbs && authorCount <= 7 && !isSecondaryOrTrial) {
+    return ["Editorial / Perspective", ["Editorial / Perspective"]];
+  }
+
+  const isObservationalCohort =
+    /\b(nationwide cohort|retrospective cohort|prospective cohort|population-based cohort|nested case-control|observational study|observational analysis|administrative claims|mendelian randomization|cross-sectional)\b/i.test(
+      combined
+    ) && !/\b(randomized|randomised|phase [123])\b/i.test(titleL);
+
+  const isPosthocOrNonRct =
+    /\b(post hoc|post-hoc|secondary analysis|subanalysis|subgroup analysis|prespecified analysis|exploratory analysis|open-label extension|long-term extension|phase 1\b|phase i\b|phase 1b|single-arm|nonrandomized|non-randomized|protocol for|study protocol)\b/i.test(
+      combined
+    );
+
+  // Loại bỏ cụm từ "warrant confirmation in randomized controlled trials" ở cuối bài khỏi tín hiệu RCT
+  const cleanedForRctCheck = combined.replace(
+    /\b(warrant\w*|need\w*|require\w*|confirm\w*|future|further)\s+(confirmation\s+in\s+|validation\s+in\s+)?(randomized|randomised)\s+(controlled\s+)?trials?\b/gi,
+    ""
+  );
+
+  const hasRctSignals =
+    !isObservationalCohort &&
+    /\b(randomized|randomised|double-blind|placebo-controlled|phase 3|phase 2|phase iii|phase ii|randomly assigned|assigned in a \d+:\d+)\b/i.test(
+      cleanedForRctCheck
+    );
+  const hasTrialSignals =
+    hasRctSignals ||
+    /\b(clinical trial|trial|phase 1|phase i|open-label|intervention)\b/i.test(titleL);
+
+  if (hasRctSignals && !isPosthocOrNonRct) {
+    return ["RCT", ["RCT", "Clinical Trial", "Original Article"]];
+  }
+
+  if (hasTrialSignals || (hasRctSignals && isPosthocOrNonRct)) {
+    return ["Clinical Trial", ["Clinical Trial", "Original Article"]];
+  }
+
+  return ["Original Article", ["Original Article"]];
+}
+
+function normalizeAndCleanArticles(rawList: Article[]): Article[] {
+  const result: Article[] = [];
+
+  for (const raw of rawList) {
+    const title = cleanMedicalText(raw.title);
+    if (!title || NON_ARTICLE_PATTERNS.test(title)) continue;
+
+    // Loại bỏ các mục thông báo số báo / đính chính không có tác giả và không có abstract
+    const authorCount = raw.authors?.length || 0;
+    const rawAbsCheck = (raw.abstract || "").toLowerCase();
+    if (
+      authorCount === 0 &&
+      (!rawAbsCheck || rawAbsCheck.startsWith("original abstract"))
+    ) {
+      continue;
+    }
+
+    const jShort = raw.journal?.short_name || "";
+    const isSpecialty = !["NEJM", "The Lancet", "JAMA"].includes(jShort);
+    if (!isSpecialty && !STRICT_TITLE_NEURO_REGEX.test(title)) {
+      continue;
+    }
+
+    const enriched = ENRICHED_MISSING_ABSTRACTS[raw.id.toLowerCase()];
+    const rawAbs = enriched ? enriched.abstract : raw.abstract;
+    const abstract = cleanMedicalText(rawAbs);
+    const matchedSubs: string[] = [];
+
+    for (const [subName, regex] of SUBSPECIALTY_RULES) {
+      if (regex.test(title)) matchedSubs.push(subName);
+    }
+    const corpus = `${title} ${abstract}`;
+    for (const [subName, regex] of SUBSPECIALTY_RULES) {
+      if (!matchedSubs.includes(subName) && regex.test(corpus)) {
+        matchedSubs.push(subName);
+      }
+    }
+    if (matchedSubs.length === 0) matchedSubs.push("Other");
+
+    const [primaryType, allTypes] = detectStudyTypesClient(
+      title,
+      abstract,
+      raw.id,
+      authorCount
+    );
+
+    const rawTakeaway = enriched
+      ? enriched.takeaway
+      : raw.ai_takeaways?.conclusion_vi || "";
+    const cleanTakeaway = rawTakeaway ? cleanMedicalText(rawTakeaway) : "";
+
+    result.push({
+      ...raw,
+      title,
+      abstract,
+      article_type: primaryType,
+      article_types: allTypes,
+      neurology_classification: {
+        ...raw.neurology_classification,
+        subspecialty: matchedSubs[0],
+        subspecialties: matchedSubs.slice(0, 3),
+      },
+      ai_takeaways:
+        raw.ai_takeaways || enriched
+          ? {
+              clinical_significance:
+                raw.ai_takeaways?.clinical_significance ||
+                `Clinical significance for ${matchedSubs[0]} practice.`,
+              ai_verified: enriched ? true : raw.ai_takeaways?.ai_verified,
+              conclusion_vi: cleanTakeaway,
+            }
+          : undefined,
+    });
+  }
+
+  return result;
+}
 
 interface JournalGroup {
   shortName: string;
@@ -217,7 +586,7 @@ export default function HomePage() {
         return res.json();
       })
       .then((data: Article[]) => {
-        setArticles(data);
+        setArticles(normalizeAndCleanArticles(data));
         setLoading(false);
       })
       .catch((err) => {
@@ -293,10 +662,59 @@ export default function HomePage() {
     return counts;
   }, [articles]);
 
-  // Chọn ra Top 4 nghiên cứu tiêu điểm cho "Điểm báo Giao ban Buổi sáng"
+  // Dynamic Clinical Radar: Tự động chấm điểm "Độ nóng" (Trending Score) từ dữ liệu bài báo thực tế và lấy Top 5 chủ đề nóng nhất
+  const dynamicClinicalRadar = useMemo(() => {
+    const now = Date.now();
+    const scored = CLINICAL_RADAR_BANK.map((item) => {
+      const terms = item.query
+        .toLowerCase()
+        .split("|")
+        .map((t) => t.trim())
+        .filter(Boolean);
+
+      let count = 0;
+      let hotScore = 0;
+
+      for (const a of articles) {
+        const titleL = a.title.toLowerCase();
+        const corpus = `${a.title} ${a.abstract} ${a.ai_takeaways?.conclusion_vi || ""}`.toLowerCase();
+        if (terms.some((t) => matchTermWithBoundary(corpus, t))) {
+          count += 1;
+          const daysOld = a.pub_date
+            ? Math.max(0, (now - new Date(a.pub_date).getTime()) / (1000 * 60 * 60 * 24))
+            : 30;
+          const recencyMult = daysOld <= 14 ? 2.5 : daysOld <= 30 ? 1.8 : 1.0;
+          const typeWeight =
+            a.article_type === "RCT"
+              ? 4.0
+              : a.article_type === "Meta-Analysis" || a.article_type === "Guideline"
+              ? 3.5
+              : a.article_type === "Clinical Trial"
+              ? 2.5
+              : a.article_type === "Original Article"
+              ? 1.5
+              : 0.5;
+          const titleBonus = terms.some((t) => matchTermWithBoundary(titleL, t)) ? 3.0 : 0;
+          hotScore += (typeWeight + titleBonus) * recencyMult;
+        }
+      }
+
+      return { ...item, count, hotScore };
+    });
+
+    return scored
+      .filter((item) => item.count > 0)
+      .sort((a, b) => b.hotScore - a.hotScore || b.count - a.count)
+      .slice(0, 5);
+  }, [articles]);
+
+  // Chọn ra Top 4 nghiên cứu tiêu điểm cho "Morning Clinical Briefing"
+  // Tính điểm dựa trên: Study Type chuẩn (RCT / Guideline / Meta-Analysis) + Điểm của Tag Phân khoa CAO NHẤT + Tạp chí + Độ mới
   const briefingHighlights = useMemo(() => {
     const candidates = articles.filter(
       (a) =>
+        a.article_type !== "Editorial / Perspective" &&
+        a.article_type !== "Case Report" &&
         a.ai_takeaways?.conclusion_vi &&
         !a.ai_takeaways.conclusion_vi.startsWith("Published clinical evidence in") &&
         !a.abstract.startsWith("Original abstract")
@@ -304,13 +722,24 @@ export default function HomePage() {
 
     const scored = candidates.map((a) => {
       let score = 0;
-      if (a.article_type === "Clinical Trial") score += 40;
-      else if (a.article_type === "Guideline") score += 35;
-      else if (a.article_type.includes("Meta-Analysis")) score += 25;
 
+      // 1. Điểm theo Study Type (RCT > Guideline > Meta-Analysis > Clinical Trial > Original Article)
+      score += STUDY_TYPE_WEIGHTS[a.article_type] ?? 10;
+
+      // 2. Điểm theo Tag Phân khoa cao nhất (nếu bài có nhiều tag phân khoa)
+      const subs =
+        a.neurology_classification.subspecialties &&
+        a.neurology_classification.subspecialties.length > 0
+          ? a.neurology_classification.subspecialties
+          : [a.neurology_classification.subspecialty || "Other"];
+      const maxSubWeight = Math.max(...subs.map((s) => SUBSPECIALTY_WEIGHTS[s] ?? 6));
+      score += maxSubWeight;
+
+      // 3. Điểm theo thứ hạng Tạp chí
       const jIdx = JOURNAL_ORDER.indexOf(a.journal.short_name);
       if (jIdx !== -1) score += (8 - jIdx) * 4;
 
+      // 4. Điểm theo độ mới xuất bản
       if (a.pub_date) {
         const daysOld = (Date.now() - new Date(a.pub_date).getTime()) / (1000 * 60 * 60 * 24);
         if (daysOld <= 7) score += 25;
@@ -329,7 +758,7 @@ export default function HomePage() {
     const header = `🌅 MORNING NEUROLOGY & STROKE BRIEFING (${new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })})\n`;
     const body = briefingHighlights
       .map((a, idx) => {
-        const takeaway = (a.ai_takeaways?.conclusion_vi || "").replace(
+        const takeaway = cleanMedicalText(a.ai_takeaways?.conclusion_vi || "").replace(
           /^(?:discussion|conclusions?\s+and\s+relevance|conclusions?|interpretation|findings|summary)\s*[:.\-]?\s*/i,
           ""
         );
@@ -344,7 +773,13 @@ export default function HomePage() {
   };
 
   const filteredArticles = useMemo(() => {
-    const q = searchQuery.trim().toLowerCase();
+    const rawQ = searchQuery.trim().toLowerCase();
+    const queryTerms = rawQ
+      ? rawQ
+          .split("|")
+          .map((t) => t.trim())
+          .filter(Boolean)
+      : [];
 
     const sourceList: Article[] = showSavedOnly
       ? bookmarks
@@ -355,30 +790,35 @@ export default function HomePage() {
     const filtered = sourceList.filter((article) => {
       if (showSavedOnly && !bookmarks.includes(article.id)) return false;
 
+      const subs =
+        article.neurology_classification.subspecialties &&
+        article.neurology_classification.subspecialties.length > 0
+          ? article.neurology_classification.subspecialties
+          : [article.neurology_classification.subspecialty || "Other"];
+
       const matchCategory =
         selectedSub === "All" ||
-        article.neurology_classification.subspecialty
-          .toLowerCase()
-          .includes(selectedSub.toLowerCase());
+        subs.some((s) => s.toLowerCase() === selectedSub.toLowerCase());
 
       const matchJournal =
         selectedJournal === "All" ||
         article.journal.short_name.toLowerCase() === selectedJournal.toLowerCase();
 
+      const types =
+        article.article_types && article.article_types.length > 0
+          ? article.article_types
+          : [article.article_type];
+
       const matchType =
         selectedType === "All" ||
-        article.article_type.toLowerCase().includes(selectedType.toLowerCase());
+        types.some((t) => t.toLowerCase() === selectedType.toLowerCase());
 
       const noteText = (clinicalNotes[article.id] || "").toLowerCase();
+      const searchableCorpus = `${article.title} ${article.abstract} ${article.ai_takeaways?.conclusion_vi || ""} ${subs.join(" ")} ${article.neurology_classification.topics.join(" ")} ${article.authors.join(" ")} ${noteText}`.toLowerCase();
 
       const matchQuery =
-        q === "" ||
-        article.title.toLowerCase().includes(q) ||
-        article.abstract.toLowerCase().includes(q) ||
-        article.neurology_classification.subspecialty.toLowerCase().includes(q) ||
-        article.neurology_classification.topics.some((t) => t.toLowerCase().includes(q)) ||
-        article.authors.some((author) => author.toLowerCase().includes(q)) ||
-        noteText.includes(q);
+        queryTerms.length === 0 ||
+        queryTerms.some((term) => matchTermWithBoundary(searchableCorpus, term));
 
       return matchCategory && matchJournal && matchType && matchQuery;
     });
@@ -550,7 +990,7 @@ export default function HomePage() {
           </div>
         </header>
 
-        {/* KHỐI ĐIỂM BÁO GIAO BAN BUỔI SÁNG (MORNING CLINICAL BRIEFING) */}
+        {/* KHỐI ĐIỂM BÁO GIAO BAN BUỔI SÁNG (MORNING CLINICAL BRIEFING — HIỂN THỊ ĐẦY ĐỦ 100% NỘI DUNG) */}
         {!loading && briefingHighlights.length > 0 && (
           <div
             className={`mb-6 rounded-xl border shadow-sm overflow-hidden ${
@@ -567,7 +1007,7 @@ export default function HomePage() {
                     MORNING CLINICAL BRIEFING
                   </span>
                   <span className="text-[11px] text-slate-300">
-                    Top {briefingHighlights.length} High-Yield Trials &amp; Studies for Handover
+                    Top {briefingHighlights.length} High-Yield RCTs, Guidelines &amp; Studies for Handover
                   </span>
                 </div>
               </div>
@@ -594,24 +1034,32 @@ export default function HomePage() {
             </div>
 
             {showBriefing && (
-              <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-3.5">
                 {briefingHighlights.map((item) => {
-                  const cleanTakeaway = (item.ai_takeaways?.conclusion_vi || "").replace(
+                  const cleanTakeaway = cleanMedicalText(
+                    item.ai_takeaways?.conclusion_vi || ""
+                  ).replace(
                     /^(?:discussion|conclusions?\s+and\s+relevance|conclusions?|interpretation|findings|summary)\s*[:.\-]?\s*/i,
                     ""
                   );
+                  const subs =
+                    item.neurology_classification.subspecialties &&
+                    item.neurology_classification.subspecialties.length > 0
+                      ? item.neurology_classification.subspecialties
+                      : [item.neurology_classification.subspecialty || "Other"];
+
                   return (
                     <div
                       key={`brief-${item.id}`}
-                      className={`p-3.5 rounded-lg border shadow-xs flex flex-col justify-between transition-colors ${
+                      className={`p-4 rounded-lg border shadow-xs flex flex-col justify-between transition-colors ${
                         darkMode
                           ? "bg-slate-800/80 border-slate-700 hover:border-amber-500/70"
                           : "bg-white/95 border-slate-200/90 hover:border-amber-400"
                       }`}
                     >
                       <div>
-                        <div className="flex flex-wrap items-center justify-between gap-1.5 mb-1.5">
-                          <div className="flex items-center gap-1.5">
+                        <div className="flex flex-wrap items-center justify-between gap-1.5 mb-2">
+                          <div className="flex flex-wrap items-center gap-1.5">
                             <span
                               className="px-2 py-0.5 rounded text-[10px] font-black uppercase"
                               style={{
@@ -624,23 +1072,30 @@ export default function HomePage() {
                             <span
                               className={`text-[10px] font-bold px-2 py-0.5 rounded ${
                                 darkMode
-                                  ? "bg-slate-700 text-slate-200"
-                                  : "bg-slate-100 text-slate-700"
+                                  ? "bg-slate-700 text-amber-300"
+                                  : "bg-slate-800 text-white"
                               }`}
                             >
                               {item.article_type}
                             </span>
                           </div>
-                          <span className="text-[10px] font-semibold text-slate-400">
-                            {item.neurology_classification.subspecialty}
-                          </span>
+                          <div className="flex flex-wrap gap-1">
+                            {subs.slice(0, 2).map((s) => (
+                              <span
+                                key={s}
+                                className="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700/70 text-slate-500 dark:text-slate-300"
+                              >
+                                {s}
+                              </span>
+                            ))}
+                          </div>
                         </div>
 
                         <a
                           href={item.doi_url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={`text-xs sm:text-sm font-bold line-clamp-2 mb-1.5 block leading-snug ${
+                          className={`text-xs sm:text-sm font-bold mb-2 block leading-snug ${
                             darkMode
                               ? "text-slate-100 hover:text-blue-400"
                               : "text-slate-900 hover:text-blue-600"
@@ -649,15 +1104,15 @@ export default function HomePage() {
                           {item.title}
                         </a>
 
-                        <p
-                          className={`text-xs line-clamp-3 leading-relaxed p-2 rounded border-l-2 border-amber-500 ${
+                        <div
+                          className={`text-xs leading-relaxed p-2.5 rounded border-l-3 border-amber-500 ${
                             darkMode
-                              ? "bg-slate-900/80 text-slate-300"
-                              : "bg-amber-50/60 text-slate-700"
+                              ? "bg-slate-900/90 text-slate-200"
+                              : "bg-amber-50/70 text-slate-800"
                           }`}
                         >
                           {highlightClinicalStats(cleanTakeaway, darkMode)}
-                        </p>
+                        </div>
                       </div>
                     </div>
                   );
@@ -693,29 +1148,51 @@ export default function HomePage() {
           )}
         </div>
 
-        {/* HOT CLINICAL RADAR (GỢI Ý TỪ KHÓA LÂM SÀNG NÓNG 1 CHẠM) */}
+        {/* DYNAMIC CLINICAL RADAR (TOP 5 CHỦ ĐỀ LÂM SÀNG NÓNG NHẤT THEO DỮ LIỆU THỰC TẾ) */}
         <div className="mb-4 flex flex-wrap items-center gap-1.5">
-          <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mr-1">
-            Hot Clinical Radar:
+          <span
+            className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mr-1 flex items-center gap-1"
+            title="Top 5 hottest clinical interventions & biomarker themes automatically ranked by recent RCTs, Meta-Analyses & study volume"
+          >
+            <span>🔥 Dynamic Clinical Radar (Top 5):</span>
           </span>
-          {HOT_CLINICAL_RADAR.map((item) => {
+          {dynamicClinicalRadar.map((item) => {
             const isActive = searchQuery.toLowerCase() === item.query.toLowerCase();
             return (
               <button
-                key={item.query}
+                key={item.label}
                 onClick={() => {
-                  setSearchQuery(isActive ? "" : item.query);
+                  if (isActive) {
+                    setSearchQuery("");
+                  } else {
+                    setSearchQuery(item.query);
+                    setSelectedSub("All");
+                    setSelectedJournal("All");
+                    setSelectedType("All");
+                    setShowSavedOnly(false);
+                  }
                   setVisibleCount(35);
                 }}
-                className={`px-2.5 py-1 rounded-full text-[11px] font-semibold transition-all border ${
+                className={`px-2.5 py-1 rounded-full text-[11px] font-semibold transition-all border inline-flex items-center gap-1.5 ${
                   isActive
                     ? "bg-blue-600 text-white border-blue-600 shadow-xs"
                     : darkMode
                     ? "bg-slate-900 text-slate-300 border-slate-800 hover:border-slate-600"
-                    : "bg-white text-slate-600 border-slate-200/90 hover:bg-slate-50"
+                    : "bg-white text-slate-700 border-slate-200/90 hover:bg-slate-50"
                 }`}
               >
-                {item.label}
+                <span>{item.label}</span>
+                <span
+                  className={`px-1.5 py-0.2 rounded-full text-[10px] font-extrabold ${
+                    isActive
+                      ? "bg-white/25 text-white"
+                      : darkMode
+                      ? "bg-slate-800 text-amber-300"
+                      : "bg-slate-100 text-slate-600"
+                  }`}
+                >
+                  {item.count}
+                </span>
               </button>
             );
           })}
@@ -777,7 +1254,7 @@ export default function HomePage() {
             }`}
           >
             <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">
-              NEUROLOGY SUBSPECIALTIES:
+              NEUROLOGY SUBSPECIALTIES (MULTI-TAG):
             </div>
             <div className="flex flex-wrap gap-1.5">
               {TOPIC_TABS.map((tab) => (
@@ -806,30 +1283,28 @@ export default function HomePage() {
               darkMode ? "border-slate-800" : "border-slate-100"
             }`}
           >
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+            <div className="flex flex-wrap items-center gap-1.5">
+              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mr-1">
                 STUDY TYPE:
               </span>
-              {["All", "Clinical Trial", "Meta-Analysis", "Guideline", "Review", "Original Article"].map(
-                (type) => (
-                  <button
-                    key={type}
-                    onClick={() => {
-                      setSelectedType(type);
-                      setVisibleCount(35);
-                    }}
-                    className={`px-2.5 py-1 rounded text-xs font-semibold transition-colors ${
-                      selectedType === type
-                        ? "bg-blue-600 text-white"
-                        : darkMode
-                        ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
-                        : "bg-slate-100 text-slate-600 hover:bg-slate-200"
-                    }`}
-                  >
-                    {type}
-                  </button>
-                )
-              )}
+              {STUDY_TYPE_TABS.map((type) => (
+                <button
+                  key={type}
+                  onClick={() => {
+                    setSelectedType(type);
+                    setVisibleCount(35);
+                  }}
+                  className={`px-2.5 py-1 rounded text-xs font-semibold transition-colors ${
+                    selectedType === type
+                      ? "bg-blue-600 text-white"
+                      : darkMode
+                      ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
+                      : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                  }`}
+                >
+                  {type}
+                </button>
+              ))}
             </div>
 
             {hasActiveFilters && (
@@ -944,9 +1419,14 @@ export default function HomePage() {
                                 const found = TOPIC_TABS.find(
                                   (t) =>
                                     t.value !== "All" &&
-                                    sub.toLowerCase().includes(t.value.toLowerCase())
+                                    t.value.toLowerCase() === sub.toLowerCase()
                                 );
                                 setSelectedSub(found ? found.value : "All");
+                              }}
+                              onStudyTypeClick={(st) => {
+                                if (STUDY_TYPE_TABS.includes(st)) {
+                                  setSelectedType(st);
+                                }
                               }}
                               isBookmarked={bookmarks.includes(article.id)}
                               onToggleBookmark={toggleBookmark}

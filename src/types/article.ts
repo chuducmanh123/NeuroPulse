@@ -10,10 +10,12 @@ export interface Article {
   };
   pub_date: string;
   article_type: string;
+  article_types?: string[];
   authors: string[];
   doi_url: string;
   neurology_classification: {
     subspecialty: string;
+    subspecialties?: string[];
     topics: string[];
   };
   abstract: string;

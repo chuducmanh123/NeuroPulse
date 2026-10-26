@@ -7,6 +7,7 @@ interface ArticleCardProps {
   article: Article;
   onTagClick?: (tag: string) => void;
   onSubspecialtyClick?: (sub: string) => void;
+  onStudyTypeClick?: (type: string) => void;
   isBookmarked?: boolean;
   onToggleBookmark?: (id: string) => void;
   clinicalNote?: string;
@@ -68,7 +69,7 @@ export const JOURNAL_THEMES: Record<string, JournalTheme> = {
     groupBg: "bg-cyan-50/80 text-cyan-900",
     darkGroupBg: "bg-cyan-950/60 text-cyan-200 border-cyan-800",
   },
-  "nejm": {
+  nejm: {
     headerBg: "bg-gradient-to-r from-orange-600 to-amber-700",
     headerText: "text-orange-100",
     badgeBg: "bg-white text-orange-950",
@@ -85,7 +86,7 @@ export const JOURNAL_THEMES: Record<string, JournalTheme> = {
     groupBg: "bg-orange-50/80 text-orange-900",
     darkGroupBg: "bg-orange-950/60 text-orange-200 border-orange-800",
   },
-  "jama": {
+  jama: {
     headerBg: "bg-gradient-to-r from-red-600 to-red-700",
     headerText: "text-red-100",
     badgeBg: "bg-white text-red-950",
@@ -119,7 +120,7 @@ export const JOURNAL_THEMES: Record<string, JournalTheme> = {
     groupBg: "bg-rose-50/80 text-rose-900",
     darkGroupBg: "bg-rose-950/60 text-rose-200 border-rose-800",
   },
-  "stroke": {
+  stroke: {
     headerBg: "bg-gradient-to-r from-red-800 to-red-950",
     headerText: "text-red-100",
     badgeBg: "bg-white text-red-950",
@@ -136,7 +137,7 @@ export const JOURNAL_THEMES: Record<string, JournalTheme> = {
     groupBg: "bg-red-50/80 text-red-950",
     darkGroupBg: "bg-red-950/60 text-red-200 border-red-800",
   },
-  "neurology": {
+  neurology: {
     headerBg: "bg-gradient-to-r from-emerald-700 to-green-800",
     headerText: "text-emerald-100",
     badgeBg: "bg-white text-emerald-950",
@@ -177,16 +178,137 @@ export function getJournalTheme(shortName?: string): JournalTheme {
   return JOURNAL_THEMES[key] || JOURNAL_THEMES["nejm"];
 }
 
+const SUPERSCRIPT_MAP: Record<string, string> = {
+  "0": "⁰",
+  "1": "¹",
+  "2": "²",
+  "3": "³",
+  "4": "⁴",
+  "5": "⁵",
+  "6": "⁶",
+  "7": "⁷",
+  "8": "⁸",
+  "9": "⁹",
+  "+": "⁺",
+  "-": "⁻",
+  "=": "⁼",
+  "(": "⁽",
+  ")": "⁾",
+};
+
+const SUBSCRIPT_MAP: Record<string, string> = {
+  "0": "₀",
+  "1": "₁",
+  "2": "₂",
+  "3": "₃",
+  "4": "₄",
+  "5": "₅",
+  "6": "₆",
+  "7": "₇",
+  "8": "₈",
+  "9": "₉",
+  "+": "₊",
+  "-": "₋",
+  "=": "₌",
+  "(": "₍",
+  ")": "₎",
+};
+
+const LATEX_SYMBOLS: Record<string, string> = {
+  "\\alpha": "α",
+  "\\beta": "β",
+  "\\gamma": "γ",
+  "\\delta": "δ",
+  "\\epsilon": "ε",
+  "\\kappa": "κ",
+  "\\lambda": "λ",
+  "\\mu": "μ",
+  "\\tau": "τ",
+  "\\sigma": "σ",
+  "\\omega": "ω",
+  "\\Delta": "Δ",
+  "\\chi": "χ",
+  "\\Chi": "Χ",
+  "\\times": "×",
+  "\\cdot": "·",
+  "\\pm": "±",
+  "\\mp": "∓",
+  "\\leq": "≤",
+  "\\le": "≤",
+  "\\geq": "≥",
+  "\\ge": "≥",
+  "\\approx": "≈",
+  "\\sim": "~",
+  "\\neq": "≠",
+  "\\ne": "≠",
+  "\\infty": "∞",
+  "\\rightarrow": "→",
+  "\\to": "→",
+};
+
+// Làm sạch triệt để ký hiệu LaTeX ($\beta$, $p = 1.98 \times 10^{-4}$) và HTML entities (&lt;, &gt;)
+export function cleanMedicalText(text?: string): string {
+  if (!text) return "";
+  let s = text.replace(/<(?:\/?[a-zA-Z][^>]*)>/g, " ");
+  for (let i = 0; i < 4; i++) {
+    s = s
+      .replace(/&amp;/g, "&")
+      .replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">")
+      .replace(/&le;/g, "≤")
+      .replace(/&ge;/g, "≥")
+      .replace(/&plusmn;/g, "±")
+      .replace(/&times;/g, "×")
+      .replace(/&nbsp;/g, " ");
+  }
+
+  for (const [k, v] of Object.entries(LATEX_SYMBOLS)) {
+    s = s.split(k).join(v);
+  }
+
+  s = s.replace(/\^\{([^}]+)\}/g, (_, inner: string) => {
+    const trimmed = inner.trim();
+    if ([...trimmed].every((c) => SUPERSCRIPT_MAP[c])) {
+      return [...trimmed].map((c) => SUPERSCRIPT_MAP[c]).join("");
+    }
+    return `^(${trimmed})`;
+  });
+
+  s = s.replace(/\^(-?\d+)/g, (_, inner: string) => {
+    return [...inner].map((c) => SUPERSCRIPT_MAP[c] || c).join("");
+  });
+
+  s = s.replace(/_\{([^}]+)\}/g, (_, inner: string) => {
+    const trimmed = inner.trim();
+    if ([...trimmed].every((c) => SUBSCRIPT_MAP[c])) {
+      return [...trimmed].map((c) => SUBSCRIPT_MAP[c]).join("");
+    }
+    return trimmed;
+  });
+
+  s = s.replace(/\\(?:text|mathrm|mathbf|mathit)\{([^}]+)\}/g, "$1");
+  s = s.replace(/\$([^$]+)\$/g, "$1");
+
+  // Chuẩn hóa các nhãn mục trong Abstract bị dính liền vào chữ kế tiếp (VD: BackgroundEndovascular, MethodsWe, ResultsA, ConclusionsAmong, care.MethodsThis)
+  s = s.replace(
+    /(?:^|(?<=[.!?;)\s]|\bp\s*))(Background and [Oo]bjectives|Background and [Pp]urpose|Design,\s*[Ss]etting,\s*and\s*[Pp]articipants|Main [Oo]utcomes? and [Mm]easures?|Conclusions? and [Rr]elevance|Classification of [Ee]vidence|Trial [Rr]egistration(?:\s+[Ii]nformation)?|Patients and [Mm]ethods|Methods and [Aa]nalysis|Interventions?|Exposures?|Observations|Importance|Objectives?|Background|Methods|Results|Findings|Discussion|Conclusions?|Interpretation|Funding|BACKGROUND AND OBJECTIVES|BACKGROUND AND PURPOSE|DESIGN, SETTING, AND PARTICIPANTS|MAIN OUTCOMES? AND MEASURES?|CONCLUSIONS? AND RELEVANCE|CLASSIFICATION OF EVIDENCE|TRIAL REGISTRATION|INTERVENTIONS?|EXPOSURES?|OBSERVATIONS|IMPORTANCE|OBJECTIVES?|BACKGROUND|METHODS|RESULTS|FINDINGS|DISCUSSION|CONCLUSIONS?|INTERPRETATION|FUNDING)(?:\s*:\s*|\s*(?=[A-Z0-9]))/g,
+    (_, header: string) => ` ${header.trim()}: `
+  );
+
+  return s.replace(/\s+/g, " ").trim();
+}
+
 // Tự động làm nổi bật các chỉ số thống kê lâm sàng (HR, OR, RR, 95% CI, p-value, mRS, NIHSS, %)
 const STAT_HIGHLIGHT_REGEX =
-  /(\b(?:a?HR|a?OR|a?RR|IRR|95%\s*CI|C-index|mRS|NIHSS|NNT|NNH)\b(?:\s*[:=]?\s*\d+(?:\.\d+)?(?:\s*(?:to|–|-)\s*\d+(?:\.\d+)?)?)?|\b[pP]\s*[<=>]\s*0\.\d+|\b\d+(?:\.\d+)?%)/g;
+  /(\b(?:a?HR|a?OR|a?RR|IRR|95%\s*CI|C-index|mRS|NIHSS|NNT|NNH)\b(?:\s*[:=]?\s*-?\d+(?:\.\d+)?(?:\s*(?:to|–|-)\s*-?\d+(?:\.\d+)?)?)?|(?:β|B)\s*=\s*-?\d+(?:\.\d+)?(?:\s*±\s*\d+(?:\.\d+)?)?|\b[pP]\s*[<=>≤≥]\s*\d*(?:\.\d+)?(?:\s*×\s*10[⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻]+)?|\b\d+(?:\.\d+)?%)/g;
 
-export function highlightClinicalStats(text: string, darkMode = false): React.ReactNode {
+export function highlightClinicalStats(rawText: string, darkMode = false): React.ReactNode {
+  const text = cleanMedicalText(rawText);
   if (!text) return null;
   const parts = text.split(STAT_HIGHLIGHT_REGEX);
   if (parts.length <= 1) return text;
 
-  const matcher = new RegExp(STAT_HIGHLIGHT_REGEX.source);
+  const matcher = new RegExp(`^${STAT_HIGHLIGHT_REGEX.source}$`);
   return parts.map((part, idx) => {
     if (matcher.test(part)) {
       return (
@@ -207,18 +329,19 @@ export function highlightClinicalStats(text: string, darkMode = false): React.Re
 }
 
 const STRUCTURED_SECTION_REGEX =
-  /(?:^|(?<=[.!?]\s+))(Background and [Oo]bjectives|Background and [Pp]urpose|Design,\s*[Ss]etting,\s*and\s*[Pp]articipants|Main [Oo]utcomes and [Mm]easures|Conclusions? and [Rr]elevance|Classification of [Ee]vidence|Trial [Rr]egistration|Interventions?|Exposures?|Observations|Importance|Objectives?|Background|Methods|Results|Findings|Discussion|Conclusions?|Interpretation|BACKGROUND AND OBJECTIVES|BACKGROUND AND PURPOSE|DESIGN, SETTING, AND PARTICIPANTS|MAIN OUTCOMES AND MEASURES|CONCLUSIONS? AND RELEVANCE|CLASSIFICATION OF EVIDENCE|TRIAL REGISTRATION|INTERVENTIONS?|EXPOSURES?|OBSERVATIONS|IMPORTANCE|OBJECTIVES?|BACKGROUND|METHODS|RESULTS|FINDINGS|DISCUSSION|CONCLUSIONS?|INTERPRETATION)(?:\s*:\s*|\s+(?=[A-Z0-9]))/g;
+  /(?:^|(?<=[.!?;)\s]))(Background and [Oo]bjectives|Background and [Pp]urpose|Design,\s*[Ss]etting,\s*and\s*[Pp]articipants|Main [Oo]utcomes? and [Mm]easures?|Conclusions? and [Rr]elevance|Classification of [Ee]vidence|Trial [Rr]egistration(?:\s+[Ii]nformation)?|Patients and [Mm]ethods|Methods and [Aa]nalysis|Interventions?|Exposures?|Observations|Importance|Objectives?|Background|Methods|Results|Findings|Discussion|Conclusions?|Interpretation|Funding|BACKGROUND AND OBJECTIVES|BACKGROUND AND PURPOSE|DESIGN, SETTING, AND PARTICIPANTS|MAIN OUTCOMES? AND MEASURES?|CONCLUSIONS? AND RELEVANCE|CLASSIFICATION OF EVIDENCE|TRIAL REGISTRATION|INTERVENTIONS?|EXPOSURES?|OBSERVATIONS|IMPORTANCE|OBJECTIVES?|BACKGROUND|METHODS|RESULTS|FINDINGS|DISCUSSION|CONCLUSIONS?|INTERPRETATION|FUNDING)(?:\s*:\s*|\s+(?=[A-Z0-9]))/g;
 
 function parseAbstractSections(text: string): { header?: string; body: string }[] {
-  const matches = Array.from(text.matchAll(STRUCTURED_SECTION_REGEX));
+  const cleaned = cleanMedicalText(text);
+  const matches = Array.from(cleaned.matchAll(STRUCTURED_SECTION_REGEX));
   if (matches.length === 0) {
-    return [{ body: text }];
+    return [{ body: cleaned }];
   }
 
   const sections: { header?: string; body: string }[] = [];
   const firstIdx = matches[0].index ?? 0;
   if (firstIdx > 0) {
-    const intro = text.slice(0, firstIdx).trim();
+    const intro = cleaned.slice(0, firstIdx).trim();
     if (intro) {
       sections.push({ body: intro });
     }
@@ -228,20 +351,22 @@ function parseAbstractSections(text: string): { header?: string; body: string }[
     const current = matches[i];
     const header = current[1].trim();
     const bodyStart = (current.index ?? 0) + current[0].length;
-    const bodyEnd = i + 1 < matches.length ? (matches[i + 1].index ?? text.length) : text.length;
-    const body = text.slice(bodyStart, bodyEnd).trim();
+    const bodyEnd =
+      i + 1 < matches.length ? (matches[i + 1].index ?? cleaned.length) : cleaned.length;
+    const body = cleaned.slice(bodyStart, bodyEnd).trim();
     if (body) {
       sections.push({ header, body });
     }
   }
 
-  return sections.length > 0 ? sections : [{ body: text }];
+  return sections.length > 0 ? sections : [{ body: cleaned }];
 }
 
 export function ArticleCard({
   article,
   onTagClick,
   onSubspecialtyClick,
+  onStudyTypeClick,
   isBookmarked = false,
   onToggleBookmark,
   clinicalNote = "",
@@ -280,26 +405,47 @@ export function ArticleCard({
       })
     : "";
 
+  const cleanTitle = cleanMedicalText(article.title);
+  const cleanAbs = cleanMedicalText(article.abstract);
+
   const hasRealAbstract =
-    Boolean(article.abstract) &&
-    !article.abstract.startsWith("Original abstract and full manuscript available");
+    Boolean(cleanAbs) &&
+    !cleanAbs.startsWith("Original abstract and full manuscript available") &&
+    !cleanAbs.toLowerCase().startsWith("nothing to report.");
 
   const takeawayText =
     article.ai_takeaways?.conclusion_vi &&
-    !article.ai_takeaways.conclusion_vi.startsWith("Published clinical evidence in")
-      ? article.ai_takeaways.conclusion_vi.replace(
-          /^(?:discussion|conclusions?\s+and\s+relevance|conclusions?|interpretation|findings|summary)\s*[:.\-]?\s*/i,
-          ""
+    !article.ai_takeaways.conclusion_vi.startsWith("Published clinical evidence in") &&
+    !article.ai_takeaways.conclusion_vi
+      .toLowerCase()
+      .includes("data may be available from the corresponding author")
+      ? cleanMedicalText(
+          article.ai_takeaways.conclusion_vi.replace(
+            /^(?:discussion|conclusions?\s+and\s+relevance|conclusions?|interpretation|findings|summary)\s*[:.\-]?\s*/i,
+            ""
+          )
         )
       : "";
+
+  const subspecialtyList =
+    article.neurology_classification.subspecialties &&
+    article.neurology_classification.subspecialties.length > 0
+      ? article.neurology_classification.subspecialties
+      : [article.neurology_classification.subspecialty || "Other"];
+
+  const studyTypeList =
+    article.article_types && article.article_types.length > 0
+      ? article.article_types
+      : [article.article_type];
 
   const handleCopyForJournalClub = () => {
     const jName = article.journal.short_name || article.journal.name;
     const tags = article.neurology_classification.topics.map((t) => `#${t}`).join(" ");
+    const subs = subspecialtyList.join(" • ");
     const lines = [
-      `📌 [${jName} • ${formattedDate} | ${article.article_type}]`,
-      `📄 ${article.title}`,
-      `🏷️ Subspecialty: ${article.neurology_classification.subspecialty} (${tags})`,
+      `📌 [${jName} • ${formattedDate} | ${studyTypeList.join(" / ")}]`,
+      `📄 ${cleanTitle}`,
+      `🏷️ Subspecialty: ${subs} (${tags})`,
     ];
     if (takeawayText) {
       lines.push(`💡 Key Takeaway: ${takeawayText}`);
@@ -316,7 +462,7 @@ export function ArticleCard({
   };
 
   const pubmedSearchUrl = `https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent(
-    article.id || article.title
+    article.id || cleanTitle
   )}`;
 
   const formatStructuredAbstract = (text: string) => {
@@ -375,7 +521,7 @@ export function ArticleCard({
         }`}
       >
         <div className="flex flex-wrap items-center justify-between gap-2">
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-1.5">
             <span
               className="px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider"
               style={{
@@ -391,22 +537,26 @@ export function ArticleCard({
               </span>
             )}
             <span
-              className={`text-[11px] font-semibold px-2 py-0.5 rounded ${
-                darkMode ? "bg-slate-800 text-slate-300" : "bg-slate-100 text-slate-600"
+              onClick={() => onStudyTypeClick?.(article.article_type)}
+              className={`cursor-pointer text-[11px] font-semibold px-2 py-0.5 rounded ${
+                darkMode ? "bg-slate-800 text-slate-300" : "bg-slate-100 text-slate-700"
               }`}
             >
               {article.article_type}
             </span>
-            <span
-              onClick={() => onSubspecialtyClick?.(article.neurology_classification.subspecialty)}
-              className={`cursor-pointer text-[11px] font-medium px-2 py-0.5 rounded ${
-                darkMode
-                  ? "bg-slate-800/70 text-slate-400 hover:text-slate-200"
-                  : "bg-slate-50 text-slate-500 hover:bg-slate-100"
-              }`}
-            >
-              {article.neurology_classification.subspecialty}
-            </span>
+            {subspecialtyList.map((sub, i) => (
+              <span
+                key={i}
+                onClick={() => onSubspecialtyClick?.(sub)}
+                className={`cursor-pointer text-[11px] font-medium px-2 py-0.5 rounded ${
+                  darkMode
+                    ? "bg-slate-800/70 text-slate-400 hover:text-slate-200"
+                    : "bg-slate-50 text-slate-500 hover:bg-slate-100"
+                }`}
+              >
+                {sub}
+              </span>
+            ))}
           </div>
 
           <div className="flex items-center gap-2.5">
@@ -437,13 +587,13 @@ export function ArticleCard({
           }`}
         >
           <a href={article.doi_url} target="_blank" rel="noopener noreferrer">
-            {article.title}
+            {cleanTitle}
           </a>
         </h3>
 
         {takeawayText && (
           <p
-            className={`text-xs line-clamp-2 pl-2.5 border-l-2 ${theme.takeawayBorder} ${
+            className={`text-xs pl-2.5 border-l-2 ${theme.takeawayBorder} ${
               darkMode ? "text-slate-300" : "text-slate-700"
             }`}
           >
@@ -466,7 +616,7 @@ export function ArticleCard({
       <div
         className={`${theme.headerBg} px-5 py-2.5 text-white flex flex-wrap items-center justify-between gap-2 shadow-inner`}
       >
-        <div className="flex items-center gap-2.5">
+        <div className="flex flex-wrap items-center gap-2">
           <span
             className={`px-2.5 py-0.5 rounded shadow-sm text-xs font-black uppercase tracking-wider ${theme.badgeBg}`}
           >
@@ -483,11 +633,20 @@ export function ArticleCard({
             </span>
           )}
 
-          <span
-            className={`text-xs font-semibold px-2 py-0.5 rounded bg-black/20 ${theme.headerText}`}
-          >
-            {article.article_type}
-          </span>
+          {studyTypeList.map((st, idx) => (
+            <span
+              key={st}
+              onClick={() => onStudyTypeClick?.(st)}
+              className={`cursor-pointer text-xs font-semibold px-2 py-0.5 rounded transition-colors ${
+                idx === 0
+                  ? `bg-black/25 text-white hover:bg-black/35`
+                  : `bg-black/15 ${theme.headerText} hover:bg-black/25 text-[11px]`
+              }`}
+              title={`Filter by study type: ${st}`}
+            >
+              {st}
+            </span>
+          ))}
         </div>
 
         <div className="flex items-center gap-3">
@@ -526,7 +685,7 @@ export function ArticleCard({
           }`}
         >
           <a href={article.doi_url} target="_blank" rel="noopener noreferrer">
-            {article.title}
+            {cleanTitle}
           </a>
         </h3>
 
@@ -536,18 +695,26 @@ export function ArticleCard({
           </p>
         )}
 
-        {/* Phân loại & Chuyên đề */}
+        {/* Đa nhãn Phân khoa (Multi-Subspecialty Tags) & Chủ đề */}
         <div className="flex flex-wrap items-center gap-1.5 mb-3.5">
-          <span
-            onClick={() => onSubspecialtyClick?.(article.neurology_classification.subspecialty)}
-            className={`cursor-pointer text-[11px] font-semibold px-2.5 py-0.5 rounded-md transition-colors ${
-              darkMode
-                ? "bg-slate-800 text-slate-200 hover:bg-slate-700"
-                : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-            }`}
-          >
-            {article.neurology_classification.subspecialty}
-          </span>
+          {subspecialtyList.map((sub, idx) => (
+            <span
+              key={sub}
+              onClick={() => onSubspecialtyClick?.(sub)}
+              className={`cursor-pointer text-[11px] font-bold px-2.5 py-0.5 rounded-md transition-colors ${
+                idx === 0
+                  ? darkMode
+                    ? "bg-blue-950/80 text-blue-300 border border-blue-800/70 hover:bg-blue-900"
+                    : "bg-slate-800 text-white hover:bg-slate-700"
+                  : darkMode
+                  ? "bg-slate-800 text-slate-200 border border-slate-700 hover:bg-slate-700"
+                  : "bg-slate-200/80 text-slate-800 hover:bg-slate-300"
+              }`}
+              title={`Filter by subspecialty: ${sub}`}
+            >
+              {sub}
+            </span>
+          ))}
           {article.neurology_classification.topics.map((topic, i) => (
             <span
               key={i}
@@ -563,7 +730,7 @@ export function ArticleCard({
           ))}
         </div>
 
-        {/* Key Findings / Clinical Takeaway Box (với Tô đậm Thống kê tự động) */}
+        {/* Key Findings / Clinical Takeaway Box */}
         {takeawayText && (
           <div
             className={`${
@@ -600,7 +767,7 @@ export function ArticleCard({
           </div>
         )}
 
-        {/* GHI CHÚ LÂM SÀNG CÁ NHÂN (PERSONAL CLINICAL NOTE) KHI BÀI ĐÃ LƯU HOẶC CÓ GHI CHÚ */}
+        {/* GHI CHÚ LÂM SÀNG CÁ NHÂN (PERSONAL CLINICAL NOTE) */}
         {(isBookmarked || clinicalNote) && onSaveNote && (
           <div
             className={`mb-3 p-3 rounded-lg border text-xs ${
@@ -670,7 +837,7 @@ export function ArticleCard({
           </div>
         )}
 
-        {/* Structured Abstract (chỉ hiển thị khi có Abstract thật) */}
+        {/* Structured Abstract */}
         {hasRealAbstract ? (
           <div
             className={`mt-3 text-xs p-3.5 rounded-lg border ${
@@ -693,27 +860,53 @@ export function ArticleCard({
               </button>
             </div>
 
-            {formatStructuredAbstract(article.abstract)}
+            {formatStructuredAbstract(cleanAbs)}
           </div>
         ) : (
           <div
-            className={`mt-2 py-2 px-3 rounded-lg border border-dashed text-[11px] flex items-center justify-between ${
+            className={`mt-2 py-2.5 px-3.5 rounded-lg border border-dashed text-[11px] flex items-center justify-between gap-2 ${
               darkMode
                 ? "bg-slate-800/30 border-slate-700 text-slate-400"
                 : "bg-slate-50 border-slate-200 text-slate-500"
             }`}
           >
-            <span>
-              Publisher preview only — full manuscript &amp; abstract available on{" "}
-              <strong className={darkMode ? "text-slate-300" : "text-slate-700"}>
-                {article.journal.short_name || article.journal.name}
-              </strong>
-              .
-            </span>
+            {article.article_type === "Editorial / Perspective" ? (
+              <span>
+                💬{" "}
+                <strong className={darkMode ? "text-slate-300" : "text-slate-700"}>
+                  Expert Commentary / Editorial
+                </strong>{" "}
+                — Invited clinical perspective &amp; appraisal on{" "}
+                <strong className={darkMode ? "text-slate-300" : "text-slate-700"}>
+                  {article.journal.short_name || article.journal.name}
+                </strong>{" "}
+                (no structured abstract issued by publisher).
+              </span>
+            ) : article.article_type === "Case Report" ? (
+              <span>
+                🖼️{" "}
+                <strong className={darkMode ? "text-slate-300" : "text-slate-700"}>
+                  Clinical Case / NeuroImage
+                </strong>{" "}
+                — Diagnostic neuroimaging &amp; bedside case discussion available on{" "}
+                <strong className={darkMode ? "text-slate-300" : "text-slate-700"}>
+                  {article.journal.short_name || article.journal.name}
+                </strong>
+                .
+              </span>
+            ) : (
+              <span>
+                📄 Full manuscript &amp; study details available on{" "}
+                <strong className={darkMode ? "text-slate-300" : "text-slate-700"}>
+                  {article.journal.short_name || article.journal.name}
+                </strong>
+                .
+              </span>
+            )}
           </div>
         )}
 
-        {/* Bottom Action: DOI + 1-Click Copy for Journal Club + PubMed + View Full Article */}
+        {/* Bottom Action */}
         <div
           className={`mt-4 pt-3 border-t flex flex-wrap items-center justify-between gap-2 ${
             darkMode ? "border-slate-800" : "border-slate-100"

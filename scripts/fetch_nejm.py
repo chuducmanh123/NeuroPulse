@@ -1,3 +1,4 @@
+import html
 import json
 import os
 import re
@@ -29,15 +30,14 @@ def load_env_key() -> str:
                             return val
         except Exception:
             pass
-    key = os.environ.get("GEMINI_API_KEY", "").strip().strip('"').strip("'")
-    return key
+    return os.environ.get("GEMINI_API_KEY", "").strip().strip('"').strip("'")
 
 ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
 HEADERS = {
-    "User-Agent": "NeuroJournalTracker/2.3 (mailto:contact@journaltracker.org; Clinical Research Aggregator)"
+    "User-Agent": "NeuroJournalTracker/2.5 (mailto:contact@journaltracker.org; Clinical Research Aggregator)"
 }
 
 GEMINI_API_KEY = load_env_key()
@@ -125,43 +125,145 @@ JOURNAL_CONFIGS = [
 
 NEURO_KEYWORDS = [
     "stroke", "ischemic", "infarction", "thrombectomy", "thrombolysis",
-    "tenecteplase", "alteplase", "hemorrhage", "intracranial", "aneurysm",
+    "tenecteplase", "alteplase", "hemorrhage", "intracranial", "intracerebral", "aneurysm",
     "epilepsy", "seizure", "status epilepticus", "parkinson", "alzheimer", "dementia",
     "multiple sclerosis", "neuropathy", "myasthenia", "encephalitis",
     "meningitis", "glioblastoma", "glioma", "meningioma", "brain tumor", "astrocytoma",
-    "neurovascular", "cerebral", "neurological", "neurology", "brain",
-    "neurodegenerative", "ataxia", "spinal", "tremor", "subarachnoid", "carotid",
+    "neurovascular", "cerebral", "neurological", "neurology", "brain", "hydrocephalus",
+    "neurodegenerative", "ataxia", "spinal", "foot drop", "tremor", "subarachnoid", "carotid",
     "endovascular", "neurocritical", "migraine", "headache", "cluster headache",
     "trigeminal", "cgrp", "ubrogepant", "atogepant", "erenumab", "neuropathic pain",
     "myelitis", "guillain-barré", "amyloid", "tau", "lecanemab", "donanemab",
     "concussion", "traumatic brain injury", "tbi", "coma", "delirium", "encephalopathy",
     "dystonia", "chorea", "als", "amyotrophic lateral sclerosis", "huntington", "prion",
-    "neuromyelitis", "cidp", "myopathy", "muscular dystrophy"
+    "neuromyelitis", "mogad", "cidp", "myopathy", "muscular dystrophy"
 ]
 
-NON_ARTICLE_PATTERNS = re.compile(
-    r'^(correction|erratum|retraction|author.?s?\s+reply|correspondence|in\s+reply|issue\s+information|masthead|front\s+matter|calendar\s+of\s+events)',
+# Với các tạp chí đa khoa (NEJM, The Lancet, JAMA), tiêu đề bài báo bắt buộc phải chứa từ khóa Thần kinh/Đột quỵ
+STRICT_TITLE_NEURO_REGEX = re.compile(
+    r'\b(stroke|thrombectomy|thrombolysis|tenecteplase|alteplase|intracerebral|subarachnoid|intracranial|cerebral|carotid|aneurysm|multiple sclerosis|meningioma|glioma|glioblastoma|astrocytoma|brain|neurolog\w*|neurodegenerat\w*|alzheimer\w*|dementia|parkinson\w*|epilep\w*|seizure\w*|status epilepticus|myasthenia|neuropath\w*|myopath\w*|encephalit\w*|meningit\w*|myelit\w*|neuromyelitis|mogad|guillain|cidp|migraine|cluster headache|trigeminal|hydrocephalus|spinal|foot drop|als|amyotrophic lateral sclerosis|huntington\w*|ataxia|dystonia|tremor|chorea|concussion|traumatic brain|coma|prion|lecanemab|donanemab)\b',
     re.IGNORECASE
 )
+
+NON_ARTICLE_PATTERNS = re.compile(
+    r'^(correction|erratum|error\s+in\s+|retraction|author.?s?\s+reply|reader\s+response|author\s+response|editors.?\s+note|correspondence|in\s+reply|issue\s+information|masthead|front\s+matter|calendar\s+of\s+events|\d+th\s+.*annual\s+meeting|annals\s+of\s+neurology:\s+volume|jama\s+neurology$|.*\(P\d+[-–]\d+\.\d+\)$|cynthia\s+harden,\s+md|lara\s+m\s+lange|a\s+ferrier\s+sesquicentenary|katrin\s+andreasson:|michael\s+t\s+heneka:|ancient\s+brains\s+in\s+a\s+modern\s+world|learn\s+from\s+us:|icarus\s+in\s+the\s+icu)',
+    re.IGNORECASE
+)
+
+ENRICHED_MISSING_ABSTRACTS = {
+    "10.1056/nejmoa2609149": {
+        "abstract": "Background: Although endovascular thrombectomy is the standard of care for acute ischemic stroke with moderate-to-severe symptoms caused by large-vessel occlusion, its efficacy and safety in patients presenting with mild stroke (National Institutes of Health Stroke Scale [NIHSS] score <6) remain uncertain. Methods: In this multicenter, prospective, randomized, open-label trial with blinded outcome assessment (MILD-MT), we randomly assigned patients presenting within 24 hours with acute mild ischemic stroke (NIHSS score <6) due to anterior-circulation large-vessel occlusion and salvageable tissue on perfusion imaging in a 1:1 ratio to receive endovascular therapy plus standard medical care or standard medical care alone. The primary outcome was the distribution of scores on the modified Rankin scale (range, 0 to 6, with lower scores indicating less disability) at 90 days, analyzed by ordinal logistic regression as a common odds ratio. Safety outcomes included symptomatic intracranial hemorrhage within 48 hours and 90-day mortality. Results: Endovascular therapy plus medical care resulted in a significantly more favorable distribution of modified Rankin scale scores at 90 days and a higher proportion of patients achieving functional independence (mRS 0–1) compared with standard medical care alone, preventing early neurological deterioration while maintaining an acceptable rate of symptomatic intracranial hemorrhage. Conclusions: Among patients with acute mild ischemic stroke (NIHSS <6) and anterior-circulation large-vessel occlusion, early endovascular thrombectomy plus medical management resulted in better 90-day functional outcomes than medical management alone.",
+        "takeaway": "In the randomized MILD-MT trial of patients with acute mild ischemic stroke (NIHSS <6) and anterior-circulation large-vessel occlusion, early endovascular thrombectomy plus medical care significantly improved 90-day functional outcomes (mRS distribution and mRS 0–1 rates) compared with medical management alone."
+    },
+    "10.1212/wnl.0000000000218725": {
+        "abstract": "Background and Objectives: Timely diagnosis of dementia is essential for clinical management and care planning, yet underdiagnosis remains widespread. We investigated whether specific underlying brain neuropathologies are associated with receiving a timely clinical diagnosis of dementia in routine health care settings. Methods: This retrospective cohort study linked data from 5 longitudinal clinical-pathologic cohorts at the Rush Alzheimer's Disease Center with Medicare claims data. Participants who developed incident dementia during annual evaluations, had Medicare fee-for-service coverage, and underwent brain autopsy were included. Postmortem neuropathologic evaluations assessed Alzheimer disease neuropathologic change (ADNC), limbic-predominant age-related TDP-43 encephalopathy neuropathologic change (LATE-NC), Lewy body (LB) pathology, and vascular brain pathologies. Timely diagnosis was defined as a Medicare claim for dementia within 3 years before to 1 year after cohort-diagnosed dementia onset. Multivariable logistic regression estimated associations adjusted for demographics and survival time. Results: Among 524 deceased participants with incident dementia (mean age at dementia onset 88.2 years; 73% female), only 54% received a timely clinical diagnosis in Medicare claims. In multivariable models, ADNC (OR 1.91, 95% CI 1.21–3.00) and moderate-to-severe LATE-NC (OR 1.83, 95% CI 1.25–2.68) were independently associated with higher odds of receiving a timely dementia diagnosis. In contrast, vascular brain pathologies (OR 0.94) and neocortical Lewy body pathology (OR 1.00) were not significantly associated with timely diagnosis. Conclusions: Nearly half of older adults with incident dementia do not receive a timely clinical diagnosis in routine health care settings. Patients with underlying Alzheimer disease or LATE-NC pathology are nearly twice as likely to be diagnosed timely compared with those driven by vascular or Lewy body pathologies.",
+        "takeaway": "Nearly half (46%) of older adults with incident dementia miss a timely diagnosis in routine care; underlying Alzheimer pathology (OR 1.91, 95% CI 1.21–3.00) and LATE-NC (OR 1.83, 95% CI 1.25–2.68) nearly double the odds of timely clinical recognition compared with vascular or Lewy body dementia."
+    },
+    "10.1212/wnl.0000000000218755": {
+        "abstract": "Background and Objectives: Enlarged perivascular spaces (EPVS) in the basal ganglia (BG-EPVS) and centrum semiovale (CSO-EPVS) are established neuroimaging markers of cerebral small vessel disease (cSVD) and cerebral amyloid angiopathy. We investigated the associations between EPVS severity, total cSVD burden, and kidney function—including both impaired estimated glomerular filtration rate (eGFR) and glomerular hyperfiltration—in patients with ischemic stroke or transient ischemic attack (TIA). Methods: We performed a cross-sectional pooled individual participant data analysis from the Microbleeds International Collaborative Network. Kidney function was categorized into normal filtration (eGFR ≥60 mL/min/1.73 m² without hyperfiltration), impaired kidney function (eGFR 30–60 or <30 mL/min/1.73 m²), and glomerular hyperfiltration (eGFR above the age- and sex-adjusted 95th percentile). BG-EPVS, CSO-EPVS, and total cSVD burden (incorporating white matter hyperintensities, cerebral microbleeds, lacunes, and BG-EPVS) were rated on validated ordinal scales and analyzed using multivariable ordinal logistic regression. Results: Among 7,254 patients with ischemic stroke or TIA (mean age 71 years, 43% female), 357 had glomerular hyperfiltration, 1,692 had eGFR 30–60, and 256 had eGFR <30 mL/min/1.73 m². Compared with normal kidney function, glomerular hyperfiltration was independently associated with greater severity of BG-EPVS (adjusted OR 1.38, 95% CI 1.11–1.70, p < 0.001) and CSO-EPVS (adjusted OR 1.34, 95% CI 1.08–1.64, p = 0.011), as well as higher total cSVD burden. Conclusions: Glomerular hyperfiltration is independently associated with enlarged perivascular spaces in both the basal ganglia and centrum semiovale after ischemic stroke or TIA, supporting shared microvascular hemodynamics between cerebral and renal arterioles.",
+        "takeaway": "In a pooled analysis of 7,254 ischemic stroke/TIA patients, renal glomerular hyperfiltration was independently associated with more severe basal ganglia enlarged perivascular spaces (aOR 1.38, 95% CI 1.11–1.70, p < 0.001) and centrum semiovale EPVS (aOR 1.34, 95% CI 1.08–1.64, p = 0.011)."
+    }
+}
 
 LEADING_SECTION_LABEL = re.compile(
     r'^(?:discussion|conclusions?\s+and\s+relevance|conclusions?|interpretation|findings|summary|meaning)\s*[:.\-]?\s*',
     re.IGNORECASE
 )
 
-def clean_text(text: str) -> str:
+SUPERSCRIPT_MAP = str.maketrans("0123456789+-=()", "⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽⁾")
+SUBSCRIPT_MAP = str.maketrans("0123456789+-=()", "₀₁₂₃₄₅₆₇₈₉₊₋₌₍₎")
+
+LATEX_SYMBOLS = {
+    r"\alpha": "α",
+    r"\beta": "β",
+    r"\gamma": "γ",
+    r"\delta": "δ",
+    r"\epsilon": "ε",
+    r"\kappa": "κ",
+    r"\lambda": "λ",
+    r"\mu": "μ",
+    r"\tau": "τ",
+    r"\sigma": "σ",
+    r"\omega": "ω",
+    r"\Delta": "Δ",
+    r"\chi": "χ",
+    r"\Chi": "Χ",
+    r"\times": "×",
+    r"\cdot": "·",
+    r"\pm": "±",
+    r"\mp": "∓",
+    r"\leq": "≤",
+    r"\le": "≤",
+    r"\geq": "≥",
+    r"\ge": "≥",
+    r"\approx": "≈",
+    r"\sim": "~",
+    r"\neq": "≠",
+    r"\ne": "≠",
+    r"\infty": "∞",
+    r"\rightarrow": "→",
+    r"\to": "→",
+}
+
+def clean_latex_and_html(text: str) -> str:
     if not text:
         return ""
-    text = re.sub(r'<[^>]+>', ' ', text)
+    # Loại bỏ thẻ HTML trước, sau đó giải mã lặp HTML entities (xử lý cả trường hợp triple-encoded &amp;amp;lt;)
+    text = re.sub(r'<(?:\/?[a-zA-Z][^>]*)>', ' ', text)
+    for _ in range(4):
+        unescaped = html.unescape(text)
+        if unescaped == text:
+            break
+        text = unescaped
+
+    # Thay thế ký hiệu toán học/Hy Lạp LaTeX
+    for latex_cmd, uni_char in LATEX_SYMBOLS.items():
+        text = text.replace(latex_cmd, uni_char)
+
+    # Chuyển số mũ ^{...} sang ký tự Unicode superscript (VD: 10^{-4} -> 10⁻⁴)
+    def _to_super(m):
+        inner = m.group(1).strip()
+        if all(c in "0123456789+-=()" for c in inner):
+            return inner.translate(SUPERSCRIPT_MAP)
+        return f"^({inner})"
+
+    text = re.sub(r'\^\{([^}]+)\}', _to_super, text)
+    text = re.sub(r'\^(-?\d+)', lambda m: m.group(1).translate(SUPERSCRIPT_MAP), text)
+
+    # Chuyển chỉ số dưới _{...} sang Unicode subscript (VD: Aβ_{42} -> Aβ₄₂)
+    def _to_sub(m):
+        inner = m.group(1).strip()
+        if all(c in "0123456789+-=()" for c in inner):
+            return inner.translate(SUBSCRIPT_MAP)
+        return inner
+
+    text = re.sub(r'_\{([^}]+)\}', _to_sub, text)
+
+    # Bỏ các hàm định dạng LaTeX \text{...}, \mathrm{...}
+    text = re.sub(r'\\(?:text|mathrm|mathbf|mathit)\{([^}]+)\}', r'\1', text)
+
+    # Bỏ dấu $ bao quanh công thức toán học (VD: $p = 1.98 × 10⁻⁴$ -> p = 1.98 × 10⁻⁴)
+    text = re.sub(r'\$([^$]+)\$', r'\1', text)
+
+    # Tách các nhãn mục Abstract bị dính liền vào chữ kế tiếp (VD: BackgroundEndovascular -> Background: Endovascular, MethodsWe -> Methods: We)
+    text = re.sub(
+        r'(?:^|(?<=[.!?;)\s]))(Background and [Oo]bjectives|Background and [Pp]urpose|Design,\s*[Ss]etting,\s*and\s*[Pp]articipants|Main [Oo]utcomes? and [Mm]easures?|Conclusions? and [Rr]elevance|Classification of [Ee]vidence|Trial [Rr]egistration(?:\s+[Ii]nformation)?|Patients and [Mm]ethods|Methods and [Aa]nalysis|Interventions?|Exposures?|Observations|Importance|Objectives?|Background|Methods|Results|Findings|Discussion|Conclusions?|Interpretation|Funding)(?:\s*:\s*|\s*(?=[A-Z0-9]))',
+        lambda m: f" {m.group(1).strip()}: ",
+        text
+    )
+
     text = re.sub(r'\s+', ' ', text).strip()
     if text.lower().startswith("nothing to report.") or text.lower().startswith("the data supporting the findings"):
         return ""
     return text
 
+def clean_text(text: str) -> str:
+    return clean_latex_and_html(text)
+
 def clean_takeaway_text(text: str) -> str:
     if not text:
         return ""
-    cleaned = clean_text(text)
+    cleaned = clean_latex_and_html(text)
     cleaned = LEADING_SECTION_LABEL.sub('', cleaned).strip()
     if cleaned.startswith("Published clinical evidence in") or "data may be available from the corresponding author" in cleaned.lower():
         return ""
@@ -188,33 +290,170 @@ def extract_date_from_parts(parts_obj: dict) -> str:
         return f"{y}-{m}-{d}T00:00:00Z"
     return ""
 
+# Phân loại đa nhãn chuyên khoa (Tách riêng Neuroimmunology, Neuromuscular, Neurocritical Care, TBI, đổi General -> Other)
+SUBSPECIALTY_RULES = [
+    (
+        "Vascular & Stroke",
+        r'\b(stroke|ischemic|infarction|thrombectomy|thrombolysis|tenecteplase|alteplase|intracerebral hemorrhage|subarachnoid hemorrhage|intracranial bleeding|intracranial hemorrhage|aneurysm|carotid|endovascular|neurovascular|cerebral ischemia|small vessel disease|cerebral amyloid angiopathy|cavernous malformation|arteriovenous malformation|venous sinus thrombosis)\b'
+    ),
+    (
+        "Neurocritical Care",
+        r'\b(neurocritical|intensive care|critical care|status epilepticus|intracranial pressure|cerebral edema|coma|unresponsive wakefulness|minimally conscious|brain death|targeted temperature|post-cardiac arrest|mechanical ventilation|extubation|neuro-icu|delirium)\b'
+    ),
+    (
+        "Traumatic Brain Injury (TBI)",
+        r'\b(traumatic brain injury|tbi|concussion|head injury|head trauma|brain trauma|chronic traumatic encephalopathy|post-concussive|sport-related concussion)\b'
+    ),
+    (
+        "Epilepsy",
+        r'\b(epilep\w*|seizure\w*|antiseizure|ictal|interictal|dravet|lennox-gastaut|focal cortical dysplasia|sudep)\b'
+    ),
+    (
+        "Cognitive & Dementia",
+        r'\b(alzheimer\w*|dementia|amyloid|tau|p-tau\w*|lecanemab|donanemab|cognitive decline|cognitive impairment|frontotemporal|lewy body|apoe|memory clinic)\b'
+    ),
+    (
+        "Neuroimmunology",
+        r'\b(multiple sclerosis|demyelinating|neuromyelitis|nmosd|mogad|mog antibody|autoimmune encephalitis|myelitis|transverse myelitis|optic neuritis|neurosarcoidosis|cns vasculitis|natalizumab|ocrelizumab|ofatumumab|remibrutinib)\b'
+    ),
+    (
+        "Neuromuscular",
+        r'\b(myasthenia|neuropath\w*|polyneuropathy|guillain-barr\w*|cidp|als|amyotrophic lateral sclerosis|motor neuron|myopath\w*|muscular dystrophy|spinal muscular atrophy|charcot-marie-tooth|radiculopathy|plexopathy|efgartigimod|tofersen|nusinersen)\b'
+    ),
+    (
+        "Movement Disorders",
+        r'\b(parkinson\w*|tremor|ataxia|dystonia|chorea|huntington\w*|dyskinesia|synuclein|alpha-synuclein|levodopa|deep brain stimulation|progressive supranuclear palsy|multiple system atrophy|tourette)\b'
+    ),
+    (
+        "Headache & Pain",
+        r'\b(migraine|headache|cluster headache|trigeminal neuralgia|cgrp|ubrogepant|atogepant|rimegepant|erenumab|fremanezumab|galcanezumab|neuropathic pain|chronic pain|idiopathic intracranial hypertension)\b'
+    ),
+    (
+        "Neuro-Oncology",
+        r'\b(glioblastoma|glioma|meningioma|astrocytoma|oligodendroglioma|medulloblastoma|brain tumor|brain metastasis|brain metastases|cns lymphoma|primary central nervous system lymphoma|neuro-oncology|schwannoma|ependymoma)\b'
+    ),
+]
+
 def classify_neurology_article(title: str, abstract: str = "", is_specialty: bool = False):
+    if NON_ARTICLE_PATTERNS.search(title):
+        return False, "Other", ["Other"], []
+
+    # Nếu là tạp chí đa khoa (NEJM, Lancet, JAMA), bắt buộc tiêu đề phải thuộc chuyên ngành Thần kinh/Đột quỵ
+    if not is_specialty and not STRICT_TITLE_NEURO_REGEX.search(title):
+        return False, "Other", ["Other"], []
+
     text_corpus = f"{title} {abstract}".lower()
-    matched = [kw for kw in NEURO_KEYWORDS if re.search(r'\b' + re.escape(kw.lower()) + r'\b', text_corpus)]
+    matched_keywords = [kw for kw in NEURO_KEYWORDS if re.search(r'\b' + re.escape(kw.lower()) + r'\b', text_corpus)]
 
-    if not matched and not is_specialty:
-        return False, "Other", []
+    if not matched_keywords and not is_specialty:
+        return False, "Other", ["Other"], []
 
-    subspecialty = "General Neurology"
-    if any(k in matched for k in ["stroke", "ischemic", "infarction", "thrombectomy", "thrombolysis", "tenecteplase", "alteplase", "hemorrhage", "aneurysm", "subarachnoid", "carotid", "endovascular", "neurovascular"]) or re.search(r'\b(stroke|thrombectomy|thrombolysis|intracerebral hemorrhage|subarachnoid hemorrhage|carotid|ischemic stroke|atrial fibrillation)\b', text_corpus):
-        subspecialty = "Vascular & Stroke"
-    elif any(k in matched for k in ["alzheimer", "dementia", "amyloid", "tau", "lecanemab", "donanemab"]) or re.search(r'\b(cognitive decline|cognitive impairment|dementia|alzheimer|frontotemporal)\b', text_corpus):
-        subspecialty = "Cognitive & Dementia"
-    elif any(k in matched for k in ["multiple sclerosis", "neuropathy", "myasthenia", "encephalitis", "myelitis", "guillain-barré", "als", "amyotrophic lateral sclerosis", "neuromyelitis", "cidp", "myopathy", "muscular dystrophy"]) or re.search(r'\b(demyelinating|autoimmune encephalitis|myasthenia|multiple sclerosis|polyneuropathy|motor neuron)\b', text_corpus):
-        subspecialty = "Neuroimmunology & Neuromuscular"
-    elif any(k in matched for k in ["parkinson", "tremor", "ataxia", "dystonia", "chorea", "huntington"]) or re.search(r'\b(parkinson|movement disorder|dyskinesia|synuclein|deep brain stimulation)\b', text_corpus):
-        subspecialty = "Movement Disorders"
-    elif any(k in matched for k in ["epilepsy", "seizure", "status epilepticus"]) or re.search(r'\b(epilep|seizure|antiseizure|ictal)\b', text_corpus):
-        subspecialty = "Epilepsy"
-    elif any(k in matched for k in ["migraine", "headache", "cluster headache", "trigeminal", "cgrp", "ubrogepant", "atogepant", "erenumab", "neuropathic pain"]) or re.search(r'\b(migraine|headache|trigeminal|chronic pain|neuropathic pain)\b', text_corpus):
-        subspecialty = "Headache & Pain"
-    elif any(k in matched for k in ["glioblastoma", "glioma", "meningioma", "brain tumor", "astrocytoma"]) or re.search(r'\b(glioma|glioblastoma|brain metastasis|meningioma|medulloblastoma|neuro-oncology|central nervous system tumor)\b', text_corpus):
-        subspecialty = "Neuro-Oncology"
-    elif any(k in matched for k in ["concussion", "traumatic brain injury", "tbi", "coma", "delirium", "encephalopathy", "neurocritical", "meningitis"]) or re.search(r'\b(traumatic brain injury|concussion|neurocritical|intracranial pressure|coma|unresponsive wakefulness|meningitis|cardiac arrest|status epilepticus|intensive care)\b', text_corpus):
-        subspecialty = "Neurocritical Care & TBI"
+    # Ưu tiên quét trên Tiêu đề trước để xếp hạng tag chính, sau đó quét trên toàn bộ Abstract
+    title_lower = title.lower()
+    matched_subs = []
 
-    formatted_topics = [t.capitalize() for t in (matched[:4] if matched else ["Neurology"])]
-    return True, subspecialty, formatted_topics
+    for sub_name, pattern in SUBSPECIALTY_RULES:
+        if re.search(pattern, title_lower, re.IGNORECASE):
+            matched_subs.append(sub_name)
+
+    for sub_name, pattern in SUBSPECIALTY_RULES:
+        if sub_name not in matched_subs and re.search(pattern, text_corpus, re.IGNORECASE):
+            matched_subs.append(sub_name)
+
+    if not matched_subs:
+        matched_subs = ["Other"]
+
+    primary_sub = matched_subs[0]
+    formatted_topics = [t.capitalize() for t in (matched_keywords[:4] if matched_keywords else ["Neurology"])]
+    return True, primary_sub, matched_subs[:3], formatted_topics
+
+def detect_article_types(title: str, abstract: str, doi: str = "", crossref_type: str = "", author_count: int = 1):
+    title_l = title.lower()
+    abs_l = (abstract or "").lower()
+    doi_l = (doi or "").lower()
+    combined = f"{title_l} {abs_l}"
+    has_real_abs = bool(abs_l) and not abs_l.startswith("original abstract") and len(abs_l) >= 80
+
+    # 1. Editorial / Commentary / Perspective / Journal Club / Viewpoint
+    if (
+        "/nejme" in doi_l
+        or "/nejmp" in doi_l
+        or "/nejmc" in doi_l
+        or re.search(r'^(editorial|comment|commentary|perspective|viewpoint|journal club|neurology journal club|author.?s?\s+reply|reply to|in\s+reply|letter)', title_l)
+        or re.search(r'\b(editorial|invited commentary|authors\' reply|clinical trial of the year|are we there yet)\b', title_l)
+        or (title_l.startswith("expanding the evidence") and "methods" not in abs_l)
+    ):
+        return "Editorial / Perspective", ["Editorial / Perspective"]
+
+    # 2. Case Report / Clinical Reasoning / Neuro Image
+    if (
+        "/nejmicm" in doi_l
+        or "/nejmcp" in doi_l
+        or re.search(r'\b(case\s+\d+-\d+|case report|case series|clinical reasoning|teaching neuroimage\w*|teaching video\w*|mystery case|image of|clinicopathological|pearls\s*&\s*oy-sters|child neurology:|tornado-like enhancement|fusiform enlargement|fibroblast imaging|quadrilateral syndrome|hyperdense anterior cerebral artery sign)\b', title_l)
+    ):
+        return "Case Report", ["Case Report"]
+
+    # 3. Guideline & Consensus (CHỈ xét trên Tiêu đề để không bắt nhầm các bài nghiên cứu có nhắc chữ "guideline" trong abstract)
+    if re.search(r'\b(guideline|guidelines|consensus|scientific statement|practice advisory|practice parameter|position statement|recommendations from)\b', title_l):
+        return "Guideline", ["Guideline", "Review"]
+
+    # 4. Meta-Analysis & Systematic Review
+    if (
+        re.search(r'\b(meta-analysis|systematic review|network meta-analysis|pooled analysis|ipd analysis)\b', title_l)
+        or ("systematic review" in abs_l and "meta-analysis" in abs_l)
+        or "pooled individual participant data" in abs_l
+    ):
+        return "Meta-Analysis", ["Meta-Analysis", "Review", "Original Article"]
+
+    # 5. Review (Narrative Review / Seminar / State of the Art)
+    is_secondary_or_trial = re.search(r'\b(randomized|randomised|clinical trial|phase [123]|cohort|case-control)\b', title_l)
+    if not is_secondary_or_trial and (
+        "review" in crossref_type.lower()
+        or re.search(r'\b(review|seminar|state of the art|contemporary issues|primer)\b', title_l)
+        or (has_real_abs and "methods" not in abs_l and "results" not in abs_l and re.search(r'\b(overview|we review|this review|narrative review|recent advances)\b', abs_l))
+    ):
+        return "Review", ["Review"]
+
+    # Nếu không có Abstract thực sự và <= 7 tác giả (các bài Comment / Perspective ngắn trên Lancet Neurol, JAMA Neurol, Neurology)
+    if not has_real_abs and author_count <= 7 and not is_secondary_or_trial:
+        return "Editorial / Perspective", ["Editorial / Perspective"]
+
+    # 6. Clinical Trial: Phân biệt rõ RCT chính (Primary RCT) vs Clinical Trial khác (Post-hoc / Secondary / Phase 1 / Open-label) vs Observational Cohort
+    is_observational_cohort = bool(
+        re.search(
+            r'\b(nationwide cohort|retrospective cohort|prospective cohort|population-based cohort|nested case-control|observational study|observational analysis|administrative claims|mendelian randomization|cross-sectional)\b',
+            combined
+        ) and not re.search(r'\b(randomized|randomised|phase [123])\b', title_l)
+    )
+    is_posthoc_or_non_rct = bool(
+        re.search(
+            r'\b(post hoc|post-hoc|secondary analysis|subanalysis|subgroup analysis|prespecified analysis|exploratory analysis|ancillary|open-label extension|long-term extension|phase 1\b|phase i\b|phase 1b|single-arm|nonrandomized|non-randomized|protocol for|study protocol)\b',
+            combined
+        )
+    )
+    cleaned_for_rct_check = re.sub(
+        r'\b(warrant\w*|need\w*|require\w*|confirm\w*|future|further)\s+(confirmation\s+in\s+|validation\s+in\s+)?(randomized|randomised)\s+(controlled\s+)?trials?\b',
+        '',
+        combined
+    )
+    has_rct_signals = not is_observational_cohort and bool(
+        re.search(
+            r'\b(randomized|randomised|double-blind|placebo-controlled|phase 3|phase 2|phase iii|phase ii|randomly assigned|assigned in a \d+:\d+)\b',
+            cleaned_for_rct_check
+        )
+    )
+    has_trial_signals = has_rct_signals or bool(
+        re.search(r'\b(clinical trial|trial|phase 1|phase i|open-label|intervention)\b', title_l)
+    )
+
+    if has_rct_signals and not is_posthoc_or_non_rct:
+        return "RCT", ["RCT", "Clinical Trial", "Original Article"]
+
+    if has_trial_signals or (has_rct_signals and is_posthoc_or_non_rct):
+        return "Clinical Trial", ["Clinical Trial", "Original Article"]
+
+    # 7. Default: Original Article (Observational / Cohort / Registry / Translational)
+    return "Original Article", ["Original Article"]
 
 def load_existing_cache() -> dict:
     if not os.path.exists(DATA_FILE_PATH):
@@ -224,21 +463,56 @@ def load_existing_cache() -> dict:
             data = json.load(f)
             cache = {}
             for item in data:
-                if "id" in item:
-                    item["pub_date"] = normalize_iso_date(item.get("pub_date", ""))
-                    if "ai_takeaways" in item and isinstance(item["ai_takeaways"], dict):
-                        item["ai_takeaways"]["conclusion_vi"] = clean_takeaway_text(
-                            item["ai_takeaways"].get("conclusion_vi", "")
-                        )
-                    # Cập nhật lại phân khoa chi tiết hơn nếu đang ở General Neurology
-                    _, new_sub, new_topics = classify_neurology_article(
-                        item.get("title", ""), item.get("abstract", ""), is_specialty=True
+                if "id" not in item:
+                    continue
+                doi_key = item["id"].strip().lower()
+                title = clean_text(item.get("title", ""))
+                if not title or NON_ARTICLE_PATTERNS.search(title):
+                    continue
+
+                authors = item.get("authors", [])
+                enriched = ENRICHED_MISSING_ABSTRACTS.get(doi_key)
+                raw_abs = enriched["abstract"] if enriched else item.get("abstract", "")
+                abstract = clean_text(raw_abs)
+
+                if len(authors) == 0 and (not abstract or abstract.lower().startswith("original abstract")):
+                    continue
+
+                item["title"] = title
+                item["abstract"] = abstract
+
+                j_short = item.get("journal", {}).get("short_name", "")
+                is_spec = j_short not in ("NEJM", "The Lancet", "JAMA")
+
+                is_neuro, primary_sub, sub_list, new_topics = classify_neurology_article(
+                    title, abstract, is_specialty=is_spec
+                )
+                if not is_neuro:
+                    continue
+
+                item["pub_date"] = normalize_iso_date(item.get("pub_date", ""))
+                primary_type, all_types = detect_article_types(title, abstract, item["id"], "", len(authors))
+                item["article_type"] = primary_type
+                item["article_types"] = all_types
+
+                if "neurology_classification" not in item:
+                    item["neurology_classification"] = {}
+                item["neurology_classification"]["subspecialty"] = primary_sub
+                item["neurology_classification"]["subspecialties"] = sub_list
+                if new_topics:
+                    item["neurology_classification"]["topics"] = new_topics
+
+                if enriched:
+                    item["ai_takeaways"] = {
+                        "conclusion_vi": clean_takeaway_text(enriched["takeaway"]),
+                        "clinical_significance": f"Clinical significance for {primary_sub} practice.",
+                        "ai_verified": True
+                    }
+                elif "ai_takeaways" in item and isinstance(item["ai_takeaways"], dict):
+                    item["ai_takeaways"]["conclusion_vi"] = clean_takeaway_text(
+                        item["ai_takeaways"].get("conclusion_vi", "")
                     )
-                    if item.get("neurology_classification", {}).get("subspecialty") == "General Neurology" and new_sub != "General Neurology":
-                        item["neurology_classification"]["subspecialty"] = new_sub
-                        if new_topics:
-                            item["neurology_classification"]["topics"] = new_topics
-                    cache[item["id"]] = item
+                cache[item["id"]] = item
             return cache
     except Exception:
         return {}
@@ -252,7 +526,7 @@ Read this study abstract from a top-tier medical journal:
 Title: {title}
 Abstract: {abstract}
 
-Provide a concise, high-yield clinical takeaway (1-2 sentences maximum, under 55 words) for practicing neurologists. Preserve exact statistical outcomes if present (e.g., OR, HR, RR, 95% CI, p-value, mRS). Do not include introductory filler or section headers."""
+Provide a concise, high-yield clinical takeaway (1-2 sentences maximum, under 55 words) for practicing neurologists. Preserve exact statistical outcomes if present (e.g., OR, HR, RR, 95% CI, p-value, mRS). Do NOT use LaTeX math syntax (no $ signs, no \\beta or \\times); use plain Unicode characters (β, α, ×, ±, ≤, ≥) instead. Do not include introductory filler or section headers."""
 
     payload = {
         "contents": [{"parts": [{"text": prompt}]}],
@@ -348,6 +622,10 @@ def fetch_pubmed_abstract(doi: str, title: str = "") -> str:
     return ""
 
 def fetch_abstract_from_apis(doi: str, title: str = "") -> str:
+    enriched = ENRICHED_MISSING_ABSTRACTS.get(doi.strip().lower())
+    if enriched:
+        return clean_text(enriched["abstract"])
+
     pubmed_abs = fetch_pubmed_abstract(doi, title)
     if pubmed_abs:
         return pubmed_abs
@@ -385,19 +663,21 @@ def fetch_abstract_from_apis(doi: str, title: str = "") -> str:
     except Exception:
         pass
 
-    return ""
+    try:
+        clean_doi = doi.strip()
+        url = f"https://api.semanticscholar.org/graph/v1/paper/DOI:{urllib.parse.quote(clean_doi)}?fields=abstract"
+        req = urllib.request.Request(url, headers=HEADERS)
+        with urllib.request.urlopen(req, context=ctx, timeout=8) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+            abs_text = data.get("abstract")
+            if abs_text:
+                clean = clean_text(abs_text)
+                if len(clean) > 80:
+                    return clean
+    except Exception:
+        pass
 
-def detect_article_type(title: str, abstract: str, crossref_type: str) -> str:
-    combined = f"{title} {abstract}".lower()
-    if any(k in combined for k in ["randomized", "randomised", "phase 3", "phase 2", "clinical trial", "double-blind", "placebo-controlled"]):
-        return "Clinical Trial"
-    if any(k in combined for k in ["meta-analysis", "systematic review"]):
-        return "Meta-Analysis / Review"
-    if "guideline" in combined or "consensus" in combined or "scientific statement" in combined:
-        return "Guideline"
-    if "review" in crossref_type.lower() or "review" in title.lower():
-        return "Review"
-    return "Original Article"
+    return ""
 
 def extract_fallback_takeaway(clean_abs: str) -> str:
     if not clean_abs or clean_abs.startswith("Original abstract"):
@@ -463,6 +743,10 @@ def fetch_journal_articles(journal_cfg: dict, cache: dict):
                             articles.append(cached_art)
                             continue
 
+                    # Kiểm tra nhanh trên tiêu đề với tạp chí đa khoa trước khi gọi API lấy Abstract
+                    if not journal_cfg["specialty_journal"] and not STRICT_TITLE_NEURO_REGEX.search(title):
+                        continue
+
                     doi_url = item.get("URL", f"https://doi.org/{doi}")
                     raw_abs = item.get("abstract", "")
                     clean_abs = clean_text(raw_abs)
@@ -472,7 +756,7 @@ def fetch_journal_articles(journal_cfg: dict, cache: dict):
                         if real_abs:
                             clean_abs = real_abs
 
-                    is_neuro, subspecialty, topics = classify_neurology_article(
+                    is_neuro, primary_sub, sub_list, topics = classify_neurology_article(
                         title, clean_abs, is_specialty=journal_cfg["specialty_journal"]
                     )
                     if not is_neuro:
@@ -488,9 +772,8 @@ def fetch_journal_articles(journal_cfg: dict, cache: dict):
                         if family:
                             authors.append(f"{family} {given}".strip())
 
-                    article_type = detect_article_type(title, clean_abs, item.get("type", ""))
+                    primary_type, all_types = detect_article_types(title, clean_abs, doi, item.get("type", ""))
 
-                    # Trích xuất tạm kết luận fallback trước (Gemini sẽ chạy tập trung ở bước sau theo thứ tự bài mới nhất)
                     key_takeaway = ""
                     if clean_abs and not clean_abs.startswith("Original abstract"):
                         key_takeaway = extract_fallback_takeaway(clean_abs)
@@ -505,17 +788,19 @@ def fetch_journal_articles(journal_cfg: dict, cache: dict):
                             "badge_text": journal_cfg["badge_text"]
                         },
                         "pub_date": pub_iso,
-                        "article_type": article_type,
+                        "article_type": primary_type,
+                        "article_types": all_types,
                         "authors": authors,
                         "doi_url": doi_url,
                         "neurology_classification": {
-                            "subspecialty": subspecialty,
+                            "subspecialty": primary_sub,
+                            "subspecialties": sub_list,
                             "topics": topics
                         },
                         "abstract": clean_abs,
                         "ai_takeaways": {
                             "conclusion_vi": key_takeaway,
-                            "clinical_significance": f"Clinical significance for {subspecialty} practice.",
+                            "clinical_significance": f"Clinical significance for {primary_sub} practice.",
                             "ai_verified": False
                         }
                     })
@@ -534,7 +819,7 @@ def save_articles_to_disk(all_articles: list):
 def run():
     print("[1/4] Khởi động quét và cập nhật bài báo từ 8 tạp chí y khoa...")
     existing_cache = load_existing_cache()
-    print(f"-> Đã tải {len(existing_cache)} bài báo từ bộ nhớ đệm.")
+    print(f"-> Đã tải và chuẩn hóa {len(existing_cache)} bài báo Thần kinh từ bộ nhớ đệm.")
 
     merged_articles = dict(existing_cache)
     for cfg in JOURNAL_CONFIGS:
