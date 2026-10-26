@@ -8,6 +8,7 @@ import {
   highlightClinicalStats,
   cleanMedicalText,
 } from "../components/ArticleCard";
+import { AppSwitcher } from "../components/ecosystem/AppSwitcher";
 
 const JOURNAL_ORDER = [
   "NEJM",
@@ -525,6 +526,8 @@ export default function HomePage() {
   const [darkMode, setDarkMode] = useState<boolean>(false);
   const [compactMode, setCompactMode] = useState<boolean>(false);
   const [showScrollTop, setShowScrollTop] = useState<boolean>(false);
+  const [showMobileFilters, setShowMobileFilters] = useState<boolean>(false);
+  const [showDesktopSidebar, setShowDesktopSidebar] = useState<boolean>(true);
 
   useEffect(() => {
     const savedIds = localStorage.getItem("neuro_bookmarks");
@@ -920,7 +923,7 @@ export default function HomePage() {
         darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-100 text-slate-900"
       }`}
     >
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         {/* Header */}
         <header className="mb-6 pt-1 flex flex-wrap items-end justify-between gap-4">
           <div>
@@ -987,6 +990,8 @@ export default function HomePage() {
               <span>{showSavedOnly ? "★" : "☆"}</span>
               <span>Saved ({bookmarks.length})</span>
             </button>
+
+            <AppSwitcher currentApp="neuropulse" darkMode={darkMode} />
           </div>
         </header>
 
@@ -1122,216 +1127,363 @@ export default function HomePage() {
           </div>
         )}
 
-        {/* Search Input with Clear Button */}
-        <div className="mb-2.5 relative">
-          <input
-            type="text"
-            placeholder="Search by article title, abstract, author, drug, intervention, or your personal clinical notes..."
-            value={searchQuery}
-            onChange={(e) => {
-              setSearchQuery(e.target.value);
-              setVisibleCount(35);
-            }}
-            className={`w-full px-4 py-2.5 pr-10 text-sm rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm ${
-              darkMode
-                ? "bg-slate-900 border-slate-700 text-slate-100 placeholder-slate-500"
-                : "bg-white border-slate-300 text-slate-900"
-            }`}
-          />
-          {searchQuery && (
-            <button
-              onClick={() => setSearchQuery("")}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 hover:text-slate-600 font-bold"
-            >
-              ✕
-            </button>
-          )}
-        </div>
+        {/* BỐ CỤC 2 CỘT TRÊN MÁY TÍNH (LEFT SIDEBAR CHO RADAR & FILTER + RIGHT FEED) & TOGGLE TRÊN ĐIỆN THOẠI */}
+        <div className="lg:flex lg:items-start lg:gap-6">
+          {/* Thanh tìm kiếm + Nút Toggle Filter trên Điện thoại (Mobile Top Bar) */}
+          <div className="lg:hidden mb-3 space-y-2">
+            <div className="flex items-center gap-2">
+              <div className="relative flex-1">
+                <input
+                  type="text"
+                  placeholder="Search articles, drugs, trials, notes..."
+                  value={searchQuery}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                    setVisibleCount(35);
+                  }}
+                  className={`w-full px-3.5 py-2.5 pr-9 text-sm rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm ${
+                    darkMode
+                      ? "bg-slate-900 border-slate-700 text-slate-100 placeholder-slate-500"
+                      : "bg-white border-slate-300 text-slate-900"
+                  }`}
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery("")}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 hover:text-slate-600 font-bold"
+                  >
+                    ✕
+                  </button>
+                )}
+              </div>
 
-        {/* DYNAMIC CLINICAL RADAR (TOP 5 CHỦ ĐỀ LÂM SÀNG NÓNG NHẤT THEO DỮ LIỆU THỰC TẾ) */}
-        <div className="mb-4 flex flex-wrap items-center gap-1.5">
-          <span
-            className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mr-1 flex items-center gap-1"
-            title="Top 5 hottest clinical interventions & biomarker themes automatically ranked by recent RCTs, Meta-Analyses & study volume"
-          >
-            <span>🔥 Dynamic Clinical Radar (Top 5):</span>
-          </span>
-          {dynamicClinicalRadar.map((item) => {
-            const isActive = searchQuery.toLowerCase() === item.query.toLowerCase();
-            return (
               <button
-                key={item.label}
-                onClick={() => {
-                  if (isActive) {
-                    setSearchQuery("");
-                  } else {
-                    setSearchQuery(item.query);
-                    setSelectedSub("All");
-                    setSelectedJournal("All");
-                    setSelectedType("All");
-                    setShowSavedOnly(false);
-                  }
-                  setVisibleCount(35);
-                }}
-                className={`px-2.5 py-1 rounded-full text-[11px] font-semibold transition-all border inline-flex items-center gap-1.5 ${
-                  isActive
-                    ? "bg-blue-600 text-white border-blue-600 shadow-xs"
+                type="button"
+                onClick={() => setShowMobileFilters((prev) => !prev)}
+                className={`px-3.5 py-2.5 rounded-lg text-xs font-bold border transition-all shrink-0 flex items-center gap-1.5 shadow-xs ${
+                  showMobileFilters || hasActiveFilters
+                    ? "bg-blue-600 text-white border-blue-500"
                     : darkMode
-                    ? "bg-slate-900 text-slate-300 border-slate-800 hover:border-slate-600"
-                    : "bg-white text-slate-700 border-slate-200/90 hover:bg-slate-50"
+                    ? "bg-slate-900 text-slate-200 border-slate-700"
+                    : "bg-white text-slate-700 border-slate-300"
                 }`}
               >
-                <span>{item.label}</span>
-                <span
-                  className={`px-1.5 py-0.2 rounded-full text-[10px] font-extrabold ${
-                    isActive
-                      ? "bg-white/25 text-white"
-                      : darkMode
-                      ? "bg-slate-800 text-amber-300"
-                      : "bg-slate-100 text-slate-600"
-                  }`}
-                >
-                  {item.count}
-                </span>
+                <span>⚡ Filters &amp; Radar</span>
+                {hasActiveFilters && (
+                  <span className="px-1.5 py-0.2 rounded-full text-[10px] font-black bg-white/25 text-white">
+                    •
+                  </span>
+                )}
+                <span>{showMobileFilters ? "▲" : "▼"}</span>
               </button>
-            );
-          })}
-        </div>
-
-        {/* Filter Controls */}
-        <div
-          className={`space-y-3 mb-6 p-4 rounded-xl border shadow-sm ${
-            darkMode
-              ? "bg-slate-900 border-slate-800"
-              : "bg-white border-slate-200"
-          }`}
-        >
-          <div>
-            <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">
-              FILTER BY JOURNAL:
             </div>
-            <div className="flex flex-wrap items-center gap-2">
-              {availableJournals.map((j) => {
-                const style = JOURNAL_PILL_STYLES[j] || JOURNAL_PILL_STYLES["All"];
-                const isSelected = selectedJournal.toLowerCase() === j.toLowerCase();
-                const count = journalCounts[j] ?? 0;
-                return (
-                  <button
-                    key={j}
-                    onClick={() => {
-                      setSelectedJournal(j);
-                      setVisibleCount(35);
-                    }}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
-                      isSelected
-                        ? style.active
-                        : darkMode
-                        ? style.darkInactive
-                        : style.inactive
-                    }`}
-                  >
-                    <span>{j === "All" ? "All Journals" : j}</span>
-                    <span
-                      className={`text-[10px] px-1.5 py-0.2 rounded-full ${
-                        isSelected
-                          ? "bg-black/20 text-white"
+          </div>
+
+          {/* CỘT TRÁI (LEFT SIDEBAR): DYNAMIC CLINICAL RADAR & FILTER CONTROLS */}
+          <aside
+            className={`${
+              showMobileFilters ? "block mb-5" : "hidden"
+            } ${
+              showDesktopSidebar
+                ? "lg:block lg:w-80 xl:w-84 lg:shrink-0 lg:sticky lg:top-4 lg:max-h-[calc(100vh-2rem)] lg:overflow-y-auto"
+                : "lg:hidden"
+            } space-y-4`}
+          >
+            {/* Khối 1: DYNAMIC CLINICAL RADAR (TOP 5) */}
+            <div
+              className={`p-4 rounded-xl border shadow-sm ${
+                darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
+              }`}
+            >
+              <div
+                className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2.5 flex items-center justify-between"
+                title="Top 5 hottest clinical interventions & biomarker themes automatically ranked by recent RCTs, Meta-Analyses & study volume"
+              >
+                <span>🔥 Dynamic Clinical Radar (Top 5)</span>
+              </div>
+              <div className="flex flex-col gap-1.5">
+                {dynamicClinicalRadar.map((item) => {
+                  const isActive = searchQuery.toLowerCase() === item.query.toLowerCase();
+                  return (
+                    <button
+                      key={item.label}
+                      onClick={() => {
+                        if (isActive) {
+                          setSearchQuery("");
+                        } else {
+                          setSearchQuery(item.query);
+                          setSelectedSub("All");
+                          setSelectedJournal("All");
+                          setSelectedType("All");
+                          setShowSavedOnly(false);
+                        }
+                        setVisibleCount(35);
+                      }}
+                      className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all border flex items-center justify-between text-left ${
+                        isActive
+                          ? "bg-blue-600 text-white border-blue-600 shadow-xs"
                           : darkMode
-                          ? "bg-black/30 text-slate-300"
-                          : "bg-slate-200/70 text-slate-600"
+                          ? "bg-slate-950/70 text-slate-300 border-slate-800 hover:border-slate-600"
+                          : "bg-slate-50/80 text-slate-700 border-slate-200/90 hover:bg-slate-100"
                       }`}
                     >
-                      {count}
-                    </span>
+                      <span className="truncate pr-2">{item.label}</span>
+                      <span
+                        className={`px-1.5 py-0.2 rounded-full text-[10px] font-extrabold shrink-0 ${
+                          isActive
+                            ? "bg-white/25 text-white"
+                            : darkMode
+                            ? "bg-slate-800 text-amber-300"
+                            : "bg-white border border-slate-200 text-slate-600"
+                        }`}
+                      >
+                        {item.count}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Khối 2: FILTER CONTROLS (JOURNAL, SUBSPECIALTY, STUDY TYPE) */}
+            <div
+              className={`space-y-4 p-4 rounded-xl border shadow-sm ${
+                darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
+              }`}
+            >
+              {hasActiveFilters && (
+                <div className="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800">
+                  <span className="text-[11px] font-bold text-blue-500 uppercase">
+                    Active Filters Applied
+                  </span>
+                  <button
+                    onClick={resetAllFilters}
+                    className="text-xs font-bold text-red-500 hover:text-red-400 underline"
+                  >
+                    Reset All
                   </button>
-                );
-              })}
-            </div>
-          </div>
+                </div>
+              )}
 
-          <div
-            className={`pt-2 border-t ${
-              darkMode ? "border-slate-800" : "border-slate-100"
-            }`}
-          >
-            <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">
-              NEUROLOGY SUBSPECIALTIES (MULTI-TAG):
-            </div>
-            <div className="flex flex-wrap gap-1.5">
-              {TOPIC_TABS.map((tab) => (
-                <button
-                  key={tab.value}
-                  onClick={() => {
-                    setSelectedSub(tab.value);
-                    setVisibleCount(35);
-                  }}
-                  className={`px-2.5 py-1 rounded-md text-xs font-semibold whitespace-nowrap transition-colors ${
-                    selectedSub === tab.value
-                      ? "bg-blue-600 text-white"
-                      : darkMode
-                      ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
-                      : "bg-slate-100 text-slate-600 hover:bg-slate-200"
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-          </div>
+              <div>
+                <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">
+                  FILTER BY JOURNAL:
+                </div>
+                <div className="flex flex-wrap items-center gap-1.5">
+                  {availableJournals.map((j) => {
+                    const style = JOURNAL_PILL_STYLES[j] || JOURNAL_PILL_STYLES["All"];
+                    const isSelected = selectedJournal.toLowerCase() === j.toLowerCase();
+                    const count = journalCounts[j] ?? 0;
+                    return (
+                      <button
+                        key={j}
+                        onClick={() => {
+                          setSelectedJournal(j);
+                          setVisibleCount(35);
+                        }}
+                        className={`px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+                          isSelected
+                            ? style.active
+                            : darkMode
+                            ? style.darkInactive
+                            : style.inactive
+                        }`}
+                      >
+                        <span>{j === "All" ? "All Journals" : j}</span>
+                        <span
+                          className={`text-[10px] px-1.5 py-0.2 rounded-full ${
+                            isSelected
+                              ? "bg-black/20 text-white"
+                              : darkMode
+                              ? "bg-black/30 text-slate-300"
+                              : "bg-slate-200/70 text-slate-600"
+                          }`}
+                        >
+                          {count}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
 
-          <div
-            className={`pt-2 border-t flex flex-wrap items-center justify-between gap-2 ${
-              darkMode ? "border-slate-800" : "border-slate-100"
-            }`}
-          >
-            <div className="flex flex-wrap items-center gap-1.5">
-              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mr-1">
-                STUDY TYPE:
-              </span>
-              {STUDY_TYPE_TABS.map((type) => (
-                <button
-                  key={type}
-                  onClick={() => {
-                    setSelectedType(type);
-                    setVisibleCount(35);
-                  }}
-                  className={`px-2.5 py-1 rounded text-xs font-semibold transition-colors ${
-                    selectedType === type
-                      ? "bg-blue-600 text-white"
-                      : darkMode
-                      ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
-                      : "bg-slate-100 text-slate-600 hover:bg-slate-200"
-                  }`}
-                >
-                  {type}
-                </button>
-              ))}
-            </div>
-
-            {hasActiveFilters && (
-              <button
-                onClick={resetAllFilters}
-                className="text-xs font-semibold text-red-500 hover:text-red-400 underline"
+              <div
+                className={`pt-3 border-t ${
+                  darkMode ? "border-slate-800" : "border-slate-100"
+                }`}
               >
-                Reset Filters
-              </button>
-            )}
-          </div>
-        </div>
+                <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">
+                  NEUROLOGY SUBSPECIALTIES:
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {TOPIC_TABS.map((tab) => (
+                    <button
+                      key={tab.value}
+                      onClick={() => {
+                        setSelectedSub(tab.value);
+                        setVisibleCount(35);
+                      }}
+                      className={`px-2.5 py-1 rounded-md text-xs font-semibold transition-colors text-left ${
+                        selectedSub === tab.value
+                          ? "bg-blue-600 text-white"
+                          : darkMode
+                          ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
+                          : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                      }`}
+                    >
+                      {tab.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
 
-        {/* Metadata & Status Bar */}
-        <div className="flex flex-wrap items-center justify-between text-xs text-slate-400 mb-5 px-1 font-medium gap-2">
-          <span>
-            Showing <strong>{displayedArticles.length}</strong> of{" "}
-            <strong>{filteredArticles.length}</strong> articles across{" "}
-            <strong>{groupedByDate.length}</strong> publication dates
-            {selectedJournal !== "All" && ` from ${selectedJournal}`}
-          </span>
-          {lastUpdated && (
-            <span className="font-mono text-[11px]">
-              Last updated: {lastUpdated}
-            </span>
-          )}
-        </div>
+              <div
+                className={`pt-3 border-t ${
+                  darkMode ? "border-slate-800" : "border-slate-100"
+                }`}
+              >
+                <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">
+                  STUDY TYPE:
+                </div>
+                <div className="flex flex-wrap items-center gap-1.5">
+                  {STUDY_TYPE_TABS.map((type) => (
+                    <button
+                      key={type}
+                      onClick={() => {
+                        setSelectedType(type);
+                        setVisibleCount(35);
+                      }}
+                      className={`px-2.5 py-1 rounded text-xs font-semibold transition-colors ${
+                        selectedType === type
+                          ? "bg-blue-600 text-white"
+                          : darkMode
+                          ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
+                          : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                      }`}
+                    >
+                      {type}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </aside>
+
+          {/* CỘT PHẢI (MAIN CONTENT COLUMN): SEARCH + STATUS BAR + ARTICLES FEED */}
+          <div className="flex-1 min-w-0">
+            {/* Desktop Search Input + Sidebar Collapse Toggle */}
+            <div className="hidden lg:flex items-center gap-2 mb-3">
+              <button
+                type="button"
+                onClick={() => setShowDesktopSidebar((prev) => !prev)}
+                className={`px-3 py-2.5 rounded-lg text-xs font-bold border transition-all shrink-0 flex items-center gap-1.5 ${
+                  darkMode
+                    ? "bg-slate-900 border-slate-700 text-slate-300 hover:bg-slate-800"
+                    : "bg-white border-slate-300 text-slate-700 hover:bg-slate-50"
+                }`}
+                title="Show or hide the left Radar & Filter sidebar"
+              >
+                <span>{showDesktopSidebar ? "◧ Hide Filters" : "◧ Show Filters"}</span>
+              </button>
+
+              <div className="relative flex-1">
+                <input
+                  type="text"
+                  placeholder="Search by article title, abstract, author, drug, intervention, or your personal clinical notes..."
+                  value={searchQuery}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                    setVisibleCount(35);
+                  }}
+                  className={`w-full px-4 py-2.5 pr-10 text-sm rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm ${
+                    darkMode
+                      ? "bg-slate-900 border-slate-700 text-slate-100 placeholder-slate-500"
+                      : "bg-white border-slate-300 text-slate-900"
+                  }`}
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery("")}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 hover:text-slate-600 font-bold"
+                  >
+                    ✕
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {/* Active Filter Chips Bar (hiển thị nhanh bộ lọc đang bật) */}
+            {hasActiveFilters && (
+              <div className="mb-3 flex flex-wrap items-center gap-1.5">
+                <span className="text-[11px] font-bold text-slate-400 mr-1">Active:</span>
+                {selectedJournal !== "All" && (
+                  <button
+                    onClick={() => setSelectedJournal("All")}
+                    className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-600 text-white flex items-center gap-1"
+                  >
+                    <span>Journal: {selectedJournal}</span>
+                    <span>✕</span>
+                  </button>
+                )}
+                {selectedSub !== "All" && (
+                  <button
+                    onClick={() => setSelectedSub("All")}
+                    className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-600 text-white flex items-center gap-1"
+                  >
+                    <span>Subspecialty: {selectedSub}</span>
+                    <span>✕</span>
+                  </button>
+                )}
+                {selectedType !== "All" && (
+                  <button
+                    onClick={() => setSelectedType("All")}
+                    className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-violet-600 text-white flex items-center gap-1"
+                  >
+                    <span>Type: {selectedType}</span>
+                    <span>✕</span>
+                  </button>
+                )}
+                {showSavedOnly && (
+                  <button
+                    onClick={() => setShowSavedOnly(false)}
+                    className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-500 text-white flex items-center gap-1"
+                  >
+                    <span>Saved Only</span>
+                    <span>✕</span>
+                  </button>
+                )}
+                {searchQuery.trim() !== "" && (
+                  <button
+                    onClick={() => setSearchQuery("")}
+                    className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-700 text-white flex items-center gap-1"
+                  >
+                    <span>Query: &ldquo;{searchQuery}&rdquo;</span>
+                    <span>✕</span>
+                  </button>
+                )}
+                <button
+                  onClick={resetAllFilters}
+                  className="text-xs font-bold text-red-500 hover:underline ml-1"
+                >
+                  Clear All
+                </button>
+              </div>
+            )}
+
+            {/* Metadata & Status Bar */}
+            <div className="flex flex-wrap items-center justify-between text-xs text-slate-400 mb-4 px-1 font-medium gap-2">
+              <span>
+                Showing <strong>{displayedArticles.length}</strong> of{" "}
+                <strong>{filteredArticles.length}</strong> articles across{" "}
+                <strong>{groupedByDate.length}</strong> publication dates
+                {selectedJournal !== "All" && ` from ${selectedJournal}`}
+              </span>
+              {lastUpdated && (
+                <span className="font-mono text-[11px]">
+                  Last updated: {lastUpdated}
+                </span>
+              )}
+            </div>
 
         {/* Articles Grouped by Date -> Grouped by Journal */}
         {loading ? (
@@ -1470,6 +1622,8 @@ export default function HomePage() {
             No articles match the selected filter criteria.
           </div>
         )}
+          </div>
+        </div>
       </div>
 
       {/* NÚT CUỘN NHANH LÊN ĐẦU TRANG (BACK TO TOP BUTTON) */}

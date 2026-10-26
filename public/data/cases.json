@@ -1,0 +1,805 @@
+[
+  {
+    "id": "nc-2026-001",
+    "case_code": "NC-2026-001",
+    "title": "Sudden Neurological Deterioration with Distal Basilar Artery Occlusion After Major Trauma and Spinal Surgery",
+    "subspecialty": "Vascular & Stroke",
+    "subspecialties": ["Vascular & Stroke", "Neurocritical Care"],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 120,
+    "is_daily_challenge": true,
+    "published_date": "2026-10-26",
+    "status": "approved",
+    "author_credit": "PMC Open Access Case Report • PMC13683875",
+    "source_journal": {
+      "name": "Cureus / PubMed Central",
+      "short_name": "PMC13683875",
+      "doi_url": "https://doi.org/10.7759/cureus.116615",
+      "pmcid": "PMC13683875",
+      "pmid": "42909170",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "21-year-old previously healthy male",
+      "chief_complaint": "Sudden generalized tonic-clonic convulsion, stupor, and respiratory failure during hospitalization after thoracic spinal surgery",
+      "history_of_present_illness": "A previously healthy 21-year-old man sustained a 6-meter fall resulting in T9–T10 compression fractures with spinal canal compromise and complete traumatic spinal cord injury, for which he underwent posterior thoracic spinal instrumentation. During postoperative hospitalization with prolonged immobilization, he developed sudden neurological deterioration characterized by a generalized tonic-clonic convulsion, coma, respiratory failure, and hemodynamic instability.",
+      "past_medical_history": "Recent T9–T10 traumatic spinal cord injury and posterior thoracic spinal fusion; no prior cardiovascular risk factors.",
+      "vitals": {
+        "bp": "105/64 mmHg",
+        "hr": "116 bpm (sinus tachycardia)",
+        "rr": "26 /min (irregular)",
+        "temp": "37.1 °C",
+        "spo2": "89% on room air (intubated emergently)"
+      },
+      "neuro_exam": "Impaired consciousness (GCS 7), pinpoint reactive pupils, impaired brainstem vestibulo-ocular reflexes, and acute quadriparesis superimposed on baseline paraplegia. NIHSS > 20.",
+      "key_labs_csf": "Platelets: 260 × 10⁹/L; INR: 1.05; D-dimer markedly elevated. Agitated saline bubble contrast echocardiography showed > 30 microbubbles in the left atrium within 2 cardiac cycles.",
+      "imaging": [
+        {
+          "modality": "Digital Subtraction Angiography (DSA) — Posterior Circulation",
+          "sequence_badge": "Figure 1 • PMC13683875",
+          "figure_label": "Figure 1 (DSA)",
+          "image_url": "/data/figures/PMC13683875_fig1.webp",
+          "pmcid": "PMC13683875",
+          "doi_url": "https://doi.org/10.7759/cureus.116615",
+          "caption": "(A) Initial angiography showing distal basilar artery occlusion with impaired opacification of the distal posterior circulation (black arrow). (B) Complete reperfusion of the basilar artery after mechanical thrombectomy (white arrow), corresponding to TICI 3 reperfusion.",
+          "findings_summary": "Acute distal basilar artery occlusion (BAO) without intracranial hemorrhage on CT; complete TICI 3 recanalization achieved via direct aspiration mechanical thrombectomy."
+        },
+        {
+          "modality": "Agitated Saline Contrast TTE & Transesophageal Echocardiography (TEE)",
+          "sequence_badge": "Figure 2 • PMC13683875",
+          "figure_label": "Figure 2 (Echo)",
+          "image_url": "/data/figures/PMC13683875_fig2.webp",
+          "pmcid": "PMC13683875",
+          "doi_url": "https://doi.org/10.7759/cureus.116615",
+          "caption": "(A) Transthoracic echocardiography with agitated saline contrast demonstrating passage of microbubbles into the left-sided cardiac chambers, consistent with a right-to-left intracardiac shunt. (B) Transesophageal echocardiography demonstrating the patent foramen ovale and the interatrial septum.",
+          "findings_summary": "Large right-to-left shunt (>30 microbubbles) across a high-risk Patent Foramen Ovale (PFO) with increased interatrial septal mobility, confirming paradoxical embolism."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Given the patient's recent major thoracic spinal surgery, acute distal basilar artery occlusion, and echocardiographic findings, what is the optimal acute reperfusion strategy and underlying stroke mechanism?",
+      "question_type": "Acute Management",
+      "options": [
+        {
+          "id": "A",
+          "text": "Direct endovascular mechanical thrombectomy (withholding IV thrombolysis due to recent spinal surgery) — Paradoxical embolism via Patent Foramen Ovale (PFO)",
+          "peer_percentage": 81,
+          "rationale": "Correct! Intravenous thrombolysis (IVT) is contraindicated due to recent major trauma and thoracic spinal instrumentation. Direct aspiration mechanical thrombectomy is indicated for acute Basilar Artery Occlusion (achieving TICI 3 reperfusion), and the combination of immobilization, prothrombotic state, and grade 3 right-to-left shunt confirms paradoxical embolism across a PFO."
+        },
+        {
+          "id": "B",
+          "text": "Bridging intravenous Tenecteplase (0.25 mg/kg) followed by mechanical thrombectomy — Atherothrombotic basilar stenosis",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. Systemic IV thrombolysis is contraindicated after recent major spinal surgery due to the catastrophic risk of spinal epidural hematoma."
+        },
+        {
+          "id": "C",
+          "text": "Conservative management with dual antiplatelet therapy alone — Traumatic vertebral artery dissection",
+          "peer_percentage": 6,
+          "rationale": "Incorrect. Leaving an acute basilar artery occlusion untreated carries >70% risk of mortality or severe disability; emergent mechanical thrombectomy is mandatory."
+        },
+        {
+          "id": "D",
+          "text": "Immediate open surgical embolectomy and emergent cardiac surgery for atrial myxoma",
+          "peer_percentage": 3,
+          "rationale": "Incorrect. Endovascular thrombectomy is the standard of care for large-vessel posterior circulation occlusion, and TEE demonstrated a PFO rather than a cardiac tumor."
+        }
+      ],
+      "correct_option": "A"
+    },
+    "resolution": {
+      "final_diagnosis": "Acute Basilar Artery Occlusion (BAO) Secondary to Paradoxical Embolism Across a Patent Foramen Ovale After Traumatic Spinal Cord Injury",
+      "clinical_discussion": "Basilar artery occlusion (BAO) is a life-threatening neurological emergency. Acute convulsive-like movements (decerebrate posturing or hypoxic-ischemic brainstem phenomena) frequently mimic generalized tonic-clonic seizures at presentation, delaying neurovascular imaging.\n\nIn hospitalized trauma patients with recent spinal surgery, intravenous thrombolysis is contraindicated, making emergent endovascular thrombectomy (EVT) the sole life-saving reperfusion therapy. Furthermore, immobilized spinal cord injury patients have a markedly elevated risk of venous thromboembolism, which can lead to paradoxical cerebral embolism in the presence of a patent foramen ovale (PFO).",
+      "teaching_points": [
+        "Acute Basilar Artery Occlusion can present with convulsive-like movements and coma; always obtain emergent CTA alongside non-contrast head CT.",
+        "When systemic intravenous thrombolysis is contraindicated due to recent major surgery or trauma, direct mechanical thrombectomy (EVT) is the definitive reperfusion strategy.",
+        "Always evaluate young or immobilized postoperative stroke patients with agitated saline bubble study (TTE/TEE) to identify paradoxical embolism via a PFO."
+      ],
+      "clinical_pitfalls": [
+        "Misinterpreting brainstem ischemia-induced convulsive movements as simple post-ictal encephalopathy and delaying CT angiography.",
+        "Administering systemic IV fibrinolytics to a patient with recent spinal canal instrumentation, risking compressive spinal epidural hematoma."
+      ],
+      "related_keywords": ["basilar", "thrombectomy", "stroke", "endovascular", "ischemic"]
+    }
+  },
+  {
+    "id": "nc-2026-002",
+    "case_code": "NC-2026-002",
+    "title": "Acute Occipital Headache, Dysphagia, Hoarseness, and Crossed Sensory Loss Following Heavy Resistance Exercise",
+    "subspecialty": "Vascular & Stroke",
+    "subspecialties": ["Vascular & Stroke"],
+    "difficulty": "Resident",
+    "estimated_time_sec": 95,
+    "is_daily_challenge": false,
+    "published_date": "2026-10-25",
+    "status": "approved",
+    "author_credit": "PMC Open Access Case Report • PMC12634019",
+    "source_journal": {
+      "name": "Cureus / PubMed Central",
+      "short_name": "PMC12634019",
+      "doi_url": "https://doi.org/10.7759/cureus.95084",
+      "pmcid": "PMC12634019",
+      "pmid": "41281093",
+      "pub_year": "2025"
+    },
+    "presentation": {
+      "demographics": "40-year-old male",
+      "chief_complaint": "Right-sided occipital headache, severe vertigo, vomiting, dysphagia, dysphonia, and crossed sensory deficits shortly after heavy lower-limb weight training",
+      "history_of_present_illness": "A 40-year-old man developed sudden right-sided occipital and posterior neck pain accompanied by intense vertigo, vomiting, hoarseness, severe difficulty swallowing, and unsteady gait shortly after high-intensity isotonic lower-limb resistance training ('leg day').",
+      "past_medical_history": "Previously healthy; negative genetic screening for hereditary connective tissue disorders.",
+      "vitals": {
+        "bp": "148/90 mmHg",
+        "hr": "82 bpm",
+        "rr": "18 /min",
+        "temp": "36.7 °C",
+        "spo2": "98%"
+      },
+      "neuro_exam": "Alert and oriented (GCS 15). Right ipsilateral Horner syndrome (ptosis and miosis), decreased pain and temperature sensation on the right side of the face, palatal paresis with diminished right gag reflex, right-sided appendicular ataxia, and contralateral (left-sided) loss of pain and temperature sensation over the trunk and extremities. Motor strength 5/5 in all four limbs.",
+      "key_labs_csf": "Markedly elevated serum creatine phosphokinase (CPK) consistent with exertional rhabdomyolysis; normal coagulation profile.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (Axial DWI)",
+          "sequence_badge": "Figure 1 • PMC12634019",
+          "figure_label": "Figure 1 (DWI)",
+          "image_url": "/data/figures/PMC12634019_fig1.jpg",
+          "pmcid": "PMC12634019",
+          "doi_url": "https://doi.org/10.7759/cureus.95084",
+          "caption": "Axial diffusion-weighted MRI reveals a hyperintense lesion involving the right lateral medulla (red arrow), corresponding to restricted water diffusion consistent with acute infarction in the territory of the right vertebral and posterior inferior cerebellar arteries.",
+          "findings_summary": "Acute restricted diffusion in the right dorsolateral medulla oblongata (Wallenberg syndrome)."
+        },
+        {
+          "modality": "3D Time-of-Flight Magnetic Resonance Angiography (3D-TOF MRA)",
+          "sequence_badge": "Figure 2 • PMC12634019",
+          "figure_label": "Figure 2 (MRA)",
+          "image_url": "/data/figures/PMC12634019_fig2.jpg",
+          "pmcid": "PMC12634019",
+          "doi_url": "https://doi.org/10.7759/cureus.95084",
+          "caption": "3D-TOF MRA shows the absence of an intracranial flow signal within the right vertebral artery (red arrow), confirming loss of patency distal to the dissection site.",
+          "findings_summary": "Complete flow signal loss in the distal right vertebral artery secondary to exertion-induced cervical vertebral artery dissection."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which anatomical syndrome and underlying vascular etiology best explain this patient's presentation and neuroimaging findings?",
+      "question_type": "Localization",
+      "options": [
+        {
+          "id": "A",
+          "text": "Right Lateral Medullary (Wallenberg) Syndrome secondary to right vertebral artery dissection",
+          "peer_percentage": 84,
+          "rationale": "Correct! Crossed sensory loss (ipsilateral facial pain/temperature loss from spinal trigeminal nucleus + contralateral body pain/temperature loss from spinothalamic tract), ipsilateral Horner syndrome, bulbar palsy (nucleus ambiguus IX/X), and ipsilateral cerebellar ataxia with preserved corticospinal motor strength localize to the right dorsolateral medulla following vertebral artery dissection."
+        },
+        {
+          "id": "B",
+          "text": "Right Medial Medullary (Dejerine) Syndrome secondary to anterior spinal artery occlusion",
+          "peer_percentage": 7,
+          "rationale": "Incorrect. Medial medullary infarction causes contralateral hemiparesis (pyramidal tract), contralateral medial lemniscus dorsal column loss, and ipsilateral tongue deviation (CN XII), sparing the nucleus ambiguus and sympathetic tract."
+        },
+        {
+          "id": "C",
+          "text": "Right Lateral Pontine (Marie-Foix) Syndrome secondary to AICA occlusion",
+          "peer_percentage": 6,
+          "rationale": "Incorrect. AICA infarction involves the facial nerve (CN VII palsy) and vestibulocochlear nerve (ipsilateral sensorineural deafness), which are absent here."
+        },
+        {
+          "id": "D",
+          "text": "Right Cerebral Peduncle (Weber) Syndrome secondary to posterior cerebral artery perforator infarct",
+          "peer_percentage": 3,
+          "rationale": "Incorrect. Weber syndrome causes ipsilateral CN III palsy (mydriasis, ptosis, down-and-out eye) and contralateral hemiparesis."
+        }
+      ],
+      "correct_option": "A"
+    },
+    "resolution": {
+      "final_diagnosis": "Right Lateral Medullary (Wallenberg) Syndrome Secondary to Exertional Right Vertebral Artery Dissection",
+      "clinical_discussion": "Cervical artery dissection (CAD) accounts for up to 20–25% of ischemic strokes in young and middle-aged adults (< 45 years) and is frequently precipitated by mechanical neck strain, heavy weightlifting, Valsalva maneuvers, or cervical manipulation.\n\nLateral medullary infarction (Wallenberg syndrome) most commonly results from occlusion of the intracranial vertebral artery or its posterior inferior cerebellar artery (PICA) branch. Because the pyramidal tracts lie ventromedially in the medulla, limb motor power (5/5) is classically spared despite severe truncal ataxia and life-threatening neurogenic dysphagia.",
+      "teaching_points": [
+        "Classic pentad of ipsilateral signs in Wallenberg syndrome: (1) Horner syndrome, (2) Facial pain/temperature loss (CN V spinal tract), (3) Bulbar dysphagia/dysphonia/hiccups (nucleus ambiguus IX/X), (4) Vestibular vertigo/nystagmus, and (5) Appendicular ataxia — combined with CONTRALATERAL body pain/temperature loss.",
+        "Normal 5/5 limb motor strength on bedside examination never rules out a posterior circulation stroke.",
+        "Formal swallowing evaluation is mandatory before oral intake due to high aspiration pneumonia risk from nucleus ambiguus involvement."
+      ],
+      "clinical_pitfalls": [
+        "Ruling out acute stroke in the emergency department based on normal non-contrast head CT and 5/5 limb strength.",
+        "Failing to image the cervical and intracranial vertebral arteries (CTA or MRA with fat-saturated T1) in young patients presenting with occipital headache and vertigo."
+      ],
+      "related_keywords": ["vertebral", "dissection", "medullary", "stroke", "posterior circulation"]
+    }
+  },
+  {
+    "id": "nc-2026-003",
+    "case_code": "NC-2026-003",
+    "title": "Focal Seizures, Psychiatric Behavioral Changes, and Severe Autonomic Instability With Right Insular-Temporal FLAIR Hyperintensity",
+    "subspecialty": "Neuroimmunology",
+    "subspecialties": ["Neuroimmunology", "Epilepsy", "Neurocritical Care"],
+    "difficulty": "Resident",
+    "estimated_time_sec": 100,
+    "is_daily_challenge": false,
+    "published_date": "2026-10-24",
+    "status": "approved",
+    "author_credit": "PMC Open Access Case Report • PMC13676022",
+    "source_journal": {
+      "name": "Cureus / PubMed Central",
+      "short_name": "PMC13676022",
+      "doi_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13676022/",
+      "pmcid": "PMC13676022",
+      "pub_year": "2024"
+    },
+    "presentation": {
+      "demographics": "Young adult female",
+      "chief_complaint": "Subacute behavioral change, focal seizures, cognitive decline, and labile autonomic instability",
+      "history_of_present_illness": "The patient presented with a subacute prodrome followed by acute behavioral and psychiatric symptoms, progressive confusion, focal motor seizures, and severe autonomic instability (labile blood pressure and tachycardia). Pelvic imaging (transvaginal ultrasound and pelvic MRI) revealed no detectable ovarian teratoma.",
+      "past_medical_history": "No prior psychiatric or epilepsy history.",
+      "vitals": {
+        "bp": "Labile (102/62 to 176/104 mmHg)",
+        "hr": "124 bpm",
+        "rr": "20 /min",
+        "temp": "37.9 °C",
+        "spo2": "98%"
+      },
+      "neuro_exam": "Encephalopathic with impaired attention, intermittent orofacial dyskinesias, and focal seizure activity; no fixed pyramidal hemiparesis.",
+      "key_labs_csf": "CSF analysis: Lymphocytic pleocytosis with elevated protein; CSF HSV-1/2 and VZV PCR negative; CSF anti-GluN1 (NMDA receptor) IgG strongly positive.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (Coronal T2-FLAIR)",
+          "sequence_badge": "Figure 1 • PMC13676022",
+          "figure_label": "Figure 1 (FLAIR MRI)",
+          "image_url": "/data/figures/PMC13676022_fig1.webp",
+          "pmcid": "PMC13676022",
+          "doi_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13676022/",
+          "caption": "Coronal fluid-attenuated inversion recovery (FLAIR) MRI showing asymmetric cortical and subcortical hyperintensity in the right medial temporal and insular region (yellow arrow).",
+          "findings_summary": "Right medial temporal and insular T2-FLAIR hyperintensity compatible with autoimmune limbic/NMDAR encephalitis."
+        },
+        {
+          "modality": "Scalp Electroencephalography (EEG)",
+          "sequence_badge": "Figure 2 • PMC13676022",
+          "figure_label": "Figure 2 (EEG)",
+          "image_url": "/data/figures/PMC13676022_fig2.webp",
+          "pmcid": "PMC13676022",
+          "doi_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13676022/",
+          "caption": "The red arrow highlights semirhythmic delta activity over the right hemisphere, consistent with encephalopathy. No epileptiform discharges or electrographic seizures were identified.",
+          "findings_summary": "Lateralized semirhythmic slow delta activity over the right hemisphere corresponding to the FLAIR abnormality."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which diagnostic test provides the highest sensitivity and specificity for confirming this disorder, and what is the appropriate first-line management?",
+      "question_type": "Diagnosis",
+      "options": [
+        {
+          "id": "A",
+          "text": "CSF anti-NMDA receptor (GluN1) IgG antibody assay — Initiate first-line immunotherapy (high-dose IV corticosteroids + IVIG or plasmapheresis) even in the absence of a detectable teratoma",
+          "peer_percentage": 85,
+          "rationale": "Correct! CSF anti-GluN1 IgG is significantly more sensitive (~100%) and specific than serum testing alone (~85%). Up to 50–60% of patients do not have an identifiable ovarian teratoma; prompt first-line immunotherapy (methylprednisolone + IVIG/PLEX) and escalation to second-line agents (rituximab/cyclophosphamide) if refractory are critical."
+        },
+        {
+          "id": "B",
+          "text": "Serum-only paraneoplastic antibody panel — Withhold immunotherapy until an ovarian teratoma is confirmed on repeat CT",
+          "peer_percentage": 7,
+          "rationale": "Incorrect. Serum testing alone misses ~15% of cases, and delaying immunotherapy while waiting for tumor detection worsens long-term neurological outcomes."
+        },
+        {
+          "id": "C",
+          "text": "High-dose haloperidol monotherapy for acute primary psychosis",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. Dopamine D2 antagonists (especially typical antipsychotics like haloperidol) can precipitate severe rigidity, autonomic instability, and neuroleptic malignant-like syndrome in anti-NMDAR encephalitis."
+        },
+        {
+          "id": "D",
+          "text": "Right temporal lobectomy for refractory mesial temporal sclerosis",
+          "peer_percentage": 3,
+          "rationale": "Incorrect. This is an acute antibody-mediated autoimmune encephalitis that responds to immunotherapy, not surgical resection."
+        }
+      ],
+      "correct_option": "A"
+    },
+    "resolution": {
+      "final_diagnosis": "Anti-NMDA Receptor (Anti-NMDAR) Autoimmune Encephalitis Without Detectable Ovarian Teratoma",
+      "clinical_discussion": "Anti-NMDAR encephalitis is characterized by a multistage progression from a viral-like prodrome to prominent neuropsychiatric manifestations, speech dysfunction, seizures, dyskinesias, and autonomic instability.\n\nAlthough ovarian teratoma is strongly associated with anti-NMDAR encephalitis in young women, roughly half of cases are non-paraneoplastic. Early initiation of first-line immunotherapy (high-dose intravenous corticosteroids combined with IVIG or plasma exchange) is essential, followed by periodic pelvic surveillance.",
+      "teaching_points": [
+        "Always test BOTH CSF and serum for anti-GluN1 IgG antibodies; CSF testing approaches 100% sensitivity whereas serum alone can be falsely negative in up to 15% of patients.",
+        "Absence of an ovarian teratoma does not exclude anti-NMDAR encephalitis and should never delay immunotherapy.",
+        "Patients with anti-NMDAR encephalitis have heightened vulnerability to extrapyramidal rigidity and autonomic storm when exposed to typical antipsychotics."
+      ],
+      "clinical_pitfalls": [
+        "Relying solely on serum NMDA receptor antibody testing without CSF analysis.",
+        "Misdiagnosing the initial psychiatric phase as primary schizophrenia or substance-induced psychosis."
+      ],
+      "related_keywords": ["encephalitis", "autoimmune", "neuroimmunology", "seizure", "immunotherapy"]
+    }
+  },
+  {
+    "id": "nc-2026-004",
+    "case_code": "NC-2026-004",
+    "title": "Subacute Cognitive Decline, Seizures, and Asymmetric Confluent White Matter Edema With Strictly Lobar Cerebral Microbleeds",
+    "subspecialty": "Vascular & Stroke",
+    "subspecialties": ["Vascular & Stroke", "Cognitive & Dementia", "Neuroimmunology"],
+    "difficulty": "Attending",
+    "estimated_time_sec": 115,
+    "is_daily_challenge": false,
+    "published_date": "2026-10-23",
+    "status": "approved",
+    "author_credit": "Annals of Clinical and Translational Neurology • PMC13562774",
+    "source_journal": {
+      "name": "Annals of Clinical and Translational Neurology",
+      "short_name": "Ann Clin Transl Neurol",
+      "doi_url": "https://doi.org/10.1002/acn3.70525",
+      "pmcid": "PMC13562774",
+      "pmid": "42723177",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "72-year-old female",
+      "chief_complaint": "Subacute progressive headache, confusion, focal neurological deficits, and new-onset seizures",
+      "history_of_present_illness": "A 72-year-old woman presented with a 3-week history of worsening holocranial headache, subacute cognitive decline, behavioral changes, and a focal-to-bilateral tonic-clonic seizure. She had no history of systemic malignancy, recent infection, or anti-amyloid monoclonal antibody therapy.",
+      "past_medical_history": "Mild memory complaints over the preceding year; normotensive.",
+      "vitals": {
+        "bp": "132/76 mmHg",
+        "hr": "74 bpm",
+        "rr": "16 /min",
+        "temp": "36.6 °C",
+        "spo2": "98%"
+      },
+      "neuro_exam": "Somnolent but arousable, disoriented to time, mild left hemiparesis (4/5) and visuospatial neglect. No meningismus.",
+      "key_labs_csf": "CSF shows mildly elevated protein (0.78 g/L), 12 WBC/mm³ (lymphocytic), negative infectious PCR panel, and negative cytology.",
+      "imaging": [
+        {
+          "modality": "Brain MRI — Axial T2-FLAIR & Hemosiderin-Sensitive SWI Sequences",
+          "sequence_badge": "Figure 1 • PMC13562774",
+          "figure_label": "Figure 1 (FLAIR & SWI)",
+          "image_url": "/data/figures/PMC13562774_fig1.webp",
+          "pmcid": "PMC13562774",
+          "doi_url": "https://doi.org/10.1002/acn3.70525",
+          "caption": "Representative brain MRI findings of CAA-RI study participants. Axial T2 fluid-attenuated inversion recovery (FLAIR) images demonstrate diffuse (A, B), multifocal (C), and focal (D) edema patterns. Corresponding hemosiderin-sensitive sequences illustrate cerebral microbleed burden in regions of diffuse (E, F), multifocal (G), and focal edema (H) in the same patients.",
+          "findings_summary": "Asymmetric confluent subcortical T2-FLAIR vasogenic edema colocalizing with numerous strictly lobar cerebral microbleeds on SWI, sparing the basal ganglia and thalami."
+        },
+        {
+          "modality": "Relapse & Mortality Cumulative Incidence Curves",
+          "sequence_badge": "Figure 2 • PMC13562774",
+          "figure_label": "Figure 2 (Outcomes)",
+          "image_url": "/data/figures/PMC13562774_fig2.webp",
+          "pmcid": "PMC13562774",
+          "doi_url": "https://doi.org/10.1002/acn3.70525",
+          "caption": "Cumulative incidence of time to relapse and time to death (N = 31) in CAA-RI patients.",
+          "findings_summary": "Diffuse baseline MRI edema (>=4 lobar regions) strongly predicts relapse (HR = 12.26, p = 0.007) after corticosteroid taper."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Based on the characteristic combination of asymmetric confluent T2-FLAIR vasogenic edema and colocalized strictly lobar microbleeds on SWI, what is the most likely diagnosis and appropriate initial therapy?",
+      "question_type": "Diagnosis",
+      "options": [
+        {
+          "id": "A",
+          "text": "Cerebral Amyloid Angiopathy-Related Inflammation (CAA-RI) — Initiate high-dose intravenous corticosteroids followed by a slow oral taper (and consider steroid-sparing immunosuppression if diffuse edema is present)",
+          "peer_percentage": 78,
+          "rationale": "Correct! Asymmetric subcortical vasogenic FLAIR edema colocalizing with strictly lobar cerebral microbleeds/cortical superficial siderosis in an older adult meets Auriel diagnostic criteria for probable CAA-RI, avoiding invasive brain biopsy. High-dose corticosteroids are first-line treatment, and diffuse baseline edema (≥4 regions) strongly predicts relapse (HR 12.26)."
+        },
+        {
+          "id": "B",
+          "text": "Glioblastoma multiforme — Proceed directly to urgent craniotomy and radical surgical resection without empiric steroid trial",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. Recognition of dense colocalized lobar microbleeds on SWI sequences distinguishes CAA-RI from high-grade glioma and prevents unnecessary neurosurgical resection."
+        },
+        {
+          "id": "C",
+          "text": "Hypertensive Posterior Reversible Encephalopathy Syndrome (PRES) — Administer dual antiplatelet therapy",
+          "peer_percentage": 7,
+          "rationale": "Incorrect. The patient is normotensive (132/76 mmHg), has strictly lobar microbleeds characteristic of CAA, and antiplatelet therapy increases the risk of lobar intracerebral hemorrhage."
+        },
+        {
+          "id": "D",
+          "text": "Acute ischemic stroke — Administer intravenous thrombolysis immediately",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. The presentation is subacute over 3 weeks with vasogenic edema rather than cytotoxic diffusion restriction, and extensive lobar microbleeds make thrombolysis hazardous."
+        }
+      ],
+      "correct_option": "A"
+    },
+    "resolution": {
+      "final_diagnosis": "Cerebral Amyloid Angiopathy-Related Inflammation (CAA-RI)",
+      "clinical_discussion": "Cerebral amyloid angiopathy-related inflammation (CAA-RI) is an autoimmune encephalopathy triggered by an inflammatory response to vascular beta-amyloid deposits in leptomeningeal and cortical vessels (spontaneous ARIA-E equivalent).\n\nValidated clinico-radiological criteria (Auriel et al.) allow non-invasive diagnosis without brain biopsy when subacute encephalopathy/headache/seizures occur alongside asymmetric T2-FLAIR white matter hyperintensity and multiple strictly lobar microbleeds or cortical superficial siderosis on SWI/T2*-GRE. Recent cohort data (Ann Clin Transl Neurol 2026, PMC13562774) demonstrate that cumulative relapse reaches 44% at 24 months, with diffuse baseline edema (≥4 lobar regions) conferring a 12-fold higher hazard of relapse (HR 12.26).",
+      "teaching_points": [
+        "Always include susceptibility-weighted imaging (SWI or T2*-GRE) when evaluating older adults with unexplained asymmetric white matter edema or mass-like lesions.",
+        "Meeting probable CAA-RI criteria justifies an empiric trial of high-dose corticosteroids before considering invasive brain biopsy.",
+        "Diffuse baseline FLAIR edema (≥4 lobar regions) strongly predicts CAA-RI relapse after steroid tapering (HR 12.26), supporting prolonged tapering or steroid-sparing agents such as mycophenolate."
+      ],
+      "clinical_pitfalls": [
+        "Performing an unnecessary brain biopsy or tumor resection on a pseudo-tumoral FLAIR lesion because SWI/T2*-GRE sequences were omitted.",
+        "Tapering corticosteroids too rapidly in patients with diffuse multilobar CAA-RI edema, resulting in clinical and radiological relapse."
+      ],
+      "related_keywords": ["amyloid", "microbleeds", "edema", "hemorrhage", "dementia"]
+    }
+  },
+  {
+    "id": "nc-2026-005",
+    "case_code": "NC-2026-005",
+    "title": "Refractory Myasthenic Crisis, Exfoliative Erythroderma, and Profound Hypogammaglobulinemia in Invasive Thymoma",
+    "subspecialty": "Neuromuscular",
+    "subspecialties": ["Neuromuscular", "Neuroimmunology", "Neurocritical Care"],
+    "difficulty": "Attending",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": false,
+    "published_date": "2026-10-22",
+    "status": "approved",
+    "author_credit": "Frontiers in Immunology • PMC13597385",
+    "source_journal": {
+      "name": "Frontiers in Immunology",
+      "short_name": "Front Immunol",
+      "doi_url": "https://doi.org/10.3389/fimmu.2026.1916812",
+      "pmcid": "PMC13597385",
+      "pmid": "42780472",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "37-year-old female",
+      "chief_complaint": "Acute bulbar weakness, respiratory failure (myasthenic crisis), diffuse exfoliative erythroderma, and severe bilateral pneumonia",
+      "history_of_present_illness": "A 37-year-old woman with invasive WHO Type B3 thymoma and anti-AChR-positive generalized myasthenia gravis developed progressive graft-versus-host disease-like erythroderma and severe bulbar and respiratory muscle weakness culminating in myasthenic crisis complicated by active bilateral pulmonary infection.",
+      "past_medical_history": "Invasive WHO Type B3 thymoma and generalized Myasthenia Gravis.",
+      "vitals": {
+        "bp": "118/72 mmHg",
+        "hr": "114 bpm",
+        "rr": "32 /min (shallow, accessory muscle use)",
+        "temp": "38.3 °C",
+        "spo2": "91% on high-flow oxygen"
+      },
+      "neuro_exam": "Severe bilateral ptosis, bulbar palsy with inability to clear secretions, neck flexor weakness (2/5), paradoxical abdominal breathing, and FVC < 15 mL/kg requiring mechanical ventilation.",
+      "key_labs_csf": "Marked hypogammaglobulinemia (low IgG, IgA, IgM), complete absence of circulating CD19+ B cells, reduced CD4+ T cells, and inverted CD4+/CD8+ ratio.",
+      "imaging": [
+        {
+          "modality": "Clinical, Histopathological & Chest CT Features",
+          "sequence_badge": "Figure 1 • PMC13597385",
+          "figure_label": "Figure 1 (CT & Pathology)",
+          "image_url": "/data/figures/PMC13597385_fig1.webp",
+          "pmcid": "PMC13597385",
+          "doi_url": "https://doi.org/10.3389/fimmu.2026.1916812",
+          "caption": "Clinical, pathological, and radiographic features of TAMA: (A, B) diffuse, confluent erythema and extensive desquamation, characteristic of exfoliative erythroderma. (C) Skin biopsy (H&E) showing hyperparakeratosis, scattered necrotic keratinocytes in the spinous layer, and focal vacuolar interface dermatitis at the basal layer. (D) Chest CT demonstrating bilateral diffuse ground-glass opacities and interstitial thickening.",
+          "findings_summary": "Coexisting Thymoma-Associated Multiorgan Autoimmunity (TAMA), Good's syndrome (thymoma with B-cell aplasia and hypogammaglobulinemia), and severe bilateral opportunistic pneumonia on Chest CT."
+        },
+        {
+          "modality": "Longitudinal Disease Progression & Immunotherapy Timeline",
+          "sequence_badge": "Figure 2 • PMC13597385",
+          "figure_label": "Figure 2 (Timeline)",
+          "image_url": "/data/figures/PMC13597385_fig2.webp",
+          "pmcid": "PMC13597385",
+          "doi_url": "https://doi.org/10.3389/fimmu.2026.1916812",
+          "caption": "Clinical timeline of disease progression, immunological changes, and treatment.",
+          "findings_summary": "Sequential administration of FcRn antagonist (efgartigimod) and C5 complement inhibitor (eculizumab) in the setting of Good's syndrome and active pulmonary infection."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "In a patient with thymoma-associated myasthenia gravis who presents with myasthenic crisis, absent circulating B cells, hypogammaglobulinemia, and GVHD-like erythroderma, which paraneoplastic syndrome pair is present and what critical pitfall must be considered before using neonatal Fc receptor (FcRn) or complement inhibitors?",
+      "question_type": "Acute Management",
+      "options": [
+        {
+          "id": "A",
+          "text": "Coexisting Good's syndrome and Thymoma-Associated Multiorgan Autoimmunity (TAMA) — FcRn blockers (efgartigimod) further lower total IgG in already hypogammaglobulinemic patients, while C5 inhibitors (eculizumab) impair innate bacterial clearance",
+          "peer_percentage": 79,
+          "rationale": "Correct! Thymoma with adult-onset hypogammaglobulinemia, absent B cells, and inverted CD4/CD8 ratio defines Good's syndrome, while GVHD-like interface dermatitis defines TAMA. In this setting, efgartigimod further depletes protective IgG and eculizumab blocks terminal complement during active pulmonary sepsis."
+        },
+        {
+          "id": "B",
+          "text": "Lambert-Eaton Myasthenic Syndrome (LEMS) — Treat with 3,4-diaminopyridine and high-dose pyridostigmine during mechanical ventilation",
+          "peer_percentage": 9,
+          "rationale": "Incorrect. High-dose pyridostigmine during intubation worsens copious bronchial secretions, and the patient has thymoma-associated anti-AChR MG with Good's syndrome, not LEMS."
+        },
+        {
+          "id": "C",
+          "text": "Isolated cholinergic crisis — Administer high-dose intravenous atropine and rituximab",
+          "peer_percentage": 7,
+          "rationale": "Incorrect. Circulating CD19+ B cells are already completely absent (0%) due to Good's syndrome, and the respiratory failure is driven by myasthenic crisis and pneumonia."
+        },
+        {
+          "id": "D",
+          "text": "Guillain-Barré syndrome — Administer oral fluoroquinolones for pneumonia",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. Fluoroquinolones, macrolides, and aminoglycosides directly impair neuromuscular transmission and are contraindicated in myasthenia gravis."
+        }
+      ],
+      "correct_option": "A"
+    },
+    "resolution": {
+      "final_diagnosis": "Myasthenic Crisis Complicated by Good's Syndrome (Thymoma-Associated Immunodeficiency) and Thymoma-Associated Multiorgan Autoimmunity (TAMA)",
+      "clinical_discussion": "Patients with invasive thymoma can develop a paradoxical combination of severe autoimmunity (myasthenia gravis, TAMA with GVHD-like erythroderma) and profound combined immunodeficiency known as Good's syndrome (hypogammaglobulinemia, absent B cells, and CD4+ T-cell lymphopenia).\n\nWhen managing myasthenic crisis in patients with thymoma and recurrent or severe pulmonary infections, screening serum immunoglobulin levels and lymphocyte subsets is crucial. Targeted biologics such as FcRn antagonists (efgartigimod, which accelerates IgG catabolism) and terminal complement C5 inhibitors (eculizumab) must be weighed carefully against pre-existing hypogammaglobulinemia and active sepsis.",
+      "teaching_points": [
+        "Always check baseline serum immunoglobulins (IgG, IgA, IgM) and lymphocyte subsets (B and T cells) in patients with thymoma and severe infections to exclude Good's syndrome.",
+        "During mechanical ventilation for myasthenic crisis, temporarily hold oral acetylcholinesterase inhibitors (pyridostigmine) to reduce excessive airway secretions.",
+        "Avoid medications that worsen neuromuscular blockade in MG, including fluoroquinolones, macrolides, aminoglycosides, and beta-blockers."
+      ],
+      "clinical_pitfalls": [
+        "Administering IgG-depleting therapies (such as plasma exchange or FcRn antagonists without IgG repletion) in unrecognized Good's syndrome with severe hypogammaglobulinemia.",
+        "Relying on pulse oximetry (SpO2) alone rather than bedside FVC (<20 mL/kg) and NIF (worse than -30 cmH2O) to time intubation in myasthenic crisis."
+      ],
+      "related_keywords": ["myasthenia", "neuromuscular", "thymoma", "immunoglobulin", "neurocritical"]
+    }
+  },
+  {
+    "id": "nc-2026-006",
+    "case_code": "NC-2026-006",
+    "title": "Fluctuating Alertness, Reduced Responsiveness, and Generalized 2–3 Hz Rhythmic Epileptiform Discharges in Drug-Resistant Epilepsy",
+    "subspecialty": "Epilepsy",
+    "subspecialties": ["Epilepsy", "Neurocritical Care"],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 100,
+    "is_daily_challenge": false,
+    "published_date": "2026-10-21",
+    "status": "approved",
+    "author_credit": "Neuropsychopharmacology Reports • PMC13331864",
+    "source_journal": {
+      "name": "Neuropsychopharmacology Reports",
+      "short_name": "Neuropsychopharmacol Rep",
+      "doi_url": "https://doi.org/10.1002/npr2.70153",
+      "pmcid": "PMC13331864",
+      "pmid": "42400107",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "Male in his late 50s",
+      "chief_complaint": "Reduced responsiveness and fluctuating alertness during inpatient antiseizure and antipsychotic medication adjustment",
+      "history_of_present_illness": "A man in his late 50s with longstanding drug-resistant epilepsy and recurrent interictal psychosis was admitted for medication adjustment. On hospital day 2, he developed acute reduced responsiveness and fluctuating alertness without overt generalized convulsions.",
+      "past_medical_history": "Drug-resistant epilepsy with prior tonic-clonic seizures of unknown onset and recurrent epilepsy-related psychosis.",
+      "vitals": {
+        "bp": "138/84 mmHg",
+        "hr": "92 bpm",
+        "rr": "17 /min",
+        "temp": "36.8 °C",
+        "spo2": "98%"
+      },
+      "neuro_exam": "Obtunded with fluctuating responsiveness, staring, and subtle perioral/ocular movements; no focal lateralizing hemiparesis.",
+      "key_labs_csf": "Valproate therapy was complicated by hyperammonemia; brain MRI showed no acute structural stroke; electrolytes and glucose were normal.",
+      "imaging": [
+        {
+          "modality": "Scalp Electroencephalography (10–20 System, A1/A2 Referential Montage)",
+          "sequence_badge": "Figure 1 • PMC13331864",
+          "figure_label": "Figure 1 (Serial EEG)",
+          "image_url": "/data/figures/PMC13331864_fig1.jpg",
+          "pmcid": "PMC13331864",
+          "doi_url": "https://doi.org/10.1002/npr2.70153",
+          "caption": "Representative EEG recordings during hospitalization. (A) Hospital day 2: Generalized rhythmic epileptiform activity at 2–3 Hz was observed with reduced responsiveness and fluctuating alertness; EEG abnormalities and awareness improved after intravenous diazepam administered before fosphenytoin, supporting NCSE. (B) Hospital day 42: No prominent epileptiform discharges. (C) Hospital day 97: Epileptiform discharges re-emerged after levetiracetam dose reduction. (D) Hospital day 113: Epileptiform abnormalities improved after increasing levetiracetam and adding lamotrigine.",
+          "findings_summary": "Generalized rhythmic epileptiform discharges at 2–3 Hz with spatiotemporal evolution and both electrographic and clinical improvement following IV diazepam and fosphenytoin, fulfilling Salzburg criteria for NCSE."
+        },
+        {
+          "modality": "Hospital Course & Antiseizure/Antipsychotic Titration Timeline",
+          "sequence_badge": "Figure 2 • PMC13331864",
+          "figure_label": "Figure 2 (Clinical Course)",
+          "image_url": "/data/figures/PMC13331864_fig2.jpg",
+          "pmcid": "PMC13331864",
+          "doi_url": "https://doi.org/10.1002/npr2.70153",
+          "caption": "Clinical course during hospitalization showing semiquantitative grading of epileptiform EEG abnormalities, timing of intravenous fosphenytoin (16 mg PE/kg), antiseizure medication doses, and psychotic symptom trajectory.",
+          "findings_summary": "Resolution of NCSE with IV diazepam + fosphenytoin, followed by re-emergence of interictal/alternative psychosis when EEG normalized ('forced normalization') and recurrence of EEG discharges when levetiracetam was reduced."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "According to the Salzburg Consensus Criteria, what diagnosis is confirmed by the Hospital Day 2 EEG (Panel A), and what phenomenon explains the re-emergence of psychosis after EEG discharges resolved (Panel B)?",
+      "question_type": "Diagnosis",
+      "options": [
+        {
+          "id": "A",
+          "text": "Nonconvulsive Status Epilepticus (NCSE) responsive to IV benzodiazepine + fosphenytoin, followed by interictal / alternative psychosis ('forced normalization') upon EEG resolution",
+          "peer_percentage": 83,
+          "rationale": "Correct! Generalized rhythmic epileptiform activity at 2–3 Hz (>2.5 Hz threshold or ≤2.5 Hz with clinical and EEG improvement after IV diazepam) confirms NCSE. Subsequent emergence of psychosis when epileptiform discharges are suppressed on EEG represents interictal/alternative psychosis (Landolt's forced normalization)."
+        },
+        {
+          "id": "B",
+          "text": "Primary metabolic triphasic encephalopathy — Discontinue all antiseizure medications permanently",
+          "peer_percentage": 8,
+          "rationale": "Incorrect. Both EEG discharges and clinical awareness improved promptly after IV diazepam and fosphenytoin, and reducing levetiracetam later caused prompt electrographic relapse (Panel C)."
+        },
+        {
+          "id": "C",
+          "text": "Psychogenic nonepileptic status (pseudostatus) — Treat with high-dose chlorpromazine alone",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. Panel A demonstrates unequivocal 2–3 Hz generalized epileptiform discharges during reduced responsiveness."
+        },
+        {
+          "id": "D",
+          "text": "Immediate endotracheal intubation and burst-suppression with pentobarbital coma as first-line therapy",
+          "peer_percentage": 4,
+          "rationale": "Incorrect. NCSE with preserved airway reflexes should first be treated with IV benzodiazepines and second-line IV antiseizure medications (fosphenytoin, levetiracetam, or valproate) rather than immediate barbiturate coma."
+        }
+      ],
+      "correct_option": "A"
+    },
+    "resolution": {
+      "final_diagnosis": "Nonconvulsive Status Epilepticus (NCSE) and Epilepsy-Related Interictal / Alternative Psychosis in Drug-Resistant Epilepsy",
+      "clinical_discussion": "When patients with epilepsy present with unexplained stupor, fluctuating alertness, or acute behavioral change without overt convulsions, emergent EEG is mandatory to exclude Nonconvulsive Status Epilepticus (NCSE).\n\nUnder the Salzburg Consensus Criteria, NCSE is diagnosed when epileptiform discharges exceed 2.5 Hz, or when rhythmic/periodic activity ≤ 2.5 Hz shows spatiotemporal evolution or clear electroclinical improvement (both EEG resolution and clinical awakening) after an intravenous antiseizure medication trial. Additionally, clinicians must recognize 'alternative psychosis' (forced normalization), where psychotic symptoms paradoxically flare after epileptiform discharges are suppressed, and remember that enzyme-inducing drugs like phenytoin accelerate the hepatic metabolism of antipsychotics (such as aripiprazole and brexpiprazole via CYP3A4).",
+      "teaching_points": [
+        "Salzburg Consensus Criteria for NCSE require both electrographic improvement AND clinical improvement in awareness to declare a positive IV antiseizure trial.",
+        "Reducing levetiracetam purely for suspected behavioral side effects can trigger rebound epileptiform discharges; serial EEG monitoring guides safe titration.",
+        "Phenytoin is a potent CYP3A4 inducer that markedly lowers serum concentrations of co-administered antipsychotics."
+      ],
+      "clinical_pitfalls": [
+        "Attributing prolonged fluctuating stupor in an epilepsy patient to 'psychiatric catatonia' or 'sedation' without obtaining an emergent EEG.",
+        "Overlooking valproate-induced hyperammonemic encephalopathy when combining valproate with other antiseizure medications."
+      ],
+      "related_keywords": ["status epilepticus", "epilepsy", "EEG", "seizure", "levetiracetam"]
+    }
+  },
+  {
+    "id": "nc-2026-007",
+    "case_code": "NC-2026-007",
+    "title": "Recurrent Explosive Thunderclap Headaches With Multifocal Segmental Cerebral Vasoconstriction on Serial 3D-TOF MRA",
+    "subspecialty": "Headache & Pain",
+    "subspecialties": ["Headache & Pain", "Vascular & Stroke"],
+    "difficulty": "Resident",
+    "estimated_time_sec": 95,
+    "is_daily_challenge": false,
+    "published_date": "2026-10-20",
+    "status": "approved",
+    "author_credit": "Diagnostics (Basel) • PMC13465154",
+    "source_journal": {
+      "name": "Diagnostics (Basel)",
+      "short_name": "Diagnostics",
+      "doi_url": "https://doi.org/10.3390/diagnostics16152360",
+      "pmcid": "PMC13465154",
+      "pmid": "42587598",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "40-year-old male",
+      "chief_complaint": "Recurrent excruciating thunderclap headaches (VAS 10/10) reaching peak intensity within seconds, accompanied by vomiting",
+      "history_of_present_illness": "A 40-year-old man with a 25-year history of episodic migraine without aura presented to the emergency department with an explosive thunderclap headache (VAS 10/10) and vomiting triggered immediately by sexual activity (ejaculation). He reported an identical episode with posterior neck pain 5 days earlier. Unlike his usual gradual-onset migraines, these headaches peaked within seconds.",
+      "past_medical_history": "Episodic migraine without aura (baseline brain MRA performed 5 years earlier at age 35 was completely normal).",
+      "vitals": {
+        "bp": "154/110 mmHg",
+        "hr": "86 bpm",
+        "rr": "18 /min",
+        "temp": "36.6 °C",
+        "spo2": "99%"
+      },
+      "neuro_exam": "Alert and oriented (GCS 15), no neck stiffness, no cranial neuropathies or focal sensorimotor deficits.",
+      "key_labs_csf": "Brain MRI ruled out subarachnoid hemorrhage, aneurysm, venous thrombosis, and arterial dissection. Calculated RCVS2 score = 8 points (recurrent TCHs: +5, vasoconstrictive/sexual trigger: +3, no carotid involvement: 0).",
+      "imaging": [
+        {
+          "modality": "Longitudinal 3D Time-of-Flight Magnetic Resonance Angiography (3D-TOF MRA)",
+          "sequence_badge": "Figure 1 • PMC13465154",
+          "figure_label": "Figure 1 (Serial MRA)",
+          "image_url": "/data/figures/PMC13465154_fig1.jpg",
+          "pmcid": "PMC13465154",
+          "doi_url": "https://doi.org/10.3390/diagnostics16152360",
+          "caption": "Magnetic resonance angiography (MRA) findings. (A) MRA performed five years prior to the current onset (at age 35), showing normal vessel diameters. (B) MRA at onset, demonstrating multiple segmental vasoconstrictions in the posterior circulation, including the bilateral posterior cerebral arteries and left vertebral artery (yellow arrows). (C) MRA one month after onset, showing partial resolution of the previous vasoconstrictions, including the bilateral posterior cerebral arteries (blue arrows).",
+          "findings_summary": "Multifocal segmental vasoconstriction of bilateral posterior cerebral arteries and left vertebral artery at onset (Panel B) compared with prior baseline (Panel A), with partial resolution at 1 month (Panel C)."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "With an RCVS2 score of 8 and multifocal segmental vasoconstriction on MRA, what is the correct diagnosis and which medication class must be strictly avoided despite the patient's history of migraine?",
+      "question_type": "Acute Management",
+      "options": [
+        {
+          "id": "A",
+          "text": "Reversible Cerebral Vasoconstriction Syndrome (RCVS) — Initiate oral calcium channel blocker therapy (verapamil or nimodipine) and strictly avoid triptans and corticosteroids",
+          "peer_percentage": 84,
+          "rationale": "Correct! Recurrent thunderclap headaches triggered by sexual activity with multifocal segmental arterial constriction on MRA (RCVS2 score = 8; ≥5 has 99% specificity) establish RCVS. Calcium channel blockers (verapamil/nimodipine) relieve symptoms, whereas triptans (vasoconstrictors) and corticosteroids (which worsen clinical outcomes in RCVS) must be strictly avoided."
+        },
+        {
+          "id": "B",
+          "text": "Acute severe migraine attack — Administer subcutaneous sumatriptan and oral ergotamine immediately",
+          "peer_percentage": 7,
+          "rationale": "Incorrect. 5-HT1B/1D agonists (triptans) and ergot derivatives are potent cerebral vasoconstrictors that can precipitate ischemic stroke in patients with RCVS."
+        },
+        {
+          "id": "C",
+          "text": "Primary Angiitis of the Central Nervous System (PACNS) — Administer high-dose IV methylprednisolone (1000 mg/day)",
+          "peer_percentage": 6,
+          "rationale": "Incorrect. PACNS presents with insidious chronic headache and abnormal CSF rather than recurrent thunderclap headaches, and glucocorticoids are an independent predictor of clinical worsening in RCVS."
+        },
+        {
+          "id": "D",
+          "text": "Benign primary headache associated with sexual activity — Reassure without neurovascular imaging or follow-up MRA",
+          "peer_percentage": 3,
+          "rationale": "Incorrect. RCVS accounts for 67–90% of secondary headaches triggered by sexual activity and requires neurovascular imaging (MRI/MRA) to monitor vessel resolution and exclude complications."
+        }
+      ],
+      "correct_option": "A"
+    },
+    "resolution": {
+      "final_diagnosis": "Reversible Cerebral Vasoconstriction Syndrome (RCVS) Triggered by Sexual Activity",
+      "clinical_discussion": "Reversible cerebral vasoconstriction syndrome (RCVS) is the most common cause of recurrent thunderclap headaches over a period of days to weeks. In patients presenting with explosive headaches triggered by sexual activity, RCVS is the underlying etiology in 67% to 90% of cases, driven by a sympathetic surge and transient dysregulation of cerebral arterial tone.\n\nThe RCVS2 score (ranging from -2 to +10) provides 99% specificity and 90% sensitivity when the score is ≥ 5. Because patients with RCVS frequently have a comorbid history of migraine, educating them not to take triptans during thunderclap episodes is critical to prevent ischemic infarction.",
+      "teaching_points": [
+        "Recurrent thunderclap headaches over 1–2 weeks are virtually pathognomonic for RCVS until proven otherwise.",
+        "An RCVS2 score ≥ 5 confirms RCVS with 99% specificity and reliably differentiates it from primary CNS vasculitis (PACNS).",
+        "Calcium channel blockers (verapamil or nimodipine) and trigger avoidance are mainstay supportive treatments, while triptans and glucocorticoids are contraindicated."
+      ],
+      "clinical_pitfalls": [
+        "Prescribing a triptan for a thunderclap headache in a patient with a known history of migraine.",
+        "Misdiagnosing multifocal MRA vasoconstriction as CNS vasculitis and administering high-dose corticosteroids."
+      ],
+      "related_keywords": ["vasoconstriction", "thunderclap", "headache", "migraine", "stroke"]
+    }
+  },
+  {
+    "id": "nc-2026-008",
+    "case_code": "NC-2026-008",
+    "title": "Progressive Cerebellar Ataxia, Pontocerebellar Atrophy, and Cruciform Pontine T2/FLAIR Hyperintensity ('Hot Cross Bun' Sign)",
+    "subspecialty": "Movement Disorders",
+    "subspecialties": ["Movement Disorders", "Neuroimmunology"],
+    "difficulty": "Attending",
+    "estimated_time_sec": 105,
+    "is_daily_challenge": false,
+    "published_date": "2026-10-19",
+    "status": "approved",
+    "author_credit": "Annals of Indian Academy of Neurology • PMC12393867",
+    "source_journal": {
+      "name": "Annals of Indian Academy of Neurology",
+      "short_name": "Ann Indian Acad Neurol",
+      "doi_url": "https://doi.org/10.4103/aian.aian_17_25",
+      "pmcid": "PMC12393867",
+      "pmid": "40673421",
+      "pub_year": "2025"
+    },
+    "presentation": {
+      "demographics": "Middle-aged adult male",
+      "chief_complaint": "Progressive gait unsteadiness, dysarthria, diplopia with bilateral esotropia, and left facial weakness",
+      "history_of_present_illness": "The patient presented with progressive cerebellar gait and limb ataxia, scanning dysarthria, bilateral abduction deficits (esotropia), and left lower motor neuron facial palsy. Workup was notable for markedly elevated anti-thyroid peroxidase (anti-TPO) antibodies and diffuse thyroid hypermetabolism on FDG PET-CT, alongside classic pontocerebellar degeneration on brain MRI.",
+      "past_medical_history": "Subclinical autoimmune thyroiditis; no family history of spinocerebellar ataxia.",
+      "vitals": {
+        "bp": "126/78 mmHg",
+        "hr": "72 bpm",
+        "rr": "16 /min",
+        "temp": "36.6 °C",
+        "spo2": "98%"
+      },
+      "neuro_exam": "Bilateral esotropia with ophthalmoplegia, flattened left nasolabial fold (LMN facial palsy), wide-based cerebellar gait ataxia, dysmetria on finger-to-nose testing, and dysdiadochokinesia.",
+      "key_labs_csf": "Markedly elevated serum anti-TPO antibodies; F-18 FDG PET-CT demonstrated bilateral cerebellar hemispheric hypometabolism and diffusely increased FDG uptake in both thyroid lobes.",
+      "imaging": [
+        {
+          "modality": "Multimodal Brain MRI (Sagittal T1, Coronal T1, Axial T2/FLAIR) & FDG PET-CT",
+          "sequence_badge": "Figure 1 • PMC12393867",
+          "figure_label": "Figure 1 (MRI & PET)",
+          "image_url": "/data/figures/PMC12393867_fig1.jpg",
+          "pmcid": "PMC12393867",
+          "doi_url": "https://doi.org/10.4103/aian.aian_17_25",
+          "caption": "(a) Flattened left nasolabial fold and bilateral esotropia. Sagittal (b) and coronal (c) T1-weighted images show flattening of the pontine belly (arrow in 1b) and prominent cerebellar folia (dotted arrows). Axial T2 (d) and FLAIR (e) images demonstrate a cruciform hyperintensity (arrows) in the pons, consistent with the 'hot cross bun' sign, along with hyperintensity and atrophy of both middle cerebellar peduncles. (f, g) Axial F-18 FDG PET-CT showing bilateral cerebellar hypometabolism and diffuse thyroid FDG uptake.",
+          "findings_summary": "Flattening of the pontine belly on sagittal T1, bilateral middle cerebellar peduncle (MCP) atrophy/hyperintensity, and cruciform T2/FLAIR pontine hyperintensity ('Hot Cross Bun' sign)."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "What neuroanatomical degeneration produces the cruciform pontine T2/FLAIR hyperintensity ('Hot Cross Bun' sign) shown in Panels (d) and (e), and what is its clinical significance?",
+      "question_type": "Localization",
+      "options": [
+        {
+          "id": "A",
+          "text": "Selective degeneration of transverse pontocerebellar tracts and median pontine raphe nuclei with sparing of the corticospinal tracts and superior pontine tegmentum — Classically associated with MSA-C, but also seen in spinocerebellar ataxias (SCA) and autoimmune/paraneoplastic rhombencephalitis",
+          "peer_percentage": 82,
+          "rationale": "Correct! The 'Hot Cross Bun' (HCB) sign reflects selective loss of myelinated transverse pontocerebellar fibers and pontine neurons with gliosis, while the ventrolateral corticospinal tracts and dorsal tegmentum remain spared. While classic for Multiple System Atrophy cerebellar type (MSA-C), clinicians must remember secondary treatable mimics including autoimmune/Hashimoto encephalopathy, paraneoplastic cerebellar degeneration, and SCAs."
+        },
+        {
+          "id": "B",
+          "text": "Selective necrosis of the bilateral corticospinal tracts due to rapid correction of hyponatremia (Osmotic Demyelination Syndrome)",
+          "peer_percentage": 9,
+          "rationale": "Incorrect. Central pontine myelinolysis typically produces a confluent central triangular or 'trident/bat-wing' T2 hyperintensity with acute quadriparesis, whereas the HCB sign spares the corticospinal tracts and accompanies chronic/subacute pontocerebellar atrophy."
+        },
+        {
+          "id": "C",
+          "text": "Midbrain tegmental atrophy producing the 'Hummingbird' and 'Morning Glory' signs pathognomonic for Progressive Supranuclear Palsy (PSP)",
+          "peer_percentage": 6,
+          "rationale": "Incorrect. The Hummingbird sign occurs in the midbrain on mid-sagittal MRI in PSP; Panels (b–e) show pontine flattening and the pontine cruciform HCB sign."
+        },
+        {
+          "id": "D",
+          "text": "Bilateral hypertrophic olivary degeneration secondary to a lesion in the Guillain-Mollaret triangle",
+          "peer_percentage": 3,
+          "rationale": "Incorrect. Hypertrophic olivary degeneration affects the inferior olivary nucleus in the anterolateral medulla and causes palatal myoclonus."
+        }
+      ],
+      "correct_option": "A"
+    },
+    "resolution": {
+      "final_diagnosis": "Pontocerebellar Atrophy With the Pontine 'Hot Cross Bun' Sign Associated With Autoimmune Thyroiditis (and Differential Diagnosis of MSA-C)",
+      "clinical_discussion": "The 'Hot Cross Bun' (HCB) sign on axial T2-weighted and FLAIR MRI consists of a cruciform hyperintensity in the pons resulting from selective degeneration of pontine neurons and myelinated transverse pontocerebellar fibers, with preservation of the pontine tegmentum and corticospinal tracts running craniocaudally.\n\nAlthough the HCB sign is a hallmark neuroimaging feature of Multiple System Atrophy cerebellar type (MSA-C), it is not pathognomonic for synucleinopathy alone. It is increasingly recognized in spinocerebellar ataxias (especially SCA2, SCA3, SCA7), variant Creutzfeldt-Jakob disease, vasculitis, and treatable autoimmune or paraneoplastic cerebellar syndromes (such as autoimmune thyroiditis-related ataxia/rhombencephalitis).",
+      "teaching_points": [
+        "Neuroanatomical basis of the 'Hot Cross Bun' sign: Gliosis of horizontal pontocerebellar fibers and raphe nuclei (forming the cross) with sparing of the corticospinal tracts and dorsal tegmentum (forming the four dark quadrants).",
+        "While MSA-C is the most frequent neurodegenerative cause of the HCB sign, always screen for treatable autoimmune, thyroid, and paraneoplastic etiologies when atypical features (such as subacute cranial neuropathies) are present.",
+        "Sagittal T1 MRI in pontocerebellar atrophy characteristically demonstrates flattening of the ventral pontine belly ('flat pons') and widening of the cerebellar folia."
+      ],
+      "clinical_pitfalls": [
+        "Assuming every 'Hot Cross Bun' sign on brain MRI is untreatable Multiple System Atrophy without excluding autoimmune, paraneoplastic, or infectious etiologies.",
+        "Confusing the chronic pontine 'Hot Cross Bun' sign with acute osmotic demyelination syndrome (central pontine myelinolysis)."
+      ],
+      "related_keywords": ["ataxia", "multiple system atrophy", "cerebellar", "movement", "autoimmune"]
+    }
+  }
+]
