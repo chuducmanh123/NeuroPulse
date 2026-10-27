@@ -224,7 +224,7 @@ export default function NeuroCasePage() {
         const todayIso = getLocalTodayIso();
         const isDailyCase = (c: ClinicalCase) =>
           !c.archive_only &&
-          (c.is_daily_challenge === true || (c.id.startsWith("nc-2026-") && c.is_daily_challenge !== false));
+          (c.is_daily_challenge === true || c.id.startsWith("nc-2026-"));
 
         const activeDailies = merged
           .filter(
@@ -289,7 +289,7 @@ export default function NeuroCasePage() {
     const todayIso = getLocalTodayIso();
     const isDaily = (c: ClinicalCase) =>
       !c.archive_only &&
-      (c.is_daily_challenge === true || (c.id.startsWith("nc-2026-") && c.is_daily_challenge !== false));
+      (c.is_daily_challenge === true || c.id.startsWith("nc-2026-"));
 
     const eligible = approvedCases.filter(
       (c) => isDaily(c) && c.published_date <= todayIso

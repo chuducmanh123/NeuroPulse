@@ -284,66 +284,80 @@ ${cleaned.slice(0, 14000)}`;
         });
       }
 
-      const res = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(
-          geminiApiKey.trim()
-        )}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            contents: [{ parts }],
-            generationConfig: {
-              temperature: 0.2,
-              responseMimeType: "application/json",
-            },
-          }),
-        }
-      );
+      const waterfallModels = [
+        "gemini-flash-lite-latest",
+        "gemini-2.5-flash-lite",
+        "gemini-2.0-flash",
+        "gemini-2.5-flash",
+        "gemini-flash-latest",
+      ];
 
-      if (res.ok) {
-        const data = await res.json();
-        const jsonText = data?.candidates?.[0]?.content?.parts?.[0]?.text || "";
-        const parsed = JSON.parse(jsonText);
-        return {
-          title: parsed.title || "Acute Neurological Syndrome — Clinical Challenge",
-          subspecialty: parsed.subspecialty || detectSubspecialty(cleaned),
-          difficulty: (parsed.difficulty as CaseDifficulty) || "Fellow",
-          author_credit: `${journal_short}${doi_url ? ` • ${doi_url}` : ""}`,
-          doi_url,
-          journal_short,
-          demographics: parsed.demographics || "Adult Neurology Patient",
-          chief_complaint: parsed.chief_complaint || parsed.title || "Acute neurological deficit",
-          history_of_present_illness: parsed.history_of_present_illness || cleaned.slice(0, 600),
-          past_medical_history: parsed.past_medical_history || "As documented in clinical vignette.",
-          neuro_exam: parsed.neuro_exam || "Focal neurological deficits as documented in clinical vignette.",
-          key_labs_csf: parsed.key_labs_csf || "Laboratory and CSF workup as detailed in text.",
-          modality: parsed.modality || "Brain MRI / Neuroimaging",
-          figure_caption:
-            parsed.figure_caption || "Published clinical neuroimaging figure from the source article.",
-          findings_summary: parsed.findings_summary || "Characteristic neuroimaging abnormality.",
-          question:
-            parsed.question || "Which of the following is the most likely diagnosis?",
-          optA: parsed.optA || parsed.final_diagnosis || "Option A",
-          optARationale:
-            parsed.optARationale || "Correct answer based on clinical and neuroimaging localization.",
-          optB: parsed.optB || "Alternative differential diagnosis B",
-          optBRationale:
-            parsed.optBRationale || "Excluded based on clinical course and neuroimaging sequence profile.",
-          optC: parsed.optC || "Alternative differential diagnosis C",
-          optCRationale:
-            parsed.optCRationale || "Excluded based on CSF and electrodiagnostic workup.",
-          optD: parsed.optD || "Alternative differential diagnosis D",
-          optDRationale:
-            parsed.optDRationale || "Does not account for the neuroanatomical localization.",
-          correctOption: (["A", "B", "C", "D"].includes(parsed.correctOption)
-            ? parsed.correctOption
-            : "A") as "A" | "B" | "C" | "D",
-          final_diagnosis: parsed.final_diagnosis || "Definitive Neurological Diagnosis",
-          clinical_discussion: parsed.clinical_discussion || "",
-          teaching_points: Array.isArray(parsed.teaching_points) ? parsed.teaching_points : [],
-          clinical_pitfalls: Array.isArray(parsed.clinical_pitfalls) ? parsed.clinical_pitfalls : [],
-        };
+      for (const modelName of waterfallModels) {
+        try {
+          const res = await fetch(
+            `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${encodeURIComponent(
+              geminiApiKey.trim()
+            )}`,
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                contents: [{ parts }],
+                generationConfig: {
+                  temperature: 0.2,
+                  responseMimeType: "application/json",
+                },
+              }),
+            }
+          );
+
+          if (res.ok) {
+            const data = await res.json();
+            const jsonText = data?.candidates?.[0]?.content?.parts?.[0]?.text || "";
+            const parsed = JSON.parse(jsonText);
+            return {
+              title: parsed.title || "Acute Neurological Syndrome — Clinical Challenge",
+              subspecialty: parsed.subspecialty || detectSubspecialty(cleaned),
+              difficulty: (parsed.difficulty as CaseDifficulty) || "Fellow",
+              author_credit: `${journal_short}${doi_url ? ` • ${doi_url}` : ""}`,
+              doi_url,
+              journal_short,
+              demographics: parsed.demographics || "Adult Neurology Patient",
+              chief_complaint: parsed.chief_complaint || parsed.title || "Acute neurological deficit",
+              history_of_present_illness: parsed.history_of_present_illness || cleaned.slice(0, 600),
+              past_medical_history: parsed.past_medical_history || "As documented in clinical vignette.",
+              neuro_exam: parsed.neuro_exam || "Focal neurological deficits as documented in clinical vignette.",
+              key_labs_csf: parsed.key_labs_csf || "Laboratory and CSF workup as detailed in text.",
+              modality: parsed.modality || "Brain MRI / Neuroimaging",
+              figure_caption:
+                parsed.figure_caption || "Published clinical neuroimaging figure from the source article.",
+              findings_summary: parsed.findings_summary || "Characteristic neuroimaging abnormality.",
+              question:
+                parsed.question || "Which of the following is the most likely diagnosis?",
+              optA: parsed.optA || parsed.final_diagnosis || "Option A",
+              optARationale:
+                parsed.optARationale || "Correct answer based on clinical and neuroimaging localization.",
+              optB: parsed.optB || "Alternative differential diagnosis B",
+              optBRationale:
+                parsed.optBRationale || "Excluded based on clinical course and neuroimaging sequence profile.",
+              optC: parsed.optC || "Alternative differential diagnosis C",
+              optCRationale:
+                parsed.optCRationale || "Excluded based on CSF and electrodiagnostic workup.",
+              optD: parsed.optD || "Alternative differential diagnosis D",
+              optDRationale:
+                parsed.optDRationale || "Does not account for the neuroanatomical localization.",
+              correctOption: (["A", "B", "C", "D"].includes(parsed.correctOption)
+                ? parsed.correctOption
+                : "A") as "A" | "B" | "C" | "D",
+              final_diagnosis: parsed.final_diagnosis || "Definitive Neurological Diagnosis",
+              clinical_discussion: parsed.clinical_discussion || "",
+              teaching_points: Array.isArray(parsed.teaching_points) ? parsed.teaching_points : [],
+              clinical_pitfalls: Array.isArray(parsed.clinical_pitfalls) ? parsed.clinical_pitfalls : [],
+            };
+          }
+        } catch (modelErr) {
+          console.warn(`Gemini model ${modelName} failed, trying next model in waterfall:`, modelErr);
+        }
       }
     } catch (err) {
       console.warn("Gemini API extraction fallback triggered:", err);

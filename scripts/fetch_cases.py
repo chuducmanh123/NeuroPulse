@@ -41,7 +41,13 @@ HEADERS = {
 }
 
 GEMINI_API_KEY = load_env_key()
-ACTIVE_GEMINI_MODELS = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-flash-lite-latest"]
+ACTIVE_GEMINI_MODELS = [
+    "gemini-flash-lite-latest",  # Phản hồi tức thì, hạn mức Free Tier rộng nhất (như NeuroPulse)
+    "gemini-2.5-flash-lite",
+    "gemini-2.0-flash",
+    "gemini-2.5-flash",
+    "gemini-flash-latest"
+]
 
 FIGURES_DIR = os.path.join("public", "data", "figures")
 CASES_JSON_PATH = os.path.join("public", "data", "cases.json")
