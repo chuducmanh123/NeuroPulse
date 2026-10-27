@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import Link from "next/link";
-import { ClinicalCase, CaseDifficulty, CaseStatus } from "../../types/clinicalCase";
+import { ClinicalCase, CaseDifficulty, CaseStatus, CaseNeuroImaging } from "../../types/clinicalCase";
 import { Article } from "../../types/article";
 import { AppSwitcher } from "../../components/ecosystem/AppSwitcher";
 import { NeuroImagingViewer } from "../../components/neurocase/NeuroImagingViewer";
@@ -232,8 +232,7 @@ export default function NeuroCasePage() {
 
         const todayIso = getLocalTodayIso();
         const isDailyCase = (c: ClinicalCase) =>
-          !c.archive_only &&
-          (c.is_daily_challenge === true || c.id.startsWith("nc-2026-"));
+          !c.archive_only && c.is_daily_challenge === true;
 
         const activeDailies = merged
           .filter(
@@ -297,8 +296,7 @@ export default function NeuroCasePage() {
   const dailyChallengeCases = useMemo(() => {
     const todayIso = getLocalTodayIso();
     const isDaily = (c: ClinicalCase) =>
-      !c.archive_only &&
-      (c.is_daily_challenge === true || c.id.startsWith("nc-2026-"));
+      !c.archive_only && c.is_daily_challenge === true;
 
     const eligible = approvedCases.filter(
       (c) => isDaily(c) && c.published_date <= todayIso
@@ -402,6 +400,17 @@ export default function NeuroCasePage() {
     } catch {
       return isoDate;
     }
+  };
+
+  const hasVitals = (v?: { bp?: string; hr?: string; rr?: string; temp?: string; spo2?: string }) => {
+    if (!v) return false;
+    return Boolean(
+      (v.bp && v.bp.trim()) ||
+      (v.hr && v.hr.trim()) ||
+      (v.rr && v.rr.trim()) ||
+      (v.temp && v.temp.trim()) ||
+      (v.spo2 && v.spo2.trim())
+    );
   };
 
   const stats = useMemo(() => {
@@ -902,7 +911,87 @@ export default function NeuroCasePage() {
 
   const handleStartFullEdit = (caseItem: ClinicalCase) => {
     setEditingCaseId(caseItem.id);
-    setEditDraft(JSON.parse(JSON.stringify(caseItem)));
+    const draft: ClinicalCase = JSON.parse(JSON.stringify(caseItem));
+    if (!draft.presentation.vitals) {
+      draft.presentation.vitals = { bp: "", hr: "", rr: "", temp: "", spo2: "" };
+    }
+    if (!Array.isArray(draft.presentation.imaging)) {
+      draft.presentation.imaging = [];
+    }
+    setEditDraft(draft);
+  };
+
+  const handleAdminAddFigure = () => {
+    if (!editDraft) return;
+    const nextIdx = editDraft.presentation.imaging.length + 1;
+    const newFig: CaseNeuroImaging = {
+      modality: "Brain MRI (Multiplanar Sequences)",
+      sequence_badge: `Figure ${nextIdx}`,
+      figure_label: `Figure ${nextIdx}`,
+      image_url: "",
+      caption: "",
+      findings_summary: "",
+    };
+    setEditDraft({
+      ...editDraft,
+      presentation: {
+        ...editDraft.presentation,
+        imaging: [...editDraft.presentation.imaging, newFig],
+      },
+    });
+  };
+
+  const handleAdminRemoveFigure = (figIdx: number) => {
+    if (!editDraft) return;
+    const nextImgs = editDraft.presentation.imaging.filter((_, idx) => idx !== figIdx);
+    setEditDraft({
+      ...editDraft,
+      presentation: {
+        ...editDraft.presentation,
+        imaging: nextImgs,
+      },
+    });
+  };
+
+  const handleAdminFigureUpload = (figIdx: number, file: File) => {
+    if (!file || !editDraft) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        const maxDim = 1200;
+        let w = img.width;
+        let h = img.height;
+        if (w > maxDim || h > maxDim) {
+          if (w > h) {
+            h = Math.round((h * maxDim) / w);
+            w = maxDim;
+          } else {
+            w = Math.round((w * maxDim) / h);
+            h = maxDim;
+          }
+        }
+        canvas.width = w;
+        canvas.height = h;
+        const ctx = canvas.getContext("2d");
+        if (ctx) {
+          ctx.drawImage(img, 0, 0, w, h);
+          const webpUrl = canvas.toDataURL("image/webp", 0.85);
+          const nextImgs = [...editDraft.presentation.imaging];
+          nextImgs[figIdx] = { ...nextImgs[figIdx], image_url: webpUrl };
+          setEditDraft({
+            ...editDraft,
+            presentation: {
+              ...editDraft.presentation,
+              imaging: nextImgs,
+            },
+          });
+        }
+      };
+      img.src = ev.target?.result as string;
+    };
+    reader.readAsDataURL(file);
   };
 
   const handleSaveAdminEdit = (caseId: string) => {
@@ -1193,71 +1282,93 @@ export default function NeuroCasePage() {
                       {currentCase.presentation.key_labs_csf}
                     </p>
 
-                    {/* Optional Expandable Vitals & PMH Toggle */}
-                    <div>
-                      <button
-                        type="button"
-                        onClick={() => setShowDetailedWorkup((prev) => !prev)}
-                        className="text-xs font-bold text-indigo-500 hover:underline flex items-center gap-1"
-                      >
-                        <span>
-                          {showDetailedWorkup
-                            ? "− Hide Vital Signs & Past Medical History"
-                            : "+ View Vital Signs & Past Medical History"}
-                        </span>
-                      </button>
-
-                      {showDetailedWorkup && (
-                        <div
-                          className={`mt-2.5 p-3.5 rounded-xl border text-xs space-y-2.5 ${
-                            darkMode
-                              ? "bg-slate-800/60 border-slate-700 text-slate-200"
-                              : "bg-slate-50 border-slate-200 text-slate-700"
-                          }`}
+                    {/* Optional Expandable Vitals & PMH Toggle (only shown if PMH or Vitals exist) */}
+                    {(currentCase.presentation.past_medical_history || hasVitals(currentCase.presentation.vitals)) && (
+                      <div>
+                        <button
+                          type="button"
+                          onClick={() => setShowDetailedWorkup((prev) => !prev)}
+                          className="text-xs font-bold text-indigo-500 hover:underline flex items-center gap-1"
                         >
-                          <div>
-                            <strong className="font-bold">Demographics: </strong>
-                            {currentCase.presentation.demographics}
+                          <span>
+                            {showDetailedWorkup
+                              ? hasVitals(currentCase.presentation.vitals)
+                                ? "− Hide Vital Signs & Past Medical History"
+                                : "− Hide Past Medical History"
+                              : hasVitals(currentCase.presentation.vitals)
+                              ? "+ View Vital Signs & Past Medical History"
+                              : "+ View Past Medical History"}
+                          </span>
+                        </button>
+
+                        {showDetailedWorkup && (
+                          <div
+                            className={`mt-2.5 p-3.5 rounded-xl border text-xs space-y-2.5 ${
+                              darkMode
+                                ? "bg-slate-800/60 border-slate-700 text-slate-200"
+                                : "bg-slate-50 border-slate-200 text-slate-700"
+                            }`}
+                          >
+                            {currentCase.presentation.demographics && (
+                              <div>
+                                <strong className="font-bold">Demographics: </strong>
+                                {currentCase.presentation.demographics}
+                              </div>
+                            )}
+                            {currentCase.presentation.past_medical_history && (
+                              <div>
+                                <strong className="font-bold">Past Medical History: </strong>
+                                {currentCase.presentation.past_medical_history}
+                              </div>
+                            )}
+                            {hasVitals(currentCase.presentation.vitals) && (
+                              <div className="grid grid-cols-3 sm:grid-cols-5 gap-1.5 pt-1 text-center">
+                                {currentCase.presentation.vitals?.bp && (
+                                  <div className="p-1.5 rounded bg-slate-900 text-white">
+                                    <span className="text-[9px] text-slate-400 block">BP</span>
+                                    <span className="font-bold text-[11px] text-emerald-400">
+                                      {currentCase.presentation.vitals.bp}
+                                    </span>
+                                  </div>
+                                )}
+                                {currentCase.presentation.vitals?.hr && (
+                                  <div className="p-1.5 rounded bg-slate-900 text-white">
+                                    <span className="text-[9px] text-slate-400 block">HR</span>
+                                    <span className="font-bold text-[11px] text-amber-300">
+                                      {currentCase.presentation.vitals.hr}
+                                    </span>
+                                  </div>
+                                )}
+                                {currentCase.presentation.vitals?.rr && (
+                                  <div className="p-1.5 rounded bg-slate-900 text-white">
+                                    <span className="text-[9px] text-slate-400 block">RR</span>
+                                    <span className="font-bold text-[11px] text-sky-300">
+                                      {currentCase.presentation.vitals.rr}
+                                    </span>
+                                  </div>
+                                )}
+                                {currentCase.presentation.vitals?.temp && (
+                                  <div className="p-1.5 rounded bg-slate-900 text-white">
+                                    <span className="text-[9px] text-slate-400 block">Temp</span>
+                                    <span className="font-bold text-[11px]">
+                                      {currentCase.presentation.vitals.temp}
+                                    </span>
+                                  </div>
+                                )}
+                                {currentCase.presentation.vitals?.spo2 && (
+                                  <div className="p-1.5 rounded bg-slate-900 text-white">
+                                    <span className="text-[9px] text-slate-400 block">SpO2</span>
+                                    <span className="font-bold text-[11px] text-cyan-300">
+                                      {currentCase.presentation.vitals.spo2}
+                                    </span>
+                                  </div>
+                                )}
+                              </div>
+                            )}
                           </div>
-                          <div>
-                            <strong className="font-bold">Past Medical History: </strong>
-                            {currentCase.presentation.past_medical_history}
-                          </div>
-                          <div className="grid grid-cols-3 sm:grid-cols-5 gap-1.5 pt-1 text-center">
-                            <div className="p-1.5 rounded bg-slate-900 text-white">
-                              <span className="text-[9px] text-slate-400 block">BP</span>
-                              <span className="font-bold text-[11px] text-emerald-400">
-                                {currentCase.presentation.vitals.bp}
-                              </span>
-                            </div>
-                            <div className="p-1.5 rounded bg-slate-900 text-white">
-                              <span className="text-[9px] text-slate-400 block">HR</span>
-                              <span className="font-bold text-[11px] text-amber-300">
-                                {currentCase.presentation.vitals.hr}
-                              </span>
-                            </div>
-                            <div className="p-1.5 rounded bg-slate-900 text-white">
-                              <span className="text-[9px] text-slate-400 block">RR</span>
-                              <span className="font-bold text-[11px] text-sky-300">
-                                {currentCase.presentation.vitals.rr}
-                              </span>
-                            </div>
-                            <div className="p-1.5 rounded bg-slate-900 text-white">
-                              <span className="text-[9px] text-slate-400 block">Temp</span>
-                              <span className="font-bold text-[11px]">
-                                {currentCase.presentation.vitals.temp}
-                              </span>
-                            </div>
-                            <div className="p-1.5 rounded bg-slate-900 text-white">
-                              <span className="text-[9px] text-slate-400 block">SpO2</span>
-                              <span className="font-bold text-[11px] text-cyan-300">
-                                {currentCase.presentation.vitals.spo2}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
+                        )}
+                      </div>
+                    )}
 
                     {/* Question Prompt */}
                     <p
@@ -1334,25 +1445,11 @@ export default function NeuroCasePage() {
                                 )}
                               </div>
                             </div>
-
-                            {isCaseSolved && (
-                              <span className="text-xs font-black text-slate-500 dark:text-slate-400 shrink-0">
-                                {opt.peer_percentage}%
-                              </span>
-                            )}
                           </div>
 
-                          {/* Peer Distribution & Option Rationale (Unlocked when solved) */}
+                          {/* Option Rationale (Unlocked when solved) */}
                           {isCaseSolved && (
-                            <div className="mt-2.5 pl-8 space-y-1.5">
-                              <div className="w-full h-1.5 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
-                                <div
-                                  className={`h-full rounded-full transition-all duration-500 ${
-                                    isCorrectOption ? "bg-emerald-500" : "bg-slate-400"
-                                  }`}
-                                  style={{ width: `${opt.peer_percentage}%` }}
-                                />
-                              </div>
+                            <div className="mt-2 pl-8 space-y-1">
                               <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                                 <strong
                                   className={`font-black ${
@@ -1650,70 +1747,93 @@ export default function NeuroCasePage() {
                         {archiveViewingCase.presentation.key_labs_csf}
                       </p>
 
-                      <div>
-                        <button
-                          type="button"
-                          onClick={() => setShowDetailedWorkup((prev) => !prev)}
-                          className="text-xs font-bold text-indigo-500 hover:underline flex items-center gap-1"
-                        >
-                          <span>
-                            {showDetailedWorkup
-                              ? "− Hide Vital Signs & Past Medical History"
-                              : "+ View Vital Signs & Past Medical History"}
-                          </span>
-                        </button>
-
-                        {showDetailedWorkup && (
-                          <div
-                            className={`mt-2.5 p-3.5 rounded-xl border text-xs space-y-2.5 ${
-                              darkMode
-                                ? "bg-slate-800/60 border-slate-700 text-slate-200"
-                                : "bg-slate-50 border-slate-200 text-slate-700"
-                            }`}
+                      {/* Optional Expandable Vitals & PMH Toggle (only shown if PMH or Vitals exist) */}
+                      {(archiveViewingCase.presentation.past_medical_history || hasVitals(archiveViewingCase.presentation.vitals)) && (
+                        <div>
+                          <button
+                            type="button"
+                            onClick={() => setShowDetailedWorkup((prev) => !prev)}
+                            className="text-xs font-bold text-indigo-500 hover:underline flex items-center gap-1"
                           >
-                            <div>
-                              <strong className="font-bold">Demographics: </strong>
-                              {archiveViewingCase.presentation.demographics}
+                            <span>
+                              {showDetailedWorkup
+                                ? hasVitals(archiveViewingCase.presentation.vitals)
+                                  ? "− Hide Vital Signs & Past Medical History"
+                                  : "− Hide Past Medical History"
+                                : hasVitals(archiveViewingCase.presentation.vitals)
+                                ? "+ View Vital Signs & Past Medical History"
+                                : "+ View Past Medical History"}
+                            </span>
+                          </button>
+
+                          {showDetailedWorkup && (
+                            <div
+                              className={`mt-2.5 p-3.5 rounded-xl border text-xs space-y-2.5 ${
+                                darkMode
+                                  ? "bg-slate-800/60 border-slate-700 text-slate-200"
+                                  : "bg-slate-50 border-slate-200 text-slate-700"
+                              }`}
+                            >
+                              {archiveViewingCase.presentation.demographics && (
+                                <div>
+                                  <strong className="font-bold">Demographics: </strong>
+                                  {archiveViewingCase.presentation.demographics}
+                                </div>
+                              )}
+                              {archiveViewingCase.presentation.past_medical_history && (
+                                <div>
+                                  <strong className="font-bold">Past Medical History: </strong>
+                                  {archiveViewingCase.presentation.past_medical_history}
+                                </div>
+                              )}
+                              {hasVitals(archiveViewingCase.presentation.vitals) && (
+                                <div className="grid grid-cols-3 sm:grid-cols-5 gap-1.5 pt-1 text-center">
+                                  {archiveViewingCase.presentation.vitals?.bp && (
+                                    <div className="p-1.5 rounded bg-slate-900 text-white">
+                                      <span className="text-[9px] text-slate-400 block">BP</span>
+                                      <span className="font-bold text-[11px] text-emerald-400">
+                                        {archiveViewingCase.presentation.vitals.bp}
+                                      </span>
+                                    </div>
+                                  )}
+                                  {archiveViewingCase.presentation.vitals?.hr && (
+                                    <div className="p-1.5 rounded bg-slate-900 text-white">
+                                      <span className="text-[9px] text-slate-400 block">HR</span>
+                                      <span className="font-bold text-[11px] text-amber-300">
+                                        {archiveViewingCase.presentation.vitals.hr}
+                                      </span>
+                                    </div>
+                                  )}
+                                  {archiveViewingCase.presentation.vitals?.rr && (
+                                    <div className="p-1.5 rounded bg-slate-900 text-white">
+                                      <span className="text-[9px] text-slate-400 block">RR</span>
+                                      <span className="font-bold text-[11px] text-sky-300">
+                                        {archiveViewingCase.presentation.vitals.rr}
+                                      </span>
+                                    </div>
+                                  )}
+                                  {archiveViewingCase.presentation.vitals?.temp && (
+                                    <div className="p-1.5 rounded bg-slate-900 text-white">
+                                      <span className="text-[9px] text-slate-400 block">Temp</span>
+                                      <span className="font-bold text-[11px]">
+                                        {archiveViewingCase.presentation.vitals.temp}
+                                      </span>
+                                    </div>
+                                  )}
+                                  {archiveViewingCase.presentation.vitals?.spo2 && (
+                                    <div className="p-1.5 rounded bg-slate-900 text-white">
+                                      <span className="text-[9px] text-slate-400 block">SpO2</span>
+                                      <span className="font-bold text-[11px] text-cyan-300">
+                                        {archiveViewingCase.presentation.vitals.spo2}
+                                      </span>
+                                    </div>
+                                  )}
+                                </div>
+                              )}
                             </div>
-                            <div>
-                              <strong className="font-bold">Past Medical History: </strong>
-                              {archiveViewingCase.presentation.past_medical_history}
-                            </div>
-                            <div className="grid grid-cols-3 sm:grid-cols-5 gap-1.5 pt-1 text-center">
-                              <div className="p-1.5 rounded bg-slate-900 text-white">
-                                <span className="text-[9px] text-slate-400 block">BP</span>
-                                <span className="font-bold text-[11px] text-emerald-400">
-                                  {archiveViewingCase.presentation.vitals.bp}
-                                </span>
-                              </div>
-                              <div className="p-1.5 rounded bg-slate-900 text-white">
-                                <span className="text-[9px] text-slate-400 block">HR</span>
-                                <span className="font-bold text-[11px] text-amber-300">
-                                  {archiveViewingCase.presentation.vitals.hr}
-                                </span>
-                              </div>
-                              <div className="p-1.5 rounded bg-slate-900 text-white">
-                                <span className="text-[9px] text-slate-400 block">RR</span>
-                                <span className="font-bold text-[11px] text-sky-300">
-                                  {archiveViewingCase.presentation.vitals.rr}
-                                </span>
-                              </div>
-                              <div className="p-1.5 rounded bg-slate-900 text-white">
-                                <span className="text-[9px] text-slate-400 block">Temp</span>
-                                <span className="font-bold text-[11px]">
-                                  {archiveViewingCase.presentation.vitals.temp}
-                                </span>
-                              </div>
-                              <div className="p-1.5 rounded bg-slate-900 text-white">
-                                <span className="text-[9px] text-slate-400 block">SpO2</span>
-                                <span className="font-bold text-[11px] text-cyan-300">
-                                  {archiveViewingCase.presentation.vitals.spo2}
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        )}
-                      </div>
+                          )}
+                        </div>
+                      )}
 
                       <p
                         className={`font-bold pt-1 ${
@@ -1787,24 +1907,11 @@ export default function NeuroCasePage() {
                                   )}
                                 </div>
                               </div>
-
-                              {isCaseSolved && (
-                                <span className="text-xs font-black text-slate-500 dark:text-slate-400 shrink-0">
-                                  {opt.peer_percentage}%
-                                </span>
-                              )}
                             </div>
 
+                            {/* Option Rationale (Unlocked when solved) */}
                             {isCaseSolved && (
-                              <div className="mt-2.5 pl-8 space-y-1.5">
-                                <div className="w-full h-1.5 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
-                                  <div
-                                    className={`h-full rounded-full transition-all duration-500 ${
-                                      isCorrectOption ? "bg-emerald-500" : "bg-slate-400"
-                                    }`}
-                                    style={{ width: `${opt.peer_percentage}%` }}
-                                  />
-                                </div>
+                              <div className="mt-2 pl-8 space-y-1">
                                 <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                                   <strong
                                     className={`font-black ${
@@ -2814,17 +2921,11 @@ export default function NeuroCasePage() {
                           >
                             <div className="flex items-center justify-between">
                               <span className="font-black">Option {item.id} Text</span>
-                              <span className="text-[10px] text-slate-400">
-                                Peer %:{" "}
-                                <input
-                                  type="number"
-                                  min={0}
-                                  max={100}
-                                  value={item.peer}
-                                  onChange={(e) => item.setPeer(Number(e.target.value) || 0)}
-                                  className="w-12 px-1 py-0.5 rounded border text-center bg-transparent"
-                                />
-                              </span>
+                              {subCorrect === item.id && (
+                                <span className="text-[10px] font-bold text-emerald-500">
+                                  ✓ Correct Option
+                                </span>
+                              )}
                             </div>
                             <input
                               value={item.val}
@@ -3607,120 +3708,336 @@ export default function NeuroCasePage() {
                             </div>
                           </div>
 
+                          {/* 2b. Vital Signs Editor (Optional) */}
+                          <div
+                            className={`p-3 rounded-xl border space-y-2 ${
+                              darkMode
+                                ? "border-slate-800 bg-slate-950/60"
+                                : "border-slate-200 bg-slate-50/70"
+                            }`}
+                          >
+                            <div className="flex flex-wrap items-center justify-between gap-1">
+                              <span className="font-bold text-slate-300 text-xs">
+                                Vital Signs (BP, HR, RR, Temp, SpO2)
+                              </span>
+                              <span className="text-[11px] text-slate-400">
+                                Leave blank if not recorded — will not be displayed to clinicians
+                              </span>
+                            </div>
+                            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                              <div>
+                                <label className="text-[10px] text-slate-400 block mb-0.5">BP</label>
+                                <input
+                                  value={editDraft.presentation.vitals?.bp || ""}
+                                  onChange={(e) =>
+                                    setEditDraft({
+                                      ...editDraft,
+                                      presentation: {
+                                        ...editDraft.presentation,
+                                        vitals: {
+                                          ...editDraft.presentation.vitals,
+                                          bp: e.target.value,
+                                        },
+                                      },
+                                    })
+                                  }
+                                  placeholder="130/80 mmHg"
+                                  className={`w-full p-1.5 rounded border text-xs ${
+                                    darkMode
+                                      ? "bg-slate-900 border-slate-700 text-white"
+                                      : "bg-white border-slate-300"
+                                  }`}
+                                />
+                              </div>
+                              <div>
+                                <label className="text-[10px] text-slate-400 block mb-0.5">HR</label>
+                                <input
+                                  value={editDraft.presentation.vitals?.hr || ""}
+                                  onChange={(e) =>
+                                    setEditDraft({
+                                      ...editDraft,
+                                      presentation: {
+                                        ...editDraft.presentation,
+                                        vitals: {
+                                          ...editDraft.presentation.vitals,
+                                          hr: e.target.value,
+                                        },
+                                      },
+                                    })
+                                  }
+                                  placeholder="76 bpm"
+                                  className={`w-full p-1.5 rounded border text-xs ${
+                                    darkMode
+                                      ? "bg-slate-900 border-slate-700 text-white"
+                                      : "bg-white border-slate-300"
+                                  }`}
+                                />
+                              </div>
+                              <div>
+                                <label className="text-[10px] text-slate-400 block mb-0.5">RR</label>
+                                <input
+                                  value={editDraft.presentation.vitals?.rr || ""}
+                                  onChange={(e) =>
+                                    setEditDraft({
+                                      ...editDraft,
+                                      presentation: {
+                                        ...editDraft.presentation,
+                                        vitals: {
+                                          ...editDraft.presentation.vitals,
+                                          rr: e.target.value,
+                                        },
+                                      },
+                                    })
+                                  }
+                                  placeholder="16 /min"
+                                  className={`w-full p-1.5 rounded border text-xs ${
+                                    darkMode
+                                      ? "bg-slate-900 border-slate-700 text-white"
+                                      : "bg-white border-slate-300"
+                                  }`}
+                                />
+                              </div>
+                              <div>
+                                <label className="text-[10px] text-slate-400 block mb-0.5">Temp</label>
+                                <input
+                                  value={editDraft.presentation.vitals?.temp || ""}
+                                  onChange={(e) =>
+                                    setEditDraft({
+                                      ...editDraft,
+                                      presentation: {
+                                        ...editDraft.presentation,
+                                        vitals: {
+                                          ...editDraft.presentation.vitals,
+                                          temp: e.target.value,
+                                        },
+                                      },
+                                    })
+                                  }
+                                  placeholder="36.8 °C"
+                                  className={`w-full p-1.5 rounded border text-xs ${
+                                    darkMode
+                                      ? "bg-slate-900 border-slate-700 text-white"
+                                      : "bg-white border-slate-300"
+                                  }`}
+                                />
+                              </div>
+                              <div>
+                                <label className="text-[10px] text-slate-400 block mb-0.5">SpO2</label>
+                                <input
+                                  value={editDraft.presentation.vitals?.spo2 || ""}
+                                  onChange={(e) =>
+                                    setEditDraft({
+                                      ...editDraft,
+                                      presentation: {
+                                        ...editDraft.presentation,
+                                        vitals: {
+                                          ...editDraft.presentation.vitals,
+                                          spo2: e.target.value,
+                                        },
+                                      },
+                                    })
+                                  }
+                                  placeholder="98%"
+                                  className={`w-full p-1.5 rounded border text-xs ${
+                                    darkMode
+                                      ? "bg-slate-900 border-slate-700 text-white"
+                                      : "bg-white border-slate-300"
+                                  }`}
+                                />
+                              </div>
+                            </div>
+                          </div>
+
                           {/* 3. Figures Editor */}
-                          <div className="space-y-2">
-                            <label className="font-black uppercase text-indigo-500 block">
-                              Clinical Figures ({editDraft.presentation.imaging.length})
-                            </label>
+                          <div className="space-y-3">
+                            <div className="flex items-center justify-between">
+                              <label className="font-black uppercase text-indigo-500 block">
+                                Clinical Figures &amp; Neuroimaging ({editDraft.presentation.imaging.length})
+                              </label>
+                              <button
+                                type="button"
+                                onClick={handleAdminAddFigure}
+                                className="px-3 py-1 rounded-lg text-xs font-black bg-indigo-600 text-white hover:bg-indigo-700 flex items-center gap-1 transition-colors"
+                              >
+                                <span>+</span>
+                                <span>Add New Figure</span>
+                              </button>
+                            </div>
+
                             {editDraft.presentation.imaging.map((fig, fIdx) => (
                               <div
                                 key={fIdx}
-                                className={`p-3 rounded-lg border grid grid-cols-1 sm:grid-cols-3 gap-2 ${
+                                className={`p-3.5 rounded-xl border space-y-3 ${
                                   darkMode
                                     ? "bg-slate-950 border-slate-800"
                                     : "bg-white border-slate-200"
                                 }`}
                               >
-                                <div>
-                                  <span className="text-[10px] font-bold text-slate-400 block">
-                                    Figure {fIdx + 1} Modality &amp; Image Path/URL
+                                <div className="flex items-center justify-between pb-1 border-b border-slate-800/40">
+                                  <span className="font-bold text-xs text-indigo-400">
+                                    Figure {fIdx + 1}
                                   </span>
-                                  <input
-                                    value={fig.modality}
-                                    onChange={(e) => {
-                                      const nextImgs = [...editDraft.presentation.imaging];
-                                      nextImgs[fIdx] = { ...fig, modality: e.target.value };
-                                      setEditDraft({
-                                        ...editDraft,
-                                        presentation: {
-                                          ...editDraft.presentation,
-                                          imaging: nextImgs,
-                                        },
-                                      });
-                                    }}
-                                    placeholder="Modality"
-                                    className={`w-full p-1.5 rounded border mt-1 ${
-                                      darkMode
-                                        ? "bg-slate-900 border-slate-700 text-white"
-                                        : "bg-slate-50 border-slate-300"
-                                    }`}
-                                  />
-                                  <input
-                                    value={fig.image_url}
-                                    onChange={(e) => {
-                                      const nextImgs = [...editDraft.presentation.imaging];
-                                      nextImgs[fIdx] = { ...fig, image_url: e.target.value };
-                                      setEditDraft({
-                                        ...editDraft,
-                                        presentation: {
-                                          ...editDraft.presentation,
-                                          imaging: nextImgs,
-                                        },
-                                      });
-                                    }}
-                                    placeholder="Image URL"
-                                    className={`w-full p-1.5 rounded border mt-1 ${
-                                      darkMode
-                                        ? "bg-slate-900 border-slate-700 text-white"
-                                        : "bg-slate-50 border-slate-300"
-                                    }`}
-                                  />
+                                  {editDraft.presentation.imaging.length > 1 && (
+                                    <button
+                                      type="button"
+                                      onClick={() => handleAdminRemoveFigure(fIdx)}
+                                      className="text-[11px] font-bold text-rose-500 hover:text-rose-400 hover:underline flex items-center gap-1"
+                                    >
+                                      🗑️ Remove Figure {fIdx + 1}
+                                    </button>
+                                  )}
                                 </div>
-                                <div>
-                                  <span className="text-[10px] font-bold text-slate-400 block">
-                                    Original Published Caption
-                                  </span>
-                                  <textarea
-                                    rows={3}
-                                    value={fig.caption}
-                                    onChange={(e) => {
-                                      const nextImgs = [...editDraft.presentation.imaging];
-                                      nextImgs[fIdx] = { ...fig, caption: e.target.value };
-                                      setEditDraft({
-                                        ...editDraft,
-                                        presentation: {
-                                          ...editDraft.presentation,
-                                          imaging: nextImgs,
-                                        },
-                                      });
-                                    }}
-                                    className={`w-full p-1.5 rounded border mt-1 ${
-                                      darkMode
-                                        ? "bg-slate-900 border-slate-700 text-white"
-                                        : "bg-slate-50 border-slate-300"
-                                    }`}
-                                  />
-                                </div>
-                                <div>
-                                  <span className="text-[10px] font-bold text-slate-400 block">
-                                    Key Radiological / Electrographic Interpretation
-                                  </span>
-                                  <textarea
-                                    rows={3}
-                                    value={fig.findings_summary}
-                                    onChange={(e) => {
-                                      const nextImgs = [...editDraft.presentation.imaging];
-                                      nextImgs[fIdx] = {
-                                        ...fig,
-                                        findings_summary: e.target.value,
-                                      };
-                                      setEditDraft({
-                                        ...editDraft,
-                                        presentation: {
-                                          ...editDraft.presentation,
-                                          imaging: nextImgs,
-                                        },
-                                      });
-                                    }}
-                                    className={`w-full p-1.5 rounded border mt-1 ${
-                                      darkMode
-                                        ? "bg-slate-900 border-slate-700 text-white"
-                                        : "bg-slate-50 border-slate-300"
-                                    }`}
-                                  />
+
+                                <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 items-start">
+                                  {/* Thumbnail & File Upload */}
+                                  <div className="sm:col-span-4 space-y-2">
+                                    <div className="relative rounded-lg border border-slate-700 bg-black/40 h-32 flex items-center justify-center overflow-hidden">
+                                      {fig.image_url ? (
+                                        <img
+                                          src={fig.image_url}
+                                          alt={`Figure ${fIdx + 1}`}
+                                          className="h-full w-full object-contain"
+                                        />
+                                      ) : (
+                                        <span className="text-[11px] text-slate-500 text-center px-2">
+                                          No image loaded yet
+                                        </span>
+                                      )}
+                                    </div>
+
+                                    <div>
+                                      <label className="block text-[10px] font-bold text-slate-400 mb-1">
+                                        📁 Upload / Replace from Computer:
+                                      </label>
+                                      <input
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={(e) => {
+                                          const f = e.target.files?.[0];
+                                          if (f) handleAdminFigureUpload(fIdx, f);
+                                        }}
+                                        className="text-[11px] w-full"
+                                      />
+                                    </div>
+
+                                    <div>
+                                      <label className="block text-[10px] font-bold text-slate-400 mb-1">
+                                        Or Image URL / Local Path:
+                                      </label>
+                                      <input
+                                        value={fig.image_url}
+                                        onChange={(e) => {
+                                          const nextImgs = [...editDraft.presentation.imaging];
+                                          nextImgs[fIdx] = { ...fig, image_url: e.target.value };
+                                          setEditDraft({
+                                            ...editDraft,
+                                            presentation: {
+                                              ...editDraft.presentation,
+                                              imaging: nextImgs,
+                                            },
+                                          });
+                                        }}
+                                        placeholder="/data/figures/... or https://..."
+                                        className={`w-full p-1.5 rounded border text-xs ${
+                                          darkMode
+                                            ? "bg-slate-900 border-slate-700 text-white"
+                                            : "bg-slate-50 border-slate-300"
+                                        }`}
+                                      />
+                                    </div>
+                                  </div>
+
+                                  {/* Modality, Caption & Findings */}
+                                  <div className="sm:col-span-8 space-y-2">
+                                    <div>
+                                      <label className="block text-[10px] font-bold text-slate-400 mb-0.5">
+                                        Modality (e.g. Brain MRI Axial FLAIR, CTA Head &amp; Neck)
+                                      </label>
+                                      <input
+                                        value={fig.modality}
+                                        onChange={(e) => {
+                                          const nextImgs = [...editDraft.presentation.imaging];
+                                          nextImgs[fIdx] = { ...fig, modality: e.target.value };
+                                          setEditDraft({
+                                            ...editDraft,
+                                            presentation: {
+                                              ...editDraft.presentation,
+                                              imaging: nextImgs,
+                                            },
+                                          });
+                                        }}
+                                        className={`w-full p-1.5 rounded border text-xs ${
+                                          darkMode
+                                            ? "bg-slate-900 border-slate-700 text-white"
+                                            : "bg-slate-50 border-slate-300"
+                                        }`}
+                                      />
+                                    </div>
+
+                                    <div>
+                                      <label className="block text-[10px] font-bold text-slate-400 mb-0.5">
+                                        Published Figure Caption
+                                      </label>
+                                      <textarea
+                                        rows={2}
+                                        value={fig.caption}
+                                        onChange={(e) => {
+                                          const nextImgs = [...editDraft.presentation.imaging];
+                                          nextImgs[fIdx] = { ...fig, caption: e.target.value };
+                                          setEditDraft({
+                                            ...editDraft,
+                                            presentation: {
+                                              ...editDraft.presentation,
+                                              imaging: nextImgs,
+                                            },
+                                          });
+                                        }}
+                                        className={`w-full p-1.5 rounded border text-xs ${
+                                          darkMode
+                                            ? "bg-slate-900 border-slate-700 text-white"
+                                            : "bg-slate-50 border-slate-300"
+                                        }`}
+                                      />
+                                    </div>
+
+                                    <div>
+                                      <label className="block text-[10px] font-bold text-slate-400 mb-0.5">
+                                        Key Radiological / Diagnostic Findings Summary
+                                      </label>
+                                      <textarea
+                                        rows={2}
+                                        value={fig.findings_summary}
+                                        onChange={(e) => {
+                                          const nextImgs = [...editDraft.presentation.imaging];
+                                          nextImgs[fIdx] = { ...fig, findings_summary: e.target.value };
+                                          setEditDraft({
+                                            ...editDraft,
+                                            presentation: {
+                                              ...editDraft.presentation,
+                                              imaging: nextImgs,
+                                            },
+                                          });
+                                        }}
+                                        className={`w-full p-1.5 rounded border text-xs ${
+                                          darkMode
+                                            ? "bg-slate-900 border-slate-700 text-white"
+                                            : "bg-slate-50 border-slate-300"
+                                        }`}
+                                      />
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
                             ))}
+
+                            <button
+                              type="button"
+                              onClick={handleAdminAddFigure}
+                              className="w-full py-2 rounded-xl border border-dashed border-indigo-500/40 text-xs font-bold text-indigo-400 hover:bg-indigo-500/5 transition-colors flex items-center justify-center gap-1.5"
+                            >
+                              <span>+</span>
+                              <span>Add Another Figure (Multi-Figure Series)</span>
+                            </button>
                           </div>
 
                           {/* 4. Question Prompt, Correct Option & All 4 Options (A, B, C, D) */}
@@ -3789,30 +4106,11 @@ export default function NeuroCasePage() {
                               >
                                 <div className="flex items-center justify-between">
                                   <span className="font-black">Option {opt.id} Text</span>
-                                  <span className="text-[10px] text-slate-400">
-                                    Peer %:{" "}
-                                    <input
-                                      type="number"
-                                      min={0}
-                                      max={100}
-                                      value={opt.peer_percentage}
-                                      onChange={(e) => {
-                                        const nextOpts = [...editDraft.challenge.options];
-                                        nextOpts[oIdx] = {
-                                          ...opt,
-                                          peer_percentage: Number(e.target.value) || 0,
-                                        };
-                                        setEditDraft({
-                                          ...editDraft,
-                                          challenge: {
-                                            ...editDraft.challenge,
-                                            options: nextOpts,
-                                          },
-                                        });
-                                      }}
-                                      className="w-12 px-1 py-0.5 rounded border text-center bg-transparent"
-                                    />
-                                  </span>
+                                  {editDraft.challenge.correct_option === opt.id && (
+                                    <span className="text-[10px] font-bold text-emerald-500">
+                                      ✓ Correct Option
+                                    </span>
+                                  )}
                                 </div>
                                 <input
                                   value={opt.text}
@@ -4167,19 +4465,25 @@ export default function NeuroCasePage() {
                   </div>
 
                   <div className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 text-xs space-y-1.5 bg-slate-50/50 dark:bg-slate-800/30">
-                    <div>
-                      <strong>Demographics: </strong> {adminPreviewCase.presentation.demographics}
-                    </div>
-                    <div>
-                      <strong>PMH: </strong> {adminPreviewCase.presentation.past_medical_history}
-                    </div>
-                    <div>
-                      <strong>Vitals: </strong> BP {adminPreviewCase.presentation.vitals.bp} • HR{" "}
-                      {adminPreviewCase.presentation.vitals.hr} • RR{" "}
-                      {adminPreviewCase.presentation.vitals.rr} • Temp{" "}
-                      {adminPreviewCase.presentation.vitals.temp} • SpO2{" "}
-                      {adminPreviewCase.presentation.vitals.spo2}
-                    </div>
+                    {adminPreviewCase.presentation.demographics && (
+                      <div>
+                        <strong>Demographics: </strong> {adminPreviewCase.presentation.demographics}
+                      </div>
+                    )}
+                    {adminPreviewCase.presentation.past_medical_history && (
+                      <div>
+                        <strong>PMH: </strong> {adminPreviewCase.presentation.past_medical_history}
+                      </div>
+                    )}
+                    {hasVitals(adminPreviewCase.presentation.vitals) && (
+                      <div>
+                        <strong>Vitals: </strong> BP {adminPreviewCase.presentation.vitals?.bp} • HR{" "}
+                        {adminPreviewCase.presentation.vitals?.hr} • RR{" "}
+                        {adminPreviewCase.presentation.vitals?.rr} • Temp{" "}
+                        {adminPreviewCase.presentation.vitals?.temp} • SpO2{" "}
+                        {adminPreviewCase.presentation.vitals?.spo2}
+                      </div>
+                    )}
                   </div>
 
                   <div>
@@ -4226,7 +4530,6 @@ export default function NeuroCasePage() {
                                 </strong>
                               )}
                             </span>
-                            <span className="text-[11px] font-mono">{opt.peer_percentage}%</span>
                           </div>
                           {opt.rationale && (
                             <p className="text-[11px] mt-1 pl-5.5 opacity-90 leading-snug">

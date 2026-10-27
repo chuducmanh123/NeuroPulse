@@ -1,5 +1,108 @@
 [
   {
+    "id": "nc-2026-010",
+    "case_code": "NC-2026-010",
+    "title": "Isolated Freezing of Gait with Parietal Cortical Atrophy and Preserved Dopamine Transporter Binding",
+    "subspecialty": "Movement Disorders",
+    "subspecialties": [
+      "Movement Disorders",
+      "Cognitive & Behavioral Neurology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 120,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-10-27",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC12958690",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-04693-z",
+      "pmcid": "PMC12958690",
+      "pmid": "41634613",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "55-year-old man",
+      "chief_complaint": "One-year history of freezing of gait and recurrent unprovoked falls",
+      "history_of_present_illness": "The patient presented with a one-year history of progressive freezing of gait (FOG) and recurrent unprovoked falls, manifesting as hesitation when starting, turning, and navigating narrow spaces. He denied any prodromal non-motor symptoms such as REM sleep behavior disorder, hyposmia, or constipation, as well as visual disturbances. Despite multiple trials of carbidopa/levodopa, his FOG showed no noticeable clinical improvement.",
+      "past_medical_history": "Appendectomy 30 years prior; otherwise non-contributory with no family history of neurodegenerative diseases.",
+      "vitals": {
+        "bp": "124/78 mmHg",
+        "hr": "72 bpm",
+        "rr": "16 /min",
+        "temp": "36.5 °C",
+        "spo2": "99% on room air"
+      },
+      "neuro_exam": "Marked FOG during gait initiation, turning, and reaching destination. Cranial nerves, motor strength, sensation, coordination, and reflexes were otherwise normal. No rigidity, resting tremor, or bradykinesia noted on initial presentation. Mini-Mental State Examination: 29/30, Montreal Cognitive Assessment: 30/30, Frontal Assessment Battery: 18/18.",
+      "key_labs_csf": "Routine blood work, comprehensive metabolic panel, and vitamin B12 levels were entirely normal.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (Axial FLAIR, Coronal T2) & 18F-FP-CIT PET",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC12958690)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC12958690_fig1.jpg",
+          "pmcid": "PMC12958690",
+          "doi_url": "https://doi.org/10.1186/s12883-026-04693-z",
+          "caption": "The patient’s neuroimaging findings ( A) Brain MRI acquired in December 2016 shows marked bilateral parietal lobe atrophy, shown on axial FLAIR images (upper panels) and coronal T2-weighted images (lower panels). B The volume and contour of the midbrain are normal ( C ) 18 F-FP-CIT PET scans obtained in December 2016 reveal normal dopamine transporter binding ( D ) A single-case voxel-based morphometry study, in comparison with 10 age- and sex-matched controls, shows decreased volume in the right superior parietal lobe and left superior occipital gyrus in the patient’s brain. Abbreviations: MR",
+          "findings_summary": "Demonstrated marked bilateral parietal lobe atrophy with normal midbrain volume and normal presynaptic dopamine transporter binding."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Given the clinical presentation of isolated, levodopa-unresponsive freezing of gait lasting over a year, normal striatal dopamine transporter (DAT) uptake, preserved cognition, and marked bilateral parietal atrophy without brainstem changes, what is the most appropriate clinico-pathological syndrome?",
+      "question_type": "Diagnosis",
+      "correct_option": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "Idiopathic Parkinson's disease with early axial involvement",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. Idiopathic Parkinson's disease typically presents with abnormal presynaptic DAT uptake on functional imaging and responds well to dopaminergic therapy, unlike this patient."
+        },
+        {
+          "id": "B",
+          "text": "Progressive supranuclear palsy (Richardson's syndrome)",
+          "peer_percentage": 14,
+          "rationale": "Incorrect. Progressive supranuclear palsy characteristically demonstrates midbrain atrophy ('hummingbird sign') and early vertical supranuclear gaze palsy, which were absent here."
+        },
+        {
+          "id": "C",
+          "text": "Primary progressive freezing of gait (PPFG) disorder",
+          "peer_percentage": 71,
+          "rationale": "Correct! Primary progressive freezing of gait (PPFG) is a rare clinical syndrome characterized by isolated FOG persisting for at least three years without other cardinal features of parkinsonism, often linked to atypical tauopathies or cortical network degeneration rather than nigrostriatal dopamine depletion."
+        },
+        {
+          "id": "D",
+          "text": "Normal pressure hydrocephalus",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. Normal pressure hydrocephalus classically presents with the triad of gait ataxia (magnetic gait), urinary incontinence, and cognitive impairment, alongside ventriculomegaly on neuroimaging."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Primary progressive freezing of gait (PPFG) disorder",
+      "clinical_discussion": "Primary progressive freezing of gait (PPFG) is an uncommon clinical entity defined by isolated freezing of gait persisting for at least three years without accompanying parkinsonism, cerebellar signs, or early dementia. The pathophysiology of FOG remains elusive, frequently confounding clinicians because it can manifest across various neurodegenerative spectra including progressive supranuclear palsy (PSP), corticobasal degeneration (CBD), and primary lateral sclerosis (PLS). \n\nIn this case, the combination of isolated FOG, normal DAT imaging, and marked bilateral parietal cortical atrophy—with voxel-based morphometry highlighting superior parietal and occipital volume loss—points toward higher-level gait disorders involving dysfunction of the frontoparietal networks responsible for motor planning, visuospatial integration, and gait initiation. The lack of response to levodopa and preserved dopamine transporter binding further emphasize that non-dopaminergic pathways and cortical networks subserve this distinct neurodegenerative phenotype.",
+      "teaching_points": [
+        "Primary progressive freezing of gait (PPFG) is a rare syndrome defined by isolated FOG lasting at least three years without parkinsonism.",
+        "Parietal cortical atrophy and normal presynaptic dopamine transporter (DAT) imaging support non-dopaminergic frontoparietal network dysfunction in select FOG phenotypes.",
+        "PPFG may represent a localized clinical variant of atypical parkinsonian syndromes such as PSP or CBD before broader clinical features emerge."
+      ],
+      "clinical_pitfalls": [
+        "Assuming all disabling gait freezing in older adults is due to idiopathic Parkinson's disease or normal pressure hydrocephalus.",
+        "Failing to recognize that isolated FOG can exhibit a poor response to dopaminergic medications due to underlying cortical-subcortical network degeneration rather than nigrostriatal failure."
+      ],
+      "related_keywords": [
+        "Freezing of gait",
+        "Primary progressive freezing of gait",
+        "Parietal atrophy",
+        "DAT scan",
+        "Atypical parkinsonism"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-009",
     "case_code": "NC-2026-009",
     "title": "Acute Basilar Artery Occlusion and Brainstem Infarction in a Young Adult",
