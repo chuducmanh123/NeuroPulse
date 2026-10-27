@@ -40,6 +40,127 @@ const DIFFICULTY_BADGES: Record<CaseDifficulty, string> = {
   Attending: "bg-rose-500/15 text-rose-500 border-rose-500/30",
 };
 
+export interface SpecialtyTheme {
+  borderLeft: string;
+  cardBg: string;
+  cardBorder: string;
+  badge: string;
+  accentText: string;
+  dotColor: string;
+}
+
+export function getSpecialtyTheme(subspecialty: string): SpecialtyTheme {
+  const norm = (subspecialty || "").toLowerCase();
+  if (norm.includes("stroke") || norm.includes("vascular")) {
+    return {
+      borderLeft: "border-l-rose-500",
+      cardBg: "bg-rose-50/40 dark:bg-rose-950/20",
+      cardBorder: "border-rose-200 dark:border-rose-900/60 hover:border-rose-400 dark:hover:border-rose-500",
+      badge: "bg-rose-100 text-rose-700 border-rose-300 dark:bg-rose-900/50 dark:text-rose-300 dark:border-rose-800",
+      accentText: "text-rose-600 dark:text-rose-400",
+      dotColor: "bg-rose-500",
+    };
+  }
+  if (norm.includes("critical") || norm.includes("neurocritical") || norm.includes("icu")) {
+    return {
+      borderLeft: "border-l-amber-500",
+      cardBg: "bg-amber-50/40 dark:bg-amber-950/20",
+      cardBorder: "border-amber-200 dark:border-amber-900/60 hover:border-amber-400 dark:hover:border-amber-500",
+      badge: "bg-amber-100 text-amber-800 border-amber-300 dark:bg-amber-900/50 dark:text-amber-300 dark:border-amber-800",
+      accentText: "text-amber-600 dark:text-amber-400",
+      dotColor: "bg-amber-500",
+    };
+  }
+  if (norm.includes("epilepsy") || norm.includes("seizure")) {
+    return {
+      borderLeft: "border-l-purple-500",
+      cardBg: "bg-purple-50/40 dark:bg-purple-950/20",
+      cardBorder: "border-purple-200 dark:border-purple-900/60 hover:border-purple-400 dark:hover:border-purple-500",
+      badge: "bg-purple-100 text-purple-700 border-purple-300 dark:bg-purple-900/50 dark:text-purple-300 dark:border-purple-800",
+      accentText: "text-purple-600 dark:text-purple-400",
+      dotColor: "bg-purple-500",
+    };
+  }
+  if (norm.includes("immuno") || norm.includes("neuroimmunology") || norm.includes("sclerosis")) {
+    return {
+      borderLeft: "border-l-emerald-500",
+      cardBg: "bg-emerald-50/40 dark:bg-emerald-950/20",
+      cardBorder: "border-emerald-200 dark:border-emerald-900/60 hover:border-emerald-400 dark:hover:border-emerald-500",
+      badge: "bg-emerald-100 text-emerald-800 border-emerald-300 dark:bg-emerald-900/50 dark:text-emerald-300 dark:border-emerald-800",
+      accentText: "text-emerald-600 dark:text-emerald-400",
+      dotColor: "bg-emerald-500",
+    };
+  }
+  if (norm.includes("cognit") || norm.includes("dementia") || norm.includes("memory") || norm.includes("alzheimer")) {
+    return {
+      borderLeft: "border-l-cyan-500",
+      cardBg: "bg-cyan-50/40 dark:bg-cyan-950/20",
+      cardBorder: "border-cyan-200 dark:border-cyan-900/60 hover:border-cyan-400 dark:hover:border-cyan-500",
+      badge: "bg-cyan-100 text-cyan-800 border-cyan-300 dark:bg-cyan-900/50 dark:text-cyan-300 dark:border-cyan-800",
+      accentText: "text-cyan-600 dark:text-cyan-400",
+      dotColor: "bg-cyan-500",
+    };
+  }
+  if (norm.includes("movement") || norm.includes("parkinson") || norm.includes("tremor") || norm.includes("ataxia")) {
+    return {
+      borderLeft: "border-l-indigo-500",
+      cardBg: "bg-indigo-50/40 dark:bg-indigo-950/20",
+      cardBorder: "border-indigo-200 dark:border-indigo-900/60 hover:border-indigo-400 dark:hover:border-indigo-500",
+      badge: "bg-indigo-100 text-indigo-700 border-indigo-300 dark:bg-indigo-900/50 dark:text-indigo-300 dark:border-indigo-800",
+      accentText: "text-indigo-600 dark:text-indigo-400",
+      dotColor: "bg-indigo-500",
+    };
+  }
+  if (norm.includes("neuromuscular") || norm.includes("myasthenia") || norm.includes("neuropathy") || norm.includes("als")) {
+    return {
+      borderLeft: "border-l-fuchsia-500",
+      cardBg: "bg-fuchsia-50/40 dark:bg-fuchsia-950/20",
+      cardBorder: "border-fuchsia-200 dark:border-fuchsia-900/60 hover:border-fuchsia-400 dark:hover:border-fuchsia-500",
+      badge: "bg-fuchsia-100 text-fuchsia-800 border-fuchsia-300 dark:bg-fuchsia-900/50 dark:text-fuchsia-300 dark:border-fuchsia-800",
+      accentText: "text-fuchsia-600 dark:text-fuchsia-400",
+      dotColor: "bg-fuchsia-500",
+    };
+  }
+  if (norm.includes("oncol") || norm.includes("tumor") || norm.includes("glioma") || norm.includes("cancer")) {
+    return {
+      borderLeft: "border-l-red-600",
+      cardBg: "bg-red-50/40 dark:bg-red-950/20",
+      cardBorder: "border-red-200 dark:border-red-900/60 hover:border-red-400 dark:hover:border-red-500",
+      badge: "bg-red-100 text-red-800 border-red-300 dark:bg-red-900/50 dark:text-red-300 dark:border-red-800",
+      accentText: "text-red-600 dark:text-red-400",
+      dotColor: "bg-red-600",
+    };
+  }
+  if (norm.includes("headache") || norm.includes("migraine") || norm.includes("pain")) {
+    return {
+      borderLeft: "border-l-yellow-500",
+      cardBg: "bg-yellow-50/40 dark:bg-yellow-950/20",
+      cardBorder: "border-yellow-200 dark:border-yellow-900/60 hover:border-yellow-400 dark:hover:border-yellow-500",
+      badge: "bg-yellow-100 text-yellow-800 border-yellow-300 dark:bg-yellow-900/50 dark:text-yellow-300 dark:border-yellow-800",
+      accentText: "text-yellow-600 dark:text-yellow-400",
+      dotColor: "bg-yellow-500",
+    };
+  }
+  if (norm.includes("trauma") || norm.includes("tbi") || norm.includes("injury")) {
+    return {
+      borderLeft: "border-l-teal-500",
+      cardBg: "bg-teal-50/40 dark:bg-teal-950/20",
+      cardBorder: "border-teal-200 dark:border-teal-900/60 hover:border-teal-400 dark:hover:border-teal-500",
+      badge: "bg-teal-100 text-teal-800 border-teal-300 dark:bg-teal-900/50 dark:text-teal-300 dark:border-teal-800",
+      accentText: "text-teal-600 dark:text-teal-400",
+      dotColor: "bg-teal-500",
+    };
+  }
+  return {
+    borderLeft: "border-l-slate-400",
+    cardBg: "bg-slate-50/40 dark:bg-slate-800/30",
+    cardBorder: "border-slate-200 dark:border-slate-800 hover:border-slate-400 dark:hover:border-slate-600",
+    badge: "bg-slate-100 text-slate-700 border-slate-300 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700",
+    accentText: "text-slate-500",
+    dotColor: "bg-slate-400",
+  };
+}
+
 interface UserCaseProgress {
   selectedOption: "A" | "B" | "C" | "D";
   isCorrect: boolean;
@@ -51,6 +172,10 @@ export default function NeuroCasePage() {
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
+
+  // Cross-Computer Server Sync State
+  const [isSyncingServer, setIsSyncingServer] = useState(false);
+  const [serverSyncSuccess, setServerSyncSuccess] = useState<string>("");
 
   // Navigation Tabs: daily | archive | exam | submit | admin
   const [activeTab, setActiveTab] = useState<"daily" | "archive" | "exam" | "submit" | "admin">("daily");
@@ -77,6 +202,7 @@ export default function NeuroCasePage() {
   const [examCurrentIdx, setExamCurrentIdx] = useState(0);
   const [examAnswers, setExamAnswers] = useState<Record<string, "A" | "B" | "C" | "D">>({});
   const [examTimeLeftSec, setExamTimeLeftSec] = useState(300);
+  const [examSelectedSpecialties, setExamSelectedSpecialties] = useState<string[]>([]);
 
   // User Submission & Client-Side De-identification State
   const [subTitle, setSubTitle] = useState("");
@@ -203,31 +329,42 @@ export default function NeuroCasePage() {
     }
 
     Promise.all([
-      fetch("/data/cases.json").then((r) => r.json()),
+      fetch("/api/neurocase", { cache: "no-store" })
+        .then((r) => {
+          if (!r.ok) throw new Error("HTTP " + r.status);
+          return r.json();
+        })
+        .catch(() =>
+          fetch("/data/cases.json", { cache: "no-store" }).then((r) => r.json())
+        ),
       fetch("/data/articles.json")
         .then((r) => r.json())
         .catch(() => []),
     ])
       .then(([loadedCases, loadedArticles]: [ClinicalCase[], Article[]]) => {
-        let customCases: ClinicalCase[] = [];
+        let merged = Array.isArray(loadedCases) ? loadedCases : [];
+
+        // Check for any offline custom submissions that have not synced to server yet
         const savedCustom = localStorage.getItem("neurocase_custom_submissions_v1");
         if (savedCustom) {
           try {
-            customCases = JSON.parse(savedCustom);
+            const customCases: ClinicalCase[] = JSON.parse(savedCustom);
+            const serverIds = new Set(merged.map((c) => c.id));
+            const unsynced = customCases.filter((c) => !serverIds.has(c.id));
+            if (unsynced.length > 0) {
+              merged = [...unsynced, ...merged];
+              // Fire-and-forget sync to server disk
+              fetch("/api/neurocase", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ cases: merged }),
+              }).catch((e) => console.error("Initial background sync to /api/neurocase failed:", e));
+            }
           } catch (e) {
             console.error(e);
           }
         }
-        let overridesMap: Record<string, ClinicalCase> = {};
-        const savedOverrides = localStorage.getItem("neurocase_admin_overrides_v3");
-        if (savedOverrides) {
-          try {
-            overridesMap = JSON.parse(savedOverrides);
-          } catch (e) {
-            console.error(e);
-          }
-        }
-        const merged = [...customCases, ...loadedCases].map((c) => overridesMap[c.id] || c);
+
         setCases(merged);
 
         const todayIso = getLocalTodayIso();
@@ -258,6 +395,24 @@ export default function NeuroCasePage() {
         setLoading(false);
       });
   }, []);
+
+  const refreshCasesFromServer = async () => {
+    setIsSyncingServer(true);
+    try {
+      const res = await fetch("/api/neurocase", { cache: "no-store" });
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      const data: ClinicalCase[] = await res.json();
+      if (Array.isArray(data) && data.length > 0) {
+        setCases(data);
+        setServerSyncSuccess(`✓ Synchronized with server (${data.length} cases)`);
+        setTimeout(() => setServerSyncSuccess(""), 4000);
+      }
+    } catch (e) {
+      console.error("Failed to sync from /api/neurocase:", e);
+    } finally {
+      setIsSyncingServer(false);
+    }
+  };
 
   // Exam countdown timer
   useEffect(() => {
@@ -481,8 +636,18 @@ export default function NeuroCasePage() {
     return matched.slice(0, 3);
   }, [archiveViewingCase, articles]);
 
-  const startBoardExam = (count: number) => {
-    const shuffled = [...approvedCases].sort(() => Math.random() - 0.5).slice(0, count);
+  const examCasePool = useMemo(() => {
+    if (examSelectedSpecialties.length === 0) return approvedCases;
+    return approvedCases.filter((c) => {
+      const subs = c.subspecialties || [c.subspecialty];
+      return subs.some((s) => examSelectedSpecialties.includes(s));
+    });
+  }, [approvedCases, examSelectedSpecialties]);
+
+  const startBoardExam = (requestedCount: number) => {
+    const pool = examCasePool.length > 0 ? examCasePool : approvedCases;
+    const count = Math.min(requestedCount, pool.length);
+    const shuffled = [...pool].sort(() => Math.random() - 0.5).slice(0, count);
     setExamCaseIds(shuffled.map((c) => c.id));
     setExamCurrentIdx(0);
     setExamAnswers({});
@@ -854,17 +1019,15 @@ export default function NeuroCasePage() {
     };
 
     const nextCases = [newCase, ...cases];
-    setCases(nextCases);
-    const savedCustom = nextCases.filter((c) => c.id.startsWith("nc-user-"));
-    localStorage.setItem("neurocase_custom_submissions_v1", JSON.stringify(savedCustom));
+    persistAdminCases(nextCases);
 
     setSubmitSuccessMsg(
-      `Case "${newCase.case_code}" submitted with PENDING status! You can review and publish it in the Admin Review tab.`
+      `Case "${newCase.case_code}" submitted with PENDING status! It is saved directly to the server database and available in Admin Review across all computers.`
     );
     resetAllSubmitFormFields();
   };
 
-  const persistAdminCases = (nextCases: ClinicalCase[]) => {
+  const persistAdminCases = async (nextCases: ClinicalCase[]) => {
     setCases(nextCases);
     const savedCustom = nextCases.filter((c) => c.id.startsWith("nc-user-"));
     localStorage.setItem("neurocase_custom_submissions_v1", JSON.stringify(savedCustom));
@@ -874,6 +1037,24 @@ export default function NeuroCasePage() {
       overridesMap[item.id] = item;
     }
     localStorage.setItem("neurocase_admin_overrides_v3", JSON.stringify(overridesMap));
+
+    // Persist directly to server disk via /api/neurocase so all computers on the network sync immediately!
+    try {
+      setIsSyncingServer(true);
+      const res = await fetch("/api/neurocase", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ cases: nextCases }),
+      });
+      if (res.ok) {
+        setServerSyncSuccess("✓ Synced to server disk");
+        setTimeout(() => setServerSyncSuccess(""), 3500);
+      }
+    } catch (err) {
+      console.error("Failed to sync cases to /api/neurocase:", err);
+    } finally {
+      setIsSyncingServer(false);
+    }
   };
 
   const handleAdminUpdateStatus = (
@@ -2182,6 +2363,7 @@ export default function NeuroCasePage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {filteredArchiveCases.map((c) => {
                   const prog = progressMap[c.id];
+                  const theme = getSpecialtyTheme(c.subspecialty);
                   return (
                     <div
                       key={c.id}
@@ -2189,19 +2371,17 @@ export default function NeuroCasePage() {
                         setArchiveViewingCaseId(c.id);
                         setShowDetailedWorkup(false);
                       }}
-                      className={`p-5 rounded-2xl border cursor-pointer transition-all flex flex-col justify-between ${
-                        darkMode
-                          ? "bg-slate-900 border-slate-800 hover:border-indigo-500"
-                          : "bg-white border-slate-200 hover:border-indigo-500 shadow-xs"
-                      }`}
+                      className={`p-5 rounded-2xl border border-l-4 cursor-pointer transition-all flex flex-col justify-between shadow-xs hover:shadow-md ${
+                        theme.borderLeft
+                      } ${theme.cardBorder} ${theme.cardBg}`}
                     >
                       <div>
                         <div className="flex items-center justify-between gap-2 mb-2.5">
-                          <div className="flex items-center gap-1.5">
+                          <div className="flex items-center gap-1.5 flex-wrap">
                             <span className="text-[10px] font-black px-2 py-0.5 rounded bg-indigo-500/15 text-indigo-500">
                               {c.case_code}
                             </span>
-                            <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-800">
+                            <span className={`text-[10px] font-bold px-2 py-0.5 rounded border ${theme.badge}`}>
                               {c.subspecialty}
                             </span>
                             <span
@@ -2232,9 +2412,12 @@ export default function NeuroCasePage() {
                         </p>
                       </div>
 
-                      <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+                      <div className="mt-4 pt-3 border-t border-slate-200/60 dark:border-slate-800 flex items-center justify-between text-xs">
                         <span className="text-slate-400">{c.presentation.demographics}</span>
-                        <span className="font-bold text-indigo-500">Solve Case →</span>
+                        <span className={`font-black flex items-center gap-1 ${theme.accentText}`}>
+                          <span>Solve Case</span>
+                          <span>→</span>
+                        </span>
                       </div>
                     </div>
                   );
@@ -2254,27 +2437,135 @@ export default function NeuroCasePage() {
             }`}
           >
             {!examStarted ? (
-              <div className="text-center max-w-lg mx-auto py-6 space-y-4">
-                <span className="text-4xl">⏱️</span>
-                <h2 className="text-xl font-black">Exam Mode</h2>
-                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-                  Randomly selects clinical vignettes from the case bank with a{" "}
-                  <strong>90-second per case</strong> countdown timer. Full score breakdown and rationales are unlocked upon submission.
-                </p>
+              <div className="text-center max-w-2xl mx-auto py-6 space-y-6">
+                <div className="space-y-2">
+                  <span className="text-4xl">⏱️</span>
+                  <h2 className="text-xl font-black">Exam Simulation Mode</h2>
+                  <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed max-w-lg mx-auto">
+                    Timed clinical vignettes with a <strong>90-second per case</strong> countdown timer.
+                    Select one or multiple subspecialty domains below to customize your board exam block.
+                  </p>
+                </div>
+
+                {/* Subspecialty Domain Multi-Selection */}
+                <div
+                  className={`p-4 rounded-2xl border text-left space-y-3 ${
+                    darkMode ? "bg-slate-950/60 border-slate-800" : "bg-slate-50/80 border-slate-200"
+                  }`}
+                >
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <span className="text-xs font-black uppercase text-indigo-500 flex items-center gap-1.5">
+                      <span>🎯</span>
+                      <span>
+                        Subspecialty Domains (
+                        {examSelectedSpecialties.length === 0
+                          ? "All Domains Selected"
+                          : `${examSelectedSpecialties.length} Selected`}
+                        )
+                      </span>
+                    </span>
+                    <div className="flex items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={() => setExamSelectedSpecialties([])}
+                        className="text-[11px] font-bold text-indigo-500 hover:underline"
+                      >
+                        Select All
+                      </button>
+                      <span className="text-slate-400 text-xs">|</span>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const first = SUBSPECIALTY_TABS.find((t) => t.value !== "All")?.value || "Vascular & Stroke";
+                          setExamSelectedSpecialties([first]);
+                        }}
+                        className="text-[11px] font-bold text-slate-500 hover:underline"
+                      >
+                        Reset to 1st
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    {SUBSPECIALTY_TABS.filter((t) => t.value !== "All").map((tab) => {
+                      const countInSub = approvedCases.filter(
+                        (c) =>
+                          c.subspecialty === tab.value ||
+                          (c.subspecialties && c.subspecialties.includes(tab.value))
+                      ).length;
+                      const isAll = examSelectedSpecialties.length === 0;
+                      const isSelected = isAll || examSelectedSpecialties.includes(tab.value);
+                      const theme = getSpecialtyTheme(tab.value);
+
+                      return (
+                        <button
+                          key={tab.value}
+                          type="button"
+                          onClick={() => {
+                            if (isAll) {
+                              setExamSelectedSpecialties([tab.value]);
+                            } else if (examSelectedSpecialties.includes(tab.value)) {
+                              const next = examSelectedSpecialties.filter((s) => s !== tab.value);
+                              setExamSelectedSpecialties(next);
+                            } else {
+                              setExamSelectedSpecialties([...examSelectedSpecialties, tab.value]);
+                            }
+                          }}
+                          className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all border flex items-center gap-1.5 ${
+                            isSelected
+                              ? `${theme.badge} ring-1 ring-current shadow-xs`
+                              : darkMode
+                              ? "bg-slate-800/60 border-slate-700/60 text-slate-400 opacity-60 hover:opacity-100"
+                              : "bg-slate-100 border-slate-200 text-slate-500 opacity-60 hover:opacity-100"
+                          }`}
+                        >
+                          <span
+                            className={`w-2 h-2 rounded-full ${
+                              isSelected ? theme.dotColor : "bg-slate-400"
+                            }`}
+                          />
+                          <span>{tab.label}</span>
+                          <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-black/10 dark:bg-white/10 font-black">
+                            {countInSub}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  <div className="flex flex-wrap items-center justify-between text-xs text-slate-500 dark:text-slate-400 pt-1 border-t border-slate-200/60 dark:border-slate-800">
+                    <span>
+                      Question Pool:{" "}
+                      <strong className="text-indigo-500 font-black">{examCasePool.length}</strong> available case{examCasePool.length === 1 ? "" : "s"}
+                    </span>
+                    {examCasePool.length === 0 ? (
+                      <span className="text-rose-500 font-bold">
+                        ⚠️ No approved cases in the selected domains
+                      </span>
+                    ) : (
+                      <span className="text-slate-400">
+                        {Math.round(examCasePool.length * 1.5)} minutes total allotted
+                      </span>
+                    )}
+                  </div>
+                </div>
+
                 <div className="flex flex-wrap justify-center gap-3 pt-2">
                   <button
                     type="button"
-                    onClick={() => startBoardExam(4)}
-                    className="px-5 py-2.5 rounded-xl text-xs font-black bg-indigo-600 text-white hover:bg-indigo-700"
+                    disabled={examCasePool.length === 0}
+                    onClick={() => startBoardExam(Math.min(4, examCasePool.length))}
+                    className="px-5 py-2.5 rounded-xl text-xs font-black bg-indigo-600 text-white hover:bg-indigo-700 disabled:opacity-40 disabled:cursor-not-allowed shadow-sm transition-all"
                   >
-                    🚀 Quick Block: 4 Cases (6 min)
+                    🚀 Quick Block: {Math.min(4, examCasePool.length)} Cases ({Math.round(Math.min(4, examCasePool.length) * 1.5)} min)
                   </button>
                   <button
                     type="button"
-                    onClick={() => startBoardExam(approvedCases.length)}
-                    className="px-5 py-2.5 rounded-xl text-xs font-black bg-emerald-600 text-white hover:bg-emerald-700"
+                    disabled={examCasePool.length === 0}
+                    onClick={() => startBoardExam(examCasePool.length)}
+                    className="px-5 py-2.5 rounded-xl text-xs font-black bg-emerald-600 text-white hover:bg-emerald-700 disabled:opacity-40 disabled:cursor-not-allowed shadow-sm transition-all"
                   >
-                    🏆 Full Block: {approvedCases.length} Cases ({Math.round(approvedCases.length * 1.5)} min)
+                    🏆 Full Block: {examCasePool.length} Cases ({Math.round(examCasePool.length * 1.5)} min)
                   </button>
                 </div>
               </div>
@@ -3245,6 +3536,21 @@ export default function NeuroCasePage() {
                 <h2 className="text-xl font-black">Admin Case Moderation &amp; Full Editor</h2>
               </div>
               <div className="flex flex-wrap items-center gap-2">
+                {serverSyncSuccess && (
+                  <span className="text-xs font-bold text-emerald-500 bg-emerald-500/10 border border-emerald-500/30 px-2.5 py-1.5 rounded-lg animate-fadeIn">
+                    {serverSyncSuccess}
+                  </span>
+                )}
+                <button
+                  type="button"
+                  onClick={refreshCasesFromServer}
+                  disabled={isSyncingServer}
+                  className="px-3 py-2 rounded-lg text-xs font-black bg-slate-800 text-white hover:bg-slate-700 border border-slate-700 flex items-center gap-1.5 transition-all disabled:opacity-50"
+                  title="Reload all cases from server disk (/api/neurocase)"
+                >
+                  <span className={isSyncingServer ? "animate-spin" : ""}>🔄</span>
+                  <span>{isSyncingServer ? "Syncing..." : "Sync from Server"}</span>
+                </button>
                 <button
                   type="button"
                   onClick={() => {
@@ -3358,17 +3664,20 @@ export default function NeuroCasePage() {
                 return groupCases.map((c) => {
                   const st: CaseStatus = c.status || "approved";
                   const isEditing = editingCaseId === c.id && editDraft !== null;
+                  const theme = getSpecialtyTheme(c.subspecialty);
                   return (
                     <div
                       key={c.id}
-                      className={`p-4 rounded-xl border transition-all ${
+                      className={`p-4 rounded-xl border border-l-4 transition-all shadow-xs ${
+                        theme.borderLeft
+                      } ${
                         st === "pending"
-                          ? "border-amber-500/70 bg-amber-500/5"
+                          ? "border-amber-400/80 bg-amber-500/10 dark:bg-amber-950/20"
+                          : st === "needs_revision"
+                          ? "border-orange-400/80 bg-orange-500/10 dark:bg-orange-950/20"
                           : st === "rejected"
-                          ? "border-rose-500/40 opacity-75"
-                          : darkMode
-                          ? "border-slate-800 bg-slate-800/40"
-                          : "border-slate-200 bg-slate-50"
+                          ? "border-rose-400/50 bg-rose-500/5 opacity-80"
+                          : `${theme.cardBorder} ${theme.cardBg}`
                       }`}
                     >
                       <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
@@ -3390,7 +3699,7 @@ export default function NeuroCasePage() {
                           <span className="text-xs text-slate-400 font-semibold">
                             {c.published_date}
                           </span>
-                          <span className="text-xs text-indigo-500 font-bold">
+                          <span className={`text-xs font-bold px-2 py-0.5 rounded border ${theme.badge}`}>
                             {c.subspecialty}
                           </span>
                           <span
