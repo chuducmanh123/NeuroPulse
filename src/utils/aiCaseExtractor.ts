@@ -37,10 +37,49 @@ export interface ExtractedCaseDraft {
  */
 export async function extractTextFromUploadedDocument(
   file: File
-): Promise<{ text: string; pdfBase64?: string }> {
+): Promise<{ text: string; pdfBase64?: string; extractedImages?: string[] }> {
   const name = file.name.toLowerCase();
+  const extractedImages: string[] = [];
 
-  // 1. PDF File (.pdf): Extract text via pdf.js CDN + keep base64 for Gemini Multimodal PDF Vision
+  // Helper to safely convert an Image or Canvas to WebP Data URL
+  const processImageToWebp = async (blob: Blob, minDim = 120): Promise<string | null> => {
+    if (typeof window === "undefined" || typeof document === "undefined") return null;
+    const blobUrl = URL.createObjectURL(blob);
+    try {
+      const img = new Image();
+      img.src = blobUrl;
+      await img.decode();
+      if (img.width >= minDim && img.height >= minDim) {
+        const canvas = document.createElement("canvas");
+        const maxDim = 1200;
+        let w = img.width;
+        let h = img.height;
+        if (w > maxDim || h > maxDim) {
+          if (w > h) {
+            h = Math.round((h * maxDim) / w);
+            w = maxDim;
+          } else {
+            w = Math.round((w * maxDim) / h);
+            h = maxDim;
+          }
+        }
+        canvas.width = w;
+        canvas.height = h;
+        const ctx = canvas.getContext("2d");
+        if (ctx) {
+          ctx.drawImage(img, 0, 0, w, h);
+          return canvas.toDataURL("image/webp", 0.85);
+        }
+      }
+    } catch {
+      // not a decodeable image slice
+    } finally {
+      URL.revokeObjectURL(blobUrl);
+    }
+    return null;
+  };
+
+  // 1. PDF File (.pdf): Extract text via pdf.js CDN + scan embedded figures + keep base64
   if (name.endsWith(".pdf") || file.type === "application/pdf") {
     const arrayBuffer = await file.arrayBuffer();
     const bytes = new Uint8Array(arrayBuffer);
@@ -49,6 +88,38 @@ export async function extractTextFromUploadedDocument(
       binary += String.fromCharCode(bytes[i]);
     }
     const pdfBase64 = typeof btoa !== "undefined" ? btoa(binary) : "";
+
+    // Method A: Fast stream scan for raw JPEG/JFIF medical figures (0xFF 0xD8 0xFF ... 0xFF 0xD9)
+    try {
+      let p = 0;
+      while (p < bytes.length - 4 && extractedImages.length < 6) {
+        if (bytes[p] === 0xff && bytes[p + 1] === 0xd8 && bytes[p + 2] === 0xff) {
+          let q = p + 3;
+          while (q < bytes.length - 1) {
+            if (bytes[q] === 0xff && bytes[q + 1] === 0xd9) {
+              break;
+            }
+            q++;
+          }
+          if (q < bytes.length - 1) {
+            const sliceLen = q + 2 - p;
+            if (sliceLen > 8192 && sliceLen < 15 * 1024 * 1024) {
+              const sub = bytes.subarray(p, q + 2);
+              const blob = new Blob([sub], { type: "image/jpeg" });
+              const webp = await processImageToWebp(blob, 140);
+              if (webp && !extractedImages.includes(webp)) {
+                extractedImages.push(webp);
+              }
+            }
+            p = q + 2;
+            continue;
+          }
+        }
+        p++;
+      }
+    } catch (e) {
+      console.warn("Direct PDF JPEG stream scan error:", e);
+    }
 
     try {
       const w = window as unknown as { pdfjsLib?: any };
@@ -67,15 +138,32 @@ export async function extractTextFromUploadedDocument(
         const pdfDoc = await w.pdfjsLib.getDocument({ data: arrayBuffer }).promise;
         const pageTexts: string[] = [];
         const maxPages = Math.min(pdfDoc.numPages, 15);
-        for (let p = 1; p <= maxPages; p++) {
-          const page = await pdfDoc.getPage(p);
+        for (let pageNum = 1; pageNum <= maxPages; pageNum++) {
+          const page = await pdfDoc.getPage(pageNum);
           const content = await page.getTextContent();
           const pageStr = content.items.map((it: any) => it.str || "").join(" ");
           pageTexts.push(pageStr);
+
+          // Fallback: If no direct JPEGs were extracted, render pages containing figure/neuroimaging keywords to WebP
+          if (extractedImages.length === 0 && (pageNum <= 3 || /\b(fig|figure|mri|ct|dwi|panel)\b/i.test(pageStr))) {
+            try {
+              const viewport = page.getViewport({ scale: 1.5 });
+              const canvas = document.createElement("canvas");
+              canvas.width = viewport.width;
+              canvas.height = viewport.height;
+              const ctx = canvas.getContext("2d");
+              if (ctx) {
+                await page.render({ canvasContext: ctx, viewport }).promise;
+                extractedImages.push(canvas.toDataURL("image/webp", 0.82));
+              }
+            } catch (renderErr) {
+              console.warn("PDF page render fallback error:", renderErr);
+            }
+          }
         }
         const combined = pageTexts.join("\n\n").trim();
         if (combined.length > 30) {
-          return { text: combined, pdfBase64 };
+          return { text: combined, pdfBase64, extractedImages };
         }
       }
     } catch (e) {
@@ -85,10 +173,11 @@ export async function extractTextFromUploadedDocument(
     return {
       text: `[PDF Uploaded: ${file.name} (${Math.round(file.size / 1024)} KB) — Ready for AI Extraction]`,
       pdfBase64,
+      extractedImages,
     };
   }
 
-  // 2. Word Document (.docx): Extract XML text from ZIP entries using browser DecompressionStream
+  // 2. Word Document (.docx): Extract XML text & embedded figures from ZIP entries
   if (name.endsWith(".docx")) {
     try {
       const buf = await file.arrayBuffer();
@@ -113,6 +202,7 @@ export async function extractTextFromUploadedDocument(
         const dataStart = offset + 30 + fileNameLen + extraLen;
         const compressedData = uint8.subarray(dataStart, dataStart + compSize);
 
+        // A. Extract document body text from word/document.xml
         if (entryName === "word/document.xml" && compSize > 0) {
           if (compression === 0) {
             const xml = new TextDecoder().decode(compressedData);
@@ -126,13 +216,45 @@ export async function extractTextFromUploadedDocument(
             const xml = new TextDecoder().decode(decompressedBuf);
             extractedChunks.push(xml.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim());
           }
-          break;
         }
+
+        // B. Extract embedded images from word/media/*
+        if (
+          entryName.toLowerCase().startsWith("word/media/") &&
+          /\.(jpe?g|png|webp|gif)$/i.test(entryName) &&
+          compSize > 0 &&
+          extractedImages.length < 6
+        ) {
+          try {
+            let imgBuf: ArrayBuffer | null = null;
+            if (compression === 0) {
+              imgBuf = compressedData.slice().buffer;
+            } else if (compression === 8 && typeof DecompressionStream !== "undefined") {
+              const ds = new DecompressionStream("deflate-raw");
+              const writer = ds.writable.getWriter();
+              writer.write(compressedData);
+              writer.close();
+              imgBuf = await new Response(ds.readable).arrayBuffer();
+            }
+            if (imgBuf && imgBuf.byteLength > 4096) {
+              const ext = entryName.split(".").pop()?.toLowerCase();
+              const mime = ext === "png" ? "image/png" : ext === "webp" ? "image/webp" : "image/jpeg";
+              const blob = new Blob([imgBuf], { type: mime });
+              const webp = await processImageToWebp(blob, 100);
+              if (webp && !extractedImages.includes(webp)) {
+                extractedImages.push(webp);
+              }
+            }
+          } catch (mediaErr) {
+            console.warn("DOCX media extraction error:", mediaErr);
+          }
+        }
+
         offset = dataStart + compSize;
       }
 
       if (extractedChunks.length > 0 && extractedChunks[0].length > 20) {
-        return { text: extractedChunks.join("\n\n") };
+        return { text: extractedChunks.join("\n\n"), extractedImages };
       }
     } catch (e) {
       console.warn("DOCX extraction fallback:", e);
@@ -147,10 +269,10 @@ export async function extractTextFromUploadedDocument(
       .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x9F]+/g, " ")
       .replace(/\s+/g, " ")
       .trim();
-    return { text: cleanedDoc };
+    return { text: cleanedDoc, extractedImages };
   }
 
-  return { text: rawText };
+  return { text: rawText, extractedImages };
 }
 
 function detectJournalAndDoi(rawText: string): { doi_url: string; journal_short: string } {

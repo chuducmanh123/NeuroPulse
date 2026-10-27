@@ -141,6 +141,15 @@ export default function NeuroCasePage() {
   const [editDraft, setEditDraft] = useState<ClinicalCase | null>(null);
   const [adminScheduleDates, setAdminScheduleDates] = useState<Record<string, string>>({});
 
+  // In-Place Case Archive Viewing (View case directly in Archive without switching tab)
+  const [archiveViewingCaseId, setArchiveViewingCaseId] = useState<string | null>(null);
+
+  // Admin Case Preview Modal State
+  const [adminPreviewCase, setAdminPreviewCase] = useState<ClinicalCase | null>(null);
+
+  // Auto-Extracted Figures from Uploaded Document (.pdf, .docx)
+  const [aiExtractedImages, setAiExtractedImages] = useState<string[]>([]);
+
   // AI Article / Document Case Extractor State (.pdf, .docx, .doc, .txt)
   const [showAiExtractor, setShowAiExtractor] = useState(false);
   const [aiRawText, setAiRawText] = useState("");
@@ -437,6 +446,32 @@ export default function NeuroCasePage() {
     });
   }, [approvedCases, selectedSub, selectedDifficulty, selectedSolvedFilter, searchQuery, progressMap]);
 
+  const archiveViewingCase = useMemo(
+    () => (archiveViewingCaseId ? cases.find((c) => c.id === archiveViewingCaseId) || null : null),
+    [cases, archiveViewingCaseId]
+  );
+
+  const archiveCurrentIdx = useMemo(() => {
+    if (!archiveViewingCaseId) return -1;
+    return filteredArchiveCases.findIndex((c) => c.id === archiveViewingCaseId);
+  }, [filteredArchiveCases, archiveViewingCaseId]);
+
+  const archiveRelatedArticles = useMemo(() => {
+    if (!archiveViewingCase || articles.length === 0) return [];
+    const keywords = (archiveViewingCase.resolution.related_keywords || []).map((k) =>
+      k.toLowerCase()
+    );
+    const sub = archiveViewingCase.subspecialty.toLowerCase();
+
+    const matched = articles.filter((a) => {
+      const text = `${a.title} ${a.abstract} ${
+        a.neurology_classification?.subspecialty || ""
+      }`.toLowerCase();
+      return keywords.some((kw) => text.includes(kw)) || text.includes(sub);
+    });
+    return matched.slice(0, 3);
+  }, [archiveViewingCase, articles]);
+
   const startBoardExam = (count: number) => {
     const shuffled = [...approvedCases].sort(() => Math.random() - 0.5).slice(0, count);
     setExamCaseIds(shuffled.map((c) => c.id));
@@ -526,6 +561,40 @@ export default function NeuroCasePage() {
         );
       }
       setAiPdfBase64(res.pdfBase64);
+
+      // Auto-extract candidate medical images from file (.pdf, .docx) directly into the form & canvas
+      if (res.extractedImages && res.extractedImages.length > 0) {
+        setAiExtractedImages(res.extractedImages);
+        const primaryImage = res.extractedImages[0];
+        setSubImageWebpUrl(primaryImage);
+
+        // Draw onto client-side canvas so it is immediately de-identified & compressed
+        const img = new Image();
+        img.onload = () => {
+          const canvas = canvasRef.current;
+          if (!canvas) return;
+          const maxDim = 720;
+          let w = img.width;
+          let h = img.height;
+          if (w > maxDim || h > maxDim) {
+            if (w > h) {
+              h = Math.round((h * maxDim) / w);
+              w = maxDim;
+            } else {
+              w = Math.round((w * maxDim) / h);
+              h = maxDim;
+            }
+          }
+          canvas.width = w;
+          canvas.height = h;
+          const ctx = canvas.getContext("2d");
+          if (ctx) {
+            ctx.drawImage(img, 0, 0, w, h);
+            exportCanvasToCompressedWebp();
+          }
+        };
+        img.src = primaryImage;
+      }
     } catch (err) {
       console.error("Failed to read uploaded article document:", err);
     } finally {
@@ -583,6 +652,7 @@ export default function NeuroCasePage() {
     setSubDoiUrl("");
     setSubImageWebpUrl("");
     setSubImageSizeKb(0);
+    setAiExtractedImages([]);
     if (imageFileInputRef.current) {
       imageFileInputRef.current.value = "";
     }
@@ -1460,144 +1530,611 @@ export default function NeuroCasePage() {
             TAB 2: CASE ARCHIVE (11 SUBSPECIALTIES)
            ===================================================================== */}
         {!loading && activeTab === "archive" && (
-          <div className="space-y-5">
-            <div
-              className={`p-4 rounded-2xl border space-y-4 ${
-                darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
-              }`}
-            >
-              <div className="flex flex-wrap gap-1.5">
-                {SUBSPECIALTY_TABS.map((tab) => {
-                  const active = selectedSub === tab.value;
-                  return (
-                    <button
-                      key={tab.value}
-                      type="button"
-                      onClick={() => setSelectedSub(tab.value)}
-                      className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                        active
-                          ? "bg-indigo-600 text-white shadow-xs"
-                          : darkMode
-                          ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
-                          : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-                      }`}
-                    >
-                      {tab.label}
-                    </button>
-                  );
-                })}
-              </div>
-
-              <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-slate-200 dark:border-slate-800">
+          archiveViewingCase ? (
+            <div className="space-y-6">
+              {/* Archive Navigation & Back Header */}
+              <div
+                className={`p-4 rounded-2xl border flex flex-wrap items-center justify-between gap-3 ${
+                  darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
+                }`}
+              >
                 <div className="flex flex-wrap items-center gap-2">
-                  <select
-                    value={selectedDifficulty}
-                    onChange={(e) => setSelectedDifficulty(e.target.value)}
-                    aria-label="Filter by difficulty"
-                    className={`px-3 py-1.5 rounded-lg text-xs font-bold border ${
-                      darkMode
-                        ? "bg-slate-800 border-slate-700 text-slate-200"
-                        : "bg-slate-50 border-slate-200 text-slate-700"
+                  <button
+                    type="button"
+                    onClick={() => setArchiveViewingCaseId(null)}
+                    className="px-3.5 py-1.5 rounded-xl text-xs font-black bg-indigo-600 text-white hover:bg-indigo-700 flex items-center gap-1.5 transition-all shadow-xs"
+                  >
+                    <span>←</span>
+                    <span>Back to Case Archive</span>
+                  </button>
+                  <span className="text-slate-400">|</span>
+                  <span className="text-xs font-black text-indigo-500">{archiveViewingCase.case_code}</span>
+                  <span className="text-xs font-bold px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-800">
+                    {archiveViewingCase.subspecialty}
+                  </span>
+                  <span
+                    className={`text-[10px] font-bold px-2 py-0.5 rounded border ${
+                      DIFFICULTY_BADGES[archiveViewingCase.difficulty]
                     }`}
                   >
-                    <option value="All">All Difficulty Levels</option>
-                    <option value="Resident">Resident</option>
-                    <option value="Fellow">Fellow</option>
-                    <option value="Attending">Attending</option>
-                  </select>
-
-                  <select
-                    value={selectedSolvedFilter}
-                    onChange={(e) => setSelectedSolvedFilter(e.target.value as typeof selectedSolvedFilter)}
-                    aria-label="Filter by completion status"
-                    className={`px-3 py-1.5 rounded-lg text-xs font-bold border ${
-                      darkMode
-                        ? "bg-slate-800 border-slate-700 text-slate-200"
-                        : "bg-slate-50 border-slate-200 text-slate-700"
-                    }`}
-                  >
-                    <option value="All">All Statuses</option>
-                    <option value="Unsolved">Unsolved Only</option>
-                    <option value="Solved">Completed</option>
-                  </select>
+                    {archiveViewingCase.difficulty}
+                  </span>
                 </div>
 
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search symptoms, syndromes, case ID..."
-                  className={`px-3 py-1.5 rounded-lg text-xs border w-full sm:w-64 ${
-                    darkMode
-                      ? "bg-slate-800 border-slate-700 text-white placeholder-slate-400"
-                      : "bg-slate-50 border-slate-200 text-slate-900"
-                  }`}
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {filteredArchiveCases.map((c) => {
-                const prog = progressMap[c.id];
-                return (
-                  <div
-                    key={c.id}
+                {/* Sequential Case Browsing within Filtered Archive */}
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    disabled={archiveCurrentIdx <= 0}
                     onClick={() => {
-                      setActiveCaseId(c.id);
-                      setActiveTab("daily");
+                      if (archiveCurrentIdx > 0) {
+                        setArchiveViewingCaseId(filteredArchiveCases[archiveCurrentIdx - 1].id);
+                        setShowDetailedWorkup(false);
+                      }
                     }}
-                    className={`p-5 rounded-2xl border cursor-pointer transition-all flex flex-col justify-between ${
-                      darkMode
-                        ? "bg-slate-900 border-slate-800 hover:border-indigo-500"
-                        : "bg-white border-slate-200 hover:border-indigo-500 shadow-xs"
-                    }`}
+                    className="px-2.5 py-1 rounded-lg text-xs font-bold border border-slate-300 dark:border-slate-700 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
                   >
-                    <div>
-                      <div className="flex items-center justify-between gap-2 mb-2.5">
-                        <div className="flex items-center gap-1.5">
-                          <span className="text-[10px] font-black px-2 py-0.5 rounded bg-indigo-500/15 text-indigo-500">
-                            {c.case_code}
-                          </span>
-                          <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-800">
-                            {c.subspecialty}
-                          </span>
-                          <span
-                            className={`text-[10px] font-bold px-2 py-0.5 rounded border ${
-                              DIFFICULTY_BADGES[c.difficulty]
-                            }`}
-                          >
-                            {c.difficulty}
-                          </span>
-                        </div>
+                    ← Prev Case
+                  </button>
+                  <span className="text-xs font-semibold text-slate-400">
+                    {archiveCurrentIdx >= 0 ? `${archiveCurrentIdx + 1} / ${filteredArchiveCases.length}` : ""}
+                  </span>
+                  <button
+                    type="button"
+                    disabled={archiveCurrentIdx >= filteredArchiveCases.length - 1}
+                    onClick={() => {
+                      if (archiveCurrentIdx < filteredArchiveCases.length - 1) {
+                        setArchiveViewingCaseId(filteredArchiveCases[archiveCurrentIdx + 1].id);
+                        setShowDetailedWorkup(false);
+                      }
+                    }}
+                    className="px-2.5 py-1 rounded-lg text-xs font-bold border border-slate-300 dark:border-slate-700 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                  >
+                    Next Case →
+                  </button>
+                </div>
+              </div>
 
-                        {prog ? (
-                          <span
-                            className={`text-xs font-black ${
-                              prog.isCorrect ? "text-emerald-500" : "text-rose-500"
+              {/* NEJM-STYLE CLINICAL & IMAGING CHALLENGE CARD (ARCHIVE MODE) */}
+              <article
+                className={`rounded-2xl border shadow-sm overflow-hidden ${
+                  darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
+                }`}
+              >
+                <div
+                  className={`px-6 py-5 border-b text-center ${
+                    darkMode ? "border-slate-800 bg-slate-900/60" : "border-slate-100 bg-slate-50/50"
+                  }`}
+                >
+                  <div className="flex flex-wrap items-center justify-center gap-2 mb-1.5">
+                    <span className="text-[11px] font-black uppercase tracking-[0.2em] text-rose-600 dark:text-rose-400">
+                      CASE ARCHIVE CHALLENGE
+                    </span>
+                    <span className="text-slate-300 dark:text-slate-700">•</span>
+                    <span className="text-[11px] font-bold text-indigo-600 dark:text-indigo-400">
+                      {archiveViewingCase.subspecialty}
+                    </span>
+                    <span
+                      className={`px-2 py-0.5 rounded text-[10px] font-bold border ${
+                        DIFFICULTY_BADGES[archiveViewingCase.difficulty]
+                      }`}
+                    >
+                      {archiveViewingCase.difficulty}
+                    </span>
+                  </div>
+                  <h2 className="text-2xl sm:text-3xl font-serif font-bold tracking-tight">
+                    {archiveViewingCase.title}
+                  </h2>
+                </div>
+
+                <div className="p-5 sm:p-7 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+                  {/* Left Column: NeuroImaging Viewer */}
+                  <div className="lg:col-span-7 lg:sticky lg:top-6">
+                    <NeuroImagingViewer
+                      imagingList={archiveViewingCase.presentation.imaging}
+                      isSolved={Boolean(progressMap[archiveViewingCase.id]?.isCorrect)}
+                      darkMode={darkMode}
+                    />
+                  </div>
+
+                  {/* Right Column: Vignette & MCQ */}
+                  <div className="lg:col-span-5 space-y-5">
+                    <div className="space-y-3 text-sm sm:text-[15px] leading-relaxed">
+                      <p
+                        className={
+                          darkMode ? "text-slate-200 font-normal" : "text-slate-800 font-normal"
+                        }
+                      >
+                        {archiveViewingCase.presentation.history_of_present_illness}{" "}
+                        {archiveViewingCase.presentation.neuro_exam}{" "}
+                        {archiveViewingCase.presentation.key_labs_csf}
+                      </p>
+
+                      <div>
+                        <button
+                          type="button"
+                          onClick={() => setShowDetailedWorkup((prev) => !prev)}
+                          className="text-xs font-bold text-indigo-500 hover:underline flex items-center gap-1"
+                        >
+                          <span>
+                            {showDetailedWorkup
+                              ? "− Hide Vital Signs & Past Medical History"
+                              : "+ View Vital Signs & Past Medical History"}
+                          </span>
+                        </button>
+
+                        {showDetailedWorkup && (
+                          <div
+                            className={`mt-2.5 p-3.5 rounded-xl border text-xs space-y-2.5 ${
+                              darkMode
+                                ? "bg-slate-800/60 border-slate-700 text-slate-200"
+                                : "bg-slate-50 border-slate-200 text-slate-700"
                             }`}
                           >
-                            {prog.isCorrect ? "✓ Solved" : "✗ Review"}
-                          </span>
-                        ) : (
-                          <span className="text-[11px] font-bold text-slate-400">Unsolved</span>
+                            <div>
+                              <strong className="font-bold">Demographics: </strong>
+                              {archiveViewingCase.presentation.demographics}
+                            </div>
+                            <div>
+                              <strong className="font-bold">Past Medical History: </strong>
+                              {archiveViewingCase.presentation.past_medical_history}
+                            </div>
+                            <div className="grid grid-cols-3 sm:grid-cols-5 gap-1.5 pt-1 text-center">
+                              <div className="p-1.5 rounded bg-slate-900 text-white">
+                                <span className="text-[9px] text-slate-400 block">BP</span>
+                                <span className="font-bold text-[11px] text-emerald-400">
+                                  {archiveViewingCase.presentation.vitals.bp}
+                                </span>
+                              </div>
+                              <div className="p-1.5 rounded bg-slate-900 text-white">
+                                <span className="text-[9px] text-slate-400 block">HR</span>
+                                <span className="font-bold text-[11px] text-amber-300">
+                                  {archiveViewingCase.presentation.vitals.hr}
+                                </span>
+                              </div>
+                              <div className="p-1.5 rounded bg-slate-900 text-white">
+                                <span className="text-[9px] text-slate-400 block">RR</span>
+                                <span className="font-bold text-[11px] text-sky-300">
+                                  {archiveViewingCase.presentation.vitals.rr}
+                                </span>
+                              </div>
+                              <div className="p-1.5 rounded bg-slate-900 text-white">
+                                <span className="text-[9px] text-slate-400 block">Temp</span>
+                                <span className="font-bold text-[11px]">
+                                  {archiveViewingCase.presentation.vitals.temp}
+                                </span>
+                              </div>
+                              <div className="p-1.5 rounded bg-slate-900 text-white">
+                                <span className="text-[9px] text-slate-400 block">SpO2</span>
+                                <span className="font-bold text-[11px] text-cyan-300">
+                                  {archiveViewingCase.presentation.vitals.spo2}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
                         )}
                       </div>
 
-                      <h3 className="text-sm font-black mb-1.5 leading-snug">{c.title}</h3>
-                      <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2">
-                        {c.presentation.chief_complaint}
+                      <p
+                        className={`font-bold pt-1 ${
+                          darkMode ? "text-white" : "text-slate-900"
+                        }`}
+                      >
+                        {archiveViewingCase.challenge.question}
                       </p>
                     </div>
 
-                    <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
-                      <span className="text-slate-400">{c.presentation.demographics}</span>
-                      <span className="font-bold text-indigo-500">Solve Case →</span>
+                    {/* MCQ Options with Multi-Attempt Feedback */}
+                    <div className="divide-y divide-slate-200 dark:divide-slate-800 border-t border-b border-slate-200 dark:border-slate-800">
+                      {archiveViewingCase.challenge.options.map((opt) => {
+                        const attempt = progressMap[archiveViewingCase.id];
+                        const isCaseSolved = Boolean(attempt?.isCorrect);
+                        const wrongList = wrongAttemptsMap[archiveViewingCase.id] || [];
+                        const isWrongAttempt = wrongList.includes(opt.id);
+                        const isCorrectOption = opt.id === archiveViewingCase.challenge.correct_option;
+
+                        return (
+                          <div
+                            key={opt.id}
+                            onClick={() => {
+                              if (!isCaseSolved && !isWrongAttempt) {
+                                handleSelectOption(archiveViewingCase, opt.id);
+                              }
+                            }}
+                            className={`py-3.5 px-2 transition-colors ${
+                              isCaseSolved || isWrongAttempt
+                                ? "cursor-default"
+                                : "cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/50"
+                            }`}
+                          >
+                            <div className="flex items-start justify-between gap-3">
+                              <div className="flex items-start gap-3">
+                                {isCaseSolved && isCorrectOption ? (
+                                  <span className="w-5 h-5 rounded-full bg-emerald-600 text-white text-xs font-black flex items-center justify-center shrink-0 mt-0.5">
+                                    ✓
+                                  </span>
+                                ) : isWrongAttempt ? (
+                                  <span className="w-5 h-5 rounded-full bg-rose-600 text-white text-xs font-black flex items-center justify-center shrink-0 mt-0.5">
+                                    ✕
+                                  </span>
+                                ) : (
+                                  <span
+                                    className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 mt-0.5 ${
+                                      darkMode ? "border-slate-600" : "border-slate-300"
+                                    }`}
+                                  />
+                                )}
+
+                                <div className="space-y-1">
+                                  <span
+                                    className={`text-sm leading-snug block ${
+                                      isCaseSolved && isCorrectOption
+                                        ? "font-black text-emerald-600 dark:text-emerald-400"
+                                        : isWrongAttempt
+                                        ? "font-bold text-rose-600 dark:text-rose-400"
+                                        : darkMode
+                                        ? "font-medium text-slate-200"
+                                        : "font-medium text-slate-700"
+                                    }`}
+                                  >
+                                    {opt.text}
+                                  </span>
+
+                                  {isWrongAttempt && !isCaseSolved && (
+                                    <p className="text-xs text-rose-600 dark:text-rose-400 animate-fadeIn">
+                                      <strong className="font-black">Try again!</strong> That is not the correct answer.
+                                    </p>
+                                  )}
+                                </div>
+                              </div>
+
+                              {isCaseSolved && (
+                                <span className="text-xs font-black text-slate-500 dark:text-slate-400 shrink-0">
+                                  {opt.peer_percentage}%
+                                </span>
+                              )}
+                            </div>
+
+                            {isCaseSolved && (
+                              <div className="mt-2.5 pl-8 space-y-1.5">
+                                <div className="w-full h-1.5 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
+                                  <div
+                                    className={`h-full rounded-full transition-all duration-500 ${
+                                      isCorrectOption ? "bg-emerald-500" : "bg-slate-400"
+                                    }`}
+                                    style={{ width: `${opt.peer_percentage}%` }}
+                                  />
+                                </div>
+                                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                  <strong
+                                    className={`font-black ${
+                                      isCorrectOption ? "text-emerald-600 dark:text-emerald-400" : ""
+                                    }`}
+                                  >
+                                    {isCorrectOption ? "Correct Answer: " : "Differential Note: "}
+                                  </strong>
+                                  {opt.rationale}
+                                </p>
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    <div className="flex items-center justify-between gap-3 pt-2">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (archiveCurrentIdx >= 0 && archiveCurrentIdx < filteredArchiveCases.length - 1) {
+                            setArchiveViewingCaseId(filteredArchiveCases[archiveCurrentIdx + 1].id);
+                            setShowDetailedWorkup(false);
+                          } else {
+                            setArchiveViewingCaseId(null);
+                          }
+                        }}
+                        className={`flex-1 py-2.5 px-4 rounded-lg border text-xs font-black uppercase tracking-wider transition-colors ${
+                          darkMode
+                            ? "border-slate-700 text-slate-200 hover:bg-slate-800"
+                            : "border-slate-300 text-slate-800 hover:bg-slate-100"
+                        }`}
+                      >
+                        {archiveCurrentIdx >= 0 && archiveCurrentIdx < filteredArchiveCases.length - 1
+                          ? "NEXT ARCHIVE CASE →"
+                          : "← BACK TO ARCHIVE LIST"}
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => handleResetCaseAttempt(archiveViewingCase.id)}
+                        className="py-2.5 px-5 rounded-lg text-xs font-black uppercase tracking-wider bg-sky-800 hover:bg-sky-900 text-white transition-colors flex items-center gap-1.5"
+                      >
+                        <span>↻</span>
+                        <span>TRY AGAIN</span>
+                      </button>
                     </div>
                   </div>
-                );
-              })}
+                </div>
+
+                {/* Resolution & Discussion when solved */}
+                {progressMap[archiveViewingCase.id]?.isCorrect && (
+                  <div className="p-5 sm:p-7 border-t border-slate-200 dark:border-slate-800 space-y-6 animate-fadeIn">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <h3 className="text-sm font-black uppercase tracking-wider text-emerald-500">
+                        Final Diagnosis, Teaching Points &amp; Clinical Pitfalls
+                      </h3>
+
+                      {archiveViewingCase.source_journal && (
+                        <a
+                          href={archiveViewingCase.source_journal.doi_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs font-bold text-indigo-500 hover:underline"
+                        >
+                          Published Source: {archiveViewingCase.source_journal.name} (
+                          {archiveViewingCase.source_journal.pmcid || archiveViewingCase.source_journal.pub_year}) ↗
+                        </a>
+                      )}
+                    </div>
+
+                    <div
+                      className={`p-4 rounded-xl border ${
+                        darkMode
+                          ? "bg-emerald-950/20 border-emerald-900/60"
+                          : "bg-emerald-50/70 border-emerald-200"
+                      }`}
+                    >
+                      <span className="text-[10px] font-black uppercase tracking-wider text-emerald-600 dark:text-emerald-400 block mb-1">
+                        Definitive Diagnosis
+                      </span>
+                      <p className="text-base sm:text-lg font-black text-emerald-700 dark:text-emerald-300">
+                        {archiveViewingCase.resolution.final_diagnosis}
+                      </p>
+                    </div>
+
+                    <div className="space-y-2">
+                      <h4 className="text-xs font-black uppercase tracking-wider text-slate-400">
+                        Clinical Discussion &amp; Neuroimaging Correlation
+                      </h4>
+                      <p className="text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                        {archiveViewingCase.resolution.clinical_discussion}
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div
+                        className={`p-4 rounded-xl border space-y-2 ${
+                          darkMode
+                            ? "bg-indigo-950/20 border-indigo-900/50"
+                            : "bg-indigo-50/60 border-indigo-200"
+                        }`}
+                      >
+                        <h4 className="text-xs font-black uppercase tracking-wider text-indigo-500 flex items-center gap-1.5">
+                          <span>💡</span>
+                          <span>High-Yield Teaching Points</span>
+                        </h4>
+                        <ul className="space-y-1.5 text-xs text-slate-600 dark:text-slate-300">
+                          {archiveViewingCase.resolution.teaching_points.map((pt, i) => (
+                            <li key={i} className="flex items-start gap-2">
+                              <span className="text-indigo-500 font-bold shrink-0">•</span>
+                              <span>{pt}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div
+                        className={`p-4 rounded-xl border space-y-2 ${
+                          darkMode
+                            ? "bg-rose-950/20 border-rose-900/50"
+                            : "bg-rose-50/60 border-rose-200"
+                        }`}
+                      >
+                        <h4 className="text-xs font-black uppercase tracking-wider text-rose-500 flex items-center gap-1.5">
+                          <span>⚠️</span>
+                          <span>Clinical Pitfalls &amp; Diagnostic Traps</span>
+                        </h4>
+                        <ul className="space-y-1.5 text-xs text-slate-600 dark:text-slate-300">
+                          {archiveViewingCase.resolution.clinical_pitfalls.map((pf, i) => (
+                            <li key={i} className="flex items-start gap-2">
+                              <span className="text-rose-500 font-bold shrink-0">•</span>
+                              <span>{pf}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+
+                    {/* Cross-Ecosystem Link: Related Articles from NeuroPulse */}
+                    {archiveRelatedArticles.length > 0 && (
+                      <div
+                        className={`p-4 rounded-xl border ${
+                          darkMode ? "bg-slate-800/70 border-slate-700" : "bg-slate-50 border-slate-200"
+                        }`}
+                      >
+                        <div className="flex items-center justify-between mb-3">
+                          <span className="text-xs font-black uppercase text-indigo-500 flex items-center gap-1.5">
+                            <span>🔗 Related Literature on NeuroPulse</span>
+                          </span>
+                          <Link href="/" className="text-xs font-bold text-indigo-500 hover:underline">
+                            Open NeuroPulse →
+                          </Link>
+                        </div>
+                        <div className="space-y-2">
+                          {archiveRelatedArticles.map((art) => (
+                            <a
+                              key={art.id}
+                              href={art.doi_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className={`p-3 rounded-lg border block transition-all ${
+                                darkMode
+                                  ? "bg-slate-900 border-slate-700 hover:border-indigo-500"
+                                  : "bg-white border-slate-200 hover:border-indigo-400"
+                              }`}
+                            >
+                              <div className="flex items-center gap-2 mb-1">
+                                <span
+                                  className="px-1.5 py-0.5 rounded text-[9px] font-black uppercase"
+                                  style={{
+                                    backgroundColor: art.journal.badge_bg,
+                                    color: art.journal.badge_text,
+                                  }}
+                                >
+                                  {art.journal.short_name}
+                                </span>
+                                <span className="text-[10px] text-slate-400">{art.pub_date}</span>
+                              </div>
+                              <p className="text-xs font-bold leading-snug">{art.title}</p>
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </article>
             </div>
-          </div>
+          ) : (
+            <div className="space-y-5">
+              <div
+                className={`p-4 rounded-2xl border space-y-4 ${
+                  darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
+                }`}
+              >
+                <div className="flex flex-wrap gap-1.5">
+                  {SUBSPECIALTY_TABS.map((tab) => {
+                    const active = selectedSub === tab.value;
+                    return (
+                      <button
+                        key={tab.value}
+                        type="button"
+                        onClick={() => setSelectedSub(tab.value)}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                          active
+                            ? "bg-indigo-600 text-white shadow-xs"
+                            : darkMode
+                            ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
+                            : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                        }`}
+                      >
+                        {tab.label}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-slate-200 dark:border-slate-800">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <select
+                      value={selectedDifficulty}
+                      onChange={(e) => setSelectedDifficulty(e.target.value)}
+                      aria-label="Filter by difficulty"
+                      className={`px-3 py-1.5 rounded-lg text-xs font-bold border ${
+                        darkMode
+                          ? "bg-slate-800 border-slate-700 text-slate-200"
+                          : "bg-slate-50 border-slate-200 text-slate-700"
+                      }`}
+                    >
+                      <option value="All">All Difficulty Levels</option>
+                      <option value="Resident">Resident</option>
+                      <option value="Fellow">Fellow</option>
+                      <option value="Attending">Attending</option>
+                    </select>
+
+                    <select
+                      value={selectedSolvedFilter}
+                      onChange={(e) => setSelectedSolvedFilter(e.target.value as typeof selectedSolvedFilter)}
+                      aria-label="Filter by completion status"
+                      className={`px-3 py-1.5 rounded-lg text-xs font-bold border ${
+                        darkMode
+                          ? "bg-slate-800 border-slate-700 text-slate-200"
+                          : "bg-slate-50 border-slate-200 text-slate-700"
+                      }`}
+                    >
+                      <option value="All">All Statuses</option>
+                      <option value="Unsolved">Unsolved Only</option>
+                      <option value="Solved">Completed</option>
+                    </select>
+                  </div>
+
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Search symptoms, syndromes, case ID..."
+                    className={`px-3 py-1.5 rounded-lg text-xs border w-full sm:w-64 ${
+                      darkMode
+                        ? "bg-slate-800 border-slate-700 text-white placeholder-slate-400"
+                        : "bg-slate-50 border-slate-200 text-slate-900"
+                    }`}
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {filteredArchiveCases.map((c) => {
+                  const prog = progressMap[c.id];
+                  return (
+                    <div
+                      key={c.id}
+                      onClick={() => {
+                        setArchiveViewingCaseId(c.id);
+                        setShowDetailedWorkup(false);
+                      }}
+                      className={`p-5 rounded-2xl border cursor-pointer transition-all flex flex-col justify-between ${
+                        darkMode
+                          ? "bg-slate-900 border-slate-800 hover:border-indigo-500"
+                          : "bg-white border-slate-200 hover:border-indigo-500 shadow-xs"
+                      }`}
+                    >
+                      <div>
+                        <div className="flex items-center justify-between gap-2 mb-2.5">
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-[10px] font-black px-2 py-0.5 rounded bg-indigo-500/15 text-indigo-500">
+                              {c.case_code}
+                            </span>
+                            <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-800">
+                              {c.subspecialty}
+                            </span>
+                            <span
+                              className={`text-[10px] font-bold px-2 py-0.5 rounded border ${
+                                DIFFICULTY_BADGES[c.difficulty]
+                              }`}
+                            >
+                              {c.difficulty}
+                            </span>
+                          </div>
+
+                          {prog ? (
+                            <span
+                              className={`text-xs font-black ${
+                                prog.isCorrect ? "text-emerald-500" : "text-rose-500"
+                              }`}
+                            >
+                              {prog.isCorrect ? "✓ Solved" : "✗ Review"}
+                            </span>
+                          ) : (
+                            <span className="text-[11px] font-bold text-slate-400">Unsolved</span>
+                          )}
+                        </div>
+
+                        <h3 className="text-sm font-black mb-1.5 leading-snug">{c.title}</h3>
+                        <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2">
+                          {c.presentation.chief_complaint}
+                        </p>
+                      </div>
+
+                      <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+                        <span className="text-slate-400">{c.presentation.demographics}</span>
+                        <span className="font-bold text-indigo-500">Solve Case →</span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )
         )}
 
         {/* =====================================================================
@@ -2041,6 +2578,67 @@ export default function NeuroCasePage() {
                     </span>
                   )}
                 </div>
+
+                {/* Auto-extracted candidate figures from uploaded document (.pdf, .docx) */}
+                {aiExtractedImages.length > 0 && (
+                  <div className="mb-3 p-3 rounded-xl border border-indigo-500/30 bg-indigo-500/10 space-y-2">
+                    <div className="flex flex-wrap items-center justify-between gap-1">
+                      <span className="text-xs font-bold text-indigo-400 flex items-center gap-1.5">
+                        <span>💡</span> Auto-extracted {aiExtractedImages.length} clinical figure{aiExtractedImages.length > 1 ? "s" : ""} from uploaded document:
+                      </span>
+                      <span className="text-[11px] text-slate-400">Click a figure to load into form</span>
+                    </div>
+                    <div className="flex items-center gap-2 overflow-x-auto py-1">
+                      {aiExtractedImages.map((imgUrl, idx) => {
+                        const isCurrent = subImageWebpUrl === imgUrl;
+                        return (
+                          <button
+                            key={idx}
+                            type="button"
+                            onClick={() => {
+                              setSubImageWebpUrl(imgUrl);
+                              const img = new Image();
+                              img.onload = () => {
+                                const canvas = canvasRef.current;
+                                if (!canvas) return;
+                                const maxDim = 720;
+                                let w = img.width;
+                                let h = img.height;
+                                if (w > maxDim || h > maxDim) {
+                                  if (w > h) {
+                                    h = Math.round((h * maxDim) / w);
+                                    w = maxDim;
+                                  } else {
+                                    w = Math.round((w * maxDim) / h);
+                                    h = maxDim;
+                                  }
+                                }
+                                canvas.width = w;
+                                canvas.height = h;
+                                const ctx = canvas.getContext("2d");
+                                if (ctx) {
+                                  ctx.drawImage(img, 0, 0, w, h);
+                                  exportCanvasToCompressedWebp();
+                                }
+                              };
+                              img.src = imgUrl;
+                            }}
+                            className={`relative rounded-lg overflow-hidden border-2 transition-all shrink-0 ${
+                              isCurrent
+                                ? "border-indigo-500 ring-2 ring-indigo-500/40"
+                                : "border-slate-700 opacity-60 hover:opacity-100"
+                            }`}
+                          >
+                            <img src={imgUrl} alt={`Figure ${idx + 1}`} className="w-16 h-16 object-cover" />
+                            <span className="absolute bottom-0 inset-x-0 bg-black/75 text-[9px] text-center font-bold text-white py-0.5">
+                              {isCurrent ? "✓ Active" : `Fig ${idx + 1}`}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
 
                 <div className="flex flex-wrap items-center gap-2 mb-3">
                   <input
@@ -2761,6 +3359,14 @@ export default function NeuroCasePage() {
                           </div>
                           <button
                             type="button"
+                            onClick={() => setAdminPreviewCase(c)}
+                            className="px-2.5 py-1 rounded text-[11px] font-bold bg-indigo-500/20 text-indigo-400 hover:bg-indigo-500/30 border border-indigo-500/30 flex items-center gap-1 transition-colors"
+                            title="Preview case in clinical split-screen layout"
+                          >
+                            👁️ Preview Case
+                          </button>
+                          <button
+                            type="button"
                             onClick={() => {
                               if (isEditing) {
                                 setEditingCaseId(null);
@@ -3461,6 +4067,311 @@ export default function NeuroCasePage() {
                   </button>
                 </div>
               </form>
+            </div>
+          </div>
+        )}
+        {/* =====================================================================
+            ADMIN CASE PREVIEW MODAL (Live split-screen reviewer before approving)
+           ===================================================================== */}
+        {adminPreviewCase && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-sm overflow-y-auto">
+            <div
+              className={`relative w-full max-w-5xl max-h-[92vh] overflow-y-auto rounded-2xl border shadow-2xl p-5 sm:p-7 space-y-6 animate-fadeIn ${
+                darkMode
+                  ? "bg-slate-900 border-slate-700 text-slate-100"
+                  : "bg-white border-slate-200 text-slate-900"
+              }`}
+            >
+              {/* Modal Header */}
+              <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-200 dark:border-slate-800">
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl">👁️</span>
+                  <div>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="text-xs font-black uppercase tracking-wider text-indigo-500">
+                        Admin Case Preview Mode
+                      </span>
+                      <span className="text-xs font-black">{adminPreviewCase.case_code}</span>
+                      <span className="text-xs font-bold px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-800">
+                        {adminPreviewCase.subspecialty}
+                      </span>
+                      <span
+                        className={`text-[10px] font-bold px-2 py-0.5 rounded border ${
+                          DIFFICULTY_BADGES[adminPreviewCase.difficulty]
+                        }`}
+                      >
+                        {adminPreviewCase.difficulty}
+                      </span>
+                      <span
+                        className={`text-[10px] font-black uppercase px-2 py-0.5 rounded ${
+                          adminPreviewCase.status === "approved"
+                            ? "bg-emerald-600 text-white"
+                            : adminPreviewCase.status === "rejected"
+                            ? "bg-rose-600 text-white"
+                            : "bg-amber-400 text-slate-950"
+                        }`}
+                      >
+                        Status: {adminPreviewCase.status || "approved"}
+                      </span>
+                    </div>
+                    <h2 className="text-base sm:text-xl font-black mt-1">
+                      {adminPreviewCase.title}
+                    </h2>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const caseToEdit = adminPreviewCase;
+                      setAdminPreviewCase(null);
+                      handleStartFullEdit(caseToEdit);
+                    }}
+                    className="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-700 text-white hover:bg-slate-600 transition-colors"
+                  >
+                    ✏️ Edit Case
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setAdminPreviewCase(null)}
+                    className="px-3 py-1.5 rounded-lg text-xs font-black bg-rose-600 text-white hover:bg-rose-700 transition-colors"
+                  >
+                    ✕ Close Preview
+                  </button>
+                </div>
+              </div>
+
+              {/* 2-Column Split View Preview */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                {/* Left Column: NeuroImaging Viewer */}
+                <div className="lg:col-span-7">
+                  <NeuroImagingViewer
+                    imagingList={adminPreviewCase.presentation.imaging}
+                    isSolved={true}
+                    darkMode={darkMode}
+                  />
+                </div>
+
+                {/* Right Column: Vignette & MCQ with highlighted correct answer */}
+                <div className="lg:col-span-5 space-y-4 text-xs sm:text-sm">
+                  <div className="space-y-2">
+                    <span className="text-[11px] font-black uppercase tracking-wider text-slate-400 block">
+                      Clinical Vignette (HPI, Exam &amp; Labs)
+                    </span>
+                    <p className="leading-relaxed text-slate-700 dark:text-slate-300">
+                      {adminPreviewCase.presentation.history_of_present_illness}{" "}
+                      {adminPreviewCase.presentation.neuro_exam}{" "}
+                      {adminPreviewCase.presentation.key_labs_csf}
+                    </p>
+                  </div>
+
+                  <div className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 text-xs space-y-1.5 bg-slate-50/50 dark:bg-slate-800/30">
+                    <div>
+                      <strong>Demographics: </strong> {adminPreviewCase.presentation.demographics}
+                    </div>
+                    <div>
+                      <strong>PMH: </strong> {adminPreviewCase.presentation.past_medical_history}
+                    </div>
+                    <div>
+                      <strong>Vitals: </strong> BP {adminPreviewCase.presentation.vitals.bp} • HR{" "}
+                      {adminPreviewCase.presentation.vitals.hr} • RR{" "}
+                      {adminPreviewCase.presentation.vitals.rr} • Temp{" "}
+                      {adminPreviewCase.presentation.vitals.temp} • SpO2{" "}
+                      {adminPreviewCase.presentation.vitals.spo2}
+                    </div>
+                  </div>
+
+                  <div>
+                    <span className="text-[11px] font-black uppercase tracking-wider text-slate-400 block mb-1">
+                      Multiple-Choice Question Prompt
+                    </span>
+                    <p className="font-bold text-slate-900 dark:text-white">
+                      {adminPreviewCase.challenge.question}
+                    </p>
+                  </div>
+
+                  <div className="space-y-2 pt-1">
+                    <span className="text-[11px] font-black uppercase tracking-wider text-slate-400 block">
+                      Options &amp; Verified Rationales
+                    </span>
+                    {adminPreviewCase.challenge.options.map((opt) => {
+                      const isCorrect = opt.id === adminPreviewCase.challenge.correct_option;
+                      return (
+                        <div
+                          key={opt.id}
+                          className={`p-3 rounded-xl border text-xs ${
+                            isCorrect
+                              ? "border-emerald-500/70 bg-emerald-500/10 text-emerald-900 dark:text-emerald-300"
+                              : darkMode
+                              ? "border-slate-800 bg-slate-800/40 text-slate-300"
+                              : "border-slate-200 bg-slate-50 text-slate-700"
+                          }`}
+                        >
+                          <div className="flex items-center justify-between font-bold">
+                            <span className="flex items-center gap-1.5">
+                              {isCorrect ? (
+                                <span className="w-4 h-4 rounded-full bg-emerald-600 text-white text-[10px] font-black flex items-center justify-center">
+                                  ✓
+                                </span>
+                              ) : (
+                                <span className="w-4 h-4 rounded-full border border-slate-400 text-[10px] font-bold flex items-center justify-center">
+                                  {opt.id}
+                                </span>
+                              )}
+                              <span>{opt.text}</span>
+                              {isCorrect && (
+                                <strong className="text-emerald-500 text-[11px]">
+                                  (Correct Answer)
+                                </strong>
+                              )}
+                            </span>
+                            <span className="text-[11px] font-mono">{opt.peer_percentage}%</span>
+                          </div>
+                          {opt.rationale && (
+                            <p className="text-[11px] mt-1 pl-5.5 opacity-90 leading-snug">
+                              <strong>Rationale: </strong>
+                              {opt.rationale}
+                            </p>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+
+              {/* Resolution & Discussion Preview */}
+              <div className="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-4 text-xs">
+                <div
+                  className={`p-4 rounded-xl border ${
+                    darkMode
+                      ? "bg-emerald-950/20 border-emerald-900/60"
+                      : "bg-emerald-50 border-emerald-200"
+                  }`}
+                >
+                  <span className="text-[10px] font-black uppercase tracking-wider text-emerald-600 dark:text-emerald-400 block mb-1">
+                    Definitive Diagnosis
+                  </span>
+                  <p className="text-base font-black text-emerald-700 dark:text-emerald-300">
+                    {adminPreviewCase.resolution.final_diagnosis}
+                  </p>
+                </div>
+
+                <div className="space-y-1">
+                  <span className="text-[11px] font-black uppercase tracking-wider text-slate-400 block">
+                    Clinical Discussion &amp; Correlation
+                  </span>
+                  <p className="leading-relaxed text-slate-700 dark:text-slate-300">
+                    {adminPreviewCase.resolution.clinical_discussion}
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div
+                    className={`p-3.5 rounded-xl border space-y-1.5 ${
+                      darkMode
+                        ? "bg-indigo-950/20 border-indigo-900/50"
+                        : "bg-indigo-50 border-indigo-200"
+                    }`}
+                  >
+                    <span className="font-bold text-indigo-500 block">
+                      💡 High-Yield Teaching Points:
+                    </span>
+                    <ul className="space-y-1">
+                      {adminPreviewCase.resolution.teaching_points.map((pt, i) => (
+                        <li key={i} className="flex items-start gap-1.5">
+                          <span className="text-indigo-500 font-bold">•</span>
+                          <span>{pt}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div
+                    className={`p-3.5 rounded-xl border space-y-1.5 ${
+                      darkMode
+                        ? "bg-rose-950/20 border-rose-900/50"
+                        : "bg-rose-50 border-rose-200"
+                    }`}
+                  >
+                    <span className="font-bold text-rose-500 block">
+                      ⚠️ Clinical Pitfalls:
+                    </span>
+                    <ul className="space-y-1">
+                      {adminPreviewCase.resolution.clinical_pitfalls.map((pf, i) => (
+                        <li key={i} className="flex items-start gap-1.5">
+                          <span className="text-rose-500 font-bold">•</span>
+                          <span>{pf}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                {adminPreviewCase.source_journal && (
+                  <div className="pt-2 text-slate-400 flex items-center justify-between">
+                    <span>
+                      Source: {adminPreviewCase.source_journal.name} (
+                      {adminPreviewCase.source_journal.pub_year})
+                    </span>
+                    {adminPreviewCase.source_journal.doi_url && (
+                      <a
+                        href={adminPreviewCase.source_journal.doi_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-indigo-400 hover:underline"
+                      >
+                        {adminPreviewCase.source_journal.doi_url} ↗
+                      </a>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {/* Modal Footer with Direct Moderation Actions */}
+              <div className="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
+                <div className="flex flex-wrap items-center gap-2">
+                  {adminPreviewCase.status !== "approved" && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        handleAdminUpdateStatus(adminPreviewCase.id, "approved", false);
+                        setAdminPreviewCase(null);
+                      }}
+                      className="px-3.5 py-2 rounded-xl text-xs font-black bg-emerald-600 text-white hover:bg-emerald-700"
+                    >
+                      📚 Approve to Case Archive
+                    </button>
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      handleAdminUpdateStatus(
+                        adminPreviewCase.id,
+                        "approved",
+                        true,
+                        adminScheduleDates[adminPreviewCase.id] ||
+                          adminPreviewCase.published_date
+                      );
+                      setAdminPreviewCase(null);
+                    }}
+                    className="px-3.5 py-2 rounded-xl text-xs font-black bg-indigo-600 text-white hover:bg-indigo-700"
+                  >
+                    🔥 Publish as Daily Challenge (
+                    {adminScheduleDates[adminPreviewCase.id] ||
+                      adminPreviewCase.published_date}
+                    )
+                  </button>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setAdminPreviewCase(null)}
+                  className="px-4 py-2 rounded-xl text-xs font-bold border border-slate-600/40 hover:bg-slate-800 text-slate-300"
+                >
+                  Close Preview
+                </button>
+              </div>
             </div>
           </div>
         )}
