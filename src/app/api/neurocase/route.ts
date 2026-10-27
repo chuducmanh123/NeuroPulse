@@ -15,6 +15,7 @@ const KV_KEY = "neurocase_custom_cases_v1";
 
 // ==========================================
 // 1. VERCEL BLOB STORAGE (100% Free on Hobby: 500 MB)
+// Supports both modern OIDC (BLOB_STORE_ID) and static token (BLOB_READ_WRITE_TOKEN)
 // ==========================================
 function getBlobToken(): { token: string | undefined; keyName: string | undefined } {
   if (process.env.BLOB_READ_WRITE_TOKEN) {
@@ -28,11 +29,20 @@ function getBlobToken(): { token: string | undefined; keyName: string | undefine
   return { token: undefined, keyName: undefined };
 }
 
+function hasBlobConfig(): boolean {
+  return Boolean(
+    process.env.BLOB_STORE_ID ||
+    process.env.BLOB_READ_WRITE_TOKEN ||
+    getBlobToken().token
+  );
+}
+
 async function getFromBlob(): Promise<ClinicalCase[] | null> {
+  if (!hasBlobConfig()) return null;
   const { token } = getBlobToken();
-  if (!token) return null;
+  const listOptions = token ? { prefix: "cases.json", token } : { prefix: "cases.json" };
   try {
-    const { blobs } = await list({ prefix: "cases.json", token });
+    const { blobs } = await list(listOptions);
     if (!blobs || blobs.length === 0) return null;
     const latestBlob = blobs[0];
     const res = await fetch(latestBlob.url, { cache: "no-store" });
@@ -46,16 +56,17 @@ async function getFromBlob(): Promise<ClinicalCase[] | null> {
 }
 
 async function setToBlob(cases: ClinicalCase[]): Promise<boolean> {
+  if (!hasBlobConfig()) return false;
   const { token } = getBlobToken();
-  if (!token) return false;
   try {
     const jsonStr = JSON.stringify(cases, null, 2);
-    await put("cases.json", jsonStr, {
+    const putOptions: any = {
       access: "public",
       addRandomSuffix: false,
       contentType: "application/json",
-      token,
-    });
+    };
+    if (token) putOptions.token = token;
+    await put("cases.json", jsonStr, putOptions);
     return true;
   } catch (e) {
     console.error("Vercel Blob write error:", e);
@@ -121,6 +132,8 @@ export async function GET(req: Request) {
       );
       return NextResponse.json({
         isVercel: Boolean(process.env.VERCEL),
+        hasBlobConfig: hasBlobConfig(),
+        blobStoreId: process.env.BLOB_STORE_ID || null,
         blobTokenFound: Boolean(token),
         matchedKey: keyName || null,
         availableStorageKeys: storageKeys,
@@ -207,16 +220,15 @@ export async function POST(req: Request) {
       );
     }
 
-    // 1. If Vercel Blob is configured (BLOB_READ_WRITE_TOKEN or custom prefix)
-    const { token: blobToken, keyName } = getBlobToken();
-    if (blobToken) {
+    // 1. If Vercel Blob is configured (via BLOB_STORE_ID or BLOB_READ_WRITE_TOKEN)
+    if (hasBlobConfig()) {
       const blobOk = await setToBlob(updatedCases);
       if (blobOk) {
         return NextResponse.json(
           {
             success: true,
             storage: "vercel-blob",
-            keyUsed: keyName,
+            authType: getBlobToken().token ? "static-token" : "oidc-store-id",
             count: updatedCases.length,
             savedAt: new Date().toISOString(),
           },
