@@ -249,6 +249,7 @@ export default function NeuroCasePage() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const docFileInputRef = useRef<HTMLInputElement | null>(null);
   const imageFileInputRef = useRef<HTMLInputElement | null>(null);
+  const jsonFileInputRef = useRef<HTMLInputElement | null>(null);
 
   // Collapsible Optional Sections in Submit Case (collapsed by default so form stays clean)
   const [showSubMcqSection, setShowSubMcqSection] = useState(false);
@@ -398,20 +399,100 @@ export default function NeuroCasePage() {
 
   const refreshCasesFromServer = async () => {
     setIsSyncingServer(true);
+    setServerSyncSuccess("");
     try {
-      const res = await fetch("/api/neurocase", { cache: "no-store" });
-      if (!res.ok) throw new Error("HTTP " + res.status);
+      const res = await fetch(`/api/neurocase?t=${Date.now()}`, {
+        cache: "no-store",
+        headers: {
+          "Cache-Control": "no-store, no-cache, must-revalidate",
+          Pragma: "no-cache",
+        },
+      });
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
+      }
       const data: ClinicalCase[] = await res.json();
       if (Array.isArray(data) && data.length > 0) {
-        setCases(data);
-        setServerSyncSuccess(`✓ Synchronized with server (${data.length} cases)`);
+        // Check if this computer has any pending user cases in localStorage that are missing from server
+        let mergedData = data;
+        const savedCustomRaw = localStorage.getItem("neurocase_custom_submissions_v1");
+        if (savedCustomRaw) {
+          try {
+            const localCustom: ClinicalCase[] = JSON.parse(savedCustomRaw);
+            const serverIds = new Set(data.map((c) => c.id));
+            const unsynced = localCustom.filter((c) => !serverIds.has(c.id));
+            if (unsynced.length > 0) {
+              mergedData = [...unsynced, ...data];
+              // Upload missing cases to server disk
+              await fetch("/api/neurocase", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ cases: mergedData }),
+              });
+            }
+          } catch (e) {
+            console.error("Local sync error:", e);
+          }
+        }
+
+        setCases(mergedData);
+        setServerSyncSuccess(`✓ Synchronized with server (${mergedData.length} cases)`);
+        setTimeout(() => setServerSyncSuccess(""), 4000);
+      } else {
+        setServerSyncSuccess("⚠️ Empty data from server");
         setTimeout(() => setServerSyncSuccess(""), 4000);
       }
-    } catch (e) {
+    } catch (e: any) {
       console.error("Failed to sync from /api/neurocase:", e);
+      setServerSyncSuccess(`⚠️ Sync failed (${e?.message || "Check server"})`);
+      setTimeout(() => setServerSyncSuccess(""), 5000);
     } finally {
       setIsSyncingServer(false);
     }
+  };
+
+  const handleExportCasesJson = () => {
+    try {
+      const dataStr =
+        "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(cases, null, 2));
+      const downloadAnchor = document.createElement("a");
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", `neurocase-bank-${getLocalTodayIso()}.json`);
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+      setServerSyncSuccess("✓ Exported JSON backup");
+      setTimeout(() => setServerSyncSuccess(""), 3500);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const handleImportCasesJson = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = async (ev) => {
+      try {
+        const text = ev.target?.result as string;
+        const imported: ClinicalCase[] = JSON.parse(text);
+        if (Array.isArray(imported) && imported.length > 0) {
+          const existingMap = new Map<string, ClinicalCase>();
+          for (const item of cases) existingMap.set(item.id, item);
+          for (const item of imported) existingMap.set(item.id, item);
+          const nextCases = Array.from(existingMap.values());
+          await persistAdminCases(nextCases);
+          setServerSyncSuccess(`✓ Imported ${imported.length} cases`);
+          setTimeout(() => setServerSyncSuccess(""), 4000);
+        } else {
+          alert("Invalid JSON format. Expected an array of ClinicalCase objects.");
+        }
+      } catch (err) {
+        alert("Failed to parse JSON file.");
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = "";
   };
 
   // Exam countdown timer
@@ -888,7 +969,7 @@ export default function NeuroCasePage() {
     }
   };
 
-  const handleUserSubmitCase = (e: React.FormEvent) => {
+  const handleUserSubmitCase = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!subTitle.trim()) return;
 
@@ -1019,7 +1100,7 @@ export default function NeuroCasePage() {
     };
 
     const nextCases = [newCase, ...cases];
-    persistAdminCases(nextCases);
+    await persistAdminCases(nextCases);
 
     setSubmitSuccessMsg(
       `Case "${newCase.case_code}" submitted with PENDING status! It is saved directly to the server database and available in Admin Review across all computers.`
@@ -1047,11 +1128,24 @@ export default function NeuroCasePage() {
         body: JSON.stringify({ cases: nextCases }),
       });
       if (res.ok) {
-        setServerSyncSuccess("✓ Synced to server disk");
-        setTimeout(() => setServerSyncSuccess(""), 3500);
+        const data = await res.json().catch(() => null);
+        if (data?.storage === "vercel-readonly") {
+          setServerSyncSuccess("⚠️ Vercel: Saved in browser (Storage not connected)");
+          setTimeout(() => setServerSyncSuccess(""), 5500);
+        } else {
+          setServerSyncSuccess("✓ Synced to server");
+          setTimeout(() => setServerSyncSuccess(""), 3500);
+        }
+      } else {
+        const text = await res.text();
+        console.error("Failed to sync to /api/neurocase:", res.status, text);
+        setServerSyncSuccess(`⚠️ Server error (${res.status})`);
+        setTimeout(() => setServerSyncSuccess(""), 5000);
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error("Failed to sync cases to /api/neurocase:", err);
+      setServerSyncSuccess(`⚠️ Sync failed (${err?.message || "network error"})`);
+      setTimeout(() => setServerSyncSuccess(""), 5000);
     } finally {
       setIsSyncingServer(false);
     }
@@ -2752,8 +2846,8 @@ export default function NeuroCasePage() {
                 className="px-3.5 py-2 rounded-xl text-xs font-black bg-gradient-to-r from-indigo-600 to-violet-600 text-white shadow-sm hover:opacity-95 shrink-0"
               >
                 {showAiExtractor
-                  ? "✕ Close AI Article Importer"
-                  : "✨ AI Auto-Extract from Article (NEJM / JAMA / Neurology)"}
+                  ? "✕ Close AI Importer"
+                  : "✨ AI import from Article"}
               </button>
             </div>
 
@@ -3537,7 +3631,13 @@ export default function NeuroCasePage() {
               </div>
               <div className="flex flex-wrap items-center gap-2">
                 {serverSyncSuccess && (
-                  <span className="text-xs font-bold text-emerald-500 bg-emerald-500/10 border border-emerald-500/30 px-2.5 py-1.5 rounded-lg animate-fadeIn">
+                  <span
+                    className={`text-xs font-bold px-2.5 py-1.5 rounded-lg border animate-fadeIn ${
+                      serverSyncSuccess.startsWith("✓")
+                        ? "text-emerald-500 bg-emerald-500/10 border-emerald-500/30"
+                        : "text-amber-500 bg-amber-500/10 border-amber-500/30"
+                    }`}
+                  >
                     {serverSyncSuccess}
                   </span>
                 )}
@@ -3546,21 +3646,36 @@ export default function NeuroCasePage() {
                   onClick={refreshCasesFromServer}
                   disabled={isSyncingServer}
                   className="px-3 py-2 rounded-lg text-xs font-black bg-slate-800 text-white hover:bg-slate-700 border border-slate-700 flex items-center gap-1.5 transition-all disabled:opacity-50"
-                  title="Reload all cases from server disk (/api/neurocase)"
+                  title="Reload and sync cases with cloud server (/api/neurocase)"
                 >
                   <span className={isSyncingServer ? "animate-spin" : ""}>🔄</span>
                   <span>{isSyncingServer ? "Syncing..." : "Sync from Server"}</span>
                 </button>
                 <button
                   type="button"
-                  onClick={() => {
-                    setActiveTab("submit");
-                    setShowAiExtractor(true);
-                  }}
-                  className="px-3.5 py-2 rounded-lg text-xs font-black bg-indigo-600 text-white hover:bg-indigo-700"
+                  onClick={handleExportCasesJson}
+                  className="px-3 py-2 rounded-lg text-xs font-black bg-slate-800 text-white hover:bg-slate-700 border border-slate-700 flex items-center gap-1.5 transition-all"
+                  title="Export entire case bank (including custom & pending cases) to JSON file"
                 >
-                  ✨ AI Import from Article (NEJM / JAMA / Neurology)
+                  <span>📤</span>
+                  <span>Export JSON</span>
                 </button>
+                <button
+                  type="button"
+                  onClick={() => jsonFileInputRef.current?.click()}
+                  className="px-3 py-2 rounded-lg text-xs font-black bg-indigo-600 text-white hover:bg-indigo-700 flex items-center gap-1.5 transition-all shadow-xs"
+                  title="Import cases from a JSON backup file directly into this browser"
+                >
+                  <span>📥</span>
+                  <span>Import JSON</span>
+                </button>
+                <input
+                  type="file"
+                  ref={jsonFileInputRef}
+                  accept=".json"
+                  onChange={handleImportCasesJson}
+                  className="hidden"
+                />
               </div>
             </div>
 
