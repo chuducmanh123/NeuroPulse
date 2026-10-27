@@ -1129,9 +1129,9 @@ export default function NeuroCasePage() {
       });
       if (res.ok) {
         const data = await res.json().catch(() => null);
-        if (data?.storage === "vercel-readonly") {
-          setServerSyncSuccess("⚠️ Vercel: Saved in browser (Storage not connected)");
-          setTimeout(() => setServerSyncSuccess(""), 5500);
+        if (data?.storage === "vercel-blob-failed" || data?.storage === "vercel-readonly") {
+          setServerSyncSuccess("⚠️ Vercel: Missing BLOB_READ_WRITE_TOKEN in Settings");
+          setTimeout(() => setServerSyncSuccess(""), 6000);
         } else {
           setServerSyncSuccess("✓ Synced to server");
           setTimeout(() => setServerSyncSuccess(""), 3500);

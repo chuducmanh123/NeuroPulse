@@ -55,8 +55,8 @@ async function getFromBlob(): Promise<ClinicalCase[] | null> {
   }
 }
 
-async function setToBlob(cases: ClinicalCase[]): Promise<boolean> {
-  if (!hasBlobConfig()) return false;
+async function setToBlob(cases: ClinicalCase[]): Promise<{ ok: boolean; error?: string }> {
+  if (!hasBlobConfig()) return { ok: false, error: "No blob configuration detected." };
   const { token } = getBlobToken();
   try {
     const jsonStr = JSON.stringify(cases, null, 2);
@@ -67,10 +67,10 @@ async function setToBlob(cases: ClinicalCase[]): Promise<boolean> {
     };
     if (token) putOptions.token = token;
     await put("cases.json", jsonStr, putOptions);
-    return true;
-  } catch (e) {
+    return { ok: true };
+  } catch (e: any) {
     console.error("Vercel Blob write error:", e);
-    return false;
+    return { ok: false, error: e?.message || String(e) };
   }
 }
 
@@ -222,8 +222,8 @@ export async function POST(req: Request) {
 
     // 1. If Vercel Blob is configured (via BLOB_STORE_ID or BLOB_READ_WRITE_TOKEN)
     if (hasBlobConfig()) {
-      const blobOk = await setToBlob(updatedCases);
-      if (blobOk) {
+      const blobRes = await setToBlob(updatedCases);
+      if (blobRes.ok) {
         return NextResponse.json(
           {
             success: true,
@@ -231,6 +231,19 @@ export async function POST(req: Request) {
             authType: getBlobToken().token ? "static-token" : "oidc-store-id",
             count: updatedCases.length,
             savedAt: new Date().toISOString(),
+          },
+          { status: 200 }
+        );
+      } else {
+        return NextResponse.json(
+          {
+            success: false,
+            storage: "vercel-blob-failed",
+            error: blobRes.error,
+            warning:
+              "Vercel Blob write failed: " +
+              blobRes.error +
+              ". To fix: Copy BLOB_READ_WRITE_TOKEN from your Blob Store .env.local tab and paste it into Project Settings -> Environment Variables.",
           },
           { status: 200 }
         );
