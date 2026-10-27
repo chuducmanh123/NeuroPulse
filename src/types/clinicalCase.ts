@@ -29,6 +29,7 @@ export interface ClinicalCase {
   difficulty: CaseDifficulty;
   estimated_time_sec: number;
   is_daily_challenge?: boolean;
+  archive_only?: boolean;
   published_date: string;
   status?: CaseStatus;
   author_credit?: string;

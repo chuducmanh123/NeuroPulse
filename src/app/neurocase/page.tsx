@@ -26,6 +26,14 @@ const SUBSPECIALTY_TABS = [
   { label: "Other", value: "Other" },
 ];
 
+function getLocalTodayIso(): string {
+  const d = new Date();
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
 const DIFFICULTY_BADGES: Record<CaseDifficulty, string> = {
   Resident: "bg-emerald-500/15 text-emerald-500 border-emerald-500/30",
   Fellow: "bg-amber-500/15 text-amber-500 border-amber-500/30",
@@ -213,12 +221,16 @@ export default function NeuroCasePage() {
         const merged = [...customCases, ...loadedCases].map((c) => overridesMap[c.id] || c);
         setCases(merged);
 
-        const todayIso = new Date().toISOString().slice(0, 10);
+        const todayIso = getLocalTodayIso();
+        const isDailyCase = (c: ClinicalCase) =>
+          !c.archive_only &&
+          (c.is_daily_challenge === true || (c.id.startsWith("nc-2026-") && c.is_daily_challenge !== false));
+
         const activeDailies = merged
           .filter(
             (c) =>
               (!c.status || c.status === "approved") &&
-              c.is_daily_challenge === true &&
+              isDailyCase(c) &&
               c.published_date <= todayIso
           )
           .sort((a, b) => b.published_date.localeCompare(a.published_date));
@@ -226,7 +238,7 @@ export default function NeuroCasePage() {
         const firstDaily =
           activeDailies[0] ||
           merged
-            .filter((c) => (!c.status || c.status === "approved") && c.is_daily_challenge)
+            .filter((c) => (!c.status || c.status === "approved") && isDailyCase(c))
             .sort((a, b) => b.published_date.localeCompare(a.published_date))[0] ||
           merged[0];
         if (firstDaily) setActiveCaseId(firstDaily.id);
@@ -274,14 +286,18 @@ export default function NeuroCasePage() {
   // Daily Challenge Track: ONLY approved cases with is_daily_challenge === true whose scheduled date has arrived,
   // sorted descending by published_date so index 0 is ALWAYS "⭐ Daily" and subsequent items are past Daily dates.
   const dailyChallengeCases = useMemo(() => {
-    const todayIso = new Date().toISOString().slice(0, 10);
+    const todayIso = getLocalTodayIso();
+    const isDaily = (c: ClinicalCase) =>
+      !c.archive_only &&
+      (c.is_daily_challenge === true || (c.id.startsWith("nc-2026-") && c.is_daily_challenge !== false));
+
     const eligible = approvedCases.filter(
-      (c) => c.is_daily_challenge === true && c.published_date <= todayIso
+      (c) => isDaily(c) && c.published_date <= todayIso
     );
     const pool =
       eligible.length > 0
         ? eligible
-        : approvedCases.filter((c) => c.is_daily_challenge === true);
+        : approvedCases.filter(isDaily);
 
     // If an Admin scheduled a custom Daily Challenge for a given date, it supersedes the auto-fetched one on that date
     const byDate = new Map<string, ClinicalCase>();
@@ -650,7 +666,8 @@ export default function NeuroCasePage() {
       difficulty: subDifficulty,
       estimated_time_sec: 90,
       is_daily_challenge: false,
-      published_date: subPublishedDate || new Date().toISOString().slice(0, 10),
+      archive_only: true,
+      published_date: subPublishedDate || getLocalTodayIso(),
       status: "pending",
       author_credit: subAuthor.trim() || "Community Clinician Contributor",
       source_journal: subDoiUrl.trim()
@@ -786,7 +803,7 @@ export default function NeuroCasePage() {
     makeDaily = false,
     targetDailyDate?: string
   ) => {
-    const todayIso = new Date().toISOString().slice(0, 10);
+    const todayIso = getLocalTodayIso();
     const targetCase = cases.find((c) => c.id === caseId);
     const chosenDate =
       targetDailyDate || targetCase?.published_date || todayIso;
@@ -797,12 +814,13 @@ export default function NeuroCasePage() {
           ...c,
           status: newStatus,
           is_daily_challenge: newStatus === "approved" ? makeDaily : false,
+          archive_only: newStatus === "approved" ? !makeDaily : false,
           published_date: makeDaily ? chosenDate : c.published_date,
         };
       }
       // If setting this case as Daily Challenge for `chosenDate`, demote any other case on the exact same `chosenDate` to Archive Only
       if (makeDaily && c.is_daily_challenge && c.published_date === chosenDate) {
-        return { ...c, is_daily_challenge: false };
+        return { ...c, is_daily_challenge: false, archive_only: true };
       }
       return c;
     });

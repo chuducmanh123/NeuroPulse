@@ -1,10 +1,126 @@
 [
   {
+    "id": "nc-2026-009",
+    "case_code": "NC-2026-009",
+    "title": "Acute Basilar Artery Occlusion and Brainstem Infarction in a Young Adult",
+    "subspecialty": "Vascular & Stroke",
+    "subspecialties": [
+      "Vascular & Stroke",
+      "Neurocritical Care",
+      "Neuro-cardiology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": true,
+    "published_date": "2026-10-27",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13637264",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-05165-0",
+      "pmcid": "PMC13637264",
+      "pmid": "42432523",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "44-year-old man",
+      "chief_complaint": "Acute dizziness, nausea, vomiting, and left-sided numbness and weakness",
+      "history_of_present_illness": "The patient with a 20-pack-year smoking history developed sudden-onset dizziness, nausea, vomiting, dysarthria, and left-sided numbness and weakness. He was brought to the emergency department within the acute therapeutic window with an initial National Institutes of Health Stroke Scale (NIHSS) score of 7, demonstrating horizontal nystagmus, left tongue deviation, and limb ataxia.",
+      "past_medical_history": "20-pack-year smoking history; no prior history of stroke, hypertension, diabetes mellitus, or structural heart disease.",
+      "vitals": {
+        "bp": "130/80 mmHg",
+        "hr": "76 bpm",
+        "rr": "18 /min",
+        "temp": "36.5 °C",
+        "spo2": "98% on room air"
+      },
+      "neuro_exam": "NIHSS 7 (I2=1, I4=1, I5a=1, I6a=1, I7=1, I8=1, I10=1). Awake and alert, horizontal nystagmus on gaze, left tongue deviation, left-sided facial and limb sensory loss, left-sided limb ataxia, and left-sided motor weakness (MRC grade 4/5).",
+      "key_labs_csf": "Comprehensive thrombophilia screen, vasculitis autoantibodies, serum homocysteine, lipid profile, and HbA1c were entirely normal or negative.",
+      "imaging": [
+        {
+          "modality": "Craniocerebral CTA and Perfusion MRI",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13637264)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13637264_fig1.webp",
+          "pmcid": "PMC13637264",
+          "doi_url": "https://doi.org/10.1186/s12883-026-05165-0",
+          "caption": "Relevant information for patient 1. Craniocerebral CTA indicating basilar artery occlusion ( A ). Cerebral perfusion imaging suggesting the presence of an ischemic penumbra ( B ). Preoperative Digital Subtraction Angiography (DSA) showing basilar artery occlusion ( C ), postoperative imaging confirming recanalization with an mTICI grade 3 ( D ). Cranial Diffusion-Weighted Imaging (DWI) on postoperative day 1 showing acute cerebral infarction in the brainstem and cerebellum ( E ). Histopathology of the retrieved embolus shows coagulated blood and fibrinous material without atypical cells, confi",
+          "findings_summary": "CTA reveals acute basilar artery occlusion with perfusion imaging demonstrating a significant salvageable ischemic penumbra in the brainstem and cerebellum."
+        },
+        {
+          "modality": "Brain MRI and Cardiac CT",
+          "sequence_badge": "Figure 2 • BMC neurology (PMC13637264)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC13637264_fig2.webp",
+          "pmcid": "PMC13637264",
+          "doi_url": "https://doi.org/10.1186/s12883-026-05165-0",
+          "caption": "Partial information for patient 2. Intraoperative DSA confirming a left internal carotid artery occlusion and right middle cerebral artery stenosis ( A , C ). Lower-limb DSA indicating an embolism in the left femoral artery ( E ). Postoperative DSA showing restored patency of the left internal carotid and right middle cerebral arteries with an mTICI grade 3 ( B , D ). Partial removal of the emboli in the lower limb arteries ( F )",
+          "findings_summary": "DWI confirms acute ischemic infarctions in the brainstem and cerebellum, while cardiac CT enhancement demonstrates a large left atrial mass measuring 73 x 36 mm."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "What is the most definitive underlying pathophysiological mechanism for the acute ischemic stroke and the optimal definitive management strategy in this young patient?",
+      "question_type": "Diagnosis",
+      "correct_option": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "Intracranial atherosclerosis treated with antiplatelet therapy and statins alone.",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. The patient is young with no vascular risk factors other than smoking, and advanced imaging/histopathology confirmed an embolic rather than atherosclerotic etiology."
+        },
+        {
+          "id": "B",
+          "text": "Cardioembolic occlusion secondary to a large left atrial myxoma, requiring mechanical thrombectomy followed by urgent surgical tumor resection.",
+          "peer_percentage": 75,
+          "rationale": "Correct! The patient suffered an acute basilar artery occlusion due to secondary thrombosis from a large left atrial myxoma. Acute endovascular thrombectomy successfully restored vessel patency, followed by curative surgical resection of the cardiac tumor to prevent recurrent cardioembolic events."
+        },
+        {
+          "id": "C",
+          "text": "Primary central nervous system vasculitis confirmed by cerebral angiography and treated with high-dose pulse corticosteroids and cyclophosphamide.",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. Vasculitis autoantibody screening and workup were entirely negative, and tissue pathology retrieved from mechanical thrombectomy confirmed a bland thrombotic embolus rather than vessel wall inflammation."
+        },
+        {
+          "id": "D",
+          "text": "Paradoxical embolism via a patent foramen ovale (PFO) managed exclusively with long-term oral anticoagulation.",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. Echocardiography and cardiac imaging definitively identified a large left atrial myxoma as the source of embolization, making PFO an incorrect and insufficient explanation."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Acute basilar artery occlusion secondary to left atrial myxoma",
+      "clinical_discussion": "Atrial myxoma is the most common primary cardiac tumor and a well-recognized, albeit rare, source of cardioembolic stroke in young adults. Embolization can occur via two distinct mechanisms: direct shedding of tumor tissue fragments or, more commonly, secondary thrombosis forming on the surface of the friable myxoma. In this case, the patient presented with an isolated basilar artery occlusion caused by a secondary thrombotic embolus, verified by the lack of atypical cells on histopathological analysis of the retrieved clot.\n\nManagement of atrial myxoma-related stroke requires a dual approach: acute revascularization (such as mechanical thrombectomy or thrombolysis when appropriate) to salvage ischemic brain tissue, followed by prompt surgical excision of the cardiac mass to mitigate the high risk of recurrent, potentially fatal embolic events. Integrated multimodality imaging, including brain CT/MRI, vascular CTA/DSA, and cardiac echocardiography or CT, is critical for accurate etiological diagnosis and successful multidisciplinary management.",
+      "teaching_points": [
+        "Atrial myxomas can cause acute ischemic stroke through either direct tumor embolization or secondary surface thrombosis.",
+        "Young patients presenting with stroke of undetermined etiology require thorough cardiac imaging, as cardiac tumors frequently mimic primary cerebrovascular disease.",
+        "Prompt mechanical thrombectomy is effective for large vessel occlusions due to myxoma-related emboli, followed by urgent surgical resection of the tumor."
+      ],
+      "clinical_pitfalls": [
+        "Failing to perform cardiac imaging in young stroke patients can miss treatable structural cardiac lesions such as myxomas.",
+        "Delaying surgical removal of an atrial myxoma after an embolic stroke significantly increases the risk of recurrent systemic or cerebral embolism."
+      ],
+      "related_keywords": [
+        "Atrial myxoma",
+        "Basilar artery occlusion",
+        "Mechanical thrombectomy",
+        "Cardioembolic stroke",
+        "Young-onset stroke"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-001",
     "case_code": "NC-2026-001",
     "title": "Acute Somnolence, Vertical Gaze Palsy, and Severe Memory Impairment Following Left Vertebral Artery V4 Stent Deployment",
     "subspecialty": "Vascular & Stroke",
-    "subspecialties": ["Vascular & Stroke", "Neurocritical Care"],
+    "subspecialties": [
+      "Vascular & Stroke",
+      "Neurocritical Care"
+    ],
     "difficulty": "Fellow",
     "estimated_time_sec": 120,
     "is_daily_challenge": true,
@@ -99,7 +215,13 @@
         "Misattributing postoperative somnolence after general anesthesia to delayed anesthetic clearance or metabolic encephalopathy when focal motor deficits are absent.",
         "Assuming a normal completion angiogram of the basilar trunk and PCAs excludes perforator occlusion after posterior circulation angioplasty/stenting."
       ],
-      "related_keywords": ["percheron", "thalamic", "vertebral", "stroke", "ischemic"]
+      "related_keywords": [
+        "percheron",
+        "thalamic",
+        "vertebral",
+        "stroke",
+        "ischemic"
+      ]
     }
   },
   {
@@ -107,7 +229,10 @@
     "case_code": "NC-2026-002",
     "title": "Acute Urinary Retention, Right Leg Thermal Hypesthesia, and Rapidly Progressive Encephalomyelitis with Coma in a 38-Year-Old Lactating Woman",
     "subspecialty": "Neuroimmunology",
-    "subspecialties": ["Neuroimmunology", "Neurocritical Care"],
+    "subspecialties": [
+      "Neuroimmunology",
+      "Neurocritical Care"
+    ],
     "difficulty": "Fellow",
     "estimated_time_sec": 110,
     "is_daily_challenge": true,
@@ -192,7 +317,13 @@
         "Dismissing autoimmune demyelination because CSF leukocyte counts exceed 500 cells/μL and withholding high-dose corticosteroids/plasma exchange once infectious PCRs return negative.",
         "Relying solely on fixed cell-based assays when clinical and MRI features (conus LETM + H-sign + fluffy thalamic lesions) strongly point to MOGAD."
       ],
-      "related_keywords": ["mogad", "demyelinating", "myelitis", "neuroimmunology", "multiple sclerosis"]
+      "related_keywords": [
+        "mogad",
+        "demyelinating",
+        "myelitis",
+        "neuroimmunology",
+        "multiple sclerosis"
+      ]
     }
   },
   {
@@ -200,7 +331,11 @@
     "case_code": "NC-2026-003",
     "title": "Focal Motor Seizures, Subacute Cognitive Decline, Asymmetric Lobar Vasogenic Edema, and Cortical Superficial Siderosis in a 71-Year-Old Patient",
     "subspecialty": "Cognitive & Dementia",
-    "subspecialties": ["Cognitive & Dementia", "Vascular & Stroke", "Neuroimmunology"],
+    "subspecialties": [
+      "Cognitive & Dementia",
+      "Vascular & Stroke",
+      "Neuroimmunology"
+    ],
     "difficulty": "Attending",
     "estimated_time_sec": 115,
     "is_daily_challenge": true,
@@ -285,7 +420,13 @@
         "Ordering only conventional T1/T2/FLAIR MRI without SWI/T2* sequences, resulting in misdiagnosis of CAA-ri as a primary brain tumor and subjecting the patient to neurosurgical biopsy.",
         "Delaying corticosteroid therapy beyond 6 weeks from symptom onset, which significantly worsens functional recovery and prolongs vasogenic edema."
       ],
-      "related_keywords": ["amyloid", "caa", "siderosis", "dementia", "hemorrhage"]
+      "related_keywords": [
+        "amyloid",
+        "caa",
+        "siderosis",
+        "dementia",
+        "hemorrhage"
+      ]
     }
   },
   {
@@ -293,7 +434,10 @@
     "case_code": "NC-2026-004",
     "title": "Rapidly Progressive Consciousness Impairment, Seizures, and Bilateral Venous Infarction Refractory to Systemic Heparin in a 20-Year-Old Male with Nephrotic Relapse",
     "subspecialty": "Vascular & Stroke",
-    "subspecialties": ["Vascular & Stroke", "Neurocritical Care"],
+    "subspecialties": [
+      "Vascular & Stroke",
+      "Neurocritical Care"
+    ],
     "difficulty": "Fellow",
     "estimated_time_sec": 105,
     "is_daily_challenge": true,
@@ -388,7 +532,13 @@
         "Using unfractionated heparin without checking or repletive monitoring for Antithrombin III deficiency in severely nephrotic patients.",
         "Waiting for irreversible transtentorial herniation before consulting neurointerventional surgery in pan-sinus CVST refractory to systemic anticoagulation."
       ],
-      "related_keywords": ["venous", "sinus", "thrombosis", "cvst", "anticoagulation"]
+      "related_keywords": [
+        "venous",
+        "sinus",
+        "thrombosis",
+        "cvst",
+        "anticoagulation"
+      ]
     }
   },
   {
@@ -396,7 +546,10 @@
     "case_code": "NC-2026-005",
     "title": "Refractory Severe Hyponatremia (109 mmol/L), Drowsiness, and Brief Involuntary Left Faciobrachial Spasms Without Ictal EEG Correlate in a 77-Year-Old Man",
     "subspecialty": "Neuroimmunology",
-    "subspecialties": ["Neuroimmunology", "Epilepsy"],
+    "subspecialties": [
+      "Neuroimmunology",
+      "Epilepsy"
+    ],
     "difficulty": "Fellow",
     "estimated_time_sec": 100,
     "is_daily_challenge": true,
@@ -491,7 +644,13 @@
         "Misdiagnosing scalp-EEG-negative faciobrachial dystonic seizures as psychogenic nonepileptic seizures, tics, or benign myoclonus.",
         "Treating chronic hyponatremia symptomatically with fluid restriction and salt tablets without investigating for underlying limbic encephalitis when cognitive drowsiness or brief limb jerks emerge."
       ],
-      "related_keywords": ["lgi1", "encephalitis", "epilepsy", "seizure", "autoimmune"]
+      "related_keywords": [
+        "lgi1",
+        "encephalitis",
+        "epilepsy",
+        "seizure",
+        "autoimmune"
+      ]
     }
   },
   {
@@ -499,7 +658,9 @@
     "case_code": "NC-2026-006",
     "title": "Recurrent Brief Positional Vertigo Triggered by Turning in Bed Mimicking Benign Paroxysmal Positional Vertigo in a 63-Year-Old Hypertensive Man",
     "subspecialty": "Vascular & Stroke",
-    "subspecialties": ["Vascular & Stroke"],
+    "subspecialties": [
+      "Vascular & Stroke"
+    ],
     "difficulty": "Resident",
     "estimated_time_sec": 95,
     "is_daily_challenge": true,
@@ -594,7 +755,13 @@
         "Discharging a hypertensive patient with 'BPPV' based on positional symptom triggers and a normal head CT without verifying characteristic peripheral nystagmus on positional maneuvers.",
         "Assuming all PICA strokes must exhibit Wallenberg syndrome (dysphagia, hoarseness, Horner syndrome, crossed sensory loss), which only occurs when the medullary perforators are involved."
       ],
-      "related_keywords": ["cerebellar", "pica", "vertigo", "stroke", "posterior"]
+      "related_keywords": [
+        "cerebellar",
+        "pica",
+        "vertigo",
+        "stroke",
+        "posterior"
+      ]
     }
   },
   {
@@ -602,7 +769,10 @@
     "case_code": "NC-2026-007",
     "title": "Rapidly Progressive Cognitive Decline, Myoclonus, Generalized Periodic Triphasic Discharges with Anterior-Posterior Lag, and Cortical Ribboning",
     "subspecialty": "Cognitive & Dementia",
-    "subspecialties": ["Cognitive & Dementia", "Epilepsy"],
+    "subspecialties": [
+      "Cognitive & Dementia",
+      "Epilepsy"
+    ],
     "difficulty": "Attending",
     "estimated_time_sec": 100,
     "is_daily_challenge": true,
@@ -697,7 +867,13 @@
         "Misinterpreting DWI cortical ribboning as an acute arterial ischemic stroke or post-ictal cortical edema without checking whether the signal crosses vascular territories.",
         "Relying solely on CSF 14-3-3 protein (which can be falsely positive in viral/autoimmune encephalitis or acute stroke) without correlating with DWI cortical ribboning and CSF RT-QuIC."
       ],
-      "related_keywords": ["creutzfeldt", "prion", "dementia", "eeg", "encephalitis"]
+      "related_keywords": [
+        "creutzfeldt",
+        "prion",
+        "dementia",
+        "eeg",
+        "encephalitis"
+      ]
     }
   },
   {
@@ -705,7 +881,10 @@
     "case_code": "NC-2026-008",
     "title": "Two Months of Isolated Intractable Hiccups Followed by Acute Ophthalmoplegia, Bulbar Palsy, and Autonomic Instability Without Cutaneous Rash in a 35-Year-Old Man",
     "subspecialty": "Neuromuscular",
-    "subspecialties": ["Neuromuscular", "Neurocritical Care"],
+    "subspecialties": [
+      "Neuromuscular",
+      "Neurocritical Care"
+    ],
     "difficulty": "Attending",
     "estimated_time_sec": 115,
     "is_daily_challenge": true,
@@ -790,7 +969,13 @@
         "Assuming Varicella-Zoster Virus CNS infection is excluded simply because the patient is young, immunocompetent, and lacks a vesicular dermatomal rash.",
         "Attributing persistent hiccups solely to gastroesophageal reflux or stress without performing a cranial nerve exam and posterior fossa MRI."
       ],
-      "related_keywords": ["bickerstaff", "gq1b", "brainstem", "neuromuscular", "encephalitis"]
+      "related_keywords": [
+        "bickerstaff",
+        "gq1b",
+        "brainstem",
+        "neuromuscular",
+        "encephalitis"
+      ]
     }
   }
 ]
