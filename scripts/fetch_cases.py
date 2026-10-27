@@ -88,7 +88,7 @@ EXCLUDED_CAPTIONS_REGEX = re.compile(
     re.IGNORECASE
 )
 NEUROIMAGING_CAPTION_REGEX = re.compile(
-    r"\b(MRI|FLAIR|DWI|diffusion-weighted|ADC|T1-weighted|T2-weighted|SWI|MRV|MRA|CTA|DSA|angiogram|angiography|hyperintense|hyperintensity|hypointense|infarction|occlusion|thrombosis|enhancement|gadolinium|EEG|electroencephalogram)\b",
+    r"\b(MRI|FLAIR|DWI|diffusion-weighted|ADC|T1-weighted|T2-weighted|SWI|MRV|MRA|CTA|CT\b|DSA|angiogram|angiography|hyperintense|hyperintensity|hypointense|infarction|occlusion|thrombosis|enhancement|gadolinium|EEG|electroencephalogram|clinical photograph|photograph|rash|lesion|erythema|skin|papules|purpura|fundus|fundoscopy|papilledema|cranial nerve|ptosis|ophthalmoplegia|pupil|biopsy|histopathology|myopathy|muscle biopsy|EMG|electromyography)\b",
     re.IGNORECASE
 )
 
@@ -192,6 +192,26 @@ CLINICAL_CASE_TOPIC_BANK = [
             "Subacute ischemic cortical infarction",
             "Pyogenic cerebral abscess",
             "Cavernous malformation"
+        ]
+    },
+    {
+        "subspecialty": "Other",
+        "query": '("transverse myelitis" OR "spinal dural arteriovenous fistula" OR "epidural abscess" OR "subacute combined degeneration" OR "cervical myelopathy") AND "case report" AND (MRI OR spine)',
+        "keywords": ["spinal cord", "myelopathy", "spine mri", "cord compression", "paraparesis"],
+        "distractors": [
+            "Guillain-Barré syndrome (AIDP variant)",
+            "Thoracic aortic dissection with spinal ischemia",
+            "Anterior spinal artery syndrome"
+        ]
+    },
+    {
+        "subspecialty": "Neuromuscular",
+        "query": '("dermatomyositis" OR "myasthenia gravis" OR "Horner syndrome" OR "neurosyphilis" OR "neurosarcoidosis") AND "case report" AND (photograph OR clinical OR rash OR MRI)',
+        "keywords": ["clinical finding", "neuromuscular", "myopathy", "rash", "cranial nerve"],
+        "distractors": [
+            "Inclusion body myositis",
+            "Lambert-Eaton myasthenic syndrome",
+            "Chronic inflammatory demyelinating polyneuropathy (CIDP)"
         ]
     },
 ]
@@ -408,9 +428,15 @@ CRITICAL DESIGN RULES:
 1. BLINDED TITLE: Write a compelling clinical presentation title (`title`) based on symptoms/signs/anatomy WITHOUT giving away the final diagnosis name in the title.
 2. DIFFICULTY: Choose one of `"Resident"`, `"Fellow"`, or `"Attending"`.
 3. IMAGING: Return an `imaging_metadata` array matching the {len(candidate['figures'])} figure(s) above in exact order, specifying `"modality"` (e.g. "Brain MRI (Axial DWI & FLAIR)") and `"findings_summary"` (1 concise sentence summarizing key radiological findings).
-4. 4-OPTION MCQ CHALLENGE:
+4. 4-OPTION MCQ CHALLENGE & SINGLE-FOCUS QUESTION RULE:
+   - SINGLE-FOCUS RULE: The question (`question`) MUST ask about exactly ONE clinical concept. NEVER combine diagnosis and management in the same question (e.g. NEVER ask "What is the most likely diagnosis and initial treatment?").
+   - Choose strictly ONE question format:
+     * Diagnosis only: "Which of the following is the most likely diagnosis?"
+     * Management only: "What is the most appropriate initial therapeutic step?"
+     * Diagnostic step only: "Which of the following is the most appropriate next diagnostic test?"
+     * Localization only: "Where is the most likely neuroanatomical localization of this lesion?"
    - `"question_type"` must be one of `"Diagnosis"`, `"Acute Management"`, `"Next Best Step"`, or `"Localization"`.
-   - Provide 4 options (`"A"`, `"B"`, `"C"`, `"D"`).
+   - Provide 4 options (`"A"`, `"B"`, `"C"`, `"D"`). All 4 options must be of the same clinical category.
    - Set `"correct_option"` to `"{target_correct_opt}"` and make option `"{target_correct_opt}"` the unambiguously correct choice.
    - `"peer_percentage"` across A, B, C, D must be integers summing to 100 (with the correct option having 64-82).
    - `"rationale"` for the correct option must start with `"Correct! "` and explain the neuroanatomical/clinical reasoning. `"rationale"` for incorrect options must start with `"Incorrect. "` and explain why that mimic is ruled out.
