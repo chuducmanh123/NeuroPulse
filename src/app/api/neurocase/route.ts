@@ -99,6 +99,7 @@ async function setToBlob(cases: ClinicalCase[]): Promise<{ ok: boolean; error?: 
     const putOptions: any = {
       access: "public",
       addRandomSuffix: false,
+      allowOverwrite: true,
       contentType: "application/json",
     };
     if (token) putOptions.token = token;
