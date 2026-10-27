@@ -1,5 +1,352 @@
 [
   {
+    "id": "10.1001/jama.2026.14703",
+    "title": "Revascularization of Asymptomatic Carotid Artery Stenosis",
+    "journal": {
+      "name": "JAMA",
+      "short_name": "JAMA",
+      "badge_bg": "#FEE2E2",
+      "badge_text": "#DC2626"
+    },
+    "pub_date": "2026-10-27T00:00:00Z",
+    "article_type": "RCT",
+    "article_types": [
+      "RCT",
+      "Clinical Trial",
+      "Original Article"
+    ],
+    "authors": [
+      "Lazar Ronald M.",
+      "Meschia James F.",
+      "Edwards Lloyd J.",
+      "Lal Brajesh K.",
+      "Howard George",
+      "Storm Emma",
+      "Heck Donald",
+      "Mena-Hurtado Carlos",
+      "Howard Virginia J.",
+      "Voeks Jenifer",
+      "Wadley Virginia G.",
+      "Marshall Randolph S.",
+      "Brott Thomas G."
+    ],
+    "doi_url": "https://doi.org/10.1001/jama.2026.14703",
+    "neurology_classification": {
+      "subspecialty": "Vascular & Stroke",
+      "subspecialties": [
+        "Vascular & Stroke"
+      ],
+      "topics": [
+        "Carotid"
+      ]
+    },
+    "abstract": "Importance: Studies show that asymptomatic carotid artery stenosis is associated with diminished cognition. Whether carotid revascularization leads to cognitive improvement is unclear. Objective: To determine whether carotid revascularization improves cognition. Design, Setting, and Participants: Prespecified cognitive secondary outcomes of the CREST-2 randomized clinical trials of patients 35 years or older with 70% or greater asymptomatic carotid stenosis. Enrollment was December 2014 through July 2024, and follow-up ended July 2025. Five cognitive tests were administered before treatment and annually up to 4 years. Cognitive performances from 146 clinical sites were centrally assessed by telephone, blinded to treatment. Interventions: Two trials compared carotid stenting plus intensive medical management (CAS + IMM) with IMM alone and carotid endarterectomy plus IMM (CEA + IMM) with IMM alone. Main Outcomes and Measures: Five cognitive tests, assessing learning, memory, executive function, attention, and processing speed, administered to all patients, were assessed for unadjusted and adjusted mean z scores using a linear mixed model. The minimal clinically important difference was 0.50 SD between treatment groups. The prespecified primary analysis was the fully adjusted composite z score at 4 years. Secondary analyses assessed the individual tests and at the test intervals. Results: Among 2366 US study patients, 2165 (91.5%) participated in cognitive assessments, 1078 in the CAS trial (529 CAS + IMM; 549 IMM alone) and 1087 in the CEA trial (543 CEA + IMM; 544 IMM alone); mean age was 70.1 years (SD, 7.7) and 37.8% were female. Following baseline, 4954 test batteries were administered for a mean of 2.24 (SD, 1.09) follow-up years. There were no treatment-related differences in the fully adjusted estimated composite z scores at 4 years for either the CAS trial (CAS + IMM, 0.22 [95% CI, 0.13 to 0.30] vs IMM alone, 0.18 [95% CI, 0.09 to 0.27]; between-group difference, 0.03 [95% CI, −0.09 to 0.15]) or the CEA trial (CEA + IMM, 0.25 [95% CI, 0.17 to 0.33] vs IMM, 0.23 [95% CI, 0.15 to 0.32]; between-group difference, 0.02 [95% CI, −0.09 to 0.14]). There were no significant differences between revascularization plus medical management vs IMM alone for any individual cognitive test. Conclusions and Relevance: In patients with severe asymptomatic carotid artery stenosis, revascularization with either CAS or CEA plus IMM, compared with IMM alone, did not significantly improve cognitive function at up to 4 years of follow-up.",
+    "ai_takeaways": {
+      "conclusion_vi": "In patients with severe asymptomatic carotid stenosis, neither carotid stenting nor endarterectomy plus intensive medical management significantly improved cognitive function compared with intensive medical management alone at 4 years (CAS difference, 0.03 [95% CI, −0.09 to 0.15]; CEA difference, 0.02 [95% CI, −0.09 to 0.14]).",
+      "clinical_significance": "Clinical significance for Vascular & Stroke practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1001/jama.2026.13508",
+    "title": "Revascularization in Asymptomatic Carotid Artery Stenosis With Hemodynamic Impairment and Cognitive Outcomes",
+    "journal": {
+      "name": "JAMA",
+      "short_name": "JAMA",
+      "badge_bg": "#FEE2E2",
+      "badge_text": "#DC2626"
+    },
+    "pub_date": "2026-10-27T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [],
+    "doi_url": "https://doi.org/10.1001/jama.2026.13508",
+    "neurology_classification": {
+      "subspecialty": "Vascular & Stroke",
+      "subspecialties": [
+        "Vascular & Stroke"
+      ],
+      "topics": [
+        "Carotid"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at JAMA via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Vascular & Stroke practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1001/jama.2026.17558",
+    "title": "Intra-Arterial Tenecteplase After Endovascular Thrombectomy for Acute Stroke",
+    "journal": {
+      "name": "JAMA",
+      "short_name": "JAMA",
+      "badge_bg": "#FEE2E2",
+      "badge_text": "#DC2626"
+    },
+    "pub_date": "2026-10-27T00:00:00Z",
+    "article_type": "Clinical Trial",
+    "article_types": [
+      "Clinical Trial",
+      "Original Article"
+    ],
+    "authors": [
+      "Tong Xin",
+      "Bai Jin",
+      "Luo Gang",
+      "Sun Dapeng",
+      "Chen Wenhuo",
+      "Yao Xiaoxi",
+      "Yuan Guangxiong",
+      "Wen Changming",
+      "Wei Ming",
+      "Cai Xueli",
+      "Zhang Jiangang",
+      "Zhou Zhiming",
+      "Chang Mingze",
+      "Nan Guangxian",
+      "Wang Jing",
+      "Xiang Guangyu",
+      "Zhou Li",
+      "Gao Wen",
+      "Zhang Hong",
+      "Hao Jiheng",
+      "Xu Chenghua",
+      "Sun Yaxuan",
+      "Yi Tingyu",
+      "Feng Ganghua",
+      "Pan Yuesong",
+      "Zhou Qi",
+      "Zhang Huachen",
+      "Xu Yiwen",
+      "Nguyen Thanh N.",
+      "Yan Bernard",
+      "Wang Yongjun",
+      "Miao Zhongrong",
+      "Huo Xiaochuan",
+      "Liu Bo",
+      "Yao Chen",
+      "Long Dan",
+      "Jie Fengjie",
+      "Ma Gaoting",
+      "Zhao Han",
+      "Yu Hang",
+      "Yan Hongyi",
+      "Yan Jian",
+      "Han Jianfeng",
+      "Zhao Jingjun",
+      "Wang Juan",
+      "Chen Kangning",
+      "Zhang Liyong",
+      "Zhou Qi",
+      "Wang Wanru",
+      "Wu Wei",
+      "Liao Xiaoling",
+      "Lu Xinghua",
+      "Xie Xuewei",
+      "Sheng Yayun",
+      "Chen Yuhuan",
+      "Zhang Zhe",
+      "Zhou Zhou",
+      "Liu Yaou",
+      "Han Hongxing",
+      "Gao Feng",
+      "Ma Ning",
+      "Mo Dapeng",
+      "Sun Xuan",
+      "Deng Yiming",
+      "Tong Xu",
+      "Li Xiaoqing",
+      "Jia Baixue",
+      "Wang Bo",
+      "He Zijun",
+      "Yang Ming",
+      "Zhao Xingquan",
+      "Zhang Xuelei",
+      "Zhang Longhui",
+      "Li Shuo",
+      "Jing Jing",
+      "Xiong Yunyun",
+      "Liu Tao",
+      "Li Zixiao",
+      "Ren Zeguang",
+      "Wang Yilong",
+      "Liebeskind David S.",
+      "Jovin Tudor G."
+    ],
+    "doi_url": "https://doi.org/10.1001/jama.2026.17558",
+    "neurology_classification": {
+      "subspecialty": "Vascular & Stroke",
+      "subspecialties": [
+        "Vascular & Stroke"
+      ],
+      "topics": [
+        "Stroke",
+        "Thrombectomy",
+        "Tenecteplase",
+        "Endovascular"
+      ]
+    },
+    "abstract": "This secondary analysis of a randomized clinical trial examines the efficacy of adjunctive intra-arterial tenecteplase 12 months after stroke in patients who received endovascular thrombectomy.",
+    "ai_takeaways": {
+      "conclusion_vi": "Among acute stroke patients undergoing successful endovascular thrombectomy, adjunctive intra-arterial tenecteplase did not significantly improve 12-month functional outcomes compared to standard care alone (exact statistical parameters were not provided in this abstract).",
+      "clinical_significance": "Clinical significance for Vascular & Stroke practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1001/jama.2026.13384",
+    "title": "Revascularization in Asymptomatic Carotid Artery Stenosis With Hemodynamic Impairment and Cognitive Outcomes",
+    "journal": {
+      "name": "JAMA",
+      "short_name": "JAMA",
+      "badge_bg": "#FEE2E2",
+      "badge_text": "#DC2626"
+    },
+    "pub_date": "2026-10-27T00:00:00Z",
+    "article_type": "RCT",
+    "article_types": [
+      "RCT",
+      "Clinical Trial",
+      "Original Article"
+    ],
+    "authors": [
+      "Marshall Randolph S.",
+      "Lazar Ronald M.",
+      "Meschia James F.",
+      "Huston John",
+      "Edwards Lloyd J.",
+      "Brott Thomas G.",
+      "Lal Brajesh K.",
+      "Howard George",
+      "Mena-Hurtado Carlos",
+      "Heck Donald",
+      "Sangha Navdeep",
+      "Lanzino Giuseppe",
+      "Kashyap Vikram S.",
+      "Aronow Herbert D.",
+      "Sharafuddin Mel",
+      "Voeks Jenifer",
+      "Zhang Yu",
+      "Slane Kevin",
+      "Liebeskind David S."
+    ],
+    "doi_url": "https://doi.org/10.1001/jama.2026.13384",
+    "neurology_classification": {
+      "subspecialty": "Vascular & Stroke",
+      "subspecialties": [
+        "Vascular & Stroke",
+        "Cognitive & Dementia"
+      ],
+      "topics": [
+        "Dementia",
+        "Cerebral",
+        "Brain",
+        "Carotid"
+      ]
+    },
+    "abstract": "Importance: Cerebral hemodynamic impairment in patients with asymptomatic internal carotid artery (ICA) stenosis is associated with reduced cognition. It is uncertain whether revascularization might be an effective treatment for cognitive impairment in these patients. Objective: To test whether any cognitive benefit from revascularization of high-grade, asymptomatic ICA stenosis varies based on the degree of baseline cerebral hemodynamic impairment. Design, Setting, and Participants: This substudy was conducted within a multicenter phase 3 randomized clinical trial. Adults (aged 35-86 years) without dementia with eighth-grade education or higher and unilateral asymptomatic ICA stenosis greater than or equal to 70% were enrolled from January 2018 to July 2024 at 61 sites in North America (last follow-up in July 2025). Of 607 participants screened from 2485 in CREST-2, 392 were enrolled. Magnetic resonance or computed tomographic perfusion imaging tested for baseline hemodynamic impairment defined by delayed time-to-peak (TTP) arrival of intravenous contrast in the hemisphere ipsilateral minus contralateral to the stenotic artery. Intervention: Carotid revascularization (endarterectomy or stenting) plus intensive medical management (IMM) vs IMM alone. Main Outcomes and Measures: The primary outcome was the difference in composite cognitive z score over 1 year based on 5 cognitive tests. The primary analysis tested for an interaction between treatment group (revascularization vs IMM alone) and degree of baseline hemodynamic impairment among those with reduced baseline cognition (cognitive z score ≤−1.0 SD). Results: Of 392 participants enrolled (mean age, 71 years; 125 [32%] females), 61 were excluded for missing baseline imaging and 40 for missing cognitive examinations or other covariates, leaving 291 with complete data. Fifty-one had reduced cognition at baseline (25 in the revascularization group and 26 in the IMM alone group). TTP ranged from no interhemispheric TTP delay to a more-than-2-second delay. Mean (SD) cognitive z scores were −1.36 (0.51) at baseline and −1.17 (0.47) at 1 year in the revascularization group and −1.34 (0.83) at baseline and −1.01 (0.97) at 1 year in the IMM alone group. The primary analysis showed no difference in cognition by treatment group over 1 year, adjusting for treatment group × hemodynamic status interaction and other covariates (adjusted difference in cognitive z score, −0.15 SD [95% CI, −0.54 to 0.24]). The interaction was not significant (β estimate = 0.018 [95% CI, −0.025 to 0.061]; P = .40). Conclusions and Relevance: In this substudy of a randomized clinical trial, there was no differential effect of revascularization vs IMM alone on cognition over 1 year by cerebral hemodynamic status among those with baseline reduced cognition, suggesting that revascularization does not improve cognitive dysfunction by restoring flow to the brain in chronic asymptomatic carotid stenosis. Trial Registration: ClinicalTrials.gov Identifier: NCT03121209",
+    "ai_takeaways": {
+      "conclusion_vi": "Among adults with asymptomatic high-grade carotid stenosis and baseline cognitive impairment, carotid revascularization plus intensive medical management versus medical management alone did not improve 1-year cognitive outcomes, showing no significant treatment-by-hemodynamic-status interaction (adjusted difference in cognitive z score, -0.15 SD [95% CI, -0.54 to 0.24]; P = .40).",
+      "clinical_significance": "Clinical significance for Vascular & Stroke practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1001/jama.2026.14839",
+    "title": "Asymptomatic Carotid Revascularization May Be Justified, but Not to Improve Cognition",
+    "journal": {
+      "name": "JAMA",
+      "short_name": "JAMA",
+      "badge_bg": "#FEE2E2",
+      "badge_text": "#DC2626"
+    },
+    "pub_date": "2026-10-27T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Smith Eric E.",
+      "Ganesh Aravind"
+    ],
+    "doi_url": "https://doi.org/10.1001/jama.2026.14839",
+    "neurology_classification": {
+      "subspecialty": "Vascular & Stroke",
+      "subspecialties": [
+        "Vascular & Stroke"
+      ],
+      "topics": [
+        "Carotid"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at JAMA via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Vascular & Stroke practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1002/ana.78394",
+    "title": "Rate and Shape of Functional Decline in Amyotrophic Lateral Sclerosis Identify Clinically Distinct Amyotrophic Lateral Sclerosis Phenotypes",
+    "journal": {
+      "name": "Annals of Neurology",
+      "short_name": "Ann Neurol",
+      "badge_bg": "#EDE9FE",
+      "badge_text": "#5B21B6"
+    },
+    "pub_date": "2026-10-27T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Calvo Andrea",
+      "Moglia Cristina",
+      "Canosa Antonio",
+      "Manera Umberto",
+      "Zucchi Elisabetta",
+      "Gianferrari Giulia",
+      "Martinelli Ilaria",
+      "Mora Gabriele",
+      "Cabras Sara",
+      "Palumbo Francesca",
+      "Matteoni Enrico",
+      "Pellegrino Giorgio",
+      "Minerva Emilio",
+      "Pascariu Daniela",
+      "Callegaro Stefano",
+      "D'Ovidio Fabrizio",
+      "Vasta Rosario",
+      "Mazzini Letizia",
+      "De Marchi Fabiola",
+      "Mandrioli Jessica",
+      "Chiò Adriano"
+    ],
+    "doi_url": "https://doi.org/10.1002/ana.78394",
+    "neurology_classification": {
+      "subspecialty": "Neuromuscular",
+      "subspecialties": [
+        "Neuromuscular"
+      ],
+      "topics": [
+        "Als",
+        "Amyotrophic lateral sclerosis"
+      ]
+    },
+    "abstract": "Objective: The ALS Functional Rating Scale–Revised decline rate compresses trajectory shape into a single number, potentially missing distinct phenotypes. We tested whether shape identifies phenotypes that rate does not distinguish, and whether post‐hoc analysis recovers a hidden ultrarapid subgroup. Methods: From the Piemonte and Valle d'Aosta register (2000–2022), we applied 2 models to 1,686 amyotrophic lateral sclerosis patients: a Gaussian mixture model (GMM; rate axis) and a latent‐class mixed model (LCMM) with cubic splines (shape axis). Concordance, prognostic performance, calibration, and clinical utility were assessed at 24 months. External validation used the Emilia‐Romagna register. Results: The rate model identified 4 classes (GMM‐Slow 31%, GMM‐Inter‐slow 46%, GMM‐Inter‐fast 17%, GMM‐Catastrophic 6%; slopes −0.44 to −3.52 points/month); the shape model 4 (LCMM‐SlowLinear 46%, LCMM‐PlateauFall 23%, LCMM‐LateDecline 15%, LCMM‐RapidEarly 16%). Concordance was modest (kappa = 0.273). Adding shape to rate changed discrimination negligibly (C‐index 0.761 vs 0.755), but separated subgroups within rate classes (within GMM‐Catastrophic, 30.1 vs 12.0 months). LCMM‐LateDecline combined moderate early decline with reduced respiratory reserve (median forced vital capacity 83.5%) and 22.7‐month median survival. The combined model gave the greatest net benefit for the composite outcome. Of 945 patients excluded for sparse sampling, 367 were ultrarapid progressors with shorter survival than LCMM‐RapidEarly; findings replicated in the Emilia‐Romagna register. Interpretation: Rate and shape describe partially overlapping aspects of the disease. LCMM‐LateDecline, with moderate early decline yet occult respiratory compromise, is clinically challenging, and the 3‐visit criterion hides over half of ultrarapid patients. Rate predicts the overall burden of progression, whereas shape predicts the timing of deterioration. ANN NEUROL 2026",
+    "ai_takeaways": {
+      "conclusion_vi": "While overall functional decline rate predicts total disease burden, trajectory shape captures the timing of deterioration. Combining rate and shape models identifies clinically distinct amyotrophic lateral sclerosis phenotypes—such as occult respiratory compromise in late-decline patients—improving prognostic utility beyond standard rate-based assessments alone.",
+      "clinical_significance": "Clinical significance for Neuromuscular practice.",
+      "ai_verified": true
+    }
+  },
+  {
     "id": "10.1001/jamaneurol.2026.4078",
     "title": "Errors and Inconsistencies in Trial of Electroacupuncture on Postherpetic Neuralgia",
     "journal": {
@@ -215,38 +562,6 @@
     }
   },
   {
-    "id": "10.1001/jamaneurol.2026.4086",
-    "title": "Errors in Text, Table 1, Figures 1 to 3, and Supplements",
-    "journal": {
-      "name": "JAMA Neurology",
-      "short_name": "JAMA Neurol",
-      "badge_bg": "#FFE4E6",
-      "badge_text": "#E11D48"
-    },
-    "pub_date": "2026-10-26T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [],
-    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4086",
-    "neurology_classification": {
-      "subspecialty": "Other",
-      "subspecialties": [
-        "Other"
-      ],
-      "topics": [
-        "Neurology"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at JAMA Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
-    }
-  },
-  {
     "id": "10.1001/jamaneurol.2026.3821",
     "title": "Toward Coordinated Systems of Care for TIA—The Role and Scope of EDs",
     "journal": {
@@ -265,6 +580,38 @@
       "Kelly Adam G."
     ],
     "doi_url": "https://doi.org/10.1001/jamaneurol.2026.3821",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at JAMA Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1001/jamaneurol.2026.4086",
+    "title": "Errors in Text, Table 1, Figures 1 to 3, and Supplements",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-10-26T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4086",
     "neurology_classification": {
       "subspecialty": "Other",
       "subspecialties": [
@@ -7418,8 +7765,9 @@
     },
     "abstract": "Despite decades of clinical trial activity in stroke prevention, critical gaps remain in the evidence base guiding management of symptomatic carotid and intracranial stenosis and the quality of anticoagulation care delivered to patients with atrial fibrillation (AF). This article synthesizes recent evidence and ongoing research efforts addressing 2 enduring challenges: demonstrating the value of intensive medical therapy relative to interventional approaches and improving the quality of stroke prevention care in AF. Previous trials focused on intracranial stenosis established that aggressive, protocol-driven medical management substantially reduces recurrent vascular events. In the realm of carotid stenosis, landmark trials conducted >3 decades ago no longer reflect modern pharmacological capabilities. Emerging evidence from plaque imaging, particularly intraplaque hemorrhage on magnetic resonance imaging, suggests that stenosis severity alone is an insufficient determinant of treatment strategy. Simultaneously, strokes related to AF continue to rise in the United States, driven by demographic aging, and large vessel occlusion strokes attributable to undertreated AF represent a preventable burden on the health system. Patient-centered, precision stroke prevention requires contemporary prospective data, integration of advanced vascular imaging biomarkers, and systematic improvements in preventative therapies for patients with AF. Targeting these areas holds promise for improving stroke prevention in the coming decades.",
     "ai_takeaways": {
-      "conclusion_vi": "Targeting these areas holds promise for improving stroke prevention in the coming decades.",
-      "clinical_significance": "Clinical significance for Vascular & Stroke practice."
+      "conclusion_vi": "Optimizing stroke prevention requires shifting beyond mere stenosis severity to integrate advanced vascular imaging biomarkers, such as intraplaque hemorrhage, and ensuring aggressive medical management alongside systematic improvements in anticoagulation care for atrial fibrillation.",
+      "clinical_significance": "Clinical significance for Vascular & Stroke practice.",
+      "ai_verified": true
     },
     "article_types": [
       "Original Article"
@@ -8304,9 +8652,9 @@
     },
     "abstract": "BACKGROUND: White matter preservation is a rate-limiting factor in neurological recovery after ischemic stroke and depends on efficient clearance of myelin debris by microglia/macrophages. Our prior work demonstrated that microglia/macrophage-specific SIK3 (salt-inducible kinase) knockout (SIK3-mKO) promotes an anti-inflammatory subset, enhances myelin phagocytosis, and limits white matter injury, yet the downstream molecular mechanisms remain undefined. Here, we elucidate a previously unrecognized signaling axis underlying these protective effects. METHODS: SIK3-mKO mice (SIK3 Flox+/+ ;CX3CR1 CreER ) were generated via tamoxifen-induced Cre recombination. Transient focal cerebral ischemia was induced by 60-minute transient middle cerebral artery occlusion. Neurological outcomes were assessed via Garcia, rotarod, foot-fault, and adhesive-removal tests. Immunofluorescence, flow cytometry, single-cell RNA sequencing, real-time quantitative polymerase chain reaction, ex vivo myelin phagocytosis assay, magnetic resonance imaging, and compound action potential recordings were used to characterize microglia/macrophage polarization, myelin phagocytic capacity, white matter integrity, and nerve conduction function. RESULTS: In the acute phase poststroke, SIK3-mKO selectively upregulated cluster of differentiation (CD)11c and its upstream complement initiator component 1q in anti-inflammatory microglia/macrophage subsets. Within the 400 to 800 µm peri-infarct zone, SIK3-mKO elevated the proportion of CD11c + microglia/macrophage by 15.1% and C1q + microglia/macrophage by 15.8% relative to wild-type controls. This CD11c-component 1q axis enhanced myelin debris clearance by 19.0% while constraining pathological engulfment of intact myelin, representing a balanced functional switch that mitigates severe demyelination. Conversely, myeloid-CD11c silencing using adeno-associated virus (AAV)- Itgax short hairpin RNA partially reversed SIK3-mKO-conferred protection. CD11c knockdown reduced anti-inflammatory microglia/macrophage proportions by 9.7%, attenuated physiological phagocytosis and lowered debris clearance efficiency by 7.5%, reduced MBP (myelin basic protein)-positive myelin preservation by 10.0%, and ultimately impaired white matter preservation and neurological recovery. CONCLUSIONS: We identify the SIK3-CD11c-component 1q axis as a novel pathway that orchestrates microglia/macrophage phagocytic homeostasis and preserves white matter integrity after ischemic stroke. These findings clarify SIK3 signaling in microglia/macrophage and highlight the CD11c-centered complement cascade as a promising therapeutic target for restoring white matter integrity in poststroke neurorepair.",
     "ai_takeaways": {
-      "conclusion_vi": "We identify the SIK3-CD11c-component 1q axis as a novel pathway that orchestrates microglia/macrophage phagocytic homeostasis and preserves white matter integrity after ischemic stroke. These findings clarify SIK3 signaling in microglia/macrophage and highlight the CD11c-centered complement cascade as a promising therapeutic target for restoring white matter integrity in poststroke neurorepair.",
+      "conclusion_vi": "Microglia-specific SIK3 knockout improves poststroke white matter preservation and neurological recovery by 15.1% to 19.0% through the CD11c-component 1q complement pathway, which optimizes myelin debris clearance. Silencing myeloid CD11c reverses these protective neurorepair effects, identifying the SIK3-CD11c-C1q axis as a promising therapeutic target.",
       "clinical_significance": "Clinical significance for Vascular & Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -8362,9 +8710,9 @@
     },
     "abstract": "BACKGROUND: Stratification of stroke risk remains challenging, but metabolomic profiling offers the potential to detect new biomarkers and to improve early risk assessment of incident stroke. The objective of this study was to evaluate the association between circulating metabolites and the incidence of stroke in a case-cohort study conducted across several large population-based European cohorts. METHODS: Following the case-cohort design, a subset of 10 299 individuals, including all individuals with incident stroke, was selected from the original cohort of >70 000 individuals. The case-cohort design used a random subsample of the selected population cohorts, supplemented with cases not sampled in this random subcohort. A total of 141 circulating metabolites were measured from serum samples of the selected individuals, and associations of these metabolites with risk of incident stroke were estimated and compared with those of classic risk factors (sex, age at examination, systolic blood pressure, total cholesterol, body mass index, diabetes, daily smoking status, and antihypertensive treatment). Associations with time to stroke were assessed using weighted Cox proportional hazards models adjusted for the classic risk factors. Hazard ratios (HRs) for the log-transformed metabolites were reported per 1 SD increase. RESULTS: Of the 70 195 individuals in the original cohort, 1516 (2.2%) experienced incident strokes during a median follow-up time of 8.9 years (interquartile range, 4.4–14.7). Median age was 56.8 years (interquartile range, 49.5–62.4), and 39.5% were women. Six of the 141 metabolites (2 diacyl-phosphatidylcholines, 2 lyso-phosphatidylcholines, 1 hydroxysphingomyelin, and glutamic acid) remained significantly associated with incident stroke after correction for multiple comparisons (adjusted HRs [95% CIs] per SD: lyso-phosphatidylcholines a C18:2 HR, 0.88 [95% CI, 0.82–0.93], lyso-phosphatidylcholines a C17:0 HR, 0.88 [95% CI, 0.83–0.94], hydroxysphingomyelin C14:1 HR, 0.90 [95% CI, 0.85–0.94], diacyl-phosphatidylcholines C34:1 HR, 1.10 [95% CI 1.05–1.16], diacyl-phosphatidylcholines C32:1 HR, 1.14 [95% CI, 1.08–1.21], glutamic acid HR, 1.23 [95% CI 1.11–1.37]). The strengths of these associations were similar to those for classic cardiovascular risk factors (C statistics for 10-year prediction ranging from 0.782 to 0.785 for metabolites compared with 0.781 to 0.792 for classic cardiovascular risk factors). CONCLUSIONS: Among 10 299 individuals from the general European population, we identified 6 metabolites from 4 different metabolite classes that were associated with future risk of stroke. The application of specific circulating metabolites may improve early stroke risk prediction before the onset of potentially irreversible cerebrovascular pathological processes.",
     "ai_takeaways": {
-      "conclusion_vi": "Among 10 299 individuals from the general European population, we identified 6 metabolites from 4 different metabolite classes that were associated with future risk of stroke. The application of specific circulating metabolites may improve early stroke risk prediction before the onset of potentially irreversible cerebrovascular pathological processes.",
+      "conclusion_vi": "In this European case-cohort study of 10299 individuals, 6 circulating metabolites (including glutamic acid, HR 1.23, 95% CI 1.11-1.37) showed significant associations with incident stroke. However, their predictive performance (C-statistic 0.782-0.785) was similar to classic cardiovascular risk factors (0.781-0.792), offering limited incremental early risk stratification utility in clinical practice.",
       "clinical_significance": "Clinical significance for Vascular & Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -8417,9 +8765,9 @@
     },
     "abstract": "BACKGROUND: Acute basilar artery occlusion causes devastating strokes. Despite the benefit of endovascular treatment, the optimal management remains controversial in specific subgroups, particularly patients with mild deficits, and would benefit from robust prognostic tools. Given the dense white matter networks within the posterior fossa, we tested whether quantifying disconnections from acute diffusion-weighted imaging could improve outcome prediction and identify responders to recanalization compared with conventional metrics. METHODS: We conducted a secondary analysis of a prospective multicenter stroke registry in France, including consecutive patients (2017–2024) with basilar artery occlusion and admission magnetic resonance imaging. Ultra-high-resolution diffusion magnetic resonance imaging was acquired in 2 healthy participants to build normative tractograms with optimized posterior fossa quality. Patient infarcts delineated on diffusion-weighted imaging were projected onto these tractograms to estimate disconnected fiber volume. The primary outcome was 90-day modified Rankin Scale score (0–3 versus 4–6). Predictive performance of disconnected fiber volume was compared with baseline National Institutes of Health Stroke Scale (NIHSS), infarct volume, and posterior circulation Alberta Stroke Program Early Computed Tomography Score using logistic regressions and area under the receiver operating characteristic curves. Ordinal regressions tested associations between dichotomized disconnection status and the full modified Rankin Scale spectrum, stratified by recanalization status. Analyses were repeated in patients with an NIHSS score ≤10. RESULTS: Among 201 patients (median age, 70; NIHSS score, 10), 97 (48.3%) had a poor outcome. Despite a small median infarct volume (4.75 mL), disconnected fiber volume was substantial (median 25.15 mL). Disconnected fiber volume achieved an area under the receiver operating characteristic curves of 0.84, outperforming NIHSS score (0.67; P <0.0001), infarct volume (0.75; P =0.00059), and posterior circulation Alberta Stroke Program Early Computed Tomography Score (0.76; P =0.0127). Patients without significant disconnection had better outcomes across the full modified Rankin Scale spectrum (odds ratio, 0.12 [95% CI, 0.065–0.204]) and derived greater benefit from successful recanalization (odds ratio, 0.33 [95% CI, 0.15–0.70]). In patients with an NIHSS score ≤10 (n=102), disconnected fiber volume remained the strongest predictor (area under the receiver operating characteristic curves of 0.83). CONCLUSIONS: Disconnected fiber volume derived indirectly is a robust prognostic marker of basilar artery occlusion outcomes that outperforms conventional predictors and may support future treatment decisions after prospective validation. REGISTRATION: URL: https://clinicaltrials.gov ; Unique identifier: NCT03776877.",
     "ai_takeaways": {
-      "conclusion_vi": "Disconnected fiber volume derived indirectly is a robust prognostic marker of basilar artery occlusion outcomes that outperforms conventional predictors and may support future treatment decisions after prospective validation. REGISTRATION: URL: https://clinicaltrials.gov ; Unique identifier: NCT03776877.",
+      "conclusion_vi": "In basilar artery occlusion, acute diffusion-weighted imaging-derived disconnected fiber volume is a powerful prognostic marker of 90-day outcome (AUC 0.84), significantly outperforming baseline NIHSS, infarct volume, and pc-ASPECTS. Patients without significant disconnection achieved better mRS outcomes and derived greater benefit from successful recanalization (OR 0.33, 95% CI 0.15 to 0.70).",
       "clinical_significance": "Clinical significance for Vascular & Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -8457,9 +8805,9 @@
     },
     "abstract": "BACKGROUND: Acute ischemic stroke (AIS) survivors are at high risk of major adverse cardiovascular events (MACE), highlighting the need to identify modifiable secondary prevention targets. We assessed whether postacute discharge destination is associated with 1-year MACE risk among AIS survivors. METHODS: In this retrospective cohort study, adult AIS survivors were identified from the state inpatient and emergency department databases of 5 US states (2016–2019) and categorized by discharge destination: home, inpatient rehabilitation facility (IRF), or skilled nursing facility (SNF). Other destinations were excluded. The primary outcome was 1-year MACE, defined as recurrent stroke, acute myocardial infarction, systemic embolism, or vascular death. Multivariable Cox models, adjusted for demographic and clinical factors, were used to evaluate the association between discharge disposition and MACE risk. Fine-Gray models were used for nonfatal secondary outcomes, and restricted mean survival time analyses were used to estimate absolute risk. Effect modification by age (<65 versus ≥65 years) was examined. Confounder-adjusted number-needed-to-be-exposed was estimated by marginal standardization. RESULTS: Among 213 511 AIS survivors (median age, 71 years), 16 237 (7.6%) experienced MACE within 1-year. MACE incidence was lowest after IRF discharge (6.6%) versus home (7.6%) or SNF (8.3%). In adjusted analyses, IRF discharge was associated with lower MACE risk versus home (adjusted hazard ratio, 0.88 [95% CI, 0.83–0.93]) and SNF (0.84 [95% CI, 0.79–0.89]). The association persisted across age strata but was more pronounced in patients <65 years ( P interaction =0.014). Restricted mean survival time analyses indicated that IRF discharge was associated with 3.47 and 3.87 additional MACE-free days versus home and SNF discharge, respectively (both P <0.001). Adjusted number-needed-to-be-exposed were 115 (95% CI, 80–207) for IRF versus home and 87 (95% CI, 64–136) for IRF versus SNF. CONCLUSIONS: Postacute IRF discharge is associated with a lower 1-year MACE risk after AIS, highlighting the postacute care setting as a potentially modifiable system-level target for secondary prevention of long-term vascular outcomes.",
     "ai_takeaways": {
-      "conclusion_vi": "Postacute IRF discharge is associated with a lower 1-year MACE risk after AIS, highlighting the postacute care setting as a potentially modifiable system-level target for secondary prevention of long-term vascular outcomes.",
+      "conclusion_vi": "For ischemic stroke survivors, discharge to an inpatient rehabilitation facility (IRF) is associated with a significantly lower 1-year major adverse cardiovascular event (MACE) risk compared to home (aHR, 0.88; 95% CI, 0.83–0.93) and skilled nursing facility (aHR, 0.84; 95% CI, 0.79–0.89), suggesting postacute care settings are modifiable secondary prevention targets.",
       "clinical_significance": "Clinical significance for Vascular & Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -8500,9 +8848,9 @@
     },
     "abstract": "BACKGROUND: Intravenous thrombolysis remains the standard treatment for distal and medium vessel occlusion (DMVO) strokes. However, unlike large vessel occlusions, whether tenecteplase achieves higher early successful recanalization rates than alteplase in DMVO strokes remains uncertain. METHODS: This single-center observational cohort study included consecutive patients with magnetic resonance imaging (MRI)-confirmed DMVO stroke treated at Centre Hospitalier Sud-Francilien, France, according to an institutional thrombolysis protocol specifying alteplase (0.9 mg/kg, 2016–2018) or tenecteplase (0.25 mg/kg, 2018–2023), with follow-up MRI 1 to 2 hours after intravenous thrombolysis. Patients intended for endovascular thrombectomy or without diagnostic-quality follow-up MRI were excluded. Recanalization was blindly assessed using a modified Arterial Occlusion Lesion scale designed for MRI and DMVO. Early successful recanalization was defined as ≥50% recanalization on early follow-up MRI (grade ≥2b), and substantial early infarct growth, assessed using a semiautomatic segmentation technique, was defined as a ≥0.5 mL and ≥20% increase in lesion volume. Propensity-score weighting accounted for baseline imbalances, including age, sex, vascular risk factors, baseline National Institutes of Health Stroke Scale score, occlusion site, and time period (2020–2023 versus 2016–2019). RESULTS: Of the 319 included patients, 159 were treated with tenecteplase and 160 with alteplase. Median baseline National Institutes of Health Stroke Scale was 3 (1–7) in the tenecteplase group versus 4 (1–7.5) in the alteplase group, while M2 occlusions accounted for 54.1% versus 43.8% of cases. Early successful recanalization, assessed at a median postintravenous thrombolysis time of 80 (70–94) minutes, occurred in 72 (45.3%) and 53 (33.1%) patients treated with tenecteplase and alteplase, respectively (propensity-score weighting–odds ratio, 1.59 [95% CI, 1.15–2.20]; P =0.005). Substantial early infarct growth was observed in 42 (26.8%) and 64 (40.5%) patients, respectively (propensity-score weighting–odds ratio, 0.49 [95% CI, 0.35–0.69]; P <0.0001). CONCLUSIONS: Compared with alteplase, tenecteplase-treated patients with DMVO had higher early successful recanalization and a lower risk of substantial early infarct growth, supporting its preferential use in this setting. REGISTRATION: URL: https://www.clinicaltrials.gov ; Unique identifier: NCT05635786.",
     "ai_takeaways": {
-      "conclusion_vi": "Compared with alteplase, tenecteplase-treated patients with DMVO had higher early successful recanalization and a lower risk of substantial early infarct growth, supporting its preferential use in this setting. REGISTRATION: URL: https://www.clinicaltrials.gov ; Unique identifier: NCT05635786.",
+      "conclusion_vi": "In acute distal and medium vessel occlusion strokes, intravenous tenecteplase (0.25 mg/kg) significantly outperformed alteplase (0.9 mg/kg), achieving higher rates of early successful recanalization (45.3% vs 33.1%; propensity-score weighting odds ratio, 1.59 [95% CI, 1.15 to 2.20]; P=0.005) and a lower risk of substantial early infarct growth (26.8% vs 40.5%; odds ratio, 0.49 [95% CI, 0.35 to 0.69]; P<0.0001).",
       "clinical_significance": "Clinical significance for Vascular & Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -8549,9 +8897,9 @@
     },
     "abstract": "BACKGROUND: Hemodynamic insufficiency may contribute to the development of neuroimaging signs of cerebral small vessel disease (SVD). The arterial spin labeling (ASL) spatial coefficient of variation (ASL-sCoV) is a proxy marker of arterial transit time and may better capture SVD-related hemodynamic disturbances compared with ASL-derived cerebral blood flow. We investigated ASL-derived hemodynamic indices in relation to cognition and neuroimaging markers of SVD over an 11-year follow-up period. METHODS: Participants without dementia or stroke were enrolled in the Vanderbilt Memory and Aging Project, a longitudinal observational cohort study in Nashville, TN. Participants underwent serial multimodal 3T brain magnetic resonance imaging to quantify SVD burden and neuropsychological assessment from 2012 to 2024 (4.9±3.5 years mean follow-up). Pseudo-continuous ASL assessed cerebral blood flow and ASL-sCoV in total gray matter. Baseline ASL-sCoV and cerebral blood flow were individually related to the cross-sectional burden and longitudinal trajectory of each SVD neuroimaging marker (white matter hyperintensities, enlarged perivascular spaces, cerebral microbleeds, and lacunar infarcts) and cognitive performances using linear and linear mixed-effects regression models. Models were adjusted for demographics, cognitive status, Framingham Stroke Risk Profile (minus age), apolipoprotein E -ε4 status, intracranial volume (for SVD outcomes), and follow-up time (for longitudinal models). RESULTS: Among participants (n=667, 68±9 years, 18% mild cognitive impairment, 51% female), higher ASL-sCoV was cross-sectionally associated with SVD markers, including white matter hyperintensities and enlarged perivascular spaces ( p FDR -values<0.006). Higher baseline ASL-sCoV was associated with a faster longitudinal increase in the burden of white matter hyperintensities ( p FDR =0.03) and accelerated decline in executive function, information processing, language, and visuospatial performances ( P <0.05). Gray matter cerebral blood flow was not associated with SVD burden or cognition cross-sectionally ( p FDR -values>0.05) or longitudinally ( p FDR -values>0.06). CONCLUSIONS: ASL-sCoV may serve as an important hemodynamic measure for identifying perfusion deficits tied to SVD burden and progression. Readily derived from existing ASL data sets, ASL-sCoV could provide substantial insight into the longitudinal clinical consequences of SVD.",
     "ai_takeaways": {
-      "conclusion_vi": "ASL-sCoV may serve as an important hemodynamic measure for identifying perfusion deficits tied to SVD burden and progression. Readily derived from existing ASL data sets, ASL-sCoV could provide substantial insight into the longitudinal clinical consequences of SVD.",
+      "conclusion_vi": "In older adults without dementia or stroke, higher baseline arterial spin labeling spatial coefficient of variation (ASL-sCoV) predicts faster white matter hyperintensity progression (p FDR =0.03) and accelerated cognitive decline across multiple domains (P <0.05). Unlike cerebral blood flow, ASL-sCoV is a superior hemodynamic marker for tracking cerebral small vessel disease progression.",
       "clinical_significance": "Clinical significance for Vascular & Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -8589,9 +8937,9 @@
     },
     "abstract": "BACKGROUND: Despite increasing incidence of stroke among younger adults, the associations of social determinants of health (SDOH) and stroke among younger adults are not well known. This study investigates the associations between SDOH from early adulthood and stroke in a prospective longitudinal cohort. METHODS: We studied participants enrolled in the CARDIA study (Coronary Artery Risk Development in Young Adults). Participants aged 18 to 30 years were enrolled in 1985 and followed through 2022. We investigated longitudinal, time-varying measures of SDOH classified into 5 distinct domains: economic (6 measures), education (1 measure), healthcare (4 measures), neighborhood (2 measures), and social/community (5 measures). The outcome was incident stroke or transient ischemic attack. We evaluated associations between individual SDOH and stroke using unadjusted Cox models. We then evaluated whether a greater cumulative number of adverse SDOH domains (each represented by 1 exposure selected by empirical techniques) was associated with stroke risk after adjustment for demographics. RESULTS: Among the 5114 participants (54.5% were female; baseline age, 25 years; and median follow-up, 37.9 years), 146 individuals experienced stroke or transient ischemic attack, all of which occurred <65 years. Household income (hazard ratio [HR], 1.24 per $10 000 lower [95% CI, 1.11–1.39]), education (HR, 0.93 per greater year [95% CI, 0.87–0.99]), neighborhood deprivation (HR, 1.21 [95% CI, 1.02–1.43]), and lacking health insurance (HR, 1.49 [95% CI, 1.05–2.11]) were associated with stroke risk. Those experiencing 2 adverse SDOH domains (HR, 1.65 [95% CI, 0.91–2.97]) or ≥ 3 adverse domains (HR, 2.00 [95% CI, 1.09–3.66]) had progressively higher stroke risk ( P trend =0.005). In interaction analyses, the association between income and stroke appeared stronger in Black participants ( P interaction =0.02) and women ( P interaction =0.02). CONCLUSIONS: In this young cohort followed through midlife, SDOH spanning several domains were associated with stroke risk. We also observed a dose-dependent response with the number of adverse SDOH domains experienced. Our results suggest that SDOH experienced throughout adulthood are relevant to future stroke risk.",
     "ai_takeaways": {
-      "conclusion_vi": "In this young cohort followed through midlife, SDOH spanning several domains were associated with stroke risk. We also observed a dose-dependent response with the number of adverse SDOH domains experienced.",
+      "conclusion_vi": "Adverse social determinants of health (SDOH) during early to mid-adulthood significantly increase early-onset stroke risk in a dose-dependent manner (≥3 adverse domains: HR, 2.00; 95% CI, 1.09-3.66; P trend = 0.005), with pronounced vulnerabilities linked to lower income, education, neighborhood deprivation, and lack of insurance.",
       "clinical_significance": "Clinical significance for Vascular & Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -8626,9 +8974,9 @@
     },
     "abstract": "The utility-weighted approach to analyzing the modified Rankin Scale (mRS) is increasingly being utilized in acute stroke clinical trials. This analytic approach assigns a patient-centered utility weight—the desirability or value of a health state to patients—to each level of the mRS. The utility-weighted-mRS analysis converts the mRS from a scale reflecting only the rank order of functional outcome after stroke into one that quantifies the value of each poststroke mRS health state from patients’ perspectives. The ability of the utility-weighted-mRS analysis to capture the unequal difference in patient health-related quality of life between each level of the mRS makes it an appealing patient-centered end point for acute stroke clinical trials. However, several concerns have historically raised skepticism regarding its value as a trial end point. Unfamiliarity with how utility weights are derived and used poses challenges to its use for shared decision-making between patients and clinicians. There are valid concerns that social, geographic, and demographic factors that differ between countries influence the mRS utility weights, so that use of uniform weights across all settings mildly reduces the precision of utility quantification, particularly in multinational stroke clinical trials. This narrative review aims to provide the clinical and research stroke community with a practical overview of key methodology in the utility-weighted-mRS analysis to aid in its interpretation, considers the advantages and challenges of using the utility-weighted-mRS analysis, and suggests future areas of study.",
     "ai_takeaways": {
-      "conclusion_vi": ", considers the advantages and challenges of using the utility-weighted-mRS analysis, and suggests future areas of study.",
+      "conclusion_vi": "Utility-weighted modified Rankin Scale (mRS) analysis enhances acute stroke trials by transforming the ordinal scale into a patient-centered, health-related quality-of-life metric. However, clinicians must account for geographic and demographic variations in utility weights when interpreting these outcomes for diverse patient populations.",
       "clinical_significance": "Clinical significance for Vascular & Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   }
 ]
