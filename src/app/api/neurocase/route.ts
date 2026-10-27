@@ -16,10 +16,23 @@ const KV_KEY = "neurocase_custom_cases_v1";
 // ==========================================
 // 1. VERCEL BLOB STORAGE (100% Free on Hobby: 500 MB)
 // ==========================================
+function getBlobToken(): { token: string | undefined; keyName: string | undefined } {
+  if (process.env.BLOB_READ_WRITE_TOKEN) {
+    return { token: process.env.BLOB_READ_WRITE_TOKEN, keyName: "BLOB_READ_WRITE_TOKEN" };
+  }
+  for (const [key, val] of Object.entries(process.env)) {
+    if ((key.includes("BLOB") || key.includes("READ_WRITE")) && key.includes("TOKEN") && val) {
+      return { token: val, keyName: key };
+    }
+  }
+  return { token: undefined, keyName: undefined };
+}
+
 async function getFromBlob(): Promise<ClinicalCase[] | null> {
-  if (!process.env.BLOB_READ_WRITE_TOKEN) return null;
+  const { token } = getBlobToken();
+  if (!token) return null;
   try {
-    const { blobs } = await list({ prefix: "cases.json" });
+    const { blobs } = await list({ prefix: "cases.json", token });
     if (!blobs || blobs.length === 0) return null;
     const latestBlob = blobs[0];
     const res = await fetch(latestBlob.url, { cache: "no-store" });
@@ -33,13 +46,15 @@ async function getFromBlob(): Promise<ClinicalCase[] | null> {
 }
 
 async function setToBlob(cases: ClinicalCase[]): Promise<boolean> {
-  if (!process.env.BLOB_READ_WRITE_TOKEN) return false;
+  const { token } = getBlobToken();
+  if (!token) return false;
   try {
     const jsonStr = JSON.stringify(cases, null, 2);
     await put("cases.json", jsonStr, {
       access: "public",
       addRandomSuffix: false,
       contentType: "application/json",
+      token,
     });
     return true;
   } catch (e) {
@@ -91,8 +106,27 @@ async function setToKv(cases: ClinicalCase[]): Promise<boolean> {
  * GET /api/neurocase
  * Checks Vercel Blob first, then Vercel KV, then local bundled cases.json.
  */
-export async function GET() {
+export async function GET(req: Request) {
   try {
+    const url = new URL(req.url);
+    if (url.searchParams.get("debug") === "1") {
+      const { keyName, token } = getBlobToken();
+      const storageKeys = Object.keys(process.env).filter(
+        (k) =>
+          k.includes("BLOB") ||
+          k.includes("KV") ||
+          k.includes("TOKEN") ||
+          k.includes("STORAGE") ||
+          k.toUpperCase().includes("NEUROPULSE")
+      );
+      return NextResponse.json({
+        isVercel: Boolean(process.env.VERCEL),
+        blobTokenFound: Boolean(token),
+        matchedKey: keyName || null,
+        availableStorageKeys: storageKeys,
+      });
+    }
+
     // 1. Try Vercel Blob
     const blobCases = await getFromBlob();
     if (blobCases && blobCases.length > 0) {
@@ -173,14 +207,16 @@ export async function POST(req: Request) {
       );
     }
 
-    // 1. If Vercel Blob is configured (BLOB_READ_WRITE_TOKEN)
-    if (process.env.BLOB_READ_WRITE_TOKEN) {
+    // 1. If Vercel Blob is configured (BLOB_READ_WRITE_TOKEN or custom prefix)
+    const { token: blobToken, keyName } = getBlobToken();
+    if (blobToken) {
       const blobOk = await setToBlob(updatedCases);
       if (blobOk) {
         return NextResponse.json(
           {
             success: true,
             storage: "vercel-blob",
+            keyUsed: keyName,
             count: updatedCases.length,
             savedAt: new Date().toISOString(),
           },
