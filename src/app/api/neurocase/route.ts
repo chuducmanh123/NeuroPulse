@@ -17,22 +17,58 @@ const KV_KEY = "neurocase_custom_cases_v1";
 // 1. VERCEL BLOB STORAGE (100% Free on Hobby: 500 MB)
 // Supports both modern OIDC (BLOB_STORE_ID) and static token (BLOB_READ_WRITE_TOKEN)
 // ==========================================
+function cleanBlobToken(raw: string | undefined): string | undefined {
+  if (!raw) return undefined;
+  // 1. Try to extract exact vercel_blob_rw token if present anywhere in the string
+  const match = raw.match(/vercel_blob_rw_[a-zA-Z0-9_\-]+/);
+  if (match) {
+    return match[0].trim();
+  }
+  // 2. Strip quotes, newlines, carriage returns, tabs, leading variable assignment
+  let cleaned = raw.replace(/^BLOB_READ_WRITE_TOKEN\s*=\s*/i, "");
+  cleaned = cleaned.replace(/[\r\n\t"'`]/g, "").trim();
+  return cleaned.length > 10 ? cleaned : undefined;
+}
+
+function cleanStoreId(raw: string | undefined): string | undefined {
+  if (!raw) return undefined;
+  let cleaned = raw.replace(/^BLOB_STORE_ID\s*=\s*/i, "");
+  cleaned = cleaned.replace(/[\r\n\t"'`]/g, "").trim();
+  return cleaned.length > 0 ? cleaned : undefined;
+}
+
 function getBlobToken(): { token: string | undefined; keyName: string | undefined } {
-  if (process.env.BLOB_READ_WRITE_TOKEN) {
-    return { token: process.env.BLOB_READ_WRITE_TOKEN, keyName: "BLOB_READ_WRITE_TOKEN" };
+  // Always sanitize in-memory environment variables to prevent @vercel/blob from crashing on newlines
+  const direct = cleanBlobToken(process.env.BLOB_READ_WRITE_TOKEN);
+  if (direct) {
+    if (process.env.BLOB_READ_WRITE_TOKEN !== direct) {
+      process.env.BLOB_READ_WRITE_TOKEN = direct;
+    }
+    return { token: direct, keyName: "BLOB_READ_WRITE_TOKEN" };
   }
   for (const [key, val] of Object.entries(process.env)) {
     if ((key.includes("BLOB") || key.includes("READ_WRITE")) && key.includes("TOKEN") && val) {
-      return { token: val, keyName: key };
+      const cleaned = cleanBlobToken(val);
+      if (cleaned) {
+        process.env.BLOB_READ_WRITE_TOKEN = cleaned;
+        return { token: cleaned, keyName: key };
+      }
     }
   }
   return { token: undefined, keyName: undefined };
 }
 
+function getBlobStoreId(): string | undefined {
+  const sanitized = cleanStoreId(process.env.BLOB_STORE_ID);
+  if (sanitized && process.env.BLOB_STORE_ID !== sanitized) {
+    process.env.BLOB_STORE_ID = sanitized;
+  }
+  return sanitized;
+}
+
 function hasBlobConfig(): boolean {
   return Boolean(
-    process.env.BLOB_STORE_ID ||
-    process.env.BLOB_READ_WRITE_TOKEN ||
+    getBlobStoreId() ||
     getBlobToken().token
   );
 }
