@@ -242,6 +242,7 @@ export default function NeuroCasePage() {
   const [subTeachingPoint, setSubTeachingPoint] = useState("");
   const [subPitfall, setSubPitfall] = useState("");
   const [subAuthor, setSubAuthor] = useState("");
+  const [subJournalName, setSubJournalName] = useState("");
   const [subDoiUrl, setSubDoiUrl] = useState("");
   const [subImageWebpUrl, setSubImageWebpUrl] = useState<string>("");
   const [subImageSizeKb, setSubImageSizeKb] = useState<number>(0);
@@ -249,7 +250,6 @@ export default function NeuroCasePage() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const docFileInputRef = useRef<HTMLInputElement | null>(null);
   const imageFileInputRef = useRef<HTMLInputElement | null>(null);
-  const jsonFileInputRef = useRef<HTMLInputElement | null>(null);
 
   // Collapsible Optional Sections in Submit Case (collapsed by default so form stays clean)
   const [showSubMcqSection, setShowSubMcqSection] = useState(false);
@@ -449,50 +449,6 @@ export default function NeuroCasePage() {
     } finally {
       setIsSyncingServer(false);
     }
-  };
-
-  const handleExportCasesJson = () => {
-    try {
-      const dataStr =
-        "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(cases, null, 2));
-      const downloadAnchor = document.createElement("a");
-      downloadAnchor.setAttribute("href", dataStr);
-      downloadAnchor.setAttribute("download", `neurocase-bank-${getLocalTodayIso()}.json`);
-      document.body.appendChild(downloadAnchor);
-      downloadAnchor.click();
-      downloadAnchor.remove();
-      setServerSyncSuccess("✓ Exported JSON backup");
-      setTimeout(() => setServerSyncSuccess(""), 3500);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  const handleImportCasesJson = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = async (ev) => {
-      try {
-        const text = ev.target?.result as string;
-        const imported: ClinicalCase[] = JSON.parse(text);
-        if (Array.isArray(imported) && imported.length > 0) {
-          const existingMap = new Map<string, ClinicalCase>();
-          for (const item of cases) existingMap.set(item.id, item);
-          for (const item of imported) existingMap.set(item.id, item);
-          const nextCases = Array.from(existingMap.values());
-          await persistAdminCases(nextCases);
-          setServerSyncSuccess(`✓ Imported ${imported.length} cases`);
-          setTimeout(() => setServerSyncSuccess(""), 4000);
-        } else {
-          alert("Invalid JSON format. Expected an array of ClinicalCase objects.");
-        }
-      } catch (err) {
-        alert("Failed to parse JSON file.");
-      }
-    };
-    reader.readAsText(file);
-    e.target.value = "";
   };
 
   // Exam countdown timer
@@ -872,6 +828,9 @@ export default function NeuroCasePage() {
     setSubDifficulty("Resident");
     setSubPublishedDate("");
     setSubDemographics("");
+    setSubAuthor("");
+    setSubJournalName("");
+    setSubDoiUrl("");
     setSubPmh("");
     setSubChiefComplaint("");
     setSubHistory("");
@@ -995,10 +954,10 @@ export default function NeuroCasePage() {
       published_date: subPublishedDate || getLocalTodayIso(),
       status: "pending",
       author_credit: subAuthor.trim() || "Community Clinician Contributor",
-      source_journal: subDoiUrl.trim()
+      source_journal: (subJournalName.trim() || subDoiUrl.trim())
         ? {
-            name: subAuthor.trim() || "Clinical Submission",
-            short_name: "DOI Source",
+            name: subJournalName.trim() || subAuthor.trim() || "Clinical Submission",
+            short_name: subJournalName.trim() ? subJournalName.trim().slice(0, 15) : "DOI Source",
             doi_url: subDoiUrl.trim(),
             pub_year: (subPublishedDate || new Date().toISOString()).slice(0, 4),
           }
@@ -1457,7 +1416,7 @@ export default function NeuroCasePage() {
               }`}
             >
               <div className="flex items-center gap-1.5 shrink-0">
-                {dailyChallengeCases.map((c, idx) => {
+                {dailyChallengeCases.slice(0, 7).map((c, idx) => {
                   const prog = progressMap[c.id];
                   const isSelected = c.id === currentCase.id;
                   return (
@@ -2486,6 +2445,11 @@ export default function NeuroCasePage() {
                             >
                               {c.difficulty}
                             </span>
+                            {c.is_daily_challenge && (
+                              <span className="text-[10px] font-black px-2 py-0.5 rounded bg-amber-500/15 text-amber-500 border border-amber-500/30">
+                                ⭐ Daily ({c.published_date})
+                              </span>
+                            )}
                           </div>
 
                           {prog ? (
@@ -2830,15 +2794,7 @@ export default function NeuroCasePage() {
           >
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
-                <span className="text-xs font-black uppercase text-amber-500">
-                  COMMUNITY CLINICAL PIPELINE
-                </span>
-                <h2 className="text-xl font-black mt-0.5">
-                  Submit a Clinical Case &amp; De-identify Neuroimaging
-                </h2>
-                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                  Uploaded CT/MRI images are processed 100% in your browser to strip EXIF metadata and mask patient identifiers before entering the <code>pending</code> moderation queue.
-                </p>
+                <h2 className="text-xl font-black">Submit Clinical Case</h2>
               </div>
 
               <button
@@ -3004,12 +2960,71 @@ export default function NeuroCasePage() {
                   </select>
                 </div>
                 <div>
-                  <label className="font-bold block mb-1">Author / Institution</label>
+                  <label className="font-bold block mb-1">Past Medical History</label>
                   <input
-                    value={subAuthor}
-                    onChange={(e) => setSubAuthor(e.target.value)}
-                    placeholder="Dr. John Doe • Stroke Center"
+                    value={subPmh}
+                    onChange={(e) => setSubPmh(e.target.value)}
+                    placeholder="Hypertension, diabetes, prior surgeries..."
                     className={`w-full p-2.5 rounded-lg border ${
+                      darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"
+                    }`}
+                  />
+                </div>
+              </div>
+
+              {/* Vital Signs */}
+              <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                <div>
+                  <label className="font-bold block mb-1">BP</label>
+                  <input
+                    value={subVitalBp}
+                    onChange={(e) => setSubVitalBp(e.target.value)}
+                    placeholder="130/80 mmHg"
+                    className={`w-full p-2 rounded-lg border ${
+                      darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"
+                    }`}
+                  />
+                </div>
+                <div>
+                  <label className="font-bold block mb-1">HR</label>
+                  <input
+                    value={subVitalHr}
+                    onChange={(e) => setSubVitalHr(e.target.value)}
+                    placeholder="80 bpm"
+                    className={`w-full p-2 rounded-lg border ${
+                      darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"
+                    }`}
+                  />
+                </div>
+                <div>
+                  <label className="font-bold block mb-1">RR</label>
+                  <input
+                    value={subVitalRr}
+                    onChange={(e) => setSubVitalRr(e.target.value)}
+                    placeholder="18 /min"
+                    className={`w-full p-2 rounded-lg border ${
+                      darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"
+                    }`}
+                  />
+                </div>
+                <div>
+                  <label className="font-bold block mb-1">Temp</label>
+                  <input
+                    value={subVitalTemp}
+                    onChange={(e) => setSubVitalTemp(e.target.value)}
+                    placeholder="36.8 °C"
+                    className={`w-full p-2 rounded-lg border ${
+                      darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"
+                    }`}
+                  />
+                </div>
+                <div>
+                  <label className="font-bold block mb-1">SpO2</label>
+                  <input
+                    value={subVitalSpo2}
+                    onChange={(e) => setSubVitalSpo2(e.target.value)}
+                    placeholder="98%"
+                    className={`w-full p-2 rounded-lg border ${
                       darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"
                     }`}
                   />
@@ -3063,7 +3078,7 @@ export default function NeuroCasePage() {
               >
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                   <span className="text-xs font-black uppercase text-indigo-500">
-                    🛡️ Client-Side DICOM/Image De-Identification &amp; WebP Compression (&lt; 150 KB)
+                    CLINICAL &amp; IMAGING
                   </span>
                   {subImageSizeKb > 0 && (
                     <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[11px] font-black">
@@ -3175,6 +3190,43 @@ export default function NeuroCasePage() {
                     subImageWebpUrl ? "block" : "hidden"
                   }`}
                 />
+
+                {/* Figure Modality, Caption & Key Findings directly inside CLINICAL & IMAGING */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-3 mt-3 border-t border-slate-200 dark:border-slate-800">
+                  <div>
+                    <label className="font-bold block mb-1">Figure Modality / Type</label>
+                    <input
+                      value={subModality}
+                      onChange={(e) => setSubModality(e.target.value)}
+                      placeholder="e.g., Clinical photo, Brain MRI, CT, EEG"
+                      className={`w-full p-2 rounded-lg border ${
+                        darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
+                      }`}
+                    />
+                  </div>
+                  <div>
+                    <label className="font-bold block mb-1">Figure Caption / Description</label>
+                    <input
+                      value={subFigCaption}
+                      onChange={(e) => setSubFigCaption(e.target.value)}
+                      placeholder="Description of clinical finding or view..."
+                      className={`w-full p-2 rounded-lg border ${
+                        darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
+                      }`}
+                    />
+                  </div>
+                  <div>
+                    <label className="font-bold block mb-1">Key Findings Summary</label>
+                    <input
+                      value={subFindings}
+                      onChange={(e) => setSubFindings(e.target.value)}
+                      placeholder="Abnormal findings interpretation..."
+                      className={`w-full p-2 rounded-lg border ${
+                        darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
+                      }`}
+                    />
+                  </div>
+                </div>
               </div>
 
               <div>
@@ -3384,7 +3436,7 @@ export default function NeuroCasePage() {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
                           <label className="font-bold block mb-1">
-                            High-Yield Teaching Points (one per line)
+                            High-Yield Teaching Points
                           </label>
                           <textarea
                             rows={3}
@@ -3400,7 +3452,7 @@ export default function NeuroCasePage() {
                         </div>
                         <div>
                           <label className="font-bold block mb-1">
-                            Clinical Pitfalls to Avoid (one per line)
+                            Clinical Pitfalls to Avoid
                           </label>
                           <textarea
                             rows={3}
@@ -3418,189 +3470,62 @@ export default function NeuroCasePage() {
                     </div>
                   )}
                 </div>
+              </div>
 
-                {/* 3. COLLAPSIBLE: FIGURE CAPTION/MODALITY, PAST MEDICAL HISTORY, VITAL SIGNS & DOI */}
-                <div
-                  className={`rounded-xl border overflow-hidden ${
-                    darkMode ? "border-slate-800 bg-slate-900/50" : "border-slate-200 bg-slate-50/60"
-                  }`}
-                >
-                  <button
-                    type="button"
-                    onClick={() => setShowSubMetadataVitalsSection((prev) => !prev)}
-                    className="w-full px-4 py-3 text-left flex items-center justify-between gap-2 text-xs font-black uppercase tracking-wide hover:bg-indigo-500/5 transition-colors"
-                  >
-                    <span className="text-indigo-500">
-                      {showSubMetadataVitalsSection ? "▼" : "▶"} Optional: Figure Caption &amp; Modality, Past Medical History, Vital Signs &amp; DOI
-                    </span>
-                    <span className="text-[11px] font-semibold text-slate-400">
-                      {showSubMetadataVitalsSection ? "Click to collapse" : "Collapsed (Optional)"}
-                    </span>
-                  </button>
-
-                  {showSubMetadataVitalsSection && (
-                    <div
-                      className={`p-4 border-t space-y-3 text-xs ${
-                        darkMode ? "border-slate-800" : "border-slate-200"
+              {/* SOURCE & REFERENCE */}
+              <div
+                className={`p-4 rounded-xl border space-y-3 ${
+                  darkMode ? "bg-slate-950 border-slate-800" : "bg-slate-50 border-slate-200"
+                }`}
+              >
+                <span className="text-xs font-black uppercase text-indigo-500 block">
+                  SOURCE &amp; REFERENCE
+                </span>
+                <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 text-xs">
+                  <div>
+                    <label className="font-bold block mb-1">Source / Journal</label>
+                    <input
+                      value={subJournalName}
+                      onChange={(e) => setSubJournalName(e.target.value)}
+                      placeholder="e.g., NEJM, JAMA, Lancet"
+                      className={`w-full p-2 rounded-lg border ${
+                        darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
                       }`}
-                    >
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        <div>
-                          <label className="font-bold block mb-1">Figure Modality</label>
-                          <input
-                            value={subModality}
-                            onChange={(e) => setSubModality(e.target.value)}
-                            placeholder="e.g., Brain MRI (DWI / FLAIR)"
-                            className={`w-full p-2 rounded border ${
-                              darkMode
-                                ? "bg-slate-800 border-slate-700 text-white"
-                                : "bg-white border-slate-300"
-                            }`}
-                          />
-                        </div>
-                        <div>
-                          <label className="font-bold block mb-1">
-                            Original Figure Caption (Hidden until solved)
-                          </label>
-                          <input
-                            value={subFigCaption}
-                            onChange={(e) => setSubFigCaption(e.target.value)}
-                            placeholder="Figure 1 legend from manuscript..."
-                            className={`w-full p-2 rounded border ${
-                              darkMode
-                                ? "bg-slate-800 border-slate-700 text-white"
-                                : "bg-white border-slate-300"
-                            }`}
-                          />
-                        </div>
-                        <div>
-                          <label className="font-bold block mb-1">
-                            Key Radiological / Electrographic Findings
-                          </label>
-                          <input
-                            value={subFindings}
-                            onChange={(e) => setSubFindings(e.target.value)}
-                            placeholder="Radiological interpretation summary..."
-                            className={`w-full p-2 rounded border ${
-                              darkMode
-                                ? "bg-slate-800 border-slate-700 text-white"
-                                : "bg-white border-slate-300"
-                            }`}
-                          />
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        <div>
-                          <label className="font-bold block mb-1">Past Medical History</label>
-                          <input
-                            value={subPmh}
-                            onChange={(e) => setSubPmh(e.target.value)}
-                            placeholder="Hypertension, atrial fibrillation, etc."
-                            className={`w-full p-2 rounded border ${
-                              darkMode
-                                ? "bg-slate-800 border-slate-700 text-white"
-                                : "bg-white border-slate-300"
-                            }`}
-                          />
-                        </div>
-                        <div>
-                          <label className="font-bold block mb-1">Published Date</label>
-                          <input
-                            type="date"
-                            value={subPublishedDate}
-                            onChange={(e) => setSubPublishedDate(e.target.value)}
-                            className={`w-full p-2 rounded border ${
-                              darkMode
-                                ? "bg-slate-800 border-slate-700 text-white"
-                                : "bg-white border-slate-300"
-                            }`}
-                          />
-                        </div>
-                        <div>
-                          <label className="font-bold block mb-1">Source DOI / URL</label>
-                          <input
-                            value={subDoiUrl}
-                            onChange={(e) => setSubDoiUrl(e.target.value)}
-                            placeholder="https://doi.org/10.1212/..."
-                            className={`w-full p-2 rounded border ${
-                              darkMode
-                                ? "bg-slate-800 border-slate-700 text-white"
-                                : "bg-white border-slate-300"
-                            }`}
-                          />
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
-                        <div>
-                          <label className="font-bold block mb-1">BP</label>
-                          <input
-                            value={subVitalBp}
-                            onChange={(e) => setSubVitalBp(e.target.value)}
-                            placeholder="130/80 mmHg"
-                            className={`w-full p-1.5 rounded border ${
-                              darkMode
-                                ? "bg-slate-800 border-slate-700 text-white"
-                                : "bg-white border-slate-300"
-                            }`}
-                          />
-                        </div>
-                        <div>
-                          <label className="font-bold block mb-1">HR</label>
-                          <input
-                            value={subVitalHr}
-                            onChange={(e) => setSubVitalHr(e.target.value)}
-                            placeholder="80 bpm"
-                            className={`w-full p-1.5 rounded border ${
-                              darkMode
-                                ? "bg-slate-800 border-slate-700 text-white"
-                                : "bg-white border-slate-300"
-                            }`}
-                          />
-                        </div>
-                        <div>
-                          <label className="font-bold block mb-1">RR</label>
-                          <input
-                            value={subVitalRr}
-                            onChange={(e) => setSubVitalRr(e.target.value)}
-                            placeholder="18 /min"
-                            className={`w-full p-1.5 rounded border ${
-                              darkMode
-                                ? "bg-slate-800 border-slate-700 text-white"
-                                : "bg-white border-slate-300"
-                            }`}
-                          />
-                        </div>
-                        <div>
-                          <label className="font-bold block mb-1">Temp</label>
-                          <input
-                            value={subVitalTemp}
-                            onChange={(e) => setSubVitalTemp(e.target.value)}
-                            placeholder="36.8 °C"
-                            className={`w-full p-1.5 rounded border ${
-                              darkMode
-                                ? "bg-slate-800 border-slate-700 text-white"
-                                : "bg-white border-slate-300"
-                            }`}
-                          />
-                        </div>
-                        <div>
-                          <label className="font-bold block mb-1">SpO2</label>
-                          <input
-                            value={subVitalSpo2}
-                            onChange={(e) => setSubVitalSpo2(e.target.value)}
-                            placeholder="98%"
-                            className={`w-full p-1.5 rounded border ${
-                              darkMode
-                                ? "bg-slate-800 border-slate-700 text-white"
-                                : "bg-white border-slate-300"
-                            }`}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                    />
+                  </div>
+                  <div className="sm:col-span-2">
+                    <label className="font-bold block mb-1">Source DOI / URL</label>
+                    <input
+                      value={subDoiUrl}
+                      onChange={(e) => setSubDoiUrl(e.target.value)}
+                      placeholder="https://doi.org/10.1212/..."
+                      className={`w-full p-2 rounded-lg border ${
+                        darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
+                      }`}
+                    />
+                  </div>
+                  <div>
+                    <label className="font-bold block mb-1">Published Date</label>
+                    <input
+                      type="date"
+                      value={subPublishedDate}
+                      onChange={(e) => setSubPublishedDate(e.target.value)}
+                      className={`w-full p-2 rounded-lg border ${
+                        darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
+                      }`}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="font-bold block mb-1 text-xs">Author / Institution</label>
+                  <input
+                    value={subAuthor}
+                    onChange={(e) => setSubAuthor(e.target.value)}
+                    placeholder="e.g., Dr. Jane Doe • Stroke Center"
+                    className={`w-full p-2 rounded-lg border text-xs ${
+                      darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
+                    }`}
+                  />
                 </div>
               </div>
 
@@ -3624,13 +3549,7 @@ export default function NeuroCasePage() {
             }`}
           >
             <div className="flex flex-wrap items-center justify-between gap-3">
-              <div>
-                <span className="text-xs font-black uppercase text-sky-500">
-                  MODERATION &amp; CURATION WORKFLOW
-                </span>
-                <h2 className="text-xl font-black">Admin Case Moderation &amp; Full Editor</h2>
-              </div>
-              <div className="flex flex-wrap items-center gap-2">
+              <div className="flex items-center gap-2">
                 {serverSyncSuccess && (
                   <span
                     className={`text-xs font-bold px-2.5 py-1.5 rounded-lg border animate-fadeIn ${
@@ -3642,6 +3561,8 @@ export default function NeuroCasePage() {
                     {serverSyncSuccess}
                   </span>
                 )}
+              </div>
+              <div className="flex items-center gap-2">
                 <button
                   type="button"
                   onClick={refreshCasesFromServer}
@@ -3652,31 +3573,6 @@ export default function NeuroCasePage() {
                   <span className={isSyncingServer ? "animate-spin" : ""}>🔄</span>
                   <span>{isSyncingServer ? "Syncing..." : "Sync from Server"}</span>
                 </button>
-                <button
-                  type="button"
-                  onClick={handleExportCasesJson}
-                  className="px-3 py-2 rounded-lg text-xs font-black bg-slate-800 text-white hover:bg-slate-700 border border-slate-700 flex items-center gap-1.5 transition-all"
-                  title="Export entire case bank (including custom & pending cases) to JSON file"
-                >
-                  <span>📤</span>
-                  <span>Export JSON</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => jsonFileInputRef.current?.click()}
-                  className="px-3 py-2 rounded-lg text-xs font-black bg-indigo-600 text-white hover:bg-indigo-700 flex items-center gap-1.5 transition-all shadow-xs"
-                  title="Import cases from a JSON backup file directly into this browser"
-                >
-                  <span>📥</span>
-                  <span>Import JSON</span>
-                </button>
-                <input
-                  type="file"
-                  ref={jsonFileInputRef}
-                  accept=".json"
-                  onChange={handleImportCasesJson}
-                  className="hidden"
-                />
               </div>
             </div>
 
@@ -4014,6 +3910,82 @@ export default function NeuroCasePage() {
                                   }`}
                                 />
                               </div>
+                            </div>
+                          </div>
+
+                          {/* Source, DOI & Author Credit */}
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <div>
+                              <label className="font-bold block mb-1">Source Journal / Reference</label>
+                              <input
+                                value={editDraft.source_journal?.name || ""}
+                                onChange={(e) =>
+                                  setEditDraft({
+                                    ...editDraft,
+                                    source_journal: {
+                                      name: e.target.value,
+                                      short_name: e.target.value.slice(0, 15),
+                                      doi_url: editDraft.source_journal?.doi_url || "",
+                                      pub_year:
+                                        editDraft.source_journal?.pub_year ||
+                                        (editDraft.published_date || new Date().toISOString()).slice(0, 4),
+                                      pmcid: editDraft.source_journal?.pmcid,
+                                      pmid: editDraft.source_journal?.pmid,
+                                    },
+                                  })
+                                }
+                                placeholder="e.g., NEJM, JAMA, Stroke, Clinical Submission"
+                                className={`w-full p-2 rounded border ${
+                                  darkMode
+                                    ? "bg-slate-900 border-slate-700 text-white"
+                                    : "bg-white border-slate-300 text-slate-900"
+                                }`}
+                              />
+                            </div>
+                            <div>
+                              <label className="font-bold block mb-1">Source DOI / URL</label>
+                              <input
+                                value={editDraft.source_journal?.doi_url || ""}
+                                onChange={(e) =>
+                                  setEditDraft({
+                                    ...editDraft,
+                                    source_journal: {
+                                      name: editDraft.source_journal?.name || "Published Source",
+                                      short_name: editDraft.source_journal?.short_name || "Source",
+                                      doi_url: e.target.value,
+                                      pub_year:
+                                        editDraft.source_journal?.pub_year ||
+                                        (editDraft.published_date || new Date().toISOString()).slice(0, 4),
+                                      pmcid: editDraft.source_journal?.pmcid,
+                                      pmid: editDraft.source_journal?.pmid,
+                                    },
+                                  })
+                                }
+                                placeholder="https://doi.org/10.1212/..."
+                                className={`w-full p-2 rounded border ${
+                                  darkMode
+                                    ? "bg-slate-900 border-slate-700 text-white"
+                                    : "bg-white border-slate-300 text-slate-900"
+                                }`}
+                              />
+                            </div>
+                            <div>
+                              <label className="font-bold block mb-1">Author / Credit</label>
+                              <input
+                                value={editDraft.author_credit || ""}
+                                onChange={(e) =>
+                                  setEditDraft({
+                                    ...editDraft,
+                                    author_credit: e.target.value,
+                                  })
+                                }
+                                placeholder="Contributing author / institution..."
+                                className={`w-full p-2 rounded border ${
+                                  darkMode
+                                    ? "bg-slate-900 border-slate-700 text-white"
+                                    : "bg-white border-slate-300 text-slate-900"
+                                }`}
+                              />
                             </div>
                           </div>
 
@@ -4622,7 +4594,7 @@ export default function NeuroCasePage() {
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div>
                               <label className="font-bold block mb-1">
-                                High-Yield Teaching Points (one per line)
+                                High-Yield Teaching Points
                               </label>
                               <textarea
                                 rows={3}
@@ -4648,7 +4620,7 @@ export default function NeuroCasePage() {
                             </div>
                             <div>
                               <label className="font-bold block mb-1">
-                                Clinical Pitfalls to Avoid (one per line)
+                                Clinical Pitfalls to Avoid
                               </label>
                               <textarea
                                 rows={3}

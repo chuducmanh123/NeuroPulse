@@ -15,16 +15,13 @@ export function NeuroImagingViewer({
   darkMode = false,
 }: NeuroImagingViewerProps) {
   const [zoomIndex, setZoomIndex] = useState<number | null>(null);
-  const [revealSpoiler, setRevealSpoiler] = useState(false);
 
   useEffect(() => {
-    setRevealSpoiler(false);
     setZoomIndex(null);
   }, [imagingList]);
 
   if (!imagingList || imagingList.length === 0) return null;
   const zoomedImg = zoomIndex !== null ? imagingList[zoomIndex] : null;
-  const showCaptions = isSolved || revealSpoiler;
 
   return (
     <div
@@ -38,9 +35,9 @@ export function NeuroImagingViewer({
           <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
             {imagingList.length > 1
               ? `${imagingList.length} Clinical Figures`
-              : imagingList[0].modality}
+              : imagingList[0].modality || "Clinical & Imaging"}
           </span>
-          {showCaptions && imagingList[0].pmcid && (
+          {imagingList[0].pmcid && (
             <a
               href={
                 imagingList[0].doi_url ||
@@ -56,16 +53,6 @@ export function NeuroImagingViewer({
         </div>
 
         <div className="flex items-center gap-2">
-          {!isSolved && (
-            <button
-              type="button"
-              onClick={() => setRevealSpoiler((prev) => !prev)}
-              className="px-2.5 py-1 rounded text-[11px] font-semibold bg-slate-800/90 text-slate-300 hover:bg-slate-700 transition-colors"
-              title="Toggle original figure caption hint"
-            >
-              {revealSpoiler ? "Hide Caption Hint" : "💡 Caption Hint"}
-            </button>
-          )}
           <button
             type="button"
             onClick={() => setZoomIndex(0)}
@@ -76,50 +63,56 @@ export function NeuroImagingViewer({
         </div>
       </div>
 
-      {/* Stacked / Multi-Panel Clinical Figures (NEJM Image Challenge Style) */}
-      <div className="p-2.5 bg-black space-y-2.5">
+      {/* Stacked / Multi-Panel Clinical & Imaging Figures with Captions Directly Underneath */}
+      <div className="p-2.5 bg-black space-y-3">
         {imagingList.map((img, idx) => (
           <div
             key={idx}
-            onClick={() => setZoomIndex(idx)}
-            className="group relative rounded-lg bg-black border border-slate-800/80 overflow-hidden cursor-zoom-in flex flex-col items-center justify-center"
+            className="rounded-lg bg-slate-950 border border-slate-800/80 overflow-hidden flex flex-col"
           >
-            <img
-              src={img.image_url}
-              alt={showCaptions ? img.caption : `Clinical Challenge Figure ${idx + 1}`}
-              className="w-full max-h-[420px] object-contain transition-transform duration-200 group-hover:scale-[1.01]"
-              loading="eager"
-            />
-            <span className="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-black/75 text-[10px] font-bold text-slate-200 opacity-0 group-hover:opacity-100 transition-opacity">
-              🔍 Click to Zoom
-            </span>
+            {/* Figure Image */}
+            <div
+              onClick={() => setZoomIndex(idx)}
+              className="group relative cursor-zoom-in flex flex-col items-center justify-center bg-black"
+            >
+              <img
+                src={img.image_url}
+                alt={img.caption || `Clinical Figure ${idx + 1}`}
+                className="w-full max-h-[440px] object-contain transition-transform duration-200 group-hover:scale-[1.01]"
+                loading="eager"
+              />
+              <span className="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-black/75 text-[10px] font-bold text-slate-200 opacity-0 group-hover:opacity-100 transition-opacity">
+                🔍 Click to Zoom
+              </span>
+            </div>
+
+            {/* Caption Directly Underneath the Image */}
+            {(img.caption || img.figure_label || img.modality) && (
+              <div className="p-3 bg-slate-900/90 border-t border-slate-800 text-xs space-y-1.5">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="text-[11px] font-black uppercase tracking-wider text-indigo-400">
+                    {img.figure_label || (imagingList.length > 1 ? `Figure ${idx + 1}` : "Figure")}
+                  </span>
+                  {img.modality && (
+                    <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-800 text-slate-300">
+                      {img.modality}
+                    </span>
+                  )}
+                </div>
+                {img.caption && (
+                  <p className="text-slate-200 leading-relaxed text-xs">{img.caption}</p>
+                )}
+                {isSolved && img.findings_summary && (
+                  <div className="mt-1.5 p-2 rounded bg-indigo-950/70 border border-indigo-700/60 text-indigo-100 text-[11px]">
+                    <span className="font-bold text-amber-300 mr-1">Key Finding:</span>
+                    {img.findings_summary}
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         ))}
       </div>
-
-      {/* Original Figure Caption & Radiological Interpretation (Unlocked after solving or clicking Caption Hint) */}
-      {showCaptions && (
-        <div className="p-3.5 bg-slate-900/95 border-t border-slate-800 text-xs space-y-3 animate-fadeIn">
-          {imagingList.map((img, idx) => (
-            <div key={idx} className="space-y-1.5">
-              <div>
-                <span className="text-[10px] font-black uppercase tracking-wider text-indigo-400 block">
-                  {img.figure_label || `Figure ${idx + 1}`} — {img.modality}
-                </span>
-                <p className="text-slate-200 leading-relaxed mt-0.5">{img.caption}</p>
-              </div>
-              {isSolved && img.findings_summary && (
-                <div className="p-2.5 rounded-lg bg-indigo-950/70 border border-indigo-700/60 text-indigo-100">
-                  <span className="font-black uppercase text-[10px] text-amber-300 block mb-0.5">
-                    Key Radiological / Electrographic Finding:
-                  </span>
-                  {img.findings_summary}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      )}
 
       {/* Full-Screen High-Resolution Figure Modal */}
       {zoomedImg && zoomIndex !== null && (
@@ -172,10 +165,10 @@ export function NeuroImagingViewer({
               />
             </div>
 
-            {showCaptions && (
+            {(zoomedImg.caption || (isSolved && zoomedImg.findings_summary)) && (
               <div className="p-4 bg-slate-900 border-t border-slate-800 text-xs text-slate-200 space-y-1.5">
-                <p className="font-bold text-white">{zoomedImg.caption}</p>
-                {isSolved && (
+                {zoomedImg.caption && <p className="font-bold text-white">{zoomedImg.caption}</p>}
+                {isSolved && zoomedImg.findings_summary && (
                   <p className="text-amber-300 font-medium">{zoomedImg.findings_summary}</p>
                 )}
               </div>
