@@ -8,6 +8,9 @@ import { AppSwitcher } from "../../components/ecosystem/AppSwitcher";
 import { NeuroImagingViewer } from "../../components/neurocase/NeuroImagingViewer";
 import { CaseChallenge } from "../../components/neurocase/CaseChallenge";
 import { AdminAuthModal } from "../../components/neurocase/modals/AdminAuthModal";
+import { AdminPreviewModal } from "../../components/neurocase/modals/AdminPreviewModal";
+import { DailyTab } from "../../components/neurocase/tabs/DailyTab";
+import { ArchiveTab } from "../../components/neurocase/tabs/ArchiveTab";
 import { ExamTab } from "../../components/neurocase/tabs/ExamTab";
 import {
   extractClinicalCaseFromArticleText,
@@ -1391,375 +1394,57 @@ export default function NeuroCasePage() {
             TAB 1: DAILY CHALLENGE (NEJM IMAGE CHALLENGE SPLIT-SCREEN ARCHITECTURE)
            ===================================================================== */}
         {!loading && activeTab === "daily" && currentCase && (
-          <div className="space-y-6">
-            {/* Quick Case Selector Strip */}
-            <div
-              className={`p-3 rounded-xl border flex items-center justify-between gap-2 overflow-x-auto ${
-                darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
-              }`}
-            >
-              <div className="flex items-center gap-1.5 shrink-0">
-                {dailyChallengeCases.slice(0, 7).map((c, idx) => {
-                  const prog = progressMap[c.id];
-                  const isSelected = c.id === currentCase.id;
-                  return (
-                    <button
-                      key={c.id}
-                      type="button"
-                      onClick={() => {
-                        setActiveCaseId(c.id);
-                        setShowDetailedWorkup(false);
-                      }}
-                      className={`px-2.5 py-1.5 rounded-lg text-xs font-bold border transition-all flex items-center gap-1 ${
-                        isSelected
-                          ? "bg-indigo-600 text-white border-indigo-500 shadow-xs"
-                          : prog
-                          ? prog.isCorrect
-                            ? darkMode
-                              ? "bg-emerald-950/60 text-emerald-300 border-emerald-800"
-                              : "bg-emerald-50 text-emerald-800 border-emerald-200"
-                            : darkMode
-                            ? "bg-rose-950/60 text-rose-300 border-rose-800"
-                            : "bg-rose-50 text-rose-800 border-rose-200"
-                          : darkMode
-                          ? "bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700"
-                          : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
-                      }`}
-                    >
-                      <span>{idx === 0 ? "⭐ Daily" : c.published_date}</span>
-                      {prog && <span>{prog.isCorrect ? "✓" : "✗"}</span>}
-                    </button>
-                  );
-                })}
-              </div>
-
-              <button
-                type="button"
-                onClick={() => setActiveTab("archive")}
-                className="text-xs font-bold text-indigo-500 hover:underline shrink-0"
-              >
-                Browse Archive ({approvedCases.length}) →
-              </button>
-            </div>
-
-            {/* MAIN NEJM-STYLE CLINICAL & IMAGING CHALLENGE CARD */}
-            <article
-              className={`rounded-2xl border shadow-sm overflow-hidden ${
-                darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
-              }`}
-            >
-              {/* Centered NEJM-Style Challenge Date Header */}
-              <div
-                className={`px-6 py-5 border-b text-center ${
-                  darkMode ? "border-slate-800 bg-slate-900/60" : "border-slate-100 bg-slate-50/50"
-                }`}
-              >
-                <div className="flex flex-wrap items-center justify-center gap-2 mb-1.5">
-                  <span className="text-[11px] font-black uppercase tracking-[0.2em] text-rose-600 dark:text-rose-400">
-                    CLINICAL &amp; IMAGING CHALLENGE
-                  </span>
-                  <span className="text-slate-300 dark:text-slate-700">•</span>
-                  <span className="text-[11px] font-bold text-indigo-600 dark:text-indigo-400">
-                    {currentCase.subspecialty}
-                  </span>
-                  <span
-                    className={`px-2 py-0.5 rounded text-[10px] font-bold border ${
-                      DIFFICULTY_BADGES[currentCase.difficulty]
-                    }`}
-                  >
-                    {currentCase.difficulty}
-                  </span>
-                </div>
-                <h2 className="text-2xl sm:text-3xl font-serif font-bold tracking-tight">
-                  {formatChallengeDate(currentCase.published_date)}
-                </h2>
-              </div>
-
-              {/* Case Challenge (Shared Component) */}
-              <CaseChallenge
-                currentCase={currentCase}
-                darkMode={darkMode}
-                progressMap={progressMap}
-                wrongAttemptsMap={wrongAttemptsMap}
-                onSelectOption={handleSelectOption}
-                onNextChallenge={handleNextChallenge}
-                onResetAttempt={handleResetCaseAttempt}
-                relatedPulseArticles={relatedPulseArticles}
-                showNextChallengeButton={true}
-              />
-            </article>
-          </div>
+          <DailyTab
+            currentCase={currentCase}
+            dailyChallengeCases={dailyChallengeCases}
+            approvedCases={approvedCases}
+            progressMap={progressMap}
+            wrongAttemptsMap={wrongAttemptsMap}
+            darkMode={darkMode}
+            difficultyBadges={DIFFICULTY_BADGES}
+            formatChallengeDate={formatChallengeDate}
+            onSelectCase={(caseId) => {
+              setActiveCaseId(caseId);
+              setShowDetailedWorkup(false);
+            }}
+            onSelectOption={handleSelectOption}
+            onNextChallenge={handleNextChallenge}
+            onResetCaseAttempt={handleResetCaseAttempt}
+            onBrowseArchive={() => setActiveTab("archive")}
+            relatedPulseArticles={relatedPulseArticles}
+          />
         )}
 
         {/* =====================================================================
             TAB 2: CASE ARCHIVE (11 SUBSPECIALTIES)
            ===================================================================== */}
         {!loading && activeTab === "archive" && (
-          archiveViewingCase ? (
-            <div className="space-y-6">
-              {/* Archive Navigation & Back Header */}
-              <div
-                className={`p-4 rounded-2xl border flex flex-wrap items-center justify-between gap-3 ${
-                  darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
-                }`}
-              >
-                <div className="flex flex-wrap items-center gap-2">
-                  <button
-                    type="button"
-                    onClick={() => setArchiveViewingCaseId(null)}
-                    className="px-3.5 py-1.5 rounded-xl text-xs font-black bg-indigo-600 text-white hover:bg-indigo-700 flex items-center gap-1.5 transition-all shadow-xs"
-                  >
-                    <span>←</span>
-                    <span>Back to Case Archive</span>
-                  </button>
-                  <span className="text-slate-400">|</span>
-                  <span className="text-xs font-black text-indigo-500">{archiveViewingCase.case_code}</span>
-                  <span className="text-xs font-bold px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-800">
-                    {archiveViewingCase.subspecialty}
-                  </span>
-                  <span
-                    className={`text-[10px] font-bold px-2 py-0.5 rounded border ${
-                      DIFFICULTY_BADGES[archiveViewingCase.difficulty]
-                    }`}
-                  >
-                    {archiveViewingCase.difficulty}
-                  </span>
-                </div>
-
-                {/* Sequential Case Browsing within Filtered Archive */}
-                <div className="flex items-center gap-2">
-                  <button
-                    type="button"
-                    disabled={archiveCurrentIdx <= 0}
-                    onClick={() => {
-                      if (archiveCurrentIdx > 0) {
-                        setArchiveViewingCaseId(filteredArchiveCases[archiveCurrentIdx - 1].id);
-                        setShowDetailedWorkup(false);
-                      }
-                    }}
-                    className="px-2.5 py-1 rounded-lg text-xs font-bold border border-slate-300 dark:border-slate-700 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-                  >
-                    ← Prev Case
-                  </button>
-                  <span className="text-xs font-semibold text-slate-400">
-                    {archiveCurrentIdx >= 0 ? `${archiveCurrentIdx + 1} / ${filteredArchiveCases.length}` : ""}
-                  </span>
-                  <button
-                    type="button"
-                    disabled={archiveCurrentIdx >= filteredArchiveCases.length - 1}
-                    onClick={() => {
-                      if (archiveCurrentIdx < filteredArchiveCases.length - 1) {
-                        setArchiveViewingCaseId(filteredArchiveCases[archiveCurrentIdx + 1].id);
-                        setShowDetailedWorkup(false);
-                      }
-                    }}
-                    className="px-2.5 py-1 rounded-lg text-xs font-bold border border-slate-300 dark:border-slate-700 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-                  >
-                    Next Case →
-                  </button>
-                </div>
-              </div>
-
-              {/* NEJM-STYLE CLINICAL & IMAGING CHALLENGE CARD (ARCHIVE MODE) */}
-              <article
-                className={`rounded-2xl border shadow-sm overflow-hidden ${
-                  darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
-                }`}
-              >
-                <div
-                  className={`px-6 py-5 border-b text-center ${
-                    darkMode ? "border-slate-800 bg-slate-900/60" : "border-slate-100 bg-slate-50/50"
-                  }`}
-                >
-                  <div className="flex flex-wrap items-center justify-center gap-2 mb-1.5">
-                    <span className="text-[11px] font-black uppercase tracking-[0.2em] text-rose-600 dark:text-rose-400">
-                      CASE ARCHIVE CHALLENGE
-                    </span>
-                    <span className="text-slate-300 dark:text-slate-700">•</span>
-                    <span className="text-[11px] font-bold text-indigo-600 dark:text-indigo-400">
-                      {archiveViewingCase.subspecialty}
-                    </span>
-                    <span
-                      className={`px-2 py-0.5 rounded text-[10px] font-bold border ${
-                        DIFFICULTY_BADGES[archiveViewingCase.difficulty]
-                      }`}
-                    >
-                      {archiveViewingCase.difficulty}
-                    </span>
-                  </div>
-                  <h2 className="text-2xl sm:text-3xl font-serif font-bold tracking-tight">
-                    {archiveViewingCase.title}
-                  </h2>
-                </div>
-
-                {/* Case Challenge (Shared Component for Archive View) */}
-                <CaseChallenge
-                  currentCase={archiveViewingCase}
-                  darkMode={darkMode}
-                  progressMap={progressMap}
-                  wrongAttemptsMap={wrongAttemptsMap}
-                  onSelectOption={handleSelectOption}
-                  onNextChallenge={() => {
-                    if (archiveCurrentIdx >= 0 && archiveCurrentIdx < filteredArchiveCases.length - 1) {
-                      setArchiveViewingCaseId(filteredArchiveCases[archiveCurrentIdx + 1].id);
-                      setShowDetailedWorkup(false);
-                    } else {
-                      setArchiveViewingCaseId(null);
-                    }
-                  }}
-                  onResetAttempt={handleResetCaseAttempt}
-                  relatedPulseArticles={archiveRelatedArticles}
-                  showNextChallengeButton={true}
-                />
-              </article>
-            </div>
-          ) : (
-            <div className="space-y-5">
-              <div
-                className={`p-4 rounded-2xl border space-y-4 ${
-                  darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
-                }`}
-              >
-                <div className="flex flex-wrap gap-1.5">
-                  {SUBSPECIALTY_TABS.map((tab) => {
-                    const active = selectedSub === tab.value;
-                    return (
-                      <button
-                        key={tab.value}
-                        type="button"
-                        onClick={() => setSelectedSub(tab.value)}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                          active
-                            ? "bg-indigo-600 text-white shadow-xs"
-                            : darkMode
-                            ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
-                            : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-                        }`}
-                      >
-                        {tab.label}
-                      </button>
-                    );
-                  })}
-                </div>
-
-                <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-slate-200 dark:border-slate-800">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <select
-                      value={selectedDifficulty}
-                      onChange={(e) => setSelectedDifficulty(e.target.value)}
-                      aria-label="Filter by difficulty"
-                      className={`px-3 py-1.5 rounded-lg text-xs font-bold border ${
-                        darkMode
-                          ? "bg-slate-800 border-slate-700 text-slate-200"
-                          : "bg-slate-50 border-slate-200 text-slate-700"
-                      }`}
-                    >
-                      <option value="All">All Difficulty Levels</option>
-                      <option value="Resident">Resident</option>
-                      <option value="Fellow">Fellow</option>
-                      <option value="Attending">Attending</option>
-                    </select>
-
-                    <select
-                      value={selectedSolvedFilter}
-                      onChange={(e) => setSelectedSolvedFilter(e.target.value as typeof selectedSolvedFilter)}
-                      aria-label="Filter by completion status"
-                      className={`px-3 py-1.5 rounded-lg text-xs font-bold border ${
-                        darkMode
-                          ? "bg-slate-800 border-slate-700 text-slate-200"
-                          : "bg-slate-50 border-slate-200 text-slate-700"
-                      }`}
-                    >
-                      <option value="All">All Statuses</option>
-                      <option value="Unsolved">Unsolved Only</option>
-                      <option value="Solved">Completed</option>
-                    </select>
-                  </div>
-
-                  <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search symptoms, syndromes, case ID..."
-                    className={`px-3 py-1.5 rounded-lg text-xs border w-full sm:w-64 ${
-                      darkMode
-                        ? "bg-slate-800 border-slate-700 text-white placeholder-slate-400"
-                        : "bg-slate-50 border-slate-200 text-slate-900"
-                    }`}
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {filteredArchiveCases.map((c) => {
-                  const prog = progressMap[c.id];
-                  const theme = getSpecialtyTheme(c.subspecialty);
-                  return (
-                    <div
-                      key={c.id}
-                      onClick={() => {
-                        setArchiveViewingCaseId(c.id);
-                        setShowDetailedWorkup(false);
-                      }}
-                      className={`p-5 rounded-2xl border border-l-4 cursor-pointer transition-all flex flex-col justify-between shadow-xs hover:shadow-md ${
-                        theme.borderLeft
-                      } ${theme.cardBorder} ${theme.cardBg}`}
-                    >
-                      <div>
-                        <div className="flex items-center justify-between gap-2 mb-2.5">
-                          <div className="flex items-center gap-1.5 flex-wrap">
-                            <span className="text-[10px] font-black px-2 py-0.5 rounded bg-indigo-500/15 text-indigo-500">
-                              {c.case_code}
-                            </span>
-                            <span className={`text-[10px] font-bold px-2 py-0.5 rounded border ${theme.badge}`}>
-                              {c.subspecialty}
-                            </span>
-                            <span
-                              className={`text-[10px] font-bold px-2 py-0.5 rounded border ${
-                                DIFFICULTY_BADGES[c.difficulty]
-                              }`}
-                            >
-                              {c.difficulty}
-                            </span>
-                            {c.is_daily_challenge && (
-                              <span className="text-[10px] font-black px-2 py-0.5 rounded bg-amber-500/15 text-amber-500 border border-amber-500/30">
-                                ⭐ Daily ({c.published_date})
-                              </span>
-                            )}
-                          </div>
-
-                          {prog ? (
-                            <span
-                              className={`text-xs font-black ${
-                                prog.isCorrect ? "text-emerald-500" : "text-rose-500"
-                              }`}
-                            >
-                              {prog.isCorrect ? "✓ Solved" : "✗ Review"}
-                            </span>
-                          ) : (
-                            <span className="text-[11px] font-bold text-slate-400">Unsolved</span>
-                          )}
-                        </div>
-
-                        <h3 className="text-sm font-black mb-1.5 leading-snug">{c.title}</h3>
-                        <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2">
-                          {c.presentation.chief_complaint}
-                        </p>
-                      </div>
-
-                      <div className="mt-4 pt-3 border-t border-slate-200/60 dark:border-slate-800 flex items-center justify-between text-xs">
-                        <span className="text-slate-400">{c.presentation.demographics}</span>
-                        <span className={`font-black flex items-center gap-1 ${theme.accentText}`}>
-                          <span>Solve Case</span>
-                          <span>→</span>
-                        </span>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          )
+          <ArchiveTab
+            archiveViewingCase={archiveViewingCase}
+            filteredArchiveCases={filteredArchiveCases}
+            archiveCurrentIdx={archiveCurrentIdx}
+            selectedSub={selectedSub}
+            selectedDifficulty={selectedDifficulty}
+            selectedSolvedFilter={selectedSolvedFilter}
+            searchQuery={searchQuery}
+            subspecialtyTabs={SUBSPECIALTY_TABS}
+            darkMode={darkMode}
+            difficultyBadges={DIFFICULTY_BADGES}
+            progressMap={progressMap}
+            wrongAttemptsMap={wrongAttemptsMap}
+            archiveRelatedArticles={archiveRelatedArticles}
+            getSpecialtyTheme={getSpecialtyTheme}
+            onSelectSub={setSelectedSub}
+            onSelectDifficulty={setSelectedDifficulty}
+            onSelectSolvedFilter={setSelectedSolvedFilter}
+            onSearchQueryChange={setSearchQuery}
+            onSelectCaseToView={(cId) => {
+              setArchiveViewingCaseId(cId);
+              setShowDetailedWorkup(false);
+            }}
+            onSelectOption={handleSelectOption}
+            onResetCaseAttempt={handleResetCaseAttempt}
+          />
         )}
 
         {/* =====================================================================
@@ -3699,316 +3384,16 @@ export default function NeuroCasePage() {
             setActiveTab("admin");
           }}
         />
-        {/* =====================================================================
-            ADMIN CASE PREVIEW MODAL (Live split-screen reviewer before approving)
-           ===================================================================== */}
-        {adminPreviewCase && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-sm overflow-y-auto">
-            <div
-              className={`relative w-full max-w-5xl max-h-[92vh] overflow-y-auto rounded-2xl border shadow-2xl p-5 sm:p-7 space-y-6 animate-fadeIn ${
-                darkMode
-                  ? "bg-slate-900 border-slate-700 text-slate-100"
-                  : "bg-white border-slate-200 text-slate-900"
-              }`}
-            >
-              {/* Modal Header */}
-              <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-200 dark:border-slate-800">
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl">👁️</span>
-                  <div>
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="text-xs font-black uppercase tracking-wider text-indigo-500">
-                        Admin Case Preview Mode
-                      </span>
-                      <span className="text-xs font-black">{adminPreviewCase.case_code}</span>
-                      <span className="text-xs font-bold px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-800">
-                        {adminPreviewCase.subspecialty}
-                      </span>
-                      <span
-                        className={`text-[10px] font-bold px-2 py-0.5 rounded border ${
-                          DIFFICULTY_BADGES[adminPreviewCase.difficulty]
-                        }`}
-                      >
-                        {adminPreviewCase.difficulty}
-                      </span>
-                      <span
-                        className={`text-[10px] font-black uppercase px-2 py-0.5 rounded ${
-                          adminPreviewCase.status === "approved"
-                            ? "bg-emerald-600 text-white"
-                            : adminPreviewCase.status === "rejected"
-                            ? "bg-rose-600 text-white"
-                            : "bg-amber-400 text-slate-950"
-                        }`}
-                      >
-                        Status: {adminPreviewCase.status || "approved"}
-                      </span>
-                    </div>
-                    <h2 className="text-base sm:text-xl font-black mt-1">
-                      {adminPreviewCase.title}
-                    </h2>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      const caseToEdit = adminPreviewCase;
-                      setAdminPreviewCase(null);
-                      handleStartFullEdit(caseToEdit);
-                    }}
-                    className="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-700 text-white hover:bg-slate-600 transition-colors"
-                  >
-                    ✏️ Edit Case
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setAdminPreviewCase(null)}
-                    className="px-3 py-1.5 rounded-lg text-xs font-black bg-rose-600 text-white hover:bg-rose-700 transition-colors"
-                  >
-                    ✕ Close Preview
-                  </button>
-                </div>
-              </div>
-
-              {/* 2-Column Split View Preview */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-                {/* Left Column: NeuroImaging Viewer */}
-                <div className="lg:col-span-7">
-                  <NeuroImagingViewer
-                    imagingList={adminPreviewCase.presentation.imaging}
-                    isSolved={true}
-                    darkMode={darkMode}
-                  />
-                </div>
-
-                {/* Right Column: Vignette & MCQ with highlighted correct answer */}
-                <div className="lg:col-span-5 space-y-4 text-xs sm:text-sm">
-                  <div className="space-y-2">
-                    <span className="text-[11px] font-black uppercase tracking-wider text-slate-400 block">
-                      Clinical Vignette (HPI, Exam &amp; Labs)
-                    </span>
-                    <p className="leading-relaxed text-slate-700 dark:text-slate-300">
-                      {adminPreviewCase.presentation.history_of_present_illness}{" "}
-                      {adminPreviewCase.presentation.neuro_exam}{" "}
-                      {adminPreviewCase.presentation.key_labs_csf}
-                    </p>
-                  </div>
-
-                  <div className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 text-xs space-y-1.5 bg-slate-50/50 dark:bg-slate-800/30">
-                    {adminPreviewCase.presentation.demographics && (
-                      <div>
-                        <strong>Demographics: </strong> {adminPreviewCase.presentation.demographics}
-                      </div>
-                    )}
-                    {adminPreviewCase.presentation.past_medical_history && (
-                      <div>
-                        <strong>PMH: </strong> {adminPreviewCase.presentation.past_medical_history}
-                      </div>
-                    )}
-                    {hasVitals(adminPreviewCase.presentation.vitals) && (
-                      <div>
-                        <strong>Vitals: </strong> BP {adminPreviewCase.presentation.vitals?.bp} • HR{" "}
-                        {adminPreviewCase.presentation.vitals?.hr} • RR{" "}
-                        {adminPreviewCase.presentation.vitals?.rr} • Temp{" "}
-                        {adminPreviewCase.presentation.vitals?.temp} • SpO2{" "}
-                        {adminPreviewCase.presentation.vitals?.spo2}
-                      </div>
-                    )}
-                  </div>
-
-                  <div>
-                    <span className="text-[11px] font-black uppercase tracking-wider text-slate-400 block mb-1">
-                      Multiple-Choice Question Prompt
-                    </span>
-                    <p className="font-bold text-slate-900 dark:text-white">
-                      {adminPreviewCase.challenge.question}
-                    </p>
-                  </div>
-
-                  <div className="space-y-2 pt-1">
-                    <span className="text-[11px] font-black uppercase tracking-wider text-slate-400 block">
-                      Options &amp; Verified Rationales
-                    </span>
-                    {adminPreviewCase.challenge.options.map((opt) => {
-                      const isCorrect = opt.id === adminPreviewCase.challenge.correct_option;
-                      return (
-                        <div
-                          key={opt.id}
-                          className={`p-3 rounded-xl border text-xs ${
-                            isCorrect
-                              ? "border-emerald-500/70 bg-emerald-500/10 text-emerald-900 dark:text-emerald-300"
-                              : darkMode
-                              ? "border-slate-800 bg-slate-800/40 text-slate-300"
-                              : "border-slate-200 bg-slate-50 text-slate-700"
-                          }`}
-                        >
-                          <div className="flex items-center justify-between font-bold">
-                            <span className="flex items-center gap-1.5">
-                              {isCorrect ? (
-                                <span className="w-4 h-4 rounded-full bg-emerald-600 text-white text-[10px] font-black flex items-center justify-center">
-                                  ✓
-                                </span>
-                              ) : (
-                                <span className="w-4 h-4 rounded-full border border-slate-400 text-[10px] font-bold flex items-center justify-center">
-                                  {opt.id}
-                                </span>
-                              )}
-                              <span>{opt.text}</span>
-                              {isCorrect && (
-                                <strong className="text-emerald-500 text-[11px]">
-                                  (Correct Answer)
-                                </strong>
-                              )}
-                            </span>
-                          </div>
-                          {opt.rationale && (
-                            <p className="text-[11px] mt-1 pl-5.5 opacity-90 leading-snug">
-                              <strong>Rationale: </strong>
-                              {opt.rationale}
-                            </p>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-
-              {/* Resolution & Discussion Preview */}
-              <div className="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-4 text-xs">
-                <div
-                  className={`p-4 rounded-xl border ${
-                    darkMode
-                      ? "bg-emerald-950/20 border-emerald-900/60"
-                      : "bg-emerald-50 border-emerald-200"
-                  }`}
-                >
-                  <span className="text-[10px] font-black uppercase tracking-wider text-emerald-600 dark:text-emerald-400 block mb-1">
-                    Definitive Diagnosis
-                  </span>
-                  <p className="text-base font-black text-emerald-700 dark:text-emerald-300">
-                    {adminPreviewCase.resolution.final_diagnosis}
-                  </p>
-                </div>
-
-                <div className="space-y-1">
-                  <span className="text-[11px] font-black uppercase tracking-wider text-slate-400 block">
-                    Clinical Discussion &amp; Correlation
-                  </span>
-                  <p className="leading-relaxed text-slate-700 dark:text-slate-300">
-                    {adminPreviewCase.resolution.clinical_discussion}
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  <div
-                    className={`p-3.5 rounded-xl border space-y-1.5 ${
-                      darkMode
-                        ? "bg-indigo-950/20 border-indigo-900/50"
-                        : "bg-indigo-50 border-indigo-200"
-                    }`}
-                  >
-                    <span className="font-bold text-indigo-500 block">
-                      💡 High-Yield Teaching Points:
-                    </span>
-                    <ul className="space-y-1">
-                      {adminPreviewCase.resolution.teaching_points.map((pt, i) => (
-                        <li key={i} className="flex items-start gap-1.5">
-                          <span className="text-indigo-500 font-bold">•</span>
-                          <span>{pt}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div
-                    className={`p-3.5 rounded-xl border space-y-1.5 ${
-                      darkMode
-                        ? "bg-rose-950/20 border-rose-900/50"
-                        : "bg-rose-50 border-rose-200"
-                    }`}
-                  >
-                    <span className="font-bold text-rose-500 block">
-                      ⚠️ Clinical Pitfalls:
-                    </span>
-                    <ul className="space-y-1">
-                      {adminPreviewCase.resolution.clinical_pitfalls.map((pf, i) => (
-                        <li key={i} className="flex items-start gap-1.5">
-                          <span className="text-rose-500 font-bold">•</span>
-                          <span>{pf}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                {adminPreviewCase.source_journal && (
-                  <div className="pt-2 text-slate-400 flex items-center justify-between">
-                    <span>
-                      Source: {adminPreviewCase.source_journal.name} (
-                      {adminPreviewCase.source_journal.pub_year})
-                    </span>
-                    {adminPreviewCase.source_journal.doi_url && (
-                      <a
-                        href={adminPreviewCase.source_journal.doi_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-indigo-400 hover:underline"
-                      >
-                        {adminPreviewCase.source_journal.doi_url} ↗
-                      </a>
-                    )}
-                  </div>
-                )}
-              </div>
-
-              {/* Modal Footer with Direct Moderation Actions */}
-              <div className="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
-                <div className="flex flex-wrap items-center gap-2">
-                  {adminPreviewCase.status !== "approved" && (
-                    <button
-                      type="button"
-                      onClick={() => {
-                        handleAdminUpdateStatus(adminPreviewCase.id, "approved", false);
-                        setAdminPreviewCase(null);
-                      }}
-                      className="px-3.5 py-2 rounded-xl text-xs font-black bg-emerald-600 text-white hover:bg-emerald-700"
-                    >
-                      📚 Approve to Case Archive
-                    </button>
-                  )}
-                  <button
-                    type="button"
-                    onClick={() => {
-                      handleAdminUpdateStatus(
-                        adminPreviewCase.id,
-                        "approved",
-                        true,
-                        adminScheduleDates[adminPreviewCase.id] ||
-                          adminPreviewCase.published_date
-                      );
-                      setAdminPreviewCase(null);
-                    }}
-                    className="px-3.5 py-2 rounded-xl text-xs font-black bg-indigo-600 text-white hover:bg-indigo-700"
-                  >
-                    🔥 Publish as Daily Challenge (
-                    {adminScheduleDates[adminPreviewCase.id] ||
-                      adminPreviewCase.published_date}
-                    )
-                  </button>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => setAdminPreviewCase(null)}
-                  className="px-4 py-2 rounded-xl text-xs font-bold border border-slate-600/40 hover:bg-slate-800 text-slate-300"
-                >
-                  Close Preview
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
+        {/* ADMIN CASE PREVIEW MODAL */}
+        <AdminPreviewModal
+          adminPreviewCase={adminPreviewCase}
+          onClose={() => setAdminPreviewCase(null)}
+          darkMode={darkMode}
+          difficultyBadges={DIFFICULTY_BADGES}
+          adminScheduleDates={adminScheduleDates}
+          onStartFullEdit={handleStartFullEdit}
+          onAdminUpdateStatus={handleAdminUpdateStatus}
+        />
       </div>
     </main>
   );
