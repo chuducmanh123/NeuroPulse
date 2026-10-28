@@ -92,6 +92,17 @@ NEUROIMAGING_CAPTION_REGEX = re.compile(
     re.IGNORECASE
 )
 
+# Bảng luân phiên chuyên khoa theo thứ trong tuần (Day-of-Week Specialty Schedule Matrix)
+WEEKDAY_SPECIALTY_SCHEDULE = {
+    0: "Vascular & Stroke",        # Thứ 2: Đột quỵ & Mạch máu não
+    1: "Neuromuscular",            # Thứ 3: Bệnh thần kinh cơ & thần kinh ngoại biên
+    2: "Epilepsy",                 # Thứ 4: Động kinh & Điện não lâm sàng
+    3: "Neuroimmunology",          # Thứ 5: Miễn dịch thần kinh (MS, NMOSD, MOGAD, Viêm não tự miễn)
+    4: "Movement Disorders",       # Thứ 6: Rối loạn vận động & Sa sút trí tuệ
+    5: "Neurocritical Care",       # Thứ 7: Hồi sức thần kinh & Chấn thương sọ não
+    6: "Cognitive & Dementia",     # Chủ nhật: Nhận thức, Sa sút trí tuệ & Thần kinh hiếm gặp
+}
+
 # Ngân hàng chủ đề ca lâm sàng Thần kinh & Đột quỵ đa dạng (mở rộng truy vấn toàn bài thay vì chỉ TITLE)
 CLINICAL_CASE_TOPIC_BANK = [
     {
@@ -348,11 +359,18 @@ def extract_figures_and_text_from_pmc(pmcid: str, doi: str, pmid: str, title: st
     }
 
 
-def find_new_pmc_candidate(used_pmcids: set, day_index: int):
-    """Duyệt qua ngân hàng chủ đề lâm sàng trên các tạp chí uy tín để tìm 1 ca bệnh PMC mới có hình ảnh thần kinh."""
-    total_topics = len(CLINICAL_CASE_TOPIC_BANK)
+def find_new_pmc_candidate(used_pmcids: set, day_index: int, target_subspecialty: str = None):
+    """Duyệt qua ngân hàng chủ đề lâm sàng trên các tạp chí uy tín để tìm 1 ca bệnh PMC mới có hình ảnh thần kinh, ưu tiên theo chuyên khoa luân phiên của ngày."""
+    topics = list(CLINICAL_CASE_TOPIC_BANK)
+    if target_subspecialty:
+        # Đưa các chủ đề thuộc chuyên khoa mục tiêu của ngày lên ưu tiên hàng đầu
+        matched_topics = [t for t in topics if t["subspecialty"].lower() == target_subspecialty.lower()]
+        other_topics = [t for t in topics if t["subspecialty"].lower() != target_subspecialty.lower()]
+        topics = matched_topics + other_topics
+
+    total_topics = len(topics)
     for offset in range(total_topics):
-        topic_cfg = CLINICAL_CASE_TOPIC_BANK[(day_index + offset) % total_topics]
+        topic_cfg = topics[(day_index + offset) % total_topics]
         full_query = f"({topic_cfg['query']}) AND ({HIGH_IMPACT_JOURNAL_FILTER}) AND OPEN_ACCESS:y"
         encoded = urllib.parse.quote(full_query)
         search_url = (
@@ -404,10 +422,11 @@ def find_new_pmc_candidate(used_pmcids: set, day_index: int):
 
 def validate_case_quality(case: dict) -> tuple[bool, str]:
     """Kiểm tra chất lượng học thuật và cấu trúc câu hỏi của ca lâm sàng:
-    1. Câu hỏi không được hỏi 2 ý (không chứa ' and the ', ' as well as the ').
-    2. Tên chẩn đoán cuối không được lộ trong tiêu đề hoặc câu hỏi.
-    3. question_type phải hợp lệ.
-    4. 4 options A, B, C, D phải có nội dung và correct_option phải hợp lệ.
+    1. Câu hỏi không được hỏi 2 ý (không chứa ' and the ', ' as well as ').
+    2. Tên chẩn đoán cuối không được lộ trong tiêu đề, câu hỏi, HPI hoặc chief complaint.
+    3. Tự động kiểm tra và làm sạch caption/findings của hình ảnh để không lộ đáp án.
+    4. question_type phải hợp lệ.
+    5. 4 options A, B, C, D phải có nội dung và correct_option phải hợp lệ.
     """
     challenge = case.get("challenge") or {}
     q_text = challenge.get("question", "")
@@ -415,7 +434,10 @@ def validate_case_quality(case: dict) -> tuple[bool, str]:
     correct_opt = challenge.get("correct_option", "")
     options = challenge.get("options", [])
     title = case.get("title", "")
-    final_diag = case.get("resolution", {}).get("final_diagnosis", "")
+    pres = case.get("presentation", {})
+    hpi = pres.get("history_of_present_illness", "")
+    cc = pres.get("chief_complaint", "")
+    final_diag = case.get("resolution", {}).get("final_diagnosis", "").strip()
 
     if q_type not in ("Diagnosis", "Acute Management", "Next Best Step", "Localization"):
         return False, f"Invalid question_type: {q_type}"
@@ -423,21 +445,37 @@ def validate_case_quality(case: dict) -> tuple[bool, str]:
     if len(options) != 4 or correct_opt not in ("A", "B", "C", "D"):
         return False, "Options count is not 4 or correct_option invalid"
 
-    # Kiểm tra hỏi kép 2 ý
-    if re.search(r"\band\s+(?:the\s+)?(?:optimal|most\s+appropriate|next\s+step|management|treatment|diagnostic)\b", q_text, re.IGNORECASE):
+    # 1. Kiểm tra hỏi kép 2 ý (Compound double-barrel question)
+    if re.search(r"\band\s+(?:the\s+)?(?:optimal|most\s+appropriate|next\s+step|management|treatment|diagnostic|therapeutic)\b", q_text, re.IGNORECASE):
         return False, "Compound double-barrel question detected (asking both diagnosis and management)"
+    if re.search(r"\bas\s+well\s+as\s+(?:the\s+)?", q_text, re.IGNORECASE):
+        return False, "Compound question detected ('as well as')"
 
-    # Kiểm tra lộ đáp án trong câu hỏi
-    if len(final_diag) > 4 and final_diag.lower() in q_text.lower():
-        return False, "Final diagnosis appears inside the question text (answer leakage)"
+    # 2. Kiểm tra lộ chẩn đoán cuối trong tiêu đề, câu hỏi, HPI, chief complaint
+    if len(final_diag) > 4:
+        diag_lower = final_diag.lower()
+        if diag_lower in q_text.lower():
+            return False, "Final diagnosis appears inside the question text (answer leakage)"
+        if diag_lower in title.lower():
+            return False, "Final diagnosis appears inside the title"
+        if diag_lower in cc.lower():
+            return False, "Final diagnosis appears inside the chief complaint"
+
+        # 3. Làm sạch caption và findings_summary nếu lỡ chứa tên chẩn đoán cuối
+        for img in pres.get("imaging", []):
+            if "caption" in img and diag_lower in img["caption"].lower():
+                img["caption"] = re.sub(re.escape(final_diag), "characteristic pathology", img["caption"], flags=re.IGNORECASE)
+            if "findings_summary" in img and diag_lower in img["findings_summary"].lower():
+                img["findings_summary"] = re.sub(re.escape(final_diag), "the primary abnormality", img["findings_summary"], flags=re.IGNORECASE)
 
     return True, "Passed"
 
 
 def critique_and_refine_with_gemini(raw_case_json: dict) -> dict:
     """Lượt 2: Gemini đóng vai trò Senior Board Examiner phản biện và hoàn thiện ca bệnh:
-    - Loại bỏ hỏi 2 ý.
-    - Đảm bảo câu hỏi tập trung vào đúng 1 khía cạnh.
+    - Loại bỏ hỏi 2 ý (Single-focus rule).
+    - Đảm bảo câu hỏi tập trung vào đúng 1 khía cạnh (Diagnosis only, Management only, etc.).
+    - Đảm bảo tiêu đề, câu hỏi, HPI và CAPTION hình ảnh tuyệt đối không lộ chẩn đoán cuối.
     - Đảm bảo 4 đáp án đồng nhất và đáp án đúng duy nhất.
     """
     if not GEMINI_API_KEY:
@@ -447,10 +485,13 @@ def critique_and_refine_with_gemini(raw_case_json: dict) -> dict:
 Review the following draft clinical case vignette and MCQ:
 {json.dumps(raw_case_json, indent=2)}
 
-TASK:
-1. Ensure the question asks strictly ONE concept (e.g. Diagnosis only, or Management only, NEVER both).
-2. Ensure the title and question DO NOT reveal the final diagnosis or correct answer.
-3. Ensure the 4 options are clinically plausible, mutually exclusive, of identical syntactic form, and that option "{raw_case_json.get('challenge', {}).get('correct_option', 'A')}" is undeniably the best choice.
+EXAMINER REVIEW CHECKLIST (REVISE AS NEEDED):
+1. SINGLE-FOCUS QUESTION: Ensure the question asks strictly ONE clinical concept (e.g. Diagnosis only, or Management only, NEVER both 'diagnosis and management'). No 'and the...' or 'as well as...'.
+2. ZERO ANSWER LEAKAGE:
+   - Ensure the title (`title`) DOES NOT contain the final diagnosis or correct option.
+   - Ensure the question (`question`) DOES NOT mention or hint at the final diagnosis.
+   - Ensure all figure captions (`imaging[].caption`) and findings summaries (`imaging[].findings_summary`) describe purely anatomical and radiological features WITHOUT naming the final diagnosis.
+3. HOMOGENEOUS OPTIONS: Ensure the 4 options are clinically plausible, mutually exclusive, grammatically parallel, and that option "{raw_case_json.get('challenge', {}).get('correct_option', 'A')}" is undeniably the best choice.
 4. Output the perfected case in 100% valid JSON matching the exact same schema. No markdown formatting outside the JSON."""
 
     payload = {
@@ -631,11 +672,11 @@ CRITICAL DESIGN RULES:
                         "subspecialties": parsed.get("subspecialties") or [candidate["default_subspecialty"]],
                         "difficulty": parsed.get("difficulty") if parsed.get("difficulty") in ("Resident", "Fellow", "Attending") else "Fellow",
                         "estimated_time_sec": int(parsed.get("estimated_time_sec") or 110),
-                        "is_daily_challenge": is_daily,
-                        "archive_only": not is_daily,
+                        "is_daily_challenge": False,
+                        "archive_only": True,
                         "published_date": today_str,
-                        "status": "approved",
-                        "author_credit": f"{candidate['journal_title']} • {candidate['pmcid']}",
+                        "status": "pending",
+                        "author_credit": f"{candidate['journal_title']} • {candidate['pmcid']} (Pending Admin Review)",
                         "source_journal": {
                             "name": candidate["journal_title"],
                             "short_name": candidate["journal_short"],
@@ -786,11 +827,11 @@ def build_structured_clinical_case_deterministic(candidate: dict, next_case_num:
         "subspecialties": [candidate["default_subspecialty"]],
         "difficulty": "Fellow",
         "estimated_time_sec": 110,
-        "is_daily_challenge": is_daily,
-        "archive_only": not is_daily,
+        "is_daily_challenge": False,
+        "archive_only": True,
         "published_date": today_str,
-        "status": "approved",
-        "author_credit": f"{candidate['journal_title']} • {candidate['pmcid']}",
+        "status": "pending",
+        "author_credit": f"{candidate['journal_title']} • {candidate['pmcid']} (Pending Admin Review)",
         "source_journal": {
             "name": candidate["journal_title"],
             "short_name": candidate["journal_short"],
@@ -845,6 +886,8 @@ def run():
     today_dt = datetime.now(vn_tz)
     today_str = today_dt.strftime("%Y-%m-%d")
     day_index = today_dt.timetuple().tm_yday
+    weekday = today_dt.weekday()
+    target_subspecialty = WEEKDAY_SPECIALTY_SCHEDULE.get(weekday, "Vascular & Stroke")
 
     used_pmcids = set()
     max_num = 0
@@ -869,62 +912,41 @@ def run():
         and c.get("status", "approved") == "approved"
         for c in existing_cases
     )
-    has_archive_today = any(
+    has_pending_today = any(
         c.get("published_date") == today_str
-        and c.get("archive_only") is True
-        and c.get("status", "approved") == "approved"
+        and c.get("status") == "pending"
         for c in existing_cases
     )
 
-    print(f"-> Ngày hiện tại (UTC+7): {today_str} | Hiện có {len(existing_cases)} ca ({len(used_pmcids)} PMCID đã dùng).")
-    print(f"-> Trạng thái cập nhật ngày {today_str}: Daily Challenge = {'✅ Đã có' if has_daily_today else '⏳ Chưa có'} | Case Archive = {'✅ Đã có' if has_archive_today else '⏳ Chưa có'}")
+    print(f"-> Ngày hiện tại (UTC+7): {today_str} ({today_dt.strftime('%A')}) | Hiện có {len(existing_cases)} ca ({len(used_pmcids)} PMCID đã dùng).")
+    print(f"-> Luân phiên chuyên khoa mục tiêu: ⭐ {target_subspecialty}")
+    print(f"-> Trạng thái cập nhật ngày {today_str}: Daily Challenge Approved = {'✅ Đã có' if has_daily_today else '⏳ Chưa duyệt'} | Pending Review Queue = {'✅ Đã sẵn sàng' if has_pending_today else '⏳ Chưa có'}")
 
-    if has_daily_today and has_archive_today:
+    if has_daily_today or has_pending_today:
         save_cases_to_disk(existing_cases)
-        print(f"[NeuroCase 2/3] ✅ Đã đủ 2 ca (1 Daily + 1 Archive) cho ngày {today_str}. Không cần tìm thêm.")
+        print(f"[NeuroCase 2/3] ✅ Ngày {today_str} đã có ca bệnh chuẩn bị sẵn (hoặc đã duyệt). Không cần tạo thêm ca pending.")
         return
 
     newly_added = []
 
-    # 1. Cập nhật 1 ca Daily Challenge nếu ngày hôm nay chưa có
-    if not has_daily_today:
-        print(f"[NeuroCase 2/3] 🎯 Đang tìm ca bệnh Open Access mới làm Daily Challenge cho ngày {today_str}...")
-        cand_daily = find_new_pmc_candidate(used_pmcids, day_index)
-        if cand_daily:
-            used_pmcids.add(cand_daily["pmcid"].strip())
-            max_num += 1
-            print(f"   -> Ứng viên Daily: {cand_daily['pmcid']} ({cand_daily['journal_title']}) - {len(cand_daily['figures'])} hình ảnh.")
-            case_daily = None
-            if GEMINI_API_KEY:
-                print("   -> Đang gọi Gemini AI biên soạn Daily Challenge...")
-                case_daily = generate_clinical_case_with_gemini(cand_daily, max_num, today_str, is_daily=True)
-            if not case_daily or not case_daily.get("challenge") or not case_daily.get("resolution"):
-                print("   -> Dùng bộ biên soạn lâm sàng tự động cho Daily Challenge...")
-                case_daily = build_structured_clinical_case_deterministic(cand_daily, max_num, today_str, is_daily=True)
+    # Tạo 1 ca bệnh mới ở trạng thái Pending cho Admin kiểm duyệt (Đề xuất 3)
+    print(f"[NeuroCase 2/3] 🎯 Đang tìm ca bệnh Open Access mới thuộc chuyên khoa {target_subspecialty}...")
+    cand_daily = find_new_pmc_candidate(used_pmcids, day_index, target_subspecialty=target_subspecialty)
+    if cand_daily:
+        used_pmcids.add(cand_daily["pmcid"].strip())
+        max_num += 1
+        print(f"   -> Ứng viên: {cand_daily['pmcid']} ({cand_daily['journal_title']}) - {len(cand_daily['figures'])} hình ảnh thần kinh đạt chuẩn.")
+        case_daily = None
+        if GEMINI_API_KEY:
+            print("   -> Đang gọi Gemini AI biên soạn ca lâm sàng (2-Pass Review)...")
+            case_daily = generate_clinical_case_with_gemini(cand_daily, max_num, today_str, is_daily=False)
+        if not case_daily or not case_daily.get("challenge") or not case_daily.get("resolution"):
+            print("   -> Dùng bộ biên soạn lâm sàng tất định cho ca bệnh mới...")
+            case_daily = build_structured_clinical_case_deterministic(cand_daily, max_num, today_str, is_daily=False)
 
-            if case_daily:
-                newly_added.append(case_daily)
-                print(f"   ✨ Đã xuất bản Daily Challenge [{case_daily['case_code']}]: {case_daily['title']}")
-
-    # 2. Cập nhật 1 ca Case Archive nếu ngày hôm nay chưa có
-    if not has_archive_today:
-        print(f"[NeuroCase 2/3] 📚 Đang tìm ca bệnh Open Access mới lưu trữ trực tiếp vào Case Archive cho ngày {today_str}...")
-        cand_archive = find_new_pmc_candidate(used_pmcids, day_index + 17)
-        if cand_archive:
-            used_pmcids.add(cand_archive["pmcid"].strip())
-            max_num += 1
-            print(f"   -> Ứng viên Archive: {cand_archive['pmcid']} ({cand_archive['journal_title']}) - {len(cand_archive['figures'])} hình ảnh.")
-            case_archive = None
-            if GEMINI_API_KEY:
-                print("   -> Đang gọi Gemini AI biên soạn Archive Case...")
-                case_archive = generate_clinical_case_with_gemini(cand_archive, max_num, today_str, is_daily=False)
-            if not case_archive or not case_archive.get("challenge") or not case_archive.get("resolution"):
-                print("   -> Dùng bộ biên soạn lâm sàng tự động cho Archive Case...")
-                case_archive = build_structured_clinical_case_deterministic(cand_archive, max_num, today_str, is_daily=False)
-
-            if case_archive:
-                newly_added.append(case_archive)
-                print(f"   📚 Đã xuất bản Archive Case [{case_archive['case_code']}]: {case_archive['title']}")
+        if case_daily:
+            newly_added.append(case_daily)
+            print(f"   ✨ Đã đưa vào hàng đợi Pending Review [{case_daily['case_code']}]: {case_daily['title']} (Chờ Admin duyệt)")
 
     if newly_added:
         updated_cases = newly_added + existing_cases
