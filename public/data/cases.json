@@ -1,5 +1,222 @@
 [
   {
+    "id": "nc-2026-011",
+    "case_code": "NC-2026-011",
+    "title": "Acute Onset Seizures, Confusion, and Memory Disorders with Concomitant Viral and Autoantibody Detection",
+    "subspecialty": "Neuroimmunology",
+    "subspecialties": [
+      "Neuroimmunology",
+      "Neuroinfectious Disease"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-10-28",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13267647",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-04926-1",
+      "pmcid": "PMC13267647",
+      "pmid": "42057016",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "42-year-old male",
+      "chief_complaint": "Acute onset seizures, headache, and progressive confusion",
+      "history_of_present_illness": "The patient presented with a less than 72-hour history of acute headache, generalized tonic-clonic seizures, rapid-onset psychosis, and profound short-term memory impairment. He had no prior history of neurologic disorders but rapidly deteriorated, prompting emergency admission and urgent neuroimaging and cerebrospinal fluid analysis.",
+      "past_medical_history": "No significant past medical history.",
+      "vitals": {
+        "bp": "125/80 mmHg",
+        "hr": "92 bpm",
+        "rr": "18 /min",
+        "temp": "38.5 °C",
+        "spo2": "97%"
+      },
+      "neuro_exam": "Disoriented to time and place, impaired short-term memory, prominent psychiatric agitation, and bilateral temporal lobe signs without focal motor deficits.",
+      "key_labs_csf": "CSF analysis showed lymphocytic pleocytosis and elevated protein consistent with encephalitis. Metagenomic next-generation sequencing (mNGS) of CSF detected viral CNS infection, while cytometric bead array confirmed the presence of neuronal autoantibodies within the initial 72-hour window.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (Axial T2 and FLAIR)",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13267647)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13267647_fig1.jpg",
+          "pmcid": "PMC13267647",
+          "doi_url": "https://doi.org/10.1186/s12883-026-04926-1",
+          "caption": "MRI brain images 6 OPE patients. A1 and A2 High intensities of T2 and T2 FLAIR in the BTL of CASPR2-IgG antibodies and HSV-1 encephalitis patient. B1 and B2 High intensities T2 and DWI in the BTL of NMDA-R-IgG antibodies and EBV encephalitis patient. C1 and C2 High intensities of DWI and T2 FLAIR in the BTL and IC of NMDA-R-IgG antibodies and EBV encephalitis patient. D1 and D2 Small focal demyelinating changes of centrum semiovale on T2 in mGluR5-IgG antibodies and HSV-1 encephalitis patient. E1 and E2 High intensities of T2 FLAIR and T2 in the BTL of CASPR2-IgG antibodies and HSV-1 encephali",
+          "findings_summary": "Demonstrated high T2 and FLAIR signal intensities bilaterally in the temporal lobes and insular cortex."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "D",
+      "options": [
+        {
+          "id": "A",
+          "text": "Classic post-infectious biphasic autoimmune encephalitis",
+          "peer_percentage": 12,
+          "rationale": "Incorrect. Classic biphasic encephalitis typically emerges weeks to months after the initial viral infection rather than presenting concurrently within the first 72 hours."
+        },
+        {
+          "id": "B",
+          "text": "Isolated viral herpes simplex encephalitis",
+          "peer_percentage": 15,
+          "rationale": "Incorrect. While viral pathogens are detected, the simultaneous presence of neuronal autoantibodies indicates an immune-mediated co-pathology rather than isolated viral destruction."
+        },
+        {
+          "id": "C",
+          "text": "Primary psychiatric disorder with incidental viral shedding",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. The acute inflammatory CSF profile, MRI abnormalities, and documented autoantibodies rule out a primary psychiatric etiology."
+        },
+        {
+          "id": "D",
+          "text": "Overlapping peak encephalitis (coincidence condition)",
+          "peer_percentage": 68,
+          "rationale": "Correct! Overlapping Peak Encephalitis (OPE) is defined by the concomitant detection of viral CNS infection and neuronal autoantibodies within a narrow 72-hour window from symptom onset, representing a distinct clinical entity from delayed biphasic autoimmune encephalitis."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Overlapping Peak Encephalitis (OPE) / Coincidence Condition",
+      "clinical_discussion": "Overlapping Peak Encephalitis (OPE), also conceptualized as a coincidence condition, is defined by the concomitant detection of evidence of viral CNS infection (via mNGS) and neuronal autoantibodies (via cytometric bead array) within 72 hours of symptom onset. This distinguishes OPE from traditional biphasic encephalitis, where autoimmune responses typically emerge weeks to months following a viral trigger. The narrow time window underscores an acute, highly synchronous pathophysiological process.\n\nPatients with OPE often present with prominent clinical manifestations such as headache, seizures, psychosis, and memory disorders, accompanied by aseptic or viral CSF features and bilateral temporal lobe imaging abnormalities. Recognizing this entity is critical because timely diagnosis requires a combination of antiviral therapy and early immunomodulatory interventions to significantly improve clinical outcomes.",
+      "teaching_points": [
+        "Overlapping Peak Encephalitis (OPE) is characterized by the concurrent detection of viral pathogens (via mNGS) and neuronal autoantibodies within 72 hours of symptom onset.",
+        "OPE differs pathophysiologically from classic biphasic encephalitis, which develops weeks to months after the primary viral infection.",
+        "Simultaneous testing for both viral pathogens and neuronal autoantibodies in acute encephalitis presentations is vital for timely diagnosis and combined antiviral-immunomodulatory therapy."
+      ],
+      "clinical_pitfalls": [
+        "Assuming that antibody-mediated encephalitis only occurs weeks after viral clearance, thereby missing acute concomitant autoimmune triggers.",
+        "Failing to perform metagenomic next-generation sequencing alongside autoantibody panels in patients presenting with acute limbic encephalitis features."
+      ],
+      "related_keywords": [
+        "Overlapping peak encephalitis",
+        "Viral encephalitis",
+        "Neuronal autoantibodies",
+        "Metagenomic next-generation sequencing",
+        "Biphasic encephalitis"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-012",
+    "case_code": "NC-2026-012",
+    "title": "Post-Infectious Cranial Polyneuropathy and Limb Sensory Disturbance Following Varicella-Zoster Virus Exposure",
+    "subspecialty": "Neuromuscular",
+    "subspecialties": [
+      "Neuromuscular",
+      "Neuroimmunology",
+      "Neuroinfections"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 120,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-10-28",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13321475",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-04938-x",
+      "pmcid": "PMC13321475",
+      "pmid": "42098679",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "46-year-old female",
+      "chief_complaint": "Acute bilateral facial palsy and limb sensory disturbances",
+      "history_of_present_illness": "The patient presented with acute bilateral facial palsy and lower limb numbness developing 16 days after a primary varicella-zoster virus (VZV) infection characterized by a widespread vesicular rash and high-grade fever. Despite oral acyclovir therapy, she developed persistent lower limb numbness on Day 9, sequential right-sided peripheral facial palsy on Day 12, and left-sided peripheral facial palsy with worsening sensory symptoms by Day 15.",
+      "past_medical_history": "No significant prior neurological illnesses; primary VZV exposure from close household contact.",
+      "vitals": {
+        "bp": "125/80 mmHg",
+        "hr": "78 bpm",
+        "rr": "18 /min",
+        "temp": "36.5 °C",
+        "spo2": "99% on room air"
+      },
+      "neuro_exam": "Residual dark red oval-shaped macules on trunk and face. Bilateral symmetrical peripheral facial palsy with loss of forehead wrinkles, incomplete eyelid closure, and flattened nasolabial folds. Speech slightly slurred with mild trismus. Muscle strength 5/5 in all limbs, but tendon reflexes diminished globally. Babinski’s sign negative. Sensory exam revealed stocking-distribution limb sensory deficits.",
+      "key_labs_csf": "CSF analysis showed albuminocytological dissociation (protein 1.1 g/L, normal cell count), type II oligoclonal bands, and increased QAlb. Serum anti-GD3 IgG was positive at 52 AU. VZV IgM and IgG were positive.",
+      "imaging": [
+        {
+          "modality": "Trunk and Cranial Clinical Photography",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13321475)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13321475_fig1.jpg",
+          "pmcid": "PMC13321475",
+          "doi_url": "https://doi.org/10.1186/s12883-026-04938-x",
+          "caption": "Patient’s residual varicella vesicles on admission. Panel A displays residual varicella vesicles on the patient’s trunk, and Panel B shows those on the head/face upon admission. These lesions measure 3–5 mm in diameter, presenting as oval-shaped eruptions with surrounding erythema and central umbilication—consistent with typical residual lesions of primary VZV infection",
+          "findings_summary": "Demonstrates 3–5 mm oval-shaped residual varicella eruptions with surrounding erythema and central umbilication on the trunk, head, and face."
+        },
+        {
+          "modality": "Brain MRI with Contrast (Coronal and Axial)",
+          "sequence_badge": "Figure 2 • BMC neurology (PMC13321475)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC13321475_fig2.jpg",
+          "pmcid": "PMC13321475",
+          "doi_url": "https://doi.org/10.1186/s12883-026-04938-x",
+          "caption": "Cranial MRI: bilateral facial nerve enhancement. Displays contrast-enhanced cranial MRI images: Panel A corresponds to the coronal sequence, and Panel B to the axial sequence. Arrows indicate prominent abnormal enhancement of the bilateral facial nerves (labyrinthine segment), suggesting neuroinflammatory changes in the affected area",
+          "findings_summary": "Reveals prominent abnormal enhancement of the bilateral facial nerves at the labyrinthine segments."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "A",
+      "options": [
+        {
+          "id": "A",
+          "text": "Variant Guillain-Barré syndrome (GD3 antibody-positive)",
+          "peer_percentage": 74,
+          "rationale": "Correct! The patient's clinical presentation of post-infectious demyelinating polyneuropathy with bilateral facial palsy, areflexia, CSF albuminocytological dissociation, and elevated serum anti-GD3 IgG antibodies confirms a variant Guillain-Barré syndrome triggered by VZV."
+        },
+        {
+          "id": "B",
+          "text": "Acute disseminated encephalomyelitis (ADEM)",
+          "peer_percentage": 12,
+          "rationale": "Incorrect. ADEM typically presents with multifocal central nervous system signs and encephalopathy rather than isolated peripheral nerve findings and albuminocytological dissociation."
+        },
+        {
+          "id": "C",
+          "text": "Direct VZV cranial polyneuritis and meningoradiculitis",
+          "peer_percentage": 9,
+          "rationale": "Incorrect. While VZV can directly affect cranial nerves, the generalized areflexia, symmetric limb sensory deficits, demyelinating electrophysiology, and cerebrospinal fluid albuminocytological dissociation point specifically toward an immune-mediated polyradiculoneuropathy."
+        },
+        {
+          "id": "D",
+          "text": "Miller Fisher syndrome",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. Miller Fisher syndrome classically presents with the triad of ophthalmoplegia, ataxia, and areflexia, usually associated with anti-GQ1b antibodies, rather than bilateral facial palsy and prominent sensory deficits with GD3 positivity."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Varicella-zoster virus-triggered GD3 antibody-positive variant Guillain-Barré syndrome",
+      "clinical_discussion": "Guillain-Barré syndrome (GBS) is an acute immune-mediated polyneuropathy typically triggered by preceding infections that elicit aberrant cross-reactivity against peripheral nerve gangliosides via molecular mimicry. While Campylobacter jejuni and Cytomegalovirus are common antecedents, Varicella-zoster virus (VZV) is a rare trigger for GBS variants. Anti-ganglioside antibodies such as anti-GD3 are infrequent markers associated with distinct clinical phenotypes, including prominent cranial nerve involvement (such as bilateral facial diplegia) and sensory disturbances.\n\nDiagnosis relies on recognizing the characteristic clinical timeline of post-infectious neurological deficits, cerebrospinal fluid albuminocytological dissociation, nerve conduction evidence of demyelination or axonal loss, and specific antiganglioside serology. Contrast-enhanced MRI can also demonstrate neuroinflammatory enhancement of affected cranial nerves. Intravenous immunoglobulin (IVIg) or plasma exchange remains the cornerstone of therapy, leading to significant clinical improvement in these post-infectious immune-mediated neuropathies.",
+      "teaching_points": [
+        "VZV can occasionally serve as an antecedent trigger for immune-mediated peripheral neuropathies such as Guillain-Barré syndrome.",
+        "Anti-GD3 IgG antibodies are a rare variant marker associated with cranial nerve predominance and sensory disturbances in GBS.",
+        "Cerebrospinal fluid albuminocytological dissociation combined with bilateral peripheral facial palsy and diminished reflexes should prompt evaluation for GBS variants."
+      ],
+      "clinical_pitfalls": [
+        "Attributing all cranial neuropathies following a viral rash solely to direct neurotropic viral invasion or Bell's palsy, thereby missing a generalized immune-mediated polyneuropathy.",
+        "Failing to check comprehensive antiganglioside antibody panels when rare GBS variants with atypical clinical features are suspected."
+      ],
+      "related_keywords": [
+        "Guillain-Barré syndrome",
+        "Varicella-zoster virus",
+        "GD3 antibody",
+        "Bilateral facial palsy",
+        "Albuminocytological dissociation"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-010",
     "case_code": "NC-2026-010",
     "title": "Isolated Freezing of Gait with Parietal Cortical Atrophy and Preserved Dopamine Transporter Binding",
