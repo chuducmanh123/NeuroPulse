@@ -8,6 +8,7 @@ import { AppSwitcher } from "../../components/ecosystem/AppSwitcher";
 import { NeuroImagingViewer } from "../../components/neurocase/NeuroImagingViewer";
 import { CaseChallenge } from "../../components/neurocase/CaseChallenge";
 import { AdminAuthModal } from "../../components/neurocase/modals/AdminAuthModal";
+import { ExamTab } from "../../components/neurocase/tabs/ExamTab";
 import {
   extractClinicalCaseFromArticleText,
   extractTextFromUploadedDocument,
@@ -1765,297 +1766,28 @@ export default function NeuroCasePage() {
             TAB 3: BOARD EXAM SIMULATION (TIMED MODE)
            ===================================================================== */}
         {!loading && activeTab === "exam" && (
-          <div
-            className={`p-6 rounded-2xl border ${
-              darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
-            }`}
-          >
-            {!examStarted ? (
-              <div className="text-center max-w-2xl mx-auto py-6 space-y-6">
-                <div className="space-y-2">
-                  <span className="text-4xl">⏱️</span>
-                  <h2 className="text-xl font-black">Exam Simulation Mode</h2>
-                  <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed max-w-lg mx-auto">
-                    Timed clinical vignettes with a <strong>90-second per case</strong> countdown timer.
-                    Select one or multiple subspecialty domains below to customize your board exam block.
-                  </p>
-                </div>
-
-                {/* Subspecialty Domain Multi-Selection */}
-                <div
-                  className={`p-4 rounded-2xl border text-left space-y-3 ${
-                    darkMode ? "bg-slate-950/60 border-slate-800" : "bg-slate-50/80 border-slate-200"
-                  }`}
-                >
-                  <div className="flex flex-wrap items-center justify-between gap-2">
-                    <span className="text-xs font-black uppercase text-indigo-500 flex items-center gap-1.5">
-                      <span>🎯</span>
-                      <span>
-                        Subspecialty Domains (
-                        {examSelectedSpecialties.length === 0
-                          ? "All Domains Selected"
-                          : `${examSelectedSpecialties.length} Selected`}
-                        )
-                      </span>
-                    </span>
-                    <div className="flex items-center gap-2">
-                      <button
-                        type="button"
-                        onClick={() => setExamSelectedSpecialties([])}
-                        className="text-[11px] font-bold text-indigo-500 hover:underline"
-                      >
-                        Select All
-                      </button>
-                      <span className="text-slate-400 text-xs">|</span>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          const first = SUBSPECIALTY_TABS.find((t) => t.value !== "All")?.value || "Vascular & Stroke";
-                          setExamSelectedSpecialties([first]);
-                        }}
-                        className="text-[11px] font-bold text-slate-500 hover:underline"
-                      >
-                        Reset to 1st
-                      </button>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-wrap gap-2">
-                    {SUBSPECIALTY_TABS.filter((t) => t.value !== "All").map((tab) => {
-                      const countInSub = approvedCases.filter(
-                        (c) =>
-                          c.subspecialty === tab.value ||
-                          (c.subspecialties && c.subspecialties.includes(tab.value))
-                      ).length;
-                      const isAll = examSelectedSpecialties.length === 0;
-                      const isSelected = isAll || examSelectedSpecialties.includes(tab.value);
-                      const theme = getSpecialtyTheme(tab.value);
-
-                      return (
-                        <button
-                          key={tab.value}
-                          type="button"
-                          onClick={() => {
-                            if (isAll) {
-                              setExamSelectedSpecialties([tab.value]);
-                            } else if (examSelectedSpecialties.includes(tab.value)) {
-                              const next = examSelectedSpecialties.filter((s) => s !== tab.value);
-                              setExamSelectedSpecialties(next);
-                            } else {
-                              setExamSelectedSpecialties([...examSelectedSpecialties, tab.value]);
-                            }
-                          }}
-                          className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all border flex items-center gap-1.5 ${
-                            isSelected
-                              ? `${theme.badge} ring-1 ring-current shadow-xs`
-                              : darkMode
-                              ? "bg-slate-800/60 border-slate-700/60 text-slate-400 opacity-60 hover:opacity-100"
-                              : "bg-slate-100 border-slate-200 text-slate-500 opacity-60 hover:opacity-100"
-                          }`}
-                        >
-                          <span
-                            className={`w-2 h-2 rounded-full ${
-                              isSelected ? theme.dotColor : "bg-slate-400"
-                            }`}
-                          />
-                          <span>{tab.label}</span>
-                          <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-black/10 dark:bg-white/10 font-black">
-                            {countInSub}
-                          </span>
-                        </button>
-                      );
-                    })}
-                  </div>
-
-                  <div className="flex flex-wrap items-center justify-between text-xs text-slate-500 dark:text-slate-400 pt-1 border-t border-slate-200/60 dark:border-slate-800">
-                    <span>
-                      Question Pool:{" "}
-                      <strong className="text-indigo-500 font-black">{examCasePool.length}</strong> available case{examCasePool.length === 1 ? "" : "s"}
-                    </span>
-                    {examCasePool.length === 0 ? (
-                      <span className="text-rose-500 font-bold">
-                        ⚠️ No approved cases in the selected domains
-                      </span>
-                    ) : (
-                      <span className="text-slate-400">
-                        {Math.round(examCasePool.length * 1.5)} minutes total allotted
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap justify-center gap-3 pt-2">
-                  <button
-                    type="button"
-                    disabled={examCasePool.length === 0}
-                    onClick={() => startBoardExam(Math.min(4, examCasePool.length))}
-                    className="px-5 py-2.5 rounded-xl text-xs font-black bg-indigo-600 text-white hover:bg-indigo-700 disabled:opacity-40 disabled:cursor-not-allowed shadow-sm transition-all"
-                  >
-                    🚀 Quick Block: {Math.min(4, examCasePool.length)} Cases ({Math.round(Math.min(4, examCasePool.length) * 1.5)} min)
-                  </button>
-                  <button
-                    type="button"
-                    disabled={examCasePool.length === 0}
-                    onClick={() => startBoardExam(examCasePool.length)}
-                    className="px-5 py-2.5 rounded-xl text-xs font-black bg-emerald-600 text-white hover:bg-emerald-700 disabled:opacity-40 disabled:cursor-not-allowed shadow-sm transition-all"
-                  >
-                    🏆 Full Block: {examCasePool.length} Cases ({Math.round(examCasePool.length * 1.5)} min)
-                  </button>
-                </div>
-              </div>
-            ) : examFinished ? (
-              <div className="space-y-6">
-                <div className="p-5 rounded-xl bg-gradient-to-r from-indigo-950 to-slate-900 text-white flex flex-wrap items-center justify-between gap-4">
-                  <div>
-                    <span className="text-xs font-bold uppercase text-indigo-300">BOARD EXAM SCORE REPORT</span>
-                    <h3 className="text-2xl font-black mt-1">
-                      Score:{" "}
-                      {
-                        examCaseIds.filter(
-                          (id) =>
-                            examAnswers[id] ===
-                            approvedCases.find((c) => c.id === id)?.challenge.correct_option
-                        ).length
-                      }{" "}
-                      / {examCaseIds.length} Correct
-                    </h3>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => setExamStarted(false)}
-                    className="px-4 py-2 rounded-lg text-xs font-black bg-white text-slate-900"
-                  >
-                    Start New Exam Block ↺
-                  </button>
-                </div>
-
-                <div className="space-y-3">
-                  {examCaseIds.map((id, idx) => {
-                    const c = approvedCases.find((item) => item.id === id);
-                    if (!c) return null;
-                    const userAns = examAnswers[id];
-                    const isRight = userAns === c.challenge.correct_option;
-                    return (
-                      <div
-                        key={id}
-                        className={`p-4 rounded-xl border flex flex-wrap items-center justify-between gap-3 ${
-                          isRight
-                            ? "border-emerald-500/50 bg-emerald-500/10"
-                            : "border-rose-500/50 bg-rose-500/10"
-                        }`}
-                      >
-                        <div>
-                          <span className="text-xs font-black mr-2">
-                            Question {idx + 1} ({c.subspecialty}):
-                          </span>
-                          <span className="text-xs sm:text-sm font-bold">{c.title}</span>
-                          <p className="text-xs mt-1">
-                            Your Answer: <strong>{userAns || "Unanswered"}</strong> | Correct Option:{" "}
-                            <strong className="text-emerald-500">{c.challenge.correct_option}</strong> —{" "}
-                            {c.resolution.final_diagnosis}
-                          </p>
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setActiveCaseId(c.id);
-                            setActiveTab("daily");
-                          }}
-                          className="px-3 py-1.5 rounded-lg text-xs font-bold bg-indigo-600 text-white"
-                        >
-                          Review Full Rationale →
-                        </button>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            ) : (
-              (() => {
-                const examCase = approvedCases.find((c) => c.id === examCaseIds[examCurrentIdx]);
-                if (!examCase) return null;
-                const mins = Math.floor(examTimeLeftSec / 60);
-                const secs = examTimeLeftSec % 60;
-                return (
-                  <div className="space-y-5">
-                    <div className="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-slate-200 dark:border-slate-800">
-                      <span className="text-xs font-black uppercase text-indigo-500">
-                        Question {examCurrentIdx + 1} of {examCaseIds.length} • {examCase.subspecialty}
-                      </span>
-                      <span className="px-3 py-1 rounded-full text-xs font-black bg-rose-600 text-white">
-                        ⏳ {mins}:{secs < 10 ? `0${secs}` : secs}
-                      </span>
-                    </div>
-
-                    <h3 className="text-base font-black">{examCase.title}</h3>
-                    <p className="text-xs sm:text-sm leading-relaxed">
-                      {examCase.presentation.history_of_present_illness}
-                    </p>
-                    <p className="text-xs sm:text-sm leading-relaxed font-medium text-indigo-500">
-                      Neuro Exam: {examCase.presentation.neuro_exam}
-                    </p>
-                    <p className="text-sm font-bold pt-2">{examCase.challenge.question}</p>
-
-                    <div className="space-y-2.5">
-                      {examCase.challenge.options.map((opt) => {
-                        const chosen = examAnswers[examCase.id] === opt.id;
-                        return (
-                          <button
-                            key={opt.id}
-                            type="button"
-                            onClick={() =>
-                              setExamAnswers((prev) => ({ ...prev, [examCase.id]: opt.id }))
-                            }
-                            className={`w-full text-left p-3.5 rounded-xl border text-xs sm:text-sm font-bold flex items-center gap-3 ${
-                              chosen
-                                ? "bg-indigo-600 text-white border-indigo-500"
-                                : darkMode
-                                ? "bg-slate-800 border-slate-700 hover:bg-slate-700"
-                                : "bg-slate-50 border-slate-200 hover:bg-slate-100"
-                            }`}
-                          >
-                            <span className="w-6 h-6 rounded bg-black/20 flex items-center justify-center font-black">
-                              {opt.id}
-                            </span>
-                            <span>{opt.text}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
-
-                    <div className="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-800">
-                      <button
-                        type="button"
-                        disabled={examCurrentIdx === 0}
-                        onClick={() => setExamCurrentIdx((i) => Math.max(0, i - 1))}
-                        className="px-4 py-2 rounded-lg text-xs font-bold border disabled:opacity-40"
-                      >
-                        ← Previous
-                      </button>
-
-                      {examCurrentIdx < examCaseIds.length - 1 ? (
-                        <button
-                          type="button"
-                          onClick={() => setExamCurrentIdx((i) => i + 1)}
-                          className="px-4 py-2 rounded-lg text-xs font-bold bg-indigo-600 text-white"
-                        >
-                          Next Question →
-                        </button>
-                      ) : (
-                        <button
-                          type="button"
-                          onClick={() => setExamFinished(true)}
-                          className="px-5 py-2 rounded-lg text-xs font-black bg-emerald-600 text-white"
-                        >
-                          ✓ Submit &amp; Grade Exam
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                );
-              })()
-            )}
-          </div>
+          <ExamTab
+            darkMode={darkMode}
+            examStarted={examStarted}
+            examFinished={examFinished}
+            examTimeLeftSec={examTimeLeftSec}
+            examCaseIds={examCaseIds}
+            examCurrentIdx={examCurrentIdx}
+            examAnswers={examAnswers}
+            examSelectedSpecialties={examSelectedSpecialties}
+            cases={cases}
+            subspecialtyTabs={SUBSPECIALTY_TABS}
+            onSetSelectedSpecialties={setExamSelectedSpecialties}
+            onSetExamStarted={setExamStarted}
+            onSetExamFinished={setExamFinished}
+            onSetExamCurrentIdx={setExamCurrentIdx}
+            onAnswerExamQuestion={(cId, opt) => setExamAnswers((prev) => ({ ...prev, [cId]: opt }))}
+            onStartExam={() => startBoardExam(Math.min(5, examCasePool.length))}
+            onResetExam={() => {
+              setExamStarted(false);
+              setExamFinished(false);
+            }}
+          />
         )}
 
         {/* =====================================================================
