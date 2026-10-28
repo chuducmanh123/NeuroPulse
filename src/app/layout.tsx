@@ -15,6 +15,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="preconnect" href="https://europepmc.org" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.ncbi.nlm.nih.gov" crossOrigin="anonymous" />
         <script src="https://cdn.tailwindcss.com"></script>
       </head>
       <body className="antialiased text-slate-900 bg-slate-100">{children}</body>

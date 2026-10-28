@@ -256,43 +256,75 @@ export default function NeuroCasePage() {
       setStreakDays(Number(savedStreak) || 1);
     }
 
-    // Tải danh sách ca lâm sàng
-    fetch("/api/neurocase", { cache: "no-store" })
-      .then((r) => {
-        if (!r.ok) throw new Error("HTTP " + r.status);
-        return r.json();
+    const applyCasesData = (loadedCases: ClinicalCase[]) => {
+      const merged = Array.isArray(loadedCases) ? loadedCases : [];
+      setCases(merged);
+
+      const todayIso = getLocalTodayIso();
+      const isDailyCase = (c: ClinicalCase) =>
+        !c.archive_only && c.is_daily_challenge === true;
+
+      const activeDailies = merged
+        .filter(
+          (c) =>
+            (!c.status || c.status === "approved") &&
+            isDailyCase(c) &&
+            c.published_date <= todayIso
+        )
+        .sort((a, b) => b.published_date.localeCompare(a.published_date));
+
+      const firstDaily =
+        activeDailies[0] ||
+        merged
+          .filter((c) => (!c.status || c.status === "approved") && isDailyCase(c))
+          .sort((a, b) => b.published_date.localeCompare(a.published_date))[0] ||
+        merged[0];
+      if (firstDaily) {
+        setActiveCaseId((prev) => prev || firstDaily.id);
+      }
+    };
+
+    // 1. TỐC ĐỘ 0ms: Nạp ngay từ Cache trình duyệt nếu có (Local Cache-First)
+    const cachedCasesStr = localStorage.getItem("neurocase_cached_cases_v2");
+    if (cachedCasesStr) {
+      try {
+        const cached = JSON.parse(cachedCasesStr);
+        if (Array.isArray(cached) && cached.length > 0) {
+          applyCasesData(cached);
+          setLoading(false);
+        }
+      } catch {}
+    }
+
+    // 2. TỐC ĐỘ 30ms: Nạp nhanh từ file tĩnh /data/cases.json của hệ thống (Edge Static)
+    fetch("/data/cases.json")
+      .then((r) => r.json())
+      .then((staticCases: ClinicalCase[]) => {
+        if (Array.isArray(staticCases) && staticCases.length > 0) {
+          applyCasesData(staticCases);
+          setLoading(false);
+        }
       })
-      .catch(() =>
-        fetch("/data/cases.json", { cache: "no-store" }).then((r) => r.json())
-      )
-      .then((loadedCases: ClinicalCase[]) => {
-        const merged = Array.isArray(loadedCases) ? loadedCases : [];
-        setCases(merged);
+      .catch(() => {});
 
-        const todayIso = getLocalTodayIso();
-        const isDailyCase = (c: ClinicalCase) =>
-          !c.archive_only && c.is_daily_challenge === true;
+    // 3. BACKGROUND REVALIDATION: Đồng bộ ngầm với cloud server (/api/neurocase) không khoá màn hình
+    const adminToken =
+      sessionStorage.getItem("neurocase_admin_token") ||
+      localStorage.getItem("neurocase_admin_token") ||
+      "";
+    const headers: Record<string, string> = adminToken ? { "x-admin-token": adminToken } : {};
 
-        const activeDailies = merged
-          .filter(
-            (c) =>
-              (!c.status || c.status === "approved") &&
-              isDailyCase(c) &&
-              c.published_date <= todayIso
-          )
-          .sort((a, b) => b.published_date.localeCompare(a.published_date));
-
-        const firstDaily =
-          activeDailies[0] ||
-          merged
-            .filter((c) => (!c.status || c.status === "approved") && isDailyCase(c))
-            .sort((a, b) => b.published_date.localeCompare(a.published_date))[0] ||
-          merged[0];
-        if (firstDaily) setActiveCaseId(firstDaily.id);
+    fetch("/api/neurocase", { headers })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((cloudCases: ClinicalCase[] | null) => {
+        if (Array.isArray(cloudCases) && cloudCases.length > 0) {
+          applyCasesData(cloudCases);
+          localStorage.setItem("neurocase_cached_cases_v2", JSON.stringify(cloudCases));
+        }
         setLoading(false);
       })
       .catch((err) => {
-        console.error("Error loading NeuroCase data:", err);
+        console.warn("Background server sync skipped, using local data:", err);
         setLoading(false);
       });
   }, []);
@@ -497,15 +529,18 @@ export default function NeuroCasePage() {
     return { totalSolved, correctCount, accuracy };
   }, [progressMap]);
 
-  // Cross-Ecosystem Integration: Lazy-load related literature from NeuroPulse only when case is loaded
+  // Cross-Ecosystem Integration: Lazy-load heavy literature database (537KB) asynchronously after initial render
   useEffect(() => {
     if (!currentCase || articles.length > 0) return;
-    fetch("/data/articles.json")
-      .then((r) => r.json())
-      .then((data) => {
-        if (Array.isArray(data)) setArticles(data);
-      })
-      .catch(() => {});
+    const timer = setTimeout(() => {
+      fetch("/data/articles.json")
+        .then((r) => r.json())
+        .then((data) => {
+          if (Array.isArray(data)) setArticles(data);
+        })
+        .catch(() => {});
+    }, 1500);
+    return () => clearTimeout(timer);
   }, [currentCase, articles.length]);
 
   const relatedPulseArticles = useMemo(() => {

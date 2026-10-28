@@ -20,9 +20,16 @@ const KV_URL = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL
 const KV_TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
 const KV_KEY = "neurocase_custom_cases_v1";
 
-// Secure Admin Passcode: Must be defined in environment variables for production security.
-// In development, an explicit server-side pass is required.
-const ADMIN_PASSCODE = process.env.ADMIN_PASSCODE;
+// Secure Admin Passcode: Defaults to "@neuro2026" if not configured in environment variables.
+const ADMIN_PASSCODE = process.env.ADMIN_PASSCODE || "@neuro2026";
+
+function isPasscodeValid(input: string): boolean {
+  if (!input) return false;
+  const rawInput = input.trim();
+  const cleanInput = rawInput.toLowerCase().replace(/^@/, "");
+  const cleanExpected = ADMIN_PASSCODE.trim().toLowerCase().replace(/^@/, "");
+  return rawInput === ADMIN_PASSCODE.trim() || cleanInput === cleanExpected;
+}
 
 // ==========================================
 // 1. VERCEL BLOB STORAGE (100% Free on Hobby: 500 MB)
@@ -303,7 +310,9 @@ export async function GET(req: Request) {
     return NextResponse.json(filtered, {
       status: 200,
       headers: {
-        "Cache-Control": "no-store, no-cache, must-revalidate",
+        "Cache-Control": isAdmin
+          ? "no-store, no-cache, must-revalidate"
+          : "public, s-maxage=60, stale-while-revalidate=300",
         "X-Storage-Backend": backend,
         "X-Total-Cases": String(filtered.length),
       },
@@ -334,8 +343,7 @@ export async function POST(req: Request) {
     // 1. Admin Verification / Login
     if (body.action === "verify_admin") {
       const passcode = typeof body.passcode === "string" ? body.passcode.trim() : "";
-      const currentPasscode = ADMIN_PASSCODE || (process.env.NODE_ENV !== "production" ? "@neuro2026" : "");
-      if (currentPasscode && passcode === currentPasscode.trim()) {
+      if (isPasscodeValid(passcode)) {
         const token = generateAdminAuthToken();
         return NextResponse.json({
           success: true,
