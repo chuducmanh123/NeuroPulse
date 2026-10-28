@@ -4,6 +4,12 @@ import path from "path";
 import crypto from "crypto";
 import { put, list } from "@vercel/blob";
 import { ClinicalCase } from "@/types/clinicalCase";
+import {
+  sanitizeUrl,
+  generateAdminAuthToken,
+  verifyAdminToken,
+  sanitizeCommunityCaseSubmission,
+} from "@/utils/security";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -17,40 +23,6 @@ const KV_KEY = "neurocase_custom_cases_v1";
 // Secure Admin Passcode: Must be defined in environment variables for production security.
 // In development, an explicit server-side pass is required.
 const ADMIN_PASSCODE = process.env.ADMIN_PASSCODE;
-const ADMIN_AUTH_SECRET = process.env.ADMIN_AUTH_SECRET;
-
-/**
- * Validates and sanitizes external URLs to prevent Stored XSS via javascript: or data: URIs.
- */
-function sanitizeUrl(url: string | undefined): string {
-  if (!url) return "";
-  const trimmed = url.trim();
-  if (/^https?:\/\//i.test(trimmed)) {
-    return trimmed;
-  }
-  return "";
-}
-
-/**
- * Creates a deterministic authentication token for admin authorization based on secret & passcode.
- */
-function generateAdminAuthToken(): string {
-  const secret = ADMIN_AUTH_SECRET || "neuropulse-neurocase-auth-secret-key-2026";
-  const passcode = ADMIN_PASSCODE || "@neuro2026";
-  return crypto.createHmac("sha256", secret).update(passcode).digest("hex");
-}
-
-function verifyAdminToken(token: string | null | undefined): boolean {
-  if (!token) return false;
-  // If production environment variables are not set, deny all admin authentication requests
-  if (process.env.NODE_ENV === "production" && (!ADMIN_PASSCODE || !ADMIN_AUTH_SECRET)) {
-    console.error("[SECURITY] ADMIN_PASSCODE or ADMIN_AUTH_SECRET missing in production!");
-    return false;
-  }
-  const expected = generateAdminAuthToken();
-  if (token.length !== expected.length) return false;
-  return crypto.timingSafeEqual(Buffer.from(token), Buffer.from(expected));
-}
 
 // ==========================================
 // 1. VERCEL BLOB STORAGE (100% Free on Hobby: 500 MB)
@@ -399,35 +371,8 @@ export async function POST(req: Request) {
       }
 
       // SECURITY ENFORCEMENT:
-      // 1. Generate server-side random ID to prevent ID Hijacking of existing approved cases
-      const newCaseId = `nc-user-${Date.now()}-${crypto.randomBytes(4).toString("hex")}`;
-      
-      // 2. Sanitize source_journal DOI URL to prevent Stored XSS
-      const sanitizedDoi = sanitizeUrl(candidate.source_journal?.doi_url);
-      const sanitizedImaging = (candidate.presentation.imaging || []).map((img) => ({
-        ...img,
-        doi_url: sanitizeUrl(img.doi_url),
-      }));
-
-      // 3. Force safe fields: always locked to 'pending' status
-      const safeCase: ClinicalCase = {
-        ...candidate,
-        id: newCaseId,
-        case_code: candidate.case_code || `NC-COMMUNITY-${newCaseId.slice(-6).toUpperCase()}`,
-        status: "pending",
-        is_daily_challenge: false,
-        archive_only: false,
-        source_journal: candidate.source_journal
-          ? {
-              ...candidate.source_journal,
-              doi_url: sanitizedDoi,
-            }
-          : undefined,
-        presentation: {
-          ...candidate.presentation,
-          imaging: sanitizedImaging,
-        },
-      };
+      // Generates unguessable server ID, sanitizes external URLs, and locks status to 'pending'
+      const safeCase = sanitizeCommunityCaseSubmission(candidate);
 
       const currentList = await fetchCurrentCases();
       const updatedList = [safeCase, ...currentList.filter((c) => c.id !== safeCase.id)];
