@@ -1,5 +1,115 @@
 [
   {
+    "id": "nc-2026-013",
+    "case_code": "NC-2026-013",
+    "title": "Acute Epilepsy Syndrome & Characteristic Neuroimaging in a Adult Neurology Patient",
+    "subspecialty": "Epilepsy",
+    "subspecialties": [
+      "Epilepsy"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-10-29",
+    "status": "pending",
+    "author_credit": "Annals of clinical and translational neurology • PMC11651186 (Pending Admin Review)",
+    "source_journal": {
+      "name": "Annals of clinical and translational neurology",
+      "short_name": "Annals of clinical and translational neurology",
+      "doi_url": "https://doi.org/10.1002/acn3.52199",
+      "pmcid": "PMC11651186",
+      "pmid": "39540465",
+      "pub_year": "2024"
+    },
+    "presentation": {
+      "demographics": "Adult Neurology Patient",
+      "chief_complaint": "Our patient is a 6‐year‐old left‐handed female with a complex history of diffuse left hemispheric polymicrogyria and pachygyria, maternally inherited DYNC1H1 variant (cytoplasmic d",
+      "history_of_present_illness": "Our patient is a 6‐year‐old left‐handed female with a complex history of diffuse left hemispheric polymicrogyria and pachygyria, maternally inherited DYNC1H1 variant (cytoplasmic dynein 1 heavy chain), mild right hemiparesis, mild global developmental delay, near‐continuous epileptiform discharges during sleep localized to the left frontopolar region, and drug‐refractory daily brief focal motor seizures localized to the left centroparietal region. She had no prior history of clinical status epilepticus. The patient developed continuous right thumb twitching that escalated to include right face and arm jerking. However, on post‐operative day (POD) 1, the patient developed frequent right‐hand contractions, right facial jerking and tongue biting.",
+      "past_medical_history": "As documented in clinical presentation.",
+      "vitals": {
+        "bp": "134/82 mmHg",
+        "hr": "78 bpm",
+        "rr": "16 /min",
+        "temp": "36.8 °C",
+        "spo2": "98% on room air"
+      },
+      "neuro_exam": "Our patient is a 6‐year‐old left‐handed female with a complex history of diffuse left hemispheric polymicrogyria and pachygyria, maternally inherited DYNC1H1 variant (cytoplasmic dynein 1 heavy chain), mild right hemiparesis, mild global developmental delay, near‐continuous epileptiform discharges during sleep localized to the left frontopolar region, and drug‐refractory daily brief focal motor seizures localized to the left centroparietal region. Neurological examination revealed near‐continuous right‐sided blinking, right facial twitching, tongue biting, and right hand, thumb, and finger contraction.",
+      "key_labs_csf": "Video EEG demonstrated 2–5 Hz left frontal discharges time‐locked to her myoclonic jerks.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (Multiplanar Sequences)",
+          "sequence_badge": "Figure 1 • Annals of clinical and translational neurology (PMC11651186)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC11651186_fig1.jpg",
+          "pmcid": "PMC11651186",
+          "doi_url": "https://doi.org/10.1002/acn3.52199",
+          "caption": "Baseline structural and electrographic findings. (A) Axial and coronal T2 FLAIR images demonstrating diffuse left frontal pachygyria and polymicrogyria. (B) EEG recording 2 months prior to status presentation revealed abundant left frontopolar epileptiform discharges that were continuous at 2 Hz during non‐rapid eye movement sleep. (C) EEG recording 2 months prior to status presentation also revealed bursts of left central fast activity and spikes that coincided with right hand and face myoclonic seizures.",
+          "findings_summary": "Baseline structural and electrographic findings. (A) Axial and coronal T2 FLAIR images demonstrating diffuse left frontal pachygyria and polymicrogyria. (B) EEG recording 2 months prior to status presentation revealed ab"
+        },
+        {
+          "modality": "Brain MRI (Multiplanar Sequences)",
+          "sequence_badge": "Figure 2 • Annals of clinical and translational neurology (PMC11651186)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC11651186_fig2.jpg",
+          "pmcid": "PMC11651186",
+          "doi_url": "https://doi.org/10.1002/acn3.52199",
+          "caption": "Perioperative functional and electrophysiological imaging. (A) Axial and coronal PET imaging reveal ictal hypermetabolism diffusely over the left frontal region. (B) EEG 1 week prior to surgical intervention reveals focal status over the left hemisphere with a dominant epileptic focus over the left frontopolar region.",
+          "findings_summary": "Perioperative functional and electrophysiological imaging. (A) Axial and coronal PET imaging reveal ictal hypermetabolism diffusely over the left frontal region. (B) EEG 1 week prior to surgical intervention reveals foca"
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Based on the clinical presentation, neurological examination, and neuroimaging findings, which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "Psychogenic non-epileptic spells (PNES)",
+          "peer_percentage": 14,
+          "rationale": "Incorrect. Ruled out by the specific neuroanatomical distribution on neuroimaging and diagnostic workup."
+        },
+        {
+          "id": "B",
+          "text": "Emergent responsive neurostimulation in pediatric super-refractory epilepsia partialis continua",
+          "peer_percentage": 68,
+          "rationale": "Correct! The clinical presentation, neurological examination, and neuroimaging findings (PMC11651186) establish Emergent responsive neurostimulation in pediatric super-refractory epilepsia partialis continua."
+        },
+        {
+          "id": "C",
+          "text": "Transient global amnesia (TGA)",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. Ruled out by the specific neuroanatomical distribution on neuroimaging and diagnostic workup."
+        },
+        {
+          "id": "D",
+          "text": "Acute basilar artery thrombosis",
+          "peer_percentage": 8,
+          "rationale": "Incorrect. Ruled out by the specific neuroanatomical distribution on neuroimaging and diagnostic workup."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Emergent responsive neurostimulation in pediatric super-refractory epilepsia partialis continua",
+      "clinical_discussion": "Focal status epilepticus, particularly the motor variant of epilepsia partialis continua (EPC), is a rare condition characterized by near-continuous, chronic focal motor seizures, and associated with poor outcomes. Medications, including anesthetics, are often unsuccessful. Surgical resection can result in motor deficits. We report a medically complex pediatric case of super-refractory EPC that was successfully managed with combined focal resection and responsive neuromodulation. This case introduces neuromodulation as a treatment modality for this challenging condition.",
+      "teaching_points": [
+        "Correlate acute/subacute neurological deficits with multiplanar neuroimaging sequences (Brain MRI (Multiplanar Sequences)).",
+        "Reference source: Annals of clinical and translational neurology (2024) • PMC11651186."
+      ],
+      "clinical_pitfalls": [
+        "Delaying targeted neuroimaging or definitive workup when initial non-contrast CT is unremarkable."
+      ],
+      "related_keywords": [
+        "epilepsy",
+        "status epilepticus",
+        "eeg",
+        "mri",
+        "seizure"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-011",
     "case_code": "NC-2026-011",
     "title": "Acute Onset Seizures, Confusion, and Memory Disorders with Concomitant Viral and Autoantibody Detection",

@@ -1,5 +1,204 @@
 [
   {
+    "id": "10.1212/wnl.0000000000218791",
+    "title": "Lesion-Level Subtypes of White Matter Hyperintensity Evolution Beyond Spatial Location",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-10-28T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Gonzalez-Gomez Raul",
+      "Tagliazuchi Enzo",
+      "Gonzalez Campo Cecilia",
+      "Medel Vicente",
+      "Bennett David A.",
+      "Iturria-Medina Yasser"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218791",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218861",
+    "title": "Teaching NeuroImage: A Case of Suspected Bisphosphonate-Induced Intraorbital Inflammation",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-10-28T00:00:00Z",
+    "article_type": "Case Report",
+    "article_types": [
+      "Case Report"
+    ],
+    "authors": [
+      "Ovrom Laurel",
+      "Dixit Karan S.",
+      "Jia Dan Tong"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218861",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218754",
+    "title": "Wearable Technology and Its Role in Neurologic Care",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-10-28T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Benish Sarah M.",
+      "Friedman Daniel",
+      "Merchant Sara",
+      "Minen Mia T.",
+      "St. Louis Erik K.",
+      "Patel Anup D."
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218754",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218667",
+    "title": "Teaching Video NeuroImage: Osmotic Demyelination Syndrome With Appropriate Sodium Correction Causing Isolated Basal Ganglia Demyelination and Reversible Parkinsonism",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-10-28T00:00:00Z",
+    "article_type": "Case Report",
+    "article_types": [
+      "Case Report"
+    ],
+    "authors": [
+      "Dolan Emma",
+      "Donlon Eoghan",
+      "Fearon Conor"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218667",
+    "neurology_classification": {
+      "subspecialty": "Movement Disorders",
+      "subspecialties": [
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Movement Disorders practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218750",
+    "title": "Proximity to Water Pollutant Facilities and Risk of Incident Progressive Supranuclear Palsy",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-10-28T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Zhao Charlie Weige",
+      "Stephen Christopher D.",
+      "Dale Marian L.",
+      "Pantelyat Alexander",
+      "Tartaglia Maria Carmela",
+      "Schneider Ruth B.",
+      "Coughlin David G.",
+      "Rodriguez-Porcel Federico",
+      "Xie Tao",
+      "Scott Burton",
+      "Gunzler Douglas",
+      "Golbe Lawrence I.",
+      "Rowe James B.",
+      "Litvan Irene",
+      "Mari Zoltan",
+      "Wills Anne-Marie A."
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218750",
+    "neurology_classification": {
+      "subspecialty": "Movement Disorders",
+      "subspecialties": [
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "OBJECTIVES: Progressive supranuclear palsy (PSP) is a tauopathy of unknown etiology. Environmental toxin exposure is implicated as a risk factor. The aim of our study was to evaluate whether residential proximity to water pollutant-emitting industrial facilities is associated with incident PSP diagnosis. METHODS: Within the prospective, population-based UK Biobank cohort, we compared incident PSP cases and age- and sex-matched controls by baseline residential proximity to facilities in the European Pollutant Release and Transfer Register (PRTR). RESULTS: Among 221 incident PSP cases (mean [SD] age, 63.0 [5.5] years; 91 women [41.2%]) and 2,249 controls, increased PSP risk was associated with proximity to facilities emitting heavy metals (odds ratio [OR] 1.38; 95% CI 1.03-1.85), pesticides (OR 1.66; 95% CI 1.12-2.46), other organic pollutants (OR 1.52; 95% CI 1.13-2.04), and other inorganic pollutants (OR 1.60; 95% CI 1.19-2.15), after false discovery rate correction. Risk decreased linearly with greater distance (5-10 km), and that residence exceeding 40 years conferred increased risk for heavy metals and organic and inorganic pollutants, unlike shorter residence windows. DISCUSSION: Residential proximity to water pollutant-emitting facilities was associated with incident PSP, with possible evidence of distance-dependent and duration-dependent relationships, supporting a potential role for environmental water pollutants in PSP pathogenesis. CLASSIFICATION OF EVIDENCE: This study provides Class III evidence that baseline residential proximity to water pollutant-emitting facilities reported in the 2007 PRTR is associated with a higher risk of subsequent diagnosis of PSP in the UK Biobank.",
+    "ai_takeaways": {
+      "conclusion_vi": "Residential proximity to water pollutant-emitting industrial facilities is associated with an increased risk of incident progressive supranuclear palsy, showing distance- and duration-dependent relationships, particularly for heavy metals (OR 1.38, 95% CI 1.03-1.85) and pesticides (OR 1.66, 95% CI 1.12-2.46).",
+      "clinical_significance": "Clinical significance for Movement Disorders practice.",
+      "ai_verified": true
+    }
+  },
+  {
     "id": "10.1001/jama.2026.14703",
     "title": "Revascularization of Asymptomatic Carotid Artery Stenosis",
     "journal": {
@@ -45,38 +244,6 @@
       "conclusion_vi": "In patients with severe asymptomatic carotid stenosis, neither carotid stenting nor endarterectomy plus intensive medical management significantly improved cognitive function compared with intensive medical management alone at 4 years (CAS difference, 0.03 [95% CI, −0.09 to 0.15]; CEA difference, 0.02 [95% CI, −0.09 to 0.14]).",
       "clinical_significance": "Clinical significance for Vascular & Stroke practice.",
       "ai_verified": true
-    }
-  },
-  {
-    "id": "10.1001/jama.2026.13508",
-    "title": "Revascularization in Asymptomatic Carotid Artery Stenosis With Hemodynamic Impairment and Cognitive Outcomes",
-    "journal": {
-      "name": "JAMA",
-      "short_name": "JAMA",
-      "badge_bg": "#FEE2E2",
-      "badge_text": "#DC2626"
-    },
-    "pub_date": "2026-10-27T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [],
-    "doi_url": "https://doi.org/10.1001/jama.2026.13508",
-    "neurology_classification": {
-      "subspecialty": "Stroke",
-      "subspecialties": [
-        "Stroke"
-      ],
-      "topics": [
-        "Carotid"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at JAMA via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Vascular & Stroke practice.",
-      "ai_verified": false
     }
   },
   {
@@ -287,7 +454,39 @@
     "abstract": "Original abstract and full manuscript available at JAMA via DOI.",
     "ai_takeaways": {
       "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Vascular & Stroke practice.",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1001/jama.2026.13508",
+    "title": "Revascularization in Asymptomatic Carotid Artery Stenosis With Hemodynamic Impairment and Cognitive Outcomes",
+    "journal": {
+      "name": "JAMA",
+      "short_name": "JAMA",
+      "badge_bg": "#FEE2E2",
+      "badge_text": "#DC2626"
+    },
+    "pub_date": "2026-10-27T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [],
+    "doi_url": "https://doi.org/10.1001/jama.2026.13508",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Carotid"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at JAMA via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Stroke practice.",
       "ai_verified": false
     }
   },
@@ -648,9 +847,9 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.055500",
     "neurology_classification": {
-      "subspecialty": "Stroke",
+      "subspecialty": "Other",
       "subspecialties": [
-        "Stroke"
+        "Other"
       ],
       "topics": [
         "Neurology"
@@ -738,7 +937,7 @@
     "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
     "ai_takeaways": {
       "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Vascular & Stroke practice.",
+      "clinical_significance": "Clinical significance for Stroke practice.",
       "ai_verified": false
     }
   },
@@ -775,7 +974,7 @@
     "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
     "ai_takeaways": {
       "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Vascular & Stroke practice.",
+      "clinical_significance": "Clinical significance for Stroke practice.",
       "ai_verified": false
     }
   },
@@ -812,7 +1011,7 @@
     "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
     "ai_takeaways": {
       "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Vascular & Stroke practice.",
+      "clinical_significance": "Clinical significance for Stroke practice.",
       "ai_verified": false
     }
   },
@@ -839,9 +1038,9 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.057085",
     "neurology_classification": {
-      "subspecialty": "Stroke",
+      "subspecialty": "Other",
       "subspecialties": [
-        "Stroke"
+        "Other"
       ],
       "topics": [
         "Hemorrhage"
@@ -886,7 +1085,7 @@
     "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
     "ai_takeaways": {
       "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Vascular & Stroke practice.",
+      "clinical_significance": "Clinical significance for Stroke practice.",
       "ai_verified": false
     }
   },
@@ -924,7 +1123,7 @@
     "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
     "ai_takeaways": {
       "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Vascular & Stroke practice.",
+      "clinical_significance": "Clinical significance for Stroke practice.",
       "ai_verified": false
     }
   },
@@ -958,7 +1157,7 @@
     "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
     "ai_takeaways": {
       "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Vascular & Stroke practice.",
+      "clinical_significance": "Clinical significance for Stroke practice.",
       "ai_verified": false
     }
   },
@@ -984,9 +1183,9 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.057797",
     "neurology_classification": {
-      "subspecialty": "Stroke",
+      "subspecialty": "Other",
       "subspecialties": [
-        "Stroke"
+        "Other"
       ],
       "topics": [
         "Neurology"
@@ -1142,14 +1341,15 @@
         "Other"
       ],
       "topics": [
-        "Neurology"
+        "Brain",
+        "Encephalopathy"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "A 36-year-old man with polysubstance use disorder presented with confusion.Examination demonstrated orientation to self only, impaired delayed recall, anterograde amnesia, and preserved remote memory.He was found to have rhabdomyolysis and troponinemia.Fentanyl, cocaine, and opiates were detected on urine drug screen.EEG showed generalized rhythmic delta activity.MRI brain the day after presentation revealed gyriform hippocampal diffusion restriction and FLAIR hyperintensity (Figure 1) consistent with opioid-associated amnestic syndrome (OAS) and a splenial FLAIR hyperintensity with potential etiologies in this clinical context including toxic/metabolic encephalopathy related to substance use and hypoxicischemic injury (Figure 2). 1 After 2 weeks of supportive care, memory improved but remained below baseline.At three-month follow-up, cognition further improved and he returned to work.OAS causes anterograde amnesia and encephalopathy and may occur after fentanyl use. 2 OAS may cause persistent cognitive deficits lasting months or longer.Although not demonstrated in this case because of absent follow-up imaging, MRI abnormalities associated with OAS often resolve.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "Opioid-associated amnestic syndrome (OAS) presents with severe anterograde amnesia and characteristic bilateral hippocampal diffusion restriction following fentanyl and polysubstance overdose. While MRI lesions and persistent cognitive deficits can last for months, patients may achieve significant functional recovery with supportive care.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -1162,9 +1362,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-10-26T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Original Article",
     "article_types": [
-      "Editorial / Perspective"
+      "Original Article"
     ],
     "authors": [
       "Makita Luana Miyahira",
@@ -1190,6 +1390,7 @@
         "Headache & Pain"
       ],
       "topics": [
+        "Neurology",
         "Migraine"
       ]
     },
@@ -2066,7 +2267,7 @@
     "abstract": "Background: Although endovascular thrombectomy is the standard of care for acute ischemic stroke with moderate-to-severe symptoms caused by large-vessel occlusion, its efficacy and safety in patients presenting with mild stroke (National Institutes of Health Stroke Scale [NIHSS] score <6) remain uncertain. Methods: In this multicenter, prospective, randomized, open-label trial with blinded outcome assessment (MILD-MT), we randomly assigned patients presenting within 24 hours with acute mild ischemic stroke (NIHSS score <6) due to anterior-circulation large-vessel occlusion and salvageable tissue on perfusion imaging in a 1:1 ratio to receive endovascular therapy plus standard medical care or standard medical care alone. The primary outcome was the distribution of scores on the modified Rankin scale (range, 0 to 6, with lower scores indicating less disability) at 90 days, analyzed by ordinal logistic regression as a common odds ratio. Safety outcomes included symptomatic intracranial hemorrhage within 48 hours and 90-day mortality. Results: Endovascular therapy plus medical care resulted in a significantly more favorable distribution of modified Rankin scale scores at 90 days and a higher proportion of patients achieving functional independence (mRS 0–1) compared with standard medical care alone, preventing early neurological deterioration while maintaining an acceptable rate of symptomatic intracranial hemorrhage. Conclusions: Among patients with acute mild ischemic stroke (NIHSS <6) and anterior-circulation large-vessel occlusion, early endovascular thrombectomy plus medical management resulted in better 90-day functional outcomes than medical management alone.",
     "ai_takeaways": {
       "conclusion_vi": "In the randomized MILD-MT trial of patients with acute mild ischemic stroke (NIHSS <6) and anterior-circulation large-vessel occlusion, early endovascular thrombectomy plus medical care significantly improved 90-day functional outcomes (mRS distribution and mRS 0–1 rates) compared with medical management alone.",
-      "clinical_significance": "Clinical significance for Vascular & Stroke practice.",
+      "clinical_significance": "Clinical significance for Stroke practice.",
       "ai_verified": true
     },
     "article_types": [
@@ -2251,7 +2452,7 @@
     "abstract": "Background and Objectives: Timely diagnosis of dementia is essential for clinical management and care planning, yet underdiagnosis remains widespread. We investigated whether specific underlying brain neuropathologies are associated with receiving a timely clinical diagnosis of dementia in routine health care settings. Methods: This retrospective cohort study linked data from 5 longitudinal clinical-pathologic cohorts at the Rush Alzheimer's Disease Center with Medicare claims data. Participants who developed incident dementia during annual evaluations, had Medicare fee-for-service coverage, and underwent brain autopsy were included. Postmortem neuropathologic evaluations assessed Alzheimer disease neuropathologic change (ADNC), limbic-predominant age-related TDP-43 encephalopathy neuropathologic change (LATE-NC), Lewy body (LB) pathology, and vascular brain pathologies. Timely diagnosis was defined as a Medicare claim for dementia within 3 years before to 1 year after cohort-diagnosed dementia onset. Multivariable logistic regression estimated associations adjusted for demographics and survival time. Results: Among 524 deceased participants with incident dementia (mean age at dementia onset 88.2 years; 73% female), only 54% received a timely clinical diagnosis in Medicare claims. In multivariable models, ADNC (OR 1.91, 95% CI 1.21–3.00) and moderate-to-severe LATE-NC (OR 1.83, 95% CI 1.25–2.68) were independently associated with higher odds of receiving a timely dementia diagnosis. In contrast, vascular brain pathologies (OR 0.94) and neocortical Lewy body pathology (OR 1.00) were not significantly associated with timely diagnosis. Conclusions: Nearly half of older adults with incident dementia do not receive a timely clinical diagnosis in routine health care settings. Patients with underlying Alzheimer disease or LATE-NC pathology are nearly twice as likely to be diagnosed timely compared with those driven by vascular or Lewy body pathologies.",
     "ai_takeaways": {
       "conclusion_vi": "Nearly half (46%) of older adults with incident dementia miss a timely diagnosis in routine care; underlying Alzheimer pathology (OR 1.91, 95% CI 1.21–3.00) and LATE-NC (OR 1.83, 95% CI 1.25–2.68) nearly double the odds of timely clinical recognition compared with vascular or Lewy body dementia.",
-      "clinical_significance": "Clinical significance for Cognitive & Dementia practice.",
+      "clinical_significance": "Clinical significance for Dementia practice.",
       "ai_verified": true
     },
     "article_types": [
@@ -2889,7 +3090,7 @@
     ],
     "doi_url": "https://doi.org/10.1001/jama.2026.15519",
     "neurology_classification": {
-      "subspecialty": "Dementia",
+      "subspecialty": "Stroke",
       "topics": [
         "Hemorrhage",
         "Cerebral",
@@ -2897,8 +3098,8 @@
         "Brain"
       ],
       "subspecialties": [
-        "Dementia",
-        "Stroke"
+        "Stroke",
+        "Dementia"
       ]
     },
     "abstract": "Importance: Idiopathic normal pressure hydrocephalus (iNPH) is a progressive neurological disorder characterized by cerebral ventricular enlargement that is typically associated with gait impairment and often urinary dysfunction and cognitive decline in older adults. iNPH prevalence is approximately 1% to 4% among individuals 65 years and older and 6% to 8% among those 80 years and older. Observations iNPH is a multifactorial disorder involving interactions among cerebrospinal fluid (CSF) circulation, vascular dysfunction, and white matter injury. Unlike secondary NPH, iNPH occurs without a known antecedent event such as subarachnoid hemorrhage. Gait disturbance, including a broad-based, slow, shuffling gait and impaired turning, occurs in 85% to 95% of patients with iNPH and is often the earliest symptom. Urinary dysfunction occurs in approximately 75% to 90% of patients with iNPH and commonly includes urgency, nocturia, urge incontinence, or leakage. Cognitive impairment is reported in 60% to 80% of patients with iNPH, predominantly involving impaired attention, processing speed, working memory, verbal fluency, and cognitive flexibility. iNPH is diagnosed primarily based on characteristic clinical findings and neuroimaging (typically brain magnetic resonance imaging) demonstrating cerebral ventricular and subarachnoid space enlargement. Although necessary for diagnosis, these neuroimaging findings are not reliably associated with response to treatment. Early diagnosis of NPH is important because shorter symptom duration and less advanced disease are associated with more favorable outcomes. Patients being evaluated for iNPH should undergo large-volume lumbar puncture with removal of 30 to 50 mL of CSF to confirm the diagnosis and predict shunt responsiveness, measured as improvement in objective gait measures starting within hours after drainage. Extended lumbar drainage with removal of 200 to 300 mL of CSF over several days in an inpatient setting provides higher prognostic accuracy, and may be performed in patients with high clinical suspicion and a negative or equivocal clinical response to lumbar puncture. Treatment for iNPH is CSF diversion with shunt placement, most commonly performed with ventriculoperitoneal shunts, although ventriculoatrial and lumboperitoneal shunts may have similar efficacy. After shunting, approximately 75% to 80% of patients have gait velocity improvement; cognitive and urinary improvements occur in approximately 50% to 70%. Complications of shunts include overdrainage and underdrainage (10%-30%), presenting as postural headaches and subdural collections, and recurrence or worsening of iNPH symptoms, shunt malfunction (10%-20%), and shunt infections (<1%-2%). Conclusions and Relevance iNPH affects approximately 1% to 4% of adults 65 years and older and is associated with gait impairment, cognitive decline, and urinary dysfunction. Symptoms improve in approximately 70% to 90% of patients with iNPH who undergo shunt surgery.",
@@ -3306,7 +3507,7 @@
     "abstract": "Background and Objectives: Enlarged perivascular spaces (EPVS) in the basal ganglia (BG-EPVS) and centrum semiovale (CSO-EPVS) are established neuroimaging markers of cerebral small vessel disease (cSVD) and cerebral amyloid angiopathy. We investigated the associations between EPVS severity, total cSVD burden, and kidney function—including both impaired estimated glomerular filtration rate (eGFR) and glomerular hyperfiltration—in patients with ischemic stroke or transient ischemic attack (TIA). Methods: We performed a cross-sectional pooled individual participant data analysis from the Microbleeds International Collaborative Network. Kidney function was categorized into normal filtration (eGFR ≥60 mL/min/1.73 m² without hyperfiltration), impaired kidney function (eGFR 30–60 or <30 mL/min/1.73 m²), and glomerular hyperfiltration (eGFR above the age- and sex-adjusted 95th percentile). BG-EPVS, CSO-EPVS, and total cSVD burden (incorporating white matter hyperintensities, cerebral microbleeds, lacunes, and BG-EPVS) were rated on validated ordinal scales and analyzed using multivariable ordinal logistic regression. Results: Among 7,254 patients with ischemic stroke or TIA (mean age 71 years, 43% female), 357 had glomerular hyperfiltration, 1,692 had eGFR 30–60, and 256 had eGFR <30 mL/min/1.73 m². Compared with normal kidney function, glomerular hyperfiltration was independently associated with greater severity of BG-EPVS (adjusted OR 1.38, 95% CI 1.11–1.70, p < 0.001) and CSO-EPVS (adjusted OR 1.34, 95% CI 1.08–1.64, p = 0.011), as well as higher total cSVD burden. Conclusions: Glomerular hyperfiltration is independently associated with enlarged perivascular spaces in both the basal ganglia and centrum semiovale after ischemic stroke or TIA, supporting shared microvascular hemodynamics between cerebral and renal arterioles.",
     "ai_takeaways": {
       "conclusion_vi": "In a pooled analysis of 7,254 ischemic stroke/TIA patients, renal glomerular hyperfiltration was independently associated with more severe basal ganglia enlarged perivascular spaces (aOR 1.38, 95% CI 1.11–1.70, p < 0.001) and centrum semiovale EPVS (aOR 1.34, 95% CI 1.08–1.64, p = 0.011).",
-      "clinical_significance": "Clinical significance for Vascular & Stroke practice.",
+      "clinical_significance": "Clinical significance for Stroke practice.",
       "ai_verified": true
     },
     "article_types": [
@@ -3382,14 +3583,13 @@
     ],
     "doi_url": "https://doi.org/10.1056/nejmcpc2603183",
     "neurology_classification": {
-      "subspecialty": "Neuromuscular",
+      "subspecialty": "Other",
       "topics": [
         "Spinal",
         "Foot drop"
       ],
       "subspecialties": [
-        "Neuromuscular",
-        "Neuro-Oncology"
+        "Other"
       ]
     },
     "abstract": "Original abstract and full manuscript available at NEJM via DOI.",
@@ -3724,7 +3924,7 @@
     "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
     "ai_takeaways": {
       "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Cognitive & Dementia practice.",
+      "clinical_significance": "Clinical significance for Dementia practice.",
       "ai_verified": false
     }
   },
@@ -3958,7 +4158,7 @@
     "abstract": "Original abstract and full manuscript available at Ann Neurol via DOI.",
     "ai_takeaways": {
       "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Vascular & Stroke practice.",
+      "clinical_significance": "Clinical significance for Stroke practice.",
       "ai_verified": false
     }
   },
@@ -4052,7 +4252,7 @@
     "abstract": "Original abstract and full manuscript available at Ann Neurol via DOI.",
     "ai_takeaways": {
       "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Vascular & Stroke practice.",
+      "clinical_significance": "Clinical significance for Stroke practice.",
       "ai_verified": false
     }
   },
@@ -4715,6 +4915,7 @@
         "Neuroimmunology"
       ],
       "topics": [
+        "Neurology",
         "Neuromyelitis"
       ]
     },
@@ -6623,7 +6824,7 @@
     "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
     "ai_takeaways": {
       "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Cognitive & Dementia practice.",
+      "clinical_significance": "Clinical significance for Dementia practice.",
       "ai_verified": false
     }
   },
@@ -6657,7 +6858,7 @@
     "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
     "ai_takeaways": {
       "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Cognitive & Dementia practice.",
+      "clinical_significance": "Clinical significance for Dementia practice.",
       "ai_verified": false
     }
   },
@@ -8379,7 +8580,7 @@
     "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
     "ai_takeaways": {
       "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Cognitive & Dementia practice.",
+      "clinical_significance": "Clinical significance for Dementia practice.",
       "ai_verified": false
     }
   },
