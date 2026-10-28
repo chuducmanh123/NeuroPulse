@@ -28,7 +28,7 @@ export function SubmitTab({
 }: SubmitTabProps) {
   // Form State
   const [subTitle, setSubTitle] = useState("");
-  const [subSpecialty, setSubSpecialty] = useState("Vascular & Stroke");
+  const [subSpecialty, setSubSpecialty] = useState("Stroke");
   const [subDifficulty, setSubDifficulty] = useState<CaseDifficulty>("Resident");
   const [subPublishedDate, setSubPublishedDate] = useState("");
   const [subDemographics, setSubDemographics] = useState("");
@@ -218,7 +218,7 @@ export function SubmitTab({
 
   const resetAllSubmitFormFields = () => {
     setSubTitle("");
-    setSubSpecialty("Vascular & Stroke");
+    setSubSpecialty("Stroke");
     setSubDifficulty("Resident");
     setSubPublishedDate("");
     setSubDemographics("");

@@ -75,33 +75,33 @@ const JOURNAL_PILL_STYLES: Record<
   },
 };
 
-// Tách riêng Neuroimmunology, Neuromuscular, Neurocritical Care, TBI; đổi General Neurology -> Other
+// Phân ngành Thần kinh lâm sàng chuẩn hóa
 const TOPIC_TABS = [
   { label: "All Subspecialties", value: "All" },
-  { label: "Vascular & Stroke", value: "Vascular & Stroke" },
+  { label: "Stroke", value: "Stroke" },
   { label: "Neurocritical Care", value: "Neurocritical Care" },
-  { label: "Traumatic Brain Injury (TBI)", value: "Traumatic Brain Injury (TBI)" },
   { label: "Epilepsy", value: "Epilepsy" },
-  { label: "Cognitive & Dementia", value: "Cognitive & Dementia" },
+  { label: "Dementia", value: "Dementia" },
   { label: "Neuroimmunology", value: "Neuroimmunology" },
   { label: "Neuromuscular", value: "Neuromuscular" },
   { label: "Movement Disorders", value: "Movement Disorders" },
   { label: "Headache & Pain", value: "Headache & Pain" },
+  { label: "CNS Infections", value: "CNS Infections" },
   { label: "Neuro-Oncology", value: "Neuro-Oncology" },
   { label: "Other", value: "Other" },
 ];
 
 // Trọng số điểm ưu tiên theo từng phân khoa (nếu 1 bài có nhiều tag phân khoa, lấy điểm của tag cao nhất)
 const SUBSPECIALTY_WEIGHTS: Record<string, number> = {
-  "Vascular & Stroke": 16,
+  Stroke: 16,
   "Neurocritical Care": 15,
-  "Traumatic Brain Injury (TBI)": 13,
   Epilepsy: 13,
-  "Cognitive & Dementia": 13,
+  Dementia: 13,
   Neuroimmunology: 13,
   Neuromuscular: 13,
   "Movement Disorders": 12,
   "Headache & Pain": 11,
+  "CNS Infections": 11,
   "Neuro-Oncology": 11,
   Other: 6,
 };
@@ -230,23 +230,19 @@ const NON_ARTICLE_PATTERNS =
 
 const SUBSPECIALTY_RULES: [string, RegExp][] = [
   [
-    "Vascular & Stroke",
+    "Stroke",
     /\b(stroke|ischemic|infarction|thrombectomy|thrombolysis|tenecteplase|alteplase|intracerebral hemorrhage|subarachnoid hemorrhage|intracranial bleeding|intracranial hemorrhage|aneurysm|carotid|endovascular|neurovascular|cerebral ischemia|small vessel disease|cerebral amyloid angiopathy|cavernous malformation|arteriovenous malformation|venous sinus thrombosis)\b/i,
   ],
   [
     "Neurocritical Care",
-    /\b(neurocritical|intensive care|critical care|status epilepticus|intracranial pressure|cerebral edema|coma|unresponsive wakefulness|minimally conscious|brain death|targeted temperature|post-cardiac arrest|mechanical ventilation|extubation|neuro-icu|delirium)\b/i,
-  ],
-  [
-    "Traumatic Brain Injury (TBI)",
-    /\b(traumatic brain injury|tbi|concussion|head injury|head trauma|brain trauma|chronic traumatic encephalopathy|post-concussive|sport-related concussion|nfl player)\b/i,
+    /\b(neurocritical|intensive care|critical care|status epilepticus|intracranial pressure|cerebral edema|coma|unresponsive wakefulness|minimally conscious|brain death|targeted temperature|post-cardiac arrest|mechanical ventilation|extubation|neuro-icu|delirium|traumatic brain injury|tbi|concussion|head injury|head trauma)\b/i,
   ],
   [
     "Epilepsy",
     /\b(epilep\w*|seizure\w*|antiseizure|ictal|interictal|dravet|lennox-gastaut|focal cortical dysplasia|sudep)\b/i,
   ],
   [
-    "Cognitive & Dementia",
+    "Dementia",
     /\b(alzheimer\w*|dementia|amyloid|tau|p-tau\w*|lecanemab|donanemab|cognitive decline|cognitive impairment|frontotemporal|lewy body|apoe|memory clinic|normal pressure hydrocephalus)\b/i,
   ],
   [
@@ -264,6 +260,10 @@ const SUBSPECIALTY_RULES: [string, RegExp][] = [
   [
     "Headache & Pain",
     /\b(migraine|headache|cluster headache|trigeminal neuralgia|cgrp|ubrogepant|atogepant|rimegepant|erenumab|fremanezumab|galcanezumab|neuropathic pain|chronic pain|idiopathic intracranial hypertension)\b/i,
+  ],
+  [
+    "CNS Infections",
+    /\b(meningit\w*|meningoencephalit\w*|brain abscess|epidural abscess|subdural empyema|tuberculous meningitis|cns tuberculosis|neurosyphilis|herpes simplex virus encephalitis|hsv encephalitis|cryptococc\w*|cerebral toxoplasmosis|varicella zoster\w*|vzv encephalitis|neurocysticercosis|arbovirus|japanese encephalitis|lyme neuroborreliosis|neuroborreliosis|progressive multifocal leukoencephalopathy|pml|cerebral malaria|rabies|ventriculit\w*|cns viral infection|cns bacterial infection|cns fungal infection|cns parasitic infection|cns infection|infectious encephalitis)\b/i,
   ],
   [
     "Neuro-Oncology",

@@ -311,7 +311,7 @@ function detectSubspecialty(text: string): string {
       t
     )
   ) {
-    return "Vascular & Stroke";
+    return "Stroke";
   }
   if (/\b(seizure|epilep|status epilepticus|eeg|ictal|spike-and-wave|levetiracetam)\b/.test(t)) {
     return "Epilepsy";
@@ -324,7 +324,7 @@ function detectSubspecialty(text: string): string {
     return "Neuroimmunology";
   }
   if (/\b(dementia|alzheimer|frontotemporal|creutzfeldt|prion|amyloid|cognitive decline)\b/.test(t)) {
-    return "Cognitive & Dementia";
+    return "Dementia";
   }
   if (
     /\b(neuropathy|guillain|miller fisher|myasthenia|myopathy|als|motor neuron|electromyography|emg|bickerstaff)\b/.test(
@@ -336,16 +336,23 @@ function detectSubspecialty(text: string): string {
   if (/\b(parkinson|tremor|dystonia|chorea|huntington|ataxia|myoclonus)\b/.test(t)) {
     return "Movement Disorders";
   }
-  if (/\b(coma|intracranial pressure|herniation|intubat|neurocritical)\b/.test(t)) {
+  if (/\b(coma|intracranial pressure|herniation|intubat|neurocritical|traumatic brain|tbi|concussion)\b/.test(t)) {
     return "Neurocritical Care";
   }
   if (/\b(migraine|cluster headache|thunderclap|rcvs|trigeminal neuralgia)\b/.test(t)) {
     return "Headache & Pain";
   }
+  if (
+    /\b(meningit|brain abscess|neurosyphilis|tuberculous|cryptococc|encephalitis herpes|hsv|neuroborreliosis|cns infection)\b/.test(
+      t
+    )
+  ) {
+    return "CNS Infections";
+  }
   if (/\b(glioblastoma|glioma|meningioma|metastasis|paraneoplastic|lymphoma)\b/.test(t)) {
     return "Neuro-Oncology";
   }
-  return "Vascular & Stroke";
+  return "Stroke";
 }
 
 /**
@@ -366,7 +373,7 @@ export async function extractClinicalCaseFromArticleText(
 Read the following published neurology article/case report and return ONLY a valid JSON object matching this exact schema (all in professional academic English, with the final diagnosis REDACTED/HIDDEN in the title, history, exam, and imaging findings so the reader must deduce it):
 {
   "title": "Blind clinical presentation title without giving away the final diagnosis",
-  "subspecialty": "One of: Vascular & Stroke | Neurocritical Care | Traumatic Brain Injury (TBI) | Epilepsy | Cognitive & Dementia | Neuroimmunology | Neuromuscular | Movement Disorders | Headache & Pain | Neuro-Oncology | Other",
+  "subspecialty": "One of: Stroke | Neurocritical Care | Epilepsy | Dementia | Neuroimmunology | Neuromuscular | Movement Disorders | Headache & Pain | CNS Infections | Neuro-Oncology | Other",
   "difficulty": "Resident | Fellow | Attending",
   "demographics": "Age and sex, e.g., 54-year-old right-handed woman",
   "chief_complaint": "Concise presenting symptom(s)",

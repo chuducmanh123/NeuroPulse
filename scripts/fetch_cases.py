@@ -94,19 +94,19 @@ NEUROIMAGING_CAPTION_REGEX = re.compile(
 
 # Bảng luân phiên chuyên khoa theo thứ trong tuần (Day-of-Week Specialty Schedule Matrix)
 WEEKDAY_SPECIALTY_SCHEDULE = {
-    0: "Vascular & Stroke",        # Thứ 2: Đột quỵ & Mạch máu não
-    1: "Neuromuscular",            # Thứ 3: Bệnh thần kinh cơ & thần kinh ngoại biên
-    2: "Epilepsy",                 # Thứ 4: Động kinh & Điện não lâm sàng
-    3: "Neuroimmunology",          # Thứ 5: Miễn dịch thần kinh (MS, NMOSD, MOGAD, Viêm não tự miễn)
-    4: "Movement Disorders",       # Thứ 6: Rối loạn vận động & Sa sút trí tuệ
-    5: "Neurocritical Care",       # Thứ 7: Hồi sức thần kinh & Chấn thương sọ não
-    6: "Cognitive & Dementia",     # Chủ nhật: Nhận thức, Sa sút trí tuệ & Thần kinh hiếm gặp
+    0: "Stroke",                  # Thứ 2: Đột quỵ & Mạch máu não
+    1: "Neuromuscular",           # Thứ 3: Bệnh thần kinh cơ & thần kinh ngoại biên
+    2: "Epilepsy",                # Thứ 4: Động kinh & Điện não lâm sàng
+    3: "Neuroimmunology",         # Thứ 5: Miễn dịch thần kinh (MS, NMOSD, MOGAD, Viêm não tự miễn)
+    4: "Movement Disorders",      # Thứ 6: Rối loạn vận động
+    5: "Neurocritical Care",      # Thứ 7: Hồi sức thần kinh & Chấn thương sọ não
+    6: "Dementia",                # Chủ nhật: Sa sút trí tuệ, Nhận thức & Thần kinh hiếm gặp
 }
 
 # Ngân hàng chủ đề ca lâm sàng Thần kinh & Đột quỵ đa dạng (mở rộng truy vấn toàn bài thay vì chỉ TITLE)
 CLINICAL_CASE_TOPIC_BANK = [
     {
-        "subspecialty": "Vascular & Stroke",
+        "subspecialty": "Stroke",
         "query": '("basilar artery occlusion" OR "posterior cerebral artery" OR "thalamic infarction" OR "pontine infarction") AND "case report" AND (MRI OR DWI OR DSA)',
         "keywords": ["posterior circulation", "stroke", "thrombectomy", "mri", "dwi"],
         "distractors": [
@@ -126,7 +126,7 @@ CLINICAL_CASE_TOPIC_BANK = [
         ]
     },
     {
-        "subspecialty": "Vascular & Stroke",
+        "subspecialty": "Stroke",
         "query": '("reversible cerebral vasoconstriction" OR "CNS vasculitis" OR "moyamoya" OR "carotid dissection" OR "vertebral artery dissection") AND "case report" AND (MRI OR CTA OR MRA OR DSA)',
         "keywords": ["vasculopathy", "dissection", "stroke", "angiography", "mri"],
         "distractors": [
@@ -156,7 +156,7 @@ CLINICAL_CASE_TOPIC_BANK = [
         ]
     },
     {
-        "subspecialty": "Cognitive & Dementia",
+        "subspecialty": "Dementia",
         "query": '("Creutzfeldt-Jakob" OR "cerebral amyloid angiopathy-related inflammation" OR "frontotemporal dementia" OR "Hashimoto encephalopathy") AND "case report" AND MRI',
         "keywords": ["rapidly progressive dementia", "cognitive", "cortical ribboning", "mri"],
         "distractors": [
@@ -193,6 +193,16 @@ CLINICAL_CASE_TOPIC_BANK = [
             "Episodic migraine with visual aura",
             "Primary trigeminal neuralgia",
             "Tension-type headache"
+        ]
+    },
+    {
+        "subspecialty": "CNS Infections",
+        "query": '("tuberculous meningitis" OR "neurosyphilis" OR "cryptococcal meningitis" OR "brain abscess" OR "HSV encephalitis") AND "case report" AND (MRI OR CSF)',
+        "keywords": ["cns infections", "meningitis", "brain abscess", "mri", "csf"],
+        "distractors": [
+            "Autoimmune limbic encephalitis",
+            "High-grade glioma",
+            "Neurosarcoidosis"
         ]
     },
     {
@@ -887,7 +897,7 @@ def run():
     today_str = today_dt.strftime("%Y-%m-%d")
     day_index = today_dt.timetuple().tm_yday
     weekday = today_dt.weekday()
-    target_subspecialty = WEEKDAY_SPECIALTY_SCHEDULE.get(weekday, "Vascular & Stroke")
+    target_subspecialty = WEEKDAY_SPECIALTY_SCHEDULE.get(weekday, "Stroke")
 
     used_pmcids = set()
     max_num = 0

@@ -17,15 +17,15 @@ import { AdminTab } from "../../components/neurocase/tabs/AdminTab";
 
 const SUBSPECIALTY_TABS = [
   { label: "All Subspecialties", value: "All" },
-  { label: "Vascular & Stroke", value: "Vascular & Stroke" },
+  { label: "Stroke", value: "Stroke" },
   { label: "Neurocritical Care", value: "Neurocritical Care" },
-  { label: "Traumatic Brain Injury (TBI)", value: "Traumatic Brain Injury (TBI)" },
   { label: "Epilepsy", value: "Epilepsy" },
-  { label: "Cognitive & Dementia", value: "Cognitive & Dementia" },
+  { label: "Dementia", value: "Dementia" },
   { label: "Neuroimmunology", value: "Neuroimmunology" },
   { label: "Neuromuscular", value: "Neuromuscular" },
   { label: "Movement Disorders", value: "Movement Disorders" },
   { label: "Headache & Pain", value: "Headache & Pain" },
+  { label: "CNS Infections", value: "CNS Infections" },
   { label: "Neuro-Oncology", value: "Neuro-Oncology" },
   { label: "Other", value: "Other" },
 ];
@@ -65,7 +65,7 @@ export function getSpecialtyTheme(subspecialty: string): SpecialtyTheme {
       dotColor: "bg-rose-500",
     };
   }
-  if (norm.includes("critical") || norm.includes("neurocritical") || norm.includes("icu")) {
+  if (norm.includes("critical") || norm.includes("neurocritical") || norm.includes("icu") || norm.includes("trauma") || norm.includes("tbi")) {
     return {
       borderLeft: "border-l-amber-500",
       cardBg: "bg-amber-50/40 dark:bg-amber-950/20",
@@ -95,7 +95,7 @@ export function getSpecialtyTheme(subspecialty: string): SpecialtyTheme {
       dotColor: "bg-emerald-500",
     };
   }
-  if (norm.includes("cognit") || norm.includes("dementia") || norm.includes("memory") || norm.includes("alzheimer")) {
+  if (norm.includes("dementia") || norm.includes("cognit") || norm.includes("memory") || norm.includes("alzheimer")) {
     return {
       borderLeft: "border-l-cyan-500",
       cardBg: "bg-cyan-50/40 dark:bg-cyan-950/20",
@@ -145,7 +145,7 @@ export function getSpecialtyTheme(subspecialty: string): SpecialtyTheme {
       dotColor: "bg-yellow-500",
     };
   }
-  if (norm.includes("trauma") || norm.includes("tbi") || norm.includes("injury")) {
+  if (norm.includes("infection") || norm.includes("meningit") || norm.includes("cns infection") || norm.includes("abscess")) {
     return {
       borderLeft: "border-l-teal-500",
       cardBg: "bg-teal-50/40 dark:bg-teal-950/20",

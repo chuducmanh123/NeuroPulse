@@ -3,8 +3,9 @@
     "id": "nc-2026-011",
     "case_code": "NC-2026-011",
     "title": "Acute Onset Seizures, Confusion, and Memory Disorders with Concomitant Viral and Autoantibody Detection",
-    "subspecialty": "Neuroimmunology",
+    "subspecialty": "Epilepsy",
     "subspecialties": [
+      "Epilepsy",
       "Neuroimmunology",
       "Neuroinfectious Disease"
     ],
@@ -220,8 +221,9 @@
     "id": "nc-2026-010",
     "case_code": "NC-2026-010",
     "title": "Isolated Freezing of Gait with Parietal Cortical Atrophy and Preserved Dopamine Transporter Binding",
-    "subspecialty": "Movement Disorders",
+    "subspecialty": "Dementia",
     "subspecialties": [
+      "Dementia",
       "Movement Disorders",
       "Cognitive & Behavioral Neurology"
     ],
@@ -323,9 +325,9 @@
     "id": "nc-2026-009",
     "case_code": "NC-2026-009",
     "title": "Acute Basilar Artery Occlusion and Brainstem Infarction in a Young Adult",
-    "subspecialty": "Vascular & Stroke",
+    "subspecialty": "Stroke",
     "subspecialties": [
-      "Vascular & Stroke",
+      "Stroke",
       "Neurocritical Care",
       "Neuro-cardiology"
     ],
@@ -436,9 +438,9 @@
     "id": "nc-2026-001",
     "case_code": "NC-2026-001",
     "title": "Acute Somnolence, Vertical Gaze Palsy, and Severe Memory Impairment Following Left Vertebral Artery V4 Stent Deployment",
-    "subspecialty": "Vascular & Stroke",
+    "subspecialty": "Stroke",
     "subspecialties": [
-      "Vascular & Stroke",
+      "Stroke",
       "Neurocritical Care"
     ],
     "difficulty": "Fellow",
@@ -548,7 +550,7 @@
     "id": "nc-2026-002",
     "case_code": "NC-2026-002",
     "title": "Acute Urinary Retention, Right Leg Thermal Hypesthesia, and Rapidly Progressive Encephalomyelitis with Coma in a 38-Year-Old Lactating Woman",
-    "subspecialty": "Neuroimmunology",
+    "subspecialty": "Neurocritical Care",
     "subspecialties": [
       "Neuroimmunology",
       "Neurocritical Care"
@@ -650,10 +652,10 @@
     "id": "nc-2026-003",
     "case_code": "NC-2026-003",
     "title": "Focal Motor Seizures, Subacute Cognitive Decline, Asymmetric Lobar Vasogenic Edema, and Cortical Superficial Siderosis in a 71-Year-Old Patient",
-    "subspecialty": "Cognitive & Dementia",
+    "subspecialty": "Stroke",
     "subspecialties": [
-      "Cognitive & Dementia",
-      "Vascular & Stroke",
+      "Dementia",
+      "Stroke",
       "Neuroimmunology"
     ],
     "difficulty": "Attending",
@@ -753,9 +755,9 @@
     "id": "nc-2026-004",
     "case_code": "NC-2026-004",
     "title": "Rapidly Progressive Consciousness Impairment, Seizures, and Bilateral Venous Infarction Refractory to Systemic Heparin in a 20-Year-Old Male with Nephrotic Relapse",
-    "subspecialty": "Vascular & Stroke",
+    "subspecialty": "Stroke",
     "subspecialties": [
-      "Vascular & Stroke",
+      "Stroke",
       "Neurocritical Care"
     ],
     "difficulty": "Fellow",
@@ -865,7 +867,7 @@
     "id": "nc-2026-005",
     "case_code": "NC-2026-005",
     "title": "Refractory Severe Hyponatremia (109 mmol/L), Drowsiness, and Brief Involuntary Left Faciobrachial Spasms Without Ictal EEG Correlate in a 77-Year-Old Man",
-    "subspecialty": "Neuroimmunology",
+    "subspecialty": "Epilepsy",
     "subspecialties": [
       "Neuroimmunology",
       "Epilepsy"
@@ -977,9 +979,9 @@
     "id": "nc-2026-006",
     "case_code": "NC-2026-006",
     "title": "Recurrent Brief Positional Vertigo Triggered by Turning in Bed Mimicking Benign Paroxysmal Positional Vertigo in a 63-Year-Old Hypertensive Man",
-    "subspecialty": "Vascular & Stroke",
+    "subspecialty": "Stroke",
     "subspecialties": [
-      "Vascular & Stroke"
+      "Stroke"
     ],
     "difficulty": "Resident",
     "estimated_time_sec": 95,
@@ -1088,9 +1090,9 @@
     "id": "nc-2026-007",
     "case_code": "NC-2026-007",
     "title": "Rapidly Progressive Cognitive Decline, Myoclonus, Generalized Periodic Triphasic Discharges with Anterior-Posterior Lag, and Cortical Ribboning",
-    "subspecialty": "Cognitive & Dementia",
+    "subspecialty": "Dementia",
     "subspecialties": [
-      "Cognitive & Dementia",
+      "Dementia",
       "Epilepsy"
     ],
     "difficulty": "Attending",
@@ -1200,8 +1202,9 @@
     "id": "nc-2026-008",
     "case_code": "NC-2026-008",
     "title": "Two Months of Isolated Intractable Hiccups Followed by Acute Ophthalmoplegia, Bulbar Palsy, and Autonomic Instability Without Cutaneous Rash in a 35-Year-Old Man",
-    "subspecialty": "Neuromuscular",
+    "subspecialty": "Neuroimmunology",
     "subspecialties": [
+      "Neuroimmunology",
       "Neuromuscular",
       "Neurocritical Care"
     ],

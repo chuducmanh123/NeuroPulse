@@ -32,9 +32,9 @@
     ],
     "doi_url": "https://doi.org/10.1001/jama.2026.14703",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ],
       "topics": [
         "Carotid"
@@ -64,9 +64,9 @@
     "authors": [],
     "doi_url": "https://doi.org/10.1001/jama.2026.13508",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ],
       "topics": [
         "Carotid"
@@ -180,9 +180,9 @@
     ],
     "doi_url": "https://doi.org/10.1001/jama.2026.17558",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ],
       "topics": [
         "Stroke",
@@ -237,10 +237,10 @@
     ],
     "doi_url": "https://doi.org/10.1001/jama.2026.13384",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke",
-        "Cognitive & Dementia"
+        "Stroke",
+        "Dementia"
       ],
       "topics": [
         "Dementia",
@@ -276,9 +276,9 @@
     ],
     "doi_url": "https://doi.org/10.1001/jama.2026.14839",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ],
       "topics": [
         "Carotid"
@@ -465,9 +465,9 @@
     ],
     "doi_url": "https://doi.org/10.1001/jamaneurol.2026.3812",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ],
       "topics": [
         "Stroke",
@@ -648,9 +648,9 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.055500",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Other"
+        "Stroke"
       ],
       "topics": [
         "Neurology"
@@ -687,9 +687,9 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.055936",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ],
       "topics": [
         "Stroke",
@@ -727,9 +727,9 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.056613",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ],
       "topics": [
         "Stroke"
@@ -764,9 +764,9 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.056369",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ],
       "topics": [
         "Neurovascular"
@@ -800,9 +800,9 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.058046",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ],
       "topics": [
         "Stroke",
@@ -839,9 +839,9 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.057085",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Other"
+        "Stroke"
       ],
       "topics": [
         "Hemorrhage"
@@ -875,9 +875,9 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.056650",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ],
       "topics": [
         "Stroke"
@@ -913,9 +913,9 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.056099",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ],
       "topics": [
         "Stroke"
@@ -947,9 +947,9 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.058301",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ],
       "topics": [
         "Stroke"
@@ -984,9 +984,9 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.057797",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Other"
+        "Stroke"
       ],
       "topics": [
         "Neurology"
@@ -1230,14 +1230,14 @@
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218719",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Stroke",
         "Ischemic",
         "Intracranial"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "Background and objectives: Patients with atrial fibrillation (AF) and previous intracranial bleeding are at high risk of ischemic and bleeding events, and the benefits and risks of oral anticoagulation (OAC) remain uncertain. We investigated competing risks of recurrent intracranial bleeding, ischemic stroke (IS), and death from other causes according to anticoagulation strategy. Methods: This nationwide Finnish cohort study using linked administrative registries included patients with first-ever AF diagnosed in 2010-2018 and intracranial bleeding at least 120 days earlier. Follow-up began 90 days after AF diagnosis. Patients were categorized as receiving direct oral anticoagulants (DOACs), warfarin, or no OAC based on drug purchases. Warfarin users were further stratified by time in therapeutic range (TTR). Inverse probability of treatment weighting balanced baseline characteristics. Competing risks were analyzed using adjusted cumulative incidence functions and cause-specific Cox regression. Results: Among 1,502 patients (median age 78 years [IQR 71-85], 44% female, 41% with only traumatic intracranial bleeding), 15% received DOACs, 29% warfarin, and 56% no OAC. At 1 year, adjusted absolute risks of IS were 0.7%, 2.1%, and 4.1%; intracranial bleeding, 1.2%, 2.7%, and 1.9%; and death from other causes, 4.7%, 8.6%, and 14.7%, respectively. Compared with no OAC, DOAC use was associated with lower risks of IS (HR 0.17, 95% CI 0.04-0.71) and death (HR 0.20, 95% CI 0.09-0.46) without increased intracranial bleeding risk (HR 0.70, 95% CI 0.19-2.50). Warfarin use was associated with lower risks of IS (HR 0.49, 95% CI 0.26-0.93) and death (HR 0.60, 95% CI 0.44-0.80), but increased intracranial bleeding risk (HR 1.85, 95% CI 1.01-3.41). Among warfarin users, TTR ≥70% was associated with lower risks of IS (HR 0.24, 95% CI 0.08-0.79) and death (HR 0.19, 95% CI 0.10-0.36); associations were attenuated with poorer or missing TTR. Discussion: In patients with AF and previous intracranial bleeding, OAC was associated with lower risks of IS and death. DOAC use was not associated with increased intracranial bleeding risk, whereas warfarin use was. Limited information on previous intracranial bleeding and potential residual confounding warrant cautious interpretation. These findings support individualized anticoagulation decisions in this high-risk population.",
@@ -1274,14 +1274,14 @@
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218681",
     "neurology_classification": {
-      "subspecialty": "Cognitive & Dementia",
+      "subspecialty": "Dementia",
       "topics": [
         "Dementia",
         "Amyloid",
         "Tau"
       ],
       "subspecialties": [
-        "Cognitive & Dementia"
+        "Dementia"
       ]
     },
     "abstract": "Background and objectives: Blood-based biomarkers are strongly correlated with amyloid positivity in research settings, but their long-term performance in heterogeneous populations remains unclear. Our aim was to determine their long-term prediction accuracy for incident all-cause dementia on their own and when used alongside known risk factors in community-dwelling older adults. Methods: This was a retrospective study based on the UK Whitehall II longitudinal, population-based cohort study established in 1985 among civil servants that includes a clinical examination every 4-5 years. Blood samples stored at the 2013-2013 wave were assayed in 2024 for measures of amyloid-beta (Aβ) 42 and 40, glial fibrillary acidic protein (GFAP), neurofilament light (NfL), and phosphorylated tau protein 217 (p-tau217). Incident all-cause dementia, from 2012 to 2013 to 2025, was ascertained from linked medical records, and Cox regression was used to examine associations of biomarkers with dementia, followed by estimation of prediction statistics. Results: Of the 5,225 (27.2% female) participants (mean age in 2012-2013, 69.4 ± 5.7 years), 516 (30.0% female) had a dementia diagnosis over a 12.2-year median follow-up. Participants with values in the worst quartile of amyloid-beta 42 (Aβ42)/40 ratio (hazard ratio [HR] 1.88; 95% CI 1.57-2.24), p-tau217 (HR 3.74; 95% CI 3.12-4.50), NfL (HR 1.88; 95% CI 1.56-2.28), and GFAP (HR 2.25; 95% CI 1.87-2.72) had higher risk of dementia. The C-index for predicting dementia was highest for p-tau217 (0.693; 95% CI 0.672-0.714), lowest for Aβ42/40 ratio (0.587; 95% CI 0.566-0.608), and was 0.760 (0.738, 0.781) for all biomarkers together. Sensitivity (between 41.7% and 59.5%) and positive predictive value (between 16.4% and 23.5%) of all biomarkers were modest, but specificity (between 76.8% and 78.8%) and negative predictive value (92.3%-94.7%) were good. A second approach to prediction modeling showed a model containing sociodemographic, behavioral, and health-related risk factors to have a C-index of 0.765 (95% CI 0.746-0.785); adding all biomarkers to this model led to a C-index of 0.813 (95% CI 0.795-0.830). Discussion: The long-term predictive ability of blood-based biomarkers for incident dementia in community-dwelling older adults was modest due to poor sensitivity and similar to that of a model containing known risk factors.",
@@ -1327,7 +1327,7 @@
       ],
       "subspecialties": [
         "Epilepsy",
-        "Cognitive & Dementia"
+        "Dementia"
       ]
     },
     "abstract": "Background and objectives: Epilepsy is linked to late-onset dementia, but evidence for young-onset dementia (YOD; Methods: We conducted 3 nationwide analyses. A French nested case-control analysis included patients with incident YOD aged 40-64 years, diagnosed between January 1, 2016, and December 31, 2018. Index date was the first YOD-related health care event; controls were risk-set matched on age, sex, and region. A Swedish nested case-control replication included patients with YOD diagnosed between January 1, 1987, and December 31, 2016, with matched controls. In both studies, epilepsy-related diagnoses and antiseizure medication (ASM) dispensations were assessed up to 10 years before index date. Odds ratios (ORs) were estimated with conditional logistic regression. A French retrospective cohort included adults aged 30-55 years with incident epilepsy in 2008, matched to individuals with prevalent epilepsy before 2008 or no epilepsy. The cohort index was the first ASM reimbursement in the incident epilepsy group or the matched date for comparators. Follow-up ended at YOD, death, or 10 years. We estimated 10-year cumulative incidence and adjusted (comorbidities, deprivation) hazard ratios (HRs), treating death as a competing event. Sensitivity analyses included lagged entry up to 5 years. Results: Case-control studies included 11,360 cases and 113,600 controls in France and 16,433 cases and 164,330 controls in Sweden. In France, 12.5% of YOD cases vs 1.2% of controls had previous epilepsy-related codes (adjusted OR 3.76, 95% CI 3.42-4.14), and 27.3% vs 10.3% had ASM dispensations (adjusted OR 1.44, 95% CI 1.36-1.52). The French cohort included 12,901 individuals with incident epilepsy, 64,083 with prevalent epilepsy, and 129,010 without epilepsy (mean age 44.0 years; 55.5% female participants). Ten-year cumulative YOD incidence was 2.20% (95% CI 1.94-2.48) with incident epilepsy (adjusted HR compared with individuals without epilepsy 6.02, 95% CI 4.98-7.26), 1.74% (1.64-1.85) with prevalent epilepsy (adjusted HR 5.38, 95% CI 4.64-6.25), and 0.21% (0.19-0.24) without epilepsy. Associations attenuated with longer lags but persisted beyond 5 years. Discussion: Across 2 countries and complementary designs, epilepsy was strongly associated with YOD. Epilepsy conferred higher YOD risk in midlife, especially with multimorbidity, supporting epilepsy inclusion in YOD risk stratification and prevention.",
@@ -1372,7 +1372,7 @@
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218564",
     "neurology_classification": {
-      "subspecialty": "Cognitive & Dementia",
+      "subspecialty": "Dementia",
       "topics": [
         "Alzheimer",
         "Dementia",
@@ -1380,7 +1380,7 @@
         "Amyloid"
       ],
       "subspecialties": [
-        "Cognitive & Dementia"
+        "Dementia"
       ]
     },
     "abstract": "Background and objectives: Blood-based biomarkers offer a cost-effective, minimally invasive alternative to neuroimaging and CSF biomarkers. Newly developed fluid biomarkers, including the N-terminal tau fragment (NT1), show promise for identifying individuals at risk for Alzheimer disease (AD) and for monitoring disease progression. Here, we determine whether NT1 levels are associated with key clinical and biomarker measures in a large, well-characterized cohort. Methods: Participants from the Alzheimer's Disease Neuroimaging Initiative (ADNI) cohort with available plasma NT1, β-amyloid (Aβ)-PET, MRI, and clinical measures (Clinical Dementia Rating) were included in this observational study. NT1 was measured using the Quanterix Simoa HD-X platform. PET, MRI, clinical, and other plasma measures were obtained using established ADNI procedures. A subset also had NULISA-based plasma measures of amyloid and tau and tau-PET assessed. Linear regression and linear mixed-effects models were used to assess cross-sectional and longitudinal associations between NT1 and clinical or biomarker measures, adjusting for relevant covariates. Multivariable-adjusted Cox regression was performed to evaluate the association between baseline NT1 levels and risk of clinically diagnosed mild cognitive impairment (MCI) or AD. Mediation analysis was conducted to examine whether hippocampal atrophy mediates the relationship between NT1 and memory decline. Spearman correlations were used to examine continuous relationships between plasma NT1 and continuous fluid and neuroimaging markers. Results: A total of 755 participants (mean age: 72.9 [7.0], female: 375 [50%]) were included in the study. Plasma NT1 levels were elevated in MCI/AD individuals (B MCI/AD [SE] = 0.09 [0.022], p = 1.98 × 10 -4 ) and were cross-sectionally associated with worse memory performance (B [SE] = -0.25 [0.09], p = 0.005). Aβ moderated the association between elevated NT1 and greater cognitive decline across multiple domains (memory: B [SE] = -0.17 [0.074], p = 0.022; executive function: B [SE] = -0.24 [0.082], p = 0.004; language: B [SE] = -0.21 [0.075], p = 0.006). NT1 levels were negatively associated with hippocampal volume (B [SE] = -264.49 [125.99], p = 0.036) and predicted longitudinal atrophy (B [SE] = -42.00 [16.90], p = 0.013). Accelerated hippocampal atrophy largely mediated the association between higher baseline NT1 level and greater memory decline (B [95% CI] indirect effect = -0.082 [-0.135 to -0.03], p = 0.003, B [95% CI] proportion mediated = 70.1% [32.6%-155.3%], p = 0.004). Higher NT1 levels were associated with higher levels of plasma biomarkers, including NULISA-based brain-derived (BD) plasma pTau (BD-pTau181, BD-pTau217, BD-pTau231: p 's -6 ) and Simoa-Based pTau181 ( p -15 ) and neurofilament light chain ( p -7 ). Discussion: Plasma NT1 may be useful in assessing amyloid-dependent cognitive decline and neurodegeneration.",
@@ -1586,13 +1586,13 @@
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218736",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Stroke",
         "Ischemic"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "Background and objectives: Early rhythm control reduces cardiovascular events in patients with atrial fibrillation (AF); however, its effectiveness in the setting of acute ischemic stroke remains uncertain. We aimed to examine whether early rhythm control after acute ischemic stroke is associated with a lower risk of recurrent stroke or systemic embolism (SE) in patients with AF. Methods: This nationwide cohort study used the DeSC-IQVIA integrated database, an administrative claims database covering approximately 16 million individuals in Japan. Adults hospitalized for acute ischemic stroke with AF present at admission between 2014 and 2025 were included. The exposure was initiation of rhythm control (antiarrhythmic drugs, catheter ablation, or electrical cardioversion) within 8 weeks of admission (early rhythm control) vs no initiation (usual care), assessed at a landmark. The primary outcome was hospitalization for recurrent ischemic stroke or SE. Secondary outcomes included major bleeding, heart failure (HF) hospitalization, and all-cause mortality. Baseline differences were adjusted using propensity score overlap weighting. Cause-specific hazard ratios (HRs), cumulative incidence with death as a competing risk, and risk differences at 5 years were estimated. Results: Among 14,355 patients who survived event-free through the 8-week landmark (median age, 83 years [IQR, 78-88]; 6,935 [48.3%] women), 268 (1.9%) received early rhythm control. During 23,583 person-years, early rhythm control was associated with a lower risk of stroke/SE (HR, 0.56; 95% CI 0.32-0.97; weighted 5-year cumulative incidence, 8.0% vs 13.8%; risk difference, -5.9 percentage points [95% CI -11.0 to 0.8]). Among secondary outcomes, no association was observed with major bleeding (HR, 1.44; 95% CI 0.74-2.82) or HF hospitalization (HR, 0.73; 95% CI 0.39-1.38); early rhythm control was associated with lower all-cause mortality (HR, 0.72; 95% CI 0.53-0.97). Results were consistent across landmark periods of 4-24 weeks. Discussion: In this nationwide cohort study, early rhythm control after acute ischemic stroke in patients with AF was associated with a reduced risk of recurrent stroke or SE. These findings suggest that early rhythm control may serve as an additional secondary prevention strategy for ischemic stroke, with flexible timing of initiation. These observational findings are hypothesis-generating and warrant confirmation in randomized controlled trials.",
@@ -1761,7 +1761,7 @@
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218692",
     "neurology_classification": {
-      "subspecialty": "Cognitive & Dementia",
+      "subspecialty": "Dementia",
       "topics": [
         "Alzheimer",
         "Dementia",
@@ -1769,7 +1769,7 @@
         "Tau"
       ],
       "subspecialties": [
-        "Cognitive & Dementia",
+        "Dementia",
         "Neuromuscular"
       ]
     },
@@ -1881,7 +1881,7 @@
     ],
     "doi_url": "https://doi.org/10.1056/nejme2612692",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Stroke",
         "Ischemic",
@@ -1889,7 +1889,7 @@
         "Neurological"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "Mechanical thrombectomy (MT) has become the standard treatment for acute ischemic stroke (AIS) caused by large vessel occlusion, and its indications have expanded substantially over the past decade. Recent randomized controlled trials (RCTs) have extended eligibility to patients presenting in extended time windows, those with large ischemic cores, and other populations previously considered unsuitable for intervention. However, the expansion of MT indications has also raised important ethical challenges. Patients with AIS often lack decision-making capacity, requiring physicians to balance respect for patient autonomy with the principles of beneficence, nonmaleficence, and justice under severe time constraints. Moreover, RCTs have enrolled highly selected populations, and evidence remains limited for many patients encountered in clinical practice. This review discusses ethical issues related to MT across clinical contexts involving treatment beyond conventional time windows, large ischemic cores, medium or distal vessel occlusions, futile recanalization, active malignancy, and prestroke disability. Representative cases illustrate situations in which ethical considerations extend beyond guideline recommendations. Whenever possible, treatment decisions should incorporate each patient's premorbid functional status, values, anticipated quality of life, procedural risks, and expected neurological recovery. Continued evidence generation in understudied populations will be essential to support the ethically sound, patient-centered application of MT.",
@@ -1980,7 +1980,7 @@
     ],
     "doi_url": "https://doi.org/10.1056/nejmoa2609362",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Stroke",
         "Ischemic",
@@ -1988,7 +1988,7 @@
         "Hemorrhage"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "Background: Endovascular thrombectomy is an established treatment for acute ischemic stroke. Whether the benefit extends to patients with salvageable brain tissue in the infarct who present more than 24 hours after symptom onset or the time when they were last known to be well is uncertain. Methods: We conducted an open-label, randomized trial with blinded outcome assessment at comprehensive stroke centers in China. Patients with acute ischemic stroke from large-vessel occlusion of the anterior circulation and imaging-identified salvageable brain tissue at 24 to 72 hours were assigned to receive endovascular therapy plus standard medical care (intervention group) or standard medical care alone (control group). The primary outcome was functional status, defined by the score on the modified Rankin scale (range, 0 to 6, with higher scores indicating greater disability and a score of 6 indicating death) at 90 days, with results assessed as the distribution of scores in each group. Secondary outcomes included disability, neurologic impairment, and safety. Results: A total of 336 patients were included in the intention-to-treat population, with 168 assigned to each group. The median time from symptom onset or from the point when the patient was last known to be well to randomization was 38.5 hours. Endovascular therapy resulted in a more favorable distribution of modified Rankin scale scores at 90 days than standard medical care alone (common odds ratio for a better functional outcome, 1.74; 95% confidence interval, 1.19 to 2.55). Symptomatic intracranial hemorrhage occurred in 4.8% of the patients in the intervention group and in no patients in the control group, and the 90-day case fatality rate was 6.0% and 1.8%, respectively. Conclusions: Among patients who presented 24 to 72 hours after an acute ischemic stroke from large-vessel occlusion of the anterior circulation and had imaging-identified salvageable tissue, endovascular therapy resulted in better functional outcomes than standard care but led to a higher risk of intracranial hemorrhage and death. (Funded by the National Health Commission Capacity Building and Continuing Education Center and others; LATE-MT ClinicalTrials.gov number, NCT05326932.)",
@@ -2052,7 +2052,7 @@
     ],
     "doi_url": "https://doi.org/10.1056/nejmoa2609149",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Stroke",
         "Ischemic",
@@ -2060,7 +2060,7 @@
         "Hemorrhage"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "Background: Although endovascular thrombectomy is the standard of care for acute ischemic stroke with moderate-to-severe symptoms caused by large-vessel occlusion, its efficacy and safety in patients presenting with mild stroke (National Institutes of Health Stroke Scale [NIHSS] score <6) remain uncertain. Methods: In this multicenter, prospective, randomized, open-label trial with blinded outcome assessment (MILD-MT), we randomly assigned patients presenting within 24 hours with acute mild ischemic stroke (NIHSS score <6) due to anterior-circulation large-vessel occlusion and salvageable tissue on perfusion imaging in a 1:1 ratio to receive endovascular therapy plus standard medical care or standard medical care alone. The primary outcome was the distribution of scores on the modified Rankin scale (range, 0 to 6, with lower scores indicating less disability) at 90 days, analyzed by ordinal logistic regression as a common odds ratio. Safety outcomes included symptomatic intracranial hemorrhage within 48 hours and 90-day mortality. Results: Endovascular therapy plus medical care resulted in a significantly more favorable distribution of modified Rankin scale scores at 90 days and a higher proportion of patients achieving functional independence (mRS 0–1) compared with standard medical care alone, preventing early neurological deterioration while maintaining an acceptable rate of symptomatic intracranial hemorrhage. Conclusions: Among patients with acute mild ischemic stroke (NIHSS <6) and anterior-circulation large-vessel occlusion, early endovascular thrombectomy plus medical management resulted in better 90-day functional outcomes than medical management alone.",
@@ -2095,15 +2095,15 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.056836",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Stroke",
         "Intracranial",
         "Brain"
       ],
       "subspecialties": [
-        "Vascular & Stroke",
-        "Cognitive & Dementia"
+        "Stroke",
+        "Dementia"
       ]
     },
     "abstract": "BACKGROUND: Obesity increases the risk of stroke and cognitive decline, but its association with intracranial arterial hemodynamics remains unclear. We examined whether obesity score is associated with intracranial signal-intensity gradient, a time-of-flight magnetic resonance angiography–derived surrogate of arterial wall shear conditions, and whether this association differs by vascular territory. METHODS: This cross-sectional study included 5618 adults who underwent comprehensive health screening, including intracranial time-of-flight magnetic resonance angiography, in the Republic of Korea between 2012 and 2020. Body mass index was calculated from measured height and weight, and waist circumference was measured by health-screening staff on the same day as brain magnetic resonance angiography. An obesity score was calculated by assigning 1 point each for general and abdominal obesity, yielding scores of 0 (neither), 1 (either), or 2 (both). Arterial SIG and arterial radius were calculated using semiautomated 3-dimensional vessel segmentation. Lower SIG values were interpreted as reflecting reduced arterial wall shear conditions. Multivariable linear regression models assessed the association between obesity score and SIG across 11 intracranial arteries, adjusting for demographics, arterial radius, and cardiometabolic factors. RESULTS: Among 5618 participants (mean [SD] age, 55.9 [8.6] years; 45.2% women), higher obesity score was associated with lower SIG across all intracranial arteries ( P value for trend <0.001). In adjusted models, each 1-point increase in obesity score was associated with reduced SIG, including in the basilar artery (B=−0.26 [95% CI, −0.31 to −0.21]). The obesity-related reduction in SIG was greater in the posterior than anterior circulation and persisted after adjustment for arterial radius and cardiometabolic factors. CONCLUSIONS: A higher obesity score was associated with reduced intracranial arterial SIG, consistent with adverse time-of-flight magnetic resonance angiography–derived flow-related hemodynamic alterations. Greater reductions in the posterior circulation suggest territory-specific vulnerability, which may be associated with early cerebrovascular compromise in the context of obesity.",
@@ -2135,7 +2135,7 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.057603",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Stroke",
         "Ischemic",
@@ -2143,7 +2143,7 @@
         "Intracranial"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "BACKGROUND: This prespecified post hoc analysis of the ATAMIS trial (Antiplatelet Therapy in Acute Mild to Moderate Ischemic Stroke) aimed to investigate whether the benefit of dual antiplatelet therapy versus aspirin alone differs in patients with mild versus moderate stroke. METHODS: Using data from the modified intention‑to‑treat population of the ATAMIS trial, eligible patients were divided into mild (National Institutes of Health Stroke Scale [NIHSS] score 4–5) and moderate (NIHSS score 6–10) groups. The primary outcome was early neurological deterioration at 7 days, defined as an increase in the NIHSS score of ≥2 points from baseline. Safety outcomes included bleeding events and intracranial hemorrhage within 90 days. Binary logistic regression, Cox regression, and generalized linear models were used as appropriate. Adjusted models included age, sex, diabetes, hypertension, onset-to-treatment time, stroke cause, and other imbalanced baseline variables. Treatment-by-baseline stroke severity interaction was assessed. RESULTS: A total of 2915 patients were included, including 1992 (68.4%) with mild stroke and 923 (31.6%) with moderate stroke. Median age was 66 years (interquartile range, 59–73); 35.0% were women. Clopidogrel plus aspirin was associated with a significantly lower risk of early neurological deterioration compared with aspirin alone in the moderate stroke group (adjusted odds ratio, 0.31 [95% CI, 0.17–0.59]; P <0.001), whereas no significant difference was observed in the mild stroke group (adjusted odds ratio, 0.96 [95% CI, 0.66–1.41]; P =0.841). A significant interaction was identified between treatment effect and NIHSS score subgroup ( P interaction =0.003). The occurrence of bleeding events and intracranial hemorrhage was similar between treatment groups in both severity subgroups. CONCLUSIONS: In patients with acute mild-to-moderate ischemic stroke, the benefit of clopidogrel plus aspirin versus aspirin alone in preventing early neurological deterioration at 7 days may be greater among patients with moderate stroke (NIHSS score 6–10) than among those with mild stroke (NIHSS score 4–5), without an increased risk of bleeding. These findings suggest that baseline stroke severity may inform antiplatelet therapy selection, and warrant confirmation in future prospective studies. REGISTRATION: URL: https://www.clinicaltrials.gov ; Unique identifier: NCT02869009.",
@@ -2186,7 +2186,7 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.055043",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Stroke",
         "Ischemic",
@@ -2194,7 +2194,7 @@
         "Thrombolysis"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "BACKGROUND: Sleep-disordered breathing (SDB) is common after ischemic stroke and has been associated with adverse outcomes, yet evidence from large stroke cohorts remains limited. We evaluated the association of SDB severity with all-cause mortality, major adverse cardio- and cerebrovascular events (MACCE), and 3-month functional outcome. METHODS: This retrospective cohort study included consecutive patients with ischemic stroke or transient ischemic attack admitted to Inselspital Bern between 2017 and 2021 who underwent in-hospital respiratory polygraphy. SDB severity was classified according to the apnea-hypopnea index as mild (5–<15 events/h), moderate (15–<30 events/h), or severe (≥30 events/h). Outcomes included all-cause mortality, first postindex MACCE, and modified Rankin Scale scores at 3 months. Multivariable Cox and logistic regression models adjusted for age, sex, body mass index, vascular risk factors, admission National Institutes of Health Stroke Scale, intravenous thrombolysis, and mechanical thrombectomy. RESULTS: Among 1083 patients (mean age, 66.0±14.5 years; 62.6% male), SDB (apnea-hypopnea index ≥5 events/h) was present in 819 patients (75.6%), including mild (29.8%), moderate (22.9%), and severe (22.9%). Median follow-up was 51.1 months (interquartile range, 39.1–67.8) for mortality and 47.7 months (interquartile range, 36.9–65.5) for first postindex MACCE; 178 deaths and 153 of 880 patients experienced a first postindex MACCE. Severe SDB was independently associated with increased all-cause mortality (adjusted hazard ratio, 1.73 [95% CI, 1.04–2.89]). Mild, moderate, and severe SDB were associated with first postindex MACCE (adjusted hazard ratio, 1.78 [95% CI, 1.03–3.06]; 2.20 [95% CI, 1.26–3.84]; and 2.16 [95% CI, 1.23–3.78], respectively; P for trend=0.009). Moderate and severe SDB were associated with unfavorable 3-month functional outcome (adjusted odds ratio, 1.74 [95% CI, 1.01–3.04] and 2.48 [95% CI, 1.45–4.31], respectively; P for trend <0.001). CONCLUSIONS: Severe SDB was independently associated with all-cause mortality, whereas SDB severity was associated with first postindex MACCE and unfavorable 3-month functional outcome. Acute-phase SDB assessment may improve prognostic risk stratification.",
@@ -2236,7 +2236,7 @@
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218725",
     "neurology_classification": {
-      "subspecialty": "Cognitive & Dementia",
+      "subspecialty": "Dementia",
       "topics": [
         "Alzheimer",
         "Dementia",
@@ -2244,7 +2244,7 @@
         "Encephalopathy"
       ],
       "subspecialties": [
-        "Cognitive & Dementia",
+        "Dementia",
         "Neuromuscular"
       ]
     },
@@ -2285,7 +2285,7 @@
       "subspecialty": "Neuromuscular",
       "subspecialties": [
         "Neuromuscular",
-        "Cognitive & Dementia"
+        "Dementia"
       ],
       "topics": [
         "Tau"
@@ -2408,14 +2408,14 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.057740",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Stroke",
         "Ischemic",
         "Carotid"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "BACKGROUND: The carotid Plaque Reporting and Data System (Plaque-RADS) provides a standardized framework for evaluating plaque morphology, but prospective validation remains limited. We investigated the association between computed tomography angiography-based Plaque-RADS categories and subsequent ischemic events in patients with noncardioembolic stroke/transient ischemic attack, from a completed clinical trial of colchicine. Second, we assessed whether the effect of colchicine differed by Plaque-RADS risk classification. METHODS: We conducted a posthoc observational cohort analysis of 517 participants in the CONVINCE trial (Colchicine for Prevention of Vascular Inflammation in Non-CardioEmbolic Stroke) from 13 European sites. Associations between Plaque-RADS and recurrent ipsilateral stroke, any stroke/transient ischemic attack, and major adverse cardiovascular events were assessed using multivariable Cox proportional hazards models. Plaque-RADS was analyzed as both dichotomized (<3 versus ≥3) and ordinal (per 1-point increase) variables. Treatment effects were assessed by Plaque-RADS classification using interaction and stratified analyses. RESULTS: A total of 510 patients (median age, 67.0 years; 72.2% male) with 966 internal carotid arteries were included. Among 321 internal carotid arteries ipsilateral to the index ischemic stroke, 12 recurrent ipsilateral strokes, 32 any strokes/transient ischemic attacks, and 37 major adverse cardiovascular events occurred over a median 35.7-month follow-up. Plaque-RADS ≥3 (n=140) was independently associated with recurrent ipsilateral stroke (adjusted hazard ratio, 7.80 [95% CI, 1.55–39.30]; P =0.01), any stroke/transient ischemic attack (adjusted hazard ratio, 3.94 [95% CI, 1.68–9.24]; P <0.01), and major adverse cardiovascular events (adjusted hazard ratio, 2.52 [95% CI, 1.19–5.34]; P =0.02) after adjustment for age, sex and cardiovascular risk factors. A significant interaction with colchicine treatment was observed for major adverse cardiovascular events ( P =0.047), with greater benefit among patients with Plaque-RADS scores ≥3 (hazard ratio, 0.35 [95% CI, 0.15–0.82]). CONCLUSIONS: In internal carotid arteries ipsilateral to the index ischemic stroke, computed tomography angiography-based carotid Plaque-RADS was associated with recurrent ischemic stroke and cardiovascular events. Importantly, treatment effects of colchicine varied across Plaque-RADS classification (<3 versus ≥3), suggesting that plaque vulnerability assessment may help refine patient selection for anti-inflammatory therapy beyond stenosis-based classification. REGISTRATION: URL: https://www.clinicaltrials.gov ; Unique identifier: NCT02898610.",
@@ -2461,7 +2461,7 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.055458",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Stroke",
         "Ischemic",
@@ -2469,7 +2469,7 @@
         "Intracerebral"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "BACKGROUND: Optimal secondary stroke prevention remains uncertain for patients with intracerebral hemorrhage (ICH) and atrial fibrillation (AF). Anticoagulation reduces ischemic stroke in AF but increases hemorrhage. Left atrial appendage (LAA) occlusion is emerging as an alternative to anticoagulation, but few data exist on its safety in patients with ICH. Amid this uncertainty, little is known about US practice patterns in this scenario. METHODS: We performed a study using linked electronic health record, pharmacy, and insurance claims data on >11 million patients at 29 US healthcare organizations, each with multiple hospital sites, in the TriNetX Linked platform. Validated International Classification of Diseases, Tenth Revision codes were used to identify adults with AF hospitalized for ICH during 2016 to 2024. To identify antiplatelet and anticoagulant prescriptions, we used RxNorm codes, a standardized drug naming system from the National Library of Medicine. LAA occlusion was defined using validated Current Procedural Terminology codes. Kaplan-Meier statistics were used to calculate cumulative rates of therapy utilization from discharge through 5 years. We created 3 mutually exclusive treatment groups with censoring at LAA occlusion for analyses of antiplatelet and anticoagulant therapy and at anticoagulation for analyses of antiplatelet therapy. RESULTS: We identified 2276 patients with AF hospitalized with ICH. Their mean age was 65.4 (±12.8) years, 40.6% were female, median CHA 2 DS 2 -VASc score was 5 (interquartile range, 5–6), 19.6% had Medicare, 26.9% received an anticoagulant prescription within 90 days before ICH, and half were discharged home or to an acute rehabilitation facility. Cumulative 5-year rates were 59.8% (95% CI, 55.5%–64.2%) for anticoagulation, 39.9% (95% CI, 34.1%–46.3%) for antiplatelet therapy, and 4.5% (95% CI, 2.6%–7.6%) for LAA occlusion. LAA occlusion rates did not differ by index ICH date ( P =0.88). CONCLUSIONS: In a contemporary, multicenter US cohort of patients with ICH and AF, 60% were prescribed anticoagulation after discharge, and the remainder were mostly treated with antiplatelet therapy only. These findings suggest widespread use of different secondary stroke prevention strategies in patients with AF and ICH.",
@@ -2513,7 +2513,7 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.125.055017",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Stroke",
         "Hemorrhage",
@@ -2521,7 +2521,7 @@
         "Cerebral"
       ],
       "subspecialties": [
-        "Vascular & Stroke",
+        "Stroke",
         "Neurocritical Care"
       ]
     },
@@ -2567,13 +2567,13 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.056198",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Stroke",
         "Cerebral"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "BACKGROUND: Cerebral venous thrombosis is an uncommon cause of stroke that primarily affects young adults. Several clinical trials and observational studies have compared vitamin K antagonists (VKAs) with direct oral anticoagulants (DOACs) for treating cerebral venous thrombosis, but the small sample sizes limit the ability to draw firm conclusions. METHODS: We performed a systematic review and meta-analysis of randomized controlled trials and observational studies comparing DOACs with VKAs for the treatment of cerebral venous thrombosis. Studies published between January 2007 and July 2025 were included. Prespecified subgroup analyses were conducted by study design, DOAC class (anti–factor Xa inhibitors versus direct thrombin inhibitors), and VKA. Risk of bias was assessed using the Cochrane Risk-of-Bias Tool 2 for randomized trials and the Risk of Bias in Nonrandomized Studies of Interventions for observational studies. Pooled risk ratios (RRs) with 95% CIs were calculated using random-effects models. RESULTS: Fourteen studies (8 randomized clinical trials [RCTs] and 6 observational studies) were included. Among 3698 patients, 1669 (45.1%) received DOACs and 2029 (54.9%) received VKAs. Rates of recurrent venous thromboembolism (10.24% versus 10.99%), major bleeding (4.26% versus 6.18%), clinically relevant nonmajor bleeding (2.63% versus 1.66%), good functional outcomes (95.09% versus 89.25%), and mortality (3.37% versus 3.30%) were similar in DOACs and VKAs. Recurrent venous thromboembolism was similar between DOACs and VKAs in RCTs (RR, 1.06 [95% CI, 0.35–3.24]) and in the overall pooled analysis of all studies (RR, 0.92 [95% CI, 0.55–1.53]). Major bleeding did not differ between DOACs and VKAs in RCTs (RR, 0.73 [95% CI, 0.24–2.22]) or in the overall analysis (RR, 0.74 [95% CI, 0.44–1.25]; P =0.26). Clinically relevant nonmajor bleeding was also comparable in RCTs (RR, 1.06 [95% CI, 0.25–4.48]) and overall (RR, 1.22 [95% CI, 0.38–3.86]). Good functional outcomes (modified Rankin Scale score of 0–2) were similar between DOACs and VKAs in RCTs (RR, 1.00 [95% CI, 0.84–1.19]) and in the combined analysis of all studies (RR, 1.02 [95% CI, 0.93–1.11]). Mortality was similar between DOACs and VKAs in RCTs (RR, 1.15 [95% CI, 0.28–4.68]) and in the pooled analysis. When direct thrombin inhibitors were compared with factor Xa inhibitors, there were no significant differences in outcomes. CONCLUSIONS: DOACs demonstrated comparable efficacy and safety to VKAs in the treatment of cerebral venous thrombosis. These findings support the use of DOACs as a reasonable alternative.",
@@ -2694,14 +2694,14 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.055537",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Stroke",
         "Thrombectomy",
         "Endovascular"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "BACKGROUND: Endovascular thrombectomy (EVT) outperforms best medical treatment (BMT) for basilar artery occlusion (BAO), but the influence of stroke cause on the time sensitivity of EVT remains unclear. We hypothesized nonatherosclerotic BAO would require earlier EVT, whereas atherosclerotic BAO—with chronic stenosis and more robust collaterals—would retain EVT benefit in extended windows. We conducted a post hoc 3-way interaction analysis of the ATTENTION trial (Trial of Endovascular Treatment of Acute Basilar Artery Occlusion) to explore cause-specific EVT time patterns. METHODS: Using randomized ATTENTION trial data (36 Chinese centers, 2021–2022), patients were stratified by onset-to-puncture time (<6 versus ≥6 hours) and TOAST (Trial of ORG 10172 in Acute Stroke Treatment) cause (atherosclerotic: large-artery atherosclerosis; nonatherosclerotic: cardioembolism/undetermined/other causes). The primary outcome was 90-day favorable functional outcome (modified Rankin Scale score 0–3), with relative risk as the primary estimand; the 3-way interaction was tested via joint Wald test. A weighted 1-hour interval odds ratio trend analysis served as an exploratory tool, with multivariable regression adjusting for confounders. RESULTS: Among 340 patients (226 EVT+BMT, 114 BMT), for onset-to-puncture time <6 hours, patients without atherosclerosis with EVT achieved a significantly higher favorable outcome rate (46.7% versus 20.4%; relative risk, 2.29 [95% CI, 1.25–4.18]; P =0.007); patients with atherosclerosis showed numerical outcome benefit (40.4% versus 26.1%, P =0.259). For onset-to-puncture time ≥6 hours, numerical benefit of patients with atherosclerosis increased from 14.3% to 30.6% (56.9% versus 26.3%; P =0.199), accompanied by ordinal modified Rankin Scale score improvement (common odds ratio, 3.30 [95% CI, 1.13–9.62]; P =0.029) and National Institutes of Health Stroke Scale score reduction; patients without atherosclerosis’ benefit decreased from 26.3% to 17.8% with loss of significance (39.5% versus 21.7%, P =0.341). The treatment time×cause interaction was not significant ( P =0.662). The weighted 1-hour interval odds ratio trend analysis identified a provisional 5.3-hour reference point in patients without atherosclerosis. CONCLUSIONS: Compared with nonatherosclerotic BAO, atherosclerotic BAO appears less time-sensitive, potentially retaining EVT responsiveness over longer windows. These findings are hypothesis-generating and require prospective validation. REGISTRATION: URL: https://www.clinicaltrials.gov ; Unique identifier: NCT04751708.",
@@ -2852,12 +2852,12 @@
     ],
     "doi_url": "https://doi.org/10.1002/ana.78395",
     "neurology_classification": {
-      "subspecialty": "Cognitive & Dementia",
+      "subspecialty": "Dementia",
       "topics": [
         "Dementia"
       ],
       "subspecialties": [
-        "Cognitive & Dementia"
+        "Dementia"
       ]
     },
     "abstract": "Objective: Epigenetic clocks are biomarkers of biological aging influenced by lifestyle and systemic factors. Accelerated epigenetic aging has been associated with neurodegeneration, but its relevance in frontotemporal dementia is unclear. We investigated biological aging in frontotemporal dementia using the GrimAge2 epigenetic clock, a DNA methylation‐based predictor of mortality, and examined the contribution of smoking‐related DNA methylation. Methods: Peripheral blood DNA methylation data from frontotemporal dementia patients and controls from 2 independent cohorts were analyzed (Amsterdam Dementia Cohort: 313 patients, 121 controls; Genetic Investigation in Frontotemporal Dementia study: 102 patients, 102 controls). GrimAge2 was used to estimate epigenetic age acceleration. Associations with diagnosis were assessed using linear regression models adjusted for sex, estimated cell type proportions, and smoking (self‐reported and DNA methylation‐derived), followed by random‐effects meta‐analysis. Component‐level analyses examined smoking‐related DNA methylation, inflammatory markers, and glucose metabolism. Results: Patients with frontotemporal dementia showed increased GrimAge2‐derived epigenetic age acceleration ( β = 1.17 ± 0.36, 95% CI 0.46–1.88, p = 0.001) compared with controls. Component‐level analyses showed increased smoking‐related DNA methylation, systemic inflammation (tissue inhibitor of metalloproteinases 1, C‐reactive protein), and glucose metabolism (glycated hemoglobin; all p < 0.05). Adjustment for smoking‐related DNA methylation was associated with attenuation of the effect estimate by approximately 48% (epigenetic age acceleration: β = 0.62 ± 0.32, 95% CI −0.01–1.24, p = 0.053). Interpretation: Accelerated epigenetic aging in frontotemporal dementia is associated with GrimAge2‐derived DNA methylation patterns linked to smoking, inflammation, and metabolic pathways. These findings raise the possibility that smoking‐related DNA methylation reflects differences in smoking exposure or disease‐related behavioral changes captured by GrimAge2. ANN NEUROL 2026",
@@ -2889,7 +2889,7 @@
     ],
     "doi_url": "https://doi.org/10.1001/jama.2026.15519",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Dementia",
       "topics": [
         "Hemorrhage",
         "Cerebral",
@@ -2897,8 +2897,8 @@
         "Brain"
       ],
       "subspecialties": [
-        "Vascular & Stroke",
-        "Cognitive & Dementia"
+        "Dementia",
+        "Stroke"
       ]
     },
     "abstract": "Importance: Idiopathic normal pressure hydrocephalus (iNPH) is a progressive neurological disorder characterized by cerebral ventricular enlargement that is typically associated with gait impairment and often urinary dysfunction and cognitive decline in older adults. iNPH prevalence is approximately 1% to 4% among individuals 65 years and older and 6% to 8% among those 80 years and older. Observations iNPH is a multifactorial disorder involving interactions among cerebrospinal fluid (CSF) circulation, vascular dysfunction, and white matter injury. Unlike secondary NPH, iNPH occurs without a known antecedent event such as subarachnoid hemorrhage. Gait disturbance, including a broad-based, slow, shuffling gait and impaired turning, occurs in 85% to 95% of patients with iNPH and is often the earliest symptom. Urinary dysfunction occurs in approximately 75% to 90% of patients with iNPH and commonly includes urgency, nocturia, urge incontinence, or leakage. Cognitive impairment is reported in 60% to 80% of patients with iNPH, predominantly involving impaired attention, processing speed, working memory, verbal fluency, and cognitive flexibility. iNPH is diagnosed primarily based on characteristic clinical findings and neuroimaging (typically brain magnetic resonance imaging) demonstrating cerebral ventricular and subarachnoid space enlargement. Although necessary for diagnosis, these neuroimaging findings are not reliably associated with response to treatment. Early diagnosis of NPH is important because shorter symptom duration and less advanced disease are associated with more favorable outcomes. Patients being evaluated for iNPH should undergo large-volume lumbar puncture with removal of 30 to 50 mL of CSF to confirm the diagnosis and predict shunt responsiveness, measured as improvement in objective gait measures starting within hours after drainage. Extended lumbar drainage with removal of 200 to 300 mL of CSF over several days in an inpatient setting provides higher prognostic accuracy, and may be performed in patients with high clinical suspicion and a negative or equivocal clinical response to lumbar puncture. Treatment for iNPH is CSF diversion with shunt placement, most commonly performed with ventriculoperitoneal shunts, although ventriculoatrial and lumboperitoneal shunts may have similar efficacy. After shunting, approximately 75% to 80% of patients have gait velocity improvement; cognitive and urinary improvements occur in approximately 50% to 70%. Complications of shunts include overdrainage and underdrainage (10%-30%), presenting as postural headaches and subdural collections, and recurrence or worsening of iNPH symptoms, shunt malfunction (10%-20%), and shunt infections (<1%-2%). Conclusions and Relevance iNPH affects approximately 1% to 4% of adults 65 years and older and is associated with gait impairment, cognitive decline, and urinary dysfunction. Symptoms improve in approximately 70% to 90% of patients with iNPH who undergo shunt surgery.",
@@ -3039,7 +3039,7 @@
       ],
       "subspecialties": [
         "Epilepsy",
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "Importance: Late-onset epilepsy (LOE; onset at age ≥65 years) is increasingly recognized in older adults and may be associated with vascular risk. Objective: To identify vascular risk factors (VRFs) associated with incident LOE in older adults. Design, Setting, and Participants: This study is an individual participant data meta-analysis of 6 US population-based prospective cohort studies (the Epilepsy-Cog Study). In 5 cohorts linked to Medicare for epilepsy case ascertainment, follow-up for LOE began when a participant had accrued 2 years of continuous fee-for-service enrollment and was 65 years of age or older and extended to the end of continuous enrollment. Claims linkage covered 1991-2018 in the Atherosclerosis Risk in Communities Study (ARIC), 1992-2019 in the Cardiovascular Health Study (CHS), 2000-2019 in the Multi-Ethnic Study of Atherosclerosis (MESA), 2000-2020 in the Reasons for Geographic and Racial Differences in Stroke Study (REGARDS), and 1999-2019 in the Washington Heights/Inwood Columbia Aging Project (WHICAP). In the Northern Manhattan Study (NOMAS), which was not Medicare linked and used cohort-based epilepsy case ascertainment, follow-up for LOE began at cohort entry in 1993-2008 and extended to 2024. Data analysis was completed in January 2026. Exposures: Sociodemographic characteristics and VRFs assessed by self-report, examinations, laboratory measures, and medication use. Main Outcome and Measures: The primary outcome was incident LOE. Associations between risk factors and incident LOE were evaluated using multivariable Cox proportional hazards models to estimate hazard ratios. Results: From 43 753 participants in Epilepsy-Cog, 551 participants with prevalent epilepsy and 945 with no follow-up after Epilepsy-Cog baseline were excluded. Among 42 257 participants (mean [SD] age, 71.4 [6.9] years; 23 383 [56.0%] female) followed up for a mean (SD) of 9.3 (6.2) years, 1500 participants (3.5%) developed LOE (3.8 per 1000 person-years). In fully adjusted models, LOE risk was higher with current smoking (HR = 1.39; 95% CI, 1.18-1.64), hypertension (HR = 1.17; 95% CI, 1.04-1.31), diabetes (HR = 1.42; 95% CI, 1.25-1.62), chronic kidney disease (HR = 1.29; 95% CI, 1.13-1.48), history of stroke (HR = 1.99; 95% CI, 1.63-2.43), and apolipoprotein E ε4 allele (1 ε4 allele: HR = 1.22; 95% CI, 1.07-1.39; 2 ε4 alleles: HR = 1.84; 95% CI, 1.36-2.50). Associations of VRFs with LOE were similar across age, sex, and race and ethnicity subgroups. Conclusions and Relevance: In this pooled analysis of 6 US cohorts, multiple VRFs and a history of stroke were associated with incident LOE. These findings suggest that LOE may reflect the underlying burden of brain vascular disease.",
@@ -3136,13 +3136,13 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.057341",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Stroke",
         "Ischemic"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "BACKGROUND: The burden of stroke is unequally distributed in the United States, with Black individuals experiencing more incident stroke. It remains unclear whether Black individuals also experience worse stroke recovery. We sought to study disparities in longitudinal functional outcome after acute ischemic stroke in a population-based study. METHODS: We conducted a retrospective cohort study in the Greater Cincinnati Northern Kentucky region over an 18-month period (July 2019 to December 2020). All acute ischemic stroke events were captured. The modified Rankin Scale scores were determined at discharge, 3, 6, and 12 months for patients who survived the index event. We studied the association between Black race and longitudinal modified Rankin Scale (across all time points) with mixed-effects ordinal regression, initially adjusting for age, sex, and time since stroke. Hierarchical regression was used to sequentially adjust for stroke severity and management, premorbid health, and social determinants. RESULTS: Among 2796 patients with acute ischemic stroke (mean age, 69.0; 31% Black; 52% female), 2537 survived and were included (mean age, 68.4; 32% Black; 52% female). Black race was associated with a worse longitudinal modified Rankin Scale score (cOR, 2.61 [95% CI, 1.89–3.60]). Excluding patients with recurrent events did not change this association (cOR, 2.69 [95% CI, 1.92–3.78]). Adding variables reflecting initial stroke severity and management partly attenuated the association (cOR, 1.92 [95% CI, 1.43–2.60]). Adding variables reflecting premorbid health further attenuated the association (cOR decreased to 1.43 [95% CI, 1.09–1.87]). The remaining association between Black race and the modified Rankin Scale score was fully attenuated by social determinants, with cOR, 1.09 (95% CI, 0.80–1.47). There was no interaction between race and time since stroke. CONCLUSIONS: Starting at discharge and persisting out to 12 months, acute ischemic stroke functional outcomes are worse among Black individuals. These disparities are significantly attenuated by clinical factors and social determinants; future studies should explore whether the social determinants can be intervened upon in the recovery period.",
@@ -3180,7 +3180,7 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.056508",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Stroke",
         "Dementia",
@@ -3188,8 +3188,8 @@
         "Brain"
       ],
       "subspecialties": [
-        "Vascular & Stroke",
-        "Cognitive & Dementia"
+        "Stroke",
+        "Dementia"
       ]
     },
     "abstract": "BACKGROUND: White matter hyperintensities (WMH) are a common brain magnetic resonance imaging marker of cerebral small vessel disease and a major risk factor for stroke and dementia, yet the molecular mechanisms governing lesion formation remain incompletely understood. We sought to identify circulating proteins that lie upstream of WMH and influence related clinical manifestations. METHODS: We conducted a 4-stage proteogenomic study. Stage 1 tested a WMH polygenic risk score against 2923 plasma proteins in 52 560 UK Biobank participants (mean age, 56.8 years, 53.9% female, 94.0% White), and candidate proteins against WMH volume in the neuroimaging subset (n=5443; mean age 54.2 years, 53.5% female). Stage 2 applied bidirectional Mendelian randomization, colocalization, and local genetic correlation using cis protein quantitative trait locus and cis expression quantitative trait locus instruments from plasma, vascular, and brain tissue. Stage 3 analyzed single-nucleus RNA sequencing of 8 postmortem periventricular white matter samples (4 WMH lesions, 4 controls; mean age, 81 years; 50% female). Stage 4 tested circulating and genetically predicted protein levels against general cognitive ability. RESULTS: Stages 1 and 2 converged on CTSB (cathepsin B) and ECHDC3 (enoyl-coenzyme A hydratase domain–containing 3). Higher plasma CTSB was associated with lower WMH volume (β=−0.09 [95% CI, −0.13 to −0.05]; n=5260), and Mendelian randomization estimates were directionally consistent across all 5 instrument sets (plasma protein quantitative trait locus β=−0.052 [95% CI, −0.064 to −0.040]), with concordant effects on white matter microstructure, perivascular spaces, and lacunar stroke. Single-nucleus RNA sequencing showed CTSB downregulation within lesions, predominantly in astrocytes (log 2 fold change=−1.70) and oligodendrocytes (log 2 fold change=−0.48; both false discovery rate P <1×10 −20 ). Higher plasma CTSB (β=0.061 [95% CI, 0.010–0.112]; n=5193) and a cis protein quantitative trait locus polygenic score (β=0.031 [95% CI, 0.009–0.054]; n=8884) predicted better cognitive performance. ECHDC3 showed no consistent association beyond stage 1. CONCLUSIONS: Multimodal proteogenomic evidence nominates CTSB as a lesion-suppressed protein associated with lower WMH burden and better cognition, and a candidate therapeutic target for cerebral small vessel disease.",
@@ -3291,7 +3291,7 @@
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218755",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Stroke",
         "Ischemic",
@@ -3299,8 +3299,8 @@
         "Amyloid"
       ],
       "subspecialties": [
-        "Vascular & Stroke",
-        "Cognitive & Dementia"
+        "Stroke",
+        "Dementia"
       ]
     },
     "abstract": "Background and Objectives: Enlarged perivascular spaces (EPVS) in the basal ganglia (BG-EPVS) and centrum semiovale (CSO-EPVS) are established neuroimaging markers of cerebral small vessel disease (cSVD) and cerebral amyloid angiopathy. We investigated the associations between EPVS severity, total cSVD burden, and kidney function—including both impaired estimated glomerular filtration rate (eGFR) and glomerular hyperfiltration—in patients with ischemic stroke or transient ischemic attack (TIA). Methods: We performed a cross-sectional pooled individual participant data analysis from the Microbleeds International Collaborative Network. Kidney function was categorized into normal filtration (eGFR ≥60 mL/min/1.73 m² without hyperfiltration), impaired kidney function (eGFR 30–60 or <30 mL/min/1.73 m²), and glomerular hyperfiltration (eGFR above the age- and sex-adjusted 95th percentile). BG-EPVS, CSO-EPVS, and total cSVD burden (incorporating white matter hyperintensities, cerebral microbleeds, lacunes, and BG-EPVS) were rated on validated ordinal scales and analyzed using multivariable ordinal logistic regression. Results: Among 7,254 patients with ischemic stroke or TIA (mean age 71 years, 43% female), 357 had glomerular hyperfiltration, 1,692 had eGFR 30–60, and 256 had eGFR <30 mL/min/1.73 m². Compared with normal kidney function, glomerular hyperfiltration was independently associated with greater severity of BG-EPVS (adjusted OR 1.38, 95% CI 1.11–1.70, p < 0.001) and CSO-EPVS (adjusted OR 1.34, 95% CI 1.08–1.64, p = 0.011), as well as higher total cSVD burden. Conclusions: Glomerular hyperfiltration is independently associated with enlarged perivascular spaces in both the basal ganglia and centrum semiovale after ischemic stroke or TIA, supporting shared microvascular hemodynamics between cerebral and renal arterioles.",
@@ -3382,13 +3382,14 @@
     ],
     "doi_url": "https://doi.org/10.1056/nejmcpc2603183",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Neuromuscular",
       "topics": [
         "Spinal",
         "Foot drop"
       ],
       "subspecialties": [
-        "Other"
+        "Neuromuscular",
+        "Neuro-Oncology"
       ]
     },
     "abstract": "Original abstract and full manuscript available at NEJM via DOI.",
@@ -3425,12 +3426,12 @@
     ],
     "doi_url": "https://doi.org/10.1161/str.0000000000000537",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Stroke"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "Health literacy is a critical component of high-quality stroke care. Across the continuum from prevention through recovery, health literacy is strongly associated with functional outcomes and stroke-related morbidity. Despite its importance, it is often overlooked, leaving patients and caregivers overwhelmed by communication demands that exceed their capacity. These mismatches are especially pronounced among individuals with stroke-related cognitive or language impairments, limited English proficiency, socioeconomic disadvantage, or limited digital literacy. This scientific statement synthesizes current evidence on the role of health literacy and communication within stroke systems of care and identifies nurse-led opportunities to advance equity and patient-centered outcomes while recognizing this as a shared interprofessional responsibility. Nurse-led interventions, including teach-back–based education, dyadic psychoeducational programs, and tailored digital support, have demonstrated improvements in stroke knowledge, self-efficacy, quality of life, and caregiver preparedness. However, the literature is marked by methodological heterogeneity. Many studies are underpowered and infrequently use validated health literacy or communication measures. Future directions include standardized assessment of health literacy; literacy-sensitive, nurse-led, and interprofessional care models; workforce training in plain-language and culturally responsive communication; and organizational health literacy principles. Emerging technologies, including telehealth and artificial intelligence, offer promise for improving communication and personalization but require rigorous evaluation to minimize bias and ensure equity and usability.",
@@ -3712,9 +3713,9 @@
     ],
     "doi_url": "https://doi.org/10.1016/s1474-4422(26)00364-9",
     "neurology_classification": {
-      "subspecialty": "Cognitive & Dementia",
+      "subspecialty": "Dementia",
       "subspecialties": [
-        "Cognitive & Dementia"
+        "Dementia"
       ],
       "topics": [
         "Neurology"
@@ -3847,7 +3848,7 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.055677",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Stroke",
         "Hemorrhage",
@@ -3855,7 +3856,7 @@
         "Neurological"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "BACKGROUND: Evidence of regional differences in clinical outcomes after intracerebral hemorrhage (ICH) is still scarce. We quantified differential outcomes and response to early intensive blood pressure lowering treatment by region in the Blood pressure in Acute Stroke Collaboration ICH data set. METHODS: This was an observational analysis of pooled individual participant data from 16 completed randomized controlled trials of blood pressure-lowering treatment in acute ICH, based on the Blood pressure in Acute Stroke Collaboration data set. Generalized linear mixed models with inverse probability of treatment weighting (IPTW) were used to determine the association between regions (Asia [primarily East and South Asia] versus non-Asia) and clinical outcomes including neurological deterioration within 7 days, hematoma expansion at 24 hours (absolute ≥6 mL or relative ≥33%), and death or dependency (modified Rankin Scale scores, 3–6), major disability(modified Rankin Scale score, 3–5), death alone at 90 days. RESULTS: Among 6221 patients (age, 63.3±13.0 years; female 36.4%), 3494 (56.2%) were from Asia. ICH participants from Asia had a significantly reduced risk of death or dependency (unadjusted odds ratio [OR], 0.44 [95% CI, 0.39–0.51]; IPTW-weighted OR, 0.67 [95% CI, 0.58–0.77]); and major disability (unadjusted OR, 0.49 [95% CI, 0.42–0.56]; IPTW-weighted OR, 0.67 [95% CI, 0.57–0.78]) at 90 days, neurological deterioration (unadjusted OR, 0.63 [95% CI, 0.52–0.77]; IPTW-weighted OR, 0.70 [95% CI, 0.56–0.89]) within 7 days, in comparison to those from non-Asia regions. However, there were no differences for hematoma expansion ( P =0.97) at 24 hours or death ( P =0.23) at 90 days using IPTW. Additionally, there were no significant interactions between blood pressure–lowering treatment and region (Asia versus non-Asia) for either outcome using IPTW. CONCLUSIONS: Participants from East and South Asia had a favorable functional recovery and a lower risk of neurological deterioration compared with those from non-Asian regions after adjustment for confounders, with no differences in hematoma expansion at 24 hours after ICH. These findings suggest that future ICH studies on clinical outcomes should consider regional differences.",
@@ -3907,12 +3908,12 @@
     ],
     "doi_url": "https://doi.org/10.1002/ana.78392",
     "neurology_classification": {
-      "subspecialty": "Cognitive & Dementia",
+      "subspecialty": "Dementia",
       "topics": [
         "Amyloid"
       ],
       "subspecialties": [
-        "Cognitive & Dementia"
+        "Dementia"
       ]
     },
     "abstract": "Objective: We aimed to identify the minimal amount of amyloid burden measured by positron emission tomography (PET) in amyloid‐negative cognitively unimpaired individuals that predicts the development of cognitive impairment. Methods: A total of 1,896 cognitively unimpaired participants underwent longitudinal clinical/cognitive assessments for up to 20.3 years after amyloid PET imaging. Cox proportional hazards models were used to assess how the risk of cognitive impairment was associated with subthresholds of amyloid PET Centiloid. Linear mixed effects models were used to associate the longitudinal cognitive decline and amyloid accumulation with baseline amyloid burden. Results: Amyloid‐positive participants (Centiloid >20; n = 421) were 154% (hazard ratio 2.54, p < 0.0001) more likely to develop cognitive impairment than amyloid‐negative participants. Approximately 48.7% of the amyloid‐negative participants had mild amyloid burden (defined by Centiloid from 0.93 to 20) and were 43% more likely to develop cognitive impairment (hazard ratio 1.43, p = 0.008) than the lowest amyloid group (Centiloid <0.93) approximately 10 years post baseline. Longitudinal changes in amyloid PET Centiloid and cognition followed a similar pattern: amyloid‐positive participants were the fastest, followed by the mild amyloid burden group and finally the lowest amyloid group, and the cognitive trajectories for the latter 2 started to separate only approximately 10 years post baseline ( p = 0.003). Interpretation: Almost half of amyloid‐negative cognitively unimpaired individuals were at an elevated long‐term risk of cognitive impairment, when compared with those with the lowest amyloid levels. These findings suggest that the current threshold for amyloid positivity may be overly restrictive, potentially excluding a large portion of high‐risk participants from prevention trials. ANN NEUROL 2026",
@@ -3946,9 +3947,9 @@
     ],
     "doi_url": "https://doi.org/10.1002/ana.78373",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ],
       "topics": [
         "Stroke"
@@ -3995,14 +3996,14 @@
     ],
     "doi_url": "https://doi.org/10.1002/ana.78391",
     "neurology_classification": {
-      "subspecialty": "Cognitive & Dementia",
+      "subspecialty": "Dementia",
       "topics": [
         "Alzheimer",
         "Amyloid",
         "Tau"
       ],
       "subspecialties": [
-        "Cognitive & Dementia"
+        "Dementia"
       ]
     },
     "abstract": "Objective: Individuals diagnosed with Alzheimer's disease (AD) often exhibit amyloid, tau, and atrophy predominantly in the left or right hemisphere, but group‐level analyses typically ignore inter‐individual variability and changing asymmetry patterns when averaging data across participants in phenotypically diverse cohorts. Methods: We examined left/right hemispheric asymmetry in amyloid positron emission tomography (PET), tau PET, and cortical atrophy in sporadic early‐onset AD from 585 deeply phenotyped individuals across 2 cohorts to investigate its clinical correlates. For each imaging biomarker, we computed a global asymmetry index reflecting left/right hemisphere signal difference, and an analogous asymmetry value for PET/magnetic resonance imaging (MRI) voxels. We examined clinical and cognitive correlates of this asymmetry across phenotypes cross‐sectionally and longitudinally in a subset of 218 participants. Results: Both left and right asymmetry were common for all clinical phenotypes and was correlated between imaging biomarkers. Asymmetry patterns varied spatially within phenotypes, and asymmetry in tau PET and MRI volumes was related to hemisphere‐dependent cognitive deficits and neuropsychiatric symptoms. Longitudinal analyses revealed stable amyloid PET asymmetry, decreasing tau PET asymmetry, and increasing MRI volume asymmetry. Interpretation: Hemispheric asymmetry is common in early onset AD and correlates with clinical outcomes. Our longitudinal findings suggest a time‐lagged asymmetry peak in amyloid, then tau, then atrophy. Taken together, our results position asymmetry as an important feature of AD heterogeneity, as it provides insight into disease mechanisms and trajectories. ANN NEUROL 2026",
@@ -4040,9 +4041,9 @@
     ],
     "doi_url": "https://doi.org/10.1002/ana.78372",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ],
       "topics": [
         "Stroke"
@@ -4077,7 +4078,7 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.058069",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Stroke",
         "Ischemic",
@@ -4085,7 +4086,7 @@
         "Tenecteplase"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "BACKGROUND: Intravenous thrombolysis is a standard treatment for acute ischemic stroke but has traditionally been limited to 4.5 hours after symptom onset. This time-based restriction may exclude patients with salvageable brain tissue, especially those with wake-up or unknown-onset strokes. Multimodal imaging allows for the identification of viable penumbra beyond traditional treatment windows. This study compiles randomized evidence evaluating intravenous thrombolysis in imaging-selected patients treated after 4.5 hours. METHODS: We conducted a systematic review and meta-analysis in accordance with Preferred Reporting Items for Systematic Reviews and Meta-Analyses guidelines. PubMed, Embase, and Cochrane Central were searched through February 2026 for randomized trials comparing intravenous thrombolysis (alteplase or tenecteplase) with best medical therapy in patients presenting beyond 4.5 hours or with wake-up/unknown-onset stroke selected by imaging. The primary outcome was excellent functional outcome at 90 days (modified Rankin Scale score 0–1). Secondary outcomes included functional independence (modified Rankin Scale score 0–2), symptomatic intracranial hemorrhage, and 90-day mortality. RESULTS: Fourteen trials involving 4192 participants were analyzed. Intravenous thrombolysis improved excellent functional outcomes (modified Rankin Scale score 0–1; risk ratio, 1.22 [95% CI, 1.16–1.29]) and functional independence (modified Rankin Scale score 0–2; risk ratio, 1.12 [95% CI, 1.06–1.18]). Both alteplase and tenecteplase contributed to these benefits. Thrombolysis increased the risk of symptomatic intracranial hemorrhage (risk ratio, 2.58 [95% CI, 1.58–4.22]) but did not significantly affect 90-day mortality (risk ratio, 1.15 [95% CI, 0.97–1.35]). CONCLUSIONS: In patients selected using advanced imaging, intravenous thrombolysis performed after 4.5 hours improves functional outcomes without increasing mortality, supporting a tissue-based rather than strictly time-based approach to treating acute ischemic stroke.",
@@ -4137,14 +4138,14 @@
     ],
     "doi_url": "https://doi.org/10.1001/jamaneurol.2026.3598",
     "neurology_classification": {
-      "subspecialty": "Cognitive & Dementia",
+      "subspecialty": "Dementia",
       "topics": [
         "Alzheimer",
         "Amyloid",
         "Tau"
       ],
       "subspecialties": [
-        "Cognitive & Dementia"
+        "Dementia"
       ]
     },
     "abstract": "Importance: In trials targeting preclinical Alzheimer disease (AD), defined as amyloid pathology without cognitive symptoms, racial and ethnic differences in plasma phosphorylated tau 217 percentage (%p-tau217) may influence screening eligibility. Objective: To characterize racial and ethnic differences in %p-tau217 and determine whether associations between %p-tau217, cognition, and amyloid positron emission tomography (PET) differ across groups. Design, Setting, and Participants: This was a cross-sectional analysis of AHEAD 3-45 screening participants conducted from July 2020 to October 2024 at 106 sites across 4 world regions. Adults aged 55 to 80 years with %p-tau217 measured before medical and cognitive exclusions (N = 15 612) were included. Exposures: Self-reported race (Asian, Black, and White) and ethnicity (Hispanic and non-Hispanic) and apolipoprotein E ε4 ( APOE ε4) carrier status. Main Outcomes and Measures %p-tau217 levels and associations of %p-tau217 with Preclinical Alzheimer Cognitive Composite 5 (PACC5) score and amyloid PET were evaluated across racial and ethnic groups using multivariable linear regression. Results: Among 15 612 participants, the mean (SD) age was 68.4 (6.2) years; 9941 (63.7%) were female and 5755 (36.9%) were APOE ε4 carriers. %p-tau217 levels were lower among Asian, Black, and Hispanic participants than among White and non-Hispanic participants. APOE ε4 status was associated with higher %p-tau217 across all groups. The association between APOE ε4 status and %p-tau217 differed by race ( APOE ε4 × race: F 2,14 973 = 10.06; P < .001) and ethnicity ( APOE ε4 × ethnicity: β, 0.042; 95% CI, 0.017 to 0.067; P = .005) (Asian: β, 0.05; 95% CI, 0.02 to 0.08; P = .01; Black: β, 0.05; 95% CI, 0.03 to 0.08; P = .002; Hispanic: β, 0.04; 95% CI, 0.02 to 0.07; P = .005). The %p-tau217–PACC5 association showed no pairwise differences across racial groups but differed by ethnicity (β, −0.53; 95% CI, −0.85 to −0.21; P = .008) and APOE ε4 × ethnicity (β, 0.78; 95% CI, 0.26 to 1.30; P = .02). The %p-tau217–PET association showed no significant pairwise differences across racial groups but differed by ethnicity (β, −6.30; 95% CI, −9.10 to −3.51; P < .001) and APOE ε4 × ethnicity (β, 7.12; 95% CI, 2.52 to 11.73; P = .01). Conclusions and Relevance: In this cross-sectional study, plasma %p-tau217 varied across racial and ethnic groups. Consistent %p-tau217–PACC5 score and %p-tau217–PET associations across racial groups support plasma-based screening before PET confirmation, while ethnicity-related findings warrant further investigation.",
@@ -4298,12 +4299,12 @@
     ],
     "doi_url": "https://doi.org/10.1001/jamaneurol.2026.3540",
     "neurology_classification": {
-      "subspecialty": "Cognitive & Dementia",
+      "subspecialty": "Dementia",
       "topics": [
         "Dementia"
       ],
       "subspecialties": [
-        "Cognitive & Dementia"
+        "Dementia"
       ]
     },
     "abstract": "Importance: Global dementia incidence estimates are limited by underrepresentation of low- and middle-income countries and heterogeneous analytic methods. Due to these limitations, true understanding of the global dementia landscape remains incomplete. Objective: To identify dementia incidence rates by age and sex in various regions worldwide (high-income countries and low- and middle-income countries) where data on clinically based dementia diagnoses were available. Data Sources Retrospective community-based cohorts from the Cohort Studies of Memory in an International Consortium (COSMIC); baseline recruitment commenced between January 1990 and December 2011 and follow-up data were collected through the end of 2021. Data were analyzed from June 2024 to June 2025. Study Selection Eligible studies included longitudinal COSMIC cohort studies with a clinically based diagnosis of dementia. Individual participant–level data from 22 population-based longitudinal cohorts (N = 38 418) spanning 18 countries or territories across 6 continents were included. Data Extraction and Synthesis Data extraction and assessment of study quality and validity were conducted according to Meta-Analyses of Observational Studies in Epidemiology (MOOSE) guidelines. Individual participant–level data were meta-analyzed in a 2-step process using random intercepts for country and study at the global and regional levels and by country income level. Main Outcomes and Measures: For each study with a clinically based diagnosis, incidence rates for all-cause dementia were calculated and a 2-step meta-analysis was conducted. Using a person-years at risk framework with inverse-probability censoring weights and Poisson models, age- and sex-specific incidence were estimated and then standardized to the 2023 global age-sex population structure. Results: Across 287 632 person-years at risk, 3001 participants developed dementia. Age- and sex-standardized incidence was 9.7 (95% CI, 7.89-11.97) per 1000 person-years at risk. Age-standardized incidence was higher in women than men (10.6; 95% CI, 8.61-13.11 vs 8.6; 95% CI, 6.94-10.72). Standardized incidence was higher in low- and middle-income countries (13.6; 95% CI, 9.67-19.24) than in high-income countries (8.3; 95% CI, 6.57-10.54). Applying age- and sex-specific rates to the projected 2050 population yielded a projected 24.7 million new cases, assuming constant incidence over time. Conclusions and Relevance: The harmonized estimates presented in this study provide a comparable benchmark for global dementia incidence and inform planning for prevention, diagnosis, and memory-care services, particularly in underrepresented low- and middle-income country settings.",
@@ -4372,7 +4373,7 @@
     ],
     "doi_url": "https://doi.org/10.1002/ana.78387",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Infarction",
         "Thrombectomy",
@@ -4380,7 +4381,7 @@
         "Cerebral"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "Background: The operational definition and imaging assessment of the no‐reflow phenomenon, a potential contributor to poor clinical outcome despite successful thrombectomy, remains debated. We aimed to develop expert‐based international consensus on the definition, assessment, and reporting standard of cerebral no‐reflow post‐thrombectomy. Methods: Three‐rounds of a modified Delphi web‐based survey was conducted among corresponding authors of peer‐reviewed clinical studies on cerebral no‐reflow between 2020 and 2025. Responses at each round were used to develop structured questionnaires for subsequent rounds. Consensus was predefined as ≥65% agreement. Results: Among 27 panelists, the response rate was 70%, 74%, and 74% over all rounds. There was broad agreement to conceptualize no‐reflow as macrovascular recanalization with impaired microvascular reperfusion. Consensus was reached that macrovascular recanalization is ideally assessed as (1) digital subtraction angiography with expanded thrombolysis in cerebral infarction (eTICI) grades 2c without clear distal vessel occlusions and/or eTICI 3 only, and (2) absence of a wedge‐shaped time‐to‐maximum (Tmax) or time‐to‐peak (TTP) delay on post‐recanalization perfusion computed tomography (CT) or magnetic resonance imaging (MRI). Regarding impaired microvascular reperfusion assessment, cerebral blood flow, and/or volume were preferred over time‐based perfusion parameters (Tmax/TTP). The panel expressed a preference that no‐reflow should ideally be assessed ≤6 hours post‐recanalization. Pending formal validation, histopathological–radiological correlation in animal models would sufficiently validate the use of imaging‐based definitions in humans. Interpretation: Based on currently available literature and expert opinions, this Delphi study provides a framework for systematically reporting cerebral no‐reflow after endovascular treatment (EVT). The variability in opinions regarding quantitative thresholds highlights priorities for future methodological standardization and validation studies. ANN NEUROL 2026",
@@ -4496,7 +4497,7 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.056651",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Stroke",
         "Ischemic",
@@ -4504,7 +4505,7 @@
         "Cerebral"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "BACKGROUND: Hypothermia reduces ischemic injury in preclinical stroke models, yet translation into the clinical setting remains challenging. We aimed to assess the feasibility of inducing adjuvant systemic hypothermia among patients with large-vessel occlusion stroke during mechanical thrombectomy. METHODS: This was a phase II randomized feasibility-controlled trial involving 10 sites in the United States, conducted between May 2019 and May 2024. All eligible patients had confirmed proximal middle cerebral artery or internal carotid artery occlusions, an Alberta Stroke Program Early Computed Tomography Score of 6 to 10, and symptom onset within 24 hours. Patients underwent mechanical thrombectomy and were randomly assigned to either treatment with adjuvant hypothermia using a novel intravascular cooling catheter or standard of care. The primary feasibility end points were the ability to achieve a target temperature of <34 °C within 1 hour of arterial puncture and overall door-to-reperfusion times. The primary safety end point was core-laboratory-adjudicated hemorrhagic conversion within 36 hours, and secondary end points included final infarct volume and serious adverse events. RESULTS: A total of 95 patients were enrolled (29 in the roll-in phase and 66 randomized). The mean age of the randomized cohort was 65±12 years, with a median National Institutes of Health Stroke Scale score of 15. Among patients in the treatment arm, 30 of 33 (91%) achieved hypothermia within 1 hour of arterial puncture during thrombectomy, and 23 of 33 (70%) patients were at target temperature (<34 °C) before reperfusion. The median time to hypothermia was 10 minutes (interquartile range [IQR], 7–22) from arterial puncture. There were no significant differences in door-to-reperfusion times (hypothermia: 95 minutes [IQR, 54–116] versus control: 94 minutes [IQR, 77–121]; P =0.70). Final infarct volumes were numerically lower in the hypothermia treatment arm (hypothermia: 11 cm 3 [IQR, 5–42] versus control: 30 cm 3 [IQR, 6–80]; P =0.13), with no significant differences in the rates of hemorrhagic conversion or pneumonia. There was a higher number of serious adverse events in the hypothermia arm (45.5% versus 24.2%; P =0.12), although the trial was not powered for differences in serious adverse events or clinical efficacy. CONCLUSIONS: This is the first clinical trial to demonstrate the feasibility of early and rapid systemic hypothermia as an adjunct therapy during mechanical thrombectomy without delaying time to reperfusion. The potential impact on infarct volumes and serious adverse events, however, warrants further investigation. REGISTRATION: URL: https://www.clinicaltrials.gov ; Unique identifier: NCT03804060.",
@@ -4546,13 +4547,13 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.055913",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Stroke",
         "Ischemic"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "BACKGROUND: Although Constraint-Induced Movement Therapy is increasingly recommended as an evidence-based, intensive treatment for children with hemiparesis, parent perspectives are lacking. I-ACQUIRE, a multicomponent form of Constraint-Induced Movement Therapy, involves substantial parent participation. Child outcomes from the United States 15-site I-ACQUIRE phase 3 clinical trial (2019–2025), partnered with a Parent Council, are presented elsewhere. Here, we examine complementary lived-experience parent data. METHODS: All parents (167) of infants/toddlers with perinatal arterial ischemic stroke and hemiparesis consented to child random assignment to usual treatment (UT), moderate-dose I-ACQUIRE (3 h/d, 5 d/wk over 4 weeks), or high-dose I-ACQUIRE (6 h/d). Parents completed assessments about life- and therapy-related stress, treatment concerns, observations of child progress, and perceived therapy-related responsibilities. RESULTS: Parents of children in the I-ACQUIRE moderate-dose (56) and high-dose group (58), compared with UT (53), reported lower rates of concerns or problems that therapy did not produce clear benefits (≤4% versus 18%), child-therapist interactions (≤2% versus 24%), and parent-therapist interactions (≤2% versus 6%). I-ACQUIRE versus UT parents had higher proportions of positive feelings that therapy was useful (94%–98% versus 83%); interesting (96%–98% versus 79%), important (94%–98% versus 85%), and fun (78%–84% versus 53%); and provided comforting (72%–83% versus 47%) and relaxing benefits (28%–31% versus 17%). In all groups, similar proportions reported their role was stressful (I-ACQUIRE 26%–28%, UT 32%), difficult (I-ACQUIRE 35%–48%, UT 38%), and tiring (I-ACQUIRE 48%–52%, UT 43%). General life stress scores were mostly in the moderate-range category, similar across groups. CONCLUSIONS: Parents of I-ACQUIRE children reported higher positive feelings and notably fewer concerns about lack of benefits compared with UT. Across all groups, some parents (<52%) reported treatment-related stress, difficulty, and fatigue. These findings provide new perspectives from parents’ lived experiences to help families and clinicians in treatment decision-making. REGISTRATION: URL: https://www.clinicaltrials.gov ; Unique identifier: NCT03910075.",
@@ -4591,7 +4592,7 @@
     ],
     "doi_url": "https://doi.org/10.1002/ana.78388",
     "neurology_classification": {
-      "subspecialty": "Cognitive & Dementia",
+      "subspecialty": "Dementia",
       "topics": [
         "Hemorrhage",
         "Alzheimer",
@@ -4599,8 +4600,8 @@
         "Amyloid"
       ],
       "subspecialties": [
-        "Cognitive & Dementia",
-        "Vascular & Stroke"
+        "Dementia",
+        "Stroke"
       ]
     },
     "abstract": "Objective: Identification of cerebral amyloid angiopathy (CAA) before its hemorrhagic manifestations remains limited. We aimed to determine whether severe enlarged perivascular spaces in the centrum semiovale (EPVS‐CSO) identify a prehemorrhagic stage of sporadic CAA by predicting the first appearance of CAA‐related hemorrhagic lesions or incident cognitive decline in amyloid‐positive, cognitively unimpaired, hemorrhage‐free older adults. Methods: We performed a secondary analysis of the Anti‐Amyloid Treatment in Asymptomatic Alzheimer's Disease (A4) trial, a phase 3 randomized study in cognitively unimpaired, amyloid‐positive older adults. Participants with baseline hemorrhagic lesions were excluded. Baseline EPVS‐CSO severity was dichotomized as severe versus nonsevere. Severe basal ganglia EPVS, more closely associated with hypertensive small vessel disease, was evaluated as a topographical negative‐control exposure. The primary outcome was incident strictly lobar cerebral microbleeds or cortical superficial siderosis. The secondary outcome was longitudinal cognitive trajectories measured by the Preclinical Alzheimer Cognitive Composite. Results: Among 932 participants (mean age 71.7 ± 4.8 years; 61.3% female), 101 (10.8%) had severe EPVS‐CSO at baseline. Over a median follow up of 5.1 years (IQR 3.3–5.5 years), 33.7% of those with severe EPVS‐CSO developed incident CAA‐related hemorrhagic lesions compared with 13.6% of those with nonsevere EPVS‐CSO (adjusted HR 2.85, 95% CI 1.91–4.25; p < 0.0001). Severe basal ganglia EPVS was not associated with incident hemorrhagic lesions (adjusted HR 0.87, 95% CI 0.35–2.18; p = 0.77). Severe EPVS‐CSO was not associated with early cognitive differences, and participants who developed incident hemorrhagic lesions showed more pronounced cognitive decline. Interpretation: These findings identify severe EPVS‐CSO as a strong predictor of first appearance of CAA‐related hemorrhagic lesions in amyloid‐positive individuals, supporting integration of amyloid biomarkers into magnetic resonance imaging‐based Boston criteria. Identifying markers of the transition of CAA from a nonhemorrhagic to a hemorrhagic stage provides a potential foundation for approaching primary prevention of CAA‐related hemorrhage. ANN NEUROL 2026",
@@ -4631,13 +4632,13 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.056133",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Stroke",
         "Brain"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "Stroke remains a leading cause of human disability worldwide. Additional approaches beyond acute stroke therapies are needed to improve patient outcomes. Neural repair therapies focus on promoting neural plasticity in surviving tissue rather than modifying the acute injury; examples include behavioral training, drugs, biological therapies, and neural stimulation. This review discusses principles related to patient selection, control group design, intervention timing, choice of outcome measures, experience-dependent plasticity, use of biomarkers, and statistical considerations, each of which emerges from a review of key stroke recovery trials. Patient selection strategies may benefit from incorporating neuroimaging and neurophysiology biomarkers to ensure viability of treatment targets. Modality-specific outcome measures offer advantages over global disability scales for repair-based trials. The timing of intervention is critical given evolving poststroke biology and the existence of critical periods for plasticity. Repair-based therapies benefit from pairing with concomitant experience of sufficient intensity and appropriate type to shape and reinforce brain circuits. Consideration of these key principles is expected to improve the design of trials that aim to promote neural repair and improve function after stroke. Researchers and clinicians should attend to these factors when designing and interpreting clinical trials to maximize the likelihood that neural repair therapies will improve disability after stroke.",
@@ -4667,14 +4668,14 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.056092",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Stroke",
         "Brain",
         "Spinal"
       ],
       "subspecialties": [
-        "Vascular & Stroke",
+        "Stroke",
         "Movement Disorders"
       ]
     },
@@ -4854,12 +4855,12 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.056914",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Stroke"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "BACKGROUND: Subjective social status (SSS) represents self-perceived social position and may affect poststroke recovery. Despite impacting various medical outcomes, SSS remains understudied in stroke. We hypothesized that higher SSS is associated with better stroke recovery at 3- and 12 months poststroke. METHODS: In this prospective cohort study, patients were enrolled between October 2016 and February 2020. We examined associations between 3-month SSS score and clinician-reported, performance, and patient-reported outcomes at 3- and 12-month assessments. Ordinal multivariable regression analysis evaluated 3-month SSS score as a predictor of 12-month modified Rankin Scale score. RESULTS: The 494 participants had a median age of 63.5 years; 200 (41%) were female, and median (interquartile range) acute National Institutes of Health Stroke Scale score was 4 (2–8). Scores on SSS showed no meaningful associations with performance outcomes and some associations with clinician-reported outcomes (eg, 3-month modified Rankin Scale: ρ, −0.12 [95% CI, −0.21 to −0.03], false discovery rate-adjusted P =0.017; 12-month modified Rankin Scale: ρ 12mo , −0.18 [95% CI, −0.27 to −0.09], false discovery rate-adjusted P =0.001). Conversely, higher SSS showed strong, consistent correlations with patient-reported outcomes, including less psychological distress and higher Stroke Impact Scale-Activities of Daily Living (ρ 3mo , 0.18 [95% CI, 0.09–0.26]; ρ 12mo , 0.17 [95% CI, 0.07–0.26]; all false discovery rate-adjusted P <0.05). Item-level analyses of Stroke Impact Scale-Activities of Daily Living revealed that SSS remained most strongly and consistently linked to complex Stroke Impact Scale-Activities of Daily Living motor tasks over time. In ordinal multivariable regression adjusted for age, sex, stroke subtype, initial severity, and the selected objective socioeconomic status proxies (eg, educational attainment, employment, and marital status), 3-month SSS score significantly predicted 12-month modified Rankin Scale score (β, 0.14 [95% CI, 0.02–0.26]; P =0.014). CONCLUSIONS: In patients with predominantly mild stroke, 3-month SSS score may serve as a significant social determinant of health that is associated with long-term functional recovery, a relationship closely linked with psychological distress. SSS scores at 3 months poststroke may identify vulnerable patients, enabling development, validation, and targeted application of interventions that optimize stroke recovery.",
@@ -4900,7 +4901,7 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.056562",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Ischemic",
         "Cerebral",
@@ -4908,7 +4909,7 @@
         "Brain"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "BACKGROUND: Despite advances in reperfusion therapy, ischemic brain injury remains a major cause of disability. Astrocytes play a central role in postischemic inflammation and tissue remodeling, but the molecular drivers of their reactive state transitions remain unclear. Here, we investigated whether carbenoxolone modulates reactive astrocyte phenotypes through astrocytic Drd2 signaling after cerebral ischemia. METHODS: In vivo rat cerebral ischemia–reperfusion model and in vitro oxygen-glucose deprivation/reperfusion paradigms were used. Infarct volume and neurological outcomes were assessed in vivo. Transcriptomic profiling was performed by RNA sequencing, followed by validation of representative genes using quantitative real-time polymerase chain reaction. Functional effects were evaluated in astrocytes and neuron-astrocyte coculture systems, and the involvement of Drd2 was examined using genetic knockdown approaches. RESULTS: Carbenoxolone reduced infarct volume and improved neurological outcomes both in the acute phase and 14 days after cerebral ischemia–reperfusion in rats. RNA sequencing revealed that carbenoxolone attenuated inflammatory signaling and reduced the expression of reactive astrocyte markers, including interleukin-1 beta and Cd44 . RNA sequencing identified Drd2 as a prominently upregulated gene in carbenoxolone-treated rats compared with saline controls. These transcriptional changes were validated at both the mRNA level by quantitative real-time polymerase chain reaction and the protein level by Western blotting. Functionally, under oxygen-glucose deprivation/reperfusion conditions, carbenoxolone enhanced cell survival in astrocytes and neuron–astrocyte cocultures, but not in neurons alone, indicating an astrocyte-mediated protective effect. Genetic silencing of Drd2 increased the reactive astrocyte marker Cd44 (cluster of differentiation 44) under basal conditions and partially attenuated carbenoxolone-induced cytoprotection after oxygen-glucose deprivation/reperfusion. CONCLUSIONS: Carbenoxolone modulates postischemic inflammatory responses and reactive astrocyte-associated programs, with evidence supporting a role for Drd2 signaling in these effects. These findings provide mechanistic insight into carbenoxolone-mediated neuroprotection and suggest Drd2 signaling as a potential therapeutic target in ischemic brain injury.",
@@ -5097,7 +5098,7 @@
       "subspecialties": [
         "Neuroimmunology",
         "Neuro-Oncology",
-        "Cognitive & Dementia"
+        "Dementia"
       ]
     },
     "abstract": "Objective: To characterize regional brain atrophy patterns, evaluate their association with regional leucine‐rich glioma‐inactivated‐1 ( LGI1 ) gene expression, and identify clinical predictors of hippocampal atrophy in LGI1 autoimmune encephalitis (AE). Methods: This study compared regional brain volumes in LGI1‐AE patients versus age‐ and sex‐matched healthy controls (HC) and Alzheimer's disease (AD) patients. LGI1 gene expression was derived from the Allen Human Brain Atlas. Multivariable linear regression and generalized linear models were utilized. Results: A total of 55 LGI1‐AE patients were included. Median age was 68 years (IQR 62.5–74.2 years) at volumetric analysis, after 19 months (IQR 11–45 months) from symptom onset. Compared with HC ( n = 55) and AD patients ( n = 55), LGI1‐AE patients had greater regional atrophy of the hippocampus, insula, caudate, and putamen ( p < 0.002). Longitudinal analyses demonstrated hippocampal and pallidal atrophy after covariate adjustment. Among those who did not fulfill limbic encephalitis criteria and/or had non‐lesional magnetic resonance imaging, limbic and striatal atrophy were identified compared with HC ( p < 0.01). Regions with the greatest differential atrophy corresponded to higher LGI1 gene expression (Spearman ρ = 0.7, p = 0.005). Severe cognitive deficits at diagnosis ( β = −0.56; p = 0.002) and longer disease duration ( β = −0.01; p = 0.001) independently predicted total hippocampal volume ( R 2 = 0.31). Interpretation: LGI1‐AE demonstrates a distinct pattern of limbic and striatal atrophy that differs from AD and aligns with regional LGI1 expression, supporting a model of selective network vulnerability. Greater baseline cognitive impairment and longer disease duration independently associated with hippocampal atrophy, underscoring the potential importance of early diagnosis and treatment to limit structural brain injury. ANN NEUROL 2026",
@@ -5190,14 +5191,14 @@
     ],
     "doi_url": "https://doi.org/10.1001/jamaneurol.2026.3497",
     "neurology_classification": {
-      "subspecialty": "Cognitive & Dementia",
+      "subspecialty": "Dementia",
       "topics": [
         "Alzheimer",
         "Dementia",
         "Tau"
       ],
       "subspecialties": [
-        "Cognitive & Dementia"
+        "Dementia"
       ]
     },
     "abstract": "Importance: Blood-based biomarkers show high performance for detecting Alzheimer disease (AD) pathology, but evidence on their impact on diagnostic certainty, clinical management, and emotional outcomes in routine care is limited. Objective: To determine whether earlier disclosure of plasma phosphorylated tau at threonine 217 (p-tau217) and neurofilament light chain (NfL) increases etiologic diagnostic certainty, influences clinical management, and affects emotional outcomes in individuals evaluated for cognitive symptoms. Design, Setting, and Participants: This was a prospective randomized clinical trial conducted at a single memory clinic in Spain between February and October 2024, with 9 months of follow-up. Consecutive new outpatients with subjective cognitive decline (SCD), mild cognitive impairment (MCI), or mild dementia without a prior etiologic diagnosis were enrolled. Of 265 eligible participants, 220 were randomized to earlier disclosure of blood-based biomarkers at the 3-month visit or delayed disclosure at the 9-month visit. Intervention: Disclosure of blood-based biomarkers for AD pathology (p-tau217) and neurodegeneration (NfL) to the treating neurologist and participant, alongside standard clinical evaluation. Main Outcomes and Measures: The primary outcome was the proportion of participants achieving a very high-confidence etiologic diagnosis (≥90%). Secondary outcomes included changes in clinical management and emotional outcomes (anxiety, depression, perceived stress, and quality of life). Results: Among the 220 randomized participants (median [IQR] age, 73 [68-78] years; 123 [55.9%] women), baseline diagnoses were SCD (100 [45.5%]), MCI (68 [30.9%]), and mild dementia (52 [23.6%]). At 3 months, a very high-confidence etiologic diagnosis was achieved in 56 of 112 participants in the earlier-disclosure arm (50.0%) compared with 5 of 108 in the delayed-disclosure arm (4.6%) ( P < .001). Diagnostic certainty converged after disclosure in both arms, except among participants with MCI, in whom higher certainty persisted in the earlier-disclosure arm. Earlier disclosure was associated with more frequent initiation of symptomatic AD treatment (16/112 [14.3%] vs 5/108 [4.6%]; difference, 9.7; 95% CI, 1.8 to 17.8; P = .01), fewer planned follow-up neuropsychological reassessments for diagnostic clarification (34/112 [30.4%] vs 57/108 [52.8%]; difference, −22.4; 95% CI, −34.4 to −9.4; P < .001), and more planned discharge from the memory clinic to primary care (35/112 [31.3%] vs 13/108 [12.0%]; difference, 19.2; 95% CI, 8.4 to 29.5; P < .001). Earlier disclosure was not associated with worse emotional outcomes. Conclusions and Relevance: In this randomized clinical trial, earlier disclosure of blood-based biomarkers increased etiologic diagnostic certainty and led to earlier, targeted clinical management without increasing emotional distress. These findings support the integration of blood-based biomarkers into memory clinic diagnostic pathways. Trial Registration: ClinicalTrials.gov Identifier: NCT06246019",
@@ -5355,12 +5356,12 @@
     ],
     "doi_url": "https://doi.org/10.1002/ana.78366",
     "neurology_classification": {
-      "subspecialty": "Cognitive & Dementia",
+      "subspecialty": "Dementia",
       "topics": [
         "Alzheimer"
       ],
       "subspecialties": [
-        "Cognitive & Dementia"
+        "Dementia"
       ]
     },
     "abstract": "Individuals with Down syndrome (DS) are at high risk for Alzheimer's disease (AD), yet accessible tools for routine clinical screening of AD in individuals with DS remain limited. Using data from the Alzheimer Biomarker Consortium‐Down Syndrome (ABC‐DS), we show that integrating plasma pTau217 with performance on the modified cued recall task identifies a subgroup of cognitively stable individuals at markedly elevated risk of developing clinical impairment in the next 7 years. This low‐burden, multimodal framework improves prognosis, supports more informed clinical management and efficient trial enrichment in Down syndrome. ANN NEUROL 2026",
@@ -5935,7 +5936,7 @@
     ],
     "doi_url": "https://doi.org/10.1016/s1474-4422(26)00297-8",
     "neurology_classification": {
-      "subspecialty": "Traumatic Brain Injury (TBI)",
+      "subspecialty": "Neurocritical Care",
       "topics": [
         "Stroke",
         "Epilepsy",
@@ -5943,8 +5944,8 @@
         "Brain"
       ],
       "subspecialties": [
-        "Traumatic Brain Injury (TBI)",
-        "Vascular & Stroke",
+        "Neurocritical Care",
+        "Stroke",
         "Epilepsy"
       ]
     },
@@ -5995,14 +5996,14 @@
     ],
     "doi_url": "https://doi.org/10.1016/s1474-4422(26)00313-3",
     "neurology_classification": {
-      "subspecialty": "Cognitive & Dementia",
+      "subspecialty": "Dementia",
       "topics": [
         "Alzheimer",
         "Dementia",
         "Tau"
       ],
       "subspecialties": [
-        "Cognitive & Dementia",
+        "Dementia",
         "Neuromuscular"
       ]
     },
@@ -6109,7 +6110,7 @@
     ],
     "doi_url": "https://doi.org/10.1016/s1474-4422(26)00284-x",
     "neurology_classification": {
-      "subspecialty": "Cognitive & Dementia",
+      "subspecialty": "Dementia",
       "topics": [
         "Alzheimer",
         "Amyloid",
@@ -6117,7 +6118,7 @@
         "Lecanemab"
       ],
       "subspecialties": [
-        "Cognitive & Dementia"
+        "Dementia"
       ]
     },
     "abstract": "Background: Anti-amyloid antibodies slow cognitive and functional decline in individuals with early symptomatic Alzheimer's disease, but few studies have examined changes associated with these treatments in plasma biomarkers linked to neurodegeneration. We analysed changes in a panel of 130 plasma proteins and their associations with conversion to amyloid PET negative status and cognitive changes in patients receiving lecanemab infusions as part of their clinical care. Methods: This longitudinal cohort study included patients with early symptomatic Alzheimer's disease and positive amyloid biomarkers who were identified as candidates for biweekly lecanemab infusions based on the US Food and Drug Administration label and consented to blood collection at the Washington University Memory Diagnostic Center (St Louis, MO, USA) between July 17, 2023, and Oct 10, 2025. Lecanemab was administered as a 10 mg/kg intravenous infusion every 2 weeks. Patients underwent clinical assessments and blood draws approximately every 6 months over up to 2 years. Research participants enrolled at the Knight Alzheimer Disease Research Center (Knight ADRC; St Louis, MO, USA) between May 3, 1996, and Feb 27, 2025, and who did not receive anti-amyloid antibodies, were included as control groups (an amyloid β-negative [Aβ-] group without cognitive impairment and an untreated group with cognitive impairment). The primary outcome was change in plasma concentrations of protein biomarkers associated with Alzheimer's disease pathology with lecanemab treatment. Associations between plasma biomarker changes and number of lecanemab infusions were examined using regression and mixed-effects models, with adjustment for demographics. Findings: The study included 197 patients in whom lecanemab infusions had been started (lecanemab group), as well as 173 patients in whom lecanemab had been ordered but not yet started, who were combined with 1139 research participants with cognitive impairment from the Knight ADRC cohort to form the untreated control group with cognitive impairment (n=1312). An additional 458 research participants formed the Aβ- control group without cognitive impairment. In the lecanemab group, the median patient age was 73 years (IQR 69-77); 104 (53%) were female and 93 (47%) were male; and most participants were White (187 [98%] of 190 with available data) and non-Hispanic (183 [97%] of 188 with available data). 130 biomarkers were classified into four distinct trajectories, with 34 showing significant changes (false discovery rate Interpretation: Lecanemab treatment was associated with dynamic, multidirectional changes across plasma biomarkers of Alzheimer's disease pathology, with partial normalisation of amyloid and tau biomarkers alongside abnormal concentrations of inflammatory and neurodegeneration-related biomarkers (eg, TREM2 and NPTXR), which might reflect an immune response to amyloid plaques and effects of treatment on neuronal and synaptic processes distinct from amyloid clearance. These divergent trajectories suggest that different biomarkers could eventually serve different clinical purposes, such as monitoring treatment response or informing patient prognosis, although further validation is needed. Funding: National Institute on Aging, Cure Alzheimer's Fund, and Washington University.",
@@ -6473,7 +6474,7 @@
     ],
     "doi_url": "https://doi.org/10.1016/s1474-4422(26)00246-2",
     "neurology_classification": {
-      "subspecialty": "Cognitive & Dementia",
+      "subspecialty": "Dementia",
       "topics": [
         "Alzheimer",
         "Dementia",
@@ -6481,7 +6482,7 @@
         "Tau"
       ],
       "subspecialties": [
-        "Cognitive & Dementia",
+        "Dementia",
         "Neuromuscular",
         "Movement Disorders"
       ]
@@ -6611,9 +6612,9 @@
     ],
     "doi_url": "https://doi.org/10.1016/s1474-4422(26)00319-4",
     "neurology_classification": {
-      "subspecialty": "Cognitive & Dementia",
+      "subspecialty": "Dementia",
       "subspecialties": [
-        "Cognitive & Dementia"
+        "Dementia"
       ],
       "topics": [
         "Alzheimer"
@@ -6645,9 +6646,9 @@
     ],
     "doi_url": "https://doi.org/10.1016/s1474-4422(26)00324-8",
     "neurology_classification": {
-      "subspecialty": "Cognitive & Dementia",
+      "subspecialty": "Dementia",
       "subspecialties": [
-        "Cognitive & Dementia"
+        "Dementia"
       ],
       "topics": [
         "Alzheimer"
@@ -6769,7 +6770,7 @@
       ],
       "subspecialties": [
         "Epilepsy",
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "Importance: Concomitant use of antiseizure medications (ASMs) and direct oral anticoagulants (DOACs) is common in epilepsy, but comparative safety data remain limited. Objective: To compare risks of thromboembolic events, major bleeding, and all-cause mortality across commonly used ASMs in adults with epilepsy receiving DOACs. Design, Setting, and Participants: This was a retrospective cohort study emulating a target trial for each ASM group against an active comparator; 1:1 propensity score matching in 4 cohorts emulated randomization to estimate the per-protocol outcome of sustained ASM monotherapy. Participant data were acquired from the TriNetX Global Collaborative Network, a federated, deidentified electronic health record platform of 165 health care organizations internationally. Included in the study were adults 18 years or older with epilepsy. Individuals were excluded if there was evidence of recent use of vitamin K antagonists (VKAs) or strong non-ASM cytochrome P450 3A4/P-glycoprotein modulators and if there was a history of major vascular events in the prior year. Participant follow-up began at a prespecified 90-day landmark. Data were analyzed January to March 2026. Exposures: ASM monotherapy with levetiracetam, valproate, moderate enzyme-inducing ASMs, or strong enzyme-inducing ASMs (eg, carbamazepine, phenytoin), each vs lamotrigine or lacosamide (1 pooled reference group of patients taking either drug; hereafter referred to as lamotrigine/lacosamide ). Main Outcomes and Measures: The primary outcomes included primary thromboembolic composite (ischemic stroke, myocardial infarction, pulmonary or systemic/peripheral embolism), major bleeding, and all-cause mortality. Sensitivity analyses included patients treated with VKAs. Results: Of 2.29 million adults (≥18 years) with epilepsy, 40 932 were DOAC eligible, 26 962 had DOAC-ASM overlap within 6 months, 10 209 were monotherapy eligible, and 9529 initiators formed the analytic cohort. Among 9529 initiators (mean [SD] age, 63 [18] years; 4869 female [51%]), there were 5473 (57%) taking levetiracetam, 1395 (15%) taking strong enzyme-inducing ASMs, 1006 (11%) taking valproate, and 382 (4%) taking moderate enzyme-inducing ASMs. In matched analyses vs lamotrigine/lacosamide, levetiracetam was associated with higher thromboembolic risk (hazard ratio [HR], 1.98; 95% CI, 1.37-2.87) and higher all-cause mortality (HR, 1.60; 95% CI, 1.23-2.08), with comparable major bleeding. Strong enzyme-inducing ASMs were associated with higher thromboembolic risk (HR, 1.55; 95% CI, 1.02-2.36) but lower major bleeding (HR, 0.62; 95% CI, 0.46-0.83). Valproate was associated with higher mortality (HR, 1.49; 95% CI, 1.09-2.04) and higher intracranial major bleeding (HR, 3.01; 95% CI, 1.45-6.26). Approximately 28% of thromboembolic events were potentially preventable under a lamotrigine/lacosamide reference. In VKA-treated adults, thromboembolic risks were near null. Conclusions and Relevance: Results suggest that in adults with epilepsy who are treated with DOACs, ASM selection was associated with distinct thromboembolic, bleeding, and mortality risks, supporting ASM choice as a modifiable contributor to clinical outcomes.",
@@ -6835,14 +6836,14 @@
     ],
     "doi_url": "https://doi.org/10.1001/jamaneurol.2026.2830",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Hemorrhage",
         "Aneurysm",
         "Subarachnoid"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "Importance: Young survivors of aneurysmal subarachnoid hemorrhage (aSAH) risk de novo aneurysm formation, yet population-based lifetime estimates are lacking, and prior studies were limited by selection bias and short follow-up. Objective: To determine lifetime cumulative incidence, risk factors, and rupture rate of radiologically detected de novo aneurysm formation in young survivors of aSAH and the association with smoking cessation. Design, Setting, and Participants: This cohort study used a prospective regional register cross-linked with national health and death registers, with index events from 1967 to 2014. Participants were residents of the Stockholm region, Sweden, and younger than 40 years with an index saccular aSAH. Eligibility required concurrent 4-vessel angiography and retention of original imaging and medical records. Radiological follow-up reached 57 years; de novo aneurysm detection, treatment, recurrent hemorrhage, and vital status were ascertained nationwide through December 31, 2025, and validated longitudinally. Exposures: Age, sex, smoking status, family history, hypertension, and multiple aneurysms. Main Outcomes and Measures: Cumulative incidence of de novo formation, independent risk factors, annual rupture rate, and smoking-cessation association. Results: Of 6521 patients of all ages with regional saccular aSAH, 986 (15.1%) were younger than 40 years. After eligibility criteria were assessed, there were 544 survivors (83.3%). Among them, 313 were female (57.5%) and 231 (42.5%) male; the median (IQR) age was 33 (28-36) years. Over 13 738 person-years, 106 patients (19.5%) developed 158 de novo aneurysms; 23 ruptured. The Fine-Gray cumulative incidence was 30.2% (95% CI, 24.7%-35.7%) at 40 years, without a plateau. Independent risk factors were female sex (hazard ratio [HR], 1.76; 95% CI, 1.16-2.69), smoking (HR, 1.75; 95% CI, 1.13-2.71), and family history (HR, 2.17; 95% CI, 1.22-3.87). Smoking cessation was associated with lower, dose-dependent de novo risk. The annual rupture rate was 153 per 100 000 person-years. No ruptures occurred under systematic surveillance; one-third occurred more than 20 years after the index event. Conclusions and Relevance: This study found that young survivors of aSAH face a substantial lifetime risk of de novo aneurysm formation that does not plateau over 4 decades. Female sex, smoking status, and family history are independent risk factors; smoking cessation is a modifiable prevention target. These findings support lifelong surveillance and address current guideline gaps.",
@@ -6873,13 +6874,13 @@
     ],
     "doi_url": "https://doi.org/10.1001/jamaneurol.2026.2933",
     "neurology_classification": {
-      "subspecialty": "Cognitive & Dementia",
+      "subspecialty": "Dementia",
       "topics": [
         "Alzheimer",
         "Amyloid"
       ],
       "subspecialties": [
-        "Cognitive & Dementia"
+        "Dementia"
       ]
     },
     "abstract": "This Viewpoint examines how clinicians should approach amyloid-targeting therapies in patients with Alzheimer disease and suspected copathologies, emphasizing individualized decision-making, current evidence gaps, and the need for prospective studies.",
@@ -7172,14 +7173,14 @@
     ],
     "doi_url": "https://doi.org/10.1001/jamaneurol.2026.2855",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Stroke",
         "Ischemic",
         "Neurological"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "Importance: Patients with branch atheromatous disease (BAD)–related stroke are predisposed to early neurological deterioration (END) and disability. However, large-scale clinical trials focused on the prevention of the deterioration and recurrent stroke in this population are currently lacking. Objective: To evaluate the efficacy and safety of intensive antiplatelet therapy combining the tirofiban with aspirin for patients with BAD-related stroke. Design, Setting, and Participants: This randomized clinical trial was the multicenter, double-blind, randomized, placebo-controlled STRATEGY trial, conducted across 38 hospitals in China. Participants were patients with BAD-related acute ischemic stroke confirmed by magnetic resonance imaging within 48 hours of symptom onset were eligible for enrollment. Enrollment occurred from November 15, 2022, to November 19, 2024, with a 90-day follow-up period for all participants. Investigators, patients, and outcome assessors were blinded to treatment assignment. Interventions: Eligible participants were randomized to receive either intravenous tirofiban or placebo (0.4 µg/kg/min for 30 minutes followed by 0.1 µg/kg/min for 24 hours). All patients received a 300-mg loading dose of aspirin on the day of randomization, followed by 100 mg daily until day 90. Main Outcomes and Measures: The primary efficacy end point was END within 7 days or new stroke within 90 days. The primary safety end point was moderate or severe bleeding. Results: Of 1378 patients with acute ischemic stroke screened for eligibility, 408 were excluded for ineligible imaging findings, other exclusion criteria, lack of consent, or additional reasons, leaving 970 participants who underwent randomization (486 assigned to tirofiban plus aspirin, 484 to placebo plus aspirin). The median (IQR) age was 63.0 (56.0-70.0) years; 607 patients (62.6%) were male and 363 (37.4%) female. The incidence of the primary efficacy end point was 79 patients (17.1%) in the tirofiban group and 89 (19.6%) in the placebo group (hazard ratio, 0.88; 95% CI, 0.65-1.19; P = .39). The incidence of the primary safety end point was 1 of 486 patients (0.2%) in the tirofiban group and 0 patients in the placebo group ( P > .99). Conclusions and Relevance: This study found that in patients with BAD-related stroke, intravenous tirofiban combined with aspirin did not significantly reduce the risk of END or stroke compared with aspirin alone, nor was it associated with an increased risk of moderate or severe bleeding. Trial Registration: ClinicalTrials.gov Identifier: NCT05310968",
@@ -7332,7 +7333,7 @@
     ],
     "doi_url": "https://doi.org/10.1001/jamaneurol.2026.2650",
     "neurology_classification": {
-      "subspecialty": "Cognitive & Dementia",
+      "subspecialty": "Dementia",
       "topics": [
         "Alzheimer",
         "Dementia",
@@ -7340,7 +7341,7 @@
         "Tau"
       ],
       "subspecialties": [
-        "Cognitive & Dementia"
+        "Dementia"
       ]
     },
     "abstract": "Importance: Phosphorylated tau-217 (p-tau217) is now an established plasma biomarker for assessing amyloid-β pathology in individuals at risk of Alzheimer disease. However, its performance in identifying advanced neocortical neurofibrillary tangle burden remains suboptimal. Precise assessment of tau pathology is increasingly critical for the rational implementation of anti-amyloid therapies and developing anti-tau interventions. Improved biofluid biomarker–based tau staging could enhance patient stratification and optimize participant selection for clinical care and therapeutic trials. Objective: To develop and validate a multiprotein plasma panel to improve identification of neocortical tau pathology beyond p-tau217 alone. Design, Setting, and Participants: This multicenter cohort study included 2 independent observational cohorts, Swedish BioFINDER study and Translational Biomarkers in Aging and Dementia (TRIAD). Cross-sectional clinical data and blood samples were collected between 2017 and 2024. Participants included 560 individuals spanning the clinical spectrum from cognitively unimpaired to dementia. These data were analyzed from January 2025 to May 2026. Exposures: Plasma concentrations of 125 proteins measured using Nucleic Linked Immuno-Sandwich Assay central nervous system panel. Main Outcome and Measure: Advanced tau pathology defined as tau positron emission tomography (PET) uptake within Braak stage V and VI regions. Predictive performance of biomarker models was evaluated using area under the receiver operating characteristic curve (AUC). Results: The study included 560 amyloid-positive participants (BioFINDER: n = 431; mean [SD] age, 73.6 [7.0] years; 212 female [49.2%] and 219 male [50.8%]; TRIAD: n = 129; mean [SD] age, 70.4 [8.3] years; 76 female [58.9%] and 53 male [41.1%]). Using multivariable logistic regression approaches, a 7-protein panel was found in BioFINDER to identify tau PET uptake within Braak stage V and VI regions. When compared with p-tau217 (AUC, 0.86-0.88; 95% CI, 0.82-0.94), this multiprotein panel was associated with improved identification in both discovery and validation cohorts (AUC, 0.92-0.94; 95% CI, 0.89-0.98; DeLong P < .001). This reduced the proportion of individuals classified within the intermediate-risk range (between paired sensitivity and specificity thresholds) in the validation cohort by 14.7% to 21.0%. Conclusions and Relevance: This multicohort study demonstrated how including additional plasma proteins significantly enhanced the performance of p-tau217 in predicting advanced tau pathology among amyloid-positive individuals. This suggests a multiprotein approach may offer a viable and scalable alternative to tau PET staging in clinical or research settings.",
@@ -7439,7 +7440,7 @@
     ],
     "doi_url": "https://doi.org/10.1001/jamaneurol.2026.2812",
     "neurology_classification": {
-      "subspecialty": "Cognitive & Dementia",
+      "subspecialty": "Dementia",
       "topics": [
         "Dementia",
         "Neurodegenerative",
@@ -7447,7 +7448,7 @@
         "Als"
       ],
       "subspecialties": [
-        "Cognitive & Dementia",
+        "Dementia",
         "Neuromuscular"
       ]
     },
@@ -7544,12 +7545,12 @@
     ],
     "doi_url": "https://doi.org/10.1161/str.0000000000000536",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Stroke"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "AIM: The “2026 Guidelines for Adult Stroke Rehabilitation and Recovery” replaces the 2016 “Guidelines for Adult Stroke Rehabilitation and Recovery.” This updated guideline is intended to provide a comprehensive, up-to-date, evidence-based set of recommendations. The intended audience includes physicians, allied health professionals, and caregivers. METHODS: A comprehensive search for literature published since the 2016 guideline, derived from research involving human participants, published in English, and indexed in MEDLINE, PubMed, Cochrane Library, and other selected databases relevant to this guideline, was conducted between June and October 2025. Other documents on related subject matter previously published by the American Heart Association were also reviewed. STRUCTURE: This guideline provides recommendations based on the most current evidence available for stroke rehabilitation and recovery. Key updates include new and revised recommendations across the stroke recovery continuum, including the assessment and treatment of medical comorbidities, fracture risk, fall prevention, technology-enabled rehabilitation, caregiver support, participation, and safe return to work and driving. Although this guideline reflects significant advances, it also highlights gaps in knowledge and underscores the urgent need for continued research to further refine and improve treatment strategies.",
@@ -7583,13 +7584,13 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.056890",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Stroke",
         "Cerebral"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
@@ -7621,7 +7622,7 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.055713",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Stroke",
         "Ischemic",
@@ -7629,7 +7630,7 @@
         "Cerebral"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "BACKGROUND: The role of immune checkpoint B7-H3 in acute ischemic stroke prognosis and poststroke immunosuppression remains uninvestigated, despite the clinical significance of immune checkpoints with inflammaging and poststroke infections. In this study, we investigated the effect of regulating cerebral induction of B7-H3 after acute ischemic stroke and evaluated its longitudinal impact on brain damage, neuroinflammation, vascular integrity, host defense gene regulation, and functional outcomes. METHODS: C57BL/6 mice were subjected to transient middle cerebral artery occlusion and injected (intravenously) with either B7-H3 small interfering RNA or a negative (nontargeting) small interfering RNA at 5 minutes after reperfusion. On poststroke days 1, 3, and 7, magnetic resonance imaging of the mouse brain was performed using a 9.4-T scanner to assess brain damage (T2, apparent diffusion coefficient, and kurtosis) and blood-brain barrier integrity (T1 with contrast). Real-time quantitative polymerase chain reaction and NanoString nCounter neuroinflammation panels were used to determine acute changes in overall neuroinflammatory functions mediated by B7-H3. Motor function was assessed between days 1 and 7 of reperfusion. RESULTS: Early inhibition of B7-H3 after stroke significantly reduced blood-brain barrier disruption and brain damage and promoted functional outcomes. Poststroke neuroinflammation was reprogrammed with B7-H3 inhibition to balance neuroprotective anti-inflammatory mechanisms without compromising the immune response, which is crucial for preventing poststroke infections. CONCLUSIONS: The longitudinal assessment of blood-brain barrier, infarction, and proinflammatory cytokines demonstrates that B7-H3 induction during the acute period after stroke mediates poststroke neuroinflammation and secondary brain damage.",
@@ -7673,7 +7674,7 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.052342",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Stroke",
         "Ischemic",
@@ -7681,7 +7682,7 @@
         "Thrombolysis"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "Suboptimal clinical outcomes are common after ischemic stroke with large vessel occlusion despite current reperfusion treatment with intravenous thrombolysis and mechanical thrombectomy. Targeting residual distal arterial and microvascular occlusions with intraarterial thrombolysis has recently gained substantial interest as an adjunct to improve cerebral tissue perfusion. While recent trials provide promise in selected patients with anterior-circulation stroke, further high-quality, large-scale studies and pooled individual-patient analyses are needed. This review summarizes the evolving role of intraarterial thrombolysis over the past 3 decades and projects potential developments.",
@@ -7717,13 +7718,13 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.056694",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Cerebral",
         "Brain"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "ABSTRACT Background: Peripheral microvascular abnormalities may reflect systemic microvascular dysfunction relevant to cerebral small vessel disease (cSVD), yet their relationship to individual neuroimaging markers and overall cSVD burden remains unclear. We evaluated whether abnormalities in nailfold capillaroscopy (NFC) are associated with specific cSVD markers and with the total cSVD score in a population-based cohort. Methods: Atahualpa residents aged ≥60 years underwent NFC and brain MRI. Capillary tortuosities, dilatations, density, and megacapillaries were quantified using automated software with expert validation. Neuroimaging markers included white matter hyperintensities (WMH), lacunes, deep cerebral microbleeds (CMB), and enlarged basal ganglia perivascular spaces (BG-PVS). Logistic regression models assessed associations between NFC abnormalities and cSVD markers. Poisson regression was used to model the total cSVD score. All models were adjusted for demographics, educational attainment, and cardiovascular risk factors. Results: Among 289 participants (mean age 71.3 ± 7.5 years; 51% women), lower capillary density was independently associated with CMB (OR: 0.70; 95% C.I.: 0.51–0.96) and lacunes (OR: 0.67; 95% C.I.: 0.50–0.91), with a borderline association for WMH ( p =0.062). Megacapillaries were independently associated with moderate-to-severe WMH (OR: 5.01; 95% C.I.: 1.42–17.68). Tortuosities and dilatations showed no significant associations. Higher capillary density was inversely associated with the total cSVD score (β: -0.179; 95% C.I.: -0.283 to -0.075). Conclusions: Reduced capillary density and megacapillaries track with the burden of cSVD. NFC may provide a noninvasive window into cerebral microvascular health and could inform risk stratification for cSVD progression and related outcomes.",
@@ -7752,7 +7753,7 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.055573",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Stroke",
         "Hemorrhage",
@@ -7760,7 +7761,7 @@
         "Carotid"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "Despite decades of clinical trial activity in stroke prevention, critical gaps remain in the evidence base guiding management of symptomatic carotid and intracranial stenosis and the quality of anticoagulation care delivered to patients with atrial fibrillation (AF). This article synthesizes recent evidence and ongoing research efforts addressing 2 enduring challenges: demonstrating the value of intensive medical therapy relative to interventional approaches and improving the quality of stroke prevention care in AF. Previous trials focused on intracranial stenosis established that aggressive, protocol-driven medical management substantially reduces recurrent vascular events. In the realm of carotid stenosis, landmark trials conducted >3 decades ago no longer reflect modern pharmacological capabilities. Emerging evidence from plaque imaging, particularly intraplaque hemorrhage on magnetic resonance imaging, suggests that stenosis severity alone is an insufficient determinant of treatment strategy. Simultaneously, strokes related to AF continue to rise in the United States, driven by demographic aging, and large vessel occlusion strokes attributable to undertreated AF represent a preventable burden on the health system. Patient-centered, precision stroke prevention requires contemporary prospective data, integration of advanced vascular imaging biomarkers, and systematic improvements in preventative therapies for patients with AF. Targeting these areas holds promise for improving stroke prevention in the coming decades.",
@@ -7794,7 +7795,7 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.056286",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Hemorrhage",
         "Intracerebral",
@@ -7802,7 +7803,7 @@
         "Brain"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "BACKGROUND: Neuroinflammation critically contributes to secondary brain injury after intracerebral hemorrhage (ICH). The skull-dura interface allows immune trafficking from skull bone marrow (SBM) to the brain, but its role in ICH remains unclear. METHODS: ICH was induced in male C57BL/6J mice by collagenase injection. To compare the immune landscape of SBM and femur bone marrow (FBM), single-cell RNA sequencing was performed on sham-operated and ICH mice. Flow cytometry at serial time points, combined with cell-tracking experiments, was used to assess time-dependent neutrophil accumulation in SBM, dura, and brain, as well as the relative contribution of SBM- versus FBM-derived neutrophils after ICH. To test whether SBM-derived neutrophil migration contributes to neuroinflammation, the CXCR2 (C-X-C motif chemokine receptor 2) antagonist SB225002 was delivered subscalp. Finally, dural delivery of anti-CCL3 (C-C motif chemokine ligand 3) neutralizing antibodies was performed to determine the role of dural CCL3 in SBM neutrophil priming. Outcomes included evaluations of behavioral deficits, brain edema, integrity of the blood-brain barrier, hematoma removal, and brain neutrophil infiltration. RESULTS: Single-cell RNA sequencing revealed that ICH shifted hematopoiesis toward the myeloid lineage in both SBM and FBM; however, SBM neutrophils exhibited significantly stronger proinflammatory and migratory gene signatures than FBM neutrophils. Skull-derived neutrophils preferentially migrated to the dura and brain parenchyma post-ICH. Subscalp delivery of SB225002 reduced neutrophil infiltration, attenuated brain edema and blood-brain barrier disruption, and improved short-term and long-term neurological deficits. In addition, CCL3 was specifically upregulated in dural neutrophils after ICH. Unexpectedly, dural delivery of an anti-CCL3 antibody markedly reduced neutrophil accumulation in the brain and protected against ICH-induced brain injury, accompanied by inhibition of neutrophil activation in SBM but not in FBM. CONCLUSIONS: SBM may serve as a primary source of pathogenic neutrophils driving neuroinflammation after ICH. Targeting this immune compartment through the scalp-skull-dura interface represents an accessible strategy for mitigating ICH-induced brain injury.",
@@ -7851,14 +7852,14 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.056561",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Stroke",
         "Ischemic",
         "Carotid"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "BACKGROUND: Anti-inflammatory therapies reduce the risk of major adverse cardiovascular events (MACEs) in coronary disease, but efficacy has not been shown after stroke. It is uncertain if patients with atherosclerosis are more likely to benefit from anti-inflammatory prevention. METHODS: We performed a post hoc analysis of the CONVINCE trial (randomized, open-label, blinded-end point assessed; Colchicine for Prevention of Vascular Inflammation in Non-Cardioembolic Stroke), comparing colchicine 0.5 mg plus usual care versus usual care. We performed a subgroup analysis in patients stratified according to the presence/absence of atherosclerosis (defined as cervico-cranial/aortic artery plaque, coronary disease, peripheral arterial disease, and carotid revascularization). The primary outcome was MACE. Analyses were adjusted for age, qualifying event, time from event to randomization, and coronary disease. RESULTS: Three thousand one hundred forty-four participants were included. There were 338 MACE events during follow-up (median, 33.6 months). On intention-to-treat analysis, there were numerically fewer MACE events in the atherosclerosis group assigned to colchicine (105 [11.1%], 3.88 [95% CI, 3.21–4.70] per 100 person-years) versus usual care (132 [14.2%], 4.83 [4.07–5.73] per 100 person-years), which was not statistically significant (hazard ratio [HR], 0.83 [95% CI, 0.64–1.07]). There was no difference in the rate of the primary outcome according to treatment allocation in the nonatherosclerosis subgroup (HR, 0.94 [95% CI, 0.64–1.39]; P interaction =0.60). There was a nonsignificant reduced risk of recurrent ischemic stroke in the colchicine arm (HR, 0.76 [95% CI, 0.56–1.05]) in the atherosclerosis group, but no difference in events was observed in the nonatherosclerotic group (HR, 0.92 [95% CI, 0.60–1.42]; P interaction =0.48). In the prespecified on-treatment analysis, colchicine reduced the risk of MACE in patients with atherosclerosis (HR, 0.76 [95% CI, 0.58–0.99]) but not without (HR, 0.95 [95% CI, 0.63–1.42]; P interaction =0.37). CONCLUSIONS: There were no significant between-group interactions for colchicine and atherosclerosis for MACE in intention-to-treat or on-treatment populations. However, outcome events were numerically fewer in patients with atherosclerosis assigned to colchicine, and significant benefit was observed in the on-treatment analysis in this group. Data suggest that the presence of atherosclerosis should be an inclusion criterion in future anti-inflammatory therapy trials. REGISTRATION: URL: https://www.clinicaltrials.gov ; Unique identifier: NCT02898610.",
@@ -7900,14 +7901,14 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.055192",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "topics": [
         "Hemorrhage",
         "Intracerebral",
         "Neurological"
       ],
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ]
     },
     "abstract": "BACKGROUND: The meningeal lymphatic system contributes to hematoma resolution and neurological recovery after intracerebral hemorrhage (ICH). We previously demonstrated that intraperitoneal cilostazol administration promotes dural lymphatic growth and enhances clearance of intracerebrally injected red blood cells; however, the antiplatelet effects of cilostazol raise safety concerns in ICH, potentially limiting clinical translation. Here, we evaluated whether oral cilostazol at clinical-equivalent doses in mice enhances dural lymphatic function and improves outcomes after ICH. METHODS: ICH was induced by collagenase injection to model microvascular rupture. Cilostazol was orally administered to ICH mice at clinically equivalent doses, given at different time points and for varying durations. Prolymphangiogenic effects of cilostazol were examined in healthy in vivo and ex vivo meninges. Flow cytometry and immunofluorescence were performed to assess lymphatic endothelial cell proliferation and dural lymphatic remodeling. Lymphatic function was evaluated by in vivo live imaging and histological analysis of fluorescent tracer drainage. Short- and long-term histopathologic and behavioral outcomes were also evaluated. RESULTS: Oral cilostazol treatment initiated either 3 hours or 3 days after ICH enhanced dural lymphatic coverage and function, accompanied by reduced hematoma volume, neuronal injury, synapse loss, and long-term neurological deficits. Cilostazol increased CD31 + PDPN + lymphatic endothelial cells in ex vivo meninges, induced dural lymphatic hyperplasia, and enhanced lymphatic drainage in healthy mice. Both pretreatment and delayed treatment of cilostazol did not increase hematoma volume but rather improved ICH outcomes. CONCLUSIONS: By promoting dural lymphatic remodeling and drainage, cilostazol facilitates hematoma resolution and neurological recovery after ICH. Cilostazol treatment does not exacerbate initial bleeding or provoke hematoma expansion in the experimental ICH. These findings support clinical translation and provide mechanistic and dosing rationale for an ongoing phase II randomized trial (URL: https://www.clinicaltrials.gov ; Unique identifier: NCT06504576).",
@@ -7949,13 +7950,13 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.055765",
     "neurology_classification": {
-      "subspecialty": "Cognitive & Dementia",
+      "subspecialty": "Dementia",
       "topics": [
         "Brain",
         "Neurodegenerative"
       ],
       "subspecialties": [
-        "Cognitive & Dementia"
+        "Dementia"
       ]
     },
     "abstract": "BACKGROUND: Early-life vascular risk factors are increasingly linked to midlife cognitive decline, though critical risk periods remain unclear. These factors also relate to structural brain changes, yet midlife alterations tied to cognitive decline are poorly defined. We leveraged data from the CARDIA study (Coronary Artery Risk Development in Young Adults) to identify critical periods and factors associated with midlife cognition and neuroimaging signatures. METHODS: We utilized longitudinal cognitive and neuroimaging data from the prospective CARDIA study with vascular risk factor data spanning 35 years (1985–2020). K-means clustering of cognitive trajectories identified Declined and Stable clusters. A gradient boosting classifier identified factors predictive of cluster membership. Linear mixed-effects models assessed cluster differences in structural brain changes, and structural covariance analyses identified brain network remodeling linked to cognitive decline. Cross-sectional late-midlife cognitive data were used to examine associations between early adulthood (ages 18–40 years) systolic blood pressure strata and cognitive outcomes. RESULTS: Among 280 participants with longitudinal data (mean age, 50±3.5 years at baseline; 52% to 56% female, 40% to 41% Black race) followed for a median of 10 years, higher systolic blood pressure and smoking before age 40 years were critical factors for cognitive cluster membership in late midlife (feature importance ≈0.3 and 0.2, respectively). Accelerated accumulation of white matter hyperintensities, gray matter volume changes involving frontal and temporal association cortices, occipital pole and thalamus (β range, –0.0006 to –0.002; P ≤0.02), and network-level reorganization predominantly involving the basal forebrain spanning early- to late-midlife distinguished clusters. A stepwise, dose-dependent association between early-life systolic blood pressure strata and late-midlife cognitive performance was replicated in 720 participants (mean age, 61±3.5 years). CONCLUSIONS: Before age 40 years may be a critical window to manage vascular risk factors and preserve midlife cognition. Linked white matter hyperintensity and gray matter changes suggest that vascular factors drive both cerebrovascular and neurodegenerative injury. A basal forebrain–centered neuroimaging signature, possibly reflecting cholinergic and glial responses to early vascular stress, may serve as an early biomarker for prevention trials.",
@@ -8191,9 +8192,9 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.056847",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ],
       "topics": [
         "Stroke",
@@ -8240,9 +8241,9 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.056258",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ],
       "topics": [
         "Stroke",
@@ -8288,10 +8289,10 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.056302",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke",
-        "Cognitive & Dementia"
+        "Stroke",
+        "Dementia"
       ],
       "topics": [
         "Neurovascular",
@@ -8333,9 +8334,9 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.057817",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ],
       "topics": [
         "Stroke"
@@ -8367,9 +8368,9 @@
     ],
     "doi_url": "https://doi.org/10.1016/s1474-4422(26)00359-5",
     "neurology_classification": {
-      "subspecialty": "Cognitive & Dementia",
+      "subspecialty": "Dementia",
       "subspecialties": [
-        "Cognitive & Dementia"
+        "Dementia"
       ],
       "topics": [
         "Lecanemab"
@@ -8408,9 +8409,9 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.053795",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ],
       "topics": [
         "Stroke"
@@ -8454,9 +8455,9 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.056917",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ],
       "topics": [
         "Stroke"
@@ -8497,9 +8498,9 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.056579",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke",
+        "Stroke",
         "Neuromuscular"
       ],
       "topics": [
@@ -8548,9 +8549,9 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.056159",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ],
       "topics": [
         "Stroke",
@@ -8593,9 +8594,9 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.055324",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ],
       "topics": [
         "Stroke",
@@ -8639,9 +8640,9 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.056423",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ],
       "topics": [
         "Stroke",
@@ -8700,9 +8701,9 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.125.053290",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ],
       "topics": [
         "Stroke"
@@ -8753,9 +8754,9 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.056382",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ],
       "topics": [
         "Stroke",
@@ -8793,9 +8794,9 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.055755",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ],
       "topics": [
         "Stroke",
@@ -8835,9 +8836,9 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.125.054734",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ],
       "topics": [
         "Stroke",
@@ -8883,10 +8884,10 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.125.054879",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke",
-        "Cognitive & Dementia"
+        "Stroke",
+        "Dementia"
       ],
       "topics": [
         "Stroke",
@@ -8926,9 +8927,9 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.055839",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ],
       "topics": [
         "Stroke",
@@ -8964,9 +8965,9 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.056638",
     "neurology_classification": {
-      "subspecialty": "Vascular & Stroke",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Vascular & Stroke"
+        "Stroke"
       ],
       "topics": [
         "Stroke"

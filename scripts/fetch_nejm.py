@@ -290,26 +290,22 @@ def extract_date_from_parts(parts_obj: dict) -> str:
         return f"{y}-{m}-{d}T00:00:00Z"
     return ""
 
-# Phân loại đa nhãn chuyên khoa (Tách riêng Neuroimmunology, Neuromuscular, Neurocritical Care, TBI, đổi General -> Other)
+# Phân loại đa nhãn chuyên khoa chuẩn hóa
 SUBSPECIALTY_RULES = [
     (
-        "Vascular & Stroke",
+        "Stroke",
         r'\b(stroke|ischemic|infarction|thrombectomy|thrombolysis|tenecteplase|alteplase|intracerebral hemorrhage|subarachnoid hemorrhage|intracranial bleeding|intracranial hemorrhage|aneurysm|carotid|endovascular|neurovascular|cerebral ischemia|small vessel disease|cerebral amyloid angiopathy|cavernous malformation|arteriovenous malformation|venous sinus thrombosis)\b'
     ),
     (
         "Neurocritical Care",
-        r'\b(neurocritical|intensive care|critical care|status epilepticus|intracranial pressure|cerebral edema|coma|unresponsive wakefulness|minimally conscious|brain death|targeted temperature|post-cardiac arrest|mechanical ventilation|extubation|neuro-icu|delirium)\b'
-    ),
-    (
-        "Traumatic Brain Injury (TBI)",
-        r'\b(traumatic brain injury|tbi|concussion|head injury|head trauma|brain trauma|chronic traumatic encephalopathy|post-concussive|sport-related concussion)\b'
+        r'\b(neurocritical|intensive care|critical care|status epilepticus|intracranial pressure|cerebral edema|coma|unresponsive wakefulness|minimally conscious|brain death|targeted temperature|post-cardiac arrest|mechanical ventilation|extubation|neuro-icu|delirium|traumatic brain injury|tbi|concussion|head injury|head trauma)\b'
     ),
     (
         "Epilepsy",
         r'\b(epilep\w*|seizure\w*|antiseizure|ictal|interictal|dravet|lennox-gastaut|focal cortical dysplasia|sudep)\b'
     ),
     (
-        "Cognitive & Dementia",
+        "Dementia",
         r'\b(alzheimer\w*|dementia|amyloid|tau|p-tau\w*|lecanemab|donanemab|cognitive decline|cognitive impairment|frontotemporal|lewy body|apoe|memory clinic)\b'
     ),
     (
@@ -327,6 +323,10 @@ SUBSPECIALTY_RULES = [
     (
         "Headache & Pain",
         r'\b(migraine|headache|cluster headache|trigeminal neuralgia|cgrp|ubrogepant|atogepant|rimegepant|erenumab|fremanezumab|galcanezumab|neuropathic pain|chronic pain|idiopathic intracranial hypertension)\b'
+    ),
+    (
+        "CNS Infections",
+        r'\b(meningit\w*|meningoencephalit\w*|brain abscess|epidural abscess|subdural empyema|tuberculous meningitis|cns tuberculosis|neurosyphilis|herpes simplex virus encephalitis|hsv encephalitis|cryptococc\w*|cerebral toxoplasmosis|varicella zoster\w*|vzv encephalitis|neurocysticercosis|arbovirus|japanese encephalitis|lyme neuroborreliosis|neuroborreliosis|progressive multifocal leukoencephalopathy|pml|cerebral malaria|rabies|ventriculit\w*|cns viral infection|cns bacterial infection|cns fungal infection|cns parasitic infection|cns infection|infectious encephalitis)\b'
     ),
     (
         "Neuro-Oncology",
