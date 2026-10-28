@@ -358,6 +358,60 @@ export const MOCK_GUIDELINE_DOCS: GuidelineDoc[] = [
     ],
   },
   {
+    id: "aha-ich-2022",
+    society: "AHA/ASA",
+    year: 2022,
+    title: "2022 Guideline for the Management of Patients with Spontaneous Intracerebral Hemorrhage",
+    officialUrl: "https://www.ahajournals.org/doi/10.1161/STR.0000000000000407",
+    journalTarget: "Stroke",
+    documentType: "Clinical Practice Guideline",
+    publishDate: "2022-05-17",
+    previousVersionYear: 2015,
+    executiveSummary:
+      "Comprehensive AHA/ASA clinical recommendations on acute blood pressure management, hematoma expansion limitation, reversal of anticoagulants, and minimally invasive surgical clot evacuation.",
+    linkedScenarioIds: ["ich-acute-bp-lowering"],
+    allPracticeChanges: [
+      {
+        id: "chg-aha-ich-1",
+        scenarioId: "ich-acute-bp-lowering",
+        category: "Blood Pressure",
+        topic: "Target SBP 130-140 mmHg and Avoidance of Acute Hypotension",
+        changeType: "REVISED",
+        previousGrade: "Class I, Level A (Target SBP <140 mmHg)",
+        currentGrade: "Class IIa, Level B-R (Target SBP 130-140 mmHg, avoid <130)",
+        currentText:
+          "In patients with acute spontaneous ICH presenting with SBP >150 mmHg, rapid and smooth lowering to a target SBP of 130–140 mmHg is safe and reasonable, but acute SBP reduction <130 mmHg should be avoided.",
+        drivingTrials: ["INTERACT2 (NEJM 2013)", "ATACH-2 (NEJM 2016)"],
+      },
+    ],
+  },
+  {
+    id: "eso-ich-2021",
+    society: "ESO",
+    year: 2021,
+    title: "European Stroke Organisation (ESO) Guidelines for the Management of Spontaneous Intracerebral Hemorrhage",
+    officialUrl: "https://journals.sagepub.com/doi/10.1177/23969873211046474",
+    journalTarget: "Eur Stroke J",
+    documentType: "Clinical Practice Guideline",
+    publishDate: "2021-10-01",
+    executiveSummary:
+      "European clinical practice guideline addressing hyperacute blood pressure lowering, hemostatic therapies, neurointensive care bundle, and secondary stroke prevention.",
+    linkedScenarioIds: ["ich-acute-bp-lowering"],
+    allPracticeChanges: [
+      {
+        id: "chg-eso-ich-1",
+        scenarioId: "ich-acute-bp-lowering",
+        category: "Blood Pressure",
+        topic: "Acute SBP Lowering Thresholds",
+        changeType: "REVISED",
+        currentGrade: "Weak recommendation FOR, Moderate quality",
+        currentText:
+          "For patients with acute spontaneous ICH within 24 hours of onset, we suggest acute blood pressure lowering to SBP <140 mmHg (while avoiding SBP <130 mmHg).",
+        drivingTrials: ["INTERACT2", "ATACH-2 Meta-analysis"],
+      },
+    ],
+  },
+  {
     id: "vn-moh-stroke-2025",
     society: "VN-MOH",
     year: 2025,
@@ -483,7 +537,7 @@ export const MOCK_RECOMMENDATION_ATOMS: RecommendationAtom[] = [
   {
     id: "rec-aha-2022-ich-bp",
     scenarioId: "ich-acute-bp-lowering",
-    guidelineDocId: "aha-ais-2026",
+    guidelineDocId: "aha-ich-2022",
     society: "AHA/ASA",
     year: 2022,
     originalGrade: "Class IIa, Level of Evidence B-R",
@@ -498,7 +552,7 @@ export const MOCK_RECOMMENDATION_ATOMS: RecommendationAtom[] = [
   {
     id: "rec-eso-2021-ich-bp",
     scenarioId: "ich-acute-bp-lowering",
-    guidelineDocId: "eso-ais-2024",
+    guidelineDocId: "eso-ich-2021",
     society: "ESO",
     year: 2021,
     originalGrade: "Weak recommendation FOR, Moderate quality",

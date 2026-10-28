@@ -162,6 +162,8 @@ export function AppSwitcher({
           setOpen((prev) => !prev);
         }}
         aria-label="Neuro Ecosystem Apps"
+        aria-haspopup="true"
+        aria-expanded={open}
         title="Neuro Ecosystem Apps"
         className={`p-2 rounded-lg border transition-all flex items-center justify-center ${
           open

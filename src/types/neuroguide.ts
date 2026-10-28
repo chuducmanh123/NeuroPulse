@@ -121,7 +121,7 @@ export interface RecommendationAtom {
 }
 
 export interface TemporalShift {
-  society: string;
+  society: GuidelineDoc["society"];
   previousYear: number;
   previousGrade: string;
   currentYear: number;
