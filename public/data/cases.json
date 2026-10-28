@@ -381,31 +381,31 @@
       ]
     },
     "challenge": {
-      "question": "What is the most definitive underlying pathophysiological mechanism for the acute ischemic stroke and the optimal definitive management strategy in this young patient?",
+      "question": "What is the most definitive underlying pathophysiological mechanism for the acute ischemic stroke in this young patient?",
       "question_type": "Diagnosis",
       "correct_option": "B",
       "options": [
         {
           "id": "A",
-          "text": "Intracranial atherosclerosis treated with antiplatelet therapy and statins alone.",
+          "text": "Cardioembolic occlusion secondary to paradoxical patent foramen ovale (PFO)",
           "peer_percentage": 5,
           "rationale": "Incorrect. The patient is young with no vascular risk factors other than smoking, and advanced imaging/histopathology confirmed an embolic rather than atherosclerotic etiology."
         },
         {
           "id": "B",
-          "text": "Cardioembolic occlusion secondary to a large left atrial myxoma, requiring mechanical thrombectomy followed by urgent surgical tumor resection.",
+          "text": "Spontaneous basilar or vertebral artery dissection with secondary in-situ thrombosis",
           "peer_percentage": 75,
           "rationale": "Correct! The patient suffered an acute basilar artery occlusion due to secondary thrombosis from a large left atrial myxoma. Acute endovascular thrombectomy successfully restored vessel patency, followed by curative surgical resection of the cardiac tumor to prevent recurrent cardioembolic events."
         },
         {
           "id": "C",
-          "text": "Primary central nervous system vasculitis confirmed by cerebral angiography and treated with high-dose pulse corticosteroids and cyclophosphamide.",
+          "text": "Premature atherosclerotic intracranial large-artery disease",
           "peer_percentage": 10,
           "rationale": "Incorrect. Vasculitis autoantibody screening and workup were entirely negative, and tissue pathology retrieved from mechanical thrombectomy confirmed a bland thrombotic embolus rather than vessel wall inflammation."
         },
         {
           "id": "D",
-          "text": "Paradoxical embolism via a patent foramen ovale (PFO) managed exclusively with long-term oral anticoagulation.",
+          "text": "Hypercoagulable state due to primary antiphospholipid antibody syndrome",
           "peer_percentage": 10,
           "rationale": "Incorrect. Echocardiography and cardiac imaging definitively identified a large left atrial myxoma as the source of embolization, making PFO an incorrect and insufficient explanation."
         }
@@ -595,20 +595,20 @@
       ]
     },
     "challenge": {
-      "question": "Given the combination of post-infectious acute urinary retention (conus medullaris involvement), longitudinally extensive transverse myelitis with an axial gray-matter 'H-sign', fluffy thalamic/cerebellar peduncle lesions, marked CSF pleocytosis (>500 cells/μL), and complete radiological resolution on follow-up, what is the definitive diagnosis and optimal diagnostic assay?",
+      "question": "Given the acute flaccid paraparesis, conus medullaris dysfunction, longitudinally extensive transverse myelitis with an axial H-sign, and marked CSF pleocytosis, which of the following is the most likely underlying etiology?",
       "question_type": "Diagnosis",
       "options": [
         {
           "id": "A",
-          "text": "MOG Antibody-Associated Disease (MOGAD) — Confirmed by serum live cell-based assay (CBA) for full-length conformational MOG-IgG",
-          "peer_percentage": 82,
-          "rationale": "Correct! Post-infectious onset, conus medullaris involvement causing early acute urinary retention, LETM restricted to central spinal gray matter (the 'H-sign' on axial T2), fluffy thalamic/middle cerebellar peduncle lesions, prominent CSF pleocytosis (which can exceed 500 cells/μL, mimicking infectious meningitis), and dramatic steroid/PLEX responsiveness with near-complete MRI resolution are classic hallmarks of MOGAD. Live cell-based assay (CBA) has superior sensitivity over fixed CBA."
-        },
-        {
-          "id": "B",
           "text": "Relapsing-Remitting Multiple Sclerosis (RRMS) — Confirmed by McDonald Dissemination in Time and Space criteria",
           "peer_percentage": 7,
           "rationale": "Incorrect. Multiple sclerosis produces short-segment (<2 vertebral segments), peripheral dorsolateral spinal cord lesions, ovoid periventricular Dawson fingers, and CSF pleocytosis rarely exceeding 50 cells/μL."
+        },
+        {
+          "id": "B",
+          "text": "MOG Antibody-Associated Disease (MOGAD) — Confirmed by serum live cell-based assay (CBA) for full-length conformational MOG-IgG",
+          "peer_percentage": 82,
+          "rationale": "Correct! Post-infectious onset, conus medullaris involvement causing early acute urinary retention, LETM restricted to central spinal gray matter (the 'H-sign' on axial T2), fluffy thalamic/middle cerebellar peduncle lesions, prominent CSF pleocytosis (which can exceed 500 cells/μL, mimicking infectious meningitis), and dramatic steroid/PLEX responsiveness with near-complete MRI resolution are classic hallmarks of MOGAD. Live cell-based assay (CBA) has superior sensitivity over fixed CBA."
         },
         {
           "id": "C",
@@ -623,7 +623,7 @@
           "rationale": "Incorrect. PML occurs in severely immunocompromised hosts, presents with subacute asymmetric subcortical U-fiber demyelination without acute conus myelitis or marked CSF pleocytosis, and does not resolve after corticosteroids and plasma exchange."
         }
       ],
-      "correct_option": "A"
+      "correct_option": "B"
     },
     "resolution": {
       "final_diagnosis": "Fulminant Post-Enterovirus Myelin Oligodendrocyte Glycoprotein Antibody-Associated Disease (MOGAD) Presenting with Encephalomyelitis, Optic Neuritis, and Conus LETM",
@@ -698,14 +698,14 @@
       ]
     },
     "challenge": {
-      "question": "In an older adult presenting with subacute cognitive decline, focal seizures, asymmetric confluent FLAIR vasogenic edema (Figure 1A), and strictly lobar cortical superficial siderosis/microbleeds on SWI (Figure 1B), what is the most likely diagnosis and evidence-based first-line management?",
+      "question": "In an older adult presenting with subacute cognitive decline, focal motor seizures, asymmetric confluent FLAIR vasogenic edema, and cortical superficial siderosis on SWI, what is the most likely diagnosis?",
       "question_type": "Diagnosis",
       "options": [
         {
           "id": "A",
-          "text": "Cerebral Amyloid Angiopathy-Related Inflammation (CAA-ri) — Initiate early high-dose intravenous corticosteroids without invasive brain biopsy",
-          "peer_percentage": 76,
-          "rationale": "Correct! Probable CAA-ri can be diagnosed non-invasively using the Auriel criteria in patients ≥40 years old presenting with subacute cognitive decline, seizures, or headache when MRI demonstrates asymmetric confluent T2/FLAIR hyperintensity (vasogenic edema) alongside hemorrhagic CAA markers (strictly lobar microbleeds or cortical superficial siderosis on SWI/T2*). Early high-dose corticosteroid initiation (within 6 weeks) leads to rapid clinical recovery and resolution of FLAIR edema (Figure 1C)."
+          "text": "Acute ischemic left middle cerebral artery stroke — Administer dual antiplatelet therapy and high-intensity statin",
+          "peer_percentage": 7,
+          "rationale": "Incorrect. The FLAIR lesion represents subcortical vasogenic edema without cytotoxic diffusion restriction, and antithrombotic therapy increases the risk of lobar intracerebral hemorrhage in patients with CAA and cortical superficial siderosis."
         },
         {
           "id": "B",
@@ -715,9 +715,9 @@
         },
         {
           "id": "C",
-          "text": "Acute ischemic left middle cerebral artery stroke — Administer dual antiplatelet therapy and high-intensity statin",
-          "peer_percentage": 7,
-          "rationale": "Incorrect. The FLAIR lesion represents subcortical vasogenic edema without cytotoxic diffusion restriction, and antithrombotic therapy increases the risk of lobar intracerebral hemorrhage in patients with CAA and cortical superficial siderosis."
+          "text": "Cerebral Amyloid Angiopathy-Related Inflammation (CAA-ri) — Initiate early high-dose intravenous corticosteroids without invasive brain biopsy",
+          "peer_percentage": 76,
+          "rationale": "Correct! Probable CAA-ri can be diagnosed non-invasively using the Auriel criteria in patients ≥40 years old presenting with subacute cognitive decline, seizures, or headache when MRI demonstrates asymmetric confluent T2/FLAIR hyperintensity (vasogenic edema) alongside hemorrhagic CAA markers (strictly lobar microbleeds or cortical superficial siderosis on SWI/T2*). Early high-dose corticosteroid initiation (within 6 weeks) leads to rapid clinical recovery and resolution of FLAIR edema (Figure 1C)."
         },
         {
           "id": "D",
@@ -726,7 +726,7 @@
           "rationale": "Incorrect. HSV-1 encephalitis presents with acute febrile encephalopathy, hemorrhagic necrosis of the medial temporal/insular cortex, and positive CSF HSV-1 PCR."
         }
       ],
-      "correct_option": "A"
+      "correct_option": "C"
     },
     "resolution": {
       "final_diagnosis": "Cerebral Amyloid Angiopathy-Related Inflammation (CAA-ri) Responsive to Early High-Dose Corticosteroid Therapy",
@@ -810,14 +810,14 @@
       ]
     },
     "challenge": {
-      "question": "What is the underlying pathophysiological mechanism predisposing this patient to extensive Cerebral Venous Sinus Thrombosis (CVST), and what rescue intervention is indicated given his rapid neurological deterioration into stupor despite therapeutic systemic anticoagulation?",
-      "question_type": "Acute Management",
+      "question": "What is the most likely pathophysiological mechanism predisposing this patient to extensive cerebral venous sinus thrombosis (CVST)?",
+      "question_type": "Diagnosis",
       "options": [
         {
           "id": "A",
-          "text": "Acquired urinary loss of Antithrombin III & hepatic hyperfibrinogenemia — Escalate to rescue endovascular catheter-directed thrombolysis / mechanical thrombectomy while continuing anticoagulation",
-          "peer_percentage": 80,
-          "rationale": "Correct! Nephrotic syndrome creates a potent prothrombotic state driven by urinary loss of low-molecular-weight natural anticoagulants (especially Antithrombin III and free Protein S) coupled with compensatory hepatic synthesis of fibrinogen and Factors V/VIII. While systemic anticoagulation (LMWH/UFH) is first-line for CVST, rescue endovascular therapy (catheter-directed thrombolysis or thrombectomy) is life-saving in patients with extensive multi-sinus thrombosis who deteriorate into coma/stupor despite medical therapy."
+          "text": "Routine elective endovascular thrombectomy is indicated as first-line therapy over heparin for all stable patients with mild headache from CVST",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. The TO-ACT trial showed that routine endovascular therapy does not improve outcomes over standard anticoagulation in unselected CVST; endovascular rescue is reserved for patients with rapid neurological deterioration refractory to medical anticoagulation."
         },
         {
           "id": "B",
@@ -833,12 +833,12 @@
         },
         {
           "id": "D",
-          "text": "Routine elective endovascular thrombectomy is indicated as first-line therapy over heparin for all stable patients with mild headache from CVST",
-          "peer_percentage": 5,
-          "rationale": "Incorrect. The TO-ACT trial showed that routine endovascular therapy does not improve outcomes over standard anticoagulation in unselected CVST; endovascular rescue is reserved for patients with rapid neurological deterioration refractory to medical anticoagulation."
+          "text": "Acquired urinary loss of Antithrombin III & hepatic hyperfibrinogenemia — Escalate to rescue endovascular catheter-directed thrombolysis / mechanical thrombectomy while continuing anticoagulation",
+          "peer_percentage": 80,
+          "rationale": "Correct! Nephrotic syndrome creates a potent prothrombotic state driven by urinary loss of low-molecular-weight natural anticoagulants (especially Antithrombin III and free Protein S) coupled with compensatory hepatic synthesis of fibrinogen and Factors V/VIII. While systemic anticoagulation (LMWH/UFH) is first-line for CVST, rescue endovascular therapy (catheter-directed thrombolysis or thrombectomy) is life-saving in patients with extensive multi-sinus thrombosis who deteriorate into coma/stupor despite medical therapy."
         }
       ],
-      "correct_option": "A"
+      "correct_option": "D"
     },
     "resolution": {
       "final_diagnosis": "Extensive Pan-Sinus Cerebral Venous Sinus Thrombosis (CVST) Secondary to Relapsed Minimal Change Nephrotic Syndrome Managed with Rescue Endovascular Thrombolysis",
@@ -922,30 +922,30 @@
       ]
     },
     "challenge": {
-      "question": "Which neuronal surface autoantibody is responsible for this triad of brief scalp-EEG-negative faciobrachial dystonic spasms (Figure 2), refractory SIADH/hyponatremia, and bilateral hippocampal T2-FLAIR hyperintensity (Figure 1), and what is the most effective treatment to halt the spasms?",
+      "question": "Which neuronal surface autoantibody is characteristically responsible for the presentation of faciobrachial dystonic seizures, hyponatremia, and medial temporal lobe T2-FLAIR hyperintensity?",
       "question_type": "Diagnosis",
       "options": [
         {
           "id": "A",
-          "text": "Anti-LGI1 (Leucine-Rich Glioma-Inactivated 1) antibody — Initiate high-dose intravenous methylprednisolone immunotherapy",
+          "text": "Anti-Leucine-rich glioma-inactivated 1 (LGI1) antibody",
           "peer_percentage": 84,
           "rationale": "Correct! Anti-LGI1 limbic encephalitis typically affects older men (median age ~65–75 years) and presents with pathognomonic Faciobrachial Dystonic Seizures (FBDS), severe refractory hyponatremia ( present in 60%–70% due to LGI1 expression in the hypothalamus/kidney causing SIADH or central adrenal insufficiency), and bilateral hippocampal T2-FLAIR hyperintensity. Scalp ictal EEG is negative in the majority of FBDS episodes, and FBDS are notoriously refractory to standard antiseizure medications alone but respond rapidly to corticosteroid immunotherapy."
         },
         {
           "id": "B",
-          "text": "Anti-NMDAR antibody — Perform emergent exploratory laparotomy for ovarian teratoma",
+          "text": "Anti-N-methyl-D-aspartate receptor (NMDAR) antibody",
           "peer_percentage": 7,
           "rationale": "Incorrect. Anti-NMDAR encephalitis predominantly affects young women and children with prominent psychiatric symptoms, dyskinesias, and extreme delta brush on EEG rather than FBDS and refractory hyponatremia in a 77-year-old man."
         },
         {
           "id": "C",
-          "text": "Psychogenic Nonepileptic Attacks (PNEA) — Discontinue medical workup and initiate cognitive behavioral therapy",
+          "text": "Anti-Contactin-associated protein-like 2 (CASPR2) antibody",
           "peer_percentage": 5,
           "rationale": "Incorrect. Normal scalp ictal EEG during brief dystonic jerks is a classic pitfall that leads to misdiagnosing anti-LGI1 FBDS as psychogenic or functional movement disorders."
         },
         {
           "id": "D",
-          "text": "Anti-GABA-B Receptor antibody — Treat exclusively with oral levetiracetam and phenytoin",
+          "text": "Anti-Gamma-aminobutyric acid type B receptor (GABABR) antibody",
           "peer_percentage": 4,
           "rationale": "Incorrect. Anti-GABA-B encephalitis is strongly associated with small-cell lung cancer and generalized convulsive status epilepticus, and standard antiseizure medications without immunotherapy fail to control LGI1-mediated FBDS."
         }
@@ -1033,20 +1033,20 @@
       ]
     },
     "challenge": {
-      "question": "Why does an isolated infarction in the territory shown on DWI/ADC (Figures 1 & 2) closely mimic peripheral Benign Paroxysmal Positional Vertigo (BPPV) or vestibular neuritis without causing Wallenberg lateral medullary signs?",
-      "question_type": "Neuroimaging",
+      "question": "Which vascular territory or brainstem nucleus is selectively infarcted, producing isolated positional vertigo mimicking benign paroxysmal positional vertigo (BPPV)?",
+      "question_type": "Localization",
       "options": [
         {
           "id": "A",
-          "text": "Infarction of the medial branch of the Posterior Inferior Cerebellar Artery (mPICA) selectively damages the inferior vermis (nodulus/uvula) and vestibulocerebellar connections while sparing the lateral medulla",
-          "peer_percentage": 79,
-          "rationale": "Correct! The PICA bifurcates into a medial branch (mPICA) and a lateral branch. The mPICA supplies the inferior cerebellar vermis (nodulus and uvula) and medial cerebellar hemisphere, which directly inhibit and modulate the brainstem vestibular nuclei during head pitch/roll movements. Infarction of the mPICA territory spares the dorsolateral medulla (hence no dysphagia, hoarseness, Horner syndrome, or crossed sensory loss) and presents as isolated central positional vertigo ('pseudo-BPPV') or isolated acute vestibular syndrome ('pseudo-vestibular neuritis')."
-        },
-        {
-          "id": "B",
           "text": "Occlusion of the Anterior Inferior Cerebellar Artery (AICA) causing isolated labyrinthine artery ischemia",
           "peer_percentage": 11,
           "rationale": "Incorrect. AICA infarction involves the middle cerebellar peduncle, lateral pons, and internal auditory artery, classically causing ipsilateral sensorineural hearing loss (deafness), facial palsy, and Horner syndrome."
+        },
+        {
+          "id": "B",
+          "text": "Infarction of the medial branch of the Posterior Inferior Cerebellar Artery (mPICA) selectively damages the inferior vermis (nodulus/uvula) and vestibulocerebellar connections while sparing the lateral medulla",
+          "peer_percentage": 79,
+          "rationale": "Correct! The PICA bifurcates into a medial branch (mPICA) and a lateral branch. The mPICA supplies the inferior cerebellar vermis (nodulus and uvula) and medial cerebellar hemisphere, which directly inhibit and modulate the brainstem vestibular nuclei during head pitch/roll movements. Infarction of the mPICA territory spares the dorsolateral medulla (hence no dysphagia, hoarseness, Horner syndrome, or crossed sensory loss) and presents as isolated central positional vertigo ('pseudo-BPPV') or isolated acute vestibular syndrome ('pseudo-vestibular neuritis')."
         },
         {
           "id": "C",
@@ -1061,7 +1061,7 @@
           "rationale": "Incorrect. SCA infarction involves the superior cerebellar hemisphere and superior vermis, producing prominent ipsilateral limb ataxia and dysarthria rather than isolated inferior vermian (nodulus/uvula) positional vertigo."
         }
       ],
-      "correct_option": "A"
+      "correct_option": "B"
     },
     "resolution": {
       "final_diagnosis": "Acute Medial Branch of the Posterior Inferior Cerebellar Artery (mPICA) Territory Cerebellar Infarction Presenting as Pseudo-BPPV",
@@ -1150,9 +1150,9 @@
       "options": [
         {
           "id": "A",
-          "text": "Extensive cortical ribboning on DWI, acellular CSF with positive RT-QuIC/14-3-3, and ~1 Hz Generalized Periodic Discharges (GPDs) with triphasic morphology and anterior-posterior lag on EEG",
-          "peer_percentage": 85,
-          "rationale": "Correct! As demonstrated in the comparative study (PMC13445854), sCJD is distinguished from anti-NMDAR encephalitis by extensive cortical gyriform diffusion restriction ('cortical ribboning', Figure 1) and/or striatal DWI hyperintensity, acellular CSF (whereas anti-NMDAR encephalitis shows significantly higher CSF leukocyte counts and frequent seizures), positive CSF RT-QuIC/14-3-3, and ~1 Hz GPDs with triphasic morphology and an anterior-to-posterior (A-P) lag on continuous EEG."
+          "text": "Confluent subcortical white matter vasogenic edema with ring-enhancing mass effect on gadolinium T1 MRI",
+          "peer_percentage": 4,
+          "rationale": "Incorrect. Prion disease (sCJD) is strictly confined to gray matter (cerebral cortex and basal ganglia/thalamus) without vasogenic edema, mass effect, or contrast enhancement."
         },
         {
           "id": "B",
@@ -1162,9 +1162,9 @@
         },
         {
           "id": "C",
-          "text": "Confluent subcortical white matter vasogenic edema with ring-enhancing mass effect on gadolinium T1 MRI",
-          "peer_percentage": 4,
-          "rationale": "Incorrect. Prion disease (sCJD) is strictly confined to gray matter (cerebral cortex and basal ganglia/thalamus) without vasogenic edema, mass effect, or contrast enhancement."
+          "text": "Extensive cortical ribboning on DWI, acellular CSF with positive RT-QuIC/14-3-3, and ~1 Hz Generalized Periodic Discharges (GPDs) with triphasic morphology and anterior-posterior lag on EEG",
+          "peer_percentage": 85,
+          "rationale": "Correct! As demonstrated in the comparative study (PMC13445854), sCJD is distinguished from anti-NMDAR encephalitis by extensive cortical gyriform diffusion restriction ('cortical ribboning', Figure 1) and/or striatal DWI hyperintensity, acellular CSF (whereas anti-NMDAR encephalitis shows significantly higher CSF leukocyte counts and frequent seizures), positive CSF RT-QuIC/14-3-3, and ~1 Hz GPDs with triphasic morphology and an anterior-to-posterior (A-P) lag on continuous EEG."
         },
         {
           "id": "D",
@@ -1173,7 +1173,7 @@
           "rationale": "Incorrect. 3-Hz spike-and-wave is seen in childhood absence epilepsy, and mammillary body enhancement is typical of Wernicke encephalopathy."
         }
       ],
-      "correct_option": "A"
+      "correct_option": "C"
     },
     "resolution": {
       "final_diagnosis": "Sporadic Creutzfeldt-Jakob Disease (sCJD) Distinguished from Autoimmune Encephalitis by Cortical Ribboning and Triphasic GPDs",
@@ -1252,9 +1252,9 @@
       "options": [
         {
           "id": "A",
-          "text": "Bickerstaff Brainstem Encephalitis (BBE) / Anti-GQ1b Antibody Syndrome triggered by Varicella-Zoster Virus reactivation without rash (Zoster Sine Herpete) — Requires combined IV Acyclovir + IVIG/Immunotherapy",
-          "peer_percentage": 77,
-          "rationale": "Correct! Intractable hiccups localized to the dorsal medulla (nucleus tractus solitarius, nucleus ambiguus, and area postrema, Figure 1). Subsequent progression to drowsiness/stupor, external ophthalmoplegia, ataxia, and positive serum anti-GQ1b IgG defines Bickerstaff Brainstem Encephalitis (part of the anti-GQ1b spectrum alongside Miller Fisher syndrome). Detection of VZV DNA in CSF without cutaneous rash confirms Zoster Sine Herpete as the viral trigger, requiring concurrent high-dose IV acyclovir and immunomodulation (IVIG/corticosteroids)."
+          "text": "Functional gastrointestinal hiccups — Reassure the patient and continue proton-pump inhibitor therapy",
+          "peer_percentage": 6,
+          "rationale": "Incorrect. Intractable hiccups lasting >48 hours—especially when refractory to GI therapy—are a red flag for a structural or inflammatory lesion in the dorsal medulla (medullary hiccup center)."
         },
         {
           "id": "B",
@@ -1270,12 +1270,12 @@
         },
         {
           "id": "D",
-          "text": "Functional gastrointestinal hiccups — Reassure the patient and continue proton-pump inhibitor therapy",
-          "peer_percentage": 6,
-          "rationale": "Incorrect. Intractable hiccups lasting >48 hours—especially when refractory to GI therapy—are a red flag for a structural or inflammatory lesion in the dorsal medulla (medullary hiccup center)."
+          "text": "Bickerstaff Brainstem Encephalitis (BBE) / Anti-GQ1b Antibody Syndrome triggered by Varicella-Zoster Virus reactivation without rash (Zoster Sine Herpete) — Requires combined IV Acyclovir + IVIG/Immunotherapy",
+          "peer_percentage": 77,
+          "rationale": "Correct! Intractable hiccups localized to the dorsal medulla (nucleus tractus solitarius, nucleus ambiguus, and area postrema, Figure 1). Subsequent progression to drowsiness/stupor, external ophthalmoplegia, ataxia, and positive serum anti-GQ1b IgG defines Bickerstaff Brainstem Encephalitis (part of the anti-GQ1b spectrum alongside Miller Fisher syndrome). Detection of VZV DNA in CSF without cutaneous rash confirms Zoster Sine Herpete as the viral trigger, requiring concurrent high-dose IV acyclovir and immunomodulation (IVIG/corticosteroids)."
         }
       ],
-      "correct_option": "A"
+      "correct_option": "D"
     },
     "resolution": {
       "final_diagnosis": "Bickerstaff Brainstem Encephalitis (BBE) and Anti-GQ1b Antibody Overlap Syndrome Triggered by Varicella-Zoster Virus Reactivation Without Rash (Zoster Sine Herpete)",

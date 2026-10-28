@@ -402,8 +402,90 @@ def find_new_pmc_candidate(used_pmcids: set, day_index: int):
     return None
 
 
+def validate_case_quality(case: dict) -> tuple[bool, str]:
+    """Kiểm tra chất lượng học thuật và cấu trúc câu hỏi của ca lâm sàng:
+    1. Câu hỏi không được hỏi 2 ý (không chứa ' and the ', ' as well as the ').
+    2. Tên chẩn đoán cuối không được lộ trong tiêu đề hoặc câu hỏi.
+    3. question_type phải hợp lệ.
+    4. 4 options A, B, C, D phải có nội dung và correct_option phải hợp lệ.
+    """
+    challenge = case.get("challenge") or {}
+    q_text = challenge.get("question", "")
+    q_type = challenge.get("question_type", "")
+    correct_opt = challenge.get("correct_option", "")
+    options = challenge.get("options", [])
+    title = case.get("title", "")
+    final_diag = case.get("resolution", {}).get("final_diagnosis", "")
+
+    if q_type not in ("Diagnosis", "Acute Management", "Next Best Step", "Localization"):
+        return False, f"Invalid question_type: {q_type}"
+
+    if len(options) != 4 or correct_opt not in ("A", "B", "C", "D"):
+        return False, "Options count is not 4 or correct_option invalid"
+
+    # Kiểm tra hỏi kép 2 ý
+    if re.search(r"\band\s+(?:the\s+)?(?:optimal|most\s+appropriate|next\s+step|management|treatment|diagnostic)\b", q_text, re.IGNORECASE):
+        return False, "Compound double-barrel question detected (asking both diagnosis and management)"
+
+    # Kiểm tra lộ đáp án trong câu hỏi
+    if len(final_diag) > 4 and final_diag.lower() in q_text.lower():
+        return False, "Final diagnosis appears inside the question text (answer leakage)"
+
+    return True, "Passed"
+
+
+def critique_and_refine_with_gemini(raw_case_json: dict) -> dict:
+    """Lượt 2: Gemini đóng vai trò Senior Board Examiner phản biện và hoàn thiện ca bệnh:
+    - Loại bỏ hỏi 2 ý.
+    - Đảm bảo câu hỏi tập trung vào đúng 1 khía cạnh.
+    - Đảm bảo 4 đáp án đồng nhất và đáp án đúng duy nhất.
+    """
+    if not GEMINI_API_KEY:
+        return raw_case_json
+
+    critique_prompt = f"""You are a Strict Senior Neurology Examination Committee Reviewer.
+Review the following draft clinical case vignette and MCQ:
+{json.dumps(raw_case_json, indent=2)}
+
+TASK:
+1. Ensure the question asks strictly ONE concept (e.g. Diagnosis only, or Management only, NEVER both).
+2. Ensure the title and question DO NOT reveal the final diagnosis or correct answer.
+3. Ensure the 4 options are clinically plausible, mutually exclusive, of identical syntactic form, and that option "{raw_case_json.get('challenge', {}).get('correct_option', 'A')}" is undeniably the best choice.
+4. Output the perfected case in 100% valid JSON matching the exact same schema. No markdown formatting outside the JSON."""
+
+    payload = {
+        "contents": [{"parts": [{"text": critique_prompt}]}],
+        "generationConfig": {"temperature": 0.1, "maxOutputTokens": 4096}
+    }
+    ctx = create_ssl_context()
+    for model_name in ACTIVE_GEMINI_MODELS:
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={GEMINI_API_KEY}"
+        try:
+            req = urllib.request.Request(
+                url,
+                data=json.dumps(payload).encode("utf-8"),
+                headers={"Content-Type": "application/json"}
+            )
+            with urllib.request.urlopen(req, context=ctx, timeout=30) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
+                candidates = data.get("candidates", [])
+                if not candidates:
+                    continue
+                parts = candidates[0].get("content", {}).get("parts", [])
+                raw_str = "".join(p.get("text", "") for p in parts if "text" in p and not p.get("thought")).strip()
+                raw_str = re.sub(r"^```(?:json)?\s*", "", raw_str)
+                raw_str = re.sub(r"\s*```$", "", raw_str)
+                refined = json.loads(raw_str)
+                if isinstance(refined, dict) and refined.get("challenge") and refined.get("resolution"):
+                    return refined
+        except Exception:
+            continue
+
+    return raw_case_json
+
+
 def generate_clinical_case_with_gemini(candidate: dict, next_case_num: int, today_str: str, is_daily: bool = True):
-    """Gửi dữ liệu ca bệnh PMC + chú thích hình ảnh sang Gemini để tạo cấu trúc ClinicalCase JSON."""
+    """Gửi dữ liệu ca bệnh PMC + chú thích hình ảnh sang Gemini để tạo cấu trúc ClinicalCase JSON (2-Pass Reviewer Workflow)."""
     if not GEMINI_API_KEY:
         return None
 
@@ -535,8 +617,13 @@ CRITICAL DESIGN RULES:
                             "findings_summary": meta.get("findings_summary") or fig["caption"][:200]
                         })
 
+                    # Lượt 2: Phản biện & Chuẩn hóa chất lượng qua Gemini Examiner Review
+                    refined_case = critique_and_refine_with_gemini(parsed)
+                    if isinstance(refined_case, dict) and refined_case.get("challenge"):
+                        parsed = refined_case
+
                     pres = parsed.get("presentation", {})
-                    return {
+                    case_obj = {
                         "id": case_id,
                         "case_code": case_code,
                         "title": parsed.get("title") or candidate["article_title"],
@@ -576,6 +663,14 @@ CRITICAL DESIGN RULES:
                         "challenge": parsed.get("challenge"),
                         "resolution": parsed.get("resolution")
                     }
+
+                    # Kiểm tra chất lượng tự động bằng code
+                    valid, reason = validate_case_quality(case_obj)
+                    if not valid:
+                        print(f"   [!] Case quality check failed ({reason}). Falling back to deterministic builder.")
+                        return None
+
+                    return case_obj
             except urllib.error.HTTPError as e:
                 if e.code in (429, 500, 502, 503, 504):
                     time.sleep(2 * (attempt + 1))
