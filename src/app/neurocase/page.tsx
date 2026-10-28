@@ -290,7 +290,7 @@ export default function NeuroCasePage() {
     const savedDark = localStorage.getItem("neuro_dark_mode");
     if (savedDark === "true") setDarkMode(true);
 
-    const savedAdmin = localStorage.getItem("neurocase_admin_verified") === "true";
+    const savedAdmin = Boolean(sessionStorage.getItem("neurocase_admin_token") || localStorage.getItem("neurocase_admin_token"));
     if (savedAdmin) setIsAdminVerified(true);
 
     const savedKey = localStorage.getItem("neurocase_gemini_api_key") || "";
@@ -343,29 +343,7 @@ export default function NeuroCasePage() {
         .catch(() => []),
     ])
       .then(([loadedCases, loadedArticles]: [ClinicalCase[], Article[]]) => {
-        let merged = Array.isArray(loadedCases) ? loadedCases : [];
-
-        // Check for any offline custom submissions that have not synced to server yet
-        const savedCustom = localStorage.getItem("neurocase_custom_submissions_v1");
-        if (savedCustom) {
-          try {
-            const customCases: ClinicalCase[] = JSON.parse(savedCustom);
-            const serverIds = new Set(merged.map((c) => c.id));
-            const unsynced = customCases.filter((c) => !serverIds.has(c.id));
-            if (unsynced.length > 0) {
-              merged = [...unsynced, ...merged];
-              // Fire-and-forget sync to server disk
-              fetch("/api/neurocase", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ cases: merged }),
-              }).catch((e) => console.error("Initial background sync to /api/neurocase failed:", e));
-            }
-          } catch (e) {
-            console.error(e);
-          }
-        }
-
+        const merged = Array.isArray(loadedCases) ? loadedCases : [];
         setCases(merged);
 
         const todayIso = getLocalTodayIso();
@@ -413,30 +391,8 @@ export default function NeuroCasePage() {
       }
       const data: ClinicalCase[] = await res.json();
       if (Array.isArray(data) && data.length > 0) {
-        // Check if this computer has any pending user cases in localStorage that are missing from server
-        let mergedData = data;
-        const savedCustomRaw = localStorage.getItem("neurocase_custom_submissions_v1");
-        if (savedCustomRaw) {
-          try {
-            const localCustom: ClinicalCase[] = JSON.parse(savedCustomRaw);
-            const serverIds = new Set(data.map((c) => c.id));
-            const unsynced = localCustom.filter((c) => !serverIds.has(c.id));
-            if (unsynced.length > 0) {
-              mergedData = [...unsynced, ...data];
-              // Upload missing cases to server disk
-              await fetch("/api/neurocase", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ cases: mergedData }),
-              });
-            }
-          } catch (e) {
-            console.error("Local sync error:", e);
-          }
-        }
-
-        setCases(mergedData);
-        setServerSyncSuccess(`✓ Synchronized with server (${mergedData.length} cases)`);
+        setCases(data);
+        setServerSyncSuccess(`✓ Synchronized with server (${data.length} cases)`);
         setTimeout(() => setServerSyncSuccess(""), 4000);
       } else {
         setServerSyncSuccess("⚠️ Empty data from server");
@@ -1058,32 +1014,48 @@ export default function NeuroCasePage() {
       },
     };
 
-    const nextCases = [newCase, ...cases];
-    await persistAdminCases(nextCases);
-
-    setSubmitSuccessMsg(
-      `Case "${newCase.case_code}" submitted with PENDING status! It is saved directly to the server database and available in Admin Review across all computers.`
-    );
-    resetAllSubmitFormFields();
-  };
-
-  const persistAdminCases = async (nextCases: ClinicalCase[]) => {
-    setCases(nextCases);
-    const savedCustom = nextCases.filter((c) => c.id.startsWith("nc-user-"));
-    localStorage.setItem("neurocase_custom_submissions_v1", JSON.stringify(savedCustom));
-
-    const overridesMap: Record<string, ClinicalCase> = {};
-    for (const item of nextCases) {
-      overridesMap[item.id] = item;
-    }
-    localStorage.setItem("neurocase_admin_overrides_v3", JSON.stringify(overridesMap));
-
-    // Persist directly to server disk via /api/neurocase so all computers on the network sync immediately!
+    // Single case submission directly via public submit endpoint
     try {
       setIsSyncingServer(true);
       const res = await fetch("/api/neurocase", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "submit", newCase }),
+      });
+      if (res.ok) {
+        setCases((prev) => [newCase, ...prev.filter((c) => c.id !== newCase.id)]);
+        setSubmitSuccessMsg(
+          `Case "${newCase.case_code}" submitted with PENDING status! It is saved directly to the server database and available in Admin Review across all computers.`
+        );
+        resetAllSubmitFormFields();
+      } else {
+        const errJson = await res.json().catch(() => null);
+        setSubmitSuccessMsg(`⚠️ Submission failed: ${errJson?.error || "Server error"}`);
+      }
+    } catch (e: any) {
+      console.error("Submission error:", e);
+      setSubmitSuccessMsg(`⚠️ Submission network error: ${e?.message || "Check connection"}`);
+    } finally {
+      setIsSyncingServer(false);
+    }
+  };
+
+  const persistAdminCases = async (nextCases: ClinicalCase[]) => {
+    setCases(nextCases);
+
+    const token =
+      sessionStorage.getItem("neurocase_admin_token") ||
+      localStorage.getItem("neurocase_admin_token") ||
+      "";
+
+    try {
+      setIsSyncingServer(true);
+      const res = await fetch("/api/neurocase", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-admin-token": token,
+        },
         body: JSON.stringify({ cases: nextCases }),
       });
       if (res.ok) {
@@ -1096,6 +1068,13 @@ export default function NeuroCasePage() {
           setServerSyncSuccess("✓ Synced to server");
           setTimeout(() => setServerSyncSuccess(""), 3500);
         }
+      } else if (res.status === 401) {
+        setServerSyncSuccess("⚠️ Admin session expired. Please re-enter passcode.");
+        setIsAdminVerified(false);
+        sessionStorage.removeItem("neurocase_admin_token");
+        localStorage.removeItem("neurocase_admin_token");
+        setShowAdminAuthModal(true);
+        setTimeout(() => setServerSyncSuccess(""), 5000);
       } else {
         const text = await res.text();
         console.error("Failed to sync to /api/neurocase:", res.status, text);
@@ -1368,7 +1347,8 @@ export default function NeuroCasePage() {
               type="button"
               onClick={() => {
                 setIsAdminVerified(false);
-                localStorage.removeItem("neurocase_admin_verified");
+                sessionStorage.removeItem("neurocase_admin_token");
+                localStorage.removeItem("neurocase_admin_token");
                 if (activeTab === "admin") setActiveTab("daily");
               }}
               className="px-2.5 py-1.5 rounded-lg text-[11px] font-bold text-emerald-500 hover:bg-emerald-500/10 transition-colors"
@@ -4715,15 +4695,31 @@ export default function NeuroCasePage() {
               </p>
 
               <form
-                onSubmit={(e) => {
+                onSubmit={async (e) => {
                   e.preventDefault();
-                  if (adminPasscodeInput.trim() === "@neuro2026") {
-                    setIsAdminVerified(true);
-                    localStorage.setItem("neurocase_admin_verified", "true");
-                    setShowAdminAuthModal(false);
-                    setActiveTab("admin");
-                  } else {
-                    setAdminAuthError("Invalid administrator passcode.");
+                  setAdminAuthError("");
+                  try {
+                    const res = await fetch("/api/neurocase", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({
+                        action: "verify_admin",
+                        passcode: adminPasscodeInput.trim(),
+                      }),
+                    });
+                    const data = await res.json().catch(() => null);
+                    if (res.ok && data?.success && data?.token) {
+                      setIsAdminVerified(true);
+                      sessionStorage.setItem("neurocase_admin_token", data.token);
+                      localStorage.setItem("neurocase_admin_token", data.token);
+                      setShowAdminAuthModal(false);
+                      setAdminPasscodeInput("");
+                      setActiveTab("admin");
+                    } else {
+                      setAdminAuthError(data?.error || "Invalid administrator passcode.");
+                    }
+                  } catch (err: any) {
+                    setAdminAuthError("Network error verifying passcode.");
                   }
                 }}
                 className="space-y-3"
