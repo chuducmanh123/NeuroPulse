@@ -78,3 +78,11 @@ export interface ClinicalCase {
     related_keywords: string[];
   };
 }
+
+export interface UserCaseProgress {
+  selectedOption: string;
+  isCorrect: boolean;
+  answeredAt?: string;
+  timestamp?: number;
+}
+

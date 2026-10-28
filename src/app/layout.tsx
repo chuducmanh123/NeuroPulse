@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Neurology & Stroke Journal Monitor | Multi-Journal Clinical Tracker",
@@ -13,9 +14,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <script src="https://cdn.tailwindcss.com"></script>
-      </head>
       <body className="antialiased text-slate-900 bg-slate-100">{children}</body>
     </html>
   );
