@@ -14,19 +14,39 @@ const KV_URL = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL
 const KV_TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
 const KV_KEY = "neurocase_custom_cases_v1";
 
-// Secure Admin Passcode: defaults to "@neuro2026" if not set in environment variables
-const ADMIN_PASSCODE = process.env.ADMIN_PASSCODE || "@neuro2026";
+// Secure Admin Passcode: Must be defined in environment variables for production security.
+// In development, an explicit server-side pass is required.
+const ADMIN_PASSCODE = process.env.ADMIN_PASSCODE;
+const ADMIN_AUTH_SECRET = process.env.ADMIN_AUTH_SECRET;
 
 /**
- * Creates a deterministic authentication token for admin authorization based on secret & server salt.
+ * Validates and sanitizes external URLs to prevent Stored XSS via javascript: or data: URIs.
+ */
+function sanitizeUrl(url: string | undefined): string {
+  if (!url) return "";
+  const trimmed = url.trim();
+  if (/^https?:\/\//i.test(trimmed)) {
+    return trimmed;
+  }
+  return "";
+}
+
+/**
+ * Creates a deterministic authentication token for admin authorization based on secret & passcode.
  */
 function generateAdminAuthToken(): string {
-  const secret = process.env.ADMIN_AUTH_SECRET || "neuropulse-neurocase-auth-secret-key-2026";
-  return crypto.createHmac("sha256", secret).update(ADMIN_PASSCODE).digest("hex");
+  const secret = ADMIN_AUTH_SECRET || "neuropulse-neurocase-auth-secret-key-2026";
+  const passcode = ADMIN_PASSCODE || "@neuro2026";
+  return crypto.createHmac("sha256", secret).update(passcode).digest("hex");
 }
 
 function verifyAdminToken(token: string | null | undefined): boolean {
   if (!token) return false;
+  // If production environment variables are not set, deny all admin authentication requests
+  if (process.env.NODE_ENV === "production" && (!ADMIN_PASSCODE || !ADMIN_AUTH_SECRET)) {
+    console.error("[SECURITY] ADMIN_PASSCODE or ADMIN_AUTH_SECRET missing in production!");
+    return false;
+  }
   const expected = generateAdminAuthToken();
   if (token.length !== expected.length) return false;
   return crypto.timingSafeEqual(Buffer.from(token), Buffer.from(expected));
@@ -298,12 +318,22 @@ export async function GET(req: Request) {
 
     const merged = mergeCases(dynamicCases, bundled);
 
-    return NextResponse.json(merged, {
+    // SECURITY: Anonymous/public users must ONLY see approved cases.
+    // Unapproved (pending) community cases can contain sensitive/un-anonymized medical data
+    // and must strictly only be visible to authenticated administrators.
+    const adminToken = req.headers.get("x-admin-token") || req.headers.get("authorization")?.replace(/^Bearer\s+/i, "");
+    const isAdmin = verifyAdminToken(adminToken);
+
+    const filtered = isAdmin
+      ? merged
+      : merged.filter((c) => !c.status || c.status === "approved");
+
+    return NextResponse.json(filtered, {
       status: 200,
       headers: {
         "Cache-Control": "no-store, no-cache, must-revalidate",
         "X-Storage-Backend": backend,
-        "X-Total-Cases": String(merged.length),
+        "X-Total-Cases": String(filtered.length),
       },
     });
   } catch (error) {
@@ -332,7 +362,8 @@ export async function POST(req: Request) {
     // 1. Admin Verification / Login
     if (body.action === "verify_admin") {
       const passcode = typeof body.passcode === "string" ? body.passcode.trim() : "";
-      if (passcode === ADMIN_PASSCODE.trim()) {
+      const currentPasscode = ADMIN_PASSCODE || (process.env.NODE_ENV !== "production" ? "@neuro2026" : "");
+      if (currentPasscode && passcode === currentPasscode.trim()) {
         const token = generateAdminAuthToken();
         return NextResponse.json({
           success: true,
@@ -360,19 +391,42 @@ export async function POST(req: Request) {
     // 2. Public Community Submission (does NOT require admin token)
     if (body.action === "submit" || (body.newCase && !body.action)) {
       const candidate: ClinicalCase = body.newCase;
-      if (!candidate || !candidate.id || !candidate.presentation?.chief_complaint) {
+      if (!candidate || !candidate.presentation?.chief_complaint) {
         return NextResponse.json(
           { error: "Invalid case submission payload." },
           { status: 400 }
         );
       }
 
-      // Security enforcement: all community submissions are locked to 'pending' status
+      // SECURITY ENFORCEMENT:
+      // 1. Generate server-side random ID to prevent ID Hijacking of existing approved cases
+      const newCaseId = `nc-user-${Date.now()}-${crypto.randomBytes(4).toString("hex")}`;
+      
+      // 2. Sanitize source_journal DOI URL to prevent Stored XSS
+      const sanitizedDoi = sanitizeUrl(candidate.source_journal?.doi_url);
+      const sanitizedImaging = (candidate.presentation.imaging || []).map((img) => ({
+        ...img,
+        doi_url: sanitizeUrl(img.doi_url),
+      }));
+
+      // 3. Force safe fields: always locked to 'pending' status
       const safeCase: ClinicalCase = {
         ...candidate,
+        id: newCaseId,
+        case_code: candidate.case_code || `NC-COMMUNITY-${newCaseId.slice(-6).toUpperCase()}`,
         status: "pending",
         is_daily_challenge: false,
         archive_only: false,
+        source_journal: candidate.source_journal
+          ? {
+              ...candidate.source_journal,
+              doi_url: sanitizedDoi,
+            }
+          : undefined,
+        presentation: {
+          ...candidate.presentation,
+          imaging: sanitizedImaging,
+        },
       };
 
       const currentList = await fetchCurrentCases();

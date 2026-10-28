@@ -452,7 +452,7 @@ export function SubmitTab({
           '" submitted with PENDING status! It is saved directly to the server database and available in Admin Review.'
       );
       resetAllSubmitFormFields();
-    } catch (err) {
+    } catch (err: any) {
       setSubmitSuccessMsg("⚠️ Submission error: " + (err?.message || "Failed"));
     } finally {
       setIsSubmitting(false);

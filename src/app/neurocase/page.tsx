@@ -14,21 +14,7 @@ import { ArchiveTab } from "../../components/neurocase/tabs/ArchiveTab";
 import { ExamTab } from "../../components/neurocase/tabs/ExamTab";
 import { SubmitTab } from "../../components/neurocase/tabs/SubmitTab";
 import { AdminTab } from "../../components/neurocase/tabs/AdminTab";
-
-const SUBSPECIALTY_TABS = [
-  { label: "All Subspecialties", value: "All" },
-  { label: "Stroke", value: "Stroke" },
-  { label: "Neurocritical Care", value: "Neurocritical Care" },
-  { label: "Epilepsy", value: "Epilepsy" },
-  { label: "Dementia", value: "Dementia" },
-  { label: "Neuroimmunology", value: "Neuroimmunology" },
-  { label: "Neuromuscular", value: "Neuromuscular" },
-  { label: "Movement Disorders", value: "Movement Disorders" },
-  { label: "Headache & Pain", value: "Headache & Pain" },
-  { label: "CNS Infections", value: "CNS Infections" },
-  { label: "Neuro-Oncology", value: "Neuro-Oncology" },
-  { label: "Other", value: "Other" },
-];
+import { SUBSPECIALTY_TABS } from "../../constants/subspecialties";
 
 function getLocalTodayIso(): string {
   const d = new Date();
@@ -225,7 +211,12 @@ export default function NeuroCasePage() {
 
   useEffect(() => {
     const savedDark = localStorage.getItem("neuro_dark_mode");
-    if (savedDark === "true") setDarkMode(true);
+    if (savedDark === "true") {
+      setDarkMode(true);
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
 
     const savedAdmin = Boolean(sessionStorage.getItem("neurocase_admin_token") || localStorage.getItem("neurocase_admin_token"));
     if (savedAdmin) setIsAdminVerified(true);
@@ -265,20 +256,16 @@ export default function NeuroCasePage() {
       setStreakDays(Number(savedStreak) || 1);
     }
 
-    Promise.all([
-      fetch("/api/neurocase", { cache: "no-store" })
-        .then((r) => {
-          if (!r.ok) throw new Error("HTTP " + r.status);
-          return r.json();
-        })
-        .catch(() =>
-          fetch("/data/cases.json", { cache: "no-store" }).then((r) => r.json())
-        ),
-      fetch("/data/articles.json")
-        .then((r) => r.json())
-        .catch(() => []),
-    ])
-      .then(([loadedCases, loadedArticles]: [ClinicalCase[], Article[]]) => {
+    // Tải danh sách ca lâm sàng
+    fetch("/api/neurocase", { cache: "no-store" })
+      .then((r) => {
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        return r.json();
+      })
+      .catch(() =>
+        fetch("/data/cases.json", { cache: "no-store" }).then((r) => r.json())
+      )
+      .then((loadedCases: ClinicalCase[]) => {
         const merged = Array.isArray(loadedCases) ? loadedCases : [];
         setCases(merged);
 
@@ -302,7 +289,6 @@ export default function NeuroCasePage() {
             .sort((a, b) => b.published_date.localeCompare(a.published_date))[0] ||
           merged[0];
         if (firstDaily) setActiveCaseId(firstDaily.id);
-        setArticles(Array.isArray(loadedArticles) ? loadedArticles : []);
         setLoading(false);
       })
       .catch((err) => {
@@ -363,6 +349,11 @@ export default function NeuroCasePage() {
     setDarkMode((prev) => {
       const next = !prev;
       localStorage.setItem("neuro_dark_mode", String(next));
+      if (next) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
       return next;
     });
   };
@@ -415,8 +406,9 @@ export default function NeuroCasePage() {
     [approvedCases, dailyChallengeCases, activeCaseId]
   );
 
-  const handleSelectOption = (caseItem: ClinicalCase, optionId: "A" | "B" | "C" | "D") => {
-    const isCorrect = optionId === caseItem.challenge.correct_option;
+  const handleSelectOption = (caseItem: ClinicalCase, optionId: string) => {
+    const validOpt = optionId as "A" | "B" | "C" | "D";
+    const isCorrect = validOpt === caseItem.challenge.correct_option;
 
     // NEJM Image Challenge Multi-Attempt ("Try Again!") behavior:
     // If incorrect, record the wrong option for this case so the user sees "Try again! That is not the correct answer."
@@ -424,8 +416,8 @@ export default function NeuroCasePage() {
     if (!isCorrect) {
       setWrongAttemptsMap((prev) => {
         const existing = prev[caseItem.id] || [];
-        if (existing.includes(optionId)) return prev;
-        return { ...prev, [caseItem.id]: [...existing, optionId] };
+        if (existing.includes(validOpt)) return prev;
+        return { ...prev, [caseItem.id]: [...existing, validOpt] };
       });
       return;
     }
@@ -433,7 +425,7 @@ export default function NeuroCasePage() {
     const nextProgress: Record<string, UserCaseProgress> = {
       ...progressMap,
       [caseItem.id]: {
-        selectedOption: optionId,
+        selectedOption: validOpt,
         isCorrect: true,
         answeredAt: new Date().toISOString(),
       },
@@ -505,7 +497,17 @@ export default function NeuroCasePage() {
     return { totalSolved, correctCount, accuracy };
   }, [progressMap]);
 
-  // Cross-Ecosystem Integration: Related Literature from NeuroPulse
+  // Cross-Ecosystem Integration: Lazy-load related literature from NeuroPulse only when case is loaded
+  useEffect(() => {
+    if (!currentCase || articles.length > 0) return;
+    fetch("/data/articles.json")
+      .then((r) => r.json())
+      .then((data) => {
+        if (Array.isArray(data)) setArticles(data);
+      })
+      .catch(() => {});
+  }, [currentCase, articles.length]);
+
   const relatedPulseArticles = useMemo(() => {
     if (!currentCase || articles.length === 0) return [];
     const keywords = currentCase.resolution.related_keywords.map((k) => k.toLowerCase());

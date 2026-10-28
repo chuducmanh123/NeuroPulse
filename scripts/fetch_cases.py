@@ -33,8 +33,9 @@ def load_env_key() -> str:
     return os.environ.get("GEMINI_API_KEY", "").strip().strip('"').strip("'")
 
 ctx = ssl.create_default_context()
-ctx.check_hostname = False
-ctx.verify_mode = ssl.CERT_NONE
+# Giữ kiểm tra SSL chứng chỉ số mặc định an toàn
+ctx.check_hostname = True
+ctx.verify_mode = ssl.CERT_REQUIRED
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124.0.0.0 Safari/537.36"

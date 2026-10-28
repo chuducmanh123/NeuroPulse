@@ -33,8 +33,9 @@ def load_env_key() -> str:
     return os.environ.get("GEMINI_API_KEY", "").strip().strip('"').strip("'")
 
 ctx = ssl.create_default_context()
-ctx.check_hostname = False
-ctx.verify_mode = ssl.CERT_NONE
+# Giữ kiểm tra SSL chứng chỉ số mặc định an toàn cho môi trường sản xuất
+ctx.check_hostname = True
+ctx.verify_mode = ssl.CERT_REQUIRED
 
 HEADERS = {
     "User-Agent": "NeuroJournalTracker/2.5 (mailto:contact@journaltracker.org; Clinical Research Aggregator)"

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useDeferredValue } from "react";
 import { Article } from "../types/article";
 import {
   ArticleCard,
@@ -9,6 +9,7 @@ import {
   cleanMedicalText,
 } from "../components/ArticleCard";
 import { AppSwitcher } from "../components/ecosystem/AppSwitcher";
+import { SUBSPECIALTY_TABS } from "../constants/subspecialties";
 
 const JOURNAL_ORDER = [
   "NEJM",
@@ -75,21 +76,8 @@ const JOURNAL_PILL_STYLES: Record<
   },
 };
 
-// Phân ngành Thần kinh lâm sàng chuẩn hóa
-const TOPIC_TABS = [
-  { label: "All Subspecialties", value: "All" },
-  { label: "Stroke", value: "Stroke" },
-  { label: "Neurocritical Care", value: "Neurocritical Care" },
-  { label: "Epilepsy", value: "Epilepsy" },
-  { label: "Dementia", value: "Dementia" },
-  { label: "Neuroimmunology", value: "Neuroimmunology" },
-  { label: "Neuromuscular", value: "Neuromuscular" },
-  { label: "Movement Disorders", value: "Movement Disorders" },
-  { label: "Headache & Pain", value: "Headache & Pain" },
-  { label: "CNS Infections", value: "CNS Infections" },
-  { label: "Neuro-Oncology", value: "Neuro-Oncology" },
-  { label: "Other", value: "Other" },
-];
+// Phân ngành Thần kinh lâm sàng chuẩn hóa từ Single Source of Truth
+const TOPIC_TABS = SUBSPECIALTY_TABS;
 
 // Trọng số điểm ưu tiên theo từng phân khoa (nếu 1 bài có nhiều tag phân khoa, lấy điểm của tag cao nhất)
 const SUBSPECIALTY_WEIGHTS: Record<string, number> = {
@@ -520,6 +508,7 @@ export default function HomePage() {
   const [briefingCopied, setBriefingCopied] = useState<boolean>(false);
   const [bookmarks, setBookmarks] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const deferredSearchQuery = useDeferredValue(searchQuery);
   const [visibleCount, setVisibleCount] = useState<number>(35);
   const [loading, setLoading] = useState<boolean>(true);
   const [lastUpdated, setLastUpdated] = useState<string>("");
@@ -558,13 +547,19 @@ export default function HomePage() {
     }
 
     const savedDark = localStorage.getItem("neuro_dark_mode");
-    if (savedDark === "true") setDarkMode(true);
+    if (savedDark === "true") {
+      setDarkMode(true);
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
 
     const savedCompact = localStorage.getItem("neuro_compact_mode");
     if (savedCompact === "true") setCompactMode(true);
 
     const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 450);
+      const shouldShow = window.scrollY > 450;
+      setShowScrollTop((prev) => (prev !== shouldShow ? shouldShow : prev));
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
 
@@ -604,6 +599,11 @@ export default function HomePage() {
     setDarkMode((prev) => {
       const next = !prev;
       localStorage.setItem("neuro_dark_mode", String(next));
+      if (next) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
       return next;
     });
   };
@@ -776,7 +776,7 @@ export default function HomePage() {
   };
 
   const filteredArticles = useMemo(() => {
-    const rawQ = searchQuery.trim().toLowerCase();
+    const rawQ = deferredSearchQuery.trim().toLowerCase();
     const queryTerms = rawQ
       ? rawQ
           .split("|")
@@ -849,7 +849,7 @@ export default function HomePage() {
     selectedType,
     showSavedOnly,
     bookmarks,
-    searchQuery,
+    deferredSearchQuery,
   ]);
 
   const displayedArticles = useMemo(

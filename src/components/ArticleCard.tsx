@@ -362,7 +362,7 @@ function parseAbstractSections(text: string): { header?: string; body: string }[
   return sections.length > 0 ? sections : [{ body: cleaned }];
 }
 
-export function ArticleCard({
+function ArticleCardComponent({
   article,
   onTagClick,
   onSubspecialtyClick,
@@ -572,7 +572,9 @@ export function ArticleCard({
             </button>
             {onToggleBookmark && (
               <button
+                type="button"
                 onClick={() => onToggleBookmark(article.id)}
+                aria-label={isBookmarked ? "Remove from bookmarks" : "Save article to bookmarks"}
                 className={`text-sm ${isBookmarked ? "text-amber-400" : "text-slate-400"}`}
               >
                 {isBookmarked ? "★" : "☆"}
@@ -665,8 +667,10 @@ export function ArticleCard({
           )}
           {onToggleBookmark && (
             <button
+              type="button"
               onClick={() => onToggleBookmark(article.id)}
               title={isBookmarked ? "Remove from saved" : "Save article for later"}
+              aria-label={isBookmarked ? "Remove from saved" : "Save article for later"}
               className="text-sm hover:scale-110 transition-transform focus:outline-none"
             >
               {isBookmarked ? "★" : "☆"}
@@ -962,3 +966,5 @@ export function ArticleCard({
     </div>
   );
 }
+
+export const ArticleCard = React.memo(ArticleCardComponent);

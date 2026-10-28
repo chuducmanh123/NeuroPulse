@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+/* Tối ưu render DOM cho danh sách bài báo dài */
+.article-card-optimized {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 160px;
+}

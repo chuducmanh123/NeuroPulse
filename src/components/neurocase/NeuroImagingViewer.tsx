@@ -75,16 +75,16 @@ export function NeuroImagingViewer({
               key={idx}
               className="rounded-lg bg-slate-950 border border-slate-800/80 overflow-hidden flex flex-col"
             >
-              {/* Figure Image */}
+              {/* Figure Image with reserved aspect ratio & min-height to eliminate CLS */}
               <div
                 onClick={() => setZoomIndex(idx)}
-                className="group relative cursor-zoom-in flex flex-col items-center justify-center bg-black"
+                className="group relative cursor-zoom-in flex flex-col items-center justify-center bg-black min-h-[260px] sm:min-h-[340px] aspect-[4/3] sm:aspect-video w-full overflow-hidden"
               >
                 <img
                   src={img.image_url}
                   alt={img.caption || `Clinical Figure ${idx + 1}`}
-                  className="w-full max-h-[440px] object-contain transition-transform duration-200 group-hover:scale-[1.01]"
-                  loading="eager"
+                  className="w-full h-full max-h-[440px] object-contain transition-transform duration-200 group-hover:scale-[1.01]"
+                  loading={idx === 0 ? "eager" : "lazy"}
                 />
                 <span className="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-black/75 text-[10px] font-bold text-slate-200 opacity-0 group-hover:opacity-100 transition-opacity">
                   🔍 Click to Zoom
