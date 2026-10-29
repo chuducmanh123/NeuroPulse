@@ -1,4 +1,4 @@
-import { SUBSPECIALTY_LIST, SubspecialtyType } from "@/constants/subspecialties";
+import { SUBSPECIALTY_LIST, type SubspecialtyType } from "../constants/subspecialties.ts";
 
 export { SUBSPECIALTY_LIST };
 export type { SubspecialtyType };
@@ -79,6 +79,8 @@ export interface PracticeChangeDetail {
   drivingTrials?: string[];
 }
 
+export type FullTextStatus = "FULL_TEXT_PARSED" | "ABSTRACT_ONLY" | "UNAVAILABLE";
+
 export interface GuidelineDoc {
   id: string; // e.g. "aha-ais-2026", "eso-ais-2024"
   society: string; // "AHA/ASA" | "ESO" | "AAN" | "EAN" | "WSO" | "VN-MOH" | "NCS" | "ILAE" | "MDS" | "AHS" | "ECTRIMS" | "IDSA" | "AANEM";
@@ -92,8 +94,14 @@ export interface GuidelineDoc {
   subspecialties?: SubspecialtyType[];
   previousVersionYear?: number;
   executiveSummary: string;
+  executiveSummaryVi?: string; // Tóm tắt lâm sàng điều hành tiếng Việt
   allPracticeChanges: PracticeChangeDetail[];
   linkedScenarioIds: string[];
+  fullTextStatus?: FullTextStatus;
+  fullTextSource?: "PMC" | "EUROPE_PMC" | "OPEN_ACCESS_WEB";
+  pmcid?: string;
+  aiSynthesized?: boolean;
+  synthesizedAt?: string;
 }
 
 export interface RecommendationAtom {
@@ -183,4 +191,12 @@ export interface ConferenceEvent {
     practiceChangingCount: number;
   };
   lateBreakingTrials: LateBreakingTrial[];
+}
+
+export interface NeuroGuideBlobPayload {
+  guidelines: GuidelineDoc[];
+  conferences: ConferenceEvent[];
+  scenarios: ClinicalScenario[];
+  lastSyncedAt: string;
+  source: string;
 }

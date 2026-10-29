@@ -297,7 +297,7 @@ export default function NeuroGuidePage() {
 
   const matrixContainerRef = useRef<HTMLDivElement>(null);
 
-  const CURRENT_CACHE_VERSION = "neuroguide_v2026_clean_v6";
+  const CURRENT_CACHE_VERSION = "neuroguide_v2026_clean_v8";
 
   // Reset to authoritative official library and purge invalid cached papers
   const handleResetOfficialGuidelines = () => {
@@ -308,7 +308,7 @@ export default function NeuroGuidePage() {
       console.warn("Could not save to localStorage:", e);
     }
     setGuidelineDocs(MOCK_GUIDELINE_DOCS);
-    setSyncMessage("Đã khôi phục toàn bộ 30 hướng dẫn lâm sàng chuẩn và dọn dẹp các bài báo không phù hợp.");
+    setSyncMessage("Đã khôi phục danh mục hướng dẫn lâm sàng chuẩn hóa sạch và dọn dẹp các mục cũ chưa phân tích.");
   };
 
   // Background Autonomous Sync Method
@@ -323,42 +323,23 @@ export default function NeuroGuidePage() {
       });
       const json = await res.json();
       if (json.status === "success" && json.guidelines && json.guidelines.length > 0) {
-        setGuidelineDocs((prev) => {
-          const existingIds = new Set(prev.map((g) => g.id.toLowerCase()));
-          const existingTitles = new Set(prev.map((g) => g.title.toLowerCase().trim()));
-          const novel = json.guidelines.filter((g: GuidelineDoc) => {
-            if (!g || !g.title) return false;
-            const t = g.title.toLowerCase();
-            const j = (g.journalTarget || "").toLowerCase();
-            if (
-              t.includes("paraclinoid aneurysms") ||
-              t.includes("thromboelastography") ||
-              t.includes("hemodynamic differences") ||
-              j.includes("medicine (baltimore)") ||
-              j.includes("trauma surg acute care open") ||
-              j.includes("cureus") ||
-              g.society === "Other"
-            ) {
-              return false;
-            }
-            return !existingIds.has(g.id.toLowerCase()) && !existingTitles.has(g.title.toLowerCase().trim());
-          });
-          if (novel.length > 0) {
-            const merged = [...novel, ...prev];
-            try {
-              localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(merged));
-            } catch (e) {
-              console.warn("Could not save to localStorage:", e);
-            }
-            setSyncMessage(`Tự động tìm thấy ${novel.length} hướng dẫn mới từ radar trực tuyến.`);
-            return merged;
-          } else {
-            if (!isAuto) {
-              setSyncMessage("Radar đã đồng bộ: Thư viện hiện tại đã cập nhật đầy đủ các hướng dẫn mới nhất.");
-            }
-            return prev;
-          }
-        });
+        setGuidelineDocs(json.guidelines);
+        try {
+          localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(json.guidelines));
+        } catch (e) {
+          console.warn("Could not save to localStorage:", e);
+        }
+
+        const quota = json.quotaReport;
+        const storageNote = json.savedToBlob ? "Vercel Blob" : json.storageBackend || "Cloud Storage";
+        if (quota) {
+          setSyncMessage(
+            `✨ Radar AI Toàn văn: Đã phân tích ${quota.guidelinesAnalyzed} guideline (Toàn văn XML: ${quota.fullTextParsedCount}), 2 hội nghị & 2 kịch bản lâm sàng. Đồng bộ: ${storageNote}.`
+          );
+        } else {
+          setSyncMessage(json.message || `Đồng bộ thành công dữ liệu từ ${storageNote}.`);
+        }
+
         const nowStr = new Date().toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" });
         setLastSyncedTime(nowStr);
         localStorage.setItem("neuroguide_last_sync_timestamp", Date.now().toString());
@@ -370,8 +351,23 @@ export default function NeuroGuidePage() {
     }
   };
 
-  // Periodic autonomous radar sync + cache sanitizer on mount
+  // Hydrate from Vercel Blob storage backend + cache sanitizer on mount
   useEffect(() => {
+    // 1. Background fetch latest from Vercel Blob / server storage
+    fetch("/api/neuroguide/sync-guidelines")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data && data.status === "success" && Array.isArray(data.guidelines) && data.guidelines.length > 0) {
+          setGuidelineDocs(data.guidelines);
+          try {
+            localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(data.guidelines));
+          } catch {
+            // ignore
+          }
+        }
+      })
+      .catch(() => {});
+
     try {
       const cachedVersion = localStorage.getItem("neuroguide_cache_version");
       if (cachedVersion !== CURRENT_CACHE_VERSION) {
@@ -936,7 +932,7 @@ export default function NeuroGuidePage() {
                     >
                       {/* Meta Header */}
                       <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                        <div className="flex items-center gap-2">
+                        <div className="flex flex-wrap items-center gap-2">
                           <span
                             className={`px-2 py-0.5 rounded-md text-[11px] font-black tracking-wider uppercase border ${theme.badge}`}
                           >
@@ -945,6 +941,20 @@ export default function NeuroGuidePage() {
                           <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
                             {doc.documentType} • {doc.journalTarget}
                           </span>
+                          {doc.fullTextStatus === "FULL_TEXT_PARSED" ? (
+                            <span className="px-2 py-0.5 rounded-md text-[10px] font-black uppercase tracking-wider bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 flex items-center gap-1">
+                              ✨ Full-Text AI Verified
+                            </span>
+                          ) : (
+                            <span className="px-2 py-0.5 rounded-md text-[10px] font-semibold text-slate-500 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                              Abstract Verified
+                            </span>
+                          )}
+                          {doc.pmcid && (
+                            <span className="text-[11px] font-mono text-slate-400">
+                              {doc.pmcid}
+                            </span>
+                          )}
                         </div>
                         <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
                           {isVietnamese ? "Ban hành:" : "Published:"} {doc.publishDate}
@@ -985,13 +995,25 @@ export default function NeuroGuidePage() {
                     {isExpanded && (
                       <div className="px-4 sm:px-5 pb-5 pt-1 border-t border-slate-200/60 dark:border-slate-800/80">
                         {/* Executive Summary */}
-                        <div className="mb-4">
-                          <span className="text-[10.5px] font-black uppercase tracking-wider text-slate-400 block mb-1">
-                            {isVietnamese ? "Tóm tắt cốt lõi:" : "Executive Summary:"}
-                          </span>
-                          <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed bg-white/60 dark:bg-slate-900/60 p-3 rounded-xl border border-slate-200/50 dark:border-slate-800/60">
-                            {doc.executiveSummary}
-                          </p>
+                        <div className="mb-4 space-y-2">
+                          {doc.executiveSummaryVi && (
+                            <div className="p-3 rounded-xl bg-amber-500/10 dark:bg-amber-500/15 border border-amber-500/30">
+                              <span className="text-[10.5px] font-black uppercase tracking-wider text-amber-700 dark:text-amber-300 block mb-1">
+                                🇻🇳 Tóm tắt điều hành lâm sàng (Tiếng Việt):
+                              </span>
+                              <p className="text-xs sm:text-sm text-slate-800 dark:text-slate-200 leading-relaxed font-medium">
+                                {doc.executiveSummaryVi}
+                              </p>
+                            </div>
+                          )}
+                          <div>
+                            <span className="text-[10.5px] font-black uppercase tracking-wider text-slate-400 block mb-1">
+                              {isVietnamese ? "Tóm tắt cốt lõi (English):" : "Executive Summary (Original):"}
+                            </span>
+                            <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed bg-white/60 dark:bg-slate-900/60 p-3 rounded-xl border border-slate-200/50 dark:border-slate-800/60">
+                              {doc.executiveSummary}
+                            </p>
+                          </div>
                         </div>
 
                         {/* All Practice Changes List */}

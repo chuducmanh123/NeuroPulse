@@ -1,131 +1,86 @@
-# Implementation Plan: NeuroGuide & Conference Intelligence Hub Overhaul
+# Implementation Plan: Tích hợp Gemini AI & Toàn văn (Full-Text) cho NeuroGuide
 
 ## Overview
-Based on a thorough gap analysis between the architecture blueprint in `NeuroGuide&Conf _ 2.docx`, the active live site (`https://neuro-pulse-lime.vercel.app/neuroguide`), and the local codebase, this plan overhauls **NeuroGuide** into a cohesive **Clinical Practice Guidelines & Conference Intelligence Hub**. 
-
-The redesign eliminates the fragmented 3-tab experience by unifying it into:
-1. **Live Intelligence Header**: Breaking Guidelines & Live Conferences Stream.
-2. **Master-Detail Clinical Scenario Explorer (30/70 Layout)**: Instant search, 11 subspecialty filter chips, dynamic state badges.
-3. **Deep Comparative Workspace**:
-   - **Tab 1: Cross-Society Matrix** (AHA/ASA vs. ESO vs. VN/MOH with 5-tier normalized color coding).
-   - **Tab 2: Temporal Diff** (Historical timeline comparing old vs. new versions, grade changes, and driving trials).
-   - **Tab 3: Late-Breaking Conf & Landmark Trials** (Structured PICO trials, mRS 0-2, sICH, positive/neutral verdict).
-   - **AI Clinical Appraisal Box**: Concordance level, reasoning for guideline divergence, and an on-call practice bottom-line.
-   - **Ecosystem Action Bar**: Interactive deep links to NeuroRx (dose calculation), NeuroCalc (clinical scales), and NeuroPulse.
-4. **Conference Intelligence Dashboard**: Structured PICO trial cards and the "Guideline Impact & Action Bridge" navigating to the affected scenario in 1 click.
-5. **Responsive Mobile Ergonomics**: Emergency-room optimized view with swipeable scenario cards and vertical matrix stacks.
+Dự án bổ sung khả năng khai thác toàn văn (Full-Text XML) từ Europe PMC / PMC, phân tích chuyên sâu bằng Google Gemini AI và lưu trữ đồng bộ trên **Vercel Blob** cho hệ thống **NeuroGuide**.
+Mỗi phiên chạy (Cron định kỳ hoặc Radar On-Demand) tuân thủ định ngạch chính xác:
+- **3 Guidelines**: Tải toàn văn XML, lọc cấu trúc `<sec>`, trích xuất toàn bộ `allPracticeChanges` (`NEW`, `UPGRADED`, `DOWNGRADED`, `REVISED`) và tóm tắt song ngữ.
+- **2 Conference Events**: Cập nhật thử nghiệm đột phá (Late-Breaking Trials) dạng PICO từ các hội nghị chuyên khoa hàng đầu.
+- **2 Clinical Scenarios**: Tổng hợp hoặc cập nhật kịch bản lâm sàng thực tế so sánh đa hội chuyên khoa (AHA/ASA vs ESO vs VN) và On-Call Bottom-Line.
+- **Lưu trữ đồng bộ trên Vercel Blob**: Dữ liệu lưu tại `neuroguide_data.json` trên Vercel Blob (kèm fallback tệp cục bộ khi dev).
 
 ---
 
-## Architecture & Data Model Decisions
+## Architecture & Data Flow
 
-### Decision 1: Relational Entity Normalization (Zero Data Duplication)
-Maintain the clean 3-entity model specified in `NeuroGuide&Conf _ 2`:
-- `ClinicalScenario`: The clinical anchor (e.g. `ais-ivt-tenecteplase-4.5h`, `ais-large-core-evt-aspects-3-5`). Holds AI appraisal, concordance, and ecosystem links.
-- `GuidelineDoc`: The published document metadata (Title, Society, Year, Link, `allPracticeChanges`).
-- `RecommendationAtom`: The atomic recommendation connecting a scenario to a guideline with a normalized 5-tier level (`1: Strong FOR`, `2: Moderate`, `3: Weak/Optional`, `4: Consensus`, `5: Against/Harm`).
-- `ConferenceDetail` / `ConferenceEvent`: Conference intelligence with structured `lateBreakingTrials` containing PICO data and foreign key `impactedScenarioId`.
-
-### Decision 2: Single Source of Truth for Subspecialties
-Replace fragmented local subspecialty types in `neuroguide` with `@/constants/subspecialties` (`SUBSPECIALTY_TABS` and `SUBSPECIALTY_LIST`), ensuring 100% ecosystem-wide consistency across NeuroPulse, NeuroCase, NeuroGuide, and Admin.
-
-### Decision 3: Vertical Slicing for Implementation
-Instead of massive all-at-once rewrites, deliver five focused vertical slices:
-- Phase 1: Data Schema & Seed Expansion (Types, Subspecialty alignment, Mock Data wiring).
-- Phase 2: Master-Detail Clinical Scenario Workspace (30/70 layout, 3-column AHA vs ESO vs VN matrix, 5-tier color badges).
-- Phase 3: Temporal Diff (Tab 2) & Landmark Trials Evidence Bridge (Tab 3).
-- Phase 4: Conference Intelligence Hub & Guideline Impact Bridge (PICO cards, 1-click jump to scenario).
-- Phase 5: Ecosystem Deep Links, Mobile Ergonomics & Quality Verification.
-
----
-
-## Task List
-
-### Phase 1: Data Foundations & Subspecialty Alignment
-- [ ] **Task 1: Standardize Subspecialties and Enhance NeuroGuide Types**
-  - **Description**: Update `src/types/neuroguide.ts` to import `SUBSPECIALTY_LIST` from `@/constants/subspecialties`, refine `ClinicalScenario`, `TemporalShift`, `PracticeChangeDetail`, and PICO trial structures in `ConferenceDetail`.
-  - **Files**: `src/types/neuroguide.ts`
-  - **Scope**: Small (1 file)
-
-- [ ] **Task 2: Enrich Mock Datasets with PICO Trials, Temporal Shifts & Impact Links**
-  - **Description**: Populate `src/data/neuroguideMockData.ts` with complete driving trials for core scenarios (Tenecteplase, Large Core ASPECTS 3-5, Basilar Artery Occlusion, ICH Blood Pressure, DAPT in minor stroke, Status Epilepticus, Autoimmune Encephalitis, ARIA in Amyloid mAb) and wire `impactedScenarioId` across conferences (ESOC, ISC, WSC, AAN).
-  - **Files**: `src/data/neuroguideMockData.ts`
-  - **Scope**: Medium (1 file)
-
-### Checkpoint 1: Foundations
-- [ ] TypeScript strict mode passes (`tsc --noEmit`)
-- [ ] Automated tests pass (`npm test`)
-
----
-
-### Phase 2: Master-Detail Clinical Scenario Workspace
-- [ ] **Task 3: Build 30/70 Master-Detail Layout with Subspecialty Filter Chips**
-  - **Description**: Build the two-column clinical layout in `src/app/neuroguide/page.tsx` featuring search, 11 subspecialty chips, scenario badges (`Class I`, `Practice-Changing`, `New Conf Evidence`), and mobile collapsible drawer.
-  - **Files**: `src/app/neuroguide/page.tsx`, `src/components/neuroguide/ScenarioExplorer.tsx`
-  - **Scope**: Medium (2 files)
-
-- [ ] **Task 4: Build Tab 1: Cross-Society Matrix (AHA/ASA vs. ESO vs. VN/MOH)**
-  - **Description**: Implement the 3-column comparative matrix displaying original grades, 5-tier normalized badges, 2-sentence recommendation summaries, and specific clinical eligibility criteria.
-  - **Files**: `src/components/neuroguide/CrossSocietyMatrix.tsx`
-  - **Scope**: Small (1 file)
-
-- [ ] **Task 5: Implement AI Clinical Appraisal & On-Call Bottom-Line Box**
-  - **Description**: Create the bottom verdict card featuring Concordance Level pill (High / Moderate / Divergent), rationale for guideline variations, and the highlighted on-call bottom-line.
-  - **Files**: `src/components/neuroguide/ClinicalAppraisalBox.tsx`
-  - **Scope**: Small (1 file)
-
-### Checkpoint 2: Core Matrix & Appraisal
-- [ ] Doctor can select any scenario and see the 3-column international comparison and AI appraisal.
-- [ ] Builds without warnings.
+```
+[Europe PMC / PMC Open Access API]
+            │ (Full-Text XML / Metadata)
+            ▼
+┌────────────────────────────────────────────────────────┐
+│ 1. fullTextFetcher.ts                                  │
+│    - Tải XML toàn văn qua PMCID                        │
+│    - Lọc bỏ <ref-list>, bảng phụ kiện                  │
+│    - Tách đoạn trọng tâm: Recommendations & What's New │
+└───────────────────────────┬────────────────────────────┘
+                            │
+                            ▼
+┌────────────────────────────────────────────────────────┐
+│ 2. geminiGuidelineExtractor.ts                         │
+│    - Gọi Gemini AI (gemini-flash-lite-latest, v.v.)     │
+│    - Ép kiểu JSON Response MIME Type                   │
+│    - 3 Guidelines (Practice changes, Class/Grade)      │
+│    - 2 Conferences (PICO Trials)                       │
+│    - 2 Clinical Scenarios (AHA vs ESO vs VN Matrix)    │
+└───────────────────────────┬────────────────────────────┘
+                            │
+                            ▼
+┌────────────────────────────────────────────────────────┐
+│ 3. blobStorage.ts                                      │
+│    - Lưu trữ neuroguide_data.json trên Vercel Blob     │
+│    - Gộp mượt mà với Mock Baseline                     │
+└───────────────────────────┬────────────────────────────┘
+                            │
+                            ▼
+┌────────────────────────────────────────────────────────┐
+│ 4. GET / POST /api/neuroguide/sync-guidelines          │
+│    - Vercel Cron (06:00 UTC)                           │
+│    - Radar Trigger On-Demand trên UI                   │
+└───────────────────────────┬────────────────────────────┘
+                            │
+                            ▼
+[NeuroGuide Frontend UI]: Hiển thị "Full-Text AI Verified"
+```
 
 ---
 
-### Phase 3: Temporal Evolution & Landmark Trials Evidence Bridge
-- [ ] **Task 6: Build Tab 2: Temporal Diff (Historical Evolution & Grade Shifts)**
-  - **Description**: Implement the timeline view comparing older recommendations (e.g. AHA 2019 Class IIb) with newer updates (ESO 2024 / AHA Update Class I) with driving landmark trials badges.
-  - **Files**: `src/components/neuroguide/TemporalDiffView.tsx`
-  - **Scope**: Small (1 file)
+## Implementation Order & Phases
 
-- [ ] **Task 7: Build Tab 3: Landmark Trials & Conf Evidence View**
-  - **Description**: Implement trial summary cards inside each scenario detailing Sample Size (N), Primary Outcome (mRS 0-2), Safety (sICH), and Positive/Neutral outcome pills.
-  - **Files**: `src/components/neuroguide/TrialEvidenceView.tsx`
-  - **Scope**: Small (1 file)
+### Phase 1: Data Contracts & Vercel Blob Storage Helper
+- Update `src/types/neuroguide.ts`: Bổ sung `FullTextStatus`, `executiveSummaryVi`, `fullTextStatus`, `aiSynthesized`, `pmcid`.
+- Create `src/lib/neuroguide/blobStorage.ts`: Xây dựng module đọc/ghi Vercel Blob (`@vercel/blob`), làm sạch token, fallback tệp cục bộ `public/data/neuroguide_cloud.json`, gộp với dữ liệu tĩnh `neuroguideMockData.ts`.
 
-### Checkpoint 3: Temporal & Evidence Tabs
-- [ ] Doctor can toggle between Matrix, Temporal Diff, and Trial Evidence seamlessly.
-- [ ] Tests and build clean.
+### Phase 2: Full-Text Fetching Engine
+- Create `src/lib/neuroguide/fullTextFetcher.ts`:
+  - Tìm nạp XML từ Europe PMC REST (`/fullTextXML`) và NCBI PMC E-fetch.
+  - Xử lý làm sạch XML: tách lọc các thẻ `<sec>` có tiêu đề chứa "Recommendation", "What is New", "Summary", "Practice Change", "Class", loại bỏ triệt để `<ref-list>` (danh mục tài liệu tham khảo).
+  - Cơ chế fallback: Nếu không có Open Access XML, trích xuất Abstract có cấu trúc và đánh dấu `fullTextStatus: "ABSTRACT_ONLY"`.
 
----
+### Phase 3: Gemini AI Medical Extractor & Synthesizer
+- Create `src/lib/neuroguide/geminiGuidelineExtractor.ts`:
+  - Khởi tạo kết nối REST Gemini API với chiến lược Waterfall Model (`gemini-flash-lite-latest` -> `gemini-2.5-flash-lite` -> `gemini-2.5-flash`).
+  - Hàm 1: `extractGuidelineWithGemini()` bóc tách `allPracticeChanges` (`NEW`, `UPGRADED`, `DOWNGRADED`, `REVISED`) kèm Class of Recommendation, Level of Evidence và tóm tắt tiếng Việt.
+  - Hàm 2: `extractConferenceTrialsWithGemini()` bóc tách 2 thử nghiệm PICO mới nhất từ hội nghị.
+  - Hàm 3: `synthesizeClinicalScenariosWithGemini()` biên soạn 2 kịch bản lâm sàng so sánh AHA vs ESO vs VN kèm AI Appraisal.
 
-### Phase 4: Conference Intelligence Hub & Guideline Impact Bridge
-- [ ] **Task 8: Upgrade Conference Hub with PICO Trial Snapshots & Verdict Badges**
-  - **Description**: Redesign the Conference View with executive summaries, metrics bar, and structured PICO trial cards (Population, Intervention vs Control, Primary Endpoint, Safety Endpoint, Clinical Takeaway).
-  - **Files**: `src/components/neuroguide/ConferenceHub.tsx`
-  - **Scope**: Medium (1 file)
+### Phase 4: API Route Orchestration & Quota Enforcement
+- Update `src/app/api/neuroguide/sync-guidelines/route.ts`:
+  - Tích hợp pipeline Full-Text + Gemini AI + Vercel Blob.
+  - Thực thi đúng hạn mức: 3 Guidelines + 2 Conferences + 2 Scenarios mỗi phiên.
+  - GET endpoint đọc dữ liệu gộp từ Blob; POST endpoint thực hiện quét radar và lưu Blob.
 
-- [ ] **Task 9: Implement 1-Click Guideline Impact Bridge (Conf ➔ Scenario Navigation)**
-  - **Description**: Add the "Impact on Current Guidelines" action box on each trial card with a one-click button: `[Open Scenario in Comparison Matrix ➔]` that scrolls and selects the linked scenario.
-  - **Files**: `src/app/neuroguide/page.tsx`, `src/components/neuroguide/ConferenceHub.tsx`
-  - **Scope**: Small (2 files)
-
-### Checkpoint 4: Conference & Bi-directional Bridge
-- [ ] Clicking a trial's impact button navigates directly to the corresponding scenario in the Matrix view.
-
----
-
-### Phase 5: Ecosystem Deep-Links, Mobile Optimization & Polish
-- [ ] **Task 10: Integrate Ecosystem Action Bar (NeuroRx, NeuroCalc, NeuroPulse)**
-  - **Description**: Add interactive deep-link action pills in the scenario header (e.g., `[Open NeuroRx: TNK Dosing]`, `[Open NeuroCalc: NIHSS Scale]`, `[View Related Articles on NeuroPulse]`).
-  - **Files**: `src/components/neuroguide/EcosystemActionBar.tsx`
-  - **Scope**: Small (1 file)
-
-- [ ] **Task 11: Emergency-Room Mobile Ergonomics & Visual Polish**
-  - **Description**: Optimize for on-call smartphones: horizontal swipeable scenario chips, responsive vertical matrix stacking, and smooth tab switching.
-  - **Files**: `src/app/neuroguide/page.tsx`
-  - **Scope**: Small (1 file)
-
-### Final Checkpoint: Full Verification
-- [ ] `tsc --noEmit` passes with 0 errors (`strict: true`).
-- [ ] `npm test` passes all test suites.
-- [ ] `next build` compiles in <1s.
-- [ ] Verified on desktop and mobile viewports.
+### Phase 5: UI Feedback & Verification
+- Update `src/app/neuroguide/page.tsx`:
+  - Hiển thị huy hiệu "Full-Text AI Verified" và cờ nguồn "PMC Full-Text" trên tài liệu.
+  - Hiển thị tóm tắt tiếng Việt `executiveSummaryVi` và các khuyến cáo thay đổi thực hành chi tiết.
+- Unit Tests: Tạo `tests/neuroguideDiscovery.test.mjs` kiểm tra bóc tách XML, JSON schema và Blob storage.
+- Chạy toàn bộ kiểm thử tĩnh `npx tsc --noEmit` và test suite `npm test`.

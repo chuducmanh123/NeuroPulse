@@ -1,222 +1,109 @@
-# Task List: NeuroGuide & Conference Intelligence Hub Overhaul
+# Task List: Tích hợp Gemini AI & Toàn văn (Full-Text) cho NeuroGuide
 
-## Task 1: Standardize Subspecialties and Enhance NeuroGuide Types
-**Description:** Refactor `src/types/neuroguide.ts` to import `SUBSPECIALTY_LIST` from `@/constants/subspecialties`, ensuring total ecosystem alignment. Enhance `ClinicalScenario`, `TemporalShift`, `PracticeChangeDetail`, and `ConferenceDetail` with PICO attributes and foreign keys.
-
-**Acceptance criteria:**
-- [x] `src/types/neuroguide.ts` imports and re-exports subspecialties from `@/constants/subspecialties`.
-- [x] `ClinicalScenario` schema includes `aiSynthesisAppraisal` with `consensusLevel`, `whyTheyDiffer`, and `clinicalBottomLine`.
-- [x] `ConferenceDetail` includes structured PICO trial fields (`populationSummary`, `interventionGroup`, `controlGroup`, `primaryOutcome`, `safetyOutcome`, `impactedScenarioId`).
-- [x] `TemporalShift` type supports `previousYear`, `previousGrade`, `currentYear`, `currentGrade`, and `drivingTrials`.
-
-**Verification:**
-- [x] Tests pass: `node --experimental-strip-types --test tests/clinicalClassification.test.mjs tests/neurocaseApi.test.mjs`
-- [x] Typecheck succeeds: `node ./node_modules/typescript/bin/tsc --noEmit`
-
-**Dependencies:** None  
-**Files likely touched:** `src/types/neuroguide.ts`  
-**Estimated scope:** Small (1 file)
-
----
-
-## Task 2: Enrich Mock Datasets with PICO Trials, Temporal Shifts & Impact Links
-**Description:** Expand `src/data/neuroguideMockData.ts` with complete clinical content covering core neurological scenarios (Tenecteplase, Large Core ASPECTS 3-5, Basilar Artery Occlusion, ICH Blood Pressure, DAPT, Status Epilepticus, Autoimmune Encephalitis, ARIA in Amyloid mAb) and wire `impactedScenarioId` across conferences.
+## Task 1: Mở rộng Data Contracts và Xây dựng Vercel Blob Storage Helper
+**Description:** Cập nhật `src/types/neuroguide.ts` để bổ sung các trường siêu dữ liệu phục vụ Toàn văn và AI. Xây dựng module `src/lib/neuroguide/blobStorage.ts` để quản lý lưu trữ đồng bộ `neuroguide_data.json` trên Vercel Blob (hỗ trợ đọc, ghi, fallback tệp cục bộ và merge với mock baseline).
 
 **Acceptance criteria:**
-- [x] At least 8 core scenarios have complete AHA, ESO, and VN recommendation atoms with 5-tier normalized levels.
-- [x] Conference events (ISC, ESOC, WSC, AAN, AES) have structured late-breaking trials with PICO stats and `impactedScenarioId`.
-- [x] Temporal shift records exist for major guideline changes (e.g. TNK 4.5h, Large Core EVT).
+- [x] `src/types/neuroguide.ts` có kiểu `FullTextStatus` (`FULL_TEXT_PARSED` | `ABSTRACT_ONLY` | `UNAVAILABLE`), các trường `executiveSummaryVi`, `fullTextStatus`, `fullTextSource`, `pmcid`, `aiSynthesized` trong `GuidelineDoc`.
+- [x] `src/lib/neuroguide/blobStorage.ts` đọc/ghi thành công lên Vercel Blob thông qua `@vercel/blob` (`put`, `list`), xử lý sanitize token an toàn tương tự `NeuroCase`.
+- [x] Hàm `mergeNeuroGuideData()` gộp liền mạch dữ liệu động từ Blob với `neuroguideMockData.ts`.
 
 **Verification:**
-- [x] Typecheck succeeds: `node ./node_modules/typescript/bin/tsc --noEmit`
-- [x] Build succeeds: `node ./node_modules/next/dist/bin/next build`
+- [x] Typecheck: `npx tsc --noEmit`
+- [x] Test đơn vị đọc ghi lưu trữ cục bộ khi không có token Blob.
 
-**Dependencies:** Task 1  
-**Files likely touched:** `src/data/neuroguideMockData.ts`  
-**Estimated scope:** Medium (1 file)
-
----
-
-## Checkpoint 1: Foundations
-- [x] All tests pass
-- [x] Static typecheck clean with `strict: true`
+**Files:**
+- `src/types/neuroguide.ts`
+- `src/lib/neuroguide/blobStorage.ts`
 
 ---
 
-## Task 3: Build 30/70 Master-Detail Layout with Subspecialty Filter Chips
-**Description:** Build the two-column master-detail clinical layout in `src/app/neuroguide/page.tsx` featuring quick search, 11 subspecialty filter chips, dynamic scenario badges (`Class I`, `Practice-Changing`, `New Conf Evidence`), and responsive mobile drawer.
+## Task 2: Xây dựng Module Tải & Tiền Xử Lý Toàn Văn (Full-Text Fetcher)
+**Description:** Tạo `src/lib/neuroguide/fullTextFetcher.ts` để lấy XML toàn văn từ Europe PMC REST API (`/fullTextXML`) và PubMed Central E-utilities. Tiến hành bóc tách, loại bỏ thẻ `<ref-list>` (danh mục tài liệu tham khảo), trích xuất các section trọng tâm về Khuyến cáo (`Recommendations`, `What is New`, `Summary`).
 
 **Acceptance criteria:**
-- [ ] Left column (30% on desktop) displays searchable scenario list with subspecialty chips from `@/constants/subspecialties`.
-- [ ] Selecting a scenario highlights it and immediately updates the active scenario in the right workspace.
-- [ ] Mobile view collapses smoothly into horizontal swipeable chips or drawer without horizontal layout breakage.
+- [x] Hỗ trợ tải XML qua PMCID hoặc DOI Open Access.
+- [x] Loại bỏ hoàn toàn `<ref-list>`, các bảng xung đột lợi ích nhằm tiết kiệm token.
+- [x] Ưu tiên bóc tách các `<sec>` chứa từ khóa: "recommendation", "what is new", "practice change", "guideline statement".
+- [x] Fallback an toàn sang trích xuất Abstract khi bài báo bị khóa bản quyền (paywalled).
 
 **Verification:**
-- [ ] Typecheck: `node ./node_modules/typescript/bin/tsc --noEmit`
-- [ ] Build: `node ./node_modules/next/dist/bin/next build`
+- [x] Unit test phân tích chuỗi XML mẫu trong `tests/neuroguideDiscovery.test.mjs`.
 
-**Dependencies:** Task 2  
-**Files likely touched:** `src/app/neuroguide/page.tsx`, `src/components/neuroguide/ScenarioExplorer.tsx`  
-**Estimated scope:** Medium (2 files)
+**Files:**
+- `src/lib/neuroguide/fullTextFetcher.ts`
 
 ---
 
-## Task 4: Build Tab 1: Cross-Society Matrix (AHA/ASA vs. ESO vs. VN/MOH)
-**Description:** Implement the 3-column international comparative matrix component displaying original grades, 5-tier color badges (Emerald, Blue, Amber, Purple, Rose), 2-sentence recommendation summaries, and specific clinical eligibility criteria.
+## Task 3: Xây dựng Bộ Trích Xuất & Tổng Hợp Y Khoa Gemini AI
+**Description:** Tạo `src/lib/neuroguide/geminiGuidelineExtractor.ts` kết nối với Google Gemini API qua REST với cấu hình JSON MIME Type và cơ chế Waterfall Model (`gemini-flash-lite-latest`, `gemini-2.5-flash-lite`, `gemini-2.5-flash`). Hỗ trợ bóc tách 3 Guidelines, 2 Conferences, và 2 Clinical Scenarios.
 
 **Acceptance criteria:**
-- [ ] Renders 3 columns side-by-side on desktop: AHA/ASA (US), ESO (Europe), and Vietnam (BYT).
-- [ ] Uses normalized 5-tier color badges with clear legend.
-- [ ] Displays specific patient eligibility conditions and clinical context.
+- [x] `extractGuidelineWithGemini()`: Trích xuất `allPracticeChanges` có đủ `category`, `topic`, `changeType` (`NEW`, `UPGRADED`, `DOWNGRADED`, `REVISED`), `currentGrade`, `currentText`, `drivingTrials` và `executiveSummaryVi`.
+- [x] `extractConferenceTrialsWithGemini()`: Bóc tách thử nghiệm PICO từ hội nghị cho `ConferenceEvent`.
+- [x] `synthesizeClinicalScenariosWithGemini()`: Biên soạn so sánh AHA vs ESO vs VN kèm AI Appraisal cho `ClinicalScenario`.
+- [x] Xử lý an toàn khi thiếu `GEMINI_API_KEY` hoặc hết hạn ngạch bằng bộ tạo lâm sàng tất định (deterministic fallback).
 
 **Verification:**
-- [ ] Build succeeds: `node ./node_modules/next/dist/bin/next build`
+- [x] Typecheck: `npx tsc --noEmit`
+- [x] Unit test parser JSON output từ Gemini.
 
-**Dependencies:** Task 3  
-**Files likely touched:** `src/components/neuroguide/CrossSocietyMatrix.tsx`  
-**Estimated scope:** Small (1 file)
+**Files:**
+- `src/lib/neuroguide/geminiGuidelineExtractor.ts`
 
 ---
 
-## Task 5: Implement AI Clinical Appraisal & On-Call Bottom-Line Box
-**Description:** Create the clinical synthesis card featuring Concordance Level badge (High Concordance / Moderate Variation / Major Divergence), rationale for guideline differences (publication lag, evidence weighting), and the highlighted on-call bottom-line for duty doctors.
+## Task 4: Tích Hợp Điều Phối API và Thực Thi Định Ngạch (3-2-2)
+**Description:** Nâng cấp API handler `src/app/api/neuroguide/sync-guidelines/route.ts` để kết nối FullTextFetcher, GeminiExtractor và BlobStorage. Đảm bảo đúng định ngạch mỗi phiên: 3 Guidelines, 2 Conferences, 2 Clinical Scenarios, và lưu trữ đồng bộ lên Vercel Blob.
 
 **Acceptance criteria:**
-- [ ] Displays Concordance Level badge with appropriate status coloring.
-- [ ] Clearly articulates why recommendations differ between societies.
-- [ ] Features a distinct "On-Call Clinical Bottom-Line" card with acute dosage and caveats.
+- [x] GET: Trả về toàn bộ dữ liệu đã được merge giữa Vercel Blob và Mock baseline.
+- [x] POST: Thực hiện quy trình quét radar mới:
+  - Lấy danh sách ứng viên mới từ Europe PMC / PubMed.
+  - Xử lý toàn văn cho đúng 3 Guidelines mới.
+  - Cập nhật 2 Conference events mới.
+  - Biên soạn/cập nhật 2 Clinical Scenarios.
+  - Lưu kết quả gộp vào Vercel Blob qua `blobStorage.ts`.
+- [x] Trả về thông tin thống kê chi tiết (`guidelinesAnalyzed`, `conferencesUpdated`, `scenariosUpdated`, `storageBackend`).
 
 **Verification:**
-- [ ] Typecheck: `node ./node_modules/typescript/bin/tsc --noEmit`
+- [x] Typecheck: `npx tsc --noEmit`
+- [x] Kiểm thử gọi GET & POST endpoint.
 
-**Dependencies:** Task 4  
-**Files likely touched:** `src/components/neuroguide/ClinicalAppraisalBox.tsx`  
-**Estimated scope:** Small (1 file)
-
----
-
-## Checkpoint 2: Core Matrix & Appraisal
-- [ ] Doctor can select any scenario and see the 3-column international comparison and AI appraisal.
-- [ ] Application builds without errors.
+**Files:**
+- `src/app/api/neuroguide/sync-guidelines/route.ts`
 
 ---
 
-## Task 6: Build Tab 2: Temporal Diff (Historical Evolution & Grade Shifts)
-**Description:** Implement the timeline view comparing older recommendations (e.g. AHA 2019 Class IIb) with newer updates (ESO 2024 / AHA Update Class I) alongside driving landmark trials badges.
+## Task 5: Cập Nhật Giao Diện NeuroGuide và Hiển Thị Trực Quan
+**Description:** Cập nhật `src/app/neuroguide/page.tsx` để hiển thị các chỉ báo mới: huy hiệu "Full-Text AI Verified", nguồn toàn văn PMC, tóm tắt điều hành tiếng Việt và trạng thái đồng bộ Vercel Blob trên Radar Scanner.
 
 **Acceptance criteria:**
-- [ ] Visual timeline clearly contrasting previous vs. current grade and wording.
-- [ ] Displays driving trials pills (e.g., SELECT2, ANGEL-ASPECT, TENSION).
-- [ ] Shows change type badge (NEW, UPGRADED, DOWNGRADED, REVISED).
+- [x] Thẻ Guideline hiển thị huy hiệu "Full-Text AI Verified" và liên kết tới bài báo toàn văn PMC/DOI.
+- [x] Hiển thị tóm tắt tiếng Việt `executiveSummaryVi` bên cạnh bản tiếng Anh.
+- [x] Bảng trạng thái Radar Scanner thông báo số lượng Guideline, Conference và Scenario đã đồng bộ thành công với Vercel Blob.
 
 **Verification:**
-- [ ] Build: `node ./node_modules/next/dist/bin/next build`
+- [x] `npm run build` biên dịch thành công không cảnh báo.
 
-**Dependencies:** Task 5  
-**Files likely touched:** `src/components/neuroguide/TemporalDiffView.tsx`  
-**Estimated scope:** Small (1 file)
+**Files:**
+- `src/app/neuroguide/page.tsx`
 
 ---
 
-## Task 7: Build Tab 3: Landmark Trials & Conf Evidence View
-**Description:** Implement trial summary cards inside each scenario detailing Sample Size (N), Primary Outcome (mRS 0-2), Safety (sICH), and Positive/Neutral outcome pills.
+## Task 6: Kiểm Thử Toàn Diện và Đảm Bảo Chất Lượng (Quality Gate)
+**Description:** Viết bộ kiểm thử tự động `tests/neuroguideDiscovery.test.mjs` bao phủ các trường hợp tải XML, lọc thẻ `<ref-list>`, parser JSON Gemini và bộ merge Blob. Chạy toàn bộ typecheck và build sản xuất.
 
 **Acceptance criteria:**
-- [ ] Renders structured cards for landmark trials associated with the scenario (e.g. AcT, TRACE-2, TIMELESS).
-- [ ] Displays Sample Size (N), primary efficacy percentage, safety bleeding rate, and p-value.
-- [ ] Includes link to original full text / PubMed if available.
+- [x] `tests/neuroguideDiscovery.test.mjs` kiểm tra đầy đủ các kịch bản và vượt qua 100%.
+- [x] `npm test` vượt qua toàn bộ các bài test của hệ thống.
+- [x] `npx tsc --noEmit` đạt 0 lỗi với `strict: true`.
+- [x] `npm run build` hoàn thành nhanh chóng và tạo bundle tối ưu.
 
 **Verification:**
-- [ ] Typecheck: `node ./node_modules/typescript/bin/tsc --noEmit`
+- [x] Chạy `npm test`
+- [x] Chạy `npm run build`
 
-**Dependencies:** Task 6  
-**Files likely touched:** `src/components/neuroguide/TrialEvidenceView.tsx`  
-**Estimated scope:** Small (1 file)
-
----
-
-## Checkpoint 3: Temporal & Evidence Tabs
-- [ ] Doctor can toggle between Matrix, Temporal Diff, and Trial Evidence seamlessly.
-- [ ] Tests and build clean.
-
----
-
-## Task 8: Upgrade Conference Hub with PICO Trial Snapshots & Verdict Badges
-**Description:** Redesign the Conference View with executive summaries, metrics bar, and structured PICO trial cards (Population, Intervention vs Control, Primary Endpoint, Safety Endpoint, Clinical Takeaway).
-
-**Acceptance criteria:**
-- [ ] Conference cards show metrics (Total Late-Breaking Trials, Positive count, Practice-Changing count).
-- [ ] Trial snapshots display PICO breakdown and Positive/Neutral verdict badges.
-- [ ] Filter by Subspecialty and Verdict.
-
-**Verification:**
-- [ ] Build: `node ./node_modules/next/dist/bin/next build`
-
-**Dependencies:** Task 7  
-**Files likely touched:** `src/components/neuroguide/ConferenceHub.tsx`  
-**Estimated scope:** Medium (1 file)
-
----
-
-## Task 9: Implement 1-Click Guideline Impact Bridge (Conf ➔ Scenario Navigation)
-**Description:** Add the "Impact on Current Guidelines" action box on each trial card with a one-click button: `[Open Scenario in Comparison Matrix ➔]` that scrolls and selects the linked scenario.
-
-**Acceptance criteria:**
-- [ ] Each relevant late-breaking trial card has a highlighted "Guideline Impact" box.
-- [ ] Clicking `[Open Scenario in Comparison Matrix ➔]` switches to the Matrix tab and automatically selects and focuses that scenario.
-
-**Verification:**
-- [ ] Manual test of 1-click bridge navigation.
-- [ ] Build: `node ./node_modules/next/dist/bin/next build`
-
-**Dependencies:** Task 8  
-**Files likely touched:** `src/app/neuroguide/page.tsx`, `src/components/neuroguide/ConferenceHub.tsx`  
-**Estimated scope:** Small (2 files)
-
----
-
-## Checkpoint 4: Conference & Bi-directional Bridge
-- [ ] Clicking a trial's impact button navigates directly to the corresponding scenario in the Matrix view.
-
----
-
-## Task 10: Integrate Ecosystem Action Bar (NeuroRx, NeuroCalc, NeuroPulse)
-**Description:** Add interactive deep-link action pills in the scenario header (e.g., `[Open NeuroRx: TNK Dosing]`, `[Open NeuroCalc: NIHSS Scale]`, `[View Related Articles on NeuroPulse]`).
-
-**Acceptance criteria:**
-- [ ] Header of active scenario includes dedicated Ecosystem Action Bar.
-- [ ] Action pills route to appropriate modules or trigger calculators with relevant context.
-
-**Verification:**
-- [ ] Build: `node ./node_modules/next/dist/bin/next build`
-
-**Dependencies:** Task 9  
-**Files likely touched:** `src/components/neuroguide/EcosystemActionBar.tsx`  
-**Estimated scope:** Small (1 file)
-
----
-
-## Task 11: Emergency-Room Mobile Ergonomics & Visual Polish
-**Description:** Optimize for on-call smartphones: horizontal swipeable scenario chips, responsive vertical matrix stacking, and smooth tab switching.
-
-**Acceptance criteria:**
-- [ ] Emergency room smartphone testing shows no horizontal overflow.
-- [ ] Matrix stacks cleanly as collapsible or swipeable cards on mobile viewports (<640px).
-- [ ] Fast, zero-lag tab transitions.
-
-**Verification:**
-- [ ] `node ./node_modules/typescript/bin/tsc --noEmit` passes with 0 errors.
-- [ ] `node --experimental-strip-types --test tests/clinicalClassification.test.mjs tests/neurocaseApi.test.mjs` passes 15/15 tests.
-- [ ] `node ./node_modules/next/dist/bin/next build` compiles clean.
-
-**Dependencies:** Task 10  
-**Files likely touched:** `src/app/neuroguide/page.tsx`  
-**Estimated scope:** Small (1 file)
-
----
-
-## Final Checkpoint: Full Verification
-- [ ] `tsc --noEmit` passes with 0 errors (`strict: true`).
-- [ ] `npm test` passes all test suites.
-- [ ] `next build` compiles in <1s.
-- [ ] Complete alignment with `NeuroGuide&Conf _ 2.docx`.
+**Files:**
+- `tests/neuroguideDiscovery.test.mjs`
+- `package.json` (nếu cần bổ sung test file pattern)

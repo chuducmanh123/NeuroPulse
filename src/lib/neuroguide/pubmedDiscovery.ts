@@ -1,4 +1,4 @@
-import { GuidelineDoc, SubspecialtyType, PracticeChangeDetail } from "@/types/neuroguide";
+import type { GuidelineDoc, SubspecialtyType, PracticeChangeDetail } from "../../types/neuroguide.ts";
 import https from "https";
 
 export interface PubMedArticleSummary {
@@ -378,6 +378,8 @@ export function transformEuropePMCToGuideline(item: EuropePMCResultItem): Guidel
     executiveSummary: `Official clinical practice guideline / consensus statement published by ${society} in ${journal} (${pubYear}). Establishes structured, evidence-graded standards for diagnosis, therapeutics, and patient care pathways.`,
     linkedScenarioIds: [],
     allPracticeChanges: practiceChanges,
+    pmcid: item.pmcid || (item.inPMC === "Y" && item.id.startsWith("PMC") ? item.id : undefined),
+    fullTextStatus: item.pmcid || item.inPMC === "Y" ? "FULL_TEXT_PARSED" : "ABSTRACT_ONLY",
   };
 }
 

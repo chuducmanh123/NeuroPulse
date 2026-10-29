@@ -1,3675 +1,3768 @@
-import {
+import type {
   ClinicalScenario,
   GuidelineDoc,
   RecommendationAtom,
   ConferenceEvent,
-} from "../types/neuroguide";
+} from "../types/neuroguide.ts";
 
 export const MOCK_CLINICAL_SCENARIOS: ClinicalScenario[] = [
   {
-    id: "ais-ivt-tenecteplase-4.5h",
-    title: "Tenecteplase vs. Alteplase for Acute Ischemic Stroke within 4.5 Hours",
-    subspecialty: "Stroke",
-    summary:
-      "Indication for intravenous Tenecteplase (0.25 mg/kg single bolus, maximum 25 mg) as an effective and safe alternative to standard 1-hour Alteplase infusion in patients with acute ischemic stroke presenting within 4.5 hours of symptom onset.",
-    keyTags: ["Tenecteplase", "TNK-tPA", "Alteplase", "IV Thrombolysis", "Door-to-Needle", "AcT", "TRACE-2"],
-    statusBadge: "PRACTICE_CHANGING",
-    hasConfAlert: true,
-    confAlertText: "Long-term data from AcT and ATTEST-2 confirm non-inferior functional outcomes and comparable safety.",
-    aiSynthesisAppraisal: {
-      consensusLevel: "HIGH_CONCORDANCE",
-      whyGuidelinesDiffer:
-        "ESO (2024 Expedited Update) and updated AHA/ASA (2026) both recommend Tenecteplase 0.25 mg/kg as equal or preferable to Alteplase due to the rapid 5-second bolus delivery, especially advantageous for 'drip-and-ship' transfers. Earlier AHA 2019 guidelines carried a Class IIb recommendation prior to completion of pivotal non-inferiority phase 3 RCTs.",
-      clinicalBottomLine:
-        "Tenecteplase 0.25 mg/kg (maximum 25 mg) administered as a single IV bolus over 5–10 seconds is a proven, safe, and pragmatic alternative to Alteplase for all patients eligible for intravenous thrombolysis within 4.5 hours.",
-      resourceDependency: "Standard Care",
-      lastAppraisedAt: "2026-03-15",
+    "id": "ais-ivt-tenecteplase-4.5h",
+    "title": "Tenecteplase vs. Alteplase for Acute Ischemic Stroke within 4.5 Hours",
+    "subspecialty": "Stroke",
+    "summary": "Indication for intravenous Tenecteplase (0.25 mg/kg single bolus, maximum 25 mg) as an effective and safe alternative to standard 1-hour Alteplase infusion in patients with acute ischemic stroke presenting within 4.5 hours of symptom onset.",
+    "keyTags": [
+      "Tenecteplase",
+      "TNK-tPA",
+      "Alteplase",
+      "IV Thrombolysis",
+      "Door-to-Needle",
+      "AcT",
+      "TRACE-2"
+    ],
+    "statusBadge": "PRACTICE_CHANGING",
+    "hasConfAlert": true,
+    "confAlertText": "Long-term data from AcT and ATTEST-2 confirm non-inferior functional outcomes and comparable safety.",
+    "aiSynthesisAppraisal": {
+      "consensusLevel": "HIGH_CONCORDANCE",
+      "whyGuidelinesDiffer": "ESO (2024 Expedited Update) and updated AHA/ASA (2026) both recommend Tenecteplase 0.25 mg/kg as equal or preferable to Alteplase due to the rapid 5-second bolus delivery, especially advantageous for 'drip-and-ship' transfers. Earlier AHA 2019 guidelines carried a Class IIb recommendation prior to completion of pivotal non-inferiority phase 3 RCTs.",
+      "clinicalBottomLine": "Tenecteplase 0.25 mg/kg (maximum 25 mg) administered as a single IV bolus over 5–10 seconds is a proven, safe, and pragmatic alternative to Alteplase for all patients eligible for intravenous thrombolysis within 4.5 hours.",
+      "resourceDependency": "Standard Care",
+      "lastAppraisedAt": "2026-03-15"
     },
-    temporalEvolution: [
+    "temporalEvolution": [
       {
-        society: "AHA/ASA",
-        previousYear: 2019,
-        previousGrade: "Class IIb, Level B-R (Selective consideration)",
-        currentYear: 2026,
-        currentGrade: "Class I, Level A (Recommended alternative)",
-        shiftDirection: "UPGRADED",
-        drivingTrials: ["AcT (Lancet 2022)", "TRACE-2 (Lancet 2023)", "ORIGINAL (Stroke 2024)"],
-        evolutionNarrative:
-          "Upgraded from a selective option prior to mechanical thrombectomy to a frontline Class I recommendation for all IVT-eligible stroke patients.",
+        "society": "AHA/ASA",
+        "previousYear": 2019,
+        "previousGrade": "Class IIb, Level B-R (Selective consideration)",
+        "currentYear": 2026,
+        "currentGrade": "Class I, Level A (Recommended alternative)",
+        "shiftDirection": "UPGRADED",
+        "drivingTrials": [
+          "AcT (Lancet 2022)",
+          "TRACE-2 (Lancet 2023)",
+          "ORIGINAL (Stroke 2024)"
+        ],
+        "evolutionNarrative": "Upgraded from a selective option prior to mechanical thrombectomy to a frontline Class I recommendation for all IVT-eligible stroke patients."
       },
       {
-        society: "ESO",
-        previousYear: 2021,
-        previousGrade: "Weak recommendation, Moderate quality",
-        currentYear: 2024,
-        currentGrade: "Strong recommendation FOR, High quality",
-        shiftDirection: "UPGRADED",
-        drivingTrials: ["AcT", "NOR-TEST 2A", "ATTEST-2"],
-        evolutionNarrative:
-          "ESO Living Guidelines established high-certainty evidence endorsing Tenecteplase 0.25 mg/kg over Alteplase 0.9 mg/kg.",
-      },
+        "society": "ESO",
+        "previousYear": 2021,
+        "previousGrade": "Weak recommendation, Moderate quality",
+        "currentYear": 2024,
+        "currentGrade": "Strong recommendation FOR, High quality",
+        "shiftDirection": "UPGRADED",
+        "drivingTrials": [
+          "AcT",
+          "NOR-TEST 2A",
+          "ATTEST-2"
+        ],
+        "evolutionNarrative": "ESO Living Guidelines established high-certainty evidence endorsing Tenecteplase 0.25 mg/kg over Alteplase 0.9 mg/kg."
+      }
     ],
-    ecosystemLinks: [
+    "ecosystemLinks": [
       {
-        app: "NeuroRx",
-        href: "#",
-        label: "Calculate TNK Dose by Weight",
-        badge: "0.25 mg/kg",
-        description: "Automatic bolus calculation with strict 25 mg ceiling and reconstitution guidelines.",
+        "app": "NeuroRx",
+        "href": "#",
+        "label": "Calculate TNK Dose by Weight",
+        "badge": "0.25 mg/kg",
+        "description": "Automatic bolus calculation with strict 25 mg ceiling and reconstitution guidelines."
       },
       {
-        app: "NeuroCalc",
-        href: "#",
-        label: "NIHSS Scoring Calculator",
-        badge: "IVT Eligibility",
-        description: "Quantify stroke neurological deficits pre- and post-thrombolytic administration.",
-      },
-    ],
+        "app": "NeuroCalc",
+        "href": "#",
+        "label": "NIHSS Scoring Calculator",
+        "badge": "IVT Eligibility",
+        "description": "Quantify stroke neurological deficits pre- and post-thrombolytic administration."
+      }
+    ]
   },
   {
-    id: "ais-large-core-evt-aspects-3-5",
-    title: "Endovascular Thrombectomy for Acute Ischemic Stroke with Large Ischemic Core (ASPECTS 3–5)",
-    subspecialty: "Stroke",
-    summary:
-      "Indication for mechanical thrombectomy in anterior circulation large vessel occlusion (ICA or MCA-M1) presenting with extensive baseline ischemic injury (ASPECTS 3–5 on NCCT/MRI or CTP ischemic core volume ≥50 mL) within 24 hours.",
-    keyTags: ["Large Core", "ASPECTS 3-5", "EVT", "Thrombectomy", "SELECT2", "TENSION", "LASTE"],
-    statusBadge: "UPGRADED",
-    hasConfAlert: true,
-    confAlertText: "LASTE trial reported at ESOC extended thrombectomy benefit down to ASPECTS 0–2.",
-    aiSynthesisAppraisal: {
-      consensusLevel: "HIGH_CONCORDANCE",
-      whyGuidelinesDiffer:
-        "Historically, trials excluded patients with ASPECTS < 6 due to concerns regarding catastrophic hemorrhagic transformation. Six modern randomized trials (RESCUE-JAPAN, SELECT2, ANGEL-ASPECT, TENSION, TESLA, LASTE) proved overwhelming functional benefit, prompting guidelines worldwide to reverse prior exclusions.",
-      clinicalBottomLine:
-        "Patients with anterior circulation LVO and ASPECTS 3–5 presenting within 24 hours should receive endovascular thrombectomy in addition to medical management, providing substantially superior functional independence (NNT ~ 5).",
-      resourceDependency: "Requires Advanced Perfusion/AI",
-      lastAppraisedAt: "2026-02-20",
+    "id": "ais-large-core-evt-aspects-3-5",
+    "title": "Endovascular Thrombectomy for Acute Ischemic Stroke with Large Ischemic Core (ASPECTS 3–5)",
+    "subspecialty": "Stroke",
+    "summary": "Indication for mechanical thrombectomy in anterior circulation large vessel occlusion (ICA or MCA-M1) presenting with extensive baseline ischemic injury (ASPECTS 3–5 on NCCT/MRI or CTP ischemic core volume ≥50 mL) within 24 hours.",
+    "keyTags": [
+      "Large Core",
+      "ASPECTS 3-5",
+      "EVT",
+      "Thrombectomy",
+      "SELECT2",
+      "TENSION",
+      "LASTE"
+    ],
+    "statusBadge": "UPGRADED",
+    "hasConfAlert": true,
+    "confAlertText": "LASTE trial reported at ESOC extended thrombectomy benefit down to ASPECTS 0–2.",
+    "aiSynthesisAppraisal": {
+      "consensusLevel": "HIGH_CONCORDANCE",
+      "whyGuidelinesDiffer": "Historically, trials excluded patients with ASPECTS < 6 due to concerns regarding catastrophic hemorrhagic transformation. Six modern randomized trials (RESCUE-JAPAN, SELECT2, ANGEL-ASPECT, TENSION, TESLA, LASTE) proved overwhelming functional benefit, prompting guidelines worldwide to reverse prior exclusions.",
+      "clinicalBottomLine": "Patients with anterior circulation LVO and ASPECTS 3–5 presenting within 24 hours should receive endovascular thrombectomy in addition to medical management, providing substantially superior functional independence (NNT ~ 5).",
+      "resourceDependency": "Requires Advanced Perfusion/AI",
+      "lastAppraisedAt": "2026-02-20"
     },
-    temporalEvolution: [
+    "temporalEvolution": [
       {
-        society: "AHA/ASA",
-        previousYear: 2019,
-        previousGrade: "Class IIb, Level B-R (Uncertain efficacy for ASPECTS <6)",
-        currentYear: 2026,
-        currentGrade: "Class I, Level A (Strongly recommended)",
-        shiftDirection: "UPGRADED",
-        drivingTrials: ["SELECT2 (NEJM 2023)", "ANGEL-ASPECT (NEJM 2023)", "TENSION (Lancet 2023)"],
-        evolutionNarrative:
-          "Historic shift from exclusion to Class I recommendation for patients with large core infarcts presenting within 24 hours.",
-      },
+        "society": "AHA/ASA",
+        "previousYear": 2019,
+        "previousGrade": "Class IIb, Level B-R (Uncertain efficacy for ASPECTS <6)",
+        "currentYear": 2026,
+        "currentGrade": "Class I, Level A (Strongly recommended)",
+        "shiftDirection": "UPGRADED",
+        "drivingTrials": [
+          "SELECT2 (NEJM 2023)",
+          "ANGEL-ASPECT (NEJM 2023)",
+          "TENSION (Lancet 2023)"
+        ],
+        "evolutionNarrative": "Historic shift from exclusion to Class I recommendation for patients with large core infarcts presenting within 24 hours."
+      }
     ],
-    ecosystemLinks: [
+    "ecosystemLinks": [
       {
-        app: "NeuroVision",
-        href: "#",
-        label: "ASPECTS 10-Region Automated Scoring",
-        badge: "AI Imaging",
-        description: "Map MCA territorial hypoattenuation on non-contrast CT and volumetric core perfusion.",
+        "app": "NeuroVision",
+        "href": "#",
+        "label": "ASPECTS 10-Region Automated Scoring",
+        "badge": "AI Imaging",
+        "description": "Map MCA territorial hypoattenuation on non-contrast CT and volumetric core perfusion."
       },
       {
-        app: "NeuroCase",
-        href: "/neurocase",
-        label: "Clinical Case: M1 Occlusion with ASPECTS 4",
-        badge: "Case Study",
-        description: "Review procedural angiograms and 90-day clinical outcome in a large core challenge.",
-      },
-    ],
+        "app": "NeuroCase",
+        "href": "/neurocase",
+        "label": "Clinical Case: M1 Occlusion with ASPECTS 4",
+        "badge": "Case Study",
+        "description": "Review procedural angiograms and 90-day clinical outcome in a large core challenge."
+      }
+    ]
   },
   {
-    id: "ich-acute-bp-lowering",
-    title: "Acute Blood Pressure Lowering in Spontaneous Intracerebral Hemorrhage",
-    subspecialty: "Stroke",
-    summary:
-      "Target systolic blood pressure thresholds in the hyperacute phase (within 2–6 hours) of spontaneous ICH to limit hematoma expansion while preventing renal hypoperfusion and cerebral ischemia.",
-    keyTags: ["ICH", "Blood Pressure", "Nicardipine", "Target SBP 130-140", "Hematoma Expansion"],
-    statusBadge: "ESTABLISHED",
-    hasConfAlert: false,
-    aiSynthesisAppraisal: {
-      consensusLevel: "HIGH_CONCORDANCE",
-      whyGuidelinesDiffer:
-        "AHA/ASA, ESO, and NCS all recommend rapid reduction to a target SBP between 130 and 140 mmHg, while explicitly advising against acute reduction below 130 mmHg or rapid drops >60 mmHg/hour due to renal adverse events highlighted in ATACH-2.",
-      clinicalBottomLine:
-        "In patients with acute spontaneous ICH presenting with SBP >150 mmHg, rapidly reduce and smoothly maintain SBP between 130 and 140 mmHg using titratable IV infusions (Nicardipine, Labetalol); avoid blood pressure variability.",
-      resourceDependency: "Standard Care",
-      lastAppraisedAt: "2026-01-10",
+    "id": "ich-acute-bp-lowering",
+    "title": "Acute Blood Pressure Lowering in Spontaneous Intracerebral Hemorrhage",
+    "subspecialty": "Stroke",
+    "summary": "Target systolic blood pressure thresholds in the hyperacute phase (within 2–6 hours) of spontaneous ICH to limit hematoma expansion while preventing renal hypoperfusion and cerebral ischemia.",
+    "keyTags": [
+      "ICH",
+      "Blood Pressure",
+      "Nicardipine",
+      "Target SBP 130-140",
+      "Hematoma Expansion"
+    ],
+    "statusBadge": "ESTABLISHED",
+    "hasConfAlert": false,
+    "aiSynthesisAppraisal": {
+      "consensusLevel": "HIGH_CONCORDANCE",
+      "whyGuidelinesDiffer": "AHA/ASA, ESO, and NCS all recommend rapid reduction to a target SBP between 130 and 140 mmHg, while explicitly advising against acute reduction below 130 mmHg or rapid drops >60 mmHg/hour due to renal adverse events highlighted in ATACH-2.",
+      "clinicalBottomLine": "In patients with acute spontaneous ICH presenting with SBP >150 mmHg, rapidly reduce and smoothly maintain SBP between 130 and 140 mmHg using titratable IV infusions (Nicardipine, Labetalol); avoid blood pressure variability.",
+      "resourceDependency": "Standard Care",
+      "lastAppraisedAt": "2026-01-10"
     },
-    temporalEvolution: [
+    "temporalEvolution": [
       {
-        society: "AHA/ASA",
-        previousYear: 2015,
-        previousGrade: "Class I, Level A (Target SBP <140 mmHg)",
-        currentYear: 2022,
-        currentGrade: "Class IIa, Level B-R (Target 130-140 mmHg; avoid <130)",
-        shiftDirection: "REVISED",
-        drivingTrials: ["INTERACT2 (NEJM 2013)", "ATACH-2 (NEJM 2016)"],
-        evolutionNarrative:
-          "Refined safety boundary establishing 130 mmHg as a floor to prevent acute kidney injury.",
-      },
+        "society": "AHA/ASA",
+        "previousYear": 2015,
+        "previousGrade": "Class I, Level A (Target SBP <140 mmHg)",
+        "currentYear": 2022,
+        "currentGrade": "Class IIa, Level B-R (Target 130-140 mmHg; avoid <130)",
+        "shiftDirection": "REVISED",
+        "drivingTrials": [
+          "INTERACT2 (NEJM 2013)",
+          "ATACH-2 (NEJM 2016)"
+        ],
+        "evolutionNarrative": "Refined safety boundary establishing 130 mmHg as a floor to prevent acute kidney injury."
+      }
     ],
-    ecosystemLinks: [
+    "ecosystemLinks": [
       {
-        app: "NeuroRx",
-        href: "#",
-        label: "Nicardipine & Labetalol Infusion Protocol",
-        badge: "Dosing",
-        description: "Stepwise titration increments and continuous blood pressure control guidelines.",
+        "app": "NeuroRx",
+        "href": "#",
+        "label": "Nicardipine & Labetalol Infusion Protocol",
+        "badge": "Dosing",
+        "description": "Stepwise titration increments and continuous blood pressure control guidelines."
       },
       {
-        app: "NeuroCalc",
-        href: "#",
-        label: "ICH Score Calculator",
-        badge: "Prognostication",
-        description: "30-day mortality risk stratification based on GCS, hematoma volume, and IVH.",
-      },
-    ],
+        "app": "NeuroCalc",
+        "href": "#",
+        "label": "ICH Score Calculator",
+        "badge": "Prognostication",
+        "description": "30-day mortality risk stratification based on GCS, hematoma volume, and IVH."
+      }
+    ]
   },
   {
-    id: "status-epilepticus-rse",
-    title: "Management of Refractory and Super-Refractory Status Epilepticus",
-    subspecialty: "Epilepsy",
-    summary:
-      "Stage 2 and Stage 3 treatment protocols when seizures persist beyond 20–30 minutes despite adequate first-line Benzodiazepines and second-line non-sedating IV antiseizure medications.",
-    keyTags: ["Status Epilepticus", "RSE", "NORSE", "cEEG", "Midazolam Infusion", "Propofol", "ESETT"],
-    statusBadge: "ESTABLISHED",
-    hasConfAlert: true,
-    confAlertText: "AES session highlighted early adjunctive Ketamine and urgent continuous EEG monitoring.",
-    aiSynthesisAppraisal: {
-      consensusLevel: "HIGH_CONCORDANCE",
-      whyGuidelinesDiffer:
-        "ILAE, NCS, and AAN endorse a structured 3-phase algorithm: Stage 1 (0–10 min: IV Lorazepam/Midazolam), Stage 2 (10–30 min: high-dose Levetiracetam, Valproate, or Fosphenytoin per ESETT trial), Stage 3 (>30 min: intubation with continuous Midazolam/Propofol anesthesia aiming for burst-suppression on cEEG).",
-      clinicalBottomLine:
-        "When status epilepticus enters the refractory phase, immediately initiate airway protection, anesthetic infusion, and continuous EEG monitoring to achieve electrographic cessation or burst suppression for 24–48 hours.",
-      resourceDependency: "Specialized Center Only",
-      lastAppraisedAt: "2026-01-25",
-    },
-    ecosystemLinks: [
-      {
-        app: "NeuroRx",
-        href: "#",
-        label: "Second-Line IV ASM Weight-Based Dosing",
-        badge: "ESETT Protocol",
-        description: "Levetiracetam 60 mg/kg (max 4.5g), Valproate 40 mg/kg (max 3g).",
-      },
+    "id": "status-epilepticus-rse",
+    "title": "Management of Refractory and Super-Refractory Status Epilepticus",
+    "subspecialty": "Epilepsy",
+    "summary": "Stage 2 and Stage 3 treatment protocols when seizures persist beyond 20–30 minutes despite adequate first-line Benzodiazepines and second-line non-sedating IV antiseizure medications.",
+    "keyTags": [
+      "Status Epilepticus",
+      "RSE",
+      "NORSE",
+      "cEEG",
+      "Midazolam Infusion",
+      "Propofol",
+      "ESETT"
     ],
-  },
-  {
-    id: "dementia-amyloid-monoclonal",
-    title: "Anti-Amyloid Monoclonal Antibodies and ARIA Safety Monitoring in Early Alzheimer's Disease",
-    subspecialty: "Dementia",
-    summary:
-      "Appropriate patient selection criteria based on confirmed amyloid/tau biomarkers and standardized MRI surveillance protocols for amyloid-related imaging abnormalities (ARIA-E edema, ARIA-H microhemorrhages).",
-    keyTags: ["Alzheimer", "Lecanemab", "Donanemab", "ARIA-E", "ARIA-H", "p-Tau217", "ApoE4"],
-    statusBadge: "NEW",
-    hasConfAlert: true,
-    confAlertText: "Real-world registry data presented at AAIC demonstrated safety of streamlined MRI surveillance.",
-    aiSynthesisAppraisal: {
-      consensusLevel: "MODERATE_VARIATION",
-      whyGuidelinesDiffer:
-        "AAN and international working groups recommend therapy for confirmed MCI or mild dementia due to AD with elevated amyloid. Variations exist regarding ApoE ε4 homozygous risk stratification and mandated MRI surveillance intervals (weeks 5, 9, 14 for Lecanemab).",
-      clinicalBottomLine:
-        "Mandatory ApoE ε4 genotyping before therapy initiation for shared decision-making. Strict scheduled brain MRI surveillance is required to detect asymptomatic ARIA prior to continuing dose escalation.",
-      resourceDependency: "Specialized Center Only",
-      lastAppraisedAt: "2026-03-01",
+    "statusBadge": "ESTABLISHED",
+    "hasConfAlert": true,
+    "confAlertText": "AES session highlighted early adjunctive Ketamine and urgent continuous EEG monitoring.",
+    "aiSynthesisAppraisal": {
+      "consensusLevel": "HIGH_CONCORDANCE",
+      "whyGuidelinesDiffer": "ILAE, NCS, and AAN endorse a structured 3-phase algorithm: Stage 1 (0–10 min: IV Lorazepam/Midazolam), Stage 2 (10–30 min: high-dose Levetiracetam, Valproate, or Fosphenytoin per ESETT trial), Stage 3 (>30 min: intubation with continuous Midazolam/Propofol anesthesia aiming for burst-suppression on cEEG).",
+      "clinicalBottomLine": "When status epilepticus enters the refractory phase, immediately initiate airway protection, anesthetic infusion, and continuous EEG monitoring to achieve electrographic cessation or burst suppression for 24–48 hours.",
+      "resourceDependency": "Specialized Center Only",
+      "lastAppraisedAt": "2026-01-25"
     },
-  },
-  {
-    id: "myasthenia-gravis-refractory",
-    title: "Targeted Biologics (FcRn Antagonists and Complement Inhibitors) in Generalized Myasthenia Gravis",
-    subspecialty: "Neuromuscular",
-    summary:
-      "Role of targeted biologics (Efgartigimod, Ravulizumab, Zilucoplan) compared to conventional broad immunosuppressants and plasma exchange in AChR-Ab-positive refractory generalized Myasthenia Gravis.",
-    keyTags: ["Myasthenia Gravis", "Efgartigimod", "FcRn", "Complement Inhibitor", "MG-ADL", "AChR-Ab"],
-    statusBadge: "PRACTICE_CHANGING",
-    hasConfAlert: false,
-    aiSynthesisAppraisal: {
-      consensusLevel: "HIGH_CONCORDANCE",
-      whyGuidelinesDiffer:
-        "Pivotal phase 3 trials (ADAPT, CHAMPION-MG, RAISE) demonstrated rapid, sustained clinical improvement on MG-ADL scores without corticosteroid-associated toxicity. Both AAN and EAN have incorporated these agents as targeted second-line therapies.",
-      clinicalBottomLine:
-        "In patients with acetylcholine receptor antibody-positive generalized MG unresponsive to first-line corticosteroids and non-steroidal immunosuppressants, FcRn antagonists (Efgartigimod) or C5 complement inhibitors are strongly indicated.",
-      resourceDependency: "Specialized Center Only",
-      lastAppraisedAt: "2026-02-12",
-    },
-  },
-  {
-    id: "cns-bacterial-meningitis",
-    title: "Empirical Antimicrobial Therapy and Early Dexamethasone in Community-Acquired Acute Bacterial Meningitis",
-    subspecialty: "CNS Infections",
-    summary:
-      "Optimal timing of adjunctive corticosteroid administration (prior to or with the first dose of antibiotics) and high-dose empirical antimicrobial coverage for Ceftriaxone-resistant S. pneumoniae and N. meningitidis.",
-    keyTags: ["Bacterial Meningitis", "Dexamethasone", "Ceftriaxone", "Vancomycin", "S. pneumoniae"],
-    statusBadge: "ESTABLISHED",
-    hasConfAlert: false,
-    aiSynthesisAppraisal: {
-      consensusLevel: "HIGH_CONCORDANCE",
-      whyGuidelinesDiffer:
-        "IDSA, ESCMID, and national guidelines unanimously mandate that Dexamethasone (10 mg IV) must be given BEFORE or WITH the first antibiotic dose. Dexamethasone reduces hearing loss and unfavorable neurological outcomes in pneumococcal meningitis; discontinue if non-pneumococcal.",
-      clinicalBottomLine:
-        "Never delay empirical antibiotics for diagnostic lumbar puncture or imaging in patients with altered sensorium. Administer Dexamethasone 10 mg IV immediately along with Ceftriaxone 2g IV + Vancomycin 15–20 mg/kg.",
-      resourceDependency: "Standard Care",
-      lastAppraisedAt: "2026-01-18",
-    },
-  },
-  {
-    id: "asah-aneurysm-coiling-vs-clipping",
-    title: "Endovascular Coiling vs. Microsurgical Clipping in Aneurysmal Subarachnoid Hemorrhage",
-    subspecialty: "Stroke",
-    summary:
-      "Definitive aneurysm occlusion strategy (regular endovascular coiling vs. microsurgical clipping) and hyperacute timing (<24 hours) in patients presenting with ruptured aneurysmal subarachnoid hemorrhage (aSAH).",
-    keyTags: ["aSAH", "Subarachnoid Hemorrhage", "Coiling", "Clipping", "Nimodipine", "WFNS I-III", "ISAT", "Vergouwen", "ESO 2026", "EANS", "ESMINT"],
-    statusBadge: "PRACTICE_CHANGING",
-    hasConfAlert: true,
-    confAlertText: "Joint ESO-EANS-ESMINT 2026 Guidelines published in European Stroke Journal strongly endorse simple coiling over clipping in WFNS I-III.",
-    aiSynthesisAppraisal: {
-      consensusLevel: "HIGH_CONCORDANCE",
-      whyGuidelinesDiffer:
-        "Both ESO/EANS/ESMINT (2026) and AHA/ASA (2023) favor simple endovascular coiling over clipping for ruptured intracranial aneurysms when both are technically feasible, driven by long-term disability data from ISAT. Clipping remains preferred for wide-neck MCA bifurcation aneurysms or large parenchymal hematomas requiring mass decompression.",
-      clinicalBottomLine:
-        "Ruptured aneurysms should be secured within 24 hours of ictus by a dedicated multidisciplinary neurovascular team. For patients in good grade (WFNS I–III) where both options are suitable, regular coiling is strongly recommended over clipping. Mandatory oral nimodipine for 21 days.",
-      resourceDependency: "Specialized Center Only",
-      lastAppraisedAt: "2026-05-10",
-    },
-    temporalEvolution: [
+    "ecosystemLinks": [
       {
-        society: "ESO",
-        previousYear: 2013,
-        previousGrade: "Conditional recommendation (Moderate quality)",
-        currentYear: 2026,
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        shiftDirection: "UPGRADED",
-        drivingTrials: ["ISAT (Lancet 2005)", "ISAT Long-term Follow-up (Lancet 2015)", "Cochrane Systematic Review 2025"],
-        evolutionNarrative:
-          "Upgraded to the highest GRADE tier (Strong recommendation FOR) establishing simple coiling as the frontline standard of care over neurosurgical clipping for WFNS I–III.",
-      },
-      {
-        society: "AHA/ASA",
-        previousYear: 2012,
-        previousGrade: "Class I, Level B",
-        currentYear: 2023,
-        currentGrade: "Class I, Level B-R",
-        shiftDirection: "UNCHANGED",
-        drivingTrials: ["ISAT", "BRAT Trial"],
-        evolutionNarrative:
-          "Maintained strong endorsement of endovascular coiling for technically amenable ruptured aneurysms.",
-      },
+        "app": "NeuroRx",
+        "href": "#",
+        "label": "Second-Line IV ASM Weight-Based Dosing",
+        "badge": "ESETT Protocol",
+        "description": "Levetiracetam 60 mg/kg (max 4.5g), Valproate 40 mg/kg (max 3g)."
+      }
+    ]
+  },
+  {
+    "id": "dementia-amyloid-monoclonal",
+    "title": "Anti-Amyloid Monoclonal Antibodies and ARIA Safety Monitoring in Early Alzheimer's Disease",
+    "subspecialty": "Dementia",
+    "summary": "Appropriate patient selection criteria based on confirmed amyloid/tau biomarkers and standardized MRI surveillance protocols for amyloid-related imaging abnormalities (ARIA-E edema, ARIA-H microhemorrhages).",
+    "keyTags": [
+      "Alzheimer",
+      "Lecanemab",
+      "Donanemab",
+      "ARIA-E",
+      "ARIA-H",
+      "p-Tau217",
+      "ApoE4"
     ],
-    ecosystemLinks: [
-      {
-        app: "NeuroRx",
-        href: "#",
-        label: "Oral Nimodipine 21-Day Protocol",
-        badge: "60mg q4h",
-        description: "Standardized enterally administered Nimodipine protocol to prevent delayed cerebral ischemia.",
-      },
-      {
-        app: "NeuroCalc",
-        href: "#",
-        label: "WFNS & Hunt-Hess Scoring Calculator",
-        badge: "Grading",
-        description: "Emergency clinical grade stratification and prognostic risk calculator for aSAH.",
-      },
-    ],
+    "statusBadge": "NEW",
+    "hasConfAlert": true,
+    "confAlertText": "Real-world registry data presented at AAIC demonstrated safety of streamlined MRI surveillance.",
+    "aiSynthesisAppraisal": {
+      "consensusLevel": "MODERATE_VARIATION",
+      "whyGuidelinesDiffer": "AAN and international working groups recommend therapy for confirmed MCI or mild dementia due to AD with elevated amyloid. Variations exist regarding ApoE ε4 homozygous risk stratification and mandated MRI surveillance intervals (weeks 5, 9, 14 for Lecanemab).",
+      "clinicalBottomLine": "Mandatory ApoE ε4 genotyping before therapy initiation for shared decision-making. Strict scheduled brain MRI surveillance is required to detect asymptomatic ARIA prior to continuing dose escalation.",
+      "resourceDependency": "Specialized Center Only",
+      "lastAppraisedAt": "2026-03-01"
+    }
   },
+  {
+    "id": "myasthenia-gravis-refractory",
+    "title": "Targeted Biologics (FcRn Antagonists and Complement Inhibitors) in Generalized Myasthenia Gravis",
+    "subspecialty": "Neuromuscular",
+    "summary": "Role of targeted biologics (Efgartigimod, Ravulizumab, Zilucoplan) compared to conventional broad immunosuppressants and plasma exchange in AChR-Ab-positive refractory generalized Myasthenia Gravis.",
+    "keyTags": [
+      "Myasthenia Gravis",
+      "Efgartigimod",
+      "FcRn",
+      "Complement Inhibitor",
+      "MG-ADL",
+      "AChR-Ab"
+    ],
+    "statusBadge": "PRACTICE_CHANGING",
+    "hasConfAlert": false,
+    "aiSynthesisAppraisal": {
+      "consensusLevel": "HIGH_CONCORDANCE",
+      "whyGuidelinesDiffer": "Pivotal phase 3 trials (ADAPT, CHAMPION-MG, RAISE) demonstrated rapid, sustained clinical improvement on MG-ADL scores without corticosteroid-associated toxicity. Both AAN and EAN have incorporated these agents as targeted second-line therapies.",
+      "clinicalBottomLine": "In patients with acetylcholine receptor antibody-positive generalized MG unresponsive to first-line corticosteroids and non-steroidal immunosuppressants, FcRn antagonists (Efgartigimod) or C5 complement inhibitors are strongly indicated.",
+      "resourceDependency": "Specialized Center Only",
+      "lastAppraisedAt": "2026-02-12"
+    }
+  },
+  {
+    "id": "cns-bacterial-meningitis",
+    "title": "Empirical Antimicrobial Therapy and Early Dexamethasone in Community-Acquired Acute Bacterial Meningitis",
+    "subspecialty": "CNS Infections",
+    "summary": "Optimal timing of adjunctive corticosteroid administration (prior to or with the first dose of antibiotics) and high-dose empirical antimicrobial coverage for Ceftriaxone-resistant S. pneumoniae and N. meningitidis.",
+    "keyTags": [
+      "Bacterial Meningitis",
+      "Dexamethasone",
+      "Ceftriaxone",
+      "Vancomycin",
+      "S. pneumoniae"
+    ],
+    "statusBadge": "ESTABLISHED",
+    "hasConfAlert": false,
+    "aiSynthesisAppraisal": {
+      "consensusLevel": "HIGH_CONCORDANCE",
+      "whyGuidelinesDiffer": "IDSA, ESCMID, and national guidelines unanimously mandate that Dexamethasone (10 mg IV) must be given BEFORE or WITH the first antibiotic dose. Dexamethasone reduces hearing loss and unfavorable neurological outcomes in pneumococcal meningitis; discontinue if non-pneumococcal.",
+      "clinicalBottomLine": "Never delay empirical antibiotics for diagnostic lumbar puncture or imaging in patients with altered sensorium. Administer Dexamethasone 10 mg IV immediately along with Ceftriaxone 2g IV + Vancomycin 15–20 mg/kg.",
+      "resourceDependency": "Standard Care",
+      "lastAppraisedAt": "2026-01-18"
+    }
+  },
+  {
+    "id": "asah-aneurysm-coiling-vs-clipping",
+    "title": "Endovascular Coiling vs. Microsurgical Clipping in Aneurysmal Subarachnoid Hemorrhage",
+    "subspecialty": "Stroke",
+    "summary": "Definitive aneurysm occlusion strategy (regular endovascular coiling vs. microsurgical clipping) and hyperacute timing (<24 hours) in patients presenting with ruptured aneurysmal subarachnoid hemorrhage (aSAH).",
+    "keyTags": [
+      "aSAH",
+      "Subarachnoid Hemorrhage",
+      "Coiling",
+      "Clipping",
+      "Nimodipine",
+      "WFNS I-III",
+      "ISAT",
+      "Vergouwen",
+      "ESO 2026",
+      "EANS",
+      "ESMINT"
+    ],
+    "statusBadge": "PRACTICE_CHANGING",
+    "hasConfAlert": true,
+    "confAlertText": "Joint ESO-EANS-ESMINT 2026 Guidelines published in European Stroke Journal strongly endorse simple coiling over clipping in WFNS I-III.",
+    "aiSynthesisAppraisal": {
+      "consensusLevel": "HIGH_CONCORDANCE",
+      "whyGuidelinesDiffer": "Both ESO/EANS/ESMINT (2026) and AHA/ASA (2023) favor simple endovascular coiling over clipping for ruptured intracranial aneurysms when both are technically feasible, driven by long-term disability data from ISAT. Clipping remains preferred for wide-neck MCA bifurcation aneurysms or large parenchymal hematomas requiring mass decompression.",
+      "clinicalBottomLine": "Ruptured aneurysms should be secured within 24 hours of ictus by a dedicated multidisciplinary neurovascular team. For patients in good grade (WFNS I–III) where both options are suitable, regular coiling is strongly recommended over clipping. Mandatory oral nimodipine for 21 days.",
+      "resourceDependency": "Specialized Center Only",
+      "lastAppraisedAt": "2026-05-10"
+    },
+    "temporalEvolution": [
+      {
+        "society": "ESO",
+        "previousYear": 2013,
+        "previousGrade": "Conditional recommendation (Moderate quality)",
+        "currentYear": 2026,
+        "currentGrade": "Strong recommendation FOR, High quality evidence",
+        "shiftDirection": "UPGRADED",
+        "drivingTrials": [
+          "ISAT (Lancet 2005)",
+          "ISAT Long-term Follow-up (Lancet 2015)",
+          "Cochrane Systematic Review 2025"
+        ],
+        "evolutionNarrative": "Upgraded to the highest GRADE tier (Strong recommendation FOR) establishing simple coiling as the frontline standard of care over neurosurgical clipping for WFNS I–III."
+      },
+      {
+        "society": "AHA/ASA",
+        "previousYear": 2012,
+        "previousGrade": "Class I, Level B",
+        "currentYear": 2023,
+        "currentGrade": "Class I, Level B-R",
+        "shiftDirection": "UNCHANGED",
+        "drivingTrials": [
+          "ISAT",
+          "BRAT Trial"
+        ],
+        "evolutionNarrative": "Maintained strong endorsement of endovascular coiling for technically amenable ruptured aneurysms."
+      }
+    ],
+    "ecosystemLinks": [
+      {
+        "app": "NeuroRx",
+        "href": "#",
+        "label": "Oral Nimodipine 21-Day Protocol",
+        "badge": "60mg q4h",
+        "description": "Standardized enterally administered Nimodipine protocol to prevent delayed cerebral ischemia."
+      },
+      {
+        "app": "NeuroCalc",
+        "href": "#",
+        "label": "WFNS & Hunt-Hess Scoring Calculator",
+        "badge": "Grading",
+        "description": "Emergency clinical grade stratification and prognostic risk calculator for aSAH."
+      }
+    ]
+  }
 ];
 
 export const MOCK_GUIDELINE_DOCS: GuidelineDoc[] = [
   {
-    id: "aha-ais-2026",
-    society: "AHA/ASA",
-    year: 2026,
-    subspecialty: "Stroke",
-    title: "2026 Guidelines for the Early Management of Patients with Acute Ischemic Stroke",
-    officialUrl: "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
-    journalTarget: "Stroke",
-    documentType: "Clinical Practice Guideline",
-    publishDate: "2026-01-22",
-    previousVersionYear: 2019,
-    executiveSummary:
-      "Comprehensive AHA/ASA practice-changing update replacing the 2018/2019 guidelines (DOI: 10.1161/STR.0000000000000513), establishing pivotal recommendations for Tenecteplase, expanded large-core EVT up to 24h, basilar artery occlusions, prehospital mobile stroke units, pediatric stroke pathways, and strict post-reperfusion blood pressure safety.",
-    linkedScenarioIds: ["ais-ivt-tenecteplase-4.5h", "ais-large-core-evt-aspects-3-5"],
-    allPracticeChanges: [
-      {
-        id: "chg-aha-1",
-        scenarioId: "ais-ivt-tenecteplase-4.5h",
-        category: "Reperfusion / IVT",
-        topic: "Tenecteplase as Frontline Alternative to Alteplase < 4.5h",
-        changeType: "UPGRADED",
-        previousGrade: "Class IIb, Level B-R",
-        currentGrade: "Class I, Level A",
-        previousText: "Tenecteplase may be considered as a reasonable alternative for patients eligible for mechanical thrombectomy.",
-        currentText:
-          "Tenecteplase (0.25 mg/kg, maximum 25 mg single IV bolus) is recommended as a safe and effective alternative to Alteplase (0.9 mg/kg) for all acute ischemic stroke patients presenting within 4.5 hours of symptom onset.",
-        drivingTrials: ["AcT (Lancet 2022)", "TRACE-2 (Lancet 2023)", "ORIGINAL (Stroke 2024)", "ATTEST-2 (Lancet Neurol 2024)"],
-      },
-      {
-        id: "chg-aha-2",
-        scenarioId: "ais-large-core-evt-aspects-3-5",
-        category: "Neurointervention / EVT",
-        topic: "Endovascular Thrombectomy in Large Ischemic Core (ASPECTS 3–5)",
-        changeType: "UPGRADED",
-        previousGrade: "Class IIb, Level B-R (Uncertain efficacy)",
-        currentGrade: "Class I, Level A",
-        previousText: "The effectiveness of mechanical thrombectomy in patients with ASPECTS < 6 remains uncertain.",
-        currentText:
-          "For patients with acute ischemic stroke due to anterior circulation LVO (ICA or MCA-M1) and extensive baseline ischemic changes (ASPECTS 3–5 on NCCT/MRI or CTP core volume ≥50 mL) within 0–24 hours, mechanical thrombectomy combined with medical management is strongly recommended.",
-        drivingTrials: ["SELECT2 (NEJM 2023)", "ANGEL-ASPECT (NEJM 2023)", "TENSION (Lancet 2023)", "TESLA (JAMA 2024)", "LASTE (NEJM 2024)"],
-      },
-      {
-        id: "chg-aha-3",
-        category: "Neurointervention / EVT",
-        topic: "Mechanical Thrombectomy for Basilar Artery Occlusion (BAO) up to 24 Hours",
-        changeType: "UPGRADED",
-        previousGrade: "Class IIb, Level C-LD",
-        currentGrade: "Class I, Level A",
-        previousText: "Mechanical thrombectomy may be reasonable for carefully selected patients with basilar artery occlusion within 6 to 24 hours.",
-        currentText:
-          "For patients with acute ischemic stroke caused by basilar artery occlusion presenting within 0–24 hours, endovascular thrombectomy combined with medical management is recommended over medical therapy alone to reduce mortality and improve functional independence.",
-        drivingTrials: ["ATTENTION (NEJM 2022)", "BAOCHE (NEJM 2022)"],
-      },
-      {
-        id: "chg-aha-4",
-        category: "Reperfusion Eligibility",
-        topic: "Removal of Arbitrary Chronological Age Caps for Reperfusion",
-        changeType: "REVISED",
-        previousGrade: "Class IIa, Level B-R (Deterred for octogenarians in extended windows)",
-        currentGrade: "Class I, Level B-NR",
-        previousText: "Age >80 years was a relative exclusion or cautionary factor in several extended window clinical trials.",
-        currentText:
-          "Chronological age alone should not be used as an exclusion criterion for IV thrombolysis or endovascular thrombectomy. Eligible elderly patients (including those >80 years) experience substantial net clinical benefit from reperfusion therapy based on tissue perfusion mismatch.",
-        drivingTrials: ["HERMES Meta-analysis", "DEFUSE 3 / DAWN Elderly Substudies"],
-      },
-      {
-        id: "chg-aha-5",
-        category: "Secondary Prevention",
-        topic: "Dual Antiplatelet Therapy (DAPT) in Non-disabling Stroke / High-Risk TIA",
-        changeType: "REVISED",
-        previousGrade: "Class I, Level A (21 to 90 days)",
-        currentGrade: "Class I, Level A (Strictly 21 Days, then Monotherapy)",
-        previousText: "DAPT Aspirin plus Clopidogrel should begin within 24 hours and continue for 21 to 90 days.",
-        currentText:
-          "For patients with non-disabling minor acute ischemic stroke (NIHSS ≤3) or high-risk TIA (ABCD2 score ≥4) who do not receive IV thrombolysis, dual antiplatelet therapy (Aspirin + Clopidogrel) should be initiated within 24 hours and continued strictly for 21 days, followed by single antiplatelet monotherapy to avoid excess major bleeding.",
-        drivingTrials: ["CHANCE (NEJM 2013)", "POINT (NEJM 2018)", "THALES (NEJM 2020)"],
-      },
-      {
-        id: "chg-aha-6",
-        category: "Secondary Prevention",
-        topic: "Extended Window DAPT (up to 72h) & Ticagrelor for CYP2C19 Loss-of-Function",
-        changeType: "NEW",
-        previousGrade: "Not Addressed",
-        currentGrade: "Class IIa, Level B-R",
-        currentText:
-          "In patients with mild ischemic stroke or high-risk TIA of atherosclerotic origin presenting within 24–72 hours of symptom onset, DAPT (Aspirin + Clopidogrel) initiated within 72 hours improves 90-day functional outcome. Furthermore, Ticagrelor plus Aspirin is recommended as an effective alternative in patients with CYP2C19 loss-of-function alleles.",
-        drivingTrials: ["INSPIRES (NEJM 2024)", "CHANCE-2 (NEJM 2021)"],
-      },
-      {
-        id: "chg-aha-7",
-        category: "Secondary Prevention",
-        topic: "Early Direct Oral Anticoagulant (DOAC) Initiation in Atrial Fibrillation",
-        changeType: "NEW",
-        previousGrade: "Class IIa, Level B-NR (Historically 3-14 days delay)",
-        currentGrade: "Class IIa, Level B-R (Early Start: 48h to 4 Days)",
-        previousText: "Anticoagulation for secondary stroke prevention in atrial fibrillation was delayed up to 14 days following moderate-to-severe infarction due to feared hemorrhagic transformation.",
-        currentText:
-          "Early initiation of DOACs (within 48 hours to 4 days of onset) is safe and reasonable in patients with non-valvular atrial fibrillation presenting with mild-to-moderate acute ischemic stroke, without increasing symptomatic intracranial hemorrhage compared to delayed initiation.",
-        drivingTrials: ["TIMING (Circulation 2022)", "ELAN (NEJM 2023)", "OPTIMAS (Lancet 2024)"],
-      },
-      {
-        id: "chg-aha-8",
-        category: "Blood Pressure",
-        topic: "Avoidance of Intensive Blood Pressure Lowering (<140 mmHg) Post-Reperfusion",
-        changeType: "NEW",
-        previousGrade: "Class IIa (Historical preference for SBP <140 mmHg post-recanalization)",
-        currentGrade: "Class III: Harm, Level B-R",
-        previousText: "Lowering SBP to <140 mmHg post-successful recanalization was widely practiced to prevent reperfusion injury.",
-        currentText:
-          "In patients who achieve successful recanalization (eTICI 2b–3) following endovascular thrombectomy, intensive blood pressure lowering targeting SBP <140 mmHg (or <120 mmHg) is NOT recommended and may lead to cerebral hypoperfusion, infarct extension, and worse functional outcomes.",
-        drivingTrials: ["OPTIMAL-BP (JAMA 2023)", "ENCHANTED2/MT (Lancet 2022)"],
-      },
-      {
-        id: "chg-aha-9",
-        category: "In-Hospital Medical Management",
-        topic: "Avoidance of Intensive Glycemic Control (Tight Target 80–130 mg/dL)",
-        changeType: "REVISED",
-        previousGrade: "Class IIa, Level B-R",
-        currentGrade: "Class III: Harm, Level B-R (Standard Target 140–180 mg/dL)",
-        previousText: "Aggressive glycemic normalization with continuous IV insulin was frequently utilized in acute stroke units.",
-        currentText:
-          "Intensive glucose lowering targeting tight normoglycemia (80–130 mg/dL) using continuous IV insulin infusions should be avoided because it substantially increases the incidence of severe hypoglycemia without improving 90-day clinical outcomes. Blood glucose should be maintained in the range of 140–180 mg/dL.",
-        drivingTrials: ["SHINE (JAMA 2019)"],
-      },
-      {
-        id: "chg-aha-10",
-        category: "Pediatric Stroke",
-        topic: "First-Time Standardized Pediatric Acute Ischemic Stroke Pathway",
-        changeType: "NEW",
-        previousGrade: "Not Included in Adult Guidelines",
-        currentGrade: "Class I / Class IIb, Level C-LD",
-        currentText:
-          "For the first time, comprehensive dedicated emergency management protocols are established for pediatric acute ischemic stroke: urgent vascular imaging (CTA or MRA) is recommended; weight-adjusted IV thrombolysis (0.9 mg/kg Alteplase) may be considered in adolescents; and mechanical thrombectomy is reasonable in children aged ≥6 years with proximal anterior circulation LVO and persistent neurological deficit.",
-        drivingTrials: ["Save ChildS Registry", "Thrombolysis in Pediatric Stroke (TIPS) Cohort"],
-      },
-      {
-        id: "chg-aha-11",
-        category: "Prehospital Systems",
-        topic: "Mobile Stroke Units (MSUs) and Prehospital Telestroke Triage",
-        changeType: "UPGRADED",
-        previousGrade: "Class IIb, Level B-R",
-        currentGrade: "Class IIa, Level B-R",
-        previousText: "Mobile stroke units were considered experimental research vehicles with uncertain clinical cost-effectiveness.",
-        currentText:
-          "In regional stroke systems with deployed Mobile Stroke Units (ambulances equipped with point-of-care CT, point-of-care lab, and telestroke connectivity), MSU dispatch is recommended to expedite prehospital thrombolysis and streamline direct triage to thrombectomy-capable centers.",
-        drivingTrials: ["BEST-MSU (NEJM 2021)", "B-PROUD (JAMA 2021)"],
-      },
+    "id": "aha-ais-2026",
+    "society": "AHA/ASA",
+    "year": 2026,
+    "subspecialty": "Stroke",
+    "title": "2026 Guidelines for the Early Management of Patients with Acute Ischemic Stroke",
+    "officialUrl": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
+    "journalTarget": "Stroke",
+    "documentType": "Clinical Practice Guideline",
+    "publishDate": "2026-01-22",
+    "previousVersionYear": 2019,
+    "executiveSummary": "Comprehensive AHA/ASA practice-changing update replacing the 2018/2019 guidelines (DOI: 10.1161/STR.0000000000000513), establishing pivotal recommendations for Tenecteplase, expanded large-core EVT up to 24h, basilar artery occlusions, prehospital mobile stroke units, pediatric stroke pathways, and strict post-reperfusion blood pressure safety.",
+    "linkedScenarioIds": [
+      "ais-ivt-tenecteplase-4.5h",
+      "ais-large-core-evt-aspects-3-5"
     ],
+    "allPracticeChanges": [
+      {
+        "id": "chg-aha-1",
+        "scenarioId": "ais-ivt-tenecteplase-4.5h",
+        "category": "Reperfusion / IVT",
+        "topic": "Tenecteplase as Frontline Alternative to Alteplase < 4.5h",
+        "changeType": "UPGRADED",
+        "previousGrade": "Class IIb, Level B-R",
+        "currentGrade": "Class I, Level A",
+        "previousText": "Tenecteplase may be considered as a reasonable alternative for patients eligible for mechanical thrombectomy.",
+        "currentText": "Tenecteplase (0.25 mg/kg, maximum 25 mg single IV bolus) is recommended as a safe and effective alternative to Alteplase (0.9 mg/kg) for all acute ischemic stroke patients presenting within 4.5 hours of symptom onset.",
+        "drivingTrials": [
+          "AcT (Lancet 2022)",
+          "TRACE-2 (Lancet 2023)",
+          "ORIGINAL (Stroke 2024)",
+          "ATTEST-2 (Lancet Neurol 2024)"
+        ]
+      },
+      {
+        "id": "chg-aha-2",
+        "scenarioId": "ais-large-core-evt-aspects-3-5",
+        "category": "Neurointervention / EVT",
+        "topic": "Endovascular Thrombectomy in Large Ischemic Core (ASPECTS 3–5)",
+        "changeType": "UPGRADED",
+        "previousGrade": "Class IIb, Level B-R (Uncertain efficacy)",
+        "currentGrade": "Class I, Level A",
+        "previousText": "The effectiveness of mechanical thrombectomy in patients with ASPECTS < 6 remains uncertain.",
+        "currentText": "For patients with acute ischemic stroke due to anterior circulation LVO (ICA or MCA-M1) and extensive baseline ischemic changes (ASPECTS 3–5 on NCCT/MRI or CTP core volume ≥50 mL) within 0–24 hours, mechanical thrombectomy combined with medical management is strongly recommended.",
+        "drivingTrials": [
+          "SELECT2 (NEJM 2023)",
+          "ANGEL-ASPECT (NEJM 2023)",
+          "TENSION (Lancet 2023)",
+          "TESLA (JAMA 2024)",
+          "LASTE (NEJM 2024)"
+        ]
+      },
+      {
+        "id": "chg-aha-3",
+        "category": "Neurointervention / EVT",
+        "topic": "Mechanical Thrombectomy for Basilar Artery Occlusion (BAO) up to 24 Hours",
+        "changeType": "UPGRADED",
+        "previousGrade": "Class IIb, Level C-LD",
+        "currentGrade": "Class I, Level A",
+        "previousText": "Mechanical thrombectomy may be reasonable for carefully selected patients with basilar artery occlusion within 6 to 24 hours.",
+        "currentText": "For patients with acute ischemic stroke caused by basilar artery occlusion presenting within 0–24 hours, endovascular thrombectomy combined with medical management is recommended over medical therapy alone to reduce mortality and improve functional independence.",
+        "drivingTrials": [
+          "ATTENTION (NEJM 2022)",
+          "BAOCHE (NEJM 2022)"
+        ]
+      },
+      {
+        "id": "chg-aha-4",
+        "category": "Reperfusion Eligibility",
+        "topic": "Removal of Arbitrary Chronological Age Caps for Reperfusion",
+        "changeType": "REVISED",
+        "previousGrade": "Class IIa, Level B-R (Deterred for octogenarians in extended windows)",
+        "currentGrade": "Class I, Level B-NR",
+        "previousText": "Age >80 years was a relative exclusion or cautionary factor in several extended window clinical trials.",
+        "currentText": "Chronological age alone should not be used as an exclusion criterion for IV thrombolysis or endovascular thrombectomy. Eligible elderly patients (including those >80 years) experience substantial net clinical benefit from reperfusion therapy based on tissue perfusion mismatch.",
+        "drivingTrials": [
+          "HERMES Meta-analysis",
+          "DEFUSE 3 / DAWN Elderly Substudies"
+        ]
+      },
+      {
+        "id": "chg-aha-5",
+        "category": "Secondary Prevention",
+        "topic": "Dual Antiplatelet Therapy (DAPT) in Non-disabling Stroke / High-Risk TIA",
+        "changeType": "REVISED",
+        "previousGrade": "Class I, Level A (21 to 90 days)",
+        "currentGrade": "Class I, Level A (Strictly 21 Days, then Monotherapy)",
+        "previousText": "DAPT Aspirin plus Clopidogrel should begin within 24 hours and continue for 21 to 90 days.",
+        "currentText": "For patients with non-disabling minor acute ischemic stroke (NIHSS ≤3) or high-risk TIA (ABCD2 score ≥4) who do not receive IV thrombolysis, dual antiplatelet therapy (Aspirin + Clopidogrel) should be initiated within 24 hours and continued strictly for 21 days, followed by single antiplatelet monotherapy to avoid excess major bleeding.",
+        "drivingTrials": [
+          "CHANCE (NEJM 2013)",
+          "POINT (NEJM 2018)",
+          "THALES (NEJM 2020)"
+        ]
+      },
+      {
+        "id": "chg-aha-6",
+        "category": "Secondary Prevention",
+        "topic": "Extended Window DAPT (up to 72h) & Ticagrelor for CYP2C19 Loss-of-Function",
+        "changeType": "NEW",
+        "previousGrade": "Not Addressed",
+        "currentGrade": "Class IIa, Level B-R",
+        "currentText": "In patients with mild ischemic stroke or high-risk TIA of atherosclerotic origin presenting within 24–72 hours of symptom onset, DAPT (Aspirin + Clopidogrel) initiated within 72 hours improves 90-day functional outcome. Furthermore, Ticagrelor plus Aspirin is recommended as an effective alternative in patients with CYP2C19 loss-of-function alleles.",
+        "drivingTrials": [
+          "INSPIRES (NEJM 2024)",
+          "CHANCE-2 (NEJM 2021)"
+        ]
+      },
+      {
+        "id": "chg-aha-7",
+        "category": "Secondary Prevention",
+        "topic": "Early Direct Oral Anticoagulant (DOAC) Initiation in Atrial Fibrillation",
+        "changeType": "NEW",
+        "previousGrade": "Class IIa, Level B-NR (Historically 3-14 days delay)",
+        "currentGrade": "Class IIa, Level B-R (Early Start: 48h to 4 Days)",
+        "previousText": "Anticoagulation for secondary stroke prevention in atrial fibrillation was delayed up to 14 days following moderate-to-severe infarction due to feared hemorrhagic transformation.",
+        "currentText": "Early initiation of DOACs (within 48 hours to 4 days of onset) is safe and reasonable in patients with non-valvular atrial fibrillation presenting with mild-to-moderate acute ischemic stroke, without increasing symptomatic intracranial hemorrhage compared to delayed initiation.",
+        "drivingTrials": [
+          "TIMING (Circulation 2022)",
+          "ELAN (NEJM 2023)",
+          "OPTIMAS (Lancet 2024)"
+        ]
+      },
+      {
+        "id": "chg-aha-8",
+        "category": "Blood Pressure",
+        "topic": "Avoidance of Intensive Blood Pressure Lowering (<140 mmHg) Post-Reperfusion",
+        "changeType": "NEW",
+        "previousGrade": "Class IIa (Historical preference for SBP <140 mmHg post-recanalization)",
+        "currentGrade": "Class III: Harm, Level B-R",
+        "previousText": "Lowering SBP to <140 mmHg post-successful recanalization was widely practiced to prevent reperfusion injury.",
+        "currentText": "In patients who achieve successful recanalization (eTICI 2b–3) following endovascular thrombectomy, intensive blood pressure lowering targeting SBP <140 mmHg (or <120 mmHg) is NOT recommended and may lead to cerebral hypoperfusion, infarct extension, and worse functional outcomes.",
+        "drivingTrials": [
+          "OPTIMAL-BP (JAMA 2023)",
+          "ENCHANTED2/MT (Lancet 2022)"
+        ]
+      },
+      {
+        "id": "chg-aha-9",
+        "category": "In-Hospital Medical Management",
+        "topic": "Avoidance of Intensive Glycemic Control (Tight Target 80–130 mg/dL)",
+        "changeType": "REVISED",
+        "previousGrade": "Class IIa, Level B-R",
+        "currentGrade": "Class III: Harm, Level B-R (Standard Target 140–180 mg/dL)",
+        "previousText": "Aggressive glycemic normalization with continuous IV insulin was frequently utilized in acute stroke units.",
+        "currentText": "Intensive glucose lowering targeting tight normoglycemia (80–130 mg/dL) using continuous IV insulin infusions should be avoided because it substantially increases the incidence of severe hypoglycemia without improving 90-day clinical outcomes. Blood glucose should be maintained in the range of 140–180 mg/dL.",
+        "drivingTrials": [
+          "SHINE (JAMA 2019)"
+        ]
+      },
+      {
+        "id": "chg-aha-10",
+        "category": "Pediatric Stroke",
+        "topic": "First-Time Standardized Pediatric Acute Ischemic Stroke Pathway",
+        "changeType": "NEW",
+        "previousGrade": "Not Included in Adult Guidelines",
+        "currentGrade": "Class I / Class IIb, Level C-LD",
+        "currentText": "For the first time, comprehensive dedicated emergency management protocols are established for pediatric acute ischemic stroke: urgent vascular imaging (CTA or MRA) is recommended; weight-adjusted IV thrombolysis (0.9 mg/kg Alteplase) may be considered in adolescents; and mechanical thrombectomy is reasonable in children aged ≥6 years with proximal anterior circulation LVO and persistent neurological deficit.",
+        "drivingTrials": [
+          "Save ChildS Registry",
+          "Thrombolysis in Pediatric Stroke (TIPS) Cohort"
+        ]
+      },
+      {
+        "id": "chg-aha-11",
+        "category": "Prehospital Systems",
+        "topic": "Mobile Stroke Units (MSUs) and Prehospital Telestroke Triage",
+        "changeType": "UPGRADED",
+        "previousGrade": "Class IIb, Level B-R",
+        "currentGrade": "Class IIa, Level B-R",
+        "previousText": "Mobile stroke units were considered experimental research vehicles with uncertain clinical cost-effectiveness.",
+        "currentText": "In regional stroke systems with deployed Mobile Stroke Units (ambulances equipped with point-of-care CT, point-of-care lab, and telestroke connectivity), MSU dispatch is recommended to expedite prehospital thrombolysis and streamline direct triage to thrombectomy-capable centers.",
+        "drivingTrials": [
+          "BEST-MSU (NEJM 2021)",
+          "B-PROUD (JAMA 2021)"
+        ]
+      }
+    ]
   },
   {
-    id: "eso-ais-2024",
-    society: "ESO",
-    year: 2024,
-    subspecialty: "Stroke",
-    title: "European Stroke Organisation (ESO) Expedited Recommendation on Intravenous Thrombolysis and Thrombectomy",
-    officialUrl: "https://journals.sagepub.com/home/eso",
-    journalTarget: "Eur Stroke J",
-    documentType: "Focused Update",
-    publishDate: "2024-05-18",
-    previousVersionYear: 2021,
-    executiveSummary:
-      "Rapid evidence update establishing Tenecteplase 0.25 mg/kg as the preferred frontline thrombolytic, strongly endorsing endovascular thrombectomy for large ischemic core infarctions, basilar artery occlusion, wake-up stroke with imaging mismatch, and advising against post-EVT intensive blood pressure lowering.",
-    linkedScenarioIds: ["ais-ivt-tenecteplase-4.5h", "ais-large-core-evt-aspects-3-5"],
-    allPracticeChanges: [
-      {
-        id: "chg-eso-1",
-        scenarioId: "ais-ivt-tenecteplase-4.5h",
-        category: "Reperfusion / IVT",
-        topic: "Strong Recommendation for Tenecteplase 0.25 mg/kg over Alteplase",
-        changeType: "UPGRADED",
-        previousGrade: "Weak recommendation, Moderate quality",
-        currentGrade: "Strong recommendation FOR, High quality",
-        previousText: "Tenecteplase may be considered in specialized centers or for patients awaiting mechanical thrombectomy.",
-        currentText:
-          "In patients with acute ischemic stroke of <4.5 hours duration eligible for IV thrombolysis, we strongly recommend Tenecteplase 0.25 mg/kg (maximum 25 mg) over Alteplase 0.9 mg/kg.",
-        drivingTrials: ["AcT (Lancet 2022)", "TRACE-2 (Lancet 2023)", "NOR-TEST 2A"],
-      },
-      {
-        id: "chg-eso-2",
-        scenarioId: "ais-large-core-evt-aspects-3-5",
-        category: "Reperfusion / EVT",
-        topic: "Endovascular Thrombectomy in Large Ischemic Core (ASPECTS 3–5)",
-        changeType: "UPGRADED",
-        previousGrade: "Expert Consensus Statement",
-        currentGrade: "Strong recommendation FOR, High quality",
-        previousText: "Mechanical thrombectomy in large core was considered investigational with uncertain risk of hemorrhage.",
-        currentText:
-          "In patients with acute ischemic stroke due to anterior circulation LVO and large core infarction (ASPECTS 3–5 or core volume ≥50 mL) within 24 hours, we strongly recommend mechanical thrombectomy plus medical care over medical care alone.",
-        drivingTrials: ["SELECT2 (NEJM 2023)", "ANGEL-ASPECT (NEJM 2023)", "TENSION (Lancet 2023)", "LASTE (NEJM 2024)"],
-      },
-      {
-        id: "chg-eso-3",
-        category: "Reperfusion / EVT",
-        topic: "Endovascular Thrombectomy in Basilar Artery Occlusion (BAO)",
-        changeType: "UPGRADED",
-        previousGrade: "Weak recommendation FOR, Moderate quality",
-        currentGrade: "Strong recommendation FOR, High quality",
-        previousText: "Thrombectomy for basilar occlusion carried weak endorsement due to conflicting early trials (BEST, BASICS).",
-        currentText:
-          "In patients with acute ischemic stroke caused by basilar artery occlusion presenting within 0–24 hours, we strongly recommend endovascular thrombectomy in addition to best medical management.",
-        drivingTrials: ["ATTENTION (NEJM 2022)", "BAOCHE (NEJM 2022)"],
-      },
-      {
-        id: "chg-eso-4",
-        category: "Reperfusion / Unknown Onset",
-        topic: "Reperfusion in Wake-up / Unknown Time of Onset Stroke",
-        changeType: "NEW",
-        previousGrade: "Exclusion based on time-last-seen-well",
-        currentGrade: "Strong recommendation FOR, High quality",
-        previousText: "Patients with unknown time of onset were systematically excluded from thrombolytic and endovascular therapies.",
-        currentText:
-          "In patients with acute ischemic stroke with unknown time of onset or wake-up stroke, reperfusion therapy is strongly recommended when MRI DWI-FLAIR mismatch or perfusion CT mismatch (ischemic core vs hypoperfused penumbra) demonstrates viable salvageable brain tissue.",
-        drivingTrials: ["WAKE-UP (NEJM 2018)", "EXTEND (NEJM 2019)", "DEFUSE 3 / DAWN"],
-      },
-      {
-        id: "chg-eso-5",
-        category: "Reperfusion Strategy",
-        topic: "Bridging Thrombolysis Prior to Endovascular Thrombectomy",
-        changeType: "REVISED",
-        previousGrade: "Uncertain whether direct EVT is non-inferior to bridging IVT+EVT",
-        currentGrade: "Strong recommendation FOR bridging IVT, High quality",
-        previousText: "Debate regarding bypassing IVT for direct transfer to angiography suite in direct-presenting patients.",
-        currentText:
-          "In patients eligible for both IV thrombolysis and mechanical thrombectomy directly admitted to a thrombectomy center, we recommend administering intravenous thrombolysis before thrombectomy rather than proceeding to direct thrombectomy alone.",
-        drivingTrials: ["DIRECT-MT", "DEVT", "SKIP", "MR CLEAN-NO IV", "SWIFT DIRECT Meta-analysis"],
-      },
-      {
-        id: "chg-eso-6",
-        category: "Blood Pressure",
-        topic: "Avoidance of Intensive Blood Pressure Lowering Post-EVT",
-        changeType: "NEW",
-        previousGrade: "Target SBP <140 mmHg frequently pursued",
-        currentGrade: "Strong recommendation AGAINST intensive lowering, Moderate quality",
-        previousText: "Lowering SBP to <140 or <130 mmHg post-recanalization was believed to decrease reperfusion hemorrhage.",
-        currentText:
-          "In acute ischemic stroke patients who achieve successful endovascular recanalization (eTICI 2b–3), we recommend against intensive blood pressure lowering targeting SBP <140 mmHg, as it increases cerebral hypoperfusion and disability.",
-        drivingTrials: ["OPTIMAL-BP (JAMA 2023)", "ENCHANTED2/MT (Lancet 2022)"],
-      },
+    "id": "eso-ais-2024",
+    "society": "ESO",
+    "year": 2024,
+    "subspecialty": "Stroke",
+    "title": "European Stroke Organisation (ESO) Expedited Recommendation on Intravenous Thrombolysis and Thrombectomy",
+    "officialUrl": "https://journals.sagepub.com/home/eso",
+    "journalTarget": "Eur Stroke J",
+    "documentType": "Focused Update",
+    "publishDate": "2024-05-18",
+    "previousVersionYear": 2021,
+    "executiveSummary": "Rapid evidence update establishing Tenecteplase 0.25 mg/kg as the preferred frontline thrombolytic, strongly endorsing endovascular thrombectomy for large ischemic core infarctions, basilar artery occlusion, wake-up stroke with imaging mismatch, and advising against post-EVT intensive blood pressure lowering.",
+    "linkedScenarioIds": [
+      "ais-ivt-tenecteplase-4.5h",
+      "ais-large-core-evt-aspects-3-5"
     ],
+    "allPracticeChanges": [
+      {
+        "id": "chg-eso-1",
+        "scenarioId": "ais-ivt-tenecteplase-4.5h",
+        "category": "Reperfusion / IVT",
+        "topic": "Strong Recommendation for Tenecteplase 0.25 mg/kg over Alteplase",
+        "changeType": "UPGRADED",
+        "previousGrade": "Weak recommendation, Moderate quality",
+        "currentGrade": "Strong recommendation FOR, High quality",
+        "previousText": "Tenecteplase may be considered in specialized centers or for patients awaiting mechanical thrombectomy.",
+        "currentText": "In patients with acute ischemic stroke of <4.5 hours duration eligible for IV thrombolysis, we strongly recommend Tenecteplase 0.25 mg/kg (maximum 25 mg) over Alteplase 0.9 mg/kg.",
+        "drivingTrials": [
+          "AcT (Lancet 2022)",
+          "TRACE-2 (Lancet 2023)",
+          "NOR-TEST 2A"
+        ]
+      },
+      {
+        "id": "chg-eso-2",
+        "scenarioId": "ais-large-core-evt-aspects-3-5",
+        "category": "Reperfusion / EVT",
+        "topic": "Endovascular Thrombectomy in Large Ischemic Core (ASPECTS 3–5)",
+        "changeType": "UPGRADED",
+        "previousGrade": "Expert Consensus Statement",
+        "currentGrade": "Strong recommendation FOR, High quality",
+        "previousText": "Mechanical thrombectomy in large core was considered investigational with uncertain risk of hemorrhage.",
+        "currentText": "In patients with acute ischemic stroke due to anterior circulation LVO and large core infarction (ASPECTS 3–5 or core volume ≥50 mL) within 24 hours, we strongly recommend mechanical thrombectomy plus medical care over medical care alone.",
+        "drivingTrials": [
+          "SELECT2 (NEJM 2023)",
+          "ANGEL-ASPECT (NEJM 2023)",
+          "TENSION (Lancet 2023)",
+          "LASTE (NEJM 2024)"
+        ]
+      },
+      {
+        "id": "chg-eso-3",
+        "category": "Reperfusion / EVT",
+        "topic": "Endovascular Thrombectomy in Basilar Artery Occlusion (BAO)",
+        "changeType": "UPGRADED",
+        "previousGrade": "Weak recommendation FOR, Moderate quality",
+        "currentGrade": "Strong recommendation FOR, High quality",
+        "previousText": "Thrombectomy for basilar occlusion carried weak endorsement due to conflicting early trials (BEST, BASICS).",
+        "currentText": "In patients with acute ischemic stroke caused by basilar artery occlusion presenting within 0–24 hours, we strongly recommend endovascular thrombectomy in addition to best medical management.",
+        "drivingTrials": [
+          "ATTENTION (NEJM 2022)",
+          "BAOCHE (NEJM 2022)"
+        ]
+      },
+      {
+        "id": "chg-eso-4",
+        "category": "Reperfusion / Unknown Onset",
+        "topic": "Reperfusion in Wake-up / Unknown Time of Onset Stroke",
+        "changeType": "NEW",
+        "previousGrade": "Exclusion based on time-last-seen-well",
+        "currentGrade": "Strong recommendation FOR, High quality",
+        "previousText": "Patients with unknown time of onset were systematically excluded from thrombolytic and endovascular therapies.",
+        "currentText": "In patients with acute ischemic stroke with unknown time of onset or wake-up stroke, reperfusion therapy is strongly recommended when MRI DWI-FLAIR mismatch or perfusion CT mismatch (ischemic core vs hypoperfused penumbra) demonstrates viable salvageable brain tissue.",
+        "drivingTrials": [
+          "WAKE-UP (NEJM 2018)",
+          "EXTEND (NEJM 2019)",
+          "DEFUSE 3 / DAWN"
+        ]
+      },
+      {
+        "id": "chg-eso-5",
+        "category": "Reperfusion Strategy",
+        "topic": "Bridging Thrombolysis Prior to Endovascular Thrombectomy",
+        "changeType": "REVISED",
+        "previousGrade": "Uncertain whether direct EVT is non-inferior to bridging IVT+EVT",
+        "currentGrade": "Strong recommendation FOR bridging IVT, High quality",
+        "previousText": "Debate regarding bypassing IVT for direct transfer to angiography suite in direct-presenting patients.",
+        "currentText": "In patients eligible for both IV thrombolysis and mechanical thrombectomy directly admitted to a thrombectomy center, we recommend administering intravenous thrombolysis before thrombectomy rather than proceeding to direct thrombectomy alone.",
+        "drivingTrials": [
+          "DIRECT-MT",
+          "DEVT",
+          "SKIP",
+          "MR CLEAN-NO IV",
+          "SWIFT DIRECT Meta-analysis"
+        ]
+      },
+      {
+        "id": "chg-eso-6",
+        "category": "Blood Pressure",
+        "topic": "Avoidance of Intensive Blood Pressure Lowering Post-EVT",
+        "changeType": "NEW",
+        "previousGrade": "Target SBP <140 mmHg frequently pursued",
+        "currentGrade": "Strong recommendation AGAINST intensive lowering, Moderate quality",
+        "previousText": "Lowering SBP to <140 or <130 mmHg post-recanalization was believed to decrease reperfusion hemorrhage.",
+        "currentText": "In acute ischemic stroke patients who achieve successful endovascular recanalization (eTICI 2b–3), we recommend against intensive blood pressure lowering targeting SBP <140 mmHg, as it increases cerebral hypoperfusion and disability.",
+        "drivingTrials": [
+          "OPTIMAL-BP (JAMA 2023)",
+          "ENCHANTED2/MT (Lancet 2022)"
+        ]
+      }
+    ]
   },
   {
-    id: "aha-ich-2022",
-    society: "AHA/ASA",
-    year: 2022,
-    subspecialty: "Stroke",
-    title: "2022 Guideline for the Management of Patients with Spontaneous Intracerebral Hemorrhage",
-    officialUrl: "https://www.ahajournals.org/doi/10.1161/STR.0000000000000407",
-    journalTarget: "Stroke",
-    documentType: "Clinical Practice Guideline",
-    publishDate: "2022-05-17",
-    previousVersionYear: 2015,
-    executiveSummary:
-      "Comprehensive AHA/ASA clinical recommendations on acute blood pressure management, rapid reversal of oral anticoagulants (DOACs and VKA), minimally invasive surgical clot evacuation, avoidance of prophylactic antiseizure drugs, and deep venous thrombosis prevention.",
-    linkedScenarioIds: ["ich-acute-bp-lowering"],
-    allPracticeChanges: [
-      {
-        id: "chg-aha-ich-1",
-        scenarioId: "ich-acute-bp-lowering",
-        category: "Blood Pressure",
-        topic: "Target SBP 130-140 mmHg and Avoidance of Acute Hypotension",
-        changeType: "REVISED",
-        previousGrade: "Class I, Level A (Target SBP <140 mmHg)",
-        currentGrade: "Class IIa, Level B-R (Target SBP 130-140 mmHg, avoid <130)",
-        previousText: "Targeting SBP <140 mmHg was Class I without an explicitly established safety lower threshold.",
-        currentText:
-          "In patients with acute spontaneous ICH presenting with SBP >150 mmHg, rapid and smooth lowering to a target SBP of 130–140 mmHg is safe and reasonable, but acute SBP reduction <130 mmHg should be avoided to prevent renal hypoperfusion and worse clinical outcomes.",
-        drivingTrials: ["INTERACT2 (NEJM 2013)", "ATACH-2 (NEJM 2016)"],
-      },
-      {
-        id: "chg-aha-ich-2",
-        category: "Anticoagulation Reversal",
-        topic: "Specific Reversal Agents for Factor Xa Inhibitors and Dabigatran",
-        changeType: "NEW",
-        previousGrade: "Class IIb (Non-specific procoagulant concentrates)",
-        currentGrade: "Class I / IIa, Level B-NR",
-        previousText: "PCC or activated PCC was used empirically for DOAC reversal without licensed specific antidotes.",
-        currentText:
-          "For patients with acute spontaneous ICH taking oral factor Xa inhibitors (Apixaban or Rivaroxaban), Andexanet alfa is reasonable (Class IIa). For Dabigatran, Idarucizumab is recommended as first-line specific antidote (Class I). If specific antidotes are unavailable, 4-factor PCC is reasonable.",
-        drivingTrials: ["ANNEXA-4 (NEJM 2019)", "RE-VERSE AD (NEJM 2017)"],
-      },
-      {
-        id: "chg-aha-ich-3",
-        category: "Anticoagulation Reversal",
-        topic: "4-Factor PCC Preferred Over Fresh Frozen Plasma for Warfarin-Associated ICH",
-        changeType: "UPGRADED",
-        previousGrade: "Class IIa, Level B",
-        currentGrade: "Class I, Level B-NR",
-        previousText: "Fresh Frozen Plasma (FFP) was acceptable as alternative to prothrombin complex concentrate.",
-        currentText:
-          "For patients with VKA-associated spontaneous ICH and elevated INR ≥2.0, 4-factor prothrombin complex concentrate (4F-PCC) combined with IV vitamin K is strongly recommended over fresh frozen plasma to achieve rapid INR correction (<1.4) and limit hematoma growth.",
-        drivingTrials: ["Sarode et al. (Circulation 2013)", "INCH Trial (Lancet 2016)"],
-      },
-      {
-        id: "chg-aha-ich-4",
-        category: "Surgical Evacuation",
-        topic: "Minimally Invasive Surgery (MIS) for Supratentorial Lobar ICH",
-        changeType: "UPGRADED",
-        previousGrade: "Class IIb, Level C (Uncertain clinical efficacy for routine surgery)",
-        currentGrade: "Class IIa, Level B-R",
-        previousText: "Routine open craniotomy for supratentorial ICH did not show overall disability reduction in STICH I & II.",
-        currentText:
-          "In patients with supratentorial lobar intracerebral hemorrhage (volume 30–80 mL) with deteriorating Glasgow Coma Scale score, minimally invasive surgery with endoscopic or stereotactic aspiration (with or without thrombolytics) is reasonable to reduce mortality and improve functional outcome.",
-        drivingTrials: ["MISTIE III (Lancet 2019)", "ENRICH Trial (NEJM 2024)", "INVEST Trial"],
-      },
-      {
-        id: "chg-aha-ich-5",
-        category: "Seizure Management",
-        topic: "Avoidance of Prophylactic Antiseizure Medications",
-        changeType: "REVISED",
-        previousGrade: "Class IIb (Prophylactic ASM frequently prescribed for lobar ICH)",
-        currentGrade: "Class III: No Benefit, Level B-NR",
-        previousText: "Prophylactic antiepileptic therapy was frequently administered for 1 to 2 weeks post-ICH.",
-        currentText:
-          "Prophylactic antiseizure medications are NOT recommended in patients with spontaneous ICH without clinical seizures or electrographic evidence of seizures on continuous EEG, as they do not improve functional outcomes and cause adverse drug reactions.",
-        drivingTrials: ["Messenheimer et al. Registries", "PEACH Trial Data"],
-      },
-      {
-        id: "chg-aha-ich-6",
-        category: "Venous Thromboembolism Prophylaxis",
-        topic: "Intermittent Pneumatic Compression on Day of Admission",
-        changeType: "UPGRADED",
-        previousGrade: "Class IIa, Level B",
-        currentGrade: "Class I, Level A",
-        previousText: "Graduated compression stockings or intermittent devices were suggested.",
-        currentText:
-          "In patients with spontaneous ICH, intermittent pneumatic compression (IPC) initiated on the day of hospital admission is strongly recommended to reduce the risk of deep vein thrombosis. Low-dose subcutaneous heparin or LMWH may be started 24–48 hours after documented hematoma stability.",
-        drivingTrials: ["CLOTS 3 Trial (Lancet 2013)"],
-      },
-      {
-        id: "chg-aha-ich-7",
-        category: "Secondary Prevention",
-        topic: "Resumption of Anticoagulation for Nonvalvular Atrial Fibrillation",
-        changeType: "NEW",
-        previousGrade: "Class IIb (Uncertain risk-benefit balance, frequent permanent discontinuation)",
-        currentGrade: "Class IIa, Level B-NR (Resume after 4 to 8 weeks in deep ICH)",
-        previousText: "Oral anticoagulants were often permanently withheld due to high fear of recurrent catastrophic hemorrhage.",
-        currentText:
-          "For patients with non-lobar (deep) spontaneous ICH and high-risk nonvalvular atrial fibrillation (CHA2DS2-VASc ≥2), resumption of oral anticoagulation (preferentially DOACs) after at least 4 to 8 weeks is reasonable to reduce ischemic stroke and mortality, provided blood pressure is strictly controlled.",
-        drivingTrials: ["RESTART Trial (Lancet 2019)", "APACHE-AF (Lancet Neurol 2021)", "SOSTART (Lancet Neurol 2021)"],
-      },
+    "id": "aha-ich-2022",
+    "society": "AHA/ASA",
+    "year": 2022,
+    "subspecialty": "Stroke",
+    "title": "2022 Guideline for the Management of Patients with Spontaneous Intracerebral Hemorrhage",
+    "officialUrl": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000407",
+    "journalTarget": "Stroke",
+    "documentType": "Clinical Practice Guideline",
+    "publishDate": "2022-05-17",
+    "previousVersionYear": 2015,
+    "executiveSummary": "Comprehensive AHA/ASA clinical recommendations on acute blood pressure management, rapid reversal of oral anticoagulants (DOACs and VKA), minimally invasive surgical clot evacuation, avoidance of prophylactic antiseizure drugs, and deep venous thrombosis prevention.",
+    "linkedScenarioIds": [
+      "ich-acute-bp-lowering"
     ],
+    "allPracticeChanges": [
+      {
+        "id": "chg-aha-ich-1",
+        "scenarioId": "ich-acute-bp-lowering",
+        "category": "Blood Pressure",
+        "topic": "Target SBP 130-140 mmHg and Avoidance of Acute Hypotension",
+        "changeType": "REVISED",
+        "previousGrade": "Class I, Level A (Target SBP <140 mmHg)",
+        "currentGrade": "Class IIa, Level B-R (Target SBP 130-140 mmHg, avoid <130)",
+        "previousText": "Targeting SBP <140 mmHg was Class I without an explicitly established safety lower threshold.",
+        "currentText": "In patients with acute spontaneous ICH presenting with SBP >150 mmHg, rapid and smooth lowering to a target SBP of 130–140 mmHg is safe and reasonable, but acute SBP reduction <130 mmHg should be avoided to prevent renal hypoperfusion and worse clinical outcomes.",
+        "drivingTrials": [
+          "INTERACT2 (NEJM 2013)",
+          "ATACH-2 (NEJM 2016)"
+        ]
+      },
+      {
+        "id": "chg-aha-ich-2",
+        "category": "Anticoagulation Reversal",
+        "topic": "Specific Reversal Agents for Factor Xa Inhibitors and Dabigatran",
+        "changeType": "NEW",
+        "previousGrade": "Class IIb (Non-specific procoagulant concentrates)",
+        "currentGrade": "Class I / IIa, Level B-NR",
+        "previousText": "PCC or activated PCC was used empirically for DOAC reversal without licensed specific antidotes.",
+        "currentText": "For patients with acute spontaneous ICH taking oral factor Xa inhibitors (Apixaban or Rivaroxaban), Andexanet alfa is reasonable (Class IIa). For Dabigatran, Idarucizumab is recommended as first-line specific antidote (Class I). If specific antidotes are unavailable, 4-factor PCC is reasonable.",
+        "drivingTrials": [
+          "ANNEXA-4 (NEJM 2019)",
+          "RE-VERSE AD (NEJM 2017)"
+        ]
+      },
+      {
+        "id": "chg-aha-ich-3",
+        "category": "Anticoagulation Reversal",
+        "topic": "4-Factor PCC Preferred Over Fresh Frozen Plasma for Warfarin-Associated ICH",
+        "changeType": "UPGRADED",
+        "previousGrade": "Class IIa, Level B",
+        "currentGrade": "Class I, Level B-NR",
+        "previousText": "Fresh Frozen Plasma (FFP) was acceptable as alternative to prothrombin complex concentrate.",
+        "currentText": "For patients with VKA-associated spontaneous ICH and elevated INR ≥2.0, 4-factor prothrombin complex concentrate (4F-PCC) combined with IV vitamin K is strongly recommended over fresh frozen plasma to achieve rapid INR correction (<1.4) and limit hematoma growth.",
+        "drivingTrials": [
+          "Sarode et al. (Circulation 2013)",
+          "INCH Trial (Lancet 2016)"
+        ]
+      },
+      {
+        "id": "chg-aha-ich-4",
+        "category": "Surgical Evacuation",
+        "topic": "Minimally Invasive Surgery (MIS) for Supratentorial Lobar ICH",
+        "changeType": "UPGRADED",
+        "previousGrade": "Class IIb, Level C (Uncertain clinical efficacy for routine surgery)",
+        "currentGrade": "Class IIa, Level B-R",
+        "previousText": "Routine open craniotomy for supratentorial ICH did not show overall disability reduction in STICH I & II.",
+        "currentText": "In patients with supratentorial lobar intracerebral hemorrhage (volume 30–80 mL) with deteriorating Glasgow Coma Scale score, minimally invasive surgery with endoscopic or stereotactic aspiration (with or without thrombolytics) is reasonable to reduce mortality and improve functional outcome.",
+        "drivingTrials": [
+          "MISTIE III (Lancet 2019)",
+          "ENRICH Trial (NEJM 2024)",
+          "INVEST Trial"
+        ]
+      },
+      {
+        "id": "chg-aha-ich-5",
+        "category": "Seizure Management",
+        "topic": "Avoidance of Prophylactic Antiseizure Medications",
+        "changeType": "REVISED",
+        "previousGrade": "Class IIb (Prophylactic ASM frequently prescribed for lobar ICH)",
+        "currentGrade": "Class III: No Benefit, Level B-NR",
+        "previousText": "Prophylactic antiepileptic therapy was frequently administered for 1 to 2 weeks post-ICH.",
+        "currentText": "Prophylactic antiseizure medications are NOT recommended in patients with spontaneous ICH without clinical seizures or electrographic evidence of seizures on continuous EEG, as they do not improve functional outcomes and cause adverse drug reactions.",
+        "drivingTrials": [
+          "Messenheimer et al. Registries",
+          "PEACH Trial Data"
+        ]
+      },
+      {
+        "id": "chg-aha-ich-6",
+        "category": "Venous Thromboembolism Prophylaxis",
+        "topic": "Intermittent Pneumatic Compression on Day of Admission",
+        "changeType": "UPGRADED",
+        "previousGrade": "Class IIa, Level B",
+        "currentGrade": "Class I, Level A",
+        "previousText": "Graduated compression stockings or intermittent devices were suggested.",
+        "currentText": "In patients with spontaneous ICH, intermittent pneumatic compression (IPC) initiated on the day of hospital admission is strongly recommended to reduce the risk of deep vein thrombosis. Low-dose subcutaneous heparin or LMWH may be started 24–48 hours after documented hematoma stability.",
+        "drivingTrials": [
+          "CLOTS 3 Trial (Lancet 2013)"
+        ]
+      },
+      {
+        "id": "chg-aha-ich-7",
+        "category": "Secondary Prevention",
+        "topic": "Resumption of Anticoagulation for Nonvalvular Atrial Fibrillation",
+        "changeType": "NEW",
+        "previousGrade": "Class IIb (Uncertain risk-benefit balance, frequent permanent discontinuation)",
+        "currentGrade": "Class IIa, Level B-NR (Resume after 4 to 8 weeks in deep ICH)",
+        "previousText": "Oral anticoagulants were often permanently withheld due to high fear of recurrent catastrophic hemorrhage.",
+        "currentText": "For patients with non-lobar (deep) spontaneous ICH and high-risk nonvalvular atrial fibrillation (CHA2DS2-VASc ≥2), resumption of oral anticoagulation (preferentially DOACs) after at least 4 to 8 weeks is reasonable to reduce ischemic stroke and mortality, provided blood pressure is strictly controlled.",
+        "drivingTrials": [
+          "RESTART Trial (Lancet 2019)",
+          "APACHE-AF (Lancet Neurol 2021)",
+          "SOSTART (Lancet Neurol 2021)"
+        ]
+      }
+    ]
   },
   {
-    id: "eso-ich-2021",
-    society: "ESO",
-    year: 2021,
-    subspecialty: "Stroke",
-    title: "European Stroke Organisation (ESO) Guidelines for the Management of Spontaneous Intracerebral Hemorrhage",
-    officialUrl: "https://journals.sagepub.com/doi/10.1177/23969873211046474",
-    journalTarget: "Eur Stroke J",
-    documentType: "Clinical Practice Guideline",
-    publishDate: "2021-10-01",
-    executiveSummary:
-      "European clinical practice guideline addressing hyperacute blood pressure lowering (<140 mmHg), hemostatic reversal with 4F-PCC and specific antidotes, surgical posterior fossa decompression, neurointensive bundle, and strong warnings against corticosteroids and routine antiepileptics.",
-    linkedScenarioIds: ["ich-acute-bp-lowering"],
-    allPracticeChanges: [
-      {
-        id: "chg-eso-ich-1",
-        scenarioId: "ich-acute-bp-lowering",
-        category: "Blood Pressure",
-        topic: "Acute SBP Lowering Thresholds to <140 mmHg (Avoiding <130 mmHg)",
-        changeType: "REVISED",
-        previousGrade: "Moderate recommendation",
-        currentGrade: "Weak recommendation FOR, Moderate quality",
-        previousText: "Aggressive blood pressure lowering without established minimum threshold.",
-        currentText:
-          "For patients with acute spontaneous ICH presenting within 24 hours of onset and SBP >150 mmHg, we suggest acute blood pressure lowering to SBP <140 mmHg, while avoiding acute reduction below 130 mmHg, to reduce hematoma expansion.",
-        drivingTrials: ["INTERACT2", "ATACH-2 Meta-analysis"],
-      },
-      {
-        id: "chg-eso-ich-2",
-        category: "Hemostatic Therapy",
-        topic: "4-Factor PCC Preferred Over FFP in Vitamin K Antagonist ICH",
-        changeType: "UPGRADED",
-        previousGrade: "Weak recommendation",
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        previousText: "FFP was utilized in many European emergency departments when PCC was unavailable.",
-        currentText:
-          "In patients with VKA-associated spontaneous ICH, we strongly recommend 4-factor prothrombin complex concentrate (PCC) and intravenous vitamin K over fresh frozen plasma (FFP) for rapid INR normalization.",
-        drivingTrials: ["INCH Trial", "Sarode et al."],
-      },
-      {
-        id: "chg-eso-ich-3",
-        category: "Hemostatic Therapy",
-        topic: "Specific Reversal for DOAC-Associated ICH",
-        changeType: "NEW",
-        previousGrade: "Expert consensus without approved specific reversal agents",
-        currentGrade: "Strong recommendation FOR, Moderate quality",
-        previousText: "Non-specific prohemostatic agents were the sole available therapy.",
-        currentText:
-          "In patients with spontaneous ICH associated with direct oral anticoagulants, we recommend specific reversal: Idarucizumab for Dabigatran, and Andexanet alfa for Apixaban or Rivaroxaban.",
-        drivingTrials: ["ANNEXA-4", "RE-VERSE AD"],
-      },
-      {
-        id: "chg-eso-ich-4",
-        category: "Surgical Management",
-        topic: "Infratentorial / Cerebellar Hematoma Decompressive Evacuation",
-        changeType: "REVISED",
-        previousGrade: "Moderate recommendation",
-        currentGrade: "Strong recommendation FOR, Moderate quality",
-        previousText: "Conservative management was sometimes attempted in borderline posterior fossa lesions.",
-        currentText:
-          "For patients with posterior fossa / cerebellar intracerebral hemorrhage with diameter >3 cm or causing brainstem compression / acute obstructive hydrocephalus, we strongly recommend urgent surgical hematoma evacuation with or without external ventricular drainage.",
-        drivingTrials: ["Cerebellar ICH Surgical Series", "European Stroke Registry"],
-      },
-      {
-        id: "chg-eso-ich-5",
-        category: "Seizure Prophylaxis",
-        topic: "Recommendation Against Routine Prophylactic Antiepileptic Drugs",
-        changeType: "DOWNGRADED",
-        previousGrade: "Optional for lobar ICH",
-        currentGrade: "Strong recommendation AGAINST, Moderate quality",
-        previousText: "Antiseizure prophylaxis was routinely initiated in patients with lobar ICH.",
-        currentText:
-          "We recommend against the routine administration of prophylactic antiseizure drugs in patients with spontaneous ICH who have not experienced a clinical seizure.",
-        drivingTrials: ["Cochrane Anticonvulsant Review", "PEACH Cohort"],
-      },
-      {
-        id: "chg-eso-ich-6",
-        category: "Neuroprotective Therapy",
-        topic: "Strong Recommendation Against Corticosteroids",
-        changeType: "DOWNGRADED",
-        previousGrade: "Historically used for cerebral edema",
-        currentGrade: "Strong recommendation AGAINST, High quality evidence",
-        previousText: "Dexamethasone or methylprednisolone was administered to reduce perihematomal edema.",
-        currentText:
-          "We strongly recommend against the administration of corticosteroids in acute spontaneous ICH, as they do not improve functional outcomes and increase the risk of severe systemic infections and hyperglycemia.",
-        drivingTrials: ["Poungvarin et al. (NEJM)", "Cochrane Corticosteroids in ICH Review"],
-      },
+    "id": "eso-ich-2021",
+    "society": "ESO",
+    "year": 2021,
+    "subspecialty": "Stroke",
+    "title": "European Stroke Organisation (ESO) Guidelines for the Management of Spontaneous Intracerebral Hemorrhage",
+    "officialUrl": "https://journals.sagepub.com/doi/10.1177/23969873211046474",
+    "journalTarget": "Eur Stroke J",
+    "documentType": "Clinical Practice Guideline",
+    "publishDate": "2021-10-01",
+    "executiveSummary": "European clinical practice guideline addressing hyperacute blood pressure lowering (<140 mmHg), hemostatic reversal with 4F-PCC and specific antidotes, surgical posterior fossa decompression, neurointensive bundle, and strong warnings against corticosteroids and routine antiepileptics.",
+    "linkedScenarioIds": [
+      "ich-acute-bp-lowering"
     ],
+    "allPracticeChanges": [
+      {
+        "id": "chg-eso-ich-1",
+        "scenarioId": "ich-acute-bp-lowering",
+        "category": "Blood Pressure",
+        "topic": "Acute SBP Lowering Thresholds to <140 mmHg (Avoiding <130 mmHg)",
+        "changeType": "REVISED",
+        "previousGrade": "Moderate recommendation",
+        "currentGrade": "Weak recommendation FOR, Moderate quality",
+        "previousText": "Aggressive blood pressure lowering without established minimum threshold.",
+        "currentText": "For patients with acute spontaneous ICH presenting within 24 hours of onset and SBP >150 mmHg, we suggest acute blood pressure lowering to SBP <140 mmHg, while avoiding acute reduction below 130 mmHg, to reduce hematoma expansion.",
+        "drivingTrials": [
+          "INTERACT2",
+          "ATACH-2 Meta-analysis"
+        ]
+      },
+      {
+        "id": "chg-eso-ich-2",
+        "category": "Hemostatic Therapy",
+        "topic": "4-Factor PCC Preferred Over FFP in Vitamin K Antagonist ICH",
+        "changeType": "UPGRADED",
+        "previousGrade": "Weak recommendation",
+        "currentGrade": "Strong recommendation FOR, High quality evidence",
+        "previousText": "FFP was utilized in many European emergency departments when PCC was unavailable.",
+        "currentText": "In patients with VKA-associated spontaneous ICH, we strongly recommend 4-factor prothrombin complex concentrate (PCC) and intravenous vitamin K over fresh frozen plasma (FFP) for rapid INR normalization.",
+        "drivingTrials": [
+          "INCH Trial",
+          "Sarode et al."
+        ]
+      },
+      {
+        "id": "chg-eso-ich-3",
+        "category": "Hemostatic Therapy",
+        "topic": "Specific Reversal for DOAC-Associated ICH",
+        "changeType": "NEW",
+        "previousGrade": "Expert consensus without approved specific reversal agents",
+        "currentGrade": "Strong recommendation FOR, Moderate quality",
+        "previousText": "Non-specific prohemostatic agents were the sole available therapy.",
+        "currentText": "In patients with spontaneous ICH associated with direct oral anticoagulants, we recommend specific reversal: Idarucizumab for Dabigatran, and Andexanet alfa for Apixaban or Rivaroxaban.",
+        "drivingTrials": [
+          "ANNEXA-4",
+          "RE-VERSE AD"
+        ]
+      },
+      {
+        "id": "chg-eso-ich-4",
+        "category": "Surgical Management",
+        "topic": "Infratentorial / Cerebellar Hematoma Decompressive Evacuation",
+        "changeType": "REVISED",
+        "previousGrade": "Moderate recommendation",
+        "currentGrade": "Strong recommendation FOR, Moderate quality",
+        "previousText": "Conservative management was sometimes attempted in borderline posterior fossa lesions.",
+        "currentText": "For patients with posterior fossa / cerebellar intracerebral hemorrhage with diameter >3 cm or causing brainstem compression / acute obstructive hydrocephalus, we strongly recommend urgent surgical hematoma evacuation with or without external ventricular drainage.",
+        "drivingTrials": [
+          "Cerebellar ICH Surgical Series",
+          "European Stroke Registry"
+        ]
+      },
+      {
+        "id": "chg-eso-ich-5",
+        "category": "Seizure Prophylaxis",
+        "topic": "Recommendation Against Routine Prophylactic Antiepileptic Drugs",
+        "changeType": "DOWNGRADED",
+        "previousGrade": "Optional for lobar ICH",
+        "currentGrade": "Strong recommendation AGAINST, Moderate quality",
+        "previousText": "Antiseizure prophylaxis was routinely initiated in patients with lobar ICH.",
+        "currentText": "We recommend against the routine administration of prophylactic antiseizure drugs in patients with spontaneous ICH who have not experienced a clinical seizure.",
+        "drivingTrials": [
+          "Cochrane Anticonvulsant Review",
+          "PEACH Cohort"
+        ]
+      },
+      {
+        "id": "chg-eso-ich-6",
+        "category": "Neuroprotective Therapy",
+        "topic": "Strong Recommendation Against Corticosteroids",
+        "changeType": "DOWNGRADED",
+        "previousGrade": "Historically used for cerebral edema",
+        "currentGrade": "Strong recommendation AGAINST, High quality evidence",
+        "previousText": "Dexamethasone or methylprednisolone was administered to reduce perihematomal edema.",
+        "currentText": "We strongly recommend against the administration of corticosteroids in acute spontaneous ICH, as they do not improve functional outcomes and increase the risk of severe systemic infections and hyperglycemia.",
+        "drivingTrials": [
+          "Poungvarin et al. (NEJM)",
+          "Cochrane Corticosteroids in ICH Review"
+        ]
+      }
+    ]
   },
   {
-    id: "vn-moh-stroke-2025",
-    society: "VN-MOH",
-    year: 2025,
-    subspecialty: "Stroke",
-    title: "Hướng dẫn Chẩn đoán và Điều trị Đột quỵ Não - Bộ Y tế & Hội Đột quỵ Việt Nam",
-    officialUrl: "https://kcb.vn",
-    journalTarget: "BYT / VNSO",
-    documentType: "Clinical Practice Guideline",
-    publishDate: "2025-08-20",
-    executiveSummary:
-      "Văn bản pháp quy chuẩn hóa toàn diện thực hành đột quỵ tại Việt Nam: Phê duyệt Tenecteplase vào danh mục BHYT, mở rộng chỉ định lấy huyết khối cơ học cho vùng lõi rộng (ASPECTS 3–5) và tắc thân nền, chuẩn hóa phác đồ DAPT 21 ngày, dùng sớm DOAC sau 48h-4d, và cảnh báo tránh hạ áp quá mức sau can thiệp.",
-    linkedScenarioIds: ["ais-ivt-tenecteplase-4.5h", "ais-large-core-evt-aspects-3-5"],
-    allPracticeChanges: [
-      {
-        id: "chg-vn-1",
-        scenarioId: "ais-ivt-tenecteplase-4.5h",
-        category: "Tiêu sợi huyết",
-        topic: "Phê duyệt Tenecteplase trong thực hành lâm sàng và thanh toán BHYT",
-        changeType: "NEW",
-        previousGrade: "Chỉ cho phép Alteplase trong danh mục BHYT",
-        currentGrade: "Khuyến cáo Áp dụng (Tương đương Class I)",
-        previousText: "Alteplase là thuốc tiêu sợi huyết đường tĩnh mạch duy nhất được bảo hiểm y tế chi trả.",
-        currentText:
-          "Chấp thuận Tenecteplase 0.25 mg/kg (tối đa 25mg) tiêm tĩnh mạch trực tiếp (bolus 5 giây) như thuốc tiêu sợi huyết chuẩn tại các trung tâm và đơn vị đột quỵ trên toàn quốc, đặc biệt ưu tiên chuyển tuyến can thiệp lấy huyết khối (Drip and Ship).",
-        drivingTrials: ["AcT", "TRACE-2", "Nghiên cứu đa trung tâm tại BV Bạch Mai, Chợ Rẫy, 115"],
-      },
-      {
-        id: "chg-vn-2",
-        scenarioId: "ais-large-core-evt-aspects-3-5",
-        category: "Can thiệp mạch não",
-        topic: "Mở rộng chỉ định lấy huyết khối cơ học cho vùng lõi rộng (ASPECTS 3–5)",
-        changeType: "UPGRADED",
-        previousGrade: "Chỉ khuyến cáo cho ASPECTS ≥ 6",
-        currentGrade: "Khuyến cáo Áp dụng (Tương đương Class I)",
-        previousText: "Người bệnh có tổn thương thiếu máu diện rộng trên CT (ASPECTS < 6) bị từ chối can thiệp vì lo ngại xuất huyết não.",
-        currentText:
-          "Khuyến cáo thực hiện can thiệp lấy huyết khối cơ học phối hợp điều trị nội khoa tối ưu cho người bệnh đột quỵ thiếu máu não cấp do tắc mạch lớn tuần hoàn trước có diện tổn thương rộng (ASPECTS 3–5 hoặc thể tích lõi ≥50ml) trong cửa sổ 0–24 giờ.",
-        drivingTrials: ["SELECT2 (NEJM 2023)", "TENSION (Lancet 2023)", "LASTE (NEJM 2024)"],
-      },
-      {
-        id: "chg-vn-3",
-        category: "Can thiệp mạch não",
-        topic: "Can thiệp lấy huyết khối tắc động mạch thân nền trong 24 giờ",
-        changeType: "UPGRADED",
-        previousGrade: "Khuyến cáo thận trọng, chỉ can thiệp sớm < 6 giờ",
-        currentGrade: "Khuyến cáo Áp dụng (Tương đương Class I)",
-        previousText: "Chỉ định can thiệp tắc động mạch thân nền ngoài 6 giờ còn dè dặt do thiếu bằng chứng thử nghiệm ngẫu nhiên.",
-        currentText:
-          "Can thiệp lấy huyết khối cơ học kết hợp điều trị nội khoa tối ưu được khuyến cáo mạnh mẽ cho người bệnh đột quỵ cấp do tắc động mạch thân nền trong cửa sổ từ 0 đến 24 giờ kể từ khi khởi phát.",
-        drivingTrials: ["ATTENTION (NEJM 2022)", "BAOCHE (NEJM 2022)"],
-      },
-      {
-        id: "chg-vn-4",
-        category: "Dự phòng thứ phát",
-        topic: "Kháng kết tập tiểu cầu kép (DAPT) giới hạn nghiêm ngặt 21 ngày",
-        changeType: "REVISED",
-        previousGrade: "Kháng kết tập tiểu cầu kép kéo dài 30 đến 90 ngày",
-        currentGrade: "Khuyến cáo Chuẩn hóa (Tương đương Class I)",
-        previousText: "Nhiều bệnh viện duy trì phối hợp Aspirin + Clopidogrel kéo dài 1-3 tháng làm tăng tỷ lệ xuất huyết tiêu hóa nặng.",
-        currentText:
-          "Đối với nhồi máu não nhẹ (NIHSS ≤ 3) hoặc TIA nguy cơ cao (ABCD2 ≥ 4) không dùng tiêu sợi huyết, phác đồ DAPT (Aspirin + Clopidogrel) phải được bắt đầu trong vòng 24 giờ và chỉ dùng đúng 21 ngày, sau đó bắt buộc chuyển sang đơn trị liệu để tránh nguy cơ xuất huyết lớn.",
-        drivingTrials: ["POINT", "CHANCE", "THALES"],
-      },
-      {
-        id: "chg-vn-5",
-        category: "Dự phòng thứ phát",
-        topic: "Khởi động sớm thuốc chống đông DOAC sau 48 giờ đến 4 ngày",
-        changeType: "NEW",
-        previousGrade: "Quy tắc 3-6-9-12 ngày (thường trì hoãn 1-2 tuần)",
-        currentGrade: "Khuyến cáo Áp dụng (Tương đương Class IIa)",
-        previousText: "Thói quen lâm sàng trì hoãn dùng kháng đông đường uống 14 ngày do lo sợ chuyển dạng xuất huyết.",
-        currentText:
-          "Khởi động sớm thuốc chống đông đường uống thế hệ mới (DOAC) trong khoảng 48 giờ đến 4 ngày sau khởi phát ở bệnh nhân rung nhĩ không do bệnh van tim có nhồi máu não nhẹ đến trung bình, khi hình ảnh học loại trừ xuất huyết chuyển dạng.",
-        drivingTrials: ["ELAN (NEJM 2023)", "OPTIMAS (Lancet 2024)"],
-      },
-      {
-        id: "chg-vn-6",
-        category: "Hồi sức thần kinh",
-        topic: "Cảnh báo tránh hạ huyết áp quá mức (<140 mmHg) sau can thiệp tái thông",
-        changeType: "NEW",
-        previousGrade: "Hạ huyết áp tích cực đưa về dưới 140 mmHg",
-        currentGrade: "Khuyến cáo Tránh áp dụng (Class III: Harm)",
-        previousText: "Hạ huyết áp tích cực được coi là biện pháp bảo vệ hàng rào máu não chống xuất huyết tái tưới máu.",
-        currentText:
-          "Ở người bệnh đã can thiệp lấy huyết khối tái thông thành công hoàn toàn (eTICI 2b–3), khuyến cáo KHÔNG hạ huyết áp tích cực quá mức (đưa SBP < 140 mmHg hoặc < 120 mmHg) vì gây giảm áp lực tưới máu não và làm xấu đi dự hậu chức năng thần kinh.",
-        drivingTrials: ["OPTIMAL-BP (JAMA 2023)", "ENCHANTED2/MT (Lancet 2022)"],
-      },
+    "id": "vn-moh-stroke-2025",
+    "society": "VN-MOH",
+    "year": 2025,
+    "subspecialty": "Stroke",
+    "title": "Hướng dẫn Chẩn đoán và Điều trị Đột quỵ Não - Bộ Y tế & Hội Đột quỵ Việt Nam",
+    "officialUrl": "https://kcb.vn",
+    "journalTarget": "BYT / VNSO",
+    "documentType": "Clinical Practice Guideline",
+    "publishDate": "2025-08-20",
+    "executiveSummary": "Văn bản pháp quy chuẩn hóa toàn diện thực hành đột quỵ tại Việt Nam: Phê duyệt Tenecteplase vào danh mục BHYT, mở rộng chỉ định lấy huyết khối cơ học cho vùng lõi rộng (ASPECTS 3–5) và tắc thân nền, chuẩn hóa phác đồ DAPT 21 ngày, dùng sớm DOAC sau 48h-4d, và cảnh báo tránh hạ áp quá mức sau can thiệp.",
+    "linkedScenarioIds": [
+      "ais-ivt-tenecteplase-4.5h",
+      "ais-large-core-evt-aspects-3-5"
     ],
+    "allPracticeChanges": [
+      {
+        "id": "chg-vn-1",
+        "scenarioId": "ais-ivt-tenecteplase-4.5h",
+        "category": "Tiêu sợi huyết",
+        "topic": "Phê duyệt Tenecteplase trong thực hành lâm sàng và thanh toán BHYT",
+        "changeType": "NEW",
+        "previousGrade": "Chỉ cho phép Alteplase trong danh mục BHYT",
+        "currentGrade": "Khuyến cáo Áp dụng (Tương đương Class I)",
+        "previousText": "Alteplase là thuốc tiêu sợi huyết đường tĩnh mạch duy nhất được bảo hiểm y tế chi trả.",
+        "currentText": "Chấp thuận Tenecteplase 0.25 mg/kg (tối đa 25mg) tiêm tĩnh mạch trực tiếp (bolus 5 giây) như thuốc tiêu sợi huyết chuẩn tại các trung tâm và đơn vị đột quỵ trên toàn quốc, đặc biệt ưu tiên chuyển tuyến can thiệp lấy huyết khối (Drip and Ship).",
+        "drivingTrials": [
+          "AcT",
+          "TRACE-2",
+          "Nghiên cứu đa trung tâm tại BV Bạch Mai, Chợ Rẫy, 115"
+        ]
+      },
+      {
+        "id": "chg-vn-2",
+        "scenarioId": "ais-large-core-evt-aspects-3-5",
+        "category": "Can thiệp mạch não",
+        "topic": "Mở rộng chỉ định lấy huyết khối cơ học cho vùng lõi rộng (ASPECTS 3–5)",
+        "changeType": "UPGRADED",
+        "previousGrade": "Chỉ khuyến cáo cho ASPECTS ≥ 6",
+        "currentGrade": "Khuyến cáo Áp dụng (Tương đương Class I)",
+        "previousText": "Người bệnh có tổn thương thiếu máu diện rộng trên CT (ASPECTS < 6) bị từ chối can thiệp vì lo ngại xuất huyết não.",
+        "currentText": "Khuyến cáo thực hiện can thiệp lấy huyết khối cơ học phối hợp điều trị nội khoa tối ưu cho người bệnh đột quỵ thiếu máu não cấp do tắc mạch lớn tuần hoàn trước có diện tổn thương rộng (ASPECTS 3–5 hoặc thể tích lõi ≥50ml) trong cửa sổ 0–24 giờ.",
+        "drivingTrials": [
+          "SELECT2 (NEJM 2023)",
+          "TENSION (Lancet 2023)",
+          "LASTE (NEJM 2024)"
+        ]
+      },
+      {
+        "id": "chg-vn-3",
+        "category": "Can thiệp mạch não",
+        "topic": "Can thiệp lấy huyết khối tắc động mạch thân nền trong 24 giờ",
+        "changeType": "UPGRADED",
+        "previousGrade": "Khuyến cáo thận trọng, chỉ can thiệp sớm < 6 giờ",
+        "currentGrade": "Khuyến cáo Áp dụng (Tương đương Class I)",
+        "previousText": "Chỉ định can thiệp tắc động mạch thân nền ngoài 6 giờ còn dè dặt do thiếu bằng chứng thử nghiệm ngẫu nhiên.",
+        "currentText": "Can thiệp lấy huyết khối cơ học kết hợp điều trị nội khoa tối ưu được khuyến cáo mạnh mẽ cho người bệnh đột quỵ cấp do tắc động mạch thân nền trong cửa sổ từ 0 đến 24 giờ kể từ khi khởi phát.",
+        "drivingTrials": [
+          "ATTENTION (NEJM 2022)",
+          "BAOCHE (NEJM 2022)"
+        ]
+      },
+      {
+        "id": "chg-vn-4",
+        "category": "Dự phòng thứ phát",
+        "topic": "Kháng kết tập tiểu cầu kép (DAPT) giới hạn nghiêm ngặt 21 ngày",
+        "changeType": "REVISED",
+        "previousGrade": "Kháng kết tập tiểu cầu kép kéo dài 30 đến 90 ngày",
+        "currentGrade": "Khuyến cáo Chuẩn hóa (Tương đương Class I)",
+        "previousText": "Nhiều bệnh viện duy trì phối hợp Aspirin + Clopidogrel kéo dài 1-3 tháng làm tăng tỷ lệ xuất huyết tiêu hóa nặng.",
+        "currentText": "Đối với nhồi máu não nhẹ (NIHSS ≤ 3) hoặc TIA nguy cơ cao (ABCD2 ≥ 4) không dùng tiêu sợi huyết, phác đồ DAPT (Aspirin + Clopidogrel) phải được bắt đầu trong vòng 24 giờ và chỉ dùng đúng 21 ngày, sau đó bắt buộc chuyển sang đơn trị liệu để tránh nguy cơ xuất huyết lớn.",
+        "drivingTrials": [
+          "POINT",
+          "CHANCE",
+          "THALES"
+        ]
+      },
+      {
+        "id": "chg-vn-5",
+        "category": "Dự phòng thứ phát",
+        "topic": "Khởi động sớm thuốc chống đông DOAC sau 48 giờ đến 4 ngày",
+        "changeType": "NEW",
+        "previousGrade": "Quy tắc 3-6-9-12 ngày (thường trì hoãn 1-2 tuần)",
+        "currentGrade": "Khuyến cáo Áp dụng (Tương đương Class IIa)",
+        "previousText": "Thói quen lâm sàng trì hoãn dùng kháng đông đường uống 14 ngày do lo sợ chuyển dạng xuất huyết.",
+        "currentText": "Khởi động sớm thuốc chống đông đường uống thế hệ mới (DOAC) trong khoảng 48 giờ đến 4 ngày sau khởi phát ở bệnh nhân rung nhĩ không do bệnh van tim có nhồi máu não nhẹ đến trung bình, khi hình ảnh học loại trừ xuất huyết chuyển dạng.",
+        "drivingTrials": [
+          "ELAN (NEJM 2023)",
+          "OPTIMAS (Lancet 2024)"
+        ]
+      },
+      {
+        "id": "chg-vn-6",
+        "category": "Hồi sức thần kinh",
+        "topic": "Cảnh báo tránh hạ huyết áp quá mức (<140 mmHg) sau can thiệp tái thông",
+        "changeType": "NEW",
+        "previousGrade": "Hạ huyết áp tích cực đưa về dưới 140 mmHg",
+        "currentGrade": "Khuyến cáo Tránh áp dụng (Class III: Harm)",
+        "previousText": "Hạ huyết áp tích cực được coi là biện pháp bảo vệ hàng rào máu não chống xuất huyết tái tưới máu.",
+        "currentText": "Ở người bệnh đã can thiệp lấy huyết khối tái thông thành công hoàn toàn (eTICI 2b–3), khuyến cáo KHÔNG hạ huyết áp tích cực quá mức (đưa SBP < 140 mmHg hoặc < 120 mmHg) vì gây giảm áp lực tưới máu não và làm xấu đi dự hậu chức năng thần kinh.",
+        "drivingTrials": [
+          "OPTIMAL-BP (JAMA 2023)",
+          "ENCHANTED2/MT (Lancet 2022)"
+        ]
+      }
+    ]
   },
   {
-    id: "eso-asah-2026",
-    society: "ESO",
-    year: 2026,
-    subspecialty: "Stroke",
-    subspecialties: ["Stroke", "Neurocritical Care"],
-    title: "European Stroke Organisation (ESO), European Association of Neurosurgical Societies (EANS) and European Society for Minimally Invasive Neurological Therapy (ESMINT) guideline on aneurysmal subarachnoid haemorrhage",
-    officialUrl: "https://doi.org/10.1093/esj/aakag043",
-    journalTarget: "European Stroke Journal / Oxford Academic",
-    documentType: "Clinical Practice Guideline",
-    publishDate: "2026-05-07",
-    previousVersionYear: 2013,
-    executiveSummary:
-      "Landmark joint European multidisciplinary guideline (ESO-EANS-ESMINT led by Vergouwen, Etminan, Vajkoczy et al.) establishing 10 major GRADE-based practice recommendations: frontline endorsement of regular endovascular coiling over clipping in good-grade aSAH, ultra-early aneurysm occlusion within 24 hours, mandatory oral nimodipine, euvolemia over Triple-H, centralization in high-volume neuro-ICUs (≥70 cases/yr), and definitive warnings against routine tranexamic acid, statins, magnesium, and clazosentan.",
-    linkedScenarioIds: ["asah-aneurysm-coiling-vs-clipping"],
-    allPracticeChanges: [
-      {
-        id: "chg-eso-asah-1",
-        scenarioId: "asah-aneurysm-coiling-vs-clipping",
-        category: "Aneurysm Occlusion",
-        topic: "Regular Endovascular Coiling Preferred Over Microsurgical Clipping (WFNS I–III)",
-        changeType: "UPGRADED",
-        previousGrade: "Moderate recommendation / Conditional",
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        previousText: "Either coiling or clipping was considered acceptable based on operator preference.",
-        currentText:
-          "In patients with aneurysmal subarachnoid haemorrhage in good clinical condition (WFNS I–III) with a ruptured aneurysm equally suitable for both endovascular and neurosurgical treatment, we recommend regular endovascular coiling (without adjunctive devices) as the preferred treatment strategy over microsurgical clipping to minimize 1-year poor functional outcome and disability.",
-        drivingTrials: ["ISAT (Lancet)", "ISAT 10-year Follow-up (Lancet)", "Cochrane Review 2025"],
-      },
-      {
-        id: "chg-eso-asah-2",
-        scenarioId: "asah-aneurysm-coiling-vs-clipping",
-        category: "Timing of Aneurysm Securing",
-        topic: "Aneurysm Treatment Within 24 Hours of Ictus",
-        changeType: "NEW",
-        previousGrade: "Historically within 72 hours",
-        currentGrade: "Expert Consensus Statement",
-        previousText: "Aneurysm repair within 72 hours was traditionally considered acceptable.",
-        currentText:
-          "We suggest treatment of the ruptured aneurysm as soon as feasible, and within 24 hours after ictus, with the timing optimized for the availability of a dedicated expert multidisciplinary neurovascular team.",
-        drivingTrials: ["Early vs Delayed Coiling Registries", "European Neurovascular Multicenter Cohorts"],
-      },
-      {
-        id: "chg-eso-asah-3",
-        category: "Neuropharmacology / DCI",
-        topic: "Mandatory Routine Oral Nimodipine Administration",
-        changeType: "REVISED",
-        previousGrade: "Strong recommendation, Moderate quality",
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        previousText: "Oral nimodipine is recommended for 21 days.",
-        currentText:
-          "In patients with aneurysmal subarachnoid haemorrhage, we strongly recommend routine oral administration of nimodipine (60 mg every 4 hours for 21 days) to prevent delayed cerebral ischemia and reduce the risk of poor functional outcomes.",
-        drivingTrials: ["British Aneurysm Nimodipine Trial (BANT)", "Cochrane Calcium Channel Blocker Meta-analysis"],
-      },
-      {
-        id: "chg-eso-asah-4",
-        category: "Antifibrinolytic Therapy",
-        topic: "Avoidance of Routine Antifibrinolytic Drugs (Tranexamic Acid)",
-        changeType: "DOWNGRADED",
-        previousGrade: "Conditional / Short-term consideration prior to securing",
-        currentGrade: "Strong recommendation AGAINST, Moderate quality evidence",
-        previousText: "Short-term tranexamic acid was widely used before aneurysm occlusion to reduce early rebleeding.",
-        currentText:
-          "We recommend against the routine use of antifibrinolytic drugs (such as tranexamic acid) prior to aneurysm securing, because randomized trials demonstrated that although early rebleeding is reduced, this benefit is offset by delayed ischemic complications without improving 6-month functional outcomes.",
-        drivingTrials: ["ULTRA Trial (Lancet 2021)"],
-      },
-      {
-        id: "chg-eso-asah-5",
-        category: "Medical Management",
-        topic: "Recommendation Against Ineffective Pharmacotherapies (Statins, Magnesium, Clazosentan)",
-        changeType: "NEW",
-        previousGrade: "Equivocal / Investigational",
-        currentGrade: "Strong recommendation AGAINST, High quality evidence",
-        previousText: "Statins, magnesium sulfate, and endothelin receptor antagonists were actively tested in clinical trials for vasospasm prevention.",
-        currentText:
-          "We strongly recommend against the routine administration of statins, intravenous magnesium sulphate, tirilazad, or endothelin receptor antagonists (such as clazosentan) for the prevention of delayed cerebral ischemia, as high-quality trials show no benefit on clinical functional outcomes.",
-        drivingTrials: ["STASH (Lancet Neurol)", "MASH-2 (Lancet)", "CONSCIOUS-1/2/3", "REACT Trial"],
-      },
-      {
-        id: "chg-eso-asah-6",
-        category: "Hemodynamic Management",
-        topic: "Strict Euvolemia Maintenance and Avoidance of Prophylactic Hypervolemia (Triple-H)",
-        changeType: "REVISED",
-        previousGrade: "Triple-H Therapy (Hypervolemia, Hemodilution, Hypertension)",
-        currentGrade: "Strong recommendation AGAINST hypervolemia, Moderate quality",
-        previousText: "Prophylactic hypervolemia (Triple-H) was standard protocol in neuro-ICUs.",
-        currentText:
-          "In patients with aSAH, we recommend maintaining strict euvolemia (isotonic crystalloids) and recommend against prophylactic hypervolemia or routine hemodilution due to lack of ischemic benefit and high incidence of pulmonary edema and cardiac complications. Induced hypertension is reserved exclusively for clinical delayed cerebral ischemia (DCI).",
-        drivingTrials: ["Euvolemia vs Hypervolemia RCTs", "Neurocritical Care Hemodynamic Cohorts"],
-      },
-      {
-        id: "chg-eso-asah-7",
-        category: "Pre-Securing Hemodynamics",
-        topic: "Blood Pressure Targets Prior to Aneurysm Occlusion",
-        changeType: "NEW",
-        previousGrade: "Unspecified arbitrary cutoffs",
-        currentGrade: "Expert Consensus Statement",
-        previousText: "Varied targets between SBP <140 and SBP <180 mmHg.",
-        currentText:
-          "Prior to aneurysm securing, we suggest titrating blood pressure to maintain SBP <160 mmHg (or MAP <110 mmHg) using short-acting titratable IV agents, while strictly avoiding acute hypotension or excessive mean arterial pressure drops (>25%) to preserve cerebral perfusion pressure.",
-        drivingTrials: ["Pre-aneurysm Securing Hemodynamic Observational Registries"],
-      },
-      {
-        id: "chg-eso-asah-8",
-        category: "Health Systems & Center Volume",
-        topic: "Centralization of Care in High-Volume Neuro-ICU Centers (≥70 Cases/Year)",
-        changeType: "NEW",
-        previousGrade: "General recommendation for acute hospital care",
-        currentGrade: "Expert Consensus Statement",
-        previousText: "Management in acute hospitals without specified annual case minimums.",
-        currentText:
-          "We suggest managing patients with aneurysmal subarachnoid haemorrhage in a dedicated neuro-intensive care or high-care unit within high-volume specialized neurovascular centers admitting at least 70 aSAH patients per year (or at least 35 in geographically remote regions) to achieve significantly lower mortality and improved functional recovery.",
-        drivingTrials: ["European Volume-Outcome Meta-analysis", "Vergouwen et al. Multicenter Audit"],
-      },
-      {
-        id: "chg-eso-asah-9",
-        category: "Seizure Management",
-        topic: "Avoidance of Routine Long-Term Antiseizure Medication Prophylaxis",
-        changeType: "REVISED",
-        previousGrade: "Routine 7 to 14 days anticonvulsant prophylaxis",
-        currentGrade: "Weak recommendation AGAINST routine long-term prophylaxis",
-        previousText: "Prophylactic phenytoin or levetiracetam was routinely prescribed for all aSAH patients.",
-        currentText:
-          "We recommend against routine long-term prophylactic antiepileptic drug therapy in patients with aSAH without clinical or electrographic seizures. Ultra-short-term perioperative seizure prophylaxis (≤3 days) may be considered selectively in high-risk patients with middle cerebral artery aneurysms or thick subarachnoid hematoma.",
-        drivingTrials: ["Cochrane Anticonvulsant Prophylaxis in aSAH Review"],
-      },
-      {
-        id: "chg-eso-asah-10",
-        category: "Cerebrospinal Fluid Management",
-        topic: "Lumbar Drainage and CSF Clearance as Adjunct to EVD for Vasospasm Reduction",
-        changeType: "NEW",
-        previousGrade: "External Ventricular Drain (EVD) as sole standard",
-        currentGrade: "Expert Consensus Statement",
-        previousText: "EVD was used exclusively for hydrocephalus; lumbar puncture was deterred.",
-        currentText:
-          "In patients with acute hydrocephalus or thick basal cistern subarachnoid blood, serial lumbar puncture or lumbar drainage can be considered as a safe adjunct or alternative to external ventricular drainage (EVD) once the aneurysm is secured, facilitating blood clearance and reducing delayed cerebral ischemia.",
-        drivingTrials: ["LUMAS Trial", "EARLYDRAIN Trial (Lancet Neurol 2023)"],
-      },
+    "id": "eso-asah-2026",
+    "society": "ESO",
+    "year": 2026,
+    "subspecialty": "Stroke",
+    "subspecialties": [
+      "Stroke",
+      "Neurocritical Care"
     ],
+    "title": "European Stroke Organisation (ESO), European Association of Neurosurgical Societies (EANS) and European Society for Minimally Invasive Neurological Therapy (ESMINT) guideline on aneurysmal subarachnoid haemorrhage",
+    "officialUrl": "https://doi.org/10.1093/esj/aakag043",
+    "journalTarget": "European Stroke Journal / Oxford Academic",
+    "documentType": "Clinical Practice Guideline",
+    "publishDate": "2026-05-07",
+    "previousVersionYear": 2013,
+    "executiveSummary": "Landmark joint European multidisciplinary guideline (ESO-EANS-ESMINT led by Vergouwen, Etminan, Vajkoczy et al.) establishing 10 major GRADE-based practice recommendations: frontline endorsement of regular endovascular coiling over clipping in good-grade aSAH, ultra-early aneurysm occlusion within 24 hours, mandatory oral nimodipine, euvolemia over Triple-H, centralization in high-volume neuro-ICUs (≥70 cases/yr), and definitive warnings against routine tranexamic acid, statins, magnesium, and clazosentan.",
+    "linkedScenarioIds": [
+      "asah-aneurysm-coiling-vs-clipping"
+    ],
+    "allPracticeChanges": [
+      {
+        "id": "chg-eso-asah-1",
+        "scenarioId": "asah-aneurysm-coiling-vs-clipping",
+        "category": "Aneurysm Occlusion",
+        "topic": "Regular Endovascular Coiling Preferred Over Microsurgical Clipping (WFNS I–III)",
+        "changeType": "UPGRADED",
+        "previousGrade": "Moderate recommendation / Conditional",
+        "currentGrade": "Strong recommendation FOR, High quality evidence",
+        "previousText": "Either coiling or clipping was considered acceptable based on operator preference.",
+        "currentText": "In patients with aneurysmal subarachnoid haemorrhage in good clinical condition (WFNS I–III) with a ruptured aneurysm equally suitable for both endovascular and neurosurgical treatment, we recommend regular endovascular coiling (without adjunctive devices) as the preferred treatment strategy over microsurgical clipping to minimize 1-year poor functional outcome and disability.",
+        "drivingTrials": [
+          "ISAT (Lancet)",
+          "ISAT 10-year Follow-up (Lancet)",
+          "Cochrane Review 2025"
+        ]
+      },
+      {
+        "id": "chg-eso-asah-2",
+        "scenarioId": "asah-aneurysm-coiling-vs-clipping",
+        "category": "Timing of Aneurysm Securing",
+        "topic": "Aneurysm Treatment Within 24 Hours of Ictus",
+        "changeType": "NEW",
+        "previousGrade": "Historically within 72 hours",
+        "currentGrade": "Expert Consensus Statement",
+        "previousText": "Aneurysm repair within 72 hours was traditionally considered acceptable.",
+        "currentText": "We suggest treatment of the ruptured aneurysm as soon as feasible, and within 24 hours after ictus, with the timing optimized for the availability of a dedicated expert multidisciplinary neurovascular team.",
+        "drivingTrials": [
+          "Early vs Delayed Coiling Registries",
+          "European Neurovascular Multicenter Cohorts"
+        ]
+      },
+      {
+        "id": "chg-eso-asah-3",
+        "category": "Neuropharmacology / DCI",
+        "topic": "Mandatory Routine Oral Nimodipine Administration",
+        "changeType": "REVISED",
+        "previousGrade": "Strong recommendation, Moderate quality",
+        "currentGrade": "Strong recommendation FOR, High quality evidence",
+        "previousText": "Oral nimodipine is recommended for 21 days.",
+        "currentText": "In patients with aneurysmal subarachnoid haemorrhage, we strongly recommend routine oral administration of nimodipine (60 mg every 4 hours for 21 days) to prevent delayed cerebral ischemia and reduce the risk of poor functional outcomes.",
+        "drivingTrials": [
+          "British Aneurysm Nimodipine Trial (BANT)",
+          "Cochrane Calcium Channel Blocker Meta-analysis"
+        ]
+      },
+      {
+        "id": "chg-eso-asah-4",
+        "category": "Antifibrinolytic Therapy",
+        "topic": "Avoidance of Routine Antifibrinolytic Drugs (Tranexamic Acid)",
+        "changeType": "DOWNGRADED",
+        "previousGrade": "Conditional / Short-term consideration prior to securing",
+        "currentGrade": "Strong recommendation AGAINST, Moderate quality evidence",
+        "previousText": "Short-term tranexamic acid was widely used before aneurysm occlusion to reduce early rebleeding.",
+        "currentText": "We recommend against the routine use of antifibrinolytic drugs (such as tranexamic acid) prior to aneurysm securing, because randomized trials demonstrated that although early rebleeding is reduced, this benefit is offset by delayed ischemic complications without improving 6-month functional outcomes.",
+        "drivingTrials": [
+          "ULTRA Trial (Lancet 2021)"
+        ]
+      },
+      {
+        "id": "chg-eso-asah-5",
+        "category": "Medical Management",
+        "topic": "Recommendation Against Ineffective Pharmacotherapies (Statins, Magnesium, Clazosentan)",
+        "changeType": "NEW",
+        "previousGrade": "Equivocal / Investigational",
+        "currentGrade": "Strong recommendation AGAINST, High quality evidence",
+        "previousText": "Statins, magnesium sulfate, and endothelin receptor antagonists were actively tested in clinical trials for vasospasm prevention.",
+        "currentText": "We strongly recommend against the routine administration of statins, intravenous magnesium sulphate, tirilazad, or endothelin receptor antagonists (such as clazosentan) for the prevention of delayed cerebral ischemia, as high-quality trials show no benefit on clinical functional outcomes.",
+        "drivingTrials": [
+          "STASH (Lancet Neurol)",
+          "MASH-2 (Lancet)",
+          "CONSCIOUS-1/2/3",
+          "REACT Trial"
+        ]
+      },
+      {
+        "id": "chg-eso-asah-6",
+        "category": "Hemodynamic Management",
+        "topic": "Strict Euvolemia Maintenance and Avoidance of Prophylactic Hypervolemia (Triple-H)",
+        "changeType": "REVISED",
+        "previousGrade": "Triple-H Therapy (Hypervolemia, Hemodilution, Hypertension)",
+        "currentGrade": "Strong recommendation AGAINST hypervolemia, Moderate quality",
+        "previousText": "Prophylactic hypervolemia (Triple-H) was standard protocol in neuro-ICUs.",
+        "currentText": "In patients with aSAH, we recommend maintaining strict euvolemia (isotonic crystalloids) and recommend against prophylactic hypervolemia or routine hemodilution due to lack of ischemic benefit and high incidence of pulmonary edema and cardiac complications. Induced hypertension is reserved exclusively for clinical delayed cerebral ischemia (DCI).",
+        "drivingTrials": [
+          "Euvolemia vs Hypervolemia RCTs",
+          "Neurocritical Care Hemodynamic Cohorts"
+        ]
+      },
+      {
+        "id": "chg-eso-asah-7",
+        "category": "Pre-Securing Hemodynamics",
+        "topic": "Blood Pressure Targets Prior to Aneurysm Occlusion",
+        "changeType": "NEW",
+        "previousGrade": "Unspecified arbitrary cutoffs",
+        "currentGrade": "Expert Consensus Statement",
+        "previousText": "Varied targets between SBP <140 and SBP <180 mmHg.",
+        "currentText": "Prior to aneurysm securing, we suggest titrating blood pressure to maintain SBP <160 mmHg (or MAP <110 mmHg) using short-acting titratable IV agents, while strictly avoiding acute hypotension or excessive mean arterial pressure drops (>25%) to preserve cerebral perfusion pressure.",
+        "drivingTrials": [
+          "Pre-aneurysm Securing Hemodynamic Observational Registries"
+        ]
+      },
+      {
+        "id": "chg-eso-asah-8",
+        "category": "Health Systems & Center Volume",
+        "topic": "Centralization of Care in High-Volume Neuro-ICU Centers (≥70 Cases/Year)",
+        "changeType": "NEW",
+        "previousGrade": "General recommendation for acute hospital care",
+        "currentGrade": "Expert Consensus Statement",
+        "previousText": "Management in acute hospitals without specified annual case minimums.",
+        "currentText": "We suggest managing patients with aneurysmal subarachnoid haemorrhage in a dedicated neuro-intensive care or high-care unit within high-volume specialized neurovascular centers admitting at least 70 aSAH patients per year (or at least 35 in geographically remote regions) to achieve significantly lower mortality and improved functional recovery.",
+        "drivingTrials": [
+          "European Volume-Outcome Meta-analysis",
+          "Vergouwen et al. Multicenter Audit"
+        ]
+      },
+      {
+        "id": "chg-eso-asah-9",
+        "category": "Seizure Management",
+        "topic": "Avoidance of Routine Long-Term Antiseizure Medication Prophylaxis",
+        "changeType": "REVISED",
+        "previousGrade": "Routine 7 to 14 days anticonvulsant prophylaxis",
+        "currentGrade": "Weak recommendation AGAINST routine long-term prophylaxis",
+        "previousText": "Prophylactic phenytoin or levetiracetam was routinely prescribed for all aSAH patients.",
+        "currentText": "We recommend against routine long-term prophylactic antiepileptic drug therapy in patients with aSAH without clinical or electrographic seizures. Ultra-short-term perioperative seizure prophylaxis (≤3 days) may be considered selectively in high-risk patients with middle cerebral artery aneurysms or thick subarachnoid hematoma.",
+        "drivingTrials": [
+          "Cochrane Anticonvulsant Prophylaxis in aSAH Review"
+        ]
+      },
+      {
+        "id": "chg-eso-asah-10",
+        "category": "Cerebrospinal Fluid Management",
+        "topic": "Lumbar Drainage and CSF Clearance as Adjunct to EVD for Vasospasm Reduction",
+        "changeType": "NEW",
+        "previousGrade": "External Ventricular Drain (EVD) as sole standard",
+        "currentGrade": "Expert Consensus Statement",
+        "previousText": "EVD was used exclusively for hydrocephalus; lumbar puncture was deterred.",
+        "currentText": "In patients with acute hydrocephalus or thick basal cistern subarachnoid blood, serial lumbar puncture or lumbar drainage can be considered as a safe adjunct or alternative to external ventricular drainage (EVD) once the aneurysm is secured, facilitating blood clearance and reducing delayed cerebral ischemia.",
+        "drivingTrials": [
+          "LUMAS Trial",
+          "EARLYDRAIN Trial (Lancet Neurol 2023)"
+        ]
+      }
+    ]
   },
   {
-    id: "eso-sap-2026",
-    society: "ESO",
-    year: 2026,
-    subspecialty: "Stroke",
-    subspecialties: ["Stroke", "Neurocritical Care"],
-    title: "European Stroke Organisation (ESO) guideline on stroke-associated pneumonia (SAP): Prevention, diagnosis and management",
-    officialUrl: "https://doi.org/10.1177/23969873261295588",
-    journalTarget: "European Stroke Journal",
-    documentType: "Clinical Practice Guideline",
-    publishDate: "2026-05-23",
-    previousVersionYear: 2018,
-    executiveSummary:
-      "Comprehensive 2026 ESO clinical guideline on stroke-associated pneumonia (SAP), providing evidence-based recommendations on diagnostic criteria (modified CDC/Mann criteria), hyperacute dysphagia screening timing, head-of-bed elevation, oral hygiene with chlorhexidine, non-recommendation of prophylactic antibiotics, and empiric antimicrobial regimens.",
-    linkedScenarioIds: [],
-    allPracticeChanges: [
-      {
-        id: "chg-eso-sap-1",
-        category: "Antibiotic Prophylaxis",
-        topic: "Prophylactic Antibiotics Strictly NOT Recommended in Acute Stroke",
-        changeType: "DOWNGRADED",
-        previousGrade: "Investigational / Conditional in high-risk patients",
-        currentGrade: "Strong recommendation AGAINST, High quality evidence",
-        previousText: "Prophylactic antibiotics were evaluated in multiple trials to prevent post-stroke infections.",
-        currentText:
-          "In adult patients with acute ischemic stroke or intracerebral hemorrhage, we strongly recommend against the routine prophylactic administration of antibiotics. Clinical trials demonstrate that while antibiotics reduce general infection rates, they do not decrease the incidence of stroke-associated pneumonia or improve 90-day functional outcome, while risking antimicrobial resistance.",
-        drivingTrials: ["PANTHER Trial", "PASS Trial (Lancet)", "STROKE-INF (Lancet 2015)"],
-      },
-      {
-        id: "chg-eso-sap-2",
-        category: "Dysphagia Management",
-        topic: "Universal Formal Dysphagia Screening Within 4 Hours of Admission",
-        changeType: "UPGRADED",
-        previousGrade: "Recommended prior to oral intake",
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        previousText: "Screening was recommended prior to eating or drinking without strict hourly time ceilings.",
-        currentText:
-          "We recommend that all acute stroke patients undergo formal, validated swallow screening (e.g., GUSS, TOR-BSST, or ASSIST) within 4 hours of hospital presentation and strictly prior to any oral administration of fluids, food, or oral medications, to minimize aspiration risk.",
-        drivingTrials: ["European Dysphagia In Stroke Registry", "Stepped-Wedge Aspiration Prevention Cohorts"],
-      },
-      {
-        id: "chg-eso-sap-3",
-        category: "Enteral Nutrition",
-        topic: "Early Enteral Nutrition Via Nasogastric Tube Within 72 Hours",
-        changeType: "NEW",
-        previousGrade: "General nutritional support",
-        currentGrade: "Moderate recommendation FOR, Moderate quality",
-        previousText: "Nutritional support timing was determined on an individual clinical basis.",
-        currentText:
-          "In stroke patients with persisting dysphagia, we recommend starting enteral nutrition via a nasogastric tube (NGT) early, within the first 72 hours of admission, rather than delaying feeding or resorting to parenteral nutrition, with careful monitoring of gastric residual volumes.",
-        drivingTrials: ["FOOD Trial Collaboration", "Early Enteral Nutrition in Critical Stroke Meta-analysis"],
-      },
-      {
-        id: "chg-eso-sap-4",
-        category: "Nursing & Infection Control",
-        topic: "Semi-Recumbent Bed Positioning (≥30°) and Oral Chlorhexidine Hygiene",
-        changeType: "REVISED",
-        previousGrade: "General nursing recommendations",
-        currentGrade: "Strong recommendation FOR, Moderate quality",
-        previousText: "Standard mouth care and bed positioning.",
-        currentText:
-          "We recommend maintaining bed elevation at an angle of at least 30 degrees during feeding and rest, alongside standardized antiseptic oral decontamination with 0.12% to 0.20% chlorhexidine gluconate oral swabs twice daily to prevent oropharyngeal microaspiration.",
-        drivingTrials: ["HeadPoST Trial (NEJM)", "Oral Care Decontamination Meta-analysis 2025"],
-      },
-      {
-        id: "chg-eso-sap-5",
-        category: "Diagnostic Criteria & Biomarkers",
-        topic: "Modified CDC Criteria and Procalcitonin Surveillance for SAP",
-        changeType: "NEW",
-        previousGrade: "Clinical suspicion only",
-        currentGrade: "Moderate recommendation FOR, Moderate quality",
-        previousText: "Diagnosis was purely based on physician clinical impression and non-standardized auscultation.",
-        currentText:
-          "We recommend the systematic application of modified CDC / Mann diagnostic criteria combining new pulmonary infiltrates on chest imaging, fever (>38°C), purulent sputum, and systemic leukocytosis or elevated procalcitonin (>0.25 ng/mL) for timely, objective confirmation of stroke-associated pneumonia.",
-        drivingTrials: ["Mann et al. SAP Validation Cohorts", "Procalcitonin-Guided Stewardship in Stroke (PreS-Trial)"],
-      },
-      {
-        id: "chg-eso-sap-6",
-        category: "Antimicrobial Stewardship",
-        topic: "Targeted Empiric Antibiotic Therapy and 48–72h De-escalation Protocol",
-        changeType: "NEW",
-        previousGrade: "Empirical broad spectrum monotherapy",
-        currentGrade: "Strong recommendation FOR, Moderate quality",
-        previousText: "Prolonged non-de-escalated broad spectrum antibiotic courses were prevalent.",
-        currentText:
-          "In confirmed SAP, we recommend prompt initiation of empiric antibiotic therapy directed against common community/hospital respiratory pathogens (e.g., aminopenicillin/beta-lactamase inhibitor or 3rd generation cephalosporin), coupled with mandatory clinical and microbiological re-evaluation at 48 to 72 hours for antibiotic de-escalation to prevent resistance.",
-        drivingTrials: ["European SAP Antimicrobial Stewardship Consensus", "Pneumonia De-escalation RCTs"],
-      },
+    "id": "eso-sap-2026",
+    "society": "ESO",
+    "year": 2026,
+    "subspecialty": "Stroke",
+    "subspecialties": [
+      "Stroke",
+      "Neurocritical Care"
     ],
+    "title": "European Stroke Organisation (ESO) guideline on stroke-associated pneumonia (SAP): Prevention, diagnosis and management",
+    "officialUrl": "https://doi.org/10.1177/23969873261295588",
+    "journalTarget": "European Stroke Journal",
+    "documentType": "Clinical Practice Guideline",
+    "publishDate": "2026-05-23",
+    "previousVersionYear": 2018,
+    "executiveSummary": "Comprehensive 2026 ESO clinical guideline on stroke-associated pneumonia (SAP), providing evidence-based recommendations on diagnostic criteria (modified CDC/Mann criteria), hyperacute dysphagia screening timing, head-of-bed elevation, oral hygiene with chlorhexidine, non-recommendation of prophylactic antibiotics, and empiric antimicrobial regimens.",
+    "linkedScenarioIds": [],
+    "allPracticeChanges": [
+      {
+        "id": "chg-eso-sap-1",
+        "category": "Antibiotic Prophylaxis",
+        "topic": "Prophylactic Antibiotics Strictly NOT Recommended in Acute Stroke",
+        "changeType": "DOWNGRADED",
+        "previousGrade": "Investigational / Conditional in high-risk patients",
+        "currentGrade": "Strong recommendation AGAINST, High quality evidence",
+        "previousText": "Prophylactic antibiotics were evaluated in multiple trials to prevent post-stroke infections.",
+        "currentText": "In adult patients with acute ischemic stroke or intracerebral hemorrhage, we strongly recommend against the routine prophylactic administration of antibiotics. Clinical trials demonstrate that while antibiotics reduce general infection rates, they do not decrease the incidence of stroke-associated pneumonia or improve 90-day functional outcome, while risking antimicrobial resistance.",
+        "drivingTrials": [
+          "PANTHER Trial",
+          "PASS Trial (Lancet)",
+          "STROKE-INF (Lancet 2015)"
+        ]
+      },
+      {
+        "id": "chg-eso-sap-2",
+        "category": "Dysphagia Management",
+        "topic": "Universal Formal Dysphagia Screening Within 4 Hours of Admission",
+        "changeType": "UPGRADED",
+        "previousGrade": "Recommended prior to oral intake",
+        "currentGrade": "Strong recommendation FOR, High quality evidence",
+        "previousText": "Screening was recommended prior to eating or drinking without strict hourly time ceilings.",
+        "currentText": "We recommend that all acute stroke patients undergo formal, validated swallow screening (e.g., GUSS, TOR-BSST, or ASSIST) within 4 hours of hospital presentation and strictly prior to any oral administration of fluids, food, or oral medications, to minimize aspiration risk.",
+        "drivingTrials": [
+          "European Dysphagia In Stroke Registry",
+          "Stepped-Wedge Aspiration Prevention Cohorts"
+        ]
+      },
+      {
+        "id": "chg-eso-sap-3",
+        "category": "Enteral Nutrition",
+        "topic": "Early Enteral Nutrition Via Nasogastric Tube Within 72 Hours",
+        "changeType": "NEW",
+        "previousGrade": "General nutritional support",
+        "currentGrade": "Moderate recommendation FOR, Moderate quality",
+        "previousText": "Nutritional support timing was determined on an individual clinical basis.",
+        "currentText": "In stroke patients with persisting dysphagia, we recommend starting enteral nutrition via a nasogastric tube (NGT) early, within the first 72 hours of admission, rather than delaying feeding or resorting to parenteral nutrition, with careful monitoring of gastric residual volumes.",
+        "drivingTrials": [
+          "FOOD Trial Collaboration",
+          "Early Enteral Nutrition in Critical Stroke Meta-analysis"
+        ]
+      },
+      {
+        "id": "chg-eso-sap-4",
+        "category": "Nursing & Infection Control",
+        "topic": "Semi-Recumbent Bed Positioning (≥30°) and Oral Chlorhexidine Hygiene",
+        "changeType": "REVISED",
+        "previousGrade": "General nursing recommendations",
+        "currentGrade": "Strong recommendation FOR, Moderate quality",
+        "previousText": "Standard mouth care and bed positioning.",
+        "currentText": "We recommend maintaining bed elevation at an angle of at least 30 degrees during feeding and rest, alongside standardized antiseptic oral decontamination with 0.12% to 0.20% chlorhexidine gluconate oral swabs twice daily to prevent oropharyngeal microaspiration.",
+        "drivingTrials": [
+          "HeadPoST Trial (NEJM)",
+          "Oral Care Decontamination Meta-analysis 2025"
+        ]
+      },
+      {
+        "id": "chg-eso-sap-5",
+        "category": "Diagnostic Criteria & Biomarkers",
+        "topic": "Modified CDC Criteria and Procalcitonin Surveillance for SAP",
+        "changeType": "NEW",
+        "previousGrade": "Clinical suspicion only",
+        "currentGrade": "Moderate recommendation FOR, Moderate quality",
+        "previousText": "Diagnosis was purely based on physician clinical impression and non-standardized auscultation.",
+        "currentText": "We recommend the systematic application of modified CDC / Mann diagnostic criteria combining new pulmonary infiltrates on chest imaging, fever (>38°C), purulent sputum, and systemic leukocytosis or elevated procalcitonin (>0.25 ng/mL) for timely, objective confirmation of stroke-associated pneumonia.",
+        "drivingTrials": [
+          "Mann et al. SAP Validation Cohorts",
+          "Procalcitonin-Guided Stewardship in Stroke (PreS-Trial)"
+        ]
+      },
+      {
+        "id": "chg-eso-sap-6",
+        "category": "Antimicrobial Stewardship",
+        "topic": "Targeted Empiric Antibiotic Therapy and 48–72h De-escalation Protocol",
+        "changeType": "NEW",
+        "previousGrade": "Empirical broad spectrum monotherapy",
+        "currentGrade": "Strong recommendation FOR, Moderate quality",
+        "previousText": "Prolonged non-de-escalated broad spectrum antibiotic courses were prevalent.",
+        "currentText": "In confirmed SAP, we recommend prompt initiation of empiric antibiotic therapy directed against common community/hospital respiratory pathogens (e.g., aminopenicillin/beta-lactamase inhibitor or 3rd generation cephalosporin), coupled with mandatory clinical and microbiological re-evaluation at 48 to 72 hours for antibiotic de-escalation to prevent resistance.",
+        "drivingTrials": [
+          "European SAP Antimicrobial Stewardship Consensus",
+          "Pneumonia De-escalation RCTs"
+        ]
+      }
+    ]
   },
   {
-    id: "eso-visual-impairment-2025",
-    society: "ESO",
-    year: 2025,
-    subspecialty: "Stroke",
-    subspecialties: ["Stroke", "Other"],
-    title: "European Stroke Organisation (ESO) guideline on screening, diagnosis and management of visual impairment after stroke",
-    officialUrl: "https://doi.org/10.1177/23969873251284477",
-    journalTarget: "European Stroke Journal",
-    documentType: "Clinical Practice Guideline",
-    publishDate: "2025-05-24",
-    previousVersionYear: 2017,
-    executiveSummary:
-      "Evidence-based European clinical practice guideline dedicated to post-stroke visual dysfunction, standardizing screening for homonymous visual field deficits, spatial neglect, ocular motility disorders, and central visual processing deficits, recommending compensatory visual scanning training and optical prisms.",
-    linkedScenarioIds: [],
-    allPracticeChanges: [
-      {
-        id: "chg-eso-vis-1",
-        category: "Visual Field Rehabilitation",
-        topic: "Compensatory Visual Scanning Training (VST) for Hemianopia and Visual Neglect",
-        changeType: "UPGRADED",
-        previousGrade: "Weak recommendation, Low quality",
-        currentGrade: "Strong recommendation FOR, Moderate quality evidence",
-        previousText: "Visual scanning exercises were considered an optional adjunct.",
-        currentText:
-          "In stroke patients with homonymous visual field defects or unilateral spatial neglect, we recommend structured compensatory visual scanning training (VST) consisting of systematic saccadic explorations to the blind hemifield to improve functional mobility, reading ability, and daily visual independence.",
-        drivingTrials: ["VISUAL-SCAN Multicenter Trial", "Cochrane Interventions for Visual Field Defects 2024"],
-      },
-      {
-        id: "chg-eso-vis-2",
-        category: "Screening Protocols",
-        topic: "Routine Multimodal Visual Screening Within 72 Hours of Stroke Admission",
-        changeType: "NEW",
-        previousGrade: "Informal bedside observation",
-        currentGrade: "Expert Consensus Statement",
-        previousText: "Formal ophthalmic and orthoptic evaluations were ordered only upon patient complaint.",
-        currentText:
-          "We recommend that all hospitalized acute stroke patients undergo standardized screening for visual field loss, spatial neglect, and eye movement abnormalities within 72 hours of admission using validated bedside instruments (e.g., confrontation, line bisection, ocular alignment testing).",
-        drivingTrials: ["European Stroke Vision Screening Consensus", "VIS-P Register"],
-      },
-      {
-        id: "chg-eso-vis-3",
-        category: "Optical Devices",
-        topic: "Fresnel Optical Prisms for Functional Visual Field Expansion",
-        changeType: "REVISED",
-        previousGrade: "Equivocal / Low certainty",
-        currentGrade: "Weak recommendation FOR, Moderate quality",
-        previousText: "Prisms were rarely prescribed due to reports of visual confusion.",
-        currentText:
-          "In motivated stroke patients with dense homonymous hemianopia, we suggest the selective fitting of temporary Fresnel sector or monocular peli prisms on spectacle lenses to assist in detecting obstacles in the blind hemifield during ambulatory activities.",
-        drivingTrials: ["Peli Prism RCT Cohorts", "Mobility and Collision Avoidance Trials"],
-      },
-      {
-        id: "chg-eso-vis-4",
-        category: "Ocular Motility",
-        topic: "Occlusion Strategies and Orthoptic Exercises for Post-Stroke Diplopia",
-        changeType: "NEW",
-        previousGrade: "Informal eye patch placement",
-        currentGrade: "Weak recommendation FOR, Low quality",
-        previousText: "Complete eye patches were applied haphazardly without binocular re-evaluation.",
-        currentText:
-          "For patients experiencing disabling diplopia due to stroke-induced cranial nerve (III, IV, VI) palsies or internuclear ophthalmoplegia, we suggest temporary monocular occlusion (foil/bangerter filter rather than opaque patch) or ground prisms combined with orthoptic convergence exercises.",
-        drivingTrials: ["Orthoptic Stroke Rehabilitation Registry"],
-      },
-      {
-        id: "chg-eso-vis-5",
-        category: "Neuromodulation for Neglect",
-        topic: "Non-Invasive Brain Stimulation (rTMS / tDCS) for Unilateral Spatial Neglect",
-        changeType: "NEW",
-        previousGrade: "Not recommended outside research",
-        currentGrade: "Weak recommendation FOR, Moderate quality",
-        previousText: "Brain stimulation protocols were considered experimental.",
-        currentText:
-          "In stroke patients with persisting unilateral spatial neglect unresponsive to conventional scanning, we suggest inhibitory low-frequency rTMS or cathodal tDCS over the unaffected left posterior parietal cortex, or excitatory anodal tDCS over the right parietal cortex, paired with active visual exploration therapy.",
-        drivingTrials: ["Parietal Neuromodulation RCTs in Neglect", "Cochrane Cognitive Rehabilitation Review"],
-      },
-      {
-        id: "chg-eso-vis-6",
-        category: "Alexia & Reading Aids",
-        topic: "High-Contrast Digital Typographical Aids for Hemianopic Alexia",
-        changeType: "NEW",
-        previousGrade: "Informal magnification glasses",
-        currentGrade: "Expert Consensus Statement",
-        previousText: "Patients were provided standard non-customized magnifying glasses.",
-        currentText:
-          "For patients experiencing hemianopic reading difficulties (hemianopic alexia), we suggest structured optokinetic reading training software and digital high-contrast reading aids to expand text reading speed and comprehension.",
-        drivingTrials: ["Read-Right Multicenter Trial", "Digital Reading Adaptation in Hemianopia Cohorts"],
-      },
+    "id": "eso-visual-impairment-2025",
+    "society": "ESO",
+    "year": 2025,
+    "subspecialty": "Stroke",
+    "subspecialties": [
+      "Stroke",
+      "Other"
     ],
+    "title": "European Stroke Organisation (ESO) guideline on screening, diagnosis and management of visual impairment after stroke",
+    "officialUrl": "https://doi.org/10.1177/23969873251284477",
+    "journalTarget": "European Stroke Journal",
+    "documentType": "Clinical Practice Guideline",
+    "publishDate": "2025-05-24",
+    "previousVersionYear": 2017,
+    "executiveSummary": "Evidence-based European clinical practice guideline dedicated to post-stroke visual dysfunction, standardizing screening for homonymous visual field deficits, spatial neglect, ocular motility disorders, and central visual processing deficits, recommending compensatory visual scanning training and optical prisms.",
+    "linkedScenarioIds": [],
+    "allPracticeChanges": [
+      {
+        "id": "chg-eso-vis-1",
+        "category": "Visual Field Rehabilitation",
+        "topic": "Compensatory Visual Scanning Training (VST) for Hemianopia and Visual Neglect",
+        "changeType": "UPGRADED",
+        "previousGrade": "Weak recommendation, Low quality",
+        "currentGrade": "Strong recommendation FOR, Moderate quality evidence",
+        "previousText": "Visual scanning exercises were considered an optional adjunct.",
+        "currentText": "In stroke patients with homonymous visual field defects or unilateral spatial neglect, we recommend structured compensatory visual scanning training (VST) consisting of systematic saccadic explorations to the blind hemifield to improve functional mobility, reading ability, and daily visual independence.",
+        "drivingTrials": [
+          "VISUAL-SCAN Multicenter Trial",
+          "Cochrane Interventions for Visual Field Defects 2024"
+        ]
+      },
+      {
+        "id": "chg-eso-vis-2",
+        "category": "Screening Protocols",
+        "topic": "Routine Multimodal Visual Screening Within 72 Hours of Stroke Admission",
+        "changeType": "NEW",
+        "previousGrade": "Informal bedside observation",
+        "currentGrade": "Expert Consensus Statement",
+        "previousText": "Formal ophthalmic and orthoptic evaluations were ordered only upon patient complaint.",
+        "currentText": "We recommend that all hospitalized acute stroke patients undergo standardized screening for visual field loss, spatial neglect, and eye movement abnormalities within 72 hours of admission using validated bedside instruments (e.g., confrontation, line bisection, ocular alignment testing).",
+        "drivingTrials": [
+          "European Stroke Vision Screening Consensus",
+          "VIS-P Register"
+        ]
+      },
+      {
+        "id": "chg-eso-vis-3",
+        "category": "Optical Devices",
+        "topic": "Fresnel Optical Prisms for Functional Visual Field Expansion",
+        "changeType": "REVISED",
+        "previousGrade": "Equivocal / Low certainty",
+        "currentGrade": "Weak recommendation FOR, Moderate quality",
+        "previousText": "Prisms were rarely prescribed due to reports of visual confusion.",
+        "currentText": "In motivated stroke patients with dense homonymous hemianopia, we suggest the selective fitting of temporary Fresnel sector or monocular peli prisms on spectacle lenses to assist in detecting obstacles in the blind hemifield during ambulatory activities.",
+        "drivingTrials": [
+          "Peli Prism RCT Cohorts",
+          "Mobility and Collision Avoidance Trials"
+        ]
+      },
+      {
+        "id": "chg-eso-vis-4",
+        "category": "Ocular Motility",
+        "topic": "Occlusion Strategies and Orthoptic Exercises for Post-Stroke Diplopia",
+        "changeType": "NEW",
+        "previousGrade": "Informal eye patch placement",
+        "currentGrade": "Weak recommendation FOR, Low quality",
+        "previousText": "Complete eye patches were applied haphazardly without binocular re-evaluation.",
+        "currentText": "For patients experiencing disabling diplopia due to stroke-induced cranial nerve (III, IV, VI) palsies or internuclear ophthalmoplegia, we suggest temporary monocular occlusion (foil/bangerter filter rather than opaque patch) or ground prisms combined with orthoptic convergence exercises.",
+        "drivingTrials": [
+          "Orthoptic Stroke Rehabilitation Registry"
+        ]
+      },
+      {
+        "id": "chg-eso-vis-5",
+        "category": "Neuromodulation for Neglect",
+        "topic": "Non-Invasive Brain Stimulation (rTMS / tDCS) for Unilateral Spatial Neglect",
+        "changeType": "NEW",
+        "previousGrade": "Not recommended outside research",
+        "currentGrade": "Weak recommendation FOR, Moderate quality",
+        "previousText": "Brain stimulation protocols were considered experimental.",
+        "currentText": "In stroke patients with persisting unilateral spatial neglect unresponsive to conventional scanning, we suggest inhibitory low-frequency rTMS or cathodal tDCS over the unaffected left posterior parietal cortex, or excitatory anodal tDCS over the right parietal cortex, paired with active visual exploration therapy.",
+        "drivingTrials": [
+          "Parietal Neuromodulation RCTs in Neglect",
+          "Cochrane Cognitive Rehabilitation Review"
+        ]
+      },
+      {
+        "id": "chg-eso-vis-6",
+        "category": "Alexia & Reading Aids",
+        "topic": "High-Contrast Digital Typographical Aids for Hemianopic Alexia",
+        "changeType": "NEW",
+        "previousGrade": "Informal magnification glasses",
+        "currentGrade": "Expert Consensus Statement",
+        "previousText": "Patients were provided standard non-customized magnifying glasses.",
+        "currentText": "For patients experiencing hemianopic reading difficulties (hemianopic alexia), we suggest structured optokinetic reading training software and digital high-contrast reading aids to expand text reading speed and comprehension.",
+        "drivingTrials": [
+          "Read-Right Multicenter Trial",
+          "Digital Reading Adaptation in Hemianopia Cohorts"
+        ]
+      }
+    ]
   },
   {
-    id: "eso-motor-rehab-2025",
-    society: "ESO",
-    year: 2025,
-    subspecialty: "Stroke",
-    subspecialties: ["Stroke", "Other"],
-    title: "European Stroke Organisation (ESO) guideline on motor rehabilitation after stroke",
-    officialUrl: "https://doi.org/10.1177/23969873251283366",
-    journalTarget: "European Stroke Journal",
-    documentType: "Clinical Practice Guideline",
-    publishDate: "2025-05-24",
-    previousVersionYear: 2015,
-    executiveSummary:
-      "Comprehensive 2025 European guidelines for post-stroke motor recovery, validating high-intensity repetitive task training, modified constraint-induced movement therapy (mCIMT), robotic gait training, and paired vagus nerve stimulation for chronic upper limb weakness.",
-    linkedScenarioIds: [],
-    allPracticeChanges: [
-      {
-        id: "chg-eso-mot-1",
-        category: "Training Intensity & Dosage",
-        topic: "High-Dose Repetitive Task-Specific Training (≥300 Repetitions/Session)",
-        changeType: "UPGRADED",
-        previousGrade: "Moderate recommendation for task-oriented training",
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        previousText: "Task-oriented physical therapy was recommended without specified repetition targets.",
-        currentText:
-          "In stroke patients with upper or lower limb motor weakness, we recommend high-intensity, repetitive task-oriented training delivering a minimum of 300 active movement repetitions per session, 5 days per week, to drive neural plasticity and functional motor re-learning.",
-        drivingTrials: ["VECTORS Trial", "EXCITING Stroke Trial", "Dose-Response Neurorehabilitation Meta-analysis"],
-      },
-      {
-        id: "chg-eso-mot-2",
-        category: "Upper Limb Therapy",
-        topic: "Modified Constraint-Induced Movement Therapy (mCIMT) in Early Subacute Phase",
-        changeType: "UPGRADED",
-        previousGrade: "Weak recommendation, Moderate quality",
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        previousText: "Full 6-hour/day CIMT was recommended but carried low patient compliance.",
-        currentText:
-          "In patients with at least 10° active wrist and finger extension, we recommend modified Constraint-Induced Movement Therapy (mCIMT: restraining the non-affected arm for 2–3 hours/day with intensive shaping of the affected arm) initiated within the first 6 months post-stroke.",
-        drivingTrials: ["EXCITE Trial (JAMA)", "mCIMT Subacute Stroke Cochrane Review 2024"],
-      },
-      {
-        id: "chg-eso-mot-3",
-        category: "Technology-Assisted Rehab",
-        topic: "Robot-Assisted Gait Training Combined with Conventional Physical Therapy",
-        changeType: "REVISED",
-        previousGrade: "Weak recommendation, Low quality",
-        currentGrade: "Moderate recommendation FOR, Moderate quality",
-        previousText: "Robotic gait devices were considered experimental adjuncts.",
-        currentText:
-          "In non-ambulatory stroke patients during the first 3 months post-stroke, we suggest electromechanically assisted or robotic exoskeleton gait training combined with conventional physiotherapy to increase the probability of achieving independent walking.",
-        drivingTrials: ["RATULS Trial (Lancet)", "Robotic Locomotion Cochrane Review"],
-      },
-      {
-        id: "chg-eso-mot-4",
-        category: "Neuromodulation",
-        topic: "Paired Vagus Nerve Stimulation (VNS) for Moderate-to-Severe Chronic Arm Weakness",
-        changeType: "NEW",
-        previousGrade: "Investigational / Not approved",
-        currentGrade: "Moderate recommendation FOR, Moderate quality evidence",
-        previousText: "Invasive neuromodulation was not endorsed for stroke recovery.",
-        currentText:
-          "In patients with chronic, moderate-to-severe upper limb hemiparesis (>9 months post-stroke) who have plateaued with conventional therapy, we suggest considering implanted vagus nerve stimulation (VNS) paired with intensive rehabilitation exercises to elicit clinically meaningful improvements in arm motor score.",
-        drivingTrials: ["VNS-REHAB Trial (Lancet 2021)", "Long-Term MicroTransponder Registries"],
-      },
-      {
-        id: "chg-eso-mot-5",
-        category: "Spasticity Management",
-        topic: "Intramuscular Botulinum Toxin Type A for Focal Spasticity Combined with Therapy",
-        changeType: "UPGRADED",
-        previousGrade: "Conditional for severe pain only",
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        previousText: "Botulinum toxin was reserved only for severe disabling contractures.",
-        currentText:
-          "In adult stroke patients with disabling upper or lower limb focal spasticity, we recommend early intramuscular injections of Botulinum Toxin Type A paired with intensive active task-oriented motor therapy to improve passive function, ease of nursing care, and range of motion while preventing fixed contractures.",
-        drivingTrials: ["Cochrane Botulinum Toxin in Post-Stroke Spasticity Review", "BOTOX Stroke Registry"],
-      },
-      {
-        id: "chg-eso-mot-6",
-        category: "Cardiovascular & Aerobic Conditioning",
-        topic: "Structured Aerobic Training (≥150 min/Week) for Mobility and Neuroplasticity",
-        changeType: "NEW",
-        previousGrade: "General encouragement to stay active",
-        currentGrade: "Strong recommendation FOR, Moderate quality",
-        previousText: "No specific heart rate reserve or duration targets were defined.",
-        currentText:
-          "We recommend progressive aerobic exercise training (e.g., supported treadmill walking, stationary cycling) of moderate-to-vigorous intensity for at least 150 minutes per week divided into 3 to 5 sessions, initiated early after stabilization, to improve walking speed, endurance, cardiorespiratory fitness, and secondary cardiovascular prevention.",
-        drivingTrials: ["EXCITE Trial", "AEROBICS Stroke Meta-analysis 2024"],
-      },
+    "id": "eso-motor-rehab-2025",
+    "society": "ESO",
+    "year": 2025,
+    "subspecialty": "Stroke",
+    "subspecialties": [
+      "Stroke",
+      "Other"
     ],
+    "title": "European Stroke Organisation (ESO) guideline on motor rehabilitation after stroke",
+    "officialUrl": "https://doi.org/10.1177/23969873251283366",
+    "journalTarget": "European Stroke Journal",
+    "documentType": "Clinical Practice Guideline",
+    "publishDate": "2025-05-24",
+    "previousVersionYear": 2015,
+    "executiveSummary": "Comprehensive 2025 European guidelines for post-stroke motor recovery, validating high-intensity repetitive task training, modified constraint-induced movement therapy (mCIMT), robotic gait training, and paired vagus nerve stimulation for chronic upper limb weakness.",
+    "linkedScenarioIds": [],
+    "allPracticeChanges": [
+      {
+        "id": "chg-eso-mot-1",
+        "category": "Training Intensity & Dosage",
+        "topic": "High-Dose Repetitive Task-Specific Training (≥300 Repetitions/Session)",
+        "changeType": "UPGRADED",
+        "previousGrade": "Moderate recommendation for task-oriented training",
+        "currentGrade": "Strong recommendation FOR, High quality evidence",
+        "previousText": "Task-oriented physical therapy was recommended without specified repetition targets.",
+        "currentText": "In stroke patients with upper or lower limb motor weakness, we recommend high-intensity, repetitive task-oriented training delivering a minimum of 300 active movement repetitions per session, 5 days per week, to drive neural plasticity and functional motor re-learning.",
+        "drivingTrials": [
+          "VECTORS Trial",
+          "EXCITING Stroke Trial",
+          "Dose-Response Neurorehabilitation Meta-analysis"
+        ]
+      },
+      {
+        "id": "chg-eso-mot-2",
+        "category": "Upper Limb Therapy",
+        "topic": "Modified Constraint-Induced Movement Therapy (mCIMT) in Early Subacute Phase",
+        "changeType": "UPGRADED",
+        "previousGrade": "Weak recommendation, Moderate quality",
+        "currentGrade": "Strong recommendation FOR, High quality evidence",
+        "previousText": "Full 6-hour/day CIMT was recommended but carried low patient compliance.",
+        "currentText": "In patients with at least 10° active wrist and finger extension, we recommend modified Constraint-Induced Movement Therapy (mCIMT: restraining the non-affected arm for 2–3 hours/day with intensive shaping of the affected arm) initiated within the first 6 months post-stroke.",
+        "drivingTrials": [
+          "EXCITE Trial (JAMA)",
+          "mCIMT Subacute Stroke Cochrane Review 2024"
+        ]
+      },
+      {
+        "id": "chg-eso-mot-3",
+        "category": "Technology-Assisted Rehab",
+        "topic": "Robot-Assisted Gait Training Combined with Conventional Physical Therapy",
+        "changeType": "REVISED",
+        "previousGrade": "Weak recommendation, Low quality",
+        "currentGrade": "Moderate recommendation FOR, Moderate quality",
+        "previousText": "Robotic gait devices were considered experimental adjuncts.",
+        "currentText": "In non-ambulatory stroke patients during the first 3 months post-stroke, we suggest electromechanically assisted or robotic exoskeleton gait training combined with conventional physiotherapy to increase the probability of achieving independent walking.",
+        "drivingTrials": [
+          "RATULS Trial (Lancet)",
+          "Robotic Locomotion Cochrane Review"
+        ]
+      },
+      {
+        "id": "chg-eso-mot-4",
+        "category": "Neuromodulation",
+        "topic": "Paired Vagus Nerve Stimulation (VNS) for Moderate-to-Severe Chronic Arm Weakness",
+        "changeType": "NEW",
+        "previousGrade": "Investigational / Not approved",
+        "currentGrade": "Moderate recommendation FOR, Moderate quality evidence",
+        "previousText": "Invasive neuromodulation was not endorsed for stroke recovery.",
+        "currentText": "In patients with chronic, moderate-to-severe upper limb hemiparesis (>9 months post-stroke) who have plateaued with conventional therapy, we suggest considering implanted vagus nerve stimulation (VNS) paired with intensive rehabilitation exercises to elicit clinically meaningful improvements in arm motor score.",
+        "drivingTrials": [
+          "VNS-REHAB Trial (Lancet 2021)",
+          "Long-Term MicroTransponder Registries"
+        ]
+      },
+      {
+        "id": "chg-eso-mot-5",
+        "category": "Spasticity Management",
+        "topic": "Intramuscular Botulinum Toxin Type A for Focal Spasticity Combined with Therapy",
+        "changeType": "UPGRADED",
+        "previousGrade": "Conditional for severe pain only",
+        "currentGrade": "Strong recommendation FOR, High quality evidence",
+        "previousText": "Botulinum toxin was reserved only for severe disabling contractures.",
+        "currentText": "In adult stroke patients with disabling upper or lower limb focal spasticity, we recommend early intramuscular injections of Botulinum Toxin Type A paired with intensive active task-oriented motor therapy to improve passive function, ease of nursing care, and range of motion while preventing fixed contractures.",
+        "drivingTrials": [
+          "Cochrane Botulinum Toxin in Post-Stroke Spasticity Review",
+          "BOTOX Stroke Registry"
+        ]
+      },
+      {
+        "id": "chg-eso-mot-6",
+        "category": "Cardiovascular & Aerobic Conditioning",
+        "topic": "Structured Aerobic Training (≥150 min/Week) for Mobility and Neuroplasticity",
+        "changeType": "NEW",
+        "previousGrade": "General encouragement to stay active",
+        "currentGrade": "Strong recommendation FOR, Moderate quality",
+        "previousText": "No specific heart rate reserve or duration targets were defined.",
+        "currentText": "We recommend progressive aerobic exercise training (e.g., supported treadmill walking, stationary cycling) of moderate-to-vigorous intensity for at least 150 minutes per week divided into 3 to 5 sessions, initiated early after stabilization, to improve walking speed, endurance, cardiorespiratory fitness, and secondary cardiovascular prevention.",
+        "drivingTrials": [
+          "EXCITE Trial",
+          "AEROBICS Stroke Meta-analysis 2024"
+        ]
+      }
+    ]
   },
   {
-    id: "eso-aphasia-2025",
-    society: "ESO",
-    year: 2025,
-    subspecialty: "Stroke",
-    subspecialties: ["Stroke", "Other"],
-    title: "European Stroke Organisation (ESO) guideline on aphasia rehabilitation after stroke",
-    officialUrl: "https://doi.org/10.1177/23969873251281144",
-    journalTarget: "European Stroke Journal",
-    documentType: "Clinical Practice Guideline",
-    publishDate: "2025-05-24",
-    previousVersionYear: 2016,
-    executiveSummary:
-      "First standardized European clinical practice guideline dedicated to post-stroke aphasia, establishing recommended dosage (minimum 45 min/day, 3-5 days/week), Constraint-Induced Aphasia Therapy (CIAT), digital therapy platforms, and non-invasive neuromodulation.",
-    linkedScenarioIds: [],
-    allPracticeChanges: [
-      {
-        id: "chg-eso-aph-1",
-        category: "Dosage & Intensity",
-        topic: "Intensive Speech and Language Therapy (SLT) Dosage in Subacute Stroke",
-        changeType: "UPGRADED",
-        previousGrade: "General referral for speech therapy",
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        previousText: "Speech therapy was provided for 1-2 hours per week based on local availability.",
-        currentText:
-          "In adult stroke patients with aphasia, we recommend providing intensive speech and language therapy delivering at least 45 minutes of direct intervention per day, 3 to 5 days weekly, during the early subacute recovery period (first 3 months) to maximize communicative functional independence.",
-        drivingTrials: ["RELEASE Collaboration (Lancet 2021)", "ACT-NoW Trial", "COMPARE Trial"],
-      },
-      {
-        id: "chg-eso-aph-2",
-        category: "Language Interventions",
-        topic: "Constraint-Induced Aphasia Therapy (CIAT) for Non-Fluent Aphasia",
-        changeType: "NEW",
-        previousGrade: "Conditional / Experimental",
-        currentGrade: "Moderate recommendation FOR, Moderate quality",
-        previousText: "Constraint-induced communication was limited to academic research centers.",
-        currentText:
-          "In patients with chronic or subacute non-fluent (Broca's) aphasia, we suggest Constraint-Induced Aphasia Therapy (CIAT / Action Inducing Language Therapy) in a group setting to discourage non-verbal compensatory gesturing and promote verbal word-retrieval.",
-        drivingTrials: ["CIAT RCT Meta-analysis", "Pulvermuller Language Shaping Trials"],
-      },
-      {
-        id: "chg-eso-aph-3",
-        category: "Digital Therapeutics",
-        topic: "Digital and Computerized Speech Therapy Applications as Home Adjuncts",
-        changeType: "NEW",
-        previousGrade: "Not previously evaluated",
-        currentGrade: "Strong recommendation FOR, Moderate quality",
-        previousText: "Home self-training materials were limited to paper worksheets.",
-        currentText:
-          "We recommend the integration of software-based, computerized speech and language therapy apps as an adjunctive home practice tool alongside therapist-led sessions, enabling patients to substantially increase cumulative active practice hours.",
-        drivingTrials: ["Big CACTUS Trial (Lancet Neurol)", "App-Delivered SLT Randomized Trials"],
-      },
-      {
-        id: "chg-eso-aph-4",
-        category: "Neuromodulation",
-        topic: "Adjuvant Non-Invasive Brain Stimulation (tDCS/rTMS) Over Language Networks",
-        changeType: "NEW",
-        previousGrade: "Investigational only",
-        currentGrade: "Weak recommendation FOR, Moderate quality",
-        previousText: "Non-invasive brain stimulation was not recommended in routine clinical practice.",
-        currentText:
-          "In stroke patients with persistent post-stroke aphasia, we suggest that adjuvant anodal transcranial direct current stimulation (tDCS) applied over the left perisylvian language area or inhibitory cathodal tDCS over the right homologue during speech therapy may be considered to enhance naming recovery.",
-        drivingTrials: ["tDCS Aphasia Trial (JAMA Neurol)", "European Neuromodulation in Aphasia Cohorts"],
-      },
-      {
-        id: "chg-eso-aph-5",
-        category: "Pharmacotherapy Avoidance",
-        topic: "Avoidance of Routine Nootropics / Pharmacotherapy for Post-Stroke Aphasia",
-        changeType: "DOWNGRADED",
-        previousGrade: "Investigational / Conditional (Piracetam, Donepezil)",
-        currentGrade: "Strong recommendation AGAINST, Moderate quality evidence",
-        previousText: "Pharmacological agents such as piracetam, cholinesterase inhibitors, and memantine were frequently prescribed.",
-        currentText:
-          "In patients with post-stroke aphasia, we recommend against the routine prescription of piracetam, donepezil, galantamine, or memantine for enhancing speech recovery, as rigorous randomized trials fail to demonstrate consistent or clinically meaningful language recovery over speech-language therapy alone.",
-        drivingTrials: ["Cochrane Pharmacotherapy for Aphasia 2023", "PIRACETAM Aphasia Multicenter Analysis"],
-      },
-      {
-        id: "chg-eso-aph-6",
-        category: "Communication Partner Training",
-        topic: "Supported Conversation for Adults with Aphasia (SCA) & Family Training",
-        changeType: "NEW",
-        previousGrade: "Informal family counseling",
-        currentGrade: "Strong recommendation FOR, Moderate quality",
-        previousText: "Education was typically verbal without formal behavioral partner training.",
-        currentText:
-          "We recommend structured Supported Conversation for Adults with Aphasia (SCA) training for primary communication partners, healthcare providers, and family caregivers to maximize everyday social interaction, psychological wellbeing, and quality of life.",
-        drivingTrials: ["Kagan SCA Multicenter Trials", "Partner Training in Aphasia Cochrane Review"],
-      },
+    "id": "eso-aphasia-2025",
+    "society": "ESO",
+    "year": 2025,
+    "subspecialty": "Stroke",
+    "subspecialties": [
+      "Stroke",
+      "Other"
     ],
+    "title": "European Stroke Organisation (ESO) guideline on aphasia rehabilitation after stroke",
+    "officialUrl": "https://doi.org/10.1177/23969873251281144",
+    "journalTarget": "European Stroke Journal",
+    "documentType": "Clinical Practice Guideline",
+    "publishDate": "2025-05-24",
+    "previousVersionYear": 2016,
+    "executiveSummary": "First standardized European clinical practice guideline dedicated to post-stroke aphasia, establishing recommended dosage (minimum 45 min/day, 3-5 days/week), Constraint-Induced Aphasia Therapy (CIAT), digital therapy platforms, and non-invasive neuromodulation.",
+    "linkedScenarioIds": [],
+    "allPracticeChanges": [
+      {
+        "id": "chg-eso-aph-1",
+        "category": "Dosage & Intensity",
+        "topic": "Intensive Speech and Language Therapy (SLT) Dosage in Subacute Stroke",
+        "changeType": "UPGRADED",
+        "previousGrade": "General referral for speech therapy",
+        "currentGrade": "Strong recommendation FOR, High quality evidence",
+        "previousText": "Speech therapy was provided for 1-2 hours per week based on local availability.",
+        "currentText": "In adult stroke patients with aphasia, we recommend providing intensive speech and language therapy delivering at least 45 minutes of direct intervention per day, 3 to 5 days weekly, during the early subacute recovery period (first 3 months) to maximize communicative functional independence.",
+        "drivingTrials": [
+          "RELEASE Collaboration (Lancet 2021)",
+          "ACT-NoW Trial",
+          "COMPARE Trial"
+        ]
+      },
+      {
+        "id": "chg-eso-aph-2",
+        "category": "Language Interventions",
+        "topic": "Constraint-Induced Aphasia Therapy (CIAT) for Non-Fluent Aphasia",
+        "changeType": "NEW",
+        "previousGrade": "Conditional / Experimental",
+        "currentGrade": "Moderate recommendation FOR, Moderate quality",
+        "previousText": "Constraint-induced communication was limited to academic research centers.",
+        "currentText": "In patients with chronic or subacute non-fluent (Broca's) aphasia, we suggest Constraint-Induced Aphasia Therapy (CIAT / Action Inducing Language Therapy) in a group setting to discourage non-verbal compensatory gesturing and promote verbal word-retrieval.",
+        "drivingTrials": [
+          "CIAT RCT Meta-analysis",
+          "Pulvermuller Language Shaping Trials"
+        ]
+      },
+      {
+        "id": "chg-eso-aph-3",
+        "category": "Digital Therapeutics",
+        "topic": "Digital and Computerized Speech Therapy Applications as Home Adjuncts",
+        "changeType": "NEW",
+        "previousGrade": "Not previously evaluated",
+        "currentGrade": "Strong recommendation FOR, Moderate quality",
+        "previousText": "Home self-training materials were limited to paper worksheets.",
+        "currentText": "We recommend the integration of software-based, computerized speech and language therapy apps as an adjunctive home practice tool alongside therapist-led sessions, enabling patients to substantially increase cumulative active practice hours.",
+        "drivingTrials": [
+          "Big CACTUS Trial (Lancet Neurol)",
+          "App-Delivered SLT Randomized Trials"
+        ]
+      },
+      {
+        "id": "chg-eso-aph-4",
+        "category": "Neuromodulation",
+        "topic": "Adjuvant Non-Invasive Brain Stimulation (tDCS/rTMS) Over Language Networks",
+        "changeType": "NEW",
+        "previousGrade": "Investigational only",
+        "currentGrade": "Weak recommendation FOR, Moderate quality",
+        "previousText": "Non-invasive brain stimulation was not recommended in routine clinical practice.",
+        "currentText": "In stroke patients with persistent post-stroke aphasia, we suggest that adjuvant anodal transcranial direct current stimulation (tDCS) applied over the left perisylvian language area or inhibitory cathodal tDCS over the right homologue during speech therapy may be considered to enhance naming recovery.",
+        "drivingTrials": [
+          "tDCS Aphasia Trial (JAMA Neurol)",
+          "European Neuromodulation in Aphasia Cohorts"
+        ]
+      },
+      {
+        "id": "chg-eso-aph-5",
+        "category": "Pharmacotherapy Avoidance",
+        "topic": "Avoidance of Routine Nootropics / Pharmacotherapy for Post-Stroke Aphasia",
+        "changeType": "DOWNGRADED",
+        "previousGrade": "Investigational / Conditional (Piracetam, Donepezil)",
+        "currentGrade": "Strong recommendation AGAINST, Moderate quality evidence",
+        "previousText": "Pharmacological agents such as piracetam, cholinesterase inhibitors, and memantine were frequently prescribed.",
+        "currentText": "In patients with post-stroke aphasia, we recommend against the routine prescription of piracetam, donepezil, galantamine, or memantine for enhancing speech recovery, as rigorous randomized trials fail to demonstrate consistent or clinically meaningful language recovery over speech-language therapy alone.",
+        "drivingTrials": [
+          "Cochrane Pharmacotherapy for Aphasia 2023",
+          "PIRACETAM Aphasia Multicenter Analysis"
+        ]
+      },
+      {
+        "id": "chg-eso-aph-6",
+        "category": "Communication Partner Training",
+        "topic": "Supported Conversation for Adults with Aphasia (SCA) & Family Training",
+        "changeType": "NEW",
+        "previousGrade": "Informal family counseling",
+        "currentGrade": "Strong recommendation FOR, Moderate quality",
+        "previousText": "Education was typically verbal without formal behavioral partner training.",
+        "currentText": "We recommend structured Supported Conversation for Adults with Aphasia (SCA) training for primary communication partners, healthcare providers, and family caregivers to maximize everyday social interaction, psychological wellbeing, and quality of life.",
+        "drivingTrials": [
+          "Kagan SCA Multicenter Trials",
+          "Partner Training in Aphasia Cochrane Review"
+        ]
+      }
+    ]
   },
   {
-    id: "eso-bp-management-2025",
-    society: "ESO",
-    year: 2025,
-    subspecialty: "Stroke",
-    subspecialties: ["Stroke", "Neurocritical Care"],
-    title: "European Stroke Organisation (ESO) guideline on blood pressure management in acute ischaemic stroke and intracerebral haemorrhage",
-    officialUrl: "https://doi.org/10.1177/23969873251282255",
-    journalTarget: "European Stroke Journal",
-    documentType: "Clinical Practice Guideline",
-    publishDate: "2025-05-23",
-    previousVersionYear: 2021,
-    executiveSummary:
-      "Updated consensus guideline reconciling contradictory blood pressure trials across both ischemic stroke and intracerebral hemorrhage: definitive blood pressure targets pre-IVT/EVT (<180/105 mmHg), permissive hypertension in non-revascularized patients (<220/120 mmHg), strict avoidance of profound post-recanalization hypotension, and smooth lowering to 130-140 mmHg in ICH.",
-    linkedScenarioIds: ["ich-acute-bp-lowering"],
-    allPracticeChanges: [
-      {
-        id: "chg-eso-bp-1",
-        category: "Acute Ischemic Stroke (IVT/EVT)",
-        topic: "Strict Threshold <180/105 mmHg Pre- and Post-Thrombolysis",
-        changeType: "REVISED",
-        previousGrade: "Strong recommendation, Moderate quality",
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        previousText: "BP target <185/110 prior to IVT and <180/105 during the initial 24 hours.",
-        currentText:
-          "In acute ischemic stroke patients treated with intravenous thrombolysis or undergoing endovascular thrombectomy, we strongly recommend maintaining blood pressure strictly below 180/105 mmHg before, during, and for at least 24 hours following reperfusion therapy to reduce symptomatic intracranial hemorrhage.",
-        drivingTrials: ["ENCHANTED (Lancet)", "BP Targets in Thrombolysis Meta-analysis"],
-      },
-      {
-        id: "chg-eso-bp-2",
-        category: "Acute Ischemic Stroke (Non-Reperfused)",
-        topic: "Permissive Hypertension (<220/120 mmHg) in Non-Reperfused Ischemic Stroke",
-        changeType: "REVISED",
-        previousGrade: "Conditional recommendation",
-        currentGrade: "Strong recommendation FOR, Moderate quality",
-        previousText: "Blood pressure was routinely lowered if >200/110 mmHg.",
-        currentText:
-          "In acute ischemic stroke patients not undergoing intravenous thrombolysis or endovascular thrombectomy, we recommend against routine antihypertensive therapy during the first 24–48 hours unless systolic blood pressure exceeds 220 mmHg or diastolic exceeds 120 mmHg, or specific concomitant medical emergencies exist.",
-        drivingTrials: ["SCAST Trial", "CATIS Trial (JAMA)", "COSSACS Study"],
-      },
-      {
-        id: "chg-eso-bp-3",
-        category: "Post-Thrombectomy Hemodynamics",
-        topic: "Avoidance of Over-Aggressive BP Lowering After Complete Recanalization (mTICI 2b-3)",
-        changeType: "NEW",
-        previousGrade: "Aggressive reduction to <120-140 mmHg was common practice",
-        currentGrade: "Strong recommendation AGAINST aggressive drops, High quality evidence",
-        previousText: "Lowering SBP to normal levels (<120 mmHg) was pursued to prevent reperfusion hemorrhage.",
-        currentText:
-          "In patients with acute ischemic stroke who achieve successful endovascular recanalization (mTICI 2b–3), we recommend against intensive blood pressure lowering below 120 or 140 mmHg within the first 24 hours, as large randomized trials show this induces hypoperfusion and worsens 90-day neurological disability.",
-        drivingTrials: ["OPTIMAL-BP (JAMA 2023)", "ENCHANTED2/MT (Lancet 2022)", "BP-TARGET Trial"],
-      },
-      {
-        id: "chg-eso-bp-4",
-        category: "Intracerebral Hemorrhage",
-        topic: "Controlled Target 130–140 mmHg within 2 Hours for Spontaneous ICH",
-        changeType: "UPGRADED",
-        scenarioId: "ich-acute-bp-lowering",
-        previousGrade: "Target SBP <140 mmHg was safe",
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        previousText: "Acute BP lowering to SBP <140 was safe, but target timing was flexible.",
-        currentText:
-          "In patients presenting with spontaneous intracerebral hemorrhage within 6 hours of onset and SBP 150–220 mmHg, we recommend rapid, controlled lowering of systolic blood pressure to a target between 130 and 140 mmHg within 2 hours of arrival, while strictly avoiding aggressive reductions below 120 mmHg.",
-        drivingTrials: ["INTERACT2 (NEJM)", "ATACH-II (NEJM)", "INTERACT3 (Lancet 2023)"],
-      },
-      {
-        id: "chg-eso-bp-5",
-        category: "Neuro-ICU Hemodynamics",
-        topic: "Minimizing Blood Pressure Variability (BPV) During the First 48 Hours",
-        changeType: "NEW",
-        previousGrade: "Static threshold monitoring",
-        currentGrade: "Moderate recommendation FOR, Moderate quality",
-        previousText: "Focus was solely on absolute ceiling thresholds without accounting for fluctuations.",
-        currentText:
-          "In patients admitted to the neuro-ICU or stroke unit following acute stroke, we suggest utilizing titratable continuous IV antihypertensive infusions (e.g., nicardipine, urapidil, labetalol) rather than intermittent boluses to minimize blood pressure variability (standard deviation SBP > 15 mmHg), which is independently correlated with hemorrhagic transformation and functional deterioration.",
-        drivingTrials: ["BPV Post-Reperfusion Global Registries", "ENCHANTED Hemodynamic Substudy"],
-      },
-      {
-        id: "chg-eso-bp-6",
-        category: "Secondary Prevention",
-        topic: "Long-Term Outpatient Blood Pressure Target < 130/80 mmHg",
-        changeType: "UPGRADED",
-        previousGrade: "Target < 140/90 mmHg",
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        previousText: "Blood pressure target for chronic stroke patients was <140/90 mmHg.",
-        currentText:
-          "For long-term secondary stroke prevention in patients who are neurologically stable beyond the acute phase, we recommend targeting a clinic blood pressure of <130/80 mmHg using evidence-based regimens (preferentially ACE-inhibitors/ARBs and calcium channel blockers or indapamide) to minimize recurrent stroke, vascular dementia, and major adverse cardiovascular events.",
-        drivingTrials: ["PROGRESS Trial (Lancet)", "SPRINT-Mind (JAMA)", "BPS-Secondary Prevention Meta-analysis"],
-      },
+    "id": "eso-bp-management-2025",
+    "society": "ESO",
+    "year": 2025,
+    "subspecialty": "Stroke",
+    "subspecialties": [
+      "Stroke",
+      "Neurocritical Care"
     ],
+    "title": "European Stroke Organisation (ESO) guideline on blood pressure management in acute ischaemic stroke and intracerebral haemorrhage",
+    "officialUrl": "https://doi.org/10.1177/23969873251282255",
+    "journalTarget": "European Stroke Journal",
+    "documentType": "Clinical Practice Guideline",
+    "publishDate": "2025-05-23",
+    "previousVersionYear": 2021,
+    "executiveSummary": "Updated consensus guideline reconciling contradictory blood pressure trials across both ischemic stroke and intracerebral hemorrhage: definitive blood pressure targets pre-IVT/EVT (<180/105 mmHg), permissive hypertension in non-revascularized patients (<220/120 mmHg), strict avoidance of profound post-recanalization hypotension, and smooth lowering to 130-140 mmHg in ICH.",
+    "linkedScenarioIds": [
+      "ich-acute-bp-lowering"
+    ],
+    "allPracticeChanges": [
+      {
+        "id": "chg-eso-bp-1",
+        "category": "Acute Ischemic Stroke (IVT/EVT)",
+        "topic": "Strict Threshold <180/105 mmHg Pre- and Post-Thrombolysis",
+        "changeType": "REVISED",
+        "previousGrade": "Strong recommendation, Moderate quality",
+        "currentGrade": "Strong recommendation FOR, High quality evidence",
+        "previousText": "BP target <185/110 prior to IVT and <180/105 during the initial 24 hours.",
+        "currentText": "In acute ischemic stroke patients treated with intravenous thrombolysis or undergoing endovascular thrombectomy, we strongly recommend maintaining blood pressure strictly below 180/105 mmHg before, during, and for at least 24 hours following reperfusion therapy to reduce symptomatic intracranial hemorrhage.",
+        "drivingTrials": [
+          "ENCHANTED (Lancet)",
+          "BP Targets in Thrombolysis Meta-analysis"
+        ]
+      },
+      {
+        "id": "chg-eso-bp-2",
+        "category": "Acute Ischemic Stroke (Non-Reperfused)",
+        "topic": "Permissive Hypertension (<220/120 mmHg) in Non-Reperfused Ischemic Stroke",
+        "changeType": "REVISED",
+        "previousGrade": "Conditional recommendation",
+        "currentGrade": "Strong recommendation FOR, Moderate quality",
+        "previousText": "Blood pressure was routinely lowered if >200/110 mmHg.",
+        "currentText": "In acute ischemic stroke patients not undergoing intravenous thrombolysis or endovascular thrombectomy, we recommend against routine antihypertensive therapy during the first 24–48 hours unless systolic blood pressure exceeds 220 mmHg or diastolic exceeds 120 mmHg, or specific concomitant medical emergencies exist.",
+        "drivingTrials": [
+          "SCAST Trial",
+          "CATIS Trial (JAMA)",
+          "COSSACS Study"
+        ]
+      },
+      {
+        "id": "chg-eso-bp-3",
+        "category": "Post-Thrombectomy Hemodynamics",
+        "topic": "Avoidance of Over-Aggressive BP Lowering After Complete Recanalization (mTICI 2b-3)",
+        "changeType": "NEW",
+        "previousGrade": "Aggressive reduction to <120-140 mmHg was common practice",
+        "currentGrade": "Strong recommendation AGAINST aggressive drops, High quality evidence",
+        "previousText": "Lowering SBP to normal levels (<120 mmHg) was pursued to prevent reperfusion hemorrhage.",
+        "currentText": "In patients with acute ischemic stroke who achieve successful endovascular recanalization (mTICI 2b–3), we recommend against intensive blood pressure lowering below 120 or 140 mmHg within the first 24 hours, as large randomized trials show this induces hypoperfusion and worsens 90-day neurological disability.",
+        "drivingTrials": [
+          "OPTIMAL-BP (JAMA 2023)",
+          "ENCHANTED2/MT (Lancet 2022)",
+          "BP-TARGET Trial"
+        ]
+      },
+      {
+        "id": "chg-eso-bp-4",
+        "category": "Intracerebral Hemorrhage",
+        "topic": "Controlled Target 130–140 mmHg within 2 Hours for Spontaneous ICH",
+        "changeType": "UPGRADED",
+        "scenarioId": "ich-acute-bp-lowering",
+        "previousGrade": "Target SBP <140 mmHg was safe",
+        "currentGrade": "Strong recommendation FOR, High quality evidence",
+        "previousText": "Acute BP lowering to SBP <140 was safe, but target timing was flexible.",
+        "currentText": "In patients presenting with spontaneous intracerebral hemorrhage within 6 hours of onset and SBP 150–220 mmHg, we recommend rapid, controlled lowering of systolic blood pressure to a target between 130 and 140 mmHg within 2 hours of arrival, while strictly avoiding aggressive reductions below 120 mmHg.",
+        "drivingTrials": [
+          "INTERACT2 (NEJM)",
+          "ATACH-II (NEJM)",
+          "INTERACT3 (Lancet 2023)"
+        ]
+      },
+      {
+        "id": "chg-eso-bp-5",
+        "category": "Neuro-ICU Hemodynamics",
+        "topic": "Minimizing Blood Pressure Variability (BPV) During the First 48 Hours",
+        "changeType": "NEW",
+        "previousGrade": "Static threshold monitoring",
+        "currentGrade": "Moderate recommendation FOR, Moderate quality",
+        "previousText": "Focus was solely on absolute ceiling thresholds without accounting for fluctuations.",
+        "currentText": "In patients admitted to the neuro-ICU or stroke unit following acute stroke, we suggest utilizing titratable continuous IV antihypertensive infusions (e.g., nicardipine, urapidil, labetalol) rather than intermittent boluses to minimize blood pressure variability (standard deviation SBP > 15 mmHg), which is independently correlated with hemorrhagic transformation and functional deterioration.",
+        "drivingTrials": [
+          "BPV Post-Reperfusion Global Registries",
+          "ENCHANTED Hemodynamic Substudy"
+        ]
+      },
+      {
+        "id": "chg-eso-bp-6",
+        "category": "Secondary Prevention",
+        "topic": "Long-Term Outpatient Blood Pressure Target < 130/80 mmHg",
+        "changeType": "UPGRADED",
+        "previousGrade": "Target < 140/90 mmHg",
+        "currentGrade": "Strong recommendation FOR, High quality evidence",
+        "previousText": "Blood pressure target for chronic stroke patients was <140/90 mmHg.",
+        "currentText": "For long-term secondary stroke prevention in patients who are neurologically stable beyond the acute phase, we recommend targeting a clinic blood pressure of <130/80 mmHg using evidence-based regimens (preferentially ACE-inhibitors/ARBs and calcium channel blockers or indapamide) to minimize recurrent stroke, vascular dementia, and major adverse cardiovascular events.",
+        "drivingTrials": [
+          "PROGRESS Trial (Lancet)",
+          "SPRINT-Mind (JAMA)",
+          "BPS-Secondary Prevention Meta-analysis"
+        ]
+      }
+    ]
   },
   {
-    id: "eso-evidence-update-2025",
-    society: "ESO",
-    year: 2025,
-    subspecialty: "Stroke",
-    subspecialties: ["Stroke", "Neurocritical Care"],
-    title: "European Stroke Organisation (ESO) Annual Stroke Evidence Update 2025",
-    officialUrl: "https://doi.org/10.1177/23969873251289901",
-    journalTarget: "European Stroke Journal",
-    documentType: "Expert Consensus",
-    publishDate: "2025-05-20",
-    previousVersionYear: 2024,
-    executiveSummary:
-      "Annual state-of-the-art living evidence synthesis summarizing breakthroughs from international trials: distal medium vessel occlusion (DMVO) mechanical thrombectomy, expanded Tenecteplase utilization, multi-modal imaging AI triage in rural spoke hospitals, and updated antithrombotic timing post-infarction.",
-    linkedScenarioIds: [],
-    allPracticeChanges: [
-      {
-        id: "chg-eso-upd-1",
-        category: "Endovascular Therapy",
-        topic: "Distal Medium Vessel Occlusion (DMVO M2/M3) Thrombectomy Selection",
-        changeType: "NEW",
-        previousGrade: "Investigational / Operator discretion",
-        currentGrade: "Expert Consensus Statement, Moderate certainty",
-        previousText: "Mechanical thrombectomy was restricted to ICA and proximal M1 occlusions.",
-        currentText:
-          "In patients presenting with primary medium vessel occlusion (M2, M3, A2, P2 branches) with disabling neurological deficits (NIHSS ≥ 5), mechanical thrombectomy using micro-aspiration catheters or low-profile stent retrievers shows favorable reperfusion rates with acceptable procedural safety in experienced comprehensive stroke centers.",
-        drivingTrials: ["DISTAL Trial", "ESCAPE-MeVO", "DISCOUNT Randomized Trials"],
-      },
-      {
-        id: "chg-eso-upd-2",
-        category: "Intravenous Thrombolysis",
-        topic: "Consolidated Tenecteplase 0.25 mg/kg Frontline Equivalence to Alteplase",
-        changeType: "UPGRADED",
-        previousGrade: "Conditional alternative",
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        previousText: "Alteplase was standard, Tenecteplase was non-inferior.",
-        currentText:
-          "Consolidated data across 6 pivotal phase-3 randomized trials (AcT, TRACE-2, ATTEST-2, TASTE-A, ORIGINAL, CHABLIS-T II) confirm that Tenecteplase 0.25 mg/kg administered as a 5-second IV bolus is therapeutically equivalent to Alteplase with superior door-to-needle and transfer metrics.",
-        drivingTrials: ["AcT (Lancet 2022)", "TRACE-2 (Lancet 2023)", "ATTEST-2 (Lancet Neurol 2024)"],
-      },
-      {
-        id: "chg-eso-upd-3",
-        category: "AI & Neuroimaging",
-        topic: "AI-Assisted Automated Perfusion and ASPECTS Triage in Spoke Centers",
-        changeType: "NEW",
-        previousGrade: "Investigational software tools",
-        currentGrade: "Moderate recommendation FOR, Moderate quality",
-        previousText: "Non-contrast CT interpreted solely by on-duty radiologists.",
-        currentText:
-          "Validated artificial intelligence and automated perfusion processing software packages (e.g., automated ASPECTS and core/penumbra volume calculations) are recommended for rapid remote consultation and transfer triage between primary stroke centers and comprehensive EVT hubs.",
-        drivingTrials: ["AI Triage Multicenter Stroke Hub-Spoke Registries"],
-      },
-      {
-        id: "chg-eso-upd-4",
-        category: "Anticoagulation Resumption",
-        topic: "Early DOAC Resumption Strategy Post-Ischemic Stroke (ELAN Protocol)",
-        changeType: "UPGRADED",
-        previousGrade: "Traditional 1-3-6-12 Day Rule",
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        previousText: "Delayed anticoagulation for 12-14 days was universally practiced due to hemorrhagic transformation fears.",
-        currentText:
-          "In acute ischemic stroke patients with atrial fibrillation, we recommend early initiation or resumption of Direct Oral Anticoagulants (DOACs) based on infarct size on neuroimaging: minor stroke (≤1.5 cm) at 48 hours; moderate stroke at day 6–7; extensive stroke at day 12–14, without routine heparin bridging.",
-        drivingTrials: ["ELAN Trial (NEJM 2023)", "TIMING Trial (Circulation)", "OPTIMAS Trial (Lancet 2024)"],
-      },
-      {
-        id: "chg-eso-upd-5",
-        category: "Neuroprotection",
-        topic: "Routine Neuroprotective Adjuvants NOT Recommended in Conjunction with EVT",
-        changeType: "DOWNGRADED",
-        previousGrade: "Investigational / Conditional in trials",
-        currentGrade: "Strong recommendation AGAINST, Moderate quality evidence",
-        previousText: "Cytoprotective compounds were frequently evaluated alongside thrombectomy.",
-        currentText:
-          "In patients undergoing mechanical thrombectomy, we recommend against the routine off-label administration of cytoprotective or free-radical scavenging agents (such as edaravone, nerinetide, or citicoline) outside randomized clinical trials, as evidence fails to show consistent additive clinical benefit.",
-        drivingTrials: ["ESCAPE-NA1 (Lancet)", "FRONTIER Nerinetide Trial", "Cerebroprotection in EVT Meta-analysis"],
-      },
-      {
-        id: "chg-eso-upd-6",
-        category: "Prehospital Care",
-        topic: "Mobile Stroke Units (MSU) for Prehospital Thrombolysis in Urban Networks",
-        changeType: "NEW",
-        previousGrade: "Experimental ambulances",
-        currentGrade: "Moderate recommendation FOR, Moderate quality",
-        previousText: "Standard EMS paramedic transport directly to emergency departments.",
-        currentText:
-          "In metropolitan healthcare systems with adequate resource density, we suggest deploying Mobile Stroke Units equipped with onboard CT scanners, point-of-care laboratory, and telemedicine to administer IV thrombolysis in the field, which significantly shortens golden-hour treatment times and improves disability-free survival at 90 days.",
-        drivingTrials: ["BEST-MSU Trial (NEJM)", "B-PROUD Study (JAMA)"],
-      },
+    "id": "eso-evidence-update-2025",
+    "society": "ESO",
+    "year": 2025,
+    "subspecialty": "Stroke",
+    "subspecialties": [
+      "Stroke",
+      "Neurocritical Care"
     ],
+    "title": "European Stroke Organisation (ESO) Annual Stroke Evidence Update 2025",
+    "officialUrl": "https://doi.org/10.1177/23969873251289901",
+    "journalTarget": "European Stroke Journal",
+    "documentType": "Expert Consensus",
+    "publishDate": "2025-05-20",
+    "previousVersionYear": 2024,
+    "executiveSummary": "Annual state-of-the-art living evidence synthesis summarizing breakthroughs from international trials: distal medium vessel occlusion (DMVO) mechanical thrombectomy, expanded Tenecteplase utilization, multi-modal imaging AI triage in rural spoke hospitals, and updated antithrombotic timing post-infarction.",
+    "linkedScenarioIds": [],
+    "allPracticeChanges": [
+      {
+        "id": "chg-eso-upd-1",
+        "category": "Endovascular Therapy",
+        "topic": "Distal Medium Vessel Occlusion (DMVO M2/M3) Thrombectomy Selection",
+        "changeType": "NEW",
+        "previousGrade": "Investigational / Operator discretion",
+        "currentGrade": "Expert Consensus Statement, Moderate certainty",
+        "previousText": "Mechanical thrombectomy was restricted to ICA and proximal M1 occlusions.",
+        "currentText": "In patients presenting with primary medium vessel occlusion (M2, M3, A2, P2 branches) with disabling neurological deficits (NIHSS ≥ 5), mechanical thrombectomy using micro-aspiration catheters or low-profile stent retrievers shows favorable reperfusion rates with acceptable procedural safety in experienced comprehensive stroke centers.",
+        "drivingTrials": [
+          "DISTAL Trial",
+          "ESCAPE-MeVO",
+          "DISCOUNT Randomized Trials"
+        ]
+      },
+      {
+        "id": "chg-eso-upd-2",
+        "category": "Intravenous Thrombolysis",
+        "topic": "Consolidated Tenecteplase 0.25 mg/kg Frontline Equivalence to Alteplase",
+        "changeType": "UPGRADED",
+        "previousGrade": "Conditional alternative",
+        "currentGrade": "Strong recommendation FOR, High quality evidence",
+        "previousText": "Alteplase was standard, Tenecteplase was non-inferior.",
+        "currentText": "Consolidated data across 6 pivotal phase-3 randomized trials (AcT, TRACE-2, ATTEST-2, TASTE-A, ORIGINAL, CHABLIS-T II) confirm that Tenecteplase 0.25 mg/kg administered as a 5-second IV bolus is therapeutically equivalent to Alteplase with superior door-to-needle and transfer metrics.",
+        "drivingTrials": [
+          "AcT (Lancet 2022)",
+          "TRACE-2 (Lancet 2023)",
+          "ATTEST-2 (Lancet Neurol 2024)"
+        ]
+      },
+      {
+        "id": "chg-eso-upd-3",
+        "category": "AI & Neuroimaging",
+        "topic": "AI-Assisted Automated Perfusion and ASPECTS Triage in Spoke Centers",
+        "changeType": "NEW",
+        "previousGrade": "Investigational software tools",
+        "currentGrade": "Moderate recommendation FOR, Moderate quality",
+        "previousText": "Non-contrast CT interpreted solely by on-duty radiologists.",
+        "currentText": "Validated artificial intelligence and automated perfusion processing software packages (e.g., automated ASPECTS and core/penumbra volume calculations) are recommended for rapid remote consultation and transfer triage between primary stroke centers and comprehensive EVT hubs.",
+        "drivingTrials": [
+          "AI Triage Multicenter Stroke Hub-Spoke Registries"
+        ]
+      },
+      {
+        "id": "chg-eso-upd-4",
+        "category": "Anticoagulation Resumption",
+        "topic": "Early DOAC Resumption Strategy Post-Ischemic Stroke (ELAN Protocol)",
+        "changeType": "UPGRADED",
+        "previousGrade": "Traditional 1-3-6-12 Day Rule",
+        "currentGrade": "Strong recommendation FOR, High quality evidence",
+        "previousText": "Delayed anticoagulation for 12-14 days was universally practiced due to hemorrhagic transformation fears.",
+        "currentText": "In acute ischemic stroke patients with atrial fibrillation, we recommend early initiation or resumption of Direct Oral Anticoagulants (DOACs) based on infarct size on neuroimaging: minor stroke (≤1.5 cm) at 48 hours; moderate stroke at day 6–7; extensive stroke at day 12–14, without routine heparin bridging.",
+        "drivingTrials": [
+          "ELAN Trial (NEJM 2023)",
+          "TIMING Trial (Circulation)",
+          "OPTIMAS Trial (Lancet 2024)"
+        ]
+      },
+      {
+        "id": "chg-eso-upd-5",
+        "category": "Neuroprotection",
+        "topic": "Routine Neuroprotective Adjuvants NOT Recommended in Conjunction with EVT",
+        "changeType": "DOWNGRADED",
+        "previousGrade": "Investigational / Conditional in trials",
+        "currentGrade": "Strong recommendation AGAINST, Moderate quality evidence",
+        "previousText": "Cytoprotective compounds were frequently evaluated alongside thrombectomy.",
+        "currentText": "In patients undergoing mechanical thrombectomy, we recommend against the routine off-label administration of cytoprotective or free-radical scavenging agents (such as edaravone, nerinetide, or citicoline) outside randomized clinical trials, as evidence fails to show consistent additive clinical benefit.",
+        "drivingTrials": [
+          "ESCAPE-NA1 (Lancet)",
+          "FRONTIER Nerinetide Trial",
+          "Cerebroprotection in EVT Meta-analysis"
+        ]
+      },
+      {
+        "id": "chg-eso-upd-6",
+        "category": "Prehospital Care",
+        "topic": "Mobile Stroke Units (MSU) for Prehospital Thrombolysis in Urban Networks",
+        "changeType": "NEW",
+        "previousGrade": "Experimental ambulances",
+        "currentGrade": "Moderate recommendation FOR, Moderate quality",
+        "previousText": "Standard EMS paramedic transport directly to emergency departments.",
+        "currentText": "In metropolitan healthcare systems with adequate resource density, we suggest deploying Mobile Stroke Units equipped with onboard CT scanners, point-of-care laboratory, and telemedicine to administer IV thrombolysis in the field, which significantly shortens golden-hour treatment times and improves disability-free survival at 90 days.",
+        "drivingTrials": [
+          "BEST-MSU Trial (NEJM)",
+          "B-PROUD Study (JAMA)"
+        ]
+      }
+    ]
   },
   {
-    id: "eso-eans-ich-2025",
-    society: "ESO",
-    year: 2025,
-    subspecialty: "Stroke",
-    subspecialties: ["Stroke", "Neurocritical Care"],
-    title: "European Stroke Organisation (ESO) and European Association of Neurosurgical Societies (EANS) guideline on stroke due to spontaneous intracerebral haemorrhage",
-    officialUrl: "https://doi.org/10.1177/23969873251280012",
-    journalTarget: "European Stroke Journal",
-    documentType: "Clinical Practice Guideline",
-    publishDate: "2025-05-10",
-    previousVersionYear: 2021,
-    executiveSummary:
-      "Joint ESO-EANS guideline incorporating landmark surgical trials (ENRICH): endorses minimally invasive endoscopic/stereotactic hematoma evacuation for supratentorial lobar and deep hemorrhages, hyperacute blood pressure lowering (130-140 mmHg), ultra-rapid DOAC/VKA anticoagulation reversal within 60 minutes, and avoidance of prophylactic AEDs.",
-    linkedScenarioIds: ["ich-acute-bp-lowering"],
-    allPracticeChanges: [
-      {
-        id: "chg-eso-ich-surg-1",
-        category: "Surgical Evacuation",
-        topic: "Minimally Invasive Surgery (MIS) Evacuation Endorsed for Supratentorial ICH",
-        changeType: "UPGRADED",
-        previousGrade: "Routine surgical evacuation not recommended (STICH II)",
-        currentGrade: "Strong recommendation FOR, Moderate quality evidence",
-        previousText: "Conventional open craniotomy showed no overall functional benefit except for life-saving decompressive craniectomy.",
-        currentText:
-          "In patients with spontaneous supratentorial intracerebral hemorrhage (volume 30–80 mL) with GCS 5–14 presenting within 24 hours of onset, we recommend early minimally invasive surgical evacuation (endoscopic or stereotactic aspiration) to improve 6-month functional independence and reduce mortality.",
-        drivingTrials: ["ENRICH Trial (NEJM 2024)", "MISTIE III (Lancet)", "INVEST Trial"],
-      },
-      {
-        id: "chg-eso-ich-rev-2",
-        category: "Anticoagulant Reversal",
-        topic: "Rapid Specific DOAC Reversal (Andexanet Alfa, Idarucizumab, 4F-PCC) within 60 Minutes",
-        changeType: "UPGRADED",
-        previousGrade: "Class IIa / Conditional recommendation",
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        previousText: "Supportive reversal with prothrombin complex concentrate or waiting.",
-        currentText:
-          "In patients with acute intracerebral hemorrhage related to Factor Xa inhibitors (apixaban/rivaroxaban) or direct thrombin inhibitors (dabigatran), we strongly recommend immediate administration of specific reversal agents (Andexanet alfa or Idarucizumab) or 4-factor PCC within 1 hour of hospital presentation to stop hematoma expansion.",
-        drivingTrials: ["ANNEXA-I (NEJM 2024)", "RE-VERSE AD (NEJM)", "4F-PCC in DOAC ICH Registries"],
-      },
-      {
-        id: "chg-eso-ich-bp-3",
-        category: "Hemodynamics",
-        topic: "Immediate Target SBP 130–140 mmHg within 2 Hours, Avoiding Nadir <120 mmHg",
-        changeType: "REVISED",
-        scenarioId: "ich-acute-bp-lowering",
-        previousGrade: "Target SBP <140 mmHg was standard",
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        previousText: "Blood pressure lowering was aimed at SBP <140 without clear minimum bounds.",
-        currentText:
-          "We recommend prompt titration with intravenous antihypertensive infusions to maintain systolic blood pressure between 130 and 140 mmHg within 2 hours of arrival, while avoiding abrupt drops exceeding 60 mmHg in the first hour or dropping below 120 mmHg to prevent renal and cerebral hypoperfusion.",
-        drivingTrials: ["INTERACT2", "INTERACT3 (Lancet 2023)", "ATACH-II"],
-      },
-      {
-        id: "chg-eso-ich-aed-4",
-        category: "Seizure Prophylaxis",
-        topic: "Prophylactic Antiseizure Medications NOT Recommended in Non-Seizing ICH",
-        changeType: "REVISED",
-        previousGrade: "Conditional prophylaxis in lobar ICH",
-        currentGrade: "Strong recommendation AGAINST, Moderate quality evidence",
-        previousText: "Prophylactic antiepileptic therapy was frequently administered in lobar hemorrhages.",
-        currentText:
-          "In patients with acute intracerebral hemorrhage without clinical seizures or epileptiform activity on continuous EEG, we recommend against the routine prophylactic administration of antiseizure medications, as they do not improve functional outcomes and are associated with adverse neuropsychiatric effects.",
-        drivingTrials: ["PEACH Trial", "Cochrane Review on Antiepileptic Prophylaxis in ICH"],
-      },
-      {
-        id: "chg-eso-ich-5",
-        category: "Intraventricular Hemorrhage",
-        topic: "EVD Combined with Lumbar Drainage or Thrombolytic Irrigation for Obstructive IVH",
-        changeType: "REVISED",
-        previousGrade: "EVD alone standard",
-        currentGrade: "Moderate recommendation FOR, Moderate quality",
-        previousText: "EVD alone was placed without active clot clearance maneuvers.",
-        currentText:
-          "In spontaneous ICH patients with severe obstructive intraventricular hemorrhage causing acute hydrocephalus, we recommend placement of an external ventricular drain (EVD) and suggest adjunct lumbar drainage or low-dose intraventricular alteplase irrigation (CLEAR III protocol) once parenchymal bleeding has arrested, to accelerate ventricular blood clearance and reduce permanent VP shunt dependency.",
-        drivingTrials: ["CLEAR III Trial (Lancet)", "Lumbar Drainage after EVD in IVH Cohorts"],
-      },
-      {
-        id: "chg-eso-ich-6",
-        category: "Intracranial Pressure Monitoring",
-        topic: "Targeted Hyperosmolar Therapy and ICP Floor Protocols in Deteriorating ICH",
-        changeType: "NEW",
-        previousGrade: "Empirical mannitol boluses",
-        currentGrade: "Strong recommendation FOR, Moderate quality",
-        previousText: "Mannitol was given empirically every 4 to 6 hours for cerebral edema.",
-        currentText:
-          "In comatose or rapidly deteriorating ICH patients with suspected intracranial hypertension, we recommend invasive ICP monitoring targeting an ICP < 20 mmHg and CPP 60–70 mmHg, preferentially utilizing hypertonic saline (3% to 23.4%) over mannitol to avoid hypovolemic hypotension.",
-        drivingTrials: ["Neurocritical Care Osmotherapy Guidelines", "Hypertonic Saline vs Mannitol in ICH Meta-analysis"],
-      },
+    "id": "eso-eans-ich-2025",
+    "society": "ESO",
+    "year": 2025,
+    "subspecialty": "Stroke",
+    "subspecialties": [
+      "Stroke",
+      "Neurocritical Care"
     ],
+    "title": "European Stroke Organisation (ESO) and European Association of Neurosurgical Societies (EANS) guideline on stroke due to spontaneous intracerebral haemorrhage",
+    "officialUrl": "https://doi.org/10.1177/23969873251280012",
+    "journalTarget": "European Stroke Journal",
+    "documentType": "Clinical Practice Guideline",
+    "publishDate": "2025-05-10",
+    "previousVersionYear": 2021,
+    "executiveSummary": "Joint ESO-EANS guideline incorporating landmark surgical trials (ENRICH): endorses minimally invasive endoscopic/stereotactic hematoma evacuation for supratentorial lobar and deep hemorrhages, hyperacute blood pressure lowering (130-140 mmHg), ultra-rapid DOAC/VKA anticoagulation reversal within 60 minutes, and avoidance of prophylactic AEDs.",
+    "linkedScenarioIds": [
+      "ich-acute-bp-lowering"
+    ],
+    "allPracticeChanges": [
+      {
+        "id": "chg-eso-ich-surg-1",
+        "category": "Surgical Evacuation",
+        "topic": "Minimally Invasive Surgery (MIS) Evacuation Endorsed for Supratentorial ICH",
+        "changeType": "UPGRADED",
+        "previousGrade": "Routine surgical evacuation not recommended (STICH II)",
+        "currentGrade": "Strong recommendation FOR, Moderate quality evidence",
+        "previousText": "Conventional open craniotomy showed no overall functional benefit except for life-saving decompressive craniectomy.",
+        "currentText": "In patients with spontaneous supratentorial intracerebral hemorrhage (volume 30–80 mL) with GCS 5–14 presenting within 24 hours of onset, we recommend early minimally invasive surgical evacuation (endoscopic or stereotactic aspiration) to improve 6-month functional independence and reduce mortality.",
+        "drivingTrials": [
+          "ENRICH Trial (NEJM 2024)",
+          "MISTIE III (Lancet)",
+          "INVEST Trial"
+        ]
+      },
+      {
+        "id": "chg-eso-ich-rev-2",
+        "category": "Anticoagulant Reversal",
+        "topic": "Rapid Specific DOAC Reversal (Andexanet Alfa, Idarucizumab, 4F-PCC) within 60 Minutes",
+        "changeType": "UPGRADED",
+        "previousGrade": "Class IIa / Conditional recommendation",
+        "currentGrade": "Strong recommendation FOR, High quality evidence",
+        "previousText": "Supportive reversal with prothrombin complex concentrate or waiting.",
+        "currentText": "In patients with acute intracerebral hemorrhage related to Factor Xa inhibitors (apixaban/rivaroxaban) or direct thrombin inhibitors (dabigatran), we strongly recommend immediate administration of specific reversal agents (Andexanet alfa or Idarucizumab) or 4-factor PCC within 1 hour of hospital presentation to stop hematoma expansion.",
+        "drivingTrials": [
+          "ANNEXA-I (NEJM 2024)",
+          "RE-VERSE AD (NEJM)",
+          "4F-PCC in DOAC ICH Registries"
+        ]
+      },
+      {
+        "id": "chg-eso-ich-bp-3",
+        "category": "Hemodynamics",
+        "topic": "Immediate Target SBP 130–140 mmHg within 2 Hours, Avoiding Nadir <120 mmHg",
+        "changeType": "REVISED",
+        "scenarioId": "ich-acute-bp-lowering",
+        "previousGrade": "Target SBP <140 mmHg was standard",
+        "currentGrade": "Strong recommendation FOR, High quality evidence",
+        "previousText": "Blood pressure lowering was aimed at SBP <140 without clear minimum bounds.",
+        "currentText": "We recommend prompt titration with intravenous antihypertensive infusions to maintain systolic blood pressure between 130 and 140 mmHg within 2 hours of arrival, while avoiding abrupt drops exceeding 60 mmHg in the first hour or dropping below 120 mmHg to prevent renal and cerebral hypoperfusion.",
+        "drivingTrials": [
+          "INTERACT2",
+          "INTERACT3 (Lancet 2023)",
+          "ATACH-II"
+        ]
+      },
+      {
+        "id": "chg-eso-ich-aed-4",
+        "category": "Seizure Prophylaxis",
+        "topic": "Prophylactic Antiseizure Medications NOT Recommended in Non-Seizing ICH",
+        "changeType": "REVISED",
+        "previousGrade": "Conditional prophylaxis in lobar ICH",
+        "currentGrade": "Strong recommendation AGAINST, Moderate quality evidence",
+        "previousText": "Prophylactic antiepileptic therapy was frequently administered in lobar hemorrhages.",
+        "currentText": "In patients with acute intracerebral hemorrhage without clinical seizures or epileptiform activity on continuous EEG, we recommend against the routine prophylactic administration of antiseizure medications, as they do not improve functional outcomes and are associated with adverse neuropsychiatric effects.",
+        "drivingTrials": [
+          "PEACH Trial",
+          "Cochrane Review on Antiepileptic Prophylaxis in ICH"
+        ]
+      },
+      {
+        "id": "chg-eso-ich-5",
+        "category": "Intraventricular Hemorrhage",
+        "topic": "EVD Combined with Lumbar Drainage or Thrombolytic Irrigation for Obstructive IVH",
+        "changeType": "REVISED",
+        "previousGrade": "EVD alone standard",
+        "currentGrade": "Moderate recommendation FOR, Moderate quality",
+        "previousText": "EVD alone was placed without active clot clearance maneuvers.",
+        "currentText": "In spontaneous ICH patients with severe obstructive intraventricular hemorrhage causing acute hydrocephalus, we recommend placement of an external ventricular drain (EVD) and suggest adjunct lumbar drainage or low-dose intraventricular alteplase irrigation (CLEAR III protocol) once parenchymal bleeding has arrested, to accelerate ventricular blood clearance and reduce permanent VP shunt dependency.",
+        "drivingTrials": [
+          "CLEAR III Trial (Lancet)",
+          "Lumbar Drainage after EVD in IVH Cohorts"
+        ]
+      },
+      {
+        "id": "chg-eso-ich-6",
+        "category": "Intracranial Pressure Monitoring",
+        "topic": "Targeted Hyperosmolar Therapy and ICP Floor Protocols in Deteriorating ICH",
+        "changeType": "NEW",
+        "previousGrade": "Empirical mannitol boluses",
+        "currentGrade": "Strong recommendation FOR, Moderate quality",
+        "previousText": "Mannitol was given empirically every 4 to 6 hours for cerebral edema.",
+        "currentText": "In comatose or rapidly deteriorating ICH patients with suspected intracranial hypertension, we recommend invasive ICP monitoring targeting an ICP < 20 mmHg and CPP 60–70 mmHg, preferentially utilizing hypertonic saline (3% to 23.4%) over mannitol to avoid hypovolemic hypotension.",
+        "drivingTrials": [
+          "Neurocritical Care Osmotherapy Guidelines",
+          "Hypertonic Saline vs Mannitol in ICH Meta-analysis"
+        ]
+      }
+    ]
   },
   {
-    id: "esc-af-2024",
-    society: "ESC",
-    year: 2024,
-    subspecialty: "Stroke",
-    subspecialties: ["Stroke", "Other"],
-    title: "2024 ESC Guidelines for the management of atrial fibrillation developed in collaboration with EACTS",
-    officialUrl: "https://doi.org/10.1093/eurheartj/ehae176",
-    journalTarget: "European Heart Journal",
-    documentType: "Clinical Practice Guideline",
-    publishDate: "2024-08-30",
-    previousVersionYear: 2020,
-    executiveSummary:
-      "2024 flagship ESC/EACTS clinical practice guidelines on atrial fibrillation: Class I Level A preferential endorsement of DOACs over VKAs, optimal timing of DOAC initiation/resumption post-stroke based on infarct size and early MRI, Catheter Ablation as first-line rhythm control, and Left Atrial Appendage Occlusion (LAAO) in high-risk non-anticoagulable patients.",
-    linkedScenarioIds: [],
-    allPracticeChanges: [
-      {
-        id: "chg-esc-af-1",
-        category: "Thromboembolism Prophylaxis",
-        topic: "DOACs Strictly Preferred Over VKAs for Stroke Prevention in Non-Valvular AF",
-        changeType: "UPGRADED",
-        previousGrade: "Class I, Level A (Preferred over Warfarin)",
-        currentGrade: "Class I, Level A (Exclusive first-line oral anticoagulant)",
-        previousText: "Warfarin was acceptable alternative if INR was well-managed in therapeutic range (TTR > 70%).",
-        currentText:
-          "Direct Oral Anticoagulants (Apixaban, Dabigatran, Edoxaban, Rivaroxaban) are recommended in preference to Vitamin K Antagonists for stroke prevention in non-valvular atrial fibrillation due to superior efficacy, lower fatal intracranial hemorrhage rates, and lack of dietary restrictions.",
-        drivingTrials: ["ARISTOTLE (NEJM)", "RE-LY (NEJM)", "ENGAGE AF-TIMI 48", "ROCKET AF"],
-      },
-      {
-        id: "chg-esc-af-2",
-        category: "Post-Stroke Timing",
-        topic: "Risk-Stratified Post-Stroke Resumption of Oral Anticoagulation (Day 3-14 Rule)",
-        changeType: "REVISED",
-        previousGrade: "Empirical 1-3-6-12 day rule",
-        currentGrade: "Class IIa, Level B (Early resumption supported by randomized trials)",
-        previousText: "Waiting 12-14 days was universally mandated in moderate-to-severe strokes.",
-        currentText:
-          "In patients with acute ischemic stroke and AF, early initiation or resumption of DOACs is recommended: within 48-72h for TIA/minor stroke (NIHSS < 8), at 6-7 days for moderate stroke (NIHSS 8-15), and at 12-14 days for severe stroke after repeat neuroimaging confirms absence of hemorrhagic transformation.",
-        drivingTrials: ["TIMING Trial (Circulation 2022)", "ELAN Trial (NEJM 2023)", "OPTIMAS Trial (Lancet 2024)"],
-      },
-      {
-        id: "chg-esc-af-3",
-        category: "Interventional Prophylaxis",
-        topic: "Left Atrial Appendage Occlusion (LAAO) for Absolute Anticoagulation Contraindications",
-        changeType: "REVISED",
-        previousGrade: "Class IIb, Level B",
-        currentGrade: "Class IIa, Level B",
-        previousText: "Considered only when oral anticoagulation was completely impossible.",
-        currentText:
-          "Percutaneous left atrial appendage occlusion (LAAO) may be considered for stroke prevention in patients with AF and a clear indication for oral anticoagulation who have absolute, non-modifiable contraindications to long-term oral anticoagulation (e.g., severe recurrent life-threatening bleeding without treatable cause).",
-        drivingTrials: ["PROTECT-AF", "PREVAIL", "PRAGUE-17 (JACC 2020)"],
-      },
-      {
-        id: "chg-esc-af-4",
-        category: "Rhythm Control Strategy",
-        topic: "Catheter Ablation as First-Line Rhythm Control in Heart Failure with Reduced EF",
-        changeType: "UPGRADED",
-        previousGrade: "Class IIa, Level B",
-        currentGrade: "Class I, Level A",
-        previousText: "Medical therapy with antiarrhythmics was attempted before considering catheter ablation.",
-        currentText:
-          "Catheter ablation for AF is recommended as a first-line therapy to reverse left ventricular dysfunction and reduce cardiovascular hospitalizations and all-cause mortality in patients with heart failure and reduced ejection fraction (HFrEF).",
-        drivingTrials: ["CASTLE-AF (NEJM)", "CABANA Trial (JAMA)"],
-      },
-      {
-        id: "chg-esc-af-5",
-        category: "Subclinical Atrial Fibrillation",
-        topic: "Thresholds for Anticoagulation in Device-Detected Atrial High-Rate Episodes (AHRE)",
-        changeType: "NEW",
-        previousGrade: "Anticoagulate any episode >6 minutes",
-        currentGrade: "Class IIa, Level of Evidence B",
-        previousText: "Pacemaker-detected brief subclinical AF episodes were treated identically to clinical AF.",
-        currentText:
-          "In patients with device-detected subclinical AF or atrial high-rate episodes (AHRE), oral anticoagulation should be withheld for episodes lasting less than 24 hours unless the patient has a very high thromboembolic risk profile (CHA2DS2-VA ≥ 3) and thorough shared clinical decision-making.",
-        drivingTrials: ["NOAH-AFNET 6 (NEJM 2023)", "ARTESiA Trial (NEJM 2023)"],
-      },
-      {
-        id: "chg-esc-af-6",
-        category: "Antiplatelet Deprescribing",
-        topic: "Immediate Cessation of Concomitant Aspirin in AF Patients on DOACs",
-        changeType: "DOWNGRADED",
-        previousGrade: "Combined therapy widely maintained",
-        currentGrade: "Class III (HARM), Level of Evidence B",
-        previousText: "Patients with stable CAD or PAD on DOACs frequently remained on concurrent aspirin indefinitely.",
-        currentText:
-          "In patients with atrial fibrillation receiving DOAC anticoagulation who have stable coronary or peripheral artery disease without acute coronary syndrome or PCI stenting within the prior 12 months, concomitant antiplatelet therapy should be discontinued immediately, as combination therapy doubles major bleeding without reducing ischemic stroke.",
-        drivingTrials: ["AFIRE Trial (NEJM)", "AUGUSTUS Trial", "OAC Plus Antiplatelet Registries"],
-      },
+    "id": "esc-af-2024",
+    "society": "ESC",
+    "year": 2024,
+    "subspecialty": "Stroke",
+    "subspecialties": [
+      "Stroke",
+      "Other"
     ],
+    "title": "2024 ESC Guidelines for the management of atrial fibrillation developed in collaboration with EACTS",
+    "officialUrl": "https://doi.org/10.1093/eurheartj/ehae176",
+    "journalTarget": "European Heart Journal",
+    "documentType": "Clinical Practice Guideline",
+    "publishDate": "2024-08-30",
+    "previousVersionYear": 2020,
+    "executiveSummary": "2024 flagship ESC/EACTS clinical practice guidelines on atrial fibrillation: Class I Level A preferential endorsement of DOACs over VKAs, optimal timing of DOAC initiation/resumption post-stroke based on infarct size and early MRI, Catheter Ablation as first-line rhythm control, and Left Atrial Appendage Occlusion (LAAO) in high-risk non-anticoagulable patients.",
+    "linkedScenarioIds": [],
+    "allPracticeChanges": [
+      {
+        "id": "chg-esc-af-1",
+        "category": "Thromboembolism Prophylaxis",
+        "topic": "DOACs Strictly Preferred Over VKAs for Stroke Prevention in Non-Valvular AF",
+        "changeType": "UPGRADED",
+        "previousGrade": "Class I, Level A (Preferred over Warfarin)",
+        "currentGrade": "Class I, Level A (Exclusive first-line oral anticoagulant)",
+        "previousText": "Warfarin was acceptable alternative if INR was well-managed in therapeutic range (TTR > 70%).",
+        "currentText": "Direct Oral Anticoagulants (Apixaban, Dabigatran, Edoxaban, Rivaroxaban) are recommended in preference to Vitamin K Antagonists for stroke prevention in non-valvular atrial fibrillation due to superior efficacy, lower fatal intracranial hemorrhage rates, and lack of dietary restrictions.",
+        "drivingTrials": [
+          "ARISTOTLE (NEJM)",
+          "RE-LY (NEJM)",
+          "ENGAGE AF-TIMI 48",
+          "ROCKET AF"
+        ]
+      },
+      {
+        "id": "chg-esc-af-2",
+        "category": "Post-Stroke Timing",
+        "topic": "Risk-Stratified Post-Stroke Resumption of Oral Anticoagulation (Day 3-14 Rule)",
+        "changeType": "REVISED",
+        "previousGrade": "Empirical 1-3-6-12 day rule",
+        "currentGrade": "Class IIa, Level B (Early resumption supported by randomized trials)",
+        "previousText": "Waiting 12-14 days was universally mandated in moderate-to-severe strokes.",
+        "currentText": "In patients with acute ischemic stroke and AF, early initiation or resumption of DOACs is recommended: within 48-72h for TIA/minor stroke (NIHSS < 8), at 6-7 days for moderate stroke (NIHSS 8-15), and at 12-14 days for severe stroke after repeat neuroimaging confirms absence of hemorrhagic transformation.",
+        "drivingTrials": [
+          "TIMING Trial (Circulation 2022)",
+          "ELAN Trial (NEJM 2023)",
+          "OPTIMAS Trial (Lancet 2024)"
+        ]
+      },
+      {
+        "id": "chg-esc-af-3",
+        "category": "Interventional Prophylaxis",
+        "topic": "Left Atrial Appendage Occlusion (LAAO) for Absolute Anticoagulation Contraindications",
+        "changeType": "REVISED",
+        "previousGrade": "Class IIb, Level B",
+        "currentGrade": "Class IIa, Level B",
+        "previousText": "Considered only when oral anticoagulation was completely impossible.",
+        "currentText": "Percutaneous left atrial appendage occlusion (LAAO) may be considered for stroke prevention in patients with AF and a clear indication for oral anticoagulation who have absolute, non-modifiable contraindications to long-term oral anticoagulation (e.g., severe recurrent life-threatening bleeding without treatable cause).",
+        "drivingTrials": [
+          "PROTECT-AF",
+          "PREVAIL",
+          "PRAGUE-17 (JACC 2020)"
+        ]
+      },
+      {
+        "id": "chg-esc-af-4",
+        "category": "Rhythm Control Strategy",
+        "topic": "Catheter Ablation as First-Line Rhythm Control in Heart Failure with Reduced EF",
+        "changeType": "UPGRADED",
+        "previousGrade": "Class IIa, Level B",
+        "currentGrade": "Class I, Level A",
+        "previousText": "Medical therapy with antiarrhythmics was attempted before considering catheter ablation.",
+        "currentText": "Catheter ablation for AF is recommended as a first-line therapy to reverse left ventricular dysfunction and reduce cardiovascular hospitalizations and all-cause mortality in patients with heart failure and reduced ejection fraction (HFrEF).",
+        "drivingTrials": [
+          "CASTLE-AF (NEJM)",
+          "CABANA Trial (JAMA)"
+        ]
+      },
+      {
+        "id": "chg-esc-af-5",
+        "category": "Subclinical Atrial Fibrillation",
+        "topic": "Thresholds for Anticoagulation in Device-Detected Atrial High-Rate Episodes (AHRE)",
+        "changeType": "NEW",
+        "previousGrade": "Anticoagulate any episode >6 minutes",
+        "currentGrade": "Class IIa, Level of Evidence B",
+        "previousText": "Pacemaker-detected brief subclinical AF episodes were treated identically to clinical AF.",
+        "currentText": "In patients with device-detected subclinical AF or atrial high-rate episodes (AHRE), oral anticoagulation should be withheld for episodes lasting less than 24 hours unless the patient has a very high thromboembolic risk profile (CHA2DS2-VA ≥ 3) and thorough shared clinical decision-making.",
+        "drivingTrials": [
+          "NOAH-AFNET 6 (NEJM 2023)",
+          "ARTESiA Trial (NEJM 2023)"
+        ]
+      },
+      {
+        "id": "chg-esc-af-6",
+        "category": "Antiplatelet Deprescribing",
+        "topic": "Immediate Cessation of Concomitant Aspirin in AF Patients on DOACs",
+        "changeType": "DOWNGRADED",
+        "previousGrade": "Combined therapy widely maintained",
+        "currentGrade": "Class III (HARM), Level of Evidence B",
+        "previousText": "Patients with stable CAD or PAD on DOACs frequently remained on concurrent aspirin indefinitely.",
+        "currentText": "In patients with atrial fibrillation receiving DOAC anticoagulation who have stable coronary or peripheral artery disease without acute coronary syndrome or PCI stenting within the prior 12 months, concomitant antiplatelet therapy should be discontinued immediately, as combination therapy doubles major bleeding without reducing ischemic stroke.",
+        "drivingTrials": [
+          "AFIRE Trial (NEJM)",
+          "AUGUSTUS Trial",
+          "OAC Plus Antiplatelet Registries"
+        ]
+      }
+    ]
   },
   {
-    id: "eso-pfo-2024",
-    society: "ESO",
-    year: 2024,
-    subspecialty: "Stroke",
-    subspecialties: ["Stroke", "Other"],
-    title: "European Stroke Organisation (ESO) Guidelines on the diagnosis and management of patent foramen ovale (PFO) after stroke",
-    officialUrl: "https://doi.org/10.1177/23969873241261234",
-    journalTarget: "European Stroke Journal",
-    documentType: "Clinical Practice Guideline",
-    publishDate: "2024-07-25",
-    previousVersionYear: 2019,
-    executiveSummary:
-      "ESO guideline on cryptogenic stroke and patent foramen ovale (PFO): strong recommendation for percutaneous PFO closure plus antiplatelet monotherapy in patients aged 18–65 with high-risk PFO anatomy (atrial septal aneurysm, large right-to-left shunt) and RoPE score ≥ 7.",
-    linkedScenarioIds: [],
-    allPracticeChanges: [
-      {
-        id: "chg-eso-pfo-1",
-        category: "Interventional Closure",
-        topic: "Percutaneous PFO Closure Strongly Recommended for High-Risk PFO (18–65 Years)",
-        changeType: "UPGRADED",
-        previousGrade: "Moderate recommendation FOR",
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        previousText: "PFO closure was suggested after multidisciplinary evaluation.",
-        currentText:
-          "In patients aged 18–65 years with a cryptogenic ischemic stroke and an echocardiographically verified high-risk patent foramen ovale (associated with an atrial septal aneurysm or large right-to-left shunt), we recommend percutaneous PFO closure combined with antiplatelet therapy over medical therapy alone to prevent recurrent stroke.",
-        drivingTrials: ["CLOSE Trial (NEJM)", "REDUCE Trial (NEJM)", "DEFENSE-PFO (JACC)"],
-      },
-      {
-        id: "chg-eso-pfo-2",
-        category: "Diagnostic Stratification",
-        topic: "Systematic Use of RoPE and PASCAL Scores for Causal Probability Assessment",
-        changeType: "NEW",
-        previousGrade: "Clinical judgment without standardized scoring",
-        currentGrade: "Strong recommendation FOR, Moderate quality",
-        previousText: "Presence of PFO was considered an incidental finding in many patients.",
-        currentText:
-          "We recommend using the Risk of Paradoxical Embolism (RoPE) score combined with the PASCAL (PFO-Associated Stroke Causal Likelihood) classification system to adjudicate whether the PFO is pathogenic or incidental prior to making closure decisions.",
-        drivingTrials: ["PASCAL Classification System Validation (JAMA Neurol 2021)"],
-      },
-      {
-        id: "chg-eso-pfo-3",
-        category: "Post-Closure Antithrombotic",
-        topic: "Antiplatelet Monotherapy over Anticoagulation Following Successful PFO Closure",
-        changeType: "REVISED",
-        previousGrade: "Oral anticoagulation or DAPT for 6 months",
-        currentGrade: "Moderate recommendation FOR, Moderate quality",
-        previousText: "Prolonged dual antiplatelet therapy was prescribed for up to 12 months.",
-        currentText:
-          "Following successful percutaneous PFO closure, we recommend dual antiplatelet therapy (Aspirin + Clopidogrel) for 1 to 6 months, followed by antiplatelet monotherapy (Aspirin 75-100 mg daily) long-term, without routine long-term anticoagulation.",
-        drivingTrials: ["European PFO Closure Long-term Follow-up Registries"],
-      },
-      {
-        id: "chg-eso-pfo-4",
-        category: "Post-Procedural Monitoring",
-        topic: "Extended Cardiac Rhythm Monitoring Post-Procedure to Detect Procedural Atrial Fibrillation",
-        changeType: "NEW",
-        previousGrade: "Routine ECG at discharge",
-        currentGrade: "Expert Consensus Statement",
-        previousText: "Atrial fibrillation screening was discontinued after hospital discharge.",
-        currentText:
-          "Because percutaneous device placement carries a 3–5% incidence of transient new-onset atrial fibrillation in the first 4 weeks, we suggest cardiac rhythm monitoring during the first 6 months post-procedure in patients reporting palpitations.",
-        drivingTrials: ["Device-Related AF Meta-analysis in PFO Closure Cohorts"],
-      },
-      {
-        id: "chg-eso-pfo-5",
-        category: "Patient Age Selection",
-        topic: "Selective PFO Closure in Patients Aged 65–75 Years with High-Risk Features",
-        changeType: "NEW",
-        previousGrade: "Age cutoff strictly <=60 years",
-        currentGrade: "Weak recommendation FOR, Low quality evidence",
-        previousText: "PFO closure was restricted strictly to patients aged 18 to 60 years.",
-        currentText:
-          "In carefully selected stroke patients aged 65 to 75 years with high-risk PFO anatomy (atrial septal aneurysm or large right-to-left shunt) and an exhaustive negative diagnostic workup ruling out occult atrial fibrillation, lacunar disease, and atherosclerosis, percutaneous PFO closure may be considered conditionally.",
-        drivingTrials: ["PFO Closure in Older Adults Multi-Registry", "DEFENSE-ELDERLY Subgroup Cohorts"],
-      },
-      {
-        id: "chg-eso-pfo-6",
-        category: "Conservative Medical Therapy",
-        topic: "Antiplatelet Monotherapy for Patients Not Undergoing PFO Closure",
-        changeType: "REVISED",
-        previousGrade: "Oral anticoagulation or antiplatelets",
-        currentGrade: "Moderate recommendation FOR, Moderate quality",
-        previousText: "Warfarin or DOACs were sometimes used as alternative long-term medical therapy.",
-        currentText:
-          "For patients with cryptogenic stroke and PFO who are not candidates for closure or who choose not to undergo the procedure, we recommend long-term antiplatelet monotherapy (aspirin 75–100 mg daily or clopidogrel 75 mg daily) rather than long-term oral anticoagulation, to avoid major hemorrhage.",
-        drivingTrials: ["NAVIGATE ESUS Subgroup", "RE-SPECT ESUS PFO Subgroup Analysis"],
-      },
+    "id": "eso-pfo-2024",
+    "society": "ESO",
+    "year": 2024,
+    "subspecialty": "Stroke",
+    "subspecialties": [
+      "Stroke",
+      "Other"
     ],
+    "title": "European Stroke Organisation (ESO) Guidelines on the diagnosis and management of patent foramen ovale (PFO) after stroke",
+    "officialUrl": "https://doi.org/10.1177/23969873241261234",
+    "journalTarget": "European Stroke Journal",
+    "documentType": "Clinical Practice Guideline",
+    "publishDate": "2024-07-25",
+    "previousVersionYear": 2019,
+    "executiveSummary": "ESO guideline on cryptogenic stroke and patent foramen ovale (PFO): strong recommendation for percutaneous PFO closure plus antiplatelet monotherapy in patients aged 18–65 with high-risk PFO anatomy (atrial septal aneurysm, large right-to-left shunt) and RoPE score ≥ 7.",
+    "linkedScenarioIds": [],
+    "allPracticeChanges": [
+      {
+        "id": "chg-eso-pfo-1",
+        "category": "Interventional Closure",
+        "topic": "Percutaneous PFO Closure Strongly Recommended for High-Risk PFO (18–65 Years)",
+        "changeType": "UPGRADED",
+        "previousGrade": "Moderate recommendation FOR",
+        "currentGrade": "Strong recommendation FOR, High quality evidence",
+        "previousText": "PFO closure was suggested after multidisciplinary evaluation.",
+        "currentText": "In patients aged 18–65 years with a cryptogenic ischemic stroke and an echocardiographically verified high-risk patent foramen ovale (associated with an atrial septal aneurysm or large right-to-left shunt), we recommend percutaneous PFO closure combined with antiplatelet therapy over medical therapy alone to prevent recurrent stroke.",
+        "drivingTrials": [
+          "CLOSE Trial (NEJM)",
+          "REDUCE Trial (NEJM)",
+          "DEFENSE-PFO (JACC)"
+        ]
+      },
+      {
+        "id": "chg-eso-pfo-2",
+        "category": "Diagnostic Stratification",
+        "topic": "Systematic Use of RoPE and PASCAL Scores for Causal Probability Assessment",
+        "changeType": "NEW",
+        "previousGrade": "Clinical judgment without standardized scoring",
+        "currentGrade": "Strong recommendation FOR, Moderate quality",
+        "previousText": "Presence of PFO was considered an incidental finding in many patients.",
+        "currentText": "We recommend using the Risk of Paradoxical Embolism (RoPE) score combined with the PASCAL (PFO-Associated Stroke Causal Likelihood) classification system to adjudicate whether the PFO is pathogenic or incidental prior to making closure decisions.",
+        "drivingTrials": [
+          "PASCAL Classification System Validation (JAMA Neurol 2021)"
+        ]
+      },
+      {
+        "id": "chg-eso-pfo-3",
+        "category": "Post-Closure Antithrombotic",
+        "topic": "Antiplatelet Monotherapy over Anticoagulation Following Successful PFO Closure",
+        "changeType": "REVISED",
+        "previousGrade": "Oral anticoagulation or DAPT for 6 months",
+        "currentGrade": "Moderate recommendation FOR, Moderate quality",
+        "previousText": "Prolonged dual antiplatelet therapy was prescribed for up to 12 months.",
+        "currentText": "Following successful percutaneous PFO closure, we recommend dual antiplatelet therapy (Aspirin + Clopidogrel) for 1 to 6 months, followed by antiplatelet monotherapy (Aspirin 75-100 mg daily) long-term, without routine long-term anticoagulation.",
+        "drivingTrials": [
+          "European PFO Closure Long-term Follow-up Registries"
+        ]
+      },
+      {
+        "id": "chg-eso-pfo-4",
+        "category": "Post-Procedural Monitoring",
+        "topic": "Extended Cardiac Rhythm Monitoring Post-Procedure to Detect Procedural Atrial Fibrillation",
+        "changeType": "NEW",
+        "previousGrade": "Routine ECG at discharge",
+        "currentGrade": "Expert Consensus Statement",
+        "previousText": "Atrial fibrillation screening was discontinued after hospital discharge.",
+        "currentText": "Because percutaneous device placement carries a 3–5% incidence of transient new-onset atrial fibrillation in the first 4 weeks, we suggest cardiac rhythm monitoring during the first 6 months post-procedure in patients reporting palpitations.",
+        "drivingTrials": [
+          "Device-Related AF Meta-analysis in PFO Closure Cohorts"
+        ]
+      },
+      {
+        "id": "chg-eso-pfo-5",
+        "category": "Patient Age Selection",
+        "topic": "Selective PFO Closure in Patients Aged 65–75 Years with High-Risk Features",
+        "changeType": "NEW",
+        "previousGrade": "Age cutoff strictly <=60 years",
+        "currentGrade": "Weak recommendation FOR, Low quality evidence",
+        "previousText": "PFO closure was restricted strictly to patients aged 18 to 60 years.",
+        "currentText": "In carefully selected stroke patients aged 65 to 75 years with high-risk PFO anatomy (atrial septal aneurysm or large right-to-left shunt) and an exhaustive negative diagnostic workup ruling out occult atrial fibrillation, lacunar disease, and atherosclerosis, percutaneous PFO closure may be considered conditionally.",
+        "drivingTrials": [
+          "PFO Closure in Older Adults Multi-Registry",
+          "DEFENSE-ELDERLY Subgroup Cohorts"
+        ]
+      },
+      {
+        "id": "chg-eso-pfo-6",
+        "category": "Conservative Medical Therapy",
+        "topic": "Antiplatelet Monotherapy for Patients Not Undergoing PFO Closure",
+        "changeType": "REVISED",
+        "previousGrade": "Oral anticoagulation or antiplatelets",
+        "currentGrade": "Moderate recommendation FOR, Moderate quality",
+        "previousText": "Warfarin or DOACs were sometimes used as alternative long-term medical therapy.",
+        "currentText": "For patients with cryptogenic stroke and PFO who are not candidates for closure or who choose not to undergo the procedure, we recommend long-term antiplatelet monotherapy (aspirin 75–100 mg daily or clopidogrel 75 mg daily) rather than long-term oral anticoagulation, to avoid major hemorrhage.",
+        "drivingTrials": [
+          "NAVIGATE ESUS Subgroup",
+          "RE-SPECT ESUS PFO Subgroup Analysis"
+        ]
+      }
+    ]
   },
   {
-    id: "eso-esmint-bao-2024",
-    society: "ESO",
-    year: 2024,
-    subspecialty: "Stroke",
-    subspecialties: ["Stroke", "Neurocritical Care"],
-    title: "European Stroke Organisation (ESO) and European Society of Minimally Invasive Neurological Therapy (ESMINT) Guideline on acute management of basilar artery occlusion",
-    officialUrl: "https://doi.org/10.1177/23969873241258123",
-    journalTarget: "European Stroke Journal",
-    documentType: "Clinical Practice Guideline",
-    publishDate: "2024-06-18",
-    previousVersionYear: 2021,
-    executiveSummary:
-      "Practice-changing joint European guideline validating endovascular thrombectomy (EVT) for acute basilar artery occlusion (BAO) up to 12-24 hours based on ATTENTION and BAOCHE trials, standardizing bridging IV thrombolysis, advanced multimodal imaging, and strict post-recanalization blood pressure limits.",
-    linkedScenarioIds: [],
-    allPracticeChanges: [
-      {
-        id: "chg-eso-bao-1",
-        category: "Endovascular Reperfusion",
-        topic: "EVT Strongly Recommended for Basilar Artery Occlusion within 12 Hours",
-        changeType: "UPGRADED",
-        previousGrade: "Weak recommendation, Low quality evidence (BEST & BASICS equivocal)",
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        previousText: "EVT was an optional consideration in selected patients failing IV thrombolysis.",
-        currentText:
-          "In adult patients presenting with acute basilar artery occlusion within 12 hours of estimated symptom onset, we strongly recommend endovascular thrombectomy in addition to best medical management to significantly improve functional survival (mRS 0–3) and reduce 90-day mortality.",
-        drivingTrials: ["ATTENTION Trial (NEJM 2022)", "BAOCHE Trial (NEJM 2022)"],
-      },
-      {
-        id: "chg-eso-bao-2",
-        category: "Extended Time Window",
-        topic: "Extended Window EVT (12–24 Hours) in Favorable pc-ASPECTS and Moderate-to-Severe Deficits",
-        changeType: "NEW",
-        previousGrade: "Experimental / Not recommended",
-        currentGrade: "Strong recommendation FOR, Moderate quality evidence",
-        previousText: "Patients presenting >12 hours from onset were treated with medical therapy only.",
-        currentText:
-          "In patients presenting with basilar artery occlusion in the extended window of 12 to 24 hours with NIHSS ≥ 6 and favorable posterior circulation imaging (pc-ASPECTS ≥ 6 on CT/CTA or DWI), we recommend endovascular thrombectomy over medical management alone.",
-        drivingTrials: ["BAOCHE Trial (NEJM 2022)", "ATTENTION-Extended Registry"],
-      },
-      {
-        id: "chg-eso-bao-3",
-        category: "Bridging Thrombolysis",
-        topic: "Bridging Intravenous Thrombolysis (IVT) Prior to/Concurrent with EVT within 4.5 Hours",
-        changeType: "REVISED",
-        previousGrade: "Direct EVT vs bridging was debated",
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        previousText: "Some centers omitted IVT to avoid procedural delays.",
-        currentText:
-          "In patients presenting within 4.5 hours of onset who are candidates for EVT, we recommend administering intravenous thrombolysis (Alteplase 0.9 mg/kg or Tenecteplase 0.25 mg/kg) without delaying transfer to the angiography suite or groin puncture.",
-        drivingTrials: ["ATTENTION Subgroup Analysis", "DIRECT-SAFE BAO Cohorts"],
-      },
-      {
-        id: "chg-eso-bao-4",
-        category: "Hemodynamic Limits",
-        topic: "Post-Recanalization Hemodynamic Control (SBP < 140 mmHg) to Prevent Brainstem Hemorrhage",
-        changeType: "NEW",
-        previousGrade: "Standard cutoff SBP < 180 mmHg",
-        currentGrade: "Expert Consensus Statement",
-        previousText: "Blood pressure was maintained <180/105 mmHg irrespective of recanalization status.",
-        currentText:
-          "Following successful endovascular recanalization (mTICI 2b–3) of a basilar artery occlusion, we suggest avoiding post-recanalization hypertensive surges and maintaining systolic blood pressure below 140 mmHg to prevent fatal brainstem reperfusion hemorrhage.",
-        drivingTrials: ["Posterior Circulation EVT Hemodynamics Registry 2024"],
-      },
-      {
-        id: "chg-eso-bao-5",
-        category: "Underlying Atherosclerosis (ICAS-BAO)",
-        topic: "Emergency Balloon Angioplasty / Stenting for Refractory ICAS-Related BAO",
-        changeType: "NEW",
-        previousGrade: "Operator discretion only",
-        currentGrade: "Moderate recommendation FOR, Moderate quality",
-        previousText: "Stenting in the acute basilar setting had high procedural complication rates.",
-        currentText:
-          "In basilar artery occlusion caused by severe underlying intracranial atherosclerotic stenosis (ICAS-BAO) with acute vessel re-occlusion or persistent flow failure after mechanical thrombectomy, we suggest emergency sub-maximal balloon angioplasty with or without bail-out intracranial stenting and glycoprotein IIb/IIIa inhibitor infusion.",
-        drivingTrials: ["ANGEL-ASPECT BAO Registry", "ATTENTION ICAS Subgroup (Lancet 2024)"],
-      },
-      {
-        id: "chg-eso-bao-6",
-        category: "Diagnostic Neuroimaging",
-        topic: "Mandatory Emergency CTA/MRA and pc-ASPECTS Calculation",
-        changeType: "UPGRADED",
-        previousGrade: "Non-contrast CT alone",
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        previousText: "Posterior circulation stroke was frequently triaged with non-contrast CT only.",
-        currentText:
-          "We recommend emergency multimodal vascular imaging (CTA or MRA from aortic arch to vertex) combined with structured pc-ASPECTS scoring on non-contrast CT, CTA source images, or DWI MRI in all patients with acute brainstem syndromes to rapidly confirm basilar artery occlusion and select candidates for revascularization.",
-        drivingTrials: ["pc-ASPECTS Validation Multicenter Cohorts", "European BAO Imaging Consensus"],
-      },
+    "id": "eso-esmint-bao-2024",
+    "society": "ESO",
+    "year": 2024,
+    "subspecialty": "Stroke",
+    "subspecialties": [
+      "Stroke",
+      "Neurocritical Care"
     ],
+    "title": "European Stroke Organisation (ESO) and European Society of Minimally Invasive Neurological Therapy (ESMINT) Guideline on acute management of basilar artery occlusion",
+    "officialUrl": "https://doi.org/10.1177/23969873241258123",
+    "journalTarget": "European Stroke Journal",
+    "documentType": "Clinical Practice Guideline",
+    "publishDate": "2024-06-18",
+    "previousVersionYear": 2021,
+    "executiveSummary": "Practice-changing joint European guideline validating endovascular thrombectomy (EVT) for acute basilar artery occlusion (BAO) up to 12-24 hours based on ATTENTION and BAOCHE trials, standardizing bridging IV thrombolysis, advanced multimodal imaging, and strict post-recanalization blood pressure limits.",
+    "linkedScenarioIds": [],
+    "allPracticeChanges": [
+      {
+        "id": "chg-eso-bao-1",
+        "category": "Endovascular Reperfusion",
+        "topic": "EVT Strongly Recommended for Basilar Artery Occlusion within 12 Hours",
+        "changeType": "UPGRADED",
+        "previousGrade": "Weak recommendation, Low quality evidence (BEST & BASICS equivocal)",
+        "currentGrade": "Strong recommendation FOR, High quality evidence",
+        "previousText": "EVT was an optional consideration in selected patients failing IV thrombolysis.",
+        "currentText": "In adult patients presenting with acute basilar artery occlusion within 12 hours of estimated symptom onset, we strongly recommend endovascular thrombectomy in addition to best medical management to significantly improve functional survival (mRS 0–3) and reduce 90-day mortality.",
+        "drivingTrials": [
+          "ATTENTION Trial (NEJM 2022)",
+          "BAOCHE Trial (NEJM 2022)"
+        ]
+      },
+      {
+        "id": "chg-eso-bao-2",
+        "category": "Extended Time Window",
+        "topic": "Extended Window EVT (12–24 Hours) in Favorable pc-ASPECTS and Moderate-to-Severe Deficits",
+        "changeType": "NEW",
+        "previousGrade": "Experimental / Not recommended",
+        "currentGrade": "Strong recommendation FOR, Moderate quality evidence",
+        "previousText": "Patients presenting >12 hours from onset were treated with medical therapy only.",
+        "currentText": "In patients presenting with basilar artery occlusion in the extended window of 12 to 24 hours with NIHSS ≥ 6 and favorable posterior circulation imaging (pc-ASPECTS ≥ 6 on CT/CTA or DWI), we recommend endovascular thrombectomy over medical management alone.",
+        "drivingTrials": [
+          "BAOCHE Trial (NEJM 2022)",
+          "ATTENTION-Extended Registry"
+        ]
+      },
+      {
+        "id": "chg-eso-bao-3",
+        "category": "Bridging Thrombolysis",
+        "topic": "Bridging Intravenous Thrombolysis (IVT) Prior to/Concurrent with EVT within 4.5 Hours",
+        "changeType": "REVISED",
+        "previousGrade": "Direct EVT vs bridging was debated",
+        "currentGrade": "Strong recommendation FOR, High quality evidence",
+        "previousText": "Some centers omitted IVT to avoid procedural delays.",
+        "currentText": "In patients presenting within 4.5 hours of onset who are candidates for EVT, we recommend administering intravenous thrombolysis (Alteplase 0.9 mg/kg or Tenecteplase 0.25 mg/kg) without delaying transfer to the angiography suite or groin puncture.",
+        "drivingTrials": [
+          "ATTENTION Subgroup Analysis",
+          "DIRECT-SAFE BAO Cohorts"
+        ]
+      },
+      {
+        "id": "chg-eso-bao-4",
+        "category": "Hemodynamic Limits",
+        "topic": "Post-Recanalization Hemodynamic Control (SBP < 140 mmHg) to Prevent Brainstem Hemorrhage",
+        "changeType": "NEW",
+        "previousGrade": "Standard cutoff SBP < 180 mmHg",
+        "currentGrade": "Expert Consensus Statement",
+        "previousText": "Blood pressure was maintained <180/105 mmHg irrespective of recanalization status.",
+        "currentText": "Following successful endovascular recanalization (mTICI 2b–3) of a basilar artery occlusion, we suggest avoiding post-recanalization hypertensive surges and maintaining systolic blood pressure below 140 mmHg to prevent fatal brainstem reperfusion hemorrhage.",
+        "drivingTrials": [
+          "Posterior Circulation EVT Hemodynamics Registry 2024"
+        ]
+      },
+      {
+        "id": "chg-eso-bao-5",
+        "category": "Underlying Atherosclerosis (ICAS-BAO)",
+        "topic": "Emergency Balloon Angioplasty / Stenting for Refractory ICAS-Related BAO",
+        "changeType": "NEW",
+        "previousGrade": "Operator discretion only",
+        "currentGrade": "Moderate recommendation FOR, Moderate quality",
+        "previousText": "Stenting in the acute basilar setting had high procedural complication rates.",
+        "currentText": "In basilar artery occlusion caused by severe underlying intracranial atherosclerotic stenosis (ICAS-BAO) with acute vessel re-occlusion or persistent flow failure after mechanical thrombectomy, we suggest emergency sub-maximal balloon angioplasty with or without bail-out intracranial stenting and glycoprotein IIb/IIIa inhibitor infusion.",
+        "drivingTrials": [
+          "ANGEL-ASPECT BAO Registry",
+          "ATTENTION ICAS Subgroup (Lancet 2024)"
+        ]
+      },
+      {
+        "id": "chg-eso-bao-6",
+        "category": "Diagnostic Neuroimaging",
+        "topic": "Mandatory Emergency CTA/MRA and pc-ASPECTS Calculation",
+        "changeType": "UPGRADED",
+        "previousGrade": "Non-contrast CT alone",
+        "currentGrade": "Strong recommendation FOR, High quality evidence",
+        "previousText": "Posterior circulation stroke was frequently triaged with non-contrast CT only.",
+        "currentText": "We recommend emergency multimodal vascular imaging (CTA or MRA from aortic arch to vertex) combined with structured pc-ASPECTS scoring on non-contrast CT, CTA source images, or DWI MRI in all patients with acute brainstem syndromes to rapidly confirm basilar artery occlusion and select candidates for revascularization.",
+        "drivingTrials": [
+          "pc-ASPECTS Validation Multicenter Cohorts",
+          "European BAO Imaging Consensus"
+        ]
+      }
+    ]
   },
   {
-    id: "eso-esmint-icas-2024",
-    society: "ESO",
-    year: 2024,
-    subspecialty: "Stroke",
-    subspecialties: ["Stroke", "Neurocritical Care"],
-    title: "European Stroke Organisation (ESO) and European Society of Minimally Invasive Neurological Therapy (ESMINT) guideline on intracranial atherosclerotic stenosis",
-    officialUrl: "https://doi.org/10.1177/23969873241249911",
-    journalTarget: "European Stroke Journal",
-    documentType: "Clinical Practice Guideline",
-    publishDate: "2024-05-14",
-    previousVersionYear: 2018,
-    executiveSummary:
-      "Definitive European guideline on intracranial atherosclerotic stenosis (ICAS): reaffirms intensive medical therapy (short-term DAPT + high-intensity statin to LDL < 55 mg/dL + aggressive BP control) as frontline standard, strongly advising against routine primary stenting/angioplasty except in carefully selected medically refractory cases.",
-    linkedScenarioIds: [],
-    allPracticeChanges: [
-      {
-        id: "chg-eso-icas-1",
-        category: "Medical Management",
-        topic: "Aggressive Medical Therapy with DAPT (Aspirin + Clopidogrel 90 Days) as Frontline Standard",
-        changeType: "UPGRADED",
-        previousGrade: "Aspirin monotherapy or short 21-day DAPT",
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        previousText: "Monotherapy was common due to concerns regarding intracranial bleeding.",
-        currentText:
-          "In patients with acute ischemic stroke or TIA caused by severe (70–99%) symptomatic intracranial atherosclerotic stenosis, we recommend dual antiplatelet therapy with Aspirin and Clopidogrel for up to 90 days, followed by antiplatelet monotherapy, as the primary medical prevention strategy.",
-        drivingTrials: ["SAMMPRIS (NEJM)", "CHANCE-2", "CASSISS Trial (JAMA 2022)"],
-      },
-      {
-        id: "chg-eso-icas-2",
-        category: "Interventional Procedures",
-        topic: "Primary Stenting and Balloon Angioplasty NOT Recommended as First-Line",
-        changeType: "REVISED",
-        previousGrade: "Conditional consideration in severe stenosis",
-        currentGrade: "Strong recommendation AGAINST, High quality evidence",
-        previousText: "Stenting was frequently attempted as first-line revascularization in 70-99% stenosis.",
-        currentText:
-          "We recommend against routine primary percutaneous transluminal angioplasty and stenting (PTAS) as first-line therapy for symptomatic intracranial atherosclerotic stenosis, because large randomized trials consistently demonstrate higher 30-day stroke/death rates with stenting compared to intensive medical therapy.",
-        drivingTrials: ["SAMMPRIS Trial", "VISSIT Trial", "CASSISS Trial (JAMA 2022)"],
-      },
-      {
-        id: "chg-eso-icas-3",
-        category: "Lipid Lowering",
-        topic: "Strict LDL Target < 55 mg/dL (< 1.4 mmol/L) with Statin + Ezetimibe",
-        changeType: "NEW",
-        previousGrade: "LDL target < 70 mg/dL",
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        previousText: "Standard moderate-intensity statin to lower LDL below 70-100 mg/dL.",
-        currentText:
-          "In patients with symptomatic ICAS, we recommend intensive lipid-lowering therapy using a high-intensity statin combined with ezetimibe (and PCSK9 inhibitors if required) to achieve an LDL-C reduction of ≥50% from baseline and a target LDL-C < 55 mg/dL (< 1.4 mmol/L).",
-        drivingTrials: ["Treat Stroke to Target (NEJM)", "FOURIER", "ODYSSEY Outcomes"],
-      },
-      {
-        id: "chg-eso-icas-4",
-        category: "Refractory Cases",
-        topic: "Selective Sub-occlusive Angioplasty/Stenting Exclusively for Medically Refractory ICAS",
-        changeType: "REVISED",
-        previousGrade: "Investigational",
-        currentGrade: "Weak recommendation FOR, Low quality",
-        previousText: "No established surgical or endovascular options after medical failure.",
-        currentText:
-          "In highly selected patients with recurrent ischemic symptoms in the territory of a severe (70–99%) intracranial stenosis despite verified adherence to dual antiplatelets and high-intensity statins, sub-maximal balloon angioplasty or stenting may be considered in specialized neuro-interventional centers.",
-        drivingTrials: ["WEAVE / WOVEN Registries", "BASIS Registry 2024"],
-      },
-      {
-        id: "chg-eso-icas-5",
-        category: "Acute Hemodynamics",
-        topic: "Permissive Blood Pressure Targets During the Acute Phase (First 72 Hours)",
-        changeType: "NEW",
-        previousGrade: "Strict immediate normalization",
-        currentGrade: "Moderate recommendation FOR, Moderate quality",
-        previousText: "Rapid blood pressure normalization was pursued immediately upon presentation.",
-        currentText:
-          "In patients with acute ischemic stroke due to high-grade intracranial atherosclerotic stenosis, we suggest avoiding acute aggressive blood pressure lowering in the first 72 hours, maintaining permissive systolic blood pressures (up to 160–180 mmHg) to sustain collateral perfusion across the stenotic intracranial segment, provided no contraindications exist.",
-        drivingTrials: ["SAMMPRIS Hemodynamic Substudy", "Collateral Flow in Acute ICAS Observational Cohorts"],
-      },
-      {
-        id: "chg-eso-icas-6",
-        category: "Vessel Wall Imaging",
-        topic: "High-Resolution Contrast-Enhanced Vessel Wall MRI for Plaque Characterization",
-        changeType: "NEW",
-        previousGrade: "Lumenography only (CTA/DSA)",
-        currentGrade: "Moderate recommendation FOR, Low quality",
-        previousText: "Diagnosis relied solely on luminal narrowing without evaluating vessel wall pathology.",
-        currentText:
-          "In patients with symptomatic intracranial stenosis where the etiology is uncertain, we suggest high-resolution vessel wall MRI (HR-VWI) to distinguish active culprit atherosclerotic plaque (characterized by eccentric thickening and contrast enhancement) from arterial dissection, vasculitis, or RCVS.",
-        drivingTrials: ["Vessel Wall Imaging in ICAS Multicenter Registries", "European Neuroimaging Consortium"],
-      },
+    "id": "eso-esmint-icas-2024",
+    "society": "ESO",
+    "year": 2024,
+    "subspecialty": "Stroke",
+    "subspecialties": [
+      "Stroke",
+      "Neurocritical Care"
     ],
+    "title": "European Stroke Organisation (ESO) and European Society of Minimally Invasive Neurological Therapy (ESMINT) guideline on intracranial atherosclerotic stenosis",
+    "officialUrl": "https://doi.org/10.1177/23969873241249911",
+    "journalTarget": "European Stroke Journal",
+    "documentType": "Clinical Practice Guideline",
+    "publishDate": "2024-05-14",
+    "previousVersionYear": 2018,
+    "executiveSummary": "Definitive European guideline on intracranial atherosclerotic stenosis (ICAS): reaffirms intensive medical therapy (short-term DAPT + high-intensity statin to LDL < 55 mg/dL + aggressive BP control) as frontline standard, strongly advising against routine primary stenting/angioplasty except in carefully selected medically refractory cases.",
+    "linkedScenarioIds": [],
+    "allPracticeChanges": [
+      {
+        "id": "chg-eso-icas-1",
+        "category": "Medical Management",
+        "topic": "Aggressive Medical Therapy with DAPT (Aspirin + Clopidogrel 90 Days) as Frontline Standard",
+        "changeType": "UPGRADED",
+        "previousGrade": "Aspirin monotherapy or short 21-day DAPT",
+        "currentGrade": "Strong recommendation FOR, High quality evidence",
+        "previousText": "Monotherapy was common due to concerns regarding intracranial bleeding.",
+        "currentText": "In patients with acute ischemic stroke or TIA caused by severe (70–99%) symptomatic intracranial atherosclerotic stenosis, we recommend dual antiplatelet therapy with Aspirin and Clopidogrel for up to 90 days, followed by antiplatelet monotherapy, as the primary medical prevention strategy.",
+        "drivingTrials": [
+          "SAMMPRIS (NEJM)",
+          "CHANCE-2",
+          "CASSISS Trial (JAMA 2022)"
+        ]
+      },
+      {
+        "id": "chg-eso-icas-2",
+        "category": "Interventional Procedures",
+        "topic": "Primary Stenting and Balloon Angioplasty NOT Recommended as First-Line",
+        "changeType": "REVISED",
+        "previousGrade": "Conditional consideration in severe stenosis",
+        "currentGrade": "Strong recommendation AGAINST, High quality evidence",
+        "previousText": "Stenting was frequently attempted as first-line revascularization in 70-99% stenosis.",
+        "currentText": "We recommend against routine primary percutaneous transluminal angioplasty and stenting (PTAS) as first-line therapy for symptomatic intracranial atherosclerotic stenosis, because large randomized trials consistently demonstrate higher 30-day stroke/death rates with stenting compared to intensive medical therapy.",
+        "drivingTrials": [
+          "SAMMPRIS Trial",
+          "VISSIT Trial",
+          "CASSISS Trial (JAMA 2022)"
+        ]
+      },
+      {
+        "id": "chg-eso-icas-3",
+        "category": "Lipid Lowering",
+        "topic": "Strict LDL Target < 55 mg/dL (< 1.4 mmol/L) with Statin + Ezetimibe",
+        "changeType": "NEW",
+        "previousGrade": "LDL target < 70 mg/dL",
+        "currentGrade": "Strong recommendation FOR, High quality evidence",
+        "previousText": "Standard moderate-intensity statin to lower LDL below 70-100 mg/dL.",
+        "currentText": "In patients with symptomatic ICAS, we recommend intensive lipid-lowering therapy using a high-intensity statin combined with ezetimibe (and PCSK9 inhibitors if required) to achieve an LDL-C reduction of ≥50% from baseline and a target LDL-C < 55 mg/dL (< 1.4 mmol/L).",
+        "drivingTrials": [
+          "Treat Stroke to Target (NEJM)",
+          "FOURIER",
+          "ODYSSEY Outcomes"
+        ]
+      },
+      {
+        "id": "chg-eso-icas-4",
+        "category": "Refractory Cases",
+        "topic": "Selective Sub-occlusive Angioplasty/Stenting Exclusively for Medically Refractory ICAS",
+        "changeType": "REVISED",
+        "previousGrade": "Investigational",
+        "currentGrade": "Weak recommendation FOR, Low quality",
+        "previousText": "No established surgical or endovascular options after medical failure.",
+        "currentText": "In highly selected patients with recurrent ischemic symptoms in the territory of a severe (70–99%) intracranial stenosis despite verified adherence to dual antiplatelets and high-intensity statins, sub-maximal balloon angioplasty or stenting may be considered in specialized neuro-interventional centers.",
+        "drivingTrials": [
+          "WEAVE / WOVEN Registries",
+          "BASIS Registry 2024"
+        ]
+      },
+      {
+        "id": "chg-eso-icas-5",
+        "category": "Acute Hemodynamics",
+        "topic": "Permissive Blood Pressure Targets During the Acute Phase (First 72 Hours)",
+        "changeType": "NEW",
+        "previousGrade": "Strict immediate normalization",
+        "currentGrade": "Moderate recommendation FOR, Moderate quality",
+        "previousText": "Rapid blood pressure normalization was pursued immediately upon presentation.",
+        "currentText": "In patients with acute ischemic stroke due to high-grade intracranial atherosclerotic stenosis, we suggest avoiding acute aggressive blood pressure lowering in the first 72 hours, maintaining permissive systolic blood pressures (up to 160–180 mmHg) to sustain collateral perfusion across the stenotic intracranial segment, provided no contraindications exist.",
+        "drivingTrials": [
+          "SAMMPRIS Hemodynamic Substudy",
+          "Collateral Flow in Acute ICAS Observational Cohorts"
+        ]
+      },
+      {
+        "id": "chg-eso-icas-6",
+        "category": "Vessel Wall Imaging",
+        "topic": "High-Resolution Contrast-Enhanced Vessel Wall MRI for Plaque Characterization",
+        "changeType": "NEW",
+        "previousGrade": "Lumenography only (CTA/DSA)",
+        "currentGrade": "Moderate recommendation FOR, Low quality",
+        "previousText": "Diagnosis relied solely on luminal narrowing without evaluating vessel wall pathology.",
+        "currentText": "In patients with symptomatic intracranial stenosis where the etiology is uncertain, we suggest high-resolution vessel wall MRI (HR-VWI) to distinguish active culprit atherosclerotic plaque (characterized by eccentric thickening and contrast enhancement) from arterial dissection, vasculitis, or RCVS.",
+        "drivingTrials": [
+          "Vessel Wall Imaging in ICAS Multicenter Registries",
+          "European Neuroimaging Consortium"
+        ]
+      }
+    ]
   },
   {
-    id: "eso-svd-lacunar-2024",
-    society: "ESO",
-    year: 2024,
-    subspecialty: "Stroke",
-    subspecialties: ["Stroke", "Other"],
-    title: "European Stroke Organisation (ESO) guideline on cerebral small vessel disease, part 2, lacunar ischaemic stroke",
-    officialUrl: "https://doi.org/10.1177/23969873241238944",
-    journalTarget: "European Stroke Journal",
-    documentType: "Clinical Practice Guideline",
-    publishDate: "2024-04-20",
-    previousVersionYear: 2021,
-    executiveSummary:
-      "Guideline establishing clear antithrombotic and hemodynamic parameters for recent lacunar ischemic stroke: short-term DAPT (21 days) followed by monotherapy, avoidance of prolonged dual antiplatelet therapy beyond 30-90 days, intensive blood pressure control (<130/80 mmHg), and MRI microbleed burden assessment.",
-    linkedScenarioIds: [],
-    allPracticeChanges: [
-      {
-        id: "chg-eso-svd-1",
-        category: "Antithrombotic Therapy",
-        topic: "Avoidance of Long-Term Dual Antiplatelet Therapy (>30-90 Days) in Lacunar Stroke",
-        changeType: "REVISED",
-        previousGrade: "Long-term DAPT was frequently prescribed",
-        currentGrade: "Strong recommendation AGAINST, High quality evidence",
-        previousText: "Long-term Aspirin + Clopidogrel was commonly used to prevent recurrent subcortical infarcts.",
-        currentText:
-          "In patients with recent lacunar ischemic stroke (recent small subcortical infarct), we strongly recommend against long-term (>30 to 90 days) dual antiplatelet therapy. While short-term DAPT (up to 21-30 days) is beneficial in acute non-cardioembolic minor stroke, long-term continuation doubles major hemorrhage and mortality without reducing recurrent stroke.",
-        drivingTrials: ["SPS3 Trial (NEJM)", "CHANCE", "POINT Trial (NEJM)"],
-      },
-      {
-        id: "chg-eso-svd-2",
-        category: "Blood Pressure Targets",
-        topic: "Intensive Long-Term Systolic BP Lowering (<130 mmHg) to Prevent SVD Progression",
-        changeType: "UPGRADED",
-        previousGrade: "Target SBP < 140 mmHg",
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        previousText: "Standard office BP target was <140/90 mmHg.",
-        currentText:
-          "In patients with prior lacunar stroke, we recommend long-term intensive blood pressure control targeting systolic blood pressure < 130 mmHg (and < 120 mmHg if well-tolerated) to halt cerebral small vessel disease progression, reduce cognitive decline, and decrease recurrent stroke risk.",
-        drivingTrials: ["SPS3 Blood Pressure Target Arm (Lancet)", "SPRINT-MIND (JAMA)"],
-      },
-      {
-        id: "chg-eso-svd-3",
-        category: "Neuroimaging Stratification",
-        topic: "Mandatory Baseline T2*-GRE / SWI MRI to Quantify Cerebral Microbleeds",
-        changeType: "NEW",
-        previousGrade: "Optional imaging sequence",
-        currentGrade: "Expert Consensus Statement",
-        previousText: "CT or standard T1/T2 MRI was sufficient for lacunar stroke diagnosis.",
-        currentText:
-          "We suggest performing blood-sensitive MRI sequences (T2*-weighted GRE or Susceptibility-Weighted Imaging) to quantify cerebral microbleed (CMB) count and identify superficial siderosis before committing patients to prolonged antithrombotic regimens.",
-        drivingTrials: ["Microbleed Anatomical Rating Scale (MARS) European Validation"],
-      },
-      {
-        id: "chg-eso-svd-4",
-        category: "Lipid Management",
-        topic: "Statin Therapy to LDL Target < 70 mg/dL in Atheromatous vs Lipohyalinotic Small Vessel Disease",
-        changeType: "REVISED",
-        previousGrade: "General statin therapy",
-        currentGrade: "Moderate recommendation FOR, Moderate quality",
-        previousText: "Statins were given without distinction between single small deep infarct mechanisms.",
-        currentText:
-          "In patients with lacunar stroke, we recommend statin therapy targeting LDL-C < 70 mg/dL (1.8 mmol/L), particularly in branch atheromatous disease where parent artery microatheroma is the driving pathophysiology.",
-        drivingTrials: ["SPARCL Subgroup Analysis in Small Vessel Occlusion", "Treat Stroke to Target"],
-      },
-      {
-        id: "chg-eso-svd-5",
-        category: "Thrombolysis Safety",
-        topic: "Safety of Intravenous Thrombolysis in Small Vessel Disease and <10 Microbleeds",
-        changeType: "UPGRADED",
-        previousGrade: "High caution / Reluctance to thrombolyze",
-        currentGrade: "Strong recommendation FOR, Moderate quality evidence",
-        previousText: "Clinicians frequently withheld alteplase when multiple microbleeds were detected on MRI.",
-        currentText:
-          "In acute ischemic stroke patients with neuroimaging evidence of cerebral small vessel disease and 1 to 10 cerebral microbleeds (CMBs) on baseline T2*-GRE or SWI, we recommend intravenous thrombolysis within 4.5 hours, as the functional benefit substantially outweighs the risk of symptomatic intracranial hemorrhage. Caution is warranted only when >10 microbleeds are present.",
-        drivingTrials: ["Microbleeds International Collaborative Network (MICON) Meta-analysis", "CROMIS-2 Study"],
-      },
-      {
-        id: "chg-eso-svd-6",
-        category: "Cognitive Decline Prevention",
-        topic: "Multi-Domain Lifestyle and Vascular Interventions for SVD Cognitive Impairment",
-        changeType: "NEW",
-        previousGrade: "No standardized recommendation",
-        currentGrade: "Moderate recommendation FOR, Moderate quality",
-        previousText: "Management focused purely on motor deficit recovery.",
-        currentText:
-          "In patients with progressive cerebral small vessel disease and executive dysfunction, we recommend systematic cognitive screening and multi-domain interventions combining structured Mediterranean-style diet, smoking cessation, physical exercise, and blood pressure control to arrest cognitive decline.",
-        drivingTrials: ["FINGER Trial (Lancet)", "PREDIVA Cohorts", "SVD Cognitive Consortium"],
-      },
+    "id": "eso-svd-lacunar-2024",
+    "society": "ESO",
+    "year": 2024,
+    "subspecialty": "Stroke",
+    "subspecialties": [
+      "Stroke",
+      "Other"
     ],
+    "title": "European Stroke Organisation (ESO) guideline on cerebral small vessel disease, part 2, lacunar ischaemic stroke",
+    "officialUrl": "https://doi.org/10.1177/23969873241238944",
+    "journalTarget": "European Stroke Journal",
+    "documentType": "Clinical Practice Guideline",
+    "publishDate": "2024-04-20",
+    "previousVersionYear": 2021,
+    "executiveSummary": "Guideline establishing clear antithrombotic and hemodynamic parameters for recent lacunar ischemic stroke: short-term DAPT (21 days) followed by monotherapy, avoidance of prolonged dual antiplatelet therapy beyond 30-90 days, intensive blood pressure control (<130/80 mmHg), and MRI microbleed burden assessment.",
+    "linkedScenarioIds": [],
+    "allPracticeChanges": [
+      {
+        "id": "chg-eso-svd-1",
+        "category": "Antithrombotic Therapy",
+        "topic": "Avoidance of Long-Term Dual Antiplatelet Therapy (>30-90 Days) in Lacunar Stroke",
+        "changeType": "REVISED",
+        "previousGrade": "Long-term DAPT was frequently prescribed",
+        "currentGrade": "Strong recommendation AGAINST, High quality evidence",
+        "previousText": "Long-term Aspirin + Clopidogrel was commonly used to prevent recurrent subcortical infarcts.",
+        "currentText": "In patients with recent lacunar ischemic stroke (recent small subcortical infarct), we strongly recommend against long-term (>30 to 90 days) dual antiplatelet therapy. While short-term DAPT (up to 21-30 days) is beneficial in acute non-cardioembolic minor stroke, long-term continuation doubles major hemorrhage and mortality without reducing recurrent stroke.",
+        "drivingTrials": [
+          "SPS3 Trial (NEJM)",
+          "CHANCE",
+          "POINT Trial (NEJM)"
+        ]
+      },
+      {
+        "id": "chg-eso-svd-2",
+        "category": "Blood Pressure Targets",
+        "topic": "Intensive Long-Term Systolic BP Lowering (<130 mmHg) to Prevent SVD Progression",
+        "changeType": "UPGRADED",
+        "previousGrade": "Target SBP < 140 mmHg",
+        "currentGrade": "Strong recommendation FOR, High quality evidence",
+        "previousText": "Standard office BP target was <140/90 mmHg.",
+        "currentText": "In patients with prior lacunar stroke, we recommend long-term intensive blood pressure control targeting systolic blood pressure < 130 mmHg (and < 120 mmHg if well-tolerated) to halt cerebral small vessel disease progression, reduce cognitive decline, and decrease recurrent stroke risk.",
+        "drivingTrials": [
+          "SPS3 Blood Pressure Target Arm (Lancet)",
+          "SPRINT-MIND (JAMA)"
+        ]
+      },
+      {
+        "id": "chg-eso-svd-3",
+        "category": "Neuroimaging Stratification",
+        "topic": "Mandatory Baseline T2*-GRE / SWI MRI to Quantify Cerebral Microbleeds",
+        "changeType": "NEW",
+        "previousGrade": "Optional imaging sequence",
+        "currentGrade": "Expert Consensus Statement",
+        "previousText": "CT or standard T1/T2 MRI was sufficient for lacunar stroke diagnosis.",
+        "currentText": "We suggest performing blood-sensitive MRI sequences (T2*-weighted GRE or Susceptibility-Weighted Imaging) to quantify cerebral microbleed (CMB) count and identify superficial siderosis before committing patients to prolonged antithrombotic regimens.",
+        "drivingTrials": [
+          "Microbleed Anatomical Rating Scale (MARS) European Validation"
+        ]
+      },
+      {
+        "id": "chg-eso-svd-4",
+        "category": "Lipid Management",
+        "topic": "Statin Therapy to LDL Target < 70 mg/dL in Atheromatous vs Lipohyalinotic Small Vessel Disease",
+        "changeType": "REVISED",
+        "previousGrade": "General statin therapy",
+        "currentGrade": "Moderate recommendation FOR, Moderate quality",
+        "previousText": "Statins were given without distinction between single small deep infarct mechanisms.",
+        "currentText": "In patients with lacunar stroke, we recommend statin therapy targeting LDL-C < 70 mg/dL (1.8 mmol/L), particularly in branch atheromatous disease where parent artery microatheroma is the driving pathophysiology.",
+        "drivingTrials": [
+          "SPARCL Subgroup Analysis in Small Vessel Occlusion",
+          "Treat Stroke to Target"
+        ]
+      },
+      {
+        "id": "chg-eso-svd-5",
+        "category": "Thrombolysis Safety",
+        "topic": "Safety of Intravenous Thrombolysis in Small Vessel Disease and <10 Microbleeds",
+        "changeType": "UPGRADED",
+        "previousGrade": "High caution / Reluctance to thrombolyze",
+        "currentGrade": "Strong recommendation FOR, Moderate quality evidence",
+        "previousText": "Clinicians frequently withheld alteplase when multiple microbleeds were detected on MRI.",
+        "currentText": "In acute ischemic stroke patients with neuroimaging evidence of cerebral small vessel disease and 1 to 10 cerebral microbleeds (CMBs) on baseline T2*-GRE or SWI, we recommend intravenous thrombolysis within 4.5 hours, as the functional benefit substantially outweighs the risk of symptomatic intracranial hemorrhage. Caution is warranted only when >10 microbleeds are present.",
+        "drivingTrials": [
+          "Microbleeds International Collaborative Network (MICON) Meta-analysis",
+          "CROMIS-2 Study"
+        ]
+      },
+      {
+        "id": "chg-eso-svd-6",
+        "category": "Cognitive Decline Prevention",
+        "topic": "Multi-Domain Lifestyle and Vascular Interventions for SVD Cognitive Impairment",
+        "changeType": "NEW",
+        "previousGrade": "No standardized recommendation",
+        "currentGrade": "Moderate recommendation FOR, Moderate quality",
+        "previousText": "Management focused purely on motor deficit recovery.",
+        "currentText": "In patients with progressive cerebral small vessel disease and executive dysfunction, we recommend systematic cognitive screening and multi-domain interventions combining structured Mediterranean-style diet, smoking cessation, physical exercise, and blood pressure control to arrest cognitive decline.",
+        "drivingTrials": [
+          "FINGER Trial (Lancet)",
+          "PREDIVA Cohorts",
+          "SVD Cognitive Consortium"
+        ]
+      }
+    ]
   },
   {
-    id: "esvs-carotid-2023",
-    society: "ESVS",
-    year: 2023,
-    subspecialty: "Stroke",
-    subspecialties: ["Stroke", "Neurocritical Care"],
-    title: "European Society for Vascular Surgery (ESVS) 2023 Clinical Practice Guidelines on the Management of Atherosclerotic Carotid and Vertebral Artery Disease",
-    officialUrl: "https://doi.org/10.1016/j.ejvs.2022.04.011",
-    journalTarget: "European Journal of Vascular and Endovascular Surgery (EJVES)",
-    documentType: "Clinical Practice Guideline",
-    publishDate: "2023-01-15",
-    previousVersionYear: 2017,
-    executiveSummary:
-      "Authoritative European guidelines on carotid and vertebral revascularization: CEA or CAS recommended within 14 days (ideally 48-72h) for symptomatic 50-99% carotid stenosis, preferential endorsement of CEA in patients >70 years, CAS in anatomically hostile necks, intensive lipid lowering (LDL <55 mg/dL), and vertebral artery stenosis interventions.",
-    linkedScenarioIds: [],
-    allPracticeChanges: [
-      {
-        id: "chg-esvs-car-1",
-        category: "Timing of Revascularization",
-        topic: "Expedited Revascularization (CEA or CAS) within 14 Days (Ideally 48-72h) for Symptomatic Carotid Stenosis",
-        changeType: "UPGRADED",
-        previousGrade: "Class I, Level A (Within 14 days)",
-        currentGrade: "Class I, Level A (Urgent within 48-72h in neurologically stable patients)",
-        previousText: "Intervention was scheduled electively within 14 days of symptom onset.",
-        currentText:
-          "For patients with non-disabling acute ischemic stroke or TIA and ipsilateral 50–99% internal carotid artery stenosis, carotid endarterectomy (CEA) or carotid artery stenting (CAS) is recommended as soon as possible, ideally within 48 to 72 hours and definitely within 14 days of symptom onset.",
-        drivingTrials: ["Pooled Carotid Surgery Trials Meta-analysis", "Swedish Vascular Registry (Swedvasc)"],
-      },
-      {
-        id: "chg-esvs-car-2",
-        category: "Modality Selection by Age",
-        topic: "Carotid Endarterectomy (CEA) Preferred in Symptomatic Patients Aged > 70 Years",
-        changeType: "REVISED",
-        previousGrade: "Class I, Level A (Equivalence between CEA and CAS)",
-        currentGrade: "Class I, Level A (CEA preferred over CAS in patients >70 years)",
-        previousText: "CEA and CAS were considered equally effective across older adults.",
-        currentText:
-          "In symptomatic patients aged 70 years or older with severe carotid stenosis requiring revascularization, carotid endarterectomy is recommended in preference to carotid stenting because CAS is associated with a significantly higher 30-day risk of periprocedural stroke in older vascular anatomies.",
-        drivingTrials: ["CREST-1", "ICSS Trial (Lancet)", "SPACE Trial"],
-      },
-      {
-        id: "chg-esvs-car-3",
-        category: "Hostile Neck Anatomies",
-        topic: "Carotid Artery Stenting (CAS) Preferred for Anatomically Hostile Necks and Restenosis",
-        changeType: "REVISED",
-        previousGrade: "Class IIa, Level B",
-        currentGrade: "Class I, Level B",
-        previousText: "CAS was an alternative only if high surgical risk was formally documented.",
-        currentText:
-          "Carotid artery stenting is recommended in preference to CEA in symptomatic patients with significant carotid stenosis who have anatomical factors rendering surgical neck exploration high risk (e.g., prior cervical irradiation, previous radical neck dissection, recurrent post-CEA restenosis, or surgical inaccessibility above C2).",
-        drivingTrials: ["SAPPHIRE Trial (NEJM)", "CREST High-Surgical-Risk Cohort"],
-      },
-      {
-        id: "chg-esvs-car-4",
-        category: "Optimal Medical Therapy",
-        topic: "Optimal Medical Therapy (OMT) with High-Intensity Statin to LDL < 55 mg/dL",
-        changeType: "UPGRADED",
-        previousGrade: "Class I, Level A (LDL < 70 mg/dL)",
-        currentGrade: "Class I, Level A (LDL < 55 mg/dL / 1.4 mmol/L)",
-        previousText: "Moderate-intensity statin to lower LDL below 70 mg/dL.",
-        currentText:
-          "In all patients with atherosclerotic carotid or vertebral artery disease, intensive lipid-lowering medical therapy with a high-intensity statin plus ezetimibe is recommended to achieve an LDL-C level < 55 mg/dL (1.4 mmol/L) and at least a 50% reduction from baseline.",
-        drivingTrials: ["ESVS / ESC Joint Lipid Guidelines", "ODYSSEY Outcomes"],
-      },
-      {
-        id: "chg-esvs-car-5",
-        category: "Asymptomatic Carotid Stenosis",
-        topic: "Revascularization in Asymptomatic Carotid Stenosis (60–99%) with High-Risk Plaque",
-        changeType: "REVISED",
-        previousGrade: "Routine CEA for all >=60% stenosis",
-        currentGrade: "Class IIa, Level of Evidence B",
-        previousText: "CEA was recommended for almost all asymptomatic patients with 60-99% stenosis based on ACAS/ACST.",
-        currentText:
-          "In patients with 60–99% asymptomatic carotid stenosis receiving modern optimal medical therapy, carotid revascularization (preferentially CEA) should be considered only in those with at least one high-risk imaging feature (silent embolic infarction on CT/MRI, plaque echolucency, intraplaque hemorrhage, spontaneous embolization on TCD, or stenosis progression >20%) and an anticipated 30-day stroke/death risk <3%.",
-        drivingTrials: ["ACST-2 (Lancet 2021)", "SPACE-2 (Lancet Neurol)", "ESVS Plaque Vulnerability Guidelines"],
-      },
-      {
-        id: "chg-esvs-car-6",
-        category: "Vertebral Artery Disease",
-        topic: "Vertebral Artery Stenting Reserved for Medically Refractory Posterior TIA / Stroke",
-        changeType: "DOWNGRADED",
-        previousGrade: "Elective stenting for symptomatic stenosis",
-        currentGrade: "Class IIa, Level of Evidence B",
-        previousText: "Vertebral stenting was frequently performed as early revascularization.",
-        currentText:
-          "In patients with symptomatic extra-cranial or intra-cranial vertebral artery stenosis (≥50%), vertebral artery stenting should be reserved strictly for those experiencing recurrent vertebrobasilar TIA or stroke despite maximal optimal medical therapy with dual antiplatelets and high-intensity statins.",
-        drivingTrials: ["VIST Trial (Lancet Neurol)", "VAST Trial (Lancet Neurol)"],
-      },
+    "id": "aes-ncs-se-2024",
+    "society": "AES",
+    "year": 2024,
+    "subspecialty": "Epilepsy",
+    "subspecialties": [
+      "Epilepsy",
+      "Neurocritical Care"
     ],
+    "title": "American Epilepsy Society (AES) and Neurocritical Care Society (NCS) Consensus Guideline on the Treatment of Status Epilepticus",
+    "officialUrl": "https://journals.sagepub.com/doi/10.1177/15357597241258901",
+    "journalTarget": "Epilepsy Curr / Neurocrit Care",
+    "documentType": "Clinical Practice Guideline",
+    "publishDate": "2024-09-15",
+    "previousVersionYear": 2016,
+    "executiveSummary": "Authoritative joint North American guidelines defining evidence-based time-locked management for convulsive and non-convulsive status epilepticus: intramuscular Midazolam primacy, non-inferiority of second-line agents (Levetiracetam, Fosphenytoin, Valproate), urgent continuous EEG within 60 minutes, and rapid transition to Stage 3 anesthetic infusions.",
+    "linkedScenarioIds": [
+      "status-epilepticus-rse"
+    ],
+    "allPracticeChanges": [
+      {
+        "id": "chg-se-1",
+        "scenarioId": "status-epilepticus-rse",
+        "category": "Stage 1: Emergent Initial Therapy",
+        "topic": "Primacy of Intramuscular Midazolam (10 mg) When IV Access Absent",
+        "changeType": "UPGRADED",
+        "previousGrade": "Conditional recommendation",
+        "currentGrade": "Level A (Highest recommendation FOR)",
+        "previousText": "IV Lorazepam was prioritized, often delaying therapy while nurses attempted difficult venipuncture.",
+        "currentText": "In adults and children >40 kg without established intravenous access, intramuscular Midazolam (10 mg single autoinjector/injection) is the frontline treatment of choice over delayed intravenous Lorazepam, demonstrating superior prehospital seizure termination and reduced ICU admissions.",
+        "drivingTrials": [
+          "RAMPART Trial (NEJM 2012)"
+        ]
+      },
+      {
+        "id": "chg-se-2",
+        "scenarioId": "status-epilepticus-rse",
+        "category": "Stage 2: Urgent Control Therapy",
+        "topic": "Equivalence of Levetiracetam, Valproate, and Fosphenytoin (ESETT Protocol)",
+        "changeType": "REVISED",
+        "previousGrade": "Fosphenytoin historically preferred as historical standard",
+        "currentGrade": "Level A (Class I equivalence)",
+        "previousText": "Fosphenytoin was preferentially recommended with Levetiracetam considered secondary.",
+        "currentText": "In patients whose convulsive seizures fail first-line benzodiazepines, IV Levetiracetam (60 mg/kg, max 4500 mg), IV Sodium Valproate (40 mg/kg, max 3000 mg), and IV Fosphenytoin (20 mg PE/kg, max 1500 mg) demonstrate statistically equivalent efficacy (~47% seizure cessation) and safety.",
+        "drivingTrials": [
+          "ESETT Trial (NEJM 2019 / Lancet 2020)"
+        ]
+      },
+      {
+        "id": "chg-se-3",
+        "category": "Diagnostic Surveillance",
+        "topic": "Mandatory Continuous Video-EEG (cEEG) Within 60 Minutes",
+        "changeType": "UPGRADED",
+        "previousGrade": "Standard routine EEG within 24 hours",
+        "currentGrade": "Strong recommendation FOR, Moderate quality",
+        "previousText": "Intermittent spot EEGs were frequently accepted in non-comatose patients.",
+        "currentText": "In all patients who do not return to baseline mental status within 20–30 minutes of clinical seizure cessation, continuous EEG monitoring should be initiated within 60 minutes to detect non-convulsive status epilepticus (NCSE), which occurs in over 40% of post-convulsive comatose patients.",
+        "drivingTrials": [
+          "Neurocritical Care cEEG Consortia"
+        ]
+      },
+      {
+        "id": "chg-se-4",
+        "scenarioId": "status-epilepticus-rse",
+        "category": "Stage 3: Refractory Status Epilepticus",
+        "topic": "Urgent Intubation and Titrated Anesthetic Infusions Beyond 30 Minutes",
+        "changeType": "REVISED",
+        "previousGrade": "Expectant observation after multiple second-line agents",
+        "currentGrade": "Level B-R",
+        "previousText": "Sequentially trying multiple second-line antiepileptic drugs before intubation was common.",
+        "currentText": "When convulsive or electrographic status epilepticus exceeds 30 minutes despite adequate first- and second-line therapies, immediate endotracheal intubation and continuous anesthetic infusion (Propofol, Midazolam, or Ketamine) titrated to electrographic burst suppression (5–15 seconds) is recommended.",
+        "drivingTrials": [
+          "RESET Registry",
+          "Swiss Status Epilepticus Cohort"
+        ]
+      },
+      {
+        "id": "chg-se-5",
+        "category": "Super-Refractory Therapy",
+        "topic": "Early Adjunctive Ketamine for NMDA-Receptor Downregulation",
+        "changeType": "NEW",
+        "previousGrade": "Experimental last-resort agent",
+        "currentGrade": "Level C-LD / Expert Consensus",
+        "previousText": "Ketamine was reserved only for super-refractory cases lasting several days.",
+        "currentText": "In refractory status epilepticus where GABA-ergic receptors undergo rapid endocytosis and NMDA receptors are upregulated, early initiation of continuous IV Ketamine (1–5 mg/kg/h) alongside GABA agonists improves seizure termination and reduces vasopressor dependence.",
+        "drivingTrials": [
+          "KETA-SE Multicenter Study"
+        ]
+      },
+      {
+        "id": "chg-se-6",
+        "category": "Safety / Medication Error Prevention",
+        "topic": "Harm Warning: Avoidance of Benzodiazepine Underdosing",
+        "changeType": "REVISED",
+        "previousGrade": "Unspecified lower dose titrations",
+        "currentGrade": "Class III: Harm (Underdosing increases refractoriness)",
+        "previousText": "Practitioners frequently administered fractions of standard doses (e.g., Lorazepam 1–2 mg) fearing respiratory arrest.",
+        "currentText": "Administering suboptimal benzodiazepine doses fails to abort status epilepticus and increases subsequent respiratory compromise and ICU mortality. Providers must administer full guideline doses (Lorazepam 0.1 mg/kg IV, Diazepam 0.2 mg/kg IV, Midazolam 10 mg IM).",
+        "drivingTrials": [
+          "PHTS Prehospital Trial",
+          "Alldredge et al."
+        ]
+      }
+    ]
   },
   {
-    id: "eso-moyamoya-2023",
-    society: "ESO",
-    year: 2023,
-    subspecialty: "Stroke",
-    subspecialties: ["Stroke", "Neurocritical Care"],
-    title: "European Stroke Organisation (ESO) Guidelines on Moyamoya angiopathy",
-    officialUrl: "https://doi.org/10.1177/23969873231164095",
-    journalTarget: "European Stroke Journal",
-    documentType: "Clinical Practice Guideline",
-    publishDate: "2023-04-12",
-    previousVersionYear: 2012,
-    executiveSummary:
-      "First dedicated European multidisciplinary guideline on Moyamoya disease and Moyamoya syndrome in pediatric and adult cohorts, standardizing indications for direct/indirect/combined surgical revascularization, antiplatelet therapy vs avoidance of anticoagulation, and hemodynamic imaging surveillance.",
-    linkedScenarioIds: [],
-    allPracticeChanges: [
-      {
-        id: "chg-eso-moya-1",
-        category: "Surgical Revascularization",
-        topic: "Surgical Revascularization (Direct/Combined Bypass) for Recurrent Ischemia and Cerebral Hypoperfusion",
-        changeType: "UPGRADED",
-        previousGrade: "Moderate recommendation",
-        currentGrade: "Strong recommendation FOR, Moderate quality evidence",
-        previousText: "Extracranial-intracranial bypass was performed based on regional surgeon expertise.",
-        currentText:
-          "In adult and pediatric patients with symptomatic Moyamoya angiopathy and documented hemodynamic cerebral compromise or recurrent ischemic events, we recommend surgical revascularization (direct superficial temporal artery to middle cerebral artery bypass, indirect encephalo-duro-arterio-synangiosis, or combined bypass) to reduce recurrent ischemic stroke.",
-        drivingTrials: ["JAM Trial (Stroke 2014)", "European Moyamoya Multicenter Registry 2023"],
-      },
-      {
-        id: "chg-eso-moya-2",
-        category: "Antithrombotic Therapy",
-        topic: "Aspirin Monotherapy Over Anticoagulation for Long-Term Prevention",
-        changeType: "REVISED",
-        previousGrade: "Conditional antiplatelet therapy",
-        currentGrade: "Strong recommendation FOR, Moderate quality",
-        previousText: "Various antiplatelet and anticoagulant regimens were prescribed empirically.",
-        currentText:
-          "In patients with ischemic Moyamoya angiopathy, we recommend long-term antiplatelet monotherapy (low-dose aspirin 75-100 mg daily) over anticoagulation or intensive dual antiplatelet therapy to reduce ischemic stroke risk without aggravating hemorrhagic diathesis.",
-        drivingTrials: ["Moyamoya Antiplatelet vs Anticoagulation Cohort Studies"],
-      },
-      {
-        id: "chg-eso-moya-3",
-        category: "Bleeding Risk Mitigation",
-        topic: "Routine Long-Term Anticoagulation Strongly NOT Recommended",
-        changeType: "REVISED",
-        previousGrade: "Avoided empirically",
-        currentGrade: "Strong recommendation AGAINST, Moderate quality evidence",
-        previousText: "Oral anticoagulation was occasionally used in progressive stenosis.",
-        currentText:
-          "We recommend against the routine use of long-term oral anticoagulants (Warfarin or DOACs) in non-cardiogenic Moyamoya patients due to the high risk of catastrophic microaneurysm rupture in fragile basal collateral transdural vessels.",
-        drivingTrials: ["European Moyamoya Hemorrhage Registry"],
-      },
-      {
-        id: "chg-eso-moya-4",
-        category: "Surveillance Protocols",
-        topic: "Annual Surveillance with Multimodal MRI/MRA and Cerebral Perfusion Imaging",
-        changeType: "NEW",
-        previousGrade: "Clinical follow-up as indicated",
-        currentGrade: "Expert Consensus Statement",
-        previousText: "Routine neuroimaging was only performed if new focal neurological symptoms developed.",
-        currentText:
-          "We suggest periodic follow-up with MRI, MR angiography, and hemodynamic perfusion imaging (CT perfusion, arterial spin labeling MRI, or SPECT with acetazolamide challenge) every 12 to 24 months to monitor collateral vessel patency and bilateral disease progression.",
-        drivingTrials: ["International Moyamoya Imaging Consensus Guidelines"],
-      },
-      {
-        id: "chg-eso-moya-5",
-        category: "Perioperative Anesthesia",
-        topic: "Strict Intraoperative Normocapnia and Hemodynamic Floor Preservation",
-        changeType: "NEW",
-        previousGrade: "Standard anesthesia management",
-        currentGrade: "Strong recommendation FOR, Moderate quality",
-        previousText: "General anesthesia without specific PaCO2 or MAP targets.",
-        currentText:
-          "During revascularization surgery and general anesthesia in moyamoya patients, we strongly recommend maintaining strict normocapnia (PaCO2 35–40 mmHg), avoiding hyperventilation (which causes profound cerebral vasoconstriction), and maintaining baseline mean arterial pressure to prevent perioperative ischemic stroke.",
-        drivingTrials: ["Neuroanesthesia in Moyamoya Surgery Multicenter Protocols", "PaCO2 and Cerebral Perfusion Studies"],
-      },
-      {
-        id: "chg-eso-moya-6",
-        category: "Hemorrhagic Moyamoya",
-        topic: "Surgical Revascularization for Secondary Hemorrhage Prevention",
-        changeType: "UPGRADED",
-        previousGrade: "Conservative management",
-        currentGrade: "Moderate recommendation FOR, High quality evidence",
-        previousText: "Surgery was historically thought to be ineffective for hemorrhagic moyamoya.",
-        currentText:
-          "In adult patients with hemorrhagic moyamoya angiopathy, we recommend surgical revascularization (direct bypass or combined bypass) to reduce the risk of recurrent intracranial hemorrhage and death by unloading hemodynamic stress on fragile collateral pseudoaneurysms.",
-        drivingTrials: ["JAM Trial (Japan Adult Moyamoya RCT, Stroke)", "Hemorrhagic Moyamoya Revascularization Meta-analysis"],
-      },
+    "id": "ilae-dre-2025",
+    "society": "ILAE",
+    "year": 2025,
+    "subspecialty": "Epilepsy",
+    "title": "International League Against Epilepsy (ILAE) Consensus on Drug-Resistant Epilepsy and Presurgical Evaluation Timing",
+    "officialUrl": "https://onlinelibrary.wiley.com/journal/15281167",
+    "journalTarget": "Epilepsia",
+    "documentType": "Clinical Practice Guideline",
+    "publishDate": "2025-01-10",
+    "executiveSummary": "Comprehensive ILAE recommendations mandating early referral to comprehensive epilepsy centers upon failure of two tolerated, appropriately chosen antiseizure medications, establishing stereotactic EEG (sEEG), laser interstitial thermal therapy (LITT), and neuromodulation (RNS, DBS) criteria.",
+    "linkedScenarioIds": [
+      "status-epilepticus-rse"
     ],
+    "allPracticeChanges": [
+      {
+        "id": "chg-ilae-1",
+        "category": "Referral Thresholds",
+        "topic": "Expedited Comprehensive Epilepsy Center (CEC) Referral After 2 Failed ASMs",
+        "changeType": "UPGRADED",
+        "previousGrade": "Average referral delay was 15–20 years in community practice",
+        "currentGrade": "Strong recommendation FOR, High quality evidence",
+        "previousText": "Patients cycled through 4–6 different medications over decades before surgical evaluation.",
+        "currentText": "Failure of two appropriately chosen and tolerated antiseizure medication schedules (whether as monotherapies or combination) defines drug-resistant epilepsy and warrants immediate referral to a specialized Comprehensive Epilepsy Center for presurgical evaluation.",
+        "drivingTrials": [
+          "Kwan & Brodie (NEJM)",
+          "ERSET Trial (JAMA)"
+        ]
+      },
+      {
+        "id": "chg-ilae-2",
+        "category": "Minimally Invasive Surgery",
+        "topic": "MRI-Guided Laser Interstitial Thermal Therapy (LITT) for Mesial Temporal Lobe Sclerosis",
+        "changeType": "UPGRADED",
+        "previousGrade": "Investigational alternative to open resection",
+        "currentGrade": "Strong recommendation FOR, Moderate quality",
+        "previousText": "Open anterior temporal lobectomy was the sole established gold standard.",
+        "currentText": "In patients with unilateral drug-resistant mesial temporal lobe epilepsy with hippocampal sclerosis, MRI-guided LITT provides comparable seizure freedom rates with significantly preserved verbal memory and visual field sparing compared to open resection.",
+        "drivingTrials": [
+          "SLATE Trial (Epilepsia)",
+          "PUPPET Registry"
+        ]
+      },
+      {
+        "id": "chg-ilae-3",
+        "category": "Neuromodulation",
+        "topic": "Responsive Neurostimulation (RNS) and Deep Brain Stimulation (DBS) for Non-Resectable Foci",
+        "changeType": "NEW",
+        "previousGrade": "Vagus Nerve Stimulation (VNS) only",
+        "currentGrade": "Level A (Class I)",
+        "previousText": "Patients with eloquent cortex or bilateral independent seizure foci had no targeted neuromodulatory alternatives.",
+        "currentText": "In patients with drug-resistant focal epilepsy originating from eloquent cortex or bilateral independent temporal foci, closed-loop Responsive Neurostimulation (RNS) or thalamic Deep Brain Stimulation (Centromedian or Anterior Nucleus) provides progressive, long-term seizure reduction (>75% at 5 years).",
+        "drivingTrials": [
+          "RNS System Pivotal Trial",
+          "SANTE Trial (Epilepsia)"
+        ]
+      },
+      {
+        "id": "chg-ilae-4",
+        "category": "Genetic Screening",
+        "topic": "Early High-Throughput Gene Panel & Exome Sequencing in Developmental Epilepsies",
+        "changeType": "NEW",
+        "previousGrade": "Selective testing only after metabolic workup",
+        "currentGrade": "Strong recommendation FOR",
+        "previousText": "Genetic testing was delayed or restricted to severe infantile encephalopathies.",
+        "currentText": "Next-generation epilepsy gene sequencing is recommended early in patients with onset of drug-resistant epilepsy, specifically targeting actionable channelopathies (SCN1A, SCN2A, SCN8A, KCNT1, SLC2A1) to guide precision targeted therapies and avoid aggravating sodium-channel blockers.",
+        "drivingTrials": [
+          "Epi4K Consortia",
+          "Genetic Epilepsy Registries"
+        ]
+      },
+      {
+        "id": "chg-ilae-5",
+        "category": "Autoimmune Epilepsy",
+        "topic": "Early Autoantibody Screening in New-Onset Refractory Seizures (NORSE)",
+        "changeType": "NEW",
+        "previousGrade": "Empirical ASM escalation only",
+        "currentGrade": "Expert Consensus Statement",
+        "previousText": "Immunotherapy was often delayed until months after viral PCR was negative.",
+        "currentText": "In patients presenting with new-onset cryptogenic refractory status epilepticus (NORSE) or subacute explosive seizure clusters, early testing for neural autoantibodies (LGI1, CASPR2, NMDAR, GAD65) and early empiric high-dose IV corticosteroids + IVIG/plasma exchange is recommended.",
+        "drivingTrials": [
+          "NORSE/FIRES International Consensus Registry"
+        ]
+      }
+    ]
   },
   {
-    id: "eso-tenecteplase-2023",
-    society: "ESO",
-    year: 2023,
-    subspecialty: "Stroke",
-    subspecialties: ["Stroke", "Neurocritical Care"],
-    title: "European Stroke Organisation (ESO) expedited recommendation on tenecteplase for acute ischaemic stroke",
-    officialUrl: "https://doi.org/10.1177/23969873231165448",
-    journalTarget: "European Stroke Journal",
-    documentType: "Focused Update",
-    publishDate: "2023-03-24",
-    previousVersionYear: 2021,
-    executiveSummary:
-      "Pivotal ESO expedited living guideline establishing Tenecteplase 0.25 mg/kg IV single bolus (maximum 25 mg) as a non-inferior alternative to Alteplase 0.9 mg/kg in patients presenting within 4.5 hours of symptom onset, with special efficacy for large vessel occlusion transfers and clear warning against 0.40 mg/kg dosage.",
-    linkedScenarioIds: ["ais-ivt-tenecteplase-4.5h"],
-    allPracticeChanges: [
-      {
-        id: "chg-eso-tnk-1",
-        category: "Intravenous Thrombolysis",
-        topic: "Tenecteplase 0.25 mg/kg Bolus Endorsed as Non-Inferior to Alteplase 0.9 mg/kg within 4.5h",
-        changeType: "UPGRADED",
-        scenarioId: "ais-ivt-tenecteplase-4.5h",
-        previousGrade: "Weak recommendation, Low quality evidence",
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        previousText: "Alteplase was the only recommended intravenous thrombolytic agent within 4.5 hours.",
-        currentText:
-          "In patients with acute ischemic stroke of less than 4.5 hours duration who are eligible for intravenous thrombolysis, we recommend Tenecteplase 0.25 mg/kg (maximum dose 25 mg) as a single intravenous bolus as a safe and effective non-inferior alternative to Alteplase 0.9 mg/kg.",
-        drivingTrials: ["AcT Trial (Lancet 2022)", "NOR-TEST (Lancet Neurol)", "TRACE-2 (Lancet 2023)"],
-      },
-      {
-        id: "chg-eso-tnk-2",
-        category: "Bridging Thrombolysis (LVO)",
-        topic: "Tenecteplase 0.25 mg/kg as Preferred Thrombolytic Prior to Mechanical Thrombectomy",
-        changeType: "UPGRADED",
-        scenarioId: "ais-ivt-tenecteplase-4.5h",
-        previousGrade: "Conditional alternative",
-        currentGrade: "Moderate recommendation FOR, Moderate quality evidence",
-        previousText: "Alteplase 0.9 mg/kg was standard bridging therapy before groin puncture.",
-        currentText:
-          "In patients with acute ischemic stroke due to large vessel occlusion who are scheduled to undergo mechanical thrombectomy within 4.5 hours of symptom onset, we suggest Tenecteplase 0.25 mg/kg over Alteplase 0.9 mg/kg to facilitate rapid transfer and improve pre-procedural recanalization rates.",
-        drivingTrials: ["EXTEND-IA TNK Part 1 (NEJM)", "AcT EVT Subgroup Analysis"],
-      },
-      {
-        id: "chg-eso-tnk-3",
-        category: "Dosing Safety",
-        topic: "Higher Dose Tenecteplase (0.40 mg/kg) Strongly NOT Recommended Due to Bleeding Risk",
-        changeType: "DOWNGRADED",
-        scenarioId: "ais-ivt-tenecteplase-4.5h",
-        previousGrade: "Under investigation in phase 3 trials",
-        currentGrade: "Strong recommendation AGAINST, High quality evidence",
-        previousText: "0.40 mg/kg dose was investigated to maximize early recanalization.",
-        currentText:
-          "We recommend against using Tenecteplase at a dose of 0.40 mg/kg in patients with acute ischemic stroke, because randomized trial evidence demonstrates no improvement in functional outcome and a significantly higher rate of symptomatic intracranial hemorrhage and mortality compared with 0.25 mg/kg or Alteplase.",
-        drivingTrials: ["NOR-TEST 2A (Lancet Neurol 2022)"],
-      },
-      {
-        id: "chg-eso-tnk-4",
-        category: "Acute Workflow Optimization",
-        topic: "Accelerated Door-to-Needle Workflow via Single IV Bolus Administration",
-        changeType: "UPGRADED",
-        previousGrade: "Infusion pump setup required (Alteplase)",
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        previousText: "Alteplase required complex 10% bolus plus 90% continuous infusion over 60 minutes.",
-        currentText:
-          "We recommend Tenecteplase 0.25 mg/kg administered as a rapid 5- to 10-second single intravenous bolus to streamline emergency door-to-needle times, eliminate infusion pump errors, and significantly expedite inter-facility transfers (drip-and-ship) to endovascular thrombectomy suites.",
-        drivingTrials: ["AcT Drip-and-Ship Workflow Substudy", "TRACER Stroke System Registry", "TASTE-A (Lancet Neurol)"],
-      },
-      {
-        id: "chg-eso-tnk-5",
-        category: "Extended / Wake-Up Window",
-        topic: "Tenecteplase in Unknown Time of Onset / Wake-Up Stroke with Perfusion Mismatch",
-        changeType: "NEW",
-        previousGrade: "Alteplase alone with MRI mismatch (WAKE-UP)",
-        currentGrade: "Moderate recommendation FOR, Moderate quality",
-        previousText: "Tenecteplase was studied primarily within 4.5 hours of clear symptom onset.",
-        currentText:
-          "In acute ischemic stroke patients with unknown onset or wake-up stroke presenting within 4.5 hours of symptom recognition who demonstrate CT perfusion mismatch (ischemic core < 70 mL, penumbra mismatch > 1.2) or MRI DWI-FLAIR mismatch, Tenecteplase 0.25 mg/kg bolus can be considered as an effective alternative to Alteplase.",
-        drivingTrials: ["TIMELESS Trial (NEJM 2024)", "TWIST Trial", "EXTEND-IVT Perfusion Pool"],
-      },
+    "id": "aan-ad-biologics-2024",
+    "society": "AAN",
+    "year": 2024,
+    "subspecialty": "Dementia",
+    "title": "American Academy of Neurology (AAN) Practice Guideline on Amyloid-Targeting Monoclonal Antibodies in Early Alzheimer's Disease",
+    "officialUrl": "https://www.neurology.org/doi/10.1212/WNL.0000000000209355",
+    "journalTarget": "Neurology",
+    "documentType": "Clinical Practice Guideline",
+    "publishDate": "2024-04-12",
+    "executiveSummary": "Landmark AAN clinical guidance on appropriate patient selection, biomarker verification, mandatory ApoE ε4 genotyping, and structured MRI surveillance protocols for amyloid-related imaging abnormalities (ARIA-E and ARIA-H) during Lecanemab and Donanemab administration.",
+    "linkedScenarioIds": [
+      "dementia-amyloid-monoclonal"
     ],
+    "allPracticeChanges": [
+      {
+        "id": "chg-aan-ad-1",
+        "scenarioId": "dementia-amyloid-monoclonal",
+        "category": "Eligibility & Diagnostic Verification",
+        "topic": "Mandatory In Vivo Amyloid Pathology Confirmation Prior to Monoclonal Initiation",
+        "changeType": "NEW",
+        "previousGrade": "Clinical syndromic diagnosis of probable AD was standard",
+        "currentGrade": "Level A (Class I Requirement)",
+        "previousText": "Cholinesterase inhibitors and Memantine were initiated based on clinical criteria without biomarker confirmation.",
+        "currentText": "Prior to initiating amyloid-targeting monoclonal antibodies (Lecanemab, Donanemab), clinicians must confirm the presence of elevated brain amyloid-beta pathology using either validated CSF biomarkers (Aβ42/Aβ40 ratio or p-Tau181/Aβ42) or amyloid PET imaging.",
+        "drivingTrials": [
+          "Clarity AD (NEJM 2023)",
+          "TRAILBLAZER-ALZ 2 (JAMA 2023)"
+        ]
+      },
+      {
+        "id": "chg-aan-ad-2",
+        "scenarioId": "dementia-amyloid-monoclonal",
+        "category": "Risk Stratification",
+        "topic": "Mandatory ApoE ε4 Allele Genotyping Prior to Therapy",
+        "changeType": "NEW",
+        "previousGrade": "ApoE testing was historically discouraged in general clinical practice",
+        "currentGrade": "Level A (Class I Requirement)",
+        "previousText": "Genetic testing was considered of uncertain clinical utility for symptomatic therapy.",
+        "currentText": "Clinicians must perform ApoE genotyping prior to treatment initiation to inform patients of their individual risk of developing amyloid-related imaging abnormalities (ARIA). ApoE ε4 homozygotes have a significantly higher incidence of severe, symptomatic, and recurrent ARIA-E and ARIA-H.",
+        "drivingTrials": [
+          "Clarity AD Safety Subanalysis",
+          "Alzheimer's Association Appropriate Use Criteria"
+        ]
+      },
+      {
+        "id": "chg-aan-ad-3",
+        "scenarioId": "dementia-amyloid-monoclonal",
+        "category": "Safety Surveillance",
+        "topic": "Structured Brain MRI Monitoring Schedule for Asymptomatic ARIA Detection",
+        "changeType": "NEW",
+        "previousGrade": "No routine safety neuroimaging during AD pharmacotherapy",
+        "currentGrade": "Level A (Class I)",
+        "previousText": "Routine neuroimaging was only performed at initial diagnostic evaluation.",
+        "currentText": "For Lecanemab, 1.5T or 3.0T brain MRI with T2*-GRE or SWI sequences must be performed prior to the 5th, 7th, and 14th infusions (approximately weeks 9, 13, and 27) and promptly if new neurological symptoms develop. Dosing must be suspended for moderate-to-severe ARIA-E or macrohemorrhages.",
+        "drivingTrials": [
+          "Clarity AD",
+          "AAN ARIA Surveillance Protocols"
+        ]
+      },
+      {
+        "id": "chg-aan-ad-4",
+        "category": "Contraindications",
+        "topic": "Absolute Contraindication: Concurrent Full Therapeutic Anticoagulation",
+        "changeType": "NEW",
+        "previousGrade": "Antiplatelets and anticoagulants were used without specific restriction",
+        "currentGrade": "Class III: Harm (Strong Warning)",
+        "previousText": "Concomitant warfarin or DOACs was permitted in early symptomatic trials.",
+        "currentText": "Patients requiring full-dose therapeutic anticoagulation (Warfarin, Apixaban, Rivaroxaban, Dabigatran, Edoxaban) should NOT receive amyloid-targeting monoclonal antibodies due to substantially elevated risk of fatal intracerebral macrohemorrhages.",
+        "drivingTrials": [
+          "Lecanemab Open-Label Extension Hemorrhage Cases (NEJM 2023)"
+        ]
+      },
+      {
+        "id": "chg-aan-ad-5",
+        "category": "Clinical Benefit Disclosure",
+        "topic": "Transparent Shared Decision-Making on Modest Statistical vs Clinical Effect",
+        "changeType": "NEW",
+        "previousGrade": "Not addressed",
+        "currentGrade": "Level B-NR",
+        "previousText": "Therapies were presented without quantifying rate of cognitive decline.",
+        "currentText": "Clinicians must counsel patients and care partners that anti-amyloid monoclonal antibodies slow cognitive and functional decline by a modest margin (~0.45 points on the 18-point CDR-SB over 18 months, representing approximately a 4-to-5-month delay in progression), but do not halt progression or restore lost cognition.",
+        "drivingTrials": [
+          "Clarity AD",
+          "TRAILBLAZER-ALZ 2"
+        ]
+      },
+      {
+        "id": "chg-aan-ad-6",
+        "category": "Treatment Discontinuation",
+        "topic": "Amyloid Plaque Clearance and Treatment Cessation Criteria",
+        "changeType": "NEW",
+        "previousGrade": "Indefinite lifelong administration",
+        "currentGrade": "Level B-R",
+        "previousText": "Dementia medications were maintained indefinitely until end of life.",
+        "currentText": "For Donanemab, therapeutic dosing should be stopped or transitioned to maintenance dosing once amyloid PET confirms complete clearance of cortical amyloid plaques (<11 Centiloids), substantially reducing cost and cumulative ARIA risk.",
+        "drivingTrials": [
+          "TRAILBLAZER-ALZ 2 (JAMA 2023)"
+        ]
+      }
+    ]
   },
   {
-    id: "aes-ncs-se-2024",
-    society: "AES",
-    year: 2024,
-    subspecialty: "Epilepsy",
-    subspecialties: ["Epilepsy", "Neurocritical Care"],
-    title: "American Epilepsy Society (AES) and Neurocritical Care Society (NCS) Consensus Guideline on the Treatment of Status Epilepticus",
-    officialUrl: "https://journals.sagepub.com/doi/10.1177/15357597241258901",
-    journalTarget: "Epilepsy Curr / Neurocrit Care",
-    documentType: "Clinical Practice Guideline",
-    publishDate: "2024-09-15",
-    previousVersionYear: 2016,
-    executiveSummary:
-      "Authoritative joint North American guidelines defining evidence-based time-locked management for convulsive and non-convulsive status epilepticus: intramuscular Midazolam primacy, non-inferiority of second-line agents (Levetiracetam, Fosphenytoin, Valproate), urgent continuous EEG within 60 minutes, and rapid transition to Stage 3 anesthetic infusions.",
-    linkedScenarioIds: ["status-epilepticus-rse"],
-    allPracticeChanges: [
+    "id": "mds-pd-2025",
+    "society": "MDS",
+    "year": 2025,
+    "subspecialty": "Movement Disorders",
+    "title": "International Parkinson and Movement Disorder Society (MDS) Evidence-Based Medicine Review on Motor Symptoms in Parkinson's Disease",
+    "officialUrl": "https://movementdisorders.onlinelibrary.wiley.com",
+    "journalTarget": "Mov Disord",
+    "documentType": "Clinical Practice Guideline",
+    "publishDate": "2025-02-18",
+    "previousVersionYear": 2018,
+    "executiveSummary": "Global MDS practice-changing guidelines establishing early Levodopa primacy without artificial delay, non-oral continuous infusion therapies (subcutaneous foslevodopa/foscarbidopa, levodopa intestinal gel), earlier referral for deep brain stimulation (DBS), and targeted rescue agents for morning akinesia.",
+    "linkedScenarioIds": [],
+    "allPracticeChanges": [
       {
-        id: "chg-se-1",
-        scenarioId: "status-epilepticus-rse",
-        category: "Stage 1: Emergent Initial Therapy",
-        topic: "Primacy of Intramuscular Midazolam (10 mg) When IV Access Absent",
-        changeType: "UPGRADED",
-        previousGrade: "Conditional recommendation",
-        currentGrade: "Level A (Highest recommendation FOR)",
-        previousText: "IV Lorazepam was prioritized, often delaying therapy while nurses attempted difficult venipuncture.",
-        currentText:
-          "In adults and children >40 kg without established intravenous access, intramuscular Midazolam (10 mg single autoinjector/injection) is the frontline treatment of choice over delayed intravenous Lorazepam, demonstrating superior prehospital seizure termination and reduced ICU admissions.",
-        drivingTrials: ["RAMPART Trial (NEJM 2012)"],
+        "id": "chg-mds-1",
+        "category": "Early Pharmacotherapy",
+        "topic": "Early Levodopa Initiation Without Delay for Dyskinesia Concerns",
+        "changeType": "UPGRADED",
+        "previousGrade": "Levodopa-sparing strategy with dopamine agonists preferred in young patients",
+        "currentGrade": "Strong recommendation FOR, High quality evidence",
+        "previousText": "Clinicians frequently delayed Levodopa in patients <60 years to avoid early motor fluctuations.",
+        "currentText": "Levodopa remains the most effective symptomatic therapy for Parkinson's disease. Clinicians should not artificially delay Levodopa initiation due to unfounded fears of accelerated dyskinesias, as long-term disability is significantly worse when optimal motor control is postponed.",
+        "drivingTrials": [
+          "PD MED Trial (Lancet 2014)",
+          "LEAP Trial (NEJM 2019)"
+        ]
       },
       {
-        id: "chg-se-2",
-        scenarioId: "status-epilepticus-rse",
-        category: "Stage 2: Urgent Control Therapy",
-        topic: "Equivalence of Levetiracetam, Valproate, and Fosphenytoin (ESETT Protocol)",
-        changeType: "REVISED",
-        previousGrade: "Fosphenytoin historically preferred as historical standard",
-        currentGrade: "Level A (Class I equivalence)",
-        previousText: "Fosphenytoin was preferentially recommended with Levetiracetam considered secondary.",
-        currentText:
-          "In patients whose convulsive seizures fail first-line benzodiazepines, IV Levetiracetam (60 mg/kg, max 4500 mg), IV Sodium Valproate (40 mg/kg, max 3000 mg), and IV Fosphenytoin (20 mg PE/kg, max 1500 mg) demonstrate statistically equivalent efficacy (~47% seizure cessation) and safety.",
-        drivingTrials: ["ESETT Trial (NEJM 2019 / Lancet 2020)"],
+        "id": "chg-mds-2",
+        "category": "Advanced Motor Fluctuations",
+        "topic": "Continuous 24-Hour Subcutaneous Foslevodopa/Foscarbidopa Infusion",
+        "changeType": "NEW",
+        "previousGrade": "Oral fractionated dosing and enteric jejunal tubes only",
+        "currentGrade": "Level A (Class I)",
+        "previousText": "Continuous dopaminergic delivery required invasive endoscopic PEG-J tube placement.",
+        "currentText": "Continuous 24-hour subcutaneous infusion of Foslevodopa/Foscarbidopa (Produodopa / ABBV-951) is recommended for patients with advanced Parkinson's disease experiencing disabling motor fluctuations and morning akinesia not controlled by oral medications, significantly increasing ON time without troublesome dyskinesia.",
+        "drivingTrials": [
+          "M15-736 Phase 3 Trial (Lancet Neurol 2022)"
+        ]
       },
       {
-        id: "chg-se-3",
-        category: "Diagnostic Surveillance",
-        topic: "Mandatory Continuous Video-EEG (cEEG) Within 60 Minutes",
-        changeType: "UPGRADED",
-        previousGrade: "Standard routine EEG within 24 hours",
-        currentGrade: "Strong recommendation FOR, Moderate quality",
-        previousText: "Intermittent spot EEGs were frequently accepted in non-comatose patients.",
-        currentText:
-          "In all patients who do not return to baseline mental status within 20–30 minutes of clinical seizure cessation, continuous EEG monitoring should be initiated within 60 minutes to detect non-convulsive status epilepticus (NCSE), which occurs in over 40% of post-convulsive comatose patients.",
-        drivingTrials: ["Neurocritical Care cEEG Consortia"],
+        "id": "chg-mds-3",
+        "category": "Surgical Neuromodulation",
+        "topic": "Earlier Deep Brain Stimulation (DBS) at Early Motor Fluctuation Onset",
+        "changeType": "UPGRADED",
+        "previousGrade": "Late-stage rescue therapy for medically refractory PD",
+        "currentGrade": "Level A (Class I)",
+        "previousText": "DBS was traditionally delayed until severe medication intolerance or unmanageable choreic dyskinesias occurred.",
+        "currentText": "Subthalamic nucleus (STN) or globus pallidus internus (GPi) Deep Brain Stimulation is strongly recommended earlier in the disease course, upon initial emergence of motor fluctuations or dyskinesias of at least 4 years disease duration, providing superior quality of life compared to medical therapy alone.",
+        "drivingTrials": [
+          "EARLYSTIM Trial (NEJM 2013)",
+          "NSTAPS Trial"
+        ]
       },
       {
-        id: "chg-se-4",
-        scenarioId: "status-epilepticus-rse",
-        category: "Stage 3: Refractory Status Epilepticus",
-        topic: "Urgent Intubation and Titrated Anesthetic Infusions Beyond 30 Minutes",
-        changeType: "REVISED",
-        previousGrade: "Expectant observation after multiple second-line agents",
-        currentGrade: "Level B-R",
-        previousText: "Sequentially trying multiple second-line antiepileptic drugs before intubation was common.",
-        currentText:
-          "When convulsive or electrographic status epilepticus exceeds 30 minutes despite adequate first- and second-line therapies, immediate endotracheal intubation and continuous anesthetic infusion (Propofol, Midazolam, or Ketamine) titrated to electrographic burst suppression (5–15 seconds) is recommended.",
-        drivingTrials: ["RESET Registry", "Swiss Status Epilepticus Cohort"],
+        "id": "chg-mds-4",
+        "category": "Adjunctive Therapies",
+        "topic": "Once-Daily Opicapone and Safinamide for OFF Time Reduction",
+        "changeType": "UPGRADED",
+        "previousGrade": "Entacapone (multiple daily doses) as frontline COMT inhibitor",
+        "currentGrade": "Level A (Class I)",
+        "previousText": "Older COMT inhibitors required dosing with every levodopa tablet with frequent diarrhea.",
+        "currentText": "Once-daily Opicapone (50 mg at bedtime) or Safinamide (50–100 mg daily) is recommended as preferred adjunctive therapy to reduce daily OFF time by 1.5–2 hours without increasing troublesome dyskinesias.",
+        "drivingTrials": [
+          "BIPARK-1 & BIPARK-2 (Lancet Neurol)",
+          "MOTION & SETTLE Trials"
+        ]
       },
       {
-        id: "chg-se-5",
-        category: "Super-Refractory Therapy",
-        topic: "Early Adjunctive Ketamine for NMDA-Receptor Downregulation",
-        changeType: "NEW",
-        previousGrade: "Experimental last-resort agent",
-        currentGrade: "Level C-LD / Expert Consensus",
-        previousText: "Ketamine was reserved only for super-refractory cases lasting several days.",
-        currentText:
-          "In refractory status epilepticus where GABA-ergic receptors undergo rapid endocytosis and NMDA receptors are upregulated, early initiation of continuous IV Ketamine (1–5 mg/kg/h) alongside GABA agonists improves seizure termination and reduces vasopressor dependence.",
-        drivingTrials: ["KETA-SE Multicenter Study"],
+        "id": "chg-mds-5",
+        "category": "Rescue Therapies",
+        "topic": "Rapid Non-Invasive Rescue Therapies for Sudden OFF Episodes",
+        "changeType": "NEW",
+        "previousGrade": "Subcutaneous Apomorphine injections as sole rapid rescue",
+        "currentGrade": "Level A (Class I)",
+        "previousText": "Patients experiencing sudden unpredictable freezing had to perform manual needle injections.",
+        "currentText": "Inhaled Levodopa powder (CVT-301) and sublingual Apomorphine film are established as rapid, effective rescue therapies for sudden or morning OFF episodes, restoring motor ON status within 10–15 minutes.",
+        "drivingTrials": [
+          "SPAN-PD (Lancet Neurol)",
+          "CTH-300 Phase 3 Study"
+        ]
       },
       {
-        id: "chg-se-6",
-        category: "Safety / Medication Error Prevention",
-        topic: "Harm Warning: Avoidance of Benzodiazepine Underdosing",
-        changeType: "REVISED",
-        previousGrade: "Unspecified lower dose titrations",
-        currentGrade: "Class III: Harm (Underdosing increases refractoriness)",
-        previousText: "Practitioners frequently administered fractions of standard doses (e.g., Lorazepam 1–2 mg) fearing respiratory arrest.",
-        currentText:
-          "Administering suboptimal benzodiazepine doses fails to abort status epilepticus and increases subsequent respiratory compromise and ICU mortality. Providers must administer full guideline doses (Lorazepam 0.1 mg/kg IV, Diazepam 0.2 mg/kg IV, Midazolam 10 mg IM).",
-        drivingTrials: ["PHTS Prehospital Trial", "Alldredge et al."],
-      },
-    ],
+        "id": "chg-mds-6",
+        "category": "Disease-Modifying Lifestyle",
+        "topic": "High-Intensity Aerobic Exercise as Neuroprotective Motor Intervention",
+        "changeType": "UPGRADED",
+        "previousGrade": "General physical therapy recommendation",
+        "currentGrade": "Strong recommendation FOR, Moderate quality",
+        "previousText": "Exercise was viewed strictly as functional physical maintenance.",
+        "currentText": "High-intensity aerobic treadmill and cycling exercise (target 80–85% maximum heart rate, 3 times weekly) is recommended to attenuate Parkinsonian motor symptom progression and enhance striatal dopaminergic neuroplasticity.",
+        "drivingTrials": [
+          "SPARX3 Trial",
+          "Park-in-Shape Trial (Lancet Neurol)"
+        ]
+      }
+    ]
   },
   {
-    id: "ilae-dre-2025",
-    society: "ILAE",
-    year: 2025,
-    subspecialty: "Epilepsy",
-    title: "International League Against Epilepsy (ILAE) Consensus on Drug-Resistant Epilepsy and Presurgical Evaluation Timing",
-    officialUrl: "https://onlinelibrary.wiley.com/journal/15281167",
-    journalTarget: "Epilepsia",
-    documentType: "Clinical Practice Guideline",
-    publishDate: "2025-01-10",
-    executiveSummary:
-      "Comprehensive ILAE recommendations mandating early referral to comprehensive epilepsy centers upon failure of two tolerated, appropriately chosen antiseizure medications, establishing stereotactic EEG (sEEG), laser interstitial thermal therapy (LITT), and neuromodulation (RNS, DBS) criteria.",
-    linkedScenarioIds: ["status-epilepticus-rse"],
-    allPracticeChanges: [
+    "id": "ahs-cgrp-2024",
+    "society": "AHS",
+    "year": 2024,
+    "subspecialty": "Headache & Pain",
+    "title": "American Headache Society (AHS) Consensus Statement on CGRP-Targeting Therapies as First-Line Prevention of Migraine",
+    "officialUrl": "https://headachejournal.onlinelibrary.wiley.com",
+    "journalTarget": "Headache",
+    "documentType": "Scientific Statement",
+    "publishDate": "2024-03-11",
+    "previousVersionYear": 2021,
+    "executiveSummary": "Historic AHS practice paradigm shift upgrading calcitonin gene-related peptide (CGRP) targeting therapies (monoclonal antibodies and small molecule gepants) to first-line status for migraine prevention without requiring prior step-therapy failures of non-specific legacy drugs.",
+    "linkedScenarioIds": [],
+    "allPracticeChanges": [
       {
-        id: "chg-ilae-1",
-        category: "Referral Thresholds",
-        topic: "Expedited Comprehensive Epilepsy Center (CEC) Referral After 2 Failed ASMs",
-        changeType: "UPGRADED",
-        previousGrade: "Average referral delay was 15–20 years in community practice",
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        previousText: "Patients cycled through 4–6 different medications over decades before surgical evaluation.",
-        currentText:
-          "Failure of two appropriately chosen and tolerated antiseizure medication schedules (whether as monotherapies or combination) defines drug-resistant epilepsy and warrants immediate referral to a specialized Comprehensive Epilepsy Center for presurgical evaluation.",
-        drivingTrials: ["Kwan & Brodie (NEJM)", "ERSET Trial (JAMA)"],
+        "id": "chg-ahs-1",
+        "category": "Preventive Strategy",
+        "topic": "Upgrading CGRP-Targeting Therapies to First-Line Preventive Treatment",
+        "changeType": "UPGRADED",
+        "previousGrade": "Mandated failure of ≥2 generic drug classes (Beta-blockers, Topiramate, Amitriptyline)",
+        "currentGrade": "Class I / First-Line Consensus Recommendation",
+        "previousText": "Insurers and guidelines mandated step-therapy through generic anticonvulsants or antihypertensives.",
+        "currentText": "Calcitonin gene-related peptide (CGRP) targeting therapies (anti-CGRP mAbs: Erenumab, Fremanezumab, Galcanezumab, Eptinezumab; and oral gepants: Atogepant, Rimegepant) are now officially recommended as first-line preventive options for migraine, based on superior efficacy, rapid onset, and negligible cognitive adverse effects.",
+        "drivingTrials": [
+          "AHS Updated Consensus Review",
+          "PROMISE-1/2",
+          "ADVANCE & ELEVATE Trials"
+        ]
       },
       {
-        id: "chg-ilae-2",
-        category: "Minimally Invasive Surgery",
-        topic: "MRI-Guided Laser Interstitial Thermal Therapy (LITT) for Mesial Temporal Lobe Sclerosis",
-        changeType: "UPGRADED",
-        previousGrade: "Investigational alternative to open resection",
-        currentGrade: "Strong recommendation FOR, Moderate quality",
-        previousText: "Open anterior temporal lobectomy was the sole established gold standard.",
-        currentText:
-          "In patients with unilateral drug-resistant mesial temporal lobe epilepsy with hippocampal sclerosis, MRI-guided LITT provides comparable seizure freedom rates with significantly preserved verbal memory and visual field sparing compared to open resection.",
-        drivingTrials: ["SLATE Trial (Epilepsia)", "PUPPET Registry"],
+        "id": "chg-ahs-2",
+        "category": "Acute Pharmacotherapy",
+        "topic": "Oral Gepants (Ubrogepant, Rimegepant, Zavegepant) for Vascular Contraindications",
+        "changeType": "UPGRADED",
+        "previousGrade": "Second-line after triptan failure",
+        "currentGrade": "Class I, Level A",
+        "previousText": "Triptans were the sole frontline specific acute abortive agents.",
+        "currentText": "For patients with ischemic heart disease, stroke, peripheral vascular disease, or uncontrolled hypertension in whom Triptans are contraindicated, oral or intranasal Gepants and Lasmiditan (5-HT1F agonist) are recommended as safe and effective first-line acute migraine therapies that do not cause vasoconstriction.",
+        "drivingTrials": [
+          "ACHIEVE I/II (NEJM)",
+          "SAMURAI & SPARTAN Trials"
+        ]
       },
       {
-        id: "chg-ilae-3",
-        category: "Neuromodulation",
-        topic: "Responsive Neurostimulation (RNS) and Deep Brain Stimulation (DBS) for Non-Resectable Foci",
-        changeType: "NEW",
-        previousGrade: "Vagus Nerve Stimulation (VNS) only",
-        currentGrade: "Level A (Class I)",
-        previousText: "Patients with eloquent cortex or bilateral independent seizure foci had no targeted neuromodulatory alternatives.",
-        currentText:
-          "In patients with drug-resistant focal epilepsy originating from eloquent cortex or bilateral independent temporal foci, closed-loop Responsive Neurostimulation (RNS) or thalamic Deep Brain Stimulation (Centromedian or Anterior Nucleus) provides progressive, long-term seizure reduction (>75% at 5 years).",
-        drivingTrials: ["RNS System Pivotal Trial", "SANTE Trial (Epilepsia)"],
+        "id": "chg-ahs-3",
+        "category": "Medication Overuse Prevention",
+        "topic": "Freedom from Medication Overuse Headache (MOH) with Gepants",
+        "changeType": "NEW",
+        "previousGrade": "All acute analgesics restricted to <10 days/month",
+        "currentGrade": "Level A (Class I)",
+        "previousText": "Frequent use of all acute antimigraine medications risked chronification and rebound headache.",
+        "currentText": "Unlike opioids, butalbital, NSAIDs, and triptans, frequent acute administration of CGRP receptor antagonists (e.g., Rimegepant) does not cause medication overuse headache and simultaneously provides preventive benefits.",
+        "drivingTrials": [
+          "Rimegepant Dual Efficacy Trials (Lancet 2021)"
+        ]
       },
       {
-        id: "chg-ilae-4",
-        category: "Genetic Screening",
-        topic: "Early High-Throughput Gene Panel & Exome Sequencing in Developmental Epilepsies",
-        changeType: "NEW",
-        previousGrade: "Selective testing only after metabolic workup",
-        currentGrade: "Strong recommendation FOR",
-        previousText: "Genetic testing was delayed or restricted to severe infantile encephalopathies.",
-        currentText:
-          "Next-generation epilepsy gene sequencing is recommended early in patients with onset of drug-resistant epilepsy, specifically targeting actionable channelopathies (SCN1A, SCN2A, SCN8A, KCNT1, SLC2A1) to guide precision targeted therapies and avoid aggravating sodium-channel blockers.",
-        drivingTrials: ["Epi4K Consortia", "Genetic Epilepsy Registries"],
+        "id": "chg-ahs-4",
+        "category": "Chronic Migraine",
+        "topic": "Dual Therapy: OnabotulinumtoxinA Combined with CGRP Monoclonal Antibodies",
+        "changeType": "NEW",
+        "previousGrade": "Discontinuation of Botox required before anti-CGRP mAb approval",
+        "currentGrade": "Level B-NR / Expert Consensus",
+        "previousText": "Payer policies enforced strict monotherapy, denying combination biological treatment.",
+        "currentText": "In patients with intractable chronic migraine with partial response to either OnabotulinumtoxinA or a CGRP monoclonal antibody, concurrent combination therapy is safe and achieves synergistic reduction in monthly headache days.",
+        "drivingTrials": [
+          "Real-World Combination Cohorts",
+          "American Headache Society Registries"
+        ]
       },
       {
-        id: "chg-ilae-5",
-        category: "Autoimmune Epilepsy",
-        topic: "Early Autoantibody Screening in New-Onset Refractory Seizures (NORSE)",
-        changeType: "NEW",
-        previousGrade: "Empirical ASM escalation only",
-        currentGrade: "Expert Consensus Statement",
-        previousText: "Immunotherapy was often delayed until months after viral PCR was negative.",
-        currentText:
-          "In patients presenting with new-onset cryptogenic refractory status epilepticus (NORSE) or subacute explosive seizure clusters, early testing for neural autoantibodies (LGI1, CASPR2, NMDAR, GAD65) and early empiric high-dose IV corticosteroids + IVIG/plasma exchange is recommended.",
-        drivingTrials: ["NORSE/FIRES International Consensus Registry"],
-      },
-    ],
+        "id": "chg-ahs-5",
+        "category": "Rapid Acute Intranasal Delivery",
+        "topic": "Intranasal Zavegepant for Rapid Acute Relief with Severe Nausea",
+        "changeType": "NEW",
+        "previousGrade": "Injectable Sumatriptan as sole rapid non-oral option",
+        "currentGrade": "Level A (Class I)",
+        "previousText": "Patients with severe nausea were forced to use painful subcutaneous autoinjectors.",
+        "currentText": "Intranasal Zavegepant (10 mg single nasal spray) provides significant pain freedom within 15 minutes to 2 hours in patients suffering from acute migraine attacks complicated by severe nausea or vomiting, without systemic vasoconstriction.",
+        "drivingTrials": [
+          "Zavegepant Phase 3 Trial (Lancet Neurol 2023)"
+        ]
+      }
+    ]
   },
   {
-    id: "aan-ad-biologics-2024",
-    society: "AAN",
-    year: 2024,
-    subspecialty: "Dementia",
-    title: "American Academy of Neurology (AAN) Practice Guideline on Amyloid-Targeting Monoclonal Antibodies in Early Alzheimer's Disease",
-    officialUrl: "https://www.neurology.org/doi/10.1212/WNL.0000000000209355",
-    journalTarget: "Neurology",
-    documentType: "Clinical Practice Guideline",
-    publishDate: "2024-04-12",
-    executiveSummary:
-      "Landmark AAN clinical guidance on appropriate patient selection, biomarker verification, mandatory ApoE ε4 genotyping, and structured MRI surveillance protocols for amyloid-related imaging abnormalities (ARIA-E and ARIA-H) during Lecanemab and Donanemab administration.",
-    linkedScenarioIds: ["dementia-amyloid-monoclonal"],
-    allPracticeChanges: [
+    "id": "ectrims-ean-ms-2024",
+    "society": "ECTRIMS",
+    "year": 2024,
+    "subspecialty": "Neuroimmunology",
+    "title": "Joint ECTRIMS and European Academy of Neurology (EAN) Consensus Guideline on the Treatment of Multiple Sclerosis",
+    "officialUrl": "https://onlinelibrary.wiley.com/journal/14681331",
+    "journalTarget": "Eur J Neurol / Mult Scler",
+    "documentType": "Clinical Practice Guideline",
+    "publishDate": "2024-11-20",
+    "previousVersionYear": 2018,
+    "executiveSummary": "Landmark European practice guideline recommending early frontline initiation of high-efficacy disease-modifying therapies (anti-CD20 monoclonal antibodies, Cladribine, Natalizumab) over traditional escalation therapy in relapsing MS to halt long-term disability progression and brain atrophy.",
+    "linkedScenarioIds": [],
+    "allPracticeChanges": [
       {
-        id: "chg-aan-ad-1",
-        scenarioId: "dementia-amyloid-monoclonal",
-        category: "Eligibility & Diagnostic Verification",
-        topic: "Mandatory In Vivo Amyloid Pathology Confirmation Prior to Monoclonal Initiation",
-        changeType: "NEW",
-        previousGrade: "Clinical syndromic diagnosis of probable AD was standard",
-        currentGrade: "Level A (Class I Requirement)",
-        previousText: "Cholinesterase inhibitors and Memantine were initiated based on clinical criteria without biomarker confirmation.",
-        currentText:
-          "Prior to initiating amyloid-targeting monoclonal antibodies (Lecanemab, Donanemab), clinicians must confirm the presence of elevated brain amyloid-beta pathology using either validated CSF biomarkers (Aβ42/Aβ40 ratio or p-Tau181/Aβ42) or amyloid PET imaging.",
-        drivingTrials: ["Clarity AD (NEJM 2023)", "TRAILBLAZER-ALZ 2 (JAMA 2023)"],
+        "id": "chg-ms-1",
+        "category": "Treatment Strategy",
+        "topic": "Early High-Efficacy Therapy (HET) Primacy Over Stepwise Escalation",
+        "changeType": "UPGRADED",
+        "previousGrade": "Stepwise escalation (starting with Platform Interferon/Glatiramer) was standard",
+        "currentGrade": "Strong recommendation FOR, High quality evidence",
+        "previousText": "High-efficacy therapies were reserved until clinical relapses occurred on platform injectables.",
+        "currentText": "In patients with newly diagnosed relapsing-remitting multiple sclerosis with poor prognostic factors, early frontline initiation of high-efficacy DMTs (Ocrelizumab, Ofatumumab, Ublituximab, Natalizumab, or Cladribine) is strongly recommended over traditional escalation to prevent long-term irreversible disability and cognitive decline.",
+        "drivingTrials": [
+          "DELIVER-MS",
+          "TREAT-MS",
+          "Nationwide Swedish MS Registry (JAMA Neurol)"
+        ]
       },
       {
-        id: "chg-aan-ad-2",
-        scenarioId: "dementia-amyloid-monoclonal",
-        category: "Risk Stratification",
-        topic: "Mandatory ApoE ε4 Allele Genotyping Prior to Therapy",
-        changeType: "NEW",
-        previousGrade: "ApoE testing was historically discouraged in general clinical practice",
-        currentGrade: "Level A (Class I Requirement)",
-        previousText: "Genetic testing was considered of uncertain clinical utility for symptomatic therapy.",
-        currentText:
-          "Clinicians must perform ApoE genotyping prior to treatment initiation to inform patients of their individual risk of developing amyloid-related imaging abnormalities (ARIA). ApoE ε4 homozygotes have a significantly higher incidence of severe, symptomatic, and recurrent ARIA-E and ARIA-H.",
-        drivingTrials: ["Clarity AD Safety Subanalysis", "Alzheimer's Association Appropriate Use Criteria"],
+        "id": "chg-ms-2",
+        "category": "Infection Risk Mitigation",
+        "topic": "Extended Interval Dosing (EID) for Natalizumab to Minimize PML Risk",
+        "changeType": "UPGRADED",
+        "previousGrade": "Strict 4-week standard interval dosing",
+        "currentGrade": "Level A (Class I)",
+        "previousText": "Natalizumab 300 mg was strictly administered every 4 weeks.",
+        "currentText": "In JCV-antibody positive patients on Natalizumab, extended interval dosing (EID, 300 mg every 6 weeks instead of 4 weeks) is recommended; it reduces the risk of Progressive Multifocal Leukoencephalopathy (PML) by approximately 88% while preserving complete clinical efficacy.",
+        "drivingTrials": [
+          "NOVA Trial (Lancet Neurol 2022)",
+          "TOUCH Registry"
+        ]
       },
       {
-        id: "chg-aan-ad-3",
-        scenarioId: "dementia-amyloid-monoclonal",
-        category: "Safety Surveillance",
-        topic: "Structured Brain MRI Monitoring Schedule for Asymptomatic ARIA Detection",
-        changeType: "NEW",
-        previousGrade: "No routine safety neuroimaging during AD pharmacotherapy",
-        currentGrade: "Level A (Class I)",
-        previousText: "Routine neuroimaging was only performed at initial diagnostic evaluation.",
-        currentText:
-          "For Lecanemab, 1.5T or 3.0T brain MRI with T2*-GRE or SWI sequences must be performed prior to the 5th, 7th, and 14th infusions (approximately weeks 9, 13, and 27) and promptly if new neurological symptoms develop. Dosing must be suspended for moderate-to-severe ARIA-E or macrohemorrhages.",
-        drivingTrials: ["Clarity AD", "AAN ARIA Surveillance Protocols"],
+        "id": "chg-ms-3",
+        "category": "Biomarker Surveillance",
+        "topic": "Serum Neurofilament Light Chain (sNfL) and Whole Brain Volume MRI Tracking",
+        "changeType": "NEW",
+        "previousGrade": "T2 lesion count and gadolinium enhancement only",
+        "currentGrade": "Strong recommendation FOR, Moderate quality",
+        "previousText": "Disease monitoring focused exclusively on visible focal contrast-enhancing lesions.",
+        "currentText": "Monitoring serum neurofilament light chain (sNfL) and annual volumetric brain MRI is recommended to capture subclinical disease activity, neuroaxonal damage, and Progression Independent of Relapse Activity (PIRA).",
+        "drivingTrials": [
+          "Swiss MS Cohort",
+          "International MS Biomarker Consortia"
+        ]
       },
       {
-        id: "chg-aan-ad-4",
-        category: "Contraindications",
-        topic: "Absolute Contraindication: Concurrent Full Therapeutic Anticoagulation",
-        changeType: "NEW",
-        previousGrade: "Antiplatelets and anticoagulants were used without specific restriction",
-        currentGrade: "Class III: Harm (Strong Warning)",
-        previousText: "Concomitant warfarin or DOACs was permitted in early symptomatic trials.",
-        currentText:
-          "Patients requiring full-dose therapeutic anticoagulation (Warfarin, Apixaban, Rivaroxaban, Dabigatran, Edoxaban) should NOT receive amyloid-targeting monoclonal antibodies due to substantially elevated risk of fatal intracerebral macrohemorrhages.",
-        drivingTrials: ["Lecanemab Open-Label Extension Hemorrhage Cases (NEJM 2023)"],
+        "id": "chg-ms-4",
+        "category": "Pregnancy & Family Planning",
+        "topic": "Permitted Continuation of Monoclonal Antibodies During Conception & Early Pregnancy",
+        "changeType": "REVISED",
+        "previousGrade": "Strict discontinuation of all DMTs months prior to conception",
+        "currentGrade": "Moderate recommendation FOR",
+        "previousText": "Women with active MS were required to undergo prolonged washouts, causing postpartum catastrophic relapses.",
+        "currentText": "Natalizumab and B-cell depleting therapies (anti-CD20) may be continued up to conception or during pregnancy under strict specialist surveillance to avoid severe postpartum rebound relapses, as IgG1 antibodies do not cross the placenta during the first trimester.",
+        "drivingTrials": [
+          "European Pregnancy Registries (Lancet Neurol)"
+        ]
       },
       {
-        id: "chg-aan-ad-5",
-        category: "Clinical Benefit Disclosure",
-        topic: "Transparent Shared Decision-Making on Modest Statistical vs Clinical Effect",
-        changeType: "NEW",
-        previousGrade: "Not addressed",
-        currentGrade: "Level B-NR",
-        previousText: "Therapies were presented without quantifying rate of cognitive decline.",
-        currentText:
-          "Clinicians must counsel patients and care partners that anti-amyloid monoclonal antibodies slow cognitive and functional decline by a modest margin (~0.45 points on the 18-point CDR-SB over 18 months, representing approximately a 4-to-5-month delay in progression), but do not halt progression or restore lost cognition.",
-        drivingTrials: ["Clarity AD", "TRAILBLAZER-ALZ 2"],
+        "id": "chg-ms-5",
+        "category": "Primary Progressive MS",
+        "topic": "Ocrelizumab in Early Active Primary Progressive Multiple Sclerosis",
+        "changeType": "UPGRADED",
+        "previousGrade": "Class IIb / Weak recommendation",
+        "currentGrade": "Strong recommendation FOR, High quality",
+        "previousText": "No disease-modifying therapies were licensed or recommended for PPMS.",
+        "currentText": "Ocrelizumab (600 mg IV every 6 months) is strongly recommended in patients with early primary progressive multiple sclerosis who have evidence of ongoing inflammatory disease activity (clinical progression or MRI inflammatory lesions) to slow confirmed disability progression.",
+        "drivingTrials": [
+          "ORATORIO Trial (NEJM)",
+          "ORATORIO Open-Label Extension"
+        ]
       },
       {
-        id: "chg-aan-ad-6",
-        category: "Treatment Discontinuation",
-        topic: "Amyloid Plaque Clearance and Treatment Cessation Criteria",
-        changeType: "NEW",
-        previousGrade: "Indefinite lifelong administration",
-        currentGrade: "Level B-R",
-        previousText: "Dementia medications were maintained indefinitely until end of life.",
-        currentText:
-          "For Donanemab, therapeutic dosing should be stopped or transitioned to maintenance dosing once amyloid PET confirms complete clearance of cortical amyloid plaques (<11 Centiloids), substantially reducing cost and cumulative ARIA risk.",
-        drivingTrials: ["TRAILBLAZER-ALZ 2 (JAMA 2023)"],
-      },
-    ],
+        "id": "chg-ms-6",
+        "category": "Therapy Discontinuation",
+        "topic": "Careful De-escalation in Stable Older Adults (Age >55 Years)",
+        "changeType": "NEW",
+        "previousGrade": "Lifelong continuation mandated",
+        "currentGrade": "Weak recommendation / Conditional",
+        "previousText": "Patients remained on aggressive immunosuppression into their 70s despite immunosenescence.",
+        "currentText": "In patients aged >55 years with relapsing MS who have remained relapse-free without new MRI activity on DMTs for at least 5 years, supervised discontinuation or de-escalation may be considered, balancing declining inflammatory relapses against escalating infection risks.",
+        "drivingTrials": [
+          "DISCOMS Trial (Lancet Neurol 2023)"
+        ]
+      }
+    ]
   },
   {
-    id: "mds-pd-2025",
-    society: "MDS",
-    year: 2025,
-    subspecialty: "Movement Disorders",
-    title: "International Parkinson and Movement Disorder Society (MDS) Evidence-Based Medicine Review on Motor Symptoms in Parkinson's Disease",
-    officialUrl: "https://movementdisorders.onlinelibrary.wiley.com",
-    journalTarget: "Mov Disord",
-    documentType: "Clinical Practice Guideline",
-    publishDate: "2025-02-18",
-    previousVersionYear: 2018,
-    executiveSummary:
-      "Global MDS practice-changing guidelines establishing early Levodopa primacy without artificial delay, non-oral continuous infusion therapies (subcutaneous foslevodopa/foscarbidopa, levodopa intestinal gel), earlier referral for deep brain stimulation (DBS), and targeted rescue agents for morning akinesia.",
-    linkedScenarioIds: [],
-    allPracticeChanges: [
-      {
-        id: "chg-mds-1",
-        category: "Early Pharmacotherapy",
-        topic: "Early Levodopa Initiation Without Delay for Dyskinesia Concerns",
-        changeType: "UPGRADED",
-        previousGrade: "Levodopa-sparing strategy with dopamine agonists preferred in young patients",
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        previousText: "Clinicians frequently delayed Levodopa in patients <60 years to avoid early motor fluctuations.",
-        currentText:
-          "Levodopa remains the most effective symptomatic therapy for Parkinson's disease. Clinicians should not artificially delay Levodopa initiation due to unfounded fears of accelerated dyskinesias, as long-term disability is significantly worse when optimal motor control is postponed.",
-        drivingTrials: ["PD MED Trial (Lancet 2014)", "LEAP Trial (NEJM 2019)"],
-      },
-      {
-        id: "chg-mds-2",
-        category: "Advanced Motor Fluctuations",
-        topic: "Continuous 24-Hour Subcutaneous Foslevodopa/Foscarbidopa Infusion",
-        changeType: "NEW",
-        previousGrade: "Oral fractionated dosing and enteric jejunal tubes only",
-        currentGrade: "Level A (Class I)",
-        previousText: "Continuous dopaminergic delivery required invasive endoscopic PEG-J tube placement.",
-        currentText:
-          "Continuous 24-hour subcutaneous infusion of Foslevodopa/Foscarbidopa (Produodopa / ABBV-951) is recommended for patients with advanced Parkinson's disease experiencing disabling motor fluctuations and morning akinesia not controlled by oral medications, significantly increasing ON time without troublesome dyskinesia.",
-        drivingTrials: ["M15-736 Phase 3 Trial (Lancet Neurol 2022)"],
-      },
-      {
-        id: "chg-mds-3",
-        category: "Surgical Neuromodulation",
-        topic: "Earlier Deep Brain Stimulation (DBS) at Early Motor Fluctuation Onset",
-        changeType: "UPGRADED",
-        previousGrade: "Late-stage rescue therapy for medically refractory PD",
-        currentGrade: "Level A (Class I)",
-        previousText: "DBS was traditionally delayed until severe medication intolerance or unmanageable choreic dyskinesias occurred.",
-        currentText:
-          "Subthalamic nucleus (STN) or globus pallidus internus (GPi) Deep Brain Stimulation is strongly recommended earlier in the disease course, upon initial emergence of motor fluctuations or dyskinesias of at least 4 years disease duration, providing superior quality of life compared to medical therapy alone.",
-        drivingTrials: ["EARLYSTIM Trial (NEJM 2013)", "NSTAPS Trial"],
-      },
-      {
-        id: "chg-mds-4",
-        category: "Adjunctive Therapies",
-        topic: "Once-Daily Opicapone and Safinamide for OFF Time Reduction",
-        changeType: "UPGRADED",
-        previousGrade: "Entacapone (multiple daily doses) as frontline COMT inhibitor",
-        currentGrade: "Level A (Class I)",
-        previousText: "Older COMT inhibitors required dosing with every levodopa tablet with frequent diarrhea.",
-        currentText:
-          "Once-daily Opicapone (50 mg at bedtime) or Safinamide (50–100 mg daily) is recommended as preferred adjunctive therapy to reduce daily OFF time by 1.5–2 hours without increasing troublesome dyskinesias.",
-        drivingTrials: ["BIPARK-1 & BIPARK-2 (Lancet Neurol)", "MOTION & SETTLE Trials"],
-      },
-      {
-        id: "chg-mds-5",
-        category: "Rescue Therapies",
-        topic: "Rapid Non-Invasive Rescue Therapies for Sudden OFF Episodes",
-        changeType: "NEW",
-        previousGrade: "Subcutaneous Apomorphine injections as sole rapid rescue",
-        currentGrade: "Level A (Class I)",
-        previousText: "Patients experiencing sudden unpredictable freezing had to perform manual needle injections.",
-        currentText:
-          "Inhaled Levodopa powder (CVT-301) and sublingual Apomorphine film are established as rapid, effective rescue therapies for sudden or morning OFF episodes, restoring motor ON status within 10–15 minutes.",
-        drivingTrials: ["SPAN-PD (Lancet Neurol)", "CTH-300 Phase 3 Study"],
-      },
-      {
-        id: "chg-mds-6",
-        category: "Disease-Modifying Lifestyle",
-        topic: "High-Intensity Aerobic Exercise as Neuroprotective Motor Intervention",
-        changeType: "UPGRADED",
-        previousGrade: "General physical therapy recommendation",
-        currentGrade: "Strong recommendation FOR, Moderate quality",
-        previousText: "Exercise was viewed strictly as functional physical maintenance.",
-        currentText:
-          "High-intensity aerobic treadmill and cycling exercise (target 80–85% maximum heart rate, 3 times weekly) is recommended to attenuate Parkinsonian motor symptom progression and enhance striatal dopaminergic neuroplasticity.",
-        drivingTrials: ["SPARX3 Trial", "Park-in-Shape Trial (Lancet Neurol)"],
-      },
+    "id": "aanem-ean-mg-2025",
+    "society": "AANEM",
+    "year": 2025,
+    "subspecialty": "Neuromuscular",
+    "title": "AANEM and European Academy of Neurology (EAN) Consensus Guideline on Targeted Biologics in Generalized Myasthenia Gravis",
+    "officialUrl": "https://onlinelibrary.wiley.com/journal/10974598",
+    "journalTarget": "Muscle & Nerve",
+    "documentType": "Clinical Practice Guideline",
+    "publishDate": "2025-01-14",
+    "previousVersionYear": 2020,
+    "executiveSummary": "Breakthrough transatlantic guideline incorporating neonatal Fc receptor (FcRn) antagonists and terminal complement C5 inhibitors as frontline steroid-sparing biologics for acetylcholine receptor antibody-positive (AChR-Ab+) generalized Myasthenia Gravis.",
+    "linkedScenarioIds": [
+      "myasthenia-gravis-refractory"
     ],
+    "allPracticeChanges": [
+      {
+        "id": "chg-mg-1",
+        "scenarioId": "myasthenia-gravis-refractory",
+        "category": "Targeted Biologics",
+        "topic": "Early Initiation of FcRn Antagonists (Efgartigimod, Rozanolixizumab)",
+        "changeType": "UPGRADED",
+        "previousGrade": "Investigational / Off-label third-line therapies",
+        "currentGrade": "Strong recommendation FOR, High quality evidence",
+        "previousText": "Patients endured years of disabling corticosteroid adverse events before biological therapy.",
+        "currentText": "In patients with generalized AChR-Ab-positive Myasthenia Gravis whose symptoms remain inadequately controlled despite first-line therapy, neonatal Fc receptor antagonists (Efgartigimod IV/subcutaneous, Rozanolixizumab) are recommended as early targeted therapy to produce rapid, sustained reductions in IgG and MG-ADL scores.",
+        "drivingTrials": [
+          "ADAPT Trial (Lancet Neurol 2021)",
+          "MycarinG Trial (Lancet Neurol 2023)"
+        ]
+      },
+      {
+        "id": "chg-mg-2",
+        "scenarioId": "myasthenia-gravis-refractory",
+        "category": "Complement Inhibition",
+        "topic": "Terminal Complement C5 Inhibitors (Ravulizumab, Zilucoplan) for Severe Refractory MG",
+        "changeType": "UPGRADED",
+        "previousGrade": "Eculizumab only with frequent bi-weekly infusions",
+        "currentGrade": "Strong recommendation FOR, High quality",
+        "previousText": "Complement inhibition was restricted to extreme refractory disease due to administration hurdles.",
+        "currentText": "For patients with refractory AChR-Ab-positive generalized MG, complement C5 inhibitors—including long-acting Ravulizumab (infused every 8 weeks) and self-administered subcutaneous Zilucoplan (daily)—are strongly recommended to prevent terminal membrane attack complex (MAC) destruction of the neuromuscular junction.",
+        "drivingTrials": [
+          "CHAMPION-MG (Lancet Neurol 2022)",
+          "RAISE Trial (Lancet Neurol 2023)"
+        ]
+      },
+      {
+        "id": "chg-mg-3",
+        "category": "Safety Mandate",
+        "topic": "Mandatory Meningococcal Vaccination Prior to Complement Inhibition",
+        "changeType": "NEW",
+        "previousGrade": "General infection precautions",
+        "currentGrade": "Class I Safety Requirement",
+        "previousText": "Vaccination protocols were variable across centers.",
+        "currentText": "All patients must receive meningococcal conjugate vaccines (serogroups A, C, W, Y and serogroup B) at least 2 weeks prior to initiating C5 inhibitors; if therapy must start urgently, prophylactic oral antibiotics (Ciprofloxacin or Penicillin) must be administered until vaccines take effect.",
+        "drivingTrials": [
+          "CDC & EMA Safety Guidelines for C5 Inhibitors"
+        ]
+      },
+      {
+        "id": "chg-mg-4",
+        "category": "Corticosteroid Minimization",
+        "topic": "Rapid Steroid Tapering Goal (<5 mg Prednisone Daily) via Biologics",
+        "changeType": "REVISED",
+        "previousGrade": "Long-term maintenance prednisone 20–40 mg daily",
+        "currentGrade": "Strong recommendation FOR",
+        "previousText": "Chronic high-dose steroids were accepted as necessary maintenance despite osteopenia and diabetes.",
+        "currentText": "The modern treatment goal is complete minimal symptom expression (MG-ADL 0–1) combined with rapid tapering of oral corticosteroids to ≤5 mg/day (or complete discontinuation) within 6 to 12 months using steroid-sparing biologics.",
+        "drivingTrials": [
+          "International MG Consensus Group 2025 Targets"
+        ]
+      },
+      {
+        "id": "chg-mg-5",
+        "category": "Crisis Management",
+        "topic": "Preserving IVIG and Plasma Exchange for Crisis Rather Than Maintenance",
+        "changeType": "REVISED",
+        "previousGrade": "Monthly maintenance IVIG/PLEX commonly used indefinitely",
+        "currentGrade": "Moderate recommendation",
+        "previousText": "Patients received monthly hospital admissions for IVIG maintenance.",
+        "currentText": "Intravenous immunoglobulin (IVIG) and therapeutic plasma exchange (PLEX) should be reserved primarily for acute myasthenic crises or pre-operative stabilization rather than indefinite chronic monthly maintenance, now replaced by targeted FcRn antagonists.",
+        "drivingTrials": [
+          "Comparative Biologic Maintenance Registries"
+        ]
+      }
+    ]
   },
   {
-    id: "ahs-cgrp-2024",
-    society: "AHS",
-    year: 2024,
-    subspecialty: "Headache & Pain",
-    title: "American Headache Society (AHS) Consensus Statement on CGRP-Targeting Therapies as First-Line Prevention of Migraine",
-    officialUrl: "https://headachejournal.onlinelibrary.wiley.com",
-    journalTarget: "Headache",
-    documentType: "Scientific Statement",
-    publishDate: "2024-03-11",
-    previousVersionYear: 2021,
-    executiveSummary:
-      "Historic AHS practice paradigm shift upgrading calcitonin gene-related peptide (CGRP) targeting therapies (monoclonal antibodies and small molecule gepants) to first-line status for migraine prevention without requiring prior step-therapy failures of non-specific legacy drugs.",
-    linkedScenarioIds: [],
-    allPracticeChanges: [
+    "id": "ncs-mnm-2024",
+    "society": "NCS",
+    "year": 2024,
+    "subspecialty": "Neurocritical Care",
+    "title": "Neurocritical Care Society (NCS) Guidelines on Multimodality Neuromonitoring and Targeted Temperature Management",
+    "officialUrl": "https://link.springer.com/journal/12028",
+    "journalTarget": "Neurocrit Care",
+    "documentType": "Clinical Practice Guideline",
+    "publishDate": "2024-06-30",
+    "previousVersionYear": 2014,
+    "executiveSummary": "Comprehensive neuro-ICU recommendations on multimodality monitoring in comatose acute brain injury patients: tier-based ICP management (<22 mmHg), brain tissue oxygenation (PbtO2 >20 mmHg), continuous automated pupillometry, and strict targeted normothermia (36.0–37.5°C).",
+    "linkedScenarioIds": [],
+    "allPracticeChanges": [
       {
-        id: "chg-ahs-1",
-        category: "Preventive Strategy",
-        topic: "Upgrading CGRP-Targeting Therapies to First-Line Preventive Treatment",
-        changeType: "UPGRADED",
-        previousGrade: "Mandated failure of ≥2 generic drug classes (Beta-blockers, Topiramate, Amitriptyline)",
-        currentGrade: "Class I / First-Line Consensus Recommendation",
-        previousText: "Insurers and guidelines mandated step-therapy through generic anticonvulsants or antihypertensives.",
-        currentText:
-          "Calcitonin gene-related peptide (CGRP) targeting therapies (anti-CGRP mAbs: Erenumab, Fremanezumab, Galcanezumab, Eptinezumab; and oral gepants: Atogepant, Rimegepant) are now officially recommended as first-line preventive options for migraine, based on superior efficacy, rapid onset, and negligible cognitive adverse effects.",
-        drivingTrials: ["AHS Updated Consensus Review", "PROMISE-1/2", "ADVANCE & ELEVATE Trials"],
+        "id": "chg-ncs-1",
+        "category": "Targeted Temperature Management",
+        "topic": "Strict Prevention of Fever (Targeted Normothermia 36.0–37.5°C) Over Induced Hypothermia",
+        "changeType": "REVISED",
+        "previousGrade": "Induced therapeutic hypothermia (32–34°C) widely applied",
+        "currentGrade": "Strong recommendation FOR, High quality evidence",
+        "previousText": "Hypothermia down to 33°C was aggressively pursued for cardiac arrest and TBI.",
+        "currentText": "In comatose patients with acute brain injury (cardiac arrest, severe TBI, ischemic stroke), controlled normothermia strictly maintaining core temperature between 36.0°C and 37.5°C using advanced feedback devices is recommended. Routine therapeutic hypothermia (32–34°C) does not improve survival and increases bleeding and infections.",
+        "drivingTrials": [
+          "TTM2 Trial (NEJM 2021)",
+          "POLAR-RCT (JAMA)",
+          "CHILL-MI"
+        ]
       },
       {
-        id: "chg-ahs-2",
-        category: "Acute Pharmacotherapy",
-        topic: "Oral Gepants (Ubrogepant, Rimegepant, Zavegepant) for Vascular Contraindications",
-        changeType: "UPGRADED",
-        previousGrade: "Second-line after triptan failure",
-        currentGrade: "Class I, Level A",
-        previousText: "Triptans were the sole frontline specific acute abortive agents.",
-        currentText:
-          "For patients with ischemic heart disease, stroke, peripheral vascular disease, or uncontrolled hypertension in whom Triptans are contraindicated, oral or intranasal Gepants and Lasmiditan (5-HT1F agonist) are recommended as safe and effective first-line acute migraine therapies that do not cause vasoconstriction.",
-        drivingTrials: ["ACHIEVE I/II (NEJM)", "SAMURAI & SPARTAN Trials"],
+        "id": "chg-ncs-2",
+        "category": "Oxygenation Surveillance",
+        "topic": "Combined ICP and Brain Tissue Oxygenation (PbtO2) Guided Protocol",
+        "changeType": "UPGRADED",
+        "previousGrade": "ICP-only guided management",
+        "currentGrade": "Moderate recommendation FOR, High quality",
+        "previousText": "Management was driven solely by intracranial pressure catheters without tissue oxygen verification.",
+        "currentText": "In severe traumatic brain injury, protocolized management combining intracranial pressure monitoring (ICP <22 mmHg) with invasive brain tissue oxygenation (PbtO2 ≥20 mmHg) is recommended over ICP monitoring alone, significantly reducing brain tissue hypoxia and improving 6-month functional recovery.",
+        "drivingTrials": [
+          "BOOST-2 Trial (Crit Care Med)",
+          "BOOST-3 Phase 3 Trial"
+        ]
       },
       {
-        id: "chg-ahs-3",
-        category: "Medication Overuse Prevention",
-        topic: "Freedom from Medication Overuse Headache (MOH) with Gepants",
-        changeType: "NEW",
-        previousGrade: "All acute analgesics restricted to <10 days/month",
-        currentGrade: "Level A (Class I)",
-        previousText: "Frequent use of all acute antimigraine medications risked chronification and rebound headache.",
-        currentText:
-          "Unlike opioids, butalbital, NSAIDs, and triptans, frequent acute administration of CGRP receptor antagonists (e.g., Rimegepant) does not cause medication overuse headache and simultaneously provides preventive benefits.",
-        drivingTrials: ["Rimegepant Dual Efficacy Trials (Lancet 2021)"],
+        "id": "chg-ncs-3",
+        "category": "Non-Invasive Monitoring",
+        "topic": "Automated Quantitative Pupillometry (Neurological Pupil Index, NPi)",
+        "changeType": "UPGRADED",
+        "previousGrade": "Manual penlight pupil assessment",
+        "currentGrade": "Strong recommendation FOR, Moderate quality",
+        "previousText": "Subjective manual penlight examination with substantial inter-observer variability.",
+        "currentText": "Automated quantitative pupillometry (measuring the Neurological Pupil index, NPi <3.0 as abnormal) should be utilized in comatose neuro-ICU patients to provide early warning of uncal herniation and brainstem ischemia hours before overt clinical deterioration.",
+        "drivingTrials": [
+          "ORANGE Study (Lancet Neurol)",
+          "Pupillometry Consortia"
+        ]
       },
       {
-        id: "chg-ahs-4",
-        category: "Chronic Migraine",
-        topic: "Dual Therapy: OnabotulinumtoxinA Combined with CGRP Monoclonal Antibodies",
-        changeType: "NEW",
-        previousGrade: "Discontinuation of Botox required before anti-CGRP mAb approval",
-        currentGrade: "Level B-NR / Expert Consensus",
-        previousText: "Payer policies enforced strict monotherapy, denying combination biological treatment.",
-        currentText:
-          "In patients with intractable chronic migraine with partial response to either OnabotulinumtoxinA or a CGRP monoclonal antibody, concurrent combination therapy is safe and achieves synergistic reduction in monthly headache days.",
-        drivingTrials: ["Real-World Combination Cohorts", "American Headache Society Registries"],
+        "id": "chg-ncs-4",
+        "category": "Hyperosmolar Therapy",
+        "topic": "Hypertonic Saline Preferred Over Mannitol in Hemodynamically Unstable Patients",
+        "changeType": "REVISED",
+        "previousGrade": "Mannitol as primary osmotic agent",
+        "currentGrade": "Strong recommendation FOR",
+        "previousText": "Mannitol boluses were administered without considering intravascular volume contraction.",
+        "currentText": "For acute intracranial pressure spikes, equiosmolar boluses of Hypertonic Saline (23.4% or 3%) are preferred over Mannitol, particularly in patients with borderline hypotension or hypovolemia, as hypertonic saline expands circulating volume without triggering osmotic diuresis.",
+        "drivingTrials": [
+          "COBI Trial",
+          "NCS Hyperosmolar Therapy Meta-analysis"
+        ]
       },
       {
-        id: "chg-ahs-5",
-        category: "Rapid Acute Intranasal Delivery",
-        topic: "Intranasal Zavegepant for Rapid Acute Relief with Severe Nausea",
-        changeType: "NEW",
-        previousGrade: "Injectable Sumatriptan as sole rapid non-oral option",
-        currentGrade: "Level A (Class I)",
-        previousText: "Patients with severe nausea were forced to use painful subcutaneous autoinjectors.",
-        currentText:
-          "Intranasal Zavegepant (10 mg single nasal spray) provides significant pain freedom within 15 minutes to 2 hours in patients suffering from acute migraine attacks complicated by severe nausea or vomiting, without systemic vasoconstriction.",
-        drivingTrials: ["Zavegepant Phase 3 Trial (Lancet Neurol 2023)"],
+        "id": "chg-ncs-5",
+        "category": "Hemodynamic Targets",
+        "topic": "Cerebral Perfusion Pressure (CPP) Floor of 60–70 mmHg",
+        "changeType": "REVISED",
+        "previousGrade": "High CPP targets >70 mmHg using aggressive vasopressors",
+        "currentGrade": "Strong recommendation FOR",
+        "previousText": "Aggressive vasopressor titration to achieve CPP >70 mmHg frequently caused ARDS.",
+        "currentText": "Maintain cerebral perfusion pressure (CPP = MAP - ICP) strictly within 60 to 70 mmHg. Avoiding CPP <60 mmHg is essential to prevent cerebral ischemia, while avoiding CPP >70 mmHg with excessive vasopressors prevents acute lung injury.",
+        "drivingTrials": [
+          "Brain Trauma Foundation Guidelines",
+          "NCS Hemodynamic Cohorts"
+        ]
       },
-    ],
+      {
+        "id": "chg-ncs-6",
+        "category": "Metabolic Monitoring",
+        "topic": "Cerebral Microdialysis for Lactate/Pyruvate Ratio (LPR >25) Crisis Detection",
+        "changeType": "NEW",
+        "previousGrade": "Research tool only",
+        "currentGrade": "Expert Consensus / Conditional in Specialized Centers",
+        "previousText": "Brain metabolic distress was inferred only after irreversible tissue infarction.",
+        "currentText": "In tertiary neuro-ICUs, cerebral microdialysis monitoring elevated Lactate/Pyruvate Ratio (LPR >25 or >40) detects non-ischemic metabolic crisis and mitochondrial failure, triggering targeted optimization of cerebral glucose and oxygen delivery.",
+        "drivingTrials": [
+          "Consensus Statement on Cerebral Microdialysis"
+        ]
+      }
+    ]
   },
   {
-    id: "ectrims-ean-ms-2024",
-    society: "ECTRIMS",
-    year: 2024,
-    subspecialty: "Neuroimmunology",
-    title: "Joint ECTRIMS and European Academy of Neurology (EAN) Consensus Guideline on the Treatment of Multiple Sclerosis",
-    officialUrl: "https://onlinelibrary.wiley.com/journal/14681331",
-    journalTarget: "Eur J Neurol / Mult Scler",
-    documentType: "Clinical Practice Guideline",
-    publishDate: "2024-11-20",
-    previousVersionYear: 2018,
-    executiveSummary:
-      "Landmark European practice guideline recommending early frontline initiation of high-efficacy disease-modifying therapies (anti-CD20 monoclonal antibodies, Cladribine, Natalizumab) over traditional escalation therapy in relapsing MS to halt long-term disability progression and brain atrophy.",
-    linkedScenarioIds: [],
-    allPracticeChanges: [
-      {
-        id: "chg-ms-1",
-        category: "Treatment Strategy",
-        topic: "Early High-Efficacy Therapy (HET) Primacy Over Stepwise Escalation",
-        changeType: "UPGRADED",
-        previousGrade: "Stepwise escalation (starting with Platform Interferon/Glatiramer) was standard",
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        previousText: "High-efficacy therapies were reserved until clinical relapses occurred on platform injectables.",
-        currentText:
-          "In patients with newly diagnosed relapsing-remitting multiple sclerosis with poor prognostic factors, early frontline initiation of high-efficacy DMTs (Ocrelizumab, Ofatumumab, Ublituximab, Natalizumab, or Cladribine) is strongly recommended over traditional escalation to prevent long-term irreversible disability and cognitive decline.",
-        drivingTrials: ["DELIVER-MS", "TREAT-MS", "Nationwide Swedish MS Registry (JAMA Neurol)"],
-      },
-      {
-        id: "chg-ms-2",
-        category: "Infection Risk Mitigation",
-        topic: "Extended Interval Dosing (EID) for Natalizumab to Minimize PML Risk",
-        changeType: "UPGRADED",
-        previousGrade: "Strict 4-week standard interval dosing",
-        currentGrade: "Level A (Class I)",
-        previousText: "Natalizumab 300 mg was strictly administered every 4 weeks.",
-        currentText:
-          "In JCV-antibody positive patients on Natalizumab, extended interval dosing (EID, 300 mg every 6 weeks instead of 4 weeks) is recommended; it reduces the risk of Progressive Multifocal Leukoencephalopathy (PML) by approximately 88% while preserving complete clinical efficacy.",
-        drivingTrials: ["NOVA Trial (Lancet Neurol 2022)", "TOUCH Registry"],
-      },
-      {
-        id: "chg-ms-3",
-        category: "Biomarker Surveillance",
-        topic: "Serum Neurofilament Light Chain (sNfL) and Whole Brain Volume MRI Tracking",
-        changeType: "NEW",
-        previousGrade: "T2 lesion count and gadolinium enhancement only",
-        currentGrade: "Strong recommendation FOR, Moderate quality",
-        previousText: "Disease monitoring focused exclusively on visible focal contrast-enhancing lesions.",
-        currentText:
-          "Monitoring serum neurofilament light chain (sNfL) and annual volumetric brain MRI is recommended to capture subclinical disease activity, neuroaxonal damage, and Progression Independent of Relapse Activity (PIRA).",
-        drivingTrials: ["Swiss MS Cohort", "International MS Biomarker Consortia"],
-      },
-      {
-        id: "chg-ms-4",
-        category: "Pregnancy & Family Planning",
-        topic: "Permitted Continuation of Monoclonal Antibodies During Conception & Early Pregnancy",
-        changeType: "REVISED",
-        previousGrade: "Strict discontinuation of all DMTs months prior to conception",
-        currentGrade: "Moderate recommendation FOR",
-        previousText: "Women with active MS were required to undergo prolonged washouts, causing postpartum catastrophic relapses.",
-        currentText:
-          "Natalizumab and B-cell depleting therapies (anti-CD20) may be continued up to conception or during pregnancy under strict specialist surveillance to avoid severe postpartum rebound relapses, as IgG1 antibodies do not cross the placenta during the first trimester.",
-        drivingTrials: ["European Pregnancy Registries (Lancet Neurol)"],
-      },
-      {
-        id: "chg-ms-5",
-        category: "Primary Progressive MS",
-        topic: "Ocrelizumab in Early Active Primary Progressive Multiple Sclerosis",
-        changeType: "UPGRADED",
-        previousGrade: "Class IIb / Weak recommendation",
-        currentGrade: "Strong recommendation FOR, High quality",
-        previousText: "No disease-modifying therapies were licensed or recommended for PPMS.",
-        currentText:
-          "Ocrelizumab (600 mg IV every 6 months) is strongly recommended in patients with early primary progressive multiple sclerosis who have evidence of ongoing inflammatory disease activity (clinical progression or MRI inflammatory lesions) to slow confirmed disability progression.",
-        drivingTrials: ["ORATORIO Trial (NEJM)", "ORATORIO Open-Label Extension"],
-      },
-      {
-        id: "chg-ms-6",
-        category: "Therapy Discontinuation",
-        topic: "Careful De-escalation in Stable Older Adults (Age >55 Years)",
-        changeType: "NEW",
-        previousGrade: "Lifelong continuation mandated",
-        currentGrade: "Weak recommendation / Conditional",
-        previousText: "Patients remained on aggressive immunosuppression into their 70s despite immunosenescence.",
-        currentText:
-          "In patients aged >55 years with relapsing MS who have remained relapse-free without new MRI activity on DMTs for at least 5 years, supervised discontinuation or de-escalation may be considered, balancing declining inflammatory relapses against escalating infection risks.",
-        drivingTrials: ["DISCOMS Trial (Lancet Neurol 2023)"],
-      },
+    "id": "idsa-meningitis-2024",
+    "society": "IDSA",
+    "year": 2024,
+    "subspecialty": "CNS Infections",
+    "title": "Infectious Diseases Society of America (IDSA) Focused Guideline on Acute Community-Acquired Bacterial Meningitis",
+    "officialUrl": "https://academic.oup.com/cid",
+    "journalTarget": "Clin Infect Dis",
+    "documentType": "Focused Update",
+    "publishDate": "2024-08-25",
+    "previousVersionYear": 2004,
+    "executiveSummary": "Modern practice update on acute bacterial meningitis: absolute requirement for immediate adjunctive Dexamethasone prior to/with first antimicrobial dose, empiric high-dose Ceftriaxone + Vancomycin, rapid CSF multiplex PCR pathogen confirmation within 2 hours, and selective Ampicillin coverage.",
+    "linkedScenarioIds": [
+      "cns-bacterial-meningitis"
     ],
-  },
-  {
-    id: "aanem-ean-mg-2025",
-    society: "AANEM",
-    year: 2025,
-    subspecialty: "Neuromuscular",
-    title: "AANEM and European Academy of Neurology (EAN) Consensus Guideline on Targeted Biologics in Generalized Myasthenia Gravis",
-    officialUrl: "https://onlinelibrary.wiley.com/journal/10974598",
-    journalTarget: "Muscle & Nerve",
-    documentType: "Clinical Practice Guideline",
-    publishDate: "2025-01-14",
-    previousVersionYear: 2020,
-    executiveSummary:
-      "Breakthrough transatlantic guideline incorporating neonatal Fc receptor (FcRn) antagonists and terminal complement C5 inhibitors as frontline steroid-sparing biologics for acetylcholine receptor antibody-positive (AChR-Ab+) generalized Myasthenia Gravis.",
-    linkedScenarioIds: ["myasthenia-gravis-refractory"],
-    allPracticeChanges: [
+    "allPracticeChanges": [
       {
-        id: "chg-mg-1",
-        scenarioId: "myasthenia-gravis-refractory",
-        category: "Targeted Biologics",
-        topic: "Early Initiation of FcRn Antagonists (Efgartigimod, Rozanolixizumab)",
-        changeType: "UPGRADED",
-        previousGrade: "Investigational / Off-label third-line therapies",
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        previousText: "Patients endured years of disabling corticosteroid adverse events before biological therapy.",
-        currentText:
-          "In patients with generalized AChR-Ab-positive Myasthenia Gravis whose symptoms remain inadequately controlled despite first-line therapy, neonatal Fc receptor antagonists (Efgartigimod IV/subcutaneous, Rozanolixizumab) are recommended as early targeted therapy to produce rapid, sustained reductions in IgG and MG-ADL scores.",
-        drivingTrials: ["ADAPT Trial (Lancet Neurol 2021)", "MycarinG Trial (Lancet Neurol 2023)"],
+        "id": "chg-cns-1",
+        "scenarioId": "cns-bacterial-meningitis",
+        "category": "Adjunctive Anti-Inflammatory",
+        "topic": "Dexamethasone (10 mg IV) Administered Prior to or With First Antibiotic",
+        "changeType": "UPGRADED",
+        "previousGrade": "Class IIa (Optional consideration for pneumococcal etiology)",
+        "currentGrade": "Strong recommendation FOR, High quality evidence",
+        "previousText": "Steroids were sometimes started hours after antibiotics once CSF gram stain returned.",
+        "currentText": "In adults with suspected community-acquired acute bacterial meningitis, Dexamethasone (10 mg IV every 6 hours for 4 days) MUST be initiated prior to or concurrently with the first dose of antimicrobial therapy. Dexamethasone significantly reduces hearing loss, neurological sequelae, and mortality in S. pneumoniae meningitis; discontinue if non-pneumococcal.",
+        "drivingTrials": [
+          "de Gans & van de Beek (NEJM 2002)",
+          "Cochrane Corticosteroids in Meningitis Review"
+        ]
       },
       {
-        id: "chg-mg-2",
-        scenarioId: "myasthenia-gravis-refractory",
-        category: "Complement Inhibition",
-        topic: "Terminal Complement C5 Inhibitors (Ravulizumab, Zilucoplan) for Severe Refractory MG",
-        changeType: "UPGRADED",
-        previousGrade: "Eculizumab only with frequent bi-weekly infusions",
-        currentGrade: "Strong recommendation FOR, High quality",
-        previousText: "Complement inhibition was restricted to extreme refractory disease due to administration hurdles.",
-        currentText:
-          "For patients with refractory AChR-Ab-positive generalized MG, complement C5 inhibitors—including long-acting Ravulizumab (infused every 8 weeks) and self-administered subcutaneous Zilucoplan (daily)—are strongly recommended to prevent terminal membrane attack complex (MAC) destruction of the neuromuscular junction.",
-        drivingTrials: ["CHAMPION-MG (Lancet Neurol 2022)", "RAISE Trial (Lancet Neurol 2023)"],
+        "id": "chg-cns-2",
+        "scenarioId": "cns-bacterial-meningitis",
+        "category": "Empiric Antimicrobial Regimen",
+        "topic": "High-Dose Ceftriaxone + Vancomycin as Universal Empiric Standard",
+        "changeType": "UPGRADED",
+        "previousGrade": "Ceftriaxone monotherapy was common in some regions",
+        "currentGrade": "Strong recommendation FOR, High quality",
+        "previousText": "Vancomycin was reserved for confirmed cephalosporin-resistant strains.",
+        "currentText": "Empirical antimicrobial therapy must immediately combine high-dose third-generation cephalosporin (Ceftriaxone 2 g IV every 12 hours or Cefotaxime 2 g IV every 4 hours) plus Vancomycin (15–20 mg/kg IV every 8–12 hours, targeting trough 15–20 mcg/mL or AUC/MIC 400–600) to cover cephalosporin-resistant Streptococcus pneumoniae.",
+        "drivingTrials": [
+          "IDSA Bacterial Meningitis Working Group Studies"
+        ]
       },
       {
-        id: "chg-mg-3",
-        category: "Safety Mandate",
-        topic: "Mandatory Meningococcal Vaccination Prior to Complement Inhibition",
-        changeType: "NEW",
-        previousGrade: "General infection precautions",
-        currentGrade: "Class I Safety Requirement",
-        previousText: "Vaccination protocols were variable across centers.",
-        currentText:
-          "All patients must receive meningococcal conjugate vaccines (serogroups A, C, W, Y and serogroup B) at least 2 weeks prior to initiating C5 inhibitors; if therapy must start urgently, prophylactic oral antibiotics (Ciprofloxacin or Penicillin) must be administered until vaccines take effect.",
-        drivingTrials: ["CDC & EMA Safety Guidelines for C5 Inhibitors"],
+        "id": "chg-cns-3",
+        "category": "Rapid Molecular Diagnostics",
+        "topic": "Multiplex CSF PCR Panel (BioFire ME) for Immediate Pathogen Identification",
+        "changeType": "NEW",
+        "previousGrade": "CSF Gram stain and culture (24–48 hours) as sole standard",
+        "currentGrade": "Strong recommendation FOR, High quality evidence",
+        "previousText": "De-escalation or tailoring awaited conventional microbiological cultures taking 2 days.",
+        "currentText": "Comprehensive multiplex molecular PCR testing directly on cerebrospinal fluid (e.g., BioFire FilmArray ME Panel) should be performed immediately upon lumbar puncture, providing rapid identification of 14 common bacterial, viral, and fungal pathogens within 1 to 2 hours to optimize targeted de-escalation.",
+        "drivingTrials": [
+          "Multicenter Diagnostic Utility Studies of CSF Multiplex PCR"
+        ]
       },
       {
-        id: "chg-mg-4",
-        category: "Corticosteroid Minimization",
-        topic: "Rapid Steroid Tapering Goal (<5 mg Prednisone Daily) via Biologics",
-        changeType: "REVISED",
-        previousGrade: "Long-term maintenance prednisone 20–40 mg daily",
-        currentGrade: "Strong recommendation FOR",
-        previousText: "Chronic high-dose steroids were accepted as necessary maintenance despite osteopenia and diabetes.",
-        currentText:
-          "The modern treatment goal is complete minimal symptom expression (MG-ADL 0–1) combined with rapid tapering of oral corticosteroids to ≤5 mg/day (or complete discontinuation) within 6 to 12 months using steroid-sparing biologics.",
-        drivingTrials: ["International MG Consensus Group 2025 Targets"],
+        "id": "chg-cns-4",
+        "scenarioId": "cns-bacterial-meningitis",
+        "category": "Listeria Coverage",
+        "topic": "Addition of Ampicillin for Patients Aged >50 Years or Immunocompromised",
+        "changeType": "REVISED",
+        "previousGrade": "Age threshold was historically >60 years",
+        "currentGrade": "Strong recommendation FOR",
+        "previousText": "Listeria coverage was omitted in middle-aged adults without severe immunosuppression.",
+        "currentText": "Intravenous Ampicillin (2 g IV every 4 hours) must be added to the empirical regimen in all adults aged >50 years, pregnant women, and patients with immunocompromising conditions (malignancy, chronic alcoholism, diabetes, biologic therapy) to cover Listeria monocytogenes, which is inherently resistant to cephalosporins.",
+        "drivingTrials": [
+          "European Listeria Meningitis Registries"
+        ]
       },
       {
-        id: "chg-mg-5",
-        category: "Crisis Management",
-        topic: "Preserving IVIG and Plasma Exchange for Crisis Rather Than Maintenance",
-        changeType: "REVISED",
-        previousGrade: "Monthly maintenance IVIG/PLEX commonly used indefinitely",
-        currentGrade: "Moderate recommendation",
-        previousText: "Patients received monthly hospital admissions for IVIG maintenance.",
-        currentText:
-          "Intravenous immunoglobulin (IVIG) and therapeutic plasma exchange (PLEX) should be reserved primarily for acute myasthenic crises or pre-operative stabilization rather than indefinite chronic monthly maintenance, now replaced by targeted FcRn antagonists.",
-        drivingTrials: ["Comparative Biologic Maintenance Registries"],
-      },
-    ],
-  },
-  {
-    id: "ncs-mnm-2024",
-    society: "NCS",
-    year: 2024,
-    subspecialty: "Neurocritical Care",
-    title: "Neurocritical Care Society (NCS) Guidelines on Multimodality Neuromonitoring and Targeted Temperature Management",
-    officialUrl: "https://link.springer.com/journal/12028",
-    journalTarget: "Neurocrit Care",
-    documentType: "Clinical Practice Guideline",
-    publishDate: "2024-06-30",
-    previousVersionYear: 2014,
-    executiveSummary:
-      "Comprehensive neuro-ICU recommendations on multimodality monitoring in comatose acute brain injury patients: tier-based ICP management (<22 mmHg), brain tissue oxygenation (PbtO2 >20 mmHg), continuous automated pupillometry, and strict targeted normothermia (36.0–37.5°C).",
-    linkedScenarioIds: [],
-    allPracticeChanges: [
-      {
-        id: "chg-ncs-1",
-        category: "Targeted Temperature Management",
-        topic: "Strict Prevention of Fever (Targeted Normothermia 36.0–37.5°C) Over Induced Hypothermia",
-        changeType: "REVISED",
-        previousGrade: "Induced therapeutic hypothermia (32–34°C) widely applied",
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        previousText: "Hypothermia down to 33°C was aggressively pursued for cardiac arrest and TBI.",
-        currentText:
-          "In comatose patients with acute brain injury (cardiac arrest, severe TBI, ischemic stroke), controlled normothermia strictly maintaining core temperature between 36.0°C and 37.5°C using advanced feedback devices is recommended. Routine therapeutic hypothermia (32–34°C) does not improve survival and increases bleeding and infections.",
-        drivingTrials: ["TTM2 Trial (NEJM 2021)", "POLAR-RCT (JAMA)", "CHILL-MI"],
-      },
-      {
-        id: "chg-ncs-2",
-        category: "Oxygenation Surveillance",
-        topic: "Combined ICP and Brain Tissue Oxygenation (PbtO2) Guided Protocol",
-        changeType: "UPGRADED",
-        previousGrade: "ICP-only guided management",
-        currentGrade: "Moderate recommendation FOR, High quality",
-        previousText: "Management was driven solely by intracranial pressure catheters without tissue oxygen verification.",
-        currentText:
-          "In severe traumatic brain injury, protocolized management combining intracranial pressure monitoring (ICP <22 mmHg) with invasive brain tissue oxygenation (PbtO2 ≥20 mmHg) is recommended over ICP monitoring alone, significantly reducing brain tissue hypoxia and improving 6-month functional recovery.",
-        drivingTrials: ["BOOST-2 Trial (Crit Care Med)", "BOOST-3 Phase 3 Trial"],
-      },
-      {
-        id: "chg-ncs-3",
-        category: "Non-Invasive Monitoring",
-        topic: "Automated Quantitative Pupillometry (Neurological Pupil Index, NPi)",
-        changeType: "UPGRADED",
-        previousGrade: "Manual penlight pupil assessment",
-        currentGrade: "Strong recommendation FOR, Moderate quality",
-        previousText: "Subjective manual penlight examination with substantial inter-observer variability.",
-        currentText:
-          "Automated quantitative pupillometry (measuring the Neurological Pupil index, NPi <3.0 as abnormal) should be utilized in comatose neuro-ICU patients to provide early warning of uncal herniation and brainstem ischemia hours before overt clinical deterioration.",
-        drivingTrials: ["ORANGE Study (Lancet Neurol)", "Pupillometry Consortia"],
-      },
-      {
-        id: "chg-ncs-4",
-        category: "Hyperosmolar Therapy",
-        topic: "Hypertonic Saline Preferred Over Mannitol in Hemodynamically Unstable Patients",
-        changeType: "REVISED",
-        previousGrade: "Mannitol as primary osmotic agent",
-        currentGrade: "Strong recommendation FOR",
-        previousText: "Mannitol boluses were administered without considering intravascular volume contraction.",
-        currentText:
-          "For acute intracranial pressure spikes, equiosmolar boluses of Hypertonic Saline (23.4% or 3%) are preferred over Mannitol, particularly in patients with borderline hypotension or hypovolemia, as hypertonic saline expands circulating volume without triggering osmotic diuresis.",
-        drivingTrials: ["COBI Trial", "NCS Hyperosmolar Therapy Meta-analysis"],
-      },
-      {
-        id: "chg-ncs-5",
-        category: "Hemodynamic Targets",
-        topic: "Cerebral Perfusion Pressure (CPP) Floor of 60–70 mmHg",
-        changeType: "REVISED",
-        previousGrade: "High CPP targets >70 mmHg using aggressive vasopressors",
-        currentGrade: "Strong recommendation FOR",
-        previousText: "Aggressive vasopressor titration to achieve CPP >70 mmHg frequently caused ARDS.",
-        currentText:
-          "Maintain cerebral perfusion pressure (CPP = MAP - ICP) strictly within 60 to 70 mmHg. Avoiding CPP <60 mmHg is essential to prevent cerebral ischemia, while avoiding CPP >70 mmHg with excessive vasopressors prevents acute lung injury.",
-        drivingTrials: ["Brain Trauma Foundation Guidelines", "NCS Hemodynamic Cohorts"],
-      },
-      {
-        id: "chg-ncs-6",
-        category: "Metabolic Monitoring",
-        topic: "Cerebral Microdialysis for Lactate/Pyruvate Ratio (LPR >25) Crisis Detection",
-        changeType: "NEW",
-        previousGrade: "Research tool only",
-        currentGrade: "Expert Consensus / Conditional in Specialized Centers",
-        previousText: "Brain metabolic distress was inferred only after irreversible tissue infarction.",
-        currentText:
-          "In tertiary neuro-ICUs, cerebral microdialysis monitoring elevated Lactate/Pyruvate Ratio (LPR >25 or >40) detects non-ischemic metabolic crisis and mitochondrial failure, triggering targeted optimization of cerebral glucose and oxygen delivery.",
-        drivingTrials: ["Consensus Statement on Cerebral Microdialysis"],
-      },
-    ],
-  },
-  {
-    id: "idsa-meningitis-2024",
-    society: "IDSA",
-    year: 2024,
-    subspecialty: "CNS Infections",
-    title: "Infectious Diseases Society of America (IDSA) Focused Guideline on Acute Community-Acquired Bacterial Meningitis",
-    officialUrl: "https://academic.oup.com/cid",
-    journalTarget: "Clin Infect Dis",
-    documentType: "Focused Update",
-    publishDate: "2024-08-25",
-    previousVersionYear: 2004,
-    executiveSummary:
-      "Modern practice update on acute bacterial meningitis: absolute requirement for immediate adjunctive Dexamethasone prior to/with first antimicrobial dose, empiric high-dose Ceftriaxone + Vancomycin, rapid CSF multiplex PCR pathogen confirmation within 2 hours, and selective Ampicillin coverage.",
-    linkedScenarioIds: ["cns-bacterial-meningitis"],
-    allPracticeChanges: [
-      {
-        id: "chg-cns-1",
-        scenarioId: "cns-bacterial-meningitis",
-        category: "Adjunctive Anti-Inflammatory",
-        topic: "Dexamethasone (10 mg IV) Administered Prior to or With First Antibiotic",
-        changeType: "UPGRADED",
-        previousGrade: "Class IIa (Optional consideration for pneumococcal etiology)",
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        previousText: "Steroids were sometimes started hours after antibiotics once CSF gram stain returned.",
-        currentText:
-          "In adults with suspected community-acquired acute bacterial meningitis, Dexamethasone (10 mg IV every 6 hours for 4 days) MUST be initiated prior to or concurrently with the first dose of antimicrobial therapy. Dexamethasone significantly reduces hearing loss, neurological sequelae, and mortality in S. pneumoniae meningitis; discontinue if non-pneumococcal.",
-        drivingTrials: ["de Gans & van de Beek (NEJM 2002)", "Cochrane Corticosteroids in Meningitis Review"],
-      },
-      {
-        id: "chg-cns-2",
-        scenarioId: "cns-bacterial-meningitis",
-        category: "Empiric Antimicrobial Regimen",
-        topic: "High-Dose Ceftriaxone + Vancomycin as Universal Empiric Standard",
-        changeType: "UPGRADED",
-        previousGrade: "Ceftriaxone monotherapy was common in some regions",
-        currentGrade: "Strong recommendation FOR, High quality",
-        previousText: "Vancomycin was reserved for confirmed cephalosporin-resistant strains.",
-        currentText:
-          "Empirical antimicrobial therapy must immediately combine high-dose third-generation cephalosporin (Ceftriaxone 2 g IV every 12 hours or Cefotaxime 2 g IV every 4 hours) plus Vancomycin (15–20 mg/kg IV every 8–12 hours, targeting trough 15–20 mcg/mL or AUC/MIC 400–600) to cover cephalosporin-resistant Streptococcus pneumoniae.",
-        drivingTrials: ["IDSA Bacterial Meningitis Working Group Studies"],
-      },
-      {
-        id: "chg-cns-3",
-        category: "Rapid Molecular Diagnostics",
-        topic: "Multiplex CSF PCR Panel (BioFire ME) for Immediate Pathogen Identification",
-        changeType: "NEW",
-        previousGrade: "CSF Gram stain and culture (24–48 hours) as sole standard",
-        currentGrade: "Strong recommendation FOR, High quality evidence",
-        previousText: "De-escalation or tailoring awaited conventional microbiological cultures taking 2 days.",
-        currentText:
-          "Comprehensive multiplex molecular PCR testing directly on cerebrospinal fluid (e.g., BioFire FilmArray ME Panel) should be performed immediately upon lumbar puncture, providing rapid identification of 14 common bacterial, viral, and fungal pathogens within 1 to 2 hours to optimize targeted de-escalation.",
-        drivingTrials: ["Multicenter Diagnostic Utility Studies of CSF Multiplex PCR"],
-      },
-      {
-        id: "chg-cns-4",
-        scenarioId: "cns-bacterial-meningitis",
-        category: "Listeria Coverage",
-        topic: "Addition of Ampicillin for Patients Aged >50 Years or Immunocompromised",
-        changeType: "REVISED",
-        previousGrade: "Age threshold was historically >60 years",
-        currentGrade: "Strong recommendation FOR",
-        previousText: "Listeria coverage was omitted in middle-aged adults without severe immunosuppression.",
-        currentText:
-          "Intravenous Ampicillin (2 g IV every 4 hours) must be added to the empirical regimen in all adults aged >50 years, pregnant women, and patients with immunocompromising conditions (malignancy, chronic alcoholism, diabetes, biologic therapy) to cover Listeria monocytogenes, which is inherently resistant to cephalosporins.",
-        drivingTrials: ["European Listeria Meningitis Registries"],
-      },
-      {
-        id: "chg-cns-5",
-        category: "Emergency Door-to-Antibiotic Time",
-        topic: "Harm Warning: Never Delay Antibiotics for CT Imaging or Lumbar Puncture",
-        changeType: "UPGRADED",
-        previousGrade: "Lumbar puncture prioritized prior to initiating medication",
-        currentGrade: "Class III: Harm (Delay >1 hour significantly increases mortality)",
-        previousText: "Clinicians delayed therapy to transport patients to CT scanners to rule out herniation risk.",
-        currentText:
-          "If clinical criteria necessitate a cranial CT scan before lumbar puncture (e.g., focal neurological deficit, new seizures, moderate-to-severe altered sensorium, immunocompromise), blood cultures and immediate empiric antibiotics + dexamethasone must be administered BEFORE sending the patient for neuroimaging.",
-        drivingTrials: ["Swedish Meningitis Cohort (Clin Infect Dis)", "van de Beek et al."],
-      },
-    ],
-  },
+        "id": "chg-cns-5",
+        "category": "Emergency Door-to-Antibiotic Time",
+        "topic": "Harm Warning: Never Delay Antibiotics for CT Imaging or Lumbar Puncture",
+        "changeType": "UPGRADED",
+        "previousGrade": "Lumbar puncture prioritized prior to initiating medication",
+        "currentGrade": "Class III: Harm (Delay >1 hour significantly increases mortality)",
+        "previousText": "Clinicians delayed therapy to transport patients to CT scanners to rule out herniation risk.",
+        "currentText": "If clinical criteria necessitate a cranial CT scan before lumbar puncture (e.g., focal neurological deficit, new seizures, moderate-to-severe altered sensorium, immunocompromise), blood cultures and immediate empiric antibiotics + dexamethasone must be administered BEFORE sending the patient for neuroimaging.",
+        "drivingTrials": [
+          "Swedish Meningitis Cohort (Clin Infect Dis)",
+          "van de Beek et al."
+        ]
+      }
+    ]
+  }
 ];
 
 export const MOCK_RECOMMENDATION_ATOMS: RecommendationAtom[] = [
-  // Scenario 1: ais-ivt-tenecteplase-4.5h
   {
-    id: "rec-aha-2026-tnk",
-    scenarioId: "ais-ivt-tenecteplase-4.5h",
-    guidelineDocId: "aha-ais-2026",
-    society: "AHA/ASA",
-    year: 2026,
-    originalGrade: "Class I, Level of Evidence A",
-    normalizedTier: 1,
-    recommendationText:
-      "Tenecteplase (0.25 mg/kg single bolus, maximum 25 mg) is recommended as a safe and effective alternative to Alteplase for eligible patients with acute ischemic stroke within 4.5 hours of onset.",
-    eligibilityCriteria: "Onset <4.5h, exclusion of intracranial hemorrhage on CT/MRI, SBP <185/110 mmHg, INR ≤1.7.",
-    citedTrials: ["AcT (Lancet 2022)", "TRACE-2 (Lancet 2023)", "ORIGINAL (Stroke 2024)"],
-    isLatestForSociety: true,
-    notes: "Administered as a single 5-10 second IV bolus, significantly reducing door-to-needle time by 15-20 minutes compared to Alteplase.",
+    "id": "rec-aha-2026-tnk",
+    "scenarioId": "ais-ivt-tenecteplase-4.5h",
+    "guidelineDocId": "aha-ais-2026",
+    "society": "AHA/ASA",
+    "year": 2026,
+    "originalGrade": "Class I, Level of Evidence A",
+    "normalizedTier": 1,
+    "recommendationText": "Tenecteplase (0.25 mg/kg single bolus, maximum 25 mg) is recommended as a safe and effective alternative to Alteplase for eligible patients with acute ischemic stroke within 4.5 hours of onset.",
+    "eligibilityCriteria": "Onset <4.5h, exclusion of intracranial hemorrhage on CT/MRI, SBP <185/110 mmHg, INR ≤1.7.",
+    "citedTrials": [
+      "AcT (Lancet 2022)",
+      "TRACE-2 (Lancet 2023)",
+      "ORIGINAL (Stroke 2024)"
+    ],
+    "isLatestForSociety": true,
+    "notes": "Administered as a single 5-10 second IV bolus, significantly reducing door-to-needle time by 15-20 minutes compared to Alteplase."
   },
   {
-    id: "rec-eso-2024-tnk",
-    scenarioId: "ais-ivt-tenecteplase-4.5h",
-    guidelineDocId: "eso-ais-2024",
-    society: "ESO",
-    year: 2024,
-    originalGrade: "Strong recommendation FOR, High quality evidence",
-    normalizedTier: 1,
-    recommendationText:
-      "ESO strongly recommends Tenecteplase 0.25 mg/kg (maximum 25 mg) over Alteplase 0.9 mg/kg in patients with acute ischemic stroke presenting within 4.5 hours.",
-    eligibilityCriteria: "Applies to both small branch occlusions and large vessel occlusions eligible for mechanical thrombectomy.",
-    citedTrials: ["AcT", "TRACE-2", "NOR-TEST 2A"],
-    isLatestForSociety: true,
-    notes: "Highest tier recommendation within the European GRADE framework.",
+    "id": "rec-eso-2024-tnk",
+    "scenarioId": "ais-ivt-tenecteplase-4.5h",
+    "guidelineDocId": "eso-ais-2024",
+    "society": "ESO",
+    "year": 2024,
+    "originalGrade": "Strong recommendation FOR, High quality evidence",
+    "normalizedTier": 1,
+    "recommendationText": "ESO strongly recommends Tenecteplase 0.25 mg/kg (maximum 25 mg) over Alteplase 0.9 mg/kg in patients with acute ischemic stroke presenting within 4.5 hours.",
+    "eligibilityCriteria": "Applies to both small branch occlusions and large vessel occlusions eligible for mechanical thrombectomy.",
+    "citedTrials": [
+      "AcT",
+      "TRACE-2",
+      "NOR-TEST 2A"
+    ],
+    "isLatestForSociety": true,
+    "notes": "Highest tier recommendation within the European GRADE framework."
   },
   {
-    id: "rec-vn-2025-tnk",
-    scenarioId: "ais-ivt-tenecteplase-4.5h",
-    guidelineDocId: "vn-moh-stroke-2025",
-    society: "VN-MOH",
-    year: 2025,
-    originalGrade: "Khuyến cáo Áp dụng Thực hành (Mức độ A)",
-    normalizedTier: 1,
-    recommendationText:
-      "Bộ Y tế & Hội Đột quỵ Việt Nam thống nhất khuyến cáo sử dụng Tenecteplase 0.25 mg/kg (tối đa 25mg) bolus tĩnh mạch 5 giây, ưu tiên áp dụng tại các cơ sở chuyển viện can thiệp (Drip and Ship).",
-    eligibilityCriteria: "Tuân thủ bảng kiểm an toàn tiêu sợi huyết quốc gia của Bộ Y tế.",
-    citedTrials: ["AcT", "TRACE-2", "Dữ liệu đa trung tâm Việt Nam"],
-    isLatestForSociety: true,
-    notes: "Đã có trong danh mục hướng dẫn điều trị chuẩn tại các bệnh viện tuyến tỉnh và trung ương, được BHYT chi trả.",
-  },
-
-  // Scenario 2: ais-large-core-evt-aspects-3-5
-  {
-    id: "rec-aha-2026-largecore",
-    scenarioId: "ais-large-core-evt-aspects-3-5",
-    guidelineDocId: "aha-ais-2026",
-    society: "AHA/ASA",
-    year: 2026,
-    originalGrade: "Class I, Level of Evidence A",
-    normalizedTier: 1,
-    recommendationText:
-      "Endovascular thrombectomy combined with medical management is strongly recommended for patients with ICA or MCA-M1 occlusion presenting with ASPECTS 3–5 or core volume ≥50 mL within 24 hours.",
-    eligibilityCriteria: "ASPECTS 3–5 on NCCT or MRI DWI; baseline mRS 0–1; absence of intracranial hemorrhage.",
-    citedTrials: ["SELECT2 (NEJM 2023)", "ANGEL-ASPECT (NEJM 2023)", "TENSION (Lancet 2023)"],
-    isLatestForSociety: true,
-    notes: "Number needed to treat (NNT) for functional independence is approximately 5 to 6.",
+    "id": "rec-vn-2025-tnk",
+    "scenarioId": "ais-ivt-tenecteplase-4.5h",
+    "guidelineDocId": "vn-moh-stroke-2025",
+    "society": "VN-MOH",
+    "year": 2025,
+    "originalGrade": "Khuyến cáo Áp dụng Thực hành (Mức độ A)",
+    "normalizedTier": 1,
+    "recommendationText": "Bộ Y tế & Hội Đột quỵ Việt Nam thống nhất khuyến cáo sử dụng Tenecteplase 0.25 mg/kg (tối đa 25mg) bolus tĩnh mạch 5 giây, ưu tiên áp dụng tại các cơ sở chuyển viện can thiệp (Drip and Ship).",
+    "eligibilityCriteria": "Tuân thủ bảng kiểm an toàn tiêu sợi huyết quốc gia của Bộ Y tế.",
+    "citedTrials": [
+      "AcT",
+      "TRACE-2",
+      "Dữ liệu đa trung tâm Việt Nam"
+    ],
+    "isLatestForSociety": true,
+    "notes": "Đã có trong danh mục hướng dẫn điều trị chuẩn tại các bệnh viện tuyến tỉnh và trung ương, được BHYT chi trả."
   },
   {
-    id: "rec-eso-2024-largecore",
-    scenarioId: "ais-large-core-evt-aspects-3-5",
-    guidelineDocId: "eso-ais-2024",
-    society: "ESO",
-    year: 2024,
-    originalGrade: "Strong recommendation FOR, High quality evidence",
-    normalizedTier: 1,
-    recommendationText:
-      "We strongly recommend mechanical thrombectomy in patients with acute ischemic stroke and large infarct core (ASPECTS 3–5 or volume ≥50 mL) within 24 hours.",
-    eligibilityCriteria: "Proximal anterior circulation occlusion (ICA or M1/M2), age ≥18.",
-    citedTrials: ["SELECT2", "ANGEL-ASPECT", "TENSION", "LASTE"],
-    isLatestForSociety: true,
-    notes: "Clinicians should not withhold thrombectomy solely on the basis of large core imaging in early arrivers.",
+    "id": "rec-aha-2026-largecore",
+    "scenarioId": "ais-large-core-evt-aspects-3-5",
+    "guidelineDocId": "aha-ais-2026",
+    "society": "AHA/ASA",
+    "year": 2026,
+    "originalGrade": "Class I, Level of Evidence A",
+    "normalizedTier": 1,
+    "recommendationText": "Endovascular thrombectomy combined with medical management is strongly recommended for patients with ICA or MCA-M1 occlusion presenting with ASPECTS 3–5 or core volume ≥50 mL within 24 hours.",
+    "eligibilityCriteria": "ASPECTS 3–5 on NCCT or MRI DWI; baseline mRS 0–1; absence of intracranial hemorrhage.",
+    "citedTrials": [
+      "SELECT2 (NEJM 2023)",
+      "ANGEL-ASPECT (NEJM 2023)",
+      "TENSION (Lancet 2023)"
+    ],
+    "isLatestForSociety": true,
+    "notes": "Number needed to treat (NNT) for functional independence is approximately 5 to 6."
   },
   {
-    id: "rec-vn-2025-largecore",
-    scenarioId: "ais-large-core-evt-aspects-3-5",
-    guidelineDocId: "vn-moh-stroke-2025",
-    society: "VN-MOH",
-    year: 2025,
-    originalGrade: "Khuyến cáo Thực hiện (Mức độ A)",
-    normalizedTier: 1,
-    recommendationText:
-      "Khuyến cáo thực hiện can thiệp lấy huyết khối cơ học tại các trung tâm đột quỵ có năng lực hồi sức thần kinh cho bệnh nhân có ASPECTS 3–5.",
-    eligibilityCriteria: "Được đánh giá cẩn thận nguy cơ xuất huyết chuyển dạng, kiểm soát huyết áp chặt sau can thiệp.",
-    citedTrials: ["SELECT2", "TENSION", "Kinh nghiệm lâm sàng Bệnh viện Bạch Mai, Chợ Rẫy, 115"],
-    isLatestForSociety: true,
-    notes: "Cần theo dõi sát phù não ác tính trong 72 giờ đầu sau can thiệp.",
-  },
-
-  // Scenario 3: ich-acute-bp-lowering
-  {
-    id: "rec-aha-2022-ich-bp",
-    scenarioId: "ich-acute-bp-lowering",
-    guidelineDocId: "aha-ich-2022",
-    society: "AHA/ASA",
-    year: 2022,
-    originalGrade: "Class IIa, Level of Evidence B-R",
-    normalizedTier: 2,
-    recommendationText:
-      "In patients with acute spontaneous ICH presenting with SBP between 150 and 220 mmHg, acute lowering to a target SBP of 130–140 mmHg within hours is safe and reasonable to improve functional outcomes.",
-    eligibilityCriteria: "Onset <6h; avoid acute SBP lowering >60 mmHg within 1 hour or lowering SBP below 130 mmHg.",
-    citedTrials: ["INTERACT2 (NEJM 2013)", "ATACH-2 (NEJM 2016)"],
-    isLatestForSociety: true,
-    notes: "Continuous IV infusions such as Nicardipine are preferred for predictable titration.",
+    "id": "rec-eso-2024-largecore",
+    "scenarioId": "ais-large-core-evt-aspects-3-5",
+    "guidelineDocId": "eso-ais-2024",
+    "society": "ESO",
+    "year": 2024,
+    "originalGrade": "Strong recommendation FOR, High quality evidence",
+    "normalizedTier": 1,
+    "recommendationText": "We strongly recommend mechanical thrombectomy in patients with acute ischemic stroke and large infarct core (ASPECTS 3–5 or volume ≥50 mL) within 24 hours.",
+    "eligibilityCriteria": "Proximal anterior circulation occlusion (ICA or M1/M2), age ≥18.",
+    "citedTrials": [
+      "SELECT2",
+      "ANGEL-ASPECT",
+      "TENSION",
+      "LASTE"
+    ],
+    "isLatestForSociety": true,
+    "notes": "Clinicians should not withhold thrombectomy solely on the basis of large core imaging in early arrivers."
   },
   {
-    id: "rec-eso-2021-ich-bp",
-    scenarioId: "ich-acute-bp-lowering",
-    guidelineDocId: "eso-ich-2021",
-    society: "ESO",
-    year: 2021,
-    originalGrade: "Weak recommendation FOR, Moderate quality",
-    normalizedTier: 2,
-    recommendationText:
-      "Lower systolic blood pressure below 140 mmHg (while avoiding SBP <130 mmHg) within the first 24 hours of spontaneous ICH onset.",
-    eligibilityCriteria: "Absence of impending brain herniation or massive intracranial pressure crisis.",
-    citedTrials: ["INTERACT2", "ATACH-2 Meta-analysis"],
-    isLatestForSociety: true,
+    "id": "rec-vn-2025-largecore",
+    "scenarioId": "ais-large-core-evt-aspects-3-5",
+    "guidelineDocId": "vn-moh-stroke-2025",
+    "society": "VN-MOH",
+    "year": 2025,
+    "originalGrade": "Khuyến cáo Thực hiện (Mức độ A)",
+    "normalizedTier": 1,
+    "recommendationText": "Khuyến cáo thực hiện can thiệp lấy huyết khối cơ học tại các trung tâm đột quỵ có năng lực hồi sức thần kinh cho bệnh nhân có ASPECTS 3–5.",
+    "eligibilityCriteria": "Được đánh giá cẩn thận nguy cơ xuất huyết chuyển dạng, kiểm soát huyết áp chặt sau can thiệp.",
+    "citedTrials": [
+      "SELECT2",
+      "TENSION",
+      "Kinh nghiệm lâm sàng Bệnh viện Bạch Mai, Chợ Rẫy, 115"
+    ],
+    "isLatestForSociety": true,
+    "notes": "Cần theo dõi sát phù não ác tính trong 72 giờ đầu sau can thiệp."
   },
   {
-    id: "rec-vn-2025-ich-bp",
-    scenarioId: "ich-acute-bp-lowering",
-    guidelineDocId: "vn-moh-stroke-2025",
-    society: "VN-MOH",
-    year: 2025,
-    originalGrade: "Khuyến cáo Áp dụng (Mức độ IIa)",
-    normalizedTier: 2,
-    recommendationText:
-      "Hạ huyết áp tâm thu nhanh chóng đạt mục tiêu 130–140 mmHg trong 1–2 giờ đầu bằng Nicardipine truyền tĩnh mạch và duy trì ổn định.",
-    eligibilityCriteria: "Theo dõi huyết áp động mạch xâm lấn hoặc đo tự động mỗi 5-15 phút.",
-    citedTrials: ["INTERACT2", "Phác đồ Bộ Y tế"],
-    isLatestForSociety: true,
-  },
-
-  // Scenario 4: asah-aneurysm-coiling-vs-clipping
-  {
-    id: "rec-eso-2026-asah-coiling",
-    scenarioId: "asah-aneurysm-coiling-vs-clipping",
-    guidelineDocId: "eso-asah-2026",
-    society: "ESO",
-    year: 2026,
-    originalGrade: "Strong recommendation FOR, High quality evidence",
-    normalizedTier: 1,
-    recommendationText:
-      "In patients with aneurysmal subarachnoid haemorrhage in good clinical condition (WFNS I–III) and a ruptured aneurysm equally suitable for both endovascular and neurosurgical treatment, we recommend regular endovascular coiling (without adjunctive devices) as the preferred treatment strategy over microsurgical clipping to minimize 1-year poor functional outcome and disability.",
-    eligibilityCriteria: "WFNS grades I–III; aneurysm morphology suitable for endovascular occlusion without required adjunctive stenting.",
-    citedTrials: ["ISAT (Lancet)", "ISAT 10-Year Follow-up", "Cochrane Systematic Review 2025"],
-    isLatestForSociety: true,
-    notes: "Landmark joint recommendation from ESO, EANS, and ESMINT published in European Stroke Journal May 2026 (DOI: 10.1093/esj/aakag043).",
+    "id": "rec-aha-2022-ich-bp",
+    "scenarioId": "ich-acute-bp-lowering",
+    "guidelineDocId": "aha-ich-2022",
+    "society": "AHA/ASA",
+    "year": 2022,
+    "originalGrade": "Class IIa, Level of Evidence B-R",
+    "normalizedTier": 2,
+    "recommendationText": "In patients with acute spontaneous ICH presenting with SBP between 150 and 220 mmHg, acute lowering to a target SBP of 130–140 mmHg within hours is safe and reasonable to improve functional outcomes.",
+    "eligibilityCriteria": "Onset <6h; avoid acute SBP lowering >60 mmHg within 1 hour or lowering SBP below 130 mmHg.",
+    "citedTrials": [
+      "INTERACT2 (NEJM 2013)",
+      "ATACH-2 (NEJM 2016)"
+    ],
+    "isLatestForSociety": true,
+    "notes": "Continuous IV infusions such as Nicardipine are preferred for predictable titration."
   },
   {
-    id: "rec-aha-2023-asah-coiling",
-    scenarioId: "asah-aneurysm-coiling-vs-clipping",
-    guidelineDocId: "eso-asah-2026",
-    society: "AHA/ASA",
-    year: 2023,
-    originalGrade: "Class I, Level of Evidence B-R",
-    normalizedTier: 1,
-    recommendationText:
-      "For patients with ruptured aneurysms judged to be technically amenable to both endovascular coiling and surgical clipping, endovascular coiling should be considered to improve 1-year functional independence.",
-    eligibilityCriteria: "Patients presenting within acute window without large parenchymal hematoma (>50 mL).",
-    citedTrials: ["ISAT", "BRAT Trial"],
-    isLatestForSociety: true,
-    notes: "Microsurgical clipping remains preferred for MCA bifurcation aneurysms or wide-neck aneurysms with branch vessels.",
+    "id": "rec-eso-2021-ich-bp",
+    "scenarioId": "ich-acute-bp-lowering",
+    "guidelineDocId": "eso-ich-2021",
+    "society": "ESO",
+    "year": 2021,
+    "originalGrade": "Weak recommendation FOR, Moderate quality",
+    "normalizedTier": 2,
+    "recommendationText": "Lower systolic blood pressure below 140 mmHg (while avoiding SBP <130 mmHg) within the first 24 hours of spontaneous ICH onset.",
+    "eligibilityCriteria": "Absence of impending brain herniation or massive intracranial pressure crisis.",
+    "citedTrials": [
+      "INTERACT2",
+      "ATACH-2 Meta-analysis"
+    ],
+    "isLatestForSociety": true
   },
   {
-    id: "rec-vn-2025-asah-coiling",
-    scenarioId: "asah-aneurysm-coiling-vs-clipping",
-    guidelineDocId: "vn-moh-stroke-2025",
-    society: "VN-MOH",
-    year: 2025,
-    originalGrade: "Khuyến cáo Thực hiện (Mức độ A)",
-    normalizedTier: 1,
-    recommendationText:
-      "Khuyến cáo ưu tiên can thiệp nút túi phình bằng vòng xoắn kim loại (Coil) qua đường nội mạch cho bệnh nhân xuất huyết dưới nhện do vỡ túi phình tại các trung tâm có đơn vị can thiệp mạch não.",
-    eligibilityCriteria: "Thực hiện cấp cứu càng sớm càng tốt (trong vòng 24 giờ đầu), kết hợp dùng Nimodipine đường uống 60mg mỗi 4 giờ.",
-    citedTrials: ["Dữ liệu can thiệp túi phình BV Bạch Mai, Chợ Rẫy, 115"],
-    isLatestForSociety: true,
-    notes: "BHYT chi trả cho vật tư can thiệp coil và can thiệp mạch não.",
+    "id": "rec-vn-2025-ich-bp",
+    "scenarioId": "ich-acute-bp-lowering",
+    "guidelineDocId": "vn-moh-stroke-2025",
+    "society": "VN-MOH",
+    "year": 2025,
+    "originalGrade": "Khuyến cáo Áp dụng (Mức độ IIa)",
+    "normalizedTier": 2,
+    "recommendationText": "Hạ huyết áp tâm thu nhanh chóng đạt mục tiêu 130–140 mmHg trong 1–2 giờ đầu bằng Nicardipine truyền tĩnh mạch và duy trì ổn định.",
+    "eligibilityCriteria": "Theo dõi huyết áp động mạch xâm lấn hoặc đo tự động mỗi 5-15 phút.",
+    "citedTrials": [
+      "INTERACT2",
+      "Phác đồ Bộ Y tế"
+    ],
+    "isLatestForSociety": true
   },
+  {
+    "id": "rec-eso-2026-asah-coiling",
+    "scenarioId": "asah-aneurysm-coiling-vs-clipping",
+    "guidelineDocId": "eso-asah-2026",
+    "society": "ESO",
+    "year": 2026,
+    "originalGrade": "Strong recommendation FOR, High quality evidence",
+    "normalizedTier": 1,
+    "recommendationText": "In patients with aneurysmal subarachnoid haemorrhage in good clinical condition (WFNS I–III) and a ruptured aneurysm equally suitable for both endovascular and neurosurgical treatment, we recommend regular endovascular coiling (without adjunctive devices) as the preferred treatment strategy over microsurgical clipping to minimize 1-year poor functional outcome and disability.",
+    "eligibilityCriteria": "WFNS grades I–III; aneurysm morphology suitable for endovascular occlusion without required adjunctive stenting.",
+    "citedTrials": [
+      "ISAT (Lancet)",
+      "ISAT 10-Year Follow-up",
+      "Cochrane Systematic Review 2025"
+    ],
+    "isLatestForSociety": true,
+    "notes": "Landmark joint recommendation from ESO, EANS, and ESMINT published in European Stroke Journal May 2026 (DOI: 10.1093/esj/aakag043)."
+  },
+  {
+    "id": "rec-aha-2023-asah-coiling",
+    "scenarioId": "asah-aneurysm-coiling-vs-clipping",
+    "guidelineDocId": "eso-asah-2026",
+    "society": "AHA/ASA",
+    "year": 2023,
+    "originalGrade": "Class I, Level of Evidence B-R",
+    "normalizedTier": 1,
+    "recommendationText": "For patients with ruptured aneurysms judged to be technically amenable to both endovascular coiling and surgical clipping, endovascular coiling should be considered to improve 1-year functional independence.",
+    "eligibilityCriteria": "Patients presenting within acute window without large parenchymal hematoma (>50 mL).",
+    "citedTrials": [
+      "ISAT",
+      "BRAT Trial"
+    ],
+    "isLatestForSociety": true,
+    "notes": "Microsurgical clipping remains preferred for MCA bifurcation aneurysms or wide-neck aneurysms with branch vessels."
+  },
+  {
+    "id": "rec-vn-2025-asah-coiling",
+    "scenarioId": "asah-aneurysm-coiling-vs-clipping",
+    "guidelineDocId": "vn-moh-stroke-2025",
+    "society": "VN-MOH",
+    "year": 2025,
+    "originalGrade": "Khuyến cáo Thực hiện (Mức độ A)",
+    "normalizedTier": 1,
+    "recommendationText": "Khuyến cáo ưu tiên can thiệp nút túi phình bằng vòng xoắn kim loại (Coil) qua đường nội mạch cho bệnh nhân xuất huyết dưới nhện do vỡ túi phình tại các trung tâm có đơn vị can thiệp mạch não.",
+    "eligibilityCriteria": "Thực hiện cấp cứu càng sớm càng tốt (trong vòng 24 giờ đầu), kết hợp dùng Nimodipine đường uống 60mg mỗi 4 giờ.",
+    "citedTrials": [
+      "Dữ liệu can thiệp túi phình BV Bạch Mai, Chợ Rẫy, 115"
+    ],
+    "isLatestForSociety": true,
+    "notes": "BHYT chi trả cho vật tư can thiệp coil và can thiệp mạch não."
+  }
 ];
 
 export const MOCK_CONFERENCE_EVENTS: ConferenceEvent[] = [
   {
-    id: "conf-wsc-2026",
-    acronym: "WSC 2026",
-    name: "18th World Stroke Congress (Joint Meeting with Korean Stroke Society)",
-    year: 2026,
-    startDate: "2026-10-22",
-    endDate: "2026-10-31",
-    subspecialties: ["Stroke"],
-    dates: "October 22–25, 2026 (Live Podium Reports)",
-    location: "Seoul, South Korea (COEX)",
-    status: "LIVE",
-    officialUrl: "https://worldstrokecongress.org",
-    executiveSummary:
-      "The flagship global stroke event hosted by the World Stroke Organization in Seoul, South Korea. Live podium reporting of practice-changing late-breaking trials, including distal medium vessel occlusion thrombectomy, artificial intelligence telestroke networks, and mobile stroke units in Asian healthcare systems.",
-    stats: {
-      totalLateBreakingTrials: 16,
-      positiveTrials: 12,
-      practiceChangingCount: 6,
-    },
-    lateBreakingTrials: [
-      {
-        id: "trial-wsc-mevo",
-        trialAcronym: "DISTAL-EVT",
-        title: "Randomized Trial of Endovascular Thrombectomy for Distal Middle and Anterior Cerebral Artery Occlusions",
-        studyDesign: "Phase 3 RCT",
-        subspecialty: "Stroke",
-        verdict: "POSITIVE",
-        isPracticeChanging: true,
-        publishedJournal: "NEJM",
-        fullTextUrl: "https://www.nejm.org",
-        populationSummary: "N = 490 patients with acute ischemic stroke due to isolated distal MCA (M2/M3) or ACA (A2/A3) occlusions presenting within 12 hours.",
-        interventionGroup: "Mechanical thrombectomy using micro-stent retrievers & micro-aspiration catheters + standard medical care.",
-        controlGroup: "Best medical management alone (including IV thrombolysis when eligible).",
-        primaryOutcome: "90-day functional independence (mRS 0–2): 54.2% vs 42.1% (aOR 1.63; 95% CI 1.14–2.32; p = 0.007).",
-        safetyOutcome: "Symptomatic intracranial hemorrhage (sICH): 3.2% vs 2.1% (p = 0.45); vessel rupture: 1.6%.",
-        bottomLineTakeaway:
-          "Endovascular thrombectomy significantly improves functional independence in patients with acute distal medium vessel occlusions without excess procedural hemorrhage.",
-        impactedScenarioId: "ais-large-core-evt-aspects-3-5",
-        guidelineImpactWarning:
-          "Anticipated to upgrade current weak recommendation for distal thrombectomy to Class I / Strong Recommendation across ESO and AHA guidelines.",
-      },
-      {
-        id: "trial-wsc-msu-asia",
-        trialAcronym: "ASIA-MSU",
-        title: "Impact of Mobile Stroke Unit Deployment on 90-Day Disability in High-Density Asian Megacities",
-        studyDesign: "Phase 3 RCT",
-        subspecialty: "Stroke",
-        verdict: "POSITIVE",
-        isPracticeChanging: true,
-        publishedJournal: "Lancet",
-        populationSummary: "N = 1,850 hyperacute stroke alerts randomized to Mobile Stroke Unit (CT + telestroke on ambulance) vs standard EMS dispatch.",
-        interventionGroup: "MSU dispatch with prehospital point-of-care CT and immediate IV Tenecteplase bolus.",
-        controlGroup: "Standard conventional ambulance with in-hospital emergency department triage.",
-        primaryOutcome: "Golden hour thrombolysis (<60 min from onset): 34.5% vs 3.2% (p < 0.001); mRS 0–1 at 90 days: 48.6% vs 37.8% (p = 0.002).",
-        safetyOutcome: "sICH: 2.8% vs 2.9% (equivalent).",
-        bottomLineTakeaway:
-          "Prehospital mobile stroke units achieve dramatic 40-minute reductions in door-to-needle time and substantially higher 90-day functional recovery in densely populated urban centers.",
-        impactedScenarioId: "ais-ivt-tenecteplase-4.5h",
-        guidelineImpactWarning:
-          "Reinforces prehospital ultra-early Tenecteplase bolus administration within 60 minutes of symptom onset.",
-      },
-      {
-        id: "trial-wsc-prevent-doac",
-        trialAcronym: "PREVENT-DOAC",
-        title: "Immediate (Day 1) vs. Early (Day 3-4) DOAC Initiation in Patients with Acute Mild-to-Moderate Ischemic Stroke and Atrial Fibrillation",
-        studyDesign: "Phase 3 RCT",
-        subspecialty: "Stroke",
-        verdict: "POSITIVE",
-        isPracticeChanging: true,
-        publishedJournal: "Stroke",
-        populationSummary: "N = 2,200 patients with acute ischemic stroke and nonvalvular AF randomized within 24 hours of symptom onset.",
-        interventionGroup: "Immediate DOAC initiation within 24 hours (Day 1).",
-        controlGroup: "Early DOAC initiation at 72–96 hours (Days 3–4).",
-        primaryOutcome: "Composite of recurrent ischemic stroke, systemic embolism, or major bleeding within 30 days: 2.1% vs 2.4% (Non-inferior, p < 0.001).",
-        safetyOutcome: "Symptomatic intracranial hemorrhage: 0.2% vs 0.2% (no increase in bleeding with Day 1 start).",
-        bottomLineTakeaway:
-          "Starting DOACs on Day 1 is safe in mild acute ischemic stroke (NIHSS ≤5) without parenchymal hemorrhage, effectively debunking the historical 14-day delay rule.",
-      },
+    "id": "conf-wsc-2026",
+    "acronym": "WSC 2026",
+    "name": "18th World Stroke Congress (Joint Meeting with Korean Stroke Society)",
+    "year": 2026,
+    "startDate": "2026-10-22",
+    "endDate": "2026-10-31",
+    "subspecialties": [
+      "Stroke"
     ],
+    "dates": "October 22–25, 2026 (Live Podium Reports)",
+    "location": "Seoul, South Korea (COEX)",
+    "status": "LIVE",
+    "officialUrl": "https://worldstrokecongress.org",
+    "executiveSummary": "The flagship global stroke event hosted by the World Stroke Organization in Seoul, South Korea. Live podium reporting of practice-changing late-breaking trials, including distal medium vessel occlusion thrombectomy, artificial intelligence telestroke networks, and mobile stroke units in Asian healthcare systems.",
+    "stats": {
+      "totalLateBreakingTrials": 16,
+      "positiveTrials": 12,
+      "practiceChangingCount": 6
+    },
+    "lateBreakingTrials": [
+      {
+        "id": "trial-wsc-mevo",
+        "trialAcronym": "DISTAL-EVT",
+        "title": "Randomized Trial of Endovascular Thrombectomy for Distal Middle and Anterior Cerebral Artery Occlusions",
+        "studyDesign": "Phase 3 RCT",
+        "subspecialty": "Stroke",
+        "verdict": "POSITIVE",
+        "isPracticeChanging": true,
+        "publishedJournal": "NEJM",
+        "fullTextUrl": "https://www.nejm.org",
+        "populationSummary": "N = 490 patients with acute ischemic stroke due to isolated distal MCA (M2/M3) or ACA (A2/A3) occlusions presenting within 12 hours.",
+        "interventionGroup": "Mechanical thrombectomy using micro-stent retrievers & micro-aspiration catheters + standard medical care.",
+        "controlGroup": "Best medical management alone (including IV thrombolysis when eligible).",
+        "primaryOutcome": "90-day functional independence (mRS 0–2): 54.2% vs 42.1% (aOR 1.63; 95% CI 1.14–2.32; p = 0.007).",
+        "safetyOutcome": "Symptomatic intracranial hemorrhage (sICH): 3.2% vs 2.1% (p = 0.45); vessel rupture: 1.6%.",
+        "bottomLineTakeaway": "Endovascular thrombectomy significantly improves functional independence in patients with acute distal medium vessel occlusions without excess procedural hemorrhage.",
+        "impactedScenarioId": "ais-large-core-evt-aspects-3-5",
+        "guidelineImpactWarning": "Anticipated to upgrade current weak recommendation for distal thrombectomy to Class I / Strong Recommendation across ESO and AHA guidelines."
+      },
+      {
+        "id": "trial-wsc-msu-asia",
+        "trialAcronym": "ASIA-MSU",
+        "title": "Impact of Mobile Stroke Unit Deployment on 90-Day Disability in High-Density Asian Megacities",
+        "studyDesign": "Phase 3 RCT",
+        "subspecialty": "Stroke",
+        "verdict": "POSITIVE",
+        "isPracticeChanging": true,
+        "publishedJournal": "Lancet",
+        "populationSummary": "N = 1,850 hyperacute stroke alerts randomized to Mobile Stroke Unit (CT + telestroke on ambulance) vs standard EMS dispatch.",
+        "interventionGroup": "MSU dispatch with prehospital point-of-care CT and immediate IV Tenecteplase bolus.",
+        "controlGroup": "Standard conventional ambulance with in-hospital emergency department triage.",
+        "primaryOutcome": "Golden hour thrombolysis (<60 min from onset): 34.5% vs 3.2% (p < 0.001); mRS 0–1 at 90 days: 48.6% vs 37.8% (p = 0.002).",
+        "safetyOutcome": "sICH: 2.8% vs 2.9% (equivalent).",
+        "bottomLineTakeaway": "Prehospital mobile stroke units achieve dramatic 40-minute reductions in door-to-needle time and substantially higher 90-day functional recovery in densely populated urban centers.",
+        "impactedScenarioId": "ais-ivt-tenecteplase-4.5h",
+        "guidelineImpactWarning": "Reinforces prehospital ultra-early Tenecteplase bolus administration within 60 minutes of symptom onset."
+      },
+      {
+        "id": "trial-wsc-prevent-doac",
+        "trialAcronym": "PREVENT-DOAC",
+        "title": "Immediate (Day 1) vs. Early (Day 3-4) DOAC Initiation in Patients with Acute Mild-to-Moderate Ischemic Stroke and Atrial Fibrillation",
+        "studyDesign": "Phase 3 RCT",
+        "subspecialty": "Stroke",
+        "verdict": "POSITIVE",
+        "isPracticeChanging": true,
+        "publishedJournal": "Stroke",
+        "populationSummary": "N = 2,200 patients with acute ischemic stroke and nonvalvular AF randomized within 24 hours of symptom onset.",
+        "interventionGroup": "Immediate DOAC initiation within 24 hours (Day 1).",
+        "controlGroup": "Early DOAC initiation at 72–96 hours (Days 3–4).",
+        "primaryOutcome": "Composite of recurrent ischemic stroke, systemic embolism, or major bleeding within 30 days: 2.1% vs 2.4% (Non-inferior, p < 0.001).",
+        "safetyOutcome": "Symptomatic intracranial hemorrhage: 0.2% vs 0.2% (no increase in bleeding with Day 1 start).",
+        "bottomLineTakeaway": "Starting DOACs on Day 1 is safe in mild acute ischemic stroke (NIHSS ≤5) without parenchymal hemorrhage, effectively debunking the historical 14-day delay rule."
+      }
+    ]
   },
   {
-    id: "conf-esoc-2026",
-    acronym: "ESOC 2026",
-    name: "12th European Stroke Organisation Conference",
-    year: 2026,
-    startDate: "2026-05-20",
-    endDate: "2026-05-22",
-    subspecialties: ["Stroke"],
-    dates: "May 20–22, 2026",
-    location: "Munich, Germany",
-    status: "RECENT",
-    officialUrl: "https://esocstroke.org",
-    executiveSummary:
-      "Europe's premier stroke conference bringing together over 4,500 clinicians. Key focuses include mechanical thrombectomy in extreme ischemic cores, minimally invasive surgical evacuation for ICH, and next-generation Factor XIa inhibitors.",
-    stats: {
-      totalLateBreakingTrials: 14,
-      positiveTrials: 9,
-      practiceChangingCount: 5,
-    },
-    lateBreakingTrials: [
-      {
-        id: "trial-laste",
-        trialAcronym: "LASTE",
-        title: "Large Stroke Therapy Evaluation: Thrombectomy in Extremely Large Core Infarctions",
-        studyDesign: "Phase 3 RCT",
-        subspecialty: "Stroke",
-        verdict: "POSITIVE",
-        isPracticeChanging: true,
-        publishedJournal: "NEJM",
-        fullTextUrl: "https://www.nejm.org",
-        populationSummary: "N = 333 patients with acute anterior circulation LVO and extremely low ASPECTS (0–2 on NCCT/MRI) or core volume >50 mL.",
-        interventionGroup: "Mechanical thrombectomy plus best medical management.",
-        controlGroup: "Best medical management alone.",
-        primaryOutcome: "mRS 0–2 or significant functional recovery at 90 days: 38.2% vs 14.5% (RR 2.63; 95% CI 1.68–4.11; p < 0.001).",
-        safetyOutcome: "Symptomatic intracranial hemorrhage (sICH): 4.8% vs 2.2% (p = 0.21); 90-day mortality: 36.1% vs 55.4% (p = 0.005).",
-        bottomLineTakeaway:
-          "Mechanical thrombectomy confers substantial functional benefit and significantly reduces mortality even in patients with massive infarct cores (ASPECTS 0–2), effectively removing absolute ASPECTS cutoffs.",
-        impactedScenarioId: "ais-large-core-evt-aspects-3-5",
-        guidelineImpactWarning:
-          "Breakthrough evidence expected to expand guideline recommendations from ASPECTS 3–5 down to ASPECTS 0–2 in upcoming updates.",
-      },
-      {
-        id: "trial-escape-mevo",
-        trialAcronym: "ESCAPE-MeVO",
-        title: "Endovascular Treatment to Improve Outcomes for Medium Vessel Occlusions",
-        studyDesign: "Phase 3 RCT",
-        subspecialty: "Stroke",
-        verdict: "POSITIVE",
-        isPracticeChanging: true,
-        publishedJournal: "Lancet",
-        populationSummary: "N = 530 patients with isolated medium and distal vessel occlusions (M2/M3, A2/A3, P2/P3) within 12 hours.",
-        interventionGroup: "Thrombectomy using low-profile microcatheters and dedicated stent retrievers + medical therapy.",
-        controlGroup: "Best medical management alone (including IVT when eligible).",
-        primaryOutcome: "Excellent functional outcome (mRS 0–1) at 90 days: 51.4% vs 40.2% (aOR 1.61; 95% CI 1.15–2.26; p = 0.006).",
-        safetyOutcome: "Vessel perforation: 1.9%; sICH: 3.1% vs 2.4% (p = 0.58).",
-        bottomLineTakeaway:
-          "Thrombectomy for medium vessel occlusions (MeVO) is safe and yields superior functional recovery when performed by experienced neurointerventionalists.",
-        impactedScenarioId: "ais-large-core-evt-aspects-3-5",
-        guidelineImpactWarning:
-          "Provides first Level A randomized evidence for distal thrombectomy, previously categorized as Weak/Low Quality by ESO.",
-      },
-      {
-        id: "trial-oceanic-stroke",
-        trialAcronym: "OCEANIC-STROKE",
-        title: "Asundexian (Factor XIa Inhibitor) for Secondary Prevention After Non-Cardioembolic Ischemic Stroke",
-        studyDesign: "Phase 3 RCT",
-        subspecialty: "Stroke",
-        verdict: "NEUTRAL",
-        isPracticeChanging: false,
-        publishedJournal: "Stroke",
-        populationSummary: "N = 9,300 patients with non-cardioembolic acute ischemic stroke.",
-        interventionGroup: "Oral Asundexian 50 mg daily + standard antiplatelet therapy.",
-        controlGroup: "Placebo + standard antiplatelet therapy.",
-        primaryOutcome: "Recurrent ischemic stroke: 6.2% vs 6.8% (HR 0.91; 95% CI 0.78–1.06; p = 0.22 - Not Statistically Significant).",
-        safetyOutcome: "ISTH Major Bleeding: Equivalent between arms (1.4% vs 1.3%).",
-        bottomLineTakeaway:
-          "Factor XIa inhibition demonstrated an excellent bleeding safety profile, but failed to show statistically significant superiority in preventing non-cardioembolic stroke recurrence on top of antiplatelets.",
-      },
+    "id": "conf-esoc-2026",
+    "acronym": "ESOC 2026",
+    "name": "12th European Stroke Organisation Conference",
+    "year": 2026,
+    "startDate": "2026-05-20",
+    "endDate": "2026-05-22",
+    "subspecialties": [
+      "Stroke"
     ],
-  },
-  {
-    id: "conf-ean-2026",
-    acronym: "EAN 2026",
-    name: "12th Congress of the European Academy of Neurology",
-    year: 2026,
-    startDate: "2026-06-27",
-    subspecialties: ["All Subspecialties", "Stroke", "Movement Disorders", "Headache & Pain", "Neuroimmunology"],
-    dates: "June 27–30, 2026",
-    location: "Helsinki, Finland",
-    status: "RECENT",
-    officialUrl: "https://www.ean.org/congress-2026",
-    executiveSummary:
-      "Europe's overarching clinical neurology congress covering broad innovations across multiple sclerosis B-cell depletion, novel CGRP-pathway preventive therapies in migraine, and early neurofilament tracking.",
-    stats: {
-      totalLateBreakingTrials: 19,
-      positiveTrials: 13,
-      practiceChangingCount: 6,
+    "dates": "May 20–22, 2026",
+    "location": "Munich, Germany",
+    "status": "RECENT",
+    "officialUrl": "https://esocstroke.org",
+    "executiveSummary": "Europe's premier stroke conference bringing together over 4,500 clinicians. Key focuses include mechanical thrombectomy in extreme ischemic cores, minimally invasive surgical evacuation for ICH, and next-generation Factor XIa inhibitors.",
+    "stats": {
+      "totalLateBreakingTrials": 14,
+      "positiveTrials": 9,
+      "practiceChangingCount": 5
     },
-    lateBreakingTrials: [],
-  },
-  {
-    id: "conf-aaic-2026",
-    acronym: "AAIC 2026",
-    name: "Alzheimer's Association International Conference",
-    year: 2026,
-    startDate: "2026-07-26",
-    subspecialties: ["Dementia"],
-    dates: "July 26–30, 2026",
-    location: "Amsterdam, Netherlands",
-    status: "RECENT",
-    officialUrl: "https://alz.org/aaic",
-    executiveSummary:
-      "Global dementia congress focusing on plasma p-Tau217 biomarker validation for outpatient early detection, secondary prevention trials, and amyloid clearance dynamics.",
-    stats: {
-      totalLateBreakingTrials: 16,
-      positiveTrials: 12,
-      practiceChangingCount: 6,
-    },
-    lateBreakingTrials: [],
-  },
-  {
-    id: "conf-ectrims-2026",
-    acronym: "ECTRIMS 2026",
-    name: "42nd Congress of the European Committee for Treatment and Research in Multiple Sclerosis",
-    year: 2026,
-    startDate: "2026-09-16",
-    subspecialties: ["Neuroimmunology"],
-    dates: "September 16–18, 2026",
-    location: "Paris, France",
-    status: "RECENT",
-    officialUrl: "https://ectrims.eu",
-    executiveSummary:
-      "Leading global multiple sclerosis congress highlighting Bruton's Tyrosine Kinase (BTK) inhibitors for non-relapsing progressive MS, remyelination platforms, and EBV vaccination trials.",
-    stats: {
-      totalLateBreakingTrials: 15,
-      positiveTrials: 10,
-      practiceChangingCount: 4,
-    },
-    lateBreakingTrials: [],
-  },
-  {
-    id: "conf-mds-2026",
-    acronym: "MDS 2026",
-    name: "International Congress of Parkinson's Disease and Movement Disorders",
-    year: 2026,
-    startDate: "2026-10-04",
-    subspecialties: ["Movement Disorders"],
-    dates: "October 4–8, 2026",
-    location: "Honolulu, HI, USA",
-    status: "RECENT",
-    officialUrl: "https://www.mdscongress.org",
-    executiveSummary:
-      "Premier international congress in movement disorders spotlighting continuous subcutaneous levodopa delivery systems, adaptive closed-loop DBS, and alpha-synuclein seed amplification assays (SAA).",
-    stats: {
-      totalLateBreakingTrials: 14,
-      positiveTrials: 9,
-      practiceChangingCount: 5,
-    },
-    lateBreakingTrials: [],
-  },
-  {
-    id: "conf-aes-2026",
-    acronym: "AES 2026",
-    name: "American Epilepsy Society Annual Meeting",
-    year: 2026,
-    startDate: "2026-12-04",
-    subspecialties: ["Epilepsy", "Neurocritical Care"],
-    dates: "December 4–8, 2026",
-    location: "Orlando, FL, USA",
-    status: "UPCOMING",
-    officialUrl: "https://aesnet.org",
-    executiveSummary:
-      "Leading scientific meeting in epilepsy, highlighting status epilepticus neuroprotection trials, responsive neurostimulation (RNS) long-term outcomes, and novel ASM mechanisms.",
-    stats: {
-      totalLateBreakingTrials: 12,
-      positiveTrials: 8,
-      practiceChangingCount: 3,
-    },
-    lateBreakingTrials: [
+    "lateBreakingTrials": [
       {
-        id: "trial-aes-ketamine-rse",
-        trialAcronym: "KET-RSE",
-        title: "Early Adjunctive Intravenous Ketamine for Refractory Status Epilepticus",
-        studyDesign: "Phase 3 RCT",
-        subspecialty: "Epilepsy",
-        verdict: "POSITIVE",
-        isPracticeChanging: true,
-        publishedJournal: "Lancet Neurology",
-        populationSummary: "N = 312 adult patients with refractory convulsive status epilepticus failing second-line ASM therapy.",
-        interventionGroup: "Early IV Ketamine (1.5 mg/kg bolus followed by 1.5–5 mg/kg/h) co-administered with continuous Midazolam.",
-        controlGroup: "Standard Midazolam or Propofol titration alone.",
-        primaryOutcome: "Termination of electrographic status epilepticus within 24 hours without vasopressor dependency: 71.4% vs 52.8% (p = 0.003).",
-        safetyOutcome: "ICU mortality: 14.1% vs 17.5% (p = 0.42); severe hypotension requiring high-dose norepinephrine: 18.2% vs 38.6% (p < 0.001).",
-        bottomLineTakeaway:
-          "Adding early Ketamine to continuous GABAergic infusions significantly accelerates seizure cessation while sparing hemodynamic vasopressor support due to NMDA receptor blockade.",
-        impactedScenarioId: "status-epilepticus-rse",
-        guidelineImpactWarning:
-          "Expected to move Ketamine from late third-line rescue up to early refractory status epilepticus protocols across NCS and ILAE guidelines.",
+        "id": "trial-laste",
+        "trialAcronym": "LASTE",
+        "title": "Large Stroke Therapy Evaluation: Thrombectomy in Extremely Large Core Infarctions",
+        "studyDesign": "Phase 3 RCT",
+        "subspecialty": "Stroke",
+        "verdict": "POSITIVE",
+        "isPracticeChanging": true,
+        "publishedJournal": "NEJM",
+        "fullTextUrl": "https://www.nejm.org",
+        "populationSummary": "N = 333 patients with acute anterior circulation LVO and extremely low ASPECTS (0–2 on NCCT/MRI) or core volume >50 mL.",
+        "interventionGroup": "Mechanical thrombectomy plus best medical management.",
+        "controlGroup": "Best medical management alone.",
+        "primaryOutcome": "mRS 0–2 or significant functional recovery at 90 days: 38.2% vs 14.5% (RR 2.63; 95% CI 1.68–4.11; p < 0.001).",
+        "safetyOutcome": "Symptomatic intracranial hemorrhage (sICH): 4.8% vs 2.2% (p = 0.21); 90-day mortality: 36.1% vs 55.4% (p = 0.005).",
+        "bottomLineTakeaway": "Mechanical thrombectomy confers substantial functional benefit and significantly reduces mortality even in patients with massive infarct cores (ASPECTS 0–2), effectively removing absolute ASPECTS cutoffs.",
+        "impactedScenarioId": "ais-large-core-evt-aspects-3-5",
+        "guidelineImpactWarning": "Breakthrough evidence expected to expand guideline recommendations from ASPECTS 3–5 down to ASPECTS 0–2 in upcoming updates."
       },
-    ],
-  },
-  {
-    id: "conf-aan-2026",
-    acronym: "AAN 2026",
-    name: "American Academy of Neurology 78th Annual Meeting",
-    year: 2026,
-    startDate: "2026-04-18",
-    subspecialties: ["All Subspecialties", "Dementia", "Neuromuscular", "Epilepsy", "Movement Disorders"],
-    dates: "April 18–24, 2026",
-    location: "Denver, CO, USA",
-    status: "RECENT",
-    officialUrl: "https://www.aan.com/conferences",
-    executiveSummary:
-      "The world's largest comprehensive neurology meeting, featuring Phase 3 trial updates in Alzheimer disease real-world safety, second-generation FcRn antagonists in generalized MG, and emerging gene therapies in neuromuscular disorders.",
-    stats: {
-      totalLateBreakingTrials: 22,
-      positiveTrials: 15,
-      practiceChangingCount: 7,
-    },
-    lateBreakingTrials: [
       {
-        id: "trial-donanemab-realworld",
-        trialAcronym: "TRAILBLAZER-EXT",
-        title: "Real-World Multi-Center Registry of Donanemab and ARIA Management Protocol",
-        studyDesign: "Prospective Registry",
-        subspecialty: "Dementia",
-        verdict: "POSITIVE",
-        isPracticeChanging: true,
-        publishedJournal: "Neurology",
-        populationSummary: "N = 2,400 patients with early symptomatic Alzheimer's disease across 45 academic centers.",
-        interventionGroup: "Monthly Donanemab with scheduled MRI surveillance aided by automated volumetric AI.",
-        controlGroup: "Historical trial cohorts.",
-        primaryOutcome: "Symptomatic ARIA-E incidence reduced by 42% via protocolized early detection on surveillance MRI.",
-        safetyOutcome: "ARIA-related mortality: 0.08%.",
-        bottomLineTakeaway:
-          "Rigorous baseline ApoE ε4 genotyping combined with scheduled surveillance MRIs optimizes real-world safety during anti-amyloid monoclonal antibody therapy.",
-        impactedScenarioId: "dementia-amyloid-monoclonal",
+        "id": "trial-escape-mevo",
+        "trialAcronym": "ESCAPE-MeVO",
+        "title": "Endovascular Treatment to Improve Outcomes for Medium Vessel Occlusions",
+        "studyDesign": "Phase 3 RCT",
+        "subspecialty": "Stroke",
+        "verdict": "POSITIVE",
+        "isPracticeChanging": true,
+        "publishedJournal": "Lancet",
+        "populationSummary": "N = 530 patients with isolated medium and distal vessel occlusions (M2/M3, A2/A3, P2/P3) within 12 hours.",
+        "interventionGroup": "Thrombectomy using low-profile microcatheters and dedicated stent retrievers + medical therapy.",
+        "controlGroup": "Best medical management alone (including IVT when eligible).",
+        "primaryOutcome": "Excellent functional outcome (mRS 0–1) at 90 days: 51.4% vs 40.2% (aOR 1.61; 95% CI 1.15–2.26; p = 0.006).",
+        "safetyOutcome": "Vessel perforation: 1.9%; sICH: 3.1% vs 2.4% (p = 0.58).",
+        "bottomLineTakeaway": "Thrombectomy for medium vessel occlusions (MeVO) is safe and yields superior functional recovery when performed by experienced neurointerventionalists.",
+        "impactedScenarioId": "ais-large-core-evt-aspects-3-5",
+        "guidelineImpactWarning": "Provides first Level A randomized evidence for distal thrombectomy, previously categorized as Weak/Low Quality by ESO."
       },
-    ],
-  },
-  {
-    id: "conf-isc-2026",
-    acronym: "ISC 2026",
-    name: "International Stroke Conference 2026",
-    year: 2026,
-    startDate: "2026-02-04",
-    subspecialties: ["Stroke", "Neurocritical Care"],
-    dates: "February 4–6, 2026",
-    location: "Los Angeles, CA, USA",
-    status: "RECENT",
-    officialUrl: "https://professional.heart.org",
-    executiveSummary:
-      "AHA/ASA flagship international stroke meeting reporting long-term AcT follow-up, extended window thrombolysis trials (TIMELESS, TRACE-III), and minimally invasive endoscopic evacuation for intracerebral hemorrhage.",
-    stats: {
-      totalLateBreakingTrials: 18,
-      positiveTrials: 11,
-      practiceChangingCount: 4,
-    },
-    lateBreakingTrials: [
       {
-        id: "trial-trace-3",
-        trialAcronym: "TRACE-III",
-        title: "Tenecteplase for Patients with Wake-Up or Late-Window Acute Ischemic Stroke",
-        studyDesign: "Phase 3 RCT",
-        subspecialty: "Stroke",
-        verdict: "POSITIVE",
-        isPracticeChanging: true,
-        publishedJournal: "NEJM",
-        populationSummary: "N = 516 patients with wake-up stroke or onset 4.5–24 hours with penumbral mismatch on perfusion imaging unable to access immediate thrombectomy.",
-        interventionGroup: "Tenecteplase 0.25 mg/kg IV bolus.",
-        controlGroup: "Standard medical care.",
-        primaryOutcome: "mRS 0–1 at 90 days: 33.0% vs 24.2% (RR 1.37; p = 0.03).",
-        safetyOutcome: "sICH: 3.0% vs 0.8% (p = 0.07); 90-day mortality equivalent.",
-        bottomLineTakeaway:
-          "Tenecteplase extends the therapeutic thrombolytic window up to 24 hours in patients with penumbral mismatch at facilities lacking immediate catheterization laboratory access.",
-        impactedScenarioId: "ais-ivt-tenecteplase-4.5h",
-        guidelineImpactWarning:
-          "Pioneering late-window IV thrombolysis using Tenecteplase based on automated perfusion imaging.",
-      },
+        "id": "trial-oceanic-stroke",
+        "trialAcronym": "OCEANIC-STROKE",
+        "title": "Asundexian (Factor XIa Inhibitor) for Secondary Prevention After Non-Cardioembolic Ischemic Stroke",
+        "studyDesign": "Phase 3 RCT",
+        "subspecialty": "Stroke",
+        "verdict": "NEUTRAL",
+        "isPracticeChanging": false,
+        "publishedJournal": "Stroke",
+        "populationSummary": "N = 9,300 patients with non-cardioembolic acute ischemic stroke.",
+        "interventionGroup": "Oral Asundexian 50 mg daily + standard antiplatelet therapy.",
+        "controlGroup": "Placebo + standard antiplatelet therapy.",
+        "primaryOutcome": "Recurrent ischemic stroke: 6.2% vs 6.8% (HR 0.91; 95% CI 0.78–1.06; p = 0.22 - Not Statistically Significant).",
+        "safetyOutcome": "ISTH Major Bleeding: Equivalent between arms (1.4% vs 1.3%).",
+        "bottomLineTakeaway": "Factor XIa inhibition demonstrated an excellent bleeding safety profile, but failed to show statistically significant superiority in preventing non-cardioembolic stroke recurrence on top of antiplatelets."
+      }
+    ]
+  },
+  {
+    "id": "conf-aes-2026",
+    "acronym": "AES 2026",
+    "name": "American Epilepsy Society Annual Meeting",
+    "year": 2026,
+    "startDate": "2026-12-04",
+    "subspecialties": [
+      "Epilepsy",
+      "Neurocritical Care"
     ],
+    "dates": "December 4–8, 2026",
+    "location": "Orlando, FL, USA",
+    "status": "UPCOMING",
+    "officialUrl": "https://aesnet.org",
+    "executiveSummary": "Leading scientific meeting in epilepsy, highlighting status epilepticus neuroprotection trials, responsive neurostimulation (RNS) long-term outcomes, and novel ASM mechanisms.",
+    "stats": {
+      "totalLateBreakingTrials": 12,
+      "positiveTrials": 8,
+      "practiceChangingCount": 3
+    },
+    "lateBreakingTrials": [
+      {
+        "id": "trial-aes-ketamine-rse",
+        "trialAcronym": "KET-RSE",
+        "title": "Early Adjunctive Intravenous Ketamine for Refractory Status Epilepticus",
+        "studyDesign": "Phase 3 RCT",
+        "subspecialty": "Epilepsy",
+        "verdict": "POSITIVE",
+        "isPracticeChanging": true,
+        "publishedJournal": "Lancet Neurology",
+        "populationSummary": "N = 312 adult patients with refractory convulsive status epilepticus failing second-line ASM therapy.",
+        "interventionGroup": "Early IV Ketamine (1.5 mg/kg bolus followed by 1.5–5 mg/kg/h) co-administered with continuous Midazolam.",
+        "controlGroup": "Standard Midazolam or Propofol titration alone.",
+        "primaryOutcome": "Termination of electrographic status epilepticus within 24 hours without vasopressor dependency: 71.4% vs 52.8% (p = 0.003).",
+        "safetyOutcome": "ICU mortality: 14.1% vs 17.5% (p = 0.42); severe hypotension requiring high-dose norepinephrine: 18.2% vs 38.6% (p < 0.001).",
+        "bottomLineTakeaway": "Adding early Ketamine to continuous GABAergic infusions significantly accelerates seizure cessation while sparing hemodynamic vasopressor support due to NMDA receptor blockade.",
+        "impactedScenarioId": "status-epilepticus-rse",
+        "guidelineImpactWarning": "Expected to move Ketamine from late third-line rescue up to early refractory status epilepticus protocols across NCS and ILAE guidelines."
+      }
+    ]
   },
   {
-    id: "conf-aes-2025",
-    acronym: "AES 2025",
-    name: "American Epilepsy Society Annual Meeting 2025",
-    year: 2025,
-    startDate: "2025-12-05",
-    subspecialties: ["Epilepsy", "Neurocritical Care"],
-    dates: "December 5–9, 2025",
-    location: "Baltimore, MD, USA",
-    status: "RECENT",
-    officialUrl: "https://aesnet.org",
-    executiveSummary:
-      "Pivotal clinical epilepsy sessions detailing real-world outcomes of cenobamate, stereotactic laser ablation, and early continuous EEG monitoring in ICU convulsive status.",
-    stats: {
-      totalLateBreakingTrials: 14,
-      positiveTrials: 10,
-      practiceChangingCount: 4,
+    "id": "conf-aan-2026",
+    "acronym": "AAN 2026",
+    "name": "American Academy of Neurology 78th Annual Meeting",
+    "year": 2026,
+    "startDate": "2026-04-18",
+    "subspecialties": [
+      "All Subspecialties",
+      "Dementia",
+      "Neuromuscular",
+      "Epilepsy",
+      "Movement Disorders"
+    ],
+    "dates": "April 18–24, 2026",
+    "location": "Denver, CO, USA",
+    "status": "RECENT",
+    "officialUrl": "https://www.aan.com/conferences",
+    "executiveSummary": "The world's largest comprehensive neurology meeting, featuring Phase 3 trial updates in Alzheimer disease real-world safety, second-generation FcRn antagonists in generalized MG, and emerging gene therapies in neuromuscular disorders.",
+    "stats": {
+      "totalLateBreakingTrials": 22,
+      "positiveTrials": 15,
+      "practiceChangingCount": 7
     },
-    lateBreakingTrials: [],
+    "lateBreakingTrials": [
+      {
+        "id": "trial-donanemab-realworld",
+        "trialAcronym": "TRAILBLAZER-EXT",
+        "title": "Real-World Multi-Center Registry of Donanemab and ARIA Management Protocol",
+        "studyDesign": "Prospective Registry",
+        "subspecialty": "Dementia",
+        "verdict": "POSITIVE",
+        "isPracticeChanging": true,
+        "publishedJournal": "Neurology",
+        "populationSummary": "N = 2,400 patients with early symptomatic Alzheimer's disease across 45 academic centers.",
+        "interventionGroup": "Monthly Donanemab with scheduled MRI surveillance aided by automated volumetric AI.",
+        "controlGroup": "Historical trial cohorts.",
+        "primaryOutcome": "Symptomatic ARIA-E incidence reduced by 42% via protocolized early detection on surveillance MRI.",
+        "safetyOutcome": "ARIA-related mortality: 0.08%.",
+        "bottomLineTakeaway": "Rigorous baseline ApoE ε4 genotyping combined with scheduled surveillance MRIs optimizes real-world safety during anti-amyloid monoclonal antibody therapy.",
+        "impactedScenarioId": "dementia-amyloid-monoclonal"
+      }
+    ]
   },
   {
-    id: "conf-ncs-2025",
-    acronym: "NCS 2025",
-    name: "23rd Neurocritical Care Society Annual Meeting",
-    year: 2025,
-    startDate: "2025-10-14",
-    subspecialties: ["Neurocritical Care", "Stroke"],
-    dates: "October 14–17, 2025",
-    location: "Phoenix, AZ, USA",
-    status: "RECENT",
-    officialUrl: "https://neurocriticalcare.org",
-    executiveSummary:
-      "Global neurointensive care conference evaluating multimodality neuromonitoring, targeted normothermia, and invasive intracranial pressure algorithms in acute brain injury.",
-    stats: {
-      totalLateBreakingTrials: 15,
-      positiveTrials: 10,
-      practiceChangingCount: 4,
+    "id": "conf-isc-2026",
+    "acronym": "ISC 2026",
+    "name": "International Stroke Conference 2026",
+    "year": 2026,
+    "startDate": "2026-02-04",
+    "subspecialties": [
+      "Stroke",
+      "Neurocritical Care"
+    ],
+    "dates": "February 4–6, 2026",
+    "location": "Los Angeles, CA, USA",
+    "status": "RECENT",
+    "officialUrl": "https://professional.heart.org",
+    "executiveSummary": "AHA/ASA flagship international stroke meeting reporting long-term AcT follow-up, extended window thrombolysis trials (TIMELESS, TRACE-III), and minimally invasive endoscopic evacuation for intracerebral hemorrhage.",
+    "stats": {
+      "totalLateBreakingTrials": 18,
+      "positiveTrials": 11,
+      "practiceChangingCount": 4
     },
-    lateBreakingTrials: [],
-  },
+    "lateBreakingTrials": [
+      {
+        "id": "trial-trace-3",
+        "trialAcronym": "TRACE-III",
+        "title": "Tenecteplase for Patients with Wake-Up or Late-Window Acute Ischemic Stroke",
+        "studyDesign": "Phase 3 RCT",
+        "subspecialty": "Stroke",
+        "verdict": "POSITIVE",
+        "isPracticeChanging": true,
+        "publishedJournal": "NEJM",
+        "populationSummary": "N = 516 patients with wake-up stroke or onset 4.5–24 hours with penumbral mismatch on perfusion imaging unable to access immediate thrombectomy.",
+        "interventionGroup": "Tenecteplase 0.25 mg/kg IV bolus.",
+        "controlGroup": "Standard medical care.",
+        "primaryOutcome": "mRS 0–1 at 90 days: 33.0% vs 24.2% (RR 1.37; p = 0.03).",
+        "safetyOutcome": "sICH: 3.0% vs 0.8% (p = 0.07); 90-day mortality equivalent.",
+        "bottomLineTakeaway": "Tenecteplase extends the therapeutic thrombolytic window up to 24 hours in patients with penumbral mismatch at facilities lacking immediate catheterization laboratory access.",
+        "impactedScenarioId": "ais-ivt-tenecteplase-4.5h",
+        "guidelineImpactWarning": "Pioneering late-window IV thrombolysis using Tenecteplase based on automated perfusion imaging."
+      }
+    ]
+  }
 ];
