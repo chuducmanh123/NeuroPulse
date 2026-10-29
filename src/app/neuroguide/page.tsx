@@ -225,16 +225,39 @@ export default function NeuroGuidePage() {
     );
   }, [currentScenario]);
 
-  // Filtered Guidelines
+  // Filtered Guidelines with Search & Society Filter
   const filteredGuidelines = useMemo(() => {
+    const q = searchQuery.toLowerCase().trim();
     return MOCK_GUIDELINE_DOCS.filter((doc) => {
-      if (selectedSocietyFilter === "ALL") return true;
-      return doc.society === selectedSocietyFilter;
+      const matchesSociety =
+        selectedSocietyFilter === "ALL" || doc.society === selectedSocietyFilter;
+      const matchesSub =
+        selectedSubspecialty === "All Subspecialties" ||
+        MOCK_CLINICAL_SCENARIOS.some(
+          (s) => doc.linkedScenarioIds.includes(s.id) && s.subspecialty === selectedSubspecialty
+        );
+      const matchesSearch =
+        !q ||
+        doc.title.toLowerCase().includes(q) ||
+        doc.society.toLowerCase().includes(q) ||
+        doc.journalTarget.toLowerCase().includes(q) ||
+        doc.documentType.toLowerCase().includes(q) ||
+        doc.executiveSummary.toLowerCase().includes(q) ||
+        doc.allPracticeChanges.some(
+          (chg) =>
+            chg.topic.toLowerCase().includes(q) ||
+            chg.currentText.toLowerCase().includes(q) ||
+            chg.category.toLowerCase().includes(q) ||
+            (chg.previousText && chg.previousText.toLowerCase().includes(q)) ||
+            (chg.drivingTrials && chg.drivingTrials.some((t) => t.toLowerCase().includes(q)))
+        );
+      return matchesSociety && matchesSub && matchesSearch;
     });
-  }, [selectedSocietyFilter]);
+  }, [selectedSocietyFilter, selectedSubspecialty, searchQuery]);
 
-  // Filtered Conferences
+  // Filtered Conferences with Search, Status & Subspecialty
   const filteredConferences = useMemo(() => {
+    const q = searchQuery.toLowerCase().trim();
     return MOCK_CONFERENCE_EVENTS.filter((conf) => {
       const matchesStatus =
         selectedConfStatus === "ALL" || conf.status === selectedConfStatus;
@@ -242,9 +265,24 @@ export default function NeuroGuidePage() {
         selectedSubspecialty === "All Subspecialties" ||
         conf.subspecialties.includes("All Subspecialties") ||
         conf.subspecialties.includes(selectedSubspecialty);
-      return matchesStatus && matchesSub;
+      const matchesSearch =
+        !q ||
+        conf.name.toLowerCase().includes(q) ||
+        conf.acronym.toLowerCase().includes(q) ||
+        conf.location.toLowerCase().includes(q) ||
+        conf.executiveSummary.toLowerCase().includes(q) ||
+        conf.lateBreakingTrials.some(
+          (tr) =>
+            tr.trialAcronym.toLowerCase().includes(q) ||
+            tr.title.toLowerCase().includes(q) ||
+            tr.primaryOutcome.toLowerCase().includes(q) ||
+            tr.populationSummary.toLowerCase().includes(q) ||
+            tr.bottomLineTakeaway.toLowerCase().includes(q) ||
+            (tr.publishedJournal && tr.publishedJournal.toLowerCase().includes(q))
+        );
+      return matchesStatus && matchesSub && matchesSearch;
     });
-  }, [selectedConfStatus, selectedSubspecialty]);
+  }, [selectedConfStatus, selectedSubspecialty, searchQuery]);
 
   // Jump from Guideline or Trial to Scenario Matrix
   const handleJumpToScenario = (scenarioId: string) => {
@@ -362,33 +400,38 @@ export default function NeuroGuidePage() {
             })}
           </div>
 
-          {/* Search ONLY active and visible on the Clinical Scenarios Tab */}
-          {activeTab === "matrix" && (
-            <div className="relative w-full sm:w-64">
-              <span className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-slate-400 text-xs">
-                🔍
-              </span>
-              <input
-                type="text"
-                placeholder="Search scenarios, trials, drugs..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className={`w-full pl-8 pr-3 py-1.5 text-xs rounded-lg border outline-none transition-all ${
-                  darkMode
-                    ? "bg-slate-800 border-slate-700 text-slate-100 placeholder-slate-400 focus:border-amber-500"
-                    : "bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400 focus:border-amber-500"
-                }`}
-              />
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery("")}
-                  className="absolute inset-y-0 right-2.5 flex items-center text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
-                >
-                  ✕
-                </button>
-              )}
-            </div>
-          )}
+          {/* Universal Search Input active across Guidelines, Conferences & Scenarios */}
+          <div className="relative w-full sm:w-72">
+            <span className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-slate-400 text-xs">
+              🔍
+            </span>
+            <input
+              type="text"
+              placeholder={
+                activeTab === "guidelines"
+                  ? "Search guidelines, trials, topics..."
+                  : activeTab === "conf"
+                  ? "Search conferences, late-breaking trials..."
+                  : "Search clinical scenarios..."
+              }
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className={`w-full pl-8 pr-7 py-1.5 text-xs rounded-lg border outline-none transition-all ${
+                darkMode
+                  ? "bg-slate-800 border-slate-700 text-slate-100 placeholder-slate-400 focus:border-amber-500"
+                  : "bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400 focus:border-amber-500"
+              }`}
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery("")}
+                className="absolute inset-y-0 right-2.5 flex items-center text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+                title="Clear search"
+              >
+                ✕
+              </button>
+            )}
+          </div>
         </nav>
 
         {/* =========================================================================
@@ -456,17 +499,38 @@ export default function NeuroGuidePage() {
             </div>
 
             {/* Guideline Cards (Colored by Society, Click to Expand Details) */}
-            <div className="grid grid-cols-1 gap-3.5">
-              {filteredGuidelines.map((doc) => {
-                const isExpanded = !!expandedGuidelineIds[doc.id];
-                const isVietnamese = doc.society === "VN-MOH";
-                const theme = getGuidelineTheme(doc.society);
+            {filteredGuidelines.length === 0 ? (
+              <div className="p-12 text-center rounded-2xl border border-dashed border-slate-300 dark:border-slate-800 bg-white/40 dark:bg-slate-900/40">
+                <span className="text-3xl block mb-2">🔍</span>
+                <h3 className="text-sm font-bold text-slate-800 dark:text-slate-200">
+                  No guidelines match &ldquo;{searchQuery}&rdquo;
+                </h3>
+                <p className="text-xs text-slate-400 mt-1">
+                  Try searching for &ldquo;Tenecteplase&rdquo;, &ldquo;Thrombectomy&rdquo;, &ldquo;Blood Pressure&rdquo;, or &ldquo;AHA&rdquo;.
+                </p>
+                <button
+                  onClick={() => {
+                    setSearchQuery("");
+                    setSelectedSocietyFilter("ALL");
+                    setSelectedSubspecialty("All Subspecialties");
+                  }}
+                  className="mt-3 px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-white hover:bg-amber-600 transition-colors"
+                >
+                  Reset Filters
+                </button>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 gap-3.5">
+                {filteredGuidelines.map((doc) => {
+                  const isExpanded = !!expandedGuidelineIds[doc.id];
+                  const isVietnamese = doc.society === "VN-MOH";
+                  const theme = getGuidelineTheme(doc.society);
 
-                return (
-                  <div
-                    key={doc.id}
-                    className={`rounded-2xl border transition-all ${theme.borderLeft} ${theme.cardBg} ${theme.cardBorder} shadow-xs`}
-                  >
+                  return (
+                    <div
+                      key={doc.id}
+                      className={`rounded-2xl border transition-all ${theme.borderLeft} ${theme.cardBg} ${theme.cardBorder} shadow-xs`}
+                    >
                     {/* Clickable Header / Card Summary */}
                     <div
                       onClick={() => toggleGuideline(doc.id)}
@@ -634,6 +698,7 @@ export default function NeuroGuidePage() {
                 );
               })}
             </div>
+            )}
           </div>
         )}
 
@@ -675,8 +740,29 @@ export default function NeuroGuidePage() {
             </div>
 
             {/* Conference Cards List (Colored by Status, Click to Expand Details) */}
-            <div className="grid grid-cols-1 gap-3.5">
-              {filteredConferences.map((conf) => {
+            {filteredConferences.length === 0 ? (
+              <div className="p-12 text-center rounded-2xl border border-dashed border-slate-300 dark:border-slate-800 bg-white/40 dark:bg-slate-900/40">
+                <span className="text-3xl block mb-2">🔍</span>
+                <h3 className="text-sm font-bold text-slate-800 dark:text-slate-200">
+                  No conferences or trials match &ldquo;{searchQuery}&rdquo;
+                </h3>
+                <p className="text-xs text-slate-400 mt-1">
+                  Try searching for trial acronyms like &ldquo;LASTE&rdquo;, &ldquo;TRACE-III&rdquo;, &ldquo;ESCAPE-MeVO&rdquo;, or &ldquo;ESOC&rdquo;.
+                </p>
+                <button
+                  onClick={() => {
+                    setSearchQuery("");
+                    setSelectedConfStatus("ALL");
+                    setSelectedSubspecialty("All Subspecialties");
+                  }}
+                  className="mt-3 px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-white hover:bg-amber-600 transition-colors"
+                >
+                  Reset Filters
+                </button>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 gap-3.5">
+                {filteredConferences.map((conf) => {
                 const isExpanded = !!expandedConferenceIds[conf.id];
                 const theme = getConferenceTheme(conf);
 
@@ -871,6 +957,7 @@ export default function NeuroGuidePage() {
                 );
               })}
             </div>
+            )}
           </div>
         )}
 
@@ -1038,40 +1125,40 @@ export default function NeuroGuidePage() {
                         )}
                       </div>
 
-                      {/* Detail Tabs */}
-                      <div className="mt-4 border-b border-slate-200 dark:border-slate-800 flex items-center gap-2">
+                      {/* Detail Tabs - Clean & Concise */}
+                      <div className="mt-4 border-b border-slate-200 dark:border-slate-800 flex items-center gap-1.5 sm:gap-2 overflow-x-auto scrollbar-none">
                         <button
                           onClick={() => setActiveDetailTab("matrix")}
-                          className={`pb-2.5 text-xs sm:text-sm font-bold border-b-2 transition-all flex items-center gap-1.5 ${
+                          className={`pb-2.5 px-1.5 text-xs sm:text-sm font-bold border-b-2 whitespace-nowrap transition-all flex items-center gap-1.5 ${
                             activeDetailTab === "matrix"
                               ? "border-amber-500 text-amber-600 dark:text-amber-400"
                               : "border-transparent text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
                           }`}
                         >
-                          <span>TAB 1:</span>
-                          <span>Cross-Society Matrix (AHA vs. ESO vs. VN)</span>
+                          <span>⚖️</span>
+                          <span>Cross-Society Matrix</span>
                         </button>
                         <button
                           onClick={() => setActiveDetailTab("temporal")}
-                          className={`pb-2.5 text-xs sm:text-sm font-bold border-b-2 transition-all flex items-center gap-1.5 ${
+                          className={`pb-2.5 px-1.5 text-xs sm:text-sm font-bold border-b-2 whitespace-nowrap transition-all flex items-center gap-1.5 ${
                             activeDetailTab === "temporal"
                               ? "border-amber-500 text-amber-600 dark:text-amber-400"
                               : "border-transparent text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
                           }`}
                         >
-                          <span>TAB 2:</span>
-                          <span>Temporal Evolution (Guideline Diff)</span>
+                          <span>⏳</span>
+                          <span>Guideline Diff</span>
                         </button>
                         <button
                           onClick={() => setActiveDetailTab("conf_bridge")}
-                          className={`pb-2.5 text-xs sm:text-sm font-bold border-b-2 transition-all flex items-center gap-1.5 ${
+                          className={`pb-2.5 px-1.5 text-xs sm:text-sm font-bold border-b-2 whitespace-nowrap transition-all flex items-center gap-1.5 ${
                             activeDetailTab === "conf_bridge"
                               ? "border-amber-500 text-amber-600 dark:text-amber-400"
                               : "border-transparent text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
                           }`}
                         >
-                          <span>TAB 3:</span>
-                          <span>Late-Breaking Evidence Bridge</span>
+                          <span>⚡</span>
+                          <span>Evidence Bridge</span>
                         </button>
                       </div>
 
