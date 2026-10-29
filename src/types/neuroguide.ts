@@ -1,19 +1,8 @@
-export const NEUROLOGY_SUBSPECIALTIES = [
-  "All Subspecialties",
-  "Stroke",
-  "Neurocritical Care",
-  "Epilepsy",
-  "Dementia",
-  "Neuroimmunology",
-  "Neuromuscular",
-  "Movement Disorders",
-  "Headache & Pain",
-  "CNS Infections",
-  "Neuro-Oncology",
-  "Other",
-] as const;
+import { SUBSPECIALTY_LIST, SubspecialtyType } from "@/constants/subspecialties";
 
-export type SubspecialtyType = (typeof NEUROLOGY_SUBSPECIALTIES)[number];
+export { SUBSPECIALTY_LIST };
+export type { SubspecialtyType };
+export const NEUROLOGY_SUBSPECIALTIES = SUBSPECIALTY_LIST;
 
 export type NormalizedTier = 1 | 2 | 3 | 4 | 5;
 
@@ -145,10 +134,11 @@ export interface ClinicalScenario {
   confAlertText?: string;
   aiSynthesisAppraisal: {
     consensusLevel: "HIGH_CONCORDANCE" | "MODERATE_VARIATION" | "MAJOR_DIVERGENCE";
-    whyGuidelinesDiffer: string;
+    whyGuidelinesDiffer?: string;
+    whyTheyDiffer?: string;
     clinicalBottomLine: string;
     resourceDependency?: "Standard Care" | "Requires Advanced Perfusion/AI" | "Specialized Center Only";
-    lastAppraisedAt: string;
+    lastAppraisedAt?: string;
   };
   temporalEvolution?: TemporalShift[];
   ecosystemLinks?: EcosystemLink[];

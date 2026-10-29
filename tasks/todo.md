@@ -4,14 +4,14 @@
 **Description:** Refactor `src/types/neuroguide.ts` to import `SUBSPECIALTY_LIST` from `@/constants/subspecialties`, ensuring total ecosystem alignment. Enhance `ClinicalScenario`, `TemporalShift`, `PracticeChangeDetail`, and `ConferenceDetail` with PICO attributes and foreign keys.
 
 **Acceptance criteria:**
-- [ ] `src/types/neuroguide.ts` imports and re-exports subspecialties from `@/constants/subspecialties`.
-- [ ] `ClinicalScenario` schema includes `aiSynthesisAppraisal` with `consensusLevel`, `whyTheyDiffer`, and `clinicalBottomLine`.
-- [ ] `ConferenceDetail` includes structured PICO trial fields (`populationSummary`, `interventionGroup`, `controlGroup`, `primaryOutcome`, `safetyOutcome`, `impactedScenarioId`).
-- [ ] `TemporalShift` type supports `previousYear`, `previousGrade`, `currentYear`, `currentGrade`, and `drivingTrials`.
+- [x] `src/types/neuroguide.ts` imports and re-exports subspecialties from `@/constants/subspecialties`.
+- [x] `ClinicalScenario` schema includes `aiSynthesisAppraisal` with `consensusLevel`, `whyTheyDiffer`, and `clinicalBottomLine`.
+- [x] `ConferenceDetail` includes structured PICO trial fields (`populationSummary`, `interventionGroup`, `controlGroup`, `primaryOutcome`, `safetyOutcome`, `impactedScenarioId`).
+- [x] `TemporalShift` type supports `previousYear`, `previousGrade`, `currentYear`, `currentGrade`, and `drivingTrials`.
 
 **Verification:**
-- [ ] Tests pass: `node --experimental-strip-types --test tests/clinicalClassification.test.mjs tests/neurocaseApi.test.mjs`
-- [ ] Typecheck succeeds: `node ./node_modules/typescript/bin/tsc --noEmit`
+- [x] Tests pass: `node --experimental-strip-types --test tests/clinicalClassification.test.mjs tests/neurocaseApi.test.mjs`
+- [x] Typecheck succeeds: `node ./node_modules/typescript/bin/tsc --noEmit`
 
 **Dependencies:** None  
 **Files likely touched:** `src/types/neuroguide.ts`  
@@ -23,13 +23,13 @@
 **Description:** Expand `src/data/neuroguideMockData.ts` with complete clinical content covering core neurological scenarios (Tenecteplase, Large Core ASPECTS 3-5, Basilar Artery Occlusion, ICH Blood Pressure, DAPT, Status Epilepticus, Autoimmune Encephalitis, ARIA in Amyloid mAb) and wire `impactedScenarioId` across conferences.
 
 **Acceptance criteria:**
-- [ ] At least 8 core scenarios have complete AHA, ESO, and VN recommendation atoms with 5-tier normalized levels.
-- [ ] Conference events (ISC, ESOC, WSC, AAN) have structured late-breaking trials with PICO stats and `impactedScenarioId`.
-- [ ] Temporal shift records exist for major guideline changes (e.g. TNK 4.5h, Large Core EVT).
+- [x] At least 8 core scenarios have complete AHA, ESO, and VN recommendation atoms with 5-tier normalized levels.
+- [x] Conference events (ISC, ESOC, WSC, AAN, AES) have structured late-breaking trials with PICO stats and `impactedScenarioId`.
+- [x] Temporal shift records exist for major guideline changes (e.g. TNK 4.5h, Large Core EVT).
 
 **Verification:**
-- [ ] Typecheck succeeds: `node ./node_modules/typescript/bin/tsc --noEmit`
-- [ ] Build succeeds: `node ./node_modules/next/dist/bin/next build`
+- [x] Typecheck succeeds: `node ./node_modules/typescript/bin/tsc --noEmit`
+- [x] Build succeeds: `node ./node_modules/next/dist/bin/next build`
 
 **Dependencies:** Task 1  
 **Files likely touched:** `src/data/neuroguideMockData.ts`  
@@ -38,8 +38,8 @@
 ---
 
 ## Checkpoint 1: Foundations
-- [ ] All tests pass
-- [ ] Static typecheck clean with `strict: true`
+- [x] All tests pass
+- [x] Static typecheck clean with `strict: true`
 
 ---
 

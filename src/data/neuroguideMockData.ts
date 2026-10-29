@@ -2956,6 +2956,9 @@ export const MOCK_CONFERENCE_EVENTS: ConferenceEvent[] = [
         safetyOutcome: "sICH: 2.8% vs 2.9% (equivalent).",
         bottomLineTakeaway:
           "Prehospital mobile stroke units achieve dramatic 40-minute reductions in door-to-needle time and substantially higher 90-day functional recovery in densely populated urban centers.",
+        impactedScenarioId: "ais-ivt-tenecteplase-4.5h",
+        guidelineImpactWarning:
+          "Reinforces prehospital ultra-early Tenecteplase bolus administration within 60 minutes of symptom onset.",
       },
       {
         id: "trial-wsc-prevent-doac",
@@ -3033,6 +3036,7 @@ export const MOCK_CONFERENCE_EVENTS: ConferenceEvent[] = [
         safetyOutcome: "Vessel perforation: 1.9%; sICH: 3.1% vs 2.4% (p = 0.58).",
         bottomLineTakeaway:
           "Thrombectomy for medium vessel occlusions (MeVO) is safe and yields superior functional recovery when performed by experienced neurointerventionalists.",
+        impactedScenarioId: "ais-large-core-evt-aspects-3-5",
         guidelineImpactWarning:
           "Provides first Level A randomized evidence for distal thrombectomy, previously categorized as Weak/Low Quality by ESO.",
       },
@@ -3153,7 +3157,28 @@ export const MOCK_CONFERENCE_EVENTS: ConferenceEvent[] = [
       positiveTrials: 8,
       practiceChangingCount: 3,
     },
-    lateBreakingTrials: [],
+    lateBreakingTrials: [
+      {
+        id: "trial-aes-ketamine-rse",
+        trialAcronym: "KET-RSE",
+        title: "Early Adjunctive Intravenous Ketamine for Refractory Status Epilepticus",
+        studyDesign: "Phase 3 RCT",
+        subspecialty: "Epilepsy",
+        verdict: "POSITIVE",
+        isPracticeChanging: true,
+        publishedJournal: "Lancet Neurology",
+        populationSummary: "N = 312 adult patients with refractory convulsive status epilepticus failing second-line ASM therapy.",
+        interventionGroup: "Early IV Ketamine (1.5 mg/kg bolus followed by 1.5–5 mg/kg/h) co-administered with continuous Midazolam.",
+        controlGroup: "Standard Midazolam or Propofol titration alone.",
+        primaryOutcome: "Termination of electrographic status epilepticus within 24 hours without vasopressor dependency: 71.4% vs 52.8% (p = 0.003).",
+        safetyOutcome: "ICU mortality: 14.1% vs 17.5% (p = 0.42); severe hypotension requiring high-dose norepinephrine: 18.2% vs 38.6% (p < 0.001).",
+        bottomLineTakeaway:
+          "Adding early Ketamine to continuous GABAergic infusions significantly accelerates seizure cessation while sparing hemodynamic vasopressor support due to NMDA receptor blockade.",
+        impactedScenarioId: "status-epilepticus-rse",
+        guidelineImpactWarning:
+          "Expected to move Ketamine from late third-line rescue up to early refractory status epilepticus protocols across NCS and ILAE guidelines.",
+      },
+    ],
   },
   {
     id: "conf-aan-2026",
