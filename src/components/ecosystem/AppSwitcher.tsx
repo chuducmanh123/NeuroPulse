@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 
 interface AppSwitcherProps {
-  currentApp: "neuropulse" | "neurocase" | "neuroguide";
+  currentApp: "neuropulse" | "neurocase" | "neuroguide" | "admin" | string;
   darkMode?: boolean;
 }
 
@@ -274,6 +274,22 @@ export function AppSwitcher({
                 </span>
               </Link>
             ))}
+          </div>
+
+          {/* Admin Command Center Link */}
+          <div
+            className={`mt-3 pt-2.5 border-t flex items-center justify-between text-[11px] ${
+              darkMode ? "border-slate-800 text-slate-400" : "border-slate-100 text-slate-500"
+            }`}
+          >
+            <span className="text-[10px] text-slate-400">Hệ sinh thái Neuro</span>
+            <Link
+              href="/admin"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-1 font-semibold text-amber-600 dark:text-amber-400 hover:underline transition-colors"
+            >
+              <span>🛡️ Trung tâm Admin</span>
+            </Link>
           </div>
         </div>
       )}

@@ -9,6 +9,7 @@ import {
   cleanMedicalText,
 } from "../components/ArticleCard";
 import { AppSwitcher } from "../components/ecosystem/AppSwitcher";
+import { AdminButton } from "../components/ecosystem/AdminButton";
 import { SUBSPECIALTY_TABS } from "../constants/subspecialties";
 
 const JOURNAL_ORDER = [
@@ -976,6 +977,8 @@ export default function HomePage() {
             >
               <span>{darkMode ? "☀️ Light" : "🌙 Night Shift"}</span>
             </button>
+
+            <AdminButton darkMode={darkMode} />
 
             <button
               onClick={() => setShowSavedOnly(!showSavedOnly)}

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ClinicalCase, CaseDifficulty, CaseStatus, CaseNeuroImaging } from "../../types/clinicalCase";
 import { Article } from "../../types/article";
 import { AppSwitcher } from "../../components/ecosystem/AppSwitcher";
+import { AdminButton } from "../../components/ecosystem/AdminButton";
 import { NeuroImagingViewer } from "../../components/neurocase/NeuroImagingViewer";
 import { CaseChallenge } from "../../components/neurocase/CaseChallenge";
 import { AdminAuthModal } from "../../components/neurocase/modals/AdminAuthModal";
@@ -772,11 +773,13 @@ export default function NeuroCasePage() {
               <span>{darkMode ? "☀️ Light" : "🌙 Night Shift"}</span>
             </button>
 
+            <AdminButton darkMode={darkMode} />
+
             <AppSwitcher currentApp="neurocase" darkMode={darkMode} />
           </div>
         </header>
 
-        {/* NAVIGATION BAR (Admin Review hidden unless verified as Admin) */}
+        {/* NAVIGATION BAR: Clean Clinical Focus for Doctors */}
         <nav
           className={`mb-6 p-1.5 rounded-xl border flex flex-wrap items-center justify-between gap-1.5 ${
             darkMode ? "bg-slate-900/90 border-slate-800" : "bg-white border-slate-200 shadow-xs"
@@ -788,15 +791,6 @@ export default function NeuroCasePage() {
               { id: "archive", label: "📚 Case Archive", badge: `${approvedCases.length}` },
               { id: "exam", label: "⏱️ Exam Mode", badge: undefined },
               { id: "submit", label: "➕ Submit Case", badge: undefined },
-              ...(isAdminVerified
-                ? [
-                    {
-                      id: "admin",
-                      label: "🛡️ Admin Review",
-                      badge: pendingCount > 0 ? `${pendingCount} Pending` : undefined,
-                    },
-                  ]
-                : []),
             ].map((tab) => {
               const active = activeTab === tab.id;
               return (
@@ -830,40 +824,6 @@ export default function NeuroCasePage() {
               );
             })}
           </div>
-
-          {/* Subtle Admin Lock / Unlock Button */}
-          {isAdminVerified ? (
-            <button
-              type="button"
-              onClick={() => {
-                setIsAdminVerified(false);
-                sessionStorage.removeItem("neurocase_admin_token");
-                localStorage.removeItem("neurocase_admin_token");
-                if (activeTab === "admin") setActiveTab("daily");
-              }}
-              className="px-2.5 py-1.5 rounded-lg text-[11px] font-bold text-emerald-500 hover:bg-emerald-500/10 transition-colors"
-              title="Sign out of Admin Moderation Mode"
-            >
-              🔓 Admin Verified
-            </button>
-          ) : (
-            <button
-              type="button"
-              onClick={() => {
-                setAdminPasscodeInput("");
-                setAdminAuthError("");
-                setShowAdminAuthModal(true);
-              }}
-              className={`px-2.5 py-1.5 rounded-lg text-[11px] font-semibold transition-colors ${
-                darkMode
-                  ? "text-slate-500 hover:text-slate-300 hover:bg-slate-800"
-                  : "text-slate-400 hover:text-slate-700 hover:bg-slate-100"
-              }`}
-              title="Verify Admin access to unlock Case Moderation"
-            >
-              🔒 Admin
-            </button>
-          )}
         </nav>
 
         {loading && (
@@ -988,26 +948,6 @@ export default function NeuroCasePage() {
                 setIsSyncingServer(false);
               }
             }}
-          />
-        )}
-
-        {/* =====================================================================
-            TAB 5: ADMIN MODERATION WORKFLOW (Only visible if Admin Verified)
-           ===================================================================== */}
-        {!loading && activeTab === "admin" && isAdminVerified && (
-          <AdminTab
-            darkMode={darkMode}
-            cases={cases}
-            approvedCases={approvedCases}
-            dailyChallengeCases={dailyChallengeCases}
-            serverSyncSuccess={serverSyncSuccess}
-            isSyncingServer={isSyncingServer}
-            refreshCasesFromServer={refreshCasesFromServer}
-            onPersistAdminCases={persistAdminCases}
-            onSetActiveCaseId={(id) => setActiveCaseId(id)}
-            onPreviewCase={(c) => setAdminPreviewCase(c)}
-            getLocalTodayIso={getLocalTodayIso}
-            subspecialtyTabs={SUBSPECIALTY_TABS}
           />
         )}
 
