@@ -192,19 +192,22 @@ export default function NeuroGuidePage() {
     return ["ALL", ...Array.from(set)];
   }, []);
 
-  // Filtered Scenarios (Search strictly applies here)
+  // Filtered Scenarios (Multi-token search strictly applies here)
   const filteredScenarios = useMemo(() => {
+    const rawQ = searchQuery.toLowerCase().trim();
+    const tokens = rawQ.split(/\s+/).filter(Boolean);
+
     return MOCK_CLINICAL_SCENARIOS.filter((scenario) => {
       const matchesSub =
         selectedSubspecialty === "All Subspecialties" ||
         scenario.subspecialty === selectedSubspecialty;
-      const q = searchQuery.toLowerCase().trim();
-      const matchesSearch =
-        !q ||
-        scenario.title.toLowerCase().includes(q) ||
-        scenario.summary.toLowerCase().includes(q) ||
-        scenario.keyTags.some((t) => t.toLowerCase().includes(q));
-      return matchesSub && matchesSearch;
+
+      if (!matchesSub) return false;
+      if (tokens.length === 0) return true;
+
+      const haystack = `${scenario.id} ${scenario.title} ${scenario.summary} ${scenario.keyTags.join(" ")} ${scenario.subspecialty} ${scenario.statusBadge} ${scenario.confAlertText || ""}`.toLowerCase();
+
+      return tokens.every((token) => haystack.includes(token));
     });
   }, [selectedSubspecialty, searchQuery]);
 
@@ -225,9 +228,11 @@ export default function NeuroGuidePage() {
     );
   }, [currentScenario]);
 
-  // Filtered Guidelines with Search & Society Filter
+  // Filtered Guidelines with Multi-token Search & Society Filter
   const filteredGuidelines = useMemo(() => {
-    const q = searchQuery.toLowerCase().trim();
+    const rawQ = searchQuery.toLowerCase().trim();
+    const tokens = rawQ.split(/\s+/).filter(Boolean);
+
     return MOCK_GUIDELINE_DOCS.filter((doc) => {
       const matchesSociety =
         selectedSocietyFilter === "ALL" || doc.society === selectedSocietyFilter;
@@ -236,28 +241,30 @@ export default function NeuroGuidePage() {
         MOCK_CLINICAL_SCENARIOS.some(
           (s) => doc.linkedScenarioIds.includes(s.id) && s.subspecialty === selectedSubspecialty
         );
-      const matchesSearch =
-        !q ||
-        doc.title.toLowerCase().includes(q) ||
-        doc.society.toLowerCase().includes(q) ||
-        doc.journalTarget.toLowerCase().includes(q) ||
-        doc.documentType.toLowerCase().includes(q) ||
-        doc.executiveSummary.toLowerCase().includes(q) ||
-        doc.allPracticeChanges.some(
-          (chg) =>
-            chg.topic.toLowerCase().includes(q) ||
-            chg.currentText.toLowerCase().includes(q) ||
-            chg.category.toLowerCase().includes(q) ||
-            (chg.previousText && chg.previousText.toLowerCase().includes(q)) ||
-            (chg.drivingTrials && chg.drivingTrials.some((t) => t.toLowerCase().includes(q)))
-        );
-      return matchesSociety && matchesSub && matchesSearch;
+
+      if (!matchesSociety || !matchesSub) return false;
+      if (tokens.length === 0) return true;
+
+      const changesText = doc.allPracticeChanges
+        .map(
+          (c) =>
+            `${c.topic} ${c.currentText} ${c.category} ${c.previousText || ""} ${
+              c.drivingTrials?.join(" ") || ""
+            } ${c.currentGrade} ${c.previousGrade || ""}`
+        )
+        .join(" ");
+
+      const haystack = `${doc.id} ${doc.title} ${doc.society} ${doc.journalTarget} ${doc.documentType} ${doc.executiveSummary} ${doc.year} ${doc.publishDate} ${changesText}`.toLowerCase();
+
+      return tokens.every((token) => haystack.includes(token));
     });
   }, [selectedSocietyFilter, selectedSubspecialty, searchQuery]);
 
-  // Filtered Conferences with Search, Status & Subspecialty
+  // Filtered Conferences with Multi-token Search, Status & Subspecialty
   const filteredConferences = useMemo(() => {
-    const q = searchQuery.toLowerCase().trim();
+    const rawQ = searchQuery.toLowerCase().trim();
+    const tokens = rawQ.split(/\s+/).filter(Boolean);
+
     return MOCK_CONFERENCE_EVENTS.filter((conf) => {
       const matchesStatus =
         selectedConfStatus === "ALL" || conf.status === selectedConfStatus;
@@ -265,22 +272,22 @@ export default function NeuroGuidePage() {
         selectedSubspecialty === "All Subspecialties" ||
         conf.subspecialties.includes("All Subspecialties") ||
         conf.subspecialties.includes(selectedSubspecialty);
-      const matchesSearch =
-        !q ||
-        conf.name.toLowerCase().includes(q) ||
-        conf.acronym.toLowerCase().includes(q) ||
-        conf.location.toLowerCase().includes(q) ||
-        conf.executiveSummary.toLowerCase().includes(q) ||
-        conf.lateBreakingTrials.some(
+
+      if (!matchesStatus || !matchesSub) return false;
+      if (tokens.length === 0) return true;
+
+      const trialsText = conf.lateBreakingTrials
+        .map(
           (tr) =>
-            tr.trialAcronym.toLowerCase().includes(q) ||
-            tr.title.toLowerCase().includes(q) ||
-            tr.primaryOutcome.toLowerCase().includes(q) ||
-            tr.populationSummary.toLowerCase().includes(q) ||
-            tr.bottomLineTakeaway.toLowerCase().includes(q) ||
-            (tr.publishedJournal && tr.publishedJournal.toLowerCase().includes(q))
-        );
-      return matchesStatus && matchesSub && matchesSearch;
+            `${tr.trialAcronym} ${tr.title} ${tr.primaryOutcome} ${tr.populationSummary} ${
+              tr.bottomLineTakeaway
+            } ${tr.publishedJournal || ""} ${tr.safetyOutcome} ${tr.studyDesign}`
+        )
+        .join(" ");
+
+      const haystack = `${conf.id} ${conf.name} ${conf.acronym} ${conf.location} ${conf.dates} ${conf.executiveSummary} ${conf.status} ${trialsText}`.toLowerCase();
+
+      return tokens.every((token) => haystack.includes(token));
     });
   }, [selectedConfStatus, selectedSubspecialty, searchQuery]);
 
