@@ -1,5 +1,223 @@
 [
   {
+    "id": "nc-2026-013",
+    "case_code": "NC-2026-013",
+    "title": "Pediatric Super-Refractory Epilepsia Partialis Continua Complicating Diffuse Left Hemispheric Polymicrogyria",
+    "subspecialty": "Epilepsy",
+    "subspecialties": [
+      "Epilepsy",
+      "Pediatric Neurology",
+      "Neurocritical Care"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 120,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-10-29",
+    "status": "approved",
+    "author_credit": "Annals of clinical and translational neurology • PMC11651186",
+    "source_journal": {
+      "name": "Annals of clinical and translational neurology",
+      "short_name": "Annals of clinical and translational neurology",
+      "doi_url": "https://doi.org/10.1002/acn3.52199",
+      "pmcid": "PMC11651186",
+      "pmid": "39540465",
+      "pub_year": "2024"
+    },
+    "presentation": {
+      "demographics": "6-year-old left-handed female",
+      "chief_complaint": "Continuous focal motor status epilepticus involving the right face, arm, and thumb",
+      "history_of_present_illness": "The patient with a history of left hemispheric polymicrogyria and pachygyria presented with continuous right thumb twitching that escalated to right face and arm jerking. She failed multiple escalating antiseizure medications and continuous infusions, suffered propofol infusion syndrome and MIS-C secondary to COVID-19, and was transferred for surgical evaluation of persistent super-refractory focal status epilepticus.",
+      "past_medical_history": "Diffuse left hemispheric polymicrogyria and pachygyria, maternally inherited DYNC1H1 variant, mild right hemiparesis, global developmental delay, and drug-refractory daily focal motor seizures.",
+      "vitals": {
+        "bp": "104/68 mmHg",
+        "hr": "110 bpm",
+        "rr": "22 /min",
+        "temp": "37.5 °C",
+        "spo2": "99%"
+      },
+      "neuro_exam": "Near-continuous right-sided blinking, right facial twitching, tongue biting, and right hand, thumb, and finger contraction. Mild baseline right hemiparesis and global developmental delay.",
+      "key_labs_csf": "Mild transaminitis and rhabdomyolysis secondary to prior propofol infusion syndrome; CSF analyses unremarkable.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (Axial and Coronal T2 FLAIR)",
+          "sequence_badge": "Figure 1 • Annals of clinical and translational neurology (PMC11651186)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC11651186_fig1.jpg",
+          "pmcid": "PMC11651186",
+          "doi_url": "https://doi.org/10.1002/acn3.52199",
+          "caption": "Baseline structural and electrographic findings. (A) Axial and coronal T2 FLAIR images demonstrating diffuse left frontal pachygyria and polymicrogyria. (B) EEG recording 2 months prior to status presentation revealed abundant left frontopolar epileptiform discharges that were continuous at 2 Hz during non‐rapid eye movement sleep. (C) EEG recording 2 months prior to status presentation also revealed bursts of left central fast activity and spikes that coincided with right hand and face myoclonic seizures.",
+          "findings_summary": "Demonstrates diffuse left frontal pachygyria and polymicrogyria with underlying structural malformation of cortical development."
+        },
+        {
+          "modality": "Brain PET and Video-EEG",
+          "sequence_badge": "Figure 2 • Annals of clinical and translational neurology (PMC11651186)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC11651186_fig2.jpg",
+          "pmcid": "PMC11651186",
+          "doi_url": "https://doi.org/10.1002/acn3.52199",
+          "caption": "Perioperative functional and electrophysiological imaging. (A) Axial and coronal PET imaging reveal ictal hypermetabolism diffusely over the left frontal region. (B) EEG 1 week prior to surgical intervention reveals focal status over the left hemisphere with a dominant epileptic focus over the left frontopolar region.",
+          "findings_summary": "PET shows diffuse left hemispheric ictal hypermetabolism most prominent frontopolarly, and EEG demonstrates 2-5 Hz left frontal discharges time-locked to myoclonic jerks."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most appropriate next therapeutic management step for this patient?",
+      "question_type": "Acute Management",
+      "correct_option": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "Perform an immediate complete left functional hemispherectomy without invasive monitoring.",
+          "peer_percentage": 15,
+          "rationale": "Incorrect. Complete hemispherectomy carries high morbidity and targeted resection combined with neuromodulation is preferred when distinct independent or multi-focal zones are suspected and baseline function must be preserved."
+        },
+        {
+          "id": "B",
+          "text": "Perform targeted resection of the frontopolar ictal focus combined with responsive neurostimulation (RNS) of the primary motor cortex.",
+          "peer_percentage": 70,
+          "rationale": "Correct! Given the presence of two independent epileptogenic zones (frontopolar focus and primary motor cortex), resecting the non-eloquent frontopolar focus and implanting responsive neurostimulation (RNS) targeting the primary motor cortex safely treats the super-refractory epilepsy while preserving eloquent motor function."
+        },
+        {
+          "id": "C",
+          "text": "Initiate a trial of ketogenic diet and repeat continuous barbiturate coma for another 14 days.",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. The patient has already failed multiple broad-spectrum anti-seizure medications, high-dose benzodiazepines, and developed life-threatening propofol infusion syndrome; further medical coma will only increase systemic morbidity without resolving structural multi-focal epilepsy."
+        },
+        {
+          "id": "D",
+          "text": "Implant a standard bilateral vagus nerve stimulator (VNS) without intracranial targeting.",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. Standard VNS provides slow, long-term neuromodulation and is insufficient for acute, super-refractory focal status epilepticus requiring immediate, localized real-time disruption."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Super-refractory epilepsia partialis continua secondary to DYNC1H1 mutation and left hemispheric malformation of cortical development treated with resective surgery and responsive neurostimulation (RNS)",
+      "clinical_discussion": "Super-refractory status epilepticus (SRSE) persisting for more than 24 hours despite general anesthesia is notoriously difficult to treat, particularly when driven by underlying structural malformations of cortical development such as polymicrogyria and pachygyria. In this pediatric patient, multiple continuous infusions and polypharmacy failed and resulted in severe complications including propofol infusion syndrome and MIS-C. Multidisciplinary evaluation revealed two independent epileptogenic zones: a frontopolar focus and a primary motor cortex focus.\n\nSurgical management required balancing seizure cessation with the preservation of motor function. Resection of the non-eloquent frontopolar ictal focus was coupled with the implantation of a responsive neurostimulation (RNS) system targeting the primary motor cortex via depth electrodes. Post-operative optimization of RNS parameters—specifically tailoring contact selection, increasing total charge density, and avoiding lead-to-lead stimulation directly exacerbating myoclonus—successfully achieved seizure freedom, highlighting the emerging utility of emergent RNS in pediatric super-refractory epilepsia partialis continua when resective limits preclude standard hemispherectomy.",
+      "teaching_points": [
+        "Super-refractory status epilepticus (SRSE) due to malformations of cortical development often requires surgical intervention when medical therapy and anesthetic comas fail.",
+        "Responsive neurostimulation (RNS) can be successfully utilized in pediatric patients with multi-focal or eloquent-cortex epilepsy where resective surgery alone carries an unacceptably high risk of neurological deficit.",
+        "Careful programming of RNS parameters (such as avoiding direct stimulations that trigger myoclonus and optimizing energy delivery) is critical for clinical efficacy in refractory motor seizures."
+      ],
+      "clinical_pitfalls": [
+        "Assuming all focal motor status epilepticus originates from a single homogeneous focus in patients with extensive diffuse structural dysplasias.",
+        "Prolonging general anesthetic infusions in SRSE without recognizing cumulative toxicities such as propofol infusion syndrome."
+      ],
+      "related_keywords": [
+        "Epilepsia partialis continua",
+        "Responsive neurostimulation",
+        "Polymicrogyria",
+        "Super-refractory status epilepticus",
+        "DYNC1H1"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-014",
+    "case_code": "NC-2026-014",
+    "title": "A 62-Year-Old Woman with Acute Right-Sided Hemichorea and Mild Cerebellar Atrophy",
+    "subspecialty": "Movement Disorders",
+    "subspecialties": [
+      "Movement Disorders",
+      "Neurogenetics",
+      "General Neurology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-10-29",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC12403888",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-025-04391-2",
+      "pmcid": "PMC12403888",
+      "pmid": "40890648",
+      "pub_year": "2025"
+    },
+    "presentation": {
+      "demographics": "62-year-old female",
+      "chief_complaint": "Involuntary twisting movements in the right limbs for two weeks",
+      "history_of_present_illness": "The patient presented with a two-week history of intermittent, distal-dominant involuntary movements in her right upper and lower extremities. She had no associated cognitive decline, sensory disturbances, or gait ataxia, and initial brain MRI ruled out acute stroke. Her family history was notable for a paternal grandmother diagnosed with Parkinson's disease, but no history of chorea or hereditary ataxia.",
+      "past_medical_history": "Unremarkable medical and medication history; no history of stroke, autoimmune disorders, or neuroleptic exposure.",
+      "vitals": {
+        "bp": "128/76 mmHg",
+        "hr": "72 bpm",
+        "rr": "16 /min",
+        "temp": "36.7 °C",
+        "spo2": "98% on room air"
+      },
+      "neuro_exam": "Conscious and alert with normal cognition (MMSE 30/30). Cranial nerves are intact with normal saccades, pursuit, and absence of nystagmus. Motor strength and deep tendon reflexes are normal throughout. Sensory exam is intact. Examination reveals distal-dominant, intermittent, twisting choreiform movements of the right arm and leg (hemichorea). Finger-tapping and tandem gait are preserved.",
+      "key_labs_csf": "Normal blood glucose, HbA1c, ammonia, lupus anticoagulant, antinuclear antibodies, thyroid function tests, ceruloplasmin, copper, and anti-cardiolipin antibodies. Blood smear shows no acanthocytes. CSF analysis is completely unremarkable.",
+      "imaging": [
+        {
+          "modality": "Brain MRI T1-weighted imaging & DAT-SPECT",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC12403888)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC12403888_fig1.jpg",
+          "pmcid": "PMC12403888",
+          "doi_url": "https://doi.org/10.1186/s12883-025-04391-2",
+          "caption": "Basic neural circuitry between the cerebral cortex and basal ganglia. The normal and hemichoreic conditions are presented in the panels a and b, respectively. To make a voluntary movement, neural inputs arising from the cerebral cortex initially suppress the thalamus extensively via the hyperdirect pathway (constituents, cortex–STN–GPi/SNr; a). Subsequently, using the direct pathway (cortex–striatum–GPi/SNr), the inputs focally disinhibit the thalamus, which is otherwise strongly restrained by GABAergic projections from the GPi/SNr. Finally, the inputs from the cortex suppress the thalamus ext",
+          "findings_summary": "MRI revealed mild cerebellar atrophy with no basal ganglia lesions, while DAT-SPECT demonstrated bilaterally decreased striatal tracer uptake."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely underlying diagnosis for this patient's isolated hemichorea?",
+      "question_type": "Diagnosis",
+      "correct_option": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "Huntington's disease",
+          "peer_percentage": 15,
+          "rationale": "Incorrect. Huntington's disease typically presents with a strong family history of autosomal dominant chorea and psychiatric or cognitive disturbances, rather than isolated hemichorea without family history of chorea."
+        },
+        {
+          "id": "B",
+          "text": "Sydenham chorea",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. Sydenham chorea is classically associated with recent streptococcal infection and predominantly affects children and adolescents, not older adults."
+        },
+        {
+          "id": "C",
+          "text": "Spinocerebellar ataxia type 8 (SCA8)",
+          "peer_percentage": 70,
+          "rationale": "Correct! The detection of an expanded CTA/CTG repeat in the ATXN8OS gene along with mild cerebellar atrophy confirms SCA8, which can rarely present atypically with isolated hemichorea and presynaptic dopaminergic dysfunction."
+        },
+        {
+          "id": "D",
+          "text": "Wilson's disease",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. Wilson's disease usually manifests in younger patients (<40 years) with hepatic abnormalities, psychiatric symptoms, Kayser-Fleischer rings, and low serum ceruloplasmin."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Spinocerebellar ataxia type 8 (SCA8)",
+      "clinical_discussion": "Spinocerebellar ataxia type 8 (SCA8) is an autosomal dominant neurodegenerative disorder caused by a CTA/CTG repeat expansion in the ATXN8OS gene. While classically presenting with progressive cerebellar ataxia, oculomotor abnormalities, and dysarthria, phenotypic variations are well documented. This case highlights an exceptionally rare presentation of SCA8 where the patient presented solely with right-sided hemichorea and no family history of ataxia.\n\nNeuroimaging findings in this patient revealed mild cerebellar atrophy on MRI and reduced tracer uptake on DAT-SPECT, indicating nigrostriatal dopaminergic dysfunction. Although DAT-SPECT is primarily used for parkinsonism, it can show abnormalities in various atypical neurodegenerative conditions, including spinocerebellar ataxias. Symptomatic management with dopamine receptor blockers such as haloperidol successfully controlled the choreiform movements, emphasizing the critical role of genetic screening in atypical movement disorders even in the absence of a classic familial ataxia phenotype.",
+      "teaching_points": [
+        "SCA8 can present atypically with isolated extrapyramidal features such as hemichorea, even without a family history of ataxia.",
+        "DAT-SPECT can demonstrate nigrostriatal pathway dysfunction in neurodegenerative conditions outside of primary parkinsonism.",
+        "Genetic testing for trinucleotide repeat expansions should be considered in patients with unexplained movement disorders accompanied by unexplained cerebellar atrophy."
+      ],
+      "clinical_pitfalls": [
+        "Assuming that chorea in an elderly patient is solely due to vascular stroke or metabolic derangements without considering neurodegenerative causes.",
+        "Overlooking hereditary ataxias when the classic triad of gait ataxia, nystagmus, and dysarthria is entirely absent."
+      ],
+      "related_keywords": [
+        "Spinocerebellar ataxia type 8",
+        "Hemichorea",
+        "DAT-SPECT",
+        "ATXN8OS gene",
+        "Cerebellar atrophy"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-011",
     "case_code": "NC-2026-011",
     "title": "Acute Onset Seizures, Confusion, and Memory Disorders with Concomitant Viral and Autoantibody Detection",

@@ -32,10 +32,13 @@ def load_env_key() -> str:
             pass
     return os.environ.get("GEMINI_API_KEY", "").strip().strip('"').strip("'")
 
-ctx = ssl.create_default_context()
-# Giữ kiểm tra SSL chứng chỉ số mặc định an toàn
-ctx.check_hostname = True
-ctx.verify_mode = ssl.CERT_REQUIRED
+def create_ssl_context():
+    c = ssl.create_default_context()
+    c.check_hostname = True
+    c.verify_mode = ssl.CERT_REQUIRED
+    return c
+
+ctx = create_ssl_context()
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124.0.0.0 Safari/537.36"
@@ -43,10 +46,7 @@ HEADERS = {
 
 GEMINI_API_KEY = load_env_key()
 ACTIVE_GEMINI_MODELS = [
-    "gemini-flash-lite-latest",  # Phản hồi tức thì, hạn mức Free Tier rộng nhất (như NeuroPulse)
-    "gemini-2.5-flash-lite",
-    "gemini-2.0-flash",
-    "gemini-2.5-flash",
+    "gemini-flash-lite-latest",  # Phản hồi tức thì, hạn mức Free Tier rộng nhất
     "gemini-flash-latest"
 ]
 
@@ -683,11 +683,11 @@ CRITICAL DESIGN RULES:
                         "subspecialties": parsed.get("subspecialties") or [candidate["default_subspecialty"]],
                         "difficulty": parsed.get("difficulty") if parsed.get("difficulty") in ("Resident", "Fellow", "Attending") else "Fellow",
                         "estimated_time_sec": int(parsed.get("estimated_time_sec") or 110),
-                        "is_daily_challenge": False,
-                        "archive_only": True,
+                        "is_daily_challenge": is_daily,
+                        "archive_only": not is_daily,
                         "published_date": today_str,
-                        "status": "pending",
-                        "author_credit": f"{candidate['journal_title']} • {candidate['pmcid']} (Pending Admin Review)",
+                        "status": "approved",
+                        "author_credit": f"{candidate['journal_title']} • {candidate['pmcid']}",
                         "source_journal": {
                             "name": candidate["journal_title"],
                             "short_name": candidate["journal_short"],
@@ -838,11 +838,11 @@ def build_structured_clinical_case_deterministic(candidate: dict, next_case_num:
         "subspecialties": [candidate["default_subspecialty"]],
         "difficulty": "Fellow",
         "estimated_time_sec": 110,
-        "is_daily_challenge": False,
-        "archive_only": True,
+        "is_daily_challenge": is_daily,
+        "archive_only": not is_daily,
         "published_date": today_str,
-        "status": "pending",
-        "author_credit": f"{candidate['journal_title']} • {candidate['pmcid']} (Pending Admin Review)",
+        "status": "approved",
+        "author_credit": f"{candidate['journal_title']} • {candidate['pmcid']}",
         "source_journal": {
             "name": candidate["journal_title"],
             "short_name": candidate["journal_short"],
@@ -923,41 +923,63 @@ def run():
         and c.get("status", "approved") == "approved"
         for c in existing_cases
     )
-    has_pending_today = any(
+    has_archive_today = any(
         c.get("published_date") == today_str
-        and c.get("status") == "pending"
+        and c.get("archive_only") is True
+        and c.get("status", "approved") == "approved"
         for c in existing_cases
     )
 
     print(f"-> Ngày hiện tại (UTC+7): {today_str} ({today_dt.strftime('%A')}) | Hiện có {len(existing_cases)} ca ({len(used_pmcids)} PMCID đã dùng).")
     print(f"-> Luân phiên chuyên khoa mục tiêu: ⭐ {target_subspecialty}")
-    print(f"-> Trạng thái cập nhật ngày {today_str}: Daily Challenge Approved = {'✅ Đã có' if has_daily_today else '⏳ Chưa duyệt'} | Pending Review Queue = {'✅ Đã sẵn sàng' if has_pending_today else '⏳ Chưa có'}")
+    print(f"-> Trạng thái cập nhật ngày {today_str}: Daily Challenge = {'✅ Đã có' if has_daily_today else '⏳ Chưa có'} | Case Archive = {'✅ Đã có' if has_archive_today else '⏳ Chưa có'}")
 
-    if has_daily_today or has_pending_today:
+    if has_daily_today and has_archive_today:
         save_cases_to_disk(existing_cases)
-        print(f"[NeuroCase 2/3] ✅ Ngày {today_str} đã có ca bệnh chuẩn bị sẵn (hoặc đã duyệt). Không cần tạo thêm ca pending.")
+        print(f"[NeuroCase 2/3] ✅ Đã đủ 2 ca (1 Daily + 1 Archive) cho ngày {today_str}. Không cần tìm thêm.")
         return
 
     newly_added = []
 
-    # Tạo 1 ca bệnh mới ở trạng thái Pending cho Admin kiểm duyệt (Đề xuất 3)
-    print(f"[NeuroCase 2/3] 🎯 Đang tìm ca bệnh Open Access mới thuộc chuyên khoa {target_subspecialty}...")
-    cand_daily = find_new_pmc_candidate(used_pmcids, day_index, target_subspecialty=target_subspecialty)
-    if cand_daily:
-        used_pmcids.add(cand_daily["pmcid"].strip())
-        max_num += 1
-        print(f"   -> Ứng viên: {cand_daily['pmcid']} ({cand_daily['journal_title']}) - {len(cand_daily['figures'])} hình ảnh thần kinh đạt chuẩn.")
-        case_daily = None
-        if GEMINI_API_KEY:
-            print("   -> Đang gọi Gemini AI biên soạn ca lâm sàng (2-Pass Review)...")
-            case_daily = generate_clinical_case_with_gemini(cand_daily, max_num, today_str, is_daily=False)
-        if not case_daily or not case_daily.get("challenge") or not case_daily.get("resolution"):
-            print("   -> Dùng bộ biên soạn lâm sàng tất định cho ca bệnh mới...")
-            case_daily = build_structured_clinical_case_deterministic(cand_daily, max_num, today_str, is_daily=False)
+    # 1. Cập nhật 1 ca Daily Challenge nếu ngày hôm nay chưa có
+    if not has_daily_today:
+        print(f"[NeuroCase 2/3] 🎯 Đang tìm ca bệnh Open Access mới làm Daily Challenge ({target_subspecialty}) cho ngày {today_str}...")
+        cand_daily = find_new_pmc_candidate(used_pmcids, day_index, target_subspecialty=target_subspecialty)
+        if cand_daily:
+            used_pmcids.add(cand_daily["pmcid"].strip())
+            max_num += 1
+            print(f"   -> Ứng viên Daily: {cand_daily['pmcid']} ({cand_daily['journal_title']}) - {len(cand_daily['figures'])} hình ảnh.")
+            case_daily = None
+            if GEMINI_API_KEY:
+                print("   -> Đang gọi Gemini AI biên soạn Daily Challenge (2-Pass Review)...")
+                case_daily = generate_clinical_case_with_gemini(cand_daily, max_num, today_str, is_daily=True)
+            if not case_daily or not case_daily.get("challenge") or not case_daily.get("resolution"):
+                print("   -> Dùng bộ biên soạn lâm sàng tất định cho Daily Challenge...")
+                case_daily = build_structured_clinical_case_deterministic(cand_daily, max_num, today_str, is_daily=True)
 
-        if case_daily:
-            newly_added.append(case_daily)
-            print(f"   ✨ Đã đưa vào hàng đợi Pending Review [{case_daily['case_code']}]: {case_daily['title']} (Chờ Admin duyệt)")
+            if case_daily:
+                newly_added.append(case_daily)
+                print(f"   ✨ Đã xuất bản Daily Challenge [{case_daily['case_code']}]: {case_daily['title']}")
+
+    # 2. Cập nhật 1 ca Case Archive nếu ngày hôm nay chưa có
+    if not has_archive_today:
+        print(f"[NeuroCase 2/3] 📚 Đang tìm ca bệnh Open Access mới lưu trữ vào Case Archive cho ngày {today_str}...")
+        cand_archive = find_new_pmc_candidate(used_pmcids, day_index + 17)
+        if cand_archive:
+            used_pmcids.add(cand_archive["pmcid"].strip())
+            max_num += 1
+            print(f"   -> Ứng viên Archive: {cand_archive['pmcid']} ({cand_archive['journal_title']}) - {len(cand_archive['figures'])} hình ảnh.")
+            case_archive = None
+            if GEMINI_API_KEY:
+                print("   -> Đang gọi Gemini AI biên soạn Archive Case...")
+                case_archive = generate_clinical_case_with_gemini(cand_archive, max_num, today_str, is_daily=False)
+            if not case_archive or not case_archive.get("challenge") or not case_archive.get("resolution"):
+                print("   -> Dùng bộ biên soạn lâm sàng tất định cho Archive Case...")
+                case_archive = build_structured_clinical_case_deterministic(cand_archive, max_num, today_str, is_daily=False)
+
+            if case_archive:
+                newly_added.append(case_archive)
+                print(f"   📚 Đã xuất bản Archive Case [{case_archive['case_code']}]: {case_archive['title']}")
 
     if newly_added:
         updated_cases = newly_added + existing_cases
