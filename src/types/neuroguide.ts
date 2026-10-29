@@ -92,13 +92,15 @@ export interface PracticeChangeDetail {
 
 export interface GuidelineDoc {
   id: string; // e.g. "aha-ais-2026", "eso-ais-2024"
-  society: "AHA/ASA" | "ESO" | "AAN" | "EAN" | "WSO" | "VN-MOH" | "NCS" | "ILAE";
+  society: string; // "AHA/ASA" | "ESO" | "AAN" | "EAN" | "WSO" | "VN-MOH" | "NCS" | "ILAE" | "MDS" | "AHS" | "ECTRIMS" | "IDSA" | "AANEM";
   year: number;
   title: string;
   officialUrl: string;
   journalTarget: string;
   documentType: "Clinical Practice Guideline" | "Focused Update" | "Scientific Statement" | "Expert Consensus";
-  publishDate: string; // ISO format "2026-02-15"
+  publishDate: string; // ISO format "2026-05-07"
+  subspecialty: SubspecialtyType;
+  subspecialties?: SubspecialtyType[];
   previousVersionYear?: number;
   executiveSummary: string;
   allPracticeChanges: PracticeChangeDetail[];
@@ -109,7 +111,7 @@ export interface RecommendationAtom {
   id: string;
   scenarioId: string; // Foreign key to ClinicalScenario
   guidelineDocId: string; // Foreign key to GuidelineDoc
-  society: "AHA/ASA" | "ESO" | "AAN" | "EAN" | "WSO" | "VN-MOH" | "NCS" | "ILAE";
+  society: string; // 'AHA/ASA' | 'ESO' | 'AAN' | 'EAN' | 'WSO' | 'VN-MOH' | 'NCS' | 'ILAE' | 'MDS' | 'AHS' | 'ECTRIMS'
   year: number;
   originalGrade: string; // 'Class I, Level of Evidence A' or 'Strong for, High quality'
   normalizedTier: NormalizedTier; // 1-5
@@ -160,7 +162,7 @@ export interface LateBreakingTrial {
   subspecialty: SubspecialtyType;
   verdict: "POSITIVE" | "NEUTRAL" | "NEGATIVE";
   isPracticeChanging: boolean;
-  publishedJournal?: "NEJM" | "Lancet" | "JAMA" | "Stroke" | "Eur Stroke J" | "Neurology";
+  publishedJournal?: string;
   fullTextUrl?: string;
   populationSummary: string;
   interventionGroup: string;
@@ -176,6 +178,8 @@ export interface ConferenceEvent {
   id: string; // "esoc-2026", "isc-2026", "aan-2026"
   acronym: string; // "ESOC", "ISC", "AAN"
   name: string;
+  year: number;
+  startDate: string; // ISO format "2026-05-20" for exact chronological ordering
   subspecialties: SubspecialtyType[];
   dates: string;
   location: string;

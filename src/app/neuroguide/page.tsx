@@ -76,7 +76,61 @@ function getGuidelineTheme(society: string): ThemeStyle {
       accentText: "text-emerald-600 dark:text-emerald-400",
     };
   }
-  if (norm.includes("AAN")) {
+  if (norm.includes("AES") || norm.includes("ILAE")) {
+    return {
+      borderLeft: "border-l-4 border-l-indigo-500",
+      cardBg: "bg-indigo-50/30 dark:bg-indigo-950/20",
+      cardBorder: "border-indigo-200 dark:border-indigo-900/60 hover:border-indigo-400 dark:hover:border-indigo-600",
+      badge: "bg-indigo-100 text-indigo-700 border-indigo-300 dark:bg-indigo-900/60 dark:text-indigo-300 dark:border-indigo-800",
+      accentText: "text-indigo-600 dark:text-indigo-400",
+    };
+  }
+  if (norm.includes("MDS")) {
+    return {
+      borderLeft: "border-l-4 border-l-teal-500",
+      cardBg: "bg-teal-50/30 dark:bg-teal-950/20",
+      cardBorder: "border-teal-200 dark:border-teal-900/60 hover:border-teal-400 dark:hover:border-teal-600",
+      badge: "bg-teal-100 text-teal-800 border-teal-300 dark:bg-teal-900/60 dark:text-teal-300 dark:border-teal-800",
+      accentText: "text-teal-600 dark:text-teal-400",
+    };
+  }
+  if (norm.includes("AHS") || norm.includes("HEADACHE")) {
+    return {
+      borderLeft: "border-l-4 border-l-orange-500",
+      cardBg: "bg-orange-50/30 dark:bg-orange-950/20",
+      cardBorder: "border-orange-200 dark:border-orange-900/60 hover:border-orange-400 dark:hover:border-orange-600",
+      badge: "bg-orange-100 text-orange-800 border-orange-300 dark:bg-orange-900/60 dark:text-orange-300 dark:border-orange-800",
+      accentText: "text-orange-600 dark:text-orange-400",
+    };
+  }
+  if (norm.includes("ECTRIMS")) {
+    return {
+      borderLeft: "border-l-4 border-l-cyan-500",
+      cardBg: "bg-cyan-50/30 dark:bg-cyan-950/20",
+      cardBorder: "border-cyan-200 dark:border-cyan-900/60 hover:border-cyan-400 dark:hover:border-cyan-600",
+      badge: "bg-cyan-100 text-cyan-800 border-cyan-300 dark:bg-cyan-900/60 dark:text-cyan-300 dark:border-cyan-800",
+      accentText: "text-cyan-600 dark:text-cyan-400",
+    };
+  }
+  if (norm.includes("AANEM")) {
+    return {
+      borderLeft: "border-l-4 border-l-sky-500",
+      cardBg: "bg-sky-50/30 dark:bg-sky-950/20",
+      cardBorder: "border-sky-200 dark:border-sky-900/60 hover:border-sky-400 dark:hover:border-sky-600",
+      badge: "bg-sky-100 text-sky-800 border-sky-300 dark:bg-sky-900/60 dark:text-sky-300 dark:border-sky-800",
+      accentText: "text-sky-600 dark:text-sky-400",
+    };
+  }
+  if (norm.includes("NCS")) {
+    return {
+      borderLeft: "border-l-4 border-l-violet-500",
+      cardBg: "bg-violet-50/30 dark:bg-violet-950/20",
+      cardBorder: "border-violet-200 dark:border-violet-900/60 hover:border-violet-400 dark:hover:border-violet-600",
+      badge: "bg-violet-100 text-violet-800 border-violet-300 dark:bg-violet-900/60 dark:text-violet-300 dark:border-violet-800",
+      accentText: "text-violet-600 dark:text-violet-400",
+    };
+  }
+  if (norm.includes("AAN") || norm.includes("EAN")) {
     return {
       borderLeft: "border-l-4 border-l-purple-500",
       cardBg: "bg-purple-50/30 dark:bg-purple-950/20",
@@ -192,7 +246,7 @@ export default function NeuroGuidePage() {
     return ["ALL", ...Array.from(set)];
   }, []);
 
-  // Filtered Scenarios (Multi-token search strictly applies here)
+  // Filtered Scenarios (Multi-token search with diacritics normalization)
   const filteredScenarios = useMemo(() => {
     const rawQ = searchQuery.toLowerCase().trim();
     const tokens = rawQ.split(/\s+/).filter(Boolean);
@@ -205,9 +259,13 @@ export default function NeuroGuidePage() {
       if (!matchesSub) return false;
       if (tokens.length === 0) return true;
 
-      const haystack = `${scenario.id} ${scenario.title} ${scenario.summary} ${scenario.keyTags.join(" ")} ${scenario.subspecialty} ${scenario.statusBadge} ${scenario.confAlertText || ""}`.toLowerCase();
+      const rawHaystack = `${scenario.id} ${scenario.title} ${scenario.summary} ${scenario.keyTags.join(" ")} ${scenario.subspecialty} ${scenario.statusBadge} ${scenario.confAlertText || ""}`.toLowerCase();
+      const normHaystack = rawHaystack.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-      return tokens.every((token) => haystack.includes(token));
+      return tokens.every((token) => {
+        const normToken = token.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        return rawHaystack.includes(token) || normHaystack.includes(normToken);
+      });
     });
   }, [selectedSubspecialty, searchQuery]);
 
@@ -228,16 +286,18 @@ export default function NeuroGuidePage() {
     );
   }, [currentScenario]);
 
-  // Filtered Guidelines with Multi-token Search & Society Filter
+  // Filtered Guidelines: Multi-token Search + Diacritics Normalization + Direct Subspecialty + Chronological Sort
   const filteredGuidelines = useMemo(() => {
     const rawQ = searchQuery.toLowerCase().trim();
     const tokens = rawQ.split(/\s+/).filter(Boolean);
 
-    return MOCK_GUIDELINE_DOCS.filter((doc) => {
+    const list = MOCK_GUIDELINE_DOCS.filter((doc) => {
       const matchesSociety =
         selectedSocietyFilter === "ALL" || doc.society === selectedSocietyFilter;
       const matchesSub =
         selectedSubspecialty === "All Subspecialties" ||
+        doc.subspecialty === selectedSubspecialty ||
+        (doc.subspecialties && doc.subspecialties.includes(selectedSubspecialty)) ||
         MOCK_CLINICAL_SCENARIOS.some(
           (s) => doc.linkedScenarioIds.includes(s.id) && s.subspecialty === selectedSubspecialty
         );
@@ -254,18 +314,30 @@ export default function NeuroGuidePage() {
         )
         .join(" ");
 
-      const haystack = `${doc.id} ${doc.title} ${doc.society} ${doc.journalTarget} ${doc.documentType} ${doc.executiveSummary} ${doc.year} ${doc.publishDate} ${changesText}`.toLowerCase();
+      const rawHaystack = `${doc.id} ${doc.title} ${doc.society} ${doc.journalTarget} ${doc.documentType} ${doc.executiveSummary} ${doc.year} ${doc.publishDate} ${doc.subspecialty} ${changesText}`.toLowerCase();
+      const normHaystack = rawHaystack.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-      return tokens.every((token) => haystack.includes(token));
+      return tokens.every((token) => {
+        const normToken = token.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        return rawHaystack.includes(token) || normHaystack.includes(normToken);
+      });
+    });
+
+    // CHRONOLOGICAL SORTING: Newest publishDate first, then year descending
+    return list.sort((a, b) => {
+      if (b.publishDate && a.publishDate) {
+        return b.publishDate.localeCompare(a.publishDate);
+      }
+      return b.year - a.year;
     });
   }, [selectedSocietyFilter, selectedSubspecialty, searchQuery]);
 
-  // Filtered Conferences with Multi-token Search, Status & Subspecialty
+  // Filtered Conferences: Multi-token Search + Diacritics Normalization + Subspecialty + Chronological Sort
   const filteredConferences = useMemo(() => {
     const rawQ = searchQuery.toLowerCase().trim();
     const tokens = rawQ.split(/\s+/).filter(Boolean);
 
-    return MOCK_CONFERENCE_EVENTS.filter((conf) => {
+    const list = MOCK_CONFERENCE_EVENTS.filter((conf) => {
       const matchesStatus =
         selectedConfStatus === "ALL" || conf.status === selectedConfStatus;
       const matchesSub =
@@ -285,9 +357,24 @@ export default function NeuroGuidePage() {
         )
         .join(" ");
 
-      const haystack = `${conf.id} ${conf.name} ${conf.acronym} ${conf.location} ${conf.dates} ${conf.executiveSummary} ${conf.status} ${trialsText}`.toLowerCase();
+      const rawHaystack = `${conf.id} ${conf.name} ${conf.acronym} ${conf.location} ${conf.dates} ${conf.executiveSummary} ${conf.status} ${conf.year} ${conf.startDate || ""} ${conf.subspecialties.join(" ")} ${trialsText}`.toLowerCase();
+      const normHaystack = rawHaystack.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-      return tokens.every((token) => haystack.includes(token));
+      return tokens.every((token) => {
+        const normToken = token.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        return rawHaystack.includes(token) || normHaystack.includes(normToken);
+      });
+    });
+
+    // CHRONOLOGICAL SORTING: LIVE events first, then by startDate descending
+    return list.sort((a, b) => {
+      if (a.status === "LIVE" && b.status !== "LIVE") return -1;
+      if (b.status === "LIVE" && a.status !== "LIVE") return 1;
+
+      if (b.startDate && a.startDate) {
+        return b.startDate.localeCompare(a.startDate);
+      }
+      return b.year - a.year;
     });
   }, [selectedConfStatus, selectedSubspecialty, searchQuery]);
 
