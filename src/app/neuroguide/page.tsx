@@ -39,6 +39,89 @@ const NAV_TABS = [
 
 type NavTabId = (typeof NAV_TABS)[number]["id"];
 
+interface ThemeStyle {
+  borderLeft: string;
+  cardBg: string;
+  cardBorder: string;
+  badge: string;
+  accentText: string;
+}
+
+function getGuidelineTheme(society: string): ThemeStyle {
+  const norm = (society || "").toUpperCase();
+  if (norm.includes("AHA")) {
+    return {
+      borderLeft: "border-l-4 border-l-rose-500",
+      cardBg: "bg-rose-50/30 dark:bg-rose-950/20",
+      cardBorder: "border-rose-200 dark:border-rose-900/60 hover:border-rose-400 dark:hover:border-rose-600",
+      badge: "bg-rose-100 text-rose-700 border-rose-300 dark:bg-rose-900/60 dark:text-rose-300 dark:border-rose-800",
+      accentText: "text-rose-600 dark:text-rose-400",
+    };
+  }
+  if (norm.includes("ESO")) {
+    return {
+      borderLeft: "border-l-4 border-l-blue-500",
+      cardBg: "bg-blue-50/30 dark:bg-blue-950/20",
+      cardBorder: "border-blue-200 dark:border-blue-900/60 hover:border-blue-400 dark:hover:border-blue-600",
+      badge: "bg-blue-100 text-blue-700 border-blue-300 dark:bg-blue-900/60 dark:text-blue-300 dark:border-blue-800",
+      accentText: "text-blue-600 dark:text-blue-400",
+    };
+  }
+  if (norm.includes("VN") || norm.includes("MOH") || norm.includes("BỘ Y TẾ")) {
+    return {
+      borderLeft: "border-l-4 border-l-emerald-500",
+      cardBg: "bg-emerald-50/30 dark:bg-emerald-950/20",
+      cardBorder: "border-emerald-200 dark:border-emerald-900/60 hover:border-emerald-400 dark:hover:border-emerald-600",
+      badge: "bg-emerald-100 text-emerald-800 border-emerald-300 dark:bg-emerald-900/60 dark:text-emerald-300 dark:border-emerald-800",
+      accentText: "text-emerald-600 dark:text-emerald-400",
+    };
+  }
+  if (norm.includes("AAN")) {
+    return {
+      borderLeft: "border-l-4 border-l-purple-500",
+      cardBg: "bg-purple-50/30 dark:bg-purple-950/20",
+      cardBorder: "border-purple-200 dark:border-purple-900/60 hover:border-purple-400 dark:hover:border-purple-600",
+      badge: "bg-purple-100 text-purple-700 border-purple-300 dark:bg-purple-900/60 dark:text-purple-300 dark:border-purple-800",
+      accentText: "text-purple-600 dark:text-purple-400",
+    };
+  }
+  return {
+    borderLeft: "border-l-4 border-l-amber-500",
+    cardBg: "bg-amber-50/30 dark:bg-amber-950/20",
+    cardBorder: "border-amber-200 dark:border-amber-900/60 hover:border-amber-400 dark:hover:border-amber-600",
+    badge: "bg-amber-100 text-amber-800 border-amber-300 dark:bg-amber-900/60 dark:text-amber-300 dark:border-amber-800",
+    accentText: "text-amber-600 dark:text-amber-400",
+  };
+}
+
+function getConferenceTheme(conf: ConferenceEvent): ThemeStyle {
+  if (conf.status === "LIVE") {
+    return {
+      borderLeft: "border-l-4 border-l-red-500",
+      cardBg: "bg-red-50/30 dark:bg-red-950/20",
+      cardBorder: "border-red-200 dark:border-red-900/60 hover:border-red-400 dark:hover:border-red-600",
+      badge: "bg-red-500 text-white border-red-500",
+      accentText: "text-red-600 dark:text-red-400",
+    };
+  }
+  if (conf.status === "RECENT") {
+    return {
+      borderLeft: "border-l-4 border-l-amber-500",
+      cardBg: "bg-amber-50/30 dark:bg-amber-950/20",
+      cardBorder: "border-amber-200 dark:border-amber-900/60 hover:border-amber-400 dark:hover:border-amber-600",
+      badge: "bg-amber-100 text-amber-800 border-amber-300 dark:bg-amber-900/60 dark:text-amber-300 dark:border-amber-800",
+      accentText: "text-amber-600 dark:text-amber-400",
+    };
+  }
+  return {
+    borderLeft: "border-l-4 border-l-indigo-500",
+    cardBg: "bg-indigo-50/30 dark:bg-indigo-950/20",
+    cardBorder: "border-indigo-200 dark:border-indigo-900/60 hover:border-indigo-400 dark:hover:border-indigo-600",
+    badge: "bg-indigo-100 text-indigo-700 border-indigo-300 dark:bg-indigo-900/60 dark:text-indigo-300 dark:border-indigo-800",
+    accentText: "text-indigo-600 dark:text-indigo-400",
+  };
+}
+
 export default function NeuroGuidePage() {
   const [darkMode, setDarkMode] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<NavTabId>("guidelines");
@@ -52,7 +135,10 @@ export default function NeuroGuidePage() {
   // Selection states
   const [activeScenarioId, setActiveScenarioId] = useState<string>("ais-ivt-tenecteplase-4.5h");
   const [activeDetailTab, setActiveDetailTab] = useState<"matrix" | "temporal" | "conf_bridge">("matrix");
-  const [expandedGuidelineChanges, setExpandedGuidelineChanges] = useState<Record<string, boolean>>({});
+
+  // Expandable cards states (details reveal only on click)
+  const [expandedGuidelineIds, setExpandedGuidelineIds] = useState<Record<string, boolean>>({});
+  const [expandedConferenceIds, setExpandedConferenceIds] = useState<Record<string, boolean>>({});
 
   const matrixContainerRef = useRef<HTMLDivElement>(null);
 
@@ -85,10 +171,17 @@ export default function NeuroGuidePage() {
     });
   };
 
-  const toggleGuidelineAccordion = (docId: string) => {
-    setExpandedGuidelineChanges((prev) => ({
+  const toggleGuideline = (docId: string) => {
+    setExpandedGuidelineIds((prev) => ({
       ...prev,
       [docId]: !prev[docId],
+    }));
+  };
+
+  const toggleConference = (confId: string) => {
+    setExpandedConferenceIds((prev) => ({
+      ...prev,
+      [confId]: !prev[confId],
     }));
   };
 
@@ -330,11 +423,11 @@ export default function NeuroGuidePage() {
         </div>
 
         {/* =========================================================================
-            TAB 1: PRACTICE GUIDELINES (Pure guidelines view, no redundant subtitles)
+            TAB 1: PRACTICE GUIDELINES (Distinct theme colors, details revealed on click)
            ========================================================================= */}
         {activeTab === "guidelines" && (
           <div className="space-y-4">
-            {/* Direct Society Filter Bar without redundant introductory text */}
+            {/* Direct Society Filter Bar */}
             <div className="flex items-center justify-between gap-3 mb-2">
               <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0">
                 <span className="text-xs font-bold text-slate-400 mr-1 whitespace-nowrap">
@@ -362,36 +455,32 @@ export default function NeuroGuidePage() {
               </div>
             </div>
 
-            {/* Guideline Cards */}
-            <div className="grid grid-cols-1 gap-4">
+            {/* Guideline Cards (Colored by Society, Click to Expand Details) */}
+            <div className="grid grid-cols-1 gap-3.5">
               {filteredGuidelines.map((doc) => {
-                const isExpanded = !!expandedGuidelineChanges[doc.id];
+                const isExpanded = !!expandedGuidelineIds[doc.id];
                 const isVietnamese = doc.society === "VN-MOH";
+                const theme = getGuidelineTheme(doc.society);
+
                 return (
                   <div
                     key={doc.id}
-                    className={`rounded-2xl border transition-all ${
-                      darkMode
-                        ? "bg-slate-900 border-slate-800 hover:border-slate-700"
-                        : "bg-white border-slate-200 hover:border-slate-300 shadow-xs"
-                    }`}
+                    className={`rounded-2xl border transition-all ${theme.borderLeft} ${theme.cardBg} ${theme.cardBorder} shadow-xs`}
                   >
-                    <div className="p-5">
+                    {/* Clickable Header / Card Summary */}
+                    <div
+                      onClick={() => toggleGuideline(doc.id)}
+                      className="p-4 sm:p-5 cursor-pointer select-none"
+                    >
                       {/* Meta Header */}
-                      <div className="flex flex-wrap items-center justify-between gap-2 mb-2.5">
+                      <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                         <div className="flex items-center gap-2">
                           <span
-                            className={`px-2 py-0.5 rounded-md text-[11px] font-black tracking-wider uppercase ${
-                              doc.society === "AHA/ASA"
-                                ? "bg-red-500/15 text-red-600 dark:text-red-400 border border-red-500/30"
-                                : doc.society === "ESO"
-                                ? "bg-blue-500/15 text-blue-600 dark:text-blue-400 border border-blue-500/30"
-                                : "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30"
-                            }`}
+                            className={`px-2 py-0.5 rounded-md text-[11px] font-black tracking-wider uppercase border ${theme.badge}`}
                           >
                             {doc.society} {doc.year}
                           </span>
-                          <span className="text-xs font-semibold text-slate-400">
+                          <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
                             {doc.documentType} • {doc.journalTarget}
                           </span>
                         </div>
@@ -400,53 +489,64 @@ export default function NeuroGuidePage() {
                         </span>
                       </div>
 
-                      {/* Title & Executive Summary (Kept in original language) */}
+                      {/* Title */}
                       <h3 className="text-base sm:text-lg font-bold leading-snug">
                         {doc.title}
                       </h3>
-                      <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
-                        {doc.executiveSummary}
-                      </p>
 
-                      {/* Practice Changes Accordion */}
-                      <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800">
-                        <div className="flex items-center justify-between gap-2 mb-2">
-                          <span className="text-xs font-black uppercase tracking-wider text-amber-600 dark:text-amber-400 flex items-center gap-1.5">
-                            <span>📋</span>
-                            <span>
-                              {isVietnamese
-                                ? `Các thay đổi thực hành so với bản trước (${doc.previousVersionYear || "trước đây"})`
-                                : `Key Practice Changes vs. Previous Version (${doc.previousVersionYear || "Prior"})`}
-                            </span>
+                      {/* Bottom Prompt Bar: Changes Badge + Click Indicator */}
+                      <div className="mt-3 flex items-center justify-between gap-2 pt-2 border-t border-slate-200/50 dark:border-slate-800/60">
+                        <span className="text-xs font-bold text-slate-600 dark:text-slate-300 flex items-center gap-1.5">
+                          <span>📋</span>
+                          <span>
+                            {isVietnamese
+                              ? `${doc.allPracticeChanges.length} điểm thay đổi thực hành`
+                              : `${doc.allPracticeChanges.length} Key Practice Changes`}
                           </span>
+                        </span>
 
-                          <button
-                            onClick={() => toggleGuidelineAccordion(doc.id)}
-                            className="text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline flex items-center gap-1"
-                          >
-                            <span>
-                              {isExpanded
-                                ? isVietnamese
-                                  ? "Thu gọn ▴"
-                                  : "Collapse ▴"
-                                : isVietnamese
-                                ? `Xem toàn bộ ${doc.allPracticeChanges.length} thay đổi ▾`
-                                : `View all ${doc.allPracticeChanges.length} changes ▾`}
-                            </span>
-                          </button>
+                        <span className="text-xs font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1">
+                          <span>
+                            {isExpanded
+                              ? isVietnamese
+                                ? "Thu gọn ▴"
+                                : "Collapse details ▴"
+                              : isVietnamese
+                              ? "Bấm để xem chi tiết ▾"
+                              : "Click to view details ▾"}
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* EXPANDED SECTION: Detailed information revealed only upon click */}
+                    {isExpanded && (
+                      <div className="px-4 sm:px-5 pb-5 pt-1 border-t border-slate-200/60 dark:border-slate-800/80">
+                        {/* Executive Summary */}
+                        <div className="mb-4">
+                          <span className="text-[10.5px] font-black uppercase tracking-wider text-slate-400 block mb-1">
+                            {isVietnamese ? "Tóm tắt cốt lõi:" : "Executive Summary:"}
+                          </span>
+                          <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed bg-white/60 dark:bg-slate-900/60 p-3 rounded-xl border border-slate-200/50 dark:border-slate-800/60">
+                            {doc.executiveSummary}
+                          </p>
                         </div>
 
-                        <div className="space-y-2 mt-2">
-                          {(isExpanded
-                            ? doc.allPracticeChanges
-                            : doc.allPracticeChanges.slice(0, 2)
-                          ).map((change) => (
+                        {/* All Practice Changes List */}
+                        <div className="space-y-2 mb-4">
+                          <span className="text-[10.5px] font-black uppercase tracking-wider text-slate-400 block">
+                            {isVietnamese
+                              ? `Toàn bộ thay đổi so với bản trước (${doc.previousVersionYear || "trước đây"}):`
+                              : `Practice Changes Breakdown vs. Previous Version (${doc.previousVersionYear || "Prior"}):`}
+                          </span>
+
+                          {doc.allPracticeChanges.map((change) => (
                             <div
                               key={change.id}
                               className={`p-3 rounded-xl border text-xs leading-relaxed ${
                                 darkMode
-                                  ? "bg-slate-950/60 border-slate-800"
-                                  : "bg-slate-50 border-slate-200"
+                                  ? "bg-slate-950/70 border-slate-800"
+                                  : "bg-white border-slate-200"
                               }`}
                             >
                               <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
@@ -492,35 +592,44 @@ export default function NeuroGuidePage() {
                             </div>
                           ))}
                         </div>
-                      </div>
 
-                      {/* Action Bar */}
-                      <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex flex-wrap items-center justify-between gap-2">
-                        <a
-                          href={doc.officialUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-amber-500 flex items-center gap-1"
-                        >
-                          <span>
-                            {isVietnamese
-                              ? `Xem văn bản gốc trên ${doc.journalTarget}`
-                              : `Read original article on ${doc.journalTarget}`}
-                          </span>
-                          <span>↗</span>
-                        </a>
-
-                        {doc.linkedScenarioIds.length > 0 && (
-                          <button
-                            onClick={() => handleJumpToScenario(doc.linkedScenarioIds[0])}
-                            className="px-3 py-1.5 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 hover:bg-amber-500/20 text-xs font-bold flex items-center gap-1 transition-colors"
+                        {/* Action Bar */}
+                        <div className="pt-3 border-t border-slate-200/60 dark:border-slate-800/80 flex flex-wrap items-center justify-between gap-2">
+                          <a
+                            href={doc.officialUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-amber-500 flex items-center gap-1"
                           >
-                            <span>⚖️ View in Scenario Matrix</span>
-                            <span>➔</span>
-                          </button>
-                        )}
+                            <span>
+                              {isVietnamese
+                                ? `Xem văn bản gốc trên ${doc.journalTarget}`
+                                : `Read original article on ${doc.journalTarget}`}
+                            </span>
+                            <span>↗</span>
+                          </a>
+
+                          <div className="flex items-center gap-2">
+                            {doc.linkedScenarioIds.length > 0 && (
+                              <button
+                                onClick={() => handleJumpToScenario(doc.linkedScenarioIds[0])}
+                                className="px-3 py-1.5 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 hover:bg-amber-500/20 text-xs font-bold flex items-center gap-1 transition-colors"
+                              >
+                                <span>⚖️ View in Scenario Matrix</span>
+                                <span>➔</span>
+                              </button>
+                            )}
+
+                            <button
+                              onClick={() => toggleGuideline(doc.id)}
+                              className="text-xs font-bold text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+                            >
+                              {isVietnamese ? "Thu gọn ▴" : "Collapse ▴"}
+                            </button>
+                          </div>
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                 );
               })}
@@ -529,11 +638,11 @@ export default function NeuroGuidePage() {
         )}
 
         {/* =========================================================================
-            TAB 2: CONFERENCES & LATE-BREAKING TRIALS (Moved to Tab 2)
+            TAB 2: CONFERENCES & LATE-BREAKING TRIALS (Distinct theme colors, details on click)
            ========================================================================= */}
         {activeTab === "conf" && (
-          <div className="space-y-5">
-            {/* Direct Filters Bar without redundant introductory headings */}
+          <div className="space-y-4">
+            {/* Direct Filters Bar */}
             <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
               <div className="flex items-center gap-1.5">
                 <span className="text-xs font-bold text-slate-400 mr-1">Status:</span>
@@ -565,159 +674,202 @@ export default function NeuroGuidePage() {
               </div>
             </div>
 
-            {/* Conference Cards List */}
-            <div className="grid grid-cols-1 gap-6">
-              {filteredConferences.map((conf) => (
-                <div
-                  key={conf.id}
-                  className={`rounded-2xl border p-5 sm:p-6 ${
-                    darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200 shadow-xs"
-                  }`}
-                >
-                  <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-                    <div className="flex items-center gap-2.5">
-                      <span className="text-xl font-black text-amber-500">
-                        {conf.acronym}
-                      </span>
-                      <span
-                        className={`text-xs px-2 py-0.5 rounded-full font-bold uppercase ${
-                          conf.status === "LIVE"
-                            ? "bg-red-500/20 text-red-600 dark:text-red-400 border border-red-500/40 animate-pulse"
-                            : conf.status === "RECENT"
-                            ? "bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/40"
-                            : "bg-slate-500/20 text-slate-600 dark:text-slate-400"
-                        }`}
-                      >
-                        {conf.status}
-                      </span>
-                      <span className="text-xs text-slate-400 font-medium">
-                        {conf.dates} • {conf.location}
-                      </span>
-                    </div>
+            {/* Conference Cards List (Colored by Status, Click to Expand Details) */}
+            <div className="grid grid-cols-1 gap-3.5">
+              {filteredConferences.map((conf) => {
+                const isExpanded = !!expandedConferenceIds[conf.id];
+                const theme = getConferenceTheme(conf);
 
-                    <a
-                      href={conf.officialUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline flex items-center gap-1"
+                return (
+                  <div
+                    key={conf.id}
+                    className={`rounded-2xl border transition-all ${theme.borderLeft} ${theme.cardBg} ${theme.cardBorder} shadow-xs`}
+                  >
+                    {/* Clickable Header / Conference Summary */}
+                    <div
+                      onClick={() => toggleConference(conf.id)}
+                      className="p-4 sm:p-5 cursor-pointer select-none"
                     >
-                      <span>Official Supplement / Abstracts</span>
-                      <span>↗</span>
-                    </a>
-                  </div>
-
-                  <h3 className="text-base sm:text-lg font-bold mb-2">{conf.name}</h3>
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-                    {conf.executiveSummary}
-                  </p>
-
-                  {/* Stats Bar */}
-                  <div className="grid grid-cols-3 gap-2 py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-800/60 mb-4 text-center">
-                    <div>
-                      <div className="text-sm font-black text-slate-800 dark:text-slate-100">
-                        {conf.stats.totalLateBreakingTrials}
-                      </div>
-                      <div className="text-[10px] text-slate-500">Late-Breaking</div>
-                    </div>
-                    <div>
-                      <div className="text-sm font-black text-emerald-600 dark:text-emerald-400">
-                        {conf.stats.positiveTrials} Positive
-                      </div>
-                      <div className="text-[10px] text-slate-500">Efficacy Met</div>
-                    </div>
-                    <div>
-                      <div className="text-sm font-black text-amber-600 dark:text-amber-400">
-                        {conf.stats.practiceChangingCount} ⚡
-                      </div>
-                      <div className="text-[10px] text-slate-500">Practice-Changing</div>
-                    </div>
-                  </div>
-
-                  {/* Trials Presentations */}
-                  {conf.lateBreakingTrials.length > 0 && (
-                    <div className="space-y-3">
-                      <span className="text-xs font-black uppercase tracking-wider text-slate-400">
-                        Podium Trial Presentations ({conf.lateBreakingTrials.length})
-                      </span>
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-                        {conf.lateBreakingTrials.map((tr) => (
-                          <div
-                            key={tr.id}
-                            className={`p-4 rounded-2xl border flex flex-col justify-between ${
-                              darkMode ? "bg-slate-950 border-slate-800" : "bg-slate-50 border-slate-200"
-                            }`}
+                      <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                        <div className="flex items-center gap-2.5">
+                          <span className={`text-xl font-black ${theme.accentText}`}>
+                            {conf.acronym}
+                          </span>
+                          <span
+                            className={`text-xs px-2 py-0.5 rounded-full font-bold uppercase border ${theme.badge}`}
                           >
-                            <div>
-                              <div className="flex items-center justify-between gap-2 mb-2">
-                                <span className="text-base font-black text-amber-600 dark:text-amber-400">
-                                  {tr.trialAcronym}
-                                </span>
-                                <div className="flex items-center gap-1.5">
-                                  <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
-                                    {tr.studyDesign}
-                                  </span>
-                                  <span className="text-[10px] font-black px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-600 dark:text-emerald-400">
-                                    {tr.verdict}
-                                  </span>
-                                </div>
-                              </div>
+                            {conf.status === "LIVE"
+                              ? "🔴 LIVE"
+                              : conf.status === "RECENT"
+                              ? "🟡 RECENT"
+                              : "⚪ UPCOMING"}
+                          </span>
+                          <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">
+                            {conf.dates} • {conf.location}
+                          </span>
+                        </div>
 
-                              <h5 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-slate-100 mb-2">
-                                {tr.title}
-                              </h5>
+                        <a
+                          href={conf.officialUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline flex items-center gap-1"
+                        >
+                          <span>Official Website</span>
+                          <span>↗</span>
+                        </a>
+                      </div>
 
-                              <div className="space-y-1.5 text-xs text-slate-600 dark:text-slate-300 mb-3">
-                                <div>
-                                  <span className="font-bold text-slate-400">Population (P):</span>{" "}
-                                  {tr.populationSummary}
-                                </div>
-                                <div>
-                                  <span className="font-bold text-slate-400">Intervention vs. Control:</span>{" "}
-                                  {tr.interventionGroup} vs {tr.controlGroup}
-                                </div>
-                                <div className="p-2 rounded-xl bg-white dark:bg-slate-900 border text-[11px] font-semibold text-slate-800 dark:text-slate-200">
-                                  🎯 {tr.primaryOutcome}
-                                </div>
-                                <div className="text-[11px] text-slate-500">
-                                  🛡️ {tr.safetyOutcome}
-                                </div>
-                              </div>
-                            </div>
+                      <h3 className="text-base sm:text-lg font-bold leading-snug">
+                        {conf.name}
+                      </h3>
 
-                            <div className="pt-2 border-t border-slate-200/60 dark:border-slate-800 flex items-center justify-between gap-2">
-                              <div className="text-[11px] text-amber-600 dark:text-amber-400 font-bold truncate">
-                                💡 {tr.bottomLineTakeaway}
-                              </div>
-                              <div className="flex items-center gap-2">
-                                {tr.fullTextUrl && (
-                                  <a
-                                    href={tr.fullTextUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-[10.5px] font-bold text-slate-400 hover:text-amber-500 hover:underline flex items-center gap-0.5"
-                                  >
-                                    <span>Paper</span>
-                                    <span>↗</span>
-                                  </a>
-                                )}
-                                {tr.impactedScenarioId && (
-                                  <button
-                                    onClick={() => handleJumpToScenario(tr.impactedScenarioId!)}
-                                    className="text-[11px] font-extrabold text-amber-600 dark:text-amber-400 hover:underline whitespace-nowrap ml-1"
-                                  >
-                                    Matrix ➔
-                                  </button>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                        ))}
+                      {/* Bottom Prompt Bar: Stats Pill + Click Indicator */}
+                      <div className="mt-3 flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-200/50 dark:border-slate-800/60">
+                        <div className="flex items-center gap-3 text-xs">
+                          <span className="font-bold text-slate-700 dark:text-slate-300">
+                            {conf.stats.totalLateBreakingTrials} Late-Breaking Trials
+                          </span>
+                          <span className="text-slate-300 dark:text-slate-700">•</span>
+                          <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+                            {conf.stats.positiveTrials} Positive
+                          </span>
+                          <span className="text-slate-300 dark:text-slate-700">•</span>
+                          <span className="font-semibold text-amber-600 dark:text-amber-400">
+                            {conf.stats.practiceChangingCount} ⚡ Practice-Changing
+                          </span>
+                        </div>
+
+                        <span className="text-xs font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1">
+                          <span>
+                            {isExpanded
+                              ? "Collapse trials & details ▴"
+                              : "Click to view trials & details ▾"}
+                          </span>
+                        </span>
                       </div>
                     </div>
-                  )}
-                </div>
-              ))}
+
+                    {/* EXPANDED SECTION: Detailed trial presentations revealed only upon click */}
+                    {isExpanded && (
+                      <div className="px-4 sm:px-5 pb-5 pt-1 border-t border-slate-200/60 dark:border-slate-800/80">
+                        {/* Executive Summary */}
+                        <div className="mb-4">
+                          <span className="text-[10.5px] font-black uppercase tracking-wider text-slate-400 block mb-1">
+                            Conference Intelligence Summary:
+                          </span>
+                          <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed bg-white/60 dark:bg-slate-900/60 p-3 rounded-xl border border-slate-200/50 dark:border-slate-800/60">
+                            {conf.executiveSummary}
+                          </p>
+                        </div>
+
+                        {/* Trials Grid */}
+                        <div className="space-y-3">
+                          <span className="text-xs font-black uppercase tracking-wider text-slate-400 block">
+                            Podium Trial Presentations ({conf.lateBreakingTrials.length}):
+                          </span>
+
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                            {conf.lateBreakingTrials.map((tr) => (
+                              <div
+                                key={tr.id}
+                                className={`p-4 rounded-2xl border flex flex-col justify-between ${
+                                  darkMode ? "bg-slate-950 border-slate-800" : "bg-white border-slate-200"
+                                }`}
+                              >
+                                <div>
+                                  <div className="flex items-center justify-between gap-2 mb-2">
+                                    <span className="text-base font-black text-amber-600 dark:text-amber-400">
+                                      {tr.trialAcronym}
+                                    </span>
+                                    <div className="flex items-center gap-1.5">
+                                      <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                                        {tr.studyDesign}
+                                      </span>
+                                      <span className="text-[10px] font-black px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-600 dark:text-emerald-400">
+                                        {tr.verdict}
+                                      </span>
+                                    </div>
+                                  </div>
+
+                                  <h5 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-slate-100 mb-2">
+                                    {tr.title}
+                                  </h5>
+
+                                  <div className="space-y-1.5 text-xs text-slate-600 dark:text-slate-300 mb-3">
+                                    <div>
+                                      <span className="font-bold text-slate-400">Population (P):</span>{" "}
+                                      {tr.populationSummary}
+                                    </div>
+                                    <div>
+                                      <span className="font-bold text-slate-400">Intervention vs. Control:</span>{" "}
+                                      {tr.interventionGroup} vs {tr.controlGroup}
+                                    </div>
+                                    <div className="p-2 rounded-xl bg-slate-50 dark:bg-slate-900 border text-[11px] font-semibold text-slate-800 dark:text-slate-200">
+                                      🎯 {tr.primaryOutcome}
+                                    </div>
+                                    <div className="text-[11px] text-slate-500">
+                                      🛡️ {tr.safetyOutcome}
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div className="pt-2 border-t border-slate-200/60 dark:border-slate-800 flex items-center justify-between gap-2">
+                                  <div className="text-[11px] text-amber-600 dark:text-amber-400 font-bold truncate">
+                                    💡 {tr.bottomLineTakeaway}
+                                  </div>
+                                  <div className="flex items-center gap-2">
+                                    {tr.fullTextUrl && (
+                                      <a
+                                        href={tr.fullTextUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-[10.5px] font-bold text-slate-400 hover:text-amber-500 hover:underline flex items-center gap-0.5"
+                                      >
+                                        <span>Paper</span>
+                                        <span>↗</span>
+                                      </a>
+                                    )}
+                                    {tr.impactedScenarioId && (
+                                      <button
+                                        onClick={() => handleJumpToScenario(tr.impactedScenarioId!)}
+                                        className="text-[11px] font-extrabold text-amber-600 dark:text-amber-400 hover:underline whitespace-nowrap ml-1"
+                                      >
+                                        Matrix ➔
+                                      </button>
+                                    )}
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Action Footer */}
+                        <div className="mt-4 pt-3 border-t border-slate-200/60 dark:border-slate-800/80 flex items-center justify-between">
+                          <a
+                            href={conf.officialUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline flex items-center gap-1"
+                          >
+                            <span>Official Supplement / Abstracts</span>
+                            <span>↗</span>
+                          </a>
+
+                          <button
+                            onClick={() => toggleConference(conf.id)}
+                            className="text-xs font-bold text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+                          >
+                            Collapse trials ▴
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
         )}

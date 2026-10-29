@@ -86,8 +86,8 @@ export function NeuroImagingViewer({
                   className="w-full h-full max-h-[440px] object-contain transition-transform duration-200 group-hover:scale-[1.01]"
                   loading={idx === 0 ? "eager" : "lazy"}
                 />
-                <span className="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-black/75 text-[10px] font-bold text-slate-200 opacity-0 group-hover:opacity-100 transition-opacity">
-                  🔍 Click to Zoom
+                <span className="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-black/75 text-[10px] font-bold text-slate-200 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none select-none">
+                  🔍 Zoom
                 </span>
               </div>
 
@@ -122,7 +122,7 @@ export function NeuroImagingViewer({
                     )}
                   </div>
 
-                  {isCaptionRevealed ? (
+                  {isCaptionRevealed && (
                     <div className="space-y-1.5 animate-fadeIn">
                       {img.caption && (
                         <p className="text-slate-200 leading-relaxed text-xs">{img.caption}</p>
@@ -133,19 +133,6 @@ export function NeuroImagingViewer({
                           {img.findings_summary}
                         </div>
                       )}
-                    </div>
-                  ) : (
-                    <div
-                      onClick={() =>
-                        setRevealedCaptions((prev) => ({
-                          ...prev,
-                          [idx]: true,
-                        }))
-                      }
-                      className="py-1 px-2 rounded bg-slate-950/60 border border-dashed border-slate-800 text-slate-500 hover:text-slate-400 hover:border-slate-700 cursor-pointer text-[11px] transition-colors flex items-center justify-between"
-                    >
-                      <span>🔒 Caption hidden to prevent diagnosis spoiler</span>
-                      <span className="font-bold text-indigo-400">Click to reveal →</span>
                     </div>
                   )}
                 </div>
@@ -216,10 +203,7 @@ export function NeuroImagingViewer({
                     )}
                   </>
                 ) : (
-                  <div className="flex items-center justify-between">
-                    <span className="text-slate-400 text-xs italic">
-                      Caption hidden to avoid diagnosis spoiler during challenge.
-                    </span>
+                  <div className="flex justify-end">
                     <button
                       type="button"
                       onClick={() =>
@@ -230,7 +214,7 @@ export function NeuroImagingViewer({
                       }
                       className="px-2.5 py-1 rounded bg-indigo-600 text-white font-bold text-xs hover:bg-indigo-500"
                     >
-                      👁️ Reveal Caption Hint
+                      👁️ Show Caption Hint
                     </button>
                   </div>
                 )}
