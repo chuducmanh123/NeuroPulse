@@ -1,5 +1,109 @@
 [
   {
+    "id": "nc-2026-014",
+    "case_code": "NC-2026-014",
+    "title": "A 62-Year-Old Woman with Acute Right-Sided Hemichorea and Mild Cerebellar Atrophy",
+    "subspecialty": "Movement Disorders",
+    "subspecialties": [
+      "Movement Disorders",
+      "Neurogenetics",
+      "General Neurology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-10-29",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC12403888",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-025-04391-2",
+      "pmcid": "PMC12403888",
+      "pmid": "40890648",
+      "pub_year": "2025"
+    },
+    "presentation": {
+      "demographics": "62-year-old female",
+      "chief_complaint": "Involuntary twisting movements in the right limbs for two weeks",
+      "history_of_present_illness": "The patient presented with a two-week history of intermittent, distal-dominant involuntary movements in her right upper and lower extremities. She had no associated cognitive decline, sensory disturbances, or gait ataxia, and initial brain MRI ruled out acute stroke. Her family history was notable for a paternal grandmother diagnosed with Parkinson's disease, but no history of chorea or hereditary ataxia.",
+      "past_medical_history": "Unremarkable medical and medication history; no history of stroke, autoimmune disorders, or neuroleptic exposure.",
+      "vitals": {
+        "bp": "128/76 mmHg",
+        "hr": "72 bpm",
+        "rr": "16 /min",
+        "temp": "36.7 °C",
+        "spo2": "98% on room air"
+      },
+      "neuro_exam": "Conscious and alert with normal cognition (MMSE 30/30). Cranial nerves are intact with normal saccades, pursuit, and absence of nystagmus. Motor strength and deep tendon reflexes are normal throughout. Sensory exam is intact. Examination reveals distal-dominant, intermittent, twisting choreiform movements of the right arm and leg (hemichorea). Finger-tapping and tandem gait are preserved.",
+      "key_labs_csf": "Normal blood glucose, HbA1c, ammonia, lupus anticoagulant, antinuclear antibodies, thyroid function tests, ceruloplasmin, copper, and anti-cardiolipin antibodies. Blood smear shows no acanthocytes. CSF analysis is completely unremarkable.",
+      "imaging": [
+        {
+          "modality": "Brain MRI T1-weighted imaging & DAT-SPECT",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC12403888)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC12403888_fig1.jpg",
+          "pmcid": "PMC12403888",
+          "doi_url": "https://doi.org/10.1186/s12883-025-04391-2",
+          "caption": "Basic neural circuitry between the cerebral cortex and basal ganglia. The normal and hemichoreic conditions are presented in the panels a and b, respectively. To make a voluntary movement, neural inputs arising from the cerebral cortex initially suppress the thalamus extensively via the hyperdirect pathway (constituents, cortex–STN–GPi/SNr; a). Subsequently, using the direct pathway (cortex–striatum–GPi/SNr), the inputs focally disinhibit the thalamus, which is otherwise strongly restrained by GABAergic projections from the GPi/SNr. Finally, the inputs from the cortex suppress the thalamus ext",
+          "findings_summary": "MRI revealed mild cerebellar atrophy with no basal ganglia lesions, while DAT-SPECT demonstrated bilaterally decreased striatal tracer uptake."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely underlying diagnosis for this patient's isolated hemichorea?",
+      "question_type": "Diagnosis",
+      "correct_option": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "Huntington's disease",
+          "peer_percentage": 15,
+          "rationale": "Incorrect. Huntington's disease typically presents with a strong family history of autosomal dominant chorea and psychiatric or cognitive disturbances, rather than isolated hemichorea without family history of chorea."
+        },
+        {
+          "id": "B",
+          "text": "Sydenham chorea",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. Sydenham chorea is classically associated with recent streptococcal infection and predominantly affects children and adolescents, not older adults."
+        },
+        {
+          "id": "C",
+          "text": "Spinocerebellar ataxia type 8 (SCA8)",
+          "peer_percentage": 70,
+          "rationale": "Correct! The detection of an expanded CTA/CTG repeat in the ATXN8OS gene along with mild cerebellar atrophy confirms SCA8, which can rarely present atypically with isolated hemichorea and presynaptic dopaminergic dysfunction."
+        },
+        {
+          "id": "D",
+          "text": "Wilson's disease",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. Wilson's disease usually manifests in younger patients (<40 years) with hepatic abnormalities, psychiatric symptoms, Kayser-Fleischer rings, and low serum ceruloplasmin."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Spinocerebellar ataxia type 8 (SCA8)",
+      "clinical_discussion": "Spinocerebellar ataxia type 8 (SCA8) is an autosomal dominant neurodegenerative disorder caused by a CTA/CTG repeat expansion in the ATXN8OS gene. While classically presenting with progressive cerebellar ataxia, oculomotor abnormalities, and dysarthria, phenotypic variations are well documented. This case highlights an exceptionally rare presentation of SCA8 where the patient presented solely with right-sided hemichorea and no family history of ataxia.\n\nNeuroimaging findings in this patient revealed mild cerebellar atrophy on MRI and reduced tracer uptake on DAT-SPECT, indicating nigrostriatal dopaminergic dysfunction. Although DAT-SPECT is primarily used for parkinsonism, it can show abnormalities in various atypical neurodegenerative conditions, including spinocerebellar ataxias. Symptomatic management with dopamine receptor blockers such as haloperidol successfully controlled the choreiform movements, emphasizing the critical role of genetic screening in atypical movement disorders even in the absence of a classic familial ataxia phenotype.",
+      "teaching_points": [
+        "SCA8 can present atypically with isolated extrapyramidal features such as hemichorea, even without a family history of ataxia.",
+        "DAT-SPECT can demonstrate nigrostriatal pathway dysfunction in neurodegenerative conditions outside of primary parkinsonism.",
+        "Genetic testing for trinucleotide repeat expansions should be considered in patients with unexplained movement disorders accompanied by unexplained cerebellar atrophy."
+      ],
+      "clinical_pitfalls": [
+        "Assuming that chorea in an elderly patient is solely due to vascular stroke or metabolic derangements without considering neurodegenerative causes.",
+        "Overlooking hereditary ataxias when the classic triad of gait ataxia, nystagmus, and dysarthria is entirely absent."
+      ],
+      "related_keywords": [
+        "Spinocerebellar ataxia type 8",
+        "Hemichorea",
+        "DAT-SPECT",
+        "ATXN8OS gene",
+        "Cerebellar atrophy"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-013",
     "case_code": "NC-2026-013",
     "title": "Pediatric Super-Refractory Epilepsia Partialis Continua Complicating Diffuse Left Hemispheric Polymicrogyria",
@@ -114,214 +218,6 @@
     }
   },
   {
-    "id": "nc-2026-014",
-    "case_code": "NC-2026-014",
-    "title": "A 62-Year-Old Woman with Acute Right-Sided Hemichorea and Mild Cerebellar Atrophy",
-    "subspecialty": "Movement Disorders",
-    "subspecialties": [
-      "Movement Disorders",
-      "Neurogenetics",
-      "General Neurology"
-    ],
-    "difficulty": "Fellow",
-    "estimated_time_sec": 110,
-    "is_daily_challenge": false,
-    "archive_only": true,
-    "published_date": "2026-10-29",
-    "status": "approved",
-    "author_credit": "BMC neurology • PMC12403888",
-    "source_journal": {
-      "name": "BMC neurology",
-      "short_name": "BMC neurology",
-      "doi_url": "https://doi.org/10.1186/s12883-025-04391-2",
-      "pmcid": "PMC12403888",
-      "pmid": "40890648",
-      "pub_year": "2025"
-    },
-    "presentation": {
-      "demographics": "62-year-old female",
-      "chief_complaint": "Involuntary twisting movements in the right limbs for two weeks",
-      "history_of_present_illness": "The patient presented with a two-week history of intermittent, distal-dominant involuntary movements in her right upper and lower extremities. She had no associated cognitive decline, sensory disturbances, or gait ataxia, and initial brain MRI ruled out acute stroke. Her family history was notable for a paternal grandmother diagnosed with Parkinson's disease, but no history of chorea or hereditary ataxia.",
-      "past_medical_history": "Unremarkable medical and medication history; no history of stroke, autoimmune disorders, or neuroleptic exposure.",
-      "vitals": {
-        "bp": "128/76 mmHg",
-        "hr": "72 bpm",
-        "rr": "16 /min",
-        "temp": "36.7 °C",
-        "spo2": "98% on room air"
-      },
-      "neuro_exam": "Conscious and alert with normal cognition (MMSE 30/30). Cranial nerves are intact with normal saccades, pursuit, and absence of nystagmus. Motor strength and deep tendon reflexes are normal throughout. Sensory exam is intact. Examination reveals distal-dominant, intermittent, twisting choreiform movements of the right arm and leg (hemichorea). Finger-tapping and tandem gait are preserved.",
-      "key_labs_csf": "Normal blood glucose, HbA1c, ammonia, lupus anticoagulant, antinuclear antibodies, thyroid function tests, ceruloplasmin, copper, and anti-cardiolipin antibodies. Blood smear shows no acanthocytes. CSF analysis is completely unremarkable.",
-      "imaging": [
-        {
-          "modality": "Brain MRI T1-weighted imaging & DAT-SPECT",
-          "sequence_badge": "Figure 1 • BMC neurology (PMC12403888)",
-          "figure_label": "Figure 1",
-          "image_url": "/data/figures/PMC12403888_fig1.jpg",
-          "pmcid": "PMC12403888",
-          "doi_url": "https://doi.org/10.1186/s12883-025-04391-2",
-          "caption": "Basic neural circuitry between the cerebral cortex and basal ganglia. The normal and hemichoreic conditions are presented in the panels a and b, respectively. To make a voluntary movement, neural inputs arising from the cerebral cortex initially suppress the thalamus extensively via the hyperdirect pathway (constituents, cortex–STN–GPi/SNr; a). Subsequently, using the direct pathway (cortex–striatum–GPi/SNr), the inputs focally disinhibit the thalamus, which is otherwise strongly restrained by GABAergic projections from the GPi/SNr. Finally, the inputs from the cortex suppress the thalamus ext",
-          "findings_summary": "MRI revealed mild cerebellar atrophy with no basal ganglia lesions, while DAT-SPECT demonstrated bilaterally decreased striatal tracer uptake."
-        }
-      ]
-    },
-    "challenge": {
-      "question": "Which of the following is the most likely underlying diagnosis for this patient's isolated hemichorea?",
-      "question_type": "Diagnosis",
-      "correct_option": "C",
-      "options": [
-        {
-          "id": "A",
-          "text": "Huntington's disease",
-          "peer_percentage": 15,
-          "rationale": "Incorrect. Huntington's disease typically presents with a strong family history of autosomal dominant chorea and psychiatric or cognitive disturbances, rather than isolated hemichorea without family history of chorea."
-        },
-        {
-          "id": "B",
-          "text": "Sydenham chorea",
-          "peer_percentage": 10,
-          "rationale": "Incorrect. Sydenham chorea is classically associated with recent streptococcal infection and predominantly affects children and adolescents, not older adults."
-        },
-        {
-          "id": "C",
-          "text": "Spinocerebellar ataxia type 8 (SCA8)",
-          "peer_percentage": 70,
-          "rationale": "Correct! The detection of an expanded CTA/CTG repeat in the ATXN8OS gene along with mild cerebellar atrophy confirms SCA8, which can rarely present atypically with isolated hemichorea and presynaptic dopaminergic dysfunction."
-        },
-        {
-          "id": "D",
-          "text": "Wilson's disease",
-          "peer_percentage": 5,
-          "rationale": "Incorrect. Wilson's disease usually manifests in younger patients (<40 years) with hepatic abnormalities, psychiatric symptoms, Kayser-Fleischer rings, and low serum ceruloplasmin."
-        }
-      ]
-    },
-    "resolution": {
-      "final_diagnosis": "Spinocerebellar ataxia type 8 (SCA8)",
-      "clinical_discussion": "Spinocerebellar ataxia type 8 (SCA8) is an autosomal dominant neurodegenerative disorder caused by a CTA/CTG repeat expansion in the ATXN8OS gene. While classically presenting with progressive cerebellar ataxia, oculomotor abnormalities, and dysarthria, phenotypic variations are well documented. This case highlights an exceptionally rare presentation of SCA8 where the patient presented solely with right-sided hemichorea and no family history of ataxia.\n\nNeuroimaging findings in this patient revealed mild cerebellar atrophy on MRI and reduced tracer uptake on DAT-SPECT, indicating nigrostriatal dopaminergic dysfunction. Although DAT-SPECT is primarily used for parkinsonism, it can show abnormalities in various atypical neurodegenerative conditions, including spinocerebellar ataxias. Symptomatic management with dopamine receptor blockers such as haloperidol successfully controlled the choreiform movements, emphasizing the critical role of genetic screening in atypical movement disorders even in the absence of a classic familial ataxia phenotype.",
-      "teaching_points": [
-        "SCA8 can present atypically with isolated extrapyramidal features such as hemichorea, even without a family history of ataxia.",
-        "DAT-SPECT can demonstrate nigrostriatal pathway dysfunction in neurodegenerative conditions outside of primary parkinsonism.",
-        "Genetic testing for trinucleotide repeat expansions should be considered in patients with unexplained movement disorders accompanied by unexplained cerebellar atrophy."
-      ],
-      "clinical_pitfalls": [
-        "Assuming that chorea in an elderly patient is solely due to vascular stroke or metabolic derangements without considering neurodegenerative causes.",
-        "Overlooking hereditary ataxias when the classic triad of gait ataxia, nystagmus, and dysarthria is entirely absent."
-      ],
-      "related_keywords": [
-        "Spinocerebellar ataxia type 8",
-        "Hemichorea",
-        "DAT-SPECT",
-        "ATXN8OS gene",
-        "Cerebellar atrophy"
-      ]
-    }
-  },
-  {
-    "id": "nc-2026-011",
-    "case_code": "NC-2026-011",
-    "title": "Acute Onset Seizures, Confusion, and Memory Disorders with Concomitant Viral and Autoantibody Detection",
-    "subspecialty": "Epilepsy",
-    "subspecialties": [
-      "Epilepsy",
-      "Neuroimmunology",
-      "Neuroinfectious Disease"
-    ],
-    "difficulty": "Fellow",
-    "estimated_time_sec": 110,
-    "is_daily_challenge": true,
-    "archive_only": false,
-    "published_date": "2026-10-28",
-    "status": "approved",
-    "author_credit": "BMC neurology • PMC13267647",
-    "source_journal": {
-      "name": "BMC neurology",
-      "short_name": "BMC neurology",
-      "doi_url": "https://doi.org/10.1186/s12883-026-04926-1",
-      "pmcid": "PMC13267647",
-      "pmid": "42057016",
-      "pub_year": "2026"
-    },
-    "presentation": {
-      "demographics": "42-year-old male",
-      "chief_complaint": "Acute onset seizures, headache, and progressive confusion",
-      "history_of_present_illness": "The patient presented with a less than 72-hour history of acute headache, generalized tonic-clonic seizures, rapid-onset psychosis, and profound short-term memory impairment. He had no prior history of neurologic disorders but rapidly deteriorated, prompting emergency admission and urgent neuroimaging and cerebrospinal fluid analysis.",
-      "past_medical_history": "No significant past medical history.",
-      "vitals": {
-        "bp": "125/80 mmHg",
-        "hr": "92 bpm",
-        "rr": "18 /min",
-        "temp": "38.5 °C",
-        "spo2": "97%"
-      },
-      "neuro_exam": "Disoriented to time and place, impaired short-term memory, prominent psychiatric agitation, and bilateral temporal lobe signs without focal motor deficits.",
-      "key_labs_csf": "CSF analysis showed lymphocytic pleocytosis and elevated protein consistent with encephalitis. Metagenomic next-generation sequencing (mNGS) of CSF detected viral CNS infection, while cytometric bead array confirmed the presence of neuronal autoantibodies within the initial 72-hour window.",
-      "imaging": [
-        {
-          "modality": "Brain MRI (Axial T2 and FLAIR)",
-          "sequence_badge": "Figure 1 • BMC neurology (PMC13267647)",
-          "figure_label": "Figure 1",
-          "image_url": "/data/figures/PMC13267647_fig1.jpg",
-          "pmcid": "PMC13267647",
-          "doi_url": "https://doi.org/10.1186/s12883-026-04926-1",
-          "caption": "MRI brain images 6 OPE patients. A1 and A2 High intensities of T2 and T2 FLAIR in the BTL of CASPR2-IgG antibodies and HSV-1 encephalitis patient. B1 and B2 High intensities T2 and DWI in the BTL of NMDA-R-IgG antibodies and EBV encephalitis patient. C1 and C2 High intensities of DWI and T2 FLAIR in the BTL and IC of NMDA-R-IgG antibodies and EBV encephalitis patient. D1 and D2 Small focal demyelinating changes of centrum semiovale on T2 in mGluR5-IgG antibodies and HSV-1 encephalitis patient. E1 and E2 High intensities of T2 FLAIR and T2 in the BTL of CASPR2-IgG antibodies and HSV-1 encephali",
-          "findings_summary": "Demonstrated high T2 and FLAIR signal intensities bilaterally in the temporal lobes and insular cortex."
-        }
-      ]
-    },
-    "challenge": {
-      "question": "Which of the following is the most likely diagnosis?",
-      "question_type": "Diagnosis",
-      "correct_option": "D",
-      "options": [
-        {
-          "id": "A",
-          "text": "Classic post-infectious biphasic autoimmune encephalitis",
-          "peer_percentage": 12,
-          "rationale": "Incorrect. Classic biphasic encephalitis typically emerges weeks to months after the initial viral infection rather than presenting concurrently within the first 72 hours."
-        },
-        {
-          "id": "B",
-          "text": "Isolated viral herpes simplex encephalitis",
-          "peer_percentage": 15,
-          "rationale": "Incorrect. While viral pathogens are detected, the simultaneous presence of neuronal autoantibodies indicates an immune-mediated co-pathology rather than isolated viral destruction."
-        },
-        {
-          "id": "C",
-          "text": "Primary psychiatric disorder with incidental viral shedding",
-          "peer_percentage": 5,
-          "rationale": "Incorrect. The acute inflammatory CSF profile, MRI abnormalities, and documented autoantibodies rule out a primary psychiatric etiology."
-        },
-        {
-          "id": "D",
-          "text": "Overlapping peak encephalitis (coincidence condition)",
-          "peer_percentage": 68,
-          "rationale": "Correct! Overlapping Peak Encephalitis (OPE) is defined by the concomitant detection of viral CNS infection and neuronal autoantibodies within a narrow 72-hour window from symptom onset, representing a distinct clinical entity from delayed biphasic autoimmune encephalitis."
-        }
-      ]
-    },
-    "resolution": {
-      "final_diagnosis": "Overlapping Peak Encephalitis (OPE) / Coincidence Condition",
-      "clinical_discussion": "Overlapping Peak Encephalitis (OPE), also conceptualized as a coincidence condition, is defined by the concomitant detection of evidence of viral CNS infection (via mNGS) and neuronal autoantibodies (via cytometric bead array) within 72 hours of symptom onset. This distinguishes OPE from traditional biphasic encephalitis, where autoimmune responses typically emerge weeks to months following a viral trigger. The narrow time window underscores an acute, highly synchronous pathophysiological process.\n\nPatients with OPE often present with prominent clinical manifestations such as headache, seizures, psychosis, and memory disorders, accompanied by aseptic or viral CSF features and bilateral temporal lobe imaging abnormalities. Recognizing this entity is critical because timely diagnosis requires a combination of antiviral therapy and early immunomodulatory interventions to significantly improve clinical outcomes.",
-      "teaching_points": [
-        "Overlapping Peak Encephalitis (OPE) is characterized by the concurrent detection of viral pathogens (via mNGS) and neuronal autoantibodies within 72 hours of symptom onset.",
-        "OPE differs pathophysiologically from classic biphasic encephalitis, which develops weeks to months after the primary viral infection.",
-        "Simultaneous testing for both viral pathogens and neuronal autoantibodies in acute encephalitis presentations is vital for timely diagnosis and combined antiviral-immunomodulatory therapy."
-      ],
-      "clinical_pitfalls": [
-        "Assuming that antibody-mediated encephalitis only occurs weeks after viral clearance, thereby missing acute concomitant autoimmune triggers.",
-        "Failing to perform metagenomic next-generation sequencing alongside autoantibody panels in patients presenting with acute limbic encephalitis features."
-      ],
-      "related_keywords": [
-        "Overlapping peak encephalitis",
-        "Viral encephalitis",
-        "Neuronal autoantibodies",
-        "Metagenomic next-generation sequencing",
-        "Biphasic encephalitis"
-      ]
-    }
-  },
-  {
     "id": "nc-2026-012",
     "case_code": "NC-2026-012",
     "title": "Post-Infectious Cranial Polyneuropathy and Limb Sensory Disturbance Following Varicella-Zoster Virus Exposure",
@@ -432,6 +328,110 @@
         "GD3 antibody",
         "Bilateral facial palsy",
         "Albuminocytological dissociation"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-011",
+    "case_code": "NC-2026-011",
+    "title": "Acute Onset Seizures, Confusion, and Memory Disorders with Concomitant Viral and Autoantibody Detection",
+    "subspecialty": "Epilepsy",
+    "subspecialties": [
+      "Epilepsy",
+      "Neuroimmunology",
+      "Neuroinfectious Disease"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-10-28",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13267647",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-04926-1",
+      "pmcid": "PMC13267647",
+      "pmid": "42057016",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "42-year-old male",
+      "chief_complaint": "Acute onset seizures, headache, and progressive confusion",
+      "history_of_present_illness": "The patient presented with a less than 72-hour history of acute headache, generalized tonic-clonic seizures, rapid-onset psychosis, and profound short-term memory impairment. He had no prior history of neurologic disorders but rapidly deteriorated, prompting emergency admission and urgent neuroimaging and cerebrospinal fluid analysis.",
+      "past_medical_history": "No significant past medical history.",
+      "vitals": {
+        "bp": "125/80 mmHg",
+        "hr": "92 bpm",
+        "rr": "18 /min",
+        "temp": "38.5 °C",
+        "spo2": "97%"
+      },
+      "neuro_exam": "Disoriented to time and place, impaired short-term memory, prominent psychiatric agitation, and bilateral temporal lobe signs without focal motor deficits.",
+      "key_labs_csf": "CSF analysis showed lymphocytic pleocytosis and elevated protein consistent with encephalitis. Metagenomic next-generation sequencing (mNGS) of CSF detected viral CNS infection, while cytometric bead array confirmed the presence of neuronal autoantibodies within the initial 72-hour window.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (Axial T2 and FLAIR)",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13267647)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13267647_fig1.jpg",
+          "pmcid": "PMC13267647",
+          "doi_url": "https://doi.org/10.1186/s12883-026-04926-1",
+          "caption": "MRI brain images 6 OPE patients. A1 and A2 High intensities of T2 and T2 FLAIR in the BTL of CASPR2-IgG antibodies and HSV-1 encephalitis patient. B1 and B2 High intensities T2 and DWI in the BTL of NMDA-R-IgG antibodies and EBV encephalitis patient. C1 and C2 High intensities of DWI and T2 FLAIR in the BTL and IC of NMDA-R-IgG antibodies and EBV encephalitis patient. D1 and D2 Small focal demyelinating changes of centrum semiovale on T2 in mGluR5-IgG antibodies and HSV-1 encephalitis patient. E1 and E2 High intensities of T2 FLAIR and T2 in the BTL of CASPR2-IgG antibodies and HSV-1 encephali",
+          "findings_summary": "Demonstrated high T2 and FLAIR signal intensities bilaterally in the temporal lobes and insular cortex."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "D",
+      "options": [
+        {
+          "id": "A",
+          "text": "Classic post-infectious biphasic autoimmune encephalitis",
+          "peer_percentage": 12,
+          "rationale": "Incorrect. Classic biphasic encephalitis typically emerges weeks to months after the initial viral infection rather than presenting concurrently within the first 72 hours."
+        },
+        {
+          "id": "B",
+          "text": "Isolated viral herpes simplex encephalitis",
+          "peer_percentage": 15,
+          "rationale": "Incorrect. While viral pathogens are detected, the simultaneous presence of neuronal autoantibodies indicates an immune-mediated co-pathology rather than isolated viral destruction."
+        },
+        {
+          "id": "C",
+          "text": "Primary psychiatric disorder with incidental viral shedding",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. The acute inflammatory CSF profile, MRI abnormalities, and documented autoantibodies rule out a primary psychiatric etiology."
+        },
+        {
+          "id": "D",
+          "text": "Overlapping peak encephalitis (coincidence condition)",
+          "peer_percentage": 68,
+          "rationale": "Correct! Overlapping Peak Encephalitis (OPE) is defined by the concomitant detection of viral CNS infection and neuronal autoantibodies within a narrow 72-hour window from symptom onset, representing a distinct clinical entity from delayed biphasic autoimmune encephalitis."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Overlapping Peak Encephalitis (OPE) / Coincidence Condition",
+      "clinical_discussion": "Overlapping Peak Encephalitis (OPE), also conceptualized as a coincidence condition, is defined by the concomitant detection of evidence of viral CNS infection (via mNGS) and neuronal autoantibodies (via cytometric bead array) within 72 hours of symptom onset. This distinguishes OPE from traditional biphasic encephalitis, where autoimmune responses typically emerge weeks to months following a viral trigger. The narrow time window underscores an acute, highly synchronous pathophysiological process.\n\nPatients with OPE often present with prominent clinical manifestations such as headache, seizures, psychosis, and memory disorders, accompanied by aseptic or viral CSF features and bilateral temporal lobe imaging abnormalities. Recognizing this entity is critical because timely diagnosis requires a combination of antiviral therapy and early immunomodulatory interventions to significantly improve clinical outcomes.",
+      "teaching_points": [
+        "Overlapping Peak Encephalitis (OPE) is characterized by the concurrent detection of viral pathogens (via mNGS) and neuronal autoantibodies within 72 hours of symptom onset.",
+        "OPE differs pathophysiologically from classic biphasic encephalitis, which develops weeks to months after the primary viral infection.",
+        "Simultaneous testing for both viral pathogens and neuronal autoantibodies in acute encephalitis presentations is vital for timely diagnosis and combined antiviral-immunomodulatory therapy."
+      ],
+      "clinical_pitfalls": [
+        "Assuming that antibody-mediated encephalitis only occurs weeks after viral clearance, thereby missing acute concomitant autoimmune triggers.",
+        "Failing to perform metagenomic next-generation sequencing alongside autoantibody panels in patients presenting with acute limbic encephalitis features."
+      ],
+      "related_keywords": [
+        "Overlapping peak encephalitis",
+        "Viral encephalitis",
+        "Neuronal autoantibodies",
+        "Metagenomic next-generation sequencing",
+        "Biphasic encephalitis"
       ]
     }
   },
