@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { AppSwitcher } from "@/components/ecosystem/AppSwitcher";
 import { AdminTab } from "@/components/neurocase/tabs/AdminTab";
 import { AdminPreviewModal } from "@/components/neurocase/modals/AdminPreviewModal";
-import { ClinicalCase, CaseStatus, CaseDifficulty } from "@/types/clinicalCase";
+import { ClinicalCase, CaseDifficulty } from "@/types/clinicalCase";
 import { GuidelineDoc } from "@/types/neuroguide";
 import { MOCK_GUIDELINE_DOCS } from "@/data/neuroguideMockData";
 import { SUBSPECIALTY_TABS } from "@/constants/subspecialties";
@@ -76,7 +76,7 @@ export default function AdminCommandCenter() {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!passcodeInput.trim()) {
-      setAuthError("Vui lòng nhập mật mã quản trị viên.");
+      setAuthError("Please enter the administrator passcode.");
       return;
     }
     setIsVerifying(true);
@@ -97,10 +97,10 @@ export default function AdminCommandCenter() {
         setIsAdminVerified(true);
         setPasscodeInput("");
       } else {
-        setAuthError(data.error || "Mật mã quản trị không chính xác.");
+        setAuthError(data.error || "Invalid administrator passcode.");
       }
     } catch {
-      setAuthError("Không thể kết nối đến máy chủ xác thực.");
+      setAuthError("Unable to connect to authorization server.");
     } finally {
       setIsVerifying(false);
     }
@@ -139,9 +139,15 @@ export default function AdminCommandCenter() {
       if (res.ok) {
         const data: ClinicalCase[] = await res.json();
         setCases(data);
+        setServerSyncSuccess(`✓ Synchronized with server (${data.length} cases)`);
+        setTimeout(() => setServerSyncSuccess(""), 4000);
+      } else {
+        setServerSyncSuccess(`⚠️ Server error (${res.status}). Verify credentials.`);
+        setTimeout(() => setServerSyncSuccess(""), 5000);
       }
-    } catch (e) {
+    } catch (e: any) {
       console.error("Error loading cases for admin:", e);
+      setServerSyncSuccess(`❌ Sync failed: ${e?.message || "Network error"}`);
     } finally {
       setIsSyncingServer(false);
     }
@@ -185,13 +191,21 @@ export default function AdminCommandCenter() {
         }),
       });
       if (res.ok) {
-        setServerSyncSuccess("✅ Đã lưu và đồng bộ thành công lên máy chủ.");
-        setTimeout(() => setServerSyncSuccess(""), 4000);
+        const json = await res.json().catch(() => ({}));
+        if (!json.success && json.warning) {
+          setServerSyncSuccess(`⚠️ ${json.warning}`);
+          setTimeout(() => setServerSyncSuccess(""), 7000);
+        } else {
+          setServerSyncSuccess("✓ Cases successfully saved and synchronized to cloud storage.");
+          setTimeout(() => setServerSyncSuccess(""), 4000);
+        }
+      } else if (res.status === 401) {
+        setServerSyncSuccess("⚠️ Admin session expired. Please re-enter passcode.");
       } else {
-        setServerSyncSuccess("⚠️ Phiên quản trị hết hạn hoặc máy chủ từ chối.");
+        setServerSyncSuccess(`⚠️ Server rejected update (Status ${res.status}).`);
       }
-    } catch {
-      setServerSyncSuccess("❌ Lỗi mạng khi lưu dữ liệu lên máy chủ.");
+    } catch (err: any) {
+      setServerSyncSuccess(`❌ Network error while saving cases: ${err?.message || "Check connection"}`);
     } finally {
       setIsSyncingServer(false);
     }
@@ -228,7 +242,7 @@ export default function AdminCommandCenter() {
   };
 
   // =========================================================================
-  // NEUROGUIDE RADAR & GUIDELINE INGESTION STATE (Chức năng trong ảnh)
+  // NEUROGUIDE RADAR & GUIDELINE INGESTION STATE
   // =========================================================================
   const [guidelineDocs, setGuidelineDocs] = useState<GuidelineDoc[]>(MOCK_GUIDELINE_DOCS);
   const [isSyncingRadar, setIsSyncingRadar] = useState(false);
@@ -252,7 +266,7 @@ export default function AdminCommandCenter() {
       }
       const lastSync = localStorage.getItem("neuroguide_last_sync_timestamp");
       if (lastSync) {
-        setLastSyncedTime(new Date(parseInt(lastSync, 10)).toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" }));
+        setLastSyncedTime(new Date(parseInt(lastSync, 10)).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" }));
       }
     } catch {}
   }, []);
@@ -279,21 +293,21 @@ export default function AdminCommandCenter() {
           if (novel.length > 0) {
             const merged = [...novel, ...prev];
             localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(merged));
-            setRadarMessage(`✨ Dò quét thành công: Phát hiện ${novel.length} hướng dẫn lâm sàng mới.`);
+            setRadarMessage(`✨ Scan successful: Discovered ${novel.length} newly released clinical guidelines.`);
             return merged;
           } else {
-            setRadarMessage("✅ Thư viện hướng dẫn đã được cập nhật đồng bộ đầy đủ nhất.");
+            setRadarMessage("✓ Guideline repository is completely up to date with official society releases.");
             return prev;
           }
         });
-        const nowStr = new Date().toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" });
+        const nowStr = new Date().toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" });
         setLastSyncedTime(nowStr);
         localStorage.setItem("neuroguide_last_sync_timestamp", Date.now().toString());
       } else {
-        setRadarMessage("✅ Radar hoàn tất: Toàn bộ nguồn PubMed, Europe PMC và ESO đã đồng bộ.");
+        setRadarMessage("✓ Radar scan complete: All PubMed, Europe PMC, and ESO sources synchronized.");
       }
     } catch (err) {
-      setRadarMessage("⚠️ Lỗi kết nối khi quét trực tuyến radar.");
+      setRadarMessage("⚠️ Network error during online radar scanning.");
     } finally {
       setIsSyncingRadar(false);
     }
@@ -333,7 +347,7 @@ export default function AdminCommandCenter() {
       } catch (e) {
         console.warn("Could not save to localStorage:", e);
       }
-      setRadarMessage(`📁 Đã nạp thành công ${novel.length} hướng dẫn lâm sàng mới vào cơ sở dữ liệu.`);
+      setRadarMessage(`📁 Successfully ingested ${novel.length} guidelines into repository.`);
       return merged;
     });
     setShowBatchModal(false);
@@ -342,7 +356,7 @@ export default function AdminCommandCenter() {
   };
 
   // =========================================================================
-  // IF NOT AUTHENTICATED: DISPLAY SECURE LOGIN SCREEN
+  // IF NOT AUTHENTICATED: DISPLAY SECURE LOGIN SCREEN (ENGLISH)
   // =========================================================================
   if (!isAdminVerified) {
     return (
@@ -356,7 +370,7 @@ export default function AdminCommandCenter() {
             </div>
             <h1 className="text-2xl font-black tracking-tight">Neuro Admin Command Center</h1>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-              Trung tâm điều phối &amp; vận hành thống nhất cho cả 6 phân hệ
+              Unified ecosystem operations &amp; moderation across all 6 clinical modules
             </p>
           </div>
 
@@ -368,13 +382,13 @@ export default function AdminCommandCenter() {
           >
             <div className="space-y-1.5">
               <label className="block text-xs font-bold text-slate-700 dark:text-slate-300">
-                Mật mã Quản trị viên (Passcode)
+                Administrator Passcode
               </label>
               <input
                 type="password"
                 value={passcodeInput}
                 onChange={(e) => setPasscodeInput(e.target.value)}
-                placeholder="Nhập mật mã quản trị..."
+                placeholder="Enter admin passcode..."
                 autoFocus
                 className={`w-full px-3.5 py-2.5 rounded-xl border text-sm font-mono outline-none focus:ring-2 focus:ring-amber-500 transition-all ${
                   darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200 text-slate-900"
@@ -393,7 +407,7 @@ export default function AdminCommandCenter() {
               disabled={isVerifying}
               className="w-full py-2.5 rounded-xl text-xs font-bold bg-amber-600 hover:bg-amber-700 active:scale-[0.99] text-white shadow-md shadow-amber-600/20 transition-all disabled:opacity-50 flex items-center justify-center gap-2"
             >
-              <span>{isVerifying ? "Đang xác thực..." : "Đăng nhập Trung tâm Quản trị"}</span>
+              <span>{isVerifying ? "Verifying..." : "Sign In to Admin Command Center"}</span>
               <span>→</span>
             </button>
 
@@ -402,7 +416,7 @@ export default function AdminCommandCenter() {
                 href="/"
                 className="text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"
               >
-                ← Quay lại trang chủ NeuroPulse
+                ← Back to NeuroPulse Home
               </Link>
             </div>
           </form>
@@ -412,7 +426,7 @@ export default function AdminCommandCenter() {
   }
 
   // =========================================================================
-  // AUTHENTICATED: FULL ECOSYSTEM COMMAND CENTER
+  // AUTHENTICATED: FULL ECOSYSTEM COMMAND CENTER (ENGLISH)
   // =========================================================================
   return (
     <div className={`min-h-screen transition-colors ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
@@ -432,7 +446,7 @@ export default function AdminCommandCenter() {
                 </span>
               </div>
               <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                Trung tâm điều phối &amp; kiểm duyệt tập trung cho hệ sinh thái Thần kinh học
+                Centralized moderation, guideline radar intelligence &amp; multi-journal operations
               </p>
             </div>
           </div>
@@ -480,9 +494,9 @@ export default function AdminCommandCenter() {
             <button
               onClick={handleLogout}
               className="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-red-500/10 hover:bg-red-500/20 text-red-600 dark:text-red-400 border border-red-500/20 transition-all"
-              title="Đăng xuất khỏi phiên quản trị"
+              title="Sign out of Admin Session"
             >
-              Đăng xuất
+              Sign Out
             </button>
           </div>
         </header>
@@ -494,8 +508,8 @@ export default function AdminCommandCenter() {
               <span>NeuroPulse</span>
               <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
             </div>
-            <div className="text-base font-black mt-1">179 Bài</div>
-            <div className="text-[10px] text-slate-500">Bot 6:00 AM Active</div>
+            <div className="text-base font-black mt-1">179 Articles</div>
+            <div className="text-[10px] text-slate-500">Daily Bot 6:00 AM Active</div>
           </div>
 
           <div className={`p-3 rounded-xl border ${darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200 shadow-xs"}`}>
@@ -503,8 +517,8 @@ export default function AdminCommandCenter() {
               <span>NeuroCase</span>
               <span className={`w-2 h-2 rounded-full ${pendingCases.length > 0 ? "bg-amber-500 animate-pulse" : "bg-emerald-500"}`}></span>
             </div>
-            <div className="text-base font-black mt-1">{cases.length} Ca</div>
-            <div className="text-[10px] text-amber-500 font-semibold">{pendingCases.length} ca chờ duyệt</div>
+            <div className="text-base font-black mt-1">{cases.length} Cases</div>
+            <div className="text-[10px] text-amber-500 font-semibold">{pendingCases.length} Pending Review</div>
           </div>
 
           <div className={`p-3 rounded-xl border ${darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200 shadow-xs"}`}>
@@ -513,13 +527,13 @@ export default function AdminCommandCenter() {
               <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
             </div>
             <div className="text-base font-black mt-1">{guidelineDocs.length} Docs</div>
-            <div className="text-[10px] text-slate-500">Radar PubMed/ESO</div>
+            <div className="text-[10px] text-slate-500">PubMed/ESO Radar</div>
           </div>
 
           <div className={`p-3 rounded-xl border opacity-60 ${darkMode ? "bg-slate-900/40 border-slate-800" : "bg-slate-100 border-slate-200"}`}>
             <div className="flex items-center justify-between text-slate-400 text-[11px]">
               <span>NeuroCalc</span>
-              <span className="text-[9px] uppercase px-1 rounded bg-slate-200 dark:bg-slate-800">Sắp có</span>
+              <span className="text-[9px] uppercase px-1 rounded bg-slate-200 dark:bg-slate-800">Coming Soon</span>
             </div>
             <div className="text-base font-bold mt-1 text-slate-400">Scales</div>
             <div className="text-[10px] text-slate-400">NIHSS, mRS, ICH</div>
@@ -528,19 +542,19 @@ export default function AdminCommandCenter() {
           <div className={`p-3 rounded-xl border opacity-60 ${darkMode ? "bg-slate-900/40 border-slate-800" : "bg-slate-100 border-slate-200"}`}>
             <div className="flex items-center justify-between text-slate-400 text-[11px]">
               <span>NeuroVision</span>
-              <span className="text-[9px] uppercase px-1 rounded bg-slate-200 dark:bg-slate-800">Sắp có</span>
+              <span className="text-[9px] uppercase px-1 rounded bg-slate-200 dark:bg-slate-800">Coming Soon</span>
             </div>
-            <div className="text-base font-bold mt-1 text-slate-400">Imaging</div>
+            <div className="text-base font-bold mt-1 text-slate-400">Imaging AI</div>
             <div className="text-[10px] text-slate-400">ASPECTS &amp; CTP</div>
           </div>
 
           <div className={`p-3 rounded-xl border opacity-60 ${darkMode ? "bg-slate-900/40 border-slate-800" : "bg-slate-100 border-slate-200"}`}>
             <div className="flex items-center justify-between text-slate-400 text-[11px]">
               <span>NeuroRx</span>
-              <span className="text-[9px] uppercase px-1 rounded bg-slate-200 dark:bg-slate-800">Sắp có</span>
+              <span className="text-[9px] uppercase px-1 rounded bg-slate-200 dark:bg-slate-800">Coming Soon</span>
             </div>
             <div className="text-base font-bold mt-1 text-slate-400">Pharma</div>
-            <div className="text-[10px] text-slate-400">Liều dùng &amp; Tương tác</div>
+            <div className="text-[10px] text-slate-400">Dosing &amp; Interactions</div>
           </div>
         </div>
 
@@ -554,25 +568,25 @@ export default function AdminCommandCenter() {
             {[
               {
                 id: "neurocase",
-                label: "🛡️ Duyệt Ca Lâm Sàng (NeuroCase)",
-                badge: pendingCases.length > 0 ? `${pendingCases.length} Chờ Duyệt` : undefined,
+                label: "🛡️ Case Moderation (NeuroCase)",
+                badge: pendingCases.length > 0 ? `${pendingCases.length} Pending` : undefined,
                 badgeColor: "bg-amber-500 text-white",
               },
               {
                 id: "radar",
-                label: "📡 Radar & Guideline (NeuroGuide)",
+                label: "📡 Guidelines & Radar (NeuroGuide)",
                 badge: `${guidelineDocs.length}`,
                 badgeColor: "bg-blue-500 text-white",
               },
               {
                 id: "neuropulse",
-                label: "📰 Quản lý Nguồn Bài Báo (NeuroPulse)",
+                label: "📰 Journal Feeds Monitor (NeuroPulse)",
                 badge: "179",
                 badgeColor: "bg-red-500 text-white",
               },
               {
                 id: "system",
-                label: "⚙️ Giám Sát Hệ Thống & Lưu Trữ",
+                label: "⚙️ Architecture & Storage Health",
                 badge: undefined,
               },
             ].map((tab) => {
@@ -612,7 +626,7 @@ export default function AdminCommandCenter() {
             className="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 flex items-center gap-1.5"
           >
             <span className={isSyncingServer ? "animate-spin" : ""}>🔄</span>
-            <span>{isSyncingServer ? "Đang đồng bộ..." : "Làm mới dữ liệu"}</span>
+            <span>{isSyncingServer ? "Syncing..." : "Sync from Server"}</span>
           </button>
         </nav>
 
@@ -635,10 +649,10 @@ export default function AdminCommandCenter() {
           </div>
         )}
 
-        {/* TAB 2: NEUROGUIDE RADAR & GUIDELINE INGESTION (Chức năng trong ảnh được tái cấu trúc vào Admin) */}
+        {/* TAB 2: NEUROGUIDE RADAR & GUIDELINE INGESTION */}
         {adminTab === "radar" && (
           <div className="space-y-4">
-            {/* AUTONOMOUS PERIODIC RADAR TOOLBAR (From uploaded image) */}
+            {/* AUTONOMOUS PERIODIC RADAR TOOLBAR */}
             <div
               className={`p-4 rounded-2xl border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-xs ${
                 darkMode ? "bg-slate-900 border-slate-800" : "bg-blue-50/70 border-blue-100"
@@ -651,16 +665,16 @@ export default function AdminCommandCenter() {
                 </span>
                 <div>
                   <div className="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2 flex-wrap">
-                    <span>🔬 Radar Tự Động Định Kỳ (PubMed / Europe PMC / ESO)</span>
+                    <span>🔬 Autonomous Periodic Radar (PubMed / Europe PMC / ESO)</span>
                     <span className="text-[10px] px-2 py-0.5 rounded-full font-mono bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-semibold">
-                      Tự động quét 24/7
+                      Scanning 24/7
                     </span>
                   </div>
                   <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                    Hệ thống tự động dò quét định kỳ và đồng bộ các hướng dẫn lâm sàng mới công bố.{" "}
+                    Autonomous crawler actively indexing and synchronizing newly released clinical practice guidelines.{" "}
                     {lastSyncedTime && (
                       <span className="font-medium text-slate-700 dark:text-slate-300">
-                        (Quét gần nhất lúc {lastSyncedTime})
+                        (Last scanned at {lastSyncedTime})
                       </span>
                     )}
                   </div>
@@ -677,7 +691,7 @@ export default function AdminCommandCenter() {
                   }`}
                 >
                   <span>📁</span>
-                  <span>Nhập danh sách file</span>
+                  <span>Ingest File Manifest</span>
                 </button>
 
                 <button
@@ -690,7 +704,7 @@ export default function AdminCommandCenter() {
                   }`}
                 >
                   <span className={isSyncingRadar ? "animate-spin" : ""}>⚡</span>
-                  <span>{isSyncingRadar ? "Đang dò quét online..." : "Quét trực tuyến ngay"}</span>
+                  <span>{isSyncingRadar ? "Scanning online..." : "Scan Online Now"}</span>
                 </button>
               </div>
             </div>
@@ -715,11 +729,11 @@ export default function AdminCommandCenter() {
             <div className={`p-5 rounded-2xl border ${darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200 shadow-xs"}`}>
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h3 className="text-sm font-bold">Thư viện Hướng dẫn Lâm sàng Hiện có ({guidelineDocs.length})</h3>
-                  <p className="text-[11px] text-slate-500">Các guideline đã được bóc tách và phân loại phục vụ tra cứu trong NeuroGuide</p>
+                  <h3 className="text-sm font-bold">Clinical Guideline Repository ({guidelineDocs.length})</h3>
+                  <p className="text-[11px] text-slate-500">Indexed and classified clinical practice guidelines serving instant retrieval in NeuroGuide</p>
                 </div>
                 <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400">
-                  {guidelineDocs.length} tài liệu
+                  {guidelineDocs.length} documents
                 </span>
               </div>
 
@@ -745,7 +759,7 @@ export default function AdminCommandCenter() {
               </div>
             </div>
 
-            {/* MODAL: LOCAL BATCH FILE INGESTION (From uploaded image) */}
+            {/* MODAL: LOCAL BATCH FILE INGESTION */}
             {showBatchModal && (
               <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
                 <div
@@ -757,9 +771,9 @@ export default function AdminCommandCenter() {
                     <div className="flex items-center gap-2">
                       <span className="text-xl">📁</span>
                       <div>
-                        <h3 className="text-sm font-bold">Nạp Guideline Hàng Loạt từ Thư Mục / File PDF</h3>
+                        <h3 className="text-sm font-bold">Batch Ingest Guidelines from PDF Manifest / File List</h3>
                         <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                          Dán danh sách tên file PDF (mỗi dòng 1 file), hệ thống tự bóc tách năm, hiệp hội và chuyên ngành.
+                          Paste a list of PDF file names (one per line). The engine parses year, society, and subspecialty.
                         </p>
                       </div>
                     </div>
@@ -774,7 +788,7 @@ export default function AdminCommandCenter() {
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-xs">
                       <label className="font-bold text-slate-700 dark:text-slate-300">
-                        Danh sách tên file / Manifest:
+                        File Name Manifest / List:
                       </label>
                       <button
                         onClick={() =>
@@ -799,7 +813,7 @@ export default function AdminCommandCenter() {
                         }
                         className="text-[11px] text-blue-600 dark:text-blue-400 hover:underline font-medium"
                       >
-                        ⚡ Dán mẫu 16 file PDF mẫu
+                        ⚡ Paste sample 16 PDF files
                       </button>
                     </div>
 
@@ -807,7 +821,7 @@ export default function AdminCommandCenter() {
                       rows={6}
                       value={batchInputText}
                       onChange={(e) => setBatchInputText(e.target.value)}
-                      placeholder={`Ví dụ:\n2025 ESO guideline on motor rehabilitation.pdf\n2024 ESC Guidelines for the management of atrial fibrillation.pdf\n2026 ESO guideline on stroke-associated pneumonia.pdf`}
+                      placeholder={`Example:\n2025 ESO guideline on motor rehabilitation.pdf\n2024 ESC Guidelines for the management of atrial fibrillation.pdf\n2026 ESO guideline on stroke-associated pneumonia.pdf`}
                       className={`w-full p-3 text-xs font-mono rounded-xl border outline-none focus:border-blue-500 transition-all ${
                         darkMode ? "bg-slate-800 border-slate-700 text-slate-100" : "bg-slate-50 border-slate-200 text-slate-900"
                       }`}
@@ -825,7 +839,7 @@ export default function AdminCommandCenter() {
                       }`}
                     >
                       <span>🔍</span>
-                      <span>{isBatchProcessing ? "Đang phân tích..." : "Phân tích danh sách"}</span>
+                      <span>{isBatchProcessing ? "Parsing list..." : "Parse Manifest"}</span>
                     </button>
 
                     {batchPreviewDocs.length > 0 && (
@@ -834,7 +848,7 @@ export default function AdminCommandCenter() {
                         className="px-4 py-2 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm flex items-center gap-1.5 transition-all"
                       >
                         <span>✓</span>
-                        <span>Nạp {batchPreviewDocs.length} Guideline mới</span>
+                        <span>Ingest {batchPreviewDocs.length} Guidelines</span>
                       </button>
                     )}
                   </div>
@@ -842,7 +856,7 @@ export default function AdminCommandCenter() {
                   {batchPreviewDocs.length > 0 && (
                     <div className="space-y-2 border-t pt-3 border-slate-200 dark:border-slate-800">
                       <div className="text-xs font-bold flex items-center justify-between">
-                        <span>Kết quả nhận diện ({batchPreviewDocs.length} tài liệu):</span>
+                        <span>Recognition Results ({batchPreviewDocs.length} documents):</span>
                       </div>
                       <div className="max-h-60 overflow-y-auto space-y-2 pr-1">
                         {batchPreviewDocs.map((item, idx) => (
@@ -869,7 +883,7 @@ export default function AdminCommandCenter() {
                               </div>
                             </div>
                             <span className="text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0 bg-emerald-100 dark:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300">
-                              Mới phát hiện
+                              Identified
                             </span>
                           </div>
                         ))}
@@ -888,41 +902,41 @@ export default function AdminCommandCenter() {
             <div className={`p-5 rounded-2xl border ${darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200 shadow-xs"}`}>
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h3 className="text-sm font-bold">Giám sát Luồng Tạp chí (NeuroPulse Feed Engine)</h3>
-                  <p className="text-[11px] text-slate-500">Tự động tổng hợp và phân loại bài báo từ 8 tạp chí thần kinh học hàng đầu</p>
+                  <h3 className="text-sm font-bold">Multi-Journal Feed Engine Monitoring</h3>
+                  <p className="text-[11px] text-slate-500">Autonomous aggregator tracking 8 top-tier clinical neurology journals</p>
                 </div>
                 <span className="text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-bold border border-emerald-500/20">
-                  Bot Daily lúc 6:00 AM VN
+                  Daily Bot 6:00 AM VN
                 </span>
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
                 <div className={`p-3 rounded-xl border ${darkMode ? "bg-slate-800/60 border-slate-700" : "bg-slate-50 border-slate-200"}`}>
-                  <div className="text-[11px] text-slate-400">Tổng bài lưu trữ</div>
+                  <div className="text-[11px] text-slate-400">Total Indexed Articles</div>
                   <div className="text-xl font-black mt-1">179</div>
-                  <div className="text-[10px] text-emerald-500">Đã chuẩn hóa 11 phân ngành</div>
+                  <div className="text-[10px] text-emerald-500">11 Subspecialties Standardized</div>
                 </div>
                 <div className={`p-3 rounded-xl border ${darkMode ? "bg-slate-800/60 border-slate-700" : "bg-slate-50 border-slate-200"}`}>
                   <div className="text-[11px] text-slate-400">RCTs &amp; Clinical Trials</div>
                   <div className="text-xl font-black mt-1">42</div>
-                  <div className="text-[10px] text-blue-500">Thử nghiệm lâm sàng</div>
+                  <div className="text-[10px] text-blue-500">Strictly Tagged Trials</div>
                 </div>
                 <div className={`p-3 rounded-xl border ${darkMode ? "bg-slate-800/60 border-slate-700" : "bg-slate-50 border-slate-200"}`}>
                   <div className="text-[11px] text-slate-400">Guidelines &amp; Reviews</div>
                   <div className="text-xl font-black mt-1">31</div>
-                  <div className="text-[10px] text-purple-500">Khuyến cáo điều trị</div>
+                  <div className="text-[10px] text-purple-500">Practice Guidelines</div>
                 </div>
                 <div className={`p-3 rounded-xl border ${darkMode ? "bg-slate-800/60 border-slate-700" : "bg-slate-50 border-slate-200"}`}>
-                  <div className="text-[11px] text-slate-400">Tạp chí kết nối</div>
+                  <div className="text-[11px] text-slate-400">Connected Journals</div>
                   <div className="text-xl font-black mt-1">8 / 8</div>
                   <div className="text-[10px] text-emerald-500">NEJM, Lancet, JAMA, Stroke...</div>
                 </div>
               </div>
 
               <div className="text-xs text-slate-500 dark:text-slate-400 p-3 rounded-xl bg-slate-100 dark:bg-slate-800/60 flex items-center justify-between">
-                <span>Lệnh cập nhật thủ công từ terminal: <code className="font-mono text-amber-500">python scripts/fetch_nejm.py</code></span>
+                <span>Manual update command via terminal: <code className="font-mono text-amber-500">python scripts/fetch_nejm.py</code></span>
                 <Link href="/" className="font-bold text-amber-600 dark:text-amber-400 hover:underline">
-                  Xem nguồn đọc NeuroPulse →
+                  View NeuroPulse Reader →
                 </Link>
               </div>
             </div>
@@ -933,34 +947,34 @@ export default function AdminCommandCenter() {
         {adminTab === "system" && (
           <div className="space-y-4">
             <div className={`p-5 rounded-2xl border ${darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200 shadow-xs"}`}>
-              <h3 className="text-sm font-bold mb-1">Kiến trúc Đám mây &amp; Bảo mật Hệ sinh thái</h3>
-              <p className="text-[11px] text-slate-500 mb-4">Trạng thái cấu hình lưu trữ, kết nối server và các khóa bảo mật</p>
+              <h3 className="text-sm font-bold mb-1">Cloud Architecture &amp; Ecosystem Security</h3>
+              <p className="text-[11px] text-slate-500 mb-4">Storage backend configuration, endpoint health, and security token controls</p>
 
               <div className="space-y-3 text-xs">
                 <div className="flex items-center justify-between p-3 rounded-xl border border-slate-200 dark:border-slate-800">
                   <div>
-                    <div className="font-bold">Lưu trữ Động Ca Bệnh (NeuroCase Dynamic Storage)</div>
-                    <div className="text-slate-400 text-[11px]">Hỗ trợ tự động fallback giữa Vercel Blob, Vercel KV và Local JSON</div>
+                    <div className="font-bold">Dynamic Case Storage (NeuroCase)</div>
+                    <div className="text-slate-400 text-[11px]">Automatic multi-tier fallback between Vercel Blob, Vercel KV, and local JSON</div>
                   </div>
                   <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-                    Sẵn sàng hoạt động
+                    Active &amp; Ready
                   </span>
                 </div>
 
                 <div className="flex items-center justify-between p-3 rounded-xl border border-slate-200 dark:border-slate-800">
                   <div>
-                    <div className="font-bold">Cơ chế Kiểm soát XSS &amp; URL Sanitization</div>
-                    <div className="text-slate-400 text-[11px]">Đã kích hoạt bộ lọc triệt tiêu javascript: và data: URI trong DOI</div>
+                    <div className="font-bold">Stored XSS Prevention &amp; URL Sanitization</div>
+                    <div className="text-slate-400 text-[11px]">Strict protocol filter stripping javascript: and data: URIs in DOI fields</div>
                   </div>
                   <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-                    Bảo vệ 100%
+                    100% Protected
                   </span>
                 </div>
 
                 <div className="flex items-center justify-between p-3 rounded-xl border border-slate-200 dark:border-slate-800">
                   <div>
-                    <div className="font-bold">Quy trình CI Quality Gate (GitHub Actions)</div>
-                    <div className="text-slate-400 text-[11px]">Tự động chạy typecheck nghiêm ngặt, 15 ca kiểm thử và biên dịch build</div>
+                    <div className="font-bold">CI Quality Gate Workflow (GitHub Actions)</div>
+                    <div className="text-slate-400 text-[11px]">Automated strict typechecking, 15 unit/security tests, and production build verification</div>
                   </div>
                   <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
                     15/15 Tests Passed

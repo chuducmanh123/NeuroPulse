@@ -50,7 +50,7 @@ export function AdminButton({ darkMode = false }: AdminButtonProps) {
             ? "bg-slate-900 text-slate-300 border-slate-700 hover:bg-slate-800 hover:text-white"
             : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:text-slate-900"
         }`}
-        title={isAdminVerified ? "Trung tâm điều phối Admin (Đã xác thực)" : "Đăng nhập Trung tâm điều phối Admin"}
+        title={isAdminVerified ? "Admin Command Center (Verified)" : "Admin Command Center Login"}
         aria-label="Admin Control Center"
       >
         <span className="text-sm">🛡️</span>

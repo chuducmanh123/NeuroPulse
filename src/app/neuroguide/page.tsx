@@ -599,17 +599,6 @@ export default function NeuroGuidePage() {
 
           {/* Quick Header Badges & Actions */}
           <div className="flex flex-wrap items-center gap-2">
-            <div
-              className={`px-3 py-2 rounded-lg text-xs font-bold border flex items-center gap-1.5 ${
-                darkMode
-                  ? "bg-slate-900 border-slate-700 text-amber-300"
-                  : "bg-white border-slate-200 text-slate-800"
-              }`}
-              title="AHA/ASA, ESO, AAN & VN-MOH Synchronized"
-            >
-              <span>⚡ Practice Guidelines Synced</span>
-            </div>
-
             <button
               onClick={toggleDarkMode}
               className={`px-3 py-2 rounded-lg text-xs font-bold border transition-all flex items-center gap-1.5 ${

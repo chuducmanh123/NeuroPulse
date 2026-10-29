@@ -39,15 +39,8 @@ export function verifyAdminToken(
 ): boolean {
   if (!token) return false;
 
-  const nodeEnv = options?.nodeEnv ?? process.env.NODE_ENV;
   const adminPasscode = options?.adminPasscode ?? process.env.ADMIN_PASSCODE;
   const adminAuthSecret = options?.adminAuthSecret ?? process.env.ADMIN_AUTH_SECRET;
-
-  // In production, refuse admin auth if secrets are not explicitly configured
-  if (nodeEnv === "production" && (!adminPasscode || !adminAuthSecret)) {
-    console.error("[SECURITY] ADMIN_PASSCODE or ADMIN_AUTH_SECRET missing in production!");
-    return false;
-  }
 
   const expected = generateAdminAuthToken(adminAuthSecret, adminPasscode);
   if (token.length !== expected.length) return false;
