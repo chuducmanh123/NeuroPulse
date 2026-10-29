@@ -21,19 +21,19 @@ import { AppSwitcher } from "../../components/ecosystem/AppSwitcher";
 
 const NAV_TABS = [
   {
-    id: "radar",
-    label: "🔥 Live Radar & Updates",
-    badge: `${MOCK_GUIDELINE_DOCS.length} Guidelines`,
-  },
-  {
-    id: "matrix",
-    label: "⚖️ Scenario Comparison Matrix",
-    badge: `${MOCK_CLINICAL_SCENARIOS.length} Scenarios`,
+    id: "guidelines",
+    label: "🔥 Practice Guidelines",
+    badge: `${MOCK_GUIDELINE_DOCS.length}`,
   },
   {
     id: "conf",
-    label: "🎙️ Conference Intelligence Hub",
-    badge: `${MOCK_CONFERENCE_EVENTS.length} Events`,
+    label: "🎙️ Conferences & Late-Breaking Trials",
+    badge: `${MOCK_CONFERENCE_EVENTS.length}`,
+  },
+  {
+    id: "matrix",
+    label: "⚖️ Clinical Scenarios",
+    badge: `${MOCK_CLINICAL_SCENARIOS.length}`,
   },
 ] as const;
 
@@ -41,7 +41,7 @@ type NavTabId = (typeof NAV_TABS)[number]["id"];
 
 export default function NeuroGuidePage() {
   const [darkMode, setDarkMode] = useState<boolean>(false);
-  const [activeTab, setActiveTab] = useState<NavTabId>("radar");
+  const [activeTab, setActiveTab] = useState<NavTabId>("guidelines");
 
   // Filters
   const [selectedSubspecialty, setSelectedSubspecialty] = useState<SubspecialtyType>("All Subspecialties");
@@ -99,7 +99,7 @@ export default function NeuroGuidePage() {
     return ["ALL", ...Array.from(set)];
   }, []);
 
-  // Filtered Scenarios
+  // Filtered Scenarios (Search strictly applies here)
   const filteredScenarios = useMemo(() => {
     return MOCK_CLINICAL_SCENARIOS.filter((scenario) => {
       const matchesSub =
@@ -115,7 +115,7 @@ export default function NeuroGuidePage() {
     });
   }, [selectedSubspecialty, searchQuery]);
 
-  // Current Scenario: safely fallback or null if search yields zero matches
+  // Current Scenario
   const currentScenario = useMemo(() => {
     return (
       filteredScenarios.find((s) => s.id === activeScenarioId) ||
@@ -153,7 +153,7 @@ export default function NeuroGuidePage() {
     });
   }, [selectedConfStatus, selectedSubspecialty]);
 
-  // Smooth scroll using React ref instead of hardcoded coordinates
+  // Jump from Guideline or Trial to Scenario Matrix
   const handleJumpToScenario = (scenarioId: string) => {
     setActiveScenarioId(scenarioId);
     setActiveTab("matrix");
@@ -227,13 +227,14 @@ export default function NeuroGuidePage() {
         </header>
 
         {/* =========================================================================
-            NAVIGATION BAR
+            NAVIGATION BAR (3 Tabs in user-specified order + Contextual Search)
            ========================================================================= */}
         <nav
           className={`mb-6 p-1.5 rounded-xl border flex flex-wrap items-center justify-between gap-1.5 ${
             darkMode ? "bg-slate-900/90 border-slate-800" : "bg-white border-slate-200 shadow-xs"
           }`}
         >
+          {/* Tab 1: Guidelines | Tab 2: Conferences | Tab 3: Scenarios */}
           <div className="flex flex-wrap items-center gap-1.5">
             {NAV_TABS.map((tab) => {
               const isActive = activeTab === tab.id;
@@ -268,31 +269,33 @@ export default function NeuroGuidePage() {
             })}
           </div>
 
-          {/* Quick Search Input */}
-          <div className="relative w-full sm:w-64">
-            <span className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-slate-400 text-xs">
-              🔍
-            </span>
-            <input
-              type="text"
-              placeholder="Quick search scenarios, trials..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className={`w-full pl-8 pr-3 py-1.5 text-xs rounded-lg border outline-none transition-all ${
-                darkMode
-                  ? "bg-slate-800 border-slate-700 text-slate-100 placeholder-slate-400 focus:border-amber-500"
-                  : "bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400 focus:border-amber-500"
-              }`}
-            />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery("")}
-                className="absolute inset-y-0 right-2.5 flex items-center text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
-              >
-                ✕
-              </button>
-            )}
-          </div>
+          {/* Search ONLY active and visible on the Clinical Scenarios Tab */}
+          {activeTab === "matrix" && (
+            <div className="relative w-full sm:w-64">
+              <span className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-slate-400 text-xs">
+                🔍
+              </span>
+              <input
+                type="text"
+                placeholder="Search scenarios, trials, drugs..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className={`w-full pl-8 pr-3 py-1.5 text-xs rounded-lg border outline-none transition-all ${
+                  darkMode
+                    ? "bg-slate-800 border-slate-700 text-slate-100 placeholder-slate-400 focus:border-amber-500"
+                    : "bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400 focus:border-amber-500"
+                }`}
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery("")}
+                  className="absolute inset-y-0 right-2.5 flex items-center text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+          )}
         </nav>
 
         {/* =========================================================================
@@ -327,382 +330,400 @@ export default function NeuroGuidePage() {
         </div>
 
         {/* =========================================================================
-            TAB 1: LIVE RADAR & UPDATES (Default View)
+            TAB 1: PRACTICE GUIDELINES (Pure guidelines view, no redundant subtitles)
            ========================================================================= */}
-        {activeTab === "radar" && (
-          <div className="space-y-8">
-            {/* Section A: Live Guidelines Stream */}
-            <div>
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
-                <div>
-                  <h2 className="text-lg sm:text-xl font-black tracking-tight flex items-center gap-2">
-                    <span>🔥</span>
-                    <span>Live Guideline Radar (Newly Published &amp; Focused Updates)</span>
-                  </h2>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                    Real-time monitoring of consensus statements and clinical guidelines from AHA/ASA, ESO, AAN, and National MOH
-                  </p>
-                </div>
-
-                {/* Society Filters derived dynamically */}
-                <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0">
-                  {availableSocieties.map((soc) => (
-                    <button
-                      key={soc}
-                      onClick={() => setSelectedSocietyFilter(soc)}
-                      className={`px-2.5 py-1 rounded-lg text-xs font-bold whitespace-nowrap transition-all ${
-                        selectedSocietyFilter === soc
-                          ? "bg-amber-500 text-white"
-                          : darkMode
-                          ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
-                          : "bg-slate-200 text-slate-700 hover:bg-slate-300"
-                      }`}
-                    >
-                      {soc === "ALL" ? "All Societies" : soc}
-                    </button>
-                  ))}
-                </div>
+        {activeTab === "guidelines" && (
+          <div className="space-y-4">
+            {/* Direct Society Filter Bar without redundant introductory text */}
+            <div className="flex items-center justify-between gap-3 mb-2">
+              <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0">
+                <span className="text-xs font-bold text-slate-400 mr-1 whitespace-nowrap">
+                  Society:
+                </span>
+                {availableSocieties.map((soc) => (
+                  <button
+                    key={soc}
+                    onClick={() => setSelectedSocietyFilter(soc)}
+                    className={`px-2.5 py-1 rounded-lg text-xs font-bold whitespace-nowrap transition-all ${
+                      selectedSocietyFilter === soc
+                        ? "bg-amber-500 text-white"
+                        : darkMode
+                        ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
+                        : "bg-slate-200 text-slate-700 hover:bg-slate-300"
+                    }`}
+                  >
+                    {soc === "ALL" ? "All Societies" : soc}
+                  </button>
+                ))}
               </div>
 
-              {/* Guideline Cards */}
-              <div className="grid grid-cols-1 gap-4">
-                {filteredGuidelines.map((doc) => {
-                  const isExpanded = !!expandedGuidelineChanges[doc.id];
-                  return (
-                    <div
-                      key={doc.id}
-                      className={`rounded-2xl border transition-all ${
-                        darkMode
-                          ? "bg-slate-900 border-slate-800 hover:border-slate-700"
-                          : "bg-white border-slate-200 hover:border-slate-300 shadow-xs"
-                      }`}
-                    >
-                      <div className="p-5">
-                        {/* Meta header */}
-                        <div className="flex flex-wrap items-center justify-between gap-2 mb-2.5">
-                          <div className="flex items-center gap-2">
-                            <span
-                              className={`px-2 py-0.5 rounded-md text-[11px] font-black tracking-wider uppercase ${
-                                doc.society === "AHA/ASA"
-                                  ? "bg-red-500/15 text-red-600 dark:text-red-400 border border-red-500/30"
-                                  : doc.society === "ESO"
-                                  ? "bg-blue-500/15 text-blue-600 dark:text-blue-400 border border-blue-500/30"
-                                  : "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30"
-                              }`}
-                            >
-                              {doc.society} {doc.year}
-                            </span>
-                            <span className="text-xs font-semibold text-slate-400">
-                              {doc.documentType} • {doc.journalTarget}
-                            </span>
-                          </div>
-                          <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
-                            Published: {doc.publishDate}
-                          </span>
-                        </div>
-
-                        {/* Title & Executive Summary */}
-                        <h3 className="text-base sm:text-lg font-bold leading-snug">
-                          {doc.title}
-                        </h3>
-                        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
-                          {doc.executiveSummary}
-                        </p>
-
-                        {/* Practice Changes Accordion */}
-                        <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800">
-                          <div className="flex items-center justify-between gap-2 mb-2">
-                            <span className="text-xs font-black uppercase tracking-wider text-amber-600 dark:text-amber-400 flex items-center gap-1.5">
-                              <span>📋</span>
-                              <span>
-                                Key Practice Changes vs. Previous Version ({doc.previousVersionYear || "Prior"})
-                              </span>
-                            </span>
-
-                            <button
-                              onClick={() => toggleGuidelineAccordion(doc.id)}
-                              className="text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline flex items-center gap-1"
-                            >
-                              <span>
-                                {isExpanded
-                                  ? "Collapse ▴"
-                                  : `View all ${doc.allPracticeChanges.length} changes ▾`}
-                              </span>
-                            </button>
-                          </div>
-
-                          <div className="space-y-2 mt-2">
-                            {(isExpanded
-                              ? doc.allPracticeChanges
-                              : doc.allPracticeChanges.slice(0, 2)
-                            ).map((change) => (
-                              <div
-                                key={change.id}
-                                className={`p-3 rounded-xl border text-xs leading-relaxed ${
-                                  darkMode
-                                    ? "bg-slate-950/60 border-slate-800"
-                                    : "bg-slate-50 border-slate-200"
-                                }`}
-                              >
-                                <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
-                                  <div className="flex items-center gap-1.5">
-                                    <span
-                                      className={`px-1.5 py-0.5 rounded text-[10px] font-black ${
-                                        change.changeType === "UPGRADED"
-                                          ? "bg-emerald-500/20 text-emerald-600 dark:text-emerald-400"
-                                          : change.changeType === "NEW"
-                                          ? "bg-blue-500/20 text-blue-600 dark:text-blue-400"
-                                          : "bg-amber-500/20 text-amber-600 dark:text-amber-400"
-                                      }`}
-                                    >
-                                      {change.changeType}
-                                    </span>
-                                    <span className="font-bold">{change.topic}</span>
-                                  </div>
-
-                                  <div className="flex items-center gap-2 text-[11px]">
-                                    {change.previousGrade && (
-                                      <span className="text-slate-400 line-through">
-                                        {change.previousGrade}
-                                      </span>
-                                    )}
-                                    <span className="font-extrabold text-amber-600 dark:text-amber-400">
-                                      ➔ {change.currentGrade}
-                                    </span>
-                                  </div>
-                                </div>
-
-                                <p className="text-slate-700 dark:text-slate-300">
-                                  {change.currentText}
-                                </p>
-
-                                {change.drivingTrials && change.drivingTrials.length > 0 && (
-                                  <div className="mt-1.5 flex items-center gap-1.5 text-[10.5px] text-slate-500 dark:text-slate-400">
-                                    <span className="font-semibold">Supporting Evidence:</span>
-                                    <span>{change.drivingTrials.join(", ")}</span>
-                                  </div>
-                                )}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-
-                        {/* Action Bar */}
-                        <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex flex-wrap items-center justify-between gap-2">
-                          <a
-                            href={doc.officialUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-amber-500 flex items-center gap-1"
-                          >
-                            <span>Read original article on {doc.journalTarget}</span>
-                            <span>↗</span>
-                          </a>
-
-                          {doc.linkedScenarioIds.length > 0 && (
-                            <button
-                              onClick={() => handleJumpToScenario(doc.linkedScenarioIds[0])}
-                              className="px-3 py-1.5 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 hover:bg-amber-500/20 text-xs font-bold flex items-center gap-1 transition-colors"
-                            >
-                              <span>⚖️ Open Scenario Matrix</span>
-                              <span>➔</span>
-                            </button>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
+              <div className="text-xs text-slate-400 font-medium hidden sm:block">
+                Showing {filteredGuidelines.length} documents
               </div>
             </div>
 
-            {/* Section B: Conference Intelligence Stream */}
-            <div>
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
-                <div>
-                  <h2 className="text-lg sm:text-xl font-black tracking-tight flex items-center gap-2">
-                    <span>🎙️</span>
-                    <span>Conference Intelligence Radar (Late-Breaking Science Stream)</span>
-                  </h2>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                    Live trials reported from podiums at major international conferences (ISC, ESOC, AAN, AAIC, AES)
-                  </p>
-                </div>
-
-                <div className="flex items-center gap-1.5">
-                  {(["ALL", "LIVE", "RECENT", "UPCOMING"] as const).map((st) => (
-                    <button
-                      key={st}
-                      onClick={() => setSelectedConfStatus(st)}
-                      className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
-                        selectedConfStatus === st
-                          ? "bg-amber-500 text-white"
-                          : darkMode
-                          ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
-                          : "bg-slate-200 text-slate-700 hover:bg-slate-300"
-                      }`}
-                    >
-                      {st === "ALL"
-                        ? "All Events"
-                        : st === "LIVE"
-                        ? "🔴 LIVE"
-                        : st === "RECENT"
-                        ? "🟡 Recent"
-                        : "⚪ Upcoming"}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Conference Cards */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                {filteredConferences.map((conf) => (
+            {/* Guideline Cards */}
+            <div className="grid grid-cols-1 gap-4">
+              {filteredGuidelines.map((doc) => {
+                const isExpanded = !!expandedGuidelineChanges[doc.id];
+                const isVietnamese = doc.society === "VN-MOH";
+                return (
                   <div
-                    key={conf.id}
-                    className={`rounded-2xl border p-5 flex flex-col justify-between transition-all ${
+                    key={doc.id}
+                    className={`rounded-2xl border transition-all ${
                       darkMode
-                        ? "bg-slate-900 border-slate-800"
-                        : "bg-white border-slate-200 shadow-xs"
+                        ? "bg-slate-900 border-slate-800 hover:border-slate-700"
+                        : "bg-white border-slate-200 hover:border-slate-300 shadow-xs"
                     }`}
                   >
-                    <div>
-                      <div className="flex items-center justify-between gap-2 mb-2">
+                    <div className="p-5">
+                      {/* Meta Header */}
+                      <div className="flex flex-wrap items-center justify-between gap-2 mb-2.5">
                         <div className="flex items-center gap-2">
-                          <span className="text-base font-extrabold text-amber-500">
-                            {conf.acronym}
-                          </span>
                           <span
-                            className={`px-2 py-0.5 rounded-full text-[10px] font-black uppercase ${
-                              conf.status === "LIVE"
-                                ? "bg-red-500/20 text-red-600 dark:text-red-400 border border-red-500/40 animate-pulse"
-                                : conf.status === "RECENT"
-                                ? "bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/40"
-                                : "bg-slate-500/20 text-slate-600 dark:text-slate-400"
+                            className={`px-2 py-0.5 rounded-md text-[11px] font-black tracking-wider uppercase ${
+                              doc.society === "AHA/ASA"
+                                ? "bg-red-500/15 text-red-600 dark:text-red-400 border border-red-500/30"
+                                : doc.society === "ESO"
+                                ? "bg-blue-500/15 text-blue-600 dark:text-blue-400 border border-blue-500/30"
+                                : "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30"
                             }`}
                           >
-                            {conf.status}
+                            {doc.society} {doc.year}
+                          </span>
+                          <span className="text-xs font-semibold text-slate-400">
+                            {doc.documentType} • {doc.journalTarget}
                           </span>
                         </div>
-                        <span className="text-xs text-slate-400 font-medium">
-                          {conf.dates}
+                        <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
+                          {isVietnamese ? "Ban hành:" : "Published:"} {doc.publishDate}
                         </span>
                       </div>
 
-                      <h4 className="text-sm sm:text-base font-bold leading-tight mb-1">
-                        {conf.name}
-                      </h4>
-                      <p className="text-xs text-slate-400 mb-2.5">
-                        📍 {conf.location}
+                      {/* Title & Executive Summary (Kept in original language) */}
+                      <h3 className="text-base sm:text-lg font-bold leading-snug">
+                        {doc.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                        {doc.executiveSummary}
                       </p>
 
-                      <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-3">
-                        {conf.executiveSummary}
-                      </p>
-
-                      {/* Stats */}
-                      <div className="grid grid-cols-3 gap-2 py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-800/60 mb-3 text-center">
-                        <div>
-                          <div className="text-sm font-black text-slate-800 dark:text-slate-100">
-                            {conf.stats.totalLateBreakingTrials}
-                          </div>
-                          <div className="text-[10px] text-slate-500">Late-Breaking</div>
-                        </div>
-                        <div>
-                          <div className="text-sm font-black text-emerald-600 dark:text-emerald-400">
-                            {conf.stats.positiveTrials} Positive
-                          </div>
-                          <div className="text-[10px] text-slate-500">Efficacy Met</div>
-                        </div>
-                        <div>
-                          <div className="text-sm font-black text-amber-600 dark:text-amber-400">
-                            {conf.stats.practiceChangingCount} ⚡
-                          </div>
-                          <div className="text-[10px] text-slate-500">Practice-Changing</div>
-                        </div>
-                      </div>
-
-                      {/* Trials */}
-                      {conf.lateBreakingTrials.length > 0 && (
-                        <div className="space-y-2">
-                          <span className="text-[10.5px] font-black uppercase tracking-wider text-slate-400">
-                            Featured Podium Trials:
+                      {/* Practice Changes Accordion */}
+                      <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800">
+                        <div className="flex items-center justify-between gap-2 mb-2">
+                          <span className="text-xs font-black uppercase tracking-wider text-amber-600 dark:text-amber-400 flex items-center gap-1.5">
+                            <span>📋</span>
+                            <span>
+                              {isVietnamese
+                                ? `Các thay đổi thực hành so với bản trước (${doc.previousVersionYear || "trước đây"})`
+                                : `Key Practice Changes vs. Previous Version (${doc.previousVersionYear || "Prior"})`}
+                            </span>
                           </span>
-                          {conf.lateBreakingTrials.map((tr) => (
+
+                          <button
+                            onClick={() => toggleGuidelineAccordion(doc.id)}
+                            className="text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline flex items-center gap-1"
+                          >
+                            <span>
+                              {isExpanded
+                                ? isVietnamese
+                                  ? "Thu gọn ▴"
+                                  : "Collapse ▴"
+                                : isVietnamese
+                                ? `Xem toàn bộ ${doc.allPracticeChanges.length} thay đổi ▾`
+                                : `View all ${doc.allPracticeChanges.length} changes ▾`}
+                            </span>
+                          </button>
+                        </div>
+
+                        <div className="space-y-2 mt-2">
+                          {(isExpanded
+                            ? doc.allPracticeChanges
+                            : doc.allPracticeChanges.slice(0, 2)
+                          ).map((change) => (
                             <div
-                              key={tr.id}
-                              className={`p-2.5 rounded-xl border text-xs ${
+                              key={change.id}
+                              className={`p-3 rounded-xl border text-xs leading-relaxed ${
                                 darkMode
-                                  ? "bg-slate-950/40 border-slate-800"
+                                  ? "bg-slate-950/60 border-slate-800"
                                   : "bg-slate-50 border-slate-200"
                               }`}
                             >
-                              <div className="flex items-center justify-between gap-2 mb-1">
-                                <span className="font-extrabold text-amber-600 dark:text-amber-400">
-                                  {tr.trialAcronym}
-                                </span>
+                              <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
                                 <div className="flex items-center gap-1.5">
-                                  {tr.fullTextUrl && (
-                                    <a
-                                      href={tr.fullTextUrl}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="text-[9.5px] font-bold text-amber-600 dark:text-amber-400 hover:underline flex items-center gap-0.5"
-                                    >
-                                      <span>Full Paper</span>
-                                      <span>↗</span>
-                                    </a>
-                                  )}
                                   <span
-                                    className={`px-1.5 py-0.5 rounded text-[9.5px] font-black ${
-                                      tr.verdict === "POSITIVE"
+                                    className={`px-1.5 py-0.5 rounded text-[10px] font-black ${
+                                      change.changeType === "UPGRADED"
                                         ? "bg-emerald-500/20 text-emerald-600 dark:text-emerald-400"
-                                        : "bg-slate-500/20 text-slate-600 dark:text-slate-400"
+                                        : change.changeType === "NEW"
+                                        ? "bg-blue-500/20 text-blue-600 dark:text-blue-400"
+                                        : "bg-amber-500/20 text-amber-600 dark:text-amber-400"
                                     }`}
                                   >
-                                    {tr.verdict}
+                                    {change.changeType}
+                                  </span>
+                                  <span className="font-bold">{change.topic}</span>
+                                </div>
+
+                                <div className="flex items-center gap-2 text-[11px]">
+                                  {change.previousGrade && (
+                                    <span className="text-slate-400 line-through">
+                                      {change.previousGrade}
+                                    </span>
+                                  )}
+                                  <span className="font-extrabold text-amber-600 dark:text-amber-400">
+                                    ➔ {change.currentGrade}
                                   </span>
                                 </div>
                               </div>
-                              <p className="text-[11.5px] text-slate-700 dark:text-slate-300 font-medium line-clamp-2">
-                                {tr.primaryOutcome}
+
+                              <p className="text-slate-700 dark:text-slate-300">
+                                {change.currentText}
                               </p>
-                              {tr.guidelineImpactWarning && (
-                                <div className="mt-1 text-[10.5px] font-semibold text-amber-600 dark:text-amber-400">
-                                  ⚡ {tr.guidelineImpactWarning}
+
+                              {change.drivingTrials && change.drivingTrials.length > 0 && (
+                                <div className="mt-1.5 flex items-center gap-1.5 text-[10.5px] text-slate-500 dark:text-slate-400">
+                                  <span className="font-semibold">
+                                    {isVietnamese ? "Chứng cứ thúc đẩy:" : "Supporting Evidence:"}
+                                  </span>
+                                  <span>{change.drivingTrials.join(", ")}</span>
                                 </div>
                               )}
                             </div>
                           ))}
                         </div>
-                      )}
-                    </div>
+                      </div>
 
-                    <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                      <a
-                        href={conf.officialUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs font-semibold text-slate-400 hover:text-amber-500 flex items-center gap-1"
-                      >
-                        <span>Official Conference Website</span>
-                        <span>↗</span>
-                      </a>
-                      <button
-                        onClick={() => setActiveTab("conf")}
-                        className="text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline"
-                      >
-                        Open Full Conference Hub ➔
-                      </button>
+                      {/* Action Bar */}
+                      <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex flex-wrap items-center justify-between gap-2">
+                        <a
+                          href={doc.officialUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-amber-500 flex items-center gap-1"
+                        >
+                          <span>
+                            {isVietnamese
+                              ? `Xem văn bản gốc trên ${doc.journalTarget}`
+                              : `Read original article on ${doc.journalTarget}`}
+                          </span>
+                          <span>↗</span>
+                        </a>
+
+                        {doc.linkedScenarioIds.length > 0 && (
+                          <button
+                            onClick={() => handleJumpToScenario(doc.linkedScenarioIds[0])}
+                            className="px-3 py-1.5 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 hover:bg-amber-500/20 text-xs font-bold flex items-center gap-1 transition-colors"
+                          >
+                            <span>⚖️ View in Scenario Matrix</span>
+                            <span>➔</span>
+                          </button>
+                        )}
+                      </div>
                     </div>
                   </div>
-                ))}
-              </div>
+                );
+              })}
             </div>
           </div>
         )}
 
         {/* =========================================================================
-            TAB 2: SCENARIO COMPARISON MATRIX (Master-Detail 2-Column Layout)
+            TAB 2: CONFERENCES & LATE-BREAKING TRIALS (Moved to Tab 2)
+           ========================================================================= */}
+        {activeTab === "conf" && (
+          <div className="space-y-5">
+            {/* Direct Filters Bar without redundant introductory headings */}
+            <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
+              <div className="flex items-center gap-1.5">
+                <span className="text-xs font-bold text-slate-400 mr-1">Status:</span>
+                {(["ALL", "LIVE", "RECENT", "UPCOMING"] as const).map((st) => (
+                  <button
+                    key={st}
+                    onClick={() => setSelectedConfStatus(st)}
+                    className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
+                      selectedConfStatus === st
+                        ? "bg-amber-500 text-white"
+                        : darkMode
+                        ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
+                        : "bg-slate-200 text-slate-700 hover:bg-slate-300"
+                    }`}
+                  >
+                    {st === "ALL"
+                      ? "All Events"
+                      : st === "LIVE"
+                      ? "🔴 LIVE"
+                      : st === "RECENT"
+                      ? "🟡 Recent"
+                      : "⚪ Upcoming"}
+                  </button>
+                ))}
+              </div>
+
+              <div className="text-xs text-slate-400 font-medium">
+                {filteredConferences.length} Major Conferences Monitored
+              </div>
+            </div>
+
+            {/* Conference Cards List */}
+            <div className="grid grid-cols-1 gap-6">
+              {filteredConferences.map((conf) => (
+                <div
+                  key={conf.id}
+                  className={`rounded-2xl border p-5 sm:p-6 ${
+                    darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200 shadow-xs"
+                  }`}
+                >
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-xl font-black text-amber-500">
+                        {conf.acronym}
+                      </span>
+                      <span
+                        className={`text-xs px-2 py-0.5 rounded-full font-bold uppercase ${
+                          conf.status === "LIVE"
+                            ? "bg-red-500/20 text-red-600 dark:text-red-400 border border-red-500/40 animate-pulse"
+                            : conf.status === "RECENT"
+                            ? "bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/40"
+                            : "bg-slate-500/20 text-slate-600 dark:text-slate-400"
+                        }`}
+                      >
+                        {conf.status}
+                      </span>
+                      <span className="text-xs text-slate-400 font-medium">
+                        {conf.dates} • {conf.location}
+                      </span>
+                    </div>
+
+                    <a
+                      href={conf.officialUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline flex items-center gap-1"
+                    >
+                      <span>Official Supplement / Abstracts</span>
+                      <span>↗</span>
+                    </a>
+                  </div>
+
+                  <h3 className="text-base sm:text-lg font-bold mb-2">{conf.name}</h3>
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                    {conf.executiveSummary}
+                  </p>
+
+                  {/* Stats Bar */}
+                  <div className="grid grid-cols-3 gap-2 py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-800/60 mb-4 text-center">
+                    <div>
+                      <div className="text-sm font-black text-slate-800 dark:text-slate-100">
+                        {conf.stats.totalLateBreakingTrials}
+                      </div>
+                      <div className="text-[10px] text-slate-500">Late-Breaking</div>
+                    </div>
+                    <div>
+                      <div className="text-sm font-black text-emerald-600 dark:text-emerald-400">
+                        {conf.stats.positiveTrials} Positive
+                      </div>
+                      <div className="text-[10px] text-slate-500">Efficacy Met</div>
+                    </div>
+                    <div>
+                      <div className="text-sm font-black text-amber-600 dark:text-amber-400">
+                        {conf.stats.practiceChangingCount} ⚡
+                      </div>
+                      <div className="text-[10px] text-slate-500">Practice-Changing</div>
+                    </div>
+                  </div>
+
+                  {/* Trials Presentations */}
+                  {conf.lateBreakingTrials.length > 0 && (
+                    <div className="space-y-3">
+                      <span className="text-xs font-black uppercase tracking-wider text-slate-400">
+                        Podium Trial Presentations ({conf.lateBreakingTrials.length})
+                      </span>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                        {conf.lateBreakingTrials.map((tr) => (
+                          <div
+                            key={tr.id}
+                            className={`p-4 rounded-2xl border flex flex-col justify-between ${
+                              darkMode ? "bg-slate-950 border-slate-800" : "bg-slate-50 border-slate-200"
+                            }`}
+                          >
+                            <div>
+                              <div className="flex items-center justify-between gap-2 mb-2">
+                                <span className="text-base font-black text-amber-600 dark:text-amber-400">
+                                  {tr.trialAcronym}
+                                </span>
+                                <div className="flex items-center gap-1.5">
+                                  <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                                    {tr.studyDesign}
+                                  </span>
+                                  <span className="text-[10px] font-black px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-600 dark:text-emerald-400">
+                                    {tr.verdict}
+                                  </span>
+                                </div>
+                              </div>
+
+                              <h5 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-slate-100 mb-2">
+                                {tr.title}
+                              </h5>
+
+                              <div className="space-y-1.5 text-xs text-slate-600 dark:text-slate-300 mb-3">
+                                <div>
+                                  <span className="font-bold text-slate-400">Population (P):</span>{" "}
+                                  {tr.populationSummary}
+                                </div>
+                                <div>
+                                  <span className="font-bold text-slate-400">Intervention vs. Control:</span>{" "}
+                                  {tr.interventionGroup} vs {tr.controlGroup}
+                                </div>
+                                <div className="p-2 rounded-xl bg-white dark:bg-slate-900 border text-[11px] font-semibold text-slate-800 dark:text-slate-200">
+                                  🎯 {tr.primaryOutcome}
+                                </div>
+                                <div className="text-[11px] text-slate-500">
+                                  🛡️ {tr.safetyOutcome}
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="pt-2 border-t border-slate-200/60 dark:border-slate-800 flex items-center justify-between gap-2">
+                              <div className="text-[11px] text-amber-600 dark:text-amber-400 font-bold truncate">
+                                💡 {tr.bottomLineTakeaway}
+                              </div>
+                              <div className="flex items-center gap-2">
+                                {tr.fullTextUrl && (
+                                  <a
+                                    href={tr.fullTextUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-[10.5px] font-bold text-slate-400 hover:text-amber-500 hover:underline flex items-center gap-0.5"
+                                  >
+                                    <span>Paper</span>
+                                    <span>↗</span>
+                                  </a>
+                                )}
+                                {tr.impactedScenarioId && (
+                                  <button
+                                    onClick={() => handleJumpToScenario(tr.impactedScenarioId!)}
+                                    className="text-[11px] font-extrabold text-amber-600 dark:text-amber-400 hover:underline whitespace-nowrap ml-1"
+                                  >
+                                    Matrix ➔
+                                  </button>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* =========================================================================
+            TAB 3: CLINICAL SCENARIOS MATRIX (Master-Detail 2-Column Layout)
            ========================================================================= */}
         {activeTab === "matrix" && (
           <div ref={matrixContainerRef} className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -939,7 +960,11 @@ export default function NeuroGuidePage() {
 
                                     {atom.eligibilityCriteria && (
                                       <div className="text-[11px] text-slate-500 dark:text-slate-400 mb-2.5">
-                                        <span className="font-bold">Eligibility Criteria:</span>{" "}
+                                        <span className="font-bold">
+                                          {atom.society === "VN-MOH"
+                                            ? "Điều kiện áp dụng:"
+                                            : "Eligibility Criteria:"}
+                                        </span>{" "}
                                         {atom.eligibilityCriteria}
                                       </div>
                                     )}
@@ -947,7 +972,9 @@ export default function NeuroGuidePage() {
 
                                   <div className="pt-2 border-t border-slate-200/60 dark:border-slate-800/80">
                                     <span className="text-[10px] font-bold text-slate-400 block mb-1">
-                                      Pivotal Trials Cited:
+                                      {atom.society === "VN-MOH"
+                                        ? "Thử nghiệm / Dữ liệu trích dẫn:"
+                                        : "Pivotal Trials Cited:"}
                                     </span>
                                     <div className="flex flex-wrap gap-1">
                                       {atom.citedTrials.map((tr, i) => (
@@ -1064,22 +1091,9 @@ export default function NeuroGuidePage() {
                                     <span className="font-black text-amber-600 dark:text-amber-400 text-sm">
                                       {tr.trialAcronym}
                                     </span>
-                                    <div className="flex items-center gap-1.5">
-                                      {tr.fullTextUrl && (
-                                        <a
-                                          href={tr.fullTextUrl}
-                                          target="_blank"
-                                          rel="noopener noreferrer"
-                                          className="text-[9.5px] font-bold text-amber-600 dark:text-amber-400 hover:underline flex items-center gap-0.5"
-                                        >
-                                          <span>Full Paper</span>
-                                          <span>↗</span>
-                                        </a>
-                                      )}
-                                      <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-600 dark:text-emerald-400">
-                                        {tr.verdict}
-                                      </span>
-                                    </div>
+                                    <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-600 dark:text-emerald-400">
+                                      {tr.verdict}
+                                    </span>
                                   </div>
 
                                   <p className="font-bold text-slate-800 dark:text-slate-200 mb-1">
@@ -1152,164 +1166,6 @@ export default function NeuroGuidePage() {
                 </section>
               </>
             )}
-          </div>
-        )}
-
-        {/* =========================================================================
-            TAB 3: CONFERENCE INTELLIGENCE HUB
-           ========================================================================= */}
-        {activeTab === "conf" && (
-          <div className="space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div>
-                <h2 className="text-lg sm:text-xl font-black tracking-tight flex items-center gap-2">
-                  <span>🎙️</span>
-                  <span>Neurology Conference Intelligence Hub</span>
-                </h2>
-                <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                  Podium reports, landmark Late-Breaking Science, and practice-changing trial summaries
-                </p>
-              </div>
-
-              {/* Subspecialty Filter in Conf View */}
-              <div className="flex items-center gap-1.5 overflow-x-auto pb-1">
-                <span className="text-xs text-slate-400 font-semibold whitespace-nowrap">
-                  Filter:
-                </span>
-                <button
-                  onClick={() => setSelectedSubspecialty("All Subspecialties")}
-                  className={`px-2.5 py-1 rounded-lg text-xs font-bold ${
-                    selectedSubspecialty === "All Subspecialties"
-                      ? "bg-amber-500 text-white"
-                      : "bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300"
-                  }`}
-                >
-                  All
-                </button>
-                {["Stroke", "Dementia", "Epilepsy", "Neuromuscular"].map((sub) => (
-                  <button
-                    key={sub}
-                    onClick={() => setSelectedSubspecialty(sub as SubspecialtyType)}
-                    className={`px-2.5 py-1 rounded-lg text-xs font-bold ${
-                      selectedSubspecialty === sub
-                        ? "bg-amber-500 text-white"
-                        : "bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300"
-                    }`}
-                  >
-                    {sub}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 gap-6">
-              {filteredConferences.map((conf) => (
-                <div
-                  key={conf.id}
-                  className={`rounded-2xl border p-5 sm:p-6 ${
-                    darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200 shadow-xs"
-                  }`}
-                >
-                  <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-                    <div className="flex items-center gap-2.5">
-                      <span className="text-xl font-black text-amber-500">
-                        {conf.acronym}
-                      </span>
-                      <span className="text-xs px-2 py-0.5 rounded-full font-bold bg-amber-500/15 text-amber-600 dark:text-amber-400">
-                        {conf.status}
-                      </span>
-                      <span className="text-xs text-slate-400 font-medium">
-                        {conf.dates} • {conf.location}
-                      </span>
-                    </div>
-
-                    <a
-                      href={conf.officialUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline flex items-center gap-1"
-                    >
-                      <span>Official Supplement / Abstracts</span>
-                      <span>↗</span>
-                    </a>
-                  </div>
-
-                  <h3 className="text-base sm:text-lg font-bold mb-2">{conf.name}</h3>
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-                    {conf.executiveSummary}
-                  </p>
-
-                  {/* Trials */}
-                  <div className="space-y-3">
-                    <span className="text-xs font-black uppercase tracking-wider text-slate-400">
-                      Late-Breaking Science Podium Presentations ({conf.lateBreakingTrials.length})
-                    </span>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-                      {conf.lateBreakingTrials.map((tr) => (
-                        <div
-                          key={tr.id}
-                          className={`p-4 rounded-2xl border flex flex-col justify-between ${
-                            darkMode ? "bg-slate-950 border-slate-800" : "bg-slate-50 border-slate-200"
-                          }`}
-                        >
-                          <div>
-                            <div className="flex items-center justify-between gap-2 mb-2">
-                              <span className="text-base font-black text-amber-600 dark:text-amber-400">
-                                {tr.trialAcronym}
-                              </span>
-                              <div className="flex items-center gap-1.5">
-                                <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
-                                  {tr.studyDesign}
-                                </span>
-                                <span className="text-[10px] font-black px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-600 dark:text-emerald-400">
-                                  {tr.verdict}
-                                </span>
-                              </div>
-                            </div>
-
-                            <h5 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-slate-100 mb-2">
-                              {tr.title}
-                            </h5>
-
-                            <div className="space-y-1.5 text-xs text-slate-600 dark:text-slate-300 mb-3">
-                              <div>
-                                <span className="font-bold text-slate-400">Population (P):</span>{" "}
-                                {tr.populationSummary}
-                              </div>
-                              <div>
-                                <span className="font-bold text-slate-400">Intervention vs. Control:</span>{" "}
-                                {tr.interventionGroup} vs {tr.controlGroup}
-                              </div>
-                              <div className="p-2 rounded-xl bg-white dark:bg-slate-900 border text-[11px] font-semibold text-slate-800 dark:text-slate-200">
-                                🎯 {tr.primaryOutcome}
-                              </div>
-                              <div className="text-[11px] text-slate-500">
-                                🛡️ {tr.safetyOutcome}
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="pt-2 border-t border-slate-200/60 dark:border-slate-800 flex items-center justify-between gap-2">
-                            <div className="text-[11px] text-amber-600 dark:text-amber-400 font-bold truncate">
-                              💡 {tr.bottomLineTakeaway}
-                            </div>
-                            {tr.impactedScenarioId && (
-                              <button
-                                onClick={() => handleJumpToScenario(tr.impactedScenarioId!)}
-                                className="text-[11px] font-extrabold text-amber-600 dark:text-amber-400 hover:underline whitespace-nowrap ml-2"
-                              >
-                                View Matrix ➔
-                              </button>
-                            )}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
         )}
 
