@@ -19,25 +19,7 @@ import {
 } from "../../data/neuroguideMockData";
 import { AppSwitcher } from "../../components/ecosystem/AppSwitcher";
 
-const NAV_TABS = [
-  {
-    id: "guidelines",
-    label: "🔥 Practice Guidelines",
-    badge: `${MOCK_GUIDELINE_DOCS.length}`,
-  },
-  {
-    id: "conf",
-    label: "🎙️ Conferences & Late-Breaking Trials",
-    badge: `${MOCK_CONFERENCE_EVENTS.length}`,
-  },
-  {
-    id: "matrix",
-    label: "⚖️ Clinical Scenarios",
-    badge: `${MOCK_CLINICAL_SCENARIOS.length}`,
-  },
-] as const;
-
-type NavTabId = (typeof NAV_TABS)[number]["id"];
+type NavTabId = "guidelines" | "conf" | "matrix";
 
 interface ThemeStyle {
   borderLeft: string;
@@ -55,6 +37,24 @@ function getGuidelineTheme(society: string): ThemeStyle {
       cardBg: "bg-rose-50/30 dark:bg-rose-950/20",
       cardBorder: "border-rose-200 dark:border-rose-900/60 hover:border-rose-400 dark:hover:border-rose-600",
       badge: "bg-rose-100 text-rose-700 border-rose-300 dark:bg-rose-900/60 dark:text-rose-300 dark:border-rose-800",
+      accentText: "text-rose-600 dark:text-rose-400",
+    };
+  }
+  if (norm.includes("ESVS")) {
+    return {
+      borderLeft: "border-l-4 border-l-teal-600",
+      cardBg: "bg-teal-50/30 dark:bg-teal-950/20",
+      cardBorder: "border-teal-200 dark:border-teal-900/60 hover:border-teal-400 dark:hover:border-teal-600",
+      badge: "bg-teal-100 text-teal-800 border-teal-300 dark:bg-teal-900/60 dark:text-teal-300 dark:border-teal-800",
+      accentText: "text-teal-600 dark:text-teal-400",
+    };
+  }
+  if (norm.includes("ESC") && !norm.includes("ESOC")) {
+    return {
+      borderLeft: "border-l-4 border-l-rose-600",
+      cardBg: "bg-rose-50/30 dark:bg-rose-950/20",
+      cardBorder: "border-rose-200 dark:border-rose-900/60 hover:border-rose-400 dark:hover:border-rose-600",
+      badge: "bg-rose-100 text-rose-800 border-rose-300 dark:bg-rose-900/60 dark:text-rose-300 dark:border-rose-800",
       accentText: "text-rose-600 dark:text-rose-400",
     };
   }
@@ -214,11 +214,158 @@ export default function NeuroGuidePage() {
   const [activeScenarioId, setActiveScenarioId] = useState<string>("ais-ivt-tenecteplase-4.5h");
   const [activeDetailTab, setActiveDetailTab] = useState<"matrix" | "temporal" | "conf_bridge">("matrix");
 
+  // Guideline Docs with Periodic Autonomous Online Sync State
+  const [guidelineDocs, setGuidelineDocs] = useState<GuidelineDoc[]>(MOCK_GUIDELINE_DOCS);
+  const [isSyncing, setIsSyncing] = useState<boolean>(false);
+  const [syncMessage, setSyncMessage] = useState<string | null>(null);
+  const [lastSyncedTime, setLastSyncedTime] = useState<string | null>(null);
+
+  // Dynamic Navigation Tabs with Live Counts
+  const navTabs = useMemo(() => [
+    {
+      id: "guidelines" as const,
+      label: "🔥 Practice Guidelines",
+      badge: `${guidelineDocs.length}`,
+    },
+    {
+      id: "conf" as const,
+      label: "🎙️ Conferences & Late-Breaking Trials",
+      badge: `${MOCK_CONFERENCE_EVENTS.length}`,
+    },
+    {
+      id: "matrix" as const,
+      label: "⚖️ Clinical Scenarios",
+      badge: `${MOCK_CLINICAL_SCENARIOS.length}`,
+    },
+  ], [guidelineDocs.length]);
+
   // Expandable cards states (details reveal only on click)
   const [expandedGuidelineIds, setExpandedGuidelineIds] = useState<Record<string, boolean>>({});
   const [expandedConferenceIds, setExpandedConferenceIds] = useState<Record<string, boolean>>({});
 
+  // Local Batch Manifest Modal State
+  const [showBatchModal, setShowBatchModal] = useState<boolean>(false);
+  const [batchInputText, setBatchInputText] = useState<string>("");
+  const [isBatchProcessing, setIsBatchProcessing] = useState<boolean>(false);
+  const [batchPreviewDocs, setBatchPreviewDocs] = useState<
+    (GuidelineDoc & { isAlreadyIndexed: boolean; sourceFilename: string })[]
+  >([]);
+
+  const handleParseBatch = async () => {
+    if (!batchInputText.trim()) return;
+    setIsBatchProcessing(true);
+    try {
+      const res = await fetch("/api/neuroguide/import-batch", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ textManifest: batchInputText }),
+      });
+      const data = await res.json();
+      if (data.status === "success" && data.guidelines) {
+        setBatchPreviewDocs(data.guidelines);
+      }
+    } catch (err) {
+      console.error("Batch import error:", err);
+    } finally {
+      setIsBatchProcessing(false);
+    }
+  };
+
+  const handleCommitBatchImport = () => {
+    if (batchPreviewDocs.length === 0) return;
+    setGuidelineDocs((prev) => {
+      const existingIds = new Set(prev.map((g) => g.id.toLowerCase()));
+      const existingTitles = new Set(prev.map((g) => g.title.toLowerCase().trim()));
+      const novel = batchPreviewDocs.filter(
+        (doc) => !existingIds.has(doc.id.toLowerCase()) && !existingTitles.has(doc.title.toLowerCase().trim())
+      );
+      const merged = [...novel, ...prev];
+      try {
+        localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(merged));
+      } catch (e) {
+        console.warn("Could not save to localStorage:", e);
+      }
+      setSyncMessage(`Đã nạp thành công ${novel.length} hướng dẫn mới từ danh sách file.`);
+      return merged;
+    });
+    setShowBatchModal(false);
+    setBatchPreviewDocs([]);
+    setBatchInputText("");
+  };
+
   const matrixContainerRef = useRef<HTMLDivElement>(null);
+
+  // Background Autonomous Sync Method
+  const triggerSync = async (isAuto = false) => {
+    if (isSyncing) return;
+    setIsSyncing(true);
+    try {
+      const res = await fetch("/api/neuroguide/sync-guidelines", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ isPeriodicCron: isAuto }),
+      });
+      const json = await res.json();
+      if (json.status === "success" && json.guidelines && json.guidelines.length > 0) {
+        setGuidelineDocs((prev) => {
+          const existingIds = new Set(prev.map((g) => g.id.toLowerCase()));
+          const existingTitles = new Set(prev.map((g) => g.title.toLowerCase().trim()));
+          const novel = json.guidelines.filter(
+            (g: GuidelineDoc) =>
+              !existingIds.has(g.id.toLowerCase()) && !existingTitles.has(g.title.toLowerCase().trim())
+          );
+          if (novel.length > 0) {
+            const merged = [...novel, ...prev];
+            try {
+              localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(merged));
+            } catch (e) {
+              console.warn("Could not save to localStorage:", e);
+            }
+            setSyncMessage(`Tự động tìm thấy ${novel.length} hướng dẫn mới từ radar trực tuyến.`);
+            return merged;
+          } else {
+            if (!isAuto) {
+              setSyncMessage("Radar đã đồng bộ: Thư viện hiện tại đã cập nhật đầy đủ các hướng dẫn mới nhất.");
+            }
+            return prev;
+          }
+        });
+        const nowStr = new Date().toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" });
+        setLastSyncedTime(nowStr);
+        localStorage.setItem("neuroguide_last_sync_timestamp", Date.now().toString());
+      }
+    } catch (err) {
+      console.warn("Background radar sync error:", err);
+    } finally {
+      setIsSyncing(false);
+    }
+  };
+
+  // Periodic autonomous radar sync
+  useEffect(() => {
+    try {
+      const cached = localStorage.getItem("neuroguide_cached_guidelines");
+      if (cached) {
+        const parsed = JSON.parse(cached);
+        if (Array.isArray(parsed) && parsed.length >= MOCK_GUIDELINE_DOCS.length) {
+          setGuidelineDocs(parsed);
+        }
+      }
+    } catch (e) {}
+
+    const lastSync = localStorage.getItem("neuroguide_last_sync_timestamp");
+    const now = Date.now();
+    const FOUR_HOURS = 4 * 60 * 60 * 1000;
+    if (!lastSync || now - parseInt(lastSync, 10) > FOUR_HOURS) {
+      triggerSync(true);
+    }
+
+    const interval = setInterval(() => {
+      triggerSync(true);
+    }, 30 * 60 * 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   // Sync dark mode with ecosystem standards (both neuro_dark_mode and neuropulse_theme)
   useEffect(() => {
@@ -266,9 +413,9 @@ export default function NeuroGuidePage() {
   // Dynamically derive available societies from guideline documents
   const availableSocieties = useMemo(() => {
     const set = new Set<string>();
-    MOCK_GUIDELINE_DOCS.forEach((d) => set.add(d.society));
+    guidelineDocs.forEach((d) => set.add(d.society));
     return ["ALL", ...Array.from(set)];
-  }, []);
+  }, [guidelineDocs]);
 
   // Filtered Scenarios (Multi-token search with diacritics normalization)
   const filteredScenarios = useMemo(() => {
@@ -315,7 +462,7 @@ export default function NeuroGuidePage() {
     const rawQ = searchQuery.toLowerCase().trim();
     const tokens = rawQ.split(/\s+/).filter(Boolean);
 
-    const list = MOCK_GUIDELINE_DOCS.filter((doc) => {
+    const list = guidelineDocs.filter((doc) => {
       const matchesSociety =
         selectedSocietyFilter === "ALL" || doc.society === selectedSocietyFilter;
       const matchesSub =
@@ -354,7 +501,7 @@ export default function NeuroGuidePage() {
       }
       return b.year - a.year;
     });
-  }, [selectedSocietyFilter, selectedSubspecialty, searchQuery]);
+  }, [selectedSocietyFilter, selectedSubspecialty, searchQuery, guidelineDocs]);
 
   // Filtered Conferences: Multi-token Search + Diacritics Normalization + Dynamic Live Status + Chronological Sort
   const filteredConferences = useMemo(() => {
@@ -488,7 +635,7 @@ export default function NeuroGuidePage() {
         >
           {/* Tab 1: Guidelines | Tab 2: Conferences | Tab 3: Scenarios */}
           <div className="flex flex-wrap items-center gap-1.5">
-            {NAV_TABS.map((tab) => {
+            {navTabs.map((tab) => {
               const isActive = activeTab === tab.id;
               return (
                 <button
@@ -591,6 +738,224 @@ export default function NeuroGuidePage() {
            ========================================================================= */}
         {activeTab === "guidelines" && (
           <div className="space-y-4">
+            {/* Autonomous Periodic Radar Toolbar */}
+            <div
+              className={`p-3 rounded-xl border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 ${
+                darkMode ? "bg-slate-900/60 border-slate-800" : "bg-blue-50/60 border-blue-100"
+              }`}
+            >
+              <div className="flex items-center gap-3">
+                <span className="relative flex h-3 w-3 shrink-0">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                </span>
+                <div>
+                  <div className="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-2 flex-wrap">
+                    <span>📡 Radar Tự Động Định Kỳ (PubMed / Europe PMC / ESO)</span>
+                    <span className="text-[10px] px-1.5 py-0.5 rounded-full font-mono bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-semibold">
+                      Tự động quét 24/7
+                    </span>
+                  </div>
+                  <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+                    Hệ thống tự động dò quét định kỳ và đồng bộ các hướng dẫn lâm sàng mới công bố.{" "}
+                    {lastSyncedTime && <span className="font-medium text-slate-600 dark:text-slate-300">(Quét gần nhất lúc {lastSyncedTime})</span>}
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 w-full sm:w-auto justify-end shrink-0">
+                <button
+                  onClick={() => setShowBatchModal(true)}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all ${
+                    darkMode
+                      ? "bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700"
+                      : "bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 shadow-xs"
+                  }`}
+                >
+                  <span>📁</span>
+                  <span>Nhập danh sách file</span>
+                </button>
+
+                <button
+                  onClick={() => triggerSync(false)}
+                  disabled={isSyncing}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all ${
+                    isSyncing
+                      ? "bg-slate-200 dark:bg-slate-800 text-slate-400 cursor-not-allowed"
+                      : "bg-blue-600 hover:bg-blue-700 text-white shadow-xs hover:shadow-sm"
+                  }`}
+                >
+                  <span className={isSyncing ? "animate-spin" : ""}>⚡</span>
+                  {isSyncing ? "Đang dò quét online..." : "Quét trực tuyến ngay"}
+                </button>
+              </div>
+            </div>
+
+            {/* Sync Alert Toast Banner */}
+            {syncMessage && (
+              <div className="p-3 rounded-xl text-xs bg-emerald-50/90 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 flex items-center justify-between gap-2 shadow-xs">
+                <div className="flex items-center gap-2 font-medium">
+                  <span className="text-sm">✨</span>
+                  <span>{syncMessage}</span>
+                </div>
+                <button
+                  onClick={() => setSyncMessage(null)}
+                  className="text-emerald-600 hover:text-emerald-900 dark:text-emerald-400 dark:hover:text-emerald-200 text-xs font-bold px-1.5 py-0.5"
+                  title="Đóng thông báo"
+                >
+                  ✕
+                </button>
+              </div>
+            )}
+
+            {/* Modal: Local Batch File Ingestion */}
+            {showBatchModal && (
+              <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
+                <div
+                  className={`w-full max-w-2xl rounded-2xl border p-5 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto ${
+                    darkMode ? "bg-slate-900 border-slate-700 text-slate-100" : "bg-white border-slate-200 text-slate-900"
+                  }`}
+                >
+                  <div className="flex items-center justify-between border-b pb-3 border-slate-200 dark:border-slate-800">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">📁</span>
+                      <div>
+                        <h3 className="text-sm font-bold">Nạp Guideline Hàng Loạt từ Thư Mục / File PDF</h3>
+                        <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                          Dán danh sách tên file PDF (mỗi dòng 1 file), hệ thống tự bóc tách năm, hiệp hội và chuyên ngành.
+                        </p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => setShowBatchModal(false)}
+                      className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-lg font-bold p-1"
+                    >
+                      ✕
+                    </button>
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between text-xs">
+                      <label className="font-bold text-slate-700 dark:text-slate-300">
+                        Danh sách tên file / Manifest:
+                      </label>
+                      <button
+                        onClick={() =>
+                          setBatchInputText(
+                            `2023 ESO expedited recommendation on tenecteplase for acute ischaemic stroke.pdf\n` +
+                              `2023 ESO Guidelines on Moyamoya angiopathy.pdf\n` +
+                              `2023 European Society for Vascular Surgery (ESVS) Clinical Practice Guidelines on Carotid and Vertebral Artery Disease.pdf\n` +
+                              `2024 ESC Guidelines for the management of atrial fibrillation developed in collaboration with EACTS.pdf\n` +
+                              `2024 ESO and ESMINT - Guideline on acute management of basilar artery occlusion.pdf\n` +
+                              `2024 ESO and European society for minimally invasive neurological therapy guideline on intracranial stenosis.pdf\n` +
+                              `2024 ESO guideline on cerebral small vessel disease, part 2, lacunar ischaemic stroke.pdf\n` +
+                              `2024 ESO Guidelines on the diagnosis and management of patent foramen ovale (PFO).pdf\n` +
+                              `2025 ESO and EANS guideline on stroke due to spontaneous intracerebral haemorrhage.pdf\n` +
+                              `2025 ESO annual stroke evidence update 2025.pdf\n` +
+                              `2025 ESO guideline on aphasia rehabilitation.pdf\n` +
+                              `2025 ESO guideline on blood pressure in acute ischemic stroke and intracerebral hemorrhage.pdf\n` +
+                              `2025 ESO guideline on motor rehabilitation.pdf\n` +
+                              `2025 ESO guideline on visual impairment in stroke.pdf\n` +
+                              `2026 ESO EANS and ESMINT guideline on aneurysmal subarachnoid haemorrhage.pdf\n` +
+                              `2026 ESO guideline on stroke-associated pneumonia.pdf`
+                          )
+                        }
+                        className="text-[11px] text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                      >
+                        ⚡ Dán mẫu 16 file PDF của bạn
+                      </button>
+                    </div>
+
+                    <textarea
+                      rows={6}
+                      value={batchInputText}
+                      onChange={(e) => setBatchInputText(e.target.value)}
+                      placeholder={`Ví dụ:\n2025 ESO guideline on motor rehabilitation.pdf\n2024 ESC Guidelines for the management of atrial fibrillation.pdf\n2026 ESO guideline on stroke-associated pneumonia.pdf`}
+                      className={`w-full p-3 text-xs font-mono rounded-xl border outline-none focus:border-blue-500 transition-all ${
+                        darkMode ? "bg-slate-800 border-slate-700 text-slate-100" : "bg-slate-50 border-slate-200 text-slate-900"
+                      }`}
+                    />
+                  </div>
+
+                  <div className="flex items-center justify-between gap-2">
+                    <button
+                      onClick={handleParseBatch}
+                      disabled={isBatchProcessing || !batchInputText.trim()}
+                      className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+                        isBatchProcessing || !batchInputText.trim()
+                          ? "bg-slate-200 dark:bg-slate-800 text-slate-400 cursor-not-allowed"
+                          : "bg-blue-600 hover:bg-blue-700 text-white shadow-sm"
+                      }`}
+                    >
+                      <span>🔍</span>
+                      <span>{isBatchProcessing ? "Đang phân tích..." : "Phân tích danh sách"}</span>
+                    </button>
+
+                    {batchPreviewDocs.length > 0 && (
+                      <button
+                        onClick={handleCommitBatchImport}
+                        className="px-4 py-2 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm flex items-center gap-1.5 transition-all"
+                      >
+                        <span>✓</span>
+                        <span>Nạp {batchPreviewDocs.length} Guideline vào NeuroGuide</span>
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Batch Preview List */}
+                  {batchPreviewDocs.length > 0 && (
+                    <div className="space-y-2 border-t pt-3 border-slate-200 dark:border-slate-800">
+                      <div className="text-xs font-bold flex items-center justify-between">
+                        <span>Kết quả nhận diện ({batchPreviewDocs.length} tài liệu):</span>
+                        <span className="text-[11px] text-slate-400 font-normal">
+                          {batchPreviewDocs.filter((d) => d.isAlreadyIndexed).length} đã có trong thư viện,{" "}
+                          {batchPreviewDocs.filter((d) => !d.isAlreadyIndexed).length} tài liệu mới
+                        </span>
+                      </div>
+                      <div className="max-h-60 overflow-y-auto space-y-2 pr-1">
+                        {batchPreviewDocs.map((item, idx) => (
+                          <div
+                            key={idx}
+                            className={`p-2.5 rounded-lg border text-xs flex items-center justify-between gap-2 ${
+                              item.isAlreadyIndexed
+                                ? "bg-slate-100/50 dark:bg-slate-800/40 border-slate-200 dark:border-slate-800 opacity-75"
+                                : "bg-emerald-50/40 dark:bg-emerald-950/20 border-emerald-200 dark:border-emerald-800/50"
+                            }`}
+                          >
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-1.5 flex-wrap">
+                                <span className="font-mono text-[10px] px-1.5 py-0.5 rounded bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300 font-bold">
+                                  {item.society}
+                                </span>
+                                <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-100 dark:bg-amber-900/60 text-amber-700 dark:text-amber-300 font-bold">
+                                  {item.year}
+                                </span>
+                                <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300">
+                                  {item.subspecialty}
+                                </span>
+                                <span className="font-semibold truncate text-slate-800 dark:text-slate-200">
+                                  {item.title}
+                                </span>
+                              </div>
+                            </div>
+                            <span
+                              className={`text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0 ${
+                                item.isAlreadyIndexed
+                                  ? "bg-slate-200 dark:bg-slate-700 text-slate-500"
+                                  : "bg-emerald-100 dark:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300"
+                              }`}
+                            >
+                              {item.isAlreadyIndexed ? "Đã có" : "Mới phát hiện"}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
             {/* Direct Society Filter Bar */}
             <div className="flex items-center justify-between gap-3 mb-2">
               <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0">
