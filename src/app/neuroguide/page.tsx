@@ -299,18 +299,6 @@ export default function NeuroGuidePage() {
 
   const CURRENT_CACHE_VERSION = "neuroguide_v2026_clean_v8";
 
-  // Reset to authoritative official library and purge invalid cached papers
-  const handleResetOfficialGuidelines = () => {
-    try {
-      localStorage.setItem("neuroguide_cache_version", CURRENT_CACHE_VERSION);
-      localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(MOCK_GUIDELINE_DOCS));
-    } catch (e) {
-      console.warn("Could not save to localStorage:", e);
-    }
-    setGuidelineDocs(MOCK_GUIDELINE_DOCS);
-    setSyncMessage("Đã khôi phục danh mục hướng dẫn lâm sàng chuẩn hóa sạch và dọn dẹp các mục cũ chưa phân tích.");
-  };
-
   // Background Autonomous Sync Method
   const triggerSync = async (isAuto = false) => {
     if (isSyncing) return;
@@ -835,41 +823,6 @@ export default function NeuroGuidePage() {
                     {soc === "ALL" ? "All Societies" : soc}
                   </button>
                 ))}
-              </div>
-
-              <div className="flex items-center gap-2 self-end sm:self-auto">
-                <button
-                  onClick={() => triggerSync(false)}
-                  disabled={isSyncing}
-                  className={`px-2.5 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all ${
-                    isSyncing
-                      ? "bg-blue-500/20 text-blue-400 cursor-wait"
-                      : darkMode
-                      ? "bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white"
-                      : "bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200"
-                  }`}
-                  title="Quét tìm kiếm các guideline mới nhất trên toàn cầu qua Europe PMC"
-                >
-                  <span className={isSyncing ? "animate-spin" : ""}>📡</span>
-                  <span>{isSyncing ? "Đang quét..." : "Quét radar trực tuyến"}</span>
-                </button>
-
-                <button
-                  onClick={handleResetOfficialGuidelines}
-                  className={`px-2.5 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all ${
-                    darkMode
-                      ? "bg-slate-800/80 text-slate-300 hover:bg-rose-900/30 hover:text-rose-300"
-                      : "bg-slate-100 text-slate-600 hover:bg-rose-50 hover:text-rose-600 border border-slate-200"
-                  }`}
-                  title="Xóa bộ nhớ đệm và khôi phục toàn bộ 30 hướng dẫn lâm sàng chuẩn"
-                >
-                  <span>🔄</span>
-                  <span className="hidden md:inline">Khôi phục chuẩn</span>
-                </button>
-
-                <div className="text-xs text-slate-400 font-medium pl-1 hidden sm:block">
-                  {filteredGuidelines.length} tài liệu
-                </div>
               </div>
             </div>
 
