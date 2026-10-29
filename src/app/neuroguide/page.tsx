@@ -148,8 +148,32 @@ function getGuidelineTheme(society: string): ThemeStyle {
   };
 }
 
-function getConferenceTheme(conf: ConferenceEvent): ThemeStyle {
-  if (conf.status === "LIVE") {
+export function getEffectiveConferenceStatus(conf: ConferenceEvent): "LIVE" | "RECENT" | "UPCOMING" {
+  if (!conf.startDate) return conf.status;
+
+  const now = new Date();
+  const start = new Date(conf.startDate);
+  // Default end date is 3 days after start if not provided
+  const end = conf.endDate
+    ? new Date(conf.endDate)
+    : new Date(start.getTime() + 3 * 24 * 60 * 60 * 1000);
+
+  const nowTime = now.getTime();
+  const startTime = start.getTime();
+  const endTime = end.getTime() + 24 * 60 * 60 * 1000; // extend through midnight of end date
+
+  if (nowTime >= startTime && nowTime <= endTime) {
+    return "LIVE";
+  }
+  if (nowTime > endTime) {
+    return "RECENT";
+  }
+  return "UPCOMING";
+}
+
+function getConferenceTheme(conf: ConferenceEvent, effectiveStatus?: "LIVE" | "RECENT" | "UPCOMING"): ThemeStyle {
+  const status = effectiveStatus || getEffectiveConferenceStatus(conf);
+  if (status === "LIVE") {
     return {
       borderLeft: "border-l-4 border-l-red-500",
       cardBg: "bg-red-50/30 dark:bg-red-950/20",
@@ -158,7 +182,7 @@ function getConferenceTheme(conf: ConferenceEvent): ThemeStyle {
       accentText: "text-red-600 dark:text-red-400",
     };
   }
-  if (conf.status === "RECENT") {
+  if (status === "RECENT") {
     return {
       borderLeft: "border-l-4 border-l-amber-500",
       cardBg: "bg-amber-50/30 dark:bg-amber-950/20",
@@ -332,14 +356,15 @@ export default function NeuroGuidePage() {
     });
   }, [selectedSocietyFilter, selectedSubspecialty, searchQuery]);
 
-  // Filtered Conferences: Multi-token Search + Diacritics Normalization + Subspecialty + Chronological Sort
+  // Filtered Conferences: Multi-token Search + Diacritics Normalization + Dynamic Live Status + Chronological Sort
   const filteredConferences = useMemo(() => {
     const rawQ = searchQuery.toLowerCase().trim();
     const tokens = rawQ.split(/\s+/).filter(Boolean);
 
     const list = MOCK_CONFERENCE_EVENTS.filter((conf) => {
+      const liveStatus = getEffectiveConferenceStatus(conf);
       const matchesStatus =
-        selectedConfStatus === "ALL" || conf.status === selectedConfStatus;
+        selectedConfStatus === "ALL" || liveStatus === selectedConfStatus;
       const matchesSub =
         selectedSubspecialty === "All Subspecialties" ||
         conf.subspecialties.includes("All Subspecialties") ||
@@ -357,7 +382,7 @@ export default function NeuroGuidePage() {
         )
         .join(" ");
 
-      const rawHaystack = `${conf.id} ${conf.name} ${conf.acronym} ${conf.location} ${conf.dates} ${conf.executiveSummary} ${conf.status} ${conf.year} ${conf.startDate || ""} ${conf.subspecialties.join(" ")} ${trialsText}`.toLowerCase();
+      const rawHaystack = `${conf.id} ${conf.name} ${conf.acronym} ${conf.location} ${conf.dates} ${conf.executiveSummary} ${liveStatus} ${conf.year} ${conf.startDate || ""} ${conf.subspecialties.join(" ")} ${trialsText}`.toLowerCase();
       const normHaystack = rawHaystack.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
       return tokens.every((token) => {
@@ -368,8 +393,10 @@ export default function NeuroGuidePage() {
 
     // CHRONOLOGICAL SORTING: LIVE events first, then by startDate descending
     return list.sort((a, b) => {
-      if (a.status === "LIVE" && b.status !== "LIVE") return -1;
-      if (b.status === "LIVE" && a.status !== "LIVE") return 1;
+      const statusA = getEffectiveConferenceStatus(a);
+      const statusB = getEffectiveConferenceStatus(b);
+      if (statusA === "LIVE" && statusB !== "LIVE") return -1;
+      if (statusB === "LIVE" && statusA !== "LIVE") return 1;
 
       if (b.startDate && a.startDate) {
         return b.startDate.localeCompare(a.startDate);
@@ -858,7 +885,8 @@ export default function NeuroGuidePage() {
               <div className="grid grid-cols-1 gap-3.5">
                 {filteredConferences.map((conf) => {
                 const isExpanded = !!expandedConferenceIds[conf.id];
-                const theme = getConferenceTheme(conf);
+                const liveStatus = getEffectiveConferenceStatus(conf);
+                const theme = getConferenceTheme(conf, liveStatus);
 
                 return (
                   <div
@@ -878,9 +906,9 @@ export default function NeuroGuidePage() {
                           <span
                             className={`text-xs px-2 py-0.5 rounded-full font-bold uppercase border ${theme.badge}`}
                           >
-                            {conf.status === "LIVE"
+                            {liveStatus === "LIVE"
                               ? "🔴 LIVE"
-                              : conf.status === "RECENT"
+                              : liveStatus === "RECENT"
                               ? "🟡 RECENT"
                               : "⚪ UPCOMING"}
                           </span>

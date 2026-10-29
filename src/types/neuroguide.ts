@@ -175,11 +175,12 @@ export interface LateBreakingTrial {
 }
 
 export interface ConferenceEvent {
-  id: string; // "esoc-2026", "isc-2026", "aan-2026"
-  acronym: string; // "ESOC", "ISC", "AAN"
+  id: string; // "esoc-2026", "isc-2026", "aan-2026", "wsc-2026"
+  acronym: string; // "ESOC", "ISC", "AAN", "WSC"
   name: string;
   year: number;
-  startDate: string; // ISO format "2026-05-20" for exact chronological ordering
+  startDate: string; // ISO format "2026-10-22"
+  endDate?: string; // ISO format "2026-10-25"
   subspecialties: SubspecialtyType[];
   dates: string;
   location: string;
