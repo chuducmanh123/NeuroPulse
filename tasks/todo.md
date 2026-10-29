@@ -1,107 +1,222 @@
-# Task List: Automated Guideline Discovery & Library Overhaul
+# Task List: NeuroGuide & Conference Intelligence Hub Overhaul
 
-## Task 1: Complete Ingestion of All 16 Guidelines from User's Collection [COMPLETED]
-**Description:** Expand `MOCK_GUIDELINE_DOCS` to include all 16 guidelines shown in the user's personal PDF library, ensuring full coverage across all years (2023, 2024, 2025, 2026), correct societies (ESO, ESC, ESVS), official publication dates, and key practice changes.
+## Task 1: Standardize Subspecialties and Enhance NeuroGuide Types
+**Description:** Refactor `src/types/neuroguide.ts` to import `SUBSPECIALTY_LIST` from `@/constants/subspecialties`, ensuring total ecosystem alignment. Enhance `ClinicalScenario`, `TemporalShift`, `PracticeChangeDetail`, and `ConferenceDetail` with PICO attributes and foreign keys.
 
 **Acceptance criteria:**
-- [x] All 16 guidelines from the user's screenshot are fully indexed in `MOCK_GUIDELINE_DOCS`:
-  1. `2023 ESO expedited recommendation on tenecteplase for acute ischaemic stroke` (`eso-tenecteplase-2023`)
-  2. `2023 ESO Guidelines on Moyamoya angiopathy` (`eso-moyamoya-2023`)
-  3. `2023 European Society for Vascular Surgery (ESVS) Clinical Practice Guidelines on Carotid and Vertebral Artery Disease` (`esvs-carotid-2023`)
-  4. `2024 ESC Guidelines for the management of atrial fibrillation developed in collaboration with EACTS` (`esc-af-2024`)
-  5. `2024 ESO and ESMINT - Guideline on acute management of basilar artery occlusion` (`eso-esmint-bao-2024`)
-  6. `2024 ESO and European society for minimally invasive neurological therapy guideline on intracranial stenosis` (`eso-esmint-icas-2024`)
-  7. `2024 ESO guideline on cerebral small vessel disease, part 2, lacunar ischaemic stroke` (`eso-svd-lacunar-2024`)
-  8. `2024 ESO Guidelines on the diagnosis and management of patent foramen ovale (PFO)` (`eso-pfo-2024`)
-  9. `2025 ESO and EANS guideline on stroke due to spontaneous intracerebral haemorrhage` (`eso-eans-ich-2025`)
-  10. `2025 ESO annual stroke evidence update 2025` (`eso-evidence-update-2025`)
-  11. `2025 ESO guideline on aphasia rehabilitation` (`eso-aphasia-2025`)
-  12. `2025 ESO guideline on blood pressure in acute ischemic stroke and intracerebral hemorrhage` (`eso-bp-management-2025`)
-  13. `2025 ESO guideline on motor rehabilitation` (`eso-motor-rehab-2025`)
-  14. `2025 ESO guideline on visual impairment in stroke` (`eso-visual-impairment-2025`)
-  15. `2026 ESO EANS and ESMINT guideline on aneurysmal subarachnoid haemorrhage` (`eso-asah-2026`)
-  16. `2026 ESO guideline on stroke-associated pneumonia` (`eso-sap-2026`)
-- [x] Each guideline has valid `subspecialty`, `publishDate`, `officialUrl`, `documentType`, and structured `allPracticeChanges`.
+- [ ] `src/types/neuroguide.ts` imports and re-exports subspecialties from `@/constants/subspecialties`.
+- [ ] `ClinicalScenario` schema includes `aiSynthesisAppraisal` with `consensusLevel`, `whyTheyDiffer`, and `clinicalBottomLine`.
+- [ ] `ConferenceDetail` includes structured PICO trial fields (`populationSummary`, `interventionGroup`, `controlGroup`, `primaryOutcome`, `safetyOutcome`, `impactedScenarioId`).
+- [ ] `TemporalShift` type supports `previousYear`, `previousGrade`, `currentYear`, `currentGrade`, and `drivingTrials`.
 
 **Verification:**
-- [x] `node ./node_modules/typescript/bin/tsc --noEmit` exits with code 0.
-- [x] `node ./node_modules/next/dist/bin/next build` compiles successfully.
+- [ ] Tests pass: `node --experimental-strip-types --test tests/clinicalClassification.test.mjs tests/neurocaseApi.test.mjs`
+- [ ] Typecheck succeeds: `node ./node_modules/typescript/bin/tsc --noEmit`
 
 **Dependencies:** None  
+**Files likely touched:** `src/types/neuroguide.ts`  
+**Estimated scope:** Small (1 file)
+
+---
+
+## Task 2: Enrich Mock Datasets with PICO Trials, Temporal Shifts & Impact Links
+**Description:** Expand `src/data/neuroguideMockData.ts` with complete clinical content covering core neurological scenarios (Tenecteplase, Large Core ASPECTS 3-5, Basilar Artery Occlusion, ICH Blood Pressure, DAPT, Status Epilepticus, Autoimmune Encephalitis, ARIA in Amyloid mAb) and wire `impactedScenarioId` across conferences.
+
+**Acceptance criteria:**
+- [ ] At least 8 core scenarios have complete AHA, ESO, and VN recommendation atoms with 5-tier normalized levels.
+- [ ] Conference events (ISC, ESOC, WSC, AAN) have structured late-breaking trials with PICO stats and `impactedScenarioId`.
+- [ ] Temporal shift records exist for major guideline changes (e.g. TNK 4.5h, Large Core EVT).
+
+**Verification:**
+- [ ] Typecheck succeeds: `node ./node_modules/typescript/bin/tsc --noEmit`
+- [ ] Build succeeds: `node ./node_modules/next/dist/bin/next build`
+
+**Dependencies:** Task 1  
 **Files likely touched:** `src/data/neuroguideMockData.ts`  
 **Estimated scope:** Medium (1 file)
 
 ---
 
-## Task 2: Build PubMed Automated Discovery & Query Service [COMPLETED]
-**Description:** Implement `src/lib/neuroguide/pubmedDiscovery.ts` to query NCBI E-Utilities (`esearch.fcgi` and `esummary.fcgi`) and Europe PMC open registry programmatically, fetching guidelines from ESO, AHA, AAN, EAN, ESC, and NCS automatically with periodic cron scheduling.
-
-**Acceptance criteria:**
-- [x] Function `searchPubMedGuidelines(options)` queries open PubMed / Europe PMC API with `(TITLE:"guideline" OR KW:"Practice Guideline")`.
-- [x] Parses responses into structured `GuidelineDoc` objects containing Title, Journal, Authors, DOI, Publish Date, subspecialty mapping, and key practice change highlights.
-- [x] API endpoint `GET/POST /api/neuroguide/sync-guidelines` triggers the automated scan and returns newly discovered guidelines with deduplication against existing library.
-- [x] Added `vercel.json` cron config (`0 6 * * *`) for daily automated background server scans.
-- [x] Added client-side autonomous background radar in `src/app/neuroguide/page.tsx` running on load and recurring every 30 minutes with local storage persistence.
-
-**Verification:**
-- [x] `node ./node_modules/typescript/bin/tsc --noEmit` passes with 0 errors.
-- [x] Test API endpoint returns structured results with HTTP 200 (`totalDiscovered: 15`).
-- [x] `node ./node_modules/next/dist/bin/next build` compiles successfully.
-
-**Dependencies:** Task 1  
-**Files touched:** `src/lib/neuroguide/pubmedDiscovery.ts`, `src/app/api/neuroguide/sync-guidelines/route.ts`, `vercel.json`, `src/app/neuroguide/page.tsx`  
-**Estimated scope:** Medium (4 files)
+## Checkpoint 1: Foundations
+- [ ] All tests pass
+- [ ] Static typecheck clean with `strict: true`
 
 ---
 
-## Checkpoint: Foundation & Automated Service Complete [VERIFIED]
-- [x] All 16 guidelines visible and searchable in NeuroGuide client.
-- [x] Server-side PubMed/Europe PMC discovery service functional.
-- [x] Automated periodic scanning active (Server Vercel Cron + Client 30-min background radar).
-- [x] Type check and Next.js build pass cleanly.
-
----
-
-## Task 3: Local Batch Manifest & PDF Ingestion API [COMPLETED]
-**Description:** Create `/api/neuroguide/import-batch` allowing the user to provide a list of filenames or a manifest (matching their local folder) to automatically generate and register structured `GuidelineDoc` records without manual editing.
+## Task 3: Build 30/70 Master-Detail Layout with Subspecialty Filter Chips
+**Description:** Build the two-column master-detail clinical layout in `src/app/neuroguide/page.tsx` featuring quick search, 11 subspecialty filter chips, dynamic scenario badges (`Class I`, `Practice-Changing`, `New Conf Evidence`), and responsive mobile drawer.
 
 **Acceptance criteria:**
-- [x] Endpoint parses filenames with year, society, and topic patterns (e.g. `2025 ESO guideline on motor rehabilitation.pdf`).
-- [x] Automatically categorizes subspecialty, derives unique ID, and creates draft `GuidelineDoc`.
-- [x] Returns structured preview list ready for one-click ingestion into the active library.
+- [ ] Left column (30% on desktop) displays searchable scenario list with subspecialty chips from `@/constants/subspecialties`.
+- [ ] Selecting a scenario highlights it and immediately updates the active scenario in the right workspace.
+- [ ] Mobile view collapses smoothly into horizontal swipeable chips or drawer without horizontal layout breakage.
 
 **Verification:**
-- [x] API unit test passes with batch manifest input.
-- [x] TypeScript check clean.
+- [ ] Typecheck: `node ./node_modules/typescript/bin/tsc --noEmit`
+- [ ] Build: `node ./node_modules/next/dist/bin/next build`
 
 **Dependencies:** Task 2  
-**Files touched:** `src/app/api/neuroguide/import-batch/route.ts`  
+**Files likely touched:** `src/app/neuroguide/page.tsx`, `src/components/neuroguide/ScenarioExplorer.tsx`  
+**Estimated scope:** Medium (2 files)
+
+---
+
+## Task 4: Build Tab 1: Cross-Society Matrix (AHA/ASA vs. ESO vs. VN/MOH)
+**Description:** Implement the 3-column international comparative matrix component displaying original grades, 5-tier color badges (Emerald, Blue, Amber, Purple, Rose), 2-sentence recommendation summaries, and specific clinical eligibility criteria.
+
+**Acceptance criteria:**
+- [ ] Renders 3 columns side-by-side on desktop: AHA/ASA (US), ESO (Europe), and Vietnam (BYT).
+- [ ] Uses normalized 5-tier color badges with clear legend.
+- [ ] Displays specific patient eligibility conditions and clinical context.
+
+**Verification:**
+- [ ] Build succeeds: `node ./node_modules/next/dist/bin/next build`
+
+**Dependencies:** Task 3  
+**Files likely touched:** `src/components/neuroguide/CrossSocietyMatrix.tsx`  
 **Estimated scope:** Small (1 file)
 
 ---
 
-## Task 4: UI Radar Sync & Batch Import Action Buttons [COMPLETED]
-**Description:** Add an interactive header toolbar to NeuroGuide (`/neuroguide`) with buttons:
-- `⚡ Auto-Scan Online (PubMed / ESO / AHA)`
-- `📁 Batch Import from Local Manifest`
-- Display live scan status indicator and newly synced guideline count.
+## Task 5: Implement AI Clinical Appraisal & On-Call Bottom-Line Box
+**Description:** Create the clinical synthesis card featuring Concordance Level badge (High Concordance / Moderate Variation / Major Divergence), rationale for guideline differences (publication lag, evidence weighting), and the highlighted on-call bottom-line for duty doctors.
 
 **Acceptance criteria:**
-- [x] Header includes action buttons that call `/api/neuroguide/sync-guidelines` and open the batch import modal.
-- [x] Shows modal / toast notification with discovered guidelines and real-time status.
-- [x] Newly synced guidelines immediately appear in the client-side list, search index, and localStorage persistence.
+- [ ] Displays Concordance Level badge with appropriate status coloring.
+- [ ] Clearly articulates why recommendations differ between societies.
+- [ ] Features a distinct "On-Call Clinical Bottom-Line" card with acute dosage and caveats.
 
 **Verification:**
-- [x] UI buttons and modal render properly in Day Shift and Night Shift modes.
-- [x] `node ./node_modules/next/dist/bin/next build` builds static pages without errors.
+- [ ] Typecheck: `node ./node_modules/typescript/bin/tsc --noEmit`
 
-**Dependencies:** Task 3  
-**Files touched:** `src/app/neuroguide/page.tsx`  
+**Dependencies:** Task 4  
+**Files likely touched:** `src/components/neuroguide/ClinicalAppraisalBox.tsx`  
+**Estimated scope:** Small (1 file)
+
+---
+
+## Checkpoint 2: Core Matrix & Appraisal
+- [ ] Doctor can select any scenario and see the 3-column international comparison and AI appraisal.
+- [ ] Application builds without errors.
+
+---
+
+## Task 6: Build Tab 2: Temporal Diff (Historical Evolution & Grade Shifts)
+**Description:** Implement the timeline view comparing older recommendations (e.g. AHA 2019 Class IIb) with newer updates (ESO 2024 / AHA Update Class I) alongside driving landmark trials badges.
+
+**Acceptance criteria:**
+- [ ] Visual timeline clearly contrasting previous vs. current grade and wording.
+- [ ] Displays driving trials pills (e.g., SELECT2, ANGEL-ASPECT, TENSION).
+- [ ] Shows change type badge (NEW, UPGRADED, DOWNGRADED, REVISED).
+
+**Verification:**
+- [ ] Build: `node ./node_modules/next/dist/bin/next build`
+
+**Dependencies:** Task 5  
+**Files likely touched:** `src/components/neuroguide/TemporalDiffView.tsx`  
+**Estimated scope:** Small (1 file)
+
+---
+
+## Task 7: Build Tab 3: Landmark Trials & Conf Evidence View
+**Description:** Implement trial summary cards inside each scenario detailing Sample Size (N), Primary Outcome (mRS 0-2), Safety (sICH), and Positive/Neutral outcome pills.
+
+**Acceptance criteria:**
+- [ ] Renders structured cards for landmark trials associated with the scenario (e.g. AcT, TRACE-2, TIMELESS).
+- [ ] Displays Sample Size (N), primary efficacy percentage, safety bleeding rate, and p-value.
+- [ ] Includes link to original full text / PubMed if available.
+
+**Verification:**
+- [ ] Typecheck: `node ./node_modules/typescript/bin/tsc --noEmit`
+
+**Dependencies:** Task 6  
+**Files likely touched:** `src/components/neuroguide/TrialEvidenceView.tsx`  
+**Estimated scope:** Small (1 file)
+
+---
+
+## Checkpoint 3: Temporal & Evidence Tabs
+- [ ] Doctor can toggle between Matrix, Temporal Diff, and Trial Evidence seamlessly.
+- [ ] Tests and build clean.
+
+---
+
+## Task 8: Upgrade Conference Hub with PICO Trial Snapshots & Verdict Badges
+**Description:** Redesign the Conference View with executive summaries, metrics bar, and structured PICO trial cards (Population, Intervention vs Control, Primary Endpoint, Safety Endpoint, Clinical Takeaway).
+
+**Acceptance criteria:**
+- [ ] Conference cards show metrics (Total Late-Breaking Trials, Positive count, Practice-Changing count).
+- [ ] Trial snapshots display PICO breakdown and Positive/Neutral verdict badges.
+- [ ] Filter by Subspecialty and Verdict.
+
+**Verification:**
+- [ ] Build: `node ./node_modules/next/dist/bin/next build`
+
+**Dependencies:** Task 7  
+**Files likely touched:** `src/components/neuroguide/ConferenceHub.tsx`  
 **Estimated scope:** Medium (1 file)
 
 ---
 
-## Checkpoint: Full Autonomous Pipeline Complete [VERIFIED]
-- [x] Zero manual reminders required: guidelines are either auto-scanned from PubMed/Europe PMC or batch-imported from local folders.
-- [x] All 16 guidelines from user's screenshot live, indexed, and searchable.
-- [x] Chronological sorting verified from 2026 down to historical guidelines.
+## Task 9: Implement 1-Click Guideline Impact Bridge (Conf ➔ Scenario Navigation)
+**Description:** Add the "Impact on Current Guidelines" action box on each trial card with a one-click button: `[Open Scenario in Comparison Matrix ➔]` that scrolls and selects the linked scenario.
+
+**Acceptance criteria:**
+- [ ] Each relevant late-breaking trial card has a highlighted "Guideline Impact" box.
+- [ ] Clicking `[Open Scenario in Comparison Matrix ➔]` switches to the Matrix tab and automatically selects and focuses that scenario.
+
+**Verification:**
+- [ ] Manual test of 1-click bridge navigation.
+- [ ] Build: `node ./node_modules/next/dist/bin/next build`
+
+**Dependencies:** Task 8  
+**Files likely touched:** `src/app/neuroguide/page.tsx`, `src/components/neuroguide/ConferenceHub.tsx`  
+**Estimated scope:** Small (2 files)
+
+---
+
+## Checkpoint 4: Conference & Bi-directional Bridge
+- [ ] Clicking a trial's impact button navigates directly to the corresponding scenario in the Matrix view.
+
+---
+
+## Task 10: Integrate Ecosystem Action Bar (NeuroRx, NeuroCalc, NeuroPulse)
+**Description:** Add interactive deep-link action pills in the scenario header (e.g., `[Open NeuroRx: TNK Dosing]`, `[Open NeuroCalc: NIHSS Scale]`, `[View Related Articles on NeuroPulse]`).
+
+**Acceptance criteria:**
+- [ ] Header of active scenario includes dedicated Ecosystem Action Bar.
+- [ ] Action pills route to appropriate modules or trigger calculators with relevant context.
+
+**Verification:**
+- [ ] Build: `node ./node_modules/next/dist/bin/next build`
+
+**Dependencies:** Task 9  
+**Files likely touched:** `src/components/neuroguide/EcosystemActionBar.tsx`  
+**Estimated scope:** Small (1 file)
+
+---
+
+## Task 11: Emergency-Room Mobile Ergonomics & Visual Polish
+**Description:** Optimize for on-call smartphones: horizontal swipeable scenario chips, responsive vertical matrix stacking, and smooth tab switching.
+
+**Acceptance criteria:**
+- [ ] Emergency room smartphone testing shows no horizontal overflow.
+- [ ] Matrix stacks cleanly as collapsible or swipeable cards on mobile viewports (<640px).
+- [ ] Fast, zero-lag tab transitions.
+
+**Verification:**
+- [ ] `node ./node_modules/typescript/bin/tsc --noEmit` passes with 0 errors.
+- [ ] `node --experimental-strip-types --test tests/clinicalClassification.test.mjs tests/neurocaseApi.test.mjs` passes 15/15 tests.
+- [ ] `node ./node_modules/next/dist/bin/next build` compiles clean.
+
+**Dependencies:** Task 10  
+**Files likely touched:** `src/app/neuroguide/page.tsx`  
+**Estimated scope:** Small (1 file)
+
+---
+
+## Final Checkpoint: Full Verification
+- [ ] `tsc --noEmit` passes with 0 errors (`strict: true`).
+- [ ] `npm test` passes all test suites.
+- [ ] `next build` compiles in <1s.
+- [ ] Complete alignment with `NeuroGuide&Conf _ 2.docx`.
