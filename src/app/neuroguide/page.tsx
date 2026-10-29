@@ -212,7 +212,8 @@ export default function NeuroGuidePage() {
   const [selectedConfStatus, setSelectedConfStatus] = useState<"ALL" | "LIVE" | "RECENT" | "UPCOMING">("ALL");
 
   // Selection states
-  const [activeScenarioId, setActiveScenarioId] = useState<string>("ais-ivt-tenecteplase-4.5h");
+  const [activeScenarioId, setActiveScenarioId] = useState<string | null>(null);
+  const [isMobileScenarioListOpen, setIsMobileScenarioListOpen] = useState<boolean>(false);
   const [activeDetailTab, setActiveDetailTab] = useState<"matrix" | "temporal" | "conf_bridge">("matrix");
 
   // Guideline Docs with Periodic Autonomous Online Sync State
@@ -296,6 +297,20 @@ export default function NeuroGuidePage() {
 
   const matrixContainerRef = useRef<HTMLDivElement>(null);
 
+  const CURRENT_CACHE_VERSION = "neuroguide_v2026_clean_v6";
+
+  // Reset to authoritative official library and purge invalid cached papers
+  const handleResetOfficialGuidelines = () => {
+    try {
+      localStorage.setItem("neuroguide_cache_version", CURRENT_CACHE_VERSION);
+      localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(MOCK_GUIDELINE_DOCS));
+    } catch (e) {
+      console.warn("Could not save to localStorage:", e);
+    }
+    setGuidelineDocs(MOCK_GUIDELINE_DOCS);
+    setSyncMessage("Đã khôi phục toàn bộ 30 hướng dẫn lâm sàng chuẩn và dọn dẹp các bài báo không phù hợp.");
+  };
+
   // Background Autonomous Sync Method
   const triggerSync = async (isAuto = false) => {
     if (isSyncing) return;
@@ -311,10 +326,23 @@ export default function NeuroGuidePage() {
         setGuidelineDocs((prev) => {
           const existingIds = new Set(prev.map((g) => g.id.toLowerCase()));
           const existingTitles = new Set(prev.map((g) => g.title.toLowerCase().trim()));
-          const novel = json.guidelines.filter(
-            (g: GuidelineDoc) =>
-              !existingIds.has(g.id.toLowerCase()) && !existingTitles.has(g.title.toLowerCase().trim())
-          );
+          const novel = json.guidelines.filter((g: GuidelineDoc) => {
+            if (!g || !g.title) return false;
+            const t = g.title.toLowerCase();
+            const j = (g.journalTarget || "").toLowerCase();
+            if (
+              t.includes("paraclinoid aneurysms") ||
+              t.includes("thromboelastography") ||
+              t.includes("hemodynamic differences") ||
+              j.includes("medicine (baltimore)") ||
+              j.includes("trauma surg acute care open") ||
+              j.includes("cureus") ||
+              g.society === "Other"
+            ) {
+              return false;
+            }
+            return !existingIds.has(g.id.toLowerCase()) && !existingTitles.has(g.title.toLowerCase().trim());
+          });
           if (novel.length > 0) {
             const merged = [...novel, ...prev];
             try {
@@ -342,17 +370,54 @@ export default function NeuroGuidePage() {
     }
   };
 
-  // Periodic autonomous radar sync
+  // Periodic autonomous radar sync + cache sanitizer on mount
   useEffect(() => {
     try {
-      const cached = localStorage.getItem("neuroguide_cached_guidelines");
-      if (cached) {
-        const parsed = JSON.parse(cached);
-        if (Array.isArray(parsed) && parsed.length >= MOCK_GUIDELINE_DOCS.length) {
-          setGuidelineDocs(parsed);
+      const cachedVersion = localStorage.getItem("neuroguide_cache_version");
+      if (cachedVersion !== CURRENT_CACHE_VERSION) {
+        // Obsolete or polluted cache detected: clear old cache and ensure fresh curated library
+        localStorage.setItem("neuroguide_cache_version", CURRENT_CACHE_VERSION);
+        localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(MOCK_GUIDELINE_DOCS));
+        setGuidelineDocs(MOCK_GUIDELINE_DOCS);
+      } else {
+        const cached = localStorage.getItem("neuroguide_cached_guidelines");
+        if (cached) {
+          const parsed = JSON.parse(cached);
+          if (Array.isArray(parsed)) {
+            // Strictly filter out non-guidelines and spurious articles
+            const cleaned = parsed.filter((doc) => {
+              if (!doc || !doc.title) return false;
+              const t = doc.title.toLowerCase();
+              const j = (doc.journalTarget || "").toLowerCase();
+              if (
+                t.includes("paraclinoid aneurysms") ||
+                t.includes("thromboelastography") ||
+                t.includes("hemodynamic differences") ||
+                j.includes("medicine (baltimore)") ||
+                j.includes("trauma surg acute care open") ||
+                j.includes("cureus") ||
+                doc.society === "Other"
+              ) {
+                return false;
+              }
+              return true;
+            });
+
+            // Always prioritize authoritative MOCK_GUIDELINE_DOCS entries
+            const mockIds = new Set(MOCK_GUIDELINE_DOCS.map((g) => g.id.toLowerCase()));
+            const mockTitles = new Set(MOCK_GUIDELINE_DOCS.map((g) => g.title.toLowerCase().trim()));
+            const userExtra = cleaned.filter(
+              (doc) => !mockIds.has(doc.id.toLowerCase()) && !mockTitles.has(doc.title.toLowerCase().trim())
+            );
+            const merged = [...MOCK_GUIDELINE_DOCS, ...userExtra];
+            setGuidelineDocs(merged);
+            localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(merged));
+          }
         }
       }
-    } catch (e) {}
+    } catch (e) {
+      console.warn("Error initializing guideline cache:", e);
+    }
 
     const lastSync = localStorage.getItem("neuroguide_last_sync_timestamp");
     const now = Date.now();
@@ -411,10 +476,26 @@ export default function NeuroGuidePage() {
     }));
   };
 
-  // Dynamically derive available societies from guideline documents
+  // Dynamically derive available societies from guideline documents (normalized to primary societies)
   const availableSocieties = useMemo(() => {
     const set = new Set<string>();
-    guidelineDocs.forEach((d) => set.add(d.society));
+    guidelineDocs.forEach((d) => {
+      let soc = d.society;
+      if (soc.includes("ESO")) soc = "ESO";
+      else if (soc.includes("AHA") || soc.includes("ASA")) soc = "AHA/ASA";
+      else if (soc.includes("ESC")) soc = "ESC";
+      else if (soc.includes("ESVS")) soc = "ESVS";
+      else if (soc.includes("AES")) soc = "AES";
+      else if (soc.includes("ILAE")) soc = "ILAE";
+      else if (soc.includes("AANEM")) soc = "AANEM";
+      else if (soc.includes("AAN")) soc = "AAN";
+      else if (soc.includes("ECTRIMS")) soc = "ECTRIMS";
+      else if (soc.includes("IDSA")) soc = "IDSA";
+      else if (soc.includes("NCS")) soc = "NCS";
+      else if (soc.includes("MDS")) soc = "MDS";
+      else if (soc.includes("AHS")) soc = "AHS";
+      set.add(soc);
+    });
     return ["ALL", ...Array.from(set)];
   }, [guidelineDocs]);
 
@@ -441,13 +522,10 @@ export default function NeuroGuidePage() {
     });
   }, [selectedSubspecialty, searchQuery]);
 
-  // Current Scenario
+  // Current Scenario (Defaults to null until user selects one)
   const currentScenario = useMemo(() => {
-    return (
-      filteredScenarios.find((s) => s.id === activeScenarioId) ||
-      filteredScenarios[0] ||
-      null
-    );
+    if (!activeScenarioId) return null;
+    return filteredScenarios.find((s) => s.id === activeScenarioId) || null;
   }, [filteredScenarios, activeScenarioId]);
 
   // Current Scenario's Recommendation Atoms
@@ -464,8 +542,18 @@ export default function NeuroGuidePage() {
     const tokens = rawQ.split(/\s+/).filter(Boolean);
 
     const list = guidelineDocs.filter((doc) => {
+      let normDocSoc = doc.society;
+      if (normDocSoc.includes("ESO")) normDocSoc = "ESO";
+      else if (normDocSoc.includes("AHA") || normDocSoc.includes("ASA")) normDocSoc = "AHA/ASA";
+      else if (normDocSoc.includes("ESC")) normDocSoc = "ESC";
+      else if (normDocSoc.includes("ESVS")) normDocSoc = "ESVS";
+      else if (normDocSoc.includes("AES")) normDocSoc = "AES";
+      else if (normDocSoc.includes("ILAE")) normDocSoc = "ILAE";
+
       const matchesSociety =
-        selectedSocietyFilter === "ALL" || doc.society === selectedSocietyFilter;
+        selectedSocietyFilter === "ALL" ||
+        doc.society === selectedSocietyFilter ||
+        normDocSoc === selectedSocietyFilter;
       const matchesSub =
         selectedSubspecialty === "All Subspecialties" ||
         doc.subspecialty === selectedSubspecialty ||
@@ -730,8 +818,8 @@ export default function NeuroGuidePage() {
            ========================================================================= */}
         {activeTab === "guidelines" && (
           <div className="space-y-4">
-            {/* Direct Society Filter Bar */}
-            <div className="flex items-center justify-between gap-3 mb-2">
+            {/* Direct Society Filter Bar + Radar Actions */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 mb-2">
               <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0">
                 <span className="text-xs font-bold text-slate-400 mr-1 whitespace-nowrap">
                   Society:
@@ -742,7 +830,7 @@ export default function NeuroGuidePage() {
                     onClick={() => setSelectedSocietyFilter(soc)}
                     className={`px-2.5 py-1 rounded-lg text-xs font-bold whitespace-nowrap transition-all ${
                       selectedSocietyFilter === soc
-                        ? "bg-amber-500 text-white"
+                        ? "bg-amber-500 text-white shadow-xs"
                         : darkMode
                         ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
                         : "bg-slate-200 text-slate-700 hover:bg-slate-300"
@@ -753,10 +841,60 @@ export default function NeuroGuidePage() {
                 ))}
               </div>
 
-              <div className="text-xs text-slate-400 font-medium hidden sm:block">
-                Showing {filteredGuidelines.length} documents
+              <div className="flex items-center gap-2 self-end sm:self-auto">
+                <button
+                  onClick={() => triggerSync(false)}
+                  disabled={isSyncing}
+                  className={`px-2.5 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all ${
+                    isSyncing
+                      ? "bg-blue-500/20 text-blue-400 cursor-wait"
+                      : darkMode
+                      ? "bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white"
+                      : "bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200"
+                  }`}
+                  title="Quét tìm kiếm các guideline mới nhất trên toàn cầu qua Europe PMC"
+                >
+                  <span className={isSyncing ? "animate-spin" : ""}>📡</span>
+                  <span>{isSyncing ? "Đang quét..." : "Quét radar trực tuyến"}</span>
+                </button>
+
+                <button
+                  onClick={handleResetOfficialGuidelines}
+                  className={`px-2.5 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all ${
+                    darkMode
+                      ? "bg-slate-800/80 text-slate-300 hover:bg-rose-900/30 hover:text-rose-300"
+                      : "bg-slate-100 text-slate-600 hover:bg-rose-50 hover:text-rose-600 border border-slate-200"
+                  }`}
+                  title="Xóa bộ nhớ đệm và khôi phục toàn bộ 30 hướng dẫn lâm sàng chuẩn"
+                >
+                  <span>🔄</span>
+                  <span className="hidden md:inline">Khôi phục chuẩn</span>
+                </button>
+
+                <div className="text-xs text-slate-400 font-medium pl-1 hidden sm:block">
+                  {filteredGuidelines.length} tài liệu
+                </div>
               </div>
             </div>
+
+            {/* Notification Banner for Sync or Reset actions */}
+            {syncMessage && (
+              <div className="px-3.5 py-2 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-700 dark:text-amber-300 text-xs flex items-center justify-between gap-2 transition-all">
+                <div className="flex items-center gap-2">
+                  <span>ℹ️</span>
+                  <span>{syncMessage}</span>
+                  {lastSyncedTime && (
+                    <span className="text-[11px] opacity-75">({lastSyncedTime})</span>
+                  )}
+                </div>
+                <button
+                  onClick={() => setSyncMessage(null)}
+                  className="text-amber-600 dark:text-amber-400 hover:opacity-100 font-bold px-1.5"
+                >
+                  ✕
+                </button>
+              </div>
+            )}
 
             {/* Guideline Cards (Colored by Society, Click to Expand Details) */}
             {filteredGuidelines.length === 0 ? (
@@ -857,65 +995,212 @@ export default function NeuroGuidePage() {
                         </div>
 
                         {/* All Practice Changes List */}
-                        <div className="space-y-2 mb-4">
-                          <span className="text-[10.5px] font-black uppercase tracking-wider text-slate-400 block">
-                            {isVietnamese
-                              ? `Toàn bộ thay đổi so với bản trước (${doc.previousVersionYear || "trước đây"}):`
-                              : `Practice Changes Breakdown vs. Previous Version (${doc.previousVersionYear || "Prior"}):`}
-                          </span>
+                        {(() => {
+                          const newPracticeChanges = doc.allPracticeChanges.filter(
+                            (c) =>
+                              c.changeType === "NEW" ||
+                              c.changeType === "UPGRADED" ||
+                              c.changeType === "DOWNGRADED" ||
+                              c.changeType === "REVISED" ||
+                              Boolean(c.previousGrade) ||
+                              Boolean(c.previousText)
+                          );
 
-                          {doc.allPracticeChanges.map((change) => (
-                            <div
-                              key={change.id}
-                              className={`p-3 rounded-xl border text-xs leading-relaxed ${
-                                darkMode
-                                  ? "bg-slate-950/70 border-slate-800"
-                                  : "bg-white border-slate-200"
-                              }`}
-                            >
-                              <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
-                                <div className="flex items-center gap-1.5">
-                                  <span
-                                    className={`px-1.5 py-0.5 rounded text-[10px] font-black ${
-                                      change.changeType === "UPGRADED"
-                                        ? "bg-emerald-500/20 text-emerald-600 dark:text-emerald-400"
-                                        : change.changeType === "NEW"
-                                        ? "bg-blue-500/20 text-blue-600 dark:text-blue-400"
-                                        : "bg-amber-500/20 text-amber-600 dark:text-amber-400"
-                                    }`}
-                                  >
-                                    {change.changeType}
-                                  </span>
-                                  <span className="font-bold">{change.topic}</span>
-                                </div>
+                          const categories = Array.from(
+                            new Set(doc.allPracticeChanges.map((c) => c.category || "Khuyến cáo chung"))
+                          );
 
-                                <div className="flex items-center gap-2 text-[11px]">
-                                  {change.previousGrade && (
-                                    <span className="text-slate-400 line-through">
-                                      {change.previousGrade}
+                          return (
+                            <div className="space-y-6 mb-4">
+                              {/* 1. Điểm mới so với bản cũ */}
+                              {newPracticeChanges.length > 0 && (
+                                <div className="space-y-2.5">
+                                  <div className="flex items-center gap-2">
+                                    <span className="px-2 py-0.5 rounded-full text-[10.5px] font-black bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30">
+                                      ⚡ {isVietnamese ? "1. ĐIỂM MỚI & THAY ĐỔI SO VỚI BẢN TRƯỚC" : "1. WHAT IS NEW & HIGH IMPACT CHANGES"}
                                     </span>
-                                  )}
-                                  <span className="font-extrabold text-amber-600 dark:text-amber-400">
-                                    ➔ {change.currentGrade}
-                                  </span>
-                                </div>
-                              </div>
+                                    <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400">
+                                      {isVietnamese
+                                        ? `(${newPracticeChanges.length} thay đổi thực hành so với bản ${doc.previousVersionYear || "cũ"}):`
+                                        : `(${newPracticeChanges.length} practice changes vs. ${doc.previousVersionYear || "prior"}):`}
+                                    </span>
+                                  </div>
 
-                              <p className="text-slate-700 dark:text-slate-300">
-                                {change.currentText}
-                              </p>
+                                  <div className="grid grid-cols-1 gap-2.5">
+                                    {newPracticeChanges.map((change) => (
+                                      <div
+                                        key={change.id}
+                                        className={`p-3.5 rounded-xl border text-xs leading-relaxed transition-all ${
+                                          darkMode
+                                            ? "bg-slate-950/70 border-slate-800"
+                                            : "bg-white border-slate-200"
+                                        }`}
+                                      >
+                                        <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                                          <div className="flex items-center gap-1.5">
+                                            <span
+                                              className={`px-1.5 py-0.5 rounded text-[10px] font-black ${
+                                                change.changeType === "UPGRADED"
+                                                  ? "bg-emerald-500/20 text-emerald-600 dark:text-emerald-400"
+                                                  : change.changeType === "NEW"
+                                                  ? "bg-blue-500/20 text-blue-600 dark:text-blue-400"
+                                                  : change.changeType === "DOWNGRADED"
+                                                  ? "bg-rose-500/20 text-rose-600 dark:text-rose-400"
+                                                  : "bg-amber-500/20 text-amber-600 dark:text-amber-400"
+                                              }`}
+                                            >
+                                              {change.changeType}
+                                            </span>
+                                            <span className="font-bold text-slate-900 dark:text-slate-100">{change.topic}</span>
+                                          </div>
 
-                              {change.drivingTrials && change.drivingTrials.length > 0 && (
-                                <div className="mt-1.5 flex items-center gap-1.5 text-[10.5px] text-slate-500 dark:text-slate-400">
-                                  <span className="font-semibold">
-                                    {isVietnamese ? "Chứng cứ thúc đẩy:" : "Supporting Evidence:"}
-                                  </span>
-                                  <span>{change.drivingTrials.join(", ")}</span>
+                                          <div className="flex items-center gap-2 text-[11px]">
+                                            {change.previousGrade && (
+                                              <span className="text-slate-400 line-through">
+                                                {change.previousGrade}
+                                              </span>
+                                            )}
+                                            <span className="font-extrabold text-amber-600 dark:text-amber-400">
+                                              ➔ {change.currentGrade}
+                                            </span>
+                                          </div>
+                                        </div>
+
+                                        {change.previousText && (
+                                          <div className="mb-2 p-2 rounded-lg bg-slate-100 dark:bg-slate-900/60 text-slate-500 dark:text-slate-400 text-[11px] border border-slate-200/50 dark:border-slate-800/50">
+                                            <span className="font-bold block text-slate-400 mb-0.5">
+                                              {isVietnamese
+                                                ? `Bản cũ (${doc.previousVersionYear || "trước đây"}):`
+                                                : `Previous Edition (${doc.previousVersionYear || "prior"}):`}
+                                            </span>
+                                            <p className="line-through opacity-85">{change.previousText}</p>
+                                          </div>
+                                        )}
+
+                                        <p className="text-slate-800 dark:text-slate-200 font-medium">
+                                          {change.currentText}
+                                        </p>
+
+                                        {change.drivingTrials && change.drivingTrials.length > 0 && (
+                                          <div className="mt-2 flex items-center gap-1.5 text-[10.5px] text-slate-500 dark:text-slate-400 border-t pt-1.5 border-slate-100 dark:border-slate-800/60">
+                                            <span className="font-semibold text-slate-400">
+                                              {isVietnamese ? "Chứng cứ lâm sàng:" : "Driving Evidence:"}
+                                            </span>
+                                            <span className="font-medium text-slate-600 dark:text-slate-300">
+                                              {change.drivingTrials.join(", ")}
+                                            </span>
+                                          </div>
+                                        )}
+                                      </div>
+                                    ))}
+                                  </div>
                                 </div>
                               )}
+
+                              {/* 2. Toàn bộ các khuyến cáo trong guideline (Chia thành từng khối chuyên đề) */}
+                              <div className="space-y-3 pt-3 border-t border-slate-200/60 dark:border-slate-800/60">
+                                <div className="flex flex-wrap items-center justify-between gap-2">
+                                  <div className="flex items-center gap-2">
+                                    <span className="px-2 py-0.5 rounded-full text-[10.5px] font-black bg-blue-500/15 text-blue-600 dark:text-blue-400 border border-blue-500/30">
+                                      📋 {isVietnamese ? "2. TOÀN BỘ KHUYẾN CÁO LÂM SÀNG THEO KHỐI CHUYÊN ĐỀ" : "2. FULL STRUCTURED RECOMMENDATIONS BY CATEGORY"}
+                                    </span>
+                                    <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400">
+                                      ({doc.allPracticeChanges.length} {isVietnamese ? "khuyến cáo" : "recommendations"})
+                                    </span>
+                                  </div>
+
+                                  <span className="text-[10.5px] text-slate-400 italic">
+                                    {isVietnamese
+                                      ? "Chia thành các khối độc lập để dễ dàng đối chiếu với guideline khác"
+                                      : "Modular blocks ready for cross-guideline comparison"}
+                                  </span>
+                                </div>
+
+                                <div className="space-y-3">
+                                  {categories.map((category) => {
+                                    const categoryItems = doc.allPracticeChanges.filter(
+                                      (c) => (c.category || "Khuyến cáo chung") === category
+                                    );
+
+                                    return (
+                                      <div
+                                        key={category}
+                                        className={`p-3.5 rounded-xl border text-xs leading-relaxed space-y-2.5 ${
+                                          darkMode
+                                            ? "bg-slate-900/40 border-slate-800"
+                                            : "bg-slate-50/80 border-slate-200/80"
+                                        }`}
+                                      >
+                                        <div className="flex items-center justify-between gap-2 border-b pb-1.5 border-slate-200/60 dark:border-slate-800/60">
+                                          <div className="flex items-center gap-1.5">
+                                            <span className="text-amber-500">🏷️</span>
+                                            <span className="font-extrabold uppercase tracking-wide text-slate-700 dark:text-slate-200">
+                                              {category}
+                                            </span>
+                                          </div>
+                                          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-200/80 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+                                            {categoryItems.length} {isVietnamese ? "khuyến cáo" : "recs"}
+                                          </span>
+                                        </div>
+
+                                        <div className="space-y-2">
+                                          {categoryItems.map((item) => (
+                                            <div
+                                              key={item.id}
+                                              className={`p-3 rounded-lg border text-xs space-y-2 ${
+                                                darkMode
+                                                  ? "bg-slate-950/80 border-slate-800"
+                                                  : "bg-white border-slate-200 shadow-2xs"
+                                              }`}
+                                            >
+                                              <div className="flex flex-wrap items-center justify-between gap-2">
+                                                <span className="font-bold text-slate-900 dark:text-slate-100">
+                                                  {item.topic}
+                                                </span>
+                                                <span className="font-mono text-[10.5px] font-black px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
+                                                  {item.currentGrade}
+                                                </span>
+                                              </div>
+
+                                              <p className="text-slate-700 dark:text-slate-300">
+                                                {item.currentText}
+                                              </p>
+
+                                              <div className="flex flex-wrap items-center justify-between gap-2 pt-1.5 border-t border-slate-100 dark:border-slate-800/60 text-[11px]">
+                                                {item.drivingTrials && item.drivingTrials.length > 0 ? (
+                                                  <span className="text-[10px] text-slate-400 truncate max-w-xs sm:max-w-md">
+                                                    📚 {item.drivingTrials.join(", ")}
+                                                  </span>
+                                                ) : (
+                                                  <span />
+                                                )}
+
+                                                {(item.scenarioId || doc.linkedScenarioIds.length > 0) && (
+                                                  <button
+                                                    onClick={() =>
+                                                      handleJumpToScenario(
+                                                        item.scenarioId || doc.linkedScenarioIds[0]
+                                                      )
+                                                    }
+                                                    className="px-2.5 py-1 rounded-lg text-[10.5px] font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 hover:bg-amber-500/20 transition-all flex items-center gap-1 ml-auto"
+                                                    title="Mở ma trận để so sánh khuyến cáo này với các hiệp hội khác"
+                                                  >
+                                                    <span>⚖️ So sánh với guideline khác</span>
+                                                    <span>➔</span>
+                                                  </button>
+                                                )}
+                                              </div>
+                                            </div>
+                                          ))}
+                                        </div>
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              </div>
                             </div>
-                          ))}
-                        </div>
+                          );
+                        })()}
 
                         {/* Action Bar */}
                         <div className="pt-3 border-t border-slate-200/60 dark:border-slate-800/80 flex flex-wrap items-center justify-between gap-2">
@@ -1260,13 +1545,52 @@ export default function NeuroGuidePage() {
                     </span>
                   </div>
 
-                  <div className="space-y-2.5 max-h-[850px] overflow-y-auto pr-1">
+                  {/* Mobile Compact Scenario Selector Pill */}
+                  <div className="lg:hidden">
+                    <button
+                      onClick={() => setIsMobileScenarioListOpen((prev) => !prev)}
+                      className={`w-full p-3 rounded-xl border flex items-center justify-between gap-2 transition-all ${
+                        currentScenario
+                          ? darkMode
+                            ? "bg-amber-500/10 border-amber-500/40 text-amber-300"
+                            : "bg-amber-50 border-amber-300 text-amber-900"
+                          : darkMode
+                          ? "bg-slate-800 border-slate-700 text-slate-200"
+                          : "bg-slate-100 border-slate-300 text-slate-700"
+                      }`}
+                    >
+                      <div className="flex items-center gap-2 min-w-0 text-left">
+                        <span className="text-base shrink-0">📋</span>
+                        <div className="truncate">
+                          <div className="text-[10px] uppercase font-bold tracking-wider text-slate-400">
+                            {currentScenario ? "Bệnh cảnh đang chọn:" : `Chọn bệnh cảnh lâm sàng (${filteredScenarios.length}):`}
+                          </div>
+                          <div className="text-xs font-bold truncate">
+                            {currentScenario ? currentScenario.title : "Nhấn để chọn bệnh cảnh..."}
+                          </div>
+                        </div>
+                      </div>
+                      <span className="text-xs font-bold px-2 py-1 rounded-lg bg-black/10 dark:bg-white/10 shrink-0">
+                        {isMobileScenarioListOpen ? "Thu gọn ▴" : "Đổi bệnh cảnh ▾"}
+                      </span>
+                    </button>
+                  </div>
+
+                  {/* Scenario Explorer List (Visible on desktop, collapsible on mobile) */}
+                  <div
+                    className={`${
+                      isMobileScenarioListOpen ? "block" : "hidden lg:block"
+                    } space-y-2.5 max-h-[850px] overflow-y-auto pr-1`}
+                  >
                     {filteredScenarios.map((scenario) => {
                       const isSelected = scenario.id === activeScenarioId;
                       return (
                         <button
                           key={scenario.id}
-                          onClick={() => setActiveScenarioId(scenario.id)}
+                          onClick={() => {
+                            setActiveScenarioId(scenario.id);
+                            setIsMobileScenarioListOpen(false);
+                          }}
                           className={`w-full text-left p-3.5 rounded-2xl border transition-all ${
                             isSelected
                               ? darkMode
@@ -1317,7 +1641,40 @@ export default function NeuroGuidePage() {
 
                 {/* RIGHT COLUMN (8/12): Detailed Comparison Dashboard */}
                 <section className="lg:col-span-8 space-y-5">
-                  {currentScenario && (
+                  {!currentScenario ? (
+                    <div
+                      className={`p-8 sm:p-14 text-center rounded-2xl border border-dashed transition-all ${
+                        darkMode
+                          ? "bg-slate-900/40 border-slate-800 text-slate-300"
+                          : "bg-white/60 border-slate-300 text-slate-700"
+                      }`}
+                    >
+                      <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-3xl">
+                        ⚖️
+                      </div>
+                      <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100 mb-1">
+                        Chưa chọn bệnh cảnh lâm sàng
+                      </h3>
+                      <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto mb-5 leading-relaxed">
+                        Vui lòng chọn một bệnh cảnh lâm sàng từ danh sách để xem Ma trận đồng thuận đối chiếu đa hiệp hội (AHA vs. ESO vs. VN), diễn tiến theo thời gian và bằng chứng thử nghiệm mới nhất.
+                      </p>
+                      <div className="flex flex-wrap items-center justify-center gap-2">
+                        {filteredScenarios.slice(0, 3).map((sc) => (
+                          <button
+                            key={sc.id}
+                            onClick={() => {
+                              setActiveScenarioId(sc.id);
+                              setIsMobileScenarioListOpen(false);
+                            }}
+                            className="px-3.5 py-2 rounded-xl text-xs font-bold bg-amber-500/10 text-amber-700 dark:text-amber-400 hover:bg-amber-500/20 transition-all border border-amber-500/25 flex items-center gap-1.5 shadow-2xs"
+                          >
+                            <span>👉</span>
+                            <span>{sc.title.length > 38 ? sc.title.slice(0, 38) + "..." : sc.title}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
                     <div
                       className={`rounded-2xl border p-5 transition-all ${
                         darkMode

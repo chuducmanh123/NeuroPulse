@@ -17,6 +17,7 @@ function inferJournalTarget(society: string): string {
   if (s.includes("AAN")) return "Neurology";
   if (s.includes("EAN")) return "European Journal of Neurology";
   if (s.includes("NCS")) return "Neurocritical Care";
+  if (s.includes("AES")) return "Epilepsy Currents";
   if (s.includes("ILAE")) return "Epilepsia";
   if (s.includes("MDS")) return "Movement Disorders";
   if (s.includes("AHS")) return "Headache";

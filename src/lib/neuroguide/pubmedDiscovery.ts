@@ -69,17 +69,117 @@ function cleanTitle(raw: string): string {
 }
 
 /**
- * Filter out letters, responses, corrections, and errata
+ * Filter out non-guideline articles, research studies, letters, responses, and errata
  */
-function isGenuineGuideline(title: string): boolean {
-  const t = title.toLowerCase();
-  if (t.startsWith("re:") || t.startsWith("response to") || t.startsWith("author's response") || t.startsWith("correction to")) {
+export function isGenuineGuideline(title: string, journal = ""): boolean {
+  const t = title.toLowerCase().trim();
+  const j = journal.toLowerCase().trim();
+
+  // Reject blacklisted non-society journals known for indexing single-center retrospective papers
+  if (
+    j.includes("medicine (baltimore)") ||
+    j.includes("medicine baltimore") ||
+    j.includes("trauma surg acute care open") ||
+    j.includes("cureus") ||
+    j.includes("frontiers in") ||
+    j.includes("plos one") ||
+    j.includes("scientific reports") ||
+    j.includes("diagnostics") ||
+    j.includes("heliyon")
+  ) {
     return false;
   }
-  if (t.includes("erratum") || t.includes("corrigendum")) {
+
+  // Exclude letters, responses, editorials, case reports, retrospective/observational studies
+  if (
+    t.startsWith("re:") ||
+    t.startsWith("response to") ||
+    t.startsWith("author's response") ||
+    t.startsWith("reply to") ||
+    t.startsWith("correction to") ||
+    t.includes("erratum") ||
+    t.includes("corrigendum") ||
+    t.includes("letter to the editor") ||
+    t.includes("case report") ||
+    t.includes("case series") ||
+    t.includes("retrospective study") ||
+    t.includes("retrospective cohort") ||
+    t.includes("retrospective review") ||
+    t.includes("retrospective analysis") ||
+    t.includes("observational study") ||
+    t.includes("cross-sectional") ||
+    t.includes("hemodynamic differences") ||
+    t.includes("multiple paraclinoid aneurysms") ||
+    t.includes("thromboelastography in risk stratifying") ||
+    t.startsWith("analysis, evaluation of") ||
+    t.startsWith("role of thromboelastography") ||
+    t.includes("in vitro") ||
+    t.includes("rat model") ||
+    t.includes("mouse model") ||
+    t.includes("animal model") ||
+    t.includes("survey on") ||
+    t.includes("survey of") ||
+    t.includes("single-center experience") ||
+    t.includes("single center experience")
+  ) {
     return false;
   }
-  return true;
+
+  // Must have definitive guideline / consensus signal in the title
+  const hasGuidelineSignal =
+    t.includes("guideline") ||
+    t.includes("guidelines") ||
+    t.includes("consensus statement") ||
+    t.includes("consensus recommendation") ||
+    t.includes("consensus guidance") ||
+    t.includes("clinical practice guideline") ||
+    t.includes("scientific statement") ||
+    t.includes("practice parameter") ||
+    t.includes("evidence update") ||
+    t.includes("expedited recommendation");
+
+  if (!hasGuidelineSignal) {
+    return false;
+  }
+
+  // Must come from an official society journal or have explicit society endorsement in title
+  const validSocietyJournals = [
+    "eur stroke",
+    "stroke",
+    "circulation",
+    "neurology",
+    "eur heart",
+    "ejves",
+    "epilepsia",
+    "epilepsy curr",
+    "neurocrit care",
+    "movement disorders",
+    "headache",
+    "mult scler",
+    "lancet neurol",
+    "jama neurol",
+  ];
+
+  const isSocietyJournal = validSocietyJournals.some((vj) => j.includes(vj));
+  const hasExplicitSocietyInTitle =
+    t.includes("european stroke") ||
+    t.includes("american heart") ||
+    t.includes("american stroke") ||
+    t.includes("american academy of neurology") ||
+    t.includes("european academy of neurology") ||
+    t.includes("european society of cardiology") ||
+    t.includes("vascular surgery") ||
+    t.includes("neurocritical care society") ||
+    t.includes("international league against epilepsy") ||
+    t.includes("american epilepsy society") ||
+    t.includes("movement disorder society") ||
+    t.includes("american headache society") ||
+    t.includes("ectrims") ||
+    t.includes("aanem") ||
+    t.includes("infectious diseases society") ||
+    t.includes("bộ y tế");
+
+  return isSocietyJournal || hasExplicitSocietyInTitle;
 }
 
 /**
@@ -153,18 +253,74 @@ export function detectSubspecialty(text: string): SubspecialtyType {
  */
 export function detectSociety(title: string, journal: string): string {
   const t = (title + " " + journal).toUpperCase();
-  if (t.includes("EUROPEAN STROKE ORGANISATION") || t.includes("ESO ")) return "ESO";
-  if (t.includes("AMERICAN HEART ASSOCIATION") || t.includes("AMERICAN STROKE ASSOCIATION") || t.includes("AHA/ASA")) return "AHA/ASA";
-  if (t.includes("AMERICAN ACADEMY OF NEUROLOGY") || t.includes("AAN ")) return "AAN";
-  if (t.includes("EUROPEAN ACADEMY OF NEUROLOGY") || t.includes("EAN ")) return "EAN";
-  if (t.includes("EUROPEAN SOCIETY OF CARDIOLOGY") || t.includes("ESC ")) return "ESC";
-  if (t.includes("EUROPEAN SOCIETY FOR VASCULAR SURGERY") || t.includes("ESVS")) return "ESVS";
-  if (t.includes("NEUROCRITICAL CARE SOCIETY") || t.includes("NCS ")) return "NCS";
-  if (t.includes("INTERNATIONAL LEAGUE AGAINST EPILEPSY") || t.includes("ILAE")) return "ILAE";
-  if (t.includes("MOVEMENT DISORDER SOCIETY") || t.includes("MDS")) return "MDS";
-  if (t.includes("AMERICAN HEADACHE SOCIETY") || t.includes("AHS")) return "AHS";
-  if (t.includes("WORLD STROKE ORGANIZATION") || t.includes("WSO")) return "WSO";
-  return "ESO";
+  // American Epilepsy Society (AES)
+  if (t.includes("AMERICAN EPILEPSY SOCIETY") || /\bAES\b/.test(t) || t.includes("EPILEPSY CURR")) return "AES";
+  // International League Against Epilepsy (ILAE)
+  if (t.includes("INTERNATIONAL LEAGUE AGAINST EPILEPSY") || /\bILAE\b/.test(t) || t.includes("EPILEPSIA")) return "ILAE";
+
+  // European Stroke Organisation (ESO) - including joint guidelines like ESO/EANS, ESO/ESMINT
+  if (
+    t.includes("EUROPEAN STROKE ORGANISATION") ||
+    t.includes("EUROPEAN STROKE ORGANIZATION") ||
+    /\bESO\b/.test(t) ||
+    t.includes("EUR STROKE J")
+  ) {
+    return "ESO";
+  }
+
+  // AHA/ASA
+  if (
+    t.includes("AMERICAN HEART ASSOCIATION") ||
+    t.includes("AMERICAN STROKE ASSOCIATION") ||
+    t.includes("AHA/ASA") ||
+    /\bAHA\b/.test(t) ||
+    /\bASA\b/.test(t)
+  ) {
+    return "AHA/ASA";
+  }
+
+  // ESC (European Society of Cardiology)
+  if (t.includes("EUROPEAN SOCIETY OF CARDIOLOGY") || /\bESC\b/.test(t) || t.includes("EUR HEART J")) return "ESC";
+
+  // ESVS (European Society for Vascular Surgery)
+  if (t.includes("EUROPEAN SOCIETY FOR VASCULAR SURGERY") || /\bESVS\b/.test(t) || t.includes("EJVES")) return "ESVS";
+
+  // AAN (American Academy of Neurology)
+  if (t.includes("AMERICAN ACADEMY OF NEUROLOGY") || /\bAAN\b/.test(t)) return "AAN";
+
+  // EAN (European Academy of Neurology)
+  if (t.includes("EUROPEAN ACADEMY OF NEUROLOGY") || /\bEAN\b/.test(t)) return "EAN";
+
+  // NCS (Neurocritical Care Society)
+  if (t.includes("NEUROCRITICAL CARE SOCIETY") || /\bNCS\b/.test(t) || t.includes("NEUROCRIT CARE")) return "NCS";
+
+  // MDS (Movement Disorder Society)
+  if (t.includes("MOVEMENT DISORDER SOCIETY") || /\bMDS\b/.test(t)) return "MDS";
+
+  // AHS (American Headache Society)
+  if (t.includes("AMERICAN HEADACHE SOCIETY") || /\bAHS\b/.test(t)) return "AHS";
+
+  // ECTRIMS
+  if (t.includes("ECTRIMS") || t.includes("MULTIPLE SCLEROSIS")) return "ECTRIMS";
+
+  // AANEM
+  if (t.includes("AANEM") || t.includes("NEUROMUSCULAR")) return "AANEM";
+
+  // IDSA
+  if (t.includes("INFECTIOUS DISEASES SOCIETY") || /\bIDSA\b/.test(t)) return "IDSA";
+
+  // VN-MOH
+  if (t.includes("BỘ Y TẾ") || t.includes("MOH") || t.includes("VIỆT NAM") || t.includes("VN-MOH")) return "VN-MOH";
+
+  // WSO
+  if (t.includes("WORLD STROKE ORGANIZATION") || /\bWSO\b/.test(t)) return "WSO";
+
+  // Journal based fallback
+  if (journal.toLowerCase().includes("eur stroke")) return "ESO";
+  if (journal.toLowerCase().includes("epilep")) return "ILAE";
+  if (journal.toLowerCase().includes("heart")) return "ESC";
+
+  return "Other";
 }
 
 /**
@@ -229,25 +385,25 @@ export function transformEuropePMCToGuideline(item: EuropePMCResultItem): Guidel
  * Build a query tailored to Europe PMC REST API
  */
 export function buildEuropePMCQuery(options: PubMedSearchOptions): string {
-  const parts: string[] = ['(TITLE:"guideline" OR TITLE:"recommendations" OR TITLE:"consensus" OR KW:"Practice Guideline")'];
+  const parts: string[] = ['(TITLE:"guideline" OR TITLE:"guidelines" OR TITLE:"consensus statement" OR KW:"Practice Guideline")'];
 
   if (options.society) {
     const s = options.society.toUpperCase();
     if (s.includes("ESO")) {
-      parts.push('("European Stroke Organisation" OR "ESO" OR "European Stroke Journal")');
+      parts.push('("European Stroke Organisation" OR "ESO" OR JOURNAL:"European Stroke Journal")');
     } else if (s.includes("AHA")) {
-      parts.push('("American Heart Association" OR "American Stroke Association" OR "Stroke" OR "Circulation")');
+      parts.push('("American Heart Association" OR "American Stroke Association" OR JOURNAL:"Stroke" OR JOURNAL:"Circulation")');
     } else if (s.includes("AAN")) {
-      parts.push('("American Academy of Neurology" OR "Neurology")');
+      parts.push('("American Academy of Neurology" OR JOURNAL:"Neurology")');
     } else if (s.includes("ESC")) {
-      parts.push('("European Society of Cardiology" OR "European Heart Journal")');
+      parts.push('("European Society of Cardiology" OR JOURNAL:"European Heart Journal")');
     } else if (s.includes("NCS")) {
-      parts.push('("Neurocritical Care Society" OR "Neurocritical Care")');
+      parts.push('("Neurocritical Care Society" OR JOURNAL:"Neurocritical Care")');
     } else {
       parts.push(`"${options.society}"`);
     }
   } else {
-    parts.push('(stroke OR neurology OR epilepsy OR "intracerebral haemorrhage" OR "subarachnoid hemorrhage" OR "carotid")');
+    parts.push('(JOURNAL:"European Stroke Journal" OR JOURNAL:"Stroke" OR JOURNAL:"European Heart Journal" OR JOURNAL:"Neurology" OR JOURNAL:"EJVES" OR JOURNAL:"Epilepsia" OR JOURNAL:"Neurocritical Care" OR JOURNAL:"Movement Disorders" OR TITLE:"European Stroke Organisation" OR TITLE:"American Heart Association" OR TITLE:"American Academy of Neurology" OR TITLE:"European Society of Cardiology")');
   }
 
   if (options.query) {
@@ -310,8 +466,9 @@ async function searchEuropePMC(options: PubMedSearchOptions): Promise<SyncGuidel
     const rawItems: EuropePMCResultItem[] = data?.resultList?.result || [];
 
     const guidelines: GuidelineDoc[] = rawItems
-      .filter((item) => isGenuineGuideline(item.title))
-      .map((item) => transformEuropePMCToGuideline(item));
+      .filter((item) => isGenuineGuideline(item.title, item.journalTitle))
+      .map((item) => transformEuropePMCToGuideline(item))
+      .filter((g) => g.society !== "Other" && isGenuineGuideline(g.title, g.journalTarget));
 
     return {
       source: "EUROPE_PMC_LIVE",
