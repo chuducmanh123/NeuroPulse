@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { GuidelineDoc, PracticeChangeDetail, SubspecialtyType } from "@/types/neuroguide";
+import type { GuidelineDoc, PracticeChangeDetail, SubspecialtyType } from "../../types/neuroguide.ts";
 
 const STORE_DIR = path.join(process.cwd(), "data", "guidelines_store");
 

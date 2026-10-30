@@ -12,7 +12,7 @@ import {
   MOCK_CONFERENCE_EVENTS,
   MOCK_CLINICAL_SCENARIOS,
 } from "../../data/neuroguideMockData.ts";
-import { getStoredGuidelinesAsDocs } from "./storeAdapter";
+import { getStoredGuidelinesAsDocs } from "./storeAdapter.ts";
 
 const BLOB_FILE_NAME = "neuroguide_data.json";
 const LOCAL_STORAGE_PATH = path.join(process.cwd(), "public", "data", "neuroguide_cloud.json");
