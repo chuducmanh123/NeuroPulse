@@ -13,9 +13,28 @@ function cleanBlobToken(raw: string | undefined): string | undefined {
   return cleaned.length > 10 ? cleaned : undefined;
 }
 
+function getBlobToken(): { token: string | undefined } {
+  const direct = cleanBlobToken(process.env.BLOB_READ_WRITE_TOKEN);
+  if (direct) return { token: direct };
+  for (const [key, val] of Object.entries(process.env)) {
+    if ((key.includes("BLOB") || key.includes("READ_WRITE")) && key.includes("TOKEN") && val) {
+      const cleaned = cleanBlobToken(val);
+      if (cleaned) return { token: cleaned };
+    }
+  }
+  return { token: undefined };
+}
+
 export async function POST(request: NextRequest): Promise<NextResponse> {
   const body = (await request.json()) as HandleUploadBody;
-  const token = cleanBlobToken(process.env.BLOB_READ_WRITE_TOKEN);
+  const { token } = getBlobToken();
+
+  if (!token) {
+    return NextResponse.json(
+      { ok: false, error: "BLOB_NOT_CONFIGURED: Vercel Blob read/write token not found." },
+      { status: 400 }
+    );
+  }
 
   try {
     const jsonResponse = await handleUpload({

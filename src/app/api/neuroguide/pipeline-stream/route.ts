@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { executeIncrementalPipeline, IncrementalProgressEvent } from "@/lib/neuroguide/incrementalExtractor";
 import { verifyAdminToken } from "@/utils/security";
+import zlib from "zlib";
+import fs from "fs";
+import path from "path";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
@@ -22,6 +25,7 @@ export async function POST(request: NextRequest) {
   }
 
   let blob_url: string | undefined;
+  let uploadId: string | undefined;
   let fileName: string = "guideline.pdf";
   let society: string = "AHA";
   let title: string | undefined;
@@ -36,6 +40,7 @@ export async function POST(request: NextRequest) {
     society = (formData.get("society") as string) || "AHA";
     title = (formData.get("title") as string) || undefined;
     blob_url = (formData.get("blob_url") as string) || undefined;
+    uploadId = (formData.get("uploadId") as string) || undefined;
     const keyField = formData.get("apiKey") as string;
     if (keyField) apiKey = keyField;
     const yearStr = formData.get("year") as string;
@@ -50,6 +55,7 @@ export async function POST(request: NextRequest) {
     try {
       const body = await request.json();
       blob_url = body.blob_url;
+      uploadId = body.uploadId;
       fileName = body.fileName || "guideline.pdf";
       society = body.society || "AHA";
       title = body.title;
@@ -58,8 +64,51 @@ export async function POST(request: NextRequest) {
     } catch {}
   }
 
-  // Prepare PDF data buffer
+  // Tự động giải nén nếu buffer được gửi ở định dạng Gzip (magic bytes 0x1f, 0x8b)
+  if (directBuffer && directBuffer.length > 2 && directBuffer[0] === 0x1f && directBuffer[1] === 0x8b) {
+    try {
+      directBuffer = zlib.gunzipSync(directBuffer);
+    } catch (decompErr) {
+      console.warn("Không thể giải nén payload gzip trực tiếp:", decompErr);
+    }
+  }
+
+  // Chuẩn bị dữ liệu PDF
   let pdfBuffer: Buffer | null = directBuffer;
+
+  // Nếu tệp được tải lên theo phương thức chunked upload
+  if (!pdfBuffer && uploadId) {
+    const tmpDir = path.join("/tmp", "neuroguide_uploads");
+    const localTmpDir = path.join(process.cwd(), "data", "temp_uploads");
+    let uploadFilePath: string | null = null;
+
+    for (const dir of [tmpDir, localTmpDir]) {
+      const candidate = path.join(dir, `${uploadId}.bin`);
+      if (fs.existsSync(candidate)) {
+        uploadFilePath = candidate;
+        break;
+      }
+    }
+
+    if (uploadFilePath) {
+      try {
+        let rawBuf = fs.readFileSync(uploadFilePath);
+        // Tự động giải nén nếu file chunked được nén gzip
+        if (rawBuf.length > 2 && rawBuf[0] === 0x1f && rawBuf[1] === 0x8b) {
+          try {
+            rawBuf = zlib.gunzipSync(rawBuf);
+          } catch {}
+        }
+        pdfBuffer = rawBuf;
+        // Xóa tệp tạm để giải phóng bộ nhớ
+        try {
+          fs.unlinkSync(uploadFilePath);
+        } catch {}
+      } catch (chunkReadErr) {
+        console.warn("Lỗi đọc tệp chunked upload:", chunkReadErr);
+      }
+    }
+  }
 
   if (!pdfBuffer && blob_url) {
     try {
@@ -86,7 +135,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // Initialize SSE Stream Response
+  // Khởi tạo SSE Stream Response
   const encoder = new TextEncoder();
   const stream = new ReadableStream({
     async start(controller) {

@@ -268,7 +268,7 @@ export async function executeIncrementalPipeline(
     await onProgress({
       stage: "ERROR",
       percent: 100,
-      message: "Google Gemini API key is missing. Please enter your API key in the modal or configure GEMINI_API_KEY in your environment variables.",
+      message: "Google Gemini API key is missing. Please configure GEMINI_API_KEY in your server environment variables or .env file.",
       error: "MISSING_GEMINI_API_KEY",
     });
     return { success: false, totalCount: 0, docId };

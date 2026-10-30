@@ -25,8 +25,6 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
   const [society, setSociety] = useState<string>("AHA");
   const [title, setTitle] = useState<string>("");
   const [year, setYear] = useState<string>(new Date().getFullYear().toString());
-  const [apiKey, setApiKey] = useState<string>("");
-  const [showApiKey, setShowApiKey] = useState<boolean>(false);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [streamProgress, setStreamProgress] = useState<number>(0);
@@ -37,14 +35,6 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-
-  // Load API Key from localStorage if saved
-  useEffect(() => {
-    try {
-      const savedKey = localStorage.getItem("neuroguide_gemini_api_key");
-      if (savedKey) setApiKey(savedKey);
-    } catch {}
-  }, []);
 
   if (!isOpen) return null;
 
@@ -78,17 +68,6 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
     }
     setLiveRecs([]);
     setBlobCleaned(false);
-  };
-
-  const handleApiKeyChange = (val: string) => {
-    setApiKey(val);
-    try {
-      if (val.trim()) {
-        localStorage.setItem("neuroguide_gemini_api_key", val.trim());
-      } else {
-        localStorage.removeItem("neuroguide_gemini_api_key");
-      }
-    } catch {}
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -136,6 +115,8 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
       }
 
       let blobUrl: string | undefined = undefined;
+      let uploadId: string | undefined = undefined;
+      let payloadToUpload: Blob | File | null = selectedFile;
 
       // Lấy token quản trị viên từ session/localStorage
       const adminToken =
@@ -146,11 +127,11 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
           : "";
 
       if (selectedFile) {
-        setStreamMessage(`Uploading file to Vercel Blob Storage (${(selectedFile.size / (1024 * 1024)).toFixed(2)} MB)...`);
-        setStreamProgress(10);
+        setStreamMessage(`Preparing PDF document (${(selectedFile.size / (1024 * 1024)).toFixed(2)} MB)...`);
+        setStreamProgress(8);
 
+        // 1. Thử tải lên Vercel Blob (nếu Vercel Blob đã được kích hoạt trên hệ thống)
         try {
-          // Direct client upload to Vercel Blob (bypasses 4.5 MB Serverless limit, authenticated with adminToken)
           const blobResult = await upload(selectedFile.name, selectedFile, {
             access: "public",
             handleUploadUrl: "/api/neuroguide/upload-blob",
@@ -164,8 +145,66 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
           setStreamMessage("Uploaded to Vercel Blob successfully. Initializing AI pipeline...");
           setStreamProgress(30);
         } catch (uploadErr) {
-          console.warn("Client-side Blob upload handshake failed, falling back to direct stream:", uploadErr);
-          setStreamMessage("Connecting directly to extraction stream...");
+          console.warn("Client Blob upload not available, switching to optimized streaming:", uploadErr);
+        }
+
+        // 2. Nếu không có Vercel Blob, tiến hành nén gzip phía client để vượt qua giới hạn 4.5 MB của Serverless
+        if (!blobUrl && typeof CompressionStream !== "undefined") {
+          try {
+            setStreamMessage("Optimizing & compressing PDF for cloud streaming...");
+            setStreamProgress(12);
+            const cs = new CompressionStream("gzip");
+            const writer = cs.writable.getWriter();
+            writer.write(await selectedFile.arrayBuffer());
+            writer.close();
+            const gzBlob = await new Response(cs.readable).blob();
+            if (gzBlob.size < selectedFile.size) {
+              payloadToUpload = gzBlob;
+              console.log(
+                `PDF optimized: ${(selectedFile.size / (1024 * 1024)).toFixed(2)} MB -> ${(gzBlob.size / (1024 * 1024)).toFixed(2)} MB`
+              );
+            }
+          } catch (compErr) {
+            console.warn("Client gzip compression skipped:", compErr);
+          }
+        }
+
+        // 3. Nếu dung lượng (sau nén) vẫn > 4.1 MB, chia nhỏ tệp tải lên theo từng chunk 2MB (Chunked Upload)
+        if (!blobUrl && payloadToUpload && payloadToUpload.size > 4.1 * 1024 * 1024) {
+          setStreamMessage("Uploading large document in safe chunks (bypassing cloud limits)...");
+          const generatedUploadId = `upload_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
+          const CHUNK_SIZE = 2 * 1024 * 1024;
+          const totalChunks = Math.ceil(payloadToUpload.size / CHUNK_SIZE);
+
+          for (let chunkIdx = 0; chunkIdx < totalChunks; chunkIdx++) {
+            const start = chunkIdx * CHUNK_SIZE;
+            const end = Math.min(start + CHUNK_SIZE, payloadToUpload.size);
+            const chunkBlob = payloadToUpload.slice(start, end);
+
+            const chunkHeaders: Record<string, string> = {
+              "x-upload-id": generatedUploadId,
+              "x-chunk-index": String(chunkIdx),
+              "x-total-chunks": String(totalChunks),
+            };
+            if (adminToken) chunkHeaders["x-admin-token"] = adminToken;
+
+            const chunkRes = await fetch("/api/neuroguide/upload-chunk", {
+              method: "POST",
+              headers: chunkHeaders,
+              body: chunkBlob,
+            });
+
+            if (!chunkRes.ok) {
+              throw new Error(`Chunk upload failed at part ${chunkIdx + 1}/${totalChunks}`);
+            }
+
+            const pct = Math.round(((chunkIdx + 1) / totalChunks) * 18) + 12;
+            setStreamProgress(pct);
+          }
+
+          uploadId = generatedUploadId;
+          setStreamMessage("Document chunks assembled. Connecting to AI extraction stream...");
+          setStreamProgress(32);
         }
       }
 
@@ -174,9 +213,6 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
       const headers: Record<string, string> = {};
       if (adminToken) {
         headers["x-admin-token"] = adminToken;
-      }
-      if (apiKey.trim()) {
-        headers["x-gemini-api-key"] = apiKey.trim();
       }
 
       if (blobUrl) {
@@ -190,17 +226,28 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
             society,
             title,
             year: year ? parseInt(year, 10) : undefined,
-            apiKey: apiKey.trim() || undefined,
           }),
         });
-      } else if (selectedFile) {
-        // Fallback: direct multipart stream
+      } else if (uploadId) {
+        headers["Content-Type"] = "application/json";
+        streamResponse = await fetch("/api/neuroguide/pipeline-stream", {
+          method: "POST",
+          headers,
+          body: JSON.stringify({
+            uploadId,
+            fileName: selectedFile?.name || "guideline.pdf",
+            society,
+            title,
+            year: year ? parseInt(year, 10) : undefined,
+          }),
+        });
+      } else if (selectedFile && payloadToUpload) {
+        // Fallback: direct multipart stream (với payload đã nén gzip nếu áp dụng)
         const formData = new FormData();
-        formData.append("file", selectedFile);
+        formData.append("file", payloadToUpload, selectedFile.name);
         formData.append("society", society);
         if (title) formData.append("title", title);
         if (year) formData.append("year", year);
-        if (apiKey.trim()) formData.append("apiKey", apiKey.trim());
 
         streamResponse = await fetch("/api/neuroguide/pipeline-stream", {
           method: "POST",
@@ -238,7 +285,9 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
 
       if (!streamResponse.ok) {
         if (streamResponse.status === 413) {
-          setErrorMessage("File exceeds server upload limit (4.5 MB). Please compress the file or configure Vercel Blob.");
+          setErrorMessage("Tệp tin vượt quá giới hạn tải lên (4.5 MB). Vui lòng thử nén tệp tin hoặc giảm số trang PDF.");
+        } else if (streamResponse.status === 401) {
+          setErrorMessage("Phiên làm việc Quản trị viên (Admin) đã hết hạn. Vui lòng đăng nhập lại mật mã Admin.");
         } else {
           setErrorMessage(`Server returned HTTP ${streamResponse.status}`);
         }
@@ -490,30 +539,6 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
                     className="w-full text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-1.5 outline-hidden"
                   />
                 </div>
-              </div>
-
-              {/* Google Gemini API Key Input */}
-              <div>
-                <div className="flex justify-between items-center mb-1">
-                  <label className="block text-[11px] font-bold text-slate-500 dark:text-slate-400">
-                    Google Gemini API Key (Tùy chọn nếu đã có trong .env):
-                  </label>
-                  <button
-                    type="button"
-                    onClick={() => setShowApiKey(!showApiKey)}
-                    className="text-[10px] text-amber-600 dark:text-amber-400 font-semibold hover:underline cursor-pointer"
-                  >
-                    {showApiKey ? "Ẩn" : "Hiện"}
-                  </button>
-                </div>
-                <input
-                  type={showApiKey ? "text" : "password"}
-                  disabled={isLoading}
-                  value={apiKey}
-                  onChange={(e) => handleApiKeyChange(e.target.value)}
-                  placeholder="Dán API Key (AQ... hoặc AIzaSy... - Tự động ghi nhớ trên trình duyệt)"
-                  className="w-full text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-1.5 font-mono outline-hidden focus:ring-2 focus:ring-amber-500 placeholder:text-slate-400"
-                />
               </div>
             </>
           )}
