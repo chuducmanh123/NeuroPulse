@@ -1,5 +1,85 @@
 [
   {
+    "id": "10.1001/jama.2026.20037",
+    "title": "Annual Dementia Incidence May Reach 25 Million by 2050",
+    "journal": {
+      "name": "JAMA",
+      "short_name": "JAMA",
+      "badge_bg": "#FEE2E2",
+      "badge_text": "#DC2626"
+    },
+    "pub_date": "2026-10-30T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Richmond Sari"
+    ],
+    "doi_url": "https://doi.org/10.1001/jama.2026.20037",
+    "neurology_classification": {
+      "subspecialty": "Dementia",
+      "subspecialties": [
+        "Dementia"
+      ],
+      "topics": [
+        "Dementia"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at JAMA via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Dementia practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1002/ana.78400",
+    "title": "Prediction of First and Recurrent Falls in Parkinson's Disease",
+    "journal": {
+      "name": "Annals of Neurology",
+      "short_name": "Ann Neurol",
+      "badge_bg": "#EDE9FE",
+      "badge_text": "#5B21B6"
+    },
+    "pub_date": "2026-10-30T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Vizcarra Joaquin A.",
+      "Hefter Kat",
+      "Duong Michael Tran",
+      "Ertefaie Ashkan",
+      "Tachinardi Umberto",
+      "Olm Christopher A.",
+      "Radhakrishnan Hamsanandini",
+      "McMillan Corey T.",
+      "Irwin David",
+      "Weintraub Daniel",
+      "Litt Brian",
+      "Bassett Dani S.",
+      "Siderowf Andrew"
+    ],
+    "doi_url": "https://doi.org/10.1002/ana.78400",
+    "neurology_classification": {
+      "subspecialty": "Movement Disorders",
+      "subspecialties": [
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Parkinson"
+      ]
+    },
+    "abstract": "Objective: To develop and externally validate prediction models for next‐year falls in Parkinson's disease (PD), and to evaluate the incremental value of imaging and fluid biomarkers. Methods: We developed models in Parkinson's Progression Markers Initiative (PPMI) to predict next‐year falls with external validation in University of Pennsylvania (UPenn) cohorts. We evaluated incident falls among visits without current or prior falls and recurrent falls among visits with current falls. We calculated area under the receiver operating characteristic curve (AUROC), area under the precision‐recall curve (AUPRC), and development‐derived risk strata. Results: The incident model, comprising Movement Disorder Society–Unified Parkinson's Disease Rating Scale Part III, Montreal Cognitive Assessment, and Geriatric Depression Scale (GDS), was developed in 773 visit‐pairs and validated in 589 visit‐pairs. AUROC was 0.704 (95% confidence interval [CI] = 0.653–0.750) in PPMI and 0.630 (95% CI = 0.564–0.687) in UPenn. Incident fall risk increased from 7.1 to 18.5% across low‐ to high‐risk groups in UPenn. The recurrent model, comprising Hoehn and Yahr (H&Y), GDS, and Symbol Digit Modalities Test, was developed in 302 visit‐pairs and validated in 137 visit‐pairs. AUROC was 0.683 (95% CI = 0.623–0.753) in PPMI and 0.641 (95% CI = 0.538–0.732) in UPenn. Recurrent fall rates increased from 22.2 to 65.0% across low‐ to high‐risk groups in UPenn. Exploratory biomarker augmentation modestly improved discrimination beyond clinical models in PPMI, but not in external validation, where estimates were imprecise. Interpretation: Clinical measures may identify next‐year fall risk in PD with moderate discrimination, although performance attenuated in external validation. Exploratory biomarkers provided modest incremental value in development but not in external validation. ANN NEUROL 2026",
+    "ai_takeaways": {
+      "conclusion_vi": "Clinical measures may identify next‐year fall risk in PD with moderate discrimination, although performance attenuated in external validation. Exploratory biomarkers provided modest incremental value in development but not in external validation.",
+      "clinical_significance": "Clinical significance for Movement Disorders practice.",
+      "ai_verified": false
+    }
+  },
+  {
     "id": "10.1212/wnl.0000000000218674",
     "title": "Resting-State Functional MRI and Clinical Outcomes After Acute Disorders of Consciousness",
     "journal": {
@@ -9,9 +89,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-10-29T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Original Article",
     "article_types": [
-      "Editorial / Perspective"
+      "Original Article"
     ],
     "authors": [
       "Kazazian Karnig",
@@ -22,18 +102,20 @@
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218674",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Neurocritical Care",
       "subspecialties": [
-        "Other"
+        "Neurocritical Care"
       ],
       "topics": [
-        "Neurology"
+        "Brain",
+        "Traumatic brain injury",
+        "Encephalopathy"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "BACKGROUND AND OBJECTIVES: Accurate assessment and prognostication of patients with acute disorders of consciousness (DoC) after severe brain injury remain a substantial clinical challenge. Resting-state fMRI (rs-fMRI) measures spontaneous, temporally correlated brain activity in the absence of external stimulation and provides objective insight into the integrity of large-scale neural networks that support brain function. Emerging evidence suggests that assessing neural integrity using rs-fMRI may improve outcome prediction in patients with acute DoC. This review summarizes the current evidence of rs-fMRI as an assessment tool during the acute phase of severe brain injury. METHODS: Following Preferred Reporting Items for Systematic Reviews and Meta-Analyses guidelines, we conducted a systematic literature search using MEDLINE and Embase databases from January 2006 to March 2026. Eligible studies included peer-reviewed empirical investigations of adult patients with acute DoC (<28 days postinjury) that examined associations between rs-fMRI measures and clinical outcomes. The systematic review protocol was registered in the PROSPERO International Prospective Register of Systematic Reviews (CRD420251085923). RESULTS: Of 396 studies screened, 30 met eligibility criteria. Across these studies, a total of 800 patients (mean age = 48, 69% male) were scanned at a weighted average of 9.31 days after intensive care unit admission. Ten studies included patients exclusively with traumatic brain injury, 8 with cardiac arrest, 2 with encephalopathy, and 10 included mixed etiologies. The most frequently assessed resting-state networks were the default mode (n = 20) and executive control networks (n = 11), followed by visual (n = 6), salience (n = 6), sensorimotor (n = 6), and auditory (n = 5) networks. Across studies, significant associations between rs-fMRI measures and outcome were consistently reported, despite heterogeneity in methodology. The most commonly reported patient outcomes were functional or neurologic status, assessed at hospital discharge or between 3 and 12 months postinjury. DISCUSSION: Current evidence consistently demonstrates that rs-fMRI acquired during the acute phase of brain injury is associated with neurologic and functional outcomes in patients with DoC. In addition, rs-fMRI may help identify patients more likely to recover consciousness and achieve favorable functional outcomes by characterizing the integrity of large-scale brain networks. However, substantial heterogeneity and small sample sizes limit comparability across studies. Standardized acquisition and analysis frameworks, along with larger prospective studies, are needed to validate the clinical utility of rs-fMRI and support translation into an assessment tool after brain injury.",
     "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Other practice.",
+      "conclusion_vi": "Current evidence consistently demonstrates that rs-fMRI acquired during the acute phase of brain injury is associated with neurologic and functional outcomes in patients with DoC. In addition, rs-fMRI may help identify patients more likely to recover consciousness and achieve favorable functional outcomes by characterizing the integrity of large-scale brain networks.",
+      "clinical_significance": "Clinical significance for Neurocritical Care practice.",
       "ai_verified": false
     }
   },
@@ -47,9 +129,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-10-29T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Original Article",
     "article_types": [
-      "Editorial / Perspective"
+      "Original Article"
     ],
     "authors": [
       "Beaufort Quentin",
@@ -74,12 +156,13 @@
       ],
       "topics": [
         "Hemorrhage",
+        "Intracranial",
         "Intracerebral"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Identifying intracranial arteriovenous shunts (AVSs), chiefly arteriovenous malformations (AVMs) and dural arteriovenous fistulas (dAVFs), after nontraumatic intracerebral hemorrhage (ICH) is critical to guide management and prevent recurrence. AVSs are the leading secondary causes of ICH but typically require digital subtraction angiography (DSA) for diagnosis, an invasive, ionizing radiation-based procedure that carries a non-negligible risk of complications and is not readily available in many centers. We assessed the diagnostic accuracy of arterial spin labeling (ASL), a noninvasive MRI technique for detecting AVSs during the etiologic workup of acute ICH. We conducted a prospective multicenter diagnostic accuracy study, across 3 French tertiary hospitals within the ongoing OPTICH cohort (October 2022-October 2025). Consecutive adults with nontraumatic ICH who underwent standardized MRI including ASL within the first week were included. ASL perfusion maps were independently evaluated by 2 blinded neuroradiologists and rated positive when focal hyperperfusion was observed adjacent to the hematoma. Final ICH etiology was adjudicated using all available imaging and follow-up data, with DSA confirmation for all AVSs. Sensitivity, specificity, positive predictive value (PPV), negative predictive value (NPV), and overall accuracy were calculated, using the final etiologic diagnosis as the reference standard. Among 537 enrolled patients, 277 met inclusion criteria (median age 71 years [interquartile range 60-80]; 163 (58.8%) men). An AVS was confirmed in 24 patients (8.7%; 23 AVMs and 1 dAVFs). Interobserver agreement for ASL rating was excellent (κ = 0.88). ASL demonstrated a sensitivity of 95.8% (95% CI 79.8-99.3), specificity of 94.5% (90.9-96.7), PPV of 62.2% (46.1-75.9), and NPV of 99.6% (98.1-99.9), with an overall accuracy of 94.6% (91.3-96.7). All AVSs identified on initial DSA were detected by ASL; 3 ASL-positive AVSs were occult on initial DSA. In an unselected, low-prevalence adult ICH population, ASL demonstrated excellent diagnostic accuracy and a near-perfect NPV, indicating that a negative ASL reliably excludes AVS. Main limitations include selective DSA use, few non-AVM shunts, and modest scanner heterogeneity. Pending external validation, these findings support systematic incorporation of ASL as a gatekeeper to DSA into standard MRI protocols during ICH etiologic workup.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "support systematic incorporation of ASL as a gatekeeper to DSA into standard MRI protocols during ICH etiologic workup.",
       "clinical_significance": "Clinical significance for Stroke practice.",
       "ai_verified": false
     }
@@ -94,9 +177,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-10-29T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Original Article",
     "article_types": [
-      "Editorial / Perspective"
+      "Original Article"
     ],
     "authors": [
       "Campos-Fernandez Daniel",
@@ -123,12 +206,14 @@
         "Epilepsy"
       ],
       "topics": [
+        "Epilepsy",
+        "Seizure",
         "Status epilepticus"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "BACKGROUND AND OBJECTIVES: Cenobamate (CNB) is an antiseizure medication (ASM) with demonstrated efficacy in drug-resistant focal epilepsy, but its role in status epilepticus (SE) remains unclear. Emerging evidence suggests that it may achieve early clinically meaningful seizure control at relatively low doses, with an acceptable safety profile, supporting its potential utility as an urgent adjunctive therapy in severe refractory epilepsy. We aimed to evaluate the effectiveness and safety of CNB for the treatment of focal-onset refractory SE (RSE) and super-refractory SE (SRSE) in real-world clinical practice. METHODS: We conducted a multicenter retrospective cohort study using a prospectively maintained registry including adult patients with focal RSE and SRSE treated between January 2022 and October 2025. Clinical, EEG, and treatment data were collected. The primary outcome was sustained SE termination (>24 hours) with electroclinical resolution attributable to CNB. A secondary propensity score-matched analysis (1:2) compared CNB-exposed patients with matched nonexposed controls from the same registry (2011-2025), using target trial emulation principles. RESULTS: Thirty-one patients received CNB (mean age 61 ± 21 years; 54.8% male); 45.2% met criteria for SRSE. CNB was initiated a median of 4 days (interquartile range [IQR] 2-12) after SE onset after failure of 5 ASMs (IQR 4-5), at a median starting dose of 50 mg/d (IQR 25-50). Sustained SE resolution occurred in 26 patients (83.9%), including all patients with RSE (17/17) and 64.3% with SRSE. Response occurred after a median of 2 days (IQR 1-6). In the matched cohort analysis (28 CNB exposed vs 56 controls), SE resolution was higher in CNB-treated patients (82.1% vs 57.1%; p = 0.02). In multivariable analysis, CNB exposure was independently associated with SE resolution (adjusted odds ratio 5.9, 95% CI 1.2-30, p = 0.03). No serious CNB-related adverse events occurred. Mild adverse events were observed in 51.6%, most commonly somnolence. In-hospital mortality was 22.6% with no deaths attributed to CNB. DISCUSSION: In this multicenter real-world cohort, CNB was associated with high rates of sustained SE termination in RSE and SRSE and improved outcomes compared with matched controls, without serious safety signals. These findings support CNB as a potential adjunctive therapeutic option in refractory focal SE. CLASSIFICATION OF EVIDENCE: This study provides Class IV evidence that CNB is effective as an adjunctive therapy for the control of focal-onset RSE and SRSE in adult patients.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "In this multicenter real-world cohort, CNB was associated with high rates of sustained SE termination in RSE and SRSE and improved outcomes compared with matched controls, without serious safety signals. These findings support CNB as a potential adjunctive therapeutic option in refractory focal SE.",
       "clinical_significance": "Clinical significance for Neurocritical Care practice.",
       "ai_verified": false
     }
@@ -311,9 +396,9 @@
         "Neurology"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "For multiple-choice questions relevant to Teaching NeuroImages and Teaching Video NeuroImages, find",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "For multiple-choice questions relevant to Teaching NeuroImages and Teaching Video NeuroImages, find.",
       "clinical_significance": "Clinical significance for Movement Disorders practice.",
       "ai_verified": false
     }
@@ -6198,6 +6283,45 @@
       "Clinical Trial",
       "Original Article"
     ]
+  },
+  {
+    "id": "10.1016/s0140-6736(26)01500-x",
+    "title": "Irritable bowel syndrome and related disorders of gut–brain interaction",
+    "journal": {
+      "name": "The Lancet",
+      "short_name": "The Lancet",
+      "badge_bg": "#DBEAFE",
+      "badge_text": "#1E40AF"
+    },
+    "pub_date": "2026-10-01T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Black Christopher J",
+      "Chuah Kee Huat",
+      "Nasser Yasmin",
+      "Remes-Troche Jose-Maria",
+      "Shin Andrea",
+      "Ford Alexander C"
+    ],
+    "doi_url": "https://doi.org/10.1016/s0140-6736(26)01500-x",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Brain"
+      ]
+    },
+    "abstract": "Irritable bowel syndrome, chronic constipation, and functional diarrhoea are disorders of gut-brain interaction, the symptoms of which include abnormal stool consistency or frequency accompanied by varying degrees of abdominal pain, discomfort, bloating, or distension. These conditions affect 20% of the global population with a relapsing and remitting course. Risk factors include female sex, younger age, a history of common mental disorders, and acute enteric infection. The pathophysiology of irritable bowel syndrome, chronic constipation, and functional diarrhoea remain incompletely understood, but are thought to be secondary to aberrant interactions throughout the gut-brain axis, resulting in disordered gut motility and visceral hypersensitivity. These conditions are diagnosed with a combination of clinical history, absence of alarm symptoms-such as weight loss or rectal bleeding-and targeted investigations. An empathetic management approach improves quality of life and symptoms, reduces health-care use, and enhances treatment adherence. Mainstays of treatment include education, dietary and lifestyle advice, modifying fibre intake, and drugs directed towards predominant symptoms. For severe symptoms, other treatments include specific medical devices, biofeedback, or psychological therapies. However, the effectiveness of most treatments is modest and there is an ongoing need to expand available treatments for bowel disorders, with several novel drugs currently in development.",
+    "ai_takeaways": {
+      "conclusion_vi": "However, the effectiveness of most treatments is modest and there is an ongoing need to expand available treatments for bowel disorders, with several novel drugs currently in development.",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
   },
   {
     "id": "10.1016/s1474-4422(26)00290-5",

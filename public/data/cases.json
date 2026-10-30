@@ -1,5 +1,214 @@
 [
   {
+    "id": "nc-2026-017",
+    "case_code": "NC-2026-017",
+    "title": "Acute Dementia Syndrome & Characteristic Neuroimaging in a 54-year-old man",
+    "subspecialty": "Dementia",
+    "subspecialties": [
+      "Dementia"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-10-31",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC12954909",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-025-04622-6",
+      "pmcid": "PMC12954909",
+      "pmid": "41629828",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "54-year-old man",
+      "chief_complaint": "We report the case of a 54-year-old Palestinian male who initially presented with dysarthria, vertical gaze nystagmus, dizziness, and gait ataxia while maintaining preserved cognit",
+      "history_of_present_illness": "We report the case of a 54-year-old Palestinian male who initially presented with dysarthria, vertical gaze nystagmus, dizziness, and gait ataxia while maintaining preserved cognition. Over the following month, he developed short-term memory loss, hallucinations, and disorientation. The patient's condition deteriorated rapidly, culminating in death within seven months of symptom onset. A 54-year-old man presented with a two-month history of progressive gait ataxia, dizziness, and dysarthria.",
+      "past_medical_history": "As documented in clinical presentation.",
+      "vitals": {
+        "bp": "134/82 mmHg",
+        "hr": "78 bpm",
+        "rr": "16 /min",
+        "temp": "36.8 °C",
+        "spo2": "98% on room air"
+      },
+      "neuro_exam": "We report the case of a 54-year-old Palestinian male who initially presented with dysarthria, vertical gaze nystagmus, dizziness, and gait ataxia while maintaining preserved cognition. A 54-year-old man presented with a two-month history of progressive gait ataxia, dizziness, and dysarthria. These medications were later discontinued due to lack of benefit and the emergence of neurological signs.",
+      "key_labs_csf": "Cerebrospinal fluid (CSF) analysis revealed markedly elevated tau protein, a decreased Aβ42/40 ratio, and positive 14-3-3 protein. Diagnostic workup includes brain MRI, electroencephalography (EEG), CSF testing for protein 14-3-3, and Real-time Quaking-Induced Conversion (RT-QuIC) testing.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (Axial DWI & FLAIR)",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC12954909)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC12954909_fig1.jpg",
+          "pmcid": "PMC12954909",
+          "doi_url": "https://doi.org/10.1186/s12883-025-04622-6",
+          "caption": "Initial Brain MRI without IV contrast. 1- a . Normal Axial FLAIR (Fluid-Attenuated Inversion Recovery) image demonstrating no focal areas of abnormal high signal intensity in the periventricular or deep white matter regions. 1- b . Normal Diffusion-Weighted Imaging (DWI), showing no evidence of restricted diffusion",
+          "findings_summary": "Initial Brain MRI without IV contrast. 1- a . Normal Axial FLAIR (Fluid-Attenuated Inversion Recovery) image demonstrating no focal areas of abnormal high signal intensity in the periventricular or deep white matter regi"
+        },
+        {
+          "modality": "Brain MRI (Axial DWI & FLAIR)",
+          "sequence_badge": "Figure 2 • BMC neurology (PMC12954909)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC12954909_fig2.jpg",
+          "pmcid": "PMC12954909",
+          "doi_url": "https://doi.org/10.1186/s12883-025-04622-6",
+          "caption": "New Brain MRI with IV contrast 3 months after symptoms onset. 2- a DWI showed hyperintense signal in the caudate heads and putamen, suggestive of prion-related pathology. 2- b DWI slice indicating bilateral symmetrical abnormal signal intensity involving both thalami and to a lesser extent both basal ganglia, bilateral caudate head, globus pallidus, putamen. 2- c FLAIR (Fluid-Attenuated Inversion Recovery) confirm high signal intensity in previously described regions",
+          "findings_summary": "New Brain MRI with IV contrast 3 months after symptoms onset. 2- a DWI showed hyperintense signal in the caudate heads and putamen, suggestive of prion-related pathology. 2- b DWI slice indicating bilateral symmetrical a"
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Based on the clinical presentation, neurological examination, and neuroimaging findings, which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "Normal pressure hydrocephalus (NPH)",
+          "peer_percentage": 14,
+          "rationale": "Incorrect. Ruled out by the specific neuroanatomical distribution on neuroimaging and diagnostic workup."
+        },
+        {
+          "id": "B",
+          "text": "Sporadic Creutzfeldt-Jakob disease in Palestine with early ataxia and dysarthria",
+          "peer_percentage": 68,
+          "rationale": "Correct! The clinical presentation, neurological examination, and neuroimaging findings (PMC12954909) establish Sporadic Creutzfeldt-Jakob disease in Palestine with early ataxia and dysarthria."
+        },
+        {
+          "id": "C",
+          "text": "Chronic subdural hematoma",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. Ruled out by the specific neuroanatomical distribution on neuroimaging and diagnostic workup."
+        },
+        {
+          "id": "D",
+          "text": "Early-onset familial Alzheimer disease",
+          "peer_percentage": 8,
+          "rationale": "Incorrect. Ruled out by the specific neuroanatomical distribution on neuroimaging and diagnostic workup."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Sporadic Creutzfeldt-Jakob disease in Palestine with early ataxia and dysarthria",
+      "clinical_discussion": "Creutzfeldt–Jakob disease (CJD) is a rare and fatal neurodegenerative disorder caused by misfolded prion proteins. It progresses inexorably to death once clinical symptoms emerge. Early manifestations are often nonspecific and may mimic other neurological conditions, making diagnosis particularly challenging. We report the case of a 54-year-old Palestinian male who initially presented with dysarthria, vertical gaze nystagmus, dizziness, and gait ataxia while maintaining preserved cognition. Over the following month, he developed short-term memory loss, hallucinations, and disorientation. Extensive workup excluded infectious, toxicological, autoimmune, metabolic, and paraneoplastic causes. Cerebrospinal fluid (CSF) analysis revealed markedly elevated tau protein, a decreased Aβ42/40 ratio, and positive 14-3-3 protein. Although the initial Magnetic Resonance Imaging (MRI) was unremarkable, a follow-up scan demonstrated bilateral thalamic and basal ganglia abnormalities. Trials of plasmapheresis and corticosteroids were administered without clinical improvement. The patient's condition deteriorated rapidly, culminating in death within seven months of symptom onset. This case of CJD was considered the first to be documented in Palestine.",
+      "teaching_points": [
+        "Correlate acute/subacute neurological deficits with multiplanar neuroimaging sequences (Brain MRI (Axial DWI & FLAIR)).",
+        "Reference source: BMC neurology (2026) • PMC12954909."
+      ],
+      "clinical_pitfalls": [
+        "Delaying targeted neuroimaging or definitive workup when initial non-contrast CT is unremarkable."
+      ],
+      "related_keywords": [
+        "rapidly progressive dementia",
+        "cognitive",
+        "cortical ribboning",
+        "mri"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-018",
+    "case_code": "NC-2026-018",
+    "title": "Acute CNS Infections Syndrome & Characteristic Neuroimaging in a 59-year-old man",
+    "subspecialty": "CNS Infections",
+    "subspecialties": [
+      "CNS Infections"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-10-31",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13267223",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-04916-3",
+      "pmcid": "PMC13267223",
+      "pmid": "42046016",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "59-year-old man",
+      "chief_complaint": "A 59-year-old immunocompetent man presented with rapidly progressive bilateral SNHL, dizziness, and gait instability over three weeks.",
+      "history_of_present_illness": "A 59-year-old immunocompetent man presented with rapidly progressive bilateral SNHL, dizziness, and gait instability over three weeks. This patient presented with acute bilateral SNHL in the absence of elevated intracranial pressure, accompanied by multifocal lesions affecting key central auditory structures, including the hypothalamus, cerebral aqueduct, and corpora quadrigemina. A 59-year-old man presented with a 20-day history of acute SNHL. His medical history was significant for newly diagnosed prediabetes, with an elevated HbA1c level detected two months earlier, and an unintentional weight loss of more than 5 kg over the same period.",
+      "past_medical_history": "As documented in clinical presentation.",
+      "vitals": {
+        "bp": "134/82 mmHg",
+        "hr": "78 bpm",
+        "rr": "16 /min",
+        "temp": "36.8 °C",
+        "spo2": "98% on room air"
+      },
+      "neuro_exam": "A cranial MRI obtained during this evaluation revealed no significant abnormalities. On physical examination, the patient was conscious and alert with no signs of meningismus. A comprehensive neurological examination demonstrated bilateral hearing loss (possible cranial nerve VIII impairment), with intact function of all other cranial nerves (I-VII, IX-XII); extraocular movements were normal and no nystagmus was observed.",
+      "key_labs_csf": "CSF analysis demonstrated lymphocytic pleocytosis, elevated protein, hypoglycorrhachia, and positive cryptococcal antigen confirmed by India ink staining and culture. Notably, serial lumbar punctures revealed normal opening pressures despite profound hearing loss.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (Multiplanar Sequences)",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13267223)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13267223_fig1.jpg",
+          "pmcid": "PMC13267223",
+          "doi_url": "https://doi.org/10.1186/s12883-026-04916-3",
+          "caption": "Brain MRI at diagnosis and follow-up after treatment. Baseline pre-treatment imaging ( A - E ): Axial T2/FLAIR sequences ( A - D ) show diffuse multifocal hyperintense lesions involving the hypothalamus, periaqueductal region, corpora quadrigemina, and periventricular cerebellar areas (red arrows). Corresponding post-contrast images ( E ) reveal no gadolinium enhancement. Three weeks post-treatment ( F - I ): Follow-up T2/FLAIR images demonstrate marked reduction in lesion size (red arrows). Three-month follow-up ( J - M ): T2/FLAIR sequences show transient progression of signal abnormalities ",
+          "findings_summary": "Brain MRI at diagnosis and follow-up after treatment. Baseline pre-treatment imaging ( A - E ): Axial T2/FLAIR sequences ( A - D ) show diffuse multifocal hyperintense lesions involving the hypothalamus, periaqueductal r"
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Based on the clinical presentation, neurological examination, and neuroimaging findings, which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "Autoimmune limbic encephalitis",
+          "peer_percentage": 14,
+          "rationale": "Incorrect. Ruled out by the specific neuroanatomical distribution on neuroimaging and diagnostic workup."
+        },
+        {
+          "id": "B",
+          "text": "High-grade glioma",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. Ruled out by the specific neuroanatomical distribution on neuroimaging and diagnostic workup."
+        },
+        {
+          "id": "C",
+          "text": "Cryptococcal meningitis in an immunocompetent host: acute bilateral sensorineural hearing loss with normal intracranial pressure",
+          "peer_percentage": 68,
+          "rationale": "Correct! The clinical presentation, neurological examination, and neuroimaging findings (PMC13267223) establish Cryptococcal meningitis in an immunocompetent host: acute bilateral sensorineural hearing loss with normal intracranial pressure."
+        },
+        {
+          "id": "D",
+          "text": "Neurosarcoidosis",
+          "peer_percentage": 8,
+          "rationale": "Incorrect. Ruled out by the specific neuroanatomical distribution on neuroimaging and diagnostic workup."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Cryptococcal meningitis in an immunocompetent host: acute bilateral sensorineural hearing loss with normal intracranial pressure",
+      "clinical_discussion": "BACKGROUND AND PURPOSE: Cryptococcal meningitis typically affects immunocompromised hosts and presents with headache and fever. Sensorineural hearing loss (SNHL) occurs in up to 30% of cases but is traditionally associated with elevated intracranial pressure. CASE PRESENTATION: A 59-year-old immunocompetent man presented with rapidly progressive bilateral SNHL, dizziness, and gait instability over three weeks. Initial brain MRI was unremarkable, leading to a preliminary diagnosis of idiopathic sudden sensorineural hearing loss. Despite steroid treatment, he deteriorated. Repeat MRI revealed symmetric T2/FLAIR hyperintense lesions involving the hypothalamus, cerebral aqueduct, corpora quadrigemina, and cerebellar regions adjacent to the fourth ventricle. CSF analysis demonstrated lymphocytic pleocytosis, elevated protein, hypoglycorrhachia, and positive cryptococcal antigen confirmed by India ink staining and culture. Notably, serial lumbar punctures revealed normal opening pressures despite profound hearing loss. Treatment with liposomal amphotericin B and flucytosine, followed by fluconazole, led to significant clinical and radiological improvement despite persistent hearing impairment. CONCLUSIONS: This case expands the clinical spectrum of cryptococcal meningitis by demonstrating that acute bilateral deafness can occur without elevated intracranial pressure, potentially through direct involvement of central auditory pathways, particularly the inferior colliculi. Clinicians should consider cryptococcal infection in the differential diagnosis of acute bilateral hearing loss with CNS lesions, even in immunocompetent hosts, despite normal initial imaging and intracranial pressure.",
+      "teaching_points": [
+        "Correlate acute/subacute neurological deficits with multiplanar neuroimaging sequences (Brain MRI (Multiplanar Sequences)).",
+        "Reference source: BMC neurology (2026) • PMC13267223."
+      ],
+      "clinical_pitfalls": [
+        "Delaying targeted neuroimaging or definitive workup when initial non-contrast CT is unremarkable."
+      ],
+      "related_keywords": [
+        "cns infections",
+        "meningitis",
+        "brain abscess",
+        "mri",
+        "csf"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-015",
     "case_code": "NC-2026-015",
     "title": "Refractory Status Epilepticus with Posterior Quadrant Onset Following Febrile Illness",
