@@ -18,7 +18,7 @@ function loadEnvKey(): string {
       for (const line of raw.split("\n")) {
         const trimmed = line.trim();
         if (trimmed.startsWith("GEMINI_API_KEY=")) {
-          const val = trimmed.split("=", 1)[1].trim().replace(/^["']|["']$/g, "");
+          const val = trimmed.slice("GEMINI_API_KEY=".length).trim().replace(/^["']|["']$/g, "");
           if (val) return val;
         }
       }

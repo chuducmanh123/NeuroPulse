@@ -42,7 +42,7 @@ if not api_key:
 print(f"-> Đang sử dụng API Key: {api_key[:10]}...{api_key[-4:]}")
 
 # Ưu tiên gemini-flash-lite-latest đầu tiên vì phản hồi tức thì và hạn mức Free Tier rộng nhất
-candidate_models = ["gemini-flash-lite-latest", "gemini-3.8-flash-lite", "gemini-3.8-flash"]
+candidate_models = ["gemini-flash-lite-latest", "gemini-3.5-flash-lite", "gemini-3.8-flash"]
 
 payload = {
     "contents": [{"parts": [{"text": "Reply with exact phrase: OK READY FOR NEUROLOGY"}]}],

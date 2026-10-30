@@ -1,0 +1,1632 @@
+{
+  "top_takeaways": [
+    {
+      "number": 1,
+      "text": "Mobile stroke units (MSU) enable rapid identifica­ tion and treatment of thrombolytic-eligible patients with acute ischemic stroke (AIS). Recent studies have highlighted the benefit of MSUs over conven­ tional emergency medical services and, when avail­ able, the guideline now includes recommendations related to the implementation of MSUs, based on their safety and benefit."
+    },
+    {
+      "number": 2,
+      "text": "Identification of appropriate transport destination for patients with suspected stroke in the prehospi­ tal setting remains challenging. Previous guidelines recommended transport to the nearest thrombolytic- capable facility. Given recent evidence, this guideline endorses consideration of the characteristics of the local system of care and direct transport to the clos­ est endovascular thrombectomy (EVT)-capable hos­ pital in the absence of well-functioning systems with rapid interhospital transfer processes."
+    },
+    {
+      "number": 3,
+      "text": "Intravenous thrombolysis (IVT) is a mainstay of medi­ cal management for patients with AIS. Given numer­ ous international trials showing noninferiority and the potential advantages of intravenous tenecteplase compared with alteplase, the new guidelines endorse the use of either alteplase or tenecteplase in the 4.5- hour thrombolytic treatment window. Furthermore, we emphasize rapid thrombolytic treatment in eli­ gible patients with disabling deficits, regardless of National Institutes of Health Stroke Scale (NIHSS) score, within the 4.5-hour window without advanced imaging selection. In addition, the guidelines provide support for extended window thrombolysis for select patients with stroke of unknown onset or 4.5–9 hours from onset using advanced imaging criteria (eg, diffusion weighted imaging-fluid attenuated recovery or perfusion-based mismatch)."
+    },
+    {
+      "number": 4,
+      "text": "For patients with non-disabling (eg, isolated sensory syndrome) deficits in the 4.5-hour win­ dow, trials have failed to demonstrate benefit of thrombolysis. Dual antiplatelet therapy is preferred and recommended in this population."
+    },
+    {
+      "number": 5,
+      "text": "New studies have examined the role of adjuvant antithrombotic therapy, such as argatroban and eptifibatide, concurrently with IVT. These studies have shown no benefit and, therefore, adjuvant antithrombotic drugs are not recommended to enhance the outcomes from thrombolytic therapy."
+    },
+    {
+      "number": 6,
+      "text": "EVT has been established as a standard treatment for patients with AIS with large vessel occlusion (LVO) based on numerous randomized controlled trials. Recent evidence supports expanding EVT to populations previously considered ineligible. Specifically, several studies indicate that EVT benefits some patients with larger ischemic core strokes as determined by diagnostic imaging."
+    },
+    {
+      "number": 7,
+      "text": "Based on several trials showing improvement in functional outcomes compared with medical management alone, the guidelines also provide a strong recommendation for EVT in patients with basilar artery occlusion presenting within 24 hours of symptom onset and NIHSS score ≥10."
+    },
+    {
+      "number": 8,
+      "text": "For the first time, the guidelines include recommenda­ tions for interventional treatment in pediatric patients with AIS. Although much work remains to adapt pre­ hospital and hospital stroke protocols for pediatric patients, expert consensus and recent studies high­ light the importance of early stroke recognition in chil­ dren and support the safety and potential benefit of endovascular interventions in select pediatric patients with AIS. These recommendations serve as a foun­ dation for future recommendations and address the phases of pediatric acute stroke care."
+    },
+    {
+      "number": 9,
+      "text": "Glycemic management in patients with AIS has been updated since the prior guidelines such that inten­ sive glucose control to the range of 80 to 130 mg/ dL is not recommended to improve clinical outcome and increases the risk of severe hypoglycemia."
+    },
+    {
+      "number": 10,
+      "text": "Several new trials have assessed the efficacy and safety of blood pressure (BP) lowering after IVT and EVT in adult patients, providing new evidence that more intensive BP reduction does not improve functional outcome after IVT and may result in harm after EVT. Therefore, intensive systolic BP lowering to <140 mm Hg is not recommended even in the setting of complete reperfusion (eg, Thrombolysis In Cerebral Infarction grade 3 flow). PREAMBLE Since 1990, the American Heart Association (AHA) and American Stroke Association (ASA) have translated sci­ entific evidence into clinical practice guidelines with rec­ ommendations to improve cerebrovascular health. These guidelines, which are based on systematic methods to evaluate and classify evidence, provide a foundation for Downloaded from http://ahajournals.org by on January 26, 2026"
+    }
+  ],
+  "high_impact_recs": [
+    {
+      "id": "aha-2026-hi-1",
+      "category": "Pediatric Recommendations",
+      "section": "2.3. \u0007Prehospital Assessment and Management",
+      "cor": "2b",
+      "statement": "In pediatric patients with suspected stroke transported by ambulance, the usefulness of common adult stroke screening tools is uncertain because they perform poorly for identification of stroke. Newer pediatric stroke screening tools demonstrate good interrater reliability; however, their sensitivity, specificity, and predictive value in the prehospital setting remain to be determined, and their usefulness is unknown.",
+      "page": 4
+    },
+    {
+      "id": "aha-2026-hi-2",
+      "category": "Pediatric Recommendations",
+      "section": "3.2. \u0007Initial, Vascular, and Multimodal Imaging Approaches",
+      "cor": "2a",
+      "statement": "In pediatric patients with suspected AIS, emergent brain and vascular imaging with MRI/MRA of the cervical and intracranial vessels is reasonable to identify patients with large vessel occlusion and to differentiate arterial ischemic stroke from hemorrhagic stroke or stroke mimics.",
+      "page": 4
+    },
+    {
+      "id": "aha-2026-hi-3",
+      "category": "Pediatric Recommendations",
+      "section": "3.2. \u0007Initial, Vascular, and Multimodal Imaging Approaches",
+      "cor": "2a",
+      "statement": "In pediatric patients with suspected AIS, emergent brain and vascular imaging with CT/CTA of the cervical and intracranial vessels is reasonable if MRI/MRA imaging is not available immediately (within 25 minutes) to identify patients with large vessel occlusion.",
+      "page": 4
+    },
+    {
+      "id": "aha-2026-hi-4",
+      "category": "Pediatric Recommendations",
+      "section": "4.6.1. Thrombolysis Decision-Making",
+      "cor": "2b",
+      "statement": "In pediatric patients aged 28 days to 18 years with confirmed AIS presenting within 4.5 hours of symptom onset and disabling deficits, IVT with alteplase may be considered as it is safe, but efficacy is uncertain.",
+      "page": 4
+    },
+    {
+      "id": "aha-2026-hi-5",
+      "category": "Pediatric Recommendations",
+      "section": "4.7.5. \u0007Endovascular Thrombectomy in Pediatric Patients",
+      "cor": "2a",
+      "statement": "In pediatric patients ≥6 years with acute neurological symptoms and ischemic stroke due to LVO and within 6 hours from symptom onset, EVT can be effective if performed by experienced neurointerventionalists to improve functional outcomes.",
+      "page": 4
+    },
+    {
+      "id": "aha-2026-hi-6",
+      "category": "Pediatric Recommendations",
+      "section": "4.7.5. \u0007Endovascular Thrombectomy in Pediatric Patients",
+      "cor": "2a",
+      "statement": "In pediatric patients ≥6 years with acute neurological symptoms and ischemic stroke due to LVO, 6 to 24 hours from symptom onset, and with potentially salvageable brain tissue, EVT can be effective to improve functional outcomes.",
+      "page": 4
+    },
+    {
+      "id": "aha-2026-hi-7",
+      "category": "Pediatric Recommendations",
+      "section": "4.7.5. \u0007Endovascular Thrombectomy in Pediatric Patients",
+      "cor": "2b",
+      "statement": "In pediatric patients aged 28 days to 6 years with acute neurological symptoms, including first-time seizure and AIS due to LVO, within 24 hours from symptom onset, and with potentially salvageable brain tissue, EVT performed by neurointerventionalists with pediatric experience may be reasonable to improve functional outcomes.",
+      "page": 4
+    },
+    {
+      "id": "aha-2026-hi-8",
+      "category": "Adult & Systems Recommendations",
+      "section": "2.4. EMS Destination Management",
+      "cor": "3: No Benefit",
+      "statement": "In areas with well-coordinated SSOC and local hospital(s) proficient in thrombolysis delivery and secondary interhospital transfer, direct transport of patients with suspected LVO to a distant (eg, 45–60 min) TSC com­ pared with transport to a local stroke center does not improve 3-month clinical outcomes.",
+      "page": 4
+    },
+    {
+      "id": "aha-2026-hi-9",
+      "category": "Adult & Systems Recommendations",
+      "section": "2.4. EMS Destination Management",
+      "cor": "1",
+      "statement": "Hospitals and EMS professionals should establish agreements and protocols to prioritize interhospital transfer of patients with acute stroke needing a higher level of care to reduce door-in-door-out (DIDO) times.",
+      "page": 4
+    },
+    {
+      "id": "aha-2026-hi-10",
+      "category": "Adult & Systems Recommendations",
+      "section": "2.5. Role of Mobile Stroke Units",
+      "cor": "1",
+      "statement": "In patients with suspected AIS, the use of MSUs over conventional EMS where available is recommended for the transport and management of thrombolytic-eligible patients to ensure the fastest achievable onset-to-treatment time and improve functional outcomes.",
+      "page": 4
+    },
+    {
+      "id": "aha-2026-hi-11",
+      "category": "Adult & Systems Recommendations",
+      "section": "2.9. \u0007Organization and Integration of Components",
+      "cor": "1",
+      "statement": "Hospitals caring for patients with acute stroke that provide EVT (ie, TSC, CSC hospitals) should develop a sys­ tem to comprehensively track key time metrics and other care processes relevant to thrombectomy (eg, door-to-puncture time, successful reperfusion), as well as long-term patient outcomes.",
+      "page": 5
+    },
+    {
+      "id": "aha-2026-hi-12",
+      "category": "Adult & Systems Recommendations",
+      "section": "2.9. \u0007Organization and Integration of Components",
+      "cor": "1",
+      "statement": "Hospitals caring for patients with acute stroke that provide EVT (ie, TSC, CSC hospitals) should credential neurointerventionalists using established and agreed upon training and certification standards.",
+      "page": 5
+    },
+    {
+      "id": "aha-2026-hi-13",
+      "category": "Adult & Systems Recommendations",
+      "section": "4.3. Blood Pressure Management",
+      "cor": "3: No Benefit",
+      "statement": "In patients with mild to moderate severity AIS who have been treated with IVT, intensive SBP reduc­ tion (target of <140 mm Hg compared with <180 mm Hg) is not recommended because it is not associated with an improvement in functional outcome.",
+      "page": 5
+    },
+    {
+      "id": "aha-2026-hi-14",
+      "category": "Adult & Systems Recommendations",
+      "section": "4.3. Blood Pressure Management",
+      "cor": "3: Harm",
+      "statement": "In patients with AIS with LVO of the anterior circulation who have been successfully recanalized by endo­ vascular therapy (mTICI 2b, 2c, or 3) and without other indication for blood pressure management target, intensive SBP reduction target of <140 mm Hg for the first 72 hours is harmful and not recommended.",
+      "page": 5
+    },
+    {
+      "id": "aha-2026-hi-15",
+      "category": "Adult & Systems Recommendations",
+      "section": "4.5. Blood Glucose Management",
+      "cor": "3: No Benefit",
+      "statement": "In hospitalized patients with AIS with hyperglycemia, treatment with IV insulin to achieve blood glucose levels in the range of 80 to 130 mg/dL is not recommended to improve 3-month functional outcomes.",
+      "page": 5
+    },
+    {
+      "id": "aha-2026-hi-16",
+      "category": "Adult & Systems Recommendations",
+      "section": "4.6.1. Thrombolysis Decision-Making",
+      "cor": "1",
+      "statement": "In adult patients with AIS who are eligible for IVT within 4.5 hours of symptom onset, treatment should be initiated as quickly as possible, assuring safe administration and avoiding potential delays associated with additional multimodal neuroimaging, such as CTA/MRA, and CT/MR perfusion imaging.",
+      "page": 5
+    },
+    {
+      "id": "aha-2026-hi-17",
+      "category": "Adult & Systems Recommendations",
+      "section": "4.6.2. Choice of Thrombolytic Agent",
+      "cor": "1",
+      "statement": "In adult patients with AIS presenting within 4.5 hours of symptom onset or last known well and eligible for IVT, tenecteplase at a dose of 0.25 mg/kg body weight (max 25 mg) or alteplase at a dose of 0.9 mg/kg body weight is recommended to improve functional outcomes.",
+      "page": 5
+    },
+    {
+      "id": "aha-2026-hi-18",
+      "category": "Adult & Systems Recommendations",
+      "section": "4.6.3. \u0007Extended Time Windows for Intravenous Thrombolysis",
+      "cor": "2a",
+      "statement": "In patients with AIS who have salvageable ischemic penumbra detected on automated perfusion imaging and who (a) awake with stroke symptoms within 9 hours from the midpoint of sleep or (b) are 4.5–9 hours from last known well, IV thrombolysis may be reasonable to improve functional outcomes.",
+      "page": 5
+    },
+    {
+      "id": "aha-2026-hi-19",
+      "category": "Adult & Systems Recommendations",
+      "section": "4.7.2. \u0007Endovascular Thrombectomy for Adults",
+      "cor": "1",
+      "statement": "In patients with AIS from anterior circulation proximal LVO of the ICA or M1, presenting within 6 hours from onset of symptoms, with NIHSS score ≥6, prestroke mRS score of 0 to 1, and ASPECTS 3 to 10, EVT is recommended to improve functional clinical outcomes and reduce mortality.",
+      "page": 5
+    },
+    {
+      "id": "aha-2026-hi-20",
+      "category": "Adult & Systems Recommendations",
+      "section": "4.7.2. \u0007Endovascular Thrombectomy for Adults",
+      "cor": "1",
+      "statement": "In selected patients* with AIS from anterior circulation proximal LVO of the ICA or M1, presenting between 6 and 24 hours from onset of symptoms, with age <80 years, NIHSS score ≥6, prestroke mRS score 0 to 1, ASPECTS 3 to 5, and without significant mass effect on imaging, EVT is recommended to improve functional clinical outcomes and reduce mortality.",
+      "page": 5
+    },
+    {
+      "id": "aha-2026-hi-21",
+      "category": "Adult & Systems Recommendations",
+      "section": "4.7.2. \u0007Endovascular Thrombectomy for Adults",
+      "cor": "2a",
+      "statement": "In selected patients† with AIS from anterior circulation proximal LVO of the ICA or M1 presenting within 6 hours from onset of symptoms, with age <80 years, NIHSS score ≥6, prestroke mRS 0 to 1, ASPECTS 0 to 2, and without significant mass effect on imaging, EVT is reasonable to improve functional clinical outcomes and reduce mortality.",
+      "page": 5
+    },
+    {
+      "id": "aha-2026-hi-22",
+      "category": "Adult & Systems Recommendations",
+      "section": "4.7.2. \u0007Endovascular Thrombectomy for Adults",
+      "cor": "2a",
+      "statement": "In patients with AIS from anterior circulation proximal LVO of the ICA or M1 presenting within 6 hours from onset of symptoms, with NIHSS score ≥6, and ASPECTS ≥6, who have a prestroke mRS score of 2, EVT is reasonable to improve functional clinical outcomes and reduce accumulated disability.",
+      "page": 5
+    },
+    {
+      "id": "aha-2026-hi-23",
+      "category": "Adult & Systems Recommendations",
+      "section": "4.7.3. Posterior Circulation Stroke",
+      "cor": "1",
+      "statement": "In patients with AIS, with basilar artery occlusion, a baseline mRS score of 0 to 1, NIHSS score ≥10 at presen­ tation, and PC-ASPECTS ≥6 (mild ischemic damage), EVT within 24 hours from onset of symptoms is recommended to achieve better functional outcome and reduce mortality.",
+      "page": 5
+    },
+    {
+      "id": "aha-2026-hi-24",
+      "category": "Adult & Systems Recommendations",
+      "section": "4.7.4. Endovascular Techniques",
+      "cor": "3: No Benefit",
+      "statement": "In the management of patients with AIS in the setting of LVO, preoperative administration of tirofiban before EVT is not useful to improve 90-day functional outcome.",
+      "page": 5
+    },
+    {
+      "id": "aha-2026-hi-25",
+      "category": "Adult & Systems Recommendations",
+      "section": "4.8. Antiplatelet Treatment",
+      "cor": "2a",
+      "statement": "In patients with minor (NIHSS score ≤5) noncardioembolic AIS or high-risk TIA (ABCD2 score ≥4) within 24 to 72 hours from stroke onset, or NIHSS score of 4 to 5 within 24 hours from onset, who did not receive IVT, with presumed atherosclerotic cause (≥50% stenosis of intracranial or extracranial stenosis that was likely to have accounted for clinical presentation or acute new infarctions on imaging of presumed large artery atherosclerosis origin), DAPT (clopidogrel and aspirin) for 21 days followed by SAPT is reasonable to reduce the 90-day risk of recurrent stroke.",
+      "page": 5
+    },
+    {
+      "id": "aha-2026-hi-26",
+      "category": "Adult & Systems Recommendations",
+      "section": "4.9. Anticoagulants",
+      "cor": "2a",
+      "statement": "In carefully selected (eg, milder severity) patients with AIS with atrial fibrillation, a strategy of early oral anti­ coagulation poststroke is low risk and is reasonable compared with a strategy of delayed anticoagulation, although the efficacy of early anticoagulation for prevention of early recurrent stroke is not established.",
+      "page": 5
+    },
+    {
+      "id": "aha-2026-hi-27",
+      "category": "Adult & Systems Recommendations",
+      "section": "5.2. Dysphagia",
+      "cor": "2a",
+      "statement": "In patients with stroke with dysphagia, treatment with pharyngeal electrical stimulation (PES), can be beneficial to reduce dysphagia severity and decrease the risk of aspiration.",
+      "page": 5
+    },
+    {
+      "id": "aha-2026-hi-28",
+      "category": "Adult & Systems Recommendations",
+      "section": "6.2. \u0007Brain Swelling (Medical Management)",
+      "cor": "3: No Benefit",
+      "statement": "In patients with large hemispheric infarction 18 to 70 years of age, the use of IV glibenclamide does not result in improved functional outcome and is not recommended.",
+      "page": 5
+    }
+  ],
+  "section_recs": [
+    {
+      "rec_id": "aha2026-rec-1",
+      "section": "Recommendations for Stroke Awareness (Population Level)",
+      "cor": "1",
+      "loe": "B-R",
+      "statement": "1. \u0007For the general public, implementation of educa­ tional programs on stroke recognition in patients of all ages and the need to seek emergency care (calling 9-1-1) is recommended and should be implemented by public health and community leaders and medical professionals to reduce gaps in knowledge about stroke warning signs and to improve stroke preparedness.",
+      "page_num": 10
+    },
+    {
+      "rec_id": "aha2026-rec-2",
+      "section": "Recommendations for Stroke Awareness (Population Level)",
+      "cor": "1",
+      "loe": "B-NR",
+      "statement": "2. \u0007For the general public, educational programs on stroke recognition should be designed to reach diverse communities and populations (ie, diversity by age, race and ethnicity, sex and gender, and other social determinants of health such as educa­ tion, income, and neighborhood) to reduce knowl­ edge gaps in stroke warning signs and improve stroke preparedness across all demographics.",
+      "page_num": 10
+    },
+    {
+      "rec_id": "aha2026-rec-3",
+      "section": "Recommendations for Stroke Awareness (Population Level)",
+      "cor": "1",
+      "loe": "B-NR",
+      "statement": "3. \u0007For the general public, educational programs on stroke recognition should be sustained over time to improve long-term knowledge of stroke warn­ ing signs and stroke preparedness.",
+      "page_num": 10
+    },
+    {
+      "rec_id": "aha2026-rec-4",
+      "section": "Recommendations for Stroke Awareness (Population Level)",
+      "cor": "1",
+      "loe": "B-NR",
+      "statement": "4. \u0007In addition to the general public, emergency medical services (EMS) professionals, physicians (including primary care professionals), and other health care personnel should receive targeted stroke educational programs to reduce prehospi­ tal delays and maximize eligibility for acute treat­ ment of ischemic stroke (eg, thrombolysis).13–16 Synopsis Stroke awareness, which includes the knowledge of key stroke warning signs and stroke symptoms, and stroke preparedness, the knowledge of the correct action to take when stroke symptoms occur, are critical to reducing delays in acute stroke care. Prior studies demonstrate that there are major gaps in stroke awareness and delays in arrival after stroke symptom onset across the population with inequities by race, sex, age, and other sociodemographic characteristics.10,12,17–19 Improving stroke knowledge and preparedness across the population has the potential to decrease emergency department (ED) arrival times, reduce delays to diagnosis and treatment, and increase the number of eligible patients treated with time-sensitive reperfusion treatments such as intravenous thrombolysis (IVT) and endovascular thrombectomy (EVT). Ultimately, reducing delays to diagnosis and treatment has the poten­ tial to reduce morbidity and mortality from AIS. Previously published literature has demonstrated the potential for educational interventions to increase knowledge and stroke preparedness,1,2,20 and such data are the founda­ tion for the recommendations above.",
+      "page_num": 10
+    },
+    {
+      "rec_id": "aha2026-rec-5",
+      "section": "Recommendations for EMS Systems",
+      "cor": "1",
+      "loe": "B-NR",
+      "statement": "1. \u0007Health care policy makers should establish regional systems of stroke care to increase access to time-sensitive therapies that include the deter­ mination of: a) health care facilities that provide initial emergency care, including administration of IVT, and b) centers capable of performing endovascular stroke treatment with comprehensive periprocedural care to which rapid transport must be arranged when appropriate.",
+      "page_num": 11
+    },
+    {
+      "rec_id": "aha2026-rec-6",
+      "section": "Recommendations for EMS Systems",
+      "cor": "1",
+      "loe": "B-NR",
+      "statement": "2. \u0007EMS leaders, together with local experts, regional or state agencies, and medical authorities, should develop prehospital triage protocols to ensure that patients with suspected stroke are rapidly identified, assessed with a validated tool for stroke screening, and preferentially transported to the most appropri­ ate stroke centers.",
+      "page_num": 11
+    },
+    {
+      "rec_id": "aha2026-rec-7",
+      "section": "Recommendations for EMS Systems",
+      "cor": "2a",
+      "loe": "B-NR",
+      "statement": "3. \u0007Monitoring and feedback on quality metrics related to prehospital care can be useful to reduce delays from symptom onset to ischemic stroke reperfusion treatment and increase the odds of discharge to home.14–16 Synopsis Prehospital coordination is crucial for the timely treat­ ment of patients with acute stroke and has a great impact on clinical outcomes. Regional stroke coordinat­ ing bodies must ensure that systems are organized in a way that identifies hospital capabilities for stroke care and that the routing protocols to available stroke centers at their level are equitable for the entire population. It is also important to measure, analyze, and offer feedback about prehospital quality of care indicators as part of continuous quality improvement (QI).",
+      "page_num": 11
+    },
+    {
+      "rec_id": "aha2026-rec-8",
+      "section": "Recommendations for Prehospital Assessment and Management",
+      "cor": "2a",
+      "loe": "B-NR",
+      "statement": "1. \u0007In callers to 9-1-1, EMS dispatch use of a telephone stroke assessment tool is reasonable and can be beneficial in early identification of stroke, reduced on-scene time, and/or prioritization of transport.1,2 Ambulance Transport",
+      "page_num": 12
+    },
+    {
+      "rec_id": "aha2026-rec-9",
+      "section": "Recommendations for Prehospital Assessment and Management",
+      "cor": "1",
+      "loe": "A",
+      "statement": "2. \u0007In patients with suspected stroke transported by ambulance, use of a brief stroke assessment tool by prehospital personnel is recommended to improve early stroke identification, including large vessel occlusion (LVO) stroke.",
+      "page_num": 12
+    },
+    {
+      "rec_id": "aha2026-rec-10",
+      "section": "Recommendations for Prehospital Assessment and Management",
+      "cor": "1",
+      "loe": "B-NR",
+      "statement": "3. \u0007In patients with suspected stroke transported by ambulance, prehospital personnel should provide advance notification to the receiving hospital of an inbound suspected stroke to reduce in- hospital evaluation times, increase thrombolytic use, and decrease mortality.5,6 3: No Benefit B-R 4. \u0007In patients with suspected stroke transported by ambulance, ambulance-initiated remote ischemic conditioning (RIC) with arm blood pressure (BP) cuff inflation does not improve functional outcome and is not recommended.",
+      "page_num": 12
+    },
+    {
+      "rec_id": "aha2026-rec-11",
+      "section": "Recommendations for Prehospital Assessment and Management",
+      "cor": "3: Harm",
+      "loe": "A",
+      "statement": "5. \u0007In patients with suspected stroke transported by ambulance, prehospital initiation of stroke treatment with transdermal glyceryl trinitrate (GTN, nitroglycerin) does not improve functional outcome and is potentially harmful.8–11 3: No Benefit B-R 6. \u0007In patients with suspected stroke transported by ambulance, intensive BP control in the field to a target of 130 to 140 mm Hg systolic does not improve functional outcome.",
+      "page_num": 12
+    },
+    {
+      "rec_id": "aha2026-rec-12",
+      "section": "Recommendations for Prehospital Assessment and Management",
+      "cor": "2b",
+      "loe": "B-NR",
+      "statement": "7. \u0007In pediatric patients with suspected stroke transported by ambulance, the usefulness of common adult stroke screening tools is uncertain because they perform poorly for identification of stroke. Newer pediatric stroke screening tools demonstrate good interrater reliability; however, their sensitivity, specificity, and predictive value in the prehospital setting remain to be determined, and their usefulness is unknown.13–16 Synopsis EMS professionals play a crucial role in the early iden­ tification and management of suspected stroke. Use of a stroke-specific training module for dispatchers has been shown to improve recognition of stroke.17 Use of structured telephone stroke assessment tools by EMS dispatchers is recommended to facilitate earlier stroke recognition and reduce on-scene times.1,2 Once on-site, EMS professionals’ use of prehospital stroke scales— such as the Cincinnati Prehospital Stroke Scale (CPSS), Los Angeles Prehospital Stroke Screen (LAPSS), and Rapid Arterial Occlusion Evaluation (RACE)—are effec­ tive in improving early stroke detection, including LVOs, although they remain nondiagnostic.3,4 EMS prenotifica­ tion of receiving hospitals enhances treatment timelines and outcomes, including increased thrombolysis rates and reduced mortality.5,6 Emerging technologies, such as electroencephalog­ raphy (EEG) and cranial accelerometers, show promise in prehospital stroke detection but require further valida­ tion.18–20 Conversely, certain interventions have shown no benefit. RIC and the prehospital use of GTN were not associated with improved functional outcomes and may pose harm, particularly in cases of intracerebral hem­ orrhage (ICH).7–11 Similarly, early BP reduction to 130 to140 mm Hg was not beneficial and could be harm­ ful in ischemic stroke.12 For pediatric cases, adult stroke scales perform poorly, and while pediatric-specific tools show reliability, their clinical use in the field remains uncertain.",
+      "page_num": 12
+    },
+    {
+      "rec_id": "aha2026-rec-13",
+      "section": "Recommendations for EMS Destination Management",
+      "cor": "1",
+      "loe": "B-NR",
+      "statement": "1. \u0007In patients with suspected acute stroke, EMS professionals should prioritize transport to the closest appropriate facility (acute stroke-ready hospital [ASRH], primary stroke center [PSC], thrombectomy-capable stroke center [TSC], or comprehensive stroke center [CSC]) to reduce time to treatment compared with transport to a nonstroke capable hospital.1–5 Areas with local access to thrombectomy-capable stroke center(s)",
+      "page_num": 14
+    },
+    {
+      "rec_id": "aha2026-rec-14",
+      "section": "Recommendations for EMS Destination Management",
+      "cor": "2a",
+      "loe": "B-NR",
+      "statement": "2. \u0007In patients identified by EMS professionals as having a suspected LVO stroke, direct transport to a TSC can be beneficial to increase EVT rates and reduce time to treatment compared with initial transport to a non-TSC with secondary hospital-to-hospital transfer.6–8 Areas without local access to thrombectomy-capable stroke center(s)",
+      "page_num": 14
+    },
+    {
+      "rec_id": "aha2026-rec-15",
+      "section": "Recommendations for EMS Destination Management",
+      "cor": "2b",
+      "loe": "B-NR",
+      "statement": "3. \u0007In areas without well-coordinated stroke systems of care (SSOC) and local hospital(s) proficient in thrombolysis delivery and secondary interhospital transfer, it may be reasonable for EMS profes­ sionals to consider direct transport of suspected LVO patients to the closest appropriate TSC (if transport will not disqualify the patient from IVT) to increase rates of EVT and reduce time to treatment, compared with initial transport to a local stroke center with secondary hospital-to-hospital transfer for treatment.9 Downloaded from http://ahajournals.org by on January 26,",
+      "page_num": 14
+    },
+    {
+      "rec_id": "aha2026-rec-16",
+      "section": "Recommendations for EMS Destination Management",
+      "cor": "1",
+      "loe": "B-NR",
+      "statement": "5. \u0007Hospitals and EMS professionals should establish agreements and protocols to prioritize interhospital transfer of patients with acute stroke needing a higher level of care to reduce door-in– door-out (DIDO) times.15 Synopsis For patients identified with suspected stroke in the pre­ hospital setting, multiple variables are incorporated into the choice of specific hospital destination, including trans­ port time and distance, geography, weather, individual patient and stroke characteristics, local EMS resources, air medical access, and local hospital stroke treatment capa­ bilities, efficiency, specialist(s), telemedicine, and imaging access. A high-quality clinical trial has demonstrated that in settings with local hospitals proficient in thrombolytic delivery and interhospital transfer, direct transfer to a dis­ tant (approximately 1 hour) TSC is not beneficial. The generalizability of these findings to urban areas, or other rural areas without high-performing PSCs or different geography, is uncertain, and further work is needed. Imple­ menting agreements and protocols between hospitals to reduce DIDO times is reasonable and useful.",
+      "page_num": 15
+    },
+    {
+      "rec_id": "aha2026-rec-17",
+      "section": "Recommendations for Role of Mobile Stroke Units",
+      "cor": "1",
+      "loe": "A",
+      "statement": "1. \u0007In patients with suspected AIS, the use of MSUs over conventional EMS where available is recom­ mended for the transport and management of thrombolytic-eligible patients to ensure the fastest achievable onset-to-treatment time and improve functional outcomes.",
+      "page_num": 16
+    },
+    {
+      "rec_id": "aha2026-rec-18",
+      "section": "Recommendations for Role of Mobile Stroke Units",
+      "cor": "1",
+      "loe": "A",
+      "statement": "2. \u0007In patients with suspected acute stroke, MSUs must be equipped to diagnose and treat patients with IVT.",
+      "page_num": 16
+    },
+    {
+      "rec_id": "aha2026-rec-19",
+      "section": "Recommendations for Role of Mobile Stroke Units",
+      "cor": "1",
+      "loe": "B-R",
+      "statement": "3. \u0007In patients with suspected acute stroke, MSU care, including streamlined protocols and use of neurological expertise, either in-person or remote telemedicine consulta­ tion, is beneficial for emergent evaluation and treatment of patient symptoms without safety concerns.",
+      "page_num": 16
+    },
+    {
+      "rec_id": "aha2026-rec-20",
+      "section": "Recommendations for Role of Mobile Stroke Units",
+      "cor": "2a",
+      "loe": "B-NR",
+      "statement": "4. \u0007In endovascular thrombectomy-eligible patients, use of MSUs can be beneficial to identify and triage patients to the appropriate thrombectomy- capable facility with prehospital notification of receiving stroke teams.2–4,11–15 Synopsis AIS management begins in the prehospital setting. An MSU is a specialized ambulance dispatched after a 9-1-1 call and its interdisciplinary team, comprising paramedics, technicians, nurses, and physicians, includ­ ing telemedicine consultants, brings direct emergency care to the patient, saving crucial time. MSUs initiate treatment, provide comprehensive prehospital notifica­ tion, and ensure patients are accurately triaged to the most appropriate receiving hospital. MSU management speeds thrombolytic treatment and improves outcomes for patients eligible for reperfusion therapy. It also poten­ tially enables faster treatment of the most catastrophic type of ischemic stroke, those due to LVO, by expediting the pathway to EVT.",
+      "page_num": 16
+    },
+    {
+      "rec_id": "aha2026-rec-21",
+      "section": "Recommendations for Role of Mobile Stroke Units",
+      "cor": "1",
+      "loe": "B-NR",
+      "statement": "1. \u0007In hospitals caring for patients with AIS, certifica­ tion as a stroke specialty hospital certified by an external health care credentialing agency that uses national evidence-based standard criteria is recommended.1–7 Synopsis Standardizing hospital stroke capabilities through stroke center certification ensures that patients are treated at hospitals matched to their specific care needs. For example, standardizing hospital stroke capa­ bilities and designating certain hospitals as PSCs ver­ sus CSCs helps professionals triage patients based on factors such as the presence of LVO requiring throm­ bectomy. Standardized hospital stroke capabilities also enables the design of SSOC for specific geographic regions, a strategy to ensure the appropriate distribu­ tion of resources and care. Agencies currently providing stroke center certification include The Joint Commis­ sion, Det Norske Veritas, Accreditation Commission for Health Care, the Center for Improvement in Healthcare Downloaded from http://ahajournals.org by on January 26,",
+      "page_num": 17
+    },
+    {
+      "rec_id": "aha2026-rec-22",
+      "section": "Recommendations for Emergency Evaluation of Patients With",
+      "cor": "1",
+      "loe": "B-NR",
+      "statement": "1. \u0007Patients of all ages, including pediatric patients, with acute neurological deficits should benefit from an organized protocol for the emergent evaluation of their symptoms in terms of early recognition and treatment.",
+      "page_num": 18
+    },
+    {
+      "rec_id": "aha2026-rec-23",
+      "section": "Recommendations for Emergency Evaluation of Patients With",
+      "cor": "1",
+      "loe": "C-EO",
+      "statement": "2. \u0007In pediatric patients with sudden onset and ongo­ ing focal neurological deficits, including first-time seizure, acute stroke should be suspected to provide timely diagnosis.",
+      "page_num": 18
+    },
+    {
+      "rec_id": "aha2026-rec-24",
+      "section": "Recommendations for Emergency Evaluation of Patients With",
+      "cor": "1",
+      "loe": "B-NR",
+      "statement": "3. \u0007Patients with suspected stroke should benefit from designation of an acute stroke team, includ­ ing clinicians, nurses, and laboratory/radiology personnel to ensure careful clinical assessment, including neurological examination.",
+      "page_num": 18
+    },
+    {
+      "rec_id": "aha2026-rec-25",
+      "section": "Recommendations for Emergency Evaluation of Patients With",
+      "cor": "1",
+      "loe": "A",
+      "statement": "4. \u0007Patients with suspected stroke should benefit from the development and education of multi­ disciplinary stroke teams with access to stroke expertise to safely increase the rate of IVT treat­ ment.",
+      "page_num": 18
+    },
+    {
+      "rec_id": "aha2026-rec-26",
+      "section": "Recommendations for Emergency Evaluation of Patients With",
+      "cor": "1",
+      "loe": "A",
+      "statement": "5. \u0007Thrombolytic-eligible patients and EVT-eligible patients should benefit from stroke teams to ensure the fastest achievable onset-to- treatment time and best clinical outcomes.12–19 Synopsis Given the narrow therapeutic windows for treating AIS, it is imperative to ensure timely evaluation and diagno­ sis. Hospital systems must establish efficient processes and pathways to manage patients with stroke effectively in both emergency and inpatient settings. This involves the ability to promptly receive, identify, evaluate, and treat patients with suspected stroke. Additionally, hospitals should have access to stroke expertise when necessary for diagnostic or treatment purposes. Implementing these measures is crucial for improv­ ing the overall management and outcomes of patients eligible for thrombolytic therapy or EVT. By streamlin­ ing the processes and ensuring rapid response times, hospitals can significantly enhance the chances of positive outcomes for patients with stroke. This com­ prehensive approach not only facilitates early inter­ vention but also ensures that patients receive the most appropriate and timely care, ultimately leading to better recovery rates and reduced long-term dis­ abilities. These measures are to be integrated within Downloaded from http://ahajournals.org by on January 26,",
+      "page_num": 18
+    },
+    {
+      "rec_id": "aha2026-rec-27",
+      "section": "Recommendations for Telemedicine",
+      "cor": "1",
+      "loe": "B-R",
+      "statement": "1. \u0007For patients with suspected stroke in the prehospital setting, telemedicine in the ambu­ lance should be considered, when feasible, to complement paramedic assessment to identify candidates for reperfusion interventions.1–4 Teleradiology",
+      "page_num": 20
+    },
+    {
+      "rec_id": "aha2026-rec-28",
+      "section": "Recommendations for Telemedicine",
+      "cor": "1",
+      "loe": "B-NR",
+      "statement": "2. \u0007For patients with AIS presenting to EDs without in-house imaging interpretation expertise, teleradi­ ology systems are recommended for timely review of brain imaging, identification of contraindica­ tions to thrombolysis, and facilitation of IVT decision-making.5–7 Telestroke for thrombolytic decision-making and administration",
+      "page_num": 20
+    },
+    {
+      "rec_id": "aha2026-rec-29",
+      "section": "Recommendations for Telemedicine",
+      "cor": "1",
+      "loe": "B-R",
+      "statement": "3. \u0007For patients with AIS presenting to EDs without acute neurological expertise, telestroke systems are effective over usual care by the ED team for IVT decision-making and optimal thrombolytic delivery including increased thrombolytic adminis­ tration and shorter time to delivery.",
+      "page_num": 20
+    },
+    {
+      "rec_id": "aha2026-rec-30",
+      "section": "Recommendations for Telemedicine",
+      "cor": "2a",
+      "loe": "B-NR",
+      "statement": "4. \u0007For patients with AIS treated at hospitals without local stroke expertise, telestroke is reasonable to reduce short-term mortality.",
+      "page_num": 20
+    },
+    {
+      "rec_id": "aha2026-rec-31",
+      "section": "Recommendations for Telemedicine",
+      "cor": "2a",
+      "loe": "C-LD",
+      "statement": "5. \u0007For patients with AIS treated at hospitals without in-house stroke expertise or telestroke capabili­ ties, decision-making support by telephone con­ sultation with a stroke specialist can be beneficial for IVT decision-making and consideration of EVT eligibility.8–10,23 Telestroke in stroke systems of care",
+      "page_num": 20
+    },
+    {
+      "rec_id": "aha2026-rec-32",
+      "section": "Recommendations for Telemedicine",
+      "cor": "1",
+      "loe": "C-EO",
+      "statement": "6. \u0007Health care institutions, government payers, and vendors should support the use of telemedicine/ telestroke resources and systems to ensure adequate 24-hour/day and 7-day/week coverage and care of patients with AIS in various settings.",
+      "page_num": 20
+    },
+    {
+      "rec_id": "aha2026-rec-33",
+      "section": "Recommendations for Telemedicine",
+      "cor": "2b",
+      "loe": "B-NR",
+      "statement": "7. \u0007For patients with AIS presenting to hospitals with telestroke capability, use of telestroke may be reasonable for triage of patients who may be eligible for appropriate interfacil­ ity transfer for emergency EVT versus local care.12,14,15,22,24–27 Synopsis Telestroke technology has been instrumental in bridg­ ing gaps in access for patients in remote locations or who would not have otherwise had access to stroke- related expertise. Telestroke has applications across the continuum of care. In the prehospital setting, the use of telemedicine in the ambulance may be advantageous to identify candidates for reperfusion interventions and, in turn, guide transport destination decisions and facilitate preparations at the receiving hospital.1–4 In the acute ED setting, teleradiology and telestroke are valuable for enabling timely reviews of brain imaging, facilitat­ ing thrombolytic decision-making, and optimizing timeli­ ness of thrombolytic delivery.5,7,8 Recent nonrandomized studies have also demonstrated the benefit of telestroke for improving patient outcomes, including short-term mortality.11,20,23 Studies have additionally demonstrated the role of telestroke in SSOC, with potential benefits that include triage and transfer of patients eligible for EVT as well as identification of patients who do not require transfer and may safely receive care locally.",
+      "page_num": 20
+    },
+    {
+      "rec_id": "aha2026-rec-34",
+      "section": "Recommendations for Organization and Integration of Components",
+      "cor": "1",
+      "loe": "C-EO",
+      "statement": "1. \u0007Hospitals should participate in an accountable SSOC that consists of an integrated network of certified hospitals (ie, ASRH, PSC, TSC, CSC) and prehospital EMS systems designed so patients in need of acute stroke care receive appropriate and timely evaluation, diagnosis, treatment, and interhospital transfer (when appro­ priate) that optimizes their long-term outcomes.",
+      "page_num": 22
+    },
+    {
+      "rec_id": "aha2026-rec-35",
+      "section": "Recommendations for Organization and Integration of Components",
+      "cor": "1",
+      "loe": "C-EO",
+      "statement": "2. \u0007Hospitals caring for patients with acute stroke that do not provide 24/7 thrombectomy treatment (eg, ASRH, PSC hospitals) should develop interhospital transfer protocols and procedures to ensure fast, safe, and efficient transfer of patients who are potentially eligible for EVT.",
+      "page_num": 22
+    },
+    {
+      "rec_id": "aha2026-rec-36",
+      "section": "Recommendations for Organization and Integration of Components",
+      "cor": "1",
+      "loe": "B-NR",
+      "statement": "3. \u0007PSC hospitals caring for patients with acute stroke that do not provide 24/7 thrombectomy treatment and therefore rely on interhospital patient transfers should have the capability to rapidly perform and interpret intracranial vascular imaging (CTA or mag­ netic resonance angiography [MRA]) to identify patients with LVO eligible for EVT.",
+      "page_num": 22
+    },
+    {
+      "rec_id": "aha2026-rec-37",
+      "section": "Recommendations for Organization and Integration of Components",
+      "cor": "1",
+      "loe": "B-NR",
+      "statement": "4. \u0007Hospitals caring for patients with acute stroke should develop and adopt care protocols that reflect current clinical guidelines as established by national and international professional organi­ zations or state or federal agencies and laws.",
+      "page_num": 22
+    },
+    {
+      "rec_id": "aha2026-rec-38",
+      "section": "Recommendations for Organization and Integration of Components",
+      "cor": "1",
+      "loe": "B-R",
+      "statement": "5. \u0007Hospitals caring for patients with acute stroke that provide EVT (ie, TSC, CSC hospitals) should develop a system to comprehensively track key time metrics and other care processes relevant to thrombectomy (eg, door-to-puncture time, successful reperfusion), as well as long-term patient outcomes.",
+      "page_num": 22
+    },
+    {
+      "rec_id": "aha2026-rec-39",
+      "section": "Recommendations for Organization and Integration of Components",
+      "cor": "1",
+      "loe": "C-EO",
+      "statement": "6. \u0007Hospitals caring for patients with acute stroke that provide EVT (ie, TSC, CSC hospitals) should cre­ dential neurointerventionalists using established and agreed upon training and certification standards.",
+      "page_num": 22
+    },
+    {
+      "rec_id": "aha2026-rec-40",
+      "section": "Recommendations for Organization and Integration of Components",
+      "cor": "2a",
+      "loe": "B-NR",
+      "statement": "7. \u0007ASRH caring for patients with acute stroke that rely on interhospital patient transfers can consider having the capability to rapidly perform and inter­ pret intracranial vascular imaging (CTA or MRA) to identify patients with LVO eligible for EVT.",
+      "page_num": 22
+    },
+    {
+      "rec_id": "aha2026-rec-41",
+      "section": "Recommendations for Organization and Integration of Components",
+      "cor": "2b",
+      "loe": "B-NR",
+      "statement": "8. \u0007Depending on the characteristics of the local and regional systems of care, individual SSOC may consider developing mobile intervention teams to improve timely delivery of EVT.14–16 Synopsis At a local or regional level, the delivery of evidence-based reperfusion therapies (ie, thrombolysis and EVT) in a timely, efficient, and equitable manner requires estab­ lishment of a coordinated SSOC.1 The system should include an integrated network of EMS agencies, and hub and spoke hospitals with appropriate levels of stroke certification (ie, ASRH, CSC, TSC, PSC) that collaborate together to provide access to all essential components of acute stroke care. Each system should include ≥1 hub (or referral) centers that provide thrombectomy treat­ ment (ie, CSC, TSC, PSC) as well as other advanced neurosurgical care (ie, CSC). Care protocols for the safe, efficient, and expedient delivery of reperfusion therapy should be established by all hospitals, regardless of where they sit within an SSOC. Spoke hospitals should develop an interhospital transfer protocol that ensures the expedient transfer of patients eligible for EVT or other advanced stroke care.2 Transfer decisions should be informed by the results of advanced neurological imaging that is appropriate to the hospital’s expected level of resources and position within the SSOC. Every SSOC should be definable, recognizable, and account­ able to the local or regional populations that it serves.",
+      "page_num": 22
+    },
+    {
+      "rec_id": "aha2026-rec-42",
+      "section": "Recommendations for Stroke Registries, Quality Improvement, and",
+      "cor": "1",
+      "loe": "B-R",
+      "statement": "1. \u0007Hospitals treating patients with acute stroke should engage in a multicomponent QI process that involves the continuous monitoring, review, and feedback of stroke quality indicators, benchmarks, and evidence-based practices, in order to increase quality of care, improve patient outcomes, and reduce health care disparities.",
+      "page_num": 24
+    },
+    {
+      "rec_id": "aha2026-rec-43",
+      "section": "Recommendations for Stroke Registries, Quality Improvement, and",
+      "cor": "1",
+      "loe": "B-NR",
+      "statement": "2. \u0007Hospitals treating patients with acute stroke should participate in stroke data registries to increase the adherence to quality indicators and guideline recommendations and improve patient outcomes.",
+      "page_num": 24
+    },
+    {
+      "rec_id": "aha2026-rec-44",
+      "section": "Recommendations for Stroke Registries, Quality Improvement, and",
+      "cor": "1",
+      "loe": "B-NR",
+      "statement": "3. \u0007Hospitals treating patients with acute stroke should measure and document baseline stroke severity (eg, NIHSS score) in all acute stroke patients so that risk adjustment models used to compare hospital performance can be sufficiently accurate and reliable.18–29 Synopsis QI interventions promote adherence to evidence-based performance measures, quality standards, and better patient care, and are associated with improved patient outcomes, including reduced mortality in patients with AIS. Effective individual strategies consist of identifica­ tion of clinical leaders and QI care teams, staff training and educational workshops, identification of barriers and gaps, development of clinical pathways and action plans, and continuous monitoring and feedback.1–3 As a foundation for conducting QI on a continuous basis, a standardized stroke registry (or data repository) is the ideal tool for monitoring, analyzing, and providing feed­ back to stakeholders. Registry data provide opportuni­ ties to explore the quality of care according to current quality indicators and recommendations, identify dispari­ ties and needs in health care, implement benchmarking, and support clinical research.30–32 Stroke severity, ideally Downloaded from http://ahajournals.org by on January 26,",
+      "page_num": 24
+    },
+    {
+      "rec_id": "aha2026-rec-45",
+      "section": "Recommendations for Stroke Registries, Quality Improvement, and",
+      "cor": "1",
+      "loe": "B-NR",
+      "statement": "1. \u0007In patients with suspected AIS, the use of a stroke severity rating scale, preferably the NIHSS, is recommended for measuring clinical deficits at baseline and after reperfusion thera­ pies.1,2 Synopsis The NIHSS is a well-established standardized scale that can be accurately performed by a broad spectrum of health care professionals and reliably quantifies the degree of neurological deficit, facilitates communica­ tion, helps identify patients eligible for thrombolysis or EVT, allows an objective measurement of changing clini­ cal status, and identifies those patients at higher risk for complications such as ICH.",
+      "page_num": 26
+    },
+    {
+      "rec_id": "aha2026-rec-46",
+      "section": "Recommendations for Initial, Vascular, and Multimodal Imaging",
+      "cor": "1",
+      "loe": "A",
+      "statement": "1. \u0007In patients with suspected AIS, emergent brain imaging with NCCT or MRI is recommended on initial evaluation to assess ischemic burden (eg, ASPECTS) and exclude intracranial hemorrhage before initiating reperfusion interventions (see Figure 2).",
+      "page_num": 26
+    },
+    {
+      "rec_id": "aha2026-rec-47",
+      "section": "Recommendations for Initial, Vascular, and Multimodal Imaging",
+      "cor": "1",
+      "loe": "B-NR",
+      "statement": "2. \u0007In hospital systems that care for patients with suspected AIS, protocols based on process improvement initiatives should be established so that emergent brain imaging can be performed as rapidly as possible (eg, within 25 minutes) to facilitate timely reperfusion interventions.",
+      "page_num": 26
+    },
+    {
+      "rec_id": "aha2026-rec-48",
+      "section": "Recommendations for Initial, Vascular, and Multimodal Imaging",
+      "cor": "1",
+      "loe": "B-NR",
+      "statement": "3. \u0007In patients with suspected AIS and LVO, emer­ gent vascular imaging with contrast-enhanced CTA and/or CTP should not be delayed to obtain serum creatinine concentration.",
+      "page_num": 26
+    },
+    {
+      "rec_id": "aha2026-rec-49",
+      "section": "Recommendations for Initial, Vascular, and Multimodal Imaging",
+      "cor": "2a",
+      "loe": "C-LD",
+      "statement": "4. \u0007In pediatric patients with suspected AIS, emer­ gent brain and vascular imaging with MRI/MRA of the cervical and intracranial vessels is reason­ able to identify patients with large vessel occlu­ sion and to differentiate arterial ischemic stroke from hemorrhagic stroke or stroke mimics.",
+      "page_num": 26
+    },
+    {
+      "rec_id": "aha2026-rec-50",
+      "section": "Recommendations for Initial, Vascular, and Multimodal Imaging",
+      "cor": "2a",
+      "loe": "C-LD",
+      "statement": "5. \u0007In pediatric patients with suspected AIS, emergent brain and vascular imaging with CT/ CTA of the cervical and intracranial vessels is reasonable if MRI/MRA imaging is not available immediately (within 25 minutes) to identify patients with large vessel occlusion.",
+      "page_num": 26
+    },
+    {
+      "rec_id": "aha2026-rec-51",
+      "section": "Recommendations for Initial, Vascular, and Multimodal Imaging",
+      "cor": "2a",
+      "loe": "B-R",
+      "statement": "6. \u0007In patients with suspected AIS who awaken from symptoms or have unknown time of onset >4.5 hours from last known well, but are other­ wise eligible for thrombolysis, MRI DWI-FLAIR mismatch selection can be useful to determine eligibility for extended window IVT.10,11 Downloaded from http://ahajournals.org by on January 26,",
+      "page_num": 26
+    },
+    {
+      "rec_id": "aha2026-rec-52",
+      "section": "Recommendations for Initial, Vascular, and Multimodal Imaging",
+      "cor": "2a",
+      "loe": "B-R",
+      "statement": "7. \u0007In patients with suspected AIS who awaken with symptoms or have unknown time of onset 4.5 to 24 hours from last known well, CTP or MR DWI- PWI (perfusion-weighted imaging) selection with automated postprocessing software analysis can be useful to determine eligibility for extended window IVT.12,13 Endovascular thrombectomy evaluation",
+      "page_num": 27
+    },
+    {
+      "rec_id": "aha2026-rec-53",
+      "section": "Recommendations for Initial, Vascular, and Multimodal Imaging",
+      "cor": "1",
+      "loe": "A",
+      "statement": "8. \u0007In patients with suspected AIS and LVO presenting within 24 hours of last known well, emergent brain and vascular imaging (CT/CTA or MRI/MRA) of the cervical and intracranial vessels should be performed as rapidly as possible for EVT selection and treatment planning.",
+      "page_num": 27
+    },
+    {
+      "rec_id": "aha2026-rec-54",
+      "section": "Recommendations for Initial, Vascular, and Multimodal Imaging",
+      "cor": "2a",
+      "loe": "A",
+      "statement": "9. \u0007In patients with suspected AIS and LVO presenting within 6 to 24 hours of last known well, adjunctive CTP, MRI (DWI-FLAIR mismatch), or MR DWI-PWI with automated postprocessing software analysis can be useful in the evaluation for EVT, if immediately available.",
+      "page_num": 27
+    },
+    {
+      "rec_id": "aha2026-rec-55",
+      "section": "Recommendations for Initial, Vascular, and Multimodal Imaging",
+      "cor": "2b",
+      "loe": "B-R",
+      "statement": "10. \u0007In patients with suspected AIS and LVO based on prehospital assessment with a validated stroke severity scale (eg, RACE >4) and eligible for EVT, direct triage to the angiogra­ phy suite (DTAS) for flat-panel head CT versus conventional imaging workflow followed by catheter-based angiography may be considered to reduce time to intervention and improve functional outcomes.",
+      "page_num": 27
+    },
+    {
+      "rec_id": "aha2026-rec-56",
+      "section": "Recommendations for Initial, Vascular, and Multimodal Imaging",
+      "cor": "2b",
+      "loe": "B-NR",
+      "statement": "11. \u0007In emergently transferred patients with suspected AIS due to LVO (based on imaging or clinical assessment) and eligible for EVT, DTAS may be considered without repeat brain imaging (unless there is clinical change or transfer delay) on arrival to the thrombectomy center.16,18–20 Synopsis Brain imaging is essential to exclude hemorrhage in adult and pediatric patients eligible for AIS reperfusion thera­ pies. Although CT-based protocols are more efficient and generalizable, MRI-based protocols may be appropriate",
+      "page_num": 27
+    },
+    {
+      "rec_id": "aha2026-rec-57",
+      "section": "Recommendations for Other Diagnostic Tests",
+      "cor": "1",
+      "loe": "C-LD",
+      "statement": "1. \u0007In patients with suspected acute stroke, baseline electrocardiographic assessment is recom­ mended but should not delay initiation of IVT or EVT.",
+      "page_num": 31
+    },
+    {
+      "rec_id": "aha2026-rec-58",
+      "section": "Recommendations for Other Diagnostic Tests",
+      "cor": "1",
+      "loe": "B-NR",
+      "statement": "2. \u0007In patients with suspected acute stroke, baseline troponin is recommended but should not delay initiation of IVT or EVT.5–9 Synopsis For patients presenting with suspected acute stroke, it is important to consider the performance of relevant tests in the ED that either contribute to the diagnosis of acute stroke or aid in the identification of stroke mechanism. Relevant diagnostic tests include point-of-care glucose testing, covered in additional detail in section 4.5 (“Blood Glucose”), baseline electrocardiogram (ECG),1–4 and test­ ing of serum troponin.5–9 Although available literature sug­ gests that tests such as ECGs and troponins may aid in prognosis and identification of mechanism, understanding the recommended timeline of diagnostic tests in relation to acute interventions such as IVT and EVT is critical given the time-sensitive nature of these reperfusion therapies in patients with AIS. Current limited and nonrandomized data suggest that acquisition of ECG and troponins should not delay initiation of reperfusion therapies in patients with AIS.",
+      "page_num": 31
+    },
+    {
+      "rec_id": "aha2026-rec-59",
+      "section": "Recommendations for Airway, Breathing, and Oxygenation",
+      "cor": "1",
+      "loe": "C-LD",
+      "statement": "1. \u0007In patients with acute stroke and decreased consciousness or bulbar dysfunction, airway support and ventilatory assistance are recom­ mended as needed to provide airway mainte­ nance, protection and adequate ventilation and oxygenation.",
+      "page_num": 31
+    },
+    {
+      "rec_id": "aha2026-rec-60",
+      "section": "Recommendations for Airway, Breathing, and Oxygenation",
+      "cor": "1",
+      "loe": "C-LD",
+      "statement": "2. \u0007In patients with AIS with hypoxia, supplemental oxygen should be provided to maintain oxygen saturation (SpO2) >94%.",
+      "page_num": 31
+    },
+    {
+      "rec_id": "aha2026-rec-61",
+      "section": "Recommendations for Airway, Breathing, and Oxygenation",
+      "cor": "2b",
+      "loe": "B-R",
+      "statement": "3. \u0007In patients with AIS within 6 hours from onset, NIHSS score 10 to 20, CT ASPECTS of ≥6, and anterior circulation LVO (M1 or carotid terminus) with planned EVT (with or without IVT) normobaric hyperoxia (NBO) before EVT may be reasonable to improve functional outcomes at 90 days.6–9 Downloaded from http://ahajournals.org by on January 26,",
+      "page_num": 31
+    },
+    {
+      "rec_id": "aha2026-rec-62",
+      "section": "Recommendations for Airway, Breathing, and Oxygenation",
+      "cor": "2b",
+      "loe": "B-NR",
+      "statement": "4. \u0007In patients with AIS due to arterial air embolism, hyperbaric oxygen (HBO) may be reasonable to improve clinical outcome.10 3: No benefit B-R 5. \u0007In patients with AIS without hypoxia who are ineligible for EVT, supplemental oxygen is not recommended to improve functional out­ comes.11–16 3: No benefit B-R 6. \u0007In patients with AIS, not associated with air embolism, HBO is not recommended to improve functional outcomes.17 Synopsis Maintenance of the airway with adequate oxygenation and ventilation is essential in patients with acute stroke.1–3 Depending on stroke location, alterations in conscious­ ness, swallowing function, and/or breathing (via respira­ tory center involvement) may occur, increasing the risk of hypoxia, pulmonary complications (eg, aspiration, pneu­ monia, pulmonary edema), and respiratory failure. Acute and chronic prolonged hypoxia has known detrimental effects.18,19 Therefore, it is intuitive that oxygen supple­ mentation in hypoxic patients with acute stroke would prevent hypoxia-related complications, although data specific to the stroke population are limited. In contrast, supplemental oxygen for nonhypoxic patients with acute stroke has not been shown to consistently be associated with improvement in clinical outcome in multiple RCTs, with the exception of the subgroup of patients with AIS with LVO undergoing EVT, where there are promising data that NBO may be associated with improved func­ tional outcomes. HBO is the inhalation of pure oxygen (95%–100%) in a pressurized environment to augment oxygen levels in the blood and tissue and has various indications, including wound healing, carbon monox­ ide poisoning, and decompression sickness.20 A meta- analysis of nonrandomized trials in cerebral air embolism has shown that earlier time to HBO is associated with increased probability of favorable clinical outcome. How­ ever, routine use of HBO has not been shown to consis­ tently improve clinical outcomes in patients with acute stroke without air embolism.",
+      "page_num": 32
+    },
+    {
+      "rec_id": "aha2026-rec-63",
+      "section": "Recommendations for Blood Pressure Management",
+      "cor": "1",
+      "loe": "C-LD",
+      "statement": "1. \u0007In patients with AIS, hypotension and hypovolemia should be corrected to maintain systemic perfu­ sion levels necessary to support organ function.",
+      "page_num": 35
+    },
+    {
+      "rec_id": "aha2026-rec-64",
+      "section": "Recommendations for Blood Pressure Management",
+      "cor": "1",
+      "loe": "C-EO",
+      "statement": "2. \u0007In patients with AIS, early treatment of hyperten­ sion is indicated when required by comorbid conditions (eg, concomitant acute coronary event, acute heart failure, aortic dissection, post­ thrombolysis sICH, or preeclampsia/eclampsia) to reduce the risk of complications.",
+      "page_num": 35
+    },
+    {
+      "rec_id": "aha2026-rec-65",
+      "section": "Recommendations for Blood Pressure Management",
+      "cor": "2b",
+      "loe": "C-EO",
+      "statement": "3. \u0007In patients with BP ≥220/120 mm Hg who did not receive IVT or EVT and have no comorbid conditions requiring urgent antihypertensive treatment, the benefit of initiating or reinitiating treatment of hypertension within the first 48 to 72 hours is uncertain. 3: No Benefit A 4. \u0007In patients with BP <220/120 mm Hg who did not receive IVT or EVT and do not have a comorbid condition requiring urgent antihypertensive treat­ ment, initiating or reinitiating treatment of hyperten­ sion within the first 48 to 72 hours after an AIS is not effective to prevent death or dependency.4 Before reperfusion treatment",
+      "page_num": 35
+    },
+    {
+      "rec_id": "aha2026-rec-66",
+      "section": "Recommendations for Blood Pressure Management",
+      "cor": "1",
+      "loe": "B-NR",
+      "statement": "5. \u0007Patients with AIS who have elevated BP and are otherwise eligible for treatment with IVT should have their SBP lowered to <185 mm Hg and diastolic blood pressure (DBP) <110 mm Hg before IVT therapy is initiated to reduce hemor­ rhagic complications.",
+      "page_num": 35
+    },
+    {
+      "rec_id": "aha2026-rec-67",
+      "section": "Recommendations for Blood Pressure Management",
+      "cor": "2a",
+      "loe": "B-NR",
+      "statement": "6. \u0007In patients for whom EVT is planned and who have not received IVT therapy, it is reasonable to maintain BP ≤185/110 mm Hg before the procedure to avoid complications and improve patient outcomes.10 After IVT",
+      "page_num": 35
+    },
+    {
+      "rec_id": "aha2026-rec-68",
+      "section": "Recommendations for Blood Pressure Management",
+      "cor": "1",
+      "loe": "B-R",
+      "statement": "7. \u0007BP should be maintained at <180/105 mm Hg for at least the first 24 hours after IVT treatment.11–13 3: No Benefit B-R 8. \u0007In patients with mild to moderate severity AIS who have been treated with IVT, intensive SBP reduction (target of <140 mm Hg compared with <180 mm Hg) is not recommended because it is not associated with an improve­ ment in functional outcome.11 After endovascular thrombectomy",
+      "page_num": 35
+    },
+    {
+      "rec_id": "aha2026-rec-69",
+      "section": "Recommendations for Blood Pressure Management",
+      "cor": "2a",
+      "loe": "B-NR",
+      "statement": "9. \u0007In patients who undergo EVT, it is reasonable to maintain BP at a level ≤180/105 mm Hg during and for 24 hours after the procedure.",
+      "page_num": 35
+    },
+    {
+      "rec_id": "aha2026-rec-70",
+      "section": "Recommendations for Blood Pressure Management",
+      "cor": "3: Harm",
+      "loe": "A",
+      "statement": "10. \u0007In patients with AIS with LVO of the anterior cir­ culation who have been successfully recanalized by endovascular therapy (mTICI 2b, 2c, or 3) and without other indication for blood pressure management target, intensive SBP reduction target of <140 mm Hg for the first 72 hours is harmful and not recommended.18–21 Synopsis In adult patients with AIS, there is a general, mechanistic understanding that extremely high BP concurrent with acute stroke reperfusion may be detrimental, particularly in terms of hemorrhagic complications. The majority of evidence supporting pre-reperfusion BP reduction has either been observational or based on thrombolysis or thrombectomy RCT protocols. Randomized trials evalu­ ating pre-thrombolysis or pre-thrombectomy BP targets are yet unavailable. Optimal BP targets after IVT and thrombectomy con­ tinue to be actively studied because of the known and hypothesized associations with either sICH from hyper­ perfusion or worsened cerebral ischemia from hypoper­ fusion, as well as with outcomes including death and dependency. The recommendation for BP targets after IVT and thrombectomy remains largely unchanged from previous guidelines, with further evidence that more intensive BP reduction provides either no benefit in func­ tional outcome (thrombolysis) or harm (thrombectomy).",
+      "page_num": 35
+    },
+    {
+      "rec_id": "aha2026-rec-71",
+      "section": "Recommendations for Temperature Management",
+      "cor": "1",
+      "loe": "B-R",
+      "statement": "1. \u0007In patients with AIS who have hyperthermia, targeting normothermia, including using nurse- initiated protocols for managing fever, is recom­ mended for improving functional outcomes and reducing death.",
+      "page_num": 37
+    },
+    {
+      "rec_id": "aha2026-rec-72",
+      "section": "Recommendations for Temperature Management",
+      "cor": "1",
+      "loe": "C-EO",
+      "statement": "2. \u0007In patients with AIS and hyperthermia, sources of hyperthermia, such as infection, should be identi­ fied and treated to avoid complications. 3: No Benefit B-R 3. \u0007In patients with AIS and normothermia, treatment with induced hypothermia or prophylactic fever prevention is not recommended for the purpose of improving outcomes.4–7 Synopsis In patients with AIS with hyperthermia, achieving normo­ thermia, including using nurse-driven protocols to moni­ tor for and treat temperatures >37.5°C improves clinical outcomes and reduces mortality.1–3 For those with fever, rapidly identifying and treating the cause can improve outcomes. RCTs have demonstrated that induced hypo­ thermia does not improve outcomes and may increase adverse events.",
+      "page_num": 37
+    },
+    {
+      "rec_id": "aha2026-rec-73",
+      "section": "Recommendations for Blood Glucose Management",
+      "cor": "1",
+      "loe": "C-LD",
+      "statement": "1. \u0007In patients with AIS, hypoglycemia (blood glucose <60 mg/dL) should be treated to avoid complications.",
+      "page_num": 37
+    },
+    {
+      "rec_id": "aha2026-rec-74",
+      "section": "Recommendations for Blood Glucose Management",
+      "cor": "2a",
+      "loe": "C-LD",
+      "statement": "2. \u0007In patients with AIS, it is reasonable to treat persistent hyperglycemia to achieve blood glucose levels in a range of 140 to 180 mg/dL with close monitoring to prevent worse functional outcomes.1,2 3: No Benefit A 3. \u0007In hospitalized patients with AIS with hypergly­ cemia, treatment with IV insulin to achieve blood glucose levels in the range of 80 to 130 mg/dL is not recommended to improve 3-month functional outcomes.3–5 Synopsis Although observational data suggest that hyperglycemia is associated with increased sICH and unfavorable func­ tional outcomes, a large RCT and meta-analyses demon­ strate that in patients with AIS, intensive glucose control to the range of 80 to 130 mg/dL does not improve clinical outcomes and increases the risk of severe hypoglycemia.",
+      "page_num": 37
+    },
+    {
+      "rec_id": "aha2026-rec-75",
+      "section": "Recommendations for Blood Glucose Management",
+      "cor": "1",
+      "loe": "A",
+      "statement": "1. \u0007In adult patients with AIS with disabling deficits, regardless of NIHSS score), and eligible for IVT, faster treatment improves functional outcomes.",
+      "page_num": 38
+    },
+    {
+      "rec_id": "aha2026-rec-76",
+      "section": "Recommendations for Blood Glucose Management",
+      "cor": "1",
+      "loe": "B-NR",
+      "statement": "2. \u0007In adult patients with AIS who are eligible for IVT within 4.5 hours of symptom onset, treatment should be initiated as quickly as possible, assur­ ing safe administration and avoiding potential delays associated with additional multimodal neuroimaging, such as CTA/MRA, and CT/MR perfusion imaging.",
+      "page_num": 38
+    },
+    {
+      "rec_id": "aha2026-rec-77",
+      "section": "Recommendations for Blood Glucose Management",
+      "cor": "1",
+      "loe": "B-NR",
+      "statement": "3. \u0007In patients with AIS undergoing IVT, health care professionals should be prepared to treat potential emergent adverse effects, including bleeding complications and angioedema, which may cause partial airway obstruction, to reduce poor clinical outcomes.",
+      "page_num": 38
+    },
+    {
+      "rec_id": "aha2026-rec-78",
+      "section": "Recommendations for Blood Glucose Management",
+      "cor": "1",
+      "loe": "C-EO",
+      "statement": "4. \u0007In patients with AIS eligible for IVT, health care professionals should discuss its potential risks and benefits with competent patients and/or available patient representatives, when feasible, to ensure shared decision-making.",
+      "page_num": 38
+    },
+    {
+      "rec_id": "aha2026-rec-79",
+      "section": "Recommendations for Blood Glucose Management",
+      "cor": "1",
+      "loe": "B-NR",
+      "statement": "5. \u0007In patients with suspected ischemic stroke, treat­ ing health care professionals should determine blood glucose levels before IVT initiation to assess and urgently treat severe hypoglycemia and hyperglycemia, which may mimic acute stroke presentations.",
+      "page_num": 38
+    },
+    {
+      "rec_id": "aha2026-rec-80",
+      "section": "Recommendations for Blood Glucose Management",
+      "cor": "1",
+      "loe": "C-LD",
+      "statement": "6. \u0007In patients with suspected ischemic stroke with severe hypoglycemia or hyperglycemia, if symp­ toms of disabling stroke persist despite correc­ tion to normoglycemia, administration of IVT is recommended to improve functional outcomes.",
+      "page_num": 38
+    },
+    {
+      "rec_id": "aha2026-rec-81",
+      "section": "Recommendations for Blood Glucose Management",
+      "cor": "1",
+      "loe": "A",
+      "statement": "7. \u0007In patients with AIS who are otherwise eligible for IVT with early ischemic change of mild to moderate extent (other than frank hypodensity attributable to the clinical presentation) on initial brain imaging, IVT is recommended to improve functional outcome.21,22 3: No Benefit B-R 8. \u0007In eligible adult patients with AIS presenting with mild non-disabling stroke deficits (eg, iso­ lated sensory syndrome in many cases) within 4.5 hours of symptom onset or last known well, IVT is not recommended as it has not shown superiority in improving functional outcomes compared to double antiplatelet treatment.23–29 Bleeding risk",
+      "page_num": 38
+    },
+    {
+      "rec_id": "aha2026-rec-82",
+      "section": "Recommendations for Blood Glucose Management",
+      "cor": "1",
+      "loe": "B-NR",
+      "statement": "9. \u0007In suspected patients with AIS who are taking single or DAPT and are otherwise eligible for IVT, IVT is recommended to improve functional outcomes despite an increase in risk of sICH compared with no antiplatelet therapy.",
+      "page_num": 38
+    },
+    {
+      "rec_id": "aha2026-rec-83",
+      "section": "Recommendations for Blood Glucose Management",
+      "cor": "2a",
+      "loe": "B-NR",
+      "statement": "10. \u0007In patients with AIS within 4.5 hours of last known well and eligible for IVT, it is reason­ able that IVT not be delayed while waiting for hematologic or coagulation testing if there is no reason to suspect an abnormal result.",
+      "page_num": 38
+    },
+    {
+      "rec_id": "aha2026-rec-84",
+      "section": "Recommendations for Blood Glucose Management",
+      "cor": "1",
+      "loe": "B-NR",
+      "statement": "11. \u0007In patients with AIS who are eligible for IVT within 4.5 hours of symptom onset with unknown burden of cerebral microbleeds (CMB), it is recommended that IVT be administered without first obtaining MRI to exclude CMBs.",
+      "page_num": 38
+    },
+    {
+      "rec_id": "aha2026-rec-85",
+      "section": "Recommendations for Blood Glucose Management",
+      "cor": "2a",
+      "loe": "B-NR",
+      "statement": "12. \u0007In patients with AIS within 4.5 hours of last known well and who are eligible for IVT, admin­ istration of IVT is reasonable to achieve better functional outcomes if a small number (eg, 1–10) of CMBs was demonstrated on MRI.",
+      "page_num": 38
+    },
+    {
+      "rec_id": "aha2026-rec-86",
+      "section": "Recommendations for Blood Glucose Management",
+      "cor": "2b",
+      "loe": "B-NR",
+      "statement": "13. \u0007In patients with AIS within 4.5 hours of last known well and who are eligible for IVT, if they previously had a high burden (eg, >10) of CMBs demonstrated on MRI, usefulness of IVT is uncertain as it may be associated with an increased risk of sICH.33,34,37 Pediatric patients",
+      "page_num": 38
+    },
+    {
+      "rec_id": "aha2026-rec-87",
+      "section": "Recommendations for Blood Glucose Management",
+      "cor": "2b",
+      "loe": "C-LD",
+      "statement": "14. \u0007In pediatric patients aged 28 days to 18 years with confirmed AIS presenting within 4.5 hours of symptom onset and disabling deficits, IVT with alteplase may be considered as it is safe, but efficacy is uncertain.38–42 Synopsis General principles for treatment of IVT include prompt evaluation to assess disabling deficits followed by rapid treatment in eligible patients, given the consistent find­ ing that treatment effect is highly time dependent; shared decision-making when feasible with patients or their rep­ resentatives; assessment of blood glucose before IVT ini­ tiation; and readily available standardized clinical protocols to manage complications such as sICH and orolingual edema. Patients remain eligible for IVT if disabling defi­ cits persist despite correction of hypo- or hyperglycemia, Recommendations For Thrombolysis Decision-Making (Continued) COR LOE Recommendations Downloaded from http://ahajournals.org by on January 26,",
+      "page_num": 38
+    },
+    {
+      "rec_id": "aha2026-rec-88",
+      "section": "Recommendations for Choice of Thrombolytic Agent",
+      "cor": "1",
+      "loe": "A",
+      "statement": "1. \u0007In adult patients with AIS presenting within 4.5 hours of symptom onset or last known well and eligible for IVT, tenecteplase at a dose of 0.25 mg/kg body weight (max 25 mg) or alteplase at a dose of 0.9 mg/kg body weight is recommended to improve functional outcomes.1–5 3: No Benefit A 2. \u0007In adult patients with AIS presenting within 4.5 hours of symptom onset or last known well and eligible for IVT, tenecteplase at a dose of 0.4 mg/kg body weight is not recommended.6–9 Synopsis Since the 2019 AIS guidelines, there have been multiple large phase 3 RCTs testing tenecteplase 0.25 mg/kg body weight (max 25 mg) given as a bolus versus alteplase 0.9 mg/kg body weight (max of 90 mg) with 10% administered as a bolus and the remainder by infusion during a 60-minute period in patients with AIS presenting within 4.5 hours of stroke symptom onset or last known well.1–5 These RCTs have included >6000 patients from across the world, with broad eli­ gibility criteria attesting to generalizability. Each of these trials individually has shown noninferiority of tenecteplase versus alteplase for prespecified primary outcomes (mRS score 0–1 or the entire scale at 90 days) with similar safety outcomes. No significant dif­ ferences have been noted in secondary analyses or in per protocol analyses. Given the obvious ease of administration of tenecteplase (single bolus over 5–10 seconds) versus alteplase (bolus followed by a 1-hour infusion), these studies suggest that tenecteplase at a dose of 0.25 mg/kg body weight (max 25 mg) can replace alteplase as the thrombolytic agent of choice in patients with AIS presenting within 4.5 hours of stroke symptom onset. Of note, all previous phase II and phase III RCTs suggest that tenecteplase (0.25 mg/kg body weight) is either similar or better than alteplase in these patients with similar safety. Phase 2 and phase 3 trials using tenecteplase at a dose of 0.40 mg/kg body weight (when compared with 0.25 mg/kg tenecteplase or 0.9 mg/kg body weight alteplase) have not shown any additional benefit and have shown the potential for harm with the higher dose of tenecteplase.",
+      "page_num": 42
+    },
+    {
+      "rec_id": "aha2026-rec-89",
+      "section": "Recommendations for Extended Time Windows for Intravenous",
+      "cor": "2a",
+      "loe": "B-R",
+      "statement": "1. \u0007In patients with AIS who (a) have unknown time of onset and are within 4.5 hours from symptom recognition and (b) have an MRI-DWI lesion smaller than one-third of the MCA territory and no marked signal change on FLAIR, IVT administered within 4.5 hours of stroke symptom recogni­ tion can be beneficial to improve functional outcomes.",
+      "page_num": 44
+    },
+    {
+      "rec_id": "aha2026-rec-90",
+      "section": "Recommendations for Extended Time Windows for Intravenous",
+      "cor": "2a",
+      "loe": "B-R",
+      "statement": "2. \u0007In patients with AIS who have salvageable isch­ emic penumbra detected on automated perfusion imaging and who (a) awake with stroke symptoms within 9 hours from the midpoint of sleep or (b) are 4.5–9 hours from last known well, IV throm­ bolysis may be reasonable to improve functional outcomes.",
+      "page_num": 44
+    },
+    {
+      "rec_id": "aha2026-rec-91",
+      "section": "Recommendations for Extended Time Windows for Intravenous",
+      "cor": "2b",
+      "loe": "B-R",
+      "statement": "3. \u0007In patients with AIS due to LVO with salvage­ able ischemic penumbra, presenting within 4.5 to 24 hours from symptom onset or last known well, and who cannot receive EVT, treatment with IVT directed by individuals with expertise in thrombolytic stroke care may be beneficial to improve functional outcomes.2–5 Synopsis Based on the NINDS tPA and ECASS-III trials, treat­ ment with IVT for patients within 4.5 hours of last known well is well-established as standard of care. The WAKE- UP trial has since shown that patients with an unknown time of onset, but within 4.5 hours of symptom recog­ nition and having MRI parameters suggesting biological onset within 4.5 hours benefit from IVT. This treatment effect was consistent in lacunar and nonlacunar stroke subgroups.6,7 Since the last guideline was published, the EXTEND and TRACE-3 trials used CT perfusion param­ eters for patient selection and found further signal of benefit in the 4.5- to 9-hour and 4.5- to 24-hour win­ dows, respectively.",
+      "page_num": 44
+    },
+    {
+      "rec_id": "aha2026-rec-92",
+      "section": "Recommendations for Other IV Fibrinolytics and Sonothrombolysis",
+      "cor": "2b",
+      "loe": "B-R",
+      "statement": "1. \u0007In eligible patients with AIS presenting within 4.5 hours from last known normal and not undergo­ ing EVT, IV reteplase, instead of alteplase, may be considered to increase the odds of excellent functional outcome at 90 days.",
+      "page_num": 45
+    },
+    {
+      "rec_id": "aha2026-rec-93",
+      "section": "Recommendations for Other IV Fibrinolytics and Sonothrombolysis",
+      "cor": "2b",
+      "loe": "B-R",
+      "statement": "2. \u0007In eligible patients with AIS within 4.5 hours from last known normal and not undergoing EVT, IV mutant prourokinase, instead of alteplase, may be considered due to lower odds of bleeding and noninferiority for odds of excellent functional outcome at 90 days.3,4 3: No Benefit A 3. \u0007In eligible patients with AIS presenting within 3 to 9 hours from last known normal, IV desmoteplase is not recommended for improving functional independence at 90 days.5–8 3: No Benefit B-R 4. \u0007In eligible patients with AIS within 4.5 hours from last known normal, IV mutant prourokinase in conjunction with low-dose alteplase is not recom­ mended to improve functional outcomes.9,10 3: No Benefit B-R 5. \u0007In eligible patients with AIS within 6 hours from last known normal, IV urokinase is not beneficial for decreasing the odds of death or dependency.",
+      "page_num": 45
+    },
+    {
+      "rec_id": "aha2026-rec-94",
+      "section": "Recommendations for Other IV Fibrinolytics and Sonothrombolysis",
+      "cor": "3: Harm",
+      "loe": "A",
+      "statement": "6. \u0007In eligible patients with AIS within 6 hours from last known normal, IV streptokinase should not be administered because it does not result in improved rate of functional independence at 90 days and is associated with increased early mortality.8 Sonothrombolysis 3: No Benefit A 7. \u0007In patients with AIS, sonothrombolysis as an adjunctive therapy to IVT compared with IVT alone is not recommended as it did not increase the odds of early neurological improvement nor improve functional outcome at 90 days.11,12 Synopsis In addition to alteplase and tenecteplase for acute treat­ ment of patients with AIS, previous trials have studied desmoteplase, urokinase, prourokinase, and strepto­ kinase. The trials did not demonstrate any benefit over Downloaded from http://ahajournals.org by on January 26,",
+      "page_num": 45
+    },
+    {
+      "rec_id": "aha2026-rec-95",
+      "section": "Recommendations for Other Specific Circumstances",
+      "cor": "2a",
+      "loe": "B-NR",
+      "statement": "1. \u0007In eligible adult patients with AIS with known sickle cell disease, IVT can be beneficial to improve functional outcome without increased sICH, life-threatening systemic hemorrhage, or other thrombolytic complications.",
+      "page_num": 47
+    },
+    {
+      "rec_id": "aha2026-rec-96",
+      "section": "Recommendations for Other Specific Circumstances",
+      "cor": "2b",
+      "loe": "C-LD",
+      "statement": "2. \u0007In adults with acute nonarteritic central retinal artery occlusion (CRAO) causing disabling visual loss, and who are otherwise eligible for IVT, the usefulness of treatment with IVT within 4.5 hours of time last known well is uncertain.2–6 Synopsis Observational data suggest that several specific popula­ tions of patients with uncertain thrombolysis risk benefit ratios may be treated without additional safety concerns. A GWTG observational study of patients with sickle cell disease compared with those without demonstrated no dif­ ference in safety or outcomes after IV alteplase.1 A small RCT of 16 patients with CRAO compared 8 patients who received IV alteplase to 8 who did not (placebo group). At 1 week, no improvement in visual acuity was reported in the placebo group, and 25% of the patients receiving alteplase had improved visual acuity. However, the improvement was not sustained at 6 months, and 1 patient (12.5%) who received alteplase2 developed an ICH. Several larger meta-analyses of nonrandomized data suggest improved visual recovery in those treated with IV alteplase.3,4 Recommendation Specific Supportive Text 1.\t A case-control analysis using the population from the AHA GWTG-Stroke registry, including 832 adult cases with sickle cell disease and 3328 age-, sex-, and race-matched controls without sickle cell dis­ ease with similar severity of neurological deficits at presentation, showed that sickle cell disease was not associated with worsened complications or dis­ charge outcome after treatment with IV alteplase.1 2.\t There is extensive observational literature which examined outcomes in patients with acute nonar­ teritic CRAO with and without treatment with IVT. One clinical trial2 randomized patients with acute nonarteritic CRAO to either placebo or IVT within 24 hours of time last known well. This trial did not demonstrate a difference with respect to visual acuity between the 2 groups; however, lower than anticipated enrollment limited the trial’s ability to adequately test its primary hypothesis. A partici­ pant level meta-analysis3 (including data from this single clinical trial as well as observational studies enrolling both IVT-treated and untreated patients) included 68 patients presenting with 4.5 hours of time last known well who treated with IVT. Of patients treated with IVT within 4.5 hours of time last known well, 37.3% achieved a final visual acu­ ity of ≥20/100 compared with a historical control cohort of whom only 17.7% achieved a final visual acuity of ≥20/100 (P<0.001). As the majority of studies included in this meta-analysis were retro­ spective and uncontrolled studies, the quality of evidence contained within is deemed to be modest. For IVT to be considered in CRAO, there are sev­ eral recommended prerequisites. First, an ophthal­ mological assessment is warranted. This includes evaluation for a relative afferent pupillary defect and a fundus examination (including a dilated fun­ dus examination or visualization of the fundus with a non-mydriatic fundus camera) to determine whether there is evidence of a vitreous hemorrhage, retinal detachment, or other primary ophthalmologi­ cal pathology. Second, an assay of the erythrocyte sedimentation rate to aid with exclusion of giant cell arteritis (along with a focused history and general examination). Third, a thorough benefit/risk discus­ sion with the patient is warranted with an acknowl­ edgment that, at present, the literature on IVT for CRAO is limited and it is an area of active study. In general, an exact definition of “disabling visual loss” is not always useful but should be made with Downloaded from http://ahajournals.org by on January 26,",
+      "page_num": 47
+    },
+    {
+      "rec_id": "aha2026-rec-97",
+      "section": "Recommendations for Concomitant With IVT",
+      "cor": "1",
+      "loe": "A",
+      "statement": "1. \u0007In patients with AIS who are eligible for both IVT and EVT, IVT is safe and recommended to improve overall reperfusion efficacy and clinical outcomes.",
+      "page_num": 48
+    },
+    {
+      "rec_id": "aha2026-rec-98",
+      "section": "Recommendations for Concomitant With IVT",
+      "cor": "1",
+      "loe": "A",
+      "statement": "2. \u0007In patients with AIS who are eligible for both IVT and EVT, IVT should be administered as rapidly as possible, without observation, to assess clinical response or delay in initiating EVT, to improve treatment times and clinical outcomes.3 Synopsis Based on several recently completed RCTs, a strategy to forgo (or “skip”) IVT to facilitate EVT is not recommended. The benefits of IVT include improved reperfusion rates with EVT, without any increased risk of symptomatic hemorrhage. Downloaded from http://ahajournals.org by on January 26,",
+      "page_num": 48
+    },
+    {
+      "rec_id": "aha2026-rec-99",
+      "section": "Recommendations for Endovascular Thrombectomy for Adult",
+      "cor": "1",
+      "loe": "A",
+      "statement": "1. \u0007In patients with AIS from anterior circulation proximal LVO of the ICA or M1, presenting within 6 hours from onset of symptoms, with NIHSS score ≥6, prestroke mRS score of 0 to 1, and ASPECTS 3 to 10, EVT is recommended to improve functional clinical outcomes and reduce mortality.1–11 Thrombectomy 6 to 24 hours after onset of symptoms, ASPECTS 6 to",
+      "page_num": 53
+    },
+    {
+      "rec_id": "aha2026-rec-100",
+      "section": "Recommendations for Endovascular Thrombectomy for Adult",
+      "cor": "1",
+      "loe": "A",
+      "statement": "2. \u0007In patients with AIS from anterior circulation proximal LVO of the ICA or M1 presenting between 6 and 24 hours from onset of symptoms, with NIHSS score ≥6, prestroke mRS score 0 to 1 and ASPECTS ≥6, EVT is recommended to improve functional clinical outcomes and reduce mortality.12–14 Thrombectomy 6 to 24 hours after onset of symptoms, ASPECTS 3 to",
+      "page_num": 53
+    },
+    {
+      "rec_id": "aha2026-rec-101",
+      "section": "Recommendations for Endovascular Thrombectomy for Adult",
+      "cor": "1",
+      "loe": "A",
+      "statement": "3. \u0007In selected patients* with AIS from anterior circulation proximal LVO of the ICA or M1, presenting between 6 and 24 hours from onset of symptoms, with age <80 years, NIHSS score ≥6, prestroke mRS score 0 to 1, ASPECTS 3 to 5, and without significant mass effect on imaging, EVT is recommended to improve functional clini­ cal outcomes and reduce mortality.7,8 Thrombectomy 0 to 6 hours after onset of symptoms, ASPECTS 0 to",
+      "page_num": 53
+    },
+    {
+      "rec_id": "aha2026-rec-102",
+      "section": "Recommendations for Endovascular Thrombectomy for Adult",
+      "cor": "2a",
+      "loe": "B-R",
+      "statement": "4. \u0007In selected patients† with AIS from anterior circulation proximal LVO of the ICA or M1 presenting within 6 hours from onset of symptoms, with age <80 years, NIHSS score ≥6, prestroke mRS 0 to 1, ASPECTS 0 to 2, and without significant mass effect on imag­ ing, EVT is reasonable to improve functional clinical outcomes and reduce mortality.8,10,11 Thrombectomy 0 to 6 hours after onset of symptoms with mild preexisting disability",
+      "page_num": 53
+    },
+    {
+      "rec_id": "aha2026-rec-103",
+      "section": "Recommendations for Endovascular Thrombectomy for Adult",
+      "cor": "2a",
+      "loe": "B-NR",
+      "statement": "5. \u0007In patients with AIS from anterior circulation proxi­ mal LVO of the ICA or M1 presenting within 6 hours from onset of symptoms, with NIHSS score ≥6, and ASPECTS ≥6, who have a prestroke mRS score of 2, EVT is reasonable to improve functional clinical outcomes and reduce accumulated disability.15,16 Thrombectomy 0 to 6 hours after onset of symptoms with moderate preexisting disability",
+      "page_num": 53
+    },
+    {
+      "rec_id": "aha2026-rec-104",
+      "section": "Recommendations for Endovascular Thrombectomy for Adult",
+      "cor": "2b",
+      "loe": "B-NR",
+      "statement": "6. \u0007In patients with AIS from anterior circulation proxi­ mal LVO of the ICA or M1 presenting within 6 hours from onset of symptoms, with NIHSS score ≥6, and ASPECTS of ≥6, who have a prestroke mRS score of 3 to 4, EVT might be reasonable to improve functional clinical outcomes and reduce accumulated disability.17–20 Thrombectomy 0 to 6 hours for dominant proximal M2 division MCA occlusions",
+      "page_num": 53
+    },
+    {
+      "rec_id": "aha2026-rec-105",
+      "section": "Recommendations for Endovascular Thrombectomy for Adult",
+      "cor": "2a",
+      "loe": "B-NR",
+      "statement": "7. \u0007In patients with AIS from occlusion of the dominant proximal M2 division of the MCA presenting within 6 hours from onset of symptoms with a prestroke mRS score of 0 to 1, NIHSS score of ≥6, and ASPECTS of ≥6, EVT is reasonable to improve functional outcomes, but the benefits are uncertain.21–23 Downloaded from http://ahajournals.org by on January 26,",
+      "page_num": 53
+    },
+    {
+      "rec_id": "aha2026-rec-106",
+      "section": "Recommendations for Posterior Circulation Stroke",
+      "cor": "1",
+      "loe": "A",
+      "statement": "1. \u0007In patients with AIS, with basilar artery occlusion, a baseline mRS score of 0 to 1, NIHSS score ≥10 at presentation, and PC-ASPECTS ≥6 (mild ischemic damage), EVT within 24 hours from onset of symptoms is recommended to achieve better functional outcome and reduce mortality.1,2 Downloaded from http://ahajournals.org by on January 26,",
+      "page_num": 56
+    },
+    {
+      "rec_id": "aha2026-rec-107",
+      "section": "Recommendations for Posterior Circulation Stroke",
+      "cor": "2b",
+      "loe": "B-R",
+      "statement": "2. \u0007In patients with AIS, with basilar artery occlusion, a baseline mRS score of 0 to 1, NIHSS score 6 to 9 at presentation, and PC-ASPECTS ≥6 (mild ischemic damage) the effectiveness of EVT within 24 hours to improve functional outcomes and reduce mortality is not well established.3–5 Synopsis EVT has been established as standard of care to achieve optimal functional outcome in patients with AIS in the anterior circulation. Recently, several randomized clinical trials have investigated outcomes of EVT in the posterior circulation, specifically acute basilar occlusions. Earlier RCTs conducted in China, BEST and BASICS, showed a statistically nonsignificant direction toward benefit of EVT for acute basilar occlusions but failed to show superior­ ity over best medical management.4,6,7 These trials were found to have long nonconsecutive recruitment rates, as well as high crossover and treatment outside the trial rates. Two subsequent RCT Chinese studies, ATTENTION and BAOCHE, showed significant benefit and superiority of EVT over best medical management in patients with acute basilar occlusions within 12 and 24 hours from symptom onset, respectively.1,8 Of note, the aforementioned trials were conducted in China, where prevalence of intracranial atherosclerotic disease as a causal mechanism is reported in as much as 50% of ischemic strokes in people of Asian ethnicity.9 For more information, see Figure 3 describing the management of AIS eligibility for EVT.",
+      "page_num": 57
+    },
+    {
+      "rec_id": "aha2026-rec-108",
+      "section": "Recommendations for Endovascular Techniques",
+      "cor": "1",
+      "loe": "A",
+      "statement": "1. \u0007In patients with AIS due to an LVO, EVT with stent retrievers, contact aspiration, or combina­ tion techniques is recommended to achieve rapid and adequate reperfusion.",
+      "page_num": 57
+    },
+    {
+      "rec_id": "aha2026-rec-109",
+      "section": "Recommendations for Endovascular Techniques",
+      "cor": "1",
+      "loe": "A",
+      "statement": "2. \u0007In patients with AIS undergoing EVT, reperfusion to an extended TICI grade 2b/2c/3 is recommended as early as possible within the therapeutic window to achieve maximum functional benefit at 90 days.",
+      "page_num": 57
+    },
+    {
+      "rec_id": "aha2026-rec-110",
+      "section": "Recommendations for Posterior Circulation Stroke",
+      "cor": "1",
+      "loe": "B-R",
+      "statement": "3. \u0007In patients with AIS undergoing EVT, either general anesthesia or procedural sedation are recommended to facilitate EVT.",
+      "page_num": 58
+    },
+    {
+      "rec_id": "aha2026-rec-111",
+      "section": "Recommendations for Posterior Circulation Stroke",
+      "cor": "2b",
+      "loe": "B-R",
+      "statement": "4. \u0007In patients with AIS undergoing EVT, the use of a proximal balloon to guide catheters to achieve improved outcomes remains uncertain.10–12 3: No Benefit A 5. \u0007In patients with AIS from occlusion of medium or distal vessels of the anterior, middle (non­ dominant or codominant M2, M3), or posterior cerebral arteries, EVT with stent retrievers is of no benefit for improving functional outcomes.13,14 Thrombectomy adjunctive techniques",
+      "page_num": 58
+    },
+    {
+      "rec_id": "aha2026-rec-112",
+      "section": "Recommendations for Posterior Circulation Stroke",
+      "cor": "2b",
+      "loe": "B-NR",
+      "statement": "6. \u0007In patients with AIS undergoing EVT in the setting of tandem extracranial-intracranial anterior circula­ tion occlusions, acute treatment of both, including emergent extracranial stenting, may be reasonable to achieve higher good functional outcome.",
+      "page_num": 58
+    },
+    {
+      "rec_id": "aha2026-rec-113",
+      "section": "Recommendations for Posterior Circulation Stroke",
+      "cor": "2b",
+      "loe": "B-NR",
+      "statement": "7. \u0007In patients with AIS in the setting of failed EVT, the use of rescue intracranial balloon angioplasty and/or stenting to improve functional outcome remains uncertain.",
+      "page_num": 58
+    },
+    {
+      "rec_id": "aha2026-rec-114",
+      "section": "Recommendations for Posterior Circulation Stroke",
+      "cor": "2b",
+      "loe": "B-R",
+      "statement": "8. \u0007In patients with AIS who achieve complete or near-complete EVT (modified TICI 2b or greater), the administration of adjunctive intraarterial throm­ bolytics with urokinase, alteplase, or tenecteplase may be reasonable to improve cerebral reperfu­ sion and 90-day functional outcome.22–25 3: No Benefit B-R 9. \u0007In the management of patients with AIS in the setting of LVO, preoperative administration of tiro­ fiban before EVT is not useful to improve 90-day functional outcome.26,27 Synopsis Several RCTs, such as COMPASS, ASTER, and ASTER 2, investigated first-line contact aspiration, versus stent retrievers, versus combination techniques and found no statistical significance in the difference in adequate and successful reperfusion.1–3 Radiographic results of extended TICI of 2B/2C/3 are recommended for maxi­ mal functional benefit.6 General anesthesia and procedural sedation for EVT have comparable functional outcomes and periprocedural complications based on a recent RCT.7 However, in the extended thrombectomy window of 6 to 24 hours specifically, the data thus far are insufficient. The use of balloon-guided catheters during EVT has uncertain implications on functional outcome because the data are conflicting. In tandem lesions of the anterior circulation, a systematic review of observational studies has shown that emergent carotid stenting has some functional benefit over nonstenting, despite a higher incidence of ICH.17 In the set­ ting of failed EVT, defined as extended TICI 0 to 2a, the role of rescue intracranial balloon angioplasty and/or stenting to improve functional outcome remains uncertain. Several systematic reviews, meta-analyses, and large observational cohorts have shown an overall favorable direction in 90-day mRS score. However, a recent RCT in China of nearly 350 patients failed to show benefit of these rescue techniques.28 The usefulness of administration of adjunctive intra-arterial thrombolytics, namely urokinase and tenecteplase, after successful thrombectomy remains uncertain, as data from 4 major RCT are conflicting.22–25 Preoperative IV admin­ istration of tirofiban showed no functional benefit in 90 days and a higher incidence of symptomatic hemorrhage in a double-blind randomized placebo-control clinical trial in China of nearly 948 patients. It is therefore not recom­ mended prior to EVT.",
+      "page_num": 58
+    },
+    {
+      "rec_id": "aha2026-rec-115",
+      "section": "Recommendations for Endovascular Thrombectomy in Pediatric",
+      "cor": "2a",
+      "loe": "B-NR",
+      "statement": "1. \u0007In pediatric patients ≥6 years with acute neuro­ logical symptoms and ischemic stroke due to LVO and within 6 hours from symptom onset, EVT can be effective if performed by experienced neuroin­ terventionalists to improve functional outcomes.",
+      "page_num": 60
+    },
+    {
+      "rec_id": "aha2026-rec-116",
+      "section": "Recommendations for Endovascular Thrombectomy in Pediatric",
+      "cor": "2a",
+      "loe": "B-NR",
+      "statement": "2. \u0007In pediatric patients ≥6 years with acute neuro­ logical symptoms and ischemic stroke due to LVO, 6 to 24 hours from symptom onset, and with potentially salvageable brain tissue, EVT can be effective to improve functional outcomes.",
+      "page_num": 60
+    },
+    {
+      "rec_id": "aha2026-rec-117",
+      "section": "Recommendations for Endovascular Thrombectomy in Pediatric",
+      "cor": "2b",
+      "loe": "B-NR",
+      "statement": "3. \u0007In pediatric patients aged 28 days to 6 years with acute neurological symptoms, including first-time seizure and AIS due to LVO, within 24 hours from symptom onset, and with potentially salvageable brain tissue, EVT performed by neurointervention­ alists with pediatric experience may be reason­ able to improve functional outcomes.1–3 Synopsis AIS is a highly impactful cause of brain injury in pediatric patients that has been associated with elevated rates of long-term consequences.5 The recommendations pre­ sented here for hyperacute pediatric AIS are based on updated literature published since the last guidelines and expert consensus reviews. Although no randomized clini­ cal trials have been completed in this population, there is moderate-quality evidence, meta-analyses of such studies, and expert consensus on the importance of considering hyperacute stroke interventions in pediatric patients. The establishment of these recommendations is intended for centers with experience in managing pedi­ atric patients and interventionalists with pediatric endo­ vascular intervention experience. (Figure 3 describes the management of AIS eligibility for EVT.)",
+      "page_num": 60
+    },
+    {
+      "rec_id": "aha2026-rec-118",
+      "section": "Recommendations for Antiplatelet Treatment",
+      "cor": "1",
+      "loe": "A",
+      "statement": "1. \u0007In patients with AIS, administration of aspirin is recommended within 48 hours after stroke onset to reduce risk of death and dependency.",
+      "page_num": 62
+    },
+    {
+      "rec_id": "aha2026-rec-119",
+      "section": "Recommendations for Antiplatelet Treatment",
+      "cor": "2b",
+      "loe": "B-NR",
+      "statement": "2. \u0007In patients with AIS who have received IVT, the risk of antiplatelet therapy in the first 24 hours after IVT (with or without mechanical thrombectomy) is uncertain. Use might be considered in the pres­ ence of concomitant conditions for which such treatment given in the absence of IVT is known to provide substantial benefit or when withholding such treatment is known to cause substantial risk.",
+      "page_num": 62
+    },
+    {
+      "rec_id": "aha2026-rec-120",
+      "section": "Recommendations for Antiplatelet Treatment",
+      "cor": "2b",
+      "loe": "B-R",
+      "statement": "3. \u0007In patients with AIS, the efficacy of IV tirofiban to improve clinical outcomes is not well established.",
+      "page_num": 62
+    },
+    {
+      "rec_id": "aha2026-rec-121",
+      "section": "Recommendations for Antiplatelet Treatment",
+      "cor": "3: Harm",
+      "loe": "B-R",
+      "statement": "4. \u0007In patients with AIS, the administration of IV abciximab is not recommended due to increased bleeding complications.6,7 Early secondary prevention",
+      "page_num": 62
+    },
+    {
+      "rec_id": "aha2026-rec-122",
+      "section": "Recommendations for Antiplatelet Treatment",
+      "cor": "1",
+      "loe": "A",
+      "statement": "5. \u0007In patients with noncardioembolic AIS or TIA, antiplatelet therapy is indicated in preference to oral anticoagulation to reduce the risk of recur­ rent ischemic stroke and other cardiovascular events, while minimizing the risk of bleeding.",
+      "page_num": 62
+    },
+    {
+      "rec_id": "aha2026-rec-123",
+      "section": "Recommendations for Antiplatelet Treatment",
+      "cor": "1",
+      "loe": "C-EO",
+      "statement": "6. \u0007In patients with noncardioembolic AIS or TIA, the selection of an antiplatelet agent for early secondary stroke prevention should be individu­ alized on the basis of patient risk factor profiles, cost, tolerance, relative known efficacy of the agents, and other clinical characteristics.",
+      "page_num": 62
+    },
+    {
+      "rec_id": "aha2026-rec-124",
+      "section": "Recommendations for Antiplatelet Treatment",
+      "cor": "2a",
+      "loe": "B-R",
+      "statement": "7. \u0007In patients with AIS and extracranial carotid or vertebral arterial dissection, treatment with either anti­ platelet or anticoagulant therapy for at least 3 months is reasonable to prevent recurrent stroke.",
+      "page_num": 62
+    },
+    {
+      "rec_id": "aha2026-rec-125",
+      "section": "Recommendations for Antiplatelet Treatment",
+      "cor": "2b",
+      "loe": "B-NR",
+      "statement": "8. \u0007For patients already taking aspirin at the time of noncardioembolic ischemic stroke or TIA, the effectiveness of increasing the dose of aspirin or changing to another antiplatelet medication is not well established.13,14 3: No Benefit B-R 9. \u0007In patients with minor (NIHSS score ≤3) noncardioembolic AIS or high-risk TIA (ABCD2 score ≥4), ticagrelor is not recommended over aspirin to reduce the composite endpoint of stroke, myocardial infarction, or death.",
+      "page_num": 62
+    },
+    {
+      "rec_id": "aha2026-rec-126",
+      "section": "Recommendations for Antiplatelet Treatment",
+      "cor": "3: Harm",
+      "loe": "B-R",
+      "statement": "10. \u0007In patients with noncardioembolic ischemic stroke, treatment with triple antiplatelet therapy (aspirin and clopidogrel and dipyridamole) for secondary stroke prevention should not be administered due to increased risk of bleeding.",
+      "page_num": 62
+    },
+    {
+      "rec_id": "aha2026-rec-127",
+      "section": "Recommendations for Antiplatelet Treatment",
+      "cor": "3: Harm",
+      "loe": "B-NR",
+      "statement": "11. \u0007In patients with ischemic stroke and AF without active CAD or recent intravascular stent, the rou­ tine addition of antiplatelet therapy to oral anticoag­ ulation is potentially harmful because of increased bleeding risk and is not recommended.17,18 Dual antiplatelet therapy for minor AIS and high-risk TIA",
+      "page_num": 62
+    },
+    {
+      "rec_id": "aha2026-rec-128",
+      "section": "Recommendations for Antiplatelet Treatment",
+      "cor": "1",
+      "loe": "A",
+      "statement": "12. \u0007In patients with minor (NIHSS score ≤3) noncar­ dioembolic AIS or high-risk TIA (ABCD2 score ≥4) who did not receive IVT, DAPT (aspirin and clopi­ dogrel with loading dose of clopidogrel) should be initiated early (within 24 hours after symptom onset) and continued for 21 days, followed by single antiplatelet therapy (SAPT) to reduce the 90-day risk of recurrent ischemic stroke.",
+      "page_num": 62
+    },
+    {
+      "rec_id": "aha2026-rec-129",
+      "section": "Recommendations for Antiplatelet Treatment",
+      "cor": "2b",
+      "loe": "B-R",
+      "statement": "13. \u0007In patients with recent (<24 hours) minor (NIHSS score ≤5) noncardioembolic AIS or high-risk TIA (ABCD2 score ≥6 or symptomatic intracranial or extracranial ≥50% stenosis of an artery that could account for TIA) who did not receive IVT, DAPT with ticagrelor (including loading dose) plus aspirin for 30 days may be considered to reduce the risk of 30-day recurrent stroke.",
+      "page_num": 62
+    },
+    {
+      "rec_id": "aha2026-rec-130",
+      "section": "Recommendations for Antiplatelet Treatment",
+      "cor": "2a",
+      "loe": "B-R",
+      "statement": "14. \u0007In patients with minor (NIHSS score ≤5) noncar­ dioembolic AIS or high-risk TIA (ABCD2 score ≥4) within 24 to 72 hours from stroke onset, or NIHSS score of 4 to 5 within 24 hours from onset, who did not receive IVT, with presumed atherosclerotic cause (≥50% stenosis of intracranial or extracra­ nial stenosis that was likely to have accounted for clinical presentation or acute new infarctions on imaging of presumed large artery atherosclerosis origin), DAPT (clopidogrel and aspirin) for 21 days followed by SAPT is reasonable to reduce the 90-day risk of recurrent stroke.",
+      "page_num": 62
+    },
+    {
+      "rec_id": "aha2026-rec-131",
+      "section": "Recommendations for Antiplatelet Treatment",
+      "cor": "2b",
+      "loe": "B-R",
+      "statement": "15. \u0007In patients with minor (NIHSS score ≤3) noncar­ dioembolic AIS or high-risk TIA (ABCD2 score ≥4) within 24 hours after symptom onset who did not receive IVT and who carry the CYP2C19 loss-of-function allele, DAPT with ticagrelor and aspirin for 21 days (followed by ticagrelor mono­ therapy) may be reasonable in preference over DAPT with clopidogrel and aspirin to reduce the 90-day risk of recurrent stroke.28 Antiplatelet therapy in the setting of IVT",
+      "page_num": 62
+    },
+    {
+      "rec_id": "aha2026-rec-132",
+      "section": "Recommendations for Antiplatelet Treatment",
+      "cor": "3: Harm",
+      "loe": "B-R",
+      "statement": "16. \u0007In patients with AIS who are otherwise eligible for IVT or mechanical thrombectomy, aspirin is not recommended as a substitute for acute stroke treatment to improve patient outcomes.",
+      "page_num": 62
+    },
+    {
+      "rec_id": "aha2026-rec-133",
+      "section": "Recommendations for Antiplatelet Treatment",
+      "cor": "3: Harm",
+      "loe": "B-R",
+      "statement": "17. \u0007In patients with AIS who are eligible for IVT, IV aspirin should not be administered concurrently or within 90 minutes after the start of IVT given the risk of hemorrhage. 3: No Benefit B-R 18. \u0007In patients with AIS treated with IVT within 3 hours after symptom onset, adjunctive treatment with IV eptifibatide is not recommended to reduce disability at 3 months.",
+      "page_num": 62
+    },
+    {
+      "rec_id": "aha2026-rec-134",
+      "section": "Recommendations for Anticoagulants",
+      "cor": "2a",
+      "loe": "A",
+      "statement": "1. \u0007In carefully selected (eg, milder severity) patients with AIS with atrial fibrillation, a strategy of early oral anticoagulation poststroke is low risk and is reasonable compared with a strategy of delayed anticoagulation, although the efficacy of early anticoagulation for prevention of early recurrent stroke is not established.",
+      "page_num": 68
+    },
+    {
+      "rec_id": "aha2026-rec-135",
+      "section": "Recommendations for Anticoagulants",
+      "cor": "2b",
+      "loe": "B-NR",
+      "statement": "2. \u0007In patients with an AIS and ipsilateral, high-grade ICA stenosis, the benefit of urgent anticoagula­ tion is not well established.",
+      "page_num": 68
+    },
+    {
+      "rec_id": "aha2026-rec-136",
+      "section": "Recommendations for Anticoagulants",
+      "cor": "2b",
+      "loe": "C-LD",
+      "statement": "3. \u0007In patients with AIS with an ipsilateral, nonocclu­ sive, extracranial intraluminal thrombus, the safety and efficacy of short-term anticoagulation are not well established.",
+      "page_num": 68
+    },
+    {
+      "rec_id": "aha2026-rec-137",
+      "section": "Recommendations for Anticoagulants",
+      "cor": "2b",
+      "loe": "C-LD",
+      "statement": "4. \u0007In patients with AIS who experience HT, initiation or continuation of anticoagulation may be consid­ ered depending on the specific clinical scenario and underlying indication.9–11 3: No Benefit A 5. \u0007In patients with AIS, the use of argatroban is not effective as an adjunctive therapy with IVT to improve long-term functional outcomes.12–15 3: No Benefit A 6. \u0007In patients with AIS, early anticoagulation (within 48 hours of stroke onset) does not reduce the likelihood of early neurological worsening or increase the likelihood of a favorable functional outcome and is not recommended.4,16–24 Synopsis Anticoagulation (the pharmacological inhibition of the coagulation cascade with IV or oral medications) has been Downloaded from http://ahajournals.org by on January 26,",
+      "page_num": 68
+    },
+    {
+      "rec_id": "aha2026-rec-138",
+      "section": "Recommendations for Anticoagulants",
+      "cor": "1",
+      "loe": "B-R",
+      "statement": "1. \u0007In patients with AIS of all ages, treatment within an organized inpatient stroke care unit supported by a specialty trained, interdisciplinary care team (ie, acute stroke units, rehabilitation stroke units, comprehensive stroke units, and mixed rehabilita­ tion units) that incorporates standardized stroke care order sets and protocols is recommended to reduce the odds of poor outcomes and death.1–16 Synopsis The role that the organized stroke unit care plays in the reduction of death, disability, and institutionalization of patients with acute stroke has been demonstrated via multiple randomized trials and meta-analyses.1–3,17–20 The benefits have been independent of age, sex, and stroke type or severity.3,21,22 The main characteristics distinct to an organized specialized inpatient stroke care unit include multidisciplinary team (including caregivers) care with weekly meetings, involvement of caregivers in reha­ bilitation, education, and training (staff and caregivers), specialization of staff (interest in stroke and rehabilita­ tion), earlier and intensive onset of therapy, and medical investigation/treatment protocols1 (Figure 5). Over the Downloaded from http://ahajournals.org by on January 26,",
+      "page_num": 72
+    },
+    {
+      "rec_id": "aha2026-rec-139",
+      "section": "Recommendations for Dysphagia",
+      "cor": "1",
+      "loe": "C-EO",
+      "statement": "1. \u0007In patients with AIS, performing a bedside swal­ low screening prior to initiation of liquid or food intake is recommended to screen for patients at increased risk for aspiration.",
+      "page_num": 74
+    },
+    {
+      "rec_id": "aha2026-rec-140",
+      "section": "Recommendations for Dysphagia",
+      "cor": "2a",
+      "loe": "C-LD",
+      "statement": "2. \u0007In patients with AIS, it is reasonable for dysphagia screening to be performed by speech patholo­ gists or other trained health care professionals.",
+      "page_num": 74
+    },
+    {
+      "rec_id": "aha2026-rec-141",
+      "section": "Recommendations for Dysphagia",
+      "cor": "2a",
+      "loe": "B-NR",
+      "statement": "3. \u0007In patients with AIS who have failed or are unable to participate in a bedside swallow screening due to neurological disabilities, it is reasonable to perform an endoscopic examination of swallow­ ing function to aid in determination of dysphagia severity and aspiration risk.",
+      "page_num": 74
+    },
+    {
+      "rec_id": "aha2026-rec-142",
+      "section": "Recommendations for Dysphagia",
+      "cor": "2b",
+      "loe": "B-NR",
+      "statement": "4. \u0007In patients with AIS, an oral hygiene protocol may be reasonable to reduce the risk for pneumonia.",
+      "page_num": 74
+    },
+    {
+      "rec_id": "aha2026-rec-143",
+      "section": "Recommendations for Dysphagia",
+      "cor": "2a",
+      "loe": "B-R",
+      "statement": "5. \u0007In patients with stroke with dysphagia, treatment with pharyngeal electrical stimulation (PES), can be beneficial to reduce dysphagia severity and decrease the risk of aspiration.",
+      "page_num": 74
+    },
+    {
+      "rec_id": "aha2026-rec-144",
+      "section": "Recommendations for Dysphagia",
+      "cor": "2a",
+      "loe": "B-R",
+      "statement": "6. \u0007In patients with severe stroke with dysphagia requiring tracheotomy and mechanical ventilation, treatment with PES, after ventilator weaning can be beneficial to decrease dysphagia severity, reduce the risk of aspiration, and expedite decannulation.7,9–11 Synopsis Dysphagia is common after stroke and, until recently, no treatment has existed to reduce dysphagia severity or aspiration risk. Bedside screening for dysphagia may play an important role in preventing aspiration and pneumonia through the early identification of at-risk patients12; how­ ever, screening, formal endoscopic evaluation, and insti­ tuting oral intake restrictions will not prevent aspiration or hospital-acquired pneumonia in all patients with neu­ rogenic dysphagia. Implementation of oral hygiene has been shown to reduce pneumonia risk in observational studies,5,6 but the equivalency or superiority of specific oral hygiene methods remains unknown. Importantly, new research evaluating the use of PES has demonstrated reduced dysphagia severity, aspiration risk, and length of stay, with significantly more patients able to safely resume an oral diet.7–9 PES is delivered as 3 consecutive, once-daily treatments (with an optional second course of treatment), and the PES tube can be used like other nasogastric tubes to deliver medications and tube feed­ ings.7,9 In patients with severe stroke requiring intubation with mechanical ventilation, PES treatment has resulted in reduced dysphagia severity, decreased aspiration risk, and a reduction in the time required to successfully decannu­ late patients, thereby decreasing length of stay.",
+      "page_num": 74
+    },
+    {
+      "rec_id": "aha2026-rec-145",
+      "section": "Recommendations for Nutrition",
+      "cor": "1",
+      "loe": "B-R",
+      "statement": "1. \u0007In patients with AIS, enteral diet should be started within 7 days of admission after an AIS.",
+      "page_num": 75
+    },
+    {
+      "rec_id": "aha2026-rec-146",
+      "section": "Recommendations for Nutrition",
+      "cor": "1",
+      "loe": "B-NR",
+      "statement": "2. \u0007In patients with AIS, nutritional screening is rec­ ommended to direct nutritional management early into hospitalization, preferably within 48 hours of admission, with a nutritional screening or assess­ ment tool that has been validated in patients with acute stroke.",
+      "page_num": 75
+    },
+    {
+      "rec_id": "aha2026-rec-147",
+      "section": "Recommendations for Nutrition",
+      "cor": "2a",
+      "loe": "B-NR",
+      "statement": "3. \u0007In patients with AIS with dysphagia, it is reason­ able to use nasogastric tubes initially for feeding within the first 7 days and to place percutane­ ous gastrostomy tubes in patients with longer anticipated persistent inability to swallow safely (>2–3 weeks).1 Synopsis Prestroke nutritional status and nutritional support during hospitalization may play an important role in determining stroke outcomes. Observational studies of hospitalized patients with stroke show that under­ nourishment, malnutrition, and underweight status at the time of stroke hospitalization are associated with worse outcomes than normal weight and overweight status.2,4–6,10 Additionally, increased waist-hip ratio in men, but not body mass index, has been associated with worse stroke outcomes at hospital discharge3 in patients with acute stroke. The FOOD 1 trial1 showed that the addition of nutritional supplements alongside a normal hospital diet offers no additional benefit to patients without dysphagia. The FOOD 21 trial demonstrated a trend toward improved outcomes with institution of early nutrition within the first 7 days of hospitaliza­ tion for patients requiring tube feedings. The FOOD 31 trial showed that early percutaneous gastrostomy tube insertion was not beneficial compared with nasogastric tube management. Several nutritional screening and assessment tools have been tested and validated in patients with stroke that can offer direction to stroke team prescribers on nutritional management during hospitalization.",
+      "page_num": 75
+    },
+    {
+      "rec_id": "aha2026-rec-148",
+      "section": "Recommendations for Deep Vein Thrombosis Prophylaxis",
+      "cor": "1",
+      "loe": "B-R",
+      "statement": "1. \u0007In patients with AIS who have impaired mobility and do not have contraindications to intermittent pneumatic compression (IPC), IPC in addition to routine care is recommended over routine care alone to reduce the risk of deep vein thrombosis (DVT).",
+      "page_num": 76
+    },
+    {
+      "rec_id": "aha2026-rec-149",
+      "section": "Recommendations for Deep Vein Thrombosis Prophylaxis",
+      "cor": "2a",
+      "loe": "B-R",
+      "statement": "2. \u0007In patients with AIS who have impaired mobility, either prophylactic-dose subcutaneous heparin (UFH or LMWH) is reasonable to reduce the risk of VTE.",
+      "page_num": 76
+    },
+    {
+      "rec_id": "aha2026-rec-150",
+      "section": "Recommendations for Deep Vein Thrombosis Prophylaxis",
+      "cor": "2b",
+      "loe": "A",
+      "statement": "3. \u0007In patients with AIS who have impaired mobility, the benefit of prophylactic-dose subcutaneous heparin (UFH or LMWH) over no prophylactic- dose heparin is not well established to increase overall survival.",
+      "page_num": 76
+    },
+    {
+      "rec_id": "aha2026-rec-151",
+      "section": "Recommendations for Deep Vein Thrombosis Prophylaxis",
+      "cor": "2b",
+      "loe": "B-R",
+      "statement": "4. \u0007In patients with AIS who have impaired mobility and who are selected for prophylactic anticoagu­ lation, the benefit of prophylactic-dose LMWH over prophylactic-dose UFH to prevent DVT is uncertain.",
+      "page_num": 76
+    },
+    {
+      "rec_id": "aha2026-rec-152",
+      "section": "Recommendations for Deep Vein Thrombosis Prophylaxis",
+      "cor": "3: Harm",
+      "loe": "B-R",
+      "statement": "5. \u0007In patients with AIS who have impaired mobility, elastic compression stockings cause harm, including skin breakdown, ulceration, and tissue necrosis, compared with usual care.7–9 Synopsis DVT is a potentially life-threatening complication of impaired mobility, a frequent result of AIS. DVT can lead to circulatory stasis, venous insufficiency, chronic pain, or pulmonary embolism (PE; when peripheral venous thrombi migrate to the pulmonary circulation). As part of a broader suite of interventions to mini­ mize complications of impaired mobility, reducing the risk of DVT is an important objective of acute stroke management. On the basis of a large, well-conducted clinical trial (CLOTS31), it is recommended that IPCs are used to reduce venous stasis in the extremities and thereby reduce the risk of DVT in patients with AIS. The use of chemical prophylaxis (LMWH or UFH) is not well-established in patients with AIS, and it is unclear whether the use of such prophylaxis improves survival. However, the literature from general hospi­ talized medical populations support pharmacological DVT prophylaxis as a measure to reduce the occur­ rence of DVT compared with no pharmacological pro­ phylaxis.3 A lack of field- and clinician-level equipoise around this question may complicate the design of studies to address this question further in patients with AIS.2 Among patients selected to receive phar­ macological prophylaxis, there are no data to suggest that LMWH is superior to UFH or vice versa.4–6 The use of elastic compression stockings for DVT pro­ phylaxis should be avoided because they have been shown in multiple clinical trials to cause skin break­ down and ulceration.",
+      "page_num": 76
+    },
+    {
+      "rec_id": "aha2026-rec-153",
+      "section": "Recommendations for Depression",
+      "cor": "1",
+      "loe": "B-NR",
+      "statement": "1. \u0007In patients with AIS, administration of a struc­ tured depression inventory is recommended to routinely screen for poststroke depression (PSD), although the optimal timing of screening is uncertain.",
+      "page_num": 77
+    },
+    {
+      "rec_id": "aha2026-rec-154",
+      "section": "Recommendations for Depression",
+      "cor": "1",
+      "loe": "B-R",
+      "statement": "2. \u0007In patients diagnosed with PSD, treatment with antidepressants and/or nonpharmacological interventions (ie, psychotherapy, noninvasive brain stimulation, acupuncture) is recommended to improve depressive symptoms.5–17 Downloaded from http://ahajournals.org by on January 26,",
+      "page_num": 77
+    },
+    {
+      "rec_id": "aha2026-rec-155",
+      "section": "Recommendations for Other In-Hospital Management Considerations",
+      "cor": "2a",
+      "loe": "C-EO",
+      "statement": "1. \u0007For select patients with AIS and their families, referral to palliative care resources is reasonable as appropriate. 3: No Benefit A 2. \u0007In patients with AIS, routine use of prophylactic antibiotics has not been shown to be beneficial in improving functional outcomes.",
+      "page_num": 79
+    },
+    {
+      "rec_id": "aha2026-rec-156",
+      "section": "Recommendations for Other In-Hospital Management Considerations",
+      "cor": "3: Harm",
+      "loe": "C-LD",
+      "statement": "3. \u0007In patients with AIS, routine placement of indwell­ ing bladder catheters should not be performed because of the associated risk of catheter-associ­ ated urinary tract infections (UTIs).6 Synopsis Medical complications after stroke are associated with increased mortality and worse functional outcomes.7,8 A key component of poststroke supportive care dur­ ing hospitalization is prevention of these complications, which may include infections, VTE, and other systemic conditions common after stroke. Many of these are spe­ cifically covered in more detail in other sections of the guideline. Patients with AIS are at particularly high risk for com­ plications related to immobility, such as skin breakdown and the development of pressure ulcers. As such, spe­ cific recommendations for regular skin assessments using objective risk scales and measures to minimize skin injury have been incorporated into both the guide­ lines for adult stroke rehabilitation and recovery as well as the care of the patient with AIS comprehensive nurs­ ing care scientific statement.9,10 Other recommendations to minimize in-hospital com­ plications after stroke not included elsewhere in the guideline include caution around the routine use of pro­ phylactic antibiotics and indwelling bladder catheters. Although studies support decreased incidence of sys­ temic infection with prophylactic antibiotics, improvement in functional outcome or mortality has not been consis­ tently demonstrated.11 There are robust data demonstrat­ ing lower incidences of catheter-associated UTIs with removal of indwelling catheters in hospitalized patients,12 although specific evidence surrounding patients post­ stroke is limited.",
+      "page_num": 79
+    },
+    {
+      "rec_id": "aha2026-rec-157",
+      "section": "Recommendations for Rehabilitation",
+      "cor": "1",
+      "loe": "A",
+      "statement": "1. \u0007In patients with AIS, in-hospital, formal, interdisci­ plinary assessment and provision of rehabilitation at a level appropriate for the individual patient is recommended to improve functional recovery.1 3: No Benefit A 2. \u0007In patients with AIS, SSRIs are not effective for improving motor recovery or functional status.",
+      "page_num": 80
+    },
+    {
+      "rec_id": "aha2026-rec-158",
+      "section": "Recommendations for Rehabilitation",
+      "cor": "3: Harm",
+      "loe": "B-R",
+      "statement": "3. \u0007In patients with AIS, high-dose, very early mobilization within 24 hours of stroke onset is not recommended to improve the odds of a favorable outcome at 3 months and may be harmful.6–8 Synopsis Globally, stroke is a leading cause of long-term disability, and although some patients achieve meaningful recovery, many do not regain independent function. In the United States, more than two-thirds of patients receive post­ stroke rehabilitation services after hospital discharge.9 Patients with stroke have highly variable degrees of impairment and a diverse range of individualized needs. A comprehensive and multidisciplinary program designed to assess the appropriate intensity and modality of reha­ bilitation is thus critical for optimizing recovery after stroke. A dedicated and detailed review of best clinical practices in stroke rehabilitation, including postdischarge care, can be found in the AHA adult stroke rehabilita­ tion and recovery guideline.10 In-hospital interdisciplinary evaluation for the appropriate level of rehabilitation after stroke is associated with improved functional outcomes.1 However, very early (<24 hours after stroke onset) mobi­ lization has not been shown to provide functional benefit, and high doses resulted in worse outcomes in 1 RCT.8 Multiple adjunctive pharmacological and nonpharma­ cological therapies have been studied to improve reha­ bilitation and recovery after stroke. Early administration of SSRIs after stroke has been studied extensively but has not shown benefit in improving functional outcomes in patients without depressive symptoms.",
+      "page_num": 80
+    },
+    {
+      "rec_id": "aha2026-rec-159",
+      "section": "Recommendations for Brain Swelling (General Recommendations)",
+      "cor": "1",
+      "loe": "C-EO",
+      "statement": "1. \u0007In patients with large cerebral or cerebellar infarc­ tions at high risk for developing brain swelling and herniation, an early discussion of care options and possible outcomes should take place with patients (if feasible) and family or next of kin to ascertain patient-centered preferences in shared decision-making, especially during prognosis formation and when considering interventions or limitations in care.",
+      "page_num": 81
+    },
+    {
+      "rec_id": "aha2026-rec-160",
+      "section": "Recommendations for Brain Swelling (General Recommendations)",
+      "cor": "1",
+      "loe": "C-EO",
+      "statement": "2. \u0007In patients with large cerebral or cerebellar infarc­ tions, close monitoring of the patient for signs of neurological worsening during the first days after stroke is recommended to rapidly evaluate the need for potential interventions.",
+      "page_num": 81
+    },
+    {
+      "rec_id": "aha2026-rec-161",
+      "section": "Recommendations for Brain Swelling (General Recommendations)",
+      "cor": "1",
+      "loe": "C-LD",
+      "statement": "3. \u0007In patients with large cerebral or cerebellar infarctions who are at increased risk for malignant brain swelling, early transfer to an institution with appropriate neurosurgical and critical care exper­ tise is recommended to ensure timely treatment.1 Synopsis Brain swelling after ischemic stroke is a severe and life-threatening complication. It is more likely to occur within the first week from stroke in patients with large cerebral and cerebellar infarcts. Therefore, early dis­ cussion of care options and neurological monitoring in a facility with neurosurgical and critical care expertise is recommended.",
+      "page_num": 81
+    },
+    {
+      "rec_id": "aha2026-rec-162",
+      "section": "Recommendations for Brain Swelling (Medical Management)",
+      "cor": "2a",
+      "loe": "C-LD",
+      "statement": "1. \u0007In patients with large cerebral or cerebellar infarctions and neurological decline from brain swelling, the use of osmotic therapy as a bridge to a surgical intervention is reasonable to improve functional outcome and reduce mortality. 3: No Benefit B-R 2. \u0007In patients with large hemispheric infarction 18 to 70 years of age, the use of IV glibenclamide does not result in improved functional outcome and is not recommended.",
+      "page_num": 81
+    },
+    {
+      "rec_id": "aha2026-rec-163",
+      "section": "Recommendations for Brain Swelling (Medical Management)",
+      "cor": "3: Harm",
+      "loe": "C-LD",
+      "statement": "3. \u0007In patients with large cerebral or cerebellar infarctions and brain swelling, hypothermia, barbiturates, or corticosteroids should not be administered to treat brain swelling due to the lack of evidence of efficacy and potential of increased adverse effects. Downloaded from http://ahajournals.org by on January 26,",
+      "page_num": 81
+    },
+    {
+      "rec_id": "aha2026-rec-164",
+      "section": "Recommendations for Supratentorial Infarction (Surgical Management)",
+      "cor": "2a",
+      "loe": "B-NR",
+      "statement": "1. \u0007In patients with large territorial cerebral infarc­ tions at high risk for developing brain swelling and herniation, decreased level of consciousness attributed to brain swelling is a reasonable trigger for decompressive hemicraniectomy selection.",
+      "page_num": 82
+    },
+    {
+      "rec_id": "aha2026-rec-165",
+      "section": "Recommendations for Supratentorial Infarction (Surgical Management)",
+      "cor": "1",
+      "loe": "A",
+      "statement": "2. \u0007In patients ≤60 years of age with unilateral MCA infarctions who deteriorate neurologically within 48 hours from brain swelling despite medical therapy, decompressive craniectomy with dural expansion is beneficial to reduce mortality and improve functional outcome.",
+      "page_num": 82
+    },
+    {
+      "rec_id": "aha2026-rec-166",
+      "section": "Recommendations for Supratentorial Infarction (Surgical Management)",
+      "cor": "2b",
+      "loe": "B-R",
+      "statement": "3. \u0007In patients >60 years of age with unilateral MCA infarctions who deteriorate neurologically within 48 hours from brain swelling despite medical therapy, decompressive craniectomy with dural expansion may be considered to reduce mortal­ ity.",
+      "page_num": 82
+    },
+    {
+      "rec_id": "aha2026-rec-167",
+      "section": "Recommendations for Supratentorial Infarction (Surgical Management)",
+      "cor": "2b",
+      "loe": "B-NR",
+      "statement": "4. \u0007In patients with AIS who received IV tPA throm­ bolysis and develop malignant cerebral edema despite medical therapy, early decompressive craniectomy within 48 hours may still be consid­ ered without additional safety concerns.10,11 Synopsis Malignant cerebral edema after unilateral MCA infarc­ tions carries significant morbidity and mortality rates, severely impacting patient functional outcomes. A plethora of RCTs (Decompressive Craniectomy in Malignant Middle Cerebral Artery Infarction [DECI­ MAL], Decompressive Surgery for the Treatment of Malignant Infarction of the Middle Cerebral Artery [DESTINY], Hemicraniectomy after Middle Cerebral Artery Infarction with Life-threatening Edema Trial [HAMLET], Hemicraniectomy and Durotomy Upon Deterioration From Infarction-Related Swelling Trial [HeADDFIRST], and Hemicraniectomy for Malig­ nant Middle cerebral Artery Infarction [HeMMI]) have established that early surgical decompression within 48 hours results in a statistically significant benefit of survival and functional recovery in 12 months for patients ≤60 years of age.2–6 However, in the >60 years of age group, early surgical decompression failed to show improvement in functional outcomes, despite the statistically significant survival benefit.7 The posi­ tive effect of early decompression remains, despite administration of IV tPA.11 Although the optimal trigger Downloaded from http://ahajournals.org by on January 26,",
+      "page_num": 82
+    },
+    {
+      "rec_id": "aha2026-rec-168",
+      "section": "Recommendations for Cerebellar Infarction (Surgical Management)",
+      "cor": "1",
+      "loe": "C-LD",
+      "statement": "1. \u0007In patients with cerebellar infarction and obstruc­ tive hydrocephalus, ventriculostomy is recom­ mended to improve neurological function and decrease mortality. Concomitant or subsequent decompressive craniectomy may or may not be necessary on the basis of factors such as the size of the infarction, neurological condition, degree of brainstem compression, and effectiveness of medical management.",
+      "page_num": 84
+    },
+    {
+      "rec_id": "aha2026-rec-169",
+      "section": "Recommendations for Cerebellar Infarction (Surgical Management)",
+      "cor": "1",
+      "loe": "B-NR",
+      "statement": "2. \u0007In patients with cerebellar infarction caus­ ing neurological deterioration from brainstem compression or volumes ≥35 mL, decompressive suboccipital craniectomy with dural expansion should be performed to improve outcomes and decrease mortality.1–7 Synopsis Cerebellar infarction can result in cerebellar edema, which may cause mass effect on the fourth ventricle, leading to obstructive hydrocephalus and subsequent brainstem compression. Size and location of the infarct are related to the magnitude of mass effect. Treatment of symptomatic hydrocephalus or brainstem com­ pression through surgical interventions such as CSF diversion or decompressive craniectomy can decrease mortality, and these conditions must be identified early with rapid surgical consultation, which may require early transfer.",
+      "page_num": 84
+    },
+    {
+      "rec_id": "aha2026-rec-170",
+      "section": "Recommendations for Seizures",
+      "cor": "1",
+      "loe": "C-LD",
+      "statement": "1. \u0007In adult patients with an unprovoked seizure after AIS, management that includes antiseizure medication is recommended on the basis of specific patient characteristics to reduce the risk of seizure recurrence. 3: No Benefit C-LD 2. \u0007In adult patients with AIS, prophylactic treatment with antiseizure medication is not recommended to prevent seizures or improve functional out­ come.1,2 Synopsis Ischemic stroke increases the risk of seizure, which can occur early within the first week or later as an unprovoked poststroke seizure.3 Poststroke seizure is associated with an increased risk of mortality and disability.4 There are insufficient data to inform the pharmacological management of early seizures or rec­ ommend the routine use of EEG for monitoring during Downloaded from http://ahajournals.org by on January 26,",
+      "page_num": 84
+    }
+  ]
+}
