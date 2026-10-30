@@ -11,5 +11,19 @@
     "rejected_count": 0,
     "grading_system": "AHA_ACC",
     "updated_at": "2026-01-26T08:30:00Z"
+  },
+  "b15e760284fb02c8d9dabda30e4d46c59e24b161df00428d148790fdaabdb1cf": {
+    "guideline_id": "b15e760284fb02c8d9dabda30e4d46c59e24b161df00428d148790fdaabdb1cf",
+    "title": "2026 Guideline for Adult Stroke Rehabilitation and Recovery",
+    "society": "AHA/ASA",
+    "year": 2026,
+    "source_url": null,
+    "latest_version": 2,
+    "total_recommendations": 15,
+    "pending_count": 15,
+    "approved_count": 0,
+    "rejected_count": 0,
+    "top_takeaways_count": 10,
+    "updated_at": "2026-10-30T14:49:55.989720+00:00"
   }
 }

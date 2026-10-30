@@ -192,6 +192,8 @@ class GuidelineOrchestrator:
                 society=society,
                 year=year or fetch_res.data.get("year_hint"),
                 source_url=source_url,
+                top_takeaways=extract_res.data.get("top_takeaways", []),
+                full_text_status="FULL_TEXT_PARSED",
                 state=DocumentLifecycleState.PENDING_REVIEW,
             )
 

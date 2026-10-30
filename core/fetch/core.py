@@ -253,7 +253,14 @@ class FetchCore(BaseCore):
         }
         try:
             response = requests.get(url, headers=headers, timeout=timeout, allow_redirects=True, verify=False)
-            if response.status_code == 404:
+            if response.status_code == 403:
+                raise CoreException(
+                    code="PAYWALLED_MANUAL_REQUIRED",
+                    message="Tài liệu bị giới hạn truy cập bởi nhà xuất bản (403 Forbidden / Paywall). Vui lòng tải tệp PDF lên thủ công để tiếp tục xử lý.",
+                    retryable=False,
+                    details={"url": url, "status_code": 403},
+                )
+            elif response.status_code == 404:
                 raise CoreException(
                     code="HTTP_404_NOT_FOUND",
                     message=f"Không tìm thấy tài liệu tại URL: {url}",

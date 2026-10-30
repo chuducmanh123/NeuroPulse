@@ -261,12 +261,13 @@ class PubmedSocietyAdapter:
                 "email": "developer@neuropulse.org",
             }
             s_resp = requests.get(esearch_url, params=params, headers=self.headers, timeout=self.timeout, verify=False)
-            if s_resp.status_code != 200:
-                return results
+            if s_resp.status_code == 200:
+                id_list = s_resp.json().get("esearchresult", {}).get("idlist", [])
+            else:
+                id_list = []
 
-            id_list = s_resp.json().get("esearchresult", {}).get("idlist", [])
             if not id_list:
-                return results
+                return self._fetch_from_europe_pmc(source_key, config, limit=limit, year_min=year_min)
 
             # 2. ESummary: lấy chi tiết metadata & articleids (DOI, PMC)
             esummary_url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi"
@@ -279,7 +280,7 @@ class PubmedSocietyAdapter:
             }
             sum_resp = requests.get(esummary_url, params=sum_params, headers=self.headers, timeout=self.timeout, verify=False)
             if sum_resp.status_code != 200:
-                return results
+                return self._fetch_from_europe_pmc(source_key, config, limit=limit, year_min=year_min)
 
             result_dict = sum_resp.json().get("result", {})
             for pmid in id_list:
@@ -338,6 +339,83 @@ class PubmedSocietyAdapter:
                 )
 
         except Exception:
-            pass
+            if not results:
+                results = self._fetch_from_europe_pmc(source_key, config, limit=limit, year_min=year_min)
 
+        return results
+
+    def _fetch_from_europe_pmc(
+        self,
+        source_key: str,
+        config: Dict[str, Any],
+        limit: int = 10,
+        year_min: int = 2018,
+    ) -> List[DiscoveredGuideline]:
+        """Dự phòng khi NCBI E-utilities bị gián đoạn hoặc gặp WAF."""
+        results: List[DiscoveredGuideline] = []
+        epmc_query = config.get("epmc_query")
+        if not epmc_query:
+            raw_query = config.get("query", "")
+            epmc_query = (
+                raw_query.replace("[Journal]", "")
+                .replace("[Corporate Author]", "")
+                .replace("[Title]", "")
+                .replace("[Title/Abstract]", "")
+            )
+
+        full_query = f"({epmc_query}) AND PUB_YEAR:[{year_min} TO 3000]"
+        url = "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
+        params = {
+            "query": full_query,
+            "format": "json",
+            "pageSize": limit,
+            "sort": "P_PDATE_D desc",
+        }
+        try:
+            resp = requests.get(url, params=params, headers=self.headers, timeout=self.timeout, verify=False)
+            if resp.status_code != 200:
+                return results
+            data = resp.json()
+            items = data.get("resultList", {}).get("result", [])
+            for it in items:
+                title = it.get("title", "").strip().rstrip(".")
+                pub_year = int(it.get("pubYear")) if it.get("pubYear") and str(it.get("pubYear")).isdigit() else None
+                doi = it.get("doi")
+                pmcid = it.get("pmcid")
+                pmid = it.get("pmid") or it.get("id")
+
+                direct_pdf = None
+                avail = FullTextAvailability.ABSTRACT_ONLY
+                if pmcid:
+                    direct_pdf = f"https://www.ncbi.nlm.nih.gov/pmc/articles/{pmcid}/pdf/"
+                    avail = FullTextAvailability.OPEN_ACCESS_PMC
+                elif doi:
+                    direct_pdf = derive_direct_pdf_url(f"https://doi.org/{doi}", doi)
+                    if direct_pdf:
+                        avail = FullTextAvailability.DIRECT_PDF_AVAILABLE
+                    else:
+                        avail = FullTextAvailability.OPEN_ACCESS_UNPAYWALL
+
+                cand_id = f"pmid_{pmid}" if pmid else (f"doi_{doi.replace('/', '_')}" if doi else f"guideline_{len(results)}")
+                source_url = f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/" if pmid else (f"https://doi.org/{doi}" if doi else "https://europepmc.org")
+
+                results.append(
+                    DiscoveredGuideline(
+                        guideline_id_candidate=cand_id,
+                        title=title,
+                        society=config.get("name", source_key),
+                        year=pub_year,
+                        source_url=source_url,
+                        pdf_url=direct_pdf,
+                        direct_pdf_url=direct_pdf,
+                        doi=doi,
+                        pmcid=pmcid,
+                        full_text_availability=avail,
+                        category=config.get("category"),
+                        adapter_used="EUROPE_PMC_FALLBACK",
+                        is_new=True,
+                    )
+                )
+        except Exception:
+            pass
         return results

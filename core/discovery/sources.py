@@ -2,6 +2,13 @@ from typing import Dict, Any, List
 
 # Cấu hình danh mục 12 hiệp hội & tạp chí thần kinh hàng đầu
 DISCOVERY_SOURCES: Dict[str, Dict[str, Any]] = {
+    "AHA_ASA": {
+        "name": "American Heart Association / American Stroke Association",
+        "category": "Stroke",
+        "adapter": "PUBMED_API",
+        "query": '("Stroke"[Journal] OR "Circulation"[Journal]) AND ("American Heart Association" OR "American Stroke Association") AND ("guideline" OR "guidelines")',
+        "epmc_query": 'TITLE:"Guideline" AND (JOURNAL:"Stroke" OR JOURNAL:"Circulation") AND ("American Heart Association" OR "American Stroke Association") NOT TITLE:"Correction"',
+    },
     "ESO": {
         "name": "European Stroke Organisation",
         "category": "Stroke",
