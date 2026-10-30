@@ -12,6 +12,7 @@ import {
   MOCK_CONFERENCE_EVENTS,
   MOCK_CLINICAL_SCENARIOS,
 } from "../../data/neuroguideMockData.ts";
+import { getStoredGuidelinesAsDocs } from "./storeAdapter";
 
 const BLOB_FILE_NAME = "neuroguide_data.json";
 const LOCAL_STORAGE_PATH = path.join(process.cwd(), "public", "data", "neuroguide_cloud.json");
@@ -201,10 +202,14 @@ export async function loadMergedNeuroGuideData(): Promise<{
   storageSource: "vercel-blob" | "local-disk" | "mock-baseline";
   lastSyncedAt?: string;
 }> {
+  const storeDocs = getStoredGuidelinesAsDocs();
+
   const blobData = await getFromBlob();
   if (blobData) {
+    const merged = mergeGuidelines(blobData.guidelines);
+    const finalGuidelines = storeDocs.length > 0 ? mergeGuidelines(storeDocs, merged) : merged;
     return {
-      guidelines: mergeGuidelines(blobData.guidelines),
+      guidelines: finalGuidelines,
       conferences: mergeConferences(blobData.conferences),
       scenarios: mergeScenarios(blobData.scenarios),
       storageSource: "vercel-blob",
@@ -214,8 +219,10 @@ export async function loadMergedNeuroGuideData(): Promise<{
 
   const localData = await getFromLocalDisk();
   if (localData) {
+    const merged = mergeGuidelines(localData.guidelines);
+    const finalGuidelines = storeDocs.length > 0 ? mergeGuidelines(storeDocs, merged) : merged;
     return {
-      guidelines: mergeGuidelines(localData.guidelines),
+      guidelines: finalGuidelines,
       conferences: mergeConferences(localData.conferences),
       scenarios: mergeScenarios(localData.scenarios),
       storageSource: "local-disk",
@@ -223,8 +230,9 @@ export async function loadMergedNeuroGuideData(): Promise<{
     };
   }
 
+  const finalGuidelines = storeDocs.length > 0 ? mergeGuidelines(storeDocs, MOCK_GUIDELINE_DOCS) : MOCK_GUIDELINE_DOCS;
   return {
-    guidelines: MOCK_GUIDELINE_DOCS,
+    guidelines: finalGuidelines,
     conferences: MOCK_CONFERENCE_EVENTS,
     scenarios: MOCK_CLINICAL_SCENARIOS,
     storageSource: "mock-baseline",
