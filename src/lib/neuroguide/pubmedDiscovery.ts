@@ -498,90 +498,12 @@ export async function searchPubMedGuidelines(options: PubMedSearchOptions = {}):
     return epmcResult;
   }
 
-  // Provider 2: Verified Landmark Fallback Cache (ensures deterministic reliability)
-  const fallbackGuidelines: GuidelineDoc[] = [
-    {
-      id: "eso-pmid-sap-2026",
-      society: "ESO",
-      year: 2026,
-      subspecialty: "Stroke",
-      subspecialties: ["Stroke", "Neurocritical Care"],
-      title: "European Stroke Organisation (ESO) guideline on stroke-associated pneumonia (SAP): Prevention, diagnosis and management",
-      officialUrl: "https://doi.org/10.1177/23969873261295588",
-      journalTarget: "European Stroke Journal",
-      documentType: "Clinical Practice Guideline",
-      publishDate: "2026-05-23",
-      executiveSummary: "Guideline establishing evidence-based practices for prevention, diagnosis and antimicrobial stewardship in stroke-associated pneumonia.",
-      linkedScenarioIds: [],
-      allPracticeChanges: [
-        {
-          id: "chg-fb-sap-1",
-          category: "Prophylaxis",
-          topic: "Prophylactic Antibiotics NOT Recommended",
-          changeType: "DOWNGRADED",
-          currentGrade: "Strong recommendation AGAINST",
-          currentText: "Strong recommendation against prophylactic antibiotic administration in acute ischemic stroke.",
-          drivingTrials: ["PANTHER", "PASS Trial"],
-        },
-      ],
-    },
-    {
-      id: "eso-pmid-asah-2026",
-      society: "ESO",
-      year: 2026,
-      subspecialty: "Stroke",
-      subspecialties: ["Stroke", "Neurocritical Care"],
-      title: "European Stroke Organisation (ESO), European Association of Neurosurgical Societies (EANS) and European Society for Minimally Invasive Neurological Therapy (ESMINT) guideline on aneurysmal subarachnoid haemorrhage",
-      officialUrl: "https://doi.org/10.1093/esj/aakag043",
-      journalTarget: "European Stroke Journal",
-      documentType: "Clinical Practice Guideline",
-      publishDate: "2026-05-07",
-      executiveSummary: "Joint European guideline establishing regular coiling over clipping in good-grade aSAH and aneurysm securing within 24h.",
-      linkedScenarioIds: ["asah-aneurysm-coiling-vs-clipping"],
-      allPracticeChanges: [
-        {
-          id: "chg-fb-asah-1",
-          category: "Securing Strategy",
-          topic: "Endovascular Coiling Preferred",
-          changeType: "UPGRADED",
-          currentGrade: "Strong recommendation FOR",
-          currentText: "Regular endovascular coiling is the preferred initial modality over microsurgical clipping in WFNS I-III.",
-          drivingTrials: ["ISAT", "Cochrane 2025"],
-        },
-      ],
-    },
-    {
-      id: "esc-pmid-af-2024",
-      society: "ESC / EACTS",
-      year: 2024,
-      subspecialty: "Stroke",
-      subspecialties: ["Stroke", "Other"],
-      title: "2024 ESC Guidelines for the management of atrial fibrillation developed in collaboration with EACTS",
-      officialUrl: "https://doi.org/10.1093/eurheartj/ehae176",
-      journalTarget: "European Heart Journal",
-      documentType: "Clinical Practice Guideline",
-      publishDate: "2024-08-30",
-      executiveSummary: "2024 flagship ESC/EACTS clinical practice guidelines on atrial fibrillation: preferential DOACs over VKAs, optimal timing post-stroke, and catheter ablation.",
-      linkedScenarioIds: [],
-      allPracticeChanges: [
-        {
-          id: "chg-fb-af-1",
-          category: "Anticoagulation",
-          topic: "DOACs First-Line Over Warfarin",
-          changeType: "UPGRADED",
-          currentGrade: "Class I, Level A",
-          currentText: "Direct Oral Anticoagulants (Apixaban, Dabigatran, Edoxaban, Rivaroxaban) are recommended in preference to VKAs.",
-          drivingTrials: ["ARISTOTLE", "RE-LY", "ENGAGE AF-TIMI 48"],
-        },
-      ],
-    },
-  ];
-
+  // Provider 2: If offline / firewalled, return empty list instead of injecting unverified phantom guidelines
   return {
     source: "CACHE_FALLBACK",
     queryUsed: buildEuropePMCQuery(options),
-    totalFound: fallbackGuidelines.length,
-    guidelines: fallbackGuidelines,
+    totalFound: 0,
+    guidelines: [],
     syncedAt: new Date().toISOString(),
   };
 }

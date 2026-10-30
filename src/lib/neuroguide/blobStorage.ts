@@ -148,8 +148,17 @@ export function mergeGuidelines(
   const map = new Map<string, GuidelineDoc>();
   // 1. Add static items first
   staticItems.forEach((g) => map.set(g.id.toLowerCase(), g));
-  // 2. Dynamic items override or append
-  dynamicItems.forEach((g) => map.set(g.id.toLowerCase(), g));
+  // 2. Dynamic items override or append (chỉ nhận các guideline hợp lệ, loại trừ phantom stubs)
+  dynamicItems.forEach((g) => {
+    const id = (g.id || "").toLowerCase();
+    if (
+      !id.startsWith("eso-pmid-") &&
+      !id.startsWith("esc-pmid-") &&
+      !id.startsWith("b15e76")
+    ) {
+      map.set(id, g);
+    }
+  });
 
   const result = Array.from(map.values());
   // Sort descending by publish year and date

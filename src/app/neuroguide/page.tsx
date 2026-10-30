@@ -322,7 +322,7 @@ export default function NeuroGuidePage() {
 
   const matrixContainerRef = useRef<HTMLDivElement>(null);
 
-  const CURRENT_CACHE_VERSION = "neuroguide_v2026_core_verified_v11";
+  const CURRENT_CACHE_VERSION = "neuroguide_v2026_core_verified_v12";
 
   // Background Autonomous Sync Method
   const triggerSync = async (isAuto = false) => {
@@ -371,11 +371,24 @@ export default function NeuroGuidePage() {
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (data && data.status === "success" && Array.isArray(data.guidelines) && data.guidelines.length > 0) {
-          setGuidelineDocs(data.guidelines);
-          try {
-            localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(data.guidelines));
-          } catch {
-            // ignore
+          const validGuidelines = data.guidelines.filter((doc: GuidelineDoc) => {
+            const id = (doc.id || "").toLowerCase();
+            const pdate = doc.publishDate || "";
+            return (
+              !id.startsWith("eso-pmid-") &&
+              !id.startsWith("esc-pmid-") &&
+              !id.startsWith("b15e76") &&
+              !id.includes("phantom") &&
+              pdate <= "2026-02-01"
+            );
+          });
+          if (validGuidelines.length > 0) {
+            setGuidelineDocs(validGuidelines);
+            try {
+              localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(validGuidelines));
+            } catch {
+              // ignore
+            }
           }
         }
       })
@@ -393,12 +406,18 @@ export default function NeuroGuidePage() {
         if (cached) {
           const parsed = JSON.parse(cached);
           if (Array.isArray(parsed)) {
-            // Strictly filter out non-guidelines and spurious articles
+            // Strictly filter out non-guidelines, phantom items, and spurious articles
             const cleaned = parsed.filter((doc) => {
               if (!doc || !doc.title) return false;
               const t = doc.title.toLowerCase();
               const j = (doc.journalTarget || "").toLowerCase();
+              const id = (doc.id || "").toLowerCase();
+              const pdate = doc.publishDate || "";
               if (
+                id.startsWith("eso-pmid-") ||
+                id.startsWith("esc-pmid-") ||
+                id.startsWith("b15e76") ||
+                pdate > "2026-02-01" ||
                 t.includes("paraclinoid aneurysms") ||
                 t.includes("thromboelastography") ||
                 t.includes("hemodynamic differences") ||
@@ -427,19 +446,6 @@ export default function NeuroGuidePage() {
     } catch (e) {
       console.warn("Error initializing guideline cache:", e);
     }
-
-    const lastSync = localStorage.getItem("neuroguide_last_sync_timestamp");
-    const now = Date.now();
-    const FOUR_HOURS = 4 * 60 * 60 * 1000;
-    if (!lastSync || now - parseInt(lastSync, 10) > FOUR_HOURS) {
-      triggerSync(true);
-    }
-
-    const interval = setInterval(() => {
-      triggerSync(true);
-    }, 30 * 60 * 1000);
-
-    return () => clearInterval(interval);
   }, []);
 
   // Sync dark mode with ecosystem standards (both neuro_dark_mode and neuropulse_theme)
