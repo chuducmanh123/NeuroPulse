@@ -12,6 +12,7 @@ import {
 
 const execFileAsync = promisify(execFile);
 export const dynamic = "force-dynamic";
+export const maxDuration = 60;
 
 const STORE_DIR = path.join(process.cwd(), "data", "guidelines_store");
 const PYTHON_PATH =

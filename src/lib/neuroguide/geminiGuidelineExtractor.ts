@@ -30,11 +30,13 @@ function loadEnvKey(): string {
 }
 
 const WATERFALL_MODELS = [
-  "gemini-flash-lite-latest",
-  "gemini-2.5-flash-lite",
+  "gemini-3.8-flash",
+  "gemini-3.5-flash",
+  "gemini-3.1-flash-lite",
   "gemini-2.5-flash",
-  "gemini-2.0-flash",
+  "gemini-2.5-flash-lite",
   "gemini-flash-latest",
+  "gemini-flash-lite-latest",
 ];
 
 async function callGeminiRestJson<T>(prompt: string, apiKey: string): Promise<T | null> {
@@ -58,8 +60,12 @@ async function callGeminiRestJson<T>(prompt: string, apiKey: string): Promise<T 
 
       if (!res.ok) continue;
       const data = await res.json();
-      const rawJson = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+      const parts = data?.candidates?.[0]?.content?.parts || [];
+      const textParts = parts.filter((p: any) => p?.text && !p?.thought).map((p: any) => p.text);
+      let rawJson = textParts.join("").trim();
+      if (!rawJson && parts[0]?.text) rawJson = parts[0].text.trim();
       if (!rawJson) continue;
+      rawJson = rawJson.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/i, "");
       return JSON.parse(rawJson) as T;
     } catch {
       // Try next model in waterfall
@@ -597,8 +603,8 @@ Respond strictly in JSON matching this schema:
               {
                 parts: [
                   {
-                    inline_data: {
-                      mime_type: "application/pdf",
+                    inlineData: {
+                      mimeType: "application/pdf",
                       data: options.buffer.toString("base64"),
                     },
                   },

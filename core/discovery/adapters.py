@@ -65,7 +65,8 @@ def derive_direct_pdf_url(url: str, doi: Optional[str] = None) -> Optional[str]:
     # 3. American Heart Association (AHA / Stroke)
     if "ahajournals.org/doi/" in url_clean:
         # e.g., https://www.ahajournals.org/doi/10.1161/STR.0000000000000513 -> /doi/pdf/10.1161/...
-        pdf_url = re.sub(r"/doi/(full|abs|epub)/", "/doi/pdf/", url_clean)
+        # or /doi/epdf/10.1161/... -> /doi/pdf/10.1161/...
+        pdf_url = re.sub(r"/doi/(full|abs|epub|epdf)/", "/doi/pdf/", url_clean)
         if "/doi/pdf/" not in pdf_url:
             pdf_url = pdf_url.replace("/doi/", "/doi/pdf/")
         return pdf_url

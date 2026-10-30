@@ -42,7 +42,16 @@ HEADERS = {
 }
 
 GEMINI_API_KEY = load_env_key()
-ACTIVE_GEMINI_MODELS = ["gemini-flash-lite-latest", "gemini-3.8-flash"]
+# Thác nước mô hình AI ưu tiên từ cao xuống thấp (bắt đầu từ 3.8 Flash, tự động fallback nếu lỗi/hết quota)
+ACTIVE_GEMINI_MODELS = [
+    "gemini-3.8-flash",
+    "gemini-3.5-flash",
+    "gemini-3.1-flash-lite",
+    "gemini-2.5-flash",
+    "gemini-2.5-flash-lite",
+    "gemini-flash-latest",
+    "gemini-flash-lite-latest",
+]
 GEMINI_MODEL = ACTIVE_GEMINI_MODELS[0]
 
 DATA_FILE_PATH = "public/data/articles.json"

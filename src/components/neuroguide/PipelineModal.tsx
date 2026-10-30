@@ -100,7 +100,29 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
         });
       }
 
-      const data = await res.json().catch(() => null);
+      let data: any = null;
+      try {
+        data = await res.json();
+      } catch {
+        // Response was not JSON (e.g. 413 Payload Too Large or 504 Timeout from reverse proxy)
+      }
+
+      if (!res.ok && !data) {
+        if (res.status === 413) {
+          setErrorMessage(
+            "Tệp PDF (4.4 MB) vượt quá giới hạn tải lên trực tiếp của máy chủ (tối đa 4.5 MB). Vui lòng nén bớt dung lượng PDF hoặc chỉ xuất các trang có bảng khuyến cáo."
+          );
+        } else if (res.status === 504) {
+          setErrorMessage(
+            "Quá trình phân tích 81 trang vượt quá thời gian chờ của máy chủ (504 Timeout). Vui lòng thử lại hoặc giảm số trang của tệp."
+          );
+        } else {
+          setErrorMessage(`Máy chủ phản hồi mã lỗi ${res.status}: ${res.statusText || "Lỗi xử lý yêu cầu."}`);
+        }
+        setIsLoading(false);
+        return;
+      }
+
       if (data && data.ok) {
         if (mode === "DISCOVER") {
           setResultMessage(
@@ -121,7 +143,7 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
         const errorMsg =
           typeof data?.error === "string"
             ? data.error
-            : data?.error?.message || "An error occurred while executing the AI Pipeline.";
+            : data?.error?.message || "Đã xảy ra lỗi trong quá trình thực thi AI Pipeline.";
         setErrorMessage(errorMsg);
       }
     } catch {

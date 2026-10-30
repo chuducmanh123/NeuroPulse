@@ -40,12 +40,15 @@ class GeminiClient:
                 retryable=False,
             )
 
-        # Danh sách mô hình theo chiến lược thác nước (Waterfall Strategy)
+        # Danh sách mô hình theo chiến lược thác nước (Waterfall Strategy: 3.8 -> thấp dần)
         self.models_priority = [
-            "gemini-flash-lite-latest",
-            "gemini-2.5-flash-lite",
+            "gemini-3.8-flash",
+            "gemini-3.5-flash",
+            "gemini-3.1-flash-lite",
             "gemini-2.5-flash",
-            "gemini-1.5-flash",
+            "gemini-2.5-flash-lite",
+            "gemini-flash-latest",
+            "gemini-flash-lite-latest",
         ]
 
     def _load_api_key(self) -> str:
@@ -133,7 +136,16 @@ class GeminiClient:
                     if not parts:
                         continue
 
-                    raw_text = parts[0].get("text", "").strip()
+                    # Bỏ qua thinking parts, lấy text thuần chứa JSON
+                    raw_text = "".join(
+                        p.get("text", "") for p in parts if "text" in p and not p.get("thought")
+                    ).strip()
+                    if not raw_text and parts[0].get("text"):
+                        raw_text = parts[0].get("text", "").strip()
+
+                    # Loại bỏ code block markdown nếu model sinh ```json ... ```
+                    raw_text = re.sub(r"^```(?:json)?\s*", "", raw_text)
+                    raw_text = re.sub(r"\s*```$", "", raw_text)
                     parsed_data = json.loads(raw_text)
 
                     # Đọc token usage nếu có
