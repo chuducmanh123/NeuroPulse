@@ -509,7 +509,7 @@ export default function AdminCommandCenter() {
               <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
             </div>
             <div className="text-base font-black mt-1">179 Articles</div>
-            <div className="text-[10px] text-slate-500">Daily Bot 6:00 AM Active</div>
+            <div className="text-[10px] text-slate-500">Daily Bot 0:00 AM Active</div>
           </div>
 
           <div className={`p-3 rounded-xl border ${darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200 shadow-xs"}`}>
@@ -906,7 +906,7 @@ export default function AdminCommandCenter() {
                   <p className="text-[11px] text-slate-500">Autonomous aggregator tracking 8 top-tier clinical neurology journals</p>
                 </div>
                 <span className="text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-bold border border-emerald-500/20">
-                  Daily Bot 6:00 AM VN
+                  Daily Bot 0:00 AM VN
                 </span>
               </div>
 

@@ -154,7 +154,7 @@ export async function GET(request: NextRequest) {
   try {
     const fileMap = new Map<string, string>(); // fileName -> fullPath
 
-    // Quét từ STORE_DIR
+    // 1. Quét từ STORE_DIR (kho tĩnh)
     if (fs.existsSync(STORE_DIR)) {
       try {
         const files = fs.readdirSync(STORE_DIR).filter((f) => f.endsWith("_latest.json"));
@@ -162,12 +162,38 @@ export async function GET(request: NextRequest) {
       } catch {}
     }
 
-    // Quét từ TMP_DIR (ghi đè nếu có cập nhật mới của bác sĩ trên Vercel)
+    // 2. Quét từ TMP_DIR (ghi đè tức thì từ runtime Lambda)
     if (fs.existsSync(TMP_DIR)) {
       try {
         const tmpFiles = fs.readdirSync(TMP_DIR).filter((f) => f.endsWith("_latest.json"));
         for (const f of tmpFiles) fileMap.set(f, path.join(TMP_DIR, f));
       } catch {}
+    }
+
+    // 3. Quét từ Vercel Blob (đồng bộ giữa các serverless container)
+    const { token } = getBlobToken();
+    if (token) {
+      try {
+        const { list } = await import("@vercel/blob");
+        const { blobs } = await list({ prefix: "guidelines_store/", token });
+        for (const b of blobs) {
+          const fileName = b.pathname.replace(/^guidelines_store\//, "");
+          if (fileName.endsWith("_latest.json")) {
+            try {
+              const res = await fetch(b.url, { cache: "no-store" });
+              if (res.ok) {
+                const text = await res.text();
+                if (!fs.existsSync(TMP_DIR)) fs.mkdirSync(TMP_DIR, { recursive: true });
+                const localTmp = path.join(TMP_DIR, fileName);
+                fs.writeFileSync(localTmp, text, "utf-8");
+                fileMap.set(fileName, localTmp);
+              }
+            } catch {}
+          }
+        }
+      } catch (blobErr) {
+        console.warn("Lỗi đọc Vercel Blob trong review-queue:", blobErr);
+      }
     }
 
     const queue: Array<StoredRec & { guideline_title: string; society: string }> = [];
@@ -177,6 +203,8 @@ export async function GET(request: NextRequest) {
         const content = fs.readFileSync(fullPath, "utf-8");
         const record: GuidelineRecord = JSON.parse(content);
         for (const rec of record.recommendations) {
+          // Tuyệt đối chỉ nhận các khuyến cáo đang chờ duyệt PENDING_REVIEW
+          // Lọc bỏ 100% các khuyến cáo đã được APPROVED, MODIFIED hoặc REJECTED
           if (rec.approval_status === "PENDING_REVIEW") {
             queue.push({
               ...rec,

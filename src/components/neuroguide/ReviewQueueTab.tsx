@@ -43,16 +43,38 @@ export function ReviewQueueTab({ darkMode, onQueueUpdated }: ReviewQueueTabProps
   const [notes, setNotes] = useState<Record<string, string>>({});
   const [feedbackMessage, setFeedbackMessage] = useState<string | null>(null);
 
+  // Read dismissed recommendation IDs from localStorage to prevent re-display
+  const getDismissedRecIds = (): Set<string> => {
+    try {
+      const raw = localStorage.getItem("neuroguide_reviewed_rec_ids");
+      return raw ? new Set(JSON.parse(raw)) : new Set();
+    } catch {
+      return new Set();
+    }
+  };
+
+  const markRecAsReviewedLocally = (recId: string) => {
+    try {
+      const set = getDismissedRecIds();
+      set.add(recId);
+      localStorage.setItem("neuroguide_reviewed_rec_ids", JSON.stringify(Array.from(set)));
+    } catch {}
+  };
+
   const fetchQueue = async () => {
     setIsLoading(true);
     try {
       const res = await fetch("/api/neuroguide/review-queue");
       const data = await res.json();
       if (data.ok && Array.isArray(data.queue)) {
-        setQueue(data.queue);
+        const dismissed = getDismissedRecIds();
+        const activeQueue = data.queue.filter(
+          (r: StoredRec) => !dismissed.has(r.rec_id) && r.approval_status === "PENDING_REVIEW"
+        );
+        setQueue(activeQueue);
       }
     } catch (e) {
-      console.error("Lỗi tải review queue:", e);
+      console.error("Error loading review queue:", e);
     } finally {
       setIsLoading(false);
     }
@@ -73,26 +95,26 @@ export function ReviewQueueTab({ darkMode, onQueueUpdated }: ReviewQueueTabProps
           file_id: rec.guideline_id,
           rec_id: rec.rec_id,
           action,
-          reviewer: "BS. Chuyên khoa Thần kinh",
+          reviewer: "Attending Neurologist",
           notes: notes[rec.rec_id] || "",
         }),
       });
 
       const data = await res.json();
       if (data.ok) {
+        markRecAsReviewedLocally(rec.rec_id);
         setFeedbackMessage(
           action === "APPROVED"
-            ? `✅ Đã phê duyệt và xuất bản khuyến cáo ${rec.rec_id} thành công!`
-            : `❌ Đã từ chối khuyến cáo ${rec.rec_id}.`
+            ? `✅ Recommendation ${rec.rec_id} successfully approved and published into clinical practice!`
+            : `❌ Recommendation ${rec.rec_id} rejected and excluded from official library.`
         );
-        // Xóa item khỏi hàng đợi cục bộ
         setQueue((prev) => prev.filter((r) => r.rec_id !== rec.rec_id));
         if (onQueueUpdated) onQueueUpdated();
       } else {
-        setFeedbackMessage(`⚠️ ${data.error || "Có lỗi xảy ra khi phê duyệt"}`);
+        setFeedbackMessage(`⚠️ ${data.error || "An error occurred while processing recommendation"}`);
       }
     } catch (e) {
-      setFeedbackMessage("⚠️ Lỗi kết nối khi gửi yêu cầu phê duyệt");
+      setFeedbackMessage("⚠️ Network connection error while submitting review action");
     } finally {
       setActionLoading(null);
     }
@@ -105,7 +127,7 @@ export function ReviewQueueTab({ darkMode, onQueueUpdated }: ReviewQueueTabProps
 
   return (
     <div className="space-y-6">
-      {/* Header Hàng đợi */}
+      {/* Review Queue Header */}
       <div
         className={`p-4 rounded-xl border flex flex-wrap items-center justify-between gap-3 ${
           darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200 shadow-sm"
@@ -118,17 +140,17 @@ export function ReviewQueueTab({ darkMode, onQueueUpdated }: ReviewQueueTabProps
               <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
             </span>
             <h2 className={`text-base font-black uppercase tracking-wide ${darkMode ? "text-white" : "text-slate-900"}`}>
-              HÀNG ĐỢI KIỂM DUYỆT Y KHOA (HUMAN-IN-THE-LOOP)
+              CLINICAL VALIDATION &amp; COORDINATION QUEUE (HUMAN-IN-THE-LOOP)
             </h2>
           </div>
           <p className={`text-xs mt-1 ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
-            Bác sĩ kiểm tra đối chiếu khuyến cáo do AI bóc tách với văn bản gốc trước khi công bố lên radar lâm sàng.
+            Physicians inspect and cross-verify AI-extracted guideline recommendations against original source texts before official clinical deployment.
           </p>
         </div>
 
-        {/* Lọc theo hiệp hội */}
+        {/* Society Filter */}
         <div className="flex items-center gap-2">
-          <span className={`text-xs font-semibold ${darkMode ? "text-slate-400" : "text-slate-500"}`}>Lọc hội:</span>
+          <span className={`text-xs font-semibold ${darkMode ? "text-slate-400" : "text-slate-500"}`}>Society:</span>
           <select
             value={filterSociety}
             onChange={(e) => setFilterSociety(e.target.value)}
@@ -136,12 +158,13 @@ export function ReviewQueueTab({ darkMode, onQueueUpdated }: ReviewQueueTabProps
               darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200 text-slate-800"
             }`}
           >
-            <option value="ALL">Tất cả hiệp hội ({queue.length})</option>
-            <option value="ESO">ESO (Đột quỵ Châu Âu)</option>
-            <option value="AHA">AHA/ASA (Hoa Kỳ)</option>
-            <option value="ILAE">ILAE (Động kinh)</option>
-            <option value="NCS">NCS (Hồi sức Thần kinh)</option>
-            <option value="PNS">PNS (Thần kinh Ngoại biên)</option>
+            <option value="ALL">All Medical Societies ({queue.length})</option>
+            <option value="ESO">ESO (European Stroke Organisation)</option>
+            <option value="AHA">AHA/ASA (American Heart / Stroke Association)</option>
+            <option value="AAN">AAN (American Academy of Neurology)</option>
+            <option value="ILAE">ILAE (International League Against Epilepsy)</option>
+            <option value="NCS">NCS (Neurocritical Care Society)</option>
+            <option value="PNS">PNS (Peripheral Nerve Society)</option>
           </select>
           <button
             onClick={fetchQueue}
@@ -151,7 +174,7 @@ export function ReviewQueueTab({ darkMode, onQueueUpdated }: ReviewQueueTabProps
                 : "bg-slate-100 border-slate-200 text-slate-700 hover:bg-slate-200"
             }`}
           >
-            🔄 Làm mới
+            🔄 Refresh Queue
           </button>
         </div>
       </div>
@@ -162,11 +185,11 @@ export function ReviewQueueTab({ darkMode, onQueueUpdated }: ReviewQueueTabProps
         </div>
       )}
 
-      {/* Danh sách các khuyến cáo chờ duyệt */}
+      {/* Recommendations Pending Review */}
       {isLoading ? (
         <div className="text-center py-12">
           <div className="animate-spin inline-block w-8 h-8 border-4 border-amber-500 border-t-transparent rounded-full mb-2"></div>
-          <p className={`text-xs ${darkMode ? "text-slate-400" : "text-slate-500"}`}>Đang tải hàng đợi phê duyệt...</p>
+          <p className={`text-xs ${darkMode ? "text-slate-400" : "text-slate-500"}`}>Loading coordination validation queue...</p>
         </div>
       ) : filteredQueue.length === 0 ? (
         <div
@@ -176,10 +199,10 @@ export function ReviewQueueTab({ darkMode, onQueueUpdated }: ReviewQueueTabProps
         >
           <span className="text-3xl mb-2 block">🎉</span>
           <h3 className={`text-sm font-bold ${darkMode ? "text-white" : "text-slate-800"}`}>
-            Hàng đợi đang trống!
+            Validation Queue is Currently Empty!
           </h3>
           <p className={`text-xs mt-1 max-w-md mx-auto ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
-            Tất cả các khuyến cáo đã được duyệt hoặc chưa có tài liệu mới nào được bóc tách. Bạn có thể bấm nút &quot;Bóc tách Guideline Mới&quot; ở trên để nạp tài liệu.
+            All recommendations have been clinically approved or rejected. Newly discovered guidelines from the 0:00 AM scan will automatically appear here following structured extraction.
           </p>
         </div>
       ) : (
@@ -197,7 +220,7 @@ export function ReviewQueueTab({ darkMode, onQueueUpdated }: ReviewQueueTabProps
                     : "bg-white border-slate-200 shadow-xs hover:border-slate-300"
                 }`}
               >
-                {/* Header Thẻ Khuyến Cáo */}
+                {/* Recommendation Card Header */}
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-3 pb-3 border-b dark:border-slate-800">
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="text-xs px-2.5 py-1 rounded-md font-black bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
@@ -207,17 +230,15 @@ export function ReviewQueueTab({ darkMode, onQueueUpdated }: ReviewQueueTabProps
                       {rec.guideline_title}
                     </span>
                     <span className="text-[11px] px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 font-mono">
-                      Trang PDF: {rec.page_num}
+                      Page: {rec.page_num}
                     </span>
                   </div>
 
-                  {/* ID Khuyến cáo */}
                   <span className="text-[10px] font-mono text-slate-400">ID: {rec.rec_id}</span>
                 </div>
 
-                {/* Phân loại & Mức độ Khuyến cáo (COR/LOE hoặc GRADE/Voting) */}
+                {/* Classification & Recommendation Grade (COR/LOE or GRADE/Voting) */}
                 <div className="flex flex-wrap items-center gap-2 mb-3">
-                  {/* Trường hợp AHA/ASA */}
                   {rec.cor && (
                     <span
                       className={`text-xs px-2.5 py-1 rounded-md font-black border ${
@@ -230,7 +251,7 @@ export function ReviewQueueTab({ darkMode, onQueueUpdated }: ReviewQueueTabProps
                           : "bg-rose-100 text-rose-800 border-rose-300 dark:bg-rose-950 dark:text-rose-300"
                       }`}
                     >
-                      COR {rec.cor} {rec.cor_label ? `(${rec.cor_label})` : ""}
+                      COR: Class {rec.cor} {rec.cor_label ? `(${rec.cor_label})` : ""}
                     </span>
                   )}
                   {rec.loe && (
@@ -239,30 +260,29 @@ export function ReviewQueueTab({ darkMode, onQueueUpdated }: ReviewQueueTabProps
                     </span>
                   )}
 
-                  {/* Trường hợp ESO / GRADE */}
                   {rec.pico_id && (
                     <span className="text-xs px-2.5 py-1 rounded-md font-black bg-purple-100 text-purple-800 border-purple-300 dark:bg-purple-950 dark:text-purple-300">
-                      {rec.pico_id}
+                      PICO: {rec.pico_id}
                     </span>
                   )}
                   {rec.quality_of_evidence && (
                     <span className="text-xs px-2.5 py-1 rounded-md font-bold bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950 dark:text-indigo-300">
-                      Chất lượng bằng chứng: {rec.quality_of_evidence}
+                      Evidence Quality: {rec.quality_of_evidence}
                     </span>
                   )}
                   {rec.strength_of_recommendation && (
                     <span className="text-xs px-2.5 py-1 rounded-md font-bold bg-teal-50 text-teal-800 border-teal-200 dark:bg-teal-950 dark:text-teal-300">
-                      Cường độ: {rec.strength_of_recommendation}
+                      Strength: {rec.strength_of_recommendation}
                     </span>
                   )}
                   {rec.voting && (
                     <span className="text-xs px-2.5 py-1 rounded-md font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border">
-                      Bỏ phiếu: {rec.voting}
+                      Panel Voting: {rec.voting}
                     </span>
                   )}
                 </div>
 
-                {/* Toàn văn Câu Khuyến Cáo */}
+                {/* Full Statement */}
                 <div
                   className={`p-3.5 rounded-xl border mb-3 text-sm leading-relaxed ${
                     darkMode ? "bg-slate-950/60 border-slate-800 text-slate-100" : "bg-slate-50 border-slate-200 text-slate-900"
@@ -271,12 +291,12 @@ export function ReviewQueueTab({ darkMode, onQueueUpdated }: ReviewQueueTabProps
                   <p className="font-medium">{rec.statement}</p>
                   {rec.target_population && (
                     <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">
-                      <span className="font-semibold">Đối tượng áp dụng:</span> {rec.target_population}
+                      <span className="font-semibold">Target Population:</span> {rec.target_population}
                     </p>
                   )}
                 </div>
 
-                {/* Bảng Kiểm chứng Độc lập (Verification Shield) */}
+                {/* Verification Shield */}
                 {vDet && (
                   <div
                     className={`p-3 rounded-lg border text-xs mb-3 flex flex-wrap items-center justify-between gap-2 ${
@@ -287,13 +307,16 @@ export function ReviewQueueTab({ darkMode, onQueueUpdated }: ReviewQueueTabProps
                   >
                     <div className="flex items-center gap-3">
                       <span className="font-bold flex items-center gap-1">
-                        🛡️ Kiểm chứng: {vDet.status}
+                        🛡️ AI Verification:{" "}
+                        {vDet.status === "PASSED"
+                          ? "VERIFIED PROTOCOL STANDARDS"
+                          : "PENDING CLINICAL APPROVAL"}
                       </span>
                       <span>
-                        Độ khớp văn bản gốc (Grounding): <strong>{groundingPct}%</strong>
+                        Source Grounding: <strong>{groundingPct}%</strong>
                       </span>
                       <span>
-                        Số liệu: <strong>{vDet.numbers_verified ? "Đã đối chiếu" : "Cần xem xét"}</strong>
+                        Clinical Figures &amp; Numbers: <strong>{vDet.numbers_verified ? "Cross-Checked" : "Requires Review"}</strong>
                       </span>
                     </div>
 
@@ -305,11 +328,11 @@ export function ReviewQueueTab({ darkMode, onQueueUpdated }: ReviewQueueTabProps
                   </div>
                 )}
 
-                {/* Thao tác Phê duyệt của Bác sĩ */}
+                {/* Clinician Review Actions */}
                 <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
                   <input
                     type="text"
-                    placeholder="Ghi chú lâm sàng của bác sĩ (tùy chọn)..."
+                    placeholder="Clinician review notes or modification rationale (optional)..."
                     value={notes[rec.rec_id] || ""}
                     onChange={(e) => setNotes({ ...notes, [rec.rec_id]: e.target.value })}
                     className={`text-xs px-3 py-2 rounded-lg border flex-1 min-w-[200px] ${
@@ -323,14 +346,14 @@ export function ReviewQueueTab({ darkMode, onQueueUpdated }: ReviewQueueTabProps
                       onClick={() => handleReviewAction(rec, "APPROVED")}
                       className="px-4 py-2 rounded-lg text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white transition-all shadow-sm flex items-center gap-1.5 disabled:opacity-50"
                     >
-                      {actionLoading === rec.rec_id ? "Đang xử lý..." : "✓ Xác nhận & Xuất bản"}
+                      {actionLoading === rec.rec_id ? "Processing..." : "✓ Approve &amp; Publish"}
                     </button>
                     <button
                       disabled={actionLoading === rec.rec_id}
                       onClick={() => handleReviewAction(rec, "REJECTED")}
                       className="px-3 py-2 rounded-lg text-xs font-bold bg-rose-100 hover:bg-rose-200 text-rose-800 dark:bg-rose-950/60 dark:hover:bg-rose-900 dark:text-rose-300 transition-all border border-rose-300 dark:border-rose-800 disabled:opacity-50"
                     >
-                      ✕ Từ chối
+                      ✕ Reject Recommendation
                     </button>
                   </div>
                 </div>

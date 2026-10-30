@@ -2,8 +2,8 @@ name: Daily Multi-Journal Medical Aggregator
 
 on:
   schedule:
-    # Chạy tự động lúc 6:00 sáng giờ VN (23:00 UTC)
-    - cron: '0 23 * * *'
+    # Chạy tự động lúc 0:00 đêm giờ VN (17:00 UTC) thay vì 6:00 sáng để giãn tải và tránh chạm trần quota AI
+    - cron: '0 17 * * *'
   workflow_dispatch:
 
 permissions:

@@ -1024,28 +1024,6 @@ export default function NeuroGuidePage() {
                     {/* EXPANDED SECTION: Detailed information revealed only upon click */}
                     {isExpanded && (
                       <div className="px-4 sm:px-5 pb-5 pt-1 border-t border-slate-200/60 dark:border-slate-800/80">
-                        {/* Executive Summary */}
-                        <div className="mb-4 space-y-2">
-                          {doc.executiveSummaryVi && (
-                            <div className="p-3 rounded-xl bg-amber-500/10 dark:bg-amber-500/15 border border-amber-500/30">
-                              <span className="text-[10.5px] font-black uppercase tracking-wider text-amber-700 dark:text-amber-300 block mb-1">
-                                🇻🇳 Tóm tắt điều hành lâm sàng (Tiếng Việt):
-                              </span>
-                              <p className="text-xs sm:text-sm text-slate-800 dark:text-slate-200 leading-relaxed font-medium">
-                                {doc.executiveSummaryVi}
-                              </p>
-                            </div>
-                          )}
-                          <div>
-                            <span className="text-[10.5px] font-black uppercase tracking-wider text-slate-400 block mb-1">
-                              {isVietnamese ? "Tóm tắt cốt lõi (English):" : "Executive Summary (Original):"}
-                            </span>
-                            <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed bg-white/60 dark:bg-slate-900/60 p-3 rounded-xl border border-slate-200/50 dark:border-slate-800/60">
-                              {doc.executiveSummary}
-                            </p>
-                          </div>
-                        </div>
-
                         {/* All Practice Changes List */}
                         {(() => {
                           const newPracticeChanges = doc.allPracticeChanges.filter(
