@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef } from "react";
+import { upload } from "@vercel/blob/client";
 
 interface PipelineModalProps {
   isOpen: boolean;
@@ -9,15 +10,27 @@ interface PipelineModalProps {
   darkMode: boolean;
 }
 
+interface StreamRec {
+  rec_id: string;
+  cor?: string;
+  loe?: string;
+  statement: string;
+  page_num?: number;
+}
+
 export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: PipelineModalProps) {
   const [mode, setMode] = useState<"MANUAL" | "DISCOVER">("MANUAL");
   const [url, setUrl] = useState<string>("");
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [society, setSociety] = useState<string>("ESO");
+  const [society, setSociety] = useState<string>("AHA");
   const [title, setTitle] = useState<string>("");
   const [year, setYear] = useState<string>(new Date().getFullYear().toString());
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [streamProgress, setStreamProgress] = useState<number>(0);
+  const [streamMessage, setStreamMessage] = useState<string>("");
+  const [liveRecs, setLiveRecs] = useState<StreamRec[]>([]);
+  const [blobCleaned, setBlobCleaned] = useState<boolean>(false);
   const [resultMessage, setResultMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -30,13 +43,14 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
     if (files && files.length > 0) {
       const file = files[0];
       if (!file.name.toLowerCase().endsWith(".pdf")) {
-        setErrorMessage("Please select a valid PDF document (.pdf).");
+        setErrorMessage("Vui lòng chọn một tệp PDF tài liệu hợp lệ (.pdf).");
         return;
       }
       setSelectedFile(file);
       setErrorMessage(null);
+      setLiveRecs([]);
+      setBlobCleaned(false);
 
-      // Auto-suggest title if current title is empty
       if (!title) {
         const cleanName = file.name
           .replace(/\.pdf$/i, "")
@@ -52,6 +66,8 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
+    setLiveRecs([]);
+    setBlobCleaned(false);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -59,313 +75,488 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
     setIsLoading(true);
     setResultMessage(null);
     setErrorMessage(null);
+    setStreamProgress(5);
+    setLiveRecs([]);
+    setBlobCleaned(false);
 
     try {
-      if (mode === "MANUAL" && !url && !selectedFile) {
-        setErrorMessage("Please provide either a direct PDF URL or upload a local PDF file.");
-        setIsLoading(false);
-        return;
-      }
-
-      let res: Response;
-
-      if (selectedFile) {
-        const formData = new FormData();
-        formData.append("file", selectedFile);
-        formData.append("society", society);
-        formData.append("discover", String(mode === "DISCOVER"));
-        if (title) formData.append("title", title);
-        if (year) formData.append("year", year);
-        if (url) formData.append("url", url);
-
-        res = await fetch("/api/neuroguide/pipeline", {
-          method: "POST",
-          body: formData,
-        });
-      } else {
-        const payload: Record<string, unknown> = {
-          society,
-          discover: mode === "DISCOVER",
-        };
-        if (mode === "MANUAL") {
-          if (url) payload.url = url;
-          if (title) payload.title = title;
-          if (year) payload.year = parseInt(year, 10);
-        }
-
-        res = await fetch("/api/neuroguide/pipeline", {
+      if (mode === "DISCOVER") {
+        // Discovery radar scan
+        setStreamMessage("Đang quét radar phát hiện guideline mới từ PubMed & thư viện...");
+        const res = await fetch("/api/neuroguide/pipeline", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
+          body: JSON.stringify({ society, discover: true }),
         });
-      }
-
-      let data: any = null;
-      try {
-        data = await res.json();
-      } catch {
-        // Response was not JSON (e.g. 413 Payload Too Large or 504 Timeout from reverse proxy)
-      }
-
-      if (!res.ok && !data) {
-        if (res.status === 413) {
-          setErrorMessage(
-            "Tệp PDF (4.4 MB) vượt quá giới hạn tải lên trực tiếp của máy chủ (tối đa 4.5 MB). Vui lòng nén bớt dung lượng PDF hoặc chỉ xuất các trang có bảng khuyến cáo."
-          );
-        } else if (res.status === 504) {
-          setErrorMessage(
-            "Quá trình phân tích 81 trang vượt quá thời gian chờ của máy chủ (504 Timeout). Vui lòng thử lại hoặc giảm số trang của tệp."
-          );
-        } else {
-          setErrorMessage(`Máy chủ phản hồi mã lỗi ${res.status}: ${res.statusText || "Lỗi xử lý yêu cầu."}`);
-        }
-        setIsLoading(false);
-        return;
-      }
-
-      if (data && data.ok) {
-        if (mode === "DISCOVER") {
+        const data = await res.json().catch(() => null);
+        if (data && data.ok) {
           setResultMessage(
             `✅ Discovery complete! Found ${data.data?.total_discovered || 0} guidelines, including ${
               data.data?.new_discovered_count || 0
             } new publications ready for analysis.`
           );
+          setTimeout(() => {
+            onSuccess();
+            onClose();
+          }, 1800);
         } else {
-          setResultMessage(
-            `✅ Extraction complete! Extracted ${data.data?.total_recommendations || 0} clinical recommendations and submitted directly to the Review Queue.`
-          );
+          setErrorMessage(data?.error?.message || "Lỗi khi quét phát hiện guideline mới.");
         }
-        setTimeout(() => {
-          onSuccess();
-          onClose();
-        }, 1800);
-      } else {
-        const errorMsg =
-          typeof data?.error === "string"
-            ? data.error
-            : data?.error?.message || "Đã xảy ra lỗi trong quá trình thực thi AI Pipeline.";
-        setErrorMessage(errorMsg);
+        setIsLoading(false);
+        return;
       }
-    } catch {
-      setErrorMessage("Network connection error calling the Pipeline Orchestrator API.");
+
+      // =======================================================================
+      // CHẾ ĐỘ THỦ CÔNG: ĐẨY LÊN VERCEL BLOB -> STREAMING PHÂN TÍCH -> XÓA BLOB
+      // =======================================================================
+      if (!url && !selectedFile) {
+        setErrorMessage("Vui lòng nhập URL tài liệu hoặc tải tệp PDF lên từ máy.");
+        setIsLoading(false);
+        return;
+      }
+
+      let blobUrl: string | undefined = undefined;
+
+      if (selectedFile) {
+        setStreamMessage(`Đang tải tệp lên Vercel Blob Storage (${(selectedFile.size / (1024 * 1024)).toFixed(2)} MB)...`);
+        setStreamProgress(10);
+
+        try {
+          // 1. Tải trực tiếp lên Vercel Blob (bỏ qua giới hạn 4.5 MB của Serverless)
+          const blobResult = await upload(selectedFile.name, selectedFile, {
+            access: "public",
+            handleUploadUrl: "/api/neuroguide/upload-blob",
+            onUploadProgress: (progress) => {
+              const uploadPct = Math.round((progress.loaded / progress.total) * 20) + 10;
+              setStreamProgress(uploadPct);
+            },
+          });
+          blobUrl = blobResult.url;
+          setStreamMessage("✅ Tải lên Vercel Blob thành công! Bắt đầu kết nối luồng AI phân tích...");
+          setStreamProgress(30);
+        } catch (uploadErr) {
+          console.warn("Client-side Blob upload handshake failed, falling back to direct stream:", uploadErr);
+          setStreamMessage("Chuyển sang luồng truyền dữ liệu trực tiếp...");
+        }
+      }
+
+      // 2. Kết nối tới SSE Streaming Endpoint
+      let streamResponse: Response;
+
+      if (blobUrl) {
+        // Gửi link Blob nhẹ nhàng
+        streamResponse = await fetch("/api/neuroguide/pipeline-stream", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            blob_url: blobUrl,
+            fileName: selectedFile?.name || "guideline.pdf",
+            society,
+            title,
+            year: year ? parseInt(year, 10) : undefined,
+          }),
+        });
+      } else if (selectedFile) {
+        // Dự phòng: Gửi FormData nếu Blob client token chưa được cấu hình
+        const formData = new FormData();
+        formData.append("file", selectedFile);
+        formData.append("society", society);
+        if (title) formData.append("title", title);
+        if (year) formData.append("year", year);
+
+        streamResponse = await fetch("/api/neuroguide/pipeline-stream", {
+          method: "POST",
+          body: formData,
+        });
+      } else {
+        // Nhập bằng URL trực tiếp
+        streamResponse = await fetch("/api/neuroguide/pipeline", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            url,
+            society,
+            title,
+            year: year ? parseInt(year, 10) : undefined,
+            discover: false,
+          }),
+        });
+
+        const singleData = await streamResponse.json().catch(() => null);
+        if (singleData && singleData.ok) {
+          setResultMessage("✅ Bóc tách khuyến cáo thành công!");
+          setTimeout(() => {
+            onSuccess();
+            onClose();
+          }, 1500);
+        } else {
+          setErrorMessage(singleData?.error?.message || "Lỗi khi xử lý URL.");
+        }
+        setIsLoading(false);
+        return;
+      }
+
+      if (!streamResponse.ok) {
+        if (streamResponse.status === 413) {
+          setErrorMessage("Dung lượng tệp vượt quá giới hạn máy chủ (4.5 MB). Vui lòng nén file hoặc dùng Vercel Blob.");
+        } else {
+          setErrorMessage(`Máy chủ trả về mã lỗi ${streamResponse.status}`);
+        }
+        setIsLoading(false);
+        return;
+      }
+
+      // 3. Đọc dữ liệu Real-time SSE Stream từ Server
+      const reader = streamResponse.body?.getReader();
+      if (!reader) {
+        throw new Error("Không thể khởi tạo bộ đọc luồng dữ liệu.");
+      }
+
+      const decoder = new TextDecoder("utf-8");
+      let buffer = "";
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split("\n\n");
+        buffer = lines.pop() || "";
+
+        for (const line of lines) {
+          const trimmed = line.trim();
+          if (trimmed.startsWith("data:")) {
+            try {
+              const eventData = JSON.parse(trimmed.slice(5).trim());
+
+              if (typeof eventData.percent === "number") {
+                setStreamProgress(eventData.percent);
+              }
+              if (eventData.message) {
+                setStreamMessage(eventData.message);
+              }
+
+              // Nhận khuyến cáo mới stream về
+              if (Array.isArray(eventData.recommendations) && eventData.recommendations.length > 0) {
+                setLiveRecs((prev) => [...prev, ...eventData.recommendations]);
+                onSuccess(); // Cập nhật hàng đợi ở nền ngay lập tức
+              }
+
+              // Xác nhận đã xóa file PDF trên Blob
+              if (eventData.stage === "CLEANUP" && eventData.message?.includes("thành công")) {
+                setBlobCleaned(true);
+              }
+
+              if (eventData.stage === "COMPLETE") {
+                setResultMessage(eventData.message || "Bóc tách thành công!");
+                onSuccess();
+                setTimeout(() => {
+                  onClose();
+                }, 2200);
+              } else if (eventData.stage === "ERROR") {
+                setErrorMessage(eventData.message || eventData.error || "Lỗi khi phân tích.");
+              }
+            } catch (err) {
+              console.warn("Lỗi phân tích cú pháp SSE event:", err);
+            }
+          }
+        }
+      }
+    } catch (submitErr) {
+      const msg = submitErr instanceof Error ? submitErr.message : "Lỗi kết nối tới hệ thống xử lý AI.";
+      setErrorMessage(msg);
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs">
       <div
-        className={`w-full max-w-lg rounded-2xl border p-6 shadow-2xl transition-all ${
+        className={`w-full max-w-xl rounded-2xl border p-6 shadow-2xl transition-all ${
           darkMode ? "bg-slate-900 border-slate-800 text-white" : "bg-white border-slate-200 text-slate-900"
         }`}
       >
         <div className="flex items-center justify-between pb-3 border-b dark:border-slate-800 mb-4">
           <div className="flex items-center gap-2">
             <span className="text-xl">⚡</span>
-            <h3 className="text-sm font-black uppercase tracking-wide">
-              GUIDELINE AI EXTRACTION PIPELINE
-            </h3>
+            <div>
+              <h3 className="text-sm font-black uppercase tracking-wide">
+                NEUROGUIDE AI PIPELINE & STREAMING
+              </h3>
+              <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                Vercel Blob Direct Upload • Phân tích lũy tiến • Tự động giải phóng dung lượng
+              </p>
+            </div>
           </div>
-          <button
-            onClick={onClose}
-            className="text-slate-400 hover:text-slate-600 dark:hover:text-white text-sm font-bold"
-            title="Close modal"
-          >
-            ✕
-          </button>
+          {!isLoading && (
+            <button
+              onClick={onClose}
+              className="text-slate-400 hover:text-slate-600 dark:hover:text-white text-sm font-bold"
+            >
+              ✕
+            </button>
+          )}
         </div>
 
-        {/* Mode Selector: Manual vs Automated Radar Scan */}
-        <div className="flex gap-2 mb-4 p-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-bold">
+        {/* Tab Selection */}
+        <div className="flex rounded-xl bg-slate-100 dark:bg-slate-800/60 p-1 mb-5">
           <button
             type="button"
-            onClick={() => setMode("MANUAL")}
-            className={`flex-1 py-1.5 rounded-md transition-all ${
+            disabled={isLoading}
+            onClick={() => {
+              setMode("MANUAL");
+              setErrorMessage(null);
+            }}
+            className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-all flex items-center justify-center gap-1.5 ${
               mode === "MANUAL"
                 ? "bg-amber-500 text-white shadow-xs"
-                : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
             }`}
           >
-            📥 Manual URL / File Upload
+            <span>📥</span> Manual URL / Blob Upload
           </button>
           <button
             type="button"
-            onClick={() => setMode("DISCOVER")}
-            className={`flex-1 py-1.5 rounded-md transition-all ${
+            disabled={isLoading}
+            onClick={() => {
+              setMode("DISCOVER");
+              setErrorMessage(null);
+            }}
+            className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-all flex items-center justify-center gap-1.5 ${
               mode === "DISCOVER"
                 ? "bg-amber-500 text-white shadow-xs"
-                : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
             }`}
           >
-            📡 Multi-Society Radar Scan
+            <span>📡</span> Multi-Society Radar Scan
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4 text-xs">
-          {mode === "MANUAL" ? (
-            <>
-              <div>
-                <label className="block font-bold mb-1">Medical Society:</label>
-                <select
-                  value={society}
-                  onChange={(e) => setSociety(e.target.value)}
-                  className={`w-full p-2.5 rounded-lg border font-semibold ${
-                    darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"
-                  }`}
-                >
-                  <option value="ESO">ESO (European Stroke Organisation - GRADE/PICO)</option>
-                  <option value="AHA">AHA/ASA (American Heart / Stroke Association - COR/LOE)</option>
-                  <option value="ILAE">ILAE (International League Against Epilepsy)</option>
-                  <option value="AES">AES (American Epilepsy Society)</option>
-                  <option value="NCS">NCS (Neurocritical Care Society)</option>
-                  <option value="AAN">AAN (American Academy of Neurology)</option>
-                  <option value="EAN">EAN (European Academy of Neurology)</option>
-                  <option value="PNS">PNS (Peripheral Nerve Society)</option>
-                  <option value="AHS">AHS (American Headache Society)</option>
-                </select>
-              </div>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Society Selector */}
+          <div>
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">
+              Hiệp hội Chuyên khoa:
+            </label>
+            <select
+              value={society}
+              disabled={isLoading}
+              onChange={(e) => setSociety(e.target.value)}
+              className="w-full text-xs font-medium rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2 text-slate-900 dark:text-white outline-hidden focus:ring-2 focus:ring-amber-500"
+            >
+              <option value="AHA">AHA/ASA (American Heart / Stroke Association - COR/LOE)</option>
+              <option value="ESO">ESO (European Stroke Organisation - GRADE)</option>
+              <option value="AAN">AAN (American Academy of Neurology)</option>
+              <option value="NCS">NCS (Neurocritical Care Society)</option>
+              <option value="ILAE">ILAE / AES (Epilepsy Syndromes & Seizure Management)</option>
+            </select>
+          </div>
 
+          {mode === "MANUAL" && (
+            <>
+              {/* URL Input */}
               <div>
-                <label className="block font-bold mb-1">Direct Guideline PDF URL:</label>
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">
+                  Đường dẫn PDF hoặc DOI URL:
+                </label>
                 <input
-                  type="url"
-                  placeholder="https://example.com/guideline-2026.pdf or DOI URL"
+                  type="text"
+                  disabled={isLoading || Boolean(selectedFile)}
                   value={url}
                   onChange={(e) => setUrl(e.target.value)}
-                  className={`w-full p-2.5 rounded-lg border ${
-                    darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"
-                  }`}
+                  placeholder="https://example.com/guideline.pdf hoặc 10.1161/STR..."
+                  className="w-full text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2 text-slate-900 dark:text-white placeholder:text-slate-400 outline-hidden focus:ring-2 focus:ring-amber-500 disabled:opacity-50"
                 />
               </div>
 
-              {/* Dedicated File Upload Picker */}
+              {/* File Upload Box with Vercel Blob indication */}
               <div>
-                <label className="block font-bold mb-1">OR Upload PDF Document:</label>
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept=".pdf,application/pdf"
-                  onChange={handleFileChange}
-                  className="hidden"
-                />
-
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">
+                  HOẶC Tải tệp PDF từ máy (Đẩy trực tiếp lên Vercel Blob):
+                </label>
                 {!selectedFile ? (
-                  <button
-                    type="button"
-                    onClick={() => fileInputRef.current?.click()}
-                    className={`w-full p-4 rounded-xl border-2 border-dashed flex flex-col items-center justify-center gap-1.5 transition-all text-center cursor-pointer ${
-                      darkMode
-                        ? "border-slate-700 hover:border-amber-500 bg-slate-800/40 hover:bg-slate-800 text-slate-300"
-                        : "border-slate-300 hover:border-amber-500 bg-slate-50 hover:bg-amber-50/50 text-slate-600"
-                    }`}
-                  >
-                    <span className="text-2xl">📄</span>
-                    <span className="font-bold text-xs">Click to browse or drop PDF guideline</span>
-                    <span className="text-[10px] opacity-70">
-                      Upload journal PDF directly from your computer
-                    </span>
-                  </button>
-                ) : (
                   <div
-                    className={`p-3 rounded-xl border flex items-center justify-between gap-3 ${
-                      darkMode
-                        ? "bg-slate-800/80 border-slate-700 text-white"
-                        : "bg-amber-50/70 border-amber-200 text-slate-900"
+                    onClick={() => !isLoading && fileInputRef.current?.click()}
+                    className={`border-2 border-dashed rounded-xl p-4 text-center cursor-pointer transition-colors ${
+                      isLoading
+                        ? "opacity-50 cursor-not-allowed"
+                        : "border-slate-300 dark:border-slate-700 hover:border-amber-500 dark:hover:border-amber-400 bg-slate-50 dark:bg-slate-800/40"
                     }`}
                   >
-                    <div className="flex items-center gap-2.5 overflow-hidden">
-                      <span className="text-xl shrink-0">📄</span>
-                      <div className="overflow-hidden">
-                        <p className="font-bold text-xs truncate" title={selectedFile.name}>
+                    <input
+                      type="file"
+                      ref={fileInputRef}
+                      onChange={handleFileChange}
+                      accept=".pdf,application/pdf"
+                      className="hidden"
+                      disabled={isLoading}
+                    />
+                    <div className="flex flex-col items-center gap-1">
+                      <span className="text-2xl">📄</span>
+                      <p className="text-xs font-semibold text-slate-700 dark:text-slate-200">
+                        Nhấn để chọn tệp PDF hướng dẫn lâm sàng (hỗ trợ 80–100 trang)
+                      </p>
+                      <p className="text-[11px] text-slate-400">
+                        ⚡ Đẩy thẳng lên Blob (bỏ qua giới hạn 4.5MB). Sau khi trích xuất xong, file sẽ tự động xóa để tiết kiệm dung lượng.
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex items-center justify-between p-3 rounded-xl border border-amber-300 dark:border-amber-500/40 bg-amber-500/5">
+                    <div className="flex items-center gap-2 overflow-hidden">
+                      <span className="text-lg">📄</span>
+                      <div className="truncate">
+                        <p className="text-xs font-bold text-slate-800 dark:text-slate-200 truncate">
                           {selectedFile.name}
                         </p>
-                        <p className="text-[10px] opacity-70">
-                          {(selectedFile.size / (1024 * 1024)).toFixed(2)} MB • Ready for AI extraction
+                        <p className="text-[10px] text-slate-500">
+                          {(selectedFile.size / (1024 * 1024)).toFixed(2)} MB • Sẵn sàng đẩy lên Vercel Blob & phân tích lũy tiến
                         </p>
                       </div>
                     </div>
-                    <button
-                      type="button"
-                      onClick={handleRemoveFile}
-                      className="px-2.5 py-1 text-xs font-bold rounded-md bg-rose-100 text-rose-700 hover:bg-rose-200 dark:bg-rose-950/60 dark:text-rose-300 transition-colors shrink-0"
-                    >
-                      ✕ Remove
-                    </button>
+                    {!isLoading && (
+                      <button
+                        type="button"
+                        onClick={handleRemoveFile}
+                        className="text-xs text-rose-500 hover:text-rose-600 font-bold px-2 py-1 bg-rose-500/10 rounded-lg shrink-0"
+                      >
+                        ✕ Gỡ bỏ
+                      </button>
+                    )}
                   </div>
                 )}
               </div>
 
+              {/* Optional Title & Year */}
               <div className="grid grid-cols-3 gap-3">
                 <div className="col-span-2">
-                  <label className="block font-bold mb-1">Guideline Title (Optional):</label>
+                  <label className="block text-[11px] font-bold text-slate-500 mb-1">
+                    Tiêu đề (Tùy chọn):
+                  </label>
                   <input
                     type="text"
-                    placeholder="e.g., Prevention and Treatment of Maternal Stroke"
+                    disabled={isLoading}
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    className={`w-full p-2.5 rounded-lg border ${
-                      darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"
-                    }`}
+                    placeholder="VD: 2024 AHA/ASA Stroke Prevention..."
+                    className="w-full text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-1.5 outline-hidden"
                   />
                 </div>
                 <div>
-                  <label className="block font-bold mb-1">Year:</label>
+                  <label className="block text-[11px] font-bold text-slate-500 mb-1">Năm:</label>
                   <input
                     type="number"
+                    disabled={isLoading}
                     value={year}
                     onChange={(e) => setYear(e.target.value)}
-                    className={`w-full p-2.5 rounded-lg border ${
-                      darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"
-                    }`}
+                    className="w-full text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-1.5 outline-hidden"
                   />
                 </div>
               </div>
             </>
-          ) : (
-            <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-700 dark:text-amber-300">
-              <p className="font-bold mb-1">📡 Automated Radar Discovery Mode:</p>
-              <p className="leading-relaxed">
-                The system executes the Discovery Core across 12 authoritative medical societies and high-impact journals (ESO, AHA/ASA, ILAE, AES, NCS, EAN, PNS, AHS, Wiley, NICE) to detect newly published guidelines not yet in the repository.
+          )}
+
+          {/* REAL-TIME STREAMING PROGRESS CARD */}
+          {isLoading && (
+            <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-4 space-y-3 animate-in fade-in">
+              <div className="flex justify-between items-center text-xs font-bold text-amber-600 dark:text-amber-400">
+                <span className="flex items-center gap-1.5">
+                  <span className="inline-block w-2 h-2 rounded-full bg-amber-500 animate-ping" />
+                  Tiến trình phân tích thời gian thực
+                </span>
+                <span>{streamProgress}%</span>
+              </div>
+
+              {/* Progress bar */}
+              <div className="w-full h-2 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+                <div
+                  className="h-full bg-gradient-to-r from-amber-500 to-emerald-500 transition-all duration-300 ease-out"
+                  style={{ width: `${streamProgress}%` }}
+                />
+              </div>
+
+              <p className="text-xs text-slate-600 dark:text-slate-300 font-medium">
+                {streamMessage || "Đang khởi tạo chuỗi phân tích AI..."}
               </p>
+
+              {/* Blob cleanup indicator */}
+              {blobCleaned && (
+                <div className="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1 bg-emerald-500/10 px-2 py-1 rounded-md">
+                  <span>🗑️</span> Đã tự động xóa file PDF tạm trên Vercel Blob để bảo toàn dung lượng lưu trữ!
+                </div>
+              )}
+
+              {/* Real-time Extracted Recommendations Preview */}
+              {liveRecs.length > 0 && (
+                <div className="space-y-1.5 pt-2 border-t border-amber-500/20">
+                  <div className="flex justify-between items-center text-[11px] font-bold text-slate-700 dark:text-slate-300">
+                    <span>⚡ Khuyến cáo mới vừa phát hiện:</span>
+                    <span className="bg-amber-500/20 text-amber-600 dark:text-amber-400 px-1.5 py-0.5 rounded-sm">
+                      {liveRecs.length} khuyến cáo
+                    </span>
+                  </div>
+                  <div className="max-h-32 overflow-y-auto space-y-1 pr-1 text-[11px]">
+                    {liveRecs.slice(-4).map((r, i) => (
+                      <div
+                        key={r.rec_id || i}
+                        className="p-1.5 rounded-lg bg-white/70 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 flex items-start gap-1.5"
+                      >
+                        <span className="shrink-0 px-1 py-0.5 text-[9px] font-black rounded-sm bg-emerald-500/20 text-emerald-600 dark:text-emerald-400">
+                          COR: {r.cor || "I"}
+                        </span>
+                        <span className="shrink-0 px-1 py-0.5 text-[9px] font-black rounded-sm bg-blue-500/20 text-blue-600 dark:text-blue-400">
+                          LOE: {r.loe || "A"}
+                        </span>
+                        <p className="line-clamp-1 text-slate-700 dark:text-slate-200">
+                          {r.statement}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           )}
 
-          {errorMessage && (
-            <div className="p-3 rounded-lg bg-rose-100 text-rose-800 border border-rose-300 dark:bg-rose-950/60 dark:text-rose-300 dark:border-rose-800 font-bold">
-              {errorMessage}
-            </div>
-          )}
-
+          {/* Feedback Messages */}
           {resultMessage && (
-            <div className="p-3 rounded-lg bg-emerald-100 text-emerald-800 border border-emerald-300 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-800 font-bold">
+            <div className="p-3 text-xs font-semibold rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400">
               {resultMessage}
             </div>
           )}
 
-          <div className="flex items-center justify-end gap-2 pt-3 border-t dark:border-slate-800">
-            <button
-              type="button"
-              onClick={onClose}
-              disabled={isLoading}
-              className="px-4 py-2 rounded-lg font-bold border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800"
-            >
-              Cancel
-            </button>
+          {errorMessage && (
+            <div className="p-3 text-xs font-semibold rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-400">
+              {errorMessage}
+            </div>
+          )}
+
+          {/* Buttons */}
+          <div className="flex items-center justify-end gap-2 pt-2 border-t dark:border-slate-800">
+            {!isLoading && (
+              <button
+                type="button"
+                onClick={onClose}
+                className="px-4 py-2 text-xs font-bold rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800"
+              >
+                Hủy
+              </button>
+            )}
             <button
               type="submit"
-              disabled={isLoading}
-              className="px-5 py-2 rounded-lg font-bold bg-amber-500 hover:bg-amber-600 text-white transition-all shadow-md flex items-center gap-2 disabled:opacity-50"
+              disabled={isLoading || (mode === "MANUAL" && !url && !selectedFile)}
+              className="px-5 py-2 text-xs font-black uppercase tracking-wider rounded-xl bg-amber-500 hover:bg-amber-600 text-white shadow-md disabled:opacity-50 flex items-center gap-1.5 cursor-pointer"
             >
               {isLoading ? (
                 <>
-                  <span className="animate-spin inline-block w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full"></span>
-                  <span>Processing 5-Step Pipeline...</span>
+                  <span className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                  Đang phân tích trực tiếp...
                 </>
-              ) : mode === "MANUAL" ? (
-                "⚡ Launch AI Extraction"
               ) : (
-                "📡 Launch Radar Discovery"
+                <>
+                  <span>⚡</span> Bắt đầu bóc tách AI
+                </>
               )}
             </button>
           </div>
