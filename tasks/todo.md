@@ -195,13 +195,13 @@
 **Description:** Nâng cấp `StoreCore` với cơ chế kiểm định chất lượng nghiêm ngặt (Quality Gate): Từ chối lưu các guideline stub không hoàn chỉnh (< 5 khuyến cáo mà không có cờ draft). Cấu trúc lưu trữ mở rộng hỗ trợ trường `top_takeaways`, `high_impact_changes`, `metadata` chi tiết.
 
 **Acceptance criteria:**
-- [ ] `StoreCore` tự động chặn lưu các tài liệu rác hoặc chưa bóc tách xong.
-- [ ] Lưu đầy đủ metadata bài toàn văn vào `{guideline_id}_latest.json` và cập nhật `catalog.json`.
-- [ ] Tương thích hoàn toàn với cơ chế bảo vệ Vercel EROFS.
+- [x] `StoreCore` tự động chặn lưu các tài liệu rác hoặc chưa bóc tách xong.
+- [x] Lưu đầy đủ metadata bài toàn văn vào `{guideline_id}_latest.json` và cập nhật `catalog.json`.
+- [x] Tương thích hoàn toàn với cơ chế bảo vệ Vercel EROFS.
 
 **Verification:**
-- [ ] `pytest tests/core/test_store.py`
-- [ ] Thử lưu 1 tài liệu stub để đảm bảo Quality Gate từ chối hợp lệ.
+- [x] `pytest tests/core/test_store.py`
+- [x] Thử lưu 1 tài liệu stub để đảm bảo Quality Gate từ chối hợp lệ.
 
 **Dependencies:** Task 2, Task 8
 **Files likely touched:**
@@ -216,13 +216,13 @@
 **Description:** Cập nhật `storeAdapter.ts` để đọc đầy đủ các trường mới từ Store Core (`top_takeaways`, `high_impact_changes`, `full_text_status`), và hoàn thiện hiển thị trên giao diện NeuroGuide Radar, trang chi tiết guideline và tab Hàng đợi kiểm duyệt (Review Queue).
 
 **Acceptance criteria:**
-- [ ] `storeAdapter.ts` ánh xạ trọn vẹn 3 tầng khuyến cáo lên giao diện Web.
-- [ ] Giao diện Web hiển thị card Top 10 Take-Home Messages, huy hiệu bài toàn văn ("Full Text Parsed"), và bộ lọc khuyến cáo theo danh mục.
-- [ ] Thao tác duyệt / từ chối trên Review Queue mượt mà không lỗi.
+- [x] `storeAdapter.ts` ánh xạ trọn vẹn 3 tầng khuyến cáo lên giao diện Web.
+- [x] Giao diện Web hiển thị card Top 10 Take-Home Messages, huy hiệu bài toàn văn ("Full Text Parsed"), và bộ lọc khuyến cáo theo danh mục.
+- [x] Thao tác duyệt / từ chối trên Review Queue mượt mà không lỗi.
 
 **Verification:**
-- [ ] TypeScript check: `cmd /c npx tsc --noEmit`
-- [ ] Next.js Build: `cmd /c npm run build`
+- [x] TypeScript check: `cmd /c npx tsc --noEmit`
+- [x] Next.js Build: `cmd /c npm run build`
 
 **Dependencies:** Task 9
 **Files likely touched:**
@@ -238,12 +238,12 @@
 **Description:** Chạy kiểm thử toàn trình từ việc kích hoạt Discovery quét bài toàn văn, tải và trích xuất qua Pipeline, lưu vào Store và hiển thị lên giao diện Web của bác sĩ.
 
 **Acceptance criteria:**
-- [ ] Toàn bộ chuỗi Pipeline chạy thông suốt không có ngoại lệ chưa xử lý.
-- [ ] Dữ liệu hiển thị trên Web đầy đủ, chuẩn xác và đồng bộ giữa Local và Production Vercel.
+- [x] Toàn bộ chuỗi Pipeline chạy thông suốt không có ngoại lệ chưa xử lý.
+- [x] Dữ liệu hiển thị trên Web đầy đủ, chuẩn xác và đồng bộ giữa Local và Production Vercel.
 
 **Verification:**
-- [ ] `cmd /c npm run build`
-- [ ] Kiểm tra API `/api/neuroguide/catalog` và `/api/neuroguide/review-queue`.
+- [x] `cmd /c npm run build`
+- [x] Kiểm tra API `/api/neuroguide/catalog` và `/api/neuroguide/review-queue`.
 
 **Dependencies:** Task 10
 **Files likely touched:**
@@ -255,5 +255,5 @@
 ---
 
 ## Checkpoint: System Complete & Production Ready
-- [ ] Toàn bộ 5 lõi Discovery, Fetch, Extract, Analyze, Store được cải thiện toàn diện cho bài toàn văn.
-- [ ] Dữ liệu rác/tạm thời đã được dọn sạch triệt để.
+- [x] Toàn bộ 5 lõi Discovery, Fetch, Extract, Analyze, Store được cải thiện toàn diện cho bài toàn văn.
+- [x] Dữ liệu rác/tạm thời đã được dọn sạch triệt để.

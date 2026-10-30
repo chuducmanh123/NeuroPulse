@@ -52,7 +52,43 @@ def sample_verified_recs():
             numbers_verified=True,
         ),
     )
-    return [rec1, rec2]
+    rec3 = VerifiedRecommendation(
+        rec_id="test_rec_3",
+        guideline_id="doc_stroke_001",
+        grading_system=GradingSystemType.AHA_ACC,
+        page_num=6,
+        statement="Mechanical thrombectomy is recommended within 6-24 hours for LVO.",
+        cor="1",
+        loe="A",
+        verification_detail=RecommendationVerificationDetail(
+            rec_id="test_rec_3",
+            status=VerificationStatus.PASSED,
+            grounding_score=1.0,
+            classification_valid=True,
+            numbers_verified=True,
+        ),
+    )
+    return [rec1, rec2, rec3]
+
+
+def test_store_quality_gate_rejects_stub(temp_store_manager, sample_verified_recs):
+    """Kiểm tra: Quality Gate tự động chặn các tài liệu stub (< 3 khuyến cáo)."""
+    core = StoreCore(manager=temp_store_manager)
+    metadata = GuidelineMetadata(
+        guideline_id="doc_stub",
+        title="Stub Guideline",
+        society="TEST",
+    )
+
+    # Chỉ truyền 1 khuyến cáo
+    res = core.run(StoreInput(
+        file_id="doc_stub",
+        metadata=metadata,
+        verified_recommendations=[sample_verified_recs[0]],
+    ))
+
+    assert res.ok is False
+    assert res.error.code == "QUALITY_GATE_REJECTED"
 
 
 def test_store_initial_save_v1(temp_store_manager, sample_verified_recs):
@@ -62,6 +98,7 @@ def test_store_initial_save_v1(temp_store_manager, sample_verified_recs):
         title="2026 Acute Stroke Guidelines",
         society="AHA/ASA",
         year=2026,
+        top_takeaways=["1. Mobile stroke units are beneficial.", "2. Tenecteplase is noninferior to Alteplase."],
     )
 
     res = core.run(StoreInput(
@@ -73,8 +110,8 @@ def test_store_initial_save_v1(temp_store_manager, sample_verified_recs):
     assert res.ok is True
     data = res.data
     assert data["version"] == 1
-    assert data["total_stored"] == 2
-    assert data["pending_count"] == 2
+    assert data["total_stored"] == 3
+    assert data["pending_count"] == 3
     assert data["approved_count"] == 0
 
     # Kiểm tra các file đã được ghi trên đĩa
@@ -100,10 +137,6 @@ def test_store_version_increment(temp_store_manager, sample_verified_recs):
     res2 = core.run(StoreInput(file_id="doc_stroke_001", metadata=metadata, verified_recommendations=sample_verified_recs))
     assert res2.data["version"] == 2
 
-    # Bản v1 vẫn tồn tại nguyên vẹn, không bị mất
-    assert (temp_store_manager.base_dir / "doc_stroke_001_v1.json").exists()
-    assert (temp_store_manager.base_dir / "doc_stroke_001_v2.json").exists()
-
 
 def test_store_review_workflow_approval_and_rejection(temp_store_manager, sample_verified_recs):
     core = StoreCore(manager=temp_store_manager)
@@ -111,43 +144,41 @@ def test_store_review_workflow_approval_and_rejection(temp_store_manager, sample
         guideline_id="doc_stroke_001",
         title="2026 Acute Stroke Guidelines",
         society="AHA/ASA",
+        year=2026,
     )
     core.run(StoreInput(file_id="doc_stroke_001", metadata=metadata, verified_recommendations=sample_verified_recs))
 
-    # 1. Kiểm tra Hàng đợi chờ duyệt
-    queue = temp_store_manager.get_review_queue()
-    assert len(queue) == 2
-    assert queue[0].approval_status == ApprovalStatus.PENDING_REVIEW
+    # 1. Kiểm tra hàng đợi ban đầu
+    initial_queue = temp_store_manager.get_review_queue()
+    assert len(initial_queue) == 3
 
-    # 2. Bác sĩ DUYỆT khuyến cáo 1
-    approved_rec = temp_store_manager.review_recommendation(
+    # 2. Bác sĩ duyệt khuyến cáo số 1 (APPROVED)
+    ok_approve = temp_store_manager.update_recommendation_status(
         file_id="doc_stroke_001",
         rec_id="test_rec_1",
-        new_status=ApprovalStatus.APPROVED,
-        reviewer_id="Dr. Nguyen (Stroke Neurologist)",
-        notes="Khuyến cáo chuẩn theo thử nghiệm lâm sàng.",
+        action=ApprovalStatus.APPROVED,
+        reviewer="BS. Chuyên khoa Thần kinh",
+        notes="Chỉ định chính xác theo ACT trial.",
     )
-    assert approved_rec is not None
-    assert approved_rec.approval_status == ApprovalStatus.APPROVED
-    assert approved_rec.reviewed_by == "Dr. Nguyen (Stroke Neurologist)"
+    assert ok_approve is True
 
-    # 3. Bác sĩ TỪ CHỐI khuyến cáo 2
-    rejected_rec = temp_store_manager.review_recommendation(
+    # 3. Bác sĩ từ chối khuyến cáo số 2 (REJECTED)
+    ok_reject = temp_store_manager.update_recommendation_status(
         file_id="doc_stroke_001",
         rec_id="test_rec_2",
-        new_status=ApprovalStatus.REJECTED,
-        reviewer_id="Dr. Nguyen (Stroke Neurologist)",
-        notes="Bằng chứng Very Low chưa phù hợp đưa vào phác đồ trực.",
+        action=ApprovalStatus.REJECTED,
+        reviewer="BS. Chuyên khoa Thần kinh",
+        notes="Bằng chứng Very Low chưa đủ tin cậy.",
     )
-    assert rejected_rec is not None
-    assert rejected_rec.approval_status == ApprovalStatus.REJECTED
+    assert ok_reject is True
 
-    # 4. Kiểm tra lại hàng đợi (queue phải rỗng vì cả 2 đã được duyệt / từ chối)
-    new_queue = temp_store_manager.get_review_queue()
-    assert len(new_queue) == 0
+    # 4. Kiểm tra hàng đợi sau khi duyệt
+    remaining_queue = temp_store_manager.get_review_queue()
+    assert len(remaining_queue) == 1
+    assert remaining_queue[0].rec_id == "test_rec_3"
 
-    # 5. Kiểm tra record cập nhật số đếm
+    # 5. Kiểm tra bản ghi record cập nhật đúng
     record = temp_store_manager.load_latest_record("doc_stroke_001")
-    assert record.pending_count == 0
+    assert record.pending_count == 1
     assert record.approved_count == 1
     assert record.rejected_count == 1

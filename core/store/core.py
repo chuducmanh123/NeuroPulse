@@ -6,6 +6,7 @@ from pydantic import BaseModel
 from core.common.base import BaseCore
 from core.common.contracts import (
     DocumentLifecycleState,
+    CoreException,
     StoredRecommendation,
     GuidelineDocumentRecord,
     ApprovalStatus,
@@ -18,14 +19,14 @@ from core.store.manager import GuidelineStoreManager
 class StoreCore(BaseCore):
     """
     Lõi Lưu trữ & Quản lý Phiên bản (StoreCore).
-    Đặc điểm:
-    - Lưu trữ theo phiên bản (v1, v2...) chống ghi đè làm mất lịch sử.
-    - Tự động gắn trạng thái PENDING_REVIEW chờ Bác sĩ duyệt.
-    - Cập nhật mục lục tổng Catalog phục vụ Web NeuroGuide.
+    Đặc tính nâng cấp cho bài toàn văn:
+    - Quality Gate: Chặn triệt để việc lưu các tài liệu rác hoặc bóc tách dở dang (< 3 khuyến cáo).
+    - Lưu trữ có cấu trúc 3 tầng: Top Takeaways, High-Impact Changes và Section Recommendations.
+    - Quản lý phiên bản bất biến (v1, v2...) và cập nhật Catalog cho Web NeuroGuide.
     """
 
     name: str = "store"
-    version: str = "1.0.0"
+    version: str = "2.0.0"
 
     def __init__(self, manager: Optional[GuidelineStoreManager] = None):
         self.manager = manager or GuidelineStoreManager()
@@ -34,20 +35,33 @@ class StoreCore(BaseCore):
         if not isinstance(input_data, StoreInput):
             input_data = StoreInput(**input_data.model_dump())
 
+        # 1. Quality Gate: Kiểm tra tính hoàn thiện của tài liệu trước khi đưa vào kho
+        min_recs_threshold = 3
+        if len(input_data.verified_recommendations) < min_recs_threshold:
+            raise CoreException(
+                code="QUALITY_GATE_REJECTED",
+                message=f"Chặn lưu tài liệu chưa hoàn chỉnh: Số lượng khuyến cáo quá ít ({len(input_data.verified_recommendations)} < {min_recs_threshold}).",
+                retryable=False,
+                details={"rec_count": len(input_data.verified_recommendations)},
+            )
+
         now_iso = datetime.now(timezone.utc).isoformat()
 
-        # 1. Xác định số phiên bản mới
+        # 2. Xác định số phiên bản mới
         latest_version = self.manager.get_latest_version(input_data.file_id)
         current_version = latest_version + 1
 
-        # 2. Đóng gói StoredRecommendations
+        # 3. Đóng gói StoredRecommendations
         stored_recs: List[StoredRecommendation] = []
         for v_rec in input_data.verified_recommendations:
             rec_dict = v_rec.model_dump()
             rec_dict["approval_status"] = ApprovalStatus.PENDING_REVIEW
             stored_recs.append(StoredRecommendation(**rec_dict))
 
-        # 3. Tạo bản ghi GuidelineDocumentRecord
+        # Trích xuất Top Takeaways từ metadata nếu có
+        top_takeaways = getattr(input_data.metadata, "top_takeaways", []) or []
+
+        # 4. Tạo bản ghi GuidelineDocumentRecord
         record = GuidelineDocumentRecord(
             guideline_id=input_data.file_id,
             version=current_version,
@@ -56,12 +70,13 @@ class StoreCore(BaseCore):
             pending_count=len(stored_recs),
             approved_count=0,
             rejected_count=0,
+            top_takeaways=top_takeaways,
             recommendations=stored_recs,
             created_at=now_iso,
             updated_at=now_iso,
         )
 
-        # 4. Lưu trữ an toàn
+        # 5. Lưu trữ an toàn
         saved_path = self.manager.save_record(record)
 
         output = StoreOutput(

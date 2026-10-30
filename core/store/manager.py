@@ -85,6 +85,7 @@ class GuidelineStoreManager:
             "pending_count": record.pending_count,
             "approved_count": record.approved_count,
             "rejected_count": record.rejected_count,
+            "top_takeaways_count": len(record.top_takeaways),
             "updated_at": record.updated_at,
         }
 
@@ -148,3 +149,22 @@ class GuidelineStoreManager:
 
         self.save_record(record)
         return target_rec
+
+    def update_recommendation_status(
+        self,
+        file_id: str,
+        rec_id: str,
+        action: ApprovalStatus,
+        reviewer: str = "BS. Chuyên khoa Thần kinh",
+        notes: Optional[str] = None,
+        modified_statement: Optional[str] = None,
+    ) -> bool:
+        res = self.review_recommendation(
+            file_id=file_id,
+            rec_id=rec_id,
+            new_status=action,
+            reviewer_id=reviewer,
+            notes=notes,
+            modified_statement=modified_statement,
+        )
+        return res is not None

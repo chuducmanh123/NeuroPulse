@@ -114,6 +114,8 @@ export function getStoredGuidelinesAsDocs(): GuidelineDoc[] {
         topTakeaways: record.top_takeaways || metadata.top_takeaways || undefined,
         allPracticeChanges: practiceChanges,
         linkedScenarioIds: [],
+        doi: metadata.doi || undefined,
+        pmcid: metadata.pmcid || undefined,
         fullTextStatus: "FULL_TEXT_PARSED",
       });
     } catch (e) {
