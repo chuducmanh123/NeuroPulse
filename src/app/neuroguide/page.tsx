@@ -752,13 +752,6 @@ export default function NeuroGuidePage() {
               <span>{darkMode ? "☀️ Light" : "🌙 Night Shift"}</span>
             </button>
 
-            <button
-              onClick={() => setShowPipelineModal(true)}
-              className="px-3 py-2 rounded-lg text-xs font-bold bg-amber-500 hover:bg-amber-600 text-white transition-all shadow-sm flex items-center gap-1.5"
-            >
-              <span>⚡ Bóc Tách AI</span>
-            </button>
-
             <AdminButton darkMode={darkMode} />
 
             {/* 9-DOTS ECOSYSTEM APP SWITCHER */}
@@ -2090,6 +2083,7 @@ export default function NeuroGuidePage() {
           <ReviewQueueTab
             darkMode={darkMode}
             onQueueUpdated={fetchQueueCount}
+            onOpenPipelineModal={() => setShowPipelineModal(true)}
           />
         )}
 

@@ -53,8 +53,8 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
         body: JSON.stringify(payload),
       });
 
-      const data = await res.json();
-      if (data.ok) {
+      const data = await res.json().catch(() => null);
+      if (data && data.ok) {
         if (mode === "DISCOVER") {
           setResultMessage(
             `✅ Đã quét xong! Phát hiện ${data.data?.total_discovered || 0} bài, trong đó có ${
@@ -71,7 +71,11 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
           onClose();
         }, 1800);
       } else {
-        setErrorMessage(data.error?.message || "Có lỗi xảy ra khi thực thi Pipeline.");
+        const errorMsg =
+          typeof data?.error === "string"
+            ? data.error
+            : data?.error?.message || "Có lỗi xảy ra khi thực thi Pipeline.";
+        setErrorMessage(errorMsg);
       }
     } catch {
       setErrorMessage("Lỗi kết nối khi gọi Bộ điều phối Orchestrator.");

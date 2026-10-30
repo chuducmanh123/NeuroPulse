@@ -58,27 +58,42 @@ export async function POST(request: NextRequest) {
     }
 
     // Chạy CLI runner của Orchestrator
-    const { stdout, stderr } = await execFileAsync(PYTHON_PATH, args, {
-      cwd: process.cwd(),
-      timeout: 180000, // 3 phút tối đa
-      env: {
-        ...process.env,
-        PYTHONIOENCODING: "utf-8",
-      },
-    });
-
     try {
-      const parsed = JSON.parse(stdout.trim());
-      return NextResponse.json(parsed);
-    } catch {
-      return NextResponse.json({
-        ok: true,
-        raw_output: stdout,
-        stderr: stderr || null,
+      const { stdout, stderr } = await execFileAsync(PYTHON_PATH, args, {
+        cwd: process.cwd(),
+        timeout: 180000, // 3 phút tối đa
+        env: {
+          ...process.env,
+          PYTHONIOENCODING: "utf-8",
+        },
       });
+
+      try {
+        const parsed = JSON.parse(stdout.trim());
+        return NextResponse.json(parsed);
+      } catch {
+        return NextResponse.json({
+          ok: true,
+          raw_output: stdout,
+          stderr: stderr || null,
+        });
+      }
+    } catch (execError: unknown) {
+      // Khi runner.py gặp lỗi và thoát với exit code > 0, stdout vẫn chứa JSON CoreResult
+      const errorObj = execError as { stdout?: string; stderr?: string; message?: string };
+      if (errorObj?.stdout && typeof errorObj.stdout === "string" && errorObj.stdout.trim().length > 0) {
+        try {
+          const parsed = JSON.parse(errorObj.stdout.trim());
+          return NextResponse.json(parsed, { status: 200 });
+        } catch {
+          // Không phải JSON, xử lý fallback tiếp theo
+        }
+      }
+      const message = execError instanceof Error ? execError.message : "Lỗi khi kích hoạt Orchestrator";
+      return NextResponse.json({ ok: false, error: { message } }, { status: 500 });
     }
   } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : "Lỗi khi kích hoạt Orchestrator";
-    return NextResponse.json({ ok: false, error: message }, { status: 500 });
+    const message = error instanceof Error ? error.message : "Lỗi khi xử lý yêu cầu Pipeline";
+    return NextResponse.json({ ok: false, error: { message } }, { status: 500 });
   }
 }

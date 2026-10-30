@@ -125,14 +125,14 @@ class FetchCore(BaseCore):
             if is_paywall:
                 raise CoreException(
                     code="PAYWALLED_MANUAL_REQUIRED",
-                    message="Bài báo bị khóa bởi tường thu phí của nhà xuất bản. Vui lòng tải tệp PDF lên thủ công để tiếp tục xử lý.",
+                    message="Bài báo bị khóa bởi tường thu phí của nhà xuất bản. Vui lòng tải tệp PDF lên thủ công (chọn 'Đường dẫn tệp cục bộ trên máy') để AI bóc tách.",
                     retryable=False,
                     details={"header_snippet": snippet[:200]},
                 )
 
             raise CoreException(
                 code="INVALID_PDF_HEADER",
-                message="Tệp tải về không có định dạng PDF hợp lệ (không chứa magic bytes '%PDF-').",
+                message="Tệp tải về không có định dạng PDF hợp lệ (không chứa magic bytes '%PDF-'). Vui lòng kiểm tra lại URL hoặc tải trực tiếp file PDF về máy.",
                 retryable=False,
                 details={"header_snippet": snippet[:200]},
             )
@@ -281,6 +281,22 @@ class FetchCore(BaseCore):
                 retryable=True,
             )
         except requests.exceptions.RequestException as e:
+            err_str = str(e)
+            is_resolution_or_blocked = any(
+                k in err_str.lower()
+                for k in ["getaddrinfo failed", "nameresolutionerror", "connection refused", "proxy", "max retries exceeded"]
+            )
+            # Nếu gặp lỗi kết nối hoặc DNS từ trang đích của các nhà xuất bản lớn có tường thu phí
+            if is_resolution_or_blocked and any(
+                pub in url.lower()
+                for pub in ["ahajournals.org", "sagepub.com", "springer.com", "sciencedirect.com", "wiley.com", "bmj.com", "nature.com"]
+            ):
+                raise CoreException(
+                    code="PAYWALLED_OR_BLOCKED_BY_PUBLISHER",
+                    message="Không thể tải trực tiếp file PDF từ nhà xuất bản (tường thu phí hoặc trang web chặn bot tự động). Vui lòng tải file PDF về máy và sử dụng tùy chọn 'Đường dẫn tệp cục bộ trên máy' để AI bóc tách toàn văn.",
+                    retryable=False,
+                    details={"url": url, "error": err_str},
+                )
             raise CoreException(
                 code="NETWORK_REQUEST_FAILED",
                 message=f"Lỗi mạng khi tải PDF: {str(e)}",

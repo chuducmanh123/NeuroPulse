@@ -33,9 +33,10 @@ interface StoredRec {
 interface ReviewQueueTabProps {
   darkMode: boolean;
   onQueueUpdated?: () => void;
+  onOpenPipelineModal?: () => void;
 }
 
-export function ReviewQueueTab({ darkMode, onQueueUpdated }: ReviewQueueTabProps) {
+export function ReviewQueueTab({ darkMode, onQueueUpdated, onOpenPipelineModal }: ReviewQueueTabProps) {
   const [queue, setQueue] = useState<StoredRec[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [filterSociety, setFilterSociety] = useState<string>("ALL");
@@ -176,6 +177,15 @@ export function ReviewQueueTab({ darkMode, onQueueUpdated }: ReviewQueueTabProps
           >
             🔄 Refresh Queue
           </button>
+          {onOpenPipelineModal && (
+            <button
+              onClick={onOpenPipelineModal}
+              className="text-xs px-3 py-1.5 rounded-lg font-bold transition-all bg-amber-500 hover:bg-amber-600 text-white flex items-center gap-1.5 shadow-xs"
+              title="Launch AI Extraction Pipeline for new guidelines"
+            >
+              <span>⚡ AI Extraction Pipeline</span>
+            </button>
+          )}
         </div>
       </div>
 
