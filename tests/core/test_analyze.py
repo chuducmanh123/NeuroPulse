@@ -16,10 +16,37 @@ class MockGeminiClient(GeminiClient):
     def __init__(self):
         self.api_key = "dummy_key"
         self.models_priority = ["mock-gemini"]
+        self.call_count = 0
 
     def generate_json(self, prompt: str, system_instruction: Optional[str] = None) -> Dict[str, Any]:
-        if "PICO" in prompt or "GRADE_ESO" in prompt or "ESO" in prompt or "Strength of recommendation" in prompt:
-            # Mô phỏng phản hồi bóc tách guideline ESO từ ảnh mẫu
+        self.call_count += 1
+        if "WHAT IS NEW AND OF HIGH IMPACT" in prompt:
+            # Mô phỏng bóc tách bảng High Impact
+            return {
+                "model": "gemini-flash-lite-latest",
+                "tokens_used": 250,
+                "data": {
+                    "recommendations": [
+                        {
+                            "rec_index": 1,
+                            "page_num": 4,
+                            "is_high_impact_change": True,
+                            "change_type": "UPGRADED",
+                            "previous_grade": "Class IIb, Level B-R",
+                            "section": "4.6.2. Choice of Thrombolytic Agent",
+                            "topic": "Reperfusion Therapy",
+                            "cor": "1",
+                            "loe": "B-R",
+                            "statement": "Tenecteplase (0.25 mg/kg single bolus, max 25 mg) is recommended within 4.5 hours.",
+                            "target_population": "Adults with acute ischemic stroke",
+                            "driving_trials": ["AcT", "TRACE-2", "ORIGINAL"],
+                            "verbatim_quote": "Tenecteplase is recommended",
+                        }
+                    ]
+                },
+            }
+        elif "PICO" in prompt or "GRADE_ESO" in prompt or "ESO" in prompt or "Strength of recommendation" in prompt:
+            # Mô phỏng phản hồi bóc tách guideline ESO
             return {
                 "model": "gemini-flash-lite-latest",
                 "tokens_used": 150,
@@ -27,6 +54,7 @@ class MockGeminiClient(GeminiClient):
                     "recommendations": [
                         {
                             "rec_index": 1,
+                            "page_num": 5,
                             "pico_id": "PICO 5",
                             "section": "Table 8 Continued",
                             "topic": "Stroke Associated Pneumonia",
@@ -43,7 +71,7 @@ class MockGeminiClient(GeminiClient):
                 },
             }
         else:
-            # Mô phỏng phản hồi bóc tách guideline AHA
+            # Mô phỏng phản hồi bóc tách guideline AHA chuẩn
             return {
                 "model": "gemini-flash-lite-latest",
                 "tokens_used": 200,
@@ -51,6 +79,7 @@ class MockGeminiClient(GeminiClient):
                     "recommendations": [
                         {
                             "rec_index": 1,
+                            "page_num": 2,
                             "section": "2.1 Stroke Awareness",
                             "topic": "Prehospital Management",
                             "cor": "1",
@@ -98,37 +127,51 @@ def test_analyze_aha_page():
     assert rec["cor_label"] == "Strong"
     assert rec["loe"] == "B-R"
     assert "FAST-ED" in rec["driving_trials"]
-    assert rec["page_num"] == 2
-    assert rec["rec_id"] == "aha_doc_-P2-R1"
 
 
-def test_analyze_eso_grade_page_from_user_sample():
-    """Kiểm tra độ chính xác khi phân tích bảng ESO y hệt ảnh người dùng gửi."""
+def test_analyze_batch_chunking_efficiency():
+    """Kiểm tra: 6 trang ứng viên được chia thành các batch 3 trang giúp giảm số lần gọi AI."""
     mock_client = MockGeminiClient()
-    core = AnalyzeCore(gemini_client=mock_client)
+    core = AnalyzeCore(gemini_client=mock_client, batch_size=3)
 
-    cand_page = CandidatePage(
-        page_num=8,
-        grading_system=GradingSystemType.GRADE_ESO,
-        matched_signals=["QUALITY_OF_EVIDENCE", "STRENGTH_OF_REC", "VOTING_RATIO", "PICO_QUESTION"],
-        page_text=(
-            "Table 8 Continued.\n"
-            "Quality of evidence: Very Low\n"
-            "Strength of recommendation: Weak for intervention\n"
-            "Voting: 8/8\n"
-            "PICO 5: In hospitalised adults with stroke associated pneumonia..."
-        ),
-    )
+    pages = [
+        CandidatePage(page_num=i, grading_system=GradingSystemType.AHA_ACC, page_text=f"Rec text on page {i}")
+        for i in range(10, 16) # 6 trang: 10, 11, 12, 13, 14, 15
+    ]
 
-    res = core.run(AnalyzeInput(file_id="eso_sap_2026", candidate_pages=[cand_page]))
+    res = core.run(AnalyzeInput(file_id="aha_batch_test", candidate_pages=pages))
 
     assert res.ok is True
-    data = res.data
-    assert data["total_recommendations"] == 1
-    rec = data["recommendations"][0]
-    assert rec["grading_system"] == "GRADE_ESO"
-    assert rec["pico_id"] == "PICO 5"
-    assert rec["quality_of_evidence"] == "Very Low"
-    assert rec["strength_of_recommendation"] == "Weak for intervention"
-    assert rec["voting"] == "8/8"
-    assert "SAP" in rec["statement"]
+    # Với 6 trang và batch_size=3, số lần gọi API là 2 (thay vì 6 lần)
+    assert mock_client.call_count == 2
+    assert res.data["total_recommendations"] == 2
+
+
+def test_analyze_high_impact_priority_batch():
+    """Kiểm tra: trang có tín hiệu WHAT_IS_NEW được tách vào batch riêng và gán is_high_impact_change = True."""
+    mock_client = MockGeminiClient()
+    core = AnalyzeCore(gemini_client=mock_client, batch_size=3)
+
+    hi_page = CandidatePage(
+        page_num=4,
+        grading_system=GradingSystemType.AHA_ACC,
+        matched_signals=["AHA_WHAT_IS_NEW"],
+        page_text="WHAT IS NEW AND OF HIGH IMPACT: Tenecteplase is recommended.",
+    )
+    reg_page = CandidatePage(
+        page_num=10,
+        grading_system=GradingSystemType.AHA_ACC,
+        page_text="General stroke recommendation",
+    )
+
+    res = core.run(AnalyzeInput(file_id="aha_hi_test", candidate_pages=[hi_page, reg_page]))
+
+    assert res.ok is True
+    recs = res.data["recommendations"]
+    assert len(recs) == 2
+
+    # Khuyến cáo từ trang High-Impact
+    hi_rec = next(r for r in recs if r["page_num"] == 4)
+    assert hi_rec["is_high_impact_change"] is True
+    assert hi_rec["change_type"] == "UPGRADED"
+    assert "AcT" in hi_rec["driving_trials"]

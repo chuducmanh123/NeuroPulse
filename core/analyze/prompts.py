@@ -1,3 +1,4 @@
+from typing import List
 from core.common.contracts import GradingSystemType
 
 SYSTEM_INSTRUCTION = """Bạn là một Chuyên gia Trích xuất Dữ liệu Hướng dẫn Lâm sàng Thần kinh & Đột quỵ (NeuroGuide Clinical AI Specialist).
@@ -7,7 +8,7 @@ NGUYÊN TẮC QUAN TRỌNG:
 1. CHÍNH XÁC TUYỆT ĐỐI: Không bao giờ tự bịa đặt, suy đoán hoặc sửa đổi nội dung khuyến cáo.
 2. GIỮ NGUYÊN VĂN: Trường 'statement' phải chứa toàn văn câu khuyến cáo hành động lâm sàng.
 3. PHÂN ĐỊNH RÕ RÀNG:
-   - Nếu là guideline AHA/ASA: Bắt buộc lấy đúng COR (1, 2a, 2b, 3) và LOE (A, B-R, B-NR, C-LD, C-EO).
+   - Nếu là guideline AHA/ASA: Bắt buộc lấy đúng COR (1, 2a, 2b, 3: Harm, 3: No Benefit) và LOE (A, B-R, B-NR, C-LD, C-EO).
    - Nếu là guideline ESO (GRADE): Bắt buộc lấy đúng Quality of evidence (High, Moderate, Low, Very Low), Strength of recommendation (Strong/Weak for/against intervention), Voting ratio (ví dụ: 8/8) và PICO question nếu có.
 4. LOẠI BỎ RÁC: Không trích xuất các câu thảo luận thông thường, phương pháp viết bài, hoặc chú thích bảng không phải khuyến cáo.
 """
@@ -24,6 +25,7 @@ Hãy trả về một mảng JSON theo schema sau (không thêm bất kỳ văn 
   "recommendations": [
     {{
       "rec_index": 1,
+      "page_num": {page_num},
       "is_high_impact_change": false,
       "change_type": "STANDARD",
       "previous_grade": null,
@@ -38,16 +40,68 @@ Hãy trả về một mảng JSON theo schema sau (không thêm bất kỳ văn 
     }}
   ]
 }}
+"""
 
-LƯU Ý QUAN TRỌNG VỀ PHÂN LOẠI:
-- Nếu mục này thuộc '1. What is New and of High Impact' hoặc 'Take-Home Messages' hoặc thay đổi so với bản trước:
-  + Đặt `is_high_impact_change`: true
-  + Đặt `change_type`: "UPGRADED" (nếu nâng cấp), "NEW" (nếu mới bổ sung), "DOWNGRADED" (nếu hạ bậc), hoặc "REVISED" (nếu sửa đổi từ ngữ).
-  + Điền `previous_grade`: mức cũ nếu có (ví dụ: "Class IIb, LOE B-R").
-- Nếu là bảng khuyến cáo lâm sàng chuẩn thông thường (như trong Section 2, 3, 4, 5...):
-  + Đặt `is_high_impact_change`: false
-  + Đặt `change_type`: "STANDARD"
-  + Điền đúng COR và LOE của từng dòng khuyến cáo.
+PROMPT_AHA_HIGH_IMPACT_BATCH = """Bạn đang phân tích bảng 'WHAT IS NEW AND OF HIGH IMPACT' (hoặc bảng các điểm mới, thay đổi thực hành lâm sàng đột phá) từ các trang {pages_str} của Hướng dẫn AHA/ASA.
+Hãy trích xuất ĐẦY ĐỦ TỪNG DÒNG KHUYẾN CÁO trong bảng này. Tuyệt đối không bỏ sót bất kỳ khuyến cáo nào (kể cả phần nhi khoa và người lớn).
+
+VĂN BẢN ĐẦU VÀO TỪ CÁC TRANG {pages_str}:
+---
+{content}
+---
+
+Trả về mảng JSON theo schema chuẩn:
+{{
+  "recommendations": [
+    {{
+      "rec_index": 1,
+      "page_num": 4,
+      "is_high_impact_change": true,
+      "change_type": "UPGRADED",
+      "previous_grade": "Class IIb hoặc mức cũ nếu được đối chiếu",
+      "section": "Tên mục (ví dụ: 4.6.2. Choice of Thrombolytic Agent hoặc 4.7.2. Endovascular Thrombectomy)",
+      "topic": "Chủ đề lâm sàng",
+      "cor": "1, 2a, 2b, 3: Harm, hoặc 3: No Benefit",
+      "loe": "B-R hoặc B-NR",
+      "statement": "Toàn văn khuyến cáo",
+      "target_population": "Adults hoặc Pediatric patients",
+      "driving_trials": ["Tên thử nghiệm lâm sàng nếu có (ví dụ: AcT, SELECT2, TENSION, BAOCHE, INSPIRES, ELAN)"],
+      "verbatim_quote": "Trích đoạn ngắn văn bản gốc"
+    }}
+  ]
+}}
+
+LƯU Ý:
+- 'change_type': điền 'UPGRADED' nếu nâng mức khuyến cáo, 'DOWNGRADED' nếu hạ bậc hoặc chống chỉ định (3: Harm/No Benefit), 'NEW' nếu là khuyến cáo mới (như nhi khoa), hoặc 'REVISED'.
+"""
+
+PROMPT_AHA_SECTION_BATCH = """Hãy trích xuất TẤT CẢ các khuyến cáo lâm sàng từ các trang {pages_str} dưới đây theo hệ thống AHA/ACC.
+
+VĂN BẢN ĐẦU VÀO TỪ CÁC TRANG {pages_str}:
+---
+{content}
+---
+
+Trả về mảng JSON theo schema:
+{{
+  "recommendations": [
+    {{
+      "rec_index": 1,
+      "page_num": 10,
+      "is_high_impact_change": false,
+      "change_type": "STANDARD",
+      "previous_grade": null,
+      "section": "Tên mục hoặc tiêu đề bảng",
+      "topic": "Chủ đề",
+      "cor": "1, 2a, 2b, hoặc 3",
+      "loe": "A, B-R, B-NR, C-LD, hoặc C-EO",
+      "statement": "Toàn văn khuyến cáo",
+      "target_population": "Đối tượng",
+      "driving_trials": [],
+      "verbatim_quote": "Trích dẫn nguyên văn"
+    }}
+  ]
+}}
 """
 
 PROMPT_GRADE_ESO = """Hãy trích xuất TẤT CẢ các khuyến cáo lâm sàng và Đồng thuận chuyên gia (Expert Consensus Statements) trong nội dung trang/bảng dưới đây theo hệ thống GRADE của ESO (European Stroke Organisation).
@@ -62,6 +116,7 @@ Hãy trả về một mảng JSON theo schema sau (không thêm bất kỳ văn 
   "recommendations": [
     {{
       "rec_index": 1,
+      "page_num": {page_num},
       "pico_id": "Mã câu hỏi PICO nếu có (ví dụ: PICO 5)",
       "section": "Tiêu đề bảng hoặc mục (ví dụ: Table 8 - Stroke Associated Pneumonia)",
       "topic": "Chủ đề lâm sàng",
@@ -73,6 +128,35 @@ Hãy trả về một mảng JSON theo schema sau (không thêm bất kỳ văn 
       "target_population": "Đối tượng áp dụng (ví dụ: Hospitalised adults with acute ischaemic stroke within 7 days)",
       "driving_trials": ["Danh sách thử nghiệm lâm sàng nếu có"],
       "verbatim_quote": "Đoạn trích ngắn nguyên văn để kiểm chứng"
+    }}
+  ]
+}}
+"""
+
+PROMPT_GRADE_ESO_BATCH = """Hãy trích xuất TẤT CẢ các khuyến cáo lâm sàng và Đồng thuận chuyên gia từ các trang {pages_str} dưới đây theo hệ thống GRADE của ESO.
+
+VĂN BẢN ĐẦU VÀO TỪ CÁC TRANG {pages_str}:
+---
+{content}
+---
+
+Trả về mảng JSON theo schema:
+{{
+  "recommendations": [
+    {{
+      "rec_index": 1,
+      "page_num": 4,
+      "pico_id": "Mã PICO nếu có",
+      "section": "Tiêu đề mục",
+      "topic": "Chủ đề",
+      "quality_of_evidence": "High, Moderate, Low, hoặc Very Low",
+      "strength_of_recommendation": "Strong for / Weak for / Strong against / Weak against",
+      "consensus_statement": null,
+      "voting": "8/8 nếu có",
+      "statement": "Toàn văn khuyến cáo",
+      "target_population": "Đối tượng",
+      "driving_trials": [],
+      "verbatim_quote": "Trích dẫn"
     }}
   ]
 }}
@@ -90,6 +174,7 @@ Hãy trả về một mảng JSON theo schema sau:
   "recommendations": [
     {{
       "rec_index": 1,
+      "page_num": {page_num},
       "section": "Tiêu đề mục hoặc bảng",
       "topic": "Chủ đề khuyến cáo",
       "statement": "Toàn văn câu khuyến cáo",
@@ -104,10 +189,28 @@ Hãy trả về một mảng JSON theo schema sau:
 
 
 def get_prompt_for_grading_system(system: GradingSystemType, page_num: int, content: str) -> str:
-    """Lựa chọn prompt template tối ưu nhất dựa trên hệ thống phân loại đã nhận diện."""
+    """Lựa chọn prompt template tối ưu nhất dựa trên hệ thống phân loại đã nhận diện (đơn trang)."""
     if system == GradingSystemType.GRADE_ESO:
         return PROMPT_GRADE_ESO.format(page_num=page_num, content=content)
     elif system == GradingSystemType.AHA_ACC:
         return PROMPT_AHA_ACC.format(page_num=page_num, content=content)
     else:
         return PROMPT_GENERIC.format(page_num=page_num, content=content)
+
+
+def get_prompt_for_batch(
+    system: GradingSystemType,
+    page_nums: List[int],
+    content: str,
+    is_high_impact_batch: bool = False,
+) -> str:
+    """Lựa chọn prompt tối ưu cho xử lý theo lô nhiều trang (Batch Chunking)."""
+    pages_str = ", ".join(str(p) for p in page_nums)
+    if is_high_impact_batch:
+        return PROMPT_AHA_HIGH_IMPACT_BATCH.format(pages_str=pages_str, content=content)
+    elif system == GradingSystemType.GRADE_ESO:
+        return PROMPT_GRADE_ESO_BATCH.format(pages_str=pages_str, content=content)
+    elif system == GradingSystemType.AHA_ACC:
+        return PROMPT_AHA_SECTION_BATCH.format(pages_str=pages_str, content=content)
+    else:
+        return PROMPT_GENERIC.format(page_num=pages_str, content=content)

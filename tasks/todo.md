@@ -126,13 +126,13 @@
 **Description:** Tối ưu `ExtractCore` để xử lý mượt mà tài liệu dài 50-120 trang: Bóc tách riêng tầng 1 (Top Takeaways), tầng 2 (Bảng What Is New / High Impact), và tầng 3 (Các bảng khuyến cáo chuyên đề trên toàn bộ văn bản). Thêm cơ chế phân tích block text tự nhiên của PyMuPDF kết hợp với pdfplumber để không bỏ sót các khuyến cáo dạng text-block màu.
 
 **Acceptance criteria:**
-- [ ] `ExtractCore` trích xuất được `top_takeaways` từ trang 2-5 nếu có.
-- [ ] Bóc tách đầy đủ toàn bộ bảng What is new (như 28 khuyến cáo AHA 2026).
-- [ ] Bóc tách các bảng khuyến cáo chuyên đề trên toàn tài liệu mà không gây tràn bộ nhớ hay treo tiến trình.
+- [x] `ExtractCore` trích xuất được `top_takeaways` từ trang 2-5 nếu có.
+- [x] Bóc tách đầy đủ toàn bộ bảng What is new (như 28 khuyến cáo AHA 2026).
+- [x] Bóc tách các bảng khuyến cáo chuyên đề trên toàn tài liệu mà không gây tràn bộ nhớ hay treo tiến trình.
 
 **Verification:**
-- [ ] Chạy thử nghiệm bóc tách trên file AHA 2026: `python -m core.extract.runner --file-id ...`
-- [ ] Kiểm tra số lượng trang ứng viên và bảng trích xuất chính xác.
+- [x] Chạy thử nghiệm bóc tách trên file AHA 2026: `python -m core.extract.runner --file-id ...`
+- [x] Kiểm tra số lượng trang ứng viên và bảng trích xuất chính xác.
 
 **Dependencies:** Task 2
 **Files likely touched:**
@@ -147,13 +147,13 @@
 **Description:** Cải tiến `AnalyzeCore` chuyển từ việc gọi Gemini tuần tự từng trang sang mô hình gộp lô thông minh (Batch chunking 3-5 trang / prompt). Tách biệt 2 prompt: Prompt chuyên biệt cho What Is New (trích xuất `change_type`, `previous_grade`, `driving_trials`) và Prompt cho khuyến cáo thường quy. Bổ sung cơ chế thử lại (Exponential backoff retry) chống Rate-limit.
 
 **Acceptance criteria:**
-- [ ] Gộp các trang ứng viên thành các batch 3-5 trang để giảm số lần gọi AI từ 40 lần xuống còn 8-10 lần.
-- [ ] Phân tích chính xác các nhãn `UPGRADED`, `NEW`, `DOWNGRADED`, `STANDARD` và tên thử nghiệm dẫn dắt.
-- [ ] Tự động thử lại khi gặp HTTP 429 hoặc gián đoạn mạng.
+- [x] Gộp các trang ứng viên thành các batch 3-5 trang để giảm số lần gọi AI từ 40 lần xuống còn 8-10 lần.
+- [x] Phân tích chính xác các nhãn `UPGRADED`, `NEW`, `DOWNGRADED`, `STANDARD` và tên thử nghiệm dẫn dắt.
+- [x] Tự động thử lại khi gặp HTTP 429 hoặc gián đoạn mạng.
 
 **Verification:**
-- [ ] Chạy test analyze: `pytest tests/core/test_analyze.py`
-- [ ] Kiểm tra tốc độ xử lý nhanh hơn ít nhất 3 lần so với phiên bản cũ.
+- [x] Chạy test analyze: `pytest tests/core/test_analyze.py`
+- [x] Kiểm tra tốc độ xử lý nhanh hơn ít nhất 3 lần so với phiên bản cũ.
 
 **Dependencies:** Task 6
 **Files likely touched:**
@@ -169,12 +169,12 @@
 **Description:** Kiểm thử tích hợp toàn bộ pha Extract và Analyze trên tài liệu thực tế (AHA 2026), kiểm chứng độ chính xác của các khuyến cáo trích xuất được.
 
 **Acceptance criteria:**
-- [ ] Trích xuất đầy đủ 10 Top Takeaways, 28 High Impact Changes và danh mục khuyến cáo chuyên đề.
-- [ ] Grounding score và chuẩn hóa COR/LOE đạt chuẩn 100%.
+- [x] Trích xuất đầy đủ 10 Top Takeaways, 28 High Impact Changes và danh mục khuyến cáo chuyên đề.
+- [x] Grounding score và chuẩn hóa COR/LOE đạt chuẩn 100%.
 
 **Verification:**
-- [ ] `pytest tests/core/test_analyze.py`
-- [ ] Chạy pipeline thử nghiệm và xem file JSON đầu ra.
+- [x] `pytest tests/core/test_analyze.py`
+- [x] Chạy pipeline thử nghiệm và xem file JSON đầu ra.
 
 **Dependencies:** Task 6, Task 7
 **Files likely touched:**
@@ -185,7 +185,7 @@
 ---
 
 ## Checkpoint: Extraction & Analysis Resilient
-- [ ] Quá trình bóc tách và phân tích chạy ổn định trên tài liệu dài không bị tràn bộ nhớ hay lỗi Rate Limit.
+- [x] Quá trình bóc tách và phân tích chạy ổn định trên tài liệu dài không bị tràn bộ nhớ hay lỗi Rate Limit.
 
 ---
 

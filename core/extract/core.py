@@ -1,3 +1,4 @@
+import re
 from pathlib import Path
 from typing import Dict, Any, List, Optional
 import pymupdf  # Quét nhanh trang và xử lý text layout theo block
@@ -19,17 +20,54 @@ from core.fetch.storage_adapter import LocalFileStorageAdapter
 from core.extract.detector import is_recommendation_candidate_page
 
 
+RE_TOP_TAKEAWAYS_HEADER = re.compile(
+    r"\b(top\s+(?:10\s+)?take[\-\s]home\s+messages|key\s+clinical\s+takeaways|take[\-\s]home\s+messages)\b",
+    re.IGNORECASE,
+)
+
+RE_HIGH_IMPACT_HEADER = re.compile(
+    r"\b(what\s+is\s+new(\s+and\s+of\s+high\s+impact)?|practice[\-\s]changing\s+recommendations?|table\s+3[\s\S]{0,30}what\s+is\s+new)\b",
+    re.IGNORECASE,
+)
+
+
+def extract_top_takeaways_from_doc(doc: pymupdf.Document) -> List[str]:
+    """
+    Quét 6 trang đầu để bóc tách Top 10 Take-Home Messages hoặc Key Messages từ văn bản gốc.
+    """
+    takeaways: List[str] = []
+    max_scan_pages = min(6, doc.page_count)
+
+    for p_idx in range(max_scan_pages):
+        text = doc[p_idx].get_text("text")
+        match = RE_TOP_TAKEAWAYS_HEADER.search(text)
+        if match:
+            start_pos = match.start()
+            section_text = text[start_pos:]
+            # Tìm danh sách đánh số 1. ... 2. ...
+            raw_items = re.findall(r"(?:^|\n)\s*(\d+)\.\s+([\s\S]+?)(?=\n\s*\d+\.|\n\s*[A-Z\s]{4,}:?|\Z)", section_text)
+            for num, item_txt in raw_items:
+                clean_txt = " ".join(item_txt.split()).strip()
+                clean_txt = clean_txt.replace("\x08", "").replace("\u2003", " ").replace("\u2002", " ")
+                if len(clean_txt) > 20:
+                    takeaways.append(f"{num}. {clean_txt}")
+            if takeaways:
+                break
+
+    return takeaways
+
+
 class ExtractCore(BaseCore):
     """
     Lõi Bóc tách & Phân tích Cấu trúc (ExtractCore).
-    Đặc tính chuyên sâu:
-    - Hỗ trợ đa hệ thống phân loại: AHA/ACC (COR/LOE), ESO (GRADE / Quality of Evidence / Consensus), AAN.
-    - Lọc trang mục tiêu: Chỉ giữ lại các trang thực sự chứa khuyến cáo (tiết kiệm chi phí & tăng độ chính xác cho AI).
-    - Phối hợp PyMuPDF (quét layout siêu tốc) + pdfplumber (bóc bảng chi tiết).
+    Đặc tính nâng cấp cho bài toàn văn:
+    - Bóc tách 3 tầng: Tầng 1 (Top Takeaways), Tầng 2 (Bảng What Is New / High Impact), Tầng 3 (Bảng khuyến cáo chuyên đề).
+    - Phối hợp PyMuPDF text layout siêu tốc và pdfplumber có chọn lọc trên các trang trọng điểm.
+    - Chống tràn bộ nhớ khi xử lý tài liệu 100+ trang.
     """
 
     name: str = "extract"
-    version: str = "1.0.0"
+    version: str = "2.0.0"
 
     def __init__(self, storage_adapter: Optional[StorageAdapter] = None):
         self.storage = storage_adapter or LocalFileStorageAdapter()
@@ -60,7 +98,7 @@ class ExtractCore(BaseCore):
                 retryable=False,
             )
 
-        # 2. Quét nhanh toàn bộ tài liệu bằng PyMuPDF để lọc Candidate Pages
+        # 2. Quét nhanh bằng PyMuPDF để lọc Candidate Pages và bóc Top Takeaways
         try:
             doc = pymupdf.open(str(file_path))
             total_pages = doc.page_count
@@ -71,7 +109,11 @@ class ExtractCore(BaseCore):
                 retryable=False,
             )
 
+        # Bóc Tầng 1: Top Takeaways
+        top_takeaways = extract_top_takeaways_from_doc(doc)
+
         candidate_page_indices: List[int] = []
+        high_impact_page_indices: List[int] = []
         page_system_map: Dict[int, GradingSystemType] = {}
         page_signals_map: Dict[int, List[str]] = {}
         page_texts: Dict[int, str] = {}
@@ -85,8 +127,11 @@ class ExtractCore(BaseCore):
             page = doc[idx]
 
             # Bóc tách text giữ nguyên thứ tự luồng đọc tự nhiên chuẩn đa cột của PyMuPDF
-            # page.get_text("text") tự động phân tích layout và đọc hết cột 1 trước khi sang cột 2
             natural_text = page.get_text("text").strip()
+
+            # Nhận diện trang What is new / High impact
+            if RE_HIGH_IMPACT_HEADER.search(natural_text):
+                high_impact_page_indices.append(page_num)
 
             is_cand, grad_sys, signals = is_recommendation_candidate_page(
                 natural_text,
@@ -107,18 +152,31 @@ class ExtractCore(BaseCore):
 
         doc.close()
 
-        # 3. Dùng pdfplumber trích xuất bảng có cấu trúc cho các Candidate Pages
+        # Đảm bảo các trang High-Impact nằm trong danh sách Candidate Pages
+        for hi_p in high_impact_page_indices:
+            if hi_p not in candidate_page_indices:
+                candidate_page_indices.append(hi_p)
+                candidate_page_indices.sort()
+                page_system_map[hi_p] = GradingSystemType.AHA_ACC
+                page_signals_map[hi_p] = ["AHA_WHAT_IS_NEW"]
+
+        # 3. Dùng pdfplumber có chọn lọc: ưu tiên các trang bảng High-Impact hoặc mẫu ngắn
+        # Để bảo toàn tốc độ trên tài liệu 100+ trang
         extracted_candidate_pages: List[CandidatePage] = []
 
-        if candidate_page_indices:
+        # Chỉ áp dụng pdfplumber cho tối đa 15 trang bảng then chốt để đảm bảo hiệu năng
+        plumber_target_pages = set(high_impact_page_indices + candidate_page_indices[:12])
+
+        tables_by_page: Dict[int, List[ExtractedTable]] = {}
+        if plumber_target_pages:
             try:
                 with pdfplumber.open(str(file_path)) as plumber_pdf:
-                    for p_num in candidate_page_indices:
+                    for p_num in plumber_target_pages:
+                        if p_num > len(plumber_pdf.pages):
+                            continue
                         plumber_page = plumber_pdf.pages[p_num - 1]
-                        # 1. Thử bóc theo đường kẻ vector mặc định
                         raw_tables = plumber_page.extract_tables() or []
 
-                        # 2. Nếu không thấy bảng (do AHA dùng màu nền ô thay vì đường kẻ), thử trích xuất theo text-alignment
                         if not raw_tables:
                             try:
                                 text_tables = plumber_page.extract_tables(table_settings={
@@ -128,7 +186,6 @@ class ExtractCore(BaseCore):
                                     "join_tolerance": 5,
                                 })
                                 if text_tables:
-                                    # Chỉ nhận bảng nếu có ít nhất 2 cột
                                     raw_tables = [t for t in text_tables if t and len(t[0]) >= 2]
                             except Exception:
                                 pass
@@ -138,7 +195,6 @@ class ExtractCore(BaseCore):
                             if not raw_table or len(raw_table) < 1:
                                 continue
 
-                            # Lọc dòng trống
                             cleaned_rows = [
                                 [cell.strip() if cell else "" for cell in row]
                                 for row in raw_table
@@ -150,7 +206,6 @@ class ExtractCore(BaseCore):
                             headers = cleaned_rows[0]
                             data_rows = cleaned_rows[1:] if len(cleaned_rows) > 1 else []
 
-                            # Tạo markdown table view
                             md_lines = [
                                 "| " + " | ".join(headers) + " |",
                                 "| " + " | ".join(["---"] * len(headers)) + " |",
@@ -168,27 +223,29 @@ class ExtractCore(BaseCore):
                                     raw_markdown=table_md,
                                 )
                             )
+                        if tables_list:
+                            tables_by_page[p_num] = tables_list
+            except Exception:
+                # Nếu pdfplumber lỗi, vẫn tiếp tục với PyMuPDF text
+                pass
 
-                        cand_page_obj = CandidatePage(
-                            page_num=p_num,
-                            grading_system=page_system_map.get(p_num, GradingSystemType.UNKNOWN),
-                            matched_signals=page_signals_map.get(p_num, []),
-                            extracted_tables=tables_list,
-                            page_text=page_texts.get(p_num, ""),
-                        )
-                        extracted_candidate_pages.append(cand_page_obj)
-            except Exception as e:
-                raise CoreException(
-                    code="PDFPLUMBER_EXTRACTION_ERROR",
-                    message=f"Lỗi khi trích xuất bảng từ pdfplumber: {str(e)}",
-                    retryable=False,
-                )
+        for p_num in candidate_page_indices:
+            cand_page_obj = CandidatePage(
+                page_num=p_num,
+                grading_system=page_system_map.get(p_num, GradingSystemType.UNKNOWN),
+                matched_signals=page_signals_map.get(p_num, []),
+                extracted_tables=tables_by_page.get(p_num, []),
+                page_text=page_texts.get(p_num, ""),
+            )
+            extracted_candidate_pages.append(cand_page_obj)
 
         output = ExtractOutput(
             file_id=input_data.file_id,
             total_pages=total_pages,
             candidate_page_count=len(extracted_candidate_pages),
             detected_grading_systems=list(all_detected_systems),
+            top_takeaways=top_takeaways,
+            high_impact_pages=high_impact_page_indices,
             candidate_pages=extracted_candidate_pages,
             state=DocumentLifecycleState.EXTRACTED,
         )
