@@ -715,30 +715,30 @@ export const MOCK_GUIDELINE_DOCS: GuidelineDoc[] = [
     fullTextStatus: "FULL_TEXT_PARSED"
   },
   {
-    id: "eso-bp-2023",
-    society: "ESO",
-    year: 2023,
-    subspecialty: "Stroke",
-    subspecialties: ["Stroke"],
-    title: "European Stroke Organisation (ESO) Guidelines on Blood Pressure Management in Acute Ischemic Stroke",
-    officialUrl: "https://journals.sagepub.com/doi/10.1177/23969873221147775",
-    journalTarget: "European Stroke Journal",
+    id: "aan-asm-2024",
+    society: "AAN",
+    year: 2024,
+    subspecialty: "Epilepsy",
+    subspecialties: ["Epilepsy"],
+    title: "AAN/AES Practice Guideline Update: Teratogenesis and Antiseizure Medication Safety in Women of Childbearing Potential",
+    officialUrl: "https://www.aan.com/guidelines",
+    journalTarget: "Neurology",
     documentType: "Clinical Practice Guideline",
-    publishDate: "2023-03-20",
-    executiveSummary: "Phác đồ kiểm soát huyết áp giai đoạn cấp tính và sau tái tưới máu ở bệnh nhân đột quỵ thiếu máu não cấp của ESO.",
-    executiveSummaryVi: "Khuyến nghị không hạ huyết áp thường quy ở bệnh nhân không tiêu sợi huyết/lấy huyết khối trừ khi huyết áp vượt ngưỡng 220/120 mmHg.",
+    publishDate: "2024-05-14",
+    executiveSummary: "Cập nhật an toàn thai kỳ và nguy cơ quái thai của các thuốc chống động kinh từ Viện Thần kinh học Hoa Kỳ (AAN) và Hội Động kinh Hoa Kỳ (AES).",
+    executiveSummaryVi: "Khuyến cáo tránh tuyệt đối Valproate ở phụ nữ độ tuổi sinh sản trừ khi không còn lựa chọn; ưu tiên Levetiracetam và Lamotrigine với tỷ lệ dị tật bẩm sinh thấp nhất.",
     allPracticeChanges: [
       {
-        id: "eso-2023-bp-no-reperfusion",
-        category: "Blood Pressure",
-        topic: "BP Control in Patients NOT Receiving Reperfusion Therapy",
-        changeType: "REVISED",
-        currentGrade: "GRADE Strong against intervention (Evidence: Moderate)",
-        currentText: "In patients with acute ischemic stroke who are NOT eligible for IVT or EVT, we recommend against routinely lowering blood pressure within the first 24 hours, unless BP exceeds 220/120 mmHg or acute end-organ damage exists.",
-        drivingTrials: ["CATIS (JAMA 2014)", "SCAST (Lancet 2011)"]
+        id: "aan-2024-valproate-avoidance",
+        category: "Pregnancy & Teratogenicity",
+        topic: "Avoidance of Sodium Valproate in Women of Childbearing Potential",
+        changeType: "UPGRADED",
+        currentGrade: "Level A (Must Avoid)",
+        currentText: "Valproate carries significantly elevated risks of major congenital malformations and neurodevelopmental disorders and should be avoided in women of childbearing potential whenever clinically feasible.",
+        drivingTrials: ["EURAP Registry", "UK and Ireland Epilepsy and Pregnancy Register"]
       }
     ],
-    linkedScenarioIds: ["ais-bp-management-acute-phase"],
+    linkedScenarioIds: ["epilepsy-pregnancy-medication-safety"],
     fullTextStatus: "FULL_TEXT_PARSED"
   },
   {
@@ -769,33 +769,6 @@ export const MOCK_GUIDELINE_DOCS: GuidelineDoc[] = [
     fullTextStatus: "FULL_TEXT_PARSED"
   },
   {
-    id: "aan-asm-2024",
-    society: "AAN",
-    year: 2024,
-    subspecialty: "Epilepsy",
-    subspecialties: ["Epilepsy"],
-    title: "AAN/AES Practice Guideline Update: Teratogenesis and Antiseizure Medication Safety in Women of Childbearing Potential",
-    officialUrl: "https://www.aan.com/guidelines",
-    journalTarget: "Neurology",
-    documentType: "Clinical Practice Guideline",
-    publishDate: "2024-05-14",
-    executiveSummary: "Cập nhật an toàn thai kỳ và nguy cơ quái thai của các thuốc chống động kinh từ Viện Thần kinh học Hoa Kỳ (AAN) và Hội Động kinh Hoa Kỳ (AES).",
-    executiveSummaryVi: "Khuyến cáo tránh tuyệt đối Valproate ở phụ nữ độ tuổi sinh sản trừ khi không còn lựa chọn; ưu tiên Levetiracetam và Lamotrigine với tỷ lệ dị tật bẩm sinh thấp nhất.",
-    allPracticeChanges: [
-      {
-        id: "aan-2024-valproate-avoidance",
-        category: "Pregnancy & Teratogenicity",
-        topic: "Avoidance of Sodium Valproate in Women of Childbearing Potential",
-        changeType: "UPGRADED",
-        currentGrade: "Level A (Must Avoid)",
-        currentText: "Valproate carries significantly elevated risks of major congenital malformations and neurodevelopmental disorders and should be avoided in women of childbearing potential whenever clinically feasible.",
-        drivingTrials: ["EURAP Registry", "UK and Ireland Epilepsy and Pregnancy Register"]
-      }
-    ],
-    linkedScenarioIds: ["epilepsy-pregnancy-medication-safety"],
-    fullTextStatus: "FULL_TEXT_PARSED"
-  },
-  {
     id: "ncs-sah-2023",
     society: "NCS",
     year: 2023,
@@ -820,6 +793,33 @@ export const MOCK_GUIDELINE_DOCS: GuidelineDoc[] = [
       }
     ],
     linkedScenarioIds: ["neuroicu-sah-dci-management"],
+    fullTextStatus: "FULL_TEXT_PARSED"
+  },
+  {
+    id: "eso-bp-2023",
+    society: "ESO",
+    year: 2023,
+    subspecialty: "Stroke",
+    subspecialties: ["Stroke"],
+    title: "European Stroke Organisation (ESO) Guidelines on Blood Pressure Management in Acute Ischemic Stroke",
+    officialUrl: "https://journals.sagepub.com/doi/10.1177/23969873221147775",
+    journalTarget: "European Stroke Journal",
+    documentType: "Clinical Practice Guideline",
+    publishDate: "2023-03-20",
+    executiveSummary: "Phác đồ kiểm soát huyết áp giai đoạn cấp tính và sau tái tưới máu ở bệnh nhân đột quỵ thiếu máu não cấp của ESO.",
+    executiveSummaryVi: "Khuyến nghị không hạ huyết áp thường quy ở bệnh nhân không tiêu sợi huyết/lấy huyết khối trừ khi huyết áp vượt ngưỡng 220/120 mmHg.",
+    allPracticeChanges: [
+      {
+        id: "eso-2023-bp-no-reperfusion",
+        category: "Blood Pressure",
+        topic: "BP Control in Patients NOT Receiving Reperfusion Therapy",
+        changeType: "REVISED",
+        currentGrade: "GRADE Strong against intervention (Evidence: Moderate)",
+        currentText: "In patients with acute ischemic stroke who are NOT eligible for IVT or EVT, we recommend against routinely lowering blood pressure within the first 24 hours, unless BP exceeds 220/120 mmHg or acute end-organ damage exists.",
+        drivingTrials: ["CATIS (JAMA 2014)", "SCAST (Lancet 2011)"]
+      }
+    ],
+    linkedScenarioIds: ["ais-bp-management-acute-phase"],
     fullTextStatus: "FULL_TEXT_PARSED"
   }
 ];

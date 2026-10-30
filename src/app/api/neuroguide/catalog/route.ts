@@ -33,10 +33,17 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const society = searchParams.get("society")?.toUpperCase();
 
-    let items = Object.values(catalog) as Array<Record<string, unknown>>;
+    let items = Object.values(catalog) as Array<Record<string, any>>;
     if (society) {
       items = items.filter((item) => String(item.society).toUpperCase() === society);
     }
+
+    // Sắp xếp giảm dần theo thời gian công bố / cập nhật mới nhất
+    items.sort((a, b) => {
+      const yearDiff = (b.year || 0) - (a.year || 0);
+      if (yearDiff !== 0) return yearDiff;
+      return (b.updated_at || "").localeCompare(a.updated_at || "");
+    });
 
     return NextResponse.json({
       ok: true,

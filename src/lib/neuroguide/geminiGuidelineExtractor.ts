@@ -155,7 +155,10 @@ Respond strictly in JSON matching this schema:
     }
 
     const result = await callGeminiRestJson<GeminiGuidelineJson>(prompt, apiKey);
-    if (!result || result.isGenuineGuideline === false) {
+    if (!result) {
+      return buildDeterministicGuideline(options, detectedSociety, detectedSub);
+    }
+    if (result.isGenuineGuideline === false) {
       return null;
     }
 

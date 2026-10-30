@@ -98,6 +98,16 @@ export function getStoredGuidelinesAsDocs(): GuidelineDoc[] {
         ? `Hướng dẫn thực hành lâm sàng chính thức từ ${metadata.society}. Bao gồm ${practiceChanges.length} khuyến cáo then chốt được trích xuất và kiểm chứng qua hệ thống AI Lõi NeuroGuide.`
         : "Hướng dẫn thực hành lâm sàng chính thức.";
 
+      // Bỏ qua các tài liệu chưa hoàn thiện hoặc dữ liệu rác
+      if (!metadata.title || recs.length < 3) {
+        continue;
+      }
+
+      // Nếu toàn bộ khuyến cáo chưa được phê duyệt (pending 100% không có approved nào) và số lượng ít, bỏ qua
+      if (record.approved_count === 0 && record.pending_count > 0 && recs.length < 20) {
+        continue;
+      }
+
       docs.push({
         id: record.guideline_id,
         society: metadata.society || "AHA/ASA",
@@ -106,7 +116,7 @@ export function getStoredGuidelinesAsDocs(): GuidelineDoc[] {
         officialUrl: metadata.source_url || "https://pubmed.ncbi.nlm.nih.gov/",
         journalTarget: metadata.society?.includes("ESO") ? "European Stroke Journal" : metadata.society?.includes("AHA") ? "Stroke" : "Neurology",
         documentType: "Clinical Practice Guideline",
-        publishDate: `${metadata.year || 2026}-01-01`,
+        publishDate: record.guideline_id.includes("aha") ? "2026-01-26" : `${metadata.year || 2026}-01-01`,
         subspecialty,
         subspecialties: [subspecialty],
         executiveSummary: summaryText,
@@ -122,6 +132,9 @@ export function getStoredGuidelinesAsDocs(): GuidelineDoc[] {
       console.warn("Lỗi đọc guideline store file:", file, e);
     }
   }
+
+  // Sắp xếp giảm dần theo thời gian công bố mới nhất (publishDate)
+  docs.sort((a, b) => (b.publishDate || `${b.year}-01-01`).localeCompare(a.publishDate || `${a.year}-01-01`));
 
   return docs;
 }

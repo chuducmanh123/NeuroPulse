@@ -322,7 +322,7 @@ export default function NeuroGuidePage() {
 
   const matrixContainerRef = useRef<HTMLDivElement>(null);
 
-  const CURRENT_CACHE_VERSION = "neuroguide_v2026_core_verified_v10";
+  const CURRENT_CACHE_VERSION = "neuroguide_v2026_core_verified_v11";
 
   // Background Autonomous Sync Method
   const triggerSync = async (isAuto = false) => {
