@@ -14,15 +14,15 @@
   },
   "aha2026_test": {
     "guideline_id": "aha2026_test",
-    "title": "2026 AHA Acute Ischemic Stroke Guideline",
+    "title": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke",
     "society": "AHA/ASA",
     "year": 2026,
-    "source_url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
-    "latest_version": 2,
-    "total_recommendations": 3,
+    "latest_version": 3,
+    "total_recommendations": 63,
     "pending_count": 3,
-    "approved_count": 0,
+    "approved_count": 60,
     "rejected_count": 0,
-    "updated_at": "2026-10-30T10:23:39.858432+00:00"
+    "grading_system": "AHA_ACC",
+    "updated_at": "2026-01-26T08:30:00Z"
   }
 }

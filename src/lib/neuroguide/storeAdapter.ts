@@ -111,6 +111,7 @@ export function getStoredGuidelinesAsDocs(): GuidelineDoc[] {
         subspecialties: [subspecialty],
         executiveSummary: summaryText,
         executiveSummaryVi: summaryText,
+        topTakeaways: record.top_takeaways || metadata.top_takeaways || undefined,
         allPracticeChanges: practiceChanges,
         linkedScenarioIds: [],
         fullTextStatus: "FULL_TEXT_PARSED",

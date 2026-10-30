@@ -1019,6 +1019,33 @@ export default function NeuroGuidePage() {
 
                           return (
                             <div className="space-y-6 mb-4">
+                              {/* 0. Top Take-Home Messages từ văn bản gốc */}
+                              {doc.topTakeaways && doc.topTakeaways.length > 0 && (
+                                <div className="p-4 rounded-xl border border-indigo-200/80 dark:border-indigo-900/60 bg-gradient-to-br from-indigo-50/50 via-white to-blue-50/30 dark:from-slate-900/90 dark:via-indigo-950/20 dark:to-slate-900/80 space-y-3">
+                                  <div className="flex items-center gap-2">
+                                    <span className="px-2.5 py-0.5 rounded-full text-[10.5px] font-black bg-indigo-500/15 text-indigo-700 dark:text-indigo-300 border border-indigo-500/30">
+                                      🌟 {isVietnamese ? "TOP 10 THÔNG ĐIỆP THỰC HÀNH THEN CHỐT" : "TOP TAKE-HOME MESSAGES"}
+                                    </span>
+                                    <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400">
+                                      ({doc.topTakeaways.length} key clinical messages)
+                                    </span>
+                                  </div>
+                                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+                                    {doc.topTakeaways.map((takeaway, tIdx) => (
+                                      <div
+                                        key={tIdx}
+                                        className="flex items-start gap-2.5 text-xs text-slate-700 dark:text-slate-300 bg-white/80 dark:bg-slate-900/80 p-3 rounded-lg border border-slate-200/60 dark:border-slate-800/60 leading-relaxed shadow-sm hover:border-indigo-300 dark:hover:border-indigo-700 transition-all"
+                                      >
+                                        <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 font-black text-[10.5px]">
+                                          {tIdx + 1}
+                                        </span>
+                                        <span className="flex-1">{takeaway.replace(/^\d+\.\s*/, "")}</span>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+
                               {/* 1. Điểm mới so với bản cũ */}
                               {newPracticeChanges.length > 0 && (
                                 <div className="space-y-2.5">
