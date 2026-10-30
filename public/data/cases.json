@@ -1,5 +1,221 @@
 [
   {
+    "id": "nc-2026-015",
+    "case_code": "NC-2026-015",
+    "title": "Refractory Status Epilepticus with Posterior Quadrant Onset Following Febrile Illness",
+    "subspecialty": "Epilepsy",
+    "subspecialties": [
+      "Epilepsy",
+      "Neurocritical Care",
+      "Functional Neurosurgery"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 120,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-10-30",
+    "status": "approved",
+    "author_credit": "Annals of clinical and translational neurology • PMC12968458",
+    "source_journal": {
+      "name": "Annals of clinical and translational neurology",
+      "short_name": "Annals of clinical and translational neurology",
+      "doi_url": "https://doi.org/10.1002/acn3.70268",
+      "pmcid": "PMC12968458",
+      "pmid": "41345856",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "30-year-old male",
+      "chief_complaint": "Super-refractory status epilepticus following febrile illness",
+      "history_of_present_illness": "Presented with multiple witnessed bilateral tonic-clonic seizures following a fever and upper respiratory illness, which rapidly progressed to super-refractory status epilepticus requiring continuous anesthetic infusions and pentobarbital coma. Despite extensive immunotherapy, multiple anti-seizure medications, and investigational agents including allopregnanolone, continuous EEG monitoring demonstrated persistent focal status epilepticus localizing to the bilateral posterior quadrants.",
+      "past_medical_history": "Autism and developmental delay, stable baseline, no prior history of seizures.",
+      "vitals": {
+        "bp": "124/78 mmHg",
+        "hr": "92 bpm",
+        "rr": "18 /min",
+        "temp": "37.1 °C",
+        "spo2": "99% on mechanical ventilation"
+      },
+      "neuro_exam": "Comatose, intubated and sedated on burst-suppression doses of pentobarbital, withdrawing minimally to noxious stimuli, brainstem reflexes intact.",
+      "key_labs_csf": "CSF positive for oligoclonal bands, 14-3-3, tau, and soluble IL-2r; infectious panels and autoimmune encephalitis antibodies negative.",
+      "imaging": [
+        {
+          "modality": "Intraoperative 3T Brain MRI (FGATIR sequence) and Post-op CT/MRI",
+          "sequence_badge": "Figure 1 • Annals of clinical and translational neurology (PMC12968458)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC12968458_fig1.jpg",
+          "pmcid": "PMC12968458",
+          "doi_url": "https://doi.org/10.1002/acn3.70268",
+          "caption": "Intraoperative 3Tesla MRI brain with Fast Gray Matter Acquisition T1 Inversion Recovery (FGATIR) sequences documenting DBS lead placement (A). Follow up CT brain on day one (B) and MRI brain 2 months (C and D) post‐op.",
+          "findings_summary": "Demonstrates accurate bilateral stereotactic placement of deep brain stimulation electrodes within the pulvinar thalamic nuclei."
+        },
+        {
+          "modality": "Continuous Video-EEG",
+          "sequence_badge": "Figure 2 • Annals of clinical and translational neurology (PMC12968458)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC12968458_fig2.jpg",
+          "pmcid": "PMC12968458",
+          "doi_url": "https://doi.org/10.1002/acn3.70268",
+          "caption": "EEG on Day 12 of hospitalization demonstrating (A) bilateral seizure onset with right‐sided predominance and (B) generalized interictal discharges, more pronounced in the right posterior quadrant. Sustained seizure control was achieved by Day 8 post‐DBS implantation (Day 87 of hospitalization) (C). Later in the hospitalization during phenobarbital weaning, occasional breakthrough seizures with varying localizations were seen, such as this one recorded on Day 130 with left parasagittal onset (D).",
+          "findings_summary": "Revealed seizure activity with prominent right and left posterior quadrant onset and generalized interictal discharges."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following interventions represents the most appropriate neuromodulatory strategy utilized in this patient's super-refractory status epilepticus with posterior quadrant localization?",
+      "question_type": "Acute Management",
+      "correct_option": "D",
+      "options": [
+        {
+          "id": "A",
+          "text": "Bilateral anterior nucleus of the thalamus (ANT) deep brain stimulation",
+          "peer_percentage": 15,
+          "rationale": "Incorrect. While ANT-DBS is established for focal drug-resistant epilepsy, this patient's seizures specifically localized to the posterior quadrants, making the pulvinar a more anatomically tailored target."
+        },
+        {
+          "id": "B",
+          "text": "Responsive neurostimulation (RNS) targeting the bilateral hippocampi",
+          "peer_percentage": 12,
+          "rationale": "Incorrect. Although hippocampal involvement was present on MRI, the active super-refractory status epilepticus showed broad posterior quadrant onset patterns less amenable to localized strip/depth RNS arrays alone."
+        },
+        {
+          "id": "C",
+          "text": "Centromedian nucleus (CMT) of the thalamus deep brain stimulation",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. CMT stimulation is classically employed for generalized seizures and Lennox-Gastaut syndrome, whereas the posterior quadrant localization points toward a more regional thalamic relay."
+        },
+        {
+          "id": "D",
+          "text": "Bilateral pulvinar nucleus of the thalamus deep brain stimulation",
+          "peer_percentage": 63,
+          "rationale": "Correct! Given the persistent seizure localization to the bilateral posterior quadrants and failure of multi-agent anesthetics and immunotherapy, bilateral pulvinar deep brain stimulation successfully achieved sustained seizure control by targeting the posterior thalamic nuclei functionally connected to the posterior cortical network."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "New-onset refractory status epilepticus (NORSE) / Febrile infection-related epilepsy syndrome (FIRES) treated with bilateral pulvinar deep brain stimulation",
+      "clinical_discussion": "New-onset refractory status epilepticus (NORSE) and its febrile subcategory, febrile infection-related epilepsy syndrome (FIRES), represent devastating clinical entities carrying significant mortality and long-term morbidity. When medical management fails—including aggressive multi-agent anti-seizure medications, continuous anesthetic infusions, and multimodal immunotherapy—super-refractory cases necessitate unconventional rescue therapies. Neuromodulation has emerged as a promising avenue for medically intractable status epilepticus.\n\nWhile the anterior nucleus and centromedian nucleus of the thalamus are traditional targets for drug-resistant epilepsy and generalized seizure networks, the pulvinar nucleus serves as a major posterior thalamic hub with extensive reciprocal connections to parietal, occipital, and posterior temporal cortices. In patients with cryptogenic NORSE and seizure activity localized to the posterior quadrants, targeting the bilateral pulvinar via deep brain stimulation provides a rational, anatomy-guided network intervention capable of disrupting refractory propagation pathways when pharmacotherapy is exhausted.",
+      "teaching_points": [
+        "NORSE and FIRES are severe epileptic emergencies characterized by refractory status epilepticus without an immediate structural or metabolic cause, frequently triggered by presumed immune-mediated mechanisms.",
+        "The pulvinar nucleus of the thalamus is an emerging neuromodulatory target for drug-resistant epilepsy and super-refractory status epilepticus with posterior quadrant localization.",
+        "Direct visualization using specialized MRI sequences like FGATIR facilitates precise stereotactic placement of DBS leads into deep thalamic nuclei such as the pulvinar."
+      ],
+      "clinical_pitfalls": [
+        "Failing to recognize posterior quadrant network generators in NORSE, which can limit the efficacy of standard anterior or centromedian thalamic targets.",
+        "Delaying multidisciplinary evaluation for surgical neuromodulation in super-refractory status epilepticus after standard anesthetic weaning attempts repeatedly fail."
+      ],
+      "related_keywords": [
+        "NORSE",
+        "FIRES",
+        "Pulvinar Deep Brain Stimulation",
+        "Super-Refractory Status Epilepticus",
+        "Thalamocortical Networks"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-016",
+    "case_code": "NC-2026-016",
+    "title": "Orthostatic Headaches and Migrainous Features in a Patient with Multilevel Spinal Fluid Abnormalities",
+    "subspecialty": "Headache & Pain",
+    "subspecialties": [
+      "Headache & Pain"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-10-30",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13637283",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-05172-1",
+      "pmcid": "PMC13637283",
+      "pmid": "42432562",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "42-year-old female",
+      "chief_complaint": "Severe position-dependent headache worsening upon upright posture",
+      "history_of_present_illness": "The patient presents with a progressive, severe headache that develops within minutes of sitting or standing upright and is relieved by lying flat. Over the past several weeks, the headache has been accompanied by pronounced nausea, photophobia, and phonophobia, mimicking a refractory migraine attack. Access to image-guided targeted epidural blood patch is currently pending.",
+      "past_medical_history": "History of episodic migraine without aura.",
+      "vitals": {
+        "bp": "120/80 mmHg",
+        "hr": "72 bpm",
+        "rr": "16 /min",
+        "temp": "36.7 °C",
+        "spo2": "99% on room air"
+      },
+      "neuro_exam": "Alert and oriented x3. Cranial nerves II-XII grossly intact. No focal motor or sensory deficits. Deep tendon reflexes 2+ and symmetric. Coordination intact.",
+      "key_labs_csf": "Routine laboratory work-up unremarkable; lumbar puncture deferred due to classic clinical presentation and risk of worsening low-pressure symptoms.",
+      "imaging": [
+        {
+          "modality": "Heavily T2-weighted magnetic resonance myelography and CT epidurogram",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13637283)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13637283_fig1.webp",
+          "pmcid": "PMC13637283",
+          "doi_url": "https://doi.org/10.1186/s12883-026-05172-1",
+          "caption": "Representative imaging in characteristic pathology with targeted epidural blood patch (EBP). A – B Heavily T2-weighted magnetic resonance myelography showing a circumferential epidural fluid collection with cerebrospinal fluid leakage spanning C2–L2. C Computed tomography image of targeted EBP at T1–T2 with contrast delineating epidural spread (arrow). All imaging was fully de-identified before submission: patient name, medical record number, date of birth, examination date, and institutional headers were removed; no facial features or other directly identifying anatomical la",
+          "findings_summary": "Demonstrates a circumferential epidural fluid collection with cerebrospinal fluid leakage spanning the cervicothoracic and thoracolumbar spine alongside precise EBP contrast spread."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "A",
+      "options": [
+        {
+          "id": "A",
+          "text": "Spontaneous intracranial hypotension secondary to spinal CSF leakage",
+          "peer_percentage": 78,
+          "rationale": "Correct! The combination of orthostatic headache, migrainous features (nausea, photophobia), and heavily T2-weighted MR myelography showing spinal CSF leaks confirms spontaneous intracranial hypotension."
+        },
+        {
+          "id": "B",
+          "text": "New daily persistent headache with autonomic dysfunction",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. New daily persistent headache is characterized by continuous unremitting pain from onset without the classic orthostatic features and spinal fluid leaks seen here."
+        },
+        {
+          "id": "C",
+          "text": "Idiopathic intracranial hypertension",
+          "peer_percentage": 8,
+          "rationale": "Incorrect. Idiopathic intracranial hypertension typically presents with headaches that worsen when lying flat (elevated opening pressure), rather than severe orthostatic headaches relieved by recumbency."
+        },
+        {
+          "id": "D",
+          "text": "Post-dural puncture headache without prior instrumentation",
+          "peer_percentage": 4,
+          "rationale": "Incorrect. Post-dural puncture headache requires a history of dural instrumentation or lumbar puncture, whereas spontaneous intracranial hypotension occurs without preceding dural trauma."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Spontaneous Intracranial Hypotension (SIH)",
+      "clinical_discussion": "Spontaneous intracranial hypotension (SIH) is a well-recognized secondary headache disorder caused by spontaneous spinal cerebrospinal fluid (CSF) leakage. While classic presentation involves a prominent orthostatic headache that worsens with upright posture and improves with recumbency, migrainous features such as nausea, photophobia, and phonophobia are frequently present, leading to diagnostic delays. The underlying pathophysiology involves CSF hypovolemia and caudal brain displacement, producing traction on pain-sensitive dural structures innervated by trigeminal afferents. This mechanical deformation can trigger the release of vasoactive neuropeptides, including calcitonin gene-related peptide (CGRP), contributing to neurogenic inflammation and central sensitization.\n\nManagement prioritizes timely leak-directed interventions, most commonly image-guided targeted epidural blood patches (EBP). During the pre-procedure interval when access is delayed, patients often remain severely symptomatic. Recent clinical observations indicate that CGRP-pathway antagonists (such as monoclonal antibodies and gepants), typically utilized for comorbid migraine, can be safely administered and may provide short-term symptom mitigation prior to definitive EBP without impairing subsequent procedural response.",
+      "teaching_points": [
+        "SIH classically presents with orthostatic headaches, but prominent migrainous features frequently cause diagnostic confusion.",
+        "Spinal CSF leaks are effectively visualized using heavily T2-weighted MR myelography.",
+        "Mechanical traction on trigeminal afferents in SIH can activate CGRP pathways, explaining why CGRP-pathway antagonists may offer symptomatic relief during pre-EBP intervals."
+      ],
+      "clinical_pitfalls": [
+        "Failing to consider SIH in patients presenting with treatment-refractory 'migraines' that possess an orthostatic component.",
+        "Delaying targeted neuroimaging (MR myelography) when conservative measures fail in suspected spinal CSF leaks."
+      ],
+      "related_keywords": [
+        "Spontaneous intracranial hypotension",
+        "Orthostatic headache",
+        "MR myelography",
+        "Epidural blood patch",
+        "CGRP-pathway"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-014",
     "case_code": "NC-2026-014",
     "title": "A 62-Year-Old Woman with Acute Right-Sided Hemichorea and Mild Cerebellar Atrophy",

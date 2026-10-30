@@ -1,5 +1,174 @@
 [
   {
+    "id": "10.1212/wnl.0000000000218674",
+    "title": "Resting-State Functional MRI and Clinical Outcomes After Acute Disorders of Consciousness",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-10-29T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Kazazian Karnig",
+      "Czink Danelle",
+      "Iansavitchene Alla",
+      "Owen Adrian M.",
+      "Norton Loretta"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218674",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218705",
+    "title": "Exclusion of Arteriovenous Shunts in Intracerebral Hemorrhage Using MRI Arterial Spin Labeling",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-10-29T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Beaufort Quentin",
+      "Agripnidis Thibault",
+      "Amar Valentin",
+      "Pandaure Benjamin",
+      "Bretonniere Arnaud",
+      "Cottier Jean-Philippe",
+      "L'Allinec Vincent",
+      "Godard Sophie",
+      "Codron Philippe",
+      "Ifergan Héloïse",
+      "Cohen Clara",
+      "Pasi Marco",
+      "Boulouis Gregoire"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218705",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Hemorrhage",
+        "Intracerebral"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218567",
+    "title": "Cenobamate in Focal-Onset Refractory and Super-Refractory Status Epilepticus",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-10-29T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Campos-Fernandez Daniel",
+      "Abraira Laura",
+      "Vila-Sala Carme",
+      "Sansa Gemma",
+      "Sala Padró Jacint Xavier",
+      "San-Pedro-Murillo Eduardo",
+      "García-Díaz Anna Isabel",
+      "Quílez Alejandro",
+      "Quintana Manuel",
+      "López-Maza Samuel",
+      "Garcés-Pellejero María",
+      "Bellido Castillo Enric",
+      "Fonseca Elena",
+      "Toledo Manuel",
+      "Santamarina Estevo"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218567",
+    "neurology_classification": {
+      "subspecialty": "Neurocritical Care",
+      "subspecialties": [
+        "Neurocritical Care",
+        "Epilepsy"
+      ],
+      "topics": [
+        "Status epilepticus"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Neurocritical Care practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218633",
+    "title": "Stopping the Cycle",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-10-29T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Nelson Sarah E.",
+      "Di Luca Daniel G."
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218633",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
     "id": "10.1212/wnl.0000000000218791",
     "title": "Lesion-Level Subtypes of White Matter Hyperintensity Evolution Beyond Spatial Location",
     "journal": {
