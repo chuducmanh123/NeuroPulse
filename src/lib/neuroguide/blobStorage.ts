@@ -145,22 +145,50 @@ export function mergeGuidelines(
 ): GuidelineDoc[] {
   if (!dynamicItems || dynamicItems.length === 0) return staticItems;
 
-  const map = new Map<string, GuidelineDoc>();
-  // 1. Add static items first
-  staticItems.forEach((g) => map.set(g.id.toLowerCase(), g));
-  // 2. Dynamic items override or append (chỉ nhận các guideline hợp lệ, loại trừ phantom stubs)
-  dynamicItems.forEach((g) => {
-    const id = (g.id || "").toLowerCase();
-    if (
-      !id.startsWith("eso-pmid-") &&
-      !id.startsWith("esc-pmid-") &&
-      !id.startsWith("b15e76")
-    ) {
-      map.set(id, g);
-    }
-  });
+  const normalizeTitle = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
 
-  const result = Array.from(map.values());
+  const titleMap = new Map<string, GuidelineDoc>();
+  const idMap = new Map<string, GuidelineDoc>();
+
+  const addDoc = (doc: GuidelineDoc) => {
+    if (!doc || !doc.title) return;
+    const id = (doc.id || "").toLowerCase();
+    if (
+      id.startsWith("eso-pmid-") ||
+      id.startsWith("esc-pmid-") ||
+      id.startsWith("b15e76") ||
+      id.includes("phantom")
+    ) {
+      return;
+    }
+
+    const normT = normalizeTitle(doc.title);
+    const existing = titleMap.get(normT) || idMap.get(id);
+
+    if (existing) {
+      // Deduplicate: choose the one with more practice changes, or keep curated/canonical id if tie
+      const existingChanges = existing.allPracticeChanges?.length || 0;
+      const docChanges = doc.allPracticeChanges?.length || 0;
+      let chosen = docChanges > existingChanges ? doc : existing;
+      if (docChanges === existingChanges) {
+        if (existing.id === "aha-ais-2026") chosen = existing;
+        else if (doc.id === "aha-ais-2026") chosen = doc;
+      }
+      titleMap.set(normT, chosen);
+      idMap.set(chosen.id.toLowerCase(), chosen);
+      if (chosen !== existing) {
+        idMap.delete(existing.id.toLowerCase());
+      }
+    } else {
+      titleMap.set(normT, doc);
+      idMap.set(id, doc);
+    }
+  };
+
+  staticItems.forEach(addDoc);
+  dynamicItems.forEach(addDoc);
+
+  const result = Array.from(new Set(titleMap.values()));
   // Sort descending by publish year and date
   result.sort((a, b) => (b.publishDate || `${b.year}-01-01`).localeCompare(a.publishDate || `${a.year}-01-01`));
   return result;

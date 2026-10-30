@@ -322,9 +322,9 @@ export default function NeuroGuidePage() {
 
   const matrixContainerRef = useRef<HTMLDivElement>(null);
 
-  const CURRENT_CACHE_VERSION = "neuroguide_v2026_core_verified_v12";
+  const CURRENT_CACHE_VERSION = "neuroguide_v2026_coordinated_v13";
 
-  // Background Autonomous Sync Method
+  // Background Autonomous Sync Method (Chỉ chạy định kỳ 24h hoặc khi có lệnh)
   const triggerSync = async (isAuto = false) => {
     if (isSyncing) return;
     setIsSyncing(true);
@@ -364,22 +364,20 @@ export default function NeuroGuidePage() {
     }
   };
 
-  // Hydrate from Vercel Blob storage backend + cache sanitizer on mount
+  // Hydrate from coordinated server storage + cache sanitizer on mount
   useEffect(() => {
-    // 1. Background fetch latest from Vercel Blob / server storage
+    // 1. Chỉ đọc dữ liệu đã qua điều phối từ server storage (offline/database hiện có, không kích hoạt tìm kiếm mới)
     fetch("/api/neuroguide/sync-guidelines")
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (data && data.status === "success" && Array.isArray(data.guidelines) && data.guidelines.length > 0) {
           const validGuidelines = data.guidelines.filter((doc: GuidelineDoc) => {
             const id = (doc.id || "").toLowerCase();
-            const pdate = doc.publishDate || "";
             return (
               !id.startsWith("eso-pmid-") &&
               !id.startsWith("esc-pmid-") &&
               !id.startsWith("b15e76") &&
-              !id.includes("phantom") &&
-              pdate <= "2026-02-01"
+              !id.includes("phantom")
             );
           });
           if (validGuidelines.length > 0) {
@@ -394,6 +392,7 @@ export default function NeuroGuidePage() {
       })
       .catch(() => {});
 
+    // 2. Quản lý bộ nhớ đệm (LocalStorage): Xóa sạch các tài liệu rác chưa qua điều phối
     try {
       const cachedVersion = localStorage.getItem("neuroguide_cache_version");
       if (cachedVersion !== CURRENT_CACHE_VERSION) {
@@ -406,38 +405,35 @@ export default function NeuroGuidePage() {
         if (cached) {
           const parsed = JSON.parse(cached);
           if (Array.isArray(parsed)) {
-            // Strictly filter out non-guidelines, phantom items, and spurious articles
-            const cleaned = parsed.filter((doc) => {
-              if (!doc || !doc.title) return false;
-              const t = doc.title.toLowerCase();
-              const j = (doc.journalTarget || "").toLowerCase();
+            // Loại bỏ hoàn toàn các guideline chưa qua kiểm định / chưa qua trung tâm điều phối
+            const normalizeT = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+            const titleMap = new Map<string, GuidelineDoc>();
+            MOCK_GUIDELINE_DOCS.forEach((g) => titleMap.set(normalizeT(g.title), g));
+
+            parsed.forEach((doc: GuidelineDoc) => {
+              if (!doc || !doc.title) return;
               const id = (doc.id || "").toLowerCase();
-              const pdate = doc.publishDate || "";
               if (
                 id.startsWith("eso-pmid-") ||
                 id.startsWith("esc-pmid-") ||
                 id.startsWith("b15e76") ||
-                pdate > "2026-02-01" ||
-                t.includes("paraclinoid aneurysms") ||
-                t.includes("thromboelastography") ||
-                t.includes("hemodynamic differences") ||
-                j.includes("medicine (baltimore)") ||
-                j.includes("trauma surg acute care open") ||
-                j.includes("cureus") ||
-                doc.society === "Other"
+                id.includes("phantom")
               ) {
-                return false;
+                return;
               }
-              return true;
+              const normT = normalizeT(doc.title);
+              // Chỉ chấp nhận nếu đã có trong baseline hoặc có cấu trúc khuyến cáo hoàn chỉnh đã điều phối
+              const hasFullChanges = Boolean(doc.allPracticeChanges && doc.allPracticeChanges.length > 0);
+              if (hasFullChanges) {
+                const existing = titleMap.get(normT);
+                if (!existing) {
+                  titleMap.set(normT, doc);
+                }
+              }
             });
 
-            // Always prioritize authoritative MOCK_GUIDELINE_DOCS entries
-            const mockIds = new Set(MOCK_GUIDELINE_DOCS.map((g) => g.id.toLowerCase()));
-            const mockTitles = new Set(MOCK_GUIDELINE_DOCS.map((g) => g.title.toLowerCase().trim()));
-            const userExtra = cleaned.filter(
-              (doc) => !mockIds.has(doc.id.toLowerCase()) && !mockTitles.has(doc.title.toLowerCase().trim())
-            );
-            const merged = [...MOCK_GUIDELINE_DOCS, ...userExtra];
+            const merged = Array.from(titleMap.values());
+            merged.sort((a, b) => (b.publishDate || `${b.year}-01-01`).localeCompare(a.publishDate || `${a.year}-01-01`));
             setGuidelineDocs(merged);
             localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(merged));
           }
@@ -445,6 +441,20 @@ export default function NeuroGuidePage() {
       }
     } catch (e) {
       console.warn("Error initializing guideline cache:", e);
+    }
+
+    // 3. Kiểm tra chu kỳ quét định kỳ 24 giờ: Chỉ quét online nếu đã đủ 24 giờ kể từ lần quét trước
+    const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
+    const lastSyncStr = localStorage.getItem("neuroguide_last_sync_timestamp");
+    const now = Date.now();
+    if (!lastSyncStr) {
+      // Thiết lập timestamp ban đầu, tuyệt đối không quét ngay khi load trang lần đầu
+      localStorage.setItem("neuroguide_last_sync_timestamp", now.toString());
+    } else {
+      const lastSync = parseInt(lastSyncStr, 10);
+      if (!isNaN(lastSync) && now - lastSync >= TWENTY_FOUR_HOURS) {
+        triggerSync(true);
+      }
     }
   }, []);
 
