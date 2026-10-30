@@ -414,13 +414,10 @@ ${cleaned.slice(0, 14000)}`;
       }
 
       const waterfallModels = [
-        "gemini-3.8-flash",
-        "gemini-3.5-flash",
-        "gemini-3.1-flash-lite",
-        "gemini-2.5-flash",
-        "gemini-2.5-flash-lite",
-        "gemini-flash-latest",
-        "gemini-flash-lite-latest",
+        "gemini-2.0-flash",
+        "gemini-1.5-flash",
+        "gemini-2.0-flash-lite",
+        "gemini-1.5-pro",
       ];
 
       for (const modelName of waterfallModels) {
@@ -444,8 +441,13 @@ ${cleaned.slice(0, 14000)}`;
 
           if (res.ok) {
             const data = await res.json();
-            const jsonText = data?.candidates?.[0]?.content?.parts?.[0]?.text || "";
-            const parsed = JSON.parse(jsonText);
+            const candidateParts = data?.candidates?.[0]?.content?.parts || [];
+            const textParts = candidateParts.filter((p: any) => p?.text && !p?.thought).map((p: any) => p.text);
+            let rawJson = textParts.join("").trim();
+            if (!rawJson && candidateParts[0]?.text) rawJson = candidateParts[0].text.trim();
+            const jsonMatch = rawJson.match(/\{[\s\S]*\}/);
+            if (jsonMatch) rawJson = jsonMatch[0];
+            const parsed = JSON.parse(rawJson);
             return {
               title: parsed.title || "Acute Neurological Syndrome — Clinical Challenge",
               subspecialty: parsed.subspecialty || detectSubspecialty(cleaned),

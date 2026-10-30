@@ -30,13 +30,10 @@ function loadEnvKey(): string {
 }
 
 const WATERFALL_MODELS = [
-  "gemini-3.8-flash",
-  "gemini-3.5-flash",
-  "gemini-3.1-flash-lite",
-  "gemini-2.5-flash",
-  "gemini-2.5-flash-lite",
-  "gemini-flash-latest",
-  "gemini-flash-lite-latest",
+  "gemini-2.0-flash",
+  "gemini-1.5-flash",
+  "gemini-2.0-flash-lite",
+  "gemini-1.5-pro",
 ];
 
 async function callGeminiRestJson<T>(prompt: string, apiKey: string): Promise<T | null> {
@@ -621,8 +618,13 @@ Respond strictly in JSON matching this schema:
 
         if (!res.ok) continue;
         const data = await res.json();
-        const rawJson = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+        const candidateParts = data?.candidates?.[0]?.content?.parts || [];
+        const textParts = candidateParts.filter((p: any) => p?.text && !p?.thought).map((p: any) => p.text);
+        let rawJson = textParts.join("").trim();
+        if (!rawJson && candidateParts[0]?.text) rawJson = candidateParts[0].text.trim();
         if (!rawJson) continue;
+        const jsonMatch = rawJson.match(/\{[\s\S]*\}/);
+        if (jsonMatch) rawJson = jsonMatch[0];
         const result = JSON.parse(rawJson);
         if (result && Array.isArray(result.practiceChanges) && result.practiceChanges.length > 0) {
           const docId = `${options.society.toLowerCase().replace(/[^a-z0-9]/g, "")}-${pubYear}-${Date.now()}`;

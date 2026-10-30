@@ -42,13 +42,10 @@ export interface IncrementalProgressEvent {
 }
 
 const WATERFALL_MODELS = [
-  "gemini-3.8-flash",
-  "gemini-3.5-flash",
-  "gemini-3.1-flash-lite",
-  "gemini-2.5-flash",
-  "gemini-2.5-flash-lite",
-  "gemini-flash-latest",
-  "gemini-flash-lite-latest",
+  "gemini-2.0-flash",
+  "gemini-1.5-flash",
+  "gemini-2.0-flash-lite",
+  "gemini-1.5-pro",
 ];
 
 export function resolveApiKey(providedKey?: string): string {
@@ -101,6 +98,7 @@ async function callGeminiMultimodalJson<T>(
   pdfBase64: string,
   apiKey: string
 ): Promise<T | null> {
+  let lastErrorDetail = "";
   for (const model of WATERFALL_MODELS) {
     try {
       const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
@@ -131,18 +129,32 @@ async function callGeminiMultimodalJson<T>(
         }),
       });
 
-      if (!res.ok) continue;
+      if (!res.ok) {
+        const errText = await res.text().catch(() => "");
+        lastErrorDetail = `Model ${model} returned HTTP ${res.status}: ${errText}`;
+        console.warn(`[Gemini API Warning] ${lastErrorDetail}`);
+        continue;
+      }
+
       const data = await res.json();
       const parts = data?.candidates?.[0]?.content?.parts || [];
       const textParts = parts.filter((p: any) => p?.text && !p?.thought).map((p: any) => p.text);
       let rawJson = textParts.join("").trim();
       if (!rawJson && parts[0]?.text) rawJson = parts[0].text.trim();
       if (!rawJson) continue;
-      rawJson = rawJson.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/i, "");
-      return JSON.parse(rawJson) as T;
-    } catch {
-      // waterfall fallback
+
+      let cleaned = rawJson;
+      const jsonMatch = rawJson.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        cleaned = jsonMatch[0];
+      }
+      return JSON.parse(cleaned) as T;
+    } catch (err) {
+      console.warn(`[Gemini API Error] Model ${model} execution failed:`, err);
     }
+  }
+  if (lastErrorDetail) {
+    console.error(`[Gemini API Critical] All waterfall models failed. Last error: ${lastErrorDetail}`);
   }
   return null;
 }
@@ -348,7 +360,23 @@ Respond strictly in valid JSON matching this schema:
       }>;
     }
 
-    const res1 = await callGeminiMultimodalJson<GeminiBatchResponse>(promptBatch1, pdfBase64, apiKey);
+    let heartbeatProgress = 25;
+    const heartbeat1 = setInterval(() => {
+      heartbeatProgress = Math.min(heartbeatProgress + 3, 49);
+      onProgress({
+        stage: "PARSING_PDF",
+        percent: heartbeatProgress,
+        message: "Gemini AI đang bóc tách khuyến cáo lâm sàng & bảng phân loại COR/LOE...",
+        docId,
+      });
+    }, 2500);
+
+    let res1: GeminiBatchResponse | null = null;
+    try {
+      res1 = await callGeminiMultimodalJson<GeminiBatchResponse>(promptBatch1, pdfBase64, apiKey);
+    } finally {
+      clearInterval(heartbeat1);
+    }
     if (res1 && Array.isArray(res1.recommendations) && res1.recommendations.length > 0) {
       const batch1Recs: IncrementalRec[] = res1.recommendations.map((r, idx) => ({
         rec_id: `rec-${docId}-b1-${idx + 1}`,
@@ -442,7 +470,23 @@ Respond strictly in valid JSON matching this schema:
       }>;
     }
 
-    const res2 = await callGeminiMultimodalJson<GeminiBatchResponse>(promptBatch2, pdfBase64, apiKey);
+    let heartbeat2Progress = 58;
+    const heartbeat2 = setInterval(() => {
+      heartbeat2Progress = Math.min(heartbeat2Progress + 3, 85);
+      onProgress({
+        stage: "PARSING_PDF",
+        percent: heartbeat2Progress,
+        message: "Gemini AI đang bóc tách phác đồ điều trị, thuốc và ngưỡng lâm sàng chi tiết...",
+        docId,
+      });
+    }, 2500);
+
+    let res2: GeminiBatchResponse | null = null;
+    try {
+      res2 = await callGeminiMultimodalJson<GeminiBatchResponse>(promptBatch2, pdfBase64, apiKey);
+    } finally {
+      clearInterval(heartbeat2);
+    }
     if (res2 && Array.isArray(res2.recommendations) && res2.recommendations.length > 0) {
       const batch2Recs: IncrementalRec[] = res2.recommendations.map((r, idx) => ({
         rec_id: `rec-${docId}-b2-${idx + 1}`,
@@ -514,8 +558,20 @@ Respond strictly in valid JSON matching this schema:
   }
 
   // =========================================================================
-  // COMPLETE
+  // COMPLETE OR ERROR
   // =========================================================================
+  if (allExtractedRecs.length === 0) {
+    await onProgress({
+      stage: "ERROR",
+      percent: 100,
+      total: 0,
+      message: "Không trích xuất được khuyến cáo nào từ tệp PDF này. Vui lòng kiểm tra lại cấu hình GEMINI_API_KEY hoặc nội dung tệp.",
+      error: "NO_RECOMMENDATIONS_FOUND",
+      docId,
+    });
+    return { success: false, totalCount: 0, docId };
+  }
+
   await onProgress({
     stage: "COMPLETE",
     percent: 100,

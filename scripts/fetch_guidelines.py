@@ -49,15 +49,12 @@ HEADERS = {
 
 GEMINI_API_KEY = load_env_key()
 
-# Thác nước mô hình AI: Bắt đầu từ 3.8 Flash, tự động fallback nếu lỗi/hết quota
+# Thác nước mô hình AI: Bắt đầu từ 2.0 Flash, tự động fallback nếu lỗi/hết quota
 ACTIVE_GEMINI_MODELS = [
-    "gemini-3.8-flash",
-    "gemini-3.5-flash",
-    "gemini-3.1-flash-lite",
-    "gemini-2.5-flash",
-    "gemini-2.5-flash-lite",
-    "gemini-flash-latest",
-    "gemini-flash-lite-latest",
+    "gemini-2.0-flash",
+    "gemini-1.5-flash",
+    "gemini-2.0-flash-lite",
+    "gemini-1.5-pro",
 ]
 
 STORE_DIR = Path("data/guidelines_store")
