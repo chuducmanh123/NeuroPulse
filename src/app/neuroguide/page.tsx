@@ -19,8 +19,10 @@ import {
 } from "../../data/neuroguideMockData";
 import { AppSwitcher } from "../../components/ecosystem/AppSwitcher";
 import { AdminButton } from "../../components/ecosystem/AdminButton";
+import { ReviewQueueTab } from "../../components/neuroguide/ReviewQueueTab";
+import { PipelineModal } from "../../components/neuroguide/PipelineModal";
 
-type NavTabId = "guidelines" | "conf" | "matrix";
+type NavTabId = "guidelines" | "conf" | "matrix" | "review";
 
 interface ThemeStyle {
   borderLeft: string;
@@ -221,6 +223,24 @@ export default function NeuroGuidePage() {
   const [isSyncing, setIsSyncing] = useState<boolean>(false);
   const [syncMessage, setSyncMessage] = useState<string | null>(null);
   const [lastSyncedTime, setLastSyncedTime] = useState<string | null>(null);
+  const [reviewQueueCount, setReviewQueueCount] = useState<number>(0);
+  const [showPipelineModal, setShowPipelineModal] = useState<boolean>(false);
+
+  const fetchQueueCount = async () => {
+    try {
+      const res = await fetch("/api/neuroguide/review-queue");
+      const data = await res.json();
+      if (data.ok && typeof data.total === "number") {
+        setReviewQueueCount(data.total);
+      }
+    } catch {
+      // ignore
+    }
+  };
+
+  useEffect(() => {
+    fetchQueueCount();
+  }, []);
 
   // Dynamic Navigation Tabs with Live Counts
   const navTabs = useMemo(() => [
@@ -239,7 +259,12 @@ export default function NeuroGuidePage() {
       label: "⚖️ Clinical Scenarios",
       badge: `${MOCK_CLINICAL_SCENARIOS.length}`,
     },
-  ], [guidelineDocs.length]);
+    {
+      id: "review" as const,
+      label: "🛡️ Review Queue",
+      badge: reviewQueueCount > 0 ? `${reviewQueueCount}` : undefined,
+    },
+  ], [guidelineDocs.length, reviewQueueCount]);
 
   // Expandable cards states (details reveal only on click)
   const [expandedGuidelineIds, setExpandedGuidelineIds] = useState<Record<string, boolean>>({});
@@ -680,6 +705,13 @@ export default function NeuroGuidePage() {
               }`}
             >
               <span>{darkMode ? "☀️ Light" : "🌙 Night Shift"}</span>
+            </button>
+
+            <button
+              onClick={() => setShowPipelineModal(true)}
+              className="px-3 py-2 rounded-lg text-xs font-bold bg-amber-500 hover:bg-amber-600 text-white transition-all shadow-sm flex items-center gap-1.5"
+            >
+              <span>⚡ Bóc Tách AI</span>
             </button>
 
             <AdminButton darkMode={darkMode} />
@@ -2000,6 +2032,29 @@ export default function NeuroGuidePage() {
             )}
           </div>
         )}
+
+        {/* =========================================================================
+            TAB 4: REVIEW QUEUE (Human-in-the-loop Medical Validation)
+           ========================================================================= */}
+        {activeTab === "review" && (
+          <ReviewQueueTab
+            darkMode={darkMode}
+            onQueueUpdated={fetchQueueCount}
+          />
+        )}
+
+        {/* =========================================================================
+            PIPELINE ORCHESTRATOR MODAL
+           ========================================================================= */}
+        <PipelineModal
+          isOpen={showPipelineModal}
+          onClose={() => setShowPipelineModal(false)}
+          onSuccess={() => {
+            fetchQueueCount();
+            setActiveTab("review");
+          }}
+          darkMode={darkMode}
+        />
 
         {/* =========================================================================
             FOOTER

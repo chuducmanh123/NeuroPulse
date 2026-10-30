@@ -1,0 +1,56 @@
+{
+  "guideline_id": "b089e25376b0b47fbc2f1eb4881ad87c7143b6d95a7bb77684af93a83a9e9c3b",
+  "version": 1,
+  "metadata": {
+    "guideline_id": "b089e25376b0b47fbc2f1eb4881ad87c7143b6d95a7bb77684af93a83a9e9c3b",
+    "title": "ESO 2024 Guidelines on Stroke Associated Pneumonia",
+    "society": "ESO",
+    "year": 2024,
+    "source_url": "https://journals.sagepub.com/doi/eso-sap-2024",
+    "doi": null,
+    "state": "DISCOVERED"
+  },
+  "total_recommendations": 1,
+  "pending_count": 0,
+  "approved_count": 1,
+  "rejected_count": 0,
+  "recommendations": [
+    {
+      "rec_id": "b089e253-P1-R1",
+      "guideline_id": "b089e25376b0b47fbc2f1eb4881ad87c7143b6d95a7bb77684af93a83a9e9c3b",
+      "grading_system": "GRADE_ESO",
+      "page_num": 1,
+      "section": "Table 8 - Stroke Associated Pneumonia Guidelines (ESO 2024)",
+      "topic": "Stroke Associated Pneumonia",
+      "pico_id": "PICO 5",
+      "statement": "We suggest using validated clinical prediction scores or biomarkers to identify patients at increased risk of SAP.",
+      "cor": null,
+      "cor_label": null,
+      "loe": null,
+      "loe_label": null,
+      "quality_of_evidence": "Very Low",
+      "strength_of_recommendation": "Weak for intervention",
+      "consensus_statement": null,
+      "voting": "8/8",
+      "target_population": "Hospitalised adults with acute ischaemic or haemorrhagic stroke (non-ventilated) within 7 days of stroke symptoms",
+      "action_type": null,
+      "driving_trials": [],
+      "verbatim_quote": "We suggest using validated clinical prediction scores or biomarkers to identify patients at increased risk of SAP a",
+      "state": "VERIFIED",
+      "verification_detail": {
+        "rec_id": "b089e253-P1-R1",
+        "status": "PASSED",
+        "grounding_score": 1.0,
+        "classification_valid": true,
+        "numbers_verified": true,
+        "issues": []
+      },
+      "approval_status": "APPROVED",
+      "reviewed_by": "Dr. Nguyen (Neuro-ICU)",
+      "reviewed_at": "2026-10-30T03:38:45.291185+00:00",
+      "review_notes": "Dong y voi khuyen cao PICO 5 cua ESO."
+    }
+  ],
+  "created_at": "2026-10-30T03:38:25.684655+00:00",
+  "updated_at": "2026-10-30T03:38:45.291185+00:00"
+}

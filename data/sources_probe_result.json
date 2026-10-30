@@ -1,0 +1,202 @@
+[
+  {
+    "society": "ESO (European Stroke Organisation)",
+    "url": "https://eso-stroke.org/guidelines/eso-guideline-directory",
+    "category": "Stroke",
+    "status_code": 200,
+    "can_access": true,
+    "is_waf_blocked": false,
+    "sample_guidelines_found": [
+      "ESO Guideline Directory",
+      "ESO Guideline Board",
+      "ESO Guideline Development Webinar",
+      "ESO EAST (Enhancing and Accelerating Stroke Treatment)",
+      "ESO Guideline Directory"
+    ],
+    "notes": "Truy cập thành công (131819 bytes, tìm thấy 5 tựa đề mẫu)"
+  },
+  {
+    "society": "AHA/ASA (Heart & Stroke)",
+    "url": "https://professional.heart.org/en/guidelines-statements",
+    "category": "Cardio & Stroke",
+    "status_code": 200,
+    "can_access": true,
+    "is_waf_blocked": false,
+    "sample_guidelines_found": [
+      "Guidelines & Statements",
+      "Search Guidelines and Statements",
+      "Guideline Publication Schedule",
+      "Guideline Essentials: AHA Clinical Slide Series",
+      "Guideline Essentials: Case Study Slide Series"
+    ],
+    "notes": "Truy cập thành công (196960 bytes, tìm thấy 5 tựa đề mẫu)"
+  },
+  {
+    "society": "NCS (Neurocritical Care Society)",
+    "url": "https://www.neurocriticalcare.org/Resources-Publications/Neurocritical-Care-Guidelines",
+    "category": "Neurocritical Care",
+    "status_code": 200,
+    "can_access": true,
+    "is_waf_blocked": false,
+    "sample_guidelines_found": [
+      "Neurocritical Care Guidelines",
+      "Neurocritical Care Guidelines",
+      "guidelines.ecri.org",
+      "Privacy Statement"
+    ],
+    "notes": "Truy cập thành công (73039 bytes, tìm thấy 4 tựa đề mẫu)"
+  },
+  {
+    "society": "Springer - Neurocritical Care Journal",
+    "url": "https://link.springer.com/journal/12028",
+    "category": "Neurocritical Care",
+    "status_code": 200,
+    "can_access": true,
+    "is_waf_blocked": false,
+    "sample_guidelines_found": [
+      "Submission guidelines",
+      "Adjustment for Early Care and the Estimated Effect of Initial Treatment at a Neurosurgery-Capable Facility",
+      "Response to “Adjustment for Early Care and the Estimated Effect of Initial Treatment at a Neurosurgery-Capable Facility”",
+      "Penetrating Brain Injury: Neurocritical Care Perspectives on the Updated Brain Trauma Foundation Guidelines",
+      "Systematic Review and Prognostic-Factor Meta-analysis of Residual or End-of-Treatment Hematoma Burden after Minimally Invasive Evacuation for Spontaneous Intracerebral Hemorrhage"
+    ],
+    "notes": "Truy cập thành công (231678 bytes, tìm thấy 5 tựa đề mẫu)"
+  },
+  {
+    "society": "ILAE (Epilepsy Definition & Classification)",
+    "url": "https://www.ilae.org/guidelines/definition-and-classification",
+    "category": "Epilepsy",
+    "status_code": 200,
+    "can_access": true,
+    "is_waf_blocked": false,
+    "sample_guidelines_found": [
+      "Guidelines & Reports",
+      "Archive of Draft Guideline Comments",
+      "Guidelines & Reports",
+      "Guidelines & Reports Home",
+      "Autism in Children and Adolescents with Epilepsy – Scoping Review and Adaptation of Clinical Practice Guidelines for Recognition, Referral and Diagnosis: A Report of the ILAE Task Force on Paediatric Psychiatric Issues"
+    ],
+    "notes": "Truy cập thành công (86204 bytes, tìm thấy 5 tựa đề mẫu)"
+  },
+  {
+    "society": "ILAE (Guidelines and Reports)",
+    "url": "https://www.ilae.org/guidelines/guidelines-and-reports",
+    "category": "Epilepsy",
+    "status_code": 200,
+    "can_access": true,
+    "is_waf_blocked": false,
+    "sample_guidelines_found": [
+      "Guidelines & Reports",
+      "Archive of Draft Guideline Comments",
+      "Guidelines & Reports",
+      "Guidelines & Reports Home",
+      "Autism in Children and Adolescents with Epilepsy – Scoping Review and Adaptation of Clinical Practice Guidelines for Recognition, Referral and Diagnosis: A Report of the ILAE Task Force on Paediatric Psychiatric Issues"
+    ],
+    "notes": "Truy cập thành công (88766 bytes, tìm thấy 5 tựa đề mẫu)"
+  },
+  {
+    "society": "AES (American Epilepsy Society)",
+    "url": "https://aesnet.org/clinical-care/clinical-guidance/guidelines",
+    "category": "Epilepsy",
+    "status_code": 200,
+    "can_access": true,
+    "is_waf_blocked": false,
+    "sample_guidelines_found": [
+      "Evidence-Based Guidelines",
+      "AES-Endorsed Guidelines",
+      "Joint Clinical Practice Guideline from AES and CNS: Epilepsy Surgery\nOctober 2026",
+      "American Epilepsy Society Clinical Practice Guideline: Infantile Epilepsy\nApril 2026",
+      "Practice Guideline from AAN, AES, and SMFM: Teratogenesis, Perinatal, and Neurodevelopmental Outcomes After in Utero Exposure to Antiseizure Medication\nMay 2025"
+    ],
+    "notes": "Truy cập thành công (55215 bytes, tìm thấy 5 tựa đề mẫu)"
+  },
+  {
+    "society": "NICE (UK Guidelines)",
+    "url": "https://www.nice.org.uk/guidance/",
+    "category": "General & Neuro",
+    "status_code": 403,
+    "can_access": false,
+    "is_waf_blocked": true,
+    "sample_guidelines_found": [],
+    "notes": "Bị chặn bởi Cloudflare/WAF (403/503)"
+  },
+  {
+    "society": "Alzheimer's & Dementia (Wiley)",
+    "url": "https://alz-journals.onlinelibrary.wiley.com/",
+    "category": "Dementia",
+    "status_code": 403,
+    "can_access": false,
+    "is_waf_blocked": true,
+    "sample_guidelines_found": [],
+    "notes": "Bị chặn bởi Cloudflare/WAF (403/503)"
+  },
+  {
+    "society": "AAN (American Academy of Neurology)",
+    "url": "https://www.aan.com/guidelines/home/allguidelines",
+    "category": "General Neurology",
+    "status_code": 200,
+    "can_access": true,
+    "is_waf_blocked": false,
+    "sample_guidelines_found": [
+      "Position Statements",
+      "guidelines@aan.com"
+    ],
+    "notes": "Truy cập thành công (54585 bytes, tìm thấy 2 tựa đề mẫu)"
+  },
+  {
+    "society": "EAN (European Academy of Neurology)",
+    "url": "https://www.ean.org/research/ean-guidelines/guideline-reference-center",
+    "category": "General Neurology",
+    "status_code": 200,
+    "can_access": true,
+    "is_waf_blocked": false,
+    "sample_guidelines_found": [
+      "Statements & Publications",
+      "About EAN Guidelines for Neurologists",
+      "Guideline Reference Center(current)",
+      "Guidelines open for members' comment",
+      "Guideline Teaching Course Videos"
+    ],
+    "notes": "Truy cập thành công (111661 bytes, tìm thấy 5 tựa đề mẫu)"
+  },
+  {
+    "society": "PNS (Peripheral Nerve Society)",
+    "url": "https://pnsociety.com/resources/guidelines/",
+    "category": "Peripheral Nerve",
+    "status_code": 200,
+    "can_access": true,
+    "is_waf_blocked": false,
+    "sample_guidelines_found": [
+      "PNS Published Guidelines for the Management of Neuropathy",
+      "Call for Guideline Topic Proposals",
+      "Guideline Endorsement Policy",
+      "EAN/PNS Guideline on Diagnosis and Treatment of Guillain–Barré Syndrome (GBS) (2023)",
+      "EAN/PNS Guideline on Management of Chronic Inflammatory Demylinating Polyradiculoneuropathy (CIDP) (2021)"
+    ],
+    "notes": "Truy cập thành công (225713 bytes, tìm thấy 5 tựa đề mẫu)"
+  },
+  {
+    "society": "AHS (American Headache Society)",
+    "url": "https://americanheadachesociety.org/resources/clinicians/guidelines",
+    "category": "Headache",
+    "status_code": 200,
+    "can_access": true,
+    "is_waf_blocked": false,
+    "sample_guidelines_found": [
+      "Clinical Practice Guidelines",
+      "AHS Mission Statement",
+      "CME Mission Statement"
+    ],
+    "notes": "Truy cập thành công (91313 bytes, tìm thấy 3 tựa đề mẫu)"
+  },
+  {
+    "society": "MDS (Movement Disorders - Wiley)",
+    "url": "https://movementdisorders.onlinelibrary.wiley.com/journal/23301619",
+    "category": "Movement Disorders",
+    "status_code": 403,
+    "can_access": false,
+    "is_waf_blocked": true,
+    "sample_guidelines_found": [],
+    "notes": "Bị chặn bởi Cloudflare/WAF (403/503)"
+  }
+]
