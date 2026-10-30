@@ -119,6 +119,9 @@ class AnalyzedRecommendation(BaseModel):
     voting: Optional[str] = None                     # e.g., "8/8" hoặc "Unanimous"
 
     # Thông tin lâm sàng bổ trợ
+    is_high_impact_change: bool = False              # True nếu thuộc mục "What Is New / Practice Changes"
+    change_type: Optional[str] = None                # "NEW", "UPGRADED", "DOWNGRADED", "REVISED", "STANDARD"
+    previous_grade: Optional[str] = None             # Mức khuyến cáo cũ nếu có (đối chiếu phiên bản trước)
     target_population: Optional[str] = None          # e.g., "Adults with acute ischemic stroke"
     action_type: Optional[str] = None                # e.g., "THROMBOLYSIS", "DIAGNOSIS", "PREVENTION"
     driving_trials: List[str] = Field(default_factory=list) # Danh sách thử nghiệm lâm sàng then chốt

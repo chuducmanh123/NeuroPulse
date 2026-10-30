@@ -18,7 +18,7 @@ class MockGeminiClient(GeminiClient):
         self.models_priority = ["mock-gemini"]
 
     def generate_json(self, prompt: str, system_instruction: Optional[str] = None) -> Dict[str, Any]:
-        if "PICO" in prompt or "GRADE" in prompt or "ESO" in prompt:
+        if "PICO" in prompt or "GRADE_ESO" in prompt or "ESO" in prompt or "Strength of recommendation" in prompt:
             # Mô phỏng phản hồi bóc tách guideline ESO từ ảnh mẫu
             return {
                 "model": "gemini-flash-lite-latest",

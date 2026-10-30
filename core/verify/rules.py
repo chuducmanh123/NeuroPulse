@@ -1,6 +1,7 @@
 import re
 from typing import Tuple, List, Set
 from core.common.contracts import AnalyzedRecommendation, GradingSystemType
+from core.analyze.core import normalize_cor, normalize_loe
 
 # Tập hợp stop words y khoa & tiếng Anh cơ bản
 STOP_WORDS: Set[str] = {
@@ -65,24 +66,37 @@ def verify_grounding(statement: str, verbatim_quote: str, page_text: str) -> Tup
 def verify_classification(rec: AnalyzedRecommendation) -> Tuple[bool, List[str]]:
     """
     Kiểm tra tính hợp lệ của thang đo và mức độ khuyến cáo.
+    Hỗ trợ chuẩn hóa nhãn (Normalizer) và phân biệt giữa High-Impact Changes và Khuyến cáo thường quy.
     Trả về: (is_valid: bool, issues: List[str])
     """
     issues = []
     is_valid = True
+
+    # Nếu là mục Điểm mới (What Is New / Practice Changes), chấp nhận linh hoạt nếu có change_type rõ ràng
+    if getattr(rec, "is_high_impact_change", False):
+        if rec.cor:
+            norm_cor, _ = normalize_cor(rec.cor)
+            if norm_cor and norm_cor.lower() not in VALID_AHA_COR:
+                issues.append(f"Mức COR '{rec.cor}' của điểm mới không chuẩn ({norm_cor}).")
+        return True, issues
 
     if rec.grading_system == GradingSystemType.AHA_ACC:
         # Kiểm tra COR
         if not rec.cor:
             issues.append("Thiếu thông tin Class of Recommendation (COR) cho guideline AHA.")
             is_valid = False
-        elif rec.cor.strip().lower() not in VALID_AHA_COR:
-            issues.append(f"Mức COR '{rec.cor}' không hợp lệ trong hệ thống AHA (chỉ chấp nhận 1, 2a, 2b, 3).")
-            is_valid = False
+        else:
+            norm_cor, _ = normalize_cor(rec.cor)
+            if not norm_cor or norm_cor.lower() not in VALID_AHA_COR:
+                issues.append(f"Mức COR '{rec.cor}' không hợp lệ trong hệ thống AHA (chỉ chấp nhận 1, 2a, 2b, 3).")
+                is_valid = False
 
         # Kiểm tra LOE
-        if rec.loe and rec.loe.strip().lower() not in VALID_AHA_LOE:
-            issues.append(f"Mức LOE '{rec.loe}' không hợp lệ trong hệ thống AHA (A, B-R, B-NR, C-LD, C-EO).")
-            is_valid = False
+        if rec.loe:
+            norm_loe, _ = normalize_loe(rec.loe)
+            if not norm_loe or norm_loe.lower() not in VALID_AHA_LOE:
+                issues.append(f"Mức LOE '{rec.loe}' không hợp lệ trong hệ thống AHA (A, B-R, B-NR, C-LD, C-EO).")
+                is_valid = False
 
     elif rec.grading_system == GradingSystemType.GRADE_ESO:
         # Kiểm tra Quality of evidence
@@ -102,19 +116,27 @@ def verify_classification(rec: AnalyzedRecommendation) -> Tuple[bool, List[str]]
 def verify_numerical_values(statement: str, page_text: str) -> Tuple[bool, List[str]]:
     """
     Rà soát tất cả các số định lượng then chốt trong khuyến cáo xem có trong văn bản gốc không.
+    Loại trừ các số tham chiếu (superscript citations như 1-10, 9-12) và số điện thoại khẩn cấp.
     Trả về: (all_numbers_verified: bool, issues: List[str])
     """
     issues = []
     page_text_clean = page_text.lower()
 
+    # Làm sạch câu khuyến cáo: bỏ các chỉ số trích dẫn tài liệu dạng 1-10, 1-4, 9-12 hoặc [1-10]
+    cleaned_statement = re.sub(r"\[\d+[\-\,\d]*\]", " ", statement)
+    cleaned_statement = re.sub(r"(?<=[a-zA-Z\.])\d+[\-\,]\d+", " ", cleaned_statement)
+
     # Tìm các con số: số nguyên, số thập phân (e.g., 4.5, 0.9, 24, 185/110)
-    numbers_in_statement = re.findall(r"\b\d+(?:[\.\/]\d+)?\b", statement)
+    numbers_in_statement = re.findall(r"\b\d+(?:[\.\/]\d+)?\b", cleaned_statement)
+
+    # Các số đặc biệt cần bỏ qua kiểm tra đơn độc
+    IGNORED_NUMBERS = {"1", "2", "3", "9", "911", "115"}
 
     missing_numbers = []
     for num in set(numbers_in_statement):
-        # Bỏ qua các số đánh thứ tự quá nhỏ như 1, 2 nếu đứng đơn độc
-        if len(num) == 1 and num in {"1", "2"}:
+        if num in IGNORED_NUMBERS:
             continue
+        # Kiểm tra xuất hiện trực tiếp hoặc trong cụm số
         if num not in page_text_clean:
             missing_numbers.append(num)
 

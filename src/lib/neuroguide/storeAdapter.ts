@@ -53,16 +53,23 @@ export function getStoredGuidelinesAsDocs(): GuidelineDoc[] {
       const practiceChanges: PracticeChangeDetail[] = recs.map((r: any, idx: number) => {
         let currentGrade = "Standard Clinical Practice";
         if (r.cor) {
-          currentGrade = `Class ${r.cor}, Level ${r.loe || "B"}`;
+          currentGrade = `Class ${r.cor}${r.loe ? `, Level ${r.loe}` : ""}`;
         } else if (r.quality_of_evidence || r.strength_of_recommendation) {
           currentGrade = `GRADE ${r.strength_of_recommendation || "Recommended"} (Evidence: ${r.quality_of_evidence || "Moderate"}${r.voting ? `, Voting: ${r.voting}` : ""})`;
         }
+
+        // Phân định chính xác giữa What is New (Điểm mới) và Khuyến cáo thường quy
+        const isHighImpact = Boolean(r.is_high_impact_change || r.previous_grade || (r.change_type && r.change_type !== "STANDARD"));
+        const changeType = isHighImpact
+          ? ((r.change_type && r.change_type !== "STANDARD" ? r.change_type : (r.previous_grade ? "UPGRADED" : "NEW")) as PracticeChangeDetail["changeType"])
+          : "STANDARD";
 
         return {
           id: r.rec_id || `rec-${idx + 1}`,
           category: r.topic || "Clinical Management",
           topic: r.pico_id ? `${r.pico_id}: ${r.section || ""}` : r.section || "Recommendation",
-          changeType: r.cor === "1" || (r.strength_of_recommendation && r.strength_of_recommendation.includes("Strong")) ? "UPGRADED" : "NEW",
+          changeType,
+          previousGrade: r.previous_grade || undefined,
           currentText: r.statement,
           currentGrade,
           drivingTrials: r.driving_trials || [],

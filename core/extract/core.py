@@ -77,23 +77,33 @@ class ExtractCore(BaseCore):
         page_texts: Dict[int, str] = {}
         all_detected_systems = set()
 
+        prev_is_cand = False
+        prev_sys = GradingSystemType.UNKNOWN
+
         for idx in range(total_pages):
             page_num = idx + 1
             page = doc[idx]
 
-            # Bóc tách text theo khối (blocks) giữ thứ tự đọc tự nhiên 2 cột
-            blocks = page.get_text("blocks")
-            # Sắp xếp blocks theo thứ tự: từ trên xuống dưới (y0), từ trái qua phải (x0)
-            sorted_blocks = sorted(blocks, key=lambda b: (b[1], b[0]))
-            clean_text = "\n".join([b[4].strip() for b in sorted_blocks if b[4].strip()])
+            # Bóc tách text giữ nguyên thứ tự luồng đọc tự nhiên chuẩn đa cột của PyMuPDF
+            # page.get_text("text") tự động phân tích layout và đọc hết cột 1 trước khi sang cột 2
+            natural_text = page.get_text("text").strip()
 
-            is_cand, grad_sys, signals = is_recommendation_candidate_page(clean_text)
+            is_cand, grad_sys, signals = is_recommendation_candidate_page(
+                natural_text,
+                prev_page_is_candidate=prev_is_cand,
+                prev_system=prev_sys,
+            )
             if is_cand:
                 candidate_page_indices.append(page_num)
                 page_system_map[page_num] = grad_sys
                 page_signals_map[page_num] = signals
-                page_texts[page_num] = clean_text
+                page_texts[page_num] = natural_text
                 all_detected_systems.add(grad_sys)
+                prev_is_cand = True
+                prev_sys = grad_sys
+            else:
+                prev_is_cand = False
+                prev_sys = GradingSystemType.UNKNOWN
 
         doc.close()
 
@@ -105,7 +115,23 @@ class ExtractCore(BaseCore):
                 with pdfplumber.open(str(file_path)) as plumber_pdf:
                     for p_num in candidate_page_indices:
                         plumber_page = plumber_pdf.pages[p_num - 1]
+                        # 1. Thử bóc theo đường kẻ vector mặc định
                         raw_tables = plumber_page.extract_tables() or []
+
+                        # 2. Nếu không thấy bảng (do AHA dùng màu nền ô thay vì đường kẻ), thử trích xuất theo text-alignment
+                        if not raw_tables:
+                            try:
+                                text_tables = plumber_page.extract_tables(table_settings={
+                                    "vertical_strategy": "text",
+                                    "horizontal_strategy": "text",
+                                    "snap_tolerance": 5,
+                                    "join_tolerance": 5,
+                                })
+                                if text_tables:
+                                    # Chỉ nhận bảng nếu có ít nhất 2 cột
+                                    raw_tables = [t for t in text_tables if t and len(t[0]) >= 2]
+                            except Exception:
+                                pass
 
                         tables_list: List[ExtractedTable] = []
                         for t_idx, raw_table in enumerate(raw_tables):

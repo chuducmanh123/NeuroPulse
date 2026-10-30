@@ -1,4 +1,5 @@
-from typing import Dict, Any, List, Optional
+import re
+from typing import Dict, Any, List, Optional, Tuple
 from pydantic import BaseModel
 
 from core.common.base import BaseCore
@@ -13,6 +14,57 @@ from core.common.contracts import (
 )
 from core.analyze.gemini_client import GeminiClient
 from core.analyze.prompts import SYSTEM_INSTRUCTION, get_prompt_for_grading_system
+
+
+def normalize_cor(cor_val: Optional[Any]) -> Tuple[Optional[str], Optional[str]]:
+    """
+    Chuẩn hóa nhãn COR về dạng chuẩn '1', '2a', '2b', '3' cùng nhãn cor_label.
+    Chấp nhận: 'Class 1', 'Class I', 'I', '1', 'Class 2a', 'Class IIa', 'IIa', '3:Harm', '3: No Benefit', etc.
+    """
+    if not cor_val:
+        return None, None
+    s = str(cor_val).strip()
+    s_low = s.lower()
+
+    if "harm" in s_low:
+        return "3", "Harm"
+    if "no benefit" in s_low:
+        return "3", "No Benefit"
+    if re.search(r"\b(2a|iia)\b", s_low):
+        return "2a", "Moderate"
+    if re.search(r"\b(2b|iib)\b", s_low):
+        return "2b", "Weak"
+    if re.search(r"\b(3|iii)\b", s_low):
+        return "3", "Harm / No Benefit"
+    if re.search(r"\b(1|i)\b", s_low):
+        return "1", "Strong"
+
+    return s, None
+
+
+def normalize_loe(loe_val: Optional[Any]) -> Tuple[Optional[str], Optional[str]]:
+    """
+    Chuẩn hóa LOE: 'Level B-R', 'B-R', 'BR' -> 'B-R'.
+    """
+    if not loe_val:
+        return None, None
+    s = str(loe_val).strip()
+    s_clean = re.sub(r"^level\s+", "", s, flags=re.IGNORECASE).strip().upper()
+    if s_clean in {"B-R", "BR"}:
+        return "B-R", "Moderate Quality (RCT)"
+    if s_clean in {"B-NR", "BNR"}:
+        return "B-NR", "Moderate Quality (Non-RCT)"
+    if s_clean in {"C-LD", "CLD"}:
+        return "C-LD", "Limited Data"
+    if s_clean in {"C-EO", "CEO"}:
+        return "C-EO", "Expert Opinion"
+    if s_clean == "A":
+        return "A", "High Quality (Multiple RCTs)"
+    if s_clean == "B":
+        return "B", "Moderate Quality"
+    if s_clean == "C":
+        return "C", "Limited / Expert"
+    return s_clean, None
 
 
 class AnalyzeCore(BaseCore):
@@ -98,32 +150,29 @@ class AnalyzeCore(BaseCore):
                 rec_idx = r.get("rec_index", r_idx + 1)
                 rec_id = f"{input_data.file_id[:8]}-P{page.page_num}-R{rec_idx}"
 
-                # Chuẩn hóa nhãn COR nếu là AHA
-                cor_val = r.get("cor")
-                cor_label = None
-                if cor_val:
-                    cor_str = str(cor_val).strip()
-                    if cor_str == "1":
-                        cor_label = "Strong"
-                    elif cor_str == "2a":
-                        cor_label = "Moderate"
-                    elif cor_str == "2b":
-                        cor_label = "Weak"
-                    elif cor_str == "3":
-                        cor_label = "Harm / No Benefit"
+                # Chuẩn hóa nhãn COR và LOE nếu là AHA
+                raw_cor = r.get("cor")
+                norm_cor, cor_label = normalize_cor(raw_cor)
+
+                raw_loe = r.get("loe")
+                norm_loe, loe_label = normalize_loe(raw_loe)
 
                 rec_obj = AnalyzedRecommendation(
                     rec_id=rec_id,
                     guideline_id=input_data.file_id,
                     grading_system=page.grading_system,
                     page_num=page.page_num,
+                    is_high_impact_change=bool(r.get("is_high_impact_change", False)),
+                    change_type=r.get("change_type"),
+                    previous_grade=r.get("previous_grade"),
                     section=r.get("section"),
                     topic=r.get("topic"),
                     pico_id=r.get("pico_id"),
                     statement=r.get("statement", "").strip(),
-                    cor=str(r.get("cor")) if r.get("cor") else None,
+                    cor=norm_cor,
                     cor_label=cor_label,
-                    loe=str(r.get("loe")) if r.get("loe") else None,
+                    loe=norm_loe,
+                    loe_label=loe_label,
                     quality_of_evidence=r.get("quality_of_evidence"),
                     strength_of_recommendation=r.get("strength_of_recommendation"),
                     consensus_statement=r.get("consensus_statement"),

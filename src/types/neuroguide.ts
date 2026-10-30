@@ -71,7 +71,7 @@ export interface PracticeChangeDetail {
   scenarioId?: string;
   category: string; // e.g. "Reperfusion", "Blood Pressure", "Antithrombotics"
   topic: string;
-  changeType: "NEW" | "UPGRADED" | "DOWNGRADED" | "REVISED";
+  changeType: "NEW" | "UPGRADED" | "DOWNGRADED" | "REVISED" | "STANDARD";
   previousText?: string;
   currentText: string;
   previousGrade?: string; // 'Class IIb, Level B-R'

@@ -12,7 +12,7 @@ NGUYÊN TẮC QUAN TRỌNG:
 4. LOẠI BỎ RÁC: Không trích xuất các câu thảo luận thông thường, phương pháp viết bài, hoặc chú thích bảng không phải khuyến cáo.
 """
 
-PROMPT_AHA_ACC = """Hãy trích xuất TẤT CẢ các khuyến cáo lâm sàng (Recommendations) trong nội dung trang/bảng dưới đây theo hệ thống AHA/ACC (COR/LOE).
+PROMPT_AHA_ACC = """Hãy trích xuất TẤT CẢ các khuyến cáo lâm sàng (Recommendations) và các Thay đổi Thực hành Đột phá (What is New / High-Impact Practice Changes) trong nội dung trang/bảng dưới đây theo hệ thống AHA/ACC.
 
 VĂN BẢN ĐẦU VÀO TỪ TRANG {page_num}:
 ---
@@ -24,17 +24,30 @@ Hãy trả về một mảng JSON theo schema sau (không thêm bất kỳ văn 
   "recommendations": [
     {{
       "rec_index": 1,
-      "section": "Tên mục hoặc tiêu đề bảng (ví dụ: 2.1 Stroke Awareness)",
-      "topic": "Chủ đề lâm sàng (ví dụ: Prehospital Management)",
-      "cor": "1, 2a, 2b, hoặc 3",
+      "is_high_impact_change": false,
+      "change_type": "STANDARD",
+      "previous_grade": null,
+      "section": "Tên mục hoặc tiêu đề bảng (ví dụ: 2.1 Stroke Awareness hoặc 1. What is New)",
+      "topic": "Chủ đề lâm sàng (ví dụ: Prehospital Management hoặc Reperfusion)",
+      "cor": "1, 2a, 2b, hoặc 3 (có thể kèm :Harm hoặc :No Benefit nếu có)",
       "loe": "A, B-R, B-NR, C-LD, hoặc C-EO",
       "statement": "Toàn văn câu khuyến cáo lâm sàng",
       "target_population": "Đối tượng bệnh nhân áp dụng",
-      "driving_trials": ["Danh sách các thử nghiệm then chốt nếu được nhắc đến trong câu, ví dụ: FAST-ED, RACE"],
+      "driving_trials": ["Danh sách các thử nghiệm then chốt nếu được nhắc đến trong câu, ví dụ: AcT, SELECT2, ESETT"],
       "verbatim_quote": "Đoạn trích ngắn 1-2 câu trong văn bản gốc dùng để kiểm chứng"
     }}
   ]
 }}
+
+LƯU Ý QUAN TRỌNG VỀ PHÂN LOẠI:
+- Nếu mục này thuộc '1. What is New and of High Impact' hoặc 'Take-Home Messages' hoặc thay đổi so với bản trước:
+  + Đặt `is_high_impact_change`: true
+  + Đặt `change_type`: "UPGRADED" (nếu nâng cấp), "NEW" (nếu mới bổ sung), "DOWNGRADED" (nếu hạ bậc), hoặc "REVISED" (nếu sửa đổi từ ngữ).
+  + Điền `previous_grade`: mức cũ nếu có (ví dụ: "Class IIb, LOE B-R").
+- Nếu là bảng khuyến cáo lâm sàng chuẩn thông thường (như trong Section 2, 3, 4, 5...):
+  + Đặt `is_high_impact_change`: false
+  + Đặt `change_type`: "STANDARD"
+  + Điền đúng COR và LOE của từng dòng khuyến cáo.
 """
 
 PROMPT_GRADE_ESO = """Hãy trích xuất TẤT CẢ các khuyến cáo lâm sàng và Đồng thuận chuyên gia (Expert Consensus Statements) trong nội dung trang/bảng dưới đây theo hệ thống GRADE của ESO (European Stroke Organisation).
