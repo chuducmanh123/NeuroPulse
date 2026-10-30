@@ -62,6 +62,15 @@ class GradingSystemType(str, Enum):
     UNKNOWN = "UNKNOWN"               # Chưa xác định
 
 
+class FullTextAvailability(str, Enum):
+    """Khả năng tiếp cận bài toàn văn của tài liệu hướng dẫn."""
+    OPEN_ACCESS_PMC = "OPEN_ACCESS_PMC"                 # Toàn văn miễn phí trên PubMed Central (PMC)
+    OPEN_ACCESS_UNPAYWALL = "OPEN_ACCESS_UNPAYWALL"     # Toàn văn từ Unpaywall / Europe PMC Open Access
+    DIRECT_PDF_AVAILABLE = "DIRECT_PDF_AVAILABLE"       # Tìm thấy link tải file PDF trực tiếp
+    ABSTRACT_ONLY = "ABSTRACT_ONLY"                     # Chỉ có Abstract/Tóm tắt sơ bộ
+    SUBSCRIPTION_PAYWALLED = "SUBSCRIPTION_PAYWALLED"   # Bị khóa tường phí (cần bác sĩ tải file lên)
+
+
 class ExtractedTable(BaseModel):
     """Bảng cấu trúc được bóc tách từ trang PDF."""
     table_index: int
@@ -91,6 +100,8 @@ class ExtractOutput(BaseModel):
     total_pages: int
     candidate_page_count: int
     detected_grading_systems: List[GradingSystemType] = Field(default_factory=list)
+    top_takeaways: List[str] = Field(default_factory=list) # 10 thông điệp thực hành then chốt nếu có
+    high_impact_pages: List[int] = Field(default_factory=list) # Các trang chứa What Is New / Practice Changes
     candidate_pages: List[CandidatePage] = Field(default_factory=list)
     state: DocumentLifecycleState = DocumentLifecycleState.EXTRACTED
 
@@ -205,6 +216,7 @@ class GuidelineDocumentRecord(BaseModel):
     pending_count: int
     approved_count: int
     rejected_count: int
+    top_takeaways: List[str] = Field(default_factory=list) # Danh sách Take-Home Messages
     recommendations: List[StoredRecommendation] = Field(default_factory=list)
     created_at: str
     updated_at: str
@@ -235,8 +247,12 @@ class DiscoveredGuideline(BaseModel):
     source_url: str
     pdf_url: Optional[str] = None
     doi: Optional[str] = None
+    pmcid: Optional[str] = None       # ID trên PubMed Central nếu có
     category: Optional[str] = None    # Stroke, Epilepsy, Neuro-ICU, Headache...
     adapter_used: str = "HTML_DIRECTORY" # "HTML_DIRECTORY" hoặc "PUBMED_API"
+    full_text_availability: FullTextAvailability = FullTextAvailability.ABSTRACT_ONLY
+    direct_pdf_url: Optional[str] = None # Link trực tiếp đến file PDF toàn văn nếu tìm thấy
+    abstract_text: Optional[str] = None  # Tóm tắt sơ bộ từ PubMed nếu có
     is_new: bool = True               # True nếu chưa có trong catalog
 
 
@@ -244,11 +260,13 @@ class DiscoveryInput(BaseModel):
     societies: Optional[List[str]] = None  # None = tất cả nguồn
     limit_per_source: int = 10
     year_min: int = 2018
+    resolve_fulltext_links: bool = True    # Bật tự động truy vấn Open Access link toàn văn
 
 
 class DiscoveryOutput(BaseModel):
     total_discovered: int
     new_discovered_count: int
+    fulltext_available_count: int = 0
     items: List[DiscoveredGuideline] = Field(default_factory=list)
     state: DocumentLifecycleState = DocumentLifecycleState.DISCOVERED
 
@@ -261,4 +279,7 @@ class GuidelineMetadata(BaseModel):
     year: Optional[int] = None
     source_url: Optional[str] = None
     doi: Optional[str] = None
+    pmcid: Optional[str] = None
+    full_text_status: str = "FULL_TEXT_PARSED"
+    top_takeaways: List[str] = Field(default_factory=list)
     state: DocumentLifecycleState = DocumentLifecycleState.DISCOVERED

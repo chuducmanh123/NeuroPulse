@@ -1,33 +1,259 @@
-# Task List: Core Pipeline & Web Orchestrator
+# Task List: Full-Text Pipeline Enhancement & Cleanup
 
-- [x] Task 1: Cài đặt Dependencies Python chuyên sâu (`pymupdf`, `pdfplumber`, `pydantic`, `pytest`, `requests`) <!-- id: 1 -->
-- [x] Task 2: Xây dựng Module `core/common` (Contracts, State Machine, BaseCore, Abstract Storage) <!-- id: 2 -->
-- [x] Task 3: Xây dựng Module `core/fetch` (FetchCore, LocalStorageAdapter, CLI runner) <!-- id: 3 -->
-- [x] Task 4: Viết Test Suite & Chạy kiểm thử tự động (`test_common.py`, `test_fetch.py`) <!-- id: 4 -->
-- [x] Task 5: Thử nghiệm thực tế với 1 guideline lâm sàng thật qua CLI runner <!-- id: 5 -->
-- [x] Task 6: Bổ sung Contracts cho Đa hệ thống phân loại (`GradingSystemType`, `ExtractedTable`, `CandidatePage`) <!-- id: 6 -->
-- [x] Task 7: Xây dựng Module `core/extract/detector.py` (Đặc trưng nhận diện AHA/ACC, ESO/GRADE, AAN, Consensus/Voting) <!-- id: 7 -->
-- [x] Task 8: Xây dựng Module `core/extract/core.py` (Lọc trang ứng viên + bóc cấu trúc bảng/khối bằng PyMuPDF + pdfplumber) <!-- id: 8 -->
-- [x] Task 9: Xây dựng CLI runner `core/extract/runner.py` và Test suite `tests/core/test_extract.py` (Kiểm thử cả mẫu AHA và ESO) <!-- id: 9 -->
-- [x] Task 10: Bổ sung Contracts cho Lõi Analyze (`AnalyzedRecommendation`, `AnalyzeInput`, `AnalyzeOutput`) <!-- id: 10 -->
-- [x] Task 11: Xây dựng Gemini AI Client (`core/analyze/gemini_client.py`) với Waterfall Model và tự động đọc key từ `.env` <!-- id: 11 -->
-- [x] Task 12: Xây dựng Prompt Templates chuyên biệt theo hệ thống (`core/analyze/prompts.py`) cho AHA và ESO/GRADE <!-- id: 12 -->
-- [x] Task 13: Xây dựng Lõi `AnalyzeCore` (`core/analyze/core.py`) và CLI runner (`core/analyze/runner.py`) <!-- id: 13 -->
-- [x] Task 14: Viết Test suite `tests/core/test_analyze.py` (Kiểm thử phân tích bóc tách AHA và ESO) <!-- id: 14 -->
-- [x] Task 15: Bổ sung Contracts cho Lõi Verify (`VerificationStatus`, `VerifiedRecommendation`, `VerifyInput`, `VerifyOutput`) <!-- id: 15 -->
-- [x] Task 16: Xây dựng Bộ quy tắc kiểm chứng độc lập (`core/verify/rules.py`): Grounding, Classification Schema, Numerical Validation <!-- id: 16 -->
-- [x] Task 17: Xây dựng Lõi `VerifyCore` (`core/verify/core.py`) và CLI runner (`core/verify/runner.py`) <!-- id: 17 -->
-- [x] Task 18: Viết Test suite `tests/core/test_verify.py` bắt các lỗi cố ý gài vào (COR sai, số liệu ảo, text không có trong bản gốc) <!-- id: 18 -->
-- [x] Task 19: Bổ sung Contracts cho Lõi Store (`ApprovalStatus`, `StoredRecommendation`, `GuidelineDocumentRecord`, `StoreInput`, `StoreOutput`) <!-- id: 19 -->
-- [x] Task 20: Xây dựng Trình quản lý Lưu trữ & Hàng đợi Duyệt (`core/store/manager.py`) hỗ trợ versioning và review workflow <!-- id: 20 -->
-- [x] Task 21: Xây dựng Lõi `StoreCore` (`core/store/core.py`) và CLI runner (`core/store/runner.py`) <!-- id: 21 -->
-- [x] Task 22: Viết Test suite `tests/core/test_store.py` (Kiểm tra version increment, review queue, approve/reject state transition) <!-- id: 22 -->
-- [x] Task 23: Bổ sung Contracts cho Lõi Discovery (`DiscoveredGuideline`, `DiscoveryInput`, `DiscoveryOutput`) <!-- id: 23 -->
-- [x] Task 24: Xây dựng Cấu hình Danh mục Nguồn (`core/discovery/sources.py`) bao quát 12 hội chuyên khoa <!-- id: 24 -->
-- [x] Task 25: Xây dựng `HtmlDirectoryAdapter` & `PubmedSocietyAdapter` (`core/discovery/adapters.py`) <!-- id: 25 -->
-- [x] Task 26: Xây dựng Lõi `DiscoveryCore` (`core/discovery/core.py`) và CLI runner (`core/discovery/runner.py`) <!-- id: 26 -->
-- [x] Task 27: Viết Test suite `tests/core/test_discovery.py` và kiểm thử tự động quét các nguồn <!-- id: 27 -->
-- [x] Task 28: Xây dựng Bộ điều phối `GuidelineOrchestrator` (`core/orchestrator/pipeline.py` & `runner.py`) <!-- id: 28 -->
-- [x] Task 29: Xây dựng các Next.js API Routes (`/api/neuroguide/catalog`, `/review-queue`, `/pipeline`) <!-- id: 29 -->
-- [x] Task 30: Nâng cấp Web NeuroGuide UI (`src/app/neuroguide/page.tsx`): Tích hợp Review Queue và Quét Radar tự động <!-- id: 30 -->
-- [x] Task 31: Kiểm thử End-to-End từ Web UI đến Backend Orchestrator <!-- id: 31 -->
+## Phase 1: Cleanup & Contracts Enhancement
+
+### Task 1: Dọn dẹp triệt để các dữ liệu tạm thời chưa hoàn chỉnh và chuẩn hóa catalog
+**Description:** Xóa bỏ toàn bộ các file guideline mock, file mẫu tạm thời chỉ có 1-3 khuyến cáo được sinh ra trong các bước test trước đó (`b089...`, `aha_v1`, `aha_v2`, `sample_*.pdf`). Cập nhật `catalog.json` đảm bảo chỉ giữ lại các tài liệu có dữ liệu lâm sàng hoàn chỉnh.
+
+**Acceptance criteria:**
+- [x] Các file `b089..._latest.json`, `b089..._v1.json`, `aha2026_test_v1.json`, `aha2026_test_v2.json` và các file pdf mẫu tạm thời được xóa sạch khỏi `data/guidelines_store/`, `data/guidelines_raw/`, `data/`.
+- [x] `data/guidelines_store/catalog.json` chỉ chứa bản ghi hợp lệ đã được xác minh (`aha2026_test` với 63 khuyến cáo).
+- [x] Giao diện Web Review Queue và Catalog không còn hiển thị các item rác này.
+
+**Verification:**
+- [x] Chạy lệnh kiểm tra file: `Get-ChildItem data/guidelines_store`
+- [x] Catalog JSON hợp lệ: `python -m json.tool data/guidelines_store/catalog.json`
+
+**Dependencies:** None
+**Files likely touched:**
+- `data/guidelines_store/catalog.json`
+- `data/guidelines_store/*`
+- `data/guidelines_raw/*`
+
+**Estimated scope:** XS (1 file config / dọn file đĩa)
+
+---
+
+### Task 2: Cập nhật Data Contracts cho Bài toàn văn
+**Description:** Mở rộng các Pydantic schema và TypeScript types để hỗ trợ vòng đời bài toàn văn: `FullTextStatus` ("FULL_TEXT_AVAILABLE", "OPEN_ACCESS_PMC", "PAYWALLED_MANUAL_REQUIRED"), các trường định danh bài báo (`pmcid`, `doi`, `direct_pdf_url`), trường cấu trúc 3 tầng (`top_takeaways`, `high_impact_changes`, `section_recommendations`), và schema `BatchAnalyzeInput`.
+
+**Acceptance criteria:**
+- [x] `core/common/contracts.py`: Thêm `FullTextAvailability`, `FullTextArticleMetadata`, mở rộng `ExtractOutput` hỗ trợ `top_takeaways` và `high_impact_pages`.
+- [x] `src/types/neuroguide.ts`: Đồng bộ `topTakeaways`, `fullTextStatus`, `fullTextSource`, `pmcid`, `doi`.
+- [x] Tất cả schema biên dịch không lỗi type.
+
+**Verification:**
+- [x] TypeScript check: `cmd /c npx tsc --noEmit`
+- [x] Python contract check: `python -c "import core.common.contracts; print('OK')"`
+
+**Dependencies:** Task 1
+**Files likely touched:**
+- `core/common/contracts.py`
+- `src/types/neuroguide.ts`
+
+**Estimated scope:** S (2 files)
+
+---
+
+## Checkpoint: Foundation Clean & Stable
+- [x] Dữ liệu rác đã được xóa sạch, `catalog.json` chỉ chứa bản ghi hợp lệ.
+- [x] Typecheck và build của dự án vượt qua thành công.
+
+---
+
+## Phase 2: Nâng cấp Discovery & Fetch Core
+
+### Task 3: Nâng cấp DiscoveryCore tích hợp DOI Resolver, Europe PMC & Link Heuristic
+**Description:** Nâng cấp `DiscoveryCore` và `PubmedSocietyAdapter` để không chỉ lấy Abstract mà còn tự động phân giải DOI qua Unpaywall / Europe PMC REST API để tìm trực tiếp link PDF toàn văn mở (Open Access PDF). Cải tiến `HtmlDirectoryAdapter` với bộ nhận diện link PDF toàn văn trên trang web của các hiệp hội (AHA, ESO, ILAE, NCS, AAN).
+
+**Acceptance criteria:**
+- [x] Thêm hàm phân giải `resolve_open_access_pdf(doi, pmid)` sử dụng Europe PMC / Unpaywall API công khai.
+- [x] `HtmlDirectoryAdapter` nhận diện và ưu tiên trích xuất link trỏ thẳng tới file PDF toàn văn (`.pdf`, `/doi/pdf/`, `download`).
+- [x] Mỗi guideline phát hiện có kèm thông tin `full_text_status` ("FULL_TEXT_AVAILABLE" hoặc "PAYWALLED").
+
+**Verification:**
+- [x] Chạy test discovery: `pytest tests/core/test_discovery.py` hoặc runner thực tế.
+- [x] Kiểm tra kết quả trả về có chứa trường `direct_pdf_url` hoặc `pmcid`.
+
+**Dependencies:** Task 2
+**Files likely touched:**
+- `core/discovery/adapters.py`
+- `core/discovery/core.py`
+- `core/discovery/sources.py`
+
+**Estimated scope:** M (3 files)
+
+---
+
+### Task 4: Nâng cấp FetchCore hỗ trợ tải PDF từ Meta HTML, PMC endpoint và phát hiện Paywall
+**Description:** Nâng cấp `FetchCore` để khi gặp một URL là trang đích HTML (thay vì PDF trực tiếp), nó sẽ tự động cào các thẻ `<meta name="citation_pdf_url">` để tải tiếp file PDF thật. Hỗ trợ tải trực tiếp từ kho mở PMC `https://www.ncbi.nlm.nih.gov/pmc/articles/{pmcid}/pdf/`. Bổ sung bộ nhận diện tường thu phí (Paywall Barrier Detector) để thông báo rõ ràng cho người dùng thay vì báo lỗi mơ hồ.
+
+**Acceptance criteria:**
+- [x] `FetchCore` tự động phát hiện content-type `text/html` và bóc tách link PDF từ meta tags.
+- [x] Tải an toàn các bài toàn văn từ PMC qua `pmcid`.
+- [x] Nếu gặp paywall, trả về `CoreException(code="PAYWALLED_MANUAL_REQUIRED")` kèm chỉ dẫn tải lên tệp PDF cục bộ.
+
+**Verification:**
+- [x] Chạy test fetch: `pytest tests/core/test_fetch.py`
+- [x] Thử nghiệm tải URL trang đích HTML và kiểm tra tải được PDF tương ứng.
+
+**Dependencies:** Task 3
+**Files likely touched:**
+- `core/fetch/core.py`
+
+**Estimated scope:** S (1-2 files)
+
+---
+
+### Task 5: Kiểm thử tự động Discovery & Fetch với bài toàn văn
+**Description:** Viết test suite chuyên sâu kiểm tra khả năng phát hiện link bài toàn văn, phân giải DOI thành Open Access PDF, và tải file toàn văn thực tế.
+
+**Acceptance criteria:**
+- [x] Test cases kiểm tra: Resolve DOI thành công ra URL PDF mở, Parse link PDF từ HTML meta tag, Xử lý khi gặp paywall.
+- [x] Toàn bộ test suite chạy xanh.
+
+**Verification:**
+- [x] `pytest tests/core/test_fetch.py`
+- [x] `pytest tests/core/test_discovery.py`
+
+**Dependencies:** Task 3, Task 4
+**Files likely touched:**
+- `tests/core/test_fetch.py`
+- `tests/core/test_discovery.py`
+
+**Estimated scope:** S (2 files)
+
+---
+
+## Checkpoint: Discovery & Fetch Full-Text Ready
+- [x] Kiểm thử thành công tìm kiếm bài toàn văn từ DOI / PubMed và tự động tải được file PDF thực tế.
+
+---
+
+## Phase 3: Nâng cấp Extract & Analyze Core
+
+### Task 6: Nâng cấp ExtractCore với cơ chế bóc tách 3 tầng & Page Chunking
+**Description:** Tối ưu `ExtractCore` để xử lý mượt mà tài liệu dài 50-120 trang: Bóc tách riêng tầng 1 (Top Takeaways), tầng 2 (Bảng What Is New / High Impact), và tầng 3 (Các bảng khuyến cáo chuyên đề trên toàn bộ văn bản). Thêm cơ chế phân tích block text tự nhiên của PyMuPDF kết hợp với pdfplumber để không bỏ sót các khuyến cáo dạng text-block màu.
+
+**Acceptance criteria:**
+- [ ] `ExtractCore` trích xuất được `top_takeaways` từ trang 2-5 nếu có.
+- [ ] Bóc tách đầy đủ toàn bộ bảng What is new (như 28 khuyến cáo AHA 2026).
+- [ ] Bóc tách các bảng khuyến cáo chuyên đề trên toàn tài liệu mà không gây tràn bộ nhớ hay treo tiến trình.
+
+**Verification:**
+- [ ] Chạy thử nghiệm bóc tách trên file AHA 2026: `python -m core.extract.runner --file-id ...`
+- [ ] Kiểm tra số lượng trang ứng viên và bảng trích xuất chính xác.
+
+**Dependencies:** Task 2
+**Files likely touched:**
+- `core/extract/core.py`
+- `core/extract/detector.py`
+
+**Estimated scope:** M (2 files)
+
+---
+
+### Task 7: Nâng cấp AnalyzeCore với Batch Chunking & Prompt chuyên biệt
+**Description:** Cải tiến `AnalyzeCore` chuyển từ việc gọi Gemini tuần tự từng trang sang mô hình gộp lô thông minh (Batch chunking 3-5 trang / prompt). Tách biệt 2 prompt: Prompt chuyên biệt cho What Is New (trích xuất `change_type`, `previous_grade`, `driving_trials`) và Prompt cho khuyến cáo thường quy. Bổ sung cơ chế thử lại (Exponential backoff retry) chống Rate-limit.
+
+**Acceptance criteria:**
+- [ ] Gộp các trang ứng viên thành các batch 3-5 trang để giảm số lần gọi AI từ 40 lần xuống còn 8-10 lần.
+- [ ] Phân tích chính xác các nhãn `UPGRADED`, `NEW`, `DOWNGRADED`, `STANDARD` và tên thử nghiệm dẫn dắt.
+- [ ] Tự động thử lại khi gặp HTTP 429 hoặc gián đoạn mạng.
+
+**Verification:**
+- [ ] Chạy test analyze: `pytest tests/core/test_analyze.py`
+- [ ] Kiểm tra tốc độ xử lý nhanh hơn ít nhất 3 lần so với phiên bản cũ.
+
+**Dependencies:** Task 6
+**Files likely touched:**
+- `core/analyze/core.py`
+- `core/analyze/prompts.py`
+- `core/analyze/gemini_client.py`
+
+**Estimated scope:** M (3 files)
+
+---
+
+### Task 8: Kiểm thử tự động Extract & Analyze trên tài liệu dài
+**Description:** Kiểm thử tích hợp toàn bộ pha Extract và Analyze trên tài liệu thực tế (AHA 2026), kiểm chứng độ chính xác của các khuyến cáo trích xuất được.
+
+**Acceptance criteria:**
+- [ ] Trích xuất đầy đủ 10 Top Takeaways, 28 High Impact Changes và danh mục khuyến cáo chuyên đề.
+- [ ] Grounding score và chuẩn hóa COR/LOE đạt chuẩn 100%.
+
+**Verification:**
+- [ ] `pytest tests/core/test_analyze.py`
+- [ ] Chạy pipeline thử nghiệm và xem file JSON đầu ra.
+
+**Dependencies:** Task 6, Task 7
+**Files likely touched:**
+- `tests/core/test_analyze.py`
+
+**Estimated scope:** S (1 file)
+
+---
+
+## Checkpoint: Extraction & Analysis Resilient
+- [ ] Quá trình bóc tách và phân tích chạy ổn định trên tài liệu dài không bị tràn bộ nhớ hay lỗi Rate Limit.
+
+---
+
+## Phase 4: Nâng cấp Store Core & Web UI Integration
+
+### Task 9: Nâng cấp StoreCore với Quality Gate chặn dữ liệu rác
+**Description:** Nâng cấp `StoreCore` với cơ chế kiểm định chất lượng nghiêm ngặt (Quality Gate): Từ chối lưu các guideline stub không hoàn chỉnh (< 5 khuyến cáo mà không có cờ draft). Cấu trúc lưu trữ mở rộng hỗ trợ trường `top_takeaways`, `high_impact_changes`, `metadata` chi tiết.
+
+**Acceptance criteria:**
+- [ ] `StoreCore` tự động chặn lưu các tài liệu rác hoặc chưa bóc tách xong.
+- [ ] Lưu đầy đủ metadata bài toàn văn vào `{guideline_id}_latest.json` và cập nhật `catalog.json`.
+- [ ] Tương thích hoàn toàn với cơ chế bảo vệ Vercel EROFS.
+
+**Verification:**
+- [ ] `pytest tests/core/test_store.py`
+- [ ] Thử lưu 1 tài liệu stub để đảm bảo Quality Gate từ chối hợp lệ.
+
+**Dependencies:** Task 2, Task 8
+**Files likely touched:**
+- `core/store/core.py`
+- `core/store/manager.py`
+
+**Estimated scope:** S (2 files)
+
+---
+
+### Task 10: Cập nhật Web Store Adapter và giao diện hiển thị bài toàn văn
+**Description:** Cập nhật `storeAdapter.ts` để đọc đầy đủ các trường mới từ Store Core (`top_takeaways`, `high_impact_changes`, `full_text_status`), và hoàn thiện hiển thị trên giao diện NeuroGuide Radar, trang chi tiết guideline và tab Hàng đợi kiểm duyệt (Review Queue).
+
+**Acceptance criteria:**
+- [ ] `storeAdapter.ts` ánh xạ trọn vẹn 3 tầng khuyến cáo lên giao diện Web.
+- [ ] Giao diện Web hiển thị card Top 10 Take-Home Messages, huy hiệu bài toàn văn ("Full Text Parsed"), và bộ lọc khuyến cáo theo danh mục.
+- [ ] Thao tác duyệt / từ chối trên Review Queue mượt mà không lỗi.
+
+**Verification:**
+- [ ] TypeScript check: `cmd /c npx tsc --noEmit`
+- [ ] Next.js Build: `cmd /c npm run build`
+
+**Dependencies:** Task 9
+**Files likely touched:**
+- `src/lib/neuroguide/storeAdapter.ts`
+- `src/app/neuroguide/page.tsx`
+- `src/components/neuroguide/ReviewQueueTab.tsx`
+
+**Estimated scope:** M (3 files)
+
+---
+
+### Task 11: Kiểm thử End-to-End toàn diện từ Discovery đến Web UI
+**Description:** Chạy kiểm thử toàn trình từ việc kích hoạt Discovery quét bài toàn văn, tải và trích xuất qua Pipeline, lưu vào Store và hiển thị lên giao diện Web của bác sĩ.
+
+**Acceptance criteria:**
+- [ ] Toàn bộ chuỗi Pipeline chạy thông suốt không có ngoại lệ chưa xử lý.
+- [ ] Dữ liệu hiển thị trên Web đầy đủ, chuẩn xác và đồng bộ giữa Local và Production Vercel.
+
+**Verification:**
+- [ ] `cmd /c npm run build`
+- [ ] Kiểm tra API `/api/neuroguide/catalog` và `/api/neuroguide/review-queue`.
+
+**Dependencies:** Task 10
+**Files likely touched:**
+- `core/orchestrator/pipeline.py`
+- `src/app/api/neuroguide/pipeline/route.ts`
+
+**Estimated scope:** S (2 files)
+
+---
+
+## Checkpoint: System Complete & Production Ready
+- [ ] Toàn bộ 5 lõi Discovery, Fetch, Extract, Analyze, Store được cải thiện toàn diện cho bài toàn văn.
+- [ ] Dữ liệu rác/tạm thời đã được dọn sạch triệt để.

@@ -9,7 +9,7 @@ from core.common.contracts import (
     DiscoveryOutput,
 )
 from core.discovery.sources import DISCOVERY_SOURCES
-from core.discovery.adapters import HtmlDirectoryAdapter, PubmedSocietyAdapter
+from core.discovery.adapters import HtmlDirectoryAdapter, PubmedSocietyAdapter, resolve_doi_crossref
 from core.store.manager import GuidelineStoreManager
 
 
@@ -76,7 +76,7 @@ class DiscoveryCore(BaseCore):
                     year_min=input_data.year_min,
                 )
 
-            # 3. Đánh giá tính mới (is_new)
+            # 3. Đánh giá tính mới (is_new) và làm giàu link toàn văn
             for item in discovered:
                 url_clean = item.source_url.lower().strip()
                 title_clean = item.title.lower().strip()
@@ -87,11 +87,24 @@ class DiscoveryCore(BaseCore):
                     item.is_new = True
                     new_count += 1
 
+                # Nếu chưa có direct_pdf_url mà có DOI và bật resolve_fulltext_links
+                if input_data.resolve_fulltext_links and not item.direct_pdf_url and item.doi:
+                    try:
+                        cr_info = resolve_doi_crossref(item.doi, timeout=4)
+                        if cr_info.get("pdf_url"):
+                            item.direct_pdf_url = cr_info["pdf_url"]
+                            item.pdf_url = cr_info["pdf_url"]
+                    except Exception:
+                        pass
+
                 all_items.append(item)
+
+        ft_count = sum(1 for it in all_items if it.direct_pdf_url or it.pmcid)
 
         output = DiscoveryOutput(
             total_discovered=len(all_items),
             new_discovered_count=new_count,
+            fulltext_available_count=ft_count,
             items=all_items,
             state=DocumentLifecycleState.DISCOVERED,
         )

@@ -4,6 +4,7 @@ import pymupdf  # PyMuPDF
 from pathlib import Path
 from core.fetch.core import FetchCore, FetchInput
 from core.fetch.storage_adapter import LocalFileStorageAdapter
+from core.discovery.adapters import derive_direct_pdf_url
 
 
 @pytest.fixture
@@ -40,6 +41,21 @@ def sample_invalid_file(tmp_path):
     return str(fake_path)
 
 
+@pytest.fixture
+def sample_paywalled_html(tmp_path):
+    """Tạo một trang HTML giả lập tường thu phí (Paywall) của nhà xuất bản."""
+    fake_path = tmp_path / "paywall_page.pdf"
+    html_content = (
+        "<!DOCTYPE html><html><head><title>Purchase Access - Clinical Journal</title></head>"
+        "<body><h1>Institutional Access Required</h1>"
+        "<p>You need a subscription or paywall purchase to read this full article. Sign in to access.</p>"
+        "<button>Buy Article $39.95</button>"
+        "</body></html>"
+    )
+    fake_path.write_text(html_content, encoding="utf-8")
+    return str(fake_path)
+
+
 def test_fetch_file_too_small(temp_storage, tmp_path):
     tiny_path = tmp_path / "tiny.pdf"
     tiny_path.write_bytes(b"%PDF-1.4 tiny")
@@ -67,6 +83,7 @@ def test_fetch_valid_local_pdf(temp_storage, sample_valid_pdf):
     assert result.data["page_count"] == 3
     assert result.data["society"] == "AHA/ASA"
     assert result.data["is_duplicate"] is False
+    assert result.data["full_text_source"] == "LOCAL_UPLOAD"
     assert result.data["state"] == "FETCHED"
     assert len(result.data["sha256"]) == 64
 
@@ -102,6 +119,38 @@ def test_fetch_invalid_magic_bytes(temp_storage, sample_invalid_file):
     assert result.error.code == "INVALID_PDF_HEADER"
     assert result.error.retryable is False
     assert "header_snippet" in result.error.details
+
+
+def test_fetch_paywall_detection(temp_storage, sample_paywalled_html):
+    """Kiểm tra: trang bị khóa tường phí sẽ báo lỗi PAYWALLED_MANUAL_REQUIRED với chỉ dẫn rõ ràng."""
+    core = FetchCore(storage_adapter=temp_storage)
+    input_data = FetchInput(local_path=sample_paywalled_html)
+
+    result = core.run(input_data)
+
+    assert result.ok is False
+    assert result.error is not None
+    assert result.error.code == "PAYWALLED_MANUAL_REQUIRED"
+    assert "thủ công" in result.error.message
+
+
+def test_derive_direct_pdf_urls():
+    """Kiểm tra logic suy luận link PDF cho các nhà xuất bản lớn."""
+    # AHA
+    aha_url = "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513"
+    assert derive_direct_pdf_url(aha_url) == "https://www.ahajournals.org/doi/pdf/10.1161/STR.0000000000000513"
+
+    # SAGE (ESO)
+    sage_url = "https://journals.sagepub.com/doi/full/10.1177/23969873221147775"
+    assert derive_direct_pdf_url(sage_url) == "https://journals.sagepub.com/doi/pdf/10.1177/23969873221147775"
+
+    # PMC
+    pmc_url = "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10512345/"
+    assert derive_direct_pdf_url(pmc_url) == "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10512345/pdf/"
+
+    # Direct PDF
+    pdf_url = "https://example.org/guideline.pdf"
+    assert derive_direct_pdf_url(pdf_url) == pdf_url
 
 
 def test_fetch_missing_local_file(temp_storage):

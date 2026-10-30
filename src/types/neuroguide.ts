@@ -101,6 +101,7 @@ export interface GuidelineDoc {
   fullTextStatus?: FullTextStatus;
   fullTextSource?: "PMC" | "EUROPE_PMC" | "OPEN_ACCESS_WEB";
   pmcid?: string;
+  doi?: string;
   aiSynthesized?: boolean;
   synthesizedAt?: string;
 }
