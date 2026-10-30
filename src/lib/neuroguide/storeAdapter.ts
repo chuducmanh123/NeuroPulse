@@ -3,6 +3,7 @@ import path from "path";
 import type { GuidelineDoc, PracticeChangeDetail, SubspecialtyType } from "../../types/neuroguide.ts";
 
 const STORE_DIR = path.join(process.cwd(), "data", "guidelines_store");
+const TMP_DIR = path.join("/tmp", "guidelines_store");
 
 function mapSocietyToSubspecialty(society: string, title: string): SubspecialtyType {
   const s = (society || "").toUpperCase();
@@ -36,14 +37,30 @@ function mapSocietyToSubspecialty(society: string, title: string): SubspecialtyT
  * Đọc tất cả các guideline đã được xử lý từ kho data/guidelines_store và chuyển đổi sang GuidelineDoc
  */
 export function getStoredGuidelinesAsDocs(): GuidelineDoc[] {
-  if (!fs.existsSync(STORE_DIR)) return [];
+  const fileMap = new Map<string, string>(); // fileName -> fullPath
 
-  const files = fs.readdirSync(STORE_DIR).filter((f) => f.endsWith("_latest.json"));
+  // Quét từ kho tĩnh STORE_DIR
+  if (fs.existsSync(STORE_DIR)) {
+    try {
+      const files = fs.readdirSync(STORE_DIR).filter((f) => f.endsWith("_latest.json"));
+      for (const f of files) fileMap.set(f, path.join(STORE_DIR, f));
+    } catch {}
+  }
+
+  // Quét từ thư mục ghi /tmp (trên Vercel Serverless, ghi đè nếu đã được duyệt)
+  if (fs.existsSync(TMP_DIR)) {
+    try {
+      const tmpFiles = fs.readdirSync(TMP_DIR).filter((f) => f.endsWith("_latest.json"));
+      for (const f of tmpFiles) fileMap.set(f, path.join(TMP_DIR, f));
+    } catch {}
+  }
+
+  if (fileMap.size === 0) return [];
+
   const docs: GuidelineDoc[] = [];
 
-  for (const file of files) {
+  for (const [file, fullPath] of fileMap.entries()) {
     try {
-      const fullPath = path.join(STORE_DIR, file);
       const raw = fs.readFileSync(fullPath, "utf-8");
       const record = JSON.parse(raw);
 

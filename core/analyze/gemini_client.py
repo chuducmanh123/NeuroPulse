@@ -91,15 +91,21 @@ class GeminiClient:
             }
 
         last_error = ""
+        clean_headers = {
+            "Content-Type": "application/json",
+            "x-goog-api-key": self.api_key,
+        }
 
         for model_name in self.models_priority:
-            url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={self.api_key}"
+            # Dùng header x-goog-api-key thay vì truyền qua query string để bảo mật tuyệt đối,
+            # tránh lộ API key vào log mạng, URL lỗi hoặc jobs.json khi gặp sự cố kết nối.
+            url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent"
             try:
                 # Ưu tiên dùng certifi CA bundle
                 try:
                     response = requests.post(
                         url,
-                        headers={"Content-Type": "application/json"},
+                        headers=clean_headers,
                         json=payload,
                         timeout=60,
                         verify=certifi.where(),
@@ -110,7 +116,7 @@ class GeminiClient:
                     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
                     response = requests.post(
                         url,
-                        headers={"Content-Type": "application/json"},
+                        headers=clean_headers,
                         json=payload,
                         timeout=60,
                         verify=False,
@@ -148,12 +154,19 @@ class GeminiClient:
                     continue
 
             except Exception as e:
-                last_error = f"Lỗi kết nối tới {model_name}: {str(e)}"
+                err_msg = str(e)
+                # Tẩy sạch API key khỏi chuỗi exception nếu có
+                err_msg = re.sub(r"AIza[0-9A-Za-z-_]{35}", "[REDACTED_KEY]", err_msg)
+                err_msg = re.sub(r"key=[0-9A-Za-z-_]+", "key=[REDACTED]", err_msg)
+                last_error = f"Lỗi kết nối tới {model_name}: {err_msg}"
                 continue
+
+        safe_error = re.sub(r"AIza[0-9A-Za-z-_]{35}", "[REDACTED_KEY]", last_error)
+        safe_error = re.sub(r"key=[0-9A-Za-z-_]+", "key=[REDACTED]", safe_error)
 
         raise CoreException(
             code="GEMINI_ALL_MODELS_FAILED",
-            message=f"Tất cả các model Gemini đều không phản hồi: {last_error}",
+            message=f"Tất cả các model Gemini đều không phản hồi: {safe_error}",
             retryable=True,
-            details={"last_error": last_error},
+            details={"last_error": safe_error},
         )

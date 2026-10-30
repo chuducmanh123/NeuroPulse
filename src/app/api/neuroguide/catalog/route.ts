@@ -6,13 +6,29 @@ export const dynamic = "force-dynamic";
 
 export async function GET(request: NextRequest) {
   try {
-    const catalogPath = path.join(process.cwd(), "data", "guidelines_store", "catalog.json");
-    if (!fs.existsSync(catalogPath)) {
-      return NextResponse.json({ ok: true, catalog: {}, total: 0 });
+    const STORE_DIR = path.join(process.cwd(), "data", "guidelines_store");
+    const TMP_DIR = path.join("/tmp", "guidelines_store");
+
+    let catalog: Record<string, any> = {};
+
+    const storeCatalogPath = path.join(STORE_DIR, "catalog.json");
+    if (fs.existsSync(storeCatalogPath)) {
+      try {
+        catalog = JSON.parse(fs.readFileSync(storeCatalogPath, "utf-8"));
+      } catch {}
     }
 
-    const catalogRaw = fs.readFileSync(catalogPath, "utf-8");
-    const catalog = JSON.parse(catalogRaw);
+    const tmpCatalogPath = path.join(TMP_DIR, "catalog.json");
+    if (fs.existsSync(tmpCatalogPath)) {
+      try {
+        const tmpCatalog = JSON.parse(fs.readFileSync(tmpCatalogPath, "utf-8"));
+        catalog = { ...catalog, ...tmpCatalog };
+      } catch {}
+    }
+
+    if (Object.keys(catalog).length === 0) {
+      return NextResponse.json({ ok: true, catalog: {}, total: 0 });
+    }
 
     const { searchParams } = new URL(request.url);
     const society = searchParams.get("society")?.toUpperCase();

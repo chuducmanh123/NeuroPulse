@@ -48,18 +48,89 @@ interface GuidelineRecord {
 }
 
 const STORE_DIR = path.join(process.cwd(), "data", "guidelines_store");
+const TMP_DIR = path.join("/tmp", "guidelines_store");
+
+/**
+ * Đọc nội dung tệp tin, ưu tiên từ thư mục ghi /tmp (trên Vercel Serverless) trước khi đọc từ kho tĩnh
+ */
+function getFileContent(fileName: string): { content: string; sourcePath: string } | null {
+  const tmpPath = path.join(TMP_DIR, fileName);
+  if (fs.existsSync(tmpPath)) {
+    try {
+      return { content: fs.readFileSync(tmpPath, "utf-8"), sourcePath: tmpPath };
+    } catch {}
+  }
+
+  const storePath = path.join(STORE_DIR, fileName);
+  if (fs.existsSync(storePath)) {
+    try {
+      return { content: fs.readFileSync(storePath, "utf-8"), sourcePath: storePath };
+    } catch {}
+  }
+
+  return null;
+}
+
+/**
+ * Lưu tệp tin an toàn: Thử ghi vào STORE_DIR (môi trường Local Dev); nếu gặp lỗi EROFS
+ * (hệ thống tệp chỉ đọc trên Vercel Serverless), tự động fallback sang /tmp
+ */
+function saveFileSafe(fileName: string, dataStr: string): void {
+  let written = false;
+
+  // 1. Thử ghi vào STORE_DIR (chạy cục bộ)
+  try {
+    const storePath = path.join(STORE_DIR, fileName);
+    if (!fs.existsSync(STORE_DIR)) {
+      fs.mkdirSync(STORE_DIR, { recursive: true });
+    }
+    fs.writeFileSync(storePath, dataStr, "utf-8");
+    written = true;
+  } catch (e: any) {
+    // Nếu là EROFS (Read-only filesystem trên AWS Lambda/Vercel), bỏ qua để chuyển sang /tmp
+    if (e?.code !== "EROFS" && !String(e).includes("read-only file system")) {
+      console.warn("Không thể ghi vào STORE_DIR:", e);
+    }
+  }
+
+  // 2. Luôn ghi hoặc fallback vào /tmp để duy trì phiên làm việc trên Cloud
+  try {
+    if (!fs.existsSync(TMP_DIR)) {
+      fs.mkdirSync(TMP_DIR, { recursive: true });
+    }
+    const tmpPath = path.join(TMP_DIR, fileName);
+    fs.writeFileSync(tmpPath, dataStr, "utf-8");
+  } catch (err) {
+    if (!written) {
+      console.error("Không thể ghi vào TMP_DIR:", err);
+      throw err;
+    }
+  }
+}
 
 export async function GET(request: NextRequest) {
   try {
-    if (!fs.existsSync(STORE_DIR)) {
-      return NextResponse.json({ ok: true, queue: [], total: 0 });
+    const fileMap = new Map<string, string>(); // fileName -> fullPath
+
+    // Quét từ STORE_DIR
+    if (fs.existsSync(STORE_DIR)) {
+      try {
+        const files = fs.readdirSync(STORE_DIR).filter((f) => f.endsWith("_latest.json"));
+        for (const f of files) fileMap.set(f, path.join(STORE_DIR, f));
+      } catch {}
     }
 
-    const files = fs.readdirSync(STORE_DIR).filter((f) => f.endsWith("_latest.json"));
+    // Quét từ TMP_DIR (ghi đè nếu có cập nhật mới của bác sĩ trên Vercel)
+    if (fs.existsSync(TMP_DIR)) {
+      try {
+        const tmpFiles = fs.readdirSync(TMP_DIR).filter((f) => f.endsWith("_latest.json"));
+        for (const f of tmpFiles) fileMap.set(f, path.join(TMP_DIR, f));
+      } catch {}
+    }
+
     const queue: Array<StoredRec & { guideline_title: string; society: string }> = [];
 
-    for (const file of files) {
-      const fullPath = path.join(STORE_DIR, file);
+    for (const [file, fullPath] of fileMap.entries()) {
       try {
         const content = fs.readFileSync(fullPath, "utf-8");
         const record: GuidelineRecord = JSON.parse(content);
@@ -100,15 +171,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const latestFile = path.join(STORE_DIR, `${file_id}_latest.json`);
-    if (!fs.existsSync(latestFile)) {
+    const latestFileName = `${file_id}_latest.json`;
+    const fileInfo = getFileContent(latestFileName);
+    if (!fileInfo) {
       return NextResponse.json(
         { ok: false, error: `Không tìm thấy tài liệu guideline với ID: ${file_id}` },
         { status: 404 }
       );
     }
 
-    const record: GuidelineRecord = JSON.parse(fs.readFileSync(latestFile, "utf-8"));
+    const record: GuidelineRecord = JSON.parse(fileInfo.content);
     const targetRec = record.recommendations.find((r) => r.rec_id === rec_id);
 
     if (!targetRec) {
@@ -141,23 +213,23 @@ export async function POST(request: NextRequest) {
     ).length;
     record.updated_at = nowIso;
 
-    // Ghi lại tệp _latest.json
-    fs.writeFileSync(latestFile, JSON.stringify(record, null, 2), "utf-8");
+    // Ghi lại tệp _latest.json an toàn (hỗ trợ cả Local và Vercel EROFS)
+    saveFileSafe(latestFileName, JSON.stringify(record, null, 2));
 
     // Cập nhật catalog.json
-    const catalogPath = path.join(STORE_DIR, "catalog.json");
-    if (fs.existsSync(catalogPath)) {
+    const catalogInfo = getFileContent("catalog.json");
+    if (catalogInfo) {
       try {
-        const catalog = JSON.parse(fs.readFileSync(catalogPath, "utf-8"));
+        const catalog = JSON.parse(catalogInfo.content);
         if (catalog[file_id]) {
           catalog[file_id].pending_count = record.pending_count;
           catalog[file_id].approved_count = record.approved_count;
           catalog[file_id].rejected_count = record.rejected_count;
           catalog[file_id].updated_at = nowIso;
-          fs.writeFileSync(catalogPath, JSON.stringify(catalog, null, 2), "utf-8");
+          saveFileSafe("catalog.json", JSON.stringify(catalog, null, 2));
         }
       } catch {
-        // bỏ qua lỗi catalog
+        // Bỏ qua lỗi phụ của catalog
       }
     }
 

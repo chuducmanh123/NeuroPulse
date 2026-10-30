@@ -5,3 +5,10 @@ node_modules/
 *.log
 *.tsbuildinfo
 __pycache__/
+.pytest_cache/
+
+# Pipeline runtime logs & raw PDF data
+data/guidelines_store/jobs.json
+data/guidelines_raw/
+data/*.pdf
+

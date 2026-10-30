@@ -89,10 +89,10 @@ export function ReviewQueueTab({ darkMode, onQueueUpdated }: ReviewQueueTabProps
         setQueue((prev) => prev.filter((r) => r.rec_id !== rec.rec_id));
         if (onQueueUpdated) onQueueUpdated();
       } else {
-        alert(data.error || "Có lỗi xảy ra khi phê duyệt");
+        setFeedbackMessage(`⚠️ ${data.error || "Có lỗi xảy ra khi phê duyệt"}`);
       }
     } catch (e) {
-      alert("Lỗi kết nối khi gửi yêu cầu phê duyệt");
+      setFeedbackMessage("⚠️ Lỗi kết nối khi gửi yêu cầu phê duyệt");
     } finally {
       setActionLoading(null);
     }
