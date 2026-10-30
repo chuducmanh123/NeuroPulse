@@ -42,27 +42,49 @@ export interface IncrementalProgressEvent {
 }
 
 const WATERFALL_MODELS = [
-  "gemini-2.0-flash",
-  "gemini-2.0-flash-lite",
-  "gemini-1.5-flash",
-  "gemini-1.5-pro",
+  "gemini-3.8-flash",
+  "gemini-3.5-flash",
+  "gemini-3.1-flash-lite",
+  "gemini-2.5-flash",
+  "gemini-2.5-flash-lite",
+  "gemini-flash-latest",
+  "gemini-flash-lite-latest",
 ];
 
-function loadEnvKey(): string {
+export function resolveApiKey(providedKey?: string): string {
+  if (providedKey && providedKey.trim().length > 10) {
+    return providedKey.trim().replace(/^["']|["']$/g, "");
+  }
+
+  // 1. Check all standard environment variable names
+  for (const envVar of [
+    "GEMINI_API_KEY",
+    "GOOGLE_API_KEY",
+    "NEXT_PUBLIC_GEMINI_API_KEY",
+    "GEMINI_KEY",
+  ]) {
+    const val = (process.env[envVar] || "").trim().replace(/^["']|["']$/g, "");
+    if (val && val.length > 10) return val;
+  }
+
+  // 2. Fallback check in .env file if running locally
   const envPath = path.join(process.cwd(), ".env");
   if (fs.existsSync(envPath)) {
     try {
       const raw = fs.readFileSync(envPath, "utf-8");
       for (const line of raw.split("\n")) {
         const trimmed = line.trim();
-        if (trimmed.startsWith("GEMINI_API_KEY=")) {
-          const val = trimmed.slice("GEMINI_API_KEY=".length).trim().replace(/^["']|["']$/g, "");
-          if (val) return val;
+        for (const prefix of ["GEMINI_API_KEY=", "GOOGLE_API_KEY="]) {
+          if (trimmed.startsWith(prefix)) {
+            const val = trimmed.slice(prefix.length).trim().replace(/^["']|["']$/g, "");
+            if (val && val.length > 10) return val;
+          }
         }
       }
     } catch {}
   }
-  return (process.env.GEMINI_API_KEY || "").trim().replace(/^["']|["']$/g, "");
+
+  return "";
 }
 
 function cleanBlobToken(raw: string | undefined): string | undefined {
@@ -111,8 +133,12 @@ async function callGeminiMultimodalJson<T>(
 
       if (!res.ok) continue;
       const data = await res.json();
-      const rawJson = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+      const parts = data?.candidates?.[0]?.content?.parts || [];
+      const textParts = parts.filter((p: any) => p?.text && !p?.thought).map((p: any) => p.text);
+      let rawJson = textParts.join("").trim();
+      if (!rawJson && parts[0]?.text) rawJson = parts[0].text.trim();
       if (!rawJson) continue;
+      rawJson = rawJson.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/i, "");
       return JSON.parse(rawJson) as T;
     } catch {
       // waterfall fallback
@@ -122,7 +148,7 @@ async function callGeminiMultimodalJson<T>(
 }
 
 /**
- * Ghi nhận hoặc nối tiếp các khuyến cáo mới vào Guidelines Store (hỗ trợ real-time streaming)
+ * Persist or append new recommendations to Guidelines Store
  */
 async function appendToGuidelinesStore(
   docId: string,
@@ -136,7 +162,6 @@ async function appendToGuidelinesStore(
   let existingRecs: IncrementalRec[] = [];
   let existingRecord: any = null;
 
-  // Đọc dữ liệu đã có từ /tmp hoặc local store
   for (const dir of [TMP_DIR, STORE_DIR]) {
     const fullPath = path.join(dir, fileName);
     if (fs.existsSync(fullPath)) {
@@ -150,7 +175,6 @@ async function appendToGuidelinesStore(
     }
   }
 
-  // Kết hợp và lọc trùng theo nội dung statement
   const existingStatements = new Set(existingRecs.map((r) => r.statement.toLowerCase().trim()));
   const uniqueNewRecs = newRecs.filter((r) => !existingStatements.has(r.statement.toLowerCase().trim()));
   const combined = [...existingRecs, ...uniqueNewRecs];
@@ -175,7 +199,7 @@ async function appendToGuidelinesStore(
 
   await saveStoreFileSafe(fileName, JSON.stringify(updatedRecord, null, 2));
 
-  // Cập nhật catalog.json
+  // Update catalog.json
   try {
     let catalog: Record<string, any> = {};
     for (const dir of [TMP_DIR, STORE_DIR]) {
@@ -202,14 +226,14 @@ async function appendToGuidelinesStore(
 
     await saveStoreFileSafe("catalog.json", JSON.stringify(catalog, null, 2));
   } catch (catErr) {
-    console.warn("Lỗi cập nhật catalog trong streaming:", catErr);
+    console.warn("Catalog update error in streaming:", catErr);
   }
 
   return combined.length;
 }
 
 /**
- * Lõi phân tích lũy tiến theo từng đợt & Real-time Streaming vào Review Queue
+ * Incremental analysis in stages with real-time streaming into Review Queue
  */
 export async function executeIncrementalPipeline(
   pdfBuffer: Buffer,
@@ -219,10 +243,11 @@ export async function executeIncrementalPipeline(
     title?: string;
     year?: number;
     blobUrl?: string;
+    apiKey?: string;
   },
   onProgress: (event: IncrementalProgressEvent) => Promise<void> | void
 ): Promise<{ success: boolean; totalCount: number; docId: string }> {
-  const apiKey = loadEnvKey();
+  const apiKey = resolveApiKey(options.apiKey);
   const year = options.year || new Date().getFullYear();
   const cleanTitle = options.title || options.fileName.replace(/\.pdf$/i, "").replace(/[_-]+/g, " ").trim();
   const society = detectSociety(cleanTitle, options.society);
@@ -233,18 +258,17 @@ export async function executeIncrementalPipeline(
   await onProgress({
     stage: "INIT",
     percent: 15,
-    message: `Đã tiếp nhận tài liệu PDF (${(pdfBuffer.length / (1024 * 1024)).toFixed(2)} MB). Bắt đầu chuẩn bị phân tích...`,
+    message: `Received PDF document (${(pdfBuffer.length / (1024 * 1024)).toFixed(2)} MB). Initializing AI pipeline...`,
     docId,
   });
 
   const pdfBase64 = pdfBuffer.toString("base64");
 
   if (!apiKey || apiKey.length < 10) {
-    // Nếu chưa có API key, nạp dữ liệu chuẩn đoán mẫu với thông báo rõ ràng
     await onProgress({
       stage: "ERROR",
       percent: 100,
-      message: "Chưa cấu hình GEMINI_API_KEY trong .env để thực hiện trích xuất AI.",
+      message: "Google Gemini API key is missing. Please enter your API key in the modal or configure GEMINI_API_KEY in your environment variables.",
       error: "MISSING_GEMINI_API_KEY",
     });
     return { success: false, totalCount: 0, docId };
@@ -253,7 +277,7 @@ export async function executeIncrementalPipeline(
   await onProgress({
     stage: "PARSING_PDF",
     percent: 25,
-    message: "Đang nạp toàn văn PDF vào Gemini AI để nhận diện các bảng khuyến cáo (COR/LOE)...",
+    message: "Analyzing PDF with Gemini AI to detect clinical recommendation tables (COR/LOE)...",
     docId,
   });
 
@@ -267,7 +291,7 @@ export async function executeIncrementalPipeline(
   let allExtractedRecs: IncrementalRec[] = [];
 
   // =========================================================================
-  // ĐỢT 1 (BATCH 1): ĐIỂM MỚI (WHAT IS NEW) & CÁC KHUYẾN CÁO CAN THIỆP HÀNG ĐẦU
+  // BATCH 1: WHAT IS NEW & FRONTLINE CLINICAL RECOMMENDATIONS
   // =========================================================================
   const promptBatch1 = `
 You are a Senior Academic Neurologist and Evidence-Based Medicine Specialist.
@@ -275,7 +299,7 @@ Analyze the attached Clinical Practice Guideline PDF: "${cleanTitle}" (${society
 
 TASK 1 (High-Priority):
 Examine the "What is New and High-Impact" tables, executive recommendations, and primary frontline recommendations (e.g. Class I and Class III Harm / No Benefit, acute interventions, frontline criteria).
-Extract as many discrete, authentic clinical recommendations as possible (target 8 to 18 recommendations).
+Extract as many discrete, authentic clinical recommendations as possible (target 8 to 20 recommendations).
 
 For each recommendation:
 - rec_index: number
@@ -359,29 +383,29 @@ Respond strictly in valid JSON matching this schema:
           count: batch1Recs.length,
           total: allExtractedRecs.length,
           percent: 55,
-          message: `⚡ Đợt 1 hoàn tất: Đã bóc tách ${batch1Recs.length} khuyến cáo đột phá & can thiệp ban đầu. Đã stream trực tiếp vào Review Queue!`,
+          message: `⚡ Batch 1 complete: Extracted ${batch1Recs.length} frontline & high-impact recommendations. Streamed to Review Queue.`,
           recommendations: batch1Recs,
           docId,
         });
       }
     }
   } catch (err1) {
-    console.warn("Lỗi đợt 1:", err1);
+    console.warn("Batch 1 error:", err1);
   }
 
   // =========================================================================
-  // ĐỢT 2 (BATCH 2): CÁC ĐIỀU TRỊ DƯỢC LÝ, NGƯỠNG ĐÍCH & PHÒNG NGỪA BIẾN CHỨNG
+  // BATCH 2: PHARMACOTHERAPY, TARGET THRESHOLDS & SAFETY
   // =========================================================================
   const promptBatch2 = `
 You are a Senior Academic Neurologist.
-Now analyze the detailed clinical sections of this guideline: "${cleanTitle}" (${society}, ${year}).
+Now analyze the detailed clinical management sections of this guideline: "${cleanTitle}" (${society}, ${year}).
 
 TASK 2:
 Extract additional discrete clinical recommendations from specific management sections:
 - Pharmacotherapy (Antithrombotics, Antiplatelets, Anticoagulants, Statins/Lipid-lowering, Antihypertensives, GLP-1/SGLT2)
 - Target clinical numbers and thresholds (Blood Pressure targets, LDL-C targets, HbA1c goals, timing windows)
 - Diagnostic imaging, screening protocols, and patient monitoring
-Target extracting 10 to 20 additional discrete recommendations not covered in broad overviews.
+Target extracting 10 to 25 additional discrete recommendations not covered in broad overviews.
 
 Respond strictly in valid JSON matching this schema:
 {
@@ -453,25 +477,25 @@ Respond strictly in valid JSON matching this schema:
           count: batch2Recs.length,
           total: allExtractedRecs.length,
           percent: 88,
-          message: `⚡ Đợt 2 hoàn tất: Đã bóc tách thêm ${batch2Recs.length} khuyến cáo chuyên sâu về dược lý & ngưỡng mục tiêu.`,
+          message: `⚡ Batch 2 complete: Extracted ${batch2Recs.length} specialized pharmacotherapy & threshold recommendations.`,
           recommendations: batch2Recs,
           docId,
         });
       }
     }
   } catch (err2) {
-    console.warn("Lỗi đợt 2:", err2);
+    console.warn("Batch 2 error:", err2);
   }
 
   // =========================================================================
-  // BƯỚC DỌN DẸP: XÓA FILE PDF TẠM TRÊN VERCEL BLOB ĐỂ TIẾT KIỆM DUNG LƯỢNG
+  // CLEANUP: DELETE TEMPORARY PDF FROM VERCEL BLOB TO SAVE STORAGE
   // =========================================================================
   if (options.blobUrl) {
     try {
       await onProgress({
         stage: "CLEANUP",
         percent: 94,
-        message: "🗑️ Đang tiến hành xóa file PDF tạm trên Vercel Blob để giải phóng 100% dung lượng...",
+        message: "Cleaning up temporary PDF from Vercel Blob to conserve storage...",
         docId,
       });
 
@@ -481,22 +505,22 @@ Respond strictly in valid JSON matching this schema:
       await onProgress({
         stage: "CLEANUP",
         percent: 97,
-        message: "✅ Đã xóa file PDF tạm trên Vercel Blob thành công! Dung lượng lưu trữ được bảo toàn.",
+        message: "Temporary PDF deleted from Vercel Blob successfully. Storage conserved.",
         docId,
       });
     } catch (delErr) {
-      console.warn("Không thể xóa file PDF trên Blob (hoặc file không tồn tại):", delErr);
+      console.warn("Could not delete blob (or blob does not exist):", delErr);
     }
   }
 
   // =========================================================================
-  // HOÀN TẤT TOÀN TRÌNH
+  // COMPLETE
   // =========================================================================
   await onProgress({
     stage: "COMPLETE",
     percent: 100,
     total: allExtractedRecs.length,
-    message: `🎉 Hoàn tất toàn trình! Tổng cộng ${allExtractedRecs.length} khuyến cáo lâm sàng thực tế đã sẵn sàng trong Review Queue.`,
+    message: `Extraction complete! ${allExtractedRecs.length} clinical recommendations are ready in the Review Queue.`,
     docId,
   });
 

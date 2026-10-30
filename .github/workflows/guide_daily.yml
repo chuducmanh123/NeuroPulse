@@ -1,0 +1,41 @@
+name: Daily NeuroGuide Clinical Radar & Review Queue
+
+on:
+  schedule:
+    # Chạy lúc 03:00 sáng giờ VN (20:00 UTC) - Cách Case 2 tiếng để giãn tải AI
+    - cron: '0 20 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Discover and Analyze Guidelines into Review Queue (NeuroGuide)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python scripts/fetch_guidelines.py
+
+      - name: Commit and Push Updated Data
+        run: |
+          git config --global user.name "Guide-Bot"
+          git config --global user.email "bot@neuroguide.org"
+          git add data/guidelines_store/
+          if ! git diff --staged --quiet; then
+            git commit -m "chore(data): auto-update NeuroGuide radar & review queue guidelines"
+            git pull --rebase origin main || true
+            git push
+          else
+            echo "Không có guideline mới."
+          fi

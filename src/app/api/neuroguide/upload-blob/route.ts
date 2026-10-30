@@ -1,5 +1,6 @@
 import { handleUpload, type HandleUploadBody } from "@vercel/blob/client";
 import { NextResponse, NextRequest } from "next/server";
+import { verifyAdminToken } from "@/utils/security";
 
 export const dynamic = "force-dynamic";
 
@@ -21,7 +22,12 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       body,
       request,
       token,
-      onBeforeGenerateToken: async (pathname) => {
+      onBeforeGenerateToken: async (pathname, clientPayload) => {
+        // Khóa chặt quyền tải lên: Chỉ Quản trị viên (Admin) mới có quyền đẩy PDF lên Vercel Blob
+        if (!verifyAdminToken(clientPayload)) {
+          throw new Error("Unauthorized: Quyền tải tệp PDF lên hệ thống chỉ dành riêng cho Quản trị viên (Admin).");
+        }
+
         // Chỉ cho phép upload file PDF học thuật, dung lượng tối đa 50MB
         return {
           allowedContentTypes: ["application/pdf"],

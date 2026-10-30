@@ -1,0 +1,41 @@
+name: Daily NeuroPulse Journal Aggregator
+
+on:
+  schedule:
+    # Chạy lúc 23:00 đêm giờ VN (16:00 UTC) - Tách biệt giờ để tránh chạm trần quota AI
+    - cron: '0 16 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Fetch Latest Articles (NeuroPulse)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python scripts/fetch_nejm.py
+
+      - name: Commit and Push Updated Data
+        run: |
+          git config --global user.name "Pulse-Bot"
+          git config --global user.email "bot@neuropulse.org"
+          git add public/data/articles.json
+          if ! git diff --staged --quiet; then
+            git commit -m "chore(data): auto-update NeuroPulse latest journal articles"
+            git pull --rebase origin main || true
+            git push
+          else
+            echo "Không có bài báo mới."
+          fi

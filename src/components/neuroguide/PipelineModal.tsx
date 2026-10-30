@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { upload } from "@vercel/blob/client";
 
 interface PipelineModalProps {
@@ -25,6 +25,8 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
   const [society, setSociety] = useState<string>("AHA");
   const [title, setTitle] = useState<string>("");
   const [year, setYear] = useState<string>(new Date().getFullYear().toString());
+  const [apiKey, setApiKey] = useState<string>("");
+  const [showApiKey, setShowApiKey] = useState<boolean>(false);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [streamProgress, setStreamProgress] = useState<number>(0);
@@ -36,6 +38,14 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
+  // Load API Key from localStorage if saved
+  useEffect(() => {
+    try {
+      const savedKey = localStorage.getItem("neuroguide_gemini_api_key");
+      if (savedKey) setApiKey(savedKey);
+    } catch {}
+  }, []);
+
   if (!isOpen) return null;
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,7 +53,7 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
     if (files && files.length > 0) {
       const file = files[0];
       if (!file.name.toLowerCase().endsWith(".pdf")) {
-        setErrorMessage("Vui lòng chọn một tệp PDF tài liệu hợp lệ (.pdf).");
+        setErrorMessage("Please select a valid PDF document (.pdf).");
         return;
       }
       setSelectedFile(file);
@@ -70,6 +80,17 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
     setBlobCleaned(false);
   };
 
+  const handleApiKeyChange = (val: string) => {
+    setApiKey(val);
+    try {
+      if (val.trim()) {
+        localStorage.setItem("neuroguide_gemini_api_key", val.trim());
+      } else {
+        localStorage.removeItem("neuroguide_gemini_api_key");
+      }
+    } catch {}
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -81,8 +102,7 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
 
     try {
       if (mode === "DISCOVER") {
-        // Discovery radar scan
-        setStreamMessage("Đang quét radar phát hiện guideline mới từ PubMed & thư viện...");
+        setStreamMessage("Scanning medical registries & PubMed for new guideline publications...");
         const res = await fetch("/api/neuroguide/pipeline", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -100,79 +120,99 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
             onClose();
           }, 1800);
         } else {
-          setErrorMessage(data?.error?.message || "Lỗi khi quét phát hiện guideline mới.");
+          setErrorMessage(data?.error?.message || "Error running guideline discovery scan.");
         }
         setIsLoading(false);
         return;
       }
 
       // =======================================================================
-      // CHẾ ĐỘ THỦ CÔNG: ĐẨY LÊN VERCEL BLOB -> STREAMING PHÂN TÍCH -> XÓA BLOB
+      // MANUAL MODE: DIRECT VERCEL BLOB UPLOAD -> INCREMENTAL SSE -> AUTO-CLEANUP
       // =======================================================================
       if (!url && !selectedFile) {
-        setErrorMessage("Vui lòng nhập URL tài liệu hoặc tải tệp PDF lên từ máy.");
+        setErrorMessage("Please provide either a PDF document or a direct URL.");
         setIsLoading(false);
         return;
       }
 
       let blobUrl: string | undefined = undefined;
 
+      // Lấy token quản trị viên từ session/localStorage
+      const adminToken =
+        typeof window !== "undefined"
+          ? sessionStorage.getItem("neurocase_admin_token") ||
+            localStorage.getItem("neurocase_admin_token") ||
+            ""
+          : "";
+
       if (selectedFile) {
-        setStreamMessage(`Đang tải tệp lên Vercel Blob Storage (${(selectedFile.size / (1024 * 1024)).toFixed(2)} MB)...`);
+        setStreamMessage(`Uploading file to Vercel Blob Storage (${(selectedFile.size / (1024 * 1024)).toFixed(2)} MB)...`);
         setStreamProgress(10);
 
         try {
-          // 1. Tải trực tiếp lên Vercel Blob (bỏ qua giới hạn 4.5 MB của Serverless)
+          // Direct client upload to Vercel Blob (bypasses 4.5 MB Serverless limit, authenticated with adminToken)
           const blobResult = await upload(selectedFile.name, selectedFile, {
             access: "public",
             handleUploadUrl: "/api/neuroguide/upload-blob",
+            clientPayload: adminToken,
             onUploadProgress: (progress) => {
               const uploadPct = Math.round((progress.loaded / progress.total) * 20) + 10;
               setStreamProgress(uploadPct);
             },
           });
           blobUrl = blobResult.url;
-          setStreamMessage("✅ Tải lên Vercel Blob thành công! Bắt đầu kết nối luồng AI phân tích...");
+          setStreamMessage("Uploaded to Vercel Blob successfully. Initializing AI pipeline...");
           setStreamProgress(30);
         } catch (uploadErr) {
           console.warn("Client-side Blob upload handshake failed, falling back to direct stream:", uploadErr);
-          setStreamMessage("Chuyển sang luồng truyền dữ liệu trực tiếp...");
+          setStreamMessage("Connecting directly to extraction stream...");
         }
       }
 
-      // 2. Kết nối tới SSE Streaming Endpoint
+      // Connect to SSE Streaming Endpoint
       let streamResponse: Response;
+      const headers: Record<string, string> = {};
+      if (adminToken) {
+        headers["x-admin-token"] = adminToken;
+      }
+      if (apiKey.trim()) {
+        headers["x-gemini-api-key"] = apiKey.trim();
+      }
 
       if (blobUrl) {
-        // Gửi link Blob nhẹ nhàng
+        headers["Content-Type"] = "application/json";
         streamResponse = await fetch("/api/neuroguide/pipeline-stream", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers,
           body: JSON.stringify({
             blob_url: blobUrl,
             fileName: selectedFile?.name || "guideline.pdf",
             society,
             title,
             year: year ? parseInt(year, 10) : undefined,
+            apiKey: apiKey.trim() || undefined,
           }),
         });
       } else if (selectedFile) {
-        // Dự phòng: Gửi FormData nếu Blob client token chưa được cấu hình
+        // Fallback: direct multipart stream
         const formData = new FormData();
         formData.append("file", selectedFile);
         formData.append("society", society);
         if (title) formData.append("title", title);
         if (year) formData.append("year", year);
+        if (apiKey.trim()) formData.append("apiKey", apiKey.trim());
 
         streamResponse = await fetch("/api/neuroguide/pipeline-stream", {
           method: "POST",
+          headers,
           body: formData,
         });
       } else {
-        // Nhập bằng URL trực tiếp
+        // Direct URL processing
+        headers["Content-Type"] = "application/json";
         streamResponse = await fetch("/api/neuroguide/pipeline", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers,
           body: JSON.stringify({
             url,
             society,
@@ -184,13 +224,13 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
 
         const singleData = await streamResponse.json().catch(() => null);
         if (singleData && singleData.ok) {
-          setResultMessage("✅ Bóc tách khuyến cáo thành công!");
+          setResultMessage("✅ Clinical recommendations extracted successfully!");
           setTimeout(() => {
             onSuccess();
             onClose();
           }, 1500);
         } else {
-          setErrorMessage(singleData?.error?.message || "Lỗi khi xử lý URL.");
+          setErrorMessage(singleData?.error?.message || "Error processing URL extraction.");
         }
         setIsLoading(false);
         return;
@@ -198,18 +238,18 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
 
       if (!streamResponse.ok) {
         if (streamResponse.status === 413) {
-          setErrorMessage("Dung lượng tệp vượt quá giới hạn máy chủ (4.5 MB). Vui lòng nén file hoặc dùng Vercel Blob.");
+          setErrorMessage("File exceeds server upload limit (4.5 MB). Please compress the file or configure Vercel Blob.");
         } else {
-          setErrorMessage(`Máy chủ trả về mã lỗi ${streamResponse.status}`);
+          setErrorMessage(`Server returned HTTP ${streamResponse.status}`);
         }
         setIsLoading(false);
         return;
       }
 
-      // 3. Đọc dữ liệu Real-time SSE Stream từ Server
+      // Read Real-time SSE Stream
       const reader = streamResponse.body?.getReader();
       if (!reader) {
-        throw new Error("Không thể khởi tạo bộ đọc luồng dữ liệu.");
+        throw new Error("Unable to initialize response stream reader.");
       }
 
       const decoder = new TextDecoder("utf-8");
@@ -236,34 +276,34 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
                 setStreamMessage(eventData.message);
               }
 
-              // Nhận khuyến cáo mới stream về
+              // Real-time batch received
               if (Array.isArray(eventData.recommendations) && eventData.recommendations.length > 0) {
                 setLiveRecs((prev) => [...prev, ...eventData.recommendations]);
-                onSuccess(); // Cập nhật hàng đợi ở nền ngay lập tức
+                onSuccess(); // Instantly refresh parent review queue in background
               }
 
-              // Xác nhận đã xóa file PDF trên Blob
-              if (eventData.stage === "CLEANUP" && eventData.message?.includes("thành công")) {
+              // Blob cleanup confirmation
+              if (eventData.stage === "CLEANUP" && eventData.message?.toLowerCase().includes("success")) {
                 setBlobCleaned(true);
               }
 
               if (eventData.stage === "COMPLETE") {
-                setResultMessage(eventData.message || "Bóc tách thành công!");
+                setResultMessage(eventData.message || "Extraction complete!");
                 onSuccess();
                 setTimeout(() => {
                   onClose();
                 }, 2200);
               } else if (eventData.stage === "ERROR") {
-                setErrorMessage(eventData.message || eventData.error || "Lỗi khi phân tích.");
+                setErrorMessage(eventData.message || eventData.error || "An error occurred during extraction.");
               }
             } catch (err) {
-              console.warn("Lỗi phân tích cú pháp SSE event:", err);
+              console.warn("Error parsing SSE event:", err);
             }
           }
         }
       }
     } catch (submitErr) {
-      const msg = submitErr instanceof Error ? submitErr.message : "Lỗi kết nối tới hệ thống xử lý AI.";
+      const msg = submitErr instanceof Error ? submitErr.message : "Network error contacting AI Pipeline.";
       setErrorMessage(msg);
     } finally {
       setIsLoading(false);
@@ -273,7 +313,7 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs">
       <div
-        className={`w-full max-w-xl rounded-2xl border p-6 shadow-2xl transition-all ${
+        className={`w-full max-w-lg rounded-2xl border p-6 shadow-2xl transition-all ${
           darkMode ? "bg-slate-900 border-slate-800 text-white" : "bg-white border-slate-200 text-slate-900"
         }`}
       >
@@ -285,7 +325,7 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
                 NEUROGUIDE AI PIPELINE & STREAMING
               </h3>
               <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                Vercel Blob Direct Upload • Phân tích lũy tiến • Tự động giải phóng dung lượng
+                Direct Blob Upload • Incremental Analysis • Auto-Storage Cleanup
               </p>
             </div>
           </div>
@@ -300,7 +340,7 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
         </div>
 
         {/* Tab Selection */}
-        <div className="flex rounded-xl bg-slate-100 dark:bg-slate-800/60 p-1 mb-5">
+        <div className="flex rounded-xl bg-slate-100 dark:bg-slate-800/60 p-1 mb-4">
           <button
             type="button"
             disabled={isLoading}
@@ -314,7 +354,7 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
                 : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
             }`}
           >
-            <span>📥</span> Manual URL / Blob Upload
+            <span>📥</span> Manual URL / File Upload
           </button>
           <button
             type="button"
@@ -333,11 +373,11 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Society Selector */}
+        <form onSubmit={handleSubmit} className="space-y-3.5">
+          {/* Medical Society */}
           <div>
             <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">
-              Hiệp hội Chuyên khoa:
+              Medical Society:
             </label>
             <select
               value={society}
@@ -349,39 +389,39 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
               <option value="ESO">ESO (European Stroke Organisation - GRADE)</option>
               <option value="AAN">AAN (American Academy of Neurology)</option>
               <option value="NCS">NCS (Neurocritical Care Society)</option>
-              <option value="ILAE">ILAE / AES (Epilepsy Syndromes & Seizure Management)</option>
+              <option value="ILAE">ILAE / AES (Epilepsy Syndromes & Seizures)</option>
             </select>
           </div>
 
           {mode === "MANUAL" && (
             <>
-              {/* URL Input */}
+              {/* Direct URL */}
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">
-                  Đường dẫn PDF hoặc DOI URL:
+                  Direct Guideline PDF or DOI URL:
                 </label>
                 <input
                   type="text"
                   disabled={isLoading || Boolean(selectedFile)}
                   value={url}
                   onChange={(e) => setUrl(e.target.value)}
-                  placeholder="https://example.com/guideline.pdf hoặc 10.1161/STR..."
+                  placeholder="https://example.com/guideline.pdf or 10.1161/STR..."
                   className="w-full text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2 text-slate-900 dark:text-white placeholder:text-slate-400 outline-hidden focus:ring-2 focus:ring-amber-500 disabled:opacity-50"
                 />
               </div>
 
-              {/* File Upload Box with Vercel Blob indication */}
+              {/* Upload PDF Document - Concise & Clean */}
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">
-                  HOẶC Tải tệp PDF từ máy (Đẩy trực tiếp lên Vercel Blob):
+                  Upload PDF Document:
                 </label>
                 {!selectedFile ? (
                   <div
                     onClick={() => !isLoading && fileInputRef.current?.click()}
-                    className={`border-2 border-dashed rounded-xl p-4 text-center cursor-pointer transition-colors ${
+                    className={`border-2 border-dashed rounded-xl p-3.5 text-center cursor-pointer transition-colors ${
                       isLoading
                         ? "opacity-50 cursor-not-allowed"
-                        : "border-slate-300 dark:border-slate-700 hover:border-amber-500 dark:hover:border-amber-400 bg-slate-50 dark:bg-slate-800/40"
+                        : "border-slate-300 dark:border-slate-700 hover:border-amber-500 bg-slate-50 dark:bg-slate-800/40"
                     }`}
                   >
                     <input
@@ -392,26 +432,23 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
                       className="hidden"
                       disabled={isLoading}
                     />
-                    <div className="flex flex-col items-center gap-1">
-                      <span className="text-2xl">📄</span>
-                      <p className="text-xs font-semibold text-slate-700 dark:text-slate-200">
-                        Nhấn để chọn tệp PDF hướng dẫn lâm sàng (hỗ trợ 80–100 trang)
-                      </p>
-                      <p className="text-[11px] text-slate-400">
-                        ⚡ Đẩy thẳng lên Blob (bỏ qua giới hạn 4.5MB). Sau khi trích xuất xong, file sẽ tự động xóa để tiết kiệm dung lượng.
-                      </p>
+                    <div className="flex items-center justify-center gap-2">
+                      <span className="text-lg">📄</span>
+                      <span className="text-xs font-semibold text-slate-700 dark:text-slate-200">
+                        Click to select guideline PDF file
+                      </span>
                     </div>
                   </div>
                 ) : (
-                  <div className="flex items-center justify-between p-3 rounded-xl border border-amber-300 dark:border-amber-500/40 bg-amber-500/5">
+                  <div className="flex items-center justify-between p-2.5 rounded-xl border border-amber-300 dark:border-amber-500/40 bg-amber-500/5">
                     <div className="flex items-center gap-2 overflow-hidden">
-                      <span className="text-lg">📄</span>
+                      <span className="text-base">📄</span>
                       <div className="truncate">
                         <p className="text-xs font-bold text-slate-800 dark:text-slate-200 truncate">
                           {selectedFile.name}
                         </p>
                         <p className="text-[10px] text-slate-500">
-                          {(selectedFile.size / (1024 * 1024)).toFixed(2)} MB • Sẵn sàng đẩy lên Vercel Blob & phân tích lũy tiến
+                          {(selectedFile.size / (1024 * 1024)).toFixed(2)} MB • Ready for AI extraction
                         </p>
                       </div>
                     </div>
@@ -419,9 +456,9 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
                       <button
                         type="button"
                         onClick={handleRemoveFile}
-                        className="text-xs text-rose-500 hover:text-rose-600 font-bold px-2 py-1 bg-rose-500/10 rounded-lg shrink-0"
+                        className="text-xs text-rose-500 hover:text-rose-600 font-bold px-2 py-1 bg-rose-500/10 rounded-lg shrink-0 cursor-pointer"
                       >
-                        ✕ Gỡ bỏ
+                        ✕ Remove
                       </button>
                     )}
                   </div>
@@ -432,19 +469,19 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
               <div className="grid grid-cols-3 gap-3">
                 <div className="col-span-2">
                   <label className="block text-[11px] font-bold text-slate-500 mb-1">
-                    Tiêu đề (Tùy chọn):
+                    Guideline Title (Optional):
                   </label>
                   <input
                     type="text"
                     disabled={isLoading}
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    placeholder="VD: 2024 AHA/ASA Stroke Prevention..."
+                    placeholder="e.g. 2024 AHA/ASA Stroke Prevention..."
                     className="w-full text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-1.5 outline-hidden"
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-500 mb-1">Năm:</label>
+                  <label className="block text-[11px] font-bold text-slate-500 mb-1">Year:</label>
                   <input
                     type="number"
                     disabled={isLoading}
@@ -454,16 +491,40 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
                   />
                 </div>
               </div>
+
+              {/* Google Gemini API Key Input */}
+              <div>
+                <div className="flex justify-between items-center mb-1">
+                  <label className="block text-[11px] font-bold text-slate-500 dark:text-slate-400">
+                    Google Gemini API Key (Tùy chọn nếu đã có trong .env):
+                  </label>
+                  <button
+                    type="button"
+                    onClick={() => setShowApiKey(!showApiKey)}
+                    className="text-[10px] text-amber-600 dark:text-amber-400 font-semibold hover:underline cursor-pointer"
+                  >
+                    {showApiKey ? "Ẩn" : "Hiện"}
+                  </button>
+                </div>
+                <input
+                  type={showApiKey ? "text" : "password"}
+                  disabled={isLoading}
+                  value={apiKey}
+                  onChange={(e) => handleApiKeyChange(e.target.value)}
+                  placeholder="Dán API Key (AQ... hoặc AIzaSy... - Tự động ghi nhớ trên trình duyệt)"
+                  className="w-full text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-1.5 font-mono outline-hidden focus:ring-2 focus:ring-amber-500 placeholder:text-slate-400"
+                />
+              </div>
             </>
           )}
 
           {/* REAL-TIME STREAMING PROGRESS CARD */}
           {isLoading && (
-            <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-4 space-y-3 animate-in fade-in">
+            <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-3.5 space-y-2.5 animate-in fade-in">
               <div className="flex justify-between items-center text-xs font-bold text-amber-600 dark:text-amber-400">
                 <span className="flex items-center gap-1.5">
                   <span className="inline-block w-2 h-2 rounded-full bg-amber-500 animate-ping" />
-                  Tiến trình phân tích thời gian thực
+                  Real-Time AI Extraction Progress
                 </span>
                 <span>{streamProgress}%</span>
               </div>
@@ -477,13 +538,13 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
               </div>
 
               <p className="text-xs text-slate-600 dark:text-slate-300 font-medium">
-                {streamMessage || "Đang khởi tạo chuỗi phân tích AI..."}
+                {streamMessage || "Initializing AI extraction pipeline..."}
               </p>
 
               {/* Blob cleanup indicator */}
               {blobCleaned && (
                 <div className="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1 bg-emerald-500/10 px-2 py-1 rounded-md">
-                  <span>🗑️</span> Đã tự động xóa file PDF tạm trên Vercel Blob để bảo toàn dung lượng lưu trữ!
+                  <span>🗑️</span> Temporary PDF automatically deleted from Vercel Blob to conserve storage!
                 </div>
               )}
 
@@ -491,13 +552,13 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
               {liveRecs.length > 0 && (
                 <div className="space-y-1.5 pt-2 border-t border-amber-500/20">
                   <div className="flex justify-between items-center text-[11px] font-bold text-slate-700 dark:text-slate-300">
-                    <span>⚡ Khuyến cáo mới vừa phát hiện:</span>
+                    <span>⚡ Newly Extracted Recommendations:</span>
                     <span className="bg-amber-500/20 text-amber-600 dark:text-amber-400 px-1.5 py-0.5 rounded-sm">
-                      {liveRecs.length} khuyến cáo
+                      {liveRecs.length} total
                     </span>
                   </div>
-                  <div className="max-h-32 overflow-y-auto space-y-1 pr-1 text-[11px]">
-                    {liveRecs.slice(-4).map((r, i) => (
+                  <div className="max-h-28 overflow-y-auto space-y-1 pr-1 text-[11px]">
+                    {liveRecs.slice(-3).map((r, i) => (
                       <div
                         key={r.rec_id || i}
                         className="p-1.5 rounded-lg bg-white/70 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 flex items-start gap-1.5"
@@ -532,13 +593,13 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
             </div>
           )}
 
-          {/* Buttons */}
+          {/* Action Buttons */}
           <div className="flex items-center justify-end gap-2 pt-2 border-t dark:border-slate-800">
             {!isLoading && (
               <button
                 type="button"
                 onClick={onClose}
-                className="px-4 py-2 text-xs font-bold rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800"
+                className="px-4 py-2 text-xs font-bold rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer"
               >
                 Hủy
               </button>

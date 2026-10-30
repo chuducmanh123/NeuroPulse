@@ -1,0 +1,41 @@
+name: Daily NeuroCase Clinical Challenge
+
+on:
+  schedule:
+    # Chạy lúc 01:00 sáng giờ VN (18:00 UTC) - Cách Pulse 2 tiếng để giãn tải AI
+    - cron: '0 18 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Fetch Daily Clinical Case (NeuroCase)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python scripts/fetch_cases.py
+
+      - name: Commit and Push Updated Data
+        run: |
+          git config --global user.name "Case-Bot"
+          git config --global user.email "bot@neurocase.org"
+          git add public/data/cases.json public/data/figures/
+          if ! git diff --staged --quiet; then
+            git commit -m "chore(data): auto-update NeuroCase daily clinical challenge"
+            git pull --rebase origin main || true
+            git push
+          else
+            echo "Không có ca bệnh mới."
+          fi

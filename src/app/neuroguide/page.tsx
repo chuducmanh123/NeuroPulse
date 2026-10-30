@@ -21,6 +21,7 @@ import { AppSwitcher } from "../../components/ecosystem/AppSwitcher";
 import { AdminButton } from "../../components/ecosystem/AdminButton";
 import { ReviewQueueTab } from "../../components/neuroguide/ReviewQueueTab";
 import { PipelineModal } from "../../components/neuroguide/PipelineModal";
+import { AdminAuthModal } from "../../components/neurocase/modals/AdminAuthModal";
 
 type NavTabId = "guidelines" | "conf" | "matrix" | "review";
 
@@ -225,6 +226,15 @@ export default function NeuroGuidePage() {
   const [lastSyncedTime, setLastSyncedTime] = useState<string | null>(null);
   const [reviewQueueCount, setReviewQueueCount] = useState<number>(0);
   const [showPipelineModal, setShowPipelineModal] = useState<boolean>(false);
+  const [isAdminVerified, setIsAdminVerified] = useState<boolean>(false);
+  const [showAdminAuthModal, setShowAdminAuthModal] = useState<boolean>(false);
+
+  useEffect(() => {
+    const token =
+      sessionStorage.getItem("neurocase_admin_token") ||
+      localStorage.getItem("neurocase_admin_token");
+    setIsAdminVerified(Boolean(token));
+  }, []);
 
   const fetchQueueCount = async () => {
     try {
@@ -242,29 +252,36 @@ export default function NeuroGuidePage() {
     fetchQueueCount();
   }, []);
 
-  // Dynamic Navigation Tabs with Live Counts
-  const navTabs = useMemo(() => [
-    {
-      id: "guidelines" as const,
-      label: "🔥 Practice Guidelines",
-      badge: `${guidelineDocs.length}`,
-    },
-    {
-      id: "conf" as const,
-      label: "🎙️ Conferences & Late-Breaking Trials",
-      badge: `${MOCK_CONFERENCE_EVENTS.length}`,
-    },
-    {
-      id: "matrix" as const,
-      label: "⚖️ Clinical Scenarios",
-      badge: `${MOCK_CLINICAL_SCENARIOS.length}`,
-    },
-    {
-      id: "review" as const,
-      label: "🛡️ Review Queue",
-      badge: reviewQueueCount > 0 ? `${reviewQueueCount}` : undefined,
-    },
-  ], [guidelineDocs.length, reviewQueueCount]);
+  // Dynamic Navigation Tabs with Live Counts (Review Queue chỉ hiển thị cho Quản trị viên)
+  const navTabs = useMemo(() => {
+    const tabs: { id: NavTabId; label: string; badge?: string }[] = [
+      {
+        id: "guidelines" as const,
+        label: "🔥 Practice Guidelines",
+        badge: `${guidelineDocs.length}`,
+      },
+      {
+        id: "conf" as const,
+        label: "🎙️ Conferences & Late-Breaking Trials",
+        badge: `${MOCK_CONFERENCE_EVENTS.length}`,
+      },
+      {
+        id: "matrix" as const,
+        label: "⚖️ Clinical Scenarios",
+        badge: `${MOCK_CLINICAL_SCENARIOS.length}`,
+      },
+    ];
+
+    if (isAdminVerified) {
+      tabs.push({
+        id: "review" as const,
+        label: "🛡️ Review Queue",
+        badge: reviewQueueCount > 0 ? `${reviewQueueCount}` : undefined,
+      });
+    }
+
+    return tabs;
+  }, [guidelineDocs.length, reviewQueueCount, isAdminVerified]);
 
   // Expandable cards states (details reveal only on click)
   const [expandedGuidelineIds, setExpandedGuidelineIds] = useState<Record<string, boolean>>({});
@@ -2077,27 +2094,66 @@ export default function NeuroGuidePage() {
         )}
 
         {/* =========================================================================
-            TAB 4: REVIEW QUEUE (Human-in-the-loop Medical Validation)
+            TAB 4: REVIEW QUEUE (Khóa chặt cho Quản trị viên - Admin Only)
            ========================================================================= */}
         {activeTab === "review" && (
-          <ReviewQueueTab
-            darkMode={darkMode}
-            onQueueUpdated={fetchQueueCount}
-            onOpenPipelineModal={() => setShowPipelineModal(true)}
-          />
+          isAdminVerified ? (
+            <ReviewQueueTab
+              darkMode={darkMode}
+              onQueueUpdated={fetchQueueCount}
+              onOpenPipelineModal={() => {
+                if (!isAdminVerified) {
+                  setShowAdminAuthModal(true);
+                  return;
+                }
+                setShowPipelineModal(true);
+              }}
+            />
+          ) : (
+            <div className={`p-8 rounded-2xl border text-center max-w-md mx-auto my-12 ${
+              darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
+            }`}>
+              <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-amber-500/10 flex items-center justify-center text-2xl">
+                🛡️
+              </div>
+              <h3 className="text-base font-bold mb-1">Khu vực kiểm duyệt Quản trị viên</h3>
+              <p className="text-xs text-slate-500 mb-4">
+                Bạn cần đăng nhập quyền Admin để kiểm duyệt khuyến cáo và chạy luồng bóc tách PDF.
+              </p>
+              <button
+                onClick={() => setShowAdminAuthModal(true)}
+                className="px-4 py-2 rounded-xl text-xs font-bold bg-amber-500 hover:bg-amber-600 text-white shadow-xs cursor-pointer"
+              >
+                Đăng nhập Admin
+              </button>
+            </div>
+          )
         )}
 
         {/* =========================================================================
-            PIPELINE ORCHESTRATOR MODAL
+            PIPELINE ORCHESTRATOR MODAL (ADMIN ONLY)
            ========================================================================= */}
-        <PipelineModal
-          isOpen={showPipelineModal}
-          onClose={() => setShowPipelineModal(false)}
-          onSuccess={() => {
-            fetchQueueCount();
-            setActiveTab("review");
-          }}
+        {isAdminVerified && (
+          <PipelineModal
+            isOpen={showPipelineModal}
+            onClose={() => setShowPipelineModal(false)}
+            onSuccess={() => {
+              fetchQueueCount();
+              setActiveTab("review");
+            }}
+            darkMode={darkMode}
+          />
+        )}
+
+        {/* ADMIN AUTH MODAL */}
+        <AdminAuthModal
+          show={showAdminAuthModal}
           darkMode={darkMode}
+          onClose={() => setShowAdminAuthModal(false)}
+          onSuccess={() => {
+            setIsAdminVerified(true);
+            setShowAdminAuthModal(false);
+          }}
         />
 
         {/* =========================================================================
