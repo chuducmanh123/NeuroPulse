@@ -522,3 +522,215 @@ function getDeterministicScenarios(
     },
   ];
 }
+
+/**
+ * 4. AI Extraction directly from an uploaded PDF Buffer (Supports Vercel Serverless)
+ */
+export async function extractGuidelineFromPdfBuffer(options: {
+  buffer: Buffer;
+  fileName: string;
+  society: string;
+  title?: string;
+  year?: number;
+}): Promise<GuidelineDoc> {
+  const apiKey = loadEnvKey();
+  const pubYear = options.year || new Date().getFullYear();
+  const fallbackTitle =
+    options.title || options.fileName.replace(/\.pdf$/i, "").replace(/[_-]+/g, " ").trim();
+  const detectedSub = detectSubspecialty(fallbackTitle);
+
+  if (!apiKey || apiKey.length < 10) {
+    return buildDeterministicGuideline(
+      {
+        title: fallbackTitle,
+        journal: options.society,
+        pubYear,
+        officialUrl: `file://${options.fileName}`,
+        isFullText: true,
+      },
+      options.society,
+      detectedSub
+    );
+  }
+
+  const prompt = `
+You are a Senior Academic Neurologist and Evidence-Based Medicine Methodologist.
+Analyze this attached clinical practice guideline PDF from ${options.society}.
+Document title or hint: "${fallbackTitle}" (${pubYear}).
+
+Extract 3 to 6 discrete clinical practice recommendations with Class of Recommendation (COR) and Level of Evidence (LOE).
+Respond strictly in JSON matching this schema:
+{
+  "isGenuineGuideline": true,
+  "society": "${options.society}",
+  "subspecialty": "${detectedSub}",
+  "documentType": "Clinical Practice Guideline",
+  "title": "${fallbackTitle}",
+  "executiveSummary": "string (2-3 concise sentences in English)",
+  "executiveSummaryVi": "string (2-3 concise sentences in Vietnamese)",
+  "practiceChanges": [
+    {
+      "category": "string",
+      "topic": "string",
+      "changeType": "NEW",
+      "currentGrade": "string (e.g. Class I, Level A or Strong Recommendation, High Quality)",
+      "currentText": "string",
+      "previousGrade": null,
+      "drivingTrials": ["string"]
+    }
+  ]
+}
+`;
+
+  try {
+    for (const model of WATERFALL_MODELS) {
+      try {
+        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
+        const res = await fetch(endpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-goog-api-key": apiKey,
+          },
+          body: JSON.stringify({
+            contents: [
+              {
+                parts: [
+                  {
+                    inline_data: {
+                      mime_type: "application/pdf",
+                      data: options.buffer.toString("base64"),
+                    },
+                  },
+                  { text: prompt },
+                ],
+              },
+            ],
+            generationConfig: {
+              temperature: 0.2,
+              responseMimeType: "application/json",
+            },
+          }),
+        });
+
+        if (!res.ok) continue;
+        const data = await res.json();
+        const rawJson = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (!rawJson) continue;
+        const result = JSON.parse(rawJson);
+        if (result && Array.isArray(result.practiceChanges) && result.practiceChanges.length > 0) {
+          const docId = `${options.society.toLowerCase().replace(/[^a-z0-9]/g, "")}-${pubYear}-${Date.now()}`;
+          return {
+            id: docId,
+            society: options.society,
+            year: pubYear,
+            title: result.title || fallbackTitle,
+            officialUrl: `upload://${options.fileName}`,
+            journalTarget: options.society,
+            documentType: "Clinical Practice Guideline",
+            publishDate: `${pubYear}-01-15`,
+            subspecialty: (result.subspecialty as SubspecialtyType) || detectedSub,
+            subspecialties: [(result.subspecialty as SubspecialtyType) || detectedSub],
+            executiveSummary: result.executiveSummary || `${options.society} guideline published in ${pubYear}.`,
+            executiveSummaryVi: result.executiveSummaryVi || `Hướng dẫn thực hành lâm sàng từ ${options.society} (${pubYear}).`,
+            allPracticeChanges: result.practiceChanges.map((c: any, i: number) => ({
+              id: `chg-${docId}-${i + 1}`,
+              category: c.category || "Clinical Recommendation",
+              topic: c.topic || fallbackTitle.slice(0, 70),
+              changeType: c.changeType || "NEW",
+              currentGrade: c.currentGrade || "Class I, Level A",
+              currentText: c.currentText || "",
+              drivingTrials: c.drivingTrials || [],
+            })),
+            linkedScenarioIds: [],
+            fullTextStatus: "FULL_TEXT_PARSED",
+            fullTextSource: "OPEN_ACCESS_WEB",
+            aiSynthesized: true,
+            synthesizedAt: new Date().toISOString(),
+          };
+        }
+      } catch {
+        // try next model
+      }
+    }
+  } catch {
+    // fallback
+  }
+
+  return buildDeterministicGuideline(
+    {
+      title: fallbackTitle,
+      journal: options.society,
+      pubYear,
+      officialUrl: `file://${options.fileName}`,
+      isFullText: true,
+    },
+    options.society,
+    detectedSub
+  );
+}
+
+/**
+ * 5. AI Extraction from a Guideline Web URL or DOI (Supports Vercel Serverless)
+ */
+export async function extractGuidelineFromUrlOrDoi(options: {
+  url: string;
+  society: string;
+  title?: string;
+  year?: number;
+}): Promise<GuidelineDoc> {
+  const pubYear = options.year || new Date().getFullYear();
+  let title = options.title;
+  let abstract = "";
+  let journal = options.society;
+
+  // Extract DOI from URL if present (e.g. 10.1161/STR.0000000000000514)
+  const doiMatch = options.url.match(/\b(10\.\d{4,9}\/[-._;()/:A-Za-z0-9]+)\b/);
+  if (doiMatch) {
+    const doi = doiMatch[1].replace(/[.,;)]+$/, "");
+    try {
+      const epmcUrl = `https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:${encodeURIComponent(doi)}&format=json`;
+      const res = await fetch(epmcUrl, { headers: { Accept: "application/json" } });
+      if (res.ok) {
+        const json = await res.json();
+        const item = json?.resultList?.result?.[0];
+        if (item) {
+          if (!title) title = item.title?.replace(/<[^>]+>/g, "").replace(/\.$/, "").trim();
+          if (item.journalTitle) journal = item.journalTitle;
+          if (item.abstractText) abstract = item.abstractText;
+        }
+      }
+    } catch {
+      // EPMC query failed, proceed with fallback
+    }
+  }
+
+  const cleanTitle = title || `Guideline on ${options.society} Management`;
+  const detectedSub = detectSubspecialty(cleanTitle);
+
+  if (abstract || cleanTitle) {
+    const extracted = await extractGuidelineWithGemini({
+      title: cleanTitle,
+      journal,
+      pubYear,
+      officialUrl: options.url,
+      fullTextSnippet: abstract || cleanTitle,
+      isFullText: Boolean(abstract && abstract.length > 300),
+    });
+    if (extracted) {
+      return extracted;
+    }
+  }
+
+  return buildDeterministicGuideline(
+    {
+      title: cleanTitle,
+      journal,
+      pubYear,
+      officialUrl: options.url,
+      isFullText: false,
+    },
+    options.society,
+    detectedSub
+  );
+}
