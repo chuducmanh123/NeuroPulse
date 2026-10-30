@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
+import { put } from "@vercel/blob";
 
 export const dynamic = "force-dynamic";
 
@@ -18,6 +19,9 @@ interface StoredRec {
   strength_of_recommendation?: string;
   voting?: string;
   pico_id?: string;
+  target_population?: string;
+  driving_trials?: string[];
+  verbatim_quote?: string;
   verification_detail?: {
     status: string;
     grounding_score: number;
@@ -50,8 +54,29 @@ interface GuidelineRecord {
 const STORE_DIR = path.join(process.cwd(), "data", "guidelines_store");
 const TMP_DIR = path.join("/tmp", "guidelines_store");
 
+function cleanBlobToken(raw: string | undefined): string | undefined {
+  if (!raw) return undefined;
+  const match = raw.match(/vercel_blob_rw_[a-zA-Z0-9_\-]+/);
+  if (match) return match[0].trim();
+  let cleaned = raw.replace(/^BLOB_READ_WRITE_TOKEN\s*=\s*/i, "");
+  cleaned = cleaned.replace(/[\r\n\t"'`]/g, "").trim();
+  return cleaned.length > 10 ? cleaned : undefined;
+}
+
+function getBlobToken(): { token: string | undefined } {
+  const direct = cleanBlobToken(process.env.BLOB_READ_WRITE_TOKEN);
+  if (direct) return { token: direct };
+  for (const [key, val] of Object.entries(process.env)) {
+    if ((key.includes("BLOB") || key.includes("READ_WRITE")) && key.includes("TOKEN") && val) {
+      const cleaned = cleanBlobToken(val);
+      if (cleaned) return { token: cleaned };
+    }
+  }
+  return { token: undefined };
+}
+
 /**
- * Đọc nội dung tệp tin, ưu tiên từ thư mục ghi /tmp (trên Vercel Serverless) trước khi đọc từ kho tĩnh
+ * Đọc nội dung tệp tin: Ưu tiên /tmp (phiên hiện tại trên serverless), sau đó kho tĩnh STORE_DIR
  */
 function getFileContent(fileName: string): { content: string; sourcePath: string } | null {
   const tmpPath = path.join(TMP_DIR, fileName);
@@ -72,28 +97,16 @@ function getFileContent(fileName: string): { content: string; sourcePath: string
 }
 
 /**
- * Lưu tệp tin an toàn: Thử ghi vào STORE_DIR (môi trường Local Dev); nếu gặp lỗi EROFS
- * (hệ thống tệp chỉ đọc trên Vercel Serverless), tự động fallback sang /tmp
+ * Lưu tệp tin an toàn tuyệt đối chống lỗi EROFS trên Vercel Serverless:
+ * 1. Nếu môi trường Vercel (process.env.VERCEL) -> KHÔNG bao giờ ghi vào STORE_DIR để tránh lỗi EROFS
+ * 2. Lưu vào /tmp (khả dụng ghi trên mọi môi trường serverless/Lambda)
+ * 3. Nếu cấu hình Vercel Blob -> Lưu lên Cloud Blob để duy trì bền vững
+ * 4. Chạy cục bộ (Local Dev) -> Lưu trực tiếp vào STORE_DIR
  */
-function saveFileSafe(fileName: string, dataStr: string): void {
-  let written = false;
+async function saveFileSafe(fileName: string, dataStr: string): Promise<void> {
+  const isVercel = Boolean(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
 
-  // 1. Thử ghi vào STORE_DIR (chạy cục bộ)
-  try {
-    const storePath = path.join(STORE_DIR, fileName);
-    if (!fs.existsSync(STORE_DIR)) {
-      fs.mkdirSync(STORE_DIR, { recursive: true });
-    }
-    fs.writeFileSync(storePath, dataStr, "utf-8");
-    written = true;
-  } catch (e: any) {
-    // Nếu là EROFS (Read-only filesystem trên AWS Lambda/Vercel), bỏ qua để chuyển sang /tmp
-    if (e?.code !== "EROFS" && !String(e).includes("read-only file system")) {
-      console.warn("Không thể ghi vào STORE_DIR:", e);
-    }
-  }
-
-  // 2. Luôn ghi hoặc fallback vào /tmp để duy trì phiên làm việc trên Cloud
+  // 1. Lưu vào /tmp để duy trì tức thì cho các request trong container
   try {
     if (!fs.existsSync(TMP_DIR)) {
       fs.mkdirSync(TMP_DIR, { recursive: true });
@@ -101,9 +114,38 @@ function saveFileSafe(fileName: string, dataStr: string): void {
     const tmpPath = path.join(TMP_DIR, fileName);
     fs.writeFileSync(tmpPath, dataStr, "utf-8");
   } catch (err) {
-    if (!written) {
-      console.error("Không thể ghi vào TMP_DIR:", err);
-      throw err;
+    console.warn("Không thể ghi vào TMP_DIR:", err);
+  }
+
+  // 2. Thử lưu lên Vercel Blob nếu có token
+  const { token } = getBlobToken();
+  if (token) {
+    try {
+      const putOptions: any = {
+        access: "public",
+        addRandomSuffix: false,
+        allowOverwrite: true,
+        contentType: "application/json",
+        token,
+      };
+      await put(`guidelines_store/${fileName}`, dataStr, putOptions);
+    } catch (blobErr) {
+      console.warn("Lỗi đồng bộ lên Vercel Blob:", blobErr);
+    }
+  }
+
+  // 3. Nếu không phải Vercel Serverless (chạy cục bộ), lưu vào STORE_DIR
+  if (!isVercel) {
+    try {
+      if (!fs.existsSync(STORE_DIR)) {
+        fs.mkdirSync(STORE_DIR, { recursive: true });
+      }
+      const storePath = path.join(STORE_DIR, fileName);
+      fs.writeFileSync(storePath, dataStr, "utf-8");
+    } catch (e: any) {
+      if (e?.code !== "EROFS" && !String(e).includes("read-only file system")) {
+        console.warn("Không thể ghi vào STORE_DIR:", e);
+      }
     }
   }
 }
@@ -214,7 +256,7 @@ export async function POST(request: NextRequest) {
     record.updated_at = nowIso;
 
     // Ghi lại tệp _latest.json an toàn (hỗ trợ cả Local và Vercel EROFS)
-    saveFileSafe(latestFileName, JSON.stringify(record, null, 2));
+    await saveFileSafe(latestFileName, JSON.stringify(record, null, 2));
 
     // Cập nhật catalog.json
     const catalogInfo = getFileContent("catalog.json");
@@ -226,7 +268,7 @@ export async function POST(request: NextRequest) {
           catalog[file_id].approved_count = record.approved_count;
           catalog[file_id].rejected_count = record.rejected_count;
           catalog[file_id].updated_at = nowIso;
-          saveFileSafe("catalog.json", JSON.stringify(catalog, null, 2));
+          await saveFileSafe("catalog.json", JSON.stringify(catalog, null, 2));
         }
       } catch {
         // Bỏ qua lỗi phụ của catalog

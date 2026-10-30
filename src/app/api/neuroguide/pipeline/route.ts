@@ -28,6 +28,17 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
+    if (process.env.VERCEL) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error:
+            "Bộ điều phối AI Pipeline Runner yêu cầu môi trường Python và PyMuPDF cục bộ hoặc backend chuyên dụng, hiện không chạy trên Vercel Serverless.",
+        },
+        { status: 400 }
+      );
+    }
+
     const body = await request.json();
     const { url, local_path, society = "AHA", title, year, discover } = body;
 
