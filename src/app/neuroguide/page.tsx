@@ -322,7 +322,7 @@ export default function NeuroGuidePage() {
 
   const matrixContainerRef = useRef<HTMLDivElement>(null);
 
-  const CURRENT_CACHE_VERSION = "neuroguide_v2026_coordinated_v13";
+  const CURRENT_CACHE_VERSION = "neuroguide_v2026_coordinated_v15";
 
   // Background Autonomous Sync Method (Chỉ chạy định kỳ 24h hoặc khi có lệnh)
   const triggerSync = async (isAuto = false) => {
@@ -336,11 +336,31 @@ export default function NeuroGuidePage() {
       });
       const json = await res.json();
       if (json.status === "success" && json.guidelines && json.guidelines.length > 0) {
-        setGuidelineDocs(json.guidelines);
-        try {
-          localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(json.guidelines));
-        } catch (e) {
-          console.warn("Could not save to localStorage:", e);
+        // Chỉ lưu và hiển thị các guideline đã qua trung tâm điều phối
+        const normalizeT = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+        const coordinatedTitles = new Set(MOCK_GUIDELINE_DOCS.map((g) => normalizeT(g.title)));
+        const coordinatedIds = new Set(MOCK_GUIDELINE_DOCS.map((g) => g.id.toLowerCase()));
+
+        const valid = json.guidelines.filter((doc: GuidelineDoc) => {
+          if (!doc || !doc.title) return false;
+          const id = (doc.id || "").toLowerCase();
+          const normT = normalizeT(doc.title);
+          return (
+            (coordinatedIds.has(id) || coordinatedTitles.has(normT) || id.startsWith("aha2026")) &&
+            !id.startsWith("eso-pmid-") &&
+            !id.startsWith("esc-pmid-") &&
+            !id.startsWith("b15e76") &&
+            !id.includes("phantom")
+          );
+        });
+
+        if (valid.length > 0) {
+          setGuidelineDocs(valid);
+          try {
+            localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(valid));
+          } catch (e) {
+            console.warn("Could not save to localStorage:", e);
+          }
         }
 
         const quota = json.quotaReport;
@@ -366,14 +386,21 @@ export default function NeuroGuidePage() {
 
   // Hydrate from coordinated server storage + cache sanitizer on mount
   useEffect(() => {
-    // 1. Chỉ đọc dữ liệu đã qua điều phối từ server storage (offline/database hiện có, không kích hoạt tìm kiếm mới)
+    const normalizeT = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+    const coordinatedTitles = new Set(MOCK_GUIDELINE_DOCS.map((g) => normalizeT(g.title)));
+    const coordinatedIds = new Set(MOCK_GUIDELINE_DOCS.map((g) => g.id.toLowerCase()));
+
+    // 1. Chỉ đọc dữ liệu đã qua điều phối từ server storage (tuyệt đối không kích hoạt tìm kiếm mới)
     fetch("/api/neuroguide/sync-guidelines")
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (data && data.status === "success" && Array.isArray(data.guidelines) && data.guidelines.length > 0) {
           const validGuidelines = data.guidelines.filter((doc: GuidelineDoc) => {
+            if (!doc || !doc.title) return false;
             const id = (doc.id || "").toLowerCase();
+            const normT = normalizeT(doc.title);
             return (
+              (coordinatedIds.has(id) || coordinatedTitles.has(normT) || id.startsWith("aha2026")) &&
               !id.startsWith("eso-pmid-") &&
               !id.startsWith("esc-pmid-") &&
               !id.startsWith("b15e76") &&
@@ -406,29 +433,25 @@ export default function NeuroGuidePage() {
           const parsed = JSON.parse(cached);
           if (Array.isArray(parsed)) {
             // Loại bỏ hoàn toàn các guideline chưa qua kiểm định / chưa qua trung tâm điều phối
-            const normalizeT = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+            const filtered = parsed.filter((doc: GuidelineDoc) => {
+              if (!doc || !doc.title) return false;
+              const id = (doc.id || "").toLowerCase();
+              const normT = normalizeT(doc.title);
+              return (
+                (coordinatedIds.has(id) || coordinatedTitles.has(normT) || id.startsWith("aha2026")) &&
+                !id.startsWith("eso-pmid-") &&
+                !id.startsWith("esc-pmid-") &&
+                !id.startsWith("b15e76") &&
+                !id.includes("phantom")
+              );
+            });
+
             const titleMap = new Map<string, GuidelineDoc>();
             MOCK_GUIDELINE_DOCS.forEach((g) => titleMap.set(normalizeT(g.title), g));
-
-            parsed.forEach((doc: GuidelineDoc) => {
-              if (!doc || !doc.title) return;
-              const id = (doc.id || "").toLowerCase();
-              if (
-                id.startsWith("eso-pmid-") ||
-                id.startsWith("esc-pmid-") ||
-                id.startsWith("b15e76") ||
-                id.includes("phantom")
-              ) {
-                return;
-              }
-              const normT = normalizeT(doc.title);
-              // Chỉ chấp nhận nếu đã có trong baseline hoặc có cấu trúc khuyến cáo hoàn chỉnh đã điều phối
-              const hasFullChanges = Boolean(doc.allPracticeChanges && doc.allPracticeChanges.length > 0);
-              if (hasFullChanges) {
-                const existing = titleMap.get(normT);
-                if (!existing) {
-                  titleMap.set(normT, doc);
-                }
+            filtered.forEach((g) => {
+              const norm = normalizeT(g.title);
+              if (!titleMap.has(norm)) {
+                titleMap.set(norm, g);
               }
             });
 
@@ -443,19 +466,25 @@ export default function NeuroGuidePage() {
       console.warn("Error initializing guideline cache:", e);
     }
 
-    // 3. Kiểm tra chu kỳ quét định kỳ 24 giờ: Chỉ quét online nếu đã đủ 24 giờ kể từ lần quét trước
-    const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
+    // 3. Khởi tạo mốc thời gian, TUYỆT ĐỐI KHÔNG quét khi load trang:
     const lastSyncStr = localStorage.getItem("neuroguide_last_sync_timestamp");
-    const now = Date.now();
     if (!lastSyncStr) {
-      // Thiết lập timestamp ban đầu, tuyệt đối không quét ngay khi load trang lần đầu
-      localStorage.setItem("neuroguide_last_sync_timestamp", now.toString());
-    } else {
-      const lastSync = parseInt(lastSyncStr, 10);
-      if (!isNaN(lastSync) && now - lastSync >= TWENTY_FOUR_HOURS) {
-        triggerSync(true);
-      }
+      localStorage.setItem("neuroguide_last_sync_timestamp", Date.now().toString());
     }
+
+    // 4. Kiểm tra chu kỳ định kỳ mỗi giờ khi tab đang mở: chỉ quét nếu đã qua 24 giờ
+    const intervalId = setInterval(() => {
+      const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
+      const ts = localStorage.getItem("neuroguide_last_sync_timestamp");
+      if (ts) {
+        const lastSync = parseInt(ts, 10);
+        if (!isNaN(lastSync) && Date.now() - lastSync >= TWENTY_FOUR_HOURS) {
+          triggerSync(true);
+        }
+      }
+    }, 60 * 60 * 1000);
+
+    return () => clearInterval(intervalId);
   }, []);
 
   // Sync dark mode with ecosystem standards (both neuro_dark_mode and neuropulse_theme)

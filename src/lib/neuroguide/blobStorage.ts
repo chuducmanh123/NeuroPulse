@@ -231,6 +231,8 @@ export function mergeScenarios(
 /**
  * Loads and merges all NeuroGuide data across storage tiers:
  * Vercel Blob -> Local Disk Fallback -> Static Mock Baseline
+ * Strictly enforces that only documents coordinated through the coordination center
+ * (MOCK_GUIDELINE_DOCS + data/guidelines_store) are admitted into the active library.
  */
 export async function loadMergedNeuroGuideData(): Promise<{
   guidelines: GuidelineDoc[];
@@ -240,11 +242,52 @@ export async function loadMergedNeuroGuideData(): Promise<{
   lastSyncedAt?: string;
 }> {
   const storeDocs = getStoredGuidelinesAsDocs();
+  const normalizeT = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+
+  const coordinatedIds = new Set([
+    ...MOCK_GUIDELINE_DOCS.map((g) => g.id.toLowerCase()),
+    ...storeDocs.map((g) => g.id.toLowerCase()),
+    "aha2026_test",
+    "eso-ais-2026",
+  ]);
+  const coordinatedTitles = new Set([
+    ...MOCK_GUIDELINE_DOCS.map((g) => normalizeT(g.title)),
+    ...storeDocs.map((g) => normalizeT(g.title)),
+  ]);
+
+  const filterCoordinated = (list: GuidelineDoc[] | undefined) => {
+    if (!Array.isArray(list)) return [];
+    return list.filter((g) => {
+      if (!g || !g.title) return false;
+      const id = (g.id || "").toLowerCase();
+      const norm = normalizeT(g.title);
+      if (
+        id.startsWith("eso-pmid-") ||
+        id.startsWith("esc-pmid-") ||
+        id.startsWith("b15e76") ||
+        id.includes("phantom")
+      ) {
+        return false;
+      }
+      return coordinatedIds.has(id) || coordinatedTitles.has(norm);
+    });
+  };
 
   const blobData = await getFromBlob();
   if (blobData) {
-    const merged = mergeGuidelines(blobData.guidelines);
+    const coordinatedBlobDocs = filterCoordinated(blobData.guidelines);
+    const merged = mergeGuidelines(coordinatedBlobDocs, MOCK_GUIDELINE_DOCS);
     const finalGuidelines = storeDocs.length > 0 ? mergeGuidelines(storeDocs, merged) : merged;
+
+    // Tự động dọn dẹp lại Vercel Blob nếu trước đó bị lẫn các tài liệu rác chưa qua điều phối
+    if (blobData.guidelines && blobData.guidelines.length > finalGuidelines.length) {
+      saveNeuroGuideToActiveStorage({
+        guidelines: finalGuidelines,
+        conferences: blobData.conferences,
+        scenarios: blobData.scenarios,
+      }).catch(() => {});
+    }
+
     return {
       guidelines: finalGuidelines,
       conferences: mergeConferences(blobData.conferences),
@@ -256,7 +299,8 @@ export async function loadMergedNeuroGuideData(): Promise<{
 
   const localData = await getFromLocalDisk();
   if (localData) {
-    const merged = mergeGuidelines(localData.guidelines);
+    const coordinatedLocalDocs = filterCoordinated(localData.guidelines);
+    const merged = mergeGuidelines(coordinatedLocalDocs, MOCK_GUIDELINE_DOCS);
     const finalGuidelines = storeDocs.length > 0 ? mergeGuidelines(storeDocs, merged) : merged;
     return {
       guidelines: finalGuidelines,

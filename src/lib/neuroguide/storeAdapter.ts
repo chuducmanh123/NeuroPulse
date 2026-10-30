@@ -5,6 +5,170 @@ import type { GuidelineDoc, PracticeChangeDetail, SubspecialtyType } from "../..
 const STORE_DIR = path.join(process.cwd(), "data", "guidelines_store");
 const TMP_DIR = path.join("/tmp", "guidelines_store");
 
+function cleanBlobToken(raw: string | undefined): string | undefined {
+  if (!raw) return undefined;
+  const match = raw.match(/vercel_blob_rw_[a-zA-Z0-9_\-]+/);
+  if (match) return match[0].trim();
+  let cleaned = raw.replace(/^BLOB_READ_WRITE_TOKEN\s*=\s*/i, "");
+  cleaned = cleaned.replace(/[\r\n\t"'`]/g, "").trim();
+  return cleaned.length > 10 ? cleaned : undefined;
+}
+
+function getBlobToken(): { token: string | undefined } {
+  const direct = cleanBlobToken(process.env.BLOB_READ_WRITE_TOKEN);
+  if (direct) return { token: direct };
+  for (const [key, val] of Object.entries(process.env)) {
+    if ((key.includes("BLOB") || key.includes("READ_WRITE")) && key.includes("TOKEN") && val) {
+      const cleaned = cleanBlobToken(val);
+      if (cleaned) return { token: cleaned };
+    }
+  }
+  return { token: undefined };
+}
+
+/**
+ * Lưu tệp tin an toàn đa tầng:
+ * 1. Ghi /tmp (cho runtime Vercel Lambda)
+ * 2. Ghi lên Vercel Blob (guidelines_store/) để duy trì lâu dài
+ * 3. Ghi vào thư mục data/guidelines_store/ khi chạy cục bộ
+ */
+export async function saveStoreFileSafe(fileName: string, dataStr: string): Promise<void> {
+  const isVercel = Boolean(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
+
+  // 1. Lưu vào /tmp
+  try {
+    if (!fs.existsSync(TMP_DIR)) {
+      fs.mkdirSync(TMP_DIR, { recursive: true });
+    }
+    const tmpPath = path.join(TMP_DIR, fileName);
+    fs.writeFileSync(tmpPath, dataStr, "utf-8");
+  } catch (err) {
+    console.warn("Không thể ghi vào TMP_DIR:", err);
+  }
+
+  // 2. Lưu lên Vercel Blob nếu có cấu hình
+  const { token } = getBlobToken();
+  if (token) {
+    try {
+      const { put } = await import("@vercel/blob");
+      await put(`guidelines_store/${fileName}`, dataStr, {
+        access: "public",
+        addRandomSuffix: false,
+        allowOverwrite: true,
+        contentType: "application/json",
+        token,
+      });
+    } catch (blobErr) {
+      console.warn("Lỗi lưu guidelines_store lên Vercel Blob:", blobErr);
+    }
+  }
+
+  // 3. Nếu local dev, lưu vào STORE_DIR
+  if (!isVercel) {
+    try {
+      if (!fs.existsSync(STORE_DIR)) {
+        fs.mkdirSync(STORE_DIR, { recursive: true });
+      }
+      const storePath = path.join(STORE_DIR, fileName);
+      fs.writeFileSync(storePath, dataStr, "utf-8");
+    } catch (e: any) {
+      if (e?.code !== "EROFS") {
+        console.warn("Không thể ghi vào STORE_DIR:", e);
+      }
+    }
+  }
+}
+
+/**
+ * Đưa một guideline mới phát hiện vào Hàng đợi Điều phối (Review Queue) & Vercel Blob
+ * để bác sĩ/chuyên gia kiểm định trước khi chuyển thành khuyến cáo chính thức.
+ */
+export async function registerCandidateGuideline(doc: GuidelineDoc): Promise<boolean> {
+  if (!doc || !doc.id || !doc.title) return false;
+
+  const recs = (doc.allPracticeChanges || []).map((chg, idx) => ({
+    rec_id: chg.id || `rec-${idx + 1}`,
+    guideline_id: doc.id,
+    grading_system: doc.society?.includes("ESO") ? "GRADE" : "ACC/AHA",
+    page_num: 1,
+    statement: chg.currentText || doc.executiveSummary || doc.title,
+    approval_status: "PENDING_REVIEW",
+    cor: chg.currentGrade?.includes("Class") ? chg.currentGrade.split(",")[0].trim() : undefined,
+    loe: chg.currentGrade?.includes("Level") ? chg.currentGrade.split("Level")[1]?.trim() : undefined,
+    quality_of_evidence: chg.currentGrade?.includes("Evidence:")
+      ? chg.currentGrade.split("Evidence:")[1]?.split(")")[0]?.trim()
+      : "Moderate",
+    strength_of_recommendation:
+      chg.changeType === "NEW" || chg.changeType === "UPGRADED" ? "Strong" : "Conditional",
+    driving_trials: chg.drivingTrials || [],
+    verification_detail: {
+      status: "PENDING_COORDINATION",
+      grounding_score: doc.fullTextStatus === "FULL_TEXT_PARSED" ? 0.95 : 0.85,
+      classification_valid: true,
+      numbers_verified: true,
+      issues: [],
+    },
+  }));
+
+  const nowIso = new Date().toISOString();
+  const record = {
+    guideline_id: doc.id,
+    version: 1,
+    metadata: {
+      title: doc.title,
+      society: doc.society,
+      year: doc.year,
+      source_url: doc.officialUrl,
+      pmcid: doc.pmcid,
+      doi: doc.doi,
+      top_takeaways: doc.topTakeaways || [],
+    },
+    total_recommendations: recs.length,
+    pending_count: recs.length,
+    approved_count: 0,
+    rejected_count: 0,
+    recommendations: recs,
+    updated_at: nowIso,
+  };
+
+  const fileName = `${doc.id}_latest.json`;
+  await saveStoreFileSafe(fileName, JSON.stringify(record, null, 2));
+
+  // Cập nhật catalog.json
+  try {
+    let catalog: Record<string, any> = {};
+    const localCatalog = path.join(STORE_DIR, "catalog.json");
+    const tmpCatalog = path.join(TMP_DIR, "catalog.json");
+    if (fs.existsSync(tmpCatalog)) {
+      try {
+        catalog = JSON.parse(fs.readFileSync(tmpCatalog, "utf-8"));
+      } catch {}
+    } else if (fs.existsSync(localCatalog)) {
+      try {
+        catalog = JSON.parse(fs.readFileSync(localCatalog, "utf-8"));
+      } catch {}
+    }
+
+    catalog[doc.id] = {
+      guideline_id: doc.id,
+      title: doc.title,
+      society: doc.society,
+      year: doc.year,
+      total_recommendations: recs.length,
+      pending_count: recs.length,
+      approved_count: 0,
+      rejected_count: 0,
+      updated_at: nowIso,
+    };
+
+    await saveStoreFileSafe("catalog.json", JSON.stringify(catalog, null, 2));
+  } catch (err) {
+    console.warn("Lỗi cập nhật catalog:", err);
+  }
+
+  return true;
+}
+
 function mapSocietyToSubspecialty(society: string, title: string): SubspecialtyType {
   const s = (society || "").toUpperCase();
   const t = (title || "").toLowerCase();

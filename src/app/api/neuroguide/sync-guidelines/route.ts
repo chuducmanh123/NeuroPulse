@@ -10,7 +10,9 @@ import {
   loadMergedNeuroGuideData,
   saveNeuroGuideToActiveStorage,
   hasBlobConfig,
+  mergeGuidelines,
 } from "@/lib/neuroguide/blobStorage";
+import { registerCandidateGuideline } from "@/lib/neuroguide/storeAdapter";
 import { SubspecialtyType, GuidelineDoc, ConferenceEvent, ClinicalScenario } from "@/types/neuroguide";
 
 export const dynamic = "force-dynamic";
@@ -167,6 +169,19 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    // Tự động đưa toàn bộ các guideline mới phát hiện vào Hàng đợi Điều phối (Review Queue) & Vercel Blob để chờ kiểm tra
+    for (const cand of analyzedGuidelines) {
+      const normCandTitle = (cand.title || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+      const isCurated = currentStore.guidelines.some(
+        (g) =>
+          g.id.toLowerCase() === cand.id.toLowerCase() ||
+          (g.title || "").toLowerCase().replace(/[^a-z0-9]/g, "") === normCandTitle
+      );
+      if (!isCurated) {
+        await registerCandidateGuideline(cand);
+      }
+    }
+
     // 3. SESSION QUOTA PART 2: Synthesize 2 Conference Late-Breaking Trials
     const targetSub: SubspecialtyType = subspecialty || (analyzedGuidelines[0]?.subspecialty as SubspecialtyType) || "Stroke";
     const newTrials = await extractConferenceTrialsWithGemini("ESOC & ISC Congress", targetSub);
@@ -196,11 +211,8 @@ export async function POST(request: NextRequest) {
     newScenarios.forEach((s) => mergedScenariosMap.set(s.id, s));
     const allScenarios = Array.from(mergedScenariosMap.values());
 
-    // 5. Merge all updated guidelines into active library
-    const mergedGuidelinesMap = new Map<string, GuidelineDoc>();
-    currentStore.guidelines.forEach((g) => mergedGuidelinesMap.set(g.id.toLowerCase(), g));
-    analyzedGuidelines.forEach((g) => mergedGuidelinesMap.set(g.id.toLowerCase(), g));
-    const allGuidelines = Array.from(mergedGuidelinesMap.values());
+    // 5. Merge all updated guidelines into active library via coordination engine
+    const allGuidelines = mergeGuidelines(analyzedGuidelines, currentStore.guidelines);
 
     // 6. Persist to Vercel Blob (or local storage fallback)
     const saveResult = await saveNeuroGuideToActiveStorage({

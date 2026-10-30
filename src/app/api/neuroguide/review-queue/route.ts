@@ -275,6 +275,23 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    // Nếu khuyến cáo đã được duyệt hoặc sửa đổi, tự động cập nhật thư viện chính và đồng bộ lên Vercel Blob
+    if (record.approved_count > 0) {
+      try {
+        const { loadMergedNeuroGuideData, saveNeuroGuideToActiveStorage } = await import(
+          "@/lib/neuroguide/blobStorage"
+        );
+        const activeData = await loadMergedNeuroGuideData();
+        await saveNeuroGuideToActiveStorage({
+          guidelines: activeData.guidelines,
+          conferences: activeData.conferences,
+          scenarios: activeData.scenarios,
+        });
+      } catch (err) {
+        console.warn("Lỗi cập nhật thư viện Vercel Blob sau phê duyệt:", err);
+      }
+    }
+
     return NextResponse.json({
       ok: true,
       message: `Đã cập nhật trạng thái khuyến cáo ${rec_id} thành ${action}`,
