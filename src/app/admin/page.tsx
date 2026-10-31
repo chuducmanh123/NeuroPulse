@@ -273,11 +273,18 @@ export default function AdminCommandCenter() {
   const [lastSyncedTime, setLastSyncedTime] = useState<string>("");
   const [radarMessage, setRadarMessage] = useState<string | null>(null);
 
-  // Batch PDF Ingestion Modal State
-  const [showBatchModal, setShowBatchModal] = useState(false);
-  const [batchInputText, setBatchInputText] = useState("");
-  const [batchPreviewDocs, setBatchPreviewDocs] = useState<GuidelineDoc[]>([]);
-  const [isBatchProcessing, setIsBatchProcessing] = useState(false);
+  // NeuroPulse Articles Counter
+  const [articlesCount, setArticlesCount] = useState<number>(179);
+  useEffect(() => {
+    fetch("/data/articles.json")
+      .then((res) => res.json())
+      .then((data: any[]) => {
+        if (Array.isArray(data)) {
+          setArticlesCount(data.length);
+        }
+      })
+      .catch((e) => console.warn("Could not fetch articles count:", e));
+  }, []);
 
   const filteredRepoDocs = useMemo(() => {
     return guidelineDocs.filter((doc) => {
@@ -351,48 +358,6 @@ export default function AdminCommandCenter() {
     } finally {
       setIsSyncingRadar(false);
     }
-  };
-
-  const handleParseBatch = async () => {
-    if (!batchInputText.trim()) return;
-    setIsBatchProcessing(true);
-    try {
-      const res = await fetch("/api/neuroguide/import-batch", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ textManifest: batchInputText }),
-      });
-      const data = await res.json();
-      if (data.status === "success" && Array.isArray(data.guidelines)) {
-        setBatchPreviewDocs(data.guidelines);
-      }
-    } catch (err) {
-      console.error("Batch import error:", err);
-    } finally {
-      setIsBatchProcessing(false);
-    }
-  };
-
-  const handleCommitBatchImport = () => {
-    if (batchPreviewDocs.length === 0) return;
-    setGuidelineDocs((prev) => {
-      const existingIds = new Set(prev.map((g) => g.id.toLowerCase()));
-      const existingTitles = new Set(prev.map((g) => g.title.toLowerCase().trim()));
-      const novel = batchPreviewDocs.filter(
-        (doc) => !existingIds.has(doc.id.toLowerCase()) && !existingTitles.has(doc.title.toLowerCase().trim())
-      );
-      const merged = [...novel, ...prev];
-      try {
-        localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(merged));
-      } catch (e) {
-        console.warn("Could not save to localStorage:", e);
-      }
-      setRadarMessage(`📁 Successfully ingested ${novel.length} guidelines into repository.`);
-      return merged;
-    });
-    setShowBatchModal(false);
-    setBatchPreviewDocs([]);
-    setBatchInputText("");
   };
 
   // =========================================================================
@@ -485,9 +450,6 @@ export default function AdminCommandCenter() {
                   Online
                 </span>
               </div>
-              <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                Centralized moderation, guideline radar intelligence &amp; multi-journal operations
-              </p>
             </div>
           </div>
 
@@ -548,8 +510,8 @@ export default function AdminCommandCenter() {
               <span>NeuroPulse</span>
               <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
             </div>
-            <div className="text-base font-black mt-1">179 Articles</div>
-            <div className="text-[10px] text-slate-500">Daily Bot 0:00 AM Active</div>
+            <div className="text-base font-black mt-1">{articlesCount} Articles</div>
+            <div className="text-[10px] text-slate-500 font-medium">0 Pending Review</div>
           </div>
 
           <div className={`p-3 rounded-xl border ${darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200 shadow-xs"}`}>
@@ -558,7 +520,9 @@ export default function AdminCommandCenter() {
               <span className={`w-2 h-2 rounded-full ${pendingCases.length > 0 ? "bg-amber-500 animate-pulse" : "bg-emerald-500"}`}></span>
             </div>
             <div className="text-base font-black mt-1">{cases.length} Cases</div>
-            <div className="text-[10px] text-amber-500 font-semibold">{pendingCases.length} Pending Review</div>
+            <div className={`text-[10px] font-medium ${pendingCases.length > 0 ? "text-amber-500 font-semibold" : "text-slate-500"}`}>
+              {pendingCases.length} Pending Review
+            </div>
           </div>
 
           <div className={`p-3 rounded-xl border ${darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200 shadow-xs"}`}>
@@ -567,8 +531,8 @@ export default function AdminCommandCenter() {
               <span className={`w-2 h-2 rounded-full ${reviewQueueCount > 0 ? "bg-amber-500 animate-pulse" : "bg-emerald-500"}`}></span>
             </div>
             <div className="text-base font-black mt-1">{guidelineDocs.length} Docs</div>
-            <div className={`text-[10px] font-semibold ${reviewQueueCount > 0 ? "text-amber-500" : "text-slate-500"}`}>
-              {reviewQueueCount > 0 ? `${reviewQueueCount} Pending Review` : "Radar Synchronized"}
+            <div className={`text-[10px] font-medium ${reviewQueueCount > 0 ? "text-amber-500 font-semibold" : "text-slate-500"}`}>
+              {reviewQueueCount} Pending Review
             </div>
           </div>
 
@@ -626,8 +590,8 @@ export default function AdminCommandCenter() {
               {
                 id: "neuropulse",
                 label: "📰 Journal Feeds Monitor (NeuroPulse)",
-                badge: "179",
-                badgeColor: "bg-red-500 text-white",
+                badge: String(articlesCount),
+                badgeColor: "bg-slate-700 text-white",
               },
               {
                 id: "system",
@@ -688,54 +652,81 @@ export default function AdminCommandCenter() {
         {/* TAB 2: NEUROGUIDE CLINICAL GUIDELINES & RADAR */}
         {adminTab === "guidelines" && (
           <div className="space-y-4">
-            {/* UNIFIED RADAR & GUIDELINE INGESTION TOOLBAR */}
-            <div
-              className={`p-4 rounded-2xl border flex flex-col md:flex-row items-start md:items-center justify-between gap-3 shadow-xs ${
-                darkMode ? "bg-slate-900 border-slate-800" : "bg-blue-50/70 border-blue-100"
-              }`}
-            >
-              <div className="flex items-center gap-3">
-                <span className="relative flex h-3.5 w-3.5 shrink-0">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500"></span>
-                </span>
-                <div>
-                  <div className="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2 flex-wrap">
-                    <span>🔬 Autonomous Periodic Radar (PubMed / Europe PMC / ESO)</span>
-                    <span className="text-[10px] px-2 py-0.5 rounded-full font-mono bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-semibold">
-                      Scanning 24/7
-                    </span>
-                  </div>
-                  <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                    Autonomous crawler &amp; multi-source pipeline indexing clinical practice guidelines.{" "}
-                    {lastSyncedTime && (
-                      <span className="font-medium text-slate-700 dark:text-slate-300">
-                        (Last scanned at {lastSyncedTime})
-                      </span>
-                    )}
-                  </div>
+            {/* Sync Alert Message Banner */}
+            {radarMessage && (
+              <div className="p-3.5 rounded-xl text-xs bg-emerald-50/90 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 flex items-center justify-between gap-2 shadow-xs">
+                <div className="flex items-center gap-2 font-medium">
+                  <span className="text-sm">✨</span>
+                  <span>{radarMessage}</span>
                 </div>
+                <button
+                  onClick={() => setRadarMessage(null)}
+                  className="text-emerald-600 hover:text-emerald-900 dark:text-emerald-400 dark:hover:text-emerald-200 text-xs font-bold px-1.5 py-0.5 cursor-pointer"
+                >
+                  ✕
+                </button>
               </div>
+            )}
 
-              <div className="flex items-center gap-2 w-full md:w-auto justify-end shrink-0 flex-wrap">
+            {/* SUB-TABS & ACTION TOOLBAR */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
+              <div className="flex items-center gap-2">
                 <button
                   type="button"
-                  onClick={() => setShowBatchModal(true)}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all shadow-xs ${
-                    darkMode
-                      ? "bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700"
-                      : "bg-white hover:bg-slate-100 text-slate-700 border border-slate-200"
+                  onClick={() => setGuidelineSubTab("queue")}
+                  className={`px-3.5 py-2 rounded-xl text-xs font-black transition-all flex items-center gap-2 cursor-pointer ${
+                    guidelineSubTab === "queue"
+                      ? "bg-amber-500 text-slate-950 shadow-xs"
+                      : darkMode
+                      ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
+                      : "bg-slate-100 text-slate-700 hover:bg-slate-200"
                   }`}
-                  title="Batch ingest guidelines by pasting PDF file names manifest"
                 >
-                  <span>📁</span>
-                  <span>Ingest Manifest</span>
+                  <span>⏳ Review Queue</span>
+                  <span
+                    className={`px-1.5 py-0.2 rounded text-[10px] font-black ${
+                      guidelineSubTab === "queue"
+                        ? "bg-black/20 text-current"
+                        : darkMode
+                        ? "bg-slate-700 text-slate-300"
+                        : "bg-white text-slate-600"
+                    }`}
+                  >
+                    {reviewQueueCount}
+                  </span>
                 </button>
 
                 <button
                   type="button"
+                  onClick={() => setGuidelineSubTab("repository")}
+                  className={`px-3.5 py-2 rounded-xl text-xs font-black transition-all flex items-center gap-2 cursor-pointer ${
+                    guidelineSubTab === "repository"
+                      ? "bg-emerald-600 text-white shadow-xs"
+                      : darkMode
+                      ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
+                      : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                  }`}
+                >
+                  <span>📚 Published Repository</span>
+                  <span
+                    className={`px-1.5 py-0.2 rounded text-[10px] font-black ${
+                      guidelineSubTab === "repository"
+                        ? "bg-black/20 text-current"
+                        : darkMode
+                        ? "bg-slate-700 text-slate-300"
+                        : "bg-white text-slate-600"
+                    }`}
+                  >
+                    {guidelineDocs.length}
+                  </span>
+                </button>
+              </div>
+
+              <div className="flex items-center gap-2 flex-wrap justify-end">
+                <button
+                  type="button"
                   onClick={() => setShowNotebookLMModal(true)}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold border transition-all flex items-center gap-1.5 shadow-xs ${
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold border transition-all flex items-center gap-1.5 shadow-xs cursor-pointer ${
                     darkMode
                       ? "bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700"
                       : "bg-white hover:bg-slate-100 text-slate-700 border border-slate-200"
@@ -772,75 +763,6 @@ export default function AdminCommandCenter() {
               </div>
             </div>
 
-            {/* Sync Alert Message Banner */}
-            {radarMessage && (
-              <div className="p-3.5 rounded-xl text-xs bg-emerald-50/90 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 flex items-center justify-between gap-2 shadow-xs">
-                <div className="flex items-center gap-2 font-medium">
-                  <span className="text-sm">✨</span>
-                  <span>{radarMessage}</span>
-                </div>
-                <button
-                  onClick={() => setRadarMessage(null)}
-                  className="text-emerald-600 hover:text-emerald-900 dark:text-emerald-400 dark:hover:text-emerald-200 text-xs font-bold px-1.5 py-0.5"
-                >
-                  ✕
-                </button>
-              </div>
-            )}
-
-            {/* SUB-TABS: REVIEW QUEUE vs PUBLISHED REPOSITORY */}
-            <div className="flex items-center gap-2 border-b border-slate-200 dark:border-slate-800 pb-2">
-              <button
-                type="button"
-                onClick={() => setGuidelineSubTab("queue")}
-                className={`px-3.5 py-2 rounded-xl text-xs font-black transition-all flex items-center gap-2 ${
-                  guidelineSubTab === "queue"
-                    ? "bg-amber-500 text-slate-950 shadow-xs"
-                    : darkMode
-                    ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
-                    : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-                }`}
-              >
-                <span>⏳ Review Queue</span>
-                <span
-                  className={`px-1.5 py-0.2 rounded text-[10px] font-black ${
-                    guidelineSubTab === "queue"
-                      ? "bg-black/20 text-current"
-                      : darkMode
-                      ? "bg-slate-700 text-slate-300"
-                      : "bg-white text-slate-600"
-                  }`}
-                >
-                  {reviewQueueCount}
-                </span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setGuidelineSubTab("repository")}
-                className={`px-3.5 py-2 rounded-xl text-xs font-black transition-all flex items-center gap-2 ${
-                  guidelineSubTab === "repository"
-                    ? "bg-emerald-600 text-white shadow-xs"
-                    : darkMode
-                    ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
-                    : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-                }`}
-              >
-                <span>📚 Published Repository</span>
-                <span
-                  className={`px-1.5 py-0.2 rounded text-[10px] font-black ${
-                    guidelineSubTab === "repository"
-                      ? "bg-black/20 text-current"
-                      : darkMode
-                      ? "bg-slate-700 text-slate-300"
-                      : "bg-white text-slate-600"
-                  }`}
-                >
-                  {guidelineDocs.length}
-                </span>
-              </button>
-            </div>
-
             {/* SUB-TAB 1: REVIEW QUEUE */}
             {guidelineSubTab === "queue" && (
               <ReviewQueueTab
@@ -849,6 +771,8 @@ export default function AdminCommandCenter() {
                   fetchReviewQueueCount();
                 }}
                 onQueueCountChange={(count) => setReviewQueueCount(count)}
+                onOpenPipelineModal={() => setShowPipelineModal(true)}
+                onOpenNotebookLMModal={() => setShowNotebookLMModal(true)}
               />
             )}
 
@@ -939,141 +863,6 @@ export default function AdminCommandCenter() {
                 </div>
               </div>
             )}
-
-            {/* MODAL: LOCAL BATCH FILE INGESTION */}
-            {showBatchModal && (
-              <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
-                <div
-                  className={`w-full max-w-2xl rounded-2xl border p-5 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto ${
-                    darkMode ? "bg-slate-900 border-slate-700 text-slate-100" : "bg-white border-slate-200 text-slate-900"
-                  }`}
-                >
-                  <div className="flex items-center justify-between border-b pb-3 border-slate-200 dark:border-slate-800">
-                    <div className="flex items-center gap-2">
-                      <span className="text-xl">📁</span>
-                      <div>
-                        <h3 className="text-sm font-bold">Batch Ingest Guidelines from PDF Manifest / File List</h3>
-                        <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                          Paste a list of PDF file names (one per line). The engine parses year, society, and subspecialty.
-                        </p>
-                      </div>
-                    </div>
-                    <button
-                      onClick={() => setShowBatchModal(false)}
-                      className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-lg font-bold p-1"
-                    >
-                      ✕
-                    </button>
-                  </div>
-
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between text-xs">
-                      <label className="font-bold text-slate-700 dark:text-slate-300">
-                        File Name Manifest / List:
-                      </label>
-                      <button
-                        onClick={() =>
-                          setBatchInputText(
-                            `2023 ESO expedited recommendation on tenecteplase for acute ischaemic stroke.pdf\n` +
-                              `2023 ESO Guidelines on Moyamoya angiopathy.pdf\n` +
-                              `2023 European Society for Vascular Surgery (ESVS) Clinical Practice Guidelines on Carotid and Vertebral Artery Disease.pdf\n` +
-                              `2024 ESC Guidelines for the management of atrial fibrillation developed in collaboration with EACTS.pdf\n` +
-                              `2024 ESO and ESMINT - Guideline on acute management of basilar artery occlusion.pdf\n` +
-                              `2024 ESO and European society for minimally invasive neurological therapy guideline on intracranial stenosis.pdf\n` +
-                              `2024 ESO guideline on cerebral small vessel disease, part 2, lacunar ischaemic stroke.pdf\n` +
-                              `2024 ESO Guidelines on the diagnosis and management of patent foramen ovale (PFO).pdf\n` +
-                              `2025 ESO and EANS guideline on stroke due to spontaneous intracerebral haemorrhage.pdf\n` +
-                              `2025 ESO annual stroke evidence update 2025.pdf\n` +
-                              `2025 ESO guideline on aphasia rehabilitation.pdf\n` +
-                              `2025 ESO guideline on blood pressure in acute ischemic stroke and intracerebral hemorrhage.pdf\n` +
-                              `2025 ESO guideline on motor rehabilitation.pdf\n` +
-                              `2025 ESO guideline on visual impairment in stroke.pdf\n` +
-                              `2026 ESO EANS and ESMINT guideline on aneurysmal subarachnoid haemorrhage.pdf\n` +
-                              `2026 ESO guideline on stroke-associated pneumonia.pdf`
-                          )
-                        }
-                        className="text-[11px] text-blue-600 dark:text-blue-400 hover:underline font-medium"
-                      >
-                        ⚡ Paste sample 16 PDF files
-                      </button>
-                    </div>
-
-                    <textarea
-                      rows={6}
-                      value={batchInputText}
-                      onChange={(e) => setBatchInputText(e.target.value)}
-                      placeholder={`Example:\n2025 ESO guideline on motor rehabilitation.pdf\n2024 ESC Guidelines for the management of atrial fibrillation.pdf\n2026 ESO guideline on stroke-associated pneumonia.pdf`}
-                      className={`w-full p-3 text-xs font-mono rounded-xl border outline-none focus:border-blue-500 transition-all ${
-                        darkMode ? "bg-slate-800 border-slate-700 text-slate-100" : "bg-slate-50 border-slate-200 text-slate-900"
-                      }`}
-                    />
-                  </div>
-
-                  <div className="flex items-center justify-between gap-2">
-                    <button
-                      onClick={handleParseBatch}
-                      disabled={isBatchProcessing || !batchInputText.trim()}
-                      className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-                        isBatchProcessing || !batchInputText.trim()
-                          ? "bg-slate-200 dark:bg-slate-800 text-slate-400 cursor-not-allowed"
-                          : "bg-blue-600 hover:bg-blue-700 text-white shadow-sm"
-                      }`}
-                    >
-                      <span>🔍</span>
-                      <span>{isBatchProcessing ? "Parsing list..." : "Parse Manifest"}</span>
-                    </button>
-
-                    {batchPreviewDocs.length > 0 && (
-                      <button
-                        onClick={handleCommitBatchImport}
-                        className="px-4 py-2 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm flex items-center gap-1.5 transition-all"
-                      >
-                        <span>✓</span>
-                        <span>Ingest {batchPreviewDocs.length} Guidelines</span>
-                      </button>
-                    )}
-                  </div>
-
-                  {batchPreviewDocs.length > 0 && (
-                    <div className="space-y-2 border-t pt-3 border-slate-200 dark:border-slate-800">
-                      <div className="text-xs font-bold flex items-center justify-between">
-                        <span>Recognition Results ({batchPreviewDocs.length} documents):</span>
-                      </div>
-                      <div className="max-h-60 overflow-y-auto space-y-2 pr-1">
-                        {batchPreviewDocs.map((item, idx) => (
-                          <div
-                            key={idx}
-                            className={`p-2.5 rounded-lg border text-xs flex items-center justify-between gap-2 ${
-                              darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"
-                            }`}
-                          >
-                            <div className="flex items-center gap-2 min-w-0">
-                              <span className="text-sm shrink-0">📄</span>
-                              <div className="min-w-0">
-                                <div className="flex items-center gap-1.5 flex-wrap">
-                                  <span className="font-bold text-[10px] px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">
-                                    {item.society} {item.year}
-                                  </span>
-                                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">
-                                    {item.subspecialty}
-                                  </span>
-                                </div>
-                                <span className="font-semibold block truncate mt-0.5 text-slate-800 dark:text-slate-200">
-                                  {item.title}
-                                </span>
-                              </div>
-                            </div>
-                            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0 bg-emerald-100 dark:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300">
-                              Identified
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
           </div>
         )}
 
@@ -1094,7 +883,7 @@ export default function AdminCommandCenter() {
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
                 <div className={`p-3 rounded-xl border ${darkMode ? "bg-slate-800/60 border-slate-700" : "bg-slate-50 border-slate-200"}`}>
                   <div className="text-[11px] text-slate-400">Total Indexed Articles</div>
-                  <div className="text-xl font-black mt-1">179</div>
+                  <div className="text-xl font-black mt-1">{articlesCount}</div>
                   <div className="text-[10px] text-emerald-500">11 Subspecialties Standardized</div>
                 </div>
                 <div className={`p-3 rounded-xl border ${darkMode ? "bg-slate-800/60 border-slate-700" : "bg-slate-50 border-slate-200"}`}>
