@@ -224,7 +224,8 @@ export default function NeuroGuidePage() {
   const [activeDetailTab, setActiveDetailTab] = useState<"matrix" | "temporal" | "conf_bridge">("matrix");
 
   // Guideline Docs with Periodic Autonomous Online Sync State
-  const [guidelineDocs, setGuidelineDocs] = useState<GuidelineDoc[]>(MOCK_GUIDELINE_DOCS);
+  const [guidelineDocs, setGuidelineDocs] = useState<GuidelineDoc[]>([]);
+  const [isInitialLoading, setIsInitialLoading] = useState<boolean>(true);
   const [isSyncing, setIsSyncing] = useState<boolean>(false);
   const [syncMessage, setSyncMessage] = useState<string | null>(null);
   const [lastSyncedTime, setLastSyncedTime] = useState<string | null>(null);
@@ -509,15 +510,40 @@ export default function NeuroGuidePage() {
     const coordinatedTitles = new Set(MOCK_GUIDELINE_DOCS.map((g) => normalizeT(g.title)));
     const coordinatedIds = new Set(MOCK_GUIDELINE_DOCS.map((g) => g.id.toLowerCase()));
 
-    // 1. Read coordinated data from server storage
+    // 1. Quét tức thời từ LocalStorage để giao diện hiển thị ngay lập tức, KHÔNG flash dữ liệu cũ
+    let deletedLocal = new Set<string>();
+    try {
+      const localDel: string[] = JSON.parse(localStorage.getItem("neuroguide_deleted_ids") || "[]");
+      localDel.forEach((x) => deletedLocal.add(x.toLowerCase()));
+
+      const cached = localStorage.getItem("neuroguide_cached_guidelines");
+      if (cached) {
+        const parsed = JSON.parse(cached);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          const validCached = parsed.filter((doc: GuidelineDoc) => {
+            if (!doc || !doc.title) return false;
+            const id = (doc.id || "").toLowerCase();
+            const normT = normalizeT(doc.title);
+            if (deletedLocal.has(id) || deletedLocal.has(normT)) return false;
+            return !id.startsWith("eso-pmid-") && !id.startsWith("esc-pmid-") && !id.includes("phantom");
+          });
+          if (validCached.length > 0) {
+            setGuidelineDocs(validCached);
+            setIsInitialLoading(false);
+          }
+        }
+      }
+    } catch {}
+
+    // 2. Tải dữ liệu chuẩn từ backend storage (public/data/neuroguide_cloud.json)
     fetch("/api/neuroguide/sync-guidelines")
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
+        setIsInitialLoading(false);
         if (data && data.status === "success" && Array.isArray(data.guidelines)) {
-          let deletedLocal = new Set<string>();
           try {
-            const localDel: string[] = JSON.parse(localStorage.getItem("neuroguide_deleted_ids") || "[]");
             const serverDel: string[] = Array.isArray(data.deletedGuidelineIds) ? data.deletedGuidelineIds : [];
+            const localDel: string[] = JSON.parse(localStorage.getItem("neuroguide_deleted_ids") || "[]");
             const mergedDel = Array.from(new Set([...localDel.map((x) => x.toLowerCase()), ...serverDel.map((x) => x.toLowerCase())]));
             localStorage.setItem("neuroguide_deleted_ids", JSON.stringify(mergedDel));
             deletedLocal = new Set(mergedDel);
@@ -528,106 +554,18 @@ export default function NeuroGuidePage() {
             const id = (doc.id || "").toLowerCase();
             const normT = normalizeT(doc.title);
             if (deletedLocal.has(id) || deletedLocal.has(normT)) return false;
-            const isApprovedOrAi = Boolean(
-              doc.aiSynthesized ||
-              (doc.allPracticeChanges && doc.allPracticeChanges.length > 0) ||
-              coordinatedIds.has(id) ||
-              coordinatedTitles.has(normT) ||
-              id.startsWith("aha") ||
-              id.startsWith("eso")
-            );
-            return (
-              isApprovedOrAi &&
-              !id.startsWith("eso-pmid-") &&
-              !id.startsWith("esc-pmid-") &&
-              !id.startsWith("b15e76") &&
-              !id.includes("phantom")
-            );
+            return !id.startsWith("eso-pmid-") && !id.startsWith("esc-pmid-") && !id.includes("phantom");
           });
-          if (validGuidelines.length > 0) {
-            setGuidelineDocs(validGuidelines);
-            try {
-              localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(validGuidelines));
-            } catch {
-              // ignore
-            }
-          }
+
+          setGuidelineDocs(validGuidelines);
+          try {
+            localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(validGuidelines));
+          } catch {}
         }
       })
-      .catch(() => {});
-
-    // 2. Manage client cache (LocalStorage): clean legacy unverified items & respects deleted IDs
-    try {
-      const deletedLocal = new Set<string>();
-      try {
-        const localDel: string[] = JSON.parse(localStorage.getItem("neuroguide_deleted_ids") || "[]");
-        localDel.forEach((x) => deletedLocal.add(x.toLowerCase()));
-      } catch {}
-
-      const cachedVersion = localStorage.getItem("neuroguide_cache_version");
-      if (cachedVersion !== CURRENT_CACHE_VERSION) {
-        // Obsolete or polluted cache detected: clear old cache and ensure fresh curated library
-        localStorage.setItem("neuroguide_cache_version", CURRENT_CACHE_VERSION);
-        const filteredMocks = MOCK_GUIDELINE_DOCS.filter((g) => {
-          const id = (g.id || "").toLowerCase();
-          const norm = normalizeT(g.title);
-          return !deletedLocal.has(id) && !deletedLocal.has(norm);
-        });
-        localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(filteredMocks));
-        setGuidelineDocs(filteredMocks);
-      } else {
-        const cached = localStorage.getItem("neuroguide_cached_guidelines");
-        if (cached) {
-          const parsed = JSON.parse(cached);
-          if (Array.isArray(parsed)) {
-            // Filter out unverified and deleted guidelines
-            const filtered = parsed.filter((doc: GuidelineDoc) => {
-              if (!doc || !doc.title) return false;
-              const id = (doc.id || "").toLowerCase();
-              const normT = normalizeT(doc.title);
-              if (deletedLocal.has(id) || deletedLocal.has(normT)) return false;
-              return (
-                (coordinatedIds.has(id) || coordinatedTitles.has(normT) || id.startsWith("aha2026")) &&
-                !id.startsWith("eso-pmid-") &&
-                !id.startsWith("esc-pmid-") &&
-                !id.startsWith("b15e76") &&
-                !id.includes("phantom")
-              );
-            });
-
-            const titleMap = new Map<string, GuidelineDoc>();
-            const idMap = new Map<string, GuidelineDoc>();
-            MOCK_GUIDELINE_DOCS.forEach((g) => {
-              const id = (g.id || "").toLowerCase();
-              const norm = normalizeT(g.title);
-              if (deletedLocal.has(id) || deletedLocal.has(norm)) return;
-              titleMap.set(norm, g);
-              idMap.set(id, g);
-            });
-            filtered.forEach((g) => {
-              const norm = normalizeT(g.title);
-              const gId = (g.id || "").toLowerCase();
-              if (deletedLocal.has(gId) || deletedLocal.has(norm)) return;
-              if (!titleMap.has(norm) && !idMap.has(gId)) {
-                titleMap.set(norm, g);
-                idMap.set(gId, g);
-              }
-            });
-
-            const merged = Array.from(titleMap.values());
-            // Auto sort: Year descending -> Society ascending
-            merged.sort((a, b) => {
-              if (b.year !== a.year) return b.year - a.year;
-              return (a.society || "").localeCompare(b.society || "");
-            });
-            setGuidelineDocs(merged);
-            localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(merged));
-          }
-        }
-      }
-    } catch (e) {
-      console.warn("Error initializing guideline cache:", e);
-    }
+      .catch(() => {
+        setIsInitialLoading(false);
+      });
 
     // 3. Initialize sync timestamp:
     const lastSyncStr = localStorage.getItem("neuroguide_last_sync_timestamp");
@@ -1079,7 +1017,14 @@ export default function NeuroGuidePage() {
             )}
 
             {/* Guideline Cards (Colored by Society, Click to Expand Details) */}
-            {filteredGuidelines.length === 0 ? (
+            {isInitialLoading && guidelineDocs.length === 0 ? (
+              <div className="p-12 text-center rounded-2xl border border-dashed border-slate-300 dark:border-slate-800 bg-white/40 dark:bg-slate-900/40 animate-pulse">
+                <span className="text-3xl block mb-2">📚</span>
+                <h3 className="text-sm font-bold text-slate-800 dark:text-slate-200">
+                  Đang đồng bộ thư viện Guideline lâm sàng...
+                </h3>
+              </div>
+            ) : filteredGuidelines.length === 0 ? (
               <div className="p-12 text-center rounded-2xl border border-dashed border-slate-300 dark:border-slate-800 bg-white/40 dark:bg-slate-900/40">
                 <span className="text-3xl block mb-2">🔍</span>
                 <h3 className="text-sm font-bold text-slate-800 dark:text-slate-200">

@@ -314,11 +314,10 @@ export async function loadMergedNeuroGuideData(): Promise<{
     return deletedSet.has(id) || deletedSet.has(norm);
   };
 
-  if (blobData) {
+  if (blobData && Array.isArray(blobData.guidelines) && blobData.guidelines.length > 0) {
     const coordinatedBlobDocs = filterCoordinated(blobData.guidelines);
-    const merged = mergeGuidelines(coordinatedBlobDocs, MOCK_GUIDELINE_DOCS, deletedSet);
     const filteredStore = storeDocs.filter((g) => !isStoreDocDeleted(g));
-    const finalGuidelines = filteredStore.length > 0 ? mergeGuidelines(filteredStore, merged, deletedSet) : merged;
+    const finalGuidelines = filteredStore.length > 0 ? mergeGuidelines(filteredStore, coordinatedBlobDocs, deletedSet) : coordinatedBlobDocs;
 
     // Tự động dọn dẹp lại Vercel Blob nếu trước đó bị lẫn các tài liệu rác chưa qua điều phối
     if (blobData.guidelines && blobData.guidelines.length > finalGuidelines.length) {
@@ -340,11 +339,12 @@ export async function loadMergedNeuroGuideData(): Promise<{
     };
   }
 
-  if (localData) {
+  if (localData && Array.isArray(localData.guidelines) && localData.guidelines.length > 0) {
+    // Nguồn dữ liệu thực tế từ public/data/neuroguide_cloud.json
+    // KHÔNG re-merge với MOCK_GUIDELINE_DOCS để tránh hồi sinh dữ liệu đã bị xóa vĩnh viễn
     const coordinatedLocalDocs = filterCoordinated(localData.guidelines);
-    const merged = mergeGuidelines(coordinatedLocalDocs, MOCK_GUIDELINE_DOCS, deletedSet);
     const filteredStore = storeDocs.filter((g) => !isStoreDocDeleted(g));
-    const finalGuidelines = filteredStore.length > 0 ? mergeGuidelines(filteredStore, merged, deletedSet) : merged;
+    const finalGuidelines = filteredStore.length > 0 ? mergeGuidelines(filteredStore, coordinatedLocalDocs, deletedSet) : coordinatedLocalDocs;
     return {
       guidelines: finalGuidelines,
       conferences: mergeConferences(localData.conferences),
@@ -355,8 +355,10 @@ export async function loadMergedNeuroGuideData(): Promise<{
     };
   }
 
+  // Chỉ khi không có bất kỳ dữ liệu lưu trữ nào mới nạp từ MOCK_GUIDELINE_DOCS ban đầu
+  const seededMocks = MOCK_GUIDELINE_DOCS.filter((g) => !isStoreDocDeleted(g));
   const filteredStore = storeDocs.filter((g) => !isStoreDocDeleted(g));
-  const finalGuidelines = filteredStore.length > 0 ? mergeGuidelines(filteredStore, MOCK_GUIDELINE_DOCS, deletedSet) : mergeGuidelines([], MOCK_GUIDELINE_DOCS, deletedSet);
+  const finalGuidelines = filteredStore.length > 0 ? mergeGuidelines(filteredStore, seededMocks, deletedSet) : seededMocks;
   return {
     guidelines: finalGuidelines,
     conferences: MOCK_CONFERENCE_EVENTS,

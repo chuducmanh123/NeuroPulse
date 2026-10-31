@@ -244,7 +244,7 @@ export default function AdminCommandCenter() {
   // =========================================================================
   // NEUROGUIDE RADAR & GUIDELINE INGESTION STATE
   // =========================================================================
-  const [guidelineDocs, setGuidelineDocs] = useState<GuidelineDoc[]>(MOCK_GUIDELINE_DOCS);
+  const [guidelineDocs, setGuidelineDocs] = useState<GuidelineDoc[]>([]);
   const [isSyncingRadar, setIsSyncingRadar] = useState(false);
   const [lastSyncedTime, setLastSyncedTime] = useState<string>("");
   const [radarMessage, setRadarMessage] = useState<string | null>(null);
