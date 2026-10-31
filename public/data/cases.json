@@ -1,5 +1,204 @@
 [
   {
+    "id": "nc-2026-019",
+    "case_code": "NC-2026-019",
+    "title": "Acute Neuromuscular Syndrome & Characteristic Neuroimaging in a 48-year-old woman",
+    "subspecialty": "Neuromuscular",
+    "subspecialties": [
+      "Neuromuscular"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-11-01",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13430703",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-04978-3",
+      "pmcid": "PMC13430703",
+      "pmid": "42151911",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "48-year-old woman",
+      "chief_complaint": "A 48-year-old woman presented with an 11-month history of relapsing-remitting, symmetric sensorimotor polyneuropathy, triggered by immune-activating events.",
+      "history_of_present_illness": "A 48-year-old woman presented with an 11-month history of relapsing-remitting, symmetric sensorimotor polyneuropathy, triggered by immune-activating events. A 48-year-old woman was admitted to our hospital due to an 11-month history of limb weakness with a half-month relapse period. She had no notable previous medical history or family history of genetic neurological disorders. In October 2024, two weeks after an eyelid cosmetic procedure, the patient first presented with progressive weakness in the lower limbs, resulting in impaired walking and stair climbing, accompanied by distal weakness of the upper limbs.",
+      "past_medical_history": "As documented in clinical presentation.",
+      "vitals": {
+        "bp": "134/82 mmHg",
+        "hr": "78 bpm",
+        "rr": "16 /min",
+        "temp": "36.8 °C",
+        "spo2": "98% on room air"
+      },
+      "neuro_exam": "A 48-year-old woman was admitted to our hospital due to an 11-month history of limb weakness with a half-month relapse period. She had no notable previous medical history or family history of genetic neurological disorders. In October 2024, two weeks after an eyelid cosmetic procedure, the patient first presented with progressive weakness in the lower limbs, resulting in impaired walking and stair climbing, accompanied by distal weakness of the upper limbs.",
+      "key_labs_csf": "We report a detailed longitudinal case of a patient with anti-GLDN antibody–positive CIDP, including clinical presentation, electrophysiological and imaging studies, serological testing, treatment response, and follow-up. Cerebrospinal fluid (CSF) analysis showed marked albuminocytological dissociation (protein 1631 mg/L).",
+      "imaging": [
+        {
+          "modality": "Brain MRI (Multiplanar Sequences)",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13430703)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13430703_fig1.jpg",
+          "pmcid": "PMC13430703",
+          "doi_url": "https://doi.org/10.1186/s12883-026-04978-3",
+          "caption": "Contrast-enhanced MRI of the brachial and lumbosacral plexuses. Panel A and Panel B respectively depict the brachial plexus and lumbosacral plexus. Both images demonstrate symmetrical thickening and swelling of the nerve roots (indicated by arrows)",
+          "findings_summary": "Contrast-enhanced MRI of the brachial and lumbosacral plexuses. Panel A and Panel B respectively depict the brachial plexus and lumbosacral plexus. Both images demonstrate symmetrical thickening and swelling of the nerve"
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Based on the clinical presentation, neurological examination, and neuroimaging findings, which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "D",
+      "options": [
+        {
+          "id": "A",
+          "text": "Cervical spondylotic myelopathy",
+          "peer_percentage": 14,
+          "rationale": "Incorrect. Ruled out by the specific neuroanatomical distribution on neuroimaging and diagnostic workup."
+        },
+        {
+          "id": "B",
+          "text": "Myasthenia gravis with MuSK antibodies",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. Ruled out by the specific neuroanatomical distribution on neuroimaging and diagnostic workup."
+        },
+        {
+          "id": "C",
+          "text": "Amyotrophic lateral sclerosis (ALS)",
+          "peer_percentage": 8,
+          "rationale": "Incorrect. Ruled out by the specific neuroanatomical distribution on neuroimaging and diagnostic workup."
+        },
+        {
+          "id": "D",
+          "text": "Anti-GLDN antibody-associated CIDP (nodopathy): transient IVIg response and B-cell depletion remission",
+          "peer_percentage": 68,
+          "rationale": "Correct! The clinical presentation, neurological examination, and neuroimaging findings (PMC13430703) establish Anti-GLDN antibody-associated CIDP (nodopathy): transient IVIg response and B-cell depletion remission."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Anti-GLDN antibody-associated CIDP (nodopathy): transient IVIg response and B-cell depletion remission",
+      "clinical_discussion": "Background The classification of chronic inflammatory demyelinating polyneuropathy (CIDP) is evolving with the discovery of autoantibodies against nodal and paranodal proteins, leading to the recognition of \"autoimmune nodopathies.\" While anti-neurofascin-155 (NF155) and anti-contactin-1 (CNTN1) antibodies are well-characterized, the phenotype of anti-gliomedin (GLDN) antibodies remains poorly defined. We present a comprehensive case to delineate its clinical and serological profile. Case presentation We report a detailed longitudinal case of a patient with anti-GLDN antibody-positive CIDP, including clinical presentation, electrophysiological and imaging studies, serological testing, treatment response, and follow-up. Results A 48-year-old woman presented with an 11-month history of relapsing-remitting, symmetric sensorimotor polyneuropathy, triggered by immune-activating events. Electrodiagnostic studies confirmed a demyelinating polyneuropathy meeting definitive European Academy of Neurology/Peripheral Nerve Society (EAN/PNS) criteria. Cerebrospinal fluid (CSF) analysis showed marked albuminocytological dissociation (protein 1631 mg/L). Serology was positive for anti-GLDN IgG (cell-based assay titer 1:32). The patient exhibited an excellent but transient response to intravenous immunoglobulin (IVIg), leading to multiple relapses. Subsequent B-cell targeted therapy with rituximab resulted in sustained clinical stabilization, effective B-cell depletion, and negative conversion of anti-GLDN IgG antibody. Conclusions This case suggests that anti-GLDN antibody-associated CIDP may be associated with a recognizable phenotype within the autoimmune nodopathy spectrum. Potential key features include a relapsing course following immune stimulation, markedly elevated cerebrospinal fluid protein, a unique pattern of robust but unsustained response to intravenous immunoglobulin (IVIg), and a favorable response to B-cell depletion therapy as evidenced by clinical remission and seroconversion.",
+      "teaching_points": [
+        "Correlate acute/subacute neurological deficits with multiplanar neuroimaging sequences (Brain MRI (Multiplanar Sequences)).",
+        "Reference source: BMC neurology (2026) • PMC13430703."
+      ],
+      "clinical_pitfalls": [
+        "Delaying targeted neuroimaging or definitive workup when initial non-contrast CT is unremarkable."
+      ],
+      "related_keywords": [
+        "neuromuscular",
+        "neuropathy",
+        "brainstem",
+        "mri",
+        "ivig"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-020",
+    "case_code": "NC-2026-020",
+    "title": "Acute Neuro-Oncology Syndrome & Characteristic Neuroimaging in a 35-year-old woman",
+    "subspecialty": "Neuro-Oncology",
+    "subspecialties": [
+      "Neuro-Oncology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-11-01",
+    "status": "approved",
+    "author_credit": "Neurology(R) neuroimmunology & neuroinflammation • PMC13690360",
+    "source_journal": {
+      "name": "Neurology(R) neuroimmunology & neuroinflammation",
+      "short_name": "Neurology(R) neuroimmunology & neuroinflammation",
+      "doi_url": "https://doi.org/10.1212/nxi.0000000000200667",
+      "pmcid": "PMC13690360",
+      "pmid": "42879709",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "35-year-old woman",
+      "chief_complaint": "She resumed natalizumab in 2019 but experienced a miscarriage the following year.",
+      "history_of_present_illness": "She resumed natalizumab in 2019 but experienced a miscarriage the following year. Owing to her new right thalamic lesion, history of disease-modifying treatment pauses during pregnancies, and prior exposure to natalizumab and other immunosuppressant therapies, the differential diagnosis included tumefactive demyelinating lesion (TDL), progressive multifocal leukoencephalopathy (PML), other opportunistic infections, primary CNS lymphoma (PCNSL), and gliomas such as diffuse midline glioma (DMG).",
+      "past_medical_history": "As documented in clinical presentation.",
+      "vitals": {
+        "bp": "134/82 mmHg",
+        "hr": "78 bpm",
+        "rr": "16 /min",
+        "temp": "36.8 °C",
+        "spo2": "98% on room air"
+      },
+      "neuro_exam": "She had a normal gait with distal sensory loss in her feet and a Timed 25-Foot Walk of 4.34 seconds.",
+      "key_labs_csf": "She had a normal gait with distal sensory loss in her feet and a Timed 25-Foot Walk of 4.34 seconds. Given her JCV-negative serology, she began treatment with natalizumab in early 2015, with radiographic stability through 2016 (eFigure 2, Patient Timeline).",
+      "imaging": [
+        {
+          "modality": "Brain MRI (Axial DWI & FLAIR)",
+          "sequence_badge": "Figure 1 • Neurology(R) neuroimmunology & neuroinflammation (PMC13690360)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13690360_fig1.webp",
+          "pmcid": "PMC13690360",
+          "doi_url": "https://doi.org/10.1212/nxi.0000000000200667",
+          "caption": "(A) Axial T2-FLAIR shows marked enlargement and hyperintensity of the right thalamic mass. (B) The lesion is predominantly isointense to hypointense on precontrast T1. (C) Postgadolinium T1 reveals new irregular peripheral enhancement. (D) Diffusion-weighted imaging (DWI) displays hyperintensity with (E) a corresponding low apparent diffusion coefficient (ADC) signal, indicating restricted diffusion. These interval changes raise concern for an aggressive infiltrative midline neoplasm rather than demyelinating activity.",
+          "findings_summary": "(A) Axial T2-FLAIR shows marked enlargement and hyperintensity of the right thalamic mass. (B) The lesion is predominantly isointense to hypointense on precontrast T1. (C) Postgadolinium T1 reveals new irregular peripher"
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Based on the clinical presentation, neurological examination, and neuroimaging findings, which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "A",
+      "options": [
+        {
+          "id": "A",
+          "text": "A 35-Year-Old Woman With Multiple Sclerosis and a New Atypical Thalamic Lesion",
+          "peer_percentage": 68,
+          "rationale": "Correct! The clinical presentation, neurological examination, and neuroimaging findings (PMC13690360) establish A 35-Year-Old Woman With Multiple Sclerosis and a New Atypical Thalamic Lesion."
+        },
+        {
+          "id": "B",
+          "text": "Subacute ischemic cortical infarction",
+          "peer_percentage": 14,
+          "rationale": "Incorrect. Ruled out by the specific neuroanatomical distribution on neuroimaging and diagnostic workup."
+        },
+        {
+          "id": "C",
+          "text": "Pyogenic cerebral abscess",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. Ruled out by the specific neuroanatomical distribution on neuroimaging and diagnostic workup."
+        },
+        {
+          "id": "D",
+          "text": "Cavernous malformation",
+          "peer_percentage": 8,
+          "rationale": "Incorrect. Ruled out by the specific neuroanatomical distribution on neuroimaging and diagnostic workup."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "A 35-Year-Old Woman With Multiple Sclerosis and a New Atypical Thalamic Lesion",
+      "clinical_discussion": "In multiple sclerosis (MS), new or enlarging brain lesions often suggest disease activity, but infections or tumors may mimic relapse. We report a 35-year-old woman with MS whose enlarging thalamic lesion was ultimately diagnosed as diffuse midline glioma, underscoring the need for prompt evaluation of atypical MRI findings.",
+      "teaching_points": [
+        "Correlate acute/subacute neurological deficits with multiplanar neuroimaging sequences (Brain MRI (Axial DWI & FLAIR)).",
+        "Reference source: Neurology(R) neuroimmunology & neuroinflammation (2026) • PMC13690360."
+      ],
+      "clinical_pitfalls": [
+        "Delaying targeted neuroimaging or definitive workup when initial non-contrast CT is unremarkable."
+      ],
+      "related_keywords": [
+        "neuro-oncology",
+        "ring-enhancing lesion",
+        "mri",
+        "biopsy"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-017",
     "case_code": "NC-2026-017",
     "title": "Acute Dementia Syndrome & Characteristic Neuroimaging in a 54-year-old man",
