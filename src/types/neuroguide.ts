@@ -77,6 +77,11 @@ export interface PracticeChangeDetail {
   previousGrade?: string; // 'Class IIb, Level B-R'
   currentGrade: string; // 'Class I, Level A'
   drivingTrials?: string[];
+  voting?: string;
+  cor?: string;
+  loe?: string;
+  strength?: string;
+  quality?: string;
 }
 
 export type FullTextStatus = "FULL_TEXT_PARSED" | "ABSTRACT_ONLY" | "UNAVAILABLE";

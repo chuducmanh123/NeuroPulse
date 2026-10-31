@@ -15,6 +15,9 @@ import {
 import { registerCandidateGuideline } from "@/lib/neuroguide/storeAdapter";
 import { SubspecialtyType, GuidelineDoc, ConferenceEvent, ClinicalScenario } from "@/types/neuroguide";
 
+import fs from "fs";
+import path from "path";
+
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
@@ -31,6 +34,16 @@ export async function GET(request: NextRequest) {
 
     const mergedData = await loadMergedNeuroGuideData();
     let filteredGuidelines = mergedData.guidelines;
+
+    const CLOUD_JSON = path.join(process.cwd(), "public", "data", "neuroguide_cloud.json");
+    let deletedGuidelineIds: string[] = [];
+    if (fs.existsSync(CLOUD_JSON)) {
+      try {
+        const raw = fs.readFileSync(CLOUD_JSON, "utf-8");
+        const cloudData = JSON.parse(raw);
+        deletedGuidelineIds = cloudData.deletedGuidelineIds || cloudData.deleted_guideline_ids || [];
+      } catch {}
+    }
 
     if (society) {
       filteredGuidelines = filteredGuidelines.filter(
@@ -62,6 +75,7 @@ export async function GET(request: NextRequest) {
       guidelines: filteredGuidelines,
       conferences: mergedData.conferences,
       scenarios: mergedData.scenarios,
+      deletedGuidelineIds,
     });
   } catch (error: unknown) {
     const errorMessage = error instanceof Error ? error.message : "Internal Server Error";

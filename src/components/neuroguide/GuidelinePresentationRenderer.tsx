@@ -225,6 +225,16 @@ export function GuidelinePresentationRenderer({
             picoItems={esoPicoItems}
             darkMode={darkMode}
             allowEdit={allowEdit}
+            onEditPico={(pico) => {
+              const matchedChange = doc.allPracticeChanges.find(
+                (c, idx) =>
+                  c.id === `rec-${pico.picoNumber}` ||
+                  c.id === `pico-${pico.picoNumber}` ||
+                  c.topic.includes(`PICO ${pico.picoNumber}`) ||
+                  idx === Number(pico.picoNumber) - 1
+              );
+              if (matchedChange && onEditChange) onEditChange(matchedChange);
+            }}
           />
         ) : (
           /* Fallback for other societies: default to AHA-style structured table */
@@ -233,6 +243,10 @@ export function GuidelinePresentationRenderer({
             sections={ahaSections}
             darkMode={darkMode}
             allowEdit={allowEdit}
+            onEditRec={(rec) => {
+              const matchedChange = doc.allPracticeChanges.find((c) => c.id === rec.id);
+              if (matchedChange && onEditChange) onEditChange(matchedChange);
+            }}
           />
         )
       ) : (

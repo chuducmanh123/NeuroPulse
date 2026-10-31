@@ -550,48 +550,39 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // 2b. CHỨC NĂNG CHỈNH SỬA THÔNG TIN GUIDELINE (METADATA)
+    // 2b. CHỨC NĂNG CHỈNH SỬA TOÀN DIỆN GUIDELINE (METADATA + TỪNG NỘI DUNG/KHUYẾN CÁO BÊN TRONG)
     if (action === "EDIT_GUIDELINE") {
-      const { title, society: newSociety, year: newYear, executiveSummary } = body;
+      const {
+        title,
+        society: newSociety,
+        year: newYear,
+        subspecialty,
+        executiveSummary,
+        topTakeaways,
+        allPracticeChanges,
+        officialUrl,
+      } = body;
       const targetDocId = doc_id || file_id;
       if (!targetDocId) {
         return NextResponse.json({ ok: false, error: "Thiếu doc_id để sửa guideline" }, { status: 400 });
       }
 
       const cleanDocId = targetDocId.replace(/_latest\.json$/i, "");
-      const latestFileName = `${cleanDocId}_latest.json`;
-      const fileInfo = getFileContent(latestFileName);
-      if (fileInfo) {
-        try {
-          const rec: GuidelineRecord = JSON.parse(fileInfo.content);
-          if (title) rec.metadata.title = title;
-          if (newSociety) rec.metadata.society = newSociety;
-          if (newYear) rec.metadata.year = newYear;
-          rec.updated_at = new Date().toISOString();
-          await saveFileSafe(latestFileName, JSON.stringify(rec, null, 2));
+      const normalizeTitle = (t?: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+      const normTarget = cleanDocId.toLowerCase();
+      const normTitle = normalizeTitle(title);
 
-          // Cập nhật catalog
-          const catalogInfo = getFileContent("catalog.json");
-          if (catalogInfo) {
-            try {
-              const catalog = JSON.parse(catalogInfo.content);
-              if (catalog[cleanDocId]) {
-                if (title) catalog[cleanDocId].title = title;
-                if (newSociety) catalog[cleanDocId].society = newSociety;
-                if (newYear) catalog[cleanDocId].year = newYear;
-                catalog[cleanDocId].updated_at = rec.updated_at;
-                await saveFileSafe("catalog.json", JSON.stringify(catalog, null, 2));
-              }
-            } catch {}
-          }
-        } catch (e) {
-          console.warn("Lỗi lưu metadata guideline:", e);
-        }
-      }
-
-      // Cập nhật active library nếu đã xuất bản
+      // 1. Cập nhật active library nếu đã nạp
       const activeData = await loadMergedNeuroGuideData();
-      const docIdx = activeData.guidelines.findIndex((g) => g.id.toLowerCase() === cleanDocId.toLowerCase());
+      let docIdx = activeData.guidelines.findIndex((g) => {
+        const gId = (g.id || "").toLowerCase();
+        if (gId === normTarget || gId.includes(normTarget) || normTarget.includes(gId)) return true;
+        if (normTitle && normalizeTitle(g.title) === normTitle) return true;
+        return false;
+      });
+
+      let updatedGuideline: GuidelineDoc;
+
       if (docIdx >= 0) {
         if (title) activeData.guidelines[docIdx].title = title;
         if (newSociety) activeData.guidelines[docIdx].society = newSociety;
@@ -599,22 +590,185 @@ export async function POST(request: NextRequest) {
           activeData.guidelines[docIdx].year = newYear;
           activeData.guidelines[docIdx].publishDate = `${newYear}-01-01`;
         }
+        if (subspecialty) {
+          activeData.guidelines[docIdx].subspecialty = subspecialty;
+          activeData.guidelines[docIdx].subspecialties = [subspecialty];
+        }
         if (executiveSummary) {
           activeData.guidelines[docIdx].executiveSummary = executiveSummary;
           activeData.guidelines[docIdx].executiveSummaryVi = executiveSummary;
         }
+        if (Array.isArray(topTakeaways)) {
+          activeData.guidelines[docIdx].topTakeaways = topTakeaways;
+        }
+        if (Array.isArray(allPracticeChanges)) {
+          activeData.guidelines[docIdx].allPracticeChanges = allPracticeChanges;
+        }
+        if (officialUrl) {
+          activeData.guidelines[docIdx].officialUrl = officialUrl;
+        }
         activeData.guidelines[docIdx].synthesizedAt = new Date().toISOString();
+        updatedGuideline = activeData.guidelines[docIdx];
+      } else {
+        // Guideline mới hoặc chưa có trong active storage
+        const primarySub = subspecialty || mapSocietyToSubspecialty(newSociety || "AHA/ASA", title || "");
+        updatedGuideline = {
+          id: cleanDocId,
+          society: newSociety || "AHA/ASA",
+          year: newYear || new Date().getFullYear(),
+          title: title || "Clinical Practice Guideline",
+          officialUrl: officialUrl || "https://pubmed.ncbi.nlm.nih.gov/",
+          journalTarget: (newSociety || "").includes("ESO") ? "European Stroke Journal" : (newSociety || "").includes("AHA") ? "Stroke" : "Neurology",
+          documentType: "Clinical Practice Guideline",
+          publishDate: `${newYear || new Date().getFullYear()}-01-01`,
+          subspecialty: primarySub,
+          subspecialties: [primarySub],
+          executiveSummary: executiveSummary || "",
+          executiveSummaryVi: executiveSummary || "",
+          topTakeaways: Array.isArray(topTakeaways) ? topTakeaways : [],
+          allPracticeChanges: Array.isArray(allPracticeChanges) ? allPracticeChanges : [],
+          linkedScenarioIds: [],
+          fullTextStatus: "FULL_TEXT_PARSED",
+          synthesizedAt: new Date().toISOString(),
+        };
+        activeData.guidelines.unshift(updatedGuideline);
+      }
 
-        await saveNeuroGuideToActiveStorage({
-          guidelines: activeData.guidelines,
-          conferences: activeData.conferences,
-          scenarios: activeData.scenarios,
-        });
+      await saveNeuroGuideToActiveStorage({
+        guidelines: activeData.guidelines,
+        conferences: activeData.conferences,
+        scenarios: activeData.scenarios,
+        deletedGuidelineIds: activeData.deletedGuidelineIds,
+      });
+
+      // 2. Tìm hoặc tạo file _latest.json trong kho lưu trữ guidelines_store
+      let targetFileName = `${cleanDocId}_latest.json`;
+      let fileInfo = getFileContent(targetFileName);
+
+      // Thử tìm theo tiêu đề hoặc file tương đương nếu chưa tìm thấy bằng targetDocId
+      if (!fileInfo) {
+        for (const dir of [TMP_DIR, STORE_DIR]) {
+          if (fs.existsSync(dir)) {
+            try {
+              const files = fs.readdirSync(dir).filter((f) => f.endsWith("_latest.json"));
+              for (const f of files) {
+                const fullP = path.join(dir, f);
+                const raw = fs.readFileSync(fullP, "utf-8");
+                const parsed = JSON.parse(raw);
+                if (
+                  (parsed.guideline_id && parsed.guideline_id.toLowerCase() === normTarget) ||
+                  (parsed.metadata?.title && normalizeTitle(parsed.metadata.title) === normTitle)
+                ) {
+                  targetFileName = f;
+                  fileInfo = { content: raw, sourcePath: fullP };
+                  break;
+                }
+              }
+            } catch {}
+          }
+          if (fileInfo) break;
+        }
+      }
+
+      try {
+        let rec: GuidelineRecord;
+        if (fileInfo) {
+          rec = JSON.parse(fileInfo.content);
+        } else {
+          rec = {
+            guideline_id: cleanDocId,
+            version: 1,
+            metadata: {
+              title: title || "Clinical Practice Guideline",
+              society: newSociety || "AHA/ASA",
+              year: newYear || new Date().getFullYear(),
+              source_url: officialUrl || "",
+            },
+            total_recommendations: 0,
+            pending_count: 0,
+            approved_count: 0,
+            rejected_count: 0,
+            recommendations: [],
+            updated_at: new Date().toISOString(),
+          };
+        }
+
+        if (title) rec.metadata.title = title;
+        if (newSociety) rec.metadata.society = newSociety;
+        if (newYear) rec.metadata.year = newYear;
+        if (officialUrl) rec.metadata.source_url = officialUrl;
+        if (Array.isArray(topTakeaways)) (rec.metadata as any).top_takeaways = topTakeaways;
+
+        if (Array.isArray(allPracticeChanges)) {
+          rec.recommendations = allPracticeChanges.map((chg, idx) => {
+            let cor = (chg as any).cor;
+            let loe = (chg as any).loe;
+            if (!cor && chg.currentGrade?.includes("Class")) {
+              const m = chg.currentGrade.match(/Class\s*([123a-zA-Z:]+)/i);
+              if (m) cor = m[1];
+            }
+            if (!loe && chg.currentGrade?.includes("Level")) {
+              const m = chg.currentGrade.match(/Level\s*([A-Za-z\-]+)/i);
+              if (m) loe = m[1];
+            }
+            return {
+              rec_id: chg.id || `rec-${idx + 1}`,
+              guideline_id: rec.guideline_id || cleanDocId,
+              grading_system: (newSociety || rec.metadata.society || "").includes("ESO") ? "GRADE" : "ACC/AHA",
+              page_num: 1,
+              statement: chg.currentText,
+              approval_status: "APPROVED",
+              category: chg.category || "Recommendations",
+              topic: chg.topic || "Clinical Management",
+              cor: cor || undefined,
+              loe: loe || undefined,
+              strength_of_recommendation: (chg as any).strength || undefined,
+              quality_of_evidence: (chg as any).quality || undefined,
+              voting: (chg as any).voting || undefined,
+              driving_trials: chg.drivingTrials || [],
+              change_type: chg.changeType,
+              previous_grade: chg.previousGrade,
+              verbatim_quote: chg.previousText,
+            };
+          });
+          rec.total_recommendations = rec.recommendations.length;
+          rec.approved_count = rec.recommendations.length;
+          rec.pending_count = 0;
+          rec.rejected_count = 0;
+        }
+
+        rec.updated_at = new Date().toISOString();
+        await saveFileSafe(targetFileName, JSON.stringify(rec, null, 2));
+
+        // Cập nhật catalog.json
+        const catalogInfo = getFileContent("catalog.json");
+        let catalog: Record<string, any> = {};
+        if (catalogInfo) {
+          try {
+            catalog = JSON.parse(catalogInfo.content);
+          } catch {}
+        }
+        const catalogKey = rec.guideline_id || cleanDocId;
+        catalog[catalogKey] = {
+          guideline_id: catalogKey,
+          title: rec.metadata.title,
+          society: rec.metadata.society,
+          year: rec.metadata.year,
+          total_recommendations: rec.total_recommendations,
+          pending_count: rec.pending_count,
+          approved_count: rec.approved_count,
+          rejected_count: rec.rejected_count,
+          updated_at: rec.updated_at,
+        };
+        await saveFileSafe("catalog.json", JSON.stringify(catalog, null, 2));
+      } catch (err) {
+        console.warn("Lỗi cập nhật store files cho guideline:", err);
       }
 
       return NextResponse.json({
         ok: true,
-        message: "Đã cập nhật thông tin guideline thành công!",
+        message: "Đã cập nhật toàn diện thông tin và nội dung guideline thành công!",
+        guideline: updatedGuideline,
       });
     }
 

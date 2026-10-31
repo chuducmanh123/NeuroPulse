@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 import { loadMergedNeuroGuideData, saveNeuroGuideToActiveStorage } from "@/lib/neuroguide/blobStorage";
+import { MOCK_GUIDELINE_DOCS } from "@/data/neuroguideMockData";
 
 export const dynamic = "force-dynamic";
 
@@ -9,34 +10,80 @@ const STORE_DIR = path.join(process.cwd(), "data", "guidelines_store");
 const TMP_DIR = path.join("/tmp", "guidelines_store");
 const CLOUD_JSON = path.join(process.cwd(), "public", "data", "neuroguide_cloud.json");
 
+function normalizeTitle(t?: string): string {
+  return (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { guideline_id } = body;
+    const { guideline_id, title } = body;
 
     if (!guideline_id || typeof guideline_id !== "string") {
       return NextResponse.json({ ok: false, error: "Thiếu guideline_id cần xóa" }, { status: 400 });
     }
 
     const normTarget = guideline_id.toLowerCase().trim();
+    let normTitle = normalizeTitle(title);
 
-    // 1. Đọc và lọc trong active library (neuroguide_cloud.json và Vercel Blob)
+    // 1. Đọc active library để đối chiếu tài liệu và tiêu đề
     const activeData = await loadMergedNeuroGuideData();
     const prevCount = activeData.guidelines.length;
-    const remainingGuidelines = activeData.guidelines.filter((g) => {
-      const gId = (g.id || "").toLowerCase().trim();
-      return gId !== normTarget;
-    });
 
-    // 2. Ghi nhận ID đã xóa để chống hồi sinh khi nạp baseline
-    let deletedIds: string[] = [normTarget];
+    // Tìm tiêu đề nếu chưa được truyền vào
+    if (!normTitle) {
+      const matched = activeData.guidelines.find((g) => (g.id || "").toLowerCase().trim() === normTarget);
+      if (matched && matched.title) {
+        normTitle = normalizeTitle(matched.title);
+      } else {
+        const mockMatch = MOCK_GUIDELINE_DOCS.find((g) => (g.id || "").toLowerCase().trim() === normTarget);
+        if (mockMatch && mockMatch.title) {
+          normTitle = normalizeTitle(mockMatch.title);
+        }
+      }
+    }
+
+    // Tập hợp toàn bộ ID và alias liên quan đến guideline này
+    const allDeletedIds = new Set<string>([normTarget]);
+    if (normTitle) {
+      allDeletedIds.add(normTitle);
+      activeData.guidelines.forEach((g) => {
+        if (normalizeTitle(g.title) === normTitle) {
+          allDeletedIds.add((g.id || "").toLowerCase().trim());
+        }
+      });
+      MOCK_GUIDELINE_DOCS.forEach((g) => {
+        if (normalizeTitle(g.title) === normTitle) {
+          allDeletedIds.add((g.id || "").toLowerCase().trim());
+        }
+      });
+    }
+
+    // Thêm các cặp alias thông dụng nếu có
+    if (normTarget === "aha-ais-2026" || normTarget === "aha2026_test") {
+      allDeletedIds.add("aha-ais-2026");
+      allDeletedIds.add("aha2026_test");
+    }
+
+    const isMatchTarget = (id?: string, gTitle?: string): boolean => {
+      const gId = (id || "").toLowerCase().trim();
+      if (gId && allDeletedIds.has(gId)) return true;
+      if (gTitle && normTitle && normalizeTitle(gTitle) === normTitle) return true;
+      return false;
+    };
+
+    // Lọc khỏi active library
+    const remainingGuidelines = activeData.guidelines.filter((g) => !isMatchTarget(g.id, g.title));
+
+    // 2. Ghi nhận ID & Title đã xóa vào public/data/neuroguide_cloud.json và active storage
+    let mergedDeletedList: string[] = Array.from(allDeletedIds);
     if (fs.existsSync(CLOUD_JSON)) {
       try {
         const raw = fs.readFileSync(CLOUD_JSON, "utf-8");
         const cloudData = JSON.parse(raw);
         if (Array.isArray(cloudData.guidelines)) {
           cloudData.guidelines = cloudData.guidelines.filter(
-            (g: any) => (g.id || "").toLowerCase().trim() !== normTarget
+            (g: any) => !isMatchTarget(g.id, g.title)
           );
         }
         const existingDeleted: string[] = Array.isArray(cloudData.deletedGuidelineIds)
@@ -44,9 +91,9 @@ export async function POST(request: NextRequest) {
           : Array.isArray(cloudData.deleted_guideline_ids)
           ? cloudData.deleted_guideline_ids
           : [];
-        deletedIds = Array.from(new Set([...existingDeleted.map((x) => x.toLowerCase()), normTarget]));
-        cloudData.deletedGuidelineIds = deletedIds;
-        cloudData.deleted_guideline_ids = deletedIds;
+        mergedDeletedList = Array.from(new Set([...existingDeleted.map((x) => x.toLowerCase()), ...allDeletedIds]));
+        cloudData.deletedGuidelineIds = mergedDeletedList;
+        cloudData.deleted_guideline_ids = mergedDeletedList;
         fs.writeFileSync(CLOUD_JSON, JSON.stringify(cloudData, null, 2), "utf-8");
       } catch (err) {
         console.warn("Lỗi cập nhật public/data/neuroguide_cloud.json:", err);
@@ -57,10 +104,10 @@ export async function POST(request: NextRequest) {
       guidelines: remainingGuidelines,
       conferences: activeData.conferences,
       scenarios: activeData.scenarios,
-      deletedGuidelineIds: deletedIds,
+      deletedGuidelineIds: mergedDeletedList,
     });
 
-    // 3. Xóa khỏi kho guidelines_store (STORE_DIR, TMP_DIR, catalog.json)
+    // 3. Xóa triệt để khỏi kho guidelines_store (STORE_DIR, TMP_DIR, catalog.json)
     for (const dir of [TMP_DIR, STORE_DIR]) {
       if (fs.existsSync(dir)) {
         try {
@@ -72,7 +119,10 @@ export async function POST(request: NextRequest) {
                 const catalog = JSON.parse(fs.readFileSync(fullPath, "utf-8"));
                 let changed = false;
                 for (const k of Object.keys(catalog)) {
-                  if (k.toLowerCase() === normTarget || (catalog[k]?.guideline_id || "").toLowerCase() === normTarget) {
+                  const entry = catalog[k];
+                  const entryId = (entry?.guideline_id || k).toLowerCase();
+                  const entryTitle = entry?.title || "";
+                  if (allDeletedIds.has(k.toLowerCase()) || allDeletedIds.has(entryId) || (normTitle && normalizeTitle(entryTitle) === normTitle)) {
                     delete catalog[k];
                     changed = true;
                   }
@@ -87,7 +137,12 @@ export async function POST(request: NextRequest) {
                 const data = JSON.parse(content);
                 const fileGId = (data.guideline_id || "").toLowerCase();
                 const cleanFileName = f.replace(/_latest\.json$/i, "").toLowerCase();
-                if (fileGId === normTarget || cleanFileName === normTarget || cleanFileName.startsWith(normTarget)) {
+                const docTitle = data.metadata?.title || data.title || "";
+                if (
+                  allDeletedIds.has(fileGId) ||
+                  allDeletedIds.has(cleanFileName) ||
+                  (normTitle && normalizeTitle(docTitle) === normTitle)
+                ) {
                   fs.unlinkSync(fullPath);
                 }
               } catch {}
@@ -101,6 +156,7 @@ export async function POST(request: NextRequest) {
       ok: true,
       message: `Đã xóa thành công guideline "${guideline_id}".`,
       removed: prevCount - remainingGuidelines.length,
+      deletedGuidelineIds: mergedDeletedList,
     });
   } catch (error: any) {
     const message = error instanceof Error ? error.message : "Lỗi hệ thống khi xóa guideline";
