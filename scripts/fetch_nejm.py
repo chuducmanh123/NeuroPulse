@@ -565,11 +565,13 @@ Provide a concise, high-yield clinical takeaway (1-2 sentences maximum, under 55
                             time.sleep(1.2)
                             return summary
             except urllib.error.HTTPError as e:
+                print(f"      [!] Gemini API trả về HTTP {e.code} đối với model {model_name}")
                 if e.code in (429, 500, 502, 503, 504):
                     time.sleep(2 * (attempt + 1))
                 else:
                     break
-            except Exception:
+            except Exception as e:
+                print(f"      [!] Lỗi kết nối Gemini với {model_name}: {e}")
                 time.sleep(1)
                 continue
 
@@ -859,8 +861,11 @@ def run():
         remaining_quota = MAX_GEMINI_CALLS_PER_RUN
         analyzed_count = 0
 
+        consecutive_failures = 0
         for art in all_articles:
-            if remaining_quota <= 0:
+            if remaining_quota <= 0 or consecutive_failures >= 5:
+                if consecutive_failures >= 5:
+                    print("   [!] Đã dừng lượt phân tích AI do gặp 5 lỗi liên tiếp (có thể do chạm trần quota hoặc mạng).")
                 break
             abs_text = art.get("abstract", "")
             has_real_abs = bool(abs_text) and not abs_text.startswith("Original abstract")
@@ -870,14 +875,17 @@ def run():
                 pub_day = art.get("pub_date", "")[:10]
                 j_short = art.get("journal", {}).get("short_name", "")
                 ai_res = analyze_abstract_with_gemini(art.get("title", ""), abs_text)
-                remaining_quota -= 1
                 if ai_res:
+                    consecutive_failures = 0
+                    remaining_quota -= 1
                     if "ai_takeaways" not in art or not isinstance(art["ai_takeaways"], dict):
                         art["ai_takeaways"] = {}
                     art["ai_takeaways"]["conclusion_vi"] = ai_res
                     art["ai_takeaways"]["ai_verified"] = True
                     analyzed_count += 1
                     print(f"   [✨ Gemini AI #{analyzed_count} | {pub_day} | {j_short}] {art.get('title', '')[:55]}...")
+                else:
+                    consecutive_failures += 1
 
         print(f"-> Hoàn tất phân tích AI cho {analyzed_count} bài báo (Còn dư {remaining_quota}/{MAX_GEMINI_CALLS_PER_RUN} lượt trong phiên).")
         if analyzed_count > 0:
