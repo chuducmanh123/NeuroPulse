@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 import { put } from "@vercel/blob";
+import type { GuidelineDoc, PracticeChangeDetail } from "@/types/neuroguide";
+import { mapSocietyToSubspecialty } from "@/lib/neuroguide/storeAdapter";
+import { loadMergedNeuroGuideData, saveNeuroGuideToActiveStorage } from "@/lib/neuroguide/blobStorage";
 
 export const dynamic = "force-dynamic";
 
@@ -229,11 +232,229 @@ export async function GET(request: NextRequest) {
   }
 }
 
+/**
+ * Đồng bộ toàn bộ các khuyến cáo đã phê duyệt trong GuidelineRecord vào thư viện hoạt động (neuroguide_data.json)
+ */
+async function syncGuidelineRecordToActiveLibrary(record: GuidelineRecord) {
+  const approvedRecs = record.recommendations.filter(
+    (r) => r.approval_status === "APPROVED" || r.approval_status === "MODIFIED"
+  );
+  if (approvedRecs.length === 0) return;
+
+  const activeData = await loadMergedNeuroGuideData();
+  const nowIso = new Date().toISOString();
+
+  const practiceChanges: PracticeChangeDetail[] = approvedRecs.map((r, idx) => {
+    let currentGrade = "Standard Clinical Practice";
+    if (r.cor) {
+      currentGrade = `Class ${r.cor}${r.loe ? `, Level ${r.loe}` : ""}`;
+    } else if (r.quality_of_evidence || r.strength_of_recommendation) {
+      currentGrade = `GRADE ${r.strength_of_recommendation || "Recommended"} (Evidence: ${r.quality_of_evidence || "Moderate"}${r.voting ? `, Voting: ${r.voting}` : ""})`;
+    }
+
+    const isClass1 = r.cor === "1" || String(r.cor).includes("1");
+    const isHarm = String(r.cor).includes("3");
+    const category = isClass1
+      ? "Khuyến cáo Hàng đầu (Class I)"
+      : isHarm
+      ? "Khuyến cáo Nguy hại / Không có lợi (Class III)"
+      : "Khuyến cáo Phối hợp (Class II)";
+
+    return {
+      id: r.rec_id || `rec-${idx + 1}`,
+      category: r.target_population ? `Khối: ${r.target_population}` : category,
+      topic: r.target_population || record.metadata.title,
+      changeType: isClass1 ? "UPGRADED" : "NEW",
+      currentText: r.statement,
+      currentGrade,
+      drivingTrials: r.driving_trials || [],
+    };
+  });
+
+  const normalizeT = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+  const normTitle = normalizeT(record.metadata.title);
+  const targetId = record.guideline_id;
+
+  const existingIdx = activeData.guidelines.findIndex(
+    (g) => g.id.toLowerCase() === targetId.toLowerCase() || normalizeT(g.title) === normTitle
+  );
+
+  const subspecialty = mapSocietyToSubspecialty(record.metadata.society || "AHA", record.metadata.title || "");
+  const summaryVi = `Hướng dẫn thực hành lâm sàng chính thức từ ${record.metadata.society || "Hội chuyên khoa"}. Bao gồm ${practiceChanges.length} khuyến cáo đã được bác sĩ chuyên khoa phê duyệt.`;
+
+  if (existingIdx >= 0) {
+    const existing = activeData.guidelines[existingIdx];
+    activeData.guidelines[existingIdx] = {
+      ...existing,
+      allPracticeChanges: practiceChanges,
+      executiveSummary: summaryVi,
+      executiveSummaryVi: summaryVi,
+      aiSynthesized: true,
+      synthesizedAt: nowIso,
+    };
+  } else {
+    const newDoc: GuidelineDoc = {
+      id: targetId,
+      society: record.metadata.society || "AHA/ASA",
+      year: record.metadata.year || new Date().getFullYear(),
+      title: record.metadata.title || "Clinical Practice Guideline",
+      officialUrl: record.metadata.source_url || "https://pubmed.ncbi.nlm.nih.gov/",
+      journalTarget: record.metadata.society?.includes("ESO")
+        ? "European Stroke Journal"
+        : record.metadata.society?.includes("AHA")
+        ? "Stroke"
+        : "Neurology",
+      documentType: "Clinical Practice Guideline",
+      publishDate: `${record.metadata.year || new Date().getFullYear()}-01-01`,
+      subspecialty,
+      subspecialties: [subspecialty],
+      executiveSummary: summaryVi,
+      executiveSummaryVi: summaryVi,
+      allPracticeChanges: practiceChanges,
+      linkedScenarioIds: [],
+      fullTextStatus: "FULL_TEXT_PARSED",
+      aiSynthesized: true,
+      synthesizedAt: nowIso,
+    };
+    activeData.guidelines.unshift(newDoc);
+  }
+
+  await saveNeuroGuideToActiveStorage({
+    guidelines: activeData.guidelines,
+    conferences: activeData.conferences,
+    scenarios: activeData.scenarios,
+  });
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { file_id, rec_id, action, reviewer, notes, modified_statement } = body;
+    const { action, file_id, rec_id, reviewer, notes, modified_statement, updated_item, doc_id } = body;
 
+    // 1. CHỨC NĂNG DUYỆT TẤT CẢ (APPROVE ALL)
+    if (action === "APPROVE_ALL") {
+      let totalApproved = 0;
+      const allFiles = new Set<string>();
+
+      for (const dir of [TMP_DIR, STORE_DIR]) {
+        if (fs.existsSync(dir)) {
+          try {
+            fs.readdirSync(dir).filter((f) => f.endsWith("_latest.json")).forEach((f) => allFiles.add(f));
+          } catch {}
+        }
+      }
+
+      // Quét thêm từ Blob nếu có
+      const { token } = getBlobToken();
+      if (token) {
+        try {
+          const { list } = await import("@vercel/blob");
+          const { blobs } = await list({ prefix: "guidelines_store/", token });
+          for (const b of blobs) {
+            const fileName = b.pathname.replace(/^guidelines_store\//, "");
+            if (fileName.endsWith("_latest.json")) {
+              allFiles.add(fileName);
+            }
+          }
+        } catch {}
+      }
+
+      if (file_id && file_id !== "ALL") {
+        allFiles.clear();
+        allFiles.add(`${file_id}_latest.json`);
+      }
+
+      for (const fileName of Array.from(allFiles)) {
+        const fileInfo = getFileContent(fileName);
+        if (!fileInfo) continue;
+        try {
+          const rec: GuidelineRecord = JSON.parse(fileInfo.content);
+          let modified = 0;
+          for (const r of rec.recommendations) {
+            if (r.approval_status === "PENDING_REVIEW") {
+              r.approval_status = "APPROVED";
+              r.reviewed_by = reviewer || "Bác sĩ chuyên khoa";
+              r.reviewed_at = new Date().toISOString();
+              modified++;
+            }
+          }
+          if (modified > 0) {
+            rec.pending_count = rec.recommendations.filter((r) => r.approval_status === "PENDING_REVIEW").length;
+            rec.approved_count = rec.recommendations.filter(
+              (r) => r.approval_status === "APPROVED" || r.approval_status === "MODIFIED"
+            ).length;
+            rec.updated_at = new Date().toISOString();
+            await saveFileSafe(fileName, JSON.stringify(rec, null, 2));
+            await syncGuidelineRecordToActiveLibrary(rec);
+            totalApproved += modified;
+          }
+        } catch (e) {
+          console.warn("Lỗi duyệt batch file:", fileName, e);
+        }
+      }
+
+      return NextResponse.json({
+        ok: true,
+        message: `Đã phê duyệt thành công toàn bộ ${totalApproved} khuyến cáo vào Hướng dẫn Thực hành lâm sàng!`,
+        approved_count: totalApproved,
+      });
+    }
+
+    // 2. CHỨC NĂNG CHỈNH SỬA PRACTICE GUIDELINE ĐÃ ACCEPT
+    if (action === "EDIT_APPROVED") {
+      if (!doc_id || !updated_item || !updated_item.id) {
+        return NextResponse.json(
+          { ok: false, error: "Thiếu thông tin chỉnh sửa (doc_id, updated_item)" },
+          { status: 400 }
+        );
+      }
+
+      const activeData = await loadMergedNeuroGuideData();
+      const targetDoc = activeData.guidelines.find((g) => g.id.toLowerCase() === doc_id.toLowerCase());
+      if (!targetDoc) {
+        return NextResponse.json({ ok: false, error: "Không tìm thấy guideline để chỉnh sửa" }, { status: 404 });
+      }
+
+      const itemIdx = targetDoc.allPracticeChanges.findIndex((c) => c.id === updated_item.id);
+      if (itemIdx >= 0) {
+        targetDoc.allPracticeChanges[itemIdx] = {
+          ...targetDoc.allPracticeChanges[itemIdx],
+          ...updated_item,
+        };
+      } else {
+        targetDoc.allPracticeChanges.push(updated_item);
+      }
+      targetDoc.synthesizedAt = new Date().toISOString();
+
+      await saveNeuroGuideToActiveStorage({
+        guidelines: activeData.guidelines,
+        conferences: activeData.conferences,
+        scenarios: activeData.scenarios,
+      });
+
+      // Đồng bộ vào _latest.json nếu tồn tại
+      const latestFileName = `${doc_id}_latest.json`;
+      const fileInfo = getFileContent(latestFileName);
+      if (fileInfo) {
+        try {
+          const rec: GuidelineRecord = JSON.parse(fileInfo.content);
+          const r = rec.recommendations.find((recItem) => recItem.rec_id === updated_item.id);
+          if (r) {
+            if (updated_item.currentText) r.statement = updated_item.currentText;
+            if (updated_item.topic) r.target_population = updated_item.topic;
+            await saveFileSafe(latestFileName, JSON.stringify(rec, null, 2));
+          }
+        } catch {}
+      }
+
+      return NextResponse.json({
+        ok: true,
+        message: "Đã cập nhật chỉnh sửa khuyến cáo thành công!",
+        doc: targetDoc,
+      });
+    }
+
+    // 3. DUYỆT ĐƠN LẺ KHUYẾN CÁO (APPROVE / REJECT / MODIFY)
     if (!file_id || !rec_id || !action) {
       return NextResponse.json(
         { ok: false, error: "Thiếu tham số: file_id, rec_id, hoặc action" },
@@ -283,7 +504,7 @@ export async function POST(request: NextRequest) {
     ).length;
     record.updated_at = nowIso;
 
-    // Ghi lại tệp _latest.json an toàn (hỗ trợ cả Local và Vercel EROFS)
+    // Ghi lại tệp _latest.json an toàn
     await saveFileSafe(latestFileName, JSON.stringify(record, null, 2));
 
     // Cập nhật catalog.json
@@ -298,31 +519,21 @@ export async function POST(request: NextRequest) {
           catalog[file_id].updated_at = nowIso;
           await saveFileSafe("catalog.json", JSON.stringify(catalog, null, 2));
         }
-      } catch {
-        // Bỏ qua lỗi phụ của catalog
-      }
+      } catch {}
     }
 
-    // Nếu khuyến cáo đã được duyệt hoặc sửa đổi, tự động cập nhật thư viện chính và đồng bộ lên Vercel Blob
+    // Tự động đồng bộ ngay vào thư viện chính Practice Guidelines
     if (record.approved_count > 0) {
       try {
-        const { loadMergedNeuroGuideData, saveNeuroGuideToActiveStorage } = await import(
-          "@/lib/neuroguide/blobStorage"
-        );
-        const activeData = await loadMergedNeuroGuideData();
-        await saveNeuroGuideToActiveStorage({
-          guidelines: activeData.guidelines,
-          conferences: activeData.conferences,
-          scenarios: activeData.scenarios,
-        });
+        await syncGuidelineRecordToActiveLibrary(record);
       } catch (err) {
-        console.warn("Lỗi cập nhật thư viện Vercel Blob sau phê duyệt:", err);
+        console.warn("Lỗi đồng bộ thư viện chính sau phê duyệt:", err);
       }
     }
 
     return NextResponse.json({
       ok: true,
-      message: `Đã cập nhật trạng thái khuyến cáo ${rec_id} thành ${action}`,
+      message: `Đã cập nhật trạng thái khuyến cáo ${rec_id} thành ${action} và đồng bộ vào Hướng dẫn Thực hành lâm sàng!`,
       targetRec,
     });
   } catch (error: unknown) {

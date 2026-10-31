@@ -269,6 +269,9 @@ export async function loadMergedNeuroGuideData(): Promise<{
       ) {
         return false;
       }
+      if (g.aiSynthesized || (g.allPracticeChanges && g.allPracticeChanges.length > 0)) {
+        return true;
+      }
       return coordinatedIds.has(id) || coordinatedTitles.has(norm);
     });
   };

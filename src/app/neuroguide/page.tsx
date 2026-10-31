@@ -21,7 +21,9 @@ import { AppSwitcher } from "../../components/ecosystem/AppSwitcher";
 import { AdminButton } from "../../components/ecosystem/AdminButton";
 import { ReviewQueueTab } from "../../components/neuroguide/ReviewQueueTab";
 import { PipelineModal } from "../../components/neuroguide/PipelineModal";
+import { EditGuidelineModal } from "../../components/neuroguide/EditGuidelineModal";
 import { AdminAuthModal } from "../../components/neurocase/modals/AdminAuthModal";
+import type { PracticeChangeDetail } from "../../types/neuroguide";
 
 type NavTabId = "guidelines" | "conf" | "matrix" | "review";
 
@@ -229,6 +231,25 @@ export default function NeuroGuidePage() {
   const [isAdminVerified, setIsAdminVerified] = useState<boolean>(false);
   const [showAdminAuthModal, setShowAdminAuthModal] = useState<boolean>(false);
 
+  // Edit Practice Guideline & Recommendations state
+  const [editingDocId, setEditingDocId] = useState<string | null>(null);
+  const [editingPracticeChange, setEditingPracticeChange] = useState<PracticeChangeDetail | null>(null);
+  const [editingGuidelineDoc, setEditingGuidelineDoc] = useState<GuidelineDoc | null>(null);
+  const [showEditModal, setShowEditModal] = useState<boolean>(false);
+
+  const reloadGuidelines = () => {
+    fetch("/api/neuroguide/sync-guidelines")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data && data.status === "success" && Array.isArray(data.guidelines)) {
+          setGuidelineDocs(data.guidelines);
+          try {
+            localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(data.guidelines));
+          } catch {}
+        }
+      });
+  };
+
   useEffect(() => {
     const token =
       sessionStorage.getItem("neurocase_admin_token") ||
@@ -362,8 +383,16 @@ export default function NeuroGuidePage() {
           if (!doc || !doc.title) return false;
           const id = (doc.id || "").toLowerCase();
           const normT = normalizeT(doc.title);
+          const isApprovedOrAi = Boolean(
+            doc.aiSynthesized ||
+            (doc.allPracticeChanges && doc.allPracticeChanges.length > 0) ||
+            coordinatedIds.has(id) ||
+            coordinatedTitles.has(normT) ||
+            id.startsWith("aha") ||
+            id.startsWith("eso")
+          );
           return (
-            (coordinatedIds.has(id) || coordinatedTitles.has(normT) || id.startsWith("aha2026")) &&
+            isApprovedOrAi &&
             !id.startsWith("eso-pmid-") &&
             !id.startsWith("esc-pmid-") &&
             !id.startsWith("b15e76") &&
@@ -416,8 +445,16 @@ export default function NeuroGuidePage() {
             if (!doc || !doc.title) return false;
             const id = (doc.id || "").toLowerCase();
             const normT = normalizeT(doc.title);
+            const isApprovedOrAi = Boolean(
+              doc.aiSynthesized ||
+              (doc.allPracticeChanges && doc.allPracticeChanges.length > 0) ||
+              coordinatedIds.has(id) ||
+              coordinatedTitles.has(normT) ||
+              id.startsWith("aha") ||
+              id.startsWith("eso")
+            );
             return (
-              (coordinatedIds.has(id) || coordinatedTitles.has(normT) || id.startsWith("aha2026")) &&
+              isApprovedOrAi &&
               !id.startsWith("eso-pmid-") &&
               !id.startsWith("esc-pmid-") &&
               !id.startsWith("b15e76") &&
@@ -996,9 +1033,27 @@ export default function NeuroGuidePage() {
                             </span>
                           )}
                         </div>
-                        <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
-                          {isVietnamese ? "Ban hành:" : "Published:"} {doc.publishDate}
-                        </span>
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
+                            {isVietnamese ? "Ban hành:" : "Published:"} {doc.publishDate}
+                          </span>
+                          {isAdminVerified && (
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setEditingDocId(doc.id);
+                                setEditingGuidelineDoc(doc);
+                                setEditingPracticeChange(null);
+                                setShowEditModal(true);
+                              }}
+                              className="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-500/10 text-amber-600 hover:bg-amber-500/20 border border-amber-500/30 flex items-center gap-1 cursor-pointer transition-colors"
+                              title="Chỉnh sửa tiêu đề, năm hoặc thông tin chung của Guideline này"
+                            >
+                              <span>✏️ Sửa</span>
+                            </button>
+                          )}
+                        </div>
                       </div>
 
                       {/* Title */}
@@ -1224,9 +1279,27 @@ export default function NeuroGuidePage() {
                                                 <span className="font-bold text-slate-900 dark:text-slate-100">
                                                   {item.topic}
                                                 </span>
-                                                <span className="font-mono text-[10.5px] font-black px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
-                                                  {item.currentGrade}
-                                                </span>
+                                                <div className="flex items-center gap-1.5">
+                                                  <span className="font-mono text-[10.5px] font-black px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
+                                                    {item.currentGrade}
+                                                  </span>
+                                                  {isAdminVerified && (
+                                                    <button
+                                                      type="button"
+                                                      onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        setEditingDocId(doc.id);
+                                                        setEditingGuidelineDoc(null);
+                                                        setEditingPracticeChange(item);
+                                                        setShowEditModal(true);
+                                                      }}
+                                                      className="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-amber-500/20 hover:text-amber-600 transition-colors cursor-pointer"
+                                                      title="Chỉnh sửa nội dung hoặc phân loại khuyến cáo này"
+                                                    >
+                                                      <span>✏️ Sửa</span>
+                                                    </button>
+                                                  )}
+                                                </div>
                                               </div>
 
                                               <p className="text-slate-700 dark:text-slate-300">
@@ -2155,6 +2228,21 @@ export default function NeuroGuidePage() {
             setShowAdminAuthModal(false);
           }}
         />
+
+        {/* EDIT GUIDELINE / PRACTICE CHANGE MODAL */}
+        {isAdminVerified && showEditModal && (
+          <EditGuidelineModal
+            isOpen={showEditModal}
+            onClose={() => setShowEditModal(false)}
+            docId={editingDocId || ""}
+            item={editingPracticeChange}
+            guidelineDoc={editingGuidelineDoc}
+            onSuccess={() => {
+              reloadGuidelines();
+            }}
+            darkMode={darkMode}
+          />
+        )}
 
         {/* =========================================================================
             FOOTER

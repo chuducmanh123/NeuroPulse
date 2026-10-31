@@ -4,6 +4,7 @@ import { del } from "@vercel/blob";
 import type { SubspecialtyType } from "../../types/neuroguide";
 import { detectSociety, detectSubspecialty } from "./pubmedDiscovery";
 import { saveStoreFileSafe } from "./storeAdapter";
+import { cleanupAllBlobPdfs } from "./blobCleanup";
 
 export interface IncrementalRec {
   rec_id: string;
@@ -546,7 +547,6 @@ Respond strictly in valid JSON matching this schema:
   // CLEANUP: DELETE TEMPORARY PDF FROM VERCEL BLOB TO SAVE STORAGE
   // =========================================================================
   const cleanupBlob = async () => {
-    if (!options.blobUrl) return;
     try {
       await onProgress({
         stage: "CLEANUP",
@@ -568,7 +568,12 @@ Respond strictly in valid JSON matching this schema:
         }
       }
 
-      await del(options.blobUrl, { token });
+      if (options.blobUrl) {
+        await del(options.blobUrl, { token });
+      }
+
+      // Xóa dọn dẹp toàn bộ các tệp PDF tồn đọng trong kho Blob
+      await cleanupAllBlobPdfs();
 
       await onProgress({
         stage: "CLEANUP",

@@ -41,6 +41,7 @@ export function ReviewQueueTab({ darkMode, onQueueUpdated, onOpenPipelineModal }
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [filterSociety, setFilterSociety] = useState<string>("ALL");
   const [actionLoading, setActionLoading] = useState<string | null>(null);
+  const [cleanupLoading, setCleanupLoading] = useState<boolean>(false);
   const [notes, setNotes] = useState<Record<string, string>>({});
   const [feedbackMessage, setFeedbackMessage] = useState<string | null>(null);
 
@@ -60,6 +61,69 @@ export function ReviewQueueTab({ darkMode, onQueueUpdated, onOpenPipelineModal }
       set.add(recId);
       localStorage.setItem("neuroguide_reviewed_rec_ids", JSON.stringify(Array.from(set)));
     } catch {}
+  };
+
+  const handleApproveAll = async () => {
+    if (filteredQueue.length === 0) return;
+    const confirmApprove = window.confirm(
+      `Bác sĩ có chắc chắn muốn PHÊ DUYỆT TOÀN BỘ ${filteredQueue.length} khuyến cáo lâm sàng này vào Hướng dẫn Thực hành chính thức?`
+    );
+    if (!confirmApprove) return;
+
+    setActionLoading("ALL");
+    setFeedbackMessage(null);
+    try {
+      const res = await fetch("/api/neuroguide/review-queue", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "APPROVE_ALL",
+          reviewer: "Attending Neurologist",
+        }),
+      });
+
+      const data = await res.json();
+      if (data.ok) {
+        filteredQueue.forEach((r) => markRecAsReviewedLocally(r.rec_id));
+        setFeedbackMessage(`✅ ${data.message || `Đã phê duyệt toàn bộ ${filteredQueue.length} khuyến cáo!`}`);
+        setQueue([]);
+        if (onQueueUpdated) onQueueUpdated();
+      } else {
+        setFeedbackMessage(`⚠️ ${data.error || "Có lỗi xảy ra khi phê duyệt toàn bộ."}`);
+      }
+    } catch {
+      setFeedbackMessage("⚠️ Lỗi kết nối khi gửi lệnh phê duyệt toàn bộ.");
+    } finally {
+      setActionLoading(null);
+    }
+  };
+
+  const handleCleanupPdfs = async () => {
+    setCleanupLoading(true);
+    setFeedbackMessage(null);
+    try {
+      const adminToken =
+        sessionStorage.getItem("neurocase_admin_token") ||
+        localStorage.getItem("neurocase_admin_token") ||
+        "";
+      const res = await fetch("/api/neuroguide/cleanup-blob", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-admin-token": adminToken,
+        },
+      });
+      const data = await res.json();
+      if (data.ok) {
+        setFeedbackMessage(`🧹 ${data.message}`);
+      } else {
+        setFeedbackMessage(`⚠️ ${data.error || "Lỗi dọn dẹp kho Vercel Blob."}`);
+      }
+    } catch {
+      setFeedbackMessage("⚠️ Lỗi kết nối khi dọn dẹp Vercel Blob.");
+    } finally {
+      setCleanupLoading(false);
+    }
   };
 
   const fetchQueue = async () => {
@@ -175,8 +239,33 @@ export function ReviewQueueTab({ darkMode, onQueueUpdated, onOpenPipelineModal }
                 : "bg-slate-100 border-slate-200 text-slate-700 hover:bg-slate-200"
             }`}
           >
-            🔄 Refresh Queue
+            🔄 Refresh
           </button>
+
+          {filteredQueue.length > 0 && (
+            <button
+              disabled={actionLoading === "ALL"}
+              onClick={handleApproveAll}
+              className="text-xs px-3.5 py-1.5 rounded-lg font-black transition-all bg-emerald-600 hover:bg-emerald-700 text-white flex items-center gap-1.5 shadow-sm disabled:opacity-50 cursor-pointer"
+              title="Phê duyệt toàn bộ các khuyến cáo đang chờ duyệt vào Hướng dẫn Thực hành lâm sàng"
+            >
+              <span>{actionLoading === "ALL" ? "Đang duyệt..." : `✓ Accept All (${filteredQueue.length})`}</span>
+            </button>
+          )}
+
+          <button
+            disabled={cleanupLoading}
+            onClick={handleCleanupPdfs}
+            className={`text-xs px-2.5 py-1.5 rounded-lg border font-semibold transition-all flex items-center gap-1 cursor-pointer ${
+              darkMode
+                ? "bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700"
+                : "bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100"
+            }`}
+            title="Quét và xóa sạch các tệp PDF tạm trên Vercel Blob để bảo toàn dung lượng"
+          >
+            <span>🧹 {cleanupLoading ? "Đang xóa..." : "Xóa PDF Blob"}</span>
+          </button>
+
           {onOpenPipelineModal && (
             <button
               onClick={onOpenPipelineModal}

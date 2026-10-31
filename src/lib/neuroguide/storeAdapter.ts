@@ -169,7 +169,7 @@ export async function registerCandidateGuideline(doc: GuidelineDoc): Promise<boo
   return true;
 }
 
-function mapSocietyToSubspecialty(society: string, title: string): SubspecialtyType {
+export function mapSocietyToSubspecialty(society: string, title: string): SubspecialtyType {
   const s = (society || "").toUpperCase();
   const t = (title || "").toLowerCase();
 
