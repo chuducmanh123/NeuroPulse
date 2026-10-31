@@ -185,6 +185,10 @@ export function mergeGuidelines(
       idMap.set(chosen.id.toLowerCase(), chosen);
       if (chosen !== existing) {
         idMap.delete(existing.id.toLowerCase());
+        const existingNormT = normalizeTitle(existing.title);
+        if (existingNormT !== normT) {
+          titleMap.delete(existingNormT);
+        }
       }
     } else {
       titleMap.set(normT, doc);

@@ -400,7 +400,7 @@ export default function NeuroGuidePage() {
 
   const matrixContainerRef = useRef<HTMLDivElement>(null);
 
-  const CURRENT_CACHE_VERSION = "neuroguide_v2026_coordinated_v16";
+  const CURRENT_CACHE_VERSION = "neuroguide_v2026_coordinated_v17";
 
   // Background Autonomous Sync Method (runs on 24h cron or manual trigger)
   const triggerSync = async (isAuto = false) => {
@@ -541,11 +541,17 @@ export default function NeuroGuidePage() {
             });
 
             const titleMap = new Map<string, GuidelineDoc>();
-            MOCK_GUIDELINE_DOCS.forEach((g) => titleMap.set(normalizeT(g.title), g));
+            const idMap = new Map<string, GuidelineDoc>();
+            MOCK_GUIDELINE_DOCS.forEach((g) => {
+              titleMap.set(normalizeT(g.title), g);
+              idMap.set((g.id || "").toLowerCase(), g);
+            });
             filtered.forEach((g) => {
               const norm = normalizeT(g.title);
-              if (!titleMap.has(norm)) {
+              const gId = (g.id || "").toLowerCase();
+              if (!titleMap.has(norm) && !idMap.has(gId)) {
                 titleMap.set(norm, g);
+                idMap.set(gId, g);
               }
             });
 

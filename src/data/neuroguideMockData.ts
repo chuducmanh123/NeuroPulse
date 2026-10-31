@@ -678,7 +678,7 @@ export const MOCK_GUIDELINE_DOCS: GuidelineDoc[] = [
     linkedScenarioIds: ["ais-ivt-tenecteplase-4.5h", "ais-evt-extended-window-6-24h", "ais-bp-management-acute-phase", "ais-dapt-minor-stroke", "ais-evt-large-core-aspects-3-5"],
     fullTextStatus: "FULL_TEXT_PARSED"
   },
-  {    id: "eso-sap-2024",
+  {    id: "eso-bp-2024",
     society: "ESO",
     year: 2024,
     subspecialty: "Stroke",
@@ -805,6 +805,1352 @@ export const MOCK_GUIDELINE_DOCS: GuidelineDoc[] = [
     ],
     linkedScenarioIds: ["neuroicu-sah-dci-management"],
     fullTextStatus: "FULL_TEXT_PARSED"
+  },
+  {
+    "id": "eso-sap-2024",
+    "society": "ESO",
+    "year": 2024,
+    "subspecialty": "Stroke",
+    "subspecialties": [
+      "Stroke"
+    ],
+    "title": "European Stroke Organisation (ESO) Guidelines on Stroke-Associated Pneumonia",
+    "officialUrl": "https://journals.sagepub.com/doi/eso-sap-2024",
+    "journalTarget": "European Stroke Journal",
+    "documentType": "Clinical Practice Guideline",
+    "publishDate": "2024-06-15",
+    "executiveSummary": "Hướng dẫn thực hành lâm sàng của Hội Đột quỵ Châu Âu (ESO) dựa trên phương pháp luận GRADE về chẩn đoán, phân tầng nguy cơ và dự phòng viêm phổi liên quan đột quỵ (SAP).",
+    "executiveSummaryVi": "Khuyến cáo sử dụng thang điểm lâm sàng hoặc dấu ấn sinh học có giá trị dự đoán nguy cơ viêm phổi ở bệnh nhân đột quỵ nằm viện không thở máy trong 7 ngày đầu, kèm bỏ phiếu đồng thuận chuyên gia 8/8.",
+    "allPracticeChanges": [
+      {
+        "id": "eso-2024-sap-pico5",
+        "category": "Complication Prevention",
+        "topic": "PICO 5: Biomarkers & Clinical Prediction Scores for SAP",
+        "changeType": "NEW",
+        "currentGrade": "GRADE Weak for intervention (Evidence: Very Low, Voting: 8/8)",
+        "currentText": "In hospitalised adults with acute ischaemic or haemorrhagic stroke (non-ventilated) within 7 days of stroke symptom onset, we suggest using validated clinical prediction scores or biomarkers to identify patients at increased risk of SAP and to better target preventive standard measures.",
+        "drivingTrials": [
+          "PRECIOUS (Lancet Neurol 2023)"
+        ]
+      },
+      {
+        "id": "eso-2024-prophylactic-antibiotics",
+        "category": "Infection Control",
+        "topic": "PICO 1: Routine Prophylactic Antibiotics for Stroke Patients",
+        "changeType": "REVISED",
+        "currentGrade": "GRADE Strong against intervention (Evidence: High)",
+        "currentText": "We recommend against the routine use of prophylactic systemic antibiotics in hospitalised patients with acute stroke to prevent stroke-associated pneumonia or improve clinical outcome.",
+        "drivingTrials": [
+          "PASS (Lancet 2015)",
+          "PANTHER (Stroke 2016)"
+        ]
+      }
+    ],
+    "linkedScenarioIds": [
+      "ais-neuro-icu-infection-prevention",
+      "ais-bp-management-acute-phase"
+    ],
+    "fullTextStatus": "FULL_TEXT_PARSED"
+  },
+  {
+    "id": "aha-primary-prevention-2024",
+    "society": "AHA/ASA",
+    "year": 2024,
+    "title": "2024 AHA/ASA Guideline for the Primary Prevention of Stroke",
+    "officialUrl": "https://doi.org/10.1161/STR.0000000000000475",
+    "journalTarget": "Stroke",
+    "documentType": "Clinical Practice Guideline",
+    "publishDate": "2026-01-26",
+    "subspecialty": "Stroke",
+    "subspecialties": [
+      "Stroke"
+    ],
+    "executiveSummary": "Hướng dẫn thực hành lâm sàng chính thức từ AHA/ASA. Bao gồm 83 khuyến cáo then chốt được trích xuất và kiểm chứng qua hệ thống AI Lõi NeuroGuide.",
+    "executiveSummaryVi": "Hướng dẫn thực hành lâm sàng chính thức từ AHA/ASA. Bao gồm 83 khuyến cáo then chốt được trích xuất và kiểm chứng qua hệ thống AI Lõi NeuroGuide.",
+    "allPracticeChanges": [
+      {
+        "id": "rec-aha-primary-prevention-2024-01",
+        "category": "CV Risk Estimation",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In individuals 40-79 years of age, estimation of risk for atherosclerotic CVD (ie, nonfatal MI, nonfatal stroke, and fatal CVD) every 1 to 5 years is beneficial to guide decisions on treatments and lifestyle recommendations that may reduce risk for stroke.",
+        "currentGrade": "Class 1, Level B-NR",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-02",
+        "category": "Atrial Fibrillation Risk Scoring",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In individuals with AF, calculation of the CHA2DS2-VASc score is recommended to guide decisions on prescription of oral anticoagulation to reduce risk for stroke.",
+        "currentGrade": "Class 1, Level B-NR",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-03",
+        "category": "Modifiable Risk Screening",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In individuals >=18 years of age, periodic screening for modifiable behaviors and medical conditions that increase stroke risk is recommended to reduce risk for stroke.",
+        "currentGrade": "Class 1, Level C-EO",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-04",
+        "category": "Social Determinants of Health Screening",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In individuals >=18 years of age, periodic screening for SDOH (eg, food insecurity, lack of transportation) is beneficial to identify additional factors that contribute to stroke risk.",
+        "currentGrade": "Class 1, Level C-EO",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-05",
+        "category": "Mediterranean Diet",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In adults without prior CVD and who are at high or intermediate CVD risk, a Mediterranean diet is recommended to reduce the risk of incident stroke.",
+        "currentGrade": "Class 1, Level B-R",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-06",
+        "category": "Salt Substitution",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In adults who are >=60 years of age and have uncontrolled BP (systolic BP [SBP] >=140 mm Hg if taking antihypertensive medication or >=160 mm Hg if not), compared with using 100% sodium chloride, salt substitution (75% sodium chloride and 25% potassium chloride) is reasonable to reduce the risk of incident stroke.",
+        "currentGrade": "Class 2a, Level B-R",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-07",
+        "category": "Vitamin Supplements (Folic Acid/B-Complex)",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In adults, folic acid supplementation and B-complex (folic acid, B12, B6) vitamins supplementation for reducing the risk of stroke are not well established.",
+        "currentGrade": "Class 2b, Level B-NR",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-08",
+        "category": "Long-Chain Fatty Acids",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In adults without prior CVD, long-chain fatty acids are not effective for reducing the risk of stroke.",
+        "currentGrade": "Class 3: No Benefit, Level B-R",
+        "drivingTrials": [
+          "REDUCE-IT"
+        ]
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-09",
+        "category": "Antioxidants and Vitamins",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In adults, vitamin C, vitamin E, selenium, antioxidants, calcium, calcium with vitamin D, and multivitamin supplementation are not effective for reducing the risk of stroke.",
+        "currentGrade": "Class 3: No Benefit, Level B-R",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-10",
+        "category": "Physical Activity Screening",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In adults, screening for physical activity is recommended as part of a comprehensive effort to estimate stroke risk.",
+        "currentGrade": "Class 1, Level C-EO",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-11",
+        "category": "Aerobic and Vigorous Activity Counseling",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In adults, counseling patients to engage in at least 150 minutes of moderate-intensity physical activity, 75 minutes of vigorous-intensity physical activity, or an equivalent combination per week is recommended to reduce the risk of stroke.",
+        "currentGrade": "Class 1, Level C-LD",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-12",
+        "category": "Sedentary Behavior Avoidance",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In adults, counseling to avoid excessive time spent in sedentary behavior (characterized by low-energy expenditure while sitting, reclining, or lying while awake) is recommended to reduce the risk of stroke.",
+        "currentGrade": "Class 1, Level C-LD",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-13",
+        "category": "Overweight and Obesity Screening",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In adults >18 years of age, screening for overweight and obesity is recommended to inform the risk of stroke.",
+        "currentGrade": "Class 1, Level B-NR",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-14",
+        "category": "Bariatric Surgery",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with class II obesity (35-39.9 kg/m2) or greater, bariatric surgical procedures to promote weight loss may be considered to reduce the risk of stroke.",
+        "currentGrade": "Class 2b, Level C-LD",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-15",
+        "category": "Obstructive Sleep Apnea Screening",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "The effectiveness of screening adults for OSA to prevent stroke is unclear.",
+        "currentGrade": "Class 2b, Level B-R",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-16",
+        "category": "CPAP for OSA",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with OSA, continuous positive airway pressure (CPAP) might be reasonable to reduce the risk of stroke.",
+        "currentGrade": "Class 2b, Level C-LD",
+        "drivingTrials": [
+          "SAVE"
+        ]
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-17",
+        "category": "Prediabetes and Diabetes Screening",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In asymptomatic adults >=18 years of age who have overweight, obesity, or atherosclerotic CVD, screening for prediabetes and diabetes is recommended to inform stroke risk.",
+        "currentGrade": "Class 1, Level C-LD",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-18",
+        "category": "GLP-1 Receptor Agonists for Diabetes",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with diabetes and high cardiovascular risk or established CVD and hemoglobin A1c >=7%, treatment with a GLP-1 receptor agonist is effective to reduce the risk of stroke.",
+        "currentGrade": "Class 1, Level A",
+        "drivingTrials": [
+          "SUSTAIN-6",
+          "REWIND"
+        ]
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-19",
+        "category": "Intensive Glycemic Control",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with type 1 diabetes or diabetes, intensive glycemic control (targeting a hemoglobin A1c <=6.5%) is not beneficial for stroke prevention.",
+        "currentGrade": "Class 3: No Benefit, Level B-R",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-20",
+        "category": "Hypertension Screening",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In adults >=18 years of age, screening for hypertension is recommended to identify individuals at increased risk for stroke and eligible for antihypertensive treatment.",
+        "currentGrade": "Class 1, Level C-LD",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-21",
+        "category": "Antihypertensive Drug Treatment Targets",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In adults with stage 2 hypertension or stage 1 hypertension with a higher risk for atherosclerotic CVD, lifestyle improvement and antihypertensive drug treatment to a SBP/diastolic BP (DBP) <130/80 mm Hg are recommended to prevent stroke.",
+        "currentGrade": "Class 1, Level A",
+        "drivingTrials": [
+          "SPRINT",
+          "ACCORD BP"
+        ]
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-22",
+        "category": "Initial Antihypertensive Drug Classes",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In adults with hypertension, thiazide and thiazide-like diuretics, calcium channel blockers, angiotensin-converting enzyme inhibitors, and angiotensin receptor blockers are recommended as initial antihypertensive drug therapies to prevent stroke.",
+        "currentGrade": "Class 1, Level A",
+        "drivingTrials": [
+          "ALLHAT"
+        ]
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-23",
+        "category": "Multi-Drug Antihypertensive Therapy",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In most adults with hypertension, antihypertensive drug treatment incorporating >=2 antihypertensive medications is indicated to achieve the BP control necessary to prevent stroke.",
+        "currentGrade": "Class 1, Level A",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-24",
+        "category": "Statin Therapy for Primary Prevention",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In adults who qualify for treatment with lipid-lowering therapy according to the 2019 ACC/AHA guideline on the primary prevention of CVD (eg, 20-75 years of age with LDL cholesterol [LDL-C] level >190 mg/dL [>4.9 mmol/L], 10-year ASCVD risk >=20%, or 10-year ASCVD risk >=7.5%-<20% plus >=1 risk enhancers), treatment with a statin is recommended to reduce the risk of a first stroke.",
+        "currentGrade": "Class 1, Level A",
+        "drivingTrials": [
+          "HOPE-3"
+        ]
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-25",
+        "category": "PCSK9 Inhibitors",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In adults without CVD who qualify for treatment with lipid-lowering therapy, according to the 2019 ACC/AHA guideline on the primary prevention of CVD (eg, 20-75 years of age with LDL-C level >190 mg/dL [>4.9 mmol/L], 10-year ASCVD risk >=20%, or 10-year ASCVD risk >=7.5%-<20% plus >=1 risk enhancers), who cannot reach goals or cannot tolerate other therapies such as statins, the benefit of treatment with alirocumab or evolocumab compared with other active lipid-lowering therapy for the reduction of the risk of a first stroke is uncertain.",
+        "currentGrade": "Class 2b, Level A",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-26",
+        "category": "Bempedoic Acid",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In adults who do not tolerate statin therapy and who have LDL-C >100 mg/dL and elevated cardiovascular risk, treatment with bempedoic acid to reduce the risk of a first stroke is not well established.",
+        "currentGrade": "Class 2b, Level B-R",
+        "drivingTrials": [
+          "CLEAR Outcomes"
+        ]
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-27",
+        "category": "Omega-3 Fatty Acid Supplementation",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In adults with moderate or low intake of long-chain omega-3 fatty acid, supplementation is not recommended to reduce the risk of a first stroke.",
+        "currentGrade": "Class 3: No Benefit, Level A",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-28",
+        "category": "Tobacco Screening",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In all patients, screening for cigarette smoking, use of other forms of tobacco, use of electronic nicotine delivery systems such as electronic cigarettes (e-cigarettes) and vapes, and environmental tobacco smoke exposure (secondhand smoke exposure) is effective to inform stroke risk and target cessation interventions.",
+        "currentGrade": "Class 1, Level B-NR",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-29",
+        "category": "Tobacco Abstinence and Avoidance",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "For patients who are nonusers of tobacco products, continued complete abstention from cigarette smoking, in addition to other tobacco products and electronic nicotine delivery systems, and avoidance of exposure to environmental tobacco smoke (secondhand smoke exposure) are recommended to avoid the associated increased risk of stroke.",
+        "currentGrade": "Class 1, Level B-NR",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-30",
+        "category": "Smoking Cessation Pharmacotherapy and Counseling",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "For patients who are active cigarette smokers, smoking cessation pharmacotherapy delivered along with behavioral counseling is recommended, in preference to behavioral counseling alone, to facilitate smoking cessation.",
+        "currentGrade": "Class 1, Level A",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-31",
+        "category": "Cessation Support for Other Tobacco Products",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "For patients who are active cigarette smokers and users of other tobacco products (eg, electronic nicotine delivery systems), assistance with cessation is recommended to reduce the risk of stroke.",
+        "currentGrade": "Class 1, Level C-LD",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-32",
+        "category": "Hospital Opt-Out Smoking Cessation",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "For patients who are active cigarette smokers encountered in the hospital setting, providing smoking cessation pharmacotherapy along with behavioral counseling as the default treatment (\"opt-out\"), in preference to providing such treatment only for patients expressing a willingness to quit smoking (\"opt-in\"), can be beneficial to facilitate short-term smoking cessation and to increase engagement in smoking cessation treatment.",
+        "currentGrade": "Class 2a, Level B-R",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-33",
+        "category": "E-Cigarettes for Smoking Cessation",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "For patients who are active cigarette smokers, the long-term health benefits of using e-cigarettes in place of nicotine replacement therapy to facilitate cigarette smoking cessation are not well established.",
+        "currentGrade": "Class 2b, Level B-R",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-34",
+        "category": "Asymptomatic Carotid Screening",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In the asymptomatic population, routine screening for carotid artery stenosis is not recommended to reduce the risk of stroke.",
+        "currentGrade": "Class 3: No Benefit, Level B-NR",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-35",
+        "category": "Shared Decision-Making for Severe ACS",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with asymptomatic carotid artery stenosis (ACS) >70%, shared decision-making between the patient and the health care team to decide between the 2 courses of treatment (carotid revascularization or medical management) is recommended to determine the best method of reducing stroke risk.",
+        "currentGrade": "Class 1, Level C-EO",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-36",
+        "category": "Statin Therapy for ACS",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with asymptomatic atherosclerotic carotid artery stenosis, medical treatment with statin can be beneficial to reduce the risk of stroke.",
+        "currentGrade": "Class 2a, Level B-NR",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-37",
+        "category": "Carotid Revascularization for Low Perioperative Risk ACS",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with asymptomatic atherosclerotic carotid artery stenosis >70% and low perioperative risk, the use of carotid revascularization, in addition to intensive medical therapy, may be reasonable to reduce the risk of stroke.",
+        "currentGrade": "Class 2b, Level B-R",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-38",
+        "category": "Duplex Ultrasound Surveillance for ACS",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with ACS >50%, annual carotid duplex ultrasound every 6 to 12 months might be reasonable to assess progression of disease and subsequent increased risk of stroke.",
+        "currentGrade": "Class 2b, Level B-NR",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-39",
+        "category": "High Perioperative Risk ACS Revascularization",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with asymptomatic atherosclerotic carotid artery stenosis and high perioperative risk, the effectiveness of carotid revascularization to reduce risk of stroke is not established.",
+        "currentGrade": "Class 2b, Level B-NR",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-40",
+        "category": "Risk Factor Management for CSVD",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In adults with asymptomatic cerebral SVD (CSVD), including silent infarcts, assessment and management of risk factors (eg, hypertension, dyslipidemia, tobacco use, and diabetes) are recommended to reduce stroke risk.",
+        "currentGrade": "Class 1, Level C-LD",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-41",
+        "category": "Statin Therapy for Silent Cerebral Infarcts",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In adults with silent cerebral infarcts (SCIs) who do not have an indication for statin therapy according to the 2019 ACC/AHA guideline (eg, 20-75 years of age with LDL-C level >190 mg/dL [>4.9 mmol/L], 10-year ASCVD risk >=20%, or 10-year ASCVD risk >=7.5%-<20% plus >=1 more risk enhancers), use of low-dose statin therapy might be considered to reduce the risk of ischemic stroke.",
+        "currentGrade": "Class 2b, Level B-NR",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-42",
+        "category": "Antiplatelet Therapy for SCIs",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In adults with SCI, the benefit of antiplatelet therapy to reduce the risk of ischemic stroke is uncertain.",
+        "currentGrade": "Class 2b, Level C-LD",
+        "drivingTrials": [
+          "SILENCE"
+        ]
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-43",
+        "category": "Vascular Risk Modification in Migraine",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In adults 18 to 64 years of age with migraine with or without aura, evaluation and modification of vascular risk factors are recommended to address the elevated risk of stroke in this patient population.",
+        "currentGrade": "Class 1, Level C-LD",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-44",
+        "category": "Contraception in Migraine with Aura",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In adults with migraine with aura who desire contraception, progestin-only or nonhormonal forms are recommended to avoid the increased risk of ischemic stroke associated with combined hormonal contraception.",
+        "currentGrade": "Class 1, Level C-LD",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-45",
+        "category": "TCD Screening in Pediatric SCD",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In children 2 to 16 years of age with SCD (Hb SS or Hb S-beta0-thalassemia), transcranial Doppler (TCD) screening at a frequency based on the highest mean flow velocity in the terminal portion of the internal carotid or the proximal portion of the middle cerebral artery is recommended.",
+        "currentGrade": "Class 1, Level B-R",
+        "drivingTrials": [
+          "STOP-1",
+          "STOP-2"
+        ]
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-46",
+        "category": "Transfusion Therapy for Elevated Stroke Risk in SCD",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In children 2 to 16 years of age with SCD at elevated risk per TCD measurements, regularly scheduled transfusion therapy (target reduction of hemoglobin S <30%) is effective for reducing stroke risk.",
+        "currentGrade": "Class 1, Level B-R",
+        "drivingTrials": [
+          "STOP-1",
+          "STOP-2"
+        ]
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-47",
+        "category": "Brain MRI for Silent Infarcts in SCD",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In children 2 to 16 years of age and young adults with Hb SS or Hb S-beta0-thalassemia, an MRI of the brain without sedation should be performed as soon as possible to evaluate for SCI and to determine the need for chronic red cell transfusions (CRCTs) for stroke prevention.",
+        "currentGrade": "Class 2a, Level B-R",
+        "drivingTrials": [
+          "SIT Trial"
+        ]
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-48",
+        "category": "Continued Transfusions after TCD Normalization",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In children 2 to 16 years of age with SCD whose TCD velocities revert to normal, continued transfusion therapy can be beneficial to reduce the risk of stroke.",
+        "currentGrade": "Class 2a, Level B-R",
+        "drivingTrials": [
+          "STOP-2"
+        ]
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-49",
+        "category": "Transition to Hydroxyurea in SCD",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In children 2 to 16 years of age with SCD and normalized mean flow velocities and no intracranial stenosis, transition from transfusion to hydroxyurea therapy can be considered to prevent stroke.",
+        "currentGrade": "Class 2a, Level B-NR",
+        "drivingTrials": [
+          "TWiTCH"
+        ]
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-50",
+        "category": "Hydroxyurea or BMT for High-Risk SCD Unable to Transfuse",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In children 2 to 16 years of age with SCD at high risk for stroke (TCD mean flow velocities >=200 cm/s) but without intracranial stenosis who are unable to continue or cannot be treated with periodic red cell transfusion, hydroxyurea or bone marrow transplantation may be reasonable to prevent stroke.",
+        "currentGrade": "Class 2b, Level B-NR",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-51",
+        "category": "Risk Factor Management in CADASIL",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with CADASIL, counseling on smoking cessation and treatment of hypertension and other vascular risk factors are beneficial to reduce the risk of incident stroke.",
+        "currentGrade": "Class 1, Level C-LD",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-52",
+        "category": "Screening for PAVMs in HHT",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In adults with hereditary hemorrhagic telangiectasia (HHT), screening for pulmonary arteriovenous malformations (PAVMs) is reasonable to identify the need for multidisciplinary evaluation to manage stroke risk.",
+        "currentGrade": "Class 2a, Level B-NR",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-53",
+        "category": "Enzyme Replacement Therapy in Fabry Disease",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with Fabry disease, the effectiveness of enzyme replacement therapy (ERT) to reduce the risk of stroke is not well established.",
+        "currentGrade": "Class 2b, Level C-LD",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-54",
+        "category": "Low-Dose Colchicine for Recent MI",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In adults with a recent MI, the addition of low-dose colchicine to intensive statin therapy might be reasonable to decrease the risk of ischemic stroke.",
+        "currentGrade": "Class 2b, Level B-R",
+        "drivingTrials": [
+          "COLCOT",
+          "LoDoCo2"
+        ]
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-55",
+        "category": "Aspirin for High-Risk aPL Profile",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients without a history of stroke and no clinical indication for anticoagulation, with a high-risk aPL profile (ie, triple-positive antiphospholipid testing [lupus anticoagulant, anticardiolipin antibody, anti-beta2 glycoprotein 1] or double-positive [any combination] or isolated lupus anticoagulant or isolated persistently positive anticardiolipin antibody at medium to high titers), prophylactic treatment with aspirin (75-100 mg daily) is recommended to reduce the risk of stroke.",
+        "currentGrade": "Class 1, Level B-NR",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-56",
+        "category": "Aspirin for SLE with High-Risk aPL",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with systemic lupus erythematosus (SLE) and no history of thrombosis or pregnancy complications and with a high-risk antiphospholipid profile (ie, lupus anticoagulant, anticardiolipin antibody, anti-beta2-glycoprotein 1, or double-positive [any combination] or isolated lupus anticoagulant or isolated persistently positive anticardiolipin antibody at medium to high titers), prophylactic treatment with aspirin (75-100 mg daily) is recommended to reduce the risk of stroke.",
+        "currentGrade": "Class 1, Level B-NR",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-57",
+        "category": "Anticoagulation in APS with Prior Venous Thrombosis",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with antiphospholipid syndrome (APS) with prior unprovoked venous thrombosis, it is reasonable to choose vitamin K antagonist (VKA) therapy with a target international normalized ratio of 2 to 3 in preference to aspirin or direct oral anticoagulants for prevention of recurrent thrombotic events, including stroke.",
+        "currentGrade": "Class 2a, Level B-R",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-58",
+        "category": "Statins in Rheumatoid Arthritis",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with rheumatoid arthritis, statin treatment may be reasonable to reduce major adverse cardiovascular events, including stroke.",
+        "currentGrade": "Class 2b, Level B-R",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-59",
+        "category": "Aspirin for Obstetric APS History",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In nonpregnant adults with a history of obstetric APS only, prophylactic treatment with aspirin (75-100 mg daily) after adequate risk/benefit evaluation (ie, aPL profile, coexistent traditional cardiovascular risk factors, intolerance, or contraindication to aspirin) may be considered to reduce the risk of stroke.",
+        "currentGrade": "Class 2b, Level B-NR",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-60",
+        "category": "Aspirin for SLE with Low-Risk aPL",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with SLE and no history of thrombosis or pregnancy complications and with a low-risk antiphospholipid profile (ie, isolated anticardiolipin antibody or anti-beta2-glycoprotein 1 antibodies at low to medium titers, particularly if transiently positive), prophylactic treatment with aspirin (75-100 mg daily) may be considered to reduce the risk of stroke.",
+        "currentGrade": "Class 2b, Level C-LD",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-61",
+        "category": "Periodontal Care for Periodontal Disease",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with periodontal disease (PD), good oral hygiene and regular dental care can be beneficial to lower stroke risk.",
+        "currentGrade": "Class 2a, Level B-NR",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-62",
+        "category": "Full-Dose Anticoagulation in Hospitalized COVID-19",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients hospitalized with COVID-19, treatment with full-dose anticoagulation (eg, enoxaparin, apixaban) is not recommended to prevent stroke.",
+        "currentGrade": "Class 3: No Benefit, Level B-R",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-63",
+        "category": "Substance Misuse Screening",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In all adults, screening for substance misuse and substance use disorders (eg, alcohol, cannabis, cocaine, opioids, amphetamines) is recommended to inform stroke risk.",
+        "currentGrade": "Class 1, Level B-NR",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-64",
+        "category": "Substance Use Counseling and Treatment",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients who use recreational drugs (eg, cannabis, synthetic cannabinoids, cocaine, heroin, methamphetamine), misuse alcohol or prescription medications (eg, stimulants and opioids), or have a substance use disorder, counseling to stop or appropriate substance use disorder treatments (eg, pharmacological, behavioral, or multimodal) as appropriate are reasonable to reduce stroke risk.",
+        "currentGrade": "Class 2a, Level C-LD",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-65",
+        "category": "Severe Hypertension Management in Pregnancy/Postpartum",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In pregnant or early postpartum (within 6 weeks of delivery), patients with severe hypertension (2 measurements of SBP >=160 mm Hg or DBP >=110 mm Hg, 15 minutes apart), BP-lowering treatment to a target <160/110 mm Hg as soon as possible is recommended to reduce the risk of fatal maternal ICH.",
+        "currentGrade": "Class 1, Level B-NR",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-66",
+        "category": "Hypertensive Disorders of Pregnancy BP Control",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with HDP, including chronic hypertension in pregnancy, treatment with antihypertensive medication to a goal BP of <140/90 mm Hg is reasonable to reduce the risk of pregnancy-associated stroke.",
+        "currentGrade": "Class 2a, Level C-LD",
+        "drivingTrials": [
+          "CHAP"
+        ]
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-67",
+        "category": "Screening for Adverse Pregnancy Outcomes (APOs)",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In adults, screening for a history of certain adverse pregnancy outcomes (APOs), including HDP, preterm birth, gestational diabetes, and placental disorders, followed by subsequent evaluation and management of vascular risk factors, is recommended to reduce the risk of stroke.",
+        "currentGrade": "Class 1, Level C-EO",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-68",
+        "category": "Hypertension Evaluation after APOs",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with a history of HDP or other APOs, early evaluation and management of chronic hypertension are recommended to reduce the risk of stroke.",
+        "currentGrade": "Class 1, Level C-LD",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-69",
+        "category": "Endometriosis Screening",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In adults, screening for a history of endometriosis is reasonable to inform the risk of stroke.",
+        "currentGrade": "Class 2a, Level B-NR",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-70",
+        "category": "Vascular Risk Modification in Endometriosis",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In individuals with endometriosis, vascular risk factor evaluation and modification of vascular risk factors are reasonable to reduce the risk of stroke.",
+        "currentGrade": "Class 2a, Level C-LD",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-71",
+        "category": "Ethinyl Estradiol Dose Minimization in CHC",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In individuals considering CHC, lower doses of ethinyl estradiol are recommended to minimize potential increased stroke risk.",
+        "currentGrade": "Class 1, Level B-NR",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-72",
+        "category": "Contraception Shared Decision-Making in High-Risk Factors",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In individuals with specific stroke risk factors (ie, age >35 years, tobacco use, hypertension, or migraine with aura) who are considering contraception, shared decision-making is recommended to determine the best contraceptive choice to balance the risk of stroke from contraception and the risk of stroke with pregnancy.",
+        "currentGrade": "Class 1, Level C-EO",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-73",
+        "category": "Progestin-Only or Nonhormonal Contraception in High-Risk",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In individuals with specific stroke risk factors (ie, age >35 years, tobacco use, hypertension, or migraine with aura) who are considering contraception, progestin-only contraception or nonhormonal contraception is reasonable to prevent the increased stroke risk associated with estrogen-containing contraception.",
+        "currentGrade": "Class 2a, Level C-LD",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-74",
+        "category": "Premature/Early Menopause Screening",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "Screening for a history of premature ovarian failure (before 40 years of age) and early menopause (before 45 years of age) can be beneficial to inform the risk of stroke.",
+        "currentGrade": "Class 1, Level B-NR",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-75",
+        "category": "Risk Factor Evaluation in Premature/Early Menopause",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with premature ovarian failure (menopause before 40 years of age) or early menopause (before 45 years of age), evaluation and modification of vascular risk factors are recommended to reduce the elevated stroke risk in this population.",
+        "currentGrade": "Class 1, Level C-LD",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-76",
+        "category": "Menopausal Hormone Therapy Stroke Harm",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In women >=60 years of age, more than 10 years after natural menopause, or at elevated risk for CVD or stroke, oral estrogen-containing menopausal HT is associated with an excess risk of stroke and must be weighed against clinical benefits.",
+        "currentGrade": "Class 3: Harm, Level A",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-77",
+        "category": "Transgender Health Risk Factor Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In transgender women and gender-diverse individuals taking estrogens for gender affirmation, evaluation and modification of risk factors can be beneficial to reduce the risk of stroke.",
+        "currentGrade": "Class 2a, Level C-LD",
+        "drivingTrials": []
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-78",
+        "category": "Testosterone Therapy in Hypogonadal Men",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In men 45 to 80 years of age with confirmed hypogonadism who are considering testosterone therapy, initiation or continuation of testosterone replacement therapy is reasonable and does not increase the risk of stroke.",
+        "currentGrade": "Class 2a, Level B-R",
+        "drivingTrials": [
+          "TRAVERSE"
+        ]
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-79",
+        "category": "Anticoagulation in Left Ventricular Systolic Dysfunction",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with left ventricular systolic dysfunction (ejection fraction <=35%-40%) and no evidence of AF or left ventricular thrombus, anticoagulation is not indicated to prevent stroke and is associated with a higher bleeding risk.",
+        "currentGrade": "Class 3: No Benefit, Level B-R",
+        "drivingTrials": [
+          "WARCEF",
+          "COMMANDER HF"
+        ]
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-80",
+        "category": "Aspirin for Diabetes or Vascular Risk Factors",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with diabetes or other common vascular risk factors and no prior stroke, the use of aspirin to prevent a first stroke is not well established.",
+        "currentGrade": "Class 2b, Level A",
+        "drivingTrials": [
+          "ARRIVE",
+          "JPPP"
+        ]
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-81",
+        "category": "Ticagrelor in Stable Coronary Artery Disease",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with established, stable coronary artery disease and a low bleeding risk, the addition of ticagrelor to aspirin beyond 12 months for a period up to 3 years may be beneficial to reduce the rate of ischemic stroke.",
+        "currentGrade": "Class 2b, Level B-R",
+        "drivingTrials": [
+          "PEGASUS-TIMI 54"
+        ]
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-82",
+        "category": "Aspirin in Advanced Age",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In individuals >=70 years of age with at least 1 additional cardiovascular risk factor, the use of aspirin is not beneficial to prevent a first stroke.",
+        "currentGrade": "Class 3: No Benefit, Level A",
+        "drivingTrials": [
+          "ASPREE",
+          "JPPP"
+        ]
+      },
+      {
+        "id": "rec-aha-primary-prevention-2024-83",
+        "category": "Aspirin in Chronic Kidney Disease",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with chronic kidney disease, the use of aspirin is not effective to prevent a first stroke.",
+        "currentGrade": "Class 3: No Benefit, Level B-NR",
+        "drivingTrials": []
+      }
+    ],
+    "linkedScenarioIds": [],
+    "fullTextStatus": "FULL_TEXT_PARSED"
+  },
+  {
+    "id": "ahaasa-2023-aha-asa-guideline-for-the-management-of-patie",
+    "society": "AHA/ASA",
+    "year": 2023,
+    "title": "2023 AHA/ASA Guideline for the Management of Patients With Aneurysmal Subarachnoid Hemorrhage",
+    "officialUrl": "https://scholar.google.com/scholar?q=2023%20AHA%2FASA%20Guideline%20for%20the%20Management%20of%20Patients%20With%20Aneurysmal%20Subarachnoid%20Hemorrhage",
+    "journalTarget": "Stroke",
+    "documentType": "Clinical Practice Guideline",
+    "publishDate": "2026-01-26",
+    "subspecialty": "Stroke",
+    "subspecialties": [
+      "Stroke"
+    ],
+    "executiveSummary": "Hướng dẫn thực hành lâm sàng chính thức từ AHA/ASA. Bao gồm 36 khuyến cáo then chốt được trích xuất và kiểm chứng qua hệ thống AI Lõi NeuroGuide.",
+    "executiveSummaryVi": "Hướng dẫn thực hành lâm sàng chính thức từ AHA/ASA. Bao gồm 36 khuyến cáo then chốt được trích xuất và kiểm chứng qua hệ thống AI Lõi NeuroGuide.",
+    "topTakeaways": [
+      "1. [Aneurysm Repair - Class 3: Harm, Level B-NR] For patients with aSAH from ruptured saccular aneurysms amenable to either primary coiling or clipping, stents or flow diverters should not be used to avoid higher risk of complications.",
+      "2. [Medical Complications - Class 3: Harm, Level B-R] In patients with aSAH, induction of hypervolemia is potentially harmful because of the association with excess morbidity.",
+      "3. [DCI Management - Class 3: Harm, Level B-R] For patients with aSAH at risk of DCI, prophylactic hemodynamic augmentation should not be performed to reduce iatrogenic patient harm.",
+      "4. [Seizures - Class 3: Harm, Level B-NR] In patients with aSAH, phenytoin for seizure prevention and/or antiseizure prophylaxis is associated with excess morbidity and mortality.",
+      "5. [Natural History - Class 3: No Benefit Level B-NR] In patients with aSAH who do not improve after correction of modifiable conditions and are deemed unsalvageable because of evidence of irreversible neurological injury, treatment of the aneurysm is not beneficial.",
+      "6. [Rebleeding - Class 3: No Benefit Level A] In patients with aSAH, routine use of antifibrinolytic therapy is not useful to improve functional outcome.",
+      "7. [Anesthetic Care - Class 3: No Benefit Level B-R] In patients with good-grade aSAH, the routine use of induced mild hypothermia during aneurysm surgery is not beneficial.",
+      "8. [Vasospasm & DCI Prophylaxis - Class 3: No Benefit Level A] In patients with aSAH, routine use of statin therapy to improve outcomes is not recommended.",
+      "9. [Vasospasm & DCI Prophylaxis - Class 3: No Benefit Level A] In patients with aSAH, routine use of intravenous magnesium to improve neurological outcomes is not recommended.",
+      "10. [Aneurysm Repair - Class 1, Level A] For patients with good-grade aSAH from ruptured aneurysms of the anterior circulation equally suitable for both primary coiling and clipping, primary coiling is recommended in preference to clipping to improve 1-year functional outcome."
+    ],
+    "allPracticeChanges": [
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-1",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with aSAH, use of clinical scales (eg, the Hunt and Hess [HH] grade or World Federation of Neurosurgical Societies [WFNS] grade) is recommended to determine initial clinical severity and predict outcome.",
+        "currentGrade": "Class Class 1, Level B-NR",
+        "drivingTrials": [
+          "Mocco et al. 2006",
+          "Rosen & Macdonald 2004",
+          "Predictive models: VASOGRADE, HAIR, SAHIT score (Jaja et al. BMJ 2018)"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-2",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with high-grade aSAH, aneurysm treatment is reasonable, after careful discussion of likely prognosis with family members, to optimize patient outcome.",
+        "currentGrade": "Class Class 2a, Level B-NR",
+        "drivingTrials": [
+          "Mocco et al. 2006 (40% favorable outcome at 12 mo in HH grade 4-5)",
+          "Meta-analysis by Zhao et al. 2017 (85 studies, 4506 poor-grade patients; 39% good outcomes)"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-3",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with aSAH who do not improve after correction of modifiable conditions and are deemed unsalvageable because of evidence of irreversible neurological injury, treatment of the aneurysm is not beneficial.",
+        "currentGrade": "Class Class 3: No Benefit Level B-NR, Level B-NR",
+        "drivingTrials": [
+          "Juvela & Siironen 2012",
+          "Claassen et al. 2002 (Irreversible early brain injury/global cerebral edema)"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-4",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with acute onset of severe headache, prompt diagnostic workup and evaluation are recommended to diagnose/exclude aSAH and minimize morbidity and mortality.",
+        "currentGrade": "Class Class 1, Level B-NR",
+        "drivingTrials": [
+          "Beck et al. 2006",
+          "Kowalski et al. 2004",
+          "Perry et al. 2013",
+          "Polmear 2003 (Sentinel headache recognition)"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-5",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with acute onset of severe headache who present >6 hours from symptom onset or who have a new neurological deficit, a noncontrast head CT and, if negative for aSAH, lumbar puncture (LP) should be performed to diagnose/exclude aSAH.",
+        "currentGrade": "Class Class 1, Level B-NR",
+        "drivingTrials": [
+          "Kameda-Smith et al. 2021",
+          "Walton et al. 2022 (Spectrophotometric xanthochromia: 100% sensitivity, 95.2% specificity)"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-6",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with acute onset of severe headache who present <6 hours from symptom onset and without new neurological deficit, a noncontrast head CT performed on a high-quality scanner and interpreted by a board-certified neuroradiologist is reasonable to diagnose/exclude aSAH.",
+        "currentGrade": "Class Class 2a, Level B-NR",
+        "drivingTrials": [
+          "Meta-analysis by Dubosh et al. 2016 (8907 patients",
+          "CT <6h sensitivity 98.7%, specificity 99.9%)",
+          "Perry et al. BMJ 2011",
+          "Backes et al. 2012",
+          "Blok et al. 2015"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-7",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with acute onset of severe headache without a new neurological deficit, application of the Ottawa SAH Rule may be reasonable to identify those at high risk for aSAH.",
+        "currentGrade": "Class Class 2b, Level B-NR",
+        "drivingTrials": [
+          "Perry et al. JAMA 2013",
+          "Bellolio et al. 2015",
+          "Perry et al. CMAJ 2017 (100% sensitivity, 7.6%–15.3% specificity)"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-8",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with spontaneous SAH with high level of concern for aneurysmal source and a negative or inconclusive CT angiography (CTA), digital subtraction angiography (DSA) is indicated to diagnose/exclude cerebral aneurysm(s).",
+        "currentGrade": "Class Class 1, Level B-NR",
+        "drivingTrials": [
+          "Agid et al. 2010",
+          "Catapano et al. 2020",
+          "Heit et al. 2016",
+          "Howard et al. 2019"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-9",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "For patients with aSAH, timely transfer from hospitals with low case volume to higher-volume centers with multidisciplinary neurointensive care services, comprehensive stroke center capabilities, and experienced cerebrovascular surgeons/neuroendovascular interventionalists is recommended to improve outcomes.",
+        "currentGrade": "Class Class 1, Level B-NR",
+        "drivingTrials": [
+          "Lindekleiv et al. 2015",
+          "Kurogi et al. 2020",
+          "Leifer et al. 2021",
+          "Goertz et al. 2020",
+          "Gatollari et al. 2017",
+          "Lindgren et al. 2019"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-10",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "For patients with aSAH, care should be provided in a dedicated neurocritical care unit by a multidisciplinary team.",
+        "currentGrade": "Class Class 1, Level B-NR",
+        "drivingTrials": [
+          "PRINCE Study (Venkatasubba Rao et al. 2020",
+          "Suarez et al. 2020)"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-11",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with aSAH who are receiving anticoagulants, emergency anticoagulation reversal with appropriate reversal agents should be performed to prevent rebleeding.",
+        "currentGrade": "Class Class 1, Level C-EO",
+        "drivingTrials": [
+          "Greenberg et al. 2022 (AHA/ASA ICH Guideline)",
+          "Frontera et al. 2016 (NCS/SCCM Antithrombotic Reversal Guidelines)"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-12",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with aSAH, routine use of antifibrinolytic therapy is not useful to improve functional outcome.",
+        "currentGrade": "Class Class 3: No Benefit Level A, Level A",
+        "drivingTrials": [
+          "ULTRA Trial (Post et al. Lancet 2021: Ultra-early tranexamic acid showed no significant reduction in rebleeding and no functional outcome improvement)",
+          "Shi et al. 2021",
+          "Baharoglu et al. Cochrane 2013"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-13",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "For patients with aSAH, surgical or endovascular treatment of the ruptured aneurysm should be performed as early as feasible after presentation, preferably within 24 hours of onset, to improve outcome.",
+        "currentGrade": "Class Class 1, Level B-NR",
+        "drivingTrials": [
+          "Ohman & Heiskanen 1989 (RCT of early vs late surgery)",
+          "Meta-analyses: Rawal et al. 2017, Yao et al. 2017, Oudshoorn et al. 2014, Zhao et al. 2017"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-14",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "For patients with aSAH from ruptured aneurysms of the posterior circulation that are amenable to coiling, coiling is indicated in preference to clipping to improve outcome.",
+        "currentGrade": "Class Class 1, Level B-R",
+        "drivingTrials": [
+          "Cochrane Review (Lindgren et al. 2018",
+          "RR 0.41 for death/dependency)",
+          "BRAT Trial (Spetzler et al. 2013, 2015)"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-15",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "For patients with aSAH deemed salvageable and with depressed level of consciousness due to large intraparenchymal hematoma, emergency clot evacuation should be performed to reduce mortality.",
+        "currentGrade": "Class Class 1, Level B-R",
+        "drivingTrials": [
+          "Heiskanen et al. 1988 (RCT showing 27% vs 80% mortality benefit for clot evacuation)",
+          "Guresir et al. 2008"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-16",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "For patients with good-grade aSAH from ruptured aneurysms of the anterior circulation equally suitable for both primary coiling and clipping, primary coiling is recommended in preference to clipping to improve 1-year functional outcome.",
+        "currentGrade": "Class Class 1, Level A",
+        "drivingTrials": [
+          "ISAT Trial (Molyneux et al. Lancet 2002, 2005",
+          "RR 0.77 for death/dependency at 1 yr)",
+          "Cochrane Review (Lindgren et al. 2018)"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-17",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "For patients with aSAH from ruptured saccular aneurysms amenable to either primary coiling or clipping, stents or flow diverters should not be used to avoid higher risk of complications.",
+        "currentGrade": "Class Class 3: Harm, Level B-NR",
+        "drivingTrials": [
+          "Bsat et al. 2020 & Cagnazzo et al. 2020 (Higher risk of ventriculostomy-related hemorrhagic complications on dual antiplatelets)"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-18",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with aSAH, the intraoperative use of mannitol or hypertonic saline can be effective in reducing ICP and cerebral edema.",
+        "currentGrade": "Class Class 2a, Level B-R",
+        "drivingTrials": [
+          "Al-Rawi et al. 2010",
+          "Pasarikovski et al. 2017"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-19",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with good-grade aSAH, the routine use of induced mild hypothermia during aneurysm surgery is not beneficial.",
+        "currentGrade": "Class Class 3: No Benefit Level B-R, Level B-R",
+        "drivingTrials": [
+          "IHAST Trial (Todd et al. N Engl J Med 2005; 1000 patients, no outcome improvement)",
+          "Anderson et al. 2006"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-20",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with aSAH, close monitoring and goal-directed treatment of volume status are reasonable to maintain euvolemia.",
+        "currentGrade": "Class Class 2a, Level B-R",
+        "drivingTrials": [
+          "Mutoh et al. 2014",
+          "Chui et al. 2022",
+          "Hoff et al. 2009"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-21",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with aSAH, use of mineralocorticoids is reasonable to treat natriuresis and hyponatremia.",
+        "currentGrade": "Class Class 2a, Level B-R",
+        "drivingTrials": [
+          "Fludrocortisone RCTs: Hasan et al. 1989, Mistry et al. 2016"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-22",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with aSAH, induction of hypervolemia is potentially harmful because of the association with excess morbidity.",
+        "currentGrade": "Class Class 3: Harm, Level B-R",
+        "drivingTrials": [
+          "Tagami et al. 2014",
+          "Egge et al. 2001 (Volume expansion increases medical complications without outcome benefit)"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-23",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with aSAH whose ruptured aneurysm has been secured, pharmacological or mechanical venous thromboembolism (VTE) prophylaxis is recommended to reduce the risk for VTE.",
+        "currentGrade": "Class Class 1, Level C-LD",
+        "drivingTrials": [
+          "CLOTS 3 Trial (Lancet 2013)",
+          "Manoel et al. 2014"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-24",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with aSAH, early initiation of enteral nimodipine is beneficial in preventing DCI and improving functional outcomes.",
+        "currentGrade": "Class Class 1, Level A",
+        "drivingTrials": [
+          "Allen et al. NEJM 1983",
+          "Cochrane Meta-analysis (Dorhout Mees et al. 2007, 16 trials, 3361 patients)",
+          "Samseethong et al. 2018 & Hernandez-Duran et al. 2019"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-25",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with aSAH, routine use of statin therapy to improve outcomes is not recommended.",
+        "currentGrade": "Class Class 3: No Benefit Level A, Level A",
+        "drivingTrials": [
+          "Meta-analyses: Shen et al. 2017 & Vergouwen et al. 2010 (No significant benefit in DCI or mortality)"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-26",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with aSAH, routine use of intravenous magnesium to improve neurological outcomes is not recommended.",
+        "currentGrade": "Class Class 3: No Benefit Level A, Level A",
+        "drivingTrials": [
+          "IMASH Trial (Wong et al. 2010)",
+          "Jeon et al. 2012",
+          "Reddy et al. 2014"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-27",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "For patients with aSAH at risk of DCI, prophylactic hemodynamic augmentation should not be performed to reduce iatrogenic patient harm.",
+        "currentGrade": "Class Class 3: Harm, Level B-R",
+        "drivingTrials": [
+          "IMPROVES Trial (Togashi et al. 2015)",
+          "Tagami et al. 2014",
+          "Loan et al. 2018"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-28",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with aSAH and symptomatic vasospasm, elevating systolic BP values may be reasonable to reduce the progression and severity of DCI.",
+        "currentGrade": "Class Class 2b, Level B-NR",
+        "drivingTrials": [
+          "HIMALAIA Trial (Gathier et al. 2015, 2018)",
+          "Haegens et al. 2018",
+          "Roy et al. 2017"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-29",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with aSAH and acute symptomatic hydrocephalus, urgent CSF diversion (EVD and/or lumbar drainage) should be performed to improve neurological outcome.",
+        "currentGrade": "Class Class 1, Level B-NR",
+        "drivingTrials": [
+          "Ransom et al. 2007",
+          "McIver et al. 2002",
+          "Rajshekhar & Harbaugh 1992"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-30",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with aSAH and hydrocephalus who require an EVD, implementation and adherence to an EVD bundled protocol that addresses insertion, management, education, and monitoring are recommended to reduce complication and infection rates.",
+        "currentGrade": "Class Class 1, Level B-NR",
+        "drivingTrials": [
+          "Flint et al. 2013, 2017 (Infection rates reduced from up to 37% to 0%–9%)",
+          "Dasic et al. 2006",
+          "Hepburn-Smith et al. 2016"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-31",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with aSAH and either fluctuating neurological examination, depressed mental state, ruptured MCA aneurysm, high-grade SAH, ICH, hydrocephalus, or cortical infarction, cEEG monitoring is reasonable to detect seizures.",
+        "currentGrade": "Class Class 2a, Level B-NR",
+        "drivingTrials": [
+          "Kondziella et al. 2015",
+          "O'Connor et al. 2014"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-32",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with aSAH and high-seizure-risk features (ie, ruptured MCA aneurysm, high-grade SAH, ICH, hydrocephalus, and cortical infarction), use of prophylactic antiseizure medication(s) may be reasonable to prevent seizures.",
+        "currentGrade": "Class Class 2b, Level B-NR",
+        "drivingTrials": [
+          "Marigold et al. Cochrane 2013",
+          "Panczykowski et al. 2016",
+          "Chen et al. 2021"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-33",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with aSAH, phenytoin for seizure prevention and/or antiseizure prophylaxis is associated with excess morbidity and mortality.",
+        "currentGrade": "Class Class 3: Harm, Level B-NR",
+        "drivingTrials": [
+          "Naidech et al. Stroke 2005 (Phenytoin associated with functional and cognitive disability)",
+          "Szaflarski et al. 2010",
+          "Radic et al. 2014"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-34",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with aSAH who present with seizures, treatment with antiseizure medications for ≤7 days is reasonable to reduce seizure-related complications in the perioperative period.",
+        "currentGrade": "Class Class 2a, Level B-NR",
+        "drivingTrials": [
+          "Raper et al. 2013",
+          "Murphy-Human et al. 2011",
+          "Claassen et al. 2003"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-35",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with aSAH, an early multidisciplinary team–based approach to treatment and rehabilitation is recommended to reduce LOS and identify discharge needs.",
+        "currentGrade": "Class Class 1, Level B-NR",
+        "drivingTrials": [
+          "Alaraj et al. 2017 (Multidisciplinary huddles reduced hospital LOS from 21.6 to 14.1 days)"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-36",
+        "category": "Clinical Management",
+        "topic": "Recommendation",
+        "changeType": "STANDARD",
+        "currentText": "In patients with aSAH who have undergone aneurysm repair, perioperative cerebrovascular imaging is recommended to identify remnants or recurrence of the aneurysm that may require further treatment.",
+        "currentGrade": "Class Class 1, Level B-NR",
+        "drivingTrials": [
+          "ISAT Trial (Molyneux et al. 2002, 2005, 2015; 30-day target aneurysm rebleed rate 1.9% coiled vs 0.6% clipped)"
+        ]
+      }
+    ],
+    "linkedScenarioIds": [],
+    "fullTextStatus": "FULL_TEXT_PARSED"
   }
 ];
 
