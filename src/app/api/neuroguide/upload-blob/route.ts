@@ -47,10 +47,12 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
           throw new Error("Unauthorized: Quyền tải tệp PDF lên hệ thống chỉ dành riêng cho Quản trị viên (Admin).");
         }
 
-        // Chỉ cho phép upload file PDF học thuật, dung lượng tối đa 50MB
+        // Chỉ cho phép upload file PDF học thuật, dung lượng tối đa 50MB, tự động thêm suffix hoặc cho phép ghi đè
         return {
           allowedContentTypes: ["application/pdf"],
           maximumSizeInBytes: 50 * 1024 * 1024,
+          addRandomSuffix: true,
+          allowOverwrite: true,
           tokenPayload: JSON.stringify({
             uploadedAt: new Date().toISOString(),
             pathname,

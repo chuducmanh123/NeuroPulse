@@ -132,7 +132,8 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
 
         // 1. Thử tải lên Vercel Blob (nếu Vercel Blob đã được kích hoạt trên hệ thống)
         try {
-          const blobResult = await upload(selectedFile.name, selectedFile, {
+          const uniqueBlobName = `guideline-${Date.now()}-${selectedFile.name.replace(/[^a-zA-Z0-9._-]/g, "_")}`;
+          const blobResult = await upload(uniqueBlobName, selectedFile, {
             access: "public",
             handleUploadUrl: "/api/neuroguide/upload-blob",
             clientPayload: adminToken,
@@ -303,6 +304,8 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
 
       const decoder = new TextDecoder("utf-8");
       let buffer = "";
+      let gotTerminalStage = false;
+      let totalExtracted = 0;
 
       while (true) {
         const { done, value } = await reader.read();
@@ -327,6 +330,7 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
 
               // Real-time batch received
               if (Array.isArray(eventData.recommendations) && eventData.recommendations.length > 0) {
+                totalExtracted += eventData.recommendations.length;
                 setLiveRecs((prev) => [...prev, ...eventData.recommendations]);
                 onSuccess(); // Instantly refresh parent review queue in background
               }
@@ -337,18 +341,32 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
               }
 
               if (eventData.stage === "COMPLETE") {
+                gotTerminalStage = true;
                 setResultMessage(eventData.message || "Extraction complete!");
                 onSuccess();
                 setTimeout(() => {
                   onClose();
                 }, 2200);
               } else if (eventData.stage === "ERROR") {
+                gotTerminalStage = true;
                 setErrorMessage(eventData.message || eventData.error || "An error occurred during extraction.");
               }
             } catch (err) {
               console.warn("Error parsing SSE event:", err);
             }
           }
+        }
+      }
+
+      if (!gotTerminalStage) {
+        if (totalExtracted > 0) {
+          setResultMessage(`✅ Đã bóc tách thành công ${totalExtracted} khuyến cáo lâm sàng.`);
+          onSuccess();
+          setTimeout(() => {
+            onClose();
+          }, 2000);
+        } else {
+          setErrorMessage("Kết nối bóc tách AI bị ngắt quãng hoặc quá thời gian xử lý (Timeout). Vui lòng thử lại.");
         }
       }
     } catch (submitErr) {
