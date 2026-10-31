@@ -94,7 +94,66 @@ export async function extractGuidelineWithGemini(options: {
     return buildDeterministicGuideline(options, detectedSociety, detectedSub);
   }
 
-  const prompt = `
+  const isEso =
+    detectedSociety.toUpperCase().includes("ESO") ||
+    options.title.toUpperCase().includes("ESO") ||
+    options.journal.toUpperCase().includes("EUROPEAN STROKE") ||
+    options.title.toLowerCase().includes("european stroke");
+
+  const prompt = isEso
+    ? `
+You are a Senior Academic Neurologist and ESO GRADE Guideline Methodologist.
+Analyze this European Stroke Organisation (ESO) clinical practice guideline excerpt:
+Title: "${options.title}"
+Journal: "${options.journal}" (${options.pubYear})
+Source Type: ${options.isFullText ? "Full-Text XML Excerpt with structured recommendations" : "Structured Abstract"}
+Content:
+"""
+${options.fullTextSnippet.slice(0, 24000)}
+"""
+
+Tasks:
+1. Verify if this is an authentic ESO guideline / consensus statement.
+2. Extract executive summary in English (2-3 concise sentences).
+3. Translate and localize executive summary into Vietnamese.
+4. Extract structured PICO clinical questions (Synoptic Table 11 format). For each PICO:
+   - picoNumber: number or string (e.g. 1, 2, 3...)
+   - picoQuestion: the full clinical question (e.g. "In patients with suspected acute stroke, does pre-hospital blood pressure lowering with any drug, compared to no drug, improve outcome?")
+   - expertConsensusStatement: consensus statement if formulated, else null
+   - voting: voting consensus ratio (e.g. "Vote: 10/10") or null
+   - recommendations: array of discrete recommendations under this PICO:
+     - statement: actionable clinical directive
+     - qualityOfEvidence: "High", "Moderate", "Low", or "Very low"
+     - strengthOfRecommendation: "Strong for intervention", "Weak for intervention", "Weak against intervention", or "Strong against intervention"
+     - drivingTrials: array of pivotal trials/studies cited (e.g. ["RIGHT-2", "FAST-MAG", "MR ASAP"])
+
+Respond strictly in JSON matching this schema:
+{
+  "isGenuineGuideline": true,
+  "society": "ESO",
+  "subspecialty": "${detectedSub}",
+  "documentType": "Clinical Practice Guideline",
+  "executiveSummary": "string",
+  "executiveSummaryVi": "string",
+  "picos": [
+    {
+      "picoNumber": 1,
+      "picoQuestion": "string",
+      "expertConsensusStatement": "string or null",
+      "voting": "Vote: 10/10 or null",
+      "recommendations": [
+        {
+          "statement": "string",
+          "qualityOfEvidence": "Moderate",
+          "strengthOfRecommendation": "Strong against intervention",
+          "drivingTrials": ["string"]
+        }
+      ]
+    }
+  ]
+}
+`
+    : `
 You are a Senior Academic Neurologist and Evidence-Based Medicine Methodologist.
 Analyze this clinical practice guideline / consensus document excerpt:
 Title: "${options.title}"
@@ -148,6 +207,18 @@ Respond strictly in JSON matching this schema:
       documentType?: GuidelineDoc["documentType"];
       executiveSummary?: string;
       executiveSummaryVi?: string;
+      picos?: Array<{
+        picoNumber: number | string;
+        picoQuestion: string;
+        expertConsensusStatement?: string;
+        voting?: string;
+        recommendations: Array<{
+          statement: string;
+          qualityOfEvidence: string;
+          strengthOfRecommendation: string;
+          drivingTrials?: string[];
+        }>;
+      }>;
       practiceChanges?: Array<{
         category: string;
         topic: string;
@@ -177,16 +248,54 @@ Respond strictly in JSON matching this schema:
       .replace(/^-|-$/g, "");
     const id = `${cleanPrefix}-${options.pubYear}-${titleSlug || `doc-${Date.now()}`}`;
 
-    const changes: PracticeChangeDetail[] = (result.practiceChanges || []).map((chg, idx) => ({
-      id: `chg-${id}-${idx + 1}`,
-      category: chg.category || "Clinical Recommendation",
-      topic: chg.topic || options.title.slice(0, 70),
-      changeType: chg.changeType || "UPGRADED",
-      currentGrade: chg.currentGrade || "Class I, Level A",
-      currentText: chg.currentText,
-      previousGrade: chg.previousGrade || undefined,
-      drivingTrials: chg.drivingTrials && chg.drivingTrials.length > 0 ? chg.drivingTrials : [options.journal],
-    }));
+    let changes: PracticeChangeDetail[] = [];
+
+    if (result.picos && Array.isArray(result.picos) && result.picos.length > 0) {
+      result.picos.forEach((pico, pIdx) => {
+        const pNum = pico.picoNumber || pIdx + 1;
+        const pQuestion = (pico.picoQuestion || "").replace(/^PICO\s*\d+[:.\s-]*/i, "").trim();
+        const consensus = pico.expertConsensusStatement || undefined;
+        const voting = pico.voting ? (pico.voting.startsWith("Vote:") ? pico.voting : `Vote: ${pico.voting}`) : (consensus ? "Vote: 10/10" : undefined);
+        const recs = Array.isArray(pico.recommendations) && pico.recommendations.length > 0 ? pico.recommendations : [{
+          statement: pQuestion,
+          qualityOfEvidence: "Moderate",
+          strengthOfRecommendation: "Weak for intervention",
+          drivingTrials: [],
+        }];
+
+        recs.forEach((rec, rIdx) => {
+          const q = rec.qualityOfEvidence || "Moderate";
+          const s = rec.strengthOfRecommendation || "Weak for intervention";
+          changes.push({
+            id: `chg-${id}-${pNum}-${rIdx + 1}`,
+            category: pQuestion.slice(0, 60) || "ESO Recommendation",
+            topic: `PICO ${pNum} ${pQuestion}`.trim(),
+            changeType: s.toLowerCase().includes("against") ? "DOWNGRADED" : "NEW",
+            currentGrade: `GRADE ${s} (Evidence: ${q}${voting ? `, Voting: ${voting}` : ""})`,
+            currentText: rec.statement || "",
+            quality: q,
+            strength: s,
+            voting,
+            expertConsensusStatement: consensus,
+            previousText: consensus,
+            picoNumber: pNum,
+            picoQuestion: pQuestion,
+            drivingTrials: rec.drivingTrials && rec.drivingTrials.length > 0 ? rec.drivingTrials : [options.journal],
+          });
+        });
+      });
+    } else if (result.practiceChanges && Array.isArray(result.practiceChanges)) {
+      changes = result.practiceChanges.map((chg, idx) => ({
+        id: `chg-${id}-${idx + 1}`,
+        category: chg.category || "Clinical Recommendation",
+        topic: chg.topic || options.title.slice(0, 70),
+        changeType: chg.changeType || "UPGRADED",
+        currentGrade: chg.currentGrade || "Class I, Level A",
+        currentText: chg.currentText,
+        previousGrade: chg.previousGrade || undefined,
+        drivingTrials: chg.drivingTrials && chg.drivingTrials.length > 0 ? chg.drivingTrials : [options.journal],
+      }));
+    }
 
     return {
       id,
@@ -558,7 +667,58 @@ export async function extractGuidelineFromPdfBuffer(options: {
     );
   }
 
-  const prompt = `
+  const isEso =
+    options.society.toUpperCase().includes("ESO") ||
+    fallbackTitle.toUpperCase().includes("ESO") ||
+    fallbackTitle.toUpperCase().includes("EUROPEAN STROKE");
+
+  const prompt = isEso
+    ? `
+You are a Senior Academic Neurologist and ESO GRADE Guideline Methodologist.
+Analyze this attached European Stroke Organisation (ESO) guideline PDF: "${fallbackTitle}" (${pubYear}).
+
+ESO guidelines are strictly structured around PICO clinical questions (Population, Intervention, Comparator, Outcome) and publish a Synoptic Table of all recommendations and expert consensus statements (e.g. Table 11).
+
+For each PICO question:
+1. Extract picoNumber (e.g. 1, 2, 3...)
+2. Extract the full picoQuestion (e.g. "In patients with suspected acute stroke, does pre-hospital blood pressure lowering with any drug, compared to no drug, improve outcome?")
+3. Extract all Recommendations under this PICO:
+   - statement: clear actionable clinical directive
+   - qualityOfEvidence: "High", "Moderate", "Low", or "Very low"
+   - strengthOfRecommendation: "Strong for intervention", "Weak for intervention", "Weak against intervention", or "Strong against intervention"
+   - drivingTrials: landmark trials mentioned (e.g. ["RIGHT-2", "FAST-MAG", "MR ASAP"])
+4. Extract Expert Consensus Statement for this PICO if formulated:
+   - statement: consensus text (e.g. "Due to the potential harm to patients with ICH...")
+   - voting: voting ratio (e.g. "Vote: 10/10")
+
+Respond strictly in JSON matching this schema:
+{
+  "isGenuineGuideline": true,
+  "society": "ESO",
+  "subspecialty": "${detectedSub}",
+  "documentType": "Clinical Practice Guideline",
+  "title": "${fallbackTitle}",
+  "executiveSummary": "string (2-3 concise sentences in English)",
+  "executiveSummaryVi": "string (2-3 concise sentences in Vietnamese)",
+  "picos": [
+    {
+      "picoNumber": 1,
+      "picoQuestion": "string",
+      "expertConsensusStatement": "string or null",
+      "voting": "Vote: 10/10 or null",
+      "recommendations": [
+        {
+          "statement": "string",
+          "qualityOfEvidence": "Moderate",
+          "strengthOfRecommendation": "Strong against intervention",
+          "drivingTrials": ["string"]
+        }
+      ]
+    }
+  ]
+}
+`
+    : `
 You are a Senior Academic Neurologist and Evidence-Based Medicine Methodologist.
 Analyze this attached clinical practice guideline PDF from ${options.society}.
 Document title or hint: "${fallbackTitle}" (${pubYear}).
@@ -628,8 +788,56 @@ Respond strictly in JSON matching this schema:
         const jsonMatch = rawJson.match(/\{[\s\S]*\}/);
         if (jsonMatch) rawJson = jsonMatch[0];
         const result = JSON.parse(rawJson);
-        if (result && Array.isArray(result.practiceChanges) && result.practiceChanges.length > 0) {
-          const docId = `${options.society.toLowerCase().replace(/[^a-z0-9]/g, "")}-${pubYear}-${Date.now()}`;
+        const docId = `${options.society.toLowerCase().replace(/[^a-z0-9]/g, "")}-${pubYear}-${Date.now()}`;
+        let changes: PracticeChangeDetail[] = [];
+
+        if (result && Array.isArray(result.picos) && result.picos.length > 0) {
+          result.picos.forEach((pico: any, pIdx: number) => {
+            const pNum = pico.picoNumber || pIdx + 1;
+            const pQuestion = (pico.picoQuestion || "").replace(/^PICO\s*\d+[:.\s-]*/i, "").trim();
+            const consensus = pico.expertConsensusStatement || undefined;
+            const voting = pico.voting ? (pico.voting.startsWith("Vote:") ? pico.voting : `Vote: ${pico.voting}`) : (consensus ? "Vote: 10/10" : undefined);
+            const recs = Array.isArray(pico.recommendations) && pico.recommendations.length > 0 ? pico.recommendations : [{
+              statement: pQuestion,
+              qualityOfEvidence: "Moderate",
+              strengthOfRecommendation: "Weak for intervention",
+              drivingTrials: [],
+            }];
+
+            recs.forEach((rec: any, rIdx: number) => {
+              const q = rec.qualityOfEvidence || "Moderate";
+              const s = rec.strengthOfRecommendation || "Weak for intervention";
+              changes.push({
+                id: `chg-${docId}-${pNum}-${rIdx + 1}`,
+                category: pQuestion.slice(0, 60) || "ESO Recommendation",
+                topic: `PICO ${pNum} ${pQuestion}`.trim(),
+                changeType: s.toLowerCase().includes("against") ? "DOWNGRADED" : "NEW",
+                currentGrade: `GRADE ${s} (Evidence: ${q}${voting ? `, Voting: ${voting}` : ""})`,
+                currentText: rec.statement || "",
+                quality: q,
+                strength: s,
+                voting,
+                expertConsensusStatement: consensus,
+                previousText: consensus,
+                picoNumber: pNum,
+                picoQuestion: pQuestion,
+                drivingTrials: rec.drivingTrials || [],
+              });
+            });
+          });
+        } else if (result && Array.isArray(result.practiceChanges) && result.practiceChanges.length > 0) {
+          changes = result.practiceChanges.map((c: any, i: number) => ({
+            id: `chg-${docId}-${i + 1}`,
+            category: c.category || "Clinical Recommendation",
+            topic: c.topic || fallbackTitle.slice(0, 70),
+            changeType: c.changeType || "NEW",
+            currentGrade: c.currentGrade || "Class I, Level A",
+            currentText: c.currentText || "",
+            drivingTrials: c.drivingTrials || [],
+          }));
+        }
+
+        if (changes.length > 0) {
           return {
             id: docId,
             society: options.society,
@@ -643,15 +851,7 @@ Respond strictly in JSON matching this schema:
             subspecialties: [(result.subspecialty as SubspecialtyType) || detectedSub],
             executiveSummary: result.executiveSummary || `${options.society} guideline published in ${pubYear}.`,
             executiveSummaryVi: result.executiveSummaryVi || `Hướng dẫn thực hành lâm sàng từ ${options.society} (${pubYear}).`,
-            allPracticeChanges: result.practiceChanges.map((c: any, i: number) => ({
-              id: `chg-${docId}-${i + 1}`,
-              category: c.category || "Clinical Recommendation",
-              topic: c.topic || fallbackTitle.slice(0, 70),
-              changeType: c.changeType || "NEW",
-              currentGrade: c.currentGrade || "Class I, Level A",
-              currentText: c.currentText || "",
-              drivingTrials: c.drivingTrials || [],
-            })),
+            allPracticeChanges: changes,
             linkedScenarioIds: [],
             fullTextStatus: "FULL_TEXT_PARSED",
             fullTextSource: "OPEN_ACCESS_WEB",

@@ -3,7 +3,10 @@
 import React, { useState } from "react";
 import { AhaGuidelineTable, type AhaGuidelineSection, type AhaRecommendationItem } from "./AhaGuidelineTable";
 import { EsoGuidelineTable, type EsoPicoItem, type EsoEvidenceQuality, type EsoRecommendationStrength } from "./EsoGuidelineTable";
+import { groupPracticeChangesIntoEsoPicos, parseEsoGrade } from "@/lib/neuroguide/esoPicoGrouper";
 import type { GuidelineDoc, PracticeChangeDetail } from "@/types/neuroguide";
+
+export { groupPracticeChangesIntoEsoPicos, parseEsoGrade };
 
 interface GuidelinePresentationRendererProps {
   doc: GuidelineDoc;
@@ -40,45 +43,6 @@ function parseAhaGrade(gradeStr: string): { cor: string; loe: string } {
   }
 
   return { cor, loe };
-}
-
-/**
- * Parses ESO GRADE metadata from strings like:
- * "GRADE Strong for intervention (Evidence: High)"
- * "GRADE Weak for intervention (Evidence: Very Low, Voting: 8/8)"
- */
-function parseEsoGrade(gradeStr: string): {
-  strength: EsoRecommendationStrength;
-  quality: EsoEvidenceQuality;
-  voting?: string;
-} {
-  let strength: EsoRecommendationStrength = "Weak for intervention";
-  let quality: EsoEvidenceQuality = "Moderate";
-  let voting: string | undefined = undefined;
-
-  if (!gradeStr) return { strength, quality, voting };
-
-  const lower = gradeStr.toLowerCase();
-
-  // Strength
-  if (lower.includes("strong against")) strength = "Strong against intervention";
-  else if (lower.includes("weak against") || lower.includes("suggest against")) strength = "Weak against intervention";
-  else if (lower.includes("strong for") || lower.includes("recommend for")) strength = "Strong for intervention";
-  else if (lower.includes("weak for") || lower.includes("suggest for")) strength = "Weak for intervention";
-
-  // Quality
-  if (lower.includes("very low")) quality = "Very low";
-  else if (lower.includes("low") && !lower.includes("very low")) quality = "Low";
-  else if (lower.includes("moderate")) quality = "Moderate";
-  else if (lower.includes("high")) quality = "High";
-
-  // Voting
-  const voteMatch = gradeStr.match(/Voting:\s*([0-9]+\/[0-9]+|Unanimous)/i);
-  if (voteMatch && voteMatch[1]) {
-    voting = `Vote: ${voteMatch[1]}`;
-  }
-
-  return { strength, quality, voting };
 }
 
 export function GuidelinePresentationRenderer({
@@ -126,39 +90,10 @@ export function GuidelinePresentationRenderer({
   }, [doc.allPracticeChanges]);
 
   // ==========================================
-  // 2. PREPARE ESO PICO ITEMS (Hình 3 structure)
+  // 2. PREPARE ESO PICO ITEMS (Hình 1 Synoptic Table 11 structure)
   // ==========================================
   const esoPicoItems: EsoPicoItem[] = React.useMemo(() => {
-    if (!doc.allPracticeChanges) return [];
-
-    // Group changes by PICO if present, or group by Topic/Category
-    return doc.allPracticeChanges.map((item, idx) => {
-      const { strength, quality, voting } = parseEsoGrade(item.currentGrade);
-
-      // Check if topic is formulated as a PICO question
-      const isTopicPico = item.topic.toLowerCase().startsWith("pico");
-      const picoNumber = isTopicPico
-        ? item.topic.replace(/pico\s*([0-9]+).*/i, "$1") || `${idx + 1}`
-        : `${idx + 1}`;
-
-      const questionText = isTopicPico
-        ? item.topic.replace(/pico\s*[0-9]+:?\s*/i, "")
-        : item.topic;
-
-      return {
-        picoNumber,
-        picoQuestion: questionText.endsWith("?") ? questionText : `${questionText}?`,
-        recommendations: [
-          {
-            statement: item.currentText,
-            qualityOfEvidence: quality,
-            strengthOfRecommendation: strength,
-          },
-        ],
-        expertConsensusStatement: item.previousText || (item.drivingTrials && item.drivingTrials.length > 0 ? `Driving Evidence: ${item.drivingTrials.join(", ")}` : undefined),
-        voting: voting || "Vote: 10/10",
-      };
-    });
+    return groupPracticeChangesIntoEsoPicos(doc.allPracticeChanges || []);
   }, [doc.allPracticeChanges]);
 
   return (

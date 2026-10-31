@@ -82,6 +82,9 @@ export interface PracticeChangeDetail {
   loe?: string;
   strength?: string;
   quality?: string;
+  picoNumber?: number | string;
+  picoQuestion?: string;
+  expertConsensusStatement?: string;
 }
 
 export type FullTextStatus = "FULL_TEXT_PARSED" | "ABSTRACT_ONLY" | "UNAVAILABLE";

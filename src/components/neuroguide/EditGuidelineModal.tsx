@@ -197,6 +197,19 @@ export function EditGuidelineModal({
       .map((t) => t.trim())
       .filter((t) => t.length > 0);
 
+    let pNum: string | undefined = undefined;
+    let pQuestion: string | undefined = undefined;
+    if (isEso) {
+      const matchPico = (recTopic || "").match(/^PICO\s*(\d+)[:.\s-]*(.*)/i);
+      if (matchPico) {
+        pNum = matchPico[1];
+        pQuestion = matchPico[2]?.trim() || recTopic;
+      } else {
+        pNum = `${selectedRecIndex + 1}`;
+        pQuestion = recTopic;
+      }
+    }
+
     const updated: PracticeChangeDetail = {
       ...practiceChanges[selectedRecIndex],
       category: recCategory || "Recommendations",
@@ -208,6 +221,11 @@ export function EditGuidelineModal({
       previousGrade: recPrevGrade || undefined,
       previousText: isEso ? esoConsensus : recPrevText || undefined,
       voting: isEso ? esoVoting : undefined,
+      quality: isEso ? esoQuality : undefined,
+      strength: isEso ? esoStrength : undefined,
+      expertConsensusStatement: isEso ? esoConsensus : undefined,
+      picoNumber: pNum,
+      picoQuestion: pQuestion,
     };
 
     const nextList = [...practiceChanges];
@@ -861,7 +879,7 @@ export function EditGuidelineModal({
                       {isEso && (
                         <div className="p-3 rounded-xl border border-blue-200 dark:border-blue-900/60 bg-blue-50/30 dark:bg-blue-950/20 space-y-3">
                           <div className="flex items-center gap-1.5 font-bold text-blue-700 dark:text-blue-300 text-[11px]">
-                            <span>🔵 CẤU TRÚC PHÂN CẤP ESO GRADE (FIGURE 3)</span>
+                            <span>🔵 CẤU TRÚC PHÂN CẤP ESO GRADE (HÌNH 1 SYNOPTIC TABLE 11)</span>
                           </div>
 
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -895,9 +913,9 @@ export function EditGuidelineModal({
                                 }`}
                               >
                                 <option value="High">High (Cao ⊕⊕⊕⊕)</option>
-                                <option value="Moderate">Moderate (Trung bình ⊕⊕⊕⊝)</option>
-                                <option value="Low">Low (Thấp ⊕⊕⊝⊝)</option>
-                                <option value="Very low">Very low (Rất thấp ⊕⊝⊝⊝)</option>
+                                <option value="Moderate">Moderate (Trung bình ⊕⊕⊕)</option>
+                                <option value="Low">Low (Thấp ⊕⊕)</option>
+                                <option value="Very low">Very low (Rất thấp ⊕)</option>
                               </select>
                             </div>
                           </div>

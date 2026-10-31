@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { EditGuidelineModal } from "./EditGuidelineModal";
 import { AhaGuidelineTable } from "./AhaGuidelineTable";
-import { EsoGuidelineTable } from "./EsoGuidelineTable";
+import { EsoGuidelineTable, type EsoPicoItem } from "./EsoGuidelineTable";
 import type { GuidelineDoc, PracticeChangeDetail } from "@/types/neuroguide";
 
 export interface StoredRec {
@@ -65,6 +65,107 @@ interface ConfirmDialogState {
   confirmLabel: string;
   confirmColor: "emerald" | "rose" | "amber";
   targetGuideline?: PendingGuidelineGroup;
+}
+
+/**
+ * Transforms stored recommendations into structured ESO PICO questions matching Hình 1 Synoptic Table 11
+ */
+function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[]): EsoPicoItem[] {
+  const picoMap = new Map<string, EsoPicoItem>();
+  let fallbackCounter = 1;
+
+  recs.forEach((r) => {
+    let pNum: number | string = "";
+    let pQuestion = "";
+
+    const rawTopic = (r.topic || "").trim();
+    const rawCat = (r.category || "").trim();
+    const rawPicoId = (r.pico_id || "").trim();
+
+    if (rawPicoId) {
+      const matchPico = rawPicoId.match(/(?:PICO\s*)?(\d+)/i);
+      pNum = matchPico ? matchPico[1] : rawPicoId;
+      pQuestion = rawTopic || rawCat;
+    } else {
+      const matchTopic = rawTopic.match(/^PICO\s*(\d+)[:.\s-]*(.*)/i);
+      const matchCat = rawCat.match(/^PICO\s*(\d+)[:.\s-]*(.*)/i);
+
+      if (matchTopic) {
+        pNum = matchTopic[1];
+        pQuestion = matchTopic[2]?.trim() || rawTopic;
+      } else if (matchCat) {
+        pNum = matchCat[1];
+        pQuestion = matchCat[2]?.trim() || rawTopic;
+      } else {
+        pNum = fallbackCounter++;
+        pQuestion = rawTopic || rawCat || `PICO ${pNum}`;
+      }
+    }
+
+    pQuestion = pQuestion.replace(/^PICO\s*\d+[:.\s-]*/i, "").trim();
+    if (!pQuestion) {
+      pQuestion = rawTopic.replace(/^PICO\s*\d+[:.\s-]*/i, "").trim() || rawCat;
+    }
+    if (pQuestion && !pQuestion.endsWith("?") && !pQuestion.endsWith(".")) {
+      pQuestion = `${pQuestion}?`;
+    }
+
+    const picoKey = `PICO-${pNum}`;
+
+    let q = r.quality_of_evidence || "Moderate";
+    let s = r.strength_of_recommendation || "Weak for intervention";
+    const stmtLower = (r.statement || "").toLowerCase();
+
+    // Normalize vague or "Conditional" strength into official ESO GRADE values
+    const sLower = s.toLowerCase();
+    if (sLower === "conditional" || sLower === "weak" || !s) {
+      if (stmtLower.includes("suggest against") || stmtLower.includes("against") || stmtLower.includes("avoid")) {
+        s = "Weak against intervention";
+      } else {
+        s = "Weak for intervention";
+      }
+    } else if (sLower.includes("strong")) {
+      if (stmtLower.includes("against") || stmtLower.includes("harm") || stmtLower.includes("avoid")) {
+        s = "Strong against intervention";
+      } else {
+        s = "Strong for intervention";
+      }
+    }
+
+    const consensus = (r as any).consensus_statement || r.verbatim_quote || undefined;
+
+    if (!picoMap.has(picoKey)) {
+      picoMap.set(picoKey, {
+        picoNumber: pNum,
+        picoQuestion: pQuestion,
+        recommendations: [],
+        expertConsensusStatement: consensus,
+        voting: r.voting || (consensus ? "Vote: 10/10" : undefined),
+        drivingTrials: r.driving_trials || [],
+      });
+    }
+
+    const entry = picoMap.get(picoKey)!;
+
+    if (!entry.expertConsensusStatement && consensus) {
+      entry.expertConsensusStatement = consensus;
+      if (!entry.voting) entry.voting = r.voting || "Vote: 10/10";
+    }
+
+    if ((!entry.drivingTrials || entry.drivingTrials.length === 0) && r.driving_trials && r.driving_trials.length > 0) {
+      entry.drivingTrials = r.driving_trials;
+    }
+
+    entry.recommendations.push({
+      number: entry.recommendations.length + 1,
+      statement: r.statement,
+      qualityOfEvidence: q,
+      strengthOfRecommendation: s,
+      drivingTrials: r.driving_trials || [],
+    });
+  });
+
+  return Array.from(picoMap.values());
 }
 
 export function ReviewQueueTab({
@@ -1034,18 +1135,7 @@ export function ReviewQueueTab({
                       ) : isGroupEso ? (
                         <EsoGuidelineTable
                           title={group.guideline_title}
-                          picoItems={group.categories.map((c, cIdx) => ({
-                            picoNumber: cIdx + 1,
-                            picoQuestion: c.name,
-                            recommendations: c.items.map((it, itIdx) => ({
-                              number: itIdx + 1,
-                              statement: it.statement,
-                              qualityOfEvidence: it.quality_of_evidence || "Moderate",
-                              strengthOfRecommendation: it.strength_of_recommendation || "Weak for intervention",
-                            })),
-                            expertConsensusStatement: c.items.find((x) => x.verbatim_quote)?.verbatim_quote,
-                            voting: c.items.find((x) => x.voting)?.voting || "Vote: 10/10",
-                          }))}
+                          picoItems={buildEsoPicoItemsFromStoredRecs(group.recommendations)}
                           darkMode={darkMode}
                           allowEdit={true}
                         />

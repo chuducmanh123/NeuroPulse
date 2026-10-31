@@ -104,7 +104,7 @@ Trả về mảng JSON theo schema:
 }}
 """
 
-PROMPT_GRADE_ESO = """Hãy trích xuất TẤT CẢ các khuyến cáo lâm sàng và Đồng thuận chuyên gia (Expert Consensus Statements) trong nội dung trang/bảng dưới đây theo hệ thống GRADE của ESO (European Stroke Organisation).
+PROMPT_GRADE_ESO = """Hãy trích xuất TẤT CẢ các khuyến cáo lâm sàng và Đồng thuận chuyên gia (Expert Consensus Statements) trong nội dung bảng Synoptic Table dưới đây theo hệ thống GRADE của ESO (European Stroke Organisation).
 
 VĂN BẢN ĐẦU VÀO TỪ TRANG {page_num}:
 ---
@@ -117,17 +117,17 @@ Hãy trả về một mảng JSON theo schema sau (không thêm bất kỳ văn 
     {{
       "rec_index": 1,
       "page_num": {page_num},
-      "pico_id": "Mã câu hỏi PICO nếu có (ví dụ: PICO 5)",
-      "section": "Tiêu đề bảng hoặc mục (ví dụ: Table 8 - Stroke Associated Pneumonia)",
-      "topic": "Chủ đề lâm sàng",
+      "pico_id": "Mã câu hỏi PICO (ví dụ: PICO 1, PICO 2...)",
+      "section": "Tiêu đề bảng (ví dụ: Table 11 Synoptic table of all recommendations and expert consensus statements)",
+      "topic": "Toàn văn câu hỏi PICO (ví dụ: In patients with suspected acute stroke, does pre-hospital blood pressure lowering with any drug, compared to no drug, improve outcome?)",
       "quality_of_evidence": "High, Moderate, Low, hoặc Very Low",
       "strength_of_recommendation": "Strong for intervention, Weak for intervention, Strong against intervention, hoặc Weak against intervention",
-      "consensus_statement": "Nội dung câu đồng thuận nếu là Expert Consensus Statement (hoặc null nếu là recommendation thông thường)",
-      "voting": "Tỷ lệ bỏ phiếu của hội đồng nếu có (ví dụ: 8/8, 9/10, hoặc Unanimous)",
-      "statement": "Toàn văn khuyến cáo lâm sàng hoặc ý kiến đồng thuận",
-      "target_population": "Đối tượng áp dụng (ví dụ: Hospitalised adults with acute ischaemic stroke within 7 days)",
-      "driving_trials": ["Danh sách thử nghiệm lâm sàng nếu có"],
-      "verbatim_quote": "Đoạn trích ngắn nguyên văn để kiểm chứng"
+      "consensus_statement": "Toàn văn câu Expert Consensus Statement tương ứng nếu có (hoặc null nếu không có)",
+      "voting": "Tỷ lệ bỏ phiếu (ví dụ: Vote: 10/10 hoặc Unanimous)",
+      "statement": "Toàn văn khuyến cáo lâm sàng (Recommendation statement)",
+      "target_population": "Đối tượng bệnh nhân áp dụng",
+      "driving_trials": ["Danh sách các thử nghiệm/nghiên cứu liên quan nếu có, ví dụ: RIGHT-2, MR ASAP, ENCHANTED"],
+      "verbatim_quote": "Toàn văn câu Expert Consensus Statement tương ứng nếu có"
     }}
   ]
 }}
@@ -146,17 +146,17 @@ Trả về mảng JSON theo schema:
     {{
       "rec_index": 1,
       "page_num": 4,
-      "pico_id": "Mã PICO nếu có",
-      "section": "Tiêu đề mục",
-      "topic": "Chủ đề",
+      "pico_id": "Mã PICO (ví dụ: PICO 1, PICO 2...)",
+      "section": "Tiêu đề bảng hoặc mục",
+      "topic": "Toàn văn câu hỏi PICO đầy đủ",
       "quality_of_evidence": "High, Moderate, Low, hoặc Very Low",
-      "strength_of_recommendation": "Strong for / Weak for / Strong against / Weak against",
-      "consensus_statement": null,
-      "voting": "8/8 nếu có",
-      "statement": "Toàn văn khuyến cáo",
-      "target_population": "Đối tượng",
-      "driving_trials": [],
-      "verbatim_quote": "Trích dẫn"
+      "strength_of_recommendation": "Strong for intervention, Weak for intervention, Strong against intervention, hoặc Weak against intervention",
+      "consensus_statement": "Toàn văn câu Expert Consensus Statement nếu có",
+      "voting": "Vote: 10/10 nếu có",
+      "statement": "Toàn văn khuyến cáo lâm sàng",
+      "target_population": "Đối tượng bệnh nhân",
+      "driving_trials": ["Danh sách các nghiên cứu/thử nghiệm liên quan"],
+      "verbatim_quote": "Toàn văn câu Expert Consensus Statement nếu có"
     }}
   ]
 }}

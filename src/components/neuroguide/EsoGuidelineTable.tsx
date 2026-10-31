@@ -10,17 +10,21 @@ export type EsoRecommendationStrength =
   | "Strong against intervention"
   | string;
 
+export interface EsoRecommendationDetail {
+  number?: number;
+  statement: string;
+  qualityOfEvidence: EsoEvidenceQuality; // High | Moderate | Low | Very low
+  strengthOfRecommendation: EsoRecommendationStrength; // Strong for | Weak for | Weak against | Strong against
+  drivingTrials?: string[];
+}
+
 export interface EsoPicoItem {
   picoNumber: number | string;
   picoQuestion: string; // e.g., "In patients with suspected acute stroke, does pre-hospital blood pressure lowering with any drug, compared to no drug, improve outcome?"
-  recommendations: {
-    number?: number;
-    statement: string;
-    qualityOfEvidence: EsoEvidenceQuality; // High | Moderate | Low | Very low
-    strengthOfRecommendation: EsoRecommendationStrength; // Strong for | Weak for | Weak against | Strong against
-  }[];
+  recommendations: EsoRecommendationDetail[];
   expertConsensusStatement?: string;
   voting?: string; // e.g., "Vote: 10/10"
+  drivingTrials?: string[];
 }
 
 export interface EsoGuidelineTableProps {
@@ -33,51 +37,56 @@ export interface EsoGuidelineTableProps {
 }
 
 /**
- * Returns formatted circle symbols for GRADE Quality of Evidence:
+ * Returns formatted circle symbols for GRADE Quality of Evidence matching official ESO guideline (Hình 1):
  * - High: ⊕⊕⊕⊕
- * - Moderate: ⊕⊕⊕⊝
- * - Low: ⊕⊕⊝⊝
- * - Very low: ⊕⊝⊝⊝
+ * - Moderate: ⊕⊕⊕
+ * - Low: ⊕⊕
+ * - Very low: ⊕
  */
 export function renderGradeQuality(quality: string) {
   const norm = (quality || "").trim().toLowerCase();
-  let symbols = "⊕⊕⊕⊝";
-  let label = quality || "Moderate";
+  let symbols = "⊕⊕⊕";
+  let label = "Moderate";
 
   if (norm.includes("very low")) {
-    symbols = "⊕⊝⊝⊝";
+    symbols = "⊕";
     label = "Very low";
-  } else if (norm.includes("low")) {
-    symbols = "⊕⊕⊝⊝";
+  } else if (norm.includes("low") && !norm.includes("very low")) {
+    symbols = "⊕⊕";
     label = "Low";
-  } else if (norm.includes("moderate")) {
-    symbols = "⊕⊕⊕⊝";
-    label = "Moderate";
   } else if (norm.includes("high")) {
     symbols = "⊕⊕⊕⊕";
     label = "High";
+  } else {
+    symbols = "⊕⊕⊕";
+    label = "Moderate";
   }
 
   return (
-    <span className="inline-flex items-center gap-1 font-semibold text-blue-600 dark:text-blue-400">
+    <span className="inline-flex items-center gap-1.5 font-bold text-[#1d72b8] dark:text-sky-400">
       <span>{label}</span>
-      <span className="tracking-widest font-mono text-sm leading-none">{symbols}</span>
+      <span className="tracking-tight font-mono text-sm leading-none">{symbols}</span>
     </span>
   );
 }
 
 /**
- * Returns styled Strength of Recommendation according to ESO/GRADE standard (Hình 3):
- * - Strong against intervention ↓↓ (Red)
- * - Weak against intervention ↓? (Orange)
- * - Weak for intervention ↑? (Green)
- * - Strong for intervention ↑↑ (Dark Green)
+ * Returns styled Strength of Recommendation according to ESO/GRADE standard (Hình 1):
+ * - Strong against intervention ↓↓ (Red: #d32f2f)
+ * - Weak against intervention ↓? (Orange: #ea580c)
+ * - Weak for intervention ↑? (Green: #16a34a)
+ * - Strong for intervention ↑↑ (Dark Green: #15803d)
  */
-export function renderGradeStrength(strength: string) {
+export function renderGradeStrength(strength: string, statement?: string) {
   const norm = (strength || "").trim().toLowerCase();
+  const stmtNorm = (statement || "").trim().toLowerCase();
 
   // Strong against (↓↓ - Red)
-  if (norm.includes("strong against") || norm.includes("strong recommendation against")) {
+  if (
+    norm.includes("strong against") ||
+    norm.includes("strong recommendation against") ||
+    (norm.includes("strong") && stmtNorm.includes("suggest against"))
+  ) {
     return (
       <span className="font-extrabold text-[#d32f2f] dark:text-red-400 inline-flex items-center gap-1">
         <span>Strong against intervention</span>
@@ -90,7 +99,8 @@ export function renderGradeStrength(strength: string) {
   if (
     norm.includes("weak against") ||
     norm.includes("suggest against") ||
-    norm.includes("conditional against")
+    norm.includes("conditional against") ||
+    (norm.includes("conditional") && (stmtNorm.includes("suggest against") || stmtNorm.includes("against") || stmtNorm.includes("avoid")))
   ) {
     return (
       <span className="font-extrabold text-[#ea580c] dark:text-orange-400 inline-flex items-center gap-1">
@@ -101,7 +111,11 @@ export function renderGradeStrength(strength: string) {
   }
 
   // Strong for (↑↑ - Dark Green)
-  if (norm.includes("strong for") || norm.includes("strong recommendation for")) {
+  if (
+    norm.includes("strong for") ||
+    norm.includes("strong recommendation for") ||
+    (norm.includes("strong") && (stmtNorm.includes("recommend") || stmtNorm.includes("suggest")))
+  ) {
     return (
       <span className="font-extrabold text-[#15803d] dark:text-emerald-400 inline-flex items-center gap-1">
         <span>Strong for intervention</span>
@@ -115,7 +129,11 @@ export function renderGradeStrength(strength: string) {
     norm.includes("weak for") ||
     norm.includes("suggest for") ||
     norm.includes("conditional for") ||
-    norm.includes("weak")
+    norm.includes("weak") ||
+    norm.includes("conditional") ||
+    stmtNorm.includes("suggest") ||
+    stmtNorm.includes("maintain") ||
+    stmtNorm.includes("recommend")
   ) {
     return (
       <span className="font-extrabold text-[#16a34a] dark:text-emerald-400 inline-flex items-center gap-1">
@@ -152,9 +170,14 @@ export function EsoGuidelineTable({
       {/* Optional Top Title Bar */}
       {title && (
         <div className="bg-[#1e40af] text-white px-5 py-3 flex flex-wrap items-center justify-between gap-3">
-          <h2 className="text-sm sm:text-base font-extrabold tracking-wide">
-            {title}
-          </h2>
+          <div>
+            <div className="text-[11px] font-bold text-blue-200 uppercase tracking-wider">
+              Table 11 Synoptic table of all recommendations and expert consensus statements
+            </div>
+            <h2 className="text-sm sm:text-base font-extrabold tracking-wide">
+              {title}
+            </h2>
+          </div>
           <button
             type="button"
             onClick={() => setShowGradeModal(true)}
@@ -170,7 +193,7 @@ export function EsoGuidelineTable({
       {/* Main ESO Guideline Table */}
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse min-w-[700px]">
-          {/* Main 2-Column Headers */}
+          {/* Main 2-Column Headers (Matching Hình 1) */}
           <thead>
             <tr
               className={`border-b ${
@@ -197,15 +220,15 @@ export function EsoGuidelineTable({
           <tbody>
             {picoItems.map((pico, idx) => (
               <React.Fragment key={`pico-${idx}`}>
-                {/* PICO FULL-WIDTH SUBHEADER BAR (Soft cyan/blue background like Hình 3) */}
+                {/* PICO FULL-WIDTH SUBHEADER BAR (Exact light-cyan/blue background #d0e8f7 matching Hình 1) */}
                 <tr
                   className={`border-t border-b ${
                     darkMode
-                      ? "bg-[#16364a] border-cyan-900 text-cyan-100"
-                      : "bg-[#d8ecf8] border-[#b8ddf0] text-slate-900"
+                      ? "bg-[#163b52] border-[#245474] text-cyan-100"
+                      : "bg-[#d0e8f7] border-[#b8ddf0] text-slate-900"
                   }`}
                 >
-                  <td colSpan={2} className="py-2.5 px-4 font-black text-xs sm:text-[13px] leading-snug">
+                  <td colSpan={2} className="py-2 px-4 font-black text-xs sm:text-[13px] leading-snug">
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <span>
                         PICO {pico.picoNumber} {pico.picoQuestion}
@@ -244,7 +267,7 @@ export function EsoGuidelineTable({
                               {rec.number || rIdx + 1}.
                             </span>
                           )}
-                          <p className="text-slate-800 dark:text-slate-200">
+                          <p className="text-slate-800 dark:text-slate-200 font-normal leading-relaxed">
                             {rec.statement}
                           </p>
                         </div>
@@ -261,8 +284,26 @@ export function EsoGuidelineTable({
                             <span className="text-slate-600 dark:text-slate-400 font-medium">
                               Strength of recommendation:{" "}
                             </span>
-                            {renderGradeStrength(rec.strengthOfRecommendation)}
+                            {renderGradeStrength(rec.strengthOfRecommendation, rec.statement)}
                           </div>
+
+                          {/* Related Studies / Driving Trials ("Kèm theo các nghiên cứu liên quan") */}
+                          {((rec.drivingTrials && rec.drivingTrials.length > 0) || (pico.drivingTrials && pico.drivingTrials.length > 0)) && (
+                            <div className="pt-2 flex flex-wrap items-center gap-1.5 text-xs">
+                              <span className="text-[11px] font-bold text-slate-600 dark:text-slate-400">
+                                Nghiên cứu liên quan:
+                              </span>
+                              {(rec.drivingTrials && rec.drivingTrials.length > 0 ? rec.drivingTrials : pico.drivingTrials || []).map((study, sIdx) => (
+                                <span
+                                  key={sIdx}
+                                  className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-semibold bg-blue-50 dark:bg-blue-950/50 text-[#1d72b8] dark:text-blue-300 border border-blue-200 dark:border-blue-800 shadow-2xs"
+                                >
+                                  <span>📊</span>
+                                  <span>{study}</span>
+                                </span>
+                              ))}
+                            </div>
+                          )}
                         </div>
                       </div>
                     ))}
@@ -275,7 +316,7 @@ export function EsoGuidelineTable({
                   >
                     {pico.expertConsensusStatement ? (
                       <div className="space-y-3">
-                        <p className="text-slate-800 dark:text-slate-200">
+                        <p className="text-slate-800 dark:text-slate-200 leading-relaxed">
                           {pico.expertConsensusStatement}
                         </p>
                         {pico.voting && (
@@ -285,9 +326,8 @@ export function EsoGuidelineTable({
                         )}
                       </div>
                     ) : (
-                      <p className="text-slate-400 italic text-[11px]">
-                        No expert consensus statement required for this clinical question.
-                      </p>
+                      /* Blank whitespace matching official guideline */
+                      <div className="min-h-[1rem]"></div>
                     )}
                   </td>
                 </tr>
@@ -295,6 +335,12 @@ export function EsoGuidelineTable({
             ))}
           </tbody>
         </table>
+      </div>
+
+      {/* Guideline Table Footer */}
+      <div className="px-4 py-2 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-[11px] text-slate-400 italic">
+        <span>European Stroke Organisation (ESO) Synoptic Recommendations</span>
+        <span>(continued)</span>
       </div>
 
       {/* MODAL FOR GRADE & ESO METHODOLOGY */}

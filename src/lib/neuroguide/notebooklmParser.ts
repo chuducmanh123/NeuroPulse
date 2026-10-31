@@ -27,9 +27,9 @@ function cleanCell(cell: string): string {
 function parseEvidenceStudies(evidenceStr: string): string[] {
   if (!evidenceStr || evidenceStr.trim().length === 0) return [];
 
-  // Split by bullet characters or semicolons
+  // Split by bullet characters, commas, or semicolons
   const items = evidenceStr
-    .split(/(?:•|\n|;\s*(?=[A-Z]))/)
+    .split(/(?:•|\n|,|;\s*(?=[A-Z]))/)
     .map((s) => s.replace(/^[•\-\*\s]+/, "").trim())
     .filter((s) => s.length > 2);
 
@@ -173,17 +173,40 @@ export function parseNotebookLMContent(
       .filter(Boolean)
       .map((c) => c.toLowerCase());
 
+    const isEsoTable =
+      detectedSociety.includes("ESO") ||
+      headerCols.some((c) => c.includes("pico")) ||
+      headerCols.some((c) => c.includes("quality")) ||
+      headerCols.some((c) => c.includes("consensus"));
+
     // Determine column mapping
+    let colPicoIdx = headerCols.findIndex((c) => c.includes("pico") || c.includes("clinical question"));
     let colTopicIdx = headerCols.findIndex((c) => c.includes("topic") || c.includes("domain") || c.includes("category") || c.includes("lâm sàng"));
     let colRecIdx = headerCols.findIndex((c) => c.includes("recommendation") || c.includes("verbatim") || c.includes("khuyến cáo") || c.includes("statement") || c.includes("text"));
     let colGradeIdx = headerCols.findIndex((c) => c.includes("class") || c.includes("cor") || c.includes("loe") || c.includes("grade") || c.includes("level") || c.includes("mức độ"));
-    let colEvidenceIdx = headerCols.findIndex((c) => c.includes("evidence") || c.includes("studies") || c.includes("trials") || c.includes("bằng chứng") || c.includes("nghiên cứu"));
+    let colQualityIdx = headerCols.findIndex((c) => c.includes("quality") || c.includes("chất lượng") || c.includes("bằng chứng"));
+    let colStrengthIdx = headerCols.findIndex((c) => c.includes("strength") || c.includes("mức độ khuyến cáo"));
+    let colConsensusIdx = headerCols.findIndex((c) => c.includes("consensus") || c.includes("expert") || c.includes("đồng thuận"));
+    let colVotingIdx = headerCols.findIndex((c) => c.includes("vote") || c.includes("voting") || c.includes("bỏ phiếu"));
+    let colEvidenceIdx = headerCols.findIndex(
+      (c) =>
+        c.includes("studies") ||
+        c.includes("study") ||
+        c.includes("trials") ||
+        c.includes("trial") ||
+        c.includes("nghiên cứu") ||
+        (c.includes("evidence") && !c.includes("quality"))
+    );
 
-    // Default column fallbacks if indices not cleanly found
+    // Default fallbacks if indices not cleanly found
+    if (colTopicIdx === -1 && colPicoIdx !== -1) colTopicIdx = colPicoIdx;
     if (colTopicIdx === -1) colTopicIdx = 0;
-    if (colRecIdx === -1) colRecIdx = 1;
-    if (colGradeIdx === -1) colGradeIdx = 2;
-    if (colEvidenceIdx === -1) colEvidenceIdx = 3;
+    if (colRecIdx === -1) colRecIdx = colPicoIdx === 0 ? 1 : (headerCols.length > 1 ? 1 : 0);
+    if (colGradeIdx === -1) colGradeIdx = colStrengthIdx !== -1 ? colStrengthIdx : 2;
+    if (colEvidenceIdx === -1) colEvidenceIdx = headerCols.length - 1;
+
+    let activePicoNum: number | string = 1;
+    let activePicoQuestion = "";
 
     for (let i = tableHeaderIndex + 1; i < lines.length; i++) {
       const line = lines[i];
@@ -198,34 +221,112 @@ export function parseNotebookLMContent(
         return true;
       });
 
-      if (filteredCells.length < 2) continue;
+      if (filteredCells.length < 1) continue;
 
-      const rawDomain = filteredCells[colTopicIdx] || `Recommendation ${practiceChanges.length + 1}`;
-      const statement = filteredCells[colRecIdx] || "";
-      const rawGrade = filteredCells[colGradeIdx] || "Class 1  LOE B-NR";
-      const rawEvidence = filteredCells[colEvidenceIdx] || "";
+      // Handle standalone PICO header row (e.g., | PICO 1: In patients with suspected acute stroke... | | |)
+      const firstCell = filteredCells[0] || "";
+      const matchStandalonePico = firstCell.match(/^PICO\s*(\d+)[:.\s-]*(.*)/i);
+      const isHeaderOnly = filteredCells.slice(1).every((c) => !c || c.trim().length === 0);
 
+      if (matchStandalonePico && isHeaderOnly) {
+        activePicoNum = matchStandalonePico[1];
+        activePicoQuestion = matchStandalonePico[2]?.trim() || firstCell;
+        continue;
+      }
+
+      const statement = (colRecIdx !== -1 ? filteredCells[colRecIdx] : "") || filteredCells[1] || "";
       if (!statement || statement.length < 5) continue;
 
-      const { category, topic } = extractCategoryAndTopic(rawDomain);
-      const grade = formatGrade(rawGrade);
-      const changeType = inferChangeType(grade, statement);
-      const drivingTrials = parseEvidenceStudies(rawEvidence);
+      if (isEsoTable) {
+        // ESO GRADE parsing
+        const rawPico = (colPicoIdx !== -1 ? filteredCells[colPicoIdx] : "") || firstCell;
+        if (rawPico) {
+          const matchPico = rawPico.match(/^PICO\s*(\d+)[:.\s-]*(.*)/i);
+          if (matchPico) {
+            activePicoNum = matchPico[1];
+            activePicoQuestion = matchPico[2]?.trim() || rawPico;
+          } else if (rawPico.toLowerCase().startsWith("pico")) {
+            activePicoQuestion = rawPico;
+          }
+        }
 
-      // Track COR statistics
-      const corMatch = grade.match(/Class\s+([^\s,]+)/i);
-      const corKey = corMatch ? `Class ${corMatch[1]}` : grade.slice(0, 15);
-      corBreakdown[corKey] = (corBreakdown[corKey] || 0) + 1;
+        const rawQuality = (colQualityIdx !== -1 ? filteredCells[colQualityIdx] : "") || "Moderate";
+        const rawStrength = (colStrengthIdx !== -1 ? filteredCells[colStrengthIdx] : "") || (colGradeIdx !== -1 ? filteredCells[colGradeIdx] : "") || "Weak for intervention";
+        const rawConsensus = colConsensusIdx !== -1 ? filteredCells[colConsensusIdx] : "";
+        const rawVoting = colVotingIdx !== -1 ? filteredCells[colVotingIdx] : "";
+        const rawEvidence = colEvidenceIdx !== -1 ? filteredCells[colEvidenceIdx] : "";
 
-      practiceChanges.push({
-        id: `rec-nlm-${year}-${practiceChanges.length + 1}`,
-        category,
-        topic,
-        changeType,
-        currentGrade: grade,
-        currentText: statement,
-        drivingTrials: drivingTrials.length > 0 ? drivingTrials : [`${detectedSociety} Practice Committee`],
-      });
+        // Normalize Quality
+        let quality = "Moderate";
+        const qNorm = rawQuality.toLowerCase();
+        if (qNorm.includes("very low")) quality = "Very low";
+        else if (qNorm.includes("low") && !qNorm.includes("very")) quality = "Low";
+        else if (qNorm.includes("high")) quality = "High";
+
+        // Normalize Strength
+        let strength = "Weak for intervention";
+        const sNorm = rawStrength.toLowerCase();
+        const stmtNorm = statement.toLowerCase();
+        if (sNorm.includes("strong against") || (sNorm.includes("strong") && stmtNorm.includes("against"))) {
+          strength = "Strong against intervention";
+        } else if (
+          sNorm.includes("weak against") ||
+          sNorm.includes("suggest against") ||
+          stmtNorm.includes("suggest against") ||
+          (sNorm.includes("conditional") && (stmtNorm.includes("against") || stmtNorm.includes("avoid")))
+        ) {
+          strength = "Weak against intervention";
+        } else if (sNorm.includes("strong for") || (sNorm.includes("strong") && !sNorm.includes("against"))) {
+          strength = "Strong for intervention";
+        } else {
+          strength = "Weak for intervention";
+        }
+
+        const voting = rawVoting ? (rawVoting.startsWith("Vote:") ? rawVoting : `Vote: ${rawVoting}`) : undefined;
+        const drivingTrials = parseEvidenceStudies(rawEvidence);
+        const grade = `GRADE ${strength} (Evidence: ${quality}${voting ? `, Voting: ${voting}` : ""})`;
+
+        practiceChanges.push({
+          id: `rec-nlm-${year}-${practiceChanges.length + 1}`,
+          category: activePicoQuestion ? activePicoQuestion.slice(0, 60) : "Clinical Recommendation",
+          topic: `PICO ${activePicoNum} ${activePicoQuestion}`.trim(),
+          changeType: inferChangeType(strength, statement),
+          currentGrade: grade,
+          currentText: statement,
+          quality,
+          strength,
+          voting,
+          expertConsensusStatement: rawConsensus || undefined,
+          previousText: rawConsensus || undefined,
+          picoNumber: activePicoNum,
+          picoQuestion: activePicoQuestion,
+          drivingTrials: drivingTrials.length > 0 ? drivingTrials : [`${detectedSociety} Practice Committee`],
+        });
+      } else {
+        // ACC/AHA format
+        const rawDomain = filteredCells[colTopicIdx] || `Recommendation ${practiceChanges.length + 1}`;
+        const rawGrade = filteredCells[colGradeIdx] || "Class 1  LOE B-NR";
+        const rawEvidence = filteredCells[colEvidenceIdx] || "";
+
+        const { category, topic } = extractCategoryAndTopic(rawDomain);
+        const grade = formatGrade(rawGrade);
+        const changeType = inferChangeType(grade, statement);
+        const drivingTrials = parseEvidenceStudies(rawEvidence);
+
+        const corMatch = grade.match(/Class\s+([^\s,]+)/i);
+        const corKey = corMatch ? `Class ${corMatch[1]}` : grade.slice(0, 15);
+        corBreakdown[corKey] = (corBreakdown[corKey] || 0) + 1;
+
+        practiceChanges.push({
+          id: `rec-nlm-${year}-${practiceChanges.length + 1}`,
+          category,
+          topic,
+          changeType,
+          currentGrade: grade,
+          currentText: statement,
+          drivingTrials: drivingTrials.length > 0 ? drivingTrials : [`${detectedSociety} Practice Committee`],
+        });
+      }
     }
   }
 
