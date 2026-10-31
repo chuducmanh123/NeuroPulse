@@ -181,96 +181,94 @@ export function AdminTab({
   const setAdminPreviewCase = onPreviewCase;
   const SUBSPECIALTY_TABS = subspecialtyTabs;
 
-  return (
-          <div
-            className={`p-6 rounded-2xl border space-y-5 ${
-              darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
-            }`}
-          >
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <div className="flex items-center gap-2">
-                {serverSyncSuccess && (
-                  <span
-                    className={`text-xs font-bold px-2.5 py-1.5 rounded-lg border animate-fadeIn ${
-                      serverSyncSuccess.startsWith("✓")
-                        ? "text-emerald-500 bg-emerald-500/10 border-emerald-500/30"
-                        : "text-amber-500 bg-amber-500/10 border-amber-500/30"
-                    }`}
-                  >
-                    {serverSyncSuccess}
-                  </span>
-                )}
-              </div>
-              <div className="flex items-center gap-2">
+    return (
+      <div
+        className={`p-6 rounded-2xl border space-y-5 ${
+          darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
+        }`}
+      >
+        {/* Grouped Status Sub-Tabs (Pending vs Approved vs Rejected) + Server Sync */}
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
+          <div className="flex flex-wrap items-center gap-2">
+            {[
+              {
+                id: "pending" as const,
+                label: "⏳ Pending Review",
+                count: pendingCount,
+                activeClass: "bg-amber-500 text-slate-950",
+              },
+              {
+                id: "approved" as const,
+                label: "✅ Approved & Published",
+                count: approvedCases.length,
+                activeClass: "bg-emerald-600 text-white",
+              },
+              {
+                id: "rejected" as const,
+                label: "🚫 Rejected",
+                count: rejectedCount,
+                activeClass: "bg-rose-600 text-white",
+              },
+            ].map((group) => {
+              const isSelected = adminStatusFilter === group.id;
+              return (
                 <button
+                  key={group.id}
                   type="button"
-                  onClick={refreshCasesFromServer}
-                  disabled={isSyncingServer}
-                  className="px-3 py-2 rounded-lg text-xs font-black bg-slate-800 text-white hover:bg-slate-700 border border-slate-700 flex items-center gap-1.5 transition-all disabled:opacity-50"
-                  title="Reload and sync cases with cloud server (/api/neurocase)"
+                  onClick={() => {
+                    setAdminStatusFilter(group.id);
+                    setEditingCaseId(null);
+                    setEditDraft(null);
+                  }}
+                  className={`px-3.5 py-2 rounded-xl text-xs font-black transition-all flex items-center gap-2 ${
+                    isSelected
+                      ? group.activeClass
+                      : darkMode
+                      ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
+                      : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                  }`}
                 >
-                  <span className={isSyncingServer ? "animate-spin" : ""}>🔄</span>
-                  <span>{isSyncingServer ? "Syncing..." : "Sync from Server"}</span>
-                </button>
-              </div>
-            </div>
-
-            {/* Grouped Status Sub-Tabs (Pending vs Approved vs Rejected) */}
-            <div className="flex flex-wrap items-center gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
-              {[
-                {
-                  id: "pending" as const,
-                  label: "⏳ Pending Review",
-                  count: pendingCount,
-                  activeClass: "bg-amber-500 text-slate-950",
-                },
-                {
-                  id: "approved" as const,
-                  label: "✅ Approved & Published",
-                  count: approvedCases.length,
-                  activeClass: "bg-emerald-600 text-white",
-                },
-                {
-                  id: "rejected" as const,
-                  label: "🚫 Rejected",
-                  count: rejectedCount,
-                  activeClass: "bg-rose-600 text-white",
-                },
-              ].map((group) => {
-                const isSelected = adminStatusFilter === group.id;
-                return (
-                  <button
-                    key={group.id}
-                    type="button"
-                    onClick={() => {
-                      setAdminStatusFilter(group.id);
-                      setEditingCaseId(null);
-                      setEditDraft(null);
-                    }}
-                    className={`px-3.5 py-2 rounded-xl text-xs font-black transition-all flex items-center gap-2 ${
+                  <span>{group.label}</span>
+                  <span
+                    className={`px-1.5 py-0.2 rounded text-[10px] font-black ${
                       isSelected
-                        ? group.activeClass
+                        ? "bg-black/20 text-current"
                         : darkMode
-                        ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
-                        : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                        ? "bg-slate-700 text-slate-300"
+                        : "bg-white text-slate-600"
                     }`}
                   >
-                    <span>{group.label}</span>
-                    <span
-                      className={`px-1.5 py-0.2 rounded text-[10px] font-black ${
-                        isSelected
-                          ? "bg-black/20 text-current"
-                          : darkMode
-                          ? "bg-slate-700 text-slate-300"
-                          : "bg-white text-slate-600"
-                      }`}
-                    >
-                      {group.count}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
+                    {group.count}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="flex items-center gap-2">
+            {serverSyncSuccess && (
+              <span
+                className={`text-xs font-bold px-2.5 py-1.5 rounded-lg border animate-fadeIn ${
+                  serverSyncSuccess.startsWith("✓")
+                    ? "text-emerald-500 bg-emerald-500/10 border-emerald-500/30"
+                    : "text-amber-500 bg-amber-500/10 border-amber-500/30"
+                }`}
+              >
+                {serverSyncSuccess}
+              </span>
+            )}
+            <button
+              type="button"
+              onClick={refreshCasesFromServer}
+              disabled={isSyncingServer}
+              className="px-3 py-2 rounded-lg text-xs font-black bg-slate-800 text-white hover:bg-slate-700 border border-slate-700 flex items-center gap-1.5 transition-all disabled:opacity-50"
+              title="Reload and sync cases with cloud server (/api/neurocase)"
+            >
+              <span className={isSyncingServer ? "animate-spin" : ""}>🔄</span>
+              <span>{isSyncingServer ? "Syncing..." : "Sync from Server"}</span>
+            </button>
+          </div>
+        </div>
 
             {/* Filtered Case List by Status Group */}
             <div className="space-y-3">

@@ -118,9 +118,12 @@ export default function AdminCommandCenter() {
   // =========================================================================
   // ADMIN SECTION TABS
   // =========================================================================
-  const [adminTab, setAdminTab] = useState<"neurocase" | "review-guide" | "radar" | "neuropulse" | "system">("neurocase");
+  const [adminTab, setAdminTab] = useState<"neurocase" | "guidelines" | "neuropulse" | "system">("neurocase");
 
-  // Guideline Review Queue Moderation State
+  // Guideline Review & Radar Combined State
+  const [guidelineSubTab, setGuidelineSubTab] = useState<"queue" | "repository">("queue");
+  const [repoSearchQuery, setRepoSearchQuery] = useState("");
+  const [repoSocietyFilter, setRepoSocietyFilter] = useState("ALL");
   const [reviewQueueCount, setReviewQueueCount] = useState<number>(0);
   const [showPipelineModal, setShowPipelineModal] = useState<boolean>(false);
   const [showNotebookLMModal, setShowNotebookLMModal] = useState<boolean>(false);
@@ -275,6 +278,22 @@ export default function AdminCommandCenter() {
   const [batchInputText, setBatchInputText] = useState("");
   const [batchPreviewDocs, setBatchPreviewDocs] = useState<GuidelineDoc[]>([]);
   const [isBatchProcessing, setIsBatchProcessing] = useState(false);
+
+  const filteredRepoDocs = useMemo(() => {
+    return guidelineDocs.filter((doc) => {
+      if (repoSocietyFilter !== "ALL" && !doc.society.toUpperCase().includes(repoSocietyFilter.toUpperCase())) {
+        return false;
+      }
+      if (repoSearchQuery.trim()) {
+        const q = repoSearchQuery.toLowerCase();
+        const matchTitle = doc.title.toLowerCase().includes(q);
+        const matchSoc = doc.society.toLowerCase().includes(q);
+        const matchSub = doc.subspecialty?.toLowerCase().includes(q);
+        if (!matchTitle && !matchSoc && !matchSub) return false;
+      }
+      return true;
+    });
+  }, [guidelineDocs, repoSearchQuery, repoSocietyFilter]);
 
   useEffect(() => {
     try {
@@ -596,16 +615,13 @@ export default function AdminCommandCenter() {
                 badgeColor: "bg-amber-500 text-white",
               },
               {
-                id: "review-guide",
-                label: "📋 Guideline Review Queue",
-                badge: reviewQueueCount > 0 ? `${reviewQueueCount} Pending` : undefined,
-                badgeColor: "bg-amber-500 text-white",
-              },
-              {
-                id: "radar",
-                label: "📡 Guidelines & Radar",
-                badge: `${guidelineDocs.length}`,
-                badgeColor: "bg-blue-500 text-white",
+                id: "guidelines",
+                label: "📋 Guidelines & Radar",
+                badge:
+                  reviewQueueCount > 0
+                    ? `${reviewQueueCount} Pending`
+                    : `${guidelineDocs.length} Docs`,
+                badgeColor: reviewQueueCount > 0 ? "bg-amber-500 text-white" : "bg-blue-500 text-white",
               },
               {
                 id: "neuropulse",
@@ -648,15 +664,6 @@ export default function AdminCommandCenter() {
               );
             })}
           </div>
-
-          <button
-            onClick={refreshCasesFromServer}
-            disabled={isSyncingServer}
-            className="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 flex items-center gap-1.5"
-          >
-            <span className={isSyncingServer ? "animate-spin" : ""}>🔄</span>
-            <span>{isSyncingServer ? "Syncing..." : "Sync from Server"}</span>
-          </button>
         </nav>
 
         {/* TAB 1: NEUROCASE MODERATION WORKFLOW */}
@@ -678,27 +685,12 @@ export default function AdminCommandCenter() {
           </div>
         )}
 
-        {/* TAB 2: NEUROGUIDE CLINICAL GUIDELINE REVIEW QUEUE */}
-        {adminTab === "review-guide" && (
+        {/* TAB 2: NEUROGUIDE CLINICAL GUIDELINES & RADAR */}
+        {adminTab === "guidelines" && (
           <div className="space-y-4">
-            <ReviewQueueTab
-              darkMode={darkMode}
-              onQueueUpdated={() => {
-                fetchReviewQueueCount();
-              }}
-              onQueueCountChange={(count) => setReviewQueueCount(count)}
-              onOpenPipelineModal={() => setShowPipelineModal(true)}
-              onOpenNotebookLMModal={() => setShowNotebookLMModal(true)}
-            />
-          </div>
-        )}
-
-        {/* TAB 2: NEUROGUIDE RADAR & GUIDELINE INGESTION */}
-        {adminTab === "radar" && (
-          <div className="space-y-4">
-            {/* AUTONOMOUS PERIODIC RADAR TOOLBAR */}
+            {/* UNIFIED RADAR & GUIDELINE INGESTION TOOLBAR */}
             <div
-              className={`p-4 rounded-2xl border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-xs ${
+              className={`p-4 rounded-2xl border flex flex-col md:flex-row items-start md:items-center justify-between gap-3 shadow-xs ${
                 darkMode ? "bg-slate-900 border-slate-800" : "bg-blue-50/70 border-blue-100"
               }`}
             >
@@ -715,7 +707,7 @@ export default function AdminCommandCenter() {
                     </span>
                   </div>
                   <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                    Autonomous crawler actively indexing and synchronizing newly released clinical practice guidelines.{" "}
+                    Autonomous crawler &amp; multi-source pipeline indexing clinical practice guidelines.{" "}
                     {lastSyncedTime && (
                       <span className="font-medium text-slate-700 dark:text-slate-300">
                         (Last scanned at {lastSyncedTime})
@@ -725,30 +717,57 @@ export default function AdminCommandCenter() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 w-full sm:w-auto justify-end shrink-0">
+              <div className="flex items-center gap-2 w-full md:w-auto justify-end shrink-0 flex-wrap">
                 <button
+                  type="button"
                   onClick={() => setShowBatchModal(true)}
-                  className={`px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all shadow-xs ${
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all shadow-xs ${
                     darkMode
                       ? "bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700"
                       : "bg-white hover:bg-slate-100 text-slate-700 border border-slate-200"
                   }`}
+                  title="Batch ingest guidelines by pasting PDF file names manifest"
                 >
                   <span>📁</span>
-                  <span>Ingest File Manifest</span>
+                  <span>Ingest Manifest</span>
                 </button>
 
                 <button
+                  type="button"
+                  onClick={() => setShowNotebookLMModal(true)}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold border transition-all flex items-center gap-1.5 shadow-xs ${
+                    darkMode
+                      ? "bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700"
+                      : "bg-white hover:bg-slate-100 text-slate-700 border border-slate-200"
+                  }`}
+                  title="Import structured guideline from NotebookLM notes"
+                >
+                  <span>📝</span>
+                  <span>NotebookLM</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setShowPipelineModal(true)}
+                  className="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-amber-500 hover:bg-amber-600 text-white shadow-xs transition-all flex items-center gap-1.5 cursor-pointer"
+                  title="Launch Gemini AI Fulltext Extraction Pipeline from PDF"
+                >
+                  <span>⚡</span>
+                  <span>AI PDF Pipeline</span>
+                </button>
+
+                <button
+                  type="button"
                   onClick={triggerRadarSync}
                   disabled={isSyncingRadar}
-                  className={`px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all shadow-sm ${
+                  className={`px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all shadow-sm ${
                     isSyncingRadar
                       ? "bg-slate-200 dark:bg-slate-800 text-slate-400 cursor-not-allowed"
-                      : "bg-blue-600 hover:bg-blue-700 text-white"
+                      : "bg-blue-600 hover:bg-blue-700 text-white cursor-pointer"
                   }`}
                 >
-                  <span className={isSyncingRadar ? "animate-spin" : ""}>⚡</span>
-                  <span>{isSyncingRadar ? "Scanning online..." : "Scan Online Now"}</span>
+                  <span className={isSyncingRadar ? "animate-spin" : ""}>🔄</span>
+                  <span>{isSyncingRadar ? "Scanning..." : "Scan Online Now"}</span>
                 </button>
               </div>
             </div>
@@ -769,39 +788,157 @@ export default function AdminCommandCenter() {
               </div>
             )}
 
-            {/* GUIDELINE REPOSITORY OVERVIEW */}
-            <div className={`p-5 rounded-2xl border ${darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200 shadow-xs"}`}>
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <h3 className="text-sm font-bold">Clinical Guideline Repository ({guidelineDocs.length})</h3>
-                  <p className="text-[11px] text-slate-500">Indexed and classified clinical practice guidelines serving instant retrieval in NeuroGuide</p>
-                </div>
-                <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400">
-                  {guidelineDocs.length} documents
+            {/* SUB-TABS: REVIEW QUEUE vs PUBLISHED REPOSITORY */}
+            <div className="flex items-center gap-2 border-b border-slate-200 dark:border-slate-800 pb-2">
+              <button
+                type="button"
+                onClick={() => setGuidelineSubTab("queue")}
+                className={`px-3.5 py-2 rounded-xl text-xs font-black transition-all flex items-center gap-2 ${
+                  guidelineSubTab === "queue"
+                    ? "bg-amber-500 text-slate-950 shadow-xs"
+                    : darkMode
+                    ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
+                    : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                }`}
+              >
+                <span>⏳ Review Queue</span>
+                <span
+                  className={`px-1.5 py-0.2 rounded text-[10px] font-black ${
+                    guidelineSubTab === "queue"
+                      ? "bg-black/20 text-current"
+                      : darkMode
+                      ? "bg-slate-700 text-slate-300"
+                      : "bg-white text-slate-600"
+                  }`}
+                >
+                  {reviewQueueCount}
                 </span>
-              </div>
+              </button>
 
-              <div className="divide-y divide-slate-100 dark:divide-slate-800 max-h-[500px] overflow-y-auto pr-1">
-                {guidelineDocs.map((doc) => (
-                  <div key={doc.id} className="py-2.5 flex items-start justify-between gap-3 text-xs">
-                    <div>
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="px-1.5 py-0.5 rounded font-bold text-[10px] bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
-                          {doc.society} {doc.year}
-                        </span>
-                        <span className="px-1.5 py-0.5 rounded text-[10px] bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
-                          {doc.subspecialty}
+              <button
+                type="button"
+                onClick={() => setGuidelineSubTab("repository")}
+                className={`px-3.5 py-2 rounded-xl text-xs font-black transition-all flex items-center gap-2 ${
+                  guidelineSubTab === "repository"
+                    ? "bg-emerald-600 text-white shadow-xs"
+                    : darkMode
+                    ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
+                    : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                }`}
+              >
+                <span>📚 Published Repository</span>
+                <span
+                  className={`px-1.5 py-0.2 rounded text-[10px] font-black ${
+                    guidelineSubTab === "repository"
+                      ? "bg-black/20 text-current"
+                      : darkMode
+                      ? "bg-slate-700 text-slate-300"
+                      : "bg-white text-slate-600"
+                  }`}
+                >
+                  {guidelineDocs.length}
+                </span>
+              </button>
+            </div>
+
+            {/* SUB-TAB 1: REVIEW QUEUE */}
+            {guidelineSubTab === "queue" && (
+              <ReviewQueueTab
+                darkMode={darkMode}
+                onQueueUpdated={() => {
+                  fetchReviewQueueCount();
+                }}
+                onQueueCountChange={(count) => setReviewQueueCount(count)}
+              />
+            )}
+
+            {/* SUB-TAB 2: PUBLISHED REPOSITORY */}
+            {guidelineSubTab === "repository" && (
+              <div className={`p-5 rounded-2xl border space-y-4 ${darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200 shadow-xs"}`}>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div>
+                    <h3 className="text-sm font-bold flex items-center gap-2">
+                      <span>Clinical Guideline Repository</span>
+                      <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400">
+                        ({filteredRepoDocs.length} / {guidelineDocs.length})
+                      </span>
+                    </h3>
+                    <p className="text-[11px] text-slate-500">Indexed and classified clinical practice guidelines serving instant retrieval in NeuroGuide</p>
+                  </div>
+
+                  {/* Search & Society Filter */}
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <div className="relative">
+                      <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs">🔍</span>
+                      <input
+                        type="text"
+                        value={repoSearchQuery}
+                        onChange={(e) => setRepoSearchQuery(e.target.value)}
+                        placeholder="Search guidelines..."
+                        className={`pl-7 pr-7 py-1.5 text-xs rounded-xl border outline-none transition-all ${
+                          darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200 text-slate-900"
+                        }`}
+                      />
+                      {repoSearchQuery && (
+                        <button
+                          onClick={() => setRepoSearchQuery("")}
+                          className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs font-bold"
+                        >
+                          ✕
+                        </button>
+                      )}
+                    </div>
+
+                    <select
+                      value={repoSocietyFilter}
+                      onChange={(e) => setRepoSocietyFilter(e.target.value)}
+                      className={`px-3 py-1.5 text-xs rounded-xl border outline-none ${
+                        darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200 text-slate-900"
+                      }`}
+                    >
+                      <option value="ALL">All Societies</option>
+                      <option value="AHA">AHA / ASA</option>
+                      <option value="ESO">ESO</option>
+                      <option value="AAN">AAN</option>
+                      <option value="ESC">ESC</option>
+                      <option value="ESVS">ESVS</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="divide-y divide-slate-100 dark:divide-slate-800 max-h-[550px] overflow-y-auto pr-1">
+                  {filteredRepoDocs.length === 0 ? (
+                    <div className="py-8 text-center text-xs text-slate-400">
+                      No guidelines found matching your filter criteria.
+                    </div>
+                  ) : (
+                    filteredRepoDocs.map((doc) => (
+                      <div key={doc.id} className="py-2.5 flex items-start justify-between gap-3 text-xs hover:bg-slate-50/50 dark:hover:bg-slate-800/30 px-2 rounded-lg transition-colors">
+                        <div>
+                          <div className="flex items-center gap-2 mb-1 flex-wrap">
+                            <span className="px-1.5 py-0.5 rounded font-bold text-[10px] bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
+                              {doc.society} {doc.year}
+                            </span>
+                            <span className="px-1.5 py-0.5 rounded text-[10px] bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+                              {doc.subspecialty}
+                            </span>
+                            {doc.documentType && (
+                              <span className="text-[10px] text-slate-400">
+                                {doc.documentType}
+                              </span>
+                            )}
+                          </div>
+                          <div className="font-semibold text-slate-800 dark:text-slate-200">{doc.title}</div>
+                        </div>
+                        <span className="text-[10px] text-slate-400 shrink-0 font-mono mt-1">
+                          {doc.allPracticeChanges?.length || 0} updates
                         </span>
                       </div>
-                      <div className="font-semibold text-slate-800 dark:text-slate-200">{doc.title}</div>
-                    </div>
-                    <span className="text-[10px] text-slate-400 shrink-0 font-mono">
-                      {doc.allPracticeChanges?.length || 0} updates
-                    </span>
-                  </div>
-                ))}
+                    ))
+                  )}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* MODAL: LOCAL BATCH FILE INGESTION */}
             {showBatchModal && (
