@@ -19,76 +19,21 @@ try:
 except Exception:
     pass
 
+# Danh mục nguồn đã được lọc: Chỉ giữ lại các nguồn mở không bị tường lửa/WAF, có thể tải toàn văn tự động
 SOURCES = [
     {
         "society": "ESO (European Stroke Organisation)",
         "url": "https://eso-stroke.org/guidelines/eso-guideline-directory",
         "category": "Stroke",
-    },
-    {
-        "society": "AHA/ASA (Heart & Stroke)",
-        "url": "https://professional.heart.org/en/guidelines-statements",
-        "category": "Cardio & Stroke",
-    },
-    {
-        "society": "NCS (Neurocritical Care Society)",
-        "url": "https://www.neurocriticalcare.org/Resources-Publications/Neurocritical-Care-Guidelines",
-        "category": "Neurocritical Care",
-    },
-    {
-        "society": "Springer - Neurocritical Care Journal",
-        "url": "https://link.springer.com/journal/12028",
-        "category": "Neurocritical Care",
-    },
-    {
-        "society": "ILAE (Epilepsy Definition & Classification)",
-        "url": "https://www.ilae.org/guidelines/definition-and-classification",
-        "category": "Epilepsy",
-    },
-    {
-        "society": "ILAE (Guidelines and Reports)",
-        "url": "https://www.ilae.org/guidelines/guidelines-and-reports",
-        "category": "Epilepsy",
-    },
-    {
-        "society": "AES (American Epilepsy Society)",
-        "url": "https://aesnet.org/clinical-care/clinical-guidance/guidelines",
-        "category": "Epilepsy",
-    },
-    {
-        "society": "NICE (UK Guidelines)",
-        "url": "https://www.nice.org.uk/guidance/",
-        "category": "General & Neuro",
-    },
-    {
-        "society": "Alzheimer's & Dementia (Wiley)",
-        "url": "https://alz-journals.onlinelibrary.wiley.com/",
-        "category": "Dementia",
-    },
-    {
-        "society": "AAN (American Academy of Neurology)",
-        "url": "https://www.aan.com/guidelines/home/allguidelines",
-        "category": "General Neurology",
-    },
-    {
-        "society": "EAN (European Academy of Neurology)",
-        "url": "https://www.ean.org/research/ean-guidelines/guideline-reference-center",
-        "category": "General Neurology",
-    },
-    {
-        "society": "PNS (Peripheral Nerve Society)",
-        "url": "https://pnsociety.com/resources/guidelines/",
-        "category": "Peripheral Nerve",
+        "status": "ACTIVE_AUTOMATED",
+        "notes": "Hỗ trợ tải trực tiếp Slide Deck / Khuyến cáo đầy đủ từ máy chủ eso-stroke.org",
     },
     {
         "society": "AHS (American Headache Society)",
         "url": "https://americanheadachesociety.org/resources/clinicians/guidelines",
         "category": "Headache",
-    },
-    {
-        "society": "MDS (Movement Disorders - Wiley)",
-        "url": "https://movementdisorders.onlinelibrary.wiley.com/journal/23301619",
-        "category": "Movement Disorders",
+        "status": "ACTIVE_AUTOMATED",
+        "notes": "Hỗ trợ tải toàn văn tài liệu thực hành lâm sàng trực tiếp từ CloudFront CDN mở",
     },
 ]
 

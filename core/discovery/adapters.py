@@ -192,6 +192,16 @@ class HtmlDirectoryAdapter:
                 doi = _extract_doi_from_text(full_url) or _extract_doi_from_text(txt)
                 direct_pdf = derive_direct_pdf_url(full_url, doi)
 
+                # Tìm kiếm link PDF đính kèm trong cùng khối nội dung (ví dụ Slide Deck PDF của ESO)
+                if not direct_pdf:
+                    parent = a.find_parent(["div", "section", "p", "td", "li"])
+                    if parent:
+                        for sibling_a in parent.find_all("a", href=True):
+                            s_href = sibling_a["href"].strip()
+                            if s_href.lower().endswith(".pdf") or ".pdf?" in s_href.lower():
+                                direct_pdf = s_href
+                                break
+
                 # Đánh giá khả năng bài toàn văn
                 if direct_pdf:
                     avail = FullTextAvailability.DIRECT_PDF_AVAILABLE

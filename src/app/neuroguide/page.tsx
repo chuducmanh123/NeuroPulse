@@ -313,16 +313,8 @@ export default function NeuroGuidePage() {
       },
     ];
 
-    if (isAdminVerified) {
-      tabs.push({
-        id: "review" as const,
-        label: "🛡️ Review Queue",
-        badge: reviewQueueCount > 0 ? `${reviewQueueCount}` : undefined,
-      });
-    }
-
     return tabs;
-  }, [guidelineDocs.length, reviewQueueCount, isAdminVerified]);
+  }, [guidelineDocs.length]);
 
   // Expandable cards states (details reveal only on click)
   const [expandedGuidelineIds, setExpandedGuidelineIds] = useState<Record<string, boolean>>({});
@@ -854,6 +846,18 @@ export default function NeuroGuidePage() {
             </button>
 
             <AdminButton darkMode={darkMode} />
+
+            {/* Quick Link to Admin Review Queue if authenticated and pending items exist */}
+            {isAdminVerified && reviewQueueCount > 0 && (
+              <Link
+                href="/admin"
+                className="px-3 py-2 rounded-lg text-xs font-bold bg-amber-500/15 hover:bg-amber-500/25 text-amber-700 dark:text-amber-300 border border-amber-500/30 flex items-center gap-1.5 transition-all shadow-xs"
+                title="Mở Admin Command Center để kiểm duyệt khuyến cáo"
+              >
+                <span>🛡️ {reviewQueueCount} Khuyến cáo chờ duyệt</span>
+                <span>→</span>
+              </Link>
+            )}
 
             {/* 9-DOTS ECOSYSTEM APP SWITCHER */}
             <AppSwitcher currentApp="neuroguide" darkMode={darkMode} />
@@ -2114,42 +2118,37 @@ export default function NeuroGuidePage() {
         )}
 
         {/* =========================================================================
-            TAB 4: REVIEW QUEUE (Admin Only)
+            REVIEW QUEUE: Migrated to Admin Command Center
            ========================================================================= */}
         {activeTab === "review" && (
-          isAdminVerified ? (
-            <ReviewQueueTab
-              darkMode={darkMode}
-              onQueueUpdated={fetchQueueCount}
-              onQueueCountChange={(count) => setReviewQueueCount(count)}
-              onOpenPipelineModal={() => {
-                if (!isAdminVerified) {
-                  setShowAdminAuthModal(true);
-                  return;
-                }
-                setShowPipelineModal(true);
-              }}
-              onOpenNotebookLMModal={() => setShowNotebookLMModal(true)}
-            />
-          ) : (
-            <div className={`p-8 rounded-2xl border text-center max-w-md mx-auto my-12 ${
-              darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
-            }`}>
-              <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-amber-500/10 flex items-center justify-center text-2xl">
-                🛡️
-              </div>
-              <h3 className="text-base font-bold mb-1">Admin Verification Restricted</h3>
-              <p className="text-xs text-slate-500 mb-4">
-                Admin authentication is required to review pending guidelines, inspect extraction logs, and run PDF pipelines.
-              </p>
-              <button
-                onClick={() => setShowAdminAuthModal(true)}
-                className="px-4 py-2 rounded-xl text-xs font-bold bg-amber-500 hover:bg-amber-600 text-white shadow-xs cursor-pointer"
-              >
-                Admin Sign In
-              </button>
+          <div className={`p-8 rounded-2xl border text-center max-w-lg mx-auto my-12 ${
+            darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
+          }`}>
+            <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-amber-500/10 flex items-center justify-center text-2xl">
+              🛡️
             </div>
-          )
+            <h3 className="text-base font-bold mb-1">Kiểm duyệt đã được hợp nhất vào Admin Command Center</h3>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mb-5 leading-relaxed">
+              Toàn bộ tính năng kiểm duyệt hướng dẫn lâm sàng (Review Queue), trích xuất AI Full-text, và nhập liệu NotebookLM đã được chuyển sang Trung tâm Chỉ huy Quản trị (Admin Command Center) để quản lý tập trung.
+            </p>
+            <div className="flex items-center justify-center gap-3">
+              <button
+                onClick={() => setActiveTab("guidelines")}
+                className={`px-4 py-2 rounded-xl text-xs font-semibold border transition-all cursor-pointer ${
+                  darkMode ? "bg-slate-800 border-slate-700 text-slate-300" : "bg-slate-100 border-slate-200 text-slate-700"
+                }`}
+              >
+                ← Về Practice Guidelines
+              </button>
+              <Link
+                href="/admin"
+                className="px-4 py-2 rounded-xl text-xs font-bold bg-amber-600 hover:bg-amber-700 text-white shadow-xs transition-all flex items-center gap-1.5"
+              >
+                <span>Mở Admin Review Queue</span>
+                <span>→</span>
+              </Link>
+            </div>
+          </div>
         )}
 
         {/* =========================================================================

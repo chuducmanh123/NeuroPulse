@@ -10,6 +10,9 @@ import { ClinicalCase, CaseDifficulty } from "@/types/clinicalCase";
 import { GuidelineDoc } from "@/types/neuroguide";
 import { MOCK_GUIDELINE_DOCS } from "@/data/neuroguideMockData";
 import { SUBSPECIALTY_TABS } from "@/constants/subspecialties";
+import { ReviewQueueTab } from "@/components/neuroguide/ReviewQueueTab";
+import { PipelineModal } from "@/components/neuroguide/PipelineModal";
+import { NotebookLMUploadModal } from "@/components/neuroguide/NotebookLMUploadModal";
 
 function getLocalTodayIso(): string {
   const d = new Date();
@@ -115,7 +118,24 @@ export default function AdminCommandCenter() {
   // =========================================================================
   // ADMIN SECTION TABS
   // =========================================================================
-  const [adminTab, setAdminTab] = useState<"neurocase" | "radar" | "neuropulse" | "system">("neurocase");
+  const [adminTab, setAdminTab] = useState<"neurocase" | "review-guide" | "radar" | "neuropulse" | "system">("neurocase");
+
+  // Guideline Review Queue Moderation State
+  const [reviewQueueCount, setReviewQueueCount] = useState<number>(0);
+  const [showPipelineModal, setShowPipelineModal] = useState<boolean>(false);
+  const [showNotebookLMModal, setShowNotebookLMModal] = useState<boolean>(false);
+
+  const fetchReviewQueueCount = async () => {
+    try {
+      const res = await fetch("/api/neuroguide/review-queue");
+      const data = await res.json();
+      if (data.ok && typeof data.total === "number") {
+        setReviewQueueCount(data.total);
+      }
+    } catch (e) {
+      console.warn("Could not fetch review queue count:", e);
+    }
+  };
 
   // =========================================================================
   // NEUROCASE MODERATION STATE
@@ -156,6 +176,7 @@ export default function AdminCommandCenter() {
   useEffect(() => {
     if (isAdminVerified) {
       refreshCasesFromServer();
+      fetchReviewQueueCount();
     }
   }, [isAdminVerified]);
 
@@ -524,10 +545,12 @@ export default function AdminCommandCenter() {
           <div className={`p-3 rounded-xl border ${darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200 shadow-xs"}`}>
             <div className="flex items-center justify-between text-slate-400 text-[11px]">
               <span>NeuroGuide</span>
-              <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <span className={`w-2 h-2 rounded-full ${reviewQueueCount > 0 ? "bg-amber-500 animate-pulse" : "bg-emerald-500"}`}></span>
             </div>
             <div className="text-base font-black mt-1">{guidelineDocs.length} Docs</div>
-            <div className="text-[10px] text-slate-500">PubMed/ESO Radar</div>
+            <div className={`text-[10px] font-semibold ${reviewQueueCount > 0 ? "text-amber-500" : "text-slate-500"}`}>
+              {reviewQueueCount > 0 ? `${reviewQueueCount} Pending Review` : "Radar Synchronized"}
+            </div>
           </div>
 
           <div className={`p-3 rounded-xl border opacity-60 ${darkMode ? "bg-slate-900/40 border-slate-800" : "bg-slate-100 border-slate-200"}`}>
@@ -573,8 +596,14 @@ export default function AdminCommandCenter() {
                 badgeColor: "bg-amber-500 text-white",
               },
               {
+                id: "review-guide",
+                label: "📋 Guideline Review Queue",
+                badge: reviewQueueCount > 0 ? `${reviewQueueCount} Pending` : undefined,
+                badgeColor: "bg-amber-500 text-white",
+              },
+              {
                 id: "radar",
-                label: "📡 Guidelines & Radar (NeuroGuide)",
+                label: "📡 Guidelines & Radar",
                 badge: `${guidelineDocs.length}`,
                 badgeColor: "bg-blue-500 text-white",
               },
@@ -645,6 +674,21 @@ export default function AdminCommandCenter() {
               onPreviewCase={(c) => setAdminPreviewCase(c)}
               getLocalTodayIso={getLocalTodayIso}
               subspecialtyTabs={SUBSPECIALTY_TABS}
+            />
+          </div>
+        )}
+
+        {/* TAB 2: NEUROGUIDE CLINICAL GUIDELINE REVIEW QUEUE */}
+        {adminTab === "review-guide" && (
+          <div className="space-y-4">
+            <ReviewQueueTab
+              darkMode={darkMode}
+              onQueueUpdated={() => {
+                fetchReviewQueueCount();
+              }}
+              onQueueCountChange={(count) => setReviewQueueCount(count)}
+              onOpenPipelineModal={() => setShowPipelineModal(true)}
+              onOpenNotebookLMModal={() => setShowNotebookLMModal(true)}
             />
           </div>
         )}
@@ -994,6 +1038,31 @@ export default function AdminCommandCenter() {
           adminScheduleDates={adminScheduleDates}
           onStartFullEdit={() => setAdminPreviewCase(null)}
           onAdminUpdateStatus={handleAdminUpdateStatus}
+        />
+
+        {/* AI EXTRACTION PIPELINE MODAL */}
+        <PipelineModal
+          isOpen={showPipelineModal}
+          onClose={() => setShowPipelineModal(false)}
+          onSuccess={() => {
+            fetchReviewQueueCount();
+          }}
+          onOpenNotebookLM={() => {
+            setShowPipelineModal(false);
+            setShowNotebookLMModal(true);
+          }}
+          darkMode={darkMode}
+        />
+
+        {/* NOTEBOOKLM UPLOAD MODAL */}
+        <NotebookLMUploadModal
+          isOpen={showNotebookLMModal}
+          onClose={() => setShowNotebookLMModal(false)}
+          onSuccess={(newDoc) => {
+            fetchReviewQueueCount();
+            setGuidelineDocs((prev) => [newDoc, ...prev]);
+          }}
+          darkMode={darkMode}
         />
       </div>
     </div>
