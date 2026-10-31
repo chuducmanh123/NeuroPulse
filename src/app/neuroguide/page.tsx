@@ -24,6 +24,7 @@ import { PipelineModal } from "../../components/neuroguide/PipelineModal";
 import { NotebookLMUploadModal } from "../../components/neuroguide/NotebookLMUploadModal";
 import { EditGuidelineModal } from "../../components/neuroguide/EditGuidelineModal";
 import { AdminAuthModal } from "../../components/neurocase/modals/AdminAuthModal";
+import { GuidelinePresentationRenderer } from "../../components/neuroguide/GuidelinePresentationRenderer";
 import type { PracticeChangeDetail } from "../../types/neuroguide";
 
 type NavTabId = "guidelines" | "conf" | "matrix" | "review";
@@ -275,7 +276,7 @@ export default function NeuroGuidePage() {
     fetchQueueCount();
   }, []);
 
-  // Dynamic Navigation Tabs with Live Counts (Review Queue chỉ hiển thị cho Quản trị viên)
+  // Dynamic Navigation Tabs with Live Counts (Review Queue visible to Admin only)
   const navTabs = useMemo(() => {
     const tabs: { id: NavTabId; label: string; badge?: string }[] = [
       {
@@ -352,7 +353,7 @@ export default function NeuroGuidePage() {
       } catch (e) {
         console.warn("Could not save to localStorage:", e);
       }
-      setSyncMessage(`Đã nạp thành công ${novel.length} hướng dẫn mới từ danh sách file.`);
+      setSyncMessage(`Successfully ingested ${novel.length} new guidelines from manifest.`);
       return merged;
     });
     setShowBatchModal(false);
@@ -364,7 +365,7 @@ export default function NeuroGuidePage() {
 
   const CURRENT_CACHE_VERSION = "neuroguide_v2026_coordinated_v15";
 
-  // Background Autonomous Sync Method (Chỉ chạy định kỳ 24h hoặc khi có lệnh)
+  // Background Autonomous Sync Method (runs on 24h cron or manual trigger)
   const triggerSync = async (isAuto = false) => {
     if (isSyncing) return;
     setIsSyncing(true);
@@ -376,7 +377,7 @@ export default function NeuroGuidePage() {
       });
       const json = await res.json();
       if (json.status === "success" && json.guidelines && json.guidelines.length > 0) {
-        // Chỉ lưu và hiển thị các guideline đã qua trung tâm điều phối
+        // Enforce admission of coordinated guidelines only
         const normalizeT = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
         const coordinatedTitles = new Set(MOCK_GUIDELINE_DOCS.map((g) => normalizeT(g.title)));
         const coordinatedIds = new Set(MOCK_GUIDELINE_DOCS.map((g) => g.id.toLowerCase()));
@@ -415,13 +416,13 @@ export default function NeuroGuidePage() {
         const storageNote = json.savedToBlob ? "Vercel Blob" : json.storageBackend || "Cloud Storage";
         if (quota) {
           setSyncMessage(
-            `✨ Radar AI Toàn văn: Đã phân tích ${quota.guidelinesAnalyzed} guideline (Toàn văn XML: ${quota.fullTextParsedCount}), 2 hội nghị & 2 kịch bản lâm sàng. Đồng bộ: ${storageNote}.`
+            `✨ Full-Text AI Radar: Analyzed ${quota.guidelinesAnalyzed} guidelines (Full-text XML: ${quota.fullTextParsedCount}), 2 conferences & 2 clinical scenarios. Synced to: ${storageNote}.`
           );
         } else {
-          setSyncMessage(json.message || `Đồng bộ thành công dữ liệu từ ${storageNote}.`);
+          setSyncMessage(json.message || `Successfully synchronized guidelines from ${storageNote}.`);
         }
 
-        const nowStr = new Date().toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" });
+        const nowStr = new Date().toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" });
         setLastSyncedTime(nowStr);
         localStorage.setItem("neuroguide_last_sync_timestamp", Date.now().toString());
       }
@@ -438,7 +439,7 @@ export default function NeuroGuidePage() {
     const coordinatedTitles = new Set(MOCK_GUIDELINE_DOCS.map((g) => normalizeT(g.title)));
     const coordinatedIds = new Set(MOCK_GUIDELINE_DOCS.map((g) => g.id.toLowerCase()));
 
-    // 1. Chỉ đọc dữ liệu đã qua điều phối từ server storage (tuyệt đối không kích hoạt tìm kiếm mới)
+    // 1. Read coordinated data from server storage
     fetch("/api/neuroguide/sync-guidelines")
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
@@ -475,7 +476,7 @@ export default function NeuroGuidePage() {
       })
       .catch(() => {});
 
-    // 2. Quản lý bộ nhớ đệm (LocalStorage): Xóa sạch các tài liệu rác chưa qua điều phối
+    // 2. Manage client cache (LocalStorage): clean legacy unverified items
     try {
       const cachedVersion = localStorage.getItem("neuroguide_cache_version");
       if (cachedVersion !== CURRENT_CACHE_VERSION) {
@@ -488,7 +489,7 @@ export default function NeuroGuidePage() {
         if (cached) {
           const parsed = JSON.parse(cached);
           if (Array.isArray(parsed)) {
-            // Loại bỏ hoàn toàn các guideline chưa qua kiểm định / chưa qua trung tâm điều phối
+            // Filter out unverified guidelines
             const filtered = parsed.filter((doc: GuidelineDoc) => {
               if (!doc || !doc.title) return false;
               const id = (doc.id || "").toLowerCase();
@@ -512,7 +513,7 @@ export default function NeuroGuidePage() {
             });
 
             const merged = Array.from(titleMap.values());
-            // Tự động sắp xếp: Thứ tự năm giảm dần (mới nhất) -> Thứ tự Society theo bảng chữ cái A-Z
+            // Auto sort: Year descending -> Society ascending
             merged.sort((a, b) => {
               if (b.year !== a.year) return b.year - a.year;
               return (a.society || "").localeCompare(b.society || "");
@@ -526,13 +527,13 @@ export default function NeuroGuidePage() {
       console.warn("Error initializing guideline cache:", e);
     }
 
-    // 3. Khởi tạo mốc thời gian, TUYỆT ĐỐI KHÔNG quét khi load trang:
+    // 3. Initialize sync timestamp:
     const lastSyncStr = localStorage.getItem("neuroguide_last_sync_timestamp");
     if (!lastSyncStr) {
       localStorage.setItem("neuroguide_last_sync_timestamp", Date.now().toString());
     }
 
-    // 4. Kiểm tra chu kỳ định kỳ mỗi giờ khi tab đang mở: chỉ quét nếu đã qua 24 giờ
+    // 4. Periodic check once per hour: sync only if 24 hours have elapsed
     const intervalId = setInterval(() => {
       const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
       const ts = localStorage.getItem("neuroguide_last_sync_timestamp");
@@ -697,7 +698,7 @@ export default function NeuroGuidePage() {
       });
     });
 
-    // Tự động sắp xếp: Thứ tự năm giảm dần (mới nhất) -> Thứ tự Society theo bảng chữ cái A-Z
+    // Auto sort: Year descending -> Society ascending
     return list.sort((a, b) => {
       if (b.year !== a.year) {
         return b.year - a.year;
@@ -932,7 +933,7 @@ export default function NeuroGuidePage() {
            ========================================================================= */}
         {activeTab === "guidelines" && (
           <div className="space-y-4">
-            {/* Direct Society Filter Bar + Radar Actions */}
+            {/* Direct Society Filter Bar */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 mb-2">
               <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0">
                 <span className="text-xs font-bold text-slate-400 mr-1 whitespace-nowrap">
@@ -953,17 +954,6 @@ export default function NeuroGuidePage() {
                     {soc === "ALL" ? "All Societies" : soc}
                   </button>
                 ))}
-              </div>
-
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => setShowNotebookLMModal(true)}
-                  className="px-3.5 py-1.5 rounded-xl text-xs font-black transition-all flex items-center gap-1.5 bg-gradient-to-r from-amber-500 to-rose-500 hover:from-amber-600 hover:to-rose-600 text-white shadow-xs cursor-pointer whitespace-nowrap"
-                  title="Tải lên tệp (.md, .txt) hoặc dán tóm tắt bảng từ NotebookLM để tự động tạo Practice Guideline"
-                >
-                  <span>✨</span>
-                  <span>Nhập từ NotebookLM</span>
-                </button>
               </div>
             </div>
 
@@ -1052,7 +1042,7 @@ export default function NeuroGuidePage() {
                         </div>
                         <div className="flex items-center gap-2">
                           <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
-                            {isVietnamese ? "Ban hành:" : "Published:"} {doc.publishDate}
+                            Published: {doc.publishDate}
                           </span>
                           {isAdminVerified && (
                             <button
@@ -1065,9 +1055,9 @@ export default function NeuroGuidePage() {
                                 setShowEditModal(true);
                               }}
                               className="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-500/10 text-amber-600 hover:bg-amber-500/20 border border-amber-500/30 flex items-center gap-1 cursor-pointer transition-colors"
-                              title="Chỉnh sửa tiêu đề, năm hoặc thông tin chung của Guideline này"
+                              title="Edit guideline metadata"
                             >
-                              <span>✏️ Sửa</span>
+                              <span>✏️ Edit</span>
                             </button>
                           )}
                         </div>
@@ -1083,20 +1073,14 @@ export default function NeuroGuidePage() {
                         <span className="text-xs font-bold text-slate-600 dark:text-slate-300 flex items-center gap-1.5">
                           <span>📋</span>
                           <span>
-                            {isVietnamese
-                              ? `${doc.allPracticeChanges.length} điểm thay đổi thực hành`
-                              : `${doc.allPracticeChanges.length} Key Practice Changes`}
+                            {`${doc.allPracticeChanges.length} Key Practice Changes`}
                           </span>
                         </span>
 
                         <span className="text-xs font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1">
                           <span>
                             {isExpanded
-                              ? isVietnamese
-                                ? "Thu gọn ▴"
-                                : "Collapse details ▴"
-                              : isVietnamese
-                              ? "Bấm để xem chi tiết ▾"
+                              ? "Collapse details ▴"
                               : "Click to view details ▾"}
                           </span>
                         </span>
@@ -1119,17 +1103,17 @@ export default function NeuroGuidePage() {
                           );
 
                           const categories = Array.from(
-                            new Set(doc.allPracticeChanges.map((c) => c.category || "Khuyến cáo chung"))
+                            new Set(doc.allPracticeChanges.map((c) => c.category || "General Recommendations"))
                           );
 
                           return (
                             <div className="space-y-6 mb-4">
-                              {/* 0. Top Take-Home Messages từ văn bản gốc */}
+                              {/* 0. Top Take-Home Messages */}
                               {doc.topTakeaways && doc.topTakeaways.length > 0 && (
                                 <div className="p-4 rounded-xl border border-indigo-200/80 dark:border-indigo-900/60 bg-gradient-to-br from-indigo-50/50 via-white to-blue-50/30 dark:from-slate-900/90 dark:via-indigo-950/20 dark:to-slate-900/80 space-y-3">
                                   <div className="flex items-center gap-2">
                                     <span className="px-2.5 py-0.5 rounded-full text-[10.5px] font-black bg-indigo-500/15 text-indigo-700 dark:text-indigo-300 border border-indigo-500/30">
-                                      🌟 {isVietnamese ? "TOP 10 THÔNG ĐIỆP THỰC HÀNH THEN CHỐT" : "TOP TAKE-HOME MESSAGES"}
+                                      🌟 TOP TAKE-HOME MESSAGES
                                     </span>
                                     <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400">
                                       ({doc.topTakeaways.length} key clinical messages)
@@ -1151,17 +1135,15 @@ export default function NeuroGuidePage() {
                                 </div>
                               )}
 
-                              {/* 1. Điểm mới so với bản cũ */}
+                              {/* 1. What is new vs previous edition */}
                               {newPracticeChanges.length > 0 && (
                                 <div className="space-y-2.5">
                                   <div className="flex items-center gap-2">
                                     <span className="px-2 py-0.5 rounded-full text-[10.5px] font-black bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30">
-                                      ⚡ {isVietnamese ? "1. ĐIỂM MỚI & THAY ĐỔI SO VỚI BẢN TRƯỚC" : "1. WHAT IS NEW & HIGH IMPACT CHANGES"}
+                                      ⚡ 1. WHAT IS NEW &amp; HIGH IMPACT CHANGES
                                     </span>
                                     <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400">
-                                      {isVietnamese
-                                        ? `(${newPracticeChanges.length} thay đổi thực hành so với bản ${doc.previousVersionYear || "cũ"}):`
-                                        : `(${newPracticeChanges.length} practice changes vs. ${doc.previousVersionYear || "prior"}):`}
+                                      ({newPracticeChanges.length} practice changes vs. {doc.previousVersionYear || "prior"}):
                                     </span>
                                   </div>
 
@@ -1208,9 +1190,7 @@ export default function NeuroGuidePage() {
                                         {change.previousText && (
                                           <div className="mb-2 p-2 rounded-lg bg-slate-100 dark:bg-slate-900/60 text-slate-500 dark:text-slate-400 text-[11px] border border-slate-200/50 dark:border-slate-800/50">
                                             <span className="font-bold block text-slate-400 mb-0.5">
-                                              {isVietnamese
-                                                ? `Bản cũ (${doc.previousVersionYear || "trước đây"}):`
-                                                : `Previous Edition (${doc.previousVersionYear || "prior"}):`}
+                                              Previous Edition ({doc.previousVersionYear || "prior"}):
                                             </span>
                                             <p className="line-through opacity-85">{change.previousText}</p>
                                           </div>
@@ -1223,7 +1203,7 @@ export default function NeuroGuidePage() {
                                         {change.drivingTrials && change.drivingTrials.length > 0 && (
                                           <div className="mt-2 flex items-center gap-1.5 text-[10.5px] text-slate-500 dark:text-slate-400 border-t pt-1.5 border-slate-100 dark:border-slate-800/60">
                                             <span className="font-semibold text-slate-400">
-                                              {isVietnamese ? "Chứng cứ lâm sàng:" : "Driving Evidence:"}
+                                              Driving Evidence:
                                             </span>
                                             <span className="font-medium text-slate-600 dark:text-slate-300">
                                               {change.drivingTrials.join(", ")}
@@ -1236,124 +1216,19 @@ export default function NeuroGuidePage() {
                                 </div>
                               )}
 
-                              {/* 2. Toàn bộ các khuyến cáo trong guideline (Chia thành từng khối chuyên đề) */}
+                              {/* 2. Full structured recommendations (AHA/ASA or ESO presentation) */}
                               <div className="space-y-3 pt-3 border-t border-slate-200/60 dark:border-slate-800/60">
-                                <div className="flex flex-wrap items-center justify-between gap-2">
-                                  <div className="flex items-center gap-2">
-                                    <span className="px-2 py-0.5 rounded-full text-[10.5px] font-black bg-blue-500/15 text-blue-600 dark:text-blue-400 border border-blue-500/30">
-                                      📋 {isVietnamese ? "2. TOÀN BỘ KHUYẾN CÁO LÂM SÀNG THEO KHỐI CHUYÊN ĐỀ" : "2. FULL STRUCTURED RECOMMENDATIONS BY CATEGORY"}
-                                    </span>
-                                    <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400">
-                                      ({doc.allPracticeChanges.length} {isVietnamese ? "khuyến cáo" : "recommendations"})
-                                    </span>
-                                  </div>
-
-                                  <span className="text-[10.5px] text-slate-400 italic">
-                                    {isVietnamese
-                                      ? "Chia thành các khối độc lập để dễ dàng đối chiếu với guideline khác"
-                                      : "Modular blocks ready for cross-guideline comparison"}
-                                  </span>
-                                </div>
-
-                                <div className="space-y-3">
-                                  {categories.map((category) => {
-                                    const categoryItems = doc.allPracticeChanges.filter(
-                                      (c) => (c.category || "Khuyến cáo chung") === category
-                                    );
-
-                                    return (
-                                      <div
-                                        key={category}
-                                        className={`p-3.5 rounded-xl border text-xs leading-relaxed space-y-2.5 ${
-                                          darkMode
-                                            ? "bg-slate-900/40 border-slate-800"
-                                            : "bg-slate-50/80 border-slate-200/80"
-                                        }`}
-                                      >
-                                        <div className="flex items-center justify-between gap-2 border-b pb-1.5 border-slate-200/60 dark:border-slate-800/60">
-                                          <div className="flex items-center gap-1.5">
-                                            <span className="text-amber-500">🏷️</span>
-                                            <span className="font-extrabold uppercase tracking-wide text-slate-700 dark:text-slate-200">
-                                              {category}
-                                            </span>
-                                          </div>
-                                          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-200/80 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
-                                            {categoryItems.length} {isVietnamese ? "khuyến cáo" : "recs"}
-                                          </span>
-                                        </div>
-
-                                        <div className="space-y-2">
-                                          {categoryItems.map((item) => (
-                                            <div
-                                              key={item.id}
-                                              className={`p-3 rounded-lg border text-xs space-y-2 ${
-                                                darkMode
-                                                  ? "bg-slate-950/80 border-slate-800"
-                                                  : "bg-white border-slate-200 shadow-2xs"
-                                              }`}
-                                            >
-                                              <div className="flex flex-wrap items-center justify-between gap-2">
-                                                <span className="font-bold text-slate-900 dark:text-slate-100">
-                                                  {item.topic}
-                                                </span>
-                                                <div className="flex items-center gap-1.5">
-                                                  <span className="font-mono text-[10.5px] font-black px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
-                                                    {item.currentGrade}
-                                                  </span>
-                                                  {isAdminVerified && (
-                                                    <button
-                                                      type="button"
-                                                      onClick={(e) => {
-                                                        e.stopPropagation();
-                                                        setEditingDocId(doc.id);
-                                                        setEditingGuidelineDoc(null);
-                                                        setEditingPracticeChange(item);
-                                                        setShowEditModal(true);
-                                                      }}
-                                                      className="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-amber-500/20 hover:text-amber-600 transition-colors cursor-pointer"
-                                                      title="Chỉnh sửa nội dung hoặc phân loại khuyến cáo này"
-                                                    >
-                                                      <span>✏️ Sửa</span>
-                                                    </button>
-                                                  )}
-                                                </div>
-                                              </div>
-
-                                              <p className="text-slate-700 dark:text-slate-300">
-                                                {item.currentText}
-                                              </p>
-
-                                              <div className="flex flex-wrap items-center justify-between gap-2 pt-1.5 border-t border-slate-100 dark:border-slate-800/60 text-[11px]">
-                                                {item.drivingTrials && item.drivingTrials.length > 0 ? (
-                                                  <span className="text-[10px] text-slate-400 truncate max-w-xs sm:max-w-md">
-                                                    📚 {item.drivingTrials.join(", ")}
-                                                  </span>
-                                                ) : (
-                                                  <span />
-                                                )}
-
-                                                {(item.scenarioId || doc.linkedScenarioIds.length > 0) && (
-                                                  <button
-                                                    onClick={() =>
-                                                      handleJumpToScenario(
-                                                        item.scenarioId || doc.linkedScenarioIds[0]
-                                                      )
-                                                    }
-                                                    className="px-2.5 py-1 rounded-lg text-[10.5px] font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 hover:bg-amber-500/20 transition-all flex items-center gap-1 ml-auto"
-                                                    title="Mở ma trận để so sánh khuyến cáo này với các hiệp hội khác"
-                                                  >
-                                                    <span>⚖️ So sánh với guideline khác</span>
-                                                    <span>➔</span>
-                                                  </button>
-                                                )}
-                                              </div>
-                                            </div>
-                                          ))}
-                                        </div>
-                                      </div>
-                                    );
-                                  })}
-                                </div>
+                                <GuidelinePresentationRenderer
+                                  doc={doc}
+                                  darkMode={darkMode}
+                                  allowEdit={isAdminVerified}
+                                  onEditChange={(item) => {
+                                    setEditingDocId(doc.id);
+                                    setEditingGuidelineDoc(null);
+                                    setEditingPracticeChange(item);
+                                    setShowEditModal(true);
+                                  }}
+                                />
                               </div>
                             </div>
                           );
@@ -1368,9 +1243,7 @@ export default function NeuroGuidePage() {
                             className="text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-amber-500 flex items-center gap-1"
                           >
                             <span>
-                              {isVietnamese
-                                ? `Xem văn bản gốc trên ${doc.journalTarget}`
-                                : `Read original article on ${doc.journalTarget}`}
+                              {`Read original article on ${doc.journalTarget}`}
                             </span>
                             <span>↗</span>
                           </a>
@@ -1390,7 +1263,7 @@ export default function NeuroGuidePage() {
                               onClick={() => toggleGuideline(doc.id)}
                               className="text-xs font-bold text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
                             >
-                              {isVietnamese ? "Thu gọn ▴" : "Collapse ▴"}
+                              Collapse ▴
                             </button>
                           </div>
                         </div>
@@ -1720,15 +1593,15 @@ export default function NeuroGuidePage() {
                         <span className="text-base shrink-0">📋</span>
                         <div className="truncate">
                           <div className="text-[10px] uppercase font-bold tracking-wider text-slate-400">
-                            {currentScenario ? "Bệnh cảnh đang chọn:" : `Chọn bệnh cảnh lâm sàng (${filteredScenarios.length}):`}
+                            {currentScenario ? "Selected Scenario:" : `Select Clinical Scenario (${filteredScenarios.length}):`}
                           </div>
                           <div className="text-xs font-bold truncate">
-                            {currentScenario ? currentScenario.title : "Nhấn để chọn bệnh cảnh..."}
+                            {currentScenario ? currentScenario.title : "Click to select a scenario..."}
                           </div>
                         </div>
                       </div>
                       <span className="text-xs font-bold px-2 py-1 rounded-lg bg-black/10 dark:bg-white/10 shrink-0">
-                        {isMobileScenarioListOpen ? "Thu gọn ▴" : "Đổi bệnh cảnh ▾"}
+                        {isMobileScenarioListOpen ? "Collapse ▴" : "Change Scenario ▾"}
                       </span>
                     </button>
                   </div>
@@ -1810,10 +1683,10 @@ export default function NeuroGuidePage() {
                         ⚖️
                       </div>
                       <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100 mb-1">
-                        Chưa chọn bệnh cảnh lâm sàng
+                        No Clinical Scenario Selected
                       </h3>
                       <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto mb-5 leading-relaxed">
-                        Vui lòng chọn một bệnh cảnh lâm sàng từ danh sách để xem Ma trận đồng thuận đối chiếu đa hiệp hội (AHA vs. ESO vs. VN), diễn tiến theo thời gian và bằng chứng thử nghiệm mới nhất.
+                        Select a clinical scenario from the list to inspect the cross-society consensus matrix (AHA vs. ESO vs. VN), temporal shifts, and pivotal trial evidence.
                       </p>
                       <div className="flex flex-wrap items-center justify-center gap-2">
                         {filteredScenarios.slice(0, 3).map((sc) => (
@@ -1975,9 +1848,7 @@ export default function NeuroGuidePage() {
                                     {atom.eligibilityCriteria && (
                                       <div className="text-[11px] text-slate-500 dark:text-slate-400 mb-2.5">
                                         <span className="font-bold">
-                                          {atom.society === "VN-MOH"
-                                            ? "Điều kiện áp dụng:"
-                                            : "Eligibility Criteria:"}
+                                          Eligibility Criteria:
                                         </span>{" "}
                                         {atom.eligibilityCriteria}
                                       </div>
@@ -1986,9 +1857,7 @@ export default function NeuroGuidePage() {
 
                                   <div className="pt-2 border-t border-slate-200/60 dark:border-slate-800/80">
                                     <span className="text-[10px] font-bold text-slate-400 block mb-1">
-                                      {atom.society === "VN-MOH"
-                                        ? "Thử nghiệm / Dữ liệu trích dẫn:"
-                                        : "Pivotal Trials Cited:"}
+                                      Pivotal Trials Cited:
                                     </span>
                                     <div className="flex flex-wrap gap-1">
                                       {atom.citedTrials.map((tr, i) => (
@@ -2184,7 +2053,7 @@ export default function NeuroGuidePage() {
         )}
 
         {/* =========================================================================
-            TAB 4: REVIEW QUEUE (Khóa chặt cho Quản trị viên - Admin Only)
+            TAB 4: REVIEW QUEUE (Admin Only)
            ========================================================================= */}
         {activeTab === "review" && (
           isAdminVerified ? (
@@ -2207,15 +2076,15 @@ export default function NeuroGuidePage() {
               <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-amber-500/10 flex items-center justify-center text-2xl">
                 🛡️
               </div>
-              <h3 className="text-base font-bold mb-1">Khu vực kiểm duyệt Quản trị viên</h3>
+              <h3 className="text-base font-bold mb-1">Admin Verification Restricted</h3>
               <p className="text-xs text-slate-500 mb-4">
-                Bạn cần đăng nhập quyền Admin để kiểm duyệt khuyến cáo và chạy luồng bóc tách PDF.
+                Admin authentication is required to review pending guidelines, inspect extraction logs, and run PDF pipelines.
               </p>
               <button
                 onClick={() => setShowAdminAuthModal(true)}
                 className="px-4 py-2 rounded-xl text-xs font-bold bg-amber-500 hover:bg-amber-600 text-white shadow-xs cursor-pointer"
               >
-                Đăng nhập Admin
+                Admin Sign In
               </button>
             </div>
           )
@@ -2263,7 +2132,7 @@ export default function NeuroGuidePage() {
             setExpandedGuidelineIds((prev) => ({ ...prev, [newDoc.id]: true }));
             setSelectedSocietyFilter("ALL");
             setSyncMessage(
-              `🎉 Đã tự động tạo và lưu trữ thành công Guideline "${newDoc.title}" (${newDoc.allPracticeChanges.length} khuyến cáo)!`
+              `🎉 Successfully generated and saved Practice Guideline "${newDoc.title}" (${newDoc.allPracticeChanges.length} recommendations)!`
             );
             fetchQueueCount();
           }}

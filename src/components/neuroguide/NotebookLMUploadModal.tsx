@@ -99,14 +99,13 @@ export function NotebookLMUploadModal({
       setErrorMessage(null);
       setSuccessMessage(null);
 
-      // Read text content from text-compatible files
       const reader = new FileReader();
       reader.onload = (event) => {
         const text = (event.target?.result as string) || "";
         setRawText(text);
       };
       reader.onerror = () => {
-        setErrorMessage("Không thể đọc tệp. Vui lòng thử tải lại hoặc dán nội dung trực tiếp.");
+        setErrorMessage("Unable to read file. Please try uploading again or paste text directly.");
       };
       reader.readAsText(file);
     }
@@ -125,7 +124,7 @@ export function NotebookLMUploadModal({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!rawText || rawText.trim().length < 20) {
-      setErrorMessage("Vui lòng tải lên tệp tin (.md, .txt) hoặc dán nội dung tóm tắt từ NotebookLM.");
+      setErrorMessage("Please upload a file (.md, .txt) or paste summary text from NotebookLM.");
       return;
     }
 
@@ -150,11 +149,11 @@ export function NotebookLMUploadModal({
       const data = await res.json().catch(() => null);
 
       if (!res.ok || !data?.ok) {
-        throw new Error(data?.error || "Lỗi xử lý tạo Guideline từ NotebookLM.");
+        throw new Error(data?.error || "Error processing guideline from NotebookLM.");
       }
 
       setSuccessMessage(
-        `🎉 Đã tạo thành công Practice Guideline "${data.guideline.title}" với ${data.stats?.totalRecommendations || 0} khuyến cáo!`
+        `🎉 Successfully generated Practice Guideline "${data.guideline.title}" with ${data.stats?.totalRecommendations || 0} recommendations!`
       );
 
       setTimeout(() => {
@@ -162,7 +161,7 @@ export function NotebookLMUploadModal({
         onClose();
       }, 1500);
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : "Đã xảy ra lỗi không xác định";
+      const msg = err instanceof Error ? err.message : "An unexpected error occurred";
       setErrorMessage(msg);
     } finally {
       setIsLoading(false);
@@ -185,14 +184,14 @@ export function NotebookLMUploadModal({
             <div>
               <div className="flex items-center gap-2">
                 <h2 className="text-base sm:text-lg font-black tracking-tight">
-                  Tải lên & Tạo Practice Guideline từ NotebookLM
+                  Import &amp; Generate Practice Guideline from NotebookLM
                 </h2>
                 <span className="px-2 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30">
                   AI + Rule-based Engine
                 </span>
               </div>
               <p className="text-xs text-slate-500 dark:text-slate-400">
-                Tự động bóc tách bảng khuyến cáo COR / LOE, bằng chứng thử nghiệm lâm sàng và tạo thẻ Guideline hoàn chỉnh
+                Parses COR/LOE recommendation tables, cited clinical trials, and creates an official clinical guideline document
               </p>
             </div>
           </div>
@@ -215,7 +214,7 @@ export function NotebookLMUploadModal({
                   : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
               }`}
             >
-              📋 Dán Văn bản / Bảng Markdown
+              📋 Paste Text / Markdown Table
             </button>
             <button
               onClick={() => setActiveTab("file")}
@@ -225,7 +224,7 @@ export function NotebookLMUploadModal({
                   : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
               }`}
             >
-              📁 Tải tệp tin (.md, .txt)
+              📁 Upload File (.md, .txt)
             </button>
           </div>
 
@@ -236,7 +235,7 @@ export function NotebookLMUploadModal({
               className="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-500/30 hover:bg-amber-500/20 transition-all flex items-center gap-1.5"
             >
               <span>✨</span>
-              <span>Dán thử mẫu AHA/ASA aSAH (36 Recs)</span>
+              <span>Load Sample AHA/ASA aSAH (36 Recs)</span>
             </button>
             {rawText && (
               <button
@@ -248,7 +247,7 @@ export function NotebookLMUploadModal({
                 }}
                 className="px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-rose-500 transition-colors"
               >
-                Xóa nội dung
+                Clear
               </button>
             )}
           </div>
@@ -282,13 +281,13 @@ export function NotebookLMUploadModal({
                   <div>
                     <p className="text-sm font-bold text-amber-600 dark:text-amber-400">{selectedFile.name}</p>
                     <p className="text-xs text-slate-400 mt-0.5">
-                      {(selectedFile.size / 1024).toFixed(1)} KB • Bấm để chọn tệp khác
+                      {(selectedFile.size / 1024).toFixed(1)} KB • Click to choose another file
                     </p>
                   </div>
                 ) : (
                   <div>
-                    <p className="text-sm font-bold">Kéo & thả tệp NotebookLM vào đây hoặc bấm để chọn tệp</p>
-                    <p className="text-xs text-slate-400 mt-1">Hỗ trợ Markdown (.md), Plain Text (.txt), CSV (.csv)</p>
+                    <p className="text-sm font-bold">Drag &amp; drop NotebookLM file here or click to browse</p>
+                    <p className="text-xs text-slate-400 mt-1">Supports Markdown (.md), Plain Text (.txt), CSV (.csv)</p>
                   </div>
                 )}
               </div>
@@ -296,12 +295,12 @@ export function NotebookLMUploadModal({
           ) : (
             <div className="space-y-2">
               <label className="block text-xs font-bold uppercase tracking-wider text-slate-400">
-                Nội dung Markdown hoặc Bảng từ NotebookLM:
+                Markdown Content or Table from NotebookLM:
               </label>
               <textarea
                 value={rawText}
                 onChange={(e) => setRawText(e.target.value)}
-                placeholder="Dán nội dung tóm tắt hoặc bảng Markdown từ NotebookLM vào đây... (Bao gồm tiêu đề và bảng khuyến cáo | Domain | Recommendation | COR/LOE | Evidence |)"
+                placeholder="Paste NotebookLM summary or markdown table here... (Include title and recommendation table | Domain | Recommendation | COR/LOE | Evidence |)"
                 rows={8}
                 className={`w-full p-3.5 text-xs font-mono rounded-xl border outline-none transition-all ${
                   darkMode
@@ -315,16 +314,16 @@ export function NotebookLMUploadModal({
           {/* Metadata Customization Inputs */}
           <div className="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-950/40 space-y-3">
             <span className="text-[11px] font-black uppercase tracking-wider text-slate-400 block">
-              Thông tin Guideline (Tự động nhận diện & Tùy chỉnh):
+              Guideline Metadata (Auto-detected &amp; Customizable):
             </span>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5">
               <div className="sm:col-span-2">
-                <label className="block text-[11px] font-semibold text-slate-500 mb-1">Tiêu đề Guideline:</label>
+                <label className="block text-[11px] font-semibold text-slate-500 mb-1">Guideline Title:</label>
                 <input
                   type="text"
                   value={overrideTitle || parsedPreview?.doc.title || ""}
                   onChange={(e) => setOverrideTitle(e.target.value)}
-                  placeholder="Ví dụ: 2023 AHA/ASA Guideline for aSAH"
+                  placeholder="e.g. 2023 AHA/ASA Guideline for aSAH"
                   className={`w-full px-2.5 py-1.5 text-xs rounded-lg border outline-none ${
                     darkMode ? "bg-slate-900 border-slate-700 text-slate-200" : "bg-white border-slate-300 text-slate-800"
                   }`}
@@ -332,7 +331,7 @@ export function NotebookLMUploadModal({
               </div>
 
               <div>
-                <label className="block text-[11px] font-semibold text-slate-500 mb-1">Hội chuyên khoa (Society):</label>
+                <label className="block text-[11px] font-semibold text-slate-500 mb-1">Medical Society:</label>
                 <input
                   type="text"
                   value={overrideSociety || parsedPreview?.doc.society || ""}
@@ -345,7 +344,7 @@ export function NotebookLMUploadModal({
               </div>
 
               <div>
-                <label className="block text-[11px] font-semibold text-slate-500 mb-1">Năm công bố:</label>
+                <label className="block text-[11px] font-semibold text-slate-500 mb-1">Publication Year:</label>
                 <input
                   type="number"
                   value={overrideYear || (parsedPreview?.doc.year ? String(parsedPreview.doc.year) : "2023")}
@@ -357,7 +356,7 @@ export function NotebookLMUploadModal({
               </div>
 
               <div className="sm:col-span-2">
-                <label className="block text-[11px] font-semibold text-slate-500 mb-1">Chuyên khoa Thần kinh:</label>
+                <label className="block text-[11px] font-semibold text-slate-500 mb-1">Neurology Subspecialty:</label>
                 <select
                   value={overrideSubspecialty}
                   onChange={(e) => setOverrideSubspecialty(e.target.value as SubspecialtyType)}
@@ -380,9 +379,9 @@ export function NotebookLMUploadModal({
             <div className="space-y-2.5">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <div className="flex items-center gap-2">
-                  <span className="text-xs font-bold">Bản xem trước phân tích tức thì:</span>
+                  <span className="text-xs font-bold">Live Extracted Preview:</span>
                   <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
-                    {parsedPreview.stats.totalRecommendations} Khuyến cáo tìm thấy
+                    {parsedPreview.stats.totalRecommendations} Recommendations Extracted
                   </span>
                 </div>
                 <div className="flex flex-wrap items-center gap-1 text-[10.5px]">
@@ -408,10 +407,10 @@ export function NotebookLMUploadModal({
                     darkMode ? "bg-slate-800 text-slate-300" : "bg-slate-100 text-slate-600"
                   }`}>
                     <tr>
-                      <th className="p-2 border-b border-slate-200 dark:border-slate-700 w-32">Chuyên đề</th>
-                      <th className="p-2 border-b border-slate-200 dark:border-slate-700 w-28">Mức độ COR/LOE</th>
-                      <th className="p-2 border-b border-slate-200 dark:border-slate-700">Nội dung Khuyến cáo</th>
-                      <th className="p-2 border-b border-slate-200 dark:border-slate-700 w-44">Thử nghiệm / Bằng chứng</th>
+                      <th className="p-2 border-b border-slate-200 dark:border-slate-700 w-32">Domain / Topic</th>
+                      <th className="p-2 border-b border-slate-200 dark:border-slate-700 w-28">COR / LOE Grade</th>
+                      <th className="p-2 border-b border-slate-200 dark:border-slate-700">Recommendation Statement</th>
+                      <th className="p-2 border-b border-slate-200 dark:border-slate-700 w-44">Trials / Evidence</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60">
@@ -472,7 +471,7 @@ export function NotebookLMUploadModal({
               disabled={isLoading}
               className="px-4 py-2 rounded-xl text-xs font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
             >
-              Hủy
+              Cancel
             </button>
             <button
               type="submit"
@@ -486,12 +485,12 @@ export function NotebookLMUploadModal({
               {isLoading ? (
                 <>
                   <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  <span>Đang tổng hợp & Lưu trữ Guideline...</span>
+                  <span>Generating &amp; Persisting Guideline...</span>
                 </>
               ) : (
                 <>
                   <span>🚀</span>
-                  <span>Tự động tạo Practice Guideline ({parsedPreview?.stats.totalRecommendations || 0} Khuyến cáo)</span>
+                  <span>Generate Practice Guideline ({parsedPreview?.stats.totalRecommendations || 0} Recommendations)</span>
                 </>
               )}
             </button>

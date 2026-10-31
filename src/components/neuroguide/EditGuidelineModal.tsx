@@ -43,13 +43,13 @@ export function EditGuidelineModal({
       setTopic(item.topic || "");
       setCurrentGrade(item.currentGrade || "Class I, Level A");
       setCurrentText(item.currentText || "");
-      setCategory(item.category || "Khuyến cáo chung");
+      setCategory(item.category || "General Recommendations");
       setDrivingTrialsStr(item.drivingTrials?.join(", ") || "");
     } else if (guidelineDoc) {
       setDocTitle(guidelineDoc.title || "");
       setDocSociety(guidelineDoc.society || "");
       setDocYear(String(guidelineDoc.year || new Date().getFullYear()));
-      setDocSummary(guidelineDoc.executiveSummaryVi || guidelineDoc.executiveSummary || "");
+      setDocSummary(guidelineDoc.executiveSummary || guidelineDoc.executiveSummaryVi || "");
     }
     setErrorMessage(null);
   }, [item, guidelineDoc, isOpen]);
@@ -81,7 +81,7 @@ export function EditGuidelineModal({
           onSuccess();
           onClose();
         } else {
-          setErrorMessage(data.error || "Không thể cập nhật thông tin guideline.");
+          setErrorMessage(data.error || "Unable to update guideline metadata.");
         }
       } else if (item) {
         // Edit single recommendation item
@@ -113,11 +113,11 @@ export function EditGuidelineModal({
           onSuccess();
           onClose();
         } else {
-          setErrorMessage(data.error || "Không thể cập nhật khuyến cáo.");
+          setErrorMessage(data.error || "Unable to update recommendation.");
         }
       }
     } catch {
-      setErrorMessage("Lỗi kết nối mạng khi lưu chỉnh sửa.");
+      setErrorMessage("Network error while saving modifications.");
     } finally {
       setIsLoading(false);
     }
@@ -134,7 +134,7 @@ export function EditGuidelineModal({
           <div className="flex items-center gap-2">
             <span className="text-xl">✏️</span>
             <h3 className="text-sm font-black uppercase tracking-wide">
-              {isEditingDoc ? "Chỉnh sửa Thông tin Guideline" : "Chỉnh sửa Khuyến cáo Lâm sàng"}
+              {isEditingDoc ? "Edit Guideline Metadata" : "Edit Clinical Recommendation"}
             </h3>
           </div>
           <button
@@ -155,7 +155,7 @@ export function EditGuidelineModal({
           {isEditingDoc ? (
             <>
               <div>
-                <label className="block font-bold mb-1">Tiêu đề Guideline:</label>
+                <label className="block font-bold mb-1">Guideline Title:</label>
                 <input
                   type="text"
                   required
@@ -169,7 +169,7 @@ export function EditGuidelineModal({
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-bold mb-1">Hội chuyên khoa:</label>
+                  <label className="block font-bold mb-1">Medical Society:</label>
                   <input
                     type="text"
                     required
@@ -181,7 +181,7 @@ export function EditGuidelineModal({
                   />
                 </div>
                 <div>
-                  <label className="block font-bold mb-1">Năm phát hành:</label>
+                  <label className="block font-bold mb-1">Publication Year:</label>
                   <input
                     type="number"
                     required
@@ -195,7 +195,7 @@ export function EditGuidelineModal({
               </div>
 
               <div>
-                <label className="block font-bold mb-1">Tóm tắt điều hành:</label>
+                <label className="block font-bold mb-1">Executive Summary:</label>
                 <textarea
                   rows={3}
                   value={docSummary}
@@ -210,12 +210,12 @@ export function EditGuidelineModal({
             <>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-bold mb-1">Mức độ khuyến cáo (Grade / COR / LOE):</label>
+                  <label className="block font-bold mb-1">Recommendation Grade (COR / LOE):</label>
                   <input
                     type="text"
                     required
                     value={currentGrade}
-                    placeholder="VD: Class I, Level A hoặc GRADE Strong"
+                    placeholder="e.g. Class I, Level A or GRADE Strong"
                     onChange={(e) => setCurrentGrade(e.target.value)}
                     className={`w-full p-2.5 rounded-xl border font-bold text-amber-600 dark:text-amber-400 ${
                       darkMode ? "bg-slate-800 border-slate-700" : "bg-slate-50 border-slate-200"
@@ -223,11 +223,11 @@ export function EditGuidelineModal({
                   />
                 </div>
                 <div>
-                  <label className="block font-bold mb-1">Chuyên mục / Khối:</label>
+                  <label className="block font-bold mb-1">Category / Section:</label>
                   <input
                     type="text"
                     value={category}
-                    placeholder="VD: Điều trị Tái tưới máu"
+                    placeholder="e.g. Reperfusion Therapy"
                     onChange={(e) => setCategory(e.target.value)}
                     className={`w-full p-2.5 rounded-xl border font-medium ${
                       darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"
@@ -237,12 +237,12 @@ export function EditGuidelineModal({
               </div>
 
               <div>
-                <label className="block font-bold mb-1">Mục tiêu / Nhóm đối tượng (Topic / Target Population):</label>
+                <label className="block font-bold mb-1">Topic / Target Population:</label>
                 <input
                   type="text"
                   required
                   value={topic}
-                  placeholder="VD: Bệnh nhân đột quỵ thiếu máu não cục bộ cấp tính trong 4.5h"
+                  placeholder="e.g. Patients with acute ischemic stroke within 4.5h"
                   onChange={(e) => setTopic(e.target.value)}
                   className={`w-full p-2.5 rounded-xl border font-medium ${
                     darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"
@@ -251,7 +251,7 @@ export function EditGuidelineModal({
               </div>
 
               <div>
-                <label className="block font-bold mb-1">Nội dung chỉ thị lâm sàng (Full Recommendation Statement):</label>
+                <label className="block font-bold mb-1">Full Recommendation Statement:</label>
                 <textarea
                   rows={4}
                   required
@@ -264,11 +264,11 @@ export function EditGuidelineModal({
               </div>
 
               <div>
-                <label className="block font-bold mb-1">Thử nghiệm lâm sàng dẫn chứng (phân tách bởi dấu phẩy):</label>
+                <label className="block font-bold mb-1">Cited Clinical Trials (comma-separated):</label>
                 <input
                   type="text"
                   value={drivingTrialsStr}
-                  placeholder="VD: EXTEND-IA, SWIFT PRIME, DAWN, DEFUSE 3"
+                  placeholder="e.g. EXTEND-IA, SWIFT PRIME, DAWN, DEFUSE 3"
                   onChange={(e) => setDrivingTrialsStr(e.target.value)}
                   className={`w-full p-2.5 rounded-xl border font-mono text-[11px] ${
                     darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"
@@ -284,14 +284,14 @@ export function EditGuidelineModal({
               onClick={onClose}
               className="px-4 py-2 rounded-xl font-bold bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 cursor-pointer"
             >
-              Hủy bỏ
+              Cancel
             </button>
             <button
               type="submit"
               disabled={isLoading}
               className="px-4 py-2 rounded-xl font-bold bg-amber-500 hover:bg-amber-600 text-white shadow-xs cursor-pointer disabled:opacity-50"
             >
-              {isLoading ? "Đang lưu..." : "✓ Lưu thay đổi"}
+              {isLoading ? "Saving..." : "✓ Save Changes"}
             </button>
           </div>
         </form>

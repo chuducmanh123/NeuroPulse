@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect, useMemo } from "react";
 import { EditGuidelineModal } from "./EditGuidelineModal";
+import { AhaGuidelineTable, type AhaGuidelineSection, type AhaRecommendationItem } from "./AhaGuidelineTable";
+import { EsoGuidelineTable, type EsoPicoItem } from "./EsoGuidelineTable";
 import type { GuidelineDoc, PracticeChangeDetail } from "@/types/neuroguide";
 
 interface StoredRec {
@@ -69,6 +71,7 @@ export function ReviewQueueTab({
 
   // Expanded state for each guideline card (default expanded true)
   const [expandedGuidelines, setExpandedGuidelines] = useState<Record<string, boolean>>({});
+  const [groupViewModes, setGroupViewModes] = useState<Record<string, "table" | "cards">>({});
 
   // Edit Modal State
   const [showEditModal, setShowEditModal] = useState<boolean>(false);
@@ -105,16 +108,9 @@ export function ReviewQueueTab({
           (r: StoredRec) => !dismissed.has(r.rec_id) && r.approval_status === "PENDING_REVIEW"
         );
         setQueue(activeQueue);
-
-        // Default all guidelines to expanded
-        const initialExpanded: Record<string, boolean> = {};
-        activeQueue.forEach((r: StoredRec) => {
-          initialExpanded[r.guideline_id] = true;
-        });
-        setExpandedGuidelines(initialExpanded);
       }
-    } catch (e) {
-      console.error("Error loading review queue:", e);
+    } catch (err) {
+      console.warn("Could not fetch review queue:", err);
     } finally {
       setIsLoading(false);
     }
@@ -124,49 +120,49 @@ export function ReviewQueueTab({
     fetchQueue();
   }, []);
 
-  // Group pending recommendations by Guideline
-  const guidelineGroups = useMemo<PendingGuidelineGroup[]>(() => {
+  // Group recommendations by Guideline ID and within Guideline by Category
+  const guidelineGroups = useMemo(() => {
     const map = new Map<string, PendingGuidelineGroup>();
 
-    const filtered = queue.filter((item) => {
-      if (filterSociety === "ALL") return true;
-      return item.society.toUpperCase().includes(filterSociety.toUpperCase());
-    });
+    queue.forEach((rec) => {
+      if (filterSociety !== "ALL") {
+        const normFilter = filterSociety.toUpperCase();
+        const normSoc = (rec.society || "").toUpperCase();
+        if (!normSoc.includes(normFilter)) return;
+      }
 
-    for (const rec of filtered) {
-      const gId = rec.guideline_id;
+      const gId = rec.guideline_id || "unknown";
       if (!map.has(gId)) {
         map.set(gId, {
           guideline_id: gId,
-          guideline_title: rec.guideline_title || "Hướng dẫn thực hành lâm sàng",
-          society: rec.society || "AHA/ASA",
-          year: rec.year || 2024,
+          guideline_title: rec.guideline_title || gId,
+          society: rec.society || "General",
+          year: rec.year,
           recommendations: [],
           categories: [],
         });
       }
-      map.get(gId)!.recommendations.push(rec);
-    }
 
-    // Now group each guideline's recommendations by category
-    const result: PendingGuidelineGroup[] = [];
-    for (const group of map.values()) {
+      map.get(gId)!.recommendations.push(rec);
+    });
+
+    const result = Array.from(map.values());
+
+    result.forEach((group) => {
       const catMap = new Map<string, StoredRec[]>();
-      for (const rec of group.recommendations) {
-        const catName = rec.category || "Khuyến cáo chung";
+      group.recommendations.forEach((r) => {
+        const catName = r.category || "General Recommendations";
         if (!catMap.has(catName)) {
           catMap.set(catName, []);
         }
-        catMap.get(catName)!.push(rec);
-      }
+        catMap.get(catName)!.push(r);
+      });
 
       group.categories = Array.from(catMap.entries()).map(([name, items]) => ({
         name,
         items,
       }));
-
-      result.push(group);
-    }
+    });
 
     // Sort guidelines: Year descending -> Society ascending
     result.sort((a, b) => {
@@ -187,11 +183,11 @@ export function ReviewQueueTab({
   };
 
   /**
-   * Phê duyệt toàn bộ một Guideline cụ thể với 1 lần bấm
+   * Approve an entire guideline with 1 click
    */
   const handleApproveGuideline = async (group: PendingGuidelineGroup) => {
     const confirmApprove = window.confirm(
-      `Bác sĩ có chắc chắn muốn PHÊ DUYỆT & CÔNG BỐ TOÀN BỘ ${group.recommendations.length} khuyến cáo thuộc:\n\n"${group.guideline_title}" (${group.society})\n\nvào Hướng dẫn Thực hành lâm sàng chính thức?`
+      `Are you sure you want to APPROVE & PUBLISH all ${group.recommendations.length} recommendations from:\n\n"${group.guideline_title}" (${group.society})\n\ninto the official Clinical Practice Guidelines catalog?`
     );
     if (!confirmApprove) return;
 
@@ -213,26 +209,26 @@ export function ReviewQueueTab({
       if (data.ok) {
         markRecsAsReviewedLocally(group.recommendations.map((r) => r.rec_id));
         setFeedbackMessage(
-          `✅ Đã phê duyệt và công bố thành công Guideline "${group.guideline_title}" (${group.recommendations.length} khuyến cáo) vào Hướng dẫn Thực hành lâm sàng!`
+          `✅ Successfully approved and published Guideline "${group.guideline_title}" (${group.recommendations.length} recommendations) to Clinical Practice Guidelines!`
         );
         setQueue((prev) => prev.filter((r) => r.guideline_id !== group.guideline_id));
         if (onQueueUpdated) onQueueUpdated();
       } else {
-        setFeedbackMessage(`⚠️ ${data.error || "Có lỗi xảy ra khi phê duyệt Guideline."}`);
+        setFeedbackMessage(`⚠️ ${data.error || "An error occurred while approving the guideline."}`);
       }
     } catch {
-      setFeedbackMessage("⚠️ Lỗi kết nối khi gửi lệnh phê duyệt Guideline.");
+      setFeedbackMessage("⚠️ Network error while approving guideline.");
     } finally {
       setActionLoading(null);
     }
   };
 
   /**
-   * Từ chối toàn bộ một Guideline
+   * Reject an entire guideline
    */
   const handleRejectGuideline = async (group: PendingGuidelineGroup) => {
     const confirmReject = window.confirm(
-      `Bác sĩ có chắc chắn muốn TỪ CHỐI toàn bộ guideline:\n\n"${group.guideline_title}"?\n\nTất cả khuyến cáo sẽ bị loại khỏi hàng đợi duyệt.`
+      `Are you sure you want to REJECT guideline:\n\n"${group.guideline_title}"?\n\nAll recommendations will be removed from the review queue.`
     );
     if (!confirmReject) return;
 
@@ -253,26 +249,26 @@ export function ReviewQueueTab({
       const data = await res.json();
       if (data.ok) {
         markRecsAsReviewedLocally(group.recommendations.map((r) => r.rec_id));
-        setFeedbackMessage(`❌ Đã từ chối Guideline "${group.guideline_title}".`);
+        setFeedbackMessage(`❌ Rejected Guideline "${group.guideline_title}".`);
         setQueue((prev) => prev.filter((r) => r.guideline_id !== group.guideline_id));
         if (onQueueUpdated) onQueueUpdated();
       } else {
-        setFeedbackMessage(`⚠️ ${data.error || "Có lỗi khi từ chối Guideline."}`);
+        setFeedbackMessage(`⚠️ ${data.error || "An error occurred while rejecting guideline."}`);
       }
     } catch {
-      setFeedbackMessage("⚠️ Lỗi kết nối khi gửi lệnh từ chối.");
+      setFeedbackMessage("⚠️ Network error while rejecting guideline.");
     } finally {
       setActionLoading(null);
     }
   };
 
   /**
-   * Phê duyệt toàn bộ tất cả Guidelines đang có trong hàng đợi
+   * Approve all pending guidelines across the entire queue
    */
   const handleApproveAll = async () => {
     if (queue.length === 0) return;
     const confirmApprove = window.confirm(
-      `Bác sĩ có chắc chắn muốn PHÊ DUYỆT TẤT CẢ ${guidelineGroups.length} Guideline (${queue.length} khuyến cáo) vào Hướng dẫn Thực hành chính thức?`
+      `Are you sure you want to APPROVE ALL ${guidelineGroups.length} Guidelines (${queue.length} recommendations) into the official Clinical Practice Guidelines catalog?`
     );
     if (!confirmApprove) return;
 
@@ -292,21 +288,21 @@ export function ReviewQueueTab({
       const data = await res.json();
       if (data.ok) {
         markRecsAsReviewedLocally(queue.map((r) => r.rec_id));
-        setFeedbackMessage(`✅ ${data.message || `Đã phê duyệt toàn bộ ${queue.length} khuyến cáo!`}`);
+        setFeedbackMessage(`✅ ${data.message || `Successfully approved all ${queue.length} recommendations!`}`);
         setQueue([]);
         if (onQueueUpdated) onQueueUpdated();
       } else {
-        setFeedbackMessage(`⚠️ ${data.error || "Có lỗi xảy ra khi phê duyệt toàn bộ."}`);
+        setFeedbackMessage(`⚠️ ${data.error || "An error occurred while approving all recommendations."}`);
       }
     } catch {
-      setFeedbackMessage("⚠️ Lỗi kết nối khi gửi lệnh phê duyệt toàn bộ.");
+      setFeedbackMessage("⚠️ Network error while approving all recommendations.");
     } finally {
       setActionLoading(null);
     }
   };
 
   /**
-   * Dọn dẹp PDF trên Vercel Blob
+   * Cleanup temporary PDF blobs on Vercel Blob
    */
   const handleCleanupPdfs = async () => {
     setCleanupLoading(true);
@@ -327,17 +323,17 @@ export function ReviewQueueTab({
       if (data.ok) {
         setFeedbackMessage(`🧹 ${data.message}`);
       } else {
-        setFeedbackMessage(`⚠️ ${data.error || "Lỗi dọn dẹp kho Vercel Blob."}`);
+        setFeedbackMessage(`⚠️ ${data.error || "Error cleaning up Vercel Blob storage."}`);
       }
     } catch {
-      setFeedbackMessage("⚠️ Lỗi kết nối khi dọn dẹp Vercel Blob.");
+      setFeedbackMessage("⚠️ Network error while cleaning up Vercel Blob.");
     } finally {
       setCleanupLoading(false);
     }
   };
 
   /**
-   * Mở modal chỉnh sửa Guideline metadata
+   * Open edit guideline modal
    */
   const handleOpenEditGuideline = (group: PendingGuidelineGroup) => {
     const docMeta: GuidelineDoc = {
@@ -358,14 +354,15 @@ export function ReviewQueueTab({
       fullTextStatus: "FULL_TEXT_PARSED",
       aiSynthesized: true,
     };
+
     setEditingDocId(group.guideline_id);
-    setEditingGuidelineDoc(docMeta);
     setEditingPracticeChange(null);
+    setEditingGuidelineDoc(docMeta);
     setShowEditModal(true);
   };
 
   /**
-   * Mở modal chỉnh sửa khuyến cáo đơn lẻ
+   * Open edit recommendation modal
    */
   const handleOpenEditRecommendation = (rec: StoredRec) => {
     let currentGrade = "Standard Clinical Practice";
@@ -377,10 +374,10 @@ export function ReviewQueueTab({
 
     const itemDetail: PracticeChangeDetail = {
       id: rec.rec_id,
-      topic: rec.topic || rec.target_population || "Khuyến cáo lâm sàng",
+      topic: rec.topic || rec.target_population || "Clinical Recommendation",
       currentGrade,
       currentText: rec.statement,
-      category: rec.category || "Khuyến cáo chung",
+      category: rec.category || "General Recommendations",
       drivingTrials: rec.driving_trials || [],
       changeType: "NEW",
     };
@@ -391,7 +388,7 @@ export function ReviewQueueTab({
     setShowEditModal(true);
   };
 
-  // Helper cho màu sắc Hội chuyên khoa
+  // Helper for society styling
   const getSocietyStyle = (society: string) => {
     const s = society.toUpperCase();
     if (s.includes("AHA") || s.includes("ASA")) {
@@ -412,7 +409,7 @@ export function ReviewQueueTab({
     return "bg-slate-700 text-white";
   };
 
-  // Helper cho màu sắc COR / LOE
+  // Helper for COR / LOE badges
   const getGradeBadgeStyle = (cor?: string) => {
     if (!cor) return "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-300";
     const c = String(cor).trim();
@@ -446,11 +443,11 @@ export function ReviewQueueTab({
               <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
             </span>
             <h2 className={`text-base font-black uppercase tracking-wide ${darkMode ? "text-white" : "text-slate-900"}`}>
-              GIAO DIỆN PHÊ DUYỆT GUIDELINE TOÀN DIỆN (REVIEW QUEUE)
+              CLINICAL GUIDELINE VERIFICATION &amp; REVIEW QUEUE
             </h2>
           </div>
           <p className={`text-xs mt-1 ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
-            Bác sĩ xem trước toàn bộ cấu trúc Guideline theo từng khối chuyên đề, chỉnh sửa trực tiếp và phê duyệt toàn bộ chỉ với 1 thao tác.
+            Neurologists review structured clinical guideline hierarchies by topic, edit recommendations directly, and verify or publish with one click.
           </p>
         </div>
 
@@ -463,7 +460,7 @@ export function ReviewQueueTab({
               darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200 text-slate-800"
             }`}
           >
-            <option value="ALL">Tất cả Hội chuyên khoa ({guidelineGroups.length} Guideline)</option>
+            <option value="ALL">All Medical Societies ({guidelineGroups.length} Guidelines)</option>
             <option value="AHA">AHA/ASA</option>
             <option value="ESO">ESO</option>
             <option value="AAN">AAN</option>
@@ -479,21 +476,22 @@ export function ReviewQueueTab({
                 : "bg-slate-100 border-slate-200 text-slate-700 hover:bg-slate-200"
             }`}
           >
-            🔄 Tải lại
+            🔄 Refresh Queue
           </button>
 
+          {/* NotebookLM Import Button - Strictly in Review Queue only */}
           {onOpenNotebookLMModal && (
             <button
               onClick={onOpenNotebookLMModal}
-              className={`text-xs px-3 py-1.5 rounded-lg border font-bold transition-all flex items-center gap-1.5 ${
+              className={`text-xs px-3 py-1.5 rounded-lg border font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
                 darkMode
                   ? "bg-amber-950/60 border-amber-800 text-amber-300 hover:bg-amber-900"
                   : "bg-amber-50 border-amber-200 text-amber-800 hover:bg-amber-100"
               }`}
-              title="Nhập và tạo Practice Guideline trực tiếp từ bảng tóm tắt NotebookLM"
+              title="Import and create Practice Guideline directly from NotebookLM summary"
             >
               <span>📝</span>
-              <span>Nhập NotebookLM</span>
+              <span>Import from NotebookLM</span>
             </button>
           )}
 
@@ -502,9 +500,9 @@ export function ReviewQueueTab({
               disabled={actionLoading === "ALL"}
               onClick={handleApproveAll}
               className="text-xs px-3.5 py-1.5 rounded-lg font-black transition-all bg-emerald-600 hover:bg-emerald-700 text-white flex items-center gap-1.5 shadow-sm disabled:opacity-50 cursor-pointer"
-              title="Phê duyệt toàn bộ các guideline đang chờ duyệt vào Hướng dẫn Thực hành lâm sàng"
+              title="Approve and publish all pending guidelines into the active Clinical Practice catalog"
             >
-              <span>{actionLoading === "ALL" ? "Đang xử lý..." : `✓ Phê duyệt tất cả (${queue.length} khuyến cáo)`}</span>
+              <span>{actionLoading === "ALL" ? "Processing..." : `✓ Approve All (${queue.length} recommendations)`}</span>
             </button>
           )}
 
@@ -516,9 +514,9 @@ export function ReviewQueueTab({
                 ? "bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700"
                 : "bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100"
             }`}
-            title="Quét và xóa sạch các tệp PDF tạm trên Vercel Blob để bảo toàn dung lượng"
+            title="Scan and delete temporary PDF blobs on Vercel Blob to conserve storage"
           >
-            <span>🧹 {cleanupLoading ? "Đang xóa..." : "Xóa PDF Blob"}</span>
+            <span>🧹 {cleanupLoading ? "Purging..." : "Purge Blob PDFs"}</span>
           </button>
 
           {onOpenPipelineModal && (
@@ -550,7 +548,7 @@ export function ReviewQueueTab({
         <div className="text-center py-16">
           <div className="animate-spin inline-block w-9 h-9 border-4 border-amber-500 border-t-transparent rounded-full mb-3"></div>
           <p className={`text-xs font-medium ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
-            Đang tải dữ liệu hàng đợi phê duyệt lâm sàng...
+            Loading verification queue...
           </p>
         </div>
       ) : guidelineGroups.length === 0 ? (
@@ -561,10 +559,10 @@ export function ReviewQueueTab({
         >
           <span className="text-4xl mb-3 block">🎉</span>
           <h3 className={`text-base font-bold ${darkMode ? "text-white" : "text-slate-800"}`}>
-            Hàng đợi duyệt hiện đang trống!
+            Verification queue is currently clear!
           </h3>
           <p className={`text-xs mt-1.5 max-w-lg mx-auto ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
-            Tất cả khuyến cáo lâm sàng đã được phê duyệt hoặc tích hợp vào Hướng dẫn Thực hành chính thức. Khi tải lên hoặc phát hiện guideline mới, cấu trúc hoàn chỉnh sẽ xuất hiện tại đây để bác sĩ rà soát.
+            All recommendations have been verified and published to the Clinical Practice Guidelines catalog. When new guidelines are extracted or imported, they will appear here for physician review.
           </p>
         </div>
       ) : (
@@ -572,6 +570,9 @@ export function ReviewQueueTab({
           {guidelineGroups.map((group) => {
             const isExpanded = expandedGuidelines[group.guideline_id] ?? true;
             const isProcessingThis = actionLoading === group.guideline_id;
+            const isGroupAha = group.society?.toUpperCase().includes("AHA") || group.society?.toUpperCase().includes("ASA");
+            const isGroupEso = group.society?.toUpperCase().includes("ESO");
+            const viewMode = groupViewModes[group.guideline_id] ?? "table";
 
             return (
               <div
@@ -582,7 +583,7 @@ export function ReviewQueueTab({
                     : "bg-white border-slate-200/90 shadow-sm hover:border-slate-300"
                 }`}
               >
-                {/* 1. Guideline Header Card (Styled exactly like Practice Guidelines) */}
+                {/* 1. Guideline Header Card */}
                 <div className="p-4 sm:p-5">
                   <div className="flex flex-wrap items-center justify-between gap-3 mb-2.5">
                     {/* Society & Year & Status Badges */}
@@ -596,10 +597,10 @@ export function ReviewQueueTab({
                         {group.year || 2024}
                       </span>
                       <span className="px-2.5 py-0.5 rounded-full text-[10.5px] font-black bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30">
-                        ⏳ ĐANG CHỜ PHÊ DUYỆT ({group.recommendations.length} khuyến cáo)
+                        ⏳ PENDING REVIEW ({group.recommendations.length} recommendations)
                       </span>
                       <span className="px-2.5 py-0.5 rounded-full text-[10.5px] font-bold bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">
-                        🏷️ {group.categories.length} Khối chuyên đề
+                        🏷️ {group.categories.length} Sections
                       </span>
                     </div>
 
@@ -610,9 +611,9 @@ export function ReviewQueueTab({
                         disabled={isProcessingThis}
                         onClick={() => handleOpenEditGuideline(group)}
                         className="px-2.5 py-1 rounded text-xs font-bold bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 flex items-center gap-1 cursor-pointer transition-colors"
-                        title="Chỉnh sửa tiêu đề, năm hoặc hội của Guideline này"
+                        title="Edit title, year, or society for this guideline"
                       >
-                        <span>✏️ Sửa Guideline</span>
+                        <span>✏️ Edit Guideline</span>
                       </button>
 
                       <button
@@ -620,9 +621,9 @@ export function ReviewQueueTab({
                         disabled={isProcessingThis}
                         onClick={() => handleRejectGuideline(group)}
                         className="px-2.5 py-1 rounded text-xs font-bold bg-rose-50 hover:bg-rose-100 dark:bg-rose-950/40 dark:hover:bg-rose-900/60 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800 flex items-center gap-1 cursor-pointer transition-colors"
-                        title="Từ chối Guideline này và loại bỏ khỏi hàng đợi"
+                        title="Reject this guideline and dismiss all recommendations"
                       >
-                        <span>✕ Từ chối</span>
+                        <span>✕ Reject</span>
                       </button>
 
                       <button
@@ -630,9 +631,9 @@ export function ReviewQueueTab({
                         disabled={isProcessingThis}
                         onClick={() => handleApproveGuideline(group)}
                         className="px-3.5 py-1 rounded-lg text-xs font-black bg-emerald-600 hover:bg-emerald-700 text-white shadow-xs flex items-center gap-1.5 cursor-pointer transition-all disabled:opacity-50"
-                        title="Phê duyệt toàn bộ guideline này và công bố vào Hướng dẫn Thực hành"
+                        title="Approve all recommendations in this guideline and publish to catalog"
                       >
-                        <span>{isProcessingThis ? "Đang xử lý..." : "✓ Phê duyệt Guideline"}</span>
+                        <span>{isProcessingThis ? "Processing..." : "✓ Approve & Publish"}</span>
                       </button>
                     </div>
                   </div>
@@ -650,17 +651,17 @@ export function ReviewQueueTab({
                     <span className="text-xs font-bold text-slate-600 dark:text-slate-300 flex items-center gap-1.5">
                       <span>📋</span>
                       <span>
-                        {group.recommendations.length} Khuyến cáo lâm sàng phân loại theo {group.categories.length} khối chuyên đề
+                        {group.recommendations.length} Clinical recommendations classified into {group.categories.length} clinical domains
                       </span>
                     </span>
 
                     <span className="text-xs font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1">
-                      <span>{isExpanded ? "Thu gọn ▴" : "Xem toàn bộ khuyến cáo & phê duyệt ▾"}</span>
+                      <span>{isExpanded ? "Collapse ▴" : "View recommendations & verify ▾"}</span>
                     </span>
                   </div>
                 </div>
 
-                {/* 2. Expanded Guideline Body (Exact Presentation as Practice Guidelines) */}
+                {/* 2. Expanded Guideline Body */}
                 {isExpanded && (
                   <div className="px-4 sm:px-5 pb-5 pt-2 border-t border-slate-200/60 dark:border-slate-800/80 space-y-5">
                     {/* Notice & Human-in-the-Loop Workflow Callout */}
@@ -668,7 +669,7 @@ export function ReviewQueueTab({
                       <div className="flex items-center gap-2">
                         <span className="text-base">💡</span>
                         <span>
-                          Bác sĩ có thể chỉnh sửa bất kỳ khuyến cáo nào bằng cách bấm <strong>✏️ Sửa</strong>. Sau khi hoàn tất kiểm tra, bấm nút <strong>Phê duyệt toàn bộ</strong> ở dưới để đưa Guideline vào Hướng dẫn Thực hành lâm sàng.
+                          Physicians can modify any recommendation by clicking <strong>✏️ Edit</strong>. Once verified, click <strong>Approve &amp; Publish Entire Guideline</strong> below to push to the live Clinical Practice catalog.
                         </span>
                       </div>
                       <span className="text-[11px] font-mono font-bold text-blue-700 dark:text-blue-400">
@@ -678,123 +679,207 @@ export function ReviewQueueTab({
 
                     {/* Full Structured Recommendations by Category */}
                     <div className="space-y-4">
-                      <div className="flex flex-wrap items-center justify-between gap-2">
+                      <div className="flex flex-wrap items-center justify-between gap-2 pb-1">
                         <div className="flex items-center gap-2">
                           <span className="px-2 py-0.5 rounded-full text-[10.5px] font-black bg-blue-500/15 text-blue-600 dark:text-blue-400 border border-blue-500/30">
-                            📋 TOÀN BỘ KHUYẾN CÁO LÂM SÀNG THEO KHỐI CHUYÊN ĐỀ
+                            📋 CLINICAL RECOMMENDATIONS ({group.recommendations.length})
                           </span>
                           <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400">
-                            ({group.recommendations.length} khuyến cáo)
+                            {isGroupAha ? "Chuẩn AHA/ASA (Hình 1 & 2)" : isGroupEso ? "Chuẩn ESO GRADE (Hình 3)" : "Khuyến cáo lâm sàng"}
                           </span>
                         </div>
 
-                        <span className="text-[10.5px] text-slate-400 italic">
-                          Tự động phân nhóm theo các phần chuyên khoa chính thức của guideline
-                        </span>
-                      </div>
-
-                      <div className="space-y-4">
-                        {group.categories.map((category) => (
-                          <div
-                            key={category.name}
-                            className={`p-3.5 sm:p-4 rounded-xl border text-xs leading-relaxed space-y-3 ${
-                              darkMode
-                                ? "bg-slate-900/40 border-slate-800"
-                                : "bg-slate-50/80 border-slate-200/80"
+                        {/* View Switcher: Table vs Cards */}
+                        <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-900 p-0.5 rounded-lg border border-slate-200 dark:border-slate-800">
+                          <button
+                            type="button"
+                            onClick={() => setGroupViewModes((prev) => ({ ...prev, [group.guideline_id]: "table" }))}
+                            className={`px-2.5 py-1 rounded text-xs font-bold transition-all cursor-pointer ${
+                              viewMode === "table"
+                                ? "bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-xs"
+                                : "text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
                             }`}
                           >
-                            {/* Category Header */}
-                            <div className="flex items-center justify-between gap-2 border-b pb-2 border-slate-200/60 dark:border-slate-800/60">
-                              <div className="flex items-center gap-1.5">
-                                <span className="text-amber-500">🏷️</span>
-                                <span className="font-extrabold uppercase tracking-wide text-slate-800 dark:text-slate-200 text-xs">
-                                  {category.name}
+                            📋 {isGroupAha ? "Bảng AHA (Hình 2)" : isGroupEso ? "Bảng ESO (Hình 3)" : "Bảng chuẩn"}
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => setGroupViewModes((prev) => ({ ...prev, [group.guideline_id]: "cards" }))}
+                            className={`px-2.5 py-1 rounded text-xs font-bold transition-all cursor-pointer ${
+                              viewMode === "cards"
+                                ? "bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-xs"
+                                : "text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
+                            }`}
+                          >
+                            🗂️ Dạng thẻ
+                          </button>
+                        </div>
+                      </div>
+
+                      {viewMode === "table" ? (
+                        isGroupAha ? (
+                          <AhaGuidelineTable
+                            title={`Recommendations: ${group.guideline_title}`}
+                            sections={group.categories.map((c) => ({
+                              sectionTitle: c.name,
+                              recommendations: c.items.map((it) => ({
+                                id: it.rec_id,
+                                cor: it.cor || "2a",
+                                loe: it.loe || "B-NR",
+                                statement: it.statement,
+                                drivingTrials: it.driving_trials,
+                              })),
+                            }))}
+                            darkMode={darkMode}
+                            allowEdit={true}
+                            onEditRec={(r) => {
+                              const item = group.recommendations.find((x) => x.rec_id === r.id);
+                              if (item) handleOpenEditRecommendation(item);
+                            }}
+                          />
+                        ) : isGroupEso ? (
+                          <EsoGuidelineTable
+                            title={group.guideline_title}
+                            picoItems={group.categories.map((c, cIdx) => ({
+                              picoNumber: cIdx + 1,
+                              picoQuestion: c.name,
+                              recommendations: c.items.map((it, itIdx) => ({
+                                number: itIdx + 1,
+                                statement: it.statement,
+                                qualityOfEvidence: it.quality_of_evidence || "Moderate",
+                                strengthOfRecommendation: it.strength_of_recommendation || "Weak for intervention",
+                              })),
+                              expertConsensusStatement: c.items.find((x) => x.verbatim_quote)?.verbatim_quote,
+                              voting: c.items.find((x) => x.voting)?.voting || "Vote: 10/10",
+                            }))}
+                            darkMode={darkMode}
+                            allowEdit={true}
+                          />
+                        ) : (
+                          <AhaGuidelineTable
+                            title={`Recommendations: ${group.guideline_title}`}
+                            sections={group.categories.map((c) => ({
+                              sectionTitle: c.name,
+                              recommendations: c.items.map((it) => ({
+                                id: it.rec_id,
+                                cor: it.cor || "2a",
+                                loe: it.loe || "B-NR",
+                                statement: it.statement,
+                                drivingTrials: it.driving_trials,
+                              })),
+                            }))}
+                            darkMode={darkMode}
+                            allowEdit={true}
+                            onEditRec={(r) => {
+                              const item = group.recommendations.find((x) => x.rec_id === r.id);
+                              if (item) handleOpenEditRecommendation(item);
+                            }}
+                          />
+                        )
+                      ) : (
+                        <div className="space-y-4">
+                          {group.categories.map((category) => (
+                            <div
+                              key={category.name}
+                              className={`p-3.5 sm:p-4 rounded-xl border text-xs leading-relaxed space-y-3 ${
+                                darkMode
+                                  ? "bg-slate-900/40 border-slate-800"
+                                  : "bg-slate-50/80 border-slate-200/80"
+                              }`}
+                            >
+                              {/* Category Header */}
+                              <div className="flex items-center justify-between gap-2 border-b pb-2 border-slate-200/60 dark:border-slate-800/60">
+                                <div className="flex items-center gap-1.5">
+                                  <span className="text-amber-500">🏷️</span>
+                                  <span className="font-extrabold uppercase tracking-wide text-slate-800 dark:text-slate-200 text-xs">
+                                    {category.name}
+                                  </span>
+                                </div>
+                                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                                  {category.items.length} recommendations
                                 </span>
                               </div>
-                              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
-                                {category.items.length} khuyến cáo
-                              </span>
-                            </div>
 
-                            {/* Recommendations inside Category */}
-                            <div className="space-y-2.5">
-                              {category.items.map((item) => (
-                                <div
-                                  key={item.rec_id}
-                                  className={`p-3.5 rounded-lg border text-xs space-y-2.5 transition-all ${
-                                    darkMode
-                                      ? "bg-slate-950/80 border-slate-800 hover:border-slate-700"
-                                      : "bg-white border-slate-200 shadow-2xs hover:border-slate-300"
-                                  }`}
-                                >
-                                  {/* Topic & Grade & Edit Button */}
-                                  <div className="flex flex-wrap items-center justify-between gap-2">
-                                    <div className="flex items-center gap-2">
-                                      <span className="font-extrabold text-slate-900 dark:text-slate-100">
-                                        {item.topic || item.target_population || "Khuyến cáo lâm sàng"}
-                                      </span>
-                                      {item.page_num && (
-                                        <span className="text-[10px] font-mono text-slate-400">
-                                          (Trang {item.page_num})
+                              {/* Recommendations inside Category */}
+                              <div className="space-y-2.5">
+                                {category.items.map((item) => (
+                                  <div
+                                    key={item.rec_id}
+                                    className={`p-3.5 rounded-lg border text-xs space-y-2.5 transition-all ${
+                                      darkMode
+                                        ? "bg-slate-950/80 border-slate-800 hover:border-slate-700"
+                                        : "bg-white border-slate-200 shadow-2xs hover:border-slate-300"
+                                    }`}
+                                  >
+                                    {/* Topic & Grade & Edit Button */}
+                                    <div className="flex flex-wrap items-center justify-between gap-2">
+                                      <div className="flex items-center gap-2">
+                                        <span className="font-extrabold text-slate-900 dark:text-slate-100">
+                                          {item.topic || item.target_population || "Clinical Recommendation"}
                                         </span>
-                                      )}
-                                    </div>
+                                        {item.page_num && (
+                                          <span className="text-[10px] font-mono text-slate-400">
+                                            (Page {item.page_num})
+                                          </span>
+                                        )}
+                                      </div>
 
-                                    <div className="flex items-center gap-1.5">
-                                      {item.cor && (
-                                        <span
-                                          className={`font-mono text-[10.5px] font-black px-2 py-0.5 rounded border ${getGradeBadgeStyle(
-                                            item.cor
-                                          )}`}
+                                      <div className="flex items-center gap-1.5">
+                                        {item.cor && (
+                                          <span
+                                            className={`font-mono text-[10.5px] font-black px-2 py-0.5 rounded border ${getGradeBadgeStyle(
+                                              item.cor
+                                            )}`}
+                                          >
+                                            Class {item.cor} {item.loe ? `, Level ${item.loe}` : ""}
+                                          </span>
+                                        )}
+
+                                        <button
+                                          type="button"
+                                          onClick={() => handleOpenEditRecommendation(item)}
+                                          className="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-amber-500/20 hover:text-amber-600 transition-colors cursor-pointer border border-slate-200 dark:border-slate-700"
+                                          title="Edit statement, COR/LOE grading, or section"
                                         >
-                                          Class {item.cor} {item.loe ? `, Level ${item.loe}` : ""}
+                                          <span>✏️ Edit</span>
+                                        </button>
+                                      </div>
+                                    </div>
+
+                                    {/* Recommendation Statement */}
+                                    <p className="text-slate-800 dark:text-slate-200 leading-relaxed font-normal">
+                                      {item.statement}
+                                    </p>
+
+                                    {/* Sub-details: Target Population & Driving Trials */}
+                                    <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-100 dark:border-slate-800/60 text-[11px]">
+                                      {item.target_population && (
+                                        <span className="text-slate-500 dark:text-slate-400">
+                                          <strong className="text-slate-700 dark:text-slate-300">Target Population:</strong>{" "}
+                                          {item.target_population}
                                         </span>
                                       )}
 
-                                      <button
-                                        type="button"
-                                        onClick={() => handleOpenEditRecommendation(item)}
-                                        className="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-amber-500/20 hover:text-amber-600 transition-colors cursor-pointer border border-slate-200 dark:border-slate-700"
-                                        title="Chỉnh sửa nội dung, phân loại COR/LOE hoặc chuyên mục"
-                                      >
-                                        <span>✏️ Sửa</span>
-                                      </button>
+                                      {item.driving_trials && item.driving_trials.length > 0 && (
+                                        <span className="text-slate-500 dark:text-slate-400">
+                                          <strong className="text-slate-700 dark:text-slate-300">Key Trials:</strong>{" "}
+                                          {item.driving_trials.join(", ")}
+                                        </span>
+                                      )}
                                     </div>
                                   </div>
-
-                                  {/* Recommendation Statement */}
-                                  <p className="text-slate-800 dark:text-slate-200 leading-relaxed font-normal">
-                                    {item.statement}
-                                  </p>
-
-                                  {/* Sub-details: Target Population & Driving Trials */}
-                                  <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-100 dark:border-slate-800/60 text-[11px]">
-                                    {item.target_population && (
-                                      <span className="text-slate-500 dark:text-slate-400">
-                                        <strong className="text-slate-700 dark:text-slate-300">Đối tượng:</strong>{" "}
-                                        {item.target_population}
-                                      </span>
-                                    )}
-
-                                    {item.driving_trials && item.driving_trials.length > 0 && (
-                                      <span className="text-slate-500 dark:text-slate-400">
-                                        <strong className="text-slate-700 dark:text-slate-300">Thử nghiệm:</strong>{" "}
-                                        {item.driving_trials.join(", ")}
-                                      </span>
-                                    )}
-                                  </div>
-                                </div>
-                              ))}
+                                ))}
+                              </div>
                             </div>
-                          </div>
-                        ))}
-                      </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
 
                     {/* Bottom Action Footer for the Whole Guideline */}
                     <div className="pt-3 border-t border-slate-200/60 dark:border-slate-800/80 flex flex-wrap items-center justify-between gap-3">
                       <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-                        <span>🛡️ Sau khi phê duyệt, Guideline sẽ chuyển ngay sang tab Hướng dẫn Thực hành.</span>
+                        <span>🛡️ Upon verification, this guideline will immediately appear in the Practice Guidelines tab.</span>
                       </div>
 
                       <div className="flex items-center gap-2">
@@ -804,7 +889,7 @@ export function ReviewQueueTab({
                           onClick={() => handleRejectGuideline(group)}
                           className="px-3 py-2 rounded-lg text-xs font-bold text-rose-700 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/40 hover:bg-rose-100 border border-rose-200 dark:border-rose-900 cursor-pointer transition-colors"
                         >
-                          ✕ Từ chối Guideline này
+                          ✕ Reject Guideline
                         </button>
 
                         <button
@@ -813,7 +898,7 @@ export function ReviewQueueTab({
                           onClick={() => handleApproveGuideline(group)}
                           className="px-4 py-2 rounded-lg text-xs font-black bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm flex items-center gap-1.5 cursor-pointer transition-all disabled:opacity-50"
                         >
-                          <span>{isProcessingThis ? "Đang phê duyệt..." : `✓ Phê duyệt & Công bố toàn bộ Guideline (${group.recommendations.length} khuyến cáo)`}</span>
+                          <span>{isProcessingThis ? "Approving..." : `✓ Approve & Publish Guideline (${group.recommendations.length} recommendations)`}</span>
                         </button>
                       </div>
                     </div>
@@ -839,7 +924,7 @@ export function ReviewQueueTab({
         onSuccess={() => {
           fetchQueue();
           if (onQueueUpdated) onQueueUpdated();
-          setFeedbackMessage("✅ Đã lưu cập nhật chỉnh sửa thành công!");
+          setFeedbackMessage("✅ Changes saved successfully!");
         }}
         darkMode={darkMode}
       />

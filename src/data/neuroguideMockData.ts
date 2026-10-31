@@ -678,37 +678,48 @@ export const MOCK_GUIDELINE_DOCS: GuidelineDoc[] = [
     linkedScenarioIds: ["ais-ivt-tenecteplase-4.5h", "ais-evt-extended-window-6-24h", "ais-bp-management-acute-phase", "ais-dapt-minor-stroke", "ais-evt-large-core-aspects-3-5"],
     fullTextStatus: "FULL_TEXT_PARSED"
   },
-  {
-    id: "eso-sap-2024",
+  {    id: "eso-sap-2024",
     society: "ESO",
     year: 2024,
     subspecialty: "Stroke",
     subspecialties: ["Stroke"],
-    title: "European Stroke Organisation (ESO) Guidelines on Stroke-Associated Pneumonia",
-    officialUrl: "https://journals.sagepub.com/doi/eso-sap-2024",
+    title: "European Stroke Organisation (ESO) Guidelines on Blood Pressure Management in Acute Stroke",
+    officialUrl: "https://journals.sagepub.com/doi/eso-bp-2024",
     journalTarget: "European Stroke Journal",
     documentType: "Clinical Practice Guideline",
     publishDate: "2024-06-15",
-    executiveSummary: "Hướng dẫn thực hành lâm sàng của Hội Đột quỵ Châu Âu (ESO) dựa trên phương pháp luận GRADE về chẩn đoán, phân tầng nguy cơ và dự phòng viêm phổi liên quan đột quỵ (SAP).",
-    executiveSummaryVi: "Khuyến cáo sử dụng thang điểm lâm sàng hoặc dấu ấn sinh học có giá trị dự đoán nguy cơ viêm phổi ở bệnh nhân đột quỵ nằm viện không thở máy trong 7 ngày đầu, kèm bỏ phiếu đồng thuận chuyên gia 8/8.",
+    executiveSummary: "Hướng dẫn thực hành lâm sàng của Hội Đột quỵ Châu Âu (ESO) dựa trên phương pháp luận GRADE về kiểm soát huyết áp trong giai đoạn cấp đột quỵ thiếu máu não và xuất huyết não.",
+    executiveSummaryVi: "Khuyến cáo chống hạ huyết áp thường quy trước viện, duy trì HA < 185/110 mmHg trước tiêu sợi huyết và bỏ phiếu đồng thuận chuyên gia 10/10.",
     allPracticeChanges: [
       {
-        id: "eso-2024-sap-pico5",
-        category: "Complication Prevention",
-        topic: "PICO 5: Biomarkers & Clinical Prediction Scores for SAP",
+        id: "eso-2024-bp-pico1",
+        category: "Pre-hospital BP Lowering",
+        topic: "PICO 1 In patients with suspected acute stroke, does pre-hospital blood pressure lowering with any drug, compared to no drug, improve outcome?",
         changeType: "NEW",
-        currentGrade: "GRADE Weak for intervention (Evidence: Very Low, Voting: 8/8)",
-        currentText: "In hospitalised adults with acute ischaemic or haemorrhagic stroke (non-ventilated) within 7 days of stroke symptom onset, we suggest using validated clinical prediction scores or biomarkers to identify patients at increased risk of SAP and to better target preventive standard measures.",
-        drivingTrials: ["PRECIOUS (Lancet Neurol 2023)"]
+        currentGrade: "GRADE Strong against intervention (Evidence: Moderate, Voting: 10/10)",
+        currentText: "In patients with suspected stroke, we suggest against routine blood pressure lowering in the pre-hospital setting.",
+        previousText: "Due to the potential harm to patients with ICH, treatment with transdermal glyceryl trinitrate should be avoided. Intravenous urapidil or labetalol could be the treatment of choice.",
+        drivingTrials: ["RIGHT-2 (Lancet 2019)", "MR ASAP (Lancet Neurol 2020)"]
       },
       {
-        id: "eso-2024-prophylactic-antibiotics",
-        category: "Infection Control",
-        topic: "PICO 1: Routine Prophylactic Antibiotics for Stroke Patients",
-        changeType: "REVISED",
-        currentGrade: "GRADE Strong against intervention (Evidence: High)",
-        currentText: "We recommend against the routine use of prophylactic systemic antibiotics in hospitalised patients with acute stroke to prevent stroke-associated pneumonia or improve clinical outcome.",
-        drivingTrials: ["PASS (Lancet 2015)", "PANTHER (Stroke 2016)"]
+        id: "eso-2024-bp-pico2",
+        category: "In-Hospital Non-Reperfused AIS BP",
+        topic: "PICO 2 In hospitalised patients with acute ischaemic stroke not treated with reperfusion therapies, does blood pressure lowering with any vasodepressor drug, compared to no drug, improve outcome?",
+        changeType: "NEW",
+        currentGrade: "GRADE Weak against intervention (Evidence: Moderate, Voting: 10/10)",
+        currentText: "In hospitalised patients with acute ischaemic stroke and blood pressure < 220/110 mmHg not treated with intravenous thrombolysis or mechanical thrombectomy, we suggest against the routine use of blood pressure-lowering agents at least in the first 24 h following symptom onset, unless this is necessary for a specific comorbid condition that requires blood pressure lowering.",
+        previousText: "In hospitalised patients with acute ischaemic stroke and blood pressure > 220/120 mmHg not treated with intravenous thrombolysis or mechanical thrombectomy, careful blood pressure reduction (<15% systolic blood pressure reduction in 24 h) is reasonable and likely to be safe. No specific blood pressure-lowering agent can be recommended.",
+        drivingTrials: ["ENOS (Lancet 2015)", "SCAST (Lancet 2011)"]
+      },
+      {
+        id: "eso-2024-bp-pico3",
+        category: "IV Thrombolysis BP Targets",
+        topic: "PICO 3 In hospitalised patients with acute ischaemic stroke and undergoing intravenous thrombolysis (with or without mechanical thrombectomy), do blood pressure-lowering therapies compared to control improve outcome?",
+        changeType: "NEW",
+        currentGrade: "GRADE Weak for intervention (Evidence: Very low, Voting: 10/10)",
+        currentText: "In hospitalised patients with acute ischaemic stroke and undergoing intravenous thrombolysis (with or without mechanical thrombectomy), we suggest maintaining blood pressure below 185/110 mmHg before bolus, and below 180/105 mmHg after bolus and for 24 h. No specific blood pressure-lowering agent can be recommended.",
+        previousText: "Special care should be given to avoid hypotensive episodes during and after mechanical thrombectomy which correlate with poorer functional outcomes.",
+        drivingTrials: ["ENCHANTED (Lancet 2019)", "BEST-II (JAMA 2023)"]
       }
     ],
     linkedScenarioIds: ["ais-neuro-icu-infection-prevention"],

@@ -293,9 +293,9 @@ export function PipelineModal({
 
       if (!streamResponse.ok) {
         if (streamResponse.status === 413) {
-          setErrorMessage("Tệp tin vượt quá giới hạn tải lên (4.5 MB). Vui lòng thử nén tệp tin hoặc giảm số trang PDF.");
+          setErrorMessage("File exceeds the upload limit (4.5 MB). Please compress the file or reduce the PDF page range.");
         } else if (streamResponse.status === 401) {
-          setErrorMessage("Phiên làm việc Quản trị viên (Admin) đã hết hạn. Vui lòng đăng nhập lại mật mã Admin.");
+          setErrorMessage("Administrator session has expired. Please sign in again with the Admin password.");
         } else {
           setErrorMessage(`Server returned HTTP ${streamResponse.status}`);
         }
@@ -367,13 +367,13 @@ export function PipelineModal({
 
       if (!gotTerminalStage) {
         if (totalExtracted > 0) {
-          setResultMessage(`✅ Đã bóc tách thành công ${totalExtracted} khuyến cáo lâm sàng.`);
+          setResultMessage(`✅ Successfully extracted ${totalExtracted} clinical recommendations.`);
           onSuccess();
           setTimeout(() => {
             onClose();
           }, 2000);
         } else {
-          setErrorMessage("Kết nối bóc tách AI bị ngắt quãng hoặc quá thời gian xử lý (Timeout). Vui lòng thử lại.");
+          setErrorMessage("AI extraction stream was interrupted or timed out. Please try again.");
         }
       }
     } catch (submitErr) {
@@ -451,7 +451,7 @@ export function PipelineModal({
           <div className="mb-4 p-2.5 rounded-xl border border-amber-500/30 bg-amber-500/10 flex items-center justify-between gap-2">
             <div className="flex items-center gap-2 text-xs text-amber-700 dark:text-amber-300">
               <span>📝</span>
-              <span>Có tài liệu hoặc bảng tóm tắt từ <strong>NotebookLM</strong>?</span>
+              <span>Have notes or markdown tables from <strong>NotebookLM</strong>?</span>
             </div>
             <button
               type="button"
@@ -461,7 +461,7 @@ export function PipelineModal({
               }}
               className="px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-500 text-white hover:bg-amber-600 transition-colors whitespace-nowrap cursor-pointer"
             >
-              Nhập ngay
+              Import NotebookLM
             </button>
           </div>
         )}
@@ -670,7 +670,7 @@ export function PipelineModal({
                 onClick={onClose}
                 className="px-4 py-2 text-xs font-bold rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer"
               >
-                Hủy
+                Cancel
               </button>
             )}
             <button
@@ -681,11 +681,11 @@ export function PipelineModal({
               {isLoading ? (
                 <>
                   <span className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                  Đang phân tích trực tiếp...
+                  Streaming AI Analysis...
                 </>
               ) : (
                 <>
-                  <span>⚡</span> Bắt đầu bóc tách AI
+                  <span>⚡</span> Start AI Extraction
                 </>
               )}
             </button>
