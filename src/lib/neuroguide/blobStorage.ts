@@ -189,8 +189,11 @@ export function mergeGuidelines(
   dynamicItems.forEach(addDoc);
 
   const result = Array.from(new Set(titleMap.values()));
-  // Sort descending by publish year and date
-  result.sort((a, b) => (b.publishDate || `${b.year}-01-01`).localeCompare(a.publishDate || `${a.year}-01-01`));
+  // Tự động sắp xếp: Thứ tự năm giảm dần (mới nhất) -> Thứ tự Society theo bảng chữ cái A-Z
+  result.sort((a, b) => {
+    if (b.year !== a.year) return b.year - a.year;
+    return (a.society || "").localeCompare(b.society || "");
+  });
   return result;
 }
 

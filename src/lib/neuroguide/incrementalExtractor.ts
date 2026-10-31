@@ -13,6 +13,8 @@ export interface IncrementalRec {
   page_num: number;
   statement: string;
   approval_status: "PENDING_REVIEW";
+  category?: string;
+  topic?: string;
   cor?: string;
   cor_label?: string;
   loe?: string;
@@ -324,7 +326,7 @@ Extract as many discrete, authentic clinical recommendations as possible (target
 For each recommendation:
 - rec_index: number
 - page_num: approximate page number where this recommendation is located
-- section: e.g. "1. What is New", "Primary Prevention", "Lifestyle & Risk Factors", "Blood Pressure"
+- category: The major clinical category/domain (e.g. "Patient Assessment & Social Determinants", "Diet Quality & Nutrition", "Physical Activity", "Weight & Obesity", "Blood Pressure", "Lipids", "Blood Sugar / Diabetes", "Carotid Artery Stenosis", "Reperfusion", "Neuroimaging", "Secondary Prevention", etc.)
 - topic: specific clinical condition or target
 - cor: official Class of Recommendation (e.g. "1", "2a", "2b", "3: Harm", "3: No Benefit")
 - loe: official Level of Evidence (e.g. "A", "B-R", "B-NR", "C-LD", "C-EO")
@@ -339,7 +341,7 @@ Respond strictly in valid JSON matching this schema:
     {
       "rec_index": 1,
       "page_num": 5,
-      "section": "string",
+      "category": "string",
       "topic": "string",
       "cor": "1",
       "loe": "A",
@@ -357,6 +359,7 @@ Respond strictly in valid JSON matching this schema:
       recommendations?: Array<{
         rec_index?: number;
         page_num?: number;
+        category?: string;
         section?: string;
         topic?: string;
         cor?: string;
@@ -393,6 +396,8 @@ Respond strictly in valid JSON matching this schema:
         guideline_id: docId,
         grading_system: society.includes("ESO") ? "GRADE" : "ACC/AHA",
         page_num: r.page_num || 1,
+        category: (r.category || r.section || "Khuyến cáo lâm sàng").trim(),
+        topic: (r.topic || "Khuyến cáo thực hành").trim(),
         statement: r.statement || "",
         approval_status: "PENDING_REVIEW" as const,
         cor: r.cor ? String(r.cor).trim() : "1",
@@ -444,6 +449,7 @@ Extract additional discrete clinical recommendations from specific management se
 - Target clinical numbers and thresholds (Blood Pressure targets, LDL-C targets, HbA1c goals, timing windows)
 - Diagnostic imaging, screening protocols, and patient monitoring
 Target extracting 10 to 25 additional discrete recommendations not covered in broad overviews.
+Ensure every recommendation has a clear clinical "category" (e.g. "Blood Pressure & Hypertension", "Lipid Management", "Blood Sugar & Diabetes", "Antiplatelet Therapy", "Carotid Artery Stenosis", "Lifestyle & Diet", etc.) and specific "topic".
 
 Respond strictly in valid JSON matching this schema:
 {
@@ -451,7 +457,7 @@ Respond strictly in valid JSON matching this schema:
     {
       "rec_index": 1,
       "page_num": 15,
-      "section": "string",
+      "category": "string",
       "topic": "string",
       "cor": "1, 2a, 2b, or 3",
       "loe": "A, B-R, B-NR, C-LD, or C-EO",
@@ -469,6 +475,7 @@ Respond strictly in valid JSON matching this schema:
       recommendations?: Array<{
         rec_index?: number;
         page_num?: number;
+        category?: string;
         section?: string;
         topic?: string;
         cor?: string;
@@ -505,6 +512,8 @@ Respond strictly in valid JSON matching this schema:
         guideline_id: docId,
         grading_system: society.includes("ESO") ? "GRADE" : "ACC/AHA",
         page_num: r.page_num || 20,
+        category: (r.category || r.section || "Phác đồ & Điều trị chuyên khoa").trim(),
+        topic: (r.topic || "Khuyến cáo điều trị").trim(),
         statement: r.statement || "",
         approval_status: "PENDING_REVIEW" as const,
         cor: r.cor ? String(r.cor).trim() : "2a",

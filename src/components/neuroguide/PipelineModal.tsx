@@ -7,6 +7,7 @@ interface PipelineModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSuccess: () => void;
+  onOpenNotebookLM?: () => void;
   darkMode: boolean;
 }
 
@@ -18,7 +19,13 @@ interface StreamRec {
   page_num?: number;
 }
 
-export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: PipelineModalProps) {
+export function PipelineModal({
+  isOpen,
+  onClose,
+  onSuccess,
+  onOpenNotebookLM,
+  darkMode,
+}: PipelineModalProps) {
   const [mode, setMode] = useState<"MANUAL" | "DISCOVER">("MANUAL");
   const [url, setUrl] = useState<string>("");
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -439,6 +446,25 @@ export function PipelineModal({ isOpen, onClose, onSuccess, darkMode }: Pipeline
             <span>📡</span> Multi-Society Radar Scan
           </button>
         </div>
+
+        {onOpenNotebookLM && (
+          <div className="mb-4 p-2.5 rounded-xl border border-amber-500/30 bg-amber-500/10 flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2 text-xs text-amber-700 dark:text-amber-300">
+              <span>📝</span>
+              <span>Có tài liệu hoặc bảng tóm tắt từ <strong>NotebookLM</strong>?</span>
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                onClose();
+                onOpenNotebookLM();
+              }}
+              className="px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-500 text-white hover:bg-amber-600 transition-colors whitespace-nowrap cursor-pointer"
+            >
+              Nhập ngay
+            </button>
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="space-y-3.5">
           {/* Medical Society */}

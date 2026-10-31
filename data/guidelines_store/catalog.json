@@ -11,5 +11,29 @@
     "rejected_count": 0,
     "grading_system": "AHA_ACC",
     "updated_at": "2026-01-26T08:30:00Z"
+  },
+  "aha-primary-prevention-2024": {
+    "guideline_id": "aha-primary-prevention-2024",
+    "title": "2024 AHA/ASA Guideline for the Primary Prevention of Stroke",
+    "society": "AHA/ASA",
+    "year": 2024,
+    "latest_version": 1,
+    "total_recommendations": 83,
+    "pending_count": 83,
+    "approved_count": 0,
+    "rejected_count": 0,
+    "grading_system": "ACC/AHA",
+    "updated_at": "2026-10-31T03:41:54.540Z"
+  },
+  "ahaasa-2023-aha-asa-guideline-for-the-management-of-patie": {
+    "guideline_id": "ahaasa-2023-aha-asa-guideline-for-the-management-of-patie",
+    "title": "2023 AHA/ASA Guideline for the Management of Patients With Aneurysmal Subarachnoid Hemorrhage",
+    "society": "AHA/ASA",
+    "year": 2023,
+    "total_recommendations": 36,
+    "pending_count": 36,
+    "approved_count": 0,
+    "rejected_count": 0,
+    "updated_at": "2026-10-31T03:54:02.087Z"
   }
 }

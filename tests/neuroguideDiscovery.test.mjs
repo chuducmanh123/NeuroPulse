@@ -126,9 +126,9 @@ describe("Vercel Blob & Local Storage Merging Engine", () => {
 
     const merged = mergeGuidelines(dynamicDocs, staticDocs);
     assert.equal(merged.length, 2);
-    // Sorts descending by publish date (March 2026 before January 2026)
-    assert.equal(merged[0].id, "eso-ais-2026");
-    assert.equal(merged[1].id, "aha-ais-2026");
+    // Sorts descending by year, then ascending by society (AHA/ASA before ESO)
+    assert.equal(merged[0].id, "aha-ais-2026");
+    assert.equal(merged[1].id, "eso-ais-2026");
   });
 
   it("should merge dynamic conferences with foreign key late-breaking trials", () => {

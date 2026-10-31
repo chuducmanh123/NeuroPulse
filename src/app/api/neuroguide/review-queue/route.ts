@@ -15,6 +15,8 @@ interface StoredRec {
   page_num: number;
   statement: string;
   approval_status: string;
+  category?: string;
+  topic?: string;
   cor?: string;
   cor_label?: string;
   loe?: string;
@@ -199,7 +201,7 @@ export async function GET(request: NextRequest) {
       }
     }
 
-    const queue: Array<StoredRec & { guideline_title: string; society: string }> = [];
+    const queue: Array<StoredRec & { guideline_title: string; society: string; year?: number }> = [];
 
     for (const [file, fullPath] of fileMap.entries()) {
       try {
@@ -211,8 +213,12 @@ export async function GET(request: NextRequest) {
           if (rec.approval_status === "PENDING_REVIEW") {
             queue.push({
               ...rec,
+              guideline_id: record.guideline_id,
               guideline_title: record.metadata?.title || "Hướng dẫn lâm sàng",
               society: record.metadata?.society || "Chưa rõ",
+              year: record.metadata?.year,
+              category: rec.category || (rec as any).section || "Khuyến cáo chung",
+              topic: rec.topic || rec.target_population || "Khuyến cáo lâm sàng",
             });
           }
         }
@@ -254,16 +260,19 @@ async function syncGuidelineRecordToActiveLibrary(record: GuidelineRecord) {
 
     const isClass1 = r.cor === "1" || String(r.cor).includes("1");
     const isHarm = String(r.cor).includes("3");
-    const category = isClass1
+    const fallbackCategory = isClass1
       ? "Khuyến cáo Hàng đầu (Class I)"
       : isHarm
       ? "Khuyến cáo Nguy hại / Không có lợi (Class III)"
       : "Khuyến cáo Phối hợp (Class II)";
 
+    const clinicalCategory = (r.category || (r as any).section || fallbackCategory).trim();
+    const clinicalTopic = (r.topic || r.target_population || record.metadata.title).trim();
+
     return {
       id: r.rec_id || `rec-${idx + 1}`,
-      category: r.target_population ? `Khối: ${r.target_population}` : category,
-      topic: r.target_population || record.metadata.title,
+      category: clinicalCategory,
+      topic: clinicalTopic,
       changeType: isClass1 ? "UPGRADED" : "NEW",
       currentText: r.statement,
       currentGrade,
@@ -329,39 +338,41 @@ async function syncGuidelineRecordToActiveLibrary(record: GuidelineRecord) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { action, file_id, rec_id, reviewer, notes, modified_statement, updated_item, doc_id } = body;
+    const { action, file_id, guideline_id, rec_id, reviewer, notes, modified_statement, updated_item, doc_id } = body;
 
-    // 1. CHỨC NĂNG DUYỆT TẤT CẢ (APPROVE ALL)
-    if (action === "APPROVE_ALL") {
+    // 1. CHỨC NĂNG DUYỆT TẤT CẢ HOẶC DUYỆT TOÀN BỘ 1 GUIDELINE (APPROVE ALL / APPROVE GUIDELINE)
+    if (action === "APPROVE_ALL" || action === "APPROVE_GUIDELINE") {
       let totalApproved = 0;
       const allFiles = new Set<string>();
 
-      for (const dir of [TMP_DIR, STORE_DIR]) {
-        if (fs.existsSync(dir)) {
+      const targetGId = guideline_id || file_id || doc_id;
+
+      if (targetGId && targetGId !== "ALL") {
+        const cleanGId = targetGId.replace(/_latest\.json$/i, "");
+        allFiles.add(`${cleanGId}_latest.json`);
+      } else {
+        for (const dir of [TMP_DIR, STORE_DIR]) {
+          if (fs.existsSync(dir)) {
+            try {
+              fs.readdirSync(dir).filter((f) => f.endsWith("_latest.json")).forEach((f) => allFiles.add(f));
+            } catch {}
+          }
+        }
+
+        // Quét thêm từ Blob nếu có
+        const { token } = getBlobToken();
+        if (token) {
           try {
-            fs.readdirSync(dir).filter((f) => f.endsWith("_latest.json")).forEach((f) => allFiles.add(f));
+            const { list } = await import("@vercel/blob");
+            const { blobs } = await list({ prefix: "guidelines_store/", token });
+            for (const b of blobs) {
+              const fileName = b.pathname.replace(/^guidelines_store\//, "");
+              if (fileName.endsWith("_latest.json")) {
+                allFiles.add(fileName);
+              }
+            }
           } catch {}
         }
-      }
-
-      // Quét thêm từ Blob nếu có
-      const { token } = getBlobToken();
-      if (token) {
-        try {
-          const { list } = await import("@vercel/blob");
-          const { blobs } = await list({ prefix: "guidelines_store/", token });
-          for (const b of blobs) {
-            const fileName = b.pathname.replace(/^guidelines_store\//, "");
-            if (fileName.endsWith("_latest.json")) {
-              allFiles.add(fileName);
-            }
-          }
-        } catch {}
-      }
-
-      if (file_id && file_id !== "ALL") {
-        allFiles.clear();
-        allFiles.add(`${file_id}_latest.json`);
       }
 
       for (const fileName of Array.from(allFiles)) {
@@ -395,13 +406,47 @@ export async function POST(request: NextRequest) {
 
       return NextResponse.json({
         ok: true,
-        message: `Đã phê duyệt thành công toàn bộ ${totalApproved} khuyến cáo vào Hướng dẫn Thực hành lâm sàng!`,
+        message: `Đã phê duyệt thành công ${totalApproved} khuyến cáo vào Hướng dẫn Thực hành lâm sàng!`,
         approved_count: totalApproved,
       });
     }
 
-    // 2. CHỨC NĂNG CHỈNH SỬA PRACTICE GUIDELINE ĐÃ ACCEPT
-    if (action === "EDIT_APPROVED") {
+    // 1b. CHỨC NĂNG TỪ CHỐI TOÀN BỘ 1 GUIDELINE (REJECT GUIDELINE)
+    if (action === "REJECT_GUIDELINE") {
+      const targetGId = guideline_id || file_id || doc_id;
+      if (!targetGId) {
+        return NextResponse.json({ ok: false, error: "Thiếu guideline_id để từ chối" }, { status: 400 });
+      }
+      const cleanGId = targetGId.replace(/_latest\.json$/i, "");
+      const fileName = `${cleanGId}_latest.json`;
+      const fileInfo = getFileContent(fileName);
+      if (!fileInfo) {
+        return NextResponse.json({ ok: false, error: `Không tìm thấy file ${fileName}` }, { status: 404 });
+      }
+      const rec: GuidelineRecord = JSON.parse(fileInfo.content);
+      let rejectedCount = 0;
+      for (const r of rec.recommendations) {
+        if (r.approval_status === "PENDING_REVIEW") {
+          r.approval_status = "REJECTED";
+          r.reviewed_by = reviewer || "Bác sĩ chuyên khoa";
+          r.reviewed_at = new Date().toISOString();
+          rejectedCount++;
+        }
+      }
+      rec.pending_count = 0;
+      rec.rejected_count = (rec.rejected_count || 0) + rejectedCount;
+      rec.updated_at = new Date().toISOString();
+      await saveFileSafe(fileName, JSON.stringify(rec, null, 2));
+
+      return NextResponse.json({
+        ok: true,
+        message: `Đã từ chối toàn bộ ${rejectedCount} khuyến cáo trong guideline này.`,
+        rejected_count: rejectedCount,
+      });
+    }
+
+    // 2. CHỨC NĂNG CHỈNH SỬA PRACTICE GUIDELINE ĐÃ ACCEPT HOẶC ĐANG CHỜ DUYỆT
+    if (action === "EDIT_APPROVED" || action === "EDIT_RECOMMENDATION") {
       if (!doc_id || !updated_item || !updated_item.id) {
         return NextResponse.json(
           { ok: false, error: "Thiếu thông tin chỉnh sửa (doc_id, updated_item)" },
@@ -409,31 +454,9 @@ export async function POST(request: NextRequest) {
         );
       }
 
-      const activeData = await loadMergedNeuroGuideData();
-      const targetDoc = activeData.guidelines.find((g) => g.id.toLowerCase() === doc_id.toLowerCase());
-      if (!targetDoc) {
-        return NextResponse.json({ ok: false, error: "Không tìm thấy guideline để chỉnh sửa" }, { status: 404 });
-      }
-
-      const itemIdx = targetDoc.allPracticeChanges.findIndex((c) => c.id === updated_item.id);
-      if (itemIdx >= 0) {
-        targetDoc.allPracticeChanges[itemIdx] = {
-          ...targetDoc.allPracticeChanges[itemIdx],
-          ...updated_item,
-        };
-      } else {
-        targetDoc.allPracticeChanges.push(updated_item);
-      }
-      targetDoc.synthesizedAt = new Date().toISOString();
-
-      await saveNeuroGuideToActiveStorage({
-        guidelines: activeData.guidelines,
-        conferences: activeData.conferences,
-        scenarios: activeData.scenarios,
-      });
-
-      // Đồng bộ vào _latest.json nếu tồn tại
-      const latestFileName = `${doc_id}_latest.json`;
+      // 1. Cập nhật vào _latest.json nếu tồn tại (cho cả pending và approved)
+      const cleanDocId = doc_id.replace(/_latest\.json$/i, "");
+      const latestFileName = `${cleanDocId}_latest.json`;
       const fileInfo = getFileContent(latestFileName);
       if (fileInfo) {
         try {
@@ -441,16 +464,116 @@ export async function POST(request: NextRequest) {
           const r = rec.recommendations.find((recItem) => recItem.rec_id === updated_item.id);
           if (r) {
             if (updated_item.currentText) r.statement = updated_item.currentText;
-            if (updated_item.topic) r.target_population = updated_item.topic;
+            if (updated_item.topic) r.topic = updated_item.topic;
+            if (updated_item.category) r.category = updated_item.category;
+            if (updated_item.currentGrade) {
+              const corMatch = updated_item.currentGrade.match(/Class\s*([123a-zA-Z:]+)/i);
+              if (corMatch) r.cor = corMatch[1];
+              const loeMatch = updated_item.currentGrade.match(/Level\s*([A-Za-z\-]+)/i);
+              if (loeMatch) r.loe = loeMatch[1];
+            }
+            if (updated_item.drivingTrials) r.driving_trials = updated_item.drivingTrials;
             await saveFileSafe(latestFileName, JSON.stringify(rec, null, 2));
           }
-        } catch {}
+        } catch (saveErr) {
+          console.warn("Lỗi lưu file _latest.json khi sửa:", saveErr);
+        }
+      }
+
+      // 2. Cập nhật vào activeData nếu tài liệu đã xuất hiện trong thư viện hoạt động
+      const activeData = await loadMergedNeuroGuideData();
+      const targetDoc = activeData.guidelines.find((g) => g.id.toLowerCase() === cleanDocId.toLowerCase());
+      if (targetDoc) {
+        const itemIdx = targetDoc.allPracticeChanges.findIndex((c) => c.id === updated_item.id);
+        if (itemIdx >= 0) {
+          targetDoc.allPracticeChanges[itemIdx] = {
+            ...targetDoc.allPracticeChanges[itemIdx],
+            ...updated_item,
+          };
+        } else {
+          targetDoc.allPracticeChanges.push(updated_item);
+        }
+        targetDoc.synthesizedAt = new Date().toISOString();
+
+        await saveNeuroGuideToActiveStorage({
+          guidelines: activeData.guidelines,
+          conferences: activeData.conferences,
+          scenarios: activeData.scenarios,
+        });
       }
 
       return NextResponse.json({
         ok: true,
         message: "Đã cập nhật chỉnh sửa khuyến cáo thành công!",
         doc: targetDoc,
+      });
+    }
+
+    // 2b. CHỨC NĂNG CHỈNH SỬA THÔNG TIN GUIDELINE (METADATA)
+    if (action === "EDIT_GUIDELINE") {
+      const { title, society: newSociety, year: newYear, executiveSummary } = body;
+      const targetDocId = doc_id || file_id;
+      if (!targetDocId) {
+        return NextResponse.json({ ok: false, error: "Thiếu doc_id để sửa guideline" }, { status: 400 });
+      }
+
+      const cleanDocId = targetDocId.replace(/_latest\.json$/i, "");
+      const latestFileName = `${cleanDocId}_latest.json`;
+      const fileInfo = getFileContent(latestFileName);
+      if (fileInfo) {
+        try {
+          const rec: GuidelineRecord = JSON.parse(fileInfo.content);
+          if (title) rec.metadata.title = title;
+          if (newSociety) rec.metadata.society = newSociety;
+          if (newYear) rec.metadata.year = newYear;
+          rec.updated_at = new Date().toISOString();
+          await saveFileSafe(latestFileName, JSON.stringify(rec, null, 2));
+
+          // Cập nhật catalog
+          const catalogInfo = getFileContent("catalog.json");
+          if (catalogInfo) {
+            try {
+              const catalog = JSON.parse(catalogInfo.content);
+              if (catalog[cleanDocId]) {
+                if (title) catalog[cleanDocId].title = title;
+                if (newSociety) catalog[cleanDocId].society = newSociety;
+                if (newYear) catalog[cleanDocId].year = newYear;
+                catalog[cleanDocId].updated_at = rec.updated_at;
+                await saveFileSafe("catalog.json", JSON.stringify(catalog, null, 2));
+              }
+            } catch {}
+          }
+        } catch (e) {
+          console.warn("Lỗi lưu metadata guideline:", e);
+        }
+      }
+
+      // Cập nhật active library nếu đã xuất bản
+      const activeData = await loadMergedNeuroGuideData();
+      const docIdx = activeData.guidelines.findIndex((g) => g.id.toLowerCase() === cleanDocId.toLowerCase());
+      if (docIdx >= 0) {
+        if (title) activeData.guidelines[docIdx].title = title;
+        if (newSociety) activeData.guidelines[docIdx].society = newSociety;
+        if (newYear) {
+          activeData.guidelines[docIdx].year = newYear;
+          activeData.guidelines[docIdx].publishDate = `${newYear}-01-01`;
+        }
+        if (executiveSummary) {
+          activeData.guidelines[docIdx].executiveSummary = executiveSummary;
+          activeData.guidelines[docIdx].executiveSummaryVi = executiveSummary;
+        }
+        activeData.guidelines[docIdx].synthesizedAt = new Date().toISOString();
+
+        await saveNeuroGuideToActiveStorage({
+          guidelines: activeData.guidelines,
+          conferences: activeData.conferences,
+          scenarios: activeData.scenarios,
+        });
+      }
+
+      return NextResponse.json({
+        ok: true,
+        message: "Đã cập nhật thông tin guideline thành công!",
       });
     }
 

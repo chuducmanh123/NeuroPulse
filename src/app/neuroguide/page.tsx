@@ -21,6 +21,7 @@ import { AppSwitcher } from "../../components/ecosystem/AppSwitcher";
 import { AdminButton } from "../../components/ecosystem/AdminButton";
 import { ReviewQueueTab } from "../../components/neuroguide/ReviewQueueTab";
 import { PipelineModal } from "../../components/neuroguide/PipelineModal";
+import { NotebookLMUploadModal } from "../../components/neuroguide/NotebookLMUploadModal";
 import { EditGuidelineModal } from "../../components/neuroguide/EditGuidelineModal";
 import { AdminAuthModal } from "../../components/neurocase/modals/AdminAuthModal";
 import type { PracticeChangeDetail } from "../../types/neuroguide";
@@ -228,6 +229,7 @@ export default function NeuroGuidePage() {
   const [lastSyncedTime, setLastSyncedTime] = useState<string | null>(null);
   const [reviewQueueCount, setReviewQueueCount] = useState<number>(0);
   const [showPipelineModal, setShowPipelineModal] = useState<boolean>(false);
+  const [showNotebookLMModal, setShowNotebookLMModal] = useState<boolean>(false);
   const [isAdminVerified, setIsAdminVerified] = useState<boolean>(false);
   const [showAdminAuthModal, setShowAdminAuthModal] = useState<boolean>(false);
 
@@ -510,7 +512,11 @@ export default function NeuroGuidePage() {
             });
 
             const merged = Array.from(titleMap.values());
-            merged.sort((a, b) => (b.publishDate || `${b.year}-01-01`).localeCompare(a.publishDate || `${a.year}-01-01`));
+            // Tự động sắp xếp: Thứ tự năm giảm dần (mới nhất) -> Thứ tự Society theo bảng chữ cái A-Z
+            merged.sort((a, b) => {
+              if (b.year !== a.year) return b.year - a.year;
+              return (a.society || "").localeCompare(b.society || "");
+            });
             setGuidelineDocs(merged);
             localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(merged));
           }
@@ -691,12 +697,12 @@ export default function NeuroGuidePage() {
       });
     });
 
-    // CHRONOLOGICAL SORTING: Newest publishDate first, then year descending
+    // Tự động sắp xếp: Thứ tự năm giảm dần (mới nhất) -> Thứ tự Society theo bảng chữ cái A-Z
     return list.sort((a, b) => {
-      if (b.publishDate && a.publishDate) {
-        return b.publishDate.localeCompare(a.publishDate);
+      if (b.year !== a.year) {
+        return b.year - a.year;
       }
-      return b.year - a.year;
+      return (a.society || "").localeCompare(b.society || "");
     });
   }, [selectedSocietyFilter, selectedSubspecialty, searchQuery, guidelineDocs]);
 
@@ -947,6 +953,17 @@ export default function NeuroGuidePage() {
                     {soc === "ALL" ? "All Societies" : soc}
                   </button>
                 ))}
+              </div>
+
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setShowNotebookLMModal(true)}
+                  className="px-3.5 py-1.5 rounded-xl text-xs font-black transition-all flex items-center gap-1.5 bg-gradient-to-r from-amber-500 to-rose-500 hover:from-amber-600 hover:to-rose-600 text-white shadow-xs cursor-pointer whitespace-nowrap"
+                  title="Tải lên tệp (.md, .txt) hoặc dán tóm tắt bảng từ NotebookLM để tự động tạo Practice Guideline"
+                >
+                  <span>✨</span>
+                  <span>Nhập từ NotebookLM</span>
+                </button>
               </div>
             </div>
 
@@ -2181,6 +2198,7 @@ export default function NeuroGuidePage() {
                 }
                 setShowPipelineModal(true);
               }}
+              onOpenNotebookLMModal={() => setShowNotebookLMModal(true)}
             />
           ) : (
             <div className={`p-8 rounded-2xl border text-center max-w-md mx-auto my-12 ${
@@ -2214,6 +2232,7 @@ export default function NeuroGuidePage() {
               fetchQueueCount();
               setActiveTab("review");
             }}
+            onOpenNotebookLM={() => setShowNotebookLMModal(true)}
             darkMode={darkMode}
           />
         )}
@@ -2227,6 +2246,28 @@ export default function NeuroGuidePage() {
             setIsAdminVerified(true);
             setShowAdminAuthModal(false);
           }}
+        />
+
+        {/* NOTEBOOKLM UPLOAD & GUIDELINE GENERATOR MODAL */}
+        <NotebookLMUploadModal
+          isOpen={showNotebookLMModal}
+          onClose={() => setShowNotebookLMModal(false)}
+          onSuccess={(newDoc) => {
+            setGuidelineDocs((prev) => {
+              const next = [newDoc, ...prev.filter((d) => d.id !== newDoc.id)];
+              try {
+                localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(next));
+              } catch {}
+              return next;
+            });
+            setExpandedGuidelineIds((prev) => ({ ...prev, [newDoc.id]: true }));
+            setSelectedSocietyFilter("ALL");
+            setSyncMessage(
+              `🎉 Đã tự động tạo và lưu trữ thành công Guideline "${newDoc.title}" (${newDoc.allPracticeChanges.length} khuyến cáo)!`
+            );
+            fetchQueueCount();
+          }}
+          darkMode={darkMode}
         />
 
         {/* EDIT GUIDELINE / PRACTICE CHANGE MODAL */}
