@@ -141,9 +141,15 @@ export async function setToLocalDisk(payload: NeuroGuideBlobPayload): Promise<bo
  */
 export function mergeGuidelines(
   dynamicItems: GuidelineDoc[] | null | undefined,
-  staticItems: GuidelineDoc[] = MOCK_GUIDELINE_DOCS
+  staticItems: GuidelineDoc[] = MOCK_GUIDELINE_DOCS,
+  deletedIds?: Set<string>
 ): GuidelineDoc[] {
-  if (!dynamicItems || dynamicItems.length === 0) return staticItems;
+  if (!dynamicItems || dynamicItems.length === 0) {
+    if (deletedIds && deletedIds.size > 0) {
+      return staticItems.filter((g) => !deletedIds.has((g.id || "").toLowerCase()));
+    }
+    return staticItems;
+  }
 
   const normalizeTitle = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
 
@@ -153,6 +159,7 @@ export function mergeGuidelines(
   const addDoc = (doc: GuidelineDoc) => {
     if (!doc || !doc.title) return;
     const id = (doc.id || "").toLowerCase();
+    if (deletedIds && deletedIds.has(id)) return;
     if (
       id.startsWith("eso-pmid-") ||
       id.startsWith("esc-pmid-") ||
@@ -280,10 +287,18 @@ export async function loadMergedNeuroGuideData(): Promise<{
   };
 
   const blobData = await getFromBlob();
+  const localData = await getFromLocalDisk();
+  const deletedSet = new Set<string>([
+    ...(blobData?.deletedGuidelineIds || []).map((x) => x.toLowerCase()),
+    ...((localData as any)?.deletedGuidelineIds || []).map((x: string) => x.toLowerCase()),
+    ...((localData as any)?.deleted_guideline_ids || []).map((x: string) => x.toLowerCase()),
+  ]);
+
   if (blobData) {
     const coordinatedBlobDocs = filterCoordinated(blobData.guidelines);
-    const merged = mergeGuidelines(coordinatedBlobDocs, MOCK_GUIDELINE_DOCS);
-    const finalGuidelines = storeDocs.length > 0 ? mergeGuidelines(storeDocs, merged) : merged;
+    const merged = mergeGuidelines(coordinatedBlobDocs, MOCK_GUIDELINE_DOCS, deletedSet);
+    const filteredStore = storeDocs.filter((g) => !deletedSet.has((g.id || "").toLowerCase()));
+    const finalGuidelines = filteredStore.length > 0 ? mergeGuidelines(filteredStore, merged, deletedSet) : merged;
 
     // Tự động dọn dẹp lại Vercel Blob nếu trước đó bị lẫn các tài liệu rác chưa qua điều phối
     if (blobData.guidelines && blobData.guidelines.length > finalGuidelines.length) {
@@ -291,6 +306,7 @@ export async function loadMergedNeuroGuideData(): Promise<{
         guidelines: finalGuidelines,
         conferences: blobData.conferences,
         scenarios: blobData.scenarios,
+        deletedGuidelineIds: Array.from(deletedSet),
       }).catch(() => {});
     }
 
@@ -303,11 +319,11 @@ export async function loadMergedNeuroGuideData(): Promise<{
     };
   }
 
-  const localData = await getFromLocalDisk();
   if (localData) {
     const coordinatedLocalDocs = filterCoordinated(localData.guidelines);
-    const merged = mergeGuidelines(coordinatedLocalDocs, MOCK_GUIDELINE_DOCS);
-    const finalGuidelines = storeDocs.length > 0 ? mergeGuidelines(storeDocs, merged) : merged;
+    const merged = mergeGuidelines(coordinatedLocalDocs, MOCK_GUIDELINE_DOCS, deletedSet);
+    const filteredStore = storeDocs.filter((g) => !deletedSet.has((g.id || "").toLowerCase()));
+    const finalGuidelines = filteredStore.length > 0 ? mergeGuidelines(filteredStore, merged, deletedSet) : merged;
     return {
       guidelines: finalGuidelines,
       conferences: mergeConferences(localData.conferences),
@@ -317,7 +333,8 @@ export async function loadMergedNeuroGuideData(): Promise<{
     };
   }
 
-  const finalGuidelines = storeDocs.length > 0 ? mergeGuidelines(storeDocs, MOCK_GUIDELINE_DOCS) : MOCK_GUIDELINE_DOCS;
+  const filteredStore = storeDocs.filter((g) => !deletedSet.has((g.id || "").toLowerCase()));
+  const finalGuidelines = filteredStore.length > 0 ? mergeGuidelines(filteredStore, MOCK_GUIDELINE_DOCS, deletedSet) : mergeGuidelines([], MOCK_GUIDELINE_DOCS, deletedSet);
   return {
     guidelines: finalGuidelines,
     conferences: MOCK_CONFERENCE_EVENTS,
@@ -333,6 +350,7 @@ export async function saveNeuroGuideToActiveStorage(payload: {
   guidelines: GuidelineDoc[];
   conferences?: ConferenceEvent[];
   scenarios?: ClinicalScenario[];
+  deletedGuidelineIds?: string[];
 }): Promise<{
   success: boolean;
   storage: "vercel-blob" | "local-disk" | "failed";
@@ -342,6 +360,7 @@ export async function saveNeuroGuideToActiveStorage(payload: {
     guidelines: payload.guidelines,
     conferences: payload.conferences || MOCK_CONFERENCE_EVENTS,
     scenarios: payload.scenarios || MOCK_CLINICAL_SCENARIOS,
+    deletedGuidelineIds: payload.deletedGuidelineIds,
     lastSyncedAt: new Date().toISOString(),
     source: "NEUROGUIDE_AUTONOMOUS_RADAR",
   };

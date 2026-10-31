@@ -722,7 +722,7 @@ export const MOCK_GUIDELINE_DOCS: GuidelineDoc[] = [
         drivingTrials: ["ENCHANTED (Lancet 2019)", "BEST-II (JAMA 2023)"]
       }
     ],
-    linkedScenarioIds: ["ais-neuro-icu-infection-prevention"],
+    linkedScenarioIds: ["ais-bp-management-acute-phase", "ais-neuro-icu-infection-prevention"],
     fullTextStatus: "FULL_TEXT_PARSED"
   },
   {
@@ -804,33 +804,6 @@ export const MOCK_GUIDELINE_DOCS: GuidelineDoc[] = [
       }
     ],
     linkedScenarioIds: ["neuroicu-sah-dci-management"],
-    fullTextStatus: "FULL_TEXT_PARSED"
-  },
-  {
-    id: "eso-bp-2023",
-    society: "ESO",
-    year: 2023,
-    subspecialty: "Stroke",
-    subspecialties: ["Stroke"],
-    title: "European Stroke Organisation (ESO) Guidelines on Blood Pressure Management in Acute Ischemic Stroke",
-    officialUrl: "https://journals.sagepub.com/doi/10.1177/23969873221147775",
-    journalTarget: "European Stroke Journal",
-    documentType: "Clinical Practice Guideline",
-    publishDate: "2023-03-20",
-    executiveSummary: "Phác đồ kiểm soát huyết áp giai đoạn cấp tính và sau tái tưới máu ở bệnh nhân đột quỵ thiếu máu não cấp của ESO.",
-    executiveSummaryVi: "Khuyến nghị không hạ huyết áp thường quy ở bệnh nhân không tiêu sợi huyết/lấy huyết khối trừ khi huyết áp vượt ngưỡng 220/120 mmHg.",
-    allPracticeChanges: [
-      {
-        id: "eso-2023-bp-no-reperfusion",
-        category: "Blood Pressure",
-        topic: "BP Control in Patients NOT Receiving Reperfusion Therapy",
-        changeType: "REVISED",
-        currentGrade: "GRADE Strong against intervention (Evidence: Moderate)",
-        currentText: "In patients with acute ischemic stroke who are NOT eligible for IVT or EVT, we recommend against routinely lowering blood pressure within the first 24 hours, unless BP exceeds 220/120 mmHg or acute end-organ damage exists.",
-        drivingTrials: ["CATIS (JAMA 2014)", "SCAST (Lancet 2011)"]
-      }
-    ],
-    linkedScenarioIds: ["ais-bp-management-acute-phase"],
     fullTextStatus: "FULL_TEXT_PARSED"
   }
 ];

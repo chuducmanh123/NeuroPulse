@@ -361,9 +361,46 @@ export default function NeuroGuidePage() {
     setBatchInputText("");
   };
 
+  const [deleteLoadingId, setDeleteLoadingId] = useState<string | null>(null);
+
+  const handleDeleteGuideline = async (doc: GuidelineDoc) => {
+    const confirmDelete = window.confirm(
+      `Bạn có chắc chắn muốn XÓA guideline:\n\n"${doc.title}" (${doc.society} ${doc.year})?\n\nHướng dẫn này sẽ được gỡ bỏ khỏi thư viện và hệ thống lưu trữ.`
+    );
+    if (!confirmDelete) return;
+
+    setDeleteLoadingId(doc.id);
+    try {
+      const res = await fetch("/api/neuroguide/delete-guideline", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ guideline_id: doc.id }),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        setGuidelineDocs((prev) => {
+          const updated = prev.filter(
+            (g) => g.id !== doc.id && g.id.toLowerCase() !== doc.id.toLowerCase()
+          );
+          try {
+            localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(updated));
+          } catch {}
+          return updated;
+        });
+        setSyncMessage(`🗑️ Đã xóa guideline "${doc.title}" thành công.`);
+      } else {
+        alert(`Lỗi khi xóa guideline: ${data.error || "Không thể xóa guideline"}`);
+      }
+    } catch {
+      alert("Lỗi kết nối khi gửi yêu cầu xóa guideline.");
+    } finally {
+      setDeleteLoadingId(null);
+    }
+  };
+
   const matrixContainerRef = useRef<HTMLDivElement>(null);
 
-  const CURRENT_CACHE_VERSION = "neuroguide_v2026_coordinated_v15";
+  const CURRENT_CACHE_VERSION = "neuroguide_v2026_coordinated_v16";
 
   // Background Autonomous Sync Method (runs on 24h cron or manual trigger)
   const triggerSync = async (isAuto = false) => {
@@ -1045,20 +1082,34 @@ export default function NeuroGuidePage() {
                             Published: {doc.publishDate}
                           </span>
                           {isAdminVerified && (
-                            <button
-                              type="button"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setEditingDocId(doc.id);
-                                setEditingGuidelineDoc(doc);
-                                setEditingPracticeChange(null);
-                                setShowEditModal(true);
-                              }}
-                              className="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-500/10 text-amber-600 hover:bg-amber-500/20 border border-amber-500/30 flex items-center gap-1 cursor-pointer transition-colors"
-                              title="Edit guideline metadata"
-                            >
-                              <span>✏️ Edit</span>
-                            </button>
+                            <>
+                              <button
+                                type="button"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setEditingDocId(doc.id);
+                                  setEditingGuidelineDoc(doc);
+                                  setEditingPracticeChange(null);
+                                  setShowEditModal(true);
+                                }}
+                                className="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-500/10 text-amber-600 hover:bg-amber-500/20 border border-amber-500/30 flex items-center gap-1 cursor-pointer transition-colors"
+                                title="Edit guideline metadata"
+                              >
+                                <span>✏️ Edit</span>
+                              </button>
+                              <button
+                                type="button"
+                                disabled={deleteLoadingId === doc.id}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleDeleteGuideline(doc);
+                                }}
+                                className="px-2 py-0.5 rounded text-[11px] font-bold bg-rose-500/10 text-rose-600 hover:bg-rose-500/20 border border-rose-500/30 flex items-center gap-1 cursor-pointer transition-colors disabled:opacity-50"
+                                title="Delete guideline"
+                              >
+                                <span>{deleteLoadingId === doc.id ? "..." : "🗑️ Delete"}</span>
+                              </button>
+                            </>
                           )}
                         </div>
                       </div>
@@ -2060,6 +2111,7 @@ export default function NeuroGuidePage() {
             <ReviewQueueTab
               darkMode={darkMode}
               onQueueUpdated={fetchQueueCount}
+              onQueueCountChange={(count) => setReviewQueueCount(count)}
               onOpenPipelineModal={() => {
                 if (!isAdminVerified) {
                   setShowAdminAuthModal(true);

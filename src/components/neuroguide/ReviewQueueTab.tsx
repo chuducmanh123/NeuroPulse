@@ -52,6 +52,7 @@ interface PendingGuidelineGroup {
 interface ReviewQueueTabProps {
   darkMode: boolean;
   onQueueUpdated?: () => void;
+  onQueueCountChange?: (count: number) => void;
   onOpenPipelineModal?: () => void;
   onOpenNotebookLMModal?: () => void;
 }
@@ -59,10 +60,13 @@ interface ReviewQueueTabProps {
 export function ReviewQueueTab({
   darkMode,
   onQueueUpdated,
+  onQueueCountChange,
   onOpenPipelineModal,
   onOpenNotebookLMModal,
 }: ReviewQueueTabProps) {
   const [queue, setQueue] = useState<StoredRec[]>([]);
+  const [rawServerCount, setRawServerCount] = useState<number>(0);
+  const [rawServerRecs, setRawServerRecs] = useState<StoredRec[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [filterSociety, setFilterSociety] = useState<string>("ALL");
   const [actionLoading, setActionLoading] = useState<string | null>(null);
@@ -97,17 +101,32 @@ export function ReviewQueueTab({
     } catch {}
   };
 
+  const handleResetDismissedCache = () => {
+    try {
+      localStorage.removeItem("neuroguide_reviewed_rec_ids");
+    } catch {}
+    setQueue(rawServerRecs);
+    if (onQueueCountChange) onQueueCountChange(rawServerRecs.length);
+    if (onQueueUpdated) onQueueUpdated();
+    setFeedbackMessage(`🔄 Đã khôi phục hiển thị toàn bộ ${rawServerRecs.length} khuyến cáo đang chờ duyệt.`);
+  };
+
   const fetchQueue = async () => {
     setIsLoading(true);
     try {
       const res = await fetch("/api/neuroguide/review-queue");
       const data = await res.json();
       if (data.ok && Array.isArray(data.queue)) {
+        setRawServerCount(data.total ?? data.queue.length);
+        setRawServerRecs(data.queue);
         const dismissed = getDismissedRecIds();
         const activeQueue = data.queue.filter(
           (r: StoredRec) => !dismissed.has(r.rec_id) && r.approval_status === "PENDING_REVIEW"
         );
         setQueue(activeQueue);
+        if (onQueueCountChange) {
+          onQueueCountChange(activeQueue.length);
+        }
       }
     } catch (err) {
       console.warn("Could not fetch review queue:", err);
@@ -507,6 +526,18 @@ export function ReviewQueueTab({
           )}
 
           <button
+            onClick={fetchQueue}
+            className={`text-xs px-2.5 py-1.5 rounded-lg border font-semibold transition-all flex items-center gap-1 cursor-pointer ${
+              darkMode
+                ? "bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700"
+                : "bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100"
+            }`}
+            title="Refresh review queue from server"
+          >
+            <span>🔄 Refresh</span>
+          </button>
+
+          <button
             disabled={cleanupLoading}
             onClick={handleCleanupPdfs}
             className={`text-xs px-2.5 py-1.5 rounded-lg border font-semibold transition-all flex items-center gap-1 cursor-pointer ${
@@ -564,6 +595,20 @@ export function ReviewQueueTab({
           <p className={`text-xs mt-1.5 max-w-lg mx-auto ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
             All recommendations have been verified and published to the Clinical Practice Guidelines catalog. When new guidelines are extracted or imported, they will appear here for physician review.
           </p>
+          {rawServerCount > 0 && (
+            <div className="mt-5 p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 inline-block max-w-lg text-center">
+              <p className="text-xs font-semibold text-amber-700 dark:text-amber-300 mb-2.5">
+                ⚠️ Có <strong>{rawServerCount}</strong> khuyến cáo đang chờ duyệt trên máy chủ nhưng đang bị ẩn bởi bộ nhớ tạm trình duyệt của bạn (đã được đánh dấu qua các phiên duyệt trước).
+              </p>
+              <button
+                type="button"
+                onClick={handleResetDismissedCache}
+                className="px-4 py-2 rounded-lg text-xs font-black bg-amber-500 hover:bg-amber-600 text-white cursor-pointer transition-all shadow-sm flex items-center gap-1.5 mx-auto"
+              >
+                <span>🔄 Khôi phục và hiển thị lại ({rawServerCount} khuyến cáo)</span>
+              </button>
+            </div>
+          )}
         </div>
       ) : (
         <div className="space-y-6">

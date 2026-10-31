@@ -56,6 +56,33 @@ export function EditGuidelineModal({
 
   if (!isOpen) return null;
 
+  const handleDeleteFromModal = async () => {
+    if (!guidelineDoc && !docId) return;
+    const title = docTitle || guidelineDoc?.title || docId;
+    const confirmDel = window.confirm(`Bạn có chắc chắn muốn XÓA guideline:\n\n"${title}"?\n\nHướng dẫn này sẽ bị gỡ bỏ khỏi thư viện.`);
+    if (!confirmDel) return;
+    setIsLoading(true);
+    setErrorMessage(null);
+    try {
+      const res = await fetch("/api/neuroguide/delete-guideline", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ guideline_id: docId }),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        onSuccess();
+        onClose();
+      } else {
+        setErrorMessage(data.error || "Không thể xóa guideline.");
+      }
+    } catch {
+      setErrorMessage("Lỗi kết nối khi xóa guideline.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -278,21 +305,34 @@ export function EditGuidelineModal({
             </>
           )}
 
-          <div className="flex items-center justify-end gap-2 pt-3 border-t dark:border-slate-800">
-            <button
-              type="button"
-              onClick={onClose}
-              className="px-4 py-2 rounded-xl font-bold bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 cursor-pointer"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="px-4 py-2 rounded-xl font-bold bg-amber-500 hover:bg-amber-600 text-white shadow-xs cursor-pointer disabled:opacity-50"
-            >
-              {isLoading ? "Saving..." : "✓ Save Changes"}
-            </button>
+          <div className="flex items-center justify-between gap-2 pt-3 border-t dark:border-slate-800">
+            {isEditingDoc ? (
+              <button
+                type="button"
+                disabled={isLoading}
+                onClick={handleDeleteFromModal}
+                className="px-3.5 py-2 rounded-xl text-xs font-bold bg-rose-50 hover:bg-rose-100 dark:bg-rose-950/40 dark:hover:bg-rose-900/60 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800 flex items-center gap-1 cursor-pointer transition-colors"
+              >
+                <span>🗑️ Xóa guideline</span>
+              </button>
+            ) : <div />}
+
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={onClose}
+                className="px-4 py-2 rounded-xl font-bold bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="px-4 py-2 rounded-xl font-bold bg-amber-500 hover:bg-amber-600 text-white shadow-xs cursor-pointer disabled:opacity-50"
+              >
+                {isLoading ? "Saving..." : "✓ Save Changes"}
+              </button>
+            </div>
           </div>
         </form>
       </div>

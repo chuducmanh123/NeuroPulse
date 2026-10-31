@@ -345,41 +345,51 @@ export async function POST(request: NextRequest) {
       let totalApproved = 0;
       const allFiles = new Set<string>();
 
-      const targetGId = guideline_id || file_id || doc_id;
-
-      if (targetGId && targetGId !== "ALL") {
-        const cleanGId = targetGId.replace(/_latest\.json$/i, "");
-        allFiles.add(`${cleanGId}_latest.json`);
-      } else {
-        for (const dir of [TMP_DIR, STORE_DIR]) {
-          if (fs.existsSync(dir)) {
-            try {
-              fs.readdirSync(dir).filter((f) => f.endsWith("_latest.json")).forEach((f) => allFiles.add(f));
-            } catch {}
-          }
-        }
-
-        // Quét thêm từ Blob nếu có
-        const { token } = getBlobToken();
-        if (token) {
+      for (const dir of [TMP_DIR, STORE_DIR]) {
+        if (fs.existsSync(dir)) {
           try {
-            const { list } = await import("@vercel/blob");
-            const { blobs } = await list({ prefix: "guidelines_store/", token });
-            for (const b of blobs) {
-              const fileName = b.pathname.replace(/^guidelines_store\//, "");
-              if (fileName.endsWith("_latest.json")) {
-                allFiles.add(fileName);
-              }
-            }
+            fs.readdirSync(dir).filter((f) => f.endsWith("_latest.json")).forEach((f) => allFiles.add(f));
           } catch {}
         }
       }
+
+      // Quét thêm từ Blob nếu có
+      const { token } = getBlobToken();
+      if (token) {
+        try {
+          const { list } = await import("@vercel/blob");
+          const { blobs } = await list({ prefix: "guidelines_store/", token });
+          for (const b of blobs) {
+            const fileName = b.pathname.replace(/^guidelines_store\//, "");
+            if (fileName.endsWith("_latest.json")) {
+              allFiles.add(fileName);
+            }
+          }
+        } catch {}
+      }
+
+      const targetGId = (guideline_id || file_id || doc_id || "").toLowerCase().trim();
+      const cleanGId = targetGId.replace(/_latest\.json$/i, "");
 
       for (const fileName of Array.from(allFiles)) {
         const fileInfo = getFileContent(fileName);
         if (!fileInfo) continue;
         try {
           const rec: GuidelineRecord = JSON.parse(fileInfo.content);
+          const fileGId = (rec.guideline_id || "").toLowerCase().trim();
+          const cleanFileName = fileName.replace(/_latest\.json$/i, "").toLowerCase();
+
+          // Kiểm tra xem file có khớp với targetGId không
+          const isMatch =
+            targetGId === "all" ||
+            !targetGId ||
+            fileGId === cleanGId ||
+            cleanFileName === cleanGId ||
+            cleanFileName.startsWith(cleanGId) ||
+            cleanGId.startsWith(cleanFileName);
+
+          if (!isMatch) continue;
+
           let modified = 0;
           for (const r of rec.recommendations) {
             if (r.approval_status === "PENDING_REVIEW") {
@@ -413,30 +423,61 @@ export async function POST(request: NextRequest) {
 
     // 1b. CHỨC NĂNG TỪ CHỐI TOÀN BỘ 1 GUIDELINE (REJECT GUIDELINE)
     if (action === "REJECT_GUIDELINE") {
-      const targetGId = guideline_id || file_id || doc_id;
+      const targetGId = (guideline_id || file_id || doc_id || "").toLowerCase().trim();
       if (!targetGId) {
         return NextResponse.json({ ok: false, error: "Thiếu guideline_id để từ chối" }, { status: 400 });
       }
       const cleanGId = targetGId.replace(/_latest\.json$/i, "");
-      const fileName = `${cleanGId}_latest.json`;
-      const fileInfo = getFileContent(fileName);
-      if (!fileInfo) {
-        return NextResponse.json({ ok: false, error: `Không tìm thấy file ${fileName}` }, { status: 404 });
-      }
-      const rec: GuidelineRecord = JSON.parse(fileInfo.content);
-      let rejectedCount = 0;
-      for (const r of rec.recommendations) {
-        if (r.approval_status === "PENDING_REVIEW") {
-          r.approval_status = "REJECTED";
-          r.reviewed_by = reviewer || "Bác sĩ chuyên khoa";
-          r.reviewed_at = new Date().toISOString();
-          rejectedCount++;
+      const allFiles = new Set<string>();
+
+      for (const dir of [TMP_DIR, STORE_DIR]) {
+        if (fs.existsSync(dir)) {
+          try {
+            fs.readdirSync(dir).filter((f) => f.endsWith("_latest.json")).forEach((f) => allFiles.add(f));
+          } catch {}
         }
       }
-      rec.pending_count = 0;
-      rec.rejected_count = (rec.rejected_count || 0) + rejectedCount;
-      rec.updated_at = new Date().toISOString();
-      await saveFileSafe(fileName, JSON.stringify(rec, null, 2));
+
+      let rejectedCount = 0;
+      let handledAny = false;
+
+      for (const fileName of Array.from(allFiles)) {
+        const fileInfo = getFileContent(fileName);
+        if (!fileInfo) continue;
+        try {
+          const rec: GuidelineRecord = JSON.parse(fileInfo.content);
+          const fileGId = (rec.guideline_id || "").toLowerCase().trim();
+          const cleanFileName = fileName.replace(/_latest\.json$/i, "").toLowerCase();
+
+          const isMatch =
+            fileGId === cleanGId ||
+            cleanFileName === cleanGId ||
+            cleanFileName.startsWith(cleanGId) ||
+            cleanGId.startsWith(cleanFileName);
+
+          if (!isMatch) continue;
+
+          handledAny = true;
+          for (const r of rec.recommendations) {
+            if (r.approval_status === "PENDING_REVIEW") {
+              r.approval_status = "REJECTED";
+              r.reviewed_by = reviewer || "Bác sĩ chuyên khoa";
+              r.reviewed_at = new Date().toISOString();
+              rejectedCount++;
+            }
+          }
+          rec.pending_count = 0;
+          rec.rejected_count = (rec.rejected_count || 0) + rejectedCount;
+          rec.updated_at = new Date().toISOString();
+          await saveFileSafe(fileName, JSON.stringify(rec, null, 2));
+        } catch (e) {
+          console.warn("Lỗi từ chối guideline:", fileName, e);
+        }
+      }
+
+      if (!handledAny) {
+        return NextResponse.json({ ok: false, error: `Không tìm thấy file phù hợp với ${cleanGId}` }, { status: 404 });
+      }
 
       return NextResponse.json({
         ok: true,
