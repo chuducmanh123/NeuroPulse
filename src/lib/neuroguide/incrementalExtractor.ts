@@ -42,10 +42,12 @@ export interface IncrementalProgressEvent {
 }
 
 const WATERFALL_MODELS = [
-  "gemini-2.0-flash",
-  "gemini-1.5-flash",
-  "gemini-2.0-flash-lite",
-  "gemini-1.5-pro",
+  "gemini-3.5-flash",
+  "gemini-3.5-flash-lite",
+  "gemini-flash-lite-latest",
+  "gemini-flash-latest",
+  "gemini-3.8-flash",
+  "gemini-3.1-flash-lite",
 ];
 
 export function resolveApiKey(providedKey?: string): string {
@@ -97,7 +99,7 @@ async function callGeminiMultimodalJson<T>(
   prompt: string,
   pdfBase64: string,
   apiKey: string
-): Promise<T | null> {
+): Promise<{ data: T | null; lastError: string }> {
   let lastErrorDetail = "";
   for (const model of WATERFALL_MODELS) {
     try {
@@ -141,22 +143,26 @@ async function callGeminiMultimodalJson<T>(
       const textParts = parts.filter((p: any) => p?.text && !p?.thought).map((p: any) => p.text);
       let rawJson = textParts.join("").trim();
       if (!rawJson && parts[0]?.text) rawJson = parts[0].text.trim();
-      if (!rawJson) continue;
+      if (!rawJson) {
+        lastErrorDetail = `Model ${model} returned empty response`;
+        continue;
+      }
 
       let cleaned = rawJson;
       const jsonMatch = rawJson.match(/\{[\s\S]*\}/);
       if (jsonMatch) {
         cleaned = jsonMatch[0];
       }
-      return JSON.parse(cleaned) as T;
-    } catch (err) {
+      return { data: JSON.parse(cleaned) as T, lastError: "" };
+    } catch (err: any) {
+      lastErrorDetail = `Model ${model} execution failed: ${err?.message || String(err)}`;
       console.warn(`[Gemini API Error] Model ${model} execution failed:`, err);
     }
   }
   if (lastErrorDetail) {
     console.error(`[Gemini API Critical] All waterfall models failed. Last error: ${lastErrorDetail}`);
   }
-  return null;
+  return { data: null, lastError: lastErrorDetail };
 }
 
 /**
@@ -301,6 +307,7 @@ export async function executeIncrementalPipeline(
   };
 
   let allExtractedRecs: IncrementalRec[] = [];
+  let lastExtractionError = "";
 
   // =========================================================================
   // BATCH 1: WHAT IS NEW & FRONTLINE CLINICAL RECOMMENDATIONS
@@ -371,12 +378,14 @@ Respond strictly in valid JSON matching this schema:
       });
     }, 2500);
 
-    let res1: GeminiBatchResponse | null = null;
+    let batchRes1: { data: GeminiBatchResponse | null; lastError: string } = { data: null, lastError: "" };
     try {
-      res1 = await callGeminiMultimodalJson<GeminiBatchResponse>(promptBatch1, pdfBase64, apiKey);
+      batchRes1 = await callGeminiMultimodalJson<GeminiBatchResponse>(promptBatch1, pdfBase64, apiKey);
     } finally {
       clearInterval(heartbeat1);
     }
+    if (batchRes1.lastError) lastExtractionError = batchRes1.lastError;
+    const res1 = batchRes1.data;
     if (res1 && Array.isArray(res1.recommendations) && res1.recommendations.length > 0) {
       const batch1Recs: IncrementalRec[] = res1.recommendations.map((r, idx) => ({
         rec_id: `rec-${docId}-b1-${idx + 1}`,
@@ -481,12 +490,14 @@ Respond strictly in valid JSON matching this schema:
       });
     }, 2500);
 
-    let res2: GeminiBatchResponse | null = null;
+    let batchRes2: { data: GeminiBatchResponse | null; lastError: string } = { data: null, lastError: "" };
     try {
-      res2 = await callGeminiMultimodalJson<GeminiBatchResponse>(promptBatch2, pdfBase64, apiKey);
+      batchRes2 = await callGeminiMultimodalJson<GeminiBatchResponse>(promptBatch2, pdfBase64, apiKey);
     } finally {
       clearInterval(heartbeat2);
     }
+    if (batchRes2.lastError) lastExtractionError = batchRes2.lastError;
+    const res2 = batchRes2.data;
     if (res2 && Array.isArray(res2.recommendations) && res2.recommendations.length > 0) {
       const batch2Recs: IncrementalRec[] = res2.recommendations.map((r, idx) => ({
         rec_id: `rec-${docId}-b2-${idx + 1}`,
@@ -534,7 +545,8 @@ Respond strictly in valid JSON matching this schema:
   // =========================================================================
   // CLEANUP: DELETE TEMPORARY PDF FROM VERCEL BLOB TO SAVE STORAGE
   // =========================================================================
-  if (options.blobUrl) {
+  const cleanupBlob = async () => {
+    if (!options.blobUrl) return;
     try {
       await onProgress({
         stage: "CLEANUP",
@@ -543,34 +555,52 @@ Respond strictly in valid JSON matching this schema:
         docId,
       });
 
-      const token = cleanBlobToken(process.env.BLOB_READ_WRITE_TOKEN);
+      let token = cleanBlobToken(process.env.BLOB_READ_WRITE_TOKEN);
+      if (!token) {
+        for (const [k, v] of Object.entries(process.env)) {
+          if ((k.includes("BLOB") || k.includes("READ_WRITE")) && k.includes("TOKEN") && v) {
+            const candidate = cleanBlobToken(v);
+            if (candidate) {
+              token = candidate;
+              break;
+            }
+          }
+        }
+      }
+
       await del(options.blobUrl, { token });
 
       await onProgress({
         stage: "CLEANUP",
-        percent: 97,
+        percent: 98,
         message: "Temporary PDF deleted from Vercel Blob successfully. Storage conserved.",
         docId,
       });
     } catch (delErr) {
       console.warn("Could not delete blob (or blob does not exist):", delErr);
     }
-  }
+  };
 
   // =========================================================================
   // COMPLETE OR ERROR
   // =========================================================================
   if (allExtractedRecs.length === 0) {
+    await cleanupBlob();
+    const errorDetail = lastExtractionError
+      ? `Không thể trích xuất khuyến cáo từ PDF (${lastExtractionError}). Vui lòng kiểm tra lại cấu hình GEMINI_API_KEY hoặc nội dung tệp.`
+      : "Không trích xuất được khuyến cáo nào từ tệp PDF này. Vui lòng kiểm tra lại cấu hình GEMINI_API_KEY hoặc nội dung tệp.";
     await onProgress({
       stage: "ERROR",
       percent: 100,
       total: 0,
-      message: "Không trích xuất được khuyến cáo nào từ tệp PDF này. Vui lòng kiểm tra lại cấu hình GEMINI_API_KEY hoặc nội dung tệp.",
+      message: errorDetail,
       error: "NO_RECOMMENDATIONS_FOUND",
       docId,
     });
     return { success: false, totalCount: 0, docId };
   }
+
+  await cleanupBlob();
 
   await onProgress({
     stage: "COMPLETE",
