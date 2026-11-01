@@ -1,5 +1,686 @@
 [
   {
+    "id": "10.1016/s1474-4422(26)00354-6",
+    "title": "Climate change: aggravation and adaptation in neurology",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Sisodiya Sanjay"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00354-6",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(26)00373-x",
+    "title": "From syndrome to antibody-defined autoimmune encephalitides",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Patil Anuja",
+      "Vilaseca Andreu",
+      "Dubey Divyanshu"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00373-x",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(26)00367-4",
+    "title": "Neurotrauma as a chronic disease: a call for integrated care",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "The Lancet Neurology"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00367-4",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(26)00358-3",
+    "title": "Progress in exon skipping for Duchenne muscular dystrophy",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Goossens Remko",
+      "Aartsma-Rus Annemieke"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00358-3",
+    "neurology_classification": {
+      "subspecialty": "Neuromuscular",
+      "subspecialties": [
+        "Neuromuscular"
+      ],
+      "topics": [
+        "Muscular dystrophy"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Neuromuscular practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(26)00363-7",
+    "title": "Staged bilateral focused ultrasound pallidothalamic tractotomy for Parkinson's disease",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Walker-Pizarro Nur",
+      "Eisinger Robert S",
+      "Okun Michael S",
+      "Foote Kelly D"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00363-7",
+    "neurology_classification": {
+      "subspecialty": "Movement Disorders",
+      "subspecialties": [
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Parkinson"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Movement Disorders practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(26)00361-3",
+    "title": "Staged bilateral focused ultrasound pallidothalamic tractotomy for Parkinson's disease",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Barrit Sami",
+      "Carron Romain",
+      "Hariz Marwan"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00361-3",
+    "neurology_classification": {
+      "subspecialty": "Movement Disorders",
+      "subspecialties": [
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Parkinson"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Movement Disorders practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(26)00364-9",
+    "title": "APOE, p-tau217, and cognitive impairment in diverse cohorts",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Schindler Suzanne E"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00364-9",
+    "neurology_classification": {
+      "subspecialty": "Dementia",
+      "subspecialties": [
+        "Dementia"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Dementia practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(26)00362-5",
+    "title": "Staged bilateral focused ultrasound pallidothalamic tractotomy for Parkinson's disease",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Horisawa Shiro",
+      "Taira Takaomi"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00362-5",
+    "neurology_classification": {
+      "subspecialty": "Movement Disorders",
+      "subspecialties": [
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Parkinson"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Movement Disorders practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(26)00365-0",
+    "title": "Staged bilateral focused ultrasound pallidothalamic tractotomy for Parkinson's disease – Authors' reply",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Dalvi Arif",
+      "Eisenberg Howard M"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00365-0",
+    "neurology_classification": {
+      "subspecialty": "Movement Disorders",
+      "subspecialties": [
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Parkinson"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Movement Disorders practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(26)00359-5",
+    "title": "The use of blood biomarkers to understand responses to lecanemab treatment",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Ryan Natalie S"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00359-5",
+    "neurology_classification": {
+      "subspecialty": "Dementia",
+      "subspecialties": [
+        "Dementia"
+      ],
+      "topics": [
+        "Lecanemab"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Dementia practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/strokeaha.126.055500",
+    "title": "Type A Aortic Dissection Presenting as Common TIA",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "van Urk Debora",
+      "van den Berg Lucie"
+    ],
+    "doi_url": "https://doi.org/10.1161/strokeaha.126.055500",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/strokeaha.126.056613",
+    "title": "Reimagining Stroke Research Infrastructure: Lessons From NIH Center Models to Build Community-Engaged Systems That Enhance Participation and Implementation",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Forman Rachel",
+      "Naqvi Imama A.",
+      "Majersik Jennifer J.",
+      "Maynez Stephanie",
+      "Battaglia Tracy",
+      "Skolarus Lesli E."
+    ],
+    "doi_url": "https://doi.org/10.1161/strokeaha.126.056613",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Stroke"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/strokeaha.126.056369",
+    "title": "Different Enough?: Rethinking Trial Generalizability in the Era of Chinese Neurovascular Research",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Rivillas Julián Alejandro",
+      "Touma Lahoud",
+      "Zhu François",
+      "Nguyen Thanh N."
+    ],
+    "doi_url": "https://doi.org/10.1161/strokeaha.126.056369",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Neurovascular"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/strokeaha.126.058046",
+    "title": "Modeling Deep Stroke in the Awake Brain: Sleep Oscillations, Thalamocortical Repair, and Auditory Neuromodulation",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Cai Wei",
+      "Guo Manning",
+      "Boltze Johannes"
+    ],
+    "doi_url": "https://doi.org/10.1161/strokeaha.126.058046",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Stroke",
+        "Brain"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/strokeaha.126.057085",
+    "title": "Silicone Oil in the Lateral Ventricles Mimicking Intraventricular Hemorrhage",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Shen Shaolong",
+      "Li Xinyu",
+      "Lin Yuxuan",
+      "Qi Jiahui",
+      "Bai Xuedong"
+    ],
+    "doi_url": "https://doi.org/10.1161/strokeaha.126.057085",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Hemorrhage"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/strokeaha.126.056650",
+    "title": "Advances in Pediatric Stroke",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Sun Lisa R.",
+      "Felling Ryan J.",
+      "Jordan Lori C."
+    ],
+    "doi_url": "https://doi.org/10.1161/strokeaha.126.056650",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Stroke"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/strokeaha.126.056099",
+    "title": "Caseous Mitral Annular Necrosis: A Diagnostic Role for Cardiac CT in Recurrent Embolic Stroke",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Campanyà-Martí Elisabet",
+      "Silva Yolanda",
+      "Robles Fernández Rocío",
+      "Roset-Altadill Adrià",
+      "Álvarez-Cienfuegos Juan"
+    ],
+    "doi_url": "https://doi.org/10.1161/strokeaha.126.056099",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Stroke"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/strokeaha.126.058301",
+    "title": "November 2026 Stroke Highlights",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Romero José Rafael"
+    ],
+    "doi_url": "https://doi.org/10.1161/strokeaha.126.058301",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Stroke"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/strokeaha.126.057797",
+    "title": "From Discovery to Confirmation: Building a Replication Pathway for Influential Randomized Controlled Trials",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "RCT",
+    "article_types": [
+      "RCT",
+      "Clinical Trial",
+      "Original Article"
+    ],
+    "authors": [
+      "Li Qi",
+      "Anderson Craig S."
+    ],
+    "doi_url": "https://doi.org/10.1161/strokeaha.126.057797",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
     "id": "10.1002/ana.78405",
     "title": "Cerebrospinal Fluid Cytokine Expression and Relationships With Neurological Measures in Virologically Controlled People With HIV",
     "journal": {
@@ -1250,41 +1931,6 @@
     }
   },
   {
-    "id": "10.1161/strokeaha.126.055500",
-    "title": "Type A Aortic Dissection Presenting as Common TIA",
-    "journal": {
-      "name": "Stroke (AHA)",
-      "short_name": "Stroke",
-      "badge_bg": "#FFE4E6",
-      "badge_text": "#991B1B"
-    },
-    "pub_date": "2026-10-26T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "van Urk Debora",
-      "van den Berg Lucie"
-    ],
-    "doi_url": "https://doi.org/10.1161/strokeaha.126.055500",
-    "neurology_classification": {
-      "subspecialty": "Other",
-      "subspecialties": [
-        "Other"
-      ],
-      "topics": [
-        "Neurology"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
-    }
-  },
-  {
     "id": "10.1161/strokeaha.126.055936",
     "title": "Cytoprotection for Acute Ischemic Stroke: Critical Appraisal of Recent Clinical Trials",
     "journal": {
@@ -1322,302 +1968,6 @@
       "conclusion_vi": "Recent stroke trials testing cytoprotection in patients with high recanalization rates and shorter time windows (≤24 hours) showed neutral outcomes, whereas studies using later time windows (>24 hours to 14 days) with infrequent recanalization demonstrated clear treatment effects, suggesting mechanisms beyond acute penumbral salvage.",
       "clinical_significance": "Clinical significance for Vascular & Stroke practice.",
       "ai_verified": true
-    }
-  },
-  {
-    "id": "10.1161/strokeaha.126.056613",
-    "title": "Reimagining Stroke Research Infrastructure: Lessons From NIH Center Models to Build Community-Engaged Systems That Enhance Participation and Implementation",
-    "journal": {
-      "name": "Stroke (AHA)",
-      "short_name": "Stroke",
-      "badge_bg": "#FFE4E6",
-      "badge_text": "#991B1B"
-    },
-    "pub_date": "2026-10-26T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Forman Rachel",
-      "Naqvi Imama A.",
-      "Majersik Jennifer J.",
-      "Maynez Stephanie",
-      "Battaglia Tracy",
-      "Skolarus Lesli E."
-    ],
-    "doi_url": "https://doi.org/10.1161/strokeaha.126.056613",
-    "neurology_classification": {
-      "subspecialty": "Stroke",
-      "subspecialties": [
-        "Stroke"
-      ],
-      "topics": [
-        "Stroke"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1161/strokeaha.126.056369",
-    "title": "Different Enough?: Rethinking Trial Generalizability in the Era of Chinese Neurovascular Research",
-    "journal": {
-      "name": "Stroke (AHA)",
-      "short_name": "Stroke",
-      "badge_bg": "#FFE4E6",
-      "badge_text": "#991B1B"
-    },
-    "pub_date": "2026-10-26T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Rivillas Julián Alejandro",
-      "Touma Lahoud",
-      "Zhu François",
-      "Nguyen Thanh N."
-    ],
-    "doi_url": "https://doi.org/10.1161/strokeaha.126.056369",
-    "neurology_classification": {
-      "subspecialty": "Stroke",
-      "subspecialties": [
-        "Stroke"
-      ],
-      "topics": [
-        "Neurovascular"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1161/strokeaha.126.058046",
-    "title": "Modeling Deep Stroke in the Awake Brain: Sleep Oscillations, Thalamocortical Repair, and Auditory Neuromodulation",
-    "journal": {
-      "name": "Stroke (AHA)",
-      "short_name": "Stroke",
-      "badge_bg": "#FFE4E6",
-      "badge_text": "#991B1B"
-    },
-    "pub_date": "2026-10-26T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Cai Wei",
-      "Guo Manning",
-      "Boltze Johannes"
-    ],
-    "doi_url": "https://doi.org/10.1161/strokeaha.126.058046",
-    "neurology_classification": {
-      "subspecialty": "Stroke",
-      "subspecialties": [
-        "Stroke"
-      ],
-      "topics": [
-        "Stroke",
-        "Brain"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1161/strokeaha.126.057085",
-    "title": "Silicone Oil in the Lateral Ventricles Mimicking Intraventricular Hemorrhage",
-    "journal": {
-      "name": "Stroke (AHA)",
-      "short_name": "Stroke",
-      "badge_bg": "#FFE4E6",
-      "badge_text": "#991B1B"
-    },
-    "pub_date": "2026-10-26T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Shen Shaolong",
-      "Li Xinyu",
-      "Lin Yuxuan",
-      "Qi Jiahui",
-      "Bai Xuedong"
-    ],
-    "doi_url": "https://doi.org/10.1161/strokeaha.126.057085",
-    "neurology_classification": {
-      "subspecialty": "Other",
-      "subspecialties": [
-        "Other"
-      ],
-      "topics": [
-        "Hemorrhage"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1161/strokeaha.126.056650",
-    "title": "Advances in Pediatric Stroke",
-    "journal": {
-      "name": "Stroke (AHA)",
-      "short_name": "Stroke",
-      "badge_bg": "#FFE4E6",
-      "badge_text": "#991B1B"
-    },
-    "pub_date": "2026-10-26T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Sun Lisa R.",
-      "Felling Ryan J.",
-      "Jordan Lori C."
-    ],
-    "doi_url": "https://doi.org/10.1161/strokeaha.126.056650",
-    "neurology_classification": {
-      "subspecialty": "Stroke",
-      "subspecialties": [
-        "Stroke"
-      ],
-      "topics": [
-        "Stroke"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1161/strokeaha.126.056099",
-    "title": "Caseous Mitral Annular Necrosis: A Diagnostic Role for Cardiac CT in Recurrent Embolic Stroke",
-    "journal": {
-      "name": "Stroke (AHA)",
-      "short_name": "Stroke",
-      "badge_bg": "#FFE4E6",
-      "badge_text": "#991B1B"
-    },
-    "pub_date": "2026-10-26T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Campanyà-Martí Elisabet",
-      "Silva Yolanda",
-      "Robles Fernández Rocío",
-      "Roset-Altadill Adrià",
-      "Álvarez-Cienfuegos Juan"
-    ],
-    "doi_url": "https://doi.org/10.1161/strokeaha.126.056099",
-    "neurology_classification": {
-      "subspecialty": "Stroke",
-      "subspecialties": [
-        "Stroke"
-      ],
-      "topics": [
-        "Stroke"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1161/strokeaha.126.058301",
-    "title": "November 2026 Stroke Highlights",
-    "journal": {
-      "name": "Stroke (AHA)",
-      "short_name": "Stroke",
-      "badge_bg": "#FFE4E6",
-      "badge_text": "#991B1B"
-    },
-    "pub_date": "2026-10-26T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Romero José Rafael"
-    ],
-    "doi_url": "https://doi.org/10.1161/strokeaha.126.058301",
-    "neurology_classification": {
-      "subspecialty": "Stroke",
-      "subspecialties": [
-        "Stroke"
-      ],
-      "topics": [
-        "Stroke"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1161/strokeaha.126.057797",
-    "title": "From Discovery to Confirmation: Building a Replication Pathway for Influential Randomized Controlled Trials",
-    "journal": {
-      "name": "Stroke (AHA)",
-      "short_name": "Stroke",
-      "badge_bg": "#FFE4E6",
-      "badge_text": "#991B1B"
-    },
-    "pub_date": "2026-10-26T00:00:00Z",
-    "article_type": "RCT",
-    "article_types": [
-      "RCT",
-      "Clinical Trial",
-      "Original Article"
-    ],
-    "authors": [
-      "Li Qi",
-      "Anderson Craig S."
-    ],
-    "doi_url": "https://doi.org/10.1161/strokeaha.126.057797",
-    "neurology_classification": {
-      "subspecialty": "Other",
-      "subspecialties": [
-        "Other"
-      ],
-      "topics": [
-        "Neurology"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
     }
   },
   {
@@ -4103,322 +4453,6 @@
     "article_types": [
       "Case Report"
     ]
-  },
-  {
-    "id": "10.1016/s1474-4422(26)00354-6",
-    "title": "Climate change: aggravation and adaptation in neurology",
-    "journal": {
-      "name": "The Lancet Neurology",
-      "short_name": "Lancet Neurol",
-      "badge_bg": "#CFFAFE",
-      "badge_text": "#0E7490"
-    },
-    "pub_date": "2026-10-14T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Sisodiya Sanjay"
-    ],
-    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00354-6",
-    "neurology_classification": {
-      "subspecialty": "Other",
-      "subspecialties": [
-        "Other"
-      ],
-      "topics": [
-        "Neurology"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1016/s1474-4422(26)00373-x",
-    "title": "From syndrome to antibody-defined autoimmune encephalitides",
-    "journal": {
-      "name": "The Lancet Neurology",
-      "short_name": "Lancet Neurol",
-      "badge_bg": "#CFFAFE",
-      "badge_text": "#0E7490"
-    },
-    "pub_date": "2026-10-14T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Patil Anuja",
-      "Vilaseca Andreu",
-      "Dubey Divyanshu"
-    ],
-    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00373-x",
-    "neurology_classification": {
-      "subspecialty": "Other",
-      "subspecialties": [
-        "Other"
-      ],
-      "topics": [
-        "Neurology"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1016/s1474-4422(26)00367-4",
-    "title": "Neurotrauma as a chronic disease: a call for integrated care",
-    "journal": {
-      "name": "The Lancet Neurology",
-      "short_name": "Lancet Neurol",
-      "badge_bg": "#CFFAFE",
-      "badge_text": "#0E7490"
-    },
-    "pub_date": "2026-10-14T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "The Lancet Neurology"
-    ],
-    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00367-4",
-    "neurology_classification": {
-      "subspecialty": "Other",
-      "subspecialties": [
-        "Other"
-      ],
-      "topics": [
-        "Neurology"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1016/s1474-4422(26)00358-3",
-    "title": "Progress in exon skipping for Duchenne muscular dystrophy",
-    "journal": {
-      "name": "The Lancet Neurology",
-      "short_name": "Lancet Neurol",
-      "badge_bg": "#CFFAFE",
-      "badge_text": "#0E7490"
-    },
-    "pub_date": "2026-10-14T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Goossens Remko",
-      "Aartsma-Rus Annemieke"
-    ],
-    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00358-3",
-    "neurology_classification": {
-      "subspecialty": "Neuromuscular",
-      "subspecialties": [
-        "Neuromuscular"
-      ],
-      "topics": [
-        "Muscular dystrophy"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Neuromuscular practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1016/s1474-4422(26)00363-7",
-    "title": "Staged bilateral focused ultrasound pallidothalamic tractotomy for Parkinson's disease",
-    "journal": {
-      "name": "The Lancet Neurology",
-      "short_name": "Lancet Neurol",
-      "badge_bg": "#CFFAFE",
-      "badge_text": "#0E7490"
-    },
-    "pub_date": "2026-10-14T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Walker-Pizarro Nur",
-      "Eisinger Robert S",
-      "Okun Michael S",
-      "Foote Kelly D"
-    ],
-    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00363-7",
-    "neurology_classification": {
-      "subspecialty": "Movement Disorders",
-      "subspecialties": [
-        "Movement Disorders"
-      ],
-      "topics": [
-        "Parkinson"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Movement Disorders practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1016/s1474-4422(26)00361-3",
-    "title": "Staged bilateral focused ultrasound pallidothalamic tractotomy for Parkinson's disease",
-    "journal": {
-      "name": "The Lancet Neurology",
-      "short_name": "Lancet Neurol",
-      "badge_bg": "#CFFAFE",
-      "badge_text": "#0E7490"
-    },
-    "pub_date": "2026-10-14T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Barrit Sami",
-      "Carron Romain",
-      "Hariz Marwan"
-    ],
-    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00361-3",
-    "neurology_classification": {
-      "subspecialty": "Movement Disorders",
-      "subspecialties": [
-        "Movement Disorders"
-      ],
-      "topics": [
-        "Parkinson"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Movement Disorders practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1016/s1474-4422(26)00364-9",
-    "title": "APOE, p-tau217, and cognitive impairment in diverse cohorts",
-    "journal": {
-      "name": "The Lancet Neurology",
-      "short_name": "Lancet Neurol",
-      "badge_bg": "#CFFAFE",
-      "badge_text": "#0E7490"
-    },
-    "pub_date": "2026-10-14T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Schindler Suzanne E"
-    ],
-    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00364-9",
-    "neurology_classification": {
-      "subspecialty": "Dementia",
-      "subspecialties": [
-        "Dementia"
-      ],
-      "topics": [
-        "Neurology"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Dementia practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1016/s1474-4422(26)00362-5",
-    "title": "Staged bilateral focused ultrasound pallidothalamic tractotomy for Parkinson's disease",
-    "journal": {
-      "name": "The Lancet Neurology",
-      "short_name": "Lancet Neurol",
-      "badge_bg": "#CFFAFE",
-      "badge_text": "#0E7490"
-    },
-    "pub_date": "2026-10-14T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Horisawa Shiro",
-      "Taira Takaomi"
-    ],
-    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00362-5",
-    "neurology_classification": {
-      "subspecialty": "Movement Disorders",
-      "subspecialties": [
-        "Movement Disorders"
-      ],
-      "topics": [
-        "Parkinson"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Movement Disorders practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1016/s1474-4422(26)00365-0",
-    "title": "Staged bilateral focused ultrasound pallidothalamic tractotomy for Parkinson's disease – Authors' reply",
-    "journal": {
-      "name": "The Lancet Neurology",
-      "short_name": "Lancet Neurol",
-      "badge_bg": "#CFFAFE",
-      "badge_text": "#0E7490"
-    },
-    "pub_date": "2026-10-14T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Dalvi Arif",
-      "Eisenberg Howard M"
-    ],
-    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00365-0",
-    "neurology_classification": {
-      "subspecialty": "Movement Disorders",
-      "subspecialties": [
-        "Movement Disorders"
-      ],
-      "topics": [
-        "Parkinson"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Movement Disorders practice.",
-      "ai_verified": false
-    }
   },
   {
     "id": "10.1161/strokeaha.126.055677",
@@ -9009,40 +9043,6 @@
       "conclusion_vi": "Early-phase adaptive trials—borrowed largely from oncology and encompassing dose-ranging, screening, and finding designs—are foundational for systematically identifying safe, tolerable doses of novel stroke therapies with signals of efficacy before late-phase testing. Integrating these innovative methodologies can streamline the continuum of stroke care development.",
       "clinical_significance": "Clinical significance for Vascular & Stroke practice.",
       "ai_verified": true
-    }
-  },
-  {
-    "id": "10.1016/s1474-4422(26)00359-5",
-    "title": "The use of blood biomarkers to understand responses to lecanemab treatment",
-    "journal": {
-      "name": "The Lancet Neurology",
-      "short_name": "Lancet Neurol",
-      "badge_bg": "#CFFAFE",
-      "badge_text": "#0E7490"
-    },
-    "pub_date": "2026-09-24T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Ryan Natalie S"
-    ],
-    "doi_url": "https://doi.org/10.1016/s1474-4422(26)00359-5",
-    "neurology_classification": {
-      "subspecialty": "Dementia",
-      "subspecialties": [
-        "Dementia"
-      ],
-      "topics": [
-        "Lecanemab"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Dementia practice.",
-      "ai_verified": false
     }
   },
   {
