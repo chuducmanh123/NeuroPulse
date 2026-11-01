@@ -71,21 +71,38 @@ export function renderGradeQuality(quality: string) {
 }
 
 /**
- * Returns styled Strength of Recommendation according to ESO/GRADE standard (Hình 1):
+ * Returns styled Strength of Recommendation according to ESO/GRADE standard (Table 11):
  * - Strong against intervention ↓↓ (Red: #d32f2f)
- * - Weak against intervention ↓? (Orange: #ea580c)
- * - Weak for intervention ↑? (Green: #16a34a)
+ * - Weak against intervention ↓ (Orange: #ea580c)
+ * - Weak for intervention ↑ (Green: #16a34a)
  * - Strong for intervention ↑↑ (Dark Green: #15803d)
+ * - Uncertain / Ongoing trials — (Slate: #64748b)
  */
 export function renderGradeStrength(strength: string, statement?: string) {
   const norm = (strength || "").trim().toLowerCase();
   const stmtNorm = (statement || "").trim().toLowerCase();
 
+  // Uncertain / No recommendation grade (—)
+  if (
+    norm.includes("uncertain") ||
+    norm === "—" ||
+    norm === "-" ||
+    norm === "not graded" ||
+    norm === "ungraded"
+  ) {
+    return (
+      <span className="font-extrabold text-slate-500 dark:text-slate-400 inline-flex items-center gap-1">
+        <span>Uncertain / Ongoing trials</span>
+        <span className="font-black text-sm tracking-tight">—</span>
+      </span>
+    );
+  }
+
   // Strong against (↓↓ - Red)
   if (
     norm.includes("strong against") ||
     norm.includes("strong recommendation against") ||
-    (norm.includes("strong") && stmtNorm.includes("suggest against"))
+    norm === "↓↓"
   ) {
     return (
       <span className="font-extrabold text-[#d32f2f] dark:text-red-400 inline-flex items-center gap-1">
@@ -95,17 +112,17 @@ export function renderGradeStrength(strength: string, statement?: string) {
     );
   }
 
-  // Weak against (↓? - Orange)
+  // Weak against (↓ - Orange, no question mark)
   if (
     norm.includes("weak against") ||
-    norm.includes("suggest against") ||
     norm.includes("conditional against") ||
-    (norm.includes("conditional") && (stmtNorm.includes("suggest against") || stmtNorm.includes("against") || stmtNorm.includes("avoid")))
+    norm === "↓" ||
+    norm === "↓?"
   ) {
     return (
       <span className="font-extrabold text-[#ea580c] dark:text-orange-400 inline-flex items-center gap-1">
         <span>Weak against intervention</span>
-        <span className="font-black text-sm tracking-tight">↓?</span>
+        <span className="font-black text-sm tracking-tight">↓</span>
       </span>
     );
   }
@@ -114,7 +131,7 @@ export function renderGradeStrength(strength: string, statement?: string) {
   if (
     norm.includes("strong for") ||
     norm.includes("strong recommendation for") ||
-    (norm.includes("strong") && (stmtNorm.includes("recommend") || stmtNorm.includes("suggest")))
+    norm === "↑↑"
   ) {
     return (
       <span className="font-extrabold text-[#15803d] dark:text-emerald-400 inline-flex items-center gap-1">
@@ -124,29 +141,35 @@ export function renderGradeStrength(strength: string, statement?: string) {
     );
   }
 
-  // Weak for (↑? - Green)
+  // Weak for (↑ - Green, no question mark)
   if (
     norm.includes("weak for") ||
-    norm.includes("suggest for") ||
     norm.includes("conditional for") ||
-    norm.includes("weak") ||
-    norm.includes("conditional") ||
-    stmtNorm.includes("suggest") ||
-    stmtNorm.includes("maintain") ||
-    stmtNorm.includes("recommend")
+    norm === "↑" ||
+    norm === "↑?"
   ) {
     return (
       <span className="font-extrabold text-[#16a34a] dark:text-emerald-400 inline-flex items-center gap-1">
         <span>Weak for intervention</span>
-        <span className="font-black text-sm tracking-tight">↑?</span>
+        <span className="font-black text-sm tracking-tight">↑</span>
       </span>
     );
   }
 
-  // Fallback
+  // Statement-aware fallback only if strength is ambiguous
+  if (norm.includes("against") || stmtNorm.includes("against") || stmtNorm.includes("avoid")) {
+    return (
+      <span className="font-extrabold text-[#ea580c] dark:text-orange-400 inline-flex items-center gap-1">
+        <span>Weak against intervention</span>
+        <span className="font-black text-sm tracking-tight">↓</span>
+      </span>
+    );
+  }
+
   return (
-    <span className="font-bold text-slate-700 dark:text-slate-300">
-      {strength}
+    <span className="font-extrabold text-[#16a34a] dark:text-emerald-400 inline-flex items-center gap-1">
+      <span>Weak for intervention</span>
+      <span className="font-black text-sm tracking-tight">↑</span>
     </span>
   );
 }

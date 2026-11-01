@@ -20,19 +20,14 @@ export function parseEsoGrade(gradeStr?: string, statement?: string): {
   const stmtLower = (statement || "").toLowerCase();
 
   // Strength parsing with statement-aware fallback
-  if (
+  if (lower.includes("uncertain") || lower === "—" || lower === "-") {
+    strength = "Uncertain";
+  } else if (
     lower.includes("strong against") ||
     lower.includes("harm") ||
-    (lower.includes("strong") && stmtLower.includes("suggest against"))
+    (lower.includes("strong") && (stmtLower.includes("suggest against") || stmtLower.includes("recommend against")))
   ) {
     strength = "Strong against intervention";
-  } else if (
-    lower.includes("weak against") ||
-    lower.includes("suggest against") ||
-    stmtLower.includes("suggest against") ||
-    (lower.includes("conditional") && (stmtLower.includes("against") || stmtLower.includes("avoid") || stmtLower.includes("not ")))
-  ) {
-    strength = "Weak against intervention";
   } else if (
     lower.includes("strong for") ||
     lower.includes("recommend for") ||
@@ -40,13 +35,20 @@ export function parseEsoGrade(gradeStr?: string, statement?: string): {
   ) {
     strength = "Strong for intervention";
   } else if (
+    lower.includes("weak against") ||
+    lower.includes("suggest against") ||
+    (lower.includes("conditional") && (stmtLower.includes("against") || stmtLower.includes("avoid") || stmtLower.includes("not ")))
+  ) {
+    strength = "Weak against intervention";
+  } else if (
     lower.includes("weak for") ||
     lower.includes("suggest for") ||
-    lower.includes("conditional") ||
-    stmtLower.includes("suggest") ||
-    stmtLower.includes("maintain") ||
-    stmtLower.includes("recommend")
+    lower.includes("conditional")
   ) {
+    strength = "Weak for intervention";
+  } else if (stmtLower.includes("suggest against") || stmtLower.includes("against") || stmtLower.includes("avoid")) {
+    strength = "Weak against intervention";
+  } else {
     strength = "Weak for intervention";
   }
 

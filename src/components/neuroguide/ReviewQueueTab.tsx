@@ -112,13 +112,35 @@ function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[]): EsoPicoItem[] {
 
     const picoKey = `PICO-${pNum}`;
 
-    let q = r.quality_of_evidence || "Moderate";
-    let s = r.strength_of_recommendation || "Weak for intervention";
+    let q = r.quality_of_evidence || (r as any).quality;
+    let s = r.strength_of_recommendation || (r as any).strength;
+
+    // Try parsing from currentGrade if not directly provided
+    if (!q || !s) {
+      const rawGrade = (r as any).currentGrade || (r as any).grade || "";
+      const lowerG = rawGrade.toLowerCase();
+      if (!q) {
+        if (lowerG.includes("very low")) q = "Very low";
+        else if (lowerG.includes("low") && !lowerG.includes("very")) q = "Low";
+        else if (lowerG.includes("high")) q = "High";
+        else if (lowerG.includes("moderate")) q = "Moderate";
+      }
+      if (!s) {
+        if (lowerG.includes("strong against")) s = "Strong against intervention";
+        else if (lowerG.includes("strong for")) s = "Strong for intervention";
+        else if (lowerG.includes("weak against")) s = "Weak against intervention";
+        else if (lowerG.includes("weak for")) s = "Weak for intervention";
+        else if (lowerG.includes("uncertain")) s = "Uncertain";
+      }
+    }
+
+    q = q || "Moderate";
+    s = s || "Weak for intervention";
     const stmtLower = (r.statement || "").toLowerCase();
 
     // Normalize vague or "Conditional" strength into official ESO GRADE values
     const sLower = s.toLowerCase();
-    if (sLower === "conditional" || sLower === "weak" || !s) {
+    if (sLower === "conditional" || sLower === "weak") {
       if (stmtLower.includes("suggest against") || stmtLower.includes("against") || stmtLower.includes("avoid")) {
         s = "Weak against intervention";
       } else {
@@ -133,7 +155,10 @@ function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[]): EsoPicoItem[] {
     }
 
     // Only use consensus_statement if explicitly present and not identical to statement
-    const rawConsensus = (r as any).consensus_statement;
+    const rawConsensus =
+      (r as any).consensus_statement ||
+      (r as any).expertConsensusStatement ||
+      ((r as any).previousText && !(r as any).previousText.startsWith("Driving Evidence:") ? (r as any).previousText : undefined);
     const consensus =
       rawConsensus && rawConsensus.trim() !== (r.statement || "").trim()
         ? rawConsensus.trim()
