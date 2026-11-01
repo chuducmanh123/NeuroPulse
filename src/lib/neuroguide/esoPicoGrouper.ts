@@ -2,6 +2,51 @@ import type { PracticeChangeDetail } from "@/types/neuroguide";
 import type { EsoPicoItem, EsoEvidenceQuality, EsoRecommendationStrength } from "@/components/neuroguide/EsoGuidelineTable";
 
 /**
+ * Official ESO 2025 Guideline Quality of Evidence definitions and exact colors from PDF (Pages 46-47):
+ * - High: #0070c0 (Vibrant Azure / Deep Blue)
+ * - Moderate: #5481c4 (Medium Slate Blue)
+ * - Low: #2b7bb9 (Soft Blue; PDF #a2c1e6 enhanced for white background readability)
+ * - Very low: #8e72a8 (Lavender / Muted Violet; PDF #b2a1c7 enhanced for white background readability)
+ */
+export const ESO_GRADE_QUALITY_CONFIG: Record<
+  string,
+  { label: string; symbols: string; hex: string; darkHex: string; bgLight: string; borderLight: string }
+> = {
+  High: {
+    label: "High",
+    symbols: "⊕⊕⊕⊕",
+    hex: "#0070c0",
+    darkHex: "#38bdf8",
+    bgLight: "rgba(0, 112, 192, 0.08)",
+    borderLight: "rgba(0, 112, 192, 0.25)",
+  },
+  Moderate: {
+    label: "Moderate",
+    symbols: "⊕⊕⊕",
+    hex: "#5481c4",
+    darkHex: "#818cf8",
+    bgLight: "rgba(84, 129, 196, 0.08)",
+    borderLight: "rgba(84, 129, 196, 0.25)",
+  },
+  Low: {
+    label: "Low",
+    symbols: "⊕⊕",
+    hex: "#2b7bb9",
+    darkHex: "#93c5fd",
+    bgLight: "rgba(43, 123, 185, 0.08)",
+    borderLight: "rgba(43, 123, 185, 0.25)",
+  },
+  "Very low": {
+    label: "Very low",
+    symbols: "⊕",
+    hex: "#8e72a8",
+    darkHex: "#d8b4fe",
+    bgLight: "rgba(142, 114, 168, 0.08)",
+    borderLight: "rgba(142, 114, 168, 0.25)",
+  },
+};
+
+/**
  * Parses ESO GRADE metadata from strings like:
  * "GRADE Strong for intervention (Evidence: High)"
  * "GRADE Weak for intervention (Evidence: Very Low, Voting: 8/8)"

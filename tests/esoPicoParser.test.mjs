@@ -56,4 +56,12 @@ Table 11 Synoptic table of all recommendations and expert consensus statements.
     assert.ok(groupedPicos[2].recommendations[0].drivingTrials?.includes("ENCHANTED"));
     assert.ok(groupedPicos[2].recommendations[1].drivingTrials?.includes("OPTIMAL"));
   });
+
+  await t.test("should export exact ESO guideline PDF colors for Quality of evidence", async () => {
+    const { ESO_GRADE_QUALITY_CONFIG } = await import("../src/lib/neuroguide/esoPicoGrouper.ts");
+    assert.equal(ESO_GRADE_QUALITY_CONFIG.High.hex, "#0070c0");
+    assert.equal(ESO_GRADE_QUALITY_CONFIG.Moderate.hex, "#5481c4");
+    assert.equal(ESO_GRADE_QUALITY_CONFIG.Low.hex, "#2b7bb9");
+    assert.equal(ESO_GRADE_QUALITY_CONFIG["Very low"].hex, "#8e72a8");
+  });
 });

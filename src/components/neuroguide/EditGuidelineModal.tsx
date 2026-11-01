@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import type { GuidelineDoc, PracticeChangeDetail, SubspecialtyType } from "@/types/neuroguide";
 import { NEUROLOGY_SUBSPECIALTIES } from "@/types/neuroguide";
+import { ESO_GRADE_QUALITY_CONFIG } from "./EsoGuidelineTable";
 
 interface EditGuidelineModalProps {
   isOpen: boolean;
@@ -13,6 +14,8 @@ interface EditGuidelineModalProps {
   onSuccess: (updatedDoc?: GuidelineDoc) => void;
   darkMode: boolean;
 }
+
+export type GuidelineFormFormat = "AUTO" | "ESO" | "AHA" | "STANDARD";
 
 function parseAhaCor(gradeStr?: string): string {
   if (!gradeStr) return "1";
@@ -39,13 +42,14 @@ function parseAhaLoe(gradeStr?: string): string {
 }
 
 function parseEsoStrength(gradeStr?: string): string {
-  if (!gradeStr) return "Strong for intervention";
+  if (!gradeStr) return "Weak against intervention";
   const lower = gradeStr.toLowerCase();
+  if (lower.includes("uncertain") || lower.includes("—") || lower === "-") return "Uncertain / Ongoing trials";
   if (lower.includes("strong against")) return "Strong against intervention";
   if (lower.includes("weak against") || lower.includes("suggest against")) return "Weak against intervention";
   if (lower.includes("strong for") || lower.includes("recommend for")) return "Strong for intervention";
   if (lower.includes("weak for") || lower.includes("suggest for")) return "Weak for intervention";
-  return "Strong for intervention";
+  return "Weak against intervention";
 }
 
 function parseEsoQuality(gradeStr?: string): string {
@@ -88,6 +92,9 @@ export function EditGuidelineModal({
   const [selectedRecIndex, setSelectedRecIndex] = useState<number>(0);
   const [searchRecTerm, setSearchRecTerm] = useState("");
 
+  // Form Format mode (Manual override or Auto-detect)
+  const [formFormat, setFormFormat] = useState<GuidelineFormFormat>("AUTO");
+
   // Recommendation Edit Form Fields (for the selected recommendation)
   const [recCategory, setRecCategory] = useState("");
   const [recTopic, setRecTopic] = useState("");
@@ -102,8 +109,8 @@ export function EditGuidelineModal({
   const [ahaLoe, setAhaLoe] = useState<string>("A");
 
   // ESO Form Specific
-  const [esoStrength, setEsoStrength] = useState<string>("Strong for intervention");
-  const [esoQuality, setEsoQuality] = useState<string>("High");
+  const [esoStrength, setEsoStrength] = useState<string>("Weak against intervention");
+  const [esoQuality, setEsoQuality] = useState<string>("Moderate");
   const [esoVoting, setEsoVoting] = useState<string>("Vote: 10/10");
   const [esoConsensus, setEsoConsensus] = useState<string>("");
 
@@ -113,10 +120,45 @@ export function EditGuidelineModal({
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  // Determine Form Type based on society
+  // Determine Form Type based on society, title, item content
   const currentSociety = (docSociety || guidelineDoc?.society || "").toUpperCase();
-  const isAha = currentSociety.includes("AHA") || currentSociety.includes("ASA") || currentSociety.includes("ACC");
-  const isEso = currentSociety.includes("ESO");
+  const currentTitle = (docTitle || guidelineDoc?.title || "").toLowerCase();
+
+  const isDetectedEso = useMemo(() => {
+    if (currentSociety.includes("ESO") || currentSociety.includes("EUROPEAN STROKE")) return true;
+    if (
+      currentTitle.includes("eso") ||
+      currentTitle.includes("european stroke") ||
+      currentTitle.includes("blood pressure management in acute")
+    ) {
+      return true;
+    }
+    if (docId?.toLowerCase().includes("eso")) return true;
+    if (item?.quality || item?.strength || item?.picoNumber || item?.voting) return true;
+    if (item?.currentGrade?.toLowerCase().includes("grade") || item?.topic?.toLowerCase().includes("pico")) return true;
+    if (
+      practiceChanges.some(
+        (p) =>
+          p.currentGrade?.toLowerCase().includes("grade") ||
+          p.quality ||
+          p.strength ||
+          p.topic?.toLowerCase().includes("pico")
+      )
+    ) {
+      return true;
+    }
+    return false;
+  }, [currentSociety, currentTitle, docId, item, practiceChanges]);
+
+  const isDetectedAha = useMemo(() => {
+    if (currentSociety.includes("AHA") || currentSociety.includes("ASA") || currentSociety.includes("ACC")) return true;
+    if (currentTitle.includes("aha") || currentTitle.includes("american heart") || currentTitle.includes("stroke association")) return true;
+    if (item?.currentGrade?.toLowerCase().includes("class ") || item?.currentGrade?.toLowerCase().includes("level ")) return true;
+    return false;
+  }, [currentSociety, currentTitle, item]);
+
+  const isEso = formFormat === "ESO" || (formFormat === "AUTO" && isDetectedEso);
+  const isAha = formFormat === "AHA" || (formFormat === "AUTO" && !isDetectedEso && isDetectedAha);
 
   // Sync state when modal opens or props change
   useEffect(() => {
@@ -146,6 +188,17 @@ export function EditGuidelineModal({
         setActiveTab("metadata");
       }
     } else if (item) {
+      const isItemEso =
+        item.currentGrade?.toLowerCase().includes("grade") ||
+        item.topic?.toLowerCase().includes("pico") ||
+        item.quality ||
+        item.strength ||
+        docId?.toLowerCase().includes("eso");
+
+      if (isItemEso) {
+        setDocSociety("ESO");
+        setDocTitle("2025 ESO guideline on blood pressure management in acute ischaemic stroke and intracerebral haemorrhage");
+      }
       setPracticeChanges([item]);
       setSelectedRecIndex(0);
       loadRecIntoForm(item);
@@ -169,11 +222,11 @@ export function EditGuidelineModal({
     setAhaCor(parseAhaCor(rec.currentGrade));
     setAhaLoe(parseAhaLoe(rec.currentGrade));
 
-    // Load ESO
-    setEsoStrength(parseEsoStrength(rec.currentGrade));
-    setEsoQuality(parseEsoQuality(rec.currentGrade));
+    // Load ESO: prioritize direct fields first
+    setEsoStrength(rec.strength || parseEsoStrength(rec.currentGrade));
+    setEsoQuality(rec.quality || parseEsoQuality(rec.currentGrade));
     setEsoVoting(rec.voting || "Vote: 10/10");
-    setEsoConsensus(rec.previousText || "");
+    setEsoConsensus(rec.expertConsensusStatement || rec.previousText || "");
 
     // Load General
     setGeneralGrade(rec.currentGrade || "Level A");
@@ -357,9 +410,12 @@ export function EditGuidelineModal({
         currentText: recStatement,
         drivingTrials: trials,
         changeType: recChangeType,
-        previousGrade: recPrevGrade || undefined,
+        previousGrade: isEso ? undefined : recPrevGrade || undefined,
         previousText: isEso ? esoConsensus : recPrevText || undefined,
         voting: isEso ? esoVoting : undefined,
+        quality: isEso ? esoQuality : undefined,
+        strength: isEso ? esoStrength : undefined,
+        expertConsensusStatement: isEso ? esoConsensus : undefined,
       };
     }
 
@@ -419,24 +475,24 @@ export function EditGuidelineModal({
         }`}
       >
         {/* HEADER */}
-        <div className="px-5 py-3.5 border-b flex items-center justify-between gap-3 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-950/50">
+        <div className="px-5 py-3.5 border-b flex flex-wrap items-center justify-between gap-3 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-950/50">
           <div className="flex items-center gap-2.5 min-w-0">
             <span className="text-xl flex-shrink-0">✏️</span>
             <div className="min-w-0">
               <h3 className="text-sm sm:text-base font-extrabold truncate">
                 Chỉnh sửa Guideline: {docTitle || guidelineDoc?.title || "Hướng dẫn lâm sàng"}
               </h3>
-              <div className="flex items-center gap-2 mt-0.5">
+              <div className="flex flex-wrap items-center gap-2 mt-0.5">
                 <span
                   className={`text-[10px] font-black uppercase px-2 py-0.5 rounded-full border ${
-                    isAha
-                      ? "bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/30"
-                      : isEso
+                    isEso
                       ? "bg-blue-500/15 text-blue-600 dark:text-blue-400 border-blue-500/30"
+                      : isAha
+                      ? "bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/30"
                       : "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/30"
                   }`}
                 >
-                  {isAha ? "🔴 Form Mẫu AHA/ASA (COR & LOE)" : isEso ? "🔵 Form Mẫu ESO GRADE (PICO)" : `🟢 Form Mẫu ${docSociety || "Tiêu chuẩn"}`}
+                  {isEso ? "🔵 Form Mẫu ESO GRADE (PICO)" : isAha ? "🔴 Form Mẫu AHA/ASA (COR & LOE)" : `🟢 Form Mẫu ${docSociety || "Tiêu chuẩn"}`}
                 </span>
                 <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">
                   {practiceChanges.length} khuyến cáo • {takeaways.length} điểm cốt lõi
@@ -444,14 +500,69 @@ export function EditGuidelineModal({
               </div>
             </div>
           </div>
-          <button
-            type="button"
-            onClick={onClose}
-            className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xl font-bold cursor-pointer p-1"
-            title="Đóng cửa sổ"
-          >
-            ✕
-          </button>
+
+          <div className="flex items-center gap-2 flex-wrap">
+            {/* Form Format Selector */}
+            <div className="flex items-center p-0.5 rounded-xl bg-slate-200/80 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-[11px]">
+              <button
+                type="button"
+                onClick={() => setFormFormat("AUTO")}
+                className={`px-2 py-1 rounded-lg font-bold transition-all cursor-pointer ${
+                  formFormat === "AUTO"
+                    ? "bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-2xs font-extrabold"
+                    : "text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
+                }`}
+                title="Tự động nhận diện chuẩn theo tên tài liệu hoặc hội chuyên khoa"
+              >
+                Auto ({isDetectedEso ? "ESO" : isDetectedAha ? "AHA" : "Chung"})
+              </button>
+              <button
+                type="button"
+                onClick={() => setFormFormat("ESO")}
+                className={`px-2.5 py-1 rounded-lg font-bold transition-all cursor-pointer ${
+                  formFormat === "ESO"
+                    ? "bg-blue-600 text-white shadow-2xs font-extrabold"
+                    : "text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/40"
+                }`}
+                title="Sử dụng form chuẩn ESO GRADE & PICO (Table 11 Synoptic Table)"
+              >
+                Form ESO
+              </button>
+              <button
+                type="button"
+                onClick={() => setFormFormat("AHA")}
+                className={`px-2.5 py-1 rounded-lg font-bold transition-all cursor-pointer ${
+                  formFormat === "AHA"
+                    ? "bg-rose-600 text-white shadow-2xs font-extrabold"
+                    : "text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40"
+                }`}
+                title="Sử dụng form chuẩn AHA/ASA COR & LOE"
+              >
+                Form AHA
+              </button>
+              <button
+                type="button"
+                onClick={() => setFormFormat("STANDARD")}
+                className={`px-2.5 py-1 rounded-lg font-bold transition-all cursor-pointer ${
+                  formFormat === "STANDARD"
+                    ? "bg-slate-700 text-white shadow-2xs font-extrabold"
+                    : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
+                }`}
+                title="Sử dụng form tiêu chuẩn chung"
+              >
+                Tiêu chuẩn
+              </button>
+            </div>
+
+            <button
+              type="button"
+              onClick={onClose}
+              className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xl font-bold cursor-pointer p-1"
+              title="Đóng cửa sổ"
+            >
+              ✕
+            </button>
+          </div>
         </div>
 
         {/* ERROR NOTIFICATION */}
@@ -877,52 +988,92 @@ export function EditGuidelineModal({
                       )}
 
                       {isEso && (
-                        <div className="p-3 rounded-xl border border-blue-200 dark:border-blue-900/60 bg-blue-50/30 dark:bg-blue-950/20 space-y-3">
-                          <div className="flex items-center gap-1.5 font-bold text-blue-700 dark:text-blue-300 text-[11px]">
-                            <span>🔵 CẤU TRÚC PHÂN CẤP ESO GRADE (HÌNH 1 SYNOPTIC TABLE 11)</span>
+                        <div className="p-3.5 rounded-xl border border-blue-200 dark:border-blue-900/60 bg-blue-50/40 dark:bg-blue-950/20 space-y-3.5">
+                          <div className="flex items-center justify-between gap-2 border-b border-blue-200/80 dark:border-blue-900/60 pb-2">
+                            <span className="font-extrabold text-blue-900 dark:text-blue-200 text-xs flex items-center gap-1.5">
+                              <span>🔵</span>
+                              <span>CẤU TRÚC PHÂN CẤP ESO GRADE (SYNOPTIC TABLE 11)</span>
+                            </span>
+                            <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded bg-blue-500/10 text-blue-700 dark:text-blue-300 border border-blue-500/20">
+                              Chuẩn ESO
+                            </span>
                           </div>
 
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div>
-                              <label className="block font-bold mb-1">
+                              <label className="block font-bold mb-1 text-slate-700 dark:text-slate-300">
                                 Strength of Recommendation:
                               </label>
                               <select
                                 value={esoStrength}
                                 onChange={(e) => setEsoStrength(e.target.value)}
-                                className={`w-full p-2 rounded-xl border font-extrabold ${
+                                className={`w-full p-2 rounded-xl border font-extrabold text-xs ${
                                   darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
                                 }`}
                               >
                                 <option value="Strong for intervention">Strong for intervention (Ủng hộ mạnh ↑↑)</option>
-                                <option value="Weak for intervention">Weak for intervention (Ủng hộ yếu ↑?)</option>
-                                <option value="Weak against intervention">Weak against intervention (Chống lại yếu ↓?)</option>
+                                <option value="Weak for intervention">Weak for intervention (Ủng hộ yếu ↑)</option>
+                                <option value="Weak against intervention">Weak against intervention (Chống lại yếu ↓)</option>
                                 <option value="Strong against intervention">Strong against intervention (Chống lại mạnh ↓↓)</option>
+                                <option value="Uncertain / Ongoing trials">Uncertain / Ongoing trials (Chưa rõ ràng —)</option>
                               </select>
                             </div>
 
                             <div>
-                              <label className="block font-bold mb-1">
+                              <label className="block font-bold mb-1 text-slate-700 dark:text-slate-300">
                                 Quality of Evidence (GRADE):
                               </label>
                               <select
                                 value={esoQuality}
                                 onChange={(e) => setEsoQuality(e.target.value)}
-                                className={`w-full p-2 rounded-xl border font-extrabold ${
+                                className={`w-full p-2 rounded-xl border font-extrabold text-xs ${
                                   darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
                                 }`}
                               >
-                                <option value="High">High (Cao ⊕⊕⊕⊕)</option>
-                                <option value="Moderate">Moderate (Trung bình ⊕⊕⊕)</option>
-                                <option value="Low">Low (Thấp ⊕⊕)</option>
-                                <option value="Very low">Very low (Rất thấp ⊕)</option>
+                                <option value="High">High (Cao ⊕⊕⊕⊕) — #0070c0</option>
+                                <option value="Moderate">Moderate (Trung bình ⊕⊕⊕) — #5481c4</option>
+                                <option value="Low">Low (Thấp ⊕⊕) — #2b7bb9</option>
+                                <option value="Very low">Very low (Rất thấp ⊕) — #8e72a8</option>
                               </select>
+
+                              {/* Live preview matching the PDF Guideline palette */}
+                              <div className="mt-1.5 flex items-center gap-2">
+                                <span className="text-[10.5px] font-medium text-slate-500 dark:text-slate-400">Màu chuẩn guideline:</span>
+                                <span
+                                  style={{
+                                    color: ESO_GRADE_QUALITY_CONFIG[esoQuality]?.hex || "#5481c4",
+                                    backgroundColor: ESO_GRADE_QUALITY_CONFIG[esoQuality]?.bgLight || "rgba(84, 129, 196, 0.1)",
+                                    borderColor: ESO_GRADE_QUALITY_CONFIG[esoQuality]?.borderLight || "rgba(84, 129, 196, 0.3)",
+                                  }}
+                                  className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-xs font-black border"
+                                >
+                                  <span>{ESO_GRADE_QUALITY_CONFIG[esoQuality]?.label || esoQuality}</span>
+                                  <span className="font-mono tracking-tight text-xs">
+                                    {ESO_GRADE_QUALITY_CONFIG[esoQuality]?.symbols || "⊕⊕⊕"}
+                                  </span>
+                                </span>
+                              </div>
                             </div>
                           </div>
 
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          <div className="space-y-3">
                             <div>
-                              <label className="block font-bold mb-1">
+                              <label className="block font-bold mb-1 text-slate-700 dark:text-slate-300">
+                                Expert Consensus Statement (Tuyên bố đồng thuận chuyên gia Table 11):
+                              </label>
+                              <textarea
+                                rows={3}
+                                value={esoConsensus}
+                                onChange={(e) => setEsoConsensus(e.target.value)}
+                                placeholder="Nhập tuyên bố đồng thuận lâm sàng của nhóm chuyên gia ESO (nếu có)..."
+                                className={`w-full p-2.5 rounded-xl border font-medium text-xs leading-relaxed ${
+                                  darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
+                                }`}
+                              />
+                            </div>
+
+                            <div className="w-full sm:w-1/2">
+                              <label className="block font-bold mb-1 text-slate-700 dark:text-slate-300">
                                 Tỷ lệ bỏ phiếu đồng thuận (Voting):
                               </label>
                               <input
@@ -930,21 +1081,7 @@ export function EditGuidelineModal({
                                 value={esoVoting}
                                 onChange={(e) => setEsoVoting(e.target.value)}
                                 placeholder="VD: Vote: 10/10 hoặc Unanimous"
-                                className={`w-full p-2 rounded-xl border font-medium ${
-                                  darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-200"
-                                }`}
-                              />
-                            </div>
-                            <div>
-                              <label className="block font-bold mb-1">
-                                Expert Consensus Statement (nếu có):
-                              </label>
-                              <input
-                                type="text"
-                                value={esoConsensus}
-                                onChange={(e) => setEsoConsensus(e.target.value)}
-                                placeholder="Ghi chú đồng thuận của ban soạn thảo..."
-                                className={`w-full p-2 rounded-xl border font-medium ${
+                                className={`w-full p-2 rounded-xl border font-medium text-xs ${
                                   darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-200"
                                 }`}
                               />

@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { EditGuidelineModal } from "./EditGuidelineModal";
 import { AhaGuidelineTable } from "./AhaGuidelineTable";
-import { EsoGuidelineTable, type EsoPicoItem } from "./EsoGuidelineTable";
+import { EsoGuidelineTable, type EsoPicoItem, renderGradeQuality, renderGradeStrength } from "./EsoGuidelineTable";
 import type { GuidelineDoc, PracticeChangeDetail } from "@/types/neuroguide";
 
 export interface StoredRec {
@@ -541,11 +541,18 @@ export function ReviewQueueTab({
 
       const gId = rec.guideline_id || "unknown";
       if (!map.has(gId)) {
+        const isDocEso =
+          (rec.society || "").toUpperCase().includes("ESO") ||
+          (rec.guideline_title || "").toUpperCase().includes("ESO") ||
+          (rec.guideline_title || "").toLowerCase().includes("blood pressure management in acute") ||
+          (rec.guideline_title || "").toLowerCase().includes("european stroke") ||
+          gId.toLowerCase().includes("eso");
+
         map.set(gId, {
           guideline_id: gId,
           guideline_title: rec.guideline_title || gId,
-          society: rec.society || "General",
-          year: rec.year,
+          society: isDocEso ? "ESO" : (rec.society || "General"),
+          year: rec.year || 2025,
           recommendations: [],
           categories: [],
         });
@@ -776,8 +783,24 @@ export function ReviewQueueTab({
   };
 
   const handleOpenEditRecommendation = (rec: StoredRec) => {
+    const parentGroup = guidelineGroups.find((g) => g.guideline_id === rec.guideline_id);
+    const isDocEso =
+      (parentGroup?.society || "").toUpperCase().includes("ESO") ||
+      (parentGroup?.guideline_title || "").toUpperCase().includes("ESO") ||
+      (parentGroup?.guideline_title || "").toLowerCase().includes("blood pressure management in acute") ||
+      (parentGroup?.guideline_title || "").toLowerCase().includes("european stroke") ||
+      (rec.society || "").toUpperCase().includes("ESO") ||
+      (rec.guideline_title || "").toUpperCase().includes("ESO") ||
+      (rec.guideline_id || "").toLowerCase().includes("eso") ||
+      Boolean(rec.quality_of_evidence) ||
+      Boolean(rec.strength_of_recommendation);
+
     let currentGrade = "Standard Clinical Practice";
-    if (rec.cor) {
+    if (isDocEso) {
+      const q = rec.quality_of_evidence || "Moderate";
+      const s = rec.strength_of_recommendation || "Weak against intervention";
+      currentGrade = `GRADE ${s} (Evidence: ${q}${rec.voting ? `, Voting: ${rec.voting}` : ""})`;
+    } else if (rec.cor) {
       currentGrade = `Class ${rec.cor}${rec.loe ? `, Level ${rec.loe}` : ""}`;
     } else if (rec.quality_of_evidence || rec.strength_of_recommendation) {
       currentGrade = `GRADE ${rec.strength_of_recommendation || "Recommended"} (Evidence: ${rec.quality_of_evidence || "Moderate"})`;
@@ -785,16 +808,45 @@ export function ReviewQueueTab({
 
     const itemDetail: PracticeChangeDetail = {
       id: rec.rec_id,
-      topic: rec.topic || rec.target_population || "Clinical Recommendation",
+      topic: rec.topic || rec.target_population || (isDocEso ? "PICO 1: Clinical Question" : "Clinical Recommendation"),
       currentGrade,
       currentText: rec.statement,
-      category: rec.category || "General Recommendations",
+      category: rec.category || (isDocEso ? "Blood Pressure" : "General Recommendations"),
       drivingTrials: rec.driving_trials || [],
       changeType: "NEW",
+      quality: isDocEso ? (rec.quality_of_evidence || "Moderate") : undefined,
+      strength: isDocEso ? (rec.strength_of_recommendation || "Weak against intervention") : undefined,
+      expertConsensusStatement: isDocEso ? "" : undefined,
+      voting: isDocEso ? (rec.voting || "Vote: 10/10") : undefined,
+    };
+
+    const docMeta: GuidelineDoc = {
+      id: parentGroup?.guideline_id || rec.guideline_id,
+      title:
+        parentGroup?.guideline_title ||
+        rec.guideline_title ||
+        (isDocEso
+          ? "2025 ESO guideline on blood pressure management in acute ischaemic stroke and intracerebral haemorrhage"
+          : "Hướng dẫn lâm sàng"),
+      society: isDocEso ? "ESO" : (parentGroup?.society || rec.society || "General"),
+      year: parentGroup?.year || rec.year || 2025,
+      officialUrl: "",
+      journalTarget: isDocEso ? "European Stroke Journal" : (rec.society?.includes("AHA") ? "Stroke" : "Neurology"),
+      documentType: "Clinical Practice Guideline",
+      publishDate: `${parentGroup?.year || rec.year || 2025}-01-01`,
+      subspecialty: "Stroke",
+      subspecialties: ["Stroke"],
+      executiveSummary: "",
+      executiveSummaryVi: "",
+      topTakeaways: [],
+      allPracticeChanges: [itemDetail],
+      linkedScenarioIds: [],
+      fullTextStatus: "FULL_TEXT_PARSED",
+      aiSynthesized: true,
     };
 
     setEditingDocId(rec.guideline_id);
-    setEditingGuidelineDoc(null);
+    setEditingGuidelineDoc(docMeta);
     setEditingPracticeChange(itemDetail);
     setShowEditModal(true);
   };
@@ -1162,7 +1214,12 @@ export function ReviewQueueTab({
             const isExpanded = expandedGuidelines[group.guideline_id] ?? true;
             const isProcessingThis = actionLoading === group.guideline_id;
             const isGroupAha = group.society?.toUpperCase().includes("AHA") || group.society?.toUpperCase().includes("ASA");
-            const isGroupEso = group.society?.toUpperCase().includes("ESO");
+            const isGroupEso =
+              group.society?.toUpperCase().includes("ESO") ||
+              group.guideline_title?.toUpperCase().includes("ESO") ||
+              group.guideline_title?.toLowerCase().includes("blood pressure management in acute") ||
+              group.guideline_title?.toLowerCase().includes("european stroke") ||
+              group.guideline_id?.toLowerCase().includes("eso");
             const viewMode = groupViewModes[group.guideline_id] ?? "table";
 
             return (
@@ -1350,6 +1407,18 @@ export function ReviewQueueTab({
                           picoItems={buildEsoPicoItemsFromStoredRecs(group.recommendations, group.guideline_title)}
                           darkMode={darkMode}
                           allowEdit={true}
+                          onEditPico={(pico) => {
+                            const matchRec = group.recommendations.find(
+                              (r) =>
+                                r.topic?.toLowerCase().includes(`pico ${pico.picoNumber}`) ||
+                                r.statement === pico.recommendations[0]?.statement
+                            );
+                            if (matchRec) {
+                              handleOpenEditRecommendation(matchRec);
+                            } else if (group.recommendations.length > 0) {
+                              handleOpenEditRecommendation(group.recommendations[0]);
+                            }
+                          }}
                         />
                       ) : (
                         <AhaGuidelineTable
@@ -1419,11 +1488,25 @@ export function ReviewQueueTab({
                                       )}
                                     </div>
 
-                                    <div className="flex items-center gap-1.5">
+                                    <div className="flex items-center gap-1.5 flex-wrap">
                                       {isGroupEso ? (
-                                        <span className="font-mono text-[10.5px] font-black px-2 py-0.5 rounded-md border bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-500/20">
-                                          ESO GRADE
-                                        </span>
+                                        <div className="flex items-center gap-1.5 flex-wrap">
+                                          {item.quality_of_evidence && (
+                                            <span className="font-mono text-[10.5px] font-black px-2 py-0.5 rounded-md border bg-white dark:bg-slate-900 border-slate-300 dark:border-slate-700">
+                                              {renderGradeQuality(item.quality_of_evidence)}
+                                            </span>
+                                          )}
+                                          {item.strength_of_recommendation && (
+                                            <span className="font-mono text-[10.5px] font-black px-2 py-0.5 rounded-md border bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border-slate-300 dark:border-slate-700">
+                                              {renderGradeStrength(item.strength_of_recommendation, item.statement)}
+                                            </span>
+                                          )}
+                                          {!item.quality_of_evidence && !item.strength_of_recommendation && (
+                                            <span className="font-mono text-[10.5px] font-black px-2 py-0.5 rounded-md border bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-500/20">
+                                              ESO GRADE
+                                            </span>
+                                          )}
+                                        </div>
                                       ) : item.cor ? (
                                         <span
                                           className={`font-mono text-[10.5px] font-black px-2 py-0.5 rounded-md border ${getGradeBadgeStyle(

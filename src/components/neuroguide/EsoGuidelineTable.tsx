@@ -43,29 +43,28 @@ export interface EsoGuidelineTableProps {
  * - Low: ⊕⊕
  * - Very low: ⊕
  */
+import { ESO_GRADE_QUALITY_CONFIG } from "@/lib/neuroguide/esoPicoGrouper";
+export { ESO_GRADE_QUALITY_CONFIG };
+
 export function renderGradeQuality(quality: string) {
   const norm = (quality || "").trim().toLowerCase();
-  let symbols = "⊕⊕⊕";
-  let label = "Moderate";
+  let conf = ESO_GRADE_QUALITY_CONFIG["Moderate"];
 
   if (norm.includes("very low")) {
-    symbols = "⊕";
-    label = "Very low";
+    conf = ESO_GRADE_QUALITY_CONFIG["Very low"];
   } else if (norm.includes("low") && !norm.includes("very low")) {
-    symbols = "⊕⊕";
-    label = "Low";
+    conf = ESO_GRADE_QUALITY_CONFIG["Low"];
   } else if (norm.includes("high")) {
-    symbols = "⊕⊕⊕⊕";
-    label = "High";
-  } else {
-    symbols = "⊕⊕⊕";
-    label = "Moderate";
+    conf = ESO_GRADE_QUALITY_CONFIG["High"];
   }
 
   return (
-    <span className="inline-flex items-center gap-1.5 font-bold text-[#1d72b8] dark:text-sky-400">
-      <span>{label}</span>
-      <span className="tracking-tight font-mono text-sm leading-none">{symbols}</span>
+    <span
+      style={{ color: conf.hex }}
+      className="inline-flex items-center gap-1.5 font-bold"
+    >
+      <span>{conf.label}</span>
+      <span className="tracking-tight font-mono text-sm leading-none">{conf.symbols}</span>
     </span>
   );
 }
