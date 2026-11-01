@@ -1,5 +1,220 @@
 [
   {
+    "id": "nc-2026-021",
+    "case_code": "NC-2026-021",
+    "title": "Rapidly Progressive Cognitive Decline with Visual Hallucinations, Parkinsonism, and Unprovoked Recurrent Falls",
+    "subspecialty": "Movement Disorders",
+    "subspecialties": [
+      "Movement Disorders"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-11-02",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13014812",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-04704-z",
+      "pmcid": "PMC13014812",
+      "pmid": "41699544",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "86-year-old female",
+      "chief_complaint": "Progressive cognitive decline, visual hallucinations, and frequent unprovoked falls leading to repeated head trauma.",
+      "history_of_present_illness": "The patient developed memory impairment approximately 1 year prior to evaluation. Her condition progressively deteriorated over the past several months, characterized by prominent cognitive fluctuations, visual hallucinations, and periods of severe confusion during conversation. Two months prior to presentation, she developed marked gait instability and frequent unprovoked falls requiring wheelchair assistance. Four days prior to her initial consultation, she sustained multiple falls resulting in facial and scalp trauma.",
+      "past_medical_history": "Previously independent in activities of daily living without prior neurological or psychiatric diagnosis.",
+      "vitals": {
+        "bp": "126/74 mmHg",
+        "hr": "72 bpm",
+        "rr": "15 /min",
+        "temp": "36.6 °C",
+        "spo2": "97%"
+      },
+      "neuro_exam": "Alert but with fluctuating attention and confused speech. Cranial nerves demonstrate normal extraocular movements without vertical gaze palsy. Upper limb examination demonstrates bilateral cogwheel rigidity and mild resting tremors. Severe postural instability is noted, with easy loss of balance both anteriorly and posteriorly upon standing.",
+      "key_labs_csf": "Routine hematology and metabolic panels were unremarkable. CSF examination was not performed.",
+      "imaging": [
+        {
+          "modality": "Non-contrast Head CT",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13014812)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13014812_fig1.jpg",
+          "pmcid": "PMC13014812",
+          "doi_url": "https://doi.org/10.1186/s12883-026-04704-z",
+          "caption": "Timeline of the present case and brain computed tomography. The upper panel shows the timeline of the present case, and the lower panel shows brain CT images ( A – C ). A Midbrain atrophy was not notable. Traumatic subarachnoid hemorrhage was observed primarily in the left occipito-temporal lobe. B A subcutaneous hematoma was observed in the left frontal region. B , C A right chronic subdural hematoma was observed, with slight medial shift of the right cerebral hemisphere",
+          "findings_summary": "Reveals a left frontal scalp hematoma, traumatic subarachnoid hemorrhage in the left occipitotemporal region, and a right chronic subdural hematoma with mild midline shift, without disproportionate midbrain atrophy."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following underlying neuropathological entities best accounts for this patient's clinical presentation of fluctuating cognitive decline, visual hallucinations, parkinsonism, and early unprovoked falls?",
+      "question_type": "Diagnosis",
+      "correct_option": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "Pure Corticobasal Degeneration",
+          "peer_percentage": 14,
+          "rationale": "Incorrect. Corticobasal degeneration typically presents with asymmetric parkinsonism, limb apraxia, alien limb phenomenon, and cortical sensory loss. While cognitive impairment can occur, early prominent visual hallucinations and cognitive fluctuations combined with classical Lewy body symptoms are atypical for pure CBD."
+        },
+        {
+          "id": "B",
+          "text": "Co-occurring Dementia with Lewy Bodies and Progressive Supranuclear Palsy",
+          "peer_percentage": 73,
+          "rationale": "Correct! The clinical presentation fulfills diagnostic criteria for Dementia with Lewy Bodies (DLB) due to fluctuating cognition, visual hallucinations, and parkinsonism. However, early unprovoked falls and severe postural instability within 1 year of onset are characteristic core features of Progressive Supranuclear Palsy (PSP). Autopsy studies in such complex clinical phenotypes often demonstrate dual pathology: limbic/brainstem α-synuclein pathology (DLB) combined with tau pathology (tufted astrocytes, neurofibrillary tangles) in the basal ganglia, midbrain, and cerebral cortex (PSP)."
+        },
+        {
+          "id": "C",
+          "text": "Multiple System Atrophy (MSA-P subtype)",
+          "peer_percentage": 8,
+          "rationale": "Incorrect. Multiple system atrophy (MSA) presents with prominent autonomic failure (e.g., orthostatic hypotension, urinary dysfunction) combined with parkinsonism or cerebellar ataxia. Prominent early visual hallucinations and fluctuating cognition are not core features of MSA."
+        },
+        {
+          "id": "D",
+          "text": "Isolated Normal Pressure Hydrocephalus",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. Normal pressure hydrocephalus (NPH) presents with the classic triad of gait disturbance, urinary incontinence, and cognitive decline, typically showing ventriculomegaly disproportionate to cerebral atrophy on imaging. NPH does not cause true well-formed visual hallucinations or α-synuclein/tau histopathology."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Dementia with Lewy bodies (DLB) with concurrent mild Progressive Supranuclear Palsy (PSP) neuropathology",
+      "clinical_discussion": "This case illustrates a complex overlap of neurodegenerative pathologies. Clinically, the patient met criteria for probable Dementia with Lewy Bodies (DLB) based on core features of cognitive fluctuations, well-formed visual hallucinations, and parkinsonism. However, the presence of marked early postural instability and recurrent unprovoked falls within the first year of disease onset is atypical as an isolated presentation of early DLB and strongly suggests concomitant Progressive Supranuclear Palsy (PSP) pathology.\n\nPostmortem examination confirmed limbic-predominant DLB pathology with α-synuclein accumulation in the substantia nigra, amygdala, and brainstem. Additionally, classic tau pathology including tufted astrocytes and neurofibrillary tangles was identified in the midbrain tegmentum, globus pallidus, putamen, and frontal cortex, fulfilling criteria for PSP. Notably, α-synuclein deposition was also observed within the cuneiform nucleus of the mesencephalic locomotor region, highlighting how dual proteinopathies (α-synuclein and 4R-tau) can synergistically accelerate gait instability and clinical decline.",
+      "teaching_points": [
+        "Early unprovoked falls within 1-3 years of symptom onset are a core diagnostic feature of Progressive Supranuclear Palsy (PSP), whereas falls usually occur later in Dementia with Lewy Bodies (DLB).",
+        "Co-occurrence of α-synucleinopathy (DLB) and 4R-tauopathy (PSP) can modify the expected clinical disease trajectory and lead to diagnostic overlap.",
+        "Involvement of the mesencephalic locomotor region (e.g., cuneiform nucleus) by neurodegenerative pathology directly correlates with severe gait disturbance and early postural collapse."
+      ],
+      "clinical_pitfalls": [
+        "Attributing early recurrent falls solely to traumatic complications or environment rather than screening for underlying atypical parkinsonian syndromes like PSP.",
+        "Assuming that non-contrast head CT findings of intracranial trauma account for the entire clinical picture without considering underlying neurodegenerative drivers."
+      ],
+      "related_keywords": [
+        "Dementia with Lewy Bodies",
+        "Progressive Supranuclear Palsy",
+        "Postural Instability",
+        "Tufted Astrocytes",
+        "Alpha-synucleinopathy"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-022",
+    "case_code": "NC-2026-022",
+    "title": "63-Year-Old Man with Intractable Hiccups and Medullary Signal Abnormality",
+    "subspecialty": "Vascular Neurology",
+    "subspecialties": [
+      "Vascular Neurology",
+      "Spinal Cord Disorders"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-11-02",
+    "status": "approved",
+    "author_credit": "Therapeutic advances in neurological disorders • PMC13287420",
+    "source_journal": {
+      "name": "Therapeutic advances in neurological disorders",
+      "short_name": "Therapeutic advances in neurological disorders",
+      "doi_url": "https://doi.org/10.1177/17562864261456509",
+      "pmcid": "PMC13287420",
+      "pmid": "42344943",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "63-year-old man",
+      "chief_complaint": "Vertigo, nausea, persistent hiccups, and gait disturbance",
+      "history_of_present_illness": "A 63-year-old man presents with a 1-week history of progressive vertigo, persistent nausea, intractable hiccups, and gait instability. His symptoms began subacutely and have gradually worsened. He denies preceding trauma, fever, headache, focal weakness, or numbness.",
+      "past_medical_history": "Hypertension, dyslipidemia",
+      "vitals": {
+        "bp": "128/76 mmHg",
+        "hr": "72 bpm",
+        "rr": "16 /min",
+        "temp": "36.7 °C",
+        "spo2": "99%"
+      },
+      "neuro_exam": "Alert and oriented x 4. Cranial nerve examination shows persistent hiccups and fine horizontal nystagmus on leftward gaze. Motor examination demonstrates 5/5 strength throughout all four extremities. Deep tendon reflexes are 2+ throughout with flexor plantar responses bilaterally. Sensory examination is intact to light touch, pinprick, and vibration. Gait is mildly ataxic.",
+      "key_labs_csf": "Serum aquaporin-4 IgG: Negative. Serum myelin oligodendrocyte glycoprotein (MOG) IgG: Negative. CSF analysis: Mildly elevated protein (62 mg/dL), normal glucose, 3 WBCs/mm³, no oligoclonal bands.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (3D-FLAIR & Contrast-Enhanced)",
+          "sequence_badge": "Figure 1 • Therapeutic advances in neurological disorders (PMC13287420)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13287420_fig1.jpg",
+          "pmcid": "PMC13287420",
+          "doi_url": "https://doi.org/10.1177/17562864261456509",
+          "caption": "Preoperative imaging of the brainstem lesion and associated cervical spinal dural arteriovenous fistula. Axial (a) and sagittal (b) 3D-FLAIR images show a lesion predominantly involving the left dorsal medulla with caudal extension. Coronal contrast-enhanced MRI (c) and sagittal T2-weighted imaging (d) show a dilated, elongated posterior spinal vein.",
+          "findings_summary": "Axial and sagittal 3D-FLAIR images reveal a focal signal abnormality predominantly involving the left dorsal medulla with caudal extension."
+        },
+        {
+          "modality": "Spinal MRI & 3D Rotational Angiography",
+          "sequence_badge": "Figure 2 • Therapeutic advances in neurological disorders (PMC13287420)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC13287420_fig2.jpg",
+          "pmcid": "PMC13287420",
+          "doi_url": "https://doi.org/10.1177/17562864261456509",
+          "caption": "Angiographic evaluation and endovascular treatment of the cervical spinal dural arteriovenous fistula. (a)–(c) Angioarchitectural evaluation of the spinal dural arteriovenous fistula. (a) Digital subtraction angiography shows a fistula at the C6 level (asterisk) with cranially directed drainage and an abrupt focal narrowing of the draining vein (arrow). (b) 3D-RA confirms the venous narrowing (double arrows). (c) Fusion imaging of 3D-RA and anatomical MRI localizes the venous narrowing precisely at the cerebellomedullary fissure, identifying the anatomical “bottleneck.” (d)–(f) Endovascular tr",
+          "findings_summary": "Sagittal T2-weighted and contrast-enhanced spinal MRI demonstrate dilated, elongated perimedullary flow voids, while angiography identifies a C6 spinal dural arteriovenous fistula with a venous bottleneck at the cerebellomedullary fissure."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "Neuromyelitis optica spectrum disorder",
+          "peer_percentage": 12,
+          "rationale": "Incorrect. While NMOSD frequently causes area postrema syndrome presenting with intractable hiccups and nausea, it does not account for the dorsal spinal perimedullary vascular flow voids or the angiographic arterial-venous shunt."
+        },
+        {
+          "id": "B",
+          "text": "Brainstem glioma",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. Brainstem glioma typically presents as an expansive mass with progressive cranial neuropathies and corticospinal tract signs, without dilated perimedullary flow voids or a cervical dural vascular shunt."
+        },
+        {
+          "id": "C",
+          "text": "Spinal dural arteriovenous fistula",
+          "peer_percentage": 73,
+          "rationale": "Correct! A spinal dural arteriovenous fistula (SDAVF) can cause cranially directed venous hypertension and congestion. When retrogradely draining veins reach the brainstem, congestion of the dorsal medulla can clinically mimic area postrema syndrome with intractable hiccups and nausea."
+        },
+        {
+          "id": "D",
+          "text": "Multiple sclerosis",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. Multiple sclerosis can present with brainstem demyelinating lesions, but it would typically feature CSF oligoclonal bands and classic demyelinating plaques rather than spinal perimedullary flow voids and dynamic vascular shunting."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Spinal dural arteriovenous fistula with remote medullary venous congestion",
+      "clinical_discussion": "Spinal dural arteriovenous fistulas (SDAVFs) are classic causes of progressive venous congestive myelopathy. Although venous hypertension typically affects the spinal cord adjacent to the fistula site, altered venous outflow dynamics can occasionally result in remote intracranial parenchymal involvement. In this patient, a lower cervical SDAVF (C6) produced cranially directed venous drainage ascending the posterior spinal vein. Focal anatomical constraints (such as at the cerebellomedullary fissure) can act as venous outflow bottlenecks, creating preferential congestion in the medulla and area postrema region.\n\nRecognition of this atypical presentation is vital, as misdiagnosing the lesion as inflammatory or demyelinating brainstem encephalitis leads to delayed treatment and potentially inappropriate immunosuppressive therapy. Endovascular embolization or surgical ligation obliterates the fistula, normalizes venous pressure, and leads to clinical recovery.",
+      "teaching_points": [
+        "Spinal dural arteriovenous fistulas (SDAVFs) can present with remote medullary venous congestion mimicking area postrema syndrome.",
+        "Cranially directed perimedullary venous outflow encountering anatomical outflow bottlenecks (e.g., at the cerebellomedullary fissure) drives brainstem venous hypertension.",
+        "Identification of serpentine dorsal perimedullary flow voids on spinal MRI warrants catheter digital subtraction angiography."
+      ],
+      "clinical_pitfalls": [
+        "Attributing dorsal medullary signal abnormalities exclusively to demyelinating disorders (like NMOSD) without inspecting the cervical spine for vascular flow voids.",
+        "Delaying catheter angiography when noninvasive MR angiography fails to clearly delineate a suspected spinal vascular malformation."
+      ],
+      "related_keywords": [
+        "Spinal dural arteriovenous fistula",
+        "Venous congestive myelopathy",
+        "Area postrema syndrome",
+        "Digital subtraction angiography",
+        "Medullary venous congestion"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-019",
     "case_code": "NC-2026-019",
     "title": "Acute Neuromuscular Syndrome & Characteristic Neuroimaging in a 48-year-old woman",
