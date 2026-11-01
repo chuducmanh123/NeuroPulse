@@ -43,8 +43,8 @@ export interface EsoGuidelineTableProps {
  * - Low: ⊕⊕
  * - Very low: ⊕
  */
-import { ESO_GRADE_QUALITY_CONFIG } from "@/lib/neuroguide/esoPicoGrouper";
-export { ESO_GRADE_QUALITY_CONFIG };
+import { ESO_GRADE_QUALITY_CONFIG, normalizeEsoStrength } from "@/lib/neuroguide/esoPicoGrouper";
+export { ESO_GRADE_QUALITY_CONFIG, normalizeEsoStrength };
 
 export function renderGradeQuality(quality: string) {
   const norm = (quality || "").trim().toLowerCase();
@@ -78,99 +78,50 @@ export function renderGradeQuality(quality: string) {
  * - Uncertain / Ongoing trials — (Slate: #64748b)
  */
 export function renderGradeStrength(strength: string, statement?: string) {
-  const norm = (strength || "").trim().toLowerCase();
-  const stmtNorm = (statement || "").trim().toLowerCase();
+  const canonical = normalizeEsoStrength(strength, statement);
 
-  // Uncertain / No recommendation grade (—)
-  if (
-    norm.includes("uncertain") ||
-    norm === "—" ||
-    norm === "-" ||
-    norm === "not graded" ||
-    norm === "ungraded"
-  ) {
-    return (
-      <span className="font-extrabold text-slate-500 dark:text-slate-400 inline-flex items-center gap-1">
-        <span>Uncertain / Ongoing trials</span>
-        <span className="font-black text-sm tracking-tight">—</span>
-      </span>
-    );
+  switch (canonical) {
+    case "Strong against intervention":
+      return (
+        <span className="font-extrabold text-[#d32f2f] dark:text-red-400 inline-flex items-center gap-1">
+          <span>Strong against intervention</span>
+          <span className="font-black text-sm tracking-tight">↓↓</span>
+        </span>
+      );
+
+    case "Weak against intervention":
+      return (
+        <span className="font-extrabold text-[#ea580c] dark:text-orange-400 inline-flex items-center gap-1">
+          <span>Weak against intervention</span>
+          <span className="font-black text-sm tracking-tight">↓</span>
+        </span>
+      );
+
+    case "Strong for intervention":
+      return (
+        <span className="font-extrabold text-[#15803d] dark:text-emerald-400 inline-flex items-center gap-1">
+          <span>Strong for intervention</span>
+          <span className="font-black text-sm tracking-tight">↑↑</span>
+        </span>
+      );
+
+    case "Uncertain / Ongoing trials":
+      return (
+        <span className="font-extrabold text-slate-500 dark:text-slate-400 inline-flex items-center gap-1">
+          <span>Uncertain / Ongoing trials</span>
+          <span className="font-black text-sm tracking-tight">—</span>
+        </span>
+      );
+
+    case "Weak for intervention":
+    default:
+      return (
+        <span className="font-extrabold text-[#16a34a] dark:text-emerald-400 inline-flex items-center gap-1">
+          <span>Weak for intervention</span>
+          <span className="font-black text-sm tracking-tight">↑</span>
+        </span>
+      );
   }
-
-  // Strong against (↓↓ - Red)
-  if (
-    norm.includes("strong against") ||
-    norm.includes("strong recommendation against") ||
-    norm === "↓↓"
-  ) {
-    return (
-      <span className="font-extrabold text-[#d32f2f] dark:text-red-400 inline-flex items-center gap-1">
-        <span>Strong against intervention</span>
-        <span className="font-black text-sm tracking-tight">↓↓</span>
-      </span>
-    );
-  }
-
-  // Weak against (↓ - Orange, no question mark)
-  if (
-    norm.includes("weak against") ||
-    norm.includes("conditional against") ||
-    norm === "↓" ||
-    norm === "↓?"
-  ) {
-    return (
-      <span className="font-extrabold text-[#ea580c] dark:text-orange-400 inline-flex items-center gap-1">
-        <span>Weak against intervention</span>
-        <span className="font-black text-sm tracking-tight">↓</span>
-      </span>
-    );
-  }
-
-  // Strong for (↑↑ - Dark Green)
-  if (
-    norm.includes("strong for") ||
-    norm.includes("strong recommendation for") ||
-    norm === "↑↑"
-  ) {
-    return (
-      <span className="font-extrabold text-[#15803d] dark:text-emerald-400 inline-flex items-center gap-1">
-        <span>Strong for intervention</span>
-        <span className="font-black text-sm tracking-tight">↑↑</span>
-      </span>
-    );
-  }
-
-  // Weak for (↑ - Green, no question mark)
-  if (
-    norm.includes("weak for") ||
-    norm.includes("conditional for") ||
-    norm === "↑" ||
-    norm === "↑?"
-  ) {
-    return (
-      <span className="font-extrabold text-[#16a34a] dark:text-emerald-400 inline-flex items-center gap-1">
-        <span>Weak for intervention</span>
-        <span className="font-black text-sm tracking-tight">↑</span>
-      </span>
-    );
-  }
-
-  // Statement-aware fallback only if strength is ambiguous
-  if (norm.includes("against") || stmtNorm.includes("against") || stmtNorm.includes("avoid")) {
-    return (
-      <span className="font-extrabold text-[#ea580c] dark:text-orange-400 inline-flex items-center gap-1">
-        <span>Weak against intervention</span>
-        <span className="font-black text-sm tracking-tight">↓</span>
-      </span>
-    );
-  }
-
-  return (
-    <span className="font-extrabold text-[#16a34a] dark:text-emerald-400 inline-flex items-center gap-1">
-      <span>Weak for intervention</span>
-      <span className="font-black text-sm tracking-tight">↑</span>
-    </span>
-  );
 }
 
 export function EsoGuidelineTable({

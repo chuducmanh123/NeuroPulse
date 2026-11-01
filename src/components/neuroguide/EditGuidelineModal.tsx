@@ -4,6 +4,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import type { GuidelineDoc, PracticeChangeDetail, SubspecialtyType } from "@/types/neuroguide";
 import { NEUROLOGY_SUBSPECIALTIES } from "@/types/neuroguide";
 import { ESO_GRADE_QUALITY_CONFIG } from "./EsoGuidelineTable";
+import { normalizeEsoStrength } from "@/lib/neuroguide/esoPicoGrouper";
 
 interface EditGuidelineModalProps {
   isOpen: boolean;
@@ -41,15 +42,8 @@ function parseAhaLoe(gradeStr?: string): string {
   return "A";
 }
 
-function parseEsoStrength(gradeStr?: string): string {
-  if (!gradeStr) return "Weak against intervention";
-  const lower = gradeStr.toLowerCase();
-  if (lower.includes("uncertain") || lower.includes("—") || lower === "-") return "Uncertain / Ongoing trials";
-  if (lower.includes("strong against")) return "Strong against intervention";
-  if (lower.includes("weak against") || lower.includes("suggest against")) return "Weak against intervention";
-  if (lower.includes("strong for") || lower.includes("recommend for")) return "Strong for intervention";
-  if (lower.includes("weak for") || lower.includes("suggest for")) return "Weak for intervention";
-  return "Weak against intervention";
+function parseEsoStrength(gradeStr?: string, statement?: string): string {
+  return normalizeEsoStrength(gradeStr, statement);
 }
 
 function parseEsoQuality(gradeStr?: string): string {
@@ -223,7 +217,7 @@ export function EditGuidelineModal({
     setAhaLoe(parseAhaLoe(rec.currentGrade));
 
     // Load ESO: prioritize direct fields first
-    setEsoStrength(rec.strength || parseEsoStrength(rec.currentGrade));
+    setEsoStrength(normalizeEsoStrength(rec.strength || rec.currentGrade, rec.currentText));
     setEsoQuality(rec.quality || parseEsoQuality(rec.currentGrade));
     setEsoVoting(rec.voting || "Vote: 10/10");
     setEsoConsensus(rec.expertConsensusStatement || rec.previousText || "");
@@ -866,7 +860,9 @@ export function EditGuidelineModal({
                               #{realIndex + 1} • {rec.category}
                             </span>
                             <span className="px-1.5 py-0.2 rounded font-mono text-[10px] font-black bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30">
-                              {rec.currentGrade}
+                              {isEso
+                                ? `GRADE ${normalizeEsoStrength(rec.strength || rec.currentGrade, rec.currentText)}`
+                                : rec.currentGrade}
                             </span>
                           </div>
                           <p className="font-bold text-slate-900 dark:text-slate-100 truncate">

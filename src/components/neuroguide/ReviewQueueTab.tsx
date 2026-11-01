@@ -4,6 +4,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { EditGuidelineModal } from "./EditGuidelineModal";
 import { AhaGuidelineTable } from "./AhaGuidelineTable";
 import { EsoGuidelineTable, type EsoPicoItem, renderGradeQuality, renderGradeStrength } from "./EsoGuidelineTable";
+import { normalizeEsoStrength } from "@/lib/neuroguide/esoPicoGrouper";
 import type { GuidelineDoc, PracticeChangeDetail } from "@/types/neuroguide";
 
 export interface StoredRec {
@@ -308,52 +309,23 @@ function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: str
 
     const picoKey = `PICO-${pNum}`;
 
-    let q = r.quality_of_evidence || (r as any).quality;
-    let s = r.strength_of_recommendation || (r as any).strength;
+    const rawStrength = r.strength_of_recommendation || (r as any).strength || (r as any).currentGrade || (r as any).grade;
+    let s = normalizeEsoStrength(rawStrength, r.statement);
 
-    // Try parsing from currentGrade if not directly provided
-    if (!q || !s) {
+    let q = r.quality_of_evidence || (r as any).quality;
+    if (!q) {
       const rawGrade = (r as any).currentGrade || (r as any).grade || "";
       const lowerG = rawGrade.toLowerCase();
-      if (!q) {
-        if (lowerG.includes("very low")) q = "Very low";
-        else if (lowerG.includes("low") && !lowerG.includes("very")) q = "Low";
-        else if (lowerG.includes("high")) q = "High";
-        else if (lowerG.includes("moderate")) q = "Moderate";
-      }
-      if (!s) {
-        if (lowerG.includes("strong against")) s = "Strong against intervention";
-        else if (lowerG.includes("strong for")) s = "Strong for intervention";
-        else if (lowerG.includes("weak against")) s = "Weak against intervention";
-        else if (lowerG.includes("weak for")) s = "Weak for intervention";
-        else if (lowerG.includes("uncertain")) s = "Uncertain";
-      }
+      if (lowerG.includes("very low") || lowerG.includes("rất thấp")) q = "Very low";
+      else if ((lowerG.includes("low") || lowerG.includes("thấp")) && !lowerG.includes("very") && !lowerG.includes("rất")) q = "Low";
+      else if (lowerG.includes("high") || lowerG.includes("cao")) q = "High";
+      else if (lowerG.includes("moderate") || lowerG.includes("trung bình")) q = "Moderate";
+      else q = canonicalItem?.recommendations[0]?.qualityOfEvidence || "Moderate";
     }
 
-    q = q || canonicalItem?.recommendations[0]?.qualityOfEvidence || "Moderate";
-    s = s || canonicalItem?.recommendations[0]?.strengthOfRecommendation || "Weak for intervention";
-
-    // PICO 1 in official ESO Table 11 is "Strong against intervention"
-    if (canonicalItem && pNumKey === "1" && (!r.strength_of_recommendation || r.strength_of_recommendation.toLowerCase().includes("weak"))) {
+    // Official ESO Table 11 Synoptic accuracy: PICO 1 is officially "Strong against intervention"
+    if (canonicalItem && pNumKey === "1") {
       s = "Strong against intervention";
-    }
-
-    const stmtLower = (r.statement || "").toLowerCase();
-
-    // Normalize vague or "Conditional" strength into official ESO GRADE values
-    const sLower = s.toLowerCase();
-    if (sLower === "conditional" || sLower === "weak") {
-      if (stmtLower.includes("suggest against") || stmtLower.includes("against") || stmtLower.includes("avoid")) {
-        s = "Weak against intervention";
-      } else {
-        s = "Weak for intervention";
-      }
-    } else if (sLower.includes("strong")) {
-      if (stmtLower.includes("against") || stmtLower.includes("harm") || stmtLower.includes("avoid")) {
-        s = "Strong against intervention";
-      } else {
-        s = "Strong for intervention";
-      }
     }
 
     // Only use consensus_statement if explicitly present and not identical to statement
@@ -835,17 +807,6 @@ export function ReviewQueueTab({
       (group.guideline_id || "").toLowerCase().includes("eso");
 
     const allItems: PracticeChangeDetail[] = group.recommendations.map((r, idx) => {
-      let currentGrade = "Standard Clinical Practice";
-      if (isDocEso) {
-        const q = r.quality_of_evidence || "Moderate";
-        const s = r.strength_of_recommendation || "Weak against intervention";
-        currentGrade = `GRADE ${s} (Evidence: ${q}${r.voting ? `, Voting: ${r.voting}` : ""})`;
-      } else if (r.cor) {
-        currentGrade = `Class ${r.cor}${r.loe ? `, Level ${r.loe}` : ""}`;
-      } else if (r.quality_of_evidence || r.strength_of_recommendation) {
-        currentGrade = `GRADE ${r.strength_of_recommendation || "Recommended"} (Evidence: ${r.quality_of_evidence || "Moderate"})`;
-      }
-
       let pNum: string | undefined;
       let pQuestion: string | undefined;
       if (r.pico_id) {
@@ -865,6 +826,21 @@ export function ReviewQueueTab({
         ? CANONICAL_ESO_2025_BP_PICOS.find((cp) => String(cp.picoNumber).trim() === pNumKey)
         : undefined;
 
+      let s = normalizeEsoStrength(r.strength_of_recommendation || (r as any).strength || (r as any).currentGrade, r.statement);
+      if (isDocEso && canonicalItem && pNumKey === "1") {
+        s = "Strong against intervention";
+      }
+      const q = r.quality_of_evidence || (r as any).quality || canonicalItem?.recommendations[0]?.qualityOfEvidence || "Moderate";
+
+      let currentGrade = "Standard Clinical Practice";
+      if (isDocEso) {
+        currentGrade = `GRADE ${s} (Evidence: ${q}${r.voting ? `, Voting: ${r.voting}` : ""})`;
+      } else if (r.cor) {
+        currentGrade = `Class ${r.cor}${r.loe ? `, Level ${r.loe}` : ""}`;
+      } else if (r.quality_of_evidence || r.strength_of_recommendation) {
+        currentGrade = `GRADE ${s} (Evidence: ${q})`;
+      }
+
       const finalConsensus =
         (r as any).consensus_statement ||
         (r as any).expertConsensusStatement ||
@@ -883,8 +859,8 @@ export function ReviewQueueTab({
         category: r.category || (isDocEso ? "Blood Pressure" : "General Recommendations"),
         drivingTrials: (r.driving_trials && r.driving_trials.length > 0) ? r.driving_trials : (canonicalItem?.drivingTrials || []),
         changeType: "NEW",
-        quality: isDocEso ? (r.quality_of_evidence || canonicalItem?.recommendations[0]?.qualityOfEvidence || "Moderate") : undefined,
-        strength: isDocEso ? (r.strength_of_recommendation || canonicalItem?.recommendations[0]?.strengthOfRecommendation || "Weak against intervention") : undefined,
+        quality: isDocEso ? q : undefined,
+        strength: isDocEso ? s : undefined,
         expertConsensusStatement: finalConsensus,
         voting: isDocEso ? (r.voting || canonicalItem?.voting || "Vote: 10/10") : undefined,
         picoNumber: pNum || `${idx + 1}`,
@@ -931,17 +907,6 @@ export function ReviewQueueTab({
       Boolean(rec.strength_of_recommendation);
 
     const allItems: PracticeChangeDetail[] = (parentGroup?.recommendations || [rec]).map((r, idx) => {
-      let currentGrade = "Standard Clinical Practice";
-      if (isDocEso) {
-        const q = r.quality_of_evidence || "Moderate";
-        const s = r.strength_of_recommendation || "Weak against intervention";
-        currentGrade = `GRADE ${s} (Evidence: ${q}${r.voting ? `, Voting: ${r.voting}` : ""})`;
-      } else if (r.cor) {
-        currentGrade = `Class ${r.cor}${r.loe ? `, Level ${r.loe}` : ""}`;
-      } else if (r.quality_of_evidence || r.strength_of_recommendation) {
-        currentGrade = `GRADE ${r.strength_of_recommendation || "Recommended"} (Evidence: ${r.quality_of_evidence || "Moderate"})`;
-      }
-
       let pNum: string | undefined;
       let pQuestion: string | undefined;
       if (r.pico_id) {
@@ -961,6 +926,21 @@ export function ReviewQueueTab({
         ? CANONICAL_ESO_2025_BP_PICOS.find((cp) => String(cp.picoNumber).trim() === pNumKey)
         : undefined;
 
+      let s = normalizeEsoStrength(r.strength_of_recommendation || (r as any).strength || (r as any).currentGrade, r.statement);
+      if (isDocEso && canonicalItem && pNumKey === "1") {
+        s = "Strong against intervention";
+      }
+      const q = r.quality_of_evidence || (r as any).quality || canonicalItem?.recommendations[0]?.qualityOfEvidence || "Moderate";
+
+      let currentGrade = "Standard Clinical Practice";
+      if (isDocEso) {
+        currentGrade = `GRADE ${s} (Evidence: ${q}${r.voting ? `, Voting: ${r.voting}` : ""})`;
+      } else if (r.cor) {
+        currentGrade = `Class ${r.cor}${r.loe ? `, Level ${r.loe}` : ""}`;
+      } else if (r.quality_of_evidence || r.strength_of_recommendation) {
+        currentGrade = `GRADE ${s} (Evidence: ${q})`;
+      }
+
       const finalConsensus =
         (r as any).consensus_statement ||
         (r as any).expertConsensusStatement ||
@@ -979,8 +959,8 @@ export function ReviewQueueTab({
         category: r.category || (isDocEso ? "Blood Pressure" : "General Recommendations"),
         drivingTrials: (r.driving_trials && r.driving_trials.length > 0) ? r.driving_trials : (canonicalItem?.drivingTrials || []),
         changeType: "NEW",
-        quality: isDocEso ? (r.quality_of_evidence || canonicalItem?.recommendations[0]?.qualityOfEvidence || "Moderate") : undefined,
-        strength: isDocEso ? (r.strength_of_recommendation || canonicalItem?.recommendations[0]?.strengthOfRecommendation || "Weak against intervention") : undefined,
+        quality: isDocEso ? q : undefined,
+        strength: isDocEso ? s : undefined,
         expertConsensusStatement: finalConsensus,
         voting: isDocEso ? (r.voting || canonicalItem?.voting || "Vote: 10/10") : undefined,
         picoNumber: pNum || `${idx + 1}`,

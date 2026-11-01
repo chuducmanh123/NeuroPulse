@@ -64,4 +64,42 @@ Table 11 Synoptic table of all recommendations and expert consensus statements.
     assert.equal(ESO_GRADE_QUALITY_CONFIG.Low.hex, "#2b7bb9");
     assert.equal(ESO_GRADE_QUALITY_CONFIG["Very low"].hex, "#8e72a8");
   });
+
+  await t.test("normalizeEsoStrength should accurately resolve all ESO GRADE recommendation strengths", async () => {
+    const { normalizeEsoStrength } = await import("../src/lib/neuroguide/esoPicoGrouper.ts");
+
+    // Explicit standard values
+    assert.equal(normalizeEsoStrength("Strong against intervention"), "Strong against intervention");
+    assert.equal(normalizeEsoStrength("Weak against intervention"), "Weak against intervention");
+    assert.equal(normalizeEsoStrength("Strong for intervention"), "Strong for intervention");
+    assert.equal(normalizeEsoStrength("Weak for intervention"), "Weak for intervention");
+    assert.equal(normalizeEsoStrength("Uncertain"), "Uncertain / Ongoing trials");
+    assert.equal(normalizeEsoStrength("—"), "Uncertain / Ongoing trials");
+
+    // Symbols
+    assert.equal(normalizeEsoStrength("↓↓"), "Strong against intervention");
+    assert.equal(normalizeEsoStrength("↓"), "Weak against intervention");
+    assert.equal(normalizeEsoStrength("↑↑"), "Strong for intervention");
+    assert.equal(normalizeEsoStrength("↑"), "Weak for intervention");
+
+    // Direction resolution for bare "Strong"
+    assert.equal(
+      normalizeEsoStrength("Strong", "In patients with suspected stroke, we suggest against routine blood pressure lowering"),
+      "Strong against intervention"
+    );
+    assert.equal(
+      normalizeEsoStrength("Strong", "In patients with acute ischaemic stroke, we recommend blood pressure control"),
+      "Strong for intervention"
+    );
+
+    // Direction resolution for bare "Conditional" or "Weak"
+    assert.equal(
+      normalizeEsoStrength("Conditional", "we suggest against routine use of blood pressure-lowering agents"),
+      "Weak against intervention"
+    );
+    assert.equal(
+      normalizeEsoStrength("Conditional", "we suggest maintaining blood pressure below 185/110 mmHg"),
+      "Weak for intervention"
+    );
+  });
 });

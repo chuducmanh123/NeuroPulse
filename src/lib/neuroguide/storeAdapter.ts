@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import type { GuidelineDoc, PracticeChangeDetail, SubspecialtyType } from "../../types/neuroguide.ts";
+import { normalizeEsoStrength } from "./esoPicoGrouper.ts";
 
 const STORE_DIR = path.join(process.cwd(), "data", "guidelines_store");
 const TMP_DIR = path.join("/tmp", "guidelines_store");
@@ -86,29 +87,70 @@ export async function saveStoreFileSafe(fileName: string, dataStr: string): Prom
 export async function registerCandidateGuideline(doc: GuidelineDoc): Promise<boolean> {
   if (!doc || !doc.id || !doc.title) return false;
 
-  const recs = (doc.allPracticeChanges || []).map((chg, idx) => ({
-    rec_id: chg.id || `rec-${idx + 1}`,
-    guideline_id: doc.id,
-    grading_system: doc.society?.includes("ESO") ? "GRADE" : "ACC/AHA",
-    page_num: 1,
-    statement: chg.currentText || doc.executiveSummary || doc.title,
-    approval_status: "PENDING_REVIEW",
-    cor: chg.currentGrade?.includes("Class") ? chg.currentGrade.split(",")[0].trim() : undefined,
-    loe: chg.currentGrade?.includes("Level") ? chg.currentGrade.split("Level")[1]?.trim() : undefined,
-    quality_of_evidence: chg.currentGrade?.includes("Evidence:")
-      ? chg.currentGrade.split("Evidence:")[1]?.split(")")[0]?.trim()
-      : "Moderate",
-    strength_of_recommendation:
-      chg.changeType === "NEW" || chg.changeType === "UPGRADED" ? "Strong" : "Conditional",
-    driving_trials: chg.drivingTrials || [],
-    verification_detail: {
-      status: "PENDING_COORDINATION",
-      grounding_score: doc.fullTextStatus === "FULL_TEXT_PARSED" ? 0.95 : 0.85,
-      classification_valid: true,
-      numbers_verified: true,
-      issues: [],
-    },
-  }));
+  const isDocEso = Boolean(
+    (doc.society || "").toUpperCase().includes("ESO") ||
+    (doc.title || "").toUpperCase().includes("ESO") ||
+    (doc.title || "").toLowerCase().includes("blood pressure") ||
+    (doc.id || "").toLowerCase().includes("eso") ||
+    (doc.allPracticeChanges || []).some(
+      (c) => c.quality || c.strength || c.picoNumber || c.currentGrade?.toLowerCase().includes("grade")
+    )
+  );
+
+  const recs = (doc.allPracticeChanges || []).map((chg, idx) => {
+    let pNum: string | undefined = (chg as any).picoNumber ? String((chg as any).picoNumber) : undefined;
+    let pQuestion: string | undefined = (chg as any).picoQuestion || undefined;
+    if (!pNum && chg.topic) {
+      const m = String(chg.topic).match(/PICO\s*(\d+)[:.\s-]*(.*)/i);
+      if (m) {
+        pNum = m[1];
+        if (!pQuestion) pQuestion = m[2]?.trim();
+      }
+    }
+
+    const recIsEso = isDocEso || Boolean(chg.quality || chg.strength || pNum || chg.currentGrade?.toLowerCase().includes("grade"));
+
+    const qualityOfEvidence = chg.quality || (
+      chg.currentGrade?.includes("Evidence:")
+        ? chg.currentGrade.split("Evidence:")[1]?.split(")")[0]?.trim()
+        : "Moderate"
+    );
+
+    const strengthOfRecommendation = recIsEso
+      ? normalizeEsoStrength(chg.strength || chg.currentGrade, chg.currentText)
+      : (chg.strength || (chg.changeType === "NEW" || chg.changeType === "UPGRADED" ? "Strong" : "Conditional"));
+
+    const topic = chg.topic || (pNum ? `PICO ${pNum}: ${pQuestion || ""}`.trim() : `Khuyến cáo #${idx + 1}`);
+
+    return {
+      rec_id: chg.id || `rec-${idx + 1}`,
+      guideline_id: doc.id,
+      grading_system: recIsEso ? "GRADE" : "ACC/AHA",
+      page_num: 1,
+      statement: chg.currentText || doc.executiveSummary || doc.title,
+      approval_status: "PENDING_REVIEW",
+      category: chg.category || (recIsEso ? "Blood Pressure" : "Recommendations"),
+      topic: topic,
+      cor: chg.currentGrade?.includes("Class") ? chg.currentGrade.split(",")[0].trim() : undefined,
+      loe: chg.currentGrade?.includes("Level") ? chg.currentGrade.split("Level")[1]?.trim() : undefined,
+      quality_of_evidence: qualityOfEvidence,
+      strength_of_recommendation: strengthOfRecommendation,
+      voting: chg.voting || undefined,
+      pico_id: pNum ? `PICO ${pNum}` : undefined,
+      target_population: pQuestion || undefined,
+      driving_trials: chg.drivingTrials || [],
+      change_type: chg.changeType,
+      previous_grade: chg.previousGrade,
+      consensus_statement: chg.expertConsensusStatement || chg.previousText || undefined,
+      verification_detail: {
+        status: "PENDING_COORDINATION",
+        grounding_score: doc.fullTextStatus === "FULL_TEXT_PARSED" ? 0.95 : 0.85,
+        classification_valid: true,
+        numbers_verified: true,
+        issues: [],
+      },
+    };
+  });
 
   const nowIso = new Date().toISOString();
   const record = {
@@ -232,11 +274,22 @@ export function getStoredGuidelinesAsDocs(): GuidelineDoc[] {
       const recs = record.recommendations || [];
 
       const practiceChanges: PracticeChangeDetail[] = recs.map((r: any, idx: number) => {
+        const isEsoRec = Boolean(
+          (metadata.society || "").toUpperCase().includes("ESO") ||
+          r.grading_system === "GRADE" ||
+          r.quality_of_evidence ||
+          r.pico_id ||
+          (r.strength_of_recommendation && ["strong", "weak", "conditional", "uncertain"].some((k) => r.strength_of_recommendation.toLowerCase().includes(k)))
+        );
+        const normStrength = isEsoRec
+          ? normalizeEsoStrength(r.strength_of_recommendation || r.currentGrade, r.statement)
+          : (r.strength_of_recommendation || "Recommended");
+
         let currentGrade = "Standard Clinical Practice";
         if (r.cor) {
           currentGrade = `Class ${r.cor}${r.loe ? `, Level ${r.loe}` : ""}`;
         } else if (r.quality_of_evidence || r.strength_of_recommendation) {
-          currentGrade = `GRADE ${r.strength_of_recommendation || "Recommended"} (Evidence: ${r.quality_of_evidence || "Moderate"}${r.voting ? `, Voting: ${r.voting}` : ""})`;
+          currentGrade = `GRADE ${normStrength} (Evidence: ${r.quality_of_evidence || "Moderate"}${r.voting ? `, Voting: ${r.voting}` : ""})`;
         }
 
         // Phân định chính xác giữa What is New (Điểm mới) và Khuyến cáo thường quy
@@ -269,7 +322,7 @@ export function getStoredGuidelinesAsDocs(): GuidelineDoc[] {
           currentGrade,
           drivingTrials: r.driving_trials || [],
           quality: r.quality_of_evidence || undefined,
-          strength: r.strength_of_recommendation || undefined,
+          strength: isEsoRec ? normStrength : (r.strength_of_recommendation || undefined),
           voting: r.voting || undefined,
           expertConsensusStatement: r.consensus_statement || r.expertConsensusStatement || undefined,
           picoNumber: pNum,

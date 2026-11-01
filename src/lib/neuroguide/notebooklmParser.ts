@@ -1,5 +1,6 @@
 import type { GuidelineDoc, PracticeChangeDetail, SubspecialtyType } from "../../types/neuroguide.ts";
 import { detectSociety, detectSubspecialty } from "./pubmedDiscovery.ts";
+import { normalizeEsoStrength } from "./esoPicoGrouper.ts";
 
 export interface ParsedNotebookLMResult {
   doc: GuidelineDoc;
@@ -343,29 +344,7 @@ export function parseNotebookLMContent(
         else if (qNorm.includes("high") || qNorm.includes("cao")) quality = "High";
 
         // Normalize Strength
-        let strength = "Weak for intervention";
-        const sNorm = rawStrength.toLowerCase();
-        const stmtNorm = statement.toLowerCase();
-        if (
-          sNorm.includes("strong against") ||
-          sNorm.includes("chống lại can thiệp") ||
-          (sNorm.includes("strong") && (stmtNorm.includes("against") || stmtNorm.includes("avoid") || stmtNorm.includes("tránh")))
-        ) {
-          strength = "Strong against intervention";
-        } else if (
-          sNorm.includes("weak against") ||
-          sNorm.includes("suggest against") ||
-          stmtNorm.includes("suggest against") ||
-          stmtNorm.includes("không hạ") ||
-          stmtNorm.includes("không khuyến cáo") ||
-          (sNorm.includes("conditional") && (stmtNorm.includes("against") || stmtNorm.includes("avoid")))
-        ) {
-          strength = "Weak against intervention";
-        } else if (sNorm.includes("strong for") || sNorm.includes("mạnh") || (sNorm.includes("strong") && !sNorm.includes("against"))) {
-          strength = "Strong for intervention";
-        } else {
-          strength = "Weak for intervention";
-        }
+        const strength = normalizeEsoStrength(rawStrength, statement);
 
         const voting = rawVoting ? (rawVoting.startsWith("Vote:") ? rawVoting : `Vote: ${rawVoting}`) : undefined;
         const drivingTrials = parseEvidenceStudies(rawEvidence);
@@ -477,11 +456,7 @@ export function parseNotebookLMContent(
           // Strength
           const sMatch = lNorm.match(/^(?:Strength of recommendation|Strength|Mức độ khuyến cáo|Độ mạnh)[:\s]*(.*)/i);
           if (sMatch && sMatch[1]) {
-            const sStr = sMatch[1].toLowerCase();
-            if (sStr.includes("strong against") || sStr.includes("chống lại can thiệp")) strength = "Strong against intervention";
-            else if (sStr.includes("weak against") || sStr.includes("suggest against")) strength = "Weak against intervention";
-            else if (sStr.includes("strong for") || sStr.includes("mạnh")) strength = "Strong for intervention";
-            else strength = "Weak for intervention";
+            strength = normalizeEsoStrength(sMatch[1], statement);
           }
 
           // Consensus

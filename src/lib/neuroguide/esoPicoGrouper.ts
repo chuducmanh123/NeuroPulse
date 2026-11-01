@@ -208,6 +208,147 @@ export const CANONICAL_ESO_2025_BP_PICOS: EsoPicoItem[] = [
 ];
 
 /**
+ * Canonical normalizer for ESO recommendation strengths according to GRADE standard (Table 11):
+ * - "Strong against intervention" (↓↓ - Red: #d32f2f)
+ * - "Weak against intervention" (↓ - Orange: #ea580c)
+ * - "Strong for intervention" (↑↑ - Dark Green: #15803d)
+ * - "Weak for intervention" (↑ - Green: #16a34a)
+ * - "Uncertain / Ongoing trials" (— - Slate: #64748b)
+ */
+export function normalizeEsoStrength(raw?: string, statement?: string): EsoRecommendationStrength {
+  const norm = (raw || "").trim().toLowerCase();
+  const stmtNorm = (statement || "").trim().toLowerCase();
+
+  // 1. Uncertain / No recommendation grade (—)
+  if (
+    norm.includes("uncertain") ||
+    norm.includes("chưa rõ") ||
+    norm === "—" ||
+    norm === "-" ||
+    norm === "not graded" ||
+    norm === "ungraded"
+  ) {
+    return "Uncertain / Ongoing trials";
+  }
+
+  // 2. Explicit Strong Against
+  if (
+    norm.includes("strong against") ||
+    norm.includes("chống lại mạnh") ||
+    norm.includes("khuyến cáo mạnh chống lại") ||
+    norm.includes("strong recommendation against") ||
+    norm === "↓↓"
+  ) {
+    return "Strong against intervention";
+  }
+
+  // 3. Explicit Strong For
+  if (
+    norm.includes("strong for") ||
+    norm.includes("ủng hộ mạnh") ||
+    norm.includes("khuyến cáo mạnh ủng hộ") ||
+    norm.includes("strong recommendation for") ||
+    norm === "↑↑"
+  ) {
+    return "Strong for intervention";
+  }
+
+  // 4. Explicit Weak Against
+  if (
+    norm.includes("weak against") ||
+    norm.includes("conditional against") ||
+    norm.includes("chống lại yếu") ||
+    norm.includes("khuyến cáo yếu chống lại") ||
+    norm === "↓" ||
+    norm === "↓?"
+  ) {
+    return "Weak against intervention";
+  }
+
+  // 5. Explicit Weak For
+  if (
+    norm.includes("weak for") ||
+    norm.includes("conditional for") ||
+    norm.includes("ủng hộ yếu") ||
+    norm.includes("khuyến cáo yếu ủng hộ") ||
+    norm === "↑" ||
+    norm === "↑?"
+  ) {
+    return "Weak for intervention";
+  }
+
+  // 6. Generic "Strong" (resolve direction via statement or raw text)
+  if (norm.includes("strong") || norm.includes("mạnh")) {
+    if (
+      norm.includes("against") ||
+      stmtNorm.includes("suggest against") ||
+      stmtNorm.includes("recommend against") ||
+      stmtNorm.includes("against") ||
+      stmtNorm.includes("avoid") ||
+      stmtNorm.includes("harm") ||
+      stmtNorm.includes("chống") ||
+      stmtNorm.includes("không") ||
+      stmtNorm.includes("tránh")
+    ) {
+      return "Strong against intervention";
+    }
+    return "Strong for intervention";
+  }
+
+  // 7. Generic "Conditional" or "Weak" (resolve direction via statement or raw text)
+  if (norm.includes("conditional") || norm.includes("weak") || norm.includes("yếu")) {
+    if (
+      norm.includes("against") ||
+      stmtNorm.includes("suggest against") ||
+      stmtNorm.includes("recommend against") ||
+      stmtNorm.includes("against") ||
+      stmtNorm.includes("avoid") ||
+      stmtNorm.includes("harm") ||
+      stmtNorm.includes("chống") ||
+      stmtNorm.includes("không") ||
+      stmtNorm.includes("tránh")
+    ) {
+      return "Weak against intervention";
+    }
+    return "Weak for intervention";
+  }
+
+  // 8. Fallback inference purely from clinical statement text if strength is missing/empty
+  if (
+    stmtNorm.includes("recommend against") ||
+    stmtNorm.includes("strongly suggest against") ||
+    stmtNorm.includes("khuyến cáo mạnh không")
+  ) {
+    return "Strong against intervention";
+  }
+  if (
+    stmtNorm.includes("suggest against") ||
+    stmtNorm.includes("avoid") ||
+    stmtNorm.includes("should be avoided") ||
+    stmtNorm.includes("không khuyến cáo") ||
+    stmtNorm.includes("không hạ")
+  ) {
+    return "Weak against intervention";
+  }
+  if (
+    stmtNorm.includes("recommend for") ||
+    stmtNorm.includes("we recommend") ||
+    stmtNorm.includes("khuyến cáo mạnh")
+  ) {
+    return "Strong for intervention";
+  }
+  if (
+    stmtNorm.includes("suggest") ||
+    stmtNorm.includes("we suggest") ||
+    stmtNorm.includes("đề xuất")
+  ) {
+    return "Weak for intervention";
+  }
+
+  return "Weak for intervention";
+}
+
+/**
  * Parses ESO GRADE metadata from strings like:
  * "GRADE Strong for intervention (Evidence: High)"
  * "GRADE Weak for intervention (Evidence: Very Low, Voting: 8/8)"
@@ -218,51 +359,17 @@ export function parseEsoGrade(gradeStr?: string, statement?: string): {
   quality: EsoEvidenceQuality;
   voting?: string;
 } {
-  let strength: EsoRecommendationStrength = "Weak for intervention";
+  const strength = normalizeEsoStrength(gradeStr, statement);
   let quality: EsoEvidenceQuality = "Moderate";
   let voting: string | undefined = undefined;
 
   const lower = (gradeStr || "").toLowerCase();
-  const stmtLower = (statement || "").toLowerCase();
-
-  // Strength parsing with statement-aware fallback
-  if (lower.includes("uncertain") || lower === "—" || lower === "-") {
-    strength = "Uncertain";
-  } else if (
-    lower.includes("strong against") ||
-    lower.includes("harm") ||
-    (lower.includes("strong") && (stmtLower.includes("suggest against") || stmtLower.includes("recommend against")))
-  ) {
-    strength = "Strong against intervention";
-  } else if (
-    lower.includes("strong for") ||
-    lower.includes("recommend for") ||
-    (lower.includes("strong") && !lower.includes("against"))
-  ) {
-    strength = "Strong for intervention";
-  } else if (
-    lower.includes("weak against") ||
-    lower.includes("suggest against") ||
-    (lower.includes("conditional") && (stmtLower.includes("against") || stmtLower.includes("avoid") || stmtLower.includes("not ")))
-  ) {
-    strength = "Weak against intervention";
-  } else if (
-    lower.includes("weak for") ||
-    lower.includes("suggest for") ||
-    lower.includes("conditional")
-  ) {
-    strength = "Weak for intervention";
-  } else if (stmtLower.includes("suggest against") || stmtLower.includes("against") || stmtLower.includes("avoid")) {
-    strength = "Weak against intervention";
-  } else {
-    strength = "Weak for intervention";
-  }
 
   // Quality parsing
-  if (lower.includes("very low")) quality = "Very low";
-  else if (lower.includes("low") && !lower.includes("very low")) quality = "Low";
-  else if (lower.includes("high")) quality = "High";
-  else if (lower.includes("moderate")) quality = "Moderate";
+  if (lower.includes("very low") || lower.includes("rất thấp")) quality = "Very low";
+  else if ((lower.includes("low") || lower.includes("thấp")) && !lower.includes("very") && !lower.includes("rất")) quality = "Low";
+  else if (lower.includes("high") || lower.includes("cao")) quality = "High";
+  else if (lower.includes("moderate") || lower.includes("trung bình")) quality = "Moderate";
 
   // Voting parsing
   const voteMatch = (gradeStr || "").match(/Voting:\s*([0-9]+\/[0-9]+|Unanimous)/i);
@@ -351,11 +458,13 @@ export function groupPracticeChangesIntoEsoPicos(changes: PracticeChangeDetail[]
       targetPico.drivingTrials = Array.from(mergedTrials);
     }
 
+    const normalizedStrength = normalizeEsoStrength(item.strength || strength || item.currentGrade, item.currentText);
+
     targetPico.recommendations.push({
       number: targetPico.recommendations.length + 1,
       statement: item.currentText,
       qualityOfEvidence: item.quality || quality,
-      strengthOfRecommendation: item.strength || strength,
+      strengthOfRecommendation: normalizedStrength,
       drivingTrials: item.drivingTrials || [],
     });
   });
