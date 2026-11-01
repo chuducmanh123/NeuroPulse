@@ -302,19 +302,87 @@ export default function AdminCommandCenter() {
     });
   }, [guidelineDocs, repoSearchQuery, repoSocietyFilter]);
 
+  const [deleteLoadingId, setDeleteLoadingId] = useState<string | null>(null);
+
   const fetchGuidelinesList = async () => {
     try {
       const res = await fetch("/api/neuroguide/sync-guidelines");
       if (res.ok) {
         const data = await res.json();
         if (data && data.status === "success" && Array.isArray(data.guidelines)) {
-          setGuidelineDocs(data.guidelines);
+          const normalizeT = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+          let deletedSet = new Set<string>();
           try {
-            localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(data.guidelines));
+            const localDel: string[] = JSON.parse(localStorage.getItem("neuroguide_deleted_ids") || "[]");
+            const serverDel: string[] = Array.isArray(data.deletedGuidelineIds) ? data.deletedGuidelineIds : [];
+            const mergedDel = Array.from(new Set([...localDel.map((x) => x.toLowerCase()), ...serverDel.map((x) => x.toLowerCase())]));
+            localStorage.setItem("neuroguide_deleted_ids", JSON.stringify(mergedDel));
+            deletedSet = new Set(mergedDel);
+          } catch {}
+
+          const valid = data.guidelines.filter((g: GuidelineDoc) => {
+            const id = (g.id || "").toLowerCase();
+            const norm = normalizeT(g.title);
+            return !deletedSet.has(id) && !deletedSet.has(norm);
+          });
+
+          setGuidelineDocs(valid);
+          try {
+            localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(valid));
           } catch {}
         }
       }
     } catch {}
+  };
+
+  const handleDeleteGuideline = async (doc: GuidelineDoc) => {
+    const confirmDelete = window.confirm(
+      `Bạn có chắc chắn muốn XÓA guideline:\n\n"${doc.title}" (${doc.society} ${doc.year})?\n\nHướng dẫn này sẽ được gỡ bỏ khỏi toàn bộ hệ thống.`
+    );
+    if (!confirmDelete) return;
+
+    setDeleteLoadingId(doc.id);
+    const normalizeT = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+    const targetNormTitle = normalizeT(doc.title);
+
+    try {
+      const res = await fetch("/api/neuroguide/delete-guideline", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ guideline_id: doc.id, title: doc.title }),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        try {
+          const currentDeleted: string[] = JSON.parse(localStorage.getItem("neuroguide_deleted_ids") || "[]");
+          currentDeleted.push(doc.id.toLowerCase(), targetNormTitle);
+          if (Array.isArray(data.deletedGuidelineIds)) {
+            currentDeleted.push(...data.deletedGuidelineIds.map((x: string) => x.toLowerCase()));
+          }
+          const uniqueDeleted = Array.from(new Set(currentDeleted));
+          localStorage.setItem("neuroguide_deleted_ids", JSON.stringify(uniqueDeleted));
+        } catch {}
+
+        setGuidelineDocs((prev) => {
+          const updated = prev.filter(
+            (g) =>
+              g.id !== doc.id &&
+              g.id.toLowerCase() !== doc.id.toLowerCase() &&
+              normalizeT(g.title) !== targetNormTitle
+          );
+          try {
+            localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(updated));
+          } catch {}
+          return updated;
+        });
+      } else {
+        alert(`Lỗi khi xóa: ${data.error || "Không thể xóa guideline"}`);
+      }
+    } catch {
+      alert("Lỗi kết nối khi gửi yêu cầu xóa guideline.");
+    } finally {
+      setDeleteLoadingId(null);
+    }
   };
 
   useEffect(() => {
@@ -323,7 +391,14 @@ export default function AdminCommandCenter() {
       if (cached) {
         const parsed = JSON.parse(cached);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          setGuidelineDocs(parsed);
+          const localDel: string[] = JSON.parse(localStorage.getItem("neuroguide_deleted_ids") || "[]");
+          const delSet = new Set(localDel.map((x) => x.toLowerCase()));
+          const valid = parsed.filter((g: any) => {
+            const id = (g.id || "").toLowerCase();
+            const norm = (g.title || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+            return !delSet.has(id) && !delSet.has(norm);
+          });
+          setGuidelineDocs(valid);
         }
       }
       const lastSync = localStorage.getItem("neuroguide_last_sync_timestamp");
@@ -844,6 +919,15 @@ export default function AdminCommandCenter() {
                       <option value="ESC">ESC</option>
                       <option value="ESVS">ESVS</option>
                     </select>
+
+                    <button
+                      type="button"
+                      onClick={() => fetchGuidelinesList()}
+                      className="px-2.5 py-1.5 rounded-xl text-xs font-bold bg-blue-500/10 text-blue-600 dark:text-blue-400 hover:bg-blue-500/20 transition-colors flex items-center gap-1 cursor-pointer"
+                      title="Tải lại danh sách guideline từ máy chủ và đồng bộ chuẩn"
+                    >
+                      <span>🔄 Làm mới</span>
+                    </button>
                   </div>
                 </div>
 
@@ -871,9 +955,27 @@ export default function AdminCommandCenter() {
                           </div>
                           <div className="font-semibold text-slate-800 dark:text-slate-200">{doc.title}</div>
                         </div>
-                        <span className="text-[10px] text-slate-400 shrink-0 font-mono mt-1">
-                          {doc.allPracticeChanges?.length || 0} updates
-                        </span>
+                        <div className="flex items-center gap-2 shrink-0">
+                          <span className="text-[10px] text-slate-400 font-mono mt-0.5">
+                            {doc.allPracticeChanges?.length || 0} updates
+                          </span>
+                          <Link
+                            href="/neuroguide"
+                            className="px-2 py-0.5 rounded text-[10.5px] font-bold bg-blue-500/10 text-blue-600 dark:text-blue-400 hover:bg-blue-500/20 transition-colors"
+                            title="Xem chi tiết trên Practice Guidelines"
+                          >
+                            Xem ↗
+                          </Link>
+                          <button
+                            type="button"
+                            disabled={deleteLoadingId === doc.id}
+                            onClick={() => handleDeleteGuideline(doc)}
+                            className="px-1.5 py-0.5 rounded text-[10.5px] font-bold text-rose-500 hover:bg-rose-500/10 transition-colors cursor-pointer"
+                            title="Xóa guideline khỏi kho lưu trữ"
+                          >
+                            {deleteLoadingId === doc.id ? "..." : "🗑️"}
+                          </button>
+                        </div>
                       </div>
                     ))
                   )}

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { parseNotebookLMContent } from "@/lib/neuroguide/notebooklmParser";
+import { extractTextFromDocument } from "@/lib/neuroguide/documentParser";
 import { registerCandidateGuideline } from "@/lib/neuroguide/storeAdapter";
 import {
   loadMergedNeuroGuideData,
@@ -14,7 +15,15 @@ export async function GET() {
   return NextResponse.json({
     status: "ready",
     description: "NotebookLM Guideline Ingestion API for NeuroGuide",
-    supportedFormats: [".md (Markdown)", ".txt (Plain Text)", ".csv (CSV Table)", "Raw Text / Clipboard"],
+    supportedFormats: [
+      ".md (Markdown)",
+      ".txt (Plain Text)",
+      ".csv (CSV Table)",
+      ".docx (Word Document)",
+      ".doc (Legacy Word)",
+      ".pdf (PDF Document)",
+      "Raw Text / Clipboard",
+    ],
     features: [
       "Dynamic Markdown table parsing with flexible columns",
       "COR (Class of Recommendation) & LOE (Level of Evidence) extraction",
@@ -56,10 +65,9 @@ export async function POST(request: NextRequest) {
         fileName = file.name;
         const arrayBuf = await file.arrayBuffer();
         const buffer = Buffer.from(arrayBuf);
-        // Decode buffer as UTF-8 string
-        const fileContent = buffer.toString("utf-8");
-        if (fileContent.trim()) {
-          rawText = fileContent.trim();
+        const { text } = await extractTextFromDocument(buffer, file.name);
+        if (text && text.trim()) {
+          rawText = text.trim();
         }
       }
     } else {
@@ -76,7 +84,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           ok: false,
-          error: "Vui lòng tải lên tệp tin (.md, .txt) hoặc dán nội dung tóm tắt từ NotebookLM.",
+          error: "Vui lòng tải lên tệp tin (.md, .txt, .docx, .doc, .pdf) hoặc dán nội dung tóm tắt từ NotebookLM.",
         },
         { status: 400 }
       );

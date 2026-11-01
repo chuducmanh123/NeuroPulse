@@ -146,6 +146,41 @@ export function mergeGuidelines(
 ): GuidelineDoc[] {
   const normalizeTitle = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
 
+  const getCoreTopicKey = (doc: GuidelineDoc): string => {
+    const soc = (doc.society || "").toUpperCase();
+    const t = (doc.title || "").toLowerCase();
+    let normSoc = soc;
+    if (soc.includes("AHA") || soc.includes("ASA")) normSoc = "AHA";
+    else if (soc.includes("ESO")) normSoc = "ESO";
+    else if (soc.includes("AAN")) normSoc = "AAN";
+    else if (soc.includes("ILAE")) normSoc = "ILAE";
+    else if (soc.includes("NCS")) normSoc = "NCS";
+
+    if (normSoc === "ESO" && (t.includes("blood pressure") || t.includes("huyết áp"))) {
+      return "ESO-BP";
+    }
+    if (normSoc === "ESO" && (t.includes("pneumonia") || t.includes("viêm phổi"))) {
+      return "ESO-SAP";
+    }
+    if (normSoc === "AHA" && (t.includes("acute ischemic stroke") || t.includes("acute ischaemic stroke") || t.includes("early management"))) {
+      return "AHA-AIS";
+    }
+    if (normSoc === "AHA" && (t.includes("primary prevention") || t.includes("prevention of stroke"))) {
+      return "AHA-PRIMARY-PREVENTION";
+    }
+    if ((normSoc === "AHA" || normSoc === "NCS") && (t.includes("subarachnoid") || t.includes("aneurysmal"))) {
+      return `${normSoc}-SAH`;
+    }
+    if (normSoc === "ILAE" && (t.includes("status epilepticus") || t.includes("seizures"))) {
+      return "ILAE-SE";
+    }
+    if (normSoc === "AAN" && (t.includes("antiseizure") || t.includes("teratogenesis"))) {
+      return "AAN-ASM";
+    }
+
+    return `${normSoc}-${normalizeTitle(doc.title)}`;
+  };
+
   const isDeleted = (doc: GuidelineDoc) => {
     if (!deletedIds || deletedIds.size === 0) return false;
     const id = (doc.id || "").toLowerCase();
@@ -159,6 +194,7 @@ export function mergeGuidelines(
     return filteredStatic;
   }
 
+  const topicMap = new Map<string, GuidelineDoc>();
   const titleMap = new Map<string, GuidelineDoc>();
   const idMap = new Map<string, GuidelineDoc>();
 
@@ -176,7 +212,8 @@ export function mergeGuidelines(
     }
 
     const normT = normalizeTitle(doc.title);
-    const existing = titleMap.get(normT) || idMap.get(id);
+    const coreKey = getCoreTopicKey(doc);
+    const existing = topicMap.get(coreKey) || titleMap.get(normT) || idMap.get(id);
 
     if (existing) {
       // Deduplicate: choose the one with more practice changes, or keep newer / user-synthesized version
@@ -192,21 +229,24 @@ export function mergeGuidelines(
         chosen = doc.synthesizedAt >= existing.synthesizedAt ? doc : existing;
       } else if (docChanges !== existingChanges) {
         chosen = docChanges > existingChanges ? doc : existing;
+      } else if (doc.year !== existing.year) {
+        chosen = doc.year > existing.year ? doc : existing;
       } else if (existing.id === "aha-ais-2026") {
         chosen = existing;
       } else if (doc.id === "aha-ais-2026") {
         chosen = doc;
       }
-      titleMap.set(normT, chosen);
+
+      // Remove discarded document from all indices
+      const discarded = chosen === existing ? doc : existing;
+      idMap.delete(discarded.id.toLowerCase());
+      titleMap.delete(normalizeTitle(discarded.title));
+
+      topicMap.set(coreKey, chosen);
+      titleMap.set(normalizeTitle(chosen.title), chosen);
       idMap.set(chosen.id.toLowerCase(), chosen);
-      if (chosen !== existing) {
-        idMap.delete(existing.id.toLowerCase());
-        const existingNormT = normalizeTitle(existing.title);
-        if (existingNormT !== normT) {
-          titleMap.delete(existingNormT);
-        }
-      }
     } else {
+      topicMap.set(coreKey, doc);
       titleMap.set(normT, doc);
       idMap.set(id, doc);
     }
@@ -215,7 +255,7 @@ export function mergeGuidelines(
   filteredStatic.forEach(addDoc);
   dynamicItems.forEach(addDoc);
 
-  const result = Array.from(new Set(titleMap.values()));
+  const result = Array.from(new Set(topicMap.values()));
   // Tự động sắp xếp: Thứ tự năm giảm dần (mới nhất) -> Thứ tự Society theo bảng chữ cái A-Z
   result.sort((a, b) => {
     if (b.year !== a.year) return b.year - a.year;
