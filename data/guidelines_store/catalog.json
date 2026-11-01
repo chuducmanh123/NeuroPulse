@@ -35,5 +35,31 @@
     "approved_count": 0,
     "rejected_count": 0,
     "updated_at": "2026-10-31T03:54:02.087Z"
+  },
+  "guide-pmid-40875802": {
+    "guideline_id": "guide-pmid-40875802",
+    "title": "Use of Risk Assessment to Guide Decision-Making for Blood Pressure Management in the Primary Prevention of Cardiovascular Disease: A Scientific Statement From the American Heart Association and American College of Cardiology",
+    "society": "AHA/ASA",
+    "year": 2025,
+    "latest_version": 1,
+    "total_recommendations": 3,
+    "pending_count": 3,
+    "approved_count": 0,
+    "rejected_count": 0,
+    "grading_system": "AHA_ACC",
+    "updated_at": "2026-11-01T20:23:12.616152+00:00"
+  },
+  "guide-pmid-39253806": {
+    "guideline_id": "guide-pmid-39253806",
+    "title": "Evaluation and Management of Kidney Dysfunction in Advanced Heart Failure: A Scientific Statement From the American Heart Association",
+    "society": "AHA/ASA",
+    "year": 2024,
+    "latest_version": 1,
+    "total_recommendations": 3,
+    "pending_count": 3,
+    "approved_count": 0,
+    "rejected_count": 0,
+    "grading_system": "AHA_ACC",
+    "updated_at": "2026-11-01T20:23:20.107720+00:00"
   }
 }
