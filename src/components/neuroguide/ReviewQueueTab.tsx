@@ -229,13 +229,33 @@ const CANONICAL_ESO_2025_BP_PICOS: EsoPicoItem[] = [
  * Transforms stored recommendations into structured ESO PICO questions matching Hình 1 Synoptic Table 11
  */
 function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: string): EsoPicoItem[] {
+  const normTitle = (guidelineTitle || "").toLowerCase();
+  const isEsoBp =
+    normTitle.includes("blood pressure") ||
+    normTitle.includes("huyết áp") ||
+    normTitle.includes("eso") ||
+    recs.some(
+      (r) =>
+        (r.society || "").toUpperCase().includes("ESO") ||
+        (r.guideline_title || "").toLowerCase().includes("blood pressure") ||
+        (r.statement || "").toLowerCase().includes("routine bp lowering") ||
+        (r.statement || "").toLowerCase().includes("routine blood pressure lowering") ||
+        (r.topic || "").toLowerCase().includes("pre-hospital blood pressure")
+    );
+
   // If no recommendations are stored, use canonical fallback for 2025 ESO Blood Pressure
   if (!recs || recs.length === 0) {
-    const normTitle = (guidelineTitle || "").toLowerCase();
-    if (normTitle.includes("blood pressure")) {
+    if (isEsoBp) {
       return CANONICAL_ESO_2025_BP_PICOS;
     }
     return [];
+  }
+
+  const canonicalMap = new Map<string, EsoPicoItem>();
+  if (isEsoBp) {
+    CANONICAL_ESO_2025_BP_PICOS.forEach((cp) => {
+      canonicalMap.set(String(cp.picoNumber).trim(), cp);
+    });
   }
 
   const picoMap = new Map<string, EsoPicoItem>();
@@ -273,6 +293,15 @@ function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: str
     if (!pQuestion) {
       pQuestion = rawTopic.replace(/^PICO\s*\d+[:.\s-]*/i, "").trim() || rawCat;
     }
+
+    const pNumKey = String(pNum).trim();
+    const canonicalItem = canonicalMap.get(pNumKey);
+
+    // If question is empty or too short / just a category fragment, use the formal canonical question
+    if (canonicalItem && (!pQuestion || pQuestion.length < 35 || pQuestion.toLowerCase() === rawCat.toLowerCase())) {
+      pQuestion = canonicalItem.picoQuestion;
+    }
+
     if (pQuestion && !pQuestion.endsWith("?") && !pQuestion.endsWith(".")) {
       pQuestion = `${pQuestion}?`;
     }
@@ -301,8 +330,14 @@ function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: str
       }
     }
 
-    q = q || "Moderate";
-    s = s || "Weak for intervention";
+    q = q || canonicalItem?.recommendations[0]?.qualityOfEvidence || "Moderate";
+    s = s || canonicalItem?.recommendations[0]?.strengthOfRecommendation || "Weak for intervention";
+
+    // PICO 1 in official ESO Table 11 is "Strong against intervention"
+    if (canonicalItem && pNumKey === "1" && (!r.strength_of_recommendation || r.strength_of_recommendation.toLowerCase().includes("weak"))) {
+      s = "Strong against intervention";
+    }
+
     const stmtLower = (r.statement || "").toLowerCase();
 
     // Normalize vague or "Conditional" strength into official ESO GRADE values
@@ -326,12 +361,20 @@ function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: str
       (r as any).consensus_statement ||
       (r as any).expertConsensusStatement ||
       ((r as any).previousText && !(r as any).previousText.startsWith("Driving Evidence:") ? (r as any).previousText : undefined);
-    const consensus =
+
+    let consensus =
       rawConsensus && rawConsensus.trim() !== (r.statement || "").trim()
         ? rawConsensus.trim()
         : undefined;
 
-    const trials = Array.isArray(r.driving_trials) ? r.driving_trials : [];
+    // Fallback to canonical expert consensus statement if missing
+    if (!consensus && canonicalItem?.expertConsensusStatement) {
+      consensus = canonicalItem.expertConsensusStatement;
+    }
+
+    const trials = Array.isArray(r.driving_trials) && r.driving_trials.length > 0
+      ? r.driving_trials
+      : canonicalItem?.drivingTrials || [];
 
     if (!picoMap.has(picoKey)) {
       picoMap.set(picoKey, {
@@ -339,7 +382,7 @@ function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: str
         picoQuestion: pQuestion,
         recommendations: [],
         expertConsensusStatement: consensus,
-        voting: r.voting || (consensus ? "Vote: 10/10" : undefined),
+        voting: r.voting || canonicalItem?.voting || (consensus ? "Vote: 10/10" : undefined),
         drivingTrials: [...trials],
       });
     }
@@ -348,7 +391,7 @@ function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: str
 
     if (!entry.expertConsensusStatement && consensus) {
       entry.expertConsensusStatement = consensus;
-      if (!entry.voting) entry.voting = r.voting || "Vote: 10/10";
+      if (!entry.voting) entry.voting = r.voting || canonicalItem?.voting || "Vote: 10/10";
     }
 
     if (trials.length > 0) {
@@ -364,6 +407,18 @@ function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: str
       drivingTrials: trials,
     });
   });
+
+  // If this is ESO Blood Pressure and some PICOs are missing from recs, merge canonical PICOs
+  if (isEsoBp) {
+    CANONICAL_ESO_2025_BP_PICOS.forEach((cp) => {
+      const pKey = `PICO-${cp.picoNumber}`;
+      if (!picoMap.has(pKey)) {
+        picoMap.set(pKey, cp);
+      }
+    });
+
+    return Array.from(picoMap.values()).sort((a, b) => Number(a.picoNumber) - Number(b.picoNumber));
+  }
 
   return Array.from(picoMap.values());
 }
@@ -805,20 +860,35 @@ export function ReviewQueueTab({
         }
       }
 
+      const pNumKey = String(pNum || idx + 1).trim();
+      const canonicalItem = isDocEso
+        ? CANONICAL_ESO_2025_BP_PICOS.find((cp) => String(cp.picoNumber).trim() === pNumKey)
+        : undefined;
+
+      const finalConsensus =
+        (r as any).consensus_statement ||
+        (r as any).expertConsensusStatement ||
+        (isDocEso ? canonicalItem?.expertConsensusStatement : undefined);
+
+      const finalPicoQuestion =
+        (canonicalItem && (!pQuestion || pQuestion.length < 35 || pQuestion.toLowerCase() === (r.category || "").toLowerCase()))
+          ? canonicalItem.picoQuestion
+          : (pQuestion || canonicalItem?.picoQuestion || r.topic);
+
       return {
         id: r.rec_id || `rec-${idx + 1}`,
         topic: r.topic || r.target_population || (isDocEso ? `PICO ${pNum || idx + 1}: Clinical Question` : `Khuyến cáo #${idx + 1}`),
         currentGrade,
         currentText: r.statement,
         category: r.category || (isDocEso ? "Blood Pressure" : "General Recommendations"),
-        drivingTrials: r.driving_trials || [],
+        drivingTrials: (r.driving_trials && r.driving_trials.length > 0) ? r.driving_trials : (canonicalItem?.drivingTrials || []),
         changeType: "NEW",
-        quality: isDocEso ? (r.quality_of_evidence || "Moderate") : undefined,
-        strength: isDocEso ? (r.strength_of_recommendation || "Weak against intervention") : undefined,
-        expertConsensusStatement: (r as any).consensus_statement || (r as any).expertConsensusStatement || undefined,
-        voting: isDocEso ? (r.voting || "Vote: 10/10") : undefined,
+        quality: isDocEso ? (r.quality_of_evidence || canonicalItem?.recommendations[0]?.qualityOfEvidence || "Moderate") : undefined,
+        strength: isDocEso ? (r.strength_of_recommendation || canonicalItem?.recommendations[0]?.strengthOfRecommendation || "Weak against intervention") : undefined,
+        expertConsensusStatement: finalConsensus,
+        voting: isDocEso ? (r.voting || canonicalItem?.voting || "Vote: 10/10") : undefined,
         picoNumber: pNum || `${idx + 1}`,
-        picoQuestion: pQuestion || r.topic,
+        picoQuestion: finalPicoQuestion,
       };
     });
 
@@ -886,20 +956,35 @@ export function ReviewQueueTab({
         }
       }
 
+      const pNumKey = String(pNum || idx + 1).trim();
+      const canonicalItem = isDocEso
+        ? CANONICAL_ESO_2025_BP_PICOS.find((cp) => String(cp.picoNumber).trim() === pNumKey)
+        : undefined;
+
+      const finalConsensus =
+        (r as any).consensus_statement ||
+        (r as any).expertConsensusStatement ||
+        (isDocEso ? canonicalItem?.expertConsensusStatement : undefined);
+
+      const finalPicoQuestion =
+        (canonicalItem && (!pQuestion || pQuestion.length < 35 || pQuestion.toLowerCase() === (r.category || "").toLowerCase()))
+          ? canonicalItem.picoQuestion
+          : (pQuestion || canonicalItem?.picoQuestion || r.topic);
+
       return {
         id: r.rec_id || `rec-${idx + 1}`,
         topic: r.topic || r.target_population || (isDocEso ? `PICO ${pNum || idx + 1}: Clinical Question` : `Khuyến cáo #${idx + 1}`),
         currentGrade,
         currentText: r.statement,
         category: r.category || (isDocEso ? "Blood Pressure" : "General Recommendations"),
-        drivingTrials: r.driving_trials || [],
+        drivingTrials: (r.driving_trials && r.driving_trials.length > 0) ? r.driving_trials : (canonicalItem?.drivingTrials || []),
         changeType: "NEW",
-        quality: isDocEso ? (r.quality_of_evidence || "Moderate") : undefined,
-        strength: isDocEso ? (r.strength_of_recommendation || "Weak against intervention") : undefined,
-        expertConsensusStatement: (r as any).consensus_statement || (r as any).expertConsensusStatement || undefined,
-        voting: isDocEso ? (r.voting || "Vote: 10/10") : undefined,
+        quality: isDocEso ? (r.quality_of_evidence || canonicalItem?.recommendations[0]?.qualityOfEvidence || "Moderate") : undefined,
+        strength: isDocEso ? (r.strength_of_recommendation || canonicalItem?.recommendations[0]?.strengthOfRecommendation || "Weak against intervention") : undefined,
+        expertConsensusStatement: finalConsensus,
+        voting: isDocEso ? (r.voting || canonicalItem?.voting || "Vote: 10/10") : undefined,
         picoNumber: pNum || `${idx + 1}`,
-        picoQuestion: pQuestion || r.topic,
+        picoQuestion: finalPicoQuestion,
       };
     });
 
