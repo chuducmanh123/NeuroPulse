@@ -22,6 +22,8 @@ export function NotebookLMUploadModal({
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isParsingFile, setIsParsingFile] = useState<boolean>(false);
   const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [showExtractedText, setShowExtractedText] = useState<boolean>(false);
+  const [isAiExtracting, setIsAiExtracting] = useState<boolean>(false);
 
   // Editable overrides
   const [overrideTitle, setOverrideTitle] = useState<string>("");
@@ -102,6 +104,39 @@ export function NotebookLMUploadModal({
     const files = e.target.files;
     if (files && files.length > 0) {
       processUploadedFile(files[0]);
+    }
+  };
+
+  const handleAiExtraction = async () => {
+    if (!rawText || rawText.trim().length < 20) return;
+    setIsAiExtracting(true);
+    setErrorMessage(null);
+
+    try {
+      const res = await fetch("/api/neuroguide/ai-extract-guideline", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          text: rawText,
+          title: overrideTitle || parsedPreview?.doc.title,
+          society: overrideSociety || parsedPreview?.doc.society,
+          year: overrideYear ? parseInt(overrideYear, 10) : parsedPreview?.doc.year,
+        }),
+      });
+
+      const data = await res.json().catch(() => null);
+      if (!res.ok || !data?.ok || !data?.formattedText) {
+        throw new Error(data?.error || "Không thể trích xuất khuyến cáo qua AI. Vui lòng thử lại.");
+      }
+
+      setRawText(data.formattedText);
+      setShowExtractedText(true);
+      setSuccessMessage("🎉 AI đã chuyển đổi thành công văn bản thành bảng khuyến cáo lâm sàng chuẩn!");
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "Lỗi khi trích xuất qua AI";
+      setErrorMessage(msg);
+    } finally {
+      setIsAiExtracting(false);
     }
   };
 
@@ -300,6 +335,42 @@ export function NotebookLMUploadModal({
                   </div>
                 )}
               </div>
+
+              {selectedFile && rawText && (
+                <div className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 transition-all">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+                      <span>📄</span>
+                      <span>Văn bản trích xuất ({rawText.length.toLocaleString()} ký tự)</span>
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setShowExtractedText(!showExtractedText)}
+                      className="text-[11px] font-bold text-amber-600 dark:text-amber-400 hover:underline cursor-pointer"
+                    >
+                      {showExtractedText ? "Thu gọn ▲" : "Xem & chỉnh sửa ▼"}
+                    </button>
+                  </div>
+                  {showExtractedText && (
+                    <div className="mt-2.5 space-y-1.5">
+                      <textarea
+                        value={rawText}
+                        onChange={(e) => setRawText(e.target.value)}
+                        rows={7}
+                        className={`w-full p-2.5 text-xs font-mono rounded-lg border outline-none transition-all ${
+                          darkMode
+                            ? "bg-slate-950 border-slate-700 text-slate-200 focus:border-amber-500"
+                            : "bg-white border-slate-300 text-slate-900 focus:border-amber-500"
+                        }`}
+                        placeholder="Nội dung văn bản trích xuất từ tệp..."
+                      />
+                      <p className="text-[10px] text-slate-400">
+                        💡 Bạn có thể chỉnh sửa trực tiếp nội dung văn bản ở trên; bảng khuyến cáo bên dưới sẽ tự động cập nhật ngay lập tức.
+                      </p>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           ) : (
             <div className="space-y-2">
@@ -423,6 +494,21 @@ export function NotebookLMUploadModal({
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60">
+                    {parsedPreview.doc.allPracticeChanges.length === 0 && (
+                      <tr>
+                        <td colSpan={4} className="p-6 text-center text-slate-500 dark:text-slate-400">
+                          <div className="flex flex-col items-center justify-center gap-2 py-2">
+                            <span className="text-3xl">📋</span>
+                            <p className="font-bold text-xs text-slate-700 dark:text-slate-300">
+                              Chưa phát hiện bảng hoặc danh sách khuyến cáo hợp lệ
+                            </p>
+                            <p className="text-[11.5px] max-w-md text-slate-500 dark:text-slate-400">
+                              Nội dung tài liệu có thể đang ở dạng văn bản tóm tắt tự do. Nhấn nút <strong className="text-amber-600 dark:text-amber-400">Trích xuất bằng AI (Gemini)</strong> bên dưới để AI tự động phân loại PICO, COR/LOE và cấu trúc hóa bảng khuyến cáo.
+                            </p>
+                          </div>
+                        </td>
+                      </tr>
+                    )}
                     {parsedPreview.doc.allPracticeChanges.map((rec, idx) => (
                       <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-800/40">
                         <td className="p-2 font-semibold text-slate-700 dark:text-slate-300 text-[11px]">
@@ -454,6 +540,41 @@ export function NotebookLMUploadModal({
                   </tbody>
                 </table>
               </div>
+            </div>
+          )}
+
+          {/* AI Extraction Assist Callout when 0 recommendations detected */}
+          {rawText && (parsedPreview?.stats.totalRecommendations || 0) === 0 && (
+            <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-xs">
+              <div className="flex items-center gap-2.5">
+                <span className="text-2xl">✨</span>
+                <div>
+                  <p className="text-xs font-bold text-amber-700 dark:text-amber-400">
+                    Tự động nhận diện &amp; cấu trúc hóa khuyến cáo bằng AI
+                  </p>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                    Sử dụng Gemini AI để quét toàn bộ văn bản và trích xuất bảng khuyến cáo PICO / COR-LOE hoàn chỉnh.
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={handleAiExtraction}
+                disabled={isAiExtracting}
+                className="w-full sm:w-auto px-4 py-2 whitespace-nowrap rounded-lg bg-gradient-to-r from-amber-500 to-rose-500 text-white font-black text-xs shadow-md hover:from-amber-600 hover:to-rose-600 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
+              >
+                {isAiExtracting ? (
+                  <>
+                    <span className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    <span>Đang trích xuất qua AI...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>🤖</span>
+                    <span>Trích xuất bằng AI (Gemini)</span>
+                  </>
+                )}
+              </button>
             </div>
           )}
 

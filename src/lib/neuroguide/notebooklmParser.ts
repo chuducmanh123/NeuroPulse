@@ -58,23 +58,51 @@ function formatGrade(rawGrade: string): string {
 function inferChangeType(grade: string, statement: string): PracticeChangeDetail["changeType"] {
   const norm = (grade + " " + statement).toLowerCase();
 
-  if (norm.includes("harm") || norm.includes("potentially harmful") || norm.includes("associated with excess morbidity")) {
+  if (
+    norm.includes("harm") ||
+    norm.includes("potentially harmful") ||
+    norm.includes("associated with excess morbidity") ||
+    norm.includes("có hại") ||
+    norm.includes("tăng nguy cơ tử vong")
+  ) {
     return "DOWNGRADED";
   }
-  if (norm.includes("no benefit") || norm.includes("not beneficial") || norm.includes("not useful") || norm.includes("not recommended")) {
+  if (
+    norm.includes("no benefit") ||
+    norm.includes("not beneficial") ||
+    norm.includes("not useful") ||
+    norm.includes("not recommended") ||
+    norm.includes("không có lợi") ||
+    norm.includes("không khuyến cáo") ||
+    norm.includes("tránh")
+  ) {
     return "REVISED";
   }
-  if (norm.includes("class 1") || norm.includes("class i,") || norm.includes("class i ") || norm.includes("strong recommendation for")) {
+  if (
+    norm.includes("class 1") ||
+    norm.includes("class i,") ||
+    norm.includes("class i ") ||
+    norm.includes("strong recommendation for") ||
+    norm.includes("strong for") ||
+    norm.includes("mức 1") ||
+    norm.includes("khuyến cáo mạnh cho")
+  ) {
     return "UPGRADED";
   }
-  if (norm.includes("class 2a") || norm.includes("class 2b") || norm.includes("class ii")) {
+  if (
+    norm.includes("class 2a") ||
+    norm.includes("class 2b") ||
+    norm.includes("class ii") ||
+    norm.includes("mức 2") ||
+    norm.includes("weak for")
+  ) {
     return "NEW";
   }
   return "STANDARD";
 }
 
 /**
- * Derives Category and Topic from a combined string (e.g., "Diagnosis: Acute Workup" -> cat: "Diagnosis", topic: "Acute Workup")
+ * Derives Category and Topic from a combined string
  */
 function extractCategoryAndTopic(rawDomain: string): { category: string; topic: string } {
   const clean = rawDomain.trim();
@@ -98,7 +126,8 @@ function generateExecutiveSummaryVi(title: string, society: string, year: number
   let condition = "thần kinh";
   const t = title.toLowerCase();
   if (t.includes("subarachnoid") || t.includes("asah")) condition = "Xuất huyết dưới nhện do vỡ túi phình (aSAH)";
-  else if (t.includes("ischemic stroke")) condition = "Đột quỵ nhồi máu não cấp";
+  else if (t.includes("blood pressure") || t.includes("huyết áp")) condition = "Quản lý Huyết áp trong Đột quỵ cấp";
+  else if (t.includes("ischemic stroke") || t.includes("ischaemic stroke")) condition = "Đột quỵ nhồi máu não cấp";
   else if (t.includes("intracerebral hemorrhage") || t.includes("ich")) condition = "Xuất huyết não tự phát (ICH)";
   else if (t.includes("epilepsy") || t.includes("seizure")) condition = "Động kinh và Cơn co giật";
   else if (t.includes("status epilepticus")) condition = "Trạng thái động kinh";
@@ -109,7 +138,7 @@ function generateExecutiveSummaryVi(title: string, society: string, year: number
 }
 
 /**
- * Main parser function to convert NotebookLM markdown/text into a full GuidelineDoc
+ * Main parser function to convert NotebookLM markdown/text/docx into a full GuidelineDoc
  */
 export function parseNotebookLMContent(
   rawContent: string,
@@ -128,17 +157,54 @@ export function parseNotebookLMContent(
   let descriptionLines: string[] = [];
   let tableHeaderIndex = -1;
 
+  // Broad set of keywords to detect table header rows
+  const tableKeywords = [
+    "pico",
+    "recommendation",
+    "domain",
+    "topic",
+    "class",
+    "cor",
+    "loe",
+    "grade",
+    "strength",
+    "quality",
+    "consensus",
+    "evidence",
+    "statement",
+    "khuyến cáo",
+    "khuyến nghị",
+    "mức độ",
+    "bằng chứng",
+    "chất lượng",
+    "đồng thuận",
+    "thử nghiệm",
+    "nghiên cứu",
+    "câu hỏi",
+    "clinical question",
+    "intervention",
+    "can thiệp",
+    "stt",
+    "voting",
+    "vote",
+    "bỏ phiếu",
+    "phân loại",
+  ];
+
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     if (!line) continue;
 
-    if (line.includes("|") && (line.toLowerCase().includes("recommendation") || line.toLowerCase().includes("domain") || line.toLowerCase().includes("topic") || line.toLowerCase().includes("class") || line.toLowerCase().includes("cor"))) {
+    // Detect markdown table header row: has pipe and matches any table header keyword, OR followed immediately by | --- |
+    const hasPipe = line.includes("|");
+    const nextLineHasSep = i + 1 < lines.length && lines[i + 1].includes("|") && lines[i + 1].replace(/[|\s\-\:]/g, "").length === 0;
+
+    if (hasPipe && (tableKeywords.some((k) => line.toLowerCase().includes(k)) || nextLineHasSep)) {
       tableHeaderIndex = i;
       break;
     }
 
     if (!docTitle) {
-      // First substantial line is the title
       docTitle = line.replace(/^[#\s*]+/, "").replace(/[*#]+$/, "").trim();
     } else {
       descriptionLines.push(line.replace(/^[#\s*]+/, "").replace(/[*#]+$/, "").trim());
@@ -161,33 +227,38 @@ export function parseNotebookLMContent(
   const detectedSociety = overrides?.society || detectSociety(docTitle, descriptionLines.join(" "));
   const detectedSubspecialty = overrides?.subspecialty || detectSubspecialty(docTitle);
 
-  // 3. Parse Table or List Rows
   const practiceChanges: PracticeChangeDetail[] = [];
   const corBreakdown: Record<string, number> = {};
 
+  // =========================================================================
+  // STRATEGY 1: PARSE MARKDOWN TABLE ROWS
+  // =========================================================================
   if (tableHeaderIndex !== -1) {
     const headerLine = lines[tableHeaderIndex];
-    const headerCols = headerLine
-      .split("|")
-      .map(cleanCell)
-      .filter(Boolean)
-      .map((c) => c.toLowerCase());
+    const rawHeaderParts = headerLine.split("|").map(cleanCell);
+    // Remove boundary pipes
+    if (rawHeaderParts.length > 0 && rawHeaderParts[0] === "") rawHeaderParts.shift();
+    if (rawHeaderParts.length > 0 && rawHeaderParts[rawHeaderParts.length - 1] === "") rawHeaderParts.pop();
+    const headerCols = rawHeaderParts.map((c) => c.toLowerCase());
 
     const isEsoTable =
-      detectedSociety.includes("ESO") ||
+      detectedSociety.toUpperCase().includes("ESO") ||
       headerCols.some((c) => c.includes("pico")) ||
       headerCols.some((c) => c.includes("quality")) ||
-      headerCols.some((c) => c.includes("consensus"));
+      headerCols.some((c) => c.includes("chất lượng")) ||
+      headerCols.some((c) => c.includes("strength")) ||
+      headerCols.some((c) => c.includes("độ mạnh")) ||
+      headerCols.some((c) => c.includes("consensus")) ||
+      headerCols.some((c) => c.includes("đồng thuận"));
 
-    // Determine column mapping
-    let colPicoIdx = headerCols.findIndex((c) => c.includes("pico") || c.includes("clinical question"));
-    let colTopicIdx = headerCols.findIndex((c) => c.includes("topic") || c.includes("domain") || c.includes("category") || c.includes("lâm sàng"));
-    let colRecIdx = headerCols.findIndex((c) => c.includes("recommendation") || c.includes("verbatim") || c.includes("khuyến cáo") || c.includes("statement") || c.includes("text"));
-    let colGradeIdx = headerCols.findIndex((c) => c.includes("class") || c.includes("cor") || c.includes("loe") || c.includes("grade") || c.includes("level") || c.includes("mức độ"));
-    let colQualityIdx = headerCols.findIndex((c) => c.includes("quality") || c.includes("chất lượng") || c.includes("bằng chứng"));
-    let colStrengthIdx = headerCols.findIndex((c) => c.includes("strength") || c.includes("mức độ khuyến cáo"));
-    let colConsensusIdx = headerCols.findIndex((c) => c.includes("consensus") || c.includes("expert") || c.includes("đồng thuận"));
-    let colVotingIdx = headerCols.findIndex((c) => c.includes("vote") || c.includes("voting") || c.includes("bỏ phiếu"));
+    let colPicoIdx = headerCols.findIndex((c) => c.includes("pico") || c.includes("clinical question") || c.includes("câu hỏi"));
+    let colTopicIdx = headerCols.findIndex((c) => c.includes("topic") || c.includes("domain") || c.includes("category") || c.includes("lâm sàng") || c.includes("chủ đề"));
+    let colRecIdx = headerCols.findIndex((c) => c.includes("recommendation") || c.includes("verbatim") || c.includes("khuyến cáo") || c.includes("khuyến nghị") || c.includes("statement") || c.includes("text") || c.includes("nội dung"));
+    let colGradeIdx = headerCols.findIndex((c) => c.includes("class") || c.includes("cor") || c.includes("loe") || c.includes("grade") || c.includes("level") || c.includes("mức độ") || c.includes("phân loại"));
+    let colQualityIdx = headerCols.findIndex((c) => c.includes("quality") || c.includes("chất lượng") || (c.includes("bằng chứng") && !c.includes("mức độ")));
+    let colStrengthIdx = headerCols.findIndex((c) => c.includes("strength") || c.includes("mức độ khuyến cáo") || c.includes("độ mạnh"));
+    let colConsensusIdx = headerCols.findIndex((c) => c.includes("consensus") || c.includes("expert") || c.includes("đồng thuận") || c.includes("chuyên gia"));
+    let colVotingIdx = headerCols.findIndex((c) => c.includes("vote") || c.includes("voting") || c.includes("bỏ phiếu") || c.includes("biểu quyết"));
     let colEvidenceIdx = headerCols.findIndex(
       (c) =>
         c.includes("studies") ||
@@ -195,14 +266,15 @@ export function parseNotebookLMContent(
         c.includes("trials") ||
         c.includes("trial") ||
         c.includes("nghiên cứu") ||
+        c.includes("thử nghiệm") ||
         (c.includes("evidence") && !c.includes("quality"))
     );
 
-    // Default fallbacks if indices not cleanly found
+    // Fallbacks
     if (colTopicIdx === -1 && colPicoIdx !== -1) colTopicIdx = colPicoIdx;
     if (colTopicIdx === -1) colTopicIdx = 0;
     if (colRecIdx === -1) colRecIdx = colPicoIdx === 0 ? 1 : (headerCols.length > 1 ? 1 : 0);
-    if (colGradeIdx === -1) colGradeIdx = colStrengthIdx !== -1 ? colStrengthIdx : 2;
+    if (colGradeIdx === -1) colGradeIdx = colStrengthIdx !== -1 ? colStrengthIdx : (headerCols.length > 2 ? 2 : -1);
     if (colEvidenceIdx === -1) colEvidenceIdx = headerCols.length - 1;
 
     let activePicoNum: number | string = 1;
@@ -215,7 +287,6 @@ export function parseNotebookLMContent(
       if (line.replace(/[|\s\-\:]/g, "").length === 0) continue;
 
       const cells = line.split("|").map(cleanCell);
-      // Remove empty boundary cells caused by leading/trailing pipes
       const filteredCells = cells.filter((c, idx) => {
         if ((idx === 0 || idx === cells.length - 1) && c === "") return false;
         return true;
@@ -234,12 +305,17 @@ export function parseNotebookLMContent(
         continue;
       }
 
-      const statement = (colRecIdx !== -1 ? filteredCells[colRecIdx] : "") || filteredCells[1] || "";
+      // Extract statement
+      let statement = (colRecIdx !== -1 && colRecIdx < filteredCells.length ? filteredCells[colRecIdx] : "") || "";
+      if (!statement) {
+        // Find cell with longest text
+        statement = filteredCells.reduce((a, b) => (b.length > a.length ? b : a), "");
+      }
       if (!statement || statement.length < 5) continue;
 
       if (isEsoTable) {
-        // ESO GRADE parsing
-        const rawPico = (colPicoIdx !== -1 ? filteredCells[colPicoIdx] : "") || firstCell;
+        // ESO GRADE format
+        const rawPico = (colPicoIdx !== -1 && colPicoIdx < filteredCells.length ? filteredCells[colPicoIdx] : "") || firstCell;
         if (rawPico) {
           const matchPico = rawPico.match(/^PICO\s*(\d+)[:.\s-]*(.*)/i);
           if (matchPico) {
@@ -250,33 +326,42 @@ export function parseNotebookLMContent(
           }
         }
 
-        const rawQuality = (colQualityIdx !== -1 ? filteredCells[colQualityIdx] : "") || "Moderate";
-        const rawStrength = (colStrengthIdx !== -1 ? filteredCells[colStrengthIdx] : "") || (colGradeIdx !== -1 ? filteredCells[colGradeIdx] : "") || "Weak for intervention";
-        const rawConsensus = colConsensusIdx !== -1 ? filteredCells[colConsensusIdx] : "";
-        const rawVoting = colVotingIdx !== -1 ? filteredCells[colVotingIdx] : "";
-        const rawEvidence = colEvidenceIdx !== -1 ? filteredCells[colEvidenceIdx] : "";
+        const rawQuality = (colQualityIdx !== -1 && colQualityIdx < filteredCells.length ? filteredCells[colQualityIdx] : "") || "Moderate";
+        const rawStrength =
+          (colStrengthIdx !== -1 && colStrengthIdx < filteredCells.length ? filteredCells[colStrengthIdx] : "") ||
+          (colGradeIdx !== -1 && colGradeIdx < filteredCells.length ? filteredCells[colGradeIdx] : "") ||
+          "Weak for intervention";
+        const rawConsensus = colConsensusIdx !== -1 && colConsensusIdx < filteredCells.length ? filteredCells[colConsensusIdx] : "";
+        const rawVoting = colVotingIdx !== -1 && colVotingIdx < filteredCells.length ? filteredCells[colVotingIdx] : "";
+        const rawEvidence = colEvidenceIdx !== -1 && colEvidenceIdx < filteredCells.length ? filteredCells[colEvidenceIdx] : "";
 
         // Normalize Quality
         let quality = "Moderate";
         const qNorm = rawQuality.toLowerCase();
-        if (qNorm.includes("very low")) quality = "Very low";
-        else if (qNorm.includes("low") && !qNorm.includes("very")) quality = "Low";
-        else if (qNorm.includes("high")) quality = "High";
+        if (qNorm.includes("very low") || qNorm.includes("rất thấp")) quality = "Very low";
+        else if ((qNorm.includes("low") || qNorm.includes("thấp")) && !qNorm.includes("very") && !qNorm.includes("rất")) quality = "Low";
+        else if (qNorm.includes("high") || qNorm.includes("cao")) quality = "High";
 
         // Normalize Strength
         let strength = "Weak for intervention";
         const sNorm = rawStrength.toLowerCase();
         const stmtNorm = statement.toLowerCase();
-        if (sNorm.includes("strong against") || (sNorm.includes("strong") && stmtNorm.includes("against"))) {
+        if (
+          sNorm.includes("strong against") ||
+          sNorm.includes("chống lại can thiệp") ||
+          (sNorm.includes("strong") && (stmtNorm.includes("against") || stmtNorm.includes("avoid") || stmtNorm.includes("tránh")))
+        ) {
           strength = "Strong against intervention";
         } else if (
           sNorm.includes("weak against") ||
           sNorm.includes("suggest against") ||
           stmtNorm.includes("suggest against") ||
+          stmtNorm.includes("không hạ") ||
+          stmtNorm.includes("không khuyến cáo") ||
           (sNorm.includes("conditional") && (stmtNorm.includes("against") || stmtNorm.includes("avoid")))
         ) {
           strength = "Weak against intervention";
-        } else if (sNorm.includes("strong for") || (sNorm.includes("strong") && !sNorm.includes("against"))) {
+        } else if (sNorm.includes("strong for") || sNorm.includes("mạnh") || (sNorm.includes("strong") && !sNorm.includes("against"))) {
           strength = "Strong for intervention";
         } else {
           strength = "Weak for intervention";
@@ -304,9 +389,9 @@ export function parseNotebookLMContent(
         });
       } else {
         // ACC/AHA format
-        const rawDomain = filteredCells[colTopicIdx] || `Recommendation ${practiceChanges.length + 1}`;
-        const rawGrade = filteredCells[colGradeIdx] || "Class 1  LOE B-NR";
-        const rawEvidence = filteredCells[colEvidenceIdx] || "";
+        const rawDomain = (colTopicIdx !== -1 && colTopicIdx < filteredCells.length ? filteredCells[colTopicIdx] : "") || `Recommendation ${practiceChanges.length + 1}`;
+        const rawGrade = (colGradeIdx !== -1 && colGradeIdx < filteredCells.length ? filteredCells[colGradeIdx] : "") || "Class 1  LOE B-NR";
+        const rawEvidence = colEvidenceIdx !== -1 && colEvidenceIdx < filteredCells.length ? filteredCells[colEvidenceIdx] : "";
 
         const { category, topic } = extractCategoryAndTopic(rawDomain);
         const grade = formatGrade(rawGrade);
@@ -330,6 +415,150 @@ export function parseNotebookLMContent(
     }
   }
 
+  // =========================================================================
+  // STRATEGY 2: PARSE PICO BLOCKS (NON-TABLE NOTEBOOKLM SUMMARIES)
+  // =========================================================================
+  if (practiceChanges.length === 0) {
+    const picoRegex = /(?:^|\n)(?:#+\s*|\*{2})?PICO\s*(\d+)[:.\s-]*([^\n*]*)(?:\*{2})?/gi;
+    let match: RegExpExecArray | null;
+    const picoBlocks: Array<{ picoNum: string; picoQuestion: string; startIndex: number }> = [];
+
+    while ((match = picoRegex.exec(rawContent)) !== null) {
+      picoBlocks.push({
+        picoNum: match[1],
+        picoQuestion: match[2]?.trim() || "",
+        startIndex: match.index + match[0].length,
+      });
+    }
+
+    if (picoBlocks.length > 0) {
+      for (let b = 0; b < picoBlocks.length; b++) {
+        const cur = picoBlocks[b];
+        const nextStart = b + 1 < picoBlocks.length ? picoBlocks[b + 1].startIndex : rawContent.length;
+        const blockText = rawContent.slice(cur.startIndex, nextStart);
+
+        let statement = "";
+        let quality = "Moderate";
+        let strength = "Weak for intervention";
+        let consensus = "";
+        let voting = "";
+        let trials: string[] = [];
+
+        const bLines = blockText.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
+        for (const line of bLines) {
+          const lNorm = line.replace(/^[*\-#\s]+/, "");
+
+          // Recommendation statement
+          const recMatch = lNorm.match(/^(?:Recommendation|Khuyến cáo|Statement|Khuyến nghị)[:\s]*(.*)/i);
+          if (recMatch && recMatch[1]) {
+            statement = recMatch[1].replace(/[*_]/g, "").trim();
+          } else if (
+            !statement &&
+            (lNorm.startsWith("In patients") ||
+              lNorm.startsWith("Ở bệnh nhân") ||
+              lNorm.startsWith("We recommend") ||
+              lNorm.startsWith("We suggest") ||
+              lNorm.startsWith("Chúng tôi khuyến cáo") ||
+              lNorm.startsWith("Chúng tôi đề nghị"))
+          ) {
+            statement = lNorm.replace(/[*_]/g, "").trim();
+          }
+
+          // Quality
+          const qMatch = lNorm.match(/^(?:Quality of evidence|Quality|Chất lượng bằng chứng|Chất lượng)[:\s]*(.*)/i);
+          if (qMatch && qMatch[1]) {
+            const qStr = qMatch[1].toLowerCase();
+            if (qStr.includes("very low") || qStr.includes("rất thấp")) quality = "Very low";
+            else if (qStr.includes("low") || qStr.includes("thấp")) quality = "Low";
+            else if (qStr.includes("high") || qStr.includes("cao")) quality = "High";
+            else quality = "Moderate";
+          }
+
+          // Strength
+          const sMatch = lNorm.match(/^(?:Strength of recommendation|Strength|Mức độ khuyến cáo|Độ mạnh)[:\s]*(.*)/i);
+          if (sMatch && sMatch[1]) {
+            const sStr = sMatch[1].toLowerCase();
+            if (sStr.includes("strong against") || sStr.includes("chống lại can thiệp")) strength = "Strong against intervention";
+            else if (sStr.includes("weak against") || sStr.includes("suggest against")) strength = "Weak against intervention";
+            else if (sStr.includes("strong for") || sStr.includes("mạnh")) strength = "Strong for intervention";
+            else strength = "Weak for intervention";
+          }
+
+          // Consensus
+          const cMatch = lNorm.match(/^(?:Expert consensus statement|Expert consensus|Consensus|Đồng thuận chuyên gia|Đồng thuận)[:\s]*(.*)/i);
+          if (cMatch && cMatch[1]) {
+            consensus = cMatch[1].replace(/[*_]/g, "").trim();
+          }
+
+          // Voting
+          const vMatch = lNorm.match(/^(?:Voting|Vote|Bỏ phiếu|Biểu quyết)[:\s]*(.*)/i);
+          if (vMatch && vMatch[1]) {
+            voting = vMatch[1].replace(/[*_]/g, "").trim();
+          }
+
+          // Trials
+          const tMatch = lNorm.match(/^(?:Related studies|Studies|Trials|Driving trials|Nghiên cứu|Thử nghiệm)[:\s]*(.*)/i);
+          if (tMatch && tMatch[1]) {
+            trials = parseEvidenceStudies(tMatch[1]);
+          }
+        }
+
+        if (statement && statement.length > 5) {
+          const voteStr = voting ? (voting.startsWith("Vote:") ? voting : `Vote: ${voting}`) : undefined;
+          const grade = `GRADE ${strength} (Evidence: ${quality}${voteStr ? `, Voting: ${voteStr}` : ""})`;
+
+          practiceChanges.push({
+            id: `rec-nlm-${year}-${practiceChanges.length + 1}`,
+            category: cur.picoQuestion ? cur.picoQuestion.slice(0, 60) : `PICO ${cur.picoNum}`,
+            topic: `PICO ${cur.picoNum} ${cur.picoQuestion}`.trim(),
+            changeType: inferChangeType(strength, statement),
+            currentGrade: grade,
+            currentText: statement,
+            quality,
+            strength,
+            voting: voteStr,
+            expertConsensusStatement: consensus || undefined,
+            previousText: consensus || undefined,
+            picoNumber: cur.picoNum,
+            picoQuestion: cur.picoQuestion,
+            drivingTrials: trials.length > 0 ? trials : [`${detectedSociety} Practice Committee`],
+          });
+        }
+      }
+    }
+  }
+
+  // =========================================================================
+  // STRATEGY 3: PARSE NUMBERED OR BULLETED RECOMMENDATION LISTS
+  // =========================================================================
+  if (practiceChanges.length === 0) {
+    const listLines = lines.filter((l) => /^(?:\d+\.|\*|\-|\•)\s+/.test(l));
+    for (let idx = 0; idx < listLines.length; idx++) {
+      const line = listLines[idx].replace(/^(?:\d+\.|\*|\-|\•)\s+/, "").trim();
+      if (line.length < 15) continue;
+
+      let grade = "Class 1, Level B";
+      let statement = line;
+
+      // Extract bracketed grade e.g. (Class 1, Level A) or [Class 2a, LOE B] or (GRADE Strong ...)
+      const gradeMatch = line.match(/[\(\[](Class\s+[^\)\]]+|GRADE\s+[^\)\]]+|COR\s+[^\)\]]+|Mức\s+[^\)\]]+)[\)\]]/i);
+      if (gradeMatch) {
+        grade = formatGrade(gradeMatch[1]);
+        statement = line.replace(gradeMatch[0], "").trim();
+      }
+
+      practiceChanges.push({
+        id: `rec-nlm-${year}-${practiceChanges.length + 1}`,
+        category: "Clinical Recommendation",
+        topic: `Recommendation ${practiceChanges.length + 1}`,
+        changeType: inferChangeType(grade, statement),
+        currentGrade: grade,
+        currentText: statement,
+        drivingTrials: [`${detectedSociety} Practice Committee`],
+      });
+    }
+  }
+
   // 4. Slug & ID Generation
   const societySlug = detectedSociety.toLowerCase().replace(/[^a-z0-9]/g, "");
   const titleSlug = docTitle
@@ -347,7 +576,6 @@ export function parseNotebookLMContent(
 
   // 5. Select Top Takeaways (Top 8-10 high impact recommendations)
   const topTakeaways: string[] = [];
-  // Prioritize Class 3: Harm, Class 3: No Benefit, and Class 1
   const sortedForTakeaways = [...practiceChanges].sort((a, b) => {
     const score = (rec: PracticeChangeDetail) => {
       const g = rec.currentGrade.toLowerCase();
@@ -355,6 +583,7 @@ export function parseNotebookLMContent(
       if (g.includes("no benefit")) return 9;
       if (g.includes("class 1") && g.includes("level a")) return 8;
       if (g.includes("class 1")) return 7;
+      if (g.includes("strong for")) return 7;
       if (g.includes("class 2a")) return 6;
       return 1;
     };
@@ -367,12 +596,12 @@ export function parseNotebookLMContent(
 
   // 6. Build Executive Summary
   const descText = descriptionLines.join(" ").trim();
-  const executiveSummary = descText.length > 30
-    ? descText
-    : `Official clinical practice recommendations from the ${detectedSociety} (${year}) addressing evidence-based diagnosis, management, and treatment protocols with verified COR/LOE ratings.`;
+  const executiveSummary =
+    descText.length > 30
+      ? descText
+      : `Official clinical practice recommendations from the ${detectedSociety} (${year}) addressing evidence-based diagnosis, management, and treatment protocols with verified COR/LOE ratings.`;
 
   const executiveSummaryVi = generateExecutiveSummaryVi(docTitle, detectedSociety, year, practiceChanges.length);
-
   const categories = new Set(practiceChanges.map((c) => c.category));
 
   const doc: GuidelineDoc = {
