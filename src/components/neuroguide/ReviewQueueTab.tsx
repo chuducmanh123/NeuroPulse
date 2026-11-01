@@ -132,7 +132,12 @@ function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[]): EsoPicoItem[] {
       }
     }
 
-    const consensus = (r as any).consensus_statement || r.verbatim_quote || undefined;
+    // Only use consensus_statement if explicitly present and not identical to statement
+    const rawConsensus = (r as any).consensus_statement;
+    const consensus =
+      rawConsensus && rawConsensus.trim() !== (r.statement || "").trim()
+        ? rawConsensus.trim()
+        : undefined;
 
     if (!picoMap.has(picoKey)) {
       picoMap.set(picoKey, {
