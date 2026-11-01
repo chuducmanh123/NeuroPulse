@@ -104,4 +104,78 @@ Table 11 Synoptic table of all recommendations and expert consensus statements.
       "Weak for intervention"
     );
   });
+
+  await t.test("should parse ESO aSAH sub-PICO questions (1a, 1b, 3a, 10) without falling back to sequential counters", async () => {
+    const rawAsahMarkdown = `
+# European Stroke Organisation (ESO) guideline on aneurysmal subarachnoid haemorrhage
+
+Table 3 Synoptic table of all recommendations and expert consensus statements.
+
+| PICO | Recommendation | Quality of evidence | Strength of recommendation | Expert consensus statement | Voting | Related studies |
+| --- | --- | --- | --- | --- | --- | --- |
+| PICO 1a In adult patients with aSAH, does treatment with antifibrinolytic drugs compared to no antifibrinolytic drugs decrease the risk of poor functional outcome? | In adult patients with aSAH, we recommend against routine administration of antifibrinolytic drugs prior to treatment of the ruptured aneurysm to decrease the risk of poor functional outcome. | Moderate | Strong against intervention | | | ULTRA |
+| PICO 1b In adult patients with aSAH, does treatment with antihypertensive drugs compared to no antihypertensive drugs decrease the risk of poor functional outcome? | In adult patients with aSAH, no recommendation can be made on the administration of blood pressure lowering drugs prior to treatment of the ruptured aneurysm to decrease the risk of poor functional outcome. | Very low | - | In adult patients with aSAH and systolic blood pressures higher than 160-180 mm Hg, we suggest considering blood pressure lowering drugs to lower systolic blood pressure to around 160 mm Hg. | 11/13 | |
+| PICO 3a In adult patients with aSAH, does any type of endovascular aneurysm occlusion compared to neurosurgical aneurysm occlusion decrease the risk of poor functional outcome? | In adult patients with aSAH in good clinical condition with aneurysms that can be treated by regular coiling or neurosurgical clipping, we recommend regular coiling as the preferred strategy. | High | Strong for intervention | We suggest that all patients with aSAH are discussed in an interdisciplinary manner. | 13/13 | ISAT, BRAT |
+| PICO 10 In adult patients with aSAH, does radiological follow-up beyond 6 months decrease the risk of poor functional outcome? | In adult patients with aSAH, no recommendation can be made on radiological follow-up beyond 6 months. | Very low | - | In adult patients with aSAH who are treated with coils, we suggest at least one additional radiological follow-up at or beyond 12 months. | 13/13 | ISAT |
+`;
+
+    const parsed = parseNotebookLMContent(rawAsahMarkdown, {
+      society: "ESO",
+      year: 2026,
+    });
+
+    assert.equal(parsed.doc.allPracticeChanges.length, 4);
+    assert.equal(parsed.doc.allPracticeChanges[0].picoNumber, "1a");
+    assert.equal(parsed.doc.allPracticeChanges[1].picoNumber, "1b");
+    assert.equal(parsed.doc.allPracticeChanges[2].picoNumber, "3a");
+    assert.equal(parsed.doc.allPracticeChanges[3].picoNumber, "10");
+
+    const grouped = groupPracticeChangesIntoEsoPicos(parsed.doc.allPracticeChanges);
+    assert.equal(grouped.length, 4);
+    assert.equal(grouped[0].picoNumber, "1a");
+    assert.equal(grouped[1].picoNumber, "1b");
+    assert.equal(grouped[2].picoNumber, "3a");
+    assert.equal(grouped[3].picoNumber, "10");
+  });
+
+  await t.test("CANONICAL_ESO_2026_ASAH_PICOS should accurately contain all 15 PICO questions and 37 expert consensus statements", async () => {
+    const {
+      CANONICAL_ESO_2026_ASAH_PICOS,
+      getCanonicalEsoPicos,
+      isEsoAsahGuideline,
+      isEsoBpGuideline,
+    } = await import("../src/lib/neuroguide/esoPicoGrouper.ts");
+
+    assert.equal(CANONICAL_ESO_2026_ASAH_PICOS.length, 15, "Table 3 has 15 PICO questions across 10 topics");
+
+    const totalRecs = CANONICAL_ESO_2026_ASAH_PICOS.reduce((acc, p) => acc + p.recommendations.length, 0);
+    assert.equal(totalRecs, 17, "Table 3 contains 17 recommendation statements across the 15 PICO questions (PICO 4 has 3 recommendations)");
+
+    // Count individual expert consensus statements (numbered 1., 2., etc.)
+    let consensusStatementCount = 0;
+    CANONICAL_ESO_2026_ASAH_PICOS.forEach((p) => {
+      if (p.expertConsensusStatement) {
+        const lines = p.expertConsensusStatement.split(/\n+/).filter((l) => l.trim().length > 0);
+        consensusStatementCount += lines.length;
+      }
+    });
+    assert.equal(consensusStatementCount, 37, "Must have exactly 37 expert consensus statements as stated in paper");
+
+    // Verify isolation: aSAH must not be confused with BP
+    const asahTitle = "European Stroke Organisation (ESO) guideline on aneurysmal subarachnoid haemorrhage";
+    assert.ok(isEsoAsahGuideline(asahTitle));
+    assert.ok(!isEsoBpGuideline(asahTitle));
+
+    const asahCanonical = getCanonicalEsoPicos(asahTitle);
+    assert.equal(asahCanonical?.length, 15);
+    assert.ok(asahCanonical?.[0].picoQuestion.includes("subarachnoid"));
+
+    const bpTitle = "ESO Guideline on Blood Pressure Management in Acute Ischemic Stroke";
+    assert.ok(isEsoBpGuideline(bpTitle));
+    assert.ok(!isEsoAsahGuideline(bpTitle));
+
+    const bpCanonical = getCanonicalEsoPicos(bpTitle);
+    assert.equal(bpCanonical?.length, 8);
+    assert.ok(bpCanonical?.[0].picoQuestion.includes("blood pressure"));
+  });
 });

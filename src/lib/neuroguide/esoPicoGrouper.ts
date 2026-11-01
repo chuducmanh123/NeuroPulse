@@ -2,6 +2,22 @@ import type { PracticeChangeDetail } from "@/types/neuroguide";
 import type { EsoPicoItem, EsoEvidenceQuality, EsoRecommendationStrength } from "@/components/neuroguide/EsoGuidelineTable";
 
 /**
+ * Compare two PICO identifiers (e.g. "1a", "1b", "2", "3a", "10") in natural clinical order.
+ */
+export function comparePicoNumbers(a: string | number, b: string | number): number {
+  const parsePico = (val: string | number) => {
+    const s = String(val).trim().toLowerCase();
+    const match = s.match(/^(\d+)([a-z]?)/);
+    if (!match) return { num: 999, sub: s };
+    return { num: parseInt(match[1], 10), sub: match[2] || "" };
+  };
+  const pa = parsePico(a);
+  const pb = parsePico(b);
+  if (pa.num !== pb.num) return pa.num - pb.num;
+  return pa.sub.localeCompare(pb.sub);
+}
+
+/**
  * Official ESO Guideline Quality of Evidence definitions and high-contrast color scheme:
  * - High: #059669 (Emerald Green - High certainty)
  * - Moderate: #0284c7 (Sky Blue - Moderate certainty)
@@ -240,6 +256,301 @@ export const CANONICAL_ESO_2025_BP_PICOS: EsoPicoItem[] = [
 ];
 
 /**
+ * Canonical 2026 ESO/EANS/ESMINT Guideline on Aneurysmal Subarachnoid Haemorrhage (aSAH)
+ * (Vergouwen MDI, et al. European Stroke Journal 2026, 11(5), 1-45. Table 3 Synoptic table, pp. 28-35)
+ * Official 10 Topics / 15 PICO questions, 15 evidence-based recommendations and 37 expert consensus statements.
+ */
+export const CANONICAL_ESO_2026_ASAH_PICOS: EsoPicoItem[] = [
+  {
+    picoNumber: "1a",
+    picoQuestion: "In adult patients with aneurysmal subarachnoid haemorrhage (aSAH), does treatment with antifibrinolytic drugs compared to no antifibrinolytic drugs decrease the risk of poor functional outcome?",
+    recommendations: [
+      {
+        number: 1,
+        statement: "In adult patients with aSAH, we recommend against routine administration of antifibrinolytic drugs prior to treatment of the ruptured aneurysm to decrease the risk of poor functional outcome.",
+        qualityOfEvidence: "Moderate",
+        strengthOfRecommendation: "Strong against intervention",
+        drivingTrials: ["ULTRA"],
+      },
+    ],
+    drivingTrials: ["ULTRA"],
+  },
+  {
+    picoNumber: "1b",
+    picoQuestion: "In adult patients with aSAH, does treatment with antihypertensive drugs compared to no antihypertensive drugs decrease the risk of poor functional outcome?",
+    recommendations: [
+      {
+        number: 1,
+        statement: "In adult patients with aSAH, no recommendation can be made on the administration of blood pressure lowering drugs prior to treatment of the ruptured aneurysm to decrease the risk of poor functional outcome.",
+        qualityOfEvidence: "Very low",
+        strengthOfRecommendation: "Uncertain / Ongoing trials",
+      },
+    ],
+    expertConsensusStatement: "1. In adult patients with aSAH and systolic blood pressures higher than 160-180 mm Hg persisting after installment of analgesics, oral nimodipine and urinary catheter prior to aneurysm treatment, we suggest considering blood pressure lowering drugs to lower systolic blood pressure to around 160 mm Hg to reduce the risk of rebleeding. (Vote: 11/13)\n2. If it is decided to give blood pressure lowering drugs, we suggest continuous infusion of short-acting drugs, e.g. labetalol, and avoiding diuretic drugs to maintain normovolemia. Care should be taken to ensure that the blood pressure reduction is gradual, with systolic blood pressure reduced cautiously over time (corresponding to no more than a 10% reduction in mean arterial pressure within the first 2 hours) to decrease the risk of DCI. (Vote: 11/13)",
+    voting: "Vote: 11/13",
+  },
+  {
+    picoNumber: "2",
+    picoQuestion: "In adult patients with aSAH, does early aneurysm occlusion compared to no early aneurysm occlusion decrease the risk of poor functional outcome?",
+    recommendations: [
+      {
+        number: 1,
+        statement: "In adult patients with aSAH, no recommendation can be made on treating the ruptured aneurysm as early as possible to decrease the risk of poor functional outcome.",
+        qualityOfEvidence: "Very low",
+        strengthOfRecommendation: "Uncertain / Ongoing trials",
+      },
+    ],
+    expertConsensusStatement: "In adult patients with aSAH, we suggest treatment of the ruptured aneurysm within 24 hours after ictus. The timing should be optimized to ensure that the most dedicated team of experts is available when needed. (Vote: 13/13)",
+    voting: "Vote: 13/13",
+  },
+  {
+    picoNumber: "3a",
+    picoQuestion: "In adult patients with aSAH, does any type of endovascular aneurysm occlusion compared to neurosurgical aneurysm occlusion decrease the risk of poor functional outcome?",
+    recommendations: [
+      {
+        number: 1,
+        statement: "In adult patients with aSAH in good clinical condition (WFNS I-III) with aneurysms of either the anterior or posterior circulation that can be treated by either regular coiling (i.e. without adjunctive devices) or neurosurgical clipping, we recommend regular coiling as the preferred strategy to decrease the risk of poor functional outcome.",
+        qualityOfEvidence: "High",
+        strengthOfRecommendation: "Strong for intervention",
+        drivingTrials: ["ISAT", "BRAT"],
+      },
+    ],
+    expertConsensusStatement: "1. We suggest that all patients with aSAH are discussed in an interdisciplinary manner, with at least one neurosurgeon and one neuro-interventionalist. (Vote: 13/13)\n2. In adult patients with aSAH, we suggest that the team discuss which modality would result in the best clinical outcome of the specific patient, with the safest and optimal occlusion of the specific aneurysm. (Vote: 13/13)\n3. In adult patients with aSAH younger than 45 years of age, we suggest that the better long-term protection from clipping compared to coiling is taken into consideration for choosing the treatment modality of the aneurysm. (Vote: 12/13)\n4. In adult patients with aSAH admitted in a poor clinical condition (defined as GCS < 13), we suggest a multidisciplinary approach to decide on type and timing of aneurysm treatment taking into account the (presumed) cause of the poor clinical condition. (Vote: 13/13)\n5. In adult patients with aSAH and a poor or worsening clinical condition from a space-occupying intracerebral or subdural haematoma, we suggest immediate surgery for aneurysm clipping and haematoma removal. (Vote: 11/13)",
+    voting: "Vote: 13/13",
+    drivingTrials: ["ISAT", "BRAT"],
+  },
+  {
+    picoNumber: "3b",
+    picoQuestion: "In adult patients with aSAH, does any type of endovascular aneurysm treatment other than coiling compared to coiling of the ruptured aneurysm decrease the risk of poor functional outcome?",
+    recommendations: [
+      {
+        number: 1,
+        statement: "In adult patients with aSAH, no recommendation can be made on the use of endovascular treatment options other than regular coiling for treatment of the ruptured aneurysm to decrease the risk of poor functional outcome.",
+        qualityOfEvidence: "Very low",
+        strengthOfRecommendation: "Uncertain / Ongoing trials",
+        drivingTrials: ["ISAT-2", "CLARYS"],
+      },
+    ],
+    expertConsensusStatement: "1. Given the limited comparative evidence available, we suggest that in adult patients with subarachnoid haemorrhage from a ruptured aneurysm which cannot be treated with regular coiling, the multidisciplinary team discusses the safety, effectiveness, and durability of microsurgical and alternative endovascular options to determine the preferred treatment strategy. (Vote: 12/13)\n2. In adult patients with aSAH, we suggest stent-assisted coiling in selected cases where other treatment options are not feasible. (Vote: 13/13)\n3. In adult patients with aSAH, we suggest to reserve flow diversion as a last-line treatment option. (Vote: 12/13)",
+    voting: "Vote: 13/13",
+    drivingTrials: ["ISAT-2", "CLARYS"],
+  },
+  {
+    picoNumber: "4",
+    picoQuestion: "In adult patients with aSAH, does any type of medical treatment aiming to reduce the risk of delayed cerebral ischaemia (DCI) compared to no such treatment decrease the risk of poor functional outcome?",
+    recommendations: [
+      {
+        number: 1,
+        statement: "In adult patients with aSAH, we recommend prophylactic treatment with oral nimodipine to decrease the risk of poor functional outcome.",
+        qualityOfEvidence: "High",
+        strengthOfRecommendation: "Strong for intervention",
+        drivingTrials: ["BRANT"],
+      },
+      {
+        number: 2,
+        statement: "In adult patients with aSAH, we do not recommend prophylactic treatment with either tirilazad, statins, magnesium sulfate, or endothelin receptor antagonists to decrease the risk of poor functional outcome.",
+        qualityOfEvidence: "Moderate",
+        strengthOfRecommendation: "Strong against intervention",
+        drivingTrials: ["MASH-2", "IMASH", "CONSCIOUS-1", "CONSCIOUS-2", "REACT", "STASH"],
+      },
+      {
+        number: 3,
+        statement: "In adult patients with aSAH, no recommendation can be made on prophylactic treatment with antiplatelet drugs or lumbar drainage to decrease the risk of poor functional outcome until further data from RCT are available.",
+        qualityOfEvidence: "Low",
+        strengthOfRecommendation: "Uncertain / Ongoing trials",
+        drivingTrials: ["PILLAR"],
+      },
+    ],
+    drivingTrials: ["BRANT", "MASH-2", "REACT"],
+  },
+  {
+    picoNumber: "5a",
+    picoQuestion: "In adult patients with aSAH and clinical deterioration due to delayed cerebral ischaemia, does hypertension induction compared to no hypertension induction decrease the risk of poor functional outcome?",
+    recommendations: [
+      {
+        number: 1,
+        statement: "In adult patients with aSAH and clinical deterioration due to delayed cerebral ischaemia, no recommendation can be made on hypertension induction to decrease the risk of poor functional outcome.",
+        qualityOfEvidence: "Low",
+        strengthOfRecommendation: "Uncertain / Ongoing trials",
+        drivingTrials: ["HIMALAIA"],
+      },
+    ],
+    expertConsensusStatement: "In adult patients with aSAH and clinical deterioration due to delayed cerebral ischaemia, we suggest considering induced hypertension, provided that the ruptured aneurysm is treated and after standard therapy has proven insufficient. Clinical contraindications and potential complications of induced hypertension should be considered. (Vote: 11/13)",
+    voting: "Vote: 11/13",
+    drivingTrials: ["HIMALAIA"],
+  },
+  {
+    picoNumber: "5b",
+    picoQuestion: "In adult patients with aSAH and clinical deterioration due to delayed cerebral ischaemia, does endovascular treatment of vasospasm compared to no endovascular treatment decrease the risk of poor functional outcome?",
+    recommendations: [
+      {
+        number: 1,
+        statement: "In adult patients with aSAH and clinical deterioration due to delayed cerebral ischaemia, no recommendation can be made on endovascular treatment of vasospasm to decrease the risk of poor functional outcome.",
+        qualityOfEvidence: "Low",
+        strengthOfRecommendation: "Uncertain / Ongoing trials",
+        drivingTrials: ["IMCVS"],
+      },
+    ],
+    expertConsensusStatement: "1. In adult patients with aSAH and clinical deterioration due to delayed cerebral ischaemia in combination with refractory and severe vasospasm, we suggest considering intra-arterial pharmacological treatment as a rescue therapy in selected patients to decrease the risk of poor functional outcome. (Vote: 11/13)\n2. In adult patients with aSAH and clinical deterioration due to delayed cerebral ischaemia in combination with refractory severe vasospasm, the current evidence is insufficient to support the routine use of mechanical vasodilatation with balloon angioplasty. In selected cases, this approach may be considered as a last-line rescue treatment after careful multidisciplinary discussion of the potential risks and uncertain benefits. (Vote: 12/13)\n3. In adult patients with aSAH and clinical deterioration due to delayed cerebral ischaemia in combination with refractory severe vasospasm, the current data are insufficient to support the use of mechanical vasodilatation with temporary deployment of retrievable stents to decrease the risk of poor functional outcome. (Vote: 13/13)",
+    voting: "Vote: 13/13",
+    drivingTrials: ["IMCVS"],
+  },
+  {
+    picoNumber: "6a",
+    picoQuestion: "In adult patients with aSAH, does any type of neuroimaging compared to regular neurological examination decrease the risk of poor functional outcome?",
+    recommendations: [
+      {
+        number: 1,
+        statement: "In adult patients with aSAH, no recommendation can be made on neuroimaging to decrease the risk of poor functional outcome.",
+        qualityOfEvidence: "Very low",
+        strengthOfRecommendation: "Uncertain / Ongoing trials",
+      },
+    ],
+    expertConsensusStatement: "1. In adult patients with aSAH and clinical deterioration, we suggest plain head CT in combination with CT-Perfusion (CTP) imaging to detect the cause of deterioration. (Vote: 11/13)\n2. In adult patients with aSAH who are neurologically not assessable but at high risk for DCI, we suggest plain head CT and CTP at least once between day 4 and 14. (Vote: 10/13)\n3. In adult patients with aSAH, we do not suggest a routine DSA for screening of macrovascular vasospasm. (Vote: 13/13)",
+    voting: "Vote: 13/13",
+  },
+  {
+    picoNumber: "6b",
+    picoQuestion: "In adult patients with aSAH, does any type of neuromonitoring compared to regular neurological examination decrease the risk of poor functional outcome?",
+    recommendations: [
+      {
+        number: 1,
+        statement: "In adult patients with aSAH, no recommendation can be made on neuromonitoring to decrease the risk of poor functional outcome.",
+        qualityOfEvidence: "Very low",
+        strengthOfRecommendation: "Uncertain / Ongoing trials",
+        drivingTrials: ["SYNAPSE-ICU"],
+      },
+    ],
+    expertConsensusStatement: "1. In adult patients with aSAH, no suggestion can be given on the use of TCD monitoring. (Vote: 10/13)\n2. In adult patients with aSAH and radiological hydrocephalus who are neurologically not assessable, we suggest ICP monitoring via EVD if an EVD is in place. (Vote: 13/13)\n3. In adult patients with aSAH without radiological hydrocephalus who are neurologically not assessable, no suggestion can be given on ICP monitoring. (Vote: 11/13)\n4. In adult patients with aSAH who are neurologically not assessable, we do not suggest invasive multimodal neuromonitoring with continuous measurement of partial pressure of brain tissue oxygen (PbtO2) and/or microdialysis due to the uncertain risk/benefit ratio of these modalities. (Vote: 10/13)\n5. In adult patients with aSAH who are neurologically not assessable, we do not suggest the routine use of continuous EEG monitoring. (Vote: 13/13)",
+    voting: "Vote: 13/13",
+    drivingTrials: ["SYNAPSE-ICU"],
+  },
+  {
+    picoNumber: "7",
+    picoQuestion: "In adult patients with aSAH, does treatment of hydrocephalus (either by EVD, VP-shunt or lumbar drainage) compared to no treatment of hydrocephalus decrease the risk of poor functional outcome?",
+    recommendations: [
+      {
+        number: 1,
+        statement: "In adult patients with aSAH and hydrocephalus, no recommendation can be made on CSF diversion strategies to decrease the risk of poor functional outcome.",
+        qualityOfEvidence: "Very low",
+        strengthOfRecommendation: "Uncertain / Ongoing trials",
+      },
+    ],
+    expertConsensusStatement: "1. In adult patients with aSAH who present with radiological hydrocephalus and a decreased level of consciousness, we suggest CSF drainage. (Vote: 13/13)\n2. In adult patients with aSAH who present with obstructive hydrocephalus and a decreased level of consciousness, we suggest EVD placement. (Vote: 13/13)\n3. In adult patients with aSAH who present with communicating hydrocephalus and a decreased level of consciousness, we suggest LD or repeated LPs as the strategy of first choice for CSF drainage. (Vote: 11/13)\n4. In adult patients with aSAH who present with radiological hydrocephalus and a normal level of consciousness, we do not suggest CSF drainage. (Vote: 12/13)\n5. In adult patients with aSAH who come at a point at which prolonged CSF drainage (by EVD, LD or repeated LPs) carries a higher risk of severe complications than placement of a permanent CSF diversion, we suggest permanent CSF diversion. (Vote: 13/13)\n6. In adult patients with aSAH who present with symptomatic chronic hydrocephalus, we suggest permanent CSF diversion. (Vote: 13/13)",
+    voting: "Vote: 13/13",
+  },
+  {
+    picoNumber: "8",
+    picoQuestion: "In adult patients with aSAH, does treatment on a dedicated neuro-ICU or high care unit compared to a general ICU or high care unit decrease the risk of poor functional outcome?",
+    recommendations: [
+      {
+        number: 1,
+        statement: "In adult patients with aSAH, no recommendation can be made on admission to a dedicated neuro-ICU or high care unit to decrease the risk of poor functional outcome.",
+        qualityOfEvidence: "Very low",
+        strengthOfRecommendation: "Uncertain / Ongoing trials",
+      },
+    ],
+    expertConsensusStatement: "In adult patients with aSAH, we suggest admission and management in a dedicated neuro-ICU or high care unit to decrease the risk of poor functional outcome. (Vote: 13/13)",
+    voting: "Vote: 13/13",
+  },
+  {
+    picoNumber: "9a",
+    picoQuestion: "In adult patients with aSAH, does treatment in a high-volume centre compared to a low-volume centre decrease the risk of poor functional outcome?",
+    recommendations: [
+      {
+        number: 1,
+        statement: "In adult patients with aSAH, no recommendation can be made on admission/transfer to a high-volume centre to decrease the risk of poor functional outcome.",
+        qualityOfEvidence: "Very low",
+        strengthOfRecommendation: "Uncertain / Ongoing trials",
+      },
+    ],
+    expertConsensusStatement: "We suggest that all patients with spontaneous SAH are admitted or immediately transferred to centres that treat at least 70 patients with aSAH per year, or at least 35 patients with aSAH per year in remote areas where access is limited. (Vote: 12/13)",
+    voting: "Vote: 12/13",
+  },
+  {
+    picoNumber: "9b",
+    picoQuestion: "In adult patients with aSAH, does aneurysm treatment by a high-volume neurosurgeon or neurointerventionalist compared to a low-volume neurosurgeon or neurointerventionalist decrease the risk of poor functional outcome?",
+    recommendations: [
+      {
+        number: 1,
+        statement: "In adult patients with aSAH, no recommendation can be made on case-volume per neurosurgeon and neurointerventionalist to decrease the risk of poor functional outcome.",
+        qualityOfEvidence: "Very low",
+        strengthOfRecommendation: "Uncertain / Ongoing trials",
+      },
+    ],
+    expertConsensusStatement: "In adult patients with aSAH, we suggest that aneurysms are repaired by neurosurgeons or neurointerventionalists who perform the treatment of choice in more than 30 patients with aneurysms (ruptured and unruptured) per year. (Vote: 12/13)",
+    voting: "Vote: 12/13",
+  },
+  {
+    picoNumber: "10",
+    picoQuestion: "In adult patients with aSAH, does a radiological follow-up beyond 6 months after aneurysm treatment compared to a maximum radiological follow-up duration of 6 months decrease the risk of poor functional outcome?",
+    recommendations: [
+      {
+        number: 1,
+        statement: "In adult patients with aSAH, no recommendation can be made on radiological follow-up beyond 6 months after microsurgical or endovascular aneurysm treatment to decrease the risk of poor functional outcome.",
+        qualityOfEvidence: "Very low",
+        strengthOfRecommendation: "Uncertain / Ongoing trials",
+        drivingTrials: ["ISAT"],
+      },
+    ],
+    expertConsensusStatement: "1. In adult patients with aSAH who are treated with coils and adequate occlusion within 6 months, we suggest at least one additional radiological follow-up at or beyond 12 months after aneurysm repair to investigate potential aneurysm recanalization, as long as a potential re-treatment remains an option. (Vote: 13/13)\n2. In adult patients with aSAH who were treated with clip reconstruction and adequate occlusion within 6 months, we do not suggest further radiological follow-up to investigate potential aneurysm recanalization. (Vote: 11/13)\n3. In adult patients with aSAH who have neck remnants or partially occluded aneurysms (irrespective of type of aneurysm treatment), we suggest radiological follow-up beyond 6 months after aneurysm treatment as long as a potential re-treatment remains an option. (Vote: 13/13)\n4. In adult patients with aSAH who are treated with endovascular devices other than coils, we suggest radiological follow-up at least five years after treatment, regardless of the degree of occlusion, to ensure adequate long-term occlusion and as long as a potential re-treatment remains an option. (Vote: 11/13)\n5. In adult patients with aSAH, we suggest radiological follow-up beyond 6 months after aneurysm treatment in order to evaluate for de novo aneurysms at 5-year intervals as long as a potential treatment remains an option, in those with a high-risk profile (such as young age, positive family history for aSAH, autosomal dominant polycystic kidney disease). (Vote: 12/13)",
+    voting: "Vote: 13/13",
+    drivingTrials: ["ISAT"],
+  },
+];
+
+/**
+ * Detect if a guideline document corresponds specifically to the ESO 2025 Blood Pressure Guideline
+ */
+export function isEsoBpGuideline(title?: string, id?: string): boolean {
+  const normTitle = (title || "").toLowerCase();
+  const normId = (id || "").toLowerCase();
+
+  if (normId.includes("eso-bp") || normId.includes("esobp")) return true;
+  // Exclude other vascular guidelines that might mention BP in passes
+  if (
+    normTitle.includes("subarachnoid") ||
+    normTitle.includes("haemorrhage") ||
+    normTitle.includes("hemorrhage") ||
+    normTitle.includes("aneurysm") ||
+    normTitle.includes("pneumonia")
+  ) {
+    return false;
+  }
+  return normTitle.includes("blood pressure") || normTitle.includes("huyết áp");
+}
+
+/**
+ * Detect if a guideline document corresponds specifically to the ESO/EANS/ESMINT 2026 aSAH Guideline
+ */
+export function isEsoAsahGuideline(title?: string, id?: string): boolean {
+  const normTitle = (title || "").toLowerCase();
+  const normId = (id || "").toLowerCase();
+
+  return (
+    normId.includes("asah") ||
+    normId.includes("sah") ||
+    normTitle.includes("subarachnoid") ||
+    normTitle.includes("xuất huyết dưới nhện") ||
+    (normTitle.includes("aneurysm") && (normTitle.includes("haemorrhage") || normTitle.includes("hemorrhage")))
+  );
+}
+
+/**
+ * Safely resolves the canonical ESO PICO collection for known guidelines.
+ * Returns null if the guideline is generic or another topic (prevents content bleed between guidelines).
+ */
+export function getCanonicalEsoPicos(title?: string, id?: string): EsoPicoItem[] | null {
+  if (isEsoAsahGuideline(title, id)) {
+    return CANONICAL_ESO_2026_ASAH_PICOS;
+  }
+  if (isEsoBpGuideline(title, id)) {
+    return CANONICAL_ESO_2025_BP_PICOS;
+  }
+  return null;
+}
+
+/**
  * Canonical normalizer for ESO recommendation strengths according to GRADE standard:
  * - "Strong against intervention" (↓↓ - Red: #d32f2f)
  * - "Weak against intervention" (↓ - Orange: #ea580c)
@@ -434,8 +745,8 @@ export function groupPracticeChangesIntoEsoPicos(changes: PracticeChangeDetail[]
       picoNum = item.picoNumber;
       picoQuestion = item.picoQuestion || rawTopic;
     } else {
-      const matchTopic = rawTopic.match(/^PICO\s*(\d+)[:.\s-]*(.*)/i);
-      const matchCat = rawCategory.match(/^PICO\s*(\d+)[:.\s-]*(.*)/i);
+      const matchTopic = rawTopic.match(/^PICO\s*(\d+[a-z]?)[:.\s-]*(.*)/i);
+      const matchCat = rawCategory.match(/^PICO\s*(\d+[a-z]?)[:.\s-]*(.*)/i);
 
       if (matchTopic) {
         picoNum = matchTopic[1];
@@ -450,9 +761,9 @@ export function groupPracticeChangesIntoEsoPicos(changes: PracticeChangeDetail[]
     }
 
     // Clean up question text
-    picoQuestion = picoQuestion.replace(/^PICO\s*\d+[:.\s-]*/i, "").trim();
+    picoQuestion = picoQuestion.replace(/^PICO\s*\d+[a-z]?[:.\s-]*/i, "").trim();
     if (!picoQuestion) {
-      picoQuestion = rawTopic.replace(/^PICO\s*\d+[:.\s-]*/i, "").trim() || rawCategory;
+      picoQuestion = rawTopic.replace(/^PICO\s*\d+[a-z]?[:.\s-]*/i, "").trim() || rawCategory;
     }
     if (picoQuestion && !picoQuestion.endsWith("?") && !picoQuestion.endsWith(".")) {
       picoQuestion = `${picoQuestion}?`;
@@ -501,5 +812,5 @@ export function groupPracticeChangesIntoEsoPicos(changes: PracticeChangeDetail[]
     });
   });
 
-  return Array.from(picoMap.values());
+  return Array.from(picoMap.values()).sort((a, b) => comparePicoNumbers(a.picoNumber, b.picoNumber));
 }

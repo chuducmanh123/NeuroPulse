@@ -53,17 +53,32 @@ export async function POST(request: NextRequest) {
       text.toUpperCase().includes("ESO") ||
       text.toLowerCase().includes("pico");
 
+    let contentToAnalyze = text;
+    // For guidelines with a Synoptic Table, prioritize the full synoptic recommendations table
+    const synopticMatch = text.match(/(?:Table\s*(?:3|11|1|2|4|5|10)|Synoptic\s+table)[\s\S]*?(?:References|Acknowledgements|Funding|$)/i);
+    if (synopticMatch && synopticMatch[0].length > 1000) {
+      contentToAnalyze = `${text.slice(0, 8000)}\n\n---\n[OFFICIAL SYNOPTIC TABLE SECTION]\n${synopticMatch[0].slice(0, 60000)}`;
+    } else if (text.length > 60000) {
+      contentToAnalyze = text.slice(0, 60000);
+    }
+
     const prompt = `You are a clinical neurology guideline extraction expert.
 Transform the following clinical text/notes from a guideline summary (${title || "Clinical Guideline"}) into a clean, complete Markdown table of recommendations.
-Preserve clinical specificity, numbers, blood pressure thresholds, and evidence citations verbatim.
+Preserve clinical specificity, numbers, timing windows, and evidence citations verbatim.
 
 ${
   isEso
-    ? `Since this is an ESO (European Stroke Organisation) guideline, structure the table with these EXACT headers:
+    ? `Since this is an ESO (European Stroke Organisation) guideline, extract ALL PICO items directly from the official Synoptic Table ("Synoptic table of all recommendations and expert consensus statements", e.g. Table 3).
+Structure the table with these EXACT headers:
 | PICO | Recommendation | Quality of evidence | Strength of recommendation | Expert consensus statement | Voting | Related studies |
 | --- | --- | --- | --- | --- | --- | --- |
-- Quality of evidence must be: High, Moderate, Low, Very low, or Uncertain / Ongoing trial
-- Strength of recommendation must be: Strong for intervention, Weak for intervention, Strong against intervention, or Weak against intervention`
+Rules:
+1. PICO: Provide the exact PICO identifier (e.g. "PICO 1a", "PICO 1b", "PICO 2", "PICO 3a", "PICO 3b", "PICO 4", "PICO 5a", "PICO 5b", "PICO 6a", "PICO 6b", "PICO 7", "PICO 8", "PICO 9a", "PICO 9b", "PICO 10") followed by the full clinical question verbatim.
+2. Recommendation: The exact evidence-based recommendation statement verbatim. If no recommendation could be made, state: "no recommendation can be made on...".
+3. Quality of evidence: High, Moderate, Low, Very low, or -
+4. Strength of recommendation: Strong for intervention, Weak for intervention, Strong against intervention, Weak against intervention, or -
+5. Expert consensus statement: Extract ONLY the expert consensus statement(s) that belong to THIS SPECIFIC PICO in THIS DOCUMENT. Include numbered points and voting ratios (e.g. "Vote: 11/13", "Vote: 13/13"). If there is no expert consensus statement for this PICO, leave this cell completely EMPTY. NEVER invent or borrow consensus statements from other guidelines (such as acute ischaemic stroke or blood pressure guidelines).
+6. Related studies: List key clinical trials cited (e.g. ULTRA, ISAT, BRAT, BRANT, IMCVS, etc.).`
     : `Structure the table with these EXACT headers:
 | Clinical Domain / Topic | Recommendation (Verbatim Text) | Class (COR) & Level (LOE) | Related Studies & Evidence |
 | --- | --- | --- | --- |
@@ -75,7 +90,7 @@ Include the Title as the first line: # ${title || "Clinical Practice Guideline"}
 Do NOT add conversational greetings, explanations, or backtick wraps. Return ONLY the Markdown text with the table.
 
 Document content:
-${text.slice(0, 15000)}`;
+${contentToAnalyze}`;
 
     for (const model of MODELS) {
       try {

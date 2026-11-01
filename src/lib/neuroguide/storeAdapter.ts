@@ -101,7 +101,7 @@ export async function registerCandidateGuideline(doc: GuidelineDoc): Promise<boo
     let pNum: string | undefined = (chg as any).picoNumber ? String((chg as any).picoNumber) : undefined;
     let pQuestion: string | undefined = (chg as any).picoQuestion || undefined;
     if (!pNum && chg.topic) {
-      const m = String(chg.topic).match(/PICO\s*(\d+)[:.\s-]*(.*)/i);
+      const m = String(chg.topic).match(/PICO\s*(\d+[a-z]?)[:.\s-]*(.*)/i);
       if (m) {
         pNum = m[1];
         if (!pQuestion) pQuestion = m[2]?.trim();
@@ -301,11 +301,11 @@ export function getStoredGuidelinesAsDocs(): GuidelineDoc[] {
         let pNum: string | undefined;
         let pQuestion: string | undefined;
         if (r.pico_id) {
-          const m = String(r.pico_id).match(/\d+/);
+          const m = String(r.pico_id).match(/(\d+[a-z]?)/i);
           pNum = m ? m[0] : String(r.pico_id);
           pQuestion = r.target_population || r.topic;
         } else if (r.topic) {
-          const m = String(r.topic).match(/PICO\s*(\d+)[:.\s-]*(.*)/i);
+          const m = String(r.topic).match(/PICO\s*(\d+[a-z]?)[:.\s-]*(.*)/i);
           if (m) {
             pNum = m[1];
             pQuestion = m[2]?.trim();

@@ -295,9 +295,9 @@ export function parseNotebookLMContent(
 
       if (filteredCells.length < 1) continue;
 
-      // Handle standalone PICO header row (e.g., | PICO 1: In patients with suspected acute stroke... | | |)
+      // Handle standalone PICO header row (e.g., | PICO 1a: In adult patients... | | |)
       const firstCell = filteredCells[0] || "";
-      const matchStandalonePico = firstCell.match(/^PICO\s*(\d+)[:.\s-]*(.*)/i);
+      const matchStandalonePico = firstCell.match(/^PICO\s*(\d+[a-z]?)[:.\s-]*(.*)/i);
       const isHeaderOnly = filteredCells.slice(1).every((c) => !c || c.trim().length === 0);
 
       if (matchStandalonePico && isHeaderOnly) {
@@ -318,7 +318,7 @@ export function parseNotebookLMContent(
         // ESO GRADE format
         const rawPico = (colPicoIdx !== -1 && colPicoIdx < filteredCells.length ? filteredCells[colPicoIdx] : "") || firstCell;
         if (rawPico) {
-          const matchPico = rawPico.match(/^PICO\s*(\d+)[:.\s-]*(.*)/i);
+          const matchPico = rawPico.match(/^PICO\s*(\d+[a-z]?)[:.\s-]*(.*)/i);
           if (matchPico) {
             activePicoNum = matchPico[1];
             activePicoQuestion = matchPico[2]?.trim() || rawPico;
@@ -398,7 +398,7 @@ export function parseNotebookLMContent(
   // STRATEGY 2: PARSE PICO BLOCKS (NON-TABLE NOTEBOOKLM SUMMARIES)
   // =========================================================================
   if (practiceChanges.length === 0) {
-    const picoRegex = /(?:^|\n)(?:#+\s*|\*{2})?PICO\s*(\d+)[:.\s-]*([^\n*]*)(?:\*{2})?/gi;
+    const picoRegex = /(?:^|\n)(?:#+\s*|\*{2})?PICO\s*(\d+[a-z]?)[:.\s-]*([^\n*]*)(?:\*{2})?/gi;
     let match: RegExpExecArray | null;
     const picoBlocks: Array<{ picoNum: string; picoQuestion: string; startIndex: number }> = [];
 

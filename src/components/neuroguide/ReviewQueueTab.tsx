@@ -4,7 +4,15 @@ import React, { useState, useEffect, useMemo } from "react";
 import { EditGuidelineModal } from "./EditGuidelineModal";
 import { AhaGuidelineTable } from "./AhaGuidelineTable";
 import { EsoGuidelineTable, type EsoPicoItem, renderGradeQuality, renderGradeStrength } from "./EsoGuidelineTable";
-import { normalizeEsoStrength } from "@/lib/neuroguide/esoPicoGrouper";
+import {
+  normalizeEsoStrength,
+  comparePicoNumbers,
+  isEsoBpGuideline,
+  isEsoAsahGuideline,
+  getCanonicalEsoPicos,
+  CANONICAL_ESO_2025_BP_PICOS,
+  CANONICAL_ESO_2026_ASAH_PICOS,
+} from "@/lib/neuroguide/esoPicoGrouper";
 import type { GuidelineDoc, PracticeChangeDetail } from "@/types/neuroguide";
 
 export interface StoredRec {
@@ -68,195 +76,22 @@ interface ConfirmDialogState {
   targetGuideline?: PendingGuidelineGroup;
 }
 
-// Canonical 2025 ESO Blood Pressure Guidelines (Table 11 Synoptic Standard)
-const CANONICAL_ESO_2025_BP_PICOS: EsoPicoItem[] = [
-  {
-    picoNumber: 1,
-    picoQuestion: "In patients with suspected acute stroke, does pre-hospital blood pressure lowering with any drug, compared to no drug, improve outcome?",
-    expertConsensusStatement: "Due to the potential harm to patients with ICH, treatment with transdermal glyceryl trinitrate should be avoided. Intravenous urapidil or labetalol could be the treatment of choice.",
-    voting: "Vote: 10/10",
-    drivingTrials: ["RIGHT", "RIGHT-2", "MR ASAP", "INTERACT-4"],
-    recommendations: [
-      {
-        number: 1,
-        statement: "In patients with suspected stroke, we suggest against routine blood pressure lowering in the pre-hospital setting.",
-        qualityOfEvidence: "Moderate",
-        strengthOfRecommendation: "Strong against intervention",
-        drivingTrials: ["RIGHT", "RIGHT-2", "MR ASAP", "INTERACT-4"],
-      },
-    ],
-  },
-  {
-    picoNumber: 2,
-    picoQuestion: "In hospitalised patients with acute ischaemic stroke not treated with reperfusion therapies (intravenous thrombolysis or mechanical thrombectomy), does blood pressure lowering with any vasodepressor drug, compared to no drug, improve outcome?",
-    expertConsensusStatement: "In hospitalised patients with acute ischaemic stroke and blood pressure > 220/120 mmHg not treated with intravenous thrombolysis or mechanical thrombectomy, careful blood pressure reduction (<15% systolic blood pressure reduction in 24 h) is reasonable and likely to be safe. No specific blood pressure-lowering agent can be recommended.",
-    voting: "Vote: 10/10",
-    drivingTrials: ["ENOS", "SCAST", "CATIS"],
-    recommendations: [
-      {
-        number: 1,
-        statement: "In hospitalised patients with acute ischaemic stroke and blood pressure < 220/110 mmHg not treated with intravenous thrombolysis or mechanical thrombectomy, we suggest against the routine use of blood pressure-lowering agents at least in the first 24 h following symptom onset, unless this is necessary for a specific comorbid condition that requires blood pressure lowering.",
-        qualityOfEvidence: "Moderate",
-        strengthOfRecommendation: "Weak against intervention",
-        drivingTrials: ["ENOS", "SCAST", "CATIS"],
-      },
-    ],
-  },
-  {
-    picoNumber: 3,
-    picoQuestion: "In hospitalised patients with acute ischaemic stroke and undergoing intravenous thrombolysis (with or without mechanical thrombectomy), do blood pressure-lowering therapies compared to control improve outcome?",
-    drivingTrials: ["ENCHANTED", "ENOS", "ENCHANTED2-MT"],
-    recommendations: [
-      {
-        number: 1,
-        statement: "In hospitalised patients with acute ischaemic stroke and undergoing intravenous thrombolysis (with or without mechanical thrombectomy), we suggest maintaining blood pressure below 185/110 mmHg before bolus, and below 180/105 mmHg after bolus and for 24 h. No specific blood pressure-lowering agent can be recommended.",
-        qualityOfEvidence: "Very low",
-        strengthOfRecommendation: "Weak for intervention",
-        drivingTrials: ["ENCHANTED", "ENOS", "ENCHANTED2-MT"],
-      },
-      {
-        number: 2,
-        statement: "In hospitalised patients with acute ischaemic stroke and undergoing intravenous thrombolysis (with or without mechanical thrombectomy), we suggest against lowering systolic blood pressure to a target of 130–140 mmHg compared to < 180 mmHg during the first 72 h following symptom onset.",
-        qualityOfEvidence: "Low",
-        strengthOfRecommendation: "Weak against intervention",
-        drivingTrials: ["ENCHANTED", "OPTIMAL-BP", "BP-TARGET"],
-      },
-    ],
-  },
-  {
-    picoNumber: 4,
-    picoQuestion: "In patients with acute ischaemic stroke caused by LVO and undergoing mechanical thrombectomy (with or without intravenous thrombolysis), does blood pressure lowering with any vasodepressor drug compared to no drug improve functional outcome?",
-    expertConsensusStatement: "In patients with acute ischaemic stroke due to LVO who achieve successful reperfusion defined as modified thrombolysis in cerebral infarction grade of 3 following mechanical thrombectomy, we suggest against induced hypertension.",
-    voting: "Vote: 10/10",
-    drivingTrials: ["BP-TARGET", "ENCHANTED2-MT", "BEST-II", "OPTIMAL-BP"],
-    recommendations: [
-      {
-        number: 1,
-        statement: "In patients with acute ischaemic stroke caused by LVO and undergoing mechanical thrombectomy (with or without intravenous thrombolysis), we suggest keeping blood pressure below 180/105 mmHg during, and for 24 h after, mechanical thrombectomy. No specific blood pressure-lowering agent can be recommended.",
-        qualityOfEvidence: "Very low",
-        strengthOfRecommendation: "Weak against intervention",
-        drivingTrials: ["BP-TARGET", "ENCHANTED2-MT", "BEST-II"],
-      },
-      {
-        number: 2,
-        statement: "In patients with acute ischaemic stroke caused by LVO and undergoing mechanical thrombectomy (with or without intravenous thrombolysis), we suggest against individualised blood pressure management (guided by pre-procedural blood pressure levels) during mechanical thrombectomy.",
-        qualityOfEvidence: "Moderate",
-        strengthOfRecommendation: "Weak against intervention",
-        drivingTrials: ["INDIVIDUATE", "DETERMINE"],
-      },
-      {
-        number: 3,
-        statement: "In patients with acute ischaemic stroke caused by LVO and undergoing mechanical thrombectomy (with or without intravenous thrombolysis), we recommend against actively reducing systolic blood pressure < 140 mmHg for the first 24 h following successful mechanical thrombectomy.",
-        qualityOfEvidence: "High",
-        strengthOfRecommendation: "Strong against intervention",
-        drivingTrials: ["ENCHANTED2-MT", "OPTIMAL-BP", "BEST-II"],
-      },
-      {
-        number: 4,
-        statement: "In patients with acute ischaemic stroke caused by LVO and undergoing mechanical thrombectomy (with or without intravenous thrombolysis), systolic blood pressure drops should be avoided.",
-        qualityOfEvidence: "Very low",
-        strengthOfRecommendation: "Strong against intervention",
-        drivingTrials: ["SAGA", "SIESTA", "ANSTROKE", "GOLIATH"],
-      },
-    ],
-  },
-  {
-    picoNumber: 5,
-    picoQuestion: "In patients with acute ischaemic stroke not treated with reperfusion therapies (intravenous thrombolysis or mechanical thrombectomy) and with clinical deterioration, does induced hypertension by any vasopressor drug compared to no drug improve outcome?",
-    expertConsensusStatement: "In patients with acute ischaemic stroke not treated with reperfusion therapies (IVT or MT) and with clinical deterioration where a haemodynamic mechanism is suspected or shown to be directly responsible for the deterioration, we suggest: • Stopping existing BP lowering therapy, • Administering intravenous fluids and • Introducing non-pharmacological procedures to raise BP Before considering • Careful use of vasopressor agents to increase BP with close monitoring of BP values.",
-    voting: "Vote: 10/10",
-    drivingTrials: ["SETIN-HYPERTENSION", "MAPAS"],
-    recommendations: [
-      {
-        number: 1,
-        statement: "In patients with acute ischaemic stroke not treated with reperfusion therapies (intravenous thrombolysis or mechanical thrombectomy) and with clinical deterioration, we suggest against the routine use of vasopressor drugs to increase blood pressure.",
-        qualityOfEvidence: "Very low",
-        strengthOfRecommendation: "Weak against intervention",
-        drivingTrials: ["SETIN-HYPERTENSION", "MAPAS"],
-      },
-    ],
-  },
-  {
-    picoNumber: 6,
-    picoQuestion: "In patients with acute ischaemic stroke, does continuing vs temporarily stopping previous oral blood pressure-lowering therapy improve outcome?",
-    expertConsensusStatement: "In patients with acute ischaemic stroke, we suggest stopping previous oral blood pressure-lowering therapy in patients with dysphagia until swallowing is restored or a nasogastric tube is in place.",
-    voting: "Vote: 10/10",
-    drivingTrials: ["COSSACS", "ENOS", "CATIS-2"],
-    recommendations: [
-      {
-        number: 1,
-        statement: "In patients with acute ischaemic stroke, we suggest against routinely continuing previous oral blood pressure-lowering therapy.",
-        qualityOfEvidence: "Low",
-        strengthOfRecommendation: "Weak against intervention",
-        drivingTrials: ["COSSACS", "ENOS", "CATIS-2"],
-      },
-    ],
-  },
-  {
-    picoNumber: 7,
-    picoQuestion: "In patients with acute ICH, does intensive blood pressure lowering with any vasodepressor drug compared to control improve outcome?",
-    expertConsensusStatement: "1. We suggest lowering systolic blood pressure below 140 mmHg within 6 h of symptom onset in minor or moderate ICH (haematoma volume < 30 mL) to reduce haematoma expansion (Vote: 10/10).\n2. For patients with spontaneous ICH, we suggest avoiding a reduction in SBP of more than 70 mmHg from baseline and avoiding active reduction of SBP below 110 mmHg. Caution is advised when lowering very high SBP (>220 mmHg), in patients with large haematoma volumes (>30 mL) or when haematoma evacuation is planned (Vote: 10/10).\n3. In patients with acute ICH, blood pressure target-based interventions should be preferred over interventions based on fixed antihypertensive agents (Vote: 10/10).\n4. For patients with spontaneous minor or moderate ICH (<30 mL): In acute phase (<2 h), lower SBP to <140 mmHg and minimise variability. In sub-acute phase (up to 7 days), maintain SBP below 140 mmHg (Vote: 10/10).",
-    voting: "Vote: 10/10",
-    drivingTrials: ["INTERACT", "INTERACT2", "ATACH-2", "ICH-ADAPT", "INTERACT4"],
-    recommendations: [
-      {
-        number: 1,
-        statement: "For patients with acute spontaneous ICH and systolic blood pressure of 150–220 mmHg, the overall balance of beneficial and adverse effects is uncertain, so we recommend recruitment to ongoing randomised controlled trials.",
-        qualityOfEvidence: "Moderate",
-        strengthOfRecommendation: "Uncertain",
-        drivingTrials: ["INTERACT", "INTERACT2", "ATACH-2", "ICH-ADAPT", "INTERACT4"],
-      },
-    ],
-  },
-  {
-    picoNumber: 8,
-    picoQuestion: "In patients with acute ICH, does continuing vs temporarily stopping previous oral antihypertensive therapy improve outcome?",
-    expertConsensusStatement: "1. In patients with acute ICH who need BP-lowering therapy to maintain BP within the recommended range and who do not have swallowing difficulties, we suggest continuation of prior oral antihypertensive agents (Vote: 10/10).\n2. In patients with acute ICH who need BP-lowering therapy and who have dysphagia or decreased level of consciousness, we suggest temporarily stopping previous oral hypertensive therapy and using intravenous antihypertensive agents until swallowing is restored or a nasogastric tube is in place (Vote: 10/10).",
-    voting: "Vote: 10/10",
-    drivingTrials: ["COSSACS", "ENOS"],
-    recommendations: [
-      {
-        number: 1,
-        statement: "In patients with acute ICH there is continued uncertainty over the benefits and risks (advantages/disadvantages) of continuing vs temporarily stopping previous blood pressure-lowering therapy.",
-        qualityOfEvidence: "Moderate",
-        strengthOfRecommendation: "Uncertain",
-        drivingTrials: ["COSSACS", "ENOS"],
-      },
-    ],
-  },
-];
-
 /**
- * Transforms stored recommendations into structured ESO PICO questions matching Hình 1 Synoptic Table 11
+ * Transforms stored recommendations into structured ESO PICO questions matching Synoptic Table structure.
+ * Automatically aligns with official canonical items when available, preventing content bleed between guidelines.
  */
-function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: string): EsoPicoItem[] {
-  const normTitle = (guidelineTitle || "").toLowerCase();
-  const isEsoBp =
-    normTitle.includes("blood pressure") ||
-    normTitle.includes("huyết áp") ||
-    normTitle.includes("eso") ||
-    recs.some(
-      (r) =>
-        (r.society || "").toUpperCase().includes("ESO") ||
-        (r.guideline_title || "").toLowerCase().includes("blood pressure") ||
-        (r.statement || "").toLowerCase().includes("routine bp lowering") ||
-        (r.statement || "").toLowerCase().includes("routine blood pressure lowering") ||
-        (r.topic || "").toLowerCase().includes("pre-hospital blood pressure")
-    );
-
-  // If no recommendations are stored, use canonical fallback for 2025 ESO Blood Pressure
-  if (!recs || recs.length === 0) {
-    if (isEsoBp) {
-      return CANONICAL_ESO_2025_BP_PICOS;
-    }
-    return [];
+function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: string, guidelineId?: string): EsoPicoItem[] {
+  const canonicalList = getCanonicalEsoPicos(guidelineTitle, guidelineId);
+  const canonicalMap = new Map<string, EsoPicoItem>();
+  if (canonicalList) {
+    canonicalList.forEach((cp) => {
+      canonicalMap.set(String(cp.picoNumber).trim().toLowerCase(), cp);
+    });
   }
 
-  const canonicalMap = new Map<string, EsoPicoItem>();
-  if (isEsoBp) {
-    CANONICAL_ESO_2025_BP_PICOS.forEach((cp) => {
-      canonicalMap.set(String(cp.picoNumber).trim(), cp);
-    });
+  // If no recommendations are stored, use canonical fallback if matched
+  if (!recs || recs.length === 0) {
+    return canonicalList || [];
   }
 
   const picoMap = new Map<string, EsoPicoItem>();
@@ -271,12 +106,12 @@ function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: str
     const rawPicoId = (r.pico_id || "").trim();
 
     if (rawPicoId) {
-      const matchPico = rawPicoId.match(/(?:PICO\s*)?(\d+)/i);
+      const matchPico = rawPicoId.match(/(?:PICO\s*)?(\d+[a-z]?)/i);
       pNum = matchPico ? matchPico[1] : rawPicoId;
       pQuestion = (r.target_population || rawTopic || rawCat).trim();
     } else {
-      const matchTopic = rawTopic.match(/^PICO\s*(\d+)[:.\s-]*(.*)/i);
-      const matchCat = rawCat.match(/^PICO\s*(\d+)[:.\s-]*(.*)/i);
+      const matchTopic = rawTopic.match(/^PICO\s*(\d+[a-z]?)[:.\s-]*(.*)/i);
+      const matchCat = rawCat.match(/^PICO\s*(\d+[a-z]?)[:.\s-]*(.*)/i);
 
       if (matchTopic) {
         pNum = matchTopic[1];
@@ -290,12 +125,12 @@ function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: str
       }
     }
 
-    pQuestion = pQuestion.replace(/^PICO\s*\d+[:.\s-]*/i, "").trim();
+    pQuestion = pQuestion.replace(/^PICO\s*\d+[a-z]?[:.\s-]*/i, "").trim();
     if (!pQuestion) {
-      pQuestion = rawTopic.replace(/^PICO\s*\d+[:.\s-]*/i, "").trim() || rawCat;
+      pQuestion = rawTopic.replace(/^PICO\s*\d+[a-z]?[:.\s-]*/i, "").trim() || rawCat;
     }
 
-    const pNumKey = String(pNum).trim();
+    const pNumKey = String(pNum).trim().toLowerCase();
     const canonicalItem = canonicalMap.get(pNumKey);
 
     // If question is empty or too short / just a category fragment, use the formal canonical question
@@ -307,7 +142,7 @@ function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: str
       pQuestion = `${pQuestion}?`;
     }
 
-    const picoKey = `PICO-${pNum}`;
+    const picoKey = `PICO-${String(pNum).toLowerCase()}`;
 
     const rawStrength = r.strength_of_recommendation || (r as any).strength || (r as any).currentGrade || (r as any).grade;
     let s = normalizeEsoStrength(rawStrength, r.statement);
@@ -324,11 +159,6 @@ function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: str
       else q = canonicalItem?.recommendations[0]?.qualityOfEvidence || "Moderate";
     }
 
-    // Official ESO Table 11 Synoptic accuracy: PICO 1 is officially "Strong against intervention"
-    if (canonicalItem && pNumKey === "1") {
-      s = "Strong against intervention";
-    }
-
     // Only use consensus_statement if explicitly present and not identical to statement
     const rawConsensus =
       (r as any).consensus_statement ||
@@ -340,7 +170,7 @@ function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: str
         ? rawConsensus.trim()
         : undefined;
 
-    // Fallback to canonical expert consensus statement if missing
+    // Fallback to canonical expert consensus statement ONLY if explicitly defined in matching canonical guideline
     if (!consensus && canonicalItem?.expertConsensusStatement) {
       consensus = canonicalItem.expertConsensusStatement;
     }
@@ -355,7 +185,7 @@ function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: str
         picoQuestion: pQuestion,
         recommendations: [],
         expertConsensusStatement: consensus,
-        voting: r.voting || canonicalItem?.voting || (consensus ? "Vote: 10/10" : undefined),
+        voting: r.voting || canonicalItem?.voting || (consensus && consensus.includes("Vote:") ? consensus.split("Vote:")[1]?.split(")")[0]?.trim() ? `Vote: ${consensus.split("Vote:")[1]?.split(")")[0]?.trim()}` : undefined : undefined),
         drivingTrials: [...trials],
       });
     }
@@ -364,7 +194,7 @@ function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: str
 
     if (!entry.expertConsensusStatement && consensus) {
       entry.expertConsensusStatement = consensus;
-      if (!entry.voting) entry.voting = r.voting || canonicalItem?.voting || "Vote: 10/10";
+      if (!entry.voting) entry.voting = r.voting || canonicalItem?.voting;
     }
 
     if (trials.length > 0) {
@@ -381,19 +211,17 @@ function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: str
     });
   });
 
-  // If this is ESO Blood Pressure and some PICOs are missing from recs, merge canonical PICOs
-  if (isEsoBp) {
-    CANONICAL_ESO_2025_BP_PICOS.forEach((cp) => {
-      const pKey = `PICO-${cp.picoNumber}`;
+  // If this guideline has a matching canonical set and some PICOs are missing, merge them
+  if (canonicalList && canonicalList.length > 0) {
+    canonicalList.forEach((cp) => {
+      const pKey = `PICO-${String(cp.picoNumber).toLowerCase()}`;
       if (!picoMap.has(pKey)) {
         picoMap.set(pKey, cp);
       }
     });
-
-    return Array.from(picoMap.values()).sort((a, b) => Number(a.picoNumber) - Number(b.picoNumber));
   }
 
-  return Array.from(picoMap.values());
+  return Array.from(picoMap.values()).sort((a, b) => comparePicoNumbers(a.picoNumber, b.picoNumber));
 }
 
 export function ReviewQueueTab({
@@ -803,32 +631,30 @@ export function ReviewQueueTab({
     const isDocEso =
       (group.society || "").toUpperCase().includes("ESO") ||
       (group.guideline_title || "").toUpperCase().includes("ESO") ||
-      (group.guideline_title || "").toLowerCase().includes("blood pressure management in acute") ||
-      (group.guideline_title || "").toLowerCase().includes("european stroke") ||
       (group.guideline_id || "").toLowerCase().includes("eso");
+
+    const canonicalList = getCanonicalEsoPicos(group.guideline_title, group.guideline_id);
 
     const allItems: PracticeChangeDetail[] = group.recommendations.map((r, idx) => {
       let pNum: string | undefined;
       let pQuestion: string | undefined;
       if (r.pico_id) {
-        const m = String(r.pico_id).match(/\d+/);
+        const m = String(r.pico_id).match(/(\d+[a-z]?)/i);
         pNum = m ? m[0] : String(r.pico_id);
         pQuestion = r.target_population || r.topic;
       } else if (r.topic) {
-        const m = String(r.topic).match(/PICO\s*(\d+)[:.\s-]*(.*)/i);
+        const m = String(r.topic).match(/PICO\s*(\d+[a-z]?)[:.\s-]*(.*)/i);
         if (m) {
           pNum = m[1];
           pQuestion = m[2]?.trim();
         }
       }
 
-      const pNumKey = String(pNum || idx + 1).trim();
-      const canonicalItem = isDocEso
-        ? CANONICAL_ESO_2025_BP_PICOS.find((cp) => String(cp.picoNumber).trim() === pNumKey)
-        : undefined;
+      const pNumKey = String(pNum || idx + 1).trim().toLowerCase();
+      const canonicalItem = canonicalList?.find((cp) => String(cp.picoNumber).trim().toLowerCase() === pNumKey);
 
       let s = normalizeEsoStrength(r.strength_of_recommendation || (r as any).strength || (r as any).currentGrade, r.statement);
-      if (isDocEso && canonicalItem && pNumKey === "1") {
+      if (isDocEso && canonicalItem && pNumKey === "1" && isEsoBpGuideline(group.guideline_title, group.guideline_id)) {
         s = "Strong against intervention";
       }
       const q = r.quality_of_evidence || (r as any).quality || canonicalItem?.recommendations[0]?.qualityOfEvidence || "Moderate";
@@ -845,7 +671,7 @@ export function ReviewQueueTab({
       const finalConsensus =
         (r as any).consensus_statement ||
         (r as any).expertConsensusStatement ||
-        (isDocEso ? canonicalItem?.expertConsensusStatement : undefined);
+        canonicalItem?.expertConsensusStatement;
 
       const finalPicoQuestion =
         (canonicalItem && (!pQuestion || pQuestion.length < 35 || pQuestion.toLowerCase() === (r.category || "").toLowerCase()))
@@ -857,13 +683,13 @@ export function ReviewQueueTab({
         topic: r.topic || r.target_population || (isDocEso ? `PICO ${pNum || idx + 1}: Clinical Question` : `Khuyến cáo #${idx + 1}`),
         currentGrade,
         currentText: r.statement,
-        category: r.category || (isDocEso ? "Blood Pressure" : "General Recommendations"),
+        category: r.category || (isEsoBpGuideline(group.guideline_title, group.guideline_id) ? "Blood Pressure" : isEsoAsahGuideline(group.guideline_title, group.guideline_id) ? "Aneurysmal Subarachnoid Haemorrhage" : "General Recommendations"),
         drivingTrials: (r.driving_trials && r.driving_trials.length > 0) ? r.driving_trials : (canonicalItem?.drivingTrials || []),
         changeType: "NEW",
         quality: isDocEso ? q : undefined,
         strength: isDocEso ? s : undefined,
         expertConsensusStatement: finalConsensus,
-        voting: isDocEso ? (r.voting || canonicalItem?.voting || "Vote: 10/10") : undefined,
+        voting: isDocEso ? (r.voting || canonicalItem?.voting) : undefined,
         picoNumber: pNum || `${idx + 1}`,
         picoQuestion: finalPicoQuestion,
       };
@@ -899,36 +725,36 @@ export function ReviewQueueTab({
     const isDocEso =
       (parentGroup?.society || "").toUpperCase().includes("ESO") ||
       (parentGroup?.guideline_title || "").toUpperCase().includes("ESO") ||
-      (parentGroup?.guideline_title || "").toLowerCase().includes("blood pressure management in acute") ||
-      (parentGroup?.guideline_title || "").toLowerCase().includes("european stroke") ||
       (rec.society || "").toUpperCase().includes("ESO") ||
       (rec.guideline_title || "").toUpperCase().includes("ESO") ||
       (rec.guideline_id || "").toLowerCase().includes("eso") ||
       Boolean(rec.quality_of_evidence) ||
       Boolean(rec.strength_of_recommendation);
 
+    const docTitle = parentGroup?.guideline_title || rec.guideline_title;
+    const docId = parentGroup?.guideline_id || rec.guideline_id;
+    const canonicalList = getCanonicalEsoPicos(docTitle, docId);
+
     const allItems: PracticeChangeDetail[] = (parentGroup?.recommendations || [rec]).map((r, idx) => {
       let pNum: string | undefined;
       let pQuestion: string | undefined;
       if (r.pico_id) {
-        const m = String(r.pico_id).match(/\d+/);
+        const m = String(r.pico_id).match(/(\d+[a-z]?)/i);
         pNum = m ? m[0] : String(r.pico_id);
         pQuestion = r.target_population || r.topic;
       } else if (r.topic) {
-        const m = String(r.topic).match(/PICO\s*(\d+)[:.\s-]*(.*)/i);
+        const m = String(r.topic).match(/PICO\s*(\d+[a-z]?)[:.\s-]*(.*)/i);
         if (m) {
           pNum = m[1];
           pQuestion = m[2]?.trim();
         }
       }
 
-      const pNumKey = String(pNum || idx + 1).trim();
-      const canonicalItem = isDocEso
-        ? CANONICAL_ESO_2025_BP_PICOS.find((cp) => String(cp.picoNumber).trim() === pNumKey)
-        : undefined;
+      const pNumKey = String(pNum || idx + 1).trim().toLowerCase();
+      const canonicalItem = canonicalList?.find((cp) => String(cp.picoNumber).trim().toLowerCase() === pNumKey);
 
       let s = normalizeEsoStrength(r.strength_of_recommendation || (r as any).strength || (r as any).currentGrade, r.statement);
-      if (isDocEso && canonicalItem && pNumKey === "1") {
+      if (isDocEso && canonicalItem && pNumKey === "1" && isEsoBpGuideline(docTitle, docId)) {
         s = "Strong against intervention";
       }
       const q = r.quality_of_evidence || (r as any).quality || canonicalItem?.recommendations[0]?.qualityOfEvidence || "Moderate";
@@ -945,7 +771,7 @@ export function ReviewQueueTab({
       const finalConsensus =
         (r as any).consensus_statement ||
         (r as any).expertConsensusStatement ||
-        (isDocEso ? canonicalItem?.expertConsensusStatement : undefined);
+        canonicalItem?.expertConsensusStatement;
 
       const finalPicoQuestion =
         (canonicalItem && (!pQuestion || pQuestion.length < 35 || pQuestion.toLowerCase() === (r.category || "").toLowerCase()))
@@ -957,13 +783,13 @@ export function ReviewQueueTab({
         topic: r.topic || r.target_population || (isDocEso ? `PICO ${pNum || idx + 1}: Clinical Question` : `Khuyến cáo #${idx + 1}`),
         currentGrade,
         currentText: r.statement,
-        category: r.category || (isDocEso ? "Blood Pressure" : "General Recommendations"),
+        category: r.category || (isEsoBpGuideline(docTitle, docId) ? "Blood Pressure" : isEsoAsahGuideline(docTitle, docId) ? "Aneurysmal Subarachnoid Haemorrhage" : "General Recommendations"),
         drivingTrials: (r.driving_trials && r.driving_trials.length > 0) ? r.driving_trials : (canonicalItem?.drivingTrials || []),
         changeType: "NEW",
         quality: isDocEso ? q : undefined,
         strength: isDocEso ? s : undefined,
         expertConsensusStatement: finalConsensus,
-        voting: isDocEso ? (r.voting || canonicalItem?.voting || "Vote: 10/10") : undefined,
+        voting: isDocEso ? (r.voting || canonicalItem?.voting) : undefined,
         picoNumber: pNum || `${idx + 1}`,
         picoQuestion: finalPicoQuestion,
       };
@@ -976,15 +802,13 @@ export function ReviewQueueTab({
       title:
         parentGroup?.guideline_title ||
         rec.guideline_title ||
-        (isDocEso
-          ? "2025 ESO guideline on blood pressure management in acute ischaemic stroke and intracerebral haemorrhage"
-          : "Hướng dẫn lâm sàng"),
+        "Hướng dẫn thực hành lâm sàng",
       society: isDocEso ? "ESO" : (parentGroup?.society || rec.society || "General"),
-      year: parentGroup?.year || rec.year || 2025,
+      year: parentGroup?.year || rec.year || 2026,
       officialUrl: "",
       journalTarget: isDocEso ? "European Stroke Journal" : (rec.society?.includes("AHA") ? "Stroke" : "Neurology"),
       documentType: "Clinical Practice Guideline",
-      publishDate: `${parentGroup?.year || rec.year || 2025}-01-01`,
+      publishDate: `${parentGroup?.year || rec.year || 2026}-01-01`,
       subspecialty: "Stroke",
       subspecialties: ["Stroke"],
       executiveSummary: "",
@@ -1475,15 +1299,16 @@ export function ReviewQueueTab({
                     <span className="text-xs font-bold text-slate-600 dark:text-slate-300 flex items-center gap-1.5">
                       <span>📋</span>
                       <span>
-                        {isGroupEso &&
-                        (group.guideline_title.toLowerCase().includes("blood pressure") ||
-                          group.recommendations.some(
-                            (r) =>
-                              (r.statement || "").toLowerCase().includes("blood pressure") ||
-                              (r.statement || "").toLowerCase().includes("routine bp lowering")
-                          ))
-                          ? "8 PICO (12 khuyến cáo lâm sàng & 11 đồng thuận chuyên gia chuẩn ESO GRADE)"
-                          : `${group.recommendations.length} khuyến cáo được phân loại vào ${group.categories.length} chuyên mục lâm sàng`}
+                        {isGroupEso ? (
+                          (() => {
+                            const picos = buildEsoPicoItemsFromStoredRecs(group.recommendations, group.guideline_title, group.guideline_id);
+                            const totalRecs = picos.reduce((acc, p) => acc + p.recommendations.length, 0);
+                            const totalConsensus = picos.filter((p) => Boolean(p.expertConsensusStatement)).length;
+                            return `${picos.length} PICO (${totalRecs} khuyến cáo lâm sàng${totalConsensus > 0 ? ` & ${totalConsensus} tuyên bố đồng thuận chuyên gia` : ""} chuẩn ESO GRADE)`;
+                          })()
+                        ) : (
+                          `${group.recommendations.length} khuyến cáo được phân loại vào ${group.categories.length} chuyên mục lâm sàng`
+                        )}
                       </span>
                     </span>
 
@@ -1555,7 +1380,7 @@ export function ReviewQueueTab({
                       ) : isGroupEso ? (
                         <EsoGuidelineTable
                           title={group.guideline_title}
-                          picoItems={buildEsoPicoItemsFromStoredRecs(group.recommendations, group.guideline_title)}
+                          picoItems={buildEsoPicoItemsFromStoredRecs(group.recommendations, group.guideline_title, group.guideline_id)}
                           darkMode={darkMode}
                           allowEdit={true}
                           onEditPico={(pico) => {
