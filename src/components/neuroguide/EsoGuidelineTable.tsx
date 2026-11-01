@@ -203,7 +203,7 @@ export function EsoGuidelineTable({
                 >
                   <td colSpan={2} className="py-2 px-4 font-black text-xs sm:text-[13px] leading-snug">
                     <div className="flex flex-wrap items-center justify-between gap-2">
-                      <span>
+                      <span className="whitespace-pre-line">
                         PICO {pico.picoNumber} {pico.picoQuestion}
                       </span>
                       {allowEdit && onEditPico && (
@@ -240,7 +240,7 @@ export function EsoGuidelineTable({
                               {rec.number || rIdx + 1}.
                             </span>
                           )}
-                          <p className="text-slate-800 dark:text-slate-200 font-normal leading-relaxed">
+                          <p className="text-slate-800 dark:text-slate-200 font-normal leading-relaxed whitespace-pre-line">
                             {rec.statement}
                           </p>
                         </div>
@@ -289,7 +289,7 @@ export function EsoGuidelineTable({
                   >
                     {pico.expertConsensusStatement ? (
                       <div className="space-y-3">
-                        <p className="text-slate-800 dark:text-slate-200 leading-relaxed">
+                        <p className="text-slate-800 dark:text-slate-200 leading-relaxed whitespace-pre-line">
                           {pico.expertConsensusStatement}
                         </p>
                         {pico.voting && (

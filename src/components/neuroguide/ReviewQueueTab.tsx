@@ -1682,7 +1682,7 @@ export function ReviewQueueTab({
                                   </div>
 
                                   {/* Recommendation Statement */}
-                                  <p className="text-slate-800 dark:text-slate-200 leading-relaxed font-normal">
+                                  <p className="text-slate-800 dark:text-slate-200 leading-relaxed font-normal whitespace-pre-line">
                                     {item.statement}
                                   </p>
 

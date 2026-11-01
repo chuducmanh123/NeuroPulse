@@ -200,7 +200,7 @@ export function GuidelinePresentationRenderer({
                   {change.currentGrade}
                 </span>
               </div>
-              <p className="text-slate-700 dark:text-slate-300">{change.currentText}</p>
+              <p className="text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-line">{change.currentText}</p>
             </div>
           ))}
         </div>

@@ -1193,7 +1193,7 @@ export default function NeuroGuidePage() {
                                         <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 font-black text-[10.5px]">
                                           {tIdx + 1}
                                         </span>
-                                        <span className="flex-1">{takeaway.replace(/^\d+\.\s*/, "")}</span>
+                                        <span className="flex-1 whitespace-pre-line">{takeaway.replace(/^\d+\.\s*/, "")}</span>
                                       </div>
                                     ))}
                                   </div>
@@ -1257,11 +1257,11 @@ export default function NeuroGuidePage() {
                                             <span className="font-bold block text-slate-400 mb-0.5">
                                               Previous Edition ({doc.previousVersionYear || "prior"}):
                                             </span>
-                                            <p className="line-through opacity-85">{change.previousText}</p>
+                                            <p className="line-through opacity-85 whitespace-pre-line">{change.previousText}</p>
                                           </div>
                                         )}
 
-                                        <p className="text-slate-800 dark:text-slate-200 font-medium">
+                                        <p className="text-slate-800 dark:text-slate-200 font-medium whitespace-pre-line">
                                           {change.currentText}
                                         </p>
 

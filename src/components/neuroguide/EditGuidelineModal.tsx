@@ -16,6 +16,54 @@ interface EditGuidelineModalProps {
   darkMode: boolean;
 }
 
+interface AutoResizeTextareaProps
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  minRows?: number;
+  value: string;
+}
+
+/**
+ * Textarea tự động mở rộng theo nội dung (Auto-resize textarea).
+ * Loại bỏ thanh cuộn bên trong ô nhập (no inner scrollbars) và không có nút kéo co giãn làm rối UI.
+ */
+function AutoResizeTextarea({
+  minRows = 2,
+  value,
+  onChange,
+  className = "",
+  placeholder = "",
+  ...props
+}: AutoResizeTextareaProps) {
+  const textareaRef = React.useRef<HTMLTextAreaElement>(null);
+
+  const adjustHeight = React.useCallback(() => {
+    const el = textareaRef.current;
+    if (!el) return;
+    el.style.height = "auto";
+    el.style.height = `${el.scrollHeight}px`;
+  }, []);
+
+  React.useLayoutEffect(() => {
+    adjustHeight();
+  }, [value, adjustHeight]);
+
+  return (
+    <textarea
+      ref={textareaRef}
+      value={value}
+      rows={minRows}
+      onChange={(e) => {
+        onChange?.(e);
+        adjustHeight();
+      }}
+      placeholder={placeholder}
+      className={`resize-none overflow-hidden block ${className}`}
+      style={{ fieldSizing: "content" } as React.CSSProperties}
+      {...props}
+    />
+  );
+}
+
 export type GuidelineFormFormat = "AUTO" | "ESO" | "AHA" | "STANDARD";
 
 export interface EsoRecDraft {
@@ -643,12 +691,12 @@ export function EditGuidelineModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/75 backdrop-blur-xs">
       <div
-        className={`w-full max-w-5xl max-h-[92vh] flex flex-col rounded-2xl border shadow-2xl overflow-hidden transition-all ${
+        className={`w-full max-w-5xl h-[92vh] max-h-[920px] flex flex-col rounded-2xl border shadow-2xl overflow-hidden transition-all ${
           darkMode ? "bg-slate-900 border-slate-800 text-white" : "bg-white border-slate-200 text-slate-900"
         }`}
       >
         {/* HEADER */}
-        <div className="px-5 py-3.5 border-b flex flex-wrap items-center justify-between gap-3 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-950/50">
+        <div className="px-5 py-3.5 border-b flex flex-wrap items-center justify-between gap-3 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-950/50 flex-shrink-0">
           <div className="flex items-center gap-2.5 min-w-0">
             <span className="text-xl flex-shrink-0">✏️</span>
             <div className="min-w-0">
@@ -740,13 +788,13 @@ export function EditGuidelineModal({
 
         {/* ERROR NOTIFICATION */}
         {errorMessage && (
-          <div className="mx-5 mt-3 p-3 rounded-xl text-xs font-bold bg-rose-50 text-rose-700 border border-rose-200 dark:bg-rose-950/50 dark:text-rose-300 dark:border-rose-800">
+          <div className="mx-5 mt-3 p-3 rounded-xl text-xs font-bold bg-rose-50 text-rose-700 border border-rose-200 dark:bg-rose-950/50 dark:text-rose-300 dark:border-rose-800 flex-shrink-0">
             ⚠️ {errorMessage}
           </div>
         )}
 
         {/* TAB NAVIGATION */}
-        <div className="px-5 pt-3 border-b dark:border-slate-800 flex items-center gap-2 text-xs font-bold bg-slate-50/50 dark:bg-slate-950/30">
+        <div className="px-5 pt-3 border-b dark:border-slate-800 flex items-center gap-2 text-xs font-bold bg-slate-50/50 dark:bg-slate-950/30 flex-shrink-0">
           <button
             type="button"
             onClick={() => {
@@ -798,39 +846,89 @@ export function EditGuidelineModal({
         </div>
 
         {/* MODAL CONTENT BODY */}
-        <form onSubmit={handleSubmit} className="flex-1 flex flex-col overflow-hidden text-xs">
-          <div className="flex-1 overflow-y-auto p-5">
-            {/* TAB 1: METADATA */}
-            {activeTab === "metadata" && (
-              <div className="space-y-4 max-w-3xl">
-                <div>
-                  <label className="block font-bold mb-1 text-slate-700 dark:text-slate-300">
-                    Guideline Title:
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={docTitle}
-                    onChange={(e) => setDocTitle(e.target.value)}
-                    placeholder="e.g. 2025 ESO guideline on blood pressure management in acute ischaemic stroke and intracerebral haemorrhage"
-                    className={`w-full p-2.5 rounded-xl border font-medium ${
-                      darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"
-                    }`}
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <form onSubmit={handleSubmit} className="flex-1 min-h-0 flex flex-col overflow-hidden text-xs">
+          {/* TAB 1: METADATA */}
+          {activeTab === "metadata" && (
+              <div className="flex-1 min-h-0 overflow-y-auto p-5 custom-scrollbar">
+                <div className="space-y-4 max-w-3xl mx-auto">
                   <div>
                     <label className="block font-bold mb-1 text-slate-700 dark:text-slate-300">
-                      Medical Society:
+                      Guideline Title:
                     </label>
                     <input
                       type="text"
                       required
-                      value={docSociety}
-                      onChange={(e) => setDocSociety(e.target.value)}
-                      placeholder="e.g. ESO, AHA/ASA, AAN..."
+                      value={docTitle}
+                      onChange={(e) => setDocTitle(e.target.value)}
+                      placeholder="e.g. 2025 ESO guideline on blood pressure management in acute ischaemic stroke and intracerebral haemorrhage"
                       className={`w-full p-2.5 rounded-xl border font-medium ${
+                        darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"
+                      }`}
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div>
+                      <label className="block font-bold mb-1 text-slate-700 dark:text-slate-300">
+                        Medical Society:
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={docSociety}
+                        onChange={(e) => setDocSociety(e.target.value)}
+                        placeholder="e.g. ESO, AHA/ASA, AAN..."
+                        className={`w-full p-2.5 rounded-xl border font-medium ${
+                          darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"
+                        }`}
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block font-bold mb-1 text-slate-700 dark:text-slate-300">
+                        Publication Year:
+                      </label>
+                      <input
+                        type="number"
+                        required
+                        value={docYear}
+                        onChange={(e) => setDocYear(e.target.value)}
+                        className={`w-full p-2.5 rounded-xl border font-medium ${
+                          darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"
+                        }`}
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block font-bold mb-1 text-slate-700 dark:text-slate-300">
+                        Subspecialty:
+                      </label>
+                      <select
+                        value={docSubspecialty}
+                        onChange={(e) => setDocSubspecialty(e.target.value as SubspecialtyType)}
+                        className={`w-full p-2.5 rounded-xl border font-bold ${
+                          darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"
+                        }`}
+                      >
+                        {NEUROLOGY_SUBSPECIALTIES.map((sub) => (
+                          <option key={sub} value={sub}>
+                            {sub}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block font-bold mb-1 text-slate-700 dark:text-slate-300">
+                      Executive Summary &amp; Clinical Scope:
+                    </label>
+                    <AutoResizeTextarea
+                      minRows={4}
+                      value={docSummary}
+                      onChange={(e) => setDocSummary(e.target.value)}
+                      placeholder="Describe clinical scope, target patient populations, and overall objectives..."
+                      className={`w-full p-2.5 rounded-xl border font-medium leading-relaxed ${
                         darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"
                       }`}
                     />
@@ -838,160 +936,114 @@ export function EditGuidelineModal({
 
                   <div>
                     <label className="block font-bold mb-1 text-slate-700 dark:text-slate-300">
-                      Publication Year:
+                      Official URL / Source:
                     </label>
                     <input
-                      type="number"
-                      required
-                      value={docYear}
-                      onChange={(e) => setDocYear(e.target.value)}
-                      className={`w-full p-2.5 rounded-xl border font-medium ${
+                      type="text"
+                      value={docOfficialUrl}
+                      onChange={(e) => setDocOfficialUrl(e.target.value)}
+                      placeholder="https://journals.sagepub.com/doi/... or https://pubmed.ncbi.nlm.nih.gov/..."
+                      className={`w-full p-2.5 rounded-xl border font-medium font-mono text-[11px] ${
                         darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"
                       }`}
                     />
                   </div>
-
-                  <div>
-                    <label className="block font-bold mb-1 text-slate-700 dark:text-slate-300">
-                      Subspecialty:
-                    </label>
-                    <select
-                      value={docSubspecialty}
-                      onChange={(e) => setDocSubspecialty(e.target.value as SubspecialtyType)}
-                      className={`w-full p-2.5 rounded-xl border font-bold ${
-                        darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"
-                      }`}
-                    >
-                      {NEUROLOGY_SUBSPECIALTIES.map((sub) => (
-                        <option key={sub} value={sub}>
-                          {sub}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block font-bold mb-1 text-slate-700 dark:text-slate-300">
-                    Executive Summary &amp; Clinical Scope:
-                  </label>
-                  <textarea
-                    rows={4}
-                    value={docSummary}
-                    onChange={(e) => setDocSummary(e.target.value)}
-                    placeholder="Describe clinical scope, target patient populations, and overall objectives..."
-                    className={`w-full p-2.5 rounded-xl border font-medium leading-relaxed ${
-                      darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"
-                    }`}
-                  />
-                </div>
-
-                <div>
-                  <label className="block font-bold mb-1 text-slate-700 dark:text-slate-300">
-                    Official URL / Source:
-                  </label>
-                  <input
-                    type="text"
-                    value={docOfficialUrl}
-                    onChange={(e) => setDocOfficialUrl(e.target.value)}
-                    placeholder="https://journals.sagepub.com/doi/... or https://pubmed.ncbi.nlm.nih.gov/..."
-                    className={`w-full p-2.5 rounded-xl border font-medium font-mono text-[11px] ${
-                      darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"
-                    }`}
-                  />
                 </div>
               </div>
             )}
 
             {/* TAB 2: TAKEAWAYS */}
             {activeTab === "takeaways" && (
-              <div className="space-y-4 max-w-3xl">
-                <div className="p-3.5 rounded-xl bg-indigo-50/50 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-900/60 flex items-center justify-between gap-3">
-                  <div>
-                    <h4 className="font-bold text-indigo-900 dark:text-indigo-200">
-                      🌟 Top Take-Home Messages
-                    </h4>
-                    <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                      Core clinical takeaways that clinicians must master from this guideline.
-                    </p>
-                  </div>
-                  <span className="px-2.5 py-1 rounded-full text-xs font-black bg-indigo-500/20 text-indigo-600 dark:text-indigo-400">
-                    {takeaways.length} items
-                  </span>
-                </div>
-
-                <div className="space-y-2.5">
-                  {takeaways.map((takeaway, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-start gap-2 p-2.5 rounded-xl border bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800"
-                    >
-                      <span className="w-6 h-6 flex-shrink-0 rounded-full flex items-center justify-center font-black bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 text-[11px] mt-1">
-                        {idx + 1}
-                      </span>
-                      <textarea
-                        rows={2}
-                        value={takeaway}
-                        onChange={(e) => handleTakeawayChange(idx, e.target.value)}
-                        className={`flex-1 p-2 rounded-lg border font-medium leading-relaxed ${
-                          darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"
-                        }`}
-                      />
-                      <button
-                        type="button"
-                        onClick={() => handleRemoveTakeaway(idx)}
-                        className="p-1.5 text-rose-500 hover:text-rose-700 hover:bg-rose-50 dark:hover:bg-rose-950/50 rounded-lg cursor-pointer transition-colors"
-                        title="Remove this takeaway"
-                      >
-                        ✕
-                      </button>
+              <div className="flex-1 min-h-0 overflow-y-auto p-5 custom-scrollbar">
+                <div className="space-y-4 max-w-3xl mx-auto">
+                  <div className="p-3.5 rounded-xl bg-indigo-50/50 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-900/60 flex items-center justify-between gap-3">
+                    <div>
+                      <h4 className="font-bold text-indigo-900 dark:text-indigo-200">
+                        🌟 Top Take-Home Messages
+                      </h4>
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                        Core clinical takeaways that clinicians must master from this guideline.
+                      </p>
                     </div>
-                  ))}
+                    <span className="px-2.5 py-1 rounded-full text-xs font-black bg-indigo-500/20 text-indigo-600 dark:text-indigo-400">
+                      {takeaways.length} items
+                    </span>
+                  </div>
 
-                  {takeaways.length === 0 && (
-                    <p className="text-slate-400 italic text-center py-6">
-                      No key takeaways added yet. Add your first takeaway below.
-                    </p>
-                  )}
-                </div>
+                  <div className="space-y-2.5">
+                    {takeaways.map((takeaway, idx) => (
+                      <div
+                        key={idx}
+                        className="flex items-start gap-2 p-2.5 rounded-xl border bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800"
+                      >
+                        <span className="w-6 h-6 flex-shrink-0 rounded-full flex items-center justify-center font-black bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 text-[11px] mt-1">
+                          {idx + 1}
+                        </span>
+                        <AutoResizeTextarea
+                          minRows={2}
+                          value={takeaway}
+                          onChange={(e) => handleTakeawayChange(idx, e.target.value)}
+                          className={`flex-1 p-2 rounded-lg border font-medium leading-relaxed ${
+                            darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"
+                          }`}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveTakeaway(idx)}
+                          className="p-1.5 text-rose-500 hover:text-rose-700 hover:bg-rose-50 dark:hover:bg-rose-950/50 rounded-lg cursor-pointer transition-colors"
+                          title="Remove this takeaway"
+                        >
+                          ✕
+                        </button>
+                      </div>
+                    ))}
 
-                <div className="pt-2 flex items-center gap-2">
-                  <input
-                    type="text"
-                    value={newTakeawayText}
-                    onChange={(e) => setNewTakeawayText(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        e.preventDefault();
-                        handleAddTakeaway();
-                      }
-                    }}
-                    placeholder="Enter new key takeaway message..."
-                    className={`flex-1 p-2.5 rounded-xl border font-medium ${
-                      darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"
-                    }`}
-                  />
-                  <button
-                    type="button"
-                    onClick={handleAddTakeaway}
-                    className="px-4 py-2.5 rounded-xl font-bold bg-indigo-600 hover:bg-indigo-700 text-white cursor-pointer shadow-xs whitespace-nowrap"
-                  >
-                    ➕ Add Takeaway
-                  </button>
+                    {takeaways.length === 0 && (
+                      <p className="text-slate-400 italic text-center py-6">
+                        No key takeaways added yet. Add your first takeaway below.
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="pt-2 flex items-center gap-2">
+                    <input
+                      type="text"
+                      value={newTakeawayText}
+                      onChange={(e) => setNewTakeawayText(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          e.preventDefault();
+                          handleAddTakeaway();
+                        }
+                      }}
+                      placeholder="Enter new key takeaway message..."
+                      className={`flex-1 p-2.5 rounded-xl border font-medium ${
+                        darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"
+                      }`}
+                    />
+                    <button
+                      type="button"
+                      onClick={handleAddTakeaway}
+                      className="px-4 py-2.5 rounded-xl font-bold bg-indigo-600 hover:bg-indigo-700 text-white cursor-pointer shadow-xs whitespace-nowrap"
+                    >
+                      ➕ Add Takeaway
+                    </button>
+                  </div>
                 </div>
               </div>
             )}
 
-            {/* TAB 3: RECOMMENDATIONS MANAGER */}
-            {activeTab === "recommendations" && (
-              isEso ? (
+          {/* TAB 3: RECOMMENDATIONS MANAGER */}
+          {activeTab === "recommendations" && (
+            <div className="flex-1 min-h-0 p-3 sm:p-4 overflow-hidden">
+              {isEso ? (
                 /* ==============================================================
                    ESO PICO MANAGER: 1 PICO with multiple recommendations inside
                    ============================================================== */
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-4 h-full min-h-[500px]">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4 h-full min-h-0">
                   {/* LEFT COLUMN: LIST OF PICOS */}
-                  <div className="md:col-span-4 flex flex-col border rounded-xl overflow-hidden dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/40">
-                    <div className="p-2.5 border-b dark:border-slate-800 flex items-center justify-between gap-2">
+                  <div className="md:col-span-4 flex flex-col h-full min-h-0 border rounded-xl overflow-hidden dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/40">
+                    <div className="p-2.5 border-b dark:border-slate-800 flex items-center justify-between gap-2 flex-shrink-0">
                       <span className="font-extrabold text-[11px] uppercase tracking-wide text-slate-600 dark:text-slate-300">
                         PICO Questions ({esoPicos.length})
                       </span>
@@ -1005,7 +1057,7 @@ export function EditGuidelineModal({
                       </button>
                     </div>
 
-                    <div className="p-2 border-b dark:border-slate-800">
+                    <div className="p-2 border-b dark:border-slate-800 flex-shrink-0">
                       <input
                         type="text"
                         value={searchTerm}
@@ -1017,7 +1069,7 @@ export function EditGuidelineModal({
                       />
                     </div>
 
-                    <div className="flex-1 overflow-y-auto p-1.5 space-y-1.5 max-h-[520px]">
+                    <div className="flex-1 min-h-0 overflow-y-auto p-1.5 space-y-1.5 custom-scrollbar">
                       {filteredEsoPicos.map((pico) => {
                         const realIndex = esoPicos.findIndex((p) => p.picoKey === pico.picoKey);
                         const isSelected = realIndex === selectedPicoIndex;
@@ -1061,11 +1113,11 @@ export function EditGuidelineModal({
                   </div>
 
                   {/* RIGHT COLUMN: PICO DETAILS & MULTIPLE RECOMMENDATIONS */}
-                  <div className="md:col-span-8 flex flex-col border rounded-xl p-4 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-y-auto max-h-[580px]">
+                  <div className="md:col-span-8 flex flex-col h-full min-h-0 border rounded-xl dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden">
                     {currentPico ? (
-                      <div className="space-y-4">
+                      <div className="flex-1 min-h-0 overflow-y-auto p-4 space-y-4 custom-scrollbar">
                         {/* PICO HEADER BAR */}
-                        <div className="flex items-center justify-between gap-2 pb-2 border-b dark:border-slate-800">
+                        <div className="flex items-center justify-between gap-2 pb-2 border-b dark:border-slate-800 flex-shrink-0">
                           <div className="flex items-center gap-2">
                             <span className="px-2 py-0.5 rounded-lg bg-blue-600 text-white font-black text-xs">
                               PICO {currentPico.picoNumber}
@@ -1107,8 +1159,8 @@ export function EditGuidelineModal({
                             <label className="block font-bold mb-1 text-slate-700 dark:text-slate-300">
                               PICO Clinical Question / Population:
                             </label>
-                            <input
-                              type="text"
+                            <AutoResizeTextarea
+                              minRows={2}
                               required
                               value={currentPico.picoQuestion}
                               onChange={(e) => updateCurrentPicoMeta({ picoQuestion: e.target.value })}
@@ -1169,13 +1221,13 @@ export function EditGuidelineModal({
                                   )}
                                 </div>
 
-                                {/* 1. FULL RECOMMENDATION STATEMENT (PLACED FIRST!) */}
+                                {/* 1. FULL RECOMMENDATION STATEMENT */}
                                 <div>
                                   <label className="block font-bold mb-1 text-slate-800 dark:text-slate-200 text-xs">
                                     Full Recommendation Statement:
                                   </label>
-                                  <textarea
-                                    rows={3}
+                                  <AutoResizeTextarea
+                                    minRows={3}
                                     required
                                     value={rec.statement}
                                     onChange={(e) => updateEsoRec(rIdx, { statement: e.target.value })}
@@ -1246,13 +1298,13 @@ export function EditGuidelineModal({
                                   </div>
                                 </div>
 
-                                {/* 3. EXPERT CONSENSUS STATEMENT (PLACED AFTER RECOMMENDATION STATEMENT) */}
+                                {/* 3. EXPERT CONSENSUS STATEMENT */}
                                 <div>
                                   <label className="block font-bold mb-1 text-slate-700 dark:text-slate-300">
                                     Expert Consensus Statement:
                                   </label>
-                                  <textarea
-                                    rows={2}
+                                  <AutoResizeTextarea
+                                    minRows={2}
                                     value={rec.expertConsensusStatement || ""}
                                     onChange={(e) => updateEsoRec(rIdx, { expertConsensusStatement: e.target.value })}
                                     placeholder="Enter clinical consensus statement from the expert panel (if applicable)..."
@@ -1318,10 +1370,10 @@ export function EditGuidelineModal({
                 /* ==============================================================
                    STANDARD / AHA RECOMMENDATIONS MANAGER
                    ============================================================== */
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-4 h-full min-h-[480px]">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4 h-full min-h-0">
                   {/* LEFT COLUMN: LIST OF RECOMMENDATIONS */}
-                  <div className="md:col-span-5 flex flex-col border rounded-xl overflow-hidden dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/40">
-                    <div className="p-2.5 border-b dark:border-slate-800 flex items-center justify-between gap-2">
+                  <div className="md:col-span-5 flex flex-col h-full min-h-0 border rounded-xl overflow-hidden dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/40">
+                    <div className="p-2.5 border-b dark:border-slate-800 flex items-center justify-between gap-2 flex-shrink-0">
                       <span className="font-extrabold text-[11px] uppercase tracking-wide text-slate-600 dark:text-slate-300">
                         Recommendations List ({practiceChanges.length})
                       </span>
@@ -1335,7 +1387,7 @@ export function EditGuidelineModal({
                       </button>
                     </div>
 
-                    <div className="p-2 border-b dark:border-slate-800">
+                    <div className="p-2 border-b dark:border-slate-800 flex-shrink-0">
                       <input
                         type="text"
                         value={searchTerm}
@@ -1347,7 +1399,7 @@ export function EditGuidelineModal({
                       />
                     </div>
 
-                    <div className="flex-1 overflow-y-auto p-1.5 space-y-1.5 max-h-[400px]">
+                    <div className="flex-1 min-h-0 overflow-y-auto p-1.5 space-y-1.5 custom-scrollbar">
                       {filteredStandardRecs.map((rec) => {
                         const realIndex = practiceChanges.findIndex((r) => r.id === rec.id);
                         const isSelected = realIndex === selectedRecIndex;
@@ -1389,10 +1441,10 @@ export function EditGuidelineModal({
                   </div>
 
                   {/* RIGHT COLUMN: RECOMMENDATION DETAILS */}
-                  <div className="md:col-span-7 flex flex-col border rounded-xl p-4 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-y-auto max-h-[500px]">
+                  <div className="md:col-span-7 flex flex-col h-full min-h-0 border rounded-xl dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden">
                     {practiceChanges.length > 0 && selectedRecIndex >= 0 && selectedRecIndex < practiceChanges.length ? (
-                      <div className="space-y-3.5">
-                        <div className="flex items-center justify-between gap-2 pb-2 border-b dark:border-slate-800">
+                      <div className="flex-1 min-h-0 overflow-y-auto p-4 space-y-3.5 custom-scrollbar">
+                        <div className="flex items-center justify-between gap-2 pb-2 border-b dark:border-slate-800 flex-shrink-0">
                           <div className="flex items-center gap-2">
                             <span className="w-5 h-5 rounded-full bg-amber-500 text-white font-black flex items-center justify-center text-[10.5px]">
                               {selectedRecIndex + 1}
@@ -1434,8 +1486,8 @@ export function EditGuidelineModal({
                             <label className="block font-bold mb-1 text-slate-700 dark:text-slate-300">
                               Clinical Question / Population:
                             </label>
-                            <input
-                              type="text"
+                            <AutoResizeTextarea
+                              minRows={1}
                               required
                               value={recTopic}
                               onChange={(e) => setRecTopic(e.target.value)}
@@ -1447,13 +1499,13 @@ export function EditGuidelineModal({
                           </div>
                         </div>
 
-                        {/* 1. FULL RECOMMENDATION STATEMENT (PLACED FIRST!) */}
+                        {/* 1. FULL RECOMMENDATION STATEMENT */}
                         <div>
                           <label className="block font-bold mb-1 text-slate-700 dark:text-slate-300">
                             Full Recommendation Statement:
                           </label>
-                          <textarea
-                            rows={4}
+                          <AutoResizeTextarea
+                            minRows={3}
                             required
                             value={recStatement}
                             onChange={(e) => setRecStatement(e.target.value)}
@@ -1583,8 +1635,8 @@ export function EditGuidelineModal({
                             </div>
                             <div>
                               <label className="block font-bold mb-1">Previous Text:</label>
-                              <input
-                                type="text"
+                              <AutoResizeTextarea
+                                minRows={2}
                                 value={recPrevText}
                                 onChange={(e) => setRecPrevText(e.target.value)}
                                 placeholder="Previous wording of this recommendation..."
@@ -1604,12 +1656,12 @@ export function EditGuidelineModal({
                     )}
                   </div>
                 </div>
-              )
-            )}
-          </div>
+              )}
+            </div>
+          )}
 
           {/* FOOTER ACTION BAR */}
-          <div className="px-5 py-3 border-t dark:border-slate-800 flex items-center justify-between gap-2 bg-slate-50/80 dark:bg-slate-950/60">
+          <div className="px-5 py-3 border-t dark:border-slate-800 flex items-center justify-between gap-2 bg-slate-50/80 dark:bg-slate-950/60 flex-shrink-0">
             <button
               type="button"
               disabled={isLoading}
