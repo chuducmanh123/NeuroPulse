@@ -416,6 +416,14 @@ export function EditGuidelineModal({
         quality: isEso ? esoQuality : undefined,
         strength: isEso ? esoStrength : undefined,
         expertConsensusStatement: isEso ? esoConsensus : undefined,
+        picoNumber: isEso
+          ? practiceChanges[selectedRecIndex]?.picoNumber ||
+            ((recTopic || "").match(/^PICO\s*(\d+)/i)?.[1]) ||
+            `${selectedRecIndex + 1}`
+          : undefined,
+        picoQuestion: isEso
+          ? practiceChanges[selectedRecIndex]?.picoQuestion || recTopic
+          : undefined,
       };
     }
 

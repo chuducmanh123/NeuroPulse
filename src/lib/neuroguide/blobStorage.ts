@@ -179,13 +179,23 @@ export function mergeGuidelines(
     const existing = titleMap.get(normT) || idMap.get(id);
 
     if (existing) {
-      // Deduplicate: choose the one with more practice changes, or keep curated/canonical id if tie
+      // Deduplicate: choose the one with more practice changes, or keep newer / user-synthesized version
       const existingChanges = existing.allPracticeChanges?.length || 0;
       const docChanges = doc.allPracticeChanges?.length || 0;
-      let chosen = docChanges > existingChanges ? doc : existing;
-      if (docChanges === existingChanges) {
-        if (existing.id === "aha-ais-2026") chosen = existing;
-        else if (doc.id === "aha-ais-2026") chosen = doc;
+
+      let chosen = doc;
+      if (doc.synthesizedAt && !existing.synthesizedAt) {
+        chosen = doc;
+      } else if (existing.synthesizedAt && !doc.synthesizedAt) {
+        chosen = existing;
+      } else if (doc.synthesizedAt && existing.synthesizedAt) {
+        chosen = doc.synthesizedAt >= existing.synthesizedAt ? doc : existing;
+      } else if (docChanges !== existingChanges) {
+        chosen = docChanges > existingChanges ? doc : existing;
+      } else if (existing.id === "aha-ais-2026") {
+        chosen = existing;
+      } else if (doc.id === "aha-ais-2026") {
+        chosen = doc;
       }
       titleMap.set(normT, chosen);
       idMap.set(chosen.id.toLowerCase(), chosen);

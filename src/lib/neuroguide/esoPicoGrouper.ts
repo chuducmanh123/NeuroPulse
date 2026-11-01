@@ -185,8 +185,9 @@ export function groupPracticeChangesIntoEsoPicos(changes: PracticeChangeDetail[]
       }
     }
 
-    if ((!targetPico.drivingTrials || targetPico.drivingTrials.length === 0) && item.drivingTrials && item.drivingTrials.length > 0) {
-      targetPico.drivingTrials = item.drivingTrials;
+    if (item.drivingTrials && item.drivingTrials.length > 0) {
+      const mergedTrials = new Set([...(targetPico.drivingTrials || []), ...item.drivingTrials]);
+      targetPico.drivingTrials = Array.from(mergedTrials);
     }
 
     targetPico.recommendations.push({

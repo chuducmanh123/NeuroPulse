@@ -1556,7 +1556,7 @@
         },
         {
           "id": "eso-2025-bp-pico2",
-          "picoNumber: 2,
+          "picoNumber": 2,
           "picoQuestion": "In hospitalised patients with acute ischaemic stroke not treated with reperfusion therapies (intravenous thrombolysis or mechanical thrombectomy), does blood pressure lowering with any vasodepressor drug, compared to no drug, improve outcome?",
           "category": "In-Hospital Non-Reperfused AIS BP",
           "topic": "PICO 2 In hospitalised patients with acute ischaemic stroke not treated with reperfusion therapies (intravenous thrombolysis or mechanical thrombectomy), does blood pressure lowering with any vasodepressor drug, compared to no drug, improve outcome?",

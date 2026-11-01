@@ -81,8 +81,48 @@ function getBlobToken(): { token: string | undefined } {
 }
 
 /**
- * Đọc nội dung tệp tin: Ưu tiên /tmp (phiên hiện tại trên serverless), sau đó kho tĩnh STORE_DIR
+ * Đọc nội dung tệp tin: Ưu tiên /tmp (phiên hiện tại trên serverless), sau đó kho tĩnh STORE_DIR,
+ * và fallback tải trực tiếp từ Vercel Blob nếu đang chạy trên serverless container mới.
  */
+async function getFileContentAsync(fileName: string): Promise<{ content: string; sourcePath: string } | null> {
+  const tmpPath = path.join(TMP_DIR, fileName);
+  if (fs.existsSync(tmpPath)) {
+    try {
+      return { content: fs.readFileSync(tmpPath, "utf-8"), sourcePath: tmpPath };
+    } catch {}
+  }
+
+  const storePath = path.join(STORE_DIR, fileName);
+  if (fs.existsSync(storePath)) {
+    try {
+      return { content: fs.readFileSync(storePath, "utf-8"), sourcePath: storePath };
+    } catch {}
+  }
+
+  // 3. Fallback đọc từ Vercel Blob
+  const { token } = getBlobToken();
+  if (token) {
+    try {
+      const { list } = await import("@vercel/blob");
+      const { blobs } = await list({ prefix: `guidelines_store/${fileName}`, token });
+      const targetBlob = blobs.find((b) => b.pathname === `guidelines_store/${fileName}`);
+      if (targetBlob) {
+        const res = await fetch(targetBlob.url, { cache: "no-store" });
+        if (res.ok) {
+          const text = await res.text();
+          if (!fs.existsSync(TMP_DIR)) fs.mkdirSync(TMP_DIR, { recursive: true });
+          fs.writeFileSync(tmpPath, text, "utf-8");
+          return { content: text, sourcePath: tmpPath };
+        }
+      }
+    } catch (e) {
+      console.warn("Lỗi đọc Vercel Blob trong getFileContentAsync:", e);
+    }
+  }
+
+  return null;
+}
+
 function getFileContent(fileName: string): { content: string; sourcePath: string } | null {
   const tmpPath = path.join(TMP_DIR, fileName);
   if (fs.existsSync(tmpPath)) {
@@ -269,6 +309,20 @@ async function syncGuidelineRecordToActiveLibrary(record: GuidelineRecord) {
     const clinicalCategory = (r.category || (r as any).section || fallbackCategory).trim();
     const clinicalTopic = (r.topic || r.target_population || record.metadata.title).trim();
 
+    let pNum: string | undefined;
+    let pQuestion: string | undefined;
+    if (r.pico_id) {
+      const m = String(r.pico_id).match(/\d+/);
+      pNum = m ? m[0] : String(r.pico_id);
+      pQuestion = r.target_population || r.topic;
+    } else if (r.topic) {
+      const m = String(r.topic).match(/PICO\s*(\d+)[:.\s-]*(.*)/i);
+      if (m) {
+        pNum = m[1];
+        pQuestion = m[2]?.trim();
+      }
+    }
+
     return {
       id: r.rec_id || `rec-${idx + 1}`,
       category: clinicalCategory,
@@ -277,6 +331,12 @@ async function syncGuidelineRecordToActiveLibrary(record: GuidelineRecord) {
       currentText: r.statement,
       currentGrade,
       drivingTrials: r.driving_trials || [],
+      quality: r.quality_of_evidence || undefined,
+      strength: r.strength_of_recommendation || undefined,
+      voting: r.voting || undefined,
+      expertConsensusStatement: (r as any).consensus_statement || (r as any).expertConsensusStatement || undefined,
+      picoNumber: pNum,
+      picoQuestion: pQuestion,
     };
   });
 
@@ -291,10 +351,20 @@ async function syncGuidelineRecordToActiveLibrary(record: GuidelineRecord) {
   const subspecialty = mapSocietyToSubspecialty(record.metadata.society || "AHA", record.metadata.title || "");
   const summaryVi = `Hướng dẫn thực hành lâm sàng chính thức từ ${record.metadata.society || "Hội chuyên khoa"}. Bao gồm ${practiceChanges.length} khuyến cáo đã được bác sĩ chuyên khoa phê duyệt.`;
 
+  if (Array.isArray(activeData.deletedGuidelineIds)) {
+    activeData.deletedGuidelineIds = activeData.deletedGuidelineIds.filter(
+      (d) => d.toLowerCase() !== targetId.toLowerCase() && d.toLowerCase() !== normTitle
+    );
+  }
+
   if (existingIdx >= 0) {
     const existing = activeData.guidelines[existingIdx];
     activeData.guidelines[existingIdx] = {
       ...existing,
+      id: targetId || existing.id,
+      title: record.metadata.title || existing.title,
+      society: record.metadata.society || existing.society,
+      year: record.metadata.year || existing.year,
       allPracticeChanges: practiceChanges,
       executiveSummary: summaryVi,
       executiveSummaryVi: summaryVi,
@@ -332,6 +402,7 @@ async function syncGuidelineRecordToActiveLibrary(record: GuidelineRecord) {
     guidelines: activeData.guidelines,
     conferences: activeData.conferences,
     scenarios: activeData.scenarios,
+    deletedGuidelineIds: activeData.deletedGuidelineIds,
   });
 }
 
@@ -372,7 +443,7 @@ export async function POST(request: NextRequest) {
       const cleanGId = targetGId.replace(/_latest\.json$/i, "");
 
       for (const fileName of Array.from(allFiles)) {
-        const fileInfo = getFileContent(fileName);
+        const fileInfo = await getFileContentAsync(fileName);
         if (!fileInfo) continue;
         try {
           const rec: GuidelineRecord = JSON.parse(fileInfo.content);
@@ -442,7 +513,7 @@ export async function POST(request: NextRequest) {
       let handledAny = false;
 
       for (const fileName of Array.from(allFiles)) {
-        const fileInfo = getFileContent(fileName);
+        const fileInfo = await getFileContentAsync(fileName);
         if (!fileInfo) continue;
         try {
           const rec: GuidelineRecord = JSON.parse(fileInfo.content);
@@ -498,7 +569,7 @@ export async function POST(request: NextRequest) {
       // 1. Cập nhật vào _latest.json nếu tồn tại (cho cả pending và approved)
       const cleanDocId = doc_id.replace(/_latest\.json$/i, "");
       const latestFileName = `${cleanDocId}_latest.json`;
-      const fileInfo = getFileContent(latestFileName);
+      const fileInfo = await getFileContentAsync(latestFileName);
       if (fileInfo) {
         try {
           const rec: GuidelineRecord = JSON.parse(fileInfo.content);
@@ -643,7 +714,7 @@ export async function POST(request: NextRequest) {
 
       // 2. Tìm hoặc tạo file _latest.json trong kho lưu trữ guidelines_store
       let targetFileName = `${cleanDocId}_latest.json`;
-      let fileInfo = getFileContent(targetFileName);
+      let fileInfo = await getFileContentAsync(targetFileName);
 
       // Thử tìm theo tiêu đề hoặc file tương đương nếu chưa tìm thấy bằng targetDocId
       if (!fileInfo) {
@@ -711,13 +782,27 @@ export async function POST(request: NextRequest) {
               const m = chg.currentGrade.match(/Level\s*([A-Za-z\-]+)/i);
               if (m) loe = m[1];
             }
+
+            const existingRec = rec.recommendations.find((r) => r.rec_id === chg.id);
+            const status = existingRec ? existingRec.approval_status : "PENDING_REVIEW";
+
+            let pNum: string | undefined = (chg as any).picoNumber ? String((chg as any).picoNumber) : undefined;
+            let pQuestion: string | undefined = (chg as any).picoQuestion || undefined;
+            if (!pNum && chg.topic) {
+              const m = String(chg.topic).match(/PICO\s*(\d+)[:.\s-]*(.*)/i);
+              if (m) {
+                pNum = m[1];
+                if (!pQuestion) pQuestion = m[2]?.trim();
+              }
+            }
+
             return {
               rec_id: chg.id || `rec-${idx + 1}`,
               guideline_id: rec.guideline_id || cleanDocId,
               grading_system: (newSociety || rec.metadata.society || "").includes("ESO") ? "GRADE" : "ACC/AHA",
-              page_num: 1,
+              page_num: existingRec?.page_num || 1,
               statement: chg.currentText,
-              approval_status: "APPROVED",
+              approval_status: status,
               category: chg.category || "Recommendations",
               topic: chg.topic || "Clinical Management",
               cor: cor || undefined,
@@ -725,20 +810,33 @@ export async function POST(request: NextRequest) {
               strength_of_recommendation: (chg as any).strength || undefined,
               quality_of_evidence: (chg as any).quality || undefined,
               voting: (chg as any).voting || undefined,
+              pico_id: pNum ? `PICO ${pNum}` : (existingRec?.pico_id || undefined),
+              target_population: pQuestion || existingRec?.target_population || undefined,
               driving_trials: chg.drivingTrials || [],
               change_type: chg.changeType,
               previous_grade: chg.previousGrade,
               verbatim_quote: chg.previousText,
+              consensus_statement: (chg as any).expertConsensusStatement || undefined,
             };
           });
           rec.total_recommendations = rec.recommendations.length;
-          rec.approved_count = rec.recommendations.length;
-          rec.pending_count = 0;
-          rec.rejected_count = 0;
+          rec.approved_count = rec.recommendations.filter(
+            (r) => r.approval_status === "APPROVED" || r.approval_status === "MODIFIED"
+          ).length;
+          rec.pending_count = rec.recommendations.filter(
+            (r) => r.approval_status === "PENDING_REVIEW"
+          ).length;
+          rec.rejected_count = rec.recommendations.filter(
+            (r) => r.approval_status === "REJECTED"
+          ).length;
         }
 
         rec.updated_at = new Date().toISOString();
         await saveFileSafe(targetFileName, JSON.stringify(rec, null, 2));
+
+        if (rec.approved_count > 0) {
+          await syncGuidelineRecordToActiveLibrary(rec);
+        }
 
         // Cập nhật catalog.json
         const catalogInfo = getFileContent("catalog.json");
@@ -781,7 +879,7 @@ export async function POST(request: NextRequest) {
     }
 
     const latestFileName = `${file_id}_latest.json`;
-    const fileInfo = getFileContent(latestFileName);
+    const fileInfo = await getFileContentAsync(latestFileName);
     if (!fileInfo) {
       return NextResponse.json(
         { ok: false, error: `Không tìm thấy tài liệu guideline với ID: ${file_id}` },

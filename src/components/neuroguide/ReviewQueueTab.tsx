@@ -229,20 +229,13 @@ const CANONICAL_ESO_2025_BP_PICOS: EsoPicoItem[] = [
  * Transforms stored recommendations into structured ESO PICO questions matching Hình 1 Synoptic Table 11
  */
 function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: string): EsoPicoItem[] {
-  // Fast path: If this is the 2025 ESO Blood Pressure guideline, return the complete, canonical 8 PICO items
-  const normTitle = (guidelineTitle || "").toLowerCase();
-  const isEsoBp =
-    (normTitle.includes("eso") || recs.some((r) => (r.society || "").toUpperCase().includes("ESO"))) &&
-    (normTitle.includes("blood pressure") ||
-      recs.some(
-        (r) =>
-          (r.statement || "").toLowerCase().includes("routine bp lowering") ||
-          (r.statement || "").toLowerCase().includes("routine blood pressure lowering") ||
-          (r.topic || "").toLowerCase().includes("pre-hospital blood pressure")
-      ));
-
-  if (isEsoBp) {
-    return CANONICAL_ESO_2025_BP_PICOS;
+  // If no recommendations are stored, use canonical fallback for 2025 ESO Blood Pressure
+  if (!recs || recs.length === 0) {
+    const normTitle = (guidelineTitle || "").toLowerCase();
+    if (normTitle.includes("blood pressure")) {
+      return CANONICAL_ESO_2025_BP_PICOS;
+    }
+    return [];
   }
 
   const picoMap = new Map<string, EsoPicoItem>();
@@ -259,7 +252,7 @@ function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: str
     if (rawPicoId) {
       const matchPico = rawPicoId.match(/(?:PICO\s*)?(\d+)/i);
       pNum = matchPico ? matchPico[1] : rawPicoId;
-      pQuestion = rawTopic || rawCat;
+      pQuestion = (r.target_population || rawTopic || rawCat).trim();
     } else {
       const matchTopic = rawTopic.match(/^PICO\s*(\d+)[:.\s-]*(.*)/i);
       const matchCat = rawCat.match(/^PICO\s*(\d+)[:.\s-]*(.*)/i);
@@ -338,6 +331,8 @@ function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: str
         ? rawConsensus.trim()
         : undefined;
 
+    const trials = Array.isArray(r.driving_trials) ? r.driving_trials : [];
+
     if (!picoMap.has(picoKey)) {
       picoMap.set(picoKey, {
         picoNumber: pNum,
@@ -345,7 +340,7 @@ function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: str
         recommendations: [],
         expertConsensusStatement: consensus,
         voting: r.voting || (consensus ? "Vote: 10/10" : undefined),
-        drivingTrials: r.driving_trials || [],
+        drivingTrials: [...trials],
       });
     }
 
@@ -356,8 +351,9 @@ function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: str
       if (!entry.voting) entry.voting = r.voting || "Vote: 10/10";
     }
 
-    if ((!entry.drivingTrials || entry.drivingTrials.length === 0) && r.driving_trials && r.driving_trials.length > 0) {
-      entry.drivingTrials = r.driving_trials;
+    if (trials.length > 0) {
+      const mergedTrials = new Set([...(entry.drivingTrials || []), ...trials]);
+      entry.drivingTrials = Array.from(mergedTrials);
     }
 
     entry.recommendations.push({
@@ -365,7 +361,7 @@ function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: str
       statement: r.statement,
       qualityOfEvidence: q,
       strengthOfRecommendation: s,
-      drivingTrials: r.driving_trials || [],
+      drivingTrials: trials,
     });
   });
 
@@ -632,6 +628,16 @@ export function ReviewQueueTab({
       const data = await res.json();
       if (data.ok) {
         markRecsAsReviewedLocally(group.recommendations.map((r) => r.rec_id));
+        // Xóa ID và Title khỏi danh sách deleted_ids để đảm bảo hiển thị tức thì trên Practice Guidelines
+        try {
+          const localDel: string[] = JSON.parse(localStorage.getItem("neuroguide_deleted_ids") || "[]");
+          const targetIds = new Set([group.guideline_id.toLowerCase()]);
+          group.recommendations.forEach((r) => targetIds.add(r.guideline_id.toLowerCase()));
+          const normTitle = group.guideline_title.toLowerCase().replace(/[^a-z0-9]/g, "");
+          const filteredDel = localDel.filter((x) => !targetIds.has(x.toLowerCase()) && x.toLowerCase() !== normTitle);
+          localStorage.setItem("neuroguide_deleted_ids", JSON.stringify(filteredDel));
+          localStorage.removeItem("neuroguide_cached_guidelines");
+        } catch {}
         setFeedbackMessage({
           type: "success",
           text: `✅ Đã phê duyệt và xuất bản Guideline "${group.guideline_title}" (${group.recommendations.length} khuyến cáo) vào Clinical Practice Guidelines!`,
@@ -708,6 +714,15 @@ export function ReviewQueueTab({
       const data = await res.json();
       if (data.ok) {
         markRecsAsReviewedLocally(queue.map((r) => r.rec_id));
+        // Xóa tất cả các guideline được duyệt khỏi neuroguide_deleted_ids và làm mới cache
+        try {
+          const localDel: string[] = JSON.parse(localStorage.getItem("neuroguide_deleted_ids") || "[]");
+          const targetIds = new Set(queue.map((r) => r.guideline_id.toLowerCase()));
+          const normTitles = new Set(queue.map((r) => (r.guideline_title || "").toLowerCase().replace(/[^a-z0-9]/g, "")));
+          const filteredDel = localDel.filter((x) => !targetIds.has(x.toLowerCase()) && !normTitles.has(x.toLowerCase()));
+          localStorage.setItem("neuroguide_deleted_ids", JSON.stringify(filteredDel));
+          localStorage.removeItem("neuroguide_cached_guidelines");
+        } catch {}
         setFeedbackMessage({
           type: "success",
           text: `✅ ${data.message || `Đã phê duyệt toàn bộ ${queue.length} khuyến cáo vào kho hướng dẫn chính thức!`}`,
@@ -757,27 +772,77 @@ export function ReviewQueueTab({
   };
 
   const handleOpenEditGuideline = (group: PendingGuidelineGroup) => {
+    const isDocEso =
+      (group.society || "").toUpperCase().includes("ESO") ||
+      (group.guideline_title || "").toUpperCase().includes("ESO") ||
+      (group.guideline_title || "").toLowerCase().includes("blood pressure management in acute") ||
+      (group.guideline_title || "").toLowerCase().includes("european stroke") ||
+      (group.guideline_id || "").toLowerCase().includes("eso");
+
+    const allItems: PracticeChangeDetail[] = group.recommendations.map((r, idx) => {
+      let currentGrade = "Standard Clinical Practice";
+      if (isDocEso) {
+        const q = r.quality_of_evidence || "Moderate";
+        const s = r.strength_of_recommendation || "Weak against intervention";
+        currentGrade = `GRADE ${s} (Evidence: ${q}${r.voting ? `, Voting: ${r.voting}` : ""})`;
+      } else if (r.cor) {
+        currentGrade = `Class ${r.cor}${r.loe ? `, Level ${r.loe}` : ""}`;
+      } else if (r.quality_of_evidence || r.strength_of_recommendation) {
+        currentGrade = `GRADE ${r.strength_of_recommendation || "Recommended"} (Evidence: ${r.quality_of_evidence || "Moderate"})`;
+      }
+
+      let pNum: string | undefined;
+      let pQuestion: string | undefined;
+      if (r.pico_id) {
+        const m = String(r.pico_id).match(/\d+/);
+        pNum = m ? m[0] : String(r.pico_id);
+        pQuestion = r.target_population || r.topic;
+      } else if (r.topic) {
+        const m = String(r.topic).match(/PICO\s*(\d+)[:.\s-]*(.*)/i);
+        if (m) {
+          pNum = m[1];
+          pQuestion = m[2]?.trim();
+        }
+      }
+
+      return {
+        id: r.rec_id || `rec-${idx + 1}`,
+        topic: r.topic || r.target_population || (isDocEso ? `PICO ${pNum || idx + 1}: Clinical Question` : `Khuyến cáo #${idx + 1}`),
+        currentGrade,
+        currentText: r.statement,
+        category: r.category || (isDocEso ? "Blood Pressure" : "General Recommendations"),
+        drivingTrials: r.driving_trials || [],
+        changeType: "NEW",
+        quality: isDocEso ? (r.quality_of_evidence || "Moderate") : undefined,
+        strength: isDocEso ? (r.strength_of_recommendation || "Weak against intervention") : undefined,
+        expertConsensusStatement: (r as any).consensus_statement || (r as any).expertConsensusStatement || undefined,
+        voting: isDocEso ? (r.voting || "Vote: 10/10") : undefined,
+        picoNumber: pNum || `${idx + 1}`,
+        picoQuestion: pQuestion || r.topic,
+      };
+    });
+
     const docMeta: GuidelineDoc = {
       id: group.guideline_id,
-      society: group.society,
+      society: isDocEso ? "ESO" : (group.society || "General"),
       year: group.year || new Date().getFullYear(),
       title: group.guideline_title,
       officialUrl: "",
-      journalTarget: group.society.includes("AHA") ? "Stroke" : "Neurology",
+      journalTarget: isDocEso ? "European Stroke Journal" : (group.society.includes("AHA") ? "Stroke" : "Neurology"),
       documentType: "Clinical Practice Guideline",
       publishDate: `${group.year || new Date().getFullYear()}-01-01`,
       subspecialty: "Stroke",
       subspecialties: ["Stroke"],
       executiveSummary: "",
       executiveSummaryVi: "",
-      allPracticeChanges: [],
+      allPracticeChanges: allItems,
       linkedScenarioIds: [],
       fullTextStatus: "FULL_TEXT_PARSED",
       aiSynthesized: true,
     };
 
     setEditingDocId(group.guideline_id);
-    setEditingPracticeChange(null);
+    setEditingPracticeChange(allItems[0] || null);
     setEditingGuidelineDoc(docMeta);
     setShowEditModal(true);
   };
@@ -795,30 +860,50 @@ export function ReviewQueueTab({
       Boolean(rec.quality_of_evidence) ||
       Boolean(rec.strength_of_recommendation);
 
-    let currentGrade = "Standard Clinical Practice";
-    if (isDocEso) {
-      const q = rec.quality_of_evidence || "Moderate";
-      const s = rec.strength_of_recommendation || "Weak against intervention";
-      currentGrade = `GRADE ${s} (Evidence: ${q}${rec.voting ? `, Voting: ${rec.voting}` : ""})`;
-    } else if (rec.cor) {
-      currentGrade = `Class ${rec.cor}${rec.loe ? `, Level ${rec.loe}` : ""}`;
-    } else if (rec.quality_of_evidence || rec.strength_of_recommendation) {
-      currentGrade = `GRADE ${rec.strength_of_recommendation || "Recommended"} (Evidence: ${rec.quality_of_evidence || "Moderate"})`;
-    }
+    const allItems: PracticeChangeDetail[] = (parentGroup?.recommendations || [rec]).map((r, idx) => {
+      let currentGrade = "Standard Clinical Practice";
+      if (isDocEso) {
+        const q = r.quality_of_evidence || "Moderate";
+        const s = r.strength_of_recommendation || "Weak against intervention";
+        currentGrade = `GRADE ${s} (Evidence: ${q}${r.voting ? `, Voting: ${r.voting}` : ""})`;
+      } else if (r.cor) {
+        currentGrade = `Class ${r.cor}${r.loe ? `, Level ${r.loe}` : ""}`;
+      } else if (r.quality_of_evidence || r.strength_of_recommendation) {
+        currentGrade = `GRADE ${r.strength_of_recommendation || "Recommended"} (Evidence: ${r.quality_of_evidence || "Moderate"})`;
+      }
 
-    const itemDetail: PracticeChangeDetail = {
-      id: rec.rec_id,
-      topic: rec.topic || rec.target_population || (isDocEso ? "PICO 1: Clinical Question" : "Clinical Recommendation"),
-      currentGrade,
-      currentText: rec.statement,
-      category: rec.category || (isDocEso ? "Blood Pressure" : "General Recommendations"),
-      drivingTrials: rec.driving_trials || [],
-      changeType: "NEW",
-      quality: isDocEso ? (rec.quality_of_evidence || "Moderate") : undefined,
-      strength: isDocEso ? (rec.strength_of_recommendation || "Weak against intervention") : undefined,
-      expertConsensusStatement: isDocEso ? "" : undefined,
-      voting: isDocEso ? (rec.voting || "Vote: 10/10") : undefined,
-    };
+      let pNum: string | undefined;
+      let pQuestion: string | undefined;
+      if (r.pico_id) {
+        const m = String(r.pico_id).match(/\d+/);
+        pNum = m ? m[0] : String(r.pico_id);
+        pQuestion = r.target_population || r.topic;
+      } else if (r.topic) {
+        const m = String(r.topic).match(/PICO\s*(\d+)[:.\s-]*(.*)/i);
+        if (m) {
+          pNum = m[1];
+          pQuestion = m[2]?.trim();
+        }
+      }
+
+      return {
+        id: r.rec_id || `rec-${idx + 1}`,
+        topic: r.topic || r.target_population || (isDocEso ? `PICO ${pNum || idx + 1}: Clinical Question` : `Khuyến cáo #${idx + 1}`),
+        currentGrade,
+        currentText: r.statement,
+        category: r.category || (isDocEso ? "Blood Pressure" : "General Recommendations"),
+        drivingTrials: r.driving_trials || [],
+        changeType: "NEW",
+        quality: isDocEso ? (r.quality_of_evidence || "Moderate") : undefined,
+        strength: isDocEso ? (r.strength_of_recommendation || "Weak against intervention") : undefined,
+        expertConsensusStatement: (r as any).consensus_statement || (r as any).expertConsensusStatement || undefined,
+        voting: isDocEso ? (r.voting || "Vote: 10/10") : undefined,
+        picoNumber: pNum || `${idx + 1}`,
+        picoQuestion: pQuestion || r.topic,
+      };
+    });
+
+    const activeItem = allItems.find((it) => it.id === rec.rec_id) || allItems[0];
 
     const docMeta: GuidelineDoc = {
       id: parentGroup?.guideline_id || rec.guideline_id,
@@ -839,15 +924,15 @@ export function ReviewQueueTab({
       executiveSummary: "",
       executiveSummaryVi: "",
       topTakeaways: [],
-      allPracticeChanges: [itemDetail],
+      allPracticeChanges: allItems,
       linkedScenarioIds: [],
       fullTextStatus: "FULL_TEXT_PARSED",
       aiSynthesized: true,
     };
 
-    setEditingDocId(rec.guideline_id);
+    setEditingDocId(parentGroup?.guideline_id || rec.guideline_id);
     setEditingGuidelineDoc(docMeta);
-    setEditingPracticeChange(itemDetail);
+    setEditingPracticeChange(activeItem);
     setShowEditModal(true);
   };
 
@@ -1408,9 +1493,12 @@ export function ReviewQueueTab({
                           darkMode={darkMode}
                           allowEdit={true}
                           onEditPico={(pico) => {
+                            const pNumStr = String(pico.picoNumber).trim();
                             const matchRec = group.recommendations.find(
                               (r) =>
-                                r.topic?.toLowerCase().includes(`pico ${pico.picoNumber}`) ||
+                                (r.pico_id && (r.pico_id.toLowerCase().includes(pNumStr.toLowerCase()) || r.pico_id === pNumStr)) ||
+                                r.topic?.toLowerCase().includes(`pico ${pNumStr}`) ||
+                                r.category?.toLowerCase().includes(`pico ${pNumStr}`) ||
                                 r.statement === pico.recommendations[0]?.statement
                             );
                             if (matchRec) {

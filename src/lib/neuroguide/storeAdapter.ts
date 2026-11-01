@@ -245,15 +245,35 @@ export function getStoredGuidelinesAsDocs(): GuidelineDoc[] {
           ? ((r.change_type && r.change_type !== "STANDARD" ? r.change_type : (r.previous_grade ? "UPGRADED" : "NEW")) as PracticeChangeDetail["changeType"])
           : "STANDARD";
 
+        let pNum: string | undefined;
+        let pQuestion: string | undefined;
+        if (r.pico_id) {
+          const m = String(r.pico_id).match(/\d+/);
+          pNum = m ? m[0] : String(r.pico_id);
+          pQuestion = r.target_population || r.topic;
+        } else if (r.topic) {
+          const m = String(r.topic).match(/PICO\s*(\d+)[:.\s-]*(.*)/i);
+          if (m) {
+            pNum = m[1];
+            pQuestion = m[2]?.trim();
+          }
+        }
+
         return {
           id: r.rec_id || `rec-${idx + 1}`,
-          category: r.topic || "Clinical Management",
-          topic: r.pico_id ? `${r.pico_id}: ${r.section || ""}` : r.section || "Recommendation",
+          category: r.category || r.topic || "Clinical Management",
+          topic: r.topic || (r.pico_id ? `${r.pico_id}: ${r.section || ""}` : r.section || "Recommendation"),
           changeType,
           previousGrade: r.previous_grade || undefined,
           currentText: r.statement,
           currentGrade,
           drivingTrials: r.driving_trials || [],
+          quality: r.quality_of_evidence || undefined,
+          strength: r.strength_of_recommendation || undefined,
+          voting: r.voting || undefined,
+          expertConsensusStatement: r.consensus_statement || r.expertConsensusStatement || undefined,
+          picoNumber: pNum,
+          picoQuestion: pQuestion,
         };
       });
 
@@ -291,6 +311,8 @@ export function getStoredGuidelinesAsDocs(): GuidelineDoc[] {
         doi: metadata.doi || undefined,
         pmcid: metadata.pmcid || undefined,
         fullTextStatus: "FULL_TEXT_PARSED",
+        aiSynthesized: true,
+        synthesizedAt: record.updated_at || new Date().toISOString(),
       });
     } catch (e) {
       console.warn("Lỗi đọc guideline store file:", file, e);

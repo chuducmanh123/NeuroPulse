@@ -302,6 +302,21 @@ export default function AdminCommandCenter() {
     });
   }, [guidelineDocs, repoSearchQuery, repoSocietyFilter]);
 
+  const fetchGuidelinesList = async () => {
+    try {
+      const res = await fetch("/api/neuroguide/sync-guidelines");
+      if (res.ok) {
+        const data = await res.json();
+        if (data && data.status === "success" && Array.isArray(data.guidelines)) {
+          setGuidelineDocs(data.guidelines);
+          try {
+            localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(data.guidelines));
+          } catch {}
+        }
+      }
+    } catch {}
+  };
+
   useEffect(() => {
     try {
       const cached = localStorage.getItem("neuroguide_cached_guidelines");
@@ -316,6 +331,7 @@ export default function AdminCommandCenter() {
         setLastSyncedTime(new Date(parseInt(lastSync, 10)).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" }));
       }
     } catch {}
+    fetchGuidelinesList();
   }, []);
 
   const triggerRadarSync = async () => {
@@ -769,6 +785,7 @@ export default function AdminCommandCenter() {
                 darkMode={darkMode}
                 onQueueUpdated={() => {
                   fetchReviewQueueCount();
+                  fetchGuidelinesList();
                 }}
                 onQueueCountChange={(count) => setReviewQueueCount(count)}
                 onOpenPipelineModal={() => setShowPipelineModal(true)}
