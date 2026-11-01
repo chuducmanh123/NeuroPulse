@@ -1481,7 +1481,7 @@ export function ReviewQueueTab({
                               (r.statement || "").toLowerCase().includes("blood pressure") ||
                               (r.statement || "").toLowerCase().includes("routine bp lowering")
                           ))
-                          ? "8 PICO (12 khuyến cáo lâm sàng & 11 đồng thuận chuyên gia chuẩn ESO Table 11)"
+                          ? "8 PICO (12 khuyến cáo lâm sàng & 11 đồng thuận chuyên gia chuẩn ESO GRADE)"
                           : `${group.recommendations.length} khuyến cáo được phân loại vào ${group.categories.length} chuyên mục lâm sàng`}
                       </span>
                     </span>

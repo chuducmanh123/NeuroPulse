@@ -90,7 +90,7 @@ export function GuidelinePresentationRenderer({
   }, [doc.allPracticeChanges]);
 
   // ==========================================
-  // 2. PREPARE ESO PICO ITEMS (Hình 1 Synoptic Table 11 structure)
+  // 2. PREPARE ESO PICO ITEMS (Synoptic Table structure)
   // ==========================================
   const esoPicoItems: EsoPicoItem[] = React.useMemo(() => {
     return groupPracticeChangesIntoEsoPicos(doc.allPracticeChanges || []);

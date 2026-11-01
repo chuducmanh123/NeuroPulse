@@ -70,7 +70,7 @@ export function renderGradeQuality(quality: string) {
 }
 
 /**
- * Returns styled Strength of Recommendation according to ESO/GRADE standard (Table 11):
+ * Returns styled Strength of Recommendation according to ESO/GRADE standard:
  * - Strong against intervention ↓↓ (Red: #d32f2f)
  * - Weak against intervention ↓ (Orange: #ea580c)
  * - Weak for intervention ↑ (Green: #16a34a)
@@ -145,7 +145,7 @@ export function EsoGuidelineTable({
         <div className="bg-[#1e40af] text-white px-5 py-3 flex flex-wrap items-center justify-between gap-3">
           <div>
             <div className="text-[11px] font-bold text-blue-200 uppercase tracking-wider">
-              Table 11 Synoptic table of all recommendations and expert consensus statements
+              Synoptic table of all recommendations and expert consensus statements
             </div>
             <h2 className="text-sm sm:text-base font-extrabold tracking-wide">
               {title}

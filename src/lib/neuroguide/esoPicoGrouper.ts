@@ -2,11 +2,11 @@ import type { PracticeChangeDetail } from "@/types/neuroguide";
 import type { EsoPicoItem, EsoEvidenceQuality, EsoRecommendationStrength } from "@/components/neuroguide/EsoGuidelineTable";
 
 /**
- * Official ESO 2025 Guideline Quality of Evidence definitions and exact colors from PDF (Pages 46-47):
- * - High: #0070c0 (Vibrant Azure / Deep Blue)
- * - Moderate: #5481c4 (Medium Slate Blue)
- * - Low: #2b7bb9 (Soft Blue; PDF #a2c1e6 enhanced for white background readability)
- * - Very low: #8e72a8 (Lavender / Muted Violet; PDF #b2a1c7 enhanced for white background readability)
+ * Official ESO Guideline Quality of Evidence definitions and high-contrast color scheme:
+ * - High: #059669 (Emerald Green - High certainty)
+ * - Moderate: #0284c7 (Sky Blue - Moderate certainty)
+ * - Low: #d97706 (Warm Amber - Low certainty)
+ * - Very low: #7c3aed (Deep Violet / Purple - Very low certainty)
  */
 export const ESO_GRADE_QUALITY_CONFIG: Record<
   string,
@@ -15,39 +15,39 @@ export const ESO_GRADE_QUALITY_CONFIG: Record<
   High: {
     label: "High",
     symbols: "⊕⊕⊕⊕",
-    hex: "#0070c0",
-    darkHex: "#38bdf8",
-    bgLight: "rgba(0, 112, 192, 0.08)",
-    borderLight: "rgba(0, 112, 192, 0.25)",
+    hex: "#059669",
+    darkHex: "#34d399",
+    bgLight: "rgba(5, 150, 105, 0.08)",
+    borderLight: "rgba(5, 150, 105, 0.25)",
   },
   Moderate: {
     label: "Moderate",
     symbols: "⊕⊕⊕",
-    hex: "#5481c4",
-    darkHex: "#818cf8",
-    bgLight: "rgba(84, 129, 196, 0.08)",
-    borderLight: "rgba(84, 129, 196, 0.25)",
+    hex: "#0284c7",
+    darkHex: "#38bdf8",
+    bgLight: "rgba(2, 132, 199, 0.08)",
+    borderLight: "rgba(2, 132, 199, 0.25)",
   },
   Low: {
     label: "Low",
     symbols: "⊕⊕",
-    hex: "#2b7bb9",
-    darkHex: "#93c5fd",
-    bgLight: "rgba(43, 123, 185, 0.08)",
-    borderLight: "rgba(43, 123, 185, 0.25)",
+    hex: "#d97706",
+    darkHex: "#fbbf24",
+    bgLight: "rgba(217, 119, 6, 0.08)",
+    borderLight: "rgba(217, 119, 6, 0.25)",
   },
   "Very low": {
     label: "Very low",
     symbols: "⊕",
-    hex: "#8e72a8",
-    darkHex: "#d8b4fe",
-    bgLight: "rgba(142, 114, 168, 0.08)",
-    borderLight: "rgba(142, 114, 168, 0.25)",
+    hex: "#7c3aed",
+    darkHex: "#c084fc",
+    bgLight: "rgba(124, 58, 237, 0.08)",
+    borderLight: "rgba(124, 58, 237, 0.25)",
   },
 };
 
 /**
- * Canonical 2025 ESO Blood Pressure Guidelines (Table 11 Synoptic Standard)
+ * Canonical 2025 ESO Blood Pressure Guidelines (Synoptic Standard)
  * Full 8 PICOs with complete recommendations, official GRADE ratings, Expert Consensus Statements and voting ratios.
  */
 export const CANONICAL_ESO_2025_BP_PICOS: EsoPicoItem[] = [
@@ -208,7 +208,7 @@ export const CANONICAL_ESO_2025_BP_PICOS: EsoPicoItem[] = [
 ];
 
 /**
- * Canonical normalizer for ESO recommendation strengths according to GRADE standard (Table 11):
+ * Canonical normalizer for ESO recommendation strengths according to GRADE standard:
  * - "Strong against intervention" (↓↓ - Red: #d32f2f)
  * - "Weak against intervention" (↓ - Orange: #ea580c)
  * - "Strong for intervention" (↑↑ - Dark Green: #15803d)
@@ -381,7 +381,7 @@ export function parseEsoGrade(gradeStr?: string, statement?: string): {
 }
 
 /**
- * Intelligent PICO Grouper for ESO Clinical Practice Guidelines (Matching Hình 1 Synoptic Table 11)
+ * Intelligent PICO Grouper for ESO Clinical Practice Guidelines (Matching Synoptic Table structure)
  * Groups multiple recommendations that belong to the same PICO question,
  * attaches expert consensus statements and voting ratios, and retains pivotal driving trials.
  */
