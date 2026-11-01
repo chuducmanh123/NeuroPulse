@@ -19,15 +19,18 @@ interface EditGuidelineModalProps {
 interface AutoResizeTextareaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   minRows?: number;
+  maxRows?: number;
   value: string;
 }
 
 /**
  * Textarea tự động mở rộng theo nội dung (Auto-resize textarea).
- * Loại bỏ thanh cuộn bên trong ô nhập (no inner scrollbars) và không có nút kéo co giãn làm rối UI.
+ * Sử dụng kỹ thuật chuẩn: tạm reset height về '0px' trước khi đọc scrollHeight
+ * để tránh lỗi CSS Grid / Flexbox stretch làm ô bị kéo dài vô hạn xuống đáy màn hình.
  */
 function AutoResizeTextarea({
   minRows = 2,
+  maxRows = 16,
   value,
   onChange,
   className = "",
@@ -39,9 +42,16 @@ function AutoResizeTextarea({
   const adjustHeight = React.useCallback(() => {
     const el = textareaRef.current;
     if (!el) return;
-    el.style.height = "auto";
-    el.style.height = `${el.scrollHeight}px`;
-  }, []);
+    // Reset về 0px để scrollHeight chỉ đo đúng chiều cao của văn bản thực tế
+    el.style.height = "0px";
+    const lineH = 20;
+    const paddingH = 16;
+    const minH = minRows * lineH + paddingH;
+    const maxH = maxRows * lineH + paddingH;
+    const targetH = Math.min(Math.max(el.scrollHeight, minH), maxH);
+    el.style.height = `${targetH}px`;
+    el.style.overflowY = el.scrollHeight > maxH ? "auto" : "hidden";
+  }, [minRows, maxRows]);
 
   React.useLayoutEffect(() => {
     adjustHeight();
@@ -57,8 +67,7 @@ function AutoResizeTextarea({
         adjustHeight();
       }}
       placeholder={placeholder}
-      className={`resize-none overflow-hidden block ${className}`}
-      style={{ fieldSizing: "content" } as React.CSSProperties}
+      className={`resize-none block custom-scrollbar ${className}`}
       {...props}
     />
   );
@@ -1486,8 +1495,8 @@ export function EditGuidelineModal({
                             <label className="block font-bold mb-1 text-slate-700 dark:text-slate-300">
                               Clinical Question / Population:
                             </label>
-                            <AutoResizeTextarea
-                              minRows={1}
+                            <input
+                              type="text"
                               required
                               value={recTopic}
                               onChange={(e) => setRecTopic(e.target.value)}
