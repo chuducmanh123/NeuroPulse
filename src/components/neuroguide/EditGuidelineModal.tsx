@@ -79,7 +79,7 @@ export interface EsoRecDraft {
   id: string;
   statement: string; // Full Recommendation Statement
   strength: string; // Strength of Recommendation
-  quality: string; // Quality of Evidence (High, Moderate, Low, Very low)
+  quality: string; // Quality of Evidence (High, Moderate, Low, Very low, Uncertain / Ongoing trial)
   expertConsensusStatement?: string;
   voting?: string;
   drivingTrials?: string[];
@@ -121,10 +121,24 @@ function parseAhaLoe(gradeStr?: string): string {
 function parseEsoQuality(gradeStr?: string): string {
   if (!gradeStr) return "Moderate";
   const lower = gradeStr.toLowerCase();
+  if (lower.includes("uncertain") || lower.includes("ongoing") || lower === "-" || lower === "—") return "Uncertain / Ongoing trial";
   if (lower.includes("very low")) return "Very low";
   if (lower.includes("low")) return "Low";
   if (lower.includes("high")) return "High";
   return "Moderate";
+}
+
+function getEsoQualityConfig(quality?: string) {
+  if (!quality) return ESO_GRADE_QUALITY_CONFIG["Moderate"];
+  if (ESO_GRADE_QUALITY_CONFIG[quality]) return ESO_GRADE_QUALITY_CONFIG[quality];
+  const lower = quality.toLowerCase().trim();
+  if (lower.includes("uncertain") || lower.includes("ongoing") || lower === "-" || lower === "—") {
+    return ESO_GRADE_QUALITY_CONFIG["Uncertain / Ongoing trial"];
+  }
+  if (lower.includes("very low")) return ESO_GRADE_QUALITY_CONFIG["Very low"];
+  if (lower.includes("low")) return ESO_GRADE_QUALITY_CONFIG["Low"];
+  if (lower.includes("high")) return ESO_GRADE_QUALITY_CONFIG["High"];
+  return ESO_GRADE_QUALITY_CONFIG["Moderate"];
 }
 
 /**
@@ -1200,7 +1214,7 @@ export function EditGuidelineModal({
                         {/* REPEATABLE RECOMMENDATIONS LIST */}
                         <div className="space-y-4">
                           {currentPico.recommendations.map((rec, rIdx) => {
-                            const qualityConfig = ESO_GRADE_QUALITY_CONFIG[rec.quality] || ESO_GRADE_QUALITY_CONFIG["Moderate"];
+                            const qualityConfig = getEsoQualityConfig(rec.quality);
 
                             return (
                               <div
@@ -1273,7 +1287,14 @@ export function EditGuidelineModal({
                                       Quality of Evidence (GRADE):
                                     </label>
                                     <select
-                                      value={rec.quality}
+                                      value={
+                                        (rec.quality || "").toLowerCase().includes("uncertain") ||
+                                        (rec.quality || "").toLowerCase().includes("ongoing") ||
+                                        rec.quality === "-" ||
+                                        rec.quality === "—"
+                                          ? "Uncertain / Ongoing trial"
+                                          : rec.quality || "Moderate"
+                                      }
                                       onChange={(e) => updateEsoRec(rIdx, { quality: e.target.value })}
                                       className={`w-full p-2 rounded-xl border font-extrabold text-xs ${
                                         darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
@@ -1283,6 +1304,7 @@ export function EditGuidelineModal({
                                       <option value="Moderate">Moderate (⊕⊕⊕)</option>
                                       <option value="Low">Low (⊕⊕)</option>
                                       <option value="Very low">Very low (⊕)</option>
+                                      <option value="Uncertain / Ongoing trial">uncertain/Ongoing trial (-)</option>
                                     </select>
 
                                     {/* DISTINCT COLOR PREVIEW BADGE */}

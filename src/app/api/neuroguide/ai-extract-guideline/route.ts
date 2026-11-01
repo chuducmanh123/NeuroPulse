@@ -62,7 +62,7 @@ ${
     ? `Since this is an ESO (European Stroke Organisation) guideline, structure the table with these EXACT headers:
 | PICO | Recommendation | Quality of evidence | Strength of recommendation | Expert consensus statement | Voting | Related studies |
 | --- | --- | --- | --- | --- | --- | --- |
-- Quality of evidence must be: High, Moderate, Low, or Very low
+- Quality of evidence must be: High, Moderate, Low, Very low, or Uncertain / Ongoing trial
 - Strength of recommendation must be: Strong for intervention, Weak for intervention, Strong against intervention, or Weak against intervention`
     : `Structure the table with these EXACT headers:
 | Clinical Domain / Topic | Recommendation (Verbatim Text) | Class (COR) & Level (LOE) | Related Studies & Evidence |

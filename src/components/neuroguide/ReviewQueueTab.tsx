@@ -316,7 +316,8 @@ function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: str
     if (!q) {
       const rawGrade = (r as any).currentGrade || (r as any).grade || "";
       const lowerG = rawGrade.toLowerCase();
-      if (lowerG.includes("very low") || lowerG.includes("rất thấp")) q = "Very low";
+      if (lowerG.includes("uncertain") || lowerG.includes("ongoing") || lowerG.trim() === "-" || lowerG.trim() === "—") q = "Uncertain / Ongoing trial";
+      else if (lowerG.includes("very low") || lowerG.includes("rất thấp")) q = "Very low";
       else if ((lowerG.includes("low") || lowerG.includes("thấp")) && !lowerG.includes("very") && !lowerG.includes("rất")) q = "Low";
       else if (lowerG.includes("high") || lowerG.includes("cao")) q = "High";
       else if (lowerG.includes("moderate") || lowerG.includes("trung bình")) q = "Moderate";

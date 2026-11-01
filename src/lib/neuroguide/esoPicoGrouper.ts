@@ -44,6 +44,38 @@ export const ESO_GRADE_QUALITY_CONFIG: Record<
     bgLight: "rgba(124, 58, 237, 0.08)",
     borderLight: "rgba(124, 58, 237, 0.25)",
   },
+  "Uncertain / Ongoing trial": {
+    label: "Uncertain / Ongoing trial",
+    symbols: "-",
+    hex: "#64748b",
+    darkHex: "#94a3b8",
+    bgLight: "rgba(100, 116, 139, 0.08)",
+    borderLight: "rgba(100, 116, 139, 0.25)",
+  },
+  "Uncertain / Ongoing trials": {
+    label: "Uncertain / Ongoing trial",
+    symbols: "-",
+    hex: "#64748b",
+    darkHex: "#94a3b8",
+    bgLight: "rgba(100, 116, 139, 0.08)",
+    borderLight: "rgba(100, 116, 139, 0.25)",
+  },
+  "uncertain/Ongoing trial (-)": {
+    label: "Uncertain / Ongoing trial",
+    symbols: "-",
+    hex: "#64748b",
+    darkHex: "#94a3b8",
+    bgLight: "rgba(100, 116, 139, 0.08)",
+    borderLight: "rgba(100, 116, 139, 0.25)",
+  },
+  "-": {
+    label: "Uncertain / Ongoing trial",
+    symbols: "-",
+    hex: "#64748b",
+    darkHex: "#94a3b8",
+    bgLight: "rgba(100, 116, 139, 0.08)",
+    borderLight: "rgba(100, 116, 139, 0.25)",
+  },
 };
 
 /**

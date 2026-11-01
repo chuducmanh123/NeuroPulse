@@ -63,6 +63,8 @@ Table 11 Synoptic table of all recommendations and expert consensus statements.
     assert.equal(ESO_GRADE_QUALITY_CONFIG.Moderate.hex, "#0284c7");
     assert.equal(ESO_GRADE_QUALITY_CONFIG.Low.hex, "#d97706");
     assert.equal(ESO_GRADE_QUALITY_CONFIG["Very low"].hex, "#7c3aed");
+    assert.equal(ESO_GRADE_QUALITY_CONFIG["Uncertain / Ongoing trial"].symbols, "-");
+    assert.equal(ESO_GRADE_QUALITY_CONFIG["Uncertain / Ongoing trial"].hex, "#64748b");
   });
 
   await t.test("normalizeEsoStrength should accurately resolve all ESO GRADE recommendation strengths", async () => {

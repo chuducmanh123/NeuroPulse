@@ -447,7 +447,8 @@ export function parseNotebookLMContent(
           const qMatch = lNorm.match(/^(?:Quality of evidence|Quality|Chất lượng bằng chứng|Chất lượng)[:\s]*(.*)/i);
           if (qMatch && qMatch[1]) {
             const qStr = qMatch[1].toLowerCase();
-            if (qStr.includes("very low") || qStr.includes("rất thấp")) quality = "Very low";
+            if (qStr.includes("uncertain") || qStr.includes("ongoing") || qStr.trim() === "-" || qStr.trim() === "—") quality = "Uncertain / Ongoing trial";
+            else if (qStr.includes("very low") || qStr.includes("rất thấp")) quality = "Very low";
             else if (qStr.includes("low") || qStr.includes("thấp")) quality = "Low";
             else if (qStr.includes("high") || qStr.includes("cao")) quality = "High";
             else quality = "Moderate";

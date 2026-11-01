@@ -2,7 +2,14 @@
 
 import React, { useState } from "react";
 
-export type EsoEvidenceQuality = "High" | "Moderate" | "Low" | "Very low" | string;
+export type EsoEvidenceQuality =
+  | "High"
+  | "Moderate"
+  | "Low"
+  | "Very low"
+  | "Uncertain / Ongoing trial"
+  | "Uncertain / Ongoing trials"
+  | string;
 export type EsoRecommendationStrength =
   | "Strong for intervention"
   | "Weak for intervention"
@@ -48,9 +55,11 @@ export { ESO_GRADE_QUALITY_CONFIG, normalizeEsoStrength };
 
 export function renderGradeQuality(quality: string) {
   const norm = (quality || "").trim().toLowerCase();
-  let conf = ESO_GRADE_QUALITY_CONFIG["Moderate"];
+  let conf = ESO_GRADE_QUALITY_CONFIG[quality] || ESO_GRADE_QUALITY_CONFIG["Moderate"];
 
-  if (norm.includes("very low")) {
+  if (norm.includes("uncertain") || norm.includes("ongoing") || norm === "-" || norm === "—") {
+    conf = ESO_GRADE_QUALITY_CONFIG["Uncertain / Ongoing trial"] || ESO_GRADE_QUALITY_CONFIG["Moderate"];
+  } else if (norm.includes("very low")) {
     conf = ESO_GRADE_QUALITY_CONFIG["Very low"];
   } else if (norm.includes("low") && !norm.includes("very low")) {
     conf = ESO_GRADE_QUALITY_CONFIG["Low"];
@@ -359,6 +368,7 @@ export function EsoGuidelineTable({
                   <li><strong className="text-blue-600">Moderate ⊕⊕⊕⊝:</strong> We are moderately confident in the effect estimate.</li>
                   <li><strong className="text-blue-600">Low ⊕⊕⊝⊝:</strong> Confidence in the effect estimate is limited; true effect may be substantially different.</li>
                   <li><strong className="text-blue-600">Very low ⊕⊝⊝⊝:</strong> We have very little confidence in the effect estimate.</li>
+                  <li><strong className="text-slate-500">Uncertain / Ongoing trial -:</strong> Trials are ongoing or evidence is not available to assess quality.</li>
                 </ul>
               </div>
 
