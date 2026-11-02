@@ -1,5 +1,301 @@
 [
   {
+    "id": "10.1001/jamaneurol.2026.4115",
+    "title": "JAMA Neurology Editorial Fellowship—Call for Applicants",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-11-02T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Josephson S. Andrew"
+    ],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4115",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at JAMA Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1001/jamaneurol.2026.4001",
+    "title": "Delirium and Long-Term Cognitive Trajectories in Cognitively Unimpaired Adults",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-11-02T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Palmer Allyson K.",
+      "Mullan Aidan F.",
+      "Graff-Radford Jonathan",
+      "Jia Heling",
+      "Sohn Sunghwan",
+      "Fu Sunyang",
+      "St Sauver Jennifer",
+      "Schafer Marissa",
+      "Bellolio Fernanda"
+    ],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4001",
+    "neurology_classification": {
+      "subspecialty": "Neurocritical Care",
+      "subspecialties": [
+        "Neurocritical Care",
+        "Dementia"
+      ],
+      "topics": [
+        "Dementia",
+        "Delirium"
+      ]
+    },
+    "abstract": "Importance: Delirium is a state of acute confusion characterized by deficits in attention that occurs commonly during hospitalization and is associated with adverse outcomes; however, the association of delirium with longitudinal cognitive trajectories is not fully understood. Objective: To evaluate the association of delirium during hospitalization with subsequent development of mild cognitive impairment (MCI), dementia, and longitudinal cognitive trajectories. Design, Setting, and Participants: This cohort study used data from participants with hospitalizations in the Mayo Clinic Study of Aging (MCSA) from October 2004 to December 2023. The MCSA is a prospective, population-based longitudinal study of cognitive aging among residents of Olmsted County, Minnesota. Of participants enrolled in the MCSA between 2004 and 2023, individuals who experienced 1 or more hospitalization prior to their last MCSA encounter were included in this study. Participants with dementia at MCSA enrollment or prior to first hospitalization were excluded. Follow-up continued until development of MCI or dementia, last MCSA visit, or the end of the study. Exposure: Delirium was identified using a validated natural language processing algorithm applied to clinical notes from hospitalizations, associated emergency department visits, and follow-up within 30 days after hospitalization. Delirium status was modeled as a time-dependent exposure. Main Outcomes and Measures: Incident MCI and dementia were assigned through MCSA expert consensus evaluations, including neuropsychological testing performed every 15 months. Association between delirium and development of MCI or dementia was assessed using Cox proportional hazards regression, adjusted for patient age, sex, level of education, and apolipoprotein E (APOE) ε4 allele carrier status; cognitive trajectories were assessed with linear mixed-effects models. Results: Of 7030 participants enrolled in the MCSA, 3542 individuals experienced 1 or more hospitalization prior to their last MCSA encounter and were included, and 41 participants with dementia at enrollment or prior to first hospitalization were excluded. The cohort included 3501 participants with at least 1 hospitalization. Median (IQR) age was 74.1 (66.6-80.9) years, 1676 participants (47.9%) were female, median (IQR) level of education was 14 (12-16) years, and 910 participants (26.0%) were APOE ε4 carriers. During a median (IQR) follow-up of 7.2 (4.1-10.4) years, 75 participants (2.1%) had delirium documented within 30 days of hospitalization. Delirium was associated with increased risk of MCI (adjusted hazard ratio [aHR], 3.67; 95% CI, 2.19-6.15) and dementia (aHR, 5.39; 95% CI, 2.94-9.85) and with accelerated decline in longitudinal cognitive testing. Conclusions and Relevance: In this cohort study among adults in the MCSA, including those with unimpaired cognition at baseline, delirium during hospitalization was strongly associated with increased risk of MCI and dementia and accelerated cognitive decline in subsequent years.",
+    "ai_takeaways": {
+      "conclusion_vi": "significantly increases the risk of incident MCI (aHR, 3",
+      "clinical_significance": "Clinical significance for Neurocritical Care practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1001/jamaneurol.2026.3906",
+    "title": "Global Epidemiology of Neonatal and Infantile-Onset Epilepsies and Epilepsy Syndromes (GENIE)",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-11-02T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Safeer V S Mohammed",
+      "Singh Akanksha",
+      "Nahan Najiya",
+      "Madaan Priyanka",
+      "Winter Sebastian F.",
+      "Prasad Manya",
+      "Wirrell Elaine C.",
+      "Arya Ravindra",
+      "Albaradie Raidah",
+      "Baker Gus A.",
+      "Chan Derrick",
+      "Guekht Alla",
+      "Hirose Shinichi",
+      "Jiang Yuwu",
+      "Lee Wang-Tso",
+      "Lim Kheng Seang",
+      "Muramatsu Kazuhiro",
+      "Nagai Kohei",
+      "Sakpichaisakul Kullasate",
+      "Samia Pauline",
+      "Specchio Nicola",
+      "Tekgul Hasan",
+      "Triki Chahnez Charfi",
+      "Ramos Valente Kette Dualibi",
+      "Wanigasinghe Jithangi",
+      "Wilmshurst Jo",
+      "Scheffer Ingrid E.",
+      "Cross J. Helen",
+      "Feigin Valery",
+      "Sahu Jitendra Kumar",
+      "Bansal Dipika"
+    ],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.3906",
+    "neurology_classification": {
+      "subspecialty": "Epilepsy",
+      "subspecialties": [
+        "Epilepsy"
+      ],
+      "topics": [
+        "Epilepsy"
+      ]
+    },
+    "abstract": "Importance: Despite the profound impact of neonatal and infantile-onset epilepsies on neurodevelopmental outcomes and mortality, consolidated global epidemiological evidence remains lacking. Objectives: To estimate the global incidence and prevalence of neonatal and infantile-onset epilepsies and epilepsy syndromes and to characterize their associated etiological profiles. Data Sources PubMed, Embase, Web of Science, and Scopus were searched from inception through December 18, 2025. Study Selection Population-based observational studies reporting the incidence or prevalence of neonatal and infantile-onset epilepsies or epilepsy syndromes were eligible for inclusion. Data Extraction and Synthesis Two authors independently and in duplicate performed study selection, data extraction, and quality assessment of included studies using the Joanna Briggs Institute Critical Appraisal checklist for prevalence studies. Generalized linear mixed-model random-effects meta-analysis was used to pool the estimates of incidence, prevalence, and etiology. Subgroup meta-analyses were conducted by country, World Health Organization (WHO) region, World Bank income, and diagnostic criteria. Metaregression was used to investigate the association between study-level covariates and pooled incidence estimates of infantile-onset epilepsy syndromes. Main Outcomes and Measures: Cumulative incidence and prevalence of neonatal and infantile-onset epilepsies and epilepsy syndromes. Results: A total of 86 population-based studies from 30 countries across 4 WHO regions were included. The pooled cumulative incidence of infantile-onset epilepsies within the first 2 years of life was 236.0 cases (95% CI, 164.7-338.2; 95% prediction interval [PI], 53.0-1044.3) per 100 000 live births. Among epilepsy syndrome subgroups, developmental and epileptic encephalopathies (DEEs) had the highest incidence at 67.7 cases (95% CI, 42.1-108.9; 95% PI, 7.1-636.1) per 100 000 live births. Infantile epileptic spasms syndrome (IESS) was the most incident DEE, with 31.6 cases (95% CI, 27.5-36.2; 95% PI, 13.7-72.6) per 100 000 live births. Among self-limited epilepsies, self-limited infantile epilepsy had the highest incidence at 13.0 cases (95% CI, 9.2-18.2; 95% PI, 6.4-26.4) per 100 000 live births. Subgroup analyses revealed limited geographical representativeness, with the majority of studies from high-income countries in the European Region. Conclusions and Relevance: The findings underscore a significant global burden of neonatal and infantile-onset epilepsies, primarily driven by DEEs, specifically IESS. Given substantial between-study heterogeneity, the pooled estimates should be interpreted as broad indicators rather than precise, generalizable rates. Geographic disparities, with a lack of data from the African and Eastern Mediterranean Regions, underscore the need for population-based studies in underrepresented regions and longitudinal research on survival, remission, and functional outcomes.",
+    "ai_takeaways": {
+      "conclusion_vi": "00 live births (95% CI, 164.",
+      "clinical_significance": "Clinical significance for Epilepsy practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1001/jamaneurol.2026.4008",
+    "title": "I’ll Be Home in No Time",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-11-02T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Hsu Jessie"
+    ],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4008",
+    "neurology_classification": {
+      "subspecialty": "Dementia",
+      "subspecialties": [
+        "Dementia"
+      ],
+      "topics": [
+        "Alzheimer"
+      ]
+    },
+    "abstract": "In this essay, the author describes her experience attending medical school far across the country from her grandmother, who had received a diagnosis of Alzheimer disease a few years before.",
+    "ai_takeaways": {
+      "conclusion_vi": "This personal narrative highlights the emotional burden and logistical challenges of long-",
+      "clinical_significance": "Clinical significance for Dementia practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1001/jamaneurol.2026.4055",
+    "title": "Coupling of Neurologic and Physiatric Perspectives to Advance Stroke Recovery",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-11-02T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Sloane Kelly L.",
+      "Swanson Randel L.",
+      "Hamilton Roy H."
+    ],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4055",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Stroke",
+        "Neurology"
+      ]
+    },
+    "abstract": "This Viewpoint describes 2 modes of thinking about treating a patient immediately after a stroke and how increasing the collaborative synergy between neurology and physiatry could advance the science of recovery.",
+    "ai_takeaways": {
+      "conclusion_vi": "Combining acute neurological care with early physiatric expertise bridges hyperacute lesion mitigation with",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1001/jamaneurol.2026.4062",
+    "title": "Who Will Take Part in Your Care?",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-11-02T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Largent Emily A.",
+      "Karlawish Jason"
+    ],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4062",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "This Viewpoint discusses solo patients and caregiver involvement at memory care centers.",
+    "ai_takeaways": {
+      "conclusion_vi": "< 55). * Exact stats? None in input to preserve",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1002/ana.78362",
+    "title": "Understanding the Pattern of Cognitive Decline in GBA1 ‐Related Parkinson's Disease: An Exploratory Longitudinal Multi‐Cohort Study",
+    "journal": {
+      "name": "Annals of Neurology",
+      "short_name": "Ann Neurol",
+      "badge_bg": "#EDE9FE",
+      "badge_text": "#5B21B6"
+    },
+    "pub_date": "2026-11-02T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Bode Merle",
+      "Pauly Claire",
+      "Jónsdóttir Sonja Rós",
+      "Schulte Claudia",
+      "Becker Sara",
+      "Wurster Isabel",
+      "Roeben Benjamin",
+      "Lerche Stefanie",
+      "Poewe Werner",
+      "Krüger Rejko",
+      "Liepelt‐Scarfone Inga",
+      "Brockmann Kathrin"
+    ],
+    "doi_url": "https://doi.org/10.1002/ana.78362",
+    "neurology_classification": {
+      "subspecialty": "Dementia",
+      "subspecialties": [
+        "Dementia",
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Parkinson",
+        "Spinal",
+        "Amyloid"
+      ]
+    },
+    "abstract": "Objective: People with Parkinson's disease (PD) who carry a pathogenic GBA1 variant (PD GBA1 ) are at higher risk of cognitive impairment than those without the variant (PD GBA1_wildtype ). To date, little is known about the pattern and evolution of cognitive decline in PD GBA1 . This multicenter study characterized the cognitive profile of PD GBA , focusing on the longitudinal trajectories and the group‐specific onset times among cognitive functions, as well as their clinical relevance. Methods: In this exploratory longitudinal multicohort‐study (Parkinson's Precision Medicine Initiative [PPMI], Amyloid‐Beta in cerebrospinal spinal fluid as a risk factor for cognitive dysfunction in Parkinson's Disease [ABC‐PD], and National Centre for Excellence in Research on Parkinson's disease [NCER‐PD]), comprehensive neuropsychological assessments were standardized across 546 healthy controls (follow‐up years = 2.9 ± 4.3), 903 PD GBA1_wildtype (follow‐up years = 4.4 ± 4.2), and 211 PD GBA1 (follow‐up years = 4.8 ± 3.4). We evaluated performance across age and disease duration using generalized linear mixed effects models (GLMMs) within each cognitive domain. An exploratory latent trajectory analysis was computed to identify potential cognitive subgroups. Time‐to‐first‐event models, assessing risks of clinically relevant performance impairment (test score z ≤ −1.5, Montreal Cognitive Assessment [MoCA] < 26), and an expanding time‐window approach identified the course of cognitive impairment. Results: PD GBA1 performed worse in executive function, attention, visuocognitive skills, and memory than PD GBA1_wildtype at baseline and exhibited a more rapid and widespread decline across these domains. The risk of developing clinically relevant cognitive impairment during the disease course was increased in PD GBA1 . Processing speed and visuoperceptual showed the earliest performance impairments in PD GBA1 , preceding PD GBA1_wildtype by 1.2 and 2.5 disease years, respectively. Within the PD GBA1 group, we identified a subgroup with rapidly declining cognition, who were more likely to be male patients, report depressive symptoms, and carry a severe GBA1 mutation. Interpretation: PD GBA1 exhibits accelerated domain‐generalized and more severe cognitive decline compared to PD GBA1_wildtype . ANN NEUROL 2026",
+    "ai_takeaways": {
+      "conclusion_vi": "Patients with GBA1-related Parkinson's disease experience accelerated, widespread cognitive decline compared",
+      "clinical_significance": "Clinical significance for Dementia practice.",
+      "ai_verified": true
+    }
+  },
+  {
     "id": "10.1016/s1474-4422(26)00354-6",
     "title": "Climate change: aggravation and adaptation in neurology",
     "journal": {
