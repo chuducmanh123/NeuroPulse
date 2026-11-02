@@ -10,6 +10,7 @@ import {
   convertEsoPicoItemsToPracticeChanges,
   isEsoBpGuideline,
 } from "@/lib/neuroguide/esoPicoGrouper";
+import { verifyAdminToken } from "@/utils/security";
 
 export const dynamic = "force-dynamic";
 
@@ -423,6 +424,14 @@ async function syncGuidelineRecordToActiveLibrary(record: GuidelineRecord) {
 
 export async function POST(request: NextRequest) {
   try {
+    const adminToken = request.headers.get("x-admin-token") || request.headers.get("authorization")?.replace(/^Bearer\s+/i, "");
+    if (!verifyAdminToken(adminToken)) {
+      return NextResponse.json(
+        { ok: false, error: "Unauthorized. Administrator credentials required." },
+        { status: 401 }
+      );
+    }
+
     const body = await request.json();
     const { action, file_id, guideline_id, rec_id, reviewer, notes, modified_statement, updated_item, doc_id } = body;
 
@@ -569,6 +578,173 @@ export async function POST(request: NextRequest) {
         ok: true,
         message: `Đã từ chối toàn bộ ${rejectedCount} khuyến cáo trong guideline này.`,
         rejected_count: rejectedCount,
+      });
+    }
+
+    // 1c. CHỨC NĂNG XÓA 1 KHUYẾN CÁO LẺ KHỎI HÀNG ĐỢI HOẶC BẢN LƯU (DELETE SINGLE RECOMMENDATION)
+    if (action === "DELETE_RECOMMENDATION") {
+      const targetGId = (guideline_id || file_id || doc_id || "").toLowerCase().trim();
+      const targetRecId = (rec_id || body.item_id || "").trim();
+
+      if (!targetRecId) {
+        return NextResponse.json({ ok: false, error: "Thiếu rec_id cần xóa" }, { status: 400 });
+      }
+
+      const cleanGId = targetGId.replace(/_latest\.json$/i, "");
+      const allFiles = new Set<string>();
+
+      for (const dir of [TMP_DIR, STORE_DIR]) {
+        if (fs.existsSync(dir)) {
+          try {
+            fs.readdirSync(dir).filter((f) => f.endsWith("_latest.json")).forEach((f) => allFiles.add(f));
+          } catch {}
+        }
+      }
+
+      let removed = false;
+      let remainingCount = 0;
+
+      for (const fileName of Array.from(allFiles)) {
+        const fileInfo = await getFileContentAsync(fileName);
+        if (!fileInfo) continue;
+        try {
+          const rec: GuidelineRecord = JSON.parse(fileInfo.content);
+          const fileGId = (rec.guideline_id || "").toLowerCase().trim();
+          const cleanFileName = fileName.replace(/_latest\.json$/i, "").toLowerCase();
+
+          const isMatch =
+            !cleanGId ||
+            fileGId === cleanGId ||
+            cleanFileName === cleanGId ||
+            cleanFileName.startsWith(cleanGId) ||
+            cleanGId.startsWith(cleanFileName);
+
+          if (!isMatch) continue;
+
+          const initialLen = rec.recommendations.length;
+          rec.recommendations = rec.recommendations.filter(
+            (r) => r.rec_id !== targetRecId && (r as any).id !== targetRecId
+          );
+
+          if (rec.recommendations.length < initialLen) {
+            removed = true;
+            rec.total_recommendations = rec.recommendations.length;
+            rec.pending_count = rec.recommendations.filter((r) => r.approval_status === "PENDING_REVIEW").length;
+            rec.approved_count = rec.recommendations.filter(
+              (r) => r.approval_status === "APPROVED" || r.approval_status === "MODIFIED"
+            ).length;
+            rec.updated_at = new Date().toISOString();
+            await saveFileSafe(fileName, JSON.stringify(rec, null, 2));
+            remainingCount = rec.recommendations.length;
+          }
+        } catch (e) {
+          console.warn("Lỗi xóa khuyến cáo khỏi file:", fileName, e);
+        }
+      }
+
+      // Nếu guideline đã có trong active library, đồng thời xóa khỏi allPracticeChanges
+      if (cleanGId) {
+        try {
+          const activeData = await loadMergedNeuroGuideData();
+          const docIdx = activeData.guidelines.findIndex(
+            (g) => g.id.toLowerCase() === cleanGId || g.id.toLowerCase().includes(cleanGId)
+          );
+          if (docIdx >= 0) {
+            const initialChgLen = activeData.guidelines[docIdx].allPracticeChanges.length;
+            activeData.guidelines[docIdx].allPracticeChanges = activeData.guidelines[docIdx].allPracticeChanges.filter(
+              (c) => c.id !== targetRecId
+            );
+            if (activeData.guidelines[docIdx].allPracticeChanges.length < initialChgLen) {
+              await saveNeuroGuideToActiveStorage({
+                guidelines: activeData.guidelines,
+                conferences: activeData.conferences,
+                scenarios: activeData.scenarios,
+                deletedGuidelineIds: activeData.deletedGuidelineIds,
+              });
+            }
+          }
+        } catch {}
+      }
+
+      return NextResponse.json({
+        ok: true,
+        message: removed
+          ? `Đã xóa khuyến cáo khỏi hệ thống thành công.`
+          : `Đã ghi nhận yêu cầu xóa khuyến cáo.`,
+        remaining_count: remainingCount,
+      });
+    }
+
+    // 1d. CHỨC NĂNG THU HỒI GUIDELINE ĐÃ XUẤT BẢN VỀ LẠI HÀNG ĐỢI (UNPUBLISH / MOVE TO REVIEW QUEUE)
+    if (action === "UNPUBLISH_GUIDELINE") {
+      const targetGId = (guideline_id || file_id || doc_id || "").toLowerCase().trim();
+      if (!targetGId) {
+        return NextResponse.json({ ok: false, error: "Thiếu guideline_id cần thu hồi" }, { status: 400 });
+      }
+
+      const cleanGId = targetGId.replace(/_latest\.json$/i, "");
+      const activeData = await loadMergedNeuroGuideData();
+
+      // 1. Gỡ khỏi active library
+      const initialActiveCount = activeData.guidelines.length;
+      const targetDoc = activeData.guidelines.find(
+        (g) => g.id.toLowerCase() === cleanGId || g.id.toLowerCase().includes(cleanGId)
+      );
+      activeData.guidelines = activeData.guidelines.filter(
+        (g) => g.id.toLowerCase() !== cleanGId && !g.id.toLowerCase().includes(cleanGId)
+      );
+
+      await saveNeuroGuideToActiveStorage({
+        guidelines: activeData.guidelines,
+        conferences: activeData.conferences,
+        scenarios: activeData.scenarios,
+        deletedGuidelineIds: activeData.deletedGuidelineIds,
+      });
+
+      // 2. Chuyển trạng thái các khuyến cáo trong file _latest.json về PENDING_REVIEW
+      const allFiles = new Set<string>();
+      for (const dir of [TMP_DIR, STORE_DIR]) {
+        if (fs.existsSync(dir)) {
+          try {
+            fs.readdirSync(dir).filter((f) => f.endsWith("_latest.json")).forEach((f) => allFiles.add(f));
+          } catch {}
+        }
+      }
+
+      let restoredRecsCount = 0;
+      for (const fileName of Array.from(allFiles)) {
+        const fileInfo = await getFileContentAsync(fileName);
+        if (!fileInfo) continue;
+        try {
+          const rec: GuidelineRecord = JSON.parse(fileInfo.content);
+          const fileGId = (rec.guideline_id || "").toLowerCase().trim();
+          const cleanFileName = fileName.replace(/_latest\.json$/i, "").toLowerCase();
+
+          const isMatch =
+            fileGId === cleanGId ||
+            cleanFileName === cleanGId ||
+            cleanFileName.startsWith(cleanGId) ||
+            cleanGId.startsWith(cleanFileName);
+
+          if (!isMatch) continue;
+
+          for (const r of rec.recommendations) {
+            r.approval_status = "PENDING_REVIEW";
+            restoredRecsCount++;
+          }
+          rec.pending_count = rec.recommendations.length;
+          rec.approved_count = 0;
+          rec.updated_at = new Date().toISOString();
+          await saveFileSafe(fileName, JSON.stringify(rec, null, 2));
+        } catch (e) {
+          console.warn("Lỗi cập nhật unpublish file:", fileName, e);
+        }
+      }
+
+      return NextResponse.json({
+        ok: true,
+        message: `Đã thu hồi guideline "${targetDoc?.title || cleanGId}" khỏi thư viện và chuyển về Hàng đợi kiểm duyệt (${restoredRecsCount} khuyến cáo).`,
+        restored_count: restoredRecsCount,
       });
     }
 

@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 import { loadMergedNeuroGuideData, saveNeuroGuideToActiveStorage } from "@/lib/neuroguide/blobStorage";
 import { MOCK_GUIDELINE_DOCS } from "@/data/neuroguideMockData";
+import { verifyAdminToken } from "@/utils/security";
 
 export const dynamic = "force-dynamic";
 
@@ -16,6 +17,14 @@ function normalizeTitle(t?: string): string {
 
 export async function POST(request: NextRequest) {
   try {
+    const adminToken = request.headers.get("x-admin-token") || request.headers.get("authorization")?.replace(/^Bearer\s+/i, "");
+    if (!verifyAdminToken(adminToken)) {
+      return NextResponse.json(
+        { ok: false, error: "Unauthorized. Valid administrator token required to delete guidelines." },
+        { status: 401 }
+      );
+    }
+
     const body = await request.json();
     const { guideline_id, title } = body;
 

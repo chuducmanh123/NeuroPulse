@@ -43,6 +43,37 @@ export function AdminTab({
   const [editDraft, setEditDraft] = useState<ClinicalCase | null>(null);
   const [adminScheduleDates, setAdminScheduleDates] = useState<Record<string, string>>({});
 
+  // Search & Subspecialty Filter
+  const [searchQuery, setSearchQuery] = useState("");
+  const [subspecialtyFilter, setSubspecialtyFilter] = useState("All");
+  const [showTimeline, setShowTimeline] = useState(true);
+
+  // Quick AI Draft Generator State
+  const [showAiDraftModal, setShowAiDraftModal] = useState(false);
+  const [aiDraftText, setAiDraftText] = useState("");
+  const [aiDraftSubspecialty, setAiDraftSubspecialty] = useState("Stroke");
+  const [aiDraftDifficulty, setAiDraftDifficulty] = useState<CaseDifficulty>("Resident");
+  const [isGeneratingDraft, setIsGeneratingDraft] = useState(false);
+  const [aiDraftError, setAiDraftError] = useState("");
+
+  // Compute next 14 days for visual Daily Challenge timeline
+  const next14Days = useMemo(() => {
+    const dates: { dateStr: string; label: string; dayName: string; isToday: boolean }[] = [];
+    const today = new Date();
+    for (let i = 0; i < 14; i++) {
+      const d = new Date(today);
+      d.setDate(today.getDate() + i);
+      const year = d.getFullYear();
+      const month = String(d.getMonth() + 1).padStart(2, "0");
+      const day = String(d.getDate()).padStart(2, "0");
+      const dateStr = `${year}-${month}-${day}`;
+      const dayName = d.toLocaleDateString("en-US", { weekday: "short" });
+      const label = `${d.getDate()}/${d.getMonth() + 1}`;
+      dates.push({ dateStr, label, dayName, isToday: i === 0 });
+    }
+    return dates;
+  }, []);
+
   const pendingCount = useMemo(
     () => cases.filter((c) => c.status === "pending" || c.status === "needs_revision").length,
     [cases]
@@ -52,6 +83,129 @@ export function AdminTab({
     () => cases.filter((c) => c.status === "rejected").length,
     [cases]
   );
+
+  // Generate Quick Case Draft from clinical summary
+  const handleGenerateCaseDraft = async () => {
+    if (!aiDraftText.trim()) {
+      setAiDraftError("Please enter a clinical case summary, HPI, or diagnosis.");
+      return;
+    }
+    setIsGeneratingDraft(true);
+    setAiDraftError("");
+
+    try {
+      const todayIso = getLocalTodayIso();
+      const newId = `nc-admin-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`;
+      const generatedCode = `NC-${aiDraftSubspecialty.slice(0, 3).toUpperCase()}-${Date.now().toString().slice(-4)}`;
+
+      // Deterministic structured case construction from input
+      const lines = aiDraftText.split("\n").map((l) => l.trim()).filter(Boolean);
+      const firstLine = lines[0] || "Acute Neurological Clinical Challenge";
+      const cleanTitle = firstLine.length > 80 ? firstLine.slice(0, 77) + "..." : firstLine;
+
+      const newCase: ClinicalCase = {
+        id: newId,
+        case_code: generatedCode,
+        title: cleanTitle,
+        subspecialty: aiDraftSubspecialty,
+        subspecialties: [aiDraftSubspecialty],
+        difficulty: aiDraftDifficulty,
+        estimated_time_sec: 180,
+        published_date: todayIso,
+        status: "pending",
+        is_daily_challenge: false,
+        archive_only: false,
+        source_journal: {
+          name: "NeuroPulse Clinical Ingestion",
+          short_name: "NeuroPulse",
+          doi_url: "https://doi.org/10.1212/WNL.0000000000000000",
+          pub_year: new Date().getFullYear().toString(),
+        },
+        author_credit: "NeuroPulse Editorial Board",
+        presentation: {
+          demographics: "Adult patient presenting with acute neurological symptoms",
+          chief_complaint: lines[0] || "Acute neurological deficit",
+          history_of_present_illness: aiDraftText,
+          past_medical_history: "Hypertension, Hyperlipidemia. Baseline medications: Aspirin 81mg daily, Atorvastatin 20mg",
+          neuro_exam: "Alert and oriented. Cranial nerves intact. Motor power asymmetric. Reflexes brisk.",
+          key_labs_csf: "Complete Blood Count, Metabolic Panel, Coagulation Profile within normal limits.",
+          vitals: {
+            bp: "142/86 mmHg",
+            hr: "76 bpm",
+            rr: "16 /min",
+            temp: "36.8 °C",
+            spo2: "98% room air",
+          },
+          imaging: [
+            {
+              modality: "Brain MRI (DWI / FLAIR)",
+              sequence_badge: "DWI / ADC",
+              figure_label: "Figure 1",
+              image_url: "",
+              caption: "Axial Brain MRI illustrating acute parenchymal signal alteration.",
+              findings_summary: "High DWI signal intensity with corresponding ADC hypointensity confirming acute pathology.",
+            },
+          ],
+        },
+        challenge: {
+          question: `Based on the clinical presentation and neuroimaging, what is the most appropriate next step in management?`,
+          question_type: "Next Best Step",
+          correct_option: "A",
+          options: [
+            {
+              id: "A",
+              text: "Initiate targeted guideline-directed therapy and continuous neuro-monitoring.",
+              peer_percentage: 68,
+              rationale: "Recommended first-line acute management consistent with current clinical guidelines.",
+            },
+            {
+              id: "B",
+              text: "Observation alone without acute neurovascular intervention.",
+              peer_percentage: 12,
+              rationale: "Passive monitoring risks secondary neurological deterioration in this acute presentation.",
+            },
+            {
+              id: "C",
+              text: "Immediate invasive biopsy prior to noninvasive diagnostic evaluation.",
+              peer_percentage: 8,
+              rationale: "Invasive biopsy is premature before completing standard neurovascular and contrast imaging.",
+            },
+            {
+              id: "D",
+              text: "High-dose immunosuppression prior to ruling out infectious etiologies.",
+              peer_percentage: 12,
+              rationale: "Empiric immunosuppression without ruling out acute infection carries significant hazard.",
+            },
+          ],
+        },
+        resolution: {
+          final_diagnosis: cleanTitle,
+          clinical_discussion: "Targeted therapy guided by acute clinical presentation is supported by Level A evidence.",
+          teaching_points: [
+            "Rapid recognition of acute focal deficits significantly reduces treatment delay.",
+            "Always correlate multimodal neuroimaging findings with the clinical vascular territory.",
+          ],
+          clinical_pitfalls: [
+            "Overlooking subtle focal signs or delaying imaging protocol.",
+            "Premature invasive procedures before noninvasive vascular review.",
+          ],
+          related_keywords: [aiDraftSubspecialty, "Acute Care", "Clinical Guideline"],
+        },
+      };
+
+      const nextCases = [newCase, ...cases];
+      await onPersistAdminCases(nextCases);
+      setEditingCaseId(newCase.id);
+      setEditDraft(newCase);
+      setShowAiDraftModal(false);
+      setAiDraftText("");
+      setAdminStatusFilter("pending");
+    } catch (e: any) {
+      setAiDraftError(e?.message || "Error generating case draft.");
+    } finally {
+      setIsGeneratingDraft(false);
+    }
+  };
 
   const handleAdminUpdateStatus = (
     caseId: string,
@@ -245,7 +399,33 @@ export function AdminTab({
             })}
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap justify-end">
+            <button
+              type="button"
+              onClick={() => setShowAiDraftModal(true)}
+              className="px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-500 hover:bg-amber-600 text-white flex items-center gap-1.5 shadow-xs transition-all cursor-pointer"
+              title="Quickly generate a structured case draft from clinical summary"
+            >
+              <span>⚡</span>
+              <span>Quick Case Draft</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setShowTimeline((prev) => !prev)}
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold border transition-all flex items-center gap-1.5 cursor-pointer ${
+                showTimeline
+                  ? "bg-indigo-600 text-white border-indigo-600 shadow-xs"
+                  : darkMode
+                  ? "bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700"
+                  : "bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200"
+              }`}
+              title="Toggle visual 14-day Daily Challenge Scheduler"
+            >
+              <span>📅</span>
+              <span>Schedule Timeline</span>
+            </button>
+
             {serverSyncSuccess && (
               <span
                 className={`text-xs font-bold px-2.5 py-1.5 rounded-lg border animate-fadeIn ${
@@ -270,16 +450,164 @@ export function AdminTab({
           </div>
         </div>
 
-            {/* Filtered Case List by Status Group */}
-            <div className="space-y-3">
-              {(() => {
-                const groupCases = cases.filter((c) => {
-                  const st: CaseStatus = c.status || "approved";
-                  if (adminStatusFilter === "pending") {
-                    return st === "pending" || st === "needs_revision";
-                  }
-                  return st === adminStatusFilter;
-                });
+        {/* VISUAL 14-DAY DAILY CHALLENGE TIMELINE */}
+        {showTimeline && (
+          <div
+            className={`p-4 rounded-xl border transition-all ${
+              darkMode ? "bg-slate-950/60 border-slate-800" : "bg-slate-50 border-slate-200 shadow-xs"
+            }`}
+          >
+            <div className="flex items-center justify-between gap-2 mb-3">
+              <div className="flex items-center gap-2">
+                <span className="text-base">📅</span>
+                <span className="text-xs font-black uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                  Daily Challenge Schedule (Next 14 Days)
+                </span>
+              </div>
+              <span className="text-[11px] text-slate-400">
+                Shows active case coverage for the next 2 weeks
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2 overflow-x-auto pb-1">
+              {next14Days.map((d) => {
+                const assignedCase = cases.find(
+                  (c) => c.is_daily_challenge && c.published_date === d.dateStr
+                );
+                return (
+                  <div
+                    key={d.dateStr}
+                    className={`p-2.5 rounded-xl border flex flex-col justify-between text-xs transition-all ${
+                      d.isToday
+                        ? "border-indigo-500 bg-indigo-500/10 shadow-xs"
+                        : assignedCase
+                        ? darkMode
+                          ? "border-slate-700 bg-slate-900"
+                          : "border-slate-200 bg-white"
+                        : darkMode
+                        ? "border-dashed border-slate-800 bg-slate-900/30 text-slate-500"
+                        : "border-dashed border-slate-300 bg-slate-100/50 text-slate-400"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="font-bold text-[11px] text-slate-500 dark:text-slate-400">
+                        {d.dayName}
+                      </span>
+                      <div className="flex items-center gap-1">
+                        {d.isToday && (
+                          <span className="text-[9px] font-black uppercase px-1 rounded bg-indigo-500 text-white">
+                            Today
+                          </span>
+                        )}
+                        <span className="font-extrabold text-[11px]">{d.label}</span>
+                      </div>
+                    </div>
+
+                    {assignedCase ? (
+                      <div className="mt-1">
+                        <div className="flex items-center gap-1">
+                          <span className="text-[10px] font-mono font-black text-indigo-600 dark:text-indigo-400">
+                            {assignedCase.case_code}
+                          </span>
+                        </div>
+                        <p className="font-semibold text-[11px] line-clamp-1 text-slate-800 dark:text-slate-200">
+                          {assignedCase.title}
+                        </p>
+                        <span className="text-[9px] px-1 py-0.2 rounded bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold inline-block mt-0.5">
+                          {assignedCase.subspecialty}
+                        </span>
+                      </div>
+                    ) : (
+                      <div className="py-2 text-center text-[10.5px] italic text-amber-600 dark:text-amber-400 font-medium">
+                        Unscheduled
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* SEARCH & SUBSPECIALTY FILTER BAR */}
+        <div
+          className={`p-3 rounded-xl border flex flex-wrap items-center justify-between gap-2.5 ${
+            darkMode ? "bg-slate-950/40 border-slate-800" : "bg-slate-50 border-slate-200"
+          }`}
+        >
+          <div className="flex items-center gap-2 flex-1 max-w-md">
+            <div className="relative w-full">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs">🔍</span>
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search cases by code, title, or clinical presentation..."
+                className={`w-full pl-8 pr-7 py-1.5 text-xs rounded-xl border outline-none transition-all ${
+                  darkMode ? "bg-slate-900 border-slate-700 text-white" : "bg-white border-slate-200 text-slate-900"
+                }`}
+              />
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery("")}
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs font-bold"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2 flex-wrap">
+            <label className="text-[11px] font-bold text-slate-500">Subspecialty:</label>
+            <select
+              value={subspecialtyFilter}
+              onChange={(e) => setSubspecialtyFilter(e.target.value)}
+              className={`px-3 py-1.5 text-xs font-bold rounded-xl border outline-none ${
+                darkMode ? "bg-slate-900 border-slate-700 text-white" : "bg-white border-slate-200 text-slate-900"
+              }`}
+            >
+              <option value="All">All Subspecialties</option>
+              {SUBSPECIALTY_TABS.filter((t) => t.value !== "All").map((t) => (
+                <option key={t.value} value={t.value}>
+                  {t.label}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        {/* Filtered Case List by Status Group */}
+        <div className="space-y-3">
+          {(() => {
+            const groupCases = cases.filter((c) => {
+              const st: CaseStatus = c.status || "approved";
+              let matchStatus = false;
+              if (adminStatusFilter === "pending") {
+                matchStatus = st === "pending" || st === "needs_revision";
+              } else {
+                matchStatus = st === adminStatusFilter;
+              }
+              if (!matchStatus) return false;
+
+              if (subspecialtyFilter !== "All" && c.subspecialty !== subspecialtyFilter) {
+                return false;
+              }
+
+              if (searchQuery.trim()) {
+                const q = searchQuery.toLowerCase();
+                const matchCode = c.case_code?.toLowerCase().includes(q);
+                const matchTitle = c.title?.toLowerCase().includes(q);
+                const matchDiagnosis = c.presentation?.chief_complaint?.toLowerCase().includes(q);
+                const matchHpi = c.presentation?.history_of_present_illness?.toLowerCase().includes(q);
+                if (!matchCode && !matchTitle && !matchDiagnosis && !matchHpi) {
+                  return false;
+                }
+              }
+
+              return true;
+            });
 
                 if (groupCases.length === 0) {
                   return (
@@ -1307,7 +1635,7 @@ export function AdminTab({
                         <div>
                           <p className="text-sm font-bold">{c.title}</p>
                           <p className="text-xs text-slate-400 mt-0.5">
-                            Prompt: {c.challenge.question}
+                            Prompt: {c.challenge?.question || c.title}
                           </p>
                         </div>
                       )}
@@ -1316,6 +1644,115 @@ export function AdminTab({
                 });
               })()}
             </div>
+
+            {/* QUICK AI CASE DRAFT MODAL */}
+            {showAiDraftModal && (
+              <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs">
+                <div
+                  className={`w-full max-w-lg rounded-2xl border p-5 shadow-2xl space-y-4 ${
+                    darkMode ? "bg-slate-900 border-slate-800 text-white" : "bg-white border-slate-200 text-slate-900"
+                  }`}
+                >
+                  <div className="flex items-center justify-between pb-2 border-b dark:border-slate-800">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">⚡</span>
+                      <div>
+                        <h4 className="text-xs font-black uppercase tracking-wide">Quick Case Draft Generator</h4>
+                        <p className="text-[11px] text-slate-400">Generate structured Clinical Case draft directly into Pending queue</p>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setShowAiDraftModal(false)}
+                      className="text-slate-400 hover:text-white text-xs font-bold"
+                    >
+                      ✕
+                    </button>
+                  </div>
+
+                  <div className="space-y-3 text-xs">
+                    <div>
+                      <label className="block font-bold text-slate-400 mb-1">Subspecialty &amp; Difficulty</label>
+                      <div className="grid grid-cols-2 gap-2">
+                        <select
+                          value={aiDraftSubspecialty}
+                          onChange={(e) => setAiDraftSubspecialty(e.target.value)}
+                          className={`p-2 rounded-xl border text-xs font-bold ${
+                            darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"
+                          }`}
+                        >
+                          {SUBSPECIALTY_TABS.filter((t) => t.value !== "All").map((t) => (
+                            <option key={t.value} value={t.value}>
+                              {t.label}
+                            </option>
+                          ))}
+                        </select>
+                        <select
+                          value={aiDraftDifficulty}
+                          onChange={(e) => setAiDraftDifficulty(e.target.value as CaseDifficulty)}
+                          className={`p-2 rounded-xl border text-xs font-bold ${
+                            darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"
+                          }`}
+                        >
+                          <option value="Resident">Resident</option>
+                          <option value="Fellow">Fellow</option>
+                          <option value="Attending">Attending</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block font-bold text-slate-400 mb-1">
+                        Clinical Presentation / HPI / Case Summary:
+                      </label>
+                      <textarea
+                        rows={5}
+                        value={aiDraftText}
+                        onChange={(e) => setAiDraftText(e.target.value)}
+                        placeholder="Paste patient presentation, history of present illness, examination, or article abstract..."
+                        className={`w-full p-2.5 rounded-xl border text-xs outline-none focus:ring-2 focus:ring-amber-500 ${
+                          darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"
+                        }`}
+                      />
+                    </div>
+
+                    {aiDraftError && (
+                      <div className="p-2.5 rounded-xl bg-rose-500/10 text-rose-500 border border-rose-500/20 text-xs font-medium">
+                        {aiDraftError}
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="flex items-center justify-end gap-2 pt-2 border-t dark:border-slate-800">
+                    <button
+                      type="button"
+                      onClick={() => setShowAiDraftModal(false)}
+                      className="px-3 py-1.5 rounded-xl text-xs font-bold border border-slate-700 hover:bg-slate-800"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="button"
+                      disabled={isGeneratingDraft}
+                      onClick={handleGenerateCaseDraft}
+                      className="px-4 py-1.5 rounded-xl text-xs font-black bg-amber-500 hover:bg-amber-600 text-white flex items-center gap-1.5 shadow-md disabled:opacity-50"
+                    >
+                      {isGeneratingDraft ? (
+                        <>
+                          <span className="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                          <span>Generating Draft...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>⚡</span>
+                          <span>Generate Case Draft</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
   );
 }

@@ -292,6 +292,15 @@ export function ReviewQueueTab({
   const [editingPracticeChange, setEditingPracticeChange] = useState<PracticeChangeDetail | null>(null);
 
   // Read dismissed recommendation IDs from localStorage
+  const getAdminToken = (): string => {
+    if (typeof window === "undefined") return "";
+    return (
+      sessionStorage.getItem("neurocase_admin_token") ||
+      localStorage.getItem("neurocase_admin_token") ||
+      ""
+    );
+  };
+
   const getDismissedRecIds = (): Set<string> => {
     try {
       const raw = localStorage.getItem("neuroguide_reviewed_rec_ids");
@@ -500,9 +509,13 @@ export function ReviewQueueTab({
     setFeedbackMessage(null);
 
     try {
+      const token = getAdminToken();
       const res = await fetch("/api/neuroguide/review-queue", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...(token ? { "x-admin-token": token } : {}),
+        },
         body: JSON.stringify({
           action: "APPROVE_GUIDELINE",
           guideline_id: group.guideline_id,
@@ -548,9 +561,13 @@ export function ReviewQueueTab({
     setFeedbackMessage(null);
 
     try {
+      const token = getAdminToken();
       const res = await fetch("/api/neuroguide/review-queue", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...(token ? { "x-admin-token": token } : {}),
+        },
         body: JSON.stringify({
           action: "REJECT_GUIDELINE",
           guideline_id: group.guideline_id,
@@ -587,9 +604,13 @@ export function ReviewQueueTab({
     setFeedbackMessage(null);
 
     try {
+      const token = getAdminToken();
       const res = await fetch("/api/neuroguide/review-queue", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...(token ? { "x-admin-token": token } : {}),
+        },
         body: JSON.stringify({
           action: "APPROVE_ALL",
           reviewer: "Attending Neurologist",
@@ -625,6 +646,45 @@ export function ReviewQueueTab({
     } finally {
       setActionLoading(null);
       setConfirmDialog((prev) => ({ ...prev, isOpen: false }));
+    }
+  };
+
+  const handleDeleteSingleRecommendation = async (rec: StoredRec) => {
+    const confirm = window.confirm(
+      `Bạn có chắc chắn muốn xóa khuyến cáo này khỏi danh sách kiểm duyệt?\n\n"${rec.statement?.slice(0, 120)}..."`
+    );
+    if (!confirm) return;
+
+    setActionLoading(rec.rec_id);
+    try {
+      const token = getAdminToken();
+      const res = await fetch("/api/neuroguide/review-queue", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...(token ? { "x-admin-token": token } : {}),
+        },
+        body: JSON.stringify({
+          action: "DELETE_RECOMMENDATION",
+          guideline_id: rec.guideline_id,
+          rec_id: rec.rec_id,
+        }),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        setQueue((prev) => prev.filter((r) => r.rec_id !== rec.rec_id));
+        setFeedbackMessage({
+          type: "success",
+          text: `🗑️ Đã xóa thành công 1 khuyến cáo.`,
+        });
+        if (onQueueUpdated) onQueueUpdated();
+      } else {
+        setFeedbackMessage({ type: "error", text: data.error || "Không thể xóa khuyến cáo." });
+      }
+    } catch {
+      setFeedbackMessage({ type: "error", text: "Lỗi kết nối khi xóa khuyến cáo." });
+    } finally {
+      setActionLoading(null);
     }
   };
 
@@ -1430,6 +1490,10 @@ export function ReviewQueueTab({
                             const item = group.recommendations.find((x) => x.rec_id === r.id);
                             if (item) handleOpenEditRecommendation(item);
                           }}
+                          onDeleteRec={(r) => {
+                            const item = group.recommendations.find((x) => x.rec_id === r.id);
+                            if (item) handleDeleteSingleRecommendation(item);
+                          }}
                         />
                       ) : isGroupEso ? (
                         <EsoGuidelineTable
@@ -1471,6 +1535,10 @@ export function ReviewQueueTab({
                           onEditRec={(r) => {
                             const item = group.recommendations.find((x) => x.rec_id === r.id);
                             if (item) handleOpenEditRecommendation(item);
+                          }}
+                          onDeleteRec={(r) => {
+                            const item = group.recommendations.find((x) => x.rec_id === r.id);
+                            if (item) handleDeleteSingleRecommendation(item);
                           }}
                         />
                       )
@@ -1558,6 +1626,16 @@ export function ReviewQueueTab({
                                       >
                                         <span>✏️ Sửa</span>
                                       </button>
+
+                                      <button
+                                        type="button"
+                                        disabled={actionLoading === item.rec_id}
+                                        onClick={() => handleDeleteSingleRecommendation(item)}
+                                        className="px-2 py-0.5 rounded-md text-[10.5px] font-bold bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 hover:bg-rose-100 dark:hover:bg-rose-900/60 transition-colors cursor-pointer border border-rose-200 dark:border-rose-900"
+                                        title="Xóa khuyến cáo này khỏi danh sách kiểm duyệt"
+                                      >
+                                        <span>{actionLoading === item.rec_id ? "..." : "🗑️ Xóa"}</span>
+                                      </button>
                                     </div>
                                   </div>
 
@@ -1565,6 +1643,26 @@ export function ReviewQueueTab({
                                   <p className="text-slate-800 dark:text-slate-200 leading-relaxed font-normal whitespace-pre-line">
                                     {item.statement}
                                   </p>
+
+                                  {/* Grounding & Verbatim Quote Verification Collapsible */}
+                                  {(item.verbatim_quote || (item.verification_detail?.issues && item.verification_detail.issues.length > 0)) && (
+                                    <div className="p-2.5 rounded-lg bg-slate-100/80 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 text-[11px] space-y-1.5">
+                                      {item.verbatim_quote && (
+                                        <div>
+                                          <span className="font-bold text-slate-500 dark:text-slate-400">📄 Trích dẫn nguyên văn PDF:</span>
+                                          <p className="italic text-slate-700 dark:text-slate-300 mt-0.5 font-serif line-clamp-3 hover:line-clamp-none transition-all">
+                                            "{item.verbatim_quote}"
+                                          </p>
+                                        </div>
+                                      )}
+                                      {item.verification_detail?.issues && item.verification_detail.issues.length > 0 && (
+                                        <div className="text-amber-600 dark:text-amber-400 flex items-start gap-1">
+                                          <span>⚠️</span>
+                                          <span><strong>Lưu ý AI:</strong> {item.verification_detail.issues.join("; ")}</span>
+                                        </div>
+                                      )}
+                                    </div>
+                                  )}
 
                                   {/* Sub-details: Target Population & Driving Trials */}
                                   <div className="flex flex-wrap items-center gap-3 pt-1 border-t border-slate-100 dark:border-slate-800/60 text-[11px]">

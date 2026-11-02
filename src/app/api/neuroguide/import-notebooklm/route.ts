@@ -8,6 +8,7 @@ import {
   mergeGuidelines,
 } from "@/lib/neuroguide/blobStorage";
 import { SubspecialtyType } from "@/types/neuroguide";
+import { verifyAdminToken } from "@/utils/security";
 
 export const dynamic = "force-dynamic";
 
@@ -37,6 +38,14 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
+    const adminToken = request.headers.get("x-admin-token") || request.headers.get("authorization")?.replace(/^Bearer\s+/i, "");
+    if (!verifyAdminToken(adminToken)) {
+      return NextResponse.json(
+        { ok: false, error: "Unauthorized. Valid administrator token required for NotebookLM ingestion." },
+        { status: 401 }
+      );
+    }
+
     let rawText = "";
     let fileName: string | undefined = undefined;
     let society: string | undefined = undefined;

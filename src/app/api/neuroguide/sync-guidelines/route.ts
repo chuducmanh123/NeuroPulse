@@ -14,6 +14,7 @@ import {
 } from "@/lib/neuroguide/blobStorage";
 import { registerCandidateGuideline } from "@/lib/neuroguide/storeAdapter";
 import { SubspecialtyType, GuidelineDoc, ConferenceEvent, ClinicalScenario } from "@/types/neuroguide";
+import { verifyAdminToken } from "@/utils/security";
 
 import fs from "fs";
 import path from "path";
@@ -116,6 +117,18 @@ export async function GET(request: NextRequest) {
  */
 export async function POST(request: NextRequest) {
   try {
+    const adminToken = request.headers.get("x-admin-token") || request.headers.get("authorization")?.replace(/^Bearer\s+/i, "");
+    const cronSecret = process.env.CRON_SECRET;
+    const authHeader = request.headers.get("authorization");
+    const isCronAuthorized = Boolean(cronSecret && authHeader === `Bearer ${cronSecret}`);
+
+    if (!isCronAuthorized && !verifyAdminToken(adminToken)) {
+      return NextResponse.json(
+        { status: "error", message: "Unauthorized. Administrator credentials or CRON_SECRET required." },
+        { status: 401 }
+      );
+    }
+
     const body = await request.json().catch(() => ({}));
     const society = body.society || undefined;
     const subspecialty = (body.subspecialty as SubspecialtyType) || undefined;

@@ -25,6 +25,7 @@ export interface AhaGuidelineTableProps {
   className?: string;
   allowEdit?: boolean;
   onEditRec?: (rec: AhaRecommendationItem) => void;
+  onDeleteRec?: (rec: AhaRecommendationItem) => void;
 }
 
 /**
@@ -113,6 +114,7 @@ export function AhaGuidelineTable({
   className = "",
   allowEdit = false,
   onEditRec,
+  onDeleteRec,
 }: AhaGuidelineTableProps) {
   const [showMatrixModal, setShowMatrixModal] = useState<boolean>(false);
 
@@ -233,16 +235,27 @@ export function AhaGuidelineTable({
                               </div>
                             )}
 
-                            {/* Optional Edit Trigger for Human-In-The-Loop review */}
-                            {allowEdit && onEditRec && (
-                              <div className="pt-1">
-                                <button
-                                  type="button"
-                                  onClick={() => onEditRec(rec)}
-                                  className="text-[10.5px] font-bold text-amber-600 dark:text-amber-400 hover:underline cursor-pointer"
-                                >
-                                  ✏️ Edit this recommendation
-                                </button>
+                            {/* Optional Edit / Delete Trigger for Human-In-The-Loop review */}
+                            {allowEdit && (onEditRec || onDeleteRec) && (
+                              <div className="pt-1 flex items-center gap-3">
+                                {onEditRec && (
+                                  <button
+                                    type="button"
+                                    onClick={() => onEditRec(rec)}
+                                    className="text-[10.5px] font-bold text-amber-600 dark:text-amber-400 hover:underline cursor-pointer"
+                                  >
+                                    ✏️ Edit recommendation
+                                  </button>
+                                )}
+                                {onDeleteRec && (
+                                  <button
+                                    type="button"
+                                    onClick={() => onDeleteRec(rec)}
+                                    className="text-[10.5px] font-bold text-rose-500 hover:underline cursor-pointer"
+                                  >
+                                    🗑️ Delete
+                                  </button>
+                                )}
                               </div>
                             )}
                           </div>
