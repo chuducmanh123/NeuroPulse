@@ -36,14 +36,20 @@ export async function GET(request: NextRequest) {
     let filteredGuidelines = mergedData.guidelines;
 
     const CLOUD_JSON = path.join(process.cwd(), "public", "data", "neuroguide_cloud.json");
-    let deletedGuidelineIds: string[] = [];
+    let localDeletedIds: string[] = [];
     if (fs.existsSync(CLOUD_JSON)) {
       try {
         const raw = fs.readFileSync(CLOUD_JSON, "utf-8");
         const cloudData = JSON.parse(raw);
-        deletedGuidelineIds = cloudData.deletedGuidelineIds || cloudData.deleted_guideline_ids || [];
+        localDeletedIds = cloudData.deletedGuidelineIds || cloudData.deleted_guideline_ids || [];
       } catch {}
     }
+    const deletedGuidelineIds = Array.from(
+      new Set([
+        ...(mergedData.deletedGuidelineIds || []).map((x) => x.toLowerCase()),
+        ...localDeletedIds.map((x) => x.toLowerCase()),
+      ])
+    );
 
     if (society) {
       filteredGuidelines = filteredGuidelines.filter(
@@ -64,19 +70,28 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    return NextResponse.json({
-      status: "success",
-      storageBackend: mergedData.storageSource,
-      hasBlobConfig: hasBlobConfig(),
-      lastSyncedAt: mergedData.lastSyncedAt || new Date().toISOString(),
-      totalGuidelines: filteredGuidelines.length,
-      totalConferences: mergedData.conferences.length,
-      totalScenarios: mergedData.scenarios.length,
-      guidelines: filteredGuidelines,
-      conferences: mergedData.conferences,
-      scenarios: mergedData.scenarios,
-      deletedGuidelineIds,
-    });
+    return NextResponse.json(
+      {
+        status: "success",
+        storageBackend: mergedData.storageSource,
+        hasBlobConfig: hasBlobConfig(),
+        lastSyncedAt: mergedData.lastSyncedAt || new Date().toISOString(),
+        totalGuidelines: filteredGuidelines.length,
+        totalConferences: mergedData.conferences.length,
+        totalScenarios: mergedData.scenarios.length,
+        guidelines: filteredGuidelines,
+        conferences: mergedData.conferences,
+        scenarios: mergedData.scenarios,
+        deletedGuidelineIds,
+      },
+      {
+        headers: {
+          "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+          Pragma: "no-cache",
+          Expires: "0",
+        },
+      }
+    );
   } catch (error: unknown) {
     const errorMessage = error instanceof Error ? error.message : "Internal Server Error";
     console.error("Error in GET /api/neuroguide/sync-guidelines:", error);
@@ -120,13 +135,20 @@ export async function POST(request: NextRequest) {
     const discoveryResult = await searchPubMedGuidelines(options);
     const currentStore = await loadMergedNeuroGuideData();
 
-    const existingTitles = new Set(currentStore.guidelines.map((g) => g.title.toLowerCase().trim()));
+    const normalizeT = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+    const existingTitles = new Set(currentStore.guidelines.map((g) => normalizeT(g.title)));
     const existingIds = new Set(currentStore.guidelines.map((g) => g.id.toLowerCase()));
+    const deletedSet = new Set((currentStore.deletedGuidelineIds || []).map((x) => x.toLowerCase()));
 
-    // Filter candidate list for guidelines not yet thoroughly analyzed
-    const candidatePool = discoveryResult.guidelines.filter(
-      (g) => !existingIds.has(g.id.toLowerCase()) && !existingTitles.has(g.title.toLowerCase().trim())
-    );
+    // Filter candidate list for guidelines not yet thoroughly analyzed or deleted
+    const candidatePool = discoveryResult.guidelines.filter((g) => {
+      const id = (g.id || "").toLowerCase();
+      const norm = normalizeT(g.title);
+      const soc = (g.society || "").toUpperCase();
+      if (soc === "ESC") return false;
+      if (deletedSet.has(id) || deletedSet.has(norm)) return false;
+      return !existingIds.has(id) && !existingTitles.has(norm);
+    });
 
     // Fall back to existing unanalyzed guidelines if candidate pool has fewer than 3
     const guidelinesToProcess = candidatePool.length >= 3
@@ -225,14 +247,16 @@ export async function POST(request: NextRequest) {
     newScenarios.forEach((s) => mergedScenariosMap.set(s.id, s));
     const allScenarios = Array.from(mergedScenariosMap.values());
 
-    // 5. Merge all updated guidelines into active library via coordination engine
-    const allGuidelines = mergeGuidelines(analyzedGuidelines, currentStore.guidelines);
+    // 5. KHÔNG tự động đẩy analyzedGuidelines thẳng vào thư viện chính (Practice Guidelines) khi chưa qua phê duyệt!
+    // Các guideline mới từ Radar chỉ nằm trong Review Queue cho đến khi được bác sĩ duyệt (APPROVE).
+    const allGuidelines = currentStore.guidelines;
 
     // 6. Persist to Vercel Blob (or local storage fallback)
     const saveResult = await saveNeuroGuideToActiveStorage({
       guidelines: allGuidelines,
       conferences: updatedConferences,
       scenarios: allScenarios,
+      deletedGuidelineIds: currentStore.deletedGuidelineIds,
     });
 
     return NextResponse.json({

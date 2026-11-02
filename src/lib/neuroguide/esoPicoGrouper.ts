@@ -724,41 +724,139 @@ export function parseEsoGrade(gradeStr?: string, statement?: string): {
 }
 
 /**
+ * Converts canonical or grouped EsoPicoItem[] into clean PracticeChangeDetail[]
+ * so active storage and editors maintain exact 1-to-1 fidelity with the ESO Synoptic Table.
+ */
+export function convertEsoPicoItemsToPracticeChanges(
+  picos: EsoPicoItem[],
+  defaultCategory = "ESO Synoptic Table Recommendation"
+): PracticeChangeDetail[] {
+  const result: PracticeChangeDetail[] = [];
+  picos.forEach((pico) => {
+    const pNumStr = String(pico.picoNumber).trim();
+    const pQuestion = pico.picoQuestion.trim();
+    const consensus = pico.expertConsensusStatement?.trim() || undefined;
+    const voting = pico.voting?.trim() || undefined;
+    const picoTrials = pico.drivingTrials || [];
+
+    pico.recommendations.forEach((rec, rIdx) => {
+      const q = rec.qualityOfEvidence || "Moderate";
+      const s = normalizeEsoStrength(rec.strengthOfRecommendation, rec.statement);
+      const trials = rec.drivingTrials && rec.drivingTrials.length > 0 ? rec.drivingTrials : picoTrials;
+      const suffix = pico.recommendations.length > 1 ? `-rec${rIdx + 1}` : "";
+      result.push({
+        id: `eso-pico-${pNumStr.toLowerCase()}${suffix}`,
+        picoNumber: pico.picoNumber,
+        picoQuestion: pQuestion,
+        category: defaultCategory,
+        topic: `PICO ${pNumStr} ${pQuestion}`.trim(),
+        changeType: s.toLowerCase().includes("against") ? "DOWNGRADED" : "NEW",
+        quality: q,
+        strength: s,
+        voting,
+        currentGrade: `GRADE ${s} (Evidence: ${q}${voting ? `, Voting: ${voting}` : ""})`,
+        currentText: rec.statement,
+        expertConsensusStatement: consensus,
+        drivingTrials: trials,
+      });
+    });
+  });
+  return result;
+}
+
+/**
  * Intelligent PICO Grouper for ESO Clinical Practice Guidelines (Matching Synoptic Table structure)
  * Groups multiple recommendations that belong to the same PICO question,
  * attaches expert consensus statements and voting ratios, and retains pivotal driving trials.
  */
-export function groupPracticeChangesIntoEsoPicos(changes: PracticeChangeDetail[]): EsoPicoItem[] {
+export function groupPracticeChangesIntoEsoPicos(
+  changes: PracticeChangeDetail[],
+  guidelineTitle?: string,
+  guidelineId?: string
+): EsoPicoItem[] {
+  const extractExplicitPico = (item: PracticeChangeDetail): { num: string; question: string } | null => {
+    const rawTopic = (item.topic || "").trim();
+    const rawCategory = (item.category || "").trim();
+    if (item.picoNumber !== undefined && item.picoNumber !== null && String(item.picoNumber).trim() !== "") {
+      const pStr = String(item.picoNumber).trim().replace(/^PICO\s*/i, "");
+      if (/^\d+[a-z]?$/i.test(pStr)) {
+        return {
+          num: pStr,
+          question: (item.picoQuestion || rawTopic || rawCategory).trim(),
+        };
+      }
+    }
+    const matchTopic = rawTopic.match(/^PICO\s*(\d+[a-z]?)[:.\s-]*(.*)/i);
+    if (matchTopic) {
+      return { num: matchTopic[1], question: matchTopic[2]?.trim() || rawTopic };
+    }
+    const matchCat = rawCategory.match(/^PICO\s*(\d+[a-z]?)[:.\s-]*(.*)/i);
+    if (matchCat) {
+      return { num: matchCat[1], question: matchCat[2]?.trim() || rawTopic };
+    }
+    return null;
+  };
+
+  const allHaveExplicitPico =
+    Array.isArray(changes) && changes.length > 0 && changes.every((it) => extractExplicitPico(it) !== null);
+
+  // 1. Check if this guideline matches a canonical ESO Synoptic Table (either via title/id or content signature)
+  let canonicalList = getCanonicalEsoPicos(guidelineTitle, guidelineId);
+  if (!canonicalList && changes && changes.length > 0 && !allHaveExplicitPico) {
+    const combinedText = changes
+      .slice(0, 10)
+      .map((c) => `${c.topic || ""} ${c.currentText || ""} ${c.category || ""}`)
+      .join(" ")
+      .toLowerCase();
+    if (
+      combinedText.includes("asah") ||
+      combinedText.includes("subarachnoid") ||
+      combinedText.includes("ruptured aneurysm")
+    ) {
+      canonicalList = CANONICAL_ESO_2026_ASAH_PICOS;
+    } else if (
+      combinedText.includes("pre-hospital blood pressure") ||
+      (combinedText.includes("acute ischaemic stroke") && combinedText.includes("spontaneous ich"))
+    ) {
+      canonicalList = CANONICAL_ESO_2025_BP_PICOS;
+    }
+  }
+
+  // If canonical list is matched, use it as the authoritative PICO set (prevents bogus PICO 1 or PICO 11..42 from fallback counters)
+  if (canonicalList && canonicalList.length > 0) {
+    const clonedCanonical: EsoPicoItem[] = canonicalList.map((cp) => ({
+      ...cp,
+      recommendations: cp.recommendations.map((r) => ({
+        ...r,
+        drivingTrials: r.drivingTrials ? [...r.drivingTrials] : undefined,
+      })),
+      drivingTrials: cp.drivingTrials ? [...cp.drivingTrials] : undefined,
+    }));
+
+    return clonedCanonical.sort((a, b) => comparePicoNumbers(a.picoNumber, b.picoNumber));
+  }
+
   if (!changes || changes.length === 0) return [];
+
+  // 2. For generic/future ESO guidelines: check whether explicit PICO identifiers exist
+  const hasExplicitPicos = changes.some((it) => extractExplicitPico(it) !== null);
 
   const picoMap = new Map<string, EsoPicoItem>();
   let fallbackCounter = 1;
 
   changes.forEach((item) => {
-    let picoNum: number | string = "";
-    let picoQuestion = "";
+    const explicit = extractExplicitPico(item);
+
+    // If the document has explicit PICO items, ignore unnumbered noise (such as front-matter summary boxes or stray consensus statements)
+    if (hasExplicitPicos && !explicit) {
+      return;
+    }
 
     const rawTopic = (item.topic || "").trim();
     const rawCategory = (item.category || "").trim();
 
-    if (item.picoNumber) {
-      picoNum = item.picoNumber;
-      picoQuestion = item.picoQuestion || rawTopic;
-    } else {
-      const matchTopic = rawTopic.match(/^PICO\s*(\d+[a-z]?)[:.\s-]*(.*)/i);
-      const matchCat = rawCategory.match(/^PICO\s*(\d+[a-z]?)[:.\s-]*(.*)/i);
-
-      if (matchTopic) {
-        picoNum = matchTopic[1];
-        picoQuestion = matchTopic[2]?.trim() || rawTopic;
-      } else if (matchCat) {
-        picoNum = matchCat[1];
-        picoQuestion = matchCat[2]?.trim() || rawTopic;
-      } else {
-        picoNum = fallbackCounter++;
-        picoQuestion = rawTopic || rawCategory;
-      }
-    }
+    let picoNum: number | string = explicit ? explicit.num : fallbackCounter++;
+    let picoQuestion = explicit ? explicit.question : rawTopic || rawCategory;
 
     // Clean up question text
     picoQuestion = picoQuestion.replace(/^PICO\s*\d+[a-z]?[:.\s-]*/i, "").trim();
@@ -769,7 +867,7 @@ export function groupPracticeChangesIntoEsoPicos(changes: PracticeChangeDetail[]
       picoQuestion = `${picoQuestion}?`;
     }
 
-    const picoKey = `PICO-${picoNum}`;
+    const picoKey = `PICO-${String(picoNum).toLowerCase()}`;
     const { strength, quality, voting } = parseEsoGrade(item.currentGrade, item.currentText);
 
     const consensusText =
@@ -811,6 +909,11 @@ export function groupPracticeChangesIntoEsoPicos(changes: PracticeChangeDetail[]
       drivingTrials: item.drivingTrials || [],
     });
   });
+
+  // If Topic 1 uses sub-questions (1a / 1b), ensure no standalone PICO-1 artifact remains
+  if ((picoMap.has("PICO-1a") || picoMap.has("PICO-1b")) && picoMap.has("PICO-1")) {
+    picoMap.delete("PICO-1");
+  }
 
   return Array.from(picoMap.values()).sort((a, b) => comparePicoNumbers(a.picoNumber, b.picoNumber));
 }

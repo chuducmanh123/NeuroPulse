@@ -25,6 +25,7 @@ import { NotebookLMUploadModal } from "../../components/neuroguide/NotebookLMUpl
 import { EditGuidelineModal } from "../../components/neuroguide/EditGuidelineModal";
 import { AdminAuthModal } from "../../components/neurocase/modals/AdminAuthModal";
 import { GuidelinePresentationRenderer } from "../../components/neuroguide/GuidelinePresentationRenderer";
+import { groupPracticeChangesIntoEsoPicos } from "../../lib/neuroguide/esoPicoGrouper";
 import type { PracticeChangeDetail } from "../../types/neuroguide";
 
 type NavTabId = "guidelines" | "conf" | "matrix" | "review";
@@ -242,30 +243,26 @@ export default function NeuroGuidePage() {
   const [showEditModal, setShowEditModal] = useState<boolean>(false);
 
   const reloadGuidelines = () => {
-    fetch("/api/neuroguide/sync-guidelines")
+    try {
+      localStorage.removeItem("neuroguide_cached_guidelines");
+      localStorage.removeItem("neuroguide_deleted_ids");
+    } catch {}
+    fetch("/api/neuroguide/sync-guidelines", { cache: "no-store" })
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (data && data.status === "success" && Array.isArray(data.guidelines)) {
           const normalizeT = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
-          let deletedSet = new Set<string>();
-          try {
-            const localDel: string[] = JSON.parse(localStorage.getItem("neuroguide_deleted_ids") || "[]");
-            const serverDel: string[] = Array.isArray(data.deletedGuidelineIds) ? data.deletedGuidelineIds : [];
-            const mergedDel = Array.from(new Set([...localDel.map((x) => x.toLowerCase()), ...serverDel.map((x) => x.toLowerCase())]));
-            localStorage.setItem("neuroguide_deleted_ids", JSON.stringify(mergedDel));
-            deletedSet = new Set(mergedDel);
-          } catch {}
+          const serverDel: string[] = Array.isArray(data.deletedGuidelineIds) ? data.deletedGuidelineIds : [];
+          const deletedSet = new Set(serverDel.map((x) => x.toLowerCase()));
 
           const valid = data.guidelines.filter((g: GuidelineDoc) => {
+            if (!g || !g.title) return false;
             const id = (g.id || "").toLowerCase();
             const norm = normalizeT(g.title);
             return !deletedSet.has(id) && !deletedSet.has(norm);
           });
 
           setGuidelineDocs(valid);
-          try {
-            localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(valid));
-          } catch {}
         }
       });
   };
@@ -357,11 +354,6 @@ export default function NeuroGuidePage() {
         (doc) => !existingIds.has(doc.id.toLowerCase()) && !existingTitles.has(doc.title.toLowerCase().trim())
       );
       const merged = [...novel, ...prev];
-      try {
-        localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(merged));
-      } catch (e) {
-        console.warn("Could not save to localStorage:", e);
-      }
       setSyncMessage(`Successfully ingested ${novel.length} new guidelines from manifest.`);
       return merged;
     });
@@ -374,7 +366,7 @@ export default function NeuroGuidePage() {
 
   const handleDeleteGuideline = async (doc: GuidelineDoc) => {
     const confirmDelete = window.confirm(
-      `Bạn có chắc chắn muốn XÓA guideline:\n\n"${doc.title}" (${doc.society} ${doc.year})?\n\nHướng dẫn này sẽ được gỡ bỏ khỏi thư viện và hệ thống lưu trữ.`
+      `Bạn có chắc chắn muốn XÓA guideline:\n\n"${doc.title}" (${doc.society} ${doc.year})?\n\nHướng dẫn này sẽ được gỡ bỏ khỏi thư viện và hệ thống lưu trữ Cloud.`
     );
     if (!confirmDelete) return;
 
@@ -390,30 +382,16 @@ export default function NeuroGuidePage() {
       });
       const data = await res.json();
       if (data.ok) {
-        // Lưu vào danh sách ID/Title đã xóa trong localStorage để ngăn hồi sinh
-        try {
-          const currentDeleted: string[] = JSON.parse(localStorage.getItem("neuroguide_deleted_ids") || "[]");
-          currentDeleted.push(doc.id.toLowerCase(), targetNormTitle);
-          if (Array.isArray(data.deletedGuidelineIds)) {
-            currentDeleted.push(...data.deletedGuidelineIds.map((x: string) => x.toLowerCase()));
-          }
-          const uniqueDeleted = Array.from(new Set(currentDeleted));
-          localStorage.setItem("neuroguide_deleted_ids", JSON.stringify(uniqueDeleted));
-        } catch {}
-
-        setGuidelineDocs((prev) => {
-          const updated = prev.filter(
+        setGuidelineDocs((prev) =>
+          prev.filter(
             (g) =>
               g.id !== doc.id &&
               g.id.toLowerCase() !== doc.id.toLowerCase() &&
               normalizeT(g.title) !== targetNormTitle
-          );
-          try {
-            localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(updated));
-          } catch {}
-          return updated;
-        });
-        setSyncMessage(`🗑️ Đã xóa guideline "${doc.title}" thành công.`);
+          )
+        );
+        reloadGuidelines();
+        setSyncMessage(`🗑️ Đã xóa guideline "${doc.title}" trên Cloud thành công.`);
       } else {
         alert(`Lỗi khi xóa guideline: ${data.error || "Không thể xóa guideline"}`);
       }
@@ -426,9 +404,7 @@ export default function NeuroGuidePage() {
 
   const matrixContainerRef = useRef<HTMLDivElement>(null);
 
-  const CURRENT_CACHE_VERSION = "neuroguide_v2026_coordinated_v17";
-
-  // Background Autonomous Sync Method (runs on 24h cron or manual trigger)
+  // Background Autonomous Sync Method (manual trigger -> sends candidates to Review Queue, reloads approved guidelines from Cloud)
   const triggerSync = async (isAuto = false) => {
     if (isSyncing) return;
     setIsSyncing(true);
@@ -439,47 +415,15 @@ export default function NeuroGuidePage() {
         body: JSON.stringify({ isPeriodicCron: isAuto }),
       });
       const json = await res.json();
-      if (json.status === "success" && json.guidelines && json.guidelines.length > 0) {
-        // Enforce admission of coordinated guidelines only
-        const normalizeT = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
-        const coordinatedTitles = new Set(MOCK_GUIDELINE_DOCS.map((g) => normalizeT(g.title)));
-        const coordinatedIds = new Set(MOCK_GUIDELINE_DOCS.map((g) => g.id.toLowerCase()));
-
-        const valid = json.guidelines.filter((doc: GuidelineDoc) => {
-          if (!doc || !doc.title) return false;
-          const id = (doc.id || "").toLowerCase();
-          const normT = normalizeT(doc.title);
-          const isApprovedOrAi = Boolean(
-            doc.aiSynthesized ||
-            (doc.allPracticeChanges && doc.allPracticeChanges.length > 0) ||
-            coordinatedIds.has(id) ||
-            coordinatedTitles.has(normT) ||
-            id.startsWith("aha") ||
-            id.startsWith("eso")
-          );
-          return (
-            isApprovedOrAi &&
-            !id.startsWith("eso-pmid-") &&
-            !id.startsWith("esc-pmid-") &&
-            !id.startsWith("b15e76") &&
-            !id.includes("phantom")
-          );
-        });
-
-        if (valid.length > 0) {
-          setGuidelineDocs(valid);
-          try {
-            localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(valid));
-          } catch (e) {
-            console.warn("Could not save to localStorage:", e);
-          }
-        }
+      if (json.status === "success") {
+        reloadGuidelines();
+        fetchQueueCount();
 
         const quota = json.quotaReport;
         const storageNote = json.savedToBlob ? "Vercel Blob" : json.storageBackend || "Cloud Storage";
         if (quota) {
           setSyncMessage(
-            `✨ Full-Text AI Radar: Analyzed ${quota.guidelinesAnalyzed} guidelines (Full-text XML: ${quota.fullTextParsedCount}), 2 conferences & 2 clinical scenarios. Synced to: ${storageNote}.`
+            `✨ Full-Text AI Radar: Đã quét ${quota.guidelinesAnalyzed} guideline mới đưa vào Hàng đợi duyệt (Review Queue), cập nhật 2 hội nghị & 2 kịch bản lâm sàng (${storageNote}).`
           );
         } else {
           setSyncMessage(json.message || `Successfully synchronized guidelines from ${storageNote}.`);
@@ -487,7 +431,6 @@ export default function NeuroGuidePage() {
 
         const nowStr = new Date().toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" });
         setLastSyncedTime(nowStr);
-        localStorage.setItem("neuroguide_last_sync_timestamp", Date.now().toString());
       }
     } catch (err) {
       console.warn("Background radar sync error:", err);
@@ -496,88 +439,39 @@ export default function NeuroGuidePage() {
     }
   };
 
-  // Hydrate from coordinated server storage + cache sanitizer on mount
+  // Tải trực tiếp danh sách guideline đã duyệt từ Cloud (Vercel Blob / Server), KHÔNG dùng bộ nhớ tạm localStorage của thiết bị
   useEffect(() => {
     const normalizeT = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
-    const coordinatedTitles = new Set(MOCK_GUIDELINE_DOCS.map((g) => normalizeT(g.title)));
-    const coordinatedIds = new Set(MOCK_GUIDELINE_DOCS.map((g) => g.id.toLowerCase()));
 
-    // 1. Quét tức thời từ LocalStorage để giao diện hiển thị ngay lập tức, KHÔNG flash dữ liệu cũ
-    let deletedLocal = new Set<string>();
+    // Xóa triệt để cache tạm thời trên thiết bị để mọi thiết bị (PC, điện thoại, máy tính bảng) luôn hiển thị đồng nhất từ Cloud
     try {
-      const localDel: string[] = JSON.parse(localStorage.getItem("neuroguide_deleted_ids") || "[]");
-      localDel.forEach((x) => deletedLocal.add(x.toLowerCase()));
-
-      const cached = localStorage.getItem("neuroguide_cached_guidelines");
-      if (cached) {
-        const parsed = JSON.parse(cached);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          const validCached = parsed.filter((doc: GuidelineDoc) => {
-            if (!doc || !doc.title) return false;
-            const id = (doc.id || "").toLowerCase();
-            const normT = normalizeT(doc.title);
-            if (deletedLocal.has(id) || deletedLocal.has(normT)) return false;
-            return !id.startsWith("eso-pmid-") && !id.startsWith("esc-pmid-") && !id.includes("phantom");
-          });
-          if (validCached.length > 0) {
-            setGuidelineDocs(validCached);
-            setIsInitialLoading(false);
-          }
-        }
-      }
+      localStorage.removeItem("neuroguide_cached_guidelines");
+      localStorage.removeItem("neuroguide_deleted_ids");
+      localStorage.removeItem("neuroguide_last_sync_timestamp");
     } catch {}
 
-    // 2. Tải dữ liệu chuẩn từ backend storage (public/data/neuroguide_cloud.json)
-    fetch("/api/neuroguide/sync-guidelines")
+    fetch("/api/neuroguide/sync-guidelines", { cache: "no-store" })
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         setIsInitialLoading(false);
         if (data && data.status === "success" && Array.isArray(data.guidelines)) {
-          try {
-            const serverDel: string[] = Array.isArray(data.deletedGuidelineIds) ? data.deletedGuidelineIds : [];
-            const localDel: string[] = JSON.parse(localStorage.getItem("neuroguide_deleted_ids") || "[]");
-            const mergedDel = Array.from(new Set([...localDel.map((x) => x.toLowerCase()), ...serverDel.map((x) => x.toLowerCase())]));
-            localStorage.setItem("neuroguide_deleted_ids", JSON.stringify(mergedDel));
-            deletedLocal = new Set(mergedDel);
-          } catch {}
+          const serverDel: string[] = Array.isArray(data.deletedGuidelineIds) ? data.deletedGuidelineIds : [];
+          const deletedCloud = new Set(serverDel.map((x) => x.toLowerCase()));
 
           const validGuidelines = data.guidelines.filter((doc: GuidelineDoc) => {
             if (!doc || !doc.title) return false;
             const id = (doc.id || "").toLowerCase();
             const normT = normalizeT(doc.title);
-            if (deletedLocal.has(id) || deletedLocal.has(normT)) return false;
+            if (deletedCloud.has(id) || deletedCloud.has(normT)) return false;
             return !id.startsWith("eso-pmid-") && !id.startsWith("esc-pmid-") && !id.includes("phantom");
           });
 
           setGuidelineDocs(validGuidelines);
-          try {
-            localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(validGuidelines));
-          } catch {}
         }
       })
       .catch(() => {
         setIsInitialLoading(false);
       });
-
-    // 3. Initialize sync timestamp:
-    const lastSyncStr = localStorage.getItem("neuroguide_last_sync_timestamp");
-    if (!lastSyncStr) {
-      localStorage.setItem("neuroguide_last_sync_timestamp", Date.now().toString());
-    }
-
-    // 4. Periodic check once per hour: sync only if 24 hours have elapsed
-    const intervalId = setInterval(() => {
-      const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
-      const ts = localStorage.getItem("neuroguide_last_sync_timestamp");
-      if (ts) {
-        const lastSync = parseInt(ts, 10);
-        if (!isNaN(lastSync) && Date.now() - lastSync >= TWENTY_FOUR_HOURS) {
-          triggerSync(true);
-        }
-      }
-    }, 60 * 60 * 1000);
-
-    return () => clearInterval(intervalId);
   }, []);
 
   // Sync dark mode with ecosystem standards (both neuro_dark_mode and neuropulse_theme)
@@ -1138,7 +1032,17 @@ export default function NeuroGuidePage() {
                         <span className="text-xs font-bold text-slate-600 dark:text-slate-300 flex items-center gap-1.5">
                           <span>📋</span>
                           <span>
-                            {`${doc.allPracticeChanges.length} Key Practice Changes`}
+                            {doc.society?.toUpperCase().includes("ESO")
+                              ? (() => {
+                                  const picos = groupPracticeChangesIntoEsoPicos(
+                                    doc.allPracticeChanges || [],
+                                    doc.title,
+                                    doc.id
+                                  );
+                                  const totalRecs = picos.reduce((s, p) => s + p.recommendations.length, 0);
+                                  return `${picos.length} PICO (${totalRecs} khuyến cáo lâm sàng và đồng thuận chuyên gia)`;
+                                })()
+                              : `${doc.allPracticeChanges.length} Key Practice Changes`}
                           </span>
                         </span>
 
@@ -1200,8 +1104,8 @@ export default function NeuroGuidePage() {
                                 </div>
                               )}
 
-                              {/* 1. What is new vs previous edition */}
-                              {newPracticeChanges.length > 0 && (
+                              {/* 1. What is new vs previous edition (chỉ áp dụng cho guideline AHA/ASA hoặc có phiên bản cũ so sánh, không lặp lại trước bảng PICO của ESO) */}
+                              {newPracticeChanges.length > 0 && !doc.society?.toUpperCase().includes("ESO") && (
                                 <div className="space-y-2.5">
                                   <div className="flex items-center gap-2">
                                     <span className="px-2 py-0.5 rounded-full text-[10.5px] font-black bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30">
@@ -2183,18 +2087,13 @@ export default function NeuroGuidePage() {
           isOpen={showNotebookLMModal}
           onClose={() => setShowNotebookLMModal(false)}
           onSuccess={(newDoc) => {
-            setGuidelineDocs((prev) => {
-              const next = [newDoc, ...prev.filter((d) => d.id !== newDoc.id)];
-              try {
-                localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(next));
-              } catch {}
-              return next;
-            });
+            setGuidelineDocs((prev) => [newDoc, ...prev.filter((d) => d.id !== newDoc.id)]);
             setExpandedGuidelineIds((prev) => ({ ...prev, [newDoc.id]: true }));
             setSelectedSocietyFilter("ALL");
             setSyncMessage(
               `🎉 Successfully generated and saved Practice Guideline "${newDoc.title}" (${newDoc.allPracticeChanges.length} recommendations)!`
             );
+            reloadGuidelines();
             fetchQueueCount();
           }}
           darkMode={darkMode}
@@ -2211,18 +2110,14 @@ export default function NeuroGuidePage() {
             onSuccess={(updatedDoc) => {
               if (updatedDoc) {
                 const normalizeT = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
-                setGuidelineDocs((prev) => {
-                  const updatedList = prev.map((g) => {
+                setGuidelineDocs((prev) =>
+                  prev.map((g) => {
                     if (g.id === updatedDoc.id || normalizeT(g.title) === normalizeT(updatedDoc.title)) {
                       return updatedDoc;
                     }
                     return g;
-                  });
-                  try {
-                    localStorage.setItem("neuroguide_cached_guidelines", JSON.stringify(updatedList));
-                  } catch {}
-                  return updatedList;
-                });
+                  })
+                );
                 setSyncMessage(`✓ Đã lưu thay đổi cho guideline "${updatedDoc.title}".`);
               }
               reloadGuidelines();

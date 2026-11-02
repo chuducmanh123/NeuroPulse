@@ -178,4 +178,135 @@ Table 3 Synoptic table of all recommendations and expert consensus statements.
     assert.equal(bpCanonical?.length, 8);
     assert.ok(bpCanonical?.[0].picoQuestion.includes("blood pressure"));
   });
+
+  await t.test("should eliminate extra PICO 1 and leftover PICO 11..42 when grouping 42 raw unnumbered recommendations from PDF upload", async () => {
+    const {
+      groupPracticeChangesIntoEsoPicos,
+      convertEsoPicoItemsToPracticeChanges,
+    } = await import("../src/lib/neuroguide/esoPicoGrouper.ts");
+
+    // Simulate the exact 42 raw items produced when a 2-batch PDF extractor extracted Page 3 box + 10 PICOs + 31 consensus statements without PICO prefixes
+    const noisyRawChanges = [
+      {
+        id: "rec-1",
+        category: "General Care",
+        topic: "Specialized Neuro-ICU Admission",
+        changeType: "NEW",
+        currentText:
+          "Admit or immediately transfer the patient to a dedicated neuro-ICU or high care unit in a centre that treats at least 70 patients with aSAH per year, or at least 35 patients with aSAH per year in geographically remote areas.",
+        currentGrade: "GRADE Strong for intervention (Evidence: Moderate)",
+        quality: "Moderate",
+        strength: "Strong for intervention",
+        drivingTrials: ["SYNAPSE-ICU"],
+      },
+      {
+        id: "rec-2",
+        category: "Prevention of Rebleeding",
+        topic: "Antifibrinolytic Therapy",
+        changeType: "NEW",
+        currentText:
+          "In adult patients with aSAH, we recommend against routine administration of antifibrinolytic drugs prior to treatment of the ruptured aneurysm to decrease the risk of poor functional outcome.",
+        currentGrade: "GRADE Strong against intervention (Evidence: Moderate)",
+        quality: "Moderate",
+        strength: "Strong against intervention",
+        drivingTrials: ["ULTRA"],
+      },
+      ...Array.from({ length: 40 }, (_, i) => ({
+        id: `rec-${i + 3}`,
+        category: "Expert Consensus",
+        topic:
+          i === 8
+            ? "Pre-treatment Blood Pressure Lowering"
+            : i === 9
+            ? "Blood Pressure Lowering Methodology"
+            : i === 10
+            ? "Timing of Aneurysm Occlusion"
+            : i === 11
+            ? "Interdisciplinary Discussion"
+            : `Consensus Item ${i + 3}`,
+        changeType: "NEW",
+        currentText: `In adult patients with aSAH and systolic blood pressures higher than 160-180 mm Hg, consensus statement #${i + 1}.`,
+        currentGrade: "GRADE Weak for intervention (Evidence: Moderate)",
+      })),
+    ];
+
+    assert.equal(noisyRawChanges.length, 42);
+
+    // 1. Test with title passed
+    const groupedWithTitle = groupPracticeChangesIntoEsoPicos(
+      noisyRawChanges,
+      "2026 ESO EANS and ESMINT guideline on aneurysmal subarachnoid haemorrhage",
+      "eso_asah_2026"
+    );
+    assert.equal(groupedWithTitle.length, 15, "Must return exactly the 15 canonical PICO questions (1a..10)");
+    assert.equal(groupedWithTitle[0].picoNumber, "1a", "First PICO must be 1a, never standalone PICO 1");
+    assert.equal(groupedWithTitle[1].picoNumber, "1b", "Second PICO must be 1b");
+    assert.equal(groupedWithTitle[groupedWithTitle.length - 1].picoNumber, "10", "Last PICO must be 10, never PICO 11..42");
+    assert.ok(!groupedWithTitle.some((p) => p.picoNumber === "1"), "Standalone PICO 1 must not exist");
+    assert.ok(!groupedWithTitle.some((p) => Number(p.picoNumber) > 10), "PICO 11..42 must not exist");
+
+    // 2. Test even WITHOUT title passed (auto-detected via content signature)
+    const groupedWithoutTitle = groupPracticeChangesIntoEsoPicos(noisyRawChanges);
+    assert.equal(groupedWithoutTitle.length, 15);
+    assert.equal(groupedWithoutTitle[0].picoNumber, "1a");
+    assert.equal(groupedWithoutTitle[groupedWithoutTitle.length - 1].picoNumber, "10");
+
+    // 3. Test convertEsoPicoItemsToPracticeChanges round-trip
+    const cleanChanges = convertEsoPicoItemsToPracticeChanges(groupedWithTitle);
+    assert.equal(cleanChanges.length, 17, "15 PICO questions contain 17 formal recommendations in total");
+    const regouped = groupPracticeChangesIntoEsoPicos(cleanChanges);
+    assert.equal(regouped.length, 15);
+    assert.equal(regouped[0].picoNumber, "1a");
+    assert.equal(regouped[regouped.length - 1].picoNumber, "10");
+  });
+
+  await t.test("generic future ESO guideline with sub-PICOs (1a, 1b) should ignore unnumbered front-matter and consensus noise", () => {
+    const genericFutureEsoChanges = [
+      {
+        id: "front-box",
+        category: "General",
+        topic: "General Stroke Unit Admission",
+        changeType: "NEW",
+        currentText: "Admit patients to a stroke unit.",
+        currentGrade: "GRADE Strong",
+      },
+      {
+        id: "pico-1a",
+        category: "Acute Treatment",
+        topic: "PICO 1a: In patients with condition X, does drug A vs placebo improve outcome?",
+        picoNumber: "1a",
+        picoQuestion: "In patients with condition X, does drug A vs placebo improve outcome?",
+        changeType: "NEW",
+        currentText: "We recommend drug A.",
+        currentGrade: "GRADE Strong for intervention",
+      },
+      {
+        id: "pico-1b",
+        category: "Acute Treatment",
+        topic: "PICO 1b: In patients with condition X, does drug B vs placebo improve outcome?",
+        picoNumber: "1b",
+        picoQuestion: "In patients with condition X, does drug B vs placebo improve outcome?",
+        changeType: "NEW",
+        currentText: "We suggest against drug B.",
+        currentGrade: "GRADE Weak against intervention",
+      },
+      {
+        id: "stray-consensus",
+        category: "Consensus",
+        topic: "Additional Clinical Advice",
+        changeType: "NEW",
+        currentText: "We suggest monitoring blood pressure every 15 minutes.",
+        currentGrade: "GRADE Weak for intervention",
+      },
+    ];
+
+    const grouped = groupPracticeChangesIntoEsoPicos(
+      genericFutureEsoChanges,
+      "2027 ESO Guideline on Novel Neurological Condition",
+      "eso_novel_2027"
+    );
+    assert.equal(grouped.length, 2, "Must only include explicit PICO 1a and 1b, ignoring unnumbered noise");
+    assert.equal(grouped[0].picoNumber, "1a");
+    assert.equal(grouped[1].picoNumber, "1b");
+  });
 });

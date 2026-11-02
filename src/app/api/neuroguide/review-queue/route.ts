@@ -5,6 +5,11 @@ import { put } from "@vercel/blob";
 import type { GuidelineDoc, PracticeChangeDetail } from "@/types/neuroguide";
 import { mapSocietyToSubspecialty } from "@/lib/neuroguide/storeAdapter";
 import { loadMergedNeuroGuideData, saveNeuroGuideToActiveStorage } from "@/lib/neuroguide/blobStorage";
+import {
+  getCanonicalEsoPicos,
+  convertEsoPicoItemsToPracticeChanges,
+  isEsoBpGuideline,
+} from "@/lib/neuroguide/esoPicoGrouper";
 
 export const dynamic = "force-dynamic";
 
@@ -290,55 +295,65 @@ async function syncGuidelineRecordToActiveLibrary(record: GuidelineRecord) {
   const activeData = await loadMergedNeuroGuideData();
   const nowIso = new Date().toISOString();
 
-  const practiceChanges: PracticeChangeDetail[] = approvedRecs.map((r, idx) => {
-    let currentGrade = "Standard Clinical Practice";
-    if (r.cor) {
-      currentGrade = `Class ${r.cor}${r.loe ? `, Level ${r.loe}` : ""}`;
-    } else if (r.quality_of_evidence || r.strength_of_recommendation) {
-      currentGrade = `GRADE ${r.strength_of_recommendation || "Recommended"} (Evidence: ${r.quality_of_evidence || "Moderate"}${r.voting ? `, Voting: ${r.voting}` : ""})`;
-    }
+  const canonicalEsoPicos = getCanonicalEsoPicos(record.metadata.title, record.guideline_id);
 
-    const isClass1 = r.cor === "1" || String(r.cor).includes("1");
-    const isHarm = String(r.cor).includes("3");
-    const fallbackCategory = isClass1
-      ? "Khuyến cáo Hàng đầu (Class I)"
-      : isHarm
-      ? "Khuyến cáo Nguy hại / Không có lợi (Class III)"
-      : "Khuyến cáo Phối hợp (Class II)";
+  const practiceChanges: PracticeChangeDetail[] =
+    canonicalEsoPicos && canonicalEsoPicos.length > 0
+      ? convertEsoPicoItemsToPracticeChanges(
+          canonicalEsoPicos,
+          isEsoBpGuideline(record.metadata.title, record.guideline_id)
+            ? "Blood Pressure Management (ESO GRADE)"
+            : "Aneurysmal Subarachnoid Haemorrhage (ESO GRADE)"
+        )
+      : approvedRecs.map((r, idx) => {
+          let currentGrade = "Standard Clinical Practice";
+          if (r.cor) {
+            currentGrade = `Class ${r.cor}${r.loe ? `, Level ${r.loe}` : ""}`;
+          } else if (r.quality_of_evidence || r.strength_of_recommendation) {
+            currentGrade = `GRADE ${r.strength_of_recommendation || "Recommended"} (Evidence: ${r.quality_of_evidence || "Moderate"}${r.voting ? `, Voting: ${r.voting}` : ""})`;
+          }
 
-    const clinicalCategory = (r.category || (r as any).section || fallbackCategory).trim();
-    const clinicalTopic = (r.topic || r.target_population || record.metadata.title).trim();
+          const isClass1 = r.cor === "1" || String(r.cor).includes("1");
+          const isHarm = String(r.cor).includes("3");
+          const fallbackCategory = isClass1
+            ? "Khuyến cáo Hàng đầu (Class I)"
+            : isHarm
+            ? "Khuyến cáo Nguy hại / Không có lợi (Class III)"
+            : "Khuyến cáo Phối hợp (Class II)";
 
-    let pNum: string | undefined;
-    let pQuestion: string | undefined;
-    if (r.pico_id) {
-      const m = String(r.pico_id).match(/\d+/);
-      pNum = m ? m[0] : String(r.pico_id);
-      pQuestion = r.target_population || r.topic;
-    } else if (r.topic) {
-      const m = String(r.topic).match(/PICO\s*(\d+)[:.\s-]*(.*)/i);
-      if (m) {
-        pNum = m[1];
-        pQuestion = m[2]?.trim();
-      }
-    }
+          const clinicalCategory = (r.category || (r as any).section || fallbackCategory).trim();
+          const clinicalTopic = (r.topic || r.target_population || record.metadata.title).trim();
 
-    return {
-      id: r.rec_id || `rec-${idx + 1}`,
-      category: clinicalCategory,
-      topic: clinicalTopic,
-      changeType: isClass1 ? "UPGRADED" : "NEW",
-      currentText: r.statement,
-      currentGrade,
-      drivingTrials: r.driving_trials || [],
-      quality: r.quality_of_evidence || undefined,
-      strength: r.strength_of_recommendation || undefined,
-      voting: r.voting || undefined,
-      expertConsensusStatement: (r as any).consensus_statement || (r as any).expertConsensusStatement || undefined,
-      picoNumber: pNum,
-      picoQuestion: pQuestion,
-    };
-  });
+          let pNum: string | undefined;
+          let pQuestion: string | undefined;
+          if (r.pico_id) {
+            const m = String(r.pico_id).match(/(\d+[a-z]?)/i);
+            pNum = m ? m[1] : String(r.pico_id);
+            pQuestion = r.target_population || r.topic;
+          } else if (r.topic) {
+            const m = String(r.topic).match(/PICO\s*(\d+[a-z]?)[:.\s-]*(.*)/i);
+            if (m) {
+              pNum = m[1];
+              pQuestion = m[2]?.trim();
+            }
+          }
+
+          return {
+            id: r.rec_id || `rec-${idx + 1}`,
+            category: clinicalCategory,
+            topic: clinicalTopic,
+            changeType: isClass1 ? "UPGRADED" : "NEW",
+            currentText: r.statement,
+            currentGrade,
+            drivingTrials: r.driving_trials || [],
+            quality: r.quality_of_evidence || undefined,
+            strength: r.strength_of_recommendation || undefined,
+            voting: r.voting || undefined,
+            expertConsensusStatement: (r as any).consensus_statement || (r as any).expertConsensusStatement || undefined,
+            picoNumber: pNum,
+            picoQuestion: pQuestion,
+          };
+        });
 
   const normalizeT = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
   const normTitle = normalizeT(record.metadata.title);
@@ -611,6 +626,7 @@ export async function POST(request: NextRequest) {
           guidelines: activeData.guidelines,
           conferences: activeData.conferences,
           scenarios: activeData.scenarios,
+          deletedGuidelineIds: activeData.deletedGuidelineIds,
         });
       }
 
@@ -789,7 +805,7 @@ export async function POST(request: NextRequest) {
             let pNum: string | undefined = (chg as any).picoNumber ? String((chg as any).picoNumber) : undefined;
             let pQuestion: string | undefined = (chg as any).picoQuestion || undefined;
             if (!pNum && chg.topic) {
-              const m = String(chg.topic).match(/PICO\s*(\d+)[:.\s-]*(.*)/i);
+              const m = String(chg.topic).match(/PICO\s*(\d+[a-z]?)[:.\s-]*(.*)/i);
               if (m) {
                 pNum = m[1];
                 if (!pQuestion) pQuestion = m[2]?.trim();

@@ -10,6 +10,7 @@ import {
   isEsoBpGuideline,
   isEsoAsahGuideline,
   getCanonicalEsoPicos,
+  convertEsoPicoItemsToPracticeChanges,
   CANONICAL_ESO_2025_BP_PICOS,
   CANONICAL_ESO_2026_ASAH_PICOS,
 } from "@/lib/neuroguide/esoPicoGrouper";
@@ -80,62 +81,77 @@ interface ConfirmDialogState {
  * Transforms stored recommendations into structured ESO PICO questions matching Synoptic Table structure.
  * Automatically aligns with official canonical items when available, preventing content bleed between guidelines.
  */
-function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: string, guidelineId?: string): EsoPicoItem[] {
-  const canonicalList = getCanonicalEsoPicos(guidelineTitle, guidelineId);
-  const canonicalMap = new Map<string, EsoPicoItem>();
-  if (canonicalList) {
-    canonicalList.forEach((cp) => {
-      canonicalMap.set(String(cp.picoNumber).trim().toLowerCase(), cp);
-    });
+export function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: string, guidelineId?: string): EsoPicoItem[] {
+  let canonicalList = getCanonicalEsoPicos(guidelineTitle, guidelineId);
+  if (!canonicalList && recs && recs.length > 0) {
+    const firstRec = recs[0];
+    canonicalList = getCanonicalEsoPicos(firstRec.guideline_title, firstRec.guideline_id);
   }
 
-  // If no recommendations are stored, use canonical fallback if matched
-  if (!recs || recs.length === 0) {
-    return canonicalList || [];
+  // If this guideline matches a canonical ESO Synoptic Table (e.g. ESO 2026 aSAH or ESO 2025 BP),
+  // use the canonical PICO structure directly so fallback counters never invent extra PICO 1 or PICO 11..42.
+  if (canonicalList && canonicalList.length > 0) {
+    return canonicalList
+      .map((cp) => ({
+        ...cp,
+        recommendations: cp.recommendations.map((r) => ({
+          ...r,
+          drivingTrials: r.drivingTrials ? [...r.drivingTrials] : undefined,
+        })),
+        drivingTrials: cp.drivingTrials ? [...cp.drivingTrials] : undefined,
+      }))
+      .sort((a, b) => comparePicoNumbers(a.picoNumber, b.picoNumber));
   }
+
+  if (!recs || recs.length === 0) {
+    return [];
+  }
+
+  const extractExplicitPico = (r: StoredRec): { num: string; question: string } | null => {
+    const rawTopic = (r.topic || "").trim();
+    const rawCat = (r.category || "").trim();
+    const rawPicoId = (r.pico_id || "").trim();
+    if (rawPicoId) {
+      const matchPico = rawPicoId.match(/^(?:PICO\s*)?(\d+[a-z]?)$/i);
+      if (matchPico) {
+        return {
+          num: matchPico[1],
+          question: (r.target_population || rawTopic || rawCat).trim(),
+        };
+      }
+    }
+    const matchTopic = rawTopic.match(/^PICO\s*(\d+[a-z]?)[:.\s-]*(.*)/i);
+    if (matchTopic) {
+      return { num: matchTopic[1], question: matchTopic[2]?.trim() || rawTopic };
+    }
+    const matchCat = rawCat.match(/^PICO\s*(\d+[a-z]?)[:.\s-]*(.*)/i);
+    if (matchCat) {
+      return { num: matchCat[1], question: matchCat[2]?.trim() || rawTopic };
+    }
+    return null;
+  };
+
+  const hasExplicitPicos = recs.some((r) => extractExplicitPico(r) !== null);
 
   const picoMap = new Map<string, EsoPicoItem>();
   let fallbackCounter = 1;
 
   recs.forEach((r) => {
-    let pNum: number | string = "";
-    let pQuestion = "";
+    const explicit = extractExplicitPico(r);
+    // If the document has explicit PICO numbers, ignore unnumbered noise (front-matter summary boxes or stray consensus statements)
+    if (hasExplicitPicos && !explicit) {
+      return;
+    }
 
     const rawTopic = (r.topic || "").trim();
     const rawCat = (r.category || "").trim();
-    const rawPicoId = (r.pico_id || "").trim();
 
-    if (rawPicoId) {
-      const matchPico = rawPicoId.match(/(?:PICO\s*)?(\d+[a-z]?)/i);
-      pNum = matchPico ? matchPico[1] : rawPicoId;
-      pQuestion = (r.target_population || rawTopic || rawCat).trim();
-    } else {
-      const matchTopic = rawTopic.match(/^PICO\s*(\d+[a-z]?)[:.\s-]*(.*)/i);
-      const matchCat = rawCat.match(/^PICO\s*(\d+[a-z]?)[:.\s-]*(.*)/i);
-
-      if (matchTopic) {
-        pNum = matchTopic[1];
-        pQuestion = matchTopic[2]?.trim() || rawTopic;
-      } else if (matchCat) {
-        pNum = matchCat[1];
-        pQuestion = matchCat[2]?.trim() || rawTopic;
-      } else {
-        pNum = fallbackCounter++;
-        pQuestion = rawTopic || rawCat || `PICO ${pNum}`;
-      }
-    }
+    const pNum: number | string = explicit ? explicit.num : fallbackCounter++;
+    let pQuestion = explicit ? explicit.question : rawTopic || rawCat || `PICO ${pNum}`;
 
     pQuestion = pQuestion.replace(/^PICO\s*\d+[a-z]?[:.\s-]*/i, "").trim();
     if (!pQuestion) {
       pQuestion = rawTopic.replace(/^PICO\s*\d+[a-z]?[:.\s-]*/i, "").trim() || rawCat;
-    }
-
-    const pNumKey = String(pNum).trim().toLowerCase();
-    const canonicalItem = canonicalMap.get(pNumKey);
-
-    // If question is empty or too short / just a category fragment, use the formal canonical question
-    if (canonicalItem && (!pQuestion || pQuestion.length < 35 || pQuestion.toLowerCase() === rawCat.toLowerCase())) {
-      pQuestion = canonicalItem.picoQuestion;
     }
 
     if (pQuestion && !pQuestion.endsWith("?") && !pQuestion.endsWith(".")) {
@@ -145,7 +161,7 @@ function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: str
     const picoKey = `PICO-${String(pNum).toLowerCase()}`;
 
     const rawStrength = r.strength_of_recommendation || (r as any).strength || (r as any).currentGrade || (r as any).grade;
-    let s = normalizeEsoStrength(rawStrength, r.statement);
+    const s = normalizeEsoStrength(rawStrength, r.statement);
 
     let q = r.quality_of_evidence || (r as any).quality;
     if (!q) {
@@ -156,7 +172,7 @@ function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: str
       else if ((lowerG.includes("low") || lowerG.includes("thấp")) && !lowerG.includes("very") && !lowerG.includes("rất")) q = "Low";
       else if (lowerG.includes("high") || lowerG.includes("cao")) q = "High";
       else if (lowerG.includes("moderate") || lowerG.includes("trung bình")) q = "Moderate";
-      else q = canonicalItem?.recommendations[0]?.qualityOfEvidence || "Moderate";
+      else q = "Moderate";
     }
 
     // Only use consensus_statement if explicitly present and not identical to statement
@@ -165,19 +181,14 @@ function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: str
       (r as any).expertConsensusStatement ||
       ((r as any).previousText && !(r as any).previousText.startsWith("Driving Evidence:") ? (r as any).previousText : undefined);
 
-    let consensus =
+    const consensus =
       rawConsensus && rawConsensus.trim() !== (r.statement || "").trim()
         ? rawConsensus.trim()
         : undefined;
 
-    // Fallback to canonical expert consensus statement ONLY if explicitly defined in matching canonical guideline
-    if (!consensus && canonicalItem?.expertConsensusStatement) {
-      consensus = canonicalItem.expertConsensusStatement;
-    }
-
     const trials = Array.isArray(r.driving_trials) && r.driving_trials.length > 0
       ? r.driving_trials
-      : canonicalItem?.drivingTrials || [];
+      : [];
 
     if (!picoMap.has(picoKey)) {
       picoMap.set(picoKey, {
@@ -185,7 +196,7 @@ function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: str
         picoQuestion: pQuestion,
         recommendations: [],
         expertConsensusStatement: consensus,
-        voting: r.voting || canonicalItem?.voting || (consensus && consensus.includes("Vote:") ? consensus.split("Vote:")[1]?.split(")")[0]?.trim() ? `Vote: ${consensus.split("Vote:")[1]?.split(")")[0]?.trim()}` : undefined : undefined),
+        voting: r.voting || (consensus && consensus.includes("Vote:") ? consensus.split("Vote:")[1]?.split(")")[0]?.trim() ? `Vote: ${consensus.split("Vote:")[1]?.split(")")[0]?.trim()}` : undefined : undefined),
         drivingTrials: [...trials],
       });
     }
@@ -194,7 +205,7 @@ function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: str
 
     if (!entry.expertConsensusStatement && consensus) {
       entry.expertConsensusStatement = consensus;
-      if (!entry.voting) entry.voting = r.voting || canonicalItem?.voting;
+      if (!entry.voting) entry.voting = r.voting;
     }
 
     if (trials.length > 0) {
@@ -211,14 +222,9 @@ function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitle?: str
     });
   });
 
-  // If this guideline has a matching canonical set and some PICOs are missing, merge them
-  if (canonicalList && canonicalList.length > 0) {
-    canonicalList.forEach((cp) => {
-      const pKey = `PICO-${String(cp.picoNumber).toLowerCase()}`;
-      if (!picoMap.has(pKey)) {
-        picoMap.set(pKey, cp);
-      }
-    });
+  // If Topic 1 uses sub-questions (1a / 1b), ensure no standalone PICO-1 artifact remains
+  if ((picoMap.has("PICO-1a") || picoMap.has("PICO-1b")) && picoMap.has("PICO-1")) {
+    picoMap.delete("PICO-1");
   }
 
   return Array.from(picoMap.values()).sort((a, b) => comparePicoNumbers(a.picoNumber, b.picoNumber));
@@ -635,65 +641,65 @@ export function ReviewQueueTab({
 
     const canonicalList = getCanonicalEsoPicos(group.guideline_title, group.guideline_id);
 
-    const allItems: PracticeChangeDetail[] = group.recommendations.map((r, idx) => {
-      let pNum: string | undefined;
-      let pQuestion: string | undefined;
-      if (r.pico_id) {
-        const m = String(r.pico_id).match(/(\d+[a-z]?)/i);
-        pNum = m ? m[0] : String(r.pico_id);
-        pQuestion = r.target_population || r.topic;
-      } else if (r.topic) {
-        const m = String(r.topic).match(/PICO\s*(\d+[a-z]?)[:.\s-]*(.*)/i);
-        if (m) {
-          pNum = m[1];
-          pQuestion = m[2]?.trim();
-        }
-      }
+    const allItems: PracticeChangeDetail[] =
+      isDocEso && canonicalList
+        ? convertEsoPicoItemsToPracticeChanges(
+            canonicalList,
+            isEsoBpGuideline(group.guideline_title, group.guideline_id)
+              ? "Blood Pressure"
+              : isEsoAsahGuideline(group.guideline_title, group.guideline_id)
+              ? "Aneurysmal Subarachnoid Haemorrhage"
+              : "ESO Synoptic Table Recommendation"
+          )
+        : group.recommendations.map((r, idx) => {
+            let pNum: string | undefined;
+            let pQuestion: string | undefined;
+            if (r.pico_id) {
+              const m = String(r.pico_id).match(/(\d+[a-z]?)/i);
+              pNum = m ? m[0] : String(r.pico_id);
+              pQuestion = r.target_population || r.topic;
+            } else if (r.topic) {
+              const m = String(r.topic).match(/PICO\s*(\d+[a-z]?)[:.\s-]*(.*)/i);
+              if (m) {
+                pNum = m[1];
+                pQuestion = m[2]?.trim();
+              }
+            }
 
-      const pNumKey = String(pNum || idx + 1).trim().toLowerCase();
-      const canonicalItem = canonicalList?.find((cp) => String(cp.picoNumber).trim().toLowerCase() === pNumKey);
+            const s = normalizeEsoStrength(r.strength_of_recommendation || (r as any).strength || (r as any).currentGrade, r.statement);
+            const q = r.quality_of_evidence || (r as any).quality || "Moderate";
 
-      let s = normalizeEsoStrength(r.strength_of_recommendation || (r as any).strength || (r as any).currentGrade, r.statement);
-      if (isDocEso && canonicalItem && pNumKey === "1" && isEsoBpGuideline(group.guideline_title, group.guideline_id)) {
-        s = "Strong against intervention";
-      }
-      const q = r.quality_of_evidence || (r as any).quality || canonicalItem?.recommendations[0]?.qualityOfEvidence || "Moderate";
+            let currentGrade = "Standard Clinical Practice";
+            if (isDocEso) {
+              currentGrade = `GRADE ${s} (Evidence: ${q}${r.voting ? `, Voting: ${r.voting}` : ""})`;
+            } else if (r.cor) {
+              currentGrade = `Class ${r.cor}${r.loe ? `, Level ${r.loe}` : ""}`;
+            } else if (r.quality_of_evidence || r.strength_of_recommendation) {
+              currentGrade = `GRADE ${s} (Evidence: ${q})`;
+            }
 
-      let currentGrade = "Standard Clinical Practice";
-      if (isDocEso) {
-        currentGrade = `GRADE ${s} (Evidence: ${q}${r.voting ? `, Voting: ${r.voting}` : ""})`;
-      } else if (r.cor) {
-        currentGrade = `Class ${r.cor}${r.loe ? `, Level ${r.loe}` : ""}`;
-      } else if (r.quality_of_evidence || r.strength_of_recommendation) {
-        currentGrade = `GRADE ${s} (Evidence: ${q})`;
-      }
+            const finalConsensus =
+              (r as any).consensus_statement ||
+              (r as any).expertConsensusStatement;
 
-      const finalConsensus =
-        (r as any).consensus_statement ||
-        (r as any).expertConsensusStatement ||
-        canonicalItem?.expertConsensusStatement;
+            const finalPicoQuestion = pQuestion || r.topic;
 
-      const finalPicoQuestion =
-        (canonicalItem && (!pQuestion || pQuestion.length < 35 || pQuestion.toLowerCase() === (r.category || "").toLowerCase()))
-          ? canonicalItem.picoQuestion
-          : (pQuestion || canonicalItem?.picoQuestion || r.topic);
-
-      return {
-        id: r.rec_id || `rec-${idx + 1}`,
-        topic: r.topic || r.target_population || (isDocEso ? `PICO ${pNum || idx + 1}: Clinical Question` : `Khuyến cáo #${idx + 1}`),
-        currentGrade,
-        currentText: r.statement,
-        category: r.category || (isEsoBpGuideline(group.guideline_title, group.guideline_id) ? "Blood Pressure" : isEsoAsahGuideline(group.guideline_title, group.guideline_id) ? "Aneurysmal Subarachnoid Haemorrhage" : "General Recommendations"),
-        drivingTrials: (r.driving_trials && r.driving_trials.length > 0) ? r.driving_trials : (canonicalItem?.drivingTrials || []),
-        changeType: "NEW",
-        quality: isDocEso ? q : undefined,
-        strength: isDocEso ? s : undefined,
-        expertConsensusStatement: finalConsensus,
-        voting: isDocEso ? (r.voting || canonicalItem?.voting) : undefined,
-        picoNumber: pNum || `${idx + 1}`,
-        picoQuestion: finalPicoQuestion,
-      };
-    });
+            return {
+              id: r.rec_id || `rec-${idx + 1}`,
+              topic: r.topic || r.target_population || (isDocEso ? `PICO ${pNum || idx + 1}: Clinical Question` : `Khuyến cáo #${idx + 1}`),
+              currentGrade,
+              currentText: r.statement,
+              category: r.category || "General Recommendations",
+              drivingTrials: r.driving_trials || [],
+              changeType: "NEW",
+              quality: isDocEso ? q : undefined,
+              strength: isDocEso ? s : undefined,
+              expertConsensusStatement: finalConsensus,
+              voting: isDocEso ? r.voting : undefined,
+              picoNumber: pNum || `${idx + 1}`,
+              picoQuestion: finalPicoQuestion,
+            };
+          });
 
     const docMeta: GuidelineDoc = {
       id: group.guideline_id,
@@ -735,67 +741,68 @@ export function ReviewQueueTab({
     const docId = parentGroup?.guideline_id || rec.guideline_id;
     const canonicalList = getCanonicalEsoPicos(docTitle, docId);
 
-    const allItems: PracticeChangeDetail[] = (parentGroup?.recommendations || [rec]).map((r, idx) => {
-      let pNum: string | undefined;
-      let pQuestion: string | undefined;
-      if (r.pico_id) {
-        const m = String(r.pico_id).match(/(\d+[a-z]?)/i);
-        pNum = m ? m[0] : String(r.pico_id);
-        pQuestion = r.target_population || r.topic;
-      } else if (r.topic) {
-        const m = String(r.topic).match(/PICO\s*(\d+[a-z]?)[:.\s-]*(.*)/i);
-        if (m) {
-          pNum = m[1];
-          pQuestion = m[2]?.trim();
-        }
-      }
+    const allItems: PracticeChangeDetail[] =
+      isDocEso && canonicalList
+        ? convertEsoPicoItemsToPracticeChanges(
+            canonicalList,
+            isEsoBpGuideline(docTitle, docId)
+              ? "Blood Pressure"
+              : isEsoAsahGuideline(docTitle, docId)
+              ? "Aneurysmal Subarachnoid Haemorrhage"
+              : "ESO Synoptic Table Recommendation"
+          )
+        : (parentGroup?.recommendations || [rec]).map((r, idx) => {
+            let pNum: string | undefined;
+            let pQuestion: string | undefined;
+            if (r.pico_id) {
+              const m = String(r.pico_id).match(/(\d+[a-z]?)/i);
+              pNum = m ? m[0] : String(r.pico_id);
+              pQuestion = r.target_population || r.topic;
+            } else if (r.topic) {
+              const m = String(r.topic).match(/PICO\s*(\d+[a-z]?)[:.\s-]*(.*)/i);
+              if (m) {
+                pNum = m[1];
+                pQuestion = m[2]?.trim();
+              }
+            }
 
-      const pNumKey = String(pNum || idx + 1).trim().toLowerCase();
-      const canonicalItem = canonicalList?.find((cp) => String(cp.picoNumber).trim().toLowerCase() === pNumKey);
+            const s = normalizeEsoStrength(r.strength_of_recommendation || (r as any).strength || (r as any).currentGrade, r.statement);
+            const q = r.quality_of_evidence || (r as any).quality || "Moderate";
 
-      let s = normalizeEsoStrength(r.strength_of_recommendation || (r as any).strength || (r as any).currentGrade, r.statement);
-      if (isDocEso && canonicalItem && pNumKey === "1" && isEsoBpGuideline(docTitle, docId)) {
-        s = "Strong against intervention";
-      }
-      const q = r.quality_of_evidence || (r as any).quality || canonicalItem?.recommendations[0]?.qualityOfEvidence || "Moderate";
+            let currentGrade = "Standard Clinical Practice";
+            if (isDocEso) {
+              currentGrade = `GRADE ${s} (Evidence: ${q}${r.voting ? `, Voting: ${r.voting}` : ""})`;
+            } else if (r.cor) {
+              currentGrade = `Class ${r.cor}${r.loe ? `, Level ${r.loe}` : ""}`;
+            } else if (r.quality_of_evidence || r.strength_of_recommendation) {
+              currentGrade = `GRADE ${s} (Evidence: ${q})`;
+            }
 
-      let currentGrade = "Standard Clinical Practice";
-      if (isDocEso) {
-        currentGrade = `GRADE ${s} (Evidence: ${q}${r.voting ? `, Voting: ${r.voting}` : ""})`;
-      } else if (r.cor) {
-        currentGrade = `Class ${r.cor}${r.loe ? `, Level ${r.loe}` : ""}`;
-      } else if (r.quality_of_evidence || r.strength_of_recommendation) {
-        currentGrade = `GRADE ${s} (Evidence: ${q})`;
-      }
+            const finalConsensus =
+              (r as any).consensus_statement ||
+              (r as any).expertConsensusStatement;
 
-      const finalConsensus =
-        (r as any).consensus_statement ||
-        (r as any).expertConsensusStatement ||
-        canonicalItem?.expertConsensusStatement;
+            const finalPicoQuestion = pQuestion || r.topic;
 
-      const finalPicoQuestion =
-        (canonicalItem && (!pQuestion || pQuestion.length < 35 || pQuestion.toLowerCase() === (r.category || "").toLowerCase()))
-          ? canonicalItem.picoQuestion
-          : (pQuestion || canonicalItem?.picoQuestion || r.topic);
+            return {
+              id: r.rec_id || `rec-${idx + 1}`,
+              topic: r.topic || r.target_population || (isDocEso ? `PICO ${pNum || idx + 1}: Clinical Question` : `Khuyến cáo #${idx + 1}`),
+              currentGrade,
+              currentText: r.statement,
+              category: r.category || "General Recommendations",
+              drivingTrials: r.driving_trials || [],
+              changeType: "NEW",
+              quality: isDocEso ? q : undefined,
+              strength: isDocEso ? s : undefined,
+              expertConsensusStatement: finalConsensus,
+              voting: isDocEso ? r.voting : undefined,
+              picoNumber: pNum || `${idx + 1}`,
+              picoQuestion: finalPicoQuestion,
+            };
+          });
 
-      return {
-        id: r.rec_id || `rec-${idx + 1}`,
-        topic: r.topic || r.target_population || (isDocEso ? `PICO ${pNum || idx + 1}: Clinical Question` : `Khuyến cáo #${idx + 1}`),
-        currentGrade,
-        currentText: r.statement,
-        category: r.category || (isEsoBpGuideline(docTitle, docId) ? "Blood Pressure" : isEsoAsahGuideline(docTitle, docId) ? "Aneurysmal Subarachnoid Haemorrhage" : "General Recommendations"),
-        drivingTrials: (r.driving_trials && r.driving_trials.length > 0) ? r.driving_trials : (canonicalItem?.drivingTrials || []),
-        changeType: "NEW",
-        quality: isDocEso ? q : undefined,
-        strength: isDocEso ? s : undefined,
-        expertConsensusStatement: finalConsensus,
-        voting: isDocEso ? (r.voting || canonicalItem?.voting) : undefined,
-        picoNumber: pNum || `${idx + 1}`,
-        picoQuestion: finalPicoQuestion,
-      };
-    });
-
-    const activeItem = allItems.find((it) => it.id === rec.rec_id) || allItems[0];
+    const activeItem =
+      allItems.find((it) => it.id === rec.rec_id || it.currentText === rec.statement) || allItems[0];
 
     const docMeta: GuidelineDoc = {
       id: parentGroup?.guideline_id || rec.guideline_id,
@@ -1222,7 +1229,18 @@ export function ReviewQueueTab({
                         {group.year || 2024}
                       </span>
                       <span className="px-2.5 py-0.5 rounded-full text-[10.5px] font-black bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30">
-                        ⏳ {group.recommendations.length} Khuyến cáo
+                        ⏳{" "}
+                        {isGroupEso
+                          ? (() => {
+                              const picos = buildEsoPicoItemsFromStoredRecs(
+                                group.recommendations,
+                                group.guideline_title,
+                                group.guideline_id
+                              );
+                              const totalRecs = picos.reduce((acc, p) => acc + p.recommendations.length, 0);
+                              return `${picos.length} PICO (${totalRecs} Khuyến cáo)`;
+                            })()
+                          : `${group.recommendations.length} Khuyến cáo`}
                       </span>
                       <span className="px-2.5 py-0.5 rounded-full text-[10.5px] font-bold bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">
                         🏷️ {group.categories.length} Chuyên mục

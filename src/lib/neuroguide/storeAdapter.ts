@@ -1,7 +1,13 @@
 import fs from "fs";
 import path from "path";
 import type { GuidelineDoc, PracticeChangeDetail, SubspecialtyType } from "../../types/neuroguide.ts";
-import { normalizeEsoStrength } from "./esoPicoGrouper.ts";
+import {
+  normalizeEsoStrength,
+  getCanonicalEsoPicos,
+  convertEsoPicoItemsToPracticeChanges,
+  isEsoBpGuideline,
+  isEsoAsahGuideline,
+} from "./esoPicoGrouper.ts";
 
 const STORE_DIR = path.join(process.cwd(), "data", "guidelines_store");
 const TMP_DIR = path.join("/tmp", "guidelines_store");
@@ -240,7 +246,79 @@ export function mapSocietyToSubspecialty(society: string, title: string): Subspe
 }
 
 /**
- * Đọc tất cả các guideline đã được xử lý từ kho data/guidelines_store và chuyển đổi sang GuidelineDoc
+ * Đồng bộ các tệp *_latest.json từ Vercel Blob (guidelines_store/) về TMP_DIR
+ * để đảm bảo mọi thiết bị và serverless instance đều đọc cùng một nguồn dữ liệu đám mây.
+ */
+export async function syncStoreBlobsToTmp(): Promise<void> {
+  const { token } = getBlobToken();
+  if (!token) return;
+  try {
+    const { list } = await import("@vercel/blob");
+    const { blobs } = await list({ prefix: "guidelines_store/", token });
+    if (!fs.existsSync(TMP_DIR)) {
+      fs.mkdirSync(TMP_DIR, { recursive: true });
+    }
+    for (const b of blobs) {
+      const fileName = b.pathname.replace(/^guidelines_store\//, "");
+      if (fileName.endsWith("_latest.json")) {
+        try {
+          const res = await fetch(b.url, { cache: "no-store" });
+          if (res.ok) {
+            const text = await res.text();
+            const localTmp = path.join(TMP_DIR, fileName);
+            fs.writeFileSync(localTmp, text, "utf-8");
+          }
+        } catch {}
+      }
+    }
+  } catch (err) {
+    console.warn("Lỗi đồng bộ guidelines_store từ Vercel Blob:", err);
+  }
+}
+
+/**
+ * Trả về tập hợp ID và tiêu đề chuẩn hóa của các guideline đang nằm trong kho chờ duyệt
+ * nhưng chưa có khuyến cáo nào được duyệt (approved_count === 0) hoặc đã bị từ chối hoàn toàn.
+ */
+export function getUnapprovedStoredGuidelineKeys(): Set<string> {
+  const unapproved = new Set<string>();
+  const normalizeT = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+  const fileMap = new Map<string, string>();
+
+  if (fs.existsSync(STORE_DIR)) {
+    try {
+      const files = fs.readdirSync(STORE_DIR).filter((f) => f.endsWith("_latest.json"));
+      for (const f of files) fileMap.set(f, path.join(STORE_DIR, f));
+    } catch {}
+  }
+  if (fs.existsSync(TMP_DIR)) {
+    try {
+      const tmpFiles = fs.readdirSync(TMP_DIR).filter((f) => f.endsWith("_latest.json"));
+      for (const f of tmpFiles) fileMap.set(f, path.join(TMP_DIR, f));
+    } catch {}
+  }
+
+  for (const [, fullPath] of fileMap.entries()) {
+    try {
+      const raw = fs.readFileSync(fullPath, "utf-8");
+      const record = JSON.parse(raw);
+      const recs = Array.isArray(record.recommendations) ? record.recommendations : [];
+      const approvedRecs = recs.filter(
+        (r: any) => r.approval_status === "APPROVED" || r.approval_status === "MODIFIED"
+      );
+      if ((record.approved_count || 0) === 0 && approvedRecs.length === 0) {
+        if (record.guideline_id) unapproved.add(String(record.guideline_id).toLowerCase().trim());
+        const title = record.metadata?.title || record.title;
+        if (title) unapproved.add(normalizeT(title));
+      }
+    } catch {}
+  }
+
+  return unapproved;
+}
+
+/**
+ * Đọc tất cả các guideline đã được phê duyệt từ kho data/guidelines_store và chuyển đổi sang GuidelineDoc
  */
 export function getStoredGuidelinesAsDocs(): GuidelineDoc[] {
   const fileMap = new Map<string, string>(); // fileName -> fullPath
@@ -271,79 +349,96 @@ export function getStoredGuidelinesAsDocs(): GuidelineDoc[] {
       const record = JSON.parse(raw);
 
       const metadata = record.metadata || {};
-      const recs = record.recommendations || [];
-
-      const practiceChanges: PracticeChangeDetail[] = recs.map((r: any, idx: number) => {
-        const isEsoRec = Boolean(
-          (metadata.society || "").toUpperCase().includes("ESO") ||
-          r.grading_system === "GRADE" ||
-          r.quality_of_evidence ||
-          r.pico_id ||
-          (r.strength_of_recommendation && ["strong", "weak", "conditional", "uncertain"].some((k) => r.strength_of_recommendation.toLowerCase().includes(k)))
-        );
-        const normStrength = isEsoRec
-          ? normalizeEsoStrength(r.strength_of_recommendation || r.currentGrade, r.statement)
-          : (r.strength_of_recommendation || "Recommended");
-
-        let currentGrade = "Standard Clinical Practice";
-        if (r.cor) {
-          currentGrade = `Class ${r.cor}${r.loe ? `, Level ${r.loe}` : ""}`;
-        } else if (r.quality_of_evidence || r.strength_of_recommendation) {
-          currentGrade = `GRADE ${normStrength} (Evidence: ${r.quality_of_evidence || "Moderate"}${r.voting ? `, Voting: ${r.voting}` : ""})`;
-        }
-
-        // Phân định chính xác giữa What is New (Điểm mới) và Khuyến cáo thường quy
-        const isHighImpact = Boolean(r.is_high_impact_change || r.previous_grade || (r.change_type && r.change_type !== "STANDARD"));
-        const changeType = isHighImpact
-          ? ((r.change_type && r.change_type !== "STANDARD" ? r.change_type : (r.previous_grade ? "UPGRADED" : "NEW")) as PracticeChangeDetail["changeType"])
-          : "STANDARD";
-
-        let pNum: string | undefined;
-        let pQuestion: string | undefined;
-        if (r.pico_id) {
-          const m = String(r.pico_id).match(/(\d+[a-z]?)/i);
-          pNum = m ? m[0] : String(r.pico_id);
-          pQuestion = r.target_population || r.topic;
-        } else if (r.topic) {
-          const m = String(r.topic).match(/PICO\s*(\d+[a-z]?)[:.\s-]*(.*)/i);
-          if (m) {
-            pNum = m[1];
-            pQuestion = m[2]?.trim();
-          }
-        }
-
-        return {
-          id: r.rec_id || `rec-${idx + 1}`,
-          category: r.category || r.topic || "Clinical Management",
-          topic: r.topic || (r.pico_id ? `${r.pico_id}: ${r.section || ""}` : r.section || "Recommendation"),
-          changeType,
-          previousGrade: r.previous_grade || undefined,
-          currentText: r.statement,
-          currentGrade,
-          drivingTrials: r.driving_trials || [],
-          quality: r.quality_of_evidence || undefined,
-          strength: isEsoRec ? normStrength : (r.strength_of_recommendation || undefined),
-          voting: r.voting || undefined,
-          expertConsensusStatement: r.consensus_statement || r.expertConsensusStatement || undefined,
-          picoNumber: pNum,
-          picoQuestion: pQuestion,
-        };
-      });
-
-      const subspecialty = mapSocietyToSubspecialty(metadata.society, metadata.title);
-      const summaryText = practiceChanges.length > 0
-        ? `Hướng dẫn thực hành lâm sàng chính thức từ ${metadata.society}. Bao gồm ${practiceChanges.length} khuyến cáo then chốt được trích xuất và kiểm chứng qua hệ thống AI Lõi NeuroGuide.`
-        : "Hướng dẫn thực hành lâm sàng chính thức.";
+      const recs = Array.isArray(record.recommendations) ? record.recommendations : [];
 
       // Bỏ qua các tài liệu chưa hoàn thiện hoặc dữ liệu rác
       if (!metadata.title || recs.length < 3) {
         continue;
       }
 
-      // Nếu toàn bộ khuyến cáo chưa được phê duyệt (pending 100% không có approved nào) và số lượng ít, bỏ qua
-      if (record.approved_count === 0 && record.pending_count > 0 && recs.length < 20) {
+      // Tuyệt đối chỉ hiển thị các guideline đã được phê duyệt (có ít nhất 1 khuyến cáo APPROVED / MODIFIED)
+      const approvedRecs = recs.filter(
+        (r: any) => r.approval_status === "APPROVED" || r.approval_status === "MODIFIED"
+      );
+      if ((record.approved_count || 0) === 0 && approvedRecs.length === 0) {
         continue;
       }
+
+      const activeRecs = approvedRecs.length > 0 ? approvedRecs : recs;
+      const canonicalEsoPicos = getCanonicalEsoPicos(metadata.title, record.guideline_id);
+
+      let practiceChanges: PracticeChangeDetail[];
+
+      if (canonicalEsoPicos && canonicalEsoPicos.length > 0) {
+        const defaultCat = isEsoBpGuideline(metadata.title, record.guideline_id)
+          ? "Blood Pressure"
+          : isEsoAsahGuideline(metadata.title, record.guideline_id)
+          ? "Aneurysmal Subarachnoid Haemorrhage"
+          : "ESO Synoptic Table Recommendation";
+        practiceChanges = convertEsoPicoItemsToPracticeChanges(canonicalEsoPicos, defaultCat);
+      } else {
+        practiceChanges = activeRecs.map((r: any, idx: number) => {
+          const isEsoRec = Boolean(
+            (metadata.society || "").toUpperCase().includes("ESO") ||
+            r.grading_system === "GRADE" ||
+            r.quality_of_evidence ||
+            r.pico_id ||
+            (r.strength_of_recommendation && ["strong", "weak", "conditional", "uncertain"].some((k) => r.strength_of_recommendation.toLowerCase().includes(k)))
+          );
+          const normStrength = isEsoRec
+            ? normalizeEsoStrength(r.strength_of_recommendation || r.currentGrade, r.statement)
+            : (r.strength_of_recommendation || "Recommended");
+
+          let currentGrade = "Standard Clinical Practice";
+          if (r.cor) {
+            currentGrade = `Class ${r.cor}${r.loe ? `, Level ${r.loe}` : ""}`;
+          } else if (r.quality_of_evidence || r.strength_of_recommendation) {
+            currentGrade = `GRADE ${normStrength} (Evidence: ${r.quality_of_evidence || "Moderate"}${r.voting ? `, Voting: ${r.voting}` : ""})`;
+          }
+
+          // Phân định chính xác giữa What is New (Điểm mới) và Khuyến cáo thường quy
+          const isHighImpact = Boolean(r.is_high_impact_change || r.previous_grade || (r.change_type && r.change_type !== "STANDARD"));
+          const changeType = isHighImpact
+            ? ((r.change_type && r.change_type !== "STANDARD" ? r.change_type : (r.previous_grade ? "UPGRADED" : "NEW")) as PracticeChangeDetail["changeType"])
+            : "STANDARD";
+
+          let pNum: string | undefined;
+          let pQuestion: string | undefined;
+          if (r.pico_id) {
+            const m = String(r.pico_id).match(/(\d+[a-z]?)/i);
+            pNum = m ? m[0] : String(r.pico_id);
+            pQuestion = r.target_population || r.topic;
+          } else if (r.topic) {
+            const m = String(r.topic).match(/PICO\s*(\d+[a-z]?)[:.\s-]*(.*)/i);
+            if (m) {
+              pNum = m[1];
+              pQuestion = m[2]?.trim();
+            }
+          }
+
+          return {
+            id: r.rec_id || `rec-${idx + 1}`,
+            category: r.category || r.topic || "Clinical Management",
+            topic: r.topic || (r.pico_id ? `${r.pico_id}: ${r.section || ""}` : r.section || "Recommendation"),
+            changeType,
+            previousGrade: r.previous_grade || undefined,
+            currentText: r.statement,
+            currentGrade,
+            drivingTrials: r.driving_trials || [],
+            quality: r.quality_of_evidence || undefined,
+            strength: isEsoRec ? normStrength : (r.strength_of_recommendation || undefined),
+            voting: r.voting || undefined,
+            expertConsensusStatement: r.consensus_statement || r.expertConsensusStatement || undefined,
+            picoNumber: pNum,
+            picoQuestion: pQuestion,
+          };
+        });
+      }
+
+      const subspecialty = mapSocietyToSubspecialty(metadata.society, metadata.title);
+      const summaryText = practiceChanges.length > 0
+        ? `Hướng dẫn thực hành lâm sàng chính thức từ ${metadata.society}. Bao gồm ${practiceChanges.length} khuyến cáo then chốt được trích xuất và kiểm chứng qua hệ thống AI Lõi NeuroGuide.`
+        : "Hướng dẫn thực hành lâm sàng chính thức.";
 
       docs.push({
         id: record.guideline_id,

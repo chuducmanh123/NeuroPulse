@@ -93,8 +93,8 @@ export function GuidelinePresentationRenderer({
   // 2. PREPARE ESO PICO ITEMS (Synoptic Table structure)
   // ==========================================
   const esoPicoItems: EsoPicoItem[] = React.useMemo(() => {
-    return groupPracticeChangesIntoEsoPicos(doc.allPracticeChanges || []);
-  }, [doc.allPracticeChanges]);
+    return groupPracticeChangesIntoEsoPicos(doc.allPracticeChanges || [], doc.title, doc.id);
+  }, [doc.allPracticeChanges, doc.title, doc.id]);
 
   return (
     <div className="space-y-3">

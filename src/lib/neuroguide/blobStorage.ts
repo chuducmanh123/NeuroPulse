@@ -12,7 +12,16 @@ import {
   MOCK_CONFERENCE_EVENTS,
   MOCK_CLINICAL_SCENARIOS,
 } from "../../data/neuroguideMockData.ts";
-import { getStoredGuidelinesAsDocs } from "./storeAdapter.ts";
+import {
+  getStoredGuidelinesAsDocs,
+  syncStoreBlobsToTmp,
+  getUnapprovedStoredGuidelineKeys,
+} from "./storeAdapter.ts";
+import {
+  getCanonicalEsoPicos,
+  convertEsoPicoItemsToPracticeChanges,
+  isEsoBpGuideline,
+} from "./esoPicoGrouper.ts";
 
 const BLOB_FILE_NAME = "neuroguide_data.json";
 const LOCAL_STORAGE_PATH = path.join(process.cwd(), "public", "data", "neuroguide_cloud.json");
@@ -198,17 +207,41 @@ export function mergeGuidelines(
   const titleMap = new Map<string, GuidelineDoc>();
   const idMap = new Map<string, GuidelineDoc>();
 
-  const addDoc = (doc: GuidelineDoc) => {
-    if (!doc || !doc.title) return;
-    if (isDeleted(doc)) return;
-    const id = (doc.id || "").toLowerCase();
+  const addDoc = (rawDoc: GuidelineDoc) => {
+    if (!rawDoc || !rawDoc.title) return;
+    if (isDeleted(rawDoc)) return;
+    const id = (rawDoc.id || "").toLowerCase();
+    const soc = (rawDoc.society || "").toUpperCase();
+    const lowerTitle = (rawDoc.title || "").toLowerCase();
     if (
       id.startsWith("eso-pmid-") ||
       id.startsWith("esc-pmid-") ||
+      id.startsWith("esc-") ||
+      id.includes("-epmc-") ||
+      id.includes("-pmid-") ||
       id.startsWith("b15e76") ||
-      id.includes("phantom")
+      id.includes("phantom") ||
+      soc === "ESC" ||
+      lowerTitle.includes("myocarditis") ||
+      lowerTitle.includes("ultra-processed foods")
     ) {
       return;
+    }
+
+    // Tự động chuẩn hóa danh sách PICO cho các guideline ESO chuẩn để loại bỏ các mục thừa (PICO 1, PICO 11..42)
+    let doc = rawDoc;
+    const canonicalEsoPicos = getCanonicalEsoPicos(rawDoc.title, rawDoc.id);
+    if (canonicalEsoPicos && canonicalEsoPicos.length > 0) {
+      const cleanChanges = convertEsoPicoItemsToPracticeChanges(
+        canonicalEsoPicos,
+        isEsoBpGuideline(rawDoc.title, rawDoc.id)
+          ? "Blood Pressure Management (ESO GRADE)"
+          : "Aneurysmal Subarachnoid Haemorrhage (ESO GRADE)"
+      );
+      doc = {
+        ...rawDoc,
+        allPracticeChanges: cleanChanges,
+      };
     }
 
     const normT = normalizeTitle(doc.title);
@@ -217,6 +250,7 @@ export function mergeGuidelines(
 
     if (existing) {
       // Deduplicate: choose the one with more practice changes, or keep newer / user-synthesized version
+      // Đối với guideline ESO có bảng PICO chuẩn, cả hai đều đã được chuẩn hóa số lượng khuyến cáo
       const existingChanges = existing.allPracticeChanges?.length || 0;
       const docChanges = doc.allPracticeChanges?.length || 0;
 
@@ -312,18 +346,25 @@ export async function loadMergedNeuroGuideData(): Promise<{
   lastSyncedAt?: string;
   deletedGuidelineIds?: string[];
 }> {
+  await syncStoreBlobsToTmp();
   const storeDocs = getStoredGuidelinesAsDocs();
+  const unapprovedStoreKeys = getUnapprovedStoredGuidelineKeys();
   const normalizeT = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
 
+  const approvedStoreIds = new Set(storeDocs.map((g) => g.id.toLowerCase()));
+  const approvedStoreTitles = new Set(storeDocs.map((g) => normalizeT(g.title)));
+  const mockIds = new Set(MOCK_GUIDELINE_DOCS.map((g) => g.id.toLowerCase()));
+  const mockTitles = new Set(MOCK_GUIDELINE_DOCS.map((g) => normalizeT(g.title)));
+
   const coordinatedIds = new Set([
-    ...MOCK_GUIDELINE_DOCS.map((g) => g.id.toLowerCase()),
-    ...storeDocs.map((g) => g.id.toLowerCase()),
+    ...mockIds,
+    ...approvedStoreIds,
     "aha2026_test",
     "eso-ais-2026",
   ]);
   const coordinatedTitles = new Set([
-    ...MOCK_GUIDELINE_DOCS.map((g) => normalizeT(g.title)),
-    ...storeDocs.map((g) => normalizeT(g.title)),
+    ...mockTitles,
+    ...approvedStoreTitles,
   ]);
 
   const blobData = await getFromBlob();
@@ -334,28 +375,83 @@ export async function loadMergedNeuroGuideData(): Promise<{
     ...((localData as any)?.deleted_guideline_ids || []).map((x: string) => x.toLowerCase()),
   ]);
 
+  // Chặn mọi guideline đang nằm trong Review Queue nhưng chưa được duyệt (approved_count === 0)
+  for (const unapprovedKey of unapprovedStoreKeys) {
+    if (!approvedStoreIds.has(unapprovedKey) && !approvedStoreTitles.has(unapprovedKey)) {
+      deletedSet.add(unapprovedKey);
+    }
+  }
+
+  let needsSelfHealSave = false;
+
   const filterCoordinated = (list: GuidelineDoc[] | undefined) => {
     if (!Array.isArray(list)) return [];
-    return list.filter((g) => {
-      if (!g || !g.title) return false;
+    const out: GuidelineDoc[] = [];
+    for (const g of list) {
+      if (!g || !g.title) continue;
       const id = (g.id || "").toLowerCase();
       const norm = normalizeT(g.title);
+      const soc = (g.society || "").toUpperCase();
+      const lowerTitle = (g.title || "").toLowerCase();
+
       if (deletedSet.has(id) || deletedSet.has(norm)) {
-        return false;
+        needsSelfHealSave = true;
+        continue;
       }
       if (
         id.startsWith("eso-pmid-") ||
         id.startsWith("esc-pmid-") ||
+        id.startsWith("esc-") ||
+        id.includes("-epmc-") ||
+        id.includes("-pmid-") ||
         id.startsWith("b15e76") ||
-        id.includes("phantom")
+        id.includes("phantom") ||
+        soc === "ESC" ||
+        lowerTitle.includes("myocarditis") ||
+        lowerTitle.includes("ultra-processed foods")
       ) {
-        return false;
+        needsSelfHealSave = true;
+        continue;
       }
-      if (g.aiSynthesized || (g.allPracticeChanges && g.allPracticeChanges.length > 0)) {
-        return true;
+
+      // Nếu tài liệu đến từ Radar tự động (EUROPE_PMC / PMC / PUBMED_ABSTRACT) mà chưa được duyệt trong storeDocs, không cho hiển thị
+      const ftSource = String(g.fullTextSource || "");
+      const isRadarAutoFetched =
+        ftSource === "EUROPE_PMC" ||
+        ftSource === "PMC" ||
+        ftSource === "PUBMED_ABSTRACT";
+      const isExplicitlyCoordinated = coordinatedIds.has(id) || coordinatedTitles.has(norm);
+      if (isRadarAutoFetched && !isExplicitlyCoordinated) {
+        needsSelfHealSave = true;
+        continue;
       }
-      return coordinatedIds.has(id) || coordinatedTitles.has(norm);
-    });
+
+      if (!isExplicitlyCoordinated && !g.aiSynthesized && !(g.allPracticeChanges && g.allPracticeChanges.length > 0)) {
+        needsSelfHealSave = true;
+        continue;
+      }
+
+      // Chuẩn hóa cấu trúc PICO của ESO nếu thuộc guideline có bảng tổng hợp chuẩn (loại bỏ PICO 1 dư & PICO 11..42)
+      const canonicalEsoPicos = getCanonicalEsoPicos(g.title, g.id);
+      if (canonicalEsoPicos && canonicalEsoPicos.length > 0) {
+        const cleanChanges = convertEsoPicoItemsToPracticeChanges(
+          canonicalEsoPicos,
+          isEsoBpGuideline(g.title, g.id)
+            ? "Blood Pressure Management (ESO GRADE)"
+            : "Aneurysmal Subarachnoid Haemorrhage (ESO GRADE)"
+        );
+        if ((g.allPracticeChanges?.length || 0) !== cleanChanges.length) {
+          needsSelfHealSave = true;
+        }
+        out.push({
+          ...g,
+          allPracticeChanges: cleanChanges,
+        });
+      } else {
+        out.push(g);
+      }
+    }
+    return out;
   };
 
   const isStoreDocDeleted = (g: GuidelineDoc) => {
@@ -367,10 +463,13 @@ export async function loadMergedNeuroGuideData(): Promise<{
   if (blobData && Array.isArray(blobData.guidelines) && blobData.guidelines.length > 0) {
     const coordinatedBlobDocs = filterCoordinated(blobData.guidelines);
     const filteredStore = storeDocs.filter((g) => !isStoreDocDeleted(g));
-    const finalGuidelines = filteredStore.length > 0 ? mergeGuidelines(filteredStore, coordinatedBlobDocs, deletedSet) : coordinatedBlobDocs;
+    const finalGuidelines =
+      filteredStore.length > 0
+        ? mergeGuidelines(filteredStore, coordinatedBlobDocs, deletedSet)
+        : mergeGuidelines([], coordinatedBlobDocs, deletedSet);
 
-    // Tự động dọn dẹp lại Vercel Blob nếu trước đó bị lẫn các tài liệu rác chưa qua điều phối
-    if (blobData.guidelines && blobData.guidelines.length > finalGuidelines.length) {
+    // Tự động dọn dẹp lại Vercel Blob nếu trước đó bị lẫn các tài liệu chưa duyệt hoặc PICO chưa chuẩn hóa
+    if (needsSelfHealSave || blobData.guidelines.length !== finalGuidelines.length) {
       saveNeuroGuideToActiveStorage({
         guidelines: finalGuidelines,
         conferences: blobData.conferences,
@@ -394,7 +493,10 @@ export async function loadMergedNeuroGuideData(): Promise<{
     // KHÔNG re-merge với MOCK_GUIDELINE_DOCS để tránh hồi sinh dữ liệu đã bị xóa vĩnh viễn
     const coordinatedLocalDocs = filterCoordinated(localData.guidelines);
     const filteredStore = storeDocs.filter((g) => !isStoreDocDeleted(g));
-    const finalGuidelines = filteredStore.length > 0 ? mergeGuidelines(filteredStore, coordinatedLocalDocs, deletedSet) : coordinatedLocalDocs;
+    const finalGuidelines =
+      filteredStore.length > 0
+        ? mergeGuidelines(filteredStore, coordinatedLocalDocs, deletedSet)
+        : mergeGuidelines([], coordinatedLocalDocs, deletedSet);
     return {
       guidelines: finalGuidelines,
       conferences: mergeConferences(localData.conferences),
@@ -431,11 +533,28 @@ export async function saveNeuroGuideToActiveStorage(payload: {
   storage: "vercel-blob" | "local-disk" | "failed";
   error?: string;
 }> {
+  let effectiveDeletedIds = payload.deletedGuidelineIds;
+  if (!effectiveDeletedIds) {
+    try {
+      const existingBlob = await getFromBlob();
+      const existingLocal = await getFromLocalDisk();
+      effectiveDeletedIds = Array.from(
+        new Set([
+          ...(existingBlob?.deletedGuidelineIds || []),
+          ...((existingLocal as any)?.deletedGuidelineIds || []),
+          ...((existingLocal as any)?.deleted_guideline_ids || []),
+        ])
+      );
+    } catch {
+      effectiveDeletedIds = [];
+    }
+  }
+
   const fullPayload: NeuroGuideBlobPayload = {
     guidelines: payload.guidelines,
     conferences: payload.conferences || MOCK_CONFERENCE_EVENTS,
     scenarios: payload.scenarios || MOCK_CLINICAL_SCENARIOS,
-    deletedGuidelineIds: payload.deletedGuidelineIds,
+    deletedGuidelineIds: effectiveDeletedIds,
     lastSyncedAt: new Date().toISOString(),
     source: "NEUROGUIDE_AUTONOMOUS_RADAR",
   };
