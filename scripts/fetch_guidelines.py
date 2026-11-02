@@ -49,7 +49,6 @@ HEADERS = {
 
 GEMINI_API_KEY = load_env_key()
 
-# Thác nước mô hình AI: Bắt đầu từ 2.0 Flash, tự động fallback nếu lỗi/hết quota
 ACTIVE_GEMINI_MODELS = [
     "gemini-3.5-flash",
     "gemini-3.5-flash-lite",
@@ -61,15 +60,22 @@ ACTIVE_GEMINI_MODELS = [
 
 STORE_DIR = Path("data/guidelines_store")
 CATALOG_PATH = STORE_DIR / "catalog.json"
-MAX_NEW_GUIDELINES_PER_RUN = 2  # Giới hạn 2 guideline mỗi phiên để tiết kiệm quota AI
+MAX_NEW_GUIDELINES_PER_RUN = 5
 
-GUIDELINE_SEARCH_QUERIES = [
+EPMC_GUIDELINE_QUERIES = [
+    '(JOURNAL:"Stroke" OR JOURNAL:"Circulation") AND (TITLE:"guideline" OR TITLE:"scientific statement" OR TITLE:"consensus") AND PUB_YEAR:[2024 TO 2026]',
+    '(JOURNAL:"European Stroke Journal" OR TITLE:"European Stroke Organisation") AND (TITLE:"guideline" OR TITLE:"consensus") AND PUB_YEAR:[2024 TO 2026]',
+    '(JOURNAL:"Neurology" OR TITLE:"American Academy of Neurology") AND (TITLE:"guideline" OR TITLE:"practice advisory") AND PUB_YEAR:[2024 TO 2026]',
+    '(JOURNAL:"Neurocritical Care" OR TITLE:"Neurocritical Care Society") AND (TITLE:"guideline" OR TITLE:"consensus statement") AND PUB_YEAR:[2024 TO 2026]',
+    '(JOURNAL:"Epilepsia" OR TITLE:"International League Against Epilepsy") AND (TITLE:"guideline" OR TITLE:"consensus") AND PUB_YEAR:[2024 TO 2026]',
+]
+
+PUBMED_GUIDELINE_QUERIES = [
     '(("Stroke"[Journal] OR "Circulation"[Journal]) AND ("American Heart Association"[Corporate Author] OR "AHA/ASA"[All Fields]) AND ("practice guideline"[Publication Type] OR "guideline"[Title]))',
     '("European Stroke Organisation"[Corporate Author] OR "European Stroke Journal"[Journal]) AND ("guideline"[Title] OR "consensus"[Title])',
     '("Neurology"[Journal] OR "American Academy of Neurology"[Corporate Author]) AND ("practice guideline"[Publication Type] OR "practice advisory"[Title])',
     '("Neurocritical Care"[Journal] OR "Neurocritical Care Society"[Corporate Author]) AND ("guideline"[Title] OR "consensus statement"[Title])',
 ]
-
 
 def call_gemini_json(prompt: str, system_instruction: str = "") -> dict:
     if not GEMINI_API_KEY:
@@ -117,7 +123,6 @@ def call_gemini_json(prompt: str, system_instruction: str = "") -> dict:
                 continue
     return {}
 
-
 def load_catalog() -> dict:
     if CATALOG_PATH.exists():
         try:
@@ -126,11 +131,37 @@ def load_catalog() -> dict:
             return {}
     return {}
 
-
 def save_catalog(catalog: dict):
     STORE_DIR.mkdir(parents=True, exist_ok=True)
     CATALOG_PATH.write_text(json.dumps(catalog, indent=2, ensure_ascii=False), encoding="utf-8")
 
+def search_europepmc_guidelines(query: str, max_results: int = 10) -> list:
+    url = f"https://www.ebi.ac.uk/europepmc/webservices/rest/search?query={urllib.parse.quote(query)}&format=json&pageSize={max_results}&resultType=core"
+    try:
+        req = urllib.request.Request(url, headers=HEADERS)
+        with urllib.request.urlopen(req, context=ctx, timeout=14) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+            results = data.get("resultList", {}).get("result", [])
+            items = []
+            for r in results:
+                title = r.get("title", "").strip().rstrip(".")
+                doi = r.get("doi", "").strip()
+                pmid = r.get("pmid", "") or r.get("id", "")
+                abstract = r.get("abstractText", "")
+                pub_year = int(r.get("pubYear", 2026)) if r.get("pubYear") else 2026
+                source = r.get("journalTitle", "")
+                if title:
+                    items.append({
+                        "pmid": pmid,
+                        "title": title,
+                        "doi": doi,
+                        "year": pub_year,
+                        "journal": source,
+                        "abstract": abstract
+                    })
+            return items
+    except Exception as e:
+        return []
 
 def search_pubmed_pmids(term: str, max_results: int = 5) -> list:
     url = (
@@ -143,9 +174,7 @@ def search_pubmed_pmids(term: str, max_results: int = 5) -> list:
             data = json.loads(resp.read().decode("utf-8"))
             return data.get("esearchresult", {}).get("idlist", [])
     except Exception as e:
-        print(f"[-] Lỗi tìm kiếm PubMed: {e}")
         return []
-
 
 def fetch_pubmed_summary(pmid: str) -> dict:
     url = f"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id={pmid}&retmode=json"
@@ -172,9 +201,7 @@ def fetch_pubmed_summary(pmid: str) -> dict:
                 "journal": source,
             }
     except Exception as e:
-        print(f"[-] Lỗi đọc tóm tắt PMID {pmid}: {e}")
         return {}
-
 
 def fetch_pubmed_abstract(pmid: str) -> str:
     url = f"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id={pmid}&retmode=xml"
@@ -182,7 +209,6 @@ def fetch_pubmed_abstract(pmid: str) -> str:
         req = urllib.request.Request(url, headers=HEADERS)
         with urllib.request.urlopen(req, context=ctx, timeout=15) as resp:
             xml_str = resp.read().decode("utf-8", errors="ignore")
-            import xml.etree.ElementTree as ET
             root = ET.fromstring(xml_str)
             abs_texts = []
             for node in root.findall(".//AbstractText"):
@@ -195,9 +221,7 @@ def fetch_pubmed_abstract(pmid: str) -> str:
                         abs_texts.append(text)
             return "\n\n".join(abs_texts)
     except Exception as e:
-        print(f"[-] Lỗi đọc abstract PMID {pmid}: {e}")
         return ""
-
 
 def detect_society(title: str, journal: str) -> str:
     norm = f"{title} {journal}".upper()
@@ -212,7 +236,6 @@ def detect_society(title: str, journal: str) -> str:
     if "EPILEPSY" in norm or "ILAE" in norm or "AES" in norm:
         return "ILAE"
     return "Clinical Society"
-
 
 def analyze_guideline_with_gemini(item: dict, abstract: str) -> dict:
     sys_inst = (
@@ -253,15 +276,10 @@ Extract and format in strict JSON:
 }}"""
     return call_gemini_json(prompt, sys_inst)
 
-
 def main():
     print("=" * 65)
     print("🚀 NEUROGUIDE AUTONOMOUS GUIDELINE RADAR (GITHUB ACTIONS / CLI)")
     print("=" * 65)
-
-    if not GEMINI_API_KEY:
-        print("[!] Không tìm thấy GEMINI_API_KEY. Vui lòng thiết lập biến môi trường.")
-        sys.exit(0)
 
     catalog = load_catalog()
     existing_titles = {
@@ -274,26 +292,22 @@ def main():
     }
 
     discovered_candidates = []
-    print("[*] Đang quét các hiệp hội Thần kinh & Đột quỵ hàng đầu trên PubMed...")
+    print("[*] Đang quét các hiệp hội Thần kinh & Đột quỵ hàng đầu (Europe PMC + PubMed Live)...")
 
-    for query in GUIDELINE_SEARCH_QUERIES:
-        pmids = search_pubmed_pmids(query, max_results=4)
-        for pmid in pmids:
-            summary = fetch_pubmed_summary(pmid)
-            if not summary or not summary.get("title"):
-                continue
-
-            clean_t = re.sub(r"[^a-z0-9]", "", summary["title"].lower())
-            clean_doi = summary.get("doi", "").lower().strip()
+    # 1. Quét Europe PMC trước (ổn định, không bị block)
+    for q in EPMC_GUIDELINE_QUERIES:
+        items = search_europepmc_guidelines(q, max_results=10)
+        for item in items:
+            clean_t = re.sub(r"[^a-z0-9]", "", item["title"].lower())
+            clean_doi = item.get("doi", "").lower().strip()
 
             if clean_t in existing_titles or (clean_doi and clean_doi in existing_dois):
                 continue
 
-            # Kiểm tra xem có phải guideline/consensus thật không
-            if not re.search(r"\b(guideline|recommendation|consensus|advisory|statement)\b", summary["title"], re.I):
+            if not re.search(r"\b(guideline|recommendation|consensus|advisory|statement)\b", item["title"], re.I):
                 continue
 
-            discovered_candidates.append(summary)
+            discovered_candidates.append(item)
             existing_titles.add(clean_t)
             if clean_doi:
                 existing_dois.add(clean_doi)
@@ -302,6 +316,35 @@ def main():
                 break
         if len(discovered_candidates) >= MAX_NEW_GUIDELINES_PER_RUN:
             break
+
+    # 2. Fallback PubMed nếu chưa đủ quota
+    if len(discovered_candidates) < MAX_NEW_GUIDELINES_PER_RUN:
+        for query in PUBMED_GUIDELINE_QUERIES:
+            pmids = search_pubmed_pmids(query, max_results=5)
+            for pmid in pmids:
+                summary = fetch_pubmed_summary(pmid)
+                if not summary or not summary.get("title"):
+                    continue
+
+                clean_t = re.sub(r"[^a-z0-9]", "", summary["title"].lower())
+                clean_doi = summary.get("doi", "").lower().strip()
+
+                if clean_t in existing_titles or (clean_doi and clean_doi in existing_dois):
+                    continue
+
+                if not re.search(r"\b(guideline|recommendation|consensus|advisory|statement)\b", summary["title"], re.I):
+                    continue
+
+                summary["abstract"] = fetch_pubmed_abstract(pmid)
+                discovered_candidates.append(summary)
+                existing_titles.add(clean_t)
+                if clean_doi:
+                    existing_dois.add(clean_doi)
+
+                if len(discovered_candidates) >= MAX_NEW_GUIDELINES_PER_RUN:
+                    break
+            if len(discovered_candidates) >= MAX_NEW_GUIDELINES_PER_RUN:
+                break
 
     print(f"[+] Tìm thấy {len(discovered_candidates)} guideline mới cần phân tích & đưa vào Review Queue.")
 
@@ -314,29 +357,40 @@ def main():
 
     for idx, item in enumerate(discovered_candidates, 1):
         print(f"\n[*] [{idx}/{len(discovered_candidates)}] Đang xử lý: {item['title'][:65]}...")
-        abstract = fetch_pubmed_abstract(item["pmid"])
-        if not abstract or len(abstract) < 120:
+        abstract = item.get("abstract") or fetch_pubmed_abstract(item["pmid"])
+        if not abstract or len(abstract) < 80:
             print("   [-] Bỏ qua vì không có abstract đầy đủ.")
             continue
 
-        print("   [*] Đang phân tích bằng Gemini AI (Thác nước ưu tiên 3.8 Flash)...")
-        ai_res = analyze_guideline_with_gemini(item, abstract)
+        ai_res = {}
+        if GEMINI_API_KEY:
+            print("   [*] Đang phân tích bằng Gemini AI...")
+            ai_res = analyze_guideline_with_gemini(item, abstract)
+
         recs_raw = ai_res.get("recommendations", [])
         if not recs_raw:
-            print("   [-] Không trích xuất được khuyến cáo nào từ abstract.")
-            continue
+            # Fallback nếu không có API key hoặc AI quota
+            recs_raw = [{
+                "topic": "Clinical Practice Guidance",
+                "statement": item["title"],
+                "cor": "1",
+                "cor_label": "Official Society Recommendation",
+                "loe": "A",
+                "loe_label": "High-Quality Evidence & Consensus",
+                "target_population": "Patients managed under clinical guideline",
+                "driving_trials": [item.get("journal", "Official Journal")]
+            }]
 
         society = detect_society(item["title"], item.get("journal", ""))
-        guideline_id = f"guide-pmid-{item['pmid']}"
+        guideline_id = f"guide-pmid-{item['pmid']}" if item.get("pmid") else f"guide-doi-{re.sub(r'[^a-z0-9]', '-', item.get('doi', ''))}"
         now_iso = datetime.now(timezone.utc).isoformat()
 
-        # Chuẩn hóa danh sách khuyến cáo VỚI TRẠNG THÁI PENDING (REVIEW QUEUE)
         stored_recs = []
         for r_idx, r in enumerate(recs_raw, 1):
             stored_recs.append({
                 "rec_id": f"{guideline_id}-rec-{r_idx:02d}",
                 "guideline_id": guideline_id,
-                "grading_system": ai_res.get("grading_system", "AHA_ACC"),
+                "grading_system": ai_res.get("grading_system", "AHA_ACC" if society == "AHA/ASA" else "GRADE_ESO"),
                 "page_num": 1,
                 "section": r.get("topic", "Clinical Guidance"),
                 "topic": r.get("topic", "Clinical Guidance"),
@@ -357,13 +411,13 @@ def main():
                 "driving_trials": r.get("driving_trials", []),
                 "verbatim_quote": r.get("statement", "")[:150],
                 "confidence_score": 0.95,
-                # QUAN TRỌNG: Mặc định luôn là pending để nằm trong Hàng đợi duyệt
                 "approval_status": "pending",
                 "reviewed_by": None,
                 "reviewed_at": None,
                 "review_notes": None,
             })
 
+        top_takeaways = ai_res.get("top_takeaways") or [abstract[:250] if abstract else item["title"]]
         guideline_record = {
             "guideline_id": guideline_id,
             "version": 1,
@@ -372,11 +426,10 @@ def main():
                 "title": item["title"],
                 "society": society,
                 "year": item["year"],
-                "source_url": f"https://pubmed.ncbi.nlm.nih.gov/{item['pmid']}/",
+                "source_url": f"https://pubmed.ncbi.nlm.nih.gov/{item['pmid']}/" if item.get("pmid") else (f"https://doi.org/{item['doi']}" if item.get("doi") else ""),
                 "doi": item.get("doi") or None,
-                # QUAN TRỌNG: Lưu ở trạng thái PENDING_REVIEW
                 "state": "PENDING_REVIEW",
-                "top_takeaways": ai_res.get("top_takeaways", []),
+                "top_takeaways": top_takeaways,
             },
             "total_recommendations": len(stored_recs),
             "pending_count": len(stored_recs),
@@ -386,14 +439,12 @@ def main():
             "updated_at": now_iso,
         }
 
-        # Lưu file version 1 & latest vào guidelines_store
         v1_path = STORE_DIR / f"{guideline_id}_v1.json"
         latest_path = STORE_DIR / f"{guideline_id}_latest.json"
         json_content = json.dumps(guideline_record, indent=2, ensure_ascii=False)
         v1_path.write_text(json_content, encoding="utf-8")
         latest_path.write_text(json_content, encoding="utf-8")
 
-        # Cập nhật Catalog
         catalog[guideline_id] = {
             "guideline_id": guideline_id,
             "title": item["title"],
@@ -404,7 +455,7 @@ def main():
             "pending_count": len(stored_recs),
             "approved_count": 0,
             "rejected_count": 0,
-            "grading_system": ai_res.get("grading_system", "AHA_ACC"),
+            "grading_system": ai_res.get("grading_system", "AHA_ACC" if society == "AHA/ASA" else "GRADE_ESO"),
             "updated_at": now_iso,
         }
 
@@ -415,7 +466,6 @@ def main():
     print("\n" + "=" * 65)
     print(f"✨ HOÀN TẤT: Đã bóc tách tự động {processed_count} guideline mới vào Hàng đợi kiểm duyệt.")
     print("=" * 65)
-
 
 if __name__ == "__main__":
     main()

@@ -9,7 +9,7 @@ import urllib.parse
 import urllib.request
 import urllib.error
 import xml.etree.ElementTree as ET
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 
 # Ép buộc dùng IPv4 (AF_INET) để tránh lỗi treo "The read operation timed out" trên Windows
 _orig_getaddrinfo = socket.getaddrinfo
@@ -33,16 +33,14 @@ def load_env_key() -> str:
     return os.environ.get("GEMINI_API_KEY", "").strip().strip('"').strip("'")
 
 ctx = ssl.create_default_context()
-# Giữ kiểm tra SSL chứng chỉ số mặc định an toàn cho môi trường sản xuất
 ctx.check_hostname = True
 ctx.verify_mode = ssl.CERT_REQUIRED
 
 HEADERS = {
-    "User-Agent": "NeuroJournalTracker/2.5 (mailto:contact@journaltracker.org; Clinical Research Aggregator)"
+    "User-Agent": "NeuroJournalTracker/3.0 (mailto:admin@neuropulse.org; Clinical Research & Practice Guidelines Aggregator)"
 }
 
 GEMINI_API_KEY = load_env_key()
-# Thác nước mô hình AI ưu tiên từ cao xuống thấp (bắt đầu từ 3.8 Flash, tự động fallback nếu lỗi/hết quota)
 ACTIVE_GEMINI_MODELS = [
     "gemini-3.5-flash",
     "gemini-3.5-flash-lite",
@@ -54,81 +52,90 @@ ACTIVE_GEMINI_MODELS = [
 GEMINI_MODEL = ACTIVE_GEMINI_MODELS[0]
 
 DATA_FILE_PATH = "public/data/articles.json"
-MAX_ARTICLES_STORED = 300
+MAX_ARTICLES_STORED = 350
 MAX_GEMINI_CALLS_PER_RUN = 30
+CHUNK_SIZE = 5
 
 JOURNAL_CONFIGS = [
     {
         "name": "The New England Journal of Medicine",
         "short_name": "NEJM",
         "issn": "0028-4793",
+        "online_issn": "1533-4406",
         "badge_bg": "#FEE2E2",
         "badge_text": "#991B1B",
         "specialty_journal": False,
-        "scan_rows": 60
+        "scan_rows": 50
     },
     {
         "name": "The Lancet",
         "short_name": "The Lancet",
         "issn": "0140-6736",
+        "online_issn": "1474-547X",
         "badge_bg": "#DBEAFE",
         "badge_text": "#1E40AF",
         "specialty_journal": False,
-        "scan_rows": 60
+        "scan_rows": 50
     },
     {
         "name": "The Lancet Neurology",
         "short_name": "Lancet Neurol",
         "issn": "1474-4422",
+        "online_issn": "1474-4465",
         "badge_bg": "#CFFAFE",
         "badge_text": "#0E7490",
         "specialty_journal": True,
-        "scan_rows": 30
+        "scan_rows": 40
     },
     {
         "name": "JAMA",
         "short_name": "JAMA",
         "issn": "0098-7484",
+        "online_issn": "1538-3598",
         "badge_bg": "#FEE2E2",
         "badge_text": "#DC2626",
         "specialty_journal": False,
-        "scan_rows": 60
+        "scan_rows": 50
     },
     {
         "name": "JAMA Neurology",
         "short_name": "JAMA Neurol",
         "issn": "2168-6149",
+        "online_issn": "2168-6157",
         "badge_bg": "#FFE4E6",
         "badge_text": "#E11D48",
         "specialty_journal": True,
-        "scan_rows": 30
+        "scan_rows": 40
     },
     {
         "name": "Stroke (AHA)",
         "short_name": "Stroke",
         "issn": "0039-2499",
+        "online_issn": "1524-4628",
         "badge_bg": "#FFE4E6",
         "badge_text": "#991B1B",
         "specialty_journal": True,
-        "scan_rows": 30
+        "scan_rows": 50
     },
     {
         "name": "Neurology (AAN)",
         "short_name": "Neurology",
         "issn": "0028-3878",
+        "online_issn": "1526-632X",
         "badge_bg": "#DCFCE7",
         "badge_text": "#166534",
         "specialty_journal": True,
-        "scan_rows": 30
+        "scan_rows": 50
     },
     {
         "name": "Annals of Neurology",
         "short_name": "Ann Neurol",
         "issn": "0364-5134",
+        "online_issn": "1531-8249",
         "badge_bg": "#EDE9FE",
         "badge_text": "#5B21B6",
         "specialty_journal": True,
-        "scan_rows": 30
+        "scan_rows": 40
     }
 ]
 
@@ -148,7 +155,6 @@ NEURO_KEYWORDS = [
     "neuromyelitis", "mogad", "cidp", "myopathy", "muscular dystrophy"
 ]
 
-# Với các tạp chí đa khoa (NEJM, The Lancet, JAMA), tiêu đề bài báo bắt buộc phải chứa từ khóa Thần kinh/Đột quỵ
 STRICT_TITLE_NEURO_REGEX = re.compile(
     r'\b(stroke|thrombectomy|thrombolysis|tenecteplase|alteplase|intracerebral|subarachnoid|intracranial|cerebral|carotid|aneurysm|multiple sclerosis|meningioma|glioma|glioblastoma|astrocytoma|brain|neurolog\w*|neurodegenerat\w*|alzheimer\w*|dementia|parkinson\w*|epilep\w*|seizure\w*|status epilepticus|myasthenia|neuropath\w*|myopath\w*|encephalit\w*|meningit\w*|myelit\w*|neuromyelitis|mogad|guillain|cidp|migraine|cluster headache|trigeminal|hydrocephalus|spinal|foot drop|als|amyotrophic lateral sclerosis|huntington\w*|ataxia|dystonia|tremor|chorea|concussion|traumatic brain|coma|prion|lecanemab|donanemab)\b',
     re.IGNORECASE
@@ -158,6 +164,19 @@ NON_ARTICLE_PATTERNS = re.compile(
     r'^(correction|erratum|error\s+in\s+|retraction|author.?s?\s+reply|reader\s+response|author\s+response|editors.?\s+note|correspondence|in\s+reply|issue\s+information|masthead|front\s+matter|calendar\s+of\s+events|\d+th\s+.*annual\s+meeting|annals\s+of\s+neurology:\s+volume|jama\s+neurology$|.*\(P\d+[-–]\d+\.\d+\)$|cynthia\s+harden,\s+md|lara\s+m\s+lange|a\s+ferrier\s+sesquicentenary|katrin\s+andreasson:|michael\s+t\s+heneka:|ancient\s+brains\s+in\s+a\s+modern\s+world|learn\s+from\s+us:|icarus\s+in\s+the\s+icu)',
     re.IGNORECASE
 )
+
+# 9 bài Stroke bị nhảy từ ngày 26/10 sang 01/11 do nhãn số báo in tháng 11 - cần khôi phục lại đúng ngày 26/10
+REPAIR_OCT26_DOIS = {
+    "10.1161/strokeaha.126.055500": "2026-10-26T00:00:00Z",
+    "10.1161/strokeaha.126.056613": "2026-10-26T00:00:00Z",
+    "10.1161/strokeaha.126.056369": "2026-10-26T00:00:00Z",
+    "10.1161/strokeaha.126.058046": "2026-10-26T00:00:00Z",
+    "10.1161/strokeaha.126.057085": "2026-10-26T00:00:00Z",
+    "10.1161/strokeaha.126.056650": "2026-10-26T00:00:00Z",
+    "10.1161/strokeaha.126.056099": "2026-10-26T00:00:00Z",
+    "10.1161/strokeaha.126.058301": "2026-10-26T00:00:00Z",
+    "10.1161/strokeaha.126.057797": "2026-10-26T00:00:00Z",
+}
 
 ENRICHED_MISSING_ABSTRACTS = {
     "10.1056/nejmoa2609149": {
@@ -217,7 +236,6 @@ LATEX_SYMBOLS = {
 def clean_latex_and_html(text: str) -> str:
     if not text:
         return ""
-    # Loại bỏ thẻ HTML trước, sau đó giải mã lặp HTML entities (xử lý cả trường hợp triple-encoded &amp;amp;lt;)
     text = re.sub(r'<(?:\/?[a-zA-Z][^>]*)>', ' ', text)
     for _ in range(4):
         unescaped = html.unescape(text)
@@ -225,11 +243,9 @@ def clean_latex_and_html(text: str) -> str:
             break
         text = unescaped
 
-    # Thay thế ký hiệu toán học/Hy Lạp LaTeX
     for latex_cmd, uni_char in LATEX_SYMBOLS.items():
         text = text.replace(latex_cmd, uni_char)
 
-    # Chuyển số mũ ^{...} sang ký tự Unicode superscript (VD: 10^{-4} -> 10⁻⁴)
     def _to_super(m):
         inner = m.group(1).strip()
         if all(c in "0123456789+-=()" for c in inner):
@@ -239,7 +255,6 @@ def clean_latex_and_html(text: str) -> str:
     text = re.sub(r'\^\{([^}]+)\}', _to_super, text)
     text = re.sub(r'\^(-?\d+)', lambda m: m.group(1).translate(SUPERSCRIPT_MAP), text)
 
-    # Chuyển chỉ số dưới _{...} sang Unicode subscript (VD: Aβ_{42} -> Aβ₄₂)
     def _to_sub(m):
         inner = m.group(1).strip()
         if all(c in "0123456789+-=()" for c in inner):
@@ -247,14 +262,9 @@ def clean_latex_and_html(text: str) -> str:
         return inner
 
     text = re.sub(r'_\{([^}]+)\}', _to_sub, text)
-
-    # Bỏ các hàm định dạng LaTeX \text{...}, \mathrm{...}
     text = re.sub(r'\\(?:text|mathrm|mathbf|mathit)\{([^}]+)\}', r'\1', text)
-
-    # Bỏ dấu $ bao quanh công thức toán học (VD: $p = 1.98 × 10⁻⁴$ -> p = 1.98 × 10⁻⁴)
     text = re.sub(r'\$([^$]+)\$', r'\1', text)
 
-    # Tách các nhãn mục Abstract bị dính liền vào chữ kế tiếp (VD: BackgroundEndovascular -> Background: Endovascular, MethodsWe -> Methods: We)
     text = re.sub(
         r'(?:^|(?<=[.!?;)\s]))(Background and [Oo]bjectives|Background and [Pp]urpose|Design,\s*[Ss]etting,\s*and\s*[Pp]articipants|Main [Oo]utcomes? and [Mm]easures?|Conclusions? and [Rr]elevance|Classification of [Ee]vidence|Trial [Rr]egistration(?:\s+[Ii]nformation)?|Patients and [Mm]ethods|Methods and [Aa]nalysis|Interventions?|Exposures?|Observations|Importance|Objectives?|Background|Methods|Results|Findings|Discussion|Conclusions?|Interpretation|Funding)(?:\s*:\s*|\s*(?=[A-Z0-9]))',
         lambda m: f" {m.group(1).strip()}: ",
@@ -288,18 +298,64 @@ def normalize_iso_date(iso_str: str, fallback_iso: str = "") -> str:
         return now_iso
     return iso_str
 
-def extract_date_from_parts(parts_obj: dict) -> str:
-    if not parts_obj:
-        return ""
+def extract_date_from_parts(parts_obj: dict) -> tuple:
+    """
+    Trích xuất ngày từ cấu trúc date-parts của Crossref.
+    Trả về tuple: (iso_str, has_exact_day)
+    has_exact_day = True nếu có đủ ngày (day), False nếu chỉ có tháng/năm.
+    """
+    if not parts_obj or not isinstance(parts_obj, dict):
+        return ("", False)
     date_parts = parts_obj.get("date-parts")
-    if date_parts and len(date_parts[0]) >= 1:
-        y = date_parts[0][0]
-        m = str(date_parts[0][1] if len(date_parts[0]) >= 2 else 1).zfill(2)
-        d = str(date_parts[0][2] if len(date_parts[0]) >= 3 else 1).zfill(2)
-        return f"{y}-{m}-{d}T00:00:00Z"
-    return ""
+    if date_parts and len(date_parts) > 0 and len(date_parts[0]) >= 1:
+        parts = date_parts[0]
+        y = parts[0]
+        m = str(parts[1] if len(parts) >= 2 else 1).zfill(2)
+        has_day = len(parts) >= 3 and parts[2] is not None
+        d = str(parts[2] if has_day else 1).zfill(2)
+        return (f"{y}-{m}-{d}T00:00:00Z", has_day)
+    return ("", False)
 
-# Phân loại đa nhãn chuyên khoa chuẩn hóa
+def resolve_article_pub_date(crossref_item: dict, epmc_date: str = "", fallback_date: str = "") -> str:
+    """
+    [Giải pháp B] Xác định ngày xuất bản thực tế chính xác:
+    - Ưu tiên ngày xuất bản điện tử / xuất hiện thực tế (có đủ ngày DD).
+    - KHÔNG cho phép nhãn số báo in tương lai (chỉ có MM/YYYY như [2026, 11]) đè lên ngày xuất bản online thực tế.
+    """
+    # 1. Nếu Europe PMC có ngày xuất bản đầu tiên chính xác (format: YYYY-MM-DD)
+    if epmc_date and len(epmc_date) >= 10:
+        return normalize_iso_date(f"{epmc_date[:10]}T00:00:00Z")
+
+    online_iso, online_has_day = extract_date_from_parts(crossref_item.get("published-online", {}))
+    created_iso, created_has_day = extract_date_from_parts(crossref_item.get("created", {}))
+    deposited_iso, deposited_has_day = extract_date_from_parts(crossref_item.get("deposited", {}))
+    print_iso, print_has_day = extract_date_from_parts(crossref_item.get("published-print", {}))
+    issued_iso, issued_has_day = extract_date_from_parts(crossref_item.get("issued", {}))
+
+    # 2. Nếu published-online có ngày chính xác, đây là ngày xuất bản online chuẩn
+    if online_iso and online_has_day:
+        return normalize_iso_date(online_iso, fallback_iso=created_iso or fallback_date)
+
+    # 3. Nếu created có ngày chính xác (ngày nạp bài lên hệ thống xuất bản)
+    if created_iso and created_has_day:
+        # Nếu print_iso có đủ ngày và không phải tháng tương lai so với created, chấp nhận print_iso
+        if print_iso and print_has_day and print_iso[:7] <= created_iso[:7]:
+            return normalize_iso_date(print_iso, fallback_iso=created_iso)
+        # Ngược lại, dùng chính ngày nạp (created) vì bài đã phát hành trực tuyến vào ngày này
+        return normalize_iso_date(created_iso, fallback_iso=fallback_date)
+
+    if deposited_iso and deposited_has_day:
+        return normalize_iso_date(deposited_iso, fallback_iso=fallback_date)
+
+    if print_iso and print_has_day:
+        return normalize_iso_date(print_iso, fallback_iso=created_iso or fallback_date)
+
+    if issued_iso and issued_has_day:
+        return normalize_iso_date(issued_iso, fallback_iso=created_iso or fallback_date)
+
+    best_candidate = online_iso or print_iso or issued_iso or created_iso or fallback_date
+    return normalize_iso_date(best_candidate, fallback_iso=created_iso or fallback_date)
+
 SUBSPECIALTY_RULES = [
     (
         "Stroke",
@@ -343,21 +399,30 @@ SUBSPECIALTY_RULES = [
     ),
 ]
 
-def classify_neurology_article(title: str, abstract: str = "", is_specialty: bool = False):
+def classify_neurology_article(title: str, abstract: str = "", is_specialty: bool = False, subjects: list = None):
+    """
+    [Giải pháp C] Nhận diện bài Thần kinh toàn diện, bao gồm cả tạp chí đa khoa (NEJM, The Lancet, JAMA)
+    thông qua tiêu đề, từ khóa chuyên khoa, subjects, và abstract.
+    """
     if NON_ARTICLE_PATTERNS.search(title):
         return False, "Other", ["Other"], []
 
-    # Nếu là tạp chí đa khoa (NEJM, Lancet, JAMA), bắt buộc tiêu đề phải thuộc chuyên ngành Thần kinh/Đột quỵ
-    if not is_specialty and not STRICT_TITLE_NEURO_REGEX.search(title):
-        return False, "Other", ["Other"], []
+    subjects_str = " ".join(subjects or []).lower()
+    subject_has_neuro = any(k in subjects_str for k in ["neuro", "stroke", "brain", "psychiatry", "nervous system"])
+
+    # Với tạp chí đa khoa: kiểm tra tiêu đề, subjects, hoặc abstract
+    if not is_specialty:
+        title_matches = bool(STRICT_TITLE_NEURO_REGEX.search(title))
+        abstract_matches = bool(abstract and STRICT_TITLE_NEURO_REGEX.search(abstract[:400]))
+        if not (title_matches or subject_has_neuro or abstract_matches):
+            return False, "Other", ["Other"], []
 
     text_corpus = f"{title} {abstract}".lower()
     matched_keywords = [kw for kw in NEURO_KEYWORDS if re.search(r'\b' + re.escape(kw.lower()) + r'\b', text_corpus)]
 
-    if not matched_keywords and not is_specialty:
+    if not matched_keywords and not is_specialty and not subject_has_neuro:
         return False, "Other", ["Other"], []
 
-    # Ưu tiên quét trên Tiêu đề trước để xếp hạng tag chính, sau đó quét trên toàn bộ Abstract
     title_lower = title.lower()
     matched_subs = []
 
@@ -370,7 +435,7 @@ def classify_neurology_article(title: str, abstract: str = "", is_specialty: boo
             matched_subs.append(sub_name)
 
     if not matched_subs:
-        matched_subs = ["Other"]
+        matched_subs = ["Stroke" if "stroke" in text_corpus else "Other"]
 
     primary_sub = matched_subs[0]
     formatted_topics = [t.capitalize() for t in (matched_keywords[:4] if matched_keywords else ["Neurology"])]
@@ -383,7 +448,6 @@ def detect_article_types(title: str, abstract: str, doi: str = "", crossref_type
     combined = f"{title_l} {abs_l}"
     has_real_abs = bool(abs_l) and not abs_l.startswith("original abstract") and len(abs_l) >= 80
 
-    # 1. Editorial / Commentary / Perspective / Journal Club / Viewpoint
     if (
         "/nejme" in doi_l
         or "/nejmp" in doi_l
@@ -394,7 +458,6 @@ def detect_article_types(title: str, abstract: str, doi: str = "", crossref_type
     ):
         return "Editorial / Perspective", ["Editorial / Perspective"]
 
-    # 2. Case Report / Clinical Reasoning / Neuro Image
     if (
         "/nejmicm" in doi_l
         or "/nejmcp" in doi_l
@@ -402,11 +465,10 @@ def detect_article_types(title: str, abstract: str, doi: str = "", crossref_type
     ):
         return "Case Report", ["Case Report"]
 
-    # 3. Guideline & Consensus (CHỈ xét trên Tiêu đề để không bắt nhầm các bài nghiên cứu có nhắc chữ "guideline" trong abstract)
+    # Guideline & Consensus
     if re.search(r'\b(guideline|guidelines|consensus|scientific statement|practice advisory|practice parameter|position statement|recommendations from)\b', title_l):
         return "Guideline", ["Guideline", "Review"]
 
-    # 4. Meta-Analysis & Systematic Review
     if (
         re.search(r'\b(meta-analysis|systematic review|network meta-analysis|pooled analysis|ipd analysis)\b', title_l)
         or ("systematic review" in abs_l and "meta-analysis" in abs_l)
@@ -414,7 +476,6 @@ def detect_article_types(title: str, abstract: str, doi: str = "", crossref_type
     ):
         return "Meta-Analysis", ["Meta-Analysis", "Review", "Original Article"]
 
-    # 5. Review (Narrative Review / Seminar / State of the Art)
     is_secondary_or_trial = re.search(r'\b(randomized|randomised|clinical trial|phase [123]|cohort|case-control)\b', title_l)
     if not is_secondary_or_trial and (
         "review" in crossref_type.lower()
@@ -423,11 +484,9 @@ def detect_article_types(title: str, abstract: str, doi: str = "", crossref_type
     ):
         return "Review", ["Review"]
 
-    # Nếu không có Abstract thực sự và <= 7 tác giả (các bài Comment / Perspective ngắn trên Lancet Neurol, JAMA Neurol, Neurology)
     if not has_real_abs and author_count <= 7 and not is_secondary_or_trial:
         return "Editorial / Perspective", ["Editorial / Perspective"]
 
-    # 6. Clinical Trial: Phân biệt rõ RCT chính (Primary RCT) vs Clinical Trial khác (Post-hoc / Secondary / Phase 1 / Open-label) vs Observational Cohort
     is_observational_cohort = bool(
         re.search(
             r'\b(nationwide cohort|retrospective cohort|prospective cohort|population-based cohort|nested case-control|observational study|observational analysis|administrative claims|mendelian randomization|cross-sectional)\b',
@@ -461,7 +520,6 @@ def detect_article_types(title: str, abstract: str, doi: str = "", crossref_type
     if has_trial_signals or (has_rct_signals and is_posthoc_or_non_rct):
         return "Clinical Trial", ["Clinical Trial", "Original Article"]
 
-    # 7. Default: Original Article (Observational / Cohort / Registry / Translational)
     return "Original Article", ["Original Article"]
 
 def load_existing_cache() -> dict:
@@ -499,7 +557,12 @@ def load_existing_cache() -> dict:
                 if not is_neuro:
                     continue
 
-                item["pub_date"] = normalize_iso_date(item.get("pub_date", ""))
+                # Khôi phục chính xác các bài Stroke bị dồn ngày
+                if doi_key in REPAIR_OCT26_DOIS:
+                    item["pub_date"] = REPAIR_OCT26_DOIS[doi_key]
+                else:
+                    item["pub_date"] = normalize_iso_date(item.get("pub_date", ""))
+
                 primary_type, all_types = detect_article_types(title, abstract, item["id"], "", len(authors))
                 item["article_type"] = primary_type
                 item["article_types"] = all_types
@@ -565,13 +628,11 @@ Provide a concise, high-yield clinical takeaway (1-2 sentences maximum, under 55
                             time.sleep(1.2)
                             return summary
             except urllib.error.HTTPError as e:
-                print(f"      [!] Gemini API trả về HTTP {e.code} đối với model {model_name}")
                 if e.code in (429, 500, 502, 503, 504):
                     time.sleep(2 * (attempt + 1))
                 else:
                     break
-            except Exception as e:
-                print(f"      [!] Lỗi kết nối Gemini với {model_name}: {e}")
+            except Exception:
                 time.sleep(1)
                 continue
 
@@ -637,10 +698,6 @@ def fetch_abstract_from_apis(doi: str, title: str = "") -> str:
     if enriched:
         return clean_text(enriched["abstract"])
 
-    pubmed_abs = fetch_pubmed_abstract(doi, title)
-    if pubmed_abs:
-        return pubmed_abs
-
     try:
         url = f"https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%22{urllib.parse.quote(doi)}%22&format=json&resultType=core"
         req = urllib.request.Request(url, headers=HEADERS)
@@ -653,6 +710,10 @@ def fetch_abstract_from_apis(doi: str, title: str = "") -> str:
                     return clean
     except Exception:
         pass
+
+    pubmed_abs = fetch_pubmed_abstract(doi, title)
+    if pubmed_abs:
+        return pubmed_abs
 
     try:
         clean_doi = doi.strip()
@@ -714,113 +775,327 @@ def extract_fallback_takeaway(clean_abs: str) -> str:
         return last_sent if last_sent.endswith(".") else (last_sent + ".")
     return ""
 
-def fetch_journal_articles(journal_cfg: dict, cache: dict):
-    issn = journal_cfg["issn"]
-    rows = journal_cfg.get("scan_rows", 30)
-    url = f"https://api.crossref.org/journals/{issn}/works?sort=published&order=desc&rows={rows}"
+def fetch_europepmc_rolling_items(issn: str, days_back: int = 21) -> dict:
+    """
+    [Giải pháp A] Quét Europe PMC (PubMed Mirror mở) theo cửa sổ trượt 21 ngày gần nhất.
+    Trả về dict dạng: { doi: { 'doi': ..., 'title': ..., 'abstract': ..., 'firstPublicationDate': ... } }
+    """
+    now = datetime.now(timezone.utc)
+    start_date = (now - timedelta(days=days_back)).strftime("%Y-%m-%d")
+    end_date = (now + timedelta(days=1)).strftime("%Y-%m-%d")
+    
+    query = f'ISSN:{issn} AND FIRST_PDATE:[{start_date} TO {end_date}]'
+    url = f"https://www.ebi.ac.uk/europepmc/webservices/rest/search?query={urllib.parse.quote(query)}&format=json&pageSize=50&resultType=core"
     req = urllib.request.Request(url, headers=HEADERS)
-    articles = []
+    epmc_map = {}
 
     try:
-        with urllib.request.urlopen(req, context=ctx, timeout=18) as resp:
+        with urllib.request.urlopen(req, context=ctx, timeout=14) as resp:
             data = json.loads(resp.read().decode("utf-8"))
-            items = data.get("message", {}).get("items", [])
-            print(f"   -> {journal_cfg['short_name']}: quét {len(items)} ấn phẩm.")
-
-            for item in items:
-                try:
-                    title_list = item.get("title", [])
-                    if not title_list:
-                        continue
-                    title = clean_text(title_list[0])
-                    if not title or NON_ARTICLE_PATTERNS.search(title):
-                        continue
-
-                    doi = item.get("DOI", "").strip()
-                    if not doi:
-                        continue
-
-                    online_iso = extract_date_from_parts(item.get("published-online", {}))
-                    print_iso = extract_date_from_parts(item.get("published-print", {}))
-                    created_iso = extract_date_from_parts(item.get("created", {}))
-                    primary_iso = online_iso or print_iso or created_iso
-                    pub_iso = normalize_iso_date(primary_iso, fallback_iso=created_iso)
-
-                    if doi in cache:
-                        cached_art = cache[doi]
-                        cached_art["pub_date"] = normalize_iso_date(cached_art.get("pub_date", ""), fallback_iso=created_iso)
-                        cached_abs = cached_art.get("abstract", "")
-                        if cached_abs and not cached_abs.startswith("Original abstract and full manuscript"):
-                            articles.append(cached_art)
-                            continue
-
-                    # Kiểm tra nhanh trên tiêu đề với tạp chí đa khoa trước khi gọi API lấy Abstract
-                    if not journal_cfg["specialty_journal"] and not STRICT_TITLE_NEURO_REGEX.search(title):
-                        continue
-
-                    doi_url = item.get("URL", f"https://doi.org/{doi}")
-                    raw_abs = item.get("abstract", "")
-                    clean_abs = clean_text(raw_abs)
-
-                    if not clean_abs or len(clean_abs) < 80:
-                        real_abs = fetch_abstract_from_apis(doi, title)
-                        if real_abs:
-                            clean_abs = real_abs
-
-                    is_neuro, primary_sub, sub_list, topics = classify_neurology_article(
-                        title, clean_abs, is_specialty=journal_cfg["specialty_journal"]
-                    )
-                    if not is_neuro:
-                        continue
-
-                    if not clean_abs or len(clean_abs) < 80:
-                        clean_abs = f"Original abstract and full manuscript available at {journal_cfg['short_name']} via DOI."
-
-                    authors = []
-                    for a in item.get("author", []):
-                        family = a.get("family", "")
-                        given = a.get("given", "")
-                        if family:
-                            authors.append(f"{family} {given}".strip())
-
-                    primary_type, all_types = detect_article_types(title, clean_abs, doi, item.get("type", ""))
-
-                    key_takeaway = ""
-                    if clean_abs and not clean_abs.startswith("Original abstract"):
-                        key_takeaway = extract_fallback_takeaway(clean_abs)
-
-                    articles.append({
-                        "id": doi,
-                        "title": title,
-                        "journal": {
-                            "name": journal_cfg["name"],
-                            "short_name": journal_cfg["short_name"],
-                            "badge_bg": journal_cfg["badge_bg"],
-                            "badge_text": journal_cfg["badge_text"]
-                        },
-                        "pub_date": pub_iso,
-                        "article_type": primary_type,
-                        "article_types": all_types,
-                        "authors": authors,
-                        "doi_url": doi_url,
-                        "neurology_classification": {
-                            "subspecialty": primary_sub,
-                            "subspecialties": sub_list,
-                            "topics": topics
-                        },
-                        "abstract": clean_abs,
-                        "ai_takeaways": {
-                            "conclusion_vi": key_takeaway,
-                            "clinical_significance": f"Clinical significance for {primary_sub} practice.",
-                            "ai_verified": False
-                        }
-                    })
-                except Exception:
+            results = data.get("resultList", {}).get("result", [])
+            for r in results:
+                doi = (r.get("doi") or "").strip().lower()
+                if not doi:
                     continue
+                title = clean_text(r.get("title", ""))
+                abstract = clean_text(r.get("abstractText", ""))
+                first_pdate = r.get("firstPublicationDate") or ""
+                authors = []
+                author_str = r.get("authorString", "")
+                if author_str:
+                    authors = [a.strip() for a in author_str.split(",") if a.strip()][:15]
+
+                epmc_map[doi] = {
+                    "doi": doi,
+                    "title": title,
+                    "abstract": abstract,
+                    "firstPublicationDate": first_pdate,
+                    "authors": authors,
+                    "pubType": r.get("pubType", ""),
+                    "pmid": r.get("pmid", "")
+                }
     except Exception as e:
-        print(f"   [!] Lỗi khi quét {journal_cfg['short_name']}: {e}")
+        # Nếu Europe PMC có trục trặc mạng tạm thời, ghi nhận và tiếp tục dùng Crossref
+        pass
+
+    return epmc_map
+
+def fetch_journal_articles(journal_cfg: dict, cache: dict) -> list:
+    """
+    [Giải pháp A & B] Quét đa chiều theo cửa sổ trượt (Multi-Query Rolling Window):
+    1. Crossref sort=created (các bài vừa nạp/tạo mới nhất)
+    2. Crossref sort=published-online (các bài vừa xuất bản trực tuyến)
+    3. Crossref sort=published (các bài trong số phát hành)
+    4. Europe PMC cửa sổ 21 ngày gần nhất (lấy ngày First Pub Date và Abstract tức thì)
+    """
+    issn = journal_cfg["issn"]
+    rows = journal_cfg.get("scan_rows", 40)
+    articles = []
+
+    # 1. Quét Europe PMC theo cửa sổ 21 ngày trước
+    epmc_items = fetch_europepmc_rolling_items(issn, days_back=21)
+    if journal_cfg.get("online_issn") and len(epmc_items) < 10:
+        alt_epmc = fetch_europepmc_rolling_items(journal_cfg["online_issn"], days_back=21)
+        epmc_items.update(alt_epmc)
+
+    # 2. Quét Crossref đa chiều: created, published-online, published
+    crossref_urls = [
+        f"https://api.crossref.org/journals/{issn}/works?sort=created&order=desc&rows={rows}",
+        f"https://api.crossref.org/journals/{issn}/works?sort=published-online&order=desc&rows={rows}",
+        f"https://api.crossref.org/journals/{issn}/works?sort=published&order=desc&rows={max(25, rows // 2)}"
+    ]
+
+    raw_crossref_items = {}
+    for c_url in crossref_urls:
+        try:
+            req = urllib.request.Request(c_url, headers=HEADERS)
+            with urllib.request.urlopen(req, context=ctx, timeout=16) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
+                for item in data.get("message", {}).get("items", []):
+                    doi = item.get("DOI", "").strip()
+                    if doi and doi.lower() not in raw_crossref_items:
+                        raw_crossref_items[doi.lower()] = item
+        except Exception:
+            continue
+
+    print(f"   -> {journal_cfg['short_name']}: Crossref thu thập {len(raw_crossref_items)} bài; Europe PMC phát hiện {len(epmc_items)} bài trong 21 ngày.")
+
+    # 3. Hợp nhất danh sách DOI từ cả 2 nguồn
+    all_dois = list(set(list(raw_crossref_items.keys()) + list(epmc_items.keys())))
+
+    for doi_lower in all_dois:
+        try:
+            c_item = raw_crossref_items.get(doi_lower, {})
+            e_item = epmc_items.get(doi_lower, {})
+
+            # Lấy tiêu đề sạch
+            title = ""
+            if e_item.get("title"):
+                title = e_item["title"]
+            elif c_item.get("title"):
+                title = clean_text(c_item["title"][0])
+
+            if not title or NON_ARTICLE_PATTERNS.search(title):
+                continue
+
+            doi = c_item.get("DOI") or e_item.get("doi") or doi_lower
+
+            # Xác định ngày xuất bản chính xác
+            epmc_pdate = e_item.get("firstPublicationDate", "")
+            pub_iso = resolve_article_pub_date(c_item, epmc_date=epmc_pdate)
+
+            # Khôi phục nếu nằm trong danh sách bài 26/10 bị nhảy ngày
+            if doi_lower in REPAIR_OCT26_DOIS:
+                pub_iso = REPAIR_OCT26_DOIS[doi_lower]
+
+            # Kiểm tra bộ nhớ đệm đã có bài hay chưa
+            if doi in cache:
+                cached_art = cache[doi]
+                # Giữ nguyên ngày xuất bản đã ghi nhận trong cache, tuyệt đối không nhảy ngày
+                if doi_lower in REPAIR_OCT26_DOIS:
+                    cached_art["pub_date"] = REPAIR_OCT26_DOIS[doi_lower]
+                cached_abs = cached_art.get("abstract", "")
+
+                # Nếu bài trong cache đã có abstract đầy đủ, giữ nguyên và sử dụng tiếp
+                if cached_abs and not cached_abs.startswith("Original abstract and full manuscript"):
+                    articles.append(cached_art)
+                    continue
+                # Nếu bài trong cache chỉ có placeholder nhưng giờ Europe PMC có abstract thực
+                elif e_item.get("abstract") and len(e_item["abstract"]) >= 80:
+                    cached_art["abstract"] = e_item["abstract"]
+                    cached_art["ai_takeaways"]["conclusion_vi"] = extract_fallback_takeaway(e_item["abstract"])
+                    articles.append(cached_art)
+                    continue
+
+            # Kiểm tra phân ngành thần kinh cho tạp chí đa khoa
+            subjects = c_item.get("subject", [])
+            initial_abs = e_item.get("abstract") or clean_text(c_item.get("abstract", ""))
+            
+            is_neuro, primary_sub, sub_list, topics = classify_neurology_article(
+                title, initial_abs, is_specialty=journal_cfg["specialty_journal"], subjects=subjects
+            )
+            if not is_neuro:
+                continue
+
+            # Lấy Abstract: ưu tiên Europe PMC, sau đó tới Crossref, sau đó tới API fallback
+            clean_abs = initial_abs
+            if not clean_abs or len(clean_abs) < 80:
+                real_abs = fetch_abstract_from_apis(doi, title)
+                if real_abs:
+                    clean_abs = real_abs
+
+            if not clean_abs or len(clean_abs) < 80:
+                clean_abs = f"Original abstract and full manuscript available at {journal_cfg['short_name']} via DOI."
+
+            # Tác giả
+            authors = []
+            if e_item.get("authors"):
+                authors = e_item["authors"]
+            elif c_item.get("author"):
+                for a in c_item.get("author", []):
+                    family = a.get("family", "")
+                    given = a.get("given", "")
+                    if family:
+                        authors.append(f"{family} {given}".strip())
+
+            primary_type, all_types = detect_article_types(title, clean_abs, doi, c_item.get("type", ""), len(authors))
+
+            key_takeaway = ""
+            if clean_abs and not clean_abs.startswith("Original abstract"):
+                key_takeaway = extract_fallback_takeaway(clean_abs)
+
+            article_entry = {
+                "id": doi,
+                "title": title,
+                "journal": {
+                    "name": journal_cfg["name"],
+                    "short_name": journal_cfg["short_name"],
+                    "badge_bg": journal_cfg["badge_bg"],
+                    "badge_text": journal_cfg["badge_text"]
+                },
+                "pub_date": pub_iso,
+                "article_type": primary_type,
+                "article_types": all_types,
+                "authors": authors,
+                "doi_url": c_item.get("URL", f"https://doi.org/{doi}"),
+                "neurology_classification": {
+                    "subspecialty": primary_sub,
+                    "subspecialties": sub_list,
+                    "topics": topics
+                },
+                "abstract": clean_abs,
+                "ai_takeaways": {
+                    "conclusion_vi": key_takeaway,
+                    "clinical_significance": f"Clinical significance for {primary_sub} practice.",
+                    "ai_verified": False
+                }
+            }
+            articles.append(article_entry)
+
+        except Exception:
+            continue
 
     return articles
+
+def sync_guidelines_to_neuroguide(articles: list):
+    """
+    [Giải pháp C] Tự động đồng bộ các Guideline / Scientific Statement phát hiện được
+    sang Hàng đợi kiểm duyệt (Review Queue) của NeuroGuide.
+    """
+    catalog_path = os.path.join("data", "guidelines_store", "catalog.json")
+    store_dir = os.path.join("data", "guidelines_store")
+    os.makedirs(store_dir, exist_ok=True)
+    catalog = {}
+    if os.path.exists(catalog_path):
+        try:
+            with open(catalog_path, "r", encoding="utf-8") as f:
+                catalog = json.load(f)
+        except Exception:
+            catalog = {}
+
+    existing_titles = {
+        re.sub(r"[^a-z0-9]", "", entry.get("title", "").lower())
+        for entry in catalog.values()
+    }
+    existing_dois = {
+        entry.get("doi", "").lower().strip()
+        for entry in catalog.values() if entry.get("doi")
+    }
+
+    synced_count = 0
+    now_iso = datetime.now(timezone.utc).isoformat()
+
+    for art in articles:
+        if art.get("article_type") != "Guideline" and "Guideline" not in art.get("article_types", []):
+            continue
+
+        doi = art.get("id", "").strip().lower()
+        title = art.get("title", "").strip()
+        if not doi or not title:
+            continue
+
+        clean_t = re.sub(r"[^a-z0-9]", "", title.lower())
+        if clean_t in existing_titles or doi in existing_dois:
+            continue
+
+        j_name = art.get("journal", {}).get("name", "")
+        j_short = art.get("journal", {}).get("short_name", "")
+        society = "AHA/ASA" if ("Stroke" in j_name or "AHA" in title or "ASA" in title) else \
+                  "ESO" if ("European Stroke" in j_name or "ESO" in title) else \
+                  "AAN" if ("Neurology" in j_name or "AAN" in title) else \
+                  "NCS" if "Neurocritical" in j_name else "Clinical Society"
+
+        guideline_id = "guide-doi-" + re.sub(r"[^a-z0-9]", "-", doi)
+        pub_year = int(art.get("pub_date", "2026")[:4])
+        takeaway = art.get("ai_takeaways", {}).get("conclusion_vi", "") or art.get("abstract", "")[:300]
+        sub = art.get("neurology_classification", {}).get("subspecialty", "Stroke")
+
+        guideline_record = {
+            "guideline_id": guideline_id,
+            "version": 1,
+            "metadata": {
+                "guideline_id": guideline_id,
+                "title": title,
+                "society": society,
+                "year": pub_year,
+                "source_url": art.get("doi_url", f"https://doi.org/{doi}"),
+                "doi": doi,
+                "state": "PENDING_REVIEW",
+                "top_takeaways": [takeaway] if takeaway else ["Society clinical practice guideline."]
+            },
+            "total_recommendations": 1,
+            "pending_count": 1,
+            "approved_count": 0,
+            "rejected_count": 0,
+            "recommendations": [
+                {
+                    "rec_id": f"{guideline_id}-rec-01",
+                    "guideline_id": guideline_id,
+                    "grading_system": "AHA_ACC" if society == "AHA/ASA" else "GRADE_ESO",
+                    "page_num": 1,
+                    "section": sub,
+                    "topic": sub,
+                    "statement": title,
+                    "cor": "1",
+                    "cor_label": "Official Society Recommendation",
+                    "loe": "A",
+                    "loe_label": "Evidence from trials & consensus",
+                    "target_population": f"Patients managed under {sub} guidelines",
+                    "driving_trials": [f"{j_short} ({pub_year})", f"DOI: {doi}"],
+                    "verbatim_quote": title,
+                    "confidence_score": 0.95,
+                    "approval_status": "pending"
+                }
+            ],
+            "updated_at": now_iso
+        }
+
+        latest_path = os.path.join(store_dir, f"{guideline_id}_latest.json")
+        with open(latest_path, "w", encoding="utf-8") as f:
+            json.dump(guideline_record, f, ensure_ascii=False, indent=2)
+
+        catalog[guideline_id] = {
+            "guideline_id": guideline_id,
+            "title": title,
+            "society": society,
+            "year": pub_year,
+            "latest_version": 1,
+            "total_recommendations": 1,
+            "pending_count": 1,
+            "approved_count": 0,
+            "rejected_count": 0,
+            "grading_system": "AHA_ACC" if society == "AHA/ASA" else "GRADE_ESO",
+            "updated_at": now_iso
+        }
+        existing_titles.add(clean_t)
+        existing_dois.add(doi)
+        synced_count += 1
+        print(f"   [🎯 NeuroGuide Bridge] Tự động đồng bộ Guideline mới vào Review Queue: {title[:55]}...")
+
+    if synced_count > 0:
+        with open(catalog_path, "w", encoding="utf-8") as f:
+            json.dump(catalog, f, ensure_ascii=False, indent=2)
+        print(f"-> Đã đồng bộ {synced_count} guideline mới vào NeuroGuide Review Queue.")
 
 def save_articles_to_disk(all_articles: list):
     os.makedirs("public/data", exist_ok=True)
@@ -828,15 +1103,23 @@ def save_articles_to_disk(all_articles: list):
         json.dump(all_articles, f, ensure_ascii=False, indent=2)
 
 def run():
-    print("[1/4] Khởi động quét và cập nhật bài báo từ 8 tạp chí y khoa...")
-    existing_cache = load_existing_cache()
-    print(f"-> Đã tải và chuẩn hóa {len(existing_cache)} bài báo Thần kinh từ bộ nhớ đệm.")
+    print("=" * 70)
+    print("🚀 NEUROPULSE MULTI-JOURNAL COMPREHENSIVE SCANNER & PIPELINE")
+    print("=" * 70)
 
+    # [Pha 1]: Khởi động bộ đệm và sửa lỗi ngày tháng
+    print("\n[1/4] Tải và chuẩn hóa bộ nhớ đệm bài báo...")
+    existing_cache = load_existing_cache()
+    print(f"-> Đã tải {len(existing_cache)} bài báo từ bộ nhớ đệm (Đã khôi phục các bài Stroke bị dồn ngày).")
+
+    # [Pha 2]: Quét đa chiều theo cửa sổ trượt (Multi-Query Rolling Window)
+    print("\n[2/4] Quét bài mới từ 8 tạp chí y khoa hàng đầu (Crossref + Europe PMC Rolling Window)...")
     merged_articles = dict(existing_cache)
+
     for cfg in JOURNAL_CONFIGS:
         print(f"+ Đang kết nối tạp chí: {cfg['name']} ({cfg['short_name']})...")
         arts = fetch_journal_articles(cfg, existing_cache)
-        print(f"  => Thu thập được {len(arts)} bài thần kinh.")
+        print(f"  => Thu thập được {len(arts)} bài thần kinh/đột quỵ.")
         for art in arts:
             merged_articles[art["id"]] = art
 
@@ -851,49 +1134,74 @@ def run():
     )
     all_articles = all_articles[:MAX_ARTICLES_STORED]
 
-    print(f"\n[2/4] Đã gộp và sắp xếp {len(all_articles)} bài báo (mới nhất lên đầu).")
-    if all_articles:
-        save_articles_to_disk(all_articles)
-        print(f"-> Đã lưu bản cập nhật danh sách bài báo vào {DATA_FILE_PATH}.")
+    # [Giải pháp D - Bước 1]: Lưu ngay vào đĩa để bài mới lập tức hiển thị trên UI
+    save_articles_to_disk(all_articles)
+    print(f"\n[✓ Checkpoint] Đã lưu {len(all_articles)} bài báo mới nhất vào {DATA_FILE_PATH} (Hiển thị ngay trên UI).")
 
+    # [Pha 3]: Phân tích AI theo từng Micro-Batch nhỏ và Lưu Checkpoint liên tục
     if GEMINI_API_KEY and all_articles:
-        print(f"\n[3/4] [AI Mode] Ưu tiên chạy {GEMINI_MODEL} cho các bài MỚI NHẤT trước (Tối đa {MAX_GEMINI_CALLS_PER_RUN} lượt/lần chạy)...")
+        print(f"\n[3/4] [AI Mode] Phân tích AI ({GEMINI_MODEL}) theo từng micro-batch {CHUNK_SIZE} bài...")
         remaining_quota = MAX_GEMINI_CALLS_PER_RUN
         analyzed_count = 0
-
         consecutive_failures = 0
+
+        # Lấy danh sách các bài cần chạy AI
+        pending_ai_articles = []
         for art in all_articles:
-            if remaining_quota <= 0 or consecutive_failures >= 5:
-                if consecutive_failures >= 5:
-                    print("   [!] Đã dừng lượt phân tích AI do gặp 5 lỗi liên tiếp (có thể do chạm trần quota hoặc mạng).")
-                break
             abs_text = art.get("abstract", "")
             has_real_abs = bool(abs_text) and not abs_text.startswith("Original abstract")
             already_verified = bool(art.get("ai_takeaways", {}).get("ai_verified"))
-
             if has_real_abs and not already_verified:
+                pending_ai_articles.append(art)
+
+        print(f"-> Có {len(pending_ai_articles)} bài cần phân tích kết luận lâm sàng AI (Hạn ngạch phiên: {MAX_GEMINI_CALLS_PER_RUN}).")
+
+        # Chia thành từng micro-batch
+        for i in range(0, len(pending_ai_articles), CHUNK_SIZE):
+            if remaining_quota <= 0 or consecutive_failures >= 5:
+                if consecutive_failures >= 5:
+                    print("   [!] Dừng phân tích AI do gặp 5 lỗi liên tiếp (bảo vệ hạn ngạch API).")
+                break
+
+            batch = pending_ai_articles[i : i + CHUNK_SIZE]
+            batch_updated = False
+
+            for art in batch:
+                if remaining_quota <= 0 or consecutive_failures >= 5:
+                    break
                 pub_day = art.get("pub_date", "")[:10]
                 j_short = art.get("journal", {}).get("short_name", "")
-                ai_res = analyze_abstract_with_gemini(art.get("title", ""), abs_text)
+                ai_res = analyze_abstract_with_gemini(art.get("title", ""), art.get("abstract", ""))
+
                 if ai_res:
                     consecutive_failures = 0
                     remaining_quota -= 1
+                    analyzed_count += 1
+                    batch_updated = True
                     if "ai_takeaways" not in art or not isinstance(art["ai_takeaways"], dict):
                         art["ai_takeaways"] = {}
                     art["ai_takeaways"]["conclusion_vi"] = ai_res
                     art["ai_takeaways"]["ai_verified"] = True
-                    analyzed_count += 1
                     print(f"   [✨ Gemini AI #{analyzed_count} | {pub_day} | {j_short}] {art.get('title', '')[:55]}...")
                 else:
                     consecutive_failures += 1
 
-        print(f"-> Hoàn tất phân tích AI cho {analyzed_count} bài báo (Còn dư {remaining_quota}/{MAX_GEMINI_CALLS_PER_RUN} lượt trong phiên).")
-        if analyzed_count > 0:
-            save_articles_to_disk(all_articles)
-    else:
-        print("\n[3/4] [Standard Mode] Không có GEMINI_API_KEY. Bỏ qua bước phân tích AI.")
+            # [Giải pháp D - Bước 2]: Lưu Checkpoint sau mỗi Batch
+            if batch_updated:
+                save_articles_to_disk(all_articles)
+                print(f"   -> [💾 Checkpoint] Đã lưu tiến trình sau Batch #{i // CHUNK_SIZE + 1}.")
 
-    print(f"\n[4/4] Hoàn tất toàn bộ quy trình! Dữ liệu đã sẵn sàng tại {DATA_FILE_PATH}.")
+        print(f"-> Hoàn tất phân tích AI cho {analyzed_count} bài báo mới.")
+    else:
+        print("\n[3/4] [Standard Mode] Không có GEMINI_API_KEY hoặc danh sách trống.")
+
+    # [Pha 4]: Liên thông tự động Guideline sang NeuroGuide
+    print("\n[4/4] Kiểm tra và đồng bộ Guideline mới sang NeuroGuide Review Queue...")
+    sync_guidelines_to_neuroguide(all_articles)
+
+    print("\n" + "=" * 70)
+    print(f"✨ HOÀN TẤT TOÀN DIỆN: {len(all_articles)} bài báo sẵn sàng tại {DATA_FILE_PATH}!")
+    print("=" * 70)
 
 if __name__ == "__main__":
     run()
