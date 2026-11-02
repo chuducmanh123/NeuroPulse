@@ -1160,16 +1160,20 @@ export default function AdminCommandCenter() {
               </div>
 
               {/* SUBSPECIALTY DISTRIBUTION BREAKDOWN */}
-              {healthData?.metrics?.articles?.subspecialties && (
+              {healthData?.metrics?.articles?.subspecialties &&
+                typeof healthData.metrics.articles.subspecialties === "object" && (
                 <div className="mb-6 space-y-2">
                   <div className="flex items-center justify-between text-xs font-bold text-slate-700 dark:text-slate-300">
                     <span>Clinical Subspecialty Distribution</span>
-                    <span className="text-[11px] text-slate-400">11 Neurology Subspecialties</span>
+                    <span className="text-[11px] text-slate-400">
+                      {Object.keys(healthData.metrics.articles.subspecialties).length} Neurology Subspecialties
+                    </span>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 text-xs">
                     {Object.entries(healthData.metrics.articles.subspecialties).map(([sub, count]) => {
                       const total = healthData.metrics.articles.total || 1;
-                      const pct = Math.round(((count as number) / total) * 100);
+                      const countNum = typeof count === "number" ? count : Number(count) || 0;
+                      const pct = Math.round((countNum / total) * 100);
                       return (
                         <div
                           key={sub}
@@ -1180,7 +1184,7 @@ export default function AdminCommandCenter() {
                           <div className="flex items-center justify-between mb-1">
                             <span className="font-semibold truncate">{sub}</span>
                             <span className="font-mono font-bold text-slate-500 dark:text-slate-400">
-                              {count as number}
+                              {countNum}
                             </span>
                           </div>
                           <div className="w-full h-1.5 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
@@ -1226,29 +1230,71 @@ export default function AdminCommandCenter() {
                     .filter((a) => {
                       if (!pulseSearchQuery.trim()) return true;
                       const q = pulseSearchQuery.toLowerCase();
+                      const journalName =
+                        typeof a.journal === "string"
+                          ? a.journal
+                          : a.journal?.name || a.journal?.short_name || "";
+                      const subspecialty =
+                        typeof a.subspecialty === "string"
+                          ? a.subspecialty
+                          : a.neurology_classification?.subspecialty ||
+                            (Array.isArray(a.neurology_classification?.subspecialties)
+                              ? a.neurology_classification.subspecialties[0]
+                              : Array.isArray(a.subspecialties)
+                              ? a.subspecialties[0]
+                              : "");
                       return (
                         (a.title || "").toLowerCase().includes(q) ||
-                        (a.journal || "").toLowerCase().includes(q) ||
-                        (a.subspecialty || "").toLowerCase().includes(q)
+                        journalName.toLowerCase().includes(q) ||
+                        subspecialty.toLowerCase().includes(q)
                       );
                     })
                     .slice(0, 8)
-                    .map((a, idx) => (
-                      <div key={a.id || idx} className="py-2 flex items-start justify-between gap-2">
-                        <div className="min-w-0">
-                          <div className="flex items-center gap-1.5 mb-0.5">
-                            <span className="font-bold text-[10px] px-1.5 py-0.2 rounded bg-indigo-500/10 text-indigo-500">
-                              {a.journal || "Journal"}
-                            </span>
-                            {a.subspecialty && (
-                              <span className="text-[10px] text-slate-400">{a.subspecialty}</span>
-                            )}
+                    .map((a, idx) => {
+                      const journalName =
+                        typeof a.journal === "string"
+                          ? a.journal
+                          : a.journal?.short_name || a.journal?.name || "Journal";
+                      const subspecialty =
+                        typeof a.subspecialty === "string"
+                          ? a.subspecialty
+                          : a.neurology_classification?.subspecialty ||
+                            (Array.isArray(a.neurology_classification?.subspecialties)
+                              ? a.neurology_classification.subspecialties[0]
+                              : Array.isArray(a.subspecialties)
+                              ? a.subspecialties[0]
+                              : "");
+                      const dateDisplay =
+                        a.date ||
+                        (a.pub_date ? a.pub_date.slice(0, 10) : "Recent");
+                      const badgeBg =
+                        a.journal?.badge_bg || "rgba(99, 102, 241, 0.1)";
+                      const badgeText =
+                        a.journal?.badge_text || "#6366f1";
+
+                      return (
+                        <div key={a.id || idx} className="py-2 flex items-start justify-between gap-2">
+                          <div className="min-w-0">
+                            <div className="flex items-center gap-1.5 mb-0.5">
+                              <span
+                                className="font-bold text-[10px] px-1.5 py-0.5 rounded"
+                                style={{
+                                  backgroundColor: badgeBg,
+                                  color: badgeText,
+                                }}
+                              >
+                                {journalName}
+                              </span>
+                              {subspecialty && (
+                                <span className="text-[10px] text-slate-400">{subspecialty}</span>
+                              )}
+                            </div>
+                            <p className="font-medium text-slate-800 dark:text-slate-200 truncate">{a.title}</p>
                           </div>
-                          <p className="font-medium text-slate-800 dark:text-slate-200 truncate">{a.title}</p>
+                          <span className="text-[10.5px] font-mono text-slate-400 shrink-0">{dateDisplay}</span>
                         </div>
-                        <span className="text-[10.5px] font-mono text-slate-400 shrink-0">{a.date || "Recent"}</span>
-                      </div>
-                    ))}
+                      );
+                    })}
                 </div>
               </div>
 

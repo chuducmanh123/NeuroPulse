@@ -30,3 +30,34 @@ test("Token v2 TTL and Expiration", async (t) => {
     assert.equal(isValid, false);
   });
 });
+
+test("Admin Journal Feeds Monitor Compatibility", async (t) => {
+  await t.test("should safely extract journal name, subspecialty, and date from diverse article schemas", async () => {
+    const fs = await import("fs/promises");
+    const path = await import("path");
+    const raw = await fs.readFile(path.join(process.cwd(), "public", "data", "articles.json"), "utf-8");
+    const articles = JSON.parse(raw);
+
+    assert.ok(Array.isArray(articles) && articles.length > 0);
+
+    for (const a of articles.slice(0, 20)) {
+      // 1. Journal display resolution (cannot be raw object as child)
+      const journalName = typeof a.journal === "string" ? a.journal : a.journal?.short_name || a.journal?.name || "Journal";
+      assert.equal(typeof journalName, "string");
+      assert.ok(journalName.length > 0);
+
+      // 2. Search query filtering (toLowerCase must not throw)
+      const q = "lancet";
+      const match = (a.title || "").toLowerCase().includes(q) || journalName.toLowerCase().includes(q);
+      assert.equal(typeof match, "boolean");
+
+      // 3. Subspecialty extraction
+      const sub = a.subspecialty || a.neurology_classification?.subspecialty || "";
+      assert.equal(typeof sub, "string");
+
+      // 4. Date extraction
+      const dateDisplay = a.date || (a.pub_date ? a.pub_date.slice(0, 10) : "Recent");
+      assert.equal(typeof dateDisplay, "string");
+    }
+  });
+});

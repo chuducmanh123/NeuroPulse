@@ -11,12 +11,20 @@ export const revalidate = 0;
 interface ArticleItem {
   id?: string;
   title?: string;
-  journal?: string;
+  journal?: any;
   date?: string;
+  pub_date?: string;
   study_type?: string;
   studyType?: string;
+  article_type?: string;
+  article_types?: string[];
   subspecialty?: string;
   subspecialties?: string[];
+  neurology_classification?: {
+    subspecialty?: string;
+    subspecialties?: string[];
+    topics?: string[];
+  };
   is_rct?: boolean;
 }
 
@@ -56,16 +64,42 @@ export async function GET(req: NextRequest) {
 
     articles.forEach((a) => {
       // Study type detection
-      const typeStr = (a.study_type || a.studyType || "").toLowerCase();
+      const typeStr = (
+        a.article_type ||
+        a.study_type ||
+        a.studyType ||
+        (Array.isArray(a.article_types) ? a.article_types.join(" ") : "") ||
+        ""
+      ).toLowerCase();
       const titleLower = (a.title || "").toLowerCase();
 
-      if (a.is_rct || typeStr.includes("rct") || typeStr.includes("randomized") || titleLower.includes("randomized controlled trial")) {
+      if (
+        a.is_rct ||
+        typeStr.includes("rct") ||
+        typeStr.includes("trial") ||
+        typeStr.includes("randomized") ||
+        titleLower.includes("randomized controlled trial")
+      ) {
         studyTypeCounts.rct++;
-      } else if (typeStr.includes("meta") || typeStr.includes("systematic") || titleLower.includes("meta-analysis")) {
+      } else if (
+        typeStr.includes("meta") ||
+        typeStr.includes("systematic") ||
+        titleLower.includes("meta-analysis")
+      ) {
         studyTypeCounts.meta_analysis++;
-      } else if (typeStr.includes("guideline") || typeStr.includes("consensus") || typeStr.includes("recommendation") || titleLower.includes("guideline")) {
+      } else if (
+        typeStr.includes("guideline") ||
+        typeStr.includes("consensus") ||
+        typeStr.includes("recommendation") ||
+        titleLower.includes("guideline")
+      ) {
         studyTypeCounts.guideline++;
-      } else if (typeStr.includes("cohort") || typeStr.includes("observational") || typeStr.includes("case-control")) {
+      } else if (
+        typeStr.includes("cohort") ||
+        typeStr.includes("observational") ||
+        typeStr.includes("case-control") ||
+        typeStr.includes("original")
+      ) {
         studyTypeCounts.observational++;
       } else if (typeStr.includes("review")) {
         studyTypeCounts.review++;
@@ -74,11 +108,19 @@ export async function GET(req: NextRequest) {
       }
 
       // Subspecialties
-      const sub = a.subspecialty || (a.subspecialties && a.subspecialties[0]) || "General Neurology";
+      const sub =
+        a.neurology_classification?.subspecialty ||
+        a.subspecialty ||
+        (Array.isArray(a.neurology_classification?.subspecialties) && a.neurology_classification.subspecialties[0]) ||
+        (Array.isArray(a.subspecialties) && a.subspecialties[0]) ||
+        "General Neurology";
       subspecialtyCounts[sub] = (subspecialtyCounts[sub] || 0) + 1;
 
       // Journals
-      const j = a.journal || "Other";
+      const j =
+        (typeof a.journal === "string"
+          ? a.journal
+          : a.journal?.short_name || a.journal?.name) || "Other";
       journalCounts[j] = (journalCounts[j] || 0) + 1;
     });
 
