@@ -14,6 +14,7 @@ import { ReviewQueueTab } from "@/components/neuroguide/ReviewQueueTab";
 import { PipelineModal } from "@/components/neuroguide/PipelineModal";
 import { NotebookLMUploadModal } from "@/components/neuroguide/NotebookLMUploadModal";
 import { EditGuidelineModal } from "@/components/neuroguide/EditGuidelineModal";
+import { getStoredAdminToken } from "@/utils/clientAuth";
 
 function getLocalTodayIso(): string {
   const d = new Date();
@@ -1699,6 +1700,7 @@ export default function AdminCommandCenter() {
             docId={editingPublishedDoc.id}
             item={editingPublishedDoc.allPracticeChanges?.[0] || null}
             guidelineDoc={editingPublishedDoc}
+            adminToken={getStoredAdminToken()}
             onSuccess={() => {
               fetchGuidelinesList();
               fetchReviewQueueCount();

@@ -1828,6 +1828,7 @@ export function ReviewQueueTab({
         docId={editingDocId}
         item={editingPracticeChange}
         guidelineDoc={editingGuidelineDoc}
+        adminToken={getAdminToken()}
         onSuccess={() => {
           fetchQueue();
           if (onQueueUpdated) onQueueUpdated();

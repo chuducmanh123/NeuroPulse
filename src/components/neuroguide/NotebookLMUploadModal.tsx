@@ -3,6 +3,7 @@
 import React, { useState, useRef, useMemo } from "react";
 import { parseNotebookLMContent } from "@/lib/neuroguide/notebooklmParser";
 import { GuidelineDoc, SubspecialtyType, NEUROLOGY_SUBSPECIALTIES } from "@/types/neuroguide";
+import { getAdminHeaders, getStoredAdminToken } from "@/utils/clientAuth";
 
 interface NotebookLMUploadModalProps {
   isOpen: boolean;
@@ -151,10 +152,15 @@ export function NotebookLMUploadModal({
     setErrorMessage(null);
     setSuccessMessage(null);
 
+    const token = getStoredAdminToken();
+
     try {
       const res = await fetch("/api/neuroguide/import-notebooklm", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...getAdminHeaders(token),
+        },
         body: JSON.stringify({
           text: rawText,
           fileName: selectedFile?.name || "notebooklm-guideline.md",

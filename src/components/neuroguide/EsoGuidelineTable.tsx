@@ -226,19 +226,19 @@ export function EsoGuidelineTable({
     >
       {/* Optional Top Title Bar */}
       {title && (
-        <div className="bg-[#1e40af] text-white px-5 py-3 flex flex-wrap items-center justify-between gap-3">
-          <div>
-            <div className="text-[11px] font-bold text-blue-200 uppercase tracking-wider">
+        <div className="bg-[#1e40af] text-white px-4 py-3 sm:px-5 sm:py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3">
+          <div className="min-w-0 flex-1">
+            <div className="text-[10px] sm:text-[11px] font-bold text-blue-200 uppercase tracking-wider">
               Synoptic table of all recommendations and expert consensus statements
             </div>
-            <h2 className="text-sm sm:text-base font-extrabold tracking-wide">
+            <h2 className="text-xs sm:text-base font-extrabold tracking-wide uppercase leading-snug mt-0.5">
               {title}
             </h2>
           </div>
           <button
             type="button"
             onClick={() => setShowGradeModal(true)}
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/15 hover:bg-white/25 active:bg-white/30 text-white text-xs font-bold transition-all border border-white/20 cursor-pointer shadow-xs"
+            className="self-start sm:self-auto inline-flex items-center gap-1.5 px-2.5 py-1.5 sm:px-3 rounded-lg bg-white/15 hover:bg-white/25 active:bg-white/30 text-white text-[11px] sm:text-xs font-bold transition-all border border-white/20 cursor-pointer shadow-xs shrink-0"
             title="View European Stroke Organisation (ESO) GRADE methodology and definitions"
           >
             <span>🇪🇺</span>
@@ -247,8 +247,161 @@ export function EsoGuidelineTable({
         </div>
       )}
 
-      {/* Main ESO Guideline Table */}
-      <div className="overflow-x-auto">
+      {/* 2A. MOBILE PICO COMPACT CARDS (Mobile-First, zero horizontal overflow) */}
+      <div className="block md:hidden divide-y divide-slate-200 dark:divide-slate-800">
+        {picoItems.map((pico, idx) => {
+          const recs = Array.isArray(pico.recommendations) && pico.recommendations.length > 0
+            ? pico.recommendations
+            : [
+                {
+                  statement: "No evidence-based recommendation can be made.",
+                  qualityOfEvidence: "Uncertain / Ongoing trial",
+                  strengthOfRecommendation: "Uncertain / Ongoing trials",
+                },
+              ];
+
+          const hasPerRecConsensus = recs.some(
+            (r) =>
+              Boolean(
+                r.expertConsensusStatement?.trim() ||
+                  (r.expertConsensusStatements && r.expertConsensusStatements.length > 0)
+              )
+          );
+
+          const picoConsensusItems = parseConsensusList(
+            pico.expertConsensusStatement,
+            undefined,
+            pico.voting
+          );
+
+          return (
+            <div key={`mob-pico-${idx}`} className="bg-transparent">
+              {/* PICO Question Header */}
+              <div
+                className={`p-3 text-xs leading-snug border-b font-black ${
+                  darkMode
+                    ? "bg-[#163b52] border-[#245474] text-cyan-100"
+                    : "bg-[#d0e8f7] border-[#b8ddf0] text-slate-900"
+                }`}
+              >
+                <div className="flex flex-wrap items-center justify-between gap-1.5">
+                  <span className="whitespace-pre-line font-bold">
+                    PICO {pico.picoNumber} {pico.picoQuestion}
+                  </span>
+                  {allowEdit && onEditPico && (
+                    <button
+                      type="button"
+                      onClick={() => onEditPico(pico)}
+                      className="px-2 py-0.5 rounded text-[10px] font-bold bg-white/80 dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:bg-white cursor-pointer shadow-2xs"
+                    >
+                      ✏️ Edit
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              {/* Recommendations under this PICO */}
+              <div className="divide-y divide-slate-100 dark:divide-slate-900">
+                {recs.map((rec, rIdx) => {
+                  const recConsensusItems = hasPerRecConsensus
+                    ? parseConsensusList(
+                        rec.expertConsensusStatement,
+                        rec.expertConsensusStatements,
+                        rec.voting
+                      )
+                    : [];
+
+                  return (
+                    <div
+                      key={`mob-rec-${idx}-${rIdx}`}
+                      className={`p-3.5 space-y-2.5 transition-colors ${
+                        darkMode ? "hover:bg-slate-900/50" : "hover:bg-slate-50/80"
+                      }`}
+                    >
+                      <div className="space-y-1.5">
+                        <div className="flex items-start gap-1.5">
+                          {recs.length > 1 && (
+                            <span className="font-black text-slate-900 dark:text-slate-100 text-xs mt-0.5 flex-shrink-0 px-1.5 py-0.2 rounded bg-slate-100 dark:bg-slate-800">
+                              {rec.number || rIdx + 1}
+                            </span>
+                          )}
+                          <p className="text-xs sm:text-[13px] leading-relaxed text-slate-800 dark:text-slate-200 whitespace-pre-line">
+                            {rec.statement}
+                          </p>
+                        </div>
+
+                        {/* GRADE Metadata */}
+                        <div className="pl-2 sm:pl-3 space-y-1 pt-1 text-xs">
+                          <div className="flex flex-wrap items-center gap-1.5">
+                            <span className="text-slate-500 dark:text-slate-400 font-medium text-[11px]">
+                              Evidence Quality:
+                            </span>
+                            {renderGradeQuality(rec.qualityOfEvidence)}
+                          </div>
+                          <div className="flex flex-wrap items-center gap-1.5">
+                            <span className="text-slate-500 dark:text-slate-400 font-medium text-[11px]">
+                              Recommendation:
+                            </span>
+                            {renderGradeStrength(rec.strengthOfRecommendation, rec.statement)}
+                          </div>
+
+                          {/* Related Studies */}
+                          {((rec.drivingTrials && rec.drivingTrials.length > 0) ||
+                            (pico.drivingTrials && pico.drivingTrials.length > 0)) && (
+                            <div className="pt-1.5 flex flex-wrap items-center gap-1 text-xs">
+                              <span className="text-[10.5px] font-bold text-slate-500 dark:text-slate-400">
+                                Nghiên cứu:
+                              </span>
+                              {(rec.drivingTrials && rec.drivingTrials.length > 0
+                                ? rec.drivingTrials
+                                : pico.drivingTrials || []
+                              ).map((study, sIdx) => (
+                                <span
+                                  key={sIdx}
+                                  className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10.5px] font-semibold bg-blue-50 dark:bg-blue-950/50 text-[#1d72b8] dark:text-blue-300 border border-blue-200 dark:border-blue-800"
+                                >
+                                  📊 {study}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Per-rec Consensus Statement */}
+                      {hasPerRecConsensus && recConsensusItems.length > 0 && (
+                        <div className="mt-2 p-2.5 rounded-lg border-l-4 border-l-[#1e40af] bg-blue-50/50 dark:bg-blue-950/20 border border-blue-100 dark:border-blue-900/40 text-xs">
+                          <div className="text-[10.5px] font-black uppercase tracking-wider text-blue-700 dark:text-blue-400 mb-1 flex items-center gap-1">
+                            <span>🇪🇺</span>
+                            <span>Expert Consensus Statement</span>
+                          </div>
+                          {renderConsensusStatements(recConsensusItems)}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+
+                {/* PICO-level Consensus Statement (when shared across all recs in PICO) */}
+                {!hasPerRecConsensus && picoConsensusItems.length > 0 && (
+                  <div className="p-3 bg-blue-50/40 dark:bg-blue-950/20 border-t border-slate-100 dark:border-slate-800">
+                    <div className="p-2.5 rounded-lg border-l-4 border-l-[#1e40af] bg-white/70 dark:bg-slate-900/70 border border-blue-100 dark:border-blue-900/40 text-xs">
+                      <div className="text-[10.5px] font-black uppercase tracking-wider text-blue-700 dark:text-blue-400 mb-1.5 flex items-center gap-1">
+                        <span>🇪🇺</span>
+                        <span>Expert Consensus Statement &amp; Voting</span>
+                      </div>
+                      {renderConsensusStatements(picoConsensusItems)}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* 2B. DESKTOP OFFICIAL 2-COLUMN TABLE (Preserved for Tablets & Desktop) */}
+      <div className="hidden md:block overflow-x-auto">
         <table className="w-full text-left border-collapse min-w-[700px]">
           {/* Main 2-Column Headers (Matching Hình 1) */}
           <thead>

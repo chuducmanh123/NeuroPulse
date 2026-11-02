@@ -5,6 +5,7 @@ import type { GuidelineDoc, PracticeChangeDetail, SubspecialtyType } from "@/typ
 import { NEUROLOGY_SUBSPECIALTIES } from "@/types/neuroguide";
 import { ESO_GRADE_QUALITY_CONFIG } from "./EsoGuidelineTable";
 import { normalizeEsoStrength } from "@/lib/neuroguide/esoPicoGrouper";
+import { getAdminHeaders, getStoredAdminToken } from "@/utils/clientAuth";
 
 interface EditGuidelineModalProps {
   isOpen: boolean;
@@ -14,6 +15,7 @@ interface EditGuidelineModalProps {
   guidelineDoc: GuidelineDoc | null;
   onSuccess: (updatedDoc?: GuidelineDoc) => void;
   darkMode: boolean;
+  adminToken?: string;
 }
 
 interface AutoResizeTextareaProps
@@ -269,6 +271,7 @@ export function EditGuidelineModal({
   guidelineDoc,
   onSuccess,
   darkMode,
+  adminToken,
 }: EditGuidelineModalProps) {
   // Active Tab: metadata | takeaways | recommendations
   const [activeTab, setActiveTab] = useState<"metadata" | "takeaways" | "recommendations">(
@@ -623,20 +626,34 @@ export function EditGuidelineModal({
       `Are you sure you want to permanently DELETE guideline:\n\n"${title}"?\n\nThis will remove the guideline from all clinical repositories.`
     );
     if (!confirmDel) return;
+
+    const token = adminToken || getStoredAdminToken();
+    if (!token) {
+      setErrorMessage("Yêu cầu quyền Quản trị viên (Admin). Vui lòng đăng nhập Admin để xóa guideline.");
+      return;
+    }
+
     setIsLoading(true);
     setErrorMessage(null);
     try {
       const res = await fetch("/api/neuroguide/delete-guideline", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...getAdminHeaders(token),
+        },
         body: JSON.stringify({ guideline_id: docId, title }),
       });
-      const data = await res.json();
-      if (data.ok) {
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.ok) {
         onSuccess();
         onClose();
       } else {
-        setErrorMessage(data.error || "Failed to delete guideline.");
+        if (res.status === 401) {
+          setErrorMessage("Phiên đăng nhập quản trị đã hết hạn hoặc không hợp lệ. Vui lòng đăng nhập lại Admin.");
+        } else {
+          setErrorMessage(data.error || "Failed to delete guideline.");
+        }
       }
     } catch {
       setErrorMessage("Network error while deleting guideline.");
@@ -648,6 +665,13 @@ export function EditGuidelineModal({
   // --- Save All Changes ---
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const token = adminToken || getStoredAdminToken();
+    if (!token) {
+      setErrorMessage("Yêu cầu quyền Quản trị viên (Admin). Vui lòng đăng nhập Admin để lưu thay đổi.");
+      return;
+    }
+
     setIsLoading(true);
     setErrorMessage(null);
 
@@ -675,16 +699,23 @@ export function EditGuidelineModal({
 
       const res = await fetch("/api/neuroguide/review-queue", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...getAdminHeaders(token),
+        },
         body: JSON.stringify(payload),
       });
 
-      const data = await res.json();
-      if (data.ok) {
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.ok) {
         onSuccess(data.guideline);
         onClose();
       } else {
-        setErrorMessage(data.error || "Failed to save guideline updates.");
+        if (res.status === 401) {
+          setErrorMessage("Phiên đăng nhập quản trị đã hết hạn hoặc không hợp lệ. Vui lòng đăng nhập lại Admin.");
+        } else {
+          setErrorMessage(data.error || "Failed to save guideline updates.");
+        }
       }
     } catch {
       setErrorMessage("Network error while saving guideline changes.");

@@ -120,17 +120,18 @@ export function AhaGuidelineTable({
 
   // Compute total running index across sections
   let runningIndex = 0;
+  let mobileRunningIndex = 0;
 
   return (
     <div className={`w-full font-sans overflow-hidden rounded-xl border ${darkMode ? "border-slate-800 bg-slate-950" : "border-slate-300 bg-white"} shadow-sm ${className}`}>
       {/* 1. TOP HEADER BANNER (AHA Signature Red Header) */}
-      <div className="bg-[#b91c1c] text-white px-5 py-3.5 flex flex-wrap items-center justify-between gap-3">
-        <div className="flex-1 min-w-[280px]">
-          <h2 className="text-sm sm:text-base font-extrabold tracking-wide uppercase">
+      <div className="bg-[#b91c1c] text-white px-4 py-3 sm:px-5 sm:py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3">
+        <div className="min-w-0 flex-1">
+          <h2 className="text-xs sm:text-base font-extrabold tracking-wide uppercase leading-snug">
             {title}
           </h2>
           {subSupplementText && (
-            <p className="text-xs text-red-100 font-medium mt-0.5 italic">
+            <p className="text-[11px] sm:text-xs text-red-100 font-medium mt-0.5 italic leading-relaxed">
               {subSupplementText}
             </p>
           )}
@@ -140,7 +141,7 @@ export function AhaGuidelineTable({
         <button
           type="button"
           onClick={() => setShowMatrixModal(true)}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/15 hover:bg-white/25 active:bg-white/30 text-white text-xs font-bold transition-all border border-white/20 cursor-pointer shadow-xs"
+          className="self-start sm:self-auto inline-flex items-center gap-1.5 px-2.5 py-1.5 sm:px-3 rounded-lg bg-white/15 hover:bg-white/25 active:bg-white/30 text-white text-[11px] sm:text-xs font-bold transition-all border border-white/20 cursor-pointer shadow-xs shrink-0"
           title="View AHA/ASA COR (Class) & LOE (Level) standard scheme"
         >
           <span>📊</span>
@@ -148,8 +149,97 @@ export function AhaGuidelineTable({
         </button>
       </div>
 
-      {/* 2. TABLE BODY */}
-      <div className="overflow-x-auto">
+      {/* 2A. MOBILE COMPACT CARDS (Mobile-First, 100% full-width, zero horizontal overflow) */}
+      <div className="block md:hidden divide-y divide-slate-200 dark:divide-slate-800">
+        {sections.map((section, sIdx) => (
+          <div key={`mob-section-${sIdx}`} className="bg-transparent">
+            {/* Section Subheader */}
+            <div className={`py-2 px-3.5 text-xs font-black tracking-wide uppercase ${
+              darkMode ? "bg-slate-900/90 text-slate-200 border-b border-slate-800" : "bg-slate-100 text-slate-800 border-b border-slate-200"
+            }`}>
+              {section.sectionTitle}
+            </div>
+
+            {/* Recommendations */}
+            <div className="divide-y divide-slate-100 dark:divide-slate-900">
+              {section.recommendations.map((rec, rIdx) => {
+                mobileRunningIndex += 1;
+                const itemIndex = rec.index ?? mobileRunningIndex;
+                const corStyle = getAhaCorStyle(rec.cor);
+                const loeStyle = getAhaLoeStyle(rec.loe);
+
+                return (
+                  <div
+                    key={rec.id || `mob-rec-${sIdx}-${rIdx}`}
+                    className={`p-3.5 space-y-2.5 transition-colors ${
+                      darkMode ? "hover:bg-slate-900/50" : "hover:bg-slate-50/80"
+                    }`}
+                  >
+                    {/* Top Row: Index + COR Badge + LOE Badge */}
+                    <div className="flex flex-wrap items-center justify-between gap-1.5">
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        <span className="font-black text-xs px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-100">
+                          #{itemIndex}
+                        </span>
+                        <span className={`px-2 py-0.5 rounded text-[11px] font-black uppercase tracking-wider select-none shadow-2xs ${corStyle.bg}`}>
+                          COR: {corStyle.label}
+                        </span>
+                        <span className={`px-2 py-0.5 rounded text-[11px] font-black uppercase tracking-wider select-none shadow-2xs ${loeStyle.bg}`}>
+                          LOE: {rec.loe || "B-NR"}
+                        </span>
+                      </div>
+
+                      {allowEdit && (onEditRec || onDeleteRec) && (
+                        <div className="flex items-center gap-2">
+                          {onEditRec && (
+                            <button
+                              type="button"
+                              onClick={() => onEditRec(rec)}
+                              className="text-[10.5px] font-bold text-amber-600 dark:text-amber-400 hover:underline"
+                            >
+                              ✏️ Edit
+                            </button>
+                          )}
+                          {onDeleteRec && (
+                            <button
+                              type="button"
+                              onClick={() => onDeleteRec(rec)}
+                              className="text-[10.5px] font-bold text-rose-500 hover:underline"
+                            >
+                              🗑️
+                            </button>
+                          )}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Recommendation Statement */}
+                    <p className="text-xs sm:text-[13px] leading-relaxed text-slate-800 dark:text-slate-200 whitespace-pre-line">
+                      {rec.statement}
+                      {rec.citations && (
+                        <sup className="font-bold text-blue-600 dark:text-blue-400 ml-1">
+                          {rec.citations}
+                        </sup>
+                      )}
+                    </p>
+
+                    {/* Driving Evidence */}
+                    {rec.drivingTrials && rec.drivingTrials.length > 0 && (
+                      <div className="pt-1 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800/60">
+                        <span className="font-semibold text-slate-600 dark:text-slate-300">Clinical Evidence: </span>
+                        <span className="italic">{rec.drivingTrials.join(", ")}</span>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* 2B. DESKTOP OFFICIAL TABLE BODY (Preserved for Tablets & Desktop) */}
+      <div className="hidden md:block overflow-x-auto">
         <table className="w-full text-left border-collapse min-w-[650px]">
           {/* Table Column Headers */}
           <thead>

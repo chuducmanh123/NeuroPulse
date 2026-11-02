@@ -27,6 +27,7 @@ import { AdminAuthModal } from "../../components/neurocase/modals/AdminAuthModal
 import { GuidelinePresentationRenderer } from "../../components/neuroguide/GuidelinePresentationRenderer";
 import { groupPracticeChangesIntoEsoPicos } from "../../lib/neuroguide/esoPicoGrouper";
 import type { PracticeChangeDetail } from "../../types/neuroguide";
+import { getAdminHeaders, getStoredAdminToken } from "@/utils/clientAuth";
 
 type NavTabId = "guidelines" | "conf" | "matrix" | "review";
 
@@ -292,20 +293,23 @@ export default function NeuroGuidePage() {
 
   // Dynamic Navigation Tabs with Live Counts (Review Queue visible to Admin only)
   const navTabs = useMemo(() => {
-    const tabs: { id: NavTabId; label: string; badge?: string }[] = [
+    const tabs: { id: NavTabId; label: string; mobileLabel: string; badge?: string }[] = [
       {
         id: "guidelines" as const,
         label: "🔥 Practice Guidelines",
+        mobileLabel: "🔥 Guidelines",
         badge: `${guidelineDocs.length}`,
       },
       {
         id: "conf" as const,
         label: "🎙️ Conferences & Late-Breaking Trials",
+        mobileLabel: "🎙️ Conferences",
         badge: `${MOCK_CONFERENCE_EVENTS.length}`,
       },
       {
         id: "matrix" as const,
         label: "⚖️ Clinical Scenarios",
+        mobileLabel: "⚖️ Scenarios",
         badge: `${MOCK_CLINICAL_SCENARIOS.length}`,
       },
     ];
@@ -316,6 +320,14 @@ export default function NeuroGuidePage() {
   // Expandable cards states (details reveal only on click)
   const [expandedGuidelineIds, setExpandedGuidelineIds] = useState<Record<string, boolean>>({});
   const [expandedConferenceIds, setExpandedConferenceIds] = useState<Record<string, boolean>>({});
+  const [expandedTakeaways, setExpandedTakeaways] = useState<Record<string, boolean>>({});
+
+  const toggleTakeaways = (docId: string) => {
+    setExpandedTakeaways((prev) => ({
+      ...prev,
+      [docId]: !prev[docId],
+    }));
+  };
 
   // Local Batch Manifest Modal State
   const [showBatchModal, setShowBatchModal] = useState<boolean>(false);
@@ -373,11 +385,15 @@ export default function NeuroGuidePage() {
     setDeleteLoadingId(doc.id);
     const normalizeT = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
     const targetNormTitle = normalizeT(doc.title);
+    const token = getStoredAdminToken();
 
     try {
       const res = await fetch("/api/neuroguide/delete-guideline", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...getAdminHeaders(token),
+        },
         body: JSON.stringify({ guideline_id: doc.id, title: doc.title }),
       });
       const data = await res.json();
@@ -408,10 +424,14 @@ export default function NeuroGuidePage() {
   const triggerSync = async (isAuto = false) => {
     if (isSyncing) return;
     setIsSyncing(true);
+    const token = getStoredAdminToken();
     try {
       const res = await fetch("/api/neuroguide/sync-guidelines", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...getAdminHeaders(token),
+        },
         body: JSON.stringify({ isPeriodicCron: isAuto }),
       });
       const json = await res.json();
@@ -694,7 +714,7 @@ export default function NeuroGuidePage() {
 
   return (
     <main
-      className={`min-h-screen py-8 px-4 sm:px-8 transition-colors duration-200 ${
+      className={`min-h-screen py-4 sm:py-8 px-3 sm:px-8 transition-colors duration-200 overflow-x-hidden ${
         darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-100 text-slate-900"
       }`}
     >
@@ -702,23 +722,23 @@ export default function NeuroGuidePage() {
         {/* =========================================================================
             HEADER: Identical design language to NeuroPulse & NeuroCase
            ========================================================================= */}
-        <header className="mb-6 pt-1 flex flex-wrap items-end justify-between gap-4">
+        <header className="mb-4 sm:mb-6 pt-1 flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4">
           <div>
-            <div className="flex items-center gap-2.5 mb-2">
-              <span className="relative flex h-3 w-3">
+            <div className="flex items-center gap-2 mb-1 sm:mb-2">
+              <span className="relative flex h-2.5 w-2.5 sm:h-3 sm:w-3">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-500 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-amber-600 shadow-sm shadow-amber-500/50"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 sm:h-3 sm:w-3 bg-amber-600 shadow-sm shadow-amber-500/50"></span>
               </span>
               <span
-                className={`text-xs font-bold uppercase tracking-widest ${
+                className={`text-[10px] sm:text-xs font-bold uppercase tracking-widest ${
                   darkMode ? "text-slate-400" : "text-slate-500"
                 }`}
               >
-                CLINICAL PRACTICE GUIDELINES &amp; CONFERENCE RADAR
+                PRACTICE GUIDELINES &amp; RADAR
               </span>
             </div>
             <h1
-              className={`text-2xl sm:text-3xl font-black uppercase tracking-tight ${
+              className={`text-xl sm:text-3xl font-black uppercase tracking-tight ${
                 darkMode ? "text-white" : "text-slate-900"
               }`}
             >
@@ -727,16 +747,17 @@ export default function NeuroGuidePage() {
           </div>
 
           {/* Quick Header Badges & Actions */}
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 self-start sm:self-auto">
             <button
               onClick={toggleDarkMode}
-              className={`px-3 py-2 rounded-lg text-xs font-bold border transition-all flex items-center gap-1.5 ${
+              className={`px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg text-xs font-bold border transition-all flex items-center gap-1.5 ${
                 darkMode
                   ? "bg-amber-950 text-amber-300 border-amber-800 hover:bg-amber-900"
                   : "bg-white text-slate-700 border-slate-200 hover:bg-slate-50"
               }`}
             >
-              <span>{darkMode ? "☀️ Light" : "🌙 Night Shift"}</span>
+              <span>{darkMode ? "☀️" : "🌙"}</span>
+              <span className="hidden sm:inline">{darkMode ? "Light" : "Night Shift"}</span>
             </button>
 
             <AdminButton darkMode={darkMode} />
@@ -745,10 +766,11 @@ export default function NeuroGuidePage() {
             {isAdminVerified && reviewQueueCount > 0 && (
               <Link
                 href="/admin"
-                className="px-3 py-2 rounded-lg text-xs font-bold bg-amber-500/15 hover:bg-amber-500/25 text-amber-700 dark:text-amber-300 border border-amber-500/30 flex items-center gap-1.5 transition-all shadow-xs"
+                className="px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg text-xs font-bold bg-amber-500/15 hover:bg-amber-500/25 text-amber-700 dark:text-amber-300 border border-amber-500/30 flex items-center gap-1 transition-all shadow-xs"
                 title="Mở Admin Command Center để kiểm duyệt khuyến cáo"
               >
-                <span>🛡️ {reviewQueueCount} Khuyến cáo chờ duyệt</span>
+                <span>🛡️ {reviewQueueCount}</span>
+                <span className="hidden sm:inline">chờ duyệt</span>
                 <span>→</span>
               </Link>
             )}
@@ -762,19 +784,19 @@ export default function NeuroGuidePage() {
             NAVIGATION BAR (3 Tabs in user-specified order + Contextual Search)
            ========================================================================= */}
         <nav
-          className={`mb-6 p-1.5 rounded-xl border flex flex-wrap items-center justify-between gap-1.5 ${
+          className={`mb-4 sm:mb-6 p-1.5 rounded-xl border flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 sm:gap-1.5 ${
             darkMode ? "bg-slate-900/90 border-slate-800" : "bg-white border-slate-200 shadow-xs"
           }`}
         >
-          {/* Tab 1: Guidelines | Tab 2: Conferences | Tab 3: Scenarios */}
-          <div className="flex flex-wrap items-center gap-1.5">
+          {/* Tab 1: Guidelines | Tab 2: Conferences | Tab 3: Scenarios - 3 equal columns on mobile */}
+          <div className="grid grid-cols-3 gap-1 sm:flex sm:flex-wrap sm:items-center sm:gap-1.5 w-full sm:w-auto">
             {navTabs.map((tab) => {
               const isActive = activeTab === tab.id;
               return (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`px-3.5 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+                  className={`px-1.5 py-2 sm:px-3.5 sm:py-2 rounded-lg text-[11px] sm:text-xs font-bold transition-all flex items-center justify-center sm:justify-start gap-1 sm:gap-1.5 text-center ${
                     isActive
                       ? "bg-amber-500 text-white shadow-sm"
                       : darkMode
@@ -782,10 +804,11 @@ export default function NeuroGuidePage() {
                       : "text-slate-700 hover:bg-slate-100 hover:text-slate-900"
                   }`}
                 >
-                  <span>{tab.label}</span>
+                  <span className="sm:hidden">{tab.mobileLabel}</span>
+                  <span className="hidden sm:inline">{tab.label}</span>
                   {tab.badge && (
                     <span
-                      className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
+                      className={`text-[9.5px] sm:text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
                         isActive
                           ? "bg-white/20 text-white"
                           : darkMode
@@ -812,7 +835,7 @@ export default function NeuroGuidePage() {
                 activeTab === "guidelines"
                   ? "Search guidelines, trials, topics..."
                   : activeTab === "conf"
-                  ? "Search conferences, late-breaking trials..."
+                  ? "Search conferences, trials..."
                   : "Search clinical scenarios..."
               }
               value={searchQuery}
@@ -957,40 +980,40 @@ export default function NeuroGuidePage() {
                     {/* Clickable Header / Card Summary */}
                     <div
                       onClick={() => toggleGuideline(doc.id)}
-                      className="p-4 sm:p-5 cursor-pointer select-none"
+                      className="p-3.5 sm:p-5 cursor-pointer select-none"
                     >
                       {/* Meta Header */}
-                      <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                        <div className="flex flex-wrap items-center gap-2">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
                           <span
-                            className={`px-2 py-0.5 rounded-md text-[11px] font-black tracking-wider uppercase border ${theme.badge}`}
+                            className={`px-2 py-0.5 rounded-md text-[10.5px] sm:text-[11px] font-black tracking-wider uppercase border ${theme.badge}`}
                           >
                             {doc.society} {doc.year}
                           </span>
-                          <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
+                          <span className="text-[11px] sm:text-xs font-semibold text-slate-500 dark:text-slate-400">
                             {doc.documentType} • {doc.journalTarget}
                           </span>
                           {doc.fullTextStatus === "FULL_TEXT_PARSED" ? (
-                            <span className="px-2 py-0.5 rounded-md text-[10px] font-black uppercase tracking-wider bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 flex items-center gap-1">
-                              ✨ Full-Text AI Verified
+                            <span className="px-1.5 py-0.5 rounded-md text-[9.5px] sm:text-[10px] font-black uppercase tracking-wider bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 flex items-center gap-1">
+                              ✨ AI Verified
                             </span>
                           ) : (
-                            <span className="px-2 py-0.5 rounded-md text-[10px] font-semibold text-slate-500 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                              Abstract Verified
+                            <span className="px-1.5 py-0.5 rounded-md text-[9.5px] sm:text-[10px] font-semibold text-slate-500 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                              Abstract
                             </span>
                           )}
                           {doc.pmcid && (
-                            <span className="text-[11px] font-mono text-slate-400">
+                            <span className="text-[10.5px] sm:text-[11px] font-mono text-slate-400">
                               {doc.pmcid}
                             </span>
                           )}
                         </div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
+                        <div className="flex items-center justify-between sm:justify-end gap-2 text-xs">
+                          <span className="text-[11px] sm:text-xs font-medium text-slate-500 dark:text-slate-400">
                             Published: {doc.publishDate}
                           </span>
                           {isAdminVerified && (
-                            <>
+                            <div className="flex items-center gap-1.5">
                               <button
                                 type="button"
                                 onClick={(e) => {
@@ -1000,7 +1023,7 @@ export default function NeuroGuidePage() {
                                   setEditingPracticeChange(null);
                                   setShowEditModal(true);
                                 }}
-                                className="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-500/10 text-amber-600 hover:bg-amber-500/20 border border-amber-500/30 flex items-center gap-1 cursor-pointer transition-colors"
+                                className="px-2 py-0.5 rounded text-[10.5px] font-bold bg-amber-500/10 text-amber-600 hover:bg-amber-500/20 border border-amber-500/30 flex items-center gap-1 cursor-pointer transition-colors"
                                 title="Edit guideline metadata"
                               >
                                 <span>✏️ Edit</span>
@@ -1012,24 +1035,24 @@ export default function NeuroGuidePage() {
                                   e.stopPropagation();
                                   handleDeleteGuideline(doc);
                                 }}
-                                className="px-2 py-0.5 rounded text-[11px] font-bold bg-rose-500/10 text-rose-600 hover:bg-rose-500/20 border border-rose-500/30 flex items-center gap-1 cursor-pointer transition-colors disabled:opacity-50"
+                                className="px-2 py-0.5 rounded text-[10.5px] font-bold bg-rose-500/10 text-rose-600 hover:bg-rose-500/20 border border-rose-500/30 flex items-center gap-1 cursor-pointer transition-colors disabled:opacity-50"
                                 title="Delete guideline"
                               >
-                                <span>{deleteLoadingId === doc.id ? "..." : "🗑️ Delete"}</span>
+                                <span>{deleteLoadingId === doc.id ? "..." : "🗑️"}</span>
                               </button>
-                            </>
+                            </div>
                           )}
                         </div>
                       </div>
 
                       {/* Title */}
-                      <h3 className="text-base sm:text-lg font-bold leading-snug">
+                      <h3 className="text-sm sm:text-lg font-bold leading-snug">
                         {doc.title}
                       </h3>
 
                       {/* Bottom Prompt Bar: Changes Badge + Click Indicator */}
-                      <div className="mt-3 flex items-center justify-between gap-2 pt-2 border-t border-slate-200/50 dark:border-slate-800/60">
-                        <span className="text-xs font-bold text-slate-600 dark:text-slate-300 flex items-center gap-1.5">
+                      <div className="mt-2.5 sm:mt-3 flex items-center justify-between gap-2 pt-2 border-t border-slate-200/50 dark:border-slate-800/60">
+                        <span className="text-[11px] sm:text-xs font-bold text-slate-600 dark:text-slate-300 flex items-center gap-1.5">
                           <span>📋</span>
                           <span>
                             {doc.society?.toUpperCase().includes("ESO")
@@ -1040,17 +1063,17 @@ export default function NeuroGuidePage() {
                                     doc.id
                                   );
                                   const totalRecs = picos.reduce((s, p) => s + p.recommendations.length, 0);
-                                  return `${picos.length} PICO (${totalRecs} khuyến cáo lâm sàng và đồng thuận chuyên gia)`;
+                                  return `${picos.length} PICO (${totalRecs} khuyến cáo)`;
                                 })()
                               : `${doc.allPracticeChanges.length} Key Practice Changes`}
                           </span>
                         </span>
 
-                        <span className="text-xs font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1">
+                        <span className="text-[11px] sm:text-xs font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1">
                           <span>
                             {isExpanded
-                              ? "Collapse details ▴"
-                              : "Click to view details ▾"}
+                              ? "Collapse ▴"
+                              : "Details ▾"}
                           </span>
                         </span>
                       </div>
@@ -1058,7 +1081,7 @@ export default function NeuroGuidePage() {
 
                     {/* EXPANDED SECTION: Detailed information revealed only upon click */}
                     {isExpanded && (
-                      <div className="px-4 sm:px-5 pb-5 pt-1 border-t border-slate-200/60 dark:border-slate-800/80">
+                      <div className="px-3.5 sm:px-5 pb-4 sm:pb-5 pt-1 border-t border-slate-200/60 dark:border-slate-800/80">
                         {/* All Practice Changes List */}
                         {(() => {
                           const newPracticeChanges = doc.allPracticeChanges.filter(
@@ -1076,39 +1099,57 @@ export default function NeuroGuidePage() {
                           );
 
                           return (
-                            <div className="space-y-6 mb-4">
+                            <div className="space-y-4 sm:space-y-6 mb-4">
                               {/* 0. Top Take-Home Messages */}
-                              {doc.topTakeaways && doc.topTakeaways.length > 0 && (
-                                <div className="p-4 rounded-xl border border-indigo-200/80 dark:border-indigo-900/60 bg-gradient-to-br from-indigo-50/50 via-white to-blue-50/30 dark:from-slate-900/90 dark:via-indigo-950/20 dark:to-slate-900/80 space-y-3">
-                                  <div className="flex items-center gap-2">
-                                    <span className="px-2.5 py-0.5 rounded-full text-[10.5px] font-black bg-indigo-500/15 text-indigo-700 dark:text-indigo-300 border border-indigo-500/30">
-                                      🌟 TOP TAKE-HOME MESSAGES
-                                    </span>
-                                    <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400">
-                                      ({doc.topTakeaways.length} key clinical messages)
-                                    </span>
-                                  </div>
-                                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
-                                    {doc.topTakeaways.map((takeaway, tIdx) => (
-                                      <div
-                                        key={tIdx}
-                                        className="flex items-start gap-2.5 text-xs text-slate-700 dark:text-slate-300 bg-white/80 dark:bg-slate-900/80 p-3 rounded-lg border border-slate-200/60 dark:border-slate-800/60 leading-relaxed shadow-sm hover:border-indigo-300 dark:hover:border-indigo-700 transition-all"
-                                      >
-                                        <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 font-black text-[10.5px]">
-                                          {tIdx + 1}
+                              {doc.topTakeaways && doc.topTakeaways.length > 0 && (() => {
+                                const isTakeawaysExpanded = Boolean(expandedTakeaways[doc.id]);
+                                const displayedTakeaways = (isTakeawaysExpanded || doc.topTakeaways.length <= 3)
+                                  ? doc.topTakeaways
+                                  : doc.topTakeaways.slice(0, 3);
+
+                                return (
+                                  <div className="p-3.5 sm:p-4 rounded-xl border border-indigo-200/80 dark:border-indigo-900/60 bg-gradient-to-br from-indigo-50/50 via-white to-blue-50/30 dark:from-slate-900/90 dark:via-indigo-950/20 dark:to-slate-900/80 space-y-2.5 sm:space-y-3">
+                                    <div className="flex flex-wrap items-center justify-between gap-1.5">
+                                      <div className="flex items-center gap-2">
+                                        <span className="px-2.5 py-0.5 rounded-full text-[10px] sm:text-[10.5px] font-black bg-indigo-500/15 text-indigo-700 dark:text-indigo-300 border border-indigo-500/30">
+                                          🌟 TOP TAKE-HOME MESSAGES
                                         </span>
-                                        <span className="flex-1 whitespace-pre-line">{takeaway.replace(/^\d+\.\s*/, "")}</span>
+                                        <span className="text-[10.5px] sm:text-[11px] font-bold text-slate-500 dark:text-slate-400">
+                                          ({doc.topTakeaways.length} key clinical messages)
+                                        </span>
                                       </div>
-                                    ))}
+                                    </div>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-2.5">
+                                      {displayedTakeaways.map((takeaway, tIdx) => (
+                                        <div
+                                          key={tIdx}
+                                          className="flex items-start gap-2 text-xs text-slate-700 dark:text-slate-300 bg-white/80 dark:bg-slate-900/80 p-2.5 sm:p-3 rounded-lg border border-slate-200/60 dark:border-slate-800/60 leading-relaxed shadow-sm hover:border-indigo-300 dark:hover:border-indigo-700 transition-all"
+                                        >
+                                          <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 font-black text-[10.5px]">
+                                            {tIdx + 1}
+                                          </span>
+                                          <span className="flex-1 whitespace-pre-line">{takeaway.replace(/^\d+\.\s*/, "")}</span>
+                                        </div>
+                                      ))}
+                                    </div>
+                                    {doc.topTakeaways.length > 3 && (
+                                      <button
+                                        type="button"
+                                        onClick={() => toggleTakeaways(doc.id)}
+                                        className="w-full py-1.5 px-3 rounded-lg text-xs font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-50/80 dark:bg-indigo-950/40 hover:bg-indigo-100 dark:hover:bg-indigo-900/60 border border-indigo-200 dark:border-indigo-800 transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                                      >
+                                        <span>{isTakeawaysExpanded ? "Thu gọn thông điệp ▴" : `Xem đầy đủ ${doc.topTakeaways.length} thông điệp lâm sàng ▾`}</span>
+                                      </button>
+                                    )}
                                   </div>
-                                </div>
-                              )}
+                                );
+                              })()}
 
                               {/* 1. What is new vs previous edition (chỉ áp dụng cho guideline AHA/ASA hoặc có phiên bản cũ so sánh, không lặp lại trước bảng PICO của ESO) */}
                               {newPracticeChanges.length > 0 && !doc.society?.toUpperCase().includes("ESO") && (
                                 <div className="space-y-2.5">
                                   <div className="flex items-center gap-2">
-                                    <span className="px-2 py-0.5 rounded-full text-[10.5px] font-black bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30">
+                                    <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-[10.5px] font-black bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30">
                                       ⚡ 1. WHAT IS NEW &amp; HIGH IMPACT CHANGES
                                     </span>
                                     <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400">
@@ -1126,8 +1167,8 @@ export default function NeuroGuidePage() {
                                             : "bg-white border-slate-200"
                                         }`}
                                       >
-                                        <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                                          <div className="flex items-center gap-1.5">
+                                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 mb-2">
+                                          <div className="flex items-center gap-1.5 flex-wrap">
                                             <span
                                               className={`px-1.5 py-0.5 rounded text-[10px] font-black ${
                                                 change.changeType === "UPGRADED"
@@ -1141,10 +1182,10 @@ export default function NeuroGuidePage() {
                                             >
                                               {change.changeType}
                                             </span>
-                                            <span className="font-bold text-slate-900 dark:text-slate-100">{change.topic}</span>
+                                            <span className="font-bold text-slate-900 dark:text-slate-100 text-xs sm:text-sm">{change.topic}</span>
                                           </div>
 
-                                          <div className="flex items-center gap-2 text-[11px]">
+                                          <div className="flex items-center gap-2 text-[11px] pl-1 sm:pl-0">
                                             {change.previousGrade && (
                                               <span className="text-slate-400 line-through">
                                                 {change.previousGrade}
@@ -1170,7 +1211,7 @@ export default function NeuroGuidePage() {
                                         </p>
 
                                         {change.drivingTrials && change.drivingTrials.length > 0 && (
-                                          <div className="mt-2 flex items-center gap-1.5 text-[10.5px] text-slate-500 dark:text-slate-400 border-t pt-1.5 border-slate-100 dark:border-slate-800/60">
+                                          <div className="mt-2 flex flex-wrap items-center gap-1.5 text-[10.5px] text-slate-500 dark:text-slate-400 border-t pt-1.5 border-slate-100 dark:border-slate-800/60">
                                             <span className="font-semibold text-slate-400">
                                               Driving Evidence:
                                             </span>
@@ -1446,11 +1487,11 @@ export default function NeuroGuidePage() {
                                   </div>
                                 </div>
 
-                                <div className="pt-2 border-t border-slate-200/60 dark:border-slate-800 flex items-center justify-between gap-2">
-                                  <div className="text-[11px] text-amber-600 dark:text-amber-400 font-bold truncate">
+                                <div className="pt-2.5 border-t border-slate-200/60 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                                  <div className="text-[11px] sm:text-xs text-amber-600 dark:text-amber-400 font-bold leading-relaxed">
                                     💡 {tr.bottomLineTakeaway}
                                   </div>
-                                  <div className="flex items-center gap-2">
+                                  <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
                                     {tr.fullTextUrl && (
                                       <a
                                         href={tr.fullTextUrl}
@@ -1627,9 +1668,9 @@ export default function NeuroGuidePage() {
                           </h4>
 
                           {scenario.hasConfAlert && (
-                            <div className="mt-2 flex items-center gap-1 text-[10px] font-semibold text-amber-600 dark:text-amber-400 bg-amber-500/10 dark:bg-amber-500/15 px-2 py-0.5 rounded-md">
-                              <span>🔔</span>
-                              <span className="truncate">{scenario.confAlertText}</span>
+                            <div className="mt-2 flex items-start gap-1 text-[10px] font-semibold text-amber-600 dark:text-amber-400 bg-amber-500/10 dark:bg-amber-500/15 px-2 py-1 rounded-md leading-tight">
+                              <span className="shrink-0">🔔</span>
+                              <span className="break-words">{scenario.confAlertText}</span>
                             </div>
                           )}
                         </button>
@@ -1668,7 +1709,7 @@ export default function NeuroGuidePage() {
                             className="px-3.5 py-2 rounded-xl text-xs font-bold bg-amber-500/10 text-amber-700 dark:text-amber-400 hover:bg-amber-500/20 transition-all border border-amber-500/25 flex items-center gap-1.5 shadow-2xs"
                           >
                             <span>👉</span>
-                            <span>{sc.title.length > 38 ? sc.title.slice(0, 38) + "..." : sc.title}</span>
+                            <span className="line-clamp-1 max-w-[280px] text-left">{sc.title}</span>
                           </button>
                         ))}
                       </div>
@@ -1985,9 +2026,9 @@ export default function NeuroGuidePage() {
                           </h4>
                         </div>
 
-                        <div className="space-y-2.5 text-xs sm:text-sm leading-relaxed">
-                          <div className="flex items-start gap-2">
-                            <span className="font-bold text-slate-400 whitespace-nowrap">
+                        <div className="space-y-3 text-xs sm:text-sm leading-relaxed">
+                          <div className="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-2">
+                            <span className="font-bold text-slate-400 shrink-0">
                               ⚖️ Consensus:
                             </span>
                             <span className="font-extrabold text-emerald-600 dark:text-emerald-400">
@@ -1998,8 +2039,8 @@ export default function NeuroGuidePage() {
                             </span>
                           </div>
 
-                          <div className="flex items-start gap-2">
-                            <span className="font-bold text-slate-400 whitespace-nowrap">
+                          <div className="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-2">
+                            <span className="font-bold text-slate-400 shrink-0">
                               🔍 Root Cause:
                             </span>
                             <span className="text-slate-700 dark:text-slate-300">
@@ -2007,8 +2048,8 @@ export default function NeuroGuidePage() {
                             </span>
                           </div>
 
-                          <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-900 dark:text-amber-200 font-semibold">
-                            <span className="font-extrabold">💡 Clinical Bottom-Line:</span>{" "}
+                          <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-900 dark:text-amber-200 font-semibold leading-relaxed">
+                            <span className="font-extrabold block sm:inline mb-1 sm:mb-0">💡 Clinical Bottom-Line: </span>
                             {currentScenario.aiSynthesisAppraisal.clinicalBottomLine}
                           </div>
                         </div>
@@ -2107,6 +2148,7 @@ export default function NeuroGuidePage() {
             docId={editingDocId || ""}
             item={editingPracticeChange}
             guidelineDoc={editingGuidelineDoc}
+            adminToken={getStoredAdminToken()}
             onSuccess={(updatedDoc) => {
               if (updatedDoc) {
                 const normalizeT = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");

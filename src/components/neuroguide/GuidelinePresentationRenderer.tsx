@@ -99,38 +99,39 @@ export function GuidelinePresentationRenderer({
   return (
     <div className="space-y-3">
       {/* View Switcher Controls */}
-      <div className="flex flex-wrap items-center justify-between gap-2 pb-1">
-        <div className="flex items-center gap-2">
-          <span className="text-xs font-black uppercase tracking-wider text-slate-500 dark:text-slate-400">
-            Presentation Format:
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-1">
+        <div className="flex items-center gap-1.5 flex-wrap">
+          <span className="text-[11px] sm:text-xs font-black uppercase tracking-wider text-slate-500 dark:text-slate-400">
+            Format:
           </span>
-          <span className={`px-2 py-0.5 rounded text-[11px] font-bold ${
+          <span className={`px-2 py-0.5 rounded text-[10.5px] sm:text-[11px] font-bold ${
             isAha
               ? "bg-red-500/15 text-red-700 dark:text-red-400 border border-red-500/30"
               : isEso
               ? "bg-blue-500/15 text-blue-700 dark:text-blue-400 border border-blue-500/30"
               : "bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300"
           }`}>
-            {isAha ? "AHA/ASA Official Standard (Figures 1 & 2)" : isEso ? "ESO Official GRADE Standard (Figure 3)" : "Standard Format"}
+            <span className="sm:hidden">{isAha ? "AHA Standard" : isEso ? "ESO GRADE Standard" : "Standard"}</span>
+            <span className="hidden sm:inline">{isAha ? "AHA/ASA Official Standard (Figures 1 & 2)" : isEso ? "ESO Official GRADE Standard (Figure 3)" : "Standard Format"}</span>
           </span>
         </div>
 
-        <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-900 p-0.5 rounded-lg border border-slate-200 dark:border-slate-800">
+        <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-900 p-0.5 rounded-lg border border-slate-200 dark:border-slate-800 self-start sm:self-auto">
           <button
             type="button"
             onClick={() => setViewMode("society")}
-            className={`px-3 py-1 rounded-md text-xs font-bold transition-all cursor-pointer ${
+            className={`px-2.5 py-1 rounded-md text-[11px] sm:text-xs font-bold transition-all cursor-pointer ${
               viewMode === "society"
                 ? "bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-xs"
                 : "text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
             }`}
           >
-            📋 Society Matrix Table ({isAha ? "AHA" : isEso ? "ESO" : "Table"})
+            📋 <span className="sm:hidden">Standard ({isAha ? "AHA" : isEso ? "ESO" : "Table"})</span><span className="hidden sm:inline">Society Standard ({isAha ? "AHA" : isEso ? "ESO" : "Table"})</span>
           </button>
           <button
             type="button"
             onClick={() => setViewMode("card")}
-            className={`px-3 py-1 rounded-md text-xs font-bold transition-all cursor-pointer ${
+            className={`px-2.5 py-1 rounded-md text-[11px] sm:text-xs font-bold transition-all cursor-pointer ${
               viewMode === "card"
                 ? "bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-xs"
                 : "text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
