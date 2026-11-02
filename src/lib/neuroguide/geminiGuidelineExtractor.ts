@@ -807,18 +807,31 @@ Respond strictly in JSON matching this schema:
             recs.forEach((rec: any, rIdx: number) => {
               const q = rec.qualityOfEvidence || "Moderate";
               const s = rec.strengthOfRecommendation || "Weak for intervention";
+              const recConsensus =
+                rec.expertConsensusStatement ||
+                rec.consensus_statement ||
+                (Array.isArray(rec.expertConsensusStatements) ? rec.expertConsensusStatements.join("\n") : undefined) ||
+                (recs.length === 1 ? consensus : undefined);
+              const recVoting =
+                rec.voting ||
+                (recConsensus && recConsensus !== consensus
+                  ? recConsensus.includes("Vote:")
+                    ? `Vote: ${recConsensus.split("Vote:")[1]?.split(")")[0]?.trim()}`
+                    : undefined
+                  : voting);
+
               changes.push({
                 id: `chg-${docId}-${pNum}-${rIdx + 1}`,
                 category: pQuestion.slice(0, 60) || "ESO Recommendation",
                 topic: `PICO ${pNum} ${pQuestion}`.trim(),
                 changeType: s.toLowerCase().includes("against") ? "DOWNGRADED" : "NEW",
-                currentGrade: `GRADE ${s} (Evidence: ${q}${voting ? `, Voting: ${voting}` : ""})`,
+                currentGrade: `GRADE ${s} (Evidence: ${q}${recVoting ? `, Voting: ${recVoting}` : ""})`,
                 currentText: rec.statement || "",
                 quality: q,
                 strength: s,
-                voting,
-                expertConsensusStatement: consensus,
-                previousText: consensus,
+                voting: recVoting,
+                expertConsensusStatement: recConsensus,
+                previousText: recConsensus,
                 picoNumber: pNum,
                 picoQuestion: pQuestion,
                 drivingTrials: rec.drivingTrials || [],

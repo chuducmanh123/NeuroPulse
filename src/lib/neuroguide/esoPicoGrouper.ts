@@ -17,6 +17,135 @@ export function comparePicoNumbers(a: string | number, b: string | number): numb
   return pa.sub.localeCompare(pb.sub);
 }
 
+export interface ParsedConsensusItem {
+  number?: string | number;
+  statement: string;
+  voting?: string;
+}
+
+export function parseConsensusList(
+  statementText?: string,
+  statementsArray?: string[],
+  fallbackVoting?: string
+): ParsedConsensusItem[] {
+  if (Array.isArray(statementsArray) && statementsArray.length > 0) {
+    const parsed: ParsedConsensusItem[] = [];
+    statementsArray.forEach((item, idx) => {
+      if (!item || typeof item !== "string") return;
+      const trimmed = item.trim();
+      if (!trimmed) return;
+
+      const voteMatch =
+        trimmed.match(/\((?:Vote:\s*|Voting:\s*)([^\)]+)\)/i) ||
+        trimmed.match(/Vote:\s*([0-9]+\/[0-9]+|Unanimous)/i);
+
+      let stmt = trimmed;
+      let voting = fallbackVoting;
+      if (voteMatch) {
+        voting = `Vote: ${voteMatch[1] || voteMatch[0].replace(/^Vote:\s*/i, "")}`;
+        stmt = stmt.replace(voteMatch[0], "").trim();
+        stmt = stmt.replace(/\s*\(\s*\)$/, "").trim();
+      }
+      stmt = stmt.replace(/^\d+[\.\)]\s*/, "").trim();
+
+      if (stmt.length > 0) {
+        parsed.push({
+          number: idx + 1,
+          statement: stmt,
+          voting,
+        });
+      }
+    });
+    return parsed;
+  }
+
+  if (!statementText || !statementText.trim()) return [];
+
+  const raw = statementText.trim();
+
+  // 1. Check if string contains multiple numbered points (e.g. "1. ...\n2. ..." or "1. ... 2. ...")
+  const hasNumberedItems = /(?:^|\n)\s*(\d+)[\.\)]\s+/.test(raw);
+
+  if (hasNumberedItems) {
+    const blocks = raw
+      .split(/(?:^|\n+)(?=\d+[\.\)]\s+)/)
+      .map((b) => b.trim())
+      .filter((b) => b.length > 0);
+
+    if (blocks.length > 1 || /^\d+[\.\)]\s+/.test(blocks[0])) {
+      return blocks
+        .map((block, idx) => {
+          const numMatch = block.match(/^(\d+)[\.\)]\s*/);
+          const num = numMatch ? numMatch[1] : String(idx + 1);
+          let cleaned = block.replace(/^(\d+)[\.\)]\s*/, "").trim();
+
+          const voteMatch =
+            cleaned.match(/\((?:Vote:\s*|Voting:\s*)([^\)]+)\)/i) ||
+            cleaned.match(/Vote:\s*([0-9]+\/[0-9]+|Unanimous)/i);
+
+          let voting = fallbackVoting;
+          if (voteMatch) {
+            voting = `Vote: ${voteMatch[1] || voteMatch[0].replace(/^Vote:\s*/i, "")}`;
+            cleaned = cleaned.replace(voteMatch[0], "").trim();
+            cleaned = cleaned.replace(/\s*\(\s*\)$/, "").trim();
+          }
+
+          return {
+            number: num,
+            statement: cleaned,
+            voting,
+          };
+        })
+        .filter((it) => it.statement.length > 0);
+    }
+  }
+
+  // 2. Check if string contains multiple newline-separated paragraphs (\n\n+)
+  const paragraphs = raw.split(/\n{2,}/).map((p) => p.trim()).filter((p) => p.length > 0);
+  if (paragraphs.length > 1) {
+    return paragraphs
+      .map((para, idx) => {
+        const voteMatch =
+          para.match(/\((?:Vote:\s*|Voting:\s*)([^\)]+)\)/i) ||
+          para.match(/Vote:\s*([0-9]+\/[0-9]+|Unanimous)/i);
+
+        let voting = fallbackVoting;
+        let cleaned = para;
+        if (voteMatch) {
+          voting = `Vote: ${voteMatch[1] || voteMatch[0].replace(/^Vote:\s*/i, "")}`;
+          cleaned = cleaned.replace(voteMatch[0], "").trim();
+          cleaned = cleaned.replace(/\s*\(\s*\)$/, "").trim();
+        }
+        return {
+          number: idx + 1,
+          statement: cleaned,
+          voting,
+        };
+      })
+      .filter((it) => it.statement.length > 0);
+  }
+
+  // 3. Single statement
+  const voteMatch =
+    raw.match(/\((?:Vote:\s*|Voting:\s*)([^\)]+)\)/i) ||
+    raw.match(/Vote:\s*([0-9]+\/[0-9]+|Unanimous)/i);
+
+  let voting = fallbackVoting;
+  let cleaned = raw;
+  if (voteMatch) {
+    voting = `Vote: ${voteMatch[1] || voteMatch[0].replace(/^Vote:\s*/i, "")}`;
+    cleaned = cleaned.replace(voteMatch[0], "").trim();
+    cleaned = cleaned.replace(/\s*\(\s*\)$/, "").trim();
+  }
+
+  return [
+    {
+      statement: cleaned,
+      voting,
+    },
+  ];
+}
+
 /**
  * Official ESO Guideline Quality of Evidence definitions and high-contrast color scheme:
  * - High: #059669 (Emerald Green - High certainty)
@@ -780,6 +909,8 @@ export function convertEsoPicoItemsToPracticeChanges(
       const s = normalizeEsoStrength(rec.strengthOfRecommendation, rec.statement);
       const trials = rec.drivingTrials && rec.drivingTrials.length > 0 ? rec.drivingTrials : picoTrials;
       const suffix = pico.recommendations.length > 1 ? `-rec${rIdx + 1}` : "";
+      const recConsensus = rec.expertConsensusStatement?.trim() || (pico.recommendations.length === 1 ? consensus : undefined);
+      const recVoting = rec.voting?.trim() || (recConsensus && recConsensus === consensus ? voting : undefined);
       result.push({
         id: `eso-pico-${pNumStr.toLowerCase()}${suffix}`,
         picoNumber: pico.picoNumber,
@@ -789,10 +920,10 @@ export function convertEsoPicoItemsToPracticeChanges(
         changeType: s.toLowerCase().includes("against") ? "DOWNGRADED" : "NEW",
         quality: q,
         strength: s,
-        voting,
-        currentGrade: `GRADE ${s} (Evidence: ${q}${voting ? `, Voting: ${voting}` : ""})`,
+        voting: recVoting,
+        currentGrade: `GRADE ${s} (Evidence: ${q}${recVoting ? `, Voting: ${recVoting}` : ""})`,
         currentText: rec.statement,
-        expertConsensusStatement: consensus,
+        expertConsensusStatement: recConsensus,
         drivingTrials: trials,
       });
     });
@@ -910,24 +1041,33 @@ export function groupPracticeChangesIntoEsoPicos(
       item.expertConsensusStatement ||
       (item.previousText && !item.previousText.startsWith("Driving Evidence:") ? item.previousText : undefined);
 
+    const recConsensus = consensusText?.trim() || undefined;
+    const recVoting =
+      item.voting ||
+      (recConsensus && recConsensus.includes("Vote:")
+        ? `Vote: ${recConsensus.split("Vote:")[1]?.split(")")[0]?.trim()}`
+        : voting || (recConsensus ? "Vote: 10/10" : undefined));
+
     if (!picoMap.has(picoKey)) {
       picoMap.set(picoKey, {
         picoNumber: picoNum,
         picoQuestion,
         recommendations: [],
-        expertConsensusStatement: consensusText,
-        voting: item.voting || voting || (consensusText ? "Vote: 10/10" : undefined),
+        expertConsensusStatement: recConsensus,
+        voting: recVoting,
         drivingTrials: item.drivingTrials || [],
       });
     }
 
     const targetPico = picoMap.get(picoKey)!;
 
-    if (!targetPico.expertConsensusStatement && consensusText) {
-      targetPico.expertConsensusStatement = consensusText;
+    if (!targetPico.expertConsensusStatement && recConsensus) {
+      targetPico.expertConsensusStatement = recConsensus;
       if (!targetPico.voting) {
-        targetPico.voting = item.voting || voting || "Vote: 10/10";
+        targetPico.voting = recVoting;
       }
+    } else if (recConsensus && !targetPico.expertConsensusStatement?.includes(recConsensus)) {
+      targetPico.expertConsensusStatement = `${targetPico.expertConsensusStatement}\n\n${recConsensus}`;
     }
 
     if (item.drivingTrials && item.drivingTrials.length > 0) {
@@ -943,6 +1083,8 @@ export function groupPracticeChangesIntoEsoPicos(
       qualityOfEvidence: item.quality || quality,
       strengthOfRecommendation: normalizedStrength,
       drivingTrials: item.drivingTrials || [],
+      expertConsensusStatement: recConsensus,
+      voting: recVoting,
     });
   });
 

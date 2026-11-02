@@ -199,13 +199,23 @@ export function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitl
       ? r.driving_trials
       : [];
 
+    const voteStr =
+      r.voting ||
+      (consensus && consensus.includes("Vote:")
+        ? consensus.split("Vote:")[1]?.split(")")[0]?.trim()
+          ? `Vote: ${consensus.split("Vote:")[1]?.split(")")[0]?.trim()}`
+          : undefined
+        : consensus
+        ? "Vote: 10/10"
+        : undefined);
+
     if (!picoMap.has(picoKey)) {
       picoMap.set(picoKey, {
         picoNumber: pNum,
         picoQuestion: pQuestion,
         recommendations: [],
         expertConsensusStatement: consensus,
-        voting: r.voting || (consensus && consensus.includes("Vote:") ? consensus.split("Vote:")[1]?.split(")")[0]?.trim() ? `Vote: ${consensus.split("Vote:")[1]?.split(")")[0]?.trim()}` : undefined : undefined),
+        voting: voteStr,
         drivingTrials: [...trials],
       });
     }
@@ -214,7 +224,9 @@ export function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitl
 
     if (!entry.expertConsensusStatement && consensus) {
       entry.expertConsensusStatement = consensus;
-      if (!entry.voting) entry.voting = r.voting;
+      if (!entry.voting) entry.voting = voteStr;
+    } else if (consensus && !entry.expertConsensusStatement?.includes(consensus)) {
+      entry.expertConsensusStatement = `${entry.expertConsensusStatement}\n\n${consensus}`;
     }
 
     if (trials.length > 0) {
@@ -228,6 +240,8 @@ export function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitl
       qualityOfEvidence: q,
       strengthOfRecommendation: s,
       drivingTrials: trials,
+      expertConsensusStatement: consensus,
+      voting: voteStr,
     });
   });
 
@@ -1330,7 +1344,20 @@ export function ReviewQueueTab({
                           (() => {
                             const picos = buildEsoPicoItemsFromStoredRecs(group.recommendations, group.guideline_title, group.guideline_id);
                             const totalRecs = picos.reduce((acc, p) => acc + p.recommendations.length, 0);
-                            const totalConsensus = picos.filter((p) => Boolean(p.expertConsensusStatement)).length;
+                            let totalConsensus = 0;
+                            picos.forEach((p) => {
+                              const recConsensusCount = p.recommendations.filter((r) =>
+                                Boolean(
+                                  r.expertConsensusStatement?.trim() ||
+                                    (r.expertConsensusStatements && r.expertConsensusStatements.length > 0)
+                                )
+                              ).length;
+                              if (recConsensusCount > 0) {
+                                totalConsensus += recConsensusCount;
+                              } else if (p.expertConsensusStatement) {
+                                totalConsensus += 1;
+                              }
+                            });
                             return `${picos.length} PICO (${totalRecs} khuyến cáo lâm sàng${totalConsensus > 0 ? ` & ${totalConsensus} tuyên bố đồng thuận chuyên gia` : ""} chuẩn ESO GRADE)`;
                           })()
                         ) : (

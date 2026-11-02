@@ -316,4 +316,114 @@ Table 3 Synoptic table of all recommendations and expert consensus statements.
     assert.equal(grouped[0].picoNumber, "1a");
     assert.equal(grouped[1].picoNumber, "1b");
   });
+
+  await t.test("parseConsensusList should parse single, multiple numbered, and array consensus statements with voting", async () => {
+    const { parseConsensusList } = await import("../src/lib/neuroguide/esoPicoGrouper.ts");
+
+    // Single statement with vote
+    const single = parseConsensusList("Due to potential harm, avoid GTN. (Vote: 10/10)");
+    assert.equal(single.length, 1);
+    assert.equal(single[0].statement, "Due to potential harm, avoid GTN.");
+    assert.equal(single[0].voting, "Vote: 10/10");
+
+    // Multiple numbered statements with individual voting
+    const multi = parseConsensusList(
+      "1. In patients with SBP > 160 mm Hg, lower blood pressure cautiously. (Vote: 11/13)\n" +
+      "2. Continuous infusion of short-acting drugs like labetalol is preferred. (Vote: 12/13)"
+    );
+    assert.equal(multi.length, 2);
+    assert.equal(multi[0].number, "1");
+    assert.equal(multi[0].statement, "In patients with SBP > 160 mm Hg, lower blood pressure cautiously.");
+    assert.equal(multi[0].voting, "Vote: 11/13");
+    assert.equal(multi[1].number, "2");
+    assert.equal(multi[1].statement, "Continuous infusion of short-acting drugs like labetalol is preferred.");
+    assert.equal(multi[1].voting, "Vote: 12/13");
+
+    // Array of statements
+    const arr = parseConsensusList(undefined, [
+      "First expert statement (Vote: 9/10)",
+      "Second expert statement (Vote: 10/10)"
+    ]);
+    assert.equal(arr.length, 2);
+    assert.equal(arr[0].statement, "First expert statement");
+    assert.equal(arr[0].voting, "Vote: 9/10");
+    assert.equal(arr[1].statement, "Second expert statement");
+    assert.equal(arr[1].voting, "Vote: 10/10");
+  });
+
+  await t.test("should display expert consensus statement for EVERY recommendation under the same PICO", async () => {
+    const { groupPracticeChangesIntoEsoPicos, convertEsoPicoItemsToPracticeChanges } = await import(
+      "../src/lib/neuroguide/esoPicoGrouper.ts"
+    );
+
+    // PICO 5 with 2 recommendations, both having distinct expert consensus statements
+    const changesWithMultipleConsensus = [
+      {
+        id: "rec-pico5-1",
+        picoNumber: "5",
+        picoQuestion: "In patients with acute stroke, does intervention X vs control improve outcome?",
+        topic: "PICO 5: In patients with acute stroke, does intervention X vs control improve outcome?",
+        category: "PICO 5",
+        changeType: "NEW",
+        currentText: "Recommendation 1: We recommend intervention X for subgroup A.",
+        currentGrade: "GRADE Strong for intervention (Evidence: High)",
+        quality: "High",
+        strength: "Strong for intervention",
+        expertConsensusStatement: "Expert Consensus for Recommendation 1: Panel advises careful monitoring during infusion.",
+        voting: "Vote: 12/12",
+        drivingTrials: ["TRIAL-A"],
+      },
+      {
+        id: "rec-pico5-2",
+        picoNumber: "5",
+        picoQuestion: "In patients with acute stroke, does intervention X vs control improve outcome?",
+        topic: "PICO 5: In patients with acute stroke, does intervention X vs control improve outcome?",
+        category: "PICO 5",
+        changeType: "NEW",
+        currentText: "Recommendation 2: We suggest against intervention X for subgroup B.",
+        currentGrade: "GRADE Weak against intervention (Evidence: Low)",
+        quality: "Low",
+        strength: "Weak against intervention",
+        expertConsensusStatement: "Expert Consensus for Recommendation 2: In subgroup B with renal failure, avoid drug Y.",
+        voting: "Vote: 11/12",
+        drivingTrials: ["TRIAL-B"],
+      },
+    ];
+
+    const grouped = groupPracticeChangesIntoEsoPicos(changesWithMultipleConsensus);
+    assert.equal(grouped.length, 1, "Should group both into a single PICO 5");
+    assert.equal(grouped[0].picoNumber, "5");
+    assert.equal(grouped[0].recommendations.length, 2, "PICO 5 has 2 recommendations");
+
+    // CRITICAL FIX VERIFICATION:
+    // Recommendation 1 MUST have its consensus statement
+    assert.equal(
+      grouped[0].recommendations[0].expertConsensusStatement,
+      "Expert Consensus for Recommendation 1: Panel advises careful monitoring during infusion."
+    );
+    assert.equal(grouped[0].recommendations[0].voting, "Vote: 12/12");
+
+    // Recommendation 2 MUST have its consensus statement (previously lost!)
+    assert.equal(
+      grouped[0].recommendations[1].expertConsensusStatement,
+      "Expert Consensus for Recommendation 2: In subgroup B with renal failure, avoid drug Y."
+    );
+    assert.equal(grouped[0].recommendations[1].voting, "Vote: 11/12");
+
+    // The PICO-level fallback should also retain both statements combined
+    assert.ok(grouped[0].expertConsensusStatement?.includes("Expert Consensus for Recommendation 1"));
+    assert.ok(grouped[0].expertConsensusStatement?.includes("Expert Consensus for Recommendation 2"));
+
+    // Verify roundtrip conversion back to PracticeChangeDetail preserves per-recommendation consensus
+    const roundtrip = convertEsoPicoItemsToPracticeChanges(grouped);
+    assert.equal(roundtrip.length, 2);
+    assert.equal(
+      roundtrip[0].expertConsensusStatement,
+      "Expert Consensus for Recommendation 1: Panel advises careful monitoring during infusion."
+    );
+    assert.equal(
+      roundtrip[1].expertConsensusStatement,
+      "Expert Consensus for Recommendation 2: In subgroup B with renal failure, avoid drug Y."
+    );
+  });
 });
