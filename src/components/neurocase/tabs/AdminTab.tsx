@@ -337,8 +337,8 @@ export function AdminTab({
 
     return (
       <div
-        className={`p-6 rounded-2xl border space-y-5 ${
-          darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
+        className={`p-6 rounded-2xl border border-l-4 border-l-amber-500 space-y-5 ${
+          darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200 shadow-xs"
         }`}
       >
         {/* Grouped Status Sub-Tabs (Pending vs Approved vs Rejected) + Server Sync */}

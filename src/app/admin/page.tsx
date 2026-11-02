@@ -119,7 +119,7 @@ export default function AdminCommandCenter() {
   // =========================================================================
   // ADMIN SECTION TABS
   // =========================================================================
-  const [adminTab, setAdminTab] = useState<"neurocase" | "guidelines" | "neuropulse" | "system">("neurocase");
+  const [adminTab, setAdminTab] = useState<"neuropulse" | "neurocase" | "guidelines" | "system">("neuropulse");
 
   // Guideline Review & Radar Combined State
   const [guidelineSubTab, setGuidelineSubTab] = useState<"queue" | "repository">("queue");
@@ -681,120 +681,204 @@ export default function AdminCommandCenter() {
 
         {/* ECOSYSTEM STATUS QUICK CARDS */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 mb-6">
-          <div className={`p-3 rounded-xl border ${darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200 shadow-xs"}`}>
+          <button
+            type="button"
+            onClick={() => setAdminTab("neuropulse")}
+            className={`p-3 rounded-xl border text-left transition-all cursor-pointer border-l-4 border-l-blue-500 ${
+              adminTab === "neuropulse"
+                ? darkMode
+                  ? "bg-blue-950/30 border-blue-500/50 shadow-xs ring-1 ring-blue-500/30"
+                  : "bg-blue-50/80 border-blue-300 shadow-xs ring-1 ring-blue-400/30"
+                : darkMode
+                ? "bg-slate-900/60 border-slate-800 hover:bg-slate-800/60 hover:border-blue-500/40"
+                : "bg-white border-slate-200 shadow-xs hover:bg-blue-50/40 hover:border-blue-300"
+            }`}
+          >
             <div className="flex items-center justify-between text-slate-400 text-[11px]">
-              <span>NeuroPulse</span>
-              <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex items-center gap-1">
+                <span>📰</span>
+                <span>NeuroPulse</span>
+              </span>
+              <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
             </div>
-            <div className="text-base font-black mt-1">{articlesCount} Articles</div>
-            <div className="text-[10px] text-slate-500 font-medium">0 Pending Review</div>
-          </div>
+            <div className="text-base font-black mt-1 text-slate-900 dark:text-white">{articlesCount} Articles</div>
+            <div className="text-[10px] text-blue-600 dark:text-blue-400 font-medium">Live Telemetry Feeds</div>
+          </button>
 
-          <div className={`p-3 rounded-xl border ${darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200 shadow-xs"}`}>
+          <button
+            type="button"
+            onClick={() => setAdminTab("neurocase")}
+            className={`p-3 rounded-xl border text-left transition-all cursor-pointer border-l-4 border-l-amber-500 ${
+              adminTab === "neurocase"
+                ? darkMode
+                  ? "bg-amber-950/30 border-amber-500/50 shadow-xs ring-1 ring-amber-500/30"
+                  : "bg-amber-50/80 border-amber-300 shadow-xs ring-1 ring-amber-400/30"
+                : darkMode
+                ? "bg-slate-900/60 border-slate-800 hover:bg-slate-800/60 hover:border-amber-500/40"
+                : "bg-white border-slate-200 shadow-xs hover:bg-amber-50/40 hover:border-amber-300"
+            }`}
+          >
             <div className="flex items-center justify-between text-slate-400 text-[11px]">
-              <span>NeuroCase</span>
+              <span className="font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1">
+                <span>🛡️</span>
+                <span>NeuroCase</span>
+              </span>
               <span className={`w-2 h-2 rounded-full ${pendingCases.length > 0 ? "bg-amber-500 animate-pulse" : "bg-emerald-500"}`}></span>
             </div>
-            <div className="text-base font-black mt-1">{cases.length} Cases</div>
-            <div className={`text-[10px] font-medium ${pendingCases.length > 0 ? "text-amber-500 font-semibold" : "text-slate-500"}`}>
+            <div className="text-base font-black mt-1 text-slate-900 dark:text-white">{cases.length} Cases</div>
+            <div className={`text-[10px] font-medium ${pendingCases.length > 0 ? "text-amber-600 dark:text-amber-400 font-semibold" : "text-slate-500"}`}>
               {pendingCases.length} Pending Review
             </div>
-          </div>
+          </button>
 
-          <div className={`p-3 rounded-xl border ${darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200 shadow-xs"}`}>
+          <button
+            type="button"
+            onClick={() => setAdminTab("guidelines")}
+            className={`p-3 rounded-xl border text-left transition-all cursor-pointer border-l-4 border-l-emerald-500 ${
+              adminTab === "guidelines"
+                ? darkMode
+                  ? "bg-emerald-950/30 border-emerald-500/50 shadow-xs ring-1 ring-emerald-500/30"
+                  : "bg-emerald-50/80 border-emerald-300 shadow-xs ring-1 ring-emerald-400/30"
+                : darkMode
+                ? "bg-slate-900/60 border-slate-800 hover:bg-slate-800/60 hover:border-emerald-500/40"
+                : "bg-white border-slate-200 shadow-xs hover:bg-emerald-50/40 hover:border-emerald-300"
+            }`}
+          >
             <div className="flex items-center justify-between text-slate-400 text-[11px]">
-              <span>NeuroGuide</span>
+              <span className="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
+                <span>📋</span>
+                <span>NeuroGuide</span>
+              </span>
               <span className={`w-2 h-2 rounded-full ${reviewQueueCount > 0 ? "bg-amber-500 animate-pulse" : "bg-emerald-500"}`}></span>
             </div>
-            <div className="text-base font-black mt-1">{guidelineDocs.length} Docs</div>
-            <div className={`text-[10px] font-medium ${reviewQueueCount > 0 ? "text-amber-500 font-semibold" : "text-slate-500"}`}>
-              {reviewQueueCount} Pending Review
+            <div className="text-base font-black mt-1 text-slate-900 dark:text-white">{guidelineDocs.length} Docs</div>
+            <div className={`text-[10px] font-medium ${reviewQueueCount > 0 ? "text-amber-600 dark:text-amber-400 font-semibold" : "text-emerald-600 dark:text-emerald-400"}`}>
+              {reviewQueueCount > 0 ? `${reviewQueueCount} Pending Review` : "All Verified"}
             </div>
+          </button>
+
+          <div className={`p-3 rounded-xl border opacity-75 border-l-4 border-l-purple-500 ${darkMode ? "bg-slate-900/40 border-slate-800" : "bg-slate-50 border-slate-200"}`}>
+            <div className="flex items-center justify-between text-slate-400 text-[11px]">
+              <span className="font-bold text-purple-600 dark:text-purple-400 flex items-center gap-1">
+                <span>🧮</span>
+                <span>NeuroCalc</span>
+              </span>
+              <span className="text-[9px] uppercase px-1 rounded bg-purple-500/10 text-purple-600 dark:text-purple-400 font-bold">Coming Soon</span>
+            </div>
+            <div className="text-base font-bold mt-1 text-slate-700 dark:text-slate-300">Scales</div>
+            <div className="text-[10px] text-slate-500">NIHSS, mRS, ICH</div>
           </div>
 
-          <div className={`p-3 rounded-xl border opacity-60 ${darkMode ? "bg-slate-900/40 border-slate-800" : "bg-slate-100 border-slate-200"}`}>
+          <div className={`p-3 rounded-xl border opacity-75 border-l-4 border-l-cyan-500 ${darkMode ? "bg-slate-900/40 border-slate-800" : "bg-slate-50 border-slate-200"}`}>
             <div className="flex items-center justify-between text-slate-400 text-[11px]">
-              <span>NeuroCalc</span>
-              <span className="text-[9px] uppercase px-1 rounded bg-slate-200 dark:bg-slate-800">Coming Soon</span>
+              <span className="font-bold text-cyan-600 dark:text-cyan-400 flex items-center gap-1">
+                <span>👁️</span>
+                <span>NeuroVision</span>
+              </span>
+              <span className="text-[9px] uppercase px-1 rounded bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 font-bold">Coming Soon</span>
             </div>
-            <div className="text-base font-bold mt-1 text-slate-400">Scales</div>
-            <div className="text-[10px] text-slate-400">NIHSS, mRS, ICH</div>
+            <div className="text-base font-bold mt-1 text-slate-700 dark:text-slate-300">Imaging AI</div>
+            <div className="text-[10px] text-slate-500">ASPECTS &amp; CTP</div>
           </div>
 
-          <div className={`p-3 rounded-xl border opacity-60 ${darkMode ? "bg-slate-900/40 border-slate-800" : "bg-slate-100 border-slate-200"}`}>
+          <div className={`p-3 rounded-xl border opacity-75 border-l-4 border-l-rose-500 ${darkMode ? "bg-slate-900/40 border-slate-800" : "bg-slate-50 border-slate-200"}`}>
             <div className="flex items-center justify-between text-slate-400 text-[11px]">
-              <span>NeuroVision</span>
-              <span className="text-[9px] uppercase px-1 rounded bg-slate-200 dark:bg-slate-800">Coming Soon</span>
+              <span className="font-bold text-rose-600 dark:text-rose-400 flex items-center gap-1">
+                <span>💊</span>
+                <span>NeuroRx</span>
+              </span>
+              <span className="text-[9px] uppercase px-1 rounded bg-rose-500/10 text-rose-600 dark:text-rose-400 font-bold">Coming Soon</span>
             </div>
-            <div className="text-base font-bold mt-1 text-slate-400">Imaging AI</div>
-            <div className="text-[10px] text-slate-400">ASPECTS &amp; CTP</div>
-          </div>
-
-          <div className={`p-3 rounded-xl border opacity-60 ${darkMode ? "bg-slate-900/40 border-slate-800" : "bg-slate-100 border-slate-200"}`}>
-            <div className="flex items-center justify-between text-slate-400 text-[11px]">
-              <span>NeuroRx</span>
-              <span className="text-[9px] uppercase px-1 rounded bg-slate-200 dark:bg-slate-800">Coming Soon</span>
-            </div>
-            <div className="text-base font-bold mt-1 text-slate-400">Pharma</div>
-            <div className="text-[10px] text-slate-400">Dosing &amp; Interactions</div>
+            <div className="text-base font-bold mt-1 text-slate-700 dark:text-slate-300">Pharma</div>
+            <div className="text-[10px] text-slate-500">Dosing &amp; Interactions</div>
           </div>
         </div>
 
         {/* ADMIN OPERATION NAVIGATION TABS */}
         <nav
-          className={`mb-6 p-1.5 rounded-xl border flex flex-wrap items-center justify-between gap-1.5 ${
-            darkMode ? "bg-slate-900/90 border-slate-800" : "bg-white border-slate-200 shadow-xs"
+          className={`mb-6 p-2 rounded-2xl border flex flex-wrap items-center justify-between gap-2 shadow-xs transition-colors ${
+            darkMode ? "bg-slate-900/90 border-slate-800 backdrop-blur-md" : "bg-white/95 border-slate-200 backdrop-blur-md"
           }`}
         >
-          <div className="flex flex-wrap items-center gap-1.5">
+          <div className="flex flex-wrap items-center gap-2">
             {[
               {
-                id: "neurocase",
-                label: "🛡️ Case Moderation (NeuroCase)",
-                badge: pendingCases.length > 0 ? `${pendingCases.length} Pending` : undefined,
-                badgeColor: "bg-amber-500 text-white",
+                id: "neuropulse" as const,
+                label: "📰 Journal Feeds (NeuroPulse)",
+                badge: String(articlesCount),
+                activeClass: "bg-blue-600 text-white shadow-md shadow-blue-500/25 ring-1 ring-blue-400/40",
+                inactiveClass: darkMode
+                  ? "text-slate-300 hover:bg-blue-950/40 hover:text-blue-300"
+                  : "text-slate-700 hover:bg-blue-50 hover:text-blue-700",
+                badgeActive: "bg-white/20 text-white",
+                badgeInactive: "bg-blue-500/15 text-blue-600 dark:text-blue-400 border border-blue-500/25",
+                dotColor: "bg-blue-500",
               },
               {
-                id: "guidelines",
-                label: "📋 Guidelines & Radar",
+                id: "neurocase" as const,
+                label: "🛡️ Case Moderation (NeuroCase)",
+                badge: pendingCases.length > 0 ? `${pendingCases.length} Pending` : `${cases.length} Cases`,
+                activeClass: "bg-amber-600 text-white shadow-md shadow-amber-500/25 ring-1 ring-amber-400/40",
+                inactiveClass: darkMode
+                  ? "text-slate-300 hover:bg-amber-950/40 hover:text-amber-300"
+                  : "text-slate-700 hover:bg-amber-50 hover:text-amber-700",
+                badgeActive: "bg-white/20 text-white",
+                badgeInactive:
+                  pendingCases.length > 0
+                    ? "bg-amber-500 text-white font-bold animate-pulse"
+                    : "bg-amber-500/15 text-amber-700 dark:text-amber-300 border border-amber-500/25",
+                dotColor: "bg-amber-500",
+              },
+              {
+                id: "guidelines" as const,
+                label: "📋 Guidelines & Radar (NeuroGuide)",
                 badge:
                   reviewQueueCount > 0
                     ? `${reviewQueueCount} Pending`
                     : `${guidelineDocs.length} Docs`,
-                badgeColor: reviewQueueCount > 0 ? "bg-amber-500 text-white" : "bg-blue-500 text-white",
+                activeClass: "bg-emerald-600 text-white shadow-md shadow-emerald-500/25 ring-1 ring-emerald-400/40",
+                inactiveClass: darkMode
+                  ? "text-slate-300 hover:bg-emerald-950/40 hover:text-emerald-300"
+                  : "text-slate-700 hover:bg-emerald-50 hover:text-emerald-700",
+                badgeActive: "bg-white/20 text-white",
+                badgeInactive:
+                  reviewQueueCount > 0
+                    ? "bg-amber-500 text-white font-bold animate-pulse"
+                    : "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border border-emerald-500/25",
+                dotColor: "bg-emerald-500",
               },
               {
-                id: "neuropulse",
-                label: "📰 Journal Feeds Monitor (NeuroPulse)",
-                badge: String(articlesCount),
-                badgeColor: "bg-slate-700 text-white",
-              },
-              {
-                id: "system",
-                label: "⚙️ Architecture & Storage Health",
-                badge: undefined,
+                id: "system" as const,
+                label: "⚙️ Architecture & Storage (System Core)",
+                badge: healthData?.diagnostics?.storage?.blobConnected ? "Online" : undefined,
+                activeClass: "bg-indigo-600 text-white shadow-md shadow-indigo-500/25 ring-1 ring-indigo-400/40",
+                inactiveClass: darkMode
+                  ? "text-slate-300 hover:bg-indigo-950/40 hover:text-indigo-300"
+                  : "text-slate-700 hover:bg-indigo-50 hover:text-indigo-700",
+                badgeActive: "bg-white/20 text-white",
+                badgeInactive: "bg-indigo-500/15 text-indigo-700 dark:text-indigo-300 border border-indigo-500/25",
+                dotColor: "bg-indigo-500",
               },
             ].map((tab) => {
               const active = adminTab === tab.id;
               return (
                 <button
                   key={tab.id}
-                  onClick={() => setAdminTab(tab.id as typeof adminTab)}
-                  className={`px-3.5 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+                  onClick={() => setAdminTab(tab.id)}
+                  className={`px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 cursor-pointer border ${
                     active
-                      ? "bg-amber-600 text-white shadow-sm"
-                      : darkMode
-                      ? "text-slate-300 hover:bg-slate-800"
-                      : "text-slate-700 hover:bg-slate-100"
+                      ? `${tab.activeClass} border-transparent`
+                      : `${tab.inactiveClass} border-transparent hover:border-slate-300 dark:hover:border-slate-700`
                   }`}
                 >
+                  <span className={`w-2 h-2 rounded-full ${tab.dotColor} ${active ? "ring-2 ring-white/60" : "opacity-80"}`} />
                   <span>{tab.label}</span>
                   {tab.badge && (
                     <span
-                      className={`px-1.5 py-0.2 rounded text-[10px] font-black ${
+                      className={`px-2 py-0.5 rounded-md text-[10.5px] font-black transition-colors ${
                         active
-                          ? "bg-white/20 text-white"
-                          : tab.badgeColor || (darkMode ? "bg-slate-800 text-slate-300" : "bg-slate-100 text-slate-600")
+                          ? tab.badgeActive
+                          : tab.badgeInactive
                       }`}
                     >
                       {tab.badge}
@@ -806,7 +890,289 @@ export default function AdminCommandCenter() {
           </div>
         </nav>
 
-        {/* TAB 1: NEUROCASE MODERATION WORKFLOW */}
+        {/* TAB 1: NEUROPULSE MULTI-JOURNAL FEEDS */}
+        {adminTab === "neuropulse" && (
+          <div className="space-y-4">
+            <div
+              className={`p-6 rounded-2xl border border-l-4 border-l-blue-500 ${
+                darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200 shadow-xs"
+              }`}
+            >
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5 pb-4 border-b border-slate-200 dark:border-slate-800">
+                <div>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="text-lg">📰</span>
+                    <h3 className="text-base font-bold text-slate-900 dark:text-white">
+                      Multi-Journal Feed Engine Monitoring
+                    </h3>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold border border-emerald-500/30 flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                      <span>Live Telemetry</span>
+                    </span>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-500/15 text-blue-600 dark:text-blue-400 font-bold border border-blue-500/30">
+                      NeuroPulse Core
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-500 mt-1">
+                    Autonomous aggregator tracking top-tier clinical neurology journals &amp; publications
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={fetchHealthDiagnostics}
+                  disabled={isHealthLoading}
+                  className="px-3.5 py-1.5 rounded-xl text-xs font-bold border bg-blue-500/10 hover:bg-blue-500/20 text-blue-600 dark:text-blue-400 border-blue-500/25 transition-all flex items-center gap-1.5 self-start sm:self-auto cursor-pointer"
+                >
+                  <span className={isHealthLoading ? "animate-spin" : ""}>🔄</span>
+                  <span>{isHealthLoading ? "Refreshing..." : "Refresh Analytics"}</span>
+                </button>
+              </div>
+
+              {/* REAL-TIME STATS CARDS */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+                <div
+                  className={`p-3.5 rounded-xl border border-l-4 border-l-blue-500 transition-all ${
+                    darkMode ? "bg-blue-950/20 border-blue-900/40" : "bg-blue-50/70 border-blue-200"
+                  }`}
+                >
+                  <div className="flex items-center justify-between text-[11px] font-bold text-blue-700 dark:text-blue-300">
+                    <span>Total Indexed Articles</span>
+                    <span>📰</span>
+                  </div>
+                  <div className="text-2xl font-black mt-1 text-blue-950 dark:text-blue-100">
+                    {healthData?.metrics?.articles?.total || articlesCount}
+                  </div>
+                  <div className="text-[10px] text-blue-600 dark:text-blue-400 font-semibold mt-0.5">
+                    {healthData?.metrics?.articles?.journalsCount || 8} Connected Journals
+                  </div>
+                </div>
+
+                <div
+                  className={`p-3.5 rounded-xl border border-l-4 border-l-indigo-500 transition-all ${
+                    darkMode ? "bg-indigo-950/20 border-indigo-900/40" : "bg-indigo-50/70 border-indigo-200"
+                  }`}
+                >
+                  <div className="flex items-center justify-between text-[11px] font-bold text-indigo-700 dark:text-indigo-300">
+                    <span>RCTs &amp; Trials</span>
+                    <span>🧪</span>
+                  </div>
+                  <div className="text-2xl font-black mt-1 text-indigo-950 dark:text-indigo-100">
+                    {healthData?.metrics?.articles?.studyTypes?.rct ?? 42}
+                  </div>
+                  <div className="text-[10px] text-indigo-600 dark:text-indigo-400 font-semibold mt-0.5">
+                    Randomized Controlled Trials
+                  </div>
+                </div>
+
+                <div
+                  className={`p-3.5 rounded-xl border border-l-4 border-l-purple-500 transition-all ${
+                    darkMode ? "bg-purple-950/20 border-purple-900/40" : "bg-purple-50/70 border-purple-200"
+                  }`}
+                >
+                  <div className="flex items-center justify-between text-[11px] font-bold text-purple-700 dark:text-purple-300">
+                    <span>Guidelines &amp; Reviews</span>
+                    <span>📜</span>
+                  </div>
+                  <div className="text-2xl font-black mt-1 text-purple-950 dark:text-purple-100">
+                    {(healthData?.metrics?.articles?.studyTypes?.meta_analysis || 0) +
+                      (healthData?.metrics?.articles?.studyTypes?.guideline || 0) || 31}
+                  </div>
+                  <div className="text-[10px] text-purple-600 dark:text-purple-400 font-semibold mt-0.5">
+                    Practice Guidelines &amp; Meta-analyses
+                  </div>
+                </div>
+
+                <div
+                  className={`p-3.5 rounded-xl border border-l-4 border-l-amber-500 transition-all ${
+                    darkMode ? "bg-amber-950/20 border-amber-900/40" : "bg-amber-50/70 border-amber-200"
+                  }`}
+                >
+                  <div className="flex items-center justify-between text-[11px] font-bold text-amber-700 dark:text-amber-300">
+                    <span>Observational &amp; Cohort</span>
+                    <span>📊</span>
+                  </div>
+                  <div className="text-2xl font-black mt-1 text-amber-950 dark:text-amber-100">
+                    {healthData?.metrics?.articles?.studyTypes?.observational ?? 68}
+                  </div>
+                  <div className="text-[10px] text-amber-600 dark:text-amber-400 font-semibold mt-0.5">
+                    Registry &amp; Cohort Studies
+                  </div>
+                </div>
+              </div>
+
+              {/* SUBSPECIALTY DISTRIBUTION BREAKDOWN */}
+              {healthData?.metrics?.articles?.subspecialties &&
+                typeof healthData.metrics.articles.subspecialties === "object" && (
+                <div className={`mb-6 p-4 rounded-xl border space-y-3 ${
+                  darkMode ? "bg-slate-800/40 border-slate-700" : "bg-slate-50 border-slate-200"
+                }`}>
+                  <div className="flex items-center justify-between text-xs font-bold text-slate-700 dark:text-slate-300">
+                    <span className="flex items-center gap-1.5">
+                      <span>🔬</span>
+                      <span>Clinical Subspecialty Distribution</span>
+                    </span>
+                    <span className="text-[11px] px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-mono font-bold">
+                      {Object.keys(healthData.metrics.articles.subspecialties).length} Subspecialties
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 text-xs">
+                    {Object.entries(healthData.metrics.articles.subspecialties).map(([sub, count]) => {
+                      const total = healthData.metrics.articles.total || 1;
+                      const countNum = typeof count === "number" ? count : Number(count) || 0;
+                      const pct = Math.round((countNum / total) * 100);
+                      return (
+                        <div
+                          key={sub}
+                          className={`p-2.5 rounded-lg border flex flex-col justify-between transition-all ${
+                            darkMode
+                              ? "bg-slate-900/60 border-slate-800 hover:border-slate-700"
+                              : "bg-white border-slate-200 shadow-2xs hover:border-blue-200"
+                          }`}
+                        >
+                          <div className="flex items-center justify-between mb-1.5">
+                            <span className="font-semibold text-slate-800 dark:text-slate-200 truncate">{sub}</span>
+                            <span className="font-mono font-bold text-blue-600 dark:text-blue-400 bg-blue-500/10 px-1.5 py-0.2 rounded text-[11px]">
+                              {countNum}
+                            </span>
+                          </div>
+                          <div className="w-full h-1.5 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+                            <div className="h-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full" style={{ width: `${Math.max(pct, 5)}%` }} />
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* LIVE ARTICLE SEARCH & VIEWER */}
+              <div className="space-y-3 pt-3 border-t border-slate-200 dark:border-slate-800">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <span className="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+                    <span>🔍</span>
+                    <span>Quick Article Search in Local Index</span>
+                  </span>
+                  <div className="relative max-w-sm w-full">
+                    <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs">🔍</span>
+                    <input
+                      type="text"
+                      value={pulseSearchQuery}
+                      onChange={(e) => setPulseSearchQuery(e.target.value)}
+                      placeholder="Search articles by title, journal, or topic..."
+                      className={`w-full pl-7 pr-7 py-1.5 text-xs rounded-xl border outline-none transition-all ${
+                        darkMode ? "bg-slate-800 border-slate-700 text-white focus:border-blue-500" : "bg-slate-50 border-slate-200 text-slate-900 focus:border-blue-500"
+                      }`}
+                    />
+                    {pulseSearchQuery && (
+                      <button
+                        onClick={() => setPulseSearchQuery("")}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-xs font-bold"
+                      >
+                        ✕
+                      </button>
+                    )}
+                  </div>
+                </div>
+
+                <div className="space-y-2 max-h-72 overflow-y-auto text-xs pr-1">
+                  {pulseArticles
+                    .filter((a) => {
+                      if (!pulseSearchQuery.trim()) return true;
+                      const q = pulseSearchQuery.toLowerCase();
+                      const journalName =
+                        typeof a.journal === "string"
+                          ? a.journal
+                          : a.journal?.name || a.journal?.short_name || "";
+                      const subspecialty =
+                        typeof a.subspecialty === "string"
+                          ? a.subspecialty
+                          : a.neurology_classification?.subspecialty ||
+                            (Array.isArray(a.neurology_classification?.subspecialties)
+                              ? a.neurology_classification.subspecialties[0]
+                              : Array.isArray(a.subspecialties)
+                              ? a.subspecialties[0]
+                              : "");
+                      return (
+                        (a.title || "").toLowerCase().includes(q) ||
+                        journalName.toLowerCase().includes(q) ||
+                        subspecialty.toLowerCase().includes(q)
+                      );
+                    })
+                    .slice(0, 10)
+                    .map((a, idx) => {
+                      const journalName =
+                        typeof a.journal === "string"
+                          ? a.journal
+                          : a.journal?.short_name || a.journal?.name || "Journal";
+                      const subspecialty =
+                        typeof a.subspecialty === "string"
+                          ? a.subspecialty
+                          : a.neurology_classification?.subspecialty ||
+                            (Array.isArray(a.neurology_classification?.subspecialties)
+                              ? a.neurology_classification.subspecialties[0]
+                              : Array.isArray(a.subspecialties)
+                              ? a.subspecialties[0]
+                              : "");
+                      const dateDisplay =
+                        a.date ||
+                        (a.pub_date ? a.pub_date.slice(0, 10) : "Recent");
+                      const badgeBg =
+                        a.journal?.badge_bg || "rgba(59, 130, 246, 0.12)";
+                      const badgeText =
+                        a.journal?.badge_text || "#2563eb";
+
+                      return (
+                        <div
+                          key={a.id || idx}
+                          className={`p-3 rounded-xl border flex items-start justify-between gap-3 transition-all ${
+                            darkMode
+                              ? "bg-slate-800/40 border-slate-800 hover:border-blue-500/40 hover:bg-slate-800/80"
+                              : "bg-white border-slate-200/90 shadow-2xs hover:border-blue-300 hover:bg-blue-50/20"
+                          }`}
+                        >
+                          <div className="min-w-0">
+                            <div className="flex items-center gap-2 mb-1 flex-wrap">
+                              <span
+                                className="font-bold text-[10.5px] px-2 py-0.5 rounded border border-blue-500/20"
+                                style={{
+                                  backgroundColor: badgeBg,
+                                  color: badgeText,
+                                }}
+                              >
+                                {journalName}
+                              </span>
+                              {subspecialty && (
+                                <span className="text-[10px] font-medium px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+                                  {subspecialty}
+                                </span>
+                              )}
+                            </div>
+                            <p className="font-semibold text-slate-800 dark:text-slate-200 truncate">{a.title}</p>
+                          </div>
+                          <span className="text-[10.5px] font-mono font-medium px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-500 shrink-0">
+                            {dateDisplay}
+                          </span>
+                        </div>
+                      );
+                    })}
+                </div>
+              </div>
+
+              <div className="text-xs text-slate-600 dark:text-slate-300 p-3.5 rounded-xl bg-blue-500/5 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-900/40 flex flex-wrap items-center justify-between gap-2 mt-4">
+                <span className="flex items-center gap-1.5">
+                  <span>🤖</span>
+                  <span>Aggregator workflow bot: <code className="font-mono text-blue-600 dark:text-blue-400 bg-blue-500/10 px-1.5 py-0.5 rounded">python scripts/fetch_nejm.py</code></span>
+                </span>
+                <Link href="/" className="font-bold text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+                  <span>Open NeuroPulse Reader</span>
+                  <span>→</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* TAB 2: NEUROCASE MODERATION WORKFLOW */}
         {adminTab === "neurocase" && (
           <div className="space-y-4">
             <AdminTab
@@ -825,7 +1191,7 @@ export default function AdminCommandCenter() {
           </div>
         )}
 
-        {/* TAB 2: NEUROGUIDE CLINICAL GUIDELINES & RADAR */}
+        {/* TAB 3: NEUROGUIDE CLINICAL GUIDELINES & RADAR */}
         {adminTab === "guidelines" && (
           <div className="space-y-4">
             {/* Sync Alert Message Banner */}
@@ -852,7 +1218,7 @@ export default function AdminCommandCenter() {
                   onClick={() => setGuidelineSubTab("queue")}
                   className={`px-3.5 py-2 rounded-xl text-xs font-black transition-all flex items-center gap-2 cursor-pointer ${
                     guidelineSubTab === "queue"
-                      ? "bg-amber-500 text-slate-950 shadow-xs"
+                      ? "bg-amber-500 text-slate-950 shadow-xs ring-1 ring-amber-400/40"
                       : darkMode
                       ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
                       : "bg-slate-100 text-slate-700 hover:bg-slate-200"
@@ -877,7 +1243,7 @@ export default function AdminCommandCenter() {
                   onClick={() => setGuidelineSubTab("repository")}
                   className={`px-3.5 py-2 rounded-xl text-xs font-black transition-all flex items-center gap-2 cursor-pointer ${
                     guidelineSubTab === "repository"
-                      ? "bg-emerald-600 text-white shadow-xs"
+                      ? "bg-emerald-600 text-white shadow-xs ring-1 ring-emerald-400/40"
                       : darkMode
                       ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
                       : "bg-slate-100 text-slate-700 hover:bg-slate-200"
@@ -930,7 +1296,7 @@ export default function AdminCommandCenter() {
                   className={`px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all shadow-sm ${
                     isSyncingRadar
                       ? "bg-slate-200 dark:bg-slate-800 text-slate-400 cursor-not-allowed"
-                      : "bg-blue-600 hover:bg-blue-700 text-white cursor-pointer"
+                      : "bg-emerald-600 hover:bg-emerald-700 text-white cursor-pointer"
                   }`}
                 >
                   <span className={isSyncingRadar ? "animate-spin" : ""}>🔄</span>
@@ -955,16 +1321,20 @@ export default function AdminCommandCenter() {
 
             {/* SUB-TAB 2: PUBLISHED REPOSITORY */}
             {guidelineSubTab === "repository" && (
-              <div className={`p-5 rounded-2xl border space-y-4 ${darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200 shadow-xs"}`}>
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div
+                className={`p-6 rounded-2xl border border-l-4 border-l-emerald-500 space-y-4 ${
+                  darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200 shadow-xs"
+                }`}
+              >
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-200 dark:border-slate-800">
                   <div>
-                    <h3 className="text-sm font-bold flex items-center gap-2">
+                    <h3 className="text-base font-bold flex items-center gap-2">
                       <span>Clinical Guideline Repository</span>
-                      <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400">
-                        ({filteredRepoDocs.length} / {guidelineDocs.length})
+                      <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                        {filteredRepoDocs.length} / {guidelineDocs.length} Active
                       </span>
                     </h3>
-                    <p className="text-[11px] text-slate-500">Indexed and classified clinical practice guidelines serving instant retrieval in NeuroGuide</p>
+                    <p className="text-xs text-slate-500 mt-0.5">Indexed and classified clinical practice guidelines serving instant retrieval in NeuroGuide</p>
                   </div>
 
                   {/* Search & Society Filter */}
@@ -977,7 +1347,7 @@ export default function AdminCommandCenter() {
                         onChange={(e) => setRepoSearchQuery(e.target.value)}
                         placeholder="Search guidelines..."
                         className={`pl-7 pr-7 py-1.5 text-xs rounded-xl border outline-none transition-all ${
-                          darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200 text-slate-900"
+                          darkMode ? "bg-slate-800 border-slate-700 text-white focus:border-emerald-500" : "bg-slate-50 border-slate-200 text-slate-900 focus:border-emerald-500"
                         }`}
                       />
                       {repoSearchQuery && (
@@ -1008,7 +1378,7 @@ export default function AdminCommandCenter() {
                     <button
                       type="button"
                       onClick={() => fetchGuidelinesList()}
-                      className="px-2.5 py-1.5 rounded-xl text-xs font-bold bg-blue-500/10 text-blue-600 dark:text-blue-400 hover:bg-blue-500/20 transition-colors flex items-center gap-1 cursor-pointer"
+                      className="px-2.5 py-1.5 rounded-xl text-xs font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/20 border border-emerald-500/20 transition-colors flex items-center gap-1 cursor-pointer"
                       title="Tải lại danh sách guideline từ máy chủ và đồng bộ chuẩn"
                     >
                       <span>🔄 Làm mới</span>
@@ -1016,73 +1386,91 @@ export default function AdminCommandCenter() {
                   </div>
                 </div>
 
-                <div className="divide-y divide-slate-100 dark:divide-slate-800 max-h-[550px] overflow-y-auto pr-1">
+                <div className="space-y-2 max-h-[550px] overflow-y-auto pr-1">
                   {filteredRepoDocs.length === 0 ? (
                     <div className="py-8 text-center text-xs text-slate-400">
                       No guidelines found matching your filter criteria.
                     </div>
                   ) : (
-                    filteredRepoDocs.map((doc) => (
-                      <div key={doc.id} className="py-2.5 flex items-start justify-between gap-3 text-xs hover:bg-slate-50/50 dark:hover:bg-slate-800/30 px-2 rounded-lg transition-colors">
-                        <div>
-                          <div className="flex items-center gap-2 mb-1 flex-wrap">
-                            <span className="px-1.5 py-0.5 rounded font-bold text-[10px] bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
-                              {doc.society} {doc.year}
-                            </span>
-                            <span className="px-1.5 py-0.5 rounded text-[10px] bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
-                              {doc.subspecialty}
-                            </span>
-                            {doc.documentType && (
-                              <span className="text-[10px] text-slate-400">
-                                {doc.documentType}
+                    filteredRepoDocs.map((doc) => {
+                      const societyColors: Record<string, string> = {
+                        AHA: "bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/30",
+                        ESO: "bg-blue-500/15 text-blue-600 dark:text-blue-400 border-blue-500/30",
+                        AAN: "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/30",
+                        ESC: "bg-purple-500/15 text-purple-600 dark:text-purple-400 border-purple-500/30",
+                        ESVS: "bg-teal-500/15 text-teal-600 dark:text-teal-400 border-teal-500/30",
+                      };
+                      const socBadge = societyColors[doc.society] || "bg-amber-500/15 text-amber-600 dark:text-amber-400 border-amber-500/30";
+
+                      return (
+                        <div
+                          key={doc.id}
+                          className={`p-3 rounded-xl border flex items-start justify-between gap-3 text-xs transition-all ${
+                            darkMode
+                              ? "bg-slate-800/40 border-slate-800 hover:border-emerald-500/40 hover:bg-slate-800/80"
+                              : "bg-white border-slate-200/90 shadow-2xs hover:border-emerald-300 hover:bg-emerald-50/20"
+                          }`}
+                        >
+                          <div>
+                            <div className="flex items-center gap-2 mb-1 flex-wrap">
+                              <span className={`px-2 py-0.5 rounded font-bold text-[10.5px] border ${socBadge}`}>
+                                {doc.society} {doc.year}
                               </span>
-                            )}
+                              <span className="px-2 py-0.5 rounded font-medium text-[10px] bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                                {doc.subspecialty}
+                              </span>
+                              {doc.documentType && (
+                                <span className="text-[10px] text-slate-400">
+                                  {doc.documentType}
+                                </span>
+                              )}
+                            </div>
+                            <div className="font-semibold text-slate-800 dark:text-slate-200">{doc.title}</div>
                           </div>
-                          <div className="font-semibold text-slate-800 dark:text-slate-200">{doc.title}</div>
+                          <div className="flex items-center gap-1.5 shrink-0 flex-wrap justify-end">
+                            <span className="text-[10.5px] text-slate-400 font-mono mt-0.5 mr-1 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded">
+                              {doc.allPracticeChanges?.length || 0} updates
+                            </span>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setEditingPublishedDoc(doc);
+                                setShowEditPublishedModal(true);
+                              }}
+                              className="px-2.5 py-1 rounded text-[11px] font-bold bg-amber-500/15 text-amber-700 dark:text-amber-300 hover:bg-amber-500/25 border border-amber-500/30 transition-colors cursor-pointer"
+                              title="Chỉnh sửa chi tiết khuyến cáo và nội dung guideline"
+                            >
+                              ✏️ Sửa
+                            </button>
+                            <button
+                              type="button"
+                              disabled={unpublishLoadingId === doc.id}
+                              onClick={() => handleUnpublishGuideline(doc)}
+                              className="px-2.5 py-1 rounded text-[11px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 transition-colors cursor-pointer"
+                              title="Rút guideline khỏi thư viện chính và chuyển về Hàng đợi kiểm duyệt (Review Queue)"
+                            >
+                              {unpublishLoadingId === doc.id ? "..." : "↩ Thu hồi"}
+                            </button>
+                            <Link
+                              href="/neuroguide"
+                              className="px-2.5 py-1 rounded text-[11px] font-bold bg-blue-500/15 text-blue-700 dark:text-blue-300 hover:bg-blue-500/25 border border-blue-500/30 transition-colors"
+                              title="Xem chi tiết trên Practice Guidelines"
+                            >
+                              Xem ↗
+                            </Link>
+                            <button
+                              type="button"
+                              disabled={deleteLoadingId === doc.id}
+                              onClick={() => handleDeleteGuideline(doc)}
+                              className="px-2 py-1 rounded text-[11px] font-bold text-rose-500 hover:bg-rose-500/15 border border-rose-500/20 transition-colors cursor-pointer"
+                              title="Xóa guideline khỏi kho lưu trữ"
+                            >
+                              {deleteLoadingId === doc.id ? "..." : "🗑️"}
+                            </button>
+                          </div>
                         </div>
-                        <div className="flex items-center gap-1.5 shrink-0 flex-wrap justify-end">
-                          <span className="text-[10px] text-slate-400 font-mono mt-0.5 mr-1">
-                            {doc.allPracticeChanges?.length || 0} updates
-                          </span>
-                          <button
-                            type="button"
-                            onClick={() => {
-                              setEditingPublishedDoc(doc);
-                              setShowEditPublishedModal(true);
-                            }}
-                            className="px-2 py-0.5 rounded text-[10.5px] font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400 hover:bg-amber-500/20 transition-colors cursor-pointer"
-                            title="Chỉnh sửa chi tiết khuyến cáo và nội dung guideline"
-                          >
-                            ✏️ Sửa
-                          </button>
-                          <button
-                            type="button"
-                            disabled={unpublishLoadingId === doc.id}
-                            onClick={() => handleUnpublishGuideline(doc)}
-                            className="px-2 py-0.5 rounded text-[10.5px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors cursor-pointer"
-                            title="Rút guideline khỏi thư viện chính và chuyển về Hàng đợi kiểm duyệt (Review Queue)"
-                          >
-                            {unpublishLoadingId === doc.id ? "..." : "↩ Thu hồi"}
-                          </button>
-                          <Link
-                            href="/neuroguide"
-                            className="px-2 py-0.5 rounded text-[10.5px] font-bold bg-blue-500/10 text-blue-600 dark:text-blue-400 hover:bg-blue-500/20 transition-colors"
-                            title="Xem chi tiết trên Practice Guidelines"
-                          >
-                            Xem ↗
-                          </Link>
-                          <button
-                            type="button"
-                            disabled={deleteLoadingId === doc.id}
-                            onClick={() => handleDeleteGuideline(doc)}
-                            className="px-1.5 py-0.5 rounded text-[10.5px] font-bold text-rose-500 hover:bg-rose-500/10 transition-colors cursor-pointer"
-                            title="Xóa guideline khỏi kho lưu trữ"
-                          >
-                            {deleteLoadingId === doc.id ? "..." : "🗑️"}
-                          </button>
-                        </div>
-                      </div>
-                    ))
+                      );
+                    })
                   )}
                 </div>
               </div>
@@ -1090,337 +1478,173 @@ export default function AdminCommandCenter() {
           </div>
         )}
 
-        {/* TAB 3: NEUROPULSE MULTI-JOURNAL FEEDS */}
-        {adminTab === "neuropulse" && (
-          <div className="space-y-4">
-            <div className={`p-5 rounded-2xl border ${darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200 shadow-xs"}`}>
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
-                <div>
-                  <h3 className="text-sm font-bold flex items-center gap-2">
-                    <span>Multi-Journal Feed Engine Monitoring</span>
-                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-bold border border-emerald-500/20">
-                      Live Telemetry
-                    </span>
-                  </h3>
-                  <p className="text-[11px] text-slate-500">Autonomous aggregator tracking top-tier clinical neurology journals &amp; publications</p>
-                </div>
-                <button
-                  type="button"
-                  onClick={fetchHealthDiagnostics}
-                  disabled={isHealthLoading}
-                  className="px-3 py-1.5 rounded-xl text-xs font-bold border transition-all flex items-center gap-1.5 self-start sm:self-auto"
-                >
-                  <span className={isHealthLoading ? "animate-spin" : ""}>🔄</span>
-                  <span>{isHealthLoading ? "Refreshing..." : "Refresh Analytics"}</span>
-                </button>
-              </div>
-
-              {/* REAL-TIME STATS CARDS */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-                <div className={`p-3.5 rounded-xl border ${darkMode ? "bg-slate-800/60 border-slate-700" : "bg-slate-50 border-slate-200"}`}>
-                  <div className="text-[11px] text-slate-400">Total Indexed Articles</div>
-                  <div className="text-2xl font-black mt-1 text-slate-900 dark:text-white">
-                    {healthData?.metrics?.articles?.total || articlesCount}
-                  </div>
-                  <div className="text-[10px] text-emerald-500 font-semibold mt-0.5">
-                    {healthData?.metrics?.articles?.journalsCount || 8} Connected Journals
-                  </div>
-                </div>
-
-                <div className={`p-3.5 rounded-xl border ${darkMode ? "bg-slate-800/60 border-slate-700" : "bg-slate-50 border-slate-200"}`}>
-                  <div className="text-[11px] text-slate-400">RCTs &amp; Clinical Trials</div>
-                  <div className="text-2xl font-black mt-1 text-blue-600 dark:text-blue-400">
-                    {healthData?.metrics?.articles?.studyTypes?.rct ?? 42}
-                  </div>
-                  <div className="text-[10px] text-blue-500 font-semibold mt-0.5">
-                    Randomized Controlled Trials
-                  </div>
-                </div>
-
-                <div className={`p-3.5 rounded-xl border ${darkMode ? "bg-slate-800/60 border-slate-700" : "bg-slate-50 border-slate-200"}`}>
-                  <div className="text-[11px] text-slate-400">Guidelines &amp; Reviews</div>
-                  <div className="text-2xl font-black mt-1 text-purple-600 dark:text-purple-400">
-                    {(healthData?.metrics?.articles?.studyTypes?.meta_analysis || 0) +
-                      (healthData?.metrics?.articles?.studyTypes?.guideline || 0) || 31}
-                  </div>
-                  <div className="text-[10px] text-purple-500 font-semibold mt-0.5">
-                    Practice Guidelines &amp; Meta-analyses
-                  </div>
-                </div>
-
-                <div className={`p-3.5 rounded-xl border ${darkMode ? "bg-slate-800/60 border-slate-700" : "bg-slate-50 border-slate-200"}`}>
-                  <div className="text-[11px] text-slate-400">Observational &amp; Cohort</div>
-                  <div className="text-2xl font-black mt-1 text-amber-600 dark:text-amber-400">
-                    {healthData?.metrics?.articles?.studyTypes?.observational ?? 68}
-                  </div>
-                  <div className="text-[10px] text-amber-500 font-semibold mt-0.5">
-                    Registry &amp; Cohort Studies
-                  </div>
-                </div>
-              </div>
-
-              {/* SUBSPECIALTY DISTRIBUTION BREAKDOWN */}
-              {healthData?.metrics?.articles?.subspecialties &&
-                typeof healthData.metrics.articles.subspecialties === "object" && (
-                <div className="mb-6 space-y-2">
-                  <div className="flex items-center justify-between text-xs font-bold text-slate-700 dark:text-slate-300">
-                    <span>Clinical Subspecialty Distribution</span>
-                    <span className="text-[11px] text-slate-400">
-                      {Object.keys(healthData.metrics.articles.subspecialties).length} Neurology Subspecialties
-                    </span>
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 text-xs">
-                    {Object.entries(healthData.metrics.articles.subspecialties).map(([sub, count]) => {
-                      const total = healthData.metrics.articles.total || 1;
-                      const countNum = typeof count === "number" ? count : Number(count) || 0;
-                      const pct = Math.round((countNum / total) * 100);
-                      return (
-                        <div
-                          key={sub}
-                          className={`p-2 rounded-lg border flex flex-col justify-between ${
-                            darkMode ? "bg-slate-800/40 border-slate-700" : "bg-slate-50 border-slate-200"
-                          }`}
-                        >
-                          <div className="flex items-center justify-between mb-1">
-                            <span className="font-semibold truncate">{sub}</span>
-                            <span className="font-mono font-bold text-slate-500 dark:text-slate-400">
-                              {countNum}
-                            </span>
-                          </div>
-                          <div className="w-full h-1.5 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
-                            <div className="h-full bg-indigo-500 rounded-full" style={{ width: `${Math.max(pct, 5)}%` }} />
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-
-              {/* LIVE ARTICLE SEARCH & VIEWER */}
-              <div className="space-y-3 pt-3 border-t border-slate-200 dark:border-slate-800">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                  <span className="text-xs font-bold text-slate-700 dark:text-slate-300">
-                    Quick Article Search in Local Index
-                  </span>
-                  <div className="relative max-w-sm w-full">
-                    <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs">🔍</span>
-                    <input
-                      type="text"
-                      value={pulseSearchQuery}
-                      onChange={(e) => setPulseSearchQuery(e.target.value)}
-                      placeholder="Search articles by title, journal, or topic..."
-                      className={`w-full pl-7 pr-7 py-1 text-xs rounded-xl border outline-none ${
-                        darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200 text-slate-900"
-                      }`}
-                    />
-                    {pulseSearchQuery && (
-                      <button
-                        onClick={() => setPulseSearchQuery("")}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-xs font-bold"
-                      >
-                        ✕
-                      </button>
-                    )}
-                  </div>
-                </div>
-
-                <div className="divide-y divide-slate-100 dark:divide-slate-800 max-h-56 overflow-y-auto text-xs">
-                  {pulseArticles
-                    .filter((a) => {
-                      if (!pulseSearchQuery.trim()) return true;
-                      const q = pulseSearchQuery.toLowerCase();
-                      const journalName =
-                        typeof a.journal === "string"
-                          ? a.journal
-                          : a.journal?.name || a.journal?.short_name || "";
-                      const subspecialty =
-                        typeof a.subspecialty === "string"
-                          ? a.subspecialty
-                          : a.neurology_classification?.subspecialty ||
-                            (Array.isArray(a.neurology_classification?.subspecialties)
-                              ? a.neurology_classification.subspecialties[0]
-                              : Array.isArray(a.subspecialties)
-                              ? a.subspecialties[0]
-                              : "");
-                      return (
-                        (a.title || "").toLowerCase().includes(q) ||
-                        journalName.toLowerCase().includes(q) ||
-                        subspecialty.toLowerCase().includes(q)
-                      );
-                    })
-                    .slice(0, 8)
-                    .map((a, idx) => {
-                      const journalName =
-                        typeof a.journal === "string"
-                          ? a.journal
-                          : a.journal?.short_name || a.journal?.name || "Journal";
-                      const subspecialty =
-                        typeof a.subspecialty === "string"
-                          ? a.subspecialty
-                          : a.neurology_classification?.subspecialty ||
-                            (Array.isArray(a.neurology_classification?.subspecialties)
-                              ? a.neurology_classification.subspecialties[0]
-                              : Array.isArray(a.subspecialties)
-                              ? a.subspecialties[0]
-                              : "");
-                      const dateDisplay =
-                        a.date ||
-                        (a.pub_date ? a.pub_date.slice(0, 10) : "Recent");
-                      const badgeBg =
-                        a.journal?.badge_bg || "rgba(99, 102, 241, 0.1)";
-                      const badgeText =
-                        a.journal?.badge_text || "#6366f1";
-
-                      return (
-                        <div key={a.id || idx} className="py-2 flex items-start justify-between gap-2">
-                          <div className="min-w-0">
-                            <div className="flex items-center gap-1.5 mb-0.5">
-                              <span
-                                className="font-bold text-[10px] px-1.5 py-0.5 rounded"
-                                style={{
-                                  backgroundColor: badgeBg,
-                                  color: badgeText,
-                                }}
-                              >
-                                {journalName}
-                              </span>
-                              {subspecialty && (
-                                <span className="text-[10px] text-slate-400">{subspecialty}</span>
-                              )}
-                            </div>
-                            <p className="font-medium text-slate-800 dark:text-slate-200 truncate">{a.title}</p>
-                          </div>
-                          <span className="text-[10.5px] font-mono text-slate-400 shrink-0">{dateDisplay}</span>
-                        </div>
-                      );
-                    })}
-                </div>
-              </div>
-
-              <div className="text-xs text-slate-500 dark:text-slate-400 p-3 rounded-xl bg-slate-100 dark:bg-slate-800/60 flex items-center justify-between mt-4">
-                <span>Aggregator workflow bot: <code className="font-mono text-amber-500">python scripts/fetch_nejm.py</code></span>
-                <Link href="/" className="font-bold text-amber-600 dark:text-amber-400 hover:underline">
-                  Open NeuroPulse Reader →
-                </Link>
-              </div>
-            </div>
-          </div>
-        )}
-
         {/* TAB 4: SYSTEM & STORAGE HEALTH */}
         {adminTab === "system" && (
           <div className="space-y-4">
-            <div className={`p-5 rounded-2xl border ${darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200 shadow-xs"}`}>
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+            <div
+              className={`p-6 rounded-2xl border border-l-4 border-l-indigo-500 ${
+                darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200 shadow-xs"
+              }`}
+            >
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5 pb-4 border-b border-slate-200 dark:border-slate-800">
                 <div>
-                  <h3 className="text-sm font-bold flex items-center gap-2">
-                    <span>Cloud Architecture &amp; Ecosystem Security</span>
-                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-bold border border-emerald-500/20">
-                      Live Telemetry
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="text-lg">⚙️</span>
+                    <h3 className="text-base font-bold text-slate-900 dark:text-white">
+                      Cloud Architecture &amp; Ecosystem Security
+                    </h3>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold border border-emerald-500/30 flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                      <span>Live Telemetry</span>
                     </span>
-                  </h3>
-                  <p className="text-[11px] text-slate-500">Storage backend configuration, endpoint health, and security token controls</p>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 font-bold border border-indigo-500/30">
+                      System Core
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-500 mt-1">
+                    Storage backend configuration, endpoint health, and security token controls
+                  </p>
                 </div>
                 <button
                   type="button"
                   onClick={fetchHealthDiagnostics}
                   disabled={isHealthLoading}
-                  className="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-indigo-600 text-white hover:bg-indigo-700 transition-all flex items-center gap-1.5 self-start sm:self-auto cursor-pointer"
+                  className="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-indigo-600 text-white hover:bg-indigo-700 transition-all flex items-center gap-1.5 self-start sm:self-auto cursor-pointer shadow-xs"
                 >
                   <span className={isHealthLoading ? "animate-spin" : ""}>🔄</span>
                   <span>{isHealthLoading ? "Probing System..." : "Probe Diagnostics Now"}</span>
                 </button>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5">
                 {/* 1. Storage Health */}
-                <div className={`p-4 rounded-xl border space-y-2 ${darkMode ? "bg-slate-800/40 border-slate-700" : "bg-slate-50 border-slate-200"}`}>
+                <div
+                  className={`p-4 rounded-xl border border-l-4 border-l-sky-500 space-y-2.5 ${
+                    darkMode ? "bg-sky-950/20 border-sky-900/40" : "bg-sky-50/70 border-sky-200"
+                  }`}
+                >
                   <div className="flex items-center justify-between text-xs font-bold">
-                    <span>☁️ Vercel Blob Cloud</span>
+                    <span className="text-sky-950 dark:text-sky-100 flex items-center gap-1.5">
+                      <span>☁️</span>
+                      <span>Vercel Blob Cloud</span>
+                    </span>
                     <span
-                      className={`px-2 py-0.2 rounded-full text-[10px] font-black ${
+                      className={`px-2 py-0.5 rounded-full text-[10px] font-black ${
                         healthData?.diagnostics?.storage?.blobConnected
-                          ? "bg-emerald-500/15 text-emerald-500"
-                          : "bg-amber-500/15 text-amber-500"
+                          ? "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30"
+                          : "bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30"
                       }`}
                     >
                       {healthData?.diagnostics?.storage?.blobConnected ? "Connected" : "Fallback Ready"}
                     </span>
                   </div>
-                  <div className="text-xs text-slate-400 space-y-1">
-                    <div>Blobs Stored: <strong className="text-slate-200">{healthData?.diagnostics?.storage?.blobFilesCount ?? 0} files</strong></div>
-                    <div>Store ID: <span className="font-mono text-[11px]">{healthData?.diagnostics?.storage?.blobStoreId || "Configured"}</span></div>
-                    <div className="text-[10px] text-slate-500">Auto Multi-tier Fallback Active</div>
+                  <div className="text-xs text-slate-600 dark:text-slate-400 space-y-1">
+                    <div>Blobs Stored: <strong className="text-slate-900 dark:text-slate-200">{healthData?.diagnostics?.storage?.blobFilesCount ?? 0} files</strong></div>
+                    <div>Store ID: <span className="font-mono text-[11px] bg-slate-200/60 dark:bg-slate-800 px-1.5 py-0.5 rounded">{healthData?.diagnostics?.storage?.blobStoreId || "Configured"}</span></div>
+                    <div className="text-[10.5px] text-sky-600 dark:text-sky-400 font-medium">Auto Multi-tier Fallback Active</div>
                   </div>
                 </div>
 
                 {/* 2. AI Engine Health */}
-                <div className={`p-4 rounded-xl border space-y-2 ${darkMode ? "bg-slate-800/40 border-slate-700" : "bg-slate-50 border-slate-200"}`}>
+                <div
+                  className={`p-4 rounded-xl border border-l-4 border-l-violet-500 space-y-2.5 ${
+                    darkMode ? "bg-violet-950/20 border-violet-900/40" : "bg-violet-50/70 border-violet-200"
+                  }`}
+                >
                   <div className="flex items-center justify-between text-xs font-bold">
-                    <span>⚡ Gemini AI Engine</span>
+                    <span className="text-violet-950 dark:text-violet-100 flex items-center gap-1.5">
+                      <span>⚡</span>
+                      <span>Gemini AI Engine</span>
+                    </span>
                     <span
-                      className={`px-2 py-0.2 rounded-full text-[10px] font-black ${
+                      className={`px-2 py-0.5 rounded-full text-[10px] font-black ${
                         healthData?.diagnostics?.ai?.isGeminiConfigured
-                          ? "bg-emerald-500/15 text-emerald-500"
-                          : "bg-rose-500/15 text-rose-500"
+                          ? "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30"
+                          : "bg-rose-500/15 text-rose-600 dark:text-rose-400 border border-rose-500/30"
                       }`}
                     >
                       {healthData?.diagnostics?.ai?.isGeminiConfigured ? "Configured" : "Missing Key"}
                     </span>
                   </div>
-                  <div className="text-xs text-slate-400 space-y-1">
-                    <div>Active Key: <span className="font-mono text-[11px]">{healthData?.diagnostics?.ai?.maskedKey || "AIzaSy..."}</span></div>
-                    <div>Model: <strong className="text-slate-200">Gemini 2.5 Flash / Pro</strong></div>
-                    <div className="text-[10px] text-emerald-500">SSE Real-Time Stream Ready</div>
+                  <div className="text-xs text-slate-600 dark:text-slate-400 space-y-1">
+                    <div>Active Key: <span className="font-mono text-[11px] bg-slate-200/60 dark:bg-slate-800 px-1.5 py-0.5 rounded">{healthData?.diagnostics?.ai?.maskedKey || "AIzaSy..."}</span></div>
+                    <div>Model: <strong className="text-slate-900 dark:text-slate-200">Gemini 2.5 Flash / Pro</strong></div>
+                    <div className="text-[10.5px] text-violet-600 dark:text-violet-400 font-medium">SSE Real-Time Stream Ready</div>
                   </div>
                 </div>
 
                 {/* 3. Security Health */}
-                <div className={`p-4 rounded-xl border space-y-2 ${darkMode ? "bg-slate-800/40 border-slate-700" : "bg-slate-50 border-slate-200"}`}>
+                <div
+                  className={`p-4 rounded-xl border border-l-4 border-l-emerald-500 space-y-2.5 ${
+                    darkMode ? "bg-emerald-950/20 border-emerald-900/40" : "bg-emerald-50/70 border-emerald-200"
+                  }`}
+                >
                   <div className="flex items-center justify-between text-xs font-bold">
-                    <span>🛡️ Security &amp; Auth</span>
-                    <span className="px-2 py-0.2 rounded-full text-[10px] font-black bg-emerald-500/15 text-emerald-500">
+                    <span className="text-emerald-950 dark:text-emerald-100 flex items-center gap-1.5">
+                      <span>🛡️</span>
+                      <span>Security &amp; Auth</span>
+                    </span>
+                    <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
                       100% Protected
                     </span>
                   </div>
-                  <div className="text-xs text-slate-400 space-y-1">
-                    <div>Token TTL: <strong className="text-slate-200">24-Hour Signed Session</strong></div>
-                    <div>XSS Sanitizer: <strong className="text-emerald-500">Active</strong></div>
-                    <div className="text-[10px] text-slate-500">Timing-Safe Constant Equal</div>
+                  <div className="text-xs text-slate-600 dark:text-slate-400 space-y-1">
+                    <div>Token TTL: <strong className="text-slate-900 dark:text-slate-200">24-Hour Signed Session</strong></div>
+                    <div>XSS Sanitizer: <strong className="text-emerald-600 dark:text-emerald-400">Active Strict Filter</strong></div>
+                    <div className="text-[10.5px] text-emerald-600 dark:text-emerald-400 font-medium">Timing-Safe Constant Equal</div>
                   </div>
                 </div>
               </div>
 
               {/* Detailed Service Matrix */}
-              <div className="space-y-2 text-xs">
-                <div className="flex items-center justify-between p-3 rounded-xl border border-slate-200 dark:border-slate-800">
+              <div className="space-y-2.5 text-xs">
+                <div className="font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1.5 pb-1">
+                  <span>📊</span>
+                  <span>Detailed Ecosystem Service Matrix</span>
+                </div>
+
+                <div className={`flex items-center justify-between p-3.5 rounded-xl border border-l-4 border-l-sky-500 transition-all ${
+                  darkMode ? "bg-slate-800/40 border-slate-800" : "bg-slate-50/70 border-slate-200"
+                }`}>
                   <div>
-                    <div className="font-bold">Dynamic Case Storage (NeuroCase)</div>
-                    <div className="text-slate-400 text-[11px]">Automatic multi-tier fallback between Vercel Blob, Vercel KV, and local JSON</div>
+                    <div className="font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+                      <span className="text-sky-500">☁️</span>
+                      <span>Dynamic Storage Multi-Tier Engine</span>
+                    </div>
+                    <div className="text-slate-500 text-[11px] mt-0.5">Automatic multi-tier fallback between Vercel Blob, Vercel KV, and local JSON</div>
                   </div>
-                  <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                  <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
                     Active &amp; Ready
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between p-3 rounded-xl border border-slate-200 dark:border-slate-800">
+                <div className={`flex items-center justify-between p-3.5 rounded-xl border border-l-4 border-l-emerald-500 transition-all ${
+                  darkMode ? "bg-slate-800/40 border-slate-800" : "bg-slate-50/70 border-slate-200"
+                }`}>
                   <div>
-                    <div className="font-bold">Stored XSS Prevention &amp; URL Sanitization</div>
-                    <div className="text-slate-400 text-[11px]">Strict protocol filter stripping javascript: and data: URIs in DOI and image fields</div>
+                    <div className="font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+                      <span className="text-emerald-500">🛡️</span>
+                      <span>Stored XSS Prevention &amp; URL Sanitization</span>
+                    </div>
+                    <div className="text-slate-500 text-[11px] mt-0.5">Strict protocol filter stripping javascript: and data: URIs in DOI and image fields</div>
                   </div>
-                  <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                  <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
                     Active (100% Protected)
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between p-3 rounded-xl border border-slate-200 dark:border-slate-800">
+                <div className={`flex items-center justify-between p-3.5 rounded-xl border border-l-4 border-l-violet-500 transition-all ${
+                  darkMode ? "bg-slate-800/40 border-slate-800" : "bg-slate-50/70 border-slate-200"
+                }`}>
                   <div>
-                    <div className="font-bold">CI Quality Gate Workflow (GitHub Actions)</div>
-                    <div className="text-slate-400 text-[11px]">Automated strict typechecking, 15 unit/security tests, and production build verification</div>
+                    <div className="font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+                      <span className="text-violet-500">🧪</span>
+                      <span>CI Quality Gate Workflow (GitHub Actions)</span>
+                    </div>
+                    <div className="text-slate-500 text-[11px] mt-0.5">Automated strict typechecking, 47 unit/security tests, and production build verification</div>
                   </div>
-                  <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-                    15/15 Tests Passed
+                  <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
+                    47/47 Tests Passed
                   </span>
                 </div>
               </div>
