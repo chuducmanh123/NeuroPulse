@@ -10,6 +10,7 @@ import {
   convertEsoPicoItemsToPracticeChanges,
   isEsoBpGuideline,
 } from "@/lib/neuroguide/esoPicoGrouper";
+import { parseAhaCorAndLoe } from "@/lib/neuroguide/notebooklmParser";
 import { verifyAdminToken } from "@/utils/security";
 
 export const dynamic = "force-dynamic";
@@ -309,7 +310,14 @@ async function syncGuidelineRecordToActiveLibrary(record: GuidelineRecord) {
       : approvedRecs.map((r, idx) => {
           let currentGrade = "Standard Clinical Practice";
           if (r.cor) {
-            currentGrade = `Class ${r.cor}${r.loe ? `, Level ${r.loe}` : ""}`;
+            const cleanCor = String(r.cor).replace(/^Class\s*/i, "").trim();
+            const cleanLoe = String(r.loe || "").replace(/^Level\s*/i, "").trim();
+            currentGrade = `Class ${cleanCor}${cleanLoe ? `, Level ${cleanLoe}` : ""}`;
+          } else if (r.grading_system === "ACC/AHA" || (r as any).currentGrade) {
+            const parsed = parseAhaCorAndLoe((r as any).currentGrade || (r as any).grade || "");
+            currentGrade = parsed.formatted;
+            if (!r.cor) r.cor = parsed.cor;
+            if (!r.loe) r.loe = parsed.loe;
           } else if (r.quality_of_evidence || r.strength_of_recommendation) {
             currentGrade = `GRADE ${r.strength_of_recommendation || "Recommended"} (Evidence: ${r.quality_of_evidence || "Moderate"}${r.voting ? `, Voting: ${r.voting}` : ""})`;
           }
@@ -770,10 +778,9 @@ export async function POST(request: NextRequest) {
             if (updated_item.topic) r.topic = updated_item.topic;
             if (updated_item.category) r.category = updated_item.category;
             if (updated_item.currentGrade) {
-              const corMatch = updated_item.currentGrade.match(/Class\s*([123a-zA-Z:]+)/i);
-              if (corMatch) r.cor = corMatch[1];
-              const loeMatch = updated_item.currentGrade.match(/Level\s*([A-Za-z\-]+)/i);
-              if (loeMatch) r.loe = loeMatch[1];
+              const parsed = parseAhaCorAndLoe(updated_item.currentGrade);
+              r.cor = parsed.cor;
+              r.loe = parsed.loe;
             }
             if (updated_item.drivingTrials) r.driving_trials = updated_item.drivingTrials;
             await saveFileSafe(latestFileName, JSON.stringify(rec, null, 2));
@@ -966,13 +973,10 @@ export async function POST(request: NextRequest) {
           rec.recommendations = allPracticeChanges.map((chg, idx) => {
             let cor = (chg as any).cor;
             let loe = (chg as any).loe;
-            if (!cor && chg.currentGrade?.includes("Class")) {
-              const m = chg.currentGrade.match(/Class\s*([123a-zA-Z:]+)/i);
-              if (m) cor = m[1];
-            }
-            if (!loe && chg.currentGrade?.includes("Level")) {
-              const m = chg.currentGrade.match(/Level\s*([A-Za-z\-]+)/i);
-              if (m) loe = m[1];
+            if (!cor || !loe) {
+              const parsed = parseAhaCorAndLoe(chg.currentGrade || "");
+              if (!cor) cor = parsed.cor;
+              if (!loe) loe = parsed.loe;
             }
 
             const existingRec = rec.recommendations.find((r) => r.rec_id === chg.id);

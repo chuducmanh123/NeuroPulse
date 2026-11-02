@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { AhaGuidelineTable, type AhaGuidelineSection, type AhaRecommendationItem } from "./AhaGuidelineTable";
 import { EsoGuidelineTable, type EsoPicoItem, type EsoEvidenceQuality, type EsoRecommendationStrength } from "./EsoGuidelineTable";
 import { groupPracticeChangesIntoEsoPicos, parseEsoGrade } from "@/lib/neuroguide/esoPicoGrouper";
+import { parseAhaCorAndLoe } from "@/lib/neuroguide/notebooklmParser";
 import type { GuidelineDoc, PracticeChangeDetail } from "@/types/neuroguide";
 
 export { groupPracticeChangesIntoEsoPicos, parseEsoGrade };
@@ -17,32 +18,19 @@ interface GuidelinePresentationRendererProps {
 
 /**
  * Extracts COR (e.g. "1", "2a", "2b", "3: No Benefit", "3: Harm") and LOE (e.g. "A", "B-R", "B-NR", "C-LD", "C-EO")
- * from standard strings like "Class I, Level A", "Class 2a, Level B-NR", "Class 3: Harm, Level C-EO"
+ * from standard strings like "Class 1, Level A", "COR 1LOE B-NR", "Class 3: Harm, Level C-EO"
  */
-function parseAhaGrade(gradeStr: string): { cor: string; loe: string } {
-  let cor = "2a";
-  let loe = "B-NR";
-
-  if (!gradeStr) return { cor, loe };
-
-  // Parse COR
-  const corMatch = gradeStr.match(/Class\s+([I|V|X|1|2|3]+[a-b]?(\s*:\s*[A-Za-z\s]+)?)/i);
-  if (corMatch && corMatch[1]) {
-    cor = corMatch[1].trim();
-    // Normalize Roman numerals to modern AHA standard numbers
-    if (cor === "I") cor = "1";
-    else if (cor === "IIa") cor = "2a";
-    else if (cor === "IIb") cor = "2b";
-    else if (cor === "III") cor = "3";
+function parseAhaGrade(gradeStr: string, itemCor?: string, itemLoe?: string): { cor: string; loe: string } {
+  if (itemCor && itemLoe) {
+    const cleanCor = itemCor.replace(/^Class\s*/i, "").trim();
+    const cleanLoe = itemLoe.replace(/^Level\s*/i, "").trim();
+    return { cor: cleanCor, loe: cleanLoe };
   }
-
-  // Parse LOE
-  const loeMatch = gradeStr.match(/Level\s+(of\s+Evidence\s+)?([A-C](-[A-Z]+)?)/i);
-  if (loeMatch && loeMatch[2]) {
-    loe = loeMatch[2].trim();
-  }
-
-  return { cor, loe };
+  const parsed = parseAhaCorAndLoe(gradeStr || "");
+  return {
+    cor: itemCor?.replace(/^Class\s*/i, "").trim() || parsed.cor,
+    loe: itemLoe?.replace(/^Level\s*/i, "").trim() || parsed.loe,
+  };
 }
 
 export function GuidelinePresentationRenderer({
@@ -72,7 +60,7 @@ export function GuidelinePresentationRenderer({
       );
 
       const recommendations: AhaRecommendationItem[] = itemsInCat.map((item) => {
-        const { cor, loe } = parseAhaGrade(item.currentGrade);
+        const { cor, loe } = parseAhaGrade(item.currentGrade, item.cor, item.loe);
         return {
           id: item.id,
           cor: cor,

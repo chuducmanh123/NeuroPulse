@@ -215,7 +215,7 @@ export function AhaGuidelineTable({
 
                     {/* Recommendation Statement */}
                     <p className="text-xs sm:text-[13px] leading-relaxed text-slate-800 dark:text-slate-200 whitespace-pre-line">
-                      {rec.statement}
+                      {rec.statement ? rec.statement.replace(/^\d+[\.\)]\s*/, "") : ""}
                       {rec.citations && (
                         <sup className="font-bold text-blue-600 dark:text-blue-400 ml-1">
                           {rec.citations}
@@ -309,7 +309,7 @@ export function AhaGuidelineTable({
                           </span>
                           <div className="flex-1 space-y-1">
                             <p className="text-slate-800 dark:text-slate-200 leading-relaxed whitespace-pre-line">
-                              {rec.statement}
+                              {rec.statement ? rec.statement.replace(/^\d+[\.\)]\s*/, "") : ""}
                               {rec.citations && (
                                 <sup className="font-bold text-blue-600 dark:text-blue-400 ml-1">
                                   {rec.citations}

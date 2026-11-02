@@ -268,13 +268,16 @@ export function detectSociety(title: string, journal: string): string {
     return "ESO";
   }
 
-  // AHA/ASA
+  // AHA/ASA & ACC
   if (
     t.includes("AMERICAN HEART ASSOCIATION") ||
     t.includes("AMERICAN STROKE ASSOCIATION") ||
+    t.includes("AMERICAN COLLEGE OF CARDIOLOGY") ||
     t.includes("AHA/ASA") ||
+    t.includes("ACC/AHA") ||
     /\bAHA\b/.test(t) ||
-    /\bASA\b/.test(t)
+    /\bASA\b/.test(t) ||
+    /\bACC\b/.test(t)
   ) {
     return "AHA/ASA";
   }

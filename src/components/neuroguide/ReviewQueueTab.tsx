@@ -14,6 +14,7 @@ import {
   CANONICAL_ESO_2025_BP_PICOS,
   CANONICAL_ESO_2026_ASAH_PICOS,
 } from "@/lib/neuroguide/esoPicoGrouper";
+import { parseAhaCorAndLoe } from "@/lib/neuroguide/notebooklmParser";
 import type { GuidelineDoc, PracticeChangeDetail } from "@/types/neuroguide";
 
 export interface StoredRec {
@@ -717,10 +718,22 @@ export function ReviewQueueTab({
   };
 
   const handleOpenEditGuideline = (group: PendingGuidelineGroup) => {
+    const societyUpper = (group.society || "").toUpperCase();
+    const titleUpper = (group.guideline_title || "").toUpperCase();
+    const isAha =
+      societyUpper.includes("AHA") ||
+      societyUpper.includes("ACC") ||
+      societyUpper.includes("ASA") ||
+      titleUpper.includes("AHA") ||
+      titleUpper.includes("ACC") ||
+      group.recommendations.some((r) => r.grading_system === "ACC/AHA" || Boolean(r.cor));
+
     const isDocEso =
-      (group.society || "").toUpperCase().includes("ESO") ||
-      (group.guideline_title || "").toUpperCase().includes("ESO") ||
-      (group.guideline_id || "").toLowerCase().includes("eso");
+      !isAha &&
+      (societyUpper.includes("ESO") ||
+        titleUpper.includes("ESO") ||
+        (group.guideline_id || "").toLowerCase().includes("eso") ||
+        group.recommendations.some((r) => r.grading_system === "GRADE" || Boolean(r.pico_id)));
 
     const canonicalList = getCanonicalEsoPicos(group.guideline_title, group.guideline_id);
 
@@ -756,9 +769,14 @@ export function ReviewQueueTab({
             if (isDocEso) {
               currentGrade = `GRADE ${s} (Evidence: ${q}${r.voting ? `, Voting: ${r.voting}` : ""})`;
             } else if (r.cor) {
-              currentGrade = `Class ${r.cor}${r.loe ? `, Level ${r.loe}` : ""}`;
-            } else if (r.quality_of_evidence || r.strength_of_recommendation) {
-              currentGrade = `GRADE ${s} (Evidence: ${q})`;
+              const cleanCor = String(r.cor).replace(/^Class\s*/i, "").trim();
+              const cleanLoe = String(r.loe || "").replace(/^Level\s*/i, "").trim();
+              currentGrade = `Class ${cleanCor}${cleanLoe ? `, Level ${cleanLoe}` : ""}`;
+            } else {
+              const parsed = parseAhaCorAndLoe((r as any).currentGrade || (r as any).grade || "");
+              currentGrade = parsed.formatted;
+              if (!r.cor) r.cor = parsed.cor;
+              if (!r.loe) r.loe = parsed.loe;
             }
 
             const finalConsensus =
@@ -771,6 +789,8 @@ export function ReviewQueueTab({
               id: r.rec_id || `rec-${idx + 1}`,
               topic: r.topic || r.target_population || (isDocEso ? `PICO ${pNum || idx + 1}: Clinical Question` : `Khuyến cáo #${idx + 1}`),
               currentGrade,
+              cor: r.cor,
+              loe: r.loe,
               currentText: r.statement,
               category: r.category || "General Recommendations",
               drivingTrials: r.driving_trials || [],
@@ -786,11 +806,11 @@ export function ReviewQueueTab({
 
     const docMeta: GuidelineDoc = {
       id: group.guideline_id,
-      society: isDocEso ? "ESO" : (group.society || "General"),
+      society: isDocEso ? "ESO" : (isAha ? "AHA/ASA" : (group.society || "General")),
       year: group.year || new Date().getFullYear(),
       title: group.guideline_title,
       officialUrl: "",
-      journalTarget: isDocEso ? "European Stroke Journal" : (group.society.includes("AHA") ? "Stroke" : "Neurology"),
+      journalTarget: isDocEso ? "European Stroke Journal" : ((isAha || group.society.includes("AHA")) ? "Stroke" : "Neurology"),
       documentType: "Clinical Practice Guideline",
       publishDate: `${group.year || new Date().getFullYear()}-01-01`,
       subspecialty: "Stroke",
@@ -811,14 +831,24 @@ export function ReviewQueueTab({
 
   const handleOpenEditRecommendation = (rec: StoredRec) => {
     const parentGroup = guidelineGroups.find((g) => g.guideline_id === rec.guideline_id);
+    const titleUpper = `${parentGroup?.guideline_title || ""} ${rec.guideline_title || ""}`.toUpperCase();
+    const societyUpper = `${parentGroup?.society || ""} ${rec.society || ""}`.toUpperCase();
+    const isAha =
+      societyUpper.includes("AHA") ||
+      societyUpper.includes("ACC") ||
+      societyUpper.includes("ASA") ||
+      titleUpper.includes("AHA") ||
+      titleUpper.includes("ACC") ||
+      rec.grading_system === "ACC/AHA" ||
+      Boolean(rec.cor);
+
     const isDocEso =
-      (parentGroup?.society || "").toUpperCase().includes("ESO") ||
-      (parentGroup?.guideline_title || "").toUpperCase().includes("ESO") ||
-      (rec.society || "").toUpperCase().includes("ESO") ||
-      (rec.guideline_title || "").toUpperCase().includes("ESO") ||
-      (rec.guideline_id || "").toLowerCase().includes("eso") ||
-      Boolean(rec.quality_of_evidence) ||
-      Boolean(rec.strength_of_recommendation);
+      !isAha &&
+      (societyUpper.includes("ESO") ||
+        titleUpper.includes("ESO") ||
+        (rec.guideline_id || "").toLowerCase().includes("eso") ||
+        rec.grading_system === "GRADE" ||
+        Boolean(rec.pico_id));
 
     const docTitle = parentGroup?.guideline_title || rec.guideline_title;
     const docId = parentGroup?.guideline_id || rec.guideline_id;
@@ -856,9 +886,14 @@ export function ReviewQueueTab({
             if (isDocEso) {
               currentGrade = `GRADE ${s} (Evidence: ${q}${r.voting ? `, Voting: ${r.voting}` : ""})`;
             } else if (r.cor) {
-              currentGrade = `Class ${r.cor}${r.loe ? `, Level ${r.loe}` : ""}`;
-            } else if (r.quality_of_evidence || r.strength_of_recommendation) {
-              currentGrade = `GRADE ${s} (Evidence: ${q})`;
+              const cleanCor = String(r.cor).replace(/^Class\s*/i, "").trim();
+              const cleanLoe = String(r.loe || "").replace(/^Level\s*/i, "").trim();
+              currentGrade = `Class ${cleanCor}${cleanLoe ? `, Level ${cleanLoe}` : ""}`;
+            } else {
+              const parsed = parseAhaCorAndLoe((r as any).currentGrade || (r as any).grade || "");
+              currentGrade = parsed.formatted;
+              if (!r.cor) r.cor = parsed.cor;
+              if (!r.loe) r.loe = parsed.loe;
             }
 
             const finalConsensus =
@@ -871,6 +906,8 @@ export function ReviewQueueTab({
               id: r.rec_id || `rec-${idx + 1}`,
               topic: r.topic || r.target_population || (isDocEso ? `PICO ${pNum || idx + 1}: Clinical Question` : `Khuyến cáo #${idx + 1}`),
               currentGrade,
+              cor: r.cor,
+              loe: r.loe,
               currentText: r.statement,
               category: r.category || "General Recommendations",
               drivingTrials: r.driving_trials || [],
@@ -893,10 +930,10 @@ export function ReviewQueueTab({
         parentGroup?.guideline_title ||
         rec.guideline_title ||
         "Hướng dẫn thực hành lâm sàng",
-      society: isDocEso ? "ESO" : (parentGroup?.society || rec.society || "General"),
+      society: isDocEso ? "ESO" : (isAha ? "AHA/ASA" : (parentGroup?.society || rec.society || "General")),
       year: parentGroup?.year || rec.year || 2026,
       officialUrl: "",
-      journalTarget: isDocEso ? "European Stroke Journal" : (rec.society?.includes("AHA") ? "Stroke" : "Neurology"),
+      journalTarget: isDocEso ? "European Stroke Journal" : ((isAha || rec.society?.includes("AHA")) ? "Stroke" : "Neurology"),
       documentType: "Clinical Practice Guideline",
       publishDate: `${parentGroup?.year || rec.year || 2026}-01-01`,
       subspecialty: "Stroke",
@@ -1476,13 +1513,18 @@ export function ReviewQueueTab({
                           title={`Khuyến cáo: ${group.guideline_title}`}
                           sections={group.categories.map((c) => ({
                             sectionTitle: c.name,
-                            recommendations: c.items.map((it) => ({
-                              id: it.rec_id,
-                              cor: it.cor || "2a",
-                              loe: it.loe || "B-NR",
-                              statement: it.statement,
-                              drivingTrials: it.driving_trials,
-                            })),
+                            recommendations: c.items.map((it) => {
+                              const parsed = parseAhaCorAndLoe((it as any).currentGrade || (it as any).grade || "");
+                              const cor = it.cor ? String(it.cor).replace(/^Class\s*/i, "").trim() : parsed.cor;
+                              const loe = it.loe ? String(it.loe).replace(/^Level\s*/i, "").trim() : parsed.loe;
+                              return {
+                                id: it.rec_id,
+                                cor: cor || "1",
+                                loe: loe || "B-NR",
+                                statement: it.statement,
+                                drivingTrials: it.driving_trials,
+                              };
+                            }),
                           }))}
                           darkMode={darkMode}
                           allowEdit={true}
@@ -1522,13 +1564,18 @@ export function ReviewQueueTab({
                           title={`Khuyến cáo: ${group.guideline_title}`}
                           sections={group.categories.map((c) => ({
                             sectionTitle: c.name,
-                            recommendations: c.items.map((it) => ({
-                              id: it.rec_id,
-                              cor: it.cor || "2a",
-                              loe: it.loe || "B-NR",
-                              statement: it.statement,
-                              drivingTrials: it.driving_trials,
-                            })),
+                            recommendations: c.items.map((it) => {
+                              const parsed = parseAhaCorAndLoe((it as any).currentGrade || (it as any).grade || "");
+                              const cor = it.cor ? String(it.cor).replace(/^Class\s*/i, "").trim() : parsed.cor;
+                              const loe = it.loe ? String(it.loe).replace(/^Level\s*/i, "").trim() : parsed.loe;
+                              return {
+                                id: it.rec_id,
+                                cor: cor || "1",
+                                loe: loe || "B-NR",
+                                statement: it.statement,
+                                drivingTrials: it.driving_trials,
+                              };
+                            }),
                           }))}
                           darkMode={darkMode}
                           allowEdit={true}

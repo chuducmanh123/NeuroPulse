@@ -8,6 +8,7 @@ import {
   isEsoBpGuideline,
   isEsoAsahGuideline,
 } from "./esoPicoGrouper.ts";
+import { parseAhaCorAndLoe } from "./notebooklmParser.ts";
 
 const STORE_DIR = path.join(process.cwd(), "data", "guidelines_store");
 const TMP_DIR = path.join("/tmp", "guidelines_store");
@@ -93,13 +94,23 @@ export async function saveStoreFileSafe(fileName: string, dataStr: string): Prom
 export async function registerCandidateGuideline(doc: GuidelineDoc): Promise<boolean> {
   if (!doc || !doc.id || !doc.title) return false;
 
-  const isDocEso = Boolean(
+  const isAhaDoc = Boolean(
+    (doc.society || "").toUpperCase().includes("AHA") ||
+    (doc.society || "").toUpperCase().includes("ACC") ||
+    (doc.society || "").toUpperCase().includes("ASA") ||
+    (doc.title || "").toUpperCase().includes("AHA") ||
+    (doc.title || "").toUpperCase().includes("ACC") ||
+    (doc.allPracticeChanges || []).some(
+      (c) => c.cor || c.currentGrade?.toLowerCase().includes("class") || c.currentGrade?.toLowerCase().includes("cor")
+    )
+  );
+
+  const isDocEso = !isAhaDoc && Boolean(
     (doc.society || "").toUpperCase().includes("ESO") ||
     (doc.title || "").toUpperCase().includes("ESO") ||
-    (doc.title || "").toLowerCase().includes("blood pressure") ||
     (doc.id || "").toLowerCase().includes("eso") ||
     (doc.allPracticeChanges || []).some(
-      (c) => c.quality || c.strength || c.picoNumber || c.currentGrade?.toLowerCase().includes("grade")
+      (c) => c.picoNumber || c.currentGrade?.toLowerCase().includes("grade") || (c.topic && /PICO\s*\d+/i.test(c.topic))
     )
   );
 
@@ -114,7 +125,10 @@ export async function registerCandidateGuideline(doc: GuidelineDoc): Promise<boo
       }
     }
 
-    const recIsEso = isDocEso || Boolean(chg.quality || chg.strength || pNum || chg.currentGrade?.toLowerCase().includes("grade"));
+    const recIsEso = isDocEso && Boolean(pNum || chg.currentGrade?.toLowerCase().includes("grade"));
+    const parsedAha = parseAhaCorAndLoe(chg.currentGrade || "");
+    const cor = chg.cor || (!recIsEso ? parsedAha.cor : undefined);
+    const loe = chg.loe || (!recIsEso ? parsedAha.loe : undefined);
 
     const qualityOfEvidence = chg.quality || (
       chg.currentGrade?.includes("Evidence:")
@@ -137,8 +151,8 @@ export async function registerCandidateGuideline(doc: GuidelineDoc): Promise<boo
       approval_status: "PENDING_REVIEW",
       category: chg.category || (recIsEso ? "Blood Pressure" : "Recommendations"),
       topic: topic,
-      cor: chg.currentGrade?.includes("Class") ? chg.currentGrade.split(",")[0].trim() : undefined,
-      loe: chg.currentGrade?.includes("Level") ? chg.currentGrade.split("Level")[1]?.trim() : undefined,
+      cor: cor,
+      loe: loe,
       quality_of_evidence: qualityOfEvidence,
       strength_of_recommendation: strengthOfRecommendation,
       voting: chg.voting || undefined,
@@ -378,10 +392,19 @@ export function getStoredGuidelinesAsDocs(): GuidelineDoc[] {
         practiceChanges = convertEsoPicoItemsToPracticeChanges(canonicalEsoPicos, defaultCat);
       } else {
         practiceChanges = activeRecs.map((r: any, idx: number) => {
-          const isEsoRec = Boolean(
+          const isAhaRec = Boolean(
+            (metadata.society || "").toUpperCase().includes("AHA") ||
+            (metadata.society || "").toUpperCase().includes("ACC") ||
+            (metadata.society || "").toUpperCase().includes("ASA") ||
+            (metadata.title || "").toUpperCase().includes("AHA") ||
+            (metadata.title || "").toUpperCase().includes("ACC") ||
+            r.grading_system === "ACC/AHA" ||
+            Boolean(r.cor)
+          );
+
+          const isEsoRec = !isAhaRec && Boolean(
             (metadata.society || "").toUpperCase().includes("ESO") ||
             r.grading_system === "GRADE" ||
-            r.quality_of_evidence ||
             r.pico_id ||
             (r.strength_of_recommendation && ["strong", "weak", "conditional", "uncertain"].some((k) => r.strength_of_recommendation.toLowerCase().includes(k)))
           );
@@ -391,7 +414,14 @@ export function getStoredGuidelinesAsDocs(): GuidelineDoc[] {
 
           let currentGrade = "Standard Clinical Practice";
           if (r.cor) {
-            currentGrade = `Class ${r.cor}${r.loe ? `, Level ${r.loe}` : ""}`;
+            const cleanCor = String(r.cor).replace(/^Class\s*/i, "").trim();
+            const cleanLoe = String(r.loe || "").replace(/^Level\s*/i, "").trim();
+            currentGrade = `Class ${cleanCor}${cleanLoe ? `, Level ${cleanLoe}` : ""}`;
+          } else if (isAhaRec || (r as any).currentGrade) {
+            const parsed = parseAhaCorAndLoe((r as any).currentGrade || (r as any).grade || "");
+            currentGrade = parsed.formatted;
+            if (!r.cor) r.cor = parsed.cor;
+            if (!r.loe) r.loe = parsed.loe;
           } else if (r.quality_of_evidence || r.strength_of_recommendation) {
             currentGrade = `GRADE ${normStrength} (Evidence: ${r.quality_of_evidence || "Moderate"}${r.voting ? `, Voting: ${r.voting}` : ""})`;
           }
@@ -424,6 +454,8 @@ export function getStoredGuidelinesAsDocs(): GuidelineDoc[] {
             previousGrade: r.previous_grade || undefined,
             currentText: r.statement,
             currentGrade,
+            cor: r.cor,
+            loe: r.loe,
             drivingTrials: r.driving_trials || [],
             quality: r.quality_of_evidence || undefined,
             strength: isEsoRec ? normStrength : (r.strength_of_recommendation || undefined),

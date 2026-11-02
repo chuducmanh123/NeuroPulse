@@ -28,6 +28,14 @@ function cleanCell(cell: string): string {
 function parseEvidenceStudies(evidenceStr: string): string[] {
   if (!evidenceStr || evidenceStr.trim().length === 0) return [];
 
+  if (evidenceStr.includes("•") || evidenceStr.includes("\n")) {
+    const items = evidenceStr
+      .split(/(?:•|\r?\n)+/)
+      .map((s) => s.replace(/^[•\-\*\s]+/, "").trim())
+      .filter((s) => s.length > 2);
+    if (items.length > 0) return items;
+  }
+
   // Split by bullet characters, commas, or semicolons
   const items = evidenceStr
     .split(/(?:•|\n|,|;\s*(?=[A-Z]))/)
@@ -38,19 +46,88 @@ function parseEvidenceStudies(evidenceStr: string): string[] {
 }
 
 /**
+ * Robust parser for AHA / ACC Class of Recommendation (COR) and Level of Evidence (LOE)
+ * Parses strings like:
+ * - "COR 1LOE B-NR" -> { cor: "1", loe: "B-NR", formatted: "Class 1, Level B-NR" }
+ * - "COR 2bLOE B-R" -> { cor: "2b", loe: "B-R", formatted: "Class 2b, Level B-R" }
+ * - "COR 3: HarmLOE B-R" -> { cor: "3: Harm", loe: "B-R", formatted: "Class 3: Harm, Level B-R" }
+ * - "COR 3: No BenefitLOE B-NR" -> { cor: "3: No Benefit", loe: "B-NR", formatted: "Class 3: No Benefit, Level B-NR" }
+ * - "Class 1, Level A" -> { cor: "1", loe: "A", formatted: "Class 1, Level A" }
+ */
+export function parseAhaCorAndLoe(rawGrade: string): { cor: string; loe: string; formatted: string } {
+  if (!rawGrade || typeof rawGrade !== "string") {
+    return { cor: "1", loe: "B-NR", formatted: "Class 1, Level B-NR" };
+  }
+
+  const str = rawGrade.trim();
+  let cor = "";
+  let loe = "";
+
+  // 1. Detect COR (Class of Recommendation)
+  if (/no[\s_-]?benefit/i.test(str)) {
+    cor = "3: No Benefit";
+  } else if (/harm/i.test(str)) {
+    cor = "3: Harm";
+  } else {
+    // Match patterns like "COR 1", "COR: 2a", "Class 2b", "Class IIa", "COR 1LOE"
+    const corMatch = str.match(/(?:COR|Class)\s*[:.-]?\s*([123]|I{1,3}|IV|V)?\s*([ab])?/i);
+    if (corMatch && (corMatch[1] || corMatch[2])) {
+      let num = (corMatch[1] || "").toUpperCase();
+      const sub = (corMatch[2] || "").toLowerCase();
+      if (num === "I") num = "1";
+      else if (num === "II") num = "2";
+      else if (num === "III") num = "3";
+
+      if (num === "2" && (sub === "a" || sub === "b")) {
+        cor = `2${sub}`;
+      } else if (num) {
+        cor = num;
+      }
+    }
+  }
+
+  // 2. Detect LOE (Level of Evidence)
+  const loeMatch = str.match(/(?:LOE|Level(?:\s+of\s+Evidence)?)\s*[:.-]?\s*([A-C](?:-[A-Z]+)?)/i);
+  if (loeMatch && loeMatch[1]) {
+    loe = loeMatch[1].toUpperCase();
+  }
+
+  // Fallbacks if either wasn't matched with prefix
+  if (!cor) {
+    if (/\b2a\b/i.test(str)) cor = "2a";
+    else if (/\b2b\b/i.test(str)) cor = "2b";
+    else if (/\b1\b/i.test(str)) cor = "1";
+    else if (/\b3\b/i.test(str)) cor = "3";
+    else cor = "1";
+  }
+
+  if (!loe) {
+    if (/\bB-NR\b/i.test(str)) loe = "B-NR";
+    else if (/\bB-R\b/i.test(str)) loe = "B-R";
+    else if (/\bC-LD\b/i.test(str)) loe = "C-LD";
+    else if (/\bC-EO\b/i.test(str)) loe = "C-EO";
+    else if (/\bA\b/i.test(str)) loe = "A";
+    else if (/\bB\b/i.test(str)) loe = "B";
+    else if (/\bC\b/i.test(str)) loe = "C";
+    else loe = "B-NR";
+  }
+
+  return { cor, loe, formatted: `Class ${cor}, Level ${loe}` };
+}
+
+/**
  * Formats raw COR/LOE string into clean standard format
- * e.g., "Class 1  LOE B-NR" -> "Class 1, Level B-NR"
+ * e.g., "COR 1LOE B-NR" -> "Class 1, Level B-NR"
  * "Class 3: No Benefit  LOE A" -> "Class 3: No Benefit, Level A"
  * "Class 3: Harm  LOE B-NR" -> "Class 3: Harm, Level B-NR"
  */
-function formatGrade(rawGrade: string): string {
-  let g = rawGrade.trim().replace(/\s+/g, " ");
-  // Replace "Class X  LOE Y" with "Class X, Level Y"
-  g = g.replace(/LOE\s+/i, "Level ");
-  if (g.includes("Class") && g.includes("Level") && !g.includes(",")) {
-    g = g.replace(/(Class\s+[^\s,]+(?:\s*:\s*[^\s,]+)?)\s+(Level\s+[^\s,]+)/i, "$1, $2");
+export function formatGrade(rawGrade: string): string {
+  if (!rawGrade) return "Class 1, Level B-NR";
+  const str = rawGrade.trim();
+  if (str.toUpperCase().includes("GRADE") || str.toLowerCase().includes("evidence:")) {
+    return str;
   }
-  return g;
+  return parseAhaCorAndLoe(str).formatted;
 }
 
 /**
@@ -242,15 +319,22 @@ export function parseNotebookLMContent(
     if (rawHeaderParts.length > 0 && rawHeaderParts[rawHeaderParts.length - 1] === "") rawHeaderParts.pop();
     const headerCols = rawHeaderParts.map((c) => c.toLowerCase());
 
+    const isAhaTable =
+      detectedSociety.toUpperCase().includes("AHA") ||
+      detectedSociety.toUpperCase().includes("ACC") ||
+      detectedSociety.toUpperCase().includes("ASA") ||
+      headerCols.some((c) => c.includes("cor") || c.includes("loe") || c.includes("class"));
+
     const isEsoTable =
-      detectedSociety.toUpperCase().includes("ESO") ||
-      headerCols.some((c) => c.includes("pico")) ||
-      headerCols.some((c) => c.includes("quality")) ||
-      headerCols.some((c) => c.includes("chất lượng")) ||
-      headerCols.some((c) => c.includes("strength")) ||
-      headerCols.some((c) => c.includes("độ mạnh")) ||
-      headerCols.some((c) => c.includes("consensus")) ||
-      headerCols.some((c) => c.includes("đồng thuận"));
+      !isAhaTable &&
+      (detectedSociety.toUpperCase().includes("ESO") ||
+        headerCols.some((c) => c.includes("pico")) ||
+        headerCols.some((c) => c.includes("quality")) ||
+        headerCols.some((c) => c.includes("chất lượng")) ||
+        headerCols.some((c) => c.includes("strength")) ||
+        headerCols.some((c) => c.includes("độ mạnh")) ||
+        headerCols.some((c) => c.includes("consensus")) ||
+        headerCols.some((c) => c.includes("đồng thuận")));
 
     let colPicoIdx = headerCols.findIndex((c) => c.includes("pico") || c.includes("clinical question") || c.includes("câu hỏi"));
     let colTopicIdx = headerCols.findIndex((c) => c.includes("topic") || c.includes("domain") || c.includes("category") || c.includes("lâm sàng") || c.includes("chủ đề"));
@@ -313,6 +397,8 @@ export function parseNotebookLMContent(
         statement = filteredCells.reduce((a, b) => (b.length > a.length ? b : a), "");
       }
       if (!statement || statement.length < 5) continue;
+      // Clean leading numbering like "1. ", "2. ", "1) " from statement to avoid duplicate numbers in UI
+      statement = statement.replace(/^\d+[\.\)]\s*/, "").trim();
 
       if (isEsoTable) {
         // ESO GRADE format
@@ -373,12 +459,11 @@ export function parseNotebookLMContent(
         const rawEvidence = colEvidenceIdx !== -1 && colEvidenceIdx < filteredCells.length ? filteredCells[colEvidenceIdx] : "";
 
         const { category, topic } = extractCategoryAndTopic(rawDomain);
-        const grade = formatGrade(rawGrade);
-        const changeType = inferChangeType(grade, statement);
+        const { cor, loe, formatted } = parseAhaCorAndLoe(rawGrade);
+        const changeType = inferChangeType(formatted, statement);
         const drivingTrials = parseEvidenceStudies(rawEvidence);
 
-        const corMatch = grade.match(/Class\s+([^\s,]+)/i);
-        const corKey = corMatch ? `Class ${corMatch[1]}` : grade.slice(0, 15);
+        const corKey = `Class ${cor}`;
         corBreakdown[corKey] = (corBreakdown[corKey] || 0) + 1;
 
         practiceChanges.push({
@@ -386,7 +471,9 @@ export function parseNotebookLMContent(
           category,
           topic,
           changeType,
-          currentGrade: grade,
+          currentGrade: formatted,
+          cor,
+          loe,
           currentText: statement,
           drivingTrials: drivingTrials.length > 0 ? drivingTrials : [`${detectedSociety} Practice Committee`],
         });

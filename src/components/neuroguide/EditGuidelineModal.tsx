@@ -5,6 +5,7 @@ import type { GuidelineDoc, PracticeChangeDetail, SubspecialtyType } from "@/typ
 import { NEUROLOGY_SUBSPECIALTIES } from "@/types/neuroguide";
 import { ESO_GRADE_QUALITY_CONFIG } from "./EsoGuidelineTable";
 import { normalizeEsoStrength } from "@/lib/neuroguide/esoPicoGrouper";
+import { parseAhaCorAndLoe } from "@/lib/neuroguide/notebooklmParser";
 import { getAdminHeaders, getStoredAdminToken } from "@/utils/clientAuth";
 
 interface EditGuidelineModalProps {
@@ -98,26 +99,12 @@ export interface EsoPicoDraft {
 
 function parseAhaCor(gradeStr?: string): string {
   if (!gradeStr) return "1";
-  const lower = gradeStr.toLowerCase();
-  if (lower.includes("no benefit")) return "3: No Benefit";
-  if (lower.includes("harm")) return "3: Harm";
-  const m = gradeStr.match(/Class\s*([123a-bIVX]+)/i);
-  if (m) {
-    const c = m[1].toUpperCase();
-    if (c === "I") return "1";
-    if (c === "IIA") return "2a";
-    if (c === "IIB") return "2b";
-    if (c === "III") return "3: Harm";
-    return m[1];
-  }
-  return "1";
+  return parseAhaCorAndLoe(gradeStr).cor;
 }
 
 function parseAhaLoe(gradeStr?: string): string {
   if (!gradeStr) return "A";
-  const m = gradeStr.match(/Level\s*([A-C](-[A-Z]+)?)/i);
-  if (m) return m[1].toUpperCase();
-  return "A";
+  return parseAhaCorAndLoe(gradeStr).loe;
 }
 
 function parseEsoQuality(gradeStr?: string): string {
@@ -321,41 +308,64 @@ export function EditGuidelineModal({
   const currentSociety = (docSociety || guidelineDoc?.society || "").toUpperCase();
   const currentTitle = (docTitle || guidelineDoc?.title || "").toLowerCase();
 
+  const isDetectedAha = useMemo(() => {
+    if (currentSociety.includes("AHA") || currentSociety.includes("ASA") || currentSociety.includes("ACC")) return true;
+    if (
+      currentTitle.includes("aha") ||
+      currentTitle.includes("acc") ||
+      currentTitle.includes("american heart") ||
+      currentTitle.includes("stroke association") ||
+      currentTitle.includes("atrial fibrillation")
+    ) {
+      return true;
+    }
+    if (
+      item?.cor ||
+      item?.currentGrade?.toLowerCase().includes("class ") ||
+      item?.currentGrade?.toLowerCase().includes("level ") ||
+      item?.currentGrade?.toLowerCase().includes("cor ")
+    ) {
+      return true;
+    }
+    if (
+      practiceChanges.some(
+        (p) =>
+          p.cor ||
+          p.currentGrade?.toLowerCase().includes("class ") ||
+          p.currentGrade?.toLowerCase().includes("cor ")
+      )
+    ) {
+      return true;
+    }
+    return false;
+  }, [currentSociety, currentTitle, item, practiceChanges]);
+
   const isDetectedEso = useMemo(() => {
+    if (isDetectedAha) return false;
     if (currentSociety.includes("ESO") || currentSociety.includes("EUROPEAN STROKE")) return true;
     if (
       currentTitle.includes("eso") ||
-      currentTitle.includes("european stroke") ||
-      currentTitle.includes("blood pressure management in acute")
+      currentTitle.includes("european stroke")
     ) {
       return true;
     }
     if (docId?.toLowerCase().includes("eso")) return true;
-    if (item?.quality || item?.strength || item?.picoNumber || item?.voting) return true;
-    if (item?.currentGrade?.toLowerCase().includes("grade") || item?.topic?.toLowerCase().includes("pico")) return true;
+    if (item?.picoNumber || item?.voting) return true;
+    if (item?.topic?.toLowerCase().includes("pico")) return true;
     if (
       practiceChanges.some(
         (p) =>
-          p.currentGrade?.toLowerCase().includes("grade") ||
-          p.quality ||
-          p.strength ||
+          p.picoNumber ||
           p.topic?.toLowerCase().includes("pico")
       )
     ) {
       return true;
     }
     return false;
-  }, [currentSociety, currentTitle, docId, item, practiceChanges]);
-
-  const isDetectedAha = useMemo(() => {
-    if (currentSociety.includes("AHA") || currentSociety.includes("ASA") || currentSociety.includes("ACC")) return true;
-    if (currentTitle.includes("aha") || currentTitle.includes("american heart") || currentTitle.includes("stroke association")) return true;
-    if (item?.currentGrade?.toLowerCase().includes("class ") || item?.currentGrade?.toLowerCase().includes("level ")) return true;
-    return false;
-  }, [currentSociety, currentTitle, item]);
+  }, [currentSociety, currentTitle, docId, item, practiceChanges, isDetectedAha]);
 
   const isEso = formFormat === "ESO" || (formFormat === "AUTO" && isDetectedEso);
-  const isAha = formFormat === "AHA" || (formFormat === "AUTO" && !isDetectedEso && isDetectedAha);
+  const isAha = formFormat === "AHA" || (formFormat === "AUTO" && !isDetectedEso);
 
   // Sync state when modal opens or props change
   useEffect(() => {
