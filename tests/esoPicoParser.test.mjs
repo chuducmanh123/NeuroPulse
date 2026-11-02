@@ -77,6 +77,13 @@ Table 11 Synoptic table of all recommendations and expert consensus statements.
     assert.equal(normalizeEsoStrength("Weak for intervention"), "Weak for intervention");
     assert.equal(normalizeEsoStrength("Uncertain"), "Uncertain / Ongoing trials");
     assert.equal(normalizeEsoStrength("—"), "Uncertain / Ongoing trials");
+    assert.equal(normalizeEsoStrength("–"), "Uncertain / Ongoing trials");
+    assert.equal(normalizeEsoStrength("-"), "Uncertain / Ongoing trials");
+    assert.equal(normalizeEsoStrength("Not assessable (–)"), "Uncertain / Ongoing trials");
+    assert.equal(normalizeEsoStrength("Not assessable (-)"), "Uncertain / Ongoing trials");
+    assert.equal(normalizeEsoStrength("Not assessable"), "Uncertain / Ongoing trials");
+    assert.equal(normalizeEsoStrength("(–)"), "Uncertain / Ongoing trials");
+    assert.equal(normalizeEsoStrength("(-)", "In patients with aSAH, we do not suggest routine screening"), "Uncertain / Ongoing trials");
 
     // Symbols
     assert.equal(normalizeEsoStrength("↓↓"), "Strong against intervention");

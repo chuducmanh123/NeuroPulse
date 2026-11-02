@@ -57,7 +57,16 @@ export function renderGradeQuality(quality: string) {
   const norm = (quality || "").trim().toLowerCase();
   let conf = ESO_GRADE_QUALITY_CONFIG[quality] || ESO_GRADE_QUALITY_CONFIG["Moderate"];
 
-  if (norm.includes("uncertain") || norm.includes("ongoing") || norm === "-" || norm === "—") {
+  if (
+    norm.includes("uncertain") ||
+    norm.includes("not assessable") ||
+    norm.includes("ongoing") ||
+    norm === "-" ||
+    norm === "—" ||
+    norm === "–" ||
+    norm === "(–)" ||
+    norm === "(-)"
+  ) {
     conf = ESO_GRADE_QUALITY_CONFIG["Uncertain / Ongoing trial"] || ESO_GRADE_QUALITY_CONFIG["Moderate"];
   } else if (norm.includes("very low")) {
     conf = ESO_GRADE_QUALITY_CONFIG["Very low"];

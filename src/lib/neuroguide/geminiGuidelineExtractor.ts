@@ -123,8 +123,8 @@ Tasks:
    - voting: voting consensus ratio (e.g. "Vote: 10/10") or null
    - recommendations: array of discrete recommendations under this PICO:
      - statement: actionable clinical directive
-     - qualityOfEvidence: "High", "Moderate", "Low", or "Very low"
-     - strengthOfRecommendation: "Strong for intervention", "Weak for intervention", "Weak against intervention", or "Strong against intervention"
+     - qualityOfEvidence: "High", "Moderate", "Low", "Very low", or "Uncertain / Ongoing trial"
+     - strengthOfRecommendation: "Strong for intervention", "Weak for intervention", "Weak against intervention", "Strong against intervention", or "Uncertain / Ongoing trials" (IMPORTANT: If the guideline states "Not assessable (–)" or "–", map to "Uncertain / Ongoing trials", NEVER map to "Weak against intervention")
      - drivingTrials: array of pivotal trials/studies cited (e.g. ["RIGHT-2", "FAST-MAG", "MR ASAP"])
 
 Respond strictly in JSON matching this schema:
@@ -684,8 +684,8 @@ For each PICO question:
 2. Extract the full picoQuestion (e.g. "In patients with suspected acute stroke, does pre-hospital blood pressure lowering with any drug, compared to no drug, improve outcome?")
 3. Extract all Recommendations under this PICO:
    - statement: clear actionable clinical directive
-   - qualityOfEvidence: "High", "Moderate", "Low", or "Very low"
-   - strengthOfRecommendation: "Strong for intervention", "Weak for intervention", "Weak against intervention", or "Strong against intervention"
+   - qualityOfEvidence: "High", "Moderate", "Low", "Very low", or "Uncertain / Ongoing trial"
+   - strengthOfRecommendation: "Strong for intervention", "Weak for intervention", "Weak against intervention", "Strong against intervention", or "Uncertain / Ongoing trials" (IMPORTANT: If the guideline states "Not assessable (–)" or "–", map to "Uncertain / Ongoing trials", NEVER map to "Weak against intervention")
    - drivingTrials: landmark trials mentioned (e.g. ["RIGHT-2", "FAST-MAG", "MR ASAP"])
 4. Extract Expert Consensus Statement for this PICO if formulated:
    - statement: consensus text (e.g. "Due to the potential harm to patients with ICH...")

@@ -562,14 +562,30 @@ export function normalizeEsoStrength(raw?: string, statement?: string): EsoRecom
   const norm = (raw || "").trim().toLowerCase();
   const stmtNorm = (statement || "").trim().toLowerCase();
 
-  // 1. Uncertain / No recommendation grade (—)
+  // 1. Uncertain / No recommendation grade (—) / Not assessable (–)
   if (
     norm.includes("uncertain") ||
+    norm.includes("not assessable") ||
+    norm.includes("unassessable") ||
+    norm.includes("not assessed") ||
+    norm.includes("không thể đánh giá") ||
+    norm.includes("không đánh giá") ||
+    norm.includes("không khuyến cáo được") ||
+    norm.includes("no recommendation") ||
+    norm.includes("ongoing trial") ||
+    norm.includes("insufficient") ||
     norm.includes("chưa rõ") ||
+    norm.includes("không xác định") ||
+    norm.includes("(–)") ||
+    norm.includes("(-)") ||
+    norm.includes("(—)") ||
     norm === "—" ||
     norm === "-" ||
+    norm === "–" ||
     norm === "not graded" ||
-    norm === "ungraded"
+    norm === "ungraded" ||
+    norm === "none" ||
+    norm === "n/a"
   ) {
     return "Uncertain / Ongoing trials";
   }
@@ -658,6 +674,18 @@ export function normalizeEsoStrength(raw?: string, statement?: string): EsoRecom
 
   // 8. Fallback inference purely from clinical statement text if strength is missing/empty
   if (
+    stmtNorm.includes("no recommendation can be") ||
+    stmtNorm.includes("no recommendation is made") ||
+    stmtNorm.includes("no suggestion can be given") ||
+    stmtNorm.includes("insufficient evidence to recommend") ||
+    stmtNorm.includes("current evidence is insufficient") ||
+    stmtNorm.includes("current data are insufficient") ||
+    stmtNorm.includes("chưa đủ bằng chứng để khuyến cáo") ||
+    stmtNorm.includes("không đưa ra khuyến cáo")
+  ) {
+    return "Uncertain / Ongoing trials";
+  }
+  if (
     stmtNorm.includes("recommend against") ||
     stmtNorm.includes("strongly suggest against") ||
     stmtNorm.includes("khuyến cáo mạnh không")
@@ -713,6 +741,14 @@ export function parseEsoGrade(gradeStr?: string, statement?: string): {
   else if ((lower.includes("low") || lower.includes("thấp")) && !lower.includes("very") && !lower.includes("rất")) quality = "Low";
   else if (lower.includes("high") || lower.includes("cao")) quality = "High";
   else if (lower.includes("moderate") || lower.includes("trung bình")) quality = "Moderate";
+  else if (
+    lower.includes("uncertain") ||
+    lower.includes("not assessable") ||
+    lower.includes("ongoing") ||
+    lower.trim() === "-" ||
+    lower.trim() === "—" ||
+    lower.trim() === "–"
+  ) quality = "Uncertain / Ongoing trial";
 
   // Voting parsing
   const voteMatch = (gradeStr || "").match(/Voting:\s*([0-9]+\/[0-9]+|Unanimous)/i);

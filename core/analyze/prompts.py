@@ -114,9 +114,10 @@ CÁC NGUYÊN TẮC BẮT BUỘC ĐỂ TRÁNH SAI SÓT (BẢNG SYNOPTIC TABLE C�
 2. MỘT PICO CÓ THỂ CÓ NHIỀU KHUYẾN CÁO:
    - Trong 1 PICO, nếu có đánh số (ví dụ: 1., 2., 3., 4.), HÃY TÁCH THÀNH CÁC OBJECT KHUYẾN CÁO RIÊNG BIỆT trong mảng "recommendations" (ví dụ: PICO 3 có 2 khuyến cáo, PICO 4 có 4 khuyến cáo). Tất cả các object này đều mang cùng "pico_id" và "topic" của PICO đó.
 3. TRÍCH XUẤT CHÍNH XÁC STRENGTH VÀ QUALITY TỪ BẢNG:
-   - Trích xuất ĐÚNG NGUYÊN VĂN nhãn "Strength of recommendation" được in trong bảng: "Strong for intervention", "Weak for intervention", "Strong against intervention", "Weak against intervention" (hoặc "Uncertain / -" nếu không có).
+   - Trích xuất ĐÚNG NGUYÊN VĂN nhãn "Strength of recommendation" được in trong bảng: "Strong for intervention", "Weak for intervention", "Strong against intervention", "Weak against intervention" (hoặc "Uncertain / Ongoing trials" / "Uncertain" nếu không có hoặc chưa đánh giá).
+   - ĐẶC BIỆT LƯU Ý: Khi tài liệu guideline ESO ghi Strength of recommendation là "Not assessable (–)" hoặc "–" / "-" thì tương đương mục "Uncertain" ("Uncertain / Ongoing trials"), TUYỆT ĐỐI KHÔNG xếp thành "Weak against intervention".
    - KHÔNG tự tiện suy diễn Strength từ từ ngữ trong câu (Ví dụ: PICO 1 câu văn dùng "we suggest against..." nhưng bảng chính thức xếp "Strong against intervention" - PHẢI lấy theo nhãn in trong bảng!).
-   - "Quality of evidence" phải chuẩn hóa theo GRADE: "High", "Moderate", "Low", hoặc "Very low" (tương ứng ⊕⊕⊕⊕, ⊕⊕⊕, ⊕⊕, ⊕).
+   - "Quality of evidence" phải chuẩn hóa theo GRADE: "High", "Moderate", "Low", hoặc "Very low" (tương ứng ⊕⊕⊕⊕, ⊕⊕⊕, ⊕⊕, ⊕, hoặc "Uncertain / Ongoing trial" nếu bảng ghi "–" / "Not assessable").
 4. NHIỀU PHÁT BIỂU ĐỒNG THUẬN CHUYÊN GIA TRONG 1 PICO:
    - Một số PICO có nhiều đoạn đồng thuận chuyên gia (ví dụ PICO 7 có 4 đồng thuận, PICO 8 có 2 đồng thuận). Hãy trích xuất đầy đủ tất cả các đoạn đồng thuận đó vào "consensus_statement" (phân cách bằng xuống dòng) cùng tỷ lệ Vote tương ứng.
 
@@ -134,8 +135,8 @@ Hãy trả về một mảng JSON theo schema sau (không thêm bất kỳ văn 
       "pico_id": "Mã câu hỏi PICO (ví dụ: PICO 1, PICO 2...)",
       "section": "Tiêu đề bảng (ví dụ: Table 11 Synoptic table of all recommendations and expert consensus statements)",
       "topic": "Toàn văn câu hỏi PICO (ví dụ: In patients with suspected acute stroke, does pre-hospital blood pressure lowering with any drug, compared to no drug, improve outcome?)",
-      "quality_of_evidence": "High, Moderate, Low, hoặc Very low",
-      "strength_of_recommendation": "Strong for intervention, Weak for intervention, Strong against intervention, hoặc Weak against intervention",
+      "quality_of_evidence": "High, Moderate, Low, Very low, hoặc Uncertain / Ongoing trial",
+      "strength_of_recommendation": "Strong for intervention, Weak for intervention, Strong against intervention, Weak against intervention, hoặc Uncertain / Ongoing trials (khi bảng ghi Not assessable (–) hoặc –)",
       "consensus_statement": "Toàn văn câu Expert Consensus Statement tương ứng nếu có ở cột phải (hoặc null nếu không có, TUYỆT ĐỐI không copy cột Recommendation sang đây)",
       "voting": "Tỷ lệ bỏ phiếu (ví dụ: Vote: 10/10 hoặc null)",
       "statement": "Toàn văn khuyến cáo lâm sàng ở cột Recommendation",
@@ -151,7 +152,7 @@ PROMPT_GRADE_ESO_BATCH = """Bạn là chuyên gia bóc tách dữ liệu y khoa 
 CÁC NGUYÊN TẮC BẮT BUỘC:
 1. BẢNG 2 CỘT TÁCH BIỆT: Cột trái là "Recommendation" (kèm Quality và Strength), cột phải là "Expert consensus statement" (kèm Vote: X/X). TUYỆT ĐỐI KHÔNG copy cột Recommendation sang consensus_statement. Nếu cột phải trống (như PICO 3), trả về null.
 2. MỘT PICO CÓ THỂ CÓ NHIỀU KHUYẾN CÁO: Tách từng đề mục 1., 2., 3., 4. thành các object khuyến cáo riêng biệt trong mảng (PICO 3 có 2 khuyến cáo, PICO 4 có 4 khuyến cáo).
-3. ĐỘ MẠNH VÀ CHẤT LƯỢNG BẰNG CHỨNG: Đọc chính xác nhãn in trong bảng ("Strong against intervention", "Weak against intervention", "Weak for intervention", "Strong for intervention"), không tự suy luận từ chữ "suggest" hay "recommend".
+3. ĐỘ MẠNH VÀ CHẤT LƯỢNG BẰNG CHỨNG: Đọc chính xác nhãn in trong bảng ("Strong against intervention", "Weak against intervention", "Weak for intervention", "Strong for intervention", hoặc "Uncertain / Ongoing trials" khi bảng ghi "Not assessable (–)" hoặc "–"). KHÔNG tự suy luận từ chữ "suggest" hay "recommend". ĐẶC BIỆT: "Not assessable (–)" tương đương mục Uncertain ("Uncertain / Ongoing trials"), TUYỆT ĐỐI KHÔNG xếp thành "Weak against intervention".
 4. NHIỀU ĐỒNG THUẬN CHUYÊN GIA: Trích xuất đầy đủ tất cả các ý đồng thuận chuyên gia (như PICO 7 có 4 đồng thuận, PICO 8 có 2 đồng thuận).
 
 VĂN BẢN ĐẦU VÀO TỪ CÁC TRANG {pages_str}:
@@ -168,8 +169,8 @@ Trả về mảng JSON theo schema:
       "pico_id": "Mã PICO (ví dụ: PICO 1, PICO 2...)",
       "section": "Tiêu đề bảng hoặc mục",
       "topic": "Toàn văn câu hỏi PICO đầy đủ",
-      "quality_of_evidence": "High, Moderate, Low, hoặc Very low",
-      "strength_of_recommendation": "Strong for intervention, Weak for intervention, Strong against intervention, hoặc Weak against intervention",
+      "quality_of_evidence": "High, Moderate, Low, Very low, hoặc Uncertain / Ongoing trial",
+      "strength_of_recommendation": "Strong for intervention, Weak for intervention, Strong against intervention, Weak against intervention, hoặc Uncertain / Ongoing trials (khi ghi Not assessable (–) hoặc –)",
       "consensus_statement": "Toàn văn Expert Consensus Statement tương ứng nếu có ở cột phải (hoặc null nếu không có, không copy cột trái sang)",
       "voting": "Vote: 10/10 nếu có (hoặc null)",
       "statement": "Toàn văn khuyến cáo lâm sàng",

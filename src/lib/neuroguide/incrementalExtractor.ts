@@ -379,6 +379,7 @@ CRITICAL INSTRUCTIONS FOR ESO SYNOPTIC TABLE EXTRACTION:
 3. Preserve the EXACT PICO identifier from the document (e.g. "1a", "1b", "2", "3a", "3b", "4", etc.). If Topic 1 is divided into "PICO 1a" and "PICO 1b" with no standalone "PICO 1", DO NOT create a separate "PICO 1".
 4. DO NOT extract front-matter executive boxes (such as "Key recommendations/suggestions of the Guideline" on early pages) as PICO items.
 5. DO NOT extract Expert Consensus Statements as separate PICO items! Instead, combine all Expert Consensus Statements belonging to a PICO (numbered 1., 2., etc., including exact voting counts like "(Vote: 19/19)") into the "expert_consensus_statement" field of that PICO.
+6. When the guideline table specifies "Not assessable (–)" or "–" or "Not assessable" for Strength of recommendation, set strength_of_recommendation to "Uncertain / Ongoing trials" (NEVER map it to "Weak against intervention").
 
 Respond strictly in valid JSON matching this schema:
 {

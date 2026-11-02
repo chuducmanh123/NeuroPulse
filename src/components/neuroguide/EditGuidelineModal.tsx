@@ -121,7 +121,16 @@ function parseAhaLoe(gradeStr?: string): string {
 function parseEsoQuality(gradeStr?: string): string {
   if (!gradeStr) return "Moderate";
   const lower = gradeStr.toLowerCase();
-  if (lower.includes("uncertain") || lower.includes("ongoing") || lower === "-" || lower === "—") return "Uncertain / Ongoing trial";
+  if (
+    lower.includes("uncertain") ||
+    lower.includes("not assessable") ||
+    lower.includes("ongoing") ||
+    lower === "-" ||
+    lower === "—" ||
+    lower === "–" ||
+    lower.includes("(–)") ||
+    lower.includes("(-)")
+  ) return "Uncertain / Ongoing trial";
   if (lower.includes("very low")) return "Very low";
   if (lower.includes("low")) return "Low";
   if (lower.includes("high")) return "High";
@@ -132,7 +141,16 @@ function getEsoQualityConfig(quality?: string) {
   if (!quality) return ESO_GRADE_QUALITY_CONFIG["Moderate"];
   if (ESO_GRADE_QUALITY_CONFIG[quality]) return ESO_GRADE_QUALITY_CONFIG[quality];
   const lower = quality.toLowerCase().trim();
-  if (lower.includes("uncertain") || lower.includes("ongoing") || lower === "-" || lower === "—") {
+  if (
+    lower.includes("uncertain") ||
+    lower.includes("not assessable") ||
+    lower.includes("ongoing") ||
+    lower === "-" ||
+    lower === "—" ||
+    lower === "–" ||
+    lower.includes("(–)") ||
+    lower.includes("(-)")
+  ) {
     return ESO_GRADE_QUALITY_CONFIG["Uncertain / Ongoing trial"];
   }
   if (lower.includes("very low")) return ESO_GRADE_QUALITY_CONFIG["Very low"];
