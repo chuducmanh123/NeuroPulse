@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+/* Ẩn scrollbar nhưng vẫn cho phép cuộn */
+.scrollbar-none {
+  -ms-overflow-style: none; /* IE và Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
 /* Tối ưu render DOM cho danh sách bài báo dài */
 .article-card-optimized {
   content-visibility: auto;

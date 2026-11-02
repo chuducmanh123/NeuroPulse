@@ -1023,7 +1023,7 @@ export default function NeuroGuidePage() {
                                   setEditingPracticeChange(null);
                                   setShowEditModal(true);
                                 }}
-                                className="px-2 py-0.5 rounded text-[10.5px] font-bold bg-amber-500/10 text-amber-600 hover:bg-amber-500/20 border border-amber-500/30 flex items-center gap-1 cursor-pointer transition-colors"
+                                className="px-2 py-0.5 rounded text-[10.5px] font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400 hover:bg-amber-500/20 border border-amber-500/30 flex items-center gap-1 cursor-pointer transition-colors"
                                 title="Edit guideline metadata"
                               >
                                 <span>✏️ Edit</span>
@@ -1035,7 +1035,7 @@ export default function NeuroGuidePage() {
                                   e.stopPropagation();
                                   handleDeleteGuideline(doc);
                                 }}
-                                className="px-2 py-0.5 rounded text-[10.5px] font-bold bg-rose-500/10 text-rose-600 hover:bg-rose-500/20 border border-rose-500/30 flex items-center gap-1 cursor-pointer transition-colors disabled:opacity-50"
+                                className="px-2 py-0.5 rounded text-[10.5px] font-bold bg-rose-500/10 text-rose-600 dark:text-rose-400 hover:bg-rose-500/20 border border-rose-500/30 flex items-center gap-1 cursor-pointer transition-colors disabled:opacity-50"
                                 title="Delete guideline"
                               >
                                 <span>{deleteLoadingId === doc.id ? "..." : "🗑️"}</span>
@@ -1046,7 +1046,7 @@ export default function NeuroGuidePage() {
                       </div>
 
                       {/* Title */}
-                      <h3 className="text-sm sm:text-lg font-bold leading-snug">
+                      <h3 className="text-sm sm:text-lg font-bold leading-snug text-slate-900 dark:text-white">
                         {doc.title}
                       </h3>
 
@@ -1393,7 +1393,7 @@ export default function NeuroGuidePage() {
                         </a>
                       </div>
 
-                      <h3 className="text-base sm:text-lg font-bold leading-snug">
+                      <h3 className="text-base sm:text-lg font-bold leading-snug text-slate-900 dark:text-white">
                         {conf.name}
                       </h3>
 
@@ -1663,7 +1663,7 @@ export default function NeuroGuidePage() {
                             )}
                           </div>
 
-                          <h4 className="text-xs sm:text-sm font-bold leading-snug line-clamp-2">
+                          <h4 className="text-xs sm:text-sm font-bold leading-snug line-clamp-2 text-slate-900 dark:text-slate-100">
                             {scenario.title}
                           </h4>
 
@@ -1733,7 +1733,7 @@ export default function NeuroGuidePage() {
                           </span>
                         </div>
 
-                        <h2 className="text-lg sm:text-xl font-black leading-snug">
+                        <h2 className="text-lg sm:text-xl font-black leading-snug text-slate-900 dark:text-white">
                           {currentScenario.title}
                         </h2>
 
