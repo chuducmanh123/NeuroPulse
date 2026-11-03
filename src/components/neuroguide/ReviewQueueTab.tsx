@@ -536,6 +536,7 @@ export function ReviewQueueTab({
           const filteredDel = localDel.filter((x) => !targetIds.has(x.toLowerCase()) && x.toLowerCase() !== normTitle);
           localStorage.setItem("neuroguide_deleted_ids", JSON.stringify(filteredDel));
           localStorage.removeItem("neuroguide_cached_guidelines");
+          localStorage.removeItem("neuroguide_swr_store_v2");
         } catch {}
         setFeedbackMessage({
           type: "success",
@@ -629,6 +630,7 @@ export function ReviewQueueTab({
           const filteredDel = localDel.filter((x) => !targetIds.has(x.toLowerCase()) && !normTitles.has(x.toLowerCase()));
           localStorage.setItem("neuroguide_deleted_ids", JSON.stringify(filteredDel));
           localStorage.removeItem("neuroguide_cached_guidelines");
+          localStorage.removeItem("neuroguide_swr_store_v2");
         } catch {}
         setFeedbackMessage({
           type: "success",

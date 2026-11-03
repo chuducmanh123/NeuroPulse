@@ -418,7 +418,10 @@ export function getStoredGuidelinesAsDocs(): GuidelineDoc[] {
         officialUrl: metadata.source_url || "https://pubmed.ncbi.nlm.nih.gov/",
         journalTarget: metadata.society?.includes("ESO") ? "European Stroke Journal" : metadata.society?.includes("AHA") ? "Stroke" : "Neurology",
         documentType: "Clinical Practice Guideline",
-        publishDate: record.guideline_id.includes("aha") ? "2026-01-26" : `${metadata.year || 2026}-01-01`,
+        publishDate:
+          record.guideline_id === "aha-ais-2026" || record.guideline_id === "aha2026_test"
+            ? "2026-01-26"
+            : `${metadata.year || 2026}-01-01`,
         subspecialty,
         subspecialties: [subspecialty],
         executiveSummary: summaryText,

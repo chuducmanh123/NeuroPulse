@@ -337,10 +337,25 @@ export async function loadMergedNeuroGuideData(): Promise<{
     ...((localData as any)?.deleted_guideline_ids || []).map((x: string) => x.toLowerCase()),
   ]);
 
-  // Chặn mọi guideline đang nằm trong Review Queue nhưng chưa được duyệt
+  // Tuyệt đối gỡ bỏ khỏi deletedSet bất kỳ guideline nào đã được phê duyệt hợp lệ (trong kho duyệt hoặc Mock baseline)
+  for (const approvedId of approvedStoreIds) {
+    deletedSet.delete(approvedId);
+  }
+  for (const approvedTitle of approvedStoreTitles) {
+    deletedSet.delete(approvedTitle);
+  }
+  for (const mDoc of MOCK_GUIDELINE_DOCS) {
+    if (approvedStoreIds.has(mDoc.id.toLowerCase()) || approvedStoreTitles.has(normalizeT(mDoc.title))) {
+      deletedSet.delete(mDoc.id.toLowerCase());
+      deletedSet.delete(normalizeT(mDoc.title));
+    }
+  }
+
+  // Tập hợp các key chưa duyệt (dùng để tạm chặn hiển thị trên client, KHÔNG ghi vào deletedGuidelineIds vĩnh viễn)
+  const unapprovedFilterSet = new Set<string>();
   for (const unapprovedKey of unapprovedStoreKeys) {
     if (!approvedStoreIds.has(unapprovedKey) && !approvedStoreTitles.has(unapprovedKey)) {
-      deletedSet.add(unapprovedKey);
+      unapprovedFilterSet.add(unapprovedKey);
     }
   }
 
@@ -356,7 +371,7 @@ export async function loadMergedNeuroGuideData(): Promise<{
       const soc = (g.society || "").toUpperCase();
       const lowerTitle = (g.title || "").toLowerCase();
 
-      if (deletedSet.has(id) || deletedSet.has(norm)) {
+      if (deletedSet.has(id) || deletedSet.has(norm) || unapprovedFilterSet.has(id) || unapprovedFilterSet.has(norm)) {
         needsSelfHealSave = true;
         continue;
       }
@@ -508,6 +523,16 @@ export async function saveNeuroGuideToActiveStorage(payload: {
       effectiveDeletedIds = [];
     }
   }
+
+  // Tuyệt đối loại bỏ mọi ID hoặc Tiêu đề của guideline đang active/approved khỏi danh sách deletedGuidelineIds
+  const activeKeys = new Set<string>();
+  payload.guidelines.forEach((g) => {
+    if (g.id) activeKeys.add(g.id.toLowerCase().trim());
+    if (g.title) activeKeys.add(g.title.toLowerCase().replace(/[^a-z0-9]/g, ""));
+  });
+  effectiveDeletedIds = (effectiveDeletedIds || []).filter(
+    (id) => !activeKeys.has((id || "").toLowerCase().trim())
+  );
 
   const fullPayload: NeuroGuideBlobPayload = {
     guidelines: payload.guidelines,

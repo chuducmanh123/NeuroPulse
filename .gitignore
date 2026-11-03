@@ -12,3 +12,6 @@ data/guidelines_store/jobs.json
 data/guidelines_raw/
 data/*.pdf
 
+
+.vercel
+.env*

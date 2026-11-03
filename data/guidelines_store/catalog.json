@@ -6,11 +6,11 @@
     "year": 2026,
     "latest_version": 3,
     "total_recommendations": 63,
-    "pending_count": 3,
-    "approved_count": 60,
+    "pending_count": 0,
+    "approved_count": 63,
     "rejected_count": 0,
     "grading_system": "AHA_ACC",
-    "updated_at": "2026-01-26T08:30:00Z"
+    "updated_at": "2026-11-03T07:18:22.242Z"
   },
   "aha-primary-prevention-2024": {
     "guideline_id": "aha-primary-prevention-2024",
@@ -19,11 +19,11 @@
     "year": 2024,
     "latest_version": 1,
     "total_recommendations": 83,
-    "pending_count": 83,
-    "approved_count": 0,
+    "pending_count": 0,
+    "approved_count": 83,
     "rejected_count": 0,
     "grading_system": "ACC/AHA",
-    "updated_at": "2026-10-31T03:41:54.540Z"
+    "updated_at": "2026-11-03T07:18:22.242Z"
   },
   "ahaasa-2023-aha-asa-guideline-for-the-management-of-patie": {
     "guideline_id": "ahaasa-2023-aha-asa-guideline-for-the-management-of-patie",

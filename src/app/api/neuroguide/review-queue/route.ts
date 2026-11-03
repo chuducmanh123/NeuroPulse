@@ -407,6 +407,24 @@ export async function POST(request: NextRequest) {
             rec.updated_at = new Date().toISOString();
             await saveFileSafe(fileName, JSON.stringify(rec, null, 2));
             await syncGuidelineRecordToActiveLibrary(rec);
+
+            // Cập nhật catalog.json
+            try {
+              const catalogInfo = getFileContent("catalog.json");
+              if (catalogInfo) {
+                const catalog = JSON.parse(catalogInfo.content);
+                const catKey = rec.guideline_id || fileName.replace(/_latest\.json$/i, "");
+                if (catalog[catKey]) {
+                  catalog[catKey].pending_count = rec.pending_count;
+                  catalog[catKey].approved_count = rec.approved_count;
+                  catalog[catKey].updated_at = rec.updated_at;
+                  await saveFileSafe("catalog.json", JSON.stringify(catalog, null, 2));
+                }
+              }
+            } catch (catErr) {
+              console.warn("Lỗi cập nhật catalog trong batch approve:", catErr);
+            }
+
             totalApproved += modified;
           }
         } catch (e) {

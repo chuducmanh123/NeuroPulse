@@ -8,8 +8,8 @@
     "source_url": "https://doi.org/10.1161/STR.0000000000000475"
   },
   "total_recommendations": 83,
-  "pending_count": 83,
-  "approved_count": 0,
+  "pending_count": 0,
+  "approved_count": 83,
   "rejected_count": 0,
   "recommendations": [
     {
@@ -26,14 +26,16 @@
       "target_population": "Individuals 40-79 years of age",
       "driving_trials": [],
       "verbatim_quote": "In individuals 40-79 years of age, estimation of risk for atherosclerotic CVD (ie, nonfatal MI, nonfatal stroke, and fat...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-02",
@@ -49,14 +51,16 @@
       "target_population": "Individuals with AF",
       "driving_trials": [],
       "verbatim_quote": "In individuals with AF, calculation of the CHA2DS2-VASc score is recommended to guide decisions on prescription of oral ...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-03",
@@ -72,14 +76,16 @@
       "target_population": "Individuals >=18 years of age",
       "driving_trials": [],
       "verbatim_quote": "In individuals >=18 years of age, periodic screening for modifiable behaviors and medical conditions that increase strok...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-04",
@@ -95,14 +101,16 @@
       "target_population": "Individuals >=18 years of age",
       "driving_trials": [],
       "verbatim_quote": "In individuals >=18 years of age, periodic screening for SDOH (eg, food insecurity, lack of transportation) is beneficia...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-05",
@@ -118,14 +126,16 @@
       "target_population": "Adults without prior CVD and at high or intermediate CVD risk",
       "driving_trials": [],
       "verbatim_quote": "In adults without prior CVD and who are at high or intermediate CVD risk, a Mediterranean diet is recommended to reduce ...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-06",
@@ -141,14 +151,16 @@
       "target_population": "Adults >=60 years of age with uncontrolled BP",
       "driving_trials": [],
       "verbatim_quote": "In adults who are >=60 years of age and have uncontrolled BP (systolic BP [SBP] >=140 mm Hg if taking antihypertensive m...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-07",
@@ -164,14 +176,16 @@
       "target_population": "Adults",
       "driving_trials": [],
       "verbatim_quote": "In adults, folic acid supplementation and B-complex (folic acid, B12, B6) vitamins supplementation for reducing the risk...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-08",
@@ -189,14 +203,16 @@
         "REDUCE-IT"
       ],
       "verbatim_quote": "In adults without prior CVD, long-chain fatty acids are not effective for reducing the risk of stroke....",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-09",
@@ -212,14 +228,16 @@
       "target_population": "Adults",
       "driving_trials": [],
       "verbatim_quote": "In adults, vitamin C, vitamin E, selenium, antioxidants, calcium, calcium with vitamin D, and multivitamin supplementati...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-10",
@@ -235,14 +253,16 @@
       "target_population": "Adults",
       "driving_trials": [],
       "verbatim_quote": "In adults, screening for physical activity is recommended as part of a comprehensive effort to estimate stroke risk....",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-11",
@@ -258,14 +278,16 @@
       "target_population": "Adults",
       "driving_trials": [],
       "verbatim_quote": "In adults, counseling patients to engage in at least 150 minutes of moderate-intensity physical activity, 75 minutes of ...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-12",
@@ -281,14 +303,16 @@
       "target_population": "Adults",
       "driving_trials": [],
       "verbatim_quote": "In adults, counseling to avoid excessive time spent in sedentary behavior (characterized by low-energy expenditure while...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-13",
@@ -304,14 +328,16 @@
       "target_population": "Adults >18 years of age",
       "driving_trials": [],
       "verbatim_quote": "In adults >18 years of age, screening for overweight and obesity is recommended to inform the risk of stroke....",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-14",
@@ -327,14 +353,16 @@
       "target_population": "Patients with class II obesity or greater",
       "driving_trials": [],
       "verbatim_quote": "In patients with class II obesity (35-39.9 kg/m2) or greater, bariatric surgical procedures to promote weight loss may b...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-15",
@@ -350,14 +378,16 @@
       "target_population": "Adults",
       "driving_trials": [],
       "verbatim_quote": "The effectiveness of screening adults for OSA to prevent stroke is unclear....",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-16",
@@ -375,14 +405,16 @@
         "SAVE"
       ],
       "verbatim_quote": "In patients with OSA, continuous positive airway pressure (CPAP) might be reasonable to reduce the risk of stroke....",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-17",
@@ -398,14 +430,16 @@
       "target_population": "Asymptomatic adults >=18 years with overweight, obesity, or ASCVD",
       "driving_trials": [],
       "verbatim_quote": "In asymptomatic adults >=18 years of age who have overweight, obesity, or atherosclerotic CVD, screening for prediabetes...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-18",
@@ -424,14 +458,16 @@
         "REWIND"
       ],
       "verbatim_quote": "In patients with diabetes and high cardiovascular risk or established CVD and hemoglobin A1c >=7%, treatment with a GLP-...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-19",
@@ -447,14 +483,16 @@
       "target_population": "Patients with type 1 or type 2 diabetes",
       "driving_trials": [],
       "verbatim_quote": "In patients with type 1 diabetes or diabetes, intensive glycemic control (targeting a hemoglobin A1c <=6.5%) is not bene...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-20",
@@ -470,14 +508,16 @@
       "target_population": "Adults >=18 years of age",
       "driving_trials": [],
       "verbatim_quote": "In adults >=18 years of age, screening for hypertension is recommended to identify individuals at increased risk for str...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-21",
@@ -496,14 +536,16 @@
         "ACCORD BP"
       ],
       "verbatim_quote": "In adults with stage 2 hypertension or stage 1 hypertension with a higher risk for atherosclerotic CVD, lifestyle improv...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-22",
@@ -521,14 +563,16 @@
         "ALLHAT"
       ],
       "verbatim_quote": "In adults with hypertension, thiazide and thiazide-like diuretics, calcium channel blockers, angiotensin-converting enzy...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-23",
@@ -544,14 +588,16 @@
       "target_population": "Most adults with hypertension",
       "driving_trials": [],
       "verbatim_quote": "In most adults with hypertension, antihypertensive drug treatment incorporating >=2 antihypertensive medications is indi...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-24",
@@ -569,14 +615,16 @@
         "HOPE-3"
       ],
       "verbatim_quote": "In adults who qualify for treatment with lipid-lowering therapy according to the 2019 ACC/AHA guideline on the primary p...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-25",
@@ -592,14 +640,16 @@
       "target_population": "Adults without CVD qualifying for lipid therapy unable to reach goals/tolerate statins",
       "driving_trials": [],
       "verbatim_quote": "In adults without CVD who qualify for treatment with lipid-lowering therapy, according to the 2019 ACC/AHA guideline on ...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-26",
@@ -617,14 +667,16 @@
         "CLEAR Outcomes"
       ],
       "verbatim_quote": "In adults who do not tolerate statin therapy and who have LDL-C >100 mg/dL and elevated cardiovascular risk, treatment w...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-27",
@@ -640,14 +692,16 @@
       "target_population": "Adults with moderate or low intake of long-chain omega-3 fatty acids",
       "driving_trials": [],
       "verbatim_quote": "In adults with moderate or low intake of long-chain omega-3 fatty acid, supplementation is not recommended to reduce the...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-28",
@@ -663,14 +717,16 @@
       "target_population": "All patients",
       "driving_trials": [],
       "verbatim_quote": "In all patients, screening for cigarette smoking, use of other forms of tobacco, use of electronic nicotine delivery sys...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-29",
@@ -686,14 +742,16 @@
       "target_population": "Nonusers of tobacco products",
       "driving_trials": [],
       "verbatim_quote": "For patients who are nonusers of tobacco products, continued complete abstention from cigarette smoking, in addition to ...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-30",
@@ -709,14 +767,16 @@
       "target_population": "Active cigarette smokers",
       "driving_trials": [],
       "verbatim_quote": "For patients who are active cigarette smokers, smoking cessation pharmacotherapy delivered along with behavioral counsel...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-31",
@@ -732,14 +792,16 @@
       "target_population": "Active cigarette smokers and users of other tobacco products",
       "driving_trials": [],
       "verbatim_quote": "For patients who are active cigarette smokers and users of other tobacco products (eg, electronic nicotine delivery syst...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-32",
@@ -755,14 +817,16 @@
       "target_population": "Active cigarette smokers encountered in the hospital setting",
       "driving_trials": [],
       "verbatim_quote": "For patients who are active cigarette smokers encountered in the hospital setting, providing smoking cessation pharmacot...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-33",
@@ -778,14 +842,16 @@
       "target_population": "Active cigarette smokers",
       "driving_trials": [],
       "verbatim_quote": "For patients who are active cigarette smokers, the long-term health benefits of using e-cigarettes in place of nicotine ...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-34",
@@ -801,14 +867,16 @@
       "target_population": "Asymptomatic general population",
       "driving_trials": [],
       "verbatim_quote": "In the asymptomatic population, routine screening for carotid artery stenosis is not recommended to reduce the risk of s...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-35",
@@ -824,14 +892,16 @@
       "target_population": "Patients with asymptomatic carotid artery stenosis >70%",
       "driving_trials": [],
       "verbatim_quote": "In patients with asymptomatic carotid artery stenosis (ACS) >70%, shared decision-making between the patient and the hea...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-36",
@@ -847,14 +917,16 @@
       "target_population": "Patients with asymptomatic atherosclerotic carotid artery stenosis",
       "driving_trials": [],
       "verbatim_quote": "In patients with asymptomatic atherosclerotic carotid artery stenosis, medical treatment with statin can be beneficial t...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-37",
@@ -870,14 +942,16 @@
       "target_population": "Patients with asymptomatic atherosclerotic carotid artery stenosis >70% and low perioperative risk",
       "driving_trials": [],
       "verbatim_quote": "In patients with asymptomatic atherosclerotic carotid artery stenosis >70% and low perioperative risk, the use of caroti...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-38",
@@ -893,14 +967,16 @@
       "target_population": "Patients with ACS >50%",
       "driving_trials": [],
       "verbatim_quote": "In patients with ACS >50%, annual carotid duplex ultrasound every 6 to 12 months might be reasonable to assess progressi...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-39",
@@ -916,14 +992,16 @@
       "target_population": "Patients with asymptomatic atherosclerotic carotid artery stenosis and high perioperative risk",
       "driving_trials": [],
       "verbatim_quote": "In patients with asymptomatic atherosclerotic carotid artery stenosis and high perioperative risk, the effectiveness of ...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-40",
@@ -939,14 +1017,16 @@
       "target_population": "Adults with asymptomatic cerebral SVD including silent infarcts",
       "driving_trials": [],
       "verbatim_quote": "In adults with asymptomatic cerebral SVD (CSVD), including silent infarcts, assessment and management of risk factors (e...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-41",
@@ -962,14 +1042,16 @@
       "target_population": "Adults with silent cerebral infarcts without standard statin indication",
       "driving_trials": [],
       "verbatim_quote": "In adults with silent cerebral infarcts (SCIs) who do not have an indication for statin therapy according to the 2019 AC...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-42",
@@ -987,14 +1069,16 @@
         "SILENCE"
       ],
       "verbatim_quote": "In adults with SCI, the benefit of antiplatelet therapy to reduce the risk of ischemic stroke is uncertain....",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-43",
@@ -1010,14 +1094,16 @@
       "target_population": "Adults 18 to 64 years of age with migraine with or without aura",
       "driving_trials": [],
       "verbatim_quote": "In adults 18 to 64 years of age with migraine with or without aura, evaluation and modification of vascular risk factors...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-44",
@@ -1033,14 +1119,16 @@
       "target_population": "Adults with migraine with aura desiring contraception",
       "driving_trials": [],
       "verbatim_quote": "In adults with migraine with aura who desire contraception, progestin-only or nonhormonal forms are recommended to avoid...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-45",
@@ -1059,14 +1147,16 @@
         "STOP-2"
       ],
       "verbatim_quote": "In children 2 to 16 years of age with SCD (Hb SS or Hb S-beta0-thalassemia), transcranial Doppler (TCD) screening at a f...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-46",
@@ -1085,14 +1175,16 @@
         "STOP-2"
       ],
       "verbatim_quote": "In children 2 to 16 years of age with SCD at elevated risk per TCD measurements, regularly scheduled transfusion therapy...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-47",
@@ -1110,14 +1202,16 @@
         "SIT Trial"
       ],
       "verbatim_quote": "In children 2 to 16 years of age and young adults with Hb SS or Hb S-beta0-thalassemia, an MRI of the brain without seda...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-48",
@@ -1135,14 +1229,16 @@
         "STOP-2"
       ],
       "verbatim_quote": "In children 2 to 16 years of age with SCD whose TCD velocities revert to normal, continued transfusion therapy can be be...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-49",
@@ -1160,14 +1256,16 @@
         "TWiTCH"
       ],
       "verbatim_quote": "In children 2 to 16 years of age with SCD and normalized mean flow velocities and no intracranial stenosis, transition f...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-50",
@@ -1183,14 +1281,16 @@
       "target_population": "Children 2 to 16 years with high-risk SCD unable to receive periodic red cell transfusions",
       "driving_trials": [],
       "verbatim_quote": "In children 2 to 16 years of age with SCD at high risk for stroke (TCD mean flow velocities >=200 cm/s) but without intr...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-51",
@@ -1206,14 +1306,16 @@
       "target_population": "Patients with CADASIL",
       "driving_trials": [],
       "verbatim_quote": "In patients with CADASIL, counseling on smoking cessation and treatment of hypertension and other vascular risk factors ...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-52",
@@ -1229,14 +1331,16 @@
       "target_population": "Adults with hereditary hemorrhagic telangiectasia (HHT)",
       "driving_trials": [],
       "verbatim_quote": "In adults with hereditary hemorrhagic telangiectasia (HHT), screening for pulmonary arteriovenous malformations (PAVMs) ...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-53",
@@ -1252,14 +1356,16 @@
       "target_population": "Patients with Fabry disease",
       "driving_trials": [],
       "verbatim_quote": "In patients with Fabry disease, the effectiveness of enzyme replacement therapy (ERT) to reduce the risk of stroke is no...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-54",
@@ -1278,14 +1384,16 @@
         "LoDoCo2"
       ],
       "verbatim_quote": "In adults with a recent MI, the addition of low-dose colchicine to intensive statin therapy might be reasonable to decre...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-55",
@@ -1301,14 +1409,16 @@
       "target_population": "Patients without stroke history and high-risk aPL profile without anticoagulation indication",
       "driving_trials": [],
       "verbatim_quote": "In patients without a history of stroke and no clinical indication for anticoagulation, with a high-risk aPL profile (ie...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-56",
@@ -1324,14 +1434,16 @@
       "target_population": "Patients with SLE without thrombosis/pregnancy complications and high-risk aPL profile",
       "driving_trials": [],
       "verbatim_quote": "In patients with systemic lupus erythematosus (SLE) and no history of thrombosis or pregnancy complications and with a h...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-57",
@@ -1347,14 +1459,16 @@
       "target_population": "Patients with APS with prior unprovoked venous thrombosis",
       "driving_trials": [],
       "verbatim_quote": "In patients with antiphospholipid syndrome (APS) with prior unprovoked venous thrombosis, it is reasonable to choose vit...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-58",
@@ -1370,14 +1484,16 @@
       "target_population": "Patients with rheumatoid arthritis",
       "driving_trials": [],
       "verbatim_quote": "In patients with rheumatoid arthritis, statin treatment may be reasonable to reduce major adverse cardiovascular events,...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-59",
@@ -1393,14 +1509,16 @@
       "target_population": "Nonpregnant adults with a history of obstetric APS only",
       "driving_trials": [],
       "verbatim_quote": "In nonpregnant adults with a history of obstetric APS only, prophylactic treatment with aspirin (75-100 mg daily) after ...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-60",
@@ -1416,14 +1534,16 @@
       "target_population": "Patients with SLE without thrombosis history and low-risk aPL profile",
       "driving_trials": [],
       "verbatim_quote": "In patients with SLE and no history of thrombosis or pregnancy complications and with a low-risk antiphospholipid profil...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-61",
@@ -1439,14 +1559,16 @@
       "target_population": "Patients with periodontal disease (PD)",
       "driving_trials": [],
       "verbatim_quote": "In patients with periodontal disease (PD), good oral hygiene and regular dental care can be beneficial to lower stroke r...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-62",
@@ -1462,14 +1584,16 @@
       "target_population": "Patients hospitalized with COVID-19",
       "driving_trials": [],
       "verbatim_quote": "In patients hospitalized with COVID-19, treatment with full-dose anticoagulation (eg, enoxaparin, apixaban) is not recom...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-63",
@@ -1485,14 +1609,16 @@
       "target_population": "All adults",
       "driving_trials": [],
       "verbatim_quote": "In all adults, screening for substance misuse and substance use disorders (eg, alcohol, cannabis, cocaine, opioids, amph...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-64",
@@ -1508,14 +1634,16 @@
       "target_population": "Patients using recreational drugs, misusing alcohol/prescription meds, or with substance use disorder",
       "driving_trials": [],
       "verbatim_quote": "In patients who use recreational drugs (eg, cannabis, synthetic cannabinoids, cocaine, heroin, methamphetamine), misuse ...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-65",
@@ -1531,14 +1659,16 @@
       "target_population": "Pregnant or early postpartum patients with severe hypertension",
       "driving_trials": [],
       "verbatim_quote": "In pregnant or early postpartum (within 6 weeks of delivery), patients with severe hypertension (2 measurements of SBP >...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-66",
@@ -1556,14 +1686,16 @@
         "CHAP"
       ],
       "verbatim_quote": "In patients with HDP, including chronic hypertension in pregnancy, treatment with antihypertensive medication to a goal ...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-67",
@@ -1579,14 +1711,16 @@
       "target_population": "Parous adults",
       "driving_trials": [],
       "verbatim_quote": "In adults, screening for a history of certain adverse pregnancy outcomes (APOs), including HDP, preterm birth, gestation...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-68",
@@ -1602,14 +1736,16 @@
       "target_population": "Patients with a history of HDP or other APOs",
       "driving_trials": [],
       "verbatim_quote": "In patients with a history of HDP or other APOs, early evaluation and management of chronic hypertension are recommended...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-69",
@@ -1625,14 +1761,16 @@
       "target_population": "Adults",
       "driving_trials": [],
       "verbatim_quote": "In adults, screening for a history of endometriosis is reasonable to inform the risk of stroke....",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-70",
@@ -1648,14 +1786,16 @@
       "target_population": "Individuals with endometriosis",
       "driving_trials": [],
       "verbatim_quote": "In individuals with endometriosis, vascular risk factor evaluation and modification of vascular risk factors are reasona...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-71",
@@ -1671,14 +1811,16 @@
       "target_population": "Individuals considering combined hormonal contraception (CHC)",
       "driving_trials": [],
       "verbatim_quote": "In individuals considering CHC, lower doses of ethinyl estradiol are recommended to minimize potential increased stroke ...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-72",
@@ -1694,14 +1836,16 @@
       "target_population": "Individuals with specific stroke risk factors considering contraception",
       "driving_trials": [],
       "verbatim_quote": "In individuals with specific stroke risk factors (ie, age >35 years, tobacco use, hypertension, or migraine with aura) w...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-73",
@@ -1717,14 +1861,16 @@
       "target_population": "Individuals with specific stroke risk factors considering contraception",
       "driving_trials": [],
       "verbatim_quote": "In individuals with specific stroke risk factors (ie, age >35 years, tobacco use, hypertension, or migraine with aura) w...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-74",
@@ -1740,14 +1886,16 @@
       "target_population": "Women",
       "driving_trials": [],
       "verbatim_quote": "Screening for a history of premature ovarian failure (before 40 years of age) and early menopause (before 45 years of ag...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-75",
@@ -1763,14 +1911,16 @@
       "target_population": "Patients with premature ovarian failure or early menopause",
       "driving_trials": [],
       "verbatim_quote": "In patients with premature ovarian failure (menopause before 40 years of age) or early menopause (before 45 years of age...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-76",
@@ -1786,14 +1936,16 @@
       "target_population": "Women >=60 years, >10 years post-menopause, or at elevated CVD/stroke risk",
       "driving_trials": [],
       "verbatim_quote": "In women >=60 years of age, more than 10 years after natural menopause, or at elevated risk for CVD or stroke, oral estr...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-77",
@@ -1809,14 +1961,16 @@
       "target_population": "Transgender women and gender-diverse individuals taking estrogens for gender affirmation",
       "driving_trials": [],
       "verbatim_quote": "In transgender women and gender-diverse individuals taking estrogens for gender affirmation, evaluation and modification...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-78",
@@ -1834,14 +1988,16 @@
         "TRAVERSE"
       ],
       "verbatim_quote": "In men 45 to 80 years of age with confirmed hypogonadism who are considering testosterone therapy, initiation or continu...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-79",
@@ -1860,14 +2016,16 @@
         "COMMANDER HF"
       ],
       "verbatim_quote": "In patients with left ventricular systolic dysfunction (ejection fraction <=35%-40%) and no evidence of AF or left ventr...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-80",
@@ -1886,14 +2044,16 @@
         "JPPP"
       ],
       "verbatim_quote": "In patients with diabetes or other common vascular risk factors and no prior stroke, the use of aspirin to prevent a fir...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-81",
@@ -1911,14 +2071,16 @@
         "PEGASUS-TIMI 54"
       ],
       "verbatim_quote": "In patients with established, stable coronary artery disease and a low bleeding risk, the addition of ticagrelor to aspi...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-82",
@@ -1937,14 +2099,16 @@
         "JPPP"
       ],
       "verbatim_quote": "In individuals >=70 years of age with at least 1 additional cardiovascular risk factor, the use of aspirin is not benefi...",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     },
     {
       "rec_id": "rec-aha-primary-prevention-2024-83",
@@ -1960,15 +2124,17 @@
       "target_population": "Patients with chronic kidney disease",
       "driving_trials": [],
       "verbatim_quote": "In patients with chronic kidney disease, the use of aspirin is not effective to prevent a first stroke....",
-      "approval_status": "PENDING_REVIEW",
+      "approval_status": "APPROVED",
       "verification_detail": {
         "status": "PASSED",
         "grounding_score": 0.96,
         "classification_valid": true,
         "numbers_verified": true,
         "issues": []
-      }
+      },
+      "reviewed_by": "BS. Chuyên khoa Thần kinh",
+      "reviewed_at": "2026-11-03T07:18:22.242Z"
     }
   ],
-  "updated_at": "2026-10-31T03:41:54.540Z"
+  "updated_at": "2026-11-03T07:18:22.242Z"
 }
