@@ -76,6 +76,35 @@ function AutoResizeTextarea({
   );
 }
 
+function GripVerticalIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="9" cy="12" r="1" />
+      <circle cx="9" cy="5" r="1" />
+      <circle cx="9" cy="19" r="1" />
+      <circle cx="15" cy="12" r="1" />
+      <circle cx="15" cy="5" r="1" />
+      <circle cx="15" cy="19" r="1" />
+    </svg>
+  );
+}
+
+function ArrowUpIcon({ className = "w-3 h-3" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="18 15 12 9 6 15" />
+    </svg>
+  );
+}
+
+function ArrowDownIcon({ className = "w-3 h-3" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="6 9 12 15 18 9" />
+    </svg>
+  );
+}
+
 export type GuidelineFormFormat = "AUTO" | "ESO" | "AHA" | "STANDARD";
 
 export interface EsoRecDraft {
@@ -303,6 +332,20 @@ export function EditGuidelineModal({
 
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  // Drag & drop state for ESO recommendations (right pane)
+  const [draggedRecIndex, setDraggedRecIndex] = useState<number | null>(null);
+  const [dragOverRecIndex, setDragOverRecIndex] = useState<number | null>(null);
+  const [isDraggingRecToPico, setIsDraggingRecToPico] = useState<boolean>(false);
+  const [dragOverPicoKey, setDragOverPicoKey] = useState<string | null>(null);
+
+  // Drag & drop state for reordering PICOs / Clinical Questions (left pane)
+  const [draggedPicoIndex, setDraggedPicoIndex] = useState<number | null>(null);
+  const [dragOverPicoIndex, setDragOverPicoIndex] = useState<number | null>(null);
+
+  // Drag & drop state for Standard/AHA recommendations (left pane)
+  const [draggedStandardRecIndex, setDraggedStandardRecIndex] = useState<number | null>(null);
+  const [dragOverStandardRecIndex, setDragOverStandardRecIndex] = useState<number | null>(null);
 
   // Determine Form Type based on society, title, item content
   const currentSociety = (docSociety || guidelineDoc?.society || "").toUpperCase();
@@ -572,6 +615,84 @@ export function EditGuidelineModal({
       return next;
     });
     setSelectedPicoIndex((prev) => Math.max(0, prev - 1));
+  };
+
+  // Reorder ESO recommendation within current PICO
+  const moveEsoRecWithinPico = (fromIdx: number, toIdx: number) => {
+    if (fromIdx === toIdx || fromIdx < 0 || toIdx < 0) return;
+    setEsoPicos((prev) => {
+      const next = [...prev];
+      const curPico = next[selectedPicoIndex];
+      if (!curPico || fromIdx >= curPico.recommendations.length || toIdx >= curPico.recommendations.length) return prev;
+      const newRecs = [...curPico.recommendations];
+      const [moved] = newRecs.splice(fromIdx, 1);
+      newRecs.splice(toIdx, 0, moved);
+      next[selectedPicoIndex] = { ...curPico, recommendations: newRecs };
+      return next;
+    });
+  };
+
+  // Move ESO recommendation to a different PICO / Clinical Question
+  const moveEsoRecToAnotherPico = (recIdx: number, targetPicoIdx: number) => {
+    if (recIdx < 0 || targetPicoIdx === selectedPicoIndex || targetPicoIdx < 0) return;
+    setEsoPicos((prev) => {
+      const next = [...prev];
+      const sourcePico = next[selectedPicoIndex];
+      const targetPico = next[targetPicoIdx];
+      if (!sourcePico || !targetPico || recIdx >= sourcePico.recommendations.length) return prev;
+
+      const sourceRecs = [...sourcePico.recommendations];
+      const [movedRec] = sourceRecs.splice(recIdx, 1);
+
+      // If source would be empty, give it a default empty recommendation template
+      if (sourceRecs.length === 0) {
+        sourceRecs.push({
+          id: `rec-${sourcePico.picoNumber}-${Date.now().toString().slice(-4)}`,
+          statement: "",
+          strength: "Weak for intervention",
+          quality: "Moderate",
+          expertConsensusStatement: "",
+          voting: "Vote: 10/10",
+          drivingTrials: [],
+          changeType: "NEW",
+        });
+      }
+
+      const targetRecs = [...targetPico.recommendations, movedRec];
+
+      next[selectedPicoIndex] = { ...sourcePico, recommendations: sourceRecs };
+      next[targetPicoIdx] = { ...targetPico, recommendations: targetRecs };
+      return next;
+    });
+    setSelectedPicoIndex(targetPicoIdx);
+  };
+
+  // Reorder PICOs / Clinical Questions
+  const movePico = (fromIdx: number, toIdx: number) => {
+    if (fromIdx === toIdx || fromIdx < 0 || toIdx < 0) return;
+    setEsoPicos((prev) => {
+      if (fromIdx >= prev.length || toIdx >= prev.length) return prev;
+      const next = [...prev];
+      const [moved] = next.splice(fromIdx, 1);
+      next.splice(toIdx, 0, moved);
+      return next;
+    });
+    setSelectedPicoIndex(toIdx);
+  };
+
+  // Reorder Standard/AHA Recommendations
+  const moveStandardRec = (fromIdx: number, toIdx: number) => {
+    if (fromIdx === toIdx || fromIdx < 0 || toIdx < 0) return;
+    syncStandardRecToMemory();
+    setPracticeChanges((prev) => {
+      if (fromIdx >= prev.length || toIdx >= prev.length) return prev;
+      const next = [...prev];
+      const [moved] = next.splice(fromIdx, 1);
+      next.splice(toIdx, 0, moved);
+      loadStandardRecIntoForm(moved);
+      return next;
+    });
+    setSelectedRecIndex(toIdx);
   };
 
   // --- Standard / AHA Recommendation Handlers ---
@@ -1155,21 +1276,115 @@ export function EditGuidelineModal({
                       {filteredEsoPicos.map((pico) => {
                         const realIndex = esoPicos.findIndex((p) => p.picoKey === pico.picoKey);
                         const isSelected = realIndex === selectedPicoIndex;
+                        const isTargetForRecDrop = isDraggingRecToPico && dragOverPicoKey === pico.picoKey;
+                        const isPicoDragging = draggedPicoIndex === realIndex;
+                        const isPicoDragOver = dragOverPicoIndex === realIndex;
 
                         return (
                           <div
                             key={pico.picoKey}
+                            draggable={!isDraggingRecToPico}
+                            onDragStart={(e) => {
+                              if (!isDraggingRecToPico) {
+                                e.dataTransfer.setData("text/plain", `pico:${realIndex}`);
+                                e.dataTransfer.effectAllowed = "move";
+                                setDraggedPicoIndex(realIndex);
+                              }
+                            }}
+                            onDragOver={(e) => {
+                              e.preventDefault();
+                              e.dataTransfer.dropEffect = "move";
+                              if (isDraggingRecToPico) {
+                                if (dragOverPicoKey !== pico.picoKey) {
+                                  setDragOverPicoKey(pico.picoKey);
+                                }
+                              } else if (draggedPicoIndex !== null && dragOverPicoIndex !== realIndex) {
+                                setDragOverPicoIndex(realIndex);
+                              }
+                            }}
+                            onDragLeave={() => {
+                              if (dragOverPicoKey === pico.picoKey) {
+                                setDragOverPicoKey(null);
+                              }
+                              if (dragOverPicoIndex === realIndex) {
+                                setDragOverPicoIndex(null);
+                              }
+                            }}
+                            onDrop={(e) => {
+                              e.preventDefault();
+                              if (isDraggingRecToPico && draggedRecIndex !== null) {
+                                if (realIndex !== selectedPicoIndex) {
+                                  moveEsoRecToAnotherPico(draggedRecIndex, realIndex);
+                                }
+                              } else if (draggedPicoIndex !== null && draggedPicoIndex !== realIndex) {
+                                movePico(draggedPicoIndex, realIndex);
+                              }
+                              setDraggedRecIndex(null);
+                              setDragOverRecIndex(null);
+                              setIsDraggingRecToPico(false);
+                              setDragOverPicoKey(null);
+                              setDraggedPicoIndex(null);
+                              setDragOverPicoIndex(null);
+                            }}
+                            onDragEnd={() => {
+                              setDraggedPicoIndex(null);
+                              setDragOverPicoIndex(null);
+                              setDragOverPicoKey(null);
+                              setIsDraggingRecToPico(false);
+                            }}
                             onClick={() => setSelectedPicoIndex(realIndex)}
-                            className={`p-2.5 rounded-xl border text-xs cursor-pointer transition-all ${
-                              isSelected
+                            className={`p-2.5 rounded-xl border text-xs cursor-pointer transition-all relative ${
+                              isTargetForRecDrop
+                                ? "border-blue-500 bg-blue-500/20 ring-2 ring-blue-500 shadow-md scale-[1.02]"
+                                : isPicoDragOver
+                                ? "border-indigo-500 bg-indigo-500/15 ring-2 ring-indigo-400"
+                                : isPicoDragging
+                                ? "opacity-40 border-dashed border-slate-400"
+                                : isSelected
                                 ? "bg-blue-500/10 border-blue-500/50 shadow-2xs dark:bg-blue-500/15"
                                 : "bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700"
                             }`}
                           >
+                            {/* Visual cue when dragging a recommendation over this PICO */}
+                            {isTargetForRecDrop && (
+                              <div className="absolute inset-0 z-10 flex items-center justify-center bg-blue-600/95 text-white font-extrabold rounded-xl px-2 py-1 text-center shadow-lg text-[11px] animate-pulse">
+                                📥 Thả vào đây để chuyển khuyến cáo sang PICO {pico.picoNumber}
+                              </div>
+                            )}
+
                             <div className="flex items-center justify-between gap-1 mb-1">
-                              <span className="font-extrabold text-[11px] text-blue-700 dark:text-blue-400">
-                                PICO {pico.picoNumber}
-                              </span>
+                              <div className="flex items-center gap-1.5">
+                                <div
+                                  className="cursor-grab active:cursor-grabbing text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-0.5 rounded hover:bg-slate-100 dark:hover:bg-slate-800"
+                                  title="Kéo thả để sắp xếp lại thứ tự PICO / Clinical Question"
+                                  onClick={(e) => e.stopPropagation()}
+                                >
+                                  <GripVerticalIcon className="w-3.5 h-3.5" />
+                                </div>
+                                <span className="font-extrabold text-[11px] text-blue-700 dark:text-blue-400">
+                                  PICO {pico.picoNumber}
+                                </span>
+                                <div className="flex items-center gap-0.5 ml-1" onClick={(e) => e.stopPropagation()}>
+                                  <button
+                                    type="button"
+                                    disabled={realIndex === 0}
+                                    onClick={() => movePico(realIndex, realIndex - 1)}
+                                    className="p-0.5 rounded hover:bg-slate-200 dark:hover:bg-slate-800 disabled:opacity-20 text-slate-500 cursor-pointer"
+                                    title="Di chuyển PICO lên trên"
+                                  >
+                                    <ArrowUpIcon className="w-2.5 h-2.5" />
+                                  </button>
+                                  <button
+                                    type="button"
+                                    disabled={realIndex === esoPicos.length - 1}
+                                    onClick={() => movePico(realIndex, realIndex + 1)}
+                                    className="p-0.5 rounded hover:bg-slate-200 dark:hover:bg-slate-800 disabled:opacity-20 text-slate-500 cursor-pointer"
+                                    title="Di chuyển PICO xuống dưới"
+                                  >
+                                    <ArrowDownIcon className="w-2.5 h-2.5" />
+                                  </button>
+                                </div>
+                              </div>
                               <span className="px-1.5 py-0.5 rounded font-mono text-[10px] font-bold bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-300">
                                 {pico.recommendations.length} rec{pico.recommendations.length > 1 ? "s" : ""}
                               </span>
@@ -1255,34 +1470,111 @@ export function EditGuidelineModal({
                         </div>
 
                         {/* RECOMMENDATIONS SECTION HEADER */}
-                        <div className="pt-2 flex items-center justify-between border-t dark:border-slate-800">
+                        <div className="pt-2 flex flex-wrap items-center justify-between gap-2 border-t dark:border-slate-800">
                           <div className="flex items-center gap-1.5 font-extrabold text-xs text-slate-800 dark:text-slate-200">
                             <span>⚖️</span>
                             <span>Recommendations for this PICO ({currentPico.recommendations.length})</span>
                           </div>
-                          <button
-                            type="button"
-                            onClick={handleAddRecToCurrentPico}
-                            className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-emerald-600 hover:bg-emerald-700 text-white cursor-pointer flex items-center gap-1 shadow-2xs"
-                            title="Add another recommendation under this PICO question"
-                          >
-                            <span>➕ Add Recommendation</span>
-                          </button>
+                          <div className="flex items-center gap-2">
+                            <span className="text-[10px] text-slate-400 dark:text-slate-500 font-medium hidden sm:inline">
+                              ⋮⋮ Kéo thả hoặc bấm ▲ ▼ để đổi thứ tự
+                            </span>
+                            <button
+                              type="button"
+                              onClick={handleAddRecToCurrentPico}
+                              className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-emerald-600 hover:bg-emerald-700 text-white cursor-pointer flex items-center gap-1 shadow-2xs"
+                              title="Add another recommendation under this PICO question"
+                            >
+                              <span>➕ Add Recommendation</span>
+                            </button>
+                          </div>
                         </div>
 
-                        {/* REPEATABLE RECOMMENDATIONS LIST */}
+                        {/* REPEATABLE RECOMMENDATIONS LIST (DRAGGABLE & REORDERABLE) */}
                         <div className="space-y-4">
                           {currentPico.recommendations.map((rec, rIdx) => {
                             const qualityConfig = getEsoQualityConfig(rec.quality);
+                            const isThisRecDragging = draggedRecIndex === rIdx;
+                            const isThisRecDragOver = dragOverRecIndex === rIdx;
 
                             return (
                               <div
                                 key={rec.id || `rec-${rIdx}`}
-                                className="p-3.5 rounded-xl border border-blue-200 dark:border-blue-900/60 bg-blue-50/30 dark:bg-blue-950/20 space-y-3"
+                                draggable={true}
+                                onDragStart={(e) => {
+                                  e.dataTransfer.setData("text/plain", `rec:${rIdx}`);
+                                  e.dataTransfer.effectAllowed = "move";
+                                  setDraggedRecIndex(rIdx);
+                                  setIsDraggingRecToPico(true);
+                                }}
+                                onDragOver={(e) => {
+                                  e.preventDefault();
+                                  e.dataTransfer.dropEffect = "move";
+                                  if (dragOverRecIndex !== rIdx) {
+                                    setDragOverRecIndex(rIdx);
+                                  }
+                                }}
+                                onDragLeave={() => {
+                                  if (dragOverRecIndex === rIdx) {
+                                    setDragOverRecIndex(null);
+                                  }
+                                }}
+                                onDrop={(e) => {
+                                  e.preventDefault();
+                                  if (draggedRecIndex !== null && draggedRecIndex !== rIdx) {
+                                    moveEsoRecWithinPico(draggedRecIndex, rIdx);
+                                  }
+                                  setDraggedRecIndex(null);
+                                  setDragOverRecIndex(null);
+                                  setIsDraggingRecToPico(false);
+                                }}
+                                onDragEnd={() => {
+                                  setDraggedRecIndex(null);
+                                  setDragOverRecIndex(null);
+                                  setIsDraggingRecToPico(false);
+                                  setDragOverPicoKey(null);
+                                }}
+                                className={`p-3.5 rounded-xl border space-y-3 transition-all ${
+                                  isThisRecDragging
+                                    ? "opacity-35 border-dashed border-blue-400 bg-blue-50/10 scale-[0.99]"
+                                    : isThisRecDragOver
+                                    ? "border-blue-500 bg-blue-100/40 dark:bg-blue-900/40 ring-2 ring-blue-400 shadow-md"
+                                    : "border-blue-200 dark:border-blue-900/60 bg-blue-50/30 dark:bg-blue-950/20"
+                                }`}
                               >
-                                {/* REC HEADER */}
-                                <div className="flex items-center justify-between gap-2 pb-2 border-b border-blue-200/60 dark:border-blue-900/40">
+                                {/* REC HEADER WITH REORDER CONTROLS & PICO REASSIGNMENT */}
+                                <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-blue-200/60 dark:border-blue-900/40">
                                   <div className="flex items-center gap-2">
+                                    {/* Drag Handle */}
+                                    <div
+                                      className="cursor-grab active:cursor-grabbing text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 p-1 rounded hover:bg-blue-100/60 dark:hover:bg-blue-900/40 flex items-center gap-1"
+                                      title="Kéo thả để thay đổi thứ tự khuyến cáo (hoặc kéo sang PICO bên trái để đổi Clinical Question)"
+                                    >
+                                      <GripVerticalIcon className="w-4 h-4" />
+                                    </div>
+
+                                    {/* Up / Down Reorder Buttons */}
+                                    <div className="flex items-center gap-0.5">
+                                      <button
+                                        type="button"
+                                        disabled={rIdx === 0}
+                                        onClick={() => moveEsoRecWithinPico(rIdx, rIdx - 1)}
+                                        className="p-1 rounded bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 disabled:opacity-25 cursor-pointer shadow-2xs"
+                                        title="Di chuyển khuyến cáo lên trên"
+                                      >
+                                        <ArrowUpIcon className="w-3 h-3" />
+                                      </button>
+                                      <button
+                                        type="button"
+                                        disabled={rIdx === currentPico.recommendations.length - 1}
+                                        onClick={() => moveEsoRecWithinPico(rIdx, rIdx + 1)}
+                                        className="p-1 rounded bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 disabled:opacity-25 cursor-pointer shadow-2xs"
+                                        title="Di chuyển khuyến cáo xuống dưới"
+                                      >
+                                        <ArrowDownIcon className="w-3 h-3" />
+                                      </button>
+                                    </div>
+
                                     <span className="w-5 h-5 rounded-full bg-blue-600 text-white font-black flex items-center justify-center text-[10px]">
                                       {rIdx + 1}
                                     </span>
@@ -1291,16 +1583,51 @@ export function EditGuidelineModal({
                                     </span>
                                   </div>
 
-                                  {currentPico.recommendations.length > 1 && (
-                                    <button
-                                      type="button"
-                                      onClick={() => handleRemoveRecFromCurrentPico(rIdx)}
-                                      className="text-[11px] font-semibold text-rose-600 hover:text-rose-700 dark:text-rose-400 cursor-pointer"
-                                      title="Remove this recommendation"
-                                    >
-                                      🗑️ Remove Recommendation
-                                    </button>
-                                  )}
+                                  <div className="flex items-center gap-2 flex-wrap">
+                                    {/* Reassign to another PICO / Clinical Question */}
+                                    {esoPicos.length > 1 && (
+                                      <div className="flex items-center gap-1">
+                                        <span className="text-[10.5px] text-slate-500 dark:text-slate-400 font-medium">
+                                          PICO:
+                                        </span>
+                                        <select
+                                          value={currentPico.picoKey}
+                                          onChange={(e) => {
+                                            const targetIdx = esoPicos.findIndex((p) => p.picoKey === e.target.value);
+                                            if (targetIdx >= 0 && targetIdx !== selectedPicoIndex) {
+                                              moveEsoRecToAnotherPico(rIdx, targetIdx);
+                                            }
+                                          }}
+                                          className={`py-0.5 px-2 rounded-lg border text-[10.5px] font-bold ${
+                                            darkMode ? "bg-slate-800 border-slate-700 text-slate-200" : "bg-white border-slate-300 text-slate-700"
+                                          }`}
+                                          title="Thay đổi Clinical Question / Population (chuyển khuyến cáo sang PICO khác)"
+                                        >
+                                          <option value={currentPico.picoKey}>
+                                            PICO {currentPico.picoNumber} (Hiện tại)
+                                          </option>
+                                          {esoPicos
+                                            .filter((p) => p.picoKey !== currentPico.picoKey)
+                                            .map((p) => (
+                                              <option key={p.picoKey} value={p.picoKey}>
+                                                Chuyển sang PICO {p.picoNumber}: {(p.picoQuestion || "").slice(0, 36)}...
+                                              </option>
+                                            ))}
+                                        </select>
+                                      </div>
+                                    )}
+
+                                    {currentPico.recommendations.length > 1 && (
+                                      <button
+                                        type="button"
+                                        onClick={() => handleRemoveRecFromCurrentPico(rIdx)}
+                                        className="text-[11px] font-semibold text-rose-600 hover:text-rose-700 dark:text-rose-400 cursor-pointer"
+                                        title="Remove this recommendation"
+                                      >
+                                        🗑️ Remove
+                                      </button>
+                                    )}
+                                  </div>
                                 </div>
 
                                 {/* 1. FULL RECOMMENDATION STATEMENT */}
@@ -1493,21 +1820,86 @@ export function EditGuidelineModal({
                       {filteredStandardRecs.map((rec) => {
                         const realIndex = practiceChanges.findIndex((r) => r.id === rec.id);
                         const isSelected = realIndex === selectedRecIndex;
+                        const isRecDragging = draggedStandardRecIndex === realIndex;
+                        const isRecDragOver = dragOverStandardRecIndex === realIndex;
 
                         return (
                           <div
                             key={rec.id}
+                            draggable={true}
+                            onDragStart={(e) => {
+                              e.dataTransfer.setData("text/plain", `std:${realIndex}`);
+                              e.dataTransfer.effectAllowed = "move";
+                              setDraggedStandardRecIndex(realIndex);
+                            }}
+                            onDragOver={(e) => {
+                              e.preventDefault();
+                              e.dataTransfer.dropEffect = "move";
+                              if (draggedStandardRecIndex !== null && dragOverStandardRecIndex !== realIndex) {
+                                setDragOverStandardRecIndex(realIndex);
+                              }
+                            }}
+                            onDragLeave={() => {
+                              if (dragOverStandardRecIndex === realIndex) {
+                                setDragOverStandardRecIndex(null);
+                              }
+                            }}
+                            onDrop={(e) => {
+                              e.preventDefault();
+                              if (draggedStandardRecIndex !== null && draggedStandardRecIndex !== realIndex) {
+                                moveStandardRec(draggedStandardRecIndex, realIndex);
+                              }
+                              setDraggedStandardRecIndex(null);
+                              setDragOverStandardRecIndex(null);
+                            }}
+                            onDragEnd={() => {
+                              setDraggedStandardRecIndex(null);
+                              setDragOverStandardRecIndex(null);
+                            }}
                             onClick={() => handleSelectStandardRec(realIndex)}
                             className={`p-2.5 rounded-xl border text-xs cursor-pointer transition-all ${
-                              isSelected
+                              isRecDragging
+                                ? "opacity-40 border-dashed border-amber-400"
+                                : isRecDragOver
+                                ? "border-amber-500 bg-amber-500/15 ring-2 ring-amber-400"
+                                : isSelected
                                 ? "bg-amber-500/10 border-amber-500/50 shadow-2xs dark:bg-amber-500/15"
                                 : "bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700"
                             }`}
                           >
                             <div className="flex items-center justify-between gap-1 mb-1">
-                              <span className="font-extrabold text-[10.5px] text-slate-500 dark:text-slate-400">
-                                #{realIndex + 1} • {rec.category}
-                              </span>
+                              <div className="flex items-center gap-1.5">
+                                <div
+                                  className="cursor-grab active:cursor-grabbing text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-0.5 rounded hover:bg-slate-100 dark:hover:bg-slate-800"
+                                  title="Kéo thả để sắp xếp lại thứ tự khuyến cáo"
+                                  onClick={(e) => e.stopPropagation()}
+                                >
+                                  <GripVerticalIcon className="w-3.5 h-3.5" />
+                                </div>
+                                <div className="flex items-center gap-0.5" onClick={(e) => e.stopPropagation()}>
+                                  <button
+                                    type="button"
+                                    disabled={realIndex === 0}
+                                    onClick={() => moveStandardRec(realIndex, realIndex - 1)}
+                                    className="p-0.5 rounded hover:bg-slate-200 dark:hover:bg-slate-800 disabled:opacity-20 text-slate-500 cursor-pointer"
+                                    title="Di chuyển khuyến cáo lên trên"
+                                  >
+                                    <ArrowUpIcon className="w-2.5 h-2.5" />
+                                  </button>
+                                  <button
+                                    type="button"
+                                    disabled={realIndex === practiceChanges.length - 1}
+                                    onClick={() => moveStandardRec(realIndex, realIndex + 1)}
+                                    className="p-0.5 rounded hover:bg-slate-200 dark:hover:bg-slate-800 disabled:opacity-20 text-slate-500 cursor-pointer"
+                                    title="Di chuyển khuyến cáo xuống dưới"
+                                  >
+                                    <ArrowDownIcon className="w-2.5 h-2.5" />
+                                  </button>
+                                </div>
+                                <span className="font-extrabold text-[10.5px] text-slate-500 dark:text-slate-400">
+                                  #{realIndex + 1} • {rec.category}
+                                </span>
+                              </div>
                               <span className="px-1.5 py-0.2 rounded font-mono text-[10px] font-black bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30">
                                 {rec.currentGrade}
                               </span>
