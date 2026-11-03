@@ -689,19 +689,6 @@ export default function HomePage() {
       year: "numeric",
     });
     const header = `🌅 MORNING NEUROLOGY & STROKE BRIEFING (${dateStr})\n`;
-
-    const hotTopicsHeader =
-      hotTopics.length > 0
-        ? `🔥 HOT TOPICS HÔM NAY (Xếp hạng theo số lượng bài báo):\n` +
-          hotTopics
-            .map(
-              (t, idx) =>
-                `  ${idx + 1}. ${t.label}: ${t.count} bài báo (${t.recentCount} bài gần đây)`
-            )
-            .join("\n") +
-          `\n\n📌 TIÊU ĐIỂM NGHIÊN CỨU GIAO BAN BUỔI SÁNG (Top ${briefingHighlights.length}):\n`
-        : "";
-
     const body = briefingHighlights
       .map((a, idx) => {
         const takeaway = cleanMedicalText(a.ai_takeaways?.conclusion_vi || "").replace(
@@ -712,7 +699,7 @@ export default function HomePage() {
       })
       .join("\n\n");
 
-    navigator.clipboard.writeText(`${header}\n${hotTopicsHeader}${body}`).then(() => {
+    navigator.clipboard.writeText(`${header}\n${body}`).then(() => {
       setBriefingCopied(true);
       setTimeout(() => setBriefingCopied(false), 2200);
     });
@@ -970,7 +957,7 @@ export default function HomePage() {
                       ? "bg-emerald-500 text-white"
                       : "bg-white/15 hover:bg-white/25 text-white"
                   }`}
-                  title="Copy morning briefing & hot topics for Zalo / Telegram handover"
+                  title="Copy all 4 morning highlights for Zalo / Telegram handover"
                 >
                   {briefingCopied ? "✓ Briefing Copied!" : "📋 Copy Briefing"}
                 </button>
@@ -982,56 +969,6 @@ export default function HomePage() {
                 </button>
               </div>
             </div>
-
-            {/* Dải Hot Topics mỗi ngày đi kèm Morning Clinical Briefing */}
-            {hotTopics.length > 0 && (
-              <div
-                className={`px-4 py-2.5 border-b flex flex-wrap items-center justify-between gap-2 text-xs ${
-                  darkMode
-                    ? "bg-slate-950/70 border-slate-800 text-slate-300"
-                    : "bg-amber-100/50 border-amber-200/80 text-slate-700"
-                }`}
-              >
-                <div className="flex items-center gap-1.5 font-bold shrink-0">
-                  <span className="text-amber-600 dark:text-amber-400">🔥 Hot topics hôm nay:</span>
-                  <span className="text-[11px] font-normal text-slate-500 dark:text-slate-400">
-                    (theo số lượng bài báo)
-                  </span>
-                </div>
-                <div className="flex flex-wrap items-center gap-1.5">
-                  {hotTopics.map((item) => {
-                    const isActive = searchQuery.toLowerCase() === item.query.toLowerCase();
-                    return (
-                      <button
-                        key={`mb-${item.label}`}
-                        onClick={() => handleSelectHotTopic(item.query)}
-                        title={`Lọc xem ${item.count} bài báo về ${item.label}`}
-                        className={`px-2.5 py-1 rounded-full text-[11px] font-semibold border transition-all flex items-center gap-1.5 ${
-                          isActive
-                            ? "bg-blue-600 text-white border-blue-600 shadow-xs"
-                            : darkMode
-                            ? "bg-slate-800/90 text-slate-300 border-slate-700 hover:border-amber-400 hover:text-white"
-                            : "bg-white text-slate-700 border-amber-200/90 hover:border-amber-400 hover:bg-amber-50"
-                        }`}
-                      >
-                        <span className="truncate max-w-[150px] sm:max-w-none">{item.label}</span>
-                        <span
-                          className={`px-1.5 py-0.2 rounded-full text-[10px] font-extrabold ${
-                            isActive
-                              ? "bg-white/25 text-white"
-                              : darkMode
-                              ? "bg-slate-900 text-amber-300"
-                              : "bg-amber-100 text-amber-900"
-                          }`}
-                        >
-                          {item.count} bài
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
 
             {showBriefing && (
               <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-3.5">
@@ -1195,9 +1132,6 @@ export default function HomePage() {
                 title="Top các chủ đề nóng được tìm ra mỗi ngày dựa trên số lượng bài báo nhắc tới và độ mới nghiên cứu"
               >
                 <span>🔥 Hot topics</span>
-                <span className="text-[10px] font-semibold text-amber-500 lowercase">
-                  mỗi ngày
-                </span>
               </div>
               <div className="flex flex-col gap-1.5">
                 {hotTopics.map((item) => {
@@ -1225,7 +1159,7 @@ export default function HomePage() {
                             : "bg-white border border-slate-200 text-slate-600"
                         }`}
                       >
-                        {item.count} bài
+                        {item.count}
                       </span>
                     </button>
                   );
