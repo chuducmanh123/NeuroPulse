@@ -1215,27 +1215,9 @@ export default function NeuroGuidePage() {
                       </div>
 
                       {/* Title */}
-                      <div className="flex items-start justify-between gap-2">
-                        <h3 className="text-sm sm:text-lg font-bold leading-snug text-slate-900 dark:text-white flex-1">
-                          {doc.title}
-                        </h3>
-                        {isAdminVerified && (
-                          <button
-                            type="button"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setEditingDocId(doc.id);
-                              setEditingGuidelineDoc(doc);
-                              setEditingPracticeChange(null);
-                              setShowEditModal(true);
-                            }}
-                            className="shrink-0 px-2 py-0.5 rounded text-[10.5px] font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400 hover:bg-amber-500/25 border border-amber-500/30 flex items-center gap-1 cursor-pointer transition-colors"
-                            title="Chỉnh sửa tên guideline lâm sàng (Đồng bộ trực tiếp lên Cloud)"
-                          >
-                            <span>✏️ Sửa tên</span>
-                          </button>
-                        )}
-                      </div>
+                      <h3 className="text-sm sm:text-lg font-bold leading-snug text-slate-900 dark:text-white">
+                        {doc.title}
+                      </h3>
 
                       {/* Bottom Prompt Bar: Changes Badge + Click Indicator */}
                       <div className="mt-2.5 sm:mt-3 flex items-center justify-between gap-2 pt-2 border-t border-slate-200/50 dark:border-slate-800/60">
