@@ -13,6 +13,11 @@ import {
 import { AppSwitcher } from "../components/ecosystem/AppSwitcher";
 import { AdminButton } from "../components/ecosystem/AdminButton";
 import { SUBSPECIALTY_TABS } from "../constants/subspecialties";
+import {
+  calculateDailyHotTopics,
+  matchTermWithBoundary,
+  HotTopicResult,
+} from "../utils/hotTopicsDetector";
 
 const JOURNAL_ORDER = [
   "NEJM",
@@ -121,72 +126,6 @@ const STUDY_TYPE_WEIGHTS: Record<string, number> = {
   "Case Report": -50,
   "Editorial / Perspective": -50,
 };
-
-// Ngân hàng các chủ đề can thiệp, đích tác động và dấu ấn sinh học chuyên sâu cho Dynamic Clinical Radar
-const CLINICAL_RADAR_BANK = [
-  {
-    label: "🩸 Late-Window & Mild-Stroke EVT",
-    query: "thrombectomy|endovascular therapy|large-vessel occlusion|large vessel occlusion",
-  },
-  {
-    label: "🧬 Anti-Amyloid & Plasma p-tau217",
-    query: "p-tau217|ptau217|p-tau181|lecanemab|donanemab|amyloid pet|preclinical alzheimer",
-  },
-  {
-    label: "🔬 NfL, GFAP & Fluid Biomarkers",
-    query: "neurofilament|nfl|gfap|glial fibrillary|n-terminal tau|chitotriosidase",
-  },
-  {
-    label: "💊 DOAC & Rhythm Control Post-Stroke/ICH",
-    query: "anticoagulation|doac|doacs|warfarin|intracranial bleeding|early rhythm control",
-  },
-  {
-    label: "🎯 Focused Ultrasound & Parkinson/HD",
-    query: "focused ultrasound|pallidothalamic|orthostatic hypotension|antidopaminergic|huntington",
-  },
-  {
-    label: "🩸 Acute ICH BP & Neurocritical Care",
-    query: "intracerebral hemorrhage|hematoma expansion|bp-lowering|intensive blood pressure",
-  },
-  {
-    label: "🧠 Small Vessel Disease, WMH & EPVS",
-    query: "white matter hyperintensities|small vessel disease|perivascular spaces|microbleeds",
-  },
-  {
-    label: "🛡️ Ocrelizumab, MOGAD & NMOSD",
-    query: "ocrelizumab|mogad|nmosd|aquaporin-4|chronic active lesion",
-  },
-  {
-    label: "⚡ Tenecteplase & Delayed Thrombolysis",
-    query: "tenecteplase|alteplase|thrombolysis|delayed treatment window",
-  },
-  {
-    label: "🧬 Rapid WGS & Exon Skipping Therapy",
-    query: "whole-genome sequencing|exon skipping|del-zota|duchenne|gene therapy",
-  },
-  {
-    label: "⚡ ASM Interactions & Epilepsy Outcomes",
-    query: "antiseizure|drug-resistant epilepsy|young-onset dementia|status epilepticus",
-  },
-  {
-    label: "🎗️ Meningioma & Glioma Radiotherapy",
-    query: "meningioma|astrocytoma|glioblastoma|adjuvant radiotherapy|cns lymphoma",
-  },
-  {
-    label: "💉 CGRP, Gepants & Migraine",
-    query: "cgrp|gepant|ubrogepant|atogepant|rimegepant|erenumab|fremanezumab",
-  },
-];
-
-function matchTermWithBoundary(corpusLower: string, termLower: string): boolean {
-  if (!termLower) return false;
-  // Với các từ viết tắt ngắn (<= 4 ký tự như nfl, ich, evt, doac, gfap), bắt buộc khớp ranh giới từ để tránh bắt nhầm (VD: nfl trong inflammation)
-  if (termLower.length <= 5 || /^[a-z0-9-]+$/.test(termLower)) {
-    const escaped = termLower.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    return new RegExp(`(?:^|[^a-z0-9])${escaped}(?:[^a-z0-9]|$)`, "i").test(corpusLower);
-  }
-  return corpusLower.includes(termLower);
-}
 
 // Bổ sung dữ liệu Abstract đầy đủ cho 3 bài nghiên cứu gốc mới xuất bản bị trễ đồng bộ từ Crossref/PubMed
 const ENRICHED_MISSING_ABSTRACTS: Record<
@@ -679,51 +618,23 @@ export default function HomePage() {
     return counts;
   }, [articles]);
 
-  // Dynamic Clinical Radar: Tự động chấm điểm "Độ nóng" (Trending Score) từ dữ liệu bài báo thực tế và lấy Top 5 chủ đề nóng nhất
-  const dynamicClinicalRadar = useMemo(() => {
-    const now = Date.now();
-    const scored = CLINICAL_RADAR_BANK.map((item) => {
-      const terms = item.query
-        .toLowerCase()
-        .split("|")
-        .map((t) => t.trim())
-        .filter(Boolean);
-
-      let count = 0;
-      let hotScore = 0;
-
-      for (const a of articles) {
-        const titleL = a.title.toLowerCase();
-        const corpus = `${a.title} ${a.abstract} ${a.ai_takeaways?.conclusion_vi || ""}`.toLowerCase();
-        if (terms.some((t) => matchTermWithBoundary(corpus, t))) {
-          count += 1;
-          const daysOld = a.pub_date
-            ? Math.max(0, (now - new Date(a.pub_date).getTime()) / (1000 * 60 * 60 * 24))
-            : 30;
-          const recencyMult = daysOld <= 14 ? 2.5 : daysOld <= 30 ? 1.8 : 1.0;
-          const typeWeight =
-            a.article_type === "RCT"
-              ? 4.0
-              : a.article_type === "Meta-Analysis" || a.article_type === "Guideline"
-              ? 3.5
-              : a.article_type === "Clinical Trial"
-              ? 2.5
-              : a.article_type === "Original Article"
-              ? 1.5
-              : 0.5;
-          const titleBonus = terms.some((t) => matchTermWithBoundary(titleL, t)) ? 3.0 : 0;
-          hotScore += (typeWeight + titleBonus) * recencyMult;
-        }
-      }
-
-      return { ...item, count, hotScore };
-    });
-
-    return scored
-      .filter((item) => item.count > 0)
-      .sort((a, b) => b.hotScore - a.hotScore || b.count - a.count)
-      .slice(0, 5);
+  // Hot Topics: Tự động chấm điểm "Độ nóng" mỗi ngày từ dữ liệu bài báo thực tế dựa trên số lượng bài báo nhắc tới chủ đề và độ mới
+  const hotTopics = useMemo(() => {
+    return calculateDailyHotTopics(articles, 5);
   }, [articles]);
+
+  const handleSelectHotTopic = (query: string) => {
+    if (searchQuery.toLowerCase() === query.toLowerCase()) {
+      setSearchQuery("");
+    } else {
+      setSearchQuery(query);
+      setSelectedSub("All");
+      setSelectedJournal("All");
+      setSelectedType("All");
+      setShowSavedOnly(false);
+    }
+    setVisibleCount(35);
+  };
 
   // Chọn ra Top 4 nghiên cứu tiêu điểm cho "Morning Clinical Briefing"
   // Tính điểm dựa trên: Study Type chuẩn (RCT / Guideline / Meta-Analysis) + Điểm của Tag Phân khoa CAO NHẤT + Tạp chí + Độ mới
@@ -772,7 +683,25 @@ export default function HomePage() {
 
   const handleCopyFullBriefing = () => {
     if (briefingHighlights.length === 0) return;
-    const header = `🌅 MORNING NEUROLOGY & STROKE BRIEFING (${new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })})\n`;
+    const dateStr = new Date().toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
+    const header = `🌅 MORNING NEUROLOGY & STROKE BRIEFING (${dateStr})\n`;
+
+    const hotTopicsHeader =
+      hotTopics.length > 0
+        ? `🔥 HOT TOPICS HÔM NAY (Xếp hạng theo số lượng bài báo):\n` +
+          hotTopics
+            .map(
+              (t, idx) =>
+                `  ${idx + 1}. ${t.label}: ${t.count} bài báo (${t.recentCount} bài gần đây)`
+            )
+            .join("\n") +
+          `\n\n📌 TIÊU ĐIỂM NGHIÊN CỨU GIAO BAN BUỔI SÁNG (Top ${briefingHighlights.length}):\n`
+        : "";
+
     const body = briefingHighlights
       .map((a, idx) => {
         const takeaway = cleanMedicalText(a.ai_takeaways?.conclusion_vi || "").replace(
@@ -783,7 +712,7 @@ export default function HomePage() {
       })
       .join("\n\n");
 
-    navigator.clipboard.writeText(`${header}\n${body}`).then(() => {
+    navigator.clipboard.writeText(`${header}\n${hotTopicsHeader}${body}`).then(() => {
       setBriefingCopied(true);
       setTimeout(() => setBriefingCopied(false), 2200);
     });
@@ -1041,7 +970,7 @@ export default function HomePage() {
                       ? "bg-emerald-500 text-white"
                       : "bg-white/15 hover:bg-white/25 text-white"
                   }`}
-                  title="Copy all 4 morning highlights for Zalo / Telegram handover"
+                  title="Copy morning briefing & hot topics for Zalo / Telegram handover"
                 >
                   {briefingCopied ? "✓ Briefing Copied!" : "📋 Copy Briefing"}
                 </button>
@@ -1053,6 +982,56 @@ export default function HomePage() {
                 </button>
               </div>
             </div>
+
+            {/* Dải Hot Topics mỗi ngày đi kèm Morning Clinical Briefing */}
+            {hotTopics.length > 0 && (
+              <div
+                className={`px-4 py-2.5 border-b flex flex-wrap items-center justify-between gap-2 text-xs ${
+                  darkMode
+                    ? "bg-slate-950/70 border-slate-800 text-slate-300"
+                    : "bg-amber-100/50 border-amber-200/80 text-slate-700"
+                }`}
+              >
+                <div className="flex items-center gap-1.5 font-bold shrink-0">
+                  <span className="text-amber-600 dark:text-amber-400">🔥 Hot topics hôm nay:</span>
+                  <span className="text-[11px] font-normal text-slate-500 dark:text-slate-400">
+                    (theo số lượng bài báo)
+                  </span>
+                </div>
+                <div className="flex flex-wrap items-center gap-1.5">
+                  {hotTopics.map((item) => {
+                    const isActive = searchQuery.toLowerCase() === item.query.toLowerCase();
+                    return (
+                      <button
+                        key={`mb-${item.label}`}
+                        onClick={() => handleSelectHotTopic(item.query)}
+                        title={`Lọc xem ${item.count} bài báo về ${item.label}`}
+                        className={`px-2.5 py-1 rounded-full text-[11px] font-semibold border transition-all flex items-center gap-1.5 ${
+                          isActive
+                            ? "bg-blue-600 text-white border-blue-600 shadow-xs"
+                            : darkMode
+                            ? "bg-slate-800/90 text-slate-300 border-slate-700 hover:border-amber-400 hover:text-white"
+                            : "bg-white text-slate-700 border-amber-200/90 hover:border-amber-400 hover:bg-amber-50"
+                        }`}
+                      >
+                        <span className="truncate max-w-[150px] sm:max-w-none">{item.label}</span>
+                        <span
+                          className={`px-1.5 py-0.2 rounded-full text-[10px] font-extrabold ${
+                            isActive
+                              ? "bg-white/25 text-white"
+                              : darkMode
+                              ? "bg-slate-900 text-amber-300"
+                              : "bg-amber-100 text-amber-900"
+                          }`}
+                        >
+                          {item.count} bài
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
 
             {showBriefing && (
               <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-3.5">
@@ -1184,7 +1163,7 @@ export default function HomePage() {
                     : "bg-white text-slate-700 border-slate-300"
                 }`}
               >
-                <span>⚡ Filters &amp; Radar</span>
+                <span>⚡ Filters &amp; Hot Topics</span>
                 {hasActiveFilters && (
                   <span className="px-1.5 py-0.2 rounded-full text-[10px] font-black bg-white/25 text-white">
                     •
@@ -1195,7 +1174,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* CỘT TRÁI (LEFT SIDEBAR): DYNAMIC CLINICAL RADAR & FILTER CONTROLS */}
+          {/* CỘT TRÁI (LEFT SIDEBAR): HOT TOPICS & FILTER CONTROLS */}
           <aside
             className={`${
               showMobileFilters ? "block mb-5" : "hidden"
@@ -1205,7 +1184,7 @@ export default function HomePage() {
                 : "lg:hidden"
             } space-y-4`}
           >
-            {/* Khối 1: DYNAMIC CLINICAL RADAR (TOP 5) */}
+            {/* Khối 1: HOT TOPICS (TOP 5) */}
             <div
               className={`p-4 rounded-xl border shadow-sm ${
                 darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
@@ -1213,28 +1192,20 @@ export default function HomePage() {
             >
               <div
                 className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2.5 flex items-center justify-between"
-                title="Top 5 hottest clinical interventions & biomarker themes automatically ranked by recent RCTs, Meta-Analyses & study volume"
+                title="Top các chủ đề nóng được tìm ra mỗi ngày dựa trên số lượng bài báo nhắc tới và độ mới nghiên cứu"
               >
-                <span>🔥 Dynamic Clinical Radar (Top 5)</span>
+                <span>🔥 Hot topics</span>
+                <span className="text-[10px] font-semibold text-amber-500 lowercase">
+                  mỗi ngày
+                </span>
               </div>
               <div className="flex flex-col gap-1.5">
-                {dynamicClinicalRadar.map((item) => {
+                {hotTopics.map((item) => {
                   const isActive = searchQuery.toLowerCase() === item.query.toLowerCase();
                   return (
                     <button
                       key={item.label}
-                      onClick={() => {
-                        if (isActive) {
-                          setSearchQuery("");
-                        } else {
-                          setSearchQuery(item.query);
-                          setSelectedSub("All");
-                          setSelectedJournal("All");
-                          setSelectedType("All");
-                          setShowSavedOnly(false);
-                        }
-                        setVisibleCount(35);
-                      }}
+                      onClick={() => handleSelectHotTopic(item.query)}
                       className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all border flex items-center justify-between text-left ${
                         isActive
                           ? "bg-blue-600 text-white border-blue-600 shadow-xs"
@@ -1242,6 +1213,7 @@ export default function HomePage() {
                           ? "bg-slate-950/70 text-slate-300 border-slate-800 hover:border-slate-600"
                           : "bg-slate-50/80 text-slate-700 border-slate-200/90 hover:bg-slate-100"
                       }`}
+                      title={`${item.count} bài báo nhắc tới chủ đề này (${item.recentCount} bài gần đây)`}
                     >
                       <span className="truncate pr-2">{item.label}</span>
                       <span
@@ -1253,7 +1225,7 @@ export default function HomePage() {
                             : "bg-white border border-slate-200 text-slate-600"
                         }`}
                       >
-                        {item.count}
+                        {item.count} bài
                       </span>
                     </button>
                   );
@@ -1397,7 +1369,7 @@ export default function HomePage() {
                     ? "bg-slate-900 border-slate-700 text-slate-300 hover:bg-slate-800"
                     : "bg-white border-slate-300 text-slate-700 hover:bg-slate-50"
                 }`}
-                title="Show or hide the left Radar & Filter sidebar"
+                title="Show or hide the left Hot Topics & Filter sidebar"
               >
                 <span>{showDesktopSidebar ? "◧ Hide Filters" : "◧ Show Filters"}</span>
               </button>
