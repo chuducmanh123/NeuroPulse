@@ -1238,10 +1238,11 @@ export default function NeuroGuidePage() {
                                 !doc.topTakeawaysSynthetic &&
                                 !doc.topTakeaways.some((t) => /^\d+\.\s*\[.*-\s*(?:Class|GRADE|COR)/i.test(t))
                               ) && (() => {
+                                const takeaways = doc.topTakeaways || [];
                                 const isTakeawaysExpanded = Boolean(expandedTakeaways[doc.id]);
-                                const displayedTakeaways = (isTakeawaysExpanded || doc.topTakeaways.length <= 3)
-                                  ? doc.topTakeaways
-                                  : doc.topTakeaways.slice(0, 3);
+                                const displayedTakeaways = (isTakeawaysExpanded || takeaways.length <= 3)
+                                  ? takeaways
+                                  : takeaways.slice(0, 3);
 
                                 return (
                                   <div className="p-3.5 sm:p-4 rounded-xl border border-indigo-200/80 dark:border-indigo-900/60 bg-gradient-to-br from-indigo-50/50 via-white to-blue-50/30 dark:from-slate-900/90 dark:via-indigo-950/20 dark:to-slate-900/80 space-y-2.5 sm:space-y-3">
@@ -1258,20 +1259,20 @@ export default function NeuroGuidePage() {
                                           key={tIdx}
                                           className="flex items-start gap-2 text-xs text-slate-700 dark:text-slate-300 bg-white/80 dark:bg-slate-900/80 p-2.5 sm:p-3 rounded-lg border border-slate-200/60 dark:border-slate-800/60 leading-relaxed shadow-sm hover:border-indigo-300 dark:hover:border-indigo-700 transition-all"
                                         >
-                                          <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 font-black text-[10.5px]">
+                                          <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-indigo-100 dark:indigo-900/50 text-indigo-700 dark:text-indigo-300 font-black text-[10.5px]">
                                             {tIdx + 1}
                                           </span>
                                           <span className="flex-1 whitespace-pre-line">{takeaway.replace(/^\d+\.\s*/, "")}</span>
                                         </div>
                                       ))}
                                     </div>
-                                    {doc.topTakeaways.length > 3 && (
+                                    {takeaways.length > 3 && (
                                       <button
                                         type="button"
                                         onClick={() => toggleTakeaways(doc.id)}
                                         className="w-full py-1.5 px-3 rounded-lg text-xs font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-50/80 dark:bg-indigo-950/40 hover:bg-indigo-100 dark:hover:bg-indigo-900/60 border border-indigo-200 dark:border-indigo-800 transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
                                       >
-                                        <span>{isTakeawaysExpanded ? "Thu gọn thông điệp ▴" : `Xem đầy đủ ${doc.topTakeaways.length} thông điệp lâm sàng ▾`}</span>
+                                        <span>{isTakeawaysExpanded ? "Thu gọn thông điệp ▴" : `Xem đầy đủ ${takeaways.length} thông điệp lâm sàng ▾`}</span>
                                       </button>
                                     )}
                                   </div>
