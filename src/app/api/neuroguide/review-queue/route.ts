@@ -4,7 +4,7 @@ import path from "path";
 import { put } from "@vercel/blob";
 import type { GuidelineDoc, PracticeChangeDetail } from "@/types/neuroguide";
 import { mapSocietyToSubspecialty } from "@/lib/neuroguide/storeAdapter";
-import { loadMergedNeuroGuideData, saveNeuroGuideToActiveStorage } from "@/lib/neuroguide/blobStorage";
+import { loadMergedNeuroGuideData, saveNeuroGuideToActiveStorage } from "@/lib/neuroguide/guidelineStorage";
 import {
   getCanonicalEsoPicos,
   convertEsoPicoItemsToPracticeChanges,

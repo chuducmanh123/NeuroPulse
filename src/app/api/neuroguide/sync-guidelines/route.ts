@@ -10,9 +10,9 @@ import {
 import {
   loadMergedNeuroGuideData,
   saveNeuroGuideToActiveStorage,
-  hasBlobConfig,
   mergeGuidelines,
-} from "@/lib/neuroguide/blobStorage";
+} from "@/lib/neuroguide/guidelineStorage";
+import { hasSupabaseConfig } from "@/lib/supabase";
 import { registerCandidateGuideline } from "@/lib/neuroguide/storeAdapter";
 import { SubspecialtyType, GuidelineDoc, ConferenceEvent, ClinicalScenario } from "@/types/neuroguide";
 import { verifyAdminToken } from "@/utils/security";
@@ -124,7 +124,7 @@ export async function GET(request: NextRequest) {
       {
         status: "success",
         storageBackend: mergedData.storageSource,
-        hasBlobConfig: hasBlobConfig(),
+        hasSupabaseConfig: hasSupabaseConfig(),
         lastSyncedAt: version,
         totalGuidelines: resultGuidelines.length,
         totalConferences: mergedData.conferences.length,
@@ -330,7 +330,7 @@ export async function POST(request: NextRequest) {
       status: "success",
       trigger: isPeriodicCron ? "PERIODIC_AUTONOMOUS_CRON" : "USER_MANUAL_TRIGGER",
       storageBackend: saveResult.storage,
-      savedToBlob: saveResult.storage === "vercel-blob",
+      savedToSupabase: saveResult.storage === "supabase",
       syncedAt: new Date().toISOString(),
       quotaReport: {
         guidelinesAnalyzed: analyzedGuidelines.length,

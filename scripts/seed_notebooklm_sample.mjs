@@ -6,7 +6,7 @@ import {
   loadMergedNeuroGuideData,
   saveNeuroGuideToActiveStorage,
   mergeGuidelines,
-} from "../src/lib/neuroguide/blobStorage.ts";
+} from "../src/lib/neuroguide/guidelineStorage.ts";
 
 const SAMPLE_AHA_ASAH_TEXT = `2023 AHA/ASA Guideline for the Management of Patients With Aneurysmal Subarachnoid Hemorrhage
 Comprehensive Summary of Clinical Recommendations, COR/LOE Ratings, and Supporting Evidence

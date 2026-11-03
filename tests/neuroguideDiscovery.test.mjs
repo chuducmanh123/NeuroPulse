@@ -12,7 +12,7 @@ import {
   mergeGuidelines,
   mergeConferences,
   mergeScenarios,
-} from "../src/lib/neuroguide/blobStorage.ts";
+} from "../src/lib/neuroguide/guidelineStorage.ts";
 
 import {
   extractGuidelineWithGemini,

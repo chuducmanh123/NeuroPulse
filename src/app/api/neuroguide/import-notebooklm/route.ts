@@ -7,7 +7,7 @@ import {
   loadMergedNeuroGuideData,
   saveNeuroGuideToActiveStorage,
   mergeGuidelines,
-} from "@/lib/neuroguide/blobStorage";
+} from "@/lib/neuroguide/guidelineStorage";
 import { SubspecialtyType } from "@/types/neuroguide";
 import { verifyAdminToken } from "@/utils/security";
 

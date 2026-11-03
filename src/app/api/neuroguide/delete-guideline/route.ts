@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import fs from "fs";
 import path from "path";
-import { loadMergedNeuroGuideData, saveNeuroGuideToActiveStorage } from "@/lib/neuroguide/blobStorage";
+import { loadMergedNeuroGuideData, saveNeuroGuideToActiveStorage } from "@/lib/neuroguide/guidelineStorage";
 import { MOCK_GUIDELINE_DOCS } from "@/data/neuroguideMockData";
 import { verifyAdminToken } from "@/utils/security";
 

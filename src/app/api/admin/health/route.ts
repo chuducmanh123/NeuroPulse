@@ -4,7 +4,7 @@ import path from "path";
 import { verifyAdminToken } from "@/utils/security";
 import { list } from "@vercel/blob";
 import { supabaseAdmin, hasSupabaseConfig } from "@/lib/supabase";
-import { loadMergedNeuroGuideData } from "@/lib/neuroguide/blobStorage";
+import { loadMergedNeuroGuideData } from "@/lib/neuroguide/guidelineStorage";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;

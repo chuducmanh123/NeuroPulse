@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
-import { loadMergedNeuroGuideData } from "@/lib/neuroguide/blobStorage";
+import { loadMergedNeuroGuideData } from "@/lib/neuroguide/guidelineStorage";
 
 export const dynamic = "force-dynamic";
 
