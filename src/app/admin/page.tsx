@@ -351,9 +351,15 @@ export default function AdminCommandCenter() {
           const normalizeT = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
           let deletedSet = new Set<string>();
           try {
+            const activeKeys = new Set<string>();
+            data.guidelines.forEach((g: GuidelineDoc) => {
+              if (g.id) activeKeys.add(g.id.toLowerCase().trim());
+              if (g.title) activeKeys.add(g.title.toLowerCase().replace(/[^a-z0-9]/g, ""));
+            });
             const localDel: string[] = JSON.parse(localStorage.getItem("neuroguide_deleted_ids") || "[]");
             const serverDel: string[] = Array.isArray(data.deletedGuidelineIds) ? data.deletedGuidelineIds : [];
-            const mergedDel = Array.from(new Set([...localDel.map((x) => x.toLowerCase()), ...serverDel.map((x) => x.toLowerCase())]));
+            const mergedDel = Array.from(new Set([...localDel.map((x) => x.toLowerCase().trim()), ...serverDel.map((x) => x.toLowerCase().trim())]))
+              .filter((d) => !activeKeys.has(d));
             localStorage.setItem("neuroguide_deleted_ids", JSON.stringify(mergedDel));
             deletedSet = new Set(mergedDel);
           } catch {}

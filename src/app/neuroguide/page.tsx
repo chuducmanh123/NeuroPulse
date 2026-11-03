@@ -294,7 +294,13 @@ export default function NeuroGuidePage() {
       .then((data) => {
         if (data && data.status === "success" && Array.isArray(data.guidelines)) {
           const serverDel: string[] = Array.isArray(data.deletedGuidelineIds) ? data.deletedGuidelineIds : [];
-          const valid = filterValidGuidelines(data.guidelines, serverDel);
+          const activeKeys = new Set<string>();
+          data.guidelines.forEach((g: GuidelineDoc) => {
+            if (g.id) activeKeys.add(g.id.toLowerCase().trim());
+            if (g.title) activeKeys.add(g.title.toLowerCase().replace(/[^a-z0-9]/g, ""));
+          });
+          const cleanDeleted = serverDel.filter((d) => !activeKeys.has(d.toLowerCase().trim()));
+          const valid = filterValidGuidelines(data.guidelines, cleanDeleted);
           setGuidelineDocs(valid);
           setIsInitialLoading(false);
           try {
@@ -303,7 +309,7 @@ export default function NeuroGuidePage() {
               JSON.stringify({
                 version: data.lastSyncedAt || new Date().toISOString(),
                 guidelines: valid,
-                deletedIds: serverDel,
+                deletedIds: cleanDeleted,
                 timestamp: Date.now(),
               })
             );
@@ -571,8 +577,16 @@ export default function NeuroGuidePage() {
 
           // Nếu phiên bản Cloud hoàn toàn trùng khớp với Local và đã hiển thị cache
           if (hasLoadedFromCache && localVersion && localVersion === serverVersion) {
-            // Đảm bảo lọc sạch nếu có ID nào mới thêm vào deletedGuidelineIds
-            setGuidelineDocs((prev) => filterValidGuidelines(prev, serverDeleted));
+            // Đảm bảo lọc sạch nếu có ID nào mới thêm vào deletedGuidelineIds nhưng không lọc nhầm guideline đang active
+            setGuidelineDocs((prev) => {
+              const activeKeys = new Set<string>();
+              prev.forEach((g) => {
+                if (g.id) activeKeys.add(g.id.toLowerCase().trim());
+                if (g.title) activeKeys.add(g.title.toLowerCase().replace(/[^a-z0-9]/g, ""));
+              });
+              const cleanDeleted = serverDeleted.filter((d) => !activeKeys.has(d.toLowerCase().trim()));
+              return filterValidGuidelines(prev, cleanDeleted);
+            });
             setIsInitialLoading(false);
             return;
           }
@@ -589,7 +603,13 @@ export default function NeuroGuidePage() {
                     ...(Array.isArray(data.deletedGuidelineIds) ? data.deletedGuidelineIds : []),
                   ])
                 );
-                const validGuidelines = filterValidGuidelines(data.guidelines, combinedDeleted);
+                const activeKeys = new Set<string>();
+                data.guidelines.forEach((g: GuidelineDoc) => {
+                  if (g.id) activeKeys.add(g.id.toLowerCase().trim());
+                  if (g.title) activeKeys.add(g.title.toLowerCase().replace(/[^a-z0-9]/g, ""));
+                });
+                const cleanDeleted = combinedDeleted.filter((d) => !activeKeys.has(d.toLowerCase().trim()));
+                const validGuidelines = filterValidGuidelines(data.guidelines, cleanDeleted);
                 setGuidelineDocs(validGuidelines);
 
                 try {
@@ -598,7 +618,7 @@ export default function NeuroGuidePage() {
                     JSON.stringify({
                       version: data.lastSyncedAt || serverVersion,
                       guidelines: validGuidelines,
-                      deletedIds: combinedDeleted,
+                      deletedIds: cleanDeleted,
                       timestamp: Date.now(),
                     })
                   );
@@ -748,19 +768,20 @@ export default function NeuroGuidePage() {
         selectedSubspecialty === "All Subspecialties" ||
         doc.subspecialty === selectedSubspecialty ||
         (doc.subspecialties && doc.subspecialties.includes(selectedSubspecialty)) ||
-        MOCK_CLINICAL_SCENARIOS.some(
+        (Array.isArray(doc.linkedScenarioIds) && MOCK_CLINICAL_SCENARIOS.some(
           (s) => doc.linkedScenarioIds.includes(s.id) && s.subspecialty === selectedSubspecialty
-        );
+        ));
 
       if (!matchesSociety || !matchesSub) return false;
       if (tokens.length === 0) return true;
 
-      const changesText = doc.allPracticeChanges
+      const changesList = Array.isArray(doc.allPracticeChanges) ? doc.allPracticeChanges : [];
+      const changesText = changesList
         .map(
           (c) =>
-            `${c.topic} ${c.currentText} ${c.category} ${c.previousText || ""} ${
+            `${c.topic || ""} ${c.currentText || ""} ${c.category || ""} ${c.previousText || ""} ${
               c.drivingTrials?.join(" ") || ""
-            } ${c.currentGrade} ${c.previousGrade || ""}`
+            } ${c.currentGrade || ""} ${c.previousGrade || ""}`
         )
         .join(" ");
 
@@ -2304,20 +2325,19 @@ export default function NeuroGuidePage() {
             onSuccess={(updatedDoc) => {
               if (updatedDoc) {
                 const normalizeT = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
-                setGuidelineDocs((prev) =>
-                  prev.map((g) => {
-                    const matchId = g.id === updatedDoc.id || (editingDocId && g.id === editingDocId);
-                    const matchPrevDoc = editingGuidelineDoc && (g.id === editingGuidelineDoc.id || normalizeT(g.title) === normalizeT(editingGuidelineDoc.title));
-                    const matchTitle = normalizeT(g.title) === normalizeT(updatedDoc.title);
-                    if (matchId || matchPrevDoc || matchTitle) {
-                      return updatedDoc;
-                    }
-                    return g;
-                  })
-                );
-                setSyncMessage(`✓ Đã lưu thay đổi tên guideline "${updatedDoc.title}" lên Cloud.`);
+                setGuidelineDocs((prev) => {
+                  const matchId = (g: GuidelineDoc) => g.id === updatedDoc.id || (editingDocId && g.id === editingDocId);
+                  const matchPrevDoc = (g: GuidelineDoc) => editingGuidelineDoc && (g.id === editingGuidelineDoc.id || normalizeT(g.title) === normalizeT(editingGuidelineDoc.title));
+                  const matchTitle = (g: GuidelineDoc) => normalizeT(g.title) === normalizeT(updatedDoc.title);
+                  const exists = prev.some((g) => matchId(g) || matchPrevDoc(g) || matchTitle(g));
+                  if (exists) {
+                    return prev.map((g) => (matchId(g) || matchPrevDoc(g) || matchTitle(g) ? updatedDoc : g));
+                  }
+                  return [updatedDoc, ...prev];
+                });
+                setSyncMessage(`✓ Đã lưu thay đổi guideline "${updatedDoc.title}" lên Cloud.`);
               }
-              reloadGuidelines();
+              reloadGuidelines(true);
             }}
             darkMode={darkMode}
           />

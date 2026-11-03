@@ -261,8 +261,7 @@ export function mergeGuidelines(
     if (!deletedIds || deletedIds.size === 0) return false;
     const id = (doc.id || "").toLowerCase();
     const normT = normalizeTitle(doc.title);
-    const topicK = getCoreTopicKey(doc).toLowerCase();
-    return deletedIds.has(id) || deletedIds.has(normT) || deletedIds.has(topicK);
+    return deletedIds.has(id) || deletedIds.has(normT);
   };
 
   const filteredStatic = staticItems.filter((g) => !isDeleted(g));
@@ -497,10 +496,8 @@ export async function loadMergedNeuroGuideData(): Promise<{
       if (
         deletedSet.has(id) ||
         deletedSet.has(norm) ||
-        deletedSet.has(topicK) ||
         unapprovedFilterSet.has(id) ||
-        unapprovedFilterSet.has(norm) ||
-        (unapprovedFilterSet.has(topicK) && !supabaseApprovedKeys.has(id) && !supabaseApprovedKeys.has(norm))
+        unapprovedFilterSet.has(norm)
       ) {
         continue;
       }
@@ -565,14 +562,11 @@ export async function loadMergedNeuroGuideData(): Promise<{
   const isStoreDocDeleted = (g: GuidelineDoc) => {
     const id = (g.id || "").toLowerCase();
     const norm = normalizeT(g.title);
-    const topicK = getCoreTopicKey(g).toLowerCase();
     return (
       deletedSet.has(id) ||
       deletedSet.has(norm) ||
-      deletedSet.has(topicK) ||
       unapprovedFilterSet.has(id) ||
-      unapprovedFilterSet.has(norm) ||
-      (unapprovedFilterSet.has(topicK) && !supabaseApprovedKeys.has(id) && !supabaseApprovedKeys.has(norm))
+      unapprovedFilterSet.has(norm)
     );
   };
 

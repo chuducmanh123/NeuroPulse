@@ -1055,6 +1055,20 @@ export async function POST(request: NextRequest) {
         activeData.guidelines.unshift(updatedGuideline);
       }
 
+      // Loại bỏ ID và tiêu đề guideline này khỏi deletedGuidelineIds nếu trước đây từng bị đánh dấu
+      if (Array.isArray(activeData.deletedGuidelineIds)) {
+        const idsToRemove = new Set([
+          normTarget,
+          cleanDocId.toLowerCase(),
+          targetDocId.toLowerCase(),
+          normTitle,
+          normPrevTitle,
+        ].filter(Boolean));
+        activeData.deletedGuidelineIds = activeData.deletedGuidelineIds.filter(
+          (d) => !idsToRemove.has(d.toLowerCase().trim())
+        );
+      }
+
       await saveNeuroGuideToActiveStorage({
         guidelines: activeData.guidelines,
         conferences: activeData.conferences,
@@ -1135,7 +1149,8 @@ export async function POST(request: NextRequest) {
             }
 
             const existingRec = rec.recommendations.find((r) => r.rec_id === chg.id);
-            const status = existingRec ? existingRec.approval_status : (docIdx >= 0 ? "APPROVED" : "PENDING_REVIEW");
+            // Các khuyến cáo được lưu qua EDIT_GUIDELINE là nội dung đã được bác sĩ/Admin phê duyệt
+            const status = (existingRec && existingRec.approval_status === "REJECTED") ? "REJECTED" : "APPROVED";
 
             let pNum: string | undefined = (chg as any).picoNumber ? String((chg as any).picoNumber) : undefined;
             let pQuestion: string | undefined = (chg as any).picoQuestion || undefined;

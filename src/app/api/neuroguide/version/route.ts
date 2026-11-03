@@ -29,12 +29,20 @@ export async function GET() {
 
     const mergedData = await loadMergedNeuroGuideData();
     const version = mergedData.lastSyncedAt || cloudLastSynced || new Date().toISOString();
-    const deletedGuidelineIds = Array.from(
+    const rawDeletedGuidelineIds = Array.from(
       new Set([
         ...(mergedData.deletedGuidelineIds || []).map((x) => x.toLowerCase().trim()),
         ...localDeletedIds.map((x) => x.toLowerCase().trim()),
       ])
     );
+
+    // Tuyệt đối không gửi ID/tiêu đề của guideline đang active/approved vào deletedGuidelineIds
+    const activeDocKeys = new Set<string>();
+    mergedData.guidelines.forEach((g) => {
+      if (g.id) activeDocKeys.add(g.id.toLowerCase().trim());
+      if (g.title) activeDocKeys.add(g.title.toLowerCase().replace(/[^a-z0-9]/g, ""));
+    });
+    const deletedGuidelineIds = rawDeletedGuidelineIds.filter((d) => !activeDocKeys.has(d.toLowerCase().trim()));
 
     const count = mergedData.guidelines.length || cloudCount;
 
