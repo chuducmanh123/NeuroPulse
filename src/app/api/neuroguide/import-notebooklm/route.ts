@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { parseNotebookLMContent } from "@/lib/neuroguide/notebooklmParser";
 import { extractTextFromDocument } from "@/lib/neuroguide/documentParser";
 import { registerCandidateGuideline } from "@/lib/neuroguide/storeAdapter";
@@ -129,6 +130,12 @@ export async function POST(request: NextRequest) {
       conferences: currentStore.conferences,
       scenarios: currentStore.scenarios,
     });
+
+    try {
+      revalidatePath("/neuroguide");
+      revalidatePath("/api/neuroguide/sync-guidelines");
+      revalidatePath("/api/neuroguide/version");
+    } catch {}
 
     return NextResponse.json({
       ok: true,

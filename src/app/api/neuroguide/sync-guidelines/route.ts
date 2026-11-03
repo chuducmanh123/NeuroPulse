@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { searchPubMedGuidelines, PubMedSearchOptions } from "@/lib/neuroguide/pubmedDiscovery";
 import { fetchGuidelineFullText } from "@/lib/neuroguide/fullTextFetcher";
 import {
@@ -32,6 +33,8 @@ export async function GET(request: NextRequest) {
     const society = searchParams.get("society") || undefined;
     const subspecialty = (searchParams.get("subspecialty") as SubspecialtyType) || undefined;
     const query = (searchParams.get("query") || "").toLowerCase().trim();
+    const versionOnly = searchParams.get("versionOnly") === "true";
+    const summaryOnly = searchParams.get("summaryOnly") === "true";
 
     const mergedData = await loadMergedNeuroGuideData();
     let filteredGuidelines = mergedData.guidelines;
@@ -71,25 +74,70 @@ export async function GET(request: NextRequest) {
       );
     }
 
+    const version = mergedData.lastSyncedAt || new Date().toISOString();
+    const etag = `W/"ng-${Buffer.from(`${version}-${filteredGuidelines.length}-${deletedGuidelineIds.length}`).toString("base64")}"`;
+
+    if (versionOnly) {
+      return NextResponse.json(
+        {
+          status: "success",
+          version,
+          lastSyncedAt: version,
+          totalGuidelines: filteredGuidelines.length,
+          totalConferences: mergedData.conferences.length,
+          totalScenarios: mergedData.scenarios.length,
+          deletedGuidelineIds,
+        },
+        {
+          headers: {
+            "Cache-Control": "no-store, no-cache, must-revalidate",
+            ETag: etag,
+          },
+        }
+      );
+    }
+
+    const ifNoneMatch = request.headers.get("if-none-match");
+    if (ifNoneMatch && ifNoneMatch === etag) {
+      return new NextResponse(null, {
+        status: 304,
+        headers: {
+          ETag: etag,
+          "Cache-Control": "public, max-age=60, stale-while-revalidate=300",
+        },
+      });
+    }
+
+    let resultGuidelines = filteredGuidelines;
+    if (summaryOnly) {
+      resultGuidelines = filteredGuidelines.map((g) => {
+        const { allPracticeChanges, ...rest } = g;
+        return {
+          ...rest,
+          allPracticeChanges: (allPracticeChanges || []).slice(0, 5),
+          totalPracticeChanges: (allPracticeChanges || []).length,
+        } as unknown as GuidelineDoc;
+      });
+    }
+
     return NextResponse.json(
       {
         status: "success",
         storageBackend: mergedData.storageSource,
         hasBlobConfig: hasBlobConfig(),
-        lastSyncedAt: mergedData.lastSyncedAt || new Date().toISOString(),
-        totalGuidelines: filteredGuidelines.length,
+        lastSyncedAt: version,
+        totalGuidelines: resultGuidelines.length,
         totalConferences: mergedData.conferences.length,
         totalScenarios: mergedData.scenarios.length,
-        guidelines: filteredGuidelines,
+        guidelines: resultGuidelines,
         conferences: mergedData.conferences,
         scenarios: mergedData.scenarios,
         deletedGuidelineIds,
       },
       {
         headers: {
-          "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
-          Pragma: "no-cache",
-          Expires: "0",
+          "Cache-Control": "public, max-age=60, stale-while-revalidate=300",
+          ETag: etag,
         },
       }
     );
@@ -271,6 +319,12 @@ export async function POST(request: NextRequest) {
       scenarios: allScenarios,
       deletedGuidelineIds: currentStore.deletedGuidelineIds,
     });
+
+    try {
+      revalidatePath("/neuroguide");
+      revalidatePath("/api/neuroguide/sync-guidelines");
+      revalidatePath("/api/neuroguide/version");
+    } catch {}
 
     return NextResponse.json({
       status: "success",

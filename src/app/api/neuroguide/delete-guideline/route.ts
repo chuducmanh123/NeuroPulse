@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import fs from "fs";
 import path from "path";
 import { loadMergedNeuroGuideData, saveNeuroGuideToActiveStorage } from "@/lib/neuroguide/blobStorage";
@@ -189,6 +190,12 @@ export async function POST(request: NextRequest) {
         } catch {}
       }
     }
+
+    try {
+      revalidatePath("/neuroguide");
+      revalidatePath("/api/neuroguide/sync-guidelines");
+      revalidatePath("/api/neuroguide/version");
+    } catch {}
 
     return NextResponse.json({
       ok: true,

@@ -19,12 +19,40 @@ import {
 } from "../../data/neuroguideMockData";
 import { AppSwitcher } from "../../components/ecosystem/AppSwitcher";
 import { AdminButton } from "../../components/ecosystem/AdminButton";
-import { ReviewQueueTab } from "../../components/neuroguide/ReviewQueueTab";
-import { PipelineModal } from "../../components/neuroguide/PipelineModal";
-import { NotebookLMUploadModal } from "../../components/neuroguide/NotebookLMUploadModal";
-import { EditGuidelineModal } from "../../components/neuroguide/EditGuidelineModal";
-import { AdminAuthModal } from "../../components/neurocase/modals/AdminAuthModal";
-import { GuidelinePresentationRenderer } from "../../components/neuroguide/GuidelinePresentationRenderer";
+import dynamic from "next/dynamic";
+
+const ReviewQueueTab = dynamic(
+  () => import("../../components/neuroguide/ReviewQueueTab").then((m) => m.ReviewQueueTab),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="p-12 text-center text-slate-500 animate-pulse">
+        <span className="text-3xl block mb-2">⏳</span>
+        Đang tải Review Queue...
+      </div>
+    ),
+  }
+);
+const PipelineModal = dynamic(
+  () => import("../../components/neuroguide/PipelineModal").then((m) => m.PipelineModal),
+  { ssr: false }
+);
+const NotebookLMUploadModal = dynamic(
+  () => import("../../components/neuroguide/NotebookLMUploadModal").then((m) => m.NotebookLMUploadModal),
+  { ssr: false }
+);
+const EditGuidelineModal = dynamic(
+  () => import("../../components/neuroguide/EditGuidelineModal").then((m) => m.EditGuidelineModal),
+  { ssr: false }
+);
+const AdminAuthModal = dynamic(
+  () => import("../../components/neurocase/modals/AdminAuthModal").then((m) => m.AdminAuthModal),
+  { ssr: false }
+);
+const GuidelinePresentationRenderer = dynamic(
+  () => import("../../components/neuroguide/GuidelinePresentationRenderer").then((m) => m.GuidelinePresentationRenderer),
+  { ssr: false }
+);
 import { groupPracticeChangesIntoEsoPicos } from "../../lib/neuroguide/esoPicoGrouper";
 import type { PracticeChangeDetail } from "../../types/neuroguide";
 import { getAdminHeaders, getStoredAdminToken } from "@/utils/clientAuth";
@@ -243,28 +271,47 @@ export default function NeuroGuidePage() {
   const [editingGuidelineDoc, setEditingGuidelineDoc] = useState<GuidelineDoc | null>(null);
   const [showEditModal, setShowEditModal] = useState<boolean>(false);
 
-  const reloadGuidelines = () => {
-    try {
-      localStorage.removeItem("neuroguide_cached_guidelines");
-      localStorage.removeItem("neuroguide_deleted_ids");
-    } catch {}
-    fetch("/api/neuroguide/sync-guidelines", { cache: "no-store" })
+  const SWR_STORAGE_KEY = "neuroguide_swr_store_v2";
+
+  const filterValidGuidelines = (list: GuidelineDoc[], deletedIds: string[] = []): GuidelineDoc[] => {
+    if (!Array.isArray(list)) return [];
+    const normalizeT = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+    const deletedSet = new Set(deletedIds.map((x) => (x || "").toLowerCase().trim()));
+    return list.filter((g) => {
+      if (!g || !g.title) return false;
+      const id = (g.id || "").toLowerCase();
+      const norm = normalizeT(g.title);
+      if (deletedSet.has(id) || deletedSet.has(norm)) return false;
+      if (id.startsWith("eso-pmid-") || id.startsWith("esc-pmid-") || id.includes("phantom")) return false;
+      return true;
+    });
+  };
+
+  const reloadGuidelines = (bypassCache = true) => {
+    const url = bypassCache ? `/api/neuroguide/sync-guidelines?_ts=${Date.now()}` : "/api/neuroguide/sync-guidelines";
+    fetch(url, { cache: "no-store" })
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (data && data.status === "success" && Array.isArray(data.guidelines)) {
-          const normalizeT = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
           const serverDel: string[] = Array.isArray(data.deletedGuidelineIds) ? data.deletedGuidelineIds : [];
-          const deletedSet = new Set(serverDel.map((x) => x.toLowerCase()));
-
-          const valid = data.guidelines.filter((g: GuidelineDoc) => {
-            if (!g || !g.title) return false;
-            const id = (g.id || "").toLowerCase();
-            const norm = normalizeT(g.title);
-            return !deletedSet.has(id) && !deletedSet.has(norm);
-          });
-
+          const valid = filterValidGuidelines(data.guidelines, serverDel);
           setGuidelineDocs(valid);
+          setIsInitialLoading(false);
+          try {
+            localStorage.setItem(
+              SWR_STORAGE_KEY,
+              JSON.stringify({
+                version: data.lastSyncedAt || new Date().toISOString(),
+                guidelines: valid,
+                deletedIds: serverDel,
+                timestamp: Date.now(),
+              })
+            );
+          } catch {}
         }
+      })
+      .catch(() => {
+        setIsInitialLoading(false);
       });
   };
 
@@ -406,7 +453,32 @@ export default function NeuroGuidePage() {
               normalizeT(g.title) !== targetNormTitle
           )
         );
-        reloadGuidelines();
+        try {
+          const raw = localStorage.getItem(SWR_STORAGE_KEY);
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            const serverDel: string[] = Array.isArray(data.deletedGuidelineIds) ? data.deletedGuidelineIds : [];
+            const mergedDel = Array.from(
+              new Set([
+                ...(parsed.deletedIds || []),
+                doc.id.toLowerCase(),
+                targetNormTitle,
+                ...serverDel.map((x) => x.toLowerCase()),
+              ])
+            );
+            const remaining = filterValidGuidelines(parsed.guidelines || [], mergedDel);
+            localStorage.setItem(
+              SWR_STORAGE_KEY,
+              JSON.stringify({
+                ...parsed,
+                guidelines: remaining,
+                deletedIds: mergedDel,
+                version: new Date().toISOString(),
+              })
+            );
+          }
+        } catch {}
+        reloadGuidelines(true);
         setSyncMessage(`🗑️ Đã xóa guideline "${doc.title}" trên Cloud thành công.`);
       } else {
         alert(`Lỗi khi xóa guideline: ${data.error || "Không thể xóa guideline"}`);
@@ -459,38 +531,95 @@ export default function NeuroGuidePage() {
     }
   };
 
-  // Tải trực tiếp danh sách guideline đã duyệt từ Cloud (Vercel Blob / Server), KHÔNG dùng bộ nhớ tạm localStorage của thiết bị
+  // SWR: Tải tức thì từ Local Cache (0ms), đồng thời ngầm kiểm tra Version siêu nhẹ (~150 bytes) để bảo đảm 100% tươi mới
   useEffect(() => {
-    const normalizeT = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+    let hasLoadedFromCache = false;
+    let localVersion = "";
 
-    // Xóa triệt để cache tạm thời trên thiết bị để mọi thiết bị (PC, điện thoại, máy tính bảng) luôn hiển thị đồng nhất từ Cloud
+    // 1. TẢI TỨC THÌ (Instant Paint): Nếu có cache hợp lệ, hiển thị ngay lập tức không cần đợi mạng
     try {
       localStorage.removeItem("neuroguide_cached_guidelines");
       localStorage.removeItem("neuroguide_deleted_ids");
       localStorage.removeItem("neuroguide_last_sync_timestamp");
-    } catch {}
 
-    fetch("/api/neuroguide/sync-guidelines", { cache: "no-store" })
+      const cachedRaw = localStorage.getItem(SWR_STORAGE_KEY);
+      if (cachedRaw) {
+        const cached = JSON.parse(cachedRaw);
+        if (cached && Array.isArray(cached.guidelines) && cached.guidelines.length > 0) {
+          const valid = filterValidGuidelines(cached.guidelines, cached.deletedIds || []);
+          if (valid.length > 0) {
+            setGuidelineDocs(valid);
+            setIsInitialLoading(false);
+            hasLoadedFromCache = true;
+            localVersion = cached.version || "";
+          }
+        }
+      }
+    } catch {
+      // Bỏ qua lỗi truy cập storage
+    }
+
+    // 2. KIỂM TRA PHIÊN BẢN SIÊU NHẸ (~150 bytes qua /api/neuroguide/version)
+    fetch("/api/neuroguide/version", { cache: "no-store" })
       .then((res) => (res.ok ? res.json() : null))
-      .then((data) => {
-        setIsInitialLoading(false);
-        if (data && data.status === "success" && Array.isArray(data.guidelines)) {
-          const serverDel: string[] = Array.isArray(data.deletedGuidelineIds) ? data.deletedGuidelineIds : [];
-          const deletedCloud = new Set(serverDel.map((x) => x.toLowerCase()));
+      .then((verData) => {
+        if (verData && verData.status === "success") {
+          const serverVersion = verData.version || "";
+          const serverDeleted: string[] = Array.isArray(verData.deletedGuidelineIds)
+            ? verData.deletedGuidelineIds
+            : [];
 
-          const validGuidelines = data.guidelines.filter((doc: GuidelineDoc) => {
-            if (!doc || !doc.title) return false;
-            const id = (doc.id || "").toLowerCase();
-            const normT = normalizeT(doc.title);
-            if (deletedCloud.has(id) || deletedCloud.has(normT)) return false;
-            return !id.startsWith("eso-pmid-") && !id.startsWith("esc-pmid-") && !id.includes("phantom");
-          });
+          // Nếu phiên bản Cloud hoàn toàn trùng khớp với Local và đã hiển thị cache
+          if (hasLoadedFromCache && localVersion && localVersion === serverVersion) {
+            // Đảm bảo lọc sạch nếu có ID nào mới thêm vào deletedGuidelineIds
+            setGuidelineDocs((prev) => filterValidGuidelines(prev, serverDeleted));
+            setIsInitialLoading(false);
+            return;
+          }
 
-          setGuidelineDocs(validGuidelines);
+          // Phiên bản khác hoặc chưa có cache: Tải dữ liệu đầy đủ từ Cloud
+          fetch("/api/neuroguide/sync-guidelines", { cache: "no-store" })
+            .then((res) => (res.ok ? res.json() : null))
+            .then((data) => {
+              setIsInitialLoading(false);
+              if (data && data.status === "success" && Array.isArray(data.guidelines)) {
+                const combinedDeleted = Array.from(
+                  new Set([
+                    ...serverDeleted,
+                    ...(Array.isArray(data.deletedGuidelineIds) ? data.deletedGuidelineIds : []),
+                  ])
+                );
+                const validGuidelines = filterValidGuidelines(data.guidelines, combinedDeleted);
+                setGuidelineDocs(validGuidelines);
+
+                try {
+                  localStorage.setItem(
+                    SWR_STORAGE_KEY,
+                    JSON.stringify({
+                      version: data.lastSyncedAt || serverVersion,
+                      guidelines: validGuidelines,
+                      deletedIds: combinedDeleted,
+                      timestamp: Date.now(),
+                    })
+                  );
+                } catch {}
+              }
+            })
+            .catch(() => {
+              setIsInitialLoading(false);
+            });
+        } else {
+          // Fallback nếu version endpoint không thành công
+          if (!hasLoadedFromCache) {
+            reloadGuidelines(true);
+          }
         }
       })
       .catch(() => {
-        setIsInitialLoading(false);
+        // Fallback lỗi mạng: nếu chưa tải từ cache thì thử reload trực tiếp
+        if (!hasLoadedFromCache) {
+          reloadGuidelines(true);
+        }
       });
   }, []);
 
