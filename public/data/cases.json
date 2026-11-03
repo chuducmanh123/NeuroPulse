@@ -1,5 +1,226 @@
 [
   {
+    "id": "nc-2026-023",
+    "case_code": "NC-2026-023",
+    "title": "Subacute Progressive Parkinsonism with PR3-ANCA Positivity and Renal Abnormalities",
+    "subspecialty": "Movement Disorders",
+    "subspecialties": [
+      "Movement Disorders",
+      "Neuro-oncology",
+      "Neuro-immunology",
+      "Stroke & Vascular Neurology"
+    ],
+    "difficulty": "Attending",
+    "estimated_time_sec": 120,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-11-03",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC12896038",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-04640-y",
+      "pmcid": "PMC12896038",
+      "pmid": "41555268",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "69-year-old female",
+      "chief_complaint": "Subacute progressive gait instability and parkinsonism",
+      "history_of_present_illness": "Presented with a 2-month history of worsening short-stepped gait and progressive motor slowness. She was initially treated empirically for vascular parkinsonism and showed temporary mild improvement on levodopa and anticoagulation. Over the next several months, her symptoms deteriorated significantly, developing a masked facies, dysarthria, marked hypokinesia, axial rigidity, and prominent postural instability. High-dose corticosteroid therapy yielded rapid but transient improvement, followed by severe clinical relapse.",
+      "past_medical_history": "No prior medical history.",
+      "vitals": {
+        "bp": "128/76 mmHg",
+        "hr": "74 bpm",
+        "rr": "16 /min",
+        "temp": "36.6 °C",
+        "spo2": "98% on room air"
+      },
+      "neuro_exam": "Hypophonic voice, expressionless facies, severe bilateral akinesia, bilateral upper limb cogwheel rigidity, marked axial rigidity, retropulsion on pull test, and inability to ambulate independently.",
+      "key_labs_csf": "Positive PR3-ANCA (3.6-46.0 U/mL), urinalysis with proteinuria and dysmorphic red blood cells, elevated ESR (37 mm/h). CSF analysis shows pleocytosis (32 cells/mm³), elevated total protein (55 mg/dL), myelin basic protein (148 pg/mL), elevated soluble IL-2 receptor (867 U/mL), and elevated beta-2-microglobulin (6.0 mg/dL).",
+      "imaging": [
+        {
+          "modality": "Brain MRI (DWI, T2-FLAIR, SWI, Gadolinium-enhanced T1) & FDG-PET-CT",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC12896038)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC12896038_fig1.jpg",
+          "pmcid": "PMC12896038",
+          "doi_url": "https://doi.org/10.1186/s12883-026-04640-y",
+          "caption": "MRI and PET-CT on admission. Diffusion-weighted imaging showing hyperintense spots ( a , black arrows). Hyperintense lesions are observed on a fluid-attenuated inversion recovery scan ( b ), but no abnormality is observed on a susceptibility imaging scan ( c ). Gadolinium-enhanced T1 weighted imaging showing slightly enhanced lesions ( d , yellow arrows). No tumors or inflammatory lesions are detected on a F-fluorodeoxyglucose positron emission tomography-computed tomography scan ( e ).",
+          "findings_summary": "DWI and 3D-T2-FLAIR revealed multiple hyperintense lesions in the cerebral white matter, basal ganglia, and brain stem with subtle gadolinium enhancement, mimicking CNS vasculitis."
+        },
+        {
+          "modality": "Follow-up Brain MRI & Brain Biopsy",
+          "sequence_badge": "Figure 2 • BMC neurology (PMC12896038)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC12896038_fig2.jpg",
+          "pmcid": "PMC12896038",
+          "doi_url": "https://doi.org/10.1186/s12883-026-04640-y",
+          "caption": "MRI scans after methylprednisolone pulse therapy and brain biopsy findings. The appearance of hyperintense lesions on the diffusion-weighted imaging scan did not change ( a ), whereas that on the fluid-attenuated inversion recovery scan worsened ( b ). Despite the reduction in the slightly enhanced lesion in the right hemisphere ( c ), a new enhanced lesion is detected in the left occipital lobe ( d , yellow arrow). Brain biopsy of the left occipital lobe showing large cells with a high nuclear-to-cytoplasmic ratio on hematoxylin and eosin staining ( e ). Brain biopsy showing infiltration of l",
+          "findings_summary": "Post-steroid MRI showed worsening FLAIR lesions and new occipital enhancement, while brain biopsy confirmed large atypical cells with a high nuclear-to-cytoplasmic ratio."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely underlying diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "D",
+      "options": [
+        {
+          "id": "A",
+          "text": "Primary angiitis of the central nervous system (PACNS)",
+          "peer_percentage": 18,
+          "rationale": "Incorrect. Although white matter and deep grey matter lesions with contrast enhancement can mimic CNS vasculitis, the transient response to corticosteroids followed by rapid relapse and markedly elevated CSF soluble IL-2 receptor and beta-2-microglobulin point strongly toward a lymphoproliferative disorder rather than PACNS."
+        },
+        {
+          "id": "B",
+          "text": "Granulomatosis with polyangiitis (GPA) with CNS involvement",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. PR3-ANCA positivity and urinary abnormalities can suggest ANCA-associated vasculitis like GPA. However, persistent disease progression after steroids, CSF profile with tumor markers, and rapid radiological recurrence ('ghost tumor' appearance) indicate a neoplastic masquerader rather than systemic GPA."
+        },
+        {
+          "id": "C",
+          "text": "Cerebral amyloid angiopathy-related inflammation (CAA-ri)",
+          "peer_percentage": 8,
+          "rationale": "Incorrect. CAA-ri characteristically demonstrates microbleeds and cortical superficial siderosis on susceptibility-weighted imaging (SWI) alongside asymmetric FLAIR hyperintensities, which are absent in this patient."
+        },
+        {
+          "id": "D",
+          "text": "Primary central nervous system lymphoma (PCNSL)",
+          "peer_percentage": 64,
+          "rationale": "Correct! PCNSL (most commonly diffuse large B-cell lymphoma) can present as a subacute parkinsonian syndrome mimicking vasculitis on MRI. Key diagnostic clues include the 'ghost tumor' phenomenon (transient disappearance or improvement on steroids followed by severe relapse), elevated CSF soluble IL-2 receptor and beta-2-microglobulin, and expanding deep white matter/basal ganglia lesions."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Primary central nervous system lymphoma (PCNSL) presenting as a vasculitis masquerader",
+      "clinical_discussion": "This case illustrates a diagnostic challenge in which primary central nervous system lymphoma (PCNSL) presents as a masquerader of ANCA-associated CNS vasculitis. The patient initially exhibited subacute progressive parkinsonism, urinary findings, and positive PR3-ANCA titers, generating a strong clinical suspicion for systemic or primary vasculitis. Neuroimaging reinforced this differential by demonstrating multifocal deep grey matter and white matter abnormalities with patchy contrast enhancement.\n\nHowever, two key clinical features pointed away from primary vasculitis: the characteristic 'ghost tumor' response to corticosteroids (rapid radiological and clinical response followed by severe rebound after steroid tapering) and elevated CSF tumor markers, specifically soluble IL-2 receptor (sIL-2R) and beta-2-microglobulin. False-positive or incidental PR3-ANCA can occur in lymphoproliferative conditions or concurrent unrelated renal disease (e.g., IgA nephropathy). When an inflammatory or vasculitic presentation exhibits rapid recurrence after steroid therapy, tissue diagnosis via stereotactic brain biopsy is essential to confirm PCNSL (typically diffuse large B-cell lymphoma).",
+      "teaching_points": [
+        "Primary central nervous system lymphoma (PCNSL) can mimic CNS vasculitis or granulomatosis with polyangiitis clinically and radiologically.",
+        "The 'ghost tumor' phenomenon—rapid shrinkage or clinical resolution after high-dose corticosteroids followed by rapid relapse—is highly suggestive of PCNSL.",
+        "Elevated CSF soluble IL-2 receptor and beta-2-microglobulin serve as helpful diagnostic biomarkers for CNS lymphoma.",
+        "Positive serological markers like PR3-ANCA should not preclude tissue biopsy when the clinical course or therapy response is atypical for vasculitis."
+      ],
+      "clinical_pitfalls": [
+        "Prematurely settling on an autoimmune vasculitis diagnosis based solely on serological markers (e.g., PR3-ANCA) without tissue confirmation when atypical signs are present.",
+        "Administering steroids prior to definitive brain biopsy when PCNSL is suspected, which can temporarily melt the lesion and delay histological diagnosis."
+      ],
+      "related_keywords": [
+        "Primary CNS lymphoma",
+        "PR3-ANCA",
+        "CNS vasculitis mimic",
+        "Ghost tumor phenomenon",
+        "Soluble IL-2 receptor"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-024",
+    "case_code": "NC-2026-024",
+    "title": "Bilateral Ptosis and Ophthalmoparesis Following Cancer Immunotherapy",
+    "subspecialty": "Neuromuscular",
+    "subspecialties": [
+      "Neuromuscular",
+      "Neuro-Oncology",
+      "Autoimmune Neurology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-11-03",
+    "status": "approved",
+    "author_credit": "Frontiers in neurology • PMC13572282",
+    "source_journal": {
+      "name": "Frontiers in neurology",
+      "short_name": "Frontiers in neurology",
+      "doi_url": "https://doi.org/10.3389/fneur.2026.1897436",
+      "pmcid": "PMC13572282",
+      "pmid": "42741200",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "60-year-old female",
+      "chief_complaint": "Bilateral eyelid drooping and mild limitation of horizontal eye movements",
+      "history_of_present_illness": "The patient presented with progressive bilateral ptosis and mild limitation of horizontal eye movements approximately 2 weeks after receiving chemoimmunotherapy comprising nab-paclitaxel, carboplatin, and toripalimab for triple-negative breast cancer. She denied any bulbar, respiratory, limb weakness, or cardiac symptoms. After discontinuation of the anti-PD-1 monoclonal antibody and initiation of oral corticosteroids, her eyelid opening markedly improved.",
+      "past_medical_history": "Hypertension for more than 15 years well-controlled on oral levamlodipine besylate, and a history of surgical treatment for hemorrhoids.",
+      "vitals": {
+        "bp": "135/82 mmHg",
+        "hr": "76 bpm",
+        "rr": "16 /min",
+        "temp": "36.5 °C",
+        "spo2": "98% on room air"
+      },
+      "neuro_exam": "Marked bilateral ptosis with mild limitation of horizontal extraocular movements. Pupils are equal, round, and reactive to light with normal accommodation. Facial strength is intact, gag reflex is normal, tongue protrudes in the midline. Motor strength is 5/5 throughout all extremities with normal deep tendon reflexes and no sensory deficits. Gait is normal.",
+      "key_labs_csf": "Serum acetylcholine receptor (AChR), muscle-specific kinase (MuSK), and LRP4 antibodies are negative. Anti-ryanodine receptor antibody (RYR-IgG, 1:100) and anti-titin antibody (Titin-IgG, 1:320) are positive. CK-MB mass is mildly elevated with normal hs-cTnI. Repetitive nerve stimulation shows no low-frequency decrement.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (Axial T2/FLAIR)",
+          "sequence_badge": "Figure 1 • Frontiers in neurology (PMC13572282)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13572282_fig1.webp",
+          "pmcid": "PMC13572282",
+          "doi_url": "https://doi.org/10.3389/fneur.2026.1897436",
+          "caption": "Clinical course of bilateral ptosis before and after treatment. (A) Photograph obtained before corticosteroid treatment, showing marked bilateral ptosis. (B) Photograph obtained after toripalimab discontinuation and a 6-day course of oral methylprednisolone 20 mg once daily (January 17–22, 2026), showing marked improvement in eyelid opening. Because the photographs were not acquired under standardized conditions, they are intended for qualitative comparison only. The photographs were cropped for presentation; the periocular clinical features were not modified.",
+          "findings_summary": "Demonstrated chronic ischemic changes without an acute explanatory intracranial or brainstem lesion."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "A",
+      "options": [
+        {
+          "id": "A",
+          "text": "Immune checkpoint inhibitor-associated ocular myasthenia gravis",
+          "peer_percentage": 74,
+          "rationale": "Correct. Immune checkpoint inhibitor (ICI)-associated myasthenia gravis (irMG) frequently presents with subacute ocular symptoms (ptosis, diplopia) shortly after ICI initiation (e.g., toripalimab). A significant proportion of ICI-MG cases are seronegative for standard AChR and MuSK antibodies, but positivity for non-AChR striated muscle autoantibodies (such as anti-titin and anti-ryanodine receptor) strongly supports the diagnosis of ICI-induced neuromuscular autoimmunity."
+        },
+        {
+          "id": "B",
+          "text": "Brainstem ischemic stroke",
+          "peer_percentage": 12,
+          "rationale": "Incorrect. Brainstem infarction affecting the oculomotor nuclear complex typically presents hyperacutely with crossed neurological signs, altered consciousness, or pupillary deficits, and brain MRI would demonstrate acute diffusion restriction."
+        },
+        {
+          "id": "C",
+          "text": "Wernicke encephalopathy",
+          "peer_percentage": 9,
+          "rationale": "Incorrect. Wernicke encephalopathy features the classic triad of encephalopathy, ataxia, and ophthalmoplegia (typically abducens nerve palsy or nystagmus) in the setting of thiamine deficiency, rather than isolated ptosis responsive to ICI cessation and corticosteroids."
+        },
+        {
+          "id": "D",
+          "text": "Miller Fisher syndrome",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. Miller Fisher syndrome is characterized by the triad of acute ophthalmoplegia, ataxia, and severe generalized areflexia, typically associated with serum anti-GQ1b IgG antibodies and CSF albuminocytological dissociation, unlike this patient who has intact reflexes and anti-titin/RYR positivity."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Immune checkpoint inhibitor-associated ocular myasthenia gravis",
+      "clinical_discussion": "Immune checkpoint inhibitors (ICIs), such as anti-PD-1 monoclonal antibodies like toripalimab, have transformed neuro-oncology and general oncology care, but can induce immune-related adverse events (irAEs). Neurological irAEs, including ICI-associated myasthenia gravis (irMG), often present subacutely within weeks of therapy initiation. Unlike classical spontaneous myasthenia gravis, irMG frequently exhibits atypical clinical presentations, lower sensitivity for standard AChR/MuSK serologies, and high rates of co-existing myositis or myocarditis.\n\nIn this patient, progressive bilateral ptosis and horizontal extraocular movement limitation developed shortly after starting toripalimab. Standard AChR and MuSK antibodies were negative and low-frequency repetitive nerve stimulation was normal, but anti-titin and anti-ryanodine receptor antibodies were positive, confirming immune activation against striated muscle antigens. Prompt withdrawal of the immune checkpoint inhibitor alongside systemic corticosteroid therapy led to significant clinical improvement. Clinicians must maintain high vigilance for irMG even when classical serological markers are negative, and routinely evaluate for overlapping cardiac and skeletal muscle toxicity.",
+      "teaching_points": [
+        "Immune checkpoint inhibitors (ICIs) can trigger neuromuscular immune-related adverse events, including myasthenia gravis (irMG).",
+        "Ocular weakness with ptosis and diplopia may be the initial or isolated manifestation of ICI-associated myasthenia gravis.",
+        "Conventional AChR and MuSK antibodies as well as repetitive nerve stimulation can be negative in ICI-associated myasthenia gravis; secondary antibodies like anti-titin and anti-RYR may aid diagnosis.",
+        "Patients with suspected ICI-associated neuromuscular disease must be screened for concurrent myositis and myocarditis."
+      ],
+      "clinical_pitfalls": [
+        "Ruling out myasthenia gravis solely based on negative acetylcholine receptor antibodies and normal repetitive nerve stimulation in a patient recently exposed to ICIs.",
+        "Failing to screen for overlapping myositis or myocarditis (e.g., checking cardiac troponin and creatine kinase) in patients presenting with ICI-induced neuromuscular toxicities."
+      ],
+      "related_keywords": [
+        "Toripalimab",
+        "Myasthenia gravis",
+        "Immune checkpoint inhibitors",
+        "Anti-titin antibody",
+        "Anti-PD-1 antibodies"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-021",
     "case_code": "NC-2026-021",
     "title": "Rapidly Progressive Cognitive Decline with Visual Hallucinations, Parkinsonism, and Unprovoked Recurrent Falls",
