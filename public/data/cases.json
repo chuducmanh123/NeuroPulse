@@ -1,5 +1,221 @@
 [
   {
+    "id": "nc-2026-025",
+    "case_code": "NC-2026-025",
+    "title": "Fever, Headaches, and Encephalitis with Permanent Central Blindness in a Dockworker",
+    "subspecialty": "CNS Infections",
+    "subspecialties": [
+      "CNS Infections",
+      "Neuro-Ophthalmology",
+      "Neuroimaging"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-11-04",
+    "status": "approved",
+    "author_credit": "Frontiers in neurology • PMC13716642",
+    "source_journal": {
+      "name": "Frontiers in neurology",
+      "short_name": "Frontiers in neurology",
+      "doi_url": "https://doi.org/10.3389/fneur.2026.1954544",
+      "pmcid": "PMC13716642",
+      "pmid": "42959182",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "53-year-old male",
+      "chief_complaint": "Fever and progressive severe headache",
+      "history_of_present_illness": "A 53-year-old male dockworker presented with a 9-day history of fever followed by progressive severe headache and intermittent nausea. Despite initial treatment at a local clinic, his symptoms recurred and worsened with a pressing sensation over the bilateral temporal and frontal regions. He subsequently developed encephalitic signs prompting specialized neurological evaluation and admission.",
+      "past_medical_history": "Unremarkable except for an appendectomy 20 years previously and a 3-year history of alcohol consumption; no history of hypertension, diabetes, or neurological disorders.",
+      "vitals": {
+        "bp": "126/78 mmHg",
+        "hr": "84 bpm",
+        "rr": "18 /min",
+        "temp": "38.2 °C",
+        "spo2": "98%"
+      },
+      "neuro_exam": "Patient is alert but exhibits cognitive slowing. Cranial nerve examination reveals permanent bilateral blindness with no light perception, despite normal pupillary responses and clear peripheral ocular media. Motor and sensory exams are otherwise non-focal.",
+      "key_labs_csf": "Cerebrospinal fluid (CSF) metagenomic next-generation sequencing (mNGS) confirmed Pseudorabies virus (PRV) infection. Initial peripheral WBC 9.73 × 10^9/L with neutrophilia.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (Axial T2WI, FLAIR, and DWI)",
+          "sequence_badge": "Figure 1 • Frontiers in neurology (PMC13716642)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13716642_fig1.webp",
+          "pmcid": "PMC13716642",
+          "doi_url": "https://doi.org/10.3389/fneur.2026.1954544",
+          "caption": "Serial brain MRI findings. (A) Brain MRI obtained on 21 January 2024 (10 days after symptom onset). A strip-like abnormal signal is visible in the superficial right insular cortex (arrow), appearing slightly hyperintense on T2WI and FLAIR, hyperintense on DWI, and without obvious enhancement on post-contrast imaging. (B) Brain MRI obtained on 4 March 2024. The right insular lesion has expanded and extends to involve the right temporal lobe. (C) Brain MRI obtained on 9 May 2024. The extent of the right insular and right temporal lobe lesions has decreased compared with the 4 March examination. ",
+          "findings_summary": "Strip-like abnormal hyperintense signals in the superficial right insular cortex, temporal lobe, hippocampus, and amygdala, demonstrating restricted diffusion on DWI."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "Herpes Simplex Virus Type 1 Encephalitis",
+          "peer_percentage": 15,
+          "rationale": "Incorrect. While HSV-1 is the classic cause of temporal lobe encephalitis, the patient's occupational exposure and definitive CSF mNGS identification point to a different alphaherpesvirus."
+        },
+        {
+          "id": "B",
+          "text": "Pseudorabies Virus Encephalitis",
+          "peer_percentage": 72,
+          "rationale": "Correct! Pseudorabies virus (PRV), an alphaherpesvirus originating in swine, causes severe human encephalitis associated with occupational exposure, temporal-insular MRI findings, and frequent central visual pathway injury leading to blindness."
+        },
+        {
+          "id": "C",
+          "text": "Japanese Encephalitis",
+          "peer_percentage": 8,
+          "rationale": "Incorrect. Japanese encephalitis typically presents with prominent thalamic, basal ganglia, and brainstem lesions rather than the restricted temporal-insular cortex involvement seen here."
+        },
+        {
+          "id": "D",
+          "text": "Autoimmune Limbic Encephalitis",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. The acute febrile prodrome, elevated inflammatory markers, and positive CSF mNGS isolate an infectious etiology rather than an autoimmune paraneoplastic or antibody-mediated limbic encephalitis."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Pseudorabies virus (PRV) encephalitis complicated by central visual impairment",
+      "clinical_discussion": "Pseudorabies virus (PRV) is an alphaherpesvirus whose natural reservoir is domestic swine. Although historically considered non-pathogenic to humans, a rising number of severe human PRV encephalitis cases have been identified since 2017, predominantly in individuals with occupational exposure to pigs or pork products. The clinical presentation often features fever, headache, altered mental status, and focal neurological deficits matching limbic and temporal lobe involvement. A notable and devastating complication of human PRV infection is visual impairment, reported in up to 60% of cases, which frequently manifests as permanent bilateral blindness even after the recovery of consciousness. Because peripheral ocular pathology is typically absent, this presentation implicates a predominantly central visual pathway injury.\n\nDiagnosis relies heavily on advanced molecular testing, specifically metagenomic next-generation sequencing (mNGS) of cerebrospinal fluid (CSF), which bypasses the limitations of standard viral PCR panels when facing emerging zoonotic pathogens. Neuroimaging characteristically demonstrates T2/FLAIR hyperintensities and restricted diffusion involving the insular cortex, temporal lobes, hippocampus, and amygdala. Management requires prompt administration of intravenous antiviral agents (such as acyclovir), corticosteroids, and supportive care, though long-term neurological and visual morbidity remains exceptionally high. Clinicians should maintain a high index of suspicion for PRV in patients presenting with unexplained encephalitis and a history of swine exposure.",
+      "teaching_points": [
+        "Pseudorabies virus (PRV) is an emerging zoonotic alphaherpesvirus from swine causing severe human encephalitis in occupationally exposed individuals.",
+        "Visual impairment and permanent bilateral blindness are frequent, severe complications of PRV encephalitis resulting from central visual pathway injury rather than peripheral ocular disease.",
+        "Cerebrospinal fluid (CSF) metagenomic next-generation sequencing (mNGS) is critical for timely etiological diagnosis of rare and emerging viral encephalitides like PRV."
+      ],
+      "clinical_pitfalls": [
+        "Failing to elicit a detailed occupational or contact history regarding swine exposure in patients presenting with atypical temporal lobe encephalitis.",
+        "Overlooking PRV when standard HSV-1 PCR panels are negative, delaying the use of CSF mNGS for definitive pathogen identification."
+      ],
+      "related_keywords": [
+        "Pseudorabies virus",
+        "Encephalitis",
+        "Metagenomic next-generation sequencing (mNGS)",
+        "Central visual impairment",
+        "Zoonotic infection"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-026",
+    "case_code": "NC-2026-026",
+    "title": "Involuntary Upper Limb Movements Following a Witnessed Generalized Tonic-Clonic Seizure in an Elderly Male",
+    "subspecialty": "Stroke",
+    "subspecialties": [
+      "Stroke",
+      "Behavioral Neurology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-11-04",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC12892800",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-025-04587-6",
+      "pmcid": "PMC12892800",
+      "pmid": "41545972",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "79-year-old male",
+      "chief_complaint": "Acute right-sided weakness and involuntary limb movements following a seizure",
+      "history_of_present_illness": "Patient was brought to the hospital after a witnessed generalized tonic-clonic seizure lasting 5-10 minutes, followed by postictal drowsiness and acute right-sided weakness. During observation, he exhibited involuntary but seemingly purposeful movements of the right upper limb, occasionally striking his own body or face without conscious control. He repeatedly described the limb as moving on its own and reported being unable to restrain it.",
+      "past_medical_history": "No prior medical history, normal sinus rhythm on ECG, and unremarkable general laboratory workup.",
+      "vitals": {
+        "bp": "130/80 mmHg",
+        "hr": "78 bpm",
+        "rr": "16 /min",
+        "temp": "36.5 °C",
+        "spo2": "98%"
+      },
+      "neuro_exam": "Alert and oriented. Normal extraocular movements and visual fields. Moderate dysarthria, flattening of the right nasolabial fold, and mild facial sensory loss in V1-V3 distribution. Right upper limb power 3/5 with normal coordination bilaterally. Exhibited striking, disconnected involuntary movements of the right upper limb indicative of alien hand syndrome.",
+      "key_labs_csf": "Normal sinus rhythm on ECG. Blood chemistry and complete blood count largely unremarkable. Initial head CT showed brain atrophy and chronic microangiopathy without hemorrhage or acute ischemic changes.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (T2/FLAIR)",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC12892800)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC12892800_fig1.jpg",
+          "pmcid": "PMC12892800",
+          "doi_url": "https://doi.org/10.1186/s12883-025-04587-6",
+          "caption": "Left meso-temporal hyperintense signal in T2-weighted and FLAIR sequences",
+          "findings_summary": "Left meso-temporal hyperintense signal in T2-weighted and FLAIR sequences indicating acute ischemia."
+        },
+        {
+          "modality": "Brain MRI (Axial DWI)",
+          "sequence_badge": "Figure 2 • BMC neurology (PMC12892800)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC12892800_fig2.jpg",
+          "pmcid": "PMC12892800",
+          "doi_url": "https://doi.org/10.1186/s12883-025-04587-6",
+          "caption": "Restricted diffusion in the left thalamus on DWI MRI",
+          "findings_summary": "Restricted diffusion in the left posterior thalamus and occipital region consistent with acute posterior cerebral artery stroke."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "Frontal variant Creutzfeldt-Jakob disease",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. While CJD can present with myoclonus or limb apraxia, the acute onset following a vascular event and acute DWI restriction makes a neurodegenerative prion disease unlikely."
+        },
+        {
+          "id": "B",
+          "text": "Postictal Todd's paresis with choreoathetosis",
+          "peer_percentage": 12,
+          "rationale": "Incorrect. Todd's paresis typically manifests as negative motor weakness rather than complex, seemingly purposeful involuntary limb behaviors characteristic of alien hand syndrome."
+        },
+        {
+          "id": "C",
+          "text": "Alien hand syndrome secondary to posterior cerebral artery infarction",
+          "peer_percentage": 73,
+          "rationale": "Correct. The patient exhibits classic features of alien hand syndrome—involuntary, seemingly purposeful limb movements that feel disconnected from conscious control—caused by an acute ischemic infarction in the left posterior cerebral artery territory involving medial temporal, occipital, and posterior thalamic regions."
+        },
+        {
+          "id": "D",
+          "text": "Psychogenic movement disorder",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. The acute presentation is fully explained by documented restricted diffusion on brain MRI corresponding to a left posterior cerebral artery ischemic stroke, making psychogenic etiology extremely unlikely."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Alien hand syndrome secondary to posterior cerebral artery infarction",
+      "clinical_discussion": "Alien hand syndrome (AHS) is a fascinating and distressing neurological phenomenon characterized by involuntary, semi-purposeful motor activity of a limb that is perceived by the patient as lacking conscious control or autonomy. While most commonly associated with lesions of the corpus callosum or frontal lobes (anterior variants), posterior variants involving the thalamus, medial temporal lobe, and occipital cortex are less frequently recognized.\n\nIn this case, the patient presented with acute stroke manifestations in the territory of the left posterior cerebral artery (PCA), demonstrated by restricted diffusion on MRI within the posterior thalamus, medial temporal, and occipital regions. The involuntary movements typically resolve spontaneously within days to weeks, as observed in this patient, who experienced complete resolution of the abnormal movements within two days without specific pharmacologic therapy.",
+      "teaching_points": [
+        "Alien hand syndrome (AHS) involves involuntary yet complex, purposeful limb movements accompanied by a loss of sense of agency.",
+        "Posterior variants of AHS can be caused by ischemic stroke in the posterior cerebral artery (PCA) territory, including thalamic and medial temporal involvement.",
+        "AHS symptoms resulting from acute ischemia often have a favorable prognosis with spontaneous resolution over days to weeks."
+      ],
+      "clinical_pitfalls": [
+        "Mistaking posterior AHS movements for simple postictal phenomena or psychogenic movement disorders without performing acute neuroimaging.",
+        "Overlooking PCA stroke as an etiology for complex involuntary motor behaviors when typical cortical signs like hemianopia are initially subtle or absent."
+      ],
+      "related_keywords": [
+        "Alien hand syndrome",
+        "Posterior cerebral artery infarction",
+        "Thalamic stroke",
+        "Involuntary movements"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-023",
     "case_code": "NC-2026-023",
     "title": "Subacute Progressive Parkinsonism with PR3-ANCA Positivity and Renal Abnormalities",
