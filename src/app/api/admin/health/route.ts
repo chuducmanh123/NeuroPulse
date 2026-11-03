@@ -223,7 +223,7 @@ export async function GET(req: NextRequest) {
         ai: {
           isGeminiConfigured,
           maskedKey: maskedGeminiKey,
-          model: "gemini-2.5-flash & gemini-2.5-pro",
+          model: "gemini-3.8-flash & gemini-3.5-flash",
           streamingSSE: "Active",
         },
         security: {

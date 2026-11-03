@@ -51,11 +51,11 @@ HEADERS = {
 GEMINI_API_KEY = load_env_key()
 # Thác nước mô hình AI ưu tiên từ cao xuống thấp (bắt đầu từ 3.8 Flash, tự động fallback nếu lỗi/hết quota)
 ACTIVE_GEMINI_MODELS = [
+    "gemini-3.8-flash",
     "gemini-3.5-flash",
     "gemini-3.5-flash-lite",
-    "gemini-flash-lite-latest",
     "gemini-flash-latest",
-    "gemini-3.8-flash",
+    "gemini-flash-lite-latest",
     "gemini-3.1-flash-lite",
 ]
 

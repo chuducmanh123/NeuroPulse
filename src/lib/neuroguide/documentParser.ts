@@ -406,7 +406,12 @@ If recommendations or tables exist, format them with markdown columns:
 | Domain / Topic | Recommendation Statement | Class (COR) / Level (LOE) | Trials / Evidence |
 Do not add meta conversational text. Return only the extracted markdown.`;
 
-  const models = ["gemini-2.5-flash", "gemini-1.5-flash", "gemini-flash-latest"];
+  const models = [
+    "gemini-3.8-flash",
+    "gemini-3.5-flash",
+    "gemini-3.5-flash-lite",
+    "gemini-flash-latest",
+  ];
   for (const model of models) {
     try {
       const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
