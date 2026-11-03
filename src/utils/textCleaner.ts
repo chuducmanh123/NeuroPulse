@@ -119,3 +119,70 @@ export function cleanMedicalText(text?: string): string {
 
   return s.replace(/\s+/g, " ").trim();
 }
+
+export function isTakeawayValid(text?: string): boolean {
+  if (!text || text.trim().length < 35) return false;
+  if (
+    text.startsWith("Published clinical evidence in") ||
+    text.toLowerCase().includes("data may be available from the corresponding author")
+  ) {
+    return false;
+  }
+  // Check for prompt leakage or LLM drafting artifacts
+  if (
+    /\b(?:draft\s*\d|check\s*word\s*count|word\s*count|<\s*\d+\)|exact\s*stats)\b/i.test(text) ||
+    /^(?::\*|\*|-limited\b)/i.test(text.trim()) ||
+    /[,;\-–—\(\[\<]\s*$/.test(text.trim())
+  ) {
+    return false;
+  }
+  // Check if truncated by trailing conjunctions/prepositions
+  if (
+    /\b(and|or|with|to|of|in|for|from|by|at|as|than|compared|is|are|was|were|the|a|an|that|which|this|these|between|into|both)\b\s*$/i.test(
+      text.trim()
+    )
+  ) {
+    return false;
+  }
+
+  // A complete medical takeaway must terminate with valid sentence punctuation
+  const trimmed = text.trim();
+  if (!/[.!?”"')]$/.test(trimmed)) {
+    return false;
+  }
+
+  return true;
+}
+
+export function extractFallbackFromAbstract(cleanAbs?: string): string {
+  if (!cleanAbs || cleanAbs.startsWith("Original abstract") || cleanAbs.toLowerCase().startsWith("nothing to report")) {
+    return "";
+  }
+  const matchConcl = cleanAbs.match(
+    /(?:CONCLUSIONS?\s+AND\s+RELEVANCE|CONCLUSIONS?|INTERPRETATION|FINDINGS|DISCUSSION)\s*[:.]?\s*([^\n]+)/i
+  );
+  if (matchConcl && matchConcl[1]) {
+    const candidate = cleanMedicalText(matchConcl[1]).replace(
+      /^(?:discussion|conclusions?\s+and\s+relevance|conclusions?|interpretation|findings|summary)\s*[:.\-]?\s*/i,
+      ""
+    ).trim();
+    if (candidate.length > 25) {
+      const sents = candidate.split(". ").filter((s) => s.trim().length > 20);
+      if (sents.length > 0) {
+        const firstTwo = sents.slice(0, 2).join(". ");
+        return firstTwo.endsWith(".") ? firstTwo : `${firstTwo}.`;
+      }
+      return candidate;
+    }
+  }
+
+  const sents = cleanAbs
+    .split(". ")
+    .map((s) => cleanMedicalText(s).trim())
+    .filter((s) => s.length > 30);
+  if (sents.length > 0) {
+    const lastSent = sents[sents.length - 1];
+    return lastSent.endsWith(".") ? lastSent : `${lastSent}.`;
+  }
+  return "";
+}

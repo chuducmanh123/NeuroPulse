@@ -7,6 +7,8 @@ import {
   getJournalTheme,
   highlightClinicalStats,
   cleanMedicalText,
+  isTakeawayValid,
+  extractFallbackFromAbstract,
 } from "../components/ArticleCard";
 import { AppSwitcher } from "../components/ecosystem/AppSwitcher";
 import { AdminButton } from "../components/ecosystem/AdminButton";
@@ -424,6 +426,17 @@ function normalizeAndCleanArticles(rawList: Article[]): Article[] {
       : raw.ai_takeaways?.conclusion_vi || "";
     const cleanTakeaway = rawTakeaway ? cleanMedicalText(rawTakeaway) : "";
 
+    let finalTakeaway = "";
+    let finalAiVerified = false;
+
+    if (isTakeawayValid(cleanTakeaway)) {
+      finalTakeaway = cleanTakeaway;
+      finalAiVerified = Boolean(enriched ? true : raw.ai_takeaways?.ai_verified);
+    } else if (abstract && !abstract.startsWith("Original abstract")) {
+      finalTakeaway = extractFallbackFromAbstract(abstract);
+      finalAiVerified = false;
+    }
+
     result.push({
       ...raw,
       title,
@@ -436,13 +449,13 @@ function normalizeAndCleanArticles(rawList: Article[]): Article[] {
         subspecialties: matchedSubs.slice(0, 3),
       },
       ai_takeaways:
-        raw.ai_takeaways || enriched
+        raw.ai_takeaways || enriched || finalTakeaway
           ? {
               clinical_significance:
                 raw.ai_takeaways?.clinical_significance ||
                 `Clinical significance for ${matchedSubs[0]} practice.`,
-              ai_verified: enriched ? true : raw.ai_takeaways?.ai_verified,
-              conclusion_vi: cleanTakeaway,
+              ai_verified: finalAiVerified,
+              conclusion_vi: finalTakeaway,
             }
           : undefined,
     });

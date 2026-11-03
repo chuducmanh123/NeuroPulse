@@ -362,6 +362,9 @@ function parseAbstractSections(text: string): { header?: string; body: string }[
   return sections.length > 0 ? sections : [{ body: cleaned }];
 }
 
+import { isTakeawayValid, extractFallbackFromAbstract } from "../utils/textCleaner";
+export { isTakeawayValid, extractFallbackFromAbstract };
+
 function ArticleCardComponent({
   article,
   onTagClick,
@@ -413,19 +416,24 @@ function ArticleCardComponent({
     !cleanAbs.startsWith("Original abstract and full manuscript available") &&
     !cleanAbs.toLowerCase().startsWith("nothing to report.");
 
-  const takeawayText =
-    article.ai_takeaways?.conclusion_vi &&
-    !article.ai_takeaways.conclusion_vi.startsWith("Published clinical evidence in") &&
-    !article.ai_takeaways.conclusion_vi
-      .toLowerCase()
-      .includes("data may be available from the corresponding author")
-      ? cleanMedicalText(
-          article.ai_takeaways.conclusion_vi.replace(
-            /^(?:discussion|conclusions?\s+and\s+relevance|conclusions?|interpretation|findings|summary)\s*[:.\-]?\s*/i,
-            ""
-          )
-        )
-      : "";
+  const rawTakeaway = article.ai_takeaways?.conclusion_vi || "";
+  const cleanedTakeaway = cleanMedicalText(
+    rawTakeaway.replace(
+      /^(?:discussion|conclusions?\s+and\s+relevance|conclusions?|interpretation|findings|summary)\s*[:.\-]?\s*/i,
+      ""
+    )
+  );
+
+  let takeawayText = "";
+  let isAiVerified = false;
+
+  if (isTakeawayValid(cleanedTakeaway)) {
+    takeawayText = cleanedTakeaway;
+    isAiVerified = Boolean(article.ai_takeaways?.ai_verified);
+  } else if (hasRealAbstract) {
+    takeawayText = extractFallbackFromAbstract(cleanAbs);
+    isAiVerified = false;
+  }
 
   const subspecialtyList =
     article.neurology_classification.subspecialties &&
@@ -749,7 +757,7 @@ function ArticleCardComponent({
               >
                 KEY FINDINGS / CLINICAL TAKEAWAY
               </span>
-              {article.ai_takeaways?.ai_verified && (
+              {isAiVerified && (
                 <span
                   className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
                     darkMode

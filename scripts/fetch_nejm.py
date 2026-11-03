@@ -42,12 +42,14 @@ HEADERS = {
 
 GEMINI_API_KEY = load_env_key()
 ACTIVE_GEMINI_MODELS = [
-    "gemini-3.5-flash",
-    "gemini-3.5-flash-lite",
-    "gemini-flash-lite-latest",
+    "gemini-2.5-flash",
+    "gemini-2.5-flash-lite",
+    "gemini-2.0-flash",
+    "gemini-2.0-flash-lite",
     "gemini-flash-latest",
+    "gemini-1.5-flash",
+    "gemini-3.5-flash",
     "gemini-3.8-flash",
-    "gemini-3.1-flash-lite",
 ]
 GEMINI_MODEL = ACTIVE_GEMINI_MODELS[0]
 
@@ -279,11 +281,53 @@ def clean_latex_and_html(text: str) -> str:
 def clean_text(text: str) -> str:
     return clean_latex_and_html(text)
 
+def is_valid_clinical_takeaway(text: str) -> bool:
+    if not text or len(text.strip()) < 35:
+        return False
+    # Check for prompt artifacts / reasoning traces / draft marks
+    bad_patterns = [
+        r'\bdraft\s*\d',
+        r'check\s*word\s*count',
+        r'word\s*count',
+        r'<\s*\d+\)',
+        r'exact\s*stats',
+        r':\*\s*\"',
+        r'^\s*[\-\*]\s*',
+        r'^\s*:\s*',
+        r'^\s*-limited',
+    ]
+    for pat in bad_patterns:
+        if re.search(pat, text, re.IGNORECASE):
+            return False
+
+    # Check for truncation signals (dangling punctuation)
+    if re.search(r'[,;\-–—\(\[\<]\s*$', text):
+        return False
+
+    trailing_words = r'\b(and|or|with|to|of|in|for|from|by|at|as|than|compared|is|are|was|were|the|a|an|that|which|this|these|between|into|both)\b\s*$'
+    if re.search(trailing_words, text, re.IGNORECASE):
+        return False
+
+    trimmed = text.strip()
+    if not trimmed.endswith(('.', '!', '?', '"', '”', '’', ')')):
+        return False
+
+    return True
+
 def clean_takeaway_text(text: str) -> str:
     if not text:
         return ""
     cleaned = clean_latex_and_html(text)
     cleaned = LEADING_SECTION_LABEL.sub('', cleaned).strip()
+    # Loại bỏ các tiền tố nhãn do AI tự thêm (ví dụ: **Key Takeaway:**, Takeaway:)
+    cleaned = re.sub(
+        r'^(?:\*\*)?(?:key\s+(?:clinical\s+)?takeaways?|clinical\s+takeaways?|takeaways?|clinical\s+implications?|summary)(?:\*\*)?\s*[:.\-]\s*',
+        '',
+        cleaned,
+        flags=re.IGNORECASE
+    )
+    # Loại bỏ dấu ngoặc kép bọc ngoài nếu toàn bộ câu bị đóng ngoặc
+    cleaned = re.sub(r'^["\'“‘](.+)["\'”’]$', r'\1', cleaned).strip()
     if cleaned.startswith("Published clinical evidence in") or "data may be available from the corresponding author" in cleaned.lower():
         return ""
     return cleaned
@@ -598,43 +642,74 @@ Read this study abstract from a top-tier medical journal:
 Title: {title}
 Abstract: {abstract}
 
-Provide a concise, high-yield clinical takeaway (1-2 sentences maximum, under 55 words) for practicing neurologists. Preserve exact statistical outcomes if present (e.g., OR, HR, RR, 95% CI, p-value, mRS). Do NOT use LaTeX math syntax (no $ signs, no \\beta or \\times); use plain Unicode characters (β, α, ×, ±, ≤, ≥) instead. Do not include introductory filler or section headers."""
+Provide a concise, high-yield clinical takeaway (1-2 sentences maximum, under 55 words) for practicing neurologists. Preserve exact statistical outcomes if present (e.g., OR, HR, RR, 95% CI, p-value, mRS). Do NOT use LaTeX math syntax (no $ signs, no \\beta or \\times); use plain Unicode characters (β, α, ×, ±, ≤, ≥) instead. Do not include introductory filler, draft notes, word counting, or section headers. Return only the final takeaway."""
 
-    payload = {
+    system_instruction = "You are an expert clinical neurologist and methodologist. Return ONLY the final 1-2 sentence clinical takeaway directly. Never output reasoning, scratchpad, drafts, word counts, or preambles."
+
+    payload_no_thinking = {
         "contents": [{"parts": [{"text": prompt}]}],
+        "systemInstruction": {"parts": [{"text": system_instruction}]},
         "generationConfig": {
             "temperature": 0.15,
-            "maxOutputTokens": 450
+            "maxOutputTokens": 1024,
+            "thinkingConfig": {
+                "thinkingBudget": 0
+            }
+        }
+    }
+
+    payload_fallback = {
+        "contents": [{"parts": [{"text": prompt}]}],
+        "systemInstruction": {"parts": [{"text": system_instruction}]},
+        "generationConfig": {
+            "temperature": 0.15,
+            "maxOutputTokens": 1024
         }
     }
 
     for model_name in ACTIVE_GEMINI_MODELS:
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={GEMINI_API_KEY}"
-        for attempt in range(2):
-            try:
-                req = urllib.request.Request(
-                    url,
-                    data=json.dumps(payload).encode("utf-8"),
-                    headers={"Content-Type": "application/json"}
-                )
-                with urllib.request.urlopen(req, context=ctx, timeout=18) as resp:
-                    data = json.loads(resp.read().decode("utf-8"))
-                    candidates = data.get("candidates", [])
-                    if candidates:
-                        parts = candidates[0].get("content", {}).get("parts", [])
-                        text_chunks = [p.get("text", "") for p in parts if "text" in p and not p.get("thought")]
-                        summary = clean_takeaway_text(" ".join(text_chunks))
-                        if summary:
-                            time.sleep(1.2)
-                            return summary
-            except urllib.error.HTTPError as e:
-                if e.code in (429, 500, 502, 503, 504):
-                    time.sleep(2 * (attempt + 1))
-                else:
+        for payload in [payload_no_thinking, payload_fallback]:
+            success = False
+            for attempt in range(2):
+                try:
+                    req = urllib.request.Request(
+                        url,
+                        data=json.dumps(payload).encode("utf-8"),
+                        headers={"Content-Type": "application/json"}
+                    )
+                    with urllib.request.urlopen(req, context=ctx, timeout=18) as resp:
+                        data = json.loads(resp.read().decode("utf-8"))
+                        candidates = data.get("candidates", [])
+                        if candidates:
+                            candidate = candidates[0]
+                            finish_reason = candidate.get("finishReason", "")
+                            if finish_reason == "MAX_TOKENS":
+                                break
+                            parts = candidate.get("content", {}).get("parts", [])
+                            text_chunks = [p.get("text", "") for p in parts if "text" in p and not p.get("thought")]
+                            summary = clean_takeaway_text(" ".join(text_chunks))
+                            if is_valid_clinical_takeaway(summary):
+                                time.sleep(1.2)
+                                return summary
+                            else:
+                                break
+                    success = True
                     break
-            except Exception:
-                time.sleep(1)
-                continue
+                except urllib.error.HTTPError as e:
+                    if e.code == 400:
+                        # thinkingConfig không được hỗ trợ trên model này, thử payload_fallback
+                        break
+                    elif e.code in (429, 500, 502, 503, 504):
+                        time.sleep(2 * (attempt + 1))
+                    else:
+                        success = True
+                        break
+                except Exception:
+                    time.sleep(1)
+                    continue
+            if success:
+                break
 
     return ""
 
@@ -1099,8 +1174,10 @@ def sync_guidelines_to_neuroguide(articles: list):
 
 def save_articles_to_disk(all_articles: list):
     os.makedirs("public/data", exist_ok=True)
-    with open(DATA_FILE_PATH, "w", encoding="utf-8") as f:
+    tmp_path = f"{DATA_FILE_PATH}.tmp"
+    with open(tmp_path, "w", encoding="utf-8") as f:
         json.dump(all_articles, f, ensure_ascii=False, indent=2)
+    os.replace(tmp_path, DATA_FILE_PATH)
 
 def run():
     print("=" * 70)
@@ -1173,7 +1250,7 @@ def run():
                 j_short = art.get("journal", {}).get("short_name", "")
                 ai_res = analyze_abstract_with_gemini(art.get("title", ""), art.get("abstract", ""))
 
-                if ai_res:
+                if ai_res and is_valid_clinical_takeaway(ai_res):
                     consecutive_failures = 0
                     remaining_quota -= 1
                     analyzed_count += 1
@@ -1184,6 +1261,14 @@ def run():
                     art["ai_takeaways"]["ai_verified"] = True
                     print(f"   [✨ Gemini AI #{analyzed_count} | {pub_day} | {j_short}] {art.get('title', '')[:55]}...")
                 else:
+                    # Fallback an toàn vào kết luận chính của nghiên cứu nếu AI gặp lỗi hoặc sinh câu dở dang
+                    fallback_takeaway = extract_fallback_takeaway(art.get("abstract", ""))
+                    if fallback_takeaway:
+                        if "ai_takeaways" not in art or not isinstance(art["ai_takeaways"], dict):
+                            art["ai_takeaways"] = {}
+                        art["ai_takeaways"]["conclusion_vi"] = fallback_takeaway
+                        art["ai_takeaways"]["ai_verified"] = False
+                        batch_updated = True
                     consecutive_failures += 1
 
             # [Giải pháp D - Bước 2]: Lưu Checkpoint sau mỗi Batch
