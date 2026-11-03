@@ -895,7 +895,7 @@ export function EditGuidelineModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/75 backdrop-blur-xs">
       <div
-        className={`w-full max-w-5xl h-[92vh] max-h-[920px] flex flex-col rounded-2xl border shadow-2xl overflow-hidden transition-all ${
+        className={`w-[96vw] max-w-7xl h-[94vh] max-h-[960px] flex flex-col rounded-2xl border shadow-2xl overflow-hidden transition-all ${
           darkMode ? "bg-slate-900 border-slate-800 text-white" : "bg-white border-slate-200 text-slate-900"
         }`}
       >
@@ -990,36 +990,6 @@ export function EditGuidelineModal({
           </div>
         </div>
 
-        {/* PROMINENT GUIDELINE TITLE EDIT BAR (ALWAYS ACCESSIBLE ACROSS ALL TABS) */}
-        <div className="px-5 py-2.5 bg-amber-500/10 dark:bg-amber-500/15 border-b border-amber-500/25 flex flex-col sm:flex-row sm:items-center gap-2 flex-shrink-0">
-          <div className="flex items-center gap-1.5 flex-shrink-0">
-            <span className="text-[11px] font-black uppercase tracking-wider text-amber-800 dark:text-amber-300 flex items-center gap-1">
-              <span>🏷️</span> Tên Guideline:
-            </span>
-          </div>
-          <div className="flex-1 min-w-0 flex items-center gap-2">
-            <input
-              type="text"
-              required
-              value={docTitle}
-              onChange={(e) => setDocTitle(e.target.value)}
-              placeholder="Nhập tên guideline lâm sàng (sẽ lưu trực tiếp lên Cloud)..."
-              className={`w-full px-3 py-1.5 rounded-xl border text-xs sm:text-sm font-bold transition-all focus:outline-hidden focus:ring-2 focus:ring-amber-500/50 shadow-2xs ${
-                darkMode
-                  ? "bg-slate-800 border-slate-700 text-white placeholder-slate-500 focus:border-amber-400"
-                  : "bg-white border-amber-300 text-slate-900 placeholder-slate-400 focus:border-amber-500"
-              }`}
-              title="Sửa tên guideline tại đây (Đồng bộ trực tiếp lên Cloud)"
-            />
-            <span
-              className="text-[10px] font-bold px-2 py-1 rounded-lg border bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border-emerald-500/30 whitespace-nowrap flex items-center gap-1 flex-shrink-0 shadow-2xs"
-              title="Những thay đổi tên guideline sẽ được lưu đồng bộ lên Cloud & Supabase"
-            >
-              <span>☁️</span> Lưu trên Cloud
-            </span>
-          </div>
-        </div>
-
         {/* ERROR NOTIFICATION */}
         {errorMessage && (
           <div className="mx-5 mt-3 p-3 rounded-xl text-xs font-bold bg-rose-50 text-rose-700 border border-rose-200 dark:bg-rose-950/50 dark:text-rose-300 dark:border-rose-800 flex-shrink-0">
@@ -1084,11 +1054,13 @@ export function EditGuidelineModal({
           {/* TAB 1: METADATA */}
           {activeTab === "metadata" && (
               <div className="flex-1 min-h-0 overflow-y-auto p-5 custom-scrollbar">
-                <div className="space-y-4 max-w-3xl mx-auto">
+                <div className="space-y-4 max-w-4xl mx-auto">
                   <div>
-                    <label className="block font-bold mb-1 text-slate-700 dark:text-slate-300 flex items-center justify-between">
-                      <span>Tên Guideline (Guideline Title):</span>
-                      <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1">
+                    <label className="block font-bold mb-1.5 text-slate-700 dark:text-slate-300 flex items-center justify-between">
+                      <span className="text-xs sm:text-sm font-extrabold flex items-center gap-1.5">
+                        <span>🏷️</span> Tên Guideline (Guideline Title):
+                      </span>
+                      <span className="text-[10.5px] text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1 px-2.5 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/25 shadow-2xs">
                         <span>☁️</span> Lưu đồng bộ Cloud
                       </span>
                     </label>
@@ -1098,8 +1070,8 @@ export function EditGuidelineModal({
                       value={docTitle}
                       onChange={(e) => setDocTitle(e.target.value)}
                       placeholder="e.g. 2025 ESO guideline on blood pressure management in acute ischaemic stroke and intracerebral haemorrhage"
-                      className={`w-full p-2.5 rounded-xl border font-medium ${
-                        darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"
+                      className={`w-full p-3 rounded-xl border text-xs sm:text-sm font-semibold transition-all focus:outline-hidden focus:ring-2 focus:ring-amber-500/50 shadow-2xs ${
+                        darkMode ? "bg-slate-800 border-slate-700 text-white placeholder-slate-500" : "bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400"
                       }`}
                     />
                   </div>
@@ -1192,7 +1164,7 @@ export function EditGuidelineModal({
             {/* TAB 2: TAKEAWAYS */}
             {activeTab === "takeaways" && (
               <div className="flex-1 min-h-0 overflow-y-auto p-5 custom-scrollbar">
-                <div className="space-y-4 max-w-3xl mx-auto">
+                <div className="space-y-4 max-w-4xl mx-auto">
                   <div className="p-3.5 rounded-xl bg-indigo-50/50 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-900/60 flex items-center justify-between gap-3">
                     <div>
                       <h4 className="font-bold text-indigo-900 dark:text-indigo-200">
