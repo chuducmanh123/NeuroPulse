@@ -127,6 +127,7 @@ export default function AdminCommandCenter() {
   const [repoSearchQuery, setRepoSearchQuery] = useState("");
   const [repoSocietyFilter, setRepoSocietyFilter] = useState("ALL");
   const [reviewQueueCount, setReviewQueueCount] = useState<number>(0);
+  const [reviewQueueRefreshKey, setReviewQueueRefreshKey] = useState<number>(0);
   const [showPipelineModal, setShowPipelineModal] = useState<boolean>(false);
   const [showNotebookLMModal, setShowNotebookLMModal] = useState<boolean>(false);
 
@@ -1310,6 +1311,7 @@ export default function AdminCommandCenter() {
             {guidelineSubTab === "queue" && (
               <ReviewQueueTab
                 darkMode={darkMode}
+                refreshKey={reviewQueueRefreshKey}
                 onQueueUpdated={() => {
                   fetchReviewQueueCount();
                   fetchGuidelinesList();
@@ -1683,8 +1685,11 @@ export default function AdminCommandCenter() {
           isOpen={showNotebookLMModal}
           onClose={() => setShowNotebookLMModal(false)}
           onSuccess={(newDoc) => {
+            setReviewQueueRefreshKey((prev) => prev + 1);
             fetchReviewQueueCount();
-            setGuidelineDocs((prev) => [newDoc, ...prev]);
+            fetchGuidelinesList();
+            setGuidelineSubTab("queue");
+            setAdminTab("guidelines");
           }}
           darkMode={darkMode}
         />

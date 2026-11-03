@@ -62,6 +62,7 @@ export interface PendingGuidelineGroup {
 
 interface ReviewQueueTabProps {
   darkMode: boolean;
+  refreshKey?: number;
   onQueueUpdated?: () => void;
   onQueueCountChange?: (count: number) => void;
   onOpenPipelineModal?: () => void;
@@ -341,9 +342,10 @@ export function ReviewQueueTab({
         setRawServerCount(data.total ?? data.queue.length);
         setRawServerRecs(data.queue);
         const dismissed = getDismissedRecIds();
-        const activeQueue = data.queue.filter(
-          (r: StoredRec) => !dismissed.has(r.rec_id) && r.approval_status === "PENDING_REVIEW"
-        );
+        const activeQueue = data.queue.filter((r: StoredRec) => {
+          const status = (r.approval_status || "").toUpperCase();
+          return !dismissed.has(r.rec_id) && (status === "PENDING_REVIEW" || status === "PENDING");
+        });
         setQueue(activeQueue);
         if (onQueueCountChange) {
           onQueueCountChange(activeQueue.length);
@@ -359,7 +361,7 @@ export function ReviewQueueTab({
 
   useEffect(() => {
     fetchQueue();
-  }, []);
+  }, [refreshKey]);
 
   // Compute society statistics for filter chips
   const societyCounts = useMemo(() => {

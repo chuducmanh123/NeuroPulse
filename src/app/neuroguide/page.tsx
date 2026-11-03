@@ -1246,7 +1246,7 @@ export default function NeuroGuidePage() {
                                           🌟 TOP TAKE-HOME MESSAGES
                                         </span>
                                         <span className="text-[10.5px] sm:text-[11px] font-bold text-slate-500 dark:text-slate-400">
-                                          ({doc.topTakeaways.length} key clinical messages)
+                                          ({doc.topTakeaways.length} điểm nhấn then chốt • Toàn bộ {doc.allPracticeChanges.length} khuyến cáo chi tiết ở bảng bên dưới)
                                         </span>
                                       </div>
                                     </div>

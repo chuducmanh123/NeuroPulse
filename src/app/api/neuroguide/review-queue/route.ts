@@ -168,9 +168,10 @@ export async function GET(request: NextRequest) {
         const content = fs.readFileSync(fullPath, "utf-8");
         const record: GuidelineRecord = JSON.parse(content);
         for (const rec of record.recommendations) {
-          // Tuyệt đối chỉ nhận các khuyến cáo đang chờ duyệt PENDING_REVIEW
+          // Tuyệt đối chỉ nhận các khuyến cáo đang chờ duyệt PENDING_REVIEW hoặc PENDING
           // Lọc bỏ 100% các khuyến cáo đã được APPROVED, MODIFIED hoặc REJECTED
-          if (rec.approval_status === "PENDING_REVIEW") {
+          const status = (rec.approval_status || "").toUpperCase();
+          if (status === "PENDING_REVIEW" || status === "PENDING") {
             queue.push({
               ...rec,
               guideline_id: record.guideline_id,
