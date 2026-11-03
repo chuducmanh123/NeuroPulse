@@ -271,12 +271,21 @@ export default function NeuroGuidePage() {
   const [editingGuidelineDoc, setEditingGuidelineDoc] = useState<GuidelineDoc | null>(null);
   const [showEditModal, setShowEditModal] = useState<boolean>(false);
 
-  const SWR_STORAGE_KEY = "neuroguide_swr_store_v2";
+  const SWR_STORAGE_KEY = "neuroguide_swr_store_v3";
 
   const filterValidGuidelines = (list: GuidelineDoc[], deletedIds: string[] = []): GuidelineDoc[] => {
     if (!Array.isArray(list)) return [];
     const normalizeT = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
-    const deletedSet = new Set(deletedIds.map((x) => (x || "").toLowerCase().trim()));
+
+    // Bảo đảm các guideline đang có mặt không bao giờ bị lọc nhầm bởi deletedIds cũ
+    const activeKeys = new Set<string>();
+    list.forEach((g) => {
+      if (g?.id) activeKeys.add(g.id.toLowerCase().trim());
+      if (g?.title) activeKeys.add(normalizeT(g.title));
+    });
+    const safeDeletedIds = deletedIds.filter((d) => !activeKeys.has((d || "").toLowerCase().trim()));
+    const deletedSet = new Set(safeDeletedIds.map((x) => (x || "").toLowerCase().trim()));
+
     return list.filter((g) => {
       if (!g || !g.title) return false;
       const id = (g.id || "").toLowerCase();
@@ -541,12 +550,15 @@ export default function NeuroGuidePage() {
   useEffect(() => {
     let hasLoadedFromCache = false;
     let localVersion = "";
+    let localCachedCount = 0;
 
     // 1. TẢI TỨC THÌ (Instant Paint): Nếu có cache hợp lệ, hiển thị ngay lập tức không cần đợi mạng
     try {
       localStorage.removeItem("neuroguide_cached_guidelines");
       localStorage.removeItem("neuroguide_deleted_ids");
       localStorage.removeItem("neuroguide_last_sync_timestamp");
+      localStorage.removeItem("neuroguide_swr_store_v1");
+      localStorage.removeItem("neuroguide_swr_store_v2");
 
       const cachedRaw = localStorage.getItem(SWR_STORAGE_KEY);
       if (cachedRaw) {
@@ -558,6 +570,7 @@ export default function NeuroGuidePage() {
             setIsInitialLoading(false);
             hasLoadedFromCache = true;
             localVersion = cached.version || "";
+            localCachedCount = valid.length;
           }
         }
       }
@@ -574,9 +587,15 @@ export default function NeuroGuidePage() {
           const serverDeleted: string[] = Array.isArray(verData.deletedGuidelineIds)
             ? verData.deletedGuidelineIds
             : [];
+          const serverTotal = typeof verData.totalGuidelines === "number" ? verData.totalGuidelines : 0;
 
-          // Nếu phiên bản Cloud hoàn toàn trùng khớp với Local và đã hiển thị cache
-          if (hasLoadedFromCache && localVersion && localVersion === serverVersion) {
+          // Nếu phiên bản Cloud hoàn toàn trùng khớp với Local, đã hiển thị cache VÀ số lượng guideline khớp hoàn toàn
+          if (
+            hasLoadedFromCache &&
+            localVersion &&
+            localVersion === serverVersion &&
+            (serverTotal === 0 || localCachedCount === serverTotal)
+          ) {
             // Đảm bảo lọc sạch nếu có ID nào mới thêm vào deletedGuidelineIds nhưng không lọc nhầm guideline đang active
             setGuidelineDocs((prev) => {
               const activeKeys = new Set<string>();
@@ -591,7 +610,7 @@ export default function NeuroGuidePage() {
             return;
           }
 
-          // Phiên bản khác hoặc chưa có cache: Tải dữ liệu đầy đủ từ Cloud
+          // Phiên bản khác hoặc chưa có cache hoặc lệch số lượng: Tải dữ liệu đầy đủ từ Cloud
           fetch("/api/neuroguide/sync-guidelines", { cache: "no-store" })
             .then((res) => (res.ok ? res.json() : null))
             .then((data) => {
