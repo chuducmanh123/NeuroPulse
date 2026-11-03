@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { upload } from "@vercel/blob/client";
 
 interface PipelineModalProps {
   isOpen: boolean;
@@ -137,23 +136,25 @@ export function PipelineModal({
         setStreamMessage(`Preparing PDF document (${(selectedFile.size / (1024 * 1024)).toFixed(2)} MB)...`);
         setStreamProgress(8);
 
-        // 1. Thử tải lên Vercel Blob (nếu Vercel Blob đã được kích hoạt trên hệ thống)
+        // 1. Thử tải lên Supabase Storage qua endpoint /api/neuroguide/upload-blob
         try {
-          const uniqueBlobName = `guideline-${Date.now()}-${selectedFile.name.replace(/[^a-zA-Z0-9._-]/g, "_")}`;
-          const blobResult = await upload(uniqueBlobName, selectedFile, {
-            access: "public",
-            handleUploadUrl: "/api/neuroguide/upload-blob",
-            clientPayload: adminToken,
-            onUploadProgress: (progress) => {
-              const uploadPct = Math.round((progress.loaded / progress.total) * 20) + 10;
-              setStreamProgress(uploadPct);
+          const uploadFormData = new FormData();
+          uploadFormData.append("file", selectedFile);
+          const uploadRes = await fetch("/api/neuroguide/upload-blob", {
+            method: "POST",
+            headers: {
+              ...(adminToken ? { "x-admin-token": adminToken } : {}),
             },
+            body: uploadFormData,
           });
-          blobUrl = blobResult.url;
-          setStreamMessage("Uploaded to Vercel Blob successfully. Initializing AI pipeline...");
-          setStreamProgress(30);
+          const uploadData = await uploadRes.json();
+          if (uploadData.ok && uploadData.url) {
+            blobUrl = uploadData.url;
+            setStreamMessage("Uploaded to Supabase Storage successfully. Initializing AI pipeline...");
+            setStreamProgress(30);
+          }
         } catch (uploadErr) {
-          console.warn("Client Blob upload not available, switching to optimized streaming:", uploadErr);
+          console.warn("Direct Supabase storage upload not available, switching to optimized streaming:", uploadErr);
         }
 
         // 2. Nếu không có Vercel Blob, tiến hành nén gzip phía client để vượt qua giới hạn 4.5 MB của Serverless

@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";
 import { verifyAdminToken } from "@/utils/security";
-import { list } from "@vercel/blob";
 import { supabaseAdmin, hasSupabaseConfig } from "@/lib/supabase";
 import { loadMergedNeuroGuideData } from "@/lib/neuroguide/guidelineStorage";
 
@@ -147,26 +146,18 @@ export async function GET(req: NextRequest) {
       }
     }
 
-    const blobRawToken = process.env.BLOB_READ_WRITE_TOKEN;
-    const blobStoreId = process.env.BLOB_STORE_ID;
-    const hasBlobConfig = Boolean(blobRawToken || blobStoreId);
-    let blobFilesCount = 0;
-    let blobConnected = false;
-    let blobError: string | null = null;
-
-    // Only query Blob API list if Supabase is not connected to conserve Vercel Blob quota
-    if (blobRawToken && !supabaseConnected) {
+    let supabaseStorageConfigured = false;
+    let supabaseStorageFilesCount = 0;
+    if (hasSupabase) {
       try {
-        const tokenMatch = blobRawToken.match(/vercel_blob_rw_[a-zA-Z0-9_\-]+/);
-        const cleanToken = tokenMatch ? tokenMatch[0].trim() : blobRawToken.replace(/^BLOB_READ_WRITE_TOKEN\s*=\s*/i, "").trim();
-        const { blobs } = await list({ token: cleanToken, limit: 100 });
-        blobConnected = true;
-        blobFilesCount = blobs.length;
-      } catch (err: any) {
-        blobError = err?.message || String(err);
-      }
-    } else if (hasBlobConfig) {
-      blobConnected = true;
+        const { data: storageFiles, error: storageErr } = await supabaseAdmin.storage
+          .from("guidelines-pdf")
+          .list();
+        if (!storageErr) {
+          supabaseStorageConfigured = true;
+          supabaseStorageFilesCount = storageFiles?.length || 0;
+        }
+      } catch {}
     }
 
     // 3. Gemini API Key check
@@ -216,22 +207,18 @@ export async function GET(req: NextRequest) {
       },
       diagnostics: {
         storage: {
-          primaryBackend: supabaseConnected ? "supabase" : hasBlobConfig ? "vercel-blob" : "local-disk",
+          primaryBackend: supabaseConnected ? "supabase" : "local-disk",
           supabase: {
             configured: hasSupabase,
             connected: supabaseConnected,
             casesCount: supabaseCasesCount,
             guidelinesCount: supabaseDocsCount,
+            storageBucket: "guidelines-pdf",
+            storageConfigured: supabaseStorageConfigured,
+            storageFilesCount: supabaseStorageFilesCount,
             error: supabaseError,
           },
-          blob: {
-            hasBlobConfig,
-            blobConnected,
-            blobFilesCount,
-            blobStoreId: blobStoreId || null,
-            blobError,
-          },
-          storageFallback: "Multi-tier (Supabase -> Blob -> Local Store)",
+          storageFallback: "Supabase (Single Source of Truth) -> Local Cache",
         },
         ai: {
           isGeminiConfigured,

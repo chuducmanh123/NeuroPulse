@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";
 import crypto from "crypto";
-import { put, list } from "@vercel/blob";
 import { ClinicalCase } from "@/types/clinicalCase";
 import { supabaseAdmin, hasSupabaseConfig } from "@/lib/supabase";
 import {
@@ -33,75 +32,19 @@ function isPasscodeValid(input: string): boolean {
 }
 
 // ==========================================
-// 1. VERCEL BLOB STORAGE (100% Free on Hobby: 500 MB)
-// Supports both modern OIDC (BLOB_STORE_ID) and static token (BLOB_READ_WRITE_TOKEN)
-// ==========================================
-function cleanBlobToken(raw: string | undefined): string | undefined {
-  if (!raw) return undefined;
-  // 1. Try to extract exact vercel_blob_rw token if present anywhere in the string
-  const match = raw.match(/vercel_blob_rw_[a-zA-Z0-9_\-]+/);
-  if (match) {
-    return match[0].trim();
-  }
-  // 2. Strip quotes, newlines, carriage returns, tabs, leading variable assignment
-  let cleaned = raw.replace(/^BLOB_READ_WRITE_TOKEN\s*=\s*/i, "");
-  cleaned = cleaned.replace(/[\r\n\t"'`]/g, "").trim();
-  return cleaned.length > 10 ? cleaned : undefined;
-}
-
-function cleanStoreId(raw: string | undefined): string | undefined {
-  if (!raw) return undefined;
-  let cleaned = raw.replace(/^BLOB_STORE_ID\s*=\s*/i, "");
-  cleaned = cleaned.replace(/[\r\n\t"'`]/g, "").trim();
-  return cleaned.length > 0 ? cleaned : undefined;
-}
-
-function getBlobToken(): { token: string | undefined; keyName: string | undefined } {
-  // Always sanitize in-memory environment variables to prevent @vercel/blob from crashing on newlines
-  const direct = cleanBlobToken(process.env.BLOB_READ_WRITE_TOKEN);
-  if (direct) {
-    if (process.env.BLOB_READ_WRITE_TOKEN !== direct) {
-      process.env.BLOB_READ_WRITE_TOKEN = direct;
-    }
-    return { token: direct, keyName: "BLOB_READ_WRITE_TOKEN" };
-  }
-  for (const [key, val] of Object.entries(process.env)) {
-    if ((key.includes("BLOB") || key.includes("READ_WRITE")) && key.includes("TOKEN") && val) {
-      const cleaned = cleanBlobToken(val);
-      if (cleaned) {
-        process.env.BLOB_READ_WRITE_TOKEN = cleaned;
-        return { token: cleaned, keyName: key };
-      }
-    }
-  }
-  return { token: undefined, keyName: undefined };
-}
-
-function getBlobStoreId(): string | undefined {
-  const sanitized = cleanStoreId(process.env.BLOB_STORE_ID);
-  if (sanitized && process.env.BLOB_STORE_ID !== sanitized) {
-    process.env.BLOB_STORE_ID = sanitized;
-  }
-  return sanitized;
-}
-
-// ==========================================
-// 0. SUPABASE STORAGE (PRIMARY CLOUD BACKEND)
+// 1. SUPABASE STORAGE (PRIMARY CLOUD BACKEND)
 // ==========================================
 async function getFromSupabase(): Promise<ClinicalCase[] | null> {
   if (!hasSupabaseConfig()) return null;
   try {
     const { data, error } = await supabaseAdmin
       .from("clinical_cases")
-      .select("data")
-      .order("published_date", { ascending: false });
-
-    if (error || !data) {
-      console.error("Supabase read error in /api/neurocase:", error);
+      .select("data");
+    if (error || !data || data.length === 0) {
+      if (error) console.error("Supabase read error in /api/neurocase:", error);
       return null;
     }
-    const cases: ClinicalCase[] = data.map((row: any) => row.data as ClinicalCase);
-    return Array.isArray(cases) && cases.length > 0 ? cases : null;
+    return data.map((d: any) => d.data as ClinicalCase);
   } catch (e) {
     console.error("Supabase read exception in /api/neurocase:", e);
     return null;
@@ -149,51 +92,6 @@ async function deleteFromSupabase(caseId: string): Promise<boolean> {
     return !error;
   } catch {
     return false;
-  }
-}
-
-function hasBlobConfig(): boolean {
-  return Boolean(
-    getBlobStoreId() ||
-    getBlobToken().token
-  );
-}
-
-async function getFromBlob(): Promise<ClinicalCase[] | null> {
-  if (!hasBlobConfig()) return null;
-  const { token } = getBlobToken();
-  const listOptions = token ? { prefix: "cases.json", token } : { prefix: "cases.json" };
-  try {
-    const { blobs } = await list(listOptions);
-    if (!blobs || blobs.length === 0) return null;
-    const latestBlob = blobs[0];
-    const res = await fetch(latestBlob.url, { cache: "no-store" });
-    if (!res.ok) return null;
-    const cases: ClinicalCase[] = await res.json();
-    return Array.isArray(cases) ? cases : null;
-  } catch (e) {
-    console.error("Vercel Blob read error:", e);
-    return null;
-  }
-}
-
-async function setToBlob(cases: ClinicalCase[]): Promise<{ ok: boolean; error?: string }> {
-  if (!hasBlobConfig()) return { ok: false, error: "No blob configuration detected." };
-  const { token } = getBlobToken();
-  try {
-    const jsonStr = JSON.stringify(cases, null, 2);
-    const putOptions: any = {
-      access: "public",
-      addRandomSuffix: false,
-      allowOverwrite: true,
-      contentType: "application/json",
-    };
-    if (token) putOptions.token = token;
-    await put("cases.json", jsonStr, putOptions);
-    return { ok: true };
-  } catch (e: any) {
-    console.error("Vercel Blob write error:", e);
-    return { ok: false, error: e?.message || String(e) };
   }
 }
 
@@ -248,7 +146,7 @@ async function getBundledCases(): Promise<ClinicalCase[]> {
 }
 
 /**
- * Merges dynamic store cases (Blob / KV) with repo-bundled cases.
+ * Merges dynamic store cases (Supabase / KV) with repo-bundled cases.
  * Priority: Dynamic store overrides repo cases by ID (so admin edits/moderation persist),
  * but any new cases generated by GitHub Actions bot in repo cases.json that are missing
  * from the dynamic store are seamlessly included!
@@ -289,20 +187,6 @@ async function saveToActiveStorage(cases: ClinicalCase[]): Promise<{
     }
   }
 
-  // 2. Try Vercel Blob
-  if (hasBlobConfig()) {
-    const blobRes = await setToBlob(cases);
-    if (blobRes.ok) {
-      return { success: true, storage: "vercel-blob" };
-    }
-    return {
-      success: false,
-      storage: "vercel-blob-failed",
-      error: blobRes.error,
-      warning: "Vercel Blob write failed: " + blobRes.error,
-    };
-  }
-
   // 2. Try Vercel KV
   if (KV_URL && KV_TOKEN) {
     const kvOk = await setToKv(cases);
@@ -319,8 +203,8 @@ async function saveToActiveStorage(cases: ClinicalCase[]): Promise<{
     if (fsErr?.code === "EROFS" || process.env.VERCEL) {
       return {
         success: false,
-        storage: "vercel-readonly",
-        warning: "Vercel filesystem is read-only. Connect Vercel Blob in Vercel Storage to persist changes.",
+        storage: "serverless-readonly",
+        warning: "Serverless filesystem is read-only. Configure Supabase credentials to persist changes.",
       };
     }
     throw fsErr;
@@ -329,7 +213,7 @@ async function saveToActiveStorage(cases: ClinicalCase[]): Promise<{
 
 /**
  * GET /api/neurocase
- * Hybrid merge: combines remote Blob/KV dynamic store with repo bundled cases.json
+ * Hybrid merge: combines remote Supabase dynamic store with repo bundled cases.json
  * so bot-generated daily cases are never hidden, while admin moderation is preserved.
  */
 export async function GET(req: Request) {
@@ -344,21 +228,10 @@ export async function GET(req: Request) {
         return NextResponse.json({ error: "Unauthorized access to debug endpoint." }, { status: 401 });
       }
 
-      const { keyName, token } = getBlobToken();
-      const storageKeys = Object.keys(process.env).filter(
-        (k) =>
-          k.includes("BLOB") ||
-          k.includes("KV") ||
-          k.includes("TOKEN") ||
-          k.includes("STORAGE")
-      );
       return NextResponse.json({
         isVercel: Boolean(process.env.VERCEL),
-        hasBlobConfig: hasBlobConfig(),
-        blobStoreId: process.env.BLOB_STORE_ID || null,
-        blobTokenFound: Boolean(token),
-        matchedKey: keyName || null,
-        availableStorageKeys: storageKeys,
+        hasSupabaseConfig: hasSupabaseConfig(),
+        storageBackend: hasSupabaseConfig() ? "supabase" : "local-file",
       });
     }
 
@@ -373,13 +246,12 @@ export async function GET(req: Request) {
       }
     }
 
-    if (!dynamicCases) {
-      const [blobCases, kvCases] = await Promise.all([
-        getFromBlob(),
-        getFromKv(),
-      ]);
-      dynamicCases = (blobCases && blobCases.length > 0) ? blobCases : kvCases;
-      backend = blobCases && blobCases.length > 0 ? "vercel-blob" : kvCases && kvCases.length > 0 ? "vercel-kv" : "local-file";
+    if (!dynamicCases && KV_URL && KV_TOKEN) {
+      const kvCases = await getFromKv();
+      if (kvCases && kvCases.length > 0) {
+        dynamicCases = kvCases;
+        backend = "vercel-kv";
+      }
     }
 
     const bundled = await getBundledCases();
@@ -451,12 +323,8 @@ export async function POST(req: Request) {
       if (hasSupabaseConfig()) {
         dynamicCases = await getFromSupabase();
       }
-      if (!dynamicCases) {
-        const [blobCases, kvCases] = await Promise.all([
-          getFromBlob(),
-          getFromKv(),
-        ]);
-        dynamicCases = (blobCases && blobCases.length > 0) ? blobCases : kvCases;
+      if (!dynamicCases && KV_URL && KV_TOKEN) {
+        dynamicCases = await getFromKv();
       }
       const bundled = await getBundledCases();
       return mergeCases(dynamicCases, bundled);

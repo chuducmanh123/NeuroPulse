@@ -1,51 +1,42 @@
-import { list, del } from "@vercel/blob";
-
-function cleanBlobToken(raw: string | undefined): string | undefined {
-  if (!raw) return undefined;
-  const match = raw.match(/vercel_blob_rw_[a-zA-Z0-9_\-]+/);
-  if (match) return match[0].trim();
-  let cleaned = raw.replace(/^BLOB_READ_WRITE_TOKEN\s*=\s*/i, "");
-  cleaned = cleaned.replace(/[\r\n\t"'`]/g, "").trim();
-  return cleaned.length > 10 ? cleaned : undefined;
-}
-
-function getBlobToken(): { token: string | undefined } {
-  const direct = cleanBlobToken(process.env.BLOB_READ_WRITE_TOKEN);
-  if (direct) return { token: direct };
-  for (const [key, val] of Object.entries(process.env)) {
-    if ((key.includes("BLOB") || key.includes("READ_WRITE")) && key.includes("TOKEN") && val) {
-      const cleaned = cleanBlobToken(val);
-      if (cleaned) return { token: cleaned };
-    }
-  }
-  return { token: undefined };
-}
+import { supabaseAdmin, hasSupabaseConfig } from "../supabase";
 
 /**
- * Tự động tìm và xóa toàn bộ các tệp PDF tạm trên Vercel Blob để bảo toàn hạn mức lưu trữ.
- * Giữ nguyên các tệp cấu trúc JSON quan trọng (neuroguide_data.json, cases.json, guidelines_store/...).
+ * Tự động tìm và xóa toàn bộ các tệp PDF tạm trên Supabase Storage để bảo toàn hạn mức lưu trữ.
+ * Theo kiến trúc mới, PDF không cần thiết lưu trữ lâu dài mà chỉ phục vụ AI bóc tách tức thì.
  */
 export async function cleanupAllBlobPdfs(): Promise<{ count: number; deleted: string[] }> {
-  const { token } = getBlobToken();
-  if (!token) return { count: 0, deleted: [] };
+  if (!hasSupabaseConfig()) return { count: 0, deleted: [] };
 
   try {
-    const { blobs } = await list({ token });
-    const pdfBlobs = blobs.filter(
-      (b) =>
-        b.pathname.toLowerCase().endsWith(".pdf") ||
-        b.pathname.toLowerCase().includes(".pdf")
+    const { data: files, error } = await supabaseAdmin.storage
+      .from("guidelines-pdf")
+      .list();
+
+    if (error || !files || files.length === 0) {
+      return { count: 0, deleted: [] };
+    }
+
+    const pdfFiles = files.filter(
+      (f) =>
+        f.name.toLowerCase().endsWith(".pdf") ||
+        f.name.toLowerCase().includes(".pdf")
     );
 
-    if (pdfBlobs.length > 0) {
-      const urlsToDelete = pdfBlobs.map((b) => b.url);
-      await del(urlsToDelete, { token });
-      const deletedNames = pdfBlobs.map((b) => b.pathname);
-      console.log(`[Blob Cleanup] Đã xóa ${pdfBlobs.length} tệp PDF khỏi Vercel Blob:`, deletedNames);
-      return { count: pdfBlobs.length, deleted: deletedNames };
+    if (pdfFiles.length > 0) {
+      const namesToDelete = pdfFiles.map((f) => f.name);
+      const { error: removeError } = await supabaseAdmin.storage
+        .from("guidelines-pdf")
+        .remove(namesToDelete);
+
+      if (removeError) {
+        console.warn("[Storage Cleanup] Lỗi xóa tệp PDF tạm trên Supabase:", removeError);
+      } else {
+        console.log(`[Storage Cleanup] Đã xóa ${pdfFiles.length} tệp PDF tạm khỏi Supabase Storage:`, namesToDelete);
+        return { count: pdfFiles.length, deleted: namesToDelete };
+      }
     }
   } catch (err) {
-    console.warn("[Blob Cleanup] Lỗi dọn dẹp PDF trên Vercel Blob:", err);
+    console.warn("[Storage Cleanup] Ngoại lệ khi dọn dẹp PDF trên Supabase Storage:", err);
   }
 
   return { count: 0, deleted: [] };

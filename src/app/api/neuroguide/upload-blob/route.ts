@@ -1,73 +1,89 @@
-import { handleUpload, type HandleUploadBody } from "@vercel/blob/client";
 import { NextResponse, NextRequest } from "next/server";
 import { verifyAdminToken } from "@/utils/security";
+import { supabaseAdmin, hasSupabaseConfig } from "@/lib/supabase";
 
 export const dynamic = "force-dynamic";
 
-function cleanBlobToken(raw: string | undefined): string | undefined {
-  if (!raw) return undefined;
-  const match = raw.match(/vercel_blob_rw_[a-zA-Z0-9_\-]+/);
-  if (match) return match[0].trim();
-  let cleaned = raw.replace(/^BLOB_READ_WRITE_TOKEN\s*=\s*/i, "");
-  cleaned = cleaned.replace(/[\r\n\t"'`]/g, "").trim();
-  return cleaned.length > 10 ? cleaned : undefined;
-}
-
-function getBlobToken(): { token: string | undefined } {
-  const direct = cleanBlobToken(process.env.BLOB_READ_WRITE_TOKEN);
-  if (direct) return { token: direct };
-  for (const [key, val] of Object.entries(process.env)) {
-    if ((key.includes("BLOB") || key.includes("READ_WRITE")) && key.includes("TOKEN") && val) {
-      const cleaned = cleanBlobToken(val);
-      if (cleaned) return { token: cleaned };
-    }
-  }
-  return { token: undefined };
-}
-
 export async function POST(request: NextRequest): Promise<NextResponse> {
-  const body = (await request.json()) as HandleUploadBody;
-  const { token } = getBlobToken();
+  // Khóa chặt quyền tải lên: Chỉ Quản trị viên (Admin) mới có quyền đẩy PDF lên hệ thống
+  const adminToken =
+    request.headers.get("x-admin-token") ||
+    request.headers.get("authorization")?.replace(/^Bearer\s+/i, "");
 
-  if (!token) {
+  if (!verifyAdminToken(adminToken)) {
     return NextResponse.json(
-      { ok: false, error: "BLOB_NOT_CONFIGURED: Vercel Blob read/write token not found." },
-      { status: 400 }
+      { ok: false, error: "Unauthorized: Quyền tải tệp PDF lên hệ thống chỉ dành riêng cho Quản trị viên (Admin)." },
+      { status: 401 }
+    );
+  }
+
+  if (!hasSupabaseConfig()) {
+    return NextResponse.json(
+      { ok: false, error: "SUPABASE_NOT_CONFIGURED: Supabase URL hoặc Service Role Key chưa được cấu hình." },
+      { status: 500 }
     );
   }
 
   try {
-    const jsonResponse = await handleUpload({
-      body,
-      request,
-      token,
-      onBeforeGenerateToken: async (pathname, clientPayload) => {
-        // Khóa chặt quyền tải lên: Chỉ Quản trị viên (Admin) mới có quyền đẩy PDF lên Vercel Blob
-        if (!verifyAdminToken(clientPayload)) {
-          throw new Error("Unauthorized: Quyền tải tệp PDF lên hệ thống chỉ dành riêng cho Quản trị viên (Admin).");
-        }
+    const formData = await request.formData();
+    const file = formData.get("file") as File | null;
 
-        // Chỉ cho phép upload file PDF học thuật, dung lượng tối đa 50MB, tự động thêm suffix hoặc cho phép ghi đè
-        return {
-          allowedContentTypes: ["application/pdf"],
-          maximumSizeInBytes: 50 * 1024 * 1024,
-          addRandomSuffix: true,
-          allowOverwrite: true,
-          tokenPayload: JSON.stringify({
-            uploadedAt: new Date().toISOString(),
-            pathname,
-          }),
-        };
-      },
-      onUploadCompleted: async ({ blob }) => {
-        // Hook sau khi upload hoàn thành lên Vercel Blob
-        console.log("PDF uploaded to Vercel Blob:", blob.url);
-      },
+    if (!file || !(file instanceof Blob)) {
+      return NextResponse.json(
+        { ok: false, error: "Thiếu tệp tin PDF hợp lệ trong yêu cầu." },
+        { status: 400 }
+      );
+    }
+
+    // Giới hạn 50MB
+    if (file.size > 50 * 1024 * 1024) {
+      return NextResponse.json(
+        { ok: false, error: "Tệp tin vượt quá dung lượng tối đa cho phép (50MB)." },
+        { status: 400 }
+      );
+    }
+
+    const rawBuffer = Buffer.from(await file.arrayBuffer());
+    const sanitizedName = (file.name || "guideline.pdf").replace(/[^a-zA-Z0-9._-]/g, "_");
+    const uniqueFileName = `guideline-${Date.now()}-${sanitizedName}`;
+
+    // Đảm bảo bucket guidelines-pdf tồn tại
+    const { data: buckets } = await supabaseAdmin.storage.listBuckets();
+    if (!buckets?.some((b) => b.name === "guidelines-pdf")) {
+      await supabaseAdmin.storage.createBucket("guidelines-pdf", {
+        public: true,
+        fileSizeLimit: 52428800,
+        allowedMimeTypes: ["application/pdf"],
+      });
+    }
+
+    const { error: uploadError } = await supabaseAdmin.storage
+      .from("guidelines-pdf")
+      .upload(uniqueFileName, rawBuffer, {
+        contentType: "application/pdf",
+        upsert: true,
+      });
+
+    if (uploadError) {
+      console.error("Supabase storage upload error:", uploadError);
+      return NextResponse.json(
+        { ok: false, error: `Lỗi tải tệp lên Supabase Storage: ${uploadError.message}` },
+        { status: 500 }
+      );
+    }
+
+    const { data: publicUrlData } = supabaseAdmin.storage
+      .from("guidelines-pdf")
+      .getPublicUrl(uniqueFileName);
+
+    return NextResponse.json({
+      ok: true,
+      url: publicUrlData.publicUrl,
+      fileName: uniqueFileName,
+      storage: "supabase",
     });
-
-    return NextResponse.json(jsonResponse);
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Error handling Vercel Blob upload handshake";
-    return NextResponse.json({ error: message }, { status: 400 });
+    const message = error instanceof Error ? error.message : "Lỗi xử lý tải tệp lên Supabase Storage";
+    return NextResponse.json({ ok: false, error: message }, { status: 500 });
   }
 }

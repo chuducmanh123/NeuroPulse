@@ -643,9 +643,9 @@ export default function NeuroCasePage() {
       });
       if (res.ok) {
         const data = await res.json().catch(() => null);
-        if (data?.storage === "vercel-blob-failed" || data?.storage === "vercel-readonly") {
+        if (data?.storage === "serverless-readonly" || data?.success === false) {
           const detail = data?.error ? `: ${data.error.slice(0, 40)}...` : "";
-          setServerSyncSuccess(`⚠️ Storage error${detail || " (Check BLOB_READ_WRITE_TOKEN in Settings)"}`);
+          setServerSyncSuccess(`⚠️ Storage error${detail || " (Check Supabase credentials in Settings)"}`);
           setTimeout(() => setServerSyncSuccess(""), 6000);
         } else {
           setServerSyncSuccess("✓ Synced to server");

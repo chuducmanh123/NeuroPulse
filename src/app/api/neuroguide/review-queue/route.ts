@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
-import { put } from "@vercel/blob";
 import type { GuidelineDoc, PracticeChangeDetail } from "@/types/neuroguide";
 import { mapSocietyToSubspecialty } from "@/lib/neuroguide/storeAdapter";
 import { loadMergedNeuroGuideData, saveNeuroGuideToActiveStorage } from "@/lib/neuroguide/guidelineStorage";
@@ -66,30 +65,8 @@ interface GuidelineRecord {
 const STORE_DIR = path.join(process.cwd(), "data", "guidelines_store");
 const TMP_DIR = path.join("/tmp", "guidelines_store");
 
-function cleanBlobToken(raw: string | undefined): string | undefined {
-  if (!raw) return undefined;
-  const match = raw.match(/vercel_blob_rw_[a-zA-Z0-9_\-]+/);
-  if (match) return match[0].trim();
-  let cleaned = raw.replace(/^BLOB_READ_WRITE_TOKEN\s*=\s*/i, "");
-  cleaned = cleaned.replace(/[\r\n\t"'`]/g, "").trim();
-  return cleaned.length > 10 ? cleaned : undefined;
-}
-
-function getBlobToken(): { token: string | undefined } {
-  const direct = cleanBlobToken(process.env.BLOB_READ_WRITE_TOKEN);
-  if (direct) return { token: direct };
-  for (const [key, val] of Object.entries(process.env)) {
-    if ((key.includes("BLOB") || key.includes("READ_WRITE")) && key.includes("TOKEN") && val) {
-      const cleaned = cleanBlobToken(val);
-      if (cleaned) return { token: cleaned };
-    }
-  }
-  return { token: undefined };
-}
-
 /**
- * Đọc nội dung tệp tin: Ưu tiên /tmp (phiên hiện tại trên serverless), sau đó kho tĩnh STORE_DIR,
- * và fallback tải trực tiếp từ Vercel Blob nếu đang chạy trên serverless container mới.
+ * Đọc nội dung tệp tin: Ưu tiên /tmp (phiên hiện tại), sau đó kho tĩnh STORE_DIR.
  */
 async function getFileContentAsync(fileName: string): Promise<{ content: string; sourcePath: string } | null> {
   const tmpPath = path.join(TMP_DIR, fileName);
@@ -104,27 +81,6 @@ async function getFileContentAsync(fileName: string): Promise<{ content: string;
     try {
       return { content: fs.readFileSync(storePath, "utf-8"), sourcePath: storePath };
     } catch {}
-  }
-
-  // 3. Fallback đọc từ Vercel Blob
-  const { token } = getBlobToken();
-  if (token) {
-    try {
-      const { list } = await import("@vercel/blob");
-      const { blobs } = await list({ prefix: `guidelines_store/${fileName}`, token });
-      const targetBlob = blobs.find((b) => b.pathname === `guidelines_store/${fileName}`);
-      if (targetBlob) {
-        const res = await fetch(targetBlob.url, { cache: "no-store" });
-        if (res.ok) {
-          const text = await res.text();
-          if (!fs.existsSync(TMP_DIR)) fs.mkdirSync(TMP_DIR, { recursive: true });
-          fs.writeFileSync(tmpPath, text, "utf-8");
-          return { content: text, sourcePath: tmpPath };
-        }
-      }
-    } catch (e) {
-      console.warn("Lỗi đọc Vercel Blob trong getFileContentAsync:", e);
-    }
   }
 
   return null;
@@ -152,8 +108,7 @@ function getFileContent(fileName: string): { content: string; sourcePath: string
  * Lưu tệp tin an toàn tuyệt đối chống lỗi EROFS trên Vercel Serverless:
  * 1. Nếu môi trường Vercel (process.env.VERCEL) -> KHÔNG bao giờ ghi vào STORE_DIR để tránh lỗi EROFS
  * 2. Lưu vào /tmp (khả dụng ghi trên mọi môi trường serverless/Lambda)
- * 3. Nếu cấu hình Vercel Blob -> Lưu lên Cloud Blob để duy trì bền vững
- * 4. Chạy cục bộ (Local Dev) -> Lưu trực tiếp vào STORE_DIR
+ * 3. Chạy cục bộ (Local Dev) -> Lưu trực tiếp vào STORE_DIR
  */
 async function saveFileSafe(fileName: string, dataStr: string): Promise<void> {
   const isVercel = Boolean(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
@@ -169,24 +124,7 @@ async function saveFileSafe(fileName: string, dataStr: string): Promise<void> {
     console.warn("Không thể ghi vào TMP_DIR:", err);
   }
 
-  // 2. Thử lưu lên Vercel Blob nếu có token
-  const { token } = getBlobToken();
-  if (token) {
-    try {
-      const putOptions: any = {
-        access: "public",
-        addRandomSuffix: false,
-        allowOverwrite: true,
-        contentType: "application/json",
-        token,
-      };
-      await put(`guidelines_store/${fileName}`, dataStr, putOptions);
-    } catch (blobErr) {
-      console.warn("Lỗi đồng bộ lên Vercel Blob:", blobErr);
-    }
-  }
-
-  // 3. Nếu không phải Vercel Serverless (chạy cục bộ), lưu vào STORE_DIR
+  // 2. Nếu không phải Vercel Serverless (chạy cục bộ), lưu vào STORE_DIR
   if (!isVercel) {
     try {
       if (!fs.existsSync(STORE_DIR)) {
@@ -220,32 +158,6 @@ export async function GET(request: NextRequest) {
         const tmpFiles = fs.readdirSync(TMP_DIR).filter((f) => f.endsWith("_latest.json"));
         for (const f of tmpFiles) fileMap.set(f, path.join(TMP_DIR, f));
       } catch {}
-    }
-
-    // 3. Quét từ Vercel Blob (đồng bộ giữa các serverless container)
-    const { token } = getBlobToken();
-    if (token) {
-      try {
-        const { list } = await import("@vercel/blob");
-        const { blobs } = await list({ prefix: "guidelines_store/", token });
-        for (const b of blobs) {
-          const fileName = b.pathname.replace(/^guidelines_store\//, "");
-          if (fileName.endsWith("_latest.json")) {
-            try {
-              const res = await fetch(b.url, { cache: "no-store" });
-              if (res.ok) {
-                const text = await res.text();
-                if (!fs.existsSync(TMP_DIR)) fs.mkdirSync(TMP_DIR, { recursive: true });
-                const localTmp = path.join(TMP_DIR, fileName);
-                fs.writeFileSync(localTmp, text, "utf-8");
-                fileMap.set(fileName, localTmp);
-              }
-            } catch {}
-          }
-        }
-      } catch (blobErr) {
-        console.warn("Lỗi đọc Vercel Blob trong review-queue:", blobErr);
-      }
     }
 
     const queue: Array<StoredRec & { guideline_title: string; society: string; year?: number }> = [];
@@ -454,21 +366,6 @@ export async function POST(request: NextRequest) {
             fs.readdirSync(dir).filter((f) => f.endsWith("_latest.json")).forEach((f) => allFiles.add(f));
           } catch {}
         }
-      }
-
-      // Quét thêm từ Blob nếu có
-      const { token } = getBlobToken();
-      if (token) {
-        try {
-          const { list } = await import("@vercel/blob");
-          const { blobs } = await list({ prefix: "guidelines_store/", token });
-          for (const b of blobs) {
-            const fileName = b.pathname.replace(/^guidelines_store\//, "");
-            if (fileName.endsWith("_latest.json")) {
-              allFiles.add(fileName);
-            }
-          }
-        } catch {}
       }
 
       const targetGId = (guideline_id || file_id || doc_id || "").toLowerCase().trim();

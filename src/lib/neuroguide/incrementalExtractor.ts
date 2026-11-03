@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { del } from "@vercel/blob";
+import { supabaseAdmin, hasSupabaseConfig } from "../supabase";
 import type { SubspecialtyType } from "../../types/neuroguide";
 import { detectSociety, detectSubspecialty } from "./pubmedDiscovery";
 import { saveStoreFileSafe } from "./storeAdapter";
@@ -91,15 +91,6 @@ export function resolveApiKey(providedKey?: string): string {
   }
 
   return "";
-}
-
-function cleanBlobToken(raw: string | undefined): string | undefined {
-  if (!raw) return undefined;
-  const match = raw.match(/vercel_blob_rw_[a-zA-Z0-9_\-]+/);
-  if (match) return match[0].trim();
-  let cleaned = raw.replace(/^BLOB_READ_WRITE_TOKEN\s*=\s*/i, "");
-  cleaned = cleaned.replace(/[\r\n\t"'`]/g, "").trim();
-  return cleaned.length > 10 ? cleaned : undefined;
 }
 
 async function callGeminiMultimodalJson<T>(
@@ -743,38 +734,33 @@ Respond strictly in valid JSON matching this schema:
       await onProgress({
         stage: "CLEANUP",
         percent: 94,
-        message: "Cleaning up temporary PDF from Vercel Blob to conserve storage...",
+        message: "Cleaning up temporary PDF from storage to conserve resources...",
         docId,
       });
 
-      let token = cleanBlobToken(process.env.BLOB_READ_WRITE_TOKEN);
-      if (!token) {
-        for (const [k, v] of Object.entries(process.env)) {
-          if ((k.includes("BLOB") || k.includes("READ_WRITE")) && k.includes("TOKEN") && v) {
-            const candidate = cleanBlobToken(v);
-            if (candidate) {
-              token = candidate;
-              break;
-            }
+      if (options.blobUrl && hasSupabaseConfig()) {
+        try {
+          const parts = options.blobUrl.split("/");
+          const fileName = parts[parts.length - 1];
+          if (fileName) {
+            await supabaseAdmin.storage.from("guidelines-pdf").remove([fileName]);
           }
+        } catch (storageErr) {
+          console.warn("Could not remove temp PDF from Supabase Storage:", storageErr);
         }
       }
 
-      if (options.blobUrl) {
-        await del(options.blobUrl, { token });
-      }
-
-      // Xóa dọn dẹp toàn bộ các tệp PDF tồn đọng trong kho Blob
+      // Xóa dọn dẹp toàn bộ các tệp PDF tồn đọng trong kho lưu trữ
       await cleanupAllBlobPdfs();
 
       await onProgress({
         stage: "CLEANUP",
         percent: 98,
-        message: "Temporary PDF deleted from Vercel Blob successfully. Storage conserved.",
+        message: "Temporary PDF cleaned up successfully. Storage conserved.",
         docId,
       });
     } catch (delErr) {
-      console.warn("Could not delete blob (or blob does not exist):", delErr);
+      console.warn("Could not delete temporary storage file:", delErr);
     }
   };
 

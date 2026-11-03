@@ -85,7 +85,7 @@ export async function POST(request: NextRequest) {
     // Lọc khỏi active library
     const remainingGuidelines = activeData.guidelines.filter((g) => !isMatchTarget(g.id, g.title));
 
-    // 2. Ghi nhận ID & Title đã xóa vào public/data/neuroguide_cloud.json và active storage (Vercel Blob)
+    // 2. Ghi nhận ID & Title đã xóa vào public/data/neuroguide_cloud.json và active storage (Supabase)
     let mergedDeletedList: string[] = Array.from(
       new Set([
         ...(activeData.deletedGuidelineIds || []).map((x) => x.toLowerCase()),
@@ -127,24 +127,6 @@ export async function POST(request: NextRequest) {
       scenarios: activeData.scenarios,
       deletedGuidelineIds: mergedDeletedList,
     });
-
-    // 3. Xóa khỏi Vercel Blob (guidelines_store/) để mọi thiết bị đều đồng bộ tức thời
-    try {
-      const rawToken = process.env.BLOB_READ_WRITE_TOKEN;
-      const tokenMatch = rawToken?.match(/vercel_blob_rw_[a-zA-Z0-9_\-]+/);
-      const token = tokenMatch ? tokenMatch[0].trim() : undefined;
-      if (token) {
-        const { list, del } = await import("@vercel/blob");
-        const { blobs } = await list({ prefix: "guidelines_store/", token });
-        for (const b of blobs) {
-          const fileName = b.pathname.replace(/^guidelines_store\//, "");
-          const cleanFileName = fileName.replace(/_latest\.json$/i, "").toLowerCase();
-          if (allDeletedIds.has(cleanFileName)) {
-            await del(b.url, { token }).catch(() => {});
-          }
-        }
-      }
-    } catch {}
 
     // 3. Xóa triệt để khỏi kho guidelines_store (STORE_DIR, TMP_DIR, catalog.json)
     for (const dir of [TMP_DIR, STORE_DIR]) {

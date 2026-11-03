@@ -13,32 +13,10 @@ import { parseAhaCorAndLoe } from "./notebooklmParser.ts";
 const STORE_DIR = path.join(process.cwd(), "data", "guidelines_store");
 const TMP_DIR = path.join("/tmp", "guidelines_store");
 
-function cleanBlobToken(raw: string | undefined): string | undefined {
-  if (!raw) return undefined;
-  const match = raw.match(/vercel_blob_rw_[a-zA-Z0-9_\-]+/);
-  if (match) return match[0].trim();
-  let cleaned = raw.replace(/^BLOB_READ_WRITE_TOKEN\s*=\s*/i, "");
-  cleaned = cleaned.replace(/[\r\n\t"'`]/g, "").trim();
-  return cleaned.length > 10 ? cleaned : undefined;
-}
-
-function getBlobToken(): { token: string | undefined } {
-  const direct = cleanBlobToken(process.env.BLOB_READ_WRITE_TOKEN);
-  if (direct) return { token: direct };
-  for (const [key, val] of Object.entries(process.env)) {
-    if ((key.includes("BLOB") || key.includes("READ_WRITE")) && key.includes("TOKEN") && val) {
-      const cleaned = cleanBlobToken(val);
-      if (cleaned) return { token: cleaned };
-    }
-  }
-  return { token: undefined };
-}
-
 /**
- * Lưu tệp tin an toàn đa tầng:
+ * Lưu tệp tin an toàn:
  * 1. Ghi /tmp (cho runtime Vercel Lambda)
- * 2. Ghi lên Vercel Blob (guidelines_store/) để duy trì lâu dài
- * 3. Ghi vào thư mục data/guidelines_store/ khi chạy cục bộ
+ * 2. Ghi vào thư mục data/guidelines_store/ khi chạy cục bộ
  */
 export async function saveStoreFileSafe(fileName: string, dataStr: string): Promise<void> {
   const isVercel = Boolean(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
@@ -54,24 +32,7 @@ export async function saveStoreFileSafe(fileName: string, dataStr: string): Prom
     console.warn("Không thể ghi vào TMP_DIR:", err);
   }
 
-  // 2. Lưu lên Vercel Blob nếu có cấu hình
-  const { token } = getBlobToken();
-  if (token) {
-    try {
-      const { put } = await import("@vercel/blob");
-      await put(`guidelines_store/${fileName}`, dataStr, {
-        access: "public",
-        addRandomSuffix: false,
-        allowOverwrite: true,
-        contentType: "application/json",
-        token,
-      });
-    } catch (blobErr) {
-      console.warn("Lỗi lưu guidelines_store lên Vercel Blob:", blobErr);
-    }
-  }
-
-  // 3. Nếu local dev, lưu vào STORE_DIR
+  // 2. Nếu local dev, lưu vào STORE_DIR
   if (!isVercel) {
     try {
       if (!fs.existsSync(STORE_DIR)) {
@@ -260,34 +221,11 @@ export function mapSocietyToSubspecialty(society: string, title: string): Subspe
 }
 
 /**
- * Đồng bộ các tệp *_latest.json từ Vercel Blob (guidelines_store/) về TMP_DIR
- * để đảm bảo mọi thiết bị và serverless instance đều đọc cùng một nguồn dữ liệu đám mây.
+ * No-op: Giữ tương thích ngược chữ ký hàm; dữ liệu hiện đã lưu trữ tập trung trên Supabase.
  */
 export async function syncStoreBlobsToTmp(): Promise<void> {
-  const { token } = getBlobToken();
-  if (!token) return;
-  try {
-    const { list } = await import("@vercel/blob");
-    const { blobs } = await list({ prefix: "guidelines_store/", token });
-    if (!fs.existsSync(TMP_DIR)) {
-      fs.mkdirSync(TMP_DIR, { recursive: true });
-    }
-    for (const b of blobs) {
-      const fileName = b.pathname.replace(/^guidelines_store\//, "");
-      if (fileName.endsWith("_latest.json")) {
-        try {
-          const res = await fetch(b.url, { cache: "no-store" });
-          if (res.ok) {
-            const text = await res.text();
-            const localTmp = path.join(TMP_DIR, fileName);
-            fs.writeFileSync(localTmp, text, "utf-8");
-          }
-        } catch {}
-      }
-    }
-  } catch (err) {
-    console.warn("Lỗi đồng bộ guidelines_store từ Vercel Blob:", err);
-  }
+  // Toàn bộ dữ liệu hiện lấy từ Supabase (neuroguide_docs) làm Single Source of Truth
+  return;
 }
 
 /**
