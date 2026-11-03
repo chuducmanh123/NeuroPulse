@@ -24,23 +24,126 @@ import {
 
 const LOCAL_STORAGE_PATH = path.join(process.cwd(), "public", "data", "neuroguide_cloud.json");
 
+export function normalizeGuidelineTitle(t?: string): string {
+  return (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+}
+
+export function getCoreTopicKey(doc: { society?: string; title?: string }): string {
+  const soc = (doc.society || "").toUpperCase();
+  const t = (doc.title || "").toLowerCase();
+  let normSoc = soc;
+  if (soc.includes("AHA") || soc.includes("ASA") || t.includes("aha/asa") || t.includes("acc/aha")) normSoc = "AHA";
+  else if (soc.includes("ESO") || t.includes("european stroke organisation")) normSoc = "ESO";
+  else if (soc.includes("AAN")) normSoc = "AAN";
+  else if (soc.includes("ILAE")) normSoc = "ILAE";
+  else if (soc.includes("NCS")) normSoc = "NCS";
+
+  if (normSoc === "ESO" && (t.includes("blood pressure") || t.includes("huyết áp"))) {
+    return "ESO-BP";
+  }
+  if (normSoc === "ESO" && (t.includes("pneumonia") || t.includes("viêm phổi"))) {
+    return "ESO-SAP";
+  }
+  if (normSoc === "AHA" && (t.includes("acute ischemic stroke") || t.includes("acute ischaemic stroke") || t.includes("early management"))) {
+    return "AHA-AIS";
+  }
+  if (normSoc === "AHA" && (t.includes("primary prevention") || t.includes("prevention of stroke"))) {
+    return "AHA-PRIMARY-PREVENTION";
+  }
+  if ((normSoc === "AHA" || normSoc === "NCS" || normSoc === "ESO") && (t.includes("subarachnoid") || t.includes("aneurysmal") || /\basah\b/i.test(t))) {
+    return `${normSoc}-SAH`;
+  }
+  if (normSoc === "ILAE" && (t.includes("status epilepticus") || t.includes("seizures"))) {
+    return "ILAE-SE";
+  }
+  if (normSoc === "AAN" && (t.includes("antiseizure") || t.includes("teratogenesis"))) {
+    return "AAN-ASM";
+  }
+
+  return `${normSoc}-${normalizeGuidelineTitle(doc.title)}`;
+}
+
+export interface SupabaseNeuroGuidePayload extends NeuroGuideBlobPayload {
+  pendingGuidelineKeys?: string[];
+  approvedGuidelineKeys?: string[];
+}
+
 /**
  * Loads dynamic NeuroGuide data from Supabase (Single Source of Truth)
  */
-export async function getFromSupabase(): Promise<NeuroGuideBlobPayload | null> {
+export async function getFromSupabase(): Promise<SupabaseNeuroGuidePayload | null> {
   if (!hasSupabaseConfig()) return null;
   try {
     const { data, error } = await supabaseAdmin
       .from("neuroguide_docs")
-      .select("data");
+      .select("id, title, organization, status, data, updated_at");
     if (error || !data || data.length === 0) return null;
-    const guidelines = data.map((d: any) => d.data as GuidelineDoc);
+
+    const localDisk = await getFromLocalDisk();
+    const deletedKeys = new Set<string>([
+      ...((localDisk as any)?.deletedGuidelineIds || []).map((x: string) => x.toLowerCase().trim()),
+      ...((localDisk as any)?.deleted_guideline_ids || []).map((x: string) => x.toLowerCase().trim()),
+    ]);
+
+    const guidelines: GuidelineDoc[] = [];
+    const pendingKeys = new Set<string>();
+    const approvedKeys = new Set<string>();
+    let maxUpdatedAt = "";
+
+    for (const row of data as any[]) {
+      const rowStatus = String(row.status || row.data?.status || "approved").toLowerCase().trim();
+      const rowId = String(row.id || row.data?.id || "").toLowerCase().trim();
+      const rowTitle = String(row.title || row.data?.title || "");
+      const normTitle = normalizeGuidelineTitle(rowTitle);
+      const rowSoc = String(row.data?.society || row.organization || "");
+      const topicKey = getCoreTopicKey({ society: rowSoc, title: rowTitle }).toLowerCase();
+
+      if (row.updated_at && String(row.updated_at) > maxUpdatedAt) {
+        maxUpdatedAt = String(row.updated_at);
+      }
+
+      if (rowStatus === "pending" || rowStatus === "pending_review") {
+        if (rowId) pendingKeys.add(rowId);
+        if (normTitle) pendingKeys.add(normTitle);
+        if (topicKey) pendingKeys.add(topicKey);
+      } else if (rowStatus === "deleted" || rowStatus === "rejected") {
+        if (rowId) deletedKeys.add(rowId);
+        if (normTitle) deletedKeys.add(normTitle);
+        if (topicKey) deletedKeys.add(topicKey);
+      } else {
+        const gDoc = row.data as GuidelineDoc;
+        if (gDoc && gDoc.title) {
+          if (rowId) {
+            approvedKeys.add(rowId);
+            deletedKeys.delete(rowId);
+          }
+          if (normTitle) {
+            approvedKeys.add(normTitle);
+            deletedKeys.delete(normTitle);
+          }
+          if (topicKey) {
+            approvedKeys.add(topicKey);
+          }
+          guidelines.push(gDoc);
+        }
+      }
+    }
+
+    const filteredGuidelines = guidelines.filter((g) => {
+      const id = (g.id || "").toLowerCase().trim();
+      const norm = normalizeGuidelineTitle(g.title);
+      return !deletedKeys.has(id) && !deletedKeys.has(norm) && !pendingKeys.has(id) && !pendingKeys.has(norm);
+    });
+
     return {
-      guidelines,
+      guidelines: filteredGuidelines,
       conferences: MOCK_CONFERENCE_EVENTS,
       scenarios: MOCK_CLINICAL_SCENARIOS,
+      deletedGuidelineIds: Array.from(deletedKeys),
+      pendingGuidelineKeys: Array.from(pendingKeys),
+      approvedGuidelineKeys: Array.from(approvedKeys),
       source: "NEUROGUIDE_AUTONOMOUS_RADAR",
-      lastSyncedAt: new Date().toISOString(),
+      lastSyncedAt: maxUpdatedAt || "2026-01-01T00:00:00.000Z",
     };
   } catch (e) {
     console.error("Supabase read error for NeuroGuide:", e);
@@ -54,25 +157,59 @@ export async function getFromSupabase(): Promise<NeuroGuideBlobPayload | null> {
 export async function setToSupabase(payload: NeuroGuideBlobPayload): Promise<{ ok: boolean; error?: string }> {
   if (!hasSupabaseConfig()) return { ok: false, error: "No Supabase config" };
   try {
-    if (!Array.isArray(payload.guidelines) || payload.guidelines.length === 0) {
-      return { ok: true };
+    const guidelines = Array.isArray(payload.guidelines) ? payload.guidelines : [];
+    const nowIso = new Date().toISOString();
+    const activeIds = new Set<string>();
+
+    if (guidelines.length > 0) {
+      const rows = guidelines.map((g) => {
+        activeIds.add(g.id);
+        const cleanData = { ...g, status: (g as any).status || "approved" };
+        if ((cleanData as any)._reviewRecord && ((cleanData as any)._reviewRecord.pending_count || 0) === 0) {
+          delete (cleanData as any)._reviewRecord;
+        }
+        return {
+          id: g.id,
+          title: g.title || "Untitled Guideline",
+          organization: (g as any).organization || g.society || "Medical Organization",
+          year: String(g.year || (g as any).pub_year || "2026"),
+          status: (g as any).status || "approved",
+          data: cleanData,
+          updated_at: nowIso,
+        };
+      });
+      const { error } = await supabaseAdmin
+        .from("neuroguide_docs")
+        .upsert(rows, { onConflict: "id" });
+      if (error) {
+        console.error("Supabase upsert error for NeuroGuide:", error);
+        return { ok: false, error: error.message };
+      }
     }
-    const rows = payload.guidelines.map((g) => ({
-      id: g.id,
-      title: g.title || "Untitled Guideline",
-      organization: (g as any).organization || g.society || "Medical Organization",
-      year: String(g.year || (g as any).pub_year || "2026"),
-      status: (g as any).status || "approved",
-      data: g,
-      updated_at: new Date().toISOString(),
-    }));
-    const { error } = await supabaseAdmin
-      .from("neuroguide_docs")
-      .upsert(rows, { onConflict: "id" });
-    if (error) {
-      console.error("Supabase upsert error for NeuroGuide:", error);
-      return { ok: false, error: error.message };
+
+    // Dọn dẹp các bản ghi "approved" cũ đã bị gỡ hoặc trùng lặp (giữ nguyên các bản ghi "pending" và "deleted")
+    try {
+      const { data: existingRows } = await supabaseAdmin
+        .from("neuroguide_docs")
+        .select("id, status");
+      if (Array.isArray(existingRows)) {
+        const staleApprovedIds = existingRows
+          .filter((r: any) => {
+            const st = String(r.status || "approved").toLowerCase().trim();
+            return st === "approved" && !activeIds.has(r.id);
+          })
+          .map((r: any) => r.id);
+        if (staleApprovedIds.length > 0) {
+          await supabaseAdmin
+            .from("neuroguide_docs")
+            .delete()
+            .in("id", staleApprovedIds);
+        }
+      }
+    } catch (cleanErr) {
+      console.warn("Supabase cleanup warning:", cleanErr);
     }
+
     return { ok: true };
   } catch (e: any) {
     console.error("Supabase upsert exception for NeuroGuide:", e);
@@ -115,48 +252,14 @@ export function mergeGuidelines(
   staticItems: GuidelineDoc[] = MOCK_GUIDELINE_DOCS,
   deletedIds?: Set<string>
 ): GuidelineDoc[] {
-  const normalizeTitle = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
-
-  const getCoreTopicKey = (doc: GuidelineDoc): string => {
-    const soc = (doc.society || "").toUpperCase();
-    const t = (doc.title || "").toLowerCase();
-    let normSoc = soc;
-    if (soc.includes("AHA") || soc.includes("ASA")) normSoc = "AHA";
-    else if (soc.includes("ESO")) normSoc = "ESO";
-    else if (soc.includes("AAN")) normSoc = "AAN";
-    else if (soc.includes("ILAE")) normSoc = "ILAE";
-    else if (soc.includes("NCS")) normSoc = "NCS";
-
-    if (normSoc === "ESO" && (t.includes("blood pressure") || t.includes("huyết áp"))) {
-      return "ESO-BP";
-    }
-    if (normSoc === "ESO" && (t.includes("pneumonia") || t.includes("viêm phổi"))) {
-      return "ESO-SAP";
-    }
-    if (normSoc === "AHA" && (t.includes("acute ischemic stroke") || t.includes("acute ischaemic stroke") || t.includes("early management"))) {
-      return "AHA-AIS";
-    }
-    if (normSoc === "AHA" && (t.includes("primary prevention") || t.includes("prevention of stroke"))) {
-      return "AHA-PRIMARY-PREVENTION";
-    }
-    if ((normSoc === "AHA" || normSoc === "NCS") && (t.includes("subarachnoid") || t.includes("aneurysmal"))) {
-      return `${normSoc}-SAH`;
-    }
-    if (normSoc === "ILAE" && (t.includes("status epilepticus") || t.includes("seizures"))) {
-      return "ILAE-SE";
-    }
-    if (normSoc === "AAN" && (t.includes("antiseizure") || t.includes("teratogenesis"))) {
-      return "AAN-ASM";
-    }
-
-    return `${normSoc}-${normalizeTitle(doc.title)}`;
-  };
+  const normalizeTitle = normalizeGuidelineTitle;
 
   const isDeleted = (doc: GuidelineDoc) => {
     if (!deletedIds || deletedIds.size === 0) return false;
     const id = (doc.id || "").toLowerCase();
     const normT = normalizeTitle(doc.title);
-    return deletedIds.has(id) || deletedIds.has(normT);
+    const topicK = getCoreTopicKey(doc).toLowerCase();
+    return deletedIds.has(id) || deletedIds.has(normT) || deletedIds.has(topicK);
   };
 
   const filteredStatic = staticItems.filter((g) => !isDeleted(g));
@@ -331,13 +434,15 @@ export async function loadMergedNeuroGuideData(): Promise<{
     ...approvedStoreTitles,
   ]);
 
-  let dynamicData: NeuroGuideBlobPayload | null = null;
-  let dynamicSource: "supabase" | "local-disk" | "mock-baseline" = "supabase";
+  let dynamicData: SupabaseNeuroGuidePayload | null = null;
 
   // Primary: Load directly from Supabase
   if (hasSupabaseConfig()) {
     dynamicData = await getFromSupabase();
   }
+
+  const supabaseApprovedKeys = new Set<string>(dynamicData?.approvedGuidelineKeys || []);
+  const supabasePendingKeys = new Set<string>(dynamicData?.pendingGuidelineKeys || []);
 
   const localData = await getFromLocalDisk();
   const deletedSet = new Set<string>([
@@ -346,29 +451,38 @@ export async function loadMergedNeuroGuideData(): Promise<{
     ...((localData as any)?.deleted_guideline_ids || []).map((x: string) => x.toLowerCase()),
   ]);
 
-  // Tuyệt đối gỡ bỏ khỏi deletedSet bất kỳ guideline nào đã được phê duyệt hợp lệ (trong kho duyệt hoặc Mock baseline)
+  // Tuyệt đối gỡ bỏ khỏi deletedSet bất kỳ guideline nào đã được phê duyệt hợp lệ trên Supabase hoặc trong kho duyệt
+  for (const approvedKey of supabaseApprovedKeys) {
+    deletedSet.delete(approvedKey);
+  }
   for (const approvedId of approvedStoreIds) {
-    deletedSet.delete(approvedId);
+    if (!supabasePendingKeys.has(approvedId)) {
+      deletedSet.delete(approvedId);
+    }
   }
   for (const approvedTitle of approvedStoreTitles) {
-    deletedSet.delete(approvedTitle);
-  }
-  for (const mDoc of MOCK_GUIDELINE_DOCS) {
-    if (approvedStoreIds.has(mDoc.id.toLowerCase()) || approvedStoreTitles.has(normalizeT(mDoc.title))) {
-      deletedSet.delete(mDoc.id.toLowerCase());
-      deletedSet.delete(normalizeT(mDoc.title));
+    if (!supabasePendingKeys.has(approvedTitle)) {
+      deletedSet.delete(approvedTitle);
     }
   }
 
-  // Tập hợp các key chưa duyệt (dùng để tạm chặn hiển thị trên client, KHÔNG ghi vào deletedGuidelineIds vĩnh viễn)
+  // Tập hợp các key chưa duyệt (ưu tiên trạng thái từ Supabase làm Single Source of Truth)
   const unapprovedFilterSet = new Set<string>();
+  for (const pendingKey of supabasePendingKeys) {
+    if (!supabaseApprovedKeys.has(pendingKey)) {
+      unapprovedFilterSet.add(pendingKey);
+    }
+  }
   for (const unapprovedKey of unapprovedStoreKeys) {
-    if (!approvedStoreIds.has(unapprovedKey) && !approvedStoreTitles.has(unapprovedKey)) {
+    // Nếu guideline đã được đánh dấu "approved" trên Supabase thì KHÔNG cho phép file _latest.json cũ trong /tmp hay STORE_DIR chặn nó
+    if (
+      !supabaseApprovedKeys.has(unapprovedKey) &&
+      !approvedStoreIds.has(unapprovedKey) &&
+      !approvedStoreTitles.has(unapprovedKey)
+    ) {
       unapprovedFilterSet.add(unapprovedKey);
     }
   }
-
-  let needsSelfHealSave = false;
 
   const filterCoordinated = (list: GuidelineDoc[] | undefined) => {
     if (!Array.isArray(list)) return [];
@@ -377,11 +491,18 @@ export async function loadMergedNeuroGuideData(): Promise<{
       if (!g || !g.title) continue;
       const id = (g.id || "").toLowerCase();
       const norm = normalizeT(g.title);
+      const topicK = getCoreTopicKey(g).toLowerCase();
       const soc = (g.society || "").toUpperCase();
       const lowerTitle = (g.title || "").toLowerCase();
 
-      if (deletedSet.has(id) || deletedSet.has(norm) || unapprovedFilterSet.has(id) || unapprovedFilterSet.has(norm)) {
-        needsSelfHealSave = true;
+      if (
+        deletedSet.has(id) ||
+        deletedSet.has(norm) ||
+        deletedSet.has(topicK) ||
+        unapprovedFilterSet.has(id) ||
+        unapprovedFilterSet.has(norm) ||
+        (unapprovedFilterSet.has(topicK) && !supabaseApprovedKeys.has(id) && !supabaseApprovedKeys.has(norm))
+      ) {
         continue;
       }
       if (
@@ -396,7 +517,6 @@ export async function loadMergedNeuroGuideData(): Promise<{
         lowerTitle.includes("myocarditis") ||
         lowerTitle.includes("ultra-processed foods")
       ) {
-        needsSelfHealSave = true;
         continue;
       }
 
@@ -407,12 +527,10 @@ export async function loadMergedNeuroGuideData(): Promise<{
         ftSource === "PUBMED_ABSTRACT";
       const isExplicitlyCoordinated = coordinatedIds.has(id) || coordinatedTitles.has(norm);
       if (isRadarAutoFetched && !isExplicitlyCoordinated) {
-        needsSelfHealSave = true;
         continue;
       }
 
       if (!isExplicitlyCoordinated && !g.aiSynthesized && !(g.allPracticeChanges && g.allPracticeChanges.length > 0)) {
-        needsSelfHealSave = true;
         continue;
       }
 
@@ -434,9 +552,6 @@ export async function loadMergedNeuroGuideData(): Promise<{
             ? "Blood Pressure Management (ESO GRADE)"
             : "Aneurysmal Subarachnoid Haemorrhage (ESO GRADE)"
         );
-        if ((g.allPracticeChanges?.length || 0) !== cleanChanges.length) {
-          needsSelfHealSave = true;
-        }
         out.push({
           ...g,
           allPracticeChanges: cleanChanges,
@@ -451,25 +566,25 @@ export async function loadMergedNeuroGuideData(): Promise<{
   const isStoreDocDeleted = (g: GuidelineDoc) => {
     const id = (g.id || "").toLowerCase();
     const norm = normalizeT(g.title);
-    return deletedSet.has(id) || deletedSet.has(norm);
+    const topicK = getCoreTopicKey(g).toLowerCase();
+    return (
+      deletedSet.has(id) ||
+      deletedSet.has(norm) ||
+      deletedSet.has(topicK) ||
+      unapprovedFilterSet.has(id) ||
+      unapprovedFilterSet.has(norm) ||
+      (unapprovedFilterSet.has(topicK) && !supabaseApprovedKeys.has(id) && !supabaseApprovedKeys.has(norm))
+    );
   };
 
   if (dynamicData && Array.isArray(dynamicData.guidelines) && dynamicData.guidelines.length > 0) {
     const coordinatedDynamicDocs = filterCoordinated(dynamicData.guidelines);
     const filteredStore = storeDocs.filter((g) => !isStoreDocDeleted(g));
+    const mergedExclusionSet = new Set<string>([...deletedSet, ...unapprovedFilterSet]);
     const finalGuidelines =
       filteredStore.length > 0
-        ? mergeGuidelines(filteredStore, coordinatedDynamicDocs, deletedSet)
-        : mergeGuidelines([], coordinatedDynamicDocs, deletedSet);
-
-    if (needsSelfHealSave || dynamicData.guidelines.length !== finalGuidelines.length) {
-      saveNeuroGuideToActiveStorage({
-        guidelines: finalGuidelines,
-        conferences: dynamicData.conferences,
-        scenarios: dynamicData.scenarios,
-        deletedGuidelineIds: Array.from(deletedSet),
-      }).catch(() => {});
-    }
+        ? mergeGuidelines(filteredStore, coordinatedDynamicDocs, mergedExclusionSet)
+        : mergeGuidelines([], coordinatedDynamicDocs, mergedExclusionSet);
 
     return {
       guidelines: finalGuidelines,
@@ -562,6 +677,13 @@ export async function saveNeuroGuideToActiveStorage(payload: {
   };
 
   if (hasSupabaseConfig()) {
+    if (effectiveDeletedIds && effectiveDeletedIds.length > 0) {
+      try {
+        await supabaseAdmin.from("neuroguide_docs").delete().in("id", effectiveDeletedIds);
+      } catch (e) {
+        console.warn("Could not delete deleted docs from Supabase:", e);
+      }
+    }
     const sbRes = await setToSupabase(fullPayload);
     if (sbRes.ok) {
       await setToLocalDisk(fullPayload);

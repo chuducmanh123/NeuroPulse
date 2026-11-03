@@ -334,19 +334,78 @@ export function ReviewQueueTab({
     });
   };
 
+  const handlePurgeAllDeleted = async () => {
+    setActionLoading("PURGE_ALL");
+    try {
+      const token = getAdminToken();
+      const res = await fetch("/api/neuroguide/review-queue", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...(token ? { "x-admin-token": token } : {}),
+        },
+        body: JSON.stringify({ action: "PURGE_ALL_DELETED" }),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        try {
+          localStorage.removeItem("neuroguide_reviewed_rec_ids");
+        } catch {}
+        setRawServerCount(0);
+        setRawServerRecs([]);
+        setQueue([]);
+        setFeedbackMessage({
+          type: "success",
+          text: `🗑️ Đã dọn dẹp sạch toàn bộ các hướng dẫn đã xóa trên Cloud và Local!`,
+        });
+        if (onQueueCountChange) onQueueCountChange(0);
+        if (onQueueUpdated) onQueueUpdated();
+      } else {
+        setFeedbackMessage({ type: "error", text: data.error || "Không thể dọn dẹp bộ nhớ." });
+      }
+    } catch {
+      setFeedbackMessage({ type: "error", text: "Lỗi kết nối khi dọn dẹp bộ nhớ." });
+    } finally {
+      setActionLoading(null);
+    }
+  };
+
   const fetchQueue = async () => {
     setIsLoading(true);
     try {
       const res = await fetch("/api/neuroguide/review-queue");
       const data = await res.json();
       if (data.ok && Array.isArray(data.queue)) {
-        setRawServerCount(data.total ?? data.queue.length);
-        setRawServerRecs(data.queue);
+        // Lấy danh sách guideline đã bị xóa khỏi localStorage
+        const localDeleted: string[] = JSON.parse(localStorage.getItem("neuroguide_deleted_ids") || "[]");
+        const deletedSet = new Set(localDeleted.map((x) => x.toLowerCase().trim()));
+        const normalizeT = (t?: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+
+        // Lọc bỏ 100% các khuyến cáo thuộc guideline đã bị xóa
+        const nonDeletedRecs = data.queue.filter((r: StoredRec) => {
+          const gId = (r.guideline_id || "").toLowerCase().trim();
+          const gTitle = normalizeT(r.guideline_title);
+          if (deletedSet.has(gId) || (gTitle && deletedSet.has(gTitle))) return false;
+          for (const d of Array.from(deletedSet)) {
+            if (d.length > 5 && (gId.includes(d) || d.includes(gId))) return false;
+          }
+          return true;
+        });
+
         const dismissed = getDismissedRecIds();
-        const activeQueue = data.queue.filter((r: StoredRec) => {
+        const activeQueue = nonDeletedRecs.filter((r: StoredRec) => {
           const status = (r.approval_status || "").toUpperCase();
           return !dismissed.has(r.rec_id) && (status === "PENDING_REVIEW" || status === "PENDING");
         });
+
+        // Chỉ tính là 'ẩn tạm thời' khi khuyến cáo thực sự hợp lệ (chưa bị xóa) nhưng đang nằm trong danh sách dismissed
+        const actuallyHidden = nonDeletedRecs.filter((r: StoredRec) => {
+          const status = (r.approval_status || "").toUpperCase();
+          return dismissed.has(r.rec_id) && (status === "PENDING_REVIEW" || status === "PENDING");
+        });
+
+        setRawServerCount(actuallyHidden.length);
+        setRawServerRecs(nonDeletedRecs);
         setQueue(activeQueue);
         if (onQueueCountChange) {
           onQueueCountChange(activeQueue.length);
@@ -582,12 +641,31 @@ export function ReviewQueueTab({
 
       const data = await res.json();
       if (data.ok) {
-        markRecsAsReviewedLocally(group.recommendations.map((r) => r.rec_id));
+        // Cập nhật neuroguide_deleted_ids trên local và dọn dẹp các ID khuyến cáo khỏi dismissed cache
+        try {
+          const localDel: string[] = JSON.parse(localStorage.getItem("neuroguide_deleted_ids") || "[]");
+          localDel.push(group.guideline_id.toLowerCase().trim());
+          if (group.guideline_title) {
+            localDel.push(group.guideline_title.toLowerCase().replace(/[^a-z0-9]/g, ""));
+          }
+          if (Array.isArray(data.deleted_guideline_ids)) {
+            data.deleted_guideline_ids.forEach((id: string) => localDel.push(id.toLowerCase().trim()));
+          }
+          localStorage.setItem("neuroguide_deleted_ids", JSON.stringify(Array.from(new Set(localDel))));
+
+          const targetRecIds = new Set(group.recommendations.map((r) => r.rec_id));
+          const currentDismissed = getDismissedRecIds();
+          targetRecIds.forEach((id) => currentDismissed.delete(id));
+          localStorage.setItem("neuroguide_reviewed_rec_ids", JSON.stringify(Array.from(currentDismissed)));
+        } catch {}
+
         setFeedbackMessage({
           type: "info",
-          text: `❌ Đã từ chối Guideline "${group.guideline_title}". Các khuyến cáo đã được loại bỏ khỏi hàng đợi.`,
+          text: `❌ Đã từ chối và xóa Guideline "${group.guideline_title}" khỏi hệ thống.`,
         });
         setQueue((prev) => prev.filter((r) => r.guideline_id !== group.guideline_id));
+        setRawServerRecs((prev) => prev.filter((r) => r.guideline_id !== group.guideline_id));
+        setRawServerCount(0);
         if (onQueueUpdated) onQueueUpdated();
       } else {
         setFeedbackMessage({
@@ -678,7 +756,13 @@ export function ReviewQueueTab({
       });
       const data = await res.json();
       if (data.ok) {
+        try {
+          const currentDismissed = getDismissedRecIds();
+          currentDismissed.delete(rec.rec_id);
+          localStorage.setItem("neuroguide_reviewed_rec_ids", JSON.stringify(Array.from(currentDismissed)));
+        } catch {}
         setQueue((prev) => prev.filter((r) => r.rec_id !== rec.rec_id));
+        setRawServerRecs((prev) => prev.filter((r) => r.rec_id !== rec.rec_id));
         setFeedbackMessage({
           type: "success",
           text: `🗑️ Đã xóa thành công 1 khuyến cáo.`,
@@ -1305,13 +1389,23 @@ export function ReviewQueueTab({
               <p className="text-xs font-semibold text-amber-700 dark:text-amber-300 mb-2.5">
                 ⚠️ Có <strong>{rawServerCount}</strong> khuyến cáo đang có trên máy chủ nhưng đang được đánh dấu ẩn tạm thời bởi trình duyệt.
               </p>
-              <button
-                type="button"
-                onClick={handleResetDismissedCache}
-                className="px-4 py-2 rounded-lg text-xs font-black bg-amber-500 hover:bg-amber-600 text-white cursor-pointer transition-all shadow-xs flex items-center gap-1.5 mx-auto"
-              >
-                <span>🔄 Khôi phục và hiển thị lại ({rawServerCount} khuyến cáo)</span>
-              </button>
+              <div className="flex items-center justify-center gap-2 flex-wrap">
+                <button
+                  type="button"
+                  onClick={handleResetDismissedCache}
+                  className="px-4 py-2 rounded-lg text-xs font-black bg-amber-500 hover:bg-amber-600 text-white cursor-pointer transition-all shadow-xs flex items-center gap-1.5"
+                >
+                  <span>🔄 Khôi phục và hiển thị lại ({rawServerCount} khuyến cáo)</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={handlePurgeAllDeleted}
+                  className="px-4 py-2 rounded-lg text-xs font-bold bg-rose-600 hover:bg-rose-700 text-white cursor-pointer transition-all shadow-xs flex items-center gap-1.5"
+                  title="Xóa vĩnh viễn trên Cloud và Local để không còn hiển thị thông báo này"
+                >
+                  <span>🗑️ Xóa vĩnh viễn trên Cloud & Local</span>
+                </button>
+              </div>
             </div>
           )}
         </div>

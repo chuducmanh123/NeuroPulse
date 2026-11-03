@@ -118,10 +118,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 1. Lưu vào Hàng đợi Điều phối & guidelines_store
-    await registerCandidateGuideline(doc);
+    // 1. Lưu vào guidelines_store ở trạng thái đã phê duyệt (APPROVED) để đồng nhất với Active Storage
+    await registerCandidateGuideline(doc, { approved: true });
 
-    // 2. Tải cơ sở dữ liệu hiện hành và đồng bộ vào Active Storage (Vercel Blob / Local Disk)
+    // 2. Tải cơ sở dữ liệu hiện hành và đồng bộ vào Active Storage (Supabase / Local Disk)
     const currentStore = await loadMergedNeuroGuideData();
     const allGuidelines = mergeGuidelines([doc], currentStore.guidelines);
 
@@ -133,7 +133,9 @@ export async function POST(request: NextRequest) {
 
     try {
       revalidatePath("/neuroguide");
+      revalidatePath("/admin");
       revalidatePath("/api/neuroguide/sync-guidelines");
+      revalidatePath("/api/neuroguide/review-queue");
       revalidatePath("/api/neuroguide/version");
     } catch {}
 

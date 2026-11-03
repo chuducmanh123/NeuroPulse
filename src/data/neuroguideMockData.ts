@@ -1808,131 +1808,187 @@ export const MOCK_GUIDELINE_DOCS: GuidelineDoc[] = [
     "fullTextStatus": "FULL_TEXT_PARSED"
   },
   {
-    "id": "ahaasa-2023-aha-asa-guideline-for-the-management-of-patie",
-    "society": "AHA/ASA",
+    "id": "ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio",
     "year": 2023,
-    "title": "2023 AHA/ASA Guideline for the Management of Patients With Aneurysmal Subarachnoid Hemorrhage",
-    "officialUrl": "https://scholar.google.com/scholar?q=2023%20AHA%2FASA%20Guideline%20for%20the%20Management%20of%20Patients%20With%20Aneurysmal%20Subarachnoid%20Hemorrhage",
-    "journalTarget": "Stroke",
+    "title": "2023 AHA/ASA aSAH Guideline: Verbatim Recommendations & Evidence",
+    "society": "AHA/ASA",
+    "officialUrl": "https://scholar.google.com/scholar?q=2023%20AHA%2FASA%20aSAH%20Guideline%3A%20Verbatim%20Recommendations%20%26%20Evidence",
+    "publishDate": "2023-01-01",
     "documentType": "Clinical Practice Guideline",
-    "publishDate": "2026-01-26",
     "subspecialty": "Stroke",
+    "topTakeaways": [
+      "1. [7. Surgical - Class 3: Harm, Level B-NR] For patients with aSAH from ruptured saccular aneurysms amenable to either primary coiling or clipping, stents or flow diverters should not be used to avoid higher risk of complications.",
+      "2. [8. Management of Medical Complications - Class 3: Harm, Level B-R] In patients with aSAH, induction of hypervolemia is potentially harmful because of the association with excess morbidity.",
+      "3. [8.3 Management of Vasospasm - Class 3: Harm, Level B-R] For patients with aSAH at risk of DCI, prophylactic hemodynamic augmentation should not be performed to reduce iatrogenic patient harm.",
+      "4. [8.5 Management of Seizures - Class 3: Harm, Level B-NR] In patients with aSAH, phenytoin for seizure prevention and/or antiseizure prophylaxis is associated with excess morbidity and mortality.",
+      "5. [3. Natural History - Class 3: No Benefit, Level B-NR] In patients with aSAH who do not improve after correction of modifiable conditions and are deemed unsalvageable because of evidence of irreversible neurological injury, treatment of the aneurysm is not beneficial.",
+      "6. [6. Medical Measures to Prevent Rebleeding - Class 3: No Benefit, Level A] In patients with aSAH, routine use of antifibrinolytic therapy is not useful to improve functional outcome.",
+      "7. [7.1 Anesthetic Management - Class 3: No Benefit, Level B-R] In patients with good-grade aSAH, the routine use of induced mild hypothermia during aneurysm surgery is not beneficial.",
+      "8. [8.3 Management of Vasospasm - Class 3: No Benefit, Level A] In patients with aSAH, routine use of statin therapy to improve outcomes is not recommended.",
+      "9. [8.3 Management of Vasospasm - Class 3: No Benefit, Level A] In patients with aSAH, routine use of intravenous magnesium to improve neurological outcomes is not recommended.",
+      "10. [8.4 Management of Hydrocephalus - Class 3: No Benefit, Level C-LD] In patients with aSAH, routine fenestration of the lamina terminalis is not indicated for reducing the rate of shunt dependency."
+    ],
+    "aiSynthesized": true,
+    "journalTarget": "Stroke",
+    "synthesizedAt": "2026-11-03T09:20:59.304Z",
+    "fullTextStatus": "FULL_TEXT_PARSED",
     "subspecialties": [
       "Stroke"
     ],
-    "executiveSummary": "Hướng dẫn thực hành lâm sàng chính thức từ AHA/ASA. Bao gồm 36 khuyến cáo then chốt được trích xuất và kiểm chứng qua hệ thống AI Lõi NeuroGuide.",
-    "executiveSummaryVi": "Hướng dẫn thực hành lâm sàng chính thức từ AHA/ASA. Bao gồm 36 khuyến cáo then chốt được trích xuất và kiểm chứng qua hệ thống AI Lõi NeuroGuide.",
-    "topTakeaways": [
-      "1. [Aneurysm Repair - Class 3: Harm, Level B-NR] For patients with aSAH from ruptured saccular aneurysms amenable to either primary coiling or clipping, stents or flow diverters should not be used to avoid higher risk of complications.",
-      "2. [Medical Complications - Class 3: Harm, Level B-R] In patients with aSAH, induction of hypervolemia is potentially harmful because of the association with excess morbidity.",
-      "3. [DCI Management - Class 3: Harm, Level B-R] For patients with aSAH at risk of DCI, prophylactic hemodynamic augmentation should not be performed to reduce iatrogenic patient harm.",
-      "4. [Seizures - Class 3: Harm, Level B-NR] In patients with aSAH, phenytoin for seizure prevention and/or antiseizure prophylaxis is associated with excess morbidity and mortality.",
-      "5. [Natural History - Class 3: No Benefit Level B-NR] In patients with aSAH who do not improve after correction of modifiable conditions and are deemed unsalvageable because of evidence of irreversible neurological injury, treatment of the aneurysm is not beneficial.",
-      "6. [Rebleeding - Class 3: No Benefit Level A] In patients with aSAH, routine use of antifibrinolytic therapy is not useful to improve functional outcome.",
-      "7. [Anesthetic Care - Class 3: No Benefit Level B-R] In patients with good-grade aSAH, the routine use of induced mild hypothermia during aneurysm surgery is not beneficial.",
-      "8. [Vasospasm & DCI Prophylaxis - Class 3: No Benefit Level A] In patients with aSAH, routine use of statin therapy to improve outcomes is not recommended.",
-      "9. [Vasospasm & DCI Prophylaxis - Class 3: No Benefit Level A] In patients with aSAH, routine use of intravenous magnesium to improve neurological outcomes is not recommended.",
-      "10. [Aneurysm Repair - Class 1, Level A] For patients with good-grade aSAH from ruptured aneurysms of the anterior circulation equally suitable for both primary coiling and clipping, primary coiling is recommended in preference to clipping to improve 1-year functional outcome."
-    ],
+    "executiveSummary": "Hướng dẫn thực hành lâm sàng chính thức từ AHA/ASA. Bao gồm 84 khuyến cáo then chốt được trích xuất và kiểm chứng qua hệ thống AI Lõi NeuroGuide.",
+    "linkedScenarioIds": [],
     "allPracticeChanges": [
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-1",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-1",
+        "cor": "1",
+        "loe": "B-NR",
+        "topic": "3. Natural History & Outcome of aSAH",
+        "quality": "Moderate",
+        "category": "3. Natural History",
+        "strength": "Strong",
+        "changeType": "UPGRADED",
         "currentText": "In patients with aSAH, use of clinical scales (eg, the Hunt and Hess [HH] grade or World Federation of Neurosurgical Societies [WFNS] grade) is recommended to determine initial clinical severity and predict outcome.",
-        "currentGrade": "Class Class 1, Level B-NR",
+        "currentGrade": "Class 1, Level B-NR",
         "drivingTrials": [
           "Mocco et al. 2006",
           "Rosen & Macdonald 2004",
-          "Predictive models: VASOGRADE, HAIR, SAHIT score (Jaja et al. BMJ 2018)"
+          "VASOGRADE",
+          "HAIR",
+          "SAHIT Scores (Jaja et al. BMJ 2018)"
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-2",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-2",
+        "cor": "2a",
+        "loe": "B-NR",
+        "topic": "3. Natural History & Outcome of aSAH",
+        "quality": "Moderate",
+        "category": "3. Natural History",
+        "strength": "Strong",
+        "changeType": "NEW",
         "currentText": "In patients with high-grade aSAH, aneurysm treatment is reasonable, after careful discussion of likely prognosis with family members, to optimize patient outcome.",
-        "currentGrade": "Class Class 2a, Level B-NR",
+        "currentGrade": "Class 2a, Level B-NR",
         "drivingTrials": [
-          "Mocco et al. 2006 (40% favorable outcome at 12 mo in HH grade 4-5)",
-          "Meta-analysis by Zhao et al. 2017 (85 studies, 4506 poor-grade patients; 39% good outcomes)"
+          "Mocco et al. 2006",
+          "Mitra et al. 2015",
+          "Meta-Analysis by Zhao et al. 2017 (85 studies",
+          "4506 patients)"
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-3",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-3",
+        "cor": "2a",
+        "loe": "B-NR",
+        "topic": "3. Natural History & Outcome of aSAH",
+        "quality": "Moderate",
+        "category": "3. Natural History",
+        "strength": "Strong",
+        "changeType": "NEW",
+        "currentText": "In patients with aSAH and advanced age, aneurysm treatment is reasonable, after careful discussion of prognosis with family members, to improve survival and outcome.",
+        "currentGrade": "Class 2a, Level B-NR",
+        "drivingTrials": [
+          "Barrow Ruptured Aneurysm Trial (BRAT) Substudy (Catapano et al. 2021)",
+          "Proust et al. 2018",
+          "Tam et al. 2013"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-4",
+        "cor": "3: No Benefit",
+        "loe": "B-NR",
+        "topic": "3. Natural History & Outcome of aSAH",
+        "quality": "Moderate",
+        "category": "3. Natural History",
+        "strength": "Conditional",
+        "changeType": "REVISED",
         "currentText": "In patients with aSAH who do not improve after correction of modifiable conditions and are deemed unsalvageable because of evidence of irreversible neurological injury, treatment of the aneurysm is not beneficial.",
-        "currentGrade": "Class Class 3: No Benefit Level B-NR, Level B-NR",
+        "currentGrade": "Class 3: No Benefit, Level B-NR",
         "drivingTrials": [
           "Juvela & Siironen 2012",
-          "Claassen et al. 2002 (Irreversible early brain injury/global cerebral edema)"
+          "Claassen et al. 2002"
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-4",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-5",
+        "cor": "1",
+        "loe": "B-NR",
+        "topic": "4. Clinical Manifestations & Diagnosis",
+        "quality": "Moderate",
+        "category": "4. Clinical Manifestations",
+        "strength": "Strong",
+        "changeType": "UPGRADED",
         "currentText": "In patients with acute onset of severe headache, prompt diagnostic workup and evaluation are recommended to diagnose/exclude aSAH and minimize morbidity and mortality.",
-        "currentGrade": "Class Class 1, Level B-NR",
+        "currentGrade": "Class 1, Level B-NR",
         "drivingTrials": [
           "Beck et al. 2006",
           "Kowalski et al. 2004",
           "Perry et al. 2013",
-          "Polmear 2003 (Sentinel headache recognition)"
+          "Polmear 2003"
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-5",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-6",
+        "cor": "1",
+        "loe": "B-NR",
+        "topic": "4. Clinical Manifestations & Diagnosis",
+        "quality": "Moderate",
+        "category": "4. Clinical Manifestations",
+        "strength": "Strong",
+        "changeType": "UPGRADED",
         "currentText": "In patients with acute onset of severe headache who present >6 hours from symptom onset or who have a new neurological deficit, a noncontrast head CT and, if negative for aSAH, lumbar puncture (LP) should be performed to diagnose/exclude aSAH.",
-        "currentGrade": "Class Class 1, Level B-NR",
+        "currentGrade": "Class 1, Level B-NR",
         "drivingTrials": [
           "Kameda-Smith et al. 2021",
-          "Walton et al. 2022 (Spectrophotometric xanthochromia: 100% sensitivity, 95.2% specificity)"
+          "Walton et al. 2022 (Xanthochromia spectrophotometry sensitivity 100%)"
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-6",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-7",
+        "cor": "2a",
+        "loe": "B-NR",
+        "topic": "4. Clinical Manifestations & Diagnosis",
+        "quality": "Moderate",
+        "category": "4. Clinical Manifestations",
+        "strength": "Strong",
+        "changeType": "NEW",
         "currentText": "In patients with acute onset of severe headache who present <6 hours from symptom onset and without new neurological deficit, a noncontrast head CT performed on a high-quality scanner and interpreted by a board-certified neuroradiologist is reasonable to diagnose/exclude aSAH.",
-        "currentGrade": "Class Class 2a, Level B-NR",
+        "currentGrade": "Class 2a, Level B-NR",
         "drivingTrials": [
-          "Meta-analysis by Dubosh et al. 2016 (8907 patients",
-          "CT <6h sensitivity 98.7%, specificity 99.9%)",
+          "Meta-Analysis by Dubosh et al. 2016 (8907 patients",
+          "CT <6h sensitivity 98.7%)",
           "Perry et al. BMJ 2011",
           "Backes et al. 2012",
           "Blok et al. 2015"
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-7",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-8",
+        "cor": "2b",
+        "loe": "B-NR",
+        "topic": "4. Clinical Manifestations & Diagnosis",
+        "quality": "Moderate",
+        "category": "4. Clinical Manifestations",
+        "strength": "Strong",
+        "changeType": "NEW",
         "currentText": "In patients with acute onset of severe headache without a new neurological deficit, application of the Ottawa SAH Rule may be reasonable to identify those at high risk for aSAH.",
-        "currentGrade": "Class Class 2b, Level B-NR",
+        "currentGrade": "Class 2b, Level B-NR",
         "drivingTrials": [
           "Perry et al. JAMA 2013",
           "Bellolio et al. 2015",
-          "Perry et al. CMAJ 2017 (100% sensitivity, 7.6%–15.3% specificity)"
+          "Perry et al. CMAJ 2017 (Sensitivity 100%)"
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-8",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-9",
+        "cor": "1",
+        "loe": "B-NR",
+        "topic": "4. Clinical Manifestations & Diagnosis",
+        "quality": "Moderate",
+        "category": "4. Clinical Manifestations",
+        "strength": "Strong",
+        "changeType": "UPGRADED",
         "currentText": "In patients with spontaneous SAH with high level of concern for aneurysmal source and a negative or inconclusive CT angiography (CTA), digital subtraction angiography (DSA) is indicated to diagnose/exclude cerebral aneurysm(s).",
-        "currentGrade": "Class Class 1, Level B-NR",
+        "currentGrade": "Class 1, Level B-NR",
         "drivingTrials": [
           "Agid et al. 2010",
           "Catapano et al. 2020",
@@ -1941,325 +1997,1132 @@ export const MOCK_GUIDELINE_DOCS: GuidelineDoc[] = [
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-9",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-10",
+        "cor": "2a",
+        "loe": "B-NR",
+        "topic": "4. Clinical Manifestations & Diagnosis",
+        "quality": "Moderate",
+        "category": "4. Clinical Manifestations",
+        "strength": "Strong",
+        "changeType": "NEW",
+        "currentText": "In patients with SAH from confirmed cerebral aneurysm(s), DSA can be useful to determine the optimal strategy for aneurysm intervention.",
+        "currentGrade": "Class 2a, Level B-NR",
+        "drivingTrials": [
+          "Hoh et al. 2004",
+          "Nagai & Watanabe 2010"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-11",
+        "cor": "1",
+        "loe": "B-NR",
+        "topic": "5. Hospital Characteristics & Systems of Care",
+        "quality": "Moderate",
+        "category": "5. Hospital Characteristics",
+        "strength": "Strong",
+        "changeType": "UPGRADED",
         "currentText": "For patients with aSAH, timely transfer from hospitals with low case volume to higher-volume centers with multidisciplinary neurointensive care services, comprehensive stroke center capabilities, and experienced cerebrovascular surgeons/neuroendovascular interventionalists is recommended to improve outcomes.",
-        "currentGrade": "Class Class 1, Level B-NR",
+        "currentGrade": "Class 1, Level B-NR",
         "drivingTrials": [
           "Lindekleiv et al. 2015",
           "Kurogi et al. 2020",
           "Leifer et al. 2021",
           "Goertz et al. 2020",
           "Gatollari et al. 2017",
-          "Lindgren et al. 2019"
+          "Lindgren et al. 2019",
+          "Phuong Nguyen et al. 2021",
+          "Buscot et al. 2022",
+          "Rush et al. 2017",
+          "McNeill et al. 2013",
+          "Tsugawa et al. 2013"
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-10",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-12",
+        "cor": "1",
+        "loe": "B-NR",
+        "topic": "5. Hospital Characteristics & Systems of Care",
+        "quality": "Moderate",
+        "category": "5. Hospital Characteristics",
+        "strength": "Strong",
+        "changeType": "UPGRADED",
         "currentText": "For patients with aSAH, care should be provided in a dedicated neurocritical care unit by a multidisciplinary team.",
-        "currentGrade": "Class Class 1, Level B-NR",
+        "currentGrade": "Class 1, Level B-NR",
         "drivingTrials": [
-          "PRINCE Study (Venkatasubba Rao et al. 2020",
-          "Suarez et al. 2020)"
+          "PRINCE Study Part 1 & 2 (Venkatasubba Rao et al. 2020",
+          "Suarez et al. 2020)",
+          "Attenello et al. 2014"
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-11",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-13",
+        "cor": "1",
+        "loe": "C-EO",
+        "topic": "6. Medical Measures to Prevent Rebleeding",
+        "quality": "Moderate",
+        "category": "6. Medical Measures to Prevent Rebleeding",
+        "strength": "Strong",
+        "changeType": "UPGRADED",
+        "currentText": "In patients with aSAH and unsecured aneurysm, frequent blood pressure (BP) monitoring and BP control with short-acting medication(s) is recommended to avoid severe hypotension, hypertension, and BP variability.",
+        "currentGrade": "Class 1, Level C-EO",
+        "drivingTrials": [
+          "Ascanio et al. 2020",
+          "Tang et al. 2014",
+          "Calviere et al. 2022"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-14",
+        "cor": "1",
+        "loe": "C-EO",
+        "topic": "6. Medical Measures to Prevent Rebleeding",
+        "quality": "Moderate",
+        "category": "6. Medical Measures to Prevent Rebleeding",
+        "strength": "Strong",
+        "changeType": "UPGRADED",
         "currentText": "In patients with aSAH who are receiving anticoagulants, emergency anticoagulation reversal with appropriate reversal agents should be performed to prevent rebleeding.",
-        "currentGrade": "Class Class 1, Level C-EO",
+        "currentGrade": "Class 1, Level C-EO",
         "drivingTrials": [
-          "Greenberg et al. 2022 (AHA/ASA ICH Guideline)",
-          "Frontera et al. 2016 (NCS/SCCM Antithrombotic Reversal Guidelines)"
+          "AHA ICH Guideline (Greenberg et al. 2022)",
+          "NCS/SCCM Antithrombotic Reversal Guideline (Frontera et al. 2016)",
+          "Kuramatsu et al. JAMA 2015"
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-12",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-15",
+        "cor": "3: No Benefit",
+        "loe": "A",
+        "topic": "6. Medical Measures to Prevent Rebleeding",
+        "quality": "Moderate",
+        "category": "6. Medical Measures to Prevent Rebleeding",
+        "strength": "Conditional",
+        "changeType": "REVISED",
         "currentText": "In patients with aSAH, routine use of antifibrinolytic therapy is not useful to improve functional outcome.",
-        "currentGrade": "Class Class 3: No Benefit Level A, Level A",
+        "currentGrade": "Class 3: No Benefit, Level A",
         "drivingTrials": [
-          "ULTRA Trial (Post et al. Lancet 2021: Ultra-early tranexamic acid showed no significant reduction in rebleeding and no functional outcome improvement)",
+          "ULTRA Landmark RCT (Post et al. Lancet 2021)",
           "Shi et al. 2021",
-          "Baharoglu et al. Cochrane 2013"
+          "Cochrane Review (Baharoglu et al. 2013)"
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-13",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-16",
+        "cor": "1",
+        "loe": "B-NR",
+        "topic": "7. Surgical & Endovascular Methods",
+        "quality": "Moderate",
+        "category": "7. Surgical",
+        "strength": "Strong",
+        "changeType": "UPGRADED",
         "currentText": "For patients with aSAH, surgical or endovascular treatment of the ruptured aneurysm should be performed as early as feasible after presentation, preferably within 24 hours of onset, to improve outcome.",
-        "currentGrade": "Class Class 1, Level B-NR",
+        "currentGrade": "Class 1, Level B-NR",
         "drivingTrials": [
-          "Ohman & Heiskanen 1989 (RCT of early vs late surgery)",
-          "Meta-analyses: Rawal et al. 2017, Yao et al. 2017, Oudshoorn et al. 2014, Zhao et al. 2017"
+          "Ohman & Heiskanen 1989 (Early vs Late RCT)",
+          "ISAT Post-Hoc Analysis",
+          "Meta-Analyses by Rawal et al. 2017",
+          "Yao et al. 2017",
+          "Oudshoorn et al. 2014",
+          "Zhao et al. 2017"
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-14",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-17",
+        "cor": "1",
+        "loe": "B-NR",
+        "topic": "7. Surgical & Endovascular Methods",
+        "quality": "Moderate",
+        "category": "7. Surgical",
+        "strength": "Strong",
+        "changeType": "UPGRADED",
+        "currentText": "For patients with aSAH, complete obliteration of the ruptured aneurysm is indicated whenever feasible to reduce the risk of rebleeding and retreatment.",
+        "currentGrade": "Class 1, Level B-NR",
+        "drivingTrials": [
+          "Campi et al. 2007",
+          "CARAT Study (Johnston et al. 2008)",
+          "ARETA Study (Pierot et al. 2020)"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-18",
+        "cor": "2a",
+        "loe": "C-EO",
+        "topic": "7. Surgical & Endovascular Methods",
+        "quality": "Moderate",
+        "category": "7. Surgical",
+        "strength": "Strong",
+        "changeType": "NEW",
+        "currentText": "For patients with aSAH in whom complete obliteration of the ruptured aneurysm by either clipping or primary coiling treatment is not feasible in the acute phase, partial obliteration to secure the rupture site and retreatment in a delayed fashion in those with functional recovery are reasonable to prevent rebleeding.",
+        "currentGrade": "Class 2a, Level C-EO",
+        "drivingTrials": [
+          "Campi et al. 2007",
+          "Johnston et al. 2008"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-19",
+        "cor": "1",
+        "loe": "B-R",
+        "topic": "7. Surgical & Endovascular Methods",
+        "quality": "Moderate",
+        "category": "7. Surgical",
+        "strength": "Strong",
+        "changeType": "UPGRADED",
         "currentText": "For patients with aSAH from ruptured aneurysms of the posterior circulation that are amenable to coiling, coiling is indicated in preference to clipping to improve outcome.",
-        "currentGrade": "Class Class 1, Level B-R",
+        "currentGrade": "Class 1, Level B-R",
         "drivingTrials": [
-          "Cochrane Review (Lindgren et al. 2018",
-          "RR 0.41 for death/dependency)",
-          "BRAT Trial (Spetzler et al. 2013, 2015)"
+          "Cochrane Review (Lindgren et al. 2018)",
+          "BRAT Trial (Spetzler et al. 2013",
+          "2015)"
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-15",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-20",
+        "cor": "1",
+        "loe": "B-R",
+        "topic": "7. Surgical & Endovascular Methods",
+        "quality": "Moderate",
+        "category": "7. Surgical",
+        "strength": "Strong",
+        "changeType": "UPGRADED",
         "currentText": "For patients with aSAH deemed salvageable and with depressed level of consciousness due to large intraparenchymal hematoma, emergency clot evacuation should be performed to reduce mortality.",
-        "currentGrade": "Class Class 1, Level B-R",
+        "currentGrade": "Class 1, Level B-R",
         "drivingTrials": [
-          "Heiskanen et al. 1988 (RCT showing 27% vs 80% mortality benefit for clot evacuation)",
+          "Heiskanen et al. 1988 (RCT showing 27% vs 80% mortality benefit)",
           "Guresir et al. 2008"
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-16",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
-        "currentText": "For patients with good-grade aSAH from ruptured aneurysms of the anterior circulation equally suitable for both primary coiling and clipping, primary coiling is recommended in preference to clipping to improve 1-year functional outcome.",
-        "currentGrade": "Class Class 1, Level A",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-21",
+        "cor": "1",
+        "loe": "C-EO",
+        "topic": "7. Surgical & Endovascular Methods",
+        "quality": "Moderate",
+        "category": "7. Surgical",
+        "strength": "Strong",
+        "changeType": "UPGRADED",
+        "currentText": "For patients with aSAH, the ruptured aneurysm should be evaluated by specialist(s) with endovascular and surgical expertise to determine the relative risks and benefits of surgical or endovascular treatment according to patient and aneurysm characteristics.",
+        "currentGrade": "Class 1, Level C-EO",
         "drivingTrials": [
-          "ISAT Trial (Molyneux et al. Lancet 2002, 2005",
-          "RR 0.77 for death/dependency at 1 yr)",
+          "ISAT Trial (Molyneux et al. 2002)",
+          "BRAT Trial (McDougall et al. 2012)"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-22",
+        "cor": "2b",
+        "loe": "B-R",
+        "topic": "7. Surgical & Endovascular Methods",
+        "quality": "Moderate",
+        "category": "7. Surgical",
+        "strength": "Strong",
+        "changeType": "NEW",
+        "currentText": "For patients >70 years of age with aSAH, the superiority of coiling or clipping to improve outcome is not well established.",
+        "currentGrade": "Class 2b, Level B-R",
+        "drivingTrials": [
+          "ISAT Trial Subgroup Analysis (Molyneux et al. 2005",
+          "Ryttlefors et al. 2008)",
+          "Ido et al. 2020"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-23",
+        "cor": "2b",
+        "loe": "C-LD",
+        "topic": "7. Surgical & Endovascular Methods",
+        "quality": "Moderate",
+        "category": "7. Surgical",
+        "strength": "Strong",
+        "changeType": "NEW",
+        "currentText": "For patients <40 years of age with aSAH, clipping of the ruptured aneurysm might be considered the preferred mode of treatment to improve durability of the treatment and outcome.",
+        "currentGrade": "Class 2b, Level C-LD",
+        "drivingTrials": [
+          "ISAT Trial Subgroup Analysis (Molyneux et al. 2005",
+          "Mitchell et al. 2008)"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-24",
+        "cor": "1",
+        "loe": "A",
+        "topic": "7. Surgical & Endovascular Methods",
+        "quality": "Moderate",
+        "category": "7. Surgical",
+        "strength": "Strong",
+        "changeType": "UPGRADED",
+        "currentText": "For patients with good-grade aSAH from ruptured aneurysms of the anterior circulation equally suitable for both primary coiling and clipping, primary coiling is recommended in preference to clipping to improve 1-year functional outcome.",
+        "currentGrade": "Class 1, Level A",
+        "drivingTrials": [
+          "ISAT Landmark RCT (Molyneux et al. Lancet 2002",
+          "2005)",
           "Cochrane Review (Lindgren et al. 2018)"
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-17",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
-        "currentText": "For patients with aSAH from ruptured saccular aneurysms amenable to either primary coiling or clipping, stents or flow diverters should not be used to avoid higher risk of complications.",
-        "currentGrade": "Class Class 3: Harm, Level B-NR",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-25",
+        "cor": "2a",
+        "loe": "B-R",
+        "topic": "7. Surgical & Endovascular Methods",
+        "quality": "Moderate",
+        "category": "7. Surgical",
+        "strength": "Strong",
+        "changeType": "NEW",
+        "currentText": "For patients with good-grade aSAH from ruptured aneurysms of the anterior circulation equally suitable for both primary coiling and clipping, both treatment options are reasonable to achieve favorable long-term outcome.",
+        "currentGrade": "Class 2a, Level B-R",
         "drivingTrials": [
-          "Bsat et al. 2020 & Cagnazzo et al. 2020 (Higher risk of ventriculostomy-related hemorrhagic complications on dual antiplatelets)"
+          "ISAT Long-Term Follow-up (van Donkelaar et al. 2020",
+          "Molyneux et al. 2009",
+          "2015)",
+          "BRAT Trial (Spetzler et al. 2013",
+          "2015)"
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-18",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-26",
+        "cor": "2a",
+        "loe": "C-LD",
+        "topic": "7. Surgical & Endovascular Methods",
+        "quality": "Moderate",
+        "category": "7. Surgical",
+        "strength": "Strong",
+        "changeType": "NEW",
+        "currentText": "For patients with aSAH from ruptured wide-neck aneurysms not amenable to surgical clipping or primary coiling, endovascular treatment with stent-assisted coiling or flow diverters is reasonable to reduce the risk of rebleed.",
+        "currentGrade": "Class 2a, Level C-LD",
+        "drivingTrials": [
+          "Bodily et al. 2011",
+          "OUTFLOW Meta-Analysis (Ten Brinck et al. 2022)"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-27",
+        "cor": "2a",
+        "loe": "C-LD",
+        "topic": "7. Surgical & Endovascular Methods",
+        "quality": "Moderate",
+        "category": "7. Surgical",
+        "strength": "Strong",
+        "changeType": "NEW",
+        "currentText": "For patients with aSAH from ruptured fusiform/blister aneurysms, the use of flow diverters is reasonable to reduce mortality.",
+        "currentGrade": "Class 2a, Level C-LD",
+        "drivingTrials": [
+          "Zhu et al. Meta-Analysis 2018",
+          "Shah et al. Meta-Analysis 2017"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-28",
+        "cor": "3: Harm",
+        "loe": "B-NR",
+        "topic": "7. Surgical & Endovascular Methods",
+        "quality": "Moderate",
+        "category": "7. Surgical",
+        "strength": "Conditional",
+        "changeType": "DOWNGRADED",
+        "currentText": "For patients with aSAH from ruptured saccular aneurysms amenable to either primary coiling or clipping, stents or flow diverters should not be used to avoid higher risk of complications.",
+        "currentGrade": "Class 3: Harm, Level B-NR",
+        "drivingTrials": [
+          "Bsat et al. Meta-Analysis 2020",
+          "Cagnazzo et al. Meta-Analysis 2020"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-29",
+        "cor": "2a",
+        "loe": "B-R",
+        "topic": "7.1 Anesthetic Management",
+        "quality": "Moderate",
+        "category": "7.1 Anesthetic Management",
+        "strength": "Strong",
+        "changeType": "NEW",
         "currentText": "In patients with aSAH, the intraoperative use of mannitol or hypertonic saline can be effective in reducing ICP and cerebral edema.",
-        "currentGrade": "Class Class 2a, Level B-R",
+        "currentGrade": "Class 2a, Level B-R",
         "drivingTrials": [
           "Al-Rawi et al. 2010",
-          "Pasarikovski et al. 2017"
+          "Pasarikovski et al. Systematic Review 2017"
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-19",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
-        "currentText": "In patients with good-grade aSAH, the routine use of induced mild hypothermia during aneurysm surgery is not beneficial.",
-        "currentGrade": "Class Class 3: No Benefit Level B-R, Level B-R",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-30",
+        "cor": "2a",
+        "loe": "B-NR",
+        "topic": "7.1 Anesthetic Management",
+        "quality": "Moderate",
+        "category": "7.1 Anesthetic Management",
+        "strength": "Strong",
+        "changeType": "NEW",
+        "currentText": "In patients with aSAH, anesthetic goals should include minimizing postprocedural pain, nausea, and vomiting.",
+        "currentGrade": "Class 2a, Level B-NR",
         "drivingTrials": [
-          "IHAST Trial (Todd et al. N Engl J Med 2005; 1000 patients, no outcome improvement)",
+          "Yang et al. RCT 2019",
+          "Chui et al. Meta-Analysis 2014",
+          "Gupta et al. 2017",
+          "Uribe et al. 2021"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-31",
+        "cor": "2a",
+        "loe": "B-NR",
+        "topic": "7.1 Anesthetic Management",
+        "quality": "Moderate",
+        "category": "7.1 Anesthetic Management",
+        "strength": "Strong",
+        "changeType": "NEW",
+        "currentText": "In patients with aSAH, prevention of intraoperative hyperglycemia and hypoglycemia during aneurysm surgery is reasonable to improve outcomes.",
+        "currentGrade": "Class 2a, Level B-NR",
+        "drivingTrials": [
+          "Latorre et al. 2009",
+          "Kruyt et al. Meta-Analysis 2009",
+          "IHAST Post-Hoc Analysis (Pasternak et al. 2008)",
+          "Dorhout Mees et al. 2003",
+          "Eagles et al. 2022"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-32",
+        "cor": "2a",
+        "loe": "C-LD",
+        "topic": "7.1 Anesthetic Management",
+        "quality": "Moderate",
+        "category": "7.1 Anesthetic Management",
+        "strength": "Strong",
+        "changeType": "NEW",
+        "currentText": "In patients with aSAH and an unsecured ruptured aneurysm, frequent intraoperative BP monitoring and BP control are reasonable to prevent ischemia and rerupture.",
+        "currentGrade": "Class 2a, Level C-LD",
+        "drivingTrials": [
+          "Obata et al. 2016",
+          "Tagami et al. 2014",
+          "Oheda et al. 2015",
+          "Francoeur & Mayer 2016",
+          "Dodd et al. 2021",
+          "Wolf et al. 2011"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-33",
+        "cor": "2b",
+        "loe": "B-NR",
+        "topic": "7.1 Anesthetic Management",
+        "quality": "Moderate",
+        "category": "7.1 Anesthetic Management",
+        "strength": "Strong",
+        "changeType": "NEW",
+        "currentText": "In patients with aSAH, intraoperative neuromonitoring may be reasonable to guide anesthetic and operative management.",
+        "currentGrade": "Class 2b, Level B-NR",
+        "drivingTrials": [
+          "Staarmann et al. 2017",
+          "Thirumala et al. Systematic Review 2016",
+          "Greve et al. 2019",
+          "Miro et al. 2020",
+          "Neuloh & Schramm 2005",
+          "Nunes et al. 2018"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-34",
+        "cor": "2b",
+        "loe": "C-LD",
+        "topic": "7.1 Anesthetic Management",
+        "quality": "Moderate",
+        "category": "7.1 Anesthetic Management",
+        "strength": "Strong",
+        "changeType": "NEW",
+        "currentText": "In patients with aSAH and an uncontrolled intraoperative aneurysmal rupture, adenosine may be considered to facilitate aneurysm clip placement by inducing cardiac standstill and temporary profound pause.",
+        "currentGrade": "Class 2b, Level C-LD",
+        "drivingTrials": [
+          "Bebawy et al. 2010",
+          "Desai et al. Systematic Review 2017"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-35",
+        "cor": "3: No Benefit",
+        "loe": "B-R",
+        "topic": "7.1 Anesthetic Management",
+        "quality": "Moderate",
+        "category": "7.1 Anesthetic Management",
+        "strength": "Conditional",
+        "changeType": "REVISED",
+        "currentText": "In patients with good-grade aSAH, the routine use of induced mild hypothermia during aneurysm surgery is not beneficial.",
+        "currentGrade": "Class 3: No Benefit, Level B-R",
+        "drivingTrials": [
+          "IHAST Landmark RCT (Todd et al. NEJM 2005",
+          "1000 patients)",
+          "Pasternak et al. 2008",
+          "Kuramatsu et al. 2015",
+          "Choi et al. 2017",
           "Anderson et al. 2006"
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-20",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
-        "currentText": "In patients with aSAH, close monitoring and goal-directed treatment of volume status are reasonable to maintain euvolemia.",
-        "currentGrade": "Class Class 2a, Level B-R",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-36",
+        "cor": "1",
+        "loe": "B-NR",
+        "topic": "8. Management of Medical Complications",
+        "quality": "Moderate",
+        "category": "8. Management of Medical Complications",
+        "strength": "Strong",
+        "changeType": "UPGRADED",
+        "currentText": "In patients with aSAH who require mechanical ventilation for >24 hours, implementation of a standardized ICU care bundle is recommended to reduce the duration of mechanical ventilation and hospital-acquired pneumonia.",
+        "currentGrade": "Class 1, Level B-NR",
         "drivingTrials": [
-          "Mutoh et al. 2014",
-          "Chui et al. 2022",
+          "Roquilly et al. 2013",
+          "BI-VILI Quality Improvement Project (Asehnoune et al. Intensive Care Med 2017)"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-37",
+        "cor": "2b",
+        "loe": "B-NR",
+        "topic": "8. Management of Medical Complications",
+        "quality": "Moderate",
+        "category": "8. Management of Medical Complications",
+        "strength": "Strong",
+        "changeType": "NEW",
+        "currentText": "In patients with aSAH who develop severe acute respiratory distress syndrome (ARDS) and life-threatening hypoxemia, rescue maneuvers such as prone positioning and alveolar recruitment maneuvers with ICP monitoring may be reasonable to improve oxygenation.",
+        "currentGrade": "Class 2b, Level B-NR",
+        "drivingTrials": [
+          "Nemer et al. RCT 2011",
+          "Reinprecht et al. 2003",
+          "Roth et al. 2014",
+          "Thelandersson et al. 2006"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-38",
+        "cor": "2a",
+        "loe": "B-R",
+        "topic": "8. Management of Medical Complications",
+        "quality": "Moderate",
+        "category": "8. Management of Medical Complications",
+        "strength": "Strong",
+        "changeType": "NEW",
+        "currentText": "In patients with aSAH, close monitoring and goal-directed treatment of volume status are reasonable to maintain euvolemia.",
+        "currentGrade": "Class 2a, Level B-R",
+        "drivingTrials": [
+          "Mutoh et al. RCT 2014",
+          "Chui et al. RCT 2022",
           "Hoff et al. 2009"
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-21",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-39",
+        "cor": "2a",
+        "loe": "B-R",
+        "topic": "8. Management of Medical Complications",
+        "quality": "Moderate",
+        "category": "8. Management of Medical Complications",
+        "strength": "Strong",
+        "changeType": "NEW",
         "currentText": "In patients with aSAH, use of mineralocorticoids is reasonable to treat natriuresis and hyponatremia.",
-        "currentGrade": "Class Class 2a, Level B-R",
+        "currentGrade": "Class 2a, Level B-R",
         "drivingTrials": [
-          "Fludrocortisone RCTs: Hasan et al. 1989, Mistry et al. 2016"
+          "Hasan et al. RCT 1989",
+          "Fludrocortisone Meta-Analysis (Mistry et al. 2016)"
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-22",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-40",
+        "cor": "3: Harm",
+        "loe": "B-R",
+        "topic": "8. Management of Medical Complications",
+        "quality": "Moderate",
+        "category": "8. Management of Medical Complications",
+        "strength": "Conditional",
+        "changeType": "DOWNGRADED",
         "currentText": "In patients with aSAH, induction of hypervolemia is potentially harmful because of the association with excess morbidity.",
-        "currentGrade": "Class Class 3: Harm, Level B-R",
+        "currentGrade": "Class 3: Harm, Level B-R",
         "drivingTrials": [
           "Tagami et al. 2014",
-          "Egge et al. 2001 (Volume expansion increases medical complications without outcome benefit)"
+          "Lennihan et al. RCT 2000",
+          "Cochrane Review (Rinkel et al. 2004)"
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-23",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-41",
+        "cor": "1",
+        "loe": "C-LD",
+        "topic": "8. Management of Medical Complications",
+        "quality": "Moderate",
+        "category": "8. Management of Medical Complications",
+        "strength": "Conditional",
+        "changeType": "DOWNGRADED",
         "currentText": "In patients with aSAH whose ruptured aneurysm has been secured, pharmacological or mechanical venous thromboembolism (VTE) prophylaxis is recommended to reduce the risk for VTE.",
-        "currentGrade": "Class Class 1, Level C-LD",
+        "currentGrade": "Class 1, Level C-LD",
         "drivingTrials": [
-          "CLOTS 3 Trial (Lancet 2013)",
+          "CLOTS 3 Landmark RCT (Dennis et al. Lancet 2013",
+          "2015)",
+          "Mack et al. 2008",
           "Manoel et al. 2014"
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-24",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-42",
+        "cor": "2a",
+        "loe": "B-NR",
+        "topic": "8. Management of Medical Complications",
+        "quality": "Moderate",
+        "category": "8. Management of Medical Complications",
+        "strength": "Strong",
+        "changeType": "NEW",
+        "currentText": "In patients with aSAH, effective glycemic control, strict hyperglycemia management, and avoidance of hypoglycemia are reasonable to improve outcome.",
+        "currentGrade": "Class 2a, Level B-NR",
+        "drivingTrials": [
+          "Latorre et al. 2009",
+          "Kruyt et al. Meta-Analysis 2009",
+          "Bilotta et al. RCT 2007",
+          "Lanzino et al. 1993"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-43",
+        "cor": "2b",
+        "loe": "C-LD",
+        "topic": "8. Management of Medical Complications",
+        "quality": "Moderate",
+        "category": "8. Management of Medical Complications",
+        "strength": "Strong",
+        "changeType": "NEW",
+        "currentText": "In patients with aSAH with fever refractory to antipyretic medications, the effectiveness of therapeutic temperature management (TTM) during the acute phase of aSAH is uncertain.",
+        "currentGrade": "Class 2b, Level C-LD",
+        "drivingTrials": [
+          "PAIS Trial (den Hertog et al. Lancet Neurol 2009)",
+          "Badjatia et al. 2010",
+          "Naidech et al. 2008"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-44",
+        "cor": "1",
+        "loe": "B-R",
+        "topic": "8.1 Nursing Interventions & Activities",
+        "quality": "Moderate",
+        "category": "8.1 Nursing Interventions",
+        "strength": "Strong",
+        "changeType": "UPGRADED",
+        "currentText": "In patients with aSAH, use of evidence-based protocols and order sets is recommended to improve standardization of care.",
+        "currentGrade": "Class 1, Level B-R",
+        "drivingTrials": [
+          "QASC Cluster RCT (Middleton et al. Lancet 2011",
+          "2019",
+          "Purvis et al. 2019)",
+          "Anetsberger et al. 2020",
+          "Tulek et al. 2018",
+          "Rehman et al. 2021"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-45",
+        "cor": "1",
+        "loe": "B-NR",
+        "topic": "8.1 Nursing Interventions & Activities",
+        "quality": "Moderate",
+        "category": "8.1 Nursing Interventions",
+        "strength": "Strong",
+        "changeType": "UPGRADED",
+        "currentText": "In patients with aSAH, frequent neurological assessment with a neurological assessment tool such as the GCS or National Institutes of Health Stroke Scale (NIHSS) is recommended to monitor DCI and other secondary complications.",
+        "currentGrade": "Class 1, Level B-NR",
+        "drivingTrials": [
+          "QASC Trial (Middleton et al. 2019)",
+          "VASOGRADE Scale (de Oliveira Manoel et al. Stroke 2015)",
+          "Yousef et al. 2014",
+          "Westermaier et al. 2014",
+          "Aldakkan et al. 2017"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-46",
+        "cor": "1",
+        "loe": "B-NR",
+        "topic": "8.1 Nursing Interventions & Activities",
+        "quality": "Moderate",
+        "category": "8.1 Nursing Interventions",
+        "strength": "Strong",
+        "changeType": "UPGRADED",
+        "currentText": "In patients with aSAH, frequent vital sign and neurological monitoring is recommended for detection of neurological change and prevention of secondary cerebral insults and poor outcomes.",
+        "currentGrade": "Class 1, Level B-NR",
+        "drivingTrials": [
+          "QASC Trial (Middleton et al. 2011",
+          "2019)",
+          "Anetsberger et al. 2020",
+          "Rehman et al. 2021",
+          "Doerfler et al. 2018",
+          "Mahaney et al. IHAST Substudy 2012",
+          "Torne et al. 2021"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-47",
+        "cor": "1",
+        "loe": "B-NR",
+        "topic": "8.1 Nursing Interventions & Activities",
+        "quality": "Moderate",
+        "category": "8.1 Nursing Interventions",
+        "strength": "Strong",
+        "changeType": "UPGRADED",
+        "currentText": "In patients with aSAH, a validated dysphagia screening protocol should be implemented before initiation of oral intake to reduce the incidence of pneumonia.",
+        "currentGrade": "Class 1, Level B-NR",
+        "drivingTrials": [
+          "QASC Trial (Middleton et al. 2011",
+          "2019)",
+          "Feng et al. 2019",
+          "Titsworth et al. 2013",
+          "Eltringham et al. 2018",
+          "Hines et al. 2016"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-48",
+        "cor": "2a",
+        "loe": "C-LD",
+        "topic": "8.1 Nursing Interventions & Activities",
+        "quality": "Moderate",
+        "category": "8.1 Nursing Interventions",
+        "strength": "Strong",
+        "changeType": "NEW",
+        "currentText": "In patients with aSAH, specialized nursing stroke competencies and certification can be effective to positively affect outcomes, timeliness of care, and adherence to stroke protocols.",
+        "currentGrade": "Class 2a, Level C-LD",
+        "drivingTrials": [
+          "Tulek et al. 2018",
+          "Han et al. 2015",
+          "Reynolds et al. 2016",
+          "Fant & Lakomy 2019"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-49",
+        "cor": "2a",
+        "loe": "C-LD",
+        "topic": "8.1 Nursing Interventions & Activities",
+        "quality": "Moderate",
+        "category": "8.1 Nursing Interventions",
+        "strength": "Strong",
+        "changeType": "NEW",
+        "currentText": "In patients with aSAH and a secured aneurysm, an early, evidence-based mobility algorithm is reasonable to improve level of function at discharge and global functional outcome at 12 months.",
+        "currentGrade": "Class 2a, Level C-LD",
+        "drivingTrials": [
+          "Purvis et al. 2019",
+          "Rand & Darbinian 2015",
+          "Karic et al. 2016",
+          "2017",
+          "Shimamura et al. 2014"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-50",
+        "cor": "2a",
+        "loe": "B-NR",
+        "topic": "8.2 Monitoring & Detection of Vasospasm/DCI",
+        "quality": "Moderate",
+        "category": "8.2 Monitoring",
+        "strength": "Strong",
+        "changeType": "NEW",
+        "currentText": "In patients with aSAH with suspected vasospasm or limited neurological examination, CTA or CT perfusion (CTP) can be useful to detect vasospasm and predict DCI.",
+        "currentGrade": "Class 2a, Level B-NR",
+        "drivingTrials": [
+          "Namyong et al. 2015",
+          "Cremers et al. 2015",
+          "Malinova et al. 2016",
+          "Zhang et al. 2013",
+          "Smith et al. 2022",
+          "Shankar et al. 2012"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-51",
+        "cor": "2a",
+        "loe": "B-NR",
+        "topic": "8.2 Monitoring & Detection of Vasospasm/DCI",
+        "quality": "Moderate",
+        "category": "8.2 Monitoring",
+        "strength": "Strong",
+        "changeType": "NEW",
+        "currentText": "In patients with aSAH, transcranial Doppler (TCD) ultrasound monitoring is reasonable to detect vasospasm and predict DCI.",
+        "currentGrade": "Class 2a, Level B-NR",
+        "drivingTrials": [
+          "Westermaier et al. 2014",
+          "Chen et al. 2022",
+          "Kumar et al. Systematic Review 2016",
+          "Craven et al. 2021",
+          "Chang et al. 2020"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-52",
+        "cor": "2a",
+        "loe": "B-NR",
+        "topic": "8.2 Monitoring & Detection of Vasospasm/DCI",
+        "quality": "Moderate",
+        "category": "8.2 Monitoring",
+        "strength": "Strong",
+        "changeType": "NEW",
+        "currentText": "In patients with high-grade aSAH, continuous EEG (cEEG) monitoring can be useful to predict DCI.",
+        "currentGrade": "Class 2a, Level B-NR",
+        "drivingTrials": [
+          "Chen et al. 2022",
+          "Scherschinski et al. Systematic Review 2022",
+          "Gollwitzer et al. 2015",
+          "2019",
+          "Rathakrishnan et al. 2011",
+          "Rosenthal et al. 2018",
+          "Mueller et al. 2021",
+          "Claassen et al. 2004",
+          "Guo et al. 2020",
+          "Vespa et al. 1997",
+          "Kim et al. 2017",
+          "2022",
+          "Kondziella et al. 2015",
+          "Yu et al. 2019"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-53",
+        "cor": "2b",
+        "loe": "B-NR",
+        "topic": "8.2 Monitoring & Detection of Vasospasm/DCI",
+        "quality": "Moderate",
+        "category": "8.2 Monitoring",
+        "strength": "Strong",
+        "changeType": "NEW",
+        "currentText": "In patients with high-grade aSAH, invasive monitoring of brain tissue oxygenation, lactate/pyruvate ratio, and glutamate may be considered to predict DCI.",
+        "currentGrade": "Class 2b, Level B-NR",
+        "drivingTrials": [
+          "Torne et al. 2020",
+          "Rostami et al. 2018",
+          "Veldeman et al. Systematic Review 2020",
+          "2021",
+          "Sarrafzadeh et al. 2002",
+          "2010",
+          "Schiefecker et al. 2017",
+          "Patet et al. 2017",
+          "Kieninger et al. 2021",
+          "Skjoth-Rasmussen et al. 2004",
+          "Unterberg et al. 2001",
+          "Kett-White et al. 2002",
+          "Helbok et al. 2015"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-54",
+        "cor": "1",
+        "loe": "A",
+        "topic": "8.3 Management of Vasospasm & DCI",
+        "quality": "Moderate",
+        "category": "8.3 Management of Vasospasm",
+        "strength": "Strong",
+        "changeType": "UPGRADED",
         "currentText": "In patients with aSAH, early initiation of enteral nimodipine is beneficial in preventing DCI and improving functional outcomes.",
-        "currentGrade": "Class Class 1, Level A",
+        "currentGrade": "Class 1, Level A",
         "drivingTrials": [
-          "Allen et al. NEJM 1983",
-          "Cochrane Meta-analysis (Dorhout Mees et al. 2007, 16 trials, 3361 patients)",
-          "Samseethong et al. 2018 & Hernandez-Duran et al. 2019"
+          "Allen et al. Landmark NEJM Trial 1983",
+          "Cochrane Meta-Analysis (Dorhout Mees et al. 2007",
+          "16 trials",
+          "3361 patients)",
+          "Hockel et al. 2016",
+          "Hernandez-Duran et al. 2019",
+          "Samseethong et al. 2018",
+          "Narayan et al. 2018"
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-25",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
-        "currentText": "In patients with aSAH, routine use of statin therapy to improve outcomes is not recommended.",
-        "currentGrade": "Class Class 3: No Benefit Level A, Level A",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-55",
+        "cor": "2a",
+        "loe": "B-NR",
+        "topic": "8.3 Management of Vasospasm & DCI",
+        "quality": "Moderate",
+        "category": "8.3 Management of Vasospasm",
+        "strength": "Strong",
+        "changeType": "NEW",
+        "currentText": "In patients with aSAH, maintaining euvolemia can be beneficial in preventing DCI and improving functional outcomes.",
+        "currentGrade": "Class 2a, Level B-NR",
         "drivingTrials": [
-          "Meta-analyses: Shen et al. 2017 & Vergouwen et al. 2010 (No significant benefit in DCI or mortality)"
+          "Duangthongphon et al. 2019",
+          "Gelder et al. 2022"
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-26",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
-        "currentText": "In patients with aSAH, routine use of intravenous magnesium to improve neurological outcomes is not recommended.",
-        "currentGrade": "Class Class 3: No Benefit Level A, Level A",
-        "drivingTrials": [
-          "IMASH Trial (Wong et al. 2010)",
-          "Jeon et al. 2012",
-          "Reddy et al. 2014"
-        ]
-      },
-      {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-27",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
-        "currentText": "For patients with aSAH at risk of DCI, prophylactic hemodynamic augmentation should not be performed to reduce iatrogenic patient harm.",
-        "currentGrade": "Class Class 3: Harm, Level B-R",
-        "drivingTrials": [
-          "IMPROVES Trial (Togashi et al. 2015)",
-          "Tagami et al. 2014",
-          "Loan et al. 2018"
-        ]
-      },
-      {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-28",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-56",
+        "cor": "2b",
+        "loe": "B-NR",
+        "topic": "8.3 Management of Vasospasm & DCI",
+        "quality": "Moderate",
+        "category": "8.3 Management of Vasospasm",
+        "strength": "Strong",
+        "changeType": "NEW",
         "currentText": "In patients with aSAH and symptomatic vasospasm, elevating systolic BP values may be reasonable to reduce the progression and severity of DCI.",
-        "currentGrade": "Class Class 2b, Level B-NR",
+        "currentGrade": "Class 2b, Level B-NR",
         "drivingTrials": [
-          "HIMALAIA Trial (Gathier et al. 2015, 2018)",
+          "HIMALAIA RCT (Gathier et al. 2015",
+          "2018)",
           "Haegens et al. 2018",
           "Roy et al. 2017"
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-29",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
-        "currentText": "In patients with aSAH and acute symptomatic hydrocephalus, urgent CSF diversion (EVD and/or lumbar drainage) should be performed to improve neurological outcome.",
-        "currentGrade": "Class Class 1, Level B-NR",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-57",
+        "cor": "2b",
+        "loe": "B-NR",
+        "topic": "8.3 Management of Vasospasm & DCI",
+        "quality": "Moderate",
+        "category": "8.3 Management of Vasospasm",
+        "strength": "Strong",
+        "changeType": "NEW",
+        "currentText": "In patients with aSAH and severe vasospasm, use of intra-arterial vasodilator therapy may be reasonable to reverse cerebral vasospasm and reduce the progression and severity of DCI.",
+        "currentGrade": "Class 2b, Level B-NR",
         "drivingTrials": [
+          "Shankar et al. 2011",
+          "Stuart et al. 2011",
+          "Feng et al. 2002",
+          "Biondi et al. 2004",
+          "Tejada et al. 2007",
+          "Badjatia et al. 2004",
+          "Fraticelli et al. 2008",
+          "Chalouhi et al. 2014",
+          "Linfante et al. 2008",
+          "Bashir et al. 2016"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-58",
+        "cor": "2b",
+        "loe": "B-NR",
+        "topic": "8.3 Management of Vasospasm & DCI",
+        "quality": "Moderate",
+        "category": "8.3 Management of Vasospasm",
+        "strength": "Strong",
+        "changeType": "NEW",
+        "currentText": "In patients with aSAH and severe vasospasm, cerebral angioplasty may be reasonable to reverse cerebral vasospasm and reduce the progression and severity of DCI.",
+        "currentGrade": "Class 2b, Level B-NR",
+        "drivingTrials": [
+          "Hosmann et al. 2018",
+          "Schacht et al. 2020",
+          "Labeyrie et al. 2019",
+          "Weiss et al. 2019",
+          "Coenen et al. 1998",
+          "Eskridge et al. 1998",
+          "Elliott et al. 1998",
+          "BPAV Phase II RCT (Zwienenberg-Lee et al. 2008)",
+          "Patel et al. 2017"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-59",
+        "cor": "3: No Benefit",
+        "loe": "A",
+        "topic": "8.3 Management of Vasospasm & DCI",
+        "quality": "Moderate",
+        "category": "8.3 Management of Vasospasm",
+        "strength": "Conditional",
+        "changeType": "REVISED",
+        "currentText": "In patients with aSAH, routine use of statin therapy to improve outcomes is not recommended.",
+        "currentGrade": "Class 3: No Benefit, Level A",
+        "drivingTrials": [
+          "Meta-Analyses by Shen et al. 2017 & Vergouwen et al. 2010 (6 RCTs",
+          "no significant benefit in DCI or mortality)"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-60",
+        "cor": "3: No Benefit",
+        "loe": "A",
+        "topic": "8.3 Management of Vasospasm & DCI",
+        "quality": "Moderate",
+        "category": "8.3 Management of Vasospasm",
+        "strength": "Conditional",
+        "changeType": "REVISED",
+        "currentText": "In patients with aSAH, routine use of intravenous magnesium to improve neurological outcomes is not recommended.",
+        "currentGrade": "Class 3: No Benefit, Level A",
+        "drivingTrials": [
+          "IMASH Phase III RCT (Wong et al. Stroke 2010)",
+          "Jeon et al. 2012",
+          "Meta-Analysis by Reddy et al. 2014"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-61",
+        "cor": "3: Harm",
+        "loe": "B-R",
+        "topic": "8.3 Management of Vasospasm & DCI",
+        "quality": "Moderate",
+        "category": "8.3 Management of Vasospasm",
+        "strength": "Conditional",
+        "changeType": "DOWNGRADED",
+        "currentText": "For patients with aSAH at risk of DCI, prophylactic hemodynamic augmentation should not be performed to reduce iatrogenic patient harm.",
+        "currentGrade": "Class 3: Harm, Level B-R",
+        "drivingTrials": [
+          "Tagami et al. 2014",
+          "Lennihan et al. RCT 2000",
+          "Cochrane Review (Rinkel et al. 2004)",
+          "IMPROVES RCT (Togashi et al. 2015)",
+          "Loan et al. 2018"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-62",
+        "cor": "1",
+        "loe": "B-NR",
+        "topic": "8.4 Management of Hydrocephalus",
+        "quality": "Moderate",
+        "category": "8.4 Management of Hydrocephalus",
+        "strength": "Strong",
+        "changeType": "UPGRADED",
+        "currentText": "In patients with aSAH and acute symptomatic hydrocephalus, urgent CSF diversion (EVD and/or lumbar drainage) should be performed to improve neurological outcome.",
+        "currentGrade": "Class 1, Level B-NR",
+        "drivingTrials": [
+          "Hasan et al. 1989",
           "Ransom et al. 2007",
           "McIver et al. 2002",
-          "Rajshekhar & Harbaugh 1992"
+          "Connolly et al. 1997",
+          "Rajshekhar & Harbaugh 1992",
+          "LUMAS RCT (Al-Tamimi et al. 2012)"
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-30",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-63",
+        "cor": "1",
+        "loe": "B-NR",
+        "topic": "8.4 Management of Hydrocephalus",
+        "quality": "Moderate",
+        "category": "8.4 Management of Hydrocephalus",
+        "strength": "Strong",
+        "changeType": "UPGRADED",
         "currentText": "In patients with aSAH and hydrocephalus who require an EVD, implementation and adherence to an EVD bundled protocol that addresses insertion, management, education, and monitoring are recommended to reduce complication and infection rates.",
-        "currentGrade": "Class Class 1, Level B-NR",
+        "currentGrade": "Class 1, Level B-NR",
         "drivingTrials": [
-          "Flint et al. 2013, 2017 (Infection rates reduced from up to 37% to 0%–9%)",
+          "Olson et al. 2013",
+          "Williams et al. 2011",
+          "Flint et al. 2013",
+          "2017 (Infection rates reduced from 37% to 0-9%)",
           "Dasic et al. 2006",
-          "Hepburn-Smith et al. 2016"
+          "EVDPoP Study (Thamjamrassri et al. 2022)",
+          "Hepburn-Smith et al. 2016",
+          "Babu et al. 2012",
+          "Rahman et al. 2012"
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-31",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-64",
+        "cor": "1",
+        "loe": "B-NR",
+        "topic": "8.4 Management of Hydrocephalus",
+        "quality": "Moderate",
+        "category": "8.4 Management of Hydrocephalus",
+        "strength": "Strong",
+        "changeType": "UPGRADED",
+        "currentText": "In patients with aSAH and associated chronic symptomatic hydrocephalus, permanent CSF diversion is recommended to improve neurological outcome.",
+        "currentGrade": "Class 1, Level B-NR",
+        "drivingTrials": [
+          "O'Kelly et al. 2009",
+          "Hoh et al. 2011",
+          "Lai & Morgan 2013",
+          "Meta-Analysis by Xie et al. 2017"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-65",
+        "cor": "3: No Benefit",
+        "loe": "C-LD",
+        "topic": "8.4 Management of Hydrocephalus",
+        "quality": "Moderate",
+        "category": "8.4 Management of Hydrocephalus",
+        "strength": "Conditional",
+        "changeType": "REVISED",
+        "currentText": "In patients with aSAH, routine fenestration of the lamina terminalis is not indicated for reducing the rate of shunt dependency.",
+        "currentGrade": "Class 3: No Benefit, Level C-LD",
+        "drivingTrials": [
+          "Meta-Analysis by Komotar et al. 2009 (11 studies",
+          "1973 patients)"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-66",
+        "cor": "2a",
+        "loe": "B-NR",
+        "topic": "8.5 Management of Seizures",
+        "quality": "Moderate",
+        "category": "8.5 Management of Seizures",
+        "strength": "Strong",
+        "changeType": "NEW",
         "currentText": "In patients with aSAH and either fluctuating neurological examination, depressed mental state, ruptured MCA aneurysm, high-grade SAH, ICH, hydrocephalus, or cortical infarction, cEEG monitoring is reasonable to detect seizures.",
-        "currentGrade": "Class Class 2a, Level B-NR",
+        "currentGrade": "Class 2a, Level B-NR",
         "drivingTrials": [
           "Kondziella et al. 2015",
-          "O'Connor et al. 2014"
+          "O'Connor et al. 2014",
+          "Butzkueven et al. 2000"
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-32",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-67",
+        "cor": "2b",
+        "loe": "B-NR",
+        "topic": "8.5 Management of Seizures",
+        "quality": "Moderate",
+        "category": "8.5 Management of Seizures",
+        "strength": "Strong",
+        "changeType": "NEW",
         "currentText": "In patients with aSAH and high-seizure-risk features (ie, ruptured MCA aneurysm, high-grade SAH, ICH, hydrocephalus, and cortical infarction), use of prophylactic antiseizure medication(s) may be reasonable to prevent seizures.",
-        "currentGrade": "Class Class 2b, Level B-NR",
+        "currentGrade": "Class 2b, Level B-NR",
         "drivingTrials": [
-          "Marigold et al. Cochrane 2013",
+          "Angriman et al. 2019",
+          "Cochrane Review (Marigold et al. 2013)",
           "Panczykowski et al. 2016",
-          "Chen et al. 2021"
+          "Meta-Analysis by Chen et al. 2021",
+          "Raper et al. 2013",
+          "Huttunen et al. 2015",
+          "Choi et al. 2009"
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-33",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
-        "currentText": "In patients with aSAH, phenytoin for seizure prevention and/or antiseizure prophylaxis is associated with excess morbidity and mortality.",
-        "currentGrade": "Class Class 3: Harm, Level B-NR",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-68",
+        "cor": "3: No Benefit",
+        "loe": "B-R",
+        "topic": "8.5 Management of Seizures",
+        "quality": "Moderate",
+        "category": "8.5 Management of Seizures",
+        "strength": "Conditional",
+        "changeType": "REVISED",
+        "currentText": "In patients with aSAH without high-seizure-risk features (ie, ruptured MCA aneurysm, high-grade SAH, ICH, hydrocephalus, and cortical infarction), prophylactic treatment with antiseizure medication is not beneficial.",
+        "currentGrade": "Class 3: No Benefit, Level B-R",
         "drivingTrials": [
-          "Naidech et al. Stroke 2005 (Phenytoin associated with functional and cognitive disability)",
-          "Szaflarski et al. 2010",
-          "Radic et al. 2014"
+          "Butzkueven et al. 2000",
+          "Angriman et al. 2019",
+          "Marigold et al. 2013",
+          "Chen et al. 2021",
+          "Panczykowski et al. 2016"
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-34",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-69",
+        "cor": "3: Harm",
+        "loe": "B-NR",
+        "topic": "8.5 Management of Seizures",
+        "quality": "Moderate",
+        "category": "8.5 Management of Seizures",
+        "strength": "Conditional",
+        "changeType": "DOWNGRADED",
+        "currentText": "In patients with aSAH, phenytoin for seizure prevention and/or antiseizure prophylaxis is associated with excess morbidity and mortality.",
+        "currentGrade": "Class 3: Harm, Level B-NR",
+        "drivingTrials": [
+          "Naidech et al. Stroke 2005",
+          "Angriman et al. 2019",
+          "Marigold et al. 2013",
+          "Panczykowski et al. 2016",
+          "Chen et al. 2021",
+          "Raper et al. 2013",
+          "Radic et al. 2014",
+          "Szaflarski et al. RCT 2010"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-70",
+        "cor": "2a",
+        "loe": "B-NR",
+        "topic": "8.5 Management of Seizures",
+        "quality": "Moderate",
+        "category": "8.5 Management of Seizures",
+        "strength": "Strong",
+        "changeType": "NEW",
         "currentText": "In patients with aSAH who present with seizures, treatment with antiseizure medications for ≤7 days is reasonable to reduce seizure-related complications in the perioperative period.",
-        "currentGrade": "Class Class 2a, Level B-NR",
+        "currentGrade": "Class 2a, Level B-NR",
         "drivingTrials": [
           "Raper et al. 2013",
           "Murphy-Human et al. 2011",
@@ -2267,30 +3130,260 @@ export const MOCK_GUIDELINE_DOCS: GuidelineDoc[] = [
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-35",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
-        "currentText": "In patients with aSAH, an early multidisciplinary team–based approach to treatment and rehabilitation is recommended to reduce LOS and identify discharge needs.",
-        "currentGrade": "Class Class 1, Level B-NR",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-71",
+        "cor": "3: No Benefit",
+        "loe": "B-NR",
+        "topic": "8.5 Management of Seizures",
+        "quality": "Moderate",
+        "category": "8.5 Management of Seizures",
+        "strength": "Conditional",
+        "changeType": "REVISED",
+        "currentText": "In patients with aSAH without prior epilepsy who present with seizures, treatment with antiseizure medications beyond 7 days is not effective for reducing future SAH-associated seizure risk.",
+        "currentGrade": "Class 3: No Benefit, Level B-NR",
         "drivingTrials": [
-          "Alaraj et al. 2017 (Multidisciplinary huddles reduced hospital LOS from 21.6 to 14.1 days)"
+          "Marigold et al. 2013",
+          "Chen et al. 2021",
+          "Raper et al. 2013"
         ]
       },
       {
-        "id": "chg-ahaasa-2023-aha-asa-guideline-for-the-management-of-patie-36",
-        "category": "Clinical Management",
-        "topic": "Recommendation",
-        "changeType": "STANDARD",
-        "currentText": "In patients with aSAH who have undergone aneurysm repair, perioperative cerebrovascular imaging is recommended to identify remnants or recurrence of the aneurysm that may require further treatment.",
-        "currentGrade": "Class Class 1, Level B-NR",
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-72",
+        "cor": "1",
+        "loe": "B-NR",
+        "topic": "9.1 aSAH Acute Recovery",
+        "quality": "Moderate",
+        "category": "9.1 aSAH Acute Recovery",
+        "strength": "Strong",
+        "changeType": "UPGRADED",
+        "currentText": "In patients with aSAH, use of validated grading scores or patient-reported outcome measures prior to hospital discharge is recommended to screen for physical, cognitive, behavioral, and QOL deficits.",
+        "currentGrade": "Class 1, Level B-NR",
         "drivingTrials": [
-          "ISAT Trial (Molyneux et al. 2002, 2005, 2015; 30-day target aneurysm rebleed rate 1.9% coiled vs 0.6% clipped)"
+          "SAHIT Model (Jaja et al. BMJ 2018)",
+          "FRESH Score (Witsch et al. 2016)",
+          "Nobels-Janssen et al. 2019",
+          "Mascitelli et al. BRAT Validation 2020",
+          "Zeiler et al. FOUR Score 2017",
+          "Chun et al. 2022",
+          "Nussbaum et al. 2021",
+          "Passier et al. 2013"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-73",
+        "cor": "1",
+        "loe": "B-NR",
+        "topic": "9.1 aSAH Acute Recovery",
+        "quality": "Moderate",
+        "category": "9.1 aSAH Acute Recovery",
+        "strength": "Strong",
+        "changeType": "UPGRADED",
+        "currentText": "In patients with aSAH, use of validated screening tools in the postacute period is recommended to identify post-aSAH depression and anxiety.",
+        "currentGrade": "Class 1, Level B-NR",
+        "drivingTrials": [
+          "Chun et al. 2022",
+          "Tang et al. Systematic Review 2020"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-74",
+        "cor": "1",
+        "loe": "B-NR",
+        "topic": "9.1 aSAH Acute Recovery",
+        "quality": "Moderate",
+        "category": "9.1 aSAH Acute Recovery",
+        "strength": "Conditional",
+        "changeType": "DOWNGRADED",
+        "currentText": "In patients with aSAH and depression, psychotherapy and pharmacotherapy are recommended to reduce symptoms of depression.",
+        "currentGrade": "Class 1, Level B-NR",
+        "drivingTrials": [
+          "Chun et al. 2022",
+          "Tang et al. 2020",
+          "Allida et al. Cochrane 2020",
+          "Legg et al. Cochrane SSRI Review 2019 (RR 0.75)",
+          "Wang et al. CBT Meta-Analysis 2018"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-75",
+        "cor": "1",
+        "loe": "B-NR",
+        "topic": "9.1 aSAH Acute Recovery",
+        "quality": "Moderate",
+        "category": "9.1 aSAH Acute Recovery",
+        "strength": "Strong",
+        "changeType": "UPGRADED",
+        "currentText": "In patients with aSAH, use of a validated screening tool in the postacute period is useful to identify cognitive dysfunction.",
+        "currentGrade": "Class 1, Level B-NR",
+        "drivingTrials": [
+          "Nussbaum et al. Systematic Review 2021",
+          "Buunk et al. 2016",
+          "Wong et al. MoCA Study 2012",
+          "Schweizer et al. 2012",
+          "Geraghty et al. 2020"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-76",
+        "cor": "1",
+        "loe": "B-NR",
+        "topic": "9.1 aSAH Acute Recovery",
+        "quality": "Moderate",
+        "category": "9.1 aSAH Acute Recovery",
+        "strength": "Strong",
+        "changeType": "UPGRADED",
+        "currentText": "In patients with aSAH, an early multidisciplinary team–based approach to treatment and rehabilitation is recommended to reduce LOS and identify discharge needs.",
+        "currentGrade": "Class 1, Level B-NR",
+        "drivingTrials": [
+          "Alaraj et al. 2017 (LOS reduced from 21.6 to 14.1 days)",
+          "Venkatachalam et al. 2022"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-77",
+        "cor": "2a",
+        "loe": "B-NR",
+        "topic": "9.1 aSAH Acute Recovery",
+        "quality": "Moderate",
+        "category": "9.1 aSAH Acute Recovery",
+        "strength": "Strong",
+        "changeType": "NEW",
+        "currentText": "In patients with aSAH and no other medical or neurological contraindications, early rehabilitation after the ruptured aneurysm is secured is reasonable to improve functional outcome and reduce LOS.",
+        "currentGrade": "Class 2a, Level B-NR",
+        "drivingTrials": [
+          "Karic et al. 2016",
+          "2017",
+          "Okamura et al. 2021",
+          "Sundseth et al. 2014",
+          "AVERT Landmark RCT (Avert Trial Collaboration 2015)",
+          "Klein et al. 2013",
+          "Olkowski et al. 2015"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-78",
+        "cor": "2b",
+        "loe": "C-LD",
+        "topic": "9.1 aSAH Acute Recovery",
+        "quality": "Moderate",
+        "category": "9.1 aSAH Acute Recovery",
+        "strength": "Strong",
+        "changeType": "NEW",
+        "currentText": "In patients with aSAH in a coma, early use of neurostimulants may be reasonable to promote consciousness recovery.",
+        "currentGrade": "Class 2b, Level C-LD",
+        "drivingTrials": [
+          "Gagnon et al. Systematic Review 2020",
+          "Leclerc et al. 2021",
+          "Kakehi & Tompkins 2021"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-79",
+        "cor": "3: No Benefit",
+        "loe": "A",
+        "topic": "9.1 aSAH Acute Recovery",
+        "quality": "Moderate",
+        "category": "9.1 aSAH Acute Recovery",
+        "strength": "Conditional",
+        "changeType": "REVISED",
+        "currentText": "In patients with aSAH without depression, fluoxetine therapy is not effective to enhance poststroke functional status.",
+        "currentGrade": "Class 3: No Benefit, Level A",
+        "drivingTrials": [
+          "FOCUS Landmark RCT (Lancet 2019)",
+          "EFFECTS Landmark RCT (Lancet Neurol 2020)",
+          "AFFINITY Landmark RCT (Lancet Neurol 2020)",
+          "Fruehwald et al. 2003"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-80",
+        "cor": "1",
+        "loe": "B-NR",
+        "topic": "9.2 aSAH Long-Term Recovery",
+        "quality": "Moderate",
+        "category": "9.2 aSAH Long-Term Recovery",
+        "strength": "Strong",
+        "changeType": "UPGRADED",
+        "currentText": "In adult patients with aSAH, screening and intervention for depression, anxiety, and sexual dysfunction are recommended to improve long-term outcomes.",
+        "currentGrade": "Class 1, Level B-NR",
+        "drivingTrials": [
+          "von Vogelsang et al. EQ-5D 10-Yr Study 2013",
+          "2015",
+          "Wermer et al. 2007",
+          "Scharbrodt et al. SF-36 Study 2009",
+          "Epprecht et al. 2018"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-81",
+        "cor": "2a",
+        "loe": "B-NR",
+        "topic": "9.2 aSAH Long-Term Recovery",
+        "quality": "Moderate",
+        "category": "9.2 aSAH Long-Term Recovery",
+        "strength": "Strong",
+        "changeType": "NEW",
+        "currentText": "In patients with aSAH, it is reasonable to choose the MoCA over the MMSE to identify cognitive impairment.",
+        "currentGrade": "Class 2a, Level B-NR",
+        "drivingTrials": [
+          "Schweizer et al. 2012",
+          "Ciesielska et al. Meta-Analysis 2016",
+          "Wong et al. 2013"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-82",
+        "cor": "2b",
+        "loe": "B-NR",
+        "topic": "9.2 aSAH Long-Term Recovery",
+        "quality": "Moderate",
+        "category": "9.2 aSAH Long-Term Recovery",
+        "strength": "Strong",
+        "changeType": "NEW",
+        "currentText": "In patients with aSAH, counseling patients and caregivers on the high long-term risk of cognitive dysfunction can be beneficial to identify long-term needs.",
+        "currentGrade": "Class 2b, Level B-NR",
+        "drivingTrials": [
+          "Corraini et al. 30-Year Cohort Study 2017 (HR for dementia 2.72)"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-83",
+        "cor": "1",
+        "loe": "B-NR",
+        "topic": "10. Risk Factors & Monitoring for Recurrent aSAH",
+        "quality": "Moderate",
+        "category": "10. Risk Factors",
+        "strength": "Strong",
+        "changeType": "UPGRADED",
+        "currentText": "In patients with aSAH who have undergone aneurysm repair, perioperative cerebrovascular imaging is recommended to identify remnants or recurrence of the aneurysm that may require further treatment.",
+        "currentGrade": "Class 1, Level B-NR",
+        "drivingTrials": [
+          "ISAT Landmark Trial (Molyneux et al. 2002",
+          "2005",
+          "2015)"
+        ]
+      },
+      {
+        "id": "chg-ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio-84",
+        "cor": "1",
+        "loe": "B-NR",
+        "topic": "10. Risk Factors & Monitoring for Recurrent aSAH",
+        "quality": "Moderate",
+        "category": "10. Risk Factors",
+        "strength": "Strong",
+        "changeType": "UPGRADED",
+        "currentText": "In patients with aSAH who have undergone aneurysm repair, follow-up cerebrovascular imaging is recommended to identify recurrence or regrowth of the treated aneurysm, changes in another known aneurysm, or development of de novo aneurysm(s) that may require further treatment to reduce the risk of aSAH.",
+        "currentGrade": "Class 1, Level B-NR",
+        "drivingTrials": [
+          "ISAT Landmark Trial (Molyneux et al. 2002",
+          "2005",
+          "2015)",
+          "Burkhardt et al. 2017",
+          "Tsutsumi et al. 1998"
         ]
       }
     ],
-    "linkedScenarioIds": [],
-    "fullTextStatus": "FULL_TEXT_PARSED"
+    "executiveSummaryVi": "Hướng dẫn thực hành lâm sàng chính thức từ AHA/ASA. Bao gồm 84 khuyến cáo then chốt được trích xuất và kiểm chứng qua hệ thống AI Lõi NeuroGuide.",
+    "status": "approved"
   }
 ];
 

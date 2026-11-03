@@ -25,106 +25,15 @@
     "grading_system": "ACC/AHA",
     "updated_at": "2026-11-03T07:18:22.242Z"
   },
-  "ahaasa-2023-aha-asa-guideline-for-the-management-of-patie": {
-    "guideline_id": "ahaasa-2023-aha-asa-guideline-for-the-management-of-patie",
-    "title": "2023 AHA/ASA Guideline for the Management of Patients With Aneurysmal Subarachnoid Hemorrhage",
+  "ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio": {
+    "guideline_id": "ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio",
+    "title": "2023 AHA/ASA aSAH Guideline: Verbatim Recommendations & Evidence",
     "society": "AHA/ASA",
     "year": 2023,
-    "total_recommendations": 36,
-    "pending_count": 36,
-    "approved_count": 0,
+    "total_recommendations": 84,
+    "pending_count": 0,
+    "approved_count": 84,
     "rejected_count": 0,
-    "updated_at": "2026-10-31T03:54:02.087Z"
-  },
-  "guide-pmid-40875802": {
-    "guideline_id": "guide-pmid-40875802",
-    "title": "Use of Risk Assessment to Guide Decision-Making for Blood Pressure Management in the Primary Prevention of Cardiovascular Disease: A Scientific Statement From the American Heart Association and American College of Cardiology",
-    "society": "AHA/ASA",
-    "year": 2025,
-    "latest_version": 1,
-    "total_recommendations": 3,
-    "pending_count": 3,
-    "approved_count": 0,
-    "rejected_count": 0,
-    "grading_system": "AHA_ACC",
-    "updated_at": "2026-11-01T20:23:12.616152+00:00"
-  },
-  "guide-pmid-39253806": {
-    "guideline_id": "guide-pmid-39253806",
-    "title": "Evaluation and Management of Kidney Dysfunction in Advanced Heart Failure: A Scientific Statement From the American Heart Association",
-    "society": "AHA/ASA",
-    "year": 2024,
-    "latest_version": 1,
-    "total_recommendations": 3,
-    "pending_count": 3,
-    "approved_count": 0,
-    "rejected_count": 0,
-    "grading_system": "AHA_ACC",
-    "updated_at": "2026-11-01T20:23:20.107720+00:00"
-  },
-  "guide-pmid-42910416": {
-    "guideline_id": "guide-pmid-42910416",
-    "title": "Multidisciplinary Collaboration in the Performance of Aortic Surgery: A Scientific Statement From the American Heart Association",
-    "society": "AHA/ASA",
-    "year": 2026,
-    "latest_version": 1,
-    "total_recommendations": 1,
-    "pending_count": 1,
-    "approved_count": 0,
-    "rejected_count": 0,
-    "grading_system": "AHA_ACC",
-    "updated_at": "2026-11-02T20:36:27.743717+00:00"
-  },
-  "guide-pmid-42929102": {
-    "guideline_id": "guide-pmid-42929102",
-    "title": "Consensus Guidance for the Female-Specific Prevention and Management of Cardiovascular Disease: A Scientific Statement From the American Heart Association, American Academy of Pediatrics, American College of Obstetricians and Gynecologists, and Society for Maternal-Fetal Medicine",
-    "society": "AHA/ASA",
-    "year": 2026,
-    "latest_version": 1,
-    "total_recommendations": 3,
-    "pending_count": 3,
-    "approved_count": 0,
-    "rejected_count": 0,
-    "grading_system": "AHA_ACC",
-    "updated_at": "2026-11-02T20:36:35.727309+00:00"
-  },
-  "guide-pmid-42877955": {
-    "guideline_id": "guide-pmid-42877955",
-    "title": "Health Literacy and Communication in Stroke Prevention, Management, and Recovery: A Scientific Statement From the American Heart Association",
-    "society": "AHA/ASA",
-    "year": 2026,
-    "latest_version": 1,
-    "total_recommendations": 3,
-    "pending_count": 3,
-    "approved_count": 0,
-    "rejected_count": 0,
-    "grading_system": "AHA_ACC",
-    "updated_at": "2026-11-02T20:36:43.821438+00:00"
-  },
-  "guide-pmid-42751780": {
-    "guideline_id": "guide-pmid-42751780",
-    "title": "Women's Kidney Health in Focus: A Scientific Statement From the American Heart Association",
-    "society": "AHA/ASA",
-    "year": 2026,
-    "latest_version": 1,
-    "total_recommendations": 3,
-    "pending_count": 3,
-    "approved_count": 0,
-    "rejected_count": 0,
-    "grading_system": "AHA_ACC",
-    "updated_at": "2026-11-02T20:36:51.513070+00:00"
-  },
-  "guide-pmid-42639644": {
-    "guideline_id": "guide-pmid-42639644",
-    "title": "Primary and Secondary Raynaud: A Scientific Statement From the American Heart Association",
-    "society": "AHA/ASA",
-    "year": 2026,
-    "latest_version": 1,
-    "total_recommendations": 2,
-    "pending_count": 2,
-    "approved_count": 0,
-    "rejected_count": 0,
-    "grading_system": "AHA_ACC",
-    "updated_at": "2026-11-02T20:37:00.495735+00:00"
+    "updated_at": "2026-11-03T09:20:59.304Z"
   }
 }

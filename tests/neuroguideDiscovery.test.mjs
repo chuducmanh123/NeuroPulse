@@ -12,7 +12,12 @@ import {
   mergeGuidelines,
   mergeConferences,
   mergeScenarios,
+  getCoreTopicKey,
 } from "../src/lib/neuroguide/guidelineStorage.ts";
+
+import {
+  buildGuidelineRecordFromDoc,
+} from "../src/lib/neuroguide/storeAdapter.ts";
 
 import {
   extractGuidelineWithGemini,
@@ -210,5 +215,51 @@ describe("Deterministic Fallback & Guideline Extraction", () => {
     assert.ok(extracted.allPracticeChanges.length >= 2);
     assert.ok(extracted.allPracticeChanges[0].currentGrade.length > 0);
     assert.ok(extracted.executiveSummaryVi && extracted.executiveSummaryVi.length > 10);
+  });
+
+  it("should deterministically map aSAH and Subarachnoid titles to AHA-SAH and preserve the 84-recommendation version", () => {
+    const key1 = getCoreTopicKey({
+      society: "AHA/ASA",
+      title: "2023 AHA/ASA aSAH Guideline: Verbatim Recommendations & Evidence",
+    });
+    const key2 = getCoreTopicKey({
+      society: "AHA/ASA",
+      title: "2023 AHA/ASA Guideline for the Management of Patients With Aneurysmal Subarachnoid Hemorrhage",
+    });
+    assert.equal(key1, "AHA-SAH");
+    assert.equal(key2, "AHA-SAH");
+
+    const rec84 = buildGuidelineRecordFromDoc(
+      {
+        id: "ahaasa-2023-aha-asa-asah-guideline-verbatim-recommendatio",
+        society: "AHA/ASA",
+        year: 2023,
+        title: "2023 AHA/ASA aSAH Guideline: Verbatim Recommendations & Evidence",
+        officialUrl: "https://stroke.org",
+        journalTarget: "Stroke",
+        documentType: "Clinical Practice Guideline",
+        publishDate: "2023-01-01",
+        subspecialty: "Stroke",
+        executiveSummary: "84 recommendations",
+        allPracticeChanges: [
+          {
+            id: "rec-1",
+            category: "3. Natural History",
+            topic: "3. Natural History & Outcome of aSAH",
+            changeType: "UPGRADED",
+            currentText: "Use of clinical scales is recommended.",
+            currentGrade: "Class 1, Level B-NR",
+            cor: "1",
+            loe: "B-NR",
+          },
+        ],
+        linkedScenarioIds: [],
+      },
+      "APPROVED"
+    );
+
+    assert.equal(rec84.approved_count, 1);
+    assert.equal(rec84.pending_count, 0);
+    assert.equal(rec84.recommendations[0].approval_status, "APPROVED");
   });
 });

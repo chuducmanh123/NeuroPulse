@@ -113,6 +113,7 @@ export interface GuidelineDoc {
   doi?: string;
   aiSynthesized?: boolean;
   synthesizedAt?: string;
+  status?: "approved" | "pending" | "deleted" | string;
 }
 
 export interface RecommendationAtom {

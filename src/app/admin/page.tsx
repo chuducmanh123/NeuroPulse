@@ -1688,7 +1688,10 @@ export default function AdminCommandCenter() {
             setReviewQueueRefreshKey((prev) => prev + 1);
             fetchReviewQueueCount();
             fetchGuidelinesList();
-            setGuidelineSubTab("queue");
+            setRadarMessage(
+              `🎉 Đã tạo và xuất bản thành công Practice Guideline "${newDoc.title}" (${newDoc.allPracticeChanges?.length || 0} khuyến cáo)!`
+            );
+            setGuidelineSubTab("repository");
             setAdminTab("guidelines");
           }}
           darkMode={darkMode}

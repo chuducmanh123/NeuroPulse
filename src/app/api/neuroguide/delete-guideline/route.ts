@@ -5,6 +5,7 @@ import path from "path";
 import { loadMergedNeuroGuideData, saveNeuroGuideToActiveStorage } from "@/lib/neuroguide/guidelineStorage";
 import { MOCK_GUIDELINE_DOCS } from "@/data/neuroguideMockData";
 import { verifyAdminToken } from "@/utils/security";
+import { supabaseAdmin, hasSupabaseConfig } from "@/lib/supabase";
 
 export const dynamic = "force-dynamic";
 
@@ -128,6 +129,32 @@ export async function POST(request: NextRequest) {
       deletedGuidelineIds: mergedDeletedList,
     });
 
+    // 2b. Đánh dấu trạng thái "deleted" trên bảng neuroguide_docs của Supabase để chặn vĩnh viễn trên mọi Lambda instance
+    if (hasSupabaseConfig()) {
+      try {
+        const deleteIds = Array.from(allDeletedIds);
+        await supabaseAdmin
+          .from("neuroguide_docs")
+          .update({ status: "deleted", updated_at: new Date().toISOString() })
+          .in("id", deleteIds);
+
+        await supabaseAdmin.from("neuroguide_docs").upsert(
+          {
+            id: normTarget,
+            title: title || normTarget,
+            organization: "DELETED",
+            year: "0",
+            status: "deleted",
+            data: { id: normTarget, title: title || normTarget, status: "deleted" },
+            updated_at: new Date().toISOString(),
+          },
+          { onConflict: "id" }
+        );
+      } catch (sbErr) {
+        console.warn("Lỗi đánh dấu xóa guideline trên Supabase:", sbErr);
+      }
+    }
+
     // 3. Xóa triệt để khỏi kho guidelines_store (STORE_DIR, TMP_DIR, catalog.json)
     for (const dir of [TMP_DIR, STORE_DIR]) {
       if (fs.existsSync(dir)) {
@@ -143,7 +170,15 @@ export async function POST(request: NextRequest) {
                   const entry = catalog[k];
                   const entryId = (entry?.guideline_id || k).toLowerCase();
                   const entryTitle = entry?.title || "";
-                  if (allDeletedIds.has(k.toLowerCase()) || allDeletedIds.has(entryId) || (normTitle && normalizeTitle(entryTitle) === normTitle)) {
+                  const normEntryTitle = normalizeTitle(entryTitle);
+                  const isDel =
+                    allDeletedIds.has(k.toLowerCase()) ||
+                    allDeletedIds.has(entryId) ||
+                    (normTitle && normEntryTitle === normTitle) ||
+                    Array.from(allDeletedIds).some(
+                      (id) => id.length > 5 && (entryId.includes(id) || id.includes(entryId))
+                    );
+                  if (isDel) {
                     delete catalog[k];
                     changed = true;
                   }
@@ -159,11 +194,17 @@ export async function POST(request: NextRequest) {
                 const fileGId = (data.guideline_id || "").toLowerCase();
                 const cleanFileName = f.replace(/_latest\.json$/i, "").toLowerCase();
                 const docTitle = data.metadata?.title || data.title || "";
-                if (
+                const normDocTitle = normalizeTitle(docTitle);
+                const isMatch =
                   allDeletedIds.has(fileGId) ||
                   allDeletedIds.has(cleanFileName) ||
-                  (normTitle && normalizeTitle(docTitle) === normTitle)
-                ) {
+                  (normTitle && normDocTitle === normTitle) ||
+                  Array.from(allDeletedIds).some(
+                    (id) =>
+                      id.length > 5 &&
+                      (fileGId.includes(id) || id.includes(fileGId) || cleanFileName.includes(id) || id.includes(cleanFileName))
+                  );
+                if (isMatch) {
                   fs.unlinkSync(fullPath);
                 }
               } catch {}
