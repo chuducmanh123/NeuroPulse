@@ -257,6 +257,7 @@ export function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitl
 
 export function ReviewQueueTab({
   darkMode,
+  refreshKey,
   onQueueUpdated,
   onQueueCountChange,
   onOpenPipelineModal,
