@@ -629,13 +629,45 @@ export const CANONICAL_ESO_2026_ASAH_PICOS: EsoPicoItem[] = [
 ];
 
 /**
+ * Helper to determine if a guideline belongs to AHA / ASA / ACC
+ */
+export function isAhaGuideline(title?: string, id?: string): boolean {
+  const normTitle = (title || "").toLowerCase();
+  const normId = (id || "").toLowerCase();
+
+  return Boolean(
+    normId.includes("aha") ||
+    normTitle.includes("aha") ||
+    normTitle.includes("american heart") ||
+    normTitle.includes("american stroke") ||
+    /\baha\b/i.test(normTitle) ||
+    /\basa\b/i.test(normTitle) ||
+    /\bacc\b/i.test(normTitle) ||
+    /\baha\b/i.test(normId) ||
+    normId.startsWith("aha") ||
+    normId.includes("ahaasa") ||
+    normId.includes("aha-asa")
+  );
+}
+
+/**
  * Detect if a guideline document corresponds specifically to the ESO 2025 Blood Pressure Guideline
  */
 export function isEsoBpGuideline(title?: string, id?: string): boolean {
+  if (isAhaGuideline(title, id)) return false;
+
   const normTitle = (title || "").toLowerCase();
   const normId = (id || "").toLowerCase();
 
   if (normId.includes("eso-bp") || normId.includes("esobp")) return true;
+
+  // Must have ESO indicator
+  const hasEso =
+    normId.includes("eso") ||
+    normTitle.includes("eso") ||
+    normTitle.includes("european stroke");
+  if (!hasEso) return false;
+
   // Exclude other vascular guidelines that might mention BP in passes
   if (
     normTitle.includes("subarachnoid") ||
@@ -653,8 +685,17 @@ export function isEsoBpGuideline(title?: string, id?: string): boolean {
  * Detect if a guideline document corresponds specifically to the ESO/EANS/ESMINT 2026 aSAH Guideline
  */
 export function isEsoAsahGuideline(title?: string, id?: string): boolean {
+  if (isAhaGuideline(title, id)) return false;
+
   const normTitle = (title || "").toLowerCase();
   const normId = (id || "").toLowerCase();
+
+  // Must have ESO indicator
+  const hasEso =
+    normId.includes("eso") ||
+    normTitle.includes("eso") ||
+    normTitle.includes("european stroke");
+  if (!hasEso) return false;
 
   return (
     normId.includes("asah") ||
@@ -967,25 +1008,47 @@ export function groupPracticeChangesIntoEsoPicos(
   const allHaveExplicitPico =
     Array.isArray(changes) && changes.length > 0 && changes.every((it) => extractExplicitPico(it) !== null);
 
+  const isAhaDoc =
+    isAhaGuideline(guidelineTitle, guidelineId) ||
+    (changes || []).some(
+      (c) =>
+        Boolean(c.cor) ||
+        c.currentGrade?.toLowerCase().includes("class") ||
+        c.currentGrade?.toLowerCase().includes("cor")
+    );
+
   // 1. Check if this guideline matches a canonical ESO Synoptic Table (either via title/id or content signature)
-  let canonicalList = getCanonicalEsoPicos(guidelineTitle, guidelineId);
-  if (!canonicalList && changes && changes.length > 0 && !allHaveExplicitPico) {
-    const combinedText = changes
-      .slice(0, 10)
-      .map((c) => `${c.topic || ""} ${c.currentText || ""} ${c.category || ""}`)
-      .join(" ")
-      .toLowerCase();
-    if (
-      combinedText.includes("asah") ||
-      combinedText.includes("subarachnoid") ||
-      combinedText.includes("ruptured aneurysm")
-    ) {
-      canonicalList = CANONICAL_ESO_2026_ASAH_PICOS;
-    } else if (
-      combinedText.includes("pre-hospital blood pressure") ||
-      (combinedText.includes("acute ischaemic stroke") && combinedText.includes("spontaneous ich"))
-    ) {
-      canonicalList = CANONICAL_ESO_2025_BP_PICOS;
+  let canonicalList = !isAhaDoc ? getCanonicalEsoPicos(guidelineTitle, guidelineId) : null;
+  if (!canonicalList && !isAhaDoc && changes && changes.length > 0 && !allHaveExplicitPico) {
+    const hasEsoIndicator =
+      (guidelineTitle || "").toLowerCase().includes("eso") ||
+      (guidelineId || "").toLowerCase().includes("eso") ||
+      (guidelineTitle || "").toLowerCase().includes("european stroke") ||
+      changes.some(
+        (c) =>
+          Boolean(c.picoNumber) ||
+          c.currentGrade?.toLowerCase().includes("grade") ||
+          Boolean(c.quality) ||
+          Boolean(c.strength)
+      );
+    if (hasEsoIndicator) {
+      const combinedText = changes
+        .slice(0, 10)
+        .map((c) => `${c.topic || ""} ${c.currentText || ""} ${c.category || ""}`)
+        .join(" ")
+        .toLowerCase();
+      if (
+        combinedText.includes("asah") ||
+        combinedText.includes("subarachnoid") ||
+        combinedText.includes("ruptured aneurysm")
+      ) {
+        canonicalList = CANONICAL_ESO_2026_ASAH_PICOS;
+      } else if (
+        combinedText.includes("pre-hospital blood pressure") ||
+        (combinedText.includes("acute ischaemic stroke") && combinedText.includes("spontaneous ich"))
+      ) {
+        canonicalList = CANONICAL_ESO_2025_BP_PICOS;
+      }
     }
   }
 

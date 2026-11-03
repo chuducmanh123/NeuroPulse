@@ -317,7 +317,21 @@ export function getStoredGuidelinesAsDocs(): GuidelineDoc[] {
       }
 
       const activeRecs = approvedRecs.length > 0 ? approvedRecs : recs;
-      const canonicalEsoPicos = getCanonicalEsoPicos(metadata.title, record.guideline_id);
+
+      const isAhaRec = Boolean(
+        (metadata.society || "").toUpperCase().includes("AHA") ||
+        (metadata.society || "").toUpperCase().includes("ACC") ||
+        (metadata.society || "").toUpperCase().includes("ASA") ||
+        (metadata.title || "").toUpperCase().includes("AHA") ||
+        (metadata.title || "").toUpperCase().includes("ACC") ||
+        (metadata.title || "").toUpperCase().includes("ASA") ||
+        (record.guideline_id || "").toLowerCase().includes("aha") ||
+        (record.guideline_id || "").toLowerCase().includes("acc") ||
+        (record.guideline_id || "").toLowerCase().includes("asa") ||
+        recs.some((r: any) => r.grading_system === "ACC/AHA" || Boolean(r.cor))
+      );
+
+      const canonicalEsoPicos = !isAhaRec ? getCanonicalEsoPicos(metadata.title, record.guideline_id) : null;
 
       let practiceChanges: PracticeChangeDetail[];
 
@@ -330,15 +344,6 @@ export function getStoredGuidelinesAsDocs(): GuidelineDoc[] {
         practiceChanges = convertEsoPicoItemsToPracticeChanges(canonicalEsoPicos, defaultCat);
       } else {
         practiceChanges = activeRecs.map((r: any, idx: number) => {
-          const isAhaRec = Boolean(
-            (metadata.society || "").toUpperCase().includes("AHA") ||
-            (metadata.society || "").toUpperCase().includes("ACC") ||
-            (metadata.society || "").toUpperCase().includes("ASA") ||
-            (metadata.title || "").toUpperCase().includes("AHA") ||
-            (metadata.title || "").toUpperCase().includes("ACC") ||
-            r.grading_system === "ACC/AHA" ||
-            Boolean(r.cor)
-          );
 
           const isEsoRec = !isAhaRec && Boolean(
             (metadata.society || "").toUpperCase().includes("ESO") ||

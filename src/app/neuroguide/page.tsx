@@ -1215,12 +1215,14 @@ export default function NeuroGuidePage() {
                         {(() => {
                           const newPracticeChanges = doc.allPracticeChanges.filter(
                             (c) =>
-                              c.changeType === "NEW" ||
-                              c.changeType === "UPGRADED" ||
-                              c.changeType === "DOWNGRADED" ||
-                              c.changeType === "REVISED" ||
-                              Boolean(c.previousGrade) ||
-                              Boolean(c.previousText)
+                              (c.changeType === "NEW" ||
+                                c.changeType === "UPGRADED" ||
+                                c.changeType === "DOWNGRADED" ||
+                                c.changeType === "REVISED") &&
+                              (Boolean(c.previousGrade) ||
+                                Boolean(c.previousText) ||
+                                Boolean((c as any).isWhatIsNew) ||
+                                Boolean((c as any).isHighImpact))
                           );
 
                           const categories = Array.from(
@@ -1229,8 +1231,8 @@ export default function NeuroGuidePage() {
 
                           return (
                             <div className="space-y-4 sm:space-y-6 mb-4">
-                              {/* 0. Top Take-Home Messages */}
-                              {doc.topTakeaways && doc.topTakeaways.length > 0 && (() => {
+                              {/* 0. Top Take-Home Messages (chỉ hiển thị khi người dùng thực sự có nhập hoặc có mục takeaways tường minh) */}
+                              {doc.topTakeaways && doc.topTakeaways.length > 0 && !doc.topTakeawaysSynthetic && (() => {
                                 const isTakeawaysExpanded = Boolean(expandedTakeaways[doc.id]);
                                 const displayedTakeaways = (isTakeawaysExpanded || doc.topTakeaways.length <= 3)
                                   ? doc.topTakeaways

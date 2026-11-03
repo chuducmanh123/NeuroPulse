@@ -184,6 +184,13 @@ Table 3 Synoptic table of all recommendations and expert consensus statements.
     const bpCanonical = getCanonicalEsoPicos(bpTitle);
     assert.equal(bpCanonical?.length, 8);
     assert.ok(bpCanonical?.[0].picoQuestion.includes("blood pressure"));
+
+    // Verify isolation: AHA/ASA aSAH guideline must NEVER be mistaken for ESO
+    const ahaAsahTitle = "2023 AHA/ASA Guideline for the Management of Patients With Aneurysmal Subarachnoid Hemorrhage";
+    const ahaAsahId = "ahaasa-2023-aha-asa-guideline-for-the-management-of-patie";
+    assert.ok(!isEsoAsahGuideline(ahaAsahTitle, ahaAsahId), "AHA/ASA aSAH guideline must NEVER be classified as ESO aSAH");
+    assert.ok(!isEsoBpGuideline(ahaAsahTitle, ahaAsahId), "AHA/ASA aSAH guideline must NEVER be classified as ESO BP");
+    assert.equal(getCanonicalEsoPicos(ahaAsahTitle, ahaAsahId), null, "getCanonicalEsoPicos must return null for AHA/ASA guideline");
   });
 
   await t.test("should eliminate extra PICO 1 and leftover PICO 11..42 when grouping 42 raw unnumbered recommendations from PDF upload", async () => {

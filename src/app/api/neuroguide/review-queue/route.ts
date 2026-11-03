@@ -53,6 +53,7 @@ interface GuidelineRecord {
     society: string;
     year?: number;
     source_url?: string;
+    top_takeaways?: string[];
   };
   total_recommendations: number;
   pending_count: number;
@@ -209,7 +210,16 @@ async function syncGuidelineRecordToActiveLibrary(record: GuidelineRecord) {
   const activeData = await loadMergedNeuroGuideData();
   const nowIso = new Date().toISOString();
 
-  const canonicalEsoPicos = getCanonicalEsoPicos(record.metadata.title, record.guideline_id);
+  const isAha =
+    (record.metadata.society || "").toUpperCase().includes("AHA") ||
+    (record.metadata.society || "").toUpperCase().includes("ASA") ||
+    (record.metadata.society || "").toUpperCase().includes("ACC") ||
+    (record.metadata.title || "").toUpperCase().includes("AHA") ||
+    (record.metadata.title || "").toUpperCase().includes("ASA") ||
+    (record.metadata.title || "").toUpperCase().includes("ACC") ||
+    record.recommendations.some((r) => r.grading_system === "ACC/AHA" || Boolean(r.cor));
+
+  const canonicalEsoPicos = !isAha ? getCanonicalEsoPicos(record.metadata.title, record.guideline_id) : null;
 
   const practiceChanges: PracticeChangeDetail[] =
     canonicalEsoPicos && canonicalEsoPicos.length > 0
@@ -245,6 +255,17 @@ async function syncGuidelineRecordToActiveLibrary(record: GuidelineRecord) {
           const clinicalCategory = (r.category || (r as any).section || fallbackCategory).trim();
           const clinicalTopic = (r.topic || r.target_population || record.metadata.title).trim();
 
+          const isExplicitChange = Boolean(
+            (r as any).is_high_impact_change ||
+            (r as any).previous_grade ||
+            ((r as any).change_type && (r as any).change_type !== "STANDARD")
+          );
+          const changeType: PracticeChangeDetail["changeType"] = isExplicitChange
+            ? (((r as any).change_type && (r as any).change_type !== "STANDARD"
+                ? (r as any).change_type
+                : (r as any).previous_grade ? "UPGRADED" : "NEW") as PracticeChangeDetail["changeType"])
+            : "STANDARD";
+
           let pNum: string | undefined;
           let pQuestion: string | undefined;
           if (r.pico_id) {
@@ -263,7 +284,7 @@ async function syncGuidelineRecordToActiveLibrary(record: GuidelineRecord) {
             id: r.rec_id || `rec-${idx + 1}`,
             category: clinicalCategory,
             topic: clinicalTopic,
-            changeType: isClass1 ? "UPGRADED" : "NEW",
+            changeType,
             currentText: r.statement,
             currentGrade,
             drivingTrials: r.driving_trials || [],
@@ -302,6 +323,7 @@ async function syncGuidelineRecordToActiveLibrary(record: GuidelineRecord) {
       society: record.metadata.society || existing.society,
       year: record.metadata.year || existing.year,
       allPracticeChanges: practiceChanges,
+      topTakeaways: record.metadata.top_takeaways || [],
       executiveSummary: summaryVi,
       executiveSummaryVi: summaryVi,
       aiSynthesized: true,
@@ -325,6 +347,7 @@ async function syncGuidelineRecordToActiveLibrary(record: GuidelineRecord) {
       subspecialties: [subspecialty],
       executiveSummary: summaryVi,
       executiveSummaryVi: summaryVi,
+      topTakeaways: record.metadata.top_takeaways || [],
       allPracticeChanges: practiceChanges,
       linkedScenarioIds: [],
       fullTextStatus: "FULL_TEXT_PARSED",

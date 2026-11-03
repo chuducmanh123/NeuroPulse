@@ -104,6 +104,7 @@ export interface GuidelineDoc {
   executiveSummary: string;
   executiveSummaryVi?: string; // Tóm tắt lâm sàng điều hành tiếng Việt
   topTakeaways?: string[]; // 10 Take-Home Messages từ văn bản gốc
+  topTakeawaysSynthetic?: boolean; // Tự động suy luận khi văn bản gốc không có mục Takeaways tường minh
   allPracticeChanges: PracticeChangeDetail[];
   linkedScenarioIds: string[];
   fullTextStatus?: FullTextStatus;

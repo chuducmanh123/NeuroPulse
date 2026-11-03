@@ -637,25 +637,40 @@ export function parseNotebookLMContent(
     c.id = `chg-${docId}-${idx + 1}`;
   });
 
-  // 5. Select Top Takeaways (Top 8-10 high impact recommendations)
+  // 5. Select Top Takeaways: Extract if present, or select top high impact recommendations as fallback
   const topTakeaways: string[] = [];
-  const sortedForTakeaways = [...practiceChanges].sort((a, b) => {
-    const score = (rec: PracticeChangeDetail) => {
-      const g = rec.currentGrade.toLowerCase();
-      if (g.includes("harm")) return 10;
-      if (g.includes("no benefit")) return 9;
-      if (g.includes("class 1") && g.includes("level a")) return 8;
-      if (g.includes("class 1")) return 7;
-      if (g.includes("strong for")) return 7;
-      if (g.includes("class 2a")) return 6;
-      return 1;
-    };
-    return score(b) - score(a);
-  });
+  let isSyntheticTakeaways = false;
+  const takeawaySectionMatch = (rawContent || "").match(
+    /(?:top\s*(?:10)?\s*(?:take[-\s]?home|takeaways?|clinical\s*messages?)|thông điệp (?:chính|then chốt|lâm sàng))[:\n\r]+([\s\S]*?)(?=(?:\n#{1,3}\s+|\n\s*(?:pico|recommendation|khuyến cáo|what is new|bảng|table)|\n\s*\d+\.\s*(?:section|chương|phần)|$))/i
+  );
+  if (takeawaySectionMatch && takeawaySectionMatch[1]) {
+    const lines = takeawaySectionMatch[1]
+      .split(/\r?\n/)
+      .map((l) => l.trim())
+      .filter((l) => l.length > 10 && /^(?:[-*•]|\d+[\.\)])\s+/.test(l));
+    lines.forEach((l) => {
+      topTakeaways.push(l.replace(/^(?:[-*•]|\d+[\.\)])\s+/, "").trim());
+    });
+  } else if (practiceChanges.length > 0) {
+    isSyntheticTakeaways = true;
+    const sortedForTakeaways = [...practiceChanges].sort((a, b) => {
+      const score = (rec: PracticeChangeDetail) => {
+        const g = rec.currentGrade.toLowerCase();
+        if (g.includes("harm")) return 10;
+        if (g.includes("no benefit")) return 9;
+        if (g.includes("class 1") && g.includes("level a")) return 8;
+        if (g.includes("class 1")) return 7;
+        if (g.includes("strong for")) return 7;
+        if (g.includes("class 2a")) return 6;
+        return 1;
+      };
+      return score(b) - score(a);
+    });
 
-  sortedForTakeaways.slice(0, 10).forEach((c, idx) => {
-    topTakeaways.push(`${idx + 1}. [${c.category} - ${c.currentGrade}] ${c.currentText}`);
-  });
+    sortedForTakeaways.slice(0, 10).forEach((c, idx) => {
+      topTakeaways.push(`${idx + 1}. [${c.category} - ${c.currentGrade}] ${c.currentText}`);
+    });
+  }
 
   // 6. Build Executive Summary
   const descText = descriptionLines.join(" ").trim();
@@ -689,6 +704,7 @@ export function parseNotebookLMContent(
     executiveSummary,
     executiveSummaryVi,
     topTakeaways,
+    topTakeawaysSynthetic: isSyntheticTakeaways,
     allPracticeChanges: practiceChanges,
     linkedScenarioIds: [],
     fullTextStatus: "FULL_TEXT_PARSED",

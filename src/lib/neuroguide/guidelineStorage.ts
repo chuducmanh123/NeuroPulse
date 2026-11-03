@@ -192,7 +192,16 @@ export function mergeGuidelines(
 
     // Tự động chuẩn hóa danh sách PICO cho các guideline ESO chuẩn để loại bỏ các mục thừa
     let doc = rawDoc;
-    const canonicalEsoPicos = getCanonicalEsoPicos(rawDoc.title, rawDoc.id);
+    const isAha = Boolean(
+      (rawDoc.society || "").toUpperCase().includes("AHA") ||
+      (rawDoc.society || "").toUpperCase().includes("ACC") ||
+      (rawDoc.society || "").toUpperCase().includes("ASA") ||
+      (rawDoc.title || "").toUpperCase().includes("AHA") ||
+      (rawDoc.title || "").toUpperCase().includes("ACC") ||
+      (rawDoc.id || "").toLowerCase().includes("aha") ||
+      (rawDoc.id || "").toLowerCase().includes("acc")
+    );
+    const canonicalEsoPicos = !isAha ? getCanonicalEsoPicos(rawDoc.title, rawDoc.id) : null;
     if (canonicalEsoPicos && canonicalEsoPicos.length > 0) {
       const cleanChanges = convertEsoPicoItemsToPracticeChanges(
         canonicalEsoPicos,
@@ -408,7 +417,16 @@ export async function loadMergedNeuroGuideData(): Promise<{
       }
 
       // Chuẩn hóa cấu trúc PICO của ESO nếu thuộc guideline có bảng tổng hợp chuẩn
-      const canonicalEsoPicos = getCanonicalEsoPicos(g.title, g.id);
+      const isAha = Boolean(
+        (g.society || "").toUpperCase().includes("AHA") ||
+        (g.society || "").toUpperCase().includes("ACC") ||
+        (g.society || "").toUpperCase().includes("ASA") ||
+        (g.title || "").toUpperCase().includes("AHA") ||
+        (g.title || "").toUpperCase().includes("ACC") ||
+        (g.id || "").toLowerCase().includes("aha") ||
+        (g.id || "").toLowerCase().includes("acc")
+      );
+      const canonicalEsoPicos = !isAha ? getCanonicalEsoPicos(g.title, g.id) : null;
       if (canonicalEsoPicos && canonicalEsoPicos.length > 0) {
         const cleanChanges = convertEsoPicoItemsToPracticeChanges(
           canonicalEsoPicos,
