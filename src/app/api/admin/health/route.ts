@@ -3,6 +3,7 @@ import fs from "fs/promises";
 import path from "path";
 import { verifyAdminToken } from "@/utils/security";
 import { list } from "@vercel/blob";
+import { supabaseAdmin, hasSupabaseConfig } from "@/lib/supabase";
 import { loadMergedNeuroGuideData } from "@/lib/neuroguide/blobStorage";
 
 export const dynamic = "force-dynamic";
@@ -124,7 +125,28 @@ export async function GET(req: NextRequest) {
       journalCounts[j] = (journalCounts[j] || 0) + 1;
     });
 
-    // 2. Vercel Blob Diagnostic
+    // 2. Storage Diagnostics (Supabase & Vercel Blob)
+    const hasSupabase = hasSupabaseConfig();
+    let supabaseConnected = false;
+    let supabaseCasesCount = 0;
+    let supabaseDocsCount = 0;
+    let supabaseError: string | null = null;
+
+    if (hasSupabase) {
+      try {
+        const [cRes, dRes] = await Promise.all([
+          supabaseAdmin.from("clinical_cases").select("id", { count: "exact", head: true }),
+          supabaseAdmin.from("neuroguide_docs").select("id", { count: "exact", head: true }),
+        ]);
+        supabaseConnected = !cRes.error && !dRes.error;
+        supabaseCasesCount = cRes.count || 0;
+        supabaseDocsCount = dRes.count || 0;
+        if (cRes.error) supabaseError = cRes.error.message;
+      } catch (err: any) {
+        supabaseError = err?.message || String(err);
+      }
+    }
+
     const blobRawToken = process.env.BLOB_READ_WRITE_TOKEN;
     const blobStoreId = process.env.BLOB_STORE_ID;
     const hasBlobConfig = Boolean(blobRawToken || blobStoreId);
@@ -132,7 +154,8 @@ export async function GET(req: NextRequest) {
     let blobConnected = false;
     let blobError: string | null = null;
 
-    if (blobRawToken) {
+    // Only query Blob API list if Supabase is not connected to conserve Vercel Blob quota
+    if (blobRawToken && !supabaseConnected) {
       try {
         const tokenMatch = blobRawToken.match(/vercel_blob_rw_[a-zA-Z0-9_\-]+/);
         const cleanToken = tokenMatch ? tokenMatch[0].trim() : blobRawToken.replace(/^BLOB_READ_WRITE_TOKEN\s*=\s*/i, "").trim();
@@ -142,6 +165,8 @@ export async function GET(req: NextRequest) {
       } catch (err: any) {
         blobError = err?.message || String(err);
       }
+    } else if (hasBlobConfig) {
+      blobConnected = true;
     }
 
     // 3. Gemini API Key check
@@ -191,12 +216,22 @@ export async function GET(req: NextRequest) {
       },
       diagnostics: {
         storage: {
-          hasBlobConfig,
-          blobConnected,
-          blobFilesCount,
-          blobStoreId: blobStoreId || null,
-          blobError,
-          storageFallback: "Multi-tier (Blob -> /tmp -> Local Store)",
+          primaryBackend: supabaseConnected ? "supabase" : hasBlobConfig ? "vercel-blob" : "local-disk",
+          supabase: {
+            configured: hasSupabase,
+            connected: supabaseConnected,
+            casesCount: supabaseCasesCount,
+            guidelinesCount: supabaseDocsCount,
+            error: supabaseError,
+          },
+          blob: {
+            hasBlobConfig,
+            blobConnected,
+            blobFilesCount,
+            blobStoreId: blobStoreId || null,
+            blobError,
+          },
+          storageFallback: "Multi-tier (Supabase -> Blob -> Local Store)",
         },
         ai: {
           isGeminiConfigured,

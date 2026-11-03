@@ -1,6 +1,7 @@
 import fs from "fs/promises";
 import path from "path";
 import { put, list } from "@vercel/blob";
+import { supabaseAdmin, hasSupabaseConfig } from "../supabase.ts";
 import type {
   GuidelineDoc,
   ConferenceEvent,
@@ -72,6 +73,62 @@ function getBlobStoreId(): string | undefined {
 
 export function hasBlobConfig(): boolean {
   return Boolean(getBlobStoreId() || getBlobToken().token);
+}
+
+/**
+ * Loads dynamic NeuroGuide data from Supabase
+ */
+export async function getFromSupabase(): Promise<NeuroGuideBlobPayload | null> {
+  if (!hasSupabaseConfig()) return null;
+  try {
+    const { data, error } = await supabaseAdmin
+      .from("neuroguide_docs")
+      .select("data");
+    if (error || !data || data.length === 0) return null;
+    const guidelines = data.map((d: any) => d.data as GuidelineDoc);
+    return {
+      guidelines,
+      conferences: MOCK_CONFERENCE_EVENTS,
+      scenarios: MOCK_CLINICAL_SCENARIOS,
+      source: "NEUROGUIDE_AUTONOMOUS_RADAR",
+      lastSyncedAt: new Date().toISOString(),
+    };
+  } catch (e) {
+    console.error("Supabase read error for NeuroGuide:", e);
+    return null;
+  }
+}
+
+/**
+ * Saves dynamic NeuroGuide data to Supabase
+ */
+export async function setToSupabase(payload: NeuroGuideBlobPayload): Promise<{ ok: boolean; error?: string }> {
+  if (!hasSupabaseConfig()) return { ok: false, error: "No Supabase config" };
+  try {
+    if (!Array.isArray(payload.guidelines) || payload.guidelines.length === 0) {
+      return { ok: true };
+    }
+    const rows = payload.guidelines.map((g) => ({
+      id: g.id,
+      title: g.title || "Untitled Guideline",
+      organization: (g as any).organization || g.society || "Medical Organization",
+      year: String(g.year || (g as any).pub_year || "2026"),
+      status: (g as any).status || "approved",
+      data: g,
+      updated_at: new Date().toISOString(),
+    }));
+    const { error } = await supabaseAdmin
+      .from("neuroguide_docs")
+      .upsert(rows, { onConflict: "id" });
+    if (error) {
+      console.error("Supabase upsert error for NeuroGuide:", error);
+      return { ok: false, error: error.message };
+    }
+    return { ok: true };
+  } catch (e: any) {
+    console.error("Supabase upsert exception for NeuroGuide:", e);
+    return { ok: false, error: e?.message || String(e) };
+  }
 }
 
 /**
@@ -342,11 +399,13 @@ export async function loadMergedNeuroGuideData(): Promise<{
   guidelines: GuidelineDoc[];
   conferences: ConferenceEvent[];
   scenarios: ClinicalScenario[];
-  storageSource: "vercel-blob" | "local-disk" | "mock-baseline";
+  storageSource: "supabase" | "vercel-blob" | "local-disk" | "mock-baseline";
   lastSyncedAt?: string;
   deletedGuidelineIds?: string[];
 }> {
-  await syncStoreBlobsToTmp();
+  if (!hasSupabaseConfig()) {
+    await syncStoreBlobsToTmp();
+  }
   const storeDocs = getStoredGuidelinesAsDocs();
   const unapprovedStoreKeys = getUnapprovedStoredGuidelineKeys();
   const normalizeT = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
@@ -367,10 +426,21 @@ export async function loadMergedNeuroGuideData(): Promise<{
     ...approvedStoreTitles,
   ]);
 
-  const blobData = await getFromBlob();
+  let dynamicData: NeuroGuideBlobPayload | null = null;
+  let dynamicSource: "supabase" | "vercel-blob" = "supabase";
+
+  if (hasSupabaseConfig()) {
+    dynamicData = await getFromSupabase();
+  }
+
+  if (!dynamicData && hasBlobConfig()) {
+    dynamicData = await getFromBlob();
+    dynamicSource = "vercel-blob";
+  }
+
   const localData = await getFromLocalDisk();
   const deletedSet = new Set<string>([
-    ...(blobData?.deletedGuidelineIds || []).map((x) => x.toLowerCase()),
+    ...(dynamicData?.deletedGuidelineIds || []).map((x) => x.toLowerCase()),
     ...((localData as any)?.deletedGuidelineIds || []).map((x: string) => x.toLowerCase()),
     ...((localData as any)?.deleted_guideline_ids || []).map((x: string) => x.toLowerCase()),
   ]);
@@ -460,30 +530,29 @@ export async function loadMergedNeuroGuideData(): Promise<{
     return deletedSet.has(id) || deletedSet.has(norm);
   };
 
-  if (blobData && Array.isArray(blobData.guidelines) && blobData.guidelines.length > 0) {
-    const coordinatedBlobDocs = filterCoordinated(blobData.guidelines);
+  if (dynamicData && Array.isArray(dynamicData.guidelines) && dynamicData.guidelines.length > 0) {
+    const coordinatedDynamicDocs = filterCoordinated(dynamicData.guidelines);
     const filteredStore = storeDocs.filter((g) => !isStoreDocDeleted(g));
     const finalGuidelines =
       filteredStore.length > 0
-        ? mergeGuidelines(filteredStore, coordinatedBlobDocs, deletedSet)
-        : mergeGuidelines([], coordinatedBlobDocs, deletedSet);
+        ? mergeGuidelines(filteredStore, coordinatedDynamicDocs, deletedSet)
+        : mergeGuidelines([], coordinatedDynamicDocs, deletedSet);
 
-    // Tự động dọn dẹp lại Vercel Blob nếu trước đó bị lẫn các tài liệu chưa duyệt hoặc PICO chưa chuẩn hóa
-    if (needsSelfHealSave || blobData.guidelines.length !== finalGuidelines.length) {
+    if (needsSelfHealSave || dynamicData.guidelines.length !== finalGuidelines.length) {
       saveNeuroGuideToActiveStorage({
         guidelines: finalGuidelines,
-        conferences: blobData.conferences,
-        scenarios: blobData.scenarios,
+        conferences: dynamicData.conferences,
+        scenarios: dynamicData.scenarios,
         deletedGuidelineIds: Array.from(deletedSet),
       }).catch(() => {});
     }
 
     return {
       guidelines: finalGuidelines,
-      conferences: mergeConferences(blobData.conferences),
-      scenarios: mergeScenarios(blobData.scenarios),
-      storageSource: "vercel-blob",
-      lastSyncedAt: blobData.lastSyncedAt,
+      conferences: mergeConferences(dynamicData.conferences),
+      scenarios: mergeScenarios(dynamicData.scenarios),
+      storageSource: dynamicSource,
+      lastSyncedAt: dynamicData.lastSyncedAt,
       deletedGuidelineIds: Array.from(deletedSet),
     };
   }
@@ -530,16 +599,18 @@ export async function saveNeuroGuideToActiveStorage(payload: {
   deletedGuidelineIds?: string[];
 }): Promise<{
   success: boolean;
-  storage: "vercel-blob" | "local-disk" | "failed";
+  storage: "supabase" | "vercel-blob" | "local-disk" | "failed";
   error?: string;
 }> {
   let effectiveDeletedIds = payload.deletedGuidelineIds;
   if (!effectiveDeletedIds) {
     try {
-      const existingBlob = await getFromBlob();
+      const existingSupabase = hasSupabaseConfig() ? await getFromSupabase() : null;
+      const existingBlob = existingSupabase ? null : await getFromBlob();
       const existingLocal = await getFromLocalDisk();
       effectiveDeletedIds = Array.from(
         new Set([
+          ...(existingSupabase?.deletedGuidelineIds || []),
           ...(existingBlob?.deletedGuidelineIds || []),
           ...((existingLocal as any)?.deletedGuidelineIds || []),
           ...((existingLocal as any)?.deleted_guideline_ids || []),
@@ -558,6 +629,14 @@ export async function saveNeuroGuideToActiveStorage(payload: {
     lastSyncedAt: new Date().toISOString(),
     source: "NEUROGUIDE_AUTONOMOUS_RADAR",
   };
+
+  if (hasSupabaseConfig()) {
+    const sbRes = await setToSupabase(fullPayload);
+    if (sbRes.ok) {
+      await setToLocalDisk(fullPayload);
+      return { success: true, storage: "supabase" };
+    }
+  }
 
   if (hasBlobConfig()) {
     const blobRes = await setToBlob(fullPayload);

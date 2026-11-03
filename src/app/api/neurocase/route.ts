@@ -4,6 +4,7 @@ import path from "path";
 import crypto from "crypto";
 import { put, list } from "@vercel/blob";
 import { ClinicalCase } from "@/types/clinicalCase";
+import { supabaseAdmin, hasSupabaseConfig } from "@/lib/supabase";
 import {
   sanitizeUrl,
   generateAdminAuthToken,
@@ -82,6 +83,73 @@ function getBlobStoreId(): string | undefined {
     process.env.BLOB_STORE_ID = sanitized;
   }
   return sanitized;
+}
+
+// ==========================================
+// 0. SUPABASE STORAGE (PRIMARY CLOUD BACKEND)
+// ==========================================
+async function getFromSupabase(): Promise<ClinicalCase[] | null> {
+  if (!hasSupabaseConfig()) return null;
+  try {
+    const { data, error } = await supabaseAdmin
+      .from("clinical_cases")
+      .select("data")
+      .order("published_date", { ascending: false });
+
+    if (error || !data) {
+      console.error("Supabase read error in /api/neurocase:", error);
+      return null;
+    }
+    const cases: ClinicalCase[] = data.map((row: any) => row.data as ClinicalCase);
+    return Array.isArray(cases) && cases.length > 0 ? cases : null;
+  } catch (e) {
+    console.error("Supabase read exception in /api/neurocase:", e);
+    return null;
+  }
+}
+
+async function setToSupabase(cases: ClinicalCase[]): Promise<boolean> {
+  if (!hasSupabaseConfig()) return false;
+  try {
+    const rows = cases.map((c) => ({
+      id: c.id,
+      case_code: c.case_code || c.id,
+      title: c.title || "Untitled Case",
+      subspecialty: c.subspecialty || (Array.isArray(c.subspecialties) ? c.subspecialties[0] : "General Neurology"),
+      difficulty: c.difficulty || "Fellow",
+      status: c.status || "approved",
+      is_daily_challenge: Boolean(c.is_daily_challenge),
+      published_date: c.published_date || new Date().toISOString().split("T")[0],
+      data: c,
+      updated_at: new Date().toISOString(),
+    }));
+
+    const { error } = await supabaseAdmin
+      .from("clinical_cases")
+      .upsert(rows, { onConflict: "id" });
+
+    if (error) {
+      console.error("Supabase upsert error in /api/neurocase:", error);
+      return false;
+    }
+    return true;
+  } catch (e) {
+    console.error("Supabase upsert exception in /api/neurocase:", e);
+    return false;
+  }
+}
+
+async function deleteFromSupabase(caseId: string): Promise<boolean> {
+  if (!hasSupabaseConfig()) return false;
+  try {
+    const { error } = await supabaseAdmin
+      .from("clinical_cases")
+      .delete()
+      .eq("id", caseId);
+    return !error;
+  } catch {
+    return false;
+  }
 }
 
 function hasBlobConfig(): boolean {
@@ -213,7 +281,15 @@ async function saveToActiveStorage(cases: ClinicalCase[]): Promise<{
   error?: string;
   warning?: string;
 }> {
-  // 1. Try Vercel Blob
+  // 1. Try Supabase (Primary, unlimited requests)
+  if (hasSupabaseConfig()) {
+    const sbOk = await setToSupabase(cases);
+    if (sbOk) {
+      return { success: true, storage: "supabase" };
+    }
+  }
+
+  // 2. Try Vercel Blob
   if (hasBlobConfig()) {
     const blobRes = await setToBlob(cases);
     if (blobRes.ok) {
@@ -286,15 +362,27 @@ export async function GET(req: Request) {
       });
     }
 
-    const [blobCases, kvCases, bundled] = await Promise.all([
-      getFromBlob(),
-      getFromKv(),
-      getBundledCases(),
-    ]);
+    let dynamicCases: ClinicalCase[] | null = null;
+    let backend = "local-file";
 
-    const dynamicCases = (blobCases && blobCases.length > 0) ? blobCases : kvCases;
-    const backend = blobCases && blobCases.length > 0 ? "vercel-blob" : kvCases && kvCases.length > 0 ? "vercel-kv" : "local-file";
+    if (hasSupabaseConfig()) {
+      const sbCases = await getFromSupabase();
+      if (sbCases && sbCases.length > 0) {
+        dynamicCases = sbCases;
+        backend = "supabase";
+      }
+    }
 
+    if (!dynamicCases) {
+      const [blobCases, kvCases] = await Promise.all([
+        getFromBlob(),
+        getFromKv(),
+      ]);
+      dynamicCases = (blobCases && blobCases.length > 0) ? blobCases : kvCases;
+      backend = blobCases && blobCases.length > 0 ? "vercel-blob" : kvCases && kvCases.length > 0 ? "vercel-kv" : "local-file";
+    }
+
+    const bundled = await getBundledCases();
     const merged = mergeCases(dynamicCases, bundled);
 
     // SECURITY: Anonymous/public users must ONLY see approved cases.
@@ -359,12 +447,18 @@ export async function POST(req: Request) {
 
     // Helper to get currently active cases from storage
     const fetchCurrentCases = async (): Promise<ClinicalCase[]> => {
-      const [blobCases, kvCases, bundled] = await Promise.all([
-        getFromBlob(),
-        getFromKv(),
-        getBundledCases(),
-      ]);
-      const dynamicCases = (blobCases && blobCases.length > 0) ? blobCases : kvCases;
+      let dynamicCases: ClinicalCase[] | null = null;
+      if (hasSupabaseConfig()) {
+        dynamicCases = await getFromSupabase();
+      }
+      if (!dynamicCases) {
+        const [blobCases, kvCases] = await Promise.all([
+          getFromBlob(),
+          getFromKv(),
+        ]);
+        dynamicCases = (blobCases && blobCases.length > 0) ? blobCases : kvCases;
+      }
+      const bundled = await getBundledCases();
       return mergeCases(dynamicCases, bundled);
     };
 
@@ -433,6 +527,9 @@ export async function POST(req: Request) {
 
     // Admin Operation B: Delete a case
     if (body.action === "delete_case" && body.caseId) {
+      if (hasSupabaseConfig()) {
+        await deleteFromSupabase(body.caseId);
+      }
       const currentList = await fetchCurrentCases();
       const updatedList = currentList.filter((c) => c.id !== body.caseId);
       const saveResult = await saveToActiveStorage(updatedList);
