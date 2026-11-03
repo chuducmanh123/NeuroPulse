@@ -15,6 +15,9 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -35,7 +38,7 @@ jobs:
           if ! git diff --staged --quiet; then
             git commit -m "chore(data): auto-update NeuroCase daily clinical challenge"
             git pull --rebase origin main || true
-            git push
+            git push origin HEAD:main
           else
             echo "Không có ca bệnh mới."
           fi

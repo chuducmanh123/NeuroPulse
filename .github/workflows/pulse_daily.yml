@@ -15,6 +15,9 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -31,11 +34,11 @@ jobs:
         run: |
           git config --global user.name "Pulse-Bot"
           git config --global user.email "bot@neuropulse.org"
-          git add public/data/articles.json
+          git add public/data/articles.json data/guidelines_store/
           if ! git diff --staged --quiet; then
             git commit -m "chore(data): auto-update NeuroPulse latest journal articles"
             git pull --rebase origin main || true
-            git push
+            git push origin HEAD:main
           else
             echo "Không có bài báo mới."
           fi

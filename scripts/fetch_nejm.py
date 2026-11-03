@@ -12,10 +12,14 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
 
 # Ép buộc dùng IPv4 (AF_INET) để tránh lỗi treo "The read operation timed out" trên Windows
-_orig_getaddrinfo = socket.getaddrinfo
-def _ipv4_getaddrinfo(host, port, family=0, type=0, proto=0, flags=0):
-    return _orig_getaddrinfo(host, port, socket.AF_INET, type, proto, flags)
-socket.getaddrinfo = _ipv4_getaddrinfo
+if os.name == "nt":
+    try:
+        _orig_getaddrinfo = socket.getaddrinfo
+        def _ipv4_getaddrinfo(host, port, family=0, type=0, proto=0, flags=0):
+            return _orig_getaddrinfo(host, port, socket.AF_INET, type, proto, flags)
+        socket.getaddrinfo = _ipv4_getaddrinfo
+    except Exception:
+        pass
 
 def load_env_key() -> str:
     env_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env")
@@ -42,12 +46,10 @@ HEADERS = {
 
 GEMINI_API_KEY = load_env_key()
 ACTIVE_GEMINI_MODELS = [
-    "gemini-2.5-flash",
-    "gemini-2.5-flash-lite",
     "gemini-2.0-flash",
     "gemini-2.0-flash-lite",
-    "gemini-flash-latest",
     "gemini-1.5-flash",
+    "gemini-flash-latest",
     "gemini-3.5-flash",
     "gemini-3.8-flash",
 ]
@@ -628,7 +630,8 @@ def load_existing_cache() -> dict:
                     item["ai_takeaways"]["conclusion_vi"] = clean_takeaway_text(
                         item["ai_takeaways"].get("conclusion_vi", "")
                     )
-                cache[item["id"]] = item
+                item["id"] = doi_key
+                cache[doi_key] = item
             return cache
     except Exception:
         return {}
@@ -723,23 +726,11 @@ def fetch_pubmed_abstract(doi: str, title: str = "") -> str:
         )
         req = urllib.request.Request(esearch_url, headers=HEADERS)
         pmid = None
-        with urllib.request.urlopen(req, context=ctx, timeout=8) as resp:
+        with urllib.request.urlopen(req, context=ctx, timeout=5) as resp:
             data = json.loads(resp.read().decode("utf-8"))
             id_list = data.get("esearchresult", {}).get("idlist", [])
             if id_list:
                 pmid = id_list[0]
-
-        if not pmid and title and len(title) > 20:
-            esearch_title_url = (
-                f"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
-                f"?db=pubmed&term={urllib.parse.quote(title + '[Title]')}&retmode=json"
-            )
-            req_t = urllib.request.Request(esearch_title_url, headers=HEADERS)
-            with urllib.request.urlopen(req_t, context=ctx, timeout=8) as resp_t:
-                data_t = json.loads(resp_t.read().decode("utf-8"))
-                id_list_t = data_t.get("esearchresult", {}).get("idlist", [])
-                if id_list_t:
-                    pmid = id_list_t[0]
 
         if not pmid:
             return ""
@@ -749,7 +740,7 @@ def fetch_pubmed_abstract(doi: str, title: str = "") -> str:
             f"?db=pubmed&id={pmid}&retmode=xml"
         )
         req_f = urllib.request.Request(efetch_url, headers=HEADERS)
-        with urllib.request.urlopen(req_f, context=ctx, timeout=10) as resp_f:
+        with urllib.request.urlopen(req_f, context=ctx, timeout=6) as resp_f:
             xml_bytes = resp_f.read()
             root = ET.fromstring(xml_bytes)
             sections = []
@@ -773,10 +764,11 @@ def fetch_abstract_from_apis(doi: str, title: str = "") -> str:
     if enriched:
         return clean_text(enriched["abstract"])
 
+    # 1. Europe PMC (nhanh nhất, bao quát cao nhất cho y khoa)
     try:
         url = f"https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%22{urllib.parse.quote(doi)}%22&format=json&resultType=core"
         req = urllib.request.Request(url, headers=HEADERS)
-        with urllib.request.urlopen(req, context=ctx, timeout=8) as resp:
+        with urllib.request.urlopen(req, context=ctx, timeout=5) as resp:
             data = json.loads(resp.read().decode("utf-8"))
             results = data.get("resultList", {}).get("result", [])
             if results and results[0].get("abstractText"):
@@ -786,15 +778,17 @@ def fetch_abstract_from_apis(doi: str, title: str = "") -> str:
     except Exception:
         pass
 
+    # 2. PubMed qua DOI
     pubmed_abs = fetch_pubmed_abstract(doi, title)
     if pubmed_abs:
         return pubmed_abs
 
+    # 3. OpenAlex fallback
     try:
         clean_doi = doi.strip()
         url = f"https://api.openalex.org/works/https://doi.org/{urllib.parse.quote(clean_doi)}"
         req = urllib.request.Request(url, headers=HEADERS)
-        with urllib.request.urlopen(req, context=ctx, timeout=8) as resp:
+        with urllib.request.urlopen(req, context=ctx, timeout=5) as resp:
             data = json.loads(resp.read().decode("utf-8"))
             inv_index = data.get("abstract_inverted_index")
             if inv_index:
@@ -805,20 +799,6 @@ def fetch_abstract_from_apis(doi: str, title: str = "") -> str:
                 word_positions.sort(key=lambda x: x[0])
                 words = [w[1] for w in word_positions]
                 clean = clean_text(" ".join(words))
-                if len(clean) > 80:
-                    return clean
-    except Exception:
-        pass
-
-    try:
-        clean_doi = doi.strip()
-        url = f"https://api.semanticscholar.org/graph/v1/paper/DOI:{urllib.parse.quote(clean_doi)}?fields=abstract"
-        req = urllib.request.Request(url, headers=HEADERS)
-        with urllib.request.urlopen(req, context=ctx, timeout=8) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-            abs_text = data.get("abstract")
-            if abs_text:
-                clean = clean_text(abs_text)
                 if len(clean) > 80:
                     return clean
     except Exception:
@@ -953,22 +933,25 @@ def fetch_journal_articles(journal_cfg: dict, cache: dict) -> list:
             if not title or NON_ARTICLE_PATTERNS.search(title):
                 continue
 
-            doi = c_item.get("DOI") or e_item.get("doi") or doi_lower
+            doi = (c_item.get("DOI") or e_item.get("doi") or doi_lower).strip().lower()
+            if not doi:
+                continue
 
             # Xác định ngày xuất bản chính xác
             epmc_pdate = e_item.get("firstPublicationDate", "")
             pub_iso = resolve_article_pub_date(c_item, epmc_date=epmc_pdate)
 
             # Khôi phục nếu nằm trong danh sách bài 26/10 bị nhảy ngày
-            if doi_lower in REPAIR_OCT26_DOIS:
-                pub_iso = REPAIR_OCT26_DOIS[doi_lower]
+            if doi in REPAIR_OCT26_DOIS:
+                pub_iso = REPAIR_OCT26_DOIS[doi]
 
-            # Kiểm tra bộ nhớ đệm đã có bài hay chưa
+            # Kiểm tra bộ nhớ đệm đã có bài hay chưa (so khớp chuẩn chữ thường)
             if doi in cache:
                 cached_art = cache[doi]
+                cached_art["id"] = doi
                 # Giữ nguyên ngày xuất bản đã ghi nhận trong cache, tuyệt đối không nhảy ngày
-                if doi_lower in REPAIR_OCT26_DOIS:
-                    cached_art["pub_date"] = REPAIR_OCT26_DOIS[doi_lower]
+                if doi in REPAIR_OCT26_DOIS:
+                    cached_art["pub_date"] = REPAIR_OCT26_DOIS[doi]
                 cached_abs = cached_art.get("abstract", "")
 
                 # Nếu bài trong cache đã có abstract đầy đủ, giữ nguyên và sử dụng tiếp
@@ -1101,7 +1084,8 @@ def sync_guidelines_to_neuroguide(articles: list):
                   "NCS" if "Neurocritical" in j_name else "Clinical Society"
 
         guideline_id = "guide-doi-" + re.sub(r"[^a-z0-9]", "-", doi)
-        pub_year = int(art.get("pub_date", "2026")[:4])
+        pub_date_str = art.get("pub_date") or "2026"
+        pub_year = int(pub_date_str[:4]) if len(pub_date_str) >= 4 and pub_date_str[:4].isdigit() else 2026
         takeaway = art.get("ai_takeaways", {}).get("conclusion_vi", "") or art.get("abstract", "")[:300]
         sub = art.get("neurology_classification", {}).get("subspecialty", "Stroke")
 
@@ -1204,7 +1188,7 @@ def run():
     all_articles = list(merged_articles.values())
     all_articles.sort(
         key=lambda x: (
-            x.get("pub_date", "")[:10],
+            (x.get("pub_date") or "")[:10],
             -(journal_order.index(x.get("journal", {}).get("short_name", "")) if x.get("journal", {}).get("short_name", "") in journal_order else 99)
         ),
         reverse=True

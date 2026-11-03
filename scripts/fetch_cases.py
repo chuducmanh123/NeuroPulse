@@ -12,10 +12,14 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
 
 # Ép buộc dùng IPv4 (AF_INET) để tránh lỗi treo kết nối trên Windows
-_orig_getaddrinfo = socket.getaddrinfo
-def _ipv4_getaddrinfo(host, port, family=0, type=0, proto=0, flags=0):
-    return _orig_getaddrinfo(host, port, socket.AF_INET, type, proto, flags)
-socket.getaddrinfo = _ipv4_getaddrinfo
+if os.name == "nt":
+    try:
+        _orig_getaddrinfo = socket.getaddrinfo
+        def _ipv4_getaddrinfo(host, port, family=0, type=0, proto=0, flags=0):
+            return _orig_getaddrinfo(host, port, socket.AF_INET, type, proto, flags)
+        socket.getaddrinfo = _ipv4_getaddrinfo
+    except Exception:
+        pass
 
 def load_env_key() -> str:
     env_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env")

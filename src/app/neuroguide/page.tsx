@@ -281,7 +281,16 @@ export default function NeuroGuidePage() {
     const activeKeys = new Set<string>();
     list.forEach((g) => {
       if (g?.id) activeKeys.add(g.id.toLowerCase().trim());
-      if (g?.title) activeKeys.add(normalizeT(g.title));
+      if (g?.title) {
+        activeKeys.add(normalizeT(g.title));
+        const simplified = normalizeT(
+          g.title
+            .replace(/european\s+stroke\s+organisation/gi, "eso")
+            .replace(/american\s+heart\s+association/gi, "aha")
+            .replace(/american\s+stroke\s+association/gi, "asa")
+        );
+        activeKeys.add(simplified);
+      }
     });
     const safeDeletedIds = deletedIds.filter((d) => !activeKeys.has((d || "").toLowerCase().trim()));
     const deletedSet = new Set(safeDeletedIds.map((x) => (x || "").toLowerCase().trim()));

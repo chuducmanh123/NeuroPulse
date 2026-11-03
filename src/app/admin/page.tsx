@@ -344,7 +344,7 @@ export default function AdminCommandCenter() {
 
   const fetchGuidelinesList = async () => {
     try {
-      const res = await fetch("/api/neuroguide/sync-guidelines");
+      const res = await fetch("/api/neuroguide/sync-guidelines", { cache: "no-store" });
       if (res.ok) {
         const data = await res.json();
         if (data && data.status === "success" && Array.isArray(data.guidelines)) {
@@ -354,7 +354,16 @@ export default function AdminCommandCenter() {
             const activeKeys = new Set<string>();
             data.guidelines.forEach((g: GuidelineDoc) => {
               if (g.id) activeKeys.add(g.id.toLowerCase().trim());
-              if (g.title) activeKeys.add(g.title.toLowerCase().replace(/[^a-z0-9]/g, ""));
+              if (g.title) {
+                activeKeys.add(normalizeT(g.title));
+                const simplified = normalizeT(
+                  g.title
+                    .replace(/european\s+stroke\s+organisation/gi, "eso")
+                    .replace(/american\s+heart\s+association/gi, "aha")
+                    .replace(/american\s+stroke\s+association/gi, "asa")
+                );
+                activeKeys.add(simplified);
+              }
             });
             const localDel: string[] = JSON.parse(localStorage.getItem("neuroguide_deleted_ids") || "[]");
             const serverDel: string[] = Array.isArray(data.deletedGuidelineIds) ? data.deletedGuidelineIds : [];
@@ -1691,6 +1700,7 @@ export default function AdminCommandCenter() {
           isOpen={showNotebookLMModal}
           onClose={() => setShowNotebookLMModal(false)}
           onSuccess={(newDoc) => {
+            setGuidelineDocs((prev) => [newDoc, ...prev.filter((d) => d.id !== newDoc.id)]);
             setReviewQueueRefreshKey((prev) => prev + 1);
             fetchReviewQueueCount();
             fetchGuidelinesList();

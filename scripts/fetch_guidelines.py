@@ -13,13 +13,14 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 # Ép buộc dùng IPv4 để tránh nghẽn DNS trên Windows
-try:
-    _orig_getaddrinfo = socket.getaddrinfo
-    def _ipv4_getaddrinfo(host, port, family=0, type=0, proto=0, flags=0):
-        return _orig_getaddrinfo(host, port, socket.AF_INET, type, proto, flags)
-    socket.getaddrinfo = _ipv4_getaddrinfo
-except Exception:
-    pass
+if os.name == "nt":
+    try:
+        _orig_getaddrinfo = socket.getaddrinfo
+        def _ipv4_getaddrinfo(host, port, family=0, type=0, proto=0, flags=0):
+            return _orig_getaddrinfo(host, port, socket.AF_INET, type, proto, flags)
+        socket.getaddrinfo = _ipv4_getaddrinfo
+    except Exception:
+        pass
 
 def load_env_key() -> str:
     env_path = Path(__file__).resolve().parent.parent / ".env"

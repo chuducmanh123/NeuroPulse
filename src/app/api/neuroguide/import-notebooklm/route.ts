@@ -125,10 +125,24 @@ export async function POST(request: NextRequest) {
     const currentStore = await loadMergedNeuroGuideData();
     const allGuidelines = mergeGuidelines([doc], currentStore.guidelines);
 
+    // Xóa sạch mọi key/alias/title liên quan đến doc mới khỏi deletedGuidelineIds
+    const normTitle = (doc.title || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+    const simplified = (doc.title || "")
+      .toLowerCase()
+      .replace(/european\s+stroke\s+organisation/gi, "eso")
+      .replace(/american\s+heart\s+association/gi, "aha")
+      .replace(/american\s+stroke\s+association/gi, "asa")
+      .replace(/[^a-z0-9]/g, "");
+    const cleanDeleted = (currentStore.deletedGuidelineIds || []).filter((d) => {
+      const lowerD = (d || "").toLowerCase().trim();
+      return lowerD !== doc.id.toLowerCase() && lowerD !== normTitle && lowerD !== simplified;
+    });
+
     const saveResult = await saveNeuroGuideToActiveStorage({
       guidelines: allGuidelines,
       conferences: currentStore.conferences,
       scenarios: currentStore.scenarios,
+      deletedGuidelineIds: cleanDeleted,
     });
 
     try {
