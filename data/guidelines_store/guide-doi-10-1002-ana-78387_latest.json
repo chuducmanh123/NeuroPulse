@@ -1,0 +1,44 @@
+{
+  "guideline_id": "guide-doi-10-1002-ana-78387",
+  "version": 1,
+  "metadata": {
+    "guideline_id": "guide-doi-10-1002-ana-78387",
+    "title": "Cerebral No‐Reflow after Thrombectomy: International Delphi Consensus on Definition and Imaging Assessment",
+    "society": "AAN",
+    "year": 2026,
+    "source_url": "https://doi.org/10.1002/ana.78387",
+    "doi": "10.1002/ana.78387",
+    "state": "PENDING_REVIEW",
+    "top_takeaways": [
+      "This international Delphi consensus defines post-thrombectomy cerebral no-reflow as macrovascular recanalization (eTICI 2c without distal occlusion/3, or no wedge-shaped Tmax/TTP perfusion delay) with impaired microvascular reperfusion (assessed preferentially via cerebral blood flow/volume within ≤6 hours), establishing a standardized reporting framework to address persistent clinical outcome disparities."
+    ]
+  },
+  "total_recommendations": 1,
+  "pending_count": 1,
+  "approved_count": 0,
+  "rejected_count": 0,
+  "recommendations": [
+    {
+      "rec_id": "guide-doi-10-1002-ana-78387-rec-01",
+      "guideline_id": "guide-doi-10-1002-ana-78387",
+      "grading_system": "GRADE_ESO",
+      "page_num": 1,
+      "section": "Stroke",
+      "topic": "Stroke",
+      "statement": "Cerebral No‐Reflow after Thrombectomy: International Delphi Consensus on Definition and Imaging Assessment",
+      "cor": "1",
+      "cor_label": "Official Society Recommendation",
+      "loe": "A",
+      "loe_label": "Evidence from trials & consensus",
+      "target_population": "Patients managed under Stroke guidelines",
+      "driving_trials": [
+        "Ann Neurol (2026)",
+        "DOI: 10.1002/ana.78387"
+      ],
+      "verbatim_quote": "Cerebral No‐Reflow after Thrombectomy: International Delphi Consensus on Definition and Imaging Assessment",
+      "confidence_score": 0.95,
+      "approval_status": "pending"
+    }
+  ],
+  "updated_at": "2026-11-03T18:21:09.110510+00:00"
+}

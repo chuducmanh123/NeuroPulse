@@ -35,5 +35,57 @@
     "approved_count": 84,
     "rejected_count": 0,
     "updated_at": "2026-11-03T16:34:13.797Z"
+  },
+  "guide-doi-10-1161-str-0000000000000537": {
+    "guideline_id": "guide-doi-10-1161-str-0000000000000537",
+    "title": "Health Literacy and Communication in Stroke Prevention, Management, and Recovery: A Scientific Statement From the American Heart Association",
+    "society": "AHA/ASA",
+    "year": 2026,
+    "latest_version": 1,
+    "total_recommendations": 1,
+    "pending_count": 1,
+    "approved_count": 0,
+    "rejected_count": 0,
+    "grading_system": "AHA_ACC",
+    "updated_at": "2026-11-03T18:21:09.110510+00:00"
+  },
+  "guide-doi-10-1002-ana-78387": {
+    "guideline_id": "guide-doi-10-1002-ana-78387",
+    "title": "Cerebral No‐Reflow after Thrombectomy: International Delphi Consensus on Definition and Imaging Assessment",
+    "society": "AAN",
+    "year": 2026,
+    "latest_version": 1,
+    "total_recommendations": 1,
+    "pending_count": 1,
+    "approved_count": 0,
+    "rejected_count": 0,
+    "grading_system": "GRADE_ESO",
+    "updated_at": "2026-11-03T18:21:09.110510+00:00"
+  },
+  "guide-doi-10-1161-str-0000000000000536": {
+    "guideline_id": "guide-doi-10-1161-str-0000000000000536",
+    "title": "2026 Guideline for Adult Stroke Rehabilitation and Recovery: A Guideline From the American Heart Association and American Stroke Association",
+    "society": "AHA/ASA",
+    "year": 2026,
+    "latest_version": 1,
+    "total_recommendations": 1,
+    "pending_count": 1,
+    "approved_count": 0,
+    "rejected_count": 0,
+    "grading_system": "AHA_ACC",
+    "updated_at": "2026-11-03T18:21:09.110510+00:00"
+  },
+  "guide-doi-10-1212-wnl-0000000000005347": {
+    "guideline_id": "guide-doi-10-1212-wnl-0000000000005347",
+    "title": "Practice guideline recommendations summary: Disease-modifying therapies for adults with multiple sclerosis",
+    "society": "AAN",
+    "year": 2018,
+    "latest_version": 1,
+    "total_recommendations": 1,
+    "pending_count": 1,
+    "approved_count": 0,
+    "rejected_count": 0,
+    "grading_system": "GRADE_ESO",
+    "updated_at": "2026-11-03T18:21:09.110510+00:00"
   }
 }
