@@ -55,8 +55,8 @@ describe("NotebookLM Practice Guideline Ingestion Engine", () => {
     assert.strictEqual(stats.totalRecommendations, 36);
     assert.strictEqual(doc.allPracticeChanges.length, 36);
 
-    // Top Takeaways checks
-    assert.ok(doc.topTakeaways && doc.topTakeaways.length >= 8);
+    // Top Takeaways checks (should be empty when no explicit take-home section exists)
+    assert.strictEqual(doc.topTakeaways.length, 0);
 
     // Subspecialty check
     assert.ok(

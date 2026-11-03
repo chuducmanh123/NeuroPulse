@@ -1231,8 +1231,13 @@ export default function NeuroGuidePage() {
 
                           return (
                             <div className="space-y-4 sm:space-y-6 mb-4">
-                              {/* 0. Top Take-Home Messages (chỉ hiển thị khi người dùng thực sự có nhập hoặc có mục takeaways tường minh) */}
-                              {doc.topTakeaways && doc.topTakeaways.length > 0 && !doc.topTakeawaysSynthetic && (() => {
+                              {/* 0. Top Take-Home Messages (chỉ hiển thị khi có mục takeaways thực sự từ văn bản gốc, tự động ẩn nếu không có) */}
+                              {Boolean(
+                                doc.topTakeaways &&
+                                doc.topTakeaways.length > 0 &&
+                                !doc.topTakeawaysSynthetic &&
+                                !doc.topTakeaways.some((t) => /^\d+\.\s*\[.*-\s*(?:Class|GRADE|COR)/i.test(t))
+                              ) && (() => {
                                 const isTakeawaysExpanded = Boolean(expandedTakeaways[doc.id]);
                                 const displayedTakeaways = (isTakeawaysExpanded || doc.topTakeaways.length <= 3)
                                   ? doc.topTakeaways
@@ -1244,9 +1249,6 @@ export default function NeuroGuidePage() {
                                       <div className="flex items-center gap-2">
                                         <span className="px-2.5 py-0.5 rounded-full text-[10px] sm:text-[10.5px] font-black bg-indigo-500/15 text-indigo-700 dark:text-indigo-300 border border-indigo-500/30">
                                           🌟 TOP TAKE-HOME MESSAGES
-                                        </span>
-                                        <span className="text-[10.5px] sm:text-[11px] font-bold text-slate-500 dark:text-slate-400">
-                                          ({doc.topTakeaways.length} điểm nhấn then chốt • Toàn bộ {doc.allPracticeChanges.length} khuyến cáo chi tiết ở bảng bên dưới)
                                         </span>
                                       </div>
                                     </div>

@@ -637,9 +637,8 @@ export function parseNotebookLMContent(
     c.id = `chg-${docId}-${idx + 1}`;
   });
 
-  // 5. Select Top Takeaways: Extract if present, or select top high impact recommendations as fallback
+  // 5. Select Top Takeaways: Extract ONLY if explicit section is present in text; otherwise leave empty
   const topTakeaways: string[] = [];
-  let isSyntheticTakeaways = false;
   const takeawaySectionMatch = (rawContent || "").match(
     /(?:top\s*(?:10)?\s*(?:take[-\s]?home|takeaways?|clinical\s*messages?)|thông điệp (?:chính|then chốt|lâm sàng))[:\n\r]+([\s\S]*?)(?=(?:\n#{1,3}\s+|\n\s*(?:pico|recommendation|khuyến cáo|what is new|bảng|table)|\n\s*\d+\.\s*(?:section|chương|phần)|$))/i
   );
@@ -650,25 +649,6 @@ export function parseNotebookLMContent(
       .filter((l) => l.length > 10 && /^(?:[-*•]|\d+[\.\)])\s+/.test(l));
     lines.forEach((l) => {
       topTakeaways.push(l.replace(/^(?:[-*•]|\d+[\.\)])\s+/, "").trim());
-    });
-  } else if (practiceChanges.length > 0) {
-    isSyntheticTakeaways = true;
-    const sortedForTakeaways = [...practiceChanges].sort((a, b) => {
-      const score = (rec: PracticeChangeDetail) => {
-        const g = rec.currentGrade.toLowerCase();
-        if (g.includes("harm")) return 10;
-        if (g.includes("no benefit")) return 9;
-        if (g.includes("class 1") && g.includes("level a")) return 8;
-        if (g.includes("class 1")) return 7;
-        if (g.includes("strong for")) return 7;
-        if (g.includes("class 2a")) return 6;
-        return 1;
-      };
-      return score(b) - score(a);
-    });
-
-    sortedForTakeaways.slice(0, 10).forEach((c, idx) => {
-      topTakeaways.push(`${idx + 1}. [${c.category} - ${c.currentGrade}] ${c.currentText}`);
     });
   }
 
@@ -704,7 +684,7 @@ export function parseNotebookLMContent(
     executiveSummary,
     executiveSummaryVi,
     topTakeaways,
-    topTakeawaysSynthetic: isSyntheticTakeaways,
+    topTakeawaysSynthetic: false,
     allPracticeChanges: practiceChanges,
     linkedScenarioIds: [],
     fullTextStatus: "FULL_TEXT_PARSED",
