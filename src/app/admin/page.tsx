@@ -1441,7 +1441,7 @@ export default function AdminCommandCenter() {
                                 setShowEditPublishedModal(true);
                               }}
                               className="px-2.5 py-1 rounded text-[11px] font-bold bg-amber-500/15 text-amber-700 dark:text-amber-300 hover:bg-amber-500/25 border border-amber-500/30 transition-colors cursor-pointer"
-                              title="Chỉnh sửa chi tiết khuyến cáo và nội dung guideline"
+                              title="Chỉnh sửa tên và chi tiết nội dung guideline (Lưu trực tiếp lên Cloud)"
                             >
                               ✏️ Sửa
                             </button>
@@ -1706,10 +1706,15 @@ export default function AdminCommandCenter() {
               setEditingPublishedDoc(null);
             }}
             docId={editingPublishedDoc.id}
-            item={editingPublishedDoc.allPracticeChanges?.[0] || null}
+            item={null}
             guidelineDoc={editingPublishedDoc}
             adminToken={getStoredAdminToken()}
-            onSuccess={() => {
+            onSuccess={(updatedDoc) => {
+              if (updatedDoc) {
+                setGuidelineDocs((prev) =>
+                  prev.map((g) => (g.id === updatedDoc.id ? updatedDoc : g))
+                );
+              }
               fetchGuidelinesList();
               fetchReviewQueueCount();
             }}

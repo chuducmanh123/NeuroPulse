@@ -1175,9 +1175,27 @@ export default function NeuroGuidePage() {
                       </div>
 
                       {/* Title */}
-                      <h3 className="text-sm sm:text-lg font-bold leading-snug text-slate-900 dark:text-white">
-                        {doc.title}
-                      </h3>
+                      <div className="flex items-start justify-between gap-2">
+                        <h3 className="text-sm sm:text-lg font-bold leading-snug text-slate-900 dark:text-white flex-1">
+                          {doc.title}
+                        </h3>
+                        {isAdminVerified && (
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setEditingDocId(doc.id);
+                              setEditingGuidelineDoc(doc);
+                              setEditingPracticeChange(null);
+                              setShowEditModal(true);
+                            }}
+                            className="shrink-0 px-2 py-0.5 rounded text-[10.5px] font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400 hover:bg-amber-500/25 border border-amber-500/30 flex items-center gap-1 cursor-pointer transition-colors"
+                            title="Chỉnh sửa tên guideline lâm sàng (Đồng bộ trực tiếp lên Cloud)"
+                          >
+                            <span>✏️ Sửa tên</span>
+                          </button>
+                        )}
+                      </div>
 
                       {/* Bottom Prompt Bar: Changes Badge + Click Indicator */}
                       <div className="mt-2.5 sm:mt-3 flex items-center justify-between gap-2 pt-2 border-t border-slate-200/50 dark:border-slate-800/60">
@@ -2288,13 +2306,16 @@ export default function NeuroGuidePage() {
                 const normalizeT = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
                 setGuidelineDocs((prev) =>
                   prev.map((g) => {
-                    if (g.id === updatedDoc.id || normalizeT(g.title) === normalizeT(updatedDoc.title)) {
+                    const matchId = g.id === updatedDoc.id || (editingDocId && g.id === editingDocId);
+                    const matchPrevDoc = editingGuidelineDoc && (g.id === editingGuidelineDoc.id || normalizeT(g.title) === normalizeT(editingGuidelineDoc.title));
+                    const matchTitle = normalizeT(g.title) === normalizeT(updatedDoc.title);
+                    if (matchId || matchPrevDoc || matchTitle) {
                       return updatedDoc;
                     }
                     return g;
                   })
                 );
-                setSyncMessage(`✓ Đã lưu thay đổi cho guideline "${updatedDoc.title}".`);
+                setSyncMessage(`✓ Đã lưu thay đổi tên guideline "${updatedDoc.title}" lên Cloud.`);
               }
               reloadGuidelines();
             }}

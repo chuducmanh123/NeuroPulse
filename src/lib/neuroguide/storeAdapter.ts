@@ -335,6 +335,22 @@ export async function saveStoreFileSafe(fileName: string, dataStr: string): Prom
             },
             { onConflict: "id" }
           );
+        } else if (approvedCount > 0) {
+          const doc = convertGuidelineRecordToDoc(record, false);
+          if (doc) {
+            await supabaseAdmin.from("neuroguide_docs").upsert(
+              {
+                id: record.guideline_id,
+                title: record.metadata.title,
+                organization: record.metadata.society || "AHA/ASA",
+                year: String(record.metadata.year || "2026"),
+                status: "approved",
+                data: { ...doc, title: record.metadata.title, status: "approved", _reviewRecord: record },
+                updated_at: record.updated_at || new Date().toISOString(),
+              },
+              { onConflict: "id" }
+            );
+          }
         }
       }
     } catch (sbErr) {

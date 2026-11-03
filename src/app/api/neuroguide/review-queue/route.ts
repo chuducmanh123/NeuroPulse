@@ -970,6 +970,8 @@ export async function POST(request: NextRequest) {
     if (action === "EDIT_GUIDELINE") {
       const {
         title,
+        original_title,
+        originalTitle,
         society: newSociety,
         year: newYear,
         subspecialty,
@@ -987,12 +989,15 @@ export async function POST(request: NextRequest) {
       const normalizeTitle = (t?: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
       const normTarget = cleanDocId.toLowerCase();
       const normTitle = normalizeTitle(title);
+      const prevTitle = (original_title || originalTitle || "").trim();
+      const normPrevTitle = normalizeTitle(prevTitle);
 
       // 1. Cập nhật active library nếu đã nạp
       const activeData = await loadMergedNeuroGuideData();
       let docIdx = activeData.guidelines.findIndex((g) => {
         const gId = (g.id || "").toLowerCase();
         if (gId === normTarget || gId.includes(normTarget) || normTarget.includes(gId)) return true;
+        if (normPrevTitle && normalizeTitle(g.title) === normPrevTitle) return true;
         if (normTitle && normalizeTitle(g.title) === normTitle) return true;
         return false;
       });
@@ -1071,10 +1076,14 @@ export async function POST(request: NextRequest) {
                 const fullP = path.join(dir, f);
                 const raw = fs.readFileSync(fullP, "utf-8");
                 const parsed = JSON.parse(raw);
-                if (
-                  (parsed.guideline_id && parsed.guideline_id.toLowerCase() === normTarget) ||
-                  (parsed.metadata?.title && normalizeTitle(parsed.metadata.title) === normTitle)
-                ) {
+                const gIdLower = (parsed.guideline_id || "").toLowerCase();
+                const parsedTitleLower = normalizeTitle(parsed.metadata?.title);
+                const isIdMatch = gIdLower && (gIdLower === normTarget || gIdLower.includes(normTarget) || normTarget.includes(gIdLower));
+                const isTitleMatch = parsedTitleLower && (
+                  parsedTitleLower === normTitle ||
+                  (normPrevTitle && parsedTitleLower === normPrevTitle)
+                );
+                if (isIdMatch || isTitleMatch) {
                   targetFileName = f;
                   fileInfo = { content: raw, sourcePath: fullP };
                   break;
@@ -1126,7 +1135,7 @@ export async function POST(request: NextRequest) {
             }
 
             const existingRec = rec.recommendations.find((r) => r.rec_id === chg.id);
-            const status = existingRec ? existingRec.approval_status : "PENDING_REVIEW";
+            const status = existingRec ? existingRec.approval_status : (docIdx >= 0 ? "APPROVED" : "PENDING_REVIEW");
 
             let pNum: string | undefined = (chg as any).picoNumber ? String((chg as any).picoNumber) : undefined;
             let pQuestion: string | undefined = (chg as any).picoQuestion || undefined;

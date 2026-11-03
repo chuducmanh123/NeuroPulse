@@ -112,7 +112,10 @@ export async function getFromSupabase(): Promise<SupabaseNeuroGuidePayload | nul
         if (topicKey) deletedKeys.add(topicKey);
       } else {
         const gDoc = row.data as GuidelineDoc;
-        if (gDoc && gDoc.title) {
+        if (gDoc && (gDoc.title || row.title)) {
+          if (row.title && gDoc.title !== row.title) {
+            gDoc.title = row.title;
+          }
           if (rowId) {
             approvedKeys.add(rowId);
             deletedKeys.delete(rowId);
@@ -337,10 +340,6 @@ export function mergeGuidelines(
         chosen = docChanges > existingChanges ? doc : existing;
       } else if (doc.year !== existing.year) {
         chosen = doc.year > existing.year ? doc : existing;
-      } else if (existing.id === "aha-ais-2026") {
-        chosen = existing;
-      } else if (doc.id === "aha-ais-2026") {
-        chosen = doc;
       }
 
       const discarded = chosen === existing ? doc : existing;
@@ -583,8 +582,8 @@ export async function loadMergedNeuroGuideData(): Promise<{
     const mergedExclusionSet = new Set<string>([...deletedSet, ...unapprovedFilterSet]);
     const finalGuidelines =
       filteredStore.length > 0
-        ? mergeGuidelines(filteredStore, coordinatedDynamicDocs, mergedExclusionSet)
-        : mergeGuidelines([], coordinatedDynamicDocs, mergedExclusionSet);
+        ? mergeGuidelines(coordinatedDynamicDocs, filteredStore, mergedExclusionSet)
+        : mergeGuidelines(coordinatedDynamicDocs, [], mergedExclusionSet);
 
     return {
       guidelines: finalGuidelines,
@@ -602,8 +601,8 @@ export async function loadMergedNeuroGuideData(): Promise<{
     const filteredStore = storeDocs.filter((g) => !isStoreDocDeleted(g));
     const finalGuidelines =
       filteredStore.length > 0
-        ? mergeGuidelines(filteredStore, coordinatedLocalDocs, deletedSet)
-        : mergeGuidelines([], coordinatedLocalDocs, deletedSet);
+        ? mergeGuidelines(coordinatedLocalDocs, filteredStore, deletedSet)
+        : mergeGuidelines(coordinatedLocalDocs, [], deletedSet);
     return {
       guidelines: finalGuidelines,
       conferences: mergeConferences(localData.conferences),

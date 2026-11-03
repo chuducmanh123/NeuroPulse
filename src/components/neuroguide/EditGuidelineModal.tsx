@@ -818,8 +818,9 @@ export function EditGuidelineModal({
       const payload = {
         action: "EDIT_GUIDELINE",
         doc_id: docId || guidelineDoc?.id,
-        title: docTitle,
-        society: docSociety,
+        original_title: guidelineDoc?.title || "",
+        title: docTitle.trim(),
+        society: docSociety.trim(),
         year: parseInt(docYear, 10) || new Date().getFullYear(),
         subspecialty: docSubspecialty,
         executiveSummary: docSummary,
@@ -989,6 +990,36 @@ export function EditGuidelineModal({
           </div>
         </div>
 
+        {/* PROMINENT GUIDELINE TITLE EDIT BAR (ALWAYS ACCESSIBLE ACROSS ALL TABS) */}
+        <div className="px-5 py-2.5 bg-amber-500/10 dark:bg-amber-500/15 border-b border-amber-500/25 flex flex-col sm:flex-row sm:items-center gap-2 flex-shrink-0">
+          <div className="flex items-center gap-1.5 flex-shrink-0">
+            <span className="text-[11px] font-black uppercase tracking-wider text-amber-800 dark:text-amber-300 flex items-center gap-1">
+              <span>🏷️</span> Tên Guideline:
+            </span>
+          </div>
+          <div className="flex-1 min-w-0 flex items-center gap-2">
+            <input
+              type="text"
+              required
+              value={docTitle}
+              onChange={(e) => setDocTitle(e.target.value)}
+              placeholder="Nhập tên guideline lâm sàng (sẽ lưu trực tiếp lên Cloud)..."
+              className={`w-full px-3 py-1.5 rounded-xl border text-xs sm:text-sm font-bold transition-all focus:outline-hidden focus:ring-2 focus:ring-amber-500/50 shadow-2xs ${
+                darkMode
+                  ? "bg-slate-800 border-slate-700 text-white placeholder-slate-500 focus:border-amber-400"
+                  : "bg-white border-amber-300 text-slate-900 placeholder-slate-400 focus:border-amber-500"
+              }`}
+              title="Sửa tên guideline tại đây (Đồng bộ trực tiếp lên Cloud)"
+            />
+            <span
+              className="text-[10px] font-bold px-2 py-1 rounded-lg border bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border-emerald-500/30 whitespace-nowrap flex items-center gap-1 flex-shrink-0 shadow-2xs"
+              title="Những thay đổi tên guideline sẽ được lưu đồng bộ lên Cloud & Supabase"
+            >
+              <span>☁️</span> Lưu trên Cloud
+            </span>
+          </div>
+        </div>
+
         {/* ERROR NOTIFICATION */}
         {errorMessage && (
           <div className="mx-5 mt-3 p-3 rounded-xl text-xs font-bold bg-rose-50 text-rose-700 border border-rose-200 dark:bg-rose-950/50 dark:text-rose-300 dark:border-rose-800 flex-shrink-0">
@@ -1055,8 +1086,11 @@ export function EditGuidelineModal({
               <div className="flex-1 min-h-0 overflow-y-auto p-5 custom-scrollbar">
                 <div className="space-y-4 max-w-3xl mx-auto">
                   <div>
-                    <label className="block font-bold mb-1 text-slate-700 dark:text-slate-300">
-                      Guideline Title:
+                    <label className="block font-bold mb-1 text-slate-700 dark:text-slate-300 flex items-center justify-between">
+                      <span>Tên Guideline (Guideline Title):</span>
+                      <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1">
+                        <span>☁️</span> Lưu đồng bộ Cloud
+                      </span>
                     </label>
                     <input
                       type="text"
@@ -2165,11 +2199,12 @@ export function EditGuidelineModal({
                 type="submit"
                 disabled={isLoading}
                 className="px-5 py-2 rounded-xl font-bold bg-amber-500 hover:bg-amber-600 text-white shadow-xs cursor-pointer disabled:opacity-50 flex items-center gap-1.5"
+                title="Lưu tất cả các chỉnh sửa và đồng bộ trực tiếp lên Cloud"
               >
                 {isLoading ? (
-                  <span>Saving changes...</span>
+                  <span>Đang lưu lên Cloud...</span>
                 ) : (
-                  <span>✓ Save All Changes</span>
+                  <span>☁️ Lưu thay đổi lên Cloud</span>
                 )}
               </button>
             </div>
