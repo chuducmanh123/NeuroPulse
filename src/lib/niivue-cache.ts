@@ -11,7 +11,7 @@
 
 const DB_NAME = 'neurovision_cache_v1';
 const STORE_NAME = 'neuro_assets';
-const CACHE_VERSION = '2026.11'; // Bump to invalidate stale volumes
+const CACHE_VERSION = '2026.11.2'; // Bumped for thresholded venous sinuses atlas
 
 interface CacheRecord {
   key: string;

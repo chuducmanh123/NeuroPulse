@@ -34,6 +34,8 @@ export default function NeuroViewerCanvas({ className = "", darkMode = true }: N
   const activeMesh = useNeuroVisionStore((s) => s.activeMesh);
   const highlightedLabelId = useNeuroVisionStore((s) => s.highlightedLabelId);
   const isProgrammaticChange = useNeuroVisionStore((s) => s.isProgrammaticChange);
+  const isLoading = useNeuroVisionStore((s) => s.isLoading);
+  const loadProgress = useNeuroVisionStore((s) => s.loadProgress);
 
   const setCrosshair = useNeuroVisionStore((s) => s.setCrosshair);
   const setSelectedRegion = useNeuroVisionStore((s) => s.setSelectedRegion);
@@ -92,7 +94,7 @@ export default function NeuroViewerCanvas({ className = "", darkMode = true }: N
       crosshairWidth: 1.2,
       isColorbar: false,
       textHeight: 0.035,
-      loadingText: "Tải dữ liệu não bộ MNI152...",
+      loadingText: "", // Rendered cleanly via HTML overlay with full UTF-8 Vietnamese font
     });
 
     nv.attachToCanvas(canvasRef.current);
@@ -351,6 +353,16 @@ export default function NeuroViewerCanvas({ className = "", darkMode = true }: N
         className="w-full h-full block cursor-crosshair outline-none"
         tabIndex={0}
       />
+
+      {isLoading && (
+        <div className="absolute inset-0 bg-slate-950/85 backdrop-blur-sm flex flex-col items-center justify-center gap-3 z-20 transition-opacity">
+          <div className="w-10 h-10 border-3 border-sky-500 border-t-transparent rounded-full animate-spin"></div>
+          <p className="text-sm font-bold text-sky-400 tracking-wider">ĐANG TẢI DỮ LIỆU</p>
+          <p className="text-xs text-slate-400 font-mono">
+            {loadProgress || "Không gian chuẩn MNI152 1mm"}
+          </p>
+        </div>
+      )}
 
       {errorMsg && (
         <div className="absolute inset-x-4 top-4 bg-rose-950/90 border border-rose-500/50 text-rose-200 text-xs p-3 rounded-lg shadow-xl backdrop-blur-md z-30">
