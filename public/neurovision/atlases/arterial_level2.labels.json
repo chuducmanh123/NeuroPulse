@@ -10,63 +10,73 @@
   "labels": [
     {
       "index": 1,
-      "name": "ACAL (acronyms found in source rows for this value)",
+      "name": "Lãnh thổ Động mạch não trước (Trái) (Anterior Cerebral Artery Territory (Left))",
       "source": "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas",
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "code": "ACA_L"
     },
     {
       "index": 2,
-      "name": "ACAR (acronyms found in source rows for this value)",
+      "name": "Lãnh thổ Động mạch não trước (Phải) (Anterior Cerebral Artery Territory (Right))",
       "source": "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas",
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "code": "ACA_R"
     },
     {
       "index": 3,
-      "name": "MCAL (acronyms found in source rows for this value)",
+      "name": "Lãnh thổ Động mạch não giữa (Trái) (Middle Cerebral Artery Territory (Left))",
       "source": "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas",
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "code": "MCA_L"
     },
     {
       "index": 4,
-      "name": "MCAR (acronyms found in source rows for this value)",
+      "name": "Lãnh thổ Động mạch não giữa (Phải) (Middle Cerebral Artery Territory (Right))",
       "source": "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas",
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "code": "MCA_R"
     },
     {
       "index": 5,
-      "name": "PCAL/PCAR (acronyms found in source rows for this value)",
+      "name": "Lãnh thổ Động mạch não sau (Trái) (Posterior Cerebral Artery Territory (Left))",
       "source": "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas",
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "code": "PCA_L"
     },
     {
       "index": 6,
-      "name": "PCAL/PCAR (acronyms found in source rows for this value)",
+      "name": "Lãnh thổ Động mạch não sau (Phải) (Posterior Cerebral Artery Territory (Right))",
       "source": "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas",
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "code": "PCA_R"
     },
     {
       "index": 7,
-      "name": "VBL (acronyms found in source rows for this value)",
+      "name": "Lãnh thổ Động mạch Đốt sống - Thân nền (Trái) (Vertebrobasilar Territory (Left))",
       "source": "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas",
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "code": "VB_L"
     },
     {
       "index": 8,
-      "name": "VBR (acronyms found in source rows for this value)",
+      "name": "Lãnh thổ Động mạch Đốt sống - Thân nền (Phải) (Vertebrobasilar Territory (Right))",
       "source": "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas",
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "code": "VB_R"
     },
     {
       "index": 9,
-      "name": "LVL (acronyms found in source rows for this value)",
+      "name": "Không gian Não thất bên (Trái) (Lateral Ventricle Space (Left))",
       "source": "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas",
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "code": "LVL"
     },
     {
       "index": 10,
-      "name": "LVR (acronyms found in source rows for this value)",
+      "name": "Không gian Não thất bên (Phải) (Lateral Ventricle Space (Right))",
       "source": "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas",
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "code": "LVR"
     }
   ]
 }

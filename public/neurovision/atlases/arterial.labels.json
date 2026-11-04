@@ -11,7 +11,7 @@
   "labels": [
     {
       "index": 1,
-      "name": "anterior cerebral artery left",
+      "name": "ĐM não trước (ACA - Trái) (Mặt trong thùy trán & đỉnh) (Anterior Cerebral Artery territory (Left))",
       "acronym": "ACAL",
       "level2_index": 1,
       "level2_acronym": "ACAL",
@@ -22,7 +22,7 @@
     },
     {
       "index": 2,
-      "name": "anterior cerebral artery right",
+      "name": "ĐM não trước (ACA - Phải) (Mặt trong thùy trán & đỉnh) (Anterior Cerebral Artery territory (Right))",
       "acronym": "ACAR",
       "level2_index": 2,
       "level2_acronym": "ACAR",
@@ -33,7 +33,7 @@
     },
     {
       "index": 3,
-      "name": "medial lenticulostriate left",
+      "name": "Nhánh vân thể trong (ĐM não trước - Trái) (ĐM Heubner) (Medial Lenticulostriate Artery territory (Left))",
       "acronym": "MLSL",
       "level2_index": 1,
       "level2_acronym": "ACAL",
@@ -44,7 +44,7 @@
     },
     {
       "index": 4,
-      "name": "medial lenticulostriate right",
+      "name": "Nhánh vân thể trong (ĐM não trước - Phải) (ĐM Heubner) (Medial Lenticulostriate Artery territory (Right))",
       "acronym": "MLSR",
       "level2_index": 2,
       "level2_acronym": "ACAR",
@@ -55,7 +55,7 @@
     },
     {
       "index": 5,
-      "name": "lateral lenticulostriate left",
+      "name": "Nhánh vân thể ngoài (ĐM não giữa - Trái) (Nhánh xuyên bao trong & hạch nền) (Lateral Lenticulostriate Artery territory (Left))",
       "acronym": "LLSL",
       "level2_index": 3,
       "level2_acronym": "MCAL",
@@ -66,7 +66,7 @@
     },
     {
       "index": 6,
-      "name": "lateral lenticulostriate right",
+      "name": "Nhánh vân thể ngoài (ĐM não giữa - Phải) (Nhánh xuyên bao trong & hạch nền) (Lateral Lenticulostriate Artery territory (Right))",
       "acronym": "LLSR",
       "level2_index": 4,
       "level2_acronym": "MCAR",
@@ -77,7 +77,7 @@
     },
     {
       "index": 7,
-      "name": "frontal pars of middle cerebral artery left",
+      "name": "ĐM não giữa - Phân nhánh trán (Trái) (Vỏ não vận động & Broca) (Middle Cerebral Artery - Frontal pars (Left))",
       "acronym": "MCAFL",
       "level2_index": 3,
       "level2_acronym": "MCAL",
@@ -88,7 +88,7 @@
     },
     {
       "index": 8,
-      "name": "frontal pars of middle cerebral artery right",
+      "name": "ĐM não giữa - Phân nhánh trán (Phải) (Vỏ não vận động trán bên) (Middle Cerebral Artery - Frontal pars (Right))",
       "acronym": "MCAFR",
       "level2_index": 4,
       "level2_acronym": "MCAR",
@@ -99,7 +99,7 @@
     },
     {
       "index": 9,
-      "name": "parietal pars of middle cerebral artery left",
+      "name": "ĐM não giữa - Phân nhánh đỉnh (Trái) (Vỏ não cảm giác & đỉnh dưới) (Middle Cerebral Artery - Parietal pars (Left))",
       "acronym": "MCAPL",
       "level2_index": 3,
       "level2_acronym": "MCAL",
@@ -110,8 +110,8 @@
     },
     {
       "index": 10,
-      "name": "parietal pars of middle cerebral artery right",
-      "acronym": "MCAPL",
+      "name": "ĐM não giữa - Phân nhánh đỉnh (Phải) (Vỏ não chú ý không gian) (Middle Cerebral Artery - Parietal pars (Right))",
+      "acronym": "MCAPR",
       "level2_index": 4,
       "level2_acronym": "MCAR",
       "bilateral_group": "MCA",
@@ -121,7 +121,7 @@
     },
     {
       "index": 11,
-      "name": "temporal pars of middle cerebral artery left",
+      "name": "ĐM não giữa - Phân nhánh thái dương (Trái) (Vùng Wernicke & thái dương trên/giữa) (Middle Cerebral Artery - Temporal pars (Left))",
       "acronym": "MCATL",
       "level2_index": 3,
       "level2_acronym": "MCAL",
@@ -132,8 +132,8 @@
     },
     {
       "index": 12,
-      "name": "temporal pars of middle cerebral artery right",
-      "acronym": "MCATL",
+      "name": "ĐM não giữa - Phân nhánh thái dương (Phải) (Thùy thái dương ngoài) (Middle Cerebral Artery - Temporal pars (Right))",
+      "acronym": "MCATR",
       "level2_index": 4,
       "level2_acronym": "MCAR",
       "bilateral_group": "MCA",
@@ -143,7 +143,7 @@
     },
     {
       "index": 13,
-      "name": "occipital pars of middle cerebral artery left",
+      "name": "ĐM não giữa - Phân nhánh chẩm (Trái) (Vùng chuyển tiếp đỉnh - chẩm) (Middle Cerebral Artery - Occipital pars (Left))",
       "acronym": "MCAOL",
       "level2_index": 3,
       "level2_acronym": "MCAL",
@@ -154,8 +154,8 @@
     },
     {
       "index": 14,
-      "name": "occipital pars of middle cerebral artery right",
-      "acronym": "MCAOL",
+      "name": "ĐM não giữa - Phân nhánh chẩm (Phải) (Vùng chuyển tiếp đỉnh - chẩm) (Middle Cerebral Artery - Occipital pars (Right))",
+      "acronym": "MCAOR",
       "level2_index": 4,
       "level2_acronym": "MCAR",
       "bilateral_group": "MCA",
@@ -165,7 +165,7 @@
     },
     {
       "index": 15,
-      "name": "insular pars of middle cerebral artery left",
+      "name": "ĐM não giữa - Phân nhánh thùy đảo (Trái) (Vỏ thùy đảo M2) (Middle Cerebral Artery - Insular pars (Left))",
       "acronym": "MCAIL",
       "level2_index": 3,
       "level2_acronym": "MCAL",
@@ -176,8 +176,8 @@
     },
     {
       "index": 16,
-      "name": "insular pars of middle cerebral artery right",
-      "acronym": "MCAIL",
+      "name": "ĐM não giữa - Phân nhánh thùy đảo (Phải) (Vỏ thùy đảo M2) (Middle Cerebral Artery - Insular pars (Right))",
+      "acronym": "MCAIR",
       "level2_index": 4,
       "level2_acronym": "MCAR",
       "bilateral_group": "MCA",
@@ -187,7 +187,7 @@
     },
     {
       "index": 17,
-      "name": "temporal pars of posterior cerebral artery left",
+      "name": "ĐM não sau - Phân nhánh thái dương (Trái) (Mặt dưới thùy thái dương) (Posterior Cerebral Artery - Temporal pars (Left))",
       "acronym": "PCATL",
       "level2_index": 5,
       "level2_acronym": "PCAR",
@@ -198,7 +198,7 @@
     },
     {
       "index": 18,
-      "name": "temporal pars of posterior cerebral artery right",
+      "name": "ĐM não sau - Phân nhánh thái dương (Phải) (Mặt dưới thùy thái dương) (Posterior Cerebral Artery - Temporal pars (Right))",
       "acronym": "PCATR",
       "level2_index": 6,
       "level2_acronym": "PCAL",
@@ -209,7 +209,7 @@
     },
     {
       "index": 19,
-      "name": "occipital pars of posterior cerebral artery left",
+      "name": "ĐM não sau - Phân nhánh chẩm (Trái) (Vỏ thị giác V1 & khe cựa) (Posterior Cerebral Artery - Occipital pars (Left))",
       "acronym": "PCAOL",
       "level2_index": 5,
       "level2_acronym": "PCAL",
@@ -220,7 +220,7 @@
     },
     {
       "index": 20,
-      "name": "occipital pars of posterior cerebral artery right",
+      "name": "ĐM não sau - Phân nhánh chẩm (Phải) (Vỏ thị giác V1 & khe cựa) (Posterior Cerebral Artery - Occipital pars (Right))",
       "acronym": "PCAOR",
       "level2_index": 6,
       "level2_acronym": "PCAR",
@@ -231,7 +231,7 @@
     },
     {
       "index": 21,
-      "name": "posterior choroidal and thalamoperfurators left",
+      "name": "ĐM màng mạch sau & Nhánh xuyên đồi thị (Trái) (Posterior Choroidal & Thalamoperforating Arteries (Left))",
       "acronym": "PCTPL",
       "level2_index": 5,
       "level2_acronym": "PCAL",
@@ -242,7 +242,7 @@
     },
     {
       "index": 22,
-      "name": "posterior choroidal and thalamoperfurators right",
+      "name": "ĐM màng mạch sau & Nhánh xuyên đồi thị (Phải) (Posterior Choroidal & Thalamoperforating Arteries (Right))",
       "acronym": "PCTPR",
       "level2_index": 6,
       "level2_acronym": "PCAR",
@@ -253,7 +253,7 @@
     },
     {
       "index": 23,
-      "name": "anteior choroidal and thalamoperfurators left",
+      "name": "ĐM màng mạch trước & Nhánh xuyên đồi thị (Trái) (Anterior Choroidal & Thalamoperforating Arteries (Left))",
       "acronym": "ACTPL",
       "level2_index": 5,
       "level2_acronym": "PCAL",
@@ -264,7 +264,7 @@
     },
     {
       "index": 24,
-      "name": "anterior choroidal and thalamoperfurators right",
+      "name": "ĐM màng mạch trước & Nhánh xuyên đồi thị (Phải) (Anterior Choroidal & Thalamoperforating Arteries (Right))",
       "acronym": "ACTPR",
       "level2_index": 6,
       "level2_acronym": "PCAR",
@@ -275,7 +275,7 @@
     },
     {
       "index": 25,
-      "name": "basilar left",
+      "name": "Động mạch thân nền (Trái) (Cầu não & trung não) (Basilar Artery territory (Left))",
       "acronym": "BL",
       "level2_index": 7,
       "level2_acronym": "VBL",
@@ -286,7 +286,7 @@
     },
     {
       "index": 26,
-      "name": "basilar right",
+      "name": "Động mạch thân nền (Phải) (Cầu não & trung não) (Basilar Artery territory (Right))",
       "acronym": "BR",
       "level2_index": 8,
       "level2_acronym": "VBR",
@@ -297,7 +297,7 @@
     },
     {
       "index": 27,
-      "name": "superior cerebellar left",
+      "name": "Động mạch tiểu não trên (SCA - Trái) (Mặt trên tiểu não) (Superior Cerebellar Artery territory (Left))",
       "acronym": "SCL",
       "level2_index": 7,
       "level2_acronym": "VBL",
@@ -308,7 +308,7 @@
     },
     {
       "index": 28,
-      "name": "superior cerebellar right",
+      "name": "Động mạch tiểu não trên (SCA - Phải) (Mặt trên tiểu não) (Superior Cerebellar Artery territory (Right))",
       "acronym": "SCR",
       "level2_index": 8,
       "level2_acronym": "VBR",
@@ -319,7 +319,7 @@
     },
     {
       "index": 29,
-      "name": "inferior cerebellar left",
+      "name": "Động mạch tiểu não dưới (PICA/AICA - Trái) (Tiểu não dưới & hành não) (Inferior Cerebellar Artery territory (Left))",
       "acronym": "ICL",
       "level2_index": 7,
       "level2_acronym": "VBL",
@@ -330,7 +330,7 @@
     },
     {
       "index": 30,
-      "name": "inferior cerebellar right",
+      "name": "Động mạch tiểu não dưới (PICA/AICA - Phải) (Tiểu não dưới & hành não) (Inferior Cerebellar Artery territory (Right))",
       "acronym": "ICR",
       "level2_index": 8,
       "level2_acronym": "VBR",
@@ -341,7 +341,7 @@
     },
     {
       "index": 31,
-      "name": "lateral ventricle left",
+      "name": "Không gian Não thất bên (Trái) (Lateral Ventricle Space (Left))",
       "acronym": "LVL",
       "level2_index": 9,
       "level2_acronym": "LVL",
@@ -352,7 +352,7 @@
     },
     {
       "index": 32,
-      "name": "lateral ventricle right",
+      "name": "Không gian Não thất bên (Phải) (Lateral Ventricle Space (Right))",
       "acronym": "LVR",
       "level2_index": 10,
       "level2_acronym": "LVR",

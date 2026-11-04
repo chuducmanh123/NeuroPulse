@@ -891,7 +891,7 @@
       "code": "ACA_L",
       "name_vi": "Lãnh thổ Động mạch não trước (Trái)",
       "name_en": "Anterior Cerebral Artery Territory (Left)",
-      "category": "vascular_territory",
+      "category": "major_arterial_territory",
       "brodmann_area": [],
       "functions": [
         "Mặt trong thùy trán và thùy đỉnh",
@@ -920,7 +920,12 @@
       "source": [
         "Liu CF et al. Digital 3D Brain MRI Arterial Territories Atlas. Sci Data 2023; 10:74."
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        30,
+        144,
+        255
+      ]
     },
     {
       "atlas": "arterial_level2",
@@ -928,7 +933,7 @@
       "code": "ACA_R",
       "name_vi": "Lãnh thổ Động mạch não trước (Phải)",
       "name_en": "Anterior Cerebral Artery Territory (Right)",
-      "category": "vascular_territory",
+      "category": "major_arterial_territory",
       "brodmann_area": [],
       "functions": [
         "Mặt trong thùy trán và thùy đỉnh phải",
@@ -956,7 +961,12 @@
       "source": [
         "Liu CF et al. Digital 3D Brain MRI Arterial Territories Atlas. Sci Data 2023; 10:74."
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        0,
+        190,
+        245
+      ]
     },
     {
       "atlas": "arterial_level2",
@@ -964,7 +974,7 @@
       "code": "MCA_L",
       "name_vi": "Lãnh thổ Động mạch não giữa (Trái)",
       "name_en": "Middle Cerebral Artery Territory (Left)",
-      "category": "vascular_territory",
+      "category": "major_arterial_territory",
       "brodmann_area": [],
       "functions": [
         "Toàn bộ mặt ngoài bán cầu não trái",
@@ -993,7 +1003,12 @@
       "source": [
         "Liu CF et al. Digital 3D Brain MRI Arterial Territories Atlas. Sci Data 2023; 10:74."
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        235,
+        60,
+        40
+      ]
     },
     {
       "atlas": "arterial_level2",
@@ -1001,7 +1016,7 @@
       "code": "MCA_R",
       "name_vi": "Lãnh thổ Động mạch não giữa (Phải)",
       "name_en": "Middle Cerebral Artery Territory (Right)",
-      "category": "vascular_territory",
+      "category": "major_arterial_territory",
       "brodmann_area": [],
       "functions": [
         "Toàn bộ mặt ngoài bán cầu não phải",
@@ -1029,7 +1044,12 @@
       "source": [
         "Liu CF et al. Digital 3D Brain MRI Arterial Territories Atlas. Sci Data 2023; 10:74."
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        255,
+        130,
+        20
+      ]
     },
     {
       "atlas": "arterial_level2",
@@ -1037,7 +1057,7 @@
       "code": "PCA_L",
       "name_vi": "Lãnh thổ Động mạch não sau (Trái)",
       "name_en": "Posterior Cerebral Artery Territory (Left)",
-      "category": "vascular_territory",
+      "category": "major_arterial_territory",
       "brodmann_area": [],
       "functions": [
         "Thùy chẩm trái (vỏ não thị giác sơ cấp)",
@@ -1065,7 +1085,12 @@
       "source": [
         "Liu CF et al. Digital 3D Brain MRI Arterial Territories Atlas. Sci Data 2023; 10:74."
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        40,
+        190,
+        80
+      ]
     },
     {
       "atlas": "arterial_level2",
@@ -1073,7 +1098,7 @@
       "code": "PCA_R",
       "name_vi": "Lãnh thổ Động mạch não sau (Phải)",
       "name_en": "Posterior Cerebral Artery Territory (Right)",
-      "category": "vascular_territory",
+      "category": "major_arterial_territory",
       "brodmann_area": [],
       "functions": [
         "Thùy chẩm phải",
@@ -1101,7 +1126,12 @@
       "source": [
         "Liu CF et al. Digital 3D Brain MRI Arterial Territories Atlas. Sci Data 2023; 10:74."
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        110,
+        215,
+        40
+      ]
     },
     {
       "atlas": "arterial_level2",
@@ -1109,7 +1139,7 @@
       "code": "VB_L",
       "name_vi": "Lãnh thổ Động mạch Đốt sống - Thân nền (Trái)",
       "name_en": "Vertebrobasilar Territory (Left)",
-      "category": "vascular_territory",
+      "category": "major_arterial_territory",
       "brodmann_area": [],
       "functions": [
         "Thân não bên trái (trung não, cầu não, hành não)",
@@ -1141,7 +1171,12 @@
       "source": [
         "Liu CF et al. Digital 3D Brain MRI Arterial Territories Atlas. Sci Data 2023; 10:74."
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        140,
+        70,
+        210
+      ]
     },
     {
       "atlas": "arterial_level2",
@@ -1149,7 +1184,7 @@
       "code": "VB_R",
       "name_vi": "Lãnh thổ Động mạch Đốt sống - Thân nền (Phải)",
       "name_en": "Vertebrobasilar Territory (Right)",
-      "category": "vascular_territory",
+      "category": "major_arterial_territory",
       "brodmann_area": [],
       "functions": [
         "Thân não bên phải",
@@ -1181,15 +1216,20 @@
       "source": [
         "Liu CF et al. Digital 3D Brain MRI Arterial Territories Atlas. Sci Data 2023; 10:74."
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        185,
+        95,
+        230
+      ]
     },
     {
       "atlas": "arterial_level2",
       "label_id": 9,
-      "code": "arterial_level2_9",
-      "name_vi": "LVL (acronyms found in source rows for this value)",
-      "name_en": "LVL (acronyms found in source rows for this value)",
-      "category": "subcortical",
+      "code": "LVL",
+      "name_vi": "Không gian Não thất bên (Trái)",
+      "name_en": "Lateral Ventricle Space (Left)",
+      "category": "ventricle",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1203,15 +1243,20 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        140,
+        155,
+        175
+      ]
     },
     {
       "atlas": "arterial_level2",
       "label_id": 10,
-      "code": "arterial_level2_10",
-      "name_vi": "LVR (acronyms found in source rows for this value)",
-      "name_en": "LVR (acronyms found in source rows for this value)",
-      "category": "subcortical",
+      "code": "LVR",
+      "name_vi": "Không gian Não thất bên (Phải)",
+      "name_en": "Lateral Ventricle Space (Right)",
+      "category": "ventricle",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1225,15 +1270,20 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        165,
+        180,
+        200
+      ]
     },
     {
       "atlas": "arterial",
       "label_id": 1,
       "code": "ACAL",
-      "name_vi": "Động mạch não trước (ACA - Trái) (Mặt trong thùy trán & đỉnh)",
+      "name_vi": "ĐM não trước (ACA - Trái) (Mặt trong thùy trán & đỉnh)",
       "name_en": "Anterior Cerebral Artery territory (Left)",
-      "category": "vascular_territory",
+      "category": "arterial_trunk",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1247,15 +1297,21 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        25,
+        110,
+        235
+      ],
+      "bilateral_group": "ACA"
     },
     {
       "atlas": "arterial",
       "label_id": 2,
       "code": "ACAR",
-      "name_vi": "Động mạch não trước (ACA - Phải) (Mặt trong thùy trán & đỉnh)",
+      "name_vi": "ĐM não trước (ACA - Phải) (Mặt trong thùy trán & đỉnh)",
       "name_en": "Anterior Cerebral Artery territory (Right)",
-      "category": "vascular_territory",
+      "category": "arterial_trunk",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1269,15 +1325,21 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        30,
+        165,
+        255
+      ],
+      "bilateral_group": "ACA"
     },
     {
       "atlas": "arterial",
       "label_id": 3,
       "code": "MLSL",
-      "name_vi": "Nhánh vân thể trong (ĐM não trước) (Trái) (Đầu nhân đuôi & trụ trước bao trong)",
+      "name_vi": "Nhánh vân thể trong (ĐM não trước - Trái) (ĐM Heubner)",
       "name_en": "Medial Lenticulostriate Artery territory (Left)",
-      "category": "subcortical",
+      "category": "arterial_perforator",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1291,15 +1353,21 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        70,
+        95,
+        240
+      ],
+      "bilateral_group": "ACA"
     },
     {
       "atlas": "arterial",
       "label_id": 4,
       "code": "MLSR",
-      "name_vi": "Nhánh vân thể trong (ĐM não trước) (Phải) (Đầu nhân đuôi & trụ trước bao trong)",
+      "name_vi": "Nhánh vân thể trong (ĐM não trước - Phải) (ĐM Heubner)",
       "name_en": "Medial Lenticulostriate Artery territory (Right)",
-      "category": "subcortical",
+      "category": "arterial_perforator",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1313,15 +1381,21 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        0,
+        205,
+        220
+      ],
+      "bilateral_group": "ACA"
     },
     {
       "atlas": "arterial",
       "label_id": 5,
       "code": "LLSL",
-      "name_vi": "Nhánh vân thể ngoài (ĐM não giữa) (Trái) (Nhân bèo & bao trong)",
+      "name_vi": "Nhánh vân thể ngoài (ĐM não giữa - Trái) (Nhánh xuyên bao trong & hạch nền)",
       "name_en": "Lateral Lenticulostriate Artery territory (Left)",
-      "category": "subcortical",
+      "category": "arterial_perforator",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1335,15 +1409,21 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        255,
+        200,
+        20
+      ],
+      "bilateral_group": "MCA"
     },
     {
       "atlas": "arterial",
       "label_id": 6,
       "code": "LLSR",
-      "name_vi": "Nhánh vân thể ngoài (ĐM não giữa) (Phải) (Nhân bèo & bao trong)",
+      "name_vi": "Nhánh vân thể ngoài (ĐM não giữa - Phải) (Nhánh xuyên bao trong & hạch nền)",
       "name_en": "Lateral Lenticulostriate Artery territory (Right)",
-      "category": "subcortical",
+      "category": "arterial_perforator",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1357,15 +1437,21 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        255,
+        230,
+        60
+      ],
+      "bilateral_group": "MCA"
     },
     {
       "atlas": "arterial",
       "label_id": 7,
       "code": "MCAFL",
-      "name_vi": "frontal pars of middle cerebral artery left",
-      "name_en": "frontal pars of middle cerebral artery left",
-      "category": "vascular_territory",
+      "name_vi": "ĐM não giữa - Phân nhánh trán (Trái) (Vỏ não vận động & Broca)",
+      "name_en": "Middle Cerebral Artery - Frontal pars (Left)",
+      "category": "arterial_branch",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1379,15 +1465,21 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        235,
+        45,
+        55
+      ],
+      "bilateral_group": "MCA"
     },
     {
       "atlas": "arterial",
       "label_id": 8,
       "code": "MCAFR",
-      "name_vi": "frontal pars of middle cerebral artery right",
-      "name_en": "frontal pars of middle cerebral artery right",
-      "category": "vascular_territory",
+      "name_vi": "ĐM não giữa - Phân nhánh trán (Phải) (Vỏ não vận động trán bên)",
+      "name_en": "Middle Cerebral Artery - Frontal pars (Right)",
+      "category": "arterial_branch",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1401,15 +1493,21 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        245,
+        85,
+        85
+      ],
+      "bilateral_group": "MCA"
     },
     {
       "atlas": "arterial",
       "label_id": 9,
       "code": "MCAPL",
-      "name_vi": "parietal pars of middle cerebral artery left",
-      "name_en": "parietal pars of middle cerebral artery left",
-      "category": "vascular_territory",
+      "name_vi": "ĐM não giữa - Phân nhánh đỉnh (Trái) (Vỏ não cảm giác & đỉnh dưới)",
+      "name_en": "Middle Cerebral Artery - Parietal pars (Left)",
+      "category": "arterial_branch",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1423,15 +1521,21 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        245,
+        115,
+        25
+      ],
+      "bilateral_group": "MCA"
     },
     {
       "atlas": "arterial",
       "label_id": 10,
-      "code": "MCAPL",
-      "name_vi": "parietal pars of middle cerebral artery right",
-      "name_en": "parietal pars of middle cerebral artery right",
-      "category": "vascular_territory",
+      "code": "MCAPR",
+      "name_vi": "ĐM não giữa - Phân nhánh đỉnh (Phải) (Vỏ não chú ý không gian)",
+      "name_en": "Middle Cerebral Artery - Parietal pars (Right)",
+      "category": "arterial_branch",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1445,15 +1549,21 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        255,
+        155,
+        45
+      ],
+      "bilateral_group": "MCA"
     },
     {
       "atlas": "arterial",
       "label_id": 11,
       "code": "MCATL",
-      "name_vi": "temporal pars of middle cerebral artery left",
-      "name_en": "temporal pars of middle cerebral artery left",
-      "category": "vascular_territory",
+      "name_vi": "ĐM não giữa - Phân nhánh thái dương (Trái) (Vùng Wernicke & thái dương trên/giữa)",
+      "name_en": "Middle Cerebral Artery - Temporal pars (Left)",
+      "category": "arterial_branch",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1467,15 +1577,21 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        225,
+        40,
+        135
+      ],
+      "bilateral_group": "MCA"
     },
     {
       "atlas": "arterial",
       "label_id": 12,
-      "code": "MCATL",
-      "name_vi": "temporal pars of middle cerebral artery right",
-      "name_en": "temporal pars of middle cerebral artery right",
-      "category": "vascular_territory",
+      "code": "MCATR",
+      "name_vi": "ĐM não giữa - Phân nhánh thái dương (Phải) (Thùy thái dương ngoài)",
+      "name_en": "Middle Cerebral Artery - Temporal pars (Right)",
+      "category": "arterial_branch",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1489,15 +1605,21 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        245,
+        95,
+        160
+      ],
+      "bilateral_group": "MCA"
     },
     {
       "atlas": "arterial",
       "label_id": 13,
       "code": "MCAOL",
-      "name_vi": "occipital pars of middle cerebral artery left",
-      "name_en": "occipital pars of middle cerebral artery left",
-      "category": "vascular_territory",
+      "name_vi": "ĐM não giữa - Phân nhánh chẩm (Trái) (Vùng chuyển tiếp đỉnh - chẩm)",
+      "name_en": "Middle Cerebral Artery - Occipital pars (Left)",
+      "category": "arterial_branch",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1511,15 +1633,21 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        195,
+        75,
+        35
+      ],
+      "bilateral_group": "MCA"
     },
     {
       "atlas": "arterial",
       "label_id": 14,
-      "code": "MCAOL",
-      "name_vi": "occipital pars of middle cerebral artery right",
-      "name_en": "occipital pars of middle cerebral artery right",
-      "category": "vascular_territory",
+      "code": "MCAOR",
+      "name_vi": "ĐM não giữa - Phân nhánh chẩm (Phải) (Vùng chuyển tiếp đỉnh - chẩm)",
+      "name_en": "Middle Cerebral Artery - Occipital pars (Right)",
+      "category": "arterial_branch",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1533,15 +1661,21 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        215,
+        100,
+        50
+      ],
+      "bilateral_group": "MCA"
     },
     {
       "atlas": "arterial",
       "label_id": 15,
       "code": "MCAIL",
-      "name_vi": "insular pars of middle cerebral artery left",
-      "name_en": "insular pars of middle cerebral artery left",
-      "category": "vascular_territory",
+      "name_vi": "ĐM não giữa - Phân nhánh thùy đảo (Trái) (Vỏ thùy đảo M2)",
+      "name_en": "Middle Cerebral Artery - Insular pars (Left)",
+      "category": "arterial_branch",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1555,15 +1689,21 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        175,
+        30,
+        85
+      ],
+      "bilateral_group": "MCA"
     },
     {
       "atlas": "arterial",
       "label_id": 16,
-      "code": "MCAIL",
-      "name_vi": "insular pars of middle cerebral artery right",
-      "name_en": "insular pars of middle cerebral artery right",
-      "category": "vascular_territory",
+      "code": "MCAIR",
+      "name_vi": "ĐM não giữa - Phân nhánh thùy đảo (Phải) (Vỏ thùy đảo M2)",
+      "name_en": "Middle Cerebral Artery - Insular pars (Right)",
+      "category": "arterial_branch",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1577,15 +1717,21 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        205,
+        55,
+        110
+      ],
+      "bilateral_group": "MCA"
     },
     {
       "atlas": "arterial",
       "label_id": 17,
       "code": "PCATL",
-      "name_vi": "temporal pars of posterior cerebral artery left",
-      "name_en": "temporal pars of posterior cerebral artery left",
-      "category": "vascular_territory",
+      "name_vi": "ĐM não sau - Phân nhánh thái dương (Trái) (Mặt dưới thùy thái dương)",
+      "name_en": "Posterior Cerebral Artery - Temporal pars (Left)",
+      "category": "arterial_branch",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1599,15 +1745,21 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        35,
+        145,
+        65
+      ],
+      "bilateral_group": "PCA"
     },
     {
       "atlas": "arterial",
       "label_id": 18,
       "code": "PCATR",
-      "name_vi": "temporal pars of posterior cerebral artery right",
-      "name_en": "temporal pars of posterior cerebral artery right",
-      "category": "vascular_territory",
+      "name_vi": "ĐM não sau - Phân nhánh thái dương (Phải) (Mặt dưới thùy thái dương)",
+      "name_en": "Posterior Cerebral Artery - Temporal pars (Right)",
+      "category": "arterial_branch",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1621,15 +1773,21 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        70,
+        190,
+        95
+      ],
+      "bilateral_group": "PCA"
     },
     {
       "atlas": "arterial",
       "label_id": 19,
       "code": "PCAOL",
-      "name_vi": "occipital pars of posterior cerebral artery left",
-      "name_en": "occipital pars of posterior cerebral artery left",
-      "category": "vascular_territory",
+      "name_vi": "ĐM não sau - Phân nhánh chẩm (Trái) (Vỏ thị giác V1 & khe cựa)",
+      "name_en": "Posterior Cerebral Artery - Occipital pars (Left)",
+      "category": "arterial_branch",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1643,15 +1801,21 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        20,
+        205,
+        90
+      ],
+      "bilateral_group": "PCA"
     },
     {
       "atlas": "arterial",
       "label_id": 20,
       "code": "PCAOR",
-      "name_vi": "occipital pars of posterior cerebral artery right",
-      "name_en": "occipital pars of posterior cerebral artery right",
-      "category": "vascular_territory",
+      "name_vi": "ĐM não sau - Phân nhánh chẩm (Phải) (Vỏ thị giác V1 & khe cựa)",
+      "name_en": "Posterior Cerebral Artery - Occipital pars (Right)",
+      "category": "arterial_branch",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1665,15 +1829,21 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        90,
+        230,
+        75
+      ],
+      "bilateral_group": "PCA"
     },
     {
       "atlas": "arterial",
       "label_id": 21,
       "code": "PCTPL",
-      "name_vi": "posterior choroidal and thalamoperfurators left",
-      "name_en": "posterior choroidal and thalamoperfurators left",
-      "category": "subcortical",
+      "name_vi": "ĐM màng mạch sau & Nhánh xuyên đồi thị (Trái)",
+      "name_en": "Posterior Choroidal & Thalamoperforating Arteries (Left)",
+      "category": "arterial_perforator",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1687,15 +1857,21 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        0,
+        160,
+        135
+      ],
+      "bilateral_group": "PCA"
     },
     {
       "atlas": "arterial",
       "label_id": 22,
       "code": "PCTPR",
-      "name_vi": "posterior choroidal and thalamoperfurators right",
-      "name_en": "posterior choroidal and thalamoperfurators right",
-      "category": "subcortical",
+      "name_vi": "ĐM màng mạch sau & Nhánh xuyên đồi thị (Phải)",
+      "name_en": "Posterior Choroidal & Thalamoperforating Arteries (Right)",
+      "category": "arterial_perforator",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1709,15 +1885,21 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        35,
+        195,
+        165
+      ],
+      "bilateral_group": "PCA"
     },
     {
       "atlas": "arterial",
       "label_id": 23,
       "code": "ACTPL",
-      "name_vi": "anteior choroidal and thalamoperfurators left",
-      "name_en": "anteior choroidal and thalamoperfurators left",
-      "category": "subcortical",
+      "name_vi": "ĐM màng mạch trước & Nhánh xuyên đồi thị (Trái)",
+      "name_en": "Anterior Choroidal & Thalamoperforating Arteries (Left)",
+      "category": "arterial_perforator",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1731,15 +1913,21 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        135,
+        175,
+        30
+      ],
+      "bilateral_group": "PCA"
     },
     {
       "atlas": "arterial",
       "label_id": 24,
       "code": "ACTPR",
-      "name_vi": "anterior choroidal and thalamoperfurators right",
-      "name_en": "anterior choroidal and thalamoperfurators right",
-      "category": "subcortical",
+      "name_vi": "ĐM màng mạch trước & Nhánh xuyên đồi thị (Phải)",
+      "name_en": "Anterior Choroidal & Thalamoperforating Arteries (Right)",
+      "category": "arterial_perforator",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1753,15 +1941,21 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        175,
+        205,
+        45
+      ],
+      "bilateral_group": "PCA"
     },
     {
       "atlas": "arterial",
       "label_id": 25,
       "code": "BL",
-      "name_vi": "basilar left",
-      "name_en": "basilar left",
-      "category": "subcortical",
+      "name_vi": "Động mạch thân nền (Trái) (Cầu não & trung não)",
+      "name_en": "Basilar Artery territory (Left)",
+      "category": "arterial_trunk",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1775,15 +1969,21 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        120,
+        50,
+        200
+      ],
+      "bilateral_group": "VB"
     },
     {
       "atlas": "arterial",
       "label_id": 26,
       "code": "BR",
-      "name_vi": "basilar right",
-      "name_en": "basilar right",
-      "category": "subcortical",
+      "name_vi": "Động mạch thân nền (Phải) (Cầu não & trung não)",
+      "name_en": "Basilar Artery territory (Right)",
+      "category": "arterial_trunk",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1797,15 +1997,21 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        155,
+        80,
+        235
+      ],
+      "bilateral_group": "VB"
     },
     {
       "atlas": "arterial",
       "label_id": 27,
       "code": "SCL",
-      "name_vi": "superior cerebellar left",
-      "name_en": "superior cerebellar left",
-      "category": "cerebellum",
+      "name_vi": "Động mạch tiểu não trên (SCA - Trái) (Mặt trên tiểu não)",
+      "name_en": "Superior Cerebellar Artery territory (Left)",
+      "category": "arterial_branch",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1819,15 +2025,21 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        95,
+        85,
+        215
+      ],
+      "bilateral_group": "VB"
     },
     {
       "atlas": "arterial",
       "label_id": 28,
       "code": "SCR",
-      "name_vi": "superior cerebellar right",
-      "name_en": "superior cerebellar right",
-      "category": "cerebellum",
+      "name_vi": "Động mạch tiểu não trên (SCA - Phải) (Mặt trên tiểu não)",
+      "name_en": "Superior Cerebellar Artery territory (Right)",
+      "category": "arterial_branch",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1841,15 +2053,21 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        135,
+        115,
+        240
+      ],
+      "bilateral_group": "VB"
     },
     {
       "atlas": "arterial",
       "label_id": 29,
       "code": "ICL",
-      "name_vi": "inferior cerebellar left",
-      "name_en": "inferior cerebellar left",
-      "category": "cerebellum",
+      "name_vi": "Động mạch tiểu não dưới (PICA/AICA - Trái) (Tiểu não dưới & hành não)",
+      "name_en": "Inferior Cerebellar Artery territory (Left)",
+      "category": "arterial_branch",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1863,15 +2081,21 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        165,
+        35,
+        170
+      ],
+      "bilateral_group": "VB"
     },
     {
       "atlas": "arterial",
       "label_id": 30,
       "code": "ICR",
-      "name_vi": "inferior cerebellar right",
-      "name_en": "inferior cerebellar right",
-      "category": "cerebellum",
+      "name_vi": "Động mạch tiểu não dưới (PICA/AICA - Phải) (Tiểu não dưới & hành não)",
+      "name_en": "Inferior Cerebellar Artery territory (Right)",
+      "category": "arterial_branch",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1885,15 +2109,21 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        200,
+        65,
+        205
+      ],
+      "bilateral_group": "VB"
     },
     {
       "atlas": "arterial",
       "label_id": 31,
       "code": "LVL",
-      "name_vi": "lateral ventricle left",
-      "name_en": "lateral ventricle left",
-      "category": "subcortical",
+      "name_vi": "Không gian Não thất bên (Trái)",
+      "name_en": "Lateral Ventricle Space (Left)",
+      "category": "ventricle",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1907,15 +2137,21 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        130,
+        150,
+        170
+      ],
+      "bilateral_group": "LV"
     },
     {
       "atlas": "arterial",
       "label_id": 32,
       "code": "LVR",
-      "name_vi": "lateral ventricle right",
-      "name_en": "lateral ventricle right",
-      "category": "subcortical",
+      "name_vi": "Không gian Não thất bên (Phải)",
+      "name_en": "Lateral Ventricle Space (Right)",
+      "category": "ventricle",
       "brodmann_area": [],
       "functions": [],
       "arterial_supply": {
@@ -1929,7 +2165,13 @@
       "source": [
         "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
       ],
-      "review_status": "unreviewed"
+      "review_status": "unreviewed",
+      "color_rgb": [
+        160,
+        175,
+        195
+      ],
+      "bilateral_group": "LV"
     },
     {
       "atlas": "brainstem_aan",

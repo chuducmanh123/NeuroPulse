@@ -14,8 +14,8 @@ const MODALITIES: Array<{ id: BaseModality; label: string; shortLabel: string; d
 const OVERLAYS: Array<{ id: ActiveOverlay; label: string }> = [
   { id: "none", label: "Ảnh gốc" },
   { id: "aspects", label: "ASPECTS 10 vùng" },
-  { id: "arterial_level2", label: "Chi phối động mạch" },
-  { id: "arterial", label: "Động mạch toàn não (JHU) (L1)" },
+  { id: "arterial_level2", label: "Chi phối động mạch tổng quát" },
+  { id: "arterial", label: "Chi phối động mạch chi tiết" },
   { id: "brainstem_aan", label: "Hệ thống lưới thức tỉnh" },
   { id: "anatomy", label: "Giải phẫu vỏ & dưới vỏ (Harvard-Oxford) (67 vùng)" },
   { id: "whitematter", label: "Chất trắng (JHU DTI-81) (50 bó)" },
