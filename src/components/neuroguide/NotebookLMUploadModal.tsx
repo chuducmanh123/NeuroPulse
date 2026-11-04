@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useMemo } from "react";
 import { parseNotebookLMContent } from "@/lib/neuroguide/notebooklmParser";
+import { detectSociety } from "@/lib/neuroguide/pubmedDiscovery";
 import { GuidelineDoc, SubspecialtyType, NEUROLOGY_SUBSPECIALTIES } from "@/types/neuroguide";
 import { getAdminHeaders, getStoredAdminToken } from "@/utils/clientAuth";
 
@@ -80,6 +81,10 @@ export function NotebookLMUploadModal({
         }
 
         setRawText(data.text);
+        const detectedSoc = detectSociety(file.name, (data.text || "").slice(0, 3000));
+        if (detectedSoc && detectedSoc !== "Other" && !overrideSociety) {
+          setOverrideSociety(detectedSoc);
+        }
         setSuccessMessage(`Đã trích xuất thành công nội dung từ "${file.name}" (${(data.charCount || data.text.length).toLocaleString()} ký tự).`);
       } catch (err: unknown) {
         const msg = err instanceof Error ? err.message : "Lỗi khi xử lý tệp tài liệu";
@@ -93,6 +98,10 @@ export function NotebookLMUploadModal({
       reader.onload = (event) => {
         const text = (event.target?.result as string) || "";
         setRawText(text);
+        const detectedSoc = detectSociety(file.name, text.slice(0, 3000));
+        if (detectedSoc && detectedSoc !== "Other" && !overrideSociety) {
+          setOverrideSociety(detectedSoc);
+        }
       };
       reader.onerror = () => {
         setErrorMessage("Không thể đọc tệp tin. Vui lòng thử lại hoặc dán văn bản trực tiếp.");

@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
+import { detectSociety } from "@/lib/neuroguide/pubmedDiscovery";
+import { detectGuidelineFormFormat } from "@/lib/neuroguide/guidelineFormat";
 
 function loadGeminiKey(): string {
   const envPath = path.join(process.cwd(), ".env");
@@ -35,7 +37,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const text = (body.text || "").trim();
     const title = (body.title || "").trim();
-    const society = (body.society || "").trim();
+    const societyInput = (body.society || "").trim();
 
     if (!text || text.length < 20) {
       return NextResponse.json({ ok: false, error: "Nội dung văn bản quá ngắn để trích xuất." }, { status: 400 });
@@ -49,11 +51,12 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const isEso =
-      society.toUpperCase().includes("ESO") ||
-      title.toUpperCase().includes("ESO") ||
-      text.toUpperCase().includes("ESO") ||
-      text.toLowerCase().includes("pico");
+    const effectiveSociety = societyInput || detectSociety(title, text.slice(0, 3000));
+    const formFormat = detectGuidelineFormFormat({
+      society: effectiveSociety,
+      title,
+      content: text,
+    });
 
     let contentToAnalyze = text;
     // For guidelines with a Synoptic Table, prioritize the full synoptic recommendations table
@@ -69,7 +72,7 @@ Transform the following clinical text/notes from a guideline summary (${title ||
 Preserve clinical specificity, numbers, timing windows, and evidence citations verbatim.
 
 ${
-  isEso
+  formFormat === "ESO"
     ? `Since this is an ESO (European Stroke Organisation) guideline, extract ALL PICO items directly from the official Synoptic Table ("Synoptic table of all recommendations and expert consensus statements", e.g. Table 3).
 Structure the table with these EXACT headers:
 | PICO | Recommendation | Quality of evidence | Strength of recommendation | Expert consensus statement | Voting | Related studies |
@@ -81,11 +84,18 @@ Rules:
 4. Strength of recommendation: Strong for intervention, Weak for intervention, Strong against intervention, Weak against intervention, or -
 5. Expert consensus statement: Extract ONLY the expert consensus statement(s) that belong to THIS SPECIFIC PICO in THIS DOCUMENT. Include numbered points and voting ratios (e.g. "Vote: 11/13", "Vote: 13/13"). If there is no expert consensus statement for this PICO, leave this cell completely EMPTY. NEVER invent or borrow consensus statements from other guidelines (such as acute ischaemic stroke or blood pressure guidelines).
 6. Related studies: List key clinical trials cited (e.g. ULTRA, ISAT, BRAT, BRANT, IMCVS, etc.).`
-    : `Structure the table with these EXACT headers:
+    : formFormat === "AHA"
+    ? `Since this is an ACC/AHA / ASA guideline, extract recommendations according to the official ACC/AHA COR and LOE taxonomy.
+Structure the table with these EXACT headers:
 | Clinical Domain / Topic | Recommendation (Verbatim Text) | Class (COR) & Level (LOE) | Related Studies & Evidence |
 | --- | --- | --- | --- |
 - Class (COR) format: Class 1, Class 2a, Class 2b, Class 3: No Benefit, or Class 3: Harm
 - Level (LOE) format: LOE A, LOE B-R, LOE B-NR, LOE C-LD, or LOE C-EO`
+    : `Since this is a ${effectiveSociety || "Standard"} clinical guideline, extract structured clinical recommendations.
+Structure the table with these EXACT headers:
+| Clinical Domain / Topic | Recommendation (Verbatim Text) | Grade / Level of Evidence | Related Studies & Evidence |
+| --- | --- | --- | --- |
+- Grade / Level of Evidence format: Extract the official society rating (e.g. Level A/B/C, Strong/Weak, Grade 1/2, or Good Practice Point)`
 }
 
 Include the Title as the first line: # ${title || "Clinical Practice Guideline"}

@@ -7,6 +7,13 @@ import { ESO_GRADE_QUALITY_CONFIG } from "./EsoGuidelineTable";
 import { normalizeEsoStrength } from "@/lib/neuroguide/esoPicoGrouper";
 import { parseAhaCorAndLoe } from "@/lib/neuroguide/notebooklmParser";
 import { getAdminHeaders, getStoredAdminToken } from "@/utils/clientAuth";
+import {
+  type GuidelineFormFormat,
+  GUIDELINE_FORMS,
+  detectGuidelineFormFormat,
+} from "@/lib/neuroguide/guidelineFormat";
+
+export type { GuidelineFormFormat } from "@/lib/neuroguide/guidelineFormat";
 
 interface EditGuidelineModalProps {
   isOpen: boolean;
@@ -105,7 +112,6 @@ function ArrowDownIcon({ className = "w-3 h-3" }: { className?: string }) {
   );
 }
 
-export type GuidelineFormFormat = "AUTO" | "ESO" | "AHA" | "STANDARD";
 
 export interface EsoRecDraft {
   id: string;
@@ -306,8 +312,9 @@ export function EditGuidelineModal({
   const [takeaways, setTakeaways] = useState<string[]>([]);
   const [newTakeawayText, setNewTakeawayText] = useState("");
 
-  // Form Format mode (Manual override or Auto-detect)
-  const [formFormat, setFormFormat] = useState<GuidelineFormFormat>("AUTO");
+  // Form Format mode (Extensible association forms: AHA, ESO, Standard. Auto option removed)
+  const [formFormat, setFormFormat] = useState<GuidelineFormFormat>("AHA");
+  const [hasUserManuallySelectedFormat, setHasUserManuallySelectedFormat] = useState<boolean>(false);
 
   // Search filter
   const [searchTerm, setSearchTerm] = useState("");
@@ -347,68 +354,35 @@ export function EditGuidelineModal({
   const [draggedStandardRecIndex, setDraggedStandardRecIndex] = useState<number | null>(null);
   const [dragOverStandardRecIndex, setDragOverStandardRecIndex] = useState<number | null>(null);
 
-  // Determine Form Type based on society, title, item content
-  const currentSociety = (docSociety || guidelineDoc?.society || "").toUpperCase();
-  const currentTitle = (docTitle || guidelineDoc?.title || "").toLowerCase();
+  // Active form flags
+  const isEso = formFormat === "ESO";
+  const isAha = formFormat === "AHA";
+  const isStandard = formFormat === "STANDARD";
 
-  const isDetectedAha = useMemo(() => {
-    if (currentSociety.includes("AHA") || currentSociety.includes("ASA") || currentSociety.includes("ACC")) return true;
-    if (
-      currentTitle.includes("aha") ||
-      currentTitle.includes("acc") ||
-      currentTitle.includes("american heart") ||
-      currentTitle.includes("stroke association") ||
-      currentTitle.includes("atrial fibrillation")
-    ) {
-      return true;
-    }
-    if (
-      item?.cor ||
-      item?.currentGrade?.toLowerCase().includes("class ") ||
-      item?.currentGrade?.toLowerCase().includes("level ") ||
-      item?.currentGrade?.toLowerCase().includes("cor ")
-    ) {
-      return true;
-    }
-    if (
-      practiceChanges.some(
-        (p) =>
-          p.cor ||
-          p.currentGrade?.toLowerCase().includes("class ") ||
-          p.currentGrade?.toLowerCase().includes("cor ")
-      )
-    ) {
-      return true;
-    }
-    return false;
-  }, [currentSociety, currentTitle, item, practiceChanges]);
+  // Handle switching between guideline forms with data synchronization
+  const handleSwitchFormat = (newFormat: GuidelineFormFormat) => {
+    if (newFormat === formFormat) return;
+    setHasUserManuallySelectedFormat(true);
 
-  const isDetectedEso = useMemo(() => {
-    if (isDetectedAha) return false;
-    if (currentSociety.includes("ESO") || currentSociety.includes("EUROPEAN STROKE")) return true;
-    if (
-      currentTitle.includes("eso") ||
-      currentTitle.includes("european stroke")
-    ) {
-      return true;
+    // If switching from ESO to non-ESO (AHA or STANDARD), sync ESO PICOs to practiceChanges
+    if (formFormat === "ESO" && newFormat !== "ESO") {
+      const flattened = esoPicosToChanges(esoPicos);
+      setPracticeChanges(flattened);
+      if (flattened.length > 0) {
+        loadStandardRecIntoForm(flattened[0]);
+        setSelectedRecIndex(0);
+      }
     }
-    if (docId?.toLowerCase().includes("eso")) return true;
-    if (item?.picoNumber || item?.voting) return true;
-    if (item?.topic?.toLowerCase().includes("pico")) return true;
-    if (
-      practiceChanges.some(
-        (p) =>
-          p.picoNumber ||
-          p.topic?.toLowerCase().includes("pico")
-      )
-    ) {
-      return true;
+    // If switching from non-ESO to ESO, sync current standard rec and convert to ESO PICOs
+    else if (formFormat !== "ESO" && newFormat === "ESO") {
+      syncStandardRecToMemory();
+      const picos = changesToEsoPicos(practiceChanges);
+      setEsoPicos(picos);
+      setSelectedPicoIndex(0);
     }
-    return false;
-  }, [currentSociety, currentTitle, docId, item, practiceChanges, isDetectedAha]);
 
-  const isEso = formFormat === "ESO" || (formFormat === "AUTO" && isDetectedEso);
-  const isAha = formFormat === "AHA" || (formFormat === "AUTO" && !isDetectedEso);
+    setFormFormat(newFormat);
+  };
 
   // Sync state when modal opens or props change
   useEffect(() => {
@@ -429,6 +403,22 @@ export function EditGuidelineModal({
       // Initialize ESO PICOs
       const picos = changesToEsoPicos(list);
       setEsoPicos(picos);
+
+      // Automatically analyze society & content to select appropriate form (AHA, ESO, or Standard)
+      const detectedFmt = detectGuidelineFormFormat({
+        society: guidelineDoc.society,
+        title: guidelineDoc.title,
+        docId: docId || guidelineDoc.id,
+        hasPico: picos.length > 0 && picos.some((p) => p.recommendations.length > 0),
+        hasCorLoe: list.some(
+          (p) =>
+            p.cor ||
+            p.currentGrade?.toLowerCase().includes("class ") ||
+            p.currentGrade?.toLowerCase().includes("cor ")
+        ),
+      });
+      setFormFormat(detectedFmt);
+      setHasUserManuallySelectedFormat(false);
 
       if (item) {
         // Find in ESO picos
@@ -473,6 +463,17 @@ export function EditGuidelineModal({
       setSelectedRecIndex(0);
       loadStandardRecIntoForm(item);
       setActiveTab("recommendations");
+
+      // Auto detect form for single recommendation item
+      const detectedFmt = detectGuidelineFormFormat({
+        society: isItemEso ? "ESO" : (item as any)?.society || docSociety,
+        title: item.topic || docTitle,
+        docId,
+        hasPico: Boolean(item.picoNumber || item.topic?.toLowerCase().includes("pico")),
+        hasCorLoe: Boolean(item.cor || item.currentGrade?.toLowerCase().includes("class ")),
+      });
+      setFormFormat(detectedFmt);
+      setHasUserManuallySelectedFormat(false);
     }
 
     setErrorMessage(null);
@@ -917,7 +918,11 @@ export function EditGuidelineModal({
                       : "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/30"
                   }`}
                 >
-                  {isEso ? "🔵 ESO GRADE (PICO) Format" : isAha ? "🔴 AHA/ASA (COR & LOE) Format" : `🟢 Standard Format (${docSociety || "Standard"})`}
+                  {isEso
+                    ? "🔵 ESO GRADE (PICO) FORMAT"
+                    : isAha
+                    ? "🔴 AHA/ASA (COR & LOE) FORMAT"
+                    : `🟢 STANDARD FORMAT (${docSociety || "Standard"})`}
                 </span>
                 <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">
                   {isEso ? `${esoPicos.length} PICOs (${totalEsoRecommendationsCount} recommendations)` : `${practiceChanges.length} recommendations`} • {takeaways.length} key takeaways
@@ -927,56 +932,24 @@ export function EditGuidelineModal({
           </div>
 
           <div className="flex items-center gap-2 flex-wrap">
-            {/* Form Format Selector */}
+            {/* Form Format Selector (Extensible association forms: ESO, AHA, Standard without Auto) */}
             <div className="flex items-center p-0.5 rounded-xl bg-slate-200/80 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-[11px]">
-              <button
-                type="button"
-                onClick={() => setFormFormat("AUTO")}
-                className={`px-2 py-1 rounded-lg font-bold transition-all cursor-pointer ${
-                  formFormat === "AUTO"
-                    ? "bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-2xs font-extrabold"
-                    : "text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
-                }`}
-                title="Automatically detect format from document title or society"
-              >
-                Auto ({isDetectedEso ? "ESO" : isDetectedAha ? "AHA" : "Standard"})
-              </button>
-              <button
-                type="button"
-                onClick={() => setFormFormat("ESO")}
-                className={`px-2.5 py-1 rounded-lg font-bold transition-all cursor-pointer ${
-                  formFormat === "ESO"
-                    ? "bg-blue-600 text-white shadow-2xs font-extrabold"
-                    : "text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/40"
-                }`}
-                title="Use ESO GRADE PICO format"
-              >
-                ESO Format
-              </button>
-              <button
-                type="button"
-                onClick={() => setFormFormat("AHA")}
-                className={`px-2.5 py-1 rounded-lg font-bold transition-all cursor-pointer ${
-                  formFormat === "AHA"
-                    ? "bg-rose-600 text-white shadow-2xs font-extrabold"
-                    : "text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40"
-                }`}
-                title="Use ACC/AHA COR & LOE format"
-              >
-                AHA Format
-              </button>
-              <button
-                type="button"
-                onClick={() => setFormFormat("STANDARD")}
-                className={`px-2.5 py-1 rounded-lg font-bold transition-all cursor-pointer ${
-                  formFormat === "STANDARD"
-                    ? "bg-slate-700 text-white shadow-2xs font-extrabold"
-                    : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
-                }`}
-                title="Use standard general recommendation format"
-              >
-                Standard
-              </button>
+              {GUIDELINE_FORMS.map((fmt) => {
+                const isSelected = formFormat === fmt.id;
+                return (
+                  <button
+                    key={fmt.id}
+                    type="button"
+                    onClick={() => handleSwitchFormat(fmt.id)}
+                    className={`px-2.5 py-1 rounded-lg font-bold transition-all cursor-pointer ${
+                      isSelected ? fmt.activeClasses : fmt.inactiveClasses
+                    }`}
+                    title={fmt.description}
+                  >
+                    {fmt.label}
+                  </button>
+                );
+              })}
             </div>
 
             <button
@@ -1085,7 +1058,22 @@ export function EditGuidelineModal({
                         type="text"
                         required
                         value={docSociety}
-                        onChange={(e) => setDocSociety(e.target.value)}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          setDocSociety(val);
+                          if (!hasUserManuallySelectedFormat) {
+                            const detected = detectGuidelineFormFormat({
+                              society: val,
+                              title: docTitle,
+                              docId,
+                              hasPico: esoPicos.length > 0 && esoPicos.some((p) => p.recommendations.length > 0),
+                              hasCorLoe: practiceChanges.some(
+                                (p) => p.cor || p.currentGrade?.toLowerCase().includes("class ")
+                              ),
+                            });
+                            setFormFormat(detected);
+                          }
+                        }}
                         placeholder="e.g. ESO, AHA/ASA, AAN..."
                         className={`w-full p-2.5 rounded-xl border font-medium ${
                           darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
+import { detectSociety } from "@/lib/neuroguide/pubmedDiscovery";
 
 interface PipelineModalProps {
   isOpen: boolean;
@@ -57,12 +58,19 @@ export function PipelineModal({
       setLiveRecs([]);
       setBlobCleaned(false);
 
+      const cleanName = file.name
+        .replace(/\.pdf$/i, "")
+        .replace(/[_-]+/g, " ")
+        .trim();
+
       if (!title) {
-        const cleanName = file.name
-          .replace(/\.pdf$/i, "")
-          .replace(/[_-]+/g, " ")
-          .trim();
         setTitle(cleanName);
+      }
+
+      // Automatically analyze filename to detect medical society (AHA, ESO, NCS, etc.)
+      const detectedSoc = detectSociety(cleanName, "");
+      if (detectedSoc && detectedSoc !== "Other") {
+        setSociety(detectedSoc);
       }
     }
   };
