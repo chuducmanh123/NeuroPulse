@@ -27,6 +27,7 @@ const VALIDATION_IMAGES = [
 export default function NeuroVisionPage() {
   const [activeTab, setActiveTab] = useState<"viewer" | "validation">("viewer");
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isDisclaimerVisible, setIsDisclaimerVisible] = useState(true);
 
   useEffect(() => {
     setIsAdmin(Boolean(getStoredAdminToken()));
@@ -39,7 +40,7 @@ export default function NeuroVisionPage() {
 
   return (
     <NeuroViewerProvider>
-      <div className="h-[100dvh] max-h-[100dvh] w-screen bg-slate-950 text-slate-100 flex flex-col font-sans select-none overflow-hidden">
+      <div className="h-[100dvh] max-h-[100dvh] w-screen bg-slate-950 text-slate-100 flex flex-col font-sans select-none overflow-hidden relative">
         {/* 1. Global Navigation Bar */}
         <header className="bg-slate-900 border-b border-slate-800 px-3 py-2 flex items-center justify-between shrink-0 shadow-md z-40">
           <div className="flex items-center gap-2.5">
@@ -176,19 +177,46 @@ export default function NeuroVisionPage() {
           </div>
         )}
 
-        {/* 3. Mandatory Medical Educational Disclaimer (Cố định) */}
-        <footer className="bg-amber-950/40 border-t border-amber-900/50 px-4 py-1.5 flex items-center justify-between text-[11px] text-amber-200/90 shrink-0">
-          <div className="flex items-center gap-2">
-            <span className="text-amber-400 font-bold">⚠️ CÔNG CỤ HỌC TẬP:</span>
-            <span>
-              Phần mềm được phát triển phục vụ mục đích đào tạo và nghiên cứu giải phẫu thần kinh học MNI152.
-              Tuyệt đối không sử dụng kết quả định khu làm chỉ định điều trị y khoa độc lập.
-            </span>
-          </div>
-          <span className="hidden sm:inline font-mono text-[10px] text-amber-400/80">
-            NeuroPulse Ecosystem • NeuroVision
-          </span>
-        </footer>
+        {/* 3. Mandatory Medical Educational Disclaimer (Làm gọn & có nút ẩn trên mobile) */}
+        {isDisclaimerVisible ? (
+          <footer className="bg-amber-950/60 border-t border-amber-900/60 px-2 sm:px-4 py-1 sm:py-1.5 flex items-center justify-between text-[10px] sm:text-[11px] text-amber-200/90 shrink-0 gap-2">
+            <div className="flex items-center gap-1.5 min-w-0 flex-1">
+              <span className="text-amber-400 font-bold shrink-0">
+                ⚠️ <span className="hidden sm:inline">CÔNG CỤ HỌC TẬP:</span>
+              </span>
+              <span className="truncate sm:whitespace-normal">
+                <span className="sm:hidden">Đào tạo & nghiên cứu MNI152. Không dùng chỉ định điều trị y khoa độc lập.</span>
+                <span className="hidden sm:inline">
+                  Phần mềm được phát triển phục vụ mục đích đào tạo và nghiên cứu giải phẫu thần kinh học MNI152.
+                  Tuyệt đối không sử dụng kết quả định khu làm chỉ định điều trị y khoa độc lập.
+                </span>
+              </span>
+            </div>
+            <div className="flex items-center gap-2 shrink-0">
+              <span className="hidden md:inline font-mono text-[10px] text-amber-400/80">
+                NeuroPulse • NeuroVision
+              </span>
+              <button
+                type="button"
+                onClick={() => setIsDisclaimerVisible(false)}
+                className="w-5 h-5 flex items-center justify-center rounded hover:bg-amber-900/60 text-amber-300 hover:text-amber-100 transition text-[11px] leading-none"
+                title="Ẩn dòng cảnh báo"
+              >
+                ✕
+              </button>
+            </div>
+          </footer>
+        ) : (
+          <button
+            type="button"
+            onClick={() => setIsDisclaimerVisible(true)}
+            className="fixed bottom-2 right-2 z-30 bg-amber-950/90 hover:bg-amber-900 border border-amber-800/80 text-amber-300 rounded-full px-2.5 py-0.5 text-[10px] font-medium shadow-md transition flex items-center gap-1 backdrop-blur-sm opacity-75 hover:opacity-100"
+            title="Hiện lại cảnh báo đào tạo y khoa"
+          >
+            <span>⚠️</span>
+            <span className="hidden sm:inline">Cảnh báo đào tạo</span>
+          </button>
+        )}
 
         {/* 4. Interactive ASPECTS & pc-ASPECTS Modal */}
         <AspectsScoreModal />

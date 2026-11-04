@@ -5,10 +5,10 @@ import { useNeuroVisionStore } from "../../store/useNeuroVisionStore";
 import SearchBar from "./SearchBar";
 import type { BaseModality, ActiveOverlay, ViewMode } from "../../types/neurovision";
 
-const MODALITIES: Array<{ id: BaseModality; label: string; desc: string }> = [
-  { id: "T1", label: "MRI T1", desc: "Tương phản giải phẫu chuẩn MNI152" },
-  { id: "T2", label: "MRI T2", desc: "Tương phản dịch não tủy & bệnh lý" },
-  { id: "CT", label: "CT Não", desc: "Mô phỏng cửa sổ nhu mô CT sọ não" },
+const MODALITIES: Array<{ id: BaseModality; label: string; shortLabel: string; desc: string }> = [
+  { id: "T1", label: "MRI T1", shortLabel: "T1", desc: "Tương phản giải phẫu chuẩn MNI152" },
+  { id: "T2", label: "MRI T2", shortLabel: "T2", desc: "Tương phản dịch não tủy & bệnh lý" },
+  { id: "CT", label: "CT Não", shortLabel: "CT", desc: "Mô phỏng cửa sổ nhu mô CT sọ não" },
 ];
 
 const OVERLAYS: Array<{ id: ActiveOverlay; label: string }> = [
@@ -52,36 +52,37 @@ export default function ViewerToolbar() {
   const setIsSidebarOpen = useNeuroVisionStore((s) => s.setIsSidebarOpen);
 
   return (
-    <div className="bg-slate-900 border-b border-slate-800 px-3 py-2 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-200 shrink-0 select-none">
-      {/* Left section: Modality & Atlas selection */}
-      <div className="flex flex-wrap items-center gap-2">
-        {/* 1. Base Modality Selector */}
-        <div className="flex items-center gap-1 bg-slate-950/70 p-0.5 rounded-lg border border-slate-800">
-          <span className="text-[10px] uppercase font-bold text-slate-400 px-1.5 tracking-wider hidden sm:inline">Nền:</span>
+    <div className="bg-slate-900 border-b border-slate-800 px-2 sm:px-3 py-1.5 sm:py-2 flex flex-wrap items-center justify-between gap-1.5 sm:gap-2 text-xs text-slate-200 shrink-0 select-none">
+      {/* 1. Modality & Atlas selection - Đặt cùng 1 dòng trên mobile */}
+      <div className="flex items-center gap-1 sm:gap-2 w-full lg:w-auto shrink-0 min-w-0">
+        {/* Base Modality Selector */}
+        <div className="flex items-center gap-0.5 sm:gap-1 bg-slate-950/70 p-0.5 rounded-lg border border-slate-800 shrink-0">
+          <span className="text-[10px] uppercase font-bold text-slate-400 px-1 tracking-wider hidden md:inline">Nền:</span>
           {MODALITIES.map((mod) => (
             <button
               key={mod.id}
               type="button"
               onClick={() => setBaseModality(mod.id)}
               title={mod.desc}
-              className={`px-2 py-0.5 rounded font-medium transition text-[11px] ${
+              className={`px-1.5 sm:px-2 py-0.5 rounded font-medium transition text-[11px] shrink-0 ${
                 baseModality === mod.id
                   ? "bg-sky-600 text-white shadow-sm"
                   : "text-slate-400 hover:text-slate-200 hover:bg-slate-800"
               }`}
             >
-              {mod.label}
+              <span className="sm:hidden">{mod.shortLabel}</span>
+              <span className="hidden sm:inline">{mod.label}</span>
             </button>
           ))}
         </div>
 
-        {/* 2. Atlas Overlay Dropdown & Opacity */}
-        <div className="flex items-center gap-1.5">
+        {/* Atlas Overlay Dropdown & Opacity */}
+        <div className="flex items-center gap-1.5 flex-1 min-w-0">
           <select
             id="atlas-select"
             value={activeOverlay}
             onChange={(e) => setActiveOverlay(e.target.value as ActiveOverlay)}
-            className="bg-slate-950 border border-slate-700 text-slate-200 text-xs rounded-lg px-2 py-1 focus:outline-none focus:border-sky-500 font-medium max-w-[200px] sm:max-w-[240px] truncate"
+            className="w-full bg-slate-950 border border-slate-700 text-slate-200 text-xs rounded-lg px-2 py-1 focus:outline-none focus:border-sky-500 font-medium sm:max-w-[220px] lg:max-w-[240px] truncate"
           >
             {OVERLAYS.map((ov) => (
               <option key={ov.id} value={ov.id}>
@@ -91,7 +92,7 @@ export default function ViewerToolbar() {
           </select>
 
           {activeOverlay !== "none" && (
-            <div className="hidden sm:flex items-center gap-1 bg-slate-950/70 px-2 py-0.5 rounded-lg border border-slate-800">
+            <div className="hidden xl:flex items-center gap-1 bg-slate-950/70 px-2 py-0.5 rounded-lg border border-slate-800 shrink-0">
               <span className="text-[10px] text-slate-400">Mờ:</span>
               <input
                 type="range"
@@ -110,78 +111,80 @@ export default function ViewerToolbar() {
         </div>
       </div>
 
-      {/* Middle section: Search Bar with Reverse Highlight */}
-      <div className="flex-1 min-w-[180px] max-w-sm order-3 sm:order-2">
+      {/* 2. Middle section: Search Bar with Reverse Highlight */}
+      <div className="w-full sm:w-auto flex-1 min-w-[180px] max-w-sm order-3 lg:order-2">
         <SearchBar />
       </div>
 
-      {/* Right section: Sliders toggle, ASPECTS tool, View Mode, Sidebar toggle */}
-      <div className="flex items-center gap-1.5 order-2 sm:order-3">
-        {/* Toggle Axis Sliders Button (Only when needed) */}
-        <button
-          type="button"
-          onClick={() => setIsSlidersOpen(!isSlidersOpen)}
-          className={`px-2 py-1 rounded-lg border text-xs font-semibold flex items-center gap-1 transition ${
-            isSlidersOpen
-              ? "bg-sky-600 text-white border-sky-500 shadow-sm"
-              : "bg-slate-950 text-slate-300 border-slate-700 hover:bg-slate-800 hover:text-white"
-          }`}
-          title="Bật/Tắt thanh trượt điều khiển lát cắt 3 trục (X, Y, Z)"
-        >
-          <span>🎚️</span>
-          <span className="hidden md:inline">Trục cắt</span>
-        </button>
-
-        {/* ASPECTS Score Modal Trigger (chỉ hiển thị khi đang trong thẻ/lớp phủ ASPECTS) */}
-        {activeOverlay === "aspects" && (
+      {/* 3. Right section: Sliders toggle, ASPECTS tool, View Mode, Sidebar toggle */}
+      <div className="flex items-center gap-1 sm:gap-1.5 order-2 lg:order-3 justify-between sm:justify-start w-full sm:w-auto">
+        <div className="flex items-center gap-1 sm:gap-1.5">
+          {/* Toggle Axis Sliders Button */}
           <button
             type="button"
-            onClick={() => setAspectsModalOpen(true)}
-            className="px-2.5 py-1 rounded-lg bg-rose-600 hover:bg-rose-500 text-white font-bold flex items-center gap-1 shadow-sm transition active:scale-95 text-xs"
-            title="Mở công cụ chấm điểm ASPECTS & pc-ASPECTS trên CT não"
+            onClick={() => setIsSlidersOpen(!isSlidersOpen)}
+            className={`px-2 py-1 rounded-lg border text-xs font-semibold flex items-center gap-1 transition shrink-0 ${
+              isSlidersOpen
+                ? "bg-sky-600 text-white border-sky-500 shadow-sm"
+                : "bg-slate-950 text-slate-300 border-slate-700 hover:bg-slate-800 hover:text-white"
+            }`}
+            title="Bật/Tắt thanh trượt điều khiển lát cắt 3 trục (X, Y, Z)"
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
-            <span>ASPECTS</span>
+            <span>🎚️</span>
+            <span className="hidden md:inline">Trục cắt</span>
           </button>
-        )}
 
-        {/* View Mode Toggle */}
-        <div className="flex items-center gap-0.5 bg-slate-950/70 p-0.5 rounded-lg border border-slate-800">
-          {VIEW_MODES.map((vm) => (
+          {/* ASPECTS Score Modal Trigger */}
+          {activeOverlay === "aspects" && (
             <button
-              key={vm.id}
               type="button"
-              onClick={() => setViewMode(vm.id)}
-              title={vm.label}
-              className={`p-1 rounded font-medium transition flex items-center gap-1 text-xs ${
-                viewMode === vm.id
-                  ? "bg-slate-700 text-sky-300 shadow-sm"
-                  : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60"
-              }`}
+              onClick={() => setAspectsModalOpen(true)}
+              className="px-2.5 py-1 rounded-lg bg-rose-600 hover:bg-rose-500 text-white font-bold flex items-center gap-1 shadow-sm transition active:scale-95 text-xs shrink-0"
+              title="Mở công cụ chấm điểm ASPECTS & pc-ASPECTS trên CT não"
             >
-              <span>{vm.icon}</span>
-              <span className="hidden xl:inline">{vm.label}</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+              <span>ASPECTS</span>
             </button>
-          ))}
+          )}
+
+          {/* View Mode Toggle */}
+          <div className="flex items-center gap-0.5 bg-slate-950/70 p-0.5 rounded-lg border border-slate-800 shrink-0">
+            {VIEW_MODES.map((vm) => (
+              <button
+                key={vm.id}
+                type="button"
+                onClick={() => setViewMode(vm.id)}
+                title={vm.label}
+                className={`p-1 rounded font-medium transition flex items-center gap-1 text-xs ${
+                  viewMode === vm.id
+                    ? "bg-slate-700 text-sky-300 shadow-sm"
+                    : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60"
+                }`}
+              >
+                <span>{vm.icon}</span>
+                <span className="hidden xl:inline">{vm.label}</span>
+              </button>
+            ))}
+          </div>
+
+          {/* Toggle Clinical Panel Button */}
+          <button
+            type="button"
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            className={`px-2 py-1 rounded-lg border text-xs font-semibold flex items-center gap-1 transition shrink-0 ${
+              isSidebarOpen
+                ? "bg-indigo-600 text-white border-indigo-500 shadow-sm"
+                : "bg-slate-950 text-slate-300 border-slate-700 hover:bg-slate-800 hover:text-white"
+            }`}
+            title="Bật/Tắt bảng thông tin giải phẫu & lâm sàng"
+          >
+            <span>📋</span>
+            <span className="hidden lg:inline">Lâm sàng</span>
+          </button>
         </div>
 
-        {/* Toggle Clinical Panel Button */}
-        <button
-          type="button"
-          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          className={`px-2 py-1 rounded-lg border text-xs font-semibold flex items-center gap-1 transition ${
-            isSidebarOpen
-              ? "bg-indigo-600 text-white border-indigo-500 shadow-sm"
-              : "bg-slate-950 text-slate-300 border-slate-700 hover:bg-slate-800 hover:text-white"
-          }`}
-          title="Bật/Tắt bảng thông tin giải phẫu & lâm sàng"
-        >
-          <span>📋</span>
-          <span className="hidden lg:inline">Lâm sàng</span>
-        </button>
-
         {/* FPS */}
-        <div className="bg-slate-950 px-1.5 py-0.5 rounded border border-slate-800 font-mono text-[10px] text-slate-400 hidden sm:block">
+        <div className="bg-slate-950 px-1.5 py-0.5 rounded border border-slate-800 font-mono text-[10px] text-slate-400 hidden sm:block shrink-0">
           FPS: <span className={fps >= 30 ? "text-emerald-400 font-bold" : "text-amber-400 font-bold"}>{fps || "--"}</span>
         </div>
       </div>

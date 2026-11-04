@@ -44,10 +44,20 @@ export default function ClinicalInspector() {
   // Toggle reverse highlight for current region
   const handleToggleHighlight = () => {
     if (!selectedRegion) return;
+    const nv = getNiivue();
+    if (!nv || nv.volumes.length <= 1) return;
+
+    const overlayVol = nv.volumes[1];
     if (highlightedLabelId === selectedRegion.label_id) {
       setHighlightedLabelId(null);
+      overlayVol.cal_min = 0;
+      overlayVol.cal_max = 0;
+      nv.updateGLVolume();
     } else {
       setHighlightedLabelId(selectedRegion.label_id);
+      overlayVol.cal_min = selectedRegion.label_id - 0.5;
+      overlayVol.cal_max = selectedRegion.label_id + 0.5;
+      nv.updateGLVolume();
     }
   };
 
@@ -75,8 +85,8 @@ export default function ClinicalInspector() {
 
   return (
     <div className="w-full h-full bg-slate-900/95 border-l border-slate-800 flex flex-col text-slate-200 overflow-hidden select-none">
-      {/* Header */}
-      <div className="p-2.5 sm:p-3 border-b border-slate-800 bg-slate-950/70 flex items-center justify-between shrink-0">
+      {/* Header (Ẩn trên mobile < lg để tiết kiệm không gian, bật/tắt qua icon phía trên) */}
+      <div className="hidden lg:flex p-2.5 sm:p-3 border-b border-slate-800 bg-slate-950/70 items-center justify-between shrink-0">
         <div className="flex items-center gap-2">
           <div className="w-2.5 h-2.5 rounded-full bg-sky-400"></div>
           <h2 className="text-xs uppercase tracking-wider font-bold text-slate-200">
@@ -99,15 +109,22 @@ export default function ClinicalInspector() {
       </div>
 
       {/* Content Area */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 text-xs">
+      <div className="flex-1 overflow-y-auto p-2.5 sm:p-4 space-y-2.5 sm:space-y-4 text-xs">
         {selectedRegion ? (
           <>
             {/* 1. Name & Action Card */}
-            <div className="bg-slate-950/70 p-3.5 rounded-xl border border-slate-800 space-y-2 shadow-sm">
-              <div className="flex items-center justify-between gap-2 flex-wrap">
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-sky-950 text-sky-400 border border-sky-800 font-semibold">
-                  {selectedRegion.code || `ID: ${selectedRegion.label_id}`}
-                </span>
+            <div className="bg-slate-950/70 p-2.5 sm:p-3.5 rounded-xl border border-slate-800 space-y-2 shadow-sm">
+              <div className="flex items-center justify-between gap-1.5 flex-wrap">
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-sky-950 text-sky-400 border border-sky-800 font-semibold">
+                    {selectedRegion.code || `ID: ${selectedRegion.label_id}`}
+                  </span>
+
+                  {/* Hiển thị tọa độ MNI nhỏ gọn trên mobile khi header bị ẩn */}
+                  <span className="lg:hidden text-[9px] font-mono px-1.5 py-0.5 rounded bg-slate-900 text-slate-400 border border-slate-800">
+                    MNI: [{mmX}, {mmY}, {mmZ}]
+                  </span>
+                </div>
 
                 {/* Governance Labels with Vietnam annotations */}
                 <div className="flex items-center gap-1.5 flex-wrap">
@@ -139,7 +156,7 @@ export default function ClinicalInspector() {
 
               {/* Names */}
               <div>
-                <h3 className="text-base font-bold text-white leading-tight">
+                <h3 className="text-sm sm:text-base font-bold text-white leading-tight">
                   {selectedRegion.name_vi}
                 </h3>
                 <p className="text-xs text-sky-300 font-medium italic mt-0.5">
@@ -186,7 +203,7 @@ export default function ClinicalInspector() {
             </div>
 
             {/* 2. Vascular Supply & Drainage */}
-            <div className="bg-slate-950/40 p-3 rounded-xl border border-slate-800 space-y-2">
+            <div className="bg-slate-950/40 p-2.5 sm:p-3 rounded-xl border border-slate-800 space-y-2">
               <h4 className="text-[11px] font-bold uppercase tracking-wider text-rose-400 flex items-center gap-1.5">
                 <svg className="w-3.5 h-3.5 text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -228,7 +245,7 @@ export default function ClinicalInspector() {
 
             {/* 3. Functions & Brodmann Areas */}
             {(selectedRegion.brodmann_area?.length > 0 || selectedRegion.functions?.length > 0) && (
-              <div className="bg-slate-950/40 p-3 rounded-xl border border-slate-800 space-y-2">
+              <div className="bg-slate-950/40 p-2.5 sm:p-3 rounded-xl border border-slate-800 space-y-2">
                 <h4 className="text-[11px] font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
                   <svg className="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
@@ -258,7 +275,7 @@ export default function ClinicalInspector() {
 
             {/* 4. Clinical Syndromes / Symptoms */}
             {selectedRegion.clinical_syndromes?.length > 0 && (
-              <div className="bg-slate-950/40 p-3 rounded-xl border border-slate-800 space-y-2">
+              <div className="bg-slate-950/40 p-2.5 sm:p-3 rounded-xl border border-slate-800 space-y-2">
                 <h4 className="text-[11px] font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
                   <svg className="w-3.5 h-3.5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -268,7 +285,7 @@ export default function ClinicalInspector() {
 
                 <div className="space-y-2">
                   {selectedRegion.clinical_syndromes.map((syn, idx) => (
-                    <div key={idx} className="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800 text-[11px] space-y-1">
+                    <div key={idx} className="bg-slate-900/80 p-2 sm:p-2.5 rounded-lg border border-slate-800 text-[11px] space-y-1">
                       <p className="font-bold text-amber-300">{syn.name}</p>
                       <p className="text-slate-300 text-[10.5px] leading-relaxed">{syn.description}</p>
                     </div>
@@ -295,19 +312,19 @@ export default function ClinicalInspector() {
             )}
           </>
         ) : (
-          <div className="h-full flex flex-col items-center justify-center text-center p-6 text-slate-500 space-y-3">
-            <div className="w-12 h-12 rounded-full bg-slate-800/50 flex items-center justify-center text-slate-400 text-xl">
+          <div className="h-full flex flex-col items-center justify-center text-center p-4 sm:p-6 text-slate-500 space-y-2 sm:space-y-3">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-800/50 flex items-center justify-center text-slate-400 text-lg sm:text-xl">
               🎯
             </div>
             <div>
-              <p className="text-slate-300 font-semibold mb-1">Chưa chọn vùng giải phẫu</p>
-              <p className="text-[11px] text-slate-500 leading-relaxed max-w-xs">
+              <p className="text-slate-300 font-semibold mb-1 text-xs sm:text-sm">Chưa chọn vùng giải phẫu</p>
+              <p className="text-[10px] sm:text-[11px] text-slate-500 leading-relaxed max-w-xs">
                 {activeOverlay === "none"
                   ? "Hãy chọn một lớp phủ Atlas ở thanh công cụ để tra cứu thông tin giải phẫu."
-                  : "Click chuột lên lát cắt hoặc tìm kiếm trên thanh tìm kiếm để định vị vùng giải phẫu."}
+                  : "Chạm lên lát cắt hoặc tìm kiếm trên thanh tìm kiếm để xem giải phẫu & lâm sàng."}
               </p>
             </div>
-            <div className="bg-slate-950/80 p-2.5 rounded-lg border border-slate-800/80 text-[11px] font-mono text-slate-400 space-y-1">
+            <div className="bg-slate-950/80 p-2 sm:p-2.5 rounded-lg border border-slate-800/80 text-[10px] sm:text-[11px] font-mono text-slate-400 space-y-0.5 sm:space-y-1">
               <div>Voxel: [{voxX}, {voxY}, {voxZ}]</div>
               <div>MNI152: [{mmX}, {mmY}, {mmZ}] mm</div>
             </div>
