@@ -137,11 +137,11 @@
         193
       ],
       "dtype": "uint8",
-      "size_bytes": 1758563,
+      "size_bytes": 2132580,
       "review_status": "unreviewed",
       "source": "High-Resolution Unbiased CT Brain Template (Muschelli 2020, IPMU 2020, doi:10.1007/978-3-030-50153-2_27; GitHub muschellij2/high_res_ct_template; built from CQ500 dataset)",
       "original_space": "High-resolution 1 mm isotropic CQ500 CT template space (256x256x256)",
-      "method": "Warped with author's ANTs SyN composite transform Template_to_MNIcomptx.nii.gz to FSL MNI152 (1 mm 182x218x182), then ANTs composite transform with TemplateFlow h5 (NLin6Asym->NLin2009cAsym, 1 mm 193x229x193); windowed HU 0..80 (L40/W80) -> uint8",
+      "method": "Warped in 32-bit float with author ANTs SyN composite transform to FSL MNI152 and TemplateFlow h5 (NLin6Asym->NLin2009cAsym, 1 mm 193x229x193); multi-scale intracranial unsharp masking + piecewise Stroke-Brain Window (18..48 HU expanded contrast) -> uint8",
       "interpolation": "linear",
       "native_resolution_mm": 1.0,
       "license": "CC BY-NC-SA 4.0 (CQ500 & template repository LICENSE)"
