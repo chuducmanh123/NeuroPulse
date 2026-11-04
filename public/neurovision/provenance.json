@@ -137,14 +137,14 @@
         193
       ],
       "dtype": "uint8",
-      "size_bytes": 2135838,
+      "size_bytes": 1758563,
       "review_status": "unreviewed",
-      "source": "Clinical Toolbox for SPM scct.nii (Rorden et al. 2012, NeuroImage 61:957), github.com/neurolabusc/Clinical",
-      "original_space": "SPM MNI 2 mm grid identical to FSL MNI152 2 mm (91x109x91). Anatomical match to NLin6Asym ASSUMED from the grid; check overlay",
-      "method": "Warped in Cormack units with ANTs + TemplateFlow h5, then Cormack->HU (clinical_c2h.m port), window HU 0..80 (L40/W80) -> uint8",
+      "source": "High-Resolution Unbiased CT Brain Template (Muschelli 2020, IPMU 2020, doi:10.1007/978-3-030-50153-2_27; GitHub muschellij2/high_res_ct_template; built from CQ500 dataset)",
+      "original_space": "High-resolution 1 mm isotropic CQ500 CT template space (256x256x256)",
+      "method": "Warped with author's ANTs SyN composite transform Template_to_MNIcomptx.nii.gz to FSL MNI152 (1 mm 182x218x182), then ANTs composite transform with TemplateFlow h5 (NLin6Asym->NLin2009cAsym, 1 mm 193x229x193); windowed HU 0..80 (L40/W80) -> uint8",
       "interpolation": "linear",
-      "native_resolution_mm": 2.0,
-      "license": "BSD-2-Clause (repo LICENSE); template data coverage unverified"
+      "native_resolution_mm": 1.0,
+      "license": "CC BY-NC-SA 4.0 (CQ500 & template repository LICENSE)"
     },
     {
       "file": "atlases/aal3.nii.gz",
