@@ -152,5 +152,18 @@
     "rejected_count": 0,
     "grading_system": "AHA_ACC",
     "updated_at": "2026-11-03T20:40:36.099426+00:00"
+  },
+  "guide-doi-10-1161-strokeaha-126-056028": {
+    "guideline_id": "guide-doi-10-1161-strokeaha-126-056028",
+    "title": "Prehospital Stroke Treatment Trials in Conventional EMS Settings: An Expert Consensus Statement on Operational, Ethical, and Technological Priorities",
+    "society": "AHA/ASA",
+    "year": 2026,
+    "latest_version": 1,
+    "total_recommendations": 1,
+    "pending_count": 1,
+    "approved_count": 0,
+    "rejected_count": 0,
+    "grading_system": "AHA_ACC",
+    "updated_at": "2026-11-04T17:05:48.080858+00:00"
   }
 }

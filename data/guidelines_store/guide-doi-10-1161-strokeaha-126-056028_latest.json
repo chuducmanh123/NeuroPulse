@@ -1,0 +1,44 @@
+{
+  "guideline_id": "guide-doi-10-1161-strokeaha-126-056028",
+  "version": 1,
+  "metadata": {
+    "guideline_id": "guide-doi-10-1161-strokeaha-126-056028",
+    "title": "Prehospital Stroke Treatment Trials in Conventional EMS Settings: An Expert Consensus Statement on Operational, Ethical, and Technological Priorities",
+    "society": "AHA/ASA",
+    "year": 2026,
+    "source_url": "https://doi.org/10.1161/strokeaha.126.056028",
+    "doi": "10.1161/strokeaha.126.056028",
+    "state": "PENDING_REVIEW",
+    "top_takeaways": [
+      "To optimize prehospital stroke trials in conventional EMS settings, investigators must utilize pragmatic designs, emergency consent models, ultra-early endpoint selection, and scalable technology. This standardized consensus framework provides practicing neurologists with actionable guidance to ensure scientific rigor, ethical feasibility, and equitable access in hyperacute prehospital care."
+    ]
+  },
+  "total_recommendations": 1,
+  "pending_count": 1,
+  "approved_count": 0,
+  "rejected_count": 0,
+  "recommendations": [
+    {
+      "rec_id": "guide-doi-10-1161-strokeaha-126-056028-rec-01",
+      "guideline_id": "guide-doi-10-1161-strokeaha-126-056028",
+      "grading_system": "AHA_ACC",
+      "page_num": 1,
+      "section": "Stroke",
+      "topic": "Stroke",
+      "statement": "Prehospital Stroke Treatment Trials in Conventional EMS Settings: An Expert Consensus Statement on Operational, Ethical, and Technological Priorities",
+      "cor": "1",
+      "cor_label": "Official Society Recommendation",
+      "loe": "A",
+      "loe_label": "Evidence from trials & consensus",
+      "target_population": "Patients managed under Stroke guidelines",
+      "driving_trials": [
+        "Stroke (2026)",
+        "DOI: 10.1161/strokeaha.126.056028"
+      ],
+      "verbatim_quote": "Prehospital Stroke Treatment Trials in Conventional EMS Settings: An Expert Consensus Statement on Operational, Ethical, and Technological Priorities",
+      "confidence_score": 0.95,
+      "approval_status": "pending"
+    }
+  ],
+  "updated_at": "2026-11-04T17:05:48.080858+00:00"
+}
