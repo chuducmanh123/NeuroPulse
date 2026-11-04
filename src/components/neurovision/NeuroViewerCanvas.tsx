@@ -34,6 +34,7 @@ export default function NeuroViewerCanvas({ className = "", darkMode = true }: N
   const activeMesh = useNeuroVisionStore((s) => s.activeMesh);
   const highlightedLabelId = useNeuroVisionStore((s) => s.highlightedLabelId);
   const isProgrammaticChange = useNeuroVisionStore((s) => s.isProgrammaticChange);
+  const isSlidersOpen = useNeuroVisionStore((s) => s.isSlidersOpen);
   const isLoading = useNeuroVisionStore((s) => s.isLoading);
   const loadProgress = useNeuroVisionStore((s) => s.loadProgress);
 
@@ -42,6 +43,7 @@ export default function NeuroViewerCanvas({ className = "", darkMode = true }: N
   const setVolumeDimensions = useNeuroVisionStore((s) => s.setVolumeDimensions);
   const setFps = useNeuroVisionStore((s) => s.setFps);
   const setLoading = useNeuroVisionStore((s) => s.setLoading);
+  const setIsSlidersOpen = useNeuroVisionStore((s) => s.setIsSlidersOpen);
 
   // Local refs
   const nvInstanceRef = useRef<Niivue | null>(null);
@@ -53,6 +55,7 @@ export default function NeuroViewerCanvas({ className = "", darkMode = true }: N
 
   const [canvasReady, setCanvasReady] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [zoomLevel, setZoomLevel] = useState(1.0);
 
   // 1. Load Neuro Ontology Map
   useEffect(() => {
@@ -352,13 +355,107 @@ export default function NeuroViewerCanvas({ className = "", darkMode = true }: N
     }
   }, [highlightedLabelId]);
 
+  // Responsive canvas resize listener for iPad, laptop, and mobile devices
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const observer = new ResizeObserver(() => {
+      const nv = nvInstanceRef.current;
+      if (nv) {
+        nv.resizeListener();
+        nv.drawScene();
+      }
+    });
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  // Zoom controls
+  const handleZoomIn = () => {
+    const nv = nvInstanceRef.current;
+    if (!nv) return;
+    const currentZoom = nv.scene.pan2Dxyzmm ? nv.scene.pan2Dxyzmm[3] : 1.0;
+    const nextZoom = Math.min(5.0, Math.round(currentZoom * 1.25 * 100) / 100);
+    if (nv.scene.pan2Dxyzmm) nv.scene.pan2Dxyzmm[3] = nextZoom;
+    nv.scene.volScaleMultiplier = nextZoom;
+    nv.drawScene();
+    setZoomLevel(nextZoom);
+  };
+
+  const handleZoomOut = () => {
+    const nv = nvInstanceRef.current;
+    if (!nv) return;
+    const currentZoom = nv.scene.pan2Dxyzmm ? nv.scene.pan2Dxyzmm[3] : 1.0;
+    const nextZoom = Math.max(0.4, Math.round((currentZoom / 1.25) * 100) / 100);
+    if (nv.scene.pan2Dxyzmm) nv.scene.pan2Dxyzmm[3] = nextZoom;
+    nv.scene.volScaleMultiplier = nextZoom;
+    nv.drawScene();
+    setZoomLevel(nextZoom);
+  };
+
+  const handleResetZoom = () => {
+    const nv = nvInstanceRef.current;
+    if (!nv) return;
+    if (nv.scene.pan2Dxyzmm) {
+      nv.scene.pan2Dxyzmm[3] = 1.0;
+      nv.scene.pan2Dxyzmm[0] = 0;
+      nv.scene.pan2Dxyzmm[1] = 0;
+      nv.scene.pan2Dxyzmm[2] = 0;
+    }
+    nv.scene.volScaleMultiplier = 1.0;
+    nv.drawScene();
+    setZoomLevel(1.0);
+  };
+
   return (
-    <div ref={containerRef} className={`relative w-full h-full min-h-[480px] bg-slate-950 overflow-hidden ${className}`}>
+    <div ref={containerRef} className={`relative w-full h-full min-h-0 bg-slate-950 overflow-hidden ${className}`}>
       <canvas
         ref={canvasRef}
         className="w-full h-full block cursor-crosshair outline-none"
         tabIndex={0}
       />
+
+      {/* Floating Canvas Zoom Controls */}
+      <div className="absolute top-3 right-3 z-20 flex flex-col items-center gap-1 bg-slate-900/85 backdrop-blur-md border border-slate-700/60 rounded-xl p-1 shadow-2xl select-none">
+        <button
+          type="button"
+          onClick={handleZoomIn}
+          title="Phóng to hình ảnh (+)"
+          className="w-8 h-8 rounded-lg bg-slate-800/80 hover:bg-sky-600 text-slate-200 hover:text-white flex items-center justify-center font-bold text-base transition active:scale-95 border border-slate-700/40 shadow-sm"
+        >
+          +
+        </button>
+        <button
+          type="button"
+          onClick={handleResetZoom}
+          title="Đặt lại kích thước chuẩn (100%)"
+          className="px-1.5 h-6 rounded-md bg-slate-800/60 hover:bg-slate-700 text-[10px] font-mono text-slate-300 hover:text-white flex items-center justify-center transition active:scale-95 border border-slate-700/30"
+        >
+          {Math.round(zoomLevel * 100)}%
+        </button>
+        <button
+          type="button"
+          onClick={handleZoomOut}
+          title="Thu nhỏ hình ảnh (−)"
+          className="w-8 h-8 rounded-lg bg-slate-800/80 hover:bg-sky-600 text-slate-200 hover:text-white flex items-center justify-center font-bold text-base transition active:scale-95 border border-slate-700/40 shadow-sm"
+        >
+          −
+        </button>
+      </div>
+
+      {/* Floating Quick Action: Open Slice Sliders if hidden */}
+      {!isSlidersOpen && (
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 pointer-events-auto">
+          <button
+            type="button"
+            onClick={() => setIsSlidersOpen(true)}
+            className="px-3.5 py-1.5 rounded-full bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 text-xs font-semibold text-slate-200 hover:text-sky-400 shadow-2xl backdrop-blur-md flex items-center gap-2 transition active:scale-95"
+            title="Mở thanh trượt điều khiển lát cắt 3 trục (X, Y, Z & 3D Clip)"
+          >
+            <span>🎚️</span>
+            <span>Điều khiển trục cắt</span>
+          </button>
+        </div>
+      )}
 
       {isLoading && (
         <div className="absolute inset-0 bg-slate-950/85 backdrop-blur-sm flex flex-col items-center justify-center gap-3 z-20 transition-opacity">

@@ -43,7 +43,11 @@ export interface NeuroVisionState {
   // 6. 3D Surface Mesh
   activeMesh: string | null;
 
-  // 7. Runtime Diagnostics
+  // 7. UI Controls & Responsiveness
+  isSlidersOpen: boolean; // Bottom XYZ / Clip sliders drawer (only open when needed)
+  isSidebarOpen: boolean; // Clinical Inspector sidebar
+
+  // 8. Runtime Diagnostics
   fps: number;
   isLoading: boolean;
   loadProgress: string;
@@ -58,6 +62,8 @@ export interface NeuroVisionState {
   setVolumeDimensions: (dims: VolumeDimensions) => void;
   setSelectedRegion: (region: OntologyEntry | null) => void;
   setHighlightedLabelId: (id: number | null) => void;
+  setIsSlidersOpen: (open: boolean) => void;
+  setIsSidebarOpen: (open: boolean) => void;
   setAspectsModalOpen: (open: boolean) => void;
   setAspectsMode: (mode: 'aspects' | 'pc-aspects') => void;
   setAspectsHemisphere: (hemi: 'left' | 'right') => void;
@@ -85,7 +91,7 @@ const DEFAULT_CLIP_PLANE: ClipPlaneState = {
 export const useNeuroVisionStore = create<NeuroVisionState>((set) => ({
   // Defaults
   baseModality: 'T1',
-  activeOverlay: 'aspects',
+  activeOverlay: 'none',
   overlayOpacity: 0.7,
 
   viewMode: 'multiplanar',
@@ -109,6 +115,9 @@ export const useNeuroVisionStore = create<NeuroVisionState>((set) => ({
   clipPlane: DEFAULT_CLIP_PLANE,
   activeMesh: null,
 
+  isSlidersOpen: false, // Hidden by default, only shown when requested by user
+  isSidebarOpen: true,
+
   fps: 0,
   isLoading: false,
   loadProgress: '',
@@ -123,6 +132,8 @@ export const useNeuroVisionStore = create<NeuroVisionState>((set) => ({
   setVolumeDimensions: (dims) => set({ volumeDimensions: dims }),
   setSelectedRegion: (region) => set({ selectedRegion: region }),
   setHighlightedLabelId: (id) => set({ highlightedLabelId: id }),
+  setIsSlidersOpen: (open) => set({ isSlidersOpen: open }),
+  setIsSidebarOpen: (open) => set({ isSidebarOpen: open }),
 
   setAspectsModalOpen: (open) => set({ isAspectsModalOpen: open }),
   setAspectsMode: (mode) => set({ aspectsMode: mode }),

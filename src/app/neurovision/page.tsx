@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useNeuroVisionStore } from "../../store/useNeuroVisionStore";
 import { AppSwitcher } from "../../components/ecosystem/AppSwitcher";
 import { NeuroViewerProvider } from "../../components/neurovision/NeuroViewerContext";
 import { DynamicNeuroViewer } from "../../components/neurovision/DynamicNeuroViewer";
@@ -24,59 +25,58 @@ const VALIDATION_IMAGES = [
 
 export default function NeuroVisionPage() {
   const [activeTab, setActiveTab] = useState<"viewer" | "validation">("viewer");
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
+  // Zustand Store for UI controls
+  const isSidebarOpen = useNeuroVisionStore((s) => s.isSidebarOpen);
+  const setIsSidebarOpen = useNeuroVisionStore((s) => s.setIsSidebarOpen);
+  const isSlidersOpen = useNeuroVisionStore((s) => s.isSlidersOpen);
 
   return (
     <NeuroViewerProvider>
-      <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans select-none">
+      <div className="h-[100dvh] max-h-[100dvh] w-screen bg-slate-950 text-slate-100 flex flex-col font-sans select-none overflow-hidden">
         {/* 1. Global Navigation Bar */}
-        <header className="bg-slate-900 border-b border-slate-800 px-4 py-2.5 flex items-center justify-between shrink-0 shadow-md z-40">
-          <div className="flex items-center gap-3">
+        <header className="bg-slate-900 border-b border-slate-800 px-3 py-2 flex items-center justify-between shrink-0 shadow-md z-40">
+          <div className="flex items-center gap-2.5">
             <AppSwitcher currentApp="neurovision" darkMode={true} />
-            <div>
-              <div className="flex items-center gap-2">
-                <h1 className="text-sm font-bold text-white tracking-tight flex items-center gap-1.5">
-                  <span className="text-sky-400">NeuroVision</span>
-                  <span className="text-slate-500 font-normal">|</span>
-                  <span className="text-xs font-semibold text-slate-300">Atlas & NiiVue Viewer</span>
-                </h1>
-                <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-sky-500/20 text-sky-400 border border-sky-500/30">
-                  BETA 2.0
-                </span>
-                <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
-                  MNI152 1mm
-                </span>
-              </div>
-              <p className="text-[11px] text-slate-400">
-                Không gian chuẩn MNI152NLin2009cAsym • T1 / T2 / CT • 8 Hệ thống Atlas
-              </p>
+            <div className="flex items-center gap-2">
+              <h1 className="text-sm font-bold text-white tracking-tight flex items-center gap-1.5">
+                <span className="text-sky-400">NeuroVision</span>
+                <span className="text-slate-500 font-normal hidden sm:inline">|</span>
+                <span className="text-xs font-semibold text-slate-300 hidden sm:inline">Atlas & NiiVue Viewer</span>
+              </h1>
+              <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-sky-500/20 text-sky-400 border border-sky-500/30">
+                BETA 2.0
+              </span>
+              <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 hidden md:inline">
+                MNI152 1mm
+              </span>
             </div>
           </div>
 
           {/* View mode / Tabs */}
           <div className="flex items-center gap-2">
-            <div className="bg-slate-950 p-1 rounded-lg border border-slate-800 flex items-center gap-1 text-xs">
+            <div className="bg-slate-950 p-0.5 rounded-lg border border-slate-800 flex items-center gap-1 text-xs">
               <button
                 type="button"
                 onClick={() => setActiveTab("viewer")}
-                className={`px-3 py-1 rounded-md font-medium transition ${
+                className={`px-2.5 py-1 rounded-md font-medium transition text-xs ${
                   activeTab === "viewer"
                     ? "bg-sky-600 text-white shadow-sm"
                     : "text-slate-400 hover:text-slate-200"
                 }`}
               >
-                Trình xem NiiVue
+                Trình xem
               </button>
               <button
                 type="button"
                 onClick={() => setActiveTab("validation")}
-                className={`px-3 py-1 rounded-md font-medium transition ${
+                className={`px-2.5 py-1 rounded-md font-medium transition text-xs ${
                   activeTab === "validation"
                     ? "bg-sky-600 text-white shadow-sm"
                     : "text-slate-400 hover:text-slate-200"
                 }`}
               >
-                Kiểm định nguồn gốc
+                Kiểm định
               </button>
             </div>
 
@@ -101,25 +101,29 @@ export default function NeuroVisionPage() {
 
         {/* 2. Main Body */}
         {activeTab === "viewer" ? (
-          <div className="flex-1 flex flex-col overflow-hidden">
+          <div className="flex-1 flex flex-col overflow-hidden min-h-0">
             {/* Toolbar */}
             <ViewerToolbar />
 
-            {/* Split View: Canvas + Sliders on Left/Center, Clinical Panel on Right */}
-            <div className="flex-1 flex flex-col lg:flex-row overflow-hidden relative">
-              <div className="flex-1 flex flex-col overflow-hidden relative min-h-[480px]">
+            {/* Split View: Canvas + Right Clinical Panel */}
+            <div className="flex-1 flex flex-col lg:flex-row overflow-hidden relative min-h-0">
+              <div className="flex-1 flex flex-col overflow-hidden relative min-h-0 h-full w-full">
                 {/* NiiVue WebGL Canvas */}
-                <div className="flex-1 w-full h-full relative">
+                <div className="flex-1 w-full h-full relative min-h-0 overflow-hidden">
                   <DynamicNeuroViewer darkMode={true} />
                 </div>
 
-                {/* Interactive Sliders Bar (Axial / Coronal / Sagittal + 3D Clip) */}
-                <SliceSlidersBar />
+                {/* Interactive Sliders Bar (Axial / Coronal / Sagittal + 3D Clip) - Only shown when requested */}
+                {isSlidersOpen && (
+                  <div className="shrink-0 z-30 transition-all duration-200">
+                    <SliceSlidersBar />
+                  </div>
+                )}
               </div>
 
               {/* Collapsible Clinical Information Sidebar */}
               {isSidebarOpen && (
-                <div className="w-full lg:w-96 xl:w-[420px] shrink-0 border-t lg:border-t-0 lg:border-l border-slate-800 flex flex-col h-72 lg:h-auto">
+                <div className="w-full lg:w-80 xl:w-[380px] shrink-0 border-t lg:border-t-0 lg:border-l border-slate-800 flex flex-col h-56 sm:h-64 lg:h-full min-h-0 overflow-hidden z-20 bg-slate-900">
                   <ClinicalInspector />
                 </div>
               )}

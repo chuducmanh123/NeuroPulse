@@ -17,6 +17,7 @@ export default function SliceSlidersBar() {
   const setIsProgrammaticChange = useNeuroVisionStore((s) => s.setIsProgrammaticChange);
   const setClipPlane = useNeuroVisionStore((s) => s.setClipPlane);
   const resetCrosshair = useNeuroVisionStore((s) => s.resetCrosshair);
+  const setIsSlidersOpen = useNeuroVisionStore((s) => s.setIsSlidersOpen);
 
   const [showClipControls, setShowClipControls] = useState(false);
 
@@ -93,10 +94,61 @@ export default function SliceSlidersBar() {
   };
 
   return (
-    <div className="bg-slate-900/95 border-t border-slate-800 p-3 text-xs text-slate-200 select-none shadow-2xl backdrop-blur-md">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-4">
+    <div className="bg-slate-900/95 border-t border-slate-800 p-2.5 sm:p-3 text-xs text-slate-200 select-none shadow-2xl backdrop-blur-md">
+      <div className="max-w-7xl mx-auto flex flex-col gap-2.5">
+        {/* Top Header of Sliders Drawer */}
+        <div className="flex items-center justify-between pb-1.5 border-b border-slate-800/80 text-[11px]">
+          <div className="flex items-center gap-2">
+            <span className="font-bold text-sky-400 flex items-center gap-1.5">
+              <span>🎚️</span> Điều khiển lát cắt 3 trục
+            </span>
+            <span className="text-slate-400 font-mono text-[10px] bg-slate-950 px-1.5 py-0.5 rounded border border-slate-800">
+              MNI: [{mmX}, {mmY}, {mmZ}]
+            </span>
+          </div>
+
+          <div className="flex items-center gap-1.5">
+            <button
+              type="button"
+              onClick={handleResetAC}
+              className="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition font-medium flex items-center gap-1 text-[10px]"
+              title="Đưa tâm ngắm về Mép trước (Anterior Commissure - MNI 0,0,0)"
+            >
+              <svg className="w-3 h-3 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+              </svg>
+              Về AC (0,0,0)
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setShowClipControls(!showClipControls)}
+              className={`px-2 py-0.5 rounded border transition font-medium text-[10px] flex items-center gap-1 ${
+                showClipControls || clipPlane.depth <= 2.0
+                  ? "bg-indigo-600/30 border-indigo-500 text-indigo-200"
+                  : "bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700"
+              }`}
+              title="Công cụ cắt vát khối 3D (Clip Plane)"
+            >
+              <svg className="w-3 h-3 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
+              </svg>
+              3D Clip
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setIsSlidersOpen(false)}
+              className="w-5 h-5 rounded bg-slate-800 hover:bg-rose-900/60 hover:text-rose-300 text-slate-400 flex items-center justify-center font-bold text-xs transition border border-slate-700/60"
+              title="Đóng thanh trượt"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+
         {/* Sliders Grid */}
-        <div className="flex-1 w-full grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-2.5">
           {/* 1. Axial Slider (Z) */}
           <div className="bg-slate-800/60 border border-slate-700/60 rounded-lg p-2.5 flex flex-col gap-1.5 shadow-sm">
             <div className="flex items-center justify-between text-[11px]">
@@ -216,37 +268,6 @@ export default function SliceSlidersBar() {
               </button>
             </div>
           </div>
-        </div>
-
-        {/* Quick Actions & 3D Clip Toggle */}
-        <div className="flex items-center gap-2 shrink-0">
-          <button
-            type="button"
-            onClick={handleResetAC}
-            className="px-2.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition font-medium flex items-center gap-1.5"
-            title="Đưa tâm ngắm về Mép trước (Anterior Commissure - MNI 0,0,0)"
-          >
-            <svg className="w-3.5 h-3.5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-            </svg>
-            Về AC (0,0,0)
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setShowClipControls(!showClipControls)}
-            className={`px-2.5 py-2 rounded-lg border transition font-medium flex items-center gap-1.5 ${
-              showClipControls || clipPlane.depth <= 2.0
-                ? "bg-indigo-600/30 border-indigo-500 text-indigo-200"
-                : "bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700"
-            }`}
-            title="Công cụ cắt vát khối 3D (Clip Plane)"
-          >
-            <svg className="w-3.5 h-3.5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
-            </svg>
-            3D Clip
-          </button>
         </div>
       </div>
 

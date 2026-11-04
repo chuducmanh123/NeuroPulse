@@ -27,6 +27,7 @@ export default function ClinicalInspector() {
   const setHighlightedLabelId = useNeuroVisionStore((s) => s.setHighlightedLabelId);
   const setCrosshair = useNeuroVisionStore((s) => s.setCrosshair);
   const setIsProgrammaticChange = useNeuroVisionStore((s) => s.setIsProgrammaticChange);
+  const setIsSidebarOpen = useNeuroVisionStore((s) => s.setIsSidebarOpen);
 
   const [centroids, setCentroids] = useState<CentroidData | null>(null);
 
@@ -75,15 +76,25 @@ export default function ClinicalInspector() {
   return (
     <div className="w-full h-full bg-slate-900/95 border-l border-slate-800 flex flex-col text-slate-200 overflow-hidden select-none">
       {/* Header */}
-      <div className="p-3.5 border-b border-slate-800 bg-slate-950/70 flex items-center justify-between">
+      <div className="p-2.5 sm:p-3 border-b border-slate-800 bg-slate-950/70 flex items-center justify-between shrink-0">
         <div className="flex items-center gap-2">
           <div className="w-2.5 h-2.5 rounded-full bg-sky-400"></div>
           <h2 className="text-xs uppercase tracking-wider font-bold text-slate-200">
             Giám sát Giải phẫu & Lâm sàng
           </h2>
         </div>
-        <div className="font-mono text-[10px] text-slate-400 bg-slate-800 px-2 py-0.5 rounded border border-slate-700/60">
-          MNI: [{mmX}, {mmY}, {mmZ}]
+        <div className="flex items-center gap-1.5">
+          <div className="font-mono text-[10px] text-slate-400 bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700/60">
+            MNI: [{mmX}, {mmY}, {mmZ}]
+          </div>
+          <button
+            type="button"
+            onClick={() => setIsSidebarOpen(false)}
+            className="w-5 h-5 rounded bg-slate-800 hover:bg-rose-900/60 hover:text-rose-300 text-slate-400 flex items-center justify-center font-bold text-xs transition border border-slate-700/60"
+            title="Đóng bảng lâm sàng"
+          >
+            ✕
+          </button>
         </div>
       </div>
 
