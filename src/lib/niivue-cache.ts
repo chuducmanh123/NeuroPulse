@@ -11,7 +11,7 @@
 
 const DB_NAME = 'neurovision_cache_v1';
 const STORE_NAME = 'neuro_assets';
-const CACHE_VERSION = '2026.11.4_v2'; // Bumped for NIfTI intent_code=1002 transparent background & expanded anatomy names
+const CACHE_VERSION = '2026.11.4_v3'; // Bumped for high-res CQ500 CT template upgrade
 
 interface CacheRecord {
   key: string;
