@@ -11,7 +11,7 @@
 
 const DB_NAME = 'neurovision_cache_v1';
 const STORE_NAME = 'neuro_assets';
-const CACHE_VERSION = '2026.11.3'; // Bumped for multi-colored parcellated venous sinuses
+const CACHE_VERSION = '2026.11.4'; // Bumped for 8 distinct major venous sinuses
 
 interface CacheRecord {
   key: string;
@@ -110,8 +110,9 @@ export async function loadWithCache(
     }
   }
 
-  // 2. Fetch from network
-  const response = await fetch(url);
+  // 2. Fetch from network (force fresh network fetch via version query param)
+  const fetchUrl = url.includes("?") ? `${url}&v=${version}` : `${url}?v=${version}`;
+  const response = await fetch(fetchUrl);
   if (!response.ok) {
     throw new Error(`Failed to load neuro asset ${filename} from ${url}: HTTP ${response.status}`);
   }

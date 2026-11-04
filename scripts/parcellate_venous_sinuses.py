@@ -1,5 +1,5 @@
 """
-Parcellate VENAT 7T QSM Venous Atlas into 9 distinct anatomical sinuses/veins
+Parcellate VENAT 7T QSM Venous Atlas into 8 distinct major anatomical sinuses/veins
 and update NIfTI volume, labels sidecar, colormap, centroids, and ontology.
 """
 
@@ -64,24 +64,22 @@ out_labels[sig_r] = 7
 sss = v & (out_labels == 0) & (np.abs(x_mm) <= 20) & (z_mm >= 22)
 out_labels[sss] = 1
 
-# 7. Remaining cortical/bridging veins
-cortical = v & (out_labels == 0)
-out_labels[cortical] = 9
+# Note: Any remaining diffuse micro-vessels remain 0 (background) to keep the 8 sinuses crisp and high-contrast!
 
 # Save parcellated volume
 out_img = nib.Nifti1Image(out_labels, affine, img.header)
 out_img.set_data_dtype(np.uint8)
 nib.save(out_img, VENOUS_NII)
-print(f"Saved parcellated venous atlas -> {VENOUS_NII}")
+print(f"Saved parcellated venous atlas -> {VENOUS_NII} with {np.count_nonzero(out_labels > 0)} sinus voxels")
 
-# 2. Venous Sinus Metadata
+# 2. Venous Sinus Metadata (8 distinct sinuses with vibrant high-contrast palette)
 SINUS_DEFS = [
     {
         "id": 1,
         "code": "VEN_SSS",
         "name_vi": "Xoang dọc trên (Superior Sagittal Sinus)",
         "name_en": "Superior Sagittal Sinus",
-        "color": [0, 210, 210, 255], # Cyan
+        "color": [0, 230, 230, 255], # Bright Cyan
         "desc_vi": "Xoang tĩnh mạch lớn nhất màng cứng chạy dọc bờ trên liềm não từ mào gà qua đỉnh vòm sọ ra ụ chẩm trong.",
         "syndrome": "Huyết khối xoang dọc trên (SSS Thrombosis): Nhức đầu tăng dần, tăng áp lực nội sọ, phù gai thị, phù não và xuất huyết thùy trán - đỉnh hai bên, co giật cục bộ hoặc toàn thể."
     },
@@ -90,7 +88,7 @@ SINUS_DEFS = [
         "code": "VEN_SS",
         "name_vi": "Xoang thẳng (Straight Sinus)",
         "name_en": "Straight Sinus",
-        "color": [185, 85, 215, 255], # Purple
+        "color": [255, 0, 255, 255], # Vivid Magenta / Purple
         "desc_vi": "Xoang tĩnh mạch nằm ở đường nối giữa liềm não và lều tiểu não, nhận máu từ tĩnh mạch não lớn (Galen) và xoang dọc dưới.",
         "syndrome": "Huyết khối xoang thẳng: Rối loạn tri giác nhanh chóng tiến triển thành hôn mê, phù hoặc nhồi máu xuất huyết đồi thị hai bên, tiên lượng nặng."
     },
@@ -99,7 +97,7 @@ SINUS_DEFS = [
         "code": "VEN_TORCULAR",
         "name_vi": "Hội lưu các xoang (Confluence of Sinuses / Torcular)",
         "name_en": "Confluence of Sinuses (Torcular Herophili)",
-        "color": [220, 30, 70, 255], # Crimson
+        "color": [255, 25, 40, 255], # Bright Crimson Red
         "desc_vi": "Ngã tư hội lưu xoang nằm ở mặt trong xương chẩm, nơi gặp nhau của xoang dọc trên, xoang thẳng, xoang chẩm và hai xoang ngang.",
         "syndrome": "Huyết khối hội lưu xoang: Tắc nghẽn đường thoát máu tĩnh mạch toàn bộ não bộ sau, tăng áp lực nội sọ kịch phát, nguy cơ xuất huyết tiểu não và chẩm cao."
     },
@@ -108,7 +106,7 @@ SINUS_DEFS = [
         "code": "VEN_L_TS",
         "name_vi": "Xoang ngang Trái (Left Transverse Sinus)",
         "name_en": "Left Transverse Sinus",
-        "color": [40, 90, 230, 255], # Royal Blue
+        "color": [0, 60, 255, 255], # Deep Royal Blue
         "desc_vi": "Chạy ngang theo rãnh xoang ngang xương chẩm bên trái dọc bờ sau lều tiểu não. Thường có hiện tượng thiểu sản sinh lý (hypoplasia).",
         "syndrome": "Huyết khối xoang ngang trái: Đau đầu vùng chẩm - thái dương trái, đau sau tai, ù tai dạng mạch đập (pulsatile tinnitus), cần phân biệt với thiểu sản bẩm sinh."
     },
@@ -117,7 +115,7 @@ SINUS_DEFS = [
         "code": "VEN_R_TS",
         "name_vi": "Xoang ngang Phải (Right Transverse Sinus)",
         "name_en": "Right Transverse Sinus",
-        "color": [30, 150, 255, 255], # Sky Blue
+        "color": [30, 160, 255, 255], # Vivid Sky Blue
         "desc_vi": "Xoang ngang bên phải, thường là xoang ưu thế (dominant sinus) dẫn lưu máu chính từ xoang dọc trên về tĩnh mạch cảnh trong.",
         "syndrome": "Huyết khối xoang ngang ưu thế bên phải: Gây hội chứng tăng áp lực nội sọ rầm rộ, phù gai thị nặng nề, phù não thùy thái dương - chẩm phải."
     },
@@ -126,7 +124,7 @@ SINUS_DEFS = [
         "code": "VEN_L_SIGS",
         "name_vi": "Xoang sigma Trái (Left Sigmoid Sinus)",
         "name_en": "Left Sigmoid Sinus",
-        "color": [255, 140, 20, 255], # Amber Orange
+        "color": [255, 120, 0, 255], # Vivid Orange
         "desc_vi": "Phần tiếp nối hình chữ S của xoang ngang trái, uốn cong qua xương chũm và đổ vào hành tĩnh mạch cảnh trong trái.",
         "syndrome": "Huyết khối xoang sigma trái: Đau vùng xương chũm (dấu hiệu Griesinger), viêm tắc tĩnh mạch huyết khối thứ phát sau viêm tai giữa / viêm xương chũm."
     },
@@ -135,7 +133,7 @@ SINUS_DEFS = [
         "code": "VEN_R_SIGS",
         "name_vi": "Xoang sigma Phải (Right Sigmoid Sinus)",
         "name_en": "Right Sigmoid Sinus",
-        "color": [255, 215, 0, 255], # Gold
+        "color": [255, 220, 0, 255], # Bright Gold / Yellow
         "desc_vi": "Xoang sigma bên phải uốn qua rãnh sigma xương chũm phải đổ vào lỗ tĩnh mạch cảnh phải.",
         "syndrome": "Huyết khối xoang sigma phải: Đau sau tai phải, hội chứng lỗ tĩnh mạch cảnh (liệt dây IX, X, XI nếu lan xuống hành tĩnh mạch cảnh)."
     },
@@ -144,18 +142,9 @@ SINUS_DEFS = [
         "code": "VEN_DEEP",
         "name_vi": "Tĩnh mạch não trong & Tĩnh mạch Galen (Deep Veins)",
         "name_en": "Deep Cerebral Veins & Great Vein of Galen",
-        "color": [50, 205, 50, 255], # Spring Green
+        "color": [0, 255, 60, 255], # Bright Lime / Spring Green
         "desc_vi": "Hệ tĩnh mạch sâu nằm ở mái não thất ba, gồm 2 tĩnh mạch não trong hợp lại thành tĩnh mạch Galen, dẫn lưu máu từ đồi thị và nhân nền.",
         "syndrome": "Huyết khối hệ tĩnh mạch sâu (Deep Cerebral Venous Thrombosis): Hội chứng tổn thương đồi thị - hạch nền song phương, lú lẫn, hôn mê, mất trí nhớ cấp, tiên lượng xấu."
-    },
-    {
-        "id": 9,
-        "code": "VEN_CORTICAL",
-        "name_vi": "Tĩnh mạch vỏ não nông & Tĩnh mạch bắt cầu (Cortical Veins)",
-        "name_en": "Superficial Cortical & Bridging Veins",
-        "color": [120, 160, 220, 255], # Steel Blue
-        "desc_vi": "Mạng lưới tĩnh mạch bề mặt vỏ não thu gom máu từ các hồi não và tĩnh mạch bắt cầu (bridging veins) đổ vào các xoang màng cứng.",
-        "syndrome": "Huyết khối tĩnh mạch vỏ não đơn độc (Isolated Cortical Vein Thrombosis): Co giật cục bộ sớm, khiếm khuyết thần kinh khu trú tương ứng vùng vỏ não bị ứ trệ tuần hoàn."
     }
 ]
 
@@ -164,7 +153,7 @@ labels_sidecar = {
     "atlas": "venous",
     "space": "MNI152NLin2009cAsym",
     "source": "VENAT 7T QSM (Bazin et al., Figshare CC BY 4.0; doi:10.6084/m9.figshare.7205960)",
-    "description": "Anatomically parcellated cerebral venous sinuses and deep/superficial veins (9 compartments)",
+    "description": "Anatomically parcellated cerebral venous sinuses (8 distinct major compartments)",
     "review_status": "unreviewed",
     "labels": [
         {
@@ -247,7 +236,7 @@ for s in SINUS_DEFS:
 onto_data["entries"] = entries
 with open(ONTOLOGY_PATH, "w", encoding="utf-8") as f:
     json.dump(onto_data, f, indent=2, ensure_ascii=False)
-print(f"Updated neuro_ontology.json with 9 venous entries (Total: {len(entries)} entries)")
+print(f"Updated neuro_ontology.json with 8 venous entries (Total: {len(entries)} entries)")
 
 # 6. Recompute Centroids for venous
 with open(CENTROIDS_PATH, encoding="utf-8") as f:
@@ -276,6 +265,6 @@ for s in SINUS_DEFS:
 
 with open(CENTROIDS_PATH, "w", encoding="utf-8") as f:
     json.dump(centroids_data, f, indent=2)
-print("Updated centroids.json for 9 venous sinuses")
+print("Updated centroids.json for 8 venous sinuses")
 
-print("\nALL VENOUS SINUS PARCELLATION COMPLETE!")
+print("\nALL 8 VENOUS SINUSES PARCELLATION COMPLETE!")

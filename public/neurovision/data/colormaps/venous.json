@@ -2,42 +2,38 @@
   "R": [
     0,
     0,
-    185,
-    220,
-    40,
+    255,
+    255,
+    0,
     30,
     255,
     255,
-    50,
-    120
+    0
   ],
   "G": [
     0,
-    210,
-    85,
-    30,
-    90,
-    150,
-    140,
-    215,
-    205,
-    160
+    230,
+    0,
+    25,
+    60,
+    160,
+    120,
+    220,
+    255
   ],
   "B": [
     0,
-    210,
-    215,
-    70,
     230,
     255,
-    20,
+    40,
+    255,
+    255,
     0,
-    50,
-    220
+    0,
+    60
   ],
   "A": [
     0,
-    255,
     255,
     255,
     255,
@@ -56,8 +52,7 @@
     5,
     6,
     7,
-    8,
-    9
+    8
   ],
   "labels": [
     "Background",
@@ -68,7 +63,6 @@
     "Xoang ngang Phải (Right Transverse Sinus)",
     "Xoang sigma Trái (Left Sigmoid Sinus)",
     "Xoang sigma Phải (Right Sigmoid Sinus)",
-    "Tĩnh mạch não trong & Tĩnh mạch Galen (Deep Veins)",
-    "Tĩnh mạch vỏ não nông & Tĩnh mạch bắt cầu (Cortical Veins)"
+    "Tĩnh mạch não trong & Tĩnh mạch Galen (Deep Veins)"
   ]
 }

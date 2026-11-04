@@ -2,7 +2,7 @@
   "atlas": "venous",
   "space": "MNI152NLin2009cAsym",
   "source": "VENAT 7T QSM (Bazin et al., Figshare CC BY 4.0; doi:10.6084/m9.figshare.7205960)",
-  "description": "Anatomically parcellated cerebral venous sinuses and deep/superficial veins (9 compartments)",
+  "description": "Anatomically parcellated cerebral venous sinuses (8 distinct major compartments)",
   "review_status": "unreviewed",
   "labels": [
     {
@@ -66,14 +66,6 @@
       "code": "VEN_DEEP",
       "name": "Deep Cerebral Veins & Great Vein of Galen",
       "name_vi": "Tĩnh mạch não trong & Tĩnh mạch Galen (Deep Veins)",
-      "source": "VENAT 7T QSM & Neuroanatomy",
-      "review_status": "unreviewed"
-    },
-    {
-      "index": 9,
-      "code": "VEN_CORTICAL",
-      "name": "Superficial Cortical & Bridging Veins",
-      "name_vi": "Tĩnh mạch vỏ não nông & Tĩnh mạch bắt cầu (Cortical Veins)",
       "source": "VENAT 7T QSM & Neuroanatomy",
       "review_status": "unreviewed"
     }

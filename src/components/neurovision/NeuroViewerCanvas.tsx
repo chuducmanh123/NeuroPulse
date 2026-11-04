@@ -230,8 +230,8 @@ export default function NeuroViewerCanvas({ className = "", darkMode = true }: N
         const overlayUrl = `/neurovision/atlases/${overlayFilename}`;
         overlayAsset = await loadWithCache(overlayUrl, overlayFilename);
 
-        // Fetch colormap
-        const cmRes = await fetch(`/neurovision/data/colormaps/${activeOverlay}.json`);
+        // Fetch colormap (with cache busting)
+        const cmRes = await fetch(`/neurovision/data/colormaps/${activeOverlay}.json?v=2026.11.4`);
         if (cmRes.ok) {
           colormapJson = await cmRes.json();
         }
