@@ -1,7 +1,54 @@
 [
   {
+    "id": "10.1161/strokeaha.126.056467",
+    "title": "Physical Activity Associated With Early Independent Walking in Nonambulatory Patients With Subacute Stroke",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-11-04T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Shimizu Natsuki",
+      "Ishigaki Tomoya",
+      "Kimura Yosuke",
+      "Kubo Hiroki",
+      "Kai Takumi",
+      "Suzuki Yoshiki",
+      "Tanaka Shu",
+      "Yoshida Keishi",
+      "Takeuchi Mutsuo",
+      "Kobayashi Sota",
+      "Yamamoto Seiya",
+      "Moronaga Kouhei",
+      "Yoshimura Tomohiro",
+      "Kanai Masashi"
+    ],
+    "doi_url": "https://doi.org/10.1161/strokeaha.126.056467",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Stroke"
+      ]
+    },
+    "abstract": "BACKGROUND: Identifying the intensity and frequency of physical activity associated with early independent walking in nonambulatory patients with subacute stroke may inform daily physical activity promotion during hospitalization, which was the aim of the present study. METHODS: This multicenter prospective cohort study was conducted at 11 facilities. Baseline was defined as admission to a subacute rehabilitation ward, with subacute referring to the phase after completion of acute stroke treatment. Patients with subacute stroke and a Functional Ambulation Category of 1 to 2 at admission were included. Physical activity was measured using an accelerometer for 1 week at baseline. The outcome was achievement of independent walking at 1 month from baseline (Functional Ambulation Category ≥4). To examine the intensity of physical activity associated with the outcome, modified Poisson regression was used to evaluate time spent in low -intensity physical activity (LPA; low-LPA, 1.6–1.9 metabolic equivalents [METs]), high-LPA (2.0–2.9 METs), and moderate-to-vigorous intensity physical activity (≥3.0 METs). Furthermore, to assess frequency associated with activity intensity, bouts of physical activity at or above the intensity level (≥1.6, ≥2.0, or ≥3.0 METs) were calculated as short-bouts (≥5 to <10 minutes) and long-bouts (≥10 minutes), and their associations with the outcome were examined. RESULTS: Of 389 participants (mean age, 68.1 years; 45.0% female), 113 achieved independent walking during follow-up. Time spent in high-LPA was associated with independent walking when expressed per 5 min/d (risk ratio, 1.067 [95% CI, 1.010–1.131]), whereas low-LPA and moderate-to-vigorous intensity physical activity were not. The number of short-bouts at ≥2.0 METs was associated with independent walking (risk ratio, 1.208 [95% CI, 1.060–1.375]), whereas long-bouts were not relevant. CONCLUSIONS: Accumulation of high-LPA and short-bouts at ≥2.0 METs was associated with early independent walking. These findings may help characterize activity intensity and bout frequency associated with walking independence in nonambulatory patients with subacute stroke during inpatient rehabilitation. REGISTRATION: URL: https://www.umin.ac.jp/ctr ; Unique identifier: UMIN000058526.",
+    "ai_takeaways": {
+      "conclusion_vi": "In nonambulatory subacute stroke patients, early independent walking is associated with daily high-intensity low physical activity (2.0–2.9 METs; RR, 1.067 [95% CI, 1.010–1.131] per 5 min/d) and frequent short 5–10 minute activity bouts at ≥2.0 METs (RR, 1.208 [95% CI, 1.060–1.375]).",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": true
+    }
+  },
+  {
     "id": "10.1001/jama.2026.15601",
-    "title": "Tenecteplase Before Thrombectomy at 4.5 to 24 Hours for Basilar Artery Occlusion",
+    "title": "Tenecteplase Before Thrombectomy at 4.5 to 24 Hours for Basilar Artery Occlusion: Research Summary.",
     "journal": {
       "name": "JAMA",
       "short_name": "JAMA",
@@ -116,6 +163,47 @@
     "ai_takeaways": {
       "conclusion_vi": "Higher cervical curvature derived from preprocedural CT angiography independently predicts mechanical thrombectomy recanalization failure (adjusted OR, 1.21; 95% CI, 1.02-1.43; P=0.028), particularly above a threshold of 11.54 (adjusted OR, 5.10; 95% CI, 1.88-13.84; P=0.001). Assessing vascular geometry can improve risk stratification and guide device selection.",
       "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218826",
+    "title": "From the Mailbox to the Microphone: The Neurology Podcast and the Evolution of Medical Education.",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-03T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Clardy SL",
+      "Ratliff JB",
+      "Crowell J",
+      "Southerland AM",
+      "Pieper KM",
+      "Eikenberry BE",
+      "Rehbein A",
+      "Baskin PK."
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218826",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "When the Neurology® Podcast debuted in September 2007, podcasting occupied the fringes of academic medicine. Smartphones had only just emerged, and streaming audio was uncommon. Nearly 2 decades later, the Neurology Podcast stands among the longest-running physician-hosted podcasts in medicine and has fundamentally expanded how one of the world's leading neurology journals educates its readers. Although the technologies through which neurologists consume information have changed dramatically since 2007, the podcast's enduring success reflects a remarkably constant mission: to deliver practical, clinically relevant education through authentic conversation. This article traces the origins and evolution of the Neurology Podcast through archival documents, contemporaneous publications, and personal recollections from those who created it.",
+    "ai_takeaways": {
+      "conclusion_vi": "The *Neurology* Podcast demonstrates that delivering practical, clinically relevant education through authentic conversation is an enduring, effective method for continuous medical education. Practicing neurologists can leverage mature audio platforms to stay updated on emerging clinical evidence alongside traditional journal reading.",
+      "clinical_significance": "Clinical significance for Other practice.",
       "ai_verified": true
     }
   },
@@ -335,7 +423,7 @@
   },
   {
     "id": "10.1001/jamaneurol.2026.4115",
-    "title": "JAMA Neurology Editorial Fellowship-Call for Applicants.",
+    "title": "JAMA Neurology Editorial Fellowship—Call for Applicants",
     "journal": {
       "name": "JAMA Neurology",
       "short_name": "JAMA Neurol",
@@ -348,7 +436,7 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Josephson SA."
+      "Josephson S. Andrew"
     ],
     "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4115",
     "neurology_classification": {
@@ -1023,6 +1111,93 @@
     }
   },
   {
+    "id": "10.1001/jama.2026.15496",
+    "title": "Tenecteplase Before Thrombectomy at 4.5 to 24 Hours for Basilar Artery Occlusion: The ATTENTION LATE Randomized Clinical Trial.",
+    "journal": {
+      "name": "JAMA",
+      "short_name": "JAMA",
+      "badge_bg": "#FEE2E2",
+      "badge_text": "#DC2626"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "RCT",
+    "article_types": [
+      "RCT",
+      "Clinical Trial",
+      "Original Article"
+    ],
+    "authors": [
+      "Li R",
+      "Yao X",
+      "Nogueira RG",
+      "Yuan G",
+      "Chen Z",
+      "Chen W",
+      "Yi T",
+      "Ren Y",
+      "Su J",
+      "Wang H",
+      "Ma Z",
+      "Zeng G",
+      "Wang B",
+      "Wei M",
+      "Jiang S"
+    ],
+    "doi_url": "https://doi.org/10.1001/jama.2026.15496",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Stroke",
+        "Thrombectomy",
+        "Tenecteplase",
+        "Hemorrhage"
+      ]
+    },
+    "abstract": "Importance: Whether intravenous tenecteplase before endovascular thrombectomy (EVT) improves outcomes in patients with basilar artery occlusion presenting 4.5 to 24 hours after stroke onset remains uncertain. Objective: To evaluate the efficacy and safety of intravenous tenecteplase before EVT vs EVT alone in patients with moderate to severe basilar artery occlusion admitted within 4.5 to 24 hours from stroke onset. Design, setting, and participants: This multicenter, open-label, blinded end point, randomized clinical trial was conducted at 40 stroke centers in China. Between March 16, 2023, and February 4, 2025, a total of 330 patients with moderate to severe basilar artery occlusion (National Institutes of Health Stroke Scale score ≥10) presenting within 4.5 to 24 hours from stroke onset to EVT-capable centers were enrolled. Final follow-up was completed on May 4, 2025. Interventions: Patients were randomized 1:1 via a centralized web server using a minimization method to receive either intravenous tenecteplase (bolus injection, 0.25 mg/kg; maximum, 25 mg) followed by EVT (n = 166) or EVT alone (n = 164). Main outcomes and measures: The primary outcome was functional independence (modified Rankin Scale score, 0-2) at 90 days. Safety outcomes included symptomatic intracranial hemorrhage and 90-day mortality. Results: Among 332 patients randomized, 2 withdrew consent. Of the remaining 330 patients (mean [SD] age, 66 [11] years; 241 males [73%]; 89 females [27%]), 329 completed 90-day follow-up. Of whom, 50 of 165 (30%) in the tenecteplase plus EVT group and 50 of 164 (30%) in the EVT alone group achieved functional independence (adjusted rate ratio, 0.92 [95% CI, 0.67 to 1.25]; risk difference, -0.18% [95% CI, -10.13% to 9.76%]). Symptomatic intracranial hemorrhage occurred in 8 patients (5%) in the tenecteplase plus EVT group and 6 (4%) in the EVT alone group. Mortality at 90 days was similar between the groups (66 [40%] vs 70 [43%], respectively). Conclusions and relevance: Among patients with moderate to severe basilar artery occlusion admitted directly to EVT-capable centers who presented 4.5 to 24 hours after stroke onset, the addition of intravenous tenecteplase before EVT did not result in improved functional outcomes compared with EVT alone. Trial registration: ClinicalTrials.gov Identifier: NCT05701956.",
+    "ai_takeaways": {
+      "conclusion_vi": "In patients with basilar artery occlusion presenting within 4.5–24 hours, intravenous tenecteplase prior to thrombectomy did not improve 90-day functional independence compared with thrombectomy alone (30% vs 30%; adjusted RR, 0.92 [95% CI, 0.67 to 1.25]). Rates of symptomatic intracranial hemorrhage and 90-day mortality were similar between treatment groups.",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1001/jama.2026.20018",
+    "title": "Disadvantaged Neighborhoods Associated With Poorer Brain Health.",
+    "journal": {
+      "name": "JAMA",
+      "short_name": "JAMA",
+      "badge_bg": "#FEE2E2",
+      "badge_text": "#DC2626"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Anderer S."
+    ],
+    "doi_url": "https://doi.org/10.1001/jama.2026.20018",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Brain"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at JAMA via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
     "id": "10.1002/ana.78405",
     "title": "Cerebrospinal Fluid Cytokine Expression and Relationships With Neurological Measures in Virologically Controlled People With HIV",
     "journal": {
@@ -1074,7 +1249,7 @@
   },
   {
     "id": "10.1001/jama.2026.20037",
-    "title": "Annual Dementia Incidence May Reach 25 Million by 2050.",
+    "title": "Annual Dementia Incidence May Reach 25 Million by 2050",
     "journal": {
       "name": "JAMA",
       "short_name": "JAMA",
@@ -1087,7 +1262,7 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Richmond S."
+      "Richmond Sari"
     ],
     "doi_url": "https://doi.org/10.1001/jama.2026.20037",
     "neurology_classification": {
@@ -2338,7 +2513,7 @@
   },
   {
     "id": "10.1001/jama.2026.13508",
-    "title": "Revascularization in Asymptomatic Carotid Artery Stenosis With Hemodynamic Impairment and Cognitive Outcomes: Research Summary.",
+    "title": "Revascularization in Asymptomatic Carotid Artery Stenosis With Hemodynamic Impairment and Cognitive Outcomes",
     "journal": {
       "name": "JAMA",
       "short_name": "JAMA",
@@ -8099,9 +8274,9 @@
     },
     "abstract": "Irritable bowel syndrome, chronic constipation, and functional diarrhoea are disorders of gut-brain interaction, the symptoms of which include abnormal stool consistency or frequency accompanied by varying degrees of abdominal pain, discomfort, bloating, or distension. These conditions affect 20% of the global population with a relapsing and remitting course. Risk factors include female sex, younger age, a history of common mental disorders, and acute enteric infection. The pathophysiology of irritable bowel syndrome, chronic constipation, and functional diarrhoea remain incompletely understood, but are thought to be secondary to aberrant interactions throughout the gut-brain axis, resulting in disordered gut motility and visceral hypersensitivity. These conditions are diagnosed with a combination of clinical history, absence of alarm symptoms-such as weight loss or rectal bleeding-and targeted investigations. An empathetic management approach improves quality of life and symptoms, reduces health-care use, and enhances treatment adherence. Mainstays of treatment include education, dietary and lifestyle advice, modifying fibre intake, and drugs directed towards predominant symptoms. For severe symptoms, other treatments include specific medical devices, biofeedback, or psychological therapies. However, the effectiveness of most treatments is modest and there is an ongoing need to expand available treatments for bowel disorders, with several novel drugs currently in development.",
     "ai_takeaways": {
-      "conclusion_vi": "However, the effectiveness of most treatments is modest and there is an ongoing need to expand available treatments for bowel disorders, with several novel drugs currently in development.",
+      "conclusion_vi": "As disorders of gut-brain interaction affecting 20% of the global population, irritable bowel syndrome, chronic constipation, and functional diarrhoea stem from aberrant gut-brain axis interactions causing disordered motility and visceral hypersensitivity. Practice-changing care relies on empathetic management, symptom-directed pharmacotherapy, dietary modifications, biofeedback, and psychological therapies to optimize quality of life.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -10385,9 +10560,9 @@
     },
     "abstract": "BACKGROUND: Ninety percent of left atrial thrombi in nonvalvular atrial fibrillation arise in the left atrial appendage, which can be occluded percutaneously (left atrial appendage closure [LAAC]). Two 2026 trials (CHAMPION-AF [Watchman Flx Versus Non-Vitamin K Antagonist Oral Anticoagulant for Embolic Protection in the Management of Patients With Non-Valvular Atrial Fibrillation] and CLOSURE-AF [Left Atrial Appendage Closure in Patients With Atrial Fibrillation Compared to Medical Therapy]) more than doubled the available randomized evidence comparing LAAC with oral anticoagulation. We evaluated pooled effects of LAAC on stroke, bleeding, and mortality by bleeding risk, anticoagulation eligibility, and comparator. METHODS: In this systematic review and meta-analysis, we searched PubMed, Scopus, and Embase from inception to April 15, 2026, for randomized controlled trials comparing percutaneous LAAC with oral anticoagulation in nonvalvular atrial fibrillation. Risk of bias was assessed with the Cochrane Risk of Bias 2 tool. Cumulative-incidence outcomes were pooled as odds ratios using random-effects models, with prediction intervals, prespecified subgroups, and trial sequential analysis. RESULTS: Six randomized controlled trials (2014–2026; 358 sites in North America, Europe, and Asia; 7028 patients) compared LAAC with warfarin (2 trials) or a direct oral anticoagulant (4 trials); populations were predominantly anticoagulation-eligible with low prior-stroke prevalence, plus 2 high-bleeding-risk and 1 postablation trial. Overall stroke rates were similar between arms (odds ratio, 1.10 [95% CI, 0.78–1.56]). Ischemic stroke was more frequent with LAAC (odds ratio, 1.41 [95% CI, 1.07–1.86]) but did not reach the required information size. Nonprocedural bleeding was lower with LAAC (odds ratio, 0.58 [95% CI, 0.35–0.96]), the only outcome reaching a sufficient information size, in standard-risk and postablation but not high-bleeding-risk patients. CONCLUSIONS: LAAC is best positioned to reduce nonprocedural bleeding in anticoagulation-eligible patients at standard-to-moderate bleeding risk, rather than as a stroke-equivalent substitute for oral anticoagulation. REGISTRATION: URL: https://www.crd.york.ac.uk/PROSPERO/ ; Unique identifier: CRD420261370546.",
     "ai_takeaways": {
-      "conclusion_vi": "LAAC is best positioned to reduce nonprocedural bleeding in anticoagulation-eligible patients at standard-to-moderate bleeding risk, rather than as a stroke-equivalent substitute for oral anticoagulation. REGISTRATION: URL: https://www.crd.york.ac.uk/PROSPERO/ ; Unique identifier: CRD420261370546.",
+      "conclusion_vi": "Left atrial appendage closure significantly reduces nonprocedural bleeding (OR, 0.58 [95% CI, 0.35–0.96]) compared to oral anticoagulation, but it yields a higher risk of ischemic stroke (OR, 1.41 [95% CI, 1.07–1.86]) without altering overall stroke rates (OR, 1.10 [95% CI, 0.78–1.56]).",
       "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -10674,9 +10849,9 @@
     },
     "abstract": "Importance: Hearing loss is a significant modifiable risk factor for cognitive decline, but the effectiveness of hearing intervention for cognition stabilization or improvement still remains controversial. Objective: To investigate whether hearing intervention could reduce dementia-level impairment incidence in older adults with coexisting hearing loss and mild cognitive impairment (MCI). Design, Setting, and Participants: This multicenter, parallel-group, open-label randomized clinical trial was conducted between September 2021 and February 2024, with the 24-month follow-up completed in February 2026. This study was conducted at 3 tertiary otology outpatient clinics and 3 CHOICE cohort community health stations in Shanghai, China. Of 21 908 adults aged 60 years or older assessed for eligibility, 703 participants with coexisting MCI (Clinical Dementia Rating [CDR] global score of 0.5) and moderate to severe hearing loss were enrolled and randomized. These data were analyzed from February 2026 to July 2026. Interventions: Participants were randomized 1:1 to receive either hearing aid intervention (n = 353) or hearing care education (n = 350). Main Outcomes and Measures: The primary outcome was the conversion rate from MCI to dementia-level impairment over 24 months, defined as a CDR global score 1 or more. Key prespecified secondary outcomes comprised rate of cognitive improvement (CDR = 0) and CDR global and domain scores. Results: Among 703 randomized patients (mean [SD] age, 74.53 [7.16] years; range, 60-96 years; 250 female [35.56%] and 452 male [64.44%]), 610 (86.77%) completed the trial. No significant difference was observed in the primary outcome, in which the conversion rate from MCI to dementia-level impairment was 3.09% (95% CI, 1.62%-5.74%) in the intervention group vs 4.74% (95% CI, 2.60%-8.29%) in the control group (risk difference [RD], −2.07%; 95% CI, −4.74% to 0.61%; relative risk [RR], 0.59; 95% CI, 0.25-1.38; P = .23). Meanwhile, prespecified secondary analysis demonstrated that hearing intervention increased the rate of cognitive improvement (15.34%; 95% CI, 11.84%-19.62% vs 2.36%; 95% CI, 0.99%-5.22%; RD, 12.00%; 95% CI, 8.79%-15.21%; RR, 5.94; 95% CI, 2.46-14.37). No study-related adverse events were reported. Conclusions and Relevance: In this study, among older adults with mild cognitive impairment and coexisting hearing loss, a hearing aid intervention did not significantly reduce the incidence of dementia-level impairment at 24 months. Trial Registration: Chinese Clinical Trial Registry Identifier: ChiCTR2000036139",
     "ai_takeaways": {
-      "conclusion_vi": "In this study, among older adults with mild cognitive impairment and coexisting hearing loss, a hearing aid intervention did not significantly reduce the incidence of dementia-level impairment at 24 months. Trial Registration: Chinese Clinical Trial Registry Identifier: ChiCTR2000036139.",
+      "conclusion_vi": "In older adults with MCI and hearing loss, hearing aid intervention did not significantly reduce 24-month conversion to dementia (3.09% vs 4.74%; RR, 0.59; 95% CI, 0.25-1.38; P = .23). However, secondary analyses showed increased cognitive improvement (CDR = 0) (15.34% vs 2.36%; RR, 5.94; 95% CI, 2 .46-14.37).",
       "clinical_significance": "Clinical significance for Dementia practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -11069,12 +11244,12 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.055798",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Other"
+        "Stroke"
       ],
       "topics": [
-        "Neurology"
+        "Stroke"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
@@ -11119,9 +11294,9 @@
     },
     "abstract": "Implementation science plays a pivotal role in advancing organizational change within stroke healthcare settings by systematically evaluating and facilitating the adoption of evidence-based practices. This topical review examines the use of key trial designs relevant to implementation science research that aim to change organizational practice, highlighting their unique design features and methodological considerations. It also provides case studies of stroke research that have used each of the methods discussed demonstrating the practical applications in real-world environments. This overview aims to guide researchers and clinicians in selecting appropriate trial designs to optimize the translation of research into sustainable organizational systems and processes.",
     "ai_takeaways": {
-      "conclusion_vi": "This overview aims to guide researchers and clinicians in selecting appropriate trial designs to optimize the translation of research into sustainable organizational systems and processes.",
+      "conclusion_vi": "To optimize the real-world adoption and sustainability of evidence-based stroke practices, clinicians and researchers should utilize cluster, stepped-wedge, and hybrid effectiveness-implementation trial designs to drive systematic organizational change.",
       "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -11222,7 +11397,90 @@
         "Stroke"
       ],
       "topics": [
+        "Stroke",
         "Ischemic"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/strokeaha.126.056028",
+    "title": "Prehospital Stroke Treatment Trials in Conventional EMS Settings: An Expert Consensus Statement on Operational, Ethical, and Technological Priorities",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-09-28T00:00:00Z",
+    "article_type": "Guideline",
+    "article_types": [
+      "Guideline",
+      "Review"
+    ],
+    "authors": [
+      "Singh Nishita",
+      "Saver Jeffrey",
+      "Ganesh Aravind",
+      "Coutinho Jonathan",
+      "Roozenbeek Bob",
+      "Bosshart Salome",
+      "Stebner Alexander",
+      "Demchuk Andrew",
+      "Hill Michael D.",
+      "Bath Philip M.",
+      "Carcel Cheryl",
+      "Anderson Craig S.",
+      "Goyal Mayank",
+      "Van Der Worp H.B."
+    ],
+    "doi_url": "https://doi.org/10.1161/strokeaha.126.056028",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Stroke"
+      ]
+    },
+    "abstract": "Prehospital stroke trials enable assessments of ultraearly administration of treatments and management strategies, but face unique challenges in their design, conduct, and analysis. We outline important considerations and recommendations for planning prehospital stroke trials, focusing on patient identification, consent models, randomization strategies, end point selection, and statistical frameworks. As this field evolves, multidisciplinary collaboration, pragmatic study design, and scalable technology integration are critical to ensuring scientific rigor and equitable access. This framework is intended to inform and support future investigators in designing effective, ethically sound, and operationally feasible prehospital stroke trials in conventional emergency medical services settings.",
+    "ai_takeaways": {
+      "conclusion_vi": "To optimize prehospital stroke trials in conventional EMS settings, investigators must utilize pragmatic designs, emergency consent models, ultra-early endpoint selection, and scalable technology. This standardized consensus framework provides practicing neurologists with actionable guidance to ensure scientific rigor, ethical feasibility, and equitable access in hyperacute prehospital care.",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1161/strokeaha.126.057999",
+    "title": "October 2026 Stroke Highlights",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-09-28T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Sur Nicole B."
+    ],
+    "doi_url": "https://doi.org/10.1161/strokeaha.126.057999",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Stroke"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
@@ -11283,9 +11541,9 @@
     },
     "abstract": "Objective: Uncertainty persists over the effect of intensive blood pressure (BP) lowering on perihematomal edema (PHE) growth in acute spontaneous intracerebral hemorrhage (ICH). We aimed to investigate the effect of intensive BP lowering on PHE growth in acute ICH. Methods: We undertook an individual patient data pooled analysis of the 4 INTERACT trials, which all had consistent BP‐lowering protocols (targeting systolic BP <140 mmHg [intensive] vs <180 mmHg [guideline] within 1 hour). PHE growth was defined as absolute volume increase and growth rate (volume increase divided by time interval [ml/h]) at 24 hours and 7 days. Linear regression models were used to evaluate the treatment effect, adjusting for covariates including baseline hematoma volume. Heterogeneity analysis was undertaken to assess the interaction with time from symptom onset to randomization and other characteristics. Results: A total of 2,549 ICH patients (mean age 64 years, 35% female) with available 24‐hour PHE growth data were included. Early intensive BP lowering attenuated the absolute growth at 24 hours (mean difference −1.13 mL, 95% CI −1.94 to −0.33, p = 0.006), but did not influence growth rate or the 7‐day measures after adjustment. Furthermore, the treatment effect on the 24‐hour PHE growth decreased with increasing time from symptom onset to randomization, with the greatest benefit observed when treatment was initiated within 2.2 h ( p for interaction = 0.009). Interpretation: Early intensive BP lowering significantly attenuates PHE growth at 24 hours in acute ICH, with greater benefit when initiated earlier—emphasizing the importance of early initiation of intensive BP lowering. ANN NEUROL 2026",
     "ai_takeaways": {
-      "conclusion_vi": "Early intensive BP lowering significantly attenuates PHE growth at 24 hours in acute ICH, with greater benefit when initiated earlier—emphasizing the importance of early initiation of intensive BP lowering.",
+      "conclusion_vi": "Early intensive blood pressure lowering significantly attenuates 24-hour absolute perihematomal edema growth (mean difference −1.13 mL, 95% CI −1.94 to −0.33, p = 0.006) in acute intracerebral hemorrhage. This benefit is time-dependent, demonstrating maximum therapeutic impact when treatment is initiated within 2.2 hours of symptom onset (p for interaction = 0.009).",
       "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -11323,9 +11581,9 @@
     },
     "abstract": "Gut wall physiology in multiple sclerosis (MS) and autoimmune neurologic diseases remains underexplored. This review examines gut wall dysfunctions’ contribution to MS and autoimmune neurological disorder pathogenesis and progression. We discuss 3 inter‐related aspects of gut physiology: intestinal barrier, enteric nervous system (ENS), and mucosal immunity. We highlight the ENS as a putative target of immune injury in selected antibody‐mediated and T cell‐associated neurologic diseases. Finally, we propose a unifying framework in which the gut functions as a site of immune priming and target of autoimmune injury, bridging microbiome‐driven mechanisms in MS with ENS‐directed autoimmunity across neurologic diseases. ANN NEUROL 2026;100:915–930",
     "ai_takeaways": {
-      "conclusion_vi": "Finally, we propose a unifying framework in which the gut functions as a site of immune priming and target of autoimmune injury, bridging microbiome‐driven mechanisms in MS with ENS‐directed autoimmunity across neurologic diseases.",
+      "conclusion_vi": "The gut wall serves as a bidirectional interface in autoimmune neurological diseases, acting both as a site for peripheral immune priming and a direct target of enteric nervous system injury. Recognizing these mechanisms highlights the enteric nervous system and mucosal barrier as novel therapeutic targets for multiple sclerosis and neuroimmunological disorders.",
       "clinical_significance": "Clinical significance for Neuroimmunology practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -11388,9 +11646,9 @@
     },
     "abstract": "Objective: The objective of this study was to determine whether genetic ancestry is associated with differences in the clinical course of multiple sclerosis (MS). Methods: Participants with MS living in the United Kingdom >18 years old were recruited from 2021 to 2025 and genotyped from saliva using a commercial array. Genetic ancestry was inferred using a random forest classifier trained on a diverse reference dataset. Participant‐reported MS characteristics including the Age‐Related Multiple Sclerosis Severity Score (ARMSS) and age at MS diagnosis were ascertained at recruitment. Results: We analyzed data from 816 people with MS (pwMS), comprising 260 people of South Asian ancestry (31.9%), 163 of African ancestry (20.0%), 316 of European ancestry (38.7%), and 77 participants from other backgrounds. The included cohort was predominantly female (72.3% women), diagnosed with MS at a median age of 32 years (interquartile range [IQR] = 14.0) and recruited at a median age of 44.6 years (IQR = 18.2). Neither South Asian nor African ancestry was consistently associated with higher MS severity compared with European‐ancestry participants. No genetic variants were associated with MS severity at genomewide statistical significance. Interpretation: In this cross‐sectional, diverse, UK cohort, neither South Asian nor African ancestry is associated with greater MS‐related disability. These findings argue against a genetic basis for the previously observed differences between MS outcomes when contrasting ethnic groups. ANN NEUROL 2026",
     "ai_takeaways": {
-      "conclusion_vi": "In this cross‐sectional, diverse, UK cohort, neither South Asian nor African ancestry is associated with greater MS‐related disability. These findings argue against a genetic basis for the previously observed differences between MS outcomes when contrasting ethnic groups.",
+      "conclusion_vi": "In a diverse UK cohort of 816 patients, neither South Asian nor African genetic ancestry was associated with greater MS severity or age at diagnosis compared to European ancestry. These findings suggest that previously reported disparities in MS outcomes across ethnic groups are driven by social and environmental determinants rather than genetic ancestry.",
       "clinical_significance": "Clinical significance for Neuroimmunology practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -11508,9 +11766,9 @@
     },
     "abstract": "Objective: On non‐contrast computed tomography (NCCT), progressive hypoattenuation can be quantified as percent net water uptake (%NWU), whereas relative fluid attenuated inversion recovery (rFLAIR)‐magnetic resonance imaging hyperintensity marks later‐stage vasogenic edema and blood–brain‐barrier disruption. We compared the degree and rate of %NWU versus rFLAIR development and characterized 4 ischemic edema imaging profiles relative to a magnetic resonance (MR)‐diffusion‐weighted‐imaging (MR‐DWI) reference standard. Methods: NCCT and fluid attenuated inversion recovery (FLAIR) images from MR‐DWI‐positive hyperacute stroke patients were visually rated positive (+) or negative (−) for ischemic hypodensity/hyperintensity and sulcal‐effacement (SE), defining 4 edema imaging profiles: (I) NWU−/FLAIR−/SE−, (II) NWU+/FLAIR−/SE−, (III) NWU+/FLAIR+/SE−, and (IV) NWU+/FLAIR+/SE+. %NWU, rFLAIR, and relative apparent diffusion coefficient (rADC) were quantified within the DWI/apparent diffusion coefficient‐defined core region‐of‐interest, normalized to the contralateral mirror region, and compared between groups. Results: Of 53 DWI+ patients, n = 5/17/13/17 were in groups I to IV, with mean onset‐to‐CT times of 2.4 ± 1.2/2.5 ± 1.6/3.2 ± 1.9/5.0 ± 1.6 hours ( p < 0.01), and baseline characteristics were comparable (all p ≥ 0.12). Mean %NWU differed between all groups (1.4 ± 0.3/4.3 ± 4.2/8.0 ± 4.1/13.6 ± 4.3; all pairwise p < 0.012), rADC did not ( p = 0.21), and rFLAIR differed only between groups II and III versus group IV ( p = 0.02, p = 0.04). %NWU and rFLAIR were uncorrelated ( R 2 = 0.02, p = 0.48). Fitted %NWU increased monotonically and near‐linearly within 4.5 hours post‐ictus, whereas rFLAIR rose abruptly only in the late transition to group IV. Interpretation: Quantitative %NWU‐CT was more sensitive than rFLAIR for detecting the earliest edematous stages of hyperacute stroke, discriminating early, intermediate, late, and late‐severe (SE) stages; rFLAIR increased only in the latest stage. %NWU may, therefore, provide a practical, quantitative CT marker of edema progression, supporting acute triage and risk phenotyping in CT‐first pathways, pending prospective validation. ANN NEUROL 2026",
     "ai_takeaways": {
-      "conclusion_vi": "Quantitative %NWU‐CT was more sensitive than rFLAIR for detecting the earliest edematous stages of hyperacute stroke, discriminating early, intermediate, late, and late‐severe (SE) stages; rFLAIR increased only in the latest stage. %NWU may, therefore, provide a practical, quantitative CT marker of edema progression, supporting acute triage and risk phenotyping in CT‐first pathways, pending prospective validation.",
+      "conclusion_vi": "Quantitative %NWU on NCCT is more sensitive than rFLAIR for detecting early hyperacute ischemic edema, rising linearly within 4.5 hours and discriminating progressive edema stages (mean %NWU 1.4 ± 0.3 to 13.6 ± 4.3; p < 0.012). Conversely, rFLAIR increases abruptly only in late-stage edema with sulcal effacement (p ≤ 0.04).",
       "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -11560,9 +11818,9 @@
     },
     "abstract": "Objective: This study assessed the efficacy of thrombectomy in acute ischemic stroke because of large‐vessel occlusion (AIS‐LVO) initially admitted to primary stroke centers (PSC) and subsequently transferred to a comprehensive stroke center (CSC), with a large ischemic core identified before transfer. Methods: We performed a post hoc analysis of the Large Stroke Therapy Evaluation (LASTE) randomized controlled trial, which compared medical management (MM) plus thrombectomy and MM alone in anterior circulation AIS‐LVO patients with a large core (Alberta Stroke Program Early Computed Tomography Score [ASPECTS], 0–5) treated within 6.5 hours of last seen well. This analysis included patients whose baseline imaging was obtained at a PSC and already demonstrated an ASPECTS of 0 to 5, before inter‐hospital transfer. The primary outcome was a 90‐day functional outcome, assessed using the modified Rankin Scale (mRS). Results: Among the 324 patients enrolled in LASTE, 157 were included in this analysis, 80 received MM alone, and 77 underwent thrombectomy plus MM. Median age was 73 years, National Institutes of Health Stroke Scale score was 20, last seen well‐to‐PSC imaging time 120 minutes and ASPECTS on PSC imaging was 0 to 2 in 56% and 3 to 5 in 44%. Thrombectomy resulted in better functional outcomes than MM alone (generalized odds ratio, 1.71; 95% confidence interval [CI], 1.21–2.41; p = 0.002), without heterogeneity across ASPECTS strata. Mortality at 90 days was numerically lower in the thrombectomy group (relative risk = 0.73; 95% CI = 0.50–1.05), whereas symptomatic intracranial hemorrhage was numerically more frequent (relative risk = 1.85; 95% CI = 0.64–5.26). Interpretation: These findings support consideration of inter‐hospital transfer for EVT in AIS‐LVO patients with large ischemic cores (including ASPECT, 0–2) admitted to PSCs who can reach the CSC in the early time‐window. ANN NEUROL 2026",
     "ai_takeaways": {
-      "conclusion_vi": "These findings support consideration of inter‐hospital transfer for EVT in AIS‐LVO patients with large ischemic cores (including ASPECT, 0–2) admitted to PSCs who can reach the CSC in the early time‐window.",
+      "conclusion_vi": "In anterior circulation AIS-LVO patients with large ischemic cores (ASPECTS 0–5) identified at primary stroke centers within 6.5 hours, inter-hospital transfer for thrombectomy significantly improves 90-day functional mRS outcomes compared to medical management alone (generalized OR 1.71; 95% CI 1.21–2.41; p = 0.002), without effect heterogeneity across ASPECTS strata.",
       "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -11605,9 +11863,9 @@
     },
     "abstract": "Objective: Some individuals avoid Alzheimer's disease (AD) pathology as they age, or retain cognition despite substantial pathology, suggesting mechanisms of resistance or resilience to neurodegeneration. Educational attainment (EA) is associated with reduced risk of cognitive decline, although the underlying mechanisms remain unclear. We investigated whether genome‐wide polygenic scores (GPS) based on cognitive and non‐cognitive components of EA, reflecting intelligence and behavioral/social traits, respectively, show differential associations with AD diagnosis and neuropathology. Methods: Associations between GPS for cognitive and non‐cognitive components of EA and AD outcomes were examined across four cohorts: two cohorts included living participants with biomarker assessments (BioHermes‐1, n = 770; Alzheimer's Disease Neuroimaging Initiative [ADNI], n = 1,361), and two included postmortem neuropathological evaluations (Religious Orders Study and Rush Memory and Aging Project [ROSMAP], n = 841; Brain for Dementia Research [BDR], n = 511). Outcomes included clinical diagnosis, amyloid status, plasma neurodegenerative biomarkers, and neuropathological measurements. Results: We found a significant negative association between cognitive EA GPS and clinical diagnosis of AD across all four cohorts and with Braak stage in ROSMAP and BDR cohorts. In contrast, the GPS for non‐cognitive component of EA showed no significant association with AD diagnosis, neurodegenerative plasma biomarkers or amyloid positron emission tomography (PET) status and the Consortium to Establish a Registry for Alzheimer's Disease (CERAD) scores. Interpretation: These results suggest a brain maintenance mechanism that supports the brain's ability to resist to changes in neuronal integrity. This indicates that interventions focused on increasing EA solely by additional years of schooling are unlikely to affect AD incidence, whereas alternative approaches targeting the cognitive component of EA (intelligence) may offer greater potential for prevention. ANN NEUROL 2026",
     "ai_takeaways": {
-      "conclusion_vi": "These results suggest a brain maintenance mechanism that supports the brain's ability to resist to changes in neuronal integrity. This indicates that interventions focused on increasing EA solely by additional years of schooling are unlikely to affect AD incidence, whereas alternative approaches targeting the cognitive component of EA (intelligence) may offer greater potential for prevention.",
+      "conclusion_vi": "Polygenic scores for the cognitive component of educational attainment (intelligence), but not its non-cognitive behavioral component, significantly inversely correlate with clinical Alzheimer's disease diagnosis across all cohorts and Braak stage in ROSMAP and BDR. Clinically, this supports a brain maintenance/resistance mechanism, suggesting preventive interventions targeting cognitive capacity rather than mere duration of schooling.",
       "clinical_significance": "Clinical significance for Dementia practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -11694,9 +11952,9 @@
     },
     "abstract": "Importance: Tau positron emission tomography (PET) can detect and stage Alzheimer disease pathology; however, current binary regulatory-approved visual interpretation focuses on advanced disease, limiting early detection and patient stratification. Objective: To develop and validate a harmonized tau PET visual reading framework across radiotracers that stages tau burden into 5 classes: negative, low, moderate, high, and atypical. Design, Setting, and Participants: This prospective multicenter cross-sectional study among a cohort with head-to-head tau PET acquisitions was conducted from March 2022 to August 2025 and data analyzed from February to June 2026, with blinded visual reads performed by clinicians. The study was conducted at 9 sites across North America and Europe. Of those individuals enrolled in the HEAD (Head-to-Head Harmonization of Tau Tracers in Alzheimer's Disease) study, a proportion of participants aged 50 to 90 years who completed multitracer tau PET (2-4 scans) and cognitive assessments were included, spanning cognitively unimpaired to dementia. Exposures: Tau PET with 18 F-MK-6240 (TAUKLARIFY, n = 681), 18 F-flortaucipir (Tauvid, n = 644), 18 F-RO948 (n = 150), and 18 F-PI-2620 (n = 149); all participants underwent amyloid-β (Aβ) PET and magnetic resonance imaging. Main Outcomes and Measures: The primary outcomes were interrater and intertracer agreement for 5-class tau classification; prevalence ratio (PR) vs the regulatory-approved 18 F-flortaucipir framework; and associations with cognition, Aβ burden, and plasma phosphorylated tau 217 (p-tau217). Results: Of 822 individuals enrolled in the HEAD study, 681 participants spanning cognitively unimpaired to dementia were included. Mean (SD) age was 69.3 (8.4) years, and 367 participants (53.9%) were female. The harmonized 5-class framework achieved excellent interrater agreement (κ = 0.77-0.85) and good to excellent intertracer agreement, highest between 18 F-MK-6240 and 18 F-flortaucipir (κ = 0.88). Compared with the regulatory-approved framework, the harmonized classification identified more tau-positive cognitively unimpaired participants (regulatory-approved binary: 26 of 364 participants; harmonized 18 F-flortaucipir: 49 of 364 [PR = 1.89; 95% CI, 1.31-2.70; P = .001]; harmonized 18 F-MK-6240: 71 of 364 [PR = 2.73; 95% CI, 1.95-3.83; P < .001]) and those with mild cognitive impairment (regulatory-approved binary: 100 of 223; harmonized 18 F-flortaucipir: 123 of 223 [PR = 1.23; 95% CI, 1.12-1.35; P < .001]; harmonized 18 F-MK-6240: 142 of 223 [PR = 1.42; 95% CI, 1.27-1.59; P < .001]), with convergence in dementia. Tau burden classes showed stepwise worsening of cognition, Aβ PET burden, and plasma p-tau217, with 1.4-fold, 3.2-fold, and 2.5-fold differences between the low and high tau classes, respectively. Conclusions and Relevance: In this prospective multitracer cross-sectional study, a 5-class harmonized tau PET visual reading framework showed high interrater and intertracer agreement and detected more early-stage tau pathology than the regulatory-approved binary approach, with tau burden classes tracking stepwise with cognition and biomarkers. These findings support a standardized, tracer-agnostic framework for diagnostic categorization, therapeutic window identification, and clinical trial stratification.",
     "ai_takeaways": {
-      "conclusion_vi": "focuses on advanced disease, limiting early detection and patient stratification. Objective: To develop and validate a harmonized tau PET visual reading framework across radiotracers that stages tau burden into 5 classes: negative, low, moderate, high, and atypical.",
+      "conclusion_vi": "A novel 5-class harmonized tau PET visual framework demonstrated excellent interrater and intertracer agreement while detecting significantly more tau positivity in early Alzheimer disease compared to the binary regulatory approach (CU PR=1.89, 95% CI 1.31-2.70, P=.001; MCI PR=1.23, 95% CI 1.12-1.35, P<.001 for 18 F-flortaucipir). Advanced stages correlated stepwise with cognitive decline, amyloid burden, and plasma p-tau217.",
       "clinical_significance": "Clinical significance for Dementia practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -11731,9 +11989,9 @@
     },
     "abstract": "Importance: The Head Impulse, Nystagmus, Test of Skew (HINTS) examination is a widely recognized bedside tool for distinguishing peripheral vestibular disorders from central causes, such as stroke, in patients presenting with acute vestibular syndrome. However, despite its introduction in 2009, confusion persists regarding its proper application. Misuse of the HINTS examination, particularly when applied to inappropriate patient populations, may lead to misdiagnosis, unnecessary imaging, or missed strokes. This review aims to clarify the appropriate use of the HINTS examination and to address misconceptions that contribute to diagnostic errors in emergency and clinical practice. Observations: HINTS is most effective when performed for patients with continuous dizziness and spontaneous nystagmus at rest. However, various guidelines and educational resources have failed to clearly define these criteria, leading to widespread misapplication of the test. Common errors include using HINTS for patients without nystagmus, failing to screen for central features before performing the examination, and misinterpreting test components. Studies show that the HINTS examination, when applied correctly, has high sensitivity for detecting stroke, but its diagnostic accuracy declines significantly when used for inappropriate patients. Furthermore, recent guidelines, such as the third Guidelines for Reasonable and Appropriate Care in the Emergency Department (GRACE-3), may have introduced ambiguities that may contribute to ongoing confusion in clinical practice. Conclusions and Relevance: To optimize the diagnostic utility of the HINTS examination and reduce stroke misdiagnosis, clinicians should first screen for central features before applying HINTS and ensure it is only performed for patients with nystagmus at rest. Future guidelines should provide clearer recommendations to prevent inappropriate HINTS use and thus avoid inaccurate results. Emphasizing the correct application of HINTS in the right patient population will enhance its reliability as a critical tool for emergency physicians in distinguishing central from peripheral causes of dizziness, ultimately improving patient outcomes and reducing unnecessary investigations.",
     "ai_takeaways": {
-      "conclusion_vi": "To optimize the diagnostic utility of the HINTS examination and reduce stroke misdiagnosis, clinicians should first screen for central features before applying HINTS and ensure it is only performed for patients with nystagmus at rest. Future guidelines should provide clearer recommendations to prevent inappropriate HINTS use and thus avoid inaccurate results.",
+      "conclusion_vi": "The HINTS examination should strictly be reserved for patients presenting with continuous acute vestibular syndrome who exhibit spontaneous nystagmus at rest, preceded by screening for obvious central features. Performing HINTS on patients without nystagmus or outside these criteria significantly decreases diagnostic accuracy and increases the risk of stroke misdiagnosis.",
       "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -11788,9 +12046,9 @@
     },
     "abstract": "This cohort study evaluates portable, low-field magnetic resonance imaging (MRI) against conventional MRI in memory clinic and community cohorts.",
     "ai_takeaways": {
-      "conclusion_vi": "This cohort study evaluates portable, low-field magnetic resonance imaging (MRI) against conventional MRI in memory clinic and community cohorts.",
+      "conclusion_vi": "Portable, low-field brain MRI offers a feasible point-of-care alternative to conventional MRI for neurodegenerative and cognitive screening in memory clinics and community settings. It provides diagnostic accessibility in resource-limited environments, though high-resolution structural evaluation still requires standard high-field MRI.",
       "clinical_significance": "Clinical significance for Dementia practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -11824,9 +12082,9 @@
     },
     "abstract": "This case report describes 11.7-T in vivo human brain magnetic resonance imaging (MRI) of the basal ganglia in 2 healthy volunteers.",
     "ai_takeaways": {
-      "conclusion_vi": "This case report describes 11.7-T in vivo human brain magnetic resonance imaging (MRI) of the basal ganglia in 2 healthy volunteers.",
+      "conclusion_vi": "Ultra-high-field 11.7-T in vivo brain MRI achieves unprecedented anatomical resolution of the basal ganglia in healthy individuals. While demonstrating transformative potential for high-resolution subcortical neuroimaging, larger clinical studies are required to establish its diagnostic and therapeutic utility in cerebrovascular and movement disorders.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -11998,9 +12256,9 @@
     },
     "abstract": "Importance: Korsakoff syndrome is a severe neurocognitive disorder resulting from thiamine deficiency, most often associated with alcohol use disorder. Contemporary data describing its clinical presentation, neuroimaging findings, and long-term outcomes remain limited. Objective: To characterize the clinical features and outcomes of patients diagnosed with Korsakoff syndrome in routine clinical practice and to identify factors associated with mortality. Design, Setting, and Participants: This cohort study included electronic health records of adults with a diagnosis of Korsakoff syndrome between August 1, 2017, and December 31, 2022, from the Clinical Data Warehouse of the Greater Paris University Hospitals (AP-HP), which includes 39 hospitals. Data were analyzed between April 2023 and September 2024. Exposure: Korsakoff syndrome diagnosis. Main Outcomes and Measures: The primary outcome was all-cause mortality. Secondary outcomes included clinical manifestations, comorbidities, and neuroimaging findings in patients diagnosed with Korsakoff syndrome. Results: Among 1320 patients with Korsakoff syndrome (mean [SD] age, 62.9 [11.1] years; 962 men [72.9%]), a well-documented subgroup of 114 patients most frequently presented with anterograde amnesia (61.4%). Among this subgroup, 22 patients (19%) had a reported history of Wernicke encephalopathy. Among patients who underwent brain magnetic resonance imaging, abnormalities involving the Papez circuit and vascular leukoencephalopathy were each observed in 40 patients (44.4%) each. During a median (IQR) follow-up of 3.1 (1.2-5.0) years, 398 patients (30.2%) died. In multivariable analyses, malnutrition (hazard ratio [HR], 1.54; 95% CI, 1.15-2.05), alcoholic liver disease (HR, 1.45; 95% CI, 1.10-1.91), male sex (HR, 1.45; 95% CI, 1.13-1.86), and age 80 to 89 years (HR, 1.89; 95% CI, 1.27-2.81) were associated with mortality. Conclusions and Relevance: In this large clinical cohort, patients diagnosed with Korsakoff syndrome had a high burden of vascular comorbidities, frequent under-recognition of Wernicke encephalopathy, and substantial mortality. These findings highlight the need for earlier recognition and more standardized diagnostic evaluation of Korsakoff syndrome.",
     "ai_takeaways": {
-      "conclusion_vi": ", and long-term outcomes remain limited. Objective: To characterize the clinical features and outcomes of patients diagnosed with Korsakoff syndrome in routine clinical practice and to identify factors associated with mortality.",
+      "conclusion_vi": "Korsakoff syndrome carries high long-term mortality (30.2% over 3.1 years), often stemming from under-recognized Wernicke encephalopathy and vascular comorbidities. All-cause mortality is significantly increased by malnutrition (HR, 1.54; 95% CI, 1.15-2.05), alcoholic liver disease (HR, 1.45; 95% CI, 1.10-1.91), male sex (HR, 1.45; 95% CI, 1.13-1.86), and age 80–89 years (HR, 1.89; 95% CI, 1.27-2.81).",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -12032,9 +12290,9 @@
     },
     "abstract": "This Viewpoint describes the growth of administrative work across universities, health care, and research and suggests 5 questions a neurology department should ask about any administrative process.",
     "ai_takeaways": {
-      "conclusion_vi": "This Viewpoint describes the growth of administrative work across universities, health care, and research and suggests 5 questions a neurology department should ask about any administrative process.",
+      "conclusion_vi": "Neurology departments should streamline clinical workflows by applying five evaluative questions to existing administrative burdens, mitigating clinician burnout while improving operational efficiency. Identifying and trimming redundant non-clinical requirements helps safeguard direct patient care and research productivity.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -12538,9 +12796,9 @@
     },
     "abstract": "Disease-modifying therapies and biomarker-based diagnostic frameworks will fundamentally altered the clinical diagnosis and management of Alzheimer's disease. Diagnosis is increasingly anchored in the biological evidence of pathology rather than clinical presentation alone, with implications for treatment eligibility, prognosis, and monitoring. In clinical practice, patients with memory complaints can present with complex mixed pathologies that develop across the lifespan. Brain imaging, particularly MRI and PET, plays a crucial role in visualising these cumulative abnormalities. With Alzheimer's disease-specific therapies now available in many regions of the world, amyloid PET plays a central role in establishing Alzheimer's disease diagnosis, determining eligibility for amyloid-targeting therapies, and quantifying treatment-related amyloid clearance. In settings where available, tau PET informs biological stage, prognosis, and clinical heterogeneity. MRI remains indispensable for differential diagnosis, the assessment of comorbid and vascular pathology, and monitoring for complications, particularly amyloid-related imaging abnormalities. Technological advances-including quantitative imaging, artificial intelligence, accelerated acquisition, and workflow optimisation-are improving reliability, efficiency, and access to these tools. Neuroimaging is now a cornerstone of Alzheimer's disease care and a crucial discriminator tool for characterising brain injury across the lifespan. With emerging fluid biomarkers, neuroimaging supports accurate diagnosis, prognosis, and treatment monitoring.",
     "ai_takeaways": {
-      "conclusion_vi": "With emerging fluid biomarkers, neuroimaging supports accurate diagnosis, prognosis, and treatment monitoring.",
+      "conclusion_vi": "Neuroimaging has shifted from a rule-out tool to an essential driver of biologically defined Alzheimer's disease management. While amyloid and tau PET establish biomarker eligibility, biological staging, and therapeutic clearance, MRI remains indispensable for identifying mixed vascular pathology and monitoring for amyloid-related imaging abnormalities (ARIA).",
       "clinical_significance": "Clinical significance for Dementia practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -12815,9 +13073,9 @@
     },
     "abstract": "The recent approval of disease-modifying therapies for symptomatic Alzheimer's disease is a major advance for a condition with few therapeutic options. Anti-amyloid monoclonal antibodies have shown clinically meaningful benefits in slowing cognitive decline. Clinical trials in symptomatic Alzheimer's disease suggest that anti-amyloid therapies might provide the greatest benefit in subgroups who have low baseline levels of Alzheimer's disease pathology; ongoing prevention trials are evaluating these therapies in cognitively unimpaired individuals who have biomarker evidence of Alzheimer's disease neuropathological change (ADNC). However, the possibility of biomarker testing and treatment in cognitively unimpaired people raises key questions about ethics and the consequences that follow from a positive test or an uncertain result (ie, the so-called downstream effects on patients and health systems). Furthermore, test accuracy might be questioned when ADNC has a low prevalence in the population being tested and in the case of intermediate-range biomarker concentrations that might not reliably indicate true ADNC or be false positives. If anti-amyloid therapies prove beneficial for cognitively unimpaired people with ADNC and become part of routine practice, several key knowledge gaps must be addressed to support safe, scalable, real-world implementation of Alzheimer's disease treatment.",
     "ai_takeaways": {
-      "conclusion_vi": "If anti-amyloid therapies prove beneficial for cognitively unimpaired people with ADNC and become part of routine practice, several key knowledge gaps must be addressed to support safe, scalable, real-world implementation of Alzheimer's disease treatment.",
+      "conclusion_vi": "While anti-amyloid therapies show potential in slowing Alzheimer's disease (AD) progression, translating use to cognitively unimpaired individuals with AD neuropathological change requires addressing key implementation hurdles. Clinicians must navigate ethical concerns, health-system impacts, and high false-positive rates due to low pathology prevalence and intermediate biomarker concentrations in asymptomatic populations.",
       "clinical_significance": "Clinical significance for Dementia practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -13012,9 +13270,9 @@
     },
     "abstract": "Background: The incidence of aneurysmal subarachnoid haemorrhage declined between 1980 and 2010, which coincided with a decline in smoking and prevalence of hypertension. We aimed to investigate whether the decrease in subarachnoid haemorrhage incidence is paralleled by declines in unruptured intracranial aneurysm (UIA) prevalence. Methods: For this systematic review and meta-analysis, we searched Embase, PubMed, and Web of Science for articles published in any language from Jan 1, 2011 to Dec 31, 2025, and reassessed 68 articles published before March 1, 2011 from a 2011 systematic review and meta-analysis. Articles were eligible for inclusion if they used a cross-sectional or case-control design and provided the crude number of participants and those with UIA. We only included studies reporting numbers of UIA separately from ruptured aneurysms and with ten or more patients. Summary data were independently extracted by JD with AZ or CB and conflicts were resolved by GJER. The primary outcome was proportion of participants with UIA. Relative to a hypothetical reference population (mean age 50 years, 50% women, and no comorbidities), age and/or sex-adjusted prevalence ratios (PRs) for regions, comorbidities, and risk ratios (RRs) for female sex, smoking, and hypertension were estimated using generalised linear mixed models. A time trend analysis was done by binomial meta regression using the mid-year of data acquisition. We assessed the certainty of evidence using GRADE. The study was registered with PROSPERO, number CRD420261296728. Findings: Our search screened 4708 studies. 67 reassessed and 95 newly identified articles, reporting on 316 131 participants and 11 822 people with UIAs, were included in our meta-analysis. In the reference population, the estimated prevalence of UIAs was 3·9% (95% CI 3·0-5·1). The prevalence of UIAs in individuals with atherosclerosis was 5·5% (4·7-6·4; 2229 of 40970 participants) and the adjusted PR was 1·3 (95% CI 0·8-2·0) compared with the reference population. For positive family history of aneurysmal subarachnoid haemorrhage (aSAH) or UIA, the UIA prevalence was 7·9% (5·6-11·1; 412 of 4252 participants) and the adjusted PR was 2·4 (0·5-11·2). For connective-tissue disorder, the UIA prevalence was 10·3% (6·5-16·0; 94 of 879 participants) and the adjusted PR was 3·9 (2·0-7·6). For autosomal dominant polycystic kidney disease (ADPKD), the UIA prevalence was 12·8% (9·2-17·6; 293 of 1990 participants) and the adjusted PR was 4·4 (1·5-12·6). RRs were for current smoking 1·4 (1·2-1·6; 798 of 27911 participants), for having hypertension 1·6 (1·5-1·7, 4043 of 83053 participants), and for female sex 1·9 (1·8-2·0; 3415 of 65020 women and 2122 of 76130 men). In studies on healthy individuals with MR angiography or CT angiography as imaging modality, the prevalence in 2016-2022 was 6·6% (6·3-6·8; 2904 of 41191 participants). The adjusted PR was 1·8 (1·1-2·8) for 2016-2022 versus 2002-2015. Prevalence of UIAs of 5 mm or larger was 0·7% (0·6-0·8) in 2002-2015 and 1·4% (1·0-1·9) in 2016-2022. The UIA prevalence did not differ between countries. τ 2 showed significant heterogeneity between studies. The certainty of the evidence ranged from very low to moderate. Interpretation: Prevalence of UIA is increasing, particularly over the past two decades. This increase is only in part explained by improved detection of small UIAs and an ageing population, and other factors-such as environmental-are likely involved. Alongside patients with ADPKD and a positive family history of aSAH, patients with connective-tissue disorders had a higher prevalence of UIA than the reference population. Our findings warrant further investigation into the potential benefit of personalised screening and management strategies in groups at high risk for having UIAs. Funding: None.",
     "ai_takeaways": {
-      "conclusion_vi": "Our search screened 4708 studies. 67 reassessed and 95 newly identified articles, reporting on 316 131 participants and 11 822 people with UIAs, were included in our meta-analysis.",
+      "conclusion_vi": "The global prevalence of unruptured intracranial aneurysms is increasing (adjusted prevalence ratio 1.8 [95% CI 1.1-2.8] for 2016-2022 versus 2002-2015), particularly among patients with connective-tissue disorders (PR 3.9 [2.0-7.6]) and autosomal dominant polycystic kidney disease (PR 4.4 [1.5-12.6]). This rising prevalence underscores the need for personalized screening strategies in high-risk populations.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -13076,9 +13334,9 @@
     },
     "abstract": "Background: Whether catheter-directed thrombolysis improves clinical outcomes in patients with intermediate-high-risk pulmonary embolism, as compared with anticoagulation alone, is uncertain. Methods: In this multicenter, open-label, randomized trial, we randomly assigned patients with intermediate-high-risk acute pulmonary embolism (defined by hemodynamic stability, a simplified Pulmonary Embolism Severity Index score of ≥1, and right ventricular dysfunction plus an elevated level of cardiac troponin or natriuretic peptide) in a 1:1 ratio to receive catheter-directed thrombolysis with alteplase plus anticoagulation therapy (thrombolysis group) or anticoagulation therapy alone (standard-care group). The primary outcome was a composite of death from any cause, recurrence of pulmonary embolism, or cardiorespiratory decompensation or collapse within 7 days after randomization. Secondary outcomes included clinically relevant bleeding as defined by the Bleeding Academic Research Consortium, major bleeding as defined in the Global Use of Strategies to Open Occluded Coronary Arteries guidelines, and intracranial hemorrhage. Results: A total of 558 patients underwent randomization; 280 were assigned to the thrombolysis group, and 278 to the standard-care group. The median age was 64 years, and 40.9% were female. A primary-outcome event occurred in 2 patients (0.7%) in the thrombolysis group and in 19 patients (6.8%) in the standard-care group (relative risk, 0.10; 95% confidence interval, 0.02 to 0.44; P<0.001); this difference was driven mainly by the lower incidence of cardiorespiratory decompensation or collapse in the thrombolysis group. By day 7, clinically relevant bleeding had occurred in 13 patients (4.6%) in the thrombolysis group and in 14 patients (5.0%) in the standard-care group (P = 0.85); major bleeding in 4 (1.4%) and 6 (2.2%), respectively (P = 0.54); and intracranial hemorrhage in 2 (0.7%) and none. One patient in the thrombolysis group died within 30 days, and 4 patients in the standard-care group died within 7 days. Conclusions: Among patients with intermediate-high-risk acute pulmonary embolism, catheter-directed thrombolysis with alteplase plus anticoagulation therapy led to a lower risk of death from any cause, recurrent pulmonary embolism, or cardiorespiratory decompensation or collapse within 7 days after randomization than anticoagulation therapy alone. (Funded by the Ministry of Health of the Czech Republic and others; PRAGUE-26 ClinicalTrials.gov number, NCT05493163; EudraCT number, 2022-002218-18; European Union Clinical Trials number, 2024-516144-25-00.).",
     "ai_takeaways": {
-      "conclusion_vi": "Among patients with intermediate-high-risk acute pulmonary embolism, catheter-directed thrombolysis with alteplase plus anticoagulation therapy led to a lower risk of death from any cause, recurrent pulmonary embolism, or cardiorespiratory decompensation or collapse within 7 days after randomization than anticoagulation therapy alone. (Funded by the Ministry of Health of the Czech Republic and others; PRAGUE-26 ClinicalTrials.gov number, NCT05493163; EudraCT number, 2022-002218-18; European Union Clinical Trials number, 2024-516144-25-00.).",
+      "conclusion_vi": "In patients with intermediate-high-risk acute pulmonary embolism, catheter-directed thrombolysis plus anticoagulation significantly reduced the 7-day composite risk of death, PE recurrence, or cardiorespiratory decompensation compared to anticoagulation alone (RR 0.10, 95% CI 0.02 to 0.44, P < 0.001), without a significant increase in major bleeding.",
       "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -13254,9 +13512,9 @@
     },
     "abstract": "Air pollution exposure is linked to an increased risk of stroke. Elevated levels of pollution (carbon monoxide, carbon dioxide, nitrous oxide, sulfur dioxide, coarse particulate matter [PM 10 ], and especially fine particulate matter [PM 2.5 ]) cause systemic inflammation after the particles are inhaled and lodge into lung tissue, causing an increased incidence of stroke, hospitalizations for stroke, and stroke mortality. Until air pollution levels are remediated, assessing Air Quality Index (AQI) and following the guidelines to decrease illness from exposure is imperative. AQI levels are reported hourly, identifying ambient PM 2.5 and ozone levels. When AQI levels are low, the risk of exposure to PM 2.5 is low. As the AQI increases, there is more risk. It is important to take steps to decrease exposure to PM 2.5 , especially for those with cardiovascular comorbidities such as diabetes and those with previous stroke events. This is important information for nurses to understand and share with their patients as a risk reduction strategy.",
     "ai_takeaways": {
-      "conclusion_vi": "This is important information for nurses to understand and share with their patients as a risk reduction strategy.",
+      "conclusion_vi": "Inhalation of ambient fine particulate matter (PM 2.5 ) and gaseous pollutants triggers systemic inflammation, increasing stroke incidence, hospitalizations, and mortality, particularly in vulnerable patients. Clinicians should advise stroke survivors and those with cardiovascular comorbidities to monitor the Air Quality Index and minimize high-pollution exposure as a secondary prevention strategy.",
       "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -13381,9 +13639,9 @@
     },
     "abstract": "BACKGROUND: Blood-brain barrier damage has traditionally been considered to determine the occurrence and development of poststroke brain edema, a devastating and life-threatening complication. However, no treatment strategy targeting blood-brain barrier damage has been proven clinically effective in ameliorating brain edema. METHODS: In mice with stroke models induced by transient middle cerebral artery occlusion (MCAO), the changes in glymphatic system (GS) function impairment were detected by ex vivo fluorescence imaging, 2-photon in vivo imaging, and magnetic resonance imaging within 1 week after MCAO, and the effects of GS impairment and recovery on the formation and resolution of brain edema were evaluated. In addition, in patients with ischemic stroke within 1 week after onset, changes in GS function and brain edema were also observed by magnetic resonance imaging. RESULTS: We found that the extravasation of protein-rich fluids into the brain was not temporally correlated with edema formation after MCAO in mice, as brain edema reabsorption preceded blood-brain barrier closure. Strikingly, the time course of edema progression matched well with the GS dysfunction after MCAO. Pharmacological enhancement of the GS function significantly alleviated brain edema developed on day 2 after MCAO, accompanied by less deposition of Aβ (amyloid-β) and better cognitive function. Conversely, functional suppression of the GS delayed the absorption of brain edema on day 7 after MCAO. Moreover, patients with ischemic stroke revealed a consistent trend of GS dysfunction after reperfusion as MCAO mice, which was correlated with the severity of brain edema and functional outcomes. CONCLUSIONS: GS is a key contributor to the formation of brain edema after ischemic stroke, and targeting the GS may be a promising strategy for treating brain edema in ischemic stroke. REGISTRATION: URL: https://www.chictr.org.cn/showproj.html?proj=162857; Unique identifier: NFEC-2019-189.",
     "ai_takeaways": {
-      "conclusion_vi": "GS is a key contributor to the formation of brain edema after ischemic stroke, and targeting the GS may be a promising strategy for treating brain edema in ischemic stroke. REGISTRATION: URL: https://www.chictr.org.cn/showproj.html?proj=162857; Unique identifier: NFEC-2019-189.",
+      "conclusion_vi": "Glymphatic system (GS) dysfunction correlates strongly with post-stroke brain edema progression and resolution in both mice and humans, outdating the exclusive blood-brain barrier paradigm. Consequently, pharmacologically enhancing GS function represents a promising therapeutic strategy to alleviate ischemic stroke-induced brain edema and improve clinical outcomes.",
       "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -13423,9 +13681,9 @@
     },
     "abstract": "BACKGROUND: Symptomatic brainstem cavernous malformations (BSCMs) pose a high risk of morbidity and mortality due to recurrent hemorrhage, warranting aggressive management. However, few studies have compared the effectiveness of different treatment modalities for BSCMs. We aimed to assess the association of treatment modalities with recurrent hemorrhage and neurological outcomes in patients with BSCM. METHODS: We conducted a retrospective cohort study using an observational registry database covering population of southwest and southeast China. Adult patients with BSCM were included and followed up between March 1, 2011, to March 31, 2023. We compared outcomes between microsurgery and stereotactic radiosurgery (SRS) in propensity score-matched case pairs, incorporating demographic, medical history, and lesion characteristics. The outcomes studied included recurrent hemorrhage and poor prognosis (defined as a Glasgow Outcome Scale score, <4). Absolute rate differences and hazard ratios (HRs) with 95% CIs were calculated using Cox models. RESULTS: Among 736 diagnosed patients with BSCM, 96 (48 matched pairs) were included after exclusions and propensity score matching (mean age, 43.1 [SD, 12.1] years; 50% women). During the median 5-year follow-up, no significant differences in recurrent hemorrhage (4.2% [microsurgery] versus 14.6% [SRS], HR, 3.90 [95% CI, 0.46–32.65]; P =0.21) and poor prognosis (12.5% [microsurgery] versus 8.3% [SRS], HR, 0.29 [95% CI, 0.08–1.08]; P =0.07) were observed between microsurgery and SRS recipients. Furthermore, either microsurgery or SRS correlated with fewer recurrent hemorrhage (HR, 0.09 [95% CI, 0.02–0.39]; P =0.001; HR, 0.21 [95% CI, 0.07–0.69]; P =0.01) compared with conservative treatment. CONCLUSIONS: In this study, both microsurgery and SRS were safe and effective for BSCM, demonstrated comparable outcomes in recurrent hemorrhage and poor prognosis. However, interpretation should be cautious due to the potential for residual confounding. REGISTRATION: URL: https://www.chictr.org.cn/; Unique identifier: ChiCTR2300070907.",
     "ai_takeaways": {
-      "conclusion_vi": "In this study, both microsurgery and SRS were safe and effective for BSCM, demonstrated comparable outcomes in recurrent hemorrhage and poor prognosis. However, interpretation should be cautious due to the potential for residual confounding.",
+      "conclusion_vi": "In this multicenter observational cohort study, both microsurgery and stereotactic radiosurgery significantly reduced recurrent hemorrhage compared with conservative treatment (HR, 0.09 and 0.21, respectively). However, microsurgery and stereotactic radiosurgery showed no statistically significant differences in rates of recurrent hemorrhage (HR, 3.90; 95% CI, 0.46–32.65; P=0.21) or poor prognosis (HR, 0.29; 95% CI, 0.08–1.08; P=0.07).",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -13461,9 +13719,9 @@
     },
     "abstract": "BACKGROUND: Patient-reported outcome measures (PROMs) describe health status from the perspective of the patient. There is growing interest in incorporating PROMs into clinical trials, but the extent that such measures are used in contemporary stroke trials is uncertain. We sought to determine how often acute stroke trials included PROMs as outcome measures and assessed the completeness of methodological reporting. METHODS: We searched MEDLINE for randomized controlled trials published in 9 high-impact journals between 2010 and 2020. Eligible studies were phase 2 or 3 trials that tested therapeutic interventions within 1 month of stroke onset. Using the trial’s primary publication and protocol, we abstracted key study characteristics including all primary and secondary outcome measures. We defined PROMs as self-reported measures of quality of life, symptoms, or function collected without interpretation of an external party. RESULTS: Of 116 trials that met eligibility, 57 (49%) included at least 1 PROM. Of these, 41 trials (35%) included a PROM in its primary publication, while 16 (14%) identified a PROM in its protocol. Only 1 trial used a PROM as a primary outcome. Among the 57 total trials, the most commonly used measures were Euro-QOL (n=41, 72%), Stroke Impact Scale (n=10, 18%), and Short-Form 36 (n=6, 11%). Trials were more likely to include a PROM if they were published after 2016, were phase 3, or included only hemorrhagic stroke. Of the 41 trials that included a PROM in the primary publication, 40 (97%) provided PROM results, but only 9 (22%) found statistically significant differences between treatment groups. Quality of methodological reporting was generally poor. CONCLUSIONS: Half of contemporary acute stroke trials published in high-impact journals listed at least 1 PROM as a secondary outcome, but they played a minor role in the presentation of the final trial results. Inclusion of PROMs in acute stroke trials requires greater attention during both the design and reporting phases of the trial. REGISTRATION: URL: https://www.crd.york.ac.uk/PROSPERO/; Unique identifier: CRD42019128727.",
     "ai_takeaways": {
-      "conclusion_vi": "RESULTS: Of 116 trials that met eligibility, 57 (49%) included at least 1 PROM. Of these, 41 trials (35%) included a PROM in its primary publication, while 16 (14%) identified a PROM in its protocol.",
+      "conclusion_vi": "While 49% of high-impact acute stroke trials incorporate patient-reported outcome measures (PROMs), they are rarely used as primary endpoints and suffer from poor methodological reporting. Clinicians should recognize that current trial evidence remains heavily reliant on clinician-rated scales rather than patient-centered perspectives.",
       "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -13504,9 +13762,9 @@
     },
     "abstract": "BACKGROUND: Nasogastric tube feeding (NG) has been widely used in patients with bulbar palsy after ischemic stroke but is associated with a significant risk of complications including malnutrition and pneumonia. Intermittent oro-esophageal tube feeding (IOE) can help alleviate these concerns. This study explored the clinical effect of IOE versus NG on nutritional status, swallowing function, stroke-associated pneumonia, and depression in patients with bulbar palsy after ischemic stroke. METHODS: This randomized controlled study included 148 patients with bulbar palsy after ischemic stroke who underwent routine treatment and swallowing rehabilitation training in the Department of Rehabilitation Medicine between July 2017 and July 2019 in China. The participants were randomly divided into the IOE group (n=74) and NG group (n=74) with IOE and NG as nutritional supports, respectively. The primary outcome was nutritional status including (1) body mass index (kg/m 2 ), (2) serum ALB (albumin, g/L), and (3) PA (prealbumin, mg/L). The secondary outcomes were (1) swallowing function including (i) Functional Oral Intake Scale (FOIS) and (ii) Penetration-Aspiration Scale, (2) pneumonia, (3) depression, and (4) adverse events. Statistical analyses for continuous outcomes were performed using t test, Mann-Whitney U test and Wilcoxon signed-rank test and categorical variables using χ 2 test. SPSS 21.0 was used for all analysis. RESULTS: There were no significant baseline differences between the 2 groups. After the treatment, the IOE group demonstrated significantly better results compared with the NG group in ALB ([32.71±0.94] versus [32.28±0.81] g/L; P =0.003), PA ([278.15±13.81] versus [270.31±15.08] mg/L; P =0.001], body mass index ([19.77±1.03] versus [19.41±0.98] kg/m 2 ; P =0.002], FOIS ( P <0.001), Penetration-Aspiration Scale ( P <0.001), stroke-associated pneumonia ([1, 4.05%] versus [26, 35.14%]; P <0.001), depression ([1, 1.35%] versus [44, 59.46%]; P <0.001) and overall less adverse events (reflux, fever, discomfort in the throat; P <0.001). CONCLUSIONS: In patients with dysphagia with bulbar palsy after ischemic stroke who received routine treatment and swallowing rehabilitation training, IOE is safer and more conducive to the improvement of nutritional status, swallowing function, stroke-associated pneumonia, and depression than NG. REGISTRATION: URL: https://www.chictr.org.cn; Unique identifier: ChiCTR-INC-17011741.",
     "ai_takeaways": {
-      "conclusion_vi": "In patients with dysphagia with bulbar palsy after ischemic stroke who received routine treatment and swallowing rehabilitation training, IOE is safer and more conducive to the improvement of nutritional status, swallowing function, stroke-associated pneumonia, and depression than NG. REGISTRATION: URL: https://www.chictr.org.cn; Unique identifier: ChiCTR-INC-17011741.",
+      "conclusion_vi": "In ischemic stroke patients with post-stroke bulbar palsy, intermittent oro-esophageal tube feeding (IOE) significantly improves nutritional status, swallowing function, and depression while markedly reducing stroke-associated pneumonia (4.05% vs 35.14%, P < 0.001) compared to nasogastric tube feeding.",
       "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -13551,9 +13809,9 @@
     },
     "abstract": "BACKGROUND: Lacunes are associated with cognitive impairment. We sought to identify strategic lacune locations associated with mild cognitive impairment (MCI) and subtypes of MCI among older adults, and further to examine the role of white matter hyperintensities and perivascular spaces in the association. METHODS: This population-based cross-sectional study included 1230 dementia-free participants in the brain magnetic resonance imaging substudy (2018–2020) in MIND-China (Multimodal Interventions to Delay Dementia and Disability in Rural China). Lacunes were visually identified in frontal lobe, parieto-occipital lobe, temporal lobe, insula, basal ganglia, thalamus, cerebellum, and brainstem. MCI, amnestic MCI (aMCI), and nonamnestic MCI (naMCI) were defined following the Petersen’s criteria. Data were analyzed using logistic regression models. RESULTS: Of the 1230 participants (age, ≥60 years; mean age, 69.40; SD, 4.30 years; 58.5% women), lacunes were detected in 357 people and MCI was defined in 286 individuals, including 243 with aMCI and 43 with naMCI. Lacunes in the supratentorial area, internal capsula, putamen/pallidum, and insula was significantly associated with increased odds ratio of MCI (multivariable-adjusted odds ratio ranged 1.40–3.21; P <0.05) and aMCI (multivariable-adjusted odds ratio ranged 1.46–3.36; P <0.05), whereas lacunes in the infratentorial area and brainstem were significantly associated with naMCI (multivariable-adjusted odds ratio ranged 2.68–3.46; P <0.01). Furthermore, the associations of lacunes in insula and internal capsula with MCI and aMCI, as well as the associations of lacunes in infratentorial area and brainstem with naMCI were present independent of white matter hyperintensities volume and perivascular spaces number. CONCLUSIONS: Lacunes in the internal capsula, putamen/pallidum, insula, and brainstem may represent the strategic lacunes that are independently associated with MCI, aMCI, or naMCI in Chinese older adults. REGISTRATION: URL: https://www.chictr.org.cn; Unique identifier: ChiCTR1800017758.",
     "ai_takeaways": {
-      "conclusion_vi": "Lacunes in the internal capsula, putamen/pallidum, insula, and brainstem may represent the strategic lacunes that are independently associated with MCI, aMCI, or naMCI in Chinese older adults. REGISTRATION: URL: https://www.chictr.org.cn; Unique identifier: ChiCTR1800017758.",
+      "conclusion_vi": "In older adults, lacunes in the internal capsule, putamen/pallidum, insula, and brainstem are independently associated with specific mild cognitive impairment subtypes (multivariable-adjusted ORs, 1.40–3.46; P <0.05), highlighting distinct strategic brain regions for vascular cognitive impairment regardless of white matter hyperintensities or perivascular spaces.",
       "clinical_significance": "Clinical significance for Dementia practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -16119,220 +16377,6 @@
       ]
     },
     "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1212/wnl.78.1_meetingabstracts.p02.267",
-    "title": "Case Report: HIV-2 Encephalitis in a Patient with Subacute Cognitive Decline (P02.267)",
-    "journal": {
-      "name": "Neurology (AAN)",
-      "short_name": "Neurology",
-      "badge_bg": "#DCFCE7",
-      "badge_text": "#166534"
-    },
-    "pub_date": "2012-04-22T00:00:00Z",
-    "article_type": "Case Report",
-    "article_types": [
-      "Case Report"
-    ],
-    "authors": [
-      "Lyons J.",
-      "Phillips R.",
-      "Wood B.",
-      "Johnson J.",
-      "Folkerth R.",
-      "Milner D.",
-      "Klein J."
-    ],
-    "doi_url": "https://doi.org/10.1212/wnl.78.1_meetingabstracts.p02.267",
-    "neurology_classification": {
-      "subspecialty": "Dementia",
-      "subspecialties": [
-        "Dementia"
-      ],
-      "topics": [
-        "Encephalitis"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Dementia practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1212/wnl.78.1_meetingabstracts.p06.020",
-    "title": "The Natural History of Intravascular Lymphoma (P06.020)",
-    "journal": {
-      "name": "Neurology (AAN)",
-      "short_name": "Neurology",
-      "badge_bg": "#DCFCE7",
-      "badge_text": "#166534"
-    },
-    "pub_date": "2012-04-22T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Fonkem E.",
-      "Robison D.",
-      "Lok E.",
-      "Gautam S.",
-      "Wong E."
-    ],
-    "doi_url": "https://doi.org/10.1212/wnl.78.1_meetingabstracts.p06.020",
-    "neurology_classification": {
-      "subspecialty": "Other",
-      "subspecialties": [
-        "Other"
-      ],
-      "topics": [
-        "Neurology"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1016/s1474-4422(10)70305-7",
-    "title": "Paediatric neurology: understanding risk and improving therapeutic choices",
-    "journal": {
-      "name": "The Lancet Neurology",
-      "short_name": "Lancet Neurol",
-      "badge_bg": "#CFFAFE",
-      "badge_text": "#0E7490"
-    },
-    "pub_date": "2010-12-15T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Kennedy Colin"
-    ],
-    "doi_url": "https://doi.org/10.1016/s1474-4422(10)70305-7",
-    "neurology_classification": {
-      "subspecialty": "Other",
-      "subspecialties": [
-        "Other"
-      ],
-      "topics": [
-        "Neurology"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1161/strokeaha.109.576421",
-    "title": "Orthotic Devices After Stroke and Other Nonprogressive Brain Lesions",
-    "journal": {
-      "name": "Stroke (AHA)",
-      "short_name": "Stroke",
-      "badge_bg": "#FFE4E6",
-      "badge_text": "#991B1B"
-    },
-    "pub_date": "2010-02-18T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Tyson S. F.",
-      "Kent R. M."
-    ],
-    "doi_url": "https://doi.org/10.1161/strokeaha.109.576421",
-    "neurology_classification": {
-      "subspecialty": "Stroke",
-      "subspecialties": [
-        "Stroke"
-      ],
-      "topics": [
-        "Stroke",
-        "Brain"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1016/s1474-4422(10)70012-0",
-    "title": "Errata",
-    "journal": {
-      "name": "The Lancet Neurology",
-      "short_name": "Lancet Neurol",
-      "badge_bg": "#CFFAFE",
-      "badge_text": "#0E7490"
-    },
-    "pub_date": "2010-01-19T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [],
-    "doi_url": "https://doi.org/10.1016/s1474-4422(10)70012-0",
-    "neurology_classification": {
-      "subspecialty": "Other",
-      "subspecialties": [
-        "Other"
-      ],
-      "topics": [
-        "Neurology"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1161/strokeaha.109.551820",
-    "title": "Introduction",
-    "journal": {
-      "name": "Stroke (AHA)",
-      "short_name": "Stroke",
-      "badge_bg": "#FFE4E6",
-      "badge_text": "#991B1B"
-    },
-    "pub_date": "2009-04-27T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Fisher M."
-    ],
-    "doi_url": "https://doi.org/10.1161/strokeaha.109.551820",
-    "neurology_classification": {
-      "subspecialty": "Other",
-      "subspecialties": [
-        "Other"
-      ],
-      "topics": [
-        "Neurology"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
     "ai_takeaways": {
       "conclusion_vi": "",
       "clinical_significance": "Clinical significance for Other practice.",
