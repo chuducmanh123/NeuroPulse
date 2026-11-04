@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { GuidelineDoc, PracticeChangeDetail, SubspecialtyType } from "@/types/neuroguide";
 import { detectSociety, detectSubspecialty } from "@/lib/neuroguide/pubmedDiscovery";
+import { generateSafeGuidelineSlug } from "@/lib/neuroguide/notebooklmParser";
 import { MOCK_GUIDELINE_DOCS } from "@/data/neuroguideMockData";
 
 export const dynamic = "force-dynamic";
@@ -73,11 +74,7 @@ export function parseManifestItem(rawLine: string, index: number): GuidelineDoc 
   }
 
   // 6. Generate Slug and ID
-  const titleSlug = clean
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "")
-    .slice(0, 50);
+  const titleSlug = generateSafeGuidelineSlug(clean);
   const id = `batch-${society.toLowerCase().replace(/[^a-z0-9]/g, "")}-${year}-${titleSlug || `doc-${index + 1}`}`;
 
   // 7. Formulate default structured practice change recommendations

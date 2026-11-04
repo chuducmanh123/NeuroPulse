@@ -215,6 +215,38 @@ function generateExecutiveSummaryVi(title: string, society: string, year: number
   return `Hướng dẫn thực hành lâm sàng chính thức từ ${society} (${year}) về ${condition}, tổng hợp hệ thống ${recCount} khuyến cáo phân tầng mức độ chỉ định (COR) và mức độ bằng chứng (LOE) cùng dữ liệu từ các thử nghiệm lâm sàng đối chứng then chốt.`;
 }
 
+export function generateSafeGuidelineSlug(title: string): string {
+  let clean = (title || "").toLowerCase();
+  clean = clean.replace(/\b(20\d{2}|19\d{2})\b/g, " ");
+  clean = clean.replace(/european\s+stroke\s+organisation/gi, " ");
+  clean = clean.replace(/american\s+heart\s+association/gi, " ");
+  clean = clean.replace(/american\s+stroke\s+association/gi, " ");
+  clean = clean.replace(/american\s+academy\s+of\s+neurology/gi, " ");
+  clean = clean.replace(/neurocritical\s+care\s+society/gi, " ");
+  clean = clean.replace(/international\s+league\s+against\s+epilepsy/gi, " ");
+  clean = clean.replace(/\b(eso|aha|asa|acc|aan|ncs|ilae|eans|esmint)\b/gi, " ");
+  clean = clean.replace(/\b(guidelines?|recommendations?|consensus|statement|scientific)\b/gi, " ");
+  clean = clean.replace(/\b(on|for|in|of|the|and|management|patients?|with|acute)\b/gi, " ");
+
+  let slug = clean.replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+  if (!slug || slug.length < 3) {
+    slug = (title || "guideline").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+  }
+  return slug.slice(0, 50).replace(/-+$/, "");
+}
+
+export function generateSafeGuidelineId(society: string, year: number | string, title: string): string {
+  const socSlug = (society || "guide").toLowerCase().replace(/[^a-z0-9]/g, "");
+  const slug = generateSafeGuidelineSlug(title);
+  let hash = 0;
+  const s = (title || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+  for (let i = 0; i < s.length; i++) {
+    hash = ((hash << 5) - hash + s.charCodeAt(i)) | 0;
+  }
+  const hashStr = Math.abs(hash).toString(36).slice(0, 4);
+  return `${socSlug}-${year}-${slug}-${hashStr}`;
+}
+
 /**
  * Main parser function to convert NotebookLM markdown/text/docx into a full GuidelineDoc
  */
@@ -623,14 +655,7 @@ export function parseNotebookLMContent(
   }
 
   // 4. Slug & ID Generation
-  const societySlug = detectedSociety.toLowerCase().replace(/[^a-z0-9]/g, "");
-  const titleSlug = docTitle
-    .toLowerCase()
-    .replace(/\b(20\d{2}|19\d{2})\b/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "")
-    .slice(0, 45);
-  const docId = `${societySlug}-${year}-${titleSlug || "guideline"}`;
+  const docId = generateSafeGuidelineId(detectedSociety, year, docTitle);
 
   // Update IDs in practice changes to be unique to this doc
   practiceChanges.forEach((c, idx) => {

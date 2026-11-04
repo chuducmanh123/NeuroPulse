@@ -9,6 +9,7 @@ import type {
   SubspecialtyType,
 } from "../../types/neuroguide.ts";
 import { detectSociety, detectSubspecialty } from "./pubmedDiscovery.ts";
+import { generateSafeGuidelineId } from "./notebooklmParser.ts";
 
 function loadEnvKey(): string {
   const envPath = path.join(process.cwd(), ".env");
@@ -240,13 +241,7 @@ Respond strictly in JSON matching this schema:
 
     const soc = result.society || detectedSociety;
     const sub = result.subspecialty || detectedSub;
-    const cleanPrefix = soc.toLowerCase().replace(/[^a-z0-9]/g, "");
-    const titleSlug = options.title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .slice(0, 40)
-      .replace(/^-|-$/g, "");
-    const id = `${cleanPrefix}-${options.pubYear}-${titleSlug || `doc-${Date.now()}`}`;
+    const id = generateSafeGuidelineId(soc, options.pubYear, options.title);
 
     let changes: PracticeChangeDetail[] = [];
 

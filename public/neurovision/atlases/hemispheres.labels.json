@@ -1,0 +1,22 @@
+{
+  "atlas": "hemispheres",
+  "space": "MNI152NLin2009cAsym",
+  "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+  "license": "FSL licence: non-commercial (user decision 2026-11-04: use)",
+  "review_status": "unreviewed",
+  "notes": [],
+  "labels": [
+    {
+      "index": 1,
+      "name": "Left hemisphere (union of HO sub-atlas Left* labels, excl. brainstem)",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 2,
+      "name": "Right hemisphere (union of HO sub-atlas Right* labels, excl. brainstem)",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    }
+  ]
+}

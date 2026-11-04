@@ -44,6 +44,18 @@ export function getCoreTopicKey(doc: { society?: string; title?: string }): stri
   if (normSoc === "ESO" && (t.includes("pneumonia") || t.includes("viêm phổi"))) {
     return "ESO-SAP";
   }
+  if (normSoc === "ESO" && (t.includes("visual") || t.includes("vision") || t.includes("thị giác"))) {
+    return "ESO-VISUAL-IMPAIRMENT";
+  }
+  if (normSoc === "ESO" && (t.includes("motor") || (t.includes("rehabilitation") && !t.includes("aphasia")))) {
+    return "ESO-MOTOR-REHAB";
+  }
+  if (normSoc === "ESO" && (t.includes("aphasia") || t.includes("ngôn ngữ"))) {
+    return "ESO-APHASIA";
+  }
+  if (normSoc === "ESO" && (t.includes("thrombolysis") || t.includes("tiêu sợi huyết"))) {
+    return "ESO-IVT";
+  }
   if (normSoc === "AHA" && (t.includes("acute ischemic stroke") || t.includes("acute ischaemic stroke") || t.includes("early management"))) {
     return "AHA-AIS";
   }

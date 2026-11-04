@@ -1,6 +1,6 @@
 import { test, describe } from "node:test";
 import assert from "node:assert";
-import { parseNotebookLMContent } from "../src/lib/neuroguide/notebooklmParser.ts";
+import { parseNotebookLMContent, generateSafeGuidelineId, generateSafeGuidelineSlug } from "../src/lib/neuroguide/notebooklmParser.ts";
 
 const SAMPLE_NOTEBOOKLM_TEXT = `2023 AHA/ASA Guideline for the Management of Patients With Aneurysmal Subarachnoid Hemorrhage
 Comprehensive Summary of Clinical Recommendations, COR/LOE Ratings, and Supporting Evidence
@@ -89,5 +89,30 @@ describe("NotebookLM Practice Guideline Ingestion Engine", () => {
     // Executive summaries
     assert.ok(doc.executiveSummary.length > 50);
     assert.ok(doc.executiveSummaryVi && doc.executiveSummaryVi.includes("Xuất huyết dưới nhện"));
+  });
+
+  test("should generate distinct safe IDs for ESO guidelines sharing long organization prefixes", () => {
+    const visualTitle = "European Stroke Organisation (ESO) guideline on screening, diagnosis and management of visual impairment after stroke";
+    const motorTitle = "European Stroke Organisation (ESO) guideline on motor rehabilitation after stroke";
+    const bpTitle = "2025 European Stroke Organisation (ESO) Guideline on Blood Pressure Management in Acute Ischaemic Stroke and Intracerebral Haemorrhage";
+    const aphasiaTitle = "2025 ESO guideline on aphasia rehabilitation";
+
+    const visualId = generateSafeGuidelineId("ESO", 2025, visualTitle);
+    const motorId = generateSafeGuidelineId("ESO", 2025, motorTitle);
+    const bpId = generateSafeGuidelineId("ESO", 2025, bpTitle);
+    const aphasiaId = generateSafeGuidelineId("ESO", 2025, aphasiaTitle);
+
+    // Verify all IDs are completely unique
+    const idSet = new Set([visualId, motorId, bpId, aphasiaId]);
+    assert.strictEqual(idSet.size, 4, "Each guideline must have a completely unique ID");
+
+    // Verify neither ID truncates to the generic collision slug
+    assert.notStrictEqual(visualId, motorId);
+    assert.ok(!visualId.endsWith("guideline-on"));
+    assert.ok(!motorId.endsWith("guideline-on"));
+    assert.ok(visualId.includes("visual"));
+    assert.ok(motorId.includes("motor"));
+    assert.ok(bpId.includes("blood-pressure"));
+    assert.ok(aphasiaId.includes("aphasia"));
   });
 });

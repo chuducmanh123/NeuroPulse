@@ -363,6 +363,13 @@ export default function AdminCommandCenter() {
                     .replace(/american\s+stroke\s+association/gi, "asa")
                 );
                 activeKeys.add(simplified);
+                const expanded = normalizeT(
+                  g.title
+                    .replace(/\beso\b/gi, "european stroke organisation")
+                    .replace(/\baha\b/gi, "american heart association")
+                    .replace(/\basa\b/gi, "american stroke association")
+                );
+                activeKeys.add(expanded);
               }
             });
             const localDel: string[] = JSON.parse(localStorage.getItem("neuroguide_deleted_ids") || "[]");

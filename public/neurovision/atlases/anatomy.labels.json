@@ -1,0 +1,483 @@
+{
+  "atlas": "anatomy",
+  "space": "MNI152NLin2009cAsym",
+  "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+  "license": "FSL licence: non-commercial (user decision 2026-11-04: use)",
+  "review_status": "unreviewed",
+  "notes": [
+    "Cortical atlas is NOT lateralised in the source (symmetric_split=False): no left/right split of cortical labels.",
+    "Subcortical/white-matter/ventricle labels are lateralised in the source. 'Cerebral Cortex' labels were dropped in favour of the cortical atlas.",
+    "Maxprob thr25: labels do not tile the whole brain; unlabeled voxels = 0."
+  ],
+  "labels": [
+    {
+      "index": 1,
+      "name": "Frontal Pole",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 2,
+      "name": "Insular Cortex",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 3,
+      "name": "Superior Frontal Gyrus",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 4,
+      "name": "Middle Frontal Gyrus",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 5,
+      "name": "Inferior Frontal Gyrus, pars triangularis",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 6,
+      "name": "Inferior Frontal Gyrus, pars opercularis",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 7,
+      "name": "Precentral Gyrus",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 8,
+      "name": "Temporal Pole",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 9,
+      "name": "Superior Temporal Gyrus, anterior division",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 10,
+      "name": "Superior Temporal Gyrus, posterior division",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 11,
+      "name": "Middle Temporal Gyrus, anterior division",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 12,
+      "name": "Middle Temporal Gyrus, posterior division",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 13,
+      "name": "Middle Temporal Gyrus, temporooccipital part",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 14,
+      "name": "Inferior Temporal Gyrus, anterior division",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 15,
+      "name": "Inferior Temporal Gyrus, posterior division",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 16,
+      "name": "Inferior Temporal Gyrus, temporooccipital part",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 17,
+      "name": "Postcentral Gyrus",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 18,
+      "name": "Superior Parietal Lobule",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 19,
+      "name": "Supramarginal Gyrus, anterior division",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 20,
+      "name": "Supramarginal Gyrus, posterior division",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 21,
+      "name": "Angular Gyrus",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 22,
+      "name": "Lateral Occipital Cortex, superior division",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 23,
+      "name": "Lateral Occipital Cortex, inferior division",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 24,
+      "name": "Intracalcarine Cortex",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 25,
+      "name": "Frontal Medial Cortex",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 26,
+      "name": "Juxtapositional Lobule Cortex (formerly Supplementary Motor Cortex)",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 27,
+      "name": "Subcallosal Cortex",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 28,
+      "name": "Paracingulate Gyrus",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 29,
+      "name": "Cingulate Gyrus, anterior division",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 30,
+      "name": "Cingulate Gyrus, posterior division",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 31,
+      "name": "Precuneous Cortex",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 32,
+      "name": "Cuneal Cortex",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 33,
+      "name": "Frontal Orbital Cortex",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 34,
+      "name": "Parahippocampal Gyrus, anterior division",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 35,
+      "name": "Parahippocampal Gyrus, posterior division",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 36,
+      "name": "Lingual Gyrus",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 37,
+      "name": "Temporal Fusiform Cortex, anterior division",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 38,
+      "name": "Temporal Fusiform Cortex, posterior division",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 39,
+      "name": "Temporal Occipital Fusiform Cortex",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 40,
+      "name": "Occipital Fusiform Gyrus",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 41,
+      "name": "Frontal Opercular Cortex",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 42,
+      "name": "Central Opercular Cortex",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 43,
+      "name": "Parietal Opercular Cortex",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 44,
+      "name": "Planum Polare",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 45,
+      "name": "Heschl's Gyrus (includes H1 and H2)",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 46,
+      "name": "Planum Temporale",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 47,
+      "name": "Supracalcarine Cortex",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 48,
+      "name": "Occipital Pole",
+      "group": "cortical",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 49,
+      "name": "Left Cerebral White Matter",
+      "group": "subcortical/white matter/ventricle",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 50,
+      "name": "Left Lateral Ventricle",
+      "group": "subcortical/white matter/ventricle",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 51,
+      "name": "Left Thalamus",
+      "group": "subcortical/white matter/ventricle",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 52,
+      "name": "Left Caudate",
+      "group": "subcortical/white matter/ventricle",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 53,
+      "name": "Left Putamen",
+      "group": "subcortical/white matter/ventricle",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 54,
+      "name": "Left Pallidum",
+      "group": "subcortical/white matter/ventricle",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 55,
+      "name": "Brain-Stem",
+      "group": "subcortical/white matter/ventricle",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 56,
+      "name": "Left Hippocampus",
+      "group": "subcortical/white matter/ventricle",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 57,
+      "name": "Left Amygdala",
+      "group": "subcortical/white matter/ventricle",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 58,
+      "name": "Left Accumbens",
+      "group": "subcortical/white matter/ventricle",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 59,
+      "name": "Right Cerebral White Matter",
+      "group": "subcortical/white matter/ventricle",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 60,
+      "name": "Right Lateral Ventricle",
+      "group": "subcortical/white matter/ventricle",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 61,
+      "name": "Right Thalamus",
+      "group": "subcortical/white matter/ventricle",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 62,
+      "name": "Right Caudate",
+      "group": "subcortical/white matter/ventricle",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 63,
+      "name": "Right Putamen",
+      "group": "subcortical/white matter/ventricle",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 64,
+      "name": "Right Pallidum",
+      "group": "subcortical/white matter/ventricle",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 65,
+      "name": "Right Hippocampus",
+      "group": "subcortical/white matter/ventricle",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 66,
+      "name": "Right Amygdala",
+      "group": "subcortical/white matter/ventricle",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 67,
+      "name": "Right Accumbens",
+      "group": "subcortical/white matter/ventricle",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "review_status": "unreviewed"
+    }
+  ]
+}

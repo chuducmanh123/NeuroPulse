@@ -15,3 +15,9 @@ data/*.pdf
 
 .vercel
 .env*
+
+
+# NeuroVision pipeline (local only)
+scripts/.venv/
+scripts/.cache/
+scripts/validation/

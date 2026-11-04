@@ -1,0 +1,172 @@
+{
+  "target_space": "MNI152NLin2009cAsym",
+  "files": [
+    {
+      "file": "volumes/T1.nii.gz",
+      "shape": [
+        193,
+        229,
+        193
+      ],
+      "dtype": "uint8",
+      "size_bytes": 5772601,
+      "review_status": "unreviewed",
+      "source": "TemplateFlow tpl-MNI152NLin2009cAsym res-01 (Fonov et al. 2009/2011)",
+      "original_space": "MNI152NLin2009cAsym",
+      "method": "none (native grid); percentile 1-99.5 linear scaling to uint8",
+      "interpolation": "n/a",
+      "license": "MNI/Collins permission notice (see LICENSES.md)"
+    },
+    {
+      "file": "volumes/T2.nii.gz",
+      "shape": [
+        193,
+        229,
+        193
+      ],
+      "dtype": "uint8",
+      "size_bytes": 5161823,
+      "review_status": "unreviewed",
+      "source": "TemplateFlow tpl-MNI152NLin2009cAsym res-01 (Fonov et al. 2009/2011)",
+      "original_space": "MNI152NLin2009cAsym",
+      "method": "none (native grid); percentile 1-99.5 linear scaling to uint8",
+      "interpolation": "n/a",
+      "license": "MNI/Collins permission notice (see LICENSES.md)"
+    },
+    {
+      "file": "volumes/brainmask.nii.gz",
+      "shape": [
+        193,
+        229,
+        193
+      ],
+      "dtype": "uint8",
+      "size_bytes": 57402,
+      "review_status": "unreviewed",
+      "source": "TemplateFlow tpl-MNI152NLin2009cAsym res-01 (Fonov et al. 2009/2011)",
+      "original_space": "MNI152NLin2009cAsym",
+      "method": "none (native grid), binarised",
+      "interpolation": "n/a",
+      "license": "MNI/Collins permission notice (see LICENSES.md)"
+    },
+    {
+      "file": "atlases/anatomy.nii.gz",
+      "shape": [
+        193,
+        229,
+        193
+      ],
+      "dtype": "uint8",
+      "size_bytes": 184765,
+      "review_status": "unreviewed",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "original_space": "MNI152NLin6Asym (FSL MNI152, 1 mm 182x218x182)",
+      "method": "ANTs apply_transforms with TemplateFlow h5 (NLin6Asym->NLin2009cAsym)",
+      "interpolation": "nearestNeighbor",
+      "license": "FSL licence: non-commercial (user decision 2026-11-04: use)"
+    },
+    {
+      "file": "atlases/hemispheres.nii.gz",
+      "shape": [
+        193,
+        229,
+        193
+      ],
+      "dtype": "uint8",
+      "size_bytes": 67725,
+      "review_status": "unreviewed",
+      "source": "Harvard-Oxford atlas via nilearn 0.14.1 (FSL; Makris 2006, Desikan 2006, Frazier 2005, Goldstein 2007)",
+      "original_space": "MNI152NLin6Asym (FSL MNI152, 1 mm 182x218x182)",
+      "method": "ANTs apply_transforms with TemplateFlow h5 (NLin6Asym->NLin2009cAsym)",
+      "interpolation": "nearestNeighbor",
+      "license": "FSL licence: non-commercial (user decision 2026-11-04: use)"
+    },
+    {
+      "file": "atlases/whitematter.nii.gz",
+      "shape": [
+        193,
+        229,
+        193
+      ],
+      "dtype": "uint8",
+      "size_bytes": 52676,
+      "review_status": "unreviewed",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "original_space": "MNI152NLin6Asym (FSL MNI152, 1 mm 182x218x182)",
+      "method": "ANTs apply_transforms with TemplateFlow h5 (NLin6Asym->NLin2009cAsym)",
+      "interpolation": "nearestNeighbor",
+      "license": "FSL licence: non-commercial (user decision 2026-11-04: use)"
+    },
+    {
+      "file": "atlases/arterial.nii.gz",
+      "shape": [
+        193,
+        229,
+        193
+      ],
+      "dtype": "uint8",
+      "size_bytes": 130317,
+      "review_status": "unreviewed",
+      "source": "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas",
+      "original_space": "Authors' 'FSL compatible' 182x218x182 grid; header has no origin. Assigned the FSL MNI152 1 mm affine (LAS, origin 90,-126,-72) after the brain-mask Dice test (Dice=0.946)",
+      "method": "Affine replaced by FSL MNI152 1 mm affine, then ANTs apply_transforms with TemplateFlow h5",
+      "interpolation": "nearestNeighbor",
+      "license": "CC BY-SA 4.0 (GitHub repo LICENSE; NITRC page says CC-BY; user decision: follow GitHub). Derivatives must be shared alike."
+    },
+    {
+      "file": "atlases/arterial_level2.nii.gz",
+      "shape": [
+        193,
+        229,
+        193
+      ],
+      "dtype": "uint8",
+      "size_bytes": 104893,
+      "review_status": "unreviewed",
+      "source": "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas",
+      "original_space": "Authors' 'FSL compatible' 182x218x182 grid; header has no origin. Assigned the FSL MNI152 1 mm affine (LAS, origin 90,-126,-72) after the brain-mask Dice test (Dice=0.946)",
+      "method": "Affine replaced by FSL MNI152 1 mm affine, then ANTs apply_transforms with TemplateFlow h5",
+      "interpolation": "nearestNeighbor",
+      "license": "CC BY-SA 4.0 (GitHub repo LICENSE; NITRC page says CC-BY; user decision: follow GitHub). Derivatives must be shared alike."
+    },
+    {
+      "file": "volumes/CT.nii.gz",
+      "shape": [
+        193,
+        229,
+        193
+      ],
+      "dtype": "uint8",
+      "size_bytes": 2135838,
+      "review_status": "unreviewed",
+      "source": "Clinical Toolbox for SPM scct.nii (Rorden et al. 2012, NeuroImage 61:957), github.com/neurolabusc/Clinical",
+      "original_space": "SPM MNI 2 mm grid identical to FSL MNI152 2 mm (91x109x91). Anatomical match to NLin6Asym ASSUMED from the grid; check overlay",
+      "method": "Warped in Cormack units with ANTs + TemplateFlow h5, then Cormack->HU (clinical_c2h.m port), window HU 0..80 (L40/W80) -> uint8",
+      "interpolation": "linear",
+      "native_resolution_mm": 2.0,
+      "license": "BSD-2-Clause (repo LICENSE); template data coverage unverified"
+    }
+  ],
+  "skipped": [
+    {
+      "item": "AAL3",
+      "reason": "Licence not read from the original source; space is SPM12 MNI 2 mm (unverified)."
+    },
+    {
+      "item": "ASPECTS 10-region atlas",
+      "reason": "ASPECTS-281 is split into BGL/SGL age-specific CT templates; relation to MNI unverified."
+    },
+    {
+      "item": "Venous territory atlas",
+      "reason": "No verified source. VENAT is a vessel density atlas, not territories."
+    },
+    {
+      "item": "Brainstem nuclei (Harvard AAN v2)",
+      "reason": "Files/space not checked yet (licence CC0 verified)."
+    },
+    {
+      "item": "Circle of Willis / venous sinus meshes",
+      "reason": "No verified vessel source in MNI."
+    }
+  ]
+}

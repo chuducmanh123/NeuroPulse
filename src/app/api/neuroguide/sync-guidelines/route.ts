@@ -57,9 +57,28 @@ export async function GET(request: NextRequest) {
 
     // Tuyệt đối không gửi ID/tiêu đề của guideline đang active/approved vào deletedGuidelineIds
     const activeDocKeys = new Set<string>();
+    const normT = (str: string) => (str || "").toLowerCase().replace(/[^a-z0-9]/g, "");
     mergedData.guidelines.forEach((g) => {
       if (g.id) activeDocKeys.add(g.id.toLowerCase().trim());
-      if (g.title) activeDocKeys.add(g.title.toLowerCase().replace(/[^a-z0-9]/g, ""));
+      if (g.title) {
+        activeDocKeys.add(normT(g.title));
+        activeDocKeys.add(
+          normT(
+            g.title
+              .replace(/european\s+stroke\s+organisation/gi, "eso")
+              .replace(/american\s+heart\s+association/gi, "aha")
+              .replace(/american\s+stroke\s+association/gi, "asa")
+          )
+        );
+        activeDocKeys.add(
+          normT(
+            g.title
+              .replace(/\beso\b/gi, "european stroke organisation")
+              .replace(/\baha\b/gi, "american heart association")
+              .replace(/\basa\b/gi, "american stroke association")
+          )
+        );
+      }
     });
     const deletedGuidelineIds = rawDeletedGuidelineIds.filter((d) => !activeDocKeys.has(d.toLowerCase().trim()));
 

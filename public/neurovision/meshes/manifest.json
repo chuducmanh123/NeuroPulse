@@ -1,0 +1,741 @@
+{
+  "coordinate_system": "MNI152NLin2009cAsym, mm, RAS+ (same as volumes)",
+  "format": "GIFTI .gii (nibabel)",
+  "not_generated": [
+    "Circle of Willis",
+    "venous sinuses",
+    "third/fourth ventricles",
+    ".mz3 export"
+  ],
+  "meshes": [
+    {
+      "file": "hemisphere_left.gii",
+      "group": "cortex",
+      "side": "left",
+      "description": "Left hemisphere envelope = union of Harvard-Oxford left-side labels, morphologically closed (2 iterations) and hole-filled; NOT a pial surface",
+      "source": "Harvard-Oxford (FSL) via 01_fetch_and_resample.py; see atlases/anatomy.labels.json",
+      "review_status": "unreviewed",
+      "mask_voxels": 855986,
+      "bounds_mm": [
+        [
+          -73.5,
+          -109.5,
+          -53.7
+        ],
+        [
+          2.5,
+          76.5,
+          84.5
+        ]
+      ],
+      "faces_before": 156456,
+      "faces_after": 60000,
+      "watertight": true,
+      "volume_mm3_before": 857077.5,
+      "volume_mm3_after": 857067.5,
+      "size_bytes": 764031
+    },
+    {
+      "file": "hemisphere_right.gii",
+      "group": "cortex",
+      "side": "right",
+      "description": "Right hemisphere envelope = union of Harvard-Oxford right-side labels, morphologically closed (2 iterations) and hole-filled; NOT a pial surface",
+      "source": "Harvard-Oxford (FSL) via 01_fetch_and_resample.py; see atlases/anatomy.labels.json",
+      "review_status": "unreviewed",
+      "mask_voxels": 848655,
+      "bounds_mm": [
+        [
+          -1.5,
+          -107.5,
+          -53.5
+        ],
+        [
+          73.5,
+          76.8,
+          85.5
+        ]
+      ],
+      "faces_before": 155624,
+      "faces_after": 60000,
+      "watertight": true,
+      "volume_mm3_before": 849656.1,
+      "volume_mm3_after": 849646.4,
+      "size_bytes": 765243
+    },
+    {
+      "file": "ventricle_lateral_left.gii",
+      "group": "ventricles",
+      "side": "left",
+      "description": "Harvard-Oxford label 'Left Lateral Ventricle' (maxprob thr25)",
+      "source": "Harvard-Oxford (FSL) via 01_fetch_and_resample.py; see atlases/anatomy.labels.json",
+      "review_status": "unreviewed",
+      "mask_voxels": 9187,
+      "bounds_mm": [
+        [
+          -33.4,
+          -61.1,
+          -2.3
+        ],
+        [
+          0.5,
+          30.4,
+          29.3
+        ]
+      ],
+      "faces_before": 13172,
+      "faces_after": 13172,
+      "watertight": true,
+      "volume_mm3_before": 8835.5,
+      "volume_mm3_after": 8829.3,
+      "size_bytes": 164642
+    },
+    {
+      "file": "ventricle_lateral_right.gii",
+      "group": "ventricles",
+      "side": "right",
+      "description": "Harvard-Oxford label 'Right Lateral Ventricle' (maxprob thr25)",
+      "source": "Harvard-Oxford (FSL) via 01_fetch_and_resample.py; see atlases/anatomy.labels.json",
+      "review_status": "unreviewed",
+      "mask_voxels": 8023,
+      "bounds_mm": [
+        [
+          -0.5,
+          -55.5,
+          -2.5
+        ],
+        [
+          34.2,
+          30.3,
+          29.3
+        ]
+      ],
+      "faces_before": 12040,
+      "faces_after": 12040,
+      "watertight": true,
+      "volume_mm3_before": 7643.9,
+      "volume_mm3_after": 7635.9,
+      "size_bytes": 149334
+    },
+    {
+      "file": "brainstem.gii",
+      "group": "brainstem",
+      "side": null,
+      "description": "Harvard-Oxford label 'Brain-Stem' (maxprob thr25)",
+      "source": "Harvard-Oxford (FSL) via 01_fetch_and_resample.py; see atlases/anatomy.labels.json",
+      "review_status": "unreviewed",
+      "mask_voxels": 40596,
+      "bounds_mm": [
+        [
+          -22.5,
+          -52.4,
+          -71.1
+        ],
+        [
+          23.5,
+          -10.5,
+          0.4
+        ]
+      ],
+      "faces_before": 21212,
+      "faces_after": 20000,
+      "watertight": true,
+      "volume_mm3_before": 40315.7,
+      "volume_mm3_after": 40316.4,
+      "size_bytes": 248899
+    },
+    {
+      "file": "thalamus_left.gii",
+      "group": "deep_grey",
+      "side": "left",
+      "description": "Harvard-Oxford label 'Left Thalamus' (maxprob thr25)",
+      "source": "Harvard-Oxford (FSL) via 01_fetch_and_resample.py; see atlases/anatomy.labels.json",
+      "review_status": "unreviewed",
+      "mask_voxels": 11046,
+      "bounds_mm": [
+        [
+          -23.6,
+          -37.6,
+          -5.5
+        ],
+        [
+          0.5,
+          0.3,
+          20.5
+        ]
+      ],
+      "faces_before": 7980,
+      "faces_after": 7980,
+      "watertight": true,
+      "volume_mm3_before": 10878.3,
+      "volume_mm3_after": 10878.9,
+      "size_bytes": 99717
+    },
+    {
+      "file": "thalamus_right.gii",
+      "group": "deep_grey",
+      "side": "right",
+      "description": "Harvard-Oxford label 'Right Thalamus' (maxprob thr25)",
+      "source": "Harvard-Oxford (FSL) via 01_fetch_and_resample.py; see atlases/anatomy.labels.json",
+      "review_status": "unreviewed",
+      "mask_voxels": 11009,
+      "bounds_mm": [
+        [
+          -0.5,
+          -36.7,
+          -4.6
+        ],
+        [
+          23.5,
+          1.5,
+          20.8
+        ]
+      ],
+      "faces_before": 7924,
+      "faces_after": 7924,
+      "watertight": true,
+      "volume_mm3_before": 10846.8,
+      "volume_mm3_after": 10847.0,
+      "size_bytes": 99205
+    },
+    {
+      "file": "caudate_left.gii",
+      "group": "deep_grey",
+      "side": "left",
+      "description": "Harvard-Oxford label 'Left Caudate' (maxprob thr25)",
+      "source": "Harvard-Oxford (FSL) via 01_fetch_and_resample.py; see atlases/anatomy.labels.json",
+      "review_status": "unreviewed",
+      "mask_voxels": 4584,
+      "bounds_mm": [
+        [
+          -19.5,
+          -21.2,
+          -7.7
+        ],
+        [
+          -5.2,
+          25.7,
+          26.6
+        ]
+      ],
+      "faces_before": 5908,
+      "faces_after": 5908,
+      "watertight": true,
+      "volume_mm3_before": 4393.7,
+      "volume_mm3_after": 4389.5,
+      "size_bytes": 74533
+    },
+    {
+      "file": "caudate_right.gii",
+      "group": "deep_grey",
+      "side": "right",
+      "description": "Harvard-Oxford label 'Right Caudate' (maxprob thr25)",
+      "source": "Harvard-Oxford (FSL) via 01_fetch_and_resample.py; see atlases/anatomy.labels.json",
+      "review_status": "unreviewed",
+      "mask_voxels": 4956,
+      "bounds_mm": [
+        [
+          4.5,
+          -21.6,
+          -7.2
+        ],
+        [
+          19.5,
+          26.5,
+          27.2
+        ]
+      ],
+      "faces_before": 6248,
+      "faces_after": 6248,
+      "watertight": true,
+      "volume_mm3_before": 4761.1,
+      "volume_mm3_after": 4756.9,
+      "size_bytes": 78197
+    },
+    {
+      "file": "putamen_left.gii",
+      "group": "deep_grey",
+      "side": "left",
+      "description": "Harvard-Oxford label 'Left Putamen' (maxprob thr25)",
+      "source": "Harvard-Oxford (FSL) via 01_fetch_and_resample.py; see atlases/anatomy.labels.json",
+      "review_status": "unreviewed",
+      "mask_voxels": 6880,
+      "bounds_mm": [
+        [
+          -33.5,
+          -22.3,
+          -14.2
+        ],
+        [
+          -13.7,
+          20.5,
+          15.4
+        ]
+      ],
+      "faces_before": 6996,
+      "faces_after": 6996,
+      "watertight": true,
+      "volume_mm3_before": 6712.9,
+      "volume_mm3_after": 6710.9,
+      "size_bytes": 87253
+    },
+    {
+      "file": "putamen_right.gii",
+      "group": "deep_grey",
+      "side": "right",
+      "description": "Harvard-Oxford label 'Right Putamen' (maxprob thr25)",
+      "source": "Harvard-Oxford (FSL) via 01_fetch_and_resample.py; see atlases/anatomy.labels.json",
+      "review_status": "unreviewed",
+      "mask_voxels": 7132,
+      "bounds_mm": [
+        [
+          11.5,
+          -21.1,
+          -13.4
+        ],
+        [
+          33.5,
+          21.5,
+          14.3
+        ]
+      ],
+      "faces_before": 7144,
+      "faces_after": 7144,
+      "watertight": true,
+      "volume_mm3_before": 6963.7,
+      "volume_mm3_after": 6961.5,
+      "size_bytes": 89029
+    },
+    {
+      "file": "pallidum_left.gii",
+      "group": "deep_grey",
+      "side": "left",
+      "description": "Harvard-Oxford label 'Left Pallidum' (maxprob thr25)",
+      "source": "Harvard-Oxford (FSL) via 01_fetch_and_resample.py; see atlases/anatomy.labels.json",
+      "review_status": "unreviewed",
+      "mask_voxels": 2312,
+      "bounds_mm": [
+        [
+          -28.4,
+          -19.2,
+          -9.3
+        ],
+        [
+          -11.8,
+          7.6,
+          7.1
+        ]
+      ],
+      "faces_before": 3020,
+      "faces_after": 3020,
+      "watertight": true,
+      "volume_mm3_before": 2203.7,
+      "volume_mm3_after": 2202.2,
+      "size_bytes": 38341
+    },
+    {
+      "file": "pallidum_right.gii",
+      "group": "deep_grey",
+      "side": "right",
+      "description": "Harvard-Oxford label 'Right Pallidum' (maxprob thr25)",
+      "source": "Harvard-Oxford (FSL) via 01_fetch_and_resample.py; see atlases/anatomy.labels.json",
+      "review_status": "unreviewed",
+      "mask_voxels": 2491,
+      "bounds_mm": [
+        [
+          10.6,
+          -17.4,
+          -8.9
+        ],
+        [
+          28.3,
+          9.2,
+          7.1
+        ]
+      ],
+      "faces_before": 3172,
+      "faces_after": 3172,
+      "watertight": true,
+      "volume_mm3_before": 2383.3,
+      "volume_mm3_after": 2382.6,
+      "size_bytes": 40325
+    },
+    {
+      "file": "hippocampus_left.gii",
+      "group": "deep_grey",
+      "side": "left",
+      "description": "Harvard-Oxford label 'Left Hippocampus' (maxprob thr25)",
+      "source": "Harvard-Oxford (FSL) via 01_fetch_and_resample.py; see atlases/anatomy.labels.json",
+      "review_status": "unreviewed",
+      "mask_voxels": 5702,
+      "bounds_mm": [
+        [
+          -37.3,
+          -42.8,
+          -30.5
+        ],
+        [
+          -9.3,
+          -4.3,
+          6.2
+        ]
+      ],
+      "faces_before": 7232,
+      "faces_after": 7232,
+      "watertight": true,
+      "volume_mm3_before": 5486.3,
+      "volume_mm3_after": 5481.6,
+      "size_bytes": 90609
+    },
+    {
+      "file": "hippocampus_right.gii",
+      "group": "deep_grey",
+      "side": "right",
+      "description": "Harvard-Oxford label 'Right Hippocampus' (maxprob thr25)",
+      "source": "Harvard-Oxford (FSL) via 01_fetch_and_resample.py; see atlases/anatomy.labels.json",
+      "review_status": "unreviewed",
+      "mask_voxels": 5965,
+      "bounds_mm": [
+        [
+          9.5,
+          -40.5,
+          -30.5
+        ],
+        [
+          38.3,
+          -3.6,
+          6.2
+        ]
+      ],
+      "faces_before": 7340,
+      "faces_after": 7340,
+      "watertight": true,
+      "volume_mm3_before": 5747.0,
+      "volume_mm3_after": 5743.2,
+      "size_bytes": 92693
+    },
+    {
+      "file": "amygdala_left.gii",
+      "group": "deep_grey",
+      "side": "left",
+      "description": "Harvard-Oxford label 'Left Amygdala' (maxprob thr25)",
+      "source": "Harvard-Oxford (FSL) via 01_fetch_and_resample.py; see atlases/anatomy.labels.json",
+      "review_status": "unreviewed",
+      "mask_voxels": 2506,
+      "bounds_mm": [
+        [
+          -33.5,
+          -15.6,
+          -30.1
+        ],
+        [
+          -12.6,
+          1.7,
+          -9.9
+        ]
+      ],
+      "faces_before": 3144,
+      "faces_after": 3144,
+      "watertight": true,
+      "volume_mm3_before": 2397.7,
+      "volume_mm3_after": 2396.3,
+      "size_bytes": 39849
+    },
+    {
+      "file": "amygdala_right.gii",
+      "group": "deep_grey",
+      "side": "right",
+      "description": "Harvard-Oxford label 'Right Amygdala' (maxprob thr25)",
+      "source": "Harvard-Oxford (FSL) via 01_fetch_and_resample.py; see atlases/anatomy.labels.json",
+      "review_status": "unreviewed",
+      "mask_voxels": 2866,
+      "bounds_mm": [
+        [
+          10.3,
+          -14.7,
+          -30.7
+        ],
+        [
+          32.5,
+          5.2,
+          -10.5
+        ]
+      ],
+      "faces_before": 3492,
+      "faces_after": 3492,
+      "watertight": true,
+      "volume_mm3_before": 2748.8,
+      "volume_mm3_after": 2746.7,
+      "size_bytes": 44581
+    },
+    {
+      "file": "accumbens_left.gii",
+      "group": "deep_grey",
+      "side": "left",
+      "description": "Harvard-Oxford label 'Left Accumbens' (maxprob thr25)",
+      "source": "Harvard-Oxford (FSL) via 01_fetch_and_resample.py; see atlases/anatomy.labels.json",
+      "review_status": "unreviewed",
+      "mask_voxels": 808,
+      "bounds_mm": [
+        [
+          -16.5,
+          4.6,
+          -14.3
+        ],
+        [
+          -5.5,
+          20.2,
+          -1.7
+        ]
+      ],
+      "faces_before": 1488,
+      "faces_after": 1488,
+      "watertight": true,
+      "volume_mm3_before": 731.0,
+      "volume_mm3_after": 729.5,
+      "size_bytes": 19516
+    },
+    {
+      "file": "accumbens_right.gii",
+      "group": "deep_grey",
+      "side": "right",
+      "description": "Harvard-Oxford label 'Right Accumbens' (maxprob thr25)",
+      "source": "Harvard-Oxford (FSL) via 01_fetch_and_resample.py; see atlases/anatomy.labels.json",
+      "review_status": "unreviewed",
+      "mask_voxels": 803,
+      "bounds_mm": [
+        [
+          3.5,
+          4.8,
+          -13.3
+        ],
+        [
+          14.8,
+          21.3,
+          -1.9
+        ]
+      ],
+      "faces_before": 1472,
+      "faces_after": 1472,
+      "watertight": true,
+      "volume_mm3_before": 721.5,
+      "volume_mm3_after": 719.3,
+      "size_bytes": 19220
+    },
+    {
+      "file": "territory_aca_left.gii",
+      "group": "arterial_territory",
+      "side": "left",
+      "description": "ACA left territory = union of JHU Arterial Atlas level-1 labels [1, 3] grouped by the source 'level2_bilateral' column and the side word in the label name",
+      "source": "JHU Arterial Atlas (Liu 2023, CC BY-SA 4.0) via 01_fetch_and_resample.py; see atlases/arterial.labels.json",
+      "review_status": "unreviewed",
+      "mask_voxels": 219140,
+      "bounds_mm": [
+        [
+          -28.4,
+          -86.7,
+          -33.5
+        ],
+        [
+          1.5,
+          78.4,
+          82.5
+        ]
+      ],
+      "faces_before": 75280,
+      "faces_after": 30000,
+      "watertight": true,
+      "volume_mm3_before": 218389.0,
+      "volume_mm3_after": 218388.7,
+      "size_bytes": 382923
+    },
+    {
+      "file": "territory_aca_right.gii",
+      "group": "arterial_territory",
+      "side": "right",
+      "description": "ACA right territory = union of JHU Arterial Atlas level-1 labels [2, 4] grouped by the source 'level2_bilateral' column and the side word in the label name",
+      "source": "JHU Arterial Atlas (Liu 2023, CC BY-SA 4.0) via 01_fetch_and_resample.py; see atlases/arterial.labels.json",
+      "review_status": "unreviewed",
+      "mask_voxels": 215626,
+      "bounds_mm": [
+        [
+          0.5,
+          -86.7,
+          -33.5
+        ],
+        [
+          28.5,
+          77.4,
+          82.5
+        ]
+      ],
+      "faces_before": 75228,
+      "faces_after": 30000,
+      "watertight": true,
+      "volume_mm3_before": 214903.7,
+      "volume_mm3_after": 214898.7,
+      "size_bytes": 382939
+    },
+    {
+      "file": "territory_mca_left.gii",
+      "group": "arterial_territory",
+      "side": "left",
+      "description": "MCA left territory = union of JHU Arterial Atlas level-1 labels [5, 7, 9, 11, 13, 15] grouped by the source 'level2_bilateral' column and the side word in the label name",
+      "source": "JHU Arterial Atlas (Liu 2023, CC BY-SA 4.0) via 01_fetch_and_resample.py; see atlases/arterial.labels.json",
+      "review_status": "unreviewed",
+      "mask_voxels": 498344,
+      "bounds_mm": [
+        [
+          -73.5,
+          -101.5,
+          -55.4
+        ],
+        [
+          -4.5,
+          72.6,
+          78.5
+        ]
+      ],
+      "faces_before": 128358,
+      "faces_after": 30000,
+      "watertight": true,
+      "volume_mm3_before": 497712.9,
+      "volume_mm3_after": 497671.9,
+      "size_bytes": 385451
+    },
+    {
+      "file": "territory_mca_right.gii",
+      "group": "arterial_territory",
+      "side": "right",
+      "description": "MCA right territory = union of JHU Arterial Atlas level-1 labels [6, 8, 10, 12, 14, 16] grouped by the source 'level2_bilateral' column and the side word in the label name",
+      "source": "JHU Arterial Atlas (Liu 2023, CC BY-SA 4.0) via 01_fetch_and_resample.py; see atlases/arterial.labels.json",
+      "review_status": "unreviewed",
+      "mask_voxels": 498858,
+      "bounds_mm": [
+        [
+          4.9,
+          -100.4,
+          -55.4
+        ],
+        [
+          76.5,
+          73.5,
+          77.5
+        ]
+      ],
+      "faces_before": 129184,
+      "faces_after": 30000,
+      "watertight": true,
+      "volume_mm3_before": 498198.6,
+      "volume_mm3_after": 498152.6,
+      "size_bytes": 385359
+    },
+    {
+      "file": "territory_pca_left.gii",
+      "group": "arterial_territory",
+      "side": "left",
+      "description": "PCA left territory = union of JHU Arterial Atlas level-1 labels [17, 19, 21, 23] grouped by the source 'level2_bilateral' column and the side word in the label name",
+      "source": "JHU Arterial Atlas (Liu 2023, CC BY-SA 4.0) via 01_fetch_and_resample.py; see atlases/arterial.labels.json",
+      "review_status": "unreviewed",
+      "mask_voxels": 159145,
+      "bounds_mm": [
+        [
+          -59.1,
+          -111.8,
+          -36.4
+        ],
+        [
+          1.5,
+          -1.9,
+          53.5
+        ]
+      ],
+      "faces_before": 68420,
+      "faces_after": 30000,
+      "watertight": true,
+      "volume_mm3_before": 158641.2,
+      "volume_mm3_after": 158632.1,
+      "size_bytes": 383251
+    },
+    {
+      "file": "territory_pca_right.gii",
+      "group": "arterial_territory",
+      "side": "right",
+      "description": "PCA right territory = union of JHU Arterial Atlas level-1 labels [18, 20, 22, 24] grouped by the source 'level2_bilateral' column and the side word in the label name",
+      "source": "JHU Arterial Atlas (Liu 2023, CC BY-SA 4.0) via 01_fetch_and_resample.py; see atlases/arterial.labels.json",
+      "review_status": "unreviewed",
+      "mask_voxels": 153317,
+      "bounds_mm": [
+        [
+          0.5,
+          -110.5,
+          -37.4
+        ],
+        [
+          60.4,
+          -0.9,
+          53.5
+        ]
+      ],
+      "faces_before": 68380,
+      "faces_after": 30000,
+      "watertight": true,
+      "volume_mm3_before": 152828.6,
+      "volume_mm3_after": 152821.8,
+      "size_bytes": 383683
+    },
+    {
+      "file": "territory_vb_left.gii",
+      "group": "arterial_territory",
+      "side": "left",
+      "description": "VB left territory = union of JHU Arterial Atlas level-1 labels [25, 27, 29] grouped by the source 'level2_bilateral' column and the side word in the label name",
+      "source": "JHU Arterial Atlas (Liu 2023, CC BY-SA 4.0) via 01_fetch_and_resample.py; see atlases/arterial.labels.json",
+      "review_status": "unreviewed",
+      "mask_voxels": 133856,
+      "bounds_mm": [
+        [
+          -55.5,
+          -99.5,
+          -73.4
+        ],
+        [
+          1.5,
+          -10.8,
+          4.7
+        ]
+      ],
+      "faces_before": 44496,
+      "faces_after": 30000,
+      "watertight": true,
+      "volume_mm3_before": 133406.9,
+      "volume_mm3_after": 133406.8,
+      "size_bytes": 371543
+    },
+    {
+      "file": "territory_vb_right.gii",
+      "group": "arterial_territory",
+      "side": "right",
+      "description": "VB right territory = union of JHU Arterial Atlas level-1 labels [26, 28, 30] grouped by the source 'level2_bilateral' column and the side word in the label name",
+      "source": "JHU Arterial Atlas (Liu 2023, CC BY-SA 4.0) via 01_fetch_and_resample.py; see atlases/arterial.labels.json",
+      "review_status": "unreviewed",
+      "mask_voxels": 136435,
+      "bounds_mm": [
+        [
+          0.4,
+          -99.4,
+          -73.5
+        ],
+        [
+          57.5,
+          -10.8,
+          4.6
+        ]
+      ],
+      "faces_before": 44828,
+      "faces_after": 30000,
+      "watertight": true,
+      "volume_mm3_before": 135971.0,
+      "volume_mm3_after": 135973.7,
+      "size_bytes": 374963
+    }
+  ]
+}

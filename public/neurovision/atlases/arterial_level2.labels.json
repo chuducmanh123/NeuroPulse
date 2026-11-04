@@ -1,0 +1,72 @@
+{
+  "atlas": "arterial_level2",
+  "space": "MNI152NLin2009cAsym",
+  "source": "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas",
+  "license": "CC BY-SA 4.0 (GitHub repo LICENSE; NITRC page says CC-BY; user decision: follow GitHub). Derivatives must be shared alike.",
+  "review_status": "unreviewed",
+  "notes": [
+    "Level-2 values whose source rows carry more than one acronym: {5: ['PCAL', 'PCAR'], 6: ['PCAL', 'PCAR']}"
+  ],
+  "labels": [
+    {
+      "index": 1,
+      "name": "ACAL (acronyms found in source rows for this value)",
+      "source": "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 2,
+      "name": "ACAR (acronyms found in source rows for this value)",
+      "source": "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 3,
+      "name": "MCAL (acronyms found in source rows for this value)",
+      "source": "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 4,
+      "name": "MCAR (acronyms found in source rows for this value)",
+      "source": "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 5,
+      "name": "PCAL/PCAR (acronyms found in source rows for this value)",
+      "source": "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 6,
+      "name": "PCAL/PCAR (acronyms found in source rows for this value)",
+      "source": "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 7,
+      "name": "VBL (acronyms found in source rows for this value)",
+      "source": "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 8,
+      "name": "VBR (acronyms found in source rows for this value)",
+      "source": "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 9,
+      "name": "LVL (acronyms found in source rows for this value)",
+      "source": "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 10,
+      "name": "LVR (acronyms found in source rows for this value)",
+      "source": "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas",
+      "review_status": "unreviewed"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+# NeuroVision data pipeline. Tested on Python 3.13.17 / Windows. Python 3.15 does NOT work (no PyYAML wheel,
+# templateflow -> pybids -> bidsschematools -> pyyaml fails to resolve).
+nibabel>=5.4
+nilearn>=0.14
+templateflow>=25.1
+scikit-image>=0.26
+trimesh>=5.2
+fast-simplification>=0.2   # required by trimesh quadric decimation (02)
+numpy<2.4                  # pinned by antspyx 0.6.3
+scipy<1.16                 # pinned by antspyx 0.6.3
+matplotlib>=3.11
+antspyx>=0.6.3             # REQUIRED in practice: applies the TemplateFlow NLin6Asym -> NLin2009cAsym .h5 transform (01)
+truststore>=0.10           # Windows: use the OS certificate store for TemplateFlow/GitHub downloads (verification stays on)
+requests>=2.34

@@ -1,0 +1,310 @@
+{
+  "atlas": "whitematter",
+  "space": "MNI152NLin2009cAsym",
+  "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+  "license": "FSL licence: non-commercial (user decision 2026-11-04: use)",
+  "review_status": "unreviewed",
+  "notes": [],
+  "labels": [
+    {
+      "index": 1,
+      "name": "Middle cerebellar peduncle",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 2,
+      "name": "Pontine crossing tract (a part of MCP)",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 3,
+      "name": "Genu of corpus callosum",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 4,
+      "name": "Body of corpus callosum",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 5,
+      "name": "Splenium of corpus callosum",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 6,
+      "name": "Fornix (column and body of fornix)",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 7,
+      "name": "Corticospinal tract R",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 8,
+      "name": "Corticospinal tract L",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 9,
+      "name": "Medial lemniscus R",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 10,
+      "name": "Medial lemniscus L",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 11,
+      "name": "Inferior cerebellar peduncle R",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 12,
+      "name": "Inferior cerebellar peduncle L",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 13,
+      "name": "Superior cerebellar peduncle R",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 14,
+      "name": "Superior cerebellar peduncle L",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 15,
+      "name": "Cerebral peduncle R",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 16,
+      "name": "Cerebral peduncle L",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 17,
+      "name": "Anterior limb of internal capsule R",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 18,
+      "name": "Anterior limb of internal capsule L",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 19,
+      "name": "Posterior limb of internal capsule R",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 20,
+      "name": "Posterior limb of internal capsule L",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 21,
+      "name": "Retrolenticular part of internal capsule R",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 22,
+      "name": "Retrolenticular part of internal capsule L",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 23,
+      "name": "Anterior corona radiata R",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 24,
+      "name": "Anterior corona radiata L",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 25,
+      "name": "Superior corona radiata R",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 26,
+      "name": "Superior corona radiata L",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 27,
+      "name": "Posterior corona radiata R",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 28,
+      "name": "Posterior corona radiata L",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 29,
+      "name": "Posterior thalamic radiation (include optic radiation) R",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 30,
+      "name": "Posterior thalamic radiation (include optic radiation) L",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 31,
+      "name": "Sagittal stratum (include inferior longitidinal fasciculus and inferior fronto-occipital fasciculus) R",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 32,
+      "name": "Sagittal stratum (include inferior longitidinal fasciculus and inferior fronto-occipital fasciculus) L",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 33,
+      "name": "External capsule R",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 34,
+      "name": "External capsule L",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 35,
+      "name": "Cingulum (cingulate gyrus) R",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 36,
+      "name": "Cingulum (cingulate gyrus) L",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 37,
+      "name": "Cingulum (hippocampus) R",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 38,
+      "name": "Cingulum (hippocampus) L",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 39,
+      "name": "Fornix (cres) / Stria terminalis (can not be resolved with current resolution) R",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 40,
+      "name": "Fornix (cres) / Stria terminalis (can not be resolved with current resolution) L",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 41,
+      "name": "Superior longitudinal fasciculus R",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 42,
+      "name": "Superior longitudinal fasciculus L",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 43,
+      "name": "Superior fronto-occipital fasciculus (could be a part of anterior internal capsule) R",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 44,
+      "name": "Superior fronto-occipital fasciculus (could be a part of anterior internal capsule) L",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 45,
+      "name": "Inferior fronto-occipital fasciculus R",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 46,
+      "name": "Inferior fronto-occipital fasciculus L",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 47,
+      "name": "Uncinate fasciculus R",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 48,
+      "name": "Uncinate fasciculus L",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 49,
+      "name": "Tapetum R",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 50,
+      "name": "Tapetum L",
+      "source": "JHU ICBM-DTI-81 White-Matter Labels via FSL fsl-data_atlases 2103.0 (Mori 2008; Wakana 2007; Hua 2008)",
+      "review_status": "unreviewed"
+    }
+  ]
+}
