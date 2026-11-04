@@ -132,16 +132,18 @@ export default function ViewerToolbar() {
           <span className="hidden md:inline">Trục cắt</span>
         </button>
 
-        {/* ASPECTS Score Modal Trigger */}
-        <button
-          type="button"
-          onClick={() => setAspectsModalOpen(true)}
-          className="px-2.5 py-1 rounded-lg bg-rose-600 hover:bg-rose-500 text-white font-bold flex items-center gap-1 shadow-sm transition active:scale-95 text-xs"
-          title="Mở công cụ chấm điểm ASPECTS & pc-ASPECTS trên CT não"
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
-          <span>ASPECTS</span>
-        </button>
+        {/* ASPECTS Score Modal Trigger (chỉ hiển thị khi đang trong thẻ/lớp phủ ASPECTS) */}
+        {activeOverlay === "aspects" && (
+          <button
+            type="button"
+            onClick={() => setAspectsModalOpen(true)}
+            className="px-2.5 py-1 rounded-lg bg-rose-600 hover:bg-rose-500 text-white font-bold flex items-center gap-1 shadow-sm transition active:scale-95 text-xs"
+            title="Mở công cụ chấm điểm ASPECTS & pc-ASPECTS trên CT não"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+            <span>ASPECTS</span>
+          </button>
+        )}
 
         {/* View Mode Toggle */}
         <div className="flex items-center gap-0.5 bg-slate-950/70 p-0.5 rounded-lg border border-slate-800">
