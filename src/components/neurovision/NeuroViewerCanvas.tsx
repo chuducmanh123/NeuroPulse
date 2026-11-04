@@ -231,7 +231,7 @@ export default function NeuroViewerCanvas({ className = "", darkMode = true }: N
         overlayAsset = await loadWithCache(overlayUrl, overlayFilename);
 
         // Fetch colormap (with cache busting)
-        const cmRes = await fetch(`/neurovision/data/colormaps/${activeOverlay}.json?v=2026.11.4`);
+        const cmRes = await fetch(`/neurovision/data/colormaps/${activeOverlay}.json?v=2026.11.4_v2`);
         if (cmRes.ok) {
           colormapJson = await cmRes.json();
         }
@@ -249,8 +249,14 @@ export default function NeuroViewerCanvas({ className = "", darkMode = true }: N
       if (activeOverlay !== "none" && colormapJson && nv.volumes.length > 1) {
         currentColormapRef.current = colormapJson;
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (nv.volumes[1] as any).setColormapLabel(colormapJson);
-        nv.volumes[1].opacity = overlayOpacity;
+        const overlayVol = nv.volumes[1] as any;
+        // Ensure NiiVue activates orientShaderAtlasU (label atlas shader) with 100% transparent background (index 0)
+        if (overlayVol.hdr) {
+          overlayVol.hdr.intent_code = 1002;
+        }
+        overlayVol.cal_min = 1;
+        overlayVol.setColormapLabel(colormapJson);
+        overlayVol.opacity = overlayOpacity;
         nv.updateGLVolume();
       } else {
         currentColormapRef.current = null;
