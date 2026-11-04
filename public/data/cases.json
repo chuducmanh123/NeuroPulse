@@ -1,5 +1,221 @@
 [
   {
+    "id": "nc-2026-027",
+    "case_code": "NC-2026-027",
+    "title": "Fever, Seizures, and Multifocal Brain Lesions Without Cutaneous Manifestations in an Older Adult",
+    "subspecialty": "Neuro-Infectious Disease",
+    "subspecialties": [
+      "Neuro-Infectious Disease",
+      "Stroke/Vascular Neurology",
+      "General Neurology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 120,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-11-05",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13560155",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-05214-8",
+      "pmcid": "PMC13560155",
+      "pmid": "42723024",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "68-year-old man",
+      "chief_complaint": "Fever, seizures, and impaired consciousness",
+      "history_of_present_illness": "The patient presented with acute onset of high fever, generalized tonic-clonic seizures, and rapidly progressive impairment of consciousness. He had no history of recent trauma, vaccinations, or noticeable skin eruptions, vesicles, or localized rashes across his body. Initial evaluation showed marked neurological decline requiring urgent neuroimaging and cerebrospinal fluid analysis.",
+      "past_medical_history": "Noncontributory",
+      "vitals": {
+        "bp": "128/76 mmHg",
+        "hr": "92 bpm",
+        "rr": "18 /min",
+        "temp": "38.5 °C",
+        "spo2": "97%"
+      },
+      "neuro_exam": "Drowsy, confused, unable to fully cooperate with cognitive testing. Cranial nerves intact without focal deficits. Generalized hyperreflexia; no meningeal signs present. No cutaneous lesions or dermatomal scarring observed.",
+      "key_labs_csf": "CSF opening pressure normal. CSF analysis demonstrated marked pleocytosis, elevated protein levels, and cytology revealing suspected atypical lymphocytes. CSF metagenomic next-generation sequencing (mNGS) detected Varicella-Zoster Virus (VZV) sequences.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (FLAIR)",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13560155)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13560155_fig1.webp",
+          "pmcid": "PMC13560155",
+          "doi_url": "https://doi.org/10.1186/s12883-026-05214-8",
+          "caption": "Brain magnetic resonance imaging findings in Case 1. A1 – A4 Initial fluid-attenuated inversion recovery images at admission showed multifocal hyperintense lesions involving the right temporal lobe, cerebellar vermis, bilateral superior cerebellar hemispheres, cerebral peduncle, and right periventricular region. Arrows indicate representative lesions. B1 – B5 Follow-up MRI performed on day 45 after disease onset showed a new lesion adjacent to the posterior horn of the left lateral ventricle. Diffusion-weighted imaging showed high signal intensity with corresponding low signal on the apparent ",
+          "findings_summary": "Initial FLAIR images showed multifocal hyperintense lesions involving the right temporal lobe, cerebellar vermis, bilateral superior cerebellar hemispheres, cerebral peduncle, and right periventricular region."
+        },
+        {
+          "modality": "Brain MRI (DWI / Follow-up)",
+          "sequence_badge": "Figure 2 • BMC neurology (PMC13560155)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC13560155_fig2.webp",
+          "pmcid": "PMC13560155",
+          "doi_url": "https://doi.org/10.1186/s12883-026-05214-8",
+          "caption": "Brain MRI findings in Case 2. A–C Brain MRI at admission showed multifocal abnormal signal lesions involving the left frontal lobe, brainstem, cerebellum, and bilateral temporal lobes. Arrows indicate representative lesions",
+          "findings_summary": "Follow-up MRI on day 45 demonstrated a new acute cerebral infarction adjacent to the posterior horn of the left lateral ventricle with restricted diffusion."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "D",
+      "options": [
+        {
+          "id": "A",
+          "text": "Autoimmune encephalitis",
+          "peer_percentage": 15,
+          "rationale": "Incorrect. While CSF pleocytosis and atypical lymphocytes initially suggested an autoimmune etiology, pathogen detection via mNGS definitively identifies an infectious pathogen."
+        },
+        {
+          "id": "B",
+          "text": "Primary central nervous system lymphoma (PCNSL)",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. Multifocal lesions with atypical CSF lymphocytes can mimic PCNSL, but mNGS confirms a viral etiology rather than a lymphoproliferative neoplasm."
+        },
+        {
+          "id": "C",
+          "text": "Herpes simplex virus type 1 encephalitis",
+          "peer_percentage": 12,
+          "rationale": "Incorrect. Although HSV-1 causes temporal lobe encephalitis, CSF mNGS specifically identified Varicella-Zoster Virus as the causative agent."
+        },
+        {
+          "id": "D",
+          "text": "Rashless varicella-zoster virus encephalitis",
+          "peer_percentage": 63,
+          "rationale": "Correct! The clinical presentation of fever, seizures, and altered mental status combined with multifocal brain MRI lesions and CSF mNGS confirmation of VZV in the absence of any cutaneous rash establishes the diagnosis of rashless VZV encephalitis."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Rashless varicella-zoster virus encephalitis",
+      "clinical_discussion": "Varicella-zoster virus (VZV) is a well-known neurotropic alphaherpesvirus capable of causing a wide spectrum of central nervous system disorders, including encephalitis, myelitis, aseptic meningitis, and cerebral vasculopathy. Traditionally, VZV CNS involvement is suspected in the presence of a characteristic vesicular dermatomal rash. However, 'rashless' VZV encephalitis presents a significant diagnostic challenge because it lacks cutaneous markers, often leading clinicians to suspect alternative diagnoses such as autoimmune encephalitis, primary CNS lymphoma, or other viral encephalitides.\n\nThe advent of cerebrospinal fluid (CSF) metagenomic next-generation sequencing (mNGS) has revolutionized the diagnostic workup for complex neuro-infectious conditions, allowing for the rapid and unbiased identification of pathogens when standard PCR or serology is negative or inconclusive. Furthermore, patients with VZV CNS infections remain at risk for delayed neurological complications, such as VZV-associated cerebral vasculopathy leading to ischemic stroke weeks after initial presentation. Recognizing this clinical entity is vital for prompt initiation of antiviral therapy and prolonged monitoring.",
+      "teaching_points": [
+        "VZV encephalitis can occur entirely in the absence of a typical skin rash (rashless VZV encephalitis), mimicking autoimmune or neoplastic disorders.",
+        "Cerebrospinal fluid metagenomic next-generation sequencing (mNGS) is a powerful diagnostic tool for identifying elusive pathogens in CNS infections.",
+        "Patients with VZV CNS infections require careful long-term follow-up to detect delayed vascular complications, such as secondary ischemic cerebral infarction."
+      ],
+      "clinical_pitfalls": [
+        "Failing to consider VZV encephalitis in patients presenting with encephalitis and multifocal brain lesions simply because no cutaneous rash is present.",
+        "Discontinuing patient monitoring after acute recovery, thereby missing delayed complications like VZV-associated vasculopathy or Elsberg syndrome."
+      ],
+      "related_keywords": [
+        "Varicella-zoster virus",
+        "Encephalitis",
+        "Metagenomic next-generation sequencing (mNGS)",
+        "VZV vasculopathy"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-028",
+    "case_code": "NC-2026-028",
+    "title": "Subacute Neuropsychiatric Symptoms, Seizures, and Progressive Cognitive Decline in a Young Woman",
+    "subspecialty": "Neuroimmunology",
+    "subspecialties": [
+      "Neuroimmunology",
+      "Epilepsy"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-11-05",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13281488",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-04918-1",
+      "pmcid": "PMC13281488",
+      "pmid": "42067849",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "33-year-old female",
+      "chief_complaint": "Subacute headache, fever, behavioral changes, and new-onset generalized seizures.",
+      "history_of_present_illness": "A 33-year-old previously healthy woman presented with a 2-week history of subacute headache, low-grade fever, generalized fatigue, and progressive behavioral alterations including social withdrawal, severe anhedonia, and auditory hallucinations. Within days of initial psychiatric onset, she developed recurrent generalized tonic-clonic seizures refractory to initial antiseizure monotherapy. Her symptoms rapidly progressed to include marked cognitive dysfunction characterized by impaired attention, memory loss, and slurred speech. There was no preceding viral illness, travel, or prior psychiatric history.",
+      "past_medical_history": "Unremarkable; no prior neurological, psychiatric, or chronic medical conditions.",
+      "vitals": {
+        "bp": "118/74 mmHg",
+        "hr": "86 bpm",
+        "rr": "16 /min",
+        "temp": "37.8 °C",
+        "spo2": "99%"
+      },
+      "neuro_exam": "Alert but fluctuating attention, disorientation to time and place, impaired short-term recall (0/3 words at 5 minutes), expressive language delay, diffuse hyperreflexia without focal motor weakness, negative Babinski signs bilaterally, and no meningismus.",
+      "key_labs_csf": "Serum WBC: 8,400 /mm³, CRP: 4 mg/L. CSF analysis: Normal opening pressure, WBC: 4 cells/mm³ (lymphocytic), Protein: 32 mg/dL, Glucose: 64 mg/dL (serum 98 mg/dL), oligoclonal bands negative, Gram stain and HSV PCR negative. EEG demonstrated diffuse severe background slowing without epileptiform discharges. Pelvic imaging demonstrated a large right ovarian mass.",
+      "imaging": [
+        {
+          "modality": "Abdominal/Pelvic CT with IV Contrast (Coronal & Axial)",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13281488)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13281488_fig1.jpg",
+          "pmcid": "PMC13281488",
+          "doi_url": "https://doi.org/10.1186/s12883-026-04918-1",
+          "caption": "CT scan with IV contrast, image ( A ) showing coronal view, Image ( B ) showing cross sectional view (pre-op) showed solid and cystic and components of patient teratoma",
+          "findings_summary": "Large right ovarian mass with mixed solid and cystic components suspicious for a teratoma."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "A",
+      "options": [
+        {
+          "id": "A",
+          "text": "Anti-NMDA receptor encephalitis",
+          "peer_percentage": 74,
+          "rationale": "Correct! Anti-NMDAR encephalitis typically presents in young women with a prodromal viral-like illness (fever, headache), followed rapidly by prominent psychiatric disturbances (psychosis, hallucinations, mood changes), dyskinesias, autonomic instability, and seizures. Notably, brain MRI and initial CSF routine studies can be completely normal or non-specific in up to 50% of patients. In young adult females, it is strongly associated with ovarian teratomas (both mature and immature)."
+        },
+        {
+          "id": "B",
+          "text": "Herpes simplex virus (HSV) encephalitis",
+          "peer_percentage": 14,
+          "rationale": "Incorrect. While HSV encephalitis causes fever, confusion, and seizures, CSF usually demonstrates prominent lymphocytic pleocytosis, elevated protein, and often RBCs. Temporal lobe signal abnormalities on brain MRI are classic. Negative CSF HSV PCR and normal initial CSF/MRI make HSV acute encephalitis significantly less likely."
+        },
+        {
+          "id": "C",
+          "text": "Primary psychiatric illness (Schizophrenia)",
+          "peer_percentage": 7,
+          "rationale": "Incorrect. Although auditory hallucinations and withdrawal can mimic primary psychosis, the abrupt onset, fever, accompanying generalized tonic-clonic seizures, rapid cognitive decline, and an associated ovarian mass strongly point to an organic autoimmune paraneoplastic encephalopathy rather than a primary psychiatric disorder."
+        },
+        {
+          "id": "D",
+          "text": "Hashimoto encephalopathy (SREAT)",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. Steroid-responsive encephalopathy associated with autoimmune thyroiditis (SREAT) presents with stroke-like episodes, cognitive decline, or tremor and requires markedly elevated anti-thyroid antibodies (anti-TPO). It does not carry an association with ovarian teratomas."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Anti-NMDAR Encephalitis associated with an Ovarian Immature Teratoma",
+      "clinical_discussion": "Anti-N-methyl-D-aspartate receptor (NMDAR) encephalitis is a autoimmune central nervous system disorder mediated by autoantibodies against the GluN1 subunit of the NMDA receptor. The clinical trajectory classic for this illness involves a flu-like prodrome (headache, fever), followed within days to weeks by psychiatric symptoms (psychosis, agitation, catatonia, mood dysregulation), movement disorders (orofacial dyskinesias), seizures, hypoventilation, and autonomic instability. Importantly, normal initial brain MRI findings and benign routine CSF parameters occur in a substantial subset of patients, creating significant diagnostic challenges and often delaying targeted immunotherapy.\n\nMore than half of adult female patients with anti-NMDAR encephalitis harbor an underlying neoplasm, most commonly an ovarian teratoma containing neural elements that breach self-tolerance. While mature teratomas are more common, immature ovarian teratomas can also elicit this paraneoplastic response. Management mandates early tumor identification via pelvic imaging (ultrasound, CT, or MRI) and prompt surgical resection in conjunction with aggressive immunotherapy (first-line high-dose steroids, IVIG, or plasmapheresis, escalated to second-line agents like rituximab or cyclophosphamide when refractory). Early surgical removal and immunosuppression lead to high rates of complete recovery.",
+      "teaching_points": [
+        "Normal brain MRI and normal routine CSF parameters do not exclude the diagnosis of anti-NMDAR encephalitis.",
+        "Young women presenting with acute/subacute neuropsychiatric changes, behavioral deterioration, and new-onset seizures must undergo pelvic imaging to screen for an ovarian teratoma.",
+        "Optimal recovery depends on prompt dual-modality treatment: surgical resection of the neoplasm combined with early escalation to first- and second-line immunotherapy."
+      ],
+      "clinical_pitfalls": [
+        "Attributing acute psychotic symptoms accompanied by fever or seizures strictly to a primary psychiatric disorder, delaying autoantibody testing and neuroimaging.",
+        "Delaying pelvic tumor screening because initial lumbar puncture and brain MRI reveal no abnormalities."
+      ],
+      "related_keywords": [
+        "Anti-NMDAR encephalitis",
+        "Ovarian teratoma",
+        "Paraneoplastic encephalitis",
+        "Rituximab",
+        "Plasmapheresis"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-025",
     "case_code": "NC-2026-025",
     "title": "Fever, Headaches, and Encephalitis with Permanent Central Blindness in a Dockworker",
