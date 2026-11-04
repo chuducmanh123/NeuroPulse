@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNeuroVisionStore } from "../../store/useNeuroVisionStore";
 import { AppSwitcher } from "../../components/ecosystem/AppSwitcher";
 import { NeuroViewerProvider } from "../../components/neurovision/NeuroViewerContext";
@@ -9,6 +9,7 @@ import ViewerToolbar from "../../components/neurovision/ViewerToolbar";
 import SliceSlidersBar from "../../components/neurovision/SliceSlidersBar";
 import ClinicalInspector from "../../components/neurovision/ClinicalInspector";
 import AspectsScoreModal from "../../components/neurovision/AspectsScoreModal";
+import { getStoredAdminToken } from "../../utils/clientAuth";
 
 const VALIDATION_IMAGES = [
   { file: "mesh_volume_alignment.png", title: "Đối chiếu Trực quan Mesh - Volume (Não thất bên trùng khít với mặt phẳng T1)" },
@@ -25,6 +26,11 @@ const VALIDATION_IMAGES = [
 
 export default function NeuroVisionPage() {
   const [activeTab, setActiveTab] = useState<"viewer" | "validation">("viewer");
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    setIsAdmin(Boolean(getStoredAdminToken()));
+  }, []);
 
   // Zustand Store for UI controls
   const isSidebarOpen = useNeuroVisionStore((s) => s.isSidebarOpen);
@@ -53,32 +59,34 @@ export default function NeuroVisionPage() {
             </div>
           </div>
 
-          {/* View mode / Tabs */}
+          {/* View mode / Tabs (Chỉ hiển thị cho quản trị viên) */}
           <div className="flex items-center gap-2">
-            <div className="bg-slate-950 p-0.5 rounded-lg border border-slate-800 flex items-center gap-1 text-xs">
-              <button
-                type="button"
-                onClick={() => setActiveTab("viewer")}
-                className={`px-2.5 py-1 rounded-md font-medium transition text-xs ${
-                  activeTab === "viewer"
-                    ? "bg-sky-600 text-white shadow-sm"
-                    : "text-slate-400 hover:text-slate-200"
-                }`}
-              >
-                Trình xem
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveTab("validation")}
-                className={`px-2.5 py-1 rounded-md font-medium transition text-xs ${
-                  activeTab === "validation"
-                    ? "bg-sky-600 text-white shadow-sm"
-                    : "text-slate-400 hover:text-slate-200"
-                }`}
-              >
-                Kiểm định
-              </button>
-            </div>
+            {isAdmin && (
+              <div className="bg-slate-950 p-0.5 rounded-lg border border-slate-800 flex items-center gap-1 text-xs">
+                <button
+                  type="button"
+                  onClick={() => setActiveTab("viewer")}
+                  className={`px-2.5 py-1 rounded-md font-medium transition text-xs ${
+                    activeTab === "viewer"
+                      ? "bg-sky-600 text-white shadow-sm"
+                      : "text-slate-400 hover:text-slate-200"
+                  }`}
+                >
+                  Trình xem
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab("validation")}
+                  className={`px-2.5 py-1 rounded-md font-medium transition text-xs ${
+                    activeTab === "validation"
+                      ? "bg-sky-600 text-white shadow-sm"
+                      : "text-slate-400 hover:text-slate-200"
+                  }`}
+                >
+                  Kiểm định
+                </button>
+              </div>
+            )}
 
             {activeTab === "viewer" && (
               <button
