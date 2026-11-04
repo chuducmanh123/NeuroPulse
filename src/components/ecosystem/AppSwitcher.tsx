@@ -111,10 +111,10 @@ export function AppSwitcher({
       id: "neurovision",
       name: "NeuroVision",
       subtitle: "ASPECTS & Imaging",
-      href: "#",
-      badge: "SOON",
+      href: "/neurovision",
+      badge: "BETA",
       gradient: "from-blue-500 to-indigo-700",
-      isComingSoon: true,
+      isCurrent: currentApp === "neurovision",
       icon: (
         <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
