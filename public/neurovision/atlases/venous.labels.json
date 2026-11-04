@@ -1,21 +1,80 @@
 {
   "atlas": "venous",
   "space": "MNI152NLin2009cAsym",
-  "source": "VENAT Atlas: A digital venous neuroanatomy atlas of the human brain (Bazin et al., Figshare doi:10.6084/m9.figshare.7205960)",
-  "license": "CC BY 4.0 (Creative Commons Attribution 4.0 International)",
+  "source": "VENAT 7T QSM (Bazin et al., Figshare CC BY 4.0; doi:10.6084/m9.figshare.7205960)",
+  "description": "Anatomically parcellated cerebral venous sinuses and deep/superficial veins (9 compartments)",
   "review_status": "unreviewed",
-  "notes": [
-    "VENAT (Venous Neuroanatomy Atlas) mapped from 7 Tesla Quantitative Susceptibility Mapping (QSM).",
-    "Values represent venous probability density from 0 to 255 (1.0).",
-    "Thresholding at density >= 140 (approx 0.55) defines the major dural venous sinuses."
-  ],
   "labels": [
     {
       "index": 1,
-      "name": "Cerebral Venous Sinuses & Veins (Probabilistic Density)",
-      "description": "Probability density map of dural sinuses (Superior Sagittal, Straight, Transverse, Sigmoid) and deep internal cerebral veins derived from high-resolution 7T QSM.",
-      "range": "0-255 (0 = 0%, 255 = 100% vein probability)",
-      "source": "VENAT Atlas: A digital venous neuroanatomy atlas of the human brain (Bazin et al., Figshare doi:10.6084/m9.figshare.7205960)",
+      "code": "VEN_SSS",
+      "name": "Superior Sagittal Sinus",
+      "name_vi": "Xoang dọc trên (Superior Sagittal Sinus)",
+      "source": "VENAT 7T QSM & Neuroanatomy",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 2,
+      "code": "VEN_SS",
+      "name": "Straight Sinus",
+      "name_vi": "Xoang thẳng (Straight Sinus)",
+      "source": "VENAT 7T QSM & Neuroanatomy",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 3,
+      "code": "VEN_TORCULAR",
+      "name": "Confluence of Sinuses (Torcular Herophili)",
+      "name_vi": "Hội lưu các xoang (Confluence of Sinuses / Torcular)",
+      "source": "VENAT 7T QSM & Neuroanatomy",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 4,
+      "code": "VEN_L_TS",
+      "name": "Left Transverse Sinus",
+      "name_vi": "Xoang ngang Trái (Left Transverse Sinus)",
+      "source": "VENAT 7T QSM & Neuroanatomy",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 5,
+      "code": "VEN_R_TS",
+      "name": "Right Transverse Sinus",
+      "name_vi": "Xoang ngang Phải (Right Transverse Sinus)",
+      "source": "VENAT 7T QSM & Neuroanatomy",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 6,
+      "code": "VEN_L_SIGS",
+      "name": "Left Sigmoid Sinus",
+      "name_vi": "Xoang sigma Trái (Left Sigmoid Sinus)",
+      "source": "VENAT 7T QSM & Neuroanatomy",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 7,
+      "code": "VEN_R_SIGS",
+      "name": "Right Sigmoid Sinus",
+      "name_vi": "Xoang sigma Phải (Right Sigmoid Sinus)",
+      "source": "VENAT 7T QSM & Neuroanatomy",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 8,
+      "code": "VEN_DEEP",
+      "name": "Deep Cerebral Veins & Great Vein of Galen",
+      "name_vi": "Tĩnh mạch não trong & Tĩnh mạch Galen (Deep Veins)",
+      "source": "VENAT 7T QSM & Neuroanatomy",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 9,
+      "code": "VEN_CORTICAL",
+      "name": "Superficial Cortical & Bridging Veins",
+      "name_vi": "Tĩnh mạch vỏ não nông & Tĩnh mạch bắt cầu (Cortical Veins)",
+      "source": "VENAT 7T QSM & Neuroanatomy",
       "review_status": "unreviewed"
     }
   ]

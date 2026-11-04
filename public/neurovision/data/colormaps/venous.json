@@ -1,26 +1,74 @@
 {
   "R": [
     0,
-    30
+    0,
+    185,
+    220,
+    40,
+    30,
+    255,
+    255,
+    50,
+    120
   ],
   "G": [
     0,
-    90
+    210,
+    85,
+    30,
+    90,
+    150,
+    140,
+    215,
+    205,
+    160
   ],
   "B": [
     0,
+    210,
+    215,
+    70,
+    230,
+    255,
+    20,
+    0,
+    50,
     220
   ],
   "A": [
     0,
+    255,
+    255,
+    255,
+    255,
+    255,
+    255,
+    255,
+    255,
     255
   ],
   "I": [
     0,
-    1
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
   ],
   "labels": [
     "Background",
-    "Cerebral Venous Sinuses & Veins (Probabilistic Density)"
+    "Xoang dọc trên (Superior Sagittal Sinus)",
+    "Xoang thẳng (Straight Sinus)",
+    "Hội lưu các xoang (Confluence of Sinuses / Torcular)",
+    "Xoang ngang Trái (Left Transverse Sinus)",
+    "Xoang ngang Phải (Right Transverse Sinus)",
+    "Xoang sigma Trái (Left Sigmoid Sinus)",
+    "Xoang sigma Phải (Right Sigmoid Sinus)",
+    "Tĩnh mạch não trong & Tĩnh mạch Galen (Deep Veins)",
+    "Tĩnh mạch vỏ não nông & Tĩnh mạch bắt cầu (Cortical Veins)"
   ]
 }

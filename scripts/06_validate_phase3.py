@@ -46,6 +46,9 @@ def test_search():
         ('mca', ['MCA', 'Động mạch não giữa']),
         ('than nao', ['Brain-Stem', 'Thân não']),
         ('mesencephalic', ['Mesencephalic', 'Trung não']),
+        ('xoang doc tren', ['Superior Sagittal Sinus', 'Xoang dọc trên']),
+        ('xoang thang', ['Straight Sinus', 'Xoang thẳng']),
+        ('xoang ngang', ['Transverse Sinus', 'Xoang ngang']),
     ]
 
     for q, expected_keywords in test_queries:
