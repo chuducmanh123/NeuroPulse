@@ -1,0 +1,54 @@
+{
+  "guideline_id": "guide-pmid-42910416",
+  "version": 1,
+  "metadata": {
+    "guideline_id": "guide-pmid-42910416",
+    "title": "Multidisciplinary Collaboration in the Performance of Aortic Surgery: A Scientific Statement From the American Heart Association",
+    "society": "AHA/ASA",
+    "year": 2026,
+    "source_url": "https://pubmed.ncbi.nlm.nih.gov/42910416/",
+    "doi": "10.1161/cir.0000000000001490",
+    "state": "PENDING_REVIEW",
+    "top_takeaways": [
+      "Intraoperative management of aortic surgery requires continuous, interdependent collaboration among surgeons, anesthesiologists, and perfusionists.",
+      "Aortic surgery introduces high complexity due to specialized interventions such as single-lung ventilation, systemic cooling and rewarming, and multi-organ protection.",
+      "A multidisciplinary team approach is essential to address the overlapping and immediate consequences of individual team member actions on overall patient safety."
+    ]
+  },
+  "total_recommendations": 1,
+  "pending_count": 1,
+  "approved_count": 0,
+  "rejected_count": 0,
+  "recommendations": [
+    {
+      "rec_id": "guide-pmid-42910416-rec-01",
+      "guideline_id": "guide-pmid-42910416",
+      "grading_system": "AHA_ACC",
+      "page_num": 1,
+      "section": "Multidisciplinary Care",
+      "topic": "Multidisciplinary Care",
+      "pico_id": null,
+      "statement": "Multidisciplinary collaboration involving surgeons, anesthesiologists, and perfusionists should be utilized to manage the high complexity and specialized interventions required during aortic surgery.",
+      "cor": "1",
+      "cor_label": "Strong",
+      "loe": "C-EO",
+      "loe_label": "Consensus of Expert Opinion",
+      "quality_of_evidence": null,
+      "strength_of_recommendation": null,
+      "consensus_statement": null,
+      "voting": null,
+      "is_high_impact_change": false,
+      "change_type": "NEW",
+      "previous_grade": null,
+      "target_population": "Patients undergoing aortic surgery",
+      "driving_trials": [],
+      "verbatim_quote": "Multidisciplinary collaboration involving surgeons, anesthesiologists, and perfusionists should be utilized to manage the high complexity and speciali",
+      "confidence_score": 0.95,
+      "approval_status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "review_notes": null
+    }
+  ],
+  "updated_at": "2026-11-03T20:37:41.874637+00:00"
+}
