@@ -1,0 +1,234 @@
+{
+  "atlas": "aspects",
+  "space": "MNI152NLin2009cAsym",
+  "source": "Anatomically derived from Harvard-Oxford (Desikan/Frazier), JHU ICBM-DTI-81 (Mori/Wakana), and JHU Arterial Atlas (Liu et al. 2023, CC BY-SA 4.0)",
+  "license": "CC BY-SA 4.0 (ShareAlike derivative from JHU Arterial Atlas & Harvard-Oxford / JHU DTI)",
+  "review_status": "unreviewed",
+  "notes": [
+    "ASPECTS (Alberta Stroke Program Early CT Score) 10 regions mapped in standard MNI space.",
+    "Provides bilateral definitions (1..10 Left, 11..20 Right) for acute ischemic stroke MCA evaluation.",
+    "Includes Caudate (C), Lentiform (L), Internal Capsule (IC), Insular ribbon (I), and M1-M6 cortical zones."
+  ],
+  "labels": [
+    {
+      "index": 1,
+      "region_code": "C",
+      "name": "Caudate (Left)",
+      "side": "left",
+      "tier": "subcortical",
+      "clinical_significance": "Mỗi vùng tổn thương trừ 1 điểm ASPECTS (thang điểm 10). deep gray hạch nền (đầu nhân đuôi).",
+      "voxels_1mm": 4584,
+      "source": "Anatomically derived from Harvard-Oxford (Desikan/Frazier), JHU ICBM-DTI-81 (Mori/Wakana), and JHU Arterial Atlas (Liu et al. 2023, CC BY-SA 4.0)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 2,
+      "region_code": "L",
+      "name": "Lentiform (Left)",
+      "side": "left",
+      "tier": "subcortical",
+      "clinical_significance": "Mỗi vùng tổn thương trừ 1 điểm ASPECTS (thang điểm 10). nhân bèo (Putamen + Globus Pallidus).",
+      "voxels_1mm": 9192,
+      "source": "Anatomically derived from Harvard-Oxford (Desikan/Frazier), JHU ICBM-DTI-81 (Mori/Wakana), and JHU Arterial Atlas (Liu et al. 2023, CC BY-SA 4.0)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 3,
+      "region_code": "IC",
+      "name": "Internal Capsule (Left)",
+      "side": "left",
+      "tier": "subcortical",
+      "clinical_significance": "Mỗi vùng tổn thương trừ 1 điểm ASPECTS (thang điểm 10). bao trong (nhánh trước, gối, nhánh sau).",
+      "voxels_1mm": 9686,
+      "source": "Anatomically derived from Harvard-Oxford (Desikan/Frazier), JHU ICBM-DTI-81 (Mori/Wakana), and JHU Arterial Atlas (Liu et al. 2023, CC BY-SA 4.0)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 4,
+      "region_code": "I",
+      "name": "Insular Ribbon (Left)",
+      "side": "left",
+      "tier": "subcortical",
+      "clinical_significance": "Mỗi vùng tổn thương trừ 1 điểm ASPECTS (thang điểm 10). dải vỏ thùy đảo.",
+      "voxels_1mm": 11301,
+      "source": "Anatomically derived from Harvard-Oxford (Desikan/Frazier), JHU ICBM-DTI-81 (Mori/Wakana), and JHU Arterial Atlas (Liu et al. 2023, CC BY-SA 4.0)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 5,
+      "region_code": "M1",
+      "name": "M1 Anterior MCA cortex (Left)",
+      "side": "left",
+      "tier": "ganglionic",
+      "clinical_significance": "Mỗi vùng tổn thương trừ 1 điểm ASPECTS (thang điểm 10). vỏ não MCA phía trước, tầng hạch nền.",
+      "voxels_1mm": 48143,
+      "source": "Anatomically derived from Harvard-Oxford (Desikan/Frazier), JHU ICBM-DTI-81 (Mori/Wakana), and JHU Arterial Atlas (Liu et al. 2023, CC BY-SA 4.0)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 6,
+      "region_code": "M2",
+      "name": "M2 Lateral MCA cortex (Left)",
+      "side": "left",
+      "tier": "ganglionic",
+      "clinical_significance": "Mỗi vùng tổn thương trừ 1 điểm ASPECTS (thang điểm 10). vỏ não MCA bên / nắp thái dương, tầng hạch nền.",
+      "voxels_1mm": 43396,
+      "source": "Anatomically derived from Harvard-Oxford (Desikan/Frazier), JHU ICBM-DTI-81 (Mori/Wakana), and JHU Arterial Atlas (Liu et al. 2023, CC BY-SA 4.0)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 7,
+      "region_code": "M3",
+      "name": "M3 Posterior MCA cortex (Left)",
+      "side": "left",
+      "tier": "ganglionic",
+      "clinical_significance": "Mỗi vùng tổn thương trừ 1 điểm ASPECTS (thang điểm 10). vỏ não MCA phía sau, tầng hạch nền.",
+      "voxels_1mm": 21440,
+      "source": "Anatomically derived from Harvard-Oxford (Desikan/Frazier), JHU ICBM-DTI-81 (Mori/Wakana), and JHU Arterial Atlas (Liu et al. 2023, CC BY-SA 4.0)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 8,
+      "region_code": "M4",
+      "name": "M4 Anterior superior MCA cortex (Left)",
+      "side": "left",
+      "tier": "supraganglionic",
+      "clinical_significance": "Mỗi vùng tổn thương trừ 1 điểm ASPECTS (thang điểm 10). vỏ não MCA trước trên, tầng trên hạch nền.",
+      "voxels_1mm": 56672,
+      "source": "Anatomically derived from Harvard-Oxford (Desikan/Frazier), JHU ICBM-DTI-81 (Mori/Wakana), and JHU Arterial Atlas (Liu et al. 2023, CC BY-SA 4.0)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 9,
+      "region_code": "M5",
+      "name": "M5 Lateral superior MCA cortex (Left)",
+      "side": "left",
+      "tier": "supraganglionic",
+      "clinical_significance": "Mỗi vùng tổn thương trừ 1 điểm ASPECTS (thang điểm 10). vỏ não MCA bên trên, tầng trên hạch nền.",
+      "voxels_1mm": 67357,
+      "source": "Anatomically derived from Harvard-Oxford (Desikan/Frazier), JHU ICBM-DTI-81 (Mori/Wakana), and JHU Arterial Atlas (Liu et al. 2023, CC BY-SA 4.0)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 10,
+      "region_code": "M6",
+      "name": "M6 Posterior superior MCA cortex (Left)",
+      "side": "left",
+      "tier": "supraganglionic",
+      "clinical_significance": "Mỗi vùng tổn thương trừ 1 điểm ASPECTS (thang điểm 10). vỏ não MCA sau trên, tầng trên hạch nền.",
+      "voxels_1mm": 17001,
+      "source": "Anatomically derived from Harvard-Oxford (Desikan/Frazier), JHU ICBM-DTI-81 (Mori/Wakana), and JHU Arterial Atlas (Liu et al. 2023, CC BY-SA 4.0)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 11,
+      "region_code": "C",
+      "name": "Caudate (Right)",
+      "side": "right",
+      "tier": "subcortical",
+      "clinical_significance": "Mỗi vùng tổn thương trừ 1 điểm ASPECTS (thang điểm 10). deep gray hạch nền (đầu nhân đuôi).",
+      "voxels_1mm": 4956,
+      "source": "Anatomically derived from Harvard-Oxford (Desikan/Frazier), JHU ICBM-DTI-81 (Mori/Wakana), and JHU Arterial Atlas (Liu et al. 2023, CC BY-SA 4.0)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 12,
+      "region_code": "L",
+      "name": "Lentiform (Right)",
+      "side": "right",
+      "tier": "subcortical",
+      "clinical_significance": "Mỗi vùng tổn thương trừ 1 điểm ASPECTS (thang điểm 10). nhân bèo (Putamen + Globus Pallidus).",
+      "voxels_1mm": 9623,
+      "source": "Anatomically derived from Harvard-Oxford (Desikan/Frazier), JHU ICBM-DTI-81 (Mori/Wakana), and JHU Arterial Atlas (Liu et al. 2023, CC BY-SA 4.0)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 13,
+      "region_code": "IC",
+      "name": "Internal Capsule (Right)",
+      "side": "right",
+      "tier": "subcortical",
+      "clinical_significance": "Mỗi vùng tổn thương trừ 1 điểm ASPECTS (thang điểm 10). bao trong (nhánh trước, gối, nhánh sau).",
+      "voxels_1mm": 9700,
+      "source": "Anatomically derived from Harvard-Oxford (Desikan/Frazier), JHU ICBM-DTI-81 (Mori/Wakana), and JHU Arterial Atlas (Liu et al. 2023, CC BY-SA 4.0)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 14,
+      "region_code": "I",
+      "name": "Insular Ribbon (Right)",
+      "side": "right",
+      "tier": "subcortical",
+      "clinical_significance": "Mỗi vùng tổn thương trừ 1 điểm ASPECTS (thang điểm 10). dải vỏ thùy đảo.",
+      "voxels_1mm": 11305,
+      "source": "Anatomically derived from Harvard-Oxford (Desikan/Frazier), JHU ICBM-DTI-81 (Mori/Wakana), and JHU Arterial Atlas (Liu et al. 2023, CC BY-SA 4.0)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 15,
+      "region_code": "M1",
+      "name": "M1 Anterior MCA cortex (Right)",
+      "side": "right",
+      "tier": "ganglionic",
+      "clinical_significance": "Mỗi vùng tổn thương trừ 1 điểm ASPECTS (thang điểm 10). vỏ não MCA phía trước, tầng hạch nền.",
+      "voxels_1mm": 48641,
+      "source": "Anatomically derived from Harvard-Oxford (Desikan/Frazier), JHU ICBM-DTI-81 (Mori/Wakana), and JHU Arterial Atlas (Liu et al. 2023, CC BY-SA 4.0)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 16,
+      "region_code": "M2",
+      "name": "M2 Lateral MCA cortex (Right)",
+      "side": "right",
+      "tier": "ganglionic",
+      "clinical_significance": "Mỗi vùng tổn thương trừ 1 điểm ASPECTS (thang điểm 10). vỏ não MCA bên / nắp thái dương, tầng hạch nền.",
+      "voxels_1mm": 42366,
+      "source": "Anatomically derived from Harvard-Oxford (Desikan/Frazier), JHU ICBM-DTI-81 (Mori/Wakana), and JHU Arterial Atlas (Liu et al. 2023, CC BY-SA 4.0)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 17,
+      "region_code": "M3",
+      "name": "M3 Posterior MCA cortex (Right)",
+      "side": "right",
+      "tier": "ganglionic",
+      "clinical_significance": "Mỗi vùng tổn thương trừ 1 điểm ASPECTS (thang điểm 10). vỏ não MCA phía sau, tầng hạch nền.",
+      "voxels_1mm": 20229,
+      "source": "Anatomically derived from Harvard-Oxford (Desikan/Frazier), JHU ICBM-DTI-81 (Mori/Wakana), and JHU Arterial Atlas (Liu et al. 2023, CC BY-SA 4.0)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 18,
+      "region_code": "M4",
+      "name": "M4 Anterior superior MCA cortex (Right)",
+      "side": "right",
+      "tier": "supraganglionic",
+      "clinical_significance": "Mỗi vùng tổn thương trừ 1 điểm ASPECTS (thang điểm 10). vỏ não MCA trước trên, tầng trên hạch nền.",
+      "voxels_1mm": 57719,
+      "source": "Anatomically derived from Harvard-Oxford (Desikan/Frazier), JHU ICBM-DTI-81 (Mori/Wakana), and JHU Arterial Atlas (Liu et al. 2023, CC BY-SA 4.0)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 19,
+      "region_code": "M5",
+      "name": "M5 Lateral superior MCA cortex (Right)",
+      "side": "right",
+      "tier": "supraganglionic",
+      "clinical_significance": "Mỗi vùng tổn thương trừ 1 điểm ASPECTS (thang điểm 10). vỏ não MCA bên trên, tầng trên hạch nền.",
+      "voxels_1mm": 66128,
+      "source": "Anatomically derived from Harvard-Oxford (Desikan/Frazier), JHU ICBM-DTI-81 (Mori/Wakana), and JHU Arterial Atlas (Liu et al. 2023, CC BY-SA 4.0)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 20,
+      "region_code": "M6",
+      "name": "M6 Posterior superior MCA cortex (Right)",
+      "side": "right",
+      "tier": "supraganglionic",
+      "clinical_significance": "Mỗi vùng tổn thương trừ 1 điểm ASPECTS (thang điểm 10). vỏ não MCA sau trên, tầng trên hạch nền.",
+      "voxels_1mm": 14801,
+      "source": "Anatomically derived from Harvard-Oxford (Desikan/Frazier), JHU ICBM-DTI-81 (Mori/Wakana), and JHU Arterial Atlas (Liu et al. 2023, CC BY-SA 4.0)",
+      "review_status": "unreviewed"
+    }
+  ]
+}

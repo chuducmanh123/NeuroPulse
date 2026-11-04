@@ -1,0 +1,80 @@
+{
+  "R": [
+    0,
+    30,
+    34,
+    255,
+    255,
+    120,
+    138,
+    155,
+    178,
+    155,
+    178
+  ],
+  "G": [
+    0,
+    144,
+    165,
+    80,
+    92,
+    210,
+    241,
+    90,
+    103,
+    90,
+    103
+  ],
+  "B": [
+    0,
+    255,
+    255,
+    20,
+    23,
+    30,
+    34,
+    220,
+    252,
+    220,
+    252
+  ],
+  "A": [
+    0,
+    255,
+    255,
+    255,
+    255,
+    255,
+    255,
+    255,
+    255,
+    255,
+    255
+  ],
+  "I": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "labels": [
+    "Background",
+    "ACAL (acronyms found in source rows for this value)",
+    "ACAR (acronyms found in source rows for this value)",
+    "MCAL (acronyms found in source rows for this value)",
+    "MCAR (acronyms found in source rows for this value)",
+    "PCAL/PCAR (acronyms found in source rows for this value)",
+    "PCAL/PCAR (acronyms found in source rows for this value)",
+    "VBL (acronyms found in source rows for this value)",
+    "VBR (acronyms found in source rows for this value)",
+    "LVL (acronyms found in source rows for this value)",
+    "LVR (acronyms found in source rows for this value)"
+  ]
+}

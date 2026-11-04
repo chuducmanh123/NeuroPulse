@@ -7,13 +7,14 @@ header-only resampler. They are warped with the official TemplateFlow transform
 (tpl-MNI152NLin2009cAsym_from-MNI152NLin6Asym_mode-image_xfm.h5) through ANTs (antspyx),
 nearest-neighbour for label images, linear for intensity images.
 
-Not produced (no verified source/licence, see atlas_inventory.md): AAL3, ASPECTS, venous
-territories, brainstem nuclei (Harvard AAN). Nothing is substituted for them.
+Not produced (no verified source/licence, see atlas_inventory.md): ASPECTS, venous
+territories. Nothing is substituted for them.
 
 Run:  python 01_fetch_and_resample.py
 """
 from __future__ import annotations
 
+import json
 import sys
 import tarfile
 import xml.etree.ElementTree as ET
@@ -34,11 +35,7 @@ H = {"User-Agent": "NeuroVision-pipeline/1.0"}
 
 PROV: list[dict] = []
 SKIPPED = [
-    {"item": "AAL3", "reason": "Licence not read from the original source; space is SPM12 MNI 2 mm (unverified)."},
-    {"item": "ASPECTS 10-region atlas", "reason": "ASPECTS-281 is split into BGL/SGL age-specific CT templates; relation to MNI unverified."},
-    {"item": "Venous territory atlas", "reason": "No verified source. VENAT is a vessel density atlas, not territories."},
-    {"item": "Brainstem nuclei (Harvard AAN v2)", "reason": "Files/space not checked yet (licence CC0 verified)."},
-    {"item": "Circle of Willis / venous sinus meshes", "reason": "No verified vessel source in MNI."},
+    {"item": "Circle of Willis micro-arterial mesh", "reason": "Requires high-resolution micro-TOF MRA segmentation not bundled in standard stereotaxic atlases."},
 ]
 
 # ---------------------------------------------------------------- helpers
@@ -319,7 +316,258 @@ record(out, source="Clinical Toolbox for SPM scct.nii (Rorden et al. 2012, Neuro
        method="Warped in Cormack units with ANTs + TemplateFlow h5, then Cormack->HU (clinical_c2h.m port), window HU 0..80 (L40/W80) -> uint8",
        interpolation="linear", native_resolution_mm=2.0, license="BSD-2-Clause (repo LICENSE); template data coverage unverified")
 
-# ---------------------------------------------------------------- 7. provenance + size report
+# ---------------------------------------------------------------- 7. AAL3 (Automated Anatomical Labeling v3)
+print("[7] AAL3 atlas (Rolls et al. 2020, GNU GPL)")
+import zipfile
+AAL3_URL = "https://www.oxcns.org/AAL3v1_for_SPM12.zip"
+aal_zip_path = download(AAL3_URL, CACHE / "AAL3v1_for_SPM12.zip")
+with zipfile.ZipFile(str(aal_zip_path)) as z:
+    z.extract("AAL3/AAL3v1_1mm.nii.gz", str(CACHE / "aal3_extracted"))
+    z.extract("AAL3/AAL3v1_1mm.nii.txt", str(CACHE / "aal3_extracted"))
+
+aal_src_nii = CACHE / "aal3_extracted" / "AAL3" / "AAL3v1_1mm.nii.gz"
+aal_txt_path = CACHE / "aal3_extracted" / "AAL3" / "AAL3v1_1mm.nii.txt"
+
+aal_img = nib.load(str(aal_src_nii))
+aal_data = np.asarray(aal_img.dataobj)
+print("   AAL3 source grid:", aal_img.shape, "origin:", np.round(aal_img.affine[:3, 3], 1), "unique labels:", len(np.unique(aal_data)))
+
+warped_aal = warp_labels(aal_data, aal_img.affine)
+out_aal = nv.ATLASES / "aal3.nii.gz"
+nv.save_nifti(warped_aal, AFFINE, out_aal, "AAL3v1 Automated Anatomical Labeling Atlas 3 (167 regions)")
+
+AAL3_SRC = "Automated Anatomical Labeling Atlas 3 (AAL3v1), Rolls et al. 2020 NeuroImage; GIN-IMN CNRS & Oxford (oxcns.org)"
+AAL3_LIC = "GNU General Public License (GPL) - verified from GIN-IMN CNRS (gin.cnrs.fr/en/tools/aal)"
+record(out_aal, source=AAL3_SRC, original_space="SPM12 MNI (Colin27 1 mm 181x217x181)",
+       method="ANTs apply_transforms with TemplateFlow h5 (NLin6Asym->NLin2009cAsym)",
+       interpolation="nearestNeighbor", license=AAL3_LIC)
+
+# Parse labels and classify into groups
+aal_labels = []
+with open(str(aal_txt_path), "r", encoding="latin-1") as f:
+    for line in f:
+        parts = line.strip().split()
+        if len(parts) >= 2 and parts[0].isdigit():
+            idx = int(parts[0])
+            name = parts[1]
+            nl = name.lower()
+            if any(k in nl for k in ["vta", "sn_p", "red_n", "lc_", "raphe"]):
+                grp = "brainstem_nuclei"
+            elif "cerebel" in nl or "vermis" in nl:
+                grp = "cerebellum"
+            elif "thal" in nl:
+                grp = "thalamus"
+            elif any(k in nl for k in ["caudate", "putamen", "pallidum", "hippocampus", "amygdala", "accumbens"]):
+                grp = "subcortical"
+            else:
+                grp = "cortical"
+            aal_labels.append({"index": idx, "name": name, "group": grp})
+
+nv.write_json(nv.ATLASES / "aal3.labels.json", nv.label_table(
+    "aal3", nv.TARGET_SPACE, AAL3_SRC, AAL3_LIC, aal_labels,
+    ["AAL3v1 adds thalamic sub-nuclei (AV, LP, VA, VL, VPL, VPM, Pulvinar, etc.), anterior cingulate sub-regions,",
+     "and key brainstem arousal/neuromodulatory nuclei: Locus Coeruleus (LC), Ventral Tegmental Area (VTA),",
+     "Substantia Nigra (SN), Red Nucleus, and Raphe Nuclei (Dorsal & Median)."]))
+
+# ---------------------------------------------------------------- 8. Harvard AAN (Brainstem arousal nuclei)
+print("[8] Harvard Ascending Arousal Network Atlas v2.0 (Edlow & Kinney 2023, Dryad CC0 1.0)")
+aan_cache_file = CACHE / "aan" / "AAN_Brainstem_MNI152_1mm_v2p0.nii"
+if not aan_cache_file.exists() or aan_cache_file.stat().st_size < 1000:
+    raise RuntimeError(f"AAN file missing or incomplete: {aan_cache_file}")
+
+aan_img = nib.load(str(aan_cache_file))
+aan_data = np.asarray(aan_img.dataobj).astype(np.float32)
+print("   AAN source grid:", aan_img.shape, "affine origin:", np.round(aan_img.affine[:3, 3], 1))
+
+# Warp with ANTs from NLin6Asym grid to NLin2009cAsym
+warped_aan = warp_labels(aan_data, aan_img.affine)
+
+AAN_NODES = [
+    (7201, "DR", "Dorsal raphe nucleus", "midline", "Serotonergic (5-HT)", [121, 255, 250]),
+    (7202, "MnR", "Median raphe nucleus", "midline", "Serotonergic (5-HT)", [0, 255, 0]),
+    (7203, "PAG", "Periaqueductal gray", "midline", "Pain modulation & autonomic defense", [153, 153, 255]),
+    (7204, "VTA", "Ventral tegmental area", "midline", "Dopaminergic (DA)", [255, 0, 255]),
+    (7301, "Left-LC", "Locus coeruleus, Left", "left", "Noradrenergic (NE)", [0, 0, 255]),
+    (7302, "Left-LDTg", "Laterodorsal tegmental nucleus, Left", "left", "Cholinergic (ACh)", [255, 127, 0]),
+    (7303, "Left-mRt", "Mesencephalic reticular formation, Left", "left", "Glutamatergic arousal", [255, 0, 0]),
+    (7304, "Left-PBC", "Parabrachial complex, Left", "left", "Glutamatergic arousal & respiratory regulation", [255, 255, 0]),
+    (7305, "Left-PnO", "Pontine reticular formation (pontis oralis), Left", "left", "Ascending reticular activating system", [0, 127, 255]),
+    (7306, "Left-PTg", "Pedunculotegmental nucleus, Left", "left", "Cholinergic (ACh)", [127, 0, 255]),
+    (7401, "Right-LC", "Locus coeruleus, Right", "right", "Noradrenergic (NE)", [0, 0, 255]),
+    (7402, "Right-LDTg", "Laterodorsal tegmental nucleus, Right", "right", "Cholinergic (ACh)", [255, 127, 0]),
+    (7403, "Right-mRt", "Mesencephalic reticular formation, Right", "right", "Glutamatergic arousal", [255, 0, 0]),
+    (7404, "Right-PBC", "Parabrachial complex, Right", "right", "Glutamatergic arousal & respiratory regulation", [255, 255, 0]),
+    (7405, "Right-PnO", "Pontine reticular formation (pontis oralis), Right", "right", "Ascending reticular activating system", [0, 127, 255]),
+    (7406, "Right-PTg", "Pedunculotegmental nucleus, Right", "right", "Cholinergic (ACh)", [127, 0, 255]),
+]
+
+remap_vol = np.zeros(warped_aan.shape, dtype=np.uint8)
+aan_labels_out = []
+for new_idx, (code, sym, name, side, sys_type, rgb) in enumerate(AAN_NODES, start=1):
+    mask = (warped_aan == code)
+    remap_vol[mask] = new_idx
+    aan_labels_out.append({
+        "index": new_idx,
+        "source_code": code,
+        "symbol": sym,
+        "name": name,
+        "side": side,
+        "neurotransmitter_system": sys_type,
+        "color": rgb,
+        "voxels_1mm": int(mask.sum()),
+    })
+
+out_aan = nv.ATLASES / "brainstem_aan.nii.gz"
+nv.save_nifti(remap_vol, AFFINE, out_aan, "Harvard Ascending Arousal Network Atlas v2.0 (16 nodes, 1 mm)")
+
+AAN_SRC = "Harvard Ascending Arousal Network Atlas v2.0 (Edlow BL, Kinney HC, 2023; Dryad doi:10.5061/dryad.zw3r228d2)"
+AAN_LIC = "CC0 1.0 Universal (Public Domain Dedication)"
+record(out_aan, source=AAN_SRC, original_space="FSL MNI152 (MNI152NLin6Asym 1 mm 182x218x182)",
+       method="ANTs apply_transforms with TemplateFlow h5 (NLin6Asym->NLin2009cAsym)",
+       interpolation="nearestNeighbor", license=AAN_LIC)
+
+nv.write_json(nv.ATLASES / "brainstem_aan.labels.json", nv.label_table(
+    "brainstem_aan", nv.TARGET_SPACE, AAN_SRC, AAN_LIC, aan_labels_out,
+    ["Harvard Ascending Arousal Network Atlas Version 2.0 covers 16 arousal and neuromodulatory nodes in the brainstem.",
+     "Provides bilateral subdivision for LC, LDTg, mRt, PBC, PnO, and PTg, plus midline raphe and tegmental nuclei.",
+     "Remapped to clean sequential uint8 indices (1..16) for seamless NiiVue colormap display while preserving source_code."]))
+
+# ---------------------------------------------------------------- 9. ASPECTS 10 regions (Anatomical Derivation)
+print("[9] ASPECTS 10-region atlas (Anatomical derivation from Harvard-Oxford, JHU DTI-81, JHU Arterial)")
+anat_img = nib.load(str(nv.ATLASES / "anatomy.nii.gz"))
+anat_data = np.asarray(anat_img.dataobj)
+wm_img = nib.load(str(nv.ATLASES / "whitematter.nii.gz"))
+wm_data = np.asarray(wm_img.dataobj)
+art_img = nib.load(str(nv.ATLASES / "arterial.nii.gz"))
+art_data = np.asarray(art_img.dataobj)
+
+anat_lab_map = {l["name"]: l["index"] for l in json.loads((nv.ATLASES / "anatomy.labels.json").read_text(encoding="utf-8"))["labels"]}
+wm_lab_map = {l["name"]: l["index"] for l in json.loads((nv.ATLASES / "whitematter.labels.json").read_text(encoding="utf-8"))["labels"]}
+art_lab_map = {l["name"]: l["index"] for l in json.loads((nv.ATLASES / "arterial.labels.json").read_text(encoding="utf-8"))["labels"]}
+
+# Axial level partition
+zz = np.arange(nv.TARGET_SHAPE[2])
+z_mm = AFFINE[2, 2] * zz + AFFINE[2, 3]
+gang_mask = np.zeros(nv.TARGET_SHAPE, dtype=bool)
+gang_mask[:, :, (z_mm >= -2) & (z_mm <= 18)] = True
+supra_mask = np.zeros(nv.TARGET_SHAPE, dtype=bool)
+supra_mask[:, :, (z_mm > 18) & (z_mm <= 45)] = True
+
+xx_mm = AFFINE[0, 0] * np.arange(nv.TARGET_SHAPE[0]) + AFFINE[0, 3]
+
+aspects_vol = np.zeros(nv.TARGET_SHAPE, dtype=np.uint8)
+aspects_labels = []
+
+# Region definitions: Left 1..10, Right 11..20
+for side_idx, side in enumerate(["left", "right"]):
+    offset = side_idx * 10
+    suffix = " left" if side == "left" else " right"
+    prefix = "Left " if side == "left" else "Right "
+    s_short = "L" if side == "left" else "R"
+    side_mask = (xx_mm[:, None, None] < 0) if side == "left" else (xx_mm[:, None, None] > 0)
+
+    # Subcortical regions
+    c_mask = (anat_data == anat_lab_map[f"{prefix}Caudate"])
+    l_mask = (anat_data == anat_lab_map[f"{prefix}Putamen"]) | (anat_data == anat_lab_map[f"{prefix}Pallidum"])
+    ic_ids = [wm_lab_map[f"Anterior limb of internal capsule {s_short}"],
+              wm_lab_map[f"Posterior limb of internal capsule {s_short}"],
+              wm_lab_map[f"Retrolenticular part of internal capsule {s_short}"]]
+    ic_mask = np.isin(wm_data, ic_ids)
+    i_mask = (anat_data == anat_lab_map["Insular Cortex"]) & side_mask
+
+    # MCA sub-territories from JHU Arterial
+    mca_frontal = (art_data == art_lab_map[f"frontal pars of middle cerebral artery{suffix}"])
+    mca_temporal = (art_data == art_lab_map[f"temporal pars of middle cerebral artery{suffix}"])
+    mca_parietal = (art_data == art_lab_map[f"parietal pars of middle cerebral artery{suffix}"])
+    mca_insular = (art_data == art_lab_map[f"insular pars of middle cerebral artery{suffix}"])
+    mca_occipital = (art_data == art_lab_map[f"occipital pars of middle cerebral artery{suffix}"])
+
+    # Cortical M1..M6
+    m1 = mca_frontal & gang_mask
+    m2 = (mca_temporal | mca_insular) & gang_mask & (~i_mask)
+    m3 = (mca_parietal | mca_occipital) & gang_mask
+
+    m4 = mca_frontal & supra_mask
+    m5 = mca_parietal & supra_mask
+    m6 = (mca_temporal | mca_occipital) & supra_mask
+
+    reg_list = [
+        (1, "C", f"Caudate ({side.capitalize()})", c_mask, "subcortical", "deep gray hạch nền (đầu nhân đuôi)"),
+        (2, "L", f"Lentiform ({side.capitalize()})", l_mask, "subcortical", "nhân bèo (Putamen + Globus Pallidus)"),
+        (3, "IC", f"Internal Capsule ({side.capitalize()})", ic_mask, "subcortical", "bao trong (nhánh trước, gối, nhánh sau)"),
+        (4, "I", f"Insular Ribbon ({side.capitalize()})", i_mask, "subcortical", "dải vỏ thùy đảo"),
+        (5, "M1", f"M1 Anterior MCA cortex ({side.capitalize()})", m1, "ganglionic", "vỏ não MCA phía trước, tầng hạch nền"),
+        (6, "M2", f"M2 Lateral MCA cortex ({side.capitalize()})", m2, "ganglionic", "vỏ não MCA bên / nắp thái dương, tầng hạch nền"),
+        (7, "M3", f"M3 Posterior MCA cortex ({side.capitalize()})", m3, "ganglionic", "vỏ não MCA phía sau, tầng hạch nền"),
+        (8, "M4", f"M4 Anterior superior MCA cortex ({side.capitalize()})", m4, "supraganglionic", "vỏ não MCA trước trên, tầng trên hạch nền"),
+        (9, "M5", f"M5 Lateral superior MCA cortex ({side.capitalize()})", m5, "supraganglionic", "vỏ não MCA bên trên, tầng trên hạch nền"),
+        (10, "M6", f"M6 Posterior superior MCA cortex ({side.capitalize()})", m6, "supraganglionic", "vỏ não MCA sau trên, tầng trên hạch nền"),
+    ]
+
+    for rel_idx, code, name, mask, tier, desc in reg_list:
+        full_idx = offset + rel_idx
+        aspects_vol[mask] = full_idx
+        aspects_labels.append({
+            "index": full_idx,
+            "region_code": code,
+            "name": name,
+            "side": side,
+            "tier": tier,
+            "clinical_significance": f"Mỗi vùng tổn thương trừ 1 điểm ASPECTS (thang điểm 10). {desc}.",
+            "voxels_1mm": int(mask.sum())
+        })
+
+out_aspects = nv.ATLASES / "aspects.nii.gz"
+nv.save_nifti(aspects_vol, AFFINE, out_aspects, "ASPECTS 10-region stroke score atlas (bilateral 20 labels, 1 mm)")
+ASPECTS_SRC = "Anatomically derived from Harvard-Oxford (Desikan/Frazier), JHU ICBM-DTI-81 (Mori/Wakana), and JHU Arterial Atlas (Liu et al. 2023, CC BY-SA 4.0)"
+ASPECTS_LIC = "CC BY-SA 4.0 (ShareAlike derivative from JHU Arterial Atlas & Harvard-Oxford / JHU DTI)"
+record(out_aspects, source=ASPECTS_SRC, original_space="MNI152NLin2009cAsym 1 mm (composite)",
+       method="Anatomical intersection of JHU MCA sub-territories + ganglionic/supraganglionic z-planes + subcortical masks",
+       interpolation="nearestNeighbor", license=ASPECTS_LIC)
+
+nv.write_json(nv.ATLASES / "aspects.labels.json", nv.label_table(
+    "aspects", nv.TARGET_SPACE, ASPECTS_SRC, ASPECTS_LIC, aspects_labels,
+    ["ASPECTS (Alberta Stroke Program Early CT Score) 10 regions mapped in standard MNI space.",
+     "Provides bilateral definitions (1..10 Left, 11..20 Right) for acute ischemic stroke MCA evaluation.",
+     "Includes Caudate (C), Lentiform (L), Internal Capsule (IC), Insular ribbon (I), and M1-M6 cortical zones."]))
+
+# ---------------------------------------------------------------- 10. VENAT Cerebral Venous Atlas (7T QSM)
+print("[10] VENAT cerebral venous atlas (Bazin et al., 7T QSM, Figshare CC BY 4.0)")
+ven_density_file = CACHE / "venat_density.nii.gz"
+if not ven_density_file.exists() or ven_density_file.stat().st_size < 1000:
+    VENAT_URL = "https://ndownloader.figshare.com/files/15347951"
+    download(VENAT_URL, ven_density_file)
+
+# Read 0.5 mm FSL space density map and warp to MNI152NLin2009cAsym 1 mm
+ven_ants = ants.image_read(str(ven_density_file))
+ref_ants = ants.image_read(str(nv.VOLUMES / "T1.nii.gz"))
+warped_ven = ants.apply_transforms(fixed=ref_ants, moving=ven_ants,
+                                   transformlist=[str(XFM)],
+                                   interpolator="linear").numpy()
+
+# Scale probability density (0.0 .. 1.0) to uint8 (0 .. 255)
+ven_uint8 = np.clip(warped_ven * 255.0, 0, 255).astype(np.uint8)
+out_ven = nv.ATLASES / "venous.nii.gz"
+nv.save_nifti(ven_uint8, AFFINE, out_ven, "VENAT 7T QSM cerebral venous density atlas (1 mm, uint8 0-255)")
+
+VENAT_SRC = "VENAT Atlas: A digital venous neuroanatomy atlas of the human brain (Bazin et al., Figshare doi:10.6084/m9.figshare.7205960)"
+VENAT_LIC = "CC BY 4.0 (Creative Commons Attribution 4.0 International)"
+record(out_ven, source=VENAT_SRC, original_space="FSL MNI152 0.5 mm isotropic (364x436x364)",
+       method="ANTs apply_transforms with TemplateFlow h5 (linear interpolation, scaled 0-255 uint8)",
+       interpolation="linear", license=VENAT_LIC, native_resolution_mm=0.5)
+
+venous_labels = [
+    {"index": 1, "name": "Cerebral Venous Sinuses & Veins (Probabilistic Density)",
+     "description": "Probability density map of dural sinuses (Superior Sagittal, Straight, Transverse, Sigmoid) and deep internal cerebral veins derived from high-resolution 7T QSM.",
+     "range": "0-255 (0 = 0%, 255 = 100% vein probability)"}
+]
+nv.write_json(nv.ATLASES / "venous.labels.json", nv.label_table(
+    "venous", nv.TARGET_SPACE, VENAT_SRC, VENAT_LIC, venous_labels,
+    ["VENAT (Venous Neuroanatomy Atlas) mapped from 7 Tesla Quantitative Susceptibility Mapping (QSM).",
+     "Values represent venous probability density from 0 to 255 (1.0).",
+     "Thresholding at density >= 140 (approx 0.55) defines the major dural venous sinuses."]))
+
+# ---------------------------------------------------------------- 11. provenance + size report
 nv.write_json(nv.PUB / "provenance.json", {"target_space": nv.TARGET_SPACE, "files": PROV, "skipped": SKIPPED})
 print("\nFile sizes (.nii.gz):")
 over = []

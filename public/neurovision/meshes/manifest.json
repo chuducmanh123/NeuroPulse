@@ -3,7 +3,6 @@
   "format": "GIFTI .gii (nibabel)",
   "not_generated": [
     "Circle of Willis",
-    "venous sinuses",
     "third/fourth ventricles",
     ".mz3 export"
   ],
@@ -736,6 +735,33 @@
       "volume_mm3_before": 135971.0,
       "volume_mm3_after": 135973.7,
       "size_bytes": 374963
+    },
+    {
+      "file": "venous_sinuses.gii",
+      "group": "venous",
+      "side": null,
+      "description": "Dural venous sinuses & major cerebral veins (Superior Sagittal, Straight, Transverse, Sigmoid sinuses) from VENAT 7T QSM (threshold density >= 55%)",
+      "source": "VENAT Atlas (Bazin et al., Figshare CC BY 4.0) via 01_fetch_and_resample.py; see atlases/venous.labels.json",
+      "review_status": "unreviewed",
+      "mask_voxels": 371612,
+      "bounds_mm": [
+        [
+          -64.2,
+          -98.8,
+          -73.4
+        ],
+        [
+          65.5,
+          68.0,
+          81.5
+        ]
+      ],
+      "faces_before": 548576,
+      "faces_after": 40000,
+      "watertight": false,
+      "volume_mm3_before": 370388.8,
+      "volume_mm3_after": null,
+      "size_bytes": 547403
     }
   ]
 }

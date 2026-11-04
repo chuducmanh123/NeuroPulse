@@ -1,0 +1,26 @@
+{
+  "R": [
+    0,
+    30
+  ],
+  "G": [
+    0,
+    90
+  ],
+  "B": [
+    0,
+    220
+  ],
+  "A": [
+    0,
+    255
+  ],
+  "I": [
+    0,
+    1
+  ],
+  "labels": [
+    "Background",
+    "Cerebral Venous Sinuses & Veins (Probabilistic Density)"
+  ]
+}

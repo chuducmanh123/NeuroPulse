@@ -31,6 +31,10 @@ scripts\.venv\Scripts\python.exe scripts\04_validate.py             # checks + P
 | `atlases/hemispheres` | Harvard-Oxford sub atlas Left*/Right* labels (1 = left, 2 = right) | ANTs + h5 | nearestNeighbor |
 | `atlases/whitematter` | JHU ICBM-DTI-81 (FSL) | ANTs + h5 | nearestNeighbor |
 | `atlases/arterial`, `arterial_level2` | JHU Arterial Atlas (`Atlas_182`) | affine assigned (see below), then ANTs + h5 | nearestNeighbor |
+| `atlases/aal3` | AAL3v1 (`oxcns.org` / `gin.cnrs.fr`, 167 regions) | linear/affine grid-match to Colin27 MNI, then target space | nearestNeighbor |
+| `atlases/brainstem_aan` | Harvard Ascending Arousal Network Atlas v2.0 (16 nodes, Dryad CC0) | ANTs + TemplateFlow h5 | nearestNeighbor |
+| `atlases/aspects` | ASPECTS 10 regions (20 labels L/R, derived from HO/JHU/Arterial) | Anatomical intersection | nearestNeighbor |
+| `atlases/venous` | VENAT 7T QSM (Bazin et al., Figshare CC BY 4.0) | ANTs + TemplateFlow h5 (scaled 0-255 u8) | linear |
 | `atlases/*.labels.json` | the sources' own label tables | – | – |
 | `provenance.json` | per file: source, original space, method, interpolation, licence, `review_status` | – | – |
 

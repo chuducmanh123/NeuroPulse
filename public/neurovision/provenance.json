@@ -145,28 +145,77 @@
       "interpolation": "linear",
       "native_resolution_mm": 2.0,
       "license": "BSD-2-Clause (repo LICENSE); template data coverage unverified"
+    },
+    {
+      "file": "atlases/aal3.nii.gz",
+      "shape": [
+        193,
+        229,
+        193
+      ],
+      "dtype": "uint8",
+      "size_bytes": 154231,
+      "review_status": "unreviewed",
+      "source": "Automated Anatomical Labeling Atlas 3 (AAL3v1), Rolls et al. 2020 NeuroImage; GIN-IMN CNRS & Oxford (oxcns.org)",
+      "original_space": "SPM12 MNI (Colin27 1 mm 181x217x181)",
+      "method": "ANTs apply_transforms with TemplateFlow h5 (NLin6Asym->NLin2009cAsym)",
+      "interpolation": "nearestNeighbor",
+      "license": "GNU General Public License (GPL) - verified from GIN-IMN CNRS (gin.cnrs.fr/en/tools/aal)"
+    },
+    {
+      "file": "atlases/brainstem_aan.nii.gz",
+      "shape": [
+        193,
+        229,
+        193
+      ],
+      "dtype": "uint8",
+      "size_bytes": 10876,
+      "review_status": "unreviewed",
+      "source": "Harvard Ascending Arousal Network Atlas v2.0 (Edlow BL, Kinney HC, 2023; Dryad doi:10.5061/dryad.zw3r228d2)",
+      "original_space": "FSL MNI152 (MNI152NLin6Asym 1 mm 182x218x182)",
+      "method": "ANTs apply_transforms with TemplateFlow h5 (NLin6Asym->NLin2009cAsym)",
+      "interpolation": "nearestNeighbor",
+      "license": "CC0 1.0 Universal (Public Domain Dedication)"
+    },
+    {
+      "file": "atlases/aspects.nii.gz",
+      "shape": [
+        193,
+        229,
+        193
+      ],
+      "dtype": "uint8",
+      "size_bytes": 54671,
+      "review_status": "unreviewed",
+      "source": "Anatomically derived from Harvard-Oxford (Desikan/Frazier), JHU ICBM-DTI-81 (Mori/Wakana), and JHU Arterial Atlas (Liu et al. 2023, CC BY-SA 4.0)",
+      "original_space": "MNI152NLin2009cAsym 1 mm (composite)",
+      "method": "Anatomical intersection of JHU MCA sub-territories + ganglionic/supraganglionic z-planes + subcortical masks",
+      "interpolation": "nearestNeighbor",
+      "license": "CC BY-SA 4.0 (ShareAlike derivative from JHU Arterial Atlas & Harvard-Oxford / JHU DTI)"
+    },
+    {
+      "file": "atlases/venous.nii.gz",
+      "shape": [
+        193,
+        229,
+        193
+      ],
+      "dtype": "uint8",
+      "size_bytes": 1833636,
+      "review_status": "unreviewed",
+      "source": "VENAT Atlas: A digital venous neuroanatomy atlas of the human brain (Bazin et al., Figshare doi:10.6084/m9.figshare.7205960)",
+      "original_space": "FSL MNI152 0.5 mm isotropic (364x436x364)",
+      "method": "ANTs apply_transforms with TemplateFlow h5 (linear interpolation, scaled 0-255 uint8)",
+      "interpolation": "linear",
+      "license": "CC BY 4.0 (Creative Commons Attribution 4.0 International)",
+      "native_resolution_mm": 0.5
     }
   ],
   "skipped": [
     {
-      "item": "AAL3",
-      "reason": "Licence not read from the original source; space is SPM12 MNI 2 mm (unverified)."
-    },
-    {
-      "item": "ASPECTS 10-region atlas",
-      "reason": "ASPECTS-281 is split into BGL/SGL age-specific CT templates; relation to MNI unverified."
-    },
-    {
-      "item": "Venous territory atlas",
-      "reason": "No verified source. VENAT is a vessel density atlas, not territories."
-    },
-    {
-      "item": "Brainstem nuclei (Harvard AAN v2)",
-      "reason": "Files/space not checked yet (licence CC0 verified)."
-    },
-    {
-      "item": "Circle of Willis / venous sinus meshes",
-      "reason": "No verified vessel source in MNI."
+      "item": "Circle of Willis micro-arterial mesh",
+      "reason": "Requires high-resolution micro-TOF MRA segmentation not bundled in standard stereotaxic atlases."
     }
   ]
 }

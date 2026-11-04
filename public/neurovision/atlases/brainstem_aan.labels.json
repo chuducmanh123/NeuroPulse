@@ -1,0 +1,270 @@
+{
+  "atlas": "brainstem_aan",
+  "space": "MNI152NLin2009cAsym",
+  "source": "Harvard Ascending Arousal Network Atlas v2.0 (Edlow BL, Kinney HC, 2023; Dryad doi:10.5061/dryad.zw3r228d2)",
+  "license": "CC0 1.0 Universal (Public Domain Dedication)",
+  "review_status": "unreviewed",
+  "notes": [
+    "Harvard Ascending Arousal Network Atlas Version 2.0 covers 16 arousal and neuromodulatory nodes in the brainstem.",
+    "Provides bilateral subdivision for LC, LDTg, mRt, PBC, PnO, and PTg, plus midline raphe and tegmental nuclei.",
+    "Remapped to clean sequential uint8 indices (1..16) for seamless NiiVue colormap display while preserving source_code."
+  ],
+  "labels": [
+    {
+      "index": 1,
+      "source_code": 7201,
+      "symbol": "DR",
+      "name": "Dorsal raphe nucleus",
+      "side": "midline",
+      "neurotransmitter_system": "Serotonergic (5-HT)",
+      "color": [
+        121,
+        255,
+        250
+      ],
+      "voxels_1mm": 342,
+      "source": "Harvard Ascending Arousal Network Atlas v2.0 (Edlow BL, Kinney HC, 2023; Dryad doi:10.5061/dryad.zw3r228d2)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 2,
+      "source_code": 7202,
+      "symbol": "MnR",
+      "name": "Median raphe nucleus",
+      "side": "midline",
+      "neurotransmitter_system": "Serotonergic (5-HT)",
+      "color": [
+        0,
+        255,
+        0
+      ],
+      "voxels_1mm": 191,
+      "source": "Harvard Ascending Arousal Network Atlas v2.0 (Edlow BL, Kinney HC, 2023; Dryad doi:10.5061/dryad.zw3r228d2)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 3,
+      "source_code": 7203,
+      "symbol": "PAG",
+      "name": "Periaqueductal gray",
+      "side": "midline",
+      "neurotransmitter_system": "Pain modulation & autonomic defense",
+      "color": [
+        153,
+        153,
+        255
+      ],
+      "voxels_1mm": 461,
+      "source": "Harvard Ascending Arousal Network Atlas v2.0 (Edlow BL, Kinney HC, 2023; Dryad doi:10.5061/dryad.zw3r228d2)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 4,
+      "source_code": 7204,
+      "symbol": "VTA",
+      "name": "Ventral tegmental area",
+      "side": "midline",
+      "neurotransmitter_system": "Dopaminergic (DA)",
+      "color": [
+        255,
+        0,
+        255
+      ],
+      "voxels_1mm": 485,
+      "source": "Harvard Ascending Arousal Network Atlas v2.0 (Edlow BL, Kinney HC, 2023; Dryad doi:10.5061/dryad.zw3r228d2)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 5,
+      "source_code": 7301,
+      "symbol": "Left-LC",
+      "name": "Locus coeruleus, Left",
+      "side": "left",
+      "neurotransmitter_system": "Noradrenergic (NE)",
+      "color": [
+        0,
+        0,
+        255
+      ],
+      "voxels_1mm": 55,
+      "source": "Harvard Ascending Arousal Network Atlas v2.0 (Edlow BL, Kinney HC, 2023; Dryad doi:10.5061/dryad.zw3r228d2)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 6,
+      "source_code": 7302,
+      "symbol": "Left-LDTg",
+      "name": "Laterodorsal tegmental nucleus, Left",
+      "side": "left",
+      "neurotransmitter_system": "Cholinergic (ACh)",
+      "color": [
+        255,
+        127,
+        0
+      ],
+      "voxels_1mm": 17,
+      "source": "Harvard Ascending Arousal Network Atlas v2.0 (Edlow BL, Kinney HC, 2023; Dryad doi:10.5061/dryad.zw3r228d2)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 7,
+      "source_code": 7303,
+      "symbol": "Left-mRt",
+      "name": "Mesencephalic reticular formation, Left",
+      "side": "left",
+      "neurotransmitter_system": "Glutamatergic arousal",
+      "color": [
+        255,
+        0,
+        0
+      ],
+      "voxels_1mm": 348,
+      "source": "Harvard Ascending Arousal Network Atlas v2.0 (Edlow BL, Kinney HC, 2023; Dryad doi:10.5061/dryad.zw3r228d2)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 8,
+      "source_code": 7304,
+      "symbol": "Left-PBC",
+      "name": "Parabrachial complex, Left",
+      "side": "left",
+      "neurotransmitter_system": "Glutamatergic arousal & respiratory regulation",
+      "color": [
+        255,
+        255,
+        0
+      ],
+      "voxels_1mm": 80,
+      "source": "Harvard Ascending Arousal Network Atlas v2.0 (Edlow BL, Kinney HC, 2023; Dryad doi:10.5061/dryad.zw3r228d2)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 9,
+      "source_code": 7305,
+      "symbol": "Left-PnO",
+      "name": "Pontine reticular formation (pontis oralis), Left",
+      "side": "left",
+      "neurotransmitter_system": "Ascending reticular activating system",
+      "color": [
+        0,
+        127,
+        255
+      ],
+      "voxels_1mm": 148,
+      "source": "Harvard Ascending Arousal Network Atlas v2.0 (Edlow BL, Kinney HC, 2023; Dryad doi:10.5061/dryad.zw3r228d2)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 10,
+      "source_code": 7306,
+      "symbol": "Left-PTg",
+      "name": "Pedunculotegmental nucleus, Left",
+      "side": "left",
+      "neurotransmitter_system": "Cholinergic (ACh)",
+      "color": [
+        127,
+        0,
+        255
+      ],
+      "voxels_1mm": 94,
+      "source": "Harvard Ascending Arousal Network Atlas v2.0 (Edlow BL, Kinney HC, 2023; Dryad doi:10.5061/dryad.zw3r228d2)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 11,
+      "source_code": 7401,
+      "symbol": "Right-LC",
+      "name": "Locus coeruleus, Right",
+      "side": "right",
+      "neurotransmitter_system": "Noradrenergic (NE)",
+      "color": [
+        0,
+        0,
+        255
+      ],
+      "voxels_1mm": 58,
+      "source": "Harvard Ascending Arousal Network Atlas v2.0 (Edlow BL, Kinney HC, 2023; Dryad doi:10.5061/dryad.zw3r228d2)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 12,
+      "source_code": 7402,
+      "symbol": "Right-LDTg",
+      "name": "Laterodorsal tegmental nucleus, Right",
+      "side": "right",
+      "neurotransmitter_system": "Cholinergic (ACh)",
+      "color": [
+        255,
+        127,
+        0
+      ],
+      "voxels_1mm": 19,
+      "source": "Harvard Ascending Arousal Network Atlas v2.0 (Edlow BL, Kinney HC, 2023; Dryad doi:10.5061/dryad.zw3r228d2)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 13,
+      "source_code": 7403,
+      "symbol": "Right-mRt",
+      "name": "Mesencephalic reticular formation, Right",
+      "side": "right",
+      "neurotransmitter_system": "Glutamatergic arousal",
+      "color": [
+        255,
+        0,
+        0
+      ],
+      "voxels_1mm": 393,
+      "source": "Harvard Ascending Arousal Network Atlas v2.0 (Edlow BL, Kinney HC, 2023; Dryad doi:10.5061/dryad.zw3r228d2)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 14,
+      "source_code": 7404,
+      "symbol": "Right-PBC",
+      "name": "Parabrachial complex, Right",
+      "side": "right",
+      "neurotransmitter_system": "Glutamatergic arousal & respiratory regulation",
+      "color": [
+        255,
+        255,
+        0
+      ],
+      "voxels_1mm": 106,
+      "source": "Harvard Ascending Arousal Network Atlas v2.0 (Edlow BL, Kinney HC, 2023; Dryad doi:10.5061/dryad.zw3r228d2)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 15,
+      "source_code": 7405,
+      "symbol": "Right-PnO",
+      "name": "Pontine reticular formation (pontis oralis), Right",
+      "side": "right",
+      "neurotransmitter_system": "Ascending reticular activating system",
+      "color": [
+        0,
+        127,
+        255
+      ],
+      "voxels_1mm": 151,
+      "source": "Harvard Ascending Arousal Network Atlas v2.0 (Edlow BL, Kinney HC, 2023; Dryad doi:10.5061/dryad.zw3r228d2)",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 16,
+      "source_code": 7406,
+      "symbol": "Right-PTg",
+      "name": "Pedunculotegmental nucleus, Right",
+      "side": "right",
+      "neurotransmitter_system": "Cholinergic (ACh)",
+      "color": [
+        127,
+        0,
+        255
+      ],
+      "voxels_1mm": 92,
+      "source": "Harvard Ascending Arousal Network Atlas v2.0 (Edlow BL, Kinney HC, 2023; Dryad doi:10.5061/dryad.zw3r228d2)",
+      "review_status": "unreviewed"
+    }
+  ]
+}

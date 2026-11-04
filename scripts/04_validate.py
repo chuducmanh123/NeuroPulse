@@ -102,6 +102,43 @@ for lab in labels("whitematter"):
         x = centroid_x(wm, [lab["index"]])
         check((x > 0) if side == "right" else (x < 0), f"whitematter '{nm}': x={x:.1f}")
 
+aal = load("aal3")
+aal_bad = 0
+for lab in labels("aal3"):
+    nm = lab["name"].strip()
+    side = "left" if nm.endswith("_L") else "right" if nm.endswith("_R") else None
+    if side and (aal == lab["index"]).sum() > 20:
+        x = centroid_x(aal, [lab["index"]])
+        ok = (x < 0) if side == "left" else (x > 0)
+        aal_bad += (not ok)
+        if not ok:
+            print(f"        wrong side: AAL3 label {lab['index']} '{nm}' x={x:.1f}")
+check(aal_bad == 0, f"AAL3: all side-named labels on the correct side ({aal_bad} wrong)")
+
+aan = load("brainstem_aan")
+aan_bad = 0
+for lab in labels("brainstem_aan"):
+    side = lab["side"]
+    if side in ("left", "right") and (aan == lab["index"]).sum() > 10:
+        x = centroid_x(aan, [lab["index"]])
+        ok = (x < 0) if side == "left" else (x > 0)
+        aan_bad += (not ok)
+        if not ok:
+            print(f"        wrong side: AAN label {lab['index']} '{lab['name']}' x={x:.1f}")
+check(aan_bad == 0, f"AAN Brainstem: all side-named labels on the correct side ({aan_bad} wrong)")
+
+asp = load("aspects")
+asp_bad = 0
+for lab in labels("aspects"):
+    side = lab["side"]
+    if (asp == lab["index"]).sum() > 20:
+        x = centroid_x(asp, [lab["index"]])
+        ok = (x < 0) if side == "left" else (x > 0)
+        asp_bad += (not ok)
+        if not ok:
+            print(f"        wrong side: ASPECTS label {lab['index']} '{lab['name']}' x={x:.1f}")
+check(asp_bad == 0, f"ASPECTS: all side-named labels on the correct side ({asp_bad} wrong)")
+
 # ---------------------------------------------------------------- 3. anterior commissure
 print("[3] MNI (0,0,0) vs anterior commissure (heuristic; verify the PNG by eye)")
 v = np.rint(nib.affines.apply_affine(INV, [0, 0, 0])).astype(int)
@@ -167,6 +204,9 @@ def overlay_png(name: str, over: np.ndarray | None, kind: str) -> None:
     fig.tight_layout()
     out = nv.VALIDATION / f"overlay_{name}.png"
     fig.savefig(out, dpi=70)
+    pub_out = nv.PUB / "validation" / f"overlay_{name}.png"
+    pub_out.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(pub_out, dpi=70)
     plt.close(fig)
     print("   ", out.name)
 
@@ -181,7 +221,10 @@ fig, axes = plt.subplots(1, 3, figsize=(12, 4))
 for ax, (pl, img, (a, b)) in zip(axes, planes(v)):
     ax.imshow(img, cmap="gray", origin="lower"); ax.axvline(a, color="r", lw=0.4); ax.axhline(b, color="r", lw=0.4)
     ax.set_xlim(a - 30, a + 30); ax.set_ylim(b - 30, b + 30); ax.set_title(f"T1 {pl} at MNI (0,0,0)", fontsize=8); ax.set_xticks([]); ax.set_yticks([])
-fig.tight_layout(); fig.savefig(nv.VALIDATION / "crosshair_ac.png", dpi=80); plt.close(fig)
+fig.tight_layout()
+fig.savefig(nv.VALIDATION / "crosshair_ac.png", dpi=80)
+fig.savefig(nv.PUB / "validation" / "crosshair_ac.png", dpi=80)
+plt.close(fig)
 print("    crosshair_ac.png")
 
 # ---------------------------------------------------------------- 5. meshes
@@ -207,6 +250,8 @@ if man.exists():
             a_name = "arterial"; terr = m["file"].split("_")[1].upper()
             ids = [r["index"] for r in labels("arterial") if r["bilateral_group"] == terr and r["name"].lower().rstrip().endswith(m["side"])]
             mask = np.isin(art, ids)
+        elif m["group"] == "venous":
+            a_name, mask = "venous", load("venous") >= 140
         dt = ndi.distance_transform_edt(~mask)
         vv = np.rint(nib.affines.apply_affine(INV, verts)).astype(int)
         vv = np.clip(vv, 0, np.array(nv.TARGET_SHAPE) - 1)

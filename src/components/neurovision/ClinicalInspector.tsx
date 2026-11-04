@@ -1,0 +1,308 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { useNeuroVisionStore } from "../../store/useNeuroVisionStore";
+import { useNeuroViewer } from "./NeuroViewerContext";
+import type { OntologyEntry } from "../../types/neurovision";
+
+interface CentroidData {
+  [atlas: string]: {
+    [label_id: string]: {
+      mean_mm: [number, number, number];
+      in_mask_mm: [number, number, number];
+      in_mask_vox: [number, number, number];
+    };
+  };
+}
+
+export default function ClinicalInspector() {
+  const { getNiivue } = useNeuroViewer();
+
+  // Zustand Store
+  const selectedRegion = useNeuroVisionStore((s) => s.selectedRegion);
+  const crosshair = useNeuroVisionStore((s) => s.crosshair);
+  const activeOverlay = useNeuroVisionStore((s) => s.activeOverlay);
+  const highlightedLabelId = useNeuroVisionStore((s) => s.highlightedLabelId);
+
+  const setHighlightedLabelId = useNeuroVisionStore((s) => s.setHighlightedLabelId);
+  const setCrosshair = useNeuroVisionStore((s) => s.setCrosshair);
+  const setIsProgrammaticChange = useNeuroVisionStore((s) => s.setIsProgrammaticChange);
+
+  const [centroids, setCentroids] = useState<CentroidData | null>(null);
+
+  useEffect(() => {
+    fetch("/neurovision/data/centroids.json")
+      .then((r) => r.json())
+      .then((data) => setCentroids(data))
+      .catch((err) => console.warn("[ClinicalInspector] Centroids load error:", err));
+  }, []);
+
+  const [mmX, mmY, mmZ] = crosshair.mm;
+  const [voxX, voxY, voxZ] = crosshair.vox;
+
+  // Toggle reverse highlight for current region
+  const handleToggleHighlight = () => {
+    if (!selectedRegion) return;
+    if (highlightedLabelId === selectedRegion.label_id) {
+      setHighlightedLabelId(null);
+    } else {
+      setHighlightedLabelId(selectedRegion.label_id);
+    }
+  };
+
+  // Jump to exact in-mask centroid
+  const handleJumpToCentroid = () => {
+    if (!selectedRegion || !centroids) return;
+    const nv = getNiivue();
+    if (!nv) return;
+
+    const cent = centroids[selectedRegion.atlas]?.[String(selectedRegion.label_id)];
+    if (!cent) return;
+
+    setIsProgrammaticChange(true);
+    try {
+      const frac = nv.mm2frac(cent.in_mask_mm, 0);
+      nv.scene.crosshairPos = frac;
+      nv.drawScene();
+      setCrosshair({ mm: cent.in_mask_mm, vox: cent.in_mask_vox });
+    } finally {
+      setTimeout(() => setIsProgrammaticChange(false), 50);
+    }
+  };
+
+  const isIsolated = selectedRegion && highlightedLabelId === selectedRegion.label_id;
+
+  return (
+    <div className="w-full h-full bg-slate-900/95 border-l border-slate-800 flex flex-col text-slate-200 overflow-hidden select-none">
+      {/* Header */}
+      <div className="p-3.5 border-b border-slate-800 bg-slate-950/70 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-sky-400"></div>
+          <h2 className="text-xs uppercase tracking-wider font-bold text-slate-200">
+            Giám sát Giải phẫu & Lâm sàng
+          </h2>
+        </div>
+        <div className="font-mono text-[10px] text-slate-400 bg-slate-800 px-2 py-0.5 rounded border border-slate-700/60">
+          MNI: [{mmX}, {mmY}, {mmZ}]
+        </div>
+      </div>
+
+      {/* Content Area */}
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 text-xs">
+        {selectedRegion ? (
+          <>
+            {/* 1. Name & Action Card */}
+            <div className="bg-slate-950/70 p-3.5 rounded-xl border border-slate-800 space-y-2 shadow-sm">
+              <div className="flex items-center justify-between gap-2 flex-wrap">
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-sky-950 text-sky-400 border border-sky-800 font-semibold">
+                  {selectedRegion.code || `ID: ${selectedRegion.label_id}`}
+                </span>
+
+                {/* Governance Labels with Vietnam annotations */}
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  {selectedRegion.review_status === "unreviewed" && (
+                    <span
+                      className="text-[9px] px-1.5 py-0.5 rounded bg-amber-950/90 text-amber-300 border border-amber-800 font-semibold"
+                      title="Nội dung tự động trích xuất từ dữ liệu chuẩn, chưa qua chuyên gia lâm sàng thẩm định"
+                    >
+                      chưa kiểm duyệt
+                    </span>
+                  )}
+
+                  {selectedRegion.evidence_level === "approximate" && (
+                    <span
+                      className="text-[9px] px-1.5 py-0.5 rounded bg-purple-950/90 text-purple-300 border border-purple-800 font-semibold"
+                      title="Không gian xấp xỉ do độ phân giải 1mm không giải quyết trực tiếp vi mạch"
+                    >
+                      ước lượng
+                    </span>
+                  )}
+
+                  {selectedRegion.evidence_level === "literature" && (
+                    <span className="text-[9px] px-1.5 py-0.5 rounded bg-blue-950 text-blue-300 border border-blue-800 font-semibold">
+                      y văn
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              {/* Names */}
+              <div>
+                <h3 className="text-base font-bold text-white leading-tight">
+                  {selectedRegion.name_vi}
+                </h3>
+                <p className="text-xs text-sky-300 font-medium italic mt-0.5">
+                  {selectedRegion.name_en}
+                </p>
+              </div>
+
+              {/* Category & Aspects tags */}
+              <div className="flex flex-wrap gap-1.5 pt-1">
+                <span className="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-[10px] font-medium border border-slate-700">
+                  Phân loại: {selectedRegion.category}
+                </span>
+                {selectedRegion.aspects_zone && (
+                  <span className="px-2 py-0.5 rounded bg-rose-950 text-rose-300 text-[10px] font-bold border border-rose-800">
+                    Vùng ASPECTS: {selectedRegion.aspects_zone}
+                  </span>
+                )}
+              </div>
+
+              {/* Interactive Reverse Highlight & Jump buttons */}
+              <div className="pt-2 flex items-center gap-2 border-t border-slate-800/80">
+                <button
+                  type="button"
+                  onClick={handleToggleHighlight}
+                  className={`flex-1 py-1.5 px-2.5 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition ${
+                    isIsolated
+                      ? "bg-rose-600 hover:bg-rose-500 text-white shadow-md shadow-rose-900/50"
+                      : "bg-sky-600 hover:bg-sky-500 text-white shadow-md shadow-sky-900/50"
+                  }`}
+                  title="Cô lập vùng này trên lát cắt và mô hình 3D (ẩn các nhãn khác)"
+                >
+                  <span>{isIsolated ? "✕ Tắt cô lập nhãn" : "🔍 Highlight ngược (Cô lập)"}</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleJumpToCentroid}
+                  className="py-1.5 px-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-medium transition"
+                  title="Di chuyển tâm ngắm đến tâm khối giải phẫu (Centroid)"
+                >
+                  Đến tâm
+                </button>
+              </div>
+            </div>
+
+            {/* 2. Vascular Supply & Drainage */}
+            <div className="bg-slate-950/40 p-3 rounded-xl border border-slate-800 space-y-2">
+              <h4 className="text-[11px] font-bold uppercase tracking-wider text-rose-400 flex items-center gap-1.5">
+                <svg className="w-3.5 h-3.5 text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                Cấp máu & Dẫn lưu mạch máu
+              </h4>
+
+              <div className="space-y-1.5 text-[11px]">
+                <div>
+                  <span className="text-slate-400">Động mạch chính: </span>
+                  <span className="text-slate-200 font-semibold">
+                    {selectedRegion.arterial_supply?.primary?.length > 0
+                      ? selectedRegion.arterial_supply.primary.join(", ")
+                      : "Chưa phân tích trực tiếp trên atlas"}
+                  </span>
+                </div>
+
+                {selectedRegion.arterial_supply?.perforators?.length > 0 && (
+                  <div>
+                    <span className="text-slate-400">Nhánh xuyên (Perforators): </span>
+                    <span className="text-amber-300">
+                      {selectedRegion.arterial_supply.perforators.join(", ")}
+                    </span>
+                    <span className="ml-1 text-[9px] text-purple-400 font-mono">(ước lượng)</span>
+                  </div>
+                )}
+
+                {selectedRegion.venous_drainage?.length > 0 && (
+                  <div>
+                    <span className="text-slate-400">Dẫn lưu tĩnh mạch: </span>
+                    <span className="text-sky-300">
+                      {selectedRegion.venous_drainage.join(", ")}
+                    </span>
+                    <span className="ml-1 text-[9px] text-purple-400 font-mono">(ước lượng)</span>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* 3. Functions & Brodmann Areas */}
+            {(selectedRegion.brodmann_area?.length > 0 || selectedRegion.functions?.length > 0) && (
+              <div className="bg-slate-950/40 p-3 rounded-xl border border-slate-800 space-y-2">
+                <h4 className="text-[11px] font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
+                  <svg className="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  </svg>
+                  Chức năng sinh lý thần kinh & Diện Brodmann
+                </h4>
+
+                {selectedRegion.brodmann_area?.length > 0 && (
+                  <div className="flex flex-wrap gap-1">
+                    {selectedRegion.brodmann_area.map((ba) => (
+                      <span key={ba} className="px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 text-[10px] font-mono">
+                        {ba}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                {selectedRegion.functions?.length > 0 && (
+                  <ul className="list-disc list-inside space-y-1 text-slate-300 text-[11px]">
+                    {selectedRegion.functions.map((fn, idx) => (
+                      <li key={idx}>{fn}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            )}
+
+            {/* 4. Clinical Syndromes / Symptoms */}
+            {selectedRegion.clinical_syndromes?.length > 0 && (
+              <div className="bg-slate-950/40 p-3 rounded-xl border border-slate-800 space-y-2">
+                <h4 className="text-[11px] font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+                  <svg className="w-3.5 h-3.5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
+                  Triệu chứng khi tổn thương & Hội chứng đột quỵ
+                </h4>
+
+                <div className="space-y-2">
+                  {selectedRegion.clinical_syndromes.map((syn, idx) => (
+                    <div key={idx} className="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800 text-[11px] space-y-1">
+                      <p className="font-bold text-amber-300">{syn.name}</p>
+                      <p className="text-slate-300 text-[10.5px] leading-relaxed">{syn.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* 5. Provenance & Citations */}
+            {selectedRegion.source?.length > 0 && (
+              <div className="bg-slate-950/40 p-2.5 rounded-xl border border-slate-800 space-y-1.5 text-[10px]">
+                <h4 className="font-bold uppercase tracking-wider text-slate-400">
+                  Nguồn dữ liệu y văn & Atlas:
+                </h4>
+                <ul className="space-y-1 text-slate-400">
+                  {selectedRegion.source.map((src, idx) => (
+                    <li key={idx} className="flex items-start gap-1 font-mono">
+                      <span className="text-sky-500">•</span>
+                      <span>{src}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </>
+        ) : (
+          <div className="h-full flex flex-col items-center justify-center text-center p-6 text-slate-500 space-y-3">
+            <div className="w-12 h-12 rounded-full bg-slate-800/50 flex items-center justify-center text-slate-400 text-xl">
+              🎯
+            </div>
+            <div>
+              <p className="text-slate-300 font-semibold mb-1">Chưa chọn vùng giải phẫu</p>
+              <p className="text-[11px] text-slate-500 leading-relaxed max-w-xs">
+                {activeOverlay === "none"
+                  ? "Hãy chọn một lớp phủ Atlas ở thanh công cụ để tra cứu thông tin giải phẫu."
+                  : "Click chuột lên lát cắt hoặc tìm kiếm trên thanh tìm kiếm để định vị vùng giải phẫu."}
+              </p>
+            </div>
+            <div className="bg-slate-950/80 p-2.5 rounded-lg border border-slate-800/80 text-[11px] font-mono text-slate-400 space-y-1">
+              <div>Voxel: [{voxX}, {voxY}, {voxZ}]</div>
+              <div>MNI152: [{mmX}, {mmY}, {mmZ}] mm</div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}

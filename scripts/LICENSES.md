@@ -39,14 +39,36 @@ This file is not legal advice. Items marked **ACTION** need a human decision bef
 - Required notice (BSD-2): "Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer." / "Redistributions in binary form must reproduce the above copyright notice ... in the documentation and/or other materials provided with the distribution." The full text is at https://github.com/neurolabusc/Clinical/blob/master/LICENSE and must be reproduced in the application's legal page.
 - Cite: Rorden C, Bonilha L, Fridriksson J, Bender B, Karnath HO. Age-specific CT and MRI templates for spatial normalization. NeuroImage 61(4):957–965 (2012).
 
+### 7. AAL3 (Automated Anatomical Labeling Atlas 3) – `atlases/aal3`
+- Source: GIN-IMN (CNRS / CEA / Université de Bordeaux) & Oxford Centre for Computational Neuroscience (`oxcns.org/aal3.html`, `gin.cnrs.fr/en/tools/aal`).
+- Licence: **GNU General Public License (GPL)** (verified from GIN-IMN distribution portal). Free for academic, educational and non-commercial research; redistribution subject to GPL conditions.
+- Cite: Rolls ET, Huang CC, Lin CP, Feng J, Joliot M. Automated anatomical labelling atlas 3. NeuroImage 206:116189 (2020). doi:10.1016/j.neuroimage.2019.116189.
+- Features: 167 regions including detailed thalamic sub-nuclei (AV, LP, VA, VL, VPL, VPM, Pulvinar, etc.), anterior cingulate sub-divisions, substantia nigra, red nucleus, locus coeruleus, raphe nuclei, and cerebellar lobules.
+
+### 8. Harvard Ascending Arousal Network Atlas v2.0 – `atlases/brainstem_aan`
+- Source: Dryad Digital Repository (`doi:10.5061/dryad.zw3r228d2`), Massachusetts General Hospital & Boston Children's Hospital.
+- Licence: **CC0 1.0 Universal (Public Domain Dedication)** – verified from Dryad metadata and dataset README.
+- Cite: Edlow, B. L., & Kinney, H. C. (2023). Harvard Ascending Arousal Network Atlas – Version 2.0. Dryad, Dataset, https://doi.org/10.5061/dryad.zw3r228d2
+- Also cite: Edlow BL, Olchanyi M, Freeman HJ, et al. Sustaining wakefulness: Brainstem connectivity in human consciousness. bioRxiv (2023). doi:10.1101/2023.07.13.548265.
+- Features: 16 arousal nodes across the midbrain, pons, and medulla: Dorsal Raphe (DR), Median Raphe (MnR), Periaqueductal Gray (PAG), Ventral Tegmental Area (VTA), and bilateral Locus Coeruleus (LC), Laterodorsal Tegmental Nucleus (LDTg), Mesencephalic Reticular Formation (mRt), Parabrachial Complex (PBC), Pontine Reticular Formation (PnO), and Pedunculotegmental Nucleus (PTg).
+
+### 9. ASPECTS 10-Region Atlas – `atlases/aspects`
+- Source: Anatomical derivation from Harvard-Oxford (Desikan/Frazier), JHU ICBM-DTI-81 (Mori/Wakana), and JHU Arterial Atlas (Liu et al. 2023).
+- Licence: **CC BY-SA 4.0** (Creative Commons Attribution-ShareAlike 4.0 International).
+- Cite: Barber PA, Demchuk AM, Zhang J, Buchan AM. Validity and reliability of a quantitative computed tomography score in predicting outcome of hyperacute stroke patients (ASPECTS). Lancet 355(9216):1670–1674 (2000). doi:10.1016/S0140-6736(00)02237-6.
+- Also cite: Liu CF et al. Digital 3D Brain MRI Arterial Territories Atlas. Sci Data 10:74 (2023).
+- Features: 20 labels (10 Left, 10 Right) mapping Caudate (C), Lentiform (L), Internal Capsule (IC), Insular ribbon (I), and M1–M6 MCA cortical sectors across ganglionic and supraganglionic tiers.
+
+### 10. VENAT Cerebral Venous Atlas – `atlases/venous` & `meshes/venous_sinuses.gii`
+- Source: Figshare repository (`doi:10.6084/m9.figshare.7205960`), Max Planck Institute for Human Cognitive and Brain Sciences.
+- Licence: **CC BY 4.0** (Creative Commons Attribution 4.0 International) – verified from Figshare API metadata.
+- Cite: Bazin PL, Weiss M, Dinse J, et al. VENAT: A digital venous neuroanatomy atlas of the human brain. (2018). Figshare dataset, doi:10.6084/m9.figshare.7205960.
+- Features: Continuous probability density map derived from high-field 7 Tesla Quantitative Susceptibility Mapping (QSM), with 3D reconstruction of the Superior Sagittal Sinus, Straight Sinus, Transverse Sinuses, and Sigmoid Sinuses.
+
 ## Not shipped (no verified source/licence; nothing substituted)
 | Item | Reason |
 |---|---|
-| AAL3 | Licence not read from the original source (nilearn can fetch it; Rolls et al., NeuroImage 206:116189, 2020 would be the citation). |
-| ASPECTS 10-region atlas | ASPECTS-281 (Figshare 26819290, CC BY 4.0; code MIT) is BGL/SGL CT templates by age; MNI relation unverified. |
-| Venous territory atlas | None found. VENAT (CC BY 4.0) is a vessel density atlas, not territories. |
-| Brainstem nuclei | Harvard AAN v2 is CC0 (Dryad API) but files/space not checked. Brainstem Navigator licence unverified. |
-| Circle of Willis, venous sinuses (meshes) | No verified vessel source in MNI. |
+| Circle of Willis micro-arterial mesh | Requires specialized high-resolution micro-TOF MRA segmentation not bundled in stereotaxic atlases. |
 
 ## Software
 nibabel (MIT), nilearn (BSD-3), templateflow (Apache-2.0), scikit-image (BSD-3), trimesh (MIT), antspyx (Apache-2.0), numpy/scipy/matplotlib (BSD-style). Licence strings for software are from memory and **UNVERIFIED**; they do not affect the shipped data.

@@ -149,8 +149,17 @@ for terr in ("ACA", "MCA", "PCA", "VB"):
              f"{terr} {side} territory = union of JHU Arterial Atlas level-1 labels {ids} grouped by the source 'level2_bilateral' column and the side word in the label name",
              side=side)
 
+# ------------------------------------------------------------------ venous sinuses
+print("[venous sinuses]")
+SRC_VEN = "VENAT Atlas (Bazin et al., Figshare CC BY 4.0) via 01_fetch_and_resample.py; see atlases/venous.labels.json"
+ven_vol = load_atlas("venous")
+ven_mask = (ven_vol >= 140)  # threshold >= 55% density
+emit("venous_sinuses", ven_mask, 40000, "venous", SRC_VEN,
+     "Dural venous sinuses & major cerebral veins (Superior Sagittal, Straight, Transverse, Sigmoid sinuses) from VENAT 7T QSM (threshold density >= 55%)",
+     closing=1)
+
 nv.write_json(nv.MESHES / "manifest.json", {"coordinate_system": "MNI152NLin2009cAsym, mm, RAS+ (same as volumes)", "format": "GIFTI .gii (nibabel)",
-                                             "not_generated": ["Circle of Willis", "venous sinuses", "third/fourth ventricles", ".mz3 export"],
+                                             "not_generated": ["Circle of Willis", "third/fourth ventricles", ".mz3 export"],
                                              "meshes": MANIFEST})
 print(f"\n{len(MANIFEST)} meshes written to {nv.MESHES}")
-print("Not generated (no verified source): Circle of Willis, venous sinuses, 3rd/4th ventricles.")
+print("Not generated (no verified source): Circle of Willis, 3rd/4th ventricles.")

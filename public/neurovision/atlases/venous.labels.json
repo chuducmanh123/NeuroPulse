@@ -1,0 +1,22 @@
+{
+  "atlas": "venous",
+  "space": "MNI152NLin2009cAsym",
+  "source": "VENAT Atlas: A digital venous neuroanatomy atlas of the human brain (Bazin et al., Figshare doi:10.6084/m9.figshare.7205960)",
+  "license": "CC BY 4.0 (Creative Commons Attribution 4.0 International)",
+  "review_status": "unreviewed",
+  "notes": [
+    "VENAT (Venous Neuroanatomy Atlas) mapped from 7 Tesla Quantitative Susceptibility Mapping (QSM).",
+    "Values represent venous probability density from 0 to 255 (1.0).",
+    "Thresholding at density >= 140 (approx 0.55) defines the major dural venous sinuses."
+  ],
+  "labels": [
+    {
+      "index": 1,
+      "name": "Cerebral Venous Sinuses & Veins (Probabilistic Density)",
+      "description": "Probability density map of dural sinuses (Superior Sagittal, Straight, Transverse, Sigmoid) and deep internal cerebral veins derived from high-resolution 7T QSM.",
+      "range": "0-255 (0 = 0%, 255 = 100% vein probability)",
+      "source": "VENAT Atlas: A digital venous neuroanatomy atlas of the human brain (Bazin et al., Figshare doi:10.6084/m9.figshare.7205960)",
+      "review_status": "unreviewed"
+    }
+  ]
+}
