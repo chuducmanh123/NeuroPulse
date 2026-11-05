@@ -11,7 +11,7 @@
 
 const DB_NAME = 'neurovision_cache_v1';
 const STORE_NAME = 'neuro_assets';
-const CACHE_VERSION = '2026.11.5_v3'; // Bumped for Colin27 High-Resolution T2 volume integration
+const CACHE_VERSION = '2026.11.6_hcp3t'; // Bumped for HCP S1200 3 Tesla High-Resolution T1 & T2 volumes
 
 interface CacheRecord {
   key: string;

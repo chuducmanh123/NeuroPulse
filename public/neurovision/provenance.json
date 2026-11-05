@@ -9,13 +9,13 @@
         193
       ],
       "dtype": "uint8",
-      "size_bytes": 5772601,
+      "size_bytes": 4410703,
       "review_status": "unreviewed",
-      "source": "TemplateFlow tpl-MNI152NLin2009cAsym res-01 (Fonov et al. 2009/2011)",
-      "original_space": "MNI152NLin2009cAsym",
-      "method": "none (native grid); percentile 1-99.5 linear scaling to uint8",
+      "source": "Human Connectome Project (HCP S1200 Release, Washington University / Minnesota, 3T Siemens Prisma/Skyra 0.7mm) - 3D T1w MPRAGE",
+      "original_space": "HCP S1200 MSM-All MNI space (0.7 mm grid)",
+      "method": "Resampled to MNI152NLin2009cAsym 1 mm grid (continuous interpolation); percentile 1-99.5 linear scaling to uint8",
       "interpolation": "n/a",
-      "license": "MNI/Collins permission notice (see LICENSES.md)"
+      "license": "WU-Minn HCP Consortium Open Access Data Use Terms"
     },
     {
       "file": "volumes/T2.nii.gz",
@@ -25,13 +25,13 @@
         193
       ],
       "dtype": "uint8",
-      "size_bytes": 4735890,
+      "size_bytes": 4124379,
       "review_status": "unreviewed",
-      "source": "Colin 27 Average Brain (2008 High-Resolution Version), MNI/McGill (Aubert-Broche et al. 2006/2008)",
-      "original_space": "Colin27 Talairach/MNI space (0.5 mm grid)",
+      "source": "Human Connectome Project (HCP S1200 Release, Washington University / Minnesota, 3T Siemens Prisma/Skyra 0.7mm) - 3D T2w SPACE",
+      "original_space": "HCP S1200 MSM-All MNI space (0.7 mm grid)",
       "method": "Resampled to MNI152NLin2009cAsym 1 mm grid (continuous interpolation); percentile 1-99.5 linear scaling to uint8",
       "interpolation": "n/a",
-      "license": "MNI permission notice (see LICENSES.md)"
+      "license": "WU-Minn HCP Consortium Open Access Data Use Terms"
     },
     {
       "file": "volumes/brainmask.nii.gz",

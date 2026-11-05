@@ -5,12 +5,15 @@ This file is not legal advice. Items marked **ACTION** need a human decision bef
 
 ## Data currently shipped in `public/neurovision/`
 
-### 1. MNI152NLin2009cAsym templates (T1w, T2w, brain mask) – `volumes/T1`, `T2`, `brainmask`
-- Source: TemplateFlow `tpl-MNI152NLin2009cAsym` (res-01).
-- Licence (verbatim from the TemplateFlow repo `LICENSE`): "Copyright (C) 1993–2004 Louis Collins, McConnell Brain Imaging Centre, Montreal Neurological Institute, McGill University. Permission to use, copy, modify, and distribute this software and its documentation for any purpose and without fee is hereby granted, provided that the above copyright notice appear in all copies. The authors and McGill University make no representations about the suitability of this software for any purpose. It is provided "as is" without express or implied warranty. The authors are not responsible for any data loss, equipment damage, property loss, or injury to subjects or patients resulting from the use or misuse of this software package."
-- Cite: Fonov VS, Evans AC, Botteron K, Almli CR, McKinstry RC, Collins DL. Unbiased average age-appropriate atlases for pediatric studies. NeuroImage 54(1):313–327 (2011). doi:10.1016/j.neuroimage.2010.07.033
-- Cite: Fonov VS, Evans AC, McKinstry RC, Almli CR, Collins DL. Unbiased nonlinear average age-appropriate brain templates from birth to adulthood. NeuroImage 47(S1):S102 (2009). doi:10.1016/S1053-8119(09)70884-5
-- Cite: Ciric R et al. TemplateFlow: FAIR-sharing of multi-scale, multi-species brain models. Nature Methods 19:1568–1571 (2022).
+### 1. Human Connectome Project (HCP) 3 Tesla High-Resolution Templates (T1w, T2w) & Brain Mask – `volumes/T1`, `T2`, `brainmask`
+- Source: Human Connectome Project (HCP S1200 Release, Washington University – University of Minnesota Consortium, BALSA / ConnectomeDB).
+  - T1w: Siemens 3T Prisma/Skyra 3D MPRAGE 0.7mm isotropic (`S1200_AverageT1w_restore.nii.gz`), resampled to MNI152 1mm grid.
+  - T2w: Siemens 3T Prisma/Skyra 3D SPACE 0.7mm isotropic (`S1200_AverageT2w_restore.nii.gz`), resampled to MNI152 1mm grid.
+  - Brain mask: Derived from TemplateFlow MNI152NLin2009cAsym.
+- Licence: **WU-Minn HCP Consortium Open Access Data Use Terms** (Free for educational, academic, and non-commercial neuroimaging applications). Redistribution permitted with retention of data terms; no re-identification attempts.
+- Required Acknowledgement: "Data were provided [in part] by the Human Connectome Project, WU-Minn Consortium (Principal Investigators: David Van Essen and Kamil Ugurbil; 1U54MH091657) funded by the 16 NIH Institutes and Centers that support the NIH Blueprint for Neuroscience Research; and by the McDonnell Center for Systems Neuroscience at Washington University."
+- Cite: Van Essen DC, Smith SM, Barch DM, Behrens TE, Yacoub E, Ugurbil K; WU-Minn HCP Consortium. The WU-Minn Human Connectome Project: An overview. NeuroImage 80:62–79 (2013). doi:10.1016/j.neuroimage.2013.05.041.
+- Cite: Glasser MF, Sotiropoulos SN, Wilson JA, et al. The minimal preprocessing pipelines for the Human Connectome Project. NeuroImage 80:105–124 (2013). doi:10.1016/j.neuroimage.2013.04.127.
 
 ### 2. Transform NLin6Asym → NLin2009cAsym (used, not redistributed)
 - Source: TemplateFlow. Licence **UNVERIFIED**. Not copied into `public/`.
