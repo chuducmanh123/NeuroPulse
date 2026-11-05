@@ -1,5 +1,86 @@
 [
   {
+    "id": "10.1056/nejmra2519017",
+    "title": "Intravenous Thrombolysis for Acute Ischemic Stroke — New Directions",
+    "journal": {
+      "name": "The New England Journal of Medicine",
+      "short_name": "NEJM",
+      "badge_bg": "#FEE2E2",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-11-05T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Grotta James C."
+    ],
+    "doi_url": "https://doi.org/10.1056/nejmra2519017",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Stroke",
+        "Ischemic",
+        "Thrombolysis"
+      ]
+    },
+    "abstract": "In the past 5 years, substantial changes have been made in the use of intravenous thrombolysis (IVT) in patients with acute ischemic stroke. Integrating IVT with endovascular thrombectomy, which improves outcomes in patients with stroke due to large cerebral vessel occlusion, has been a particular challenge. This review discusses the underlying vascular targets for IVT and thrombectomy, the increasing use of tenecteplase instead of alteplase, broadening indications for the use of IVT, and ancillary drugs and dosing methods that may augment the success of IVT.",
+    "ai_takeaways": {
+      "conclusion_vi": "Modern acute ischemic stroke care is shifting toward using tenecteplase over alteplase and expanding intravenous thrombolysis (IVT) indications. Clinicians should integrate optimized IVT protocols with endovascular thrombectomy while leveraging advanced neuroimaging and adjunctive therapies to maximize reperfusion in large vessel occlusions.",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1056/nejmc2606815",
+    "title": "Chemogenetic Neuromodulation for Refractory Epilepsy",
+    "journal": {
+      "name": "The New England Journal of Medicine",
+      "short_name": "NEJM",
+      "badge_bg": "#FEE2E2",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-11-05T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Dai Yang",
+      "Liu Quanlei",
+      "Wang Yihe",
+      "Yu Tao",
+      "Zhang Huaqiang",
+      "Weng Danwei",
+      "Wang Yi",
+      "Shi Minmin",
+      "Li Zhiming",
+      "Shan Yongzhi",
+      "Luo Minmin",
+      "Zhao Guoguang"
+    ],
+    "doi_url": "https://doi.org/10.1056/nejmc2606815",
+    "neurology_classification": {
+      "subspecialty": "Epilepsy",
+      "subspecialties": [
+        "Epilepsy"
+      ],
+      "topics": [
+        "Epilepsy"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at NEJM via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Epilepsy practice.",
+      "ai_verified": false
+    }
+  },
+  {
     "id": "10.1161/strokeaha.126.056467",
     "title": "Physical Activity Associated With Early Independent Walking in Nonambulatory Patients With Subacute Stroke",
     "journal": {
@@ -44,6 +125,159 @@
       "conclusion_vi": "In nonambulatory subacute stroke patients, early independent walking is associated with daily high-intensity low physical activity (2.0–2.9 METs; RR, 1.067 [95% CI, 1.010–1.131] per 5 min/d) and frequent short 5–10 minute activity bouts at ≥2.0 METs (RR, 1.208 [95% CI, 1.060–1.375]).",
       "clinical_significance": "Clinical significance for Stroke practice.",
       "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218747",
+    "title": "Timing Is Everything",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-04T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Marrie Ruth Ann"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218747",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218718",
+    "title": "Occupational Exposure to Petroleum-Derived Lubricants and Risk of Multiple Sclerosis",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-04T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Hedström Anna Karin",
+      "Olsson Tomas",
+      "Alfredsson Lars"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218718",
+    "neurology_classification": {
+      "subspecialty": "Neuroimmunology",
+      "subspecialties": [
+        "Neuroimmunology"
+      ],
+      "topics": [
+        "Multiple sclerosis"
+      ]
+    },
+    "abstract": "BACKGROUND AND OBJECTIVES: Lung irritants such as smoking and organic solvents are established risk factors of multiple sclerosis (MS), with effects influenced by genetic susceptibility, particularly leukocyte antigen (HLA) DRB1*15:01 and HLA-A*02:01. Petroleum-derived lubricants represent another widespread occupational exposure with potential inflammatory properties, yet their contribution to MS etiology remains unclear. This study investigated associations between occupational exposure to petroleum-based lubricants and MS risk, including interactions with smoking and HLA genotypes. METHODS: This investigation was based on a Swedish population-based case-control design. Incident MS cases were consecutively recruited by neurologists at 40 clinics (2005-2015). Inclusion criteria comprised residence in Sweden, age 16-70 years, and a diagnosis of MS confirmed by a neurologist according to the McDonald criteria. Controls were randomly selected from the national population register using density sampling and frequency-matched to cases by age, sex, and residential area. Exposure to petroleum-derived lubricants was assessed using questionnaire data. Logistic regression was used to estimate odds ratios (ORs) and 95% CIs for MS in relation to occupational exposure to petroleum-derived lubricants. Interactions with smoking, HLA-DRB1*15:01, and absence of HLA-A*02:01 were assessed on the additive scale using the attributable proportion due to interaction (AP). RESULTS: The study population comprised 2,872 incident MS cases and 6,122 controls (mean age: 34.6 years; 72% female). Occupational exposure to petroleum-derived lubricants was associated with increased MS risk (OR 1.38, 95% CI 1.16-1.65), with a modest exposure-duration response. The association persisted when applying a 7-year exposure lag (OR 1.55, 95% CI 1.27-1.90). A positive interaction was identified between petroleum exposure and smoking (AP 0.34, 95% CI 0.10-0.55). Among the subset with available HLA data (2,070 cases and 2,899 controls), petroleum exposure interacted with the absence of HLA-A*02:01 (AP 0.32, 95% CI 0.05-0.59). A similar interaction was observed with HLA-DRB1*15:01 (AP 0.19, 95% CI -0.08-0.46), although this estimate did not reach statistical significance. DISCUSSION: Occupational exposure to petroleum-derived lubricants was associated with MS risk, with stronger associations among smokers and participants with established genetic susceptibility. These findings add to the evidence that lung irritants and gene-environment interactions contribute to MS susceptibility but require replication in independent populations.",
+    "ai_takeaways": {
+      "conclusion_vi": "Occupational exposure to petroleum-derived lubricants is associated with an increased risk of multiple sclerosis (OR 1.38, 95% CI 1.16–1.65; 7-year lag OR 1.55, 95% CI 1.27–1.90). Risk is further amplified by additive interactions with active smoking (AP 0.34, 95% CI 0.10–0.55) and the absence of HLA-A*02:01 (AP 0.32, 95% CI 0.05–0.59).",
+      "clinical_significance": "Clinical significance for Neuroimmunology practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218706",
+    "title": "Reproductive Lifespan and Hormonal Therapy in Relation to Later-Life Neurovascular Health in Community-Dwelling Older Women",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-04T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Lorenzon Giulia",
+      "Garcia-Lluch Gemma",
+      "Coughlan Gillian T.",
+      "Sindi Shireen",
+      "Maioli Silvia",
+      "Poulakis Konstantinos",
+      "Najar Jenna",
+      "Mohanty Rosaleena",
+      "Rydén Lina",
+      "Privsek Ernest",
+      "Shams Sara",
+      "Kern Silke",
+      "Buckley Rachel F.",
+      "Westman Eric",
+      "Skoog Ingmar",
+      "Marseglia Anna"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218706",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Neurovascular"
+      ]
+    },
+    "abstract": "BACKGROUND AND OBJECTIVES: Women are disproportionately affected by Alzheimer disease (AD), a vulnerability that may relate to estrogen fluctuations across the lifespan. Estrogen has neuroprotective and vasoprotective effects, suggesting that lifetime estrogen exposure may influence both AD-related neurodegeneration and cerebrovascular health. However, its association with late-life vascular and neurodegenerative brain changes remains unclear. We aimed to examine the associations of lifelong estrogen exposure-endogenous (reproductive span) and exogenous (oral contraceptives [OCs], menopausal hormone therapy [MHT])-with late-life vascular brain injury and AD-related atrophy and explore apolipoprotein-ε4 (APOE-ε4) effects. METHODS: This population-based study included cognitively unimpaired women from the Gothenburg H70-1944 Birth Cohort who underwent brain MRI at age 70 and again 5 years later. Reproductive lifespan was calculated as age at menopause or oophorectomy minus age at menarche. OC and MHT use were categorized as ever vs never users. Outcomes included cerebral small vessel disease (SVD), AD-related cortical thickness, and white matter integrity (fractional anisotropy). SVD burden was a composite score derived from white matter hyperintensities (WMHs), lacunes, cerebral microbleeds (CMBs), and perivascular spaces (PVSs) (range 0-4). Linear, multinomial, and mixed-effects regression models were adjusted for relevant confounders and stratified by APOE-ε4. RESULTS: Among 352 women (mean age 70 years), longer reproductive span was associated with lower SVD burden (OR = 0.92, 95% CI 0.86-0.99). MHT use was associated with fewer PVSs and CMBs. OC and MHT use were associated with greater white matter integrity, with combined use showing the highest fractional anisotropy compared with nonusers (β = 0.45, 95% CI 0.12-0.78). No multiplicative interaction between OCs and MHT was observed, although joint exposure analyses suggested cumulative effects. MHT use was associated with greater AD-related cortical thickness among APOE-ε4 carriers only (β = 0.38, 95% CI 0.01-0.76). Longer estrogen exposure was associated with stable cortical thickness and WMH trajectories over time. DISCUSSION: Greater lifetime estrogen exposure, both endogenous and exogenous, was associated with lower cerebrovascular pathology in women and, among APOE-ε4 carriers, greater cortical thickness in AD-vulnerable regions. These findings support the potential role of cerebrovascular mechanisms linking estrogen exposure to brain aging. Limitations included observational design and self-reported, binary estrogen exposure. Potential cognitive effects require further studies.",
+    "ai_takeaways": {
+      "conclusion_vi": "Greater endogenous and exogenous lifetime estrogen exposure is associated with reduced cerebrovascular pathology, including lower SVD burden (OR = 0.92, 95% CI 0.86-0.99) and greater white matter integrity. MHT use confers selective neuroprotective effects among APOE-ε4 carriers, demonstrating preserved cortical thickness in AD-vulnerable regions (β = 0.38, 95% CI 0.01-0.76).",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218814",
+    "title": "Lifetime Estrogen Exposure",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-04T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Madsen Tracy E."
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218814",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
     }
   },
   {
@@ -2495,38 +2729,6 @@
       "Ganesh Aravind"
     ],
     "doi_url": "https://doi.org/10.1001/jama.2026.14839",
-    "neurology_classification": {
-      "subspecialty": "Stroke",
-      "subspecialties": [
-        "Stroke"
-      ],
-      "topics": [
-        "Carotid"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at JAMA via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1001/jama.2026.13508",
-    "title": "Revascularization in Asymptomatic Carotid Artery Stenosis With Hemodynamic Impairment and Cognitive Outcomes",
-    "journal": {
-      "name": "JAMA",
-      "short_name": "JAMA",
-      "badge_bg": "#FEE2E2",
-      "badge_text": "#DC2626"
-    },
-    "pub_date": "2026-10-27T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [],
-    "doi_url": "https://doi.org/10.1001/jama.2026.13508",
     "neurology_classification": {
       "subspecialty": "Stroke",
       "subspecialties": [
@@ -6338,7 +6540,7 @@
   },
   {
     "id": "10.1002/ana.78373",
-    "title": "Reply to \"Interpreting Hyperacute IL-1β and NET Signals in Large-Vessel Occlusion Stroke\".",
+    "title": "Reply to “Interpreting Hyperacute IL ‐1β and NET Signals in Large‐Vessel Occlusion Stroke”",
     "journal": {
       "name": "Annals of Neurology",
       "short_name": "Ann Neurol",
@@ -6351,9 +6553,9 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Münsterberg J",
-      "Magnus T",
-      "Gelderblom M."
+      "Münsterberg Justine",
+      "Magnus Tim",
+      "Gelderblom Mathias"
     ],
     "doi_url": "https://doi.org/10.1002/ana.78373",
     "neurology_classification": {
@@ -6428,7 +6630,7 @@
   },
   {
     "id": "10.1002/ana.78372",
-    "title": "Interpreting Hyperacute IL-1β and NET Signals in Large-Vessel Occlusion Stroke.",
+    "title": "Interpreting Hyperacute IL ‐1β and NET Signals in Large‐Vessel Occlusion Stroke",
     "journal": {
       "name": "Annals of Neurology",
       "short_name": "Ann Neurol",
@@ -6441,13 +6643,13 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Sun X",
-      "Pengmao Z",
-      "Xu L",
-      "Benaindo CA",
-      "Wang X",
-      "Gao C",
-      "Wu J."
+      "Sun Xiaohui",
+      "Pengmao Zhuoma",
+      "Xu Lu",
+      "Benaindo Couronne Adoummadji",
+      "Wang Xinyue",
+      "Gao Ceshu",
+      "Wu Jian"
     ],
     "doi_url": "https://doi.org/10.1002/ana.78372",
     "neurology_classification": {
@@ -11397,7 +11599,6 @@
         "Stroke"
       ],
       "topics": [
-        "Stroke",
         "Ischemic"
       ]
     },
@@ -13556,6 +13757,39 @@
     }
   },
   {
+    "id": "10.1056/nejmc2403602",
+    "title": "Tenecteplase for Stroke at 4.5 to 24 Hours",
+    "journal": {
+      "name": "The New England Journal of Medicine",
+      "short_name": "NEJM",
+      "badge_bg": "#FEE2E2",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2024-05-09T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [],
+    "doi_url": "https://doi.org/10.1056/nejmc2403602",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Stroke",
+        "Tenecteplase"
+      ]
+    },
+    "abstract": "To the Editor: We wonder whether the TIMELESS (Thrombolysis in Imaging Eligible, Late Window Patients to Assess the Efficacy and Safety of Tenecteplase) trial (Feb. 22 issue), 1 like many other trials in the field of stroke therapy, may have been underpowered. Whereas endovascular thrombectomy has a low number needed to treat for a benefit of approximately 2.6, 2 other treatments for stroke have much lower effect sizes. In this trial, the adjusted common odds ratio for a 1-point improvement in the score on the modified Rankin scale at 90 days (range, 0 to 6, with higher scores indicating greater disability and . . .",
+    "ai_takeaways": {
+      "conclusion_vi": "The TIMELESS trial evaluating tenecteplase for stroke at 4.5 to 24 hours may have been underpowered to detect small effect sizes on the modified Rankin scale (mRS) at 90 days, unlike endovascular thrombectomy which demonstrates a robust number needed to treat of approximately 2.6.",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": true
+    }
+  },
+  {
     "id": "10.1016/s1474-4422(24)00139-x",
     "title": "The African Stroke Organization Conference 2023",
     "journal": {
@@ -13858,9 +14092,9 @@
     },
     "abstract": "BACKGROUND: Limited data exist on the temporal relationship between new-onset atrial fibrillation (AF) and ischemic stroke and its impact on patients’ clinical characteristics and mortality. METHODS: A population-based registry-linkage database includes all patients with new-onset AF in Finland from 2007 to 2018. Ischemic stroke temporally associated with AF (ISTAF) was defined as an ischemic stroke occurring within ±30 days from the first AF diagnosis. Clinical factors associated with ISTAF were studied with logistic regression and 90-day survival with Cox proportional hazards analysis. RESULTS: Among 229 565 patients with new-onset AF (mean age, 72.7 years; 50% female), 204 774 (89.2%) experienced no ischemic stroke, 12 209 (5.3%) had past ischemic stroke >30 days before AF, and 12 582 (5.8%) had ISTAF. The annual proportion of ISTAF among patients with AF decreased from 6.0% to 4.8% from 2007 to 2018. Factors associated positively with ISTAF were higher age, lower education level, and alcohol use disorder, whereas vascular disease, heart failure, chronic kidney disease cancer, and psychiatric disorders were less probable with ISTAF. Compared with patients without ischemic stroke and those with past ischemic stroke, ISTAF was associated with ≈3-fold and 1.5-fold risks of death (adjusted hazard ratios, 2.90 [95% CI, 2.76–3.04] and 1.47 [95% CI, 1.39–1.57], respectively). The 90-day survival probability of patients with ISTAF increased from 0.79 (95% CI, 0.76–0.81) in 2007 to 0.89 (95% CI, 0.87–0.91) in 2018. CONCLUSIONS: ISTAF depicts the prominent temporal clustering of ischemic strokes surrounding AF diagnosis. Despite having fewer comorbidities, patients with ISTAF had worse, albeit improving, survival than patients with a history of or no ischemic stroke. REGISTRATION: URL: https://www.clinicaltrials.gov; Unique identifier: NCT04645537. URL: https://www.encepp.eu; Unique identifier: EUPAS29845.",
     "ai_takeaways": {
-      "conclusion_vi": "ISTAF depicts the prominent temporal clustering of ischemic strokes surrounding AF diagnosis. Despite having fewer comorbidities, patients with ISTAF had worse, albeit improving, survival than patients with a history of or no ischemic stroke.",
+      "conclusion_vi": "Ischemic stroke temporally associated with new-onset atrial fibrillation (ISTAF) carries a significantly elevated 90-day mortality risk compared to patients without stroke (aHR 2.90 [95% CI, 2.76–3.04]) or with past stroke (aHR 1.47 [95% CI, 1.39–1.57]), emphasizing the critical need for prompt AF detection and immediate secondary prevention.",
       "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -13905,9 +14139,9 @@
     },
     "abstract": "BACKGROUND: Stroke survivors with impaired balance and motor function tend to have relatively poor functional outcomes. The cerebellum and primary motor cortex (M1) have been suggested as targets for neuromodulation of balance and motor recovery after stroke. This study aimed to compare the efficacy and safety of intermittent theta-burst stimulation (iTBS) to the cerebellum or M1 on balance and motor recovery in patients with stroke. METHODS: In this randomized, double-blind, sham-controlled clinical trial, patients with subacute stroke were randomly divided into 3 groups: M1-, cerebellar-, and sham-iTBS (n=12 per group; 15 sessions, 3 weeks). All outcomes were evaluated before intervention (T0), after 1 week of intervention (T1), after 3 weeks of intervention (T2), and at follow-up (T3). The primary outcome was the Berg balance scale score at T2. Secondary outcomes include the Fugl-Meyer assessment scale for lower extremities, the trunk impairment scale, the Barthel index, the modified Rankin Scale, the functional ambulation categories, and cortical excitability. RESULTS: A total of 167 inpatients were screened, 36 patients (age, 57.50±2.41 years; 10 women, 12 ischemic) were enrolled between December 2020 and January 2023. At T2, M1- or cerebellar-iTBS significantly improved Berg balance scale scores by 10.7 points ([95% CI, 2.7–18.6], P =0.009) and 14.2 points ([95% CI, 1.2–27.2], P =0.032) compared with the sham-iTBS group. Moreover, the cerebellar-iTBS group showed a significantly greater improvement in Fugl-Meyer assessment scale for lower extremities scores by 5.6 points than the M1-iTBS ([95% CI, 0.3–10.9], P =0.037) and by 7.8 points than the sham-iTBS ([95% CI, 1.1–14.5], P =0.021) groups at T2. The motor-evoked potential amplitudes of the M1- and cerebellar-iTBS groups were higher than those of the sham-iTBS group ( P <0.001). CONCLUSIONS: Both M1- and cerebellar-iTBS could improve balance function. Moreover, cerebellar-iTBS, but not M1-iTBS, induced significant effects on motor recovery. Thus, cerebellar-iTBS may be a valuable new therapeutic option in stroke rehabilitation programs. REGISTRATION: URL: https://www.chictr.org.cn/; Unique identifier: ChiCTR2100047002.",
     "ai_takeaways": {
-      "conclusion_vi": "Both M1- and cerebellar-iTBS could improve balance function. Moreover, cerebellar-iTBS, but not M1-iTBS, induced significant effects on motor recovery.",
+      "conclusion_vi": "In subacute stroke, both M1- and cerebellar-iTBS significantly improve balance over sham, increasing Berg balance scale scores by 10.7 points (95% CI, 2.7–18.6; P=0.009) and 14.2 points (95% CI, 1.2–27.2; P=0.032), respectively. However, cerebellar-iTBS uniquely enhances lower extremity motor recovery compared to M1-iTBS (+5.6 points; 95% CI, 0.3–10.9; P=0.037).",
       "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -13958,9 +14192,9 @@
     },
     "abstract": "BACKGROUND: The optimal cut point of baseline National Institutes of Health Stroke Scale (NIHSS) and Glasgow Coma Scale scores for prognosticating acute intracerebral hemorrhage (ICH) is unknown. METHODS: Secondary analyses of participant data are from the INTERACT (Intensive Blood Pressure Reduction in Acute Intracerebral Hemorrhage Trials) 1 and 2 studies. Receiver operating characteristic analyses were used to compare the predictive performance of baseline NIHSS and Glasgow Coma Scale scores, ICH score, and max-ICH score. Optimal cut points for predicting 90-day clinical outcomes (death or major disability [defined as modified Rankin Scale scores 3–6], major disability [defined as modified Rankin Scale scores 3–5], and death alone) were determined using the Youden index. Logistic regression models were adjusted for age, sex, hematoma volume, and other known risk factors for poor prognosis. We validated our findings in the INTERACT1 database. RESULTS: There were 2829 INTERACT2 patients (age, 63.5±12.9 years; male, 62.9%; ICH volume, 10.96 [5.77–19.49] mL) included in the main analyses. The baseline NIHSS score (area under the curve, 0.796) had better prognostic utility for predicting death or major disability than the Glasgow Coma Scale score (area under the curve, 0.650) and ICH score (area under the curve, 0.674) and was comparable to max-ICH score (area under the curve, 0.789). Similar findings were observed when assessing the outcome of major disability. A cut point of 10 on baseline NIHSS optimally (sensitivity, 77.5%; specificity, 69.2%) predicted death or major disability (adjusted odds ratio, 4.50 [95% CI, 3.60–5.63]). The baseline NIHSS cut points that optimally predicted major disability and death alone were 10 and 12, respectively. The predictive effect of NIHSS≥10 for poor functional outcomes was consistent in all subgroups including age and baseline hematoma volume. Results were consistent when analyzed in the independent INTERACT1 validation database. CONCLUSIONS: In patients with mild-to-moderate ICH, a baseline NIHSS score of ≥10 was optimal for predicting poor outcomes at 90 days. Prediction based on baseline NIHSS is better than baseline Glasgow Coma Scale score. REGISTRATION: URL: https://www.clinicaltrials.gov; Unique identifiers: NCT00226096 and NCT00716079.",
     "ai_takeaways": {
-      "conclusion_vi": "RESULTS: There were 2829 INTERACT2 patients (age, 63.5±12.9 years; male, 62.9%; ICH volume, 10.96 [5.77–19.49] mL) included in the main analyses. The baseline NIHSS score (area under the curve, 0.796) had better prognostic utility for predicting death or major disability than the Glasgow Coma Scale score (area under the curve, 0.650) and ICH score (area under the curve, 0.674) and was comparable to max-ICH score (area under the curve, 0.789).",
+      "conclusion_vi": "Baseline NIHSS score outperforms baseline GCS score for prognosticating outcomes in mild-to-moderate ICH. A baseline NIHSS score of ≥10 optimally predicts 90-day death or major disability (mRS 3–6; adjusted OR, 4.50 [95% CI, 3.60–5.63]), while NIHSS cut points of 10 and 12 optimally predict major disability (mRS 3–5) and death alone, respectively.",
       "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -14024,9 +14258,9 @@
     },
     "abstract": "BACKGROUND: Hyperglycemia in acute ischemic stroke reduces the efficacy of stroke thrombolysis and thrombectomy, with worse clinical outcomes. Insulin-based therapies are difficult to implement and may cause hypoglycemia. We investigated whether exenatide, a GLP-1 (glucagon-like peptide-1) receptor agonist, would improve stroke outcomes, and control poststroke hyperglycemia with minimal hypoglycemia. METHODS: The TEXAIS trial (Treatment With Exenatide in Acute Ischemic Stroke) was an international, multicenter, phase 2 prospective randomized clinical trial (PROBE [Prospective Randomized Open Blinded End-Point] design) enrolling adult patients with acute ischemic stroke ≤9 hours of stroke onset to receive exenatide (5 µg BID subcutaneous injection) or standard care for 5 days, or until hospital discharge (whichever sooner). The primary outcome (intention to treat) was the proportion of patients with ≥8-point improvement in National Institutes of Health Stroke Scale score (or National Institutes of Health Stroke Scale scores 0–1) at 7 days poststroke. Safety outcomes included death, episodes of hyperglycemia, hypoglycemia, and adverse event. RESULTS: From April 2016 to June 2021, 350 patients were randomized (exenatide, n=177, standard care, n=173). Median age, 71 years (interquartile range, 62–79), median National Institutes of Health Stroke Scale score, 4 (interquartile range, 2–8). Planned recruitment (n=528) was stopped early due to COVID-19 disruptions and funding constraints. The primary outcome was achieved in 97 of 171 (56.7%) in the standard care group versus 104 of 170 (61.2%) in the exenatide group (adjusted odds ratio, 1.22 [95% CI, 0.79–1.88]; P =0.38). No differences in secondary outcomes were observed. The per-patient mean daily frequency of hyperglycemia was significantly less in the exenatide group across all quartiles. No episodes of hypoglycemia were recorded over the treatment period. Adverse events of mild nausea and vomiting occurred in 6 (3.5%) exenatide patients versus 0 (0%) standard care with no withdrawal. CONCLUSIONS: Treatment with exenatide did not reduce neurological impairment at 7 days in patients with acute ischemic stroke. Exenatide did significantly reduce the frequency of hyperglycemic events, without hypoglycemia, and was safe to use. Larger acute stroke trials using GLP-1 agonists such as exenatide should be considered. REGISTRATION: URL: www.australianclinicaltrials.gov.au; Unique identifier: ACTRN12617000409370. URL: https://www.clinicaltrials.gov; Unique identifier: NCT03287076.",
     "ai_takeaways": {
-      "conclusion_vi": "Treatment with exenatide did not reduce neurological impairment at 7 days in patients with acute ischemic stroke. Exenatide did significantly reduce the frequency of hyperglycemic events, without hypoglycemia, and was safe to use.",
+      "conclusion_vi": "In the TEXAIS trial, subcutaneous exenatide safe and effectively reduced poststroke hyperglycemia without hypoglycemia, but failed to significantly improve 7-day neurological outcomes (aOR 1.22 [95% CI, 0.79–1.88]; P=0.38). Routine use of GLP-1 receptor agonists for acute ischemic stroke neuroprotection is currently not supported.",
       "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -14063,9 +14297,9 @@
     },
     "abstract": "BACKGROUND: Stroke survivors are frequently physically inactive. However, evidence of the effectiveness of active physiotherapy on physical activity level in stroke survivors is scarce. METHODS: We conducted a systematic review and meta-analysis of randomized controlled trials according to the Preferred Reporting Items for Systematic Reviews and Meta-Analysis statement, covering electronic searches from inception to March 16, 2022. Participants: Stroke survivors living in the community. Intervention: Any active physiotherapy, that is, involving exercises that require voluntary effort. Outcome measure: Objective and subjective physical activity level. RESULTS: Of 5590 identified references, 25 randomized controlled trials were eligible, and 21 had available data. The random-effects meta-analysis resulted in a small, significant effect size in favor of active physiotherapy measured using objective or subjective tools (21 studies, 1834 participants, standardized mean difference, 0.22 [95% CI, 0.04–0.40]; heterogeneity I 2 =65%), and a medium significant effect when objective tools were used (9 studies, 424 participants, standardized mean differences, 0.48 [95% CI, 0.03–0.92]; I 2 =73%). Meta-regression showed that 35% of the variance in trial outcome was explained by the measurement tool (objective or subjective) and 23% by age. None of the variances were associated with a specific dosage in terms of frequency, time, exercise duration, or the severity of the disability. CONCLUSIONS: Active physiotherapy seems to increase objective physical activity in community-dwelling stroke survivors. However, the evidence is of very low certainty. REGISTRATION: URL: https://www.crd.york.ac.uk/PROSPERO/; Unique identifier: CRD42022315639.",
     "ai_takeaways": {
-      "conclusion_vi": "Active physiotherapy seems to increase objective physical activity in community-dwelling stroke survivors. However, the evidence is of very low certainty.",
+      "conclusion_vi": "Active physiotherapy modestly improves physical activity levels in community-dwelling stroke survivors , with a medium effect observed when measured objectively (SMD 0.48 [95% CI, 0.03–0.92]). However, overall evidence remains of very low certainty, and treatment response is modulated by age and measurement tool rather than intervention dosage or disability severity.",
       "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -14125,9 +14359,9 @@
     },
     "abstract": "BACKGROUND: Cerebrovascular reactivity (CVR) is inversely related to white matter hyperintensity severity, a marker of cerebral small vessel disease (SVD). Less is known about the relationship between CVR and other SVD imaging features or cognition. We aimed to investigate these cross-sectional relationships. METHODS: Between 2018 and 2021 in Edinburgh, we recruited patients presenting with lacunar or cortical ischemic stroke, whom we characterized for SVD features. We measured CVR in subcortical gray matter, normal-appearing white matter, and white matter hyperintensity using 3T magnetic resonance imaging. We assessed cognition using Montreal Cognitive Assessment. Statistical analyses included linear regression models with CVR as outcome, adjusted for age, sex, and vascular risk factors. We reported regression coefficients with 95% CIs. RESULTS: Of 208 patients, 182 had processable CVR data sets (median age, 68.2 years; 68% men). Although the strength of association depended on tissue type, lower CVR in normal-appearing tissues and white matter hyperintensity was associated with larger white matter hyperintensity volume (B NAWM =−0.0073 [95% CI, −0.0133 to −0.0014] %/mm Hg per 10-fold increase in percentage intracranial volume), more lacunes (B NAWM =−0.00129 [95% CI, −0.00215 to −0.00043] %/mm Hg per lacune), more microbleeds (B NAWM =−0.00083 [95% CI, −0.00130 to −0.00036] %/mm Hg per microbleed), higher deep atrophy score (B NAWM =−0.00218 [95% CI, −0.00417 to −0.00020] %/mm Hg per score point increase), higher perivascular space score (B NAWM =−0.0034 [95% CI, −0.0066 to −0.0002] %/mm Hg per score point increase in basal ganglia), and higher SVD score (B NAWM =−0.0048 [95% CI, −0.0075 to −0.0021] %/mm Hg per score point increase). Lower CVR in normal-appearing tissues was related to lower Montreal Cognitive Assessment without reaching convention statistical significance (B NAWM =0.00065 [95% CI, −0.00007 to 0.00137] %/mm Hg per score point increase). CONCLUSIONS: Lower CVR in patients with SVD was related to more severe SVD burden and worse cognition in this cross-sectional analysis. Longitudinal analysis will help determine whether lower CVR predicts worsening SVD severity or vice versa. REGISTRATION: URL: https://www.isrctn.com; Unique identifier: ISRCTN12113543.",
     "ai_takeaways": {
-      "conclusion_vi": "Lower CVR in patients with SVD was related to more severe SVD burden and worse cognition in this cross-sectional analysis. Longitudinal analysis will help determine whether lower CVR predicts worsening SVD severity or vice versa.",
+      "conclusion_vi": "In patients with small vessel disease, lower cerebrovascular reactivity in normal-appearing white matter is significantly associated with greater structural disease burden, including higher total small vessel disease score (β = −0.0048 [95% CI, −0.0075 to −0.0021]), larger white matter hyperintensity volume, more lacunes, and increased microbleeds.",
       "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -14391,9 +14625,9 @@
     },
     "abstract": "Objective: To develop recommendations for disease-modifying therapy (DMT) for multiple sclerosis (MS). Methods: A multidisciplinary panel developed DMT recommendations, integrating findings from a systematic review; followed an Institute of Medicine–compliant process to ensure transparency and patient engagement; and developed modified Delphi consensus–based recommendations concerning starting, switching, and stopping DMTs pertinent to people with relapsing-remitting MS, secondary progressive MS, primary progressive MS, and clinically isolated syndromes of demyelination. Recommendations were supported by structured rationales, integrating evidence from one or more sources: systematic review, related evidence (evidence not from the systematic review), principles of care, and inference from evidence. Results: Thirty recommendations were developed: 17 on starting DMTs, including recommendations on who should start them; 10 on switching DMTs if breakthrough disease develops; and 3 on stopping DMTs. Recommendations encompassed patient engagement strategies and individualization of treatment, including adherence monitoring and disease comorbidity assessment. The panel also discussed DMT risks, including counseling about progressive multifocal leukoencephalopathy risk in people with MS using natalizumab, fingolimod, rituximab, ocrelizumab, and dimethyl fumarate; and made suggestions for future research to evaluate relative merits of early treatment with higher potency DMTs vs standard stepped-care protocols, DMT comparative effectiveness, optimal switching strategies, long-term effects of DMT use, definitions of highly active MS, and effects of treatment on patient-specified priority outcomes. This guideline reflects the complexity of decision-making for starting, switching, or stopping MS DMTs. The field of MS treatment is rapidly changing; the Academy of Neurology development process includes planning for future updates.",
     "ai_takeaways": {
-      "conclusion_vi": "from a systematic review; followed an Institute of Medicine–compliant process to ensure transparency and patient engagement; and developed modified Delphi consensus–based recommendations concerning starting, switching, and stopping DMTs pertinent to people with relapsing-remitting MS, secondary progressive MS, primary progressive MS, and clinically isolated syndromes of demyelination. Recommendations were supported by structured rationales, integrating evidence from one or more sources: systematic review, related evidence (evidence not from the systematic review), principles of care, and inference from evidence.",
+      "conclusion_vi": "Disease-modifying therapy (DMT) decision-making in multiple sclerosis requires personalized, individualized strategies for starting, switching for breakthrough disease, or stopping treatment. Clinicians must actively engage patients regarding adherence, comorbidity risks, and specific progressive multifocal leukoencephalopathy risks associated with natalizumab, fingolimod, rituximab, ocrelizumab, and dimethyl fumarate.",
       "clinical_significance": "Clinical significance for Neuroimmunology practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -14424,9 +14658,9 @@
     },
     "abstract": "The February 27, 2018, featured interview highlights the guidelines and concerns surrounding brain death determination. For our What's Trending feature, you will hear part II of the discussion on gene drives.",
     "ai_takeaways": {
-      "conclusion_vi": "For our What's Trending feature, you will hear part II of the discussion on gene drives.",
+      "conclusion_vi": "This issue features a discussion on the standard guidelines and clinical concerns surrounding brain death determination. Practicing neurologists should regularly review these protocols to ensure accurate, standardized diagnostic practices.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -14468,9 +14702,9 @@
     },
     "abstract": "Objective: To highlight the importance of a broad differential and histopathologic confirmation in patients with newly diagnosed cancer with brain lesions atypical for CNS metastasis. Methods: We report 2 cases of biopsy-proven CNS vasculitis in patients undergoing treatment for a newly diagnosed nonmetastatic cancer. Comprehensive medical record review was performed to identify the clinical presentation, representative neuroimaging, histopathologic features, and response to treatment. Results: Patient 1 presented 1 month into induction therapy of malignant vaginal squamous cell carcinoma (stage 3, T2N1M0) with acute episodic left-sided hemiparesis due to seizure activity progressing to severe encephalopathy. Imaging revealed a right frontoparietal lesion while systemic workup was unrevealing. Biopsy demonstrated necrotizing vasculitis. Patient 2 presented 6 months after diagnosis of right breast invasive ductal carcinoma (stage IIa, T2N0M0, estrogen receptor–positive, progesterone receptor–positive, human epidermal growth factor receptor–2 positive) with subacute bifrontal headaches with associated phonophobia. Imaging showed hyperintense lesions involving the right temporoparietal region and systemic workup was unrevealing. Brain biopsy showed a necrotizing vasculitis. Patient 1 was treated with methyprednisolone and plasmapheresis and patient 2 was treated with prednisone. Both patients showed complete resolution of symptoms shortly after treatment and improvement on imaging. Conclusions: These cases highlight the importance of comprehensive evaluation of new brain lesions in patients with nonmetastatic solid tumors. Characteristics of new brain lesions in patients with cancer that should raise suspicion of diagnoses other than brain metastasis include (1) primary malignancy without regional or distant metastasis, (2) imaging without discrete mass-like enhancement, and (3) cortically based location of lesions not at the gray–white matter junction.",
     "ai_takeaways": {
-      "conclusion_vi": "These cases highlight the importance of comprehensive evaluation of new brain lesions in patients with nonmetastatic solid tumors. Characteristics of new brain lesions in patients with cancer that should raise suspicion of diagnoses other than brain metastasis include (1) primary malignancy without regional or distant metastasis, (2) imaging without discrete mass-like enhancement, and (3) cortically based location of lesions not at the gray–white matter junction.",
+      "conclusion_vi": "In patients with nonmetastatic solid tumors presenting with atypical CNS lesions—particularly cortically based, non-mass-enhancing, or not at the gray-white junction—neurologists should suspect cancer-associated necrotizing CNS vasculitis. Histopathologic confirmation via brain biopsy is essential to avoid misdiagnosing metastasis and to guide prompt, curative immunosuppressive therapy.",
       "clinical_significance": "Clinical significance for Neuroimmunology practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -14503,9 +14737,9 @@
     },
     "abstract": "At home, on my laptop, logged in to eRecord, working on my clinic notes (we have a 72-hour deadline), I receive a ping on my phone: a news alert from the Washington Post . I gladly step away from clicking on diagnosis codes: “Senator John McCain has brain cancer.” As a neuro-oncologist, I suspect this will turn out to be glioblastoma. Media reports in the next 24 hours would both startle and distress my patients and their families. #28notesleft",
     "ai_takeaways": {
-      "conclusion_vi": "Media reports in the next 24 hours would both startle and distress my patients and their families.",
+      "conclusion_vi": "High-profile public health announcements regarding neurological conditions like glioblastoma rapidly drive patient anxiety and information-seeking behavior. Clinicians should proactively anticipate media-driven distress in their patients to provide timely, compassionate, and accurate disease-specific counseling.",
       "clinical_significance": "Clinical significance for Neuro-Oncology practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -14538,9 +14772,9 @@
     },
     "abstract": "Memory decline accompanies subthreshold amyloid accumulationThe authors examined the amyloid and cognitive trajectories of β-amyloid-negative individuals.Older individuals with normal cognition and low, but increasing, amyloid burden experienced concurrent memory decline, even though the majority remained in the amyloid-negative range.Amyloid increases within the negative range may represent the earliest indication of Alzheimer disease-related pathophysiology.Page 763From editorialists McMillan and Chételat: \"The Landau et al. report provides support for the possibility that Aβ accumulators, rather than Aβ-positive individuals, may be the optimal candidates for early stage Aβ-targeted clinical trials.\"",
     "ai_takeaways": {
-      "conclusion_vi": "report provides support for the possibility that Aβ accumulators, rather than Aβ-positive individuals, may be the optimal candidates for early stage Aβ-targeted clinical trials.\".",
+      "conclusion_vi": "Subthreshold, rising β-amyloid accumulation in cognitively normal older adults is associated with concurrent memory decline before reaching traditional positivity thresholds. Patients with low but progressively increasing β-amyloid levels represent the earliest detectable phase of Alzheimer's pathophysiology and may be optimal candidates for early amyloid-targeted therapeutic trials.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -14592,9 +14826,9 @@
     },
     "abstract": "Objective: To review evidence on starting, switching, and stopping disease-modifying therapies (DMTs) for multiple sclerosis (MS) in clinically isolated syndrome (CIS), relapsing-remitting MS (RRMS), and progressive MS forms. Methods: Relevant, peer-reviewed research articles, systematic reviews, and abstracts were identified (MEDLINE, CENTRAL, EMBASE searched from inception to November 2016). Studies were rated using the therapeutic classification scheme. Prior published Cochrane reviews were also used. Results: Twenty Cochrane reviews and an additional 73 full-text articles were selected for data extraction through an updated systematic review (completed November 2016). For people with RRMS, many DMTs are superior to placebo (annualized relapses rates [ARRs], new disease activity [new MRI T2 lesion burden], and in-study disease progression) (see summary and full text publications). For people with RRMS who experienced a relapse on interferon-β (IFN-β) or glatiramer acetate, alemtuzumab is more effective than IFN-β-1a 44 μg subcutaneous 3 times per week in reducing the ARR. For people with primary progressive MS, ocrelizumab is probably more effective than placebo (in-study disease progression). DMTs for MS have varying adverse effects. In people with CIS, glatiramer acetate and IFN-β-1a subcutaneous 3 times per week are more effective than placebo in decreasing risk of conversion to MS. Cladribine, immunoglobulins, IFN-β-1a 30 μg intramuscular weekly, IFN-β-1b subcutaneous alternate day, and teriflunomide are probably more effective than placebo in decreasing risk of conversion to MS. Suggestions for future research include studies considering comparative effectiveness, usefulness of high-efficacy treatment vs stepped-care protocols, and research into predictive biomarkers.",
     "ai_takeaways": {
-      "conclusion_vi": "Suggestions for future research include studies considering comparative effectiveness, usefulness of high-efficacy treatment vs stepped-care protocols, and research into predictive biomarkers.",
+      "conclusion_vi": "In relapsing-remitting multiple sclerosis (RRMS) and clinically isolated syndrome (CIS), disease-modifying therapies (DMTs) significantly reduce annualized relapse rates, MRI T2 lesion burden, and progression compared to placebo. Alemtuzumab is superior to subcutaneous interferon-β-1a for RRMS with breakthrough rel apses, while ocrelizumab is probably more effective than placebo for primary progressive MS.",
       "clinical_significance": "Clinical significance for Neuroimmunology practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -14629,9 +14863,9 @@
     },
     "abstract": "Prodigious progress in the treatment of multiple sclerosis (MS) has occurred over the last 20 years, with the licensing of more than 15 novel and highly effective disease-modifying therapies (DMTs) to treat the disease. In this new complex scenario, an update of the previous therapeutic guidelines published by the American Academy of Neurology (AAN) in 2002 is needed for an appropriate and effective use of the old and new agents in clinical practice.",
     "ai_takeaways": {
-      "conclusion_vi": "In this new complex scenario, an update of the previous therapeutic guidelines published by the American Academy of Neurology (AAN) in 2002 is needed for an appropriate and effective use of the old and new agents in clinical practice.",
+      "conclusion_vi": "Rapid expansion of the multiple sclerosis therapeutic landscape—with over 15 novel disease-modifying therapies introduced over two decades—renders 2002 AAN guidelines obsolete. Practicing neurologists require updated clinical management frameworks to safely and effectively navigate modern treatment algorithms and optimize individual patient care.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -14665,9 +14899,9 @@
     },
     "abstract": "Neurologic care in lower- and middle-income countries is an increasing focus for the field and training of its next generation. The International Issues article features a guide for trainees seeking information on predeparture, funding, and postdeparture advice for global health rotations. The Clinical Reasoning and Teaching Image articles review the workup and management of reversible cerebral vasoconstriction syndrome, ataxia, and new-onset clonus in the setting of fever and confusion.",
     "ai_takeaways": {
-      "conclusion_vi": "The Clinical Reasoning and Teaching Image articles review the workup and management of reversible cerebral vasoconstriction syndrome, ataxia, and new-onset clonus in the setting of fever and confusion.",
+      "conclusion_vi": "Reversible cerebral vasoconstriction syndrome, progressive ataxia, and acute fever with confusion and clonus require targeted, systematic workups to quickly differentiate them from critical neuro-infectious, neuro-inflammatory, and vascular mimickers. Trainees engaging in global neurology rotations should utilize structured frameworks for predeparture planning, funding acquisition, and post-rotation reintegration.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -14698,9 +14932,9 @@
     },
     "abstract": "Duplications at 19q13.33 in patients with neurodevelopmental disordersObjective After the recent publication of the first patients with disease-associated missense variants in the GRIN2D gene, we evaluate the effect of copy number variants (CNVs) overlapping this gene toward the presentation of neurodevelopmental disorders (NDDs). Methods: We explored ClinVar (number of CNVs = 50,794) and DECIPHER (number of CNVs = 28,085) clinical databases of genomic variations for patients with copy number changes overlapping the GRIN2D gene at the 19q13.33locus and evaluated their respective phenotype alongside their frequency, gene content, and expression, with publicly available reference databases. Results: We identified 11 patients with microduplications at the 19q13.33locus.The majority of CNVs arose de novo, and comparable CNVs are not present in control databases.All patients were reported to have NDDs and dysmorphic features as the most common clinical phenotype (n = 8/11), followed by seizures (n = 6/11) and intellectual disability (n = 5/11).All duplications shared a consensus region of 405 kb overlapping 13 genes.After screening for duplication tolerance in control populations, positive gene brain expression, and gene dosage sensitivity analysis, we highlight 4 genes for future evaluation: CARD8, C19orf68, KDELR1, and GRIN2D, which are promising candidates for disease causality.Furthermore, investigation of the literature especially supports GRIN2D as the best candidate gene. Conclusions: Our study presents dup19q13.33as a novel duplication syndrome locus associated with NDDs.CARD8, C19orf68, KDELR1, and GRIN2D are promising candidates for functional follow-up.NPub.org/NG/9017a",
     "ai_takeaways": {
-      "conclusion_vi": "Our study presents dup19q13.33as a novel duplication syndrome locus associated with NDDs.CARD8, C19orf68, KDELR1, and GRIN2D are promising candidates for functional follow-up.NPub.org/NG/9017a.",
+      "conclusion_vi": "De novo microduplications at the 19q13.33 locus define a novel duplication syndrome associated with neurodevelopmental disorders, characterized clinically by dysmorphic features (n = 8/11), seizures (n = 6/11), and intellectual disability (n = 5/11). Among 13 overlapping genes in the 405 kb consensus region, GRIN2D is the primary candidate gene for disease causality.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -14738,9 +14972,9 @@
     },
     "abstract": "A 65-year-old man with a history of hypertension presented with double vision. Examination revealed wall-eyed bilateral internuclear ophthalmoplegia (WEBINO) (figure 1) and nonsymptomatic, pulse-synchronous, pulsatile proptosis of the left eye (video, [links.lww.com/WNL/A389][1]). According to the patient, there was a history of blunt head trauma in childhood and the pulsatile eye was present since then. CT revealed a meningocele into the left orbit due to a bony defect in the orbital roof (figure 2A). CT angiography ruled out a carotid-cavernous fistula. MRI showed an acute infarction at the midline of the midbrain tegmentum, which involved the medial longitudinal fasciculus bilaterally and caused the WEBINO (figure 2B).1 The pulsatile proptosis was attributed to the childhood head injury and due to the orbital roof fracture and associated meningocele pulsation of the brain vessels passed onto the CSF.2 [1]: http://links.lww.com/WNL/A389",
     "ai_takeaways": {
-      "conclusion_vi": "MRI showed an acute infarction at the midline of the midbrain tegmentum, which involved the medial longitudinal fasciculus bilaterally and caused the WEBINO (figure 2B).1 The pulsatile proptosis was attributed to the childhood head injury and due to the orbital roof fracture and associated meningocele pulsation of the brain vessels passed onto the CSF.2 [1]: http://links.lww.com/WNL/A389.",
+      "conclusion_vi": "WEBINO is caused by acute midline midbrain tegmental infarction involving the bilateral medial longitudinal fasciculi. Concomitant pulsatile proptosis warrants evaluation to distinguish acute carotid-cavernous fistulas from chronic post-traumatic orbital roof defects with meningocele.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -14778,9 +15012,9 @@
     },
     "abstract": "A 52-year-old woman without cardiovascular risk factors presented with an acute middle cerebral artery infarction. An ipsilateral thin, smooth, membrane-like intraluminal filling defect along the posterior wall of the internal carotid bulb compatible with carotid web (CW) was observed on Doppler ultrasound, CT, and magnetic resonance angiography (figure). No other abnormalities were found on extensive diagnostic workup. CW is thought to represent an intimal variant of fibromuscular dysplasia.1,2 Although data are scarce, CW may be associated with increased stroke risk in young patients with cryptogenic anterior circulation infarction and with a high risk of stroke recurrence.2",
     "ai_takeaways": {
-      "conclusion_vi": "CW is thought to represent an intimal variant of fibromuscular dysplasia.1,2 Although data are scarce, CW may be associated with increased stroke risk in young patients with cryptogenic anterior circulation infarction and with a high risk of stroke recurrence.2.",
+      "conclusion_vi": "Carotid web (CW), an intimal variant of fibromuscular dysplasia, should be considered as a potential etiology in young patients presenting with cryptogenic anterior circulation stroke. Multimodality vascular imaging is essential for identifying this subtle filling defect to prevent high rates of stroke recurrence.",
       "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -14817,9 +15051,9 @@
     },
     "abstract": "A 30-year-old man with a history of migraine presented to the emergency department with headache and somnolence. Previous migraine headaches were infrequent and episodic, typically lasting less than 1 day, while the current headache had been building over the course of 2 months and was accompanied by fluctuating hypersomnolence and insomnia. On the day of admission, he was confused, dysarthric, somnolent, and unable to ambulate without assistance. A thorough review of collateral history revealed a remote travel history throughout Asia, Europe, Africa, and Mexico, but no clear infectious exposures. He smoked marijuana but denied exposure to illicit drugs. Family history included hypothyroidism in his mother and psoriasis in his sister. Upon arrival to the emergency department, he was afebrile and hemodynamically stable. Neurologic examination did not reveal a focal deficit or clear evidence of papilledema on funduscopy, but cooperation was poor due to level of consciousness.",
     "ai_takeaways": {
-      "conclusion_vi": "Neurologic examination did not reveal a focal deficit or clear evidence of papilledema on funduscopy, but cooperation was poor due to level of consciousness.",
+      "conclusion_vi": "Subacute progressive headache accompanied by fluctuating encephalopathy and hypersomnolence should prompt a broad diagnostic evaluation that extends beyond primary headache disorders to consider infectious, autoimmune, and structural etiologies, particularly when accompanied by altered mental status and significant travel history.",
       "clinical_significance": "Clinical significance for Headache & Pain practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -14851,9 +15085,9 @@
     },
     "abstract": "In “Neurocognition, sleep, and PET findings in type 2 vs type 1 narcolepsy,” Huang et al.1 at the Chang Gung University College of Medicine, Taiwan, studied brain imaging, cognitive testing, and sleep study abnormalities in people with narcolepsy type 1 and type 2. They compared the test results against a group of similar people who had normal sleep. Their idea was straightforward: to better understand the differences between the 2 types of narcolepsy as compared to healthy people.",
     "ai_takeaways": {
-      "conclusion_vi": "in type 2 vs type 1 narcolepsy,” Huang et al.1 at the Chang Gung University College of Medicine, Taiwan, studied brain imaging, cognitive testing, and sleep study abnormalities in people with narcolepsy type 1 and type 2. They compared the test results against a group of similar people who had normal sleep.",
+      "conclusion_vi": "Comparative evaluation of narcolepsy type 1, type 2, and healthy controls reveals distinct neurocognitive, polysomnographic, and metabolic PET imaging differences between the subtypes. These findings underscore the underlying neurobiological divergence between narcolepsy types 1 and 2 beyond classic hypocretin deficiency alone.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -14886,9 +15120,9 @@
     },
     "abstract": "α4-Integrin receptor desaturation and disease activity return after natalizumab cessationObjective To describe the time course of α4-integrin receptor desaturation and disease activity return in patients with relapsing-remitting multiple sclerosis who discontinued natalizumab and to investigate baseline and on-study predictors for the recurrence of disease activity. Methods: In the course of TOFINGO, a 32-week, patient-and rater-blinded multicenter, parallel-group study, we performed MRI, counted relapses, and measured α4-integrin receptor occupancy (RO) at baseline and 8, 12, 16, 20, and 24 weeks.The relationship between RO and total number of new T1 gadolinium-enhancing (Gd+) lesions was modeled using Poisson linear regression. Results: Patients (n = 142) were randomized (1:1:1) to 8-, 12-, or 16-week washout (WO) groups.At randomization, the median RO in the 8-, 12-, and 16-week WO groups was 94.5%, 92.4%, and 90.9%, which declined to 79.8%, 30.7%, and 8.7% after 8, 12, and 16 weeks of WO, respectively.The percentage of patients with new T1 Gd+ lesions increased with longer WO period before commencing fingolimod: 2.1% (8 weeks), 9.1% (12 weeks), and 50.0%(16 weeks).Overall, 71% of patients with first relapse between weeks 6 and 18 had RO values below the time-matched population median.Higher T2 lesion volume (LV) at baseline predicted a higher number of new T1 Gd+ lesions. Conclusions: A faster decline in natalizumab RO, longer WO period, and higher T2 LV at baseline were associated with an increased risk for return of inflammatory disease activity.These results provide a mechanistic rationale and, together with the main outcomes of the TOFINGO study, support initiation of fingolimod within 8 weeks of natalizumab discontinuation.",
     "ai_takeaways": {
-      "conclusion_vi": "A faster decline in natalizumab RO, longer WO period, and higher T2 LV at baseline were associated with an increased risk for return of inflammatory disease activity.These results provide a mechanistic rationale and, together with the main outcomes of the TOFINGO study, support initiation of fingolimod within 8 weeks of natalizumab discontinuation.",
+      "conclusion_vi": "Following natalizumab discontinuation, rapid α4-integrin receptor desaturation increases disease reactivation, with new T1 Gd+ lesions rising from 2.1% at 8 weeks to 50.0% at 16 weeks of washout. To prevent disease return, fingolimod should be initiated within 8 weeks of natalizumab cessation, particularly in patients with high baseline T2 lesion volume.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -14958,9 +15192,9 @@
     },
     "abstract": "Objective: To analyze differences in functional brain images collected in patients with type 2 and type 1 narcolepsy compared to normal controls and the relationship among brain images, objective neuropsychologic tests, and sleep findings. Methods: Data collection included comprehensive clinical investigation, study of sleep/wake with actigraphy, polysomnography, Multiple Sleep Latency Test, human leukocyte antigen typing, 18 F-fluorodeoxyglucose PET, and cognitive tests obtained from 29 patients with type 2 narcolepsy, 104 patients with type 1 narcolepsy, and 26 sex- and age-matched normal control individuals. Conners’ Continuous Performance Test (CPT II) and Wisconsin Card-Sorting Task were performed simultaneously with the FDG-PET examination. After analyses of variance, data between patients with type 1 and type 2 narcolepsy were compared by post hoc analysis, and correlation between functional brain imaging findings and results of neurocognitive tests was obtained. Results: All patients with narcolepsy presented with at least 2 sleep-onset REM periods (SOREMP) and subjective sleepiness. Patients with type 2 narcolepsy compared to patients with type 1 narcolepsy had significantly less SOREMP, longer mean sleep latencies, and lower body mass indexes, apnea-hypopnea indexes, and frequency of human leukocyte antigen DQ-Beta1*0602. In patients with type 2 narcolepsy, FDG-PET studies showed significantly less hypermetabolism in the fusiform gyrus, striatum, hippocampus, thalamus, basal ganglia, and cerebellum than in patients with type 1 narcolepsy, and significantly less hypometabolism in the regions of frontal lobe, posterior cingulum, angular gyrus, and part of the parietal lobe; these changes were associated with fewer errors on the CPT. Conclusion: Young patients with type 2 narcolepsy have fewer clinical impairments and less distinct brain functional abnormalities than patients with type 1 narcolepsy, who are significantly more affected.",
     "ai_takeaways": {
-      "conclusion_vi": "Methods: Data collection included comprehensive clinical investigation, study of sleep/wake with actigraphy, polysomnography, Multiple Sleep Latency Test, human leukocyte antigen typing, 18 F-fluorodeoxyglucose PET, and cognitive tests obtained from 29 patients with type 2 narcolepsy, 104 patients with type 1 narcolepsy, and 26 sex- and age-matched normal control individuals. Conners’ Continuous Performance Test (CPT II) and Wisconsin Card-Sorting Task were performed simultaneously with the FDG-PET examination.",
+      "conclusion_vi": "Patients with type 2 narcolepsy exhibit less severe clinical impairments, fewer sleep-onset REM periods, and milder regional brain metabolic abnormalities on FDG-PET compared to those with type 1 narcolepsy. These neuroimaging and phenotypic differences suggest that type 2 narcolepsy is a distinct and clinically less affected condition.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -14999,9 +15233,9 @@
     },
     "abstract": "Objective: In this study, we aimed to determine whether insulin resistance is associated with clinical outcomes after acute ischemic stroke. Methods: We enrolled 4,655 patients with acute ischemic stroke (aged 70.3 ± 12.5 years, 63.5% men) who had been independent before admission; were hospitalized in 7 stroke centers in Fukuoka, Japan, from April 2009 to March 2015; and received no insulin therapy during hospitalization. The homeostasis model assessment of insulin resistance (HOMA-IR) score was calculated using fasting blood glucose and insulin levels measured 8.3 ± 7.8 days after onset. Study outcomes were neurologic improvement (≥4-point decrease in NIH Stroke Scale score or 0 at discharge), poor functional outcome (modified Rankin Scale score of ≥3 at 3 months), and 3-month prognosis (stroke recurrence and all-cause mortality). Logistic regression analysis was used to evaluate the association of the HOMA-IR score with clinical outcomes. Results: The HOMA-IR score was associated with neurologic improvement (odds ratio, 0.68 [95% confidence interval, 0.56–0.83], top vs bottom quintile) and with poor functional outcome (2.02 [1.52–2.68], top vs bottom quintile) after adjusting for potential confounding factors, including diabetes and body mass index. HOMA-IR was not associated with stroke recurrence or mortality within 3 months of onset. The associations were maintained in nondiabetic or nonobese patients. No heterogeneity was observed according to age, sex, stroke subtype, or stroke severity. Conclusions: These findings suggest that insulin resistance is independently associated with poor functional outcome after acute ischemic stroke apart from the risk of short-term stroke recurrence or mortality.",
     "ai_takeaways": {
-      "conclusion_vi": "These findings suggest that insulin resistance is independently associated with poor functional outcome after acute ischemic stroke apart from the risk of short-term stroke recurrence or mortality.",
+      "conclusion_vi": "In acute ischemic stroke patients, elevated insulin resistance (HOMA-IR) independently associates with reduced neurologic improvement (OR 0.68, 95% CI 0.56- 0.83) and increased poor functional outcomes at 3 months (mRS score ≥3; OR 2.02, 95% CI 1.52-2.68) regardless of diabetes or obesity status, without impacting short-term recurrence or mortality.",
       "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -15038,9 +15272,9 @@
     },
     "abstract": "Objective: To investigate whether gray matter pathology above the level of injury, alongside white matter changes, also contributes to sensorimotor impairments after spinal cord injury. Methods: A 3T MRI protocol was acquired in 17 tetraplegic patients and 21 controls. A sagittal T2-weighted sequence was used to characterize lesion severity. At the C2-3 level, a high-resolution T2*-weighted sequence was used to assess cross-sectional areas of gray and white matter, including their subcompartments; a diffusion-weighted sequence was used to compute voxel-based diffusion indices. Regression models determined associations between lesion severity and tissue-specific neurodegeneration and associations between the latter with neurophysiologic and clinical outcome. Results: Neurodegeneration was evident within the dorsal and ventral horns and white matter above the level of injury. Tract-specific neurodegeneration was associated with prolonged conduction of appropriate electrophysiologic recordings. Dorsal horn atrophy was associated with sensory outcome, while ventral horn atrophy was associated with motor outcome. White matter integrity of dorsal columns and corticospinal tracts was associated with daily-life independence. Conclusion: Our results suggest that, next to anterograde and retrograde degeneration of white matter tracts, neuronal circuits within the spinal cord far above the level of injury undergo transsynaptic neurodegeneration, resulting in specific gray matter changes. Such improved understanding of tissue-specific cord pathology offers potential biomarkers with more efficient targeting and monitoring of neuroregenerative (i.e., white matter) and neuroprotective (i.e., gray matter) agents.",
     "ai_takeaways": {
-      "conclusion_vi": "Our results suggest that, next to anterograde and retrograde degeneration of white matter tracts, neuronal circuits within the spinal cord far above the level of injury undergo transsynaptic neurodegeneration, resulting in specific gray matter changes. Such improved understanding of tissue-specific cord pathology offers potential biomarkers with more efficient targeting and monitoring of neuroregenerative (i.e., white matter) and neuroprotective (i.e., gray matter) agents.",
+      "conclusion_vi": "Cervical gray matter atrophy above the level of spinal cord injury undergoes transsynaptic neurodegeneration, with dorsal and ventral horn atrophy specifically correlating with sensory and motor outcomes, respectively. This highlights tissue-specific cord pathology as a potential biomarker for targeted neuroprotective and neuroregenerative therapies.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -15080,9 +15314,9 @@
     },
     "abstract": "Palatal tremor, also known as palatal myoclonus, is a sign caused by a lesion to the Guillain-Mollaret triangle. In some cases, imaging may also reveal hypertrophic olivary degeneration, which is due to trans-synaptic degeneration and gliosis of the inferior olivary nucleus. The underlying etiology is commonly due to unilateral involvement of the central tegmental tract due to ischemic, neoplastic, demyelinating, traumatic, inflammatory, and rarely neurodegenerative processes such as progressive supranuclear palsy, multiple system atrophy, and Alexander disease.1 We describe a patient who presented with palatal tremor as the presenting symptom of amyotrophic lateral sclerosis (ALS).",
     "ai_takeaways": {
-      "conclusion_vi": "The underlying etiology is commonly due to unilateral involvement of the central tegmental tract due to ischemic, neoplastic, demyelinating, traumatic, inflammatory, and rarely neurodegenerative processes such as progressive supranuclear palsy, multiple system atrophy, and Alexander disease.1 We describe a patient who presented with palatal tremor as the presenting symptom of amyotrophic lateral sclerosis (ALS).",
+      "conclusion_vi": "Palatal tremor is a rare presenting manifestation of amyotrophic lateral sclerosis, expanding the known neurodegenerative etiologies associated with Guillain-Mollaret triangle dysfunction and hypertrophic olivary degeneration. Clinicians should consider motor neuron disease in patients presenting with palatal tremor when standard structural, vascular, or inflammatory etiologies are excluded.",
       "clinical_significance": "Clinical significance for Neuromuscular practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -15116,9 +15350,9 @@
     },
     "abstract": "We are now in an era of disease-modifying clinical trials for Alzheimer disease (AD), including several recent β-amyloid (Aβ)–focused therapies. Results from aducanumab and solanezumab suggest that these antibodies yield PET evidence for Aβ clearance over the course of treatment,1,2 but the clinical consequences of such clearance have been mixed. While early evidence suggests that aducanumab treatment is also associated with attenuated cognitive decline,2 there was no evidence for a cognitive benefit for solanezumab in mild to moderate AD.3 However, secondary analyses suggest that Aβ-targeted trials may be more successful in mild AD.4 Therefore, there is increasing consensus that Aβ-targeted trials are more likely to meet biomarker and clinical endpoints if they target Aβ in individuals with the mildest or even preclinical forms of disease.",
     "ai_takeaways": {
-      "conclusion_vi": "While early evidence suggests that aducanumab treatment is also associated with attenuated cognitive decline,2 there was no evidence for a cognitive benefit for solanezumab in mild to moderate AD.3 However, secondary analyses suggest that Aβ-targeted trials may be more successful in mild AD.4 Therefore, there is increasing consensus that Aβ-targeted trials are more likely to meet biomarker and clinical endpoints if they target Aβ in individuals with the mildest or even preclinical forms of disease.",
+      "conclusion_vi": "While anti-β-amyloid monoclonal antibodies effectively clear brain amyloid on PET, their clinical efficacy remains mixed, supporting a strategic shift toward treating patients with the mildest or preclinical forms of Alzheimer disease.",
       "clinical_significance": "Clinical significance for Dementia practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -15156,9 +15390,9 @@
     },
     "abstract": "Objective: In this cohort analysis, we studied 1-year-old infants with tuberous sclerosis complex (TSC), correlating volumes of cerebellar structures with neurodevelopmental measures. Methods: We analyzed data from a prospective biomarker study in infants with TSC ( ClinicalTrials.gov NCT01780441 ). We included participants aged 12 months with an identified mutation of TSC1 or TSC2 . Using MRI segmentation performed with the PSTAPLE algorithm, we measured relative volumes (structure volume divided by intracranial contents volume) of the following structures: right/left cerebellar white matter, right/left cerebellar exterior, vermal lobules I–V, vermal lobules VI–VII, and vermal lobules VIII–X. We correlated relative volumes to Mullen Scales of Early Learning (MSEL) scores. Results: There were 70 participants (mean age 1.03 [0.11] years): n = 11 had a TSC1 mutation; n = 59 had a TSC2 mutation. For patients with TSC2 mutation, for every percentage increase in total cerebellar volume, there was an approximate 10-point increase in MSEL composite score (β = 10.47 [95% confidence interval 5.67, 15.27], p < 0.001). For patients with TSC1 mutation, the relationship between cerebellar volume and MSEL composite score was not statistically significant (β = −10.88 [95% confidence interval −22.16, 0.41], p = 0.06). For patients with TSC2 mutation, there were positive slopes when regressing expressive language and visual reception skills with volumes of nearly all cerebellar structures ( p ≤ 0.29); there were also positive slopes when regressing receptive language skills, gross motor skills, and fine motor skills with volumes of cerebellar right/left exterior ( p ≤ 0.014). Conclusions: Cerebellar volume loss—perhaps reflecting Purkinje cell degeneration—may predict neurodevelopmental severity in patients with TSC2 mutations.",
     "ai_takeaways": {
-      "conclusion_vi": "Cerebellar volume loss—perhaps reflecting Purkinje cell degeneration—may predict neurodevelopmental severity in patients with TSC2 mutations.",
+      "conclusion_vi": "In infants with tuberous sclerosis complex and TSC2 mutations, reduced relative cerebellar volume significantly predicts poorer neurodevelopmental outcomes ( β = 10.47, 95% CI 5.67, 15.27, p < 0.001). Quantitative volumetric MRI of the cerebellum at one year of age serves as a valuable early prognostic biomarker in this high-risk genetic population.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -16128,245 +16362,6 @@
       "Qureshi A."
     ],
     "doi_url": "https://doi.org/10.1212/wnl.78.1_meetingabstracts.p01.024",
-    "neurology_classification": {
-      "subspecialty": "Other",
-      "subspecialties": [
-        "Other"
-      ],
-      "topics": [
-        "Neurology"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1212/wnl.78.1_meetingabstracts.p06.244",
-    "title": "Angiographic Patterns in Patients with HIV at Hahnemann University Hospital (P06.244)",
-    "journal": {
-      "name": "Neurology (AAN)",
-      "short_name": "Neurology",
-      "badge_bg": "#DCFCE7",
-      "badge_text": "#166534"
-    },
-    "pub_date": "2012-04-22T00:00:00Z",
-    "article_type": "Original Article",
-    "article_types": [
-      "Original Article"
-    ],
-    "authors": [
-      "Nair S.",
-      "Venkatesh Y."
-    ],
-    "doi_url": "https://doi.org/10.1212/wnl.78.1_meetingabstracts.p06.244",
-    "neurology_classification": {
-      "subspecialty": "Stroke",
-      "subspecialties": [
-        "Stroke"
-      ],
-      "topics": [
-        "Stroke",
-        "Aneurysm",
-        "Cerebral"
-      ]
-    },
-    "abstract": "Objective: To cerebral angiographic patterns of patients with HIV at Hahnemann University Hospital. Background: Central nervous system vascular involvement in patients with HIV is due to infections, neoplastic disease, or abuse of toxic drugs. Nogueras et al. observed recurrent stroke as a manifestation of primary angiitis in a patient with HIV [1]. They demonstrated the presence of HIV-integrated DNA in the basal ganglionic tissues of their patient, which suggested that HIV plays a role in the vasculitic process. HIV has been demonstrated in perivascular multinucleated giant cells and endothelial cells by Gray et al. [2]. O9Chareon et al. reported a patient with HIV-associated vasculitis, demonstrated aneurysmal dilatation of cerebral arteries with alternate areas of narrowing and mural enhancement [3]. Dubrovsky et al. identified pediatric patients with AIDS who have cerebral aneurysmal arteriopathy [4]. Design/Methods: A retrospective chart review of patients who had magnetic resonance angiograms and conventional angiograms, at Hahnemann University Hospital from January 2005 to December 2010. Inclusion criteria: Patients over the age of 18 with HIV. Exclusion criteria: Patients with a known history of cerebral aneurysm prior to being diagnosed with HIV. Results: We identified 30 patients with HIV after randomization who had either an magnetic resonance angiogram or a conventional angiogram. Of those, 72% had CD4 counts Conclusions: The frequency of aneurysms in patients with HIV (3%) was not higher than that in the general population (5%-6%). In the future, we could look at subset of patients with HIV who are more likely to have aneurysms. Disclosure: Dr. Nair has nothing to disclose. Dr. Venkatesh has nothing to disclose.",
-    "ai_takeaways": {
-      "conclusion_vi": "The frequency of aneurysms in patients with HIV (3%) was not higher than that in the general population (5%-6%). In the future, we could look at subset of patients with HIV who are more likely to have aneurysms.",
-      "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1212/wnl.78.1_meetingabstracts.p06.188",
-    "title": "Disease-Modifying Drugs for Multiple Sclerosis in Pregnancy: A Systematic Review (P06.188)",
-    "journal": {
-      "name": "Neurology (AAN)",
-      "short_name": "Neurology",
-      "badge_bg": "#DCFCE7",
-      "badge_text": "#166534"
-    },
-    "pub_date": "2012-04-22T00:00:00Z",
-    "article_type": "Meta-Analysis",
-    "article_types": [
-      "Meta-Analysis",
-      "Review",
-      "Original Article"
-    ],
-    "authors": [
-      "Lu E.",
-      "Wang B. W.",
-      "Guimond C.",
-      "Synnes A.",
-      "Sadovnick D.",
-      "Tremlett H."
-    ],
-    "doi_url": "https://doi.org/10.1212/wnl.78.1_meetingabstracts.p06.188",
-    "neurology_classification": {
-      "subspecialty": "Neuroimmunology",
-      "subspecialties": [
-        "Neuroimmunology"
-      ],
-      "topics": [
-        "Multiple sclerosis"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Neuroimmunology practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1212/wnl.78.1_meetingabstracts.in4-2.001",
-    "title": "Transcranial Direct Current Stimulation Enhances Contralateral Visual Target Detection (IN4-2.001)",
-    "journal": {
-      "name": "Neurology (AAN)",
-      "short_name": "Neurology",
-      "badge_bg": "#DCFCE7",
-      "badge_text": "#166534"
-    },
-    "pub_date": "2012-04-22T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Hamilton R.",
-      "Medina J.",
-      "Beauvais J.",
-      "Datta A.",
-      "Bikson M.",
-      "Coslett H."
-    ],
-    "doi_url": "https://doi.org/10.1212/wnl.78.1_meetingabstracts.in4-2.001",
-    "neurology_classification": {
-      "subspecialty": "Other",
-      "subspecialties": [
-        "Other"
-      ],
-      "topics": [
-        "Neurology"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1212/wnl.78.1_meetingabstracts.p01.043",
-    "title": "Are Menopausal Women with Epilepsy at Higher Risk for Mood Disorders and Suicide Risk? (P01.043)",
-    "journal": {
-      "name": "Neurology (AAN)",
-      "short_name": "Neurology",
-      "badge_bg": "#DCFCE7",
-      "badge_text": "#166534"
-    },
-    "pub_date": "2012-04-22T00:00:00Z",
-    "article_type": "Original Article",
-    "article_types": [
-      "Original Article"
-    ],
-    "authors": [
-      "Patel S.",
-      "Foldvary-Schaefer N.",
-      "Jehi L.",
-      "Tesar G.",
-      "Viguera A."
-    ],
-    "doi_url": "https://doi.org/10.1212/wnl.78.1_meetingabstracts.p01.043",
-    "neurology_classification": {
-      "subspecialty": "Epilepsy",
-      "subspecialties": [
-        "Epilepsy"
-      ],
-      "topics": [
-        "Epilepsy",
-        "Seizure"
-      ]
-    },
-    "abstract": "Objective: To compare the prevalence of mood and anxiety disorders and suicide risk in premenopausal and menopausal women with epilepsy. Background: The risk for mood and anxiety disorders during the menopause period among women with epilepsy have not been systematically investigated. The prevalence of psychiatric disorders in patients with epilepsy is higher than the general population. During the menopausal transition women are at increased risk for depression. Thus, we hypothesize that psychiatric co-morbidities are higher in menopausal women with epilepsy as well. Design/Methods: Women with epilepsy admitted to the Cleveland Clinic Epilepsy Monitoring Unit were invited to participate. Subjects were interviewed by a psychiatrist or neurologist using the Mini-International Neuropsychiatry Interview (MINI), which is a validated and standardized psychiatric diagnostic interview. The study was IRB approved. Statistical analysis was descriptive as the study is on going. Results: Fifty five women with epilepsy participated. Subjects had a mean age of 39 year (19-67); 80% were Caucasian. Epilepsy classification includes temporal lobe (32%), extra temporal (23%), undefined focal epilepsy (36%), generalized (5%), and multifocal (2%). Average seizure frequency was 77 per 6 months and the average age of epilepsy onset was 24. In regards to AED, majority of patients were on polytherapy (84%). Based on MINI, 27% women met criteria for major depressive disorder (MDD), 9% generalized anxiety disorder (GAD), and 34.5% had suicidal ideation. Compared to premenopausal women, menopausal women experienced a higher prevalence of MDD (34.7% vs. 22%), GAD (13% vs. 6%), and suicide ideation (39% vs. 31%). Conclusions: This study suggests that menopausal women with epilepsy have a higher prevalence of MDD, GAD, and suicide ideation compared with premenopausal women. Further investigation on the psychiatric effects of menopause in this population is needed to increase awareness and enhance quality of patient care. Disclosure: Dr. Patel has nothing to disclose. Dr. Foldvary-Schaefer has received personal compensation for activities with Jazz Pharma and UCB Pharma. Dr. Foldvary-Schaefer has received research support from UCB Pharma, CleveMed, and Lundbeck. Dr. Jehi has nothing to disclose. Dr. Tesar has nothing to disclose. Dr. Viguera has nothing to disclose.",
-    "ai_takeaways": {
-      "conclusion_vi": "This study suggests that menopausal women with epilepsy have a higher prevalence of MDD, GAD, and suicide ideation compared with premenopausal women. Further investigation on the psychiatric effects of menopause in this population is needed to increase awareness and enhance quality of patient care.",
-      "clinical_significance": "Clinical significance for Epilepsy practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1212/wnl.78.1_meetingabstracts.p05.169",
-    "title": "The Fast Skeletal Troponin Activator, CK-2017357, Increases Muscle Function and Survival in SOD1 (G93A) Mice; a Model of ALS (P05.169)",
-    "journal": {
-      "name": "Neurology (AAN)",
-      "short_name": "Neurology",
-      "badge_bg": "#DCFCE7",
-      "badge_text": "#166534"
-    },
-    "pub_date": "2012-04-22T00:00:00Z",
-    "article_type": "Original Article",
-    "article_types": [
-      "Original Article"
-    ],
-    "authors": [
-      "Malik F.",
-      "Russell A.",
-      "Pannirselvam M.",
-      "Hinken A.",
-      "Thomsen K.",
-      "Ardiana A.",
-      "Godinez G.",
-      "Jia Z.",
-      "Saikali K.",
-      "Chen M.",
-      "Morgans D.",
-      "Jasper J."
-    ],
-    "doi_url": "https://doi.org/10.1212/wnl.78.1_meetingabstracts.p05.169",
-    "neurology_classification": {
-      "subspecialty": "Neuromuscular",
-      "subspecialties": [
-        "Neuromuscular"
-      ],
-      "topics": [
-        "Als",
-        "Amyotrophic lateral sclerosis"
-      ]
-    },
-    "abstract": "Objective: To examine the effects of CK-2017357 in a mouse model of ALS. Background: CK-2017357 is a small molecule activator of fast skeletal troponin that sensitizes the sarcomere to calcium and amplifies the muscle9s response to motor neuron input at sub-tetanic forces. Design/Methods: The potential effects of CK-2017357 were examined on muscle force, respiratory function and survival in SOD1 G93A mutant transgenic mice, a model of amyotrophic lateral sclerosis (ALS) in humans. Results: Extensor digitorum longus (EDL) muscle was stimulated via the peroneal nerve over a range of frequencies (10-200 Hz, 350 ms trains) to establish the force-frequency relationship. EDL tetanic force (26.3 ± 4.4 N/cm 2 ) was reduced by 44% ± 3.9% in 90-100 day-old SOD1 vs. WT and 66% ± 7.7% in 100-110 day-old SOD1 vs. WT, reflecting progressive loss of muscle force with disease progression. Infusion of CK-2017357 resulted in dose-dependent increases (mean ± SEM) in force at 30 Hz compared to baseline in WT (206% ± 29%), 90-100 day-old (200% ± 52%) and 100-110 day-old (153% ± 55%) SOD1 G93A mice. In female SOD1 G93A mice fed chow containing CK-2017357 (400 ppm) beginning at 11 weeks of age, animals survived to a humane endpoint longer compared to control chow-fed mice (p=0.024; hazard ratio=0.66). Body weight was similar in the two groups. There were no differences in respiratory parameters (breathing frequency, tidal volume and ventilation during hypercapnic challenge) in CK-2017357 chow-fed SOD1 G93A mice compared to WT mice. SOD1 G93A mice fed 400 ppm CK-2017357 chow exhibited a significant increase in hindlimb grip strength compared to control chow fed SOD1 G93A mice, while forelimb grip strength was not altered. Conclusions: CK-2017357 increased isometric in situ muscle force and hindlimb grip strength in SOD1 G93A mice and improved survival. These results indicate that CK-2017357 has the potential to improve muscle function in patients suffering from ALS. Supported by: Cytokinetics, Inc. Disclosure: Dr. Malik has received personal compensation for activities with Cytokinetics, Inc. Dr. Malik holds stock and/or stock options in Cytokinetics, Inc. Dr. Malik has received research support from Cytokinetics, Inc. Mr. Russell holds stock and/or stock options in Former Cytokinetics, Inc. which sponsored research in which Mr. Russell was involved as an investigator. Dr. Pannirselvam holds stock and/or stock options in Cytokinetics, Inc., which sponsored research in which Dr. Pannirselvam was involved as an investigator.Dr. Pannirselvam has received research support from Cytokinetics, Inc. Dr. Hinken holds stock and/or stock options in Cytokinetics, Inc., which sponsored research in which Dr. Hinken was involved as an investigator.Dr. Hinken has received research support from Cytokinetics, Inc. Dr. Thomsen holds stock and/or stock options in Cytokinetics, Inc., which sponsored research in which Dr. Thomsen was involved as an investigator. Dr. Thomsen has received research support from Cytokinetics, Inc. Dr. Ardiana holds stock and/or stock options in Cytokinetics, Inc., which sponsored research in which Dr. Ardiana was involved as an investigator. Dr. Ardiana has received research support from Cytokinetics, Inc. as an employee. Dr. Godinez holds stock and/or stock options in Cytokinetics, Inc., which sponsored research in which Dr. Godinez was involved as an investigator. Dr. Jia holds stock and/or stock options in Cytokinetics, Inc., which sponsored research in which Dr. Jia was involved as an investigator. Dr. Saikali holds stock and/or stock options in Cytokinetics, Inc. Dr. Saikali has received research support from Cytokinetics, Inc. Dr. Chen holds stock and/or stock options in Cytokinetics, Inc., which sponsored research in which Dr. Chen was involved as an investigator. Dr. Chen has received research support from Cytokinetics, Inc. Dr. Morgans holds stock and/or stock options in Cytokinetics, Inc. Dr. Morgans has received research support from Cytokinetics, Inc. Dr. Jasper holds stock and/or stock options in Cytokinetics, Inc., which sponsored research in which Dr. Jasper was involved as an investigator.Dr. Jasper has received research support from Cytokinetics, Inc..",
-    "ai_takeaways": {
-      "conclusion_vi": "CK-2017357 increased isometric in situ muscle force and hindlimb grip strength in SOD1 G93A mice and improved survival. These results indicate that CK-2017357 has the potential to improve muscle function in patients suffering from ALS.",
-      "clinical_significance": "Clinical significance for Neuromuscular practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1212/wnl.78.1_meetingabstracts.p07.205",
-    "title": "PEO1 Gene (Twinkle) Mutation and Multi-Organ Failure Following Propofol Infusion (P07.205)",
-    "journal": {
-      "name": "Neurology (AAN)",
-      "short_name": "Neurology",
-      "badge_bg": "#DCFCE7",
-      "badge_text": "#166534"
-    },
-    "pub_date": "2012-04-22T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Harrison R.",
-      "Valerio J.",
-      "Buffam F.",
-      "Mezei M."
-    ],
-    "doi_url": "https://doi.org/10.1212/wnl.78.1_meetingabstracts.p07.205",
     "neurology_classification": {
       "subspecialty": "Other",
       "subspecialties": [
