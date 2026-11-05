@@ -165,5 +165,44 @@
     "rejected_count": 0,
     "grading_system": "AHA_ACC",
     "updated_at": "2026-11-04T17:05:48.080858+00:00"
+  },
+  "guide-pmid-42817881": {
+    "guideline_id": "guide-pmid-42817881",
+    "title": "Impact of Undertreated Antithrombotic Therapy on Adverse Patient Outcomes: A Scientific Statement From the American Heart Association",
+    "society": "AHA/ASA",
+    "year": 2026,
+    "latest_version": 1,
+    "total_recommendations": 3,
+    "pending_count": 3,
+    "approved_count": 0,
+    "rejected_count": 0,
+    "grading_system": "AHA_ACC",
+    "updated_at": "2026-11-04T20:42:24.200949+00:00"
+  },
+  "guide-pmid-42473796": {
+    "guideline_id": "guide-pmid-42473796",
+    "title": "Caffeine and Cardiovascular Disease: A Scientific Statement From the American Heart Association",
+    "society": "AHA/ASA",
+    "year": 2026,
+    "latest_version": 1,
+    "total_recommendations": 4,
+    "pending_count": 4,
+    "approved_count": 0,
+    "rejected_count": 0,
+    "grading_system": "AHA_ACC",
+    "updated_at": "2026-11-04T20:42:32.576343+00:00"
+  },
+  "guide-pmid-42095755": {
+    "guideline_id": "guide-pmid-42095755",
+    "title": "European stroke organisation guideline on stroke-associated pneumonia",
+    "society": "ESO",
+    "year": 2026,
+    "latest_version": 1,
+    "total_recommendations": 4,
+    "pending_count": 4,
+    "approved_count": 0,
+    "rejected_count": 0,
+    "grading_system": "GRADE_ESO",
+    "updated_at": "2026-11-04T20:42:45.585664+00:00"
   }
 }
