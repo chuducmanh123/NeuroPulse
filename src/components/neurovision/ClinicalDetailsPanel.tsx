@@ -106,8 +106,8 @@ export default function ClinicalDetailsPanel() {
               </div>
             </div>
 
-            {/* 3. Brodmann & Functions (Ẩn khi xem HCP Glasser do đã có khung HCP-MMP chuyên biệt) */}
-            {!selectedRegion.hcp_metrics && (selectedRegion.brodmann_area?.length > 0 || selectedRegion.functions?.length > 0) && (
+            {/* 3. Brodmann & Functions (Ẩn khi xem HCP Glasser hoặc Brainnetome do đã có khung chuyên biệt) */}
+            {!selectedRegion.hcp_metrics && !selectedRegion.brainnetome_metrics && (selectedRegion.brodmann_area?.length > 0 || selectedRegion.functions?.length > 0) && (
               <div className="bg-slate-950/40 p-3 rounded-xl border border-slate-800/80 space-y-2">
                 <h4 className="text-[11px] font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
                   <svg className="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -209,9 +209,6 @@ export default function ClinicalDetailsPanel() {
                     <span className="w-2 h-2 rounded-full bg-indigo-400"></span>
                     Brainnetome Atlas (BNA 2016)
                   </h4>
-                  <span className="text-[9px] px-1.5 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800 font-mono">
-                    246 Subregions
-                  </span>
                 </div>
 
                 {/* Lobe & Gyrus */}

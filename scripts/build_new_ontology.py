@@ -249,11 +249,7 @@ for i in range(1, 247):
         "name_en": f"{m['cyto']} ({m['hemisphere']})",
         "category": cat,
         "brodmann_area": [m['cyto'].split(',')[0].strip()] if m['cyto'].startswith('A') else [],
-        "functions": [
-            f"Vùng giải phẫu: {m['lobe']} - {m['gyrus']}",
-            f"Mạng chức năng Yeo: {pretty_net} (tương đồng {yeo_info['pct']}%)",
-            f"Hành vi nổi trội: {', '.join(d_prof['subdomains'][:3])}"
-        ],
+        "functions": [],
         "arterial_supply": {
             "primary": ["Động mạch não chi phối theo thùy"],
             "perforators": []
@@ -262,8 +258,8 @@ for i in range(1, 247):
         "aspects_zone": None,
         "clinical_syndromes": [
             {
-                "name": f"Tổn thương {m['code']} ({hemi_vi})",
-                "description": f"Liên quan đến mạng {pretty_net} thuộc {m['gyrus']}. Tổn thương ảnh hưởng khả năng: {', '.join(d_prof['subdomains'])}."
+                "name": "",
+                "description": "Tổn thương có thể gây ảnh hưởng chức năng sinh lý thần kinh liên quan."
             }
         ],
         "evidence_level": "atlas_direct",
