@@ -136,6 +136,189 @@ export default function ClinicalDetailsPanel() {
               </div>
             )}
 
+            {/* 3B. HCP Glasser 2016 Dedicated Characterization */}
+            {selectedRegion.hcp_metrics && (
+              <div className="bg-slate-950/60 p-3.5 rounded-xl border border-teal-800/60 space-y-3">
+                <div className="flex items-center justify-between gap-1">
+                  <h4 className="text-[11px] font-bold uppercase tracking-wider text-teal-400 flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-teal-400"></span>
+                    Hồ sơ Đa phương thức Glasser 2016 (HCP-MMP1.0)
+                  </h4>
+                  <span className="text-[9px] px-1.5 py-0.5 rounded bg-teal-950 text-teal-300 border border-teal-800 font-mono">
+                    Nature 2016
+                  </span>
+                </div>
+
+                {/* Macro-Region */}
+                <div className="text-[11px] bg-slate-900/90 p-2 rounded-lg border border-slate-800">
+                  <span className="text-slate-400 font-medium">Khu vực vĩ mô: </span>
+                  <span className="text-teal-200 font-semibold">{selectedRegion.hcp_metrics.macro_region}</span>
+                </div>
+
+                {/* Synonyms */}
+                {selectedRegion.hcp_metrics.synonyms?.length > 0 && (
+                  <div>
+                    <span className="text-[10px] text-slate-400 block mb-1">Từ đồng nghĩa y văn:</span>
+                    <div className="flex flex-wrap gap-1">
+                      {selectedRegion.hcp_metrics.synonyms.map((syn, sIdx) => (
+                        <span key={sIdx} className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700 font-mono text-[10px]">
+                          {syn}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Microstructure Metrics Grid: Myelin & Thickness */}
+                <div className="grid grid-cols-2 gap-2 text-[10.5px]">
+                  <div className="bg-slate-900/90 p-2 rounded-lg border border-slate-800/80 space-y-1">
+                    <span className="text-slate-400 block text-[9.5px]">Mật độ Myelin vỏ não:</span>
+                    <span className="text-amber-300 font-semibold block">{selectedRegion.hcp_metrics.myelin_profile}</span>
+                  </div>
+                  <div className="bg-slate-900/90 p-2 rounded-lg border border-slate-800/80 space-y-1">
+                    <span className="text-slate-400 block text-[9.5px]">Độ dày vỏ não:</span>
+                    <span className="text-sky-300 font-semibold block">{selectedRegion.hcp_metrics.cortical_thickness}</span>
+                  </div>
+                </div>
+
+                {/* Task fMRI Activations */}
+                {selectedRegion.hcp_metrics.task_contrasts?.length > 0 && (
+                  <div className="space-y-1">
+                    <span className="text-[10px] text-slate-400 block">Kích hoạt tác vụ tâm lý - nhận thức (Task-fMRI):</span>
+                    <div className="flex flex-wrap gap-1">
+                      {selectedRegion.hcp_metrics.task_contrasts.map((tc, tcIdx) => (
+                        <span key={tcIdx} className="px-2 py-0.5 rounded bg-purple-950/80 text-purple-300 border border-purple-800/70 font-mono text-[10px] font-medium">
+                          ⚡ {tc}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Original Quote from Nature 2016 Supplementary Results */}
+                {selectedRegion.hcp_metrics.original_profile && (
+                  <div className="bg-slate-900/80 p-2.5 rounded-lg border-l-2 border-l-teal-500 border-slate-800/80 text-[10.5px] italic text-slate-300 leading-relaxed">
+                    &ldquo;{selectedRegion.hcp_metrics.original_profile}&rdquo;
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* 3C. Brainnetome Atlas Dedicated Connectivity & Behavior */}
+            {selectedRegion.brainnetome_metrics && (
+              <div className="bg-slate-950/60 p-3.5 rounded-xl border border-indigo-800/60 space-y-3">
+                <div className="flex items-center justify-between gap-1">
+                  <h4 className="text-[11px] font-bold uppercase tracking-wider text-indigo-400 flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-indigo-400"></span>
+                    Brainnetome Atlas (BNA 2016)
+                  </h4>
+                  <span className="text-[9px] px-1.5 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800 font-mono">
+                    246 Subregions
+                  </span>
+                </div>
+
+                {/* Lobe & Gyrus */}
+                <div className="text-[11px] bg-slate-900/90 p-2 rounded-lg border border-slate-800">
+                  <span className="text-slate-400">Vùng cấu trúc: </span>
+                  <span className="text-slate-200 font-semibold">{selectedRegion.brainnetome_metrics.lobe} &bull; {selectedRegion.brainnetome_metrics.gyrus}</span>
+                </div>
+
+                {/* Yeo 7 Network Badge */}
+                <div className="bg-slate-900/90 p-2.5 rounded-lg border border-slate-800/90 space-y-1">
+                  <span className="text-[10px] text-slate-400 block">Ánh xạ mạng chức năng kinh điển (Yeo 7 Networks):</span>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="px-2 py-0.5 rounded bg-rose-950/80 text-rose-300 border border-rose-800 text-[11px] font-bold">
+                      🌐 {selectedRegion.brainnetome_metrics.yeo_network_7}
+                    </span>
+                    <span className="text-[10px] font-mono text-slate-400">
+                      Khớp: {selectedRegion.brainnetome_metrics.yeo_network_overlap_pct}%
+                    </span>
+                  </div>
+                </div>
+
+                {/* Behavioral Domains Stacked Progress Bar (BrainMap) */}
+                {selectedRegion.brainnetome_metrics.behavioral_domains && (
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between text-[10px]">
+                      <span className="text-slate-400 font-medium">Ma trận xác suất hành vi (BrainMap Domains):</span>
+                    </div>
+
+                    {/* Stacked bar */}
+                    <div className="h-2.5 w-full bg-slate-800 rounded-full overflow-hidden flex shadow-inner">
+                      <div
+                        style={{ width: `${selectedRegion.brainnetome_metrics.behavioral_domains.cognition}%` }}
+                        className="bg-sky-500 h-full"
+                        title={`Nhận thức: ${selectedRegion.brainnetome_metrics.behavioral_domains.cognition}%`}
+                      />
+                      <div
+                        style={{ width: `${selectedRegion.brainnetome_metrics.behavioral_domains.action}%` }}
+                        className="bg-amber-500 h-full"
+                        title={`Vận động: ${selectedRegion.brainnetome_metrics.behavioral_domains.action}%`}
+                      />
+                      <div
+                        style={{ width: `${selectedRegion.brainnetome_metrics.behavioral_domains.perception}%` }}
+                        className="bg-emerald-500 h-full"
+                        title={`Cảm giác: ${selectedRegion.brainnetome_metrics.behavioral_domains.perception}%`}
+                      />
+                      <div
+                        style={{ width: `${selectedRegion.brainnetome_metrics.behavioral_domains.emotion}%` }}
+                        className="bg-rose-500 h-full"
+                        title={`Cảm xúc: ${selectedRegion.brainnetome_metrics.behavioral_domains.emotion}%`}
+                      />
+                      <div
+                        style={{ width: `${selectedRegion.brainnetome_metrics.behavioral_domains.interoception}%` }}
+                        className="bg-purple-500 h-full"
+                        title={`Nội quan: ${selectedRegion.brainnetome_metrics.behavioral_domains.interoception}%`}
+                      />
+                    </div>
+
+                    {/* Legend grid */}
+                    <div className="grid grid-cols-2 gap-1 text-[10px] pt-1">
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-sky-500"></span>
+                        <span className="text-slate-400">Nhận thức:</span>
+                        <span className="font-semibold text-slate-200">{selectedRegion.brainnetome_metrics.behavioral_domains.cognition}%</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-amber-500"></span>
+                        <span className="text-slate-400">Vận động:</span>
+                        <span className="font-semibold text-slate-200">{selectedRegion.brainnetome_metrics.behavioral_domains.action}%</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                        <span className="text-slate-400">Cảm giác:</span>
+                        <span className="font-semibold text-slate-200">{selectedRegion.brainnetome_metrics.behavioral_domains.perception}%</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-rose-500"></span>
+                        <span className="text-slate-400">Cảm xúc:</span>
+                        <span className="font-semibold text-slate-200">{selectedRegion.brainnetome_metrics.behavioral_domains.emotion}%</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-purple-500"></span>
+                        <span className="text-slate-400">Nội quan:</span>
+                        <span className="font-semibold text-slate-200">{selectedRegion.brainnetome_metrics.behavioral_domains.interoception}%</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Primary Subdomains */}
+                {selectedRegion.brainnetome_metrics.primary_subdomains?.length > 0 && (
+                  <div className="space-y-1">
+                    <span className="text-[10px] text-slate-400 block">Tiểu miền chức năng liên quan cao nhất:</span>
+                    <div className="flex flex-wrap gap-1">
+                      {selectedRegion.brainnetome_metrics.primary_subdomains.map((sub, sIdx) => (
+                        <span key={sIdx} className="px-2 py-0.5 rounded bg-indigo-950/70 text-indigo-300 border border-indigo-800/60 font-mono text-[9.5px]">
+                          {sub}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
             {/* 4. Clinical Syndromes */}
             {selectedRegion.clinical_syndromes?.length > 0 && (
               <div className="bg-slate-950/40 p-3 rounded-xl border border-slate-800/80 space-y-2">

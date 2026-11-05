@@ -65,6 +65,20 @@ This file is not legal advice. Items marked **ACTION** need a human decision bef
 - Cite: Bazin PL, Weiss M, Dinse J, et al. VENAT: A digital venous neuroanatomy atlas of the human brain. (2018). Figshare dataset, doi:10.6084/m9.figshare.7205960.
 - Features: Continuous probability density map derived from high-field 7 Tesla Quantitative Susceptibility Mapping (QSM), with 3D reconstruction of the Superior Sagittal Sinus, Straight Sinus, Transverse Sinuses, and Sigmoid Sinuses.
 
+### 11. Human Connectome Project Multi-Modal Parcellation (HCP-MMP1.0 / Glasser 2016) – `atlases/glasser`
+- Source: Washington University in St. Louis & Human Connectome Project (HCP), WU-Minn Consortium; BALSA database (`balsa.wustl.edu/study/show/RVVG`).
+- Licence: **HCP Open Access Data Use Terms** (Open access data may be freely used for research and educational applications). Redistribution permitted with attribution and retention of data terms; no re-identification attempts. Commercial use is permitted under HCP terms provided that NIH/HCP endorsement is not implied.
+- Cite: Glasser, M. F., Coalson, T. S., Robinson, E. C., Hacker, C. D., Harwell, J., Yacoub, E., Ugurbil, K., Andersson, J., Beckmann, C. F., Jenkinson, M., Smith, S. M., & Van Essen, D. C. (2016). *A multi-modal parcellation of human cerebral cortex*. Nature, 536(7615), 171–178. doi:10.1038/nature18933.
+- Required Acknowledgement: "Data were provided [in part] by the Human Connectome Project, WU-Minn Consortium (Principal Investigators: David Van Essen and Kamil Ugurbil; 1U54MH091657) funded by the 16 NIH Institutes and Centers that support the NIH Blueprint for Neuroscience Research; and by the McDonnell Center for Systems Neuroscience at Washington University."
+- Features: 360 cortical areas (180 per hemisphere) parcellated using multi-modal alignment (cortical myelin maps, cortical thickness, resting-state fMRI, and 7 task-fMRI functional protocols across 22 macro-regions).
+
+### 12. Human Brainnetome Atlas (BNA) – `atlases/brainnetome`
+- Source: Brainnetome Center, Institute of Automation, Chinese Academy of Sciences (CASIA) (`atlas.brainnetome.org`).
+- Licence: **Brainnetome Terms of Use (Free for Non-Commercial Academic & Educational Use)**. Any commercial deployment, inclusion in proprietary diagnostic software, or redistribution for direct financial return requires prior formal written agreement from the Brainnetome Center, CASIA.
+- Cite: Fan, L., Li, H., Zhuo, J., Zhang, Y., Wang, M., Chen, L., Yang, Z., Chu, C., Xie, S., Yuan, L., Zou, Y., Shen, S., Caspers, S., Amunts, K., Zilles, K., & Jiang, T. (2016). *The Human Brainnetome Atlas: A New Brain Atlas Based on Connectional Architecture*. Cerebral Cortex, 26(8), 3508–3526. doi:10.1093/cercor/bhw157.
+- Also cite Yeo 7/17 Networks (for functional mapping): Yeo, B. T., et al. (2011). *The organization of the human cerebral cortex estimated by intrinsic functional connectivity*. Journal of Neurophysiology, 106(3), 1125–1165. doi:10.1152/jn.00338.2011.
+- Features: 246 subregions (210 cortical, 36 subcortical) with cross-validation in tractography connectional architecture, BrainMap behavioral domain probability distributions, and canonical resting-state network mapping.
+
 ## Not shipped (no verified source/licence; nothing substituted)
 | Item | Reason |
 |---|---|

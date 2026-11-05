@@ -1,0 +1,4911 @@
+{
+  "atlas": "glasser",
+  "space": "MNI152NLin2009cAsym",
+  "source": "Human Connectome Project Multi-Modal Parcellation (HCP-MMP1.0), Glasser et al. 2016 Nature",
+  "license": "HCP Open Access Data Use Terms",
+  "review_status": "unreviewed",
+  "labels": [
+    {
+      "index": 1,
+      "name": "V1_R - Primary Visual Cortex (Right)",
+      "code": "V1_R",
+      "area_code": "V1",
+      "hemisphere": "Right",
+      "macro_region": "Region 1: Primary Visual Cortex (V1)",
+      "synonyms": [
+        "17",
+        "hOC1",
+        "OC",
+        "BA17"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 2,
+      "name": "MST_R - Medial Superior Temporal Area (Right)",
+      "code": "MST_R",
+      "area_code": "MST",
+      "hemisphere": "Right",
+      "macro_region": "Region 5: MT+ Complex and Neighboring Visual Areas",
+      "synonyms": [
+        "MSTv",
+        "hOC5",
+        "hOC5v"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 3,
+      "name": "V6_R - Sixth Visual Area (Right)",
+      "code": "V6_R",
+      "area_code": "V6",
+      "hemisphere": "Right",
+      "macro_region": "Region 3: Dorsal Stream Visual Cortex",
+      "synonyms": [
+        "112"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 4,
+      "name": "V2_R - Second Visual Area (Right)",
+      "code": "V2_R",
+      "area_code": "V2",
+      "hemisphere": "Right",
+      "macro_region": "Region 2: Early Visual Cortex (V2, V3, V4)",
+      "synonyms": [
+        "18",
+        "hOC2",
+        "OB",
+        "BA18"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 5,
+      "name": "V3_R - Third Visual Area (Right)",
+      "code": "V3_R",
+      "area_code": "V3",
+      "hemisphere": "Right",
+      "macro_region": "Region 2: Early Visual Cortex (V2, V3, V4)",
+      "synonyms": [
+        "V3d",
+        "V3v",
+        "VP",
+        "hOC3d",
+        "hOC3v"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 6,
+      "name": "V4_R - Fourth Visual Area (Right)",
+      "code": "V4_R",
+      "area_code": "V4",
+      "hemisphere": "Right",
+      "macro_region": "Region 2: Early Visual Cortex (V2, V3, V4)",
+      "synonyms": [
+        "V4d",
+        "V4v",
+        "hV4",
+        "hOC4v",
+        "hOC4lp"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 7,
+      "name": "V8_R - Eighth Visual Area (Right)",
+      "code": "V8_R",
+      "area_code": "V8",
+      "hemisphere": "Right",
+      "macro_region": "Region 4: Ventral Stream Visual Cortex",
+      "synonyms": [
+        "VO1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 8,
+      "name": "4_R - Primary Motor Cortex (M1) (Right)",
+      "code": "4_R",
+      "area_code": "4",
+      "hemisphere": "Right",
+      "macro_region": "Region 6: Somatosensory and Motor Cortex",
+      "synonyms": [
+        "BA4",
+        "4a",
+        "4p",
+        "PMC",
+        "F1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 9,
+      "name": "3b_R - Primary Sensory Cortex (S1) (Right)",
+      "code": "3b_R",
+      "area_code": "3b",
+      "hemisphere": "Right",
+      "macro_region": "Region 6: Somatosensory and Motor Cortex",
+      "synonyms": [
+        "S1",
+        "3"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 10,
+      "name": "FEF_R - Frontal Eye Field (Right)",
+      "code": "FEF_R",
+      "area_code": "FEF",
+      "hemisphere": "Right",
+      "macro_region": "Region 8: Premotor Cortex",
+      "synonyms": [
+        "FEF",
+        "6"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 11,
+      "name": "PEF_R - Premotor Eye Field (Right)",
+      "code": "PEF_R",
+      "area_code": "PEF",
+      "hemisphere": "Right",
+      "macro_region": "Region 8: Premotor Cortex",
+      "synonyms": [
+        "6v2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 12,
+      "name": "55b_R - Area 55b (Right)",
+      "code": "55b_R",
+      "area_code": "55b",
+      "hemisphere": "Right",
+      "macro_region": "Region 8: Premotor Cortex",
+      "synonyms": [
+        "55b"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 13,
+      "name": "V3A_R - Area V3A (Right)",
+      "code": "V3A_R",
+      "area_code": "V3A",
+      "hemisphere": "Right",
+      "macro_region": "Region 3: Dorsal Stream Visual Cortex",
+      "synonyms": [
+        "V3D",
+        "hOC4d"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 14,
+      "name": "RSC_R - RetroSplenial Complex (Right)",
+      "code": "RSC_R",
+      "area_code": "RSC",
+      "hemisphere": "Right",
+      "macro_region": "Region 18: Posterior Cingulate Cortex",
+      "synonyms": [
+        "29",
+        "30"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 15,
+      "name": "POS2_R - Parieto-Occipital Sulcus Area 2 (Right)",
+      "code": "POS2_R",
+      "area_code": "POS2",
+      "hemisphere": "Right",
+      "macro_region": "Region 18: Posterior Cingulate Cortex",
+      "synonyms": [
+        "POS2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 16,
+      "name": "V7_R - Seventh Visual Area (Right)",
+      "code": "V7_R",
+      "area_code": "V7",
+      "hemisphere": "Right",
+      "macro_region": "Region 3: Dorsal Stream Visual Cortex",
+      "synonyms": [
+        "IPS0"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 17,
+      "name": "IPS1_R - IntraParietal Sulcus Area 1 (Right)",
+      "code": "IPS1_R",
+      "area_code": "IPS1",
+      "hemisphere": "Right",
+      "macro_region": "Region 3: Dorsal Stream Visual Cortex",
+      "synonyms": [
+        "IPS1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 18,
+      "name": "FFC_R - Fusiform Face Complex (Right)",
+      "code": "FFC_R",
+      "area_code": "FFC",
+      "hemisphere": "Right",
+      "macro_region": "Region 4: Ventral Stream Visual Cortex",
+      "synonyms": [
+        "FFA",
+        "FG2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 19,
+      "name": "V3B_R - Area V3B (Right)",
+      "code": "V3B_R",
+      "area_code": "V3B",
+      "hemisphere": "Right",
+      "macro_region": "Region 3: Dorsal Stream Visual Cortex",
+      "synonyms": [
+        "V3C"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 20,
+      "name": "LO1_R - Area Lateral Occipital 1 (Right)",
+      "code": "LO1_R",
+      "area_code": "LO1",
+      "hemisphere": "Right",
+      "macro_region": "Region 5: MT+ Complex and Neighboring Visual Areas",
+      "synonyms": [
+        "LO2",
+        "hOC4la"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 21,
+      "name": "LO2_R - Area Lateral Occipital 2 (Right)",
+      "code": "LO2_R",
+      "area_code": "LO2",
+      "hemisphere": "Right",
+      "macro_region": "Region 5: MT+ Complex and Neighboring Visual Areas",
+      "synonyms": [
+        "LO1",
+        "hOC4la"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 22,
+      "name": "PIT_R - Posterior InferoTemporal Complex (Right)",
+      "code": "PIT_R",
+      "area_code": "PIT",
+      "hemisphere": "Right",
+      "macro_region": "Region 4: Ventral Stream Visual Cortex",
+      "synonyms": [
+        "phPITv",
+        "phPITd",
+        "OFA",
+        "hOC4la"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 23,
+      "name": "MT_R - Middle Temporal Area (Right)",
+      "code": "MT_R",
+      "area_code": "MT",
+      "hemisphere": "Right",
+      "macro_region": "Region 5: MT+ Complex and Neighboring Visual Areas",
+      "synonyms": [
+        "hOC5",
+        "hOC5d",
+        "V5"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 24,
+      "name": "A1_R - Primary Auditory Cortex (Right)",
+      "code": "A1_R",
+      "area_code": "A1",
+      "hemisphere": "Right",
+      "macro_region": "Region 10: Early Auditory Cortex",
+      "synonyms": [
+        "Core",
+        "TC",
+        "TE1.0",
+        "TE1.1",
+        "41"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 25,
+      "name": "PSL_R - PeriSylvian Language Area (Right)",
+      "code": "PSL_R",
+      "area_code": "PSL",
+      "hemisphere": "Right",
+      "macro_region": "Region 15: Temporo-Parieto-Occipital Junction (TPOJ)",
+      "synonyms": [
+        "PSL"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 26,
+      "name": "SFL_R - Superior Frontal Language Area (Right)",
+      "code": "SFL_R",
+      "area_code": "SFL",
+      "hemisphere": "Right",
+      "macro_region": "Region 22: Dorsolateral Prefrontal Cortex (DLPFC)",
+      "synonyms": [
+        "SFL"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 27,
+      "name": "PCV_R - PreCuneus Visual Area (Right)",
+      "code": "PCV_R",
+      "area_code": "PCV",
+      "hemisphere": "Right",
+      "macro_region": "Region 18: Posterior Cingulate Cortex",
+      "synonyms": [
+        "PrCu"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 28,
+      "name": "STV_R - Superior Temporal Visual Area (Right)",
+      "code": "STV_R",
+      "area_code": "STV",
+      "hemisphere": "Right",
+      "macro_region": "Region 15: Temporo-Parieto-Occipital Junction (TPOJ)",
+      "synonyms": [
+        "STV"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 29,
+      "name": "7Pm_R - Medial Area 7P (Right)",
+      "code": "7Pm_R",
+      "area_code": "7Pm",
+      "hemisphere": "Right",
+      "macro_region": "Region 16: Superior Parietal Cortex",
+      "synonyms": [
+        "7P"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 30,
+      "name": "7m_R - Area 7m (Right)",
+      "code": "7m_R",
+      "area_code": "7m",
+      "hemisphere": "Right",
+      "macro_region": "Region 18: Posterior Cingulate Cortex",
+      "synonyms": [
+        "7m"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 31,
+      "name": "POS1_R - Parieto-Occipital Sulcus Area 1 (Right)",
+      "code": "POS1_R",
+      "area_code": "POS1",
+      "hemisphere": "Right",
+      "macro_region": "Region 18: Posterior Cingulate Cortex",
+      "synonyms": [
+        "Retrosplenial scene area"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 32,
+      "name": "23d_R - Area 23d (Right)",
+      "code": "23d_R",
+      "area_code": "23d",
+      "hemisphere": "Right",
+      "macro_region": "Region 18: Posterior Cingulate Cortex",
+      "synonyms": [
+        "23d"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 33,
+      "name": "v23ab_R - Area Ventral 23 a+b (Right)",
+      "code": "v23ab_R",
+      "area_code": "v23ab",
+      "hemisphere": "Right",
+      "macro_region": "Region 18: Posterior Cingulate Cortex",
+      "synonyms": [
+        "23a",
+        "23b",
+        "v23"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 34,
+      "name": "d23ab_R - Area Dorsal 23 a+b (Right)",
+      "code": "d23ab_R",
+      "area_code": "d23ab",
+      "hemisphere": "Right",
+      "macro_region": "Region 18: Posterior Cingulate Cortex",
+      "synonyms": [
+        "23a",
+        "23b",
+        "d23"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 35,
+      "name": "31pv_R - Area 31p Ventral (Right)",
+      "code": "31pv_R",
+      "area_code": "31pv",
+      "hemisphere": "Right",
+      "macro_region": "Region 18: Posterior Cingulate Cortex",
+      "synonyms": [
+        "31",
+        "31v"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 36,
+      "name": "5m_R - Area 5m (Right)",
+      "code": "5m_R",
+      "area_code": "5m",
+      "hemisphere": "Right",
+      "macro_region": "Region 7: Paracentral Lobular and Mid-Cingulate Cortex",
+      "synonyms": [
+        "5m"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 37,
+      "name": "5mv_R - Area 5m ventral (Right)",
+      "code": "5mv_R",
+      "area_code": "5mv",
+      "hemisphere": "Right",
+      "macro_region": "Region 7: Paracentral Lobular and Mid-Cingulate Cortex",
+      "synonyms": [
+        "5ci"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 38,
+      "name": "23c_R - Area 23c (Right)",
+      "code": "23c_R",
+      "area_code": "23c",
+      "hemisphere": "Right",
+      "macro_region": "Region 18: Posterior Cingulate Cortex",
+      "synonyms": [
+        "23c"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 39,
+      "name": "5L_R - Area 5L (Right)",
+      "code": "5L_R",
+      "area_code": "5L",
+      "hemisphere": "Right",
+      "macro_region": "Region 7: Paracentral Lobular and Mid-Cingulate Cortex",
+      "synonyms": [
+        "5L"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 40,
+      "name": "24dd_R - Dorsal Area 24d (Cingulate Motor) (Right)",
+      "code": "24dd_R",
+      "area_code": "24dd",
+      "hemisphere": "Right",
+      "macro_region": "Region 7: Paracentral Lobular and Mid-Cingulate Cortex",
+      "synonyms": [
+        "24d"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 41,
+      "name": "24dv_R - Ventral Area 24d (Cingulate Motor) (Right)",
+      "code": "24dv_R",
+      "area_code": "24dv",
+      "hemisphere": "Right",
+      "macro_region": "Region 7: Paracentral Lobular and Mid-Cingulate Cortex",
+      "synonyms": [
+        "24d"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 42,
+      "name": "7AL_R - Lateral Area 7A (Right)",
+      "code": "7AL_R",
+      "area_code": "7AL",
+      "hemisphere": "Right",
+      "macro_region": "Region 16: Superior Parietal Cortex",
+      "synonyms": [
+        "7A"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 43,
+      "name": "SCEF_R - Supplementary and Cingulate Eye Field (Right)",
+      "code": "SCEF_R",
+      "area_code": "SCEF",
+      "hemisphere": "Right",
+      "macro_region": "Region 7: Paracentral Lobular and Mid-Cingulate Cortex",
+      "synonyms": [
+        "SEF",
+        "CEF",
+        "6",
+        "SMAr"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 44,
+      "name": "6ma_R - Area 6m anterior (pre-SMA) (Right)",
+      "code": "6ma_R",
+      "area_code": "6ma",
+      "hemisphere": "Right",
+      "macro_region": "Region 7: Paracentral Lobular and Mid-Cingulate Cortex",
+      "synonyms": [
+        "SMAr",
+        "6",
+        "SMA"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 45,
+      "name": "7Am_R - Medial Area 7A (Right)",
+      "code": "7Am_R",
+      "area_code": "7Am",
+      "hemisphere": "Right",
+      "macro_region": "Region 16: Superior Parietal Cortex",
+      "synonyms": [
+        "7A"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 46,
+      "name": "7PL_R - Lateral Area 7P (Right)",
+      "code": "7PL_R",
+      "area_code": "7PL",
+      "hemisphere": "Right",
+      "macro_region": "Region 16: Superior Parietal Cortex",
+      "synonyms": [
+        "7P"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 47,
+      "name": "7PC_R - Area 7PC (Right)",
+      "code": "7PC_R",
+      "area_code": "7PC",
+      "hemisphere": "Right",
+      "macro_region": "Region 16: Superior Parietal Cortex",
+      "synonyms": [
+        "7PC"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 48,
+      "name": "LIPv_R - Lateral IntraParietal Ventral Area (Right)",
+      "code": "LIPv_R",
+      "area_code": "LIPv",
+      "hemisphere": "Right",
+      "macro_region": "Region 16: Superior Parietal Cortex",
+      "synonyms": [
+        "hIP3",
+        "LIPv"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 49,
+      "name": "VIP_R - Ventral IntraParietal Complex (Right)",
+      "code": "VIP_R",
+      "area_code": "VIP",
+      "hemisphere": "Right",
+      "macro_region": "Region 16: Superior Parietal Cortex",
+      "synonyms": [
+        "VIP"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 50,
+      "name": "MIP_R - Medial IntraParietal Area (Right)",
+      "code": "MIP_R",
+      "area_code": "MIP",
+      "hemisphere": "Right",
+      "macro_region": "Region 16: Superior Parietal Cortex",
+      "synonyms": [
+        "MIP"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 51,
+      "name": "1_R - Area 1 (Right)",
+      "code": "1_R",
+      "area_code": "1",
+      "hemisphere": "Right",
+      "macro_region": "Region 6: Somatosensory and Motor Cortex",
+      "synonyms": [
+        "BA1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 52,
+      "name": "2_R - Area 2 (Right)",
+      "code": "2_R",
+      "area_code": "2",
+      "hemisphere": "Right",
+      "macro_region": "Region 6: Somatosensory and Motor Cortex",
+      "synonyms": [
+        "BA2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 53,
+      "name": "3a_R - Area 3a (Right)",
+      "code": "3a_R",
+      "area_code": "3a",
+      "hemisphere": "Right",
+      "macro_region": "Region 6: Somatosensory and Motor Cortex",
+      "synonyms": [
+        "S1",
+        "3"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 54,
+      "name": "6d_R - Dorsal Area 6 (Right)",
+      "code": "6d_R",
+      "area_code": "6d",
+      "hemisphere": "Right",
+      "macro_region": "Region 8: Premotor Cortex",
+      "synonyms": [
+        "6",
+        "6a-alpha"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 55,
+      "name": "6mp_R - Area 6mp (SMA proper) (Right)",
+      "code": "6mp_R",
+      "area_code": "6mp",
+      "hemisphere": "Right",
+      "macro_region": "Region 7: Paracentral Lobular and Mid-Cingulate Cortex",
+      "synonyms": [
+        "SMAc",
+        "6",
+        "SMA"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 56,
+      "name": "6v_R - Ventral Area 6 (Right)",
+      "code": "6v_R",
+      "area_code": "6v",
+      "hemisphere": "Right",
+      "macro_region": "Region 8: Premotor Cortex",
+      "synonyms": [
+        "6",
+        "6v1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 57,
+      "name": "p24pr_R - Area p24 Prime (Right)",
+      "code": "p24pr_R",
+      "area_code": "p24pr",
+      "hemisphere": "Right",
+      "macro_region": "Region 19: Anterior Cingulate and Medial Prefrontal Cortex",
+      "synonyms": [
+        "p24'"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 58,
+      "name": "33pr_R - Area 33 Prime (Right)",
+      "code": "33pr_R",
+      "area_code": "33pr",
+      "hemisphere": "Right",
+      "macro_region": "Region 19: Anterior Cingulate and Medial Prefrontal Cortex",
+      "synonyms": [
+        "33'",
+        "16"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 59,
+      "name": "a24pr_R - Area a24 Prime (Right)",
+      "code": "a24pr_R",
+      "area_code": "a24pr",
+      "hemisphere": "Right",
+      "macro_region": "Region 19: Anterior Cingulate and Medial Prefrontal Cortex",
+      "synonyms": [
+        "a24'"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 60,
+      "name": "p32pr_R - Area p32 Prime (Right)",
+      "code": "p32pr_R",
+      "area_code": "p32pr",
+      "hemisphere": "Right",
+      "macro_region": "Region 19: Anterior Cingulate and Medial Prefrontal Cortex",
+      "synonyms": [
+        "32'"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 61,
+      "name": "a24_R - Area Anterior 24 (Right)",
+      "code": "a24_R",
+      "area_code": "a24",
+      "hemisphere": "Right",
+      "macro_region": "Region 19: Anterior Cingulate and Medial Prefrontal Cortex",
+      "synonyms": [
+        "24",
+        "s24"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 62,
+      "name": "d32_R - Area Dorsal 32 (Right)",
+      "code": "d32_R",
+      "area_code": "d32",
+      "hemisphere": "Right",
+      "macro_region": "Region 19: Anterior Cingulate and Medial Prefrontal Cortex",
+      "synonyms": [
+        "32"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 63,
+      "name": "8BM_R - Area 8BM (Right)",
+      "code": "8BM_R",
+      "area_code": "8BM",
+      "hemisphere": "Right",
+      "macro_region": "Region 19: Anterior Cingulate and Medial Prefrontal Cortex",
+      "synonyms": [
+        "8B"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 64,
+      "name": "p32_R - Area Posterior 32 (Right)",
+      "code": "p32_R",
+      "area_code": "p32",
+      "hemisphere": "Right",
+      "macro_region": "Region 19: Anterior Cingulate and Medial Prefrontal Cortex",
+      "synonyms": [
+        "32ac",
+        "32"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 65,
+      "name": "10r_R - Area 10 Rostral (Right)",
+      "code": "10r_R",
+      "area_code": "10r",
+      "hemisphere": "Right",
+      "macro_region": "Region 19: Anterior Cingulate and Medial Prefrontal Cortex",
+      "synonyms": [
+        "10r"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 66,
+      "name": "47m_R - Area 47m (Right)",
+      "code": "47m_R",
+      "area_code": "47m",
+      "hemisphere": "Right",
+      "macro_region": "Region 20: Orbital and Polar Frontal Cortex",
+      "synonyms": [
+        "47m"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 67,
+      "name": "8Av_R - Area 8Av (Right)",
+      "code": "8Av_R",
+      "area_code": "8Av",
+      "hemisphere": "Right",
+      "macro_region": "Region 22: Dorsolateral Prefrontal Cortex (DLPFC)",
+      "synonyms": [
+        "8Av"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 68,
+      "name": "8Ad_R - Area 8Ad (Right)",
+      "code": "8Ad_R",
+      "area_code": "8Ad",
+      "hemisphere": "Right",
+      "macro_region": "Region 22: Dorsolateral Prefrontal Cortex (DLPFC)",
+      "synonyms": [
+        "8Ad"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 69,
+      "name": "9m_R - Area 9 Middle (Right)",
+      "code": "9m_R",
+      "area_code": "9m",
+      "hemisphere": "Right",
+      "macro_region": "Region 19: Anterior Cingulate and Medial Prefrontal Cortex",
+      "synonyms": [
+        "9"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 70,
+      "name": "8BL_R - Area 8B Lateral (Right)",
+      "code": "8BL_R",
+      "area_code": "8BL",
+      "hemisphere": "Right",
+      "macro_region": "Region 22: Dorsolateral Prefrontal Cortex (DLPFC)",
+      "synonyms": [
+        "8B"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 71,
+      "name": "9p_R - Area 9 Posterior (Right)",
+      "code": "9p_R",
+      "area_code": "9p",
+      "hemisphere": "Right",
+      "macro_region": "Region 22: Dorsolateral Prefrontal Cortex (DLPFC)",
+      "synonyms": [
+        "9"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 72,
+      "name": "10d_R - Area 10 Dorsal (Right)",
+      "code": "10d_R",
+      "area_code": "10d",
+      "hemisphere": "Right",
+      "macro_region": "Region 20: Orbital and Polar Frontal Cortex",
+      "synonyms": [
+        "10",
+        "Fp1",
+        "Fp2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 73,
+      "name": "8C_R - Area 8C (Right)",
+      "code": "8C_R",
+      "area_code": "8C",
+      "hemisphere": "Right",
+      "macro_region": "Region 22: Dorsolateral Prefrontal Cortex (DLPFC)",
+      "synonyms": [
+        "8Av"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 74,
+      "name": "44_R - Area 44 (Broca) (Right)",
+      "code": "44_R",
+      "area_code": "44",
+      "hemisphere": "Right",
+      "macro_region": "Region 21: Inferior Frontal Cortex",
+      "synonyms": [
+        "44d",
+        "44v",
+        "BA44"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 75,
+      "name": "45_R - Area 45 (Broca) (Right)",
+      "code": "45_R",
+      "area_code": "45",
+      "hemisphere": "Right",
+      "macro_region": "Region 21: Inferior Frontal Cortex",
+      "synonyms": [
+        "45a",
+        "45p",
+        "BA45"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 76,
+      "name": "47l_R - Area 47 Lateral (Right)",
+      "code": "47l_R",
+      "area_code": "47l",
+      "hemisphere": "Right",
+      "macro_region": "Region 21: Inferior Frontal Cortex",
+      "synonyms": [
+        "47l",
+        "BA47"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 77,
+      "name": "a47r_R - Area Anterior 47r (Right)",
+      "code": "a47r_R",
+      "area_code": "a47r",
+      "hemisphere": "Right",
+      "macro_region": "Region 20: Orbital and Polar Frontal Cortex",
+      "synonyms": [
+        "47r"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 78,
+      "name": "6r_R - Rostral Area 6 (Right)",
+      "code": "6r_R",
+      "area_code": "6r",
+      "hemisphere": "Right",
+      "macro_region": "Region 8: Premotor Cortex",
+      "synonyms": [
+        "6r"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 79,
+      "name": "IFJa_R - Inferior Frontal Junction Anterior (Right)",
+      "code": "IFJa_R",
+      "area_code": "IFJa",
+      "hemisphere": "Right",
+      "macro_region": "Region 21: Inferior Frontal Cortex",
+      "synonyms": [
+        "ifj1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 80,
+      "name": "IFJp_R - Inferior Frontal Junction Posterior (Right)",
+      "code": "IFJp_R",
+      "area_code": "IFJp",
+      "hemisphere": "Right",
+      "macro_region": "Region 21: Inferior Frontal Cortex",
+      "synonyms": [
+        "ifj2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 81,
+      "name": "IFSp_R - Inferior Frontal Sulcus Posterior (Right)",
+      "code": "IFSp_R",
+      "area_code": "IFSp",
+      "hemisphere": "Right",
+      "macro_region": "Region 21: Inferior Frontal Cortex",
+      "synonyms": [
+        "ifs2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 82,
+      "name": "IFSa_R - Inferior Frontal Sulcus Anterior (Right)",
+      "code": "IFSa_R",
+      "area_code": "IFSa",
+      "hemisphere": "Right",
+      "macro_region": "Region 21: Inferior Frontal Cortex",
+      "synonyms": [
+        "ifs1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 83,
+      "name": "p9-46v_R - Area Posterior 9-46v (Right)",
+      "code": "p9-46v_R",
+      "area_code": "p9-46v",
+      "hemisphere": "Right",
+      "macro_region": "Region 22: Dorsolateral Prefrontal Cortex (DLPFC)",
+      "synonyms": [
+        "9-46v"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 84,
+      "name": "46_R - Area 46 (Right)",
+      "code": "46_R",
+      "area_code": "46",
+      "hemisphere": "Right",
+      "macro_region": "Region 22: Dorsolateral Prefrontal Cortex (DLPFC)",
+      "synonyms": [
+        "BA46"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 85,
+      "name": "a9-46v_R - Area Anterior 9-46v (Right)",
+      "code": "a9-46v_R",
+      "area_code": "a9-46v",
+      "hemisphere": "Right",
+      "macro_region": "Region 22: Dorsolateral Prefrontal Cortex (DLPFC)",
+      "synonyms": [
+        "9-46v"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 86,
+      "name": "9-46d_R - Area 9-46 Dorsal (Right)",
+      "code": "9-46d_R",
+      "area_code": "9-46d",
+      "hemisphere": "Right",
+      "macro_region": "Region 22: Dorsolateral Prefrontal Cortex (DLPFC)",
+      "synonyms": [
+        "9-46d"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 87,
+      "name": "9a_R - Area 9 Anterior (Right)",
+      "code": "9a_R",
+      "area_code": "9a",
+      "hemisphere": "Right",
+      "macro_region": "Region 22: Dorsolateral Prefrontal Cortex (DLPFC)",
+      "synonyms": [
+        "9"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 88,
+      "name": "10v_R - Area 10 Ventral (Right)",
+      "code": "10v_R",
+      "area_code": "10v",
+      "hemisphere": "Right",
+      "macro_region": "Region 19: Anterior Cingulate and Medial Prefrontal Cortex",
+      "synonyms": [
+        "10",
+        "Fp2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 89,
+      "name": "a10p_R - Area Anterior 10p (Right)",
+      "code": "a10p_R",
+      "area_code": "a10p",
+      "hemisphere": "Right",
+      "macro_region": "Region 20: Orbital and Polar Frontal Cortex",
+      "synonyms": [
+        "10p",
+        "Fp1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 90,
+      "name": "10pp_R - Area Polar 10p (Right)",
+      "code": "10pp_R",
+      "area_code": "10pp",
+      "hemisphere": "Right",
+      "macro_region": "Region 20: Orbital and Polar Frontal Cortex",
+      "synonyms": [
+        "10p",
+        "Fp1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 91,
+      "name": "11l_R - Area 11 Lateral (Right)",
+      "code": "11l_R",
+      "area_code": "11l",
+      "hemisphere": "Right",
+      "macro_region": "Region 20: Orbital and Polar Frontal Cortex",
+      "synonyms": [
+        "Fo3"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 92,
+      "name": "13l_R - Area 13 Lateral (Right)",
+      "code": "13l_R",
+      "area_code": "13l",
+      "hemisphere": "Right",
+      "macro_region": "Region 20: Orbital and Polar Frontal Cortex",
+      "synonyms": [
+        "Fo3"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 93,
+      "name": "OFC_R - Orbital Frontal Complex (Right)",
+      "code": "OFC_R",
+      "area_code": "OFC",
+      "hemisphere": "Right",
+      "macro_region": "Region 20: Orbital and Polar Frontal Cortex",
+      "synonyms": [
+        "11m",
+        "13b",
+        "13m",
+        "14r",
+        "Fo1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 94,
+      "name": "47s_R - Area 47s (Right)",
+      "code": "47s_R",
+      "area_code": "47s",
+      "hemisphere": "Right",
+      "macro_region": "Region 20: Orbital and Polar Frontal Cortex",
+      "synonyms": [
+        "47s"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 95,
+      "name": "LIPd_R - Lateral IntraParietal Dorsal Area (Right)",
+      "code": "LIPd_R",
+      "area_code": "LIPd",
+      "hemisphere": "Right",
+      "macro_region": "Region 16: Superior Parietal Cortex",
+      "synonyms": [
+        "LIPd"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 96,
+      "name": "6a_R - Area 6 Anterior (Right)",
+      "code": "6a_R",
+      "area_code": "6a",
+      "hemisphere": "Right",
+      "macro_region": "Region 8: Premotor Cortex",
+      "synonyms": [
+        "6",
+        "6a-beta"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 97,
+      "name": "i6-8_R - Inferior 6-8 Transitional Area (Right)",
+      "code": "i6-8_R",
+      "area_code": "i6-8",
+      "hemisphere": "Right",
+      "macro_region": "Region 22: Dorsolateral Prefrontal Cortex (DLPFC)",
+      "synonyms": [
+        "FC(B)"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 98,
+      "name": "s6-8_R - Superior 6-8 Transitional Area (Right)",
+      "code": "s6-8_R",
+      "area_code": "s6-8",
+      "hemisphere": "Right",
+      "macro_region": "Region 22: Dorsolateral Prefrontal Cortex (DLPFC)",
+      "synonyms": [
+        "FC(B)"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 99,
+      "name": "43_R - Area 43 (Right)",
+      "code": "43_R",
+      "area_code": "43",
+      "hemisphere": "Right",
+      "macro_region": "Region 9: Posterior Opercular Cortex",
+      "synonyms": [
+        "41",
+        "BA43"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 100,
+      "name": "OP4_R - Area OP4 / PV (Right)",
+      "code": "OP4_R",
+      "area_code": "OP4",
+      "hemisphere": "Right",
+      "macro_region": "Region 9: Posterior Opercular Cortex",
+      "synonyms": [
+        "68"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 101,
+      "name": "OP1_R - Area OP1 / SII (Right)",
+      "code": "OP1_R",
+      "area_code": "OP1",
+      "hemisphere": "Right",
+      "macro_region": "Region 9: Posterior Opercular Cortex",
+      "synonyms": [
+        "OP1",
+        "SII"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 102,
+      "name": "OP2-3_R - Area OP2-3 / VS (Right)",
+      "code": "OP2-3_R",
+      "area_code": "OP2-3",
+      "hemisphere": "Right",
+      "macro_region": "Region 9: Posterior Opercular Cortex",
+      "synonyms": [
+        "OP2",
+        "OP3"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 103,
+      "name": "52_R - Area 52 (Right)",
+      "code": "52_R",
+      "area_code": "52",
+      "hemisphere": "Right",
+      "macro_region": "Region 12: Insular and Frontal Opercular Cortex",
+      "synonyms": [
+        "IBT",
+        "BA52"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 104,
+      "name": "RI_R - Retro-Insular Cortex (Right)",
+      "code": "RI_R",
+      "area_code": "RI",
+      "hemisphere": "Right",
+      "macro_region": "Region 10: Early Auditory Cortex",
+      "synonyms": [
+        "relt",
+        "TD",
+        "Belt"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 105,
+      "name": "PFcm_R - Area PFcm (Right)",
+      "code": "PFcm_R",
+      "area_code": "PFcm",
+      "hemisphere": "Right",
+      "macro_region": "Region 9: Posterior Opercular Cortex",
+      "synonyms": [
+        "PFcm"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 106,
+      "name": "PoI2_R - Posterior Insular Area 2 (Right)",
+      "code": "PoI2_R",
+      "area_code": "PoI2",
+      "hemisphere": "Right",
+      "macro_region": "Region 12: Insular and Frontal Opercular Cortex",
+      "synonyms": [
+        "Id1",
+        "Id2",
+        "Id3"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 107,
+      "name": "TA2_R - Area TA2 (Right)",
+      "code": "TA2_R",
+      "area_code": "TA2",
+      "hemisphere": "Right",
+      "macro_region": "Region 11: Auditory Association Cortex",
+      "synonyms": [
+        "TE1.2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 108,
+      "name": "FOP4_R - Frontal Opercular Area 4 (Right)",
+      "code": "FOP4_R",
+      "area_code": "FOP4",
+      "hemisphere": "Right",
+      "macro_region": "Region 12: Insular and Frontal Opercular Cortex",
+      "synonyms": [
+        "FOP4"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 109,
+      "name": "MI_R - Middle Insular Area (Right)",
+      "code": "MI_R",
+      "area_code": "MI",
+      "hemisphere": "Right",
+      "macro_region": "Region 12: Insular and Frontal Opercular Cortex",
+      "synonyms": [
+        "Ia1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 110,
+      "name": "Pir_R - Piriform Cortex (Right)",
+      "code": "Pir_R",
+      "area_code": "Pir",
+      "hemisphere": "Right",
+      "macro_region": "Region 12: Insular and Frontal Opercular Cortex",
+      "synonyms": [
+        "Poc"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 111,
+      "name": "AVI_R - Anterior Ventral Insular Area (Right)",
+      "code": "AVI_R",
+      "area_code": "AVI",
+      "hemisphere": "Right",
+      "macro_region": "Region 12: Insular and Frontal Opercular Cortex",
+      "synonyms": [
+        "IaI"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 112,
+      "name": "AAIC_R - Anterior Agranular Insula Complex (Right)",
+      "code": "AAIC_R",
+      "area_code": "AAIC",
+      "hemisphere": "Right",
+      "macro_region": "Region 12: Insular and Frontal Opercular Cortex",
+      "synonyms": [
+        "IaI",
+        "IaI"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 113,
+      "name": "FOP1_R - Frontal Opercular Area 1 (Right)",
+      "code": "FOP1_R",
+      "area_code": "FOP1",
+      "hemisphere": "Right",
+      "macro_region": "Region 9: Posterior Opercular Cortex",
+      "synonyms": [
+        "FOP1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 114,
+      "name": "FOP3_R - Frontal Opercular Area 3 (Right)",
+      "code": "FOP3_R",
+      "area_code": "FOP3",
+      "hemisphere": "Right",
+      "macro_region": "Region 12: Insular and Frontal Opercular Cortex",
+      "synonyms": [
+        "FOP3"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 115,
+      "name": "FOP2_R - Frontal Opercular Area 2 (Right)",
+      "code": "FOP2_R",
+      "area_code": "FOP2",
+      "hemisphere": "Right",
+      "macro_region": "Region 12: Insular and Frontal Opercular Cortex",
+      "synonyms": [
+        "FOP2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 116,
+      "name": "PFt_R - Area PFt (Right)",
+      "code": "PFt_R",
+      "area_code": "PFt",
+      "hemisphere": "Right",
+      "macro_region": "Region 17: Inferior Parietal Cortex",
+      "synonyms": [
+        "PFt"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 117,
+      "name": "AIP_R - Anterior IntraParietal Area (Right)",
+      "code": "AIP_R",
+      "area_code": "AIP",
+      "hemisphere": "Right",
+      "macro_region": "Region 16: Superior Parietal Cortex",
+      "synonyms": [
+        "AIP"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 118,
+      "name": "EC_R - Entorhinal Cortex (Right)",
+      "code": "EC_R",
+      "area_code": "EC",
+      "hemisphere": "Right",
+      "macro_region": "Region 13: Medial Temporal Cortex",
+      "synonyms": [
+        "28"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 119,
+      "name": "PreS_R - PreSubiculum (Right)",
+      "code": "PreS_R",
+      "area_code": "PreS",
+      "hemisphere": "Right",
+      "macro_region": "Region 13: Medial Temporal Cortex",
+      "synonyms": [
+        "Sub",
+        "Subicular"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 120,
+      "name": "H_R - Hippocampus (Right)",
+      "code": "H_R",
+      "area_code": "H",
+      "hemisphere": "Right",
+      "macro_region": "Region 13: Medial Temporal Cortex",
+      "synonyms": [
+        "Hippocampal formation"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 121,
+      "name": "ProS_R - ProStriate Area (Right)",
+      "code": "ProS_R",
+      "area_code": "ProS",
+      "hemisphere": "Right",
+      "macro_region": "Region 18: Posterior Cingulate Cortex",
+      "synonyms": [
+        "pStr"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 122,
+      "name": "PeEc_R - Perirhinal / Ectorhinal Complex (Right)",
+      "code": "PeEc_R",
+      "area_code": "PeEc",
+      "hemisphere": "Right",
+      "macro_region": "Region 13: Medial Temporal Cortex",
+      "synonyms": [
+        "35",
+        "36",
+        "ATFP"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 123,
+      "name": "STGa_R - Area STGa (Right)",
+      "code": "STGa_R",
+      "area_code": "STGa",
+      "hemisphere": "Right",
+      "macro_region": "Region 11: Auditory Association Cortex",
+      "synonyms": [
+        "STGa"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 124,
+      "name": "PBelt_R - ParaBelt Complex (Right)",
+      "code": "PBelt_R",
+      "area_code": "PBelt",
+      "hemisphere": "Right",
+      "macro_region": "Region 10: Early Auditory Cortex",
+      "synonyms": [
+        "ParaBelt",
+        "TA1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 125,
+      "name": "A5_R - Auditory 5 Complex (Right)",
+      "code": "A5_R",
+      "area_code": "A5",
+      "hemisphere": "Right",
+      "macro_region": "Region 11: Auditory Association Cortex",
+      "synonyms": [
+        "A5"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 126,
+      "name": "PHA1_R - ParaHippocampal Area 1 (Right)",
+      "code": "PHA1_R",
+      "area_code": "PHA1",
+      "hemisphere": "Right",
+      "macro_region": "Region 13: Medial Temporal Cortex",
+      "synonyms": [
+        "PHA1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 127,
+      "name": "PHA3_R - ParaHippocampal Area 3 (Right)",
+      "code": "PHA3_R",
+      "area_code": "PHA3",
+      "hemisphere": "Right",
+      "macro_region": "Region 13: Medial Temporal Cortex",
+      "synonyms": [
+        "PHA3"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 128,
+      "name": "STSda_R - Area STSd Anterior (Right)",
+      "code": "STSda_R",
+      "area_code": "STSda",
+      "hemisphere": "Right",
+      "macro_region": "Region 11: Auditory Association Cortex",
+      "synonyms": [
+        "STSda"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 129,
+      "name": "STSdp_R - Area STSd Posterior (Right)",
+      "code": "STSdp_R",
+      "area_code": "STSdp",
+      "hemisphere": "Right",
+      "macro_region": "Region 11: Auditory Association Cortex",
+      "synonyms": [
+        "STSdp"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 130,
+      "name": "STSvp_R - Area STSv Posterior (Right)",
+      "code": "STSvp_R",
+      "area_code": "STSvp",
+      "hemisphere": "Right",
+      "macro_region": "Region 11: Auditory Association Cortex",
+      "synonyms": [
+        "STSvp"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 131,
+      "name": "TGd_R - Area TG Dorsal (Temporal Pole) (Right)",
+      "code": "TGd_R",
+      "area_code": "TGd",
+      "hemisphere": "Right",
+      "macro_region": "Region 14: Lateral Temporal Cortex",
+      "synonyms": [
+        "TG"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 132,
+      "name": "TE1a_R - Area TE1 Anterior (Right)",
+      "code": "TE1a_R",
+      "area_code": "TE1a",
+      "hemisphere": "Right",
+      "macro_region": "Region 14: Lateral Temporal Cortex",
+      "synonyms": [
+        "TE1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 133,
+      "name": "TE1p_R - Area TE1 Posterior (Right)",
+      "code": "TE1p_R",
+      "area_code": "TE1p",
+      "hemisphere": "Right",
+      "macro_region": "Region 14: Lateral Temporal Cortex",
+      "synonyms": [
+        "TE1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 134,
+      "name": "TE2a_R - Area TE2 Anterior (Right)",
+      "code": "TE2a_R",
+      "area_code": "TE2a",
+      "hemisphere": "Right",
+      "macro_region": "Region 14: Lateral Temporal Cortex",
+      "synonyms": [
+        "TE2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 135,
+      "name": "TF_R - Area TF (Right)",
+      "code": "TF_R",
+      "area_code": "TF",
+      "hemisphere": "Right",
+      "macro_region": "Region 14: Lateral Temporal Cortex",
+      "synonyms": [
+        "TF"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 136,
+      "name": "TE2p_R - Area TE2 Posterior (Right)",
+      "code": "TE2p_R",
+      "area_code": "TE2p",
+      "hemisphere": "Right",
+      "macro_region": "Region 14: Lateral Temporal Cortex",
+      "synonyms": [
+        "TE2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 137,
+      "name": "PHT_R - Area PHT (Right)",
+      "code": "PHT_R",
+      "area_code": "PHT",
+      "hemisphere": "Right",
+      "macro_region": "Region 14: Lateral Temporal Cortex",
+      "synonyms": [
+        "PHT"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 138,
+      "name": "PH_R - Area PH (Right)",
+      "code": "PH_R",
+      "area_code": "PH",
+      "hemisphere": "Right",
+      "macro_region": "Region 5: MT+ Complex and Neighboring Visual Areas",
+      "synonyms": [
+        "PH"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 139,
+      "name": "TPOJ1_R - TemporoParietoOccipital Junction 1 (Right)",
+      "code": "TPOJ1_R",
+      "area_code": "TPOJ1",
+      "hemisphere": "Right",
+      "macro_region": "Region 15: Temporo-Parieto-Occipital Junction (TPOJ)",
+      "synonyms": [
+        "TPOJ1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 140,
+      "name": "TPOJ2_R - TemporoParietoOccipital Junction 2 (Right)",
+      "code": "TPOJ2_R",
+      "area_code": "TPOJ2",
+      "hemisphere": "Right",
+      "macro_region": "Region 15: Temporo-Parieto-Occipital Junction (TPOJ)",
+      "synonyms": [
+        "TPOJ2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 141,
+      "name": "TPOJ3_R - TemporoParietoOccipital Junction 3 (Right)",
+      "code": "TPOJ3_R",
+      "area_code": "TPOJ3",
+      "hemisphere": "Right",
+      "macro_region": "Region 15: Temporo-Parieto-Occipital Junction (TPOJ)",
+      "synonyms": [
+        "TPOJ3"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 142,
+      "name": "DVT_R - Dorsal Visual Transitional Area (Right)",
+      "code": "DVT_R",
+      "area_code": "DVT",
+      "hemisphere": "Right",
+      "macro_region": "Region 18: Posterior Cingulate Cortex",
+      "synonyms": [
+        "DVT"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 143,
+      "name": "PGp_R - Area PGp (Right)",
+      "code": "PGp_R",
+      "area_code": "PGp",
+      "hemisphere": "Right",
+      "macro_region": "Region 17: Inferior Parietal Cortex",
+      "synonyms": [
+        "39",
+        "PG"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 144,
+      "name": "IP2_R - Area IntraParietal 2 (Right)",
+      "code": "IP2_R",
+      "area_code": "IP2",
+      "hemisphere": "Right",
+      "macro_region": "Region 17: Inferior Parietal Cortex",
+      "synonyms": [
+        "IP2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 145,
+      "name": "IP1_R - Area IntraParietal 1 (Right)",
+      "code": "IP1_R",
+      "area_code": "IP1",
+      "hemisphere": "Right",
+      "macro_region": "Region 17: Inferior Parietal Cortex",
+      "synonyms": [
+        "IP1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 146,
+      "name": "IPO_R - Area IntraParietal O (Right)",
+      "code": "IPO_R",
+      "area_code": "IPO",
+      "hemisphere": "Right",
+      "macro_region": "Region 17: Inferior Parietal Cortex",
+      "synonyms": [
+        "IPO"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 147,
+      "name": "PFop_R - Area PF Opercular (Right)",
+      "code": "PFop_R",
+      "area_code": "PFop",
+      "hemisphere": "Right",
+      "macro_region": "Region 17: Inferior Parietal Cortex",
+      "synonyms": [
+        "40",
+        "72"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 148,
+      "name": "PF_R - Area PF Complex (Right)",
+      "code": "PF_R",
+      "area_code": "PF",
+      "hemisphere": "Right",
+      "macro_region": "Region 17: Inferior Parietal Cortex",
+      "synonyms": [
+        "40",
+        "88"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 149,
+      "name": "PFm_R - Area PFm Complex (Right)",
+      "code": "PFm_R",
+      "area_code": "PFm",
+      "hemisphere": "Right",
+      "macro_region": "Region 17: Inferior Parietal Cortex",
+      "synonyms": [
+        "40",
+        "89"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 150,
+      "name": "PGi_R - Area PGi (Right)",
+      "code": "PGi_R",
+      "area_code": "PGi",
+      "hemisphere": "Right",
+      "macro_region": "Region 17: Inferior Parietal Cortex",
+      "synonyms": [
+        "PGa",
+        "39",
+        "90"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 151,
+      "name": "PGs_R - Area PGs (Right)",
+      "code": "PGs_R",
+      "area_code": "PGs",
+      "hemisphere": "Right",
+      "macro_region": "Region 17: Inferior Parietal Cortex",
+      "synonyms": [
+        "PGa",
+        "39",
+        "90"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 152,
+      "name": "V6A_R - Area V6A (Right)",
+      "code": "V6A_R",
+      "area_code": "V6A",
+      "hemisphere": "Right",
+      "macro_region": "Region 3: Dorsal Stream Visual Cortex",
+      "synonyms": [
+        "112"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 153,
+      "name": "VMV1_R - VentroMedial Visual Area 1 (Right)",
+      "code": "VMV1_R",
+      "area_code": "VMV1",
+      "hemisphere": "Right",
+      "macro_region": "Region 4: Ventral Stream Visual Cortex",
+      "synonyms": [
+        "PHC2",
+        "PHC-2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 154,
+      "name": "VMV3_R - VentroMedial Visual Area 3 (Right)",
+      "code": "VMV3_R",
+      "area_code": "VMV3",
+      "hemisphere": "Right",
+      "macro_region": "Region 4: Ventral Stream Visual Cortex",
+      "synonyms": [
+        "VO2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 155,
+      "name": "PHA2_R - ParaHippocampal Area 2 (Right)",
+      "code": "PHA2_R",
+      "area_code": "PHA2",
+      "hemisphere": "Right",
+      "macro_region": "Region 13: Medial Temporal Cortex",
+      "synonyms": [
+        "PHA2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 156,
+      "name": "V4t_R - Area V4t (Right)",
+      "code": "V4t_R",
+      "area_code": "V4t",
+      "hemisphere": "Right",
+      "macro_region": "Region 5: MT+ Complex and Neighboring Visual Areas",
+      "synonyms": [
+        "LO2",
+        "pV4t"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 157,
+      "name": "FST_R - Fundus of Superior Temporal Area (Right)",
+      "code": "FST_R",
+      "area_code": "FST",
+      "hemisphere": "Right",
+      "macro_region": "Region 5: MT+ Complex and Neighboring Visual Areas",
+      "synonyms": [
+        "pFST"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 158,
+      "name": "V3CD_R - Area V3CD (Right)",
+      "code": "V3CD_R",
+      "area_code": "V3CD",
+      "hemisphere": "Right",
+      "macro_region": "Region 5: MT+ Complex and Neighboring Visual Areas",
+      "synonyms": [
+        "V3A",
+        "V3B",
+        "hOC4la"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 159,
+      "name": "LO3_R - Area Lateral Occipital 3 (Right)",
+      "code": "LO3_R",
+      "area_code": "LO3",
+      "hemisphere": "Right",
+      "macro_region": "Region 5: MT+ Complex and Neighboring Visual Areas",
+      "synonyms": [
+        "hOC4la"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 160,
+      "name": "VMV2_R - VentroMedial Visual Area 2 (Right)",
+      "code": "VMV2_R",
+      "area_code": "VMV2",
+      "hemisphere": "Right",
+      "macro_region": "Region 4: Ventral Stream Visual Cortex",
+      "synonyms": [
+        "PHC1",
+        "PHC-1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 161,
+      "name": "31pd_R - Area 31p Dorsal (Right)",
+      "code": "31pd_R",
+      "area_code": "31pd",
+      "hemisphere": "Right",
+      "macro_region": "Region 18: Posterior Cingulate Cortex",
+      "synonyms": [
+        "31",
+        "31d"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 162,
+      "name": "31a_R - Area 31a (Right)",
+      "code": "31a_R",
+      "area_code": "31a",
+      "hemisphere": "Right",
+      "macro_region": "Region 18: Posterior Cingulate Cortex",
+      "synonyms": [
+        "31"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 163,
+      "name": "VVC_R - Ventral Visual Complex (Right)",
+      "code": "VVC_R",
+      "area_code": "VVC",
+      "hemisphere": "Right",
+      "macro_region": "Region 4: Ventral Stream Visual Cortex",
+      "synonyms": [
+        "VO1",
+        "VO2",
+        "PHC1",
+        "PHC2",
+        "FG1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 164,
+      "name": "25_R - Area 25 (Subgenual) (Right)",
+      "code": "25_R",
+      "area_code": "25",
+      "hemisphere": "Right",
+      "macro_region": "Region 19: Anterior Cingulate and Medial Prefrontal Cortex",
+      "synonyms": [
+        "BA25"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 165,
+      "name": "s32_R - Area s32 (Subgenual 32) (Right)",
+      "code": "s32_R",
+      "area_code": "s32",
+      "hemisphere": "Right",
+      "macro_region": "Region 19: Anterior Cingulate and Medial Prefrontal Cortex",
+      "synonyms": [
+        "32pl",
+        "32"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 166,
+      "name": "pOFC_R - Posterior OFC Complex (Right)",
+      "code": "pOFC_R",
+      "area_code": "pOFC",
+      "hemisphere": "Right",
+      "macro_region": "Region 20: Orbital and Polar Frontal Cortex",
+      "synonyms": [
+        "13a",
+        "14c",
+        "Fo2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 167,
+      "name": "PoI1_R - Posterior Insular Area 1 (Right)",
+      "code": "PoI1_R",
+      "area_code": "PoI1",
+      "hemisphere": "Right",
+      "macro_region": "Region 12: Insular and Frontal Opercular Cortex",
+      "synonyms": [
+        "Id1",
+        "Id2",
+        "Id3"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 168,
+      "name": "Ig_R - Insular Granular Complex (Right)",
+      "code": "Ig_R",
+      "area_code": "Ig",
+      "hemisphere": "Right",
+      "macro_region": "Region 12: Insular and Frontal Opercular Cortex",
+      "synonyms": [
+        "Ig1",
+        "Ig2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 169,
+      "name": "FOP5_R - Frontal Opercular Area 5 (Right)",
+      "code": "FOP5_R",
+      "area_code": "FOP5",
+      "hemisphere": "Right",
+      "macro_region": "Region 12: Insular and Frontal Opercular Cortex",
+      "synonyms": [
+        "PrCO"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 170,
+      "name": "p10p_R - Area Posterior 10p (Right)",
+      "code": "p10p_R",
+      "area_code": "p10p",
+      "hemisphere": "Right",
+      "macro_region": "Region 20: Orbital and Polar Frontal Cortex",
+      "synonyms": [
+        "10p",
+        "Fp1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 171,
+      "name": "p47r_R - Area Posterior 47r (Right)",
+      "code": "p47r_R",
+      "area_code": "p47r",
+      "hemisphere": "Right",
+      "macro_region": "Region 21: Inferior Frontal Cortex",
+      "synonyms": [
+        "47r"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 172,
+      "name": "TGv_R - Area TG Ventral (Temporal Pole) (Right)",
+      "code": "TGv_R",
+      "area_code": "TGv",
+      "hemisphere": "Right",
+      "macro_region": "Region 14: Lateral Temporal Cortex",
+      "synonyms": [
+        "TG"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 173,
+      "name": "MBelt_R - Medial Belt Complex (Right)",
+      "code": "MBelt_R",
+      "area_code": "MBelt",
+      "hemisphere": "Right",
+      "macro_region": "Region 10: Early Auditory Cortex",
+      "synonyms": [
+        "Belt",
+        "TB"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 174,
+      "name": "LBelt_R - Lateral Belt Complex (Right)",
+      "code": "LBelt_R",
+      "area_code": "LBelt",
+      "hemisphere": "Right",
+      "macro_region": "Region 10: Early Auditory Cortex",
+      "synonyms": [
+        "Belt",
+        "TB"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 175,
+      "name": "A4_R - Auditory 4 Complex (Right)",
+      "code": "A4_R",
+      "area_code": "A4",
+      "hemisphere": "Right",
+      "macro_region": "Region 11: Auditory Association Cortex",
+      "synonyms": [
+        "TE3"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 176,
+      "name": "STSva_R - Area STSv Anterior (Right)",
+      "code": "STSva_R",
+      "area_code": "STSva",
+      "hemisphere": "Right",
+      "macro_region": "Region 11: Auditory Association Cortex",
+      "synonyms": [
+        "STSva"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 177,
+      "name": "TE1m_R - Area TE1 Middle (Right)",
+      "code": "TE1m_R",
+      "area_code": "TE1m",
+      "hemisphere": "Right",
+      "macro_region": "Region 14: Lateral Temporal Cortex",
+      "synonyms": [
+        "TE1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 178,
+      "name": "PI_R - Para-Insular Area (Right)",
+      "code": "PI_R",
+      "area_code": "PI",
+      "hemisphere": "Right",
+      "macro_region": "Region 12: Insular and Frontal Opercular Cortex",
+      "synonyms": [
+        "IBT",
+        "PI"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 179,
+      "name": "a32pr_R - Area a32 Prime (Right)",
+      "code": "a32pr_R",
+      "area_code": "a32pr",
+      "hemisphere": "Right",
+      "macro_region": "Region 19: Anterior Cingulate and Medial Prefrontal Cortex",
+      "synonyms": [
+        "32'"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 180,
+      "name": "p24_R - Area Posterior 24 (Right)",
+      "code": "p24_R",
+      "area_code": "p24",
+      "hemisphere": "Right",
+      "macro_region": "Region 19: Anterior Cingulate and Medial Prefrontal Cortex",
+      "synonyms": [
+        "24"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 181,
+      "name": "V1_L - Primary Visual Cortex (Left)",
+      "code": "V1_L",
+      "area_code": "V1",
+      "hemisphere": "Left",
+      "macro_region": "Region 1: Primary Visual Cortex (V1)",
+      "synonyms": [
+        "17",
+        "hOC1",
+        "OC",
+        "BA17"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 182,
+      "name": "MST_L - Medial Superior Temporal Area (Left)",
+      "code": "MST_L",
+      "area_code": "MST",
+      "hemisphere": "Left",
+      "macro_region": "Region 5: MT+ Complex and Neighboring Visual Areas",
+      "synonyms": [
+        "MSTv",
+        "hOC5",
+        "hOC5v"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 183,
+      "name": "V6_L - Sixth Visual Area (Left)",
+      "code": "V6_L",
+      "area_code": "V6",
+      "hemisphere": "Left",
+      "macro_region": "Region 3: Dorsal Stream Visual Cortex",
+      "synonyms": [
+        "112"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 184,
+      "name": "V2_L - Second Visual Area (Left)",
+      "code": "V2_L",
+      "area_code": "V2",
+      "hemisphere": "Left",
+      "macro_region": "Region 2: Early Visual Cortex (V2, V3, V4)",
+      "synonyms": [
+        "18",
+        "hOC2",
+        "OB",
+        "BA18"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 185,
+      "name": "V3_L - Third Visual Area (Left)",
+      "code": "V3_L",
+      "area_code": "V3",
+      "hemisphere": "Left",
+      "macro_region": "Region 2: Early Visual Cortex (V2, V3, V4)",
+      "synonyms": [
+        "V3d",
+        "V3v",
+        "VP",
+        "hOC3d",
+        "hOC3v"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 186,
+      "name": "V4_L - Fourth Visual Area (Left)",
+      "code": "V4_L",
+      "area_code": "V4",
+      "hemisphere": "Left",
+      "macro_region": "Region 2: Early Visual Cortex (V2, V3, V4)",
+      "synonyms": [
+        "V4d",
+        "V4v",
+        "hV4",
+        "hOC4v",
+        "hOC4lp"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 187,
+      "name": "V8_L - Eighth Visual Area (Left)",
+      "code": "V8_L",
+      "area_code": "V8",
+      "hemisphere": "Left",
+      "macro_region": "Region 4: Ventral Stream Visual Cortex",
+      "synonyms": [
+        "VO1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 188,
+      "name": "4_L - Primary Motor Cortex (M1) (Left)",
+      "code": "4_L",
+      "area_code": "4",
+      "hemisphere": "Left",
+      "macro_region": "Region 6: Somatosensory and Motor Cortex",
+      "synonyms": [
+        "BA4",
+        "4a",
+        "4p",
+        "PMC",
+        "F1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 189,
+      "name": "3b_L - Primary Sensory Cortex (S1) (Left)",
+      "code": "3b_L",
+      "area_code": "3b",
+      "hemisphere": "Left",
+      "macro_region": "Region 6: Somatosensory and Motor Cortex",
+      "synonyms": [
+        "S1",
+        "3"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 190,
+      "name": "FEF_L - Frontal Eye Field (Left)",
+      "code": "FEF_L",
+      "area_code": "FEF",
+      "hemisphere": "Left",
+      "macro_region": "Region 8: Premotor Cortex",
+      "synonyms": [
+        "FEF",
+        "6"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 191,
+      "name": "PEF_L - Premotor Eye Field (Left)",
+      "code": "PEF_L",
+      "area_code": "PEF",
+      "hemisphere": "Left",
+      "macro_region": "Region 8: Premotor Cortex",
+      "synonyms": [
+        "6v2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 192,
+      "name": "55b_L - Area 55b (Left)",
+      "code": "55b_L",
+      "area_code": "55b",
+      "hemisphere": "Left",
+      "macro_region": "Region 8: Premotor Cortex",
+      "synonyms": [
+        "55b"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 193,
+      "name": "V3A_L - Area V3A (Left)",
+      "code": "V3A_L",
+      "area_code": "V3A",
+      "hemisphere": "Left",
+      "macro_region": "Region 3: Dorsal Stream Visual Cortex",
+      "synonyms": [
+        "V3D",
+        "hOC4d"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 194,
+      "name": "RSC_L - RetroSplenial Complex (Left)",
+      "code": "RSC_L",
+      "area_code": "RSC",
+      "hemisphere": "Left",
+      "macro_region": "Region 18: Posterior Cingulate Cortex",
+      "synonyms": [
+        "29",
+        "30"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 195,
+      "name": "POS2_L - Parieto-Occipital Sulcus Area 2 (Left)",
+      "code": "POS2_L",
+      "area_code": "POS2",
+      "hemisphere": "Left",
+      "macro_region": "Region 18: Posterior Cingulate Cortex",
+      "synonyms": [
+        "POS2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 196,
+      "name": "V7_L - Seventh Visual Area (Left)",
+      "code": "V7_L",
+      "area_code": "V7",
+      "hemisphere": "Left",
+      "macro_region": "Region 3: Dorsal Stream Visual Cortex",
+      "synonyms": [
+        "IPS0"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 197,
+      "name": "IPS1_L - IntraParietal Sulcus Area 1 (Left)",
+      "code": "IPS1_L",
+      "area_code": "IPS1",
+      "hemisphere": "Left",
+      "macro_region": "Region 3: Dorsal Stream Visual Cortex",
+      "synonyms": [
+        "IPS1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 198,
+      "name": "FFC_L - Fusiform Face Complex (Left)",
+      "code": "FFC_L",
+      "area_code": "FFC",
+      "hemisphere": "Left",
+      "macro_region": "Region 4: Ventral Stream Visual Cortex",
+      "synonyms": [
+        "FFA",
+        "FG2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 199,
+      "name": "V3B_L - Area V3B (Left)",
+      "code": "V3B_L",
+      "area_code": "V3B",
+      "hemisphere": "Left",
+      "macro_region": "Region 3: Dorsal Stream Visual Cortex",
+      "synonyms": [
+        "V3C"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 200,
+      "name": "LO1_L - Area Lateral Occipital 1 (Left)",
+      "code": "LO1_L",
+      "area_code": "LO1",
+      "hemisphere": "Left",
+      "macro_region": "Region 5: MT+ Complex and Neighboring Visual Areas",
+      "synonyms": [
+        "LO2",
+        "hOC4la"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 201,
+      "name": "LO2_L - Area Lateral Occipital 2 (Left)",
+      "code": "LO2_L",
+      "area_code": "LO2",
+      "hemisphere": "Left",
+      "macro_region": "Region 5: MT+ Complex and Neighboring Visual Areas",
+      "synonyms": [
+        "LO1",
+        "hOC4la"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 202,
+      "name": "PIT_L - Posterior InferoTemporal Complex (Left)",
+      "code": "PIT_L",
+      "area_code": "PIT",
+      "hemisphere": "Left",
+      "macro_region": "Region 4: Ventral Stream Visual Cortex",
+      "synonyms": [
+        "phPITv",
+        "phPITd",
+        "OFA",
+        "hOC4la"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 203,
+      "name": "MT_L - Middle Temporal Area (Left)",
+      "code": "MT_L",
+      "area_code": "MT",
+      "hemisphere": "Left",
+      "macro_region": "Region 5: MT+ Complex and Neighboring Visual Areas",
+      "synonyms": [
+        "hOC5",
+        "hOC5d",
+        "V5"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 204,
+      "name": "A1_L - Primary Auditory Cortex (Left)",
+      "code": "A1_L",
+      "area_code": "A1",
+      "hemisphere": "Left",
+      "macro_region": "Region 10: Early Auditory Cortex",
+      "synonyms": [
+        "Core",
+        "TC",
+        "TE1.0",
+        "TE1.1",
+        "41"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 205,
+      "name": "PSL_L - PeriSylvian Language Area (Left)",
+      "code": "PSL_L",
+      "area_code": "PSL",
+      "hemisphere": "Left",
+      "macro_region": "Region 15: Temporo-Parieto-Occipital Junction (TPOJ)",
+      "synonyms": [
+        "PSL"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 206,
+      "name": "SFL_L - Superior Frontal Language Area (Left)",
+      "code": "SFL_L",
+      "area_code": "SFL",
+      "hemisphere": "Left",
+      "macro_region": "Region 22: Dorsolateral Prefrontal Cortex (DLPFC)",
+      "synonyms": [
+        "SFL"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 207,
+      "name": "PCV_L - PreCuneus Visual Area (Left)",
+      "code": "PCV_L",
+      "area_code": "PCV",
+      "hemisphere": "Left",
+      "macro_region": "Region 18: Posterior Cingulate Cortex",
+      "synonyms": [
+        "PrCu"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 208,
+      "name": "STV_L - Superior Temporal Visual Area (Left)",
+      "code": "STV_L",
+      "area_code": "STV",
+      "hemisphere": "Left",
+      "macro_region": "Region 15: Temporo-Parieto-Occipital Junction (TPOJ)",
+      "synonyms": [
+        "STV"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 209,
+      "name": "7Pm_L - Medial Area 7P (Left)",
+      "code": "7Pm_L",
+      "area_code": "7Pm",
+      "hemisphere": "Left",
+      "macro_region": "Region 16: Superior Parietal Cortex",
+      "synonyms": [
+        "7P"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 210,
+      "name": "7m_L - Area 7m (Left)",
+      "code": "7m_L",
+      "area_code": "7m",
+      "hemisphere": "Left",
+      "macro_region": "Region 18: Posterior Cingulate Cortex",
+      "synonyms": [
+        "7m"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 211,
+      "name": "POS1_L - Parieto-Occipital Sulcus Area 1 (Left)",
+      "code": "POS1_L",
+      "area_code": "POS1",
+      "hemisphere": "Left",
+      "macro_region": "Region 18: Posterior Cingulate Cortex",
+      "synonyms": [
+        "Retrosplenial scene area"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 212,
+      "name": "23d_L - Area 23d (Left)",
+      "code": "23d_L",
+      "area_code": "23d",
+      "hemisphere": "Left",
+      "macro_region": "Region 18: Posterior Cingulate Cortex",
+      "synonyms": [
+        "23d"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 213,
+      "name": "v23ab_L - Area Ventral 23 a+b (Left)",
+      "code": "v23ab_L",
+      "area_code": "v23ab",
+      "hemisphere": "Left",
+      "macro_region": "Region 18: Posterior Cingulate Cortex",
+      "synonyms": [
+        "23a",
+        "23b",
+        "v23"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 214,
+      "name": "d23ab_L - Area Dorsal 23 a+b (Left)",
+      "code": "d23ab_L",
+      "area_code": "d23ab",
+      "hemisphere": "Left",
+      "macro_region": "Region 18: Posterior Cingulate Cortex",
+      "synonyms": [
+        "23a",
+        "23b",
+        "d23"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 215,
+      "name": "31pv_L - Area 31p Ventral (Left)",
+      "code": "31pv_L",
+      "area_code": "31pv",
+      "hemisphere": "Left",
+      "macro_region": "Region 18: Posterior Cingulate Cortex",
+      "synonyms": [
+        "31",
+        "31v"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 216,
+      "name": "5m_L - Area 5m (Left)",
+      "code": "5m_L",
+      "area_code": "5m",
+      "hemisphere": "Left",
+      "macro_region": "Region 7: Paracentral Lobular and Mid-Cingulate Cortex",
+      "synonyms": [
+        "5m"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 217,
+      "name": "5mv_L - Area 5m ventral (Left)",
+      "code": "5mv_L",
+      "area_code": "5mv",
+      "hemisphere": "Left",
+      "macro_region": "Region 7: Paracentral Lobular and Mid-Cingulate Cortex",
+      "synonyms": [
+        "5ci"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 218,
+      "name": "23c_L - Area 23c (Left)",
+      "code": "23c_L",
+      "area_code": "23c",
+      "hemisphere": "Left",
+      "macro_region": "Region 18: Posterior Cingulate Cortex",
+      "synonyms": [
+        "23c"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 219,
+      "name": "5L_L - Area 5L (Left)",
+      "code": "5L_L",
+      "area_code": "5L",
+      "hemisphere": "Left",
+      "macro_region": "Region 7: Paracentral Lobular and Mid-Cingulate Cortex",
+      "synonyms": [
+        "5L"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 220,
+      "name": "24dd_L - Dorsal Area 24d (Cingulate Motor) (Left)",
+      "code": "24dd_L",
+      "area_code": "24dd",
+      "hemisphere": "Left",
+      "macro_region": "Region 7: Paracentral Lobular and Mid-Cingulate Cortex",
+      "synonyms": [
+        "24d"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 221,
+      "name": "24dv_L - Ventral Area 24d (Cingulate Motor) (Left)",
+      "code": "24dv_L",
+      "area_code": "24dv",
+      "hemisphere": "Left",
+      "macro_region": "Region 7: Paracentral Lobular and Mid-Cingulate Cortex",
+      "synonyms": [
+        "24d"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 222,
+      "name": "7AL_L - Lateral Area 7A (Left)",
+      "code": "7AL_L",
+      "area_code": "7AL",
+      "hemisphere": "Left",
+      "macro_region": "Region 16: Superior Parietal Cortex",
+      "synonyms": [
+        "7A"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 223,
+      "name": "SCEF_L - Supplementary and Cingulate Eye Field (Left)",
+      "code": "SCEF_L",
+      "area_code": "SCEF",
+      "hemisphere": "Left",
+      "macro_region": "Region 7: Paracentral Lobular and Mid-Cingulate Cortex",
+      "synonyms": [
+        "SEF",
+        "CEF",
+        "6",
+        "SMAr"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 224,
+      "name": "6ma_L - Area 6m anterior (pre-SMA) (Left)",
+      "code": "6ma_L",
+      "area_code": "6ma",
+      "hemisphere": "Left",
+      "macro_region": "Region 7: Paracentral Lobular and Mid-Cingulate Cortex",
+      "synonyms": [
+        "SMAr",
+        "6",
+        "SMA"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 225,
+      "name": "7Am_L - Medial Area 7A (Left)",
+      "code": "7Am_L",
+      "area_code": "7Am",
+      "hemisphere": "Left",
+      "macro_region": "Region 16: Superior Parietal Cortex",
+      "synonyms": [
+        "7A"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 226,
+      "name": "7PL_L - Lateral Area 7P (Left)",
+      "code": "7PL_L",
+      "area_code": "7PL",
+      "hemisphere": "Left",
+      "macro_region": "Region 16: Superior Parietal Cortex",
+      "synonyms": [
+        "7P"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 227,
+      "name": "7PC_L - Area 7PC (Left)",
+      "code": "7PC_L",
+      "area_code": "7PC",
+      "hemisphere": "Left",
+      "macro_region": "Region 16: Superior Parietal Cortex",
+      "synonyms": [
+        "7PC"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 228,
+      "name": "LIPv_L - Lateral IntraParietal Ventral Area (Left)",
+      "code": "LIPv_L",
+      "area_code": "LIPv",
+      "hemisphere": "Left",
+      "macro_region": "Region 16: Superior Parietal Cortex",
+      "synonyms": [
+        "hIP3",
+        "LIPv"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 229,
+      "name": "VIP_L - Ventral IntraParietal Complex (Left)",
+      "code": "VIP_L",
+      "area_code": "VIP",
+      "hemisphere": "Left",
+      "macro_region": "Region 16: Superior Parietal Cortex",
+      "synonyms": [
+        "VIP"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 230,
+      "name": "MIP_L - Medial IntraParietal Area (Left)",
+      "code": "MIP_L",
+      "area_code": "MIP",
+      "hemisphere": "Left",
+      "macro_region": "Region 16: Superior Parietal Cortex",
+      "synonyms": [
+        "MIP"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 231,
+      "name": "1_L - Area 1 (Left)",
+      "code": "1_L",
+      "area_code": "1",
+      "hemisphere": "Left",
+      "macro_region": "Region 6: Somatosensory and Motor Cortex",
+      "synonyms": [
+        "BA1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 232,
+      "name": "2_L - Area 2 (Left)",
+      "code": "2_L",
+      "area_code": "2",
+      "hemisphere": "Left",
+      "macro_region": "Region 6: Somatosensory and Motor Cortex",
+      "synonyms": [
+        "BA2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 233,
+      "name": "3a_L - Area 3a (Left)",
+      "code": "3a_L",
+      "area_code": "3a",
+      "hemisphere": "Left",
+      "macro_region": "Region 6: Somatosensory and Motor Cortex",
+      "synonyms": [
+        "S1",
+        "3"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 234,
+      "name": "6d_L - Dorsal Area 6 (Left)",
+      "code": "6d_L",
+      "area_code": "6d",
+      "hemisphere": "Left",
+      "macro_region": "Region 8: Premotor Cortex",
+      "synonyms": [
+        "6",
+        "6a-alpha"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 235,
+      "name": "6mp_L - Area 6mp (SMA proper) (Left)",
+      "code": "6mp_L",
+      "area_code": "6mp",
+      "hemisphere": "Left",
+      "macro_region": "Region 7: Paracentral Lobular and Mid-Cingulate Cortex",
+      "synonyms": [
+        "SMAc",
+        "6",
+        "SMA"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 236,
+      "name": "6v_L - Ventral Area 6 (Left)",
+      "code": "6v_L",
+      "area_code": "6v",
+      "hemisphere": "Left",
+      "macro_region": "Region 8: Premotor Cortex",
+      "synonyms": [
+        "6",
+        "6v1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 237,
+      "name": "p24pr_L - Area p24 Prime (Left)",
+      "code": "p24pr_L",
+      "area_code": "p24pr",
+      "hemisphere": "Left",
+      "macro_region": "Region 19: Anterior Cingulate and Medial Prefrontal Cortex",
+      "synonyms": [
+        "p24'"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 238,
+      "name": "33pr_L - Area 33 Prime (Left)",
+      "code": "33pr_L",
+      "area_code": "33pr",
+      "hemisphere": "Left",
+      "macro_region": "Region 19: Anterior Cingulate and Medial Prefrontal Cortex",
+      "synonyms": [
+        "33'",
+        "16"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 239,
+      "name": "a24pr_L - Area a24 Prime (Left)",
+      "code": "a24pr_L",
+      "area_code": "a24pr",
+      "hemisphere": "Left",
+      "macro_region": "Region 19: Anterior Cingulate and Medial Prefrontal Cortex",
+      "synonyms": [
+        "a24'"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 240,
+      "name": "p32pr_L - Area p32 Prime (Left)",
+      "code": "p32pr_L",
+      "area_code": "p32pr",
+      "hemisphere": "Left",
+      "macro_region": "Region 19: Anterior Cingulate and Medial Prefrontal Cortex",
+      "synonyms": [
+        "32'"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 241,
+      "name": "a24_L - Area Anterior 24 (Left)",
+      "code": "a24_L",
+      "area_code": "a24",
+      "hemisphere": "Left",
+      "macro_region": "Region 19: Anterior Cingulate and Medial Prefrontal Cortex",
+      "synonyms": [
+        "24",
+        "s24"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 242,
+      "name": "d32_L - Area Dorsal 32 (Left)",
+      "code": "d32_L",
+      "area_code": "d32",
+      "hemisphere": "Left",
+      "macro_region": "Region 19: Anterior Cingulate and Medial Prefrontal Cortex",
+      "synonyms": [
+        "32"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 243,
+      "name": "8BM_L - Area 8BM (Left)",
+      "code": "8BM_L",
+      "area_code": "8BM",
+      "hemisphere": "Left",
+      "macro_region": "Region 19: Anterior Cingulate and Medial Prefrontal Cortex",
+      "synonyms": [
+        "8B"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 244,
+      "name": "p32_L - Area Posterior 32 (Left)",
+      "code": "p32_L",
+      "area_code": "p32",
+      "hemisphere": "Left",
+      "macro_region": "Region 19: Anterior Cingulate and Medial Prefrontal Cortex",
+      "synonyms": [
+        "32ac",
+        "32"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 245,
+      "name": "10r_L - Area 10 Rostral (Left)",
+      "code": "10r_L",
+      "area_code": "10r",
+      "hemisphere": "Left",
+      "macro_region": "Region 19: Anterior Cingulate and Medial Prefrontal Cortex",
+      "synonyms": [
+        "10r"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 246,
+      "name": "47m_L - Area 47m (Left)",
+      "code": "47m_L",
+      "area_code": "47m",
+      "hemisphere": "Left",
+      "macro_region": "Region 20: Orbital and Polar Frontal Cortex",
+      "synonyms": [
+        "47m"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 247,
+      "name": "8Av_L - Area 8Av (Left)",
+      "code": "8Av_L",
+      "area_code": "8Av",
+      "hemisphere": "Left",
+      "macro_region": "Region 22: Dorsolateral Prefrontal Cortex (DLPFC)",
+      "synonyms": [
+        "8Av"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 248,
+      "name": "8Ad_L - Area 8Ad (Left)",
+      "code": "8Ad_L",
+      "area_code": "8Ad",
+      "hemisphere": "Left",
+      "macro_region": "Region 22: Dorsolateral Prefrontal Cortex (DLPFC)",
+      "synonyms": [
+        "8Ad"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 249,
+      "name": "9m_L - Area 9 Middle (Left)",
+      "code": "9m_L",
+      "area_code": "9m",
+      "hemisphere": "Left",
+      "macro_region": "Region 19: Anterior Cingulate and Medial Prefrontal Cortex",
+      "synonyms": [
+        "9"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 250,
+      "name": "8BL_L - Area 8B Lateral (Left)",
+      "code": "8BL_L",
+      "area_code": "8BL",
+      "hemisphere": "Left",
+      "macro_region": "Region 22: Dorsolateral Prefrontal Cortex (DLPFC)",
+      "synonyms": [
+        "8B"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 251,
+      "name": "9p_L - Area 9 Posterior (Left)",
+      "code": "9p_L",
+      "area_code": "9p",
+      "hemisphere": "Left",
+      "macro_region": "Region 22: Dorsolateral Prefrontal Cortex (DLPFC)",
+      "synonyms": [
+        "9"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 252,
+      "name": "10d_L - Area 10 Dorsal (Left)",
+      "code": "10d_L",
+      "area_code": "10d",
+      "hemisphere": "Left",
+      "macro_region": "Region 20: Orbital and Polar Frontal Cortex",
+      "synonyms": [
+        "10",
+        "Fp1",
+        "Fp2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 253,
+      "name": "8C_L - Area 8C (Left)",
+      "code": "8C_L",
+      "area_code": "8C",
+      "hemisphere": "Left",
+      "macro_region": "Region 22: Dorsolateral Prefrontal Cortex (DLPFC)",
+      "synonyms": [
+        "8Av"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 254,
+      "name": "44_L - Area 44 (Broca) (Left)",
+      "code": "44_L",
+      "area_code": "44",
+      "hemisphere": "Left",
+      "macro_region": "Region 21: Inferior Frontal Cortex",
+      "synonyms": [
+        "44d",
+        "44v",
+        "BA44"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 255,
+      "name": "45_L - Area 45 (Broca) (Left)",
+      "code": "45_L",
+      "area_code": "45",
+      "hemisphere": "Left",
+      "macro_region": "Region 21: Inferior Frontal Cortex",
+      "synonyms": [
+        "45a",
+        "45p",
+        "BA45"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 256,
+      "name": "47l_L - Area 47 Lateral (Left)",
+      "code": "47l_L",
+      "area_code": "47l",
+      "hemisphere": "Left",
+      "macro_region": "Region 21: Inferior Frontal Cortex",
+      "synonyms": [
+        "47l",
+        "BA47"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 257,
+      "name": "a47r_L - Area Anterior 47r (Left)",
+      "code": "a47r_L",
+      "area_code": "a47r",
+      "hemisphere": "Left",
+      "macro_region": "Region 20: Orbital and Polar Frontal Cortex",
+      "synonyms": [
+        "47r"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 258,
+      "name": "6r_L - Rostral Area 6 (Left)",
+      "code": "6r_L",
+      "area_code": "6r",
+      "hemisphere": "Left",
+      "macro_region": "Region 8: Premotor Cortex",
+      "synonyms": [
+        "6r"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 259,
+      "name": "IFJa_L - Inferior Frontal Junction Anterior (Left)",
+      "code": "IFJa_L",
+      "area_code": "IFJa",
+      "hemisphere": "Left",
+      "macro_region": "Region 21: Inferior Frontal Cortex",
+      "synonyms": [
+        "ifj1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 260,
+      "name": "IFJp_L - Inferior Frontal Junction Posterior (Left)",
+      "code": "IFJp_L",
+      "area_code": "IFJp",
+      "hemisphere": "Left",
+      "macro_region": "Region 21: Inferior Frontal Cortex",
+      "synonyms": [
+        "ifj2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 261,
+      "name": "IFSp_L - Inferior Frontal Sulcus Posterior (Left)",
+      "code": "IFSp_L",
+      "area_code": "IFSp",
+      "hemisphere": "Left",
+      "macro_region": "Region 21: Inferior Frontal Cortex",
+      "synonyms": [
+        "ifs2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 262,
+      "name": "IFSa_L - Inferior Frontal Sulcus Anterior (Left)",
+      "code": "IFSa_L",
+      "area_code": "IFSa",
+      "hemisphere": "Left",
+      "macro_region": "Region 21: Inferior Frontal Cortex",
+      "synonyms": [
+        "ifs1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 263,
+      "name": "p9-46v_L - Area Posterior 9-46v (Left)",
+      "code": "p9-46v_L",
+      "area_code": "p9-46v",
+      "hemisphere": "Left",
+      "macro_region": "Region 22: Dorsolateral Prefrontal Cortex (DLPFC)",
+      "synonyms": [
+        "9-46v"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 264,
+      "name": "46_L - Area 46 (Left)",
+      "code": "46_L",
+      "area_code": "46",
+      "hemisphere": "Left",
+      "macro_region": "Region 22: Dorsolateral Prefrontal Cortex (DLPFC)",
+      "synonyms": [
+        "BA46"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 265,
+      "name": "a9-46v_L - Area Anterior 9-46v (Left)",
+      "code": "a9-46v_L",
+      "area_code": "a9-46v",
+      "hemisphere": "Left",
+      "macro_region": "Region 22: Dorsolateral Prefrontal Cortex (DLPFC)",
+      "synonyms": [
+        "9-46v"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 266,
+      "name": "9-46d_L - Area 9-46 Dorsal (Left)",
+      "code": "9-46d_L",
+      "area_code": "9-46d",
+      "hemisphere": "Left",
+      "macro_region": "Region 22: Dorsolateral Prefrontal Cortex (DLPFC)",
+      "synonyms": [
+        "9-46d"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 267,
+      "name": "9a_L - Area 9 Anterior (Left)",
+      "code": "9a_L",
+      "area_code": "9a",
+      "hemisphere": "Left",
+      "macro_region": "Region 22: Dorsolateral Prefrontal Cortex (DLPFC)",
+      "synonyms": [
+        "9"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 268,
+      "name": "10v_L - Area 10 Ventral (Left)",
+      "code": "10v_L",
+      "area_code": "10v",
+      "hemisphere": "Left",
+      "macro_region": "Region 19: Anterior Cingulate and Medial Prefrontal Cortex",
+      "synonyms": [
+        "10",
+        "Fp2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 269,
+      "name": "a10p_L - Area Anterior 10p (Left)",
+      "code": "a10p_L",
+      "area_code": "a10p",
+      "hemisphere": "Left",
+      "macro_region": "Region 20: Orbital and Polar Frontal Cortex",
+      "synonyms": [
+        "10p",
+        "Fp1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 270,
+      "name": "10pp_L - Area Polar 10p (Left)",
+      "code": "10pp_L",
+      "area_code": "10pp",
+      "hemisphere": "Left",
+      "macro_region": "Region 20: Orbital and Polar Frontal Cortex",
+      "synonyms": [
+        "10p",
+        "Fp1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 271,
+      "name": "11l_L - Area 11 Lateral (Left)",
+      "code": "11l_L",
+      "area_code": "11l",
+      "hemisphere": "Left",
+      "macro_region": "Region 20: Orbital and Polar Frontal Cortex",
+      "synonyms": [
+        "Fo3"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 272,
+      "name": "13l_L - Area 13 Lateral (Left)",
+      "code": "13l_L",
+      "area_code": "13l",
+      "hemisphere": "Left",
+      "macro_region": "Region 20: Orbital and Polar Frontal Cortex",
+      "synonyms": [
+        "Fo3"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 273,
+      "name": "OFC_L - Orbital Frontal Complex (Left)",
+      "code": "OFC_L",
+      "area_code": "OFC",
+      "hemisphere": "Left",
+      "macro_region": "Region 20: Orbital and Polar Frontal Cortex",
+      "synonyms": [
+        "11m",
+        "13b",
+        "13m",
+        "14r",
+        "Fo1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 274,
+      "name": "47s_L - Area 47s (Left)",
+      "code": "47s_L",
+      "area_code": "47s",
+      "hemisphere": "Left",
+      "macro_region": "Region 20: Orbital and Polar Frontal Cortex",
+      "synonyms": [
+        "47s"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 275,
+      "name": "LIPd_L - Lateral IntraParietal Dorsal Area (Left)",
+      "code": "LIPd_L",
+      "area_code": "LIPd",
+      "hemisphere": "Left",
+      "macro_region": "Region 16: Superior Parietal Cortex",
+      "synonyms": [
+        "LIPd"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 276,
+      "name": "6a_L - Area 6 Anterior (Left)",
+      "code": "6a_L",
+      "area_code": "6a",
+      "hemisphere": "Left",
+      "macro_region": "Region 8: Premotor Cortex",
+      "synonyms": [
+        "6",
+        "6a-beta"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 277,
+      "name": "i6-8_L - Inferior 6-8 Transitional Area (Left)",
+      "code": "i6-8_L",
+      "area_code": "i6-8",
+      "hemisphere": "Left",
+      "macro_region": "Region 22: Dorsolateral Prefrontal Cortex (DLPFC)",
+      "synonyms": [
+        "FC(B)"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 278,
+      "name": "s6-8_L - Superior 6-8 Transitional Area (Left)",
+      "code": "s6-8_L",
+      "area_code": "s6-8",
+      "hemisphere": "Left",
+      "macro_region": "Region 22: Dorsolateral Prefrontal Cortex (DLPFC)",
+      "synonyms": [
+        "FC(B)"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 279,
+      "name": "43_L - Area 43 (Left)",
+      "code": "43_L",
+      "area_code": "43",
+      "hemisphere": "Left",
+      "macro_region": "Region 9: Posterior Opercular Cortex",
+      "synonyms": [
+        "41",
+        "BA43"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 280,
+      "name": "OP4_L - Area OP4 / PV (Left)",
+      "code": "OP4_L",
+      "area_code": "OP4",
+      "hemisphere": "Left",
+      "macro_region": "Region 9: Posterior Opercular Cortex",
+      "synonyms": [
+        "68"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 281,
+      "name": "OP1_L - Area OP1 / SII (Left)",
+      "code": "OP1_L",
+      "area_code": "OP1",
+      "hemisphere": "Left",
+      "macro_region": "Region 9: Posterior Opercular Cortex",
+      "synonyms": [
+        "OP1",
+        "SII"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 282,
+      "name": "OP2-3_L - Area OP2-3 / VS (Left)",
+      "code": "OP2-3_L",
+      "area_code": "OP2-3",
+      "hemisphere": "Left",
+      "macro_region": "Region 9: Posterior Opercular Cortex",
+      "synonyms": [
+        "OP2",
+        "OP3"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 283,
+      "name": "52_L - Area 52 (Left)",
+      "code": "52_L",
+      "area_code": "52",
+      "hemisphere": "Left",
+      "macro_region": "Region 12: Insular and Frontal Opercular Cortex",
+      "synonyms": [
+        "IBT",
+        "BA52"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 284,
+      "name": "RI_L - Retro-Insular Cortex (Left)",
+      "code": "RI_L",
+      "area_code": "RI",
+      "hemisphere": "Left",
+      "macro_region": "Region 10: Early Auditory Cortex",
+      "synonyms": [
+        "relt",
+        "TD",
+        "Belt"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 285,
+      "name": "PFcm_L - Area PFcm (Left)",
+      "code": "PFcm_L",
+      "area_code": "PFcm",
+      "hemisphere": "Left",
+      "macro_region": "Region 9: Posterior Opercular Cortex",
+      "synonyms": [
+        "PFcm"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 286,
+      "name": "PoI2_L - Posterior Insular Area 2 (Left)",
+      "code": "PoI2_L",
+      "area_code": "PoI2",
+      "hemisphere": "Left",
+      "macro_region": "Region 12: Insular and Frontal Opercular Cortex",
+      "synonyms": [
+        "Id1",
+        "Id2",
+        "Id3"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 287,
+      "name": "TA2_L - Area TA2 (Left)",
+      "code": "TA2_L",
+      "area_code": "TA2",
+      "hemisphere": "Left",
+      "macro_region": "Region 11: Auditory Association Cortex",
+      "synonyms": [
+        "TE1.2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 288,
+      "name": "FOP4_L - Frontal Opercular Area 4 (Left)",
+      "code": "FOP4_L",
+      "area_code": "FOP4",
+      "hemisphere": "Left",
+      "macro_region": "Region 12: Insular and Frontal Opercular Cortex",
+      "synonyms": [
+        "FOP4"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 289,
+      "name": "MI_L - Middle Insular Area (Left)",
+      "code": "MI_L",
+      "area_code": "MI",
+      "hemisphere": "Left",
+      "macro_region": "Region 12: Insular and Frontal Opercular Cortex",
+      "synonyms": [
+        "Ia1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 290,
+      "name": "Pir_L - Piriform Cortex (Left)",
+      "code": "Pir_L",
+      "area_code": "Pir",
+      "hemisphere": "Left",
+      "macro_region": "Region 12: Insular and Frontal Opercular Cortex",
+      "synonyms": [
+        "Poc"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 291,
+      "name": "AVI_L - Anterior Ventral Insular Area (Left)",
+      "code": "AVI_L",
+      "area_code": "AVI",
+      "hemisphere": "Left",
+      "macro_region": "Region 12: Insular and Frontal Opercular Cortex",
+      "synonyms": [
+        "IaI"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 292,
+      "name": "AAIC_L - Anterior Agranular Insula Complex (Left)",
+      "code": "AAIC_L",
+      "area_code": "AAIC",
+      "hemisphere": "Left",
+      "macro_region": "Region 12: Insular and Frontal Opercular Cortex",
+      "synonyms": [
+        "IaI",
+        "IaI"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 293,
+      "name": "FOP1_L - Frontal Opercular Area 1 (Left)",
+      "code": "FOP1_L",
+      "area_code": "FOP1",
+      "hemisphere": "Left",
+      "macro_region": "Region 9: Posterior Opercular Cortex",
+      "synonyms": [
+        "FOP1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 294,
+      "name": "FOP3_L - Frontal Opercular Area 3 (Left)",
+      "code": "FOP3_L",
+      "area_code": "FOP3",
+      "hemisphere": "Left",
+      "macro_region": "Region 12: Insular and Frontal Opercular Cortex",
+      "synonyms": [
+        "FOP3"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 295,
+      "name": "FOP2_L - Frontal Opercular Area 2 (Left)",
+      "code": "FOP2_L",
+      "area_code": "FOP2",
+      "hemisphere": "Left",
+      "macro_region": "Region 12: Insular and Frontal Opercular Cortex",
+      "synonyms": [
+        "FOP2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 296,
+      "name": "PFt_L - Area PFt (Left)",
+      "code": "PFt_L",
+      "area_code": "PFt",
+      "hemisphere": "Left",
+      "macro_region": "Region 17: Inferior Parietal Cortex",
+      "synonyms": [
+        "PFt"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 297,
+      "name": "AIP_L - Anterior IntraParietal Area (Left)",
+      "code": "AIP_L",
+      "area_code": "AIP",
+      "hemisphere": "Left",
+      "macro_region": "Region 16: Superior Parietal Cortex",
+      "synonyms": [
+        "AIP"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 298,
+      "name": "EC_L - Entorhinal Cortex (Left)",
+      "code": "EC_L",
+      "area_code": "EC",
+      "hemisphere": "Left",
+      "macro_region": "Region 13: Medial Temporal Cortex",
+      "synonyms": [
+        "28"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 299,
+      "name": "PreS_L - PreSubiculum (Left)",
+      "code": "PreS_L",
+      "area_code": "PreS",
+      "hemisphere": "Left",
+      "macro_region": "Region 13: Medial Temporal Cortex",
+      "synonyms": [
+        "Sub",
+        "Subicular"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 300,
+      "name": "H_L - Hippocampus (Left)",
+      "code": "H_L",
+      "area_code": "H",
+      "hemisphere": "Left",
+      "macro_region": "Region 13: Medial Temporal Cortex",
+      "synonyms": [
+        "Hippocampal formation"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 301,
+      "name": "ProS_L - ProStriate Area (Left)",
+      "code": "ProS_L",
+      "area_code": "ProS",
+      "hemisphere": "Left",
+      "macro_region": "Region 18: Posterior Cingulate Cortex",
+      "synonyms": [
+        "pStr"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 302,
+      "name": "PeEc_L - Perirhinal / Ectorhinal Complex (Left)",
+      "code": "PeEc_L",
+      "area_code": "PeEc",
+      "hemisphere": "Left",
+      "macro_region": "Region 13: Medial Temporal Cortex",
+      "synonyms": [
+        "35",
+        "36",
+        "ATFP"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 303,
+      "name": "STGa_L - Area STGa (Left)",
+      "code": "STGa_L",
+      "area_code": "STGa",
+      "hemisphere": "Left",
+      "macro_region": "Region 11: Auditory Association Cortex",
+      "synonyms": [
+        "STGa"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 304,
+      "name": "PBelt_L - ParaBelt Complex (Left)",
+      "code": "PBelt_L",
+      "area_code": "PBelt",
+      "hemisphere": "Left",
+      "macro_region": "Region 10: Early Auditory Cortex",
+      "synonyms": [
+        "ParaBelt",
+        "TA1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 305,
+      "name": "A5_L - Auditory 5 Complex (Left)",
+      "code": "A5_L",
+      "area_code": "A5",
+      "hemisphere": "Left",
+      "macro_region": "Region 11: Auditory Association Cortex",
+      "synonyms": [
+        "A5"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 306,
+      "name": "PHA1_L - ParaHippocampal Area 1 (Left)",
+      "code": "PHA1_L",
+      "area_code": "PHA1",
+      "hemisphere": "Left",
+      "macro_region": "Region 13: Medial Temporal Cortex",
+      "synonyms": [
+        "PHA1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 307,
+      "name": "PHA3_L - ParaHippocampal Area 3 (Left)",
+      "code": "PHA3_L",
+      "area_code": "PHA3",
+      "hemisphere": "Left",
+      "macro_region": "Region 13: Medial Temporal Cortex",
+      "synonyms": [
+        "PHA3"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 308,
+      "name": "STSda_L - Area STSd Anterior (Left)",
+      "code": "STSda_L",
+      "area_code": "STSda",
+      "hemisphere": "Left",
+      "macro_region": "Region 11: Auditory Association Cortex",
+      "synonyms": [
+        "STSda"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 309,
+      "name": "STSdp_L - Area STSd Posterior (Left)",
+      "code": "STSdp_L",
+      "area_code": "STSdp",
+      "hemisphere": "Left",
+      "macro_region": "Region 11: Auditory Association Cortex",
+      "synonyms": [
+        "STSdp"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 310,
+      "name": "STSvp_L - Area STSv Posterior (Left)",
+      "code": "STSvp_L",
+      "area_code": "STSvp",
+      "hemisphere": "Left",
+      "macro_region": "Region 11: Auditory Association Cortex",
+      "synonyms": [
+        "STSvp"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 311,
+      "name": "TGd_L - Area TG Dorsal (Temporal Pole) (Left)",
+      "code": "TGd_L",
+      "area_code": "TGd",
+      "hemisphere": "Left",
+      "macro_region": "Region 14: Lateral Temporal Cortex",
+      "synonyms": [
+        "TG"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 312,
+      "name": "TE1a_L - Area TE1 Anterior (Left)",
+      "code": "TE1a_L",
+      "area_code": "TE1a",
+      "hemisphere": "Left",
+      "macro_region": "Region 14: Lateral Temporal Cortex",
+      "synonyms": [
+        "TE1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 313,
+      "name": "TE1p_L - Area TE1 Posterior (Left)",
+      "code": "TE1p_L",
+      "area_code": "TE1p",
+      "hemisphere": "Left",
+      "macro_region": "Region 14: Lateral Temporal Cortex",
+      "synonyms": [
+        "TE1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 314,
+      "name": "TE2a_L - Area TE2 Anterior (Left)",
+      "code": "TE2a_L",
+      "area_code": "TE2a",
+      "hemisphere": "Left",
+      "macro_region": "Region 14: Lateral Temporal Cortex",
+      "synonyms": [
+        "TE2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 315,
+      "name": "TF_L - Area TF (Left)",
+      "code": "TF_L",
+      "area_code": "TF",
+      "hemisphere": "Left",
+      "macro_region": "Region 14: Lateral Temporal Cortex",
+      "synonyms": [
+        "TF"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 316,
+      "name": "TE2p_L - Area TE2 Posterior (Left)",
+      "code": "TE2p_L",
+      "area_code": "TE2p",
+      "hemisphere": "Left",
+      "macro_region": "Region 14: Lateral Temporal Cortex",
+      "synonyms": [
+        "TE2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 317,
+      "name": "PHT_L - Area PHT (Left)",
+      "code": "PHT_L",
+      "area_code": "PHT",
+      "hemisphere": "Left",
+      "macro_region": "Region 14: Lateral Temporal Cortex",
+      "synonyms": [
+        "PHT"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 318,
+      "name": "PH_L - Area PH (Left)",
+      "code": "PH_L",
+      "area_code": "PH",
+      "hemisphere": "Left",
+      "macro_region": "Region 5: MT+ Complex and Neighboring Visual Areas",
+      "synonyms": [
+        "PH"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 319,
+      "name": "TPOJ1_L - TemporoParietoOccipital Junction 1 (Left)",
+      "code": "TPOJ1_L",
+      "area_code": "TPOJ1",
+      "hemisphere": "Left",
+      "macro_region": "Region 15: Temporo-Parieto-Occipital Junction (TPOJ)",
+      "synonyms": [
+        "TPOJ1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 320,
+      "name": "TPOJ2_L - TemporoParietoOccipital Junction 2 (Left)",
+      "code": "TPOJ2_L",
+      "area_code": "TPOJ2",
+      "hemisphere": "Left",
+      "macro_region": "Region 15: Temporo-Parieto-Occipital Junction (TPOJ)",
+      "synonyms": [
+        "TPOJ2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 321,
+      "name": "TPOJ3_L - TemporoParietoOccipital Junction 3 (Left)",
+      "code": "TPOJ3_L",
+      "area_code": "TPOJ3",
+      "hemisphere": "Left",
+      "macro_region": "Region 15: Temporo-Parieto-Occipital Junction (TPOJ)",
+      "synonyms": [
+        "TPOJ3"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 322,
+      "name": "DVT_L - Dorsal Visual Transitional Area (Left)",
+      "code": "DVT_L",
+      "area_code": "DVT",
+      "hemisphere": "Left",
+      "macro_region": "Region 18: Posterior Cingulate Cortex",
+      "synonyms": [
+        "DVT"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 323,
+      "name": "PGp_L - Area PGp (Left)",
+      "code": "PGp_L",
+      "area_code": "PGp",
+      "hemisphere": "Left",
+      "macro_region": "Region 17: Inferior Parietal Cortex",
+      "synonyms": [
+        "39",
+        "PG"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 324,
+      "name": "IP2_L - Area IntraParietal 2 (Left)",
+      "code": "IP2_L",
+      "area_code": "IP2",
+      "hemisphere": "Left",
+      "macro_region": "Region 17: Inferior Parietal Cortex",
+      "synonyms": [
+        "IP2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 325,
+      "name": "IP1_L - Area IntraParietal 1 (Left)",
+      "code": "IP1_L",
+      "area_code": "IP1",
+      "hemisphere": "Left",
+      "macro_region": "Region 17: Inferior Parietal Cortex",
+      "synonyms": [
+        "IP1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 326,
+      "name": "IPO_L - Area IntraParietal O (Left)",
+      "code": "IPO_L",
+      "area_code": "IPO",
+      "hemisphere": "Left",
+      "macro_region": "Region 17: Inferior Parietal Cortex",
+      "synonyms": [
+        "IPO"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 327,
+      "name": "PFop_L - Area PF Opercular (Left)",
+      "code": "PFop_L",
+      "area_code": "PFop",
+      "hemisphere": "Left",
+      "macro_region": "Region 17: Inferior Parietal Cortex",
+      "synonyms": [
+        "40",
+        "72"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 328,
+      "name": "PF_L - Area PF Complex (Left)",
+      "code": "PF_L",
+      "area_code": "PF",
+      "hemisphere": "Left",
+      "macro_region": "Region 17: Inferior Parietal Cortex",
+      "synonyms": [
+        "40",
+        "88"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 329,
+      "name": "PFm_L - Area PFm Complex (Left)",
+      "code": "PFm_L",
+      "area_code": "PFm",
+      "hemisphere": "Left",
+      "macro_region": "Region 17: Inferior Parietal Cortex",
+      "synonyms": [
+        "40",
+        "89"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 330,
+      "name": "PGi_L - Area PGi (Left)",
+      "code": "PGi_L",
+      "area_code": "PGi",
+      "hemisphere": "Left",
+      "macro_region": "Region 17: Inferior Parietal Cortex",
+      "synonyms": [
+        "PGa",
+        "39",
+        "90"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 331,
+      "name": "PGs_L - Area PGs (Left)",
+      "code": "PGs_L",
+      "area_code": "PGs",
+      "hemisphere": "Left",
+      "macro_region": "Region 17: Inferior Parietal Cortex",
+      "synonyms": [
+        "PGa",
+        "39",
+        "90"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 332,
+      "name": "V6A_L - Area V6A (Left)",
+      "code": "V6A_L",
+      "area_code": "V6A",
+      "hemisphere": "Left",
+      "macro_region": "Region 3: Dorsal Stream Visual Cortex",
+      "synonyms": [
+        "112"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 333,
+      "name": "VMV1_L - VentroMedial Visual Area 1 (Left)",
+      "code": "VMV1_L",
+      "area_code": "VMV1",
+      "hemisphere": "Left",
+      "macro_region": "Region 4: Ventral Stream Visual Cortex",
+      "synonyms": [
+        "PHC2",
+        "PHC-2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 334,
+      "name": "VMV3_L - VentroMedial Visual Area 3 (Left)",
+      "code": "VMV3_L",
+      "area_code": "VMV3",
+      "hemisphere": "Left",
+      "macro_region": "Region 4: Ventral Stream Visual Cortex",
+      "synonyms": [
+        "VO2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 335,
+      "name": "PHA2_L - ParaHippocampal Area 2 (Left)",
+      "code": "PHA2_L",
+      "area_code": "PHA2",
+      "hemisphere": "Left",
+      "macro_region": "Region 13: Medial Temporal Cortex",
+      "synonyms": [
+        "PHA2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 336,
+      "name": "V4t_L - Area V4t (Left)",
+      "code": "V4t_L",
+      "area_code": "V4t",
+      "hemisphere": "Left",
+      "macro_region": "Region 5: MT+ Complex and Neighboring Visual Areas",
+      "synonyms": [
+        "LO2",
+        "pV4t"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 337,
+      "name": "FST_L - Fundus of Superior Temporal Area (Left)",
+      "code": "FST_L",
+      "area_code": "FST",
+      "hemisphere": "Left",
+      "macro_region": "Region 5: MT+ Complex and Neighboring Visual Areas",
+      "synonyms": [
+        "pFST"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 338,
+      "name": "V3CD_L - Area V3CD (Left)",
+      "code": "V3CD_L",
+      "area_code": "V3CD",
+      "hemisphere": "Left",
+      "macro_region": "Region 5: MT+ Complex and Neighboring Visual Areas",
+      "synonyms": [
+        "V3A",
+        "V3B",
+        "hOC4la"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 339,
+      "name": "LO3_L - Area Lateral Occipital 3 (Left)",
+      "code": "LO3_L",
+      "area_code": "LO3",
+      "hemisphere": "Left",
+      "macro_region": "Region 5: MT+ Complex and Neighboring Visual Areas",
+      "synonyms": [
+        "hOC4la"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 340,
+      "name": "VMV2_L - VentroMedial Visual Area 2 (Left)",
+      "code": "VMV2_L",
+      "area_code": "VMV2",
+      "hemisphere": "Left",
+      "macro_region": "Region 4: Ventral Stream Visual Cortex",
+      "synonyms": [
+        "PHC1",
+        "PHC-1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 341,
+      "name": "31pd_L - Area 31p Dorsal (Left)",
+      "code": "31pd_L",
+      "area_code": "31pd",
+      "hemisphere": "Left",
+      "macro_region": "Region 18: Posterior Cingulate Cortex",
+      "synonyms": [
+        "31",
+        "31d"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 342,
+      "name": "31a_L - Area 31a (Left)",
+      "code": "31a_L",
+      "area_code": "31a",
+      "hemisphere": "Left",
+      "macro_region": "Region 18: Posterior Cingulate Cortex",
+      "synonyms": [
+        "31"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 343,
+      "name": "VVC_L - Ventral Visual Complex (Left)",
+      "code": "VVC_L",
+      "area_code": "VVC",
+      "hemisphere": "Left",
+      "macro_region": "Region 4: Ventral Stream Visual Cortex",
+      "synonyms": [
+        "VO1",
+        "VO2",
+        "PHC1",
+        "PHC2",
+        "FG1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 344,
+      "name": "25_L - Area 25 (Subgenual) (Left)",
+      "code": "25_L",
+      "area_code": "25",
+      "hemisphere": "Left",
+      "macro_region": "Region 19: Anterior Cingulate and Medial Prefrontal Cortex",
+      "synonyms": [
+        "BA25"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 345,
+      "name": "s32_L - Area s32 (Subgenual 32) (Left)",
+      "code": "s32_L",
+      "area_code": "s32",
+      "hemisphere": "Left",
+      "macro_region": "Region 19: Anterior Cingulate and Medial Prefrontal Cortex",
+      "synonyms": [
+        "32pl",
+        "32"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 346,
+      "name": "pOFC_L - Posterior OFC Complex (Left)",
+      "code": "pOFC_L",
+      "area_code": "pOFC",
+      "hemisphere": "Left",
+      "macro_region": "Region 20: Orbital and Polar Frontal Cortex",
+      "synonyms": [
+        "13a",
+        "14c",
+        "Fo2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 347,
+      "name": "PoI1_L - Posterior Insular Area 1 (Left)",
+      "code": "PoI1_L",
+      "area_code": "PoI1",
+      "hemisphere": "Left",
+      "macro_region": "Region 12: Insular and Frontal Opercular Cortex",
+      "synonyms": [
+        "Id1",
+        "Id2",
+        "Id3"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 348,
+      "name": "Ig_L - Insular Granular Complex (Left)",
+      "code": "Ig_L",
+      "area_code": "Ig",
+      "hemisphere": "Left",
+      "macro_region": "Region 12: Insular and Frontal Opercular Cortex",
+      "synonyms": [
+        "Ig1",
+        "Ig2"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 349,
+      "name": "FOP5_L - Frontal Opercular Area 5 (Left)",
+      "code": "FOP5_L",
+      "area_code": "FOP5",
+      "hemisphere": "Left",
+      "macro_region": "Region 12: Insular and Frontal Opercular Cortex",
+      "synonyms": [
+        "PrCO"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 350,
+      "name": "p10p_L - Area Posterior 10p (Left)",
+      "code": "p10p_L",
+      "area_code": "p10p",
+      "hemisphere": "Left",
+      "macro_region": "Region 20: Orbital and Polar Frontal Cortex",
+      "synonyms": [
+        "10p",
+        "Fp1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 351,
+      "name": "p47r_L - Area Posterior 47r (Left)",
+      "code": "p47r_L",
+      "area_code": "p47r",
+      "hemisphere": "Left",
+      "macro_region": "Region 21: Inferior Frontal Cortex",
+      "synonyms": [
+        "47r"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 352,
+      "name": "TGv_L - Area TG Ventral (Temporal Pole) (Left)",
+      "code": "TGv_L",
+      "area_code": "TGv",
+      "hemisphere": "Left",
+      "macro_region": "Region 14: Lateral Temporal Cortex",
+      "synonyms": [
+        "TG"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 353,
+      "name": "MBelt_L - Medial Belt Complex (Left)",
+      "code": "MBelt_L",
+      "area_code": "MBelt",
+      "hemisphere": "Left",
+      "macro_region": "Region 10: Early Auditory Cortex",
+      "synonyms": [
+        "Belt",
+        "TB"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 354,
+      "name": "LBelt_L - Lateral Belt Complex (Left)",
+      "code": "LBelt_L",
+      "area_code": "LBelt",
+      "hemisphere": "Left",
+      "macro_region": "Region 10: Early Auditory Cortex",
+      "synonyms": [
+        "Belt",
+        "TB"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 355,
+      "name": "A4_L - Auditory 4 Complex (Left)",
+      "code": "A4_L",
+      "area_code": "A4",
+      "hemisphere": "Left",
+      "macro_region": "Region 11: Auditory Association Cortex",
+      "synonyms": [
+        "TE3"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 356,
+      "name": "STSva_L - Area STSv Anterior (Left)",
+      "code": "STSva_L",
+      "area_code": "STSva",
+      "hemisphere": "Left",
+      "macro_region": "Region 11: Auditory Association Cortex",
+      "synonyms": [
+        "STSva"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 357,
+      "name": "TE1m_L - Area TE1 Middle (Left)",
+      "code": "TE1m_L",
+      "area_code": "TE1m",
+      "hemisphere": "Left",
+      "macro_region": "Region 14: Lateral Temporal Cortex",
+      "synonyms": [
+        "TE1"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 358,
+      "name": "PI_L - Para-Insular Area (Left)",
+      "code": "PI_L",
+      "area_code": "PI",
+      "hemisphere": "Left",
+      "macro_region": "Region 12: Insular and Frontal Opercular Cortex",
+      "synonyms": [
+        "IBT",
+        "PI"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 359,
+      "name": "a32pr_L - Area a32 Prime (Left)",
+      "code": "a32pr_L",
+      "area_code": "a32pr",
+      "hemisphere": "Left",
+      "macro_region": "Region 19: Anterior Cingulate and Medial Prefrontal Cortex",
+      "synonyms": [
+        "32'"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 360,
+      "name": "p24_L - Area Posterior 24 (Left)",
+      "code": "p24_L",
+      "area_code": "p24",
+      "hemisphere": "Left",
+      "macro_region": "Region 19: Anterior Cingulate and Medial Prefrontal Cortex",
+      "synonyms": [
+        "24"
+      ],
+      "source": "Glasser et al. (Nature 2016) HCP-MMP1.0 Neuroanatomical Supplementary Results",
+      "review_status": "unreviewed"
+    }
+  ]
+}

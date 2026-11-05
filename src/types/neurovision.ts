@@ -18,7 +18,9 @@ export type NeuroAtlasId =
   | 'aspects'
   | 'whitematter'
   | 'brainstem_aan'
-  | 'aal3';
+  | 'aal3'
+  | 'glasser'
+  | 'brainnetome';
 
 export type BaseModality = 'T1' | 'T2' | 'CT';
 
@@ -31,7 +33,9 @@ export type ActiveOverlay =
   | 'whitematter'
   | 'venous'
   | 'brainstem_aan'
-  | 'aal3';
+  | 'aal3'
+  | 'glasser'
+  | 'brainnetome';
 
 export type ViewMode = 'multiplanar' | 'axial' | 'coronal' | 'sagittal' | '3d';
 
@@ -68,6 +72,31 @@ export interface ClinicalSyndrome {
   description: string; // Clinical manifestation, deficit triad, localization value
 }
 
+export interface HcpMetrics {
+  macro_region: string;
+  synonyms: string[];
+  myelin_profile: string;
+  cortical_thickness: string;
+  task_contrasts: string[];
+  original_profile: string;
+}
+
+export interface BrainnetomeMetrics {
+  lobe: string;
+  gyrus: string;
+  cyto_architecture: string;
+  yeo_network_7: string;
+  yeo_network_overlap_pct: number;
+  behavioral_domains: {
+    cognition: number;
+    action: number;
+    perception: number;
+    emotion: number;
+    interoception: number;
+  };
+  primary_subdomains: string[];
+}
+
 export interface OntologyEntry {
   atlas: NeuroAtlasId;
   label_id: number;
@@ -84,6 +113,8 @@ export interface OntologyEntry {
   evidence_level: EvidenceLevel;
   source: string[];
   review_status: ReviewStatus;
+  hcp_metrics?: HcpMetrics;
+  brainnetome_metrics?: BrainnetomeMetrics;
 }
 
 export interface NeuroOntology {
