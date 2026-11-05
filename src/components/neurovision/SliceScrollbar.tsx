@@ -285,15 +285,15 @@ export default function SliceScrollbar({ className = "" }: SliceScrollbarProps) 
   // Minimized floating pill state
   if (isCollapsed) {
     return (
-      <div className={`absolute top-28 right-2 z-20 pointer-events-auto ${className}`}>
+      <div className={`pointer-events-auto w-full ${className}`}>
         <button
           type="button"
           onClick={() => setIsCollapsed(false)}
-          className={`flex items-center gap-1 px-2 py-1 rounded-full bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 shadow-lg backdrop-blur-md text-[10px] font-semibold ${axisColorTheme.text} transition active:scale-95`}
+          className={`w-full py-1.5 flex flex-col items-center gap-0.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 shadow-xl backdrop-blur-md text-[9px] font-semibold ${axisColorTheme.text} transition active:scale-95`}
           title="Mở lại thanh cuộn lát cắt"
         >
-          <span>🎚️</span>
-          <span className="font-mono">{is3D ? "3D" : `${axis.toUpperCase()}:${currentVox + 1}`}</span>
+          <span className="text-xs">🎚️</span>
+          <span className="font-mono text-[9px] font-bold">{is3D ? "3D" : axis.toUpperCase()}</span>
         </button>
       </div>
     );
@@ -304,10 +304,10 @@ export default function SliceScrollbar({ className = "" }: SliceScrollbarProps) 
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onWheel={handleWheel}
-      className={`absolute top-28 right-2 sm:right-3 z-20 pointer-events-auto flex flex-col items-center select-none ${className}`}
+      className={`pointer-events-auto flex flex-col items-center select-none w-full ${className}`}
     >
-      {/* Compact Scrollbar Card (w-7 sm:w-8, h-[240px] sm:h-[270px]) */}
-      <div className="h-[240px] sm:h-[270px] flex flex-col items-center bg-slate-900/85 hover:bg-slate-900/95 backdrop-blur-md border border-slate-700/60 hover:border-slate-500 rounded-xl shadow-xl p-1 w-7 sm:w-8 transition-all relative">
+      {/* Compact Scrollbar Card */}
+      <div className="h-[240px] sm:h-[270px] flex flex-col items-center bg-slate-900/85 hover:bg-slate-900/95 backdrop-blur-md border border-slate-700/60 hover:border-slate-500 rounded-xl shadow-xl p-1 w-full transition-all relative">
         {/* 1. Header: Axis indicator (Click to toggle Z/Y/X in multiplanar) */}
         <div className="w-full flex flex-col items-center pb-0.5 border-b border-slate-800/80 shrink-0">
           {viewMode === "multiplanar" ? (
@@ -320,13 +320,13 @@ export default function SliceScrollbar({ className = "" }: SliceScrollbarProps) 
               {axis.toUpperCase()}
             </button>
           ) : (
-            <span className={`text-[9px] font-bold ${axisColorTheme.text} uppercase leading-none py-0.5`}>
+            <span className={`text-[9px] sm:text-[10px] font-bold ${axisColorTheme.text} uppercase leading-none py-0.5`}>
               {is3D ? "3D" : axis.toUpperCase()}
             </span>
           )}
 
           {/* Slice number */}
-          <span className="font-mono text-[9px] text-slate-300 font-semibold leading-tight mt-0.5">
+          <span className="font-mono text-[9px] sm:text-[10px] text-slate-300 font-semibold leading-tight mt-0.5">
             {is3D ? (clipPlane.depth > 2.0 ? "OFF" : clipPlane.depth.toFixed(1)) : currentVox + 1}
           </span>
         </div>
@@ -338,7 +338,7 @@ export default function SliceScrollbar({ className = "" }: SliceScrollbarProps) 
           onPointerUp={stopHold}
           onPointerLeave={stopHold}
           onPointerCancel={stopHold}
-          className="w-5 h-5 sm:w-6 sm:h-6 my-1 rounded bg-slate-800/80 hover:bg-slate-700 active:scale-95 text-slate-300 hover:text-white flex items-center justify-center text-[9px] transition border border-slate-700/40 shrink-0"
+          className="w-full h-5 sm:h-6 my-1 rounded-md bg-slate-800/80 hover:bg-slate-700 active:scale-95 text-slate-300 hover:text-white flex items-center justify-center text-[9px] sm:text-[10px] transition border border-slate-700/40 shrink-0"
           title="Lát sau (+1) • Nhấn giữ để cuộn nhanh"
         >
           ▲
@@ -364,7 +364,7 @@ export default function SliceScrollbar({ className = "" }: SliceScrollbarProps) 
 
           {/* Compact Thumb Handle */}
           <div
-            className={`absolute left-1/2 -translate-x-1/2 w-5 sm:w-6 h-3 sm:h-3.5 rounded-sm ${axisColorTheme.bg} ${axisColorTheme.glow} border border-white/70 flex items-center justify-center transition-[top] duration-75 shadow-md cursor-grab active:cursor-grabbing active:scale-105 z-10`}
+            className={`absolute left-1/2 -translate-x-1/2 w-6 sm:w-7 h-3 sm:h-3.5 rounded-sm ${axisColorTheme.bg} ${axisColorTheme.glow} border border-white/70 flex items-center justify-center transition-[top] duration-75 shadow-md cursor-grab active:cursor-grabbing active:scale-105 z-10`}
             style={{
               top: `calc(${(1 - fraction) * 100}% - ${fraction > 0.5 ? 12 : 2}px)`,
             }}
@@ -402,18 +402,18 @@ export default function SliceScrollbar({ className = "" }: SliceScrollbarProps) 
           onPointerUp={stopHold}
           onPointerLeave={stopHold}
           onPointerCancel={stopHold}
-          className="w-5 h-5 sm:w-6 sm:h-6 my-1 rounded bg-slate-800/80 hover:bg-slate-700 active:scale-95 text-slate-300 hover:text-white flex items-center justify-center text-[9px] transition border border-slate-700/40 shrink-0"
+          className="w-full h-5 sm:h-6 my-1 rounded-md bg-slate-800/80 hover:bg-slate-700 active:scale-95 text-slate-300 hover:text-white flex items-center justify-center text-[9px] sm:text-[10px] transition border border-slate-700/40 shrink-0"
           title="Lát trước (−1) • Nhấn giữ để cuộn nhanh"
         >
           ▼
         </button>
 
         {/* 5. Minimal Footer: AC Reset & Collapse */}
-        <div className="w-full flex items-center justify-between pt-0.5 border-t border-slate-800/80 shrink-0">
+        <div className="w-full flex items-center justify-between px-0.5 pt-0.5 border-t border-slate-800/80 shrink-0">
           <button
             type="button"
             onClick={handleResetAC}
-            className="w-4 h-4 rounded hover:bg-slate-800 text-amber-400 hover:text-amber-300 flex items-center justify-center text-[9px] font-bold transition"
+            className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded hover:bg-slate-800 text-amber-400 hover:text-amber-300 flex items-center justify-center text-[9px] font-bold transition"
             title="Về AC (0,0,0 mm)"
           >
             ⊙
@@ -421,7 +421,7 @@ export default function SliceScrollbar({ className = "" }: SliceScrollbarProps) 
           <button
             type="button"
             onClick={() => setIsCollapsed(true)}
-            className="w-4 h-4 rounded hover:bg-slate-800 text-slate-500 hover:text-slate-300 flex items-center justify-center text-[9px] transition"
+            className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded hover:bg-slate-800 text-slate-500 hover:text-slate-300 flex items-center justify-center text-[9px] transition"
             title="Thu nhỏ"
           >
             ✕

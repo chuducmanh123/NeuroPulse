@@ -6,6 +6,7 @@ import { useNeuroVisionStore } from "../../store/useNeuroVisionStore";
 import { useNeuroViewer } from "./NeuroViewerContext";
 import { loadWithCache } from "../../lib/niivue-cache";
 import SliceScrollbar from "./SliceScrollbar";
+import RegionFloatingToolbar from "./RegionFloatingToolbar";
 import type { OntologyEntry, NeuroOntology, ViewMode } from "../../types/neurovision";
 
 interface NeuroViewerCanvasProps {
@@ -35,7 +36,6 @@ export default function NeuroViewerCanvas({ className = "", darkMode = true }: N
   const activeMesh = useNeuroVisionStore((s) => s.activeMesh);
   const highlightedLabelId = useNeuroVisionStore((s) => s.highlightedLabelId);
   const isProgrammaticChange = useNeuroVisionStore((s) => s.isProgrammaticChange);
-  const isSlidersOpen = useNeuroVisionStore((s) => s.isSlidersOpen);
   const isLoading = useNeuroVisionStore((s) => s.isLoading);
   const loadProgress = useNeuroVisionStore((s) => s.loadProgress);
 
@@ -44,7 +44,6 @@ export default function NeuroViewerCanvas({ className = "", darkMode = true }: N
   const setVolumeDimensions = useNeuroVisionStore((s) => s.setVolumeDimensions);
   const setFps = useNeuroVisionStore((s) => s.setFps);
   const setLoading = useNeuroVisionStore((s) => s.setLoading);
-  const setIsSlidersOpen = useNeuroVisionStore((s) => s.setIsSlidersOpen);
   const setActiveSliceAxis = useNeuroVisionStore((s) => s.setActiveSliceAxis);
 
   // Local refs
@@ -444,51 +443,42 @@ export default function NeuroViewerCanvas({ className = "", darkMode = true }: N
         tabIndex={0}
       />
 
-      {/* Floating Canvas Zoom Controls */}
-      <div className="absolute top-3 right-2 sm:right-3 z-20 flex flex-col items-center gap-1 bg-slate-900/85 backdrop-blur-md border border-slate-700/60 rounded-xl p-1 shadow-2xl select-none">
-        <button
-          type="button"
-          onClick={handleZoomIn}
-          title="Phóng to hình ảnh (+)"
-          className="w-8 h-8 rounded-lg bg-slate-800/80 hover:bg-sky-600 text-slate-200 hover:text-white flex items-center justify-center font-bold text-base transition active:scale-95 border border-slate-700/40 shadow-sm"
-        >
-          +
-        </button>
-        <button
-          type="button"
-          onClick={handleResetZoom}
-          title="Đặt lại kích thước chuẩn (100%)"
-          className="px-1.5 h-6 rounded-md bg-slate-800/60 hover:bg-slate-700 text-[10px] font-mono text-slate-300 hover:text-white flex items-center justify-center transition active:scale-95 border border-slate-700/30"
-        >
-          {Math.round(zoomLevel * 100)}%
-        </button>
-        <button
-          type="button"
-          onClick={handleZoomOut}
-          title="Thu nhỏ hình ảnh (−)"
-          className="w-8 h-8 rounded-lg bg-slate-800/80 hover:bg-sky-600 text-slate-200 hover:text-white flex items-center justify-center font-bold text-base transition active:scale-95 border border-slate-700/40 shadow-sm"
-        >
-          −
-        </button>
-      </div>
+      {/* Floating Region Actions: Highlight ngược & Đến tâm */}
+      <RegionFloatingToolbar />
 
-      {/* Floating Responsive Slice Scrollbar (PACS Slice Scroller for PC, iPad, Phone) */}
-      <SliceScrollbar />
-
-      {/* Floating Quick Action: Open Slice Sliders if hidden */}
-      {!isSlidersOpen && (
-        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 pointer-events-auto">
+      {/* Floating Right Control Dock: Canvas Zoom Controls & Slice Scrollbar */}
+      <div className="absolute top-3 right-2 sm:right-3 z-20 flex flex-col items-center gap-2 pointer-events-none select-none w-9 sm:w-10">
+        {/* Floating Canvas Zoom Controls */}
+        <div className="w-full pointer-events-auto flex flex-col items-center gap-1 bg-slate-900/85 backdrop-blur-md border border-slate-700/60 rounded-xl p-1 shadow-xl">
           <button
             type="button"
-            onClick={() => setIsSlidersOpen(true)}
-            className="px-3.5 py-1.5 rounded-full bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 text-xs font-semibold text-slate-200 hover:text-sky-400 shadow-2xl backdrop-blur-md flex items-center gap-2 transition active:scale-95"
-            title="Mở thanh trượt điều khiển lát cắt 3 trục (X, Y, Z & 3D Clip)"
+            onClick={handleZoomIn}
+            title="Phóng to hình ảnh (+)"
+            className="w-full h-7 sm:h-8 rounded-lg bg-slate-800/80 hover:bg-sky-600 text-slate-200 hover:text-white flex items-center justify-center font-bold text-sm sm:text-base transition active:scale-95 border border-slate-700/40 shadow-sm"
           >
-            <span>🎚️</span>
-            <span>Điều khiển trục cắt</span>
+            +
+          </button>
+          <button
+            type="button"
+            onClick={handleResetZoom}
+            title="Đặt lại kích thước chuẩn (100%)"
+            className="w-full h-5 sm:h-6 rounded-md bg-slate-800/60 hover:bg-slate-700 text-[9px] sm:text-[10px] font-mono text-slate-300 hover:text-white flex items-center justify-center transition active:scale-95 border border-slate-700/30"
+          >
+            {Math.round(zoomLevel * 100)}%
+          </button>
+          <button
+            type="button"
+            onClick={handleZoomOut}
+            title="Thu nhỏ hình ảnh (−)"
+            className="w-full h-7 sm:h-8 rounded-lg bg-slate-800/80 hover:bg-sky-600 text-slate-200 hover:text-white flex items-center justify-center font-bold text-sm sm:text-base transition active:scale-95 border border-slate-700/40 shadow-sm"
+          >
+            −
           </button>
         </div>
-      )}
+
+        {/* Floating Responsive Slice Scrollbar (PACS Slice Scroller for PC, iPad, Phone) */}
+        <SliceScrollbar className="w-full" />
+      </div>
 
       {isLoading && (
         <div className="absolute inset-0 bg-slate-950/85 backdrop-blur-sm flex flex-col items-center justify-center gap-3 z-20 transition-opacity">

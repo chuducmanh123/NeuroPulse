@@ -1,87 +1,18 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useNeuroVisionStore } from "../../store/useNeuroVisionStore";
-import { useNeuroViewer } from "./NeuroViewerContext";
 import type { OntologyEntry } from "../../types/neurovision";
 
-interface CentroidData {
-  [atlas: string]: {
-    [label_id: string]: {
-      mean_mm: [number, number, number];
-      in_mask_mm: [number, number, number];
-      in_mask_vox: [number, number, number];
-    };
-  };
-}
-
 export default function ClinicalInspector() {
-  const { getNiivue } = useNeuroViewer();
-
   // Zustand Store
   const selectedRegion = useNeuroVisionStore((s) => s.selectedRegion);
   const crosshair = useNeuroVisionStore((s) => s.crosshair);
   const activeOverlay = useNeuroVisionStore((s) => s.activeOverlay);
-  const highlightedLabelId = useNeuroVisionStore((s) => s.highlightedLabelId);
-
-  const setHighlightedLabelId = useNeuroVisionStore((s) => s.setHighlightedLabelId);
-  const setCrosshair = useNeuroVisionStore((s) => s.setCrosshair);
-  const setIsProgrammaticChange = useNeuroVisionStore((s) => s.setIsProgrammaticChange);
   const setIsSidebarOpen = useNeuroVisionStore((s) => s.setIsSidebarOpen);
-
-  const [centroids, setCentroids] = useState<CentroidData | null>(null);
-
-  useEffect(() => {
-    fetch("/neurovision/data/centroids.json")
-      .then((r) => r.json())
-      .then((data) => setCentroids(data))
-      .catch((err) => console.warn("[ClinicalInspector] Centroids load error:", err));
-  }, []);
 
   const [mmX, mmY, mmZ] = crosshair.mm;
   const [voxX, voxY, voxZ] = crosshair.vox;
-
-  // Toggle reverse highlight for current region
-  const handleToggleHighlight = () => {
-    if (!selectedRegion) return;
-    const nv = getNiivue();
-    if (!nv || nv.volumes.length <= 1) return;
-
-    const overlayVol = nv.volumes[1];
-    if (highlightedLabelId === selectedRegion.label_id) {
-      setHighlightedLabelId(null);
-      overlayVol.cal_min = 0;
-      overlayVol.cal_max = 0;
-      nv.updateGLVolume();
-    } else {
-      setHighlightedLabelId(selectedRegion.label_id);
-      overlayVol.cal_min = selectedRegion.label_id - 0.5;
-      overlayVol.cal_max = selectedRegion.label_id + 0.5;
-      nv.updateGLVolume();
-    }
-  };
-
-  // Jump to exact in-mask centroid
-  const handleJumpToCentroid = () => {
-    if (!selectedRegion || !centroids) return;
-    const nv = getNiivue();
-    if (!nv) return;
-
-    const cent = centroids[selectedRegion.atlas]?.[String(selectedRegion.label_id)];
-    if (!cent) return;
-
-    setIsProgrammaticChange(true);
-    try {
-      const frac = nv.mm2frac(cent.in_mask_mm, 0);
-      nv.scene.crosshairPos = frac;
-      nv.drawScene();
-      setCrosshair({ mm: cent.in_mask_mm, vox: cent.in_mask_vox });
-    } finally {
-      setTimeout(() => setIsProgrammaticChange(false), 50);
-    }
-  };
-
-  const isIsolated = selectedRegion && highlightedLabelId === selectedRegion.label_id;
 
   return (
     <div className="w-full h-full bg-slate-900/95 border-l border-slate-800 flex flex-col text-slate-200 overflow-hidden select-none">
@@ -90,7 +21,7 @@ export default function ClinicalInspector() {
         <div className="flex items-center gap-2">
           <div className="w-2.5 h-2.5 rounded-full bg-sky-400"></div>
           <h2 className="text-xs uppercase tracking-wider font-bold text-slate-200">
-            Giám sát Giải phẫu & Lâm sàng
+            GIẢI PHẪU VÀ LÂM SÀNG
           </h2>
         </div>
         <div className="flex items-center gap-1.5">
@@ -174,31 +105,6 @@ export default function ClinicalInspector() {
                     Vùng ASPECTS: {selectedRegion.aspects_zone}
                   </span>
                 )}
-              </div>
-
-              {/* Interactive Reverse Highlight & Jump buttons */}
-              <div className="pt-2 flex items-center gap-2 border-t border-slate-800/80">
-                <button
-                  type="button"
-                  onClick={handleToggleHighlight}
-                  className={`flex-1 py-1.5 px-2.5 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition ${
-                    isIsolated
-                      ? "bg-rose-600 hover:bg-rose-500 text-white shadow-md shadow-rose-900/50"
-                      : "bg-sky-600 hover:bg-sky-500 text-white shadow-md shadow-sky-900/50"
-                  }`}
-                  title="Cô lập vùng này trên lát cắt và mô hình 3D (ẩn các nhãn khác)"
-                >
-                  <span>{isIsolated ? "✕ Tắt cô lập nhãn" : "🔍 Highlight ngược (Cô lập)"}</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={handleJumpToCentroid}
-                  className="py-1.5 px-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-medium transition"
-                  title="Di chuyển tâm ngắm đến tâm khối giải phẫu (Centroid)"
-                >
-                  Đến tâm
-                </button>
               </div>
             </div>
 
