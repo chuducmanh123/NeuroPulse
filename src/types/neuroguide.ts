@@ -209,6 +209,7 @@ export interface NeuroGuideBlobPayload {
   guidelines: GuidelineDoc[];
   conferences: ConferenceEvent[];
   scenarios: ClinicalScenario[];
+  recommendationAtoms?: RecommendationAtom[];
   deletedGuidelineIds?: string[];
   lastSyncedAt: string;
   source: string;

@@ -45,6 +45,10 @@ const EditGuidelineModal = dynamic(
   () => import("../../components/neuroguide/EditGuidelineModal").then((m) => m.EditGuidelineModal),
   { ssr: false }
 );
+const EditScenarioModal = dynamic(
+  () => import("../../components/neuroguide/EditScenarioModal").then((m) => m.EditScenarioModal),
+  { ssr: false }
+);
 const AdminAuthModal = dynamic(
   () => import("../../components/neurocase/modals/AdminAuthModal").then((m) => m.AdminAuthModal),
   { ssr: false }
@@ -271,6 +275,12 @@ export default function NeuroGuidePage() {
   const [editingGuidelineDoc, setEditingGuidelineDoc] = useState<GuidelineDoc | null>(null);
   const [showEditModal, setShowEditModal] = useState<boolean>(false);
 
+  // Clinical Scenarios & Recommendation Atoms dynamic state
+  const [clinicalScenarios, setClinicalScenarios] = useState<ClinicalScenario[]>(MOCK_CLINICAL_SCENARIOS);
+  const [recommendationAtoms, setRecommendationAtoms] = useState<RecommendationAtom[]>(MOCK_RECOMMENDATION_ATOMS);
+  const [editingScenario, setEditingScenario] = useState<ClinicalScenario | null>(null);
+  const [showEditScenarioModal, setShowEditScenarioModal] = useState<boolean>(false);
+
   const SWR_STORAGE_KEY = "neuroguide_swr_store_v3";
 
   const filterValidGuidelines = (list: GuidelineDoc[], deletedIds: string[] = []): GuidelineDoc[] => {
@@ -310,28 +320,38 @@ export default function NeuroGuidePage() {
     fetch(url, { cache: "no-store" })
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
-        if (data && data.status === "success" && Array.isArray(data.guidelines)) {
-          const serverDel: string[] = Array.isArray(data.deletedGuidelineIds) ? data.deletedGuidelineIds : [];
-          const activeKeys = new Set<string>();
-          data.guidelines.forEach((g: GuidelineDoc) => {
-            if (g.id) activeKeys.add(g.id.toLowerCase().trim());
-            if (g.title) activeKeys.add(g.title.toLowerCase().replace(/[^a-z0-9]/g, ""));
-          });
-          const cleanDeleted = serverDel.filter((d) => !activeKeys.has(d.toLowerCase().trim()));
-          const valid = filterValidGuidelines(data.guidelines, cleanDeleted);
-          setGuidelineDocs(valid);
-          setIsInitialLoading(false);
-          try {
-            localStorage.setItem(
-              SWR_STORAGE_KEY,
-              JSON.stringify({
-                version: data.lastSyncedAt || new Date().toISOString(),
-                guidelines: valid,
-                deletedIds: cleanDeleted,
-                timestamp: Date.now(),
-              })
-            );
-          } catch {}
+        if (data && data.status === "success") {
+          if (Array.isArray(data.scenarios) && data.scenarios.length > 0) {
+            setClinicalScenarios(data.scenarios);
+          }
+          if (Array.isArray(data.recommendationAtoms) && data.recommendationAtoms.length > 0) {
+            setRecommendationAtoms(data.recommendationAtoms);
+          }
+          if (Array.isArray(data.guidelines)) {
+            const serverDel: string[] = Array.isArray(data.deletedGuidelineIds) ? data.deletedGuidelineIds : [];
+            const activeKeys = new Set<string>();
+            data.guidelines.forEach((g: GuidelineDoc) => {
+              if (g.id) activeKeys.add(g.id.toLowerCase().trim());
+              if (g.title) activeKeys.add(g.title.toLowerCase().replace(/[^a-z0-9]/g, ""));
+            });
+            const cleanDeleted = serverDel.filter((d) => !activeKeys.has(d.toLowerCase().trim()));
+            const valid = filterValidGuidelines(data.guidelines, cleanDeleted);
+            setGuidelineDocs(valid);
+            setIsInitialLoading(false);
+            try {
+              localStorage.setItem(
+                SWR_STORAGE_KEY,
+                JSON.stringify({
+                  version: data.lastSyncedAt || new Date().toISOString(),
+                  guidelines: valid,
+                  scenarios: data.scenarios,
+                  recommendationAtoms: data.recommendationAtoms,
+                  deletedIds: cleanDeleted,
+                  timestamp: Date.now(),
+                })
+              );
+            } catch {}
+          }
         }
       })
       .catch(() => {
@@ -381,12 +401,12 @@ export default function NeuroGuidePage() {
         id: "matrix" as const,
         label: "⚖️ Clinical Scenarios",
         mobileLabel: "⚖️ Scenarios",
-        badge: `${MOCK_CLINICAL_SCENARIOS.length}`,
+        badge: `${clinicalScenarios.length}`,
       },
     ];
 
     return tabs;
-  }, [guidelineDocs.length]);
+  }, [guidelineDocs.length, clinicalScenarios.length]);
 
   // Expandable cards states (details reveal only on click)
   const [expandedGuidelineIds, setExpandedGuidelineIds] = useState<Record<string, boolean>>({});
@@ -572,6 +592,12 @@ export default function NeuroGuidePage() {
       const cachedRaw = localStorage.getItem(SWR_STORAGE_KEY);
       if (cachedRaw) {
         const cached = JSON.parse(cachedRaw);
+        if (cached && Array.isArray(cached.scenarios) && cached.scenarios.length > 0) {
+          setClinicalScenarios(cached.scenarios);
+        }
+        if (cached && Array.isArray(cached.recommendationAtoms) && cached.recommendationAtoms.length > 0) {
+          setRecommendationAtoms(cached.recommendationAtoms);
+        }
         if (cached && Array.isArray(cached.guidelines) && cached.guidelines.length > 0) {
           const valid = filterValidGuidelines(cached.guidelines, cached.deletedIds || []);
           if (valid.length > 0) {
@@ -639,6 +665,12 @@ export default function NeuroGuidePage() {
                 const cleanDeleted = combinedDeleted.filter((d) => !activeKeys.has(d.toLowerCase().trim()));
                 const validGuidelines = filterValidGuidelines(data.guidelines, cleanDeleted);
                 setGuidelineDocs(validGuidelines);
+                if (Array.isArray(data.scenarios) && data.scenarios.length > 0) {
+                  setClinicalScenarios(data.scenarios);
+                }
+                if (Array.isArray(data.recommendationAtoms) && data.recommendationAtoms.length > 0) {
+                  setRecommendationAtoms(data.recommendationAtoms);
+                }
 
                 try {
                   localStorage.setItem(
@@ -646,6 +678,8 @@ export default function NeuroGuidePage() {
                     JSON.stringify({
                       version: data.lastSyncedAt || serverVersion,
                       guidelines: validGuidelines,
+                      scenarios: data.scenarios,
+                      recommendationAtoms: data.recommendationAtoms,
                       deletedIds: cleanDeleted,
                       timestamp: Date.now(),
                     })
@@ -742,7 +776,7 @@ export default function NeuroGuidePage() {
     const rawQ = searchQuery.toLowerCase().trim();
     const tokens = rawQ.split(/\s+/).filter(Boolean);
 
-    return MOCK_CLINICAL_SCENARIOS.filter((scenario) => {
+    return clinicalScenarios.filter((scenario) => {
       const matchesSub =
         selectedSubspecialty === "All Subspecialties" ||
         scenario.subspecialty === selectedSubspecialty;
@@ -758,7 +792,7 @@ export default function NeuroGuidePage() {
         return rawHaystack.includes(token) || normHaystack.includes(normToken);
       });
     });
-  }, [selectedSubspecialty, searchQuery]);
+  }, [selectedSubspecialty, searchQuery, clinicalScenarios]);
 
   // Current Scenario (Defaults to null until user selects one)
   const currentScenario = useMemo(() => {
@@ -769,10 +803,10 @@ export default function NeuroGuidePage() {
   // Current Scenario's Recommendation Atoms
   const scenarioRecommendations = useMemo(() => {
     if (!currentScenario) return [];
-    return MOCK_RECOMMENDATION_ATOMS.filter(
+    return recommendationAtoms.filter(
       (atom) => atom.scenarioId === currentScenario.id && atom.isLatestForSociety
     );
-  }, [currentScenario]);
+  }, [currentScenario, recommendationAtoms]);
 
   // Filtered Guidelines: Multi-token Search + Diacritics Normalization + Direct Subspecialty + Chronological Sort
   const filteredGuidelines = useMemo(() => {
@@ -1829,21 +1863,39 @@ export default function NeuroGuidePage() {
                               {scenario.subspecialty}
                             </span>
 
-                            {scenario.statusBadge && (
-                              <span
-                                className={`text-[9.5px] font-black px-1.5 py-0.5 rounded-full ${
-                                  scenario.statusBadge === "PRACTICE_CHANGING"
-                                    ? "bg-amber-500 text-slate-950"
-                                    : scenario.statusBadge === "UPGRADED"
-                                    ? "bg-emerald-500 text-white"
-                                    : "bg-blue-500 text-white"
-                                }`}
-                              >
-                                {scenario.statusBadge === "PRACTICE_CHANGING"
-                                  ? "⚡ Practice-Changing"
-                                  : scenario.statusBadge}
-                              </span>
-                            )}
+                            <div className="flex items-center gap-1.5">
+                              {isAdminVerified && (
+                                <button
+                                  type="button"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setEditingScenario(scenario);
+                                    setShowEditScenarioModal(true);
+                                  }}
+                                  className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400 hover:bg-amber-500/20 border border-amber-500/30 flex items-center gap-1 cursor-pointer transition-colors"
+                                  title="Chỉnh sửa kịch bản lâm sàng này"
+                                >
+                                  <span>✏️</span>
+                                  <span>Sửa</span>
+                                </button>
+                              )}
+
+                              {scenario.statusBadge && (
+                                <span
+                                  className={`text-[9.5px] font-black px-1.5 py-0.5 rounded-full ${
+                                    scenario.statusBadge === "PRACTICE_CHANGING"
+                                      ? "bg-amber-500 text-slate-950"
+                                      : scenario.statusBadge === "UPGRADED"
+                                      ? "bg-emerald-500 text-white"
+                                      : "bg-blue-500 text-white"
+                                  }`}
+                                >
+                                  {scenario.statusBadge === "PRACTICE_CHANGING"
+                                    ? "⚡ Practice-Changing"
+                                    : scenario.statusBadge}
+                                </span>
+                              )}
+                            </div>
                           </div>
 
                           <h4 className="text-xs sm:text-sm font-bold leading-snug line-clamp-2 text-slate-900 dark:text-slate-100">
@@ -1907,13 +1959,30 @@ export default function NeuroGuidePage() {
                     >
                       {/* Scenario Header */}
                       <div className="border-b border-slate-100 dark:border-slate-800 pb-4">
-                        <div className="flex items-center gap-2 mb-1.5">
-                          <span className="px-2 py-0.5 rounded-md bg-amber-500/15 text-amber-600 dark:text-amber-400 text-[10px] font-black uppercase tracking-wider">
-                            {currentScenario.subspecialty}
-                          </span>
-                          <span className="text-xs text-slate-400 font-medium">
-                            ID: {currentScenario.id}
-                          </span>
+                        <div className="flex items-center justify-between gap-2 mb-1.5">
+                          <div className="flex items-center gap-2">
+                            <span className="px-2 py-0.5 rounded-md bg-amber-500/15 text-amber-600 dark:text-amber-400 text-[10px] font-black uppercase tracking-wider">
+                              {currentScenario.subspecialty}
+                            </span>
+                            <span className="text-xs text-slate-400 font-medium">
+                              ID: {currentScenario.id}
+                            </span>
+                          </div>
+
+                          {isAdminVerified && (
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setEditingScenario(currentScenario);
+                                setShowEditScenarioModal(true);
+                              }}
+                              className="px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-500/15 text-amber-700 dark:text-amber-300 hover:bg-amber-500/25 border border-amber-500/30 flex items-center gap-1.5 transition-all shadow-xs cursor-pointer"
+                              title="Chỉnh sửa thông tin kịch bản lâm sàng này"
+                            >
+                              <span>✏️</span>
+                              <span>Sửa Scenario</span>
+                            </button>
+                          )}
                         </div>
 
                         <h2 className="text-lg sm:text-xl font-black leading-snug text-slate-900 dark:text-white">
@@ -2202,11 +2271,27 @@ export default function NeuroGuidePage() {
 
                       {/* BOTTOM AI APPRAISAL BOX */}
                       <div className="mt-6 p-4 sm:p-5 rounded-2xl border border-amber-500/30 bg-gradient-to-br from-amber-500/5 via-orange-500/5 to-transparent">
-                        <div className="flex items-center gap-2 mb-2.5">
-                          <span className="text-base">🧠</span>
-                          <h4 className="text-xs sm:text-sm font-black uppercase tracking-wider text-amber-600 dark:text-amber-400">
-                            AI Clinical Appraisal &amp; Practice Verdict
-                          </h4>
+                        <div className="flex items-center justify-between gap-2 mb-2.5">
+                          <div className="flex items-center gap-2">
+                            <span className="text-base">🧠</span>
+                            <h4 className="text-xs sm:text-sm font-black uppercase tracking-wider text-amber-600 dark:text-amber-400">
+                              AI Clinical Appraisal &amp; Practice Verdict
+                            </h4>
+                          </div>
+                          {isAdminVerified && (
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setEditingScenario(currentScenario);
+                                setShowEditScenarioModal(true);
+                              }}
+                              className="text-[11px] font-bold text-amber-600 dark:text-amber-400 hover:underline flex items-center gap-1 cursor-pointer"
+                              title="Hiệu chỉnh phân tích AI và kết luận chốt"
+                            >
+                              <span>✏️</span>
+                              <span>Hiệu chỉnh đánh giá AI</span>
+                            </button>
+                          )}
                         </div>
 
                         <div className="space-y-3 text-xs sm:text-sm leading-relaxed">
@@ -2347,6 +2432,39 @@ export default function NeuroGuidePage() {
                 });
                 setSyncMessage(`✓ Đã lưu thay đổi guideline "${updatedDoc.title}" lên Cloud.`);
               }
+              reloadGuidelines(true);
+            }}
+            darkMode={darkMode}
+          />
+        )}
+
+        {/* EDIT CLINICAL SCENARIO MODAL */}
+        {isAdminVerified && showEditScenarioModal && editingScenario && (
+          <EditScenarioModal
+            isOpen={showEditScenarioModal}
+            onClose={() => setShowEditScenarioModal(false)}
+            scenario={editingScenario}
+            recommendations={recommendationAtoms}
+            adminToken={getStoredAdminToken()}
+            onSuccess={(updatedScenario, updatedRecs) => {
+              setClinicalScenarios((prev) => {
+                const idx = prev.findIndex((s) => s.id === updatedScenario.id);
+                if (idx >= 0) {
+                  const copy = [...prev];
+                  copy[idx] = updatedScenario;
+                  return copy;
+                }
+                return [updatedScenario, ...prev];
+              });
+
+              if (Array.isArray(updatedRecs)) {
+                setRecommendationAtoms((prev) => {
+                  const filtered = prev.filter((r) => r.scenarioId !== updatedScenario.id);
+                  return [...filtered, ...updatedRecs];
+                });
+              }
+
+              setSyncMessage(`✓ Đã lưu thay đổi kịch bản lâm sàng "${updatedScenario.title}" thành công.`);
               reloadGuidelines(true);
             }}
             darkMode={darkMode}

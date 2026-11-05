@@ -5,12 +5,14 @@ import type {
   GuidelineDoc,
   ConferenceEvent,
   ClinicalScenario,
+  RecommendationAtom,
   NeuroGuideBlobPayload,
 } from "../../types/neuroguide.ts";
 import {
   MOCK_GUIDELINE_DOCS,
   MOCK_CONFERENCE_EVENTS,
   MOCK_CLINICAL_SCENARIOS,
+  MOCK_RECOMMENDATION_ATOMS,
 } from "../../data/neuroguideMockData.ts";
 import {
   getStoredGuidelinesAsDocs,
@@ -101,8 +103,20 @@ export async function getFromSupabase(): Promise<SupabaseNeuroGuidePayload | nul
     const pendingKeys = new Set<string>();
     const approvedKeys = new Set<string>();
     let maxUpdatedAt = "";
+    let customScenarios: ClinicalScenario[] = [];
+    let customRecAtoms: RecommendationAtom[] = [];
 
     for (const row of data as any[]) {
+      if (row.id === "system_clinical_scenarios") {
+        if (row.data?.scenarios && Array.isArray(row.data.scenarios)) {
+          customScenarios = row.data.scenarios;
+        }
+        if (row.data?.recommendationAtoms && Array.isArray(row.data.recommendationAtoms)) {
+          customRecAtoms = row.data.recommendationAtoms;
+        }
+        continue;
+      }
+
       const rowStatus = String(row.status || row.data?.status || "approved").toLowerCase().trim();
       const rowId = String(row.id || row.data?.id || "").toLowerCase().trim();
       const rowTitle = String(row.title || row.data?.title || "");
@@ -150,10 +164,18 @@ export async function getFromSupabase(): Promise<SupabaseNeuroGuidePayload | nul
       return !deletedKeys.has(id) && !deletedKeys.has(norm) && !pendingKeys.has(id) && !pendingKeys.has(norm);
     });
 
+    if (customScenarios.length === 0 && localDisk?.scenarios && Array.isArray(localDisk.scenarios) && localDisk.scenarios.length > 0) {
+      customScenarios = localDisk.scenarios;
+    }
+    if (customRecAtoms.length === 0 && localDisk?.recommendationAtoms && Array.isArray(localDisk.recommendationAtoms) && localDisk.recommendationAtoms.length > 0) {
+      customRecAtoms = localDisk.recommendationAtoms;
+    }
+
     return {
       guidelines: filteredGuidelines,
-      conferences: MOCK_CONFERENCE_EVENTS,
-      scenarios: MOCK_CLINICAL_SCENARIOS,
+      conferences: (localDisk?.conferences && localDisk.conferences.length > 0) ? localDisk.conferences : MOCK_CONFERENCE_EVENTS,
+      scenarios: mergeScenarios(customScenarios),
+      recommendationAtoms: mergeRecommendationAtoms(customRecAtoms),
       deletedGuidelineIds: Array.from(deletedKeys),
       pendingGuidelineKeys: Array.from(pendingKeys),
       approvedGuidelineKeys: Array.from(approvedKeys),
@@ -202,6 +224,28 @@ export async function setToSupabase(payload: NeuroGuideBlobPayload): Promise<{ o
       }
     }
 
+    if (payload.scenarios && payload.scenarios.length > 0) {
+      try {
+        await supabaseAdmin.from("neuroguide_docs").upsert(
+          {
+            id: "system_clinical_scenarios",
+            title: "System Clinical Scenarios",
+            organization: "NeuroGuide System",
+            year: "2026",
+            status: "system",
+            data: {
+              scenarios: payload.scenarios,
+              recommendationAtoms: payload.recommendationAtoms || [],
+            },
+            updated_at: nowIso,
+          },
+          { onConflict: "id" }
+        );
+      } catch (scErr) {
+        console.warn("Supabase upsert warning for clinical scenarios:", scErr);
+      }
+    }
+
     // Dọn dẹp các bản ghi "approved" cũ đã bị gỡ hoặc trùng lặp (giữ nguyên các bản ghi "pending" và "deleted")
     try {
       const { data: existingRows } = await supabaseAdmin
@@ -211,7 +255,7 @@ export async function setToSupabase(payload: NeuroGuideBlobPayload): Promise<{ o
         const staleApprovedIds = existingRows
           .filter((r: any) => {
             const st = String(r.status || "approved").toLowerCase().trim();
-            return st === "approved" && !activeIds.has(r.id);
+            return st === "approved" && !activeIds.has(r.id) && r.id !== "system_clinical_scenarios";
           })
           .map((r: any) => r.id);
         if (staleApprovedIds.length > 0) {
@@ -413,6 +457,22 @@ export function mergeScenarios(
 }
 
 /**
+ * Merges dynamic recommendation atoms with static baseline
+ */
+export function mergeRecommendationAtoms(
+  dynamicItems: RecommendationAtom[] | null | undefined,
+  staticItems: RecommendationAtom[] = MOCK_RECOMMENDATION_ATOMS
+): RecommendationAtom[] {
+  if (!dynamicItems || dynamicItems.length === 0) return staticItems;
+
+  const map = new Map<string, RecommendationAtom>();
+  staticItems.forEach((r) => map.set(r.id.toLowerCase(), r));
+  dynamicItems.forEach((r) => map.set(r.id.toLowerCase(), r));
+
+  return Array.from(map.values());
+}
+
+/**
  * Loads and merges all NeuroGuide data across storage tiers:
  * Supabase (Single Source of Truth) -> Local Disk Fallback -> Static Mock Baseline
  */
@@ -420,6 +480,7 @@ export async function loadMergedNeuroGuideData(): Promise<{
   guidelines: GuidelineDoc[];
   conferences: ConferenceEvent[];
   scenarios: ClinicalScenario[];
+  recommendationAtoms: RecommendationAtom[];
   storageSource: "supabase" | "local-disk" | "mock-baseline";
   lastSyncedAt?: string;
   deletedGuidelineIds?: string[];
@@ -595,6 +656,7 @@ export async function loadMergedNeuroGuideData(): Promise<{
       guidelines: finalGuidelines,
       conferences: mergeConferences(dynamicData.conferences),
       scenarios: mergeScenarios(dynamicData.scenarios),
+      recommendationAtoms: mergeRecommendationAtoms(dynamicData.recommendationAtoms),
       storageSource: "supabase",
       lastSyncedAt: dynamicData.lastSyncedAt,
       deletedGuidelineIds: Array.from(deletedSet),
@@ -613,6 +675,7 @@ export async function loadMergedNeuroGuideData(): Promise<{
       guidelines: finalGuidelines,
       conferences: mergeConferences(localData.conferences),
       scenarios: mergeScenarios(localData.scenarios),
+      recommendationAtoms: mergeRecommendationAtoms(localData.recommendationAtoms),
       storageSource: "local-disk",
       lastSyncedAt: localData.lastSyncedAt,
       deletedGuidelineIds: Array.from(deletedSet),
@@ -627,6 +690,7 @@ export async function loadMergedNeuroGuideData(): Promise<{
     guidelines: finalGuidelines,
     conferences: MOCK_CONFERENCE_EVENTS,
     scenarios: MOCK_CLINICAL_SCENARIOS,
+    recommendationAtoms: MOCK_RECOMMENDATION_ATOMS,
     storageSource: "mock-baseline",
     deletedGuidelineIds: Array.from(deletedSet),
   };
@@ -639,6 +703,7 @@ export async function saveNeuroGuideToActiveStorage(payload: {
   guidelines: GuidelineDoc[];
   conferences?: ConferenceEvent[];
   scenarios?: ClinicalScenario[];
+  recommendationAtoms?: RecommendationAtom[];
   deletedGuidelineIds?: string[];
 }): Promise<{
   success: boolean;
@@ -676,6 +741,7 @@ export async function saveNeuroGuideToActiveStorage(payload: {
     guidelines: payload.guidelines,
     conferences: payload.conferences || MOCK_CONFERENCE_EVENTS,
     scenarios: payload.scenarios || MOCK_CLINICAL_SCENARIOS,
+    recommendationAtoms: payload.recommendationAtoms || MOCK_RECOMMENDATION_ATOMS,
     deletedGuidelineIds: effectiveDeletedIds,
     lastSyncedAt: new Date().toISOString(),
     source: "NEUROGUIDE_AUTONOMOUS_RADAR",
