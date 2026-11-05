@@ -204,5 +204,44 @@
     "rejected_count": 0,
     "grading_system": "GRADE_ESO",
     "updated_at": "2026-11-04T20:42:45.585664+00:00"
+  },
+  "guide-pmid-42095756": {
+    "guideline_id": "guide-pmid-42095756",
+    "title": "2025 update to European Stroke Organisation (ESO) guideline on blood pressure management in acute ischaemic stroke and intracerebral haemorrhage",
+    "society": "ESO",
+    "year": 2026,
+    "latest_version": 1,
+    "total_recommendations": 5,
+    "pending_count": 5,
+    "approved_count": 0,
+    "rejected_count": 0,
+    "grading_system": "GRADE_ESO",
+    "updated_at": "2026-11-05T20:40:59.876421+00:00"
+  },
+  "guide-pmid-42095754": {
+    "guideline_id": "guide-pmid-42095754",
+    "title": "European Stroke Organisation (ESO), European Association of Neurosurgical Societies (EANS) and European Society for Minimally Invasive Neurological Therapy (ESMINT) guideline on aneurysmal subarachnoid haemorrhage",
+    "society": "ESO",
+    "year": 2026,
+    "latest_version": 1,
+    "total_recommendations": 4,
+    "pending_count": 4,
+    "approved_count": 0,
+    "rejected_count": 0,
+    "grading_system": "GRADE_ESO",
+    "updated_at": "2026-11-05T20:41:41.778356+00:00"
+  },
+  "guide-pmid-40401776": {
+    "guideline_id": "guide-pmid-40401776",
+    "title": "European Stroke Organisation (ESO) guideline on aphasia rehabilitation",
+    "society": "ESO",
+    "year": 2025,
+    "latest_version": 1,
+    "total_recommendations": 4,
+    "pending_count": 4,
+    "approved_count": 0,
+    "rejected_count": 0,
+    "grading_system": "GRADE_ESO",
+    "updated_at": "2026-11-05T20:42:22.753917+00:00"
   }
 }
