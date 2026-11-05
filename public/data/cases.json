@@ -1,5 +1,213 @@
 [
   {
+    "id": "nc-2026-029",
+    "case_code": "NC-2026-029",
+    "title": "Subacute Myelopathy and Visual Loss with Normal Spinal MRI",
+    "subspecialty": "Neuroimmunology",
+    "subspecialties": [
+      "Neuroimmunology",
+      "Neurology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-11-06",
+    "status": "approved",
+    "author_credit": "Neurology(R) neuroimmunology & neuroinflammation • PMC13676276",
+    "source_journal": {
+      "name": "Neurology(R) neuroimmunology & neuroinflammation",
+      "short_name": "Neurology(R) neuroimmunology & neuroinflammation",
+      "doi_url": "https://doi.org/10.1212/nxi.0000000000200675",
+      "pmcid": "PMC13676276",
+      "pmid": "42848985",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "31-year-old man",
+      "chief_complaint": "Progressive lower limb weakness and urinary urgency",
+      "history_of_present_illness": "The patient presented with a subacute onset of visual loss followed by urinary urgency and insidious lower limb weakness. Neurological examination revealed a T11 sensory level, lower limb weakness, and diffuse hyperreflexia. Spinal MRI performed 2 months after symptom onset was unremarkable, while subsequent 18F-FDG PET-CT demonstrated spinal cord hypermetabolism at the T11 level.",
+      "past_medical_history": "Unremarkable",
+      "vitals": {
+        "bp": "124/78 mmHg",
+        "hr": "72 bpm",
+        "rr": "14 /min",
+        "temp": "36.7 °C",
+        "spo2": "99%"
+      },
+      "neuro_exam": "Visual acuity reduced bilaterally; T11 sensory level; lower extremity weakness (4/5); diffuse hyperreflexia; urodynamic testing confirms detrusor-sphincter dyssynergia.",
+      "key_labs_csf": "Serum ACE: 387 U/L (High); CSF: 6 WBC/mm3; Anti-MOG and Anti-AQP4: Negative.",
+      "imaging": [
+        {
+          "modality": "Spinal 18F-FDG-PET/CT",
+          "sequence_badge": "Figure 1 • Neurology(R) neuroimmunology & neuroinflammation (PMC13676276)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13676276_fig1.webp",
+          "pmcid": "PMC13676276",
+          "doi_url": "https://doi.org/10.1212/nxi.0000000000200675",
+          "caption": "The line marks the T11 level (C), demonstrating spinal cord hypermetabolism (SUVmax 2.0, arrowhead [F]) with normal MRI corresponding images. 18 F-FDG = 18 F-fluorodeoxyglucose; SUVmax = maximum standardized uptake value.",
+          "findings_summary": "Focal hypermetabolism (SUVmax 2.0) at the T11 spinal cord level despite a normal corresponding spinal MRI."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "Neuromyelitis optica spectrum disorder (NMOSD)",
+          "peer_percentage": 15,
+          "rationale": "Incorrect. While NMOSD can present with optic neuritis and myelitis, the patient tested negative for AQP4 antibodies and the clinical picture of systemic lymphadenopathy and elevated ACE is more specific for sarcoidosis."
+        },
+        {
+          "id": "B",
+          "text": "Neurosarcoidosis",
+          "peer_percentage": 70,
+          "rationale": "Correct! The combination of granulomatous uveitis, elevated serum ACE, systemic lymphadenopathy, and spinal cord hypermetabolism on PET-CT in the setting of clinical myelitis is highly suggestive of neurosarcoidosis."
+        },
+        {
+          "id": "C",
+          "text": "Multiple Sclerosis",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. MS typically presents with characteristic T2-hyperintense lesions on MRI; a normal spinal MRI 2 months into symptomatic myelitis makes MS unlikely."
+        },
+        {
+          "id": "D",
+          "text": "Spinal cord infarction",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. Spinal cord infarction presents with acute, rather than subacute, onset and would typically show restricted diffusion on MRI, not hypermetabolism on PET."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Neurosarcoidosis",
+      "clinical_discussion": "This case illustrates the diagnostic challenge of MRI-negative myelitis in the context of neurosarcoidosis. While MRI is the gold standard for spinal imaging, inflammatory activity can occasionally be occult on structural sequences, particularly in early or infiltrative stages of granulomatous disease. The use of 18F-FDG PET-CT serves as a powerful adjunct, revealing metabolic activity that correlates with clinical symptoms.\n\nThe diagnosis of neurosarcoidosis in this patient was supported by the systemic findings of noncaseating granulomas on biopsy, elevated serum ACE, and granulomatous uveitis. The presence of detrusor-sphincter dyssynergia confirms the spinal cord involvement, despite the lack of structural changes on conventional T1 and T2-weighted MRI sequences.",
+      "teaching_points": [
+        "Neurosarcoidosis can present with clinical myelitis even when conventional spinal MRI is normal.",
+        "18F-FDG PET-CT is a sensitive modality for detecting occult spinal cord inflammation in neurosarcoidosis.",
+        "Systemic signs such as elevated ACE, lymphadenopathy, and uveitis are critical clues for diagnosing neurosarcoidosis in patients with unexplained neurological deficits."
+      ],
+      "clinical_pitfalls": [
+        "Assuming a normal spinal MRI rules out inflammatory myelitis.",
+        "Over-reliance on MRI without considering metabolic imaging in patients with high clinical suspicion for systemic inflammatory disease."
+      ],
+      "related_keywords": [
+        "Neurosarcoidosis",
+        "Myelitis",
+        "18F-FDG PET",
+        "Serum ACE",
+        "Granulomatous Uveitis"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-030",
+    "case_code": "NC-2026-030",
+    "title": "Bilateral Visual Disturbance and Hypertension in a Young Adult",
+    "subspecialty": "Neurocritical Care",
+    "subspecialties": [
+      "Neurocritical Care",
+      "Vascular Neurology",
+      "Neuro-ophthalmology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-11-06",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13681929",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-05318-1",
+      "pmcid": "PMC13681929",
+      "pmid": "42897530",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "39-year-old male",
+      "chief_complaint": "Bilateral blurred vision",
+      "history_of_present_illness": "The patient presented with a half-month history of progressive bilateral blurred vision, more prominent during near tasks, and left-eye predominance, without visual field defects. Upon admission, he was found to have severe malignant hypertension with a blood pressure of 200/132 mmHg. Neurological examination showed bilateral decreased visual acuity (0.8 OD, 0.4 OS) but was otherwise completely unremarkable with no focal motor, sensory, or coordination deficits.",
+      "past_medical_history": "No previous history of cardiocerebrovascular diseases; newly uncovered malignant hypertension with concurrent mixed glomerular and tubular renal injury.",
+      "vitals": {
+        "bp": "200/132 mmHg",
+        "hr": "88 bpm",
+        "rr": "18 /min",
+        "temp": "36.5 °C",
+        "spo2": "99% on room air"
+      },
+      "neuro_exam": "Alert and oriented. Cranial nerves: Bilateral decrease in visual acuity (OD 0.8, OS 0.4); remaining cranial nerves intact. Motor: Normal muscle strength and tone throughout. Sensory: Intact to all modalities. Reflexes: Normal symmetrical tendon reflexes, no pathological signs. Coordination: Finger-nose and heel-knee-shin tests normal.",
+      "key_labs_csf": "Urea 8.3 mmol/L, urinary creatinine 139 µmol/L, urinary protein 1.0 g/L, microalbumin 321.87 mg/L, mixed glomerular and tubular renal injury profile. Extensive infection, metabolic, and systemic autoimmune screening were negative.",
+      "imaging": [
+        {
+          "modality": "Brain and Cervical Spine MRI (Axial T2-FLAIR & DWI)",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13681929)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13681929_fig1.webp",
+          "pmcid": "PMC13681929",
+          "doi_url": "https://doi.org/10.1186/s12883-026-05318-1",
+          "caption": "Brain magnetic resonance imaging before (A.a-A.g) and after (B.a-B.g) treatment of the patient with posterior reversible encephalopathy syndrome with spinal cord involvement. The MRI revealed abnormal signal foci in the brainstem (A.a-A.b), corona radiata regions (A.c-A.f) and the upper segment of the cervical spinal cord(A.g). These lesions exhibited long T1 and long T2 signals, appeared hyperintense on T2 FLAIR and apparent diffusion coefficient, while no significant diffusion restriction was observed on DWI. The brain MRI conducted 8 days after treatment showed that the abnormal signals wer",
+          "findings_summary": "Simultaneous hyperintense lesions on T2-FLAIR in the brainstem, corona radiata, and upper cervical spinal cord exhibiting vasogenic edema without true diffusion restriction."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "Neuromyelitis optica spectrum disorder (NMOSD)",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. While NMOSD can involve the optic nerve and spinal cord, the acute malignant hypertension and prompt complete imaging and clinical resolution with blood pressure control alone exclude an inflammatory demyelinating disorder."
+        },
+        {
+          "id": "B",
+          "text": "Bilateral posterior cerebral artery (PCA) strokes",
+          "peer_percentage": 12,
+          "rationale": "Incorrect. Bilateral PCA infarctions typically present with permanent visual field cuts and show restricted diffusion on DWI rather than completely reversible vasogenic edema."
+        },
+        {
+          "id": "C",
+          "text": "Posterior reversible encephalopathy syndrome with spinal cord involvement (PRES-SCI)",
+          "peer_percentage": 73,
+          "rationale": "Correct. The acute presentation of blurred vision in the setting of malignant hypertension, combined with simultaneous, fully reversible T2-FLAIR hyperintense vasogenic edema involving the supratentorial region, infratentorial structures, and the cervical spinal cord, confirms PRES-SCI."
+        },
+        {
+          "id": "D",
+          "text": "Acute disseminated encephalomyelitis (ADEM)",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. ADEM typically presents following an infection or vaccination with a monophasic demyelinating encephalopathy showing multifocal white matter lesions that require immunotherapy rather than rapid resolution strictly via blood pressure management."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Posterior reversible encephalopathy syndrome with spinal cord involvement (PRES-SCI)",
+      "clinical_discussion": "Posterior reversible encephalopathy syndrome (PRES) is a clinical-neuroradiological entity characterized by headache, encephalopathy, seizures, and visual disturbances, driven by acute blood pressure dysregulation or endothelial injury. While classically restricted to the posterior parieto-occipital cerebral white matter, atypical variants can involve the frontal lobes, basal ganglia, brainstem, cerebellum, and extremely rarely, the spinal cord (PRES-SCI). Spinal cord involvement typically extends from the cervicomedullary junction and can mimic myelitis or spinal cord ischemia.\n\nPrompt identification of the underlying etiology—most frequently malignant hypertension, eclampsia, or cytotoxic agents—is critical. In PRES-SCI, neuroimaging demonstrates characteristic long T1, long T2, and FLAIR hyperintensities representing vasogenic edema without cytotoxic infarction on diffusion-weighted imaging (DWI). With timely and aggressive blood pressure regulation, the clinical deficits and radiological lesions are remarkably reversible, yielding an exceptionally favorable prognosis as demonstrated in this case.",
+      "teaching_points": [
+        "PRES-SCI is an extremely rare variant of posterior reversible encephalopathy syndrome where vasogenic edema extends beyond the brain into the cervical spinal cord.",
+        "Malignant hypertension is a primary precipitating trigger, disrupting cerebral and spinal autoregulatory thresholds and leading to endothelial breakdown.",
+        "Radiologically, lesions manifest as T2/FLAIR hyperintensities with facilitated diffusion on ADC/DWI, distinguishing vasogenic from cytotoxic edema.",
+        "Prompt blood pressure control leads to rapid and complete radiological and clinical resolution."
+      ],
+      "clinical_pitfalls": [
+        "Failing to consider PRES when spinal cord signs or brainstem lesions accompany visual disturbances, leading to misdiagnosis as transverse myelitis or demyelinating disease.",
+        "Delaying aggressive antihypertensive therapy while waiting for extensive autoimmune or infectious workups in a patient with malignant hypertension-induced PRES."
+      ],
+      "related_keywords": [
+        "Posterior reversible encephalopathy syndrome",
+        "PRES-SCI",
+        "Malignant hypertension",
+        "Vasogenic edema",
+        "Cervical spinal cord involvement"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-027",
     "case_code": "NC-2026-027",
     "title": "Fever, Seizures, and Multifocal Brain Lesions Without Cutaneous Manifestations in an Older Adult",
