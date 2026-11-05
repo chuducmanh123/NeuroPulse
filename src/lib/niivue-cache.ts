@@ -11,7 +11,7 @@
 
 const DB_NAME = 'neurovision_cache_v1';
 const STORE_NAME = 'neuro_assets';
-const CACHE_VERSION = '2026.11.5_v2'; // Bumped for Glasser & Brainnetome label intent_code header & colormap fix
+const CACHE_VERSION = '2026.11.5_v3'; // Bumped for Colin27 High-Resolution T2 volume integration
 
 interface CacheRecord {
   key: string;
