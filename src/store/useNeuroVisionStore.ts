@@ -22,6 +22,7 @@ export interface NeuroVisionState {
 
   // 2. Viewport & Navigation
   viewMode: ViewMode;
+  activeSliceAxis: 'x' | 'y' | 'z'; // Active axis for slice scrolling ('z': Axial, 'y': Coronal, 'x': Sagittal)
   crosshair: CrosshairPosition;
   isProgrammaticChange: boolean; // Flag to prevent slider <-> onLocationChange feedback loops
   volumeDimensions: VolumeDimensions | null;
@@ -57,6 +58,7 @@ export interface NeuroVisionState {
   setActiveOverlay: (overlay: ActiveOverlay) => void;
   setOverlayOpacity: (opacity: number) => void;
   setViewMode: (mode: ViewMode) => void;
+  setActiveSliceAxis: (axis: 'x' | 'y' | 'z') => void;
   setCrosshair: (crosshair: CrosshairPosition) => void;
   setIsProgrammaticChange: (flag: boolean) => void;
   setVolumeDimensions: (dims: VolumeDimensions) => void;
@@ -95,6 +97,7 @@ export const useNeuroVisionStore = create<NeuroVisionState>((set) => ({
   overlayOpacity: 0.7,
 
   viewMode: 'multiplanar',
+  activeSliceAxis: 'z',
   crosshair: DEFAULT_CROSSHAIR,
   isProgrammaticChange: false,
   volumeDimensions: {
@@ -126,7 +129,15 @@ export const useNeuroVisionStore = create<NeuroVisionState>((set) => ({
   setBaseModality: (modality) => set({ baseModality: modality }),
   setActiveOverlay: (overlay) => set({ activeOverlay: overlay }),
   setOverlayOpacity: (opacity) => set({ overlayOpacity: Math.max(0, Math.min(1, opacity)) }),
-  setViewMode: (mode) => set({ viewMode: mode }),
+  setViewMode: (mode) =>
+    set((state) => {
+      let nextAxis = state.activeSliceAxis;
+      if (mode === 'axial') nextAxis = 'z';
+      else if (mode === 'coronal') nextAxis = 'y';
+      else if (mode === 'sagittal') nextAxis = 'x';
+      return { viewMode: mode, activeSliceAxis: nextAxis };
+    }),
+  setActiveSliceAxis: (axis) => set({ activeSliceAxis: axis }),
   setCrosshair: (crosshair) => set({ crosshair }),
   setIsProgrammaticChange: (flag) => set({ isProgrammaticChange: flag }),
   setVolumeDimensions: (dims) => set({ volumeDimensions: dims }),

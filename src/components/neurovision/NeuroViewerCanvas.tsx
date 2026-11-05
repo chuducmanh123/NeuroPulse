@@ -5,6 +5,7 @@ import { Niivue, SLICE_TYPE } from "@niivue/niivue";
 import { useNeuroVisionStore } from "../../store/useNeuroVisionStore";
 import { useNeuroViewer } from "./NeuroViewerContext";
 import { loadWithCache } from "../../lib/niivue-cache";
+import SliceScrollbar from "./SliceScrollbar";
 import type { OntologyEntry, NeuroOntology, ViewMode } from "../../types/neurovision";
 
 interface NeuroViewerCanvasProps {
@@ -44,6 +45,7 @@ export default function NeuroViewerCanvas({ className = "", darkMode = true }: N
   const setFps = useNeuroVisionStore((s) => s.setFps);
   const setLoading = useNeuroVisionStore((s) => s.setLoading);
   const setIsSlidersOpen = useNeuroVisionStore((s) => s.setIsSlidersOpen);
+  const setActiveSliceAxis = useNeuroVisionStore((s) => s.setActiveSliceAxis);
 
   // Local refs
   const nvInstanceRef = useRef<Niivue | null>(null);
@@ -98,6 +100,7 @@ export default function NeuroViewerCanvas({ className = "", darkMode = true }: N
       isColorbar: false,
       textHeight: 0.035,
       loadingText: "", // Rendered cleanly via HTML overlay with full UTF-8 Vietnamese font
+      scrollRequiresFocus: false, // Instant wheel slice scrolling on PC/touchpads without requiring prior click
     });
 
     nv.attachToCanvas(canvasRef.current);
@@ -406,16 +409,43 @@ export default function NeuroViewerCanvas({ className = "", darkMode = true }: N
     setZoomLevel(1.0);
   };
 
+  /**
+   * Handle canvas pointer down:
+   * When in multiplanar mode, detect which tile was clicked/tapped (Axial, Coronal, Sagittal)
+   * and automatically sync the active axis for the slice scrollbar.
+   */
+  const handleCanvasPointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    const nv = nvInstanceRef.current;
+    if (!nv || viewMode !== "multiplanar" || !canvasRef.current) return;
+    const rect = canvasRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const tileIdx = typeof (nv as any).tileIndex === "function" ? (nv as any).tileIndex(x, y) : -1;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const slice = (nv as any).screenSlices && tileIdx >= 0 ? (nv as any).screenSlices[tileIdx] : null;
+      if (slice && typeof slice.axCorSag === "number") {
+        if (slice.axCorSag === 0) setActiveSliceAxis("z");
+        else if (slice.axCorSag === 1) setActiveSliceAxis("y");
+        else if (slice.axCorSag === 2) setActiveSliceAxis("x");
+      }
+    } catch {
+      // Safe fallback
+    }
+  };
+
   return (
     <div ref={containerRef} className={`relative w-full h-full min-h-0 bg-slate-950 overflow-hidden ${className}`}>
       <canvas
         ref={canvasRef}
+        onPointerDown={handleCanvasPointerDown}
         className="w-full h-full block cursor-crosshair outline-none"
         tabIndex={0}
       />
 
       {/* Floating Canvas Zoom Controls */}
-      <div className="absolute top-3 right-3 z-20 flex flex-col items-center gap-1 bg-slate-900/85 backdrop-blur-md border border-slate-700/60 rounded-xl p-1 shadow-2xl select-none">
+      <div className="absolute top-3 right-2 sm:right-3 z-20 flex flex-col items-center gap-1 bg-slate-900/85 backdrop-blur-md border border-slate-700/60 rounded-xl p-1 shadow-2xl select-none">
         <button
           type="button"
           onClick={handleZoomIn}
@@ -441,6 +471,9 @@ export default function NeuroViewerCanvas({ className = "", darkMode = true }: N
           −
         </button>
       </div>
+
+      {/* Floating Responsive Slice Scrollbar (PACS Slice Scroller for PC, iPad, Phone) */}
+      <SliceScrollbar />
 
       {/* Floating Quick Action: Open Slice Sliders if hidden */}
       {!isSlidersOpen && (
