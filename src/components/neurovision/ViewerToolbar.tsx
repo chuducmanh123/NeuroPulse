@@ -13,16 +13,16 @@ const MODALITIES: Array<{ id: BaseModality; label: string; shortLabel: string; d
 
 const OVERLAYS: Array<{ id: ActiveOverlay; label: string }> = [
   { id: "none", label: "Ảnh gốc" },
-  { id: "glasser", label: "🟢 HCP Glasser 2016 (360 vùng & fMRI)" },
-  { id: "brainnetome", label: "🔵 Brainnetome Atlas (246 vùng & Yeo 7)" },
   { id: "aspects", label: "ASPECTS 10 vùng" },
   { id: "arterial_level2", label: "Chi phối động mạch tổng quát" },
   { id: "arterial", label: "Chi phối động mạch chi tiết" },
   { id: "brainstem_aan", label: "Hệ thống lưới thức tỉnh" },
-  { id: "anatomy", label: "Giải phẫu vỏ & dưới vỏ (Harvard-Oxford) (67 vùng)" },
   { id: "whitematter", label: "Chất trắng (JHU DTI-81) (50 bó)" },
   { id: "venous", label: "Xoang Tĩnh mạch (VENAT 7T QSM) (7T)" },
+  { id: "anatomy", label: "Giải phẫu vỏ & dưới vỏ (Harvard-Oxford) (67 vùng)" },
   { id: "aal3", label: "Giải phẫu chi tiết (AAL3) (170 vùng)" },
+  { id: "glasser", label: "HCP Glasser 2016 (360 vùng & fMRI)" },
+  { id: "brainnetome", label: "Brainnetome Atlas (246 vùng & Yeo 7)" },
 ];
 
 const VIEW_MODES: Array<{ id: ViewMode; label: string; icon: string }> = [

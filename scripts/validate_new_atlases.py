@@ -8,30 +8,38 @@ PUB = Path("public/neurovision")
 # 1. Glasser NIfTI
 g_img = nib.load(PUB / "atlases" / "glasser.nii.gz")
 assert g_img.shape == (193, 229, 193), f"Wrong shape: {g_img.shape}"
+assert g_img.header['intent_code'] == 1002, f"Expected intent_code 1002, got {g_img.header['intent_code']}"
+assert g_img.header['cal_min'] == 0.0 and g_img.header['cal_max'] == 0.0, "cal_min/cal_max must be 0.0"
 g_data = g_img.get_fdata().astype(int)
 g_labels = np.unique(g_data)
 assert len(g_labels) == 361, f"Expected 361 unique labels, got {len(g_labels)}"
 assert g_labels[0] == 0 and g_labels[-1] == 360, "Glasser labels must span 0..360"
-print("[PASS] Glasser NIfTI verified: 360 labels, shape (193, 229, 193), uint16")
+print("[PASS] Glasser NIfTI verified: 360 labels, shape (193, 229, 193), intent_code 1002 (NIFTI_INTENT_LABEL)")
 
 # 2. Brainnetome NIfTI
 b_img = nib.load(PUB / "atlases" / "brainnetome.nii.gz")
 assert b_img.shape == (193, 229, 193), f"Wrong shape: {b_img.shape}"
+assert b_img.header['intent_code'] == 1002, f"Expected intent_code 1002, got {b_img.header['intent_code']}"
+assert b_img.header['cal_min'] == 0.0 and b_img.header['cal_max'] == 0.0, "cal_min/cal_max must be 0.0"
 b_data = b_img.get_fdata().astype(int)
 b_labels = np.unique(b_data)
 assert len(b_labels) == 247, f"Expected 247 unique labels, got {len(b_labels)}"
 assert b_labels[0] == 0 and b_labels[-1] == 246, "BNA labels must span 0..246"
-print("[PASS] Brainnetome NIfTI verified: 246 labels, shape (193, 229, 193), uint8")
+print("[PASS] Brainnetome NIfTI verified: 246 labels, shape (193, 229, 193), intent_code 1002 (NIFTI_INTENT_LABEL)")
 
 # 3. Colormaps
 with open(PUB / "data" / "colormaps" / "glasser.json") as f:
     cm_g = json.load(f)
 assert len(cm_g["R"]) == 361 and len(cm_g["I"]) == 361, "Glasser colormap length mismatch"
+assert "labels" in cm_g and cm_g["labels"][0] == "Background", "Glasser colormap missing labels or Background at 0"
+assert cm_g["A"][0] == 0, "Glasser background opacity A[0] must be 0"
 
 with open(PUB / "data" / "colormaps" / "brainnetome.json") as f:
     cm_b = json.load(f)
 assert len(cm_b["R"]) == 247 and len(cm_b["I"]) == 247, "BNA colormap length mismatch"
-print("[PASS] Colormaps verified: glasser.json (361 entries), brainnetome.json (247 entries)")
+assert "labels" in cm_b and cm_b["labels"][0] == "Background", "BNA colormap missing labels or Background at 0"
+assert cm_b["A"][0] == 0, "BNA background opacity A[0] must be 0"
+print("[PASS] Colormaps verified: glasser.json (361 entries with labels, A[0]=0), brainnetome.json (247 entries with labels, A[0]=0)")
 
 # 4. Centroids
 with open(PUB / "data" / "centroids.json", encoding="utf-8") as f:

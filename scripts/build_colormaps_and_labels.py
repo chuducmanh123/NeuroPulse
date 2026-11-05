@@ -71,8 +71,10 @@ for i in range(1, 361):
     A_g.append(255)
     I_g.append(i)
 
+labels_g = ["Background"] + [l["name"] for l in glasser_labels]
+
 with open(COLORMAPS / "glasser.json", "w", encoding="utf-8") as f:
-    json.dump({"R": R_g, "G": G_g, "B": B_g, "A": A_g, "I": I_g}, f, indent=2)
+    json.dump({"R": R_g, "G": G_g, "B": B_g, "A": A_g, "I": I_g, "labels": labels_g}, f, indent=2)
 print("Saved glasser.labels.json and colormaps/glasser.json")
 
 # -------------------------------------------------------------
@@ -156,6 +158,8 @@ for i in range(1, 247):
     A_b.append(255)
     I_b.append(i)
 
+labels_b = ["Background"] + [l["name"] for l in bna_labels]
+
 with open(COLORMAPS / "brainnetome.json", "w", encoding="utf-8") as f:
-    json.dump({"R": R_b, "G": G_b, "B": B_b, "A": A_b, "I": I_b}, f, indent=2)
+    json.dump({"R": R_b, "G": G_b, "B": B_b, "A": A_b, "I": I_b, "labels": labels_b}, f, indent=2)
 print("Saved brainnetome.labels.json and colormaps/brainnetome.json")

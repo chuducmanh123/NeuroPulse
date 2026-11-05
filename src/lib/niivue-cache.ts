@@ -11,7 +11,7 @@
 
 const DB_NAME = 'neurovision_cache_v1';
 const STORE_NAME = 'neuro_assets';
-const CACHE_VERSION = '2026.11.4_v4'; // Bumped for HD Stroke-Brain Window & Unsharp Mask 1mm CT upgrade
+const CACHE_VERSION = '2026.11.5_v2'; // Bumped for Glasser & Brainnetome label intent_code header & colormap fix
 
 interface CacheRecord {
   key: string;
