@@ -82,11 +82,7 @@ for i in range(1, 361):
         "name_en": f"{info['full_name']} ({hemi})",
         "category": "cortex",
         "brodmann_area": ba_list,
-        "functions": [
-            f"Phân định giải phẫu: {info['macro_region']}",
-            f"Đặc tính mô học: {my}; {th}",
-            f"Kích hoạt tác vụ fMRI: {', '.join(contrasts)}"
-        ],
+        "functions": [],
         "arterial_supply": {
             "primary": ["Động mạch não tương ứng vùng vỏ"],
             "perforators": []
@@ -95,8 +91,8 @@ for i in range(1, 361):
         "aspects_zone": None,
         "clinical_syndromes": [
             {
-                "name": f"Tổn thương {code} ({hemi_vi})",
-                "description": f"Gây biến đổi chức năng liên quan đến {info['macro_region']}. Chi tiết chức năng: {prof[:120]}..."
+                "name": "",
+                "description": "Tổn thương có thể gây ảnh hưởng chức năng sinh lý thần kinh liên quan."
             }
         ],
         "evidence_level": "atlas_direct",

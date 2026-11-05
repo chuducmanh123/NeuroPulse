@@ -106,8 +106,8 @@ export default function ClinicalDetailsPanel() {
               </div>
             </div>
 
-            {/* 3. Brodmann & Functions */}
-            {(selectedRegion.brodmann_area?.length > 0 || selectedRegion.functions?.length > 0) && (
+            {/* 3. Brodmann & Functions (Ẩn khi xem HCP Glasser do đã có khung HCP-MMP chuyên biệt) */}
+            {!selectedRegion.hcp_metrics && (selectedRegion.brodmann_area?.length > 0 || selectedRegion.functions?.length > 0) && (
               <div className="bg-slate-950/40 p-3 rounded-xl border border-slate-800/80 space-y-2">
                 <h4 className="text-[11px] font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
                   <svg className="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -142,11 +142,8 @@ export default function ClinicalDetailsPanel() {
                 <div className="flex items-center justify-between gap-1">
                   <h4 className="text-[11px] font-bold uppercase tracking-wider text-teal-400 flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-teal-400"></span>
-                    Hồ sơ Đa phương thức Glasser 2016 (HCP-MMP1.0)
+                    HCP-MMP1.0 Glasser 2016
                   </h4>
-                  <span className="text-[9px] px-1.5 py-0.5 rounded bg-teal-950 text-teal-300 border border-teal-800 font-mono">
-                    Nature 2016
-                  </span>
                 </div>
 
                 {/* Macro-Region */}
@@ -332,7 +329,7 @@ export default function ClinicalDetailsPanel() {
                 <div className="space-y-2">
                   {selectedRegion.clinical_syndromes.map((syn, idx) => (
                     <div key={idx} className="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800 text-[11px] space-y-1">
-                      <p className="font-bold text-amber-300">{syn.name}</p>
+                      {syn.name ? <p className="font-bold text-amber-300">{syn.name}</p> : null}
                       <p className="text-slate-300 text-[10.5px] leading-relaxed">{syn.description}</p>
                     </div>
                   ))}
