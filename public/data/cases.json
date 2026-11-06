@@ -1,5 +1,223 @@
 [
   {
+    "id": "nc-2026-031",
+    "case_code": "NC-2026-031",
+    "title": "Progressive Numbness, Gait Instability, and Posterior Cervical Cord T2 Hyperintensity in a Young Adult",
+    "subspecialty": "Neuro-infectious Disease",
+    "subspecialties": [
+      "Neuro-infectious Disease",
+      "General Neurology",
+      "Demyelinating Disorders"
+    ],
+    "difficulty": "Attending",
+    "estimated_time_sec": 120,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-11-07",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13531953",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-05084-0",
+      "pmcid": "PMC13531953",
+      "pmid": "42321648",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "23-year-old female",
+      "chief_complaint": "Progressive numbness of limbs and unsteady gait for 3 months",
+      "history_of_present_illness": "A 23-year-old female presents with a 3-month history of progressive limb numbness and gait instability, which worsened significantly over the 2 weeks prior to evaluation. She reports inhaling nitrous oxide (N₂O) via whipped cream chargers 3 to 4 times weekly (10–15 cartridges per session) for the past 6 months. She admits to unprotected sexual intercourse with multiple partners over the preceding year, but denies primary genital lesions, rash, fever, or systemic symptoms.",
+      "past_medical_history": "Unremarkable. No prior gastrointestinal disease, bariatric surgery, chronic malabsorption, or blood transfusions.",
+      "vitals": {
+        "bp": "120/75 mmHg",
+        "hr": "78 bpm",
+        "rr": "16 /min",
+        "temp": "36.5 °C",
+        "spo2": "99% on room air"
+      },
+      "neuro_exam": "Cranial nerves are normal. Muscle tone is decreased in both lower extremities. Muscle strength is 4/5 in proximal and distal lower extremities and 5/5 in upper extremities. Reduced vibration and joint position sensation below the iliac crests, with stocking-glove hypoesthesia to pinprick. Patellar and Achilles reflexes are absent bilaterally; upper extremity reflexes are 1+. Romberg sign is positive. Impaired heel-to-shin testing bilaterally. Meningeal signs are negative.",
+      "key_labs_csf": "Serum vitamin B12: 85 pg/mL (normal: 200–900 pg/mL). Serum homocysteine: 48 µmol/L (normal: <15 µmol/L). Serum TPPA: Reactive; serum TRUST: 1:16. CSF analysis: Normal opening pressure, WBC 6/µL, protein 52 mg/dL, glucose 60 mg/dL. CSF TPPA: Reactive; CSF TRUST: 1:2.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (T2 + T2-FLAIR sequences)",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13531953)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13531953_fig1.webp",
+          "pmcid": "PMC13531953",
+          "doi_url": "https://doi.org/10.1186/s12883-026-05084-0",
+          "caption": "MRI findings of the brain and cervicothoracic spinal cord in the patient. MRI findings of the brain and cervicothoracic spinal cord in the patient A - B (Brain MRI, T2 + T2-FLAIR sequences): No obvious intracranial lesions or abnormal meningeal signal changes were detected, and no imaging clues suggestive of intracranial syphilitic involvement were found. C (Cervicothoracic spinal cord MRI, sagittal T2WI): Long-segment linear symmetric hyperintensity on T2WI. D (Cervicothoracic spinal cord MRI, axial T2WI at C4 level): Characteristic “inverted V-sign” in the posterior and lateral columns at C2",
+          "findings_summary": "No obvious intracranial lesions or abnormal meningeal signal changes were detected, ruling out intracranial syphilitic involvement."
+        },
+        {
+          "modality": "Cervicothoracic Spinal Cord MRI (Sagittal & Axial T2WI)",
+          "sequence_badge": "Figure 2 • BMC neurology (PMC13531953)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC13531953_fig2.webp",
+          "pmcid": "PMC13531953",
+          "doi_url": "https://doi.org/10.1186/s12883-026-05084-0",
+          "caption": "Follow-up cervical spinal MRI. ( A ) Sagittal T2-weighted MRI of the cervicothoracic spinal cord; ( B ) Axial T2-weighted MRI at the C4 spinal segment. Compared with baseline MRI, the previously noted abnormal hyperintensity in the posterior columns of the spinal cord at C2–7 levels and the characteristic “inverted V-sign” (red arrows) were significantly decreased and almost completely resolved, demonstrating marked radiological improvement",
+          "findings_summary": "Demonstrated long-segment symmetric hyperintensity along the posterior and lateral columns from C2 to C7, exhibiting a characteristic 'inverted V-sign' on axial views."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "D",
+      "options": [
+        {
+          "id": "A",
+          "text": "Isolated nitrous oxide-induced subacute combined degeneration",
+          "peer_percentage": 15,
+          "rationale": "Incorrect. While nitrous oxide abuse and vitamin B12 deficiency account for the myelopathy and spinal MRI findings, ignoring the reactive CSF TPPA and TRUST fails to recognize concurrent neurosyphilis."
+        },
+        {
+          "id": "B",
+          "text": "Isolated neurosyphilis",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. Although CSF serology confirms neurosyphilis, neurosyphilis alone does not account for the severe vitamin B12 deficiency and elevated homocysteine precipitated by recreational nitrous oxide inhalation."
+        },
+        {
+          "id": "C",
+          "text": "Friedreich ataxia",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. Friedreich ataxia is an autosomal recessive genetic disorder caused by GAA repeat expansions in the FXN gene. It typically presents in childhood or adolescence with slowly progressive ataxia, loss of deep tendon reflexes, skeletal abnormalities, and hypertrophic cardiomyopathy, rather than subacute adult-onset myelopathy with metabolic and treponemal abnormalities."
+        },
+        {
+          "id": "D",
+          "text": "Nitrous oxide-induced subacute combined degeneration with concurrent neurosyphilis",
+          "peer_percentage": 70,
+          "rationale": "Correct! The patient presents with a classic history of nitrous oxide abuse leading to functional vitamin B12 inactivation and subacute combined degeneration (evidenced by the spinal 'inverted V-sign' and severe B12 deficiency), alongside concurrently confirmed neurosyphilis (reactive CSF TPPA and TRUST). Recognizing dual pathologies is essential for comprehensive treatment with both vitamin B12 repletion and high-dose IV penicillin."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Nitrous oxide-induced subacute combined degeneration with concurrent neurosyphilis",
+      "clinical_discussion": "Subacute combined degeneration (SCD) is caused by vitamin B12 deficiency, which can be acutely precipitated by nitrous oxide (N₂O) abuse. Nitrous oxide irreversibly oxidizes the cobalt moiety of cobalamin, inactivating methionine synthase. This impairs myelin sheath maintenance and leads to symmetric demyelination of the posterior and lateral columns of the cervical and thoracic spinal cord, classically producing an 'inverted V-sign' on axial T2-weighted MRI.\n\nSimultaneously, Treponema pallidum invasion of the central nervous system leads to neurosyphilis. In rare cases, spinal neurosyphilis (such as tabes dorsalis or syphilitic meningomyelitis) can involve the dorsal columns and clinically resemble SCD. When young patients present with atypical or multi-factorial clinical features, comprehensive laboratory evaluations—including infectious, autoimmune, and metabolic panels—are necessary to avoid single-etiology diagnostic bias and ensure appropriate multi-modal therapy.",
+      "teaching_points": [
+        "Nitrous oxide oxidizes cobalamin (vitamin B12), inactivating methionine synthase and precipitating subacute combined degeneration.",
+        "The 'inverted V-sign' on axial T2-weighted spinal MRI represents selective demyelination of the posterior columns.",
+        "Neurosyphilis can coexist with metabolic or substance-induced myelopathies and requires dedicated serologic and CSF confirmation.",
+        "Comprehensive diagnostic screening prevents missed comorbid diagnoses that require independent therapeutic regimens (e.g., parenteral penicillin and intramuscular cobalamin)."
+      ],
+      "clinical_pitfalls": [
+        "Attributing spinal cord pathology exclusively to a history of substance abuse while omitting routine infectious and autoimmune workups.",
+        "Failing to perform lumbar puncture in sexually active patients presenting with unexplained neuro-axial symptoms or atypical diagnostic findings."
+      ],
+      "related_keywords": [
+        "Subacute combined degeneration",
+        "Nitrous oxide abuse",
+        "Neurosyphilis",
+        "Inverted V-sign",
+        "Vitamin B12 deficiency"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-032",
+    "case_code": "NC-2026-032",
+    "title": "Super-Refractory Status Epilepticus and Parieto-Occipital Restriction in a Young Adult with Baseline Optic Atrophy and Ataxia",
+    "subspecialty": "Epilepsy",
+    "subspecialties": [
+      "Epilepsy",
+      "Neurogenetics",
+      "Critical Care Neurology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-11-07",
+    "status": "approved",
+    "author_credit": "Annals of clinical and translational neurology • PMC13393509",
+    "source_journal": {
+      "name": "Annals of clinical and translational neurology",
+      "short_name": "Annals of clinical and translational neurology",
+      "doi_url": "https://doi.org/10.1002/acn3.70287",
+      "pmcid": "PMC13393509",
+      "pmid": "41670169",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "19-year-old female",
+      "chief_complaint": "New-onset super-refractory status epilepticus",
+      "history_of_present_illness": "The patient presented with sudden-onset status epilepticus characterized by occipital-predominant epileptiform activity and continuous seizure activity refractory to multiple lines of antiepileptic drugs and anesthetic infusions. Despite a lifelong neurodegenerative phenotype including generalized hypotonia, celiac disease, legal blindness from optic atrophy, cerebellar ataxia, and progressive motor decline, she had no prior history of clinical seizures. Brain MRI revealed transient diffusion restriction in the right parieto-occipital cortex and cerebellum, mimicking an acute ischemic stroke or mitochondrial encephalopathy.",
+      "past_medical_history": "Optic atrophy with legal blindness, cerebellar ataxia, generalized hypotonia, progressive motor decline, and celiac disease, without prior history of seizures.",
+      "vitals": {
+        "bp": "118/74 mmHg",
+        "hr": "104 bpm",
+        "rr": "18 /min",
+        "temp": "37.1 °C",
+        "spo2": "99% on mechanical ventilation"
+      },
+      "neuro_exam": "Comatose under general anesthesia (propofol/midazolam burst-suppression). Baseline interictal examination prior to intubation demonstrated optic atrophy with visual loss, generalized hypotonia, absent deep tendon reflexes, and severe limb and truncal ataxia.",
+      "key_labs_csf": "CSF analysis unremarkable for infectious or autoimmune etiologies. Comprehensive autoimmune encephalitis panel negative. Lactate mildly elevated. Genetic panel revealed compound heterozygous variants in the OPA1 gene (frameshift p.Val903GlyfsTer3 and missense p.Ile382Met).",
+      "imaging": [
+        {
+          "modality": "Brain MRI (Axial DWI, SWI & EEG)",
+          "sequence_badge": "Figure 1 • Annals of clinical and translational neurology (PMC13393509)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13393509_fig1.jpg",
+          "pmcid": "PMC13393509",
+          "doi_url": "https://doi.org/10.1002/acn3.70287",
+          "caption": "(A–C) Diffusion‐weighted imaging (DWI) brain MRI from early (A, B), obtained 4 days after the onset of seizures, and later (C), was taken 40 days after the onset, in patient's course demonstrating persistent diffusion restriction involving right parietooccipital areas (arrowheads). (D) Susceptibility weighted imaging (SWI) brain MRI showing right frontal microbleed (arrowhead), obtained 42 days after seizure onset. (E, F) Electroencephalography (EEG) demonstrating abundant right posterior epileptiform discharges and LPDs prior to propofol (E) and during burst suppression (F).",
+          "findings_summary": "DWI demonstrates persistent diffusion restriction involving right parieto-occipital areas and cerebellum, alongside SWI showing a right frontal microbleed and EEG revealing abundant right posterior epileptiform discharges and LPDs."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely underlying genetic etiology for this patient's super-refractory status epilepticus?",
+      "question_type": "Diagnosis",
+      "correct_option": "A",
+      "options": [
+        {
+          "id": "A",
+          "text": "Compound heterozygous OPA1 variants causing mitochondrial dynamics dysfunction",
+          "peer_percentage": 74,
+          "rationale": "Correct! The patient harbors compound heterozygous OPA1 variants (frameshift and missense in the GTPase domain) disrupting mitochondrial fusion. In severe biallelic loss-of-function, secondary metabolic stressors can trigger a diffuse energy crisis and catastrophic super-refractory status epilepticus."
+        },
+        {
+          "id": "B",
+          "text": "POLG mutations causing mitochondrial DNA depletion and respiratory chain failure",
+          "peer_percentage": 14,
+          "rationale": "Incorrect. While POLG mutations commonly present with status epilepticus and stroke-like lesions, POLG typically causes severe mtDNA depletion and respiratory chain failure, whereas OPA1 dysfunction disrupts mitochondrial inner membrane fusion while largely sparing baseline mtDNA copy number."
+        },
+        {
+          "id": "C",
+          "text": "MT-TL1 m.3243A>G mutation causing MELAS syndrome",
+          "peer_percentage": 8,
+          "rationale": "Incorrect. MELAS classically presents with stroke-like episodes, lactic acidosis, and seizures due to mitochondrial tRNA leucine mutations, which does not match the specific OPA1 compound heterozygous genotype and baseline optic atrophy phenotype."
+        },
+        {
+          "id": "D",
+          "text": "LGI1 antibody-associated autoimmune limbic encephalitis",
+          "peer_percentage": 4,
+          "rationale": "Incorrect. Although autoimmune encephalitis is a primary consideration in unexplained super-refractory status epilepticus, the patient's negative autoimmune panels, longstanding baseline neurodegenerative disorder, and genetic testing confirm a genetic mitochondrial etiology."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Mitochondrial Super-Refractory Status Epilepticus (SRSE) secondary to OPA1 variants",
+      "clinical_discussion": "Super-Refractory Status Epilepticus (SRSE) with unclear etiology remains one of the most formidable emergencies in neurocritical care. When standard anticonvulsants and anesthetics fail and infectious or structural triggers are absent, clinicians frequently suspect autoimmune or parainfectious etiologies, prompting aggressive broad-spectrum immunosuppressive therapies. However, as demonstrated in this case, underlying primary mitochondrial and energy metabolism defects can manifest as catastrophic SRSE without prior history of epilepsy. \n\nThis patient presented with mitochondrial-associated SRSE caused by compound heterozygous OPA1 gene variants (p.Val903GlyfsTer3 and p.Ile382Met) affecting the GTPase domain. Unlike POLG or MELAS-related epilepsies driven by mtDNA depletion or primary respiratory chain failure, OPA1 dysfunction primarily impairs mitochondrial inner membrane fusion and network dynamics. In the setting of severe biallelic loss-of-function, physiological stressors can precipitate a catastrophic neuronal energy crisis, resulting in refractory status epilepticus and cortical diffusion restriction mimicking acute ischemia or stroke-like episodes. Recognizing these genetic underpinnings prevents inappropriate exposure to potentially harmful immunosuppressive regimens and highlights the diagnostic utility of comprehensive genetic testing in unexplained SRSE.",
+      "teaching_points": [
+        "Unexplained super-refractory status epilepticus (SRSE) in young patients should prompt consideration of underlying mitochondrial and energy metabolism defects.",
+        "OPA1 gene variants, typically associated with autosomal dominant optic atrophy, can present with severe biallelic loss-of-function phenotypes including cerebellar ataxia, motor decline, and catastrophic SRSE.",
+        "Unlike POLG and MELAS which feature mtDNA depletion and respiratory chain failure, OPA1 dysfunction disrupts mitochondrial fusion dynamics and can trigger energy-crisis mediated seizures."
+      ],
+      "clinical_pitfalls": [
+        "Assuming all cryptogenic SRSE cases are autoimmune and reflexively exposing patients to toxic broad-spectrum immunosuppression without genetic screening.",
+        "Overlooking mitochondrial disorders in patients presenting with status epilepticus who lack a prior personal history of epilepsy but possess chronic neurological symptoms like optic atrophy or ataxia."
+      ],
+      "related_keywords": [
+        "Super-Refractory Status Epilepticus",
+        "OPA1 gene",
+        "Mitochondrial dynamics",
+        "Optic atrophy"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-029",
     "case_code": "NC-2026-029",
     "title": "Subacute Myelopathy and Visual Loss with Normal Spinal MRI",
