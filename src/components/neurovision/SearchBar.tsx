@@ -72,6 +72,7 @@ export default function SearchBar() {
   const filtered = query.trim()
     ? allEntries
         .filter((entry) => {
+          if (entry.atlas === "arterial_level2") return false;
           const searchCorpus = `${entry.name_vi} ${entry.name_en} ${entry.code} ${entry.category} ${entry.aspects_zone || ""} ${entry.brodmann_area?.join(" ") || ""}`;
           return matchesQuery(searchCorpus, query);
         })

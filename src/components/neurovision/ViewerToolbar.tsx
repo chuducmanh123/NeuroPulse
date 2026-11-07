@@ -27,8 +27,7 @@ const MODALITIES: Array<{ id: BaseModality; label: string; shortLabel: string; d
 const OVERLAYS: Array<{ id: ActiveOverlay; label: string }> = [
   { id: "none", label: "Ảnh gốc" },
   { id: "aspects", label: "ASPECTS 10 vùng" },
-  { id: "arterial_level2", label: "Chi phối động mạch tổng quát" },
-  { id: "arterial", label: "Chi phối động mạch chi tiết" },
+  { id: "arterial", label: "Lãnh thổ chi phối động mạch" },
   { id: "brainstem_aan", label: "Hệ thống lưới thức tỉnh" },
   { id: "whitematter", label: "Chất trắng (JHU DTI-81) (50 bó)" },
   { id: "venous_territories", label: "Lãnh thổ Tĩnh mạch (Venous Territories - 100%)" },

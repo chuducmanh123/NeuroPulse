@@ -1283,19 +1283,40 @@
       "code": "ACAL",
       "name_vi": "ĐM não trước (ACA - Trái) (Mặt trong thùy trán & đỉnh)",
       "name_en": "Anterior Cerebral Artery territory (Left)",
-      "category": "arterial_trunk",
+      "category": "vascular_territory",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "Mặt trong thùy trán và thùy đỉnh bên trái (hồi trán trong, tiểu thùy cạnh trung tâm)",
+        "Phần trước và thân thể chai, vỏ hồi đai trước",
+        "Trung tâm vận động và cảm giác sơ cấp cho chi dưới bên phải (chân và bàn chân phải)",
+        "Vùng tiền trán trong kiểm soát chức năng điều hành, động lực hành vi và cơ vòng bàng quang"
+      ],
       "arterial_supply": {
-        "primary": [],
+        "primary": [
+          "ĐM não trước (ACA - phân nhánh đoạn A2 - A5)",
+          "ĐM quanh thể chai (Pericallosal artery)",
+          "ĐM viền chai (Callosomarginal artery)"
+        ],
         "perforators": []
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Xoang dọc trên (Superior Sagittal Sinus)",
+        "Tĩnh mạch vỏ não trên (Superior Cortical Veins / Vein of Trolard)",
+        "Xoang dọc dưới (Inferior Sagittal Sinus)",
+        "Tĩnh mạch thể chai (Callosal Veins)"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Hội chứng đột quỵ ACA bán cầu ưu thế",
+          "description": "Liệt và mất cảm giác nửa người bên phải ưu thế chi dưới (chân phải liệt nặng rõ rệt hơn tay và mặt), tiểu không tự chủ (tiểu dầm do tổn thương tiểu thùy cạnh trung tâm), giảm động lực/mất ý chí (abulia), hội chứng bàn tay lạ (Alien hand syndrome) và phản xạ nắm tay nguyên thủy đối bên."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -1311,19 +1332,40 @@
       "code": "ACAR",
       "name_vi": "ĐM não trước (ACA - Phải) (Mặt trong thùy trán & đỉnh)",
       "name_en": "Anterior Cerebral Artery territory (Right)",
-      "category": "arterial_trunk",
+      "category": "vascular_territory",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "Mặt trong thùy trán và thùy đỉnh bên phải (tiểu thùy cạnh trung tâm phải)",
+        "Phần trước thể chai và vỏ hồi đai trước bên phải",
+        "Trung tâm vận động và cảm giác sơ cấp cho chi dưới bên trái (chân và bàn chân trái)",
+        "Vùng kiểm soát khí sắc, động lực khởi phát hành vi và phản xạ ức chế nguyên thủy"
+      ],
       "arterial_supply": {
-        "primary": [],
+        "primary": [
+          "ĐM não trước (ACA - phân nhánh đoạn A2 - A5)",
+          "ĐM quanh thể chai (Pericallosal artery)",
+          "ĐM viền chai (Callosomarginal artery)"
+        ],
         "perforators": []
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Xoang dọc trên (Superior Sagittal Sinus)",
+        "Tĩnh mạch vỏ não trên (Superior Cortical Veins / Vein of Trolard)",
+        "Xoang dọc dưới (Inferior Sagittal Sinus)",
+        "Tĩnh mạch thể chai (Callosal Veins)"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Hội chứng đột quỵ ACA bán cầu không ưu thế",
+          "description": "Liệt và mất cảm giác chân trái nhiều hơn tay trái, rối loạn cơ vòng kiểu trung ương (tiểu không tự chủ), thay đổi nhân cách, mất ức chế hành vi trán, vô cảm (apathy) và giảm động nửa người trái."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -1339,19 +1381,41 @@
       "code": "MLSL",
       "name_vi": "Nhánh vân thể trong (ĐM não trước - Trái) (ĐM Heubner)",
       "name_en": "Medial Lenticulostriate Artery territory (Left)",
-      "category": "arterial_perforator",
+      "category": "vascular_territory",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "Phần trước dưới đầu nhân đuôi (Caudate head) bên trái",
+        "Phần trước dưới nhân bèo sẫm và cầu nhạt ngoài",
+        "Trụ trước bao trong (Anterior limb of internal capsule)",
+        "Bó trán - cầu não và các đường dẫn truyền trán - dưới vỏ"
+      ],
       "arterial_supply": {
-        "primary": [],
-        "perforators": []
+        "primary": [
+          "ĐM não trước (ACA - đoạn A1/A2)"
+        ],
+        "perforators": [
+          "ĐM quặt ngược Heubner (Recurrent Artery of Heubner)",
+          "Nhánh xuyên vân thể trong (Medial Lenticulostriate Branches)"
+        ]
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Tĩnh mạch não trong (Internal Cerebral Vein)",
+        "Tĩnh mạch đồi thị - thể vân trước (Anterior Thalamostriate Vein)",
+        "Tĩnh mạch vách trong suốt (Septal Vein)",
+        "Xoang thẳng (Straight Sinus)"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Hội chứng tắc ĐM quặt ngược Heubner bên trái",
+          "description": "Liệt nhẹ vận động mặt và tay bên phải (do tổn thương phần trước gối bao trong), loạn vận ngôn (dysarthria), thất ngôn vận động xuyên vỏ nhẹ thoáng qua, mất tập trung và thờ ơ (abulia)."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -1367,19 +1431,40 @@
       "code": "MLSR",
       "name_vi": "Nhánh vân thể trong (ĐM não trước - Phải) (ĐM Heubner)",
       "name_en": "Medial Lenticulostriate Artery territory (Right)",
-      "category": "arterial_perforator",
+      "category": "vascular_territory",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "Phần trước dưới đầu nhân đuôi bên phải",
+        "Trụ trước bao trong và phần trước nhân bèo phải",
+        "Vòng lặp thần kinh điều hòa hành vi - cảm xúc trán - hạch nền bên phải"
+      ],
       "arterial_supply": {
-        "primary": [],
-        "perforators": []
+        "primary": [
+          "ĐM não trước (ACA - đoạn A1/A2)"
+        ],
+        "perforators": [
+          "ĐM quặt ngược Heubner (Recurrent Artery of Heubner)",
+          "Nhánh xuyên vân thể trong (Medial Lenticulostriate Branches)"
+        ]
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Tĩnh mạch não trong (Internal Cerebral Vein)",
+        "Tĩnh mạch đồi thị - thể vân trước (Anterior Thalamostriate Vein)",
+        "Tĩnh mạch vách trong suốt (Septal Vein)",
+        "Xoang thẳng (Straight Sinus)"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Hội chứng tắc ĐM quặt ngược Heubner bên phải",
+          "description": "Liệt mặt và tay bên trái nhẹ, thờ ơ, giảm chú ý nửa không gian trái, biến đổi cảm xúc do gián đoạn vòng lặp nhận thức hạch nền - vỏ não trán ổ mắt."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -1395,19 +1480,40 @@
       "code": "LLSL",
       "name_vi": "Nhánh vân thể ngoài (ĐM não giữa - Trái) (Nhánh xuyên bao trong & hạch nền)",
       "name_en": "Lateral Lenticulostriate Artery territory (Left)",
-      "category": "arterial_perforator",
+      "category": "vascular_territory",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "Gối và trụ sau bao trong bên trái (chứa bó tháp vận động vỏ - gai và vỏ - hành cho nửa người phải)",
+        "Nhân bèo (Putamen và Globus pallidus)",
+        "Thân nhân đuôi bên trái",
+        "Trạm trung chuyển vận động và tích hợp hạch nền"
+      ],
       "arterial_supply": {
-        "primary": [],
-        "perforators": []
+        "primary": [
+          "ĐM não giữa (MCA - đoạn M1 gốc)"
+        ],
+        "perforators": [
+          "Nhánh xuyên vân thể ngoài (Lateral Lenticulostriate Arteries / ĐM xuất huyết não Charcot)"
+        ]
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Tĩnh mạch đồi thị - thể vân (Thalamostriate Vein)",
+        "Tĩnh mạch não trong (Internal Cerebral Vein)",
+        "Tĩnh mạch đáy Rosenthal",
+        "Xoang thẳng (Straight Sinus)"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Hội chứng liệt vận động thuần túy do nhồi máu lỗ khuyết bao trong trái (Pure Motor Stroke)",
+          "description": "Liệt vận động nửa người phải đồng đều ở mặt, tay và chân không kèm rối loạn cảm giác hay thị trường; hoặc Hội chứng loạn vận ngôn - bàn tay vụng về (Dysarthria-clumsy hand), Hội chứng thất điều - liệt nhẹ (Ataxic hemiparesis)."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -1423,19 +1529,39 @@
       "code": "LLSR",
       "name_vi": "Nhánh vân thể ngoài (ĐM não giữa - Phải) (Nhánh xuyên bao trong & hạch nền)",
       "name_en": "Lateral Lenticulostriate Artery territory (Right)",
-      "category": "arterial_perforator",
+      "category": "vascular_territory",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "Gối và trụ sau bao trong bên phải (bó tháp điều khiển nửa thân trái)",
+        "Nhân bèo và nhân đuôi bên phải",
+        "Đường dẫn truyền ly tâm điều hòa vận động tự chủ bên phải"
+      ],
       "arterial_supply": {
-        "primary": [],
-        "perforators": []
+        "primary": [
+          "ĐM não giữa (MCA - đoạn M1 gốc)"
+        ],
+        "perforators": [
+          "Nhánh xuyên vân thể ngoài (Lateral Lenticulostriate Arteries)"
+        ]
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Tĩnh mạch đồi thị - thể vân (Thalamostriate Vein)",
+        "Tĩnh mạch não trong (Internal Cerebral Vein)",
+        "Tĩnh mạch đáy Rosenthal",
+        "Xoang thẳng (Straight Sinus)"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Hội chứng liệt vận động thuần túy bên phải (Pure Motor Stroke)",
+          "description": "Liệt hoàn toàn hoặc không hoàn toàn nửa người trái (mặt, tay, chân đối xứng), không có khiếm khuyết vỏ não (không mất nhận thức ngôn ngữ, không bán manh)."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -1451,19 +1577,40 @@
       "code": "MCAFL",
       "name_vi": "ĐM não giữa - Phân nhánh trán (Trái) (Vỏ não vận động & Broca)",
       "name_en": "Middle Cerebral Artery - Frontal pars (Left)",
-      "category": "arterial_branch",
+      "category": "vascular_territory",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "Vỏ não vận động sơ cấp (M1 / Hồi trước trung tâm) phụ trách nửa mặt và tay phải",
+        "Trung tâm ngôn ngữ vận động Broca (BA 44/45 / Hồi trán dưới trái)",
+        "Vùng mắt trán (Frontal Eye Field - FEF trái)",
+        "Vỏ não tiền vận động và tiền trán lưng ngoài điều hành tác vụ"
+      ],
       "arterial_supply": {
-        "primary": [],
+        "primary": [
+          "ĐM não giữa (MCA - thân trên phân nhánh trán M2/M3)",
+          "ĐM ổ mắt - trán ngoài (Lateral orbitofrontal)",
+          "ĐM trước rãnh trung tâm (Precentral)",
+          "ĐM rãnh trung tâm (Central sulcal)"
+        ],
         "perforators": []
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Xoang dọc trên (Superior Sagittal Sinus qua TM Trolard)",
+        "Tĩnh mạch não giữa nông (Superficial Middle Cerebral Vein)",
+        "Xoang hang / Xoang bướm đỉnh (Cavernous / Sphenoparietal Sinus)"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Hội chứng phân nhánh trán MCA trái (Hội chứng Broca & Liệt mặt - tay)",
+          "description": "Liệt nửa người phải ưu thế mặt và tay (chân ít bị ảnh hưởng), thất ngôn Broca (nói ngập ngừng, khó khăn, mất ngữ pháp nhưng hiểu lời tốt), hai mắt và đầu lệch sang trái do liệt liếc sang phải."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -1479,19 +1626,38 @@
       "code": "MCAFR",
       "name_vi": "ĐM não giữa - Phân nhánh trán (Phải) (Vỏ não vận động trán bên)",
       "name_en": "Middle Cerebral Artery - Frontal pars (Right)",
-      "category": "arterial_branch",
+      "category": "vascular_territory",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "Vỏ não vận động sơ cấp (M1) cho nửa mặt và tay bên trái",
+        "Vùng mắt trán (FEF phải) điều hòa liếc mắt phối hợp sang trái",
+        "Vỏ não tiền trán trán bên phụ trách kiểm soát ức chế vận động và khả năng chú ý"
+      ],
       "arterial_supply": {
-        "primary": [],
+        "primary": [
+          "ĐM não giữa (MCA - thân trên phân nhánh trán M2/M3)",
+          "ĐM trước rãnh trung tâm (Precentral)",
+          "ĐM rãnh trung tâm (Central sulcal)"
+        ],
         "perforators": []
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Xoang dọc trên (Superior Sagittal Sinus)",
+        "Tĩnh mạch não giữa nông (Superficial Middle Cerebral Vein)",
+        "Xoang hang (Cavernous Sinus)"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Hội chứng phân nhánh trán MCA phải",
+          "description": "Liệt nửa người trái ưu thế mặt và tay, hai mắt và đầu quay sang phải (hướng về ổ tổn thương), mất khả năng diễn đạt ngữ điệu cảm xúc giọng nói (Motor aprosodia), mất chú ý vận động chi trái."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -1507,19 +1673,39 @@
       "code": "MCAPL",
       "name_vi": "ĐM não giữa - Phân nhánh đỉnh (Trái) (Vỏ não cảm giác & đỉnh dưới)",
       "name_en": "Middle Cerebral Artery - Parietal pars (Left)",
-      "category": "arterial_branch",
+      "category": "vascular_territory",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "Vỏ não cảm giác thân thể sơ cấp (S1 / Hồi sau trung tâm) cho mặt và tay phải",
+        "Tiểu thùy đỉnh dưới bên trái (Hồi trên viền BA 40 và Hồi góc BA 39)",
+        "Tích hợp xúc giác, phân biệt hai điểm, định vị cảm giác cơ thể",
+        "Kỹ năng tính toán, đọc viết và thực dụng động tác phức tạp"
+      ],
       "arterial_supply": {
-        "primary": [],
+        "primary": [
+          "ĐM não giữa (MCA - nhánh đỉnh trước và sau M2/M3)",
+          "ĐM sau rãnh trung tâm (Postcentral artery)"
+        ],
         "perforators": []
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Xoang dọc trên (Superior Sagittal Sinus)",
+        "Tĩnh mạch nối trên Trolard",
+        "Tĩnh mạch nối dưới Labbé",
+        "Xoang ngang (Transverse Sinus)"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Hội chứng thùy đỉnh trái & Hội chứng Gerstmann",
+          "description": "Mất cảm giác nửa người phải (ưu thế mặt - tay), mất nhận biết vật qua sờ (astereognosis); tổn thương hồi góc trái gây Hội chứng Gerstmann: mất tính toán (acalculia), mất viết (agraphia), mất nhận biết ngón tay (finger agnosia), mất phân biệt phải - trái; mất thực dụng động tác (ideomotor apraxia)."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -1535,19 +1721,37 @@
       "code": "MCAPR",
       "name_vi": "ĐM não giữa - Phân nhánh đỉnh (Phải) (Vỏ não chú ý không gian)",
       "name_en": "Middle Cerebral Artery - Parietal pars (Right)",
-      "category": "arterial_branch",
+      "category": "vascular_territory",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "Vỏ não cảm giác sơ cấp (S1) cho mặt và tay bên trái",
+        "Tiểu thùy đỉnh dưới bên phải (trung tâm tích hợp nhận thức không gian 3 chiều và sơ đồ thân thể)"
+      ],
       "arterial_supply": {
-        "primary": [],
+        "primary": [
+          "ĐM não giữa (MCA - nhánh đỉnh M2/M3)",
+          "ĐM sau rãnh trung tâm (Postcentral artery)"
+        ],
         "perforators": []
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Xoang dọc trên (Superior Sagittal Sinus)",
+        "Tĩnh mạch nối trên Trolard",
+        "Tĩnh mạch nối dưới Labbé",
+        "Xoang ngang (Transverse Sinus)"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Hội chứng lãng quên nửa không gian (Hemi-spatial Neglect / Anton-Babinski)",
+          "description": "Mất cảm giác nửa người trái; hội chứng lãng quên nửa thân và nửa không gian trái nặng nề (bỏ qua hoàn toàn các kích thích bên trái), mất nhận thức bệnh tật (anosognosia), mất thực dụng tạo hình (constructional apraxia)."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -1563,19 +1767,38 @@
       "code": "MCATL",
       "name_vi": "ĐM não giữa - Phân nhánh thái dương (Trái) (Vùng Wernicke & thái dương trên/giữa)",
       "name_en": "Middle Cerebral Artery - Temporal pars (Left)",
-      "category": "arterial_branch",
+      "category": "vascular_territory",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "Hồi thái dương trên và giữa bên trái (Vỏ thính giác sơ cấp A1 / Vùng Heschl)",
+        "Trung tâm hiểu ngôn ngữ Wernicke (BA 22)",
+        "Quai Meyer của tia thị giác (Meyer's loop)",
+        "Bộ nhớ ngữ nghĩa từ vựng và xử lý thính giác lời nói"
+      ],
       "arterial_supply": {
-        "primary": [],
+        "primary": [
+          "ĐM não giữa (MCA - thân dưới nhánh thái dương M2/M3)",
+          "ĐM thái dương trước, giữa và sau (Anterior/Middle/Posterior temporal arteries)"
+        ],
         "perforators": []
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Tĩnh mạch nối dưới Labbé (Inferior Anastomotic Vein)",
+        "Xoang ngang (Transverse Sinus)",
+        "Tĩnh mạch não giữa nông (Superficial Middle Cerebral Vein)"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Hội chứng thất ngôn Wernicke & Khuyết thị góc trên",
+          "description": "Thất ngôn cảm thụ Wernicke (nói lưu loát nhưng vô nghĩa, lẫn từ ngữ, không hiểu lời nói của người khác và mất khả năng lặp lại từ), bán manh 1/4 trên đồng danh mắt phải (do tổn thương quai Meyer thùy thái dương)."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -1591,19 +1814,37 @@
       "code": "MCATR",
       "name_vi": "ĐM não giữa - Phân nhánh thái dương (Phải) (Thùy thái dương ngoài)",
       "name_en": "Middle Cerebral Artery - Temporal pars (Right)",
-      "category": "arterial_branch",
+      "category": "vascular_territory",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "Hồi thái dương ngoài bên phải",
+        "Xử lý thính giác phi ngôn ngữ (nhận biết giai điệu, âm sắc âm nhạc và ngữ điệu cảm xúc)",
+        "Quai Meyer của tia thị giác bên phải"
+      ],
       "arterial_supply": {
-        "primary": [],
+        "primary": [
+          "ĐM não giữa (MCA - thân dưới nhánh thái dương M2/M3)",
+          "ĐM thái dương bên"
+        ],
         "perforators": []
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Tĩnh mạch nối dưới Labbé",
+        "Xoang ngang (Transverse Sinus)",
+        "Tĩnh mạch não giữa nông"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Hội chứng thùy thái dương phải & Khuyết thị",
+          "description": "Bán manh 1/4 trên đồng danh mắt trái (pie in the sky), mất khả năng hiểu ngữ điệu và cảm xúc giọng nói (Sensory aprosodia), giảm khả năng nhận biết âm nhạc (amusia) và trí nhớ thị giác."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -1619,19 +1860,37 @@
       "code": "MCAOL",
       "name_vi": "ĐM não giữa - Phân nhánh chẩm (Trái) (Vùng chuyển tiếp đỉnh - chẩm)",
       "name_en": "Middle Cerebral Artery - Occipital pars (Left)",
-      "category": "arterial_branch",
+      "category": "vascular_territory",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "Vùng ranh giới vỏ não đỉnh - chẩm ngoài bên trái",
+        "Dòng xử lý thị giác lưng (Dorsal 'Where' stream) tích hợp chuyển động và không gian thị giác",
+        "Vùng hồi góc chuyển tiếp từ vựng thị giác sang âm vị"
+      ],
       "arterial_supply": {
-        "primary": [],
+        "primary": [
+          "ĐM não giữa (MCA - nhánh tận M3/M4)",
+          "ĐM góc (Angular artery)"
+        ],
         "perforators": []
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Xoang ngang (Transverse Sinus)",
+        "Tĩnh mạch nối dưới Labbé",
+        "Xoang dọc trên (phần sau)"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Hội chứng vùng đỉnh - chẩm trái",
+          "description": "Mất đọc kèm mất viết (Alexia with agraphia), khuyết thị trường góc phần tư dưới bên phải, mất điều hòa thị giác (optic ataxia) nhẹ."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -1647,19 +1906,36 @@
       "code": "MCAOR",
       "name_vi": "ĐM não giữa - Phân nhánh chẩm (Phải) (Vùng chuyển tiếp đỉnh - chẩm)",
       "name_en": "Middle Cerebral Artery - Occipital pars (Right)",
-      "category": "arterial_branch",
+      "category": "vascular_territory",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "Vùng chuyển tiếp đỉnh - chẩm ngoài bên phải",
+        "Xử lý không gian thị giác 3 chiều và chú ý thị giác ngoại vi"
+      ],
       "arterial_supply": {
-        "primary": [],
+        "primary": [
+          "ĐM não giữa (MCA - nhánh tận M3/M4)",
+          "ĐM góc (Angular artery)"
+        ],
         "perforators": []
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Xoang ngang (Transverse Sinus)",
+        "Tĩnh mạch nối dưới Labbé",
+        "Xoang dọc trên (phần sau)"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Hội chứng đỉnh - chẩm bán cầu không ưu thế",
+          "description": "Bán manh hoặc khuyết thị góc phần tư dưới bên trái, mất định hướng không gian thị giác (visuospatial disorientation), mất khả năng ước lượng khoảng cách vật thể."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -1675,19 +1951,40 @@
       "code": "MCAIL",
       "name_vi": "ĐM não giữa - Phân nhánh thùy đảo (Trái) (Vỏ thùy đảo M2)",
       "name_en": "Middle Cerebral Artery - Insular pars (Left)",
-      "category": "arterial_branch",
+      "category": "vascular_territory",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "Vỏ thùy đảo trước và sau bên trái",
+        "Vỏ nắp trán - đỉnh - thái dương quanh rãnh Sylvius",
+        "Tích hợp cảm giác nội quan (interoception), nhận cảm cảm giác đau và nhiệt độ sâu",
+        "Vỏ não vị giác sơ cấp (Primary gustatory cortex)",
+        "Phối hợp vận động phát âm (Articulatory planning)"
+      ],
       "arterial_supply": {
-        "primary": [],
-        "perforators": []
+        "primary": [
+          "ĐM não giữa (MCA - các nhánh thùy đảo đoạn M2)"
+        ],
+        "perforators": [
+          "Các nhánh ngắn nuôi vỏ thùy đảo và nắp rãnh Sylvius"
+        ]
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Tĩnh mạch não giữa nông (Sylvian Vein)",
+        "Tĩnh mạch sâu thùy đảo (Deep Insular Veins)",
+        "Xoang bướm đỉnh và Xoang hang"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Hội chứng thùy đảo & nắp quanh Sylvius trái",
+          "description": "Mất thực dụng lời nói (Apraxia of speech / Speech arrest), mất vị giác một bên (hemiageusia), rối loạn nuốt (dysphagia do tổn thương vỏ nắp), rối loạn cảm giác đau tạng."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -1703,19 +2000,38 @@
       "code": "MCAIR",
       "name_vi": "ĐM não giữa - Phân nhánh thùy đảo (Phải) (Vỏ thùy đảo M2)",
       "name_en": "Middle Cerebral Artery - Insular pars (Right)",
-      "category": "arterial_branch",
+      "category": "vascular_territory",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "Vỏ thùy đảo bên phải",
+        "Trung tâm cao cấp tích hợp phản xạ thần kinh tự chủ giao cảm (điều hòa nhịp tim, huyết áp)",
+        "Nhận thức cảm xúc bản thể và nhận thức nội tạng"
+      ],
       "arterial_supply": {
-        "primary": [],
-        "perforators": []
+        "primary": [
+          "ĐM não giữa (MCA - các nhánh thùy đảo đoạn M2)"
+        ],
+        "perforators": [
+          "Các nhánh thùy đảo M2"
+        ]
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Tĩnh mạch não giữa nông (Sylvian Vein)",
+        "Tĩnh mạch sâu thùy đảo (Deep Insular Veins)",
+        "Xoang bướm đỉnh và Xoang hang"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Hội chứng thùy đảo phải & Rối loạn thần kinh tự chủ tim mạch",
+          "description": "Rối loạn nhịp tim cấp tính (nhịp tim nhanh kịch phát, rối loạn dẫn truyền tim do mất cân bằng giao cảm), tăng nguy cơ loạn nhịp tử vong do đột quỵ, mất nhận thức cơ thể (asomatognosia)."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -1731,19 +2047,37 @@
       "code": "PCATL",
       "name_vi": "ĐM não sau - Phân nhánh thái dương (Trái) (Mặt dưới thùy thái dương)",
       "name_en": "Posterior Cerebral Artery - Temporal pars (Left)",
-      "category": "arterial_branch",
+      "category": "vascular_territory",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "Mặt dưới thùy thái dương trái (Hồi cạnh hải mã, Hồi lưỡi trước, Hồi thoi)",
+        "Cấu trúc hồi hải mã (Hippocampus) bên trái - hình thành và củng cố trí nhớ lời nói dài hạn",
+        "Hệ thống đường dẫn truyền thị giác bụng (Ventral 'What' stream) nhận diện đồ vật"
+      ],
       "arterial_supply": {
-        "primary": [],
+        "primary": [
+          "ĐM não sau (PCA - đoạn P2/P3)",
+          "ĐM thái dương trước và sau (Anterior & Posterior temporal branches of PCA)"
+        ],
         "perforators": []
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Tĩnh mạch đáy Rosenthal (Basal Vein)",
+        "Tĩnh mạch nối dưới Labbé",
+        "Xoang ngang (Transverse Sinus)"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Hội chứng thùy thái dương dưới - hải mã trái",
+          "description": "Mất trí nhớ quên thuận chiều cấp (anterograde verbal amnesia - mất khả năng ghi nhớ từ ngữ mới), mất định danh sự vật bằng hình ảnh (visual object anomia), ảo giác khứu giác / vị giác."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -1759,19 +2093,36 @@
       "code": "PCATR",
       "name_vi": "ĐM não sau - Phân nhánh thái dương (Phải) (Mặt dưới thùy thái dương)",
       "name_en": "Posterior Cerebral Artery - Temporal pars (Right)",
-      "category": "arterial_branch",
+      "category": "vascular_territory",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "Mặt dưới thùy thái dương phải (Hồi thoi / Fusiform face area - FFA)",
+        "Hồi hải mã và hồi cạnh hải mã bên phải - trí nhớ hình ảnh, khuôn mặt và định hướng địa hình"
+      ],
       "arterial_supply": {
-        "primary": [],
+        "primary": [
+          "ĐM não sau (PCA - đoạn P2/P3)",
+          "ĐM thái dương trước và sau"
+        ],
         "perforators": []
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Tĩnh mạch đáy Rosenthal (Basal Vein)",
+        "Tĩnh mạch nối dưới Labbé",
+        "Xoang ngang (Transverse Sinus)"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Hội chứng mất nhận diện khuôn mặt (Prosopagnosia) & Mất trí nhớ không gian",
+          "description": "Mất khả năng nhận biết khuôn mặt người quen kể cả người thân (Prosopagnosia do tổn thương hồi thoi bên phải), mất định hướng không gian địa hình (không nhớ đường về nhà)."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -1787,19 +2138,38 @@
       "code": "PCAOL",
       "name_vi": "ĐM não sau - Phân nhánh chẩm (Trái) (Vỏ thị giác V1 & khe cựa)",
       "name_en": "Posterior Cerebral Artery - Occipital pars (Left)",
-      "category": "arterial_branch",
+      "category": "vascular_territory",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "Vỏ não thị giác sơ cấp (V1 / BA 17 dọc hai bờ khe cựa bên trái)",
+        "Vỏ não thị giác liên hợp (V2, V3 thùy chẩm trái)",
+        "Lồi thể chai (Splenium of corpus callosum) truyền thông tin thị giác liên bán cầu"
+      ],
       "arterial_supply": {
-        "primary": [],
+        "primary": [
+          "ĐM não sau (PCA - đoạn P3/P4)",
+          "ĐM rãnh cựa (Calcarine artery)",
+          "ĐM đỉnh - chẩm (Parieto-occipital artery)"
+        ],
         "perforators": []
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Xoang ngang (Transverse Sinus)",
+        "Hội lưu các xoang (Torcular Herophili)",
+        "Tĩnh mạch não lớn Galen (Great Cerebral Vein)"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Bán manh đồng danh phải & Hội chứng mất đọc không mất viết",
+          "description": "Bán manh đồng danh mắt phải bảo tồn hoàng điểm (macular sparing do diện hoàng điểm nhận tưới máu kép từ MCA); nếu nhồi máu lan vào lồi thể chai gây Mất đọc không mất viết (Alexia without agraphia do ngắt kết nối thị giác sang trung tâm ngôn ngữ trái)."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -1815,19 +2185,37 @@
       "code": "PCAOR",
       "name_vi": "ĐM não sau - Phân nhánh chẩm (Phải) (Vỏ thị giác V1 & khe cựa)",
       "name_en": "Posterior Cerebral Artery - Occipital pars (Right)",
-      "category": "arterial_branch",
+      "category": "vascular_territory",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "Vỏ não thị giác sơ cấp (V1 / BA 17) thùy chẩm phải",
+        "Vỏ não thị giác liên hợp xử lý màu sắc và chuyển động thị giác bên trái"
+      ],
       "arterial_supply": {
-        "primary": [],
+        "primary": [
+          "ĐM não sau (PCA - đoạn P3/P4)",
+          "ĐM rãnh cựa (Calcarine artery)",
+          "ĐM đỉnh - chẩm"
+        ],
         "perforators": []
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Xoang ngang (Transverse Sinus)",
+        "Hội lưu các xoang (Torcular Herophili)",
+        "Tĩnh mạch não lớn Galen"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Bán manh đồng danh mắt trái bảo tồn hoàng điểm",
+          "description": "Bán manh đồng danh mắt trái còn bảo tồn hoàng điểm, mất cảm nhận màu sắc nửa thị trường (Hemiachromatopsia), ảo thị giác biến dạng hình dạng (Metamorphopsia) hoặc ảo giác thị giác tạo hình."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -1843,19 +2231,41 @@
       "code": "PCTPL",
       "name_vi": "ĐM màng mạch sau & Nhánh xuyên đồi thị (Trái)",
       "name_en": "Posterior Choroidal & Thalamoperforating Arteries (Left)",
-      "category": "arterial_perforator",
+      "category": "vascular_territory",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "Nhân bụng sau ngoài (VPL) và nhân bụng sau trong (VPM) đồi thị trái (trung tâm cảm giác nửa thân phải)",
+        "Đồi chẩm (Pulvinar), Thể gối ngoài (LGB) và Thể gối trong (MGB)",
+        "Đám rối màng mạch não thất ba và sừng thái dương não thất bên"
+      ],
       "arterial_supply": {
-        "primary": [],
-        "perforators": []
+        "primary": [
+          "ĐM não sau (PCA - đoạn P1/P2)",
+          "ĐM màng mạch sau trong và sau ngoài (Medial and Lateral posterior choroidal arteries)"
+        ],
+        "perforators": [
+          "ĐM đồi thị - gối (Thalamogeniculate arteries)",
+          "ĐM đồi thị - thủng (Thalamoperforating arteries)"
+        ]
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Tĩnh mạch não trong (Internal Cerebral Vein)",
+        "Tĩnh mạch đáy Rosenthal",
+        "Tĩnh mạch não lớn Galen",
+        "Xoang thẳng (Straight Sinus)"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Hội chứng đau đồi thị Dejerine-Roussy trái",
+          "description": "Mất cảm giác nửa người bên phải (mất xúc giác tinh vi và cảm giác sâu), sau đó tiến triển thành đau loạn cảm đồi thị dữ dội, rát bỏng đề kháng với thuốc giảm đau thông thường (Dejerine-Roussy); kèm thất điều cảm giác chi phải và múa vờn đồi thị."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -1871,19 +2281,41 @@
       "code": "PCTPR",
       "name_vi": "ĐM màng mạch sau & Nhánh xuyên đồi thị (Phải)",
       "name_en": "Posterior Choroidal & Thalamoperforating Arteries (Right)",
-      "category": "arterial_perforator",
+      "category": "vascular_territory",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "Nhân bụng sau (VPL/VPM) đồi thị phải (trung tâm cảm giác nửa người trái)",
+        "Thể gối ngoài và thể gối trong phải",
+        "Đám rối màng mạch não thất"
+      ],
       "arterial_supply": {
-        "primary": [],
-        "perforators": []
+        "primary": [
+          "ĐM não sau (PCA - đoạn P1/P2)",
+          "ĐM màng mạch sau trong và sau ngoài"
+        ],
+        "perforators": [
+          "ĐM đồi thị - gối",
+          "ĐM đồi thị - thủng"
+        ]
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Tĩnh mạch não trong (Internal Cerebral Vein)",
+        "Tĩnh mạch đáy Rosenthal",
+        "Tĩnh mạch não lớn Galen",
+        "Xoang thẳng (Straight Sinus)"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Hội chứng đau đồi thị Dejerine-Roussy phải",
+          "description": "Mất cảm giác nửa người trái sau đó đau rát bỏng nửa người mạn tính, rối loạn cảm giác sâu tư thế khớp, dị cảm kích thích xúc giác (allodynia) nửa thân trái."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -1899,19 +2331,39 @@
       "code": "ACTPL",
       "name_vi": "ĐM màng mạch trước & Nhánh xuyên đồi thị (Trái)",
       "name_en": "Anterior Choroidal & Thalamoperforating Arteries (Left)",
-      "category": "arterial_perforator",
+      "category": "vascular_territory",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "1/3 sau trụ sau bao trong bên trái (Posterior limb of internal capsule)",
+        "Dải thị giác (Optic tract) và phần bên thể gối ngoài",
+        "Móc hải mã (Uncus) và phức hợp hạnh nhân (Amygdala) trái",
+        "Đám rối màng mạch sừng thái dương não thất bên"
+      ],
       "arterial_supply": {
-        "primary": [],
-        "perforators": []
+        "primary": [
+          "ĐM màng mạch trước (AChA - Anterior Choroidal Artery) xuất phát từ ĐM cảnh trong (ICA)"
+        ],
+        "perforators": [
+          "Các nhánh xuyên bao trong và dải thị (Capsular & Optic tract perforators)"
+        ]
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Tĩnh mạch đáy Rosenthal (Basal Vein)",
+        "Tĩnh mạch não trong (Internal Cerebral Vein)",
+        "Xoang thẳng (Straight Sinus)"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Tam chứng nhồi máu ĐM màng mạch trước (AChA Syndrome) trái",
+          "description": "Tam chứng kinh điển: (1) Liệt nửa người phải hoàn toàn (do thiếu máu trụ sau bao trong), (2) Mất cảm giác nửa người phải, (3) Bán manh đồng danh mắt phải (do tổn thương dải thị giác hoặc thể gối ngoài)."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -1927,19 +2379,37 @@
       "code": "ACTPR",
       "name_vi": "ĐM màng mạch trước & Nhánh xuyên đồi thị (Phải)",
       "name_en": "Anterior Choroidal & Thalamoperforating Arteries (Right)",
-      "category": "arterial_perforator",
+      "category": "vascular_territory",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "Trụ sau bao trong bên phải, dải thị giác bên phải, thể gối ngoài",
+        "Hạch hạnh nhân và móc hải mã bên phải"
+      ],
       "arterial_supply": {
-        "primary": [],
-        "perforators": []
+        "primary": [
+          "ĐM màng mạch trước (AChA) xuất phát từ ICA"
+        ],
+        "perforators": [
+          "Các nhánh xuyên bao trong và dải thị"
+        ]
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Tĩnh mạch đáy Rosenthal (Basal Vein)",
+        "Tĩnh mạch não trong",
+        "Xoang thẳng (Straight Sinus)"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Tam chứng nhồi máu ĐM màng mạch trước (AChA Syndrome) phải",
+          "description": "Tam chứng kinh điển: Liệt nửa người trái, mất cảm giác nửa người trái và bán manh đồng danh mắt trái đối bên."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -1955,19 +2425,40 @@
       "code": "BL",
       "name_vi": "Động mạch thân nền (Trái) (Cầu não & trung não)",
       "name_en": "Basilar Artery territory (Left)",
-      "category": "arterial_trunk",
+      "category": "vascular_territory",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "Nửa trái cầu não (Bó tháp vỏ - gai, nhân cầu não, sợi bắt chéo cầu não)",
+        "Nửa trái tegmentum cầu não (Nhân và dây thần kinh sọ VI, VII, VIII bên trái, bó dọc giữa - MLF)",
+        "Trung não dưới bên trái và liềm đen",
+        "Hệ thống lưới hoạt hóa thức tỉnh truyền lên (ARAS)"
+      ],
       "arterial_supply": {
-        "primary": [],
-        "perforators": []
+        "primary": [
+          "Động mạch thân nền (Basilar Artery)"
+        ],
+        "perforators": [
+          "Các nhánh xuyên cầu não cạnh đường giữa (Paramedian pontine branches)",
+          "Các nhánh chu vi ngắn và dài (Short & Long circumferential branches)"
+        ]
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Tĩnh mạch cầu não và trung não (Pontine & Mesencephalic Veins)",
+        "Xoang đá trên và xoang đá dưới (Superior & Inferior Petrosal Sinuses)",
+        "Xoang sigma và Xoang thẳng"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Hội chứng Millard-Gubler & Foville (Cầu não trái)",
+          "description": "Hội chứng Millard-Gubler: Liệt mặt ngoại biên bên trái (dây VII) và liệt vận nhãn ngoài (dây VI) cùng bên kết hợp liệt nửa người bên phải đối bên. Hội chứng Foville: Liệt liếc phối hợp sang trái kèm liệt nửa người phải. Nguy cơ Hội chứng khóa trong (Locked-in syndrome) nếu tắc thân nền hai bên."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -1983,19 +2474,39 @@
       "code": "BR",
       "name_vi": "Động mạch thân nền (Phải) (Cầu não & trung não)",
       "name_en": "Basilar Artery territory (Right)",
-      "category": "arterial_trunk",
+      "category": "vascular_territory",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "Nửa phải cầu não và trung não",
+        "Bó tháp vận động cho nửa người trái, nhân dây sọ VI, VII, VIII phải",
+        "Hệ thống lưới thức tỉnh thân não"
+      ],
       "arterial_supply": {
-        "primary": [],
-        "perforators": []
+        "primary": [
+          "Động mạch thân nền (Basilar Artery)"
+        ],
+        "perforators": [
+          "Các nhánh xuyên cầu não cạnh đường giữa",
+          "Các nhánh chu vi ngắn và dài"
+        ]
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Tĩnh mạch cầu não và trung não",
+        "Xoang đá trên và xoang đá dưới",
+        "Xoang thẳng"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Hội chứng Weber & Millard-Gubler bên phải",
+          "description": "Hội chứng Weber: Liệt dây III mắt phải (sụp mi, đồng tử giãn, mắt lé ngoài) kèm liệt nửa người trái. Hội chứng Millard-Gubler phải: Liệt dây VII/VI phải kèm liệt nửa người trái."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -2011,19 +2522,41 @@
       "code": "SCL",
       "name_vi": "Động mạch tiểu não trên (SCA - Trái) (Mặt trên tiểu não)",
       "name_en": "Superior Cerebellar Artery territory (Left)",
-      "category": "arterial_branch",
+      "category": "vascular_territory",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "Mặt trên bán cầu tiểu não trái và phần trên thùy nhộng (Vermis)",
+        "Nhân răng (Dentate nucleus) trái - nhân sâu lớn nhất điều hòa phối hợp vận động",
+        "Cuống tiểu não trên (Brachium conjunctivum - đường dẫn truyền ly tâm chính từ tiểu não lên đồi thị/vỏ não)",
+        "Phần bên tegmentum cầu não trên"
+      ],
       "arterial_supply": {
-        "primary": [],
-        "perforators": []
+        "primary": [
+          "Động mạch tiểu não trên (SCA - Superior Cerebellar Artery)"
+        ],
+        "perforators": [
+          "Các nhánh bán cầu tiểu não trên (Superior cerebellar branches)",
+          "Nhánh thùy nhộng trên",
+          "Nhánh tegmentum lưng"
+        ]
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Tĩnh mạch tiểu não trên (Superior Cerebellar Veins)",
+        "Tĩnh mạch não lớn Galen (Great Cerebral Vein)",
+        "Xoang thẳng và Xoang ngang"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Hội chứng nhồi máu ĐM tiểu não trên (SCA) trái",
+          "description": "Thất điều tiểu não chi trái nghiêm trọng (mất phối hợp động tác quá tầm - dysmetria, run chủ ý - intention tremor do tổn thương nhân răng), dáng đi thất điều nghiêng ngã sang trái, rung giật nhãn cầu, hội chứng Horner mắt trái; mất cảm giác đau nhiệt nửa người bên phải (tổn thương liềm tủy tegmentum cầu não)."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -2039,19 +2572,38 @@
       "code": "SCR",
       "name_vi": "Động mạch tiểu não trên (SCA - Phải) (Mặt trên tiểu não)",
       "name_en": "Superior Cerebellar Artery territory (Right)",
-      "category": "arterial_branch",
+      "category": "vascular_territory",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "Mặt trên bán cầu tiểu não phải và nhân răng phải",
+        "Cuống tiểu não trên bên phải, điều hòa nhịp nhàng vận động chi trên và thăng bằng dáng đi phải"
+      ],
       "arterial_supply": {
-        "primary": [],
-        "perforators": []
+        "primary": [
+          "Động mạch tiểu não trên (SCA - Superior Cerebellar Artery)"
+        ],
+        "perforators": [
+          "Các nhánh bán cầu tiểu não trên",
+          "Nhánh thùy nhộng"
+        ]
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Tĩnh mạch tiểu não trên",
+        "Tĩnh mạch não lớn Galen",
+        "Xoang thẳng và Xoang ngang"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Hội chứng nhồi máu ĐM tiểu não trên (SCA) phải",
+          "description": "Thất điều chi và run cố ý tay chân bên phải, rối loạn nhịp động tác (dysdiadochokinesia), chóng mặt, rung giật nhãn cầu, mất cảm giác nhiệt đau nửa người trái đối bên."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -2067,19 +2619,43 @@
       "code": "ICL",
       "name_vi": "Động mạch tiểu não dưới (PICA/AICA - Trái) (Tiểu não dưới & hành não)",
       "name_en": "Inferior Cerebellar Artery territory (Left)",
-      "category": "arterial_branch",
+      "category": "vascular_territory",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "Mặt dưới bán cầu tiểu não trái, hạnh nhân tiểu não (Tonsil) và thùy nhộng dưới (thuộc vùng cấp máu PICA)",
+        "Vùng lưng bên hành não trái (Dorsolateral medulla: nhân hoài nghi dây IX/X, nhân và bó gai dây V, nhân tiền đình, bó gai - đồi thị, đường giao cảm đi xuống)",
+        "Vùng trước dưới tiểu não, cuống tiểu não giữa và góc cầu - tiểu não trái (thuộc vùng cấp máu AICA)"
+      ],
       "arterial_supply": {
-        "primary": [],
-        "perforators": []
+        "primary": [
+          "Động mạch tiểu não sau dưới (PICA - Posterior Inferior Cerebellar Artery)",
+          "Động mạch tiểu não trước dưới (AICA)",
+          "Động mạch đốt sống (Vertebral Artery - VA)"
+        ],
+        "perforators": [
+          "Các nhánh hành não ngoài (Lateral medullary branches)",
+          "Nhánh đám rối màng mạch não thất IV",
+          "Động mạch mê đạo tai trong (Internal auditory artery)"
+        ]
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Tĩnh mạch tiểu não dưới (Inferior Cerebellar Veins)",
+        "Xoang đá dưới (Inferior Petrosal Sinus)",
+        "Xoang ngang và Xoang sigma (Transverse & Sigmoid Sinuses)",
+        "Xoang chẩm"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Hội chứng Wallenberg (Hành não ngoài trái do tắc PICA) & Hội chứng AICA",
+          "description": "Hội chứng Wallenberg kinh điển: Mất cảm giác đau nhiệt bắt chéo (mặt trái do tổn thương nhân dây V - thân và chi bên phải do tổn thương bó gai đồi thị), hội chứng Horner mắt trái, nuốt khó, nói khàn (liệt màn hầu dây IX, X), chóng mặt dữ dội, nôn mửa, rung giật nhãn cầu, thất điều tiểu não chi trái. Nếu tắc AICA: kèm liệt mặt ngoại biên và điếc tiếp nhận tai trái."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -2095,19 +2671,42 @@
       "code": "ICR",
       "name_vi": "Động mạch tiểu não dưới (PICA/AICA - Phải) (Tiểu não dưới & hành não)",
       "name_en": "Inferior Cerebellar Artery territory (Right)",
-      "category": "arterial_branch",
+      "category": "vascular_territory",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "Mặt dưới bán cầu tiểu não phải, hạnh nhân tiểu não phải",
+        "Vùng lưng bên hành não phải (Lateral medulla)",
+        "Phần trước dưới tiểu não và cuống tiểu não giữa phải"
+      ],
       "arterial_supply": {
-        "primary": [],
-        "perforators": []
+        "primary": [
+          "Động mạch tiểu não sau dưới (PICA)",
+          "Động mạch tiểu não trước dưới (AICA)",
+          "Động mạch đốt sống (VA)"
+        ],
+        "perforators": [
+          "Các nhánh hành não bên",
+          "Động mạch mê đạo tai trong"
+        ]
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Tĩnh mạch tiểu não dưới",
+        "Xoang đá dưới",
+        "Xoang ngang và Xoang sigma",
+        "Xoang chẩm"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Hội chứng Wallenberg (Hành não ngoài phải) & Hội chứng AICA",
+          "description": "Hội chứng Wallenberg phải: Mất cảm giác đau nhiệt mặt phải - thân trái, hội chứng Horner mắt phải, liệt nuốt, thất ngôn khàn tiếng, chóng mặt xoay tròn, thất điều tiểu não chi phải; điếc và liệt mặt cùng bên nếu tổn thương vùng AICA."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -2123,19 +2722,37 @@
       "code": "LVL",
       "name_vi": "Không gian Não thất bên (Trái)",
       "name_en": "Lateral Ventricle Space (Left)",
-      "category": "ventricle",
+      "category": "subcortical",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "Không gian khoang chứa và lưu thông dịch não tủy (CSF) não thất bên trái (Sừng trán, thân, sừng chẩm và sừng thái dương)",
+        "Đám rối màng mạch (Choroid plexus) sản xuất và bài tiết dịch não tủy",
+        "Dẫn lưu CSF qua lỗ gian não thất Monro vào não thất ba"
+      ],
       "arterial_supply": {
-        "primary": [],
+        "primary": [
+          "Đám rối màng mạch não thất bên (Choroid Plexus) - nhận máu từ ĐM màng mạch trước (AChA) & các nhánh ĐM màng mạch sau (PChA)"
+        ],
         "perforators": []
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Tĩnh mạch màng mạch (Choroidal Vein)",
+        "Tĩnh mạch đồi thị - thể vân (Thalamostriate Vein)",
+        "Tĩnh mạch não trong (Internal Cerebral Vein)",
+        "Xoang thẳng (Straight Sinus)"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Hội chứng tràn dịch não thất & Xuất huyết não thất trái",
+          "description": "Tắc nghẽn lỗ gian não thất Monro trái hoặc cống não gây não úng thủy áp lực nội sọ tăng (đau đầu dữ dội, nôn vọt, phù gai thị); tràn dịch não thất áp lực bình thường (NPH: Tam chứng Hakim gồm rối loạn dáng đi, sa sút trí tuệ, tiểu không tự chủ); xuất huyết trong não thất (IVH)."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -2151,19 +2768,36 @@
       "code": "LVR",
       "name_vi": "Không gian Não thất bên (Phải)",
       "name_en": "Lateral Ventricle Space (Right)",
-      "category": "ventricle",
+      "category": "subcortical",
       "brodmann_area": [],
-      "functions": [],
+      "functions": [
+        "Không gian chứa và lưu thông dịch não tủy não thất bên phải",
+        "Đám rối màng mạch sản xuất dịch não tủy và đệm thủy động học chống chấn động nhu mô não"
+      ],
       "arterial_supply": {
-        "primary": [],
+        "primary": [
+          "Đám rối màng mạch não thất bên - Nhánh từ ĐM màng mạch trước & sau"
+        ],
         "perforators": []
       },
-      "venous_drainage": [],
+      "venous_drainage": [
+        "Tĩnh mạch màng mạch",
+        "Tĩnh mạch đồi thị - thể vân",
+        "Tĩnh mạch não trong",
+        "Xoang thẳng (Straight Sinus)"
+      ],
       "aspects_zone": null,
-      "clinical_syndromes": [],
-      "evidence_level": "atlas_direct",
+      "clinical_syndromes": [
+        {
+          "name": "Hội chứng tràn dịch não thất & Tăng áp lực nội sọ",
+          "description": "Giãn não thất tắc nghẽn hoặc thông thương, tăng áp lực nội sọ cấp tính đe dọa thoát vị não, xuất huyết màng mạch - não thất."
+        }
+      ],
+      "evidence_level": "approximate",
       "source": [
-        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0; GitHub Chin-Fu-Liu/Arterial_Atlas"
+        "Liu CF et al., Digital 3D Brain MRI Arterial Territories Atlas, Sci Data 10:74 (2023), doi:10.1038/s41597-022-01923-0",
+        "Radiopaedia: Venous territories of the brain (SSS, ISS, Deep/Straight, TS, Cavernous, Infratentorial)",
+        "Bousser MG, Ferro JM. Cerebral venous thrombosis. Lancet Neurol 2007; 6:162-70"
       ],
       "review_status": "unreviewed",
       "color_rgb": [
@@ -25991,7 +26625,7 @@
         "gyrus": "SFG, Superior Frontal Gyrus",
         "cyto_architecture": "A9l, lateral area 9",
         "yeo_network_7": "Default Mode Network (DMN - Mặc định)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 52,
           "action": 22,
@@ -26369,7 +27003,7 @@
         "gyrus": "SFG, Superior Frontal Gyrus",
         "cyto_architecture": "A9m,medial area 9",
         "yeo_network_7": "Default Mode Network (DMN - Mặc định)",
-        "yeo_network_overlap_pct": 55.0,
+        "yeo_network_overlap_pct": 55,
         "behavioral_domains": {
           "cognition": 52,
           "action": 22,
@@ -26477,7 +27111,7 @@
         "gyrus": "SFG, Superior Frontal Gyrus",
         "cyto_architecture": "A10m, medial area 10",
         "yeo_network_7": "Default Mode Network (DMN - Mặc định)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 52,
           "action": 22,
@@ -26797,7 +27431,7 @@
         "gyrus": "MFG, Middle Frontal Gyrus",
         "cyto_architecture": "A46, area 46",
         "yeo_network_7": "Frontoparietal / Control (Điều hành)",
-        "yeo_network_overlap_pct": 85.0,
+        "yeo_network_overlap_pct": 85,
         "behavioral_domains": {
           "cognition": 52,
           "action": 22,
@@ -26851,7 +27485,7 @@
         "gyrus": "MFG, Middle Frontal Gyrus",
         "cyto_architecture": "A9/46v, ventral area 9/46",
         "yeo_network_7": "Frontoparietal / Control (Điều hành)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 52,
           "action": 22,
@@ -26905,7 +27539,7 @@
         "gyrus": "MFG, Middle Frontal Gyrus",
         "cyto_architecture": "A9/46v, ventral area 9/46",
         "yeo_network_7": "Frontoparietal / Control (Điều hành)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 52,
           "action": 22,
@@ -27013,7 +27647,7 @@
         "gyrus": "MFG, Middle Frontal Gyrus",
         "cyto_architecture": "A8vl, ventrolateral area 8",
         "yeo_network_7": "Frontoparietal / Control (Điều hành)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 52,
           "action": 22,
@@ -27337,7 +27971,7 @@
         "gyrus": "IFG, Inferior Frontal Gyrus",
         "cyto_architecture": "A44d,dorsal area 44",
         "yeo_network_7": "Frontoparietal / Control (Điều hành)",
-        "yeo_network_overlap_pct": 70.0,
+        "yeo_network_overlap_pct": 70,
         "behavioral_domains": {
           "cognition": 52,
           "action": 22,
@@ -27549,7 +28183,7 @@
         "gyrus": "IFG, Inferior Frontal Gyrus",
         "cyto_architecture": "A45c, caudal area 45",
         "yeo_network_7": "Default Mode Network (DMN - Mặc định)",
-        "yeo_network_overlap_pct": 48.0,
+        "yeo_network_overlap_pct": 48,
         "behavioral_domains": {
           "cognition": 52,
           "action": 22,
@@ -27657,7 +28291,7 @@
         "gyrus": "IFG, Inferior Frontal Gyrus",
         "cyto_architecture": "A45r, rostral area 45",
         "yeo_network_7": "Frontoparietal / Control (Điều hành)",
-        "yeo_network_overlap_pct": 49.0,
+        "yeo_network_overlap_pct": 49,
         "behavioral_domains": {
           "cognition": 52,
           "action": 22,
@@ -27765,7 +28399,7 @@
         "gyrus": "IFG, Inferior Frontal Gyrus",
         "cyto_architecture": "A44op, opercular area 44",
         "yeo_network_7": "Ventral Attention / Salience (Chú ý bụng / Nổi bật)",
-        "yeo_network_overlap_pct": 94.0,
+        "yeo_network_overlap_pct": 94,
         "behavioral_domains": {
           "cognition": 52,
           "action": 22,
@@ -28035,7 +28669,7 @@
         "gyrus": "OrG, Orbital Gyrus",
         "cyto_architecture": "A12/47o, orbital area 12/47",
         "yeo_network_7": "Default Mode Network (DMN - Mặc định)",
-        "yeo_network_overlap_pct": 94.0,
+        "yeo_network_overlap_pct": 94,
         "behavioral_domains": {
           "cognition": 52,
           "action": 22,
@@ -28413,7 +29047,7 @@
         "gyrus": "OrG, Orbital Gyrus",
         "cyto_architecture": "A13, area 13",
         "yeo_network_7": "Limbic Network (Mạng viền)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 52,
           "action": 22,
@@ -28681,7 +29315,7 @@
         "gyrus": "PrG, Precentral Gyrus",
         "cyto_architecture": "A6cdl, caudal dorsolateral area 6",
         "yeo_network_7": "Dorsal Attention Network (Chú ý lưng)",
-        "yeo_network_overlap_pct": 54.0,
+        "yeo_network_overlap_pct": 54,
         "behavioral_domains": {
           "cognition": 10,
           "action": 72,
@@ -28787,7 +29421,7 @@
         "gyrus": "PrG, Precentral Gyrus",
         "cyto_architecture": "A4ul, area 4(upper limb region)",
         "yeo_network_7": "Somatomotor Network (Cảm giác - Vận động)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 10,
           "action": 72,
@@ -28840,7 +29474,7 @@
         "gyrus": "PrG, Precentral Gyrus",
         "cyto_architecture": "A4ul, area 4(upper limb region)",
         "yeo_network_7": "Somatomotor Network (Cảm giác - Vận động)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 10,
           "action": 72,
@@ -28893,7 +29527,7 @@
         "gyrus": "PrG, Precentral Gyrus",
         "cyto_architecture": "A4t, area 4(trunk region)",
         "yeo_network_7": "Somatomotor Network (Cảm giác - Vận động)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 10,
           "action": 72,
@@ -28946,7 +29580,7 @@
         "gyrus": "PrG, Precentral Gyrus",
         "cyto_architecture": "A4t, area 4(trunk region)",
         "yeo_network_7": "Somatomotor Network (Cảm giác - Vận động)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 10,
           "action": 72,
@@ -28999,7 +29633,7 @@
         "gyrus": "PrG, Precentral Gyrus",
         "cyto_architecture": "A4tl, area 4(tongue and larynx region)",
         "yeo_network_7": "Ventral Attention / Salience (Chú ý bụng / Nổi bật)",
-        "yeo_network_overlap_pct": 78.0,
+        "yeo_network_overlap_pct": 78,
         "behavioral_domains": {
           "cognition": 10,
           "action": 72,
@@ -29319,7 +29953,7 @@
         "gyrus": "PCL, Paracentral Lobule",
         "cyto_architecture": "A4ll, area 4, (lower limb region)",
         "yeo_network_7": "Somatomotor Network (Cảm giác - Vận động)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 52,
           "action": 22,
@@ -29373,7 +30007,7 @@
         "gyrus": "PCL, Paracentral Lobule",
         "cyto_architecture": "A4ll, area 4, (lower limb region)",
         "yeo_network_7": "Somatomotor Network (Cảm giác - Vận động)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 52,
           "action": 22,
@@ -29481,7 +30115,7 @@
         "gyrus": "STG, Superior Temporal Gyrus",
         "cyto_architecture": "A38m, medial area 38",
         "yeo_network_7": "Limbic Network (Mạng viền)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 50,
           "action": 6,
@@ -30393,7 +31027,7 @@
         "gyrus": "MTG, Middle Temporal Gyrus",
         "cyto_architecture": "aSTS, anterior superior temporal sulcus",
         "yeo_network_7": "Default Mode Network (DMN - Mặc định)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 50,
           "action": 6,
@@ -30445,7 +31079,7 @@
         "gyrus": "MTG, Middle Temporal Gyrus",
         "cyto_architecture": "aSTS, anterior superior temporal sulcus",
         "yeo_network_7": "Default Mode Network (DMN - Mặc định)",
-        "yeo_network_overlap_pct": 93.0,
+        "yeo_network_overlap_pct": 93,
         "behavioral_domains": {
           "cognition": 50,
           "action": 6,
@@ -30769,7 +31403,7 @@
         "gyrus": "ITG, Inferior Temporal Gyrus",
         "cyto_architecture": "A20r, rostral area 20",
         "yeo_network_7": "Limbic Network (Mạng viền)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 50,
           "action": 6,
@@ -30985,7 +31619,7 @@
         "gyrus": "ITG, Inferior Temporal Gyrus",
         "cyto_architecture": "A37vl, ventrolateral area 37",
         "yeo_network_7": "Dorsal Attention Network (Chú ý lưng)",
-        "yeo_network_overlap_pct": 97.0,
+        "yeo_network_overlap_pct": 97,
         "behavioral_domains": {
           "cognition": 50,
           "action": 6,
@@ -31417,7 +32051,7 @@
         "gyrus": "FuG, Fusiform Gyrus",
         "cyto_architecture": "A37mv, medioventral area37",
         "yeo_network_7": "Visual Network (Thị giác)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 50,
           "action": 6,
@@ -31579,7 +32213,7 @@
         "gyrus": "PhG, Parahippocampal Gyrus",
         "cyto_architecture": "A35/36r, rostral area 35/36",
         "yeo_network_7": "Limbic Network (Mạng viền)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 50,
           "action": 6,
@@ -31633,7 +32267,7 @@
         "gyrus": "PhG, Parahippocampal Gyrus",
         "cyto_architecture": "A35/36r, rostral area 35/36",
         "yeo_network_7": "Limbic Network (Mạng viền)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 50,
           "action": 6,
@@ -31953,7 +32587,7 @@
         "gyrus": "PhG, Parahippocampal Gyrus",
         "cyto_architecture": "A28/34, area 28/34 (EC, entorhinal cortex)",
         "yeo_network_7": "Limbic Network (Mạng viền)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 50,
           "action": 6,
@@ -32005,7 +32639,7 @@
         "gyrus": "PhG, Parahippocampal Gyrus",
         "cyto_architecture": "TI, area TI(temporal agranular insular cortex)",
         "yeo_network_7": "Limbic Network (Mạng viền)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 50,
           "action": 6,
@@ -32057,7 +32691,7 @@
         "gyrus": "PhG, Parahippocampal Gyrus",
         "cyto_architecture": "TI, area TI(temporal agranular insular cortex)",
         "yeo_network_7": "Limbic Network (Mạng viền)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 50,
           "action": 6,
@@ -32161,7 +32795,7 @@
         "gyrus": "PhG, Parahippocampal Gyrus",
         "cyto_architecture": "TH, area TH (medial PPHC)",
         "yeo_network_7": "Visual Network (Thị giác)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 50,
           "action": 6,
@@ -32369,7 +33003,7 @@
         "gyrus": "pSTS, posterior Superior Temporal Sulcus",
         "cyto_architecture": "cpSTS, caudoposterior superior temporal sulcus",
         "yeo_network_7": "Ventral Attention / Salience (Chú ý bụng / Nổi bật)",
-        "yeo_network_overlap_pct": 75.0,
+        "yeo_network_overlap_pct": 75,
         "behavioral_domains": {
           "cognition": 50,
           "action": 6,
@@ -33125,7 +33759,7 @@
         "gyrus": "IPL, Inferior Parietal Lobule",
         "cyto_architecture": "A39rd, rostrodorsal area 39(Hip3)",
         "yeo_network_7": "Frontoparietal / Control (Điều hành)",
-        "yeo_network_overlap_pct": 42.0,
+        "yeo_network_overlap_pct": 42,
         "behavioral_domains": {
           "cognition": 44,
           "action": 28,
@@ -33179,7 +33813,7 @@
         "gyrus": "IPL, Inferior Parietal Lobule",
         "cyto_architecture": "A40rd, rostrodorsal area 40(PFt)",
         "yeo_network_7": "Dorsal Attention Network (Chú ý lưng)",
-        "yeo_network_overlap_pct": 57.0,
+        "yeo_network_overlap_pct": 57,
         "behavioral_domains": {
           "cognition": 44,
           "action": 28,
@@ -33503,7 +34137,7 @@
         "gyrus": "IPL, Inferior Parietal Lobule",
         "cyto_architecture": "A40rv, rostroventral area 40(PFop)",
         "yeo_network_7": "Ventral Attention / Salience (Chú ý bụng / Nổi bật)",
-        "yeo_network_overlap_pct": 66.0,
+        "yeo_network_overlap_pct": 66,
         "behavioral_domains": {
           "cognition": 44,
           "action": 28,
@@ -33557,7 +34191,7 @@
         "gyrus": "IPL, Inferior Parietal Lobule",
         "cyto_architecture": "A40rv, rostroventral area 40(PFop)",
         "yeo_network_7": "Ventral Attention / Salience (Chú ý bụng / Nổi bật)",
-        "yeo_network_overlap_pct": 64.0,
+        "yeo_network_overlap_pct": 64,
         "behavioral_domains": {
           "cognition": 44,
           "action": 28,
@@ -34092,7 +34726,7 @@
         "gyrus": "PoG, Postcentral Gyrus",
         "cyto_architecture": "A1/2/3ulhf, area 1/2/3(upper limb, head and face region)",
         "yeo_network_7": "Somatomotor Network (Cảm giác - Vận động)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 8,
           "action": 15,
@@ -34357,7 +34991,7 @@
         "gyrus": "PoG, Postcentral Gyrus",
         "cyto_architecture": "A1/2/3tru, area1/2/3(trunk region)",
         "yeo_network_7": "Somatomotor Network (Cảm giác - Vận động)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 8,
           "action": 15,
@@ -34410,7 +35044,7 @@
         "gyrus": "PoG, Postcentral Gyrus",
         "cyto_architecture": "A1/2/3tru, area1/2/3(trunk region)",
         "yeo_network_7": "Somatomotor Network (Cảm giác - Vận động)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 8,
           "action": 15,
@@ -34513,7 +35147,7 @@
         "gyrus": "INS, Insular Gyrus",
         "cyto_architecture": "G, hypergranular insula",
         "yeo_network_7": "Somatomotor Network (Cảm giác - Vận động)",
-        "yeo_network_overlap_pct": 84.0,
+        "yeo_network_overlap_pct": 84,
         "behavioral_domains": {
           "cognition": 10,
           "action": 12,
@@ -34617,7 +35251,7 @@
         "gyrus": "INS, Insular Gyrus",
         "cyto_architecture": "vIa, ventral agranular insula",
         "yeo_network_7": "Frontoparietal / Control (Điều hành)",
-        "yeo_network_overlap_pct": 71.0,
+        "yeo_network_overlap_pct": 71,
         "behavioral_domains": {
           "cognition": 10,
           "action": 12,
@@ -34773,7 +35407,7 @@
         "gyrus": "INS, Insular Gyrus",
         "cyto_architecture": "vId/vIg, ventral dysgranular and granular insula",
         "yeo_network_7": "Ventral Attention / Salience (Chú ý bụng / Nổi bật)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 10,
           "action": 12,
@@ -34825,7 +35459,7 @@
         "gyrus": "INS, Insular Gyrus",
         "cyto_architecture": "vId/vIg, ventral dysgranular and granular insula",
         "yeo_network_7": "Ventral Attention / Salience (Chú ý bụng / Nổi bật)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 10,
           "action": 12,
@@ -35087,7 +35721,7 @@
         "gyrus": "CG, Cingulate Gyrus",
         "cyto_architecture": "A23d, dorsal area 23",
         "yeo_network_7": "Default Mode Network (DMN - Mặc định)",
-        "yeo_network_overlap_pct": 94.0,
+        "yeo_network_overlap_pct": 94,
         "behavioral_domains": {
           "cognition": 32,
           "action": 6,
@@ -35681,7 +36315,7 @@
         "gyrus": "CG, Cingulate Gyrus",
         "cyto_architecture": "A23c, caudal area 23",
         "yeo_network_7": "Ventral Attention / Salience (Chú ý bụng / Nổi bật)",
-        "yeo_network_overlap_pct": 52.0,
+        "yeo_network_overlap_pct": 52,
         "behavioral_domains": {
           "cognition": 32,
           "action": 6,
@@ -35841,7 +36475,7 @@
         "gyrus": "MVOcC, MedioVentral Occipital Cortex",
         "cyto_architecture": "cLinG, caudal lingual gyrus",
         "yeo_network_7": "Visual Network (Thị giác)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 12,
           "action": 6,
@@ -35893,7 +36527,7 @@
         "gyrus": "MVOcC, MedioVentral Occipital Cortex",
         "cyto_architecture": "cLinG, caudal lingual gyrus",
         "yeo_network_7": "Visual Network (Thị giác)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 12,
           "action": 6,
@@ -35945,7 +36579,7 @@
         "gyrus": "MVOcC, MedioVentral Occipital Cortex",
         "cyto_architecture": "rCunG, rostral cuneus gyrus",
         "yeo_network_7": "Visual Network (Thị giác)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 12,
           "action": 6,
@@ -36049,7 +36683,7 @@
         "gyrus": "MVOcC, MedioVentral Occipital Cortex",
         "cyto_architecture": "cCunG, caudal cuneus gyrus",
         "yeo_network_7": "Visual Network (Thị giác)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 12,
           "action": 6,
@@ -36101,7 +36735,7 @@
         "gyrus": "MVOcC, MedioVentral Occipital Cortex",
         "cyto_architecture": "cCunG, caudal cuneus gyrus",
         "yeo_network_7": "Visual Network (Thị giác)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 12,
           "action": 6,
@@ -36153,7 +36787,7 @@
         "gyrus": "MVOcC, MedioVentral Occipital Cortex",
         "cyto_architecture": "rLinG, rostral lingual gyrus",
         "yeo_network_7": "Visual Network (Thị giác)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 12,
           "action": 6,
@@ -36205,7 +36839,7 @@
         "gyrus": "MVOcC, MedioVentral Occipital Cortex",
         "cyto_architecture": "rLinG, rostral lingual gyrus",
         "yeo_network_7": "Visual Network (Thị giác)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 12,
           "action": 6,
@@ -36361,7 +36995,7 @@
         "gyrus": "LOcC, lateral Occipital Cortex",
         "cyto_architecture": "mOccG, middle occipital gyrus",
         "yeo_network_7": "Visual Network (Thị giác)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 12,
           "action": 6,
@@ -36413,7 +37047,7 @@
         "gyrus": "LOcC, lateral Occipital Cortex",
         "cyto_architecture": "mOccG, middle occipital gyrus",
         "yeo_network_7": "Visual Network (Thị giác)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 12,
           "action": 6,
@@ -36569,7 +37203,7 @@
         "gyrus": "LOcC, lateral Occipital Cortex",
         "cyto_architecture": "OPC, occipital polar cortex",
         "yeo_network_7": "Visual Network (Thị giác)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 12,
           "action": 6,
@@ -36621,7 +37255,7 @@
         "gyrus": "LOcC, lateral Occipital Cortex",
         "cyto_architecture": "OPC, occipital polar cortex",
         "yeo_network_7": "Visual Network (Thị giác)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 12,
           "action": 6,
@@ -36673,7 +37307,7 @@
         "gyrus": "LOcC, lateral Occipital Cortex",
         "cyto_architecture": "iOccG, inferior occipital gyrus",
         "yeo_network_7": "Visual Network (Thị giác)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 12,
           "action": 6,
@@ -36725,7 +37359,7 @@
         "gyrus": "LOcC, lateral Occipital Cortex",
         "cyto_architecture": "iOccG, inferior occipital gyrus",
         "yeo_network_7": "Visual Network (Thị giác)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 12,
           "action": 6,
@@ -36777,7 +37411,7 @@
         "gyrus": "LOcC, lateral Occipital Cortex",
         "cyto_architecture": "msOccG, medial superior occipital gyrus",
         "yeo_network_7": "Visual Network (Thị giác)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 12,
           "action": 6,
@@ -36985,7 +37619,7 @@
         "gyrus": "Amyg, Amygdala",
         "cyto_architecture": "mAmyg, medial amygdala",
         "yeo_network_7": "Limbic Network (Mạng viền)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
@@ -37037,7 +37671,7 @@
         "gyrus": "Amyg, Amygdala",
         "cyto_architecture": "mAmyg, medial amygdala",
         "yeo_network_7": "Limbic Network (Mạng viền)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
@@ -37089,7 +37723,7 @@
         "gyrus": "Amyg, Amygdala",
         "cyto_architecture": "lAmyg, lateral amygdala",
         "yeo_network_7": "Limbic Network (Mạng viền)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
@@ -37141,7 +37775,7 @@
         "gyrus": "Amyg, Amygdala",
         "cyto_architecture": "lAmyg, lateral amygdala",
         "yeo_network_7": "Limbic Network (Mạng viền)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
@@ -37295,7 +37929,7 @@
         "gyrus": "Hipp, Hippocampus",
         "cyto_architecture": "cHipp, caudal hippocampus",
         "yeo_network_7": "Visual Network (Thị giác)",
-        "yeo_network_overlap_pct": 50.0,
+        "yeo_network_overlap_pct": 50,
         "behavioral_domains": {
           "cognition": 65,
           "action": 5,
@@ -37397,7 +38031,7 @@
         "gyrus": "BG, Basal Ganglia",
         "cyto_architecture": "vCa, ventral caudate",
         "yeo_network_7": "Subcortical Nuclei (Nhân dưới vỏ)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
@@ -37449,7 +38083,7 @@
         "gyrus": "BG, Basal Ganglia",
         "cyto_architecture": "vCa, ventral caudate",
         "yeo_network_7": "Subcortical Nuclei (Nhân dưới vỏ)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
@@ -37501,7 +38135,7 @@
         "gyrus": "BG, Basal Ganglia",
         "cyto_architecture": "GP, globus pallidus",
         "yeo_network_7": "Subcortical Nuclei (Nhân dưới vỏ)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
@@ -37553,7 +38187,7 @@
         "gyrus": "BG, Basal Ganglia",
         "cyto_architecture": "GP, globus pallidus",
         "yeo_network_7": "Subcortical Nuclei (Nhân dưới vỏ)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
@@ -37605,7 +38239,7 @@
         "gyrus": "BG, Basal Ganglia",
         "cyto_architecture": "NAC, nucleus accumbens",
         "yeo_network_7": "Limbic Network (Mạng viền)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
@@ -37657,7 +38291,7 @@
         "gyrus": "BG, Basal Ganglia",
         "cyto_architecture": "NAC, nucleus accumbens",
         "yeo_network_7": "Limbic Network (Mạng viền)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
@@ -37709,7 +38343,7 @@
         "gyrus": "BG, Basal Ganglia",
         "cyto_architecture": "vmPu, ventromedial putamen",
         "yeo_network_7": "Subcortical Nuclei (Nhân dưới vỏ)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
@@ -37761,7 +38395,7 @@
         "gyrus": "BG, Basal Ganglia",
         "cyto_architecture": "vmPu, ventromedial putamen",
         "yeo_network_7": "Subcortical Nuclei (Nhân dưới vỏ)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
@@ -37813,7 +38447,7 @@
         "gyrus": "BG, Basal Ganglia",
         "cyto_architecture": "dCa, dorsal caudate",
         "yeo_network_7": "Subcortical Nuclei (Nhân dưới vỏ)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
@@ -37865,7 +38499,7 @@
         "gyrus": "BG, Basal Ganglia",
         "cyto_architecture": "dCa, dorsal caudate",
         "yeo_network_7": "Subcortical Nuclei (Nhân dưới vỏ)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
@@ -37917,7 +38551,7 @@
         "gyrus": "BG, Basal Ganglia",
         "cyto_architecture": "dlPu, dorsolateral putamen",
         "yeo_network_7": "Subcortical Nuclei (Nhân dưới vỏ)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
@@ -37969,7 +38603,7 @@
         "gyrus": "BG, Basal Ganglia",
         "cyto_architecture": "dlPu, dorsolateral putamen",
         "yeo_network_7": "Subcortical Nuclei (Nhân dưới vỏ)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
@@ -38021,7 +38655,7 @@
         "gyrus": "Tha, Thalamus",
         "cyto_architecture": "mPFtha, medial pre-frontal thalamus",
         "yeo_network_7": "Subcortical Nuclei (Nhân dưới vỏ)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
@@ -38073,7 +38707,7 @@
         "gyrus": "Tha, Thalamus",
         "cyto_architecture": "mPFtha, medial pre-frontal thalamus",
         "yeo_network_7": "Subcortical Nuclei (Nhân dưới vỏ)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
@@ -38125,7 +38759,7 @@
         "gyrus": "Tha, Thalamus",
         "cyto_architecture": "mPMtha, pre-motor thalamus",
         "yeo_network_7": "Subcortical Nuclei (Nhân dưới vỏ)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
@@ -38177,7 +38811,7 @@
         "gyrus": "Tha, Thalamus",
         "cyto_architecture": "mPMtha, pre-motor thalamus",
         "yeo_network_7": "Subcortical Nuclei (Nhân dưới vỏ)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
@@ -38229,7 +38863,7 @@
         "gyrus": "Tha, Thalamus",
         "cyto_architecture": "Stha, sensory thalamus",
         "yeo_network_7": "Subcortical Nuclei (Nhân dưới vỏ)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
@@ -38281,7 +38915,7 @@
         "gyrus": "Tha, Thalamus",
         "cyto_architecture": "Stha, sensory thalamus",
         "yeo_network_7": "Subcortical Nuclei (Nhân dưới vỏ)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
@@ -38333,7 +38967,7 @@
         "gyrus": "Tha, Thalamus",
         "cyto_architecture": "rTtha, rostral temporal thalamus",
         "yeo_network_7": "Subcortical Nuclei (Nhân dưới vỏ)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
@@ -38385,7 +39019,7 @@
         "gyrus": "Tha, Thalamus",
         "cyto_architecture": "rTtha, rostral temporal thalamus",
         "yeo_network_7": "Subcortical Nuclei (Nhân dưới vỏ)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
@@ -38437,7 +39071,7 @@
         "gyrus": "Tha, Thalamus",
         "cyto_architecture": "PPtha, posterior parietal thalamus",
         "yeo_network_7": "Subcortical Nuclei (Nhân dưới vỏ)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
@@ -38489,7 +39123,7 @@
         "gyrus": "Tha, Thalamus",
         "cyto_architecture": "PPtha, posterior parietal thalamus",
         "yeo_network_7": "Subcortical Nuclei (Nhân dưới vỏ)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
@@ -38541,7 +39175,7 @@
         "gyrus": "Tha, Thalamus",
         "cyto_architecture": "Otha, occipital thalamus",
         "yeo_network_7": "Subcortical Nuclei (Nhân dưới vỏ)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
@@ -38593,7 +39227,7 @@
         "gyrus": "Tha, Thalamus",
         "cyto_architecture": "Otha, occipital thalamus",
         "yeo_network_7": "Subcortical Nuclei (Nhân dưới vỏ)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
@@ -38645,7 +39279,7 @@
         "gyrus": "Tha, Thalamus",
         "cyto_architecture": "cTtha, caudal temporal thalamus",
         "yeo_network_7": "Subcortical Nuclei (Nhân dưới vỏ)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
@@ -38697,7 +39331,7 @@
         "gyrus": "Tha, Thalamus",
         "cyto_architecture": "cTtha, caudal temporal thalamus",
         "yeo_network_7": "Subcortical Nuclei (Nhân dưới vỏ)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
@@ -38749,7 +39383,7 @@
         "gyrus": "Tha, Thalamus",
         "cyto_architecture": "lPFtha, lateral pre-frontal thalamus",
         "yeo_network_7": "Subcortical Nuclei (Nhân dưới vỏ)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
@@ -38801,7 +39435,7 @@
         "gyrus": "Tha, Thalamus",
         "cyto_architecture": "lPFtha, lateral pre-frontal thalamus",
         "yeo_network_7": "Subcortical Nuclei (Nhân dưới vỏ)",
-        "yeo_network_overlap_pct": 100.0,
+        "yeo_network_overlap_pct": 100,
         "behavioral_domains": {
           "cognition": 26,
           "action": 42,
