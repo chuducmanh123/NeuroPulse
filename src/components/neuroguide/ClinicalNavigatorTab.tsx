@@ -152,7 +152,9 @@ export function ClinicalNavigatorTab({
     }
   }, [initialPresetOrQuery]);
 
-  // Collapsible Filter, Topics, Facets & Pagination State (All collapsed by default on initial load)
+  // Filter Search State: Only searches filters (facets, values, societies), NOT specific content
+  const [filterSearchTerm, setFilterSearchTerm] = useState<string>("");
+  const normalizedFilterSearch = filterSearchTerm.trim().toLowerCase();
   const [isFilterExpanded, setIsFilterExpanded] = useState<boolean>(false);
   const [isTopicsExpanded, setIsTopicsExpanded] = useState<boolean>(false);
   const [expandedFacets, setExpandedFacets] = useState<Record<string, boolean>>({
@@ -227,6 +229,7 @@ export function ClinicalNavigatorTab({
     if (!preset) return;
     setActivePresetId(preset.id);
     setSearchText(preset.query.searchText || "");
+    setFilterSearchTerm("");
     setSelectedFacets(preset.query.facets || {});
     setSelectedSocieties(preset.query.societies || []);
     setOnlyPracticeChanges(preset.query.onlyPracticeChanges ?? false);
@@ -253,6 +256,7 @@ export function ClinicalNavigatorTab({
   const handleClearAllFilters = () => {
     setActivePresetId(null);
     setSearchText("");
+    setFilterSearchTerm("");
     setSelectedFacets({});
     setSelectedSocieties([]);
     setOnlyPracticeChanges(false);
@@ -283,6 +287,70 @@ export function ClinicalNavigatorTab({
     }
     return chips;
   }, [selectedFacets]);
+
+  // Filter Options Search Memos: Filter only filters themselves, never content
+  const filteredSocieties = useMemo(() => {
+    if (!normalizedFilterSearch) return navResult.availableSocieties;
+    return navResult.availableSocieties.filter((soc) =>
+      soc.toLowerCase().includes(normalizedFilterSearch)
+    );
+  }, [navResult.availableSocieties, normalizedFilterSearch]);
+
+  const filteredFacets = useMemo(() => {
+    return ORDERED_FACETS.map((facetId) => {
+      const facetDef = STROKE_ONTOLOGY.facets[facetId];
+      if (!facetDef) return null;
+
+      const facetCategoryMatches = Boolean(
+        normalizedFilterSearch &&
+          (facetDef.label_en?.toLowerCase().includes(normalizedFilterSearch) ||
+            facetDef.def?.toLowerCase().includes(normalizedFilterSearch) ||
+            facetId.toLowerCase().replace(/_/g, " ").includes(normalizedFilterSearch))
+      );
+
+      const matchingValues = facetDef.values
+        .filter((v) => v.id !== "unspecified")
+        .filter((val) => {
+          if (!normalizedFilterSearch) return true;
+          if (facetCategoryMatches) return true;
+          const idMatch = val.id.replace(/_/g, " ").toLowerCase().includes(normalizedFilterSearch);
+          const enMatch = val.label_en?.toLowerCase().includes(normalizedFilterSearch);
+          const viMatch = val.label_vi?.toLowerCase().includes(normalizedFilterSearch);
+          const defMatch = val.def?.toLowerCase().includes(normalizedFilterSearch);
+          const aliasMatch = val.aliases?.some((a) =>
+            a.toLowerCase().includes(normalizedFilterSearch)
+          );
+          return Boolean(idMatch || enMatch || viMatch || defMatch || aliasMatch);
+        });
+
+      return {
+        facetId,
+        facetDef,
+        matchingValues,
+        facetCategoryMatches,
+      };
+    }).filter((item): item is NonNullable<typeof item> => item !== null);
+  }, [normalizedFilterSearch]);
+
+  const visibleFacets = useMemo(() => {
+    if (!normalizedFilterSearch) return filteredFacets;
+    return filteredFacets.filter(
+      (f) => f.matchingValues.length > 0 || f.facetCategoryMatches
+    );
+  }, [filteredFacets, normalizedFilterSearch]);
+
+  const hasAnyMatchingFilters = useMemo(() => {
+    if (!normalizedFilterSearch) return true;
+    if (filteredSocieties.length > 0) return true;
+    if (visibleFacets.length > 0) return true;
+    return false;
+  }, [normalizedFilterSearch, filteredSocieties, visibleFacets]);
+
+  const isPracticeChangesVisible =
+    !normalizedFilterSearch ||
+    "only new upgraded revised practice changes recs recommendations".includes(
+      normalizedFilterSearch
+    );
 
   const handleSaveAsScenario = async () => {
     if (navResult.coreRecommendations.length === 0) return;
@@ -556,23 +624,21 @@ export function ClinicalNavigatorTab({
 
             {isFilterExpanded && (
               <div className="space-y-3.5 pt-2 border-t border-slate-100 dark:border-slate-800/80">
-                {/* Keyword / Drug / Trial Search Input */}
+                {/* Search Filters Only (e.g. Tenecteplase, EVT, AHA) */}
                 <div className="relative">
                   <input
                     type="text"
-                    value={searchText}
-                    onChange={(e) => {
-                      setActivePresetId(null);
-                      setSearchText(e.target.value);
-                    }}
-                    placeholder="Search keywords, drugs, or trials (e.g. Tenecteplase, SELECT2)..."
+                    value={filterSearchTerm}
+                    onChange={(e) => setFilterSearchTerm(e.target.value)}
+                    placeholder="Search filters (e.g. Tenecteplase, EVT, AHA)..."
                     className="w-full pl-3.5 pr-8 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/80 text-slate-900 dark:text-white text-xs font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   />
-                  {searchText && (
+                  {filterSearchTerm && (
                     <button
                       type="button"
-                      onClick={() => setSearchText("")}
+                      onClick={() => setFilterSearchTerm("")}
                       className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xs"
+                      title="Clear filter search"
                     >
                       ✕
                     </button>
@@ -580,96 +646,105 @@ export function ClinicalNavigatorTab({
                 </div>
 
                 {/* Society Filter (Integrated inside Filter) */}
-                <div className="pt-2 border-t border-slate-100 dark:border-slate-800/80">
-                  <span className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1.5">
-                    Society
-                  </span>
-                  <div className="flex flex-wrap gap-1.5">
-                    <button
-                      type="button"
-                      onClick={() => setSelectedSocieties([])}
-                      className={`px-2.5 py-1 rounded-lg text-[11px] font-bold border transition ${
-                        selectedSocieties.length === 0
-                          ? "bg-slate-900 text-white border-slate-900 dark:bg-white dark:text-slate-900"
-                          : "bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700"
-                      }`}
-                    >
-                      ALL ({navResult.availableSocieties.length})
-                    </button>
-                    {navResult.availableSocieties.map((soc) => {
-                      const active = selectedSocieties.includes(soc);
-                      return (
+                {filteredSocieties.length > 0 && (
+                  <div className="pt-2 border-t border-slate-100 dark:border-slate-800/80">
+                    <span className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1.5">
+                      Society
+                    </span>
+                    <div className="flex flex-wrap gap-1.5">
+                      {!normalizedFilterSearch && (
                         <button
-                          key={soc}
                           type="button"
-                          onClick={() => handleToggleSociety(soc)}
+                          onClick={() => setSelectedSocieties([])}
                           className={`px-2.5 py-1 rounded-lg text-[11px] font-bold border transition ${
-                            active
-                              ? "bg-indigo-600 text-white border-indigo-600 shadow-sm"
-                              : "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-indigo-400"
+                            selectedSocieties.length === 0
+                              ? "bg-slate-900 text-white border-slate-900 dark:bg-white dark:text-slate-900"
+                              : "bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700"
                           }`}
                         >
-                          {soc}
+                          ALL ({navResult.availableSocieties.length})
                         </button>
-                      );
-                    })}
+                      )}
+                      {filteredSocieties.map((soc) => {
+                        const active = selectedSocieties.includes(soc);
+                        return (
+                          <button
+                            key={soc}
+                            type="button"
+                            onClick={() => handleToggleSociety(soc)}
+                            className={`px-2.5 py-1 rounded-lg text-[11px] font-bold border transition ${
+                              active
+                                ? "bg-indigo-600 text-white border-indigo-600 shadow-sm"
+                                : "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-indigo-400"
+                            }`}
+                          >
+                            {soc}
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
+                )}
 
                 {/* Practice Changes Filter Checkbox */}
-                <label className="pt-2 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between cursor-pointer">
-                  <span className="text-[11px] font-semibold text-slate-600 dark:text-slate-400">
-                    Only New / Upgraded / Revised Recs:
-                  </span>
-                  <input
-                    type="checkbox"
-                    checked={onlyPracticeChanges}
-                    onChange={(e) => setOnlyPracticeChanges(e.target.checked)}
-                    className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 h-3.5 w-3.5"
-                  />
-                </label>
+                {isPracticeChangesVisible && (
+                  <label className="pt-2 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between cursor-pointer">
+                    <span className="text-[11px] font-semibold text-slate-600 dark:text-slate-400">
+                      Only New / Upgraded / Revised Recs:
+                    </span>
+                    <input
+                      type="checkbox"
+                      checked={onlyPracticeChanges}
+                      onChange={(e) => setOnlyPracticeChanges(e.target.checked)}
+                      className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 h-3.5 w-3.5"
+                    />
+                  </label>
+                )}
 
                 {/* 9 Ontology Facet Accordion Groups */}
-                <div className="pt-1 divide-y divide-slate-100 dark:divide-slate-800 border-t border-slate-100 dark:border-slate-800/80">
-                  {ORDERED_FACETS.map((facetId) => {
-                    const facetDef = STROKE_ONTOLOGY.facets[facetId];
-                    if (!facetDef) return null;
-                    const isExpanded = Boolean(expandedFacets[facetId]);
-                    const selectedForFacet = selectedFacets[facetId] || [];
-                    const countsForFacet = navResult.facetValueCounts[facetId] || {};
+                {visibleFacets.length > 0 && (
+                  <div className="pt-1 divide-y divide-slate-100 dark:divide-slate-800 border-t border-slate-100 dark:border-slate-800/80">
+                    {visibleFacets.map((facetItem) => {
+                      const { facetId, facetDef, matchingValues } = facetItem;
+                      const isExpanded = normalizedFilterSearch ? true : Boolean(expandedFacets[facetId]);
+                      const selectedForFacet = selectedFacets[facetId] || [];
+                      const countsForFacet = navResult.facetValueCounts[facetId] || {};
 
-                    return (
-                      <div key={facetId} className="py-2 first:pt-2 last:pb-0">
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setExpandedFacets((prev) => ({
-                              ...prev,
-                              [facetId]: !prev[facetId],
-                            }))
-                          }
-                          className="w-full flex items-center justify-between py-1 text-left"
-                        >
-                          <div className="flex items-center gap-2">
-                            <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
-                              {facetDef.label_en || facetId}
-                            </span>
-                            {selectedForFacet.length > 0 && (
-                              <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-600 text-white">
-                                {selectedForFacet.length}
+                      return (
+                        <div key={facetId} className="py-2 first:pt-2 last:pb-0">
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setExpandedFacets((prev) => ({
+                                ...prev,
+                                [facetId]: !prev[facetId],
+                              }))
+                            }
+                            className="w-full flex items-center justify-between py-1 text-left"
+                          >
+                            <div className="flex items-center gap-2">
+                              <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
+                                {facetDef.label_en || facetId}
                               </span>
-                            )}
-                          </div>
-                          <span className="text-xs text-slate-400">
-                            {isExpanded ? "▾" : "▸"}
-                          </span>
-                        </button>
+                              {selectedForFacet.length > 0 && (
+                                <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-600 text-white">
+                                  {selectedForFacet.length}
+                                </span>
+                              )}
+                              {normalizedFilterSearch && (
+                                <span className="text-[10px] font-medium text-indigo-600 dark:text-indigo-400">
+                                  ({matchingValues.length})
+                                </span>
+                              )}
+                            </div>
+                            <span className="text-xs text-slate-400">
+                              {isExpanded ? "▾" : "▸"}
+                            </span>
+                          </button>
 
-                        {isExpanded && (
-                          <div className="mt-2 flex flex-wrap gap-1.5">
-                            {facetDef.values
-                              .filter((v) => v.id !== "unspecified")
-                              .map((val) => {
+                          {isExpanded && (
+                            <div className="mt-2 flex flex-wrap gap-1.5">
+                              {matchingValues.map((val) => {
                                 const isChecked = selectedForFacet.includes(val.id);
                                 const count = countsForFacet[val.id] || 0;
                                 return (
@@ -699,12 +774,20 @@ export function ClinicalNavigatorTab({
                                   </button>
                                 );
                               })}
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+
+                {/* Empty State when no filters match search term */}
+                {!hasAnyMatchingFilters && (
+                  <div className="py-4 px-3 text-center rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-dashed border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400">
+                    No filters found matching &ldquo;{filterSearchTerm.trim()}&rdquo;
+                  </div>
+                )}
               </div>
             )}
           </div>
@@ -775,11 +858,6 @@ export function ClinicalNavigatorTab({
                 <h3 className="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white">
                   Select a Filter or Clinical Topic to Begin
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-                  Choose any clinical condition, intervention, or drug in the{" "}
-                  <strong>Filter</strong> panel on the left, or select a{" "}
-                  <strong>High-Yield Clinical Topic</strong> below to synthesize cross-society recommendations ({navResult.totalIndexedCount} indexed), version evolution, pivotal trials ({pivotalTrials.length} indexed), and evidence concordance on demand.
-                </p>
               </div>
 
               {/* Quick Start Topic Pills */}
