@@ -584,7 +584,6 @@ export default function NeuroGuidePage() {
     // 1. TẢI TỨC THÌ (Instant Paint): Nếu có cache hợp lệ, hiển thị ngay lập tức không cần đợi mạng
     try {
       localStorage.removeItem("neuroguide_cached_guidelines");
-      localStorage.removeItem("neuroguide_deleted_ids");
       localStorage.removeItem("neuroguide_last_sync_timestamp");
       localStorage.removeItem("neuroguide_swr_store_v1");
       localStorage.removeItem("neuroguide_swr_store_v2");

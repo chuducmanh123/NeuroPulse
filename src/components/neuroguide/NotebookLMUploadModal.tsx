@@ -186,6 +186,18 @@ export function NotebookLMUploadModal({
         throw new Error(data?.error || "Error processing guideline from NotebookLM.");
       }
 
+      try {
+        const gId = String(data.guideline?.id || "").toLowerCase().trim();
+        const normTitle = String(data.guideline?.title || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+        const localDel: string[] = JSON.parse(localStorage.getItem("neuroguide_deleted_ids") || "[]");
+        const filteredDel = localDel.filter((d) => {
+          const ld = String(d || "").toLowerCase().trim();
+          return ld !== gId && ld !== normTitle;
+        });
+        localStorage.setItem("neuroguide_deleted_ids", JSON.stringify(filteredDel));
+        localStorage.removeItem("neuroguide_swr_store_v3");
+      } catch {}
+
       setSuccessMessage(
         `🎉 Successfully generated Practice Guideline "${data.guideline.title}" with ${data.stats?.totalRecommendations || 0} recommendations!`
       );

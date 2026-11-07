@@ -34,9 +34,8 @@ interface AutoResizeTextareaProps
 }
 
 /**
- * Textarea tự động mở rộng theo nội dung (Auto-resize textarea).
- * Sử dụng kỹ thuật chuẩn: tạm reset height về '0px' trước khi đọc scrollHeight
- * để tránh lỗi CSS Grid / Flexbox stretch làm ô bị kéo dài vô hạn xuống đáy màn hình.
+ * Auto-resize textarea component.
+ * Temporarily resets height to '0px' before reading scrollHeight to avoid flex/grid stretching bugs.
  */
 function AutoResizeTextarea({
   minRows = 2,
@@ -52,7 +51,7 @@ function AutoResizeTextarea({
   const adjustHeight = React.useCallback(() => {
     const el = textareaRef.current;
     if (!el) return;
-    // Reset về 0px để scrollHeight chỉ đo đúng chiều cao của văn bản thực tế
+    // Reset to 0px so scrollHeight reflects true text height
     el.style.height = "0px";
     const lineH = 20;
     const paddingH = 16;
@@ -761,7 +760,7 @@ export function EditGuidelineModal({
 
     const token = adminToken || getStoredAdminToken();
     if (!token) {
-      setErrorMessage("Yêu cầu quyền Quản trị viên (Admin). Vui lòng đăng nhập Admin để xóa guideline.");
+      setErrorMessage("Admin privileges required. Please log in as Admin to delete guideline.");
       return;
     }
 
@@ -782,7 +781,7 @@ export function EditGuidelineModal({
         onClose();
       } else {
         if (res.status === 401) {
-          setErrorMessage("Phiên đăng nhập quản trị đã hết hạn hoặc không hợp lệ. Vui lòng đăng nhập lại Admin.");
+          setErrorMessage("Admin session expired or invalid. Please re-login to Admin.");
         } else {
           setErrorMessage(data.error || "Failed to delete guideline.");
         }
@@ -800,7 +799,7 @@ export function EditGuidelineModal({
 
     const token = adminToken || getStoredAdminToken();
     if (!token) {
-      setErrorMessage("Yêu cầu quyền Quản trị viên (Admin). Vui lòng đăng nhập Admin để lưu thay đổi.");
+      setErrorMessage("Admin privileges required. Please log in as Admin to save changes.");
       return;
     }
 
@@ -845,7 +844,7 @@ export function EditGuidelineModal({
         onClose();
       } else {
         if (res.status === 401) {
-          setErrorMessage("Phiên đăng nhập quản trị đã hết hạn hoặc không hợp lệ. Vui lòng đăng nhập lại Admin.");
+          setErrorMessage("Admin session expired or invalid. Please re-login to Admin.");
         } else {
           setErrorMessage(data.error || "Failed to save guideline updates.");
         }
@@ -1031,10 +1030,10 @@ export function EditGuidelineModal({
                   <div>
                     <label className="block font-bold mb-1.5 text-slate-700 dark:text-slate-300 flex items-center justify-between">
                       <span className="text-xs sm:text-sm font-extrabold flex items-center gap-1.5">
-                        <span>🏷️</span> Tên Guideline (Guideline Title):
+                        <span>🏷️</span> Guideline Title:
                       </span>
                       <span className="text-[10.5px] text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1 px-2.5 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/25 shadow-2xs">
-                        <span>☁️</span> Lưu đồng bộ Cloud
+                        <span>☁️</span> Cloud Synced
                       </span>
                     </label>
                     <input
@@ -1342,7 +1341,7 @@ export function EditGuidelineModal({
                             {/* Visual cue when dragging a recommendation over this PICO */}
                             {isTargetForRecDrop && (
                               <div className="absolute inset-0 z-10 flex items-center justify-center bg-blue-600/95 text-white font-extrabold rounded-xl px-2 py-1 text-center shadow-lg text-[11px] animate-pulse">
-                                📥 Thả vào đây để chuyển khuyến cáo sang PICO {pico.picoNumber}
+                                📥 Drop here to move recommendation to PICO {pico.picoNumber}
                               </div>
                             )}
 
@@ -1350,7 +1349,7 @@ export function EditGuidelineModal({
                               <div className="flex items-center gap-1.5">
                                 <div
                                   className="cursor-grab active:cursor-grabbing text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-0.5 rounded hover:bg-slate-100 dark:hover:bg-slate-800"
-                                  title="Kéo thả để sắp xếp lại thứ tự PICO / Clinical Question"
+                                  title="Drag and drop to reorder PICO / Clinical Question"
                                   onClick={(e) => e.stopPropagation()}
                                 >
                                   <GripVerticalIcon className="w-3.5 h-3.5" />
@@ -1364,7 +1363,7 @@ export function EditGuidelineModal({
                                     disabled={realIndex === 0}
                                     onClick={() => movePico(realIndex, realIndex - 1)}
                                     className="p-0.5 rounded hover:bg-slate-200 dark:hover:bg-slate-800 disabled:opacity-20 text-slate-500 cursor-pointer"
-                                    title="Di chuyển PICO lên trên"
+                                    title="Move PICO up"
                                   >
                                     <ArrowUpIcon className="w-2.5 h-2.5" />
                                   </button>
@@ -1373,7 +1372,7 @@ export function EditGuidelineModal({
                                     disabled={realIndex === esoPicos.length - 1}
                                     onClick={() => movePico(realIndex, realIndex + 1)}
                                     className="p-0.5 rounded hover:bg-slate-200 dark:hover:bg-slate-800 disabled:opacity-20 text-slate-500 cursor-pointer"
-                                    title="Di chuyển PICO xuống dưới"
+                                    title="Move PICO down"
                                   >
                                     <ArrowDownIcon className="w-2.5 h-2.5" />
                                   </button>
@@ -1471,7 +1470,7 @@ export function EditGuidelineModal({
                           </div>
                           <div className="flex items-center gap-2">
                             <span className="text-[10px] text-slate-400 dark:text-slate-500 font-medium hidden sm:inline">
-                              ⋮⋮ Kéo thả hoặc bấm ▲ ▼ để đổi thứ tự
+                              ⋮⋮ Drag &amp; drop or use ▲ ▼ to reorder
                             </span>
                             <button
                               type="button"
@@ -1542,7 +1541,7 @@ export function EditGuidelineModal({
                                     {/* Drag Handle */}
                                     <div
                                       className="cursor-grab active:cursor-grabbing text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 p-1 rounded hover:bg-blue-100/60 dark:hover:bg-blue-900/40 flex items-center gap-1"
-                                      title="Kéo thả để thay đổi thứ tự khuyến cáo (hoặc kéo sang PICO bên trái để đổi Clinical Question)"
+                                      title="Drag and drop to reorder recommendation (or drag to left PICO list to change Clinical Question)"
                                     >
                                       <GripVerticalIcon className="w-4 h-4" />
                                     </div>
@@ -1554,7 +1553,7 @@ export function EditGuidelineModal({
                                         disabled={rIdx === 0}
                                         onClick={() => moveEsoRecWithinPico(rIdx, rIdx - 1)}
                                         className="p-1 rounded bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 disabled:opacity-25 cursor-pointer shadow-2xs"
-                                        title="Di chuyển khuyến cáo lên trên"
+                                        title="Move recommendation up"
                                       >
                                         <ArrowUpIcon className="w-3 h-3" />
                                       </button>
@@ -1563,7 +1562,7 @@ export function EditGuidelineModal({
                                         disabled={rIdx === currentPico.recommendations.length - 1}
                                         onClick={() => moveEsoRecWithinPico(rIdx, rIdx + 1)}
                                         className="p-1 rounded bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 disabled:opacity-25 cursor-pointer shadow-2xs"
-                                        title="Di chuyển khuyến cáo xuống dưới"
+                                        title="Move recommendation down"
                                       >
                                         <ArrowDownIcon className="w-3 h-3" />
                                       </button>
@@ -1595,16 +1594,16 @@ export function EditGuidelineModal({
                                           className={`py-0.5 px-2 rounded-lg border text-[10.5px] font-bold ${
                                             darkMode ? "bg-slate-800 border-slate-700 text-slate-200" : "bg-white border-slate-300 text-slate-700"
                                           }`}
-                                          title="Thay đổi Clinical Question / Population (chuyển khuyến cáo sang PICO khác)"
+                                          title="Change Clinical Question / Population (move recommendation to another PICO)"
                                         >
                                           <option value={currentPico.picoKey}>
-                                            PICO {currentPico.picoNumber} (Hiện tại)
+                                            PICO {currentPico.picoNumber} (Current)
                                           </option>
                                           {esoPicos
                                             .filter((p) => p.picoKey !== currentPico.picoKey)
                                             .map((p) => (
                                               <option key={p.picoKey} value={p.picoKey}>
-                                                Chuyển sang PICO {p.picoNumber}: {(p.picoQuestion || "").slice(0, 36)}...
+                                                Move to PICO {p.picoNumber}: {(p.picoQuestion || "").slice(0, 36)}...
                                               </option>
                                             ))}
                                         </select>
@@ -1865,7 +1864,7 @@ export function EditGuidelineModal({
                               <div className="flex items-center gap-1.5">
                                 <div
                                   className="cursor-grab active:cursor-grabbing text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-0.5 rounded hover:bg-slate-100 dark:hover:bg-slate-800"
-                                  title="Kéo thả để sắp xếp lại thứ tự khuyến cáo"
+                                  title="Drag and drop to reorder recommendations"
                                   onClick={(e) => e.stopPropagation()}
                                 >
                                   <GripVerticalIcon className="w-3.5 h-3.5" />
@@ -1876,7 +1875,7 @@ export function EditGuidelineModal({
                                     disabled={realIndex === 0}
                                     onClick={() => moveStandardRec(realIndex, realIndex - 1)}
                                     className="p-0.5 rounded hover:bg-slate-200 dark:hover:bg-slate-800 disabled:opacity-20 text-slate-500 cursor-pointer"
-                                    title="Di chuyển khuyến cáo lên trên"
+                                    title="Move recommendation up"
                                   >
                                     <ArrowUpIcon className="w-2.5 h-2.5" />
                                   </button>
@@ -1885,7 +1884,7 @@ export function EditGuidelineModal({
                                     disabled={realIndex === practiceChanges.length - 1}
                                     onClick={() => moveStandardRec(realIndex, realIndex + 1)}
                                     className="p-0.5 rounded hover:bg-slate-200 dark:hover:bg-slate-800 disabled:opacity-20 text-slate-500 cursor-pointer"
-                                    title="Di chuyển khuyến cáo xuống dưới"
+                                    title="Move recommendation down"
                                   >
                                     <ArrowDownIcon className="w-2.5 h-2.5" />
                                   </button>
@@ -2159,12 +2158,12 @@ export function EditGuidelineModal({
                 type="submit"
                 disabled={isLoading}
                 className="px-5 py-2 rounded-xl font-bold bg-amber-500 hover:bg-amber-600 text-white shadow-xs cursor-pointer disabled:opacity-50 flex items-center gap-1.5"
-                title="Lưu tất cả các chỉnh sửa và đồng bộ trực tiếp lên Cloud"
+                title="Save all edits and sync directly to Cloud"
               >
                 {isLoading ? (
-                  <span>Đang lưu lên Cloud...</span>
+                  <span>Saving to Cloud...</span>
                 ) : (
-                  <span>☁️ Lưu thay đổi lên Cloud</span>
+                  <span>☁️ Save Changes to Cloud</span>
                 )}
               </button>
             </div>

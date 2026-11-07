@@ -49,7 +49,7 @@ export function getCoreTopicKey(doc: { society?: string; title?: string }): stri
   if (normSoc === "ESO" && (t.includes("visual") || t.includes("vision") || t.includes("thị giác"))) {
     return "ESO-VISUAL-IMPAIRMENT";
   }
-  if (normSoc === "ESO" && (t.includes("motor") || (t.includes("rehabilitation") && !t.includes("aphasia")))) {
+  if (normSoc === "ESO" && t.includes("motor")) {
     return "ESO-MOTOR-REHAB";
   }
   if (normSoc === "ESO" && (t.includes("aphasia") || t.includes("ngôn ngữ"))) {
@@ -114,6 +114,11 @@ export async function getFromSupabase(): Promise<SupabaseNeuroGuidePayload | nul
         if (row.data?.recommendationAtoms && Array.isArray(row.data.recommendationAtoms)) {
           customRecAtoms = row.data.recommendationAtoms;
         }
+        if (Array.isArray(row.data?.deletedGuidelineIds)) {
+          row.data.deletedGuidelineIds.forEach((x: string) => {
+            if (x) deletedKeys.add(String(x).toLowerCase().trim());
+          });
+        }
         continue;
       }
 
@@ -130,12 +135,8 @@ export async function getFromSupabase(): Promise<SupabaseNeuroGuidePayload | nul
 
       if (rowStatus === "pending" || rowStatus === "pending_review") {
         if (rowId) pendingKeys.add(rowId);
-        if (normTitle) pendingKeys.add(normTitle);
-        if (topicKey) pendingKeys.add(topicKey);
       } else if (rowStatus === "deleted" || rowStatus === "rejected") {
         if (rowId) deletedKeys.add(rowId);
-        if (normTitle) deletedKeys.add(normTitle);
-        if (topicKey) deletedKeys.add(topicKey);
       } else {
         const gDoc = row.data as GuidelineDoc;
         if (gDoc && (gDoc.title || row.title)) {
@@ -144,25 +145,25 @@ export async function getFromSupabase(): Promise<SupabaseNeuroGuidePayload | nul
           }
           if (rowId) {
             approvedKeys.add(rowId);
-            deletedKeys.delete(rowId);
           }
           if (normTitle) {
             approvedKeys.add(normTitle);
-            deletedKeys.delete(normTitle);
-          }
-          if (topicKey) {
-            approvedKeys.add(topicKey);
           }
           guidelines.push(gDoc);
         }
       }
     }
 
-    const filteredGuidelines = guidelines.filter((g) => {
-      const id = (g.id || "").toLowerCase().trim();
-      const norm = normalizeGuidelineTitle(g.title);
-      return !deletedKeys.has(id) && !deletedKeys.has(norm) && !pendingKeys.has(id) && !pendingKeys.has(norm);
-    });
+    // Bảo đảm mọi guideline đã duyệt (approved) hoặc đang chờ duyệt mới (pending) KHÔNG BAO GIỜ nằm trong deletedKeys
+    for (const ak of approvedKeys) {
+      deletedKeys.delete(ak);
+      pendingKeys.delete(ak);
+    }
+    for (const pk of pendingKeys) {
+      deletedKeys.delete(pk);
+    }
+
+    const filteredGuidelines = guidelines.filter((g) => Boolean(g && g.title));
 
     if (customScenarios.length === 0 && localDisk?.scenarios && Array.isArray(localDisk.scenarios) && localDisk.scenarios.length > 0) {
       customScenarios = localDisk.scenarios;
@@ -224,7 +225,7 @@ export async function setToSupabase(payload: NeuroGuideBlobPayload): Promise<{ o
       }
     }
 
-    if (payload.scenarios && payload.scenarios.length > 0) {
+    if ((payload.scenarios && payload.scenarios.length > 0) || (payload.deletedGuidelineIds && payload.deletedGuidelineIds.length > 0)) {
       try {
         await supabaseAdmin.from("neuroguide_docs").upsert(
           {
@@ -234,8 +235,9 @@ export async function setToSupabase(payload: NeuroGuideBlobPayload): Promise<{ o
             year: "2026",
             status: "system",
             data: {
-              scenarios: payload.scenarios,
-              recommendationAtoms: payload.recommendationAtoms || [],
+              scenarios: payload.scenarios || MOCK_CLINICAL_SCENARIOS,
+              recommendationAtoms: payload.recommendationAtoms || MOCK_RECOMMENDATION_ATOMS,
+              deletedGuidelineIds: payload.deletedGuidelineIds || [],
             },
             updated_at: nowIso,
           },
@@ -526,6 +528,22 @@ export async function loadMergedNeuroGuideData(): Promise<{
   for (const approvedKey of supabaseApprovedKeys) {
     deletedSet.delete(approvedKey);
   }
+  if (dynamicData?.guidelines) {
+    for (const g of dynamicData.guidelines) {
+      if (g?.id) {
+        const lid = g.id.toLowerCase().trim();
+        deletedSet.delete(lid);
+        supabaseApprovedKeys.add(lid);
+        coordinatedIds.add(lid);
+      }
+      if (g?.title) {
+        const ltitle = normalizeT(g.title);
+        deletedSet.delete(ltitle);
+        supabaseApprovedKeys.add(ltitle);
+        coordinatedTitles.add(ltitle);
+      }
+    }
+  }
   for (const approvedId of approvedStoreIds) {
     if (!supabasePendingKeys.has(approvedId)) {
       deletedSet.delete(approvedId);
@@ -747,23 +765,29 @@ export async function saveNeuroGuideToActiveStorage(payload: {
     source: "NEUROGUIDE_AUTONOMOUS_RADAR",
   };
 
+  const localOk = await setToLocalDisk(fullPayload);
+
   if (hasSupabaseConfig()) {
     if (effectiveDeletedIds && effectiveDeletedIds.length > 0) {
       try {
-        await supabaseAdmin.from("neuroguide_docs").delete().in("id", effectiveDeletedIds);
+        await supabaseAdmin
+          .from("neuroguide_docs")
+          .update({ status: "deleted", updated_at: new Date().toISOString() })
+          .in("id", effectiveDeletedIds);
       } catch (e) {
-        console.warn("Could not delete deleted docs from Supabase:", e);
+        console.warn("Could not mark deleted docs in Supabase:", e);
       }
     }
     const sbRes = await setToSupabase(fullPayload);
     if (sbRes.ok) {
-      await setToLocalDisk(fullPayload);
       return { success: true, storage: "supabase" };
+    }
+    if (localOk) {
+      return { success: true, storage: "local-disk", error: sbRes.error };
     }
     return { success: false, storage: "failed", error: sbRes.error || "Supabase write error" };
   }
 
-  const localOk = await setToLocalDisk(fullPayload);
   if (localOk) {
     return { success: true, storage: "local-disk" };
   }

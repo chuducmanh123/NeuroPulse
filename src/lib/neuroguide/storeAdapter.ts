@@ -305,6 +305,30 @@ export async function saveStoreFileSafe(fileName: string, dataStr: string): Prom
         const pendingCount = record.pending_count || 0;
         const rejectedCount = record.rejected_count || 0;
 
+        if (pendingCount > 0 || approvedCount > 0) {
+          const lowerGId = String(record.guideline_id).toLowerCase().trim();
+          const normTitle = String(record.metadata.title).toLowerCase().replace(/[^a-z0-9]/g, "");
+
+          // Gỡ bỏ ID hoặc tiêu đề này khỏi deletedGuidelineIds trong neuroguide_cloud.json cục bộ (nếu có)
+          const cloudPath = path.join(process.cwd(), "public", "data", "neuroguide_cloud.json");
+          if (fs.existsSync(cloudPath)) {
+            try {
+              const cloudData = JSON.parse(fs.readFileSync(cloudPath, "utf-8"));
+              if (Array.isArray(cloudData.deletedGuidelineIds)) {
+                const beforeLen = cloudData.deletedGuidelineIds.length;
+                cloudData.deletedGuidelineIds = cloudData.deletedGuidelineIds.filter((x: string) => {
+                  const lx = String(x || "").toLowerCase().trim();
+                  return lx !== lowerGId && lx !== normTitle;
+                });
+                cloudData.deleted_guideline_ids = cloudData.deletedGuidelineIds;
+                if (cloudData.deletedGuidelineIds.length < beforeLen) {
+                  fs.writeFileSync(cloudPath, JSON.stringify(cloudData, null, 2), "utf-8");
+                }
+              }
+            } catch {}
+          }
+        }
+
         if (approvedCount === 0 && pendingCount > 0) {
           const doc = convertGuidelineRecordToDoc(record, true);
           if (doc) {

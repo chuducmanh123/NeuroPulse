@@ -300,6 +300,8 @@ export function ReviewQueueTab({
     return (
       sessionStorage.getItem("neurocase_admin_token") ||
       localStorage.getItem("neurocase_admin_token") ||
+      sessionStorage.getItem("adminToken") ||
+      localStorage.getItem("adminToken") ||
       ""
     );
   };
@@ -376,20 +378,14 @@ export function ReviewQueueTab({
       const res = await fetch("/api/neuroguide/review-queue");
       const data = await res.json();
       if (data.ok && Array.isArray(data.queue)) {
-        // Lấy danh sách guideline đã bị xóa khỏi localStorage
+        // Lấy danh sách ID guideline đã bị từ chối khỏi localStorage (chỉ khớp đúng guideline_id, không khớp theo title hay substring để tránh chặn nhầm guideline mới thêm vào)
         const localDeleted: string[] = JSON.parse(localStorage.getItem("neuroguide_deleted_ids") || "[]");
         const deletedSet = new Set(localDeleted.map((x) => x.toLowerCase().trim()));
-        const normalizeT = (t?: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
 
-        // Lọc bỏ 100% các khuyến cáo thuộc guideline đã bị xóa
+        // Lọc bỏ các khuyến cáo có đúng guideline_id đã bị từ chối
         const nonDeletedRecs = data.queue.filter((r: StoredRec) => {
           const gId = (r.guideline_id || "").toLowerCase().trim();
-          const gTitle = normalizeT(r.guideline_title);
-          if (deletedSet.has(gId) || (gTitle && deletedSet.has(gTitle))) return false;
-          for (const d of Array.from(deletedSet)) {
-            if (d.length > 5 && (gId.includes(d) || d.includes(gId))) return false;
-          }
-          return true;
+          return !deletedSet.has(gId);
         });
 
         const dismissed = getDismissedRecIds();
@@ -635,19 +631,17 @@ export function ReviewQueueTab({
         body: JSON.stringify({
           action: "REJECT_GUIDELINE",
           guideline_id: group.guideline_id,
+          title: group.guideline_title,
           reviewer: "Attending Neurologist",
         }),
       });
 
       const data = await res.json();
       if (data.ok) {
-        // Cập nhật neuroguide_deleted_ids trên local và dọn dẹp các ID khuyến cáo khỏi dismissed cache
+        // Cập nhật neuroguide_deleted_ids trên local (chỉ lưu đúng ID, không lưu title để tránh chặn nhầm khi tải lại bản mới) và dọn dẹp các ID khuyến cáo khỏi dismissed cache
         try {
           const localDel: string[] = JSON.parse(localStorage.getItem("neuroguide_deleted_ids") || "[]");
           localDel.push(group.guideline_id.toLowerCase().trim());
-          if (group.guideline_title) {
-            localDel.push(group.guideline_title.toLowerCase().replace(/[^a-z0-9]/g, ""));
-          }
           if (Array.isArray(data.deleted_guideline_ids)) {
             data.deleted_guideline_ids.forEach((id: string) => localDel.push(id.toLowerCase().trim()));
           }
@@ -663,7 +657,11 @@ export function ReviewQueueTab({
           type: "info",
           text: `❌ Đã từ chối và xóa Guideline "${group.guideline_title}" khỏi hệ thống.`,
         });
-        setQueue((prev) => prev.filter((r) => r.guideline_id !== group.guideline_id));
+        setQueue((prev) => {
+          const next = prev.filter((r) => r.guideline_id !== group.guideline_id);
+          if (onQueueCountChange) onQueueCountChange(next.length);
+          return next;
+        });
         setRawServerRecs((prev) => prev.filter((r) => r.guideline_id !== group.guideline_id));
         setRawServerCount(0);
         if (onQueueUpdated) onQueueUpdated();

@@ -159,7 +159,7 @@ export function EditScenarioModal({
     const newLink: EcosystemLink = {
       app: "NeuroRx",
       href: "#",
-      label: "Công cụ lâm sàng mới",
+      label: "New Clinical Tool",
       badge: "Clinical Tool",
       description: "",
     };
@@ -184,12 +184,12 @@ export function EditScenarioModal({
     const token = adminToken || getStoredAdminToken();
 
     if (!token) {
-      setErrorMessage("Yêu cầu quyền Quản trị viên (Admin). Vui lòng đăng nhập Admin để lưu kịch bản lâm sàng.");
+      setErrorMessage("Admin privileges required. Please log in as Admin to save clinical scenarios.");
       return;
     }
 
     if (!title.trim()) {
-      setErrorMessage("Tiêu đề kịch bản không được để trống.");
+      setErrorMessage("Scenario title cannot be empty.");
       setActiveTab("overview");
       return;
     }
@@ -248,13 +248,13 @@ export function EditScenarioModal({
         onClose();
       } else {
         if (res.status === 401) {
-          setErrorMessage("Phiên đăng nhập quản trị đã hết hạn hoặc không hợp lệ. Vui lòng đăng nhập lại Admin.");
+          setErrorMessage("Admin session expired or invalid. Please re-login to Admin.");
         } else {
-          setErrorMessage(data.error || "Không thể lưu cập nhật kịch bản lâm sàng.");
+          setErrorMessage(data.error || "Failed to save clinical scenario.");
         }
       }
     } catch {
-      setErrorMessage("Lỗi kết nối khi gửi yêu cầu cập nhật kịch bản lâm sàng.");
+      setErrorMessage("Network connection error while submitting scenario updates.");
     } finally {
       setIsLoading(false);
     }
@@ -281,14 +281,14 @@ export function EditScenarioModal({
             <div className="min-w-0">
               <div className="flex items-center gap-2 flex-wrap">
                 <h3 className="text-sm sm:text-base md:text-lg font-black truncate">
-                  {title ? "Sửa Kịch Bản Lâm Sàng" : "Thêm Kịch Bản Lâm Sàng Mới"}
+                  {title ? "Edit Clinical Scenario" : "New Clinical Scenario"}
                 </h3>
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-amber-500/15 text-amber-700 dark:text-amber-300 border border-amber-500/30">
                   {customId || scenario.id}
                 </span>
               </div>
               <p className="text-xs text-slate-500 dark:text-slate-400 truncate mt-0.5">
-                Chỉnh sửa thông tin thực hành, đánh giá AI và khuyến cáo đa hiệp hội
+                Edit clinical practice scenario, AI consensus appraisal, and multi-society recommendations
               </p>
             </div>
           </div>
@@ -297,7 +297,7 @@ export function EditScenarioModal({
             type="button"
             onClick={onClose}
             className="w-9 h-9 rounded-xl flex items-center justify-center text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-800 transition-colors cursor-pointer text-base"
-            title="Đóng cửa sổ"
+            title="Close"
           >
             ✕
           </button>
@@ -315,7 +315,7 @@ export function EditScenarioModal({
             }`}
           >
             <span>📋</span>
-            <span>Thông tin chung</span>
+            <span>General Overview</span>
           </button>
 
           <button
@@ -328,7 +328,7 @@ export function EditScenarioModal({
             }`}
           >
             <span>🧠</span>
-            <span>Đánh giá AI &amp; Đồng thuận</span>
+            <span>AI Appraisal &amp; Consensus</span>
           </button>
 
           <button
@@ -341,7 +341,7 @@ export function EditScenarioModal({
             }`}
           >
             <span>🏛️</span>
-            <span>Khuyến cáo Đa Hiệp hội ({recs.length})</span>
+            <span>Multi-Society Recommendations ({recs.length})</span>
           </button>
 
           <button
@@ -354,7 +354,7 @@ export function EditScenarioModal({
             }`}
           >
             <span>⏳</span>
-            <span>Chuyển dịch thời gian ({shifts.length})</span>
+            <span>Temporal Evolution ({shifts.length})</span>
           </button>
 
           <button
@@ -367,7 +367,7 @@ export function EditScenarioModal({
             }`}
           >
             <span>🔗</span>
-            <span>Công cụ liên kết ({ecoLinks.length})</span>
+            <span>Ecosystem Tools ({ecoLinks.length})</span>
           </button>
         </div>
 
@@ -396,7 +396,7 @@ export function EditScenarioModal({
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
-                    Mã Định Danh (Scenario ID) <span className="text-rose-500">*</span>
+                    Scenario ID <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -414,7 +414,7 @@ export function EditScenarioModal({
 
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
-                    Phân khoa Thần kinh (Subspecialty)
+                    Subspecialty
                   </label>
                   <select
                     value={subspecialty}
@@ -433,7 +433,7 @@ export function EditScenarioModal({
 
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
-                    Huy hiệu thực hành (Status Badge)
+                    Status Badge
                   </label>
                   <select
                     value={statusBadge}
@@ -442,11 +442,11 @@ export function EditScenarioModal({
                       darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"
                     }`}
                   >
-                    <option value="">(Không có badge)</option>
-                    <option value="PRACTICE_CHANGING">⚡ PRACTICE_CHANGING (Thay đổi thực hành)</option>
-                    <option value="UPGRADED">⬆️ UPGRADED (Nâng bậc khuyến cáo)</option>
-                    <option value="NEW">✨ NEW (Khuyến cáo mới)</option>
-                    <option value="ESTABLISHED">✅ ESTABLISHED (Chuẩn đã xác lập)</option>
+                    <option value="">(No Badge)</option>
+                    <option value="PRACTICE_CHANGING">⚡ PRACTICE_CHANGING (Practice Changing)</option>
+                    <option value="UPGRADED">⬆️ UPGRADED (Recommendation Upgraded)</option>
+                    <option value="NEW">✨ NEW (New Recommendation)</option>
+                    <option value="ESTABLISHED">✅ ESTABLISHED (Established Standard)</option>
                   </select>
                 </div>
               </div>
@@ -454,7 +454,7 @@ export function EditScenarioModal({
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
-                    Tiêu đề Kịch bản Lâm sàng (Title) <span className="text-rose-500">*</span>
+                    Clinical Scenario Title <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -472,13 +472,13 @@ export function EditScenarioModal({
 
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
-                    Tiêu đề tiếng Anh (Title English)
+                    Secondary / English Title
                   </label>
                   <input
                     type="text"
                     value={titleEn}
                     onChange={(e) => setTitleEn(e.target.value)}
-                    placeholder="Optional English Title..."
+                    placeholder="Optional English / Alternate Title..."
                     className={`w-full p-2.5 rounded-xl border text-xs sm:text-sm font-semibold transition-all focus:outline-hidden focus:ring-2 focus:ring-amber-500/50 ${
                       darkMode
                         ? "bg-slate-800 border-slate-700 text-white placeholder-slate-500"
@@ -490,13 +490,13 @@ export function EditScenarioModal({
 
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
-                  Tóm tắt Kịch bản Lâm sàng (Clinical Summary)
+                  Clinical Summary
                 </label>
                 <textarea
                   rows={4}
                   value={summary}
                   onChange={(e) => setSummary(e.target.value)}
-                  placeholder="Mô tả bối cảnh lâm sàng, chỉ định chính, liều lượng hoặc phạm vi can thiệp..."
+                  placeholder="Describe clinical context, primary indications, dosage, or therapeutic window..."
                   className={`w-full p-3 rounded-xl border text-xs sm:text-sm font-medium leading-relaxed transition-all focus:outline-hidden focus:ring-2 focus:ring-amber-500/50 ${
                     darkMode
                       ? "bg-slate-800 border-slate-700 text-white placeholder-slate-500"
@@ -507,7 +507,7 @@ export function EditScenarioModal({
 
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
-                  Từ khóa tìm kiếm (Key Tags - phân cách bởi dấu phẩy)
+                  Key Tags (comma separated)
                 </label>
                 <input
                   type="text"
@@ -546,20 +546,20 @@ export function EditScenarioModal({
                     htmlFor="hasConfAlertCheck"
                     className="text-xs font-bold cursor-pointer select-none text-slate-800 dark:text-slate-200"
                   >
-                    🔔 Bật Cảnh báo Hội nghị / Guideline Watch Alert
+                    🔔 Enable Conference Watch Alert / Late-Breaking Update
                   </label>
                 </div>
 
                 {hasConfAlert && (
                   <div className="mt-2.5">
                     <label className="block text-[11px] font-bold text-slate-500 dark:text-slate-400 mb-1">
-                      Nội dung thông điệp cảnh báo:
+                      Alert Message Content:
                     </label>
                     <input
                       type="text"
                       value={confAlertText}
                       onChange={(e) => setConfAlertText(e.target.value)}
-                      placeholder="e.g. Dữ liệu dài hạn từ AcT và ATTEST-2 xác nhận kết cục không thua kém..."
+                      placeholder="e.g. Long-term data from AcT and ATTEST-2 confirm non-inferior functional outcomes..."
                       className={`w-full p-2.5 rounded-xl border text-xs font-medium transition-all focus:outline-hidden focus:ring-2 focus:ring-amber-500/50 ${
                         darkMode
                           ? "bg-slate-800 border-slate-700 text-white"
@@ -578,15 +578,15 @@ export function EditScenarioModal({
               <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-xs text-amber-900 dark:text-amber-200 flex items-start gap-2.5">
                 <span className="text-base shrink-0">🧠</span>
                 <div>
-                  <span className="font-extrabold block">Tổng hợp Phân tích AI &amp; Định hướng Lâm sàng:</span>
-                  Cung cấp góc nhìn chuyên sâu về sự đồng thuận, bất đồng giữa các guideline quốc tế và kết luận chốt để áp dụng ngay tại giường bệnh.
+                  <span className="font-extrabold block">AI Synthesis Appraisal &amp; Clinical Direction:</span>
+                  Comprehensive synthesis of concordance, divergence across international guidelines, and actionable bedside takeaways.
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
-                    Mức độ đồng thuận (Consensus Level)
+                    Consensus Level
                   </label>
                   <select
                     value={consensusLevel}
@@ -595,15 +595,15 @@ export function EditScenarioModal({
                       darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"
                     }`}
                   >
-                    <option value="HIGH_CONCORDANCE">🟢 Đồng thuận cao (HIGH_CONCORDANCE)</option>
-                    <option value="MODERATE_VARIATION">🟡 Khác biệt mức độ vừa / Điều kiện (MODERATE_VARIATION)</option>
-                    <option value="MAJOR_DIVERGENCE">🔴 Khác biệt lớn / Bất đồng (MAJOR_DIVERGENCE)</option>
+                    <option value="HIGH_CONCORDANCE">🟢 High Concordance (HIGH_CONCORDANCE)</option>
+                    <option value="MODERATE_VARIATION">🟡 Moderate Variation / Conditional (MODERATE_VARIATION)</option>
+                    <option value="MAJOR_DIVERGENCE">🔴 Major Divergence (MAJOR_DIVERGENCE)</option>
                   </select>
                 </div>
 
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
-                    Phụ thuộc nguồn lực y tế
+                    Resource Dependency
                   </label>
                   <select
                     value={resourceDependency}
@@ -612,15 +612,15 @@ export function EditScenarioModal({
                       darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"
                     }`}
                   >
-                    <option value="Standard Care">Standard Care (Chăm sóc tiêu chuẩn / Cơ sở)</option>
-                    <option value="Requires Advanced Perfusion/AI">Requires Advanced Perfusion/AI (Tưới máu/AI)</option>
-                    <option value="Specialized Center Only">Specialized Center Only (Trung tâm chuyên sâu)</option>
+                    <option value="Standard Care">Standard Care (Primary / Standard Center)</option>
+                    <option value="Requires Advanced Perfusion/AI">Requires Advanced Perfusion/AI (Advanced Imaging)</option>
+                    <option value="Specialized Center Only">Specialized Center Only (Comprehensive Center)</option>
                   </select>
                 </div>
 
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
-                    Ngày đánh giá (Last Appraised)
+                    Last Appraised Date
                   </label>
                   <input
                     type="date"
@@ -635,13 +635,13 @@ export function EditScenarioModal({
 
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
-                  Phân tích nguyên nhân khác biệt (Why Guidelines Differ / Root Cause)
+                  Why Guidelines Differ / Root Cause Analysis
                 </label>
                 <textarea
                   rows={4}
                   value={whyGuidelinesDiffer}
                   onChange={(e) => setWhyGuidelinesDiffer(e.target.value)}
-                  placeholder="Giải thích vì sao AHA, ESO hay Bộ Y Tế đưa ra mức phân hạng hoặc tiêu chí thời gian khác nhau..."
+                  placeholder="Explain why AHA, ESO, or national societies differ in grading, eligibility, or time criteria..."
                   className={`w-full p-3 rounded-xl border text-xs sm:text-sm font-medium leading-relaxed transition-all focus:outline-hidden focus:ring-2 focus:ring-amber-500/50 ${
                     darkMode
                       ? "bg-slate-800 border-slate-700 text-white placeholder-slate-500"
@@ -652,14 +652,14 @@ export function EditScenarioModal({
 
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
-                  Kết luận chốt thực hành lâm sàng (Clinical Bottom-Line) <span className="text-rose-500">*</span>
+                  Clinical Bottom-Line <span className="text-rose-500">*</span>
                 </label>
                 <textarea
                   rows={3}
                   required
                   value={clinicalBottomLine}
                   onChange={(e) => setClinicalBottomLine(e.target.value)}
-                  placeholder="Thông điệp hành động thực tế cho bác sĩ điều trị..."
+                  placeholder="Definitive, actionable guidance for the bedside clinician..."
                   className={`w-full p-3 rounded-xl border text-xs sm:text-sm font-bold leading-relaxed transition-all focus:outline-hidden focus:ring-2 focus:ring-amber-500/50 ${
                     darkMode
                       ? "bg-slate-800 border-slate-700 text-white placeholder-slate-500"
@@ -676,10 +676,10 @@ export function EditScenarioModal({
               <div className="flex items-center justify-between">
                 <div>
                   <h4 className="text-xs font-black uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                    Khuyến cáo Đa Hiệp hội ({recs.length})
+                    Multi-Society Recommendations ({recs.length})
                   </h4>
                   <p className="text-[11px] text-slate-400">
-                    Khuyến cáo cụ thể từ AHA/ASA, ESO, Bộ Y Tế (VN-MOH), AAN...
+                    Specific recommendation statements from AHA/ASA, ESO, national MOH, AAN, etc.
                   </p>
                 </div>
 
@@ -689,13 +689,13 @@ export function EditScenarioModal({
                   className="px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-500 text-slate-950 hover:bg-amber-400 transition-colors flex items-center gap-1 cursor-pointer"
                 >
                   <span>➕</span>
-                  <span>Thêm Khuyến Cáo</span>
+                  <span>Add Recommendation</span>
                 </button>
               </div>
 
               {recs.length === 0 ? (
                 <div className="p-8 text-center rounded-2xl border border-dashed border-slate-300 dark:border-slate-800 text-xs text-slate-400">
-                  Chưa có khuyến cáo nào được liên kết với kịch bản này. Bấm &quot;Thêm Khuyến Cáo&quot; để bổ sung.
+                  No recommendations linked to this scenario yet. Click &quot;Add Recommendation&quot; to add one.
                 </div>
               ) : (
                 <div className="space-y-3.5">
@@ -715,20 +715,20 @@ export function EditScenarioModal({
                           onClick={() => handleRemoveRec(idx)}
                           className="text-xs font-bold text-rose-500 hover:text-rose-600 px-2 py-0.5 rounded-lg hover:bg-rose-500/10 cursor-pointer"
                         >
-                          🗑️ Xóa
+                          🗑️ Delete
                         </button>
                       </div>
 
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-3">
                         <div>
                           <label className="block text-[10.5px] font-bold text-slate-400 mb-1">
-                            Hiệp hội (Society):
+                            Society:
                           </label>
                           <input
                             type="text"
                             value={r.society}
                             onChange={(e) => handleUpdateRec(idx, { society: e.target.value })}
-                            placeholder="AHA/ASA, ESO, VN-MOH, AAN..."
+                            placeholder="AHA/ASA, ESO, MOH, AAN..."
                             className={`w-full p-2 rounded-lg border text-xs font-bold ${
                               darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
                             }`}
@@ -737,7 +737,7 @@ export function EditScenarioModal({
 
                         <div>
                           <label className="block text-[10.5px] font-bold text-slate-400 mb-1">
-                            Năm ban hành (Year):
+                            Publication Year:
                           </label>
                           <input
                             type="number"
@@ -751,7 +751,7 @@ export function EditScenarioModal({
 
                         <div>
                           <label className="block text-[10.5px] font-bold text-slate-400 mb-1">
-                            Phân bậc chuẩn hóa (Tier 1-5):
+                            Normalized Tier (1-5):
                           </label>
                           <select
                             value={r.normalizedTier}
@@ -760,24 +760,24 @@ export function EditScenarioModal({
                               darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
                             }`}
                           >
-                            <option value={1}>Tier 1: Mạnh (Class I / Strong FOR)</option>
-                            <option value={2}>Tier 2: Vừa (Class IIa / Moderate)</option>
-                            <option value={3}>Tier 3: Yếu (Class IIb / Weak)</option>
-                            <option value={4}>Tier 4: Đồng thuận Chuyên gia (Consensus)</option>
-                            <option value={5}>Tier 5: Không khuyến cáo / Hại (Class III / AGAINST)</option>
+                            <option value={1}>Tier 1: Strong (Class I / Strong FOR)</option>
+                            <option value={2}>Tier 2: Moderate (Class IIa / Moderate)</option>
+                            <option value={3}>Tier 3: Weak (Class IIb / Weak)</option>
+                            <option value={4}>Tier 4: Expert Consensus</option>
+                            <option value={5}>Tier 5: Against / Harm (Class III / AGAINST)</option>
                           </select>
                         </div>
                       </div>
 
                       <div className="mb-3">
                         <label className="block text-[10.5px] font-bold text-slate-400 mb-1">
-                          Phân loại gốc (Original Grade):
+                          Original Classification / Grade:
                         </label>
                         <input
                           type="text"
                           value={r.originalGrade}
                           onChange={(e) => handleUpdateRec(idx, { originalGrade: e.target.value })}
-                          placeholder="e.g. Class I, Level of Evidence A hoặc Strong recommendation FOR"
+                          placeholder="e.g. Class I, Level of Evidence A or Strong recommendation FOR"
                           className={`w-full p-2 rounded-lg border text-xs font-semibold ${
                             darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
                           }`}
@@ -786,7 +786,7 @@ export function EditScenarioModal({
 
                       <div className="mb-3">
                         <label className="block text-[10.5px] font-bold text-slate-400 mb-1">
-                          Nội dung khuyến cáo (Recommendation Text):
+                          Recommendation Statement:
                         </label>
                         <textarea
                           rows={2}
@@ -801,13 +801,13 @@ export function EditScenarioModal({
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
                           <label className="block text-[10.5px] font-bold text-slate-400 mb-1">
-                            Tiêu chuẩn áp dụng (Eligibility Criteria):
+                            Eligibility Criteria:
                           </label>
                           <input
                             type="text"
                             value={r.eligibilityCriteria || ""}
                             onChange={(e) => handleUpdateRec(idx, { eligibilityCriteria: e.target.value })}
-                            placeholder="e.g. Khởi phát <4.5h, loại trừ xuất huyết..."
+                            placeholder="e.g. Onset <4.5h, hemorrhage excluded..."
                             className={`w-full p-2 rounded-lg border text-xs font-medium ${
                               darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
                             }`}
@@ -816,7 +816,7 @@ export function EditScenarioModal({
 
                         <div>
                           <label className="block text-[10.5px] font-bold text-slate-400 mb-1">
-                            Thử nghiệm then chốt (Cited Trials - phân cách dấu phẩy):
+                            Key Cited Trials (comma separated):
                           </label>
                           <input
                             type="text"
@@ -849,10 +849,10 @@ export function EditScenarioModal({
               <div className="flex items-center justify-between">
                 <div>
                   <h4 className="text-xs font-black uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                    Chuyển dịch Khuyến cáo theo Thời gian ({shifts.length})
+                    Temporal Guideline Evolution ({shifts.length})
                   </h4>
                   <p className="text-[11px] text-slate-400">
-                    Ghi nhận bước tiến từ phiên bản cũ sang phiên bản mới của các guideline
+                    Tracking recommendation changes across guideline editions over time
                   </p>
                 </div>
 
@@ -862,13 +862,13 @@ export function EditScenarioModal({
                   className="px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-500 text-slate-950 hover:bg-amber-400 transition-colors flex items-center gap-1 cursor-pointer"
                 >
                   <span>➕</span>
-                  <span>Thêm Chuyển Dịch</span>
+                  <span>Add Shift</span>
                 </button>
               </div>
 
               {shifts.length === 0 ? (
                 <div className="p-8 text-center rounded-2xl border border-dashed border-slate-300 dark:border-slate-800 text-xs text-slate-400">
-                  Chưa có thông tin chuyển dịch thời gian. Bấm &quot;Thêm Chuyển Dịch&quot; để bổ sung.
+                  No temporal shifts recorded. Click &quot;Add Shift&quot; to add one.
                 </div>
               ) : (
                 <div className="space-y-3.5">
@@ -888,14 +888,14 @@ export function EditScenarioModal({
                           onClick={() => handleRemoveShift(idx)}
                           className="text-xs font-bold text-rose-500 hover:text-rose-600 px-2 py-0.5 rounded-lg hover:bg-rose-500/10 cursor-pointer"
                         >
-                          🗑️ Xóa
+                          🗑️ Delete
                         </button>
                       </div>
 
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-3">
                         <div>
                           <label className="block text-[10.5px] font-bold text-slate-400 mb-1">
-                            Hiệp hội (Society):
+                            Society:
                           </label>
                           <input
                             type="text"
@@ -909,7 +909,7 @@ export function EditScenarioModal({
 
                         <div>
                           <label className="block text-[10.5px] font-bold text-slate-400 mb-1">
-                            Hướng chuyển dịch (Direction):
+                            Shift Direction:
                           </label>
                           <select
                             value={s.shiftDirection}
@@ -918,17 +918,17 @@ export function EditScenarioModal({
                               darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
                             }`}
                           >
-                            <option value="UPGRADED">⬆️ UPGRADED (Nâng bậc)</option>
-                            <option value="DOWNGRADED">⬇️ DOWNGRADED (Hạ bậc)</option>
-                            <option value="NEW">✨ NEW (Mới)</option>
-                            <option value="UNCHANGED">⏺️ UNCHANGED (Không đổi)</option>
-                            <option value="REVISED">🔄 REVISED (Hiệu chỉnh)</option>
+                            <option value="UPGRADED">⬆️ UPGRADED (Upgraded)</option>
+                            <option value="DOWNGRADED">⬇️ DOWNGRADED (Downgraded)</option>
+                            <option value="NEW">✨ NEW (New)</option>
+                            <option value="UNCHANGED">⏺️ UNCHANGED (Unchanged)</option>
+                            <option value="REVISED">🔄 REVISED (Revised)</option>
                           </select>
                         </div>
 
                         <div>
                           <label className="block text-[10.5px] font-bold text-slate-400 mb-1">
-                            Thử nghiệm dẫn đường (Trials):
+                            Driving Evidence / Trials:
                           </label>
                           <input
                             type="text"
@@ -952,7 +952,7 @@ export function EditScenarioModal({
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
                         <div>
                           <label className="block text-[10.5px] font-bold text-slate-400 mb-1">
-                            Năm &amp; Hạng cũ:
+                            Prior Year &amp; Grade:
                           </label>
                           <div className="flex gap-2">
                             <input
@@ -977,7 +977,7 @@ export function EditScenarioModal({
 
                         <div>
                           <label className="block text-[10.5px] font-bold text-slate-400 mb-1">
-                            Năm &amp; Hạng hiện tại:
+                            Current Year &amp; Grade:
                           </label>
                           <div className="flex gap-2">
                             <input
@@ -1003,7 +1003,7 @@ export function EditScenarioModal({
 
                       <div>
                         <label className="block text-[10.5px] font-bold text-slate-400 mb-1">
-                          Thuyết minh tiến hóa (Evolution Narrative):
+                          Evolution Narrative:
                         </label>
                         <textarea
                           rows={2}
@@ -1027,10 +1027,10 @@ export function EditScenarioModal({
               <div className="flex items-center justify-between">
                 <div>
                   <h4 className="text-xs font-black uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                    Liên kết Công cụ Hệ sinh thái ({ecoLinks.length})
+                    Linked Ecosystem Tools ({ecoLinks.length})
                   </h4>
                   <p className="text-[11px] text-slate-400">
-                    Đường dẫn liên kết sang NeuroRx, NeuroCalc, NeuroVision...
+                    Direct integration links to NeuroRx, NeuroCalc, NeuroVision, or reference tools
                   </p>
                 </div>
 
@@ -1040,13 +1040,13 @@ export function EditScenarioModal({
                   className="px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-500 text-slate-950 hover:bg-amber-400 transition-colors flex items-center gap-1 cursor-pointer"
                 >
                   <span>➕</span>
-                  <span>Thêm Liên Kết</span>
+                  <span>Add Link</span>
                 </button>
               </div>
 
               {ecoLinks.length === 0 ? (
                 <div className="p-8 text-center rounded-2xl border border-dashed border-slate-300 dark:border-slate-800 text-xs text-slate-400">
-                  Chưa có công cụ liên kết. Bấm &quot;Thêm Liên Kết&quot; để bổ sung.
+                  No ecosystem tools linked. Click &quot;Add Link&quot; to add one.
                 </div>
               ) : (
                 <div className="space-y-3">
@@ -1066,13 +1066,13 @@ export function EditScenarioModal({
                           onClick={() => handleRemoveEcoLink(idx)}
                           className="text-xs font-bold text-rose-500 hover:text-rose-600 px-2 py-0.5 rounded-lg hover:bg-rose-500/10 cursor-pointer"
                         >
-                          🗑️ Xóa
+                          🗑️ Delete
                         </button>
                       </div>
 
                       <div className="grid grid-cols-1 sm:grid-cols-4 gap-2.5 mb-2">
                         <div>
-                          <label className="block text-[10px] font-bold text-slate-400 mb-1">Ứng dụng:</label>
+                          <label className="block text-[10px] font-bold text-slate-400 mb-1">Application:</label>
                           <select
                             value={link.app}
                             onChange={(e) => handleUpdateEcoLink(idx, { app: e.target.value as any })}
@@ -1089,12 +1089,12 @@ export function EditScenarioModal({
                         </div>
 
                         <div className="sm:col-span-2">
-                          <label className="block text-[10px] font-bold text-slate-400 mb-1">Nhãn hiển thị (Label):</label>
+                          <label className="block text-[10px] font-bold text-slate-400 mb-1">Display Label:</label>
                           <input
                             type="text"
                             value={link.label}
                             onChange={(e) => handleUpdateEcoLink(idx, { label: e.target.value })}
-                            placeholder="e.g. Tính liều Tenecteplase theo cân nặng"
+                            placeholder="e.g. Tenecteplase weight-based dosing calculator"
                             className={`w-full p-2 rounded-lg border text-xs font-semibold ${
                               darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
                             }`}
@@ -1117,12 +1117,12 @@ export function EditScenarioModal({
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                         <div>
-                          <label className="block text-[10px] font-bold text-slate-400 mb-1">Đường dẫn (Href):</label>
+                          <label className="block text-[10px] font-bold text-slate-400 mb-1">Route / Link (Href):</label>
                           <input
                             type="text"
                             value={link.href}
                             onChange={(e) => handleUpdateEcoLink(idx, { href: e.target.value })}
-                            placeholder="/neurorx hoặc #"
+                            placeholder="/neurorx or #"
                             className={`w-full p-2 rounded-lg border text-xs font-mono ${
                               darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
                             }`}
@@ -1130,12 +1130,12 @@ export function EditScenarioModal({
                         </div>
 
                         <div>
-                          <label className="block text-[10px] font-bold text-slate-400 mb-1">Mô tả (Description):</label>
+                          <label className="block text-[10px] font-bold text-slate-400 mb-1">Description:</label>
                           <input
                             type="text"
                             value={link.description || ""}
                             onChange={(e) => handleUpdateEcoLink(idx, { description: e.target.value })}
-                            placeholder="Mô tả công cụ..."
+                            placeholder="Tool utility and context..."
                             className={`w-full p-2 rounded-lg border text-xs font-medium ${
                               darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
                             }`}
@@ -1161,7 +1161,7 @@ export function EditScenarioModal({
                   : "bg-slate-100 text-slate-700 hover:bg-slate-200"
               }`}
             >
-              Hủy
+              Cancel
             </button>
 
             <button
@@ -1172,12 +1172,12 @@ export function EditScenarioModal({
               {isLoading ? (
                 <>
                   <span className="animate-spin">⏳</span>
-                  <span>Đang lưu...</span>
+                  <span>Saving...</span>
                 </>
               ) : (
                 <>
                   <span>💾</span>
-                  <span>Lưu Thay Đổi Scenario</span>
+                  <span>Save Scenario Changes</span>
                 </>
               )}
             </button>

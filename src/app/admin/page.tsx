@@ -473,7 +473,7 @@ export default function AdminCommandCenter() {
 
   const handleDeleteGuideline = async (doc: GuidelineDoc) => {
     const confirmDelete = window.confirm(
-      `Bạn có chắc chắn muốn XÓA guideline:\n\n"${doc.title}" (${doc.society} ${doc.year})?\n\nHướng dẫn này sẽ được gỡ bỏ khỏi toàn bộ hệ thống.`
+      `Are you sure you want to DELETE guideline:\n\n"${doc.title}" (${doc.society} ${doc.year})?\n\nThis guideline will be permanently removed from the system.`
     );
     if (!confirmDelete) return;
 
@@ -519,10 +519,10 @@ export default function AdminCommandCenter() {
           return updated;
         });
       } else {
-        alert(`Lỗi khi xóa: ${data.error || "Không thể xóa guideline"}`);
+        alert(`Delete error: ${data.error || "Unable to delete guideline"}`);
       }
     } catch {
-      alert("Lỗi kết nối khi gửi yêu cầu xóa guideline.");
+      alert("Network connection error while requesting guideline deletion.");
     } finally {
       setDeleteLoadingId(null);
     }
@@ -530,7 +530,7 @@ export default function AdminCommandCenter() {
 
   const handleUnpublishGuideline = async (doc: GuidelineDoc) => {
     const confirmUnpub = window.confirm(
-      `Bạn có chắc chắn muốn THU HỒI guideline:\n\n"${doc.title}" (${doc.society} ${doc.year})?\n\nTài liệu sẽ được rút khỏi thư viện chính và chuyển về Hàng đợi kiểm duyệt (Review Queue) để bác sĩ rà soát lại.`
+      `Are you sure you want to UNPUBLISH guideline:\n\n"${doc.title}" (${doc.society} ${doc.year})?\n\nThis document will be removed from the published repository and moved back to the Review Queue for clinician re-evaluation.`
     );
     if (!confirmUnpub) return;
 
@@ -557,14 +557,14 @@ export default function AdminCommandCenter() {
       if (data.ok) {
         setGuidelineDocs((prev) => prev.filter((g) => g.id !== doc.id));
         setReviewQueueCount((prev) => prev + (data.restored_count || 1));
-        alert(data.message || `Đã thu hồi thành công về Hàng đợi kiểm duyệt.`);
+        alert(data.message || `Successfully moved back to Review Queue.`);
         fetchReviewQueueCount();
         fetchGuidelinesList();
       } else {
-        alert(`Lỗi khi thu hồi: ${data.error || "Không thể thu hồi guideline"}`);
+        alert(`Unpublish error: ${data.error || "Unable to unpublish guideline"}`);
       }
     } catch {
-      alert("Lỗi kết nối khi gửi yêu cầu thu hồi guideline.");
+      alert("Network connection error while requesting guideline unpublish.");
     } finally {
       setUnpublishLoadingId(null);
     }
@@ -1375,7 +1375,7 @@ export default function AdminCommandCenter() {
                       : "bg-slate-100 text-slate-700 hover:bg-slate-200"
                   }`}
                 >
-                  <span>⚖️ Sửa ca lâm sàng</span>
+                  <span>⚖️ Clinical Scenarios</span>
                   <span
                     className={`px-1.5 py-0.2 rounded text-[10px] font-black ${
                       guidelineSubTab === "scenarios"
@@ -1506,9 +1506,9 @@ export default function AdminCommandCenter() {
                       type="button"
                       onClick={() => fetchGuidelinesList()}
                       className="px-2.5 py-1.5 rounded-xl text-xs font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/20 border border-emerald-500/20 transition-colors flex items-center gap-1 cursor-pointer"
-                      title="Tải lại danh sách guideline từ máy chủ và đồng bộ chuẩn"
+                      title="Reload guidelines list from server and synchronize"
                     >
-                      <span>🔄 Làm mới</span>
+                      <span>🔄 Refresh</span>
                     </button>
                   </div>
                 </div>
@@ -1565,32 +1565,32 @@ export default function AdminCommandCenter() {
                                 setShowEditPublishedModal(true);
                               }}
                               className="px-2.5 py-1 rounded text-[11px] font-bold bg-amber-500/15 text-amber-700 dark:text-amber-300 hover:bg-amber-500/25 border border-amber-500/30 transition-colors cursor-pointer"
-                              title="Chỉnh sửa tên và chi tiết nội dung guideline (Lưu trực tiếp lên Cloud)"
+                              title="Edit guideline title and details (Direct Cloud sync)"
                             >
-                              ✏️ Sửa
+                              ✏️ Edit
                             </button>
                             <button
                               type="button"
                               disabled={unpublishLoadingId === doc.id}
                               onClick={() => handleUnpublishGuideline(doc)}
                               className="px-2.5 py-1 rounded text-[11px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 transition-colors cursor-pointer"
-                              title="Rút guideline khỏi thư viện chính và chuyển về Hàng đợi kiểm duyệt (Review Queue)"
+                              title="Unpublish guideline and move back to Review Queue"
                             >
-                              {unpublishLoadingId === doc.id ? "..." : "↩ Thu hồi"}
+                              {unpublishLoadingId === doc.id ? "..." : "↩ Unpublish"}
                             </button>
                             <Link
                               href="/neuroguide"
                               className="px-2.5 py-1 rounded text-[11px] font-bold bg-blue-500/15 text-blue-700 dark:text-blue-300 hover:bg-blue-500/25 border border-blue-500/30 transition-colors"
-                              title="Xem chi tiết trên Practice Guidelines"
+                              title="View in NeuroGuide"
                             >
-                              Xem ↗
+                              View ↗
                             </Link>
                             <button
                               type="button"
                               disabled={deleteLoadingId === doc.id}
                               onClick={() => handleDeleteGuideline(doc)}
                               className="px-2 py-1 rounded text-[11px] font-bold text-rose-500 hover:bg-rose-500/15 border border-rose-500/20 transition-colors cursor-pointer"
-                              title="Xóa guideline khỏi kho lưu trữ"
+                              title="Delete guideline from repository"
                             >
                               {deleteLoadingId === doc.id ? "..." : "🗑️"}
                             </button>
@@ -1613,13 +1613,13 @@ export default function AdminCommandCenter() {
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-200 dark:border-slate-800">
                   <div>
                     <h3 className="text-base font-bold flex items-center gap-2">
-                      <span>⚖️ Clinical Scenarios (Ca &amp; Kịch bản lâm sàng)</span>
+                      <span>⚖️ Clinical Scenarios Repository</span>
                       <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">
                         {filteredScenarios.length} / {clinicalScenarios.length} Scenarios
                       </span>
                     </h3>
                     <p className="text-xs text-slate-500 mt-0.5">
-                      Chỉnh sửa thông tin thực hành, đánh giá AI đồng thuận, khuyến cáo đa hiệp hội và chuyển dịch thời gian
+                      Manage and edit clinical practice scenarios, AI consensus appraisals, multi-society recommendations, and temporal evolution
                     </p>
                   </div>
 
@@ -1631,7 +1631,7 @@ export default function AdminCommandCenter() {
                         type="text"
                         value={scenarioSearchQuery}
                         onChange={(e) => setScenarioSearchQuery(e.target.value)}
-                        placeholder="Tìm ca lâm sàng..."
+                        placeholder="Search clinical scenarios..."
                         className={`pl-7 pr-7 py-1.5 text-xs rounded-xl border outline-none transition-all ${
                           darkMode
                             ? "bg-slate-800 border-slate-700 text-white focus:border-blue-500"
@@ -1656,7 +1656,7 @@ export default function AdminCommandCenter() {
                         darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200 text-slate-900"
                       }`}
                     >
-                      <option value="ALL">Tất cả phân khoa</option>
+                      <option value="ALL">All Subspecialties</option>
                       {SUBSPECIALTY_LIST.filter((s) => s !== "All Subspecialties").map((sub) => (
                         <option key={sub} value={sub}>
                           {sub}
@@ -1668,10 +1668,10 @@ export default function AdminCommandCenter() {
                       type="button"
                       onClick={handleCreateNewScenario}
                       className="px-3 py-1.5 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white transition-colors flex items-center gap-1.5 shadow-xs cursor-pointer"
-                      title="Tạo mới ca / kịch bản lâm sàng"
+                      title="Create new clinical scenario"
                     >
                       <span>➕</span>
-                      <span>Thêm ca mới</span>
+                      <span>New Scenario</span>
                     </button>
 
                     <button
@@ -1681,9 +1681,9 @@ export default function AdminCommandCenter() {
                         fetchGuidelinesList();
                       }}
                       className="px-2.5 py-1.5 rounded-xl text-xs font-bold bg-blue-500/10 text-blue-600 dark:text-blue-400 hover:bg-blue-500/20 border border-blue-500/20 transition-colors flex items-center gap-1 cursor-pointer"
-                      title="Làm mới danh sách ca lâm sàng"
+                      title="Refresh scenarios list"
                     >
-                      <span>🔄 Làm mới</span>
+                      <span>🔄 Refresh</span>
                     </button>
                   </div>
                 </div>
@@ -1691,7 +1691,7 @@ export default function AdminCommandCenter() {
                 <div className="space-y-3 max-h-[600px] overflow-y-auto pr-1">
                   {filteredScenarios.length === 0 ? (
                     <div className="py-12 text-center text-xs text-slate-400">
-                      Không tìm thấy ca lâm sàng nào phù hợp với bộ lọc.
+                      No clinical scenarios found matching your filter criteria.
                     </div>
                   ) : (
                     filteredScenarios.map((sc) => {
@@ -1736,10 +1736,10 @@ export default function AdminCommandCenter() {
                                     : "bg-rose-500/15 text-rose-700 dark:text-rose-300"
                                 }`}>
                                   {sc.aiSynthesisAppraisal.consensusLevel === "HIGH_CONCORDANCE"
-                                    ? "🟢 Đồng thuận cao"
+                                    ? "🟢 High Concordance"
                                     : sc.aiSynthesisAppraisal.consensusLevel === "MODERATE_VARIATION"
-                                    ? "🟡 Khác biệt vừa"
-                                    : "🔴 Bất đồng lớn"}
+                                    ? "🟡 Moderate Variation"
+                                    : "🔴 Major Divergence"}
                                 </span>
                               )}
                             </div>
@@ -1761,14 +1761,14 @@ export default function AdminCommandCenter() {
 
                             {sc.aiSynthesisAppraisal?.clinicalBottomLine && (
                               <div className="text-[11px] font-medium text-amber-800 dark:text-amber-300 bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-500/20 line-clamp-1">
-                                <span className="font-bold">🎯 Chốt thực hành:</span> {sc.aiSynthesisAppraisal.clinicalBottomLine}
+                                <span className="font-bold">🎯 Clinical Bottom-Line:</span> {sc.aiSynthesisAppraisal.clinicalBottomLine}
                               </div>
                             )}
 
                             <div className="flex items-center gap-3 text-[10.5px] text-slate-400 font-mono pt-1">
-                              <span>🏛️ {linkedRecs.length} khuyến cáo</span>
-                              <span>⏳ {sc.temporalEvolution?.length || 0} chuyển dịch</span>
-                              <span>🔗 {sc.ecosystemLinks?.length || 0} liên kết</span>
+                              <span>🏛️ {linkedRecs.length} recommendations</span>
+                              <span>⏳ {sc.temporalEvolution?.length || 0} temporal shifts</span>
+                              <span>🔗 {sc.ecosystemLinks?.length || 0} links</span>
                             </div>
                           </div>
 
@@ -1780,16 +1780,16 @@ export default function AdminCommandCenter() {
                                 setShowEditScenarioModal(true);
                               }}
                               className="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-amber-500 text-slate-950 hover:bg-amber-400 transition-all flex items-center gap-1.5 cursor-pointer shadow-xs"
-                              title="Chỉnh sửa ca lâm sàng này"
+                              title="Edit this clinical scenario"
                             >
-                              <span>✏️ Sửa</span>
+                              <span>✏️ Edit</span>
                             </button>
                             <Link
                               href="/neuroguide"
                               className="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 transition-colors flex items-center gap-1.5 cursor-pointer shadow-xs"
-                              title="Xem trên trang NeuroGuide"
+                              title="View in NeuroGuide"
                             >
-                              <span>🔍 Xem</span>
+                              <span>🔍 View</span>
                             </Link>
                           </div>
                         </div>
@@ -2011,7 +2011,7 @@ export default function AdminCommandCenter() {
             fetchReviewQueueCount();
             fetchGuidelinesList();
             setRadarMessage(
-              `🎉 Đã tạo và xuất bản thành công Practice Guideline "${newDoc.title}" (${newDoc.allPracticeChanges?.length || 0} khuyến cáo)!`
+              `🎉 Successfully created and published practice guideline "${newDoc.title}" (${newDoc.allPracticeChanges?.length || 0} recommendations)!`
             );
             setGuidelineSubTab("repository");
             setAdminTab("guidelines");
@@ -2075,7 +2075,7 @@ export default function AdminCommandCenter() {
                   return [...filtered, ...updatedRecs];
                 });
               }
-              setRadarMessage(`🎉 Đã cập nhật thành công ca lâm sàng "${updatedScenario.title}"!`);
+              setRadarMessage(`🎉 Successfully updated clinical scenario "${updatedScenario.title}"!`);
               fetchGuidelinesList();
               fetchScenariosList();
             }}

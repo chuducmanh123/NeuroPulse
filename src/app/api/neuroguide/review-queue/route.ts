@@ -130,10 +130,12 @@ async function loadUnifiedStoreRecords(): Promise<{
   recordsMap: Map<string, GuidelineRecord>;
   supabaseApprovedKeys: Set<string>;
   supabaseDeletedKeys: Set<string>;
+  supabasePendingKeys: Set<string>;
 }> {
   const recordsMap = new Map<string, GuidelineRecord>();
   const supabaseApprovedKeys = new Set<string>();
   const supabaseDeletedKeys = new Set<string>();
+  const supabasePendingKeys = new Set<string>();
 
   // 1. Quét từ STORE_DIR (kho tĩnh)
   if (fs.existsSync(STORE_DIR)) {
@@ -173,20 +175,23 @@ async function loadUnifiedStoreRecords(): Promise<{
         .select("id, title, organization, year, status, data, updated_at");
       if (Array.isArray(data)) {
         for (const row of data as any[]) {
+          if (row.id === "system_clinical_scenarios") {
+            if (Array.isArray(row.data?.deletedGuidelineIds)) {
+              row.data.deletedGuidelineIds.forEach((x: string) => {
+                if (x) supabaseDeletedKeys.add(String(x).toLowerCase().trim());
+              });
+            }
+            continue;
+          }
           const rowStatus = String(row.status || row.data?.status || "approved").toLowerCase().trim();
           const rowId = String(row.id || row.data?.id || "").trim();
           const lowerId = rowId.toLowerCase();
-          const rowTitle = String(row.title || row.data?.title || "");
-          const normTitle = normalizeGuidelineTitle(rowTitle);
-          const rowSoc = String(row.data?.society || row.organization || "AHA/ASA");
-          const topicKey = getCoreTopicKey({ society: rowSoc, title: rowTitle }).toLowerCase();
           const fileName = `${rowId}_latest.json`;
 
           if (rowStatus === "deleted" || rowStatus === "rejected") {
             if (lowerId) supabaseDeletedKeys.add(lowerId);
-            if (normTitle) supabaseDeletedKeys.add(normTitle);
-            if (topicKey) supabaseDeletedKeys.add(topicKey);
           } else if (rowStatus === "pending" || rowStatus === "pending_review") {
+            if (lowerId) supabasePendingKeys.add(lowerId);
             // Khôi phục GuidelineRecord từ Supabase cho bất kỳ container Lambda nào chưa có file trong /tmp
             const embeddedRec = row.data?._reviewRecord as GuidelineRecord | undefined;
             const rebuiltRec =
@@ -202,11 +207,10 @@ async function loadUnifiedStoreRecords(): Promise<{
             // rowStatus === "approved"
             const embeddedPending = Number(row.data?._reviewRecord?.pending_count || 0);
             if (embeddedPending > 0 && row.data?._reviewRecord) {
+              if (lowerId) supabasePendingKeys.add(lowerId);
               recordsMap.set(fileName, row.data._reviewRecord as GuidelineRecord);
             } else {
               if (lowerId) supabaseApprovedKeys.add(lowerId);
-              if (normTitle) supabaseApprovedKeys.add(normTitle);
-              if (topicKey) supabaseApprovedKeys.add(topicKey);
               // Nếu chưa có trong recordsMap (hoặc bản local đang lệch), đồng bộ bản APPROVED từ Supabase
               if (row.data && Array.isArray(row.data.allPracticeChanges) && row.data.allPracticeChanges.length > 0) {
                 const approvedRec = buildGuidelineRecordFromDoc(row.data as GuidelineDoc, "APPROVED") as GuidelineRecord;
@@ -215,20 +219,27 @@ async function loadUnifiedStoreRecords(): Promise<{
             }
           }
         }
+
+        // Bảo đảm các ID đang pending hoặc đã approved trên Supabase không bao giờ nằm trong supabaseDeletedKeys
+        for (const pk of supabasePendingKeys) {
+          supabaseDeletedKeys.delete(pk);
+        }
+        for (const ak of supabaseApprovedKeys) {
+          supabaseDeletedKeys.delete(ak);
+        }
       }
     } catch (sbErr) {
       console.warn("Không thể đọc neuroguide_docs trong review-queue:", sbErr);
     }
   }
 
-  return { recordsMap, supabaseApprovedKeys, supabaseDeletedKeys };
+  return { recordsMap, supabaseApprovedKeys, supabaseDeletedKeys, supabasePendingKeys };
 }
 
 export async function GET(request: NextRequest) {
   try {
     const activeData = await loadMergedNeuroGuideData();
-    const normalizeT = normalizeGuidelineTitle;
-    const { recordsMap, supabaseApprovedKeys, supabaseDeletedKeys } = await loadUnifiedStoreRecords();
+    const { recordsMap, supabaseApprovedKeys, supabaseDeletedKeys, supabasePendingKeys } = await loadUnifiedStoreRecords();
 
     const deletedSet = new Set<string>([
       ...(activeData.deletedGuidelineIds || []).map((x) => x.toLowerCase().trim()),
@@ -243,26 +254,27 @@ export async function GET(request: NextRequest) {
         const cloudDeleted = cloudData.deletedGuidelineIds || cloudData.deleted_guideline_ids || [];
         cloudDeleted.forEach((x: string) => {
           const k = x.toLowerCase().trim();
-          if (!supabaseApprovedKeys.has(k)) deletedSet.add(k);
+          if (!supabaseApprovedKeys.has(k) && !supabasePendingKeys.has(k)) deletedSet.add(k);
         });
       } catch {}
     }
 
-    const isGuidelineExcludedFromQueue = (gId: string, cleanF: string, gTitle?: string, gSoc?: string): boolean => {
+    for (const pk of supabasePendingKeys) {
+      deletedSet.delete(pk);
+    }
+
+    const isGuidelineExcludedFromQueue = (gId: string, cleanF: string): boolean => {
       const normGId = gId.toLowerCase().trim();
       const normF = cleanF.toLowerCase().trim();
-      const normTitle = normalizeT(gTitle);
-      const topicK = getCoreTopicKey({ society: gSoc, title: gTitle }).toLowerCase();
 
-      // 1. Nếu đã bị xóa hoặc từ chối -> loại khỏi hàng đợi
+      // Nếu bản ghi này đang được đánh dấu là pending mới trên Supabase -> luôn cho phép hiển thị
+      if (supabasePendingKeys.has(normGId) || supabasePendingKeys.has(normF)) return false;
+
+      // 1. Chỉ loại khỏi hàng đợi theo đúng ID (không chặn theo title hay topic để tránh chặn nhầm guideline mới thêm vào)
       if (deletedSet.has(normGId) || deletedSet.has(normF)) return true;
-      if (normTitle && deletedSet.has(normTitle)) return true;
-      if (topicK && supabaseDeletedKeys.has(topicK)) return true;
 
-      // 2. Nếu guideline đã được phê duyệt hoàn tất trên Supabase -> tuyệt đối KHÔNG hiển thị lại trong Review Queue
+      // 2. Nếu đúng ID này đã được phê duyệt hoàn tất trên Supabase -> không hiển thị lại trong Review Queue
       if (supabaseApprovedKeys.has(normGId) || supabaseApprovedKeys.has(normF)) return true;
-      if (normTitle && supabaseApprovedKeys.has(normTitle)) return true;
-      if (topicK && supabaseApprovedKeys.has(topicK)) return true;
 
       return false;
     };
@@ -274,10 +286,8 @@ export async function GET(request: NextRequest) {
       try {
         const cleanFileName = file.replace(/_latest\.json$/i, "").toLowerCase();
         const fileGId = (record.guideline_id || "").toLowerCase().trim();
-        const docTitle = record.metadata?.title || "";
-        const docSoc = record.metadata?.society || "";
 
-        if (isGuidelineExcludedFromQueue(fileGId, cleanFileName, docTitle, docSoc)) {
+        if (isGuidelineExcludedFromQueue(fileGId, cleanFileName)) {
           continue;
         }
 
@@ -573,47 +583,72 @@ export async function POST(request: NextRequest) {
     // 1b. CHỨC NĂNG TỪ CHỐI TOÀN BỘ 1 GUIDELINE (REJECT GUIDELINE & XÓA KHỎI HỆ THỐNG)
     if (action === "REJECT_GUIDELINE") {
       const targetGId = (guideline_id || file_id || doc_id || "").toLowerCase().trim();
-      if (!targetGId) {
+      const reqTitle = String(body.title || body.guideline_title || "").trim();
+      if (!targetGId && !reqTitle) {
         return NextResponse.json({ ok: false, error: "Thiếu guideline_id để từ chối" }, { status: 400 });
       }
       const cleanGId = targetGId.replace(/_latest\.json$/i, "");
       const { recordsMap } = await loadUnifiedStoreRecords();
 
       let rejectedCount = 0;
-      const allIdsToDelete = new Set<string>([targetGId, cleanGId]);
+      let matchedTitle = reqTitle;
       const normalizeT = normalizeGuidelineTitle;
+      const normReqTitle = normalizeT(reqTitle);
+      // Chỉ đưa đúng ID của bản ghi bị từ chối vào danh sách xóa (KHÔNG đưa tiêu đề chuẩn hóa để tránh chặn nhầm khi người dùng tải lên lại guideline cùng tên)
+      const allIdsToDelete = new Set<string>([targetGId, cleanGId].filter(Boolean));
 
       for (const [fileName, rec] of recordsMap.entries()) {
         try {
           const fileGId = (rec.guideline_id || "").toLowerCase().trim();
           const cleanFileName = fileName.replace(/_latest\.json$/i, "").toLowerCase();
           const docTitle = rec.metadata?.title || "";
+          const normDocTitle = normalizeT(docTitle);
 
           const isMatch =
-            fileGId === cleanGId ||
-            cleanFileName === cleanGId ||
-            cleanFileName.startsWith(cleanGId) ||
-            cleanGId.startsWith(cleanFileName);
+            (cleanGId &&
+              (fileGId === cleanGId ||
+                cleanFileName === cleanGId ||
+                cleanFileName.startsWith(cleanGId) ||
+                cleanGId.startsWith(cleanFileName))) ||
+            (!cleanGId && normReqTitle && normDocTitle && normDocTitle === normReqTitle);
 
           if (!isMatch) continue;
 
-          allIdsToDelete.add(fileGId);
-          allIdsToDelete.add(cleanFileName);
-          if (docTitle) allIdsToDelete.add(normalizeT(docTitle));
+          if (fileGId) allIdsToDelete.add(fileGId);
+          if (cleanFileName) allIdsToDelete.add(cleanFileName);
+          if (docTitle && !matchedTitle) {
+            matchedTitle = docTitle;
+          }
 
           for (const r of rec.recommendations) {
             if (r.approval_status === "PENDING_REVIEW" || r.approval_status === "PENDING") {
               rejectedCount++;
             }
+            r.approval_status = "REJECTED";
           }
 
-          // Xóa file khỏi TMP_DIR và STORE_DIR
-          for (const dir of [TMP_DIR, STORE_DIR]) {
+          // Xóa file khỏi STORE_DIR (nếu có quyền ghi) và ghi đè tombstone vào TMP_DIR nếu STORE_DIR là read-only (trên Vercel)
+          for (const dir of [STORE_DIR, TMP_DIR]) {
             try {
               const fullLatest = path.join(dir, fileName);
               if (fs.existsSync(fullLatest)) fs.unlinkSync(fullLatest);
               const fullV1 = path.join(dir, fileName.replace(/_latest\.json$/i, "_v1.json"));
               if (fs.existsSync(fullV1)) fs.unlinkSync(fullV1);
+            } catch {}
+          }
+
+          // Nếu file gốc trong STORE_DIR vẫn tồn tại (do read-only trên Vercel), ghi bản REJECTED vào TMP_DIR để ghi đè hoàn toàn
+          if (fs.existsSync(path.join(STORE_DIR, fileName))) {
+            try {
+              if (!fs.existsSync(TMP_DIR)) fs.mkdirSync(TMP_DIR, { recursive: true });
+              const tombstone: GuidelineRecord = {
+                ...rec,
+                pending_count: 0,
+                approved_count: 0,
+                rejected_count: Math.max(rec.recommendations.length, 1),
+                updated_at: new Date().toISOString(),
+              };
+              fs.writeFileSync(path.join(TMP_DIR, fileName), JSON.stringify(tombstone, null, 2), "utf-8");
             } catch {}
           }
         } catch (e) {
@@ -629,7 +664,12 @@ export async function POST(request: NextRequest) {
             const catalog = JSON.parse(fs.readFileSync(catPath, "utf-8"));
             let changed = false;
             for (const k of Object.keys(catalog)) {
-              if (allIdsToDelete.has(k.toLowerCase()) || allIdsToDelete.has(cleanGId)) {
+              const entryTitle = normalizeT(catalog[k]?.title);
+              if (
+                allIdsToDelete.has(k.toLowerCase()) ||
+                (cleanGId && allIdsToDelete.has(cleanGId)) ||
+                (entryTitle && allIdsToDelete.has(entryTitle))
+              ) {
                 delete catalog[k];
                 changed = true;
               }
@@ -639,19 +679,7 @@ export async function POST(request: NextRequest) {
         }
       }
 
-      // Đánh dấu trạng thái "deleted" trên Supabase để chặn vĩnh viễn trên mọi Lambda instance
-      if (hasSupabaseConfig()) {
-        try {
-          await supabaseAdmin
-            .from("neuroguide_docs")
-            .update({ status: "deleted", updated_at: new Date().toISOString() })
-            .in("id", Array.from(allIdsToDelete));
-        } catch (sbErr) {
-          console.warn("Lỗi cập nhật trạng thái deleted trên Supabase:", sbErr);
-        }
-      }
-
-      // Ghi nhận vào deletedGuidelineIds trên Active Storage & neuroguide_cloud.json
+      // Ghi nhận vào deletedGuidelineIds trên Active Storage & neuroguide_cloud.json trước
       const activeData = await loadMergedNeuroGuideData();
       const mergedDeleted = Array.from(
         new Set([
@@ -672,15 +700,49 @@ export async function POST(request: NextRequest) {
       }
 
       await saveNeuroGuideToActiveStorage({
-        guidelines: activeData.guidelines.filter((g) => !allIdsToDelete.has((g.id || "").toLowerCase())),
+        guidelines: activeData.guidelines.filter(
+          (g) => !allIdsToDelete.has((g.id || "").toLowerCase())
+        ),
         conferences: activeData.conferences,
         scenarios: activeData.scenarios,
         deletedGuidelineIds: mergedDeleted,
       });
 
+      // Đánh dấu trạng thái "deleted" (kèm upsert tombstone row) trên Supabase SAU saveNeuroGuideToActiveStorage để chặn vĩnh viễn trên mọi Lambda instance
+      if (hasSupabaseConfig()) {
+        try {
+          const nowIso = new Date().toISOString();
+          await supabaseAdmin
+            .from("neuroguide_docs")
+            .update({ status: "deleted", updated_at: nowIso })
+            .in("id", Array.from(allIdsToDelete));
+
+          if (cleanGId) {
+            await supabaseAdmin.from("neuroguide_docs").upsert(
+              {
+                id: cleanGId,
+                title: matchedTitle || cleanGId,
+                organization: "DELETED",
+                year: "0",
+                status: "deleted",
+                data: {
+                  id: cleanGId,
+                  title: matchedTitle || cleanGId,
+                  status: "deleted",
+                },
+                updated_at: nowIso,
+              },
+              { onConflict: "id" }
+            );
+          }
+        } catch (sbErr) {
+          console.warn("Lỗi cập nhật trạng thái deleted trên Supabase:", sbErr);
+        }
+      }
+
       return NextResponse.json({
         ok: true,
-        message: `Đã từ chối và xóa hoàn toàn guideline "${cleanGId}" (${rejectedCount} khuyến cáo) khỏi hệ thống.`,
+        message: `Đã từ chối và xóa hoàn toàn guideline "${matchedTitle || cleanGId}" (${rejectedCount} khuyến cáo) khỏi hệ thống.`,
         rejected_count: rejectedCount,
         deleted_guideline_ids: mergedDeleted,
       });
@@ -789,6 +851,9 @@ export async function POST(request: NextRequest) {
             rec.approved_count = rec.recommendations.filter(
               (r) => r.approval_status === "APPROVED" || r.approval_status === "MODIFIED"
             ).length;
+            if (rec.pending_count === 0 && rec.approved_count === 0) {
+              rec.rejected_count = Math.max(rec.rejected_count || 0, 1);
+            }
             rec.updated_at = new Date().toISOString();
             await saveFileSafe(fileName, JSON.stringify(rec, null, 2));
             remainingCount = rec.recommendations.length;
