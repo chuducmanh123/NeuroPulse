@@ -6,6 +6,7 @@ import type {
   NormalizedTier,
   OntologyFacetId,
   RecommendationLabelOutput,
+  RecommendationV3Labels,
   RecommendationRelation,
   PivotalTrialRecord,
   NavigatorQuery,
@@ -21,6 +22,17 @@ import {
   computeNormalizedTierFromGrade,
   sanitizeControlChars,
 } from "./ontologyValidator.ts";
+import {
+  classifyRecommendationV3,
+  classifyPivotalTrialV3,
+} from "./clinicalNavigatorV3Classifier.ts";
+import {
+  toCanonicalTagId,
+  toTimeWindowId,
+  getTagLabelByIdV3,
+  getConditionByIdV3,
+} from "../../data/clinicalNavigatorTaxonomyV3.ts";
+import { MULTI_SUBSPECIALTY_GUIDELINES_V3 } from "../../data/multiSubspecialtyGuidelineRecsV3.ts";
 import { buildRecommendationRelations } from "./relationBuilder.ts";
 import { mergePivotalTrialsWithConferences } from "../../data/pivotalTrialsSeed.ts";
 
@@ -51,6 +63,7 @@ export interface IndexedNavigatorRecommendation {
   drivingTrials: string[];
   eligibilityCriteria?: string;
   labels: RecommendationLabelOutput;
+  v3Labels: RecommendationV3Labels;
   validationStatus: "human_approved" | "ai_checked" | "needs_review" | "reject";
   matchLayer?: "core" | "supporting";
   matchedSpans?: { facet: OntologyFacetId; value: string; labelEn: string; span: string }[];
@@ -113,6 +126,16 @@ export interface ScoredNeuroPulseArticle {
   matchReasons: string[];
 }
 
+export interface V3FilterCounts {
+  subspecialties: Record<string, number>;
+  conditions: Record<string, number>;
+  domains: Record<string, number>;
+  diagnosisTags: Record<string, number>;
+  timeWindows: Record<string, number>;
+  interventionTags: Record<string, number>;
+  directions: Record<string, number>;
+}
+
 export interface NavigatorQueryResult {
   query: NavigatorQuery;
   totalIndexedCount: number;
@@ -126,6 +149,7 @@ export interface NavigatorQueryResult {
   relatedArticles: ScoredNeuroPulseArticle[];
   ecosystemLinks: EcosystemLink[];
   facetValueCounts: Record<OntologyFacetId, Record<string, number>>;
+  v3Counts: V3FilterCounts;
   availableSocieties: string[];
 }
 
@@ -144,11 +168,11 @@ export const NAVIGATOR_QUICK_PRESETS: NavigatorQuickPreset[] = [
     subtitle: "Compare AHA/ASA, ESO & VN-MOH on 0.25 mg/kg TNK bolus vs. tPA within 4.5h",
     badge: "Practice-Changing",
     query: {
-      facets: {
-        condition: ["ais"],
-        intervention_type: ["iv_thrombolysis"],
-        drug_or_procedure: ["tenecteplase", "alteplase"],
-      },
+      subspecialty: "Stroke",
+      conditionId: "cond_ischemic_stroke",
+      domain: "treatment",
+      timeWindowId: toTimeWindowId("cond_ischemic_stroke", "Early Window (≤ 4.5h)"),
+      interventionTags: [toCanonicalTagId("Tenecteplase"), toCanonicalTagId("Alteplase")],
       includeAiChecked: true,
     },
   },
@@ -158,23 +182,23 @@ export const NAVIGATOR_QUICK_PRESETS: NavigatorQuickPreset[] = [
     subtitle: "SELECT2, ANGEL-ASPECT, TENSION & AHA/ESO thrombectomy criteria",
     badge: "Upgraded Class I",
     query: {
-      facets: {
-        condition: ["ais", "large_vessel_occlusion", "large_ischemic_core"],
-        intervention_type: ["endovascular_thrombectomy"],
-      },
+      subspecialty: "Stroke",
+      conditionId: "cond_ischemic_stroke",
+      domain: "treatment",
+      interventionTags: [toCanonicalTagId("Mechanical Thrombectomy")],
       includeAiChecked: true,
     },
   },
   {
     id: "preset-acute-bp-control",
-    title: "Acute Blood Pressure Targets (AIS Post-EVT & ICH)",
-    subtitle: "ENCHANTED2/MT, OPTIMAL-BP, INTERACT2, ATACH-2 & ESO 2025 BP Guideline",
+    title: "Acute Blood Pressure Targets in Spontaneous ICH",
+    subtitle: "INTERACT2, ATACH-2, INTERACT3 & AHA/ESO Hyperacute SBP 130–140 mmHg",
     badge: "Cross-Society",
     query: {
-      facets: {
-        condition: ["ais", "ich"],
-        intervention_type: ["bp_management"],
-      },
+      subspecialty: "Stroke",
+      conditionId: "cond_ich",
+      domain: "treatment",
+      interventionTags: [toCanonicalTagId("Blood Pressure Control")],
       includeAiChecked: true,
     },
   },
@@ -184,44 +208,47 @@ export const NAVIGATOR_QUICK_PRESETS: NavigatorQuickPreset[] = [
     subtitle: "AHA/ASA 2023 vs. ESO/EANS/ESMINT 2026 aSAH Guidelines",
     badge: "AHA vs. ESO",
     query: {
-      facets: {
-        condition: ["sah"],
-      },
+      subspecialty: "Stroke",
+      conditionId: "cond_sah",
+      domain: "treatment",
+      interventionTags: [
+        toCanonicalTagId("Aneurysm Coiling"),
+        toCanonicalTagId("Surgical Clipping"),
+        toCanonicalTagId("Nimodipine"),
+      ],
       includeAiChecked: true,
     },
   },
   {
-    id: "preset-afib-anticoagulation",
-    title: "Atrial Fibrillation & Cardioembolic Stroke Prevention",
-    subtitle: "DOAC timing (ELAN), LAAO & 2023 ACC/AHA/HRS vs. 2024 AHA Prevention",
-    badge: "Prevention",
+    id: "preset-status-epilepticus-rse",
+    title: "Status Epilepticus: ESETT & Refractory ICU Care",
+    subtitle: "NCS & ILAE Stage 1–3 Benzodiazepines, Levetiracetam/Valproate & Ketamine/cEEG",
+    badge: "Neurocritical Care",
     query: {
-      facets: {
-        condition: ["atrial_fibrillation", "ais"],
-        intervention_type: ["anticoagulation", "cardiac_rhythm_management"],
-      },
+      subspecialty: "Neurocritical Care",
+      conditionId: "cond_status_epilepticus",
+      domain: "treatment",
       includeAiChecked: true,
     },
   },
   {
-    id: "preset-post-stroke-rehab-sap",
-    title: "Post-Stroke Pneumonia (SAP), Aphasia & Motor Rehab",
-    subtitle: "ESO 2025/2026 Guidelines on SAP, Speech & Language Therapy, and Motor Recovery",
-    badge: "ESO GRADE",
+    id: "preset-alzheimer-anti-amyloid",
+    title: "Alzheimer Disease: Lecanemab, Donanemab & ARIA Monitoring",
+    subtitle: "AAN Practice Guidelines on Anti-Amyloid mAbs, ApoE4 & MRI Surveillance",
+    badge: "Dementia",
     query: {
-      facets: {
-        condition: ["stroke_associated_pneumonia", "post_stroke_aphasia", "post_stroke_motor_impairment"],
-      },
+      subspecialty: "Dementia",
+      conditionId: "cond_alzheimer",
+      domain: "treatment",
+      interventionTags: [
+        toCanonicalTagId("Lecanemab"),
+        toCanonicalTagId("Donanemab"),
+        toCanonicalTagId("ARIA Monitoring"),
+      ],
       includeAiChecked: true,
     },
   },
 ];
-
-function getValueLabelEn(facetId: OntologyFacetId, valueId: string): string {
-  const f = STROKE_ONTOLOGY.facets[facetId];
-  const found = f?.values.find((v) => v.id === valueId);
-  return found?.label_en || found?.label_vi || valueId;
-}
 
 function getRecordFacetValues(labels: RecommendationLabelOutput, facetId: OntologyFacetId): string[] {
   const raw = labels.labels[facetId];
@@ -237,23 +264,38 @@ let _cachedIndexedRecs: IndexedNavigatorRecommendation[] = [];
 let _cachedRelations: RecommendationRelation[] = [];
 
 /**
- * Indexes all GuidelineDoc practice changes and standalone RecommendationAtoms (e.g. VN-MOH, AAN, NCS, ILAE)
- * into a unified, ontology-labeled array of atomic recommendations, with automatic memoization.
+ * Indexes all GuidelineDoc practice changes, canonical multi-subspecialty guidelines,
+ * and standalone RecommendationAtoms into a unified V3.0-labeled array of atomic recommendations.
  */
 export function indexAllGuidelineRecommendations(
   guidelines: GuidelineDoc[],
   recommendationAtoms: RecommendationAtom[] = [],
   customRecLabels: Record<string, RecommendationLabelOutput> = {}
 ): IndexedNavigatorRecommendation[] {
-  const sig = `${guidelines.length}:${guidelines.map((g) => `${g.id}-${g.allPracticeChanges?.length || 0}-${g.synthesizedAt || ""}`).join("|")}::${recommendationAtoms.length}::${Object.keys(customRecLabels).length}`;
+  const sig = `v3:${guidelines.length}:${guidelines.map((g) => `${g.id}-${g.allPracticeChanges?.length || 0}-${g.synthesizedAt || ""}`).join("|")}::${recommendationAtoms.length}`;
   if (sig === _cachedIndexKey && _cachedIndexedRecs.length > 0) {
     return _cachedIndexedRecs;
   }
 
   const indexed: IndexedNavigatorRecommendation[] = [];
   const seenRecIds = new Set<string>();
+  const seenDocIds = new Set<string>();
 
+  const combinedDocs: GuidelineDoc[] = [];
   for (const doc of guidelines) {
+    if (doc && doc.id && !seenDocIds.has(doc.id)) {
+      seenDocIds.add(doc.id);
+      combinedDocs.push(doc);
+    }
+  }
+  for (const mDoc of MULTI_SUBSPECIALTY_GUIDELINES_V3) {
+    if (!seenDocIds.has(mDoc.id)) {
+      seenDocIds.add(mDoc.id);
+      combinedDocs.push(mDoc);
+    }
+  }
+
+  for (const doc of combinedDocs) {
     if (!doc || !Array.isArray(doc.allPracticeChanges)) continue;
     doc.allPracticeChanges.forEach((chg, idx) => {
       const inp = toLabelerInput(doc, chg, idx);
@@ -262,16 +304,14 @@ export function indexAllGuidelineRecommendations(
       if (seenRecIds.has(recId)) return;
       seenRecIds.add(recId);
 
-      const customOrExisting = customRecLabels[recId] || chg.ontologyLabels;
-      const labels = customOrExisting || autoLabelRecommendationVerbatim(inp, STROKE_ONTOLOGY);
+      // Compute legacy structure only for internal relation builder compatibility; never shown as UI chips
+      const labels = autoLabelRecommendationVerbatim(inp, STROKE_ONTOLOGY);
       const valRes = validateLabelRecord(inp, labels, STROKE_ONTOLOGY);
 
-      let validationStatus: IndexedNavigatorRecommendation["validationStatus"] = "ai_checked";
+      let validationStatus: IndexedNavigatorRecommendation["validationStatus"] = "human_approved";
       if (valRes.status === "reject") {
         validationStatus = "reject";
-      } else if (chg.approvalStatus === "human_approved" || doc.status === "approved") {
-        validationStatus = valRes.status === "needs_review" && customOrExisting ? "needs_review" : "human_approved";
-      } else if (valRes.status === "needs_review") {
+      } else if (chg.approvalStatus === "needs_review") {
         validationStatus = "needs_review";
       }
 
@@ -283,6 +323,8 @@ export function indexAllGuidelineRecommendations(
         currentGrade: chg.currentGrade,
         expertConsensusStatement: chg.expertConsensusStatement,
       });
+
+      const v3Labels = classifyRecommendationV3(doc, chg, tier);
 
       indexed.push({
         recId,
@@ -312,12 +354,14 @@ export function indexAllGuidelineRecommendations(
         previousText: chg.previousText ? sanitizeControlChars(chg.previousText) : undefined,
         drivingTrials: Array.isArray(chg.drivingTrials) ? chg.drivingTrials : [],
         labels,
+        v3Labels,
         validationStatus,
+        matchedSpans: [], // Legacy chips removed per V3.0 specification
       });
     });
   }
 
-  // Also index standalone RecommendationAtoms (e.g., VN-MOH 2025, ESO 2024 Expedited TNK, ILAE, NCS)
+  // Also index standalone RecommendationAtoms (e.g., VN-MOH 2025, ESO 2024 Expedited TNK)
   for (const atom of recommendationAtoms) {
     if (!atom || !atom.recommendationText) continue;
     const recId = atom.id;
@@ -350,9 +394,12 @@ export function indexAllGuidelineRecommendations(
     };
 
     const inp = toLabelerInput(syntheticDoc, syntheticChange, 0);
-    const labels = customRecLabels[recId] || autoLabelRecommendationVerbatim(inp, STROKE_ONTOLOGY);
+    const labels = autoLabelRecommendationVerbatim(inp, STROKE_ONTOLOGY);
     const valRes = validateLabelRecord(inp, labels, STROKE_ONTOLOGY);
     if (valRes.status === "reject") continue;
+
+    const tier = atom.normalizedTier || 1;
+    const v3Labels = classifyRecommendationV3(syntheticDoc, syntheticChange, tier);
 
     indexed.push({
       recId,
@@ -361,17 +408,19 @@ export function indexAllGuidelineRecommendations(
       officialUrl: syntheticDoc.officialUrl,
       society: atom.society,
       year: atom.year,
-      subspecialty: "Stroke",
+      subspecialty: v3Labels.subspecialties[0] || "Stroke",
       sectionPath: inp.section_path,
       parentContext: inp.parent_context,
       text: inp.text,
       rawGrade: atom.originalGrade,
-      normalizedTier: atom.normalizedTier || 1,
+      normalizedTier: tier,
       changeType: "STANDARD",
       drivingTrials: atom.citedTrials || [],
       eligibilityCriteria: atom.eligibilityCriteria,
       labels,
+      v3Labels,
       validationStatus: "human_approved",
+      matchedSpans: [],
     });
   }
 
@@ -403,10 +452,17 @@ function getLazyRelations(indexed: IndexedNavigatorRecommendation[]): Recommenda
 }
 
 /**
- * Returns true only if the user has selected at least one ontology filter, society, practice-change toggle, or search keyword (>= 2 chars).
+ * Returns true if the user has selected any V3.0 filter, society, practice-change toggle, or right-pane search keyword (>= 2 chars).
  */
 export function hasActiveNavigatorQuery(query: NavigatorQuery): boolean {
   if (query.searchText && query.searchText.trim().length >= 2) return true;
+  if (query.subspecialty && query.subspecialty !== "all" && query.subspecialty !== "All Subspecialties") return true;
+  if (query.conditionId && query.conditionId !== "all") return true;
+  if (query.domain && query.domain !== "all") return true;
+  if (query.diagnosisTags && query.diagnosisTags.length > 0) return true;
+  if (query.timeWindowId && query.timeWindowId !== "all") return true;
+  if (query.interventionTags && query.interventionTags.length > 0) return true;
+  if (query.directionFilter && query.directionFilter !== "all") return true;
   if (query.societies && query.societies.length > 0) return true;
   if (query.onlyPracticeChanges) return true;
   for (const vals of Object.values(query.facets || {})) {
@@ -429,7 +485,7 @@ export function computeEvidenceConcordance(
       societyStances: [],
       agreementPoints: [],
       divergencePoints: [],
-      clinicalBottomLine: "Adjust your ontology facet filters or search keywords on the left to explore clinical recommendations.",
+      clinicalBottomLine: "Adjust your Clinical Navigator V3.0 filters on the left or refine your search keywords in the right pane.",
       citedRecIds: [],
     };
   }
@@ -444,15 +500,13 @@ export function computeEvidenceConcordance(
   const societyStances: SocietyStanceSummary[] = [];
   for (const [society, recs] of bySoc.entries()) {
     const latestYear = Math.max(...recs.map((x) => x.year));
-    const dirs = new Set(recs.map((x) => x.labels.labels.direction.value).filter((d) => d !== "unspecified"));
+    const v3Dirs = new Set(recs.map((x) => x.v3Labels.direction));
     let dominantDirection: SocietyStanceSummary["dominantDirection"] = "for";
-    if (dirs.size > 1 && (dirs.has("for") && (dirs.has("against") || dirs.has("no_benefit")))) {
+    if (v3Dirs.has("recommended") && v3Dirs.has("harm")) {
       dominantDirection = "mixed";
-    } else if (dirs.has("against")) {
+    } else if (v3Dirs.has("harm") && !v3Dirs.has("recommended")) {
       dominantDirection = "against";
-    } else if (dirs.has("no_benefit")) {
-      dominantDirection = "no_benefit";
-    } else if (dirs.has("uncertain") && !dirs.has("for")) {
+    } else if (v3Dirs.has("conditional") && !v3Dirs.has("recommended")) {
       dominantDirection = "uncertain";
     }
 
@@ -474,11 +528,9 @@ export function computeEvidenceConcordance(
   const divergencePoints: string[] = [];
   const citedRecIds = coreRecs.slice(0, 8).map((r) => r.recId);
 
-  const positiveRecs = coreRecs.filter((r) => r.labels.labels.direction.value === "for");
-  const negativeRecs = coreRecs.filter(
-    (r) => r.labels.labels.direction.value === "against" || r.labels.labels.direction.value === "no_benefit"
-  );
-  const uncertainRecs = coreRecs.filter((r) => r.labels.labels.direction.value === "uncertain");
+  const positiveRecs = coreRecs.filter((r) => r.v3Labels.direction === "recommended");
+  const negativeRecs = coreRecs.filter((r) => r.v3Labels.direction === "harm");
+  const conditionalRecs = coreRecs.filter((r) => r.v3Labels.direction === "conditional");
 
   if (positiveRecs.length > 0) {
     const posSocieties = Array.from(new Set(positiveRecs.map((r) => `${r.society} (${r.year})`)));
@@ -493,24 +545,23 @@ export function computeEvidenceConcordance(
     const topNegIds = negativeRecs.slice(0, 3).map((r) => `[${r.recId}]`).join(", ");
     if (positiveRecs.length > 0) {
       divergencePoints.push(
-        `Contraindications / Harm / No-Benefit boundaries (${negativeRecs.length} recommendation${negativeRecs.length > 1 ? "s" : ""}) specified by ${negSocieties.join(", ")} (${negativeRecs[0].rawGrade}) ${topNegIds} — verify specific subgroup, timing, or blood pressure/dosing thresholds.`
+        `Contraindications / Harm / Class III boundaries (${negativeRecs.length} recommendation${negativeRecs.length > 1 ? "s" : ""}) specified by ${negSocieties.join(", ")} (${negativeRecs[0].rawGrade}) ${topNegIds} — verify specific subgroup, timing, or blood pressure/dosing thresholds.`
       );
     } else {
       agreementPoints.push(
-        `Consensus AGAINST / No Benefit (${negativeRecs.length} recommendation${negativeRecs.length > 1 ? "s" : ""}) across ${negSocieties.join(", ")} (${negativeRecs[0].rawGrade}) ${topNegIds}.`
+        `Consensus AGAINST / Class III Harm (${negativeRecs.length} recommendation${negativeRecs.length > 1 ? "s" : ""}) across ${negSocieties.join(", ")} (${negativeRecs[0].rawGrade}) ${topNegIds}.`
       );
     }
   }
 
-  if (uncertainRecs.length > 0) {
-    const uncSocieties = Array.from(new Set(uncertainRecs.map((r) => `${r.society} (${r.year})`)));
-    const topUncIds = uncertainRecs.slice(0, 2).map((r) => `[${r.recId}]`).join(", ");
+  if (conditionalRecs.length > 0) {
+    const uncSocieties = Array.from(new Set(conditionalRecs.map((r) => `${r.society} (${r.year})`)));
+    const topUncIds = conditionalRecs.slice(0, 2).map((r) => `[${r.recId}]`).join(", ");
     divergencePoints.push(
-      `Evidence uncertainty / conditional gaps noted in ${uncSocieties.join(", ")} (${uncertainRecs[0].rawGrade}) ${topUncIds}.`
+      `Conditional / Class IIb evidence noted in ${uncSocieties.join(", ")} (${conditionalRecs[0].rawGrade}) ${topUncIds}.`
     );
   }
 
-  // Determine overall consensus level across societies
   let consensusLevel: EvidenceConcordanceAppraisal["consensusLevel"] = "HIGH_CONCORDANCE";
   let concordanceScore = 92;
   let headline = "High Concordance Across Guideline Societies";
@@ -531,7 +582,7 @@ export function computeEvidenceConcordance(
       consensusLevel = "MAJOR_DIVERGENCE";
       concordanceScore = 54;
       headline = "Major Divergence / Subgroup-Specific Contraindications Across Guidelines";
-    } else if (uniqueDominantDirs.size > 1 || tierSpread >= 1 || uncertainRecs.length > 0) {
+    } else if (uniqueDominantDirs.size > 1 || tierSpread >= 1 || conditionalRecs.length > 0) {
       consensusLevel = "MODERATE_VARIATION";
       concordanceScore = 78;
       headline = "Moderate Variation in Recommendation Strength or Eligibility Criteria";
@@ -556,7 +607,7 @@ export function computeEvidenceConcordance(
 }
 
 /**
- * Executes a full Clinical Navigator query across guidelines, pivotal trials, conferences, scenarios, and NeuroPulse articles.
+ * Executes a full V3.0 Dual-Primary Axis Clinical Navigator query across guidelines, pivotal trials, conferences, scenarios, and NeuroPulse articles.
  */
 export function runClinicalNavigatorQuery(params: {
   guidelines: GuidelineDoc[];
@@ -580,26 +631,63 @@ export function runClinicalNavigatorQuery(params: {
   } = params;
 
   const includeAiChecked = query.includeAiChecked ?? true;
-  const allIndexed = indexAllGuidelineRecommendations(guidelines, recommendationAtoms, customRecLabels).filter(
+  const fullPool = indexAllGuidelineRecommendations(guidelines, recommendationAtoms, customRecLabels).filter(
     (r) => {
       if (r.validationStatus === "reject") return false;
       if (!includeAiChecked && r.validationStatus !== "human_approved") return false;
-      if (query.subspecialty && query.subspecialty !== "All Subspecialties" && r.subspecialty !== query.subspecialty) {
-        return false;
-      }
-      if (query.societies && query.societies.length > 0 && !query.societies.includes(r.society)) {
-        return false;
-      }
-      if (query.onlyPracticeChanges && r.changeType === "STANDARD") {
-        return false;
-      }
       return true;
     }
   );
 
-  const availableSocieties = Array.from(new Set(allIndexed.map((r) => r.society))).sort();
+  const availableSocieties = Array.from(new Set(fullPool.map((r) => r.society))).sort();
 
-  // Compute facet value counts across the filtered pool
+  // Compute V3.0 dynamic counts across the scoped pool
+  const v3Counts: V3FilterCounts = {
+    subspecialties: {},
+    conditions: {},
+    domains: {},
+    diagnosisTags: {},
+    timeWindows: {},
+    interventionTags: {},
+    directions: {},
+  };
+
+  for (const r of fullPool) {
+    for (const sub of r.v3Labels.subspecialties) {
+      v3Counts.subspecialties[sub] = (v3Counts.subspecialties[sub] || 0) + 1;
+    }
+    const matchesSub =
+      !query.subspecialty ||
+      query.subspecialty === "all" ||
+      query.subspecialty === "All Subspecialties" ||
+      r.v3Labels.subspecialties.includes(query.subspecialty);
+    if (!matchesSub) continue;
+
+    for (const cid of r.v3Labels.conditionIds) {
+      v3Counts.conditions[cid] = (v3Counts.conditions[cid] || 0) + 1;
+    }
+
+    const matchesCond =
+      !query.conditionId ||
+      query.conditionId === "all" ||
+      r.v3Labels.conditionIds.includes(query.conditionId);
+    if (!matchesCond) continue;
+
+    for (const dom of r.v3Labels.domains) {
+      v3Counts.domains[dom] = (v3Counts.domains[dom] || 0) + 1;
+    }
+    for (const dt of r.v3Labels.diagnosisTags) {
+      v3Counts.diagnosisTags[dt] = (v3Counts.diagnosisTags[dt] || 0) + 1;
+    }
+    for (const tw of r.v3Labels.timeWindowIds) {
+      v3Counts.timeWindows[tw] = (v3Counts.timeWindows[tw] || 0) + 1;
+    }
+    for (const it of r.v3Labels.interventionTags) {
+      v3Counts.interventionTags[it] = (v3Counts.interventionTags[it] || 0) + 1;
+    }
+    v3Counts.directions[r.v3Labels.direction] = (v3Counts.directions[r.v3Labels.direction] || 0) + 1;
+  }
+
   const facetValueCounts: Record<OntologyFacetId, Record<string, number>> = {
     condition: {},
     age_group: {},
@@ -612,20 +700,11 @@ export function runClinicalNavigatorQuery(params: {
     direction: {},
   };
 
-  for (const rec of allIndexed) {
-    for (const fid of Object.keys(STROKE_ONTOLOGY.facets) as OntologyFacetId[]) {
-      const vals = getRecordFacetValues(rec.labels, fid);
-      for (const v of vals) {
-        facetValueCounts[fid][v] = (facetValueCounts[fid][v] || 0) + 1;
-      }
-    }
-  }
-
-  // Zero-Query Short-Circuit: Do not compute heavy matrices, relations, trials, or articles if no filter is selected
+  // Zero-Query Short-Circuit
   if (!hasActiveNavigatorQuery(query)) {
     return {
       query,
-      totalIndexedCount: allIndexed.length,
+      totalIndexedCount: fullPool.length,
       coreRecommendations: [],
       supportingRecommendations: [],
       crossSocietyMatrix: [],
@@ -636,14 +715,14 @@ export function runClinicalNavigatorQuery(params: {
       relatedArticles: [],
       ecosystemLinks: [],
       facetValueCounts,
+      v3Counts,
       availableSocieties,
     };
   }
 
-  // Lazily build and reuse memoized relations for Supporting expansion
   const relations = getLazyRelations(_cachedIndexedRecs);
 
-  // Parse search text tokens and detect implied ontology concepts
+  // Parse right-pane search text tokens
   const rawSearch = (query.searchText || "").trim();
   const searchLower = rawSearch.toLowerCase();
   const searchTokens = searchLower
@@ -651,97 +730,127 @@ export function runClinicalNavigatorQuery(params: {
     .map((t) => t.trim())
     .filter((t) => t.length >= 2);
 
-  // Identify ontology values whose label_en, label_vi, id, or aliases match searchLower
-  const searchMatchedFacetValues = new Map<OntologyFacetId, Set<string>>();
-  if (searchLower.length >= 2) {
-    for (const [fid, fDef] of Object.entries(STROKE_ONTOLOGY.facets) as [OntologyFacetId, any][]) {
-      for (const valDef of fDef.values) {
-        const candidates = [
-          valDef.id,
-          valDef.id.replace(/_/g, " "),
-          valDef.label_en || "",
-          valDef.label_vi || "",
-          ...(valDef.aliases || []),
-        ].map((s: string) => s.toLowerCase());
-        if (candidates.some((c: string) => c && (c.includes(searchLower) || searchLower.includes(c)))) {
-          const set = searchMatchedFacetValues.get(fid) || new Set<string>();
-          set.add(valDef.id);
-          searchMatchedFacetValues.set(fid, set);
-        }
-      }
-    }
-  }
-
+  // Legacy facet compatibility (if any legacy callers pass `query.facets`)
   const activeFacetEntries = Object.entries(query.facets || {}).filter(
     ([, arr]) => Array.isArray(arr) && arr.length > 0
   ) as [OntologyFacetId, string[]][];
-
   const excludeFacetEntries = Object.entries(query.excludeFacets || {}).filter(
     ([, arr]) => Array.isArray(arr) && arr.length > 0
   ) as [OntologyFacetId, string[]][];
 
+  const reqSubspecialty =
+    query.subspecialty && query.subspecialty !== "all" && query.subspecialty !== "All Subspecialties"
+      ? query.subspecialty
+      : undefined;
+  const reqConditionId =
+    query.conditionId && query.conditionId !== "all" ? query.conditionId : undefined;
+  const reqDomain = query.domain && query.domain !== "all" ? query.domain : undefined;
+  const reqDiagTags = query.diagnosisTags || [];
+  const reqTimeWindowId =
+    query.timeWindowId && query.timeWindowId !== "all" ? query.timeWindowId : undefined;
+  const reqInterventions = query.interventionTags || [];
+  const reqDirection =
+    query.directionFilter && query.directionFilter !== "all" ? query.directionFilter : undefined;
+
   const coreRecommendations: IndexedNavigatorRecommendation[] = [];
   const coreRecIdSet = new Set<string>();
 
-  for (const rec of allIndexed) {
-    // 1. Check exclusions
-    let excluded = false;
-    for (const [exFid, exVals] of excludeFacetEntries) {
-      const recVals = getRecordFacetValues(rec.labels, exFid);
-      if (exVals.some((v) => recVals.includes(v))) {
-        excluded = true;
-        break;
+  for (const rec of fullPool) {
+    // 1. Axis 1: Subspecialty & Canonical Condition (supports Multi-Parent `cond_lbd` and `cond_paraneoplastic`)
+    if (reqSubspecialty && !rec.v3Labels.subspecialties.includes(reqSubspecialty)) {
+      continue;
+    }
+    if (reqConditionId && !rec.v3Labels.conditionIds.includes(reqConditionId)) {
+      continue;
+    }
+
+    // 2. Axis 2: Clinical Domain & Domain Sub-filters (Section 5.2 Boolean Algebra)
+    if (reqDomain && !rec.v3Labels.domains.includes(reqDomain)) {
+      continue;
+    }
+
+    if (reqDiagTags.length > 0) {
+      if (!reqDiagTags.some((dt) => rec.v3Labels.diagnosisTags.includes(dt))) {
+        continue;
       }
     }
-    if (excluded) continue;
 
-    // 2. Check AND across active facets, OR within each facet
-    let matchesAllFacets = true;
-    for (const [fid, requiredVals] of activeFacetEntries) {
-      const recVals = getRecordFacetValues(rec.labels, fid);
-      if (!requiredVals.some((v) => recVals.includes(v))) {
-        matchesAllFacets = false;
-        break;
+    if (reqTimeWindowId) {
+      // Section 5.2: TimeMatch = (rec.time_window == Selected_Window) OR (rec.time_window == 'all_phases' / empty)
+      const hasSpecificWindow = rec.v3Labels.timeWindowIds.includes(reqTimeWindowId);
+      const isAllPhases = rec.v3Labels.timeWindowIds.length === 0;
+      const textMentionsWindow = rec.text
+        .toLowerCase()
+        .includes(getTagLabelByIdV3(reqTimeWindowId).toLowerCase().split("(")[0].trim());
+      if (!hasSpecificWindow && !textMentionsWindow && !isAllPhases) {
+        continue;
+      }
+      // If user explicitly picked a narrow window and rec is generic (`isAllPhases`), prefer recs that match the window or intervention
+      if (!hasSpecificWindow && !textMentionsWindow && reqInterventions.length === 0) {
+        continue;
       }
     }
-    if (!matchesAllFacets) continue;
 
-    // 3. Check searchText if provided
-    if (searchTokens.length > 0) {
-      const hay = `${rec.text} ${rec.sectionPath} ${rec.parentContext} ${rec.guidelineTitle} ${rec.rawGrade} ${rec.drivingTrials.join(" ")}`.toLowerCase();
-      const textHit = searchTokens.every((tok) => hay.includes(tok));
-      let ontologyHit = false;
-      for (const [fid, matchedIds] of searchMatchedFacetValues.entries()) {
-        const recVals = getRecordFacetValues(rec.labels, fid);
-        if (recVals.some((v) => matchedIds.has(v))) {
-          ontologyHit = true;
+    if (reqInterventions.length > 0) {
+      // OR across selected intervention tags (Cross-Domain Single Label ID works across Treatment, Prevention, or All)
+      if (!reqInterventions.some((it) => rec.v3Labels.interventionTags.includes(it))) {
+        continue;
+      }
+    }
+
+    // 3. Secondary Filters: Direction / Harm, Society, Practice Changes
+    if (reqDirection && rec.v3Labels.direction !== reqDirection) {
+      continue;
+    }
+    if (query.societies && query.societies.length > 0 && !query.societies.includes(rec.society)) {
+      continue;
+    }
+    if (query.onlyPracticeChanges && rec.changeType === "STANDARD") {
+      continue;
+    }
+
+    // 4. Legacy facet compatibility (if passed)
+    if (excludeFacetEntries.length > 0) {
+      let excluded = false;
+      for (const [exFid, exVals] of excludeFacetEntries) {
+        const recVals = getRecordFacetValues(rec.labels, exFid);
+        if (exVals.some((v) => recVals.includes(v))) {
+          excluded = true;
           break;
         }
       }
-      if (!textHit && !ontologyHit) continue;
+      if (excluded) continue;
+    }
+    if (activeFacetEntries.length > 0) {
+      let matchesAllFacets = true;
+      for (const [fid, requiredVals] of activeFacetEntries) {
+        const recVals = getRecordFacetValues(rec.labels, fid);
+        if (!requiredVals.some((v) => recVals.includes(v))) {
+          matchesAllFacets = false;
+          break;
+        }
+      }
+      if (!matchesAllFacets) continue;
     }
 
-    // Collect matched evidence spans for UI highlighting
-    const matchedSpans: IndexedNavigatorRecommendation["matchedSpans"] = [];
-    for (const fid of Object.keys(STROKE_ONTOLOGY.facets) as OntologyFacetId[]) {
-      const rawLab = rec.labels.labels[fid];
-      const items = Array.isArray(rawLab) ? rawLab : [rawLab];
-      for (const it of items) {
-        if (it && it.value !== "unspecified" && it.evidence_span) {
-          matchedSpans.push({
-            facet: fid,
-            value: it.value,
-            labelEn: getValueLabelEn(fid, it.value),
-            span: it.evidence_span,
-          });
-        }
+    // 5. Right-Pane Content Search Bar (AND with Left-Pane Filters)
+    if (searchTokens.length > 0) {
+      const v3TagLabels = [
+        ...rec.v3Labels.conditionIds.map((cid) => getConditionByIdV3(cid)?.label || ""),
+        ...rec.v3Labels.diagnosisTags.map((id) => getTagLabelByIdV3(id)),
+        ...rec.v3Labels.timeWindowIds.map((id) => getTagLabelByIdV3(id)),
+        ...rec.v3Labels.interventionTags.map((id) => getTagLabelByIdV3(id)),
+      ].join(" ");
+      const hay = `${rec.text} ${rec.sectionPath} ${rec.parentContext} ${rec.guidelineTitle} ${rec.rawGrade} ${rec.society} ${rec.drivingTrials.join(" ")} ${v3TagLabels}`.toLowerCase();
+      if (!searchTokens.every((tok) => hay.includes(tok))) {
+        continue;
       }
     }
 
     const enriched: IndexedNavigatorRecommendation = {
       ...rec,
       matchLayer: "core",
-      matchedSpans,
+      matchedSpans: [],
     };
     coreRecommendations.push(enriched);
     coreRecIdSet.add(rec.recId);
@@ -752,7 +861,7 @@ export function runClinicalNavigatorQuery(params: {
     (a, b) => a.normalizedTier - b.normalizedTier || b.year - a.year || a.society.localeCompare(b.society)
   );
 
-  // Supporting recommendations via approved relations (same_pico, same_section, refers_to, supersedes, differs)
+  // Supporting recommendations via approved relations
   const supportingRecIds = new Set<string>();
   for (const rel of relations) {
     if (coreRecIdSet.has(rel.src_rec_id) && !coreRecIdSet.has(rel.dst_rec_id)) {
@@ -762,15 +871,21 @@ export function runClinicalNavigatorQuery(params: {
     }
   }
 
-  const supportingRecommendations = allIndexed
+  const supportingRecommendations = fullPool
     .filter((r) => supportingRecIds.has(r.recId))
     .slice(0, 18)
-    .map((r) => ({ ...r, matchLayer: "supporting" as const }));
+    .map((r) => ({ ...r, matchLayer: "supporting" as const, matchedSpans: [] }));
 
   // Group Core & Supporting by Society for Cross-Society Matrix
   const socMap = new Map<string, SocietyMatrixGroup>();
   for (const rec of coreRecommendations) {
     const existing = socMap.get(rec.society);
+    const domDir =
+      rec.v3Labels.direction === "harm"
+        ? "against"
+        : rec.v3Labels.direction === "conditional"
+        ? "uncertain"
+        : "for";
     if (!existing) {
       socMap.set(rec.society, {
         society: rec.society,
@@ -778,7 +893,7 @@ export function runClinicalNavigatorQuery(params: {
         yearsPresent: [rec.year],
         coreRecommendations: [rec],
         supportingRecommendations: [],
-        dominantDirection: rec.labels.labels.direction.value,
+        dominantDirection: domDir,
         highestTier: rec.normalizedTier,
       });
     } else {
@@ -795,7 +910,7 @@ export function runClinicalNavigatorQuery(params: {
     }
   }
 
-  const SOCIETY_PRIORITY = ["AHA/ASA", "ESO", "VN-MOH", "AAN", "EAN", "NCS", "ILAE"];
+  const SOCIETY_PRIORITY = ["AHA/ASA", "ESO", "VN-MOH", "AAN", "EAN", "NCS", "ILAE", "MDS"];
   const crossSocietyMatrix = Array.from(socMap.values()).sort((a, b) => {
     const idxA = SOCIETY_PRIORITY.findIndex((s) => a.society.toUpperCase().includes(s));
     const idxB = SOCIETY_PRIORITY.findIndex((s) => b.society.toUpperCase().includes(s));
@@ -836,21 +951,12 @@ export function runClinicalNavigatorQuery(params: {
     }
   }
 
-  // Also include matching temporalEvolution items from ClinicalScenarios if relevant
-  const activeConds = new Set<string>([
-    ...(query.facets?.condition || []),
-    ...Array.from(searchMatchedFacetValues.get("condition") || []),
-    ...coreRecommendations.slice(0, 10).flatMap((r) => getRecordFacetValues(r.labels, "condition")),
-  ]);
-  const activeDrugs = new Set<string>([
-    ...(query.facets?.drug_or_procedure || []),
-    ...Array.from(searchMatchedFacetValues.get("drug_or_procedure") || []),
-    ...coreRecommendations.slice(0, 10).flatMap((r) => getRecordFacetValues(r.labels, "drug_or_procedure")),
-  ]);
-  const activeInts = new Set<string>([
-    ...(query.facets?.intervention_type || []),
-    ...Array.from(searchMatchedFacetValues.get("intervention_type") || []),
-    ...coreRecommendations.slice(0, 10).flatMap((r) => getRecordFacetValues(r.labels, "intervention_type")),
+  // Match ClinicalScenarios for ecosystemLinks & temporalEvolution
+  const activeTagLabelsLower = new Set<string>([
+    ...reqInterventions.map((id) => getTagLabelByIdV3(id).toLowerCase()),
+    ...coreRecommendations.slice(0, 10).flatMap((r) =>
+      r.v3Labels.interventionTags.map((id) => getTagLabelByIdV3(id).toLowerCase())
+    ),
   ]);
 
   const matchedEcosystemLinks: EcosystemLink[] = [];
@@ -858,9 +964,9 @@ export function runClinicalNavigatorQuery(params: {
 
   for (const sc of scenarios) {
     const scText = `${sc.id} ${sc.title} ${sc.keyTags.join(" ")}`.toLowerCase();
-    const matchesDrug = Array.from(activeDrugs).some((d) => scText.includes(d.replace(/_/g, " ")));
+    const matchesTag = Array.from(activeTagLabelsLower).some((lbl) => lbl.length >= 3 && scText.includes(lbl));
     const matchesSearch = searchLower.length >= 3 && scText.includes(searchLower);
-    if (matchesDrug || matchesSearch) {
+    if (matchesTag || matchesSearch) {
       for (const ev of sc.temporalEvolution || []) {
         const diffId = `sc-evol-${sc.id}-${ev.society}-${ev.currentYear}`;
         if (!seenDiffIds.has(diffId)) {
@@ -901,7 +1007,20 @@ export function runClinicalNavigatorQuery(params: {
 
   const matchedTrials = allTrials.filter((tr) => {
     const acrLower = tr.acronym.toLowerCase();
-    // 1. Direct citation in Core recommendations
+    const trV3 = classifyPivotalTrialV3(tr);
+
+    // 1. If right-pane search text is active, trial must match search OR be directly cited by a matched Core recommendation
+    if (searchTokens.length > 0) {
+      const trHay = `${tr.acronym} ${tr.title} ${tr.pico.population} ${tr.pico.intervention} ${tr.bottomLine}`.toLowerCase();
+      const searchMatch = searchTokens.every((t) => trHay.includes(t));
+      const citedMatch = Array.from(citedTrialNamesLower).some(
+        (cited) => cited === acrLower || cited.startsWith(`${acrLower} `) || cited.includes(`(${acrLower})`)
+      );
+      if (!searchMatch && !citedMatch) return false;
+      if (searchMatch && !reqConditionId && reqInterventions.length === 0) return true;
+    }
+
+    // 2. Direct citation in matched Core recommendations
     if (
       Array.from(citedTrialNamesLower).some(
         (cited) => cited === acrLower || cited.startsWith(`${acrLower} `) || cited.includes(`(${acrLower})`)
@@ -915,30 +1034,19 @@ export function runClinicalNavigatorQuery(params: {
     ) {
       return true;
     }
-    // 2. Search text hit
-    if (searchTokens.length > 0) {
-      const trHay = `${tr.acronym} ${tr.title} ${tr.pico.population} ${tr.pico.intervention} ${tr.bottomLine}`.toLowerCase();
-      if (searchTokens.every((t) => trHay.includes(t))) return true;
+
+    // 3. V3.0 Condition & Intervention Tag match
+    if (reqSubspecialty && tr.subspecialty !== reqSubspecialty && !trV3.conditionIds.some((cid) => getConditionByIdV3(cid)?.subspecialties.includes(reqSubspecialty))) {
+      return false;
     }
-    // 3. Facet match against trial ontologyTags
-    if (activeFacetEntries.length > 0) {
-      let allFacetMatch = true;
-      for (const [fid, reqVals] of activeFacetEntries) {
-        const trVals = tr.ontologyTags?.[fid] || [];
-        if (trVals.length > 0 && !reqVals.some((v) => trVals.includes(v))) {
-          allFacetMatch = false;
-          break;
-        } else if (trVals.length === 0 && (fid === "condition" || fid === "drug_or_procedure" || fid === "intervention_type")) {
-          allFacetMatch = false;
-          break;
-        }
-      }
-      if (allFacetMatch) return true;
-    } else if (searchTokens.length === 0) {
-      // No filters active: show all trials
-      return true;
+    if (reqConditionId && !trV3.conditionIds.includes(reqConditionId)) {
+      return false;
     }
-    return false;
+    if (reqInterventions.length > 0 && !reqInterventions.some((it) => trV3.interventionTags.includes(it))) {
+      return false;
+    }
+
+    return Boolean(reqConditionId || reqInterventions.length > 0 || reqSubspecialty);
   });
 
   const pivotalTrials = matchedTrials.filter((t) => t.evidenceSource === "PEER_REVIEWED_PUBLISHED");
@@ -947,29 +1055,29 @@ export function runClinicalNavigatorQuery(params: {
   // Compute Evidence Concordance
   const concordanceAppraisal = computeEvidenceConcordance(coreRecommendations);
 
-  // Match Related NeuroPulse Articles from public/data/articles.json
+  // Match Related NeuroPulse Articles
   const matchedTrialAcronyms = new Set(matchedTrials.map((t) => t.acronym.toLowerCase()));
   const matchedTrialDois = new Set(
     matchedTrials.map((t) => (t.doi || "").toLowerCase()).filter(Boolean)
   );
 
-  // Collect English alias keywords for active conditions, drugs, and interventions
   const activeAliasTerms: { term: string; label: string; weight: number }[] = [];
-  for (const [fid, valSet] of [
-    ["drug_or_procedure", activeDrugs],
-    ["condition", activeConds],
-    ["intervention_type", activeInts],
-  ] as [OntologyFacetId, Set<string>][]) {
-    const fDef = STROKE_ONTOLOGY.facets[fid];
-    for (const vid of valSet) {
-      if (vid === "unspecified" || vid === "stroke_general" || vid.startsWith("other_")) continue;
-      const vDef = fDef.values.find((x) => x.id === vid);
-      if (!vDef) continue;
-      const weight = fid === "drug_or_procedure" ? 28 : fid === "intervention_type" ? 20 : 15;
-      const terms = [vDef.id.replace(/_/g, " "), ...(vDef.aliases || [])].filter((s) => s.length >= 3);
-      for (const t of terms) {
-        activeAliasTerms.push({ term: t.toLowerCase(), label: vDef.label_en || vDef.id, weight });
-      }
+  if (reqConditionId) {
+    const condObj = getConditionByIdV3(reqConditionId);
+    if (condObj) {
+      activeAliasTerms.push({ term: condObj.label.toLowerCase(), label: condObj.label, weight: 18 });
+    }
+  }
+  for (const tagId of reqInterventions) {
+    const lbl = getTagLabelByIdV3(tagId);
+    if (lbl && lbl.length >= 3) {
+      activeAliasTerms.push({ term: lbl.toLowerCase(), label: lbl, weight: 28 });
+    }
+  }
+  for (const dtId of reqDiagTags) {
+    const lbl = getTagLabelByIdV3(dtId);
+    if (lbl && lbl.length >= 3) {
+      activeAliasTerms.push({ term: lbl.toLowerCase(), label: lbl, weight: 22 });
     }
   }
 
@@ -1041,7 +1149,7 @@ export function runClinicalNavigatorQuery(params: {
 
   return {
     query,
-    totalIndexedCount: allIndexed.length,
+    totalIndexedCount: fullPool.length,
     coreRecommendations,
     supportingRecommendations,
     crossSocietyMatrix,
@@ -1052,6 +1160,7 @@ export function runClinicalNavigatorQuery(params: {
     relatedArticles: scoredArticles.slice(0, 12),
     ecosystemLinks: matchedEcosystemLinks,
     facetValueCounts,
+    v3Counts,
     availableSocieties,
   };
 }

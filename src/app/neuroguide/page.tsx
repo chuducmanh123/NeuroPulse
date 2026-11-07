@@ -2038,7 +2038,7 @@ export default function NeuroGuidePage() {
                               onClick={() => {
                                 setNavigatorSeedQuery({
                                   searchText: currentScenario.keyTags?.[0] || currentScenario.titleEn || currentScenario.title,
-                                  facets: {},
+                                  subspecialty: currentScenario.subspecialty,
                                   includeAiChecked: true,
                                 });
                                 setActiveTab("navigator");

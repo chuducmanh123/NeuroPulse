@@ -88,6 +88,17 @@ export interface PracticeChangeDetail {
   pageNum?: number;
   approvalStatus?: "human_approved" | "ai_checked" | "needs_review" | "rejected";
   ontologyLabels?: RecommendationLabelOutput;
+  v3Labels?: RecommendationV3Labels;
+}
+
+export interface RecommendationV3Labels {
+  subspecialties: SubspecialtyType[];
+  conditionIds: string[];
+  domains: ("diagnosis" | "treatment" | "prevention")[];
+  diagnosisTags: string[];
+  timeWindowIds: string[];
+  interventionTags: string[];
+  direction: "recommended" | "conditional" | "harm";
 }
 
 export type FullTextStatus = "FULL_TEXT_PARSED" | "ABSTRACT_ONLY" | "UNAVAILABLE";
@@ -335,14 +346,27 @@ export interface PivotalTrialRecord {
   };
   bottomLine: string;
   ontologyTags: Partial<Record<OntologyFacetId, string[]>>;
+  v3Tags?: {
+    conditionIds: string[];
+    domains: ("diagnosis" | "treatment" | "prevention")[];
+    diagnosisTags?: string[];
+    timeWindowIds?: string[];
+    interventionTags: string[];
+  };
   linkedScenarioIds?: string[];
 }
 
 export interface NavigatorQuery {
   searchText?: string;
-  subspecialty?: SubspecialtyType;
+  subspecialty?: SubspecialtyType | "all";
+  conditionId?: string | "all";
+  domain?: "all" | "diagnosis" | "treatment" | "prevention";
+  diagnosisTags?: string[];
+  timeWindowId?: string | "all";
+  interventionTags?: string[];
+  directionFilter?: "all" | "recommended" | "conditional" | "harm";
   societies?: string[];
-  facets: Partial<Record<OntologyFacetId, string[]>>;
+  facets?: Partial<Record<OntologyFacetId, string[]>>;
   excludeFacets?: Partial<Record<OntologyFacetId, string[]>>;
   includeAiChecked?: boolean;
   onlyPracticeChanges?: boolean;

@@ -1,9 +1,9 @@
-# Capability Map: NeuroGuide Clinical Navigator & Ontology-Driven Evidence Engine
+# Capability Map: NeuroGuide Clinical Navigator V3.0 (Dual-Primary Axis Taxonomy & Evidence Engine)
 
 | Module id | Responsibility | Depends on |
 |---|---|---|
-| `ontology-and-labeler` | Controlled vocabulary (`stroke_ontology.json` v0.1.0+), atomic recommendation blocks, AI Labeler (Gemini/Claude compatible), independent code validator (`labeler_tools.py` / TS validator), and Admin Review Queue + Gold Set evaluation | — |
-| `pivotal-trials-and-relations` | Ultra-compact Pivotal Trials Registry (~0.5–1 KB/trial JSON/JSONB with PICO + primary/safety endpoints + DOI/PMID), rule-based & AI-proposed recommendation relations (`same_section`, `refers_to`, `same_pico`, `supersedes`, `qualifies`, `differs`, `supports_evidence`), and NeuroPulse article matcher (`public/data/articles.json`) | `ontology-and-labeler` |
-| `clinical-navigator-ui` | English-language **Clinical Navigator** tab in NeuroGuide (adjacent to Clinical Scenarios): left-pane faceted ontology & keyword search builder; right-pane dynamic Cross-Society Matrix, Sequential Guideline Diff, Pivotal Trials & Evidence Bridge, Evidence Concordance Appraisal, and Related NeuroPulse Articles | `ontology-and-labeler`, `pivotal-trials-and-relations` |
+| `v3-taxonomy-and-classifier` | V3.0 Dual-Primary Axis Filter Taxonomy (`clinicalNavigatorTaxonomyV3.ts`: 10 Subspecialties, 71 Clinical Conditions with Multi-Parent Canonical IDs, 5 System-Wide Diagnosis Modalities, Condition-Specific Treatment & Prevention with Cross-Domain Single Label IDs) and deterministic V3.0 recommendation/trial classifier (removing legacy 9-facet labels) | — |
+| `v3-query-engine` | Boolean query engine (`clinicalNavigatorEngine.ts`) executing `(Subspecialty) AND (Condition) AND (Clinical Domain) AND (Domain Filters) AND (Secondary Filters) AND (Right-Pane Content Search)` across guidelines, pivotal trials, and NeuroPulse articles | `v3-taxonomy-and-classifier` |
+| `clinical-navigator-ui-v3` | Updated `ClinicalNavigatorTab.tsx` & `PivotalTrialModal.tsx`: Left-pane Dual-Primary Axis filter explorer + Secondary filters; Right-pane persistent Content Search Bar + clean guideline synthesis cards (with all legacy ontology chips removed) | `v3-taxonomy-and-classifier`, `v3-query-engine` |
 
-Build order: `ontology-and-labeler` → `pivotal-trials-and-relations` → `clinical-navigator-ui`
+Build order: `v3-taxonomy-and-classifier` → `v3-query-engine` → `clinical-navigator-ui-v3`

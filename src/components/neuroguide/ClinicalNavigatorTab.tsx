@@ -9,12 +9,24 @@ import type {
   ClinicalScenario,
   PivotalTrialRecord,
   RecommendationLabelOutput,
-  OntologyFacetId,
   NavigatorQuery,
+  SubspecialtyType,
 } from "../../types/neuroguide";
 import { TIER_CONFIG } from "../../types/neuroguide";
 import type { Article } from "../../types/article";
-import { STROKE_ONTOLOGY } from "../../lib/neuroguide/ontologyValidator";
+import {
+  NAVIGATOR_SUBSPECIALTIES_V3,
+  DIAGNOSIS_CATEGORIES_V3,
+  getConditionsForSubspecialtyV3,
+  getConditionByIdV3,
+  getTreatmentSchemaForScopeV3,
+  getPreventionSchemaForScopeV3,
+  getTagLabelByIdV3,
+  type Subspecialty,
+  type ClinicalDomainV3,
+  type DirectionFilterV3,
+  type TaxonomyTagV3,
+} from "../../data/clinicalNavigatorTaxonomyV3";
 import {
   runClinicalNavigatorQuery,
   hasActiveNavigatorQuery,
@@ -37,18 +49,6 @@ interface ClinicalNavigatorTabProps {
   onPivotalTrialsUpdated: (trials: PivotalTrialRecord[]) => void;
   onScenarioSaved?: (scenarios: ClinicalScenario[], atoms: RecommendationAtom[]) => void;
 }
-
-const ORDERED_FACETS: OntologyFacetId[] = [
-  "condition",
-  "phase",
-  "intervention_type",
-  "drug_or_procedure",
-  "time_window",
-  "age_group",
-  "special_populations",
-  "outcome_target",
-  "direction",
-];
 
 const INITIAL_VISIBLE_RECS_PER_SOCIETY = 10;
 const LOAD_MORE_RECS_STEP = 15;
@@ -75,7 +75,7 @@ function getSocietyBadgeStyle(society: string): string {
   if (s.includes("NCS")) {
     return "bg-violet-100 text-violet-800 border-violet-300 dark:bg-violet-950/60 dark:text-violet-300 dark:border-violet-800";
   }
-  if (s.includes("AAN") || s.includes("ILAE")) {
+  if (s.includes("AAN") || s.includes("ILAE") || s.includes("EAN") || s.includes("MDS")) {
     return "bg-indigo-100 text-indigo-800 border-indigo-300 dark:bg-indigo-950/60 dark:text-indigo-300 dark:border-indigo-800";
   }
   return "bg-slate-100 text-slate-800 border-slate-300 dark:bg-slate-800 dark:text-slate-200 dark:border-slate-700";
@@ -84,23 +84,22 @@ function getSocietyBadgeStyle(society: string): string {
 function getDirectionBadge(dir: string) {
   switch (dir) {
     case "for":
+    case "recommended":
       return {
-        label: "Recommended (FOR)",
+        label: "Recommended (Class I / IIa)",
         cls: "bg-emerald-100 text-emerald-800 border-emerald-300 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-800",
       };
     case "against":
+    case "no_benefit":
+    case "harm":
       return {
-        label: "Harm / Contraindicated (AGAINST)",
+        label: "Contraindicated / Harm (Class III)",
         cls: "bg-rose-100 text-rose-800 border-rose-300 dark:bg-rose-950/60 dark:text-rose-300 dark:border-rose-800",
       };
-    case "no_benefit":
-      return {
-        label: "No Benefit (Class III)",
-        cls: "bg-amber-100 text-amber-800 border-amber-300 dark:bg-amber-950/60 dark:text-amber-300 dark:border-amber-800",
-      };
     case "uncertain":
+    case "conditional":
       return {
-        label: "Uncertain / Conditional",
+        label: "Conditional (Class IIb)",
         cls: "bg-sky-100 text-sky-800 border-sky-300 dark:bg-sky-950/60 dark:text-sky-300 dark:border-sky-800",
       };
     default:
@@ -124,15 +123,38 @@ export function ClinicalNavigatorTab({
   onPivotalTrialsUpdated,
   onScenarioSaved,
 }: ClinicalNavigatorTabProps) {
-  // Default to empty filters on initial load so 0 heavy cards are rendered until the user chooses a filter
+  // Right-Pane Content Search Bar state
   const [searchText, setSearchText] = useState<string>(
     initialPresetOrQuery?.searchText || ""
   );
   const deferredSearchText = useDeferredValue(searchText);
 
-  const [selectedFacets, setSelectedFacets] = useState<
-    Partial<Record<OntologyFacetId, string[]>>
-  >(initialPresetOrQuery?.facets || {});
+  // V3.0 Dual-Primary Axis Filter State
+  const [selectedSubspecialty, setSelectedSubspecialty] = useState<Subspecialty | "all">(
+    initialPresetOrQuery?.subspecialty &&
+      initialPresetOrQuery.subspecialty !== "all" &&
+      initialPresetOrQuery.subspecialty !== "All Subspecialties"
+      ? (initialPresetOrQuery.subspecialty as Subspecialty)
+      : "all"
+  );
+  const [selectedConditionId, setSelectedConditionId] = useState<string | "all">(
+    initialPresetOrQuery?.conditionId || "all"
+  );
+  const [selectedDomain, setSelectedDomain] = useState<ClinicalDomainV3>(
+    initialPresetOrQuery?.domain || "all"
+  );
+  const [selectedDiagnosisTags, setSelectedDiagnosisTags] = useState<string[]>(
+    initialPresetOrQuery?.diagnosisTags || []
+  );
+  const [selectedTimeWindowId, setSelectedTimeWindowId] = useState<string | "all">(
+    initialPresetOrQuery?.timeWindowId || "all"
+  );
+  const [selectedInterventionTags, setSelectedInterventionTags] = useState<string[]>(
+    initialPresetOrQuery?.interventionTags || []
+  );
+  const [selectedDirectionFilter, setSelectedDirectionFilter] = useState<DirectionFilterV3>(
+    initialPresetOrQuery?.directionFilter || "all"
+  );
   const [selectedSocieties, setSelectedSocieties] = useState<string[]>(
     initialPresetOrQuery?.societies || []
   );
@@ -145,29 +167,30 @@ export function ClinicalNavigatorTab({
   useEffect(() => {
     if (initialPresetOrQuery) {
       setSearchText(initialPresetOrQuery.searchText || "");
-      setSelectedFacets(initialPresetOrQuery.facets || {});
+      setSelectedSubspecialty(
+        initialPresetOrQuery.subspecialty &&
+          initialPresetOrQuery.subspecialty !== "all" &&
+          initialPresetOrQuery.subspecialty !== "All Subspecialties"
+          ? (initialPresetOrQuery.subspecialty as Subspecialty)
+          : "all"
+      );
+      setSelectedConditionId(initialPresetOrQuery.conditionId || "all");
+      setSelectedDomain(initialPresetOrQuery.domain || "all");
+      setSelectedDiagnosisTags(initialPresetOrQuery.diagnosisTags || []);
+      setSelectedTimeWindowId(initialPresetOrQuery.timeWindowId || "all");
+      setSelectedInterventionTags(initialPresetOrQuery.interventionTags || []);
+      setSelectedDirectionFilter(initialPresetOrQuery.directionFilter || "all");
       setSelectedSocieties(initialPresetOrQuery.societies || []);
       setOnlyPracticeChanges(initialPresetOrQuery.onlyPracticeChanges ?? false);
       setActivePresetId(null);
     }
   }, [initialPresetOrQuery]);
 
-  // Filter Search State: Only searches filters (facets, values, societies), NOT specific content
+  // Left-Pane Filter Quick-Search State: Searches V3.0 filter tags only
   const [filterSearchTerm, setFilterSearchTerm] = useState<string>("");
   const normalizedFilterSearch = filterSearchTerm.trim().toLowerCase();
-  const [isFilterExpanded, setIsFilterExpanded] = useState<boolean>(false);
+  const [isFilterExpanded, setIsFilterExpanded] = useState<boolean>(true);
   const [isTopicsExpanded, setIsTopicsExpanded] = useState<boolean>(false);
-  const [expandedFacets, setExpandedFacets] = useState<Record<string, boolean>>({
-    condition: false,
-    phase: false,
-    intervention_type: false,
-    drug_or_procedure: false,
-    time_window: false,
-    age_group: false,
-    special_populations: false,
-    outcome_target: false,
-    direction: false,
-  });
   const [sectionView, setSectionView] = useState<RightSectionFilter>("ALL");
   const [showSupportingBySociety, setShowSupportingBySociety] = useState<
     Record<string, boolean>
@@ -188,12 +211,29 @@ export function ClinicalNavigatorTab({
   const activeQuery: NavigatorQuery = useMemo(
     () => ({
       searchText: deferredSearchText,
-      facets: selectedFacets,
+      subspecialty: selectedSubspecialty,
+      conditionId: selectedConditionId,
+      domain: selectedDomain,
+      diagnosisTags: selectedDiagnosisTags.length > 0 ? selectedDiagnosisTags : undefined,
+      timeWindowId: selectedTimeWindowId !== "all" ? selectedTimeWindowId : undefined,
+      interventionTags: selectedInterventionTags.length > 0 ? selectedInterventionTags : undefined,
+      directionFilter: selectedDirectionFilter !== "all" ? selectedDirectionFilter : undefined,
       societies: selectedSocieties.length > 0 ? selectedSocieties : undefined,
       includeAiChecked: true,
       onlyPracticeChanges,
     }),
-    [deferredSearchText, selectedFacets, selectedSocieties, onlyPracticeChanges]
+    [
+      deferredSearchText,
+      selectedSubspecialty,
+      selectedConditionId,
+      selectedDomain,
+      selectedDiagnosisTags,
+      selectedTimeWindowId,
+      selectedInterventionTags,
+      selectedDirectionFilter,
+      selectedSocieties,
+      onlyPracticeChanges,
+    ]
   );
 
   const isQueryActive = useMemo(
@@ -201,7 +241,6 @@ export function ClinicalNavigatorTab({
     [activeQuery]
   );
 
-  // Execute memoized Clinical Navigator Engine (short-circuits in <1ms when isQueryActive is false)
   const navResult = useMemo(() => {
     return runClinicalNavigatorQuery({
       guidelines,
@@ -224,40 +263,127 @@ export function ClinicalNavigatorTab({
     activeQuery,
   ]);
 
+  // Dynamic conditions for Axis 1
+  const availableConditions = useMemo(() => {
+    const conds = getConditionsForSubspecialtyV3(selectedSubspecialty);
+    if (!normalizedFilterSearch) return conds;
+    return conds.filter((c) => c.label.toLowerCase().includes(normalizedFilterSearch));
+  }, [selectedSubspecialty, normalizedFilterSearch]);
+
+  // Dynamic Treatment & Prevention schemas for Axis 2
+  const treatmentSchema = useMemo(
+    () => getTreatmentSchemaForScopeV3(selectedSubspecialty, selectedConditionId),
+    [selectedSubspecialty, selectedConditionId]
+  );
+  const preventionSchema = useMemo(
+    () => getPreventionSchemaForScopeV3(selectedSubspecialty, selectedConditionId),
+    [selectedSubspecialty, selectedConditionId]
+  );
+
+  const filterTagsBySearch = (tags: TaxonomyTagV3[]) => {
+    if (!normalizedFilterSearch) return tags;
+    return tags.filter((t) => t.label.toLowerCase().includes(normalizedFilterSearch));
+  };
+
+  const handleSelectSubspecialty = (sub: Subspecialty | "all") => {
+    setActivePresetId(null);
+    setVisibleCountBySociety({});
+    setSelectedSubspecialty(sub);
+    // Keep condition only if it also belongs to the new subspecialty (Multi-Parent support)
+    if (sub !== "all" && selectedConditionId !== "all") {
+      const cond = getConditionByIdV3(selectedConditionId);
+      if (!cond || !cond.subspecialties.includes(sub)) {
+        setSelectedConditionId("all");
+        setSelectedTimeWindowId("all");
+        setSelectedInterventionTags([]);
+      }
+    }
+  };
+
+  const handleSelectCondition = (condId: string | "all") => {
+    setActivePresetId(null);
+    setVisibleCountBySociety({});
+    setSelectedConditionId(condId);
+    setSelectedTimeWindowId("all");
+    // Preserve cross-domain or shared tags that also exist in the newly selected condition
+    if (condId !== "all") {
+      const cond = getConditionByIdV3(condId);
+      if (cond) {
+        const validIds = new Set([
+          ...cond.treatment.drugs.map((t) => t.id),
+          ...cond.treatment.interventions.map((t) => t.id),
+          ...cond.treatment.otherCare.map((t) => t.id),
+          ...cond.prevention.pharmacologicalProphylaxis.map((t) => t.id),
+          ...cond.prevention.proceduralDevice.map((t) => t.id),
+          ...cond.prevention.lifestyleRehabMonitoring.map((t) => t.id),
+        ]);
+        setSelectedInterventionTags((prev) => prev.filter((id) => validIds.has(id)));
+      }
+    }
+  };
+
+  const handleSelectDomain = (dom: ClinicalDomainV3) => {
+    setActivePresetId(null);
+    setVisibleCountBySociety({});
+    setSelectedDomain(dom);
+    // Note: Per Rule 2 (Cross-Domain Single Label Principle), we preserve `selectedInterventionTags`
+    // when switching between Treatment, Prevention, and All Domains so tags like `DOAC`, `SAPT`, `VP Shunt` seamlessly pivot!
+    if (dom === "diagnosis") {
+      setSelectedTimeWindowId("all");
+    }
+  };
+
+  const handleToggleDiagnosisTag = (tagId: string) => {
+    setActivePresetId(null);
+    setVisibleCountBySociety({});
+    setSelectedDiagnosisTags((prev) =>
+      prev.includes(tagId) ? prev.filter((id) => id !== tagId) : [...prev, tagId]
+    );
+  };
+
+  const handleToggleInterventionTag = (tagId: string) => {
+    setActivePresetId(null);
+    setVisibleCountBySociety({});
+    setSelectedInterventionTags((prev) =>
+      prev.includes(tagId) ? prev.filter((id) => id !== tagId) : [...prev, tagId]
+    );
+  };
+
   const handleApplyPreset = (presetId: string) => {
     const preset = NAVIGATOR_QUICK_PRESETS.find((p) => p.id === presetId);
     if (!preset) return;
     setActivePresetId(preset.id);
     setSearchText(preset.query.searchText || "");
     setFilterSearchTerm("");
-    setSelectedFacets(preset.query.facets || {});
+    setSelectedSubspecialty(
+      preset.query.subspecialty &&
+        preset.query.subspecialty !== "all" &&
+        preset.query.subspecialty !== "All Subspecialties"
+        ? (preset.query.subspecialty as Subspecialty)
+        : "all"
+    );
+    setSelectedConditionId(preset.query.conditionId || "all");
+    setSelectedDomain(preset.query.domain || "all");
+    setSelectedDiagnosisTags(preset.query.diagnosisTags || []);
+    setSelectedTimeWindowId(preset.query.timeWindowId || "all");
+    setSelectedInterventionTags(preset.query.interventionTags || []);
+    setSelectedDirectionFilter(preset.query.directionFilter || "all");
     setSelectedSocieties(preset.query.societies || []);
     setOnlyPracticeChanges(preset.query.onlyPracticeChanges ?? false);
     setVisibleCountBySociety({});
-  };
-
-  const handleToggleFacetValue = (facetId: OntologyFacetId, valueId: string) => {
-    setActivePresetId(null);
-    setVisibleCountBySociety({});
-    setSelectedFacets((prev) => {
-      const current = prev[facetId] || [];
-      const exists = current.includes(valueId);
-      const next = exists ? current.filter((v) => v !== valueId) : [...current, valueId];
-      const copy = { ...prev };
-      if (next.length === 0) {
-        delete copy[facetId];
-      } else {
-        copy[facetId] = next;
-      }
-      return copy;
-    });
   };
 
   const handleClearAllFilters = () => {
     setActivePresetId(null);
     setSearchText("");
     setFilterSearchTerm("");
-    setSelectedFacets({});
+    setSelectedSubspecialty("all");
+    setSelectedConditionId("all");
+    setSelectedDomain("all");
+    setSelectedDiagnosisTags([]);
+    setSelectedTimeWindowId("all");
+    setSelectedInterventionTags([]);
+    setSelectedDirectionFilter("all");
     setSelectedSocieties([]);
     setOnlyPracticeChanges(false);
     setVisibleCountBySociety({});
@@ -271,86 +397,90 @@ export function ClinicalNavigatorTab({
     );
   };
 
-  // Active Filter Chips inside Filter Box
-  const activeFilterChips = useMemo(() => {
-    const chips: { facetId: OntologyFacetId; valueId: string; labelEn: string }[] = [];
-    for (const [fid, vals] of Object.entries(selectedFacets) as [OntologyFacetId, string[]][]) {
-      const fDef = STROKE_ONTOLOGY.facets[fid];
-      for (const vid of vals || []) {
-        const vDef = fDef?.values.find((x) => x.id === vid);
-        chips.push({
-          facetId: fid,
-          valueId: vid,
-          labelEn: vDef?.label_en || vDef?.label_vi || vid,
-        });
-      }
+  const activeFilterSummaryChips = useMemo(() => {
+    const chips: { id: string; label: string; onRemove: () => void; color: string }[] = [];
+    if (selectedSubspecialty !== "all") {
+      chips.push({
+        id: `sub:${selectedSubspecialty}`,
+        label: selectedSubspecialty,
+        color: "bg-slate-800 text-white dark:bg-slate-200 dark:text-slate-900",
+        onRemove: () => handleSelectSubspecialty("all"),
+      });
+    }
+    if (selectedConditionId !== "all") {
+      const cond = getConditionByIdV3(selectedConditionId);
+      chips.push({
+        id: `cond:${selectedConditionId}`,
+        label: cond?.label || selectedConditionId,
+        color: "bg-indigo-600 text-white",
+        onRemove: () => handleSelectCondition("all"),
+      });
+    }
+    if (selectedDomain !== "all") {
+      const domLabel =
+        selectedDomain === "diagnosis"
+          ? "1. Diagnosis"
+          : selectedDomain === "treatment"
+          ? "2. Treatment"
+          : "3. Prevention & Secondary Care";
+      chips.push({
+        id: `dom:${selectedDomain}`,
+        label: domLabel,
+        color: "bg-violet-600 text-white",
+        onRemove: () => handleSelectDomain("all"),
+      });
+    }
+    if (selectedTimeWindowId !== "all") {
+      chips.push({
+        id: `tw:${selectedTimeWindowId}`,
+        label: `⏱ ${getTagLabelByIdV3(selectedTimeWindowId)}`,
+        color: "bg-amber-600 text-white",
+        onRemove: () => setSelectedTimeWindowId("all"),
+      });
+    }
+    for (const dt of selectedDiagnosisTags) {
+      chips.push({
+        id: `diag:${dt}`,
+        label: getTagLabelByIdV3(dt),
+        color: "bg-cyan-700 text-white",
+        onRemove: () => handleToggleDiagnosisTag(dt),
+      });
+    }
+    for (const it of selectedInterventionTags) {
+      chips.push({
+        id: `int:${it}`,
+        label: getTagLabelByIdV3(it),
+        color: "bg-teal-600 text-white",
+        onRemove: () => handleToggleInterventionTag(it),
+      });
+    }
+    if (selectedDirectionFilter !== "all") {
+      const dirLabel =
+        selectedDirectionFilter === "recommended"
+          ? "Class I / IIa (Recommended)"
+          : selectedDirectionFilter === "conditional"
+          ? "Class IIb (Conditional)"
+          : "Class III (Contraindicated / Harm)";
+      chips.push({
+        id: `dir:${selectedDirectionFilter}`,
+        label: dirLabel,
+        color:
+          selectedDirectionFilter === "harm"
+            ? "bg-rose-600 text-white"
+            : "bg-emerald-600 text-white",
+        onRemove: () => setSelectedDirectionFilter("all"),
+      });
     }
     return chips;
-  }, [selectedFacets]);
-
-  // Filter Options Search Memos: Filter only filters themselves, never content
-  const filteredSocieties = useMemo(() => {
-    if (!normalizedFilterSearch) return navResult.availableSocieties;
-    return navResult.availableSocieties.filter((soc) =>
-      soc.toLowerCase().includes(normalizedFilterSearch)
-    );
-  }, [navResult.availableSocieties, normalizedFilterSearch]);
-
-  const filteredFacets = useMemo(() => {
-    return ORDERED_FACETS.map((facetId) => {
-      const facetDef = STROKE_ONTOLOGY.facets[facetId];
-      if (!facetDef) return null;
-
-      const facetCategoryMatches = Boolean(
-        normalizedFilterSearch &&
-          (facetDef.label_en?.toLowerCase().includes(normalizedFilterSearch) ||
-            facetDef.def?.toLowerCase().includes(normalizedFilterSearch) ||
-            facetId.toLowerCase().replace(/_/g, " ").includes(normalizedFilterSearch))
-      );
-
-      const matchingValues = facetDef.values
-        .filter((v) => v.id !== "unspecified")
-        .filter((val) => {
-          if (!normalizedFilterSearch) return true;
-          if (facetCategoryMatches) return true;
-          const idMatch = val.id.replace(/_/g, " ").toLowerCase().includes(normalizedFilterSearch);
-          const enMatch = val.label_en?.toLowerCase().includes(normalizedFilterSearch);
-          const viMatch = val.label_vi?.toLowerCase().includes(normalizedFilterSearch);
-          const defMatch = val.def?.toLowerCase().includes(normalizedFilterSearch);
-          const aliasMatch = val.aliases?.some((a) =>
-            a.toLowerCase().includes(normalizedFilterSearch)
-          );
-          return Boolean(idMatch || enMatch || viMatch || defMatch || aliasMatch);
-        });
-
-      return {
-        facetId,
-        facetDef,
-        matchingValues,
-        facetCategoryMatches,
-      };
-    }).filter((item): item is NonNullable<typeof item> => item !== null);
-  }, [normalizedFilterSearch]);
-
-  const visibleFacets = useMemo(() => {
-    if (!normalizedFilterSearch) return filteredFacets;
-    return filteredFacets.filter(
-      (f) => f.matchingValues.length > 0 || f.facetCategoryMatches
-    );
-  }, [filteredFacets, normalizedFilterSearch]);
-
-  const hasAnyMatchingFilters = useMemo(() => {
-    if (!normalizedFilterSearch) return true;
-    if (filteredSocieties.length > 0) return true;
-    if (visibleFacets.length > 0) return true;
-    return false;
-  }, [normalizedFilterSearch, filteredSocieties, visibleFacets]);
-
-  const isPracticeChangesVisible =
-    !normalizedFilterSearch ||
-    "only new upgraded revised practice changes recs recommendations".includes(
-      normalizedFilterSearch
-    );
+  }, [
+    selectedSubspecialty,
+    selectedConditionId,
+    selectedDomain,
+    selectedTimeWindowId,
+    selectedDiagnosisTags,
+    selectedInterventionTags,
+    selectedDirectionFilter,
+  ]);
 
   const handleSaveAsScenario = async () => {
     if (navResult.coreRecommendations.length === 0) return;
@@ -358,8 +488,8 @@ export function ClinicalNavigatorTab({
     setStatusBanner(null);
     try {
       const titleFromChips =
-        activeFilterChips.length > 0
-          ? activeFilterChips.map((c) => c.labelEn).join(" • ")
+        activeFilterSummaryChips.length > 0
+          ? activeFilterSummaryChips.map((c) => c.label).join(" • ")
           : searchText.trim() || "Custom Clinical Navigator Synthesis";
 
       const scenarioId = `sc-nav-${Date.now()}`;
@@ -393,7 +523,7 @@ export function ClinicalNavigatorTab({
         titleEn: titleFromChips,
         subspecialty: topRecs[0]?.subspecialty || "Stroke",
         summary: navResult.concordanceAppraisal.headline,
-        keyTags: activeFilterChips.map((c) => c.labelEn).slice(0, 6),
+        keyTags: activeFilterSummaryChips.map((c) => c.label).slice(0, 6),
         statusBadge: "PRACTICE_CHANGING",
         aiSynthesisAppraisal: {
           consensusLevel: consensusMap[navResult.concordanceAppraisal.consensusLevel],
@@ -491,6 +621,56 @@ export function ClinicalNavigatorTab({
     }
   }, [navResult.concordanceAppraisal.consensusLevel]);
 
+  const renderInterventionGroup = (
+    groupTitle: string,
+    items: TaxonomyTagV3[],
+    accentCls = "bg-teal-600 text-white border-teal-600"
+  ) => {
+    const filtered = filterTagsBySearch(items);
+    // Rule 4: Hide empty `[]` groups automatically
+    if (filtered.length === 0) return null;
+    return (
+      <div className="space-y-1.5">
+        <span className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+          {groupTitle}
+        </span>
+        <div className="flex flex-wrap gap-1.5">
+          {filtered.map((item) => {
+            const active = selectedInterventionTags.includes(item.id);
+            const count = navResult.v3Counts.interventionTags[item.id] || 0;
+            return (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => handleToggleInterventionTag(item.id)}
+                className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold border transition flex items-center gap-1.5 ${
+                  active
+                    ? `${accentCls} shadow-sm`
+                    : count > 0
+                    ? "bg-slate-50 dark:bg-slate-800/90 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:border-indigo-400"
+                    : "bg-slate-50/50 dark:bg-slate-900 text-slate-400 dark:text-slate-500 border-slate-100 dark:border-slate-800/70 hover:border-slate-300"
+                }`}
+              >
+                <span>{item.label}</span>
+                {count > 0 && (
+                  <span
+                    className={`text-[10px] px-1 rounded ${
+                      active
+                        ? "bg-black/20 text-white"
+                        : "bg-slate-200/80 dark:bg-slate-700 text-slate-600 dark:text-slate-300"
+                    }`}
+                  >
+                    {count}
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="space-y-4">
       {statusBanner && (
@@ -512,12 +692,12 @@ export function ClinicalNavigatorTab({
         </div>
       )}
 
-      {/* Main 12-Column Split Layout: Left Unified Filter + Topics (4 cols) | Right Evidence Synthesis (8 cols) */}
+      {/* Main 12-Column Split Layout: Left V3.0 Dual-Primary Axis Filter (4 cols) | Right Search + Evidence Synthesis (8 cols) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        {/* LEFT PANE: 1. Unified Filter Card -> 2. High-Yield Clinical Topics */}
+        {/* LEFT PANE: 1. V3.0 Dual-Primary Axis Filter -> 2. High-Yield Clinical Topics */}
         <aside className="lg:col-span-4 space-y-4 lg:sticky lg:top-20">
-          {/* 1. UNIFIED FILTER CARD (Collapsed by default on initial load) */}
-          <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+          {/* 1. V3.0 DUAL-PRIMARY AXIS FILTER CARD */}
+          <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3.5">
             <div className="flex items-center justify-between">
               <button
                 type="button"
@@ -525,12 +705,12 @@ export function ClinicalNavigatorTab({
                 className="flex-1 flex items-center justify-between text-left"
               >
                 <div className="flex items-center gap-2">
-                  <h3 className="text-xs font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200">
-                    🧬 Filter
+                  <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-800 dark:text-slate-200">
+                    🧭 Clinical Filter (V3.0)
                   </h3>
                   {isQueryActive && (
                     <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-600 text-white">
-                      {activeFilterChips.length +
+                      {activeFilterSummaryChips.length +
                         selectedSocieties.length +
                         (searchText.trim().length >= 2 ? 1 : 0) +
                         (onlyPracticeChanges ? 1 : 0)}
@@ -552,12 +732,12 @@ export function ClinicalNavigatorTab({
               )}
             </div>
 
-            {/* Active Query Chips (Visible whenever a filter/topic is active) */}
+            {/* Active Query Chips Summary */}
             {isQueryActive && (
               <div className="p-2.5 rounded-xl bg-indigo-50/50 dark:bg-indigo-950/30 border border-indigo-100 dark:border-indigo-900/60 space-y-1.5">
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
-                    Active Query
+                    Active Filter Matrix
                   </span>
                   <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400">
                     {navResult.coreRecommendations.length} Core Recs
@@ -566,7 +746,7 @@ export function ClinicalNavigatorTab({
                 <div className="flex flex-wrap gap-1">
                   {searchText.trim().length >= 2 && (
                     <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-bold bg-amber-100 text-amber-900 dark:bg-amber-950/70 dark:text-amber-300 border border-amber-300 dark:border-amber-800">
-                      &ldquo;{searchText.trim()}&rdquo;
+                      🔍 &ldquo;{searchText.trim()}&rdquo;
                       <button
                         type="button"
                         onClick={() => setSearchText("")}
@@ -576,6 +756,21 @@ export function ClinicalNavigatorTab({
                       </button>
                     </span>
                   )}
+                  {activeFilterSummaryChips.map((chip) => (
+                    <span
+                      key={chip.id}
+                      className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-bold ${chip.color}`}
+                    >
+                      {chip.label}
+                      <button
+                        type="button"
+                        onClick={chip.onRemove}
+                        className="hover:opacity-75 ml-0.5"
+                      >
+                        ×
+                      </button>
+                    </span>
+                  ))}
                   {selectedSocieties.map((soc) => (
                     <span
                       key={soc}
@@ -586,21 +781,6 @@ export function ClinicalNavigatorTab({
                         type="button"
                         onClick={() => handleToggleSociety(soc)}
                         className="hover:text-rose-600 ml-0.5"
-                      >
-                        ×
-                      </button>
-                    </span>
-                  ))}
-                  {activeFilterChips.map((chip) => (
-                    <span
-                      key={`${chip.facetId}:${chip.valueId}`}
-                      className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-bold bg-indigo-600 text-white"
-                    >
-                      {chip.labelEn}
-                      <button
-                        type="button"
-                        onClick={() => handleToggleFacetValue(chip.facetId, chip.valueId)}
-                        className="hover:text-rose-200 ml-0.5"
                       >
                         ×
                       </button>
@@ -623,14 +803,14 @@ export function ClinicalNavigatorTab({
             )}
 
             {isFilterExpanded && (
-              <div className="space-y-3.5 pt-2 border-t border-slate-100 dark:border-slate-800/80">
-                {/* Search Filters Only (e.g. Tenecteplase, EVT, AHA) */}
+              <div className="space-y-4 pt-2 border-t border-slate-100 dark:border-slate-800/80 max-h-[75vh] overflow-y-auto pr-1">
+                {/* Filter Tag Quick-Search */}
                 <div className="relative">
                   <input
                     type="text"
                     value={filterSearchTerm}
                     onChange={(e) => setFilterSearchTerm(e.target.value)}
-                    placeholder="Search filters (e.g. Tenecteplase, EVT, AHA)..."
+                    placeholder="Filter tags (e.g. DOAC, Tenecteplase, VP Shunt, EEG)..."
                     className="w-full pl-3.5 pr-8 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/80 text-slate-900 dark:text-white text-xs font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   />
                   {filterSearchTerm && (
@@ -645,27 +825,388 @@ export function ClinicalNavigatorTab({
                   )}
                 </div>
 
-                {/* Society Filter (Integrated inside Filter) */}
-                {filteredSocieties.length > 0 && (
+                {/* =========================================================
+                    AXIS 1: SUBSPECIALTY -> CLINICAL CONDITION
+                   ========================================================= */}
+                <div className="space-y-2.5">
+                  <div>
+                    <span className="block text-[11px] font-extrabold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-1.5">
+                      Axis 1A • Subspecialty (10)
+                    </span>
+                    <div className="flex flex-wrap gap-1.5">
+                      <button
+                        type="button"
+                        onClick={() => handleSelectSubspecialty("all")}
+                        className={`px-2.5 py-1 rounded-lg text-[11px] font-bold border transition ${
+                          selectedSubspecialty === "all"
+                            ? "bg-slate-900 text-white border-slate-900 dark:bg-white dark:text-slate-900"
+                            : "bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-indigo-400"
+                        }`}
+                      >
+                        All Subspecialties
+                      </button>
+                      {NAVIGATOR_SUBSPECIALTIES_V3.map((sub) => {
+                        const active = selectedSubspecialty === sub;
+                        const count = navResult.v3Counts.subspecialties[sub] || 0;
+                        return (
+                          <button
+                            key={sub}
+                            type="button"
+                            onClick={() => handleSelectSubspecialty(sub)}
+                            className={`px-2.5 py-1 rounded-lg text-[11px] font-bold border transition flex items-center gap-1 ${
+                              active
+                                ? "bg-indigo-600 text-white border-indigo-600 shadow-sm"
+                                : "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-indigo-400"
+                            }`}
+                          >
+                            <span>{sub}</span>
+                            {count > 0 && (
+                              <span
+                                className={`text-[10px] px-1 rounded ${
+                                  active
+                                    ? "bg-indigo-500 text-white"
+                                    : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300"
+                                }`}
+                              >
+                                {count}
+                              </span>
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Clinical Condition Pills */}
                   <div className="pt-2 border-t border-slate-100 dark:border-slate-800/80">
+                    <span className="block text-[11px] font-extrabold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-1.5">
+                      Axis 1B • Clinical Condition ({availableConditions.length})
+                    </span>
+                    <div className="flex flex-wrap gap-1.5 max-h-40 overflow-y-auto pr-1">
+                      <button
+                        type="button"
+                        onClick={() => handleSelectCondition("all")}
+                        className={`px-2.5 py-1 rounded-lg text-[11px] font-bold border transition ${
+                          selectedConditionId === "all"
+                            ? "bg-slate-900 text-white border-slate-900 dark:bg-white dark:text-slate-900"
+                            : "bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700"
+                        }`}
+                      >
+                        All Conditions
+                      </button>
+                      {availableConditions.map((cond) => {
+                        const active = selectedConditionId === cond.id;
+                        const count = navResult.v3Counts.conditions[cond.id] || 0;
+                        const isMultiParent = cond.subspecialties.length > 1;
+                        return (
+                          <button
+                            key={cond.id}
+                            type="button"
+                            onClick={() => handleSelectCondition(cond.id)}
+                            title={
+                              isMultiParent
+                                ? `Shared across: ${cond.subspecialties.join(" & ")}`
+                                : cond.label
+                            }
+                            className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold border transition flex items-center gap-1 ${
+                              active
+                                ? "bg-indigo-600 text-white border-indigo-600 shadow-sm"
+                                : count > 0
+                                ? "bg-slate-50 dark:bg-slate-800/90 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:border-indigo-400"
+                                : "bg-slate-50/50 dark:bg-slate-900 text-slate-500 dark:text-slate-400 border-slate-200/70 dark:border-slate-800 hover:border-indigo-400"
+                            }`}
+                          >
+                            <span>{cond.label}</span>
+                            {count > 0 && (
+                              <span
+                                className={`text-[10px] px-1 rounded ${
+                                  active
+                                    ? "bg-indigo-500 text-white"
+                                    : "bg-slate-200/80 dark:bg-slate-700 text-slate-600 dark:text-slate-300"
+                                }`}
+                              >
+                                {count}
+                              </span>
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+
+                {/* =========================================================
+                    AXIS 2: CLINICAL DOMAIN & DYNAMIC SUB-FILTERS
+                   ========================================================= */}
+                <div className="pt-2.5 border-t border-slate-200 dark:border-slate-800 space-y-3">
+                  <div>
+                    <span className="block text-[11px] font-extrabold uppercase tracking-wider text-violet-600 dark:text-violet-400 mb-1.5">
+                      Axis 2 • Clinical Domain
+                    </span>
+                    <div className="grid grid-cols-2 gap-1.5">
+                      {(
+                        [
+                          { id: "all", label: "All Domains" },
+                          { id: "diagnosis", label: "1. Diagnosis" },
+                          { id: "treatment", label: "2. Treatment" },
+                          { id: "prevention", label: "3. Prevention & Care" },
+                        ] as const
+                      ).map((dom) => {
+                        const active = selectedDomain === dom.id;
+                        const count =
+                          dom.id === "all"
+                            ? null
+                            : navResult.v3Counts.domains[dom.id] || 0;
+                        return (
+                          <button
+                            key={dom.id}
+                            type="button"
+                            onClick={() => handleSelectDomain(dom.id)}
+                            className={`px-2.5 py-1.5 rounded-xl text-[11px] font-bold border transition flex items-center justify-between ${
+                              active
+                                ? "bg-violet-600 text-white border-violet-600 shadow-sm"
+                                : "bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:border-violet-400"
+                            }`}
+                          >
+                            <span className="truncate">{dom.label}</span>
+                            {count !== null && count > 0 && (
+                              <span
+                                className={`text-[10px] px-1.5 rounded-full ml-1 ${
+                                  active
+                                    ? "bg-violet-500 text-white"
+                                    : "bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300"
+                                }`}
+                              >
+                                {count}
+                              </span>
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* BRANCH 1: 1. DIAGNOSIS (System-Wide Canonical 5 Modalities) */}
+                  {(selectedDomain === "diagnosis" ||
+                    (selectedDomain === "all" && normalizedFilterSearch.length > 0)) && (
+                    <div className="p-3 rounded-xl bg-cyan-50/40 dark:bg-cyan-950/20 border border-cyan-200/70 dark:border-cyan-900/50 space-y-2.5">
+                      <span className="block text-[11px] font-extrabold text-cyan-800 dark:text-cyan-300">
+                        🔬 1. Diagnosis Modalities (System-Wide Canonical)
+                      </span>
+                      {DIAGNOSIS_CATEGORIES_V3.map((cat) => {
+                        const visibleItems = filterTagsBySearch(cat.items);
+                        if (visibleItems.length === 0) return null;
+                        return (
+                          <div key={cat.id} className="space-y-1">
+                            <span className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                              {cat.label}
+                            </span>
+                            <div className="flex flex-wrap gap-1.5">
+                              {visibleItems.map((item) => {
+                                const active = selectedDiagnosisTags.includes(item.id);
+                                const count = navResult.v3Counts.diagnosisTags[item.id] || 0;
+                                return (
+                                  <button
+                                    key={item.id}
+                                    type="button"
+                                    onClick={() => handleToggleDiagnosisTag(item.id)}
+                                    className={`px-2 py-1 rounded-lg text-[11px] font-semibold border transition flex items-center gap-1 ${
+                                      active
+                                        ? "bg-cyan-700 text-white border-cyan-700 shadow-sm"
+                                        : count > 0
+                                        ? "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:border-cyan-400"
+                                        : "bg-white/60 dark:bg-slate-900 text-slate-400 dark:text-slate-500 border-slate-100 dark:border-slate-800"
+                                    }`}
+                                  >
+                                    <span>{item.label}</span>
+                                    {count > 0 && (
+                                      <span
+                                        className={`text-[10px] px-1 rounded ${
+                                          active
+                                            ? "bg-cyan-600 text-white"
+                                            : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300"
+                                        }`}
+                                      >
+                                        {count}
+                                      </span>
+                                    )}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+
+                  {/* BRANCH 2: 2. TREATMENT (Condition-Specific Time Window + Drug / Surgical / Other) */}
+                  {(selectedDomain === "treatment" ||
+                    (selectedDomain === "all" &&
+                      (selectedConditionId !== "all" || normalizedFilterSearch.length > 0))) && (
+                    <div className="p-3 rounded-xl bg-teal-50/40 dark:bg-teal-950/20 border border-teal-200/70 dark:border-teal-900/50 space-y-3">
+                      <span className="block text-[11px] font-extrabold text-teal-800 dark:text-teal-300">
+                        💊 2. Treatment &amp; Acute Management
+                      </span>
+
+                      {/* Condition-Specific Time Window Filter */}
+                      {treatmentSchema.timeWindows.length > 0 && (
+                        <div className="space-y-1.5">
+                          <span className="block text-[10px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400">
+                            ⏱ Time Window
+                          </span>
+                          <div className="flex flex-wrap gap-1.5">
+                            <button
+                              type="button"
+                              onClick={() => setSelectedTimeWindowId("all")}
+                              className={`px-2 py-1 rounded-lg text-[11px] font-bold border transition ${
+                                selectedTimeWindowId === "all"
+                                  ? "bg-amber-600 text-white border-amber-600"
+                                  : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700"
+                              }`}
+                            >
+                              All Phases
+                            </button>
+                            {treatmentSchema.timeWindows.map((tw) => {
+                              const active = selectedTimeWindowId === tw.id;
+                              const count = navResult.v3Counts.timeWindows[tw.id] || 0;
+                              return (
+                                <button
+                                  key={tw.id}
+                                  type="button"
+                                  onClick={() =>
+                                    setSelectedTimeWindowId(active ? "all" : tw.id)
+                                  }
+                                  className={`px-2 py-1 rounded-lg text-[11px] font-semibold border transition flex items-center gap-1 ${
+                                    active
+                                      ? "bg-amber-600 text-white border-amber-600 shadow-sm"
+                                      : "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:border-amber-400"
+                                  }`}
+                                >
+                                  <span>{tw.label}</span>
+                                  {count > 0 && (
+                                    <span className="text-[10px] px-1 rounded bg-amber-100 dark:bg-amber-900/50 text-amber-800 dark:text-amber-200">
+                                      {count}
+                                    </span>
+                                  )}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
+
+                      {renderInterventionGroup(
+                        "Drug",
+                        treatmentSchema.drugs,
+                        "bg-teal-600 text-white border-teal-600"
+                      )}
+                      {renderInterventionGroup(
+                        "Intervention / Surgical",
+                        treatmentSchema.interventions,
+                        "bg-indigo-600 text-white border-indigo-600"
+                      )}
+                      {renderInterventionGroup(
+                        "Other (ICU, Care & Monitoring)",
+                        treatmentSchema.otherCare,
+                        "bg-slate-800 text-white border-slate-800 dark:bg-slate-200 dark:text-slate-900"
+                      )}
+                    </div>
+                  )}
+
+                  {/* BRANCH 3: 3. PREVENTION & SECONDARY CARE */}
+                  {(selectedDomain === "prevention" ||
+                    (selectedDomain === "all" &&
+                      (selectedConditionId !== "all" || normalizedFilterSearch.length > 0))) && (
+                    <div className="p-3 rounded-xl bg-emerald-50/40 dark:bg-emerald-950/20 border border-emerald-200/70 dark:border-emerald-900/50 space-y-3">
+                      <span className="block text-[11px] font-extrabold text-emerald-800 dark:text-emerald-300">
+                        🛡️ 3. Prevention &amp; Secondary Care
+                      </span>
+                      {renderInterventionGroup(
+                        "Pharmacological Prophylaxis",
+                        preventionSchema.pharmacologicalProphylaxis,
+                        "bg-emerald-600 text-white border-emerald-600"
+                      )}
+                      {renderInterventionGroup(
+                        "Procedural & Device Interventions",
+                        preventionSchema.proceduralDevice,
+                        "bg-indigo-600 text-white border-indigo-600"
+                      )}
+                      {renderInterventionGroup(
+                        "Lifestyle, Rehab & Monitoring",
+                        preventionSchema.lifestyleRehabMonitoring,
+                        "bg-teal-700 text-white border-teal-700"
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                {/* =========================================================
+                    SECONDARY FILTERS: DIRECTION / HARM, SOCIETY & UPDATES
+                   ========================================================= */}
+                <div className="pt-2.5 border-t border-slate-200 dark:border-slate-800 space-y-3">
+                  {/* Recommendation Direction / Harm Filter (Rule 5) */}
+                  <div>
+                    <span className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1.5">
+                      Recommendation Direction / Harm Filter
+                    </span>
+                    <div className="grid grid-cols-2 gap-1.5">
+                      {(
+                        [
+                          { id: "all", label: "All Directions" },
+                          { id: "recommended", label: "✓ Class I / IIa (FOR)" },
+                          { id: "conditional", label: "◐ Class IIb (Conditional)" },
+                          { id: "harm", label: "⛔ Class III (Harm / Against)" },
+                        ] as const
+                      ).map((d) => {
+                        const active = selectedDirectionFilter === d.id;
+                        const count =
+                          d.id === "all"
+                            ? null
+                            : navResult.v3Counts.directions[d.id] || 0;
+                        return (
+                          <button
+                            key={d.id}
+                            type="button"
+                            onClick={() => setSelectedDirectionFilter(d.id)}
+                            className={`px-2.5 py-1.5 rounded-lg text-[11px] font-bold border transition flex items-center justify-between ${
+                              active
+                                ? d.id === "harm"
+                                  ? "bg-rose-600 text-white border-rose-600 shadow-sm"
+                                  : "bg-emerald-600 text-white border-emerald-600 shadow-sm"
+                                : "bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700"
+                            }`}
+                          >
+                            <span className="truncate">{d.label}</span>
+                            {count !== null && count > 0 && (
+                              <span className="text-[10px] px-1 rounded bg-black/10 dark:bg-white/10 ml-1">
+                                {count}
+                              </span>
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Society Filter */}
+                  <div>
                     <span className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1.5">
                       Society
                     </span>
                     <div className="flex flex-wrap gap-1.5">
-                      {!normalizedFilterSearch && (
-                        <button
-                          type="button"
-                          onClick={() => setSelectedSocieties([])}
-                          className={`px-2.5 py-1 rounded-lg text-[11px] font-bold border transition ${
-                            selectedSocieties.length === 0
-                              ? "bg-slate-900 text-white border-slate-900 dark:bg-white dark:text-slate-900"
-                              : "bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700"
-                          }`}
-                        >
-                          ALL ({navResult.availableSocieties.length})
-                        </button>
-                      )}
-                      {filteredSocieties.map((soc) => {
+                      <button
+                        type="button"
+                        onClick={() => setSelectedSocieties([])}
+                        className={`px-2.5 py-1 rounded-lg text-[11px] font-bold border transition ${
+                          selectedSocieties.length === 0
+                            ? "bg-slate-900 text-white border-slate-900 dark:bg-white dark:text-slate-900"
+                            : "bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700"
+                        }`}
+                      >
+                        ALL ({navResult.availableSocieties.length})
+                      </button>
+                      {navResult.availableSocieties.map((soc) => {
                         const active = selectedSocieties.includes(soc);
                         return (
                           <button
@@ -684,13 +1225,11 @@ export function ClinicalNavigatorTab({
                       })}
                     </div>
                   </div>
-                )}
 
-                {/* Practice Changes Filter Checkbox */}
-                {isPracticeChangesVisible && (
+                  {/* Practice Changes Filter Checkbox */}
                   <label className="pt-2 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between cursor-pointer">
                     <span className="text-[11px] font-semibold text-slate-600 dark:text-slate-400">
-                      Only New / Upgraded / Revised Recs:
+                      Only New / Upgraded Recs:
                     </span>
                     <input
                       type="checkbox"
@@ -699,100 +1238,12 @@ export function ClinicalNavigatorTab({
                       className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 h-3.5 w-3.5"
                     />
                   </label>
-                )}
-
-                {/* 9 Ontology Facet Accordion Groups */}
-                {visibleFacets.length > 0 && (
-                  <div className="pt-1 divide-y divide-slate-100 dark:divide-slate-800 border-t border-slate-100 dark:border-slate-800/80">
-                    {visibleFacets.map((facetItem) => {
-                      const { facetId, facetDef, matchingValues } = facetItem;
-                      const isExpanded = normalizedFilterSearch ? true : Boolean(expandedFacets[facetId]);
-                      const selectedForFacet = selectedFacets[facetId] || [];
-                      const countsForFacet = navResult.facetValueCounts[facetId] || {};
-
-                      return (
-                        <div key={facetId} className="py-2 first:pt-2 last:pb-0">
-                          <button
-                            type="button"
-                            onClick={() =>
-                              setExpandedFacets((prev) => ({
-                                ...prev,
-                                [facetId]: !prev[facetId],
-                              }))
-                            }
-                            className="w-full flex items-center justify-between py-1 text-left"
-                          >
-                            <div className="flex items-center gap-2">
-                              <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
-                                {facetDef.label_en || facetId}
-                              </span>
-                              {selectedForFacet.length > 0 && (
-                                <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-600 text-white">
-                                  {selectedForFacet.length}
-                                </span>
-                              )}
-                              {normalizedFilterSearch && (
-                                <span className="text-[10px] font-medium text-indigo-600 dark:text-indigo-400">
-                                  ({matchingValues.length})
-                                </span>
-                              )}
-                            </div>
-                            <span className="text-xs text-slate-400">
-                              {isExpanded ? "▾" : "▸"}
-                            </span>
-                          </button>
-
-                          {isExpanded && (
-                            <div className="mt-2 flex flex-wrap gap-1.5">
-                              {matchingValues.map((val) => {
-                                const isChecked = selectedForFacet.includes(val.id);
-                                const count = countsForFacet[val.id] || 0;
-                                return (
-                                  <button
-                                    key={val.id}
-                                    type="button"
-                                    onClick={() => handleToggleFacetValue(facetId, val.id)}
-                                    title={val.def}
-                                    className={`px-2 py-1 rounded-lg text-[11px] font-medium border transition flex items-center gap-1.5 ${
-                                      isChecked
-                                        ? "bg-indigo-600 text-white border-indigo-600 shadow-sm"
-                                        : count > 0
-                                        ? "bg-slate-50 dark:bg-slate-800/90 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:border-indigo-400"
-                                        : "bg-slate-50/40 dark:bg-slate-900 text-slate-400 dark:text-slate-600 border-slate-100 dark:border-slate-800/60"
-                                    }`}
-                                  >
-                                    <span>{val.label_en || val.label_vi}</span>
-                                    <span
-                                      className={`text-[10px] px-1 rounded ${
-                                        isChecked
-                                          ? "bg-indigo-500 text-white"
-                                          : "bg-slate-200/70 dark:bg-slate-700 text-slate-600 dark:text-slate-300"
-                                      }`}
-                                    >
-                                      {count}
-                                    </span>
-                                  </button>
-                                );
-                              })}
-                            </div>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
-
-                {/* Empty State when no filters match search term */}
-                {!hasAnyMatchingFilters && (
-                  <div className="py-4 px-3 text-center rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-dashed border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400">
-                    No filters found matching &ldquo;{filterSearchTerm.trim()}&rdquo;
-                  </div>
-                )}
+                </div>
               </div>
             )}
           </div>
 
-          {/* 2. HIGH-YIELD CLINICAL TOPICS (Placed BELOW Filter & Collapsed by default) */}
+          {/* 2. HIGH-YIELD CLINICAL TOPICS (1-Click Presets) */}
           <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2.5">
             <button
               type="button"
@@ -846,23 +1297,66 @@ export function ClinicalNavigatorTab({
           </div>
         </aside>
 
-        {/* RIGHT PANE: Zero-Query Empty State OR 5-Section Evidence Synthesis Dashboard */}
-        <section className="lg:col-span-8 space-y-6">
+        {/* RIGHT PANE: Persistent Right-Pane Content Search Bar + Evidence Synthesis Dashboard */}
+        <section className="lg:col-span-8 space-y-5">
+          {/* PERSISTENT RIGHT-PANE CONTENT SEARCH BAR (Combines via AND logic with Left-Pane V3.0 Filters) */}
+          <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+            <div className="flex items-center justify-between gap-2">
+              <label
+                htmlFor="navigator-right-content-search"
+                className="text-xs font-extrabold uppercase tracking-wider text-slate-700 dark:text-slate-200 flex items-center gap-1.5"
+              >
+                <span>🔍 Search Guideline Content, Dosing, Thresholds &amp; Trials</span>
+              </label>
+              {isQueryActive && (
+                <span className="text-[11px] font-bold text-indigo-600 dark:text-indigo-400">
+                  {navResult.coreRecommendations.length} matching recommendations •{" "}
+                  {navResult.pivotalTrials.length + navResult.lateBreakingTrials.length} trials
+                </span>
+              )}
+            </div>
+            <div className="relative">
+              <input
+                id="navigator-right-content-search"
+                type="text"
+                value={searchText}
+                onChange={(e) => {
+                  setSearchText(e.target.value);
+                  setVisibleCountBySociety({});
+                }}
+                placeholder="Search free-text recommendations, dosing (e.g. 0.25 mg/kg), targets (130–140 mmHg, ASPECTS 3–5), or trials (SELECT2, ESETT, Clarity AD)..."
+                className="w-full pl-4 pr-20 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/90 text-slate-900 dark:text-white text-xs sm:text-sm font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              />
+              {searchText && (
+                <button
+                  type="button"
+                  onClick={() => setSearchText("")}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 px-2 py-0.5 rounded-md text-xs font-bold bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-rose-100 hover:text-rose-700 transition"
+                >
+                  Clear ✕
+                </button>
+              )}
+            </div>
+          </div>
+
           {!isQueryActive ? (
-            /* ZERO-QUERY EMPTY STATE: Prevents rendering hundreds/thousands of DOM nodes on initial page load */
+            /* ZERO-QUERY EMPTY STATE */
             <div className="p-8 sm:p-12 text-center rounded-2xl border border-dashed border-slate-300 dark:border-slate-800 bg-white/70 dark:bg-slate-900/50 space-y-5">
               <div className="w-16 h-16 mx-auto rounded-2xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-3xl">
                 🧭
               </div>
               <div className="space-y-1.5 max-w-lg mx-auto">
                 <h3 className="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white">
-                  Select a Filter or Clinical Topic to Begin
+                  Select a Clinical Filter on the Left or Search Content Above
                 </h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400">
+                  Choose a Subspecialty &amp; Condition (Axis 1), Clinical Domain (Axis 2: Diagnosis, Treatment, or Prevention), or type a clinical keyword in the search bar above.
+                </p>
               </div>
 
               {/* Quick Start Topic Pills */}
               <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
-                {NAVIGATOR_QUICK_PRESETS.slice(0, 4).map((preset) => (
+                {NAVIGATOR_QUICK_PRESETS.map((preset) => (
                   <button
                     key={preset.id}
                     type="button"
@@ -1590,7 +2084,7 @@ export function ClinicalNavigatorTab({
         isOpen={isTrialModalOpen}
         onClose={() => setIsTrialModalOpen(false)}
         initialTrial={editingTrial}
-        defaultOntologyTags={selectedFacets}
+        defaultOntologyTags={{}}
         onSaved={(updatedTrials, saved) => {
           onPivotalTrialsUpdated(updatedTrials);
           setStatusBanner({
@@ -1614,28 +2108,26 @@ function RecommendationMatrixCard({
   isSupporting?: boolean;
 }) {
   const tierMeta = TIER_CONFIG[rec.normalizedTier] || TIER_CONFIG[2];
-  const dirValue = rec.labels.labels.direction?.value || "for";
+  const dirValue = rec.v3Labels?.direction || "recommended";
   const dirMeta = getDirectionBadge(dirValue);
 
-  // Collect verbatim evidence spans across facets to display grounded provenance chips
-  const evidenceChips = useMemo(() => {
-    const chips: { facet: string; labelEn: string; span: string }[] = [];
-    for (const [fid, items] of Object.entries(rec.labels.labels)) {
-      if (fid === "direction") continue;
-      if (!Array.isArray(items)) continue;
-      const fDef = STROKE_ONTOLOGY.facets[fid as OntologyFacetId];
-      for (const it of items) {
-        if (it.value === "unspecified" || !it.evidence_span) continue;
-        const vDef = fDef?.values.find((x) => x.id === it.value);
-        chips.push({
-          facet: fid,
-          labelEn: vDef?.label_en || it.value,
-          span: it.evidence_span,
-        });
-      }
+  const v3DisplayTags = useMemo(() => {
+    const tags: string[] = [];
+    for (const cid of rec.v3Labels?.conditionIds || []) {
+      const c = getConditionByIdV3(cid);
+      if (c) tags.push(c.label);
     }
-    return chips.slice(0, 6);
-  }, [rec.labels]);
+    for (const twId of rec.v3Labels?.timeWindowIds || []) {
+      tags.push(`⏱ ${getTagLabelByIdV3(twId)}`);
+    }
+    for (const dtId of rec.v3Labels?.diagnosisTags || []) {
+      tags.push(getTagLabelByIdV3(dtId));
+    }
+    for (const itId of rec.v3Labels?.interventionTags || []) {
+      tags.push(getTagLabelByIdV3(itId));
+    }
+    return Array.from(new Set(tags)).slice(0, 6);
+  }, [rec.v3Labels]);
 
   return (
     <div
@@ -1725,19 +2217,15 @@ function RecommendationMatrixCard({
         </div>
       )}
 
-      {/* Grounded Evidence Span Chips & Cited Trials */}
+      {/* V3.0 Canonical Tags & Cited Trials */}
       <div className="flex flex-wrap items-center justify-between gap-2 pt-1">
         <div className="flex flex-wrap items-center gap-1.5">
-          {evidenceChips.map((chip, idx) => (
+          {v3DisplayTags.map((lbl) => (
             <span
-              key={`${chip.facet}-${idx}`}
-              title={`Verbatim span: "${chip.span}"`}
-              className="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700"
+              key={lbl}
+              className="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-50 text-indigo-800 dark:bg-indigo-950/60 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800"
             >
-              <strong className="text-indigo-600 dark:text-indigo-400">
-                {chip.labelEn}:
-              </strong>{" "}
-              &ldquo;{chip.span}&rdquo;
+              {lbl}
             </span>
           ))}
 
