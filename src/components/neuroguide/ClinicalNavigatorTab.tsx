@@ -152,12 +152,14 @@ export function ClinicalNavigatorTab({
     }
   }, [initialPresetOrQuery]);
 
-  // Collapsible Facets & Pagination State
+  // Collapsible Filter, Topics, Facets & Pagination State (All collapsed by default on initial load)
+  const [isFilterExpanded, setIsFilterExpanded] = useState<boolean>(false);
+  const [isTopicsExpanded, setIsTopicsExpanded] = useState<boolean>(false);
   const [expandedFacets, setExpandedFacets] = useState<Record<string, boolean>>({
-    condition: true,
+    condition: false,
     phase: false,
-    intervention_type: true,
-    drug_or_procedure: true,
+    intervention_type: false,
+    drug_or_procedure: false,
     time_window: false,
     age_group: false,
     special_populations: false,
@@ -446,47 +448,43 @@ export function ClinicalNavigatorTab({
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         {/* LEFT PANE: 1. Unified Filter Card -> 2. High-Yield Clinical Topics */}
         <aside className="lg:col-span-4 space-y-4 lg:sticky lg:top-20">
-          {/* 1. UNIFIED FILTER CARD (Search + Active Query + Society + 9 Facets) */}
-          <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3.5">
+          {/* 1. UNIFIED FILTER CARD (Collapsed by default on initial load) */}
+          <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
             <div className="flex items-center justify-between">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200">
-                🧬 Filter
-              </h3>
+              <button
+                type="button"
+                onClick={() => setIsFilterExpanded((prev) => !prev)}
+                className="flex-1 flex items-center justify-between text-left"
+              >
+                <div className="flex items-center gap-2">
+                  <h3 className="text-xs font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200">
+                    🧬 Filter
+                  </h3>
+                  {isQueryActive && (
+                    <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-600 text-white">
+                      {activeFilterChips.length +
+                        selectedSocieties.length +
+                        (searchText.trim().length >= 2 ? 1 : 0) +
+                        (onlyPracticeChanges ? 1 : 0)}
+                    </span>
+                  )}
+                </div>
+                <span className="text-xs text-slate-400 ml-2">
+                  {isFilterExpanded ? "▾" : "▸"}
+                </span>
+              </button>
               {isQueryActive && (
                 <button
                   type="button"
                   onClick={handleClearAllFilters}
-                  className="text-[11px] font-bold text-rose-600 dark:text-rose-400 hover:underline"
+                  className="ml-3 text-[11px] font-bold text-rose-600 dark:text-rose-400 hover:underline shrink-0"
                 >
                   Reset All
                 </button>
               )}
             </div>
 
-            {/* Keyword / Drug / Trial Search Input */}
-            <div className="relative">
-              <input
-                type="text"
-                value={searchText}
-                onChange={(e) => {
-                  setActivePresetId(null);
-                  setSearchText(e.target.value);
-                }}
-                placeholder="Search keywords, drugs, or trials (e.g. Tenecteplase, SELECT2)..."
-                className="w-full pl-3.5 pr-8 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/80 text-slate-900 dark:text-white text-xs font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              />
-              {searchText && (
-                <button
-                  type="button"
-                  onClick={() => setSearchText("")}
-                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xs"
-                >
-                  ✕
-                </button>
-              )}
-            </div>
-
-            {/* Active Query Chips (Integrated inside Filter) */}
+            {/* Active Query Chips (Visible whenever a filter/topic is active) */}
             {isQueryActive && (
               <div className="p-2.5 rounded-xl bg-indigo-50/50 dark:bg-indigo-950/30 border border-indigo-100 dark:border-indigo-900/60 space-y-1.5">
                 <div className="flex items-center justify-between">
@@ -556,171 +554,212 @@ export function ClinicalNavigatorTab({
               </div>
             )}
 
-            {/* Society Filter (Integrated inside Filter) */}
-            <div className="pt-2 border-t border-slate-100 dark:border-slate-800/80">
-              <span className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1.5">
-                Society
-              </span>
-              <div className="flex flex-wrap gap-1.5">
-                <button
-                  type="button"
-                  onClick={() => setSelectedSocieties([])}
-                  className={`px-2.5 py-1 rounded-lg text-[11px] font-bold border transition ${
-                    selectedSocieties.length === 0
-                      ? "bg-slate-900 text-white border-slate-900 dark:bg-white dark:text-slate-900"
-                      : "bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700"
-                  }`}
-                >
-                  ALL ({navResult.availableSocieties.length})
-                </button>
-                {navResult.availableSocieties.map((soc) => {
-                  const active = selectedSocieties.includes(soc);
-                  return (
+            {isFilterExpanded && (
+              <div className="space-y-3.5 pt-2 border-t border-slate-100 dark:border-slate-800/80">
+                {/* Keyword / Drug / Trial Search Input */}
+                <div className="relative">
+                  <input
+                    type="text"
+                    value={searchText}
+                    onChange={(e) => {
+                      setActivePresetId(null);
+                      setSearchText(e.target.value);
+                    }}
+                    placeholder="Search keywords, drugs, or trials (e.g. Tenecteplase, SELECT2)..."
+                    className="w-full pl-3.5 pr-8 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/80 text-slate-900 dark:text-white text-xs font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  />
+                  {searchText && (
                     <button
-                      key={soc}
                       type="button"
-                      onClick={() => handleToggleSociety(soc)}
+                      onClick={() => setSearchText("")}
+                      className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xs"
+                    >
+                      ✕
+                    </button>
+                  )}
+                </div>
+
+                {/* Society Filter (Integrated inside Filter) */}
+                <div className="pt-2 border-t border-slate-100 dark:border-slate-800/80">
+                  <span className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1.5">
+                    Society
+                  </span>
+                  <div className="flex flex-wrap gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => setSelectedSocieties([])}
                       className={`px-2.5 py-1 rounded-lg text-[11px] font-bold border transition ${
-                        active
-                          ? "bg-indigo-600 text-white border-indigo-600 shadow-sm"
-                          : "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-indigo-400"
+                        selectedSocieties.length === 0
+                          ? "bg-slate-900 text-white border-slate-900 dark:bg-white dark:text-slate-900"
+                          : "bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700"
                       }`}
                     >
-                      {soc}
+                      ALL ({navResult.availableSocieties.length})
+                    </button>
+                    {navResult.availableSocieties.map((soc) => {
+                      const active = selectedSocieties.includes(soc);
+                      return (
+                        <button
+                          key={soc}
+                          type="button"
+                          onClick={() => handleToggleSociety(soc)}
+                          className={`px-2.5 py-1 rounded-lg text-[11px] font-bold border transition ${
+                            active
+                              ? "bg-indigo-600 text-white border-indigo-600 shadow-sm"
+                              : "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-indigo-400"
+                          }`}
+                        >
+                          {soc}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Practice Changes Filter Checkbox */}
+                <label className="pt-2 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between cursor-pointer">
+                  <span className="text-[11px] font-semibold text-slate-600 dark:text-slate-400">
+                    Only New / Upgraded / Revised Recs:
+                  </span>
+                  <input
+                    type="checkbox"
+                    checked={onlyPracticeChanges}
+                    onChange={(e) => setOnlyPracticeChanges(e.target.checked)}
+                    className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 h-3.5 w-3.5"
+                  />
+                </label>
+
+                {/* 9 Ontology Facet Accordion Groups */}
+                <div className="pt-1 divide-y divide-slate-100 dark:divide-slate-800 border-t border-slate-100 dark:border-slate-800/80">
+                  {ORDERED_FACETS.map((facetId) => {
+                    const facetDef = STROKE_ONTOLOGY.facets[facetId];
+                    if (!facetDef) return null;
+                    const isExpanded = Boolean(expandedFacets[facetId]);
+                    const selectedForFacet = selectedFacets[facetId] || [];
+                    const countsForFacet = navResult.facetValueCounts[facetId] || {};
+
+                    return (
+                      <div key={facetId} className="py-2 first:pt-2 last:pb-0">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setExpandedFacets((prev) => ({
+                              ...prev,
+                              [facetId]: !prev[facetId],
+                            }))
+                          }
+                          className="w-full flex items-center justify-between py-1 text-left"
+                        >
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
+                              {facetDef.label_en || facetId}
+                            </span>
+                            {selectedForFacet.length > 0 && (
+                              <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-600 text-white">
+                                {selectedForFacet.length}
+                              </span>
+                            )}
+                          </div>
+                          <span className="text-xs text-slate-400">
+                            {isExpanded ? "▾" : "▸"}
+                          </span>
+                        </button>
+
+                        {isExpanded && (
+                          <div className="mt-2 flex flex-wrap gap-1.5">
+                            {facetDef.values
+                              .filter((v) => v.id !== "unspecified")
+                              .map((val) => {
+                                const isChecked = selectedForFacet.includes(val.id);
+                                const count = countsForFacet[val.id] || 0;
+                                return (
+                                  <button
+                                    key={val.id}
+                                    type="button"
+                                    onClick={() => handleToggleFacetValue(facetId, val.id)}
+                                    title={val.def}
+                                    className={`px-2 py-1 rounded-lg text-[11px] font-medium border transition flex items-center gap-1.5 ${
+                                      isChecked
+                                        ? "bg-indigo-600 text-white border-indigo-600 shadow-sm"
+                                        : count > 0
+                                        ? "bg-slate-50 dark:bg-slate-800/90 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:border-indigo-400"
+                                        : "bg-slate-50/40 dark:bg-slate-900 text-slate-400 dark:text-slate-600 border-slate-100 dark:border-slate-800/60"
+                                    }`}
+                                  >
+                                    <span>{val.label_en || val.label_vi}</span>
+                                    <span
+                                      className={`text-[10px] px-1 rounded ${
+                                        isChecked
+                                          ? "bg-indigo-500 text-white"
+                                          : "bg-slate-200/70 dark:bg-slate-700 text-slate-600 dark:text-slate-300"
+                                      }`}
+                                    >
+                                      {count}
+                                    </span>
+                                  </button>
+                                );
+                              })}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* 2. HIGH-YIELD CLINICAL TOPICS (Placed BELOW Filter & Collapsed by default) */}
+          <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2.5">
+            <button
+              type="button"
+              onClick={() => setIsTopicsExpanded((prev) => !prev)}
+              className="w-full flex items-center justify-between text-left"
+            >
+              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                ⚡ High-Yield Clinical Topics
+              </h3>
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-semibold text-slate-400">
+                  1-Click Presets
+                </span>
+                <span className="text-xs text-slate-400">
+                  {isTopicsExpanded ? "▾" : "▸"}
+                </span>
+              </div>
+            </button>
+
+            {isTopicsExpanded && (
+              <div className="space-y-1.5 pt-2 border-t border-slate-100 dark:border-slate-800/80">
+                {NAVIGATOR_QUICK_PRESETS.map((preset) => {
+                  const isSelected = activePresetId === preset.id;
+                  return (
+                    <button
+                      key={preset.id}
+                      type="button"
+                      onClick={() => handleApplyPreset(preset.id)}
+                      className={`w-full text-left p-2.5 rounded-xl border transition flex flex-col gap-1 ${
+                        isSelected
+                          ? "bg-indigo-50/90 dark:bg-indigo-950/50 border-indigo-400 dark:border-indigo-500 shadow-sm"
+                          : "bg-slate-50/60 dark:bg-slate-800/40 border-slate-200/80 dark:border-slate-800 hover:border-indigo-300 dark:hover:border-indigo-700"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-xs font-bold text-slate-900 dark:text-white leading-snug">
+                          {preset.title}
+                        </span>
+                        <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-indigo-100 text-indigo-700 dark:bg-indigo-900/60 dark:text-indigo-300 shrink-0">
+                          {preset.badge}
+                        </span>
+                      </div>
+                      <span className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-1">
+                        {preset.subtitle}
+                      </span>
                     </button>
                   );
                 })}
               </div>
-            </div>
-
-            {/* Practice Changes Filter Checkbox */}
-            <label className="pt-2 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between cursor-pointer">
-              <span className="text-[11px] font-semibold text-slate-600 dark:text-slate-400">
-                Only New / Upgraded / Revised Recs:
-              </span>
-              <input
-                type="checkbox"
-                checked={onlyPracticeChanges}
-                onChange={(e) => setOnlyPracticeChanges(e.target.checked)}
-                className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 h-3.5 w-3.5"
-              />
-            </label>
-
-            {/* 9 Ontology Facet Accordion Groups */}
-            <div className="pt-1 divide-y divide-slate-100 dark:divide-slate-800 border-t border-slate-100 dark:border-slate-800/80">
-              {ORDERED_FACETS.map((facetId) => {
-                const facetDef = STROKE_ONTOLOGY.facets[facetId];
-                if (!facetDef) return null;
-                const isExpanded = Boolean(expandedFacets[facetId]);
-                const selectedForFacet = selectedFacets[facetId] || [];
-                const countsForFacet = navResult.facetValueCounts[facetId] || {};
-
-                return (
-                  <div key={facetId} className="py-2 first:pt-2 last:pb-0">
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setExpandedFacets((prev) => ({
-                          ...prev,
-                          [facetId]: !prev[facetId],
-                        }))
-                      }
-                      className="w-full flex items-center justify-between py-1 text-left"
-                    >
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
-                          {facetDef.label_en || facetId}
-                        </span>
-                        {selectedForFacet.length > 0 && (
-                          <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-600 text-white">
-                            {selectedForFacet.length}
-                          </span>
-                        )}
-                      </div>
-                      <span className="text-xs text-slate-400">
-                        {isExpanded ? "▾" : "▸"}
-                      </span>
-                    </button>
-
-                    {isExpanded && (
-                      <div className="mt-2 flex flex-wrap gap-1.5">
-                        {facetDef.values
-                          .filter((v) => v.id !== "unspecified")
-                          .map((val) => {
-                            const isChecked = selectedForFacet.includes(val.id);
-                            const count = countsForFacet[val.id] || 0;
-                            return (
-                              <button
-                                key={val.id}
-                                type="button"
-                                onClick={() => handleToggleFacetValue(facetId, val.id)}
-                                title={val.def}
-                                className={`px-2 py-1 rounded-lg text-[11px] font-medium border transition flex items-center gap-1.5 ${
-                                  isChecked
-                                    ? "bg-indigo-600 text-white border-indigo-600 shadow-sm"
-                                    : count > 0
-                                    ? "bg-slate-50 dark:bg-slate-800/90 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:border-indigo-400"
-                                    : "bg-slate-50/40 dark:bg-slate-900 text-slate-400 dark:text-slate-600 border-slate-100 dark:border-slate-800/60"
-                                }`}
-                              >
-                                <span>{val.label_en || val.label_vi}</span>
-                                <span
-                                  className={`text-[10px] px-1 rounded ${
-                                    isChecked
-                                      ? "bg-indigo-500 text-white"
-                                      : "bg-slate-200/70 dark:bg-slate-700 text-slate-600 dark:text-slate-300"
-                                  }`}
-                                >
-                                  {count}
-                                </span>
-                              </button>
-                            );
-                          })}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* 2. HIGH-YIELD CLINICAL TOPICS (Placed BELOW Filter as requested) */}
-          <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2.5">
-            <div className="flex items-center justify-between">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
-                ⚡ High-Yield Clinical Topics
-              </h3>
-              <span className="text-[10px] font-semibold text-slate-400">1-Click Presets</span>
-            </div>
-            <div className="space-y-1.5">
-              {NAVIGATOR_QUICK_PRESETS.map((preset) => {
-                const isSelected = activePresetId === preset.id;
-                return (
-                  <button
-                    key={preset.id}
-                    type="button"
-                    onClick={() => handleApplyPreset(preset.id)}
-                    className={`w-full text-left p-2.5 rounded-xl border transition flex flex-col gap-1 ${
-                      isSelected
-                        ? "bg-indigo-50/90 dark:bg-indigo-950/50 border-indigo-400 dark:border-indigo-500 shadow-sm"
-                        : "bg-slate-50/60 dark:bg-slate-800/40 border-slate-200/80 dark:border-slate-800 hover:border-indigo-300 dark:hover:border-indigo-700"
-                    }`}
-                  >
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="text-xs font-bold text-slate-900 dark:text-white leading-snug">
-                        {preset.title}
-                      </span>
-                      <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-indigo-100 text-indigo-700 dark:bg-indigo-900/60 dark:text-indigo-300 shrink-0">
-                        {preset.badge}
-                      </span>
-                    </div>
-                    <span className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-1">
-                      {preset.subtitle}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
+            )}
           </div>
         </aside>
 
