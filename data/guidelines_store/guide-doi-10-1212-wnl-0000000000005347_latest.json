@@ -1,0 +1,44 @@
+{
+  "guideline_id": "guide-doi-10-1212-wnl-0000000000005347",
+  "version": 1,
+  "metadata": {
+    "guideline_id": "guide-doi-10-1212-wnl-0000000000005347",
+    "title": "Practice guideline recommendations summary: Disease-modifying therapies for adults with multiple sclerosis",
+    "society": "AAN",
+    "year": 2018,
+    "source_url": "https://doi.org/10.1212/wnl.0000000000005347",
+    "doi": "10.1212/wnl.0000000000005347",
+    "state": "PENDING_REVIEW",
+    "top_takeaways": [
+      "Disease-modifying therapy (DMT) decision-making in multiple sclerosis requires personalized, individualized strategies for starting, switching for breakthrough disease, or stopping treatment. Clinicians must actively engage patients regarding adherence, comorbidity risks, and specific progressive multifocal leukoencephalopathy risks associated with natalizumab, fingolimod, rituximab, ocrelizumab, and dimethyl fumarate."
+    ]
+  },
+  "total_recommendations": 1,
+  "pending_count": 1,
+  "approved_count": 0,
+  "rejected_count": 0,
+  "recommendations": [
+    {
+      "rec_id": "guide-doi-10-1212-wnl-0000000000005347-rec-01",
+      "guideline_id": "guide-doi-10-1212-wnl-0000000000005347",
+      "grading_system": "GRADE_ESO",
+      "page_num": 1,
+      "section": "Neuroimmunology",
+      "topic": "Neuroimmunology",
+      "statement": "Practice guideline recommendations summary: Disease-modifying therapies for adults with multiple sclerosis",
+      "cor": "1",
+      "cor_label": "Official Society Recommendation",
+      "loe": "A",
+      "loe_label": "Evidence from trials & consensus",
+      "target_population": "Patients managed under Neuroimmunology guidelines",
+      "driving_trials": [
+        "Neurology (2018)",
+        "DOI: 10.1212/wnl.0000000000005347"
+      ],
+      "verbatim_quote": "Practice guideline recommendations summary: Disease-modifying therapies for adults with multiple sclerosis",
+      "confidence_score": 0.95,
+      "approval_status": "pending"
+    }
+  ],
+  "updated_at": "2026-11-07T22:42:12.250882+00:00"
+}
