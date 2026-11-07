@@ -377,6 +377,15 @@ export function indexAllGuidelineRecommendations(
 
   _cachedIndexKey = sig;
   _cachedIndexedRecs = indexed;
+  _cachedRelations = [];
+
+  return indexed;
+}
+
+function getLazyRelations(indexed: IndexedNavigatorRecommendation[]): RecommendationRelation[] {
+  if (_cachedRelations.length > 0 || indexed.length === 0) {
+    return _cachedRelations;
+  }
   _cachedRelations = buildRecommendationRelations(
     indexed.map((r) => ({
       recId: r.recId,
@@ -390,8 +399,20 @@ export function indexAllGuidelineRecommendations(
       labels: r.labels,
     }))
   );
+  return _cachedRelations;
+}
 
-  return indexed;
+/**
+ * Returns true only if the user has selected at least one ontology filter, society, practice-change toggle, or search keyword (>= 2 chars).
+ */
+export function hasActiveNavigatorQuery(query: NavigatorQuery): boolean {
+  if (query.searchText && query.searchText.trim().length >= 2) return true;
+  if (query.societies && query.societies.length > 0) return true;
+  if (query.onlyPracticeChanges) return true;
+  for (const vals of Object.values(query.facets || {})) {
+    if (Array.isArray(vals) && vals.length > 0) return true;
+  }
+  return false;
 }
 
 /**
@@ -600,8 +621,27 @@ export function runClinicalNavigatorQuery(params: {
     }
   }
 
-  // Reuse memoized relations for Supporting expansion
-  const relations = _cachedRelations;
+  // Zero-Query Short-Circuit: Do not compute heavy matrices, relations, trials, or articles if no filter is selected
+  if (!hasActiveNavigatorQuery(query)) {
+    return {
+      query,
+      totalIndexedCount: allIndexed.length,
+      coreRecommendations: [],
+      supportingRecommendations: [],
+      crossSocietyMatrix: [],
+      intraSocietyDiffs: [],
+      pivotalTrials: [],
+      lateBreakingTrials: [],
+      concordanceAppraisal: computeEvidenceConcordance([]),
+      relatedArticles: [],
+      ecosystemLinks: [],
+      facetValueCounts,
+      availableSocieties,
+    };
+  }
+
+  // Lazily build and reuse memoized relations for Supporting expansion
+  const relations = getLazyRelations(_cachedIndexedRecs);
 
   // Parse search text tokens and detect implied ontology concepts
   const rawSearch = (query.searchText || "").trim();

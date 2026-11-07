@@ -5,6 +5,7 @@ import path from "node:path";
 import {
   runClinicalNavigatorQuery,
   indexAllGuidelineRecommendations,
+  hasActiveNavigatorQuery,
 } from "../src/lib/neuroguide/clinicalNavigatorEngine.ts";
 
 const cloudPath = path.join(process.cwd(), "public", "data", "neuroguide_cloud.json");
@@ -12,6 +13,20 @@ const articlesPath = path.join(process.cwd(), "public", "data", "articles.json")
 
 const cloudData = JSON.parse(fs.readFileSync(cloudPath, "utf8"));
 const articlesData = JSON.parse(fs.readFileSync(articlesPath, "utf8"));
+
+test("Empty query short-circuits heavy synthesis while returning facetValueCounts and availableSocieties", () => {
+  const emptyQuery = { facets: {} };
+  assert.equal(hasActiveNavigatorQuery(emptyQuery), false);
+  const res = runClinicalNavigatorQuery({
+    guidelines: cloudData.guidelines,
+    recommendationAtoms: cloudData.recommendationAtoms,
+    query: emptyQuery,
+  });
+  assert.equal(res.coreRecommendations.length, 0);
+  assert.equal(res.crossSocietyMatrix.length, 0);
+  assert.ok(res.availableSocieties.length >= 2);
+  assert.ok(res.facetValueCounts.condition.ais > 0);
+});
 
 test("indexAllGuidelineRecommendations indexes all 555+ recommendations across 12 guidelines with zero rejected records", () => {
   const indexed = indexAllGuidelineRecommendations(
