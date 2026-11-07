@@ -2,8 +2,8 @@ name: Daily NeuroPulse Journal Aggregator
 
 on:
   schedule:
-    # Chạy lúc 23:00 đêm giờ VN (16:00 UTC) - Tách biệt giờ để tránh chạm trần quota AI
-    - cron: '0 16 * * *'
+    # Chạy lúc 05:00 sáng giờ VN (22:00 UTC) - Sau khi các tạp chí Mỹ (AAN, NEJM, JAMA, Stroke) hoàn tất xuất bản (21:00–21:30 UTC) và cách Guide 2 tiếng
+    - cron: '0 22 * * *'
   workflow_dispatch:
 
 permissions:
