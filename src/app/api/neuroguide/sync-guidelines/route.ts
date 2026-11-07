@@ -212,6 +212,14 @@ export async function POST(request: NextRequest) {
     const yearFrom = body.yearFrom ? parseInt(body.yearFrom, 10) : 2023;
     const isPeriodicCron = Boolean(body.isPeriodicCron);
 
+    // Tạm thời tắt tự động cập nhật hằng ngày do chức năng tự động tìm và trích xuất guideline chưa hoàn chỉnh
+    if (isPeriodicCron || isCronAuthorized) {
+      return NextResponse.json({
+        status: "paused",
+        message: "Chức năng tự động cập nhật hằng ngày của NeuroGuide đang tạm thời tắt do việc tìm và trích xuất guideline tự động chưa chính xác.",
+      });
+    }
+
     const options: PubMedSearchOptions = {
       society,
       subspecialty,

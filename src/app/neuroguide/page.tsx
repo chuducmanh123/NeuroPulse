@@ -949,13 +949,18 @@ export default function NeuroGuidePage() {
                 PRACTICE GUIDELINES &amp; RADAR
               </span>
             </div>
-            <h1
-              className={`text-xl sm:text-3xl font-black uppercase tracking-tight ${
-                darkMode ? "text-white" : "text-slate-900"
-              }`}
-            >
-              NEUROGUIDE
-            </h1>
+            <div className="flex items-center gap-2">
+              <h1
+                className={`text-xl sm:text-3xl font-black uppercase tracking-tight ${
+                  darkMode ? "text-white" : "text-slate-900"
+                }`}
+              >
+                NEUROGUIDE
+              </h1>
+              <span className="px-2 py-0.5 rounded text-[10px] sm:text-xs font-bold uppercase bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/30">
+                Beta
+              </span>
+            </div>
           </div>
 
           {/* Quick Header Badges & Actions */}

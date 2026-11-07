@@ -1,9 +1,22 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNeuroVisionStore } from "../../store/useNeuroVisionStore";
+import { useNeuroViewer } from "./NeuroViewerContext";
 import SearchBar from "./SearchBar";
 import type { BaseModality, ActiveOverlay, ViewMode } from "../../types/neurovision";
+
+interface CentroidData {
+  [atlas: string]: {
+    [label_id: string]: {
+      mean_mm: [number, number, number];
+      in_mask_mm: [number, number, number];
+      in_mask_vox: [number, number, number];
+    };
+  };
+}
+
+let cachedCentroids: CentroidData | null = null;
 
 const MODALITIES: Array<{ id: BaseModality; label: string; shortLabel: string; desc: string }> = [
   { id: "T1", label: "MRI T1", shortLabel: "T1", desc: "Tương phản giải phẫu chuẩn MNI152" },
@@ -34,6 +47,8 @@ const VIEW_MODES: Array<{ id: ViewMode; label: string; icon: string }> = [
 ];
 
 export default function ViewerToolbar() {
+  const { getNiivue } = useNeuroViewer();
+
   const baseModality = useNeuroVisionStore((s) => s.baseModality);
   const activeOverlay = useNeuroVisionStore((s) => s.activeOverlay);
   const overlayOpacity = useNeuroVisionStore((s) => s.overlayOpacity);
@@ -41,6 +56,12 @@ export default function ViewerToolbar() {
   const fps = useNeuroVisionStore((s) => s.fps);
   const isLoading = useNeuroVisionStore((s) => s.isLoading);
   const loadProgress = useNeuroVisionStore((s) => s.loadProgress);
+
+  const selectedRegion = useNeuroVisionStore((s) => s.selectedRegion);
+  const highlightedLabelId = useNeuroVisionStore((s) => s.highlightedLabelId);
+  const setHighlightedLabelId = useNeuroVisionStore((s) => s.setHighlightedLabelId);
+  const setCrosshair = useNeuroVisionStore((s) => s.setCrosshair);
+  const setIsProgrammaticChange = useNeuroVisionStore((s) => s.setIsProgrammaticChange);
 
   const setBaseModality = useNeuroVisionStore((s) => s.setBaseModality);
   const setActiveOverlay = useNeuroVisionStore((s) => s.setActiveOverlay);
@@ -52,6 +73,73 @@ export default function ViewerToolbar() {
   const setIsSlidersOpen = useNeuroVisionStore((s) => s.setIsSlidersOpen);
   const isSidebarOpen = useNeuroVisionStore((s) => s.isSidebarOpen);
   const setIsSidebarOpen = useNeuroVisionStore((s) => s.setIsSidebarOpen);
+
+  const [centroids, setCentroids] = useState<CentroidData | null>(cachedCentroids);
+
+  useEffect(() => {
+    if (cachedCentroids) return;
+    let isMounted = true;
+    fetch("/neurovision/data/centroids.json")
+      .then((r) => r.json())
+      .then((data: CentroidData) => {
+        cachedCentroids = data;
+        if (isMounted) setCentroids(data);
+      })
+      .catch((err) => console.warn("[ViewerToolbar] Centroids load error:", err));
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const isIsolated = Boolean(
+    selectedRegion && highlightedLabelId === selectedRegion.label_id
+  );
+
+  // Toggle reverse highlight for current region
+  const handleToggleHighlight = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const nv = getNiivue();
+
+    if (highlightedLabelId !== null && (highlightedLabelId === selectedRegion?.label_id || !selectedRegion)) {
+      setHighlightedLabelId(null);
+      if (nv && nv.volumes.length > 1) {
+        nv.volumes[1].cal_min = 0;
+        nv.volumes[1].cal_max = 0;
+        nv.updateGLVolume();
+      }
+    } else if (selectedRegion) {
+      setHighlightedLabelId(selectedRegion.label_id);
+      if (nv && nv.volumes.length > 1) {
+        nv.volumes[1].cal_min = selectedRegion.label_id - 0.5;
+        nv.volumes[1].cal_max = selectedRegion.label_id + 0.5;
+        nv.updateGLVolume();
+      }
+    }
+  };
+
+  // Jump to exact in-mask centroid
+  const handleJumpToCentroid = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!selectedRegion) return;
+    const cents = centroids || cachedCentroids;
+    if (!cents) return;
+    const nv = getNiivue();
+    if (!nv) return;
+
+    const cent = cents[selectedRegion.atlas]?.[String(selectedRegion.label_id)];
+    if (!cent) return;
+
+    setIsProgrammaticChange(true);
+    try {
+      const frac = nv.mm2frac(cent.in_mask_mm, 0);
+      nv.scene.crosshairPos = frac;
+      nv.drawScene();
+      setCrosshair({ mm: cent.in_mask_mm, vox: cent.in_mask_vox });
+    } finally {
+      setTimeout(() => setIsProgrammaticChange(false), 50);
+    }
+  };
 
   return (
     <div className="bg-slate-900 border-b border-slate-800 px-2 sm:px-3 py-1.5 sm:py-2 flex flex-wrap items-center justify-between gap-1.5 sm:gap-2 text-xs text-slate-200 shrink-0 select-none">
@@ -118,7 +206,7 @@ export default function ViewerToolbar() {
         <SearchBar />
       </div>
 
-      {/* 3. Right section: Sliders toggle, ASPECTS tool, View Mode, Sidebar toggle */}
+      {/* 3. Right section: Sliders toggle, Actions (Highlight ngược, Đến tâm), ASPECTS tool, View Mode, Sidebar toggle */}
       <div className="flex items-center gap-1 sm:gap-1.5 order-2 lg:order-3 justify-between sm:justify-start w-full sm:w-auto">
         <div className="flex items-center gap-1 sm:gap-1.5">
           {/* Toggle Axis Sliders Button */}
@@ -134,6 +222,71 @@ export default function ViewerToolbar() {
           >
             <span>🎚️</span>
             <span className="hidden md:inline">Trục cắt</span>
+          </button>
+
+          {/* Highlight ngược / Cô lập Button */}
+          <button
+            type="button"
+            onClick={handleToggleHighlight}
+            disabled={!selectedRegion && highlightedLabelId === null}
+            className={`px-2 py-1 rounded-lg border text-xs font-semibold flex items-center gap-1 transition shrink-0 ${
+              isIsolated || (highlightedLabelId !== null && !selectedRegion)
+                ? "bg-rose-600 text-white border-rose-500 shadow-sm hover:bg-rose-500"
+                : !selectedRegion && highlightedLabelId === null
+                ? "bg-slate-950/50 text-slate-500 border-slate-800/60 cursor-not-allowed opacity-40"
+                : "bg-slate-950 text-slate-300 border-slate-700 hover:bg-slate-800 hover:text-white"
+            }`}
+            title={
+              isIsolated || highlightedLabelId !== null
+                ? "Tắt cô lập nhãn (hiển thị lại toàn bộ nhãn)"
+                : selectedRegion
+                ? `Highlight ngược / Cô lập vùng "${selectedRegion.name_vi}" (ẩn các nhãn khác)`
+                : "Chọn một vùng giải phẫu trên ảnh để highlight ngược"
+            }
+          >
+            {isIsolated || highlightedLabelId !== null ? (
+              <span className="font-bold text-xs leading-none">✕</span>
+            ) : (
+              <svg
+                className={`w-3.5 h-3.5 shrink-0 ${
+                  !selectedRegion && highlightedLabelId === null
+                    ? "text-slate-500"
+                    : "text-amber-400"
+                }`}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="m9 11-6 6v3h3l6-6" />
+                <path d="m22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4" />
+              </svg>
+            )}
+            <span className="hidden md:inline">
+              {isIsolated || highlightedLabelId !== null ? "Tắt cô lập" : "Highlight ngược"}
+            </span>
+          </button>
+
+          {/* Đến tâm (Centroid) Button */}
+          <button
+            type="button"
+            onClick={handleJumpToCentroid}
+            disabled={!selectedRegion}
+            className={`px-2 py-1 rounded-lg border text-xs font-semibold flex items-center gap-1 transition shrink-0 ${
+              !selectedRegion
+                ? "bg-slate-950/50 text-slate-500 border-slate-800/60 cursor-not-allowed opacity-40"
+                : "bg-slate-950 text-slate-300 border-slate-700 hover:bg-slate-800 hover:text-white"
+            }`}
+            title={
+              selectedRegion
+                ? `Di chuyển tâm ngắm đến tâm khối giải phẫu "${selectedRegion.name_vi}" (Centroid)`
+                : "Chọn một vùng giải phẫu trên ảnh để di chuyển đến tâm"
+            }
+          >
+            <span>🎯</span>
+            <span className="hidden md:inline">Đến tâm</span>
           </button>
 
           {/* ASPECTS Score Modal Trigger */}

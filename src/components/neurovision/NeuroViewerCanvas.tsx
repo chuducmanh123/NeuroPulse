@@ -6,7 +6,6 @@ import { useNeuroVisionStore } from "../../store/useNeuroVisionStore";
 import { useNeuroViewer } from "./NeuroViewerContext";
 import { loadWithCache } from "../../lib/niivue-cache";
 import SliceScrollbar from "./SliceScrollbar";
-import RegionFloatingToolbar from "./RegionFloatingToolbar";
 import type { OntologyEntry, NeuroOntology, ViewMode } from "../../types/neurovision";
 
 interface NeuroViewerCanvasProps {
@@ -442,9 +441,6 @@ export default function NeuroViewerCanvas({ className = "", darkMode = true }: N
         className="w-full h-full block cursor-crosshair outline-none"
         tabIndex={0}
       />
-
-      {/* Floating Region Actions: Highlight ngược & Đến tâm */}
-      <RegionFloatingToolbar />
 
       {/* Floating Right Control Dock: Canvas Zoom Controls & Slice Scrollbar */}
       <div className="absolute top-3 right-2 sm:right-3 z-20 flex flex-col items-center gap-2 pointer-events-none select-none w-9 sm:w-10">

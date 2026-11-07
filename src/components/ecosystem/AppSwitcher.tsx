@@ -127,7 +127,7 @@ export function AppSwitcher({
       name: "NeuroGuide",
       subtitle: "Guidelines & Conf",
       href: "/neuroguide",
-      badge: "NEW",
+      badge: "Beta",
       gradient: "from-amber-500 to-orange-600",
       isCurrent: currentApp === "neuroguide",
       icon: (
@@ -254,6 +254,10 @@ export function AppSwitcher({
                           ? "bg-red-600 text-white"
                           : app.badge === "NEW"
                           ? "bg-amber-400 text-slate-950"
+                          : app.badge.toUpperCase() === "BETA"
+                          ? app.id === "neuroguide"
+                            ? "bg-amber-500 text-slate-950"
+                            : "bg-blue-600 text-white"
                           : "bg-slate-600 text-white"
                       }`}
                     >

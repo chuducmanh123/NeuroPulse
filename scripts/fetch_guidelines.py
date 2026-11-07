@@ -282,6 +282,11 @@ def main():
     print("🚀 NEUROGUIDE AUTONOMOUS GUIDELINE RADAR (GITHUB ACTIONS / CLI)")
     print("=" * 65)
 
+    # Tạm thời tắt tự động cập nhật hằng ngày do chức năng tự động tìm và trích xuất guideline chưa chính xác
+    if os.environ.get("ENABLE_GUIDELINE_AUTO_SYNC", "false").lower() not in ("true", "1", "yes"):
+        print("[!] Chức năng tự động tìm và trích xuất guideline NeuroGuide đang tạm thời tắt.")
+        return
+
     catalog = load_catalog()
     existing_titles = {
         re.sub(r"[^a-z0-9]", "", entry.get("title", "").lower())
