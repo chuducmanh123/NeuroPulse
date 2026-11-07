@@ -1,5 +1,235 @@
 [
   {
+    "id": "nc-2026-033",
+    "case_code": "NC-2026-033",
+    "title": "Fulminant Refractory Cerebral Encephalopathy with Rapidly Progressive Vasogenic Edema and Microhemorrhages",
+    "subspecialty": "Dementia",
+    "subspecialties": [
+      "Dementia",
+      "Neuroimmunology",
+      "Vascular Neurology",
+      "Neuro-intensive Care"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 120,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-11-08",
+    "status": "approved",
+    "author_credit": "Neurology(R) neuroimmunology & neuroinflammation • PMC12971120",
+    "source_journal": {
+      "name": "Neurology(R) neuroimmunology & neuroinflammation",
+      "short_name": "Neurology(R) neuroimmunology & neuroinflammation",
+      "doi_url": "https://doi.org/10.1212/nxi.0000000000200559",
+      "pmcid": "PMC12971120",
+      "pmid": "41791017",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "70-year-old woman",
+      "chief_complaint": "Seizure, progressive left hemiparesis, and acute neurological decline",
+      "history_of_present_illness": "A 70-year-old woman presented with a seizure characterized by left hemiparesis, followed by loss of consciousness, bladder incontinence, and right gaze preference. For weeks prior, she exhibited unintentional weight loss and malaise. Initial brain MRI showed multifocal subcortical T2/FLAIR hyperintensities with cortical microhemorrhages without gadolinium enhancement. Despite initial high-dose steroid therapy and an outpatient taper, she developed worsening focal deficits, severe headache, and nausea. She represented with marked clinical decline, and repeat imaging revealed severe vasogenic edema with subfalcine and uncal herniation refractory to high-dose corticosteroids, hyperosmolar therapy, and cyclophosphamide.",
+      "past_medical_history": "Hypertension",
+      "vitals": {
+        "bp": "155/90 mmHg",
+        "hr": "58 bpm",
+        "rr": "16 /min",
+        "temp": "37.0 °C",
+        "spo2": "99% on room air"
+      },
+      "neuro_exam": "Lethargic, oriented only to self. Right pupil dilated (5 mm) and sluggishly reactive; left pupil 3 mm and reactive. Right gaze preference noted. Dense left-sided hemiplegia with hyperreflexia and a left extensor plantar response.",
+      "key_labs_csf": "Erythrocyte sedimentation rate 88 mm/h, C-reactive protein 4.4 mg/L, white blood cell count 12.99 K/uL.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (Axial FLAIR & SWI)",
+          "sequence_badge": "Figure 1 • Neurology(R) neuroimmunology & neuroinflammation (PMC12971120)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC12971120_fig1.jpg",
+          "pmcid": "PMC12971120",
+          "doi_url": "https://doi.org/10.1212/nxi.0000000000200559",
+          "caption": "Day 2 after initial symptom onset: asymmetric, multifocal, subcortical T2/FLAIR hyperintensities with associated cortical microhemorrhages on SWI without contrast enhancement. There is additional involvement of left occipital lobe, left posterior frontal lobe, and cerebellar vermis (not pictured). Day 14: worsening vasogenic edema in the right hemisphere with a similar microhemorrhage burden. There is interval development of sulcal enhancement (white arrow). Day 37: significant interval increase in vasogenic edema with right-to-left midline shift, causing subfalcine herniation (black arrow) an",
+          "findings_summary": "Asymmetric multifocal subcortical T2/FLAIR hyperintensities with associated cortical microhemorrhages on susceptibility-weighted imaging, progressing to massive vasogenic edema and midline shift."
+        },
+        {
+          "modality": "Cerebral Cortical Biopsy (H&E and Beta-Amyloid Staining)",
+          "sequence_badge": "Figure 2 • Neurology(R) neuroimmunology & neuroinflammation (PMC12971120)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC12971120_fig2.jpg",
+          "pmcid": "PMC12971120",
+          "doi_url": "https://doi.org/10.1212/nxi.0000000000200559",
+          "caption": "(A) Biopsy of right temporal mass revealed abnormally thickened blood vessels within the cerebral cortex with a dense inflammatory infiltrate composed of lymphocytes and multi-nucleated giant cells (black arrow). (B) Beta-amyloid immunostain is diffusely positive and are visible within macrophages (black arrow). Original magnification ×40 for all panels.",
+          "findings_summary": "Abnormally thickened blood vessels within the cerebral cortex with dense lymphohistiocytic and multinucleated giant cell infiltrates, alongside beta-amyloid deposition within vessel walls and macrophages."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely pathological diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "Primary angiitis of the central nervous system (PACNS)",
+          "peer_percentage": 15,
+          "rationale": "Incorrect. PACNS displays transmural lymphocytic or granulomatous vasculitis on brain biopsy, but it lacks the characteristic vascular amyloid deposition (Congo red positivity with apple-green birefringence) that defines amyloid beta-related angiitis."
+        },
+        {
+          "id": "B",
+          "text": "Amyloid beta-related angiitis (ABRA)",
+          "peer_percentage": 72,
+          "rationale": "Correct! The combination of subacute encephalopathy, prominent lobar microhemorrhages, extensive vasogenic edema, and histopathology revealing vessel-centric granulomatous inflammation (multinucleated giant cells) directly targeting amyloid-laden cortical/leptomeningeal vessels confirms amyloid beta-related angiitis."
+        },
+        {
+          "id": "C",
+          "text": "Neurosarcoidosis",
+          "peer_percentage": 8,
+          "rationale": "Incorrect. Neurosarcoidosis typically demonstrates non-caseating granulomatous inflammation in a non-vasculitic perivascular or leptomeningeal distribution, without vascular amyloid deposition."
+        },
+        {
+          "id": "D",
+          "text": "Primary central nervous system lymphoma (PCNSL)",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. PCNSL histopathology demonstrates atypical, highly mitotic neoplastic lymphocytes forming tight angiocentric cuffs, lacking granulomatous giant cell infiltrates and vascular amyloid deposits."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Amyloid Beta-Related Angiitis (ABRA)",
+      "clinical_discussion": "Amyloid beta-related angiitis (ABRA) is a rare, severe subtype of cerebral amyloid angiopathy-related inflammation (CAA-ri) characterized by an autoimmune inflammatory response directed against beta-amyloid peptides deposited in the walls of leptomeningeal and cortical blood vessels. Patients typically present with rapidly progressive cognitive decline, seizures, focal neurological deficits, and headaches. Neuroimaging is critical, demonstrating asymmetric subcortical T2/FLAIR hyperintensities, extensive vasogenic edema, and a high burden of lobar microhemorrhages or superficial siderosis on susceptibility-weighted sequences. Definite diagnosis requires brain biopsy showing transmural or perivascular infiltration by lymphocytes, epithelioid macrophages, and multinucleated giant cells surrounding amyloid-laden vessels (Congo red positive with apple-green birefringence).\n\nManagement of fulminant ABRA can be exceptionally challenging, frequently requiring high-dose corticosteroids, cytotoxic agents like cyclophosphamide, and aggressive neuro-intensive care measures for intracranial hypertension and herniation. In refractory cases, targeted biological therapies such as tocilizumab (an anti-interleukin-6 receptor monoclonal antibody) offer a promising alternative by interrupting the inflammatory cascade and mitigating the need for decompressive hemicraniectomy. Rapid clinical and radiological improvement following IL-6 blockade highlights the prominent role of pro-inflammatory cytokines in the pathogenesis of refractory ABRA.",
+      "teaching_points": [
+        "Amyloid beta-related angiitis (ABRA) is a distinct, inflammatory subtype of cerebral amyloid angiopathy presenting with subacute encephalopathy, seizures, and focal deficits.",
+        "MRI findings classically include asymmetric T2/FLAIR hyperintensities, prominent vasogenic edema, and numerous lobar microhemorrhages on susceptibility-weighted imaging.",
+        "Definite diagnosis relies on brain biopsy demonstrating granulomatous or lymphocytic vessel wall inflammation targeting amyloid-beta-laden cortical and leptomeningeal vessels.",
+        "Refractory fulminant cases failing high-dose corticosteroids and cytotoxic chemotherapy can achieve dramatic clinical and radiological responses with targeted anti-IL-6 therapy (tocilizumab)."
+      ],
+      "clinical_pitfalls": [
+        "Mistaking the extensive vasogenic edema of ABRA for a malignant infiltrative glioma or primary CNS lymphoma, leading to delayed or inappropriate therapies.",
+        "Failing to recognize that standard steroid tapers can trigger rapid clinical relapses and life-threatening intracranial herniation in severe CAA-ri and ABRA."
+      ],
+      "related_keywords": [
+        "Amyloid beta-related angiitis",
+        "Cerebral amyloid angiopathy-related inflammation",
+        "Tocilizumab",
+        "Vasogenic edema",
+        "Cerebral microhemorrhages"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-034",
+    "case_code": "NC-2026-034",
+    "title": "Recurrent Seizures and Symmetric Occipital Cortico-Subcortical Lesions in an Infant",
+    "subspecialty": "Neurocritical Care",
+    "subspecialties": [
+      "Neurocritical Care",
+      "Pediatric Neurology",
+      "Stroke and Vascular Neurology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 120,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-11-08",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13560395",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-05015-z",
+      "pmcid": "PMC13560395",
+      "pmid": "42351070",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "4-month-old infant",
+      "chief_complaint": "Recurrent afebrile generalized tonic-clonic seizures",
+      "history_of_present_illness": "A previously healthy 4-month-old infant presents with acute onset of recurrent spontaneous generalized tonic-clonic seizures. Between episodes, the infant demonstrates prompt postictal recovery and preserved responsiveness. Despite receiving intravenous midazolam and phenobarbital, the infant experiences breakthrough convulsions requiring admission to the pediatric intensive care unit for airway protection and seizure management.",
+      "past_medical_history": "Unremarkable. Born full-term via uncomplicated vaginal delivery with normal baseline growth and development.",
+      "vitals": {
+        "bp": "104/68 mmHg",
+        "hr": "128 bpm",
+        "rr": "26 /min",
+        "temp": "36.7 °C",
+        "spo2": "98% on room air"
+      },
+      "neuro_exam": "Interactive and alert between seizure episodes. Age-appropriate cranial nerve exam with normal pupillary responses. Normal, symmetric tone and deep tendon reflexes throughout. No focal motor deficits or meningeal signs.",
+      "key_labs_csf": "Serum glucose: 98 mg/dL (5.4 mmol/L). Serum electrolytes, renal function, liver function, serum ammonia, and lactate are within normal limits. Cerebrospinal fluid analysis demonstrates normal cell count, glucose, and protein with negative PCR testing.",
+      "imaging": [
+        {
+          "modality": "Brain CT (Axial)",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13560395)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13560395_fig1.webp",
+          "pmcid": "PMC13560395",
+          "doi_url": "https://doi.org/10.1186/s12883-026-05015-z",
+          "caption": "Axial brain CT scan revealing no parenchymal lesions or extra-axial collections",
+          "findings_summary": "Initial axial cranial CT scan revealed no parenchymal lesions, acute hemorrhage, or extra-axial collections."
+        },
+        {
+          "modality": "Brain MRI (Axial FLAIR, DWI & ADC)",
+          "sequence_badge": "Figure 2 • BMC neurology (PMC13560395)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC13560395_fig2.webp",
+          "pmcid": "PMC13560395",
+          "doi_url": "https://doi.org/10.1186/s12883-026-05015-z",
+          "caption": "MRI identified a cortico-subcortical signal abnormality in the occipital lobes (thin arrows), bilaterally distributed with close symmetry. The lesions appear hyperintense on FLAIR ( A ) and diffusion-weighted imaging ( B ), with corresponding mildly reduced ADC signal on the ADC map ( C ). Overall, these findings are suggestive of PRES, predominantly vasogenic in pattern, with a possible superimposed cytotoxic component",
+          "findings_summary": "Bilateral, symmetrical cortico-subcortical occipital hyperintensities on FLAIR and DWI with mildly reduced ADC signal, indicative of vasogenic edema with a possible superimposed cytotoxic component."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "Herpes simplex encephalitis",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. Herpes simplex encephalitis characteristically presents with fever, focal temporal lobe involvement, CSF pleocytosis, and cytotoxic edema, none of which are present in this afebrile infant with symmetric posterior vasogenic edema."
+        },
+        {
+          "id": "B",
+          "text": "Hypoxic-ischemic encephalopathy",
+          "peer_percentage": 12,
+          "rationale": "Incorrect. Hypoxic-ischemic encephalopathy typically follows a documented perinatal or systemic hypoxic-ischemic insult and preferentially affects deep gray matter structures (basal ganglia/thalami) or vascular watershed regions, with marked cytotoxic edema (diffusion restriction)."
+        },
+        {
+          "id": "C",
+          "text": "Posterior reversible encephalopathy syndrome (PRES)",
+          "peer_percentage": 73,
+          "rationale": "Correct! Posterior reversible encephalopathy syndrome (PRES) presents with acute neurological symptoms (such as seizures and altered mental status) and neuroimaging showing bilateral, symmetrical parieto-occipital subcortical vasogenic edema (facilitated diffusion on ADC maps). Elevated blood pressure for age (104/68 mmHg is significantly above the 99th percentile for a 4-month-old) further supports this diagnosis."
+        },
+        {
+          "id": "D",
+          "text": "Adrenoleukodystrophy",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. X-linked adrenoleukodystrophy typically manifests in early childhood (ages 4–8 years) with progressive neurodevelopmental decline and symmetrical confluent parieto-occipital white matter demyelination, rather than acute seizure onset in a 4-month-old infant."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Posterior Reversible Encephalopathy Syndrome (PRES)",
+      "clinical_discussion": "Posterior reversible encephalopathy syndrome (PRES) is a clinico-radiological entity characterized by acute neurological signs—most commonly seizures, altered mental status, and visual disturbances—in setting of characteristic neuroimaging features. The pathophysiological hallmark of PRES is failure of cerebral autoregulation and endothelial dysfunction leading to vasogenic edema, predominantly involving the posterior parieto-occipital subcortical white matter.\n\nWhile PRES is well recognized in adults and older children with severe hypertension, renal disease, or chemotherapy exposure, it is under-recognized in early infancy. Normal blood pressure values in infants are considerably lower than in adults; a blood pressure of 104/68 mmHg in a 4-month-old infant represents stage 2 hypertension (>99th percentile + 5 mmHg), which can trigger cerebral hyperperfusion and PRES. Cranial CT is frequently unrevealing in early stages. Brain MRI is essential, demonstrating hyperintense signal on T2/FLAIR with high ADC values indicating vasogenic rather than cytotoxic edema. Early recognition, acute blood pressure management, and anti-seizure therapy lead to clinical and radiological recovery in the majority of cases.",
+      "teaching_points": [
+        "Blood pressure norms in infants are age-dependent; a BP of 104/68 mmHg in a 4-month-old infant is significantly elevated (>99th percentile) and sufficient to trigger PRES.",
+        "MRI with DWI/ADC mapping is crucial to differentiate vasogenic edema (characteristic of PRES, showing high ADC values) from cytotoxic edema (stroke or infection, showing ADC restriction).",
+        "Initial non-contrast cranial CT in infants with PRES can be normal, so MRI should be obtained promptly when clinical suspicion is high."
+      ],
+      "clinical_pitfalls": [
+        "Misinterpreting infant blood pressure readings using adult reference ranges, thereby missing pediatric stage 2 hypertension as a cause of PRES.",
+        "Assuming normal cranial CT rules out structural or vascular acute brain pathology in infants presenting with new-onset status epilepticus."
+      ],
+      "related_keywords": [
+        "Posterior Reversible Encephalopathy Syndrome",
+        "PRES",
+        "Infantile Seizures",
+        "Vasogenic Edema",
+        "Pediatric Hypertension"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-031",
     "case_code": "NC-2026-031",
     "title": "Progressive Numbness, Gait Instability, and Posterior Cervical Cord T2 Hyperintensity in a Young Adult",
