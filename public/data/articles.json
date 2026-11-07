@@ -1,5 +1,40 @@
 [
   {
+    "id": "10.1161/strokeaha.126.051399",
+    "title": "How Stroke Genetics Is Impacting Clinical Care: Now and the Future",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-11-06T00:00:00Z",
+    "article_type": "Review",
+    "article_types": [
+      "Review"
+    ],
+    "authors": [
+      "Markus Hugh"
+    ],
+    "doi_url": "https://doi.org/10.1161/strokeaha.126.051399",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Stroke",
+        "Cerebral"
+      ]
+    },
+    "abstract": "The past decade has seen a transformation in our understanding of the genetics of stroke. However, a commonly asked question is how do these advances impact the practicing clinician now, and what are their implications for clinical care in the future? This review outlines the major recent advances in stroke genetics and addresses 4 questions most relevant to the clinician: What do we now know about the genetic architecture of stroke? When and how should genetic testing be used to identify monogenic stroke? How can genetic information be applied to risk stratification and prevention? And what therapeutic implications are emerging from genetic discoveries? It highlights the success of genome-wide association studies in stroke and how these have transformed how we understand the genetic architecture of stroke. An increasing number of monogenic forms of cerebral small vessel disease are being identified, and guidance on when and how to test for them is covered. Polygenic risk scores are gaining increasing attention. How these can be applied, and the challenges in their use are discussed. Lastly, the impact of genomics on stroke therapeutics, whether by identifying new targets, assessing causality using techniques such as Mendelian randomization, or pharmacogenomics, is discussed.",
+    "ai_takeaways": {
+      "conclusion_vi": "While stroke genetics has evolved through GWAS and newly identified monogenic small vessel diseases, immediate clinical application remains largely focused on targeted genetic testing for rare monogenic causes, with polygenic risk scores and genomic-guided therapeutics showing promise for future personalized secondary prevention.",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": true
+    }
+  },
+  {
     "id": "10.1056/nejmra2519017",
     "title": "Intravenous Thrombolysis for Acute Ischemic Stroke — New Directions",
     "journal": {
@@ -25,6 +60,7 @@
       "topics": [
         "Stroke",
         "Ischemic",
+        "Thrombectomy",
         "Thrombolysis"
       ]
     },
@@ -77,6 +113,377 @@
     "ai_takeaways": {
       "conclusion_vi": "",
       "clinical_significance": "Clinical significance for Epilepsy practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1001/jama.2026.19120",
+    "title": "Mechanical Thrombectomy in Ischemic Stroke With a Medium or Distal Arterial Occlusion—Reply",
+    "journal": {
+      "name": "JAMA",
+      "short_name": "JAMA",
+      "badge_bg": "#FEE2E2",
+      "badge_text": "#DC2626"
+    },
+    "pub_date": "2026-11-05T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Clarençon Frédéric",
+      "Dechartres Agnès",
+      "Alamowitch Sonia"
+    ],
+    "doi_url": "https://doi.org/10.1001/jama.2026.19120",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Stroke",
+        "Ischemic",
+        "Thrombectomy"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at JAMA via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1001/jama.2026.19117",
+    "title": "Mechanical Thrombectomy in Ischemic Stroke With a Medium or Distal Arterial Occlusion",
+    "journal": {
+      "name": "JAMA",
+      "short_name": "JAMA",
+      "badge_bg": "#FEE2E2",
+      "badge_text": "#DC2626"
+    },
+    "pub_date": "2026-11-05T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Sheng Hansong",
+      "Lin Jinyu",
+      "Shen Fang"
+    ],
+    "doi_url": "https://doi.org/10.1001/jama.2026.19117",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Stroke",
+        "Ischemic",
+        "Thrombectomy"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at JAMA via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218694",
+    "title": "Association of LATE-NC With Neuropathologic Lesions and Cognitive Abilities",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-05T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Matos Silva Caroline",
+      "Justo Alberto Fernando Oliveira",
+      "Ribeiro Paes Vitor",
+      "Grinberg Lea T.",
+      "Pasqualucci Carlos Augusto",
+      "Ferriolli Eduardo",
+      "Nitrini Ricardo",
+      "Nelson Peter T.",
+      "Paraizo Leite Renata Elaine",
+      "Suemoto Claudia Kimie"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218694",
+    "neurology_classification": {
+      "subspecialty": "Neuromuscular",
+      "subspecialties": [
+        "Neuromuscular"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "BACKGROUND AND OBJECTIVES: Limbic-predominant age-related TDP-43 encephalopathy neuropathologic change (LATE-NC) is a common finding in aging brains. However, most previous studies were limited to ethnoracially homogeneous cohorts from high-income countries. The objective of this study was to investigate the associations between LATE-NC, cognitive performance, and coexisting neuropathologic lesions in a large, ethnoracially and socioeconomically diverse sample from Brazil. METHODS: This cross-sectional study analyzed data from the Biobank for Aging Studies, a Brazilian population-based autopsy study based at the University of São Paulo. The study included a consecutive series of autopsies performed between 2004 and 2024. Inclusion criteria required participants to be at least 18 years old with a knowledgeable informant. LATE-NC, Alzheimer disease neuropathologic change (ADNC), Lewy body pathology (LBP), lacunar infarcts, small vessel disease, cerebral amyloid angiopathy, and hippocampal sclerosis were assessed following international criteria. Cognitive abilities were evaluated with the Clinical Dementia Rating Scale Sum of Boxes (CDR-SOB). Logistic and linear regression models were applied to examine associations of LATE-NC with comorbid neuropathologies and cognitive outcomes, with adjustments for sociodemographic, clinical, and neuropathologic covariates. RESULTS: The sample comprised 1,860 participants (mean age = 72.6 ± 14.2 years; 49.1% female; 62.2% White; 35.4% Black). LATE-NC was present in 7.4% of participants (stage 1: 3.0%; stage 2: 4.0%; stage 3: 0.4%). After adjustment for sociodemographic, clinical, and other neuropathologic covariates, LATE-NC (stages 2-3) was associated with hippocampal sclerosis (OR = 14.95; 95% CI 7.42-30.27; p < 0.001), advanced Braak NFT stages (OR = 2.23; 95% CI 1.32-3.83; p = 0.003), and LBP (OR = 1.89; 95% CI 1.02-3.37; p = 0.036). Factoring in other pathologies, LATE-NC was associated with the CDR-SOB score (β = 4.06; 95% CI 2.95-5.18; p < 0.001), demonstrating a consistent association with cognition, similar to the one observed for moderate/severe ADNC (β = 3.78; 95% CI 3.14-4.42; p < 0.001) in the same sample. DISCUSSION: LATE-NC was prevalent and associated with cognitive impairment in this ethnoracially and socioeconomically diverse sample. The cross-sectional design limits causal inference, and some estimates had wide confidence intervals due to the small number of advanced-stage cases.",
+    "ai_takeaways": {
+      "conclusion_vi": "In a diverse population-based autopsy cohort, advanced LATE-NC (stages 2–3) independently increased cognitive impairment severity on the CDR-SOB (β = 4.06; 95% CI 2.95–5.18; p < 0.001), showing a clinical impact comparable to moderate/severe ADNC and a robust association with hippocampal sclerosis (OR = 14.95; 95% CI 7.42–30.27; p < 0.001).",
+      "clinical_significance": "Clinical significance for Neuromuscular practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218691",
+    "title": "Impact of 2024 Revisions of Multiple Sclerosis Diagnostic Criteria in People With Radiologically Isolated Syndrome",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-05T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Di Filippo Massimiliano",
+      "Masillo Valeria",
+      "Di Sabatino Elena",
+      "Cordioli Cinzia",
+      "Ferraro Diana",
+      "Nicoletti Carolina Gabri",
+      "Ragonese Paolo",
+      "Lanzillo Roberta",
+      "Moccia Marcello",
+      "Annovazzi Pietro",
+      "Buscarinu Maria Chiara",
+      "Cavalla Paola",
+      "Tortorella Carla",
+      "Prosperini Luca",
+      "Buttari Fabio",
+      "Fantozzi Roberta",
+      "Gallo Antonio",
+      "Nociti Viviana",
+      "Paolicelli Damiano",
+      "Pinardi Federica",
+      "Laroni Alice",
+      "Radaelli Marta",
+      "De Luca Giovanna",
+      "Tomassini Valentina",
+      "Torri Clerici Valentina Liliana Adriana Maria",
+      "Calabrese Massimiliano",
+      "Gajofatto Alberto",
+      "Clerico Marinella",
+      "Malucchi Simona",
+      "Fiore Alessia",
+      "Polovina Jodie Cristina",
+      "Solaro Claudio",
+      "Cocco Eleonora",
+      "Gasperini Claudio"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218691",
+    "neurology_classification": {
+      "subspecialty": "Neuroimmunology",
+      "subspecialties": [
+        "Neuroimmunology"
+      ],
+      "topics": [
+        "Multiple sclerosis"
+      ]
+    },
+    "abstract": "BACKGROUND AND OBJECTIVES: The biological onset of multiple sclerosis (MS) precedes its clinical onset by years, as shown by MRI and CSF biomarkers. The 2024 revisions of the McDonald criteria extend, for the first time, MS diagnosis to selected cases of radiologically isolated syndrome (RIS), that is, to people with incidentally discovered CNS lesions suggestive of autoimmune inflammatory demyelination, in the absence of typical symptoms. The aim of this multicenter study was to assess the proportion of patients with RIS reclassified as MS, after applying the 2024 criteria. METHODS: Adult participants (≥18 years) fulfilling the 2023 Lebrun-Frénay RIS criteria were selected from 22 Italian MS tertiary centers. Real-world, registry-based data were retrospectively collected at both baseline and follow-up. Reclassification followed 2024 criteria, allowing a MS diagnosis in RIS cases with ≥1 T2-hyperintense lesion in ≥2 typical MS regions (i.e., dissemination in space [DIS]), plus either MRI evidence of dissemination in time (DIT), CSF positivity, or central vein sign (CVS) positivity. Descriptive statistics were used. RESULTS: Among 236 patients with RIS (mean age 38.9 ± 11.6 years; 70.3% female; median follow-up 3.0 years [interquartile range {IQR}: 1.1-6]), at baseline, 228 (96.6%) fulfilled DIS, 51 (21.6%) fulfilled radiologic DIT, and 152 of 201 individuals with available CSF data were CSF-positive (75.6%). CVS data were available for 5 of 236 individuals; none were CVS-positive. At baseline, the 2024 criteria resulted in a MS diagnosis in 159 of 236 patients with RIS (67.4%). Of 42 patients with RIS experiencing a clinical event during follow-up, 88.1% would have been reclassified as MS a median of 2 years earlier (IQR: 1.0-5.5). During follow-up, 18 of 236 additional participants (7.6%) met the diagnostic criteria through radiologic DIT. DISCUSSION: The introduction of the 2024 criteria results in an earlier diagnosis of MS, before clinical manifestations of focal CNS damage, in most people formerly classified as RIS. Study limitations include incomplete kappa free light chain index data and nonstandardized MRI acquisition protocols; particularly, retrospective CVS assessment was negligible in this real-life context. Future studies including the full spectrum of asymptomatic individuals with MRI abnormalities and available paraclinical diagnostic tools are needed to better define the impact of 2024 revised criteria in this population.",
+    "ai_takeaways": {
+      "conclusion_vi": "Applying the 2024 revised McDonald criteria reclassifies 67.4% (159/236) of patients with radiologically isolated syndrome as having multiple sclerosis at baseline. Furthermore, among patients who developed symptoms during follow-up, 88.1% could have received a formal multiple sclerosis diagnosis a median of 2.0 years (IQR: 1.0–5.5) earlier.",
+      "clinical_significance": "Clinical significance for Neuroimmunology practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218714",
+    "title": "Teaching NeuroImage: Arterial Spin Labeling Demonstrates Cerebral Hemispheric Hypoperfusion in Hemiplegic Migraine",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-05T00:00:00Z",
+    "article_type": "Case Report",
+    "article_types": [
+      "Case Report"
+    ],
+    "authors": [
+      "Kuerbitz Jeffrey S.",
+      "Das Abhijit",
+      "Lyons-Warren Ariel M."
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218714",
+    "neurology_classification": {
+      "subspecialty": "Headache & Pain",
+      "subspecialties": [
+        "Headache & Pain"
+      ],
+      "topics": [
+        "Cerebral",
+        "Migraine"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Headache & Pain practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218739",
+    "title": "Pearls & Oy-sters: Trace Visualization of the Central Retinal Artery",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-05T00:00:00Z",
+    "article_type": "Case Report",
+    "article_types": [
+      "Case Report"
+    ],
+    "authors": [
+      "Du Yang",
+      "Qi Zhongqi",
+      "Cong Lu",
+      "Wang Dong",
+      "Liu Wanhu",
+      "Zhang Shuo"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218739",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "In acute central retinal artery occlusion (CRAO), vessel stenosis and hemodynamic impairment significantly affect visual prognosis. We report a 69-year-old man who presented with 18 hours of acute, severe right eye blurred vision. Fundus examination and optical coherence tomography confirmed central retinal artery (CRA) occlusion with inner retinal edema. Digital subtraction angiography revealed an aortic arch variation and severe C1 segment stenosis of the right internal carotid artery (ICA), accompanied by delayed ophthalmic artery filling and faint visualization of the CRA. After multidisciplinary consultation, the patient underwent ICA stenting. Postoperative imaging showed resolved stenosis and improved retinal perfusion; the patient's vision subsequently improved and stabilized. This case suggests that revascularization can facilitate visual recovery even beyond the traditional window. Furthermore, faint CRA visualization on digital subtraction angiography indicates residual flow, providing a potential rationale for recanalization therapy.",
+    "ai_takeaways": {
+      "conclusion_vi": "Faint central retinal artery visualization on digital subtraction angiography indicates residual flow and viable tissue in acute central retinal artery occlusion. Endovascular revascularization of underlying severe internal carotid artery stenosis can improve visual outcomes even beyond the traditional therapeutic window.",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218647",
+    "title": "Clinical Reasoning: A 68-Year-Old Woman With Bilateral Optic Disc Edema",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-05T00:00:00Z",
+    "article_type": "Case Report",
+    "article_types": [
+      "Case Report"
+    ],
+    "authors": [
+      "Tang Janette",
+      "Juneja Pallavi",
+      "Holroyd Kathryn B."
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218647",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "We describe the case of a 68-year-old immunocompetent woman who presented with headache, vertigo, and diplopia and was found to have bilateral optic disc edema. This case highlights the important distinction between papilledema and optic disc edema and their associated diagnoses. We walk through a diagnostic approach to ensure timely evaluation and treatment.",
+    "ai_takeaways": {
+      "conclusion_vi": "Bilateral optic disc edema requires a rigorous diagnostic approach to distinguish true papilledema—caused by elevated intracranial pressure—from non-papilledema etiologies such as optic neuritis or ischemic optic neuropathy. Neurologists must pursue urgent neuroimaging and lumbar puncture when indicated to ensure timely, targeted treatment for potentially vision- or life-threatening underlying conditions.",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218758",
+    "title": "Toward a Biology-Driven Diagnosis of Multiple Sclerosis",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-05T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Frase Sibylle",
+      "Wiendl Heinz"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218758",
+    "neurology_classification": {
+      "subspecialty": "Neuroimmunology",
+      "subspecialties": [
+        "Neuroimmunology"
+      ],
+      "topics": [
+        "Multiple sclerosis"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Neuroimmunology practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218713",
+    "title": "Teaching NeuroImage: Cerebellar Mutism Syndrome Following Bilateral Cerebellar Strokes",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-05T00:00:00Z",
+    "article_type": "Case Report",
+    "article_types": [
+      "Case Report"
+    ],
+    "authors": [
+      "Mallat Fatima",
+      "Imam Yahia Z.B.",
+      "Zammar Khaled",
+      "Safan Abeer Sabry",
+      "Al-Thani Shiekh Abdulla"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218713",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Stroke practice.",
       "ai_verified": false
     }
   },
@@ -233,10 +640,14 @@
     "neurology_classification": {
       "subspecialty": "Stroke",
       "subspecialties": [
-        "Stroke"
+        "Stroke",
+        "Dementia"
       ],
       "topics": [
-        "Neurovascular"
+        "Alzheimer",
+        "Neurovascular",
+        "Cerebral",
+        "Brain"
       ]
     },
     "abstract": "BACKGROUND AND OBJECTIVES: Women are disproportionately affected by Alzheimer disease (AD), a vulnerability that may relate to estrogen fluctuations across the lifespan. Estrogen has neuroprotective and vasoprotective effects, suggesting that lifetime estrogen exposure may influence both AD-related neurodegeneration and cerebrovascular health. However, its association with late-life vascular and neurodegenerative brain changes remains unclear. We aimed to examine the associations of lifelong estrogen exposure-endogenous (reproductive span) and exogenous (oral contraceptives [OCs], menopausal hormone therapy [MHT])-with late-life vascular brain injury and AD-related atrophy and explore apolipoprotein-ε4 (APOE-ε4) effects. METHODS: This population-based study included cognitively unimpaired women from the Gothenburg H70-1944 Birth Cohort who underwent brain MRI at age 70 and again 5 years later. Reproductive lifespan was calculated as age at menopause or oophorectomy minus age at menarche. OC and MHT use were categorized as ever vs never users. Outcomes included cerebral small vessel disease (SVD), AD-related cortical thickness, and white matter integrity (fractional anisotropy). SVD burden was a composite score derived from white matter hyperintensities (WMHs), lacunes, cerebral microbleeds (CMBs), and perivascular spaces (PVSs) (range 0-4). Linear, multinomial, and mixed-effects regression models were adjusted for relevant confounders and stratified by APOE-ε4. RESULTS: Among 352 women (mean age 70 years), longer reproductive span was associated with lower SVD burden (OR = 0.92, 95% CI 0.86-0.99). MHT use was associated with fewer PVSs and CMBs. OC and MHT use were associated with greater white matter integrity, with combined use showing the highest fractional anisotropy compared with nonusers (β = 0.45, 95% CI 0.12-0.78). No multiplicative interaction between OCs and MHT was observed, although joint exposure analyses suggested cumulative effects. MHT use was associated with greater AD-related cortical thickness among APOE-ε4 carriers only (β = 0.38, 95% CI 0.01-0.76). Longer estrogen exposure was associated with stable cortical thickness and WMH trajectories over time. DISCUSSION: Greater lifetime estrogen exposure, both endogenous and exogenous, was associated with lower cerebrovascular pathology in women and, among APOE-ε4 carriers, greater cortical thickness in AD-vulnerable regions. These findings support the potential role of cerebrovascular mechanisms linking estrogen exposure to brain aging. Limitations included observational design and self-reported, binary estrogen exposure. Potential cognitive effects require further studies.",
@@ -11172,11 +11583,12 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.056890",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Stroke",
       "subspecialties": [
-        "Other"
+        "Stroke"
       ],
       "topics": [
+        "Stroke",
         "Cerebral"
       ]
     },
@@ -11599,6 +12011,7 @@
         "Stroke"
       ],
       "topics": [
+        "Stroke",
         "Ischemic"
       ]
     },
@@ -13779,6 +14192,8 @@
       ],
       "topics": [
         "Stroke",
+        "Thrombectomy",
+        "Thrombolysis",
         "Tenecteplase"
       ]
     },
@@ -15428,9 +15843,9 @@
     },
     "abstract": "Objectives: To investigate the role of beta oscillations in urinary voiding and their association with lower urinary tract symptoms in Parkinson disease (PD). Methods: We used surgically implanted deep brain stimulation electrodes to record local field potential signals from the subthalamic nucleus (STN) and globus pallidus interna (GPi) of patients with PD during urinary voiding. Five patients with STN electrodes and 5 patients with GPi electrodes were tested. We also explored correlations between beta oscillatory power and urinary symptoms assessed by the International Consultation on Incontinence Lower Urinary Tract Symptoms questionnaire. Results: Beta suppression occurred during urinary voiding in the GPi ( p < 0.05) but not the STN. Furthermore, the beta signal in the GPi during voiding correlated significantly with severity of incontinence and urinary frequency ( p < 0.05). Conclusions: In this study, we have demonstrated that local field potentials can provide information about the neural control of the bladder. Our findings suggest that the GPi is implicated in the process of urinary voiding and that its mechanism of action is linked to signals in the beta frequency band. Moreover, our correlational analyses show that beta oscillations may be implicated more generally in the pathophysiology of lower urinary tract symptoms in PD.",
     "ai_takeaways": {
-      "conclusion_vi": "In this study, we have demonstrated that local field potentials can provide information about the neural control of the bladder. Our findings suggest that the GPi is implicated in the process of urinary voiding and that its mechanism of action is linked to signals in the beta frequency band.",
+      "conclusion_vi": "During urinary voiding in Parkinson disease, beta suppression occurs specifically in the globus pallidus interna (GPi, p < 0.05) but not the subthalamic nucleus. Furthermore, GPi beta power during voiding significantly correlates with lower urinary tract symptom severity, including incontinence and urinary frequency (p < 0.05).",
       "clinical_significance": "Clinical significance for Movement Disorders practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -15465,9 +15880,9 @@
     },
     "abstract": "Objective: Extensive cortical β-amyloid (Aβ positivity) has been linked to cognitive decline, but the clinical significance of elevations in Aβ within the negative range is unknown. Methods: We examined amyloid and cognitive trajectories (memory, executive function) in 142 cognitively normal older individuals enrolled in the Alzheimer's Disease Neuroimaging Initiative who were Aβ-negative at baseline and who had at least 2 [ 18 F]-florbetapir PET scans over 3.9 ± 1.4 years. We determined whether Aβ accumulation was associated with longitudinal changes in memory or executive function. Results: Among baseline-negative individuals, florbetapir slope (mean annual increase 0.002 ± 0.008 standardized uptake value ratio units/y) was not related to age, sex, education, APOE4 status, baseline memory or executive function, temporoparietal glucose metabolism, baseline hippocampal volume, or hippocampal volume change; but it was related to higher baseline cortical florbetapir, indicating that Aβ accumulation was ongoing at baseline in those who accumulated during the study. Over the course of follow-up, 13 individuals converted to florbetapir+ and 14 nearly nonoverlapping individuals converted to mild cognitive impairment or Alzheimer disease. Amyloid accumulation among baseline-negative individuals was associated with poorer longitudinal memory performance ( p = 0.019), but it was not associated with changes in executive function. Reducing the sample to individuals with at least 3 timepoints to estimate the florbetapir slope strengthened the relationship further between florbetapir accumulation and memory decline ( p = 0.007). Conclusions: Memory decline accompanies Aβ accumulation in otherwise healthy, Aβ-negative older adults. Amyloid increases within the negative range may represent the earliest detectable indication of pathology with domain-specific cognitive consequences.",
     "ai_takeaways": {
-      "conclusion_vi": "Memory decline accompanies Aβ accumulation in otherwise healthy, Aβ-negative older adults. Amyloid increases within the negative range may represent the earliest detectable indication of pathology with domain-specific cognitive consequences.",
+      "conclusion_vi": "In cognitively normal older adults who are amyloid-negative at baseline, ongoing subthreshold β-amyloid accumulation on florbetapir PET is significantly associated with longitudinal memory decline (p = 0.019; p = 0.007 with ≥3 timepoints), but not executive dysfunction. Amyloid increases within the conventional negative range may represent the earliest clinically consequential stage of Alzheimer's pathology.",
       "clinical_significance": "Clinical significance for Dementia practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -15505,9 +15920,9 @@
     },
     "abstract": "Objective: To determine whether white matter changes influence progression of cognitive decline in individuals with clinically diagnosed Alzheimer disease (AD) and differing biomarker profiles. Methods: Two hundred thirty-six individuals from the Alzheimer's Disease Neuroimaging Initiative database with clinical diagnoses of cognitively normal older adult (older controls [OCs]), mild cognitive impairment, and AD were studied. Support vector machine experiments were first performed to determine the utility of various biomarkers for classifying individuals by clinical diagnosis. General linear models were implemented to assess the relationships between CSF measures of β-amyloid 1–42, phosphorylated tau 181p , and MRI-based white matter signal abnormality (WMSA) volumes and cognitive decline. Analyses were performed across all patients as well as within subgroups of individuals that were defined by clinical cutoff points for both CSF measures. Results: CSF biomarkers alone classified individuals with AD vs OCs with 82% accuracy, and the addition of WMSA did not enhance this. Both CSF biomarkers as well as WMSA volume significantly contributed to predicting cognitive decline in executive and memory domains when assessed across all 236 individuals. In individuals with pathologic levels of both CSF biomarkers, WMSA only significantly contributed to models of future executive function decline. In individuals with subpathologic CSF biomarker levels (levels similar to those in OC individuals), WMSA significantly contributed to prediction of memory decline and were the sole significant predictor of executive function decline. Conclusions: WMSA hold additional predictive power regarding cognitive progression in older individuals and are most effective as biomarkers in individuals who are cognitively impaired but do not fit the expected CSF biomarker profile of AD.",
     "ai_takeaways": {
-      "conclusion_vi": "WMSA hold additional predictive power regarding cognitive progression in older individuals and are most effective as biomarkers in individuals who are cognitively impaired but do not fit the expected CSF biomarker profile of AD.",
+      "conclusion_vi": "In patients with mild cognitive impairment or AD, white matter signal abnormalities (WMSA) predict cognitive decline independently of CSF biomarkers. WMSA uniquely drive executive decline in CSF-pathologic patients and are the primary predictor of executive and memory decline in cognitively impaired patients with normal CSF Aβ1–42 and p-tau181p profiles.",
       "clinical_significance": "Clinical significance for Dementia practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -15557,9 +15972,9 @@
     },
     "abstract": "Objective: To investigate the efficacy and safety of IV aminophylline for patients with postdural puncture headache (PDPH). Methods: We randomly assigned patients to groups receiving either 250 mg IV aminophylline or a placebo within 3 hours of symptom onset once daily for 2 consecutive days. The primary endpoint was headache severity 8 hours after treatment. We assessed this using visual analog scale (VAS) scores taken from patients in a standing position. We also recorded posttreatment VAS score changes, Patient Global Impression of Change (PGIC) scores, and adverse events. We performed an intention-to-treat analysis. Results: We enrolled 126 patients with PDPH at 5 centers in China (62 assigned to the aminophylline group and 64 to the placebo group). The median age was 37 years, and 96 (76.2%) patients were women. Compared to the placebo-treated patients, the aminophylline-treated patients had significantly lower mean VAS scores 8 hours after treatment (5.34 vs 2.98, p < 0.001) and were significantly more likely to report improvements on the PGIC (39.1% vs 72.6%, p < 0.01). This therapeutic effect was already evident at the 30-minute time point and persisted for 2 days. There was no significant difference in the incidence of adverse events (4.8% vs 1.6%, p = 0.589). Conclusions: IV aminophylline is an effective and safe early-stage treatment for patients with PDPH. ClinicalTrials.gov identifier NCT02522013. Classification of evidence: This study provides Class I evidence that for people with PDPH, IV aminophylline reduces headache severity.",
     "ai_takeaways": {
-      "conclusion_vi": "IV aminophylline is an effective and safe early-stage treatment for patients with PDPH. ClinicalTrials.gov identifier NCT02522013.",
+      "conclusion_vi": "In patients with postdural puncture headache, early IV aminophylline (250 mg daily for 2 days) provides Class I evidence of rapid, safe efficacy, significantly lowering 8-hour standing VAS scores (2.98 vs 5.34, p < 0.001) and improving PGIC scores (72.6% vs 39.1%, p < 0.01) compared to placebo without increasing adverse events (p = 0.589).",
       "clinical_significance": "Clinical significance for Headache & Pain practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -15597,9 +16012,9 @@
     },
     "abstract": "Objective: To retrospectively compare the benefits (episode cessation) and risks of IV methylprednisolone (IV-MP) vs abstention during prolonged Kleine-Levin syndrome (KLS) episodes. Methods: A total of 26 patients with KLS received 1 g/d IV-MP for 3 days during 1 to 6 episodes each (totaling 43 IV-MP sessions). The change of episode duration with IV-MP (vs previous episode duration) was compared with the change duration between 2 consecutive episodes in 48 untreated patients matched for age, sex, age at KLS onset, number of episodes, and disease duration (more treated than untreated patients had long episodes). Results: Eleven patients (42.3%) had an episode that was at least 1 week shorter than the preceding one when they received IV-MP therapy, whereas shorter episodes were significantly less frequent (10.4%) in the untreated group. This benefit was more marked (65.5% responders, 12 fewer days in an episode vs 0 days in the untreated patients) when IV-MP was infused before the 10th day of the episode. Mild, transient adverse effects (insomnia, muscle pain, nervousness/restlessness, but no manic switching) were reported by 61.3% of patients. No specific responder profile was identified. Conclusion: In this open-labeled, naturalistic study, early IV-MP (following the protocol for multiple sclerosis relapses) had a good benefit/risk ratio during KLS episodes in patients with long episodes (with half of the patients having an early cessation of episodes). Classification of evidence: This study provides Class IV evidence that for patients with long episodes of KLS, IV steroids decrease the duration of KLS episodes.",
     "ai_takeaways": {
-      "conclusion_vi": "In this open-labeled, naturalistic study, early IV-MP (following the protocol for multiple sclerosis relapses) had a good benefit/risk ratio during KLS episodes in patients with long episodes (with half of the patients having an early cessation of episodes). Classification of evidence: This study provides Class IV evidence that for patients with long episodes of KLS, IV steroids decrease the duration of KLS episodes.",
+      "conclusion_vi": "High-dose IV methylprednisolone (1 g/day for 3 days) significantly shortened KLS episode duration compared to untreated controls (42.3% vs 10.4% with ≥1-week reduction), with maximal benefit observed when infused before day 10 of the episode (65.5% responders; 12 fewer days). Mild, transient adverse effects occurred in 61.3% of patients.",
       "clinical_significance": "Clinical significance for Neuroimmunology practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -15648,9 +16063,9 @@
     },
     "abstract": "Objective: To identify a candidate biomarker reflecting biological changes during the preclinical progression of spinal and bulbar muscular atrophy (SBMA). Methods: We analyzed longitudinal changes in biochemical parameters obtained during health examinations before and after the diagnosis of SBMA. We estimated trajectories of clinical markers across years from the onset of weakness using linear mixed models and compared these trajectories with those estimated for male healthy controls and patients with amyotrophic lateral sclerosis (ALS) and Parkinson disease (PD). Moreover, we examined the relationship between serum creatinine level and the onset of symptoms using Kaplan-Meier curves. Results: Between October 2014 and October 2017, we enrolled 40 patients with genetically confirmed SBMA, 48 healthy controls, 25 patients with ALS, and 20 patients with PD. In patients with SBMA, we evaluated the patients' data for a period of 17.3 ± 7.5 years, including 11.4 ± 7.1 years of preclinical phase. Decreases in serum creatinine occurred >10 years before the onset. The mean serum creatinine concentration was 0.56 mg/dL at the onset of weakness in patients with SBMA compared to 0.88 ± 0.10 mg/dL on final evaluation in healthy controls. Serum levels of alanine transaminase and aspartate transaminase showed tendencies to increase in preclinical SBMA. These preclinical changes of biomarkers were not observed in either ALS or PD. Conclusions: Our findings suggest that serum creatinine begins to decrease before the onset of clinical symptoms and is a biomarker for disease progression and the efficacy of therapeutics in preclinical SBMA.",
     "ai_takeaways": {
-      "conclusion_vi": "Our findings suggest that serum creatinine begins to decrease before the onset of clinical symptoms and is a biomarker for disease progression and the efficacy of therapeutics in preclinical SBMA.",
+      "conclusion_vi": "In spinal and bulbar muscular atrophy (SBMA), serum creatinine levels begin to decrease >10 years before weakness onset, reaching 0.56 mg/dL at onset compared to 0.88 ± 0.10 mg/dL in controls. Serum creatinine serves as a unique preclinical biomarker of SBMA progression that is absent in ALS and Parkinson's disease.",
       "clinical_significance": "Clinical significance for Neuromuscular practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -16000,378 +16415,6 @@
       ]
     },
     "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1016/s1474-4422(14)70272-8",
-    "title": "Raising standards in dementia care",
-    "journal": {
-      "name": "The Lancet Neurology",
-      "short_name": "Lancet Neurol",
-      "badge_bg": "#CFFAFE",
-      "badge_text": "#0E7490"
-    },
-    "pub_date": "2014-11-10T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "The Lancet Neurology"
-    ],
-    "doi_url": "https://doi.org/10.1016/s1474-4422(14)70272-8",
-    "neurology_classification": {
-      "subspecialty": "Dementia",
-      "subspecialties": [
-        "Dementia"
-      ],
-      "topics": [
-        "Dementia"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Dementia practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1016/s1474-4422(14)70205-4",
-    "title": "Sepsis-associated encephalopathy versus sepsis-induced encephalopathy",
-    "journal": {
-      "name": "The Lancet Neurology",
-      "short_name": "Lancet Neurol",
-      "badge_bg": "#CFFAFE",
-      "badge_text": "#0E7490"
-    },
-    "pub_date": "2014-09-15T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Golzari Samad EJ",
-      "Mahmoodpoor Ata"
-    ],
-    "doi_url": "https://doi.org/10.1016/s1474-4422(14)70205-4",
-    "neurology_classification": {
-      "subspecialty": "Other",
-      "subspecialties": [
-        "Other"
-      ],
-      "topics": [
-        "Encephalopathy"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1016/s1474-4422(14)70174-7",
-    "title": "Complexity of the endovascular intervention and clinical outcomes in acute ischaemic stroke",
-    "journal": {
-      "name": "The Lancet Neurology",
-      "short_name": "Lancet Neurol",
-      "badge_bg": "#CFFAFE",
-      "badge_text": "#0E7490"
-    },
-    "pub_date": "2014-08-17T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Ciccone Alfonso"
-    ],
-    "doi_url": "https://doi.org/10.1016/s1474-4422(14)70174-7",
-    "neurology_classification": {
-      "subspecialty": "Stroke",
-      "subspecialties": [
-        "Stroke"
-      ],
-      "topics": [
-        "Stroke",
-        "Endovascular"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1016/s1474-4422(14)70061-4",
-    "title": "21st century telemetry",
-    "journal": {
-      "name": "The Lancet Neurology",
-      "short_name": "Lancet Neurol",
-      "badge_bg": "#CFFAFE",
-      "badge_text": "#0E7490"
-    },
-    "pub_date": "2014-03-20T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Goodrick Steven"
-    ],
-    "doi_url": "https://doi.org/10.1016/s1474-4422(14)70061-4",
-    "neurology_classification": {
-      "subspecialty": "Other",
-      "subspecialties": [
-        "Other"
-      ],
-      "topics": [
-        "Neurology"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1212/wnl.0000000000000277",
-    "title": "EDITORIAL EXPRESSION OF CONCERN: Herpes zoster as a risk factor for stroke and TIA: A retrospective cohort study in the UK",
-    "journal": {
-      "name": "Neurology (AAN)",
-      "short_name": "Neurology",
-      "badge_bg": "#DCFCE7",
-      "badge_text": "#166534"
-    },
-    "pub_date": "2014-02-05T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [],
-    "doi_url": "https://doi.org/10.1212/wnl.0000000000000277",
-    "neurology_classification": {
-      "subspecialty": "Stroke",
-      "subspecialties": [
-        "Stroke"
-      ],
-      "topics": [
-        "Stroke",
-        "Neurology"
-      ]
-    },
-    "abstract": "With regard to the research article “Herpes zoster as a risk factor for stroke and TIA: A retrospective cohort study in the UK” by J. Breuer et al. ([ Neurology ® 2014;82:206–212][1]; published ahead of print January 2, 2014), we are publishing this Expression of Concern to alert readers that errors of data presentation have been uncovered since publication. The authors are preparing a corrected version of the paper. [1]: /lookup/volpage/82/206?iss=3",
-    "ai_takeaways": {
-      "conclusion_vi": "[1]: /lookup/volpage/82/206?iss=3.",
-      "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1212/01.wnl.0000437303.36064.f8-01",
-    "title": "Prognosis of juvenile myoclonic epilepsy 45 years after onset: Seizure outcome and predictors",
-    "journal": {
-      "name": "Neurology (AAN)",
-      "short_name": "Neurology",
-      "badge_bg": "#DCFCE7",
-      "badge_text": "#166534"
-    },
-    "pub_date": "2013-12-20T00:00:00Z",
-    "article_type": "Original Article",
-    "article_types": [
-      "Original Article"
-    ],
-    "authors": [
-      "Senf P.",
-      "Schmitz B.",
-      "Holtkamp M.",
-      "Janz D."
-    ],
-    "doi_url": "https://doi.org/10.1212/01.wnl.0000437303.36064.f8-01",
-    "neurology_classification": {
-      "subspecialty": "Epilepsy",
-      "subspecialties": [
-        "Epilepsy"
-      ],
-      "topics": [
-        "Epilepsy",
-        "Seizure",
-        "Neurology"
-      ]
-    },
-    "abstract": "Objectives: Juvenile myoclonic epilepsy (JME) is the most common idiopathic generalized epilepsy subsyndrome, contributing to approximately 3% to 11% of adolescent and adult cases of epilepsy. However, little is known about the long-term medical evolution of this clinical entity. The aim of this study was to analyze long-term outcome in a clinically well-defined series of patients with JME for seizure evolution and predictors of seizure outcome. Methods: In this retrospective cohort study, we analyzed seizure outcome in 66 patients who had JME, were treated at the Department of Neurology, Charité–Universitätsmedizin Berlin, and were initially diagnosed by a single senior epileptologist. Results: After a mean follow-up time of 44.6 years (20–69 years), 59.1% of patients remained free of seizures for at least 5 years before the last contact. Among the seizure-free patients, 28 (71.8%) were still taking antiepileptic drugs and 11 (28.2%) were off medication for at least the last 5 years. We identified manifestation of additional absence seizures at onset of JME as an independent predictor of an unfavorable outcome regarding seizure freedom. Conclusions: A significant proportion of patients with JME were seizure-free and off antiepileptic drug therapy in the later course of their disorder. Patients with JME and additional absence seizures might represent a different JME subtype with a worse outcome.",
-    "ai_takeaways": {
-      "conclusion_vi": "A significant proportion of patients with JME were seizure-free and off antiepileptic drug therapy in the later course of their disorder. Patients with JME and additional absence seizures might represent a different JME subtype with a worse outcome.",
-      "clinical_significance": "Clinical significance for Epilepsy practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1212/wnl.78.1_meetingabstracts.p06.210",
-    "title": "Complications Associated with Eptifibatide Use during Carotid Artery Stenting (P06.210)",
-    "journal": {
-      "name": "Neurology (AAN)",
-      "short_name": "Neurology",
-      "badge_bg": "#DCFCE7",
-      "badge_text": "#166534"
-    },
-    "pub_date": "2012-04-22T00:00:00Z",
-    "article_type": "Original Article",
-    "article_types": [
-      "Original Article"
-    ],
-    "authors": [
-      "Alshekhlee A.",
-      "Vora N.",
-      "Edgell R.",
-      "Kaushal R.",
-      "Mehta S.",
-      "Storkan M.",
-      "Kitchener J.",
-      "Callison R."
-    ],
-    "doi_url": "https://doi.org/10.1212/wnl.78.1_meetingabstracts.p06.210",
-    "neurology_classification": {
-      "subspecialty": "Stroke",
-      "subspecialties": [
-        "Stroke"
-      ],
-      "topics": [
-        "Carotid"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1212/wnl.78.1_meetingabstracts.p02.021",
-    "title": "Safety, Tolerability and Pharmacokinetics of the Anti-LINGO-1 Monoclonal Antibody BIIB033 in Healthy Volunteers and Subjects with Multiple Sclerosis (P02.021)",
-    "journal": {
-      "name": "Neurology (AAN)",
-      "short_name": "Neurology",
-      "badge_bg": "#DCFCE7",
-      "badge_text": "#166534"
-    },
-    "pub_date": "2012-04-22T00:00:00Z",
-    "article_type": "Clinical Trial",
-    "article_types": [
-      "Clinical Trial",
-      "Original Article"
-    ],
-    "authors": [
-      "Tran J.",
-      "Palaparthy R.",
-      "Zhao J.",
-      "Brosofsky K.",
-      "Ray S.",
-      "Rana J.",
-      "Cadavid D."
-    ],
-    "doi_url": "https://doi.org/10.1212/wnl.78.1_meetingabstracts.p02.021",
-    "neurology_classification": {
-      "subspecialty": "Neuroimmunology",
-      "subspecialties": [
-        "Neuroimmunology",
-        "Headache & Pain"
-      ],
-      "topics": [
-        "Multiple sclerosis",
-        "Neurological",
-        "Brain",
-        "Headache"
-      ]
-    },
-    "abstract": "Objective: To evaluate the safety, tolerability, and pharmacokinetics (PK) of the anti-LINGO-1 monoclonal antibody BIIB033 in healthy volunteers and subjects with multiple sclerosis (MS). Background: LINGO-1 antagonism enhances remyelination and functional recovery in diverse rodent models. Biogen Idec is developing the anti-LINGO-1 monoclonal antibody, BIIB033, as a potential therapy to promote remyelination and functional recovery in MS. Design/Methods: In two separate randomized, placebo-controlled Phase 1 studies, single ascending doses (0.1 to 100 mg/kg) and multiple ascending doses (0.3 to 100 mg/kg; 2 doses separated by 14 days) of BIIB033 or placebo were administered via intravenous infusion to 64 healthy adult volunteers and 42 subjects with RRMS or SPMS, respectively. Safety was assessed by adverse event (AE) monitoring, vital signs, ECGs, laboratory tests, physical and neurological examinations, brain MRIs, VEP, SSEP, OCT, and retinal examination. Serum and cerebrospinal fluid (CSF) samples were collected to measure BIIB033 concentrations. All subjects were followed for 12-16 weeks after the last dose. Results: BIIB033 infusions were well tolerated. The frequency of AEs was similar between BIIB033 and placebo, with headache being the most frequently reported AE. There were no serious AEs or deaths. No clinically significant changes in any of the safety parameters were observed. BIIB033 PK was similar between healthy adults and MS subjects. Both Cmax and AUC increased in an approximately dose-proportional manner. The mean terminal half-life (t1/2) was approximately 15-21 days. Doses at 10 mg/kg or higher resulted in BIIB033 concentrations similar to or higher than concentration associated with 90% of the maximum remyelination effect in rats (EC90). The mean CSF/serum ratio of BIIB033 was approximately 0.06-0.09% which is similar to that observed in rat models. Conclusions: BIIB033 exhibits favorable safety profile, desirable PK and predicted brain penetration as suggested from CSF levels. These findings support advancing its development into proof-of-concept studies in MS. Supported by: Biogen Idec. Disclosure: Dr. Tran has received personal compensation for activities with Biogen Idec as an employee. Dr. Tran holds stock and/or stock options in Biogen Idec, which sponsored research in which Dr. Tran was involved as an investigator. Dr. Tran has received research support from Biogen Idec. Dr. Palaparthy has received personal compensation for activities with Biogen Idec as an employee.Dr. Palaparthy holds stock and/or stock options in Biogen Idec, which sponsored research in which Dr. Palaparthy was involved as an investigator.Dr. Palaparthy has received research support from Biogen Idec. Dr. Zhao has received personal compensation for activities with Biogen Idec as an employee. Dr. Zhao holds stock and/or stock options in Biogen Idec, which sponsored research in which Dr. Zhao was involved as an investigator. Dr. Zhao has received research support from Biogen Idec. Dr. Brosofsky has received personal compensation for activities with ALG Partners Inc. Dr. Brosofsky has received research support from ALG Partners Inc. Dr. Ray has received personal compensation for activities with Biogen Idec as an employee.Dr. Ray holds stock and/or stock options in Biogen Idec.Dr. Ray has received research support from Biogen Idec. Dr. Rana has received personal compensation for activities with Biogen Idec as an employee.Dr. Rana holds stock and/or stock options in Biogen Idec, which sponsored research in which Dr. Rana was involved in as an investigator.Dr. Rana has received research support from Biogen Idec. Dr. Cadavid has received personal compensation for activities with Biogen Idec as an employee. Dr. Cadavid holds stock and/or stock options in Biogen Idec, which sponsored research in which Dr. Cadavid was involved as an investigator. Dr. Cadavid has received research support from Biogen Idec.",
-    "ai_takeaways": {
-      "conclusion_vi": "BIIB033 exhibits favorable safety profile, desirable PK and predicted brain penetration as suggested from CSF levels. These findings support advancing its development into proof-of-concept studies in MS.",
-      "clinical_significance": "Clinical significance for Neuroimmunology practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1212/wnl.78.1_meetingabstracts.p06.120",
-    "title": "Effects of Concomitant Lamotrigine or Valproate Therapy on Clobazam for Lennox-Gastaut Syndrome: Subanalyses of the CONTAIN Trial (P06.120)",
-    "journal": {
-      "name": "Neurology (AAN)",
-      "short_name": "Neurology",
-      "badge_bg": "#DCFCE7",
-      "badge_text": "#166534"
-    },
-    "pub_date": "2012-04-22T00:00:00Z",
-    "article_type": "Clinical Trial",
-    "article_types": [
-      "Clinical Trial",
-      "Original Article"
-    ],
-    "authors": [
-      "Renfroe J.",
-      "Conry J.",
-      "Ng Y.-t.",
-      "Drummond R.",
-      "Owen R."
-    ],
-    "doi_url": "https://doi.org/10.1212/wnl.78.1_meetingabstracts.p06.120",
-    "neurology_classification": {
-      "subspecialty": "Epilepsy",
-      "subspecialties": [
-        "Epilepsy"
-      ],
-      "topics": [
-        "Neurology"
-      ]
-    },
-    "abstract": "Objective: We conducted a subanalysis of a Phase III trial to evaluate clobazam9s efficacy with concomitant lamotrigine or valproate therapy. Background: In CONTAIN,1 clobazam, a 1,5-benzodiazepine, significantly decreased weekly frequency of drop and total seizures associated with LGS.1 Design/Methods: CONTAIN, a double-blind, placebo-controlled study, compared 3 dosages of clobazam with placebo as adjunctive therapy for LGS. Patients 2–60 years of age with LGS enrolled.1 In this post-hoc subanalysis, we evaluated results from baseline to 12-week maintenance phase for patients who also received lamotrigine or valproate therapy. We also used a popPK model to assess interactions of clobazam and its active metabolite (N-CLB) with lamotrigine and valproate. Results: As reported1, 301 patients were screened, 238 were randomized, 217 comprised the mITT population, and 177 completed the study. At baseline, patients9 mean age was 12.4 years, and 60.5% were male. Demographics/clinical characteristics were similar between groups. Clobazam significantly decreased weekly frequencies of drop and total seizures associated with LGS.1 For 72 patients receiving concomitant lamotrigine, all clobazam groups achieved a greater mean percentage decrease in average weekly rate of drop seizures from baseline to maintenance period vs. placebo. For 113 patients receiving concomitant valproate, all dosage groups had a greater mean reduction in average weekly rate of drop attacks vs. placebo. Efficacy was dosage-dependent for patients receiving clobazam and either concomitant lamotrigine or valproate, consistent with overall results. Kruskal-Wallis analysis indicated no significant effects between clobazam or N-CLB and lamotrigine or valproate concentrations. Conclusions: In CONTAIN, clobazam was consistently efficacious in decreasing weekly rates of drop seizures from baseline to maintenance phase vs. placebo for patients receiving either concomitant lamotrigine or valproate. Efficacy was dosage-dependent, consistent with overall results. No dosage adjustment of lamotrigine or valproate appears to be required when coadministered with clobazam. 1Ng YT, et al. Neurology. 2011;77:1473–81. Supported by: Lundbeck Inc. Disclosure: Dr. Renfroe has received research support from Lundbeck Inc. Dr. Conry has received personal compensation for activities with Lundbeck Research USA, Inc., and ID&A. Dr. Conry has received personal compensation for activities with Lundbeck Research USA, Inc., Marinus, Eisai Inc., King, and Abbott Laboratories, Inc. Dr. Ng has received personal compensation for activities with UCB Pharma, Cyberonics, Inc., and Lundbeck Research USA, Inc. Dr. Ng has received research support from UCB Pharma. Dr. Drummond has received personal compensation for activities with Lundbeck, Inc. as an employee. Dr. Owen has received personal compensation for activities with Lundbeck Research USA, Inc.",
-    "ai_takeaways": {
-      "conclusion_vi": "In CONTAIN, clobazam was consistently efficacious in decreasing weekly rates of drop seizures from baseline to maintenance phase vs. placebo for patients receiving either concomitant lamotrigine or valproate.",
-      "clinical_significance": "Clinical significance for Epilepsy practice.",
-      "ai_verified": false
-    }
-  },
-  {
-    "id": "10.1212/wnl.78.1_meetingabstracts.p01.024",
-    "title": "Time-Dependent Biphasic Echogenicity and Histological Correlates of Experimental Blood Clots. A Serial Ultrasound Study (P01.024)",
-    "journal": {
-      "name": "Neurology (AAN)",
-      "short_name": "Neurology",
-      "badge_bg": "#DCFCE7",
-      "badge_text": "#166534"
-    },
-    "pub_date": "2012-04-22T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Watanabe M.",
-      "Majidi S.",
-      "Chaudhry S.",
-      "Qureshi A."
-    ],
-    "doi_url": "https://doi.org/10.1212/wnl.78.1_meetingabstracts.p01.024",
-    "neurology_classification": {
-      "subspecialty": "Other",
-      "subspecialties": [
-        "Other"
-      ],
-      "topics": [
-        "Neurology"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
     "ai_takeaways": {
       "conclusion_vi": "",
       "clinical_significance": "Clinical significance for Other practice.",
