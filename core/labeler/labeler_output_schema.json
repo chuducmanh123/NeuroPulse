@@ -1,0 +1,539 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neuropulse.internal/schemas/recommendation-labels-v0.2.0.json",
+  "title": "Recommendation labeling output (step 2)",
+  "description": "Output of the AI labeler. Enums are generated from stroke_ontology.json; regenerate both together. COR/LOE/numbers are NOT part of the output.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "rec_id",
+    "ontology_version",
+    "labels",
+    "confidence",
+    "needs_review",
+    "review_reasons",
+    "notes"
+  ],
+  "properties": {
+    "rec_id": {
+      "type": "string",
+      "description": "Copy exactly from the input."
+    },
+    "ontology_version": {
+      "type": "string",
+      "enum": [
+        "0.2.0"
+      ]
+    },
+    "labels": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "condition",
+        "age_group",
+        "special_populations",
+        "phase",
+        "intervention_type",
+        "drug_or_procedure",
+        "time_window",
+        "outcome_target",
+        "direction"
+      ],
+      "properties": {
+        "condition": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "value",
+              "evidence_span",
+              "source"
+            ],
+            "properties": {
+              "value": {
+                "type": "string",
+                "enum": [
+                  "suspected_stroke",
+                  "ais",
+                  "tia",
+                  "large_vessel_occlusion",
+                  "medium_distal_vessel_occlusion",
+                  "basilar_artery_occlusion",
+                  "large_ischemic_core",
+                  "large_hemispheric_infarction",
+                  "cerebellar_infarction",
+                  "ich",
+                  "sah",
+                  "cvt",
+                  "atrial_fibrillation",
+                  "carotid_stenosis",
+                  "stroke_associated_pneumonia",
+                  "post_stroke_visual_impairment",
+                  "post_stroke_aphasia",
+                  "post_stroke_motor_impairment",
+                  "status_epilepticus",
+                  "stroke_general",
+                  "other_condition",
+                  "unspecified"
+                ]
+              },
+              "evidence_span": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "VERBATIM substring copied from `text` or `parent_context`. null only when value is 'unspecified'."
+              },
+              "source": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "enum": [
+                  "text",
+                  "parent_context",
+                  null
+                ],
+                "description": "Where evidence_span was copied from. null only when value is 'unspecified'."
+              }
+            }
+          },
+          "minItems": 1
+        },
+        "age_group": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "value",
+              "evidence_span",
+              "source"
+            ],
+            "properties": {
+              "value": {
+                "type": "string",
+                "enum": [
+                  "neonate_perinatal",
+                  "pediatric",
+                  "adult",
+                  "older_adult",
+                  "unspecified"
+                ]
+              },
+              "evidence_span": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "VERBATIM substring copied from `text` or `parent_context`. null only when value is 'unspecified'."
+              },
+              "source": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "enum": [
+                  "text",
+                  "parent_context",
+                  null
+                ],
+                "description": "Where evidence_span was copied from. null only when value is 'unspecified'."
+              }
+            }
+          },
+          "minItems": 1
+        },
+        "special_populations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "value",
+              "evidence_span",
+              "source"
+            ],
+            "properties": {
+              "value": {
+                "type": "string",
+                "enum": [
+                  "pregnancy_postpartum",
+                  "anticoagulant_use",
+                  "sickle_cell_disease",
+                  "renal_impairment",
+                  "cancer_associated",
+                  "dysphagia",
+                  "other_subgroup"
+                ]
+              },
+              "evidence_span": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "VERBATIM substring copied from `text` or `parent_context`. null only when value is 'unspecified'."
+              },
+              "source": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "enum": [
+                  "text",
+                  "parent_context",
+                  null
+                ],
+                "description": "Where evidence_span was copied from. null only when value is 'unspecified'."
+              }
+            }
+          }
+        },
+        "phase": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "value",
+              "evidence_span",
+              "source"
+            ],
+            "properties": {
+              "value": {
+                "type": "string",
+                "enum": [
+                  "primary_prevention",
+                  "prehospital",
+                  "emergency_department",
+                  "acute_treatment",
+                  "stroke_unit_inpatient",
+                  "neurocritical_care",
+                  "rehabilitation",
+                  "secondary_prevention",
+                  "system_of_care",
+                  "unspecified"
+                ]
+              },
+              "evidence_span": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "VERBATIM substring copied from `text` or `parent_context`. null only when value is 'unspecified'."
+              },
+              "source": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "enum": [
+                  "text",
+                  "parent_context",
+                  null
+                ],
+                "description": "Where evidence_span was copied from. null only when value is 'unspecified'."
+              }
+            }
+          },
+          "minItems": 1
+        },
+        "intervention_type": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "value",
+              "evidence_span",
+              "source"
+            ],
+            "properties": {
+              "value": {
+                "type": "string",
+                "enum": [
+                  "screening_triage",
+                  "neuroimaging",
+                  "laboratory_testing",
+                  "iv_thrombolysis",
+                  "endovascular_thrombectomy",
+                  "aneurysm_securing",
+                  "patient_selection",
+                  "bp_management",
+                  "antithrombotic_acute",
+                  "anticoagulation",
+                  "cardiac_rhythm_management",
+                  "glycemic_management",
+                  "temperature_management",
+                  "oxygen_airway",
+                  "brain_swelling_management",
+                  "decompressive_surgery",
+                  "dysphagia_swallowing",
+                  "infection_prevention_treatment",
+                  "vte_prophylaxis",
+                  "lipid_lowering",
+                  "lifestyle_risk_modification",
+                  "rehabilitation_therapy",
+                  "speech_language_therapy",
+                  "telestroke_system",
+                  "other_intervention"
+                ]
+              },
+              "evidence_span": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "VERBATIM substring copied from `text` or `parent_context`. null only when value is 'unspecified'."
+              },
+              "source": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "enum": [
+                  "text",
+                  "parent_context",
+                  null
+                ],
+                "description": "Where evidence_span was copied from. null only when value is 'unspecified'."
+              }
+            }
+          },
+          "minItems": 1
+        },
+        "drug_or_procedure": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "value",
+              "evidence_span",
+              "source"
+            ],
+            "properties": {
+              "value": {
+                "type": "string",
+                "enum": [
+                  "tenecteplase",
+                  "alteplase",
+                  "reteplase",
+                  "argatroban",
+                  "glibenclamide",
+                  "mannitol",
+                  "hypertonic_saline",
+                  "aspirin",
+                  "clopidogrel",
+                  "ticagrelor",
+                  "tirofiban",
+                  "doac",
+                  "warfarin",
+                  "nicardipine",
+                  "labetalol",
+                  "nimodipine",
+                  "tranexamic_acid",
+                  "statin",
+                  "levetiracetam",
+                  "mechanical_thrombectomy_device",
+                  "endovascular_coiling",
+                  "microsurgical_clipping",
+                  "left_atrial_appendage_occlusion",
+                  "decompressive_craniectomy",
+                  "ct",
+                  "cta",
+                  "ctp",
+                  "mri",
+                  "mra",
+                  "other_unlisted"
+                ]
+              },
+              "evidence_span": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "VERBATIM substring copied from `text` or `parent_context`. null only when value is 'unspecified'."
+              },
+              "source": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "enum": [
+                  "text",
+                  "parent_context",
+                  null
+                ],
+                "description": "Where evidence_span was copied from. null only when value is 'unspecified'."
+              }
+            }
+          }
+        },
+        "time_window": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "value",
+              "evidence_span",
+              "source"
+            ],
+            "properties": {
+              "value": {
+                "type": "string",
+                "enum": [
+                  "within_4_5h",
+                  "within_6h",
+                  "h6_to_24h",
+                  "within_24h",
+                  "beyond_24h",
+                  "unknown_onset_wake_up",
+                  "other_window"
+                ]
+              },
+              "evidence_span": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "VERBATIM substring copied from `text` or `parent_context`. null only when value is 'unspecified'."
+              },
+              "source": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "enum": [
+                  "text",
+                  "parent_context",
+                  null
+                ],
+                "description": "Where evidence_span was copied from. null only when value is 'unspecified'."
+              }
+            }
+          }
+        },
+        "outcome_target": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "value",
+              "evidence_span",
+              "source"
+            ],
+            "properties": {
+              "value": {
+                "type": "string",
+                "enum": [
+                  "functional_outcome",
+                  "mortality",
+                  "symptomatic_ich",
+                  "recanalization",
+                  "recurrent_stroke",
+                  "complications",
+                  "diagnostic_identification",
+                  "time_to_treatment"
+                ]
+              },
+              "evidence_span": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "VERBATIM substring copied from `text` or `parent_context`. null only when value is 'unspecified'."
+              },
+              "source": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "enum": [
+                  "text",
+                  "parent_context",
+                  null
+                ],
+                "description": "Where evidence_span was copied from. null only when value is 'unspecified'."
+              }
+            }
+          }
+        },
+        "direction": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "evidence_span",
+            "source"
+          ],
+          "properties": {
+            "value": {
+              "type": "string",
+              "enum": [
+                "for",
+                "against",
+                "no_benefit",
+                "uncertain",
+                "unspecified"
+              ]
+            },
+            "evidence_span": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "VERBATIM substring copied from `text` or `parent_context`. null only when value is 'unspecified'."
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "text",
+                "parent_context",
+                null
+              ],
+              "description": "Where evidence_span was copied from. null only when value is 'unspecified'."
+            }
+          }
+        }
+      }
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ]
+    },
+    "needs_review": {
+      "type": "boolean"
+    },
+    "review_reasons": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "ambiguous_population",
+          "direction_text_conflict",
+          "label_not_in_ontology",
+          "missing_context",
+          "multiple_interpretations",
+          "other",
+          "unlisted_drug_or_procedure",
+          "weak_evidence_span"
+        ]
+      }
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 300
+    }
+  }
+}

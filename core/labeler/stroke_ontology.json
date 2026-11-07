@@ -1,0 +1,1375 @@
+{
+  "ontology_version": "0.2.0",
+  "domain": "stroke_and_acute_neurology",
+  "purpose": "Controlled vocabulary for labeling guideline recommendations and navigating clinical evidence. AI may choose ONLY ids listed here.",
+  "conventions": {
+    "ids": "lower_snake_case, never changed after release; rename via label_en / label_vi only",
+    "aliases": "Strings the model and search engine should treat as the same concept as the id",
+    "not": "Counter-definition: when this applies, do NOT use this id",
+    "unspecified": "Use when the text gives no basis; never guess",
+    "versioning": "Bump ontology_version when ids are added or removed; store it with every label record"
+  },
+  "facets": {
+    "condition": {
+      "label_en": "Clinical Condition",
+      "cardinality": "multi",
+      "required": true,
+      "def": "Stroke type, vascular lesion, or neurological condition the recommendation is ABOUT, including a lesion that is the target of detection. Use only what the text states.",
+      "values": [
+        {
+          "id": "suspected_stroke",
+          "label_en": "Suspected Stroke",
+          "label_vi": "Nghi ngờ đột quỵ",
+          "def": "Patients with suspected stroke or suspected AIS before the diagnosis is confirmed.",
+          "not": "Confirmed AIS (use ais)",
+          "aliases": [
+            "suspected AIS",
+            "suspected stroke",
+            "stroke mimics"
+          ]
+        },
+        {
+          "id": "ais",
+          "label_en": "Acute Ischemic Stroke (AIS)",
+          "label_vi": "Nhồi máu não cấp",
+          "def": "Confirmed acute ischemic stroke.",
+          "aliases": [
+            "AIS",
+            "acute ischemic stroke",
+            "acute ischaemic stroke",
+            "ischemic stroke",
+            "ischaemic stroke",
+            "cerebral infarction"
+          ]
+        },
+        {
+          "id": "tia",
+          "label_en": "Transient Ischemic Attack (TIA)",
+          "label_vi": "Cơn thiếu máu não thoáng qua",
+          "def": "Transient ischemic attack.",
+          "aliases": [
+            "TIA",
+            "transient ischemic attack",
+            "transient ischaemic attack"
+          ]
+        },
+        {
+          "id": "large_vessel_occlusion",
+          "label_en": "Large Vessel Occlusion (LVO)",
+          "label_vi": "Tắc mạch lớn",
+          "def": "Occlusion of ICA, M1/M2, basilar or other proximal large intracranial vessel.",
+          "aliases": [
+            "LVO",
+            "large vessel occlusion",
+            "large-vessel occlusion"
+          ]
+        },
+        {
+          "id": "medium_distal_vessel_occlusion",
+          "label_en": "Medium / Distal Vessel Occlusion (MeVO/DMVO)",
+          "label_vi": "Tắc mạch vừa/xa",
+          "def": "Occlusion of medium or distal branches (M3/M4, ACA, PCA).",
+          "aliases": [
+            "MeVO",
+            "DMVO",
+            "medium vessel occlusion",
+            "distal vessel occlusion"
+          ]
+        },
+        {
+          "id": "basilar_artery_occlusion",
+          "label_en": "Basilar Artery Occlusion (BAO)",
+          "label_vi": "Tắc động mạch thân nền",
+          "def": "Basilar artery occlusion.",
+          "aliases": [
+            "BAO",
+            "basilar artery occlusion"
+          ]
+        },
+        {
+          "id": "large_ischemic_core",
+          "label_en": "Large Ischemic Core (ASPECTS 3–5)",
+          "label_vi": "Lõi nhồi máu lớn",
+          "def": "Large established infarct core, usually described by low ASPECTS or volume threshold.",
+          "aliases": [
+            "large core",
+            "larger ischemic core",
+            "ASPECTS 3-5",
+            "ASPECTS 3–5"
+          ]
+        },
+        {
+          "id": "large_hemispheric_infarction",
+          "label_en": "Large Hemispheric / Malignant MCA Infarction",
+          "label_vi": "Nhồi máu bán cầu lớn",
+          "def": "Large hemispheric or malignant MCA infarction with risk of brain swelling.",
+          "aliases": [
+            "malignant MCA infarction",
+            "large hemispheric infarction",
+            "LHI"
+          ]
+        },
+        {
+          "id": "cerebellar_infarction",
+          "label_en": "Cerebellar Infarction",
+          "label_vi": "Nhồi máu tiểu não",
+          "def": "Cerebellar infarction with or without mass effect.",
+          "aliases": [
+            "cerebellar stroke",
+            "cerebellar infarct"
+          ]
+        },
+        {
+          "id": "ich",
+          "label_en": "Intracerebral Hemorrhage (ICH)",
+          "label_vi": "Xuất huyết nội sọ tự phát",
+          "def": "Spontaneous intracerebral hemorrhage.",
+          "aliases": [
+            "ICH",
+            "intracerebral hemorrhage",
+            "intracerebral haemorrhage"
+          ]
+        },
+        {
+          "id": "sah",
+          "label_en": "Aneurysmal Subarachnoid Hemorrhage (aSAH)",
+          "label_vi": "Xuất huyết dưới nhện do phình mạch",
+          "def": "Aneurysmal subarachnoid hemorrhage.",
+          "aliases": [
+            "aSAH",
+            "SAH",
+            "subarachnoid hemorrhage",
+            "subarachnoid haemorrhage",
+            "ruptured intracranial aneurysm"
+          ]
+        },
+        {
+          "id": "cvt",
+          "label_en": "Cerebral Venous Thrombosis (CVT)",
+          "label_vi": "Huyết khối tĩnh mạch não",
+          "def": "Cerebral venous thrombosis.",
+          "aliases": [
+            "CVT",
+            "CVST",
+            "cerebral venous thrombosis"
+          ]
+        },
+        {
+          "id": "atrial_fibrillation",
+          "label_en": "Atrial Fibrillation (AFib)",
+          "label_vi": "Rung nhĩ",
+          "def": "Atrial fibrillation or atrial flutter associated with thromboembolic or cardioembolic stroke risk.",
+          "aliases": [
+            "AF",
+            "AFib",
+            "atrial fibrillation",
+            "cardioembolic"
+          ]
+        },
+        {
+          "id": "carotid_stenosis",
+          "label_en": "Carotid / Intracranial Stenosis",
+          "label_vi": "Hẹp động mạch cảnh/nội sọ",
+          "def": "Extracranial carotid artery stenosis or intracranial atherosclerotic stenosis.",
+          "aliases": [
+            "carotid stenosis",
+            "ICAS",
+            "intracranial atherosclerosis"
+          ]
+        },
+        {
+          "id": "stroke_associated_pneumonia",
+          "label_en": "Stroke-Associated Pneumonia (SAP)",
+          "label_vi": "Viêm phổi liên quan đột quỵ",
+          "def": "Pneumonia occurring after stroke.",
+          "aliases": [
+            "SAP",
+            "stroke-associated pneumonia"
+          ]
+        },
+        {
+          "id": "post_stroke_visual_impairment",
+          "label_en": "Post-Stroke Visual Impairment",
+          "label_vi": "Suy giảm thị giác sau đột quỵ",
+          "def": "Visual field, acuity or oculomotor deficit after stroke.",
+          "aliases": [
+            "visual impairment",
+            "hemianopia",
+            "visual field loss"
+          ]
+        },
+        {
+          "id": "post_stroke_aphasia",
+          "label_en": "Post-Stroke Aphasia",
+          "label_vi": "Mất ngôn ngữ sau đột quỵ",
+          "def": "Aphasia or language impairment following stroke.",
+          "aliases": [
+            "aphasia",
+            "people with aphasia",
+            "PWA"
+          ]
+        },
+        {
+          "id": "post_stroke_motor_impairment",
+          "label_en": "Post-Stroke Motor Impairment",
+          "label_vi": "Khiếm khuyết vận động sau đột quỵ",
+          "def": "Upper or lower limb motor impairment, paresis, or gait dysfunction after stroke.",
+          "aliases": [
+            "motor rehabilitation",
+            "arm paresis",
+            "upper limb impairment",
+            "gait impairment"
+          ]
+        },
+        {
+          "id": "status_epilepticus",
+          "label_en": "Status Epilepticus / Acute Seizures",
+          "label_vi": "Trạng thái động kinh / Co giật cấp",
+          "def": "Status epilepticus, refractory status epilepticus, or acute symptomatic seizures.",
+          "aliases": [
+            "status epilepticus",
+            "RSE",
+            "seizures"
+          ]
+        },
+        {
+          "id": "stroke_general",
+          "label_en": "Stroke (General)",
+          "label_vi": "Đột quỵ (chung)",
+          "def": "Recommendation applies to stroke in general without specifying a type.",
+          "not": "Use only when no specific type is stated"
+        },
+        {
+          "id": "other_condition",
+          "label_en": "Other Condition",
+          "label_vi": "Tình trạng khác",
+          "def": "Condition not in this list. Set needs_review=true."
+        },
+        {
+          "id": "unspecified",
+          "label_en": "Unspecified",
+          "label_vi": "Không nêu",
+          "def": "Text states no condition."
+        }
+      ]
+    },
+    "age_group": {
+      "label_en": "Age Group",
+      "cardinality": "multi",
+      "required": true,
+      "def": "Age group of the patients to whom the recommendation applies. Use only what the text or its explicit context states. Never infer adult by default.",
+      "values": [
+        {
+          "id": "neonate_perinatal",
+          "label_en": "Neonatal / Perinatal",
+          "label_vi": "Sơ sinh/chu sinh",
+          "def": "Neonates and perinatal stroke.",
+          "aliases": [
+            "neonatal",
+            "perinatal"
+          ]
+        },
+        {
+          "id": "pediatric",
+          "label_en": "Pediatric (<18y)",
+          "label_vi": "Nhi khoa",
+          "def": "Children and adolescents (under 18 y) as stated by the text.",
+          "aliases": [
+            "pediatric",
+            "paediatric",
+            "children"
+          ]
+        },
+        {
+          "id": "adult",
+          "label_en": "Adult",
+          "label_vi": "Người lớn",
+          "def": "Adults, including a stated adult range such as 18 to 70 years.",
+          "aliases": [
+            "adult",
+            "adults",
+            "18 to 70 years"
+          ]
+        },
+        {
+          "id": "older_adult",
+          "label_en": "Older Adult (≥80y)",
+          "label_vi": "Người cao tuổi",
+          "def": "Text explicitly restricts to older patients (e.g., 80 years or older).",
+          "aliases": [
+            "older adults",
+            "elderly",
+            "≥80 years"
+          ]
+        },
+        {
+          "id": "unspecified",
+          "label_en": "Unspecified",
+          "label_vi": "Không nêu",
+          "def": "Text states no age group."
+        }
+      ]
+    },
+    "special_populations": {
+      "label_en": "Special Populations",
+      "cardinality": "multi",
+      "required": false,
+      "def": "Stated special subgroup. Leave the array empty when none is stated.",
+      "values": [
+        {
+          "id": "pregnancy_postpartum",
+          "label_en": "Pregnancy / Postpartum",
+          "label_vi": "Thai kỳ/hậu sản",
+          "def": "Pregnant or postpartum patients.",
+          "aliases": [
+            "pregnancy",
+            "pregnant",
+            "postpartum",
+            "childbearing potential"
+          ]
+        },
+        {
+          "id": "anticoagulant_use",
+          "label_en": "Prior Oral Anticoagulant Use",
+          "label_vi": "Đang dùng thuốc chống đông",
+          "def": "Patients taking oral anticoagulants (DOAC, warfarin).",
+          "aliases": [
+            "DOAC",
+            "warfarin",
+            "oral anticoagulation"
+          ]
+        },
+        {
+          "id": "sickle_cell_disease",
+          "label_en": "Sickle Cell Disease",
+          "label_vi": "Bệnh hồng cầu hình liềm",
+          "def": "Sickle cell disease.",
+          "aliases": [
+            "sickle cell"
+          ]
+        },
+        {
+          "id": "renal_impairment",
+          "label_en": "Renal Impairment / CKD",
+          "label_vi": "Suy thận",
+          "def": "Renal impairment or dialysis.",
+          "aliases": [
+            "chronic kidney disease",
+            "CKD",
+            "dialysis",
+            "renal failure"
+          ]
+        },
+        {
+          "id": "cancer_associated",
+          "label_en": "Active Malignancy / Cancer",
+          "label_vi": "Liên quan ung thư",
+          "def": "Active cancer.",
+          "aliases": [
+            "malignancy",
+            "cancer"
+          ]
+        },
+        {
+          "id": "dysphagia",
+          "label_en": "Dysphagia / Swallowing Impairment",
+          "label_vi": "Rối loạn nuốt",
+          "def": "Swallowing impairment.",
+          "aliases": [
+            "dysphagia"
+          ]
+        },
+        {
+          "id": "other_subgroup",
+          "label_en": "Other Subgroup",
+          "label_vi": "Nhóm khác",
+          "def": "Subgroup not listed. Set needs_review=true."
+        }
+      ]
+    },
+    "phase": {
+      "label_en": "Phase of Care",
+      "cardinality": "multi",
+      "required": true,
+      "def": "Stage of care. May be taken from the recommendation text or its section title (record which in 'source').",
+      "values": [
+        {
+          "id": "primary_prevention",
+          "label_en": "Primary Prevention",
+          "label_vi": "Dự phòng tiên phát",
+          "def": "Prevention of a first stroke in individuals without prior stroke or TIA.",
+          "aliases": [
+            "primary prevention",
+            "first stroke"
+          ]
+        },
+        {
+          "id": "prehospital",
+          "label_en": "Prehospital / EMS",
+          "label_vi": "Trước viện",
+          "def": "Recognition, dispatch, triage and transport before hospital arrival.",
+          "aliases": [
+            "EMS",
+            "ambulance",
+            "mobile stroke unit",
+            "MSU",
+            "prehospital"
+          ]
+        },
+        {
+          "id": "emergency_department",
+          "label_en": "Emergency Department / Initial Evaluation",
+          "label_vi": "Cấp cứu/đánh giá ban đầu",
+          "def": "Initial evaluation, imaging and decisions in the emergency department.",
+          "aliases": [
+            "ED",
+            "initial imaging",
+            "emergent brain"
+          ]
+        },
+        {
+          "id": "acute_treatment",
+          "label_en": "Acute / Hyperacute Treatment",
+          "label_vi": "Điều trị cấp",
+          "def": "Reperfusion and other time-critical treatment decisions.",
+          "aliases": [
+            "acute treatment",
+            "hyperacute",
+            "reperfusion"
+          ]
+        },
+        {
+          "id": "stroke_unit_inpatient",
+          "label_en": "Stroke Unit / Inpatient Care",
+          "label_vi": "Nội trú/đơn vị đột quỵ",
+          "def": "General inpatient care after the acute phase decision.",
+          "aliases": [
+            "stroke unit",
+            "inpatient"
+          ]
+        },
+        {
+          "id": "neurocritical_care",
+          "label_en": "Neurocritical Care / ICU",
+          "label_vi": "Hồi sức thần kinh",
+          "def": "Management of brain swelling, ICP, airway and ventilation.",
+          "aliases": [
+            "brain swelling",
+            "cerebral edema",
+            "neurocritical",
+            "delayed cerebral ischemia",
+            "vasospasm"
+          ]
+        },
+        {
+          "id": "rehabilitation",
+          "label_en": "Rehabilitation & Recovery",
+          "label_vi": "Phục hồi chức năng",
+          "def": "Rehabilitation and recovery.",
+          "aliases": [
+            "rehabilitation",
+            "recovery"
+          ]
+        },
+        {
+          "id": "secondary_prevention",
+          "label_en": "Secondary Prevention",
+          "label_vi": "Dự phòng thứ phát",
+          "def": "Prevention of recurrent stroke.",
+          "aliases": [
+            "secondary prevention",
+            "recurrent stroke prevention"
+          ]
+        },
+        {
+          "id": "system_of_care",
+          "label_en": "System of Care",
+          "label_vi": "Hệ thống chăm sóc",
+          "def": "Organization of stroke systems, telestroke, hospital certification.",
+          "aliases": [
+            "system of care",
+            "stroke center"
+          ]
+        },
+        {
+          "id": "unspecified",
+          "label_en": "Unspecified",
+          "label_vi": "Không nêu",
+          "def": "Phase not determinable."
+        }
+      ]
+    },
+    "intervention_type": {
+      "label_en": "Intervention Category",
+      "cardinality": "multi",
+      "required": true,
+      "def": "Category of the intervention, test or care process the recommendation addresses.",
+      "values": [
+        {
+          "id": "screening_triage",
+          "label_en": "Screening & Triage",
+          "label_vi": "Sàng lọc/phân loại",
+          "def": "Stroke recognition scales, prehospital triage tools.",
+          "aliases": [
+            "screening tools",
+            "triage"
+          ]
+        },
+        {
+          "id": "neuroimaging",
+          "label_en": "Neuroimaging",
+          "label_vi": "Chẩn đoán hình ảnh thần kinh",
+          "def": "CT, CTA, CTP, MRI, MRA, DSA.",
+          "aliases": [
+            "imaging",
+            "vascular imaging",
+            "brain imaging"
+          ]
+        },
+        {
+          "id": "laboratory_testing",
+          "label_en": "Laboratory & Biomarker Testing",
+          "label_vi": "Xét nghiệm",
+          "def": "Blood glucose, coagulation, troponin, biomarkers."
+        },
+        {
+          "id": "iv_thrombolysis",
+          "label_en": "IV Thrombolysis (IVT)",
+          "label_vi": "Tiêu sợi huyết tĩnh mạch",
+          "def": "IV fibrinolytic therapy.",
+          "aliases": [
+            "IVT",
+            "intravenous thrombolysis",
+            "thrombolytic",
+            "fibrinolytic"
+          ]
+        },
+        {
+          "id": "endovascular_thrombectomy",
+          "label_en": "Endovascular Thrombectomy (EVT)",
+          "label_vi": "Lấy huyết khối cơ học",
+          "def": "Endovascular mechanical thrombectomy.",
+          "aliases": [
+            "EVT",
+            "MT",
+            "mechanical thrombectomy",
+            "endovascular therapy",
+            "thrombectomy"
+          ]
+        },
+        {
+          "id": "aneurysm_securing",
+          "label_en": "Aneurysm Securing (Coiling / Clipping)",
+          "label_vi": "Xử trí túi phình (Coiling / Clipping)",
+          "def": "Surgical clipping, endovascular coiling, or flow diversion of intracranial aneurysms.",
+          "aliases": [
+            "aneurysm repair",
+            "coiling",
+            "clipping",
+            "aneurysm obliteration"
+          ]
+        },
+        {
+          "id": "patient_selection",
+          "label_en": "Patient & Eligibility Selection",
+          "label_vi": "Lựa chọn bệnh nhân",
+          "def": "Eligibility, exclusion criteria, imaging-based selection.",
+          "not": "A recommendation that only states a treatment (use that treatment type)"
+        },
+        {
+          "id": "bp_management",
+          "label_en": "Blood Pressure Management",
+          "label_vi": "Kiểm soát huyết áp",
+          "def": "Blood pressure targets and agents.",
+          "aliases": [
+            "blood pressure",
+            "hypertension",
+            "SBP",
+            "BP lowering",
+            "antihypertensive"
+          ]
+        },
+        {
+          "id": "antithrombotic_acute",
+          "label_en": "Antiplatelet / Acute Antithrombotic",
+          "label_vi": "Kháng kết tập/chống huyết khối cấp",
+          "def": "Acute antiplatelet therapy.",
+          "aliases": [
+            "antiplatelet",
+            "DAPT",
+            "dual antiplatelet"
+          ]
+        },
+        {
+          "id": "anticoagulation",
+          "label_en": "Anticoagulation",
+          "label_vi": "Chống đông",
+          "def": "Anticoagulant therapy.",
+          "aliases": [
+            "anticoagulation",
+            "anticoagulant",
+            "OAC"
+          ]
+        },
+        {
+          "id": "cardiac_rhythm_management",
+          "label_en": "Cardiac Rhythm / LAAO Management",
+          "label_vi": "Kiểm soát nhịp tim / Bít tiểu nhĩ trái",
+          "def": "Rhythm control, rate control, catheter ablation, or left atrial appendage occlusion in AFib.",
+          "aliases": [
+            "catheter ablation",
+            "rhythm control",
+            "rate control",
+            "left atrial appendage"
+          ]
+        },
+        {
+          "id": "glycemic_management",
+          "label_en": "Glycemic Management",
+          "label_vi": "Kiểm soát đường huyết",
+          "def": "Glucose targets and insulin.",
+          "aliases": [
+            "glucose",
+            "hyperglycemia",
+            "hypoglycemia",
+            "glycemic"
+          ]
+        },
+        {
+          "id": "temperature_management",
+          "label_en": "Temperature / Fever Management",
+          "label_vi": "Kiểm soát thân nhiệt",
+          "def": "Fever treatment and hypothermia.",
+          "aliases": [
+            "fever",
+            "normothermia",
+            "hypothermia"
+          ]
+        },
+        {
+          "id": "oxygen_airway",
+          "label_en": "Oxygen & Airway Management",
+          "label_vi": "Oxy/đường thở",
+          "def": "Oxygen therapy, airway management, ventilation."
+        },
+        {
+          "id": "brain_swelling_management",
+          "label_en": "Brain Swelling / Edema Management",
+          "label_vi": "Xử trí phù não",
+          "def": "Medical measures for edema or raised ICP."
+        },
+        {
+          "id": "decompressive_surgery",
+          "label_en": "Decompressive / Hematoma Surgery",
+          "label_vi": "Phẫu thuật giải ép / lấy máu tụ",
+          "def": "Decompressive craniectomy, suboccipital decompression, or minimally invasive hematoma evacuation.",
+          "aliases": [
+            "decompressive craniectomy",
+            "hematoma evacuation",
+            "hemicraniectomy",
+            "EVD"
+          ]
+        },
+        {
+          "id": "dysphagia_swallowing",
+          "label_en": "Dysphagia & Nutrition Care",
+          "label_vi": "Nuốt/dinh dưỡng",
+          "def": "Swallowing screen, feeding, nutrition.",
+          "aliases": [
+            "swallowing",
+            "dysphagia screening",
+            "oral hygiene"
+          ]
+        },
+        {
+          "id": "infection_prevention_treatment",
+          "label_en": "Infection Prevention & Antibiotics",
+          "label_vi": "Phòng/điều trị nhiễm trùng",
+          "def": "Prevention or treatment of pneumonia or other infection.",
+          "aliases": [
+            "antibiotic",
+            "pneumonia prevention"
+          ]
+        },
+        {
+          "id": "vte_prophylaxis",
+          "label_en": "VTE / DVT Prophylaxis",
+          "label_vi": "Dự phòng huyết khối tĩnh mạch",
+          "def": "DVT/VTE prophylaxis.",
+          "aliases": [
+            "intermittent pneumatic compression",
+            "IPC",
+            "VTE prophylaxis"
+          ]
+        },
+        {
+          "id": "lipid_lowering",
+          "label_en": "Lipid-Lowering Therapy",
+          "label_vi": "Hạ lipid",
+          "def": "Statins and lipid targets.",
+          "aliases": [
+            "LDL",
+            "cholesterol",
+            "lipid"
+          ]
+        },
+        {
+          "id": "lifestyle_risk_modification",
+          "label_en": "Lifestyle & Vascular Risk Modification",
+          "label_vi": "Thay đổi lối sống & yếu tố nguy cơ",
+          "def": "Diet, physical activity, smoking cessation, obesity, and social determinants of health.",
+          "aliases": [
+            "Mediterranean diet",
+            "physical activity",
+            "smoking cessation"
+          ]
+        },
+        {
+          "id": "rehabilitation_therapy",
+          "label_en": "Motor & Functional Rehabilitation",
+          "label_vi": "Liệu pháp phục hồi",
+          "def": "Therapy delivered during rehabilitation.",
+          "aliases": [
+            "task-specific training",
+            "CIMT",
+            "virtual reality",
+            "physiotherapy"
+          ]
+        },
+        {
+          "id": "speech_language_therapy",
+          "label_en": "Speech & Language Therapy (SLT)",
+          "label_vi": "Âm ngữ trị liệu",
+          "def": "Speech and language therapy, tDCS/rTMS for aphasia, or computer-based language therapy.",
+          "aliases": [
+            "SLT",
+            "speech and language therapy",
+            "language therapy"
+          ]
+        },
+        {
+          "id": "telestroke_system",
+          "label_en": "Telestroke & Triage Systems",
+          "label_vi": "Tele-stroke/hệ thống",
+          "def": "Telemedicine, transfer protocols, system organization.",
+          "aliases": [
+            "telestroke",
+            "interhospital transfer",
+            "drip-and-ship",
+            "mothership"
+          ]
+        },
+        {
+          "id": "other_intervention",
+          "label_en": "Other Intervention",
+          "label_vi": "Khác",
+          "def": "Not listed. Set needs_review=true."
+        }
+      ]
+    },
+    "drug_or_procedure": {
+      "label_en": "Drug / Device / Procedure",
+      "cardinality": "multi",
+      "required": false,
+      "def": "Named drug, device or procedure in the text. List every one. Empty array if none is named. A named item not in this list is 'other_unlisted' (needs_review=true).",
+      "values": [
+        {
+          "id": "tenecteplase",
+          "label_en": "Tenecteplase (TNK)",
+          "label_vi": "Tenecteplase",
+          "def": "Tenecteplase (TNK).",
+          "aliases": [
+            "TNK",
+            "tenecteplase"
+          ]
+        },
+        {
+          "id": "alteplase",
+          "label_en": "Alteplase (rt-PA / tPA)",
+          "label_vi": "Alteplase",
+          "def": "Alteplase (rt-PA, tPA).",
+          "aliases": [
+            "rtPA",
+            "rt-PA",
+            "tPA",
+            "alteplase"
+          ]
+        },
+        {
+          "id": "reteplase",
+          "label_en": "Reteplase",
+          "label_vi": "Reteplase",
+          "def": "Reteplase."
+        },
+        {
+          "id": "argatroban",
+          "label_en": "Argatroban",
+          "label_vi": "Argatroban",
+          "def": "Argatroban direct thrombin inhibitor.",
+          "aliases": [
+            "argatroban"
+          ]
+        },
+        {
+          "id": "glibenclamide",
+          "label_en": "Glibenclamide (Glyburide)",
+          "label_vi": "Glibenclamide",
+          "def": "Glibenclamide (glyburide); IV formulation in brain swelling trials.",
+          "aliases": [
+            "glyburide",
+            "glibenclamide"
+          ]
+        },
+        {
+          "id": "mannitol",
+          "label_en": "Mannitol",
+          "label_vi": "Mannitol",
+          "def": "Mannitol."
+        },
+        {
+          "id": "hypertonic_saline",
+          "label_en": "Hypertonic Saline",
+          "label_vi": "Muối ưu trương",
+          "def": "Hypertonic saline."
+        },
+        {
+          "id": "aspirin",
+          "label_en": "Aspirin (ASA)",
+          "label_vi": "Aspirin",
+          "def": "Aspirin.",
+          "aliases": [
+            "aspirin",
+            "acetylsalicylic acid"
+          ]
+        },
+        {
+          "id": "clopidogrel",
+          "label_en": "Clopidogrel",
+          "label_vi": "Clopidogrel",
+          "def": "Clopidogrel."
+        },
+        {
+          "id": "ticagrelor",
+          "label_en": "Ticagrelor",
+          "label_vi": "Ticagrelor",
+          "def": "Ticagrelor."
+        },
+        {
+          "id": "tirofiban",
+          "label_en": "Tirofiban / Eptifibatide (GP IIb/IIIa)",
+          "label_vi": "Tirofiban",
+          "def": "Tirofiban or other GP IIb/IIIa inhibitors.",
+          "aliases": [
+            "eptifibatide",
+            "tirofiban"
+          ]
+        },
+        {
+          "id": "doac",
+          "label_en": "Direct Oral Anticoagulant (DOAC)",
+          "label_vi": "Thuốc chống đông đường uống trực tiếp (DOAC)",
+          "def": "Direct oral anticoagulants including apixaban, rivaroxaban, dabigatran, or edoxaban.",
+          "aliases": [
+            "DOAC",
+            "NOAC",
+            "apixaban",
+            "rivaroxaban",
+            "dabigatran",
+            "edoxaban",
+            "andexanet"
+          ]
+        },
+        {
+          "id": "warfarin",
+          "label_en": "Warfarin / Vitamin K Antagonist",
+          "label_vi": "Warfarin / Kháng Vitamin K",
+          "def": "Warfarin or other vitamin K antagonists.",
+          "aliases": [
+            "warfarin",
+            "VKA",
+            "prothrombin complex concentrate",
+            "4F-PCC"
+          ]
+        },
+        {
+          "id": "nicardipine",
+          "label_en": "Nicardipine / Clevidipine",
+          "label_vi": "Nicardipine / Clevidipine",
+          "def": "IV dihydropyridine calcium channel blockers for acute blood pressure lowering.",
+          "aliases": [
+            "nicardipine",
+            "clevidipine"
+          ]
+        },
+        {
+          "id": "labetalol",
+          "label_en": "Labetalol",
+          "label_vi": "Labetalol",
+          "def": "IV labetalol for acute blood pressure control.",
+          "aliases": [
+            "labetalol"
+          ]
+        },
+        {
+          "id": "nimodipine",
+          "label_en": "Nimodipine",
+          "label_vi": "Nimodipine",
+          "def": "Nimodipine.",
+          "aliases": [
+            "nimodipine"
+          ]
+        },
+        {
+          "id": "tranexamic_acid",
+          "label_en": "Tranexamic Acid (TXA)",
+          "label_vi": "Tranexamic acid",
+          "def": "Tranexamic acid.",
+          "aliases": [
+            "tranexamic acid",
+            "TXA"
+          ]
+        },
+        {
+          "id": "statin",
+          "label_en": "Statin / PCSK9i / Ezetimibe",
+          "label_vi": "Statin",
+          "def": "Any statin or lipid-lowering agent.",
+          "aliases": [
+            "statin",
+            "atorvastatin",
+            "rosuvastatin",
+            "ezetimibe",
+            "PCSK9"
+          ]
+        },
+        {
+          "id": "levetiracetam",
+          "label_en": "Antiseizure Medication (Levetiracetam / Valproate)",
+          "label_vi": "Thuốc chống động kinh (Levetiracetam / Valproate)",
+          "def": "Antiseizure medications such as levetiracetam, valproate, fosphenytoin, or lamotrigine.",
+          "aliases": [
+            "levetiracetam",
+            "valproate",
+            "fosphenytoin",
+            "lamotrigine"
+          ]
+        },
+        {
+          "id": "mechanical_thrombectomy_device",
+          "label_en": "Thrombectomy Device (Stent Retriever / Aspiration)",
+          "label_vi": "Dụng cụ lấy huyết khối",
+          "def": "Stent retriever or aspiration catheter.",
+          "aliases": [
+            "stent retriever",
+            "aspiration catheter"
+          ]
+        },
+        {
+          "id": "endovascular_coiling",
+          "label_en": "Endovascular Coiling",
+          "label_vi": "Can thiệp nút phình mạch (Coiling)",
+          "def": "Endovascular coiling of intracranial aneurysm.",
+          "aliases": [
+            "endovascular coiling",
+            "coiling"
+          ]
+        },
+        {
+          "id": "microsurgical_clipping",
+          "label_en": "Microsurgical Clipping",
+          "label_vi": "Phẫu thuật kẹp cổ túi phình (Clipping)",
+          "def": "Microsurgical clipping of intracranial aneurysm.",
+          "aliases": [
+            "surgical clipping",
+            "microsurgical clipping"
+          ]
+        },
+        {
+          "id": "left_atrial_appendage_occlusion",
+          "label_en": "Left Atrial Appendage Occlusion (LAAO)",
+          "label_vi": "Bít tiểu nhĩ trái (LAAO)",
+          "def": "Percutaneous or surgical left atrial appendage occlusion.",
+          "aliases": [
+            "LAAO",
+            "left atrial appendage occlusion"
+          ]
+        },
+        {
+          "id": "decompressive_craniectomy",
+          "label_en": "Decompressive Craniectomy",
+          "label_vi": "Mở sọ giải ép",
+          "def": "Decompressive craniectomy.",
+          "aliases": [
+            "decompressive craniectomy",
+            "hemicraniectomy"
+          ]
+        },
+        {
+          "id": "ct",
+          "label_en": "Non-Contrast CT (NCCT)",
+          "label_vi": "CT không cản quang",
+          "def": "Non-contrast CT.",
+          "aliases": [
+            "NCCT"
+          ]
+        },
+        {
+          "id": "cta",
+          "label_en": "CT Angiography (CTA)",
+          "label_vi": "CT mạch (CTA)",
+          "def": "CT angiography.",
+          "aliases": [
+            "CT/CTA"
+          ]
+        },
+        {
+          "id": "ctp",
+          "label_en": "CT Perfusion (CTP)",
+          "label_vi": "CT tưới máu (CTP)",
+          "def": "CT perfusion."
+        },
+        {
+          "id": "mri",
+          "label_en": "Brain MRI / DWI",
+          "label_vi": "MRI",
+          "def": "MRI including DWI, FLAIR.",
+          "aliases": [
+            "DWI"
+          ]
+        },
+        {
+          "id": "mra",
+          "label_en": "MR Angiography (MRA)",
+          "label_vi": "MRA",
+          "def": "MR angiography.",
+          "aliases": [
+            "MRI/MRA"
+          ]
+        },
+        {
+          "id": "other_unlisted",
+          "label_en": "Other Unlisted Drug / Procedure",
+          "label_vi": "Chưa có trong danh mục",
+          "def": "Named drug/procedure not in this list."
+        }
+      ]
+    },
+    "time_window": {
+      "label_en": "Onset Time Window",
+      "cardinality": "multi",
+      "required": false,
+      "def": "Symptom-onset or last-known-well window that defines eligibility. Process times (e.g., 'within 25 minutes' for imaging) are NOT time windows. Leave the array empty if none.",
+      "values": [
+        {
+          "id": "within_4_5h",
+          "label_en": "≤ 4.5 Hours",
+          "label_vi": "≤ 4,5 giờ",
+          "def": "Onset or last-known-well up to 4.5 hours.",
+          "aliases": [
+            "4.5-hour",
+            "4.5 hours",
+            "within 4.5 h"
+          ]
+        },
+        {
+          "id": "within_6h",
+          "label_en": "≤ 6 Hours",
+          "label_vi": "≤ 6 giờ",
+          "def": "Up to 6 hours.",
+          "aliases": [
+            "within 6 hours",
+            "within 6 h"
+          ]
+        },
+        {
+          "id": "h6_to_24h",
+          "label_en": "6–24 Hours (Late Window)",
+          "label_vi": "6-24 giờ",
+          "def": "Between 6 and 24 hours.",
+          "aliases": [
+            "6 to 24 hours",
+            "6–24 hours",
+            "4.5 to 9 hours",
+            "4.5–9 hours"
+          ]
+        },
+        {
+          "id": "within_24h",
+          "label_en": "≤ 24 Hours",
+          "label_vi": "≤ 24 giờ",
+          "def": "Up to 24 hours without lower bound.",
+          "aliases": [
+            "within 24 hours",
+            "within 24 h"
+          ]
+        },
+        {
+          "id": "beyond_24h",
+          "label_en": "> 24 Hours",
+          "label_vi": "> 24 giờ",
+          "def": "More than 24 hours.",
+          "aliases": [
+            "beyond 24 hours"
+          ]
+        },
+        {
+          "id": "unknown_onset_wake_up",
+          "label_en": "Wake-Up / Unknown Onset",
+          "label_vi": "Không rõ giờ khởi phát/thức dậy",
+          "def": "Wake-up stroke or unknown onset.",
+          "aliases": [
+            "wake-up stroke",
+            "unknown onset"
+          ]
+        },
+        {
+          "id": "other_window",
+          "label_en": "Other Time Window",
+          "label_vi": "Khung thời gian khác",
+          "def": "Stated window not listed. Set needs_review=true."
+        }
+      ]
+    },
+    "outcome_target": {
+      "label_en": "Outcome Target",
+      "cardinality": "multi",
+      "required": false,
+      "def": "Outcome the text says the intervention does or does not affect, or the aim of a test. Empty array if none stated.",
+      "values": [
+        {
+          "id": "functional_outcome",
+          "label_en": "Functional Independence (mRS)",
+          "label_vi": "Kết cục chức năng",
+          "def": "mRS or functional independence.",
+          "aliases": [
+            "functional outcome",
+            "functional independence",
+            "mRS"
+          ]
+        },
+        {
+          "id": "mortality",
+          "label_en": "Mortality / Survival",
+          "label_vi": "Tử vong",
+          "def": "Mortality.",
+          "aliases": [
+            "mortality",
+            "death",
+            "survival"
+          ]
+        },
+        {
+          "id": "symptomatic_ich",
+          "label_en": "Symptomatic ICH / Hemorrhage Risk",
+          "label_vi": "Xuất huyết triệu chứng",
+          "def": "Symptomatic intracranial hemorrhage.",
+          "aliases": [
+            "sICH",
+            "symptomatic intracranial hemorrhage",
+            "hematoma expansion"
+          ]
+        },
+        {
+          "id": "recanalization",
+          "label_en": "Reperfusion / Recanalization",
+          "label_vi": "Tái thông",
+          "def": "Reperfusion or recanalization.",
+          "aliases": [
+            "reperfusion",
+            "recanalization"
+          ]
+        },
+        {
+          "id": "recurrent_stroke",
+          "label_en": "Stroke Prevention / Recurrence",
+          "label_vi": "Tái phát đột quỵ",
+          "def": "Recurrent stroke.",
+          "aliases": [
+            "recurrent stroke",
+            "stroke risk",
+            "thromboembolic"
+          ]
+        },
+        {
+          "id": "complications",
+          "label_en": "Medical Complications (SAP / Edema / Vasospasm)",
+          "label_vi": "Biến chứng",
+          "def": "Complications such as pneumonia or edema.",
+          "aliases": [
+            "pneumonia",
+            "delayed cerebral ischemia",
+            "DCI",
+            "vasospasm"
+          ]
+        },
+        {
+          "id": "diagnostic_identification",
+          "label_en": "Diagnostic Detection / Triage",
+          "label_vi": "Nhận diện/chẩn đoán",
+          "def": "Aim is to identify or differentiate a condition.",
+          "aliases": [
+            "identification of stroke",
+            "to identify patients"
+          ]
+        },
+        {
+          "id": "time_to_treatment",
+          "label_en": "Time-to-Treatment (Door-to-Needle / Puncture)",
+          "label_vi": "Thời gian điều trị",
+          "def": "Process times such as door-to-needle.",
+          "aliases": [
+            "door-to-needle",
+            "time to treatment"
+          ]
+        }
+      ]
+    },
+    "direction": {
+      "label_en": "Recommendation Direction",
+      "cardinality": "single",
+      "required": true,
+      "def": "Stance of the recommendation as WORDED in the text, then checked against COR by code.",
+      "values": [
+        {
+          "id": "for",
+          "label_en": "Recommended (FOR)",
+          "label_vi": "Khuyến cáo nên làm",
+          "def": "Text recommends, or says it is reasonable or may be considered, to do it.",
+          "aliases": [
+            "is recommended",
+            "should be performed",
+            "is reasonable",
+            "we recommend",
+            "we suggest"
+          ]
+        },
+        {
+          "id": "against",
+          "label_en": "Not Recommended / Harm (AGAINST)",
+          "label_vi": "Khuyến cáo không nên/có hại",
+          "def": "Text says not to do it or that it is harmful.",
+          "aliases": [
+            "is not recommended",
+            "should not",
+            "harmful",
+            "we recommend against",
+            "we suggest against"
+          ]
+        },
+        {
+          "id": "no_benefit",
+          "label_en": "No Benefit (Class III: No Benefit)",
+          "label_vi": "Không có lợi ích",
+          "def": "Text says it gives no benefit or is not useful.",
+          "aliases": [
+            "no benefit",
+            "not useful",
+            "does not improve",
+            "does not result in improved"
+          ]
+        },
+        {
+          "id": "uncertain",
+          "label_en": "Uncertain / Unknown Benefit",
+          "label_vi": "Chưa rõ",
+          "def": "Text says usefulness or benefit is unknown or uncertain.",
+          "aliases": [
+            "usefulness is unknown",
+            "uncertain",
+            "unclear",
+            "continued uncertainty"
+          ]
+        },
+        {
+          "id": "unspecified",
+          "label_en": "Unspecified",
+          "label_vi": "Không xác định",
+          "def": "Direction cannot be determined from the text."
+        }
+      ]
+    }
+  },
+  "copied_fields_never_generated_by_ai": [
+    "rec_id",
+    "society",
+    "guideline_id",
+    "section_path",
+    "parent_context",
+    "rec_number",
+    "text",
+    "cor",
+    "loe",
+    "strength_raw",
+    "quality_raw",
+    "change_type"
+  ],
+  "normalization": {
+    "AHA_COR": {
+      "1": "strong",
+      "I": "strong",
+      "2a": "moderate",
+      "IIa": "moderate",
+      "2b": "weak",
+      "IIb": "weak",
+      "3: No Benefit": "no_benefit",
+      "III: No Benefit": "no_benefit",
+      "3: Harm": "harm",
+      "III: Harm": "harm"
+    },
+    "AHA_LOE": {
+      "A": "high",
+      "B-R": "moderate",
+      "B-NR": "moderate",
+      "C-LD": "low",
+      "C-EO": "expert_opinion"
+    },
+    "ESO_strength": {
+      "strong for": "strong",
+      "weak for": "weak",
+      "weak against": "weak_against",
+      "strong against": "strong_against",
+      "expert consensus": "expert_opinion",
+      "no recommendation / uncertain (ongoing trial)": "uncertain"
+    },
+    "ESO_quality": {
+      "high": "high",
+      "moderate": "moderate",
+      "low": "low",
+      "very low": "very_low",
+      "uncertain / ongoing trial": "uncertain"
+    },
+    "note": "Always keep the raw value too. Normalization is done by code from the copied fields, never by AI."
+  },
+  "consistency_rules_checked_by_code": [
+    {
+      "id": "cor1_for",
+      "if": "AHA COR = 1",
+      "then": "direction must be 'for'"
+    },
+    {
+      "id": "cor3_nb",
+      "if": "AHA COR = 3: No Benefit",
+      "then": "direction must be 'no_benefit' or 'against'"
+    },
+    {
+      "id": "cor3_harm",
+      "if": "AHA COR = 3: Harm",
+      "then": "direction must be 'against'"
+    },
+    {
+      "id": "cor2",
+      "if": "AHA COR = 2a or 2b",
+      "then": "direction must be 'for' or 'uncertain'"
+    },
+    {
+      "id": "pediatric_text",
+      "if": "text contains pediatric/children/paediatric",
+      "then": "age_group must contain 'pediatric'"
+    },
+    {
+      "id": "unlisted_flag",
+      "if": "any value is other_* or other_unlisted",
+      "then": "needs_review must be true"
+    }
+  ]
+}

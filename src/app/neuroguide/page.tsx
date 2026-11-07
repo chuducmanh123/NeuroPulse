@@ -10,7 +10,15 @@ import {
   GuidelineDoc,
   RecommendationAtom,
   ConferenceEvent,
+  PivotalTrialRecord,
+  RecommendationLabelOutput,
+  NavigatorQuery,
 } from "../../types/neuroguide";
+import type { Article } from "../../types/article";
+import {
+  PIVOTAL_TRIALS_SEED,
+  mergePivotalTrialsWithConferences,
+} from "../../data/pivotalTrialsSeed";
 import {
   MOCK_CLINICAL_SCENARIOS,
   MOCK_GUIDELINE_DOCS,
@@ -20,6 +28,19 @@ import {
 import { AppSwitcher } from "../../components/ecosystem/AppSwitcher";
 import { AdminButton } from "../../components/ecosystem/AdminButton";
 import dynamic from "next/dynamic";
+
+const ClinicalNavigatorTab = dynamic(
+  () => import("../../components/neuroguide/ClinicalNavigatorTab").then((m) => m.ClinicalNavigatorTab),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="p-12 text-center text-slate-500 animate-pulse">
+        <span className="text-3xl block mb-2">🧭</span>
+        Loading Clinical Navigator &amp; Ontology Engine...
+      </div>
+    ),
+  }
+);
 
 const ReviewQueueTab = dynamic(
   () => import("../../components/neuroguide/ReviewQueueTab").then((m) => m.ReviewQueueTab),
@@ -61,7 +82,7 @@ import { groupPracticeChangesIntoEsoPicos } from "../../lib/neuroguide/esoPicoGr
 import type { PracticeChangeDetail } from "../../types/neuroguide";
 import { getAdminHeaders, getStoredAdminToken } from "@/utils/clientAuth";
 
-type NavTabId = "guidelines" | "conf" | "matrix" | "review";
+type NavTabId = "guidelines" | "conf" | "matrix" | "navigator" | "review";
 
 interface ThemeStyle {
   borderLeft: string;
@@ -281,6 +302,14 @@ export default function NeuroGuidePage() {
   const [editingScenario, setEditingScenario] = useState<ClinicalScenario | null>(null);
   const [showEditScenarioModal, setShowEditScenarioModal] = useState<boolean>(false);
 
+  // Clinical Navigator dynamic state (Pivotal Trials, Custom Labels, NeuroPulse Articles)
+  const [pivotalTrials, setPivotalTrials] = useState<PivotalTrialRecord[]>(() =>
+    mergePivotalTrialsWithConferences(PIVOTAL_TRIALS_SEED, MOCK_CONFERENCE_EVENTS)
+  );
+  const [customRecLabels, setCustomRecLabels] = useState<Record<string, RecommendationLabelOutput>>({});
+  const [neuroPulseArticles, setNeuroPulseArticles] = useState<Article[]>([]);
+  const [navigatorSeedQuery, setNavigatorSeedQuery] = useState<NavigatorQuery | null>(null);
+
   const SWR_STORAGE_KEY = "neuroguide_swr_store_v3";
 
   const filterValidGuidelines = (list: GuidelineDoc[], deletedIds: string[] = []): GuidelineDoc[] => {
@@ -380,6 +409,30 @@ export default function NeuroGuidePage() {
 
   useEffect(() => {
     fetchQueueCount();
+    // Load Clinical Navigator store (Pivotal Trials + Custom Labels)
+    fetch("/api/neuroguide/navigator", { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (d?.ok) {
+          if (Array.isArray(d.pivotalTrials) && d.pivotalTrials.length > 0) {
+            setPivotalTrials(d.pivotalTrials);
+          }
+          if (d.customRecLabels) {
+            setCustomRecLabels(d.customRecLabels);
+          }
+        }
+      })
+      .catch(() => {});
+
+    // Load local NeuroPulse articles for Section 5 (Related NeuroPulse Literature)
+    fetch("/data/articles.json")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((arts) => {
+        if (Array.isArray(arts)) {
+          setNeuroPulseArticles(arts);
+        }
+      })
+      .catch(() => {});
   }, []);
 
   // Dynamic Navigation Tabs with Live Counts (Review Queue visible to Admin only)
@@ -403,10 +456,16 @@ export default function NeuroGuidePage() {
         mobileLabel: "⚖️ Scenarios",
         badge: `${clinicalScenarios.length}`,
       },
+      {
+        id: "navigator" as const,
+        label: "🧭 Clinical Navigator",
+        mobileLabel: "🧭 Navigator",
+        badge: `${pivotalTrials.length} Trials`,
+      },
     ];
 
     return tabs;
-  }, [guidelineDocs.length, clinicalScenarios.length]);
+  }, [guidelineDocs.length, clinicalScenarios.length, pivotalTrials.length]);
 
   // Expandable cards states (details reveal only on click)
   const [expandedGuidelineIds, setExpandedGuidelineIds] = useState<Record<string, boolean>>({});
@@ -1004,8 +1063,8 @@ export default function NeuroGuidePage() {
             darkMode ? "bg-slate-900/90 border-slate-800" : "bg-white border-slate-200 shadow-xs"
           }`}
         >
-          {/* Tab 1: Guidelines | Tab 2: Conferences | Tab 3: Scenarios - 3 equal columns on mobile */}
-          <div className="grid grid-cols-3 gap-1 sm:flex sm:flex-wrap sm:items-center sm:gap-1.5 w-full sm:w-auto">
+          {/* Tab 1: Guidelines | Tab 2: Conferences | Tab 3: Scenarios | Tab 4: Clinical Navigator */}
+          <div className="grid grid-cols-2 gap-1 sm:flex sm:flex-wrap sm:items-center sm:gap-1.5 w-full sm:w-auto">
             {navTabs.map((tab) => {
               const isActive = activeTab === tab.id;
               return (
@@ -1973,20 +2032,37 @@ export default function NeuroGuidePage() {
                             </span>
                           </div>
 
-                          {isAdminVerified && (
+                          <div className="flex items-center gap-2">
                             <button
                               type="button"
                               onClick={() => {
-                                setEditingScenario(currentScenario);
-                                setShowEditScenarioModal(true);
+                                setNavigatorSeedQuery({
+                                  searchText: currentScenario.keyTags?.[0] || currentScenario.titleEn || currentScenario.title,
+                                  facets: {},
+                                  includeAiChecked: true,
+                                });
+                                setActiveTab("navigator");
                               }}
-                              className="px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-500/15 text-amber-700 dark:text-amber-300 hover:bg-amber-500/25 border border-amber-500/30 flex items-center gap-1.5 transition-all shadow-xs cursor-pointer"
-                              title="Chỉnh sửa thông tin kịch bản lâm sàng này"
+                              className="px-3 py-1.5 rounded-xl text-xs font-bold bg-indigo-500/15 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-500/25 border border-indigo-500/30 flex items-center gap-1.5 transition-all shadow-xs cursor-pointer"
+                              title="Explore full ontology recommendations & pivotal trials in Clinical Navigator"
                             >
-                              <span>✏️</span>
-                              <span>Sửa Scenario</span>
+                              <span>🧭 Explore in Navigator →</span>
                             </button>
-                          )}
+                            {isAdminVerified && (
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setEditingScenario(currentScenario);
+                                  setShowEditScenarioModal(true);
+                                }}
+                                className="px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-500/15 text-amber-700 dark:text-amber-300 hover:bg-amber-500/25 border border-amber-500/30 flex items-center gap-1.5 transition-all shadow-xs cursor-pointer"
+                                title="Chỉnh sửa thông tin kịch bản lâm sàng này"
+                              >
+                                <span>✏️</span>
+                                <span>Sửa Scenario</span>
+                              </button>
+                            )}
+                          </div>
                         </div>
 
                         <h2 className="text-lg sm:text-xl font-black leading-snug text-slate-900 dark:text-white">
@@ -2332,6 +2408,28 @@ export default function NeuroGuidePage() {
               </>
             )}
           </div>
+        )}
+
+        {/* =========================================================================
+            TAB 4: CLINICAL NAVIGATOR (100% English Ontology-Driven Synthesis)
+           ========================================================================= */}
+        {activeTab === "navigator" && (
+          <ClinicalNavigatorTab
+            guidelines={guidelineDocs}
+            recommendationAtoms={recommendationAtoms}
+            conferences={MOCK_CONFERENCE_EVENTS}
+            scenarios={clinicalScenarios}
+            pivotalTrials={pivotalTrials}
+            customRecLabels={customRecLabels}
+            neuroPulseArticles={neuroPulseArticles}
+            isAdminVerified={isAdminVerified}
+            initialPresetOrQuery={navigatorSeedQuery}
+            onPivotalTrialsUpdated={(updated) => setPivotalTrials(updated)}
+            onScenarioSaved={(updatedScenarios, updatedAtoms) => {
+              setClinicalScenarios(updatedScenarios);
+              setRecommendationAtoms(updatedAtoms);
+            }}
+          />
         )}
 
         {/* =========================================================================

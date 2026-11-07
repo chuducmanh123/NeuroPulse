@@ -85,6 +85,9 @@ export interface PracticeChangeDetail {
   picoNumber?: number | string;
   picoQuestion?: string;
   expertConsensusStatement?: string;
+  pageNum?: number;
+  approvalStatus?: "human_approved" | "ai_checked" | "needs_review" | "rejected";
+  ontologyLabels?: RecommendationLabelOutput;
 }
 
 export type FullTextStatus = "FULL_TEXT_PARSED" | "ABSTRACT_ONLY" | "UNAVAILABLE";
@@ -205,11 +208,153 @@ export interface ConferenceEvent {
   lateBreakingTrials: LateBreakingTrial[];
 }
 
+export type OntologyFacetId =
+  | "condition"
+  | "age_group"
+  | "special_populations"
+  | "phase"
+  | "intervention_type"
+  | "drug_or_procedure"
+  | "time_window"
+  | "outcome_target"
+  | "direction";
+
+export type ReviewReasonCode =
+  | "label_not_in_ontology"
+  | "ambiguous_population"
+  | "direction_text_conflict"
+  | "missing_context"
+  | "multiple_interpretations"
+  | "unlisted_drug_or_procedure"
+  | "weak_evidence_span"
+  | "other";
+
+export interface FacetLabelItem {
+  value: string;
+  evidence_span: string | null;
+  source: "text" | "parent_context" | null;
+}
+
+export interface RecommendationFacetLabels {
+  condition: FacetLabelItem[];
+  age_group: FacetLabelItem[];
+  special_populations: FacetLabelItem[];
+  phase: FacetLabelItem[];
+  intervention_type: FacetLabelItem[];
+  drug_or_procedure: FacetLabelItem[];
+  time_window: FacetLabelItem[];
+  outcome_target: FacetLabelItem[];
+  direction: FacetLabelItem;
+}
+
+export interface RecommendationLabelInput {
+  rec_id: string;
+  society: string;
+  guideline_id: string;
+  section_path: string;
+  parent_context: string;
+  rec_number?: string | number | null;
+  page?: number | null;
+  text: string;
+  cor?: string | null;
+  loe?: string | null;
+  strength_raw?: string | null;
+  quality_raw?: string | null;
+  change_type?: string | null;
+}
+
+export interface RecommendationLabelOutput {
+  rec_id: string;
+  ontology_version: string;
+  labels: RecommendationFacetLabels;
+  confidence: "high" | "medium" | "low";
+  needs_review: boolean;
+  review_reasons: ReviewReasonCode[];
+  notes: string;
+}
+
+export interface ValidationIssue {
+  code: string;
+  msg: string;
+}
+
+export interface LabelValidationResult {
+  status: "reject" | "needs_review" | "ai_checked" | "human_approved";
+  errors: ValidationIssue[];
+  reviews: ValidationIssue[];
+  warnings: ValidationIssue[];
+}
+
+export type RecommendationRelationType =
+  | "same_section"
+  | "refers_to"
+  | "same_pico"
+  | "supersedes"
+  | "qualifies"
+  | "differs"
+  | "supports_evidence";
+
+export interface RecommendationRelation {
+  src_rec_id: string;
+  dst_rec_id: string;
+  type: RecommendationRelationType;
+  origin: "rule" | "ai" | "human";
+  status: "approved" | "proposed" | "rejected";
+  evidence_src?: string;
+  evidence_dst?: string;
+}
+
+export interface PivotalTrialRecord {
+  id: string; // e.g. "act-2022"
+  acronym: string; // e.g. "AcT"
+  title: string;
+  year: number;
+  journal: string;
+  pmid?: string;
+  doi?: string;
+  officialUrl?: string;
+  subspecialty: SubspecialtyType;
+  evidenceSource: "PEER_REVIEWED_PUBLISHED" | "CONFERENCE_LATE_BREAKING";
+  design: "Phase 3 RCT" | "Phase 2 RCT" | "Meta-Analysis" | "Prospective Registry";
+  sampleSize?: number;
+  pico: {
+    population: string;
+    intervention: string;
+    comparator: string;
+    timeWindow?: string;
+  };
+  primaryEndpoint: {
+    metric: string;
+    resultStats: string;
+    verdict: "POSITIVE" | "NEUTRAL" | "NEGATIVE" | "NON_INFERIOR";
+  };
+  safetyEndpoint: {
+    sICH?: string;
+    mortality90d?: string;
+    note?: string;
+  };
+  bottomLine: string;
+  ontologyTags: Partial<Record<OntologyFacetId, string[]>>;
+  linkedScenarioIds?: string[];
+}
+
+export interface NavigatorQuery {
+  searchText?: string;
+  subspecialty?: SubspecialtyType;
+  societies?: string[];
+  facets: Partial<Record<OntologyFacetId, string[]>>;
+  excludeFacets?: Partial<Record<OntologyFacetId, string[]>>;
+  includeAiChecked?: boolean;
+  onlyPracticeChanges?: boolean;
+}
+
 export interface NeuroGuideBlobPayload {
   guidelines: GuidelineDoc[];
   conferences: ConferenceEvent[];
   scenarios: ClinicalScenario[];
   recommendationAtoms?: RecommendationAtom[];
+  pivotalTrials?: PivotalTrialRecord[];
+  customRecLabels?: Record<string, RecommendationLabelOutput>;
   deletedGuidelineIds?: string[];
   lastSyncedAt: string;
   source: string;

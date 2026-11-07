@@ -1,0 +1,377 @@
+{
+  "description": "Gold-style few-shot examples for the step 2 labeler. Inputs include fields copied by code (cor, loe...). Outputs contain labels only. The last example shows the correct behavior when context is missing.",
+  "examples": [
+    {
+      "input": {
+        "rec_id": "AHA2026-AIS-prehospital-01",
+        "society": "AHA/ASA",
+        "guideline_id": "AHA-ASA-AIS-2026",
+        "section_path": "Prehospital Assessment and Management",
+        "parent_context": "Prehospital Assessment and Management",
+        "rec_number": 1,
+        "cor": "2b",
+        "loe": "B-NR",
+        "text": "In pediatric patients with suspected stroke transported by ambulance, the usefulness of common adult stroke screening tools is uncertain because they perform poorly for identification of stroke. Newer pediatric stroke screening tools demonstrate good interrater reliability; however, their sensitivity, specificity, and predictive value in the prehospital setting remain to be determined, and their usefulness is unknown."
+      },
+      "expected_output": {
+        "rec_id": "AHA2026-AIS-prehospital-01",
+        "ontology_version": "0.2.0",
+        "labels": {
+          "condition": [
+            {
+              "value": "suspected_stroke",
+              "evidence_span": "suspected stroke",
+              "source": "text"
+            }
+          ],
+          "age_group": [
+            {
+              "value": "pediatric",
+              "evidence_span": "pediatric patients",
+              "source": "text"
+            }
+          ],
+          "special_populations": [],
+          "phase": [
+            {
+              "value": "prehospital",
+              "evidence_span": "transported by ambulance",
+              "source": "text"
+            }
+          ],
+          "intervention_type": [
+            {
+              "value": "screening_triage",
+              "evidence_span": "stroke screening tools",
+              "source": "text"
+            }
+          ],
+          "drug_or_procedure": [],
+          "time_window": [],
+          "outcome_target": [
+            {
+              "value": "diagnostic_identification",
+              "evidence_span": "identification of stroke",
+              "source": "text"
+            }
+          ],
+          "direction": {
+            "value": "uncertain",
+            "evidence_span": "their usefulness is unknown",
+            "source": "text"
+          }
+        },
+        "confidence": "high",
+        "needs_review": false,
+        "review_reasons": [],
+        "notes": "Pediatric recommendation inside an adult-focused guideline."
+      }
+    },
+    {
+      "input": {
+        "rec_id": "AHA2026-AIS-imaging-02",
+        "society": "AHA/ASA",
+        "guideline_id": "AHA-ASA-AIS-2026",
+        "section_path": "Initial, Vascular, and Multimodal Imaging Approaches",
+        "parent_context": "Initial, Vascular, and Multimodal Imaging Approaches",
+        "rec_number": 2,
+        "cor": "2a",
+        "loe": "B-NR",
+        "text": "In pediatric patients with suspected AIS, emergent brain and vascular imaging with MRI/MRA of the cervical and intracranial vessels is reasonable to identify patients with large vessel occlusion and to differentiate arterial ischemic stroke from hemorrhagic stroke or stroke mimics."
+      },
+      "expected_output": {
+        "rec_id": "AHA2026-AIS-imaging-02",
+        "ontology_version": "0.2.0",
+        "labels": {
+          "condition": [
+            {
+              "value": "suspected_stroke",
+              "evidence_span": "suspected AIS",
+              "source": "text"
+            },
+            {
+              "value": "large_vessel_occlusion",
+              "evidence_span": "large vessel occlusion",
+              "source": "text"
+            }
+          ],
+          "age_group": [
+            {
+              "value": "pediatric",
+              "evidence_span": "pediatric patients",
+              "source": "text"
+            }
+          ],
+          "special_populations": [],
+          "phase": [
+            {
+              "value": "emergency_department",
+              "evidence_span": "emergent brain and vascular imaging",
+              "source": "text"
+            }
+          ],
+          "intervention_type": [
+            {
+              "value": "neuroimaging",
+              "evidence_span": "brain and vascular imaging",
+              "source": "text"
+            }
+          ],
+          "drug_or_procedure": [
+            {
+              "value": "mri",
+              "evidence_span": "MRI/MRA",
+              "source": "text"
+            },
+            {
+              "value": "mra",
+              "evidence_span": "MRI/MRA",
+              "source": "text"
+            }
+          ],
+          "time_window": [],
+          "outcome_target": [
+            {
+              "value": "diagnostic_identification",
+              "evidence_span": "to identify patients with large vessel occlusion",
+              "source": "text"
+            }
+          ],
+          "direction": {
+            "value": "for",
+            "evidence_span": "is reasonable",
+            "source": "text"
+          }
+        },
+        "confidence": "high",
+        "needs_review": false,
+        "review_reasons": [],
+        "notes": "'MRI/MRA' labeled as two procedures."
+      }
+    },
+    {
+      "input": {
+        "rec_id": "AHA2026-AIS-imaging-03",
+        "society": "AHA/ASA",
+        "guideline_id": "AHA-ASA-AIS-2026",
+        "section_path": "Initial, Vascular, and Multimodal Imaging Approaches",
+        "parent_context": "Initial, Vascular, and Multimodal Imaging Approaches",
+        "rec_number": 3,
+        "cor": "2a",
+        "loe": "B-NR",
+        "text": "In pediatric patients with suspected AIS, emergent brain and vascular imaging with CT/CTA of the cervical and intracranial vessels is reasonable if MRI/MRA imaging is not available immediately (within 25 minutes) to identify patients with large vessel occlusion."
+      },
+      "expected_output": {
+        "rec_id": "AHA2026-AIS-imaging-03",
+        "ontology_version": "0.2.0",
+        "labels": {
+          "condition": [
+            {
+              "value": "suspected_stroke",
+              "evidence_span": "suspected AIS",
+              "source": "text"
+            },
+            {
+              "value": "large_vessel_occlusion",
+              "evidence_span": "large vessel occlusion",
+              "source": "text"
+            }
+          ],
+          "age_group": [
+            {
+              "value": "pediatric",
+              "evidence_span": "pediatric patients",
+              "source": "text"
+            }
+          ],
+          "special_populations": [],
+          "phase": [
+            {
+              "value": "emergency_department",
+              "evidence_span": "emergent brain and vascular imaging",
+              "source": "text"
+            }
+          ],
+          "intervention_type": [
+            {
+              "value": "neuroimaging",
+              "evidence_span": "brain and vascular imaging",
+              "source": "text"
+            }
+          ],
+          "drug_or_procedure": [
+            {
+              "value": "ct",
+              "evidence_span": "CT/CTA",
+              "source": "text"
+            },
+            {
+              "value": "cta",
+              "evidence_span": "CT/CTA",
+              "source": "text"
+            }
+          ],
+          "time_window": [],
+          "outcome_target": [
+            {
+              "value": "diagnostic_identification",
+              "evidence_span": "to identify patients with large vessel occlusion",
+              "source": "text"
+            }
+          ],
+          "direction": {
+            "value": "for",
+            "evidence_span": "is reasonable",
+            "source": "text"
+          }
+        },
+        "confidence": "high",
+        "needs_review": false,
+        "review_reasons": [],
+        "notes": "'within 25 minutes' is an imaging-availability process time, not an onset window; time_window left empty. This is a conditional alternative to recommendation 2."
+      }
+    },
+    {
+      "input": {
+        "rec_id": "AHA2026-AIS-swelling-GLI",
+        "society": "AHA/ASA",
+        "guideline_id": "AHA-ASA-AIS-2026",
+        "section_path": "Brain Swelling (Medical Management)",
+        "parent_context": "Brain Swelling (Medical Management)",
+        "rec_number": null,
+        "cor": "3: No Benefit",
+        "loe": "B-NR",
+        "change_type": "downgraded",
+        "text": "In patients with large hemispheric infarction 18 to 70 years of age, the use of IV glibenclamide does not result in improved functional outcome and is not recommended."
+      },
+      "expected_output": {
+        "rec_id": "AHA2026-AIS-swelling-GLI",
+        "ontology_version": "0.2.0",
+        "labels": {
+          "condition": [
+            {
+              "value": "large_hemispheric_infarction",
+              "evidence_span": "large hemispheric infarction",
+              "source": "text"
+            }
+          ],
+          "age_group": [
+            {
+              "value": "adult",
+              "evidence_span": "18 to 70 years of age",
+              "source": "text"
+            }
+          ],
+          "special_populations": [],
+          "phase": [
+            {
+              "value": "neurocritical_care",
+              "evidence_span": "Brain Swelling (Medical Management)",
+              "source": "parent_context"
+            }
+          ],
+          "intervention_type": [
+            {
+              "value": "brain_swelling_management",
+              "evidence_span": "Brain Swelling (Medical Management)",
+              "source": "parent_context"
+            }
+          ],
+          "drug_or_procedure": [
+            {
+              "value": "glibenclamide",
+              "evidence_span": "IV glibenclamide",
+              "source": "text"
+            }
+          ],
+          "time_window": [],
+          "outcome_target": [
+            {
+              "value": "functional_outcome",
+              "evidence_span": "improved functional outcome",
+              "source": "text"
+            }
+          ],
+          "direction": {
+            "value": "no_benefit",
+            "evidence_span": "does not result in improved functional outcome",
+            "source": "text"
+          }
+        },
+        "confidence": "high",
+        "needs_review": false,
+        "review_reasons": [],
+        "notes": "Age range 18-70 labeled adult; exact range is kept in evidence_span."
+      }
+    },
+    {
+      "input": {
+        "rec_id": "DEMO-AMBIGUOUS-01",
+        "society": "AHA/ASA",
+        "guideline_id": "DEMO",
+        "section_path": "Extended Window",
+        "parent_context": "Extended Window",
+        "rec_number": 9,
+        "cor": "2b",
+        "loe": "B-R",
+        "text": "In such patients, treatment may be considered within the extended window."
+      },
+      "expected_output": {
+        "rec_id": "DEMO-AMBIGUOUS-01",
+        "ontology_version": "0.2.0",
+        "labels": {
+          "condition": [
+            {
+              "value": "unspecified",
+              "evidence_span": null,
+              "source": null
+            }
+          ],
+          "age_group": [
+            {
+              "value": "unspecified",
+              "evidence_span": null,
+              "source": null
+            }
+          ],
+          "special_populations": [],
+          "phase": [
+            {
+              "value": "unspecified",
+              "evidence_span": null,
+              "source": null
+            }
+          ],
+          "intervention_type": [
+            {
+              "value": "other_intervention",
+              "evidence_span": "treatment",
+              "source": "text"
+            }
+          ],
+          "drug_or_procedure": [],
+          "time_window": [
+            {
+              "value": "other_window",
+              "evidence_span": "extended window",
+              "source": "text"
+            }
+          ],
+          "outcome_target": [],
+          "direction": {
+            "value": "for",
+            "evidence_span": "may be considered",
+            "source": "text"
+          }
+        },
+        "confidence": "low",
+        "needs_review": true,
+        "review_reasons": [
+          "missing_context",
+          "multiple_interpretations"
+        ],
+        "notes": "'such patients' refers to a prior sentence not provided; condition, treatment and window are undefined. Human review required."
+      }
+    }
+  ]
+}

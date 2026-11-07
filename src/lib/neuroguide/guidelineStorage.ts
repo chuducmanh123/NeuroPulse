@@ -6,8 +6,11 @@ import type {
   ConferenceEvent,
   ClinicalScenario,
   RecommendationAtom,
+  PivotalTrialRecord,
+  RecommendationLabelOutput,
   NeuroGuideBlobPayload,
 } from "../../types/neuroguide.ts";
+import { PIVOTAL_TRIALS_SEED, mergePivotalTrialsWithConferences } from "../../data/pivotalTrialsSeed.ts";
 import {
   MOCK_GUIDELINE_DOCS,
   MOCK_CONFERENCE_EVENTS,
@@ -105,6 +108,8 @@ export async function getFromSupabase(): Promise<SupabaseNeuroGuidePayload | nul
     let maxUpdatedAt = "";
     let customScenarios: ClinicalScenario[] = [];
     let customRecAtoms: RecommendationAtom[] = [];
+    let customPivotalTrials: PivotalTrialRecord[] = [];
+    let customRecLabels: Record<string, RecommendationLabelOutput> = {};
 
     for (const row of data as any[]) {
       if (row.id === "system_clinical_scenarios") {
@@ -113,6 +118,12 @@ export async function getFromSupabase(): Promise<SupabaseNeuroGuidePayload | nul
         }
         if (row.data?.recommendationAtoms && Array.isArray(row.data.recommendationAtoms)) {
           customRecAtoms = row.data.recommendationAtoms;
+        }
+        if (row.data?.pivotalTrials && Array.isArray(row.data.pivotalTrials)) {
+          customPivotalTrials = row.data.pivotalTrials;
+        }
+        if (row.data?.customRecLabels && typeof row.data.customRecLabels === "object") {
+          customRecLabels = row.data.customRecLabels;
         }
         if (Array.isArray(row.data?.deletedGuidelineIds)) {
           row.data.deletedGuidelineIds.forEach((x: string) => {
@@ -171,12 +182,21 @@ export async function getFromSupabase(): Promise<SupabaseNeuroGuidePayload | nul
     if (customRecAtoms.length === 0 && localDisk?.recommendationAtoms && Array.isArray(localDisk.recommendationAtoms) && localDisk.recommendationAtoms.length > 0) {
       customRecAtoms = localDisk.recommendationAtoms;
     }
+    if (customPivotalTrials.length === 0 && localDisk?.pivotalTrials && Array.isArray(localDisk.pivotalTrials) && localDisk.pivotalTrials.length > 0) {
+      customPivotalTrials = localDisk.pivotalTrials;
+    }
+    if (Object.keys(customRecLabels).length === 0 && localDisk?.customRecLabels && typeof localDisk.customRecLabels === "object") {
+      customRecLabels = localDisk.customRecLabels;
+    }
+    const effectiveConferences = (localDisk?.conferences && localDisk.conferences.length > 0) ? localDisk.conferences : MOCK_CONFERENCE_EVENTS;
 
     return {
       guidelines: filteredGuidelines,
-      conferences: (localDisk?.conferences && localDisk.conferences.length > 0) ? localDisk.conferences : MOCK_CONFERENCE_EVENTS,
+      conferences: effectiveConferences,
       scenarios: mergeScenarios(customScenarios),
       recommendationAtoms: mergeRecommendationAtoms(customRecAtoms),
+      pivotalTrials: mergePivotalTrialsWithConferences(customPivotalTrials, effectiveConferences),
+      customRecLabels,
       deletedGuidelineIds: Array.from(deletedKeys),
       pendingGuidelineKeys: Array.from(pendingKeys),
       approvedGuidelineKeys: Array.from(approvedKeys),
@@ -225,7 +245,12 @@ export async function setToSupabase(payload: NeuroGuideBlobPayload): Promise<{ o
       }
     }
 
-    if ((payload.scenarios && payload.scenarios.length > 0) || (payload.deletedGuidelineIds && payload.deletedGuidelineIds.length > 0)) {
+    if (
+      (payload.scenarios && payload.scenarios.length > 0) ||
+      (payload.pivotalTrials && payload.pivotalTrials.length > 0) ||
+      (payload.customRecLabels && Object.keys(payload.customRecLabels).length > 0) ||
+      (payload.deletedGuidelineIds && payload.deletedGuidelineIds.length > 0)
+    ) {
       try {
         await supabaseAdmin.from("neuroguide_docs").upsert(
           {
@@ -237,6 +262,8 @@ export async function setToSupabase(payload: NeuroGuideBlobPayload): Promise<{ o
             data: {
               scenarios: payload.scenarios || MOCK_CLINICAL_SCENARIOS,
               recommendationAtoms: payload.recommendationAtoms || MOCK_RECOMMENDATION_ATOMS,
+              pivotalTrials: payload.pivotalTrials || PIVOTAL_TRIALS_SEED,
+              customRecLabels: payload.customRecLabels || {},
               deletedGuidelineIds: payload.deletedGuidelineIds || [],
             },
             updated_at: nowIso,
@@ -483,6 +510,8 @@ export async function loadMergedNeuroGuideData(): Promise<{
   conferences: ConferenceEvent[];
   scenarios: ClinicalScenario[];
   recommendationAtoms: RecommendationAtom[];
+  pivotalTrials: PivotalTrialRecord[];
+  customRecLabels: Record<string, RecommendationLabelOutput>;
   storageSource: "supabase" | "local-disk" | "mock-baseline";
   lastSyncedAt?: string;
   deletedGuidelineIds?: string[];
@@ -670,11 +699,14 @@ export async function loadMergedNeuroGuideData(): Promise<{
         ? mergeGuidelines(coordinatedDynamicDocs, filteredStore, mergedExclusionSet)
         : mergeGuidelines(coordinatedDynamicDocs, [], mergedExclusionSet);
 
+    const mergedConfs = mergeConferences(dynamicData.conferences);
     return {
       guidelines: finalGuidelines,
-      conferences: mergeConferences(dynamicData.conferences),
+      conferences: mergedConfs,
       scenarios: mergeScenarios(dynamicData.scenarios),
       recommendationAtoms: mergeRecommendationAtoms(dynamicData.recommendationAtoms),
+      pivotalTrials: mergePivotalTrialsWithConferences(dynamicData.pivotalTrials || localData?.pivotalTrials || [], mergedConfs),
+      customRecLabels: dynamicData.customRecLabels || localData?.customRecLabels || {},
       storageSource: "supabase",
       lastSyncedAt: dynamicData.lastSyncedAt,
       deletedGuidelineIds: Array.from(deletedSet),
@@ -689,11 +721,14 @@ export async function loadMergedNeuroGuideData(): Promise<{
       filteredStore.length > 0
         ? mergeGuidelines(coordinatedLocalDocs, filteredStore, deletedSet)
         : mergeGuidelines(coordinatedLocalDocs, [], deletedSet);
+    const mergedConfs = mergeConferences(localData.conferences);
     return {
       guidelines: finalGuidelines,
-      conferences: mergeConferences(localData.conferences),
+      conferences: mergedConfs,
       scenarios: mergeScenarios(localData.scenarios),
       recommendationAtoms: mergeRecommendationAtoms(localData.recommendationAtoms),
+      pivotalTrials: mergePivotalTrialsWithConferences(localData.pivotalTrials || [], mergedConfs),
+      customRecLabels: localData.customRecLabels || {},
       storageSource: "local-disk",
       lastSyncedAt: localData.lastSyncedAt,
       deletedGuidelineIds: Array.from(deletedSet),
@@ -709,6 +744,8 @@ export async function loadMergedNeuroGuideData(): Promise<{
     conferences: MOCK_CONFERENCE_EVENTS,
     scenarios: MOCK_CLINICAL_SCENARIOS,
     recommendationAtoms: MOCK_RECOMMENDATION_ATOMS,
+    pivotalTrials: mergePivotalTrialsWithConferences(PIVOTAL_TRIALS_SEED, MOCK_CONFERENCE_EVENTS),
+    customRecLabels: {},
     storageSource: "mock-baseline",
     deletedGuidelineIds: Array.from(deletedSet),
   };
@@ -722,6 +759,8 @@ export async function saveNeuroGuideToActiveStorage(payload: {
   conferences?: ConferenceEvent[];
   scenarios?: ClinicalScenario[];
   recommendationAtoms?: RecommendationAtom[];
+  pivotalTrials?: PivotalTrialRecord[];
+  customRecLabels?: Record<string, RecommendationLabelOutput>;
   deletedGuidelineIds?: string[];
 }): Promise<{
   success: boolean;
@@ -729,19 +768,31 @@ export async function saveNeuroGuideToActiveStorage(payload: {
   error?: string;
 }> {
   let effectiveDeletedIds = payload.deletedGuidelineIds;
-  if (!effectiveDeletedIds) {
+  let existingPivotalTrials = payload.pivotalTrials;
+  let existingCustomLabels = payload.customRecLabels;
+  if (!effectiveDeletedIds || !existingPivotalTrials || !existingCustomLabels) {
     try {
       const existingSupabase = hasSupabaseConfig() ? await getFromSupabase() : null;
       const existingLocal = await getFromLocalDisk();
-      effectiveDeletedIds = Array.from(
-        new Set([
-          ...(existingSupabase?.deletedGuidelineIds || []),
-          ...((existingLocal as any)?.deletedGuidelineIds || []),
-          ...((existingLocal as any)?.deleted_guideline_ids || []),
-        ])
-      );
+      if (!effectiveDeletedIds) {
+        effectiveDeletedIds = Array.from(
+          new Set([
+            ...(existingSupabase?.deletedGuidelineIds || []),
+            ...((existingLocal as any)?.deletedGuidelineIds || []),
+            ...((existingLocal as any)?.deleted_guideline_ids || []),
+          ])
+        );
+      }
+      if (!existingPivotalTrials) {
+        existingPivotalTrials = existingSupabase?.pivotalTrials || existingLocal?.pivotalTrials || PIVOTAL_TRIALS_SEED;
+      }
+      if (!existingCustomLabels) {
+        existingCustomLabels = existingSupabase?.customRecLabels || existingLocal?.customRecLabels || {};
+      }
     } catch {
-      effectiveDeletedIds = [];
+      effectiveDeletedIds = effectiveDeletedIds || [];
+      existingPivotalTrials = existingPivotalTrials || PIVOTAL_TRIALS_SEED;
+      existingCustomLabels = existingCustomLabels || {};
     }
   }
 
@@ -760,6 +811,8 @@ export async function saveNeuroGuideToActiveStorage(payload: {
     conferences: payload.conferences || MOCK_CONFERENCE_EVENTS,
     scenarios: payload.scenarios || MOCK_CLINICAL_SCENARIOS,
     recommendationAtoms: payload.recommendationAtoms || MOCK_RECOMMENDATION_ATOMS,
+    pivotalTrials: existingPivotalTrials,
+    customRecLabels: existingCustomLabels,
     deletedGuidelineIds: effectiveDeletedIds,
     lastSyncedAt: new Date().toISOString(),
     source: "NEUROGUIDE_AUTONOMOUS_RADAR",

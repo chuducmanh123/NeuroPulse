@@ -1762,6 +1762,20 @@ export function ReviewQueueTab({
                                         </span>
                                       ) : null}
 
+                                      {item.approval_status === "human_approved" || item.approval_status === "approved" ? (
+                                        <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800">
+                                          ✓ Clinician Approved
+                                        </span>
+                                      ) : item.approval_status === "ai_checked" ? (
+                                        <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-sky-100 text-sky-800 dark:bg-sky-950/60 dark:text-sky-300 border border-sky-300 dark:border-sky-800">
+                                          🛡️ AI Checked (Verbatim Span Verified)
+                                        </span>
+                                      ) : (
+                                        <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-300 dark:border-amber-800">
+                                          ⏳ Needs Clinician Review
+                                        </span>
+                                      )}
+
                                       <button
                                         type="button"
                                         onClick={() => handleOpenEditRecommendation(item)}
