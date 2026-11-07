@@ -1027,7 +1027,7 @@ export function EditGuidelineModal({
           {/* TAB 1: METADATA */}
           {activeTab === "metadata" && (
               <div className="flex-1 min-h-0 overflow-y-auto p-5 custom-scrollbar">
-                <div className="space-y-4 max-w-4xl mx-auto">
+                <div className="space-y-4 max-w-6xl mx-auto w-full">
                   <div>
                     <label className="block font-bold mb-1.5 text-slate-700 dark:text-slate-300 flex items-center justify-between">
                       <span className="text-xs sm:text-sm font-extrabold flex items-center gap-1.5">
@@ -1152,7 +1152,7 @@ export function EditGuidelineModal({
             {/* TAB 2: TAKEAWAYS */}
             {activeTab === "takeaways" && (
               <div className="flex-1 min-h-0 overflow-y-auto p-5 custom-scrollbar">
-                <div className="space-y-4 max-w-4xl mx-auto">
+                <div className="space-y-4 max-w-6xl mx-auto w-full">
                   <div className="p-3.5 rounded-xl bg-indigo-50/50 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-900/60 flex items-center justify-between gap-3">
                     <div>
                       <h4 className="font-bold text-indigo-900 dark:text-indigo-200">

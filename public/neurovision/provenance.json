@@ -242,6 +242,23 @@
       "method": "ANTs apply_transforms with TemplateFlow h5 (NLin6Asym->NLin2009cAsym)",
       "interpolation": "nearestNeighbor",
       "license": "Brainnetome Atlas Terms of Use (Academic / Non-commercial)"
+    },
+    {
+      "file": "atlases/venous_territories.nii.gz",
+      "shape": [
+        193,
+        229,
+        193
+      ],
+      "dtype": "uint8",
+      "size_bytes": 109796,
+      "review_status": "unreviewed",
+      "source": "Craig Hacking, Brain venous vascular territories, Radiopaedia.org (2020 CC BY-SA-NC 3.0)",
+      "original_space": "MNI152NLin2009cAsym 1 mm",
+      "method": "Complete 100% brain parenchyma venous drainage parcellation based on Craig Hacking 8-slice continuum and MNI cytoarchitecture",
+      "interpolation": "nearestNeighbor",
+      "license": "CC BY-SA-NC 3.0",
+      "native_resolution_mm": 1.0
     }
   ],
   "skipped": [

@@ -19,6 +19,7 @@ const VALIDATION_IMAGES = [
   { file: "overlay_brainstem_aan.png", title: "Thân não thức tỉnh (Harvard AAN v2, 16 nhân) trên T1" },
   { file: "overlay_anatomy.png", title: "Giải phẫu vỏ & dưới vỏ (Harvard-Oxford 67 vùng) trên T1" },
   { file: "overlay_whitematter.png", title: "Chất trắng (JHU ICBM-DTI-81, 50 bó) trên T1" },
+  { file: "venous_territories_8slices.png", title: "Phân vùng Lãnh thổ Dẫn lưu Tĩnh mạch (Venous Territories - Radiopaedia 8 lát cắt)" },
   { file: "overlay_venous.png", title: "Mật độ Tĩnh mạch 7T QSM (VENAT) trên T1" },
   { file: "overlay_aal3.png", title: "AAL3 (170 vùng bao gồm thân não & đồi thị) trên T1" },
   { file: "overlay_hemispheres.png", title: "Phân định bán cầu Trái / Phải trên T1" },

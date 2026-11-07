@@ -8996,278 +8996,6 @@
       "review_status": "unreviewed"
     },
     {
-      "atlas": "venous",
-      "label_id": 1,
-      "code": "VEN_SSS",
-      "name_vi": "Xoang dọc trên (Superior Sagittal Sinus)",
-      "name_en": "Superior Sagittal Sinus",
-      "category": "vascular_territory",
-      "brodmann_area": [],
-      "functions": [
-        "Xoang tĩnh mạch lớn nhất màng cứng chạy dọc bờ trên liềm não từ mào gà qua đỉnh vòm sọ ra ụ chẩm trong.",
-        "Dẫn lưu máu nghèo oxy từ vỏ não và nhân xám sâu về tĩnh mạch cảnh trong.",
-        "Tham gia điều hòa áp lực nội sọ và tái hấp thu dịch não tủy qua các hạt màng nhện."
-      ],
-      "arterial_supply": {
-        "primary": [],
-        "perforators": []
-      },
-      "venous_drainage": [
-        "Superior Sagittal Sinus"
-      ],
-      "aspects_zone": null,
-      "clinical_syndromes": [
-        {
-          "name": "Huyết khối xoang tĩnh mạch não (CVST)",
-          "description": "Huyết khối xoang dọc trên (SSS Thrombosis): Nhức đầu tăng dần, tăng áp lực nội sọ, phù gai thị, phù não và xuất huyết thùy trán - đỉnh hai bên, co giật cục bộ hoặc toàn thể."
-        }
-      ],
-      "evidence_level": "approximate",
-      "source": [
-        "VENAT 7T QSM (Bazin et al., 2020; doi:10.6084/m9.figshare.7205960)",
-        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)"
-      ],
-      "review_status": "unreviewed"
-    },
-    {
-      "atlas": "venous",
-      "label_id": 2,
-      "code": "VEN_SS",
-      "name_vi": "Xoang thẳng (Straight Sinus)",
-      "name_en": "Straight Sinus",
-      "category": "vascular_territory",
-      "brodmann_area": [],
-      "functions": [
-        "Xoang tĩnh mạch nằm ở đường nối giữa liềm não và lều tiểu não, nhận máu từ tĩnh mạch não lớn (Galen) và xoang dọc dưới.",
-        "Dẫn lưu máu nghèo oxy từ vỏ não và nhân xám sâu về tĩnh mạch cảnh trong.",
-        "Tham gia điều hòa áp lực nội sọ và tái hấp thu dịch não tủy qua các hạt màng nhện."
-      ],
-      "arterial_supply": {
-        "primary": [],
-        "perforators": []
-      },
-      "venous_drainage": [
-        "Straight Sinus"
-      ],
-      "aspects_zone": null,
-      "clinical_syndromes": [
-        {
-          "name": "Huyết khối xoang tĩnh mạch não (CVST)",
-          "description": "Huyết khối xoang thẳng: Rối loạn tri giác nhanh chóng tiến triển thành hôn mê, phù hoặc nhồi máu xuất huyết đồi thị hai bên, tiên lượng nặng."
-        }
-      ],
-      "evidence_level": "approximate",
-      "source": [
-        "VENAT 7T QSM (Bazin et al., 2020; doi:10.6084/m9.figshare.7205960)",
-        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)"
-      ],
-      "review_status": "unreviewed"
-    },
-    {
-      "atlas": "venous",
-      "label_id": 3,
-      "code": "VEN_TORCULAR",
-      "name_vi": "Hội lưu các xoang (Confluence of Sinuses / Torcular)",
-      "name_en": "Confluence of Sinuses (Torcular Herophili)",
-      "category": "vascular_territory",
-      "brodmann_area": [],
-      "functions": [
-        "Ngã tư hội lưu xoang nằm ở mặt trong xương chẩm, nơi gặp nhau của xoang dọc trên, xoang thẳng, xoang chẩm và hai xoang ngang.",
-        "Dẫn lưu máu nghèo oxy từ vỏ não và nhân xám sâu về tĩnh mạch cảnh trong.",
-        "Tham gia điều hòa áp lực nội sọ và tái hấp thu dịch não tủy qua các hạt màng nhện."
-      ],
-      "arterial_supply": {
-        "primary": [],
-        "perforators": []
-      },
-      "venous_drainage": [
-        "Confluence of Sinuses (Torcular Herophili)"
-      ],
-      "aspects_zone": null,
-      "clinical_syndromes": [
-        {
-          "name": "Huyết khối xoang tĩnh mạch não (CVST)",
-          "description": "Huyết khối hội lưu xoang: Tắc nghẽn đường thoát máu tĩnh mạch toàn bộ não bộ sau, tăng áp lực nội sọ kịch phát, nguy cơ xuất huyết tiểu não và chẩm cao."
-        }
-      ],
-      "evidence_level": "approximate",
-      "source": [
-        "VENAT 7T QSM (Bazin et al., 2020; doi:10.6084/m9.figshare.7205960)",
-        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)"
-      ],
-      "review_status": "unreviewed"
-    },
-    {
-      "atlas": "venous",
-      "label_id": 4,
-      "code": "VEN_L_TS",
-      "name_vi": "Xoang ngang Trái (Left Transverse Sinus)",
-      "name_en": "Left Transverse Sinus",
-      "category": "vascular_territory",
-      "brodmann_area": [],
-      "functions": [
-        "Chạy ngang theo rãnh xoang ngang xương chẩm bên trái dọc bờ sau lều tiểu não. Thường có hiện tượng thiểu sản sinh lý (hypoplasia).",
-        "Dẫn lưu máu nghèo oxy từ vỏ não và nhân xám sâu về tĩnh mạch cảnh trong.",
-        "Tham gia điều hòa áp lực nội sọ và tái hấp thu dịch não tủy qua các hạt màng nhện."
-      ],
-      "arterial_supply": {
-        "primary": [],
-        "perforators": []
-      },
-      "venous_drainage": [
-        "Left Transverse Sinus"
-      ],
-      "aspects_zone": null,
-      "clinical_syndromes": [
-        {
-          "name": "Huyết khối xoang tĩnh mạch não (CVST)",
-          "description": "Huyết khối xoang ngang trái: Đau đầu vùng chẩm - thái dương trái, đau sau tai, ù tai dạng mạch đập (pulsatile tinnitus), cần phân biệt với thiểu sản bẩm sinh."
-        }
-      ],
-      "evidence_level": "approximate",
-      "source": [
-        "VENAT 7T QSM (Bazin et al., 2020; doi:10.6084/m9.figshare.7205960)",
-        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)"
-      ],
-      "review_status": "unreviewed"
-    },
-    {
-      "atlas": "venous",
-      "label_id": 5,
-      "code": "VEN_R_TS",
-      "name_vi": "Xoang ngang Phải (Right Transverse Sinus)",
-      "name_en": "Right Transverse Sinus",
-      "category": "vascular_territory",
-      "brodmann_area": [],
-      "functions": [
-        "Xoang ngang bên phải, thường là xoang ưu thế (dominant sinus) dẫn lưu máu chính từ xoang dọc trên về tĩnh mạch cảnh trong.",
-        "Dẫn lưu máu nghèo oxy từ vỏ não và nhân xám sâu về tĩnh mạch cảnh trong.",
-        "Tham gia điều hòa áp lực nội sọ và tái hấp thu dịch não tủy qua các hạt màng nhện."
-      ],
-      "arterial_supply": {
-        "primary": [],
-        "perforators": []
-      },
-      "venous_drainage": [
-        "Right Transverse Sinus"
-      ],
-      "aspects_zone": null,
-      "clinical_syndromes": [
-        {
-          "name": "Huyết khối xoang tĩnh mạch não (CVST)",
-          "description": "Huyết khối xoang ngang ưu thế bên phải: Gây hội chứng tăng áp lực nội sọ rầm rộ, phù gai thị nặng nề, phù não thùy thái dương - chẩm phải."
-        }
-      ],
-      "evidence_level": "approximate",
-      "source": [
-        "VENAT 7T QSM (Bazin et al., 2020; doi:10.6084/m9.figshare.7205960)",
-        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)"
-      ],
-      "review_status": "unreviewed"
-    },
-    {
-      "atlas": "venous",
-      "label_id": 6,
-      "code": "VEN_L_SIGS",
-      "name_vi": "Xoang sigma Trái (Left Sigmoid Sinus)",
-      "name_en": "Left Sigmoid Sinus",
-      "category": "vascular_territory",
-      "brodmann_area": [],
-      "functions": [
-        "Phần tiếp nối hình chữ S của xoang ngang trái, uốn cong qua xương chũm và đổ vào hành tĩnh mạch cảnh trong trái.",
-        "Dẫn lưu máu nghèo oxy từ vỏ não và nhân xám sâu về tĩnh mạch cảnh trong.",
-        "Tham gia điều hòa áp lực nội sọ và tái hấp thu dịch não tủy qua các hạt màng nhện."
-      ],
-      "arterial_supply": {
-        "primary": [],
-        "perforators": []
-      },
-      "venous_drainage": [
-        "Left Sigmoid Sinus"
-      ],
-      "aspects_zone": null,
-      "clinical_syndromes": [
-        {
-          "name": "Huyết khối xoang tĩnh mạch não (CVST)",
-          "description": "Huyết khối xoang sigma trái: Đau vùng xương chũm (dấu hiệu Griesinger), viêm tắc tĩnh mạch huyết khối thứ phát sau viêm tai giữa / viêm xương chũm."
-        }
-      ],
-      "evidence_level": "approximate",
-      "source": [
-        "VENAT 7T QSM (Bazin et al., 2020; doi:10.6084/m9.figshare.7205960)",
-        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)"
-      ],
-      "review_status": "unreviewed"
-    },
-    {
-      "atlas": "venous",
-      "label_id": 7,
-      "code": "VEN_R_SIGS",
-      "name_vi": "Xoang sigma Phải (Right Sigmoid Sinus)",
-      "name_en": "Right Sigmoid Sinus",
-      "category": "vascular_territory",
-      "brodmann_area": [],
-      "functions": [
-        "Xoang sigma bên phải uốn qua rãnh sigma xương chũm phải đổ vào lỗ tĩnh mạch cảnh phải.",
-        "Dẫn lưu máu nghèo oxy từ vỏ não và nhân xám sâu về tĩnh mạch cảnh trong.",
-        "Tham gia điều hòa áp lực nội sọ và tái hấp thu dịch não tủy qua các hạt màng nhện."
-      ],
-      "arterial_supply": {
-        "primary": [],
-        "perforators": []
-      },
-      "venous_drainage": [
-        "Right Sigmoid Sinus"
-      ],
-      "aspects_zone": null,
-      "clinical_syndromes": [
-        {
-          "name": "Huyết khối xoang tĩnh mạch não (CVST)",
-          "description": "Huyết khối xoang sigma phải: Đau sau tai phải, hội chứng lỗ tĩnh mạch cảnh (liệt dây IX, X, XI nếu lan xuống hành tĩnh mạch cảnh)."
-        }
-      ],
-      "evidence_level": "approximate",
-      "source": [
-        "VENAT 7T QSM (Bazin et al., 2020; doi:10.6084/m9.figshare.7205960)",
-        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)"
-      ],
-      "review_status": "unreviewed"
-    },
-    {
-      "atlas": "venous",
-      "label_id": 8,
-      "code": "VEN_DEEP",
-      "name_vi": "Tĩnh mạch não trong & Tĩnh mạch Galen (Deep Veins)",
-      "name_en": "Deep Cerebral Veins & Great Vein of Galen",
-      "category": "vascular_territory",
-      "brodmann_area": [],
-      "functions": [
-        "Hệ tĩnh mạch sâu nằm ở mái não thất ba, gồm 2 tĩnh mạch não trong hợp lại thành tĩnh mạch Galen, dẫn lưu máu từ đồi thị và nhân nền.",
-        "Dẫn lưu máu nghèo oxy từ vỏ não và nhân xám sâu về tĩnh mạch cảnh trong.",
-        "Tham gia điều hòa áp lực nội sọ và tái hấp thu dịch não tủy qua các hạt màng nhện."
-      ],
-      "arterial_supply": {
-        "primary": [],
-        "perforators": []
-      },
-      "venous_drainage": [
-        "Deep Cerebral Veins & Great Vein of Galen"
-      ],
-      "aspects_zone": null,
-      "clinical_syndromes": [
-        {
-          "name": "Huyết khối xoang tĩnh mạch não (CVST)",
-          "description": "Huyết khối hệ tĩnh mạch sâu (Deep Cerebral Venous Thrombosis): Hội chứng tổn thương đồi thị - hạch nền song phương, lú lẫn, hôn mê, mất trí nhớ cấp, tiên lượng xấu."
-        }
-      ],
-      "evidence_level": "approximate",
-      "source": [
-        "VENAT 7T QSM (Bazin et al., 2020; doi:10.6084/m9.figshare.7205960)",
-        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)"
-      ],
-      "review_status": "unreviewed"
-    },
-    {
       "atlas": "glasser",
       "label_id": 1,
       "code": "V1_R",
@@ -39088,6 +38816,846 @@
           "Arousal"
         ]
       }
+    },
+    {
+      "atlas": "venous_territories",
+      "label_id": 1,
+      "code": "VEN_TERR_SSS_L",
+      "name_vi": "Vùng Xoang dọc trên & Tĩnh mạch vỏ não (Trái)",
+      "name_en": "Superior Sagittal Sinus Territory (Left)",
+      "category": "vascular_territory",
+      "brodmann_area": [],
+      "functions": [
+        "Vùng nhu mô vỏ não và chất trắng dưới vỏ thùy trán - đỉnh - chẩm trên bên trái, chạy dọc cạnh đường giữa (parasagittal) lên tận đỉnh não.",
+        "Xoang màng cứng chính tiếp nhận dẫn lưu: Superior Sagittal Sinus.",
+        "Nhánh tĩnh mạch phụ trách trực tiếp: Superior Cortical Veins / Vein of Trolard."
+      ],
+      "arterial_supply": {
+        "primary": [],
+        "perforators": []
+      },
+      "venous_drainage": [
+        "Superior Sagittal Sinus",
+        "Superior Cortical Veins / Vein of Trolard"
+      ],
+      "aspects_zone": null,
+      "clinical_syndromes": [
+        {
+          "name": "Huyết khối tĩnh mạch não (CVT) - Superior Sagittal Sinus",
+          "description": "Huyết khối xoang dọc trên (SSS Thrombosis): Nhức đầu dữ dội, phù não song phương, liệt vận động 2 chân (paraparesis), co giật cục bộ hoặc toàn thể, nguy cơ xuất huyết chuyển dạng hình lưỡi liềm."
+        }
+      ],
+      "evidence_level": "approximate",
+      "source": [
+        "Craig Hacking, Brain venous vascular territories, Radiopaedia.org (2020 CC BY-SA-NC 3.0)",
+        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)",
+        "Leach JL et al. Imaging of Cerebral Venous Thrombosis: Current Techniques, Spectrum of Findings, and Diagnostic Pitfalls. Radiographics 2006"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "atlas": "venous_territories",
+      "label_id": 2,
+      "code": "VEN_TERR_SSS_R",
+      "name_vi": "Vùng Xoang dọc trên & Tĩnh mạch vỏ não (Phải)",
+      "name_en": "Superior Sagittal Sinus Territory (Right)",
+      "category": "vascular_territory",
+      "brodmann_area": [],
+      "functions": [
+        "Vùng nhu mô vỏ não và chất trắng dưới vỏ thùy trán - đỉnh - chẩm trên bên phải, chạy dọc cạnh đường giữa (parasagittal) lên tận đỉnh não.",
+        "Xoang màng cứng chính tiếp nhận dẫn lưu: Superior Sagittal Sinus.",
+        "Nhánh tĩnh mạch phụ trách trực tiếp: Superior Cortical Veins / Vein of Trolard."
+      ],
+      "arterial_supply": {
+        "primary": [],
+        "perforators": []
+      },
+      "venous_drainage": [
+        "Superior Sagittal Sinus",
+        "Superior Cortical Veins / Vein of Trolard"
+      ],
+      "aspects_zone": null,
+      "clinical_syndromes": [
+        {
+          "name": "Huyết khối tĩnh mạch não (CVT) - Superior Sagittal Sinus",
+          "description": "Huyết khối xoang dọc trên (SSS Thrombosis): Tăng áp lực nội sọ cấp, phù gai thị, phù nhu mô đỉnh - trán phải, động kinh vận động đối bên."
+        }
+      ],
+      "evidence_level": "approximate",
+      "source": [
+        "Craig Hacking, Brain venous vascular territories, Radiopaedia.org (2020 CC BY-SA-NC 3.0)",
+        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)",
+        "Leach JL et al. Imaging of Cerebral Venous Thrombosis: Current Techniques, Spectrum of Findings, and Diagnostic Pitfalls. Radiographics 2006"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "atlas": "venous_territories",
+      "label_id": 3,
+      "code": "VEN_TERR_ISS",
+      "name_vi": "Vùng Xoang dọc dưới (Thể chai & Vòm não)",
+      "name_en": "Inferior Sagittal Sinus Territory",
+      "category": "vascular_territory",
+      "brodmann_area": [],
+      "functions": [
+        "Vùng thể chai (Gối, Thân, Lồi thể chai), vòm não (Fornix), vách trong suốt và phần dưới hồi đai dọc đường giữa liềm đại não.",
+        "Xoang màng cứng chính tiếp nhận dẫn lưu: Inferior Sagittal Sinus.",
+        "Nhánh tĩnh mạch phụ trách trực tiếp: Anterior Cerebral Veins / Callosal & Forniceal Veins."
+      ],
+      "arterial_supply": {
+        "primary": [],
+        "perforators": []
+      },
+      "venous_drainage": [
+        "Inferior Sagittal Sinus",
+        "Anterior Cerebral Veins / Callosal & Forniceal Veins"
+      ],
+      "aspects_zone": null,
+      "clinical_syndromes": [
+        {
+          "name": "Huyết khối tĩnh mạch não (CVT) - Inferior Sagittal Sinus",
+          "description": "Huyết khối xoang dọc dưới: Rối loạn chức năng kết nối liên bán cầu, mất chú ý, vô cảm (abulia), rối loạn trí nhớ ngắn hạn do tổn thương vòm não và thể chai."
+        }
+      ],
+      "evidence_level": "approximate",
+      "source": [
+        "Craig Hacking, Brain venous vascular territories, Radiopaedia.org (2020 CC BY-SA-NC 3.0)",
+        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)",
+        "Leach JL et al. Imaging of Cerebral Venous Thrombosis: Current Techniques, Spectrum of Findings, and Diagnostic Pitfalls. Radiographics 2006"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "atlas": "venous_territories",
+      "label_id": 4,
+      "code": "VEN_TERR_DEEP_L",
+      "name_vi": "Vùng Tĩnh mạch sâu & Xoang thẳng (Trái)",
+      "name_en": "Deep Cerebral Venous Territory (Left)",
+      "category": "vascular_territory",
+      "brodmann_area": [],
+      "functions": [
+        "Đồi thị, thể vân (nhân bèo, nhân đuôi), bao trong, chất trắng sâu quanh não thất (corona radiata) và hồi hải mã bên trái.",
+        "Xoang màng cứng chính tiếp nhận dẫn lưu: Straight Sinus.",
+        "Nhánh tĩnh mạch phụ trách trực tiếp: Internal Cerebral Vein & Basal Vein of Rosenthal."
+      ],
+      "arterial_supply": {
+        "primary": [],
+        "perforators": []
+      },
+      "venous_drainage": [
+        "Straight Sinus",
+        "Internal Cerebral Vein & Basal Vein of Rosenthal"
+      ],
+      "aspects_zone": null,
+      "clinical_syndromes": [
+        {
+          "name": "Huyết khối tĩnh mạch não (CVT) - Straight Sinus",
+          "description": "Huyết khối hệ tĩnh mạch não sâu (Deep Cerebral Venous Thrombosis - DCVT): Rối loạn tri giác nhanh chóng dẫn đến hôn mê, mất trí nhớ cấp tính, phù não hoặc xuất huyết đồi thị - hạch nền hai bên đối xứng."
+        }
+      ],
+      "evidence_level": "approximate",
+      "source": [
+        "Craig Hacking, Brain venous vascular territories, Radiopaedia.org (2020 CC BY-SA-NC 3.0)",
+        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)",
+        "Leach JL et al. Imaging of Cerebral Venous Thrombosis: Current Techniques, Spectrum of Findings, and Diagnostic Pitfalls. Radiographics 2006"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "atlas": "venous_territories",
+      "label_id": 5,
+      "code": "VEN_TERR_DEEP_R",
+      "name_vi": "Vùng Tĩnh mạch sâu & Xoang thẳng (Phải)",
+      "name_en": "Deep Cerebral Venous Territory (Right)",
+      "category": "vascular_territory",
+      "brodmann_area": [],
+      "functions": [
+        "Đồi thị, thể vân (nhân bèo, nhân đuôi), bao trong, chất trắng sâu quanh não thất (corona radiata) và hồi hải mã bên phải.",
+        "Xoang màng cứng chính tiếp nhận dẫn lưu: Straight Sinus.",
+        "Nhánh tĩnh mạch phụ trách trực tiếp: Internal Cerebral Vein & Basal Vein of Rosenthal."
+      ],
+      "arterial_supply": {
+        "primary": [],
+        "perforators": []
+      },
+      "venous_drainage": [
+        "Straight Sinus",
+        "Internal Cerebral Vein & Basal Vein of Rosenthal"
+      ],
+      "aspects_zone": null,
+      "clinical_syndromes": [
+        {
+          "name": "Huyết khối tĩnh mạch não (CVT) - Straight Sinus",
+          "description": "Huyết khối hệ tĩnh mạch não sâu: Hôn mê, liệt vận nhãn, phù xuất huyết đồi thị phải kèm thoát vị não trung tâm, tiên lượng rất nặng cần can thiệp tiêu sợi huyết/lấy huyết khối tĩnh mạch khẩn cấp."
+        }
+      ],
+      "evidence_level": "approximate",
+      "source": [
+        "Craig Hacking, Brain venous vascular territories, Radiopaedia.org (2020 CC BY-SA-NC 3.0)",
+        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)",
+        "Leach JL et al. Imaging of Cerebral Venous Thrombosis: Current Techniques, Spectrum of Findings, and Diagnostic Pitfalls. Radiographics 2006"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "atlas": "venous_territories",
+      "label_id": 6,
+      "code": "VEN_TERR_TS_L",
+      "name_vi": "Vùng Xoang ngang & Tĩnh mạch Labbé (Trái)",
+      "name_en": "Transverse Sinus / Labbé Territory (Left)",
+      "category": "vascular_territory",
+      "brodmann_area": [],
+      "functions": [
+        "Nhu mô vỏ não và chất trắng dưới vỏ thùy thái dương dưới ngoài, thùy chẩm dưới ngoài và hồi thoi bên trái.",
+        "Xoang màng cứng chính tiếp nhận dẫn lưu: Transverse Sinus.",
+        "Nhánh tĩnh mạch phụ trách trực tiếp: Inferior Anastomotic Vein (of Labbé)."
+      ],
+      "arterial_supply": {
+        "primary": [],
+        "perforators": []
+      },
+      "venous_drainage": [
+        "Transverse Sinus",
+        "Inferior Anastomotic Vein (of Labbé)"
+      ],
+      "aspects_zone": null,
+      "clinical_syndromes": [
+        {
+          "name": "Huyết khối tĩnh mạch não (CVT) - Transverse Sinus",
+          "description": "Huyết khối xoang ngang trái / Tĩnh mạch Labbé: Mất ngôn ngữ tiếp nhận Wernicke (aphasia), khiếm khuyết thị trường (bán manh đồng danh), co giật thái dương, nhồi máu xuất huyết thùy thái dương trái."
+        }
+      ],
+      "evidence_level": "approximate",
+      "source": [
+        "Craig Hacking, Brain venous vascular territories, Radiopaedia.org (2020 CC BY-SA-NC 3.0)",
+        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)",
+        "Leach JL et al. Imaging of Cerebral Venous Thrombosis: Current Techniques, Spectrum of Findings, and Diagnostic Pitfalls. Radiographics 2006"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "atlas": "venous_territories",
+      "label_id": 7,
+      "code": "VEN_TERR_TS_R",
+      "name_vi": "Vùng Xoang ngang & Tĩnh mạch Labbé (Phải)",
+      "name_en": "Transverse Sinus / Labbé Territory (Right)",
+      "category": "vascular_territory",
+      "brodmann_area": [],
+      "functions": [
+        "Nhu mô vỏ não và chất trắng dưới vỏ thùy thái dương dưới ngoài, thùy chẩm dưới ngoài và hồi thoi bên phải.",
+        "Xoang màng cứng chính tiếp nhận dẫn lưu: Transverse Sinus.",
+        "Nhánh tĩnh mạch phụ trách trực tiếp: Inferior Anastomotic Vein (of Labbé)."
+      ],
+      "arterial_supply": {
+        "primary": [],
+        "perforators": []
+      },
+      "venous_drainage": [
+        "Transverse Sinus",
+        "Inferior Anastomotic Vein (of Labbé)"
+      ],
+      "aspects_zone": null,
+      "clinical_syndromes": [
+        {
+          "name": "Huyết khối tĩnh mạch não (CVT) - Transverse Sinus",
+          "description": "Huyết khối xoang ngang ưu thế phải / Tĩnh mạch Labbé: Tăng áp lực nội sọ nặng, đau đầu vùng chẩm - sau tai, mất nhận thức không gian (spatial neglect), nhồi máu phù não thùy thái dương phải."
+        }
+      ],
+      "evidence_level": "approximate",
+      "source": [
+        "Craig Hacking, Brain venous vascular territories, Radiopaedia.org (2020 CC BY-SA-NC 3.0)",
+        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)",
+        "Leach JL et al. Imaging of Cerebral Venous Thrombosis: Current Techniques, Spectrum of Findings, and Diagnostic Pitfalls. Radiographics 2006"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "atlas": "venous_territories",
+      "label_id": 8,
+      "code": "VEN_TERR_CAV_L",
+      "name_vi": "Vùng Xoang hang / Bướm đỉnh & Tĩnh mạch Sylvian (Trái)",
+      "name_en": "Cavernous Sinus / SMCV Territory (Left)",
+      "category": "vascular_territory",
+      "brodmann_area": [],
+      "functions": [
+        "Cực thái dương, vỏ não quanh rãnh Sylvius, hồi trán dưới (nắp Broca), thùy đảo trước và vỏ trán ổ mắt bên trái.",
+        "Xoang màng cứng chính tiếp nhận dẫn lưu: Sphenoparietal / Cavernous Sinuses.",
+        "Nhánh tĩnh mạch phụ trách trực tiếp: Superficial Middle Cerebral (Sylvian) Vein."
+      ],
+      "arterial_supply": {
+        "primary": [],
+        "perforators": []
+      },
+      "venous_drainage": [
+        "Sphenoparietal / Cavernous Sinuses",
+        "Superficial Middle Cerebral (Sylvian) Vein"
+      ],
+      "aspects_zone": null,
+      "clinical_syndromes": [
+        {
+          "name": "Huyết khối tĩnh mạch não (CVT) - Sphenoparietal / Cavernous Sinuses",
+          "description": "Huyết khối xoang hang / Tĩnh mạch nông giữa: Phù nề mắt, lồi mắt, liệt các dây thần kinh sọ III, IV, V1, V2, VI, kèm nhồi máu tĩnh mạch vùng cực thái dương - trán dưới trái (mất ngôn ngữ vận động Broca)."
+        }
+      ],
+      "evidence_level": "approximate",
+      "source": [
+        "Craig Hacking, Brain venous vascular territories, Radiopaedia.org (2020 CC BY-SA-NC 3.0)",
+        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)",
+        "Leach JL et al. Imaging of Cerebral Venous Thrombosis: Current Techniques, Spectrum of Findings, and Diagnostic Pitfalls. Radiographics 2006"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "atlas": "venous_territories",
+      "label_id": 9,
+      "code": "VEN_TERR_CAV_R",
+      "name_vi": "Vùng Xoang hang / Bướm đỉnh & Tĩnh mạch Sylvian (Phải)",
+      "name_en": "Cavernous Sinus / SMCV Territory (Right)",
+      "category": "vascular_territory",
+      "brodmann_area": [],
+      "functions": [
+        "Cực thái dương, vỏ não quanh rãnh Sylvius, hồi trán dưới, thùy đảo trước và vỏ trán ổ mắt bên phải.",
+        "Xoang màng cứng chính tiếp nhận dẫn lưu: Sphenoparietal / Cavernous Sinuses.",
+        "Nhánh tĩnh mạch phụ trách trực tiếp: Superficial Middle Cerebral (Sylvian) Vein."
+      ],
+      "arterial_supply": {
+        "primary": [],
+        "perforators": []
+      },
+      "venous_drainage": [
+        "Sphenoparietal / Cavernous Sinuses",
+        "Superficial Middle Cerebral (Sylvian) Vein"
+      ],
+      "aspects_zone": null,
+      "clinical_syndromes": [
+        {
+          "name": "Huyết khối tĩnh mạch não (CVT) - Sphenoparietal / Cavernous Sinuses",
+          "description": "Huyết khối xoang hang phải / Xoang bướm đỉnh: Liệt vận nhãn hoàn toàn bên phải, đau sau hốc mắt, giảm cảm giác nhánh V1/V2, phù não thùy thái dương trước phải."
+        }
+      ],
+      "evidence_level": "approximate",
+      "source": [
+        "Craig Hacking, Brain venous vascular territories, Radiopaedia.org (2020 CC BY-SA-NC 3.0)",
+        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)",
+        "Leach JL et al. Imaging of Cerebral Venous Thrombosis: Current Techniques, Spectrum of Findings, and Diagnostic Pitfalls. Radiographics 2006"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "atlas": "venous_territories",
+      "label_id": 10,
+      "code": "VEN_TERR_INFRA_ANT",
+      "name_vi": "Vùng Thân não & Tiểu não trước (Xoang đá & Xoang sigma)",
+      "name_en": "Anterior Infratentorial Territory (Brainstem & Ant Cerebellum)",
+      "category": "vascular_territory",
+      "brodmann_area": [],
+      "functions": [
+        "Cầu não, hành não, cuống đại não và các tiểu thùy trước của tiểu não (Lobules 3, 4, 5, thùy nhung - Flocculus).",
+        "Xoang màng cứng chính tiếp nhận dẫn lưu: Sigmoid & Petrosal Sinuses.",
+        "Nhánh tĩnh mạch phụ trách trực tiếp: Anterior (Petrosal) PCF Group."
+      ],
+      "arterial_supply": {
+        "primary": [],
+        "perforators": []
+      },
+      "venous_drainage": [
+        "Sigmoid & Petrosal Sinuses",
+        "Anterior (Petrosal) PCF Group"
+      ],
+      "aspects_zone": null,
+      "clinical_syndromes": [
+        {
+          "name": "Huyết khối tĩnh mạch não (CVT) - Sigmoid & Petrosal Sinuses",
+          "description": "Huyết khối xoang đá / xoang sigma trước: Liệt mặt ngoại biên, điếc tiếp nhận, chóng mặt dữ dội, thất điều tiểu não và tổn thương các đường dẫn truyền thân não dài."
+        }
+      ],
+      "evidence_level": "approximate",
+      "source": [
+        "Craig Hacking, Brain venous vascular territories, Radiopaedia.org (2020 CC BY-SA-NC 3.0)",
+        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)",
+        "Leach JL et al. Imaging of Cerebral Venous Thrombosis: Current Techniques, Spectrum of Findings, and Diagnostic Pitfalls. Radiographics 2006"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "atlas": "venous_territories",
+      "label_id": 11,
+      "code": "VEN_TERR_INFRA_POST_L",
+      "name_vi": "Vùng Bán cầu Tiểu não sau (Trái)",
+      "name_en": "Posterior Infratentorial Territory (Left Cerebellum)",
+      "category": "vascular_territory",
+      "brodmann_area": [],
+      "functions": [
+        "Bán cầu tiểu não sau (Crus I, Crus II, Lobules 6, 7, 8, 9) và thùy nhộng phía sau bên trái.",
+        "Xoang màng cứng chính tiếp nhận dẫn lưu: Transverse Sinus & Torcular.",
+        "Nhánh tĩnh mạch phụ trách trực tiếp: Posterior (Tentorial) PCF Group."
+      ],
+      "arterial_supply": {
+        "primary": [],
+        "perforators": []
+      },
+      "venous_drainage": [
+        "Transverse Sinus & Torcular",
+        "Posterior (Tentorial) PCF Group"
+      ],
+      "aspects_zone": null,
+      "clinical_syndromes": [
+        {
+          "name": "Huyết khối tĩnh mạch não (CVT) - Transverse Sinus & Torcular",
+          "description": "Huyết khối xoang ngang / xoang chẩm sau trái: Nhồi máu tĩnh mạch tiểu não trái, hội chứng tiểu não bán cầu (quá tầm, loạn nhịp vận động tay chân trái), nguy cơ chèn ép hành - cầu não gây tụt hạnh nhân tiểu não."
+        }
+      ],
+      "evidence_level": "approximate",
+      "source": [
+        "Craig Hacking, Brain venous vascular territories, Radiopaedia.org (2020 CC BY-SA-NC 3.0)",
+        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)",
+        "Leach JL et al. Imaging of Cerebral Venous Thrombosis: Current Techniques, Spectrum of Findings, and Diagnostic Pitfalls. Radiographics 2006"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "atlas": "venous_territories",
+      "label_id": 12,
+      "code": "VEN_TERR_INFRA_POST_R",
+      "name_vi": "Vùng Bán cầu Tiểu não sau (Phải)",
+      "name_en": "Posterior Infratentorial Territory (Right Cerebellum)",
+      "category": "vascular_territory",
+      "brodmann_area": [],
+      "functions": [
+        "Bán cầu tiểu não sau (Crus I, Crus II, Lobules 6, 7, 8, 9) và thùy nhộng phía sau bên phải.",
+        "Xoang màng cứng chính tiếp nhận dẫn lưu: Transverse Sinus & Torcular.",
+        "Nhánh tĩnh mạch phụ trách trực tiếp: Posterior (Tentorial) PCF Group."
+      ],
+      "arterial_supply": {
+        "primary": [],
+        "perforators": []
+      },
+      "venous_drainage": [
+        "Transverse Sinus & Torcular",
+        "Posterior (Tentorial) PCF Group"
+      ],
+      "aspects_zone": null,
+      "clinical_syndromes": [
+        {
+          "name": "Huyết khối tĩnh mạch não (CVT) - Transverse Sinus & Torcular",
+          "description": "Huyết khối xoang ngang / xoang chẩm sau phải: Đau sau gáy, chóng mặt tư thế, mất thăng bằng bán cầu phải, nhồi máu xuất huyết tiểu não diện rộng có chỉ định phẫu thuật giải áp hố sau."
+        }
+      ],
+      "evidence_level": "approximate",
+      "source": [
+        "Craig Hacking, Brain venous vascular territories, Radiopaedia.org (2020 CC BY-SA-NC 3.0)",
+        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)",
+        "Leach JL et al. Imaging of Cerebral Venous Thrombosis: Current Techniques, Spectrum of Findings, and Diagnostic Pitfalls. Radiographics 2006"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "atlas": "venous",
+      "label_id": 1,
+      "code": "VEN_SSS",
+      "name_vi": "Xoang dọc trên (Superior Sagittal Sinus)",
+      "name_en": "Superior Sagittal Sinus",
+      "category": "vascular_territory",
+      "brodmann_area": [],
+      "functions": [
+        "Xoang tĩnh mạch lớn nhất màng cứng chạy dọc bờ trên liềm não từ mào gà qua đỉnh vòm sọ ra ụ chẩm trong.",
+        "Dẫn lưu máu tĩnh mạch nghèo oxy từ các cấu trúc não tương ứng về tĩnh mạch cảnh trong.",
+        "Tham gia điều hòa áp lực nội sọ và tuần hoàn dịch não tủy."
+      ],
+      "arterial_supply": {
+        "primary": [],
+        "perforators": []
+      },
+      "venous_drainage": [
+        "Superior Sagittal Sinus"
+      ],
+      "aspects_zone": null,
+      "clinical_syndromes": [
+        {
+          "name": "Huyết khối xoang tĩnh mạch não (CVST) - Superior Sagittal Sinus",
+          "description": "Huyết khối xoang dọc trên (SSS Thrombosis): Nhức đầu tăng dần, tăng áp lực nội sọ, phù gai thị, phù não và xuất huyết thùy trán - đỉnh hai bên, co giật cục bộ hoặc toàn thể."
+        }
+      ],
+      "evidence_level": "approximate",
+      "source": [
+        "VENAT 7T QSM (Bazin et al., 2020; doi:10.6084/m9.figshare.7205960)",
+        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "atlas": "venous",
+      "label_id": 2,
+      "code": "VEN_ISS",
+      "name_vi": "Xoang dọc dưới (Inferior Sagittal Sinus)",
+      "name_en": "Inferior Sagittal Sinus",
+      "category": "vascular_territory",
+      "brodmann_area": [],
+      "functions": [
+        "Chạy ở bờ dưới tự do của liềm đại não ngay phía trên thể chai, dẫn lưu máu mặt trong bán cầu và đổ vào xoang thẳng.",
+        "Dẫn lưu máu tĩnh mạch nghèo oxy từ các cấu trúc não tương ứng về tĩnh mạch cảnh trong.",
+        "Tham gia điều hòa áp lực nội sọ và tuần hoàn dịch não tủy."
+      ],
+      "arterial_supply": {
+        "primary": [],
+        "perforators": []
+      },
+      "venous_drainage": [
+        "Inferior Sagittal Sinus"
+      ],
+      "aspects_zone": null,
+      "clinical_syndromes": [
+        {
+          "name": "Huyết khối xoang tĩnh mạch não (CVST) - Inferior Sagittal Sinus",
+          "description": "Huyết khối xoang dọc dưới: Rối loạn chức năng thể chai, giảm chú ý, suy giảm ý thức thứ phát do cản trở tuần hoàn tĩnh mạch đường giữa."
+        }
+      ],
+      "evidence_level": "approximate",
+      "source": [
+        "VENAT 7T QSM (Bazin et al., 2020; doi:10.6084/m9.figshare.7205960)",
+        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "atlas": "venous",
+      "label_id": 3,
+      "code": "VEN_SS",
+      "name_vi": "Xoang thẳng (Straight Sinus)",
+      "name_en": "Straight Sinus",
+      "category": "vascular_territory",
+      "brodmann_area": [],
+      "functions": [
+        "Nằm ở đường nối giữa liềm não và lều tiểu não, nhận máu từ tĩnh mạch não lớn (Galen) và xoang dọc dưới đổ về hội lưu xoang.",
+        "Dẫn lưu máu tĩnh mạch nghèo oxy từ các cấu trúc não tương ứng về tĩnh mạch cảnh trong.",
+        "Tham gia điều hòa áp lực nội sọ và tuần hoàn dịch não tủy."
+      ],
+      "arterial_supply": {
+        "primary": [],
+        "perforators": []
+      },
+      "venous_drainage": [
+        "Straight Sinus"
+      ],
+      "aspects_zone": null,
+      "clinical_syndromes": [
+        {
+          "name": "Huyết khối xoang tĩnh mạch não (CVST) - Straight Sinus",
+          "description": "Huyết khối xoang thẳng: Rối loạn tri giác nhanh chóng tiến triển thành hôn mê, phù hoặc nhồi máu xuất huyết đồi thị hai bên, tiên lượng nặng."
+        }
+      ],
+      "evidence_level": "approximate",
+      "source": [
+        "VENAT 7T QSM (Bazin et al., 2020; doi:10.6084/m9.figshare.7205960)",
+        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "atlas": "venous",
+      "label_id": 4,
+      "code": "VEN_TORCULAR",
+      "name_vi": "Hội lưu các xoang (Confluence of Sinuses / Torcular)",
+      "name_en": "Confluence of Sinuses (Torcular Herophili)",
+      "category": "vascular_territory",
+      "brodmann_area": [],
+      "functions": [
+        "Ngã tư hội lưu xoang nằm ở ụ chẩm trong, nơi gặp nhau của xoang dọc trên, xoang thẳng, xoang chẩm và hai xoang ngang.",
+        "Dẫn lưu máu tĩnh mạch nghèo oxy từ các cấu trúc não tương ứng về tĩnh mạch cảnh trong.",
+        "Tham gia điều hòa áp lực nội sọ và tuần hoàn dịch não tủy."
+      ],
+      "arterial_supply": {
+        "primary": [],
+        "perforators": []
+      },
+      "venous_drainage": [
+        "Confluence of Sinuses (Torcular Herophili)"
+      ],
+      "aspects_zone": null,
+      "clinical_syndromes": [
+        {
+          "name": "Huyết khối xoang tĩnh mạch não (CVST) - Confluence of Sinuses (Torcular Herophili)",
+          "description": "Huyết khối hội lưu xoang: Tắc nghẽn đường thoát máu tĩnh mạch toàn bộ não bộ sau, tăng áp lực nội sọ kịch phát, nguy cơ xuất huyết tiểu não và chẩm cao."
+        }
+      ],
+      "evidence_level": "approximate",
+      "source": [
+        "VENAT 7T QSM (Bazin et al., 2020; doi:10.6084/m9.figshare.7205960)",
+        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "atlas": "venous",
+      "label_id": 5,
+      "code": "VEN_L_TS",
+      "name_vi": "Xoang ngang Trái (Left Transverse Sinus)",
+      "name_en": "Left Transverse Sinus",
+      "category": "vascular_territory",
+      "brodmann_area": [],
+      "functions": [
+        "Chạy ngang theo rãnh xoang ngang xương chẩm bên trái dọc bờ sau lều tiểu não. Thường có hiện tượng thiểu sản sinh lý (hypoplasia).",
+        "Dẫn lưu máu tĩnh mạch nghèo oxy từ các cấu trúc não tương ứng về tĩnh mạch cảnh trong.",
+        "Tham gia điều hòa áp lực nội sọ và tuần hoàn dịch não tủy."
+      ],
+      "arterial_supply": {
+        "primary": [],
+        "perforators": []
+      },
+      "venous_drainage": [
+        "Left Transverse Sinus"
+      ],
+      "aspects_zone": null,
+      "clinical_syndromes": [
+        {
+          "name": "Huyết khối xoang tĩnh mạch não (CVST) - Left Transverse Sinus",
+          "description": "Huyết khối xoang ngang trái: Đau đầu vùng chẩm - thái dương trái, đau sau tai, ù tai dạng mạch đập, nhồi máu tĩnh mạch thùy thái dương trái gây mất ngôn ngữ Wernicke."
+        }
+      ],
+      "evidence_level": "approximate",
+      "source": [
+        "VENAT 7T QSM (Bazin et al., 2020; doi:10.6084/m9.figshare.7205960)",
+        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "atlas": "venous",
+      "label_id": 6,
+      "code": "VEN_R_TS",
+      "name_vi": "Xoang ngang Phải (Right Transverse Sinus)",
+      "name_en": "Right Transverse Sinus",
+      "category": "vascular_territory",
+      "brodmann_area": [],
+      "functions": [
+        "Xoang ngang bên phải, thường là xoang ưu thế (dominant sinus) dẫn lưu máu chính từ xoang dọc trên về tĩnh mạch cảnh trong.",
+        "Dẫn lưu máu tĩnh mạch nghèo oxy từ các cấu trúc não tương ứng về tĩnh mạch cảnh trong.",
+        "Tham gia điều hòa áp lực nội sọ và tuần hoàn dịch não tủy."
+      ],
+      "arterial_supply": {
+        "primary": [],
+        "perforators": []
+      },
+      "venous_drainage": [
+        "Right Transverse Sinus"
+      ],
+      "aspects_zone": null,
+      "clinical_syndromes": [
+        {
+          "name": "Huyết khối xoang tĩnh mạch não (CVST) - Right Transverse Sinus",
+          "description": "Huyết khối xoang ngang ưu thế bên phải: Gây hội chứng tăng áp lực nội sọ rầm rộ, phù gai thị nặng nề, phù não thùy thái dương - chẩm phải."
+        }
+      ],
+      "evidence_level": "approximate",
+      "source": [
+        "VENAT 7T QSM (Bazin et al., 2020; doi:10.6084/m9.figshare.7205960)",
+        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "atlas": "venous",
+      "label_id": 7,
+      "code": "VEN_L_SIGS",
+      "name_vi": "Xoang sigma Trái (Left Sigmoid Sinus)",
+      "name_en": "Left Sigmoid Sinus",
+      "category": "vascular_territory",
+      "brodmann_area": [],
+      "functions": [
+        "Phần tiếp nối hình chữ S của xoang ngang trái, uốn cong qua xương chũm và đổ vào hành tĩnh mạch cảnh trong trái.",
+        "Dẫn lưu máu tĩnh mạch nghèo oxy từ các cấu trúc não tương ứng về tĩnh mạch cảnh trong.",
+        "Tham gia điều hòa áp lực nội sọ và tuần hoàn dịch não tủy."
+      ],
+      "arterial_supply": {
+        "primary": [],
+        "perforators": []
+      },
+      "venous_drainage": [
+        "Left Sigmoid Sinus"
+      ],
+      "aspects_zone": null,
+      "clinical_syndromes": [
+        {
+          "name": "Huyết khối xoang tĩnh mạch não (CVST) - Left Sigmoid Sinus",
+          "description": "Huyết khối xoang sigma trái: Đau vùng xương chũm (dấu hiệu Griesinger), viêm tắc tĩnh mạch huyết khối thứ phát sau viêm tai giữa / viêm xương chũm."
+        }
+      ],
+      "evidence_level": "approximate",
+      "source": [
+        "VENAT 7T QSM (Bazin et al., 2020; doi:10.6084/m9.figshare.7205960)",
+        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "atlas": "venous",
+      "label_id": 8,
+      "code": "VEN_R_SIGS",
+      "name_vi": "Xoang sigma Phải (Right Sigmoid Sinus)",
+      "name_en": "Right Sigmoid Sinus",
+      "category": "vascular_territory",
+      "brodmann_area": [],
+      "functions": [
+        "Xoang sigma bên phải uốn qua rãnh sigma xương chũm phải đổ vào lỗ tĩnh mạch cảnh phải.",
+        "Dẫn lưu máu tĩnh mạch nghèo oxy từ các cấu trúc não tương ứng về tĩnh mạch cảnh trong.",
+        "Tham gia điều hòa áp lực nội sọ và tuần hoàn dịch não tủy."
+      ],
+      "arterial_supply": {
+        "primary": [],
+        "perforators": []
+      },
+      "venous_drainage": [
+        "Right Sigmoid Sinus"
+      ],
+      "aspects_zone": null,
+      "clinical_syndromes": [
+        {
+          "name": "Huyết khối xoang tĩnh mạch não (CVST) - Right Sigmoid Sinus",
+          "description": "Huyết khối xoang sigma phải: Đau sau tai phải, hội chứng lỗ tĩnh mạch cảnh (liệt dây IX, X, XI nếu lan xuống hành tĩnh mạch cảnh)."
+        }
+      ],
+      "evidence_level": "approximate",
+      "source": [
+        "VENAT 7T QSM (Bazin et al., 2020; doi:10.6084/m9.figshare.7205960)",
+        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "atlas": "venous",
+      "label_id": 9,
+      "code": "VEN_CAVERNOUS",
+      "name_vi": "Xoang hang & Xoang bướm đỉnh (Cavernous Sinuses)",
+      "name_en": "Cavernous & Sphenoparietal Sinuses",
+      "category": "vascular_territory",
+      "brodmann_area": [],
+      "functions": [
+        "Xoang tĩnh mạch nằm hai bên thân xương bướm và hố yên, chứa động mạch cảnh trong và các dây thần kinh sọ III, IV, V1, V2, VI.",
+        "Dẫn lưu máu tĩnh mạch nghèo oxy từ các cấu trúc não tương ứng về tĩnh mạch cảnh trong.",
+        "Tham gia điều hòa áp lực nội sọ và tuần hoàn dịch não tủy."
+      ],
+      "arterial_supply": {
+        "primary": [],
+        "perforators": []
+      },
+      "venous_drainage": [
+        "Cavernous & Sphenoparietal Sinuses"
+      ],
+      "aspects_zone": null,
+      "clinical_syndromes": [
+        {
+          "name": "Huyết khối xoang tĩnh mạch não (CVST) - Cavernous & Sphenoparietal Sinuses",
+          "description": "Huyết khối xoang hang (Cavernous Sinus Thrombosis): Phù nề kết mạc, lồi mắt mạch đập, liệt vận nhãn hoàn toàn, đau sau ổ mắt, biến chứng nhiễm trùng tối cấp đe dọa tính mạng."
+        }
+      ],
+      "evidence_level": "approximate",
+      "source": [
+        "VENAT 7T QSM (Bazin et al., 2020; doi:10.6084/m9.figshare.7205960)",
+        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "atlas": "venous",
+      "label_id": 10,
+      "code": "VEN_PETROSAL",
+      "name_vi": "Xoang đá trên & dưới (Petrosal Sinuses)",
+      "name_en": "Superior & Inferior Petrosal Sinuses",
+      "category": "vascular_territory",
+      "brodmann_area": [],
+      "functions": [
+        "Chạy dọc theo bờ trên và rãnh dưới xương đá, dẫn lưu máu từ xoang hang và tiểu não về xoang ngang/sigma và tĩnh mạch cảnh.",
+        "Dẫn lưu máu tĩnh mạch nghèo oxy từ các cấu trúc não tương ứng về tĩnh mạch cảnh trong.",
+        "Tham gia điều hòa áp lực nội sọ và tuần hoàn dịch não tủy."
+      ],
+      "arterial_supply": {
+        "primary": [],
+        "perforators": []
+      },
+      "venous_drainage": [
+        "Superior & Inferior Petrosal Sinuses"
+      ],
+      "aspects_zone": null,
+      "clinical_syndromes": [
+        {
+          "name": "Huyết khối xoang tĩnh mạch não (CVST) - Superior & Inferior Petrosal Sinuses",
+          "description": "Huyết khối xoang đá: Hội chứng Gradenigo (chảy mủ tai, đau sau ổ mắt theo nhánh V1, liệt dây VI), chóng mặt, giảm thính lực."
+        }
+      ],
+      "evidence_level": "approximate",
+      "source": [
+        "VENAT 7T QSM (Bazin et al., 2020; doi:10.6084/m9.figshare.7205960)",
+        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "atlas": "venous",
+      "label_id": 11,
+      "code": "VEN_ICV",
+      "name_vi": "Tĩnh mạch não trong (Internal Cerebral Veins - ICVs)",
+      "name_en": "Internal Cerebral Veins (ICVs)",
+      "category": "vascular_territory",
+      "brodmann_area": [],
+      "functions": [
+        "Hai tĩnh mạch chạy ở vòm não thất ba, dẫn lưu máu từ đồi thị, thể vân và đám rối màng mạch trước khi hợp lưu thành tĩnh mạch Galen.",
+        "Dẫn lưu máu tĩnh mạch nghèo oxy từ các cấu trúc não tương ứng về tĩnh mạch cảnh trong.",
+        "Tham gia điều hòa áp lực nội sọ và tuần hoàn dịch não tủy."
+      ],
+      "arterial_supply": {
+        "primary": [],
+        "perforators": []
+      },
+      "venous_drainage": [
+        "Internal Cerebral Veins (ICVs)"
+      ],
+      "aspects_zone": null,
+      "clinical_syndromes": [
+        {
+          "name": "Huyết khối xoang tĩnh mạch não (CVST) - Internal Cerebral Veins (ICVs)",
+          "description": "Huyết khối tĩnh mạch não trong: Nhồi máu/phù xuất huyết đồi thị hai bên kinh điển, lú lẫn cấp, hôn mê, mất khả năng ghi nhớ."
+        }
+      ],
+      "evidence_level": "approximate",
+      "source": [
+        "VENAT 7T QSM (Bazin et al., 2020; doi:10.6084/m9.figshare.7205960)",
+        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "atlas": "venous",
+      "label_id": 12,
+      "code": "VEN_GALEN",
+      "name_vi": "Tĩnh mạch lớn Galen (Great Cerebral Vein of Galen)",
+      "name_en": "Great Cerebral Vein of Galen",
+      "category": "vascular_territory",
+      "brodmann_area": [],
+      "functions": [
+        "Thân tĩnh mạch ngắn và dày nằm dưới lồi thể chai trong bể củ não tư, là ngã ba hợp lưu của 2 tĩnh mạch não trong và 2 tĩnh mạch đáy Rosenthal đổ vào xoang thẳng.",
+        "Dẫn lưu máu tĩnh mạch nghèo oxy từ các cấu trúc não tương ứng về tĩnh mạch cảnh trong.",
+        "Tham gia điều hòa áp lực nội sọ và tuần hoàn dịch não tủy."
+      ],
+      "arterial_supply": {
+        "primary": [],
+        "perforators": []
+      },
+      "venous_drainage": [
+        "Great Cerebral Vein of Galen"
+      ],
+      "aspects_zone": null,
+      "clinical_syndromes": [
+        {
+          "name": "Huyết khối xoang tĩnh mạch não (CVST) - Great Cerebral Vein of Galen",
+          "description": "Huyết khối tĩnh mạch Galen / Phình tĩnh mạch Galen (Vein of Galen Malformation): Suy tim cung lượng cao ở trẻ sơ sinh, hoặc đột quỵ tĩnh mạch não sâu diện rộng ở người lớn."
+        }
+      ],
+      "evidence_level": "approximate",
+      "source": [
+        "VENAT 7T QSM (Bazin et al., 2020; doi:10.6084/m9.figshare.7205960)",
+        "AHA/ASA Scientific Statement: Diagnosis and Management of Cerebral Venous Thrombosis (Saposnik 2011)"
+      ],
+      "review_status": "unreviewed"
     }
   ]
 }

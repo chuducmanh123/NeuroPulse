@@ -38,6 +38,7 @@ export function EditScenarioModal({
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   // Core Overview Fields
+  const [customId, setCustomId] = useState<string>("");
   const [title, setTitle] = useState<string>("");
   const [titleEn, setTitleEn] = useState<string>("");
   const [subspecialty, setSubspecialty] = useState<SubspecialtyType>("Stroke");
@@ -65,6 +66,7 @@ export function EditScenarioModal({
   useEffect(() => {
     if (!scenario) return;
 
+    setCustomId(scenario.id || "");
     setTitle(scenario.title || "");
     setTitleEn(scenario.titleEn || "");
     setSubspecialty(scenario.subspecialty || "Stroke");
@@ -200,8 +202,12 @@ export function EditScenarioModal({
       .map((t) => t.trim())
       .filter(Boolean);
 
+    const finalId = (customId.trim() || scenario.id).toLowerCase();
+    const updatedRecs = recs.map((r) => ({ ...r, scenarioId: finalId }));
+
     const updatedScenario: ClinicalScenario = {
       ...scenario,
+      id: finalId,
       title: title.trim(),
       titleEn: titleEn.trim() || undefined,
       subspecialty,
@@ -231,7 +237,7 @@ export function EditScenarioModal({
         },
         body: JSON.stringify({
           scenario: updatedScenario,
-          recommendations: recs,
+          recommendations: updatedRecs,
         }),
       });
 
@@ -260,25 +266,25 @@ export function EditScenarioModal({
   );
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-5 bg-black/70 backdrop-blur-xs animate-in fade-in duration-200">
       <div
-        className={`max-w-4xl w-full max-h-[92vh] flex flex-col rounded-3xl border shadow-2xl overflow-hidden transition-all ${
+        className={`w-[96vw] max-w-7xl h-[94vh] max-h-[960px] flex flex-col rounded-2xl sm:rounded-3xl border shadow-2xl overflow-hidden transition-all ${
           darkMode ? "bg-slate-900 border-slate-800 text-white" : "bg-white border-slate-200 text-slate-900"
         }`}
       >
         {/* MODAL HEADER */}
-        <div className="px-5 py-4 border-b flex flex-wrap items-center justify-between gap-3 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-950/50 shrink-0">
-          <div className="flex items-center gap-2.5 min-w-0">
-            <div className="w-9 h-9 rounded-xl bg-amber-500/15 text-amber-600 dark:text-amber-400 flex items-center justify-center text-lg font-bold shrink-0">
+        <div className="px-5 sm:px-6 py-4 border-b flex flex-wrap items-center justify-between gap-3 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-950/50 shrink-0">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="w-10 h-10 rounded-xl bg-amber-500/15 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl font-bold shrink-0">
               ⚖️
             </div>
             <div className="min-w-0">
-              <div className="flex items-center gap-2">
-                <h3 className="text-sm sm:text-base font-black truncate">
-                  Sửa Kịch Bản Lâm Sàng
+              <div className="flex items-center gap-2 flex-wrap">
+                <h3 className="text-sm sm:text-base md:text-lg font-black truncate">
+                  {title ? "Sửa Kịch Bản Lâm Sàng" : "Thêm Kịch Bản Lâm Sàng Mới"}
                 </h3>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-amber-500/15 text-amber-700 dark:text-amber-300 border border-amber-500/30">
-                  {scenario.id}
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-amber-500/15 text-amber-700 dark:text-amber-300 border border-amber-500/30">
+                  {customId || scenario.id}
                 </span>
               </div>
               <p className="text-xs text-slate-500 dark:text-slate-400 truncate mt-0.5">
@@ -290,7 +296,7 @@ export function EditScenarioModal({
           <button
             type="button"
             onClick={onClose}
-            className="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-800 transition-colors"
+            className="w-9 h-9 rounded-xl flex items-center justify-center text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-800 transition-colors cursor-pointer text-base"
             title="Đóng cửa sổ"
           >
             ✕
@@ -383,46 +389,29 @@ export function EditScenarioModal({
         )}
 
         {/* FORM BODY */}
-        <form onSubmit={handleSave} className="flex-1 overflow-y-auto p-5 space-y-5">
+        <form onSubmit={handleSave} className="flex-1 overflow-y-auto p-5 sm:p-7 space-y-6">
           {/* TAB 1: OVERVIEW */}
           {activeTab === "overview" && (
-            <div className="space-y-4">
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
-                  Tiêu đề Kịch bản Lâm sàng (Title) <span className="text-rose-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  placeholder="e.g. Tenecteplase vs. Alteplase for Acute Ischemic Stroke within 4.5 Hours"
-                  className={`w-full p-3 rounded-xl border text-xs sm:text-sm font-semibold transition-all focus:outline-hidden focus:ring-2 focus:ring-amber-500/50 ${
-                    darkMode
-                      ? "bg-slate-800 border-slate-700 text-white placeholder-slate-500"
-                      : "bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400"
-                  }`}
-                />
-              </div>
+            <div className="space-y-5 max-w-5xl mx-auto w-full">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
+                    Mã Định Danh (Scenario ID) <span className="text-rose-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={customId}
+                    onChange={(e) => setCustomId(e.target.value)}
+                    placeholder="e.g. ais-ivt-tenecteplase-4.5h"
+                    className={`w-full p-2.5 rounded-xl border text-xs sm:text-sm font-mono font-bold transition-all focus:outline-hidden focus:ring-2 focus:ring-amber-500/50 ${
+                      darkMode
+                        ? "bg-slate-800 border-slate-700 text-amber-400 placeholder-slate-500"
+                        : "bg-slate-50 border-slate-200 text-amber-700 placeholder-slate-400"
+                    }`}
+                  />
+                </div>
 
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
-                  Tiêu đề tiếng Anh (Title English)
-                </label>
-                <input
-                  type="text"
-                  value={titleEn}
-                  onChange={(e) => setTitleEn(e.target.value)}
-                  placeholder="Optional English Title..."
-                  className={`w-full p-2.5 rounded-xl border text-xs sm:text-sm font-semibold transition-all focus:outline-hidden focus:ring-2 focus:ring-amber-500/50 ${
-                    darkMode
-                      ? "bg-slate-800 border-slate-700 text-white placeholder-slate-500"
-                      : "bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400"
-                  }`}
-                />
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
                     Phân khoa Thần kinh (Subspecialty)
@@ -462,12 +451,49 @@ export function EditScenarioModal({
                 </div>
               </div>
 
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
+                    Tiêu đề Kịch bản Lâm sàng (Title) <span className="text-rose-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    placeholder="e.g. Tenecteplase vs. Alteplase for Acute Ischemic Stroke within 4.5 Hours"
+                    className={`w-full p-2.5 rounded-xl border text-xs sm:text-sm font-semibold transition-all focus:outline-hidden focus:ring-2 focus:ring-amber-500/50 ${
+                      darkMode
+                        ? "bg-slate-800 border-slate-700 text-white placeholder-slate-500"
+                        : "bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400"
+                    }`}
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
+                    Tiêu đề tiếng Anh (Title English)
+                  </label>
+                  <input
+                    type="text"
+                    value={titleEn}
+                    onChange={(e) => setTitleEn(e.target.value)}
+                    placeholder="Optional English Title..."
+                    className={`w-full p-2.5 rounded-xl border text-xs sm:text-sm font-semibold transition-all focus:outline-hidden focus:ring-2 focus:ring-amber-500/50 ${
+                      darkMode
+                        ? "bg-slate-800 border-slate-700 text-white placeholder-slate-500"
+                        : "bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400"
+                    }`}
+                  />
+                </div>
+              </div>
+
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
                   Tóm tắt Kịch bản Lâm sàng (Clinical Summary)
                 </label>
                 <textarea
-                  rows={3}
+                  rows={4}
                   value={summary}
                   onChange={(e) => setSummary(e.target.value)}
                   placeholder="Mô tả bối cảnh lâm sàng, chỉ định chính, liều lượng hoặc phạm vi can thiệp..."
@@ -548,7 +574,7 @@ export function EditScenarioModal({
 
           {/* TAB 2: AI SYNTHESIS APPRAISAL */}
           {activeTab === "ai_appraisal" && (
-            <div className="space-y-4">
+            <div className="space-y-5 max-w-5xl mx-auto w-full">
               <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-xs text-amber-900 dark:text-amber-200 flex items-start gap-2.5">
                 <span className="text-base shrink-0">🧠</span>
                 <div>
@@ -557,7 +583,7 @@ export function EditScenarioModal({
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
                     Mức độ đồng thuận (Consensus Level)
@@ -577,7 +603,7 @@ export function EditScenarioModal({
 
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
-                    Phụ thuộc nguồn lực y tế (Resource Dependency)
+                    Phụ thuộc nguồn lực y tế
                   </label>
                   <select
                     value={resourceDependency}
@@ -586,10 +612,24 @@ export function EditScenarioModal({
                       darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"
                     }`}
                   >
-                    <option value="Standard Care">Standard Care (Chăm sóc tiêu chuẩn / Tuyến cơ sở)</option>
-                    <option value="Requires Advanced Perfusion/AI">Requires Advanced Perfusion/AI (Tưới máu/AI nâng cao)</option>
-                    <option value="Specialized Center Only">Specialized Center Only (Chỉ trung tâm chuyên sâu)</option>
+                    <option value="Standard Care">Standard Care (Chăm sóc tiêu chuẩn / Cơ sở)</option>
+                    <option value="Requires Advanced Perfusion/AI">Requires Advanced Perfusion/AI (Tưới máu/AI)</option>
+                    <option value="Specialized Center Only">Specialized Center Only (Trung tâm chuyên sâu)</option>
                   </select>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
+                    Ngày đánh giá (Last Appraised)
+                  </label>
+                  <input
+                    type="date"
+                    value={lastAppraisedAt}
+                    onChange={(e) => setLastAppraisedAt(e.target.value)}
+                    className={`w-full p-2 rounded-xl border text-xs font-bold transition-all focus:outline-hidden focus:ring-2 focus:ring-amber-500/50 ${
+                      darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"
+                    }`}
+                  />
                 </div>
               </div>
 
@@ -627,26 +667,12 @@ export function EditScenarioModal({
                   }`}
                 />
               </div>
-
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
-                  Ngày đánh giá (Last Appraised At)
-                </label>
-                <input
-                  type="date"
-                  value={lastAppraisedAt}
-                  onChange={(e) => setLastAppraisedAt(e.target.value)}
-                  className={`p-2 rounded-xl border text-xs font-bold transition-all focus:outline-hidden focus:ring-2 focus:ring-amber-500/50 ${
-                    darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200"
-                  }`}
-                />
-              </div>
             </div>
           )}
 
           {/* TAB 3: RECOMMENDATIONS MATRIX */}
           {activeTab === "recommendations" && (
-            <div className="space-y-4">
+            <div className="space-y-4 max-w-6xl mx-auto w-full">
               <div className="flex items-center justify-between">
                 <div>
                   <h4 className="text-xs font-black uppercase tracking-wider text-slate-500 dark:text-slate-400">
@@ -819,7 +845,7 @@ export function EditScenarioModal({
 
           {/* TAB 4: TEMPORAL EVOLUTION */}
           {activeTab === "temporal" && (
-            <div className="space-y-4">
+            <div className="space-y-4 max-w-6xl mx-auto w-full">
               <div className="flex items-center justify-between">
                 <div>
                   <h4 className="text-xs font-black uppercase tracking-wider text-slate-500 dark:text-slate-400">
@@ -997,7 +1023,7 @@ export function EditScenarioModal({
 
           {/* TAB 5: ECOSYSTEM LINKS */}
           {activeTab === "ecosystem" && (
-            <div className="space-y-4">
+            <div className="space-y-4 max-w-6xl mx-auto w-full">
               <div className="flex items-center justify-between">
                 <div>
                   <h4 className="text-xs font-black uppercase tracking-wider text-slate-500 dark:text-slate-400">

@@ -4,36 +4,52 @@
     0,
     255,
     255,
+    255,
     0,
     30,
     255,
     255,
-    0
+    215,
+    0,
+    0,
+    140
   ],
   "G": [
     0,
-    230,
+    235,
+    225,
     0,
-    25,
-    60,
-    160,
-    120,
+    30,
+    65,
+    165,
+    125,
+    215,
+    75,
     220,
-    255
+    255,
+    60
   ],
   "B": [
     0,
-    230,
+    235,
+    30,
     255,
-    40,
+    45,
     255,
     255,
     0,
     0,
-    60
+    185,
+    200,
+    65,
+    255
   ],
   "A": [
     0,
+    255,
+    255,
+    255,
+    255,
     255,
     255,
     255,
@@ -52,17 +68,25 @@
     5,
     6,
     7,
-    8
+    8,
+    9,
+    10,
+    11,
+    12
   ],
   "labels": [
     "Background",
     "Xoang dọc trên (Superior Sagittal Sinus)",
+    "Xoang dọc dưới (Inferior Sagittal Sinus)",
     "Xoang thẳng (Straight Sinus)",
     "Hội lưu các xoang (Confluence of Sinuses / Torcular)",
     "Xoang ngang Trái (Left Transverse Sinus)",
     "Xoang ngang Phải (Right Transverse Sinus)",
     "Xoang sigma Trái (Left Sigmoid Sinus)",
     "Xoang sigma Phải (Right Sigmoid Sinus)",
-    "Tĩnh mạch não trong & Tĩnh mạch Galen (Deep Veins)"
+    "Xoang hang & Xoang bướm đỉnh (Cavernous Sinuses)",
+    "Xoang đá trên & dưới (Petrosal Sinuses)",
+    "Tĩnh mạch não trong (Internal Cerebral Veins - ICVs)",
+    "Tĩnh mạch lớn Galen (Great Cerebral Vein of Galen)"
   ]
 }

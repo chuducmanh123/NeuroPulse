@@ -1,8 +1,8 @@
 {
   "atlas": "venous",
   "space": "MNI152NLin2009cAsym",
-  "source": "VENAT 7T QSM (Bazin et al., Figshare CC BY 4.0; doi:10.6084/m9.figshare.7205960)",
-  "description": "Anatomically parcellated cerebral venous sinuses (8 distinct major compartments)",
+  "source": "VENAT 7T QSM (Bazin et al., Figshare CC BY 4.0; doi:10.6084/m9.figshare.7205960) & MNI Neuroanatomy",
+  "description": "Comprehensive parcellation of cerebral venous sinuses & major deep veins (12 distinct anatomical structures)",
   "review_status": "unreviewed",
   "labels": [
     {
@@ -15,6 +15,14 @@
     },
     {
       "index": 2,
+      "code": "VEN_ISS",
+      "name": "Inferior Sagittal Sinus",
+      "name_vi": "Xoang dọc dưới (Inferior Sagittal Sinus)",
+      "source": "VENAT 7T QSM & Neuroanatomy",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 3,
       "code": "VEN_SS",
       "name": "Straight Sinus",
       "name_vi": "Xoang thẳng (Straight Sinus)",
@@ -22,7 +30,7 @@
       "review_status": "unreviewed"
     },
     {
-      "index": 3,
+      "index": 4,
       "code": "VEN_TORCULAR",
       "name": "Confluence of Sinuses (Torcular Herophili)",
       "name_vi": "Hội lưu các xoang (Confluence of Sinuses / Torcular)",
@@ -30,7 +38,7 @@
       "review_status": "unreviewed"
     },
     {
-      "index": 4,
+      "index": 5,
       "code": "VEN_L_TS",
       "name": "Left Transverse Sinus",
       "name_vi": "Xoang ngang Trái (Left Transverse Sinus)",
@@ -38,7 +46,7 @@
       "review_status": "unreviewed"
     },
     {
-      "index": 5,
+      "index": 6,
       "code": "VEN_R_TS",
       "name": "Right Transverse Sinus",
       "name_vi": "Xoang ngang Phải (Right Transverse Sinus)",
@@ -46,7 +54,7 @@
       "review_status": "unreviewed"
     },
     {
-      "index": 6,
+      "index": 7,
       "code": "VEN_L_SIGS",
       "name": "Left Sigmoid Sinus",
       "name_vi": "Xoang sigma Trái (Left Sigmoid Sinus)",
@@ -54,7 +62,7 @@
       "review_status": "unreviewed"
     },
     {
-      "index": 7,
+      "index": 8,
       "code": "VEN_R_SIGS",
       "name": "Right Sigmoid Sinus",
       "name_vi": "Xoang sigma Phải (Right Sigmoid Sinus)",
@@ -62,10 +70,34 @@
       "review_status": "unreviewed"
     },
     {
-      "index": 8,
-      "code": "VEN_DEEP",
-      "name": "Deep Cerebral Veins & Great Vein of Galen",
-      "name_vi": "Tĩnh mạch não trong & Tĩnh mạch Galen (Deep Veins)",
+      "index": 9,
+      "code": "VEN_CAVERNOUS",
+      "name": "Cavernous & Sphenoparietal Sinuses",
+      "name_vi": "Xoang hang & Xoang bướm đỉnh (Cavernous Sinuses)",
+      "source": "VENAT 7T QSM & Neuroanatomy",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 10,
+      "code": "VEN_PETROSAL",
+      "name": "Superior & Inferior Petrosal Sinuses",
+      "name_vi": "Xoang đá trên & dưới (Petrosal Sinuses)",
+      "source": "VENAT 7T QSM & Neuroanatomy",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 11,
+      "code": "VEN_ICV",
+      "name": "Internal Cerebral Veins (ICVs)",
+      "name_vi": "Tĩnh mạch não trong (Internal Cerebral Veins - ICVs)",
+      "source": "VENAT 7T QSM & Neuroanatomy",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 12,
+      "code": "VEN_GALEN",
+      "name": "Great Cerebral Vein of Galen",
+      "name_vi": "Tĩnh mạch lớn Galen (Great Cerebral Vein of Galen)",
       "source": "VENAT 7T QSM & Neuroanatomy",
       "review_status": "unreviewed"
     }

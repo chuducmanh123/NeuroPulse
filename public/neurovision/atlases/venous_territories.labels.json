@@ -1,0 +1,201 @@
+{
+  "atlas": "venous_territories",
+  "space": "MNI152NLin2009cAsym",
+  "source": "Craig Hacking, Brain venous vascular territories, Radiopaedia.org (2020, CC BY-SA-NC 3.0)",
+  "description": "Comprehensive 3D Parcellation of Brain Venous Drainage Vascular Territories (100% MNI152 coverage, 12 bilateral zones)",
+  "review_status": "unreviewed",
+  "labels": [
+    {
+      "index": 1,
+      "code": "VEN_TERR_SSS_L",
+      "name": "Superior Sagittal Sinus Territory (Left)",
+      "name_vi": "Vùng Xoang dọc trên & Tĩnh mạch vỏ não (Trái)",
+      "dural_sinus": "Superior Sagittal Sinus",
+      "tributary_vein": "Superior Cortical Veins / Vein of Trolard",
+      "color": [
+        235,
+        75,
+        60,
+        255
+      ],
+      "source": "Craig Hacking, Radiopaedia.org (2020) & Neuroanatomy",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 2,
+      "code": "VEN_TERR_SSS_R",
+      "name": "Superior Sagittal Sinus Territory (Right)",
+      "name_vi": "Vùng Xoang dọc trên & Tĩnh mạch vỏ não (Phải)",
+      "dural_sinus": "Superior Sagittal Sinus",
+      "tributary_vein": "Superior Cortical Veins / Vein of Trolard",
+      "color": [
+        245,
+        115,
+        60,
+        255
+      ],
+      "source": "Craig Hacking, Radiopaedia.org (2020) & Neuroanatomy",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 3,
+      "code": "VEN_TERR_ISS",
+      "name": "Inferior Sagittal Sinus Territory",
+      "name_vi": "Vùng Xoang dọc dưới (Thể chai & Vòm não)",
+      "dural_sinus": "Inferior Sagittal Sinus",
+      "tributary_vein": "Anterior Cerebral Veins / Callosal & Forniceal Veins",
+      "color": [
+        250,
+        225,
+        25,
+        255
+      ],
+      "source": "Craig Hacking, Radiopaedia.org (2020) & Neuroanatomy",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 4,
+      "code": "VEN_TERR_DEEP_L",
+      "name": "Deep Cerebral Venous Territory (Left)",
+      "name_vi": "Vùng Tĩnh mạch sâu & Xoang thẳng (Trái)",
+      "dural_sinus": "Straight Sinus",
+      "tributary_vein": "Internal Cerebral Vein & Basal Vein of Rosenthal",
+      "color": [
+        35,
+        110,
+        235,
+        255
+      ],
+      "source": "Craig Hacking, Radiopaedia.org (2020) & Neuroanatomy",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 5,
+      "code": "VEN_TERR_DEEP_R",
+      "name": "Deep Cerebral Venous Territory (Right)",
+      "name_vi": "Vùng Tĩnh mạch sâu & Xoang thẳng (Phải)",
+      "dural_sinus": "Straight Sinus",
+      "tributary_vein": "Internal Cerebral Vein & Basal Vein of Rosenthal",
+      "color": [
+        70,
+        150,
+        250,
+        255
+      ],
+      "source": "Craig Hacking, Radiopaedia.org (2020) & Neuroanatomy",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 6,
+      "code": "VEN_TERR_TS_L",
+      "name": "Transverse Sinus / Labbé Territory (Left)",
+      "name_vi": "Vùng Xoang ngang & Tĩnh mạch Labbé (Trái)",
+      "dural_sinus": "Transverse Sinus",
+      "tributary_vein": "Inferior Anastomotic Vein (of Labbé)",
+      "color": [
+        40,
+        185,
+        85,
+        255
+      ],
+      "source": "Craig Hacking, Radiopaedia.org (2020) & Neuroanatomy",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 7,
+      "code": "VEN_TERR_TS_R",
+      "name": "Transverse Sinus / Labbé Territory (Right)",
+      "name_vi": "Vùng Xoang ngang & Tĩnh mạch Labbé (Phải)",
+      "dural_sinus": "Transverse Sinus",
+      "tributary_vein": "Inferior Anastomotic Vein (of Labbé)",
+      "color": [
+        80,
+        215,
+        115,
+        255
+      ],
+      "source": "Craig Hacking, Radiopaedia.org (2020) & Neuroanatomy",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 8,
+      "code": "VEN_TERR_CAV_L",
+      "name": "Cavernous Sinus / SMCV Territory (Left)",
+      "name_vi": "Vùng Xoang hang / Bướm đỉnh & Tĩnh mạch Sylvian (Trái)",
+      "dural_sinus": "Sphenoparietal / Cavernous Sinuses",
+      "tributary_vein": "Superficial Middle Cerebral (Sylvian) Vein",
+      "color": [
+        210,
+        75,
+        180,
+        255
+      ],
+      "source": "Craig Hacking, Radiopaedia.org (2020) & Neuroanatomy",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 9,
+      "code": "VEN_TERR_CAV_R",
+      "name": "Cavernous Sinus / SMCV Territory (Right)",
+      "name_vi": "Vùng Xoang hang / Bướm đỉnh & Tĩnh mạch Sylvian (Phải)",
+      "dural_sinus": "Sphenoparietal / Cavernous Sinuses",
+      "tributary_vein": "Superficial Middle Cerebral (Sylvian) Vein",
+      "color": [
+        235,
+        115,
+        205,
+        255
+      ],
+      "source": "Craig Hacking, Radiopaedia.org (2020) & Neuroanatomy",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 10,
+      "code": "VEN_TERR_INFRA_ANT",
+      "name": "Anterior Infratentorial Territory (Brainstem & Ant Cerebellum)",
+      "name_vi": "Vùng Thân não & Tiểu não trước (Xoang đá & Xoang sigma)",
+      "dural_sinus": "Sigmoid & Petrosal Sinuses",
+      "tributary_vein": "Anterior (Petrosal) PCF Group",
+      "color": [
+        0,
+        210,
+        210,
+        255
+      ],
+      "source": "Craig Hacking, Radiopaedia.org (2020) & Neuroanatomy",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 11,
+      "code": "VEN_TERR_INFRA_POST_L",
+      "name": "Posterior Infratentorial Territory (Left Cerebellum)",
+      "name_vi": "Vùng Bán cầu Tiểu não sau (Trái)",
+      "dural_sinus": "Transverse Sinus & Torcular",
+      "tributary_vein": "Posterior (Tentorial) PCF Group",
+      "color": [
+        120,
+        205,
+        75,
+        255
+      ],
+      "source": "Craig Hacking, Radiopaedia.org (2020) & Neuroanatomy",
+      "review_status": "unreviewed"
+    },
+    {
+      "index": 12,
+      "code": "VEN_TERR_INFRA_POST_R",
+      "name": "Posterior Infratentorial Territory (Right Cerebellum)",
+      "name_vi": "Vùng Bán cầu Tiểu não sau (Phải)",
+      "dural_sinus": "Transverse Sinus & Torcular",
+      "tributary_vein": "Posterior (Tentorial) PCF Group",
+      "color": [
+        150,
+        225,
+        100,
+        255
+      ],
+      "source": "Craig Hacking, Radiopaedia.org (2020) & Neuroanatomy",
+      "review_status": "unreviewed"
+    }
+  ]
+}
