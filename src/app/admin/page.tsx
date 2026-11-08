@@ -7,14 +7,16 @@ import { AppSwitcher } from "@/components/ecosystem/AppSwitcher";
 import { AdminTab } from "@/components/neurocase/tabs/AdminTab";
 import { AdminPreviewModal } from "@/components/neurocase/modals/AdminPreviewModal";
 import { ClinicalCase, CaseDifficulty } from "@/types/clinicalCase";
-import { GuidelineDoc, ClinicalScenario, RecommendationAtom, SubspecialtyType } from "@/types/neuroguide";
+import { GuidelineDoc, SubspecialtyType, PivotalTrialRecord } from "@/types/neuroguide";
 import { MOCK_GUIDELINE_DOCS } from "@/data/neuroguideMockData";
+import { PIVOTAL_TRIALS_SEED } from "@/data/pivotalTrialsSeed";
 import { SUBSPECIALTY_LIST, SUBSPECIALTY_TABS } from "@/constants/subspecialties";
 import { ReviewQueueTab } from "@/components/neuroguide/ReviewQueueTab";
 import { PipelineModal } from "@/components/neuroguide/PipelineModal";
 import { NotebookLMUploadModal } from "@/components/neuroguide/NotebookLMUploadModal";
 import { EditGuidelineModal } from "@/components/neuroguide/EditGuidelineModal";
-import { EditScenarioModal } from "@/components/neuroguide/EditScenarioModal";
+import { PivotalTrialsAdminTab } from "@/components/neuroguide/PivotalTrialsAdminTab";
+import { PivotalTrialModal } from "@/components/neuroguide/PivotalTrialModal";
 import { getStoredAdminToken } from "@/utils/clientAuth";
 
 function getLocalTodayIso(): string {
@@ -124,7 +126,7 @@ export default function AdminCommandCenter() {
   const [adminTab, setAdminTab] = useState<"neuropulse" | "neurocase" | "guidelines" | "system">("neuropulse");
 
   // Guideline Review & Radar Combined State
-  const [guidelineSubTab, setGuidelineSubTab] = useState<"queue" | "repository" | "scenarios">("queue");
+  const [guidelineSubTab, setGuidelineSubTab] = useState<"queue" | "repository" | "trials">("queue");
   const [repoSearchQuery, setRepoSearchQuery] = useState("");
   const [repoSocietyFilter, setRepoSocietyFilter] = useState("ALL");
   const [reviewQueueCount, setReviewQueueCount] = useState<number>(0);
@@ -132,13 +134,10 @@ export default function AdminCommandCenter() {
   const [showPipelineModal, setShowPipelineModal] = useState<boolean>(false);
   const [showNotebookLMModal, setShowNotebookLMModal] = useState<boolean>(false);
 
-  // Clinical Scenarios Management & Edit
-  const [clinicalScenarios, setClinicalScenarios] = useState<ClinicalScenario[]>([]);
-  const [recommendationAtoms, setRecommendationAtoms] = useState<RecommendationAtom[]>([]);
-  const [editingScenario, setEditingScenario] = useState<ClinicalScenario | null>(null);
-  const [showEditScenarioModal, setShowEditScenarioModal] = useState<boolean>(false);
-  const [scenarioSearchQuery, setScenarioSearchQuery] = useState<string>("");
-  const [scenarioSubspecialtyFilter, setScenarioSubspecialtyFilter] = useState<string>("ALL");
+  // Landmark Clinical Trials Registry & Edit
+  const [pivotalTrials, setPivotalTrials] = useState<PivotalTrialRecord[]>(PIVOTAL_TRIALS_SEED);
+  const [editingTrial, setEditingTrial] = useState<PivotalTrialRecord | null>(null);
+  const [showTrialModal, setShowTrialModal] = useState<boolean>(false);
 
   // Published Guideline Edit & Unpublish
   const [editingPublishedDoc, setEditingPublishedDoc] = useState<GuidelineDoc | null>(null);
@@ -349,63 +348,54 @@ export default function AdminCommandCenter() {
     });
   }, [guidelineDocs, repoSearchQuery, repoSocietyFilter]);
 
-  const filteredScenarios = useMemo(() => {
-    return clinicalScenarios.filter((sc) => {
-      if (
-        scenarioSubspecialtyFilter !== "ALL" &&
-        sc.subspecialty !== scenarioSubspecialtyFilter
-      ) {
-        return false;
-      }
-      if (!scenarioSearchQuery.trim()) return true;
-      const q = scenarioSearchQuery.toLowerCase();
-      const matchId = (sc.id || "").toLowerCase().includes(q);
-      const matchTitle = (sc.title || "").toLowerCase().includes(q);
-      const matchTitleEn = (sc.titleEn || "").toLowerCase().includes(q);
-      const matchSummary = (sc.summary || "").toLowerCase().includes(q);
-      const matchTags = Array.isArray(sc.keyTags)
-        ? sc.keyTags.some((t) => t.toLowerCase().includes(q))
-        : false;
-      return matchId || matchTitle || matchTitleEn || matchSummary || matchTags;
-    });
-  }, [clinicalScenarios, scenarioSearchQuery, scenarioSubspecialtyFilter]);
-
-  const handleCreateNewScenario = () => {
-    const newId = `scenario-${Date.now().toString(36)}`;
-    const blankScenario: ClinicalScenario = {
-      id: newId,
-      title: "",
-      subspecialty: "Stroke",
-      summary: "",
-      keyTags: [],
-      statusBadge: "NEW",
-      hasConfAlert: false,
-      aiSynthesisAppraisal: {
-        consensusLevel: "HIGH_CONCORDANCE",
-        whyGuidelinesDiffer: "",
-        whyTheyDiffer: "",
-        clinicalBottomLine: "",
-        resourceDependency: "Standard Care",
-        lastAppraisedAt: new Date().toISOString().split("T")[0],
-      },
-      temporalEvolution: [],
-      ecosystemLinks: [],
-    };
-    setEditingScenario(blankScenario);
-    setShowEditScenarioModal(true);
-  };
-
-  const fetchScenariosList = async () => {
+  const fetchPivotalTrials = async () => {
     try {
-      const res = await fetch("/api/neuroguide/scenarios", { cache: "no-store" });
+      const res = await fetch("/api/neuroguide/navigator", { cache: "no-store" });
       if (res.ok) {
         const data = await res.json();
-        if (data && data.ok) {
-          if (Array.isArray(data.scenarios)) setClinicalScenarios(data.scenarios);
-          if (Array.isArray(data.recommendationAtoms)) setRecommendationAtoms(data.recommendationAtoms);
+        if (data && data.ok && Array.isArray(data.pivotalTrials) && data.pivotalTrials.length > 0) {
+          setPivotalTrials(data.pivotalTrials);
         }
       }
-    } catch {}
+    } catch (err) {
+      console.error("Failed to load pivotal trials in admin:", err);
+    }
+  };
+
+  const handleDeleteTrial = async (trial: PivotalTrialRecord) => {
+    const confirmed = window.confirm(
+      `Are you sure you want to DELETE landmark trial:\n\n"${trial.acronym} (${trial.year}) - ${trial.title}"?\n\nThis will remove it from the Clinical Navigator registry.`
+    );
+    if (!confirmed) return;
+
+    const token = getStoredAdminToken();
+    try {
+      const res = await fetch("/api/neuroguide/navigator", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...(token ? { "x-admin-token": token } : {}),
+        },
+        body: JSON.stringify({
+          action: "delete_trial",
+          trialId: trial.id,
+          adminToken: token,
+        }),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        if (Array.isArray(data.pivotalTrials)) {
+          setPivotalTrials(data.pivotalTrials);
+        } else {
+          setPivotalTrials((prev) => prev.filter((t) => t.id !== trial.id));
+        }
+        setRadarMessage(`🗑️ Deleted trial "${trial.acronym} (${trial.year})" from NeuroGuide storage.`);
+      } else {
+        alert(`Delete error: ${data.error || "Unable to delete trial"}`);
+      }
+    } catch (err: any) {
+      alert(`Network error while deleting trial: ${err?.message || "Check connection"}`);
+    }
   };
 
   const [deleteLoadingId, setDeleteLoadingId] = useState<string | null>(null);
@@ -416,12 +406,6 @@ export default function AdminCommandCenter() {
       if (res.ok) {
         const data = await res.json();
         if (data && data.status === "success") {
-          if (Array.isArray(data.scenarios) && data.scenarios.length > 0) {
-            setClinicalScenarios(data.scenarios);
-          }
-          if (Array.isArray(data.recommendationAtoms) && data.recommendationAtoms.length > 0) {
-            setRecommendationAtoms(data.recommendationAtoms);
-          }
           if (Array.isArray(data.guidelines)) {
           const normalizeT = (t: string) => (t || "").toLowerCase().replace(/[^a-z0-9]/g, "");
           let deletedSet = new Set<string>();
@@ -592,7 +576,7 @@ export default function AdminCommandCenter() {
       }
     } catch {}
     fetchGuidelinesList();
-    fetchScenariosList();
+    fetchPivotalTrials();
   }, []);
 
   const triggerRadarSync = async () => {
@@ -1366,26 +1350,26 @@ export default function AdminCommandCenter() {
 
                 <button
                   type="button"
-                  onClick={() => setGuidelineSubTab("scenarios")}
+                  onClick={() => setGuidelineSubTab("trials")}
                   className={`px-3.5 py-2 rounded-xl text-xs font-black transition-all flex items-center gap-2 cursor-pointer ${
-                    guidelineSubTab === "scenarios"
-                      ? "bg-blue-600 text-white shadow-xs ring-1 ring-blue-400/40"
+                    guidelineSubTab === "trials"
+                      ? "bg-indigo-600 text-white shadow-xs ring-1 ring-indigo-400/40"
                       : darkMode
                       ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
                       : "bg-slate-100 text-slate-700 hover:bg-slate-200"
                   }`}
                 >
-                  <span>⚖️ Clinical Scenarios</span>
+                  <span>🔬 Pivotal Trials</span>
                   <span
                     className={`px-1.5 py-0.2 rounded text-[10px] font-black ${
-                      guidelineSubTab === "scenarios"
+                      guidelineSubTab === "trials"
                         ? "bg-black/20 text-current"
                         : darkMode
                         ? "bg-slate-700 text-slate-300"
                         : "bg-white text-slate-600"
                     }`}
                   >
-                    {clinicalScenarios.length}
+                    {pivotalTrials.length}
                   </span>
                 </button>
               </div>
@@ -1603,201 +1587,22 @@ export default function AdminCommandCenter() {
               </div>
             )}
 
-            {/* SUB-TAB 3: CLINICAL SCENARIOS REPOSITORY & EDITING */}
-            {guidelineSubTab === "scenarios" && (
-              <div
-                className={`p-6 rounded-2xl border border-l-4 border-l-blue-500 space-y-4 ${
-                  darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200 shadow-xs"
-                }`}
-              >
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-200 dark:border-slate-800">
-                  <div>
-                    <h3 className="text-base font-bold flex items-center gap-2">
-                      <span>⚖️ Clinical Scenarios Repository</span>
-                      <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">
-                        {filteredScenarios.length} / {clinicalScenarios.length} Scenarios
-                      </span>
-                    </h3>
-                    <p className="text-xs text-slate-500 mt-0.5">
-                      Manage and edit clinical practice scenarios, AI consensus appraisals, multi-society recommendations, and temporal evolution
-                    </p>
-                  </div>
-
-                  {/* Search, Filter & Add New Scenario */}
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <div className="relative">
-                      <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs">🔍</span>
-                      <input
-                        type="text"
-                        value={scenarioSearchQuery}
-                        onChange={(e) => setScenarioSearchQuery(e.target.value)}
-                        placeholder="Search clinical scenarios..."
-                        className={`pl-7 pr-7 py-1.5 text-xs rounded-xl border outline-none transition-all ${
-                          darkMode
-                            ? "bg-slate-800 border-slate-700 text-white focus:border-blue-500"
-                            : "bg-slate-50 border-slate-200 text-slate-900 focus:border-blue-500"
-                        }`}
-                      />
-                      {scenarioSearchQuery && (
-                        <button
-                          type="button"
-                          onClick={() => setScenarioSearchQuery("")}
-                          className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs font-bold"
-                        >
-                          ✕
-                        </button>
-                      )}
-                    </div>
-
-                    <select
-                      value={scenarioSubspecialtyFilter}
-                      onChange={(e) => setScenarioSubspecialtyFilter(e.target.value)}
-                      className={`px-3 py-1.5 text-xs rounded-xl border outline-none ${
-                        darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-slate-50 border-slate-200 text-slate-900"
-                      }`}
-                    >
-                      <option value="ALL">All Subspecialties</option>
-                      {SUBSPECIALTY_LIST.filter((s) => s !== "All Subspecialties").map((sub) => (
-                        <option key={sub} value={sub}>
-                          {sub}
-                        </option>
-                      ))}
-                    </select>
-
-                    <button
-                      type="button"
-                      onClick={handleCreateNewScenario}
-                      className="px-3 py-1.5 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white transition-colors flex items-center gap-1.5 shadow-xs cursor-pointer"
-                      title="Create new clinical scenario"
-                    >
-                      <span>➕</span>
-                      <span>New Scenario</span>
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={() => {
-                        fetchScenariosList();
-                        fetchGuidelinesList();
-                      }}
-                      className="px-2.5 py-1.5 rounded-xl text-xs font-bold bg-blue-500/10 text-blue-600 dark:text-blue-400 hover:bg-blue-500/20 border border-blue-500/20 transition-colors flex items-center gap-1 cursor-pointer"
-                      title="Refresh scenarios list"
-                    >
-                      <span>🔄 Refresh</span>
-                    </button>
-                  </div>
-                </div>
-
-                <div className="space-y-3 max-h-[600px] overflow-y-auto pr-1">
-                  {filteredScenarios.length === 0 ? (
-                    <div className="py-12 text-center text-xs text-slate-400">
-                      No clinical scenarios found matching your filter criteria.
-                    </div>
-                  ) : (
-                    filteredScenarios.map((sc) => {
-                      const linkedRecs = recommendationAtoms.filter(
-                        (r) => r.scenarioId.toLowerCase().trim() === sc.id.toLowerCase().trim()
-                      );
-
-                      return (
-                        <div
-                          key={sc.id}
-                          className={`p-4 rounded-xl border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs transition-all ${
-                            darkMode
-                              ? "bg-slate-800/40 border-slate-800 hover:border-blue-500/40 hover:bg-slate-800/80"
-                              : "bg-white border-slate-200/90 shadow-2xs hover:border-blue-300 hover:bg-blue-50/20"
-                          }`}
-                        >
-                          <div className="min-w-0 flex-1 space-y-1.5">
-                            <div className="flex items-center gap-2 flex-wrap">
-                              <span className="px-2 py-0.5 rounded font-mono font-bold text-[10.5px] bg-amber-500/15 text-amber-700 dark:text-amber-300 border border-amber-500/30">
-                                {sc.id}
-                              </span>
-                              <span className="px-2 py-0.5 rounded font-semibold text-[10.5px] bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
-                                {sc.subspecialty}
-                              </span>
-                              {sc.statusBadge && (
-                                <span className="px-2 py-0.5 rounded font-bold text-[10px] bg-blue-500/15 text-blue-700 dark:text-blue-300 border border-blue-500/30">
-                                  {sc.statusBadge}
-                                </span>
-                              )}
-                              {sc.hasConfAlert && (
-                                <span className="px-2 py-0.5 rounded font-bold text-[10px] bg-amber-500 text-slate-950 flex items-center gap-1">
-                                  <span>🔔</span>
-                                  <span>Guideline Watch</span>
-                                </span>
-                              )}
-                              {sc.aiSynthesisAppraisal?.consensusLevel && (
-                                <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
-                                  sc.aiSynthesisAppraisal.consensusLevel === "HIGH_CONCORDANCE"
-                                    ? "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300"
-                                    : sc.aiSynthesisAppraisal.consensusLevel === "MODERATE_VARIATION"
-                                    ? "bg-amber-500/15 text-amber-700 dark:text-amber-300"
-                                    : "bg-rose-500/15 text-rose-700 dark:text-rose-300"
-                                }`}>
-                                  {sc.aiSynthesisAppraisal.consensusLevel === "HIGH_CONCORDANCE"
-                                    ? "🟢 High Concordance"
-                                    : sc.aiSynthesisAppraisal.consensusLevel === "MODERATE_VARIATION"
-                                    ? "🟡 Moderate Variation"
-                                    : "🔴 Major Divergence"}
-                                </span>
-                              )}
-                            </div>
-
-                            <div className="font-bold text-slate-900 dark:text-white text-sm">
-                              {sc.title}
-                            </div>
-                            {sc.titleEn && (
-                              <div className="text-slate-500 dark:text-slate-400 italic text-[11px]">
-                                {sc.titleEn}
-                              </div>
-                            )}
-
-                            {sc.summary && (
-                              <p className="text-slate-600 dark:text-slate-300 text-[11.5px] line-clamp-2 leading-relaxed">
-                                {sc.summary}
-                              </p>
-                            )}
-
-                            {sc.aiSynthesisAppraisal?.clinicalBottomLine && (
-                              <div className="text-[11px] font-medium text-amber-800 dark:text-amber-300 bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-500/20 line-clamp-1">
-                                <span className="font-bold">🎯 Clinical Bottom-Line:</span> {sc.aiSynthesisAppraisal.clinicalBottomLine}
-                              </div>
-                            )}
-
-                            <div className="flex items-center gap-3 text-[10.5px] text-slate-400 font-mono pt-1">
-                              <span>🏛️ {linkedRecs.length} recommendations</span>
-                              <span>⏳ {sc.temporalEvolution?.length || 0} temporal shifts</span>
-                              <span>🔗 {sc.ecosystemLinks?.length || 0} links</span>
-                            </div>
-                          </div>
-
-                          <div className="flex sm:flex-col items-center gap-2 shrink-0 self-end sm:self-center">
-                            <button
-                              type="button"
-                              onClick={() => {
-                                setEditingScenario(sc);
-                                setShowEditScenarioModal(true);
-                              }}
-                              className="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-amber-500 text-slate-950 hover:bg-amber-400 transition-all flex items-center gap-1.5 cursor-pointer shadow-xs"
-                              title="Edit this clinical scenario"
-                            >
-                              <span>✏️ Edit</span>
-                            </button>
-                            <Link
-                              href="/neuroguide"
-                              className="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 transition-colors flex items-center gap-1.5 cursor-pointer shadow-xs"
-                              title="View in NeuroGuide"
-                            >
-                              <span>🔍 View</span>
-                            </Link>
-                          </div>
-                        </div>
-                      );
-                    })
-                  )}
-                </div>
-              </div>
+            {/* SUB-TAB 3: PIVOTAL CLINICAL TRIALS REGISTRY */}
+            {guidelineSubTab === "trials" && (
+              <PivotalTrialsAdminTab
+                darkMode={darkMode}
+                trials={pivotalTrials}
+                onRefresh={fetchPivotalTrials}
+                onAddNewTrial={() => {
+                  setEditingTrial(null);
+                  setShowTrialModal(true);
+                }}
+                onEditTrial={(trial) => {
+                  setEditingTrial(trial);
+                  setShowTrialModal(true);
+                }}
+                onDeleteTrial={handleDeleteTrial}
+              />
             )}
           </div>
         )}
@@ -2044,42 +1849,35 @@ export default function AdminCommandCenter() {
           />
         )}
 
-        {/* EDIT CLINICAL SCENARIO MODAL */}
-        {showEditScenarioModal && editingScenario && (
-          <EditScenarioModal
-            isOpen={showEditScenarioModal}
+        {/* ADD / EDIT PIVOTAL TRIAL MODAL */}
+        {showTrialModal && (
+          <PivotalTrialModal
+            isOpen={showTrialModal}
             onClose={() => {
-              setShowEditScenarioModal(false);
-              setEditingScenario(null);
+              setShowTrialModal(false);
+              setEditingTrial(null);
             }}
-            scenario={editingScenario}
-            recommendations={recommendationAtoms.filter(
-              (r) => r.scenarioId.toLowerCase().trim() === editingScenario.id.toLowerCase().trim()
-            )}
-            adminToken={getStoredAdminToken()}
-            onSuccess={(updatedScenario, updatedRecs) => {
-              setClinicalScenarios((prev) => {
-                const idx = prev.findIndex((s) => s.id === updatedScenario.id);
-                if (idx >= 0) {
-                  const next = [...prev];
-                  next[idx] = updatedScenario;
-                  return next;
-                }
-                return [updatedScenario, ...prev];
-              });
-              if (updatedRecs) {
-                setRecommendationAtoms((prev) => {
-                  const filtered = prev.filter(
-                    (r) => r.scenarioId.toLowerCase().trim() !== updatedScenario.id.toLowerCase().trim()
-                  );
-                  return [...filtered, ...updatedRecs];
+            initialTrial={editingTrial}
+            defaultOntologyTags={{}}
+            onSaved={(updatedTrials, savedTrial) => {
+              if (Array.isArray(updatedTrials) && updatedTrials.length > 0) {
+                setPivotalTrials(updatedTrials);
+              } else {
+                setPivotalTrials((prev) => {
+                  const idx = prev.findIndex((t) => t.id === savedTrial.id);
+                  if (idx >= 0) {
+                    const next = [...prev];
+                    next[idx] = savedTrial;
+                    return next;
+                  }
+                  return [savedTrial, ...prev];
                 });
               }
-              setRadarMessage(`🎉 Successfully updated clinical scenario "${updatedScenario.title}"!`);
-              fetchGuidelinesList();
-              fetchScenariosList();
+              setRadarMessage(`🎉 Successfully saved pivotal trial "${savedTrial.acronym} (${savedTrial.year})"!`);
+              setShowTrialModal(false);
+              setEditingTrial(null);
+              fetchPivotalTrials();
             }}
-            darkMode={darkMode}
           />
         )}
       </div>

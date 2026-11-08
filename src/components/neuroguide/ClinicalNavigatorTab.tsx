@@ -6,7 +6,6 @@ import type {
   GuidelineDoc,
   RecommendationAtom,
   ConferenceEvent,
-  ClinicalScenario,
   PivotalTrialRecord,
   RecommendationLabelOutput,
   NavigatorQuery,
@@ -40,14 +39,12 @@ interface ClinicalNavigatorTabProps {
   guidelines: GuidelineDoc[];
   recommendationAtoms: RecommendationAtom[];
   conferences: ConferenceEvent[];
-  scenarios: ClinicalScenario[];
   pivotalTrials: PivotalTrialRecord[];
   customRecLabels: Record<string, RecommendationLabelOutput>;
   neuroPulseArticles: Article[];
   isAdminVerified: boolean;
   initialPresetOrQuery?: NavigatorQuery | null;
   onPivotalTrialsUpdated: (trials: PivotalTrialRecord[]) => void;
-  onScenarioSaved?: (scenarios: ClinicalScenario[], atoms: RecommendationAtom[]) => void;
 }
 
 const INITIAL_VISIBLE_RECS_PER_SOCIETY = 10;
@@ -266,14 +263,12 @@ export function ClinicalNavigatorTab({
   guidelines,
   recommendationAtoms,
   conferences,
-  scenarios,
   pivotalTrials,
   customRecLabels,
   neuroPulseArticles,
   isAdminVerified,
   initialPresetOrQuery,
   onPivotalTrialsUpdated,
-  onScenarioSaved,
 }: ClinicalNavigatorTabProps) {
   // Right-Pane Content Search Bar state
   const [searchText, setSearchText] = useState<string>(
@@ -318,7 +313,7 @@ export function ClinicalNavigatorTab({
   );
   const [activePresetId, setActivePresetId] = useState<string | null>(null);
 
-  // Sync if user jumps from Clinical Scenarios via "Explore in Navigator ->"
+  // Sync when initialPresetOrQuery changes
   useEffect(() => {
     if (initialPresetOrQuery) {
       setSearchText(initialPresetOrQuery.searchText || "");
@@ -358,7 +353,6 @@ export function ClinicalNavigatorTab({
   // Admin Modals
   const [isTrialModalOpen, setIsTrialModalOpen] = useState(false);
   const [editingTrial, setEditingTrial] = useState<PivotalTrialRecord | null>(null);
-  const [isSavingScenario, setIsSavingScenario] = useState(false);
   const [statusBanner, setStatusBanner] = useState<{
     type: "success" | "error";
     text: string;
@@ -404,7 +398,6 @@ export function ClinicalNavigatorTab({
       guidelines,
       recommendationAtoms,
       conferences,
-      scenarios,
       customPivotalTrials: pivotalTrials,
       customRecLabels,
       neuroPulseArticles,
@@ -414,7 +407,6 @@ export function ClinicalNavigatorTab({
     guidelines,
     recommendationAtoms,
     conferences,
-    scenarios,
     pivotalTrials,
     customRecLabels,
     neuroPulseArticles,
@@ -650,105 +642,6 @@ export function ClinicalNavigatorTab({
     selectedDirectionFilter,
     verificationFilter,
   ]);
-
-  const handleSaveAsScenario = async () => {
-    if (navResult.coreRecommendations.length === 0) return;
-    setIsSavingScenario(true);
-    setStatusBanner(null);
-    try {
-      const titleFromChips =
-        activeFilterSummaryChips.length > 0
-          ? activeFilterSummaryChips.map((c) => c.label).join(" • ")
-          : searchText.trim() || "Custom Clinical Navigator Synthesis";
-
-      const scenarioId = `sc-nav-${Date.now()}`;
-      const topRecs = navResult.coreRecommendations.slice(0, 10);
-      const newAtoms: RecommendationAtom[] = topRecs.map((r, i) => ({
-        id: `atom-nav-${Date.now()}-${i}`,
-        scenarioId,
-        guidelineDocId: r.guidelineId,
-        society: r.society,
-        year: r.year,
-        originalGrade: r.rawGrade,
-        normalizedTier: r.normalizedTier,
-        recommendationText: r.text,
-        eligibilityCriteria: r.sectionPath,
-        citedTrials: r.drivingTrials.length > 0 ? r.drivingTrials : ["Guideline Consensus"],
-        isLatestForSociety: true,
-        notes: r.officialUrl,
-      }));
-
-      const consensusMap = {
-        HIGH_CONCORDANCE: "HIGH_CONCORDANCE",
-        SINGLE_SOCIETY_EVIDENCE: "HIGH_CONCORDANCE",
-        MODERATE_VARIATION: "MODERATE_VARIATION",
-        MAJOR_DIVERGENCE: "MAJOR_DIVERGENCE",
-        NO_MATCHING_EVIDENCE: "MODERATE_VARIATION",
-      } as const;
-
-      const newScenario: ClinicalScenario = {
-        id: scenarioId,
-        title: titleFromChips,
-        titleEn: titleFromChips,
-        subspecialty: topRecs[0]?.subspecialty || "Stroke",
-        summary: navResult.concordanceAppraisal.headline,
-        keyTags: activeFilterSummaryChips.map((c) => c.label).slice(0, 6),
-        statusBadge: "PRACTICE_CHANGING",
-        aiSynthesisAppraisal: {
-          consensusLevel: consensusMap[navResult.concordanceAppraisal.consensusLevel],
-          whyGuidelinesDiffer: navResult.concordanceAppraisal.divergencePoints.join(" "),
-          clinicalBottomLine: navResult.concordanceAppraisal.clinicalBottomLine,
-          lastAppraisedAt: new Date().toISOString().slice(0, 10),
-        },
-        temporalEvolution: navResult.intraSocietyDiffs.slice(0, 5).map((d) => ({
-          society: d.society,
-          previousYear: d.previousYear || d.currentYear - 4,
-          previousGrade: d.previousGrade,
-          currentYear: d.currentYear,
-          currentGrade: d.currentGrade,
-          shiftDirection: d.shiftDirection,
-          drivingTrials: d.drivingTrials,
-          evolutionNarrative: d.currentText,
-        })),
-        ecosystemLinks: navResult.ecosystemLinks,
-      };
-
-      const res = await fetch("/api/neuroguide/navigator", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          ...getAdminHeaders(),
-        },
-        body: JSON.stringify({
-          action: "save_scenario",
-          scenario: newScenario,
-          recommendationAtoms: newAtoms,
-        }),
-      });
-      const data = await res.json();
-      if (res.ok && data.ok) {
-        setStatusBanner({
-          type: "success",
-          text: `Saved "${newScenario.title}" to Clinical Scenarios!`,
-        });
-        if (onScenarioSaved && data.scenarios && data.recommendationAtoms) {
-          onScenarioSaved(data.scenarios, data.recommendationAtoms);
-        }
-      } else {
-        setStatusBanner({
-          type: "error",
-          text: data.error || "Failed to save query as Clinical Scenario.",
-        });
-      }
-    } catch (err: any) {
-      setStatusBanner({
-        type: "error",
-        text: err?.message || "Network error while saving Clinical Scenario.",
-      });
-    } finally {
-      setIsSavingScenario(false);
-    }
-  };
 
   const concordanceTheme = useMemo(() => {
     switch (navResult.concordanceAppraisal.consensusLevel) {
@@ -1606,107 +1499,111 @@ export function ClinicalNavigatorTab({
           ) : (
             <>
               {/* Section View Switcher Bar + Ecosystem Links + Admin Actions */}
-              <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
-                <div className="flex flex-wrap items-center justify-between gap-2">
-                  {/* Section View Switcher Tabs */}
-                  <div className="flex flex-wrap gap-1.5">
-                    {(
-                      [
-                        {
-                          id: "MATRIX",
-                          label: "1. Cross-Society Matrix",
-                          count: navResult.coreRecommendations.length,
-                        },
-                        {
-                          id: "DIFF",
-                          label: "2. Version Evolution",
-                          count: navResult.intraSocietyDiffs.length,
-                        },
-                        {
-                          id: "TRIALS",
-                          label: "3. Pivotal Trials",
-                          count:
-                            navResult.pivotalTrials.length +
-                            navResult.lateBreakingTrials.length,
-                        },
-                        {
-                          id: "CONCORDANCE",
-                          label: "4. Evidence Concordance",
-                          count: navResult.concordanceAppraisal.societyStances.length,
-                        },
-                        {
-                          id: "LITERATURE",
-                          label: "5. NeuroPulse Literature",
-                          count: navResult.relatedArticles.length,
-                        },
-                      ] as const
-                    ).map((tab) => {
-                      const active = sectionView === tab.id;
-                      return (
-                        <button
-                          key={tab.id}
-                          type="button"
-                          onClick={() => setSectionView(tab.id)}
-                          className={`px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 ${
-                            active
-                              ? "bg-indigo-600 text-white shadow-sm"
-                              : "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
-                          }`}
+              <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden space-y-0">
+                {/* Cross-Ecosystem & Admin Utility Bar */}
+                {(navResult.ecosystemLinks.length > 0 || isAdminVerified) && (
+                  <div className="px-4 py-2.5 bg-slate-50/70 dark:bg-slate-800/40 border-b border-slate-100 dark:border-slate-800/80 flex flex-wrap items-center justify-between gap-2.5">
+                    {/* Cross-Ecosystem Quick Tools */}
+                    <div className="flex flex-wrap items-center gap-1.5 text-xs">
+                      <span className="text-[10px] font-black uppercase tracking-wider text-slate-400 flex items-center gap-1 mr-1">
+                        <span>🔗</span> Cross-Ecosystem:
+                      </span>
+                      {navResult.ecosystemLinks.slice(0, 3).map((link, idx) => (
+                        <Link
+                          key={`${link.app}-${idx}`}
+                          href={link.href}
+                          className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-teal-500 hover:text-teal-600 dark:hover:text-teal-400 transition-all flex items-center gap-1 shadow-2xs"
                         >
-                          <span>{tab.label}</span>
-                          {tab.count !== null && (
-                            <span
-                              className={`px-1.5 py-0.2 rounded-full text-[10px] ${
-                                active
-                                  ? "bg-indigo-500 text-white"
-                                  : "bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300"
-                              }`}
-                            >
-                              {tab.count}
-                            </span>
-                          )}
-                        </button>
-                      );
-                    })}
-                  </div>
+                          <span>👉 {link.app}:</span>
+                          <span>{link.label}</span>
+                        </Link>
+                      ))}
+                    </div>
 
-                  {/* Admin Quick Buttons & Ecosystem Links */}
-                  <div className="flex flex-wrap items-center gap-1.5">
-                    {navResult.ecosystemLinks.slice(0, 2).map((link, idx) => (
-                      <Link
-                        key={`${link.app}-${idx}`}
-                        href={link.href}
-                        className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-teal-50 text-teal-800 dark:bg-teal-950/50 dark:text-teal-300 border border-teal-200 dark:border-teal-800 hover:bg-teal-100 transition"
-                      >
-                        🔗 {link.label} →
-                      </Link>
-                    ))}
+                    {/* Admin Actions */}
                     {isAdminVerified && (
-                      <>
+                      <div className="flex items-center gap-2 ml-auto">
                         <button
                           type="button"
                           onClick={() => {
                             setEditingTrial(null);
                             setIsTrialModalOpen(true);
                           }}
-                          className="px-2.5 py-1 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-[11px] font-bold transition"
+                          className="px-3 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition flex items-center gap-1.5 shadow-xs cursor-pointer"
                         >
-                          ＋ Add Trial
+                          <span>＋</span> Add Trial
                         </button>
-                        <button
-                          type="button"
-                          onClick={handleSaveAsScenario}
-                          disabled={
-                            isSavingScenario ||
-                            navResult.coreRecommendations.length === 0
-                          }
-                          className="px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white text-[11px] font-bold transition"
-                        >
-                          {isSavingScenario ? "Saving..." : "💾 Save as Scenario"}
-                        </button>
-                      </>
+                      </div>
                     )}
                   </div>
+                )}
+
+                {/* Modern Clean Tab Navigation */}
+                <div className="px-4 sm:px-6 border-b border-slate-200 dark:border-slate-800 flex items-center gap-2 sm:gap-6 overflow-x-auto scrollbar-none">
+                  {(
+                    [
+                      {
+                        id: "MATRIX",
+                        label: "Cross-Society Matrix",
+                        icon: "⚖️",
+                        count: navResult.coreRecommendations.length,
+                      },
+                      {
+                        id: "DIFF",
+                        label: "Version Evolution",
+                        icon: "⏳",
+                        count: navResult.intraSocietyDiffs.length,
+                      },
+                      {
+                        id: "TRIALS",
+                        label: "Pivotal Trials",
+                        icon: "🔬",
+                        count:
+                          navResult.pivotalTrials.length +
+                          navResult.lateBreakingTrials.length,
+                      },
+                      {
+                        id: "CONCORDANCE",
+                        label: "Evidence Concordance",
+                        icon: "⚡",
+                        count: navResult.concordanceAppraisal.societyStances.length,
+                      },
+                      {
+                        id: "LITERATURE",
+                        label: "NeuroPulse Literature",
+                        icon: "📚",
+                        count: navResult.relatedArticles.length,
+                      },
+                    ] as const
+                  ).map((tab) => {
+                    const active = sectionView === tab.id;
+                    return (
+                      <button
+                        key={tab.id}
+                        type="button"
+                        onClick={() => setSectionView(tab.id as RightSectionFilter)}
+                        className={`pb-3 pt-3 px-1 text-xs sm:text-sm font-bold border-b-2 whitespace-nowrap transition-all flex items-center gap-2 -mb-px ${
+                          active
+                            ? "border-amber-500 text-amber-600 dark:text-amber-400"
+                            : "border-transparent text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:border-slate-300 dark:hover:border-slate-700"
+                        }`}
+                      >
+                        <span className="text-base leading-none">{tab.icon}</span>
+                        <span>{tab.label}</span>
+                        {tab.count !== null && (
+                          <span
+                            className={`text-[10px] sm:text-xs px-2 py-0.5 rounded-full font-bold transition-all ${
+                              active
+                                ? "bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300"
+                                : "bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400"
+                            }`}
+                          >
+                            {tab.count}
+                          </span>
+                        )}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
 

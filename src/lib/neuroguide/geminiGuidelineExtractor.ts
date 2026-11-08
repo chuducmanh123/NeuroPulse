@@ -5,7 +5,6 @@ import type {
   PracticeChangeDetail,
   LateBreakingTrial,
   ConferenceEvent,
-  ClinicalScenario,
   SubspecialtyType,
 } from "../../types/neuroguide.ts";
 import { detectSociety, detectSubspecialty } from "./pubmedDiscovery.ts";
@@ -390,95 +389,6 @@ Respond strictly in JSON matching:
   return getDeterministicConferenceTrials(conferenceName, subspecialty);
 }
 
-/**
- * 3. AI Extraction for 2 Clinical Scenarios (Cross-Society Matrix Synthesis)
- */
-export async function synthesizeClinicalScenariosWithGemini(
-  guidelines: GuidelineDoc[]
-): Promise<ClinicalScenario[]> {
-  const apiKey = loadEnvKey();
-  const topGuide = guidelines[0] || null;
-  const primaryTopic = topGuide ? topGuide.title : "Acute Neurological Intervention";
-  const subspecialty = topGuide ? topGuide.subspecialty : "Stroke";
-
-  if (!apiKey || apiKey.length < 10) {
-    return getDeterministicScenarios(primaryTopic, subspecialty);
-  }
-
-  const prompt = `
-You are a Neurological Guidelines Panel Member.
-Create 2 practical Clinical Scenarios that doctors face on emergency duty in ${subspecialty}.
-Primary reference guideline: "${primaryTopic}".
-
-For each scenario:
-- id: kebab-case slug (e.g., "ais-large-core-evt-aspects-3-5")
-- title: Short Vietnamese clinical title (e.g., "Lấy huyết khối ở đột quỵ diện nhồi máu rộng (ASPECTS 3-5)")
-- titleEn: English title
-- summary: Brief clinical summary (1-2 sentences)
-- keyTags: 3-4 medical tags
-- statusBadge: "PRACTICE_CHANGING" | "UPGRADED" | "NEW" | "ESTABLISHED"
-- consensusLevel: "HIGH_CONCORDANCE" | "MODERATE_VARIATION" | "MAJOR_DIVERGENCE"
-- whyGuidelinesDiffer: Brief note on why AHA/ASA vs ESO vs local guidelines might have slight timing or imaging criteria differences
-- clinicalBottomLine: High-yield, actionable recommendation for duty physicians (including exact dosage or critical time window)
-
-Respond strictly in JSON matching:
-{
-  "scenarios": [
-    {
-      "id": "string",
-      "title": "string",
-      "titleEn": "string",
-      "summary": "string",
-      "keyTags": ["string"],
-      "statusBadge": "PRACTICE_CHANGING",
-      "consensusLevel": "HIGH_CONCORDANCE",
-      "whyGuidelinesDiffer": "string",
-      "clinicalBottomLine": "string"
-    }
-  ]
-}
-`;
-
-  try {
-    interface GeminiScenariosJson {
-      scenarios?: Array<{
-        id: string;
-        title: string;
-        titleEn: string;
-        summary: string;
-        keyTags: string[];
-        statusBadge: "PRACTICE_CHANGING" | "UPGRADED" | "NEW" | "ESTABLISHED";
-        consensusLevel: "HIGH_CONCORDANCE" | "MODERATE_VARIATION" | "MAJOR_DIVERGENCE";
-        whyGuidelinesDiffer: string;
-        clinicalBottomLine: string;
-      }>;
-    }
-
-    const result = await callGeminiRestJson<GeminiScenariosJson>(prompt, apiKey);
-    if (result && Array.isArray(result.scenarios) && result.scenarios.length > 0) {
-      return result.scenarios.slice(0, 2).map((s) => ({
-        id: s.id || `scenario-${Date.now()}`,
-        title: s.title,
-        titleEn: s.titleEn,
-        subspecialty,
-        summary: s.summary,
-        keyTags: s.keyTags || ["Evidence-Based", "Guideline Update"],
-        statusBadge: s.statusBadge || "PRACTICE_CHANGING",
-        aiSynthesisAppraisal: {
-          consensusLevel: s.consensusLevel || "HIGH_CONCORDANCE",
-          whyTheyDiffer: s.whyGuidelinesDiffer,
-          clinicalBottomLine: s.clinicalBottomLine,
-          lastAppraisedAt: new Date().toISOString(),
-        },
-      }));
-    }
-  } catch {
-    // Fallback
-  }
-
-  return getDeterministicScenarios(primaryTopic, subspecialty);
-}
-
 // ==========================================
 // DETERMINISTIC FALLBACK HELPERS
 // ==========================================
@@ -585,49 +495,6 @@ function getDeterministicConferenceTrials(
       primaryOutcome: "No significant difference in primary disability score (p = 0.42)",
       safetyOutcome: "Comparable adverse event rates across arms",
       bottomLineTakeaway: "Reinforces current standard practices without necessitating aggressive escalation.",
-    },
-  ];
-}
-
-function getDeterministicScenarios(
-  topic: string,
-  subspecialty: SubspecialtyType
-): ClinicalScenario[] {
-  const slug = topic
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .slice(0, 35)
-    .replace(/^-|-$/g, "");
-  return [
-    {
-      id: `scenario-${slug || "acute-eval"}-1`,
-      title: `Chiến lược chẩn đoán & can thiệp theo khuyến cáo mới: ${topic.slice(0, 50)}`,
-      titleEn: `Guideline-Directed Management Strategy for ${topic.slice(0, 50)}`,
-      subspecialty,
-      summary: `Quy trình thực hành lâm sàng chuẩn hóa dựa trên các đồng thuận quốc tế mới nhất.`,
-      keyTags: ["Guideline Update", "Emergency Care", subspecialty],
-      statusBadge: "PRACTICE_CHANGING",
-      aiSynthesisAppraisal: {
-        consensusLevel: "HIGH_CONCORDANCE",
-        whyTheyDiffer: "Khuyến cáo quốc tế thống nhất về chỉ định can thiệp sớm; các khác biệt nhỏ chủ yếu về ngưỡng tuổi và thời gian theo dõi.",
-        clinicalBottomLine: "Ưu tiên đánh giá hình ảnh học khẩn trương và khởi động điều trị chuẩn ngay trong khung giờ vàng.",
-        lastAppraisedAt: new Date().toISOString(),
-      },
-    },
-    {
-      id: `scenario-${slug || "acute-eval"}-2`,
-      title: `Quản lý an toàn và phòng ngừa biến chứng trong ${subspecialty}`,
-      titleEn: `Safety Management and Complication Avoidance in ${subspecialty}`,
-      subspecialty,
-      summary: `Tối ưu hóa các ngưỡng an toàn huyết áp, đường huyết và thuốc kháng đông theo hướng dẫn mới.`,
-      keyTags: ["Safety Thresholds", "Monitoring", subspecialty],
-      statusBadge: "UPGRADED",
-      aiSynthesisAppraisal: {
-        consensusLevel: "HIGH_CONCORDANCE",
-        whyTheyDiffer: "Đồng thuận cao giữa các hội chuyên khoa về việc kiểm soát chặt chẽ các chỉ số sinh tồn và phòng ngừa biến chứng.",
-        clinicalBottomLine: "Duy trì kiểm soát huyết áp ổn định và tái đánh giá thang điểm lâm sàng mỗi 2-4 giờ.",
-        lastAppraisedAt: new Date().toISOString(),
-      },
     },
   ];
 }

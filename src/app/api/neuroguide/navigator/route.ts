@@ -12,8 +12,6 @@ import { verifyAdminToken } from "@/utils/security";
 import type {
   PivotalTrialRecord,
   RecommendationLabelInput,
-  ClinicalScenario,
-  RecommendationAtom,
 } from "@/types/neuroguide";
 
 export const dynamic = "force-dynamic";
@@ -60,7 +58,6 @@ export async function GET() {
  * - upsert_trial: Save or update a PivotalTrialRecord (Admin required)
  * - delete_trial: Delete a PivotalTrialRecord by trialId (Admin required)
  * - label_recommendation: Run Gemini + Validator on a recommendation and persist label (Admin required)
- * - save_scenario: Save a Clinical Navigator query synthesis as a curated ClinicalScenario (Admin required)
  */
 export async function POST(request: NextRequest) {
   try {
@@ -191,48 +188,6 @@ export async function POST(request: NextRequest) {
         record: labeled.record,
         customRecLabels: updatedLabels,
         storage: saveRes.storage,
-      });
-    }
-
-    if (action === "save_scenario") {
-      const scenario = body.scenario as ClinicalScenario | undefined;
-      const newAtoms = (body.recommendationAtoms || []) as RecommendationAtom[];
-      if (!scenario || !scenario.id || !scenario.title) {
-        return NextResponse.json(
-          { ok: false, error: "Valid ClinicalScenario with id and title is required." },
-          { status: 400 }
-        );
-      }
-
-      const updatedScenarios = [...currentStore.scenarios];
-      const sIdx = updatedScenarios.findIndex((s) => s.id === scenario.id);
-      if (sIdx >= 0) {
-        updatedScenarios[sIdx] = scenario;
-      } else {
-        updatedScenarios.unshift(scenario);
-      }
-
-      const atomMap = new Map<string, RecommendationAtom>();
-      currentStore.recommendationAtoms.forEach((a) => atomMap.set(a.id, a));
-      newAtoms.forEach((a) => atomMap.set(a.id, a));
-      const updatedAtoms = Array.from(atomMap.values());
-
-      const saveRes = await saveNeuroGuideToActiveStorage({
-        guidelines: currentStore.guidelines,
-        conferences: currentStore.conferences,
-        scenarios: updatedScenarios,
-        recommendationAtoms: updatedAtoms,
-        pivotalTrials: currentStore.pivotalTrials,
-        customRecLabels: currentStore.customRecLabels,
-        deletedGuidelineIds: currentStore.deletedGuidelineIds,
-      });
-
-      return NextResponse.json({
-        ok: saveRes.success,
-        storage: saveRes.storage,
-        scenarios: updatedScenarios,
-        recommendationAtoms: updatedAtoms,
-        error: saveRes.error,
       });
     }
 

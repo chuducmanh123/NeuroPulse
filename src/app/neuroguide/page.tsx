@@ -6,7 +6,6 @@ import {
   NEUROLOGY_SUBSPECIALTIES,
   SubspecialtyType,
   TIER_CONFIG,
-  ClinicalScenario,
   GuidelineDoc,
   RecommendationAtom,
   ConferenceEvent,
@@ -20,7 +19,6 @@ import {
   mergePivotalTrialsWithConferences,
 } from "../../data/pivotalTrialsSeed";
 import {
-  MOCK_CLINICAL_SCENARIOS,
   MOCK_GUIDELINE_DOCS,
   MOCK_RECOMMENDATION_ATOMS,
   MOCK_CONFERENCE_EVENTS,
@@ -66,10 +64,6 @@ const EditGuidelineModal = dynamic(
   () => import("../../components/neuroguide/EditGuidelineModal").then((m) => m.EditGuidelineModal),
   { ssr: false }
 );
-const EditScenarioModal = dynamic(
-  () => import("../../components/neuroguide/EditScenarioModal").then((m) => m.EditScenarioModal),
-  { ssr: false }
-);
 const AdminAuthModal = dynamic(
   () => import("../../components/neurocase/modals/AdminAuthModal").then((m) => m.AdminAuthModal),
   { ssr: false }
@@ -82,7 +76,7 @@ import { groupPracticeChangesIntoEsoPicos } from "../../lib/neuroguide/esoPicoGr
 import type { PracticeChangeDetail } from "../../types/neuroguide";
 import { getAdminHeaders, getStoredAdminToken } from "@/utils/clientAuth";
 
-type NavTabId = "guidelines" | "conf" | "matrix" | "navigator" | "review";
+type NavTabId = "guidelines" | "conf" | "navigator" | "review";
 
 interface ThemeStyle {
   borderLeft: string;
@@ -273,11 +267,6 @@ export default function NeuroGuidePage() {
   const [selectedSocietyFilter, setSelectedSocietyFilter] = useState<string>("ALL");
   const [selectedConfStatus, setSelectedConfStatus] = useState<"ALL" | "LIVE" | "RECENT" | "UPCOMING">("ALL");
 
-  // Selection states
-  const [activeScenarioId, setActiveScenarioId] = useState<string | null>(null);
-  const [isMobileScenarioListOpen, setIsMobileScenarioListOpen] = useState<boolean>(false);
-  const [activeDetailTab, setActiveDetailTab] = useState<"matrix" | "temporal" | "conf_bridge">("matrix");
-
   // Guideline Docs with Periodic Autonomous Online Sync State
   const [guidelineDocs, setGuidelineDocs] = useState<GuidelineDoc[]>([]);
   const [isInitialLoading, setIsInitialLoading] = useState<boolean>(true);
@@ -296,11 +285,8 @@ export default function NeuroGuidePage() {
   const [editingGuidelineDoc, setEditingGuidelineDoc] = useState<GuidelineDoc | null>(null);
   const [showEditModal, setShowEditModal] = useState<boolean>(false);
 
-  // Clinical Scenarios & Recommendation Atoms dynamic state
-  const [clinicalScenarios, setClinicalScenarios] = useState<ClinicalScenario[]>(MOCK_CLINICAL_SCENARIOS);
+  // Recommendation Atoms dynamic state
   const [recommendationAtoms, setRecommendationAtoms] = useState<RecommendationAtom[]>(MOCK_RECOMMENDATION_ATOMS);
-  const [editingScenario, setEditingScenario] = useState<ClinicalScenario | null>(null);
-  const [showEditScenarioModal, setShowEditScenarioModal] = useState<boolean>(false);
 
   // Clinical Navigator dynamic state (Pivotal Trials, Custom Labels, NeuroPulse Articles)
   const [pivotalTrials, setPivotalTrials] = useState<PivotalTrialRecord[]>(() =>
@@ -350,9 +336,6 @@ export default function NeuroGuidePage() {
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (data && data.status === "success") {
-          if (Array.isArray(data.scenarios) && data.scenarios.length > 0) {
-            setClinicalScenarios(data.scenarios);
-          }
           if (Array.isArray(data.recommendationAtoms) && data.recommendationAtoms.length > 0) {
             setRecommendationAtoms(data.recommendationAtoms);
           }
@@ -451,12 +434,6 @@ export default function NeuroGuidePage() {
         badge: `${MOCK_CONFERENCE_EVENTS.length}`,
       },
       {
-        id: "matrix" as const,
-        label: "⚖️ Clinical Scenarios",
-        mobileLabel: "⚖️ Scenarios",
-        badge: `${clinicalScenarios.length}`,
-      },
-      {
         id: "navigator" as const,
         label: "🧭 Clinical Navigator",
         mobileLabel: "🧭 Navigator",
@@ -465,7 +442,7 @@ export default function NeuroGuidePage() {
     ];
 
     return tabs;
-  }, [guidelineDocs.length, clinicalScenarios.length, pivotalTrials.length]);
+  }, [guidelineDocs.length, pivotalTrials.length]);
 
   // Expandable cards states (details reveal only on click)
   const [expandedGuidelineIds, setExpandedGuidelineIds] = useState<Record<string, boolean>>({});
@@ -593,8 +570,6 @@ export default function NeuroGuidePage() {
     }
   };
 
-  const matrixContainerRef = useRef<HTMLDivElement>(null);
-
   // Background Autonomous Sync Method (manual trigger -> sends candidates to Review Queue, reloads approved guidelines from Cloud)
   const triggerSync = async (isAuto = false) => {
     if (isSyncing) return;
@@ -650,9 +625,6 @@ export default function NeuroGuidePage() {
       const cachedRaw = localStorage.getItem(SWR_STORAGE_KEY);
       if (cachedRaw) {
         const cached = JSON.parse(cachedRaw);
-        if (cached && Array.isArray(cached.scenarios) && cached.scenarios.length > 0) {
-          setClinicalScenarios(cached.scenarios);
-        }
         if (cached && Array.isArray(cached.recommendationAtoms) && cached.recommendationAtoms.length > 0) {
           setRecommendationAtoms(cached.recommendationAtoms);
         }
@@ -723,9 +695,6 @@ export default function NeuroGuidePage() {
                 const cleanDeleted = combinedDeleted.filter((d) => !activeKeys.has(d.toLowerCase().trim()));
                 const validGuidelines = filterValidGuidelines(data.guidelines, cleanDeleted);
                 setGuidelineDocs(validGuidelines);
-                if (Array.isArray(data.scenarios) && data.scenarios.length > 0) {
-                  setClinicalScenarios(data.scenarios);
-                }
                 if (Array.isArray(data.recommendationAtoms) && data.recommendationAtoms.length > 0) {
                   setRecommendationAtoms(data.recommendationAtoms);
                 }
@@ -829,43 +798,6 @@ export default function NeuroGuidePage() {
     return ["ALL", ...Array.from(set)];
   }, [guidelineDocs]);
 
-  // Filtered Scenarios (Multi-token search with diacritics normalization)
-  const filteredScenarios = useMemo(() => {
-    const rawQ = searchQuery.toLowerCase().trim();
-    const tokens = rawQ.split(/\s+/).filter(Boolean);
-
-    return clinicalScenarios.filter((scenario) => {
-      const matchesSub =
-        selectedSubspecialty === "All Subspecialties" ||
-        scenario.subspecialty === selectedSubspecialty;
-
-      if (!matchesSub) return false;
-      if (tokens.length === 0) return true;
-
-      const rawHaystack = `${scenario.id} ${scenario.title} ${scenario.summary} ${scenario.keyTags.join(" ")} ${scenario.subspecialty} ${scenario.statusBadge} ${scenario.confAlertText || ""}`.toLowerCase();
-      const normHaystack = rawHaystack.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-
-      return tokens.every((token) => {
-        const normToken = token.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-        return rawHaystack.includes(token) || normHaystack.includes(normToken);
-      });
-    });
-  }, [selectedSubspecialty, searchQuery, clinicalScenarios]);
-
-  // Current Scenario (Defaults to null until user selects one)
-  const currentScenario = useMemo(() => {
-    if (!activeScenarioId) return null;
-    return filteredScenarios.find((s) => s.id === activeScenarioId) || null;
-  }, [filteredScenarios, activeScenarioId]);
-
-  // Current Scenario's Recommendation Atoms
-  const scenarioRecommendations = useMemo(() => {
-    if (!currentScenario) return [];
-    return recommendationAtoms.filter(
-      (atom) => atom.scenarioId === currentScenario.id && atom.isLatestForSociety
-    );
-  }, [currentScenario, recommendationAtoms]);
-
   // Filtered Guidelines: Multi-token Search + Diacritics Normalization + Direct Subspecialty + Chronological Sort
   const filteredGuidelines = useMemo(() => {
     const rawQ = searchQuery.toLowerCase().trim();
@@ -887,10 +819,7 @@ export default function NeuroGuidePage() {
       const matchesSub =
         selectedSubspecialty === "All Subspecialties" ||
         doc.subspecialty === selectedSubspecialty ||
-        (doc.subspecialties && doc.subspecialties.includes(selectedSubspecialty)) ||
-        (Array.isArray(doc.linkedScenarioIds) && MOCK_CLINICAL_SCENARIOS.some(
-          (s) => doc.linkedScenarioIds.includes(s.id) && s.subspecialty === selectedSubspecialty
-        ));
+        (doc.subspecialties && doc.subspecialties.includes(selectedSubspecialty));
 
       if (!matchesSociety || !matchesSub) return false;
       if (tokens.length === 0) return true;
@@ -971,16 +900,6 @@ export default function NeuroGuidePage() {
       return b.year - a.year;
     });
   }, [selectedConfStatus, selectedSubspecialty, searchQuery]);
-
-  // Jump from Guideline or Trial to Scenario Matrix
-  const handleJumpToScenario = (scenarioId: string) => {
-    setActiveScenarioId(scenarioId);
-    setActiveTab("matrix");
-    setActiveDetailTab("matrix");
-    setTimeout(() => {
-      matrixContainerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 60);
-  };
 
   return (
     <main
@@ -1063,7 +982,7 @@ export default function NeuroGuidePage() {
             darkMode ? "bg-slate-900/90 border-slate-800" : "bg-white border-slate-200 shadow-xs"
           }`}
         >
-          {/* Tab 1: Guidelines | Tab 2: Conferences | Tab 3: Scenarios | Tab 4: Clinical Navigator */}
+          {/* Tab 1: Guidelines | Tab 2: Conferences | Tab 3: Clinical Navigator */}
           <div className="grid grid-cols-2 gap-1 sm:flex sm:flex-wrap sm:items-center sm:gap-1.5 w-full sm:w-auto">
             {navTabs.map((tab) => {
               const isActive = activeTab === tab.id;
@@ -1099,7 +1018,7 @@ export default function NeuroGuidePage() {
             })}
           </div>
 
-          {/* Universal Search Input active across Guidelines, Conferences & Scenarios (Hidden in Navigator) */}
+          {/* Universal Search Input active across Guidelines & Conferences (Hidden in Navigator) */}
           {activeTab !== "navigator" && (
             <div className="relative w-full sm:w-72">
               <span className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-slate-400 text-xs">
@@ -1110,9 +1029,7 @@ export default function NeuroGuidePage() {
                 placeholder={
                   activeTab === "guidelines"
                     ? "Search guidelines, trials, topics..."
-                    : activeTab === "conf"
-                    ? "Search conferences, trials..."
-                    : "Search clinical scenarios..."
+                    : "Search conferences, trials..."
                 }
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -1543,16 +1460,6 @@ export default function NeuroGuidePage() {
                           </a>
 
                           <div className="flex items-center gap-2">
-                            {doc.linkedScenarioIds.length > 0 && (
-                              <button
-                                onClick={() => handleJumpToScenario(doc.linkedScenarioIds[0])}
-                                className="px-3 py-1.5 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 hover:bg-amber-500/20 text-xs font-bold flex items-center gap-1 transition-colors"
-                              >
-                                <span>⚖️ View in Scenario Matrix</span>
-                                <span>➔</span>
-                              </button>
-                            )}
-
                             <button
                               onClick={() => toggleGuideline(doc.id)}
                               className="text-xs font-bold text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
@@ -1787,14 +1694,6 @@ export default function NeuroGuidePage() {
                                         <span>↗</span>
                                       </a>
                                     )}
-                                    {tr.impactedScenarioId && (
-                                      <button
-                                        onClick={() => handleJumpToScenario(tr.impactedScenarioId!)}
-                                        className="text-[11px] font-extrabold text-amber-600 dark:text-amber-400 hover:underline whitespace-nowrap ml-1"
-                                      >
-                                        Matrix ➔
-                                      </button>
-                                    )}
                                   </div>
                                 </div>
                               </div>
@@ -1832,607 +1731,19 @@ export default function NeuroGuidePage() {
         )}
 
         {/* =========================================================================
-            TAB 3: CLINICAL SCENARIOS MATRIX (Master-Detail 2-Column Layout)
-           ========================================================================= */}
-        {activeTab === "matrix" && (
-          <div ref={matrixContainerRef} className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-            {filteredScenarios.length === 0 ? (
-              /* Robust Empty State when search/filter returns 0 items */
-              <div className="lg:col-span-12 p-12 text-center rounded-2xl border border-dashed border-slate-300 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50">
-                <span className="text-3xl block mb-2">🔍</span>
-                <h3 className="text-sm font-bold text-slate-800 dark:text-slate-200">
-                  No clinical scenarios found
-                </h3>
-                <p className="text-xs text-slate-400 mt-1">
-                  No matching scenarios for &ldquo;{searchQuery}&rdquo; in {selectedSubspecialty}.
-                </p>
-                <button
-                  onClick={() => {
-                    setSearchQuery("");
-                    setSelectedSubspecialty("All Subspecialties");
-                  }}
-                  className="mt-3 px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-white hover:bg-amber-600 transition-colors"
-                >
-                  Reset Filters
-                </button>
-              </div>
-            ) : (
-              <>
-                {/* LEFT COLUMN (4/12): Scenario Explorer */}
-                <aside className="lg:col-span-4 space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-black uppercase tracking-wider text-slate-400">
-                      Clinical Scenarios ({filteredScenarios.length})
-                    </span>
-                    <span className="text-[11px] font-semibold text-amber-600 dark:text-amber-400">
-                      {selectedSubspecialty}
-                    </span>
-                  </div>
-
-                  {/* Mobile Compact Scenario Selector Pill */}
-                  <div className="lg:hidden">
-                    <button
-                      onClick={() => setIsMobileScenarioListOpen((prev) => !prev)}
-                      className={`w-full p-3 rounded-xl border flex items-center justify-between gap-2 transition-all ${
-                        currentScenario
-                          ? darkMode
-                            ? "bg-amber-500/10 border-amber-500/40 text-amber-300"
-                            : "bg-amber-50 border-amber-300 text-amber-900"
-                          : darkMode
-                          ? "bg-slate-800 border-slate-700 text-slate-200"
-                          : "bg-slate-100 border-slate-300 text-slate-700"
-                      }`}
-                    >
-                      <div className="flex items-center gap-2 min-w-0 text-left">
-                        <span className="text-base shrink-0">📋</span>
-                        <div className="truncate">
-                          <div className="text-[10px] uppercase font-bold tracking-wider text-slate-400">
-                            {currentScenario ? "Selected Scenario:" : `Select Clinical Scenario (${filteredScenarios.length}):`}
-                          </div>
-                          <div className="text-xs font-bold truncate">
-                            {currentScenario ? currentScenario.title : "Click to select a scenario..."}
-                          </div>
-                        </div>
-                      </div>
-                      <span className="text-xs font-bold px-2 py-1 rounded-lg bg-black/10 dark:bg-white/10 shrink-0">
-                        {isMobileScenarioListOpen ? "Collapse ▴" : "Change Scenario ▾"}
-                      </span>
-                    </button>
-                  </div>
-
-                  {/* Scenario Explorer List (Visible on desktop, collapsible on mobile) */}
-                  <div
-                    className={`${
-                      isMobileScenarioListOpen ? "block" : "hidden lg:block"
-                    } space-y-2.5 max-h-[850px] overflow-y-auto pr-1`}
-                  >
-                    {filteredScenarios.map((scenario) => {
-                      const isSelected = scenario.id === activeScenarioId;
-                      return (
-                        <button
-                          key={scenario.id}
-                          onClick={() => {
-                            setActiveScenarioId(scenario.id);
-                            setIsMobileScenarioListOpen(false);
-                          }}
-                          className={`w-full text-left p-3.5 rounded-2xl border transition-all ${
-                            isSelected
-                              ? darkMode
-                                ? "bg-amber-500/10 border-amber-500 text-white ring-1 ring-amber-500/50 shadow-md shadow-amber-500/10"
-                                : "bg-amber-50/80 border-amber-500 text-slate-900 ring-1 ring-amber-500/40 shadow-md shadow-amber-500/10"
-                              : darkMode
-                              ? "bg-slate-900/80 border-slate-800 hover:border-slate-700 text-slate-200"
-                              : "bg-white border-slate-200 hover:border-slate-300 text-slate-800"
-                          }`}
-                        >
-                          <div className="flex items-center justify-between gap-1.5 mb-1.5">
-                            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                              {scenario.subspecialty}
-                            </span>
-
-                            <div className="flex items-center gap-1.5">
-                              {isAdminVerified && (
-                                <button
-                                  type="button"
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    setEditingScenario(scenario);
-                                    setShowEditScenarioModal(true);
-                                  }}
-                                  className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400 hover:bg-amber-500/20 border border-amber-500/30 flex items-center gap-1 cursor-pointer transition-colors"
-                                  title="Chỉnh sửa kịch bản lâm sàng này"
-                                >
-                                  <span>✏️</span>
-                                  <span>Sửa</span>
-                                </button>
-                              )}
-
-                              {scenario.statusBadge && (
-                                <span
-                                  className={`text-[9.5px] font-black px-1.5 py-0.5 rounded-full ${
-                                    scenario.statusBadge === "PRACTICE_CHANGING"
-                                      ? "bg-amber-500 text-slate-950"
-                                      : scenario.statusBadge === "UPGRADED"
-                                      ? "bg-emerald-500 text-white"
-                                      : "bg-blue-500 text-white"
-                                  }`}
-                                >
-                                  {scenario.statusBadge === "PRACTICE_CHANGING"
-                                    ? "⚡ Practice-Changing"
-                                    : scenario.statusBadge}
-                                </span>
-                              )}
-                            </div>
-                          </div>
-
-                          <h4 className="text-xs sm:text-sm font-bold leading-snug line-clamp-2 text-slate-900 dark:text-slate-100">
-                            {scenario.title}
-                          </h4>
-
-                          {scenario.hasConfAlert && (
-                            <div className="mt-2 flex items-start gap-1 text-[10px] font-semibold text-amber-600 dark:text-amber-400 bg-amber-500/10 dark:bg-amber-500/15 px-2 py-1 rounded-md leading-tight">
-                              <span className="shrink-0">🔔</span>
-                              <span className="break-words">{scenario.confAlertText}</span>
-                            </div>
-                          )}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </aside>
-
-                {/* RIGHT COLUMN (8/12): Detailed Comparison Dashboard */}
-                <section className="lg:col-span-8 space-y-5">
-                  {!currentScenario ? (
-                    <div
-                      className={`p-8 sm:p-14 text-center rounded-2xl border border-dashed transition-all ${
-                        darkMode
-                          ? "bg-slate-900/40 border-slate-800 text-slate-300"
-                          : "bg-white/60 border-slate-300 text-slate-700"
-                      }`}
-                    >
-                      <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-3xl">
-                        ⚖️
-                      </div>
-                      <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100 mb-1">
-                        No Clinical Scenario Selected
-                      </h3>
-                      <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto mb-5 leading-relaxed">
-                        Select a clinical scenario from the list to inspect the cross-society consensus matrix (AHA vs. ESO vs. VN), temporal shifts, and pivotal trial evidence.
-                      </p>
-                      <div className="flex flex-wrap items-center justify-center gap-2">
-                        {filteredScenarios.slice(0, 3).map((sc) => (
-                          <button
-                            key={sc.id}
-                            onClick={() => {
-                              setActiveScenarioId(sc.id);
-                              setIsMobileScenarioListOpen(false);
-                            }}
-                            className="px-3.5 py-2 rounded-xl text-xs font-bold bg-amber-500/10 text-amber-700 dark:text-amber-400 hover:bg-amber-500/20 transition-all border border-amber-500/25 flex items-center gap-1.5 shadow-2xs"
-                          >
-                            <span>👉</span>
-                            <span className="line-clamp-1 max-w-[280px] text-left">{sc.title}</span>
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  ) : (
-                    <div
-                      className={`rounded-2xl border p-5 transition-all ${
-                        darkMode
-                          ? "bg-slate-900 border-slate-800"
-                          : "bg-white border-slate-200 shadow-xs"
-                      }`}
-                    >
-                      {/* Scenario Header */}
-                      <div className="border-b border-slate-100 dark:border-slate-800 pb-4">
-                        <div className="flex items-center justify-between gap-2 mb-1.5">
-                          <div className="flex items-center gap-2">
-                            <span className="px-2 py-0.5 rounded-md bg-amber-500/15 text-amber-600 dark:text-amber-400 text-[10px] font-black uppercase tracking-wider">
-                              {currentScenario.subspecialty}
-                            </span>
-                            <span className="text-xs text-slate-400 font-medium">
-                              ID: {currentScenario.id}
-                            </span>
-                          </div>
-
-                          <div className="flex items-center gap-2">
-                            <button
-                              type="button"
-                              onClick={() => {
-                                setNavigatorSeedQuery({
-                                  searchText: currentScenario.keyTags?.[0] || currentScenario.titleEn || currentScenario.title,
-                                  subspecialty: currentScenario.subspecialty,
-                                  includeAiChecked: true,
-                                });
-                                setActiveTab("navigator");
-                              }}
-                              className="px-3 py-1.5 rounded-xl text-xs font-bold bg-indigo-500/15 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-500/25 border border-indigo-500/30 flex items-center gap-1.5 transition-all shadow-xs cursor-pointer"
-                              title="Explore full ontology recommendations & pivotal trials in Clinical Navigator"
-                            >
-                              <span>🧭 Explore in Navigator →</span>
-                            </button>
-                            {isAdminVerified && (
-                              <button
-                                type="button"
-                                onClick={() => {
-                                  setEditingScenario(currentScenario);
-                                  setShowEditScenarioModal(true);
-                                }}
-                                className="px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-500/15 text-amber-700 dark:text-amber-300 hover:bg-amber-500/25 border border-amber-500/30 flex items-center gap-1.5 transition-all shadow-xs cursor-pointer"
-                                title="Chỉnh sửa thông tin kịch bản lâm sàng này"
-                              >
-                                <span>✏️</span>
-                                <span>Sửa Scenario</span>
-                              </button>
-                            )}
-                          </div>
-                        </div>
-
-                        <h2 className="text-lg sm:text-xl font-black leading-snug text-slate-900 dark:text-white">
-                          {currentScenario.title}
-                        </h2>
-
-                        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
-                          {currentScenario.summary}
-                        </p>
-
-                        {/* Ecosystem Deep Links with dead # prevention */}
-                        {currentScenario.ecosystemLinks && (
-                          <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800">
-                            <span className="text-[10px] font-black uppercase tracking-wider text-slate-400 block mb-2">
-                              Cross-Ecosystem Clinical Tools:
-                            </span>
-                            <div className="flex flex-wrap items-center gap-2">
-                              {currentScenario.ecosystemLinks.map((link, idx) => (
-                                <Link
-                                  key={idx}
-                                  href={link.href}
-                                  onClick={(e) => {
-                                    if (link.href === "#") {
-                                      e.preventDefault();
-                                    }
-                                  }}
-                                  className={`px-3 py-1.5 rounded-xl border text-xs font-bold flex items-center gap-1.5 transition-all ${
-                                    link.href === "#" ? "cursor-default" : ""
-                                  } ${
-                                    link.app === "NeuroRx"
-                                      ? "bg-sky-500/10 border-sky-500/30 text-sky-600 dark:text-sky-400 hover:bg-sky-500/20"
-                                      : link.app === "NeuroCalc"
-                                      ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/20"
-                                      : link.app === "NeuroVision"
-                                      ? "bg-blue-500/10 border-blue-500/30 text-blue-600 dark:text-blue-400 hover:bg-blue-500/20"
-                                      : "bg-indigo-500/10 border-indigo-500/30 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-500/20"
-                                  }`}
-                                >
-                                  <span>👉 {link.app}:</span>
-                                  <span>{link.label}</span>
-                                  {link.badge && (
-                                    <span className="text-[9px] px-1.5 py-0.2 rounded bg-white dark:bg-slate-900 border font-extrabold">
-                                      {link.badge}
-                                    </span>
-                                  )}
-                                </Link>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Detail Tabs - Clean & Concise */}
-                      <div className="mt-4 border-b border-slate-200 dark:border-slate-800 flex items-center gap-1.5 sm:gap-2 overflow-x-auto scrollbar-none">
-                        <button
-                          onClick={() => setActiveDetailTab("matrix")}
-                          className={`pb-2.5 px-1.5 text-xs sm:text-sm font-bold border-b-2 whitespace-nowrap transition-all flex items-center gap-1.5 ${
-                            activeDetailTab === "matrix"
-                              ? "border-amber-500 text-amber-600 dark:text-amber-400"
-                              : "border-transparent text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
-                          }`}
-                        >
-                          <span>⚖️</span>
-                          <span>Cross-Society Matrix</span>
-                        </button>
-                        <button
-                          onClick={() => setActiveDetailTab("temporal")}
-                          className={`pb-2.5 px-1.5 text-xs sm:text-sm font-bold border-b-2 whitespace-nowrap transition-all flex items-center gap-1.5 ${
-                            activeDetailTab === "temporal"
-                              ? "border-amber-500 text-amber-600 dark:text-amber-400"
-                              : "border-transparent text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
-                          }`}
-                        >
-                          <span>⏳</span>
-                          <span>Guideline Diff</span>
-                        </button>
-                        <button
-                          onClick={() => setActiveDetailTab("conf_bridge")}
-                          className={`pb-2.5 px-1.5 text-xs sm:text-sm font-bold border-b-2 whitespace-nowrap transition-all flex items-center gap-1.5 ${
-                            activeDetailTab === "conf_bridge"
-                              ? "border-amber-500 text-amber-600 dark:text-amber-400"
-                              : "border-transparent text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
-                          }`}
-                        >
-                          <span>⚡</span>
-                          <span>Evidence Bridge</span>
-                        </button>
-                      </div>
-
-                      {/* TAB 1: CROSS-SOCIETY MATRIX */}
-                      {activeDetailTab === "matrix" && (
-                        <div className="mt-5 space-y-4">
-                          <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
-                            {scenarioRecommendations.map((atom) => {
-                              const tier = TIER_CONFIG[atom.normalizedTier];
-                              return (
-                                <div
-                                  key={atom.id}
-                                  className={`rounded-2xl border p-4 flex flex-col justify-between transition-all ${
-                                    darkMode
-                                      ? "bg-slate-950/70 border-slate-800"
-                                      : "bg-slate-50/90 border-slate-200"
-                                  }`}
-                                >
-                                  <div>
-                                    <div className="flex items-center justify-between gap-1 mb-2.5">
-                                      <span className="font-extrabold text-sm text-slate-900 dark:text-slate-100">
-                                        {atom.society} ({atom.year})
-                                      </span>
-                                      <span
-                                        className={`px-2 py-0.5 rounded-full text-[10px] font-black border ${tier.badgeBg} ${tier.textColor} ${tier.borderColor}`}
-                                      >
-                                        Tier {atom.normalizedTier}
-                                      </span>
-                                    </div>
-
-                                    <div className="text-[11px] font-bold text-amber-600 dark:text-amber-400 mb-2">
-                                      {atom.originalGrade}
-                                    </div>
-
-                                    <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed font-medium mb-3">
-                                      {atom.recommendationText}
-                                    </p>
-
-                                    {atom.eligibilityCriteria && (
-                                      <div className="text-[11px] text-slate-500 dark:text-slate-400 mb-2.5">
-                                        <span className="font-bold">
-                                          Eligibility Criteria:
-                                        </span>{" "}
-                                        {atom.eligibilityCriteria}
-                                      </div>
-                                    )}
-                                  </div>
-
-                                  <div className="pt-2 border-t border-slate-200/60 dark:border-slate-800/80">
-                                    <span className="text-[10px] font-bold text-slate-400 block mb-1">
-                                      Pivotal Trials Cited:
-                                    </span>
-                                    <div className="flex flex-wrap gap-1">
-                                      {atom.citedTrials.map((tr, i) => (
-                                        <span
-                                          key={i}
-                                          className="text-[10px] px-1.5 py-0.5 rounded bg-white dark:bg-slate-900 border text-slate-600 dark:text-slate-300 font-semibold"
-                                        >
-                                          {tr}
-                                        </span>
-                                      ))}
-                                    </div>
-                                  </div>
-                                </div>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      )}
-
-                      {/* TAB 2: TEMPORAL EVOLUTION */}
-                      {activeDetailTab === "temporal" && (
-                        <div className="mt-5 space-y-4">
-                          {currentScenario.temporalEvolution &&
-                          currentScenario.temporalEvolution.length > 0 ? (
-                            <div className="space-y-3">
-                              {currentScenario.temporalEvolution.map((evol, idx) => (
-                                <div
-                                  key={idx}
-                                  className={`p-4 rounded-2xl border ${
-                                    darkMode
-                                      ? "bg-slate-950/60 border-slate-800"
-                                      : "bg-slate-50 border-slate-200"
-                                  }`}
-                                >
-                                  <div className="flex items-center justify-between gap-2 mb-2">
-                                    <span className="font-extrabold text-sm text-slate-900 dark:text-slate-100">
-                                      {evol.society} Evolution Timeline
-                                    </span>
-                                    <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-emerald-500/20 text-emerald-600 dark:text-emerald-400">
-                                      ⬆️ {evol.shiftDirection}
-                                    </span>
-                                  </div>
-
-                                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 my-2.5">
-                                    <div className="p-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-                                      <div className="text-[11px] text-slate-400 font-bold mb-1">
-                                        PREVIOUS VERSION ({evol.previousYear}):
-                                      </div>
-                                      <div className="text-xs font-semibold text-slate-700 dark:text-slate-300">
-                                        {evol.previousGrade}
-                                      </div>
-                                    </div>
-                                    <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30">
-                                      <div className="text-[11px] text-amber-600 dark:text-amber-400 font-bold mb-1">
-                                        CURRENT GUIDELINE ({evol.currentYear}):
-                                      </div>
-                                      <div className="text-xs font-bold text-amber-700 dark:text-amber-300">
-                                        {evol.currentGrade}
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                  <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                                    {evol.evolutionNarrative}
-                                  </p>
-
-                                  <div className="mt-2 text-[11px] text-slate-500">
-                                    <span className="font-bold">Driving Phase 3 Trials:</span>{" "}
-                                    {evol.drivingTrials.join(" • ")}
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                          ) : (
-                            <div className="p-6 text-center text-xs text-slate-400">
-                              Recommendations remained stable across sequential guideline releases.
-                            </div>
-                          )}
-                        </div>
-                      )}
-
-                      {/* TAB 3: LATE-BREAKING EVIDENCE BRIDGE */}
-                      {activeDetailTab === "conf_bridge" && (
-                        <div className="mt-5 space-y-4">
-                          <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-start gap-3">
-                            <span className="text-xl">⚡</span>
-                            <div>
-                              <h4 className="text-xs font-black uppercase text-amber-600 dark:text-amber-400">
-                                Evidence-to-Guideline Bridge (Guideline Watch)
-                              </h4>
-                              <p className="text-xs text-slate-700 dark:text-slate-300 mt-1 leading-relaxed">
-                                Phase 3 randomized trials recently reported at international podiums (ISC / ESOC / AAN) that anticipate or prompt future guideline modifications.
-                              </p>
-                            </div>
-                          </div>
-
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            {MOCK_CONFERENCE_EVENTS.flatMap((c) => c.lateBreakingTrials)
-                              .filter(
-                                (tr) =>
-                                  tr.impactedScenarioId === currentScenario.id ||
-                                  tr.subspecialty === currentScenario.subspecialty
-                              )
-                              .map((tr) => (
-                                <div
-                                  key={tr.id}
-                                  className={`p-3.5 rounded-2xl border text-xs ${
-                                    darkMode
-                                      ? "bg-slate-950/60 border-slate-800"
-                                      : "bg-slate-50 border-slate-200"
-                                  }`}
-                                >
-                                  <div className="flex items-center justify-between gap-1 mb-1.5">
-                                    <span className="font-black text-amber-600 dark:text-amber-400 text-sm">
-                                      {tr.trialAcronym}
-                                    </span>
-                                    <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-600 dark:text-emerald-400">
-                                      {tr.verdict}
-                                    </span>
-                                  </div>
-
-                                  <p className="font-bold text-slate-800 dark:text-slate-200 mb-1">
-                                    {tr.title}
-                                  </p>
-
-                                  <p className="text-[11px] text-slate-600 dark:text-slate-400 mb-2">
-                                    {tr.populationSummary}
-                                  </p>
-
-                                  <div className="p-2 rounded-lg bg-white dark:bg-slate-900 border text-[11px] space-y-1 mb-2">
-                                    <div>
-                                      <span className="font-bold">Primary Endpoint:</span>{" "}
-                                      {tr.primaryOutcome}
-                                    </div>
-                                    <div>
-                                      <span className="font-bold">Safety Profile:</span>{" "}
-                                      {tr.safetyOutcome}
-                                    </div>
-                                  </div>
-
-                                  <div className="text-[11px] text-amber-700 dark:text-amber-300 font-medium">
-                                    💡 {tr.bottomLineTakeaway}
-                                  </div>
-                                </div>
-                              ))}
-                          </div>
-                        </div>
-                      )}
-
-                      {/* BOTTOM AI APPRAISAL BOX */}
-                      <div className="mt-6 p-4 sm:p-5 rounded-2xl border border-amber-500/30 bg-gradient-to-br from-amber-500/5 via-orange-500/5 to-transparent">
-                        <div className="flex items-center justify-between gap-2 mb-2.5">
-                          <div className="flex items-center gap-2">
-                            <span className="text-base">🧠</span>
-                            <h4 className="text-xs sm:text-sm font-black uppercase tracking-wider text-amber-600 dark:text-amber-400">
-                              AI Clinical Appraisal &amp; Practice Verdict
-                            </h4>
-                          </div>
-                          {isAdminVerified && (
-                            <button
-                              type="button"
-                              onClick={() => {
-                                setEditingScenario(currentScenario);
-                                setShowEditScenarioModal(true);
-                              }}
-                              className="text-[11px] font-bold text-amber-600 dark:text-amber-400 hover:underline flex items-center gap-1 cursor-pointer"
-                              title="Hiệu chỉnh phân tích AI và kết luận chốt"
-                            >
-                              <span>✏️</span>
-                              <span>Hiệu chỉnh đánh giá AI</span>
-                            </button>
-                          )}
-                        </div>
-
-                        <div className="space-y-3 text-xs sm:text-sm leading-relaxed">
-                          <div className="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-2">
-                            <span className="font-bold text-slate-400 shrink-0">
-                              ⚖️ Consensus:
-                            </span>
-                            <span className="font-extrabold text-emerald-600 dark:text-emerald-400">
-                              {currentScenario.aiSynthesisAppraisal.consensusLevel ===
-                              "HIGH_CONCORDANCE"
-                                ? "High Concordance across Major Societies"
-                                : "Moderate Variation / Conditional Discordance"}
-                            </span>
-                          </div>
-
-                          <div className="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-2">
-                            <span className="font-bold text-slate-400 shrink-0">
-                              🔍 Root Cause:
-                            </span>
-                            <span className="text-slate-700 dark:text-slate-300">
-                              {currentScenario.aiSynthesisAppraisal.whyGuidelinesDiffer}
-                            </span>
-                          </div>
-
-                          <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-900 dark:text-amber-200 font-semibold leading-relaxed">
-                            <span className="font-extrabold block sm:inline mb-1 sm:mb-0">💡 Clinical Bottom-Line: </span>
-                            {currentScenario.aiSynthesisAppraisal.clinicalBottomLine}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </section>
-              </>
-            )}
-          </div>
-        )}
-
-        {/* =========================================================================
-            TAB 4: CLINICAL NAVIGATOR (100% English Ontology-Driven Synthesis)
+            TAB 3: CLINICAL NAVIGATOR (100% English Ontology-Driven Synthesis)
            ========================================================================= */}
         {activeTab === "navigator" && (
           <ClinicalNavigatorTab
             guidelines={guidelineDocs}
             recommendationAtoms={recommendationAtoms}
             conferences={MOCK_CONFERENCE_EVENTS}
-            scenarios={clinicalScenarios}
             pivotalTrials={pivotalTrials}
             customRecLabels={customRecLabels}
             neuroPulseArticles={neuroPulseArticles}
             isAdminVerified={isAdminVerified}
             initialPresetOrQuery={navigatorSeedQuery}
             onPivotalTrialsUpdated={(updated) => setPivotalTrials(updated)}
-            onScenarioSaved={(updatedScenarios, updatedAtoms) => {
-              setClinicalScenarios(updatedScenarios);
-              setRecommendationAtoms(updatedAtoms);
-            }}
           />
         )}
 
@@ -2544,38 +1855,7 @@ export default function NeuroGuidePage() {
           />
         )}
 
-        {/* EDIT CLINICAL SCENARIO MODAL */}
-        {isAdminVerified && showEditScenarioModal && editingScenario && (
-          <EditScenarioModal
-            isOpen={showEditScenarioModal}
-            onClose={() => setShowEditScenarioModal(false)}
-            scenario={editingScenario}
-            recommendations={recommendationAtoms}
-            adminToken={getStoredAdminToken()}
-            onSuccess={(updatedScenario, updatedRecs) => {
-              setClinicalScenarios((prev) => {
-                const idx = prev.findIndex((s) => s.id === updatedScenario.id);
-                if (idx >= 0) {
-                  const copy = [...prev];
-                  copy[idx] = updatedScenario;
-                  return copy;
-                }
-                return [updatedScenario, ...prev];
-              });
 
-              if (Array.isArray(updatedRecs)) {
-                setRecommendationAtoms((prev) => {
-                  const filtered = prev.filter((r) => r.scenarioId !== updatedScenario.id);
-                  return [...filtered, ...updatedRecs];
-                });
-              }
-
-              setSyncMessage(`✓ Đã lưu thay đổi kịch bản lâm sàng "${updatedScenario.title}" thành công.`);
-              reloadGuidelines(true);
-            }}
-            darkMode={darkMode}
-          />
-        )}
 
         {/* =========================================================================
             FOOTER

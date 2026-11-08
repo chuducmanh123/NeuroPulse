@@ -5,7 +5,6 @@ import { fetchGuidelineFullText } from "@/lib/neuroguide/fullTextFetcher";
 import {
   extractGuidelineWithGemini,
   extractConferenceTrialsWithGemini,
-  synthesizeClinicalScenariosWithGemini,
 } from "@/lib/neuroguide/geminiGuidelineExtractor";
 import {
   loadMergedNeuroGuideData,
@@ -14,7 +13,7 @@ import {
 } from "@/lib/neuroguide/guidelineStorage";
 import { hasSupabaseConfig } from "@/lib/supabase";
 import { registerCandidateGuideline } from "@/lib/neuroguide/storeAdapter";
-import { SubspecialtyType, GuidelineDoc, ConferenceEvent, ClinicalScenario } from "@/types/neuroguide";
+import { SubspecialtyType, GuidelineDoc, ConferenceEvent } from "@/types/neuroguide";
 import { verifyAdminToken } from "@/utils/security";
 
 import fs from "fs";
@@ -334,25 +333,15 @@ export async function POST(request: NextRequest) {
       return conf;
     });
 
-    // 4. SESSION QUOTA PART 3: Synthesize 2 Clinical Scenarios (Cross-Society Matrix)
-    const newScenarios: ClinicalScenario[] = await synthesizeClinicalScenariosWithGemini(
-      analyzedGuidelines.length > 0 ? analyzedGuidelines : currentStore.guidelines
-    );
-
-    const mergedScenariosMap = new Map<string, ClinicalScenario>();
-    currentStore.scenarios.forEach((s) => mergedScenariosMap.set(s.id, s));
-    newScenarios.forEach((s) => mergedScenariosMap.set(s.id, s));
-    const allScenarios = Array.from(mergedScenariosMap.values());
-
-    // 5. KHÔNG tự động đẩy analyzedGuidelines thẳng vào thư viện chính (Practice Guidelines) khi chưa qua phê duyệt!
+    // 4. KHÔNG tự động đẩy analyzedGuidelines thẳng vào thư viện chính (Practice Guidelines) khi chưa qua phê duyệt!
     // Các guideline mới từ Radar chỉ nằm trong Review Queue cho đến khi được bác sĩ duyệt (APPROVE).
     const allGuidelines = currentStore.guidelines;
 
-    // 6. Persist to Vercel Blob (or local storage fallback)
+    // 5. Persist to Vercel Blob (or local storage fallback)
     const saveResult = await saveNeuroGuideToActiveStorage({
       guidelines: allGuidelines,
       conferences: updatedConferences,
-      scenarios: allScenarios,
+      scenarios: currentStore.scenarios,
       deletedGuidelineIds: currentStore.deletedGuidelineIds,
     });
 
@@ -373,12 +362,10 @@ export async function POST(request: NextRequest) {
         fullTextParsedCount: analyzedGuidelines.filter((g) => g.fullTextStatus === "FULL_TEXT_PARSED").length,
         conferencesUpdated: updatedConferences.length,
         lateBreakingTrialsAdded: newTrials.length,
-        scenariosSynthesized: newScenarios.length,
       },
-      message: `Successfully synchronized ${analyzedGuidelines.length} guidelines (Full-Text AI analysis), updated 2 conference events, and synthesized 2 clinical scenarios. Saved to ${saveResult.storage}.`,
+      message: `Successfully synchronized ${analyzedGuidelines.length} guidelines (Full-Text AI analysis) and updated 2 conference events. Saved to ${saveResult.storage}.`,
       guidelines: allGuidelines,
       conferences: updatedConferences,
-      scenarios: allScenarios,
     });
   } catch (error: unknown) {
     const errorMessage = error instanceof Error ? error.message : "Internal Server Error";
