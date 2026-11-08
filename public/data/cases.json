@@ -1,5 +1,226 @@
 [
   {
+    "id": "nc-2026-035",
+    "case_code": "NC-2026-035",
+    "title": "Stereotyped Sensory Spells and Sulcal Subarachnoid Blood in Severe Extracranial ICA Stenosis",
+    "subspecialty": "Stroke",
+    "subspecialties": [
+      "Stroke",
+      "Vascular Neurology",
+      "Neuroimaging"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-11-09",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13032601",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-04751-6",
+      "pmcid": "PMC13032601",
+      "pmid": "41715044",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "46-year-old female",
+      "chief_complaint": "Repetitive right-sided sensory episodes and headache",
+      "history_of_present_illness": "The patient presented with repetitive, stereotyped, 5-to-10-minute episodes of right facial and distal upper limb paresthesias occurring 5 to 10 times daily over the preceding 5 days, recently associated with headache and transient visual symptoms. Cranial imaging revealed multi-lobar left hemispheric convexity subarachnoid hemorrhages (cSAHs) along with acute ischemia in the left anterior watershed area, occurring in the setting of severe bilateral extracranial internal carotid artery stenosis.",
+      "past_medical_history": "Treated hypertension, heavy smoking history, and family history of stroke.",
+      "vitals": {
+        "bp": "160/95 mmHg",
+        "hr": "78 bpm",
+        "rr": "16 /min",
+        "temp": "36.8 °C",
+        "spo2": "98%"
+      },
+      "neuro_exam": "Alert and oriented, language intact. No cranial nerve deficits or focal motor weakness on admission. Sensory examination revealed no fixed deficits between spells.",
+      "key_labs_csf": "Routine blood work and coagulopathies unremarkable; CSF analysis was not performed.",
+      "imaging": [
+        {
+          "modality": "Axial non-contrast CT and CT Angiography",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13032601)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13032601_fig1.jpg",
+          "pmcid": "PMC13032601",
+          "doi_url": "https://doi.org/10.1186/s12883-026-04751-6",
+          "caption": "Acute cranial/carotid CT/CTA imaging. Axial non-contrast CT scans showing left temporal ( A ), left frontal ( B ), and left parafalcine cSAHs ( C ). Axial carotid CTA demonstrating subtotal occlusion of the ipsilateral ICA ( D ) and a significant stenosis of the contralateral ICA ( E ). Coronal CTA showing bilateral atherosclerotic plaques of the stenotic ICAs ( F ). cSAH, convexity subarachnoid haemorrhage; CT, computed tomography; CTA, CT angiography; ICA, internal carotid artery",
+          "findings_summary": "Demonstrated multi-lobar left frontotemporal and parafalcine convexity subarachnoid hemorrhages alongside severe extracranial internal carotid artery subtotal stenosis."
+        },
+        {
+          "modality": "Brain MRI (DWI, SWI, and FLAIR)",
+          "sequence_badge": "Figure 2 • BMC neurology (PMC13032601)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC13032601_fig2.jpg",
+          "pmcid": "PMC13032601",
+          "doi_url": "https://doi.org/10.1186/s12883-026-04751-6",
+          "caption": "Follow-up CT and MRI scans. Subacute subcortical and cortical hypodensities in the left-sided anterior border zone, 2 days after presentation ( A , B ). Axial DWI MRI confirming acute ischaemia in the subcortical alterations of the left frontal lobe, 7 days after presentation ( C ). Representative images of axial SWI MRI confirming the cSAHs ( D , E ). Axial post-contrast T1 MRI showing luxury perfusion in the ischaemic lesions ( F ). Axial FLAIR MRI demonstrating hyperintense lesions consistent with vasogenic oedema ( G ). Follow-up FLAIR images showing minimal hyperintense lesions consistent",
+          "findings_summary": "Confirmed acute/subacute left anterior watershed ischemic alterations on DWI and sulcal hypointensities corresponding to cSAHs on SWI."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely pathophysiological mechanism underlying the recurrent transient focal neurological episodes (TFNEs) in this patient?",
+      "question_type": "Diagnosis",
+      "correct_option": "D",
+      "options": [
+        {
+          "id": "A",
+          "text": "Embolization from a cardiac source leading to recurrent cardioembolic transient ischemic attacks",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. Cardiac workup and imaging findings do not support a cardioembolic source; the lesions are localized to watershed zones and associated with severe ipsilateral ICA disease."
+        },
+        {
+          "id": "B",
+          "text": "Reversible cerebral vasoconstriction syndrome (RCVS) causing thunderclap headache and cortical ischemia",
+          "peer_percentage": 12,
+          "rationale": "Incorrect. Although RCVS can cause cSAH, angiography demonstrated severe atherosclerotic extracranial ICA stenosis rather than the classic segmental cerebral vasoconstrictions."
+        },
+        {
+          "id": "C",
+          "text": "Posterior reversible encephalopathy syndrome (PRES) with atypical unilateral convexity bleeding",
+          "peer_percentage": 8,
+          "rationale": "Incorrect. The clinical presentation lacks acute severe encephalopathy, seizures, and typical bilateral posterior parieto-occipital vasogenic edema of PRES."
+        },
+        {
+          "id": "D",
+          "text": "Convexity subarachnoid hemorrhage (cSAH) triggering focal cortical irritation or spreading ischemia via fragile collateral recruitment from severe ICA stenosis",
+          "peer_percentage": 70,
+          "rationale": "Correct! The recurrent stereotyped sensory TFNEs closely resemble 'amyloid spells' or focal epileptic/irritative phenomena triggered by convexity subarachnoid hemorrhage resulting from fragile leptomeningeal collaterals recruited due to severe ipsilateral ICA stenosis."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Convexity subarachnoid hemorrhage (cSAH) and transient focal neurological episodes (TFNEs) secondary to severe ipsilateral internal carotid artery stenosis",
+      "clinical_discussion": "Spontaneous non-traumatic convexity subarachnoid hemorrhage (cSAH) accounts for approximately 5-10% of all subarachnoid hemorrhages and is frequently underdiagnosed. Unlike aneurysmal SAH, bleeding in cSAH is restricted to the cerebral sulci and does not extend to the basal cisterns. While RCVS and PRES are common etiologies in younger cohorts, severe atherosclerotic extracranial internal carotid artery (ICA) stenosis can occasionally lead to cSAH via the rupture of fragile, maximally recruited leptomeningeal collaterals—a mechanism analogous to hemodynamic stress seen in Moyamoya syndrome.\n\nPatients with cSAH often present with transient focal neurological episodes (TFNEs) characterized by repetitive, stereotyped sensory or motor deficits that mimic transient ischemic attacks (TIAs) or focal seizures. In cerebral amyloid angiopathy (CAA), similar episodes are termed 'amyloid spells' and are thought to result from superficial cortical hemosiderosis or recurrent micro-subarachnoid bleeding irritating the overlying cortex. Management requires careful balancing of secondary stroke prevention, hemodynamic optimization, and seizure control until definitive revascularization can be safely achieved.",
+      "teaching_points": [
+        "Convexity subarachnoid hemorrhage (cSAH) is defined by sulcal blood restricted to the convexal surface without extension into the basal cisterns.",
+        "Severe extracranial ICA stenosis can precipitate cSAH by placing extreme hemodynamic stress on fragile leptomeningeal collaterals.",
+        "Transient focal neurological episodes (TFNEs) associated with cSAH can present as stereotyped sensory or motor spells mimicking TIAs or focal seizures ('amyloid-like spells').",
+        "Multimodal imaging including SWI/GRE MRI is essential to accurately detect sulcal subarachnoid blood products."
+      ],
+      "clinical_pitfalls": [
+        "Mistaking cSAH-associated TFNEs purely for standard ischemic TIAs and omitting advanced neuroimaging (such as SWI) to evaluate for sulcal blood.",
+        "Overlooking severe extracranial or intracranial steno-occlusive disease as a structural cause of non-traumatic cSAH in younger or middle-aged adults."
+      ],
+      "related_keywords": [
+        "Convexity subarachnoid hemorrhage",
+        "Carotid spells",
+        "Transient focal neurological episodes",
+        "Internal carotid artery stenosis",
+        "Leptomeningeal collaterals",
+        "Susceptibility-weighted imaging"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-036",
+    "case_code": "NC-2026-036",
+    "title": "Rapidly Progressive Early-Onset Memory Impairment with Familial Aggregation",
+    "subspecialty": "Dementia",
+    "subspecialties": [
+      "Dementia",
+      "Behavioral Neurology",
+      "Neurogenetics"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-11-09",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13169975",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-04865-x",
+      "pmcid": "PMC13169975",
+      "pmid": "41928108",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "47-year-old male",
+      "chief_complaint": "Progressive memory decline and occupational errors starting at age 47",
+      "history_of_present_illness": "The patient began exhibiting frequent occupational errors at age 47, including missed appointments and episodes of disorientation while driving. His memory impairment progressively worsened over eight months, leading him to present to the hospital. He has a strong family history of early-onset dementia: his older brother developed memory impairment at 47 and died at 55, his mother developed dementia starting at 65, and his maternal grandmother had significant forgetfulness.",
+      "past_medical_history": "Hypertension diagnosed at age 42, untreated.",
+      "vitals": {
+        "bp": "134/82 mmHg",
+        "hr": "76 bpm",
+        "rr": "16 /min",
+        "temp": "36.7 °C",
+        "spo2": "99% on room air"
+      },
+      "neuro_exam": "Mini-Mental State Examination score of 20/30 with predominant disorientation and recent memory deficits. No other focal neurological abnormalities or extrapyramidal signs identified.",
+      "key_labs_csf": "CSF analysis showed normal cell counts, protein, and glucose. Amyloid-beta 42/40 ratio was reduced at 0.036 (normal >=0.067), and phosphorylated tau was elevated at 175 pg/mL (normal 21.5-59.0 pg/mL). Whole-exome sequencing revealed no mutations in APP, PSEN1, or PSEN2, but identified APOE epsilon4/epsilon4 homozygosity and the PRNP-V180I variant.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (Axial DWI & FLAIR) and SPECT",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13169975)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13169975_fig1.jpg",
+          "pmcid": "PMC13169975",
+          "doi_url": "https://doi.org/10.1186/s12883-026-04865-x",
+          "caption": "Magnetic resonance imaging and single-photon emission computed tomography with N-isopropyl-(iodine-123)-p-iodoamphetamine of the brain 6 months after the onset. Magnetic resonance imaging (MRI) ( A - G ) and single-photon emission computed tomography (SPECT) with N-isopropyl-(iodine-123)-p-iodoamphetamine (¹²³I-IMP) (¹²³I-IMP-SPECT) ( H and I ) of the brain. Axial images of fluid-attenuated inversion recovery (FLAIR) imaging ( A - C ) showed mild atrophy in both hippocampi and left parietal lobe without any abnormal signals. Axial images of diffusion-weighted imaging (DWI) showed no abnormal s",
+          "findings_summary": "Axial FLAIR showed mild bilateral hippocampal atrophy and left parietal lobe atrophy without abnormal diffusion restriction on DWI."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "A",
+      "options": [
+        {
+          "id": "A",
+          "text": "Early-onset Alzheimer's disease with APOE epsilon4 homozygosity and PRNP-V180I variant",
+          "peer_percentage": 72,
+          "rationale": "Correct! The patient's clinical presentation, CSF biomarker profile (low Abeta42/40 ratio and high p-tau), and neuroimaging findings of parietal and hippocampal atrophy are characteristic of early-onset Alzheimer's disease, significantly modulated by APOE epsilon4 homozygosity and the incidental or modifying PRNP-V180I variant."
+        },
+        {
+          "id": "B",
+          "text": "Sporadic Creutzfeldt-Jakob disease",
+          "peer_percentage": 14,
+          "rationale": "Incorrect. Although the PRNP-V180I variant is associated with genetic prion disease, the patient lacks typical DWI hyperintensities, has an indolent 8-month progressive course with prominent hippocampal/parietal atrophy rather than rapid akinetic mutism, and has a CSF profile and APOE genotype highly specific for Alzheimer's disease."
+        },
+        {
+          "id": "C",
+          "text": "Autosomal dominant early-onset Alzheimer's disease due to a PSEN1 mutation",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. While the patient has an autosomal dominant-appearing family history of early-onset dementia, whole-exome sequencing specifically confirmed the absence of pathogenic variants in APP, PSEN1, and PSEN2."
+        },
+        {
+          "id": "D",
+          "text": "Frontotemporal lobar degeneration with behavioral variant",
+          "peer_percentage": 4,
+          "rationale": "Incorrect. The clinical syndrome is characterized by prominent amnestic deficits, disorientation, and parietal-hippocampal atrophy with CSF biomarker confirmation of amyloid and tau pathology, rather than primary behavioral or executive dysfunction characteristic of frontotemporal dementia."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Early-onset Alzheimer's disease with APOE epsilon4 homozygosity and PRNP-V180I variant",
+      "clinical_discussion": "This case highlights an unusual presentation of early-onset Alzheimer's disease (AD) in a 47-year-old male with a strong family history of dementia. Despite the striking autosomal dominant-like pedigree, genetic testing revealed no mutations in classical early-onset AD genes (APP, PSEN1, PSEN2). Instead, the patient was found to be homozygous for the APOE epsilon4 allele and carried the PRNP-V180I variant. APOE epsilon4 homozygosity is a well-established potent risk factor that dramatically lowers the age of onset and accelerates amyloid deposition, likely driving the familial aggregation seen in this pedigree.\n\nThe identification of the PRNP-V180I variant adds complexity, as V180I is typically associated with a genetic form of Creutzfeldt-Jakob disease (CJD) characterized by late onset, slow progression, and characteristic cortical/basal ganglia DWI hyperintensities. However, the patient's CSF profile (low Aβ42/Aβ40 ratio and markedly elevated p-tau), typical AD neuroimaging pattern of parietal and hippocampal atrophy, and lack of restricted diffusion on DWI confirmed that the underlying pathology was AD. The coexistence of genetic risk variants underscores the challenges in diagnosing early-onset dementias and emphasizes the importance of comprehensive biomarker and genetic evaluations.",
+      "teaching_points": [
+        "Early-onset Alzheimer's disease can present with a strong family history mimicking autosomal dominant inheritance without mutations in APP, PSEN1, or PSEN2.",
+        "APOE epsilon4 homozygosity significantly accelerates the age of onset and increases the risk of familial clustering in Alzheimer's disease.",
+        "The PRNP-V180I variant, typically linked to genetic Creutzfeldt-Jakob disease, can occasionally be identified in patients whose primary clinical and biomarker profile conforms to Alzheimer's disease.",
+        "CSF amyloid-beta and phosphorylated tau assays are critical biomarkers to differentiate AD pathology from prion diseases when clinical presentations overlap."
+      ],
+      "clinical_pitfalls": [
+        "Assuming a patient with a strong autosomal dominant family history of early-onset dementia automatically harbors a pathogenic APP, PSEN1, or PSEN2 mutation.",
+        "Mistaking incidental or co-occurring genetic variants (such as PRNP variants) for the primary cause of rapidly progressive dementia without corroborating neuroimaging and CSF biomarker support."
+      ],
+      "related_keywords": [
+        "Early-onset Alzheimer's disease",
+        "APOE epsilon4 homozygosity",
+        "PRNP-V180I variant",
+        "Cerebrospinal fluid biomarkers",
+        "Familial dementia"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-033",
     "case_code": "NC-2026-033",
     "title": "Fulminant Refractory Cerebral Encephalopathy with Rapidly Progressive Vasogenic Edema and Microhemorrhages",
