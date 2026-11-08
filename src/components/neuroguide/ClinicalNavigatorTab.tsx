@@ -1555,19 +1555,19 @@ export function ClinicalNavigatorTab({
                     [
                       {
                         id: "MATRIX",
-                        label: "Cross-Society Matrix",
+                        label: "Guideline Recommendations",
                         icon: "⚖️",
                         count: navResult.coreRecommendations.length,
                       },
                       {
                         id: "DIFF",
-                        label: "Version Evolution",
+                        label: "Guideline Updates",
                         icon: "⏳",
                         count: navResult.intraSocietyDiffs.length,
                       },
                       {
                         id: "TRIALS",
-                        label: "Pivotal Trials",
+                        label: "Clinical Trials",
                         icon: "🔬",
                         count:
                           navResult.pivotalTrials.length +
@@ -1575,13 +1575,13 @@ export function ClinicalNavigatorTab({
                       },
                       {
                         id: "CONCORDANCE",
-                        label: "Evidence Concordance",
+                        label: "Consensus & Divergence",
                         icon: "⚡",
                         count: navResult.concordanceAppraisal.societyStances.length,
                       },
                       {
                         id: "LITERATURE",
-                        label: "NeuroPulse Literature",
+                        label: "Related Literature",
                         icon: "📚",
                         count: navResult.relatedArticles.length,
                       },
@@ -1619,23 +1619,15 @@ export function ClinicalNavigatorTab({
               </div>
 
               {/* =====================================================================
-                  SECTION 1: CROSS-SOCIETY GUIDELINE MATRIX (With Per-Society Pagination)
+                  SECTION 1: GUIDELINE RECOMMENDATIONS (With Per-Society Pagination)
                  ===================================================================== */}
               {sectionView === "MATRIX" && (
                 <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
-                    <div>
-                      <h3 className="text-base font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
-                        <span>🏛️ 1. Cross-Society Guideline Matrix</span>
-                        <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-300">
-                          {navResult.coreRecommendations.length} Core •{" "}
-                          {navResult.supportingRecommendations.length} Supporting
-                        </span>
-                      </h3>
-                      <p className="text-xs text-slate-500 dark:text-slate-400">
-                        Side-by-side comparison across societies. Original COR/LOE and GRADE levels are preserved verbatim alongside Normalized Evidence Tiers (1–5).
-                      </p>
-                    </div>
+                  <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+                    <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-300">
+                      {navResult.coreRecommendations.length} Core •{" "}
+                      {navResult.supportingRecommendations.length} Supporting
+                    </span>
                   </div>
 
                   {navResult.crossSocietyMatrix.length === 0 ? (
@@ -1780,20 +1772,14 @@ export function ClinicalNavigatorTab({
               )}
 
               {/* =====================================================================
-                  SECTION 2: SEQUENTIAL GUIDELINE DIFF (INTRA-SOCIETY EVOLUTION)
+                  SECTION 2: GUIDELINE UPDATES & PRACTICE SHIFTS
                  ===================================================================== */}
               {sectionView === "DIFF" && (
                 <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
-                  <div className="border-b border-slate-100 dark:border-slate-800 pb-3">
-                    <h3 className="text-base font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
-                      <span>📈 2. Sequential Guideline Diff (Intra-Society Version Evolution)</span>
-                      <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300">
-                        {navResult.intraSocietyDiffs.length} Practice Shifts
-                      </span>
-                    </h3>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">
-                      Tracks how recommendations within the same society evolved from prior editions to the latest guideline release, highlighting the pivotal trials that drove each upgrade or revision.
-                    </p>
+                  <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+                    <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300">
+                      {navResult.intraSocietyDiffs.length} Practice Shifts
+                    </span>
                   </div>
 
                   {navResult.intraSocietyDiffs.length === 0 ? (
@@ -1898,23 +1884,15 @@ export function ClinicalNavigatorTab({
               )}
 
               {/* =====================================================================
-                  SECTION 3: PIVOTAL TRIALS & CONFERENCE EVIDENCE BRIDGE
+                  SECTION 3: CLINICAL TRIALS & LATE-BREAKING EVIDENCE
                  ===================================================================== */}
               {sectionView === "TRIALS" && (
                 <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-5">
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
-                    <div>
-                      <h3 className="text-base font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
-                        <span>🔬 3. Pivotal Clinical Trials & Late-Breaking Evidence Bridge</span>
-                        <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">
-                          {navResult.pivotalTrials.length} Published •{" "}
-                          {navResult.lateBreakingTrials.length} Late-Breaking
-                        </span>
-                      </h3>
-                      <p className="text-xs text-slate-500 dark:text-slate-400">
-                        Ultra-compact PICO cards (~700 bytes/trial) storing quantitative primary efficacy and safety endpoints for landmark RCTs driving current guideline recommendations.
-                      </p>
-                    </div>
+                  <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+                    <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">
+                      {navResult.pivotalTrials.length} Published •{" "}
+                      {navResult.lateBreakingTrials.length} Late-Breaking
+                    </span>
                   </div>
 
                   {/* 3A. Peer-Reviewed Published Landmark Trials */}
@@ -1965,19 +1943,10 @@ export function ClinicalNavigatorTab({
               )}
 
               {/* =====================================================================
-                  SECTION 4: EVIDENCE CONCORDANCE & APPRAISAL SUMMARY
+                  SECTION 4: CONSENSUS & DIVERGENCE SUMMARY
                  ===================================================================== */}
               {sectionView === "CONCORDANCE" && (
                 <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
-                  <div className="border-b border-slate-100 dark:border-slate-800 pb-3">
-                    <h3 className="text-base font-extrabold text-slate-900 dark:text-white">
-                      ⚖️ 4. Cross-Society Evidence Concordance & Appraisal Summary
-                    </h3>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">
-                      Deterministic evaluation of agreement and divergence across societies. Disagreements are never auto-reconciled; every synthesis statement cites its underlying recommendation IDs.
-                    </p>
-                  </div>
-
                   {/* Concordance Headline Banner */}
                   <div
                     className={`p-4 rounded-xl border ${concordanceTheme.bg} flex flex-col sm:flex-row sm:items-center justify-between gap-3`}
@@ -2117,22 +2086,14 @@ export function ClinicalNavigatorTab({
               )}
 
               {/* =====================================================================
-                  SECTION 5: RELATED NEUROPULSE LITERATURE
+                  SECTION 5: RELATED LITERATURE
                  ===================================================================== */}
               {sectionView === "LITERATURE" && (
                 <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
                   <div className="border-b border-slate-100 dark:border-slate-800 pb-3 flex items-center justify-between">
-                    <div>
-                      <h3 className="text-base font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
-                        <span>📰 5. Related NeuroPulse Literature</span>
-                        <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-teal-100 text-teal-800 dark:bg-teal-900/60 dark:text-teal-300">
-                          {navResult.relatedArticles.length} Articles Matched
-                        </span>
-                      </h3>
-                      <p className="text-xs text-slate-500 dark:text-slate-400">
-                        Recent peer-reviewed studies from the NeuroPulse literature feed matching the active clinical condition, drug/procedure, or pivotal trial DOIs.
-                      </p>
-                    </div>
+                    <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-teal-100 text-teal-800 dark:bg-teal-900/60 dark:text-teal-300">
+                      {navResult.relatedArticles.length} Articles Matched
+                    </span>
                     <Link
                       href="/"
                       className="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline shrink-0"

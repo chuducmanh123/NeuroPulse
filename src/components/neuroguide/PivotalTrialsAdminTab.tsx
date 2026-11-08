@@ -347,7 +347,7 @@ export function PivotalTrialsAdminTab({
         {/* =========================================================================
             3. TRIALS LIST / CARDS GRID
            ========================================================================= */}
-        <div className="space-y-3.5 max-h-[700px] overflow-y-auto pr-1">
+        <div className="space-y-3.5">
           {filteredTrials.length === 0 ? (
             <div className="py-12 text-center text-xs text-slate-400">
               No clinical trials found matching your filter criteria.

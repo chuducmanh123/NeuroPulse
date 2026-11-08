@@ -1497,7 +1497,7 @@ export default function AdminCommandCenter() {
                   </div>
                 </div>
 
-                <div className="space-y-2 max-h-[550px] overflow-y-auto pr-1">
+                <div className="space-y-2">
                   {filteredRepoDocs.length === 0 ? (
                     <div className="py-8 text-center text-xs text-slate-400">
                       No guidelines found matching your filter criteria.
