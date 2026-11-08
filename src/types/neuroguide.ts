@@ -99,6 +99,8 @@ export interface RecommendationV3Labels {
   timeWindowIds: string[];
   interventionTags: string[];
   direction: "recommended" | "conditional" | "harm";
+  isFallbackCondition?: boolean;
+  isExplicit?: boolean;
 }
 
 export type FullTextStatus = "FULL_TEXT_PARSED" | "ABSTRACT_ONLY" | "UNAVAILABLE";
@@ -370,6 +372,7 @@ export interface NavigatorQuery {
   excludeFacets?: Partial<Record<OntologyFacetId, string[]>>;
   includeAiChecked?: boolean;
   onlyPracticeChanges?: boolean;
+  verificationFilter?: "all" | "approved" | "unlabeled_or_review";
 }
 
 export interface NeuroGuideBlobPayload {

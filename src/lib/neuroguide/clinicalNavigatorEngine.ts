@@ -32,7 +32,6 @@ import {
   getTagLabelByIdV3,
   getConditionByIdV3,
 } from "../../data/clinicalNavigatorTaxonomyV3.ts";
-import { MULTI_SUBSPECIALTY_GUIDELINES_V3 } from "../../data/multiSubspecialtyGuidelineRecsV3.ts";
 import { buildRecommendationRelations } from "./relationBuilder.ts";
 import { mergePivotalTrialsWithConferences } from "../../data/pivotalTrialsSeed.ts";
 
@@ -65,6 +64,9 @@ export interface IndexedNavigatorRecommendation {
   labels: RecommendationLabelOutput;
   v3Labels: RecommendationV3Labels;
   validationStatus: "human_approved" | "ai_checked" | "needs_review" | "reject";
+  isHumanLabeled: boolean;
+  isUnlabeled: boolean;
+  missingLabelReasons: string[];
   matchLayer?: "core" | "supporting";
   matchedSpans?: { facet: OntologyFacetId; value: string; labelEn: string; span: string }[];
 }
@@ -134,11 +136,16 @@ export interface V3FilterCounts {
   timeWindows: Record<string, number>;
   interventionTags: Record<string, number>;
   directions: Record<string, number>;
+  unlabeledCount: number;
+  approvedCount: number;
+  aiCheckedCount: number;
 }
 
 export interface NavigatorQueryResult {
   query: NavigatorQuery;
   totalIndexedCount: number;
+  unlabeledCount: number;
+  approvedCount: number;
   coreRecommendations: IndexedNavigatorRecommendation[];
   supportingRecommendations: IndexedNavigatorRecommendation[];
   crossSocietyMatrix: SocietyMatrixGroup[];
@@ -288,12 +295,6 @@ export function indexAllGuidelineRecommendations(
       combinedDocs.push(doc);
     }
   }
-  for (const mDoc of MULTI_SUBSPECIALTY_GUIDELINES_V3) {
-    if (!seenDocIds.has(mDoc.id)) {
-      seenDocIds.add(mDoc.id);
-      combinedDocs.push(mDoc);
-    }
-  }
 
   for (const doc of combinedDocs) {
     if (!doc || !Array.isArray(doc.allPracticeChanges)) continue;
@@ -308,11 +309,19 @@ export function indexAllGuidelineRecommendations(
       const labels = autoLabelRecommendationVerbatim(inp, STROKE_ONTOLOGY);
       const valRes = validateLabelRecord(inp, labels, STROKE_ONTOLOGY);
 
-      let validationStatus: IndexedNavigatorRecommendation["validationStatus"] = "human_approved";
-      if (valRes.status === "reject") {
+      const hasCustomHumanLabel = Boolean(customRecLabels && customRecLabels[recId]);
+      const hasExplicitApproval = (chg.approvalStatus as string) === "human_approved" || (chg.approvalStatus as string) === "approved";
+      const isHumanLabeled = hasCustomHumanLabel || hasExplicitApproval || Boolean(chg.v3Labels?.isExplicit);
+
+      let validationStatus: IndexedNavigatorRecommendation["validationStatus"] = "ai_checked";
+      if (valRes.status === "reject" || chg.approvalStatus === "rejected") {
         validationStatus = "reject";
       } else if (chg.approvalStatus === "needs_review") {
         validationStatus = "needs_review";
+      } else if (isHumanLabeled) {
+        validationStatus = "human_approved";
+      } else {
+        validationStatus = "ai_checked";
       }
 
       const tier = computeNormalizedTierFromGrade({
@@ -325,6 +334,23 @@ export function indexAllGuidelineRecommendations(
       });
 
       const v3Labels = classifyRecommendationV3(doc, chg, tier);
+
+      const missingLabelReasons: string[] = [];
+      if (v3Labels.isFallbackCondition) {
+        missingLabelReasons.push("Chưa khớp điều kiện cụ thể (Dùng fallback theo chuyên khoa)");
+      }
+      if (v3Labels.interventionTags.length === 0 && v3Labels.diagnosisTags.length === 0) {
+        missingLabelReasons.push("Chưa gắn nhãn can thiệp / chẩn đoán");
+      }
+      if (!isHumanLabeled) {
+        missingLabelReasons.push("Chưa qua chuyên gia kiểm duyệt nhãn");
+      }
+
+      const isUnlabeled = Boolean(
+        v3Labels.isFallbackCondition ||
+        (v3Labels.interventionTags.length === 0 && v3Labels.diagnosisTags.length === 0) ||
+        validationStatus === "needs_review"
+      );
 
       indexed.push({
         recId,
@@ -356,16 +382,23 @@ export function indexAllGuidelineRecommendations(
         labels,
         v3Labels,
         validationStatus,
+        isHumanLabeled,
+        isUnlabeled,
+        missingLabelReasons,
         matchedSpans: [], // Legacy chips removed per V3.0 specification
       });
     });
   }
 
-  // Also index standalone RecommendationAtoms (e.g., VN-MOH 2025, ESO 2024 Expedited TNK)
+  // Also index standalone RecommendationAtoms only if the guideline actually exists in Practical Guidelines
   for (const atom of recommendationAtoms) {
     if (!atom || !atom.recommendationText) continue;
     const recId = atom.id;
     if (seenRecIds.has(recId)) continue;
+    if (!atom.guidelineDocId || !seenDocIds.has(atom.guidelineDocId)) {
+      // Do not create phantom/synthetic guideline documents
+      continue;
+    }
     seenRecIds.add(recId);
 
     const syntheticDoc: GuidelineDoc = {
@@ -420,6 +453,9 @@ export function indexAllGuidelineRecommendations(
       labels,
       v3Labels,
       validationStatus: "human_approved",
+      isHumanLabeled: true,
+      isUnlabeled: false,
+      missingLabelReasons: [],
       matchedSpans: [],
     });
   }
@@ -641,6 +677,15 @@ export function runClinicalNavigatorQuery(params: {
 
   const availableSocieties = Array.from(new Set(fullPool.map((r) => r.society))).sort();
 
+  let totalUnlabeled = 0;
+  let totalApproved = 0;
+  let totalAiChecked = 0;
+  for (const r of fullPool) {
+    if (r.isUnlabeled || r.validationStatus === "needs_review") totalUnlabeled++;
+    if (r.validationStatus === "human_approved") totalApproved++;
+    if (r.validationStatus === "ai_checked") totalAiChecked++;
+  }
+
   // Compute V3.0 dynamic counts across the scoped pool
   const v3Counts: V3FilterCounts = {
     subspecialties: {},
@@ -650,6 +695,9 @@ export function runClinicalNavigatorQuery(params: {
     timeWindows: {},
     interventionTags: {},
     directions: {},
+    unlabeledCount: totalUnlabeled,
+    approvedCount: totalApproved,
+    aiCheckedCount: totalAiChecked,
   };
 
   for (const r of fullPool) {
@@ -705,6 +753,8 @@ export function runClinicalNavigatorQuery(params: {
     return {
       query,
       totalIndexedCount: fullPool.length,
+      unlabeledCount: totalUnlabeled,
+      approvedCount: totalApproved,
       coreRecommendations: [],
       supportingRecommendations: [],
       crossSocietyMatrix: [],
@@ -806,6 +856,12 @@ export function runClinicalNavigatorQuery(params: {
       continue;
     }
     if (query.onlyPracticeChanges && rec.changeType === "STANDARD") {
+      continue;
+    }
+    if (query.verificationFilter === "approved" && rec.validationStatus !== "human_approved") {
+      continue;
+    }
+    if (query.verificationFilter === "unlabeled_or_review" && !rec.isUnlabeled && rec.validationStatus === "human_approved") {
       continue;
     }
 
@@ -1150,6 +1206,8 @@ export function runClinicalNavigatorQuery(params: {
   return {
     query,
     totalIndexedCount: fullPool.length,
+    unlabeledCount: totalUnlabeled,
+    approvedCount: totalApproved,
     coreRecommendations,
     supportingRecommendations,
     crossSocietyMatrix,

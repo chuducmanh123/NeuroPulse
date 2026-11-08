@@ -1883,22 +1883,7 @@
           "currentText": "In adult patients with aSAH, we recommend against routine administration of antifibrinolytic drugs prior to treatment of the ruptured aneurysm to decrease the risk of poor functional outcome.",
           "drivingTrials": [
             "ULTRA"
-          ],
-          "v3Labels": {
-            "subspecialties": [
-              "Stroke"
-            ],
-            "conditionIds": [
-              "cond_sah"
-            ],
-            "domains": [
-              "treatment"
-            ],
-            "diagnosisTags": [],
-            "timeWindowIds": [],
-            "interventionTags": [],
-            "direction": "harm"
-          }
+          ]
         },
         {
           "id": "eso-pico-1b",
@@ -1913,25 +1898,7 @@
           "currentGrade": "GRADE Uncertain / Ongoing trials (Evidence: Very low, Voting: Vote: 11/13)",
           "currentText": "In adult patients with aSAH, no recommendation can be made on the administration of blood pressure lowering drugs prior to treatment of the ruptured aneurysm to decrease the risk of poor functional outcome.",
           "expertConsensusStatement": "1. In adult patients with aSAH and systolic blood pressures higher than 160-180 mm Hg persisting after installment of analgesics, oral nimodipine and urinary catheter prior to aneurysm treatment, we suggest considering blood pressure lowering drugs to lower systolic blood pressure to around 160 mm Hg to reduce the risk of rebleeding. (Vote: 11/13)\n2. If it is decided to give blood pressure lowering drugs, we suggest continuous infusion of short-acting drugs, e.g. labetalol, and avoiding diuretic drugs to maintain normovolemia. Care should be taken to ensure that the blood pressure reduction is gradual, with systolic blood pressure reduced cautiously over time (corresponding to no more than a 10% reduction in mean arterial pressure within the first 2 hours) to decrease the risk of DCI. (Vote: 11/13)",
-          "drivingTrials": [],
-          "v3Labels": {
-            "subspecialties": [
-              "Stroke"
-            ],
-            "conditionIds": [
-              "cond_sah"
-            ],
-            "domains": [
-              "treatment"
-            ],
-            "diagnosisTags": [],
-            "timeWindowIds": [],
-            "interventionTags": [
-              "tag_nimodipine",
-              "tag_blood_pressure_control"
-            ],
-            "direction": "conditional"
-          }
+          "drivingTrials": []
         },
         {
           "id": "eso-pico-2",
@@ -1946,24 +1913,7 @@
           "currentGrade": "GRADE Uncertain / Ongoing trials (Evidence: Very low, Voting: Vote: 13/13)",
           "currentText": "In adult patients with aSAH, no recommendation can be made on treating the ruptured aneurysm as early as possible to decrease the risk of poor functional outcome.",
           "expertConsensusStatement": "In adult patients with aSAH, we suggest treatment of the ruptured aneurysm within 24 hours after ictus. The timing should be optimized to ensure that the most dedicated team of experts is available when needed. (Vote: 13/13)",
-          "drivingTrials": [],
-          "v3Labels": {
-            "subspecialties": [
-              "Stroke"
-            ],
-            "conditionIds": [
-              "cond_sah"
-            ],
-            "domains": [
-              "treatment"
-            ],
-            "diagnosisTags": [],
-            "timeWindowIds": [
-              "cond_sah_tw_pre_securing_lt_72h"
-            ],
-            "interventionTags": [],
-            "direction": "conditional"
-          }
+          "drivingTrials": []
         },
         {
           "id": "eso-pico-3a",
@@ -1981,27 +1931,7 @@
           "drivingTrials": [
             "ISAT",
             "BRAT"
-          ],
-          "v3Labels": {
-            "subspecialties": [
-              "Stroke"
-            ],
-            "conditionIds": [
-              "cond_sah"
-            ],
-            "domains": [
-              "treatment"
-            ],
-            "diagnosisTags": [
-              "tag_severity_scales"
-            ],
-            "timeWindowIds": [],
-            "interventionTags": [
-              "tag_aneurysm_coiling",
-              "tag_surgical_clipping"
-            ],
-            "direction": "recommended"
-          }
+          ]
         },
         {
           "id": "eso-pico-3b",
@@ -2019,24 +1949,7 @@
           "drivingTrials": [
             "ISAT-2",
             "CLARYS"
-          ],
-          "v3Labels": {
-            "subspecialties": [
-              "Stroke"
-            ],
-            "conditionIds": [
-              "cond_sah"
-            ],
-            "domains": [
-              "treatment"
-            ],
-            "diagnosisTags": [],
-            "timeWindowIds": [],
-            "interventionTags": [
-              "tag_aneurysm_coiling"
-            ],
-            "direction": "conditional"
-          }
+          ]
         },
         {
           "id": "eso-pico-4-rec1",
@@ -2051,26 +1964,7 @@
           "currentText": "In adult patients with aSAH, we recommend prophylactic treatment with oral nimodipine to decrease the risk of poor functional outcome.",
           "drivingTrials": [
             "BRANT"
-          ],
-          "v3Labels": {
-            "subspecialties": [
-              "Stroke"
-            ],
-            "conditionIds": [
-              "cond_sah"
-            ],
-            "domains": [
-              "treatment"
-            ],
-            "diagnosisTags": [],
-            "timeWindowIds": [
-              "cond_sah_tw_vasospasm_window_day_3_14"
-            ],
-            "interventionTags": [
-              "tag_nimodipine"
-            ],
-            "direction": "recommended"
-          }
+          ]
         },
         {
           "id": "eso-pico-4-rec2",
@@ -2090,26 +1984,7 @@
             "CONSCIOUS-2",
             "REACT",
             "STASH"
-          ],
-          "v3Labels": {
-            "subspecialties": [
-              "Stroke"
-            ],
-            "conditionIds": [
-              "cond_sah"
-            ],
-            "domains": [
-              "treatment"
-            ],
-            "diagnosisTags": [],
-            "timeWindowIds": [
-              "cond_sah_tw_vasospasm_window_day_3_14"
-            ],
-            "interventionTags": [
-              "tag_statin"
-            ],
-            "direction": "harm"
-          }
+          ]
         },
         {
           "id": "eso-pico-4-rec3",
@@ -2124,26 +1999,7 @@
           "currentText": "In adult patients with aSAH, no recommendation can be made on prophylactic treatment with antiplatelet drugs or lumbar drainage to decrease the risk of poor functional outcome until further data from RCT are available.",
           "drivingTrials": [
             "PILLAR"
-          ],
-          "v3Labels": {
-            "subspecialties": [
-              "Stroke"
-            ],
-            "conditionIds": [
-              "cond_sah"
-            ],
-            "domains": [
-              "treatment"
-            ],
-            "diagnosisTags": [],
-            "timeWindowIds": [
-              "cond_sah_tw_vasospasm_window_day_3_14"
-            ],
-            "interventionTags": [
-              "tag_lumbar_drain"
-            ],
-            "direction": "conditional"
-          }
+          ]
         },
         {
           "id": "eso-pico-5a",
@@ -2160,26 +2016,7 @@
           "expertConsensusStatement": "In adult patients with aSAH and clinical deterioration due to delayed cerebral ischaemia, we suggest considering induced hypertension, provided that the ruptured aneurysm is treated and after standard therapy has proven insufficient. Clinical contraindications and potential complications of induced hypertension should be considered. (Vote: 11/13)",
           "drivingTrials": [
             "HIMALAIA"
-          ],
-          "v3Labels": {
-            "subspecialties": [
-              "Stroke"
-            ],
-            "conditionIds": [
-              "cond_sah"
-            ],
-            "domains": [
-              "treatment"
-            ],
-            "diagnosisTags": [],
-            "timeWindowIds": [
-              "cond_sah_tw_vasospasm_window_day_3_14"
-            ],
-            "interventionTags": [
-              "tag_blood_pressure_control"
-            ],
-            "direction": "conditional"
-          }
+          ]
         },
         {
           "id": "eso-pico-5b",
@@ -2196,26 +2033,7 @@
           "expertConsensusStatement": "1. In adult patients with aSAH and clinical deterioration due to delayed cerebral ischaemia in combination with refractory and severe vasospasm, we suggest considering intra-arterial pharmacological treatment as a rescue therapy in selected patients to decrease the risk of poor functional outcome. (Vote: 11/13)\n2. In adult patients with aSAH and clinical deterioration due to delayed cerebral ischaemia in combination with refractory severe vasospasm, the current evidence is insufficient to support the routine use of mechanical vasodilatation with balloon angioplasty. In selected cases, this approach may be considered as a last-line rescue treatment after careful multidisciplinary discussion of the potential risks and uncertain benefits. (Vote: 12/13)\n3. In adult patients with aSAH and clinical deterioration due to delayed cerebral ischaemia in combination with refractory severe vasospasm, the current data are insufficient to support the use of mechanical vasodilatation with temporary deployment of retrievable stents to decrease the risk of poor functional outcome. (Vote: 13/13)",
           "drivingTrials": [
             "IMCVS"
-          ],
-          "v3Labels": {
-            "subspecialties": [
-              "Stroke"
-            ],
-            "conditionIds": [
-              "cond_sah"
-            ],
-            "domains": [
-              "treatment"
-            ],
-            "diagnosisTags": [],
-            "timeWindowIds": [
-              "cond_sah_tw_vasospasm_window_day_3_14"
-            ],
-            "interventionTags": [
-              "tag_balloon_angioplasty"
-            ],
-            "direction": "conditional"
-          }
+          ]
         },
         {
           "id": "eso-pico-6a",
@@ -2230,29 +2048,7 @@
           "currentGrade": "GRADE Uncertain / Ongoing trials (Evidence: Very low, Voting: Vote: 13/13)",
           "currentText": "In adult patients with aSAH, no recommendation can be made on neuroimaging to decrease the risk of poor functional outcome.",
           "expertConsensusStatement": "1. In adult patients with aSAH and clinical deterioration, we suggest plain head CT in combination with CT-Perfusion (CTP) imaging to detect the cause of deterioration. (Vote: 11/13)\n2. In adult patients with aSAH who are neurologically not assessable but at high risk for DCI, we suggest plain head CT and CTP at least once between day 4 and 14. (Vote: 10/13)\n3. In adult patients with aSAH, we do not suggest a routine DSA for screening of macrovascular vasospasm. (Vote: 13/13)",
-          "drivingTrials": [],
-          "v3Labels": {
-            "subspecialties": [
-              "Stroke"
-            ],
-            "conditionIds": [
-              "cond_sah"
-            ],
-            "domains": [
-              "diagnosis"
-            ],
-            "diagnosisTags": [
-              "tag_clinical_examination",
-              "tag_non_contrast_ct",
-              "tag_ct_perfusion",
-              "tag_dsa_angiography"
-            ],
-            "timeWindowIds": [
-              "cond_sah_tw_vasospasm_window_day_3_14"
-            ],
-            "interventionTags": [],
-            "direction": "conditional"
-          }
+          "drivingTrials": []
         },
         {
           "id": "eso-pico-6b",
@@ -2269,30 +2065,7 @@
           "expertConsensusStatement": "1. In adult patients with aSAH, no suggestion can be given on the use of TCD monitoring. (Vote: 10/13)\n2. In adult patients with aSAH and radiological hydrocephalus who are neurologically not assessable, we suggest ICP monitoring via EVD if an EVD is in place. (Vote: 13/13)\n3. In adult patients with aSAH without radiological hydrocephalus who are neurologically not assessable, no suggestion can be given on ICP monitoring. (Vote: 11/13)\n4. In adult patients with aSAH who are neurologically not assessable, we do not suggest invasive multimodal neuromonitoring with continuous measurement of partial pressure of brain tissue oxygen (PbtO2) and/or microdialysis due to the uncertain risk/benefit ratio of these modalities. (Vote: 10/13)\n5. In adult patients with aSAH who are neurologically not assessable, we do not suggest the routine use of continuous EEG monitoring. (Vote: 13/13)",
           "drivingTrials": [
             "SYNAPSE-ICU"
-          ],
-          "v3Labels": {
-            "subspecialties": [
-              "Stroke"
-            ],
-            "conditionIds": [
-              "cond_sah"
-            ],
-            "domains": [
-              "treatment"
-            ],
-            "diagnosisTags": [
-              "tag_clinical_examination",
-              "tag_ultrasound_doppler",
-              "tag_continuous_eeg"
-            ],
-            "timeWindowIds": [],
-            "interventionTags": [
-              "tag_evd",
-              "tag_icp_monitoring",
-              "tag_continuous_eeg"
-            ],
-            "direction": "conditional"
-          }
+          ]
         },
         {
           "id": "eso-pico-7",
@@ -2307,27 +2080,7 @@
           "currentGrade": "GRADE Uncertain / Ongoing trials (Evidence: Very low, Voting: Vote: 13/13)",
           "currentText": "In adult patients with aSAH and hydrocephalus, no recommendation can be made on CSF diversion strategies to decrease the risk of poor functional outcome.",
           "expertConsensusStatement": "1. In adult patients with aSAH who present with radiological hydrocephalus and a decreased level of consciousness, we suggest CSF drainage. (Vote: 13/13)\n2. In adult patients with aSAH who present with obstructive hydrocephalus and a decreased level of consciousness, we suggest EVD placement. (Vote: 13/13)\n3. In adult patients with aSAH who present with communicating hydrocephalus and a decreased level of consciousness, we suggest LD or repeated LPs as the strategy of first choice for CSF drainage. (Vote: 11/13)\n4. In adult patients with aSAH who present with radiological hydrocephalus and a normal level of consciousness, we do not suggest CSF drainage. (Vote: 12/13)\n5. In adult patients with aSAH who come at a point at which prolonged CSF drainage (by EVD, LD or repeated LPs) carries a higher risk of severe complications than placement of a permanent CSF diversion, we suggest permanent CSF diversion. (Vote: 13/13)\n6. In adult patients with aSAH who present with symptomatic chronic hydrocephalus, we suggest permanent CSF diversion. (Vote: 13/13)",
-          "drivingTrials": [],
-          "v3Labels": {
-            "subspecialties": [
-              "Stroke"
-            ],
-            "conditionIds": [
-              "cond_sah"
-            ],
-            "domains": [
-              "treatment"
-            ],
-            "diagnosisTags": [
-              "tag_csf_analysis"
-            ],
-            "timeWindowIds": [],
-            "interventionTags": [
-              "tag_evd",
-              "tag_lumbar_drain"
-            ],
-            "direction": "conditional"
-          }
+          "drivingTrials": []
         },
         {
           "id": "eso-pico-8",
@@ -2342,22 +2095,7 @@
           "currentGrade": "GRADE Uncertain / Ongoing trials (Evidence: Very low, Voting: Vote: 13/13)",
           "currentText": "In adult patients with aSAH, no recommendation can be made on admission to a dedicated neuro-ICU or high care unit to decrease the risk of poor functional outcome.",
           "expertConsensusStatement": "In adult patients with aSAH, we suggest admission and management in a dedicated neuro-ICU or high care unit to decrease the risk of poor functional outcome. (Vote: 13/13)",
-          "drivingTrials": [],
-          "v3Labels": {
-            "subspecialties": [
-              "Stroke"
-            ],
-            "conditionIds": [
-              "cond_sah"
-            ],
-            "domains": [
-              "treatment"
-            ],
-            "diagnosisTags": [],
-            "timeWindowIds": [],
-            "interventionTags": [],
-            "direction": "conditional"
-          }
+          "drivingTrials": []
         },
         {
           "id": "eso-pico-9a",
@@ -2372,22 +2110,7 @@
           "currentGrade": "GRADE Uncertain / Ongoing trials (Evidence: Very low, Voting: Vote: 12/13)",
           "currentText": "In adult patients with aSAH, no recommendation can be made on admission/transfer to a high-volume centre to decrease the risk of poor functional outcome.",
           "expertConsensusStatement": "We suggest that all patients with spontaneous SAH are admitted or immediately transferred to centres that treat at least 70 patients with aSAH per year, or at least 35 patients with aSAH per year in remote areas where access is limited. (Vote: 12/13)",
-          "drivingTrials": [],
-          "v3Labels": {
-            "subspecialties": [
-              "Stroke"
-            ],
-            "conditionIds": [
-              "cond_sah"
-            ],
-            "domains": [
-              "treatment"
-            ],
-            "diagnosisTags": [],
-            "timeWindowIds": [],
-            "interventionTags": [],
-            "direction": "conditional"
-          }
+          "drivingTrials": []
         },
         {
           "id": "eso-pico-9b",
@@ -2402,22 +2125,7 @@
           "currentGrade": "GRADE Uncertain / Ongoing trials (Evidence: Very low, Voting: Vote: 12/13)",
           "currentText": "In adult patients with aSAH, no recommendation can be made on case-volume per neurosurgeon and neurointerventionalist to decrease the risk of poor functional outcome.",
           "expertConsensusStatement": "In adult patients with aSAH, we suggest that aneurysms are repaired by neurosurgeons or neurointerventionalists who perform the treatment of choice in more than 30 patients with aneurysms (ruptured and unruptured) per year. (Vote: 12/13)",
-          "drivingTrials": [],
-          "v3Labels": {
-            "subspecialties": [
-              "Stroke"
-            ],
-            "conditionIds": [
-              "cond_sah"
-            ],
-            "domains": [
-              "treatment"
-            ],
-            "diagnosisTags": [],
-            "timeWindowIds": [],
-            "interventionTags": [],
-            "direction": "conditional"
-          }
+          "drivingTrials": []
         },
         {
           "id": "eso-pico-10",
@@ -2434,22 +2142,7 @@
           "expertConsensusStatement": "1. In adult patients with aSAH who are treated with coils and adequate occlusion within 6 months, we suggest at least one additional radiological follow-up at or beyond 12 months after aneurysm repair to investigate potential aneurysm recanalization, as long as a potential re-treatment remains an option. (Vote: 13/13)\n2. In adult patients with aSAH who were treated with clip reconstruction and adequate occlusion within 6 months, we do not suggest further radiological follow-up to investigate potential aneurysm recanalization. (Vote: 11/13)\n3. In adult patients with aSAH who have neck remnants or partially occluded aneurysms (irrespective of type of aneurysm treatment), we suggest radiological follow-up beyond 6 months after aneurysm treatment as long as a potential re-treatment remains an option. (Vote: 13/13)\n4. In adult patients with aSAH who are treated with endovascular devices other than coils, we suggest radiological follow-up at least five years after treatment, regardless of the degree of occlusion, to ensure adequate long-term occlusion and as long as a potential re-treatment remains an option. (Vote: 11/13)\n5. In adult patients with aSAH, we suggest radiological follow-up beyond 6 months after aneurysm treatment in order to evaluate for de novo aneurysms at 5-year intervals as long as a potential treatment remains an option, in those with a high-risk profile (such as young age, positive family history for aSAH, autosomal dominant polycystic kidney disease). (Vote: 12/13)",
           "drivingTrials": [
             "ISAT"
-          ],
-          "v3Labels": {
-            "subspecialties": [
-              "Stroke"
-            ],
-            "conditionIds": [
-              "cond_sah"
-            ],
-            "domains": [
-              "treatment"
-            ],
-            "diagnosisTags": [],
-            "timeWindowIds": [],
-            "interventionTags": [],
-            "direction": "conditional"
-          }
+          ]
         }
       ],
       "executiveSummaryVi": "Hướng dẫn thực hành lâm sàng chính thức từ ESO. Bao gồm 17 khuyến cáo đã được bác sĩ chuyên khoa phê duyệt."
@@ -18846,6 +18539,1232 @@
       "notes": "BHYT chi trả cho vật tư can thiệp coil và can thiệp mạch não."
     }
   ],
+  "pivotalTrials": [
+    {
+      "id": "act-2022",
+      "acronym": "AcT",
+      "title": "Intravenous Tenecteplase Compared With Alteplase for Acute Ischaemic Stroke in Canada (AcT)",
+      "year": 2022,
+      "journal": "The Lancet",
+      "pmid": "35779553",
+      "doi": "10.1016/S0140-6736(22)01054-6",
+      "subspecialty": "Stroke",
+      "evidenceSource": "PEER_REVIEWED_PUBLISHED",
+      "design": "Phase 3 RCT",
+      "sampleSize": 1600,
+      "pico": {
+        "population": "Adults ≥18y with disabling AIS eligible for standard IV thrombolysis",
+        "intervention": "IV Tenecteplase 0.25 mg/kg single bolus (max 25 mg)",
+        "comparator": "IV Alteplase 0.9 mg/kg (10% bolus + 60-min infusion, max 90 mg)",
+        "timeWindow": "≤ 4.5 hours from symptom onset"
+      },
+      "primaryEndpoint": {
+        "metric": "mRS 0–1 at 90–120 days",
+        "resultStats": "36.9% vs. 34.8% (unadjusted RD 2.1%, 95% CI -2.6 to 6.9; met non-inferiority)",
+        "verdict": "NON_INFERIOR"
+      },
+      "safetyEndpoint": {
+        "sICH": "3.4% vs. 3.2% (24h symptomatic ICH)",
+        "mortality90d": "15.3% vs. 15.4%"
+      },
+      "bottomLine": "Tenecteplase 0.25 mg/kg is non-inferior to Alteplase 0.9 mg/kg for all IVT-eligible AIS patients within 4.5h with rapid single-bolus workflow advantage.",
+      "ontologyTags": {
+        "condition": [
+          "ais"
+        ],
+        "age_group": [
+          "adult"
+        ],
+        "phase": [
+          "acute_treatment",
+          "emergency_department"
+        ],
+        "intervention_type": [
+          "iv_thrombolysis"
+        ],
+        "drug_or_procedure": [
+          "tenecteplase",
+          "alteplase"
+        ],
+        "time_window": [
+          "within_4_5h"
+        ],
+        "outcome_target": [
+          "functional_outcome",
+          "symptomatic_ich",
+          "mortality"
+        ],
+        "direction": [
+          "for"
+        ]
+      },
+      "linkedScenarioIds": [
+        "ais-ivt-tenecteplase-4.5h"
+      ]
+    },
+    {
+      "id": "trace-2-2023",
+      "acronym": "TRACE-2",
+      "title": "Tenecteplase versus Alteplase in Acute Ischaemic Cerebrovascular Events (TRACE-2)",
+      "year": 2023,
+      "journal": "The Lancet",
+      "pmid": "36774935",
+      "doi": "10.1016/S0140-6736(22)02600-9",
+      "subspecialty": "Stroke",
+      "evidenceSource": "PEER_REVIEWED_PUBLISHED",
+      "design": "Phase 3 RCT",
+      "sampleSize": 1430,
+      "pico": {
+        "population": "Adults with AIS (NIHSS 5–25) eligible for IVT but ineligible for or declining EVT",
+        "intervention": "IV Tenecteplase 0.25 mg/kg bolus (max 25 mg)",
+        "comparator": "IV Alteplase 0.9 mg/kg infusion (max 90 mg)",
+        "timeWindow": "≤ 4.5 hours"
+      },
+      "primaryEndpoint": {
+        "metric": "mRS 0–1 at 90 days",
+        "resultStats": "62% vs. 58% (RR 1.07, 95% CI 0.98–1.16; non-inferior)",
+        "verdict": "NON_INFERIOR"
+      },
+      "safetyEndpoint": {
+        "sICH": "2.0% vs. 1.8% within 36h",
+        "mortality90d": "7.0% vs. 6.8%"
+      },
+      "bottomLine": "Confirms non-inferior efficacy and comparable safety of Tenecteplase 0.25 mg/kg vs. Alteplase in AIS within 4.5 hours.",
+      "ontologyTags": {
+        "condition": [
+          "ais"
+        ],
+        "age_group": [
+          "adult"
+        ],
+        "phase": [
+          "acute_treatment"
+        ],
+        "intervention_type": [
+          "iv_thrombolysis"
+        ],
+        "drug_or_procedure": [
+          "tenecteplase",
+          "alteplase"
+        ],
+        "time_window": [
+          "within_4_5h"
+        ],
+        "outcome_target": [
+          "functional_outcome",
+          "symptomatic_ich"
+        ],
+        "direction": [
+          "for"
+        ]
+      },
+      "linkedScenarioIds": [
+        "ais-ivt-tenecteplase-4.5h"
+      ]
+    },
+    {
+      "id": "extend-ia-tnk-2018",
+      "acronym": "EXTEND-IA TNK",
+      "title": "Tenecteplase versus Alteplase before Thrombectomy for Ischemic Stroke (EXTEND-IA TNK)",
+      "year": 2018,
+      "journal": "NEJM",
+      "pmid": "29694815",
+      "doi": "10.1056/NEJMoa1716405",
+      "subspecialty": "Stroke",
+      "evidenceSource": "PEER_REVIEWED_PUBLISHED",
+      "design": "Phase 2 RCT",
+      "sampleSize": 202,
+      "pico": {
+        "population": "AIS with ICA, M1,M2 or basilar occlusion eligible for IVT prior to EVT",
+        "intervention": "IV Tenecteplase 0.25 mg/kg bolus before thrombectomy",
+        "comparator": "IV Alteplase 0.9 mg/kg before thrombectomy",
+        "timeWindow": "≤ 4.5 hours"
+      },
+      "primaryEndpoint": {
+        "metric": "Substantial reperfusion (>50% or absence of retrievable thrombus) at initial angiogram",
+        "resultStats": "22% vs. 10% (incidence diff 12%, p=0.002 for non-inferiority, p=0.03 for superiority)",
+        "verdict": "POSITIVE"
+      },
+      "safetyEndpoint": {
+        "sICH": "1.0% vs. 1.0%",
+        "mortality90d": "10% vs. 18% (p=0.049)"
+      },
+      "bottomLine": "Tenecteplase 0.25 mg/kg before EVT doubled early angiographic reperfusion and improved 90-day ordinal mRS compared with Alteplase.",
+      "ontologyTags": {
+        "condition": [
+          "ais",
+          "large_vessel_occlusion"
+        ],
+        "age_group": [
+          "adult"
+        ],
+        "phase": [
+          "acute_treatment"
+        ],
+        "intervention_type": [
+          "iv_thrombolysis",
+          "endovascular_thrombectomy"
+        ],
+        "drug_or_procedure": [
+          "tenecteplase",
+          "alteplase"
+        ],
+        "time_window": [
+          "within_4_5h"
+        ],
+        "outcome_target": [
+          "recanalization",
+          "functional_outcome"
+        ],
+        "direction": [
+          "for"
+        ]
+      },
+      "linkedScenarioIds": [
+        "ais-ivt-tenecteplase-4.5h"
+      ]
+    },
+    {
+      "id": "select2-2023",
+      "acronym": "SELECT2",
+      "title": "Trial of Endovascular Thrombectomy for Large Ischemic Strokes (SELECT2)",
+      "year": 2023,
+      "journal": "NEJM",
+      "pmid": "36762865",
+      "doi": "10.1056/NEJMoa2214403",
+      "subspecialty": "Stroke",
+      "evidenceSource": "PEER_REVIEWED_PUBLISHED",
+      "design": "Phase 3 RCT",
+      "sampleSize": 352,
+      "pico": {
+        "population": "Adults with anterior LVO (ICA or M1) and large ischemic core (ASPECTS 3–5 or CTP core ≥50 mL)",
+        "intervention": "Endovascular thrombectomy + medical care",
+        "comparator": "Standard medical management alone",
+        "timeWindow": "≤ 24 hours from last known well"
+      },
+      "primaryEndpoint": {
+        "metric": "90-day ordinal mRS shift (generalized OR) & functional independence (mRS 0–2)",
+        "resultStats": "Gen OR 1.51 (95% CI 1.20–1.89, p<0.001); mRS 0–2: 20.3% vs. 7.0% (RR 2.97)",
+        "verdict": "POSITIVE"
+      },
+      "safetyEndpoint": {
+        "sICH": "0.6% vs. 1.1%",
+        "mortality90d": "38.4% vs. 41.5%"
+      },
+      "bottomLine": "Endovascular thrombectomy significantly improves functional independence in anterior LVO patients with large core (ASPECTS 3–5) up to 24h.",
+      "ontologyTags": {
+        "condition": [
+          "ais",
+          "large_vessel_occlusion",
+          "large_ischemic_core"
+        ],
+        "age_group": [
+          "adult"
+        ],
+        "phase": [
+          "acute_treatment"
+        ],
+        "intervention_type": [
+          "endovascular_thrombectomy",
+          "patient_selection"
+        ],
+        "drug_or_procedure": [
+          "mechanical_thrombectomy_device",
+          "ct",
+          "ctp"
+        ],
+        "time_window": [
+          "within_24h"
+        ],
+        "outcome_target": [
+          "functional_outcome",
+          "mortality"
+        ],
+        "direction": [
+          "for"
+        ]
+      },
+      "linkedScenarioIds": [
+        "ais-large-core-evt-aspects-3-5"
+      ]
+    },
+    {
+      "id": "angel-aspect-2023",
+      "acronym": "ANGEL-ASPECT",
+      "title": "Study of Endovascular Therapy in Acute Anterior Circulation Large Vessel Occlusive Patients With a Large Infarct Core (ANGEL-ASPECT)",
+      "year": 2023,
+      "journal": "NEJM",
+      "pmid": "36762852",
+      "doi": "10.1056/NEJMoa2213379",
+      "subspecialty": "Stroke",
+      "evidenceSource": "PEER_REVIEWED_PUBLISHED",
+      "design": "Phase 3 RCT",
+      "sampleSize": 456,
+      "pico": {
+        "population": "Adults with anterior circulation LVO and ASPECTS 3–5 or infarct core volume 70–100 mL",
+        "intervention": "Endovascular thrombectomy + medical management",
+        "comparator": "Medical management alone",
+        "timeWindow": "≤ 24 hours"
+      },
+      "primaryEndpoint": {
+        "metric": "90-day ordinal mRS distribution",
+        "resultStats": "Generalized OR 1.37 (95% CI 1.11–1.69, p=0.004); mRS 0–2: 30.0% vs. 11.6%",
+        "verdict": "POSITIVE"
+      },
+      "safetyEndpoint": {
+        "sICH": "6.1% vs. 2.7% (within 48h)",
+        "mortality90d": "21.7% vs. 20.0%"
+      },
+      "bottomLine": "Demonstrates robust functional recovery with EVT in large ischemic core (ASPECTS 3–5 or 70–100 mL) within 24 hours.",
+      "ontologyTags": {
+        "condition": [
+          "ais",
+          "large_vessel_occlusion",
+          "large_ischemic_core"
+        ],
+        "age_group": [
+          "adult"
+        ],
+        "phase": [
+          "acute_treatment"
+        ],
+        "intervention_type": [
+          "endovascular_thrombectomy"
+        ],
+        "drug_or_procedure": [
+          "mechanical_thrombectomy_device"
+        ],
+        "time_window": [
+          "within_24h"
+        ],
+        "outcome_target": [
+          "functional_outcome",
+          "symptomatic_ich"
+        ],
+        "direction": [
+          "for"
+        ]
+      },
+      "linkedScenarioIds": [
+        "ais-large-core-evt-aspects-3-5"
+      ]
+    },
+    {
+      "id": "tension-2023",
+      "acronym": "TENSION",
+      "title": "Efficacy and Safety of Thrombectomy in Stroke With Extended Lesion and Extended Time Window (TENSION)",
+      "year": 2023,
+      "journal": "The Lancet",
+      "pmid": "37837989",
+      "doi": "10.1016/S0140-6736(23)02032-9",
+      "subspecialty": "Stroke",
+      "evidenceSource": "PEER_REVIEWED_PUBLISHED",
+      "design": "Phase 3 RCT",
+      "sampleSize": 253,
+      "pico": {
+        "population": "AIS with anterior LVO and ASPECTS 3–5 selected predominantly by non-contrast CT (without mandatory perfusion)",
+        "intervention": "Endovascular thrombectomy + medical treatment",
+        "comparator": "Medical treatment alone",
+        "timeWindow": "≤ 12 hours"
+      },
+      "primaryEndpoint": {
+        "metric": "90-day ordinal mRS shift",
+        "resultStats": "Adjusted common OR 2.58 (95% CI 1.60–4.15, p=0.0001); mRS 0–2: 17% vs. 2%",
+        "verdict": "POSITIVE"
+      },
+      "safetyEndpoint": {
+        "sICH": "5% vs. 5%",
+        "mortality90d": "40% vs. 51% (HR 0.67, p=0.038)"
+      },
+      "bottomLine": "NCCT-based selection of ASPECTS 3–5 patients for EVT significantly improves functional outcome and reduces mortality without requiring CT perfusion.",
+      "ontologyTags": {
+        "condition": [
+          "ais",
+          "large_vessel_occlusion",
+          "large_ischemic_core"
+        ],
+        "age_group": [
+          "adult"
+        ],
+        "phase": [
+          "acute_treatment"
+        ],
+        "intervention_type": [
+          "endovascular_thrombectomy",
+          "neuroimaging"
+        ],
+        "drug_or_procedure": [
+          "mechanical_thrombectomy_device",
+          "ct"
+        ],
+        "time_window": [
+          "within_24h"
+        ],
+        "outcome_target": [
+          "functional_outcome",
+          "mortality"
+        ],
+        "direction": [
+          "for"
+        ]
+      },
+      "linkedScenarioIds": [
+        "ais-large-core-evt-aspects-3-5"
+      ]
+    },
+    {
+      "id": "dawn-2018",
+      "acronym": "DAWN",
+      "title": "Thrombectomy 6 to 24 Hours after Stroke with a Mismatch between Deficit and Infarct (DAWN)",
+      "year": 2018,
+      "journal": "NEJM",
+      "pmid": "29129157",
+      "doi": "10.1056/NEJMoa1706442",
+      "subspecialty": "Stroke",
+      "evidenceSource": "PEER_REVIEWED_PUBLISHED",
+      "design": "Phase 3 RCT",
+      "sampleSize": 206,
+      "pico": {
+        "population": "Anterior LVO (ICA/M1) with clinical-core mismatch (NIHSS ≥10 & small CTP/DWI core)",
+        "intervention": "Thrombectomy + standard care",
+        "comparator": "Standard medical care alone",
+        "timeWindow": "6–24 hours from last known well (including wake-up stroke)"
+      },
+      "primaryEndpoint": {
+        "metric": "Utility-weighted mRS & 90-day mRS 0–2",
+        "resultStats": "mRS 0–2: 49% vs. 13% (adjusted difference 33%, 95% CI 21–44; NNT = 2.8)",
+        "verdict": "POSITIVE"
+      },
+      "safetyEndpoint": {
+        "sICH": "6% vs. 3% (p=0.50)",
+        "mortality90d": "19% vs. 18%"
+      },
+      "bottomLine": "Establishes late-window (6–24h) mechanical thrombectomy as standard of care when clinical-core mismatch is present.",
+      "ontologyTags": {
+        "condition": [
+          "ais",
+          "large_vessel_occlusion"
+        ],
+        "age_group": [
+          "adult"
+        ],
+        "phase": [
+          "acute_treatment"
+        ],
+        "intervention_type": [
+          "endovascular_thrombectomy",
+          "patient_selection",
+          "neuroimaging"
+        ],
+        "drug_or_procedure": [
+          "mechanical_thrombectomy_device",
+          "ctp",
+          "mri"
+        ],
+        "time_window": [
+          "h6_to_24h",
+          "unknown_onset_wake_up"
+        ],
+        "outcome_target": [
+          "functional_outcome"
+        ],
+        "direction": [
+          "for"
+        ]
+      }
+    },
+    {
+      "id": "defuse-3-2018",
+      "acronym": "DEFUSE-3",
+      "title": "Thrombectomy for Stroke at 6 to 16 Hours with Selection by Perfusion Imaging (DEFUSE 3)",
+      "year": 2018,
+      "journal": "NEJM",
+      "pmid": "29364767",
+      "doi": "10.1056/NEJMoa1713973",
+      "subspecialty": "Stroke",
+      "evidenceSource": "PEER_REVIEWED_PUBLISHED",
+      "design": "Phase 3 RCT",
+      "sampleSize": 182,
+      "pico": {
+        "population": "Proximal MCA or ICA occlusion with initial infarct <70 mL and mismatch ratio ≥1.8 on CTP/MRI",
+        "intervention": "Endovascular therapy + medical therapy",
+        "comparator": "Standard medical therapy alone",
+        "timeWindow": "6–16 hours from last known well"
+      },
+      "primaryEndpoint": {
+        "metric": "90-day ordinal mRS & functional independence (mRS 0–2)",
+        "resultStats": "OR 2.77 (p<0.001); mRS 0–2: 45% vs. 17% (RR 2.67, p<0.001)",
+        "verdict": "POSITIVE"
+      },
+      "safetyEndpoint": {
+        "sICH": "7% vs. 4% (p=0.75)",
+        "mortality90d": "14% vs. 26% (p=0.05)"
+      },
+      "bottomLine": "Perfusion-mismatch guided thrombectomy at 6–16 hours markedly improves functional outcomes and survival.",
+      "ontologyTags": {
+        "condition": [
+          "ais",
+          "large_vessel_occlusion"
+        ],
+        "age_group": [
+          "adult"
+        ],
+        "phase": [
+          "acute_treatment"
+        ],
+        "intervention_type": [
+          "endovascular_thrombectomy",
+          "patient_selection",
+          "neuroimaging"
+        ],
+        "drug_or_procedure": [
+          "mechanical_thrombectomy_device",
+          "ctp",
+          "mri"
+        ],
+        "time_window": [
+          "h6_to_24h"
+        ],
+        "outcome_target": [
+          "functional_outcome",
+          "mortality"
+        ],
+        "direction": [
+          "for"
+        ]
+      }
+    },
+    {
+      "id": "attention-2022",
+      "acronym": "ATTENTION",
+      "title": "Trial of Endovascular Treatment of Acute Basilar-Artery Occlusion (ATTENTION)",
+      "year": 2022,
+      "journal": "NEJM",
+      "pmid": "36239644",
+      "doi": "10.1056/NEJMoa2207576",
+      "subspecialty": "Stroke",
+      "evidenceSource": "PEER_REVIEWED_PUBLISHED",
+      "design": "Phase 3 RCT",
+      "sampleSize": 340,
+      "pico": {
+        "population": "Adults with moderate-to-severe Basilar Artery Occlusion (NIHSS ≥10, PC-ASPECTS ≥6)",
+        "intervention": "Endovascular thrombectomy + best medical care",
+        "comparator": "Best medical care alone",
+        "timeWindow": "≤ 12 hours of estimated BAO onset"
+      },
+      "primaryEndpoint": {
+        "metric": "Good functional status (mRS 0–3) at 90 days",
+        "resultStats": "46% vs. 23% (adjusted rate ratio 2.06, 95% CI 1.46–2.91, p<0.001)",
+        "verdict": "POSITIVE"
+      },
+      "safetyEndpoint": {
+        "sICH": "5% vs. 0%",
+        "mortality90d": "37% vs. 55% (adjusted RR 0.66, 95% CI 0.52–0.82)"
+      },
+      "bottomLine": "Endovascular thrombectomy doubles good functional outcomes and cuts mortality by one-third in basilar artery occlusion (NIHSS ≥10).",
+      "ontologyTags": {
+        "condition": [
+          "ais",
+          "basilar_artery_occlusion"
+        ],
+        "age_group": [
+          "adult"
+        ],
+        "phase": [
+          "acute_treatment"
+        ],
+        "intervention_type": [
+          "endovascular_thrombectomy"
+        ],
+        "drug_or_procedure": [
+          "mechanical_thrombectomy_device"
+        ],
+        "time_window": [
+          "within_24h"
+        ],
+        "outcome_target": [
+          "functional_outcome",
+          "mortality"
+        ],
+        "direction": [
+          "for"
+        ]
+      }
+    },
+    {
+      "id": "baoche-2022",
+      "acronym": "BAOCHE",
+      "title": "Trial of Thrombectomy 6 to 24 Hours after Stroke Due to Basilar-Artery Occlusion (BAOCHE)",
+      "year": 2022,
+      "journal": "NEJM",
+      "pmid": "36239645",
+      "doi": "10.1056/NEJMoa2206317",
+      "subspecialty": "Stroke",
+      "evidenceSource": "PEER_REVIEWED_PUBLISHED",
+      "design": "Phase 3 RCT",
+      "sampleSize": 217,
+      "pico": {
+        "population": "Basilar artery occlusion presenting 6–24 hours from symptom onset",
+        "intervention": "Thrombectomy + standard medical therapy",
+        "comparator": "Standard medical therapy alone",
+        "timeWindow": "6–24 hours"
+      },
+      "primaryEndpoint": {
+        "metric": "mRS 0–3 at 90 days",
+        "resultStats": "46% vs. 24% (adjusted rate ratio 1.81, 95% CI 1.26–2.60, p<0.001)",
+        "verdict": "POSITIVE"
+      },
+      "safetyEndpoint": {
+        "sICH": "6% vs. 1%",
+        "mortality90d": "31% vs. 42%"
+      },
+      "bottomLine": "Confirms efficacy of late-window (6–24h) mechanical thrombectomy in basilar artery occlusion.",
+      "ontologyTags": {
+        "condition": [
+          "ais",
+          "basilar_artery_occlusion"
+        ],
+        "age_group": [
+          "adult"
+        ],
+        "phase": [
+          "acute_treatment"
+        ],
+        "intervention_type": [
+          "endovascular_thrombectomy"
+        ],
+        "drug_or_procedure": [
+          "mechanical_thrombectomy_device"
+        ],
+        "time_window": [
+          "h6_to_24h",
+          "within_24h"
+        ],
+        "outcome_target": [
+          "functional_outcome",
+          "mortality"
+        ],
+        "direction": [
+          "for"
+        ]
+      }
+    },
+    {
+      "id": "enchanted2-mt-2022",
+      "acronym": "ENCHANTED2/MT",
+      "title": "Intensive Blood Pressure Control After Endovascular Thrombectomy for Acute Ischaemic Stroke (ENCHANTED2/MT)",
+      "year": 2022,
+      "journal": "The Lancet",
+      "pmid": "36341753",
+      "doi": "10.1016/S0140-6736(22)01882-7",
+      "subspecialty": "Stroke",
+      "evidenceSource": "PEER_REVIEWED_PUBLISHED",
+      "design": "Phase 3 RCT",
+      "sampleSize": 821,
+      "pico": {
+        "population": "Adults with persistent hypertension (SBP ≥140 mmHg) after successful mechanical thrombectomy (eTICI 2b–3)",
+        "intervention": "Intensive SBP target <120 mmHg",
+        "comparator": "Less intensive SBP target 140–180 mmHg",
+        "timeWindow": "Post-reperfusion (first 72 hours)"
+      },
+      "primaryEndpoint": {
+        "metric": "90-day ordinal mRS distribution (worse functional outcome)",
+        "resultStats": "Common OR for worse mRS: 1.37 (95% CI 1.07–1.76, p=0.01); trial stopped early for harm",
+        "verdict": "NEGATIVE"
+      },
+      "safetyEndpoint": {
+        "sICH": "6% vs. 6%",
+        "mortality90d": "16% vs. 15%; early neurological deterioration: 15% vs. 11%"
+      },
+      "bottomLine": "Intensive SBP lowering (<120–140 mmHg) after successful EVT causes worse functional outcomes and is NOT recommended (Class III: Harm).",
+      "ontologyTags": {
+        "condition": [
+          "ais",
+          "large_vessel_occlusion"
+        ],
+        "age_group": [
+          "adult"
+        ],
+        "phase": [
+          "acute_treatment",
+          "stroke_unit_inpatient"
+        ],
+        "intervention_type": [
+          "bp_management",
+          "endovascular_thrombectomy"
+        ],
+        "outcome_target": [
+          "functional_outcome"
+        ],
+        "direction": [
+          "against"
+        ]
+      }
+    },
+    {
+      "id": "optimal-bp-2023",
+      "acronym": "OPTIMAL-BP",
+      "title": "Intensive vs Conventional Blood Pressure Management After Thrombectomy in Acute Ischemic Stroke (OPTIMAL-BP)",
+      "year": 2023,
+      "journal": "JAMA",
+      "pmid": "37668619",
+      "doi": "10.1001/jama.2023.14590",
+      "subspecialty": "Stroke",
+      "evidenceSource": "PEER_REVIEWED_PUBLISHED",
+      "design": "Phase 3 RCT",
+      "sampleSize": 306,
+      "pico": {
+        "population": "AIS patients achieving successful reperfusion (mTICI 2b–3) after EVT",
+        "intervention": "Intensive BP management (SBP <140 mmHg for 24h)",
+        "comparator": "Conventional BP management (SBP 140–180 mmHg)",
+        "timeWindow": "First 24h post-EVT"
+      },
+      "primaryEndpoint": {
+        "metric": "Functional independence (mRS 0–2) at 90 days",
+        "resultStats": "39.4% vs. 54.4% (adjusted OR 0.56, 95% CI 0.33–0.96, p=0.03; terminated early for harm)",
+        "verdict": "NEGATIVE"
+      },
+      "safetyEndpoint": {
+        "sICH": "9.0% vs. 8.1%",
+        "mortality90d": "7.7% vs. 5.4%"
+      },
+      "bottomLine": "Targeting SBP <140 mmHg after successful EVT significantly lowers the likelihood of functional independence compared with 140–180 mmHg.",
+      "ontologyTags": {
+        "condition": [
+          "ais",
+          "large_vessel_occlusion"
+        ],
+        "age_group": [
+          "adult"
+        ],
+        "phase": [
+          "acute_treatment",
+          "stroke_unit_inpatient"
+        ],
+        "intervention_type": [
+          "bp_management",
+          "endovascular_thrombectomy"
+        ],
+        "outcome_target": [
+          "functional_outcome"
+        ],
+        "direction": [
+          "against"
+        ]
+      }
+    },
+    {
+      "id": "interact2-2013",
+      "acronym": "INTERACT2",
+      "title": "Rapid Blood-Pressure Lowering in Patients with Acute Intracerebral Hemorrhage (INTERACT2)",
+      "year": 2013,
+      "journal": "NEJM",
+      "pmid": "23713578",
+      "doi": "10.1056/NEJMoa1214609",
+      "subspecialty": "Stroke",
+      "evidenceSource": "PEER_REVIEWED_PUBLISHED",
+      "design": "Phase 3 RCT",
+      "sampleSize": 2839,
+      "pico": {
+        "population": "Spontaneous ICH within 6h with elevated SBP (150–220 mmHg)",
+        "intervention": "Intensive BP lowering (target SBP <140 mmHg within 1 hour)",
+        "comparator": "Guideline-recommended target SBP <180 mmHg",
+        "timeWindow": "≤ 6 hours"
+      },
+      "primaryEndpoint": {
+        "metric": "Death or major disability (mRS 3–6) & ordinal mRS shift at 90 days",
+        "resultStats": "mRS 3–6: 52.0% vs. 55.6% (p=0.06); ordinal shift OR 0.87 (95% CI 0.77–1.00, p=0.04)",
+        "verdict": "POSITIVE"
+      },
+      "safetyEndpoint": {
+        "sICH": "Hematoma growth reduced; no excess severe hypotension",
+        "mortality90d": "11.9% vs. 12.0%"
+      },
+      "bottomLine": "Early smooth reduction of SBP toward 140 mmHg is safe and improves functional recovery scores in acute spontaneous ICH.",
+      "ontologyTags": {
+        "condition": [
+          "ich"
+        ],
+        "age_group": [
+          "adult"
+        ],
+        "phase": [
+          "acute_treatment",
+          "emergency_department"
+        ],
+        "intervention_type": [
+          "bp_management"
+        ],
+        "drug_or_procedure": [
+          "nicardipine",
+          "labetalol"
+        ],
+        "time_window": [
+          "within_6h"
+        ],
+        "outcome_target": [
+          "functional_outcome",
+          "symptomatic_ich"
+        ],
+        "direction": [
+          "for"
+        ]
+      },
+      "linkedScenarioIds": [
+        "ich-acute-bp-lowering"
+      ]
+    },
+    {
+      "id": "atach-2-2016",
+      "acronym": "ATACH-2",
+      "title": "Intensive Blood-Pressure Lowering in Patients with Acute Cerebral Hemorrhage (ATACH-2)",
+      "year": 2016,
+      "journal": "NEJM",
+      "pmid": "27276234",
+      "doi": "10.1056/NEJMoa1603460",
+      "subspecialty": "Stroke",
+      "evidenceSource": "PEER_REVIEWED_PUBLISHED",
+      "design": "Phase 3 RCT",
+      "sampleSize": 1000,
+      "pico": {
+        "population": "Spontaneous supratentorial ICH (<60 mL) within 4.5h with initial SBP ≥180 mmHg",
+        "intervention": "Aggressive IV nicardipine targeting SBP 110–139 mmHg",
+        "comparator": "Standard IV nicardipine targeting SBP 140–179 mmHg",
+        "timeWindow": "≤ 4.5 hours"
+      },
+      "primaryEndpoint": {
+        "metric": "Death or disability (mRS 4–6) at 90 days",
+        "resultStats": "38.7% vs. 37.7% (RR 1.04, 95% CI 0.85–1.27; futile)",
+        "verdict": "NEUTRAL"
+      },
+      "safetyEndpoint": {
+        "mortality90d": "6.6% vs. 6.8%",
+        "note": "Renal adverse events within 7 days: 9.0% vs. 4.0% (p=0.002)"
+      },
+      "bottomLine": "Aggressive SBP reduction below 130 mmHg in acute ICH does not reduce death/disability and doubles renal adverse events.",
+      "ontologyTags": {
+        "condition": [
+          "ich"
+        ],
+        "age_group": [
+          "adult"
+        ],
+        "phase": [
+          "acute_treatment"
+        ],
+        "intervention_type": [
+          "bp_management"
+        ],
+        "drug_or_procedure": [
+          "nicardipine"
+        ],
+        "time_window": [
+          "within_4_5h"
+        ],
+        "outcome_target": [
+          "functional_outcome",
+          "complications"
+        ],
+        "direction": [
+          "against"
+        ]
+      },
+      "linkedScenarioIds": [
+        "ich-acute-bp-lowering"
+      ]
+    },
+    {
+      "id": "enrich-2024",
+      "acronym": "ENRICH",
+      "title": "Trial of Early Minimally Invasive Removal of Intracerebral Hemorrhage (ENRICH)",
+      "year": 2024,
+      "journal": "NEJM",
+      "pmid": "38602658",
+      "doi": "10.1056/NEJMoa2308440",
+      "subspecialty": "Stroke",
+      "evidenceSource": "PEER_REVIEWED_PUBLISHED",
+      "design": "Phase 3 RCT",
+      "sampleSize": 300,
+      "pico": {
+        "population": "Acute spontaneous lobar or anterior basal ganglia ICH (volume 30–80 mL)",
+        "intervention": "Early minimally invasive trans-sulcal parafascicular surgery (MIPS) + guideline care",
+        "comparator": "Guideline medical management alone",
+        "timeWindow": "≤ 24 hours from last known normal"
+      },
+      "primaryEndpoint": {
+        "metric": "Utility-weighted mRS at 180 days",
+        "resultStats": "0.458 vs. 0.374 (difference 0.084, posterior probability of superiority 0.981; driven by lobar ICH)",
+        "verdict": "POSITIVE"
+      },
+      "safetyEndpoint": {
+        "mortality90d": "30-day mortality: 9.3% vs. 18.0%"
+      },
+      "bottomLine": "First positive phase 3 surgical trial in spontaneous ICH, establishing benefit of early minimally invasive evacuation within 24h in lobar ICH (30–80 mL).",
+      "ontologyTags": {
+        "condition": [
+          "ich"
+        ],
+        "age_group": [
+          "adult"
+        ],
+        "phase": [
+          "acute_treatment",
+          "neurocritical_care"
+        ],
+        "intervention_type": [
+          "decompressive_surgery"
+        ],
+        "time_window": [
+          "within_24h"
+        ],
+        "outcome_target": [
+          "functional_outcome",
+          "mortality"
+        ],
+        "direction": [
+          "for"
+        ]
+      }
+    },
+    {
+      "id": "elan-2023",
+      "acronym": "ELAN",
+      "title": "Early versus Later Anticoagulation for Stroke with Atrial Fibrillation (ELAN)",
+      "year": 2023,
+      "journal": "NEJM",
+      "pmid": "37222476",
+      "doi": "10.1056/NEJMoa2303048",
+      "subspecialty": "Stroke",
+      "evidenceSource": "PEER_REVIEWED_PUBLISHED",
+      "design": "Phase 3 RCT",
+      "sampleSize": 2013,
+      "pico": {
+        "population": "AIS patients with atrial fibrillation stratified by infarct size (minor, moderate, major on imaging)",
+        "intervention": "Early DOAC initiation (<48h minor/moderate, day 6–7 major)",
+        "comparator": "Later guideline-based DOAC initiation (day 3–4 minor, day 6–7 moderate, day 12–14 major)",
+        "timeWindow": "Inpatient / early secondary prevention"
+      },
+      "primaryEndpoint": {
+        "metric": "30-day composite of recurrent ischemic stroke, systemic embolism, major extracranial bleeding, sICH, or vascular death",
+        "resultStats": "2.9% vs. 4.1% (risk difference -1.18%, 95% CI -2.84 to 0.47)",
+        "verdict": "POSITIVE"
+      },
+      "safetyEndpoint": {
+        "sICH": "0.2% vs. 0.2% at 30 days",
+        "mortality90d": "Recurrent ischemic stroke at 30d: 1.4% vs. 2.5%"
+      },
+      "bottomLine": "Early infarct-size-guided DOAC initiation after AF-related ischemic stroke is safe (0.2% sICH) and lowers early recurrent stroke risk.",
+      "ontologyTags": {
+        "condition": [
+          "ais",
+          "atrial_fibrillation"
+        ],
+        "age_group": [
+          "adult"
+        ],
+        "phase": [
+          "stroke_unit_inpatient",
+          "secondary_prevention"
+        ],
+        "intervention_type": [
+          "anticoagulation"
+        ],
+        "drug_or_procedure": [
+          "doac"
+        ],
+        "outcome_target": [
+          "recurrent_stroke",
+          "symptomatic_ich"
+        ],
+        "direction": [
+          "for"
+        ]
+      }
+    },
+    {
+      "id": "chance-2013",
+      "acronym": "CHANCE",
+      "title": "Clopidogrel with Aspirin in Acute Minor Stroke or Transient Ischemic Attack (CHANCE)",
+      "year": 2013,
+      "journal": "NEJM",
+      "pmid": "23803136",
+      "doi": "10.1056/NEJMoa1215340",
+      "subspecialty": "Stroke",
+      "evidenceSource": "PEER_REVIEWED_PUBLISHED",
+      "design": "Phase 3 RCT",
+      "sampleSize": 5170,
+      "pico": {
+        "population": "Minor AIS (NIHSS ≤3) or high-risk TIA (ABCD2 ≥4) within 24 hours",
+        "intervention": "Dual antiplatelet therapy (Clopidogrel 300mg load then 75mg/d + Aspirin for 21 days)",
+        "comparator": "Aspirin monotherapy for 90 days",
+        "timeWindow": "≤ 24 hours"
+      },
+      "primaryEndpoint": {
+        "metric": "Stroke recurrence (ischemic or hemorrhagic) at 90 days",
+        "resultStats": "8.2% vs. 11.7% (HR 0.68, 95% CI 0.57–0.81, p<0.001)",
+        "verdict": "POSITIVE"
+      },
+      "safetyEndpoint": {
+        "sICH": "Moderate/severe hemorrhage: 0.3% vs. 0.3%"
+      },
+      "bottomLine": "Short-course 21-day DAPT (Clopidogrel + Aspirin) initiated within 24h of minor AIS or high-risk TIA reduces 90-day stroke recurrence by 32%.",
+      "ontologyTags": {
+        "condition": [
+          "ais",
+          "tia"
+        ],
+        "age_group": [
+          "adult"
+        ],
+        "phase": [
+          "acute_treatment",
+          "secondary_prevention"
+        ],
+        "intervention_type": [
+          "antithrombotic_acute"
+        ],
+        "drug_or_procedure": [
+          "aspirin",
+          "clopidogrel"
+        ],
+        "time_window": [
+          "within_24h"
+        ],
+        "outcome_target": [
+          "recurrent_stroke",
+          "symptomatic_ich"
+        ],
+        "direction": [
+          "for"
+        ]
+      }
+    },
+    {
+      "id": "point-2018",
+      "acronym": "POINT",
+      "title": "Clopidogrel and Aspirin in Acute Ischemic Stroke and High-Risk TIA (POINT)",
+      "year": 2018,
+      "journal": "NEJM",
+      "pmid": "29766770",
+      "doi": "10.1056/NEJMoa1800410",
+      "subspecialty": "Stroke",
+      "evidenceSource": "PEER_REVIEWED_PUBLISHED",
+      "design": "Phase 3 RCT",
+      "sampleSize": 4881,
+      "pico": {
+        "population": "Minor AIS (NIHSS ≤3) or high-risk TIA (ABCD2 ≥4) within 12 hours",
+        "intervention": "Clopidogrel (600mg load, then 75mg/d) + Aspirin for 90 days",
+        "comparator": "Aspirin alone",
+        "timeWindow": "≤ 12 hours"
+      },
+      "primaryEndpoint": {
+        "metric": "Major ischemic events (ischemic stroke, MI, or ischemic vascular death) at 90 days",
+        "resultStats": "5.0% vs. 6.5% (HR 0.75, 95% CI 0.59–0.95, p=0.02)",
+        "verdict": "POSITIVE"
+      },
+      "safetyEndpoint": {
+        "note": "Major hemorrhage: 0.9% vs. 0.4% (HR 2.32, p=0.02; concentrated after day 21)"
+      },
+      "bottomLine": "DAPT prevents early ischemic stroke recurrence, with benefit front-loaded in the first 21 days and bleeding risk rising thereafter.",
+      "ontologyTags": {
+        "condition": [
+          "ais",
+          "tia"
+        ],
+        "age_group": [
+          "adult"
+        ],
+        "phase": [
+          "acute_treatment",
+          "secondary_prevention"
+        ],
+        "intervention_type": [
+          "antithrombotic_acute"
+        ],
+        "drug_or_procedure": [
+          "aspirin",
+          "clopidogrel"
+        ],
+        "time_window": [
+          "within_24h"
+        ],
+        "outcome_target": [
+          "recurrent_stroke"
+        ],
+        "direction": [
+          "for"
+        ]
+      }
+    },
+    {
+      "id": "isatch-isat-2002",
+      "acronym": "ISAT",
+      "title": "International Subarachnoid Aneurysm Trial (ISAT) of Neurosurgical Clipping versus Endovascular Coiling",
+      "year": 2002,
+      "journal": "The Lancet",
+      "pmid": "12414200",
+      "doi": "10.1016/s0140-6736(02)11314-6",
+      "subspecialty": "Stroke",
+      "evidenceSource": "PEER_REVIEWED_PUBLISHED",
+      "design": "Phase 3 RCT",
+      "sampleSize": 2143,
+      "pico": {
+        "population": "Ruptured intracranial aneurysms (aSAH) anatomically suitable for both coiling and surgical clipping",
+        "intervention": "Endovascular detachable platinum coiling",
+        "comparator": "Neurosurgical microsurgical clipping",
+        "timeWindow": "Acute aSAH admission"
+      },
+      "primaryEndpoint": {
+        "metric": "Death or dependency (mRS 3–6) at 1 year",
+        "resultStats": "23.7% vs. 30.6% (relative risk reduction 22.6%, absolute risk reduction 6.9%, p=0.0019)",
+        "verdict": "POSITIVE"
+      },
+      "safetyEndpoint": {
+        "note": "Lower 1-year disability and seizure risk with coiling; slightly higher late rebleeding rate"
+      },
+      "bottomLine": "For ruptured aneurysms amenable to both modalities, endovascular coiling yields superior 1-year survival free of disability compared with clipping.",
+      "ontologyTags": {
+        "condition": [
+          "sah"
+        ],
+        "age_group": [
+          "adult"
+        ],
+        "phase": [
+          "acute_treatment",
+          "neurocritical_care"
+        ],
+        "intervention_type": [
+          "aneurysm_securing"
+        ],
+        "drug_or_procedure": [
+          "endovascular_coiling",
+          "microsurgical_clipping"
+        ],
+        "outcome_target": [
+          "functional_outcome",
+          "mortality"
+        ],
+        "direction": [
+          "for"
+        ]
+      }
+    },
+    {
+      "id": "mild-mt-2026",
+      "acronym": "MILD-MT",
+      "title": "Endovascular Thrombectomy for Acute Mild Ischemic Stroke with Large-Vessel Occlusion (MILD-MT)",
+      "year": 2026,
+      "journal": "NEJM",
+      "doi": "10.1056/nejmoa2609149",
+      "subspecialty": "Stroke",
+      "evidenceSource": "PEER_REVIEWED_PUBLISHED",
+      "design": "Phase 3 RCT",
+      "sampleSize": 480,
+      "pico": {
+        "population": "Acute mild AIS (NIHSS <6) with anterior circulation LVO and salvageable tissue on perfusion imaging",
+        "intervention": "Early endovascular thrombectomy + standard medical care",
+        "comparator": "Standard medical care alone",
+        "timeWindow": "≤ 24 hours"
+      },
+      "primaryEndpoint": {
+        "metric": "90-day ordinal mRS distribution & mRS 0–1",
+        "resultStats": "Significantly more favorable 90-day mRS shift and higher mRS 0–1 rate, preventing early neurological deterioration",
+        "verdict": "POSITIVE"
+      },
+      "safetyEndpoint": {
+        "sICH": "Acceptable sICH rate within 48h comparable to medical arm"
+      },
+      "bottomLine": "Supports early EVT in perfusion-selected anterior LVO patients presenting with mild deficits (NIHSS <6).",
+      "ontologyTags": {
+        "condition": [
+          "ais",
+          "large_vessel_occlusion"
+        ],
+        "age_group": [
+          "adult"
+        ],
+        "phase": [
+          "acute_treatment"
+        ],
+        "intervention_type": [
+          "endovascular_thrombectomy",
+          "patient_selection"
+        ],
+        "drug_or_procedure": [
+          "mechanical_thrombectomy_device",
+          "ctp"
+        ],
+        "time_window": [
+          "within_24h"
+        ],
+        "outcome_target": [
+          "functional_outcome",
+          "symptomatic_ich"
+        ],
+        "direction": [
+          "for"
+        ]
+      }
+    },
+    {
+      "id": "esett-2019",
+      "acronym": "ESETT",
+      "title": "Randomized Trial of Three Anticonvulsant Medications for Status Epilepticus (ESETT)",
+      "year": 2019,
+      "journal": "NEJM",
+      "pmid": "31774955",
+      "doi": "10.1056/NEJMoa1905795",
+      "subspecialty": "Epilepsy",
+      "evidenceSource": "PEER_REVIEWED_PUBLISHED",
+      "design": "Phase 3 RCT",
+      "sampleSize": 384,
+      "pico": {
+        "population": "Children (≥2y) and adults with benzodiazepine-refractory convulsive status epilepticus",
+        "intervention": "IV Levetiracetam (60 mg/kg), Fosphenytoin (20 mg PE/kg), or Valproate (40 mg/kg)",
+        "comparator": "Active 3-arm head-to-head comparison",
+        "timeWindow": "Stage 2 Status Epilepticus (5–30 min)"
+      },
+      "primaryEndpoint": {
+        "metric": "Absence of clinically apparent seizures and improving responsiveness at 60 minutes",
+        "resultStats": "Levetiracetam 47%, Fosphenytoin 45%, Valproate 46% (equivalent efficacy)",
+        "verdict": "POSITIVE"
+      },
+      "safetyEndpoint": {
+        "note": "No statistically significant differences in life-threatening hypotension or intubation rates"
+      },
+      "bottomLine": "High-dose IV Levetiracetam, Fosphenytoin, and Valproate are equally effective (~46%) as second-line agents for benzodiazepine-refractory status epilepticus.",
+      "ontologyTags": {
+        "condition": [
+          "status_epilepticus"
+        ],
+        "age_group": [
+          "pediatric",
+          "adult"
+        ],
+        "phase": [
+          "emergency_department",
+          "neurocritical_care"
+        ],
+        "intervention_type": [
+          "other_intervention"
+        ],
+        "drug_or_procedure": [
+          "levetiracetam"
+        ],
+        "outcome_target": [
+          "functional_outcome"
+        ],
+        "direction": [
+          "for"
+        ]
+      },
+      "linkedScenarioIds": [
+        "status-epilepticus-rse"
+      ]
+    }
+  ],
+  "customRecLabels": {},
   "deletedGuidelineIds": [
     "guide-pmid-39253806",
     "guide-pmid-40875802",
@@ -18880,7 +19799,6 @@
     "guide-pmid-42817881",
     "guide-pmid-42866888"
   ],
-  "lastSyncedAt": "2026-11-07T08:37:12.368Z",
-  "source": "NEUROGUIDE_AUTONOMOUS_RADAR",
-  "customRecLabels": {}
+  "lastSyncedAt": "2026-11-08T03:13:48.579Z",
+  "source": "NEUROGUIDE_AUTONOMOUS_RADAR"
 }

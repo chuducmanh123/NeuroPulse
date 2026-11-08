@@ -60,24 +60,177 @@ type RightSectionFilter =
   | "CONCORDANCE"
   | "LITERATURE";
 
-function getSocietyBadgeStyle(society: string): string {
-  const s = (society || "").toUpperCase();
+export interface SocietyTheme {
+  cardBorder: string;
+  headerBg: string;
+  headerBorder: string;
+  badge: string;
+  yearBadge: string;
+  quoteBorder: string;
+  buttonBg: string;
+  accentLeft: string;
+}
+
+export function getSocietyTheme(society: string): SocietyTheme {
+  const s = (society || "").toUpperCase().trim();
+
+  // 1. AHA / ASA - Rose/Red theme
   if (s.includes("AHA") || s.includes("ASA")) {
-    return "bg-rose-100 text-rose-800 border-rose-300 dark:bg-rose-950/60 dark:text-rose-300 dark:border-rose-800";
+    return {
+      cardBorder: "border-rose-300 dark:border-rose-800",
+      headerBg: "bg-rose-50/90 dark:bg-rose-950/40",
+      headerBorder: "border-rose-200 dark:border-rose-800/60",
+      badge: "bg-rose-100 text-rose-800 border-rose-300 dark:bg-rose-950/80 dark:text-rose-200 dark:border-rose-700",
+      yearBadge: "bg-rose-100/70 text-rose-800 dark:bg-rose-900/50 dark:text-rose-300",
+      quoteBorder: "border-l-rose-500",
+      buttonBg: "bg-rose-50 text-rose-700 dark:bg-rose-950/70 dark:text-rose-300 hover:bg-rose-100 border-rose-200 dark:border-rose-800",
+      accentLeft: "border-l-rose-500",
+    };
   }
+
+  // 2. ESO - Blue theme
   if (s.includes("ESO")) {
-    return "bg-blue-100 text-blue-800 border-blue-300 dark:bg-blue-950/60 dark:text-blue-300 dark:border-blue-800";
+    return {
+      cardBorder: "border-blue-300 dark:border-blue-800",
+      headerBg: "bg-blue-50/90 dark:bg-blue-950/40",
+      headerBorder: "border-blue-200 dark:border-blue-800/60",
+      badge: "bg-blue-100 text-blue-800 border-blue-300 dark:bg-blue-950/80 dark:text-blue-200 dark:border-blue-700",
+      yearBadge: "bg-blue-100/70 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300",
+      quoteBorder: "border-l-blue-500",
+      buttonBg: "bg-blue-50 text-blue-700 dark:bg-blue-950/70 dark:text-blue-300 hover:bg-blue-100 border-blue-200 dark:border-blue-800",
+      accentLeft: "border-l-blue-500",
+    };
   }
-  if (s.includes("VN") || s.includes("MOH")) {
-    return "bg-emerald-100 text-emerald-800 border-emerald-300 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-800";
+
+  // 3. MOH / Vietnam / BYT - Emerald/Green theme
+  if (s.includes("VN") || s.includes("MOH") || s.includes("BYT")) {
+    return {
+      cardBorder: "border-emerald-300 dark:border-emerald-800",
+      headerBg: "bg-emerald-50/90 dark:bg-emerald-950/40",
+      headerBorder: "border-emerald-200 dark:border-emerald-800/60",
+      badge: "bg-emerald-100 text-emerald-800 border-emerald-300 dark:bg-emerald-950/80 dark:text-emerald-200 dark:border-emerald-700",
+      yearBadge: "bg-emerald-100/70 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300",
+      quoteBorder: "border-l-emerald-500",
+      buttonBg: "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/70 dark:text-emerald-300 hover:bg-emerald-100 border-emerald-200 dark:border-emerald-800",
+      accentLeft: "border-l-emerald-500",
+    };
   }
+
+  // 4. NCS (Neurocritical Care) - Violet/Purple theme
   if (s.includes("NCS")) {
-    return "bg-violet-100 text-violet-800 border-violet-300 dark:bg-violet-950/60 dark:text-violet-300 dark:border-violet-800";
+    return {
+      cardBorder: "border-violet-300 dark:border-violet-800",
+      headerBg: "bg-violet-50/90 dark:bg-violet-950/40",
+      headerBorder: "border-violet-200 dark:border-violet-800/60",
+      badge: "bg-violet-100 text-violet-800 border-violet-300 dark:bg-violet-950/80 dark:text-violet-200 dark:border-violet-700",
+      yearBadge: "bg-violet-100/70 text-violet-800 dark:bg-violet-900/50 dark:text-violet-300",
+      quoteBorder: "border-l-violet-500",
+      buttonBg: "bg-violet-50 text-violet-700 dark:bg-violet-950/70 dark:text-violet-300 hover:bg-violet-100 border-violet-200 dark:border-violet-800",
+      accentLeft: "border-l-violet-500",
+    };
   }
-  if (s.includes("AAN") || s.includes("ILAE") || s.includes("EAN") || s.includes("MDS")) {
-    return "bg-indigo-100 text-indigo-800 border-indigo-300 dark:bg-indigo-950/60 dark:text-indigo-300 dark:border-indigo-800";
+
+  // 5. AAN (American Academy of Neurology) - Amber/Orange theme
+  if (s.includes("AAN")) {
+    return {
+      cardBorder: "border-amber-300 dark:border-amber-800",
+      headerBg: "bg-amber-50/90 dark:bg-amber-950/40",
+      headerBorder: "border-amber-200 dark:border-amber-800/60",
+      badge: "bg-amber-100 text-amber-900 border-amber-300 dark:bg-amber-950/80 dark:text-amber-200 dark:border-amber-700",
+      yearBadge: "bg-amber-100/70 text-amber-900 dark:bg-amber-900/50 dark:text-amber-300",
+      quoteBorder: "border-l-amber-500",
+      buttonBg: "bg-amber-50 text-amber-700 dark:bg-amber-950/70 dark:text-amber-300 hover:bg-amber-100 border-amber-200 dark:border-amber-800",
+      accentLeft: "border-l-amber-500",
+    };
   }
-  return "bg-slate-100 text-slate-800 border-slate-300 dark:bg-slate-800 dark:text-slate-200 dark:border-slate-700";
+
+  // 6. EAN (European Academy of Neurology) - Cyan/Sky theme
+  if (s.includes("EAN")) {
+    return {
+      cardBorder: "border-cyan-300 dark:border-cyan-800",
+      headerBg: "bg-cyan-50/90 dark:bg-cyan-950/40",
+      headerBorder: "border-cyan-200 dark:border-cyan-800/60",
+      badge: "bg-cyan-100 text-cyan-800 border-cyan-300 dark:bg-cyan-950/80 dark:text-cyan-200 dark:border-cyan-700",
+      yearBadge: "bg-cyan-100/70 text-cyan-800 dark:bg-cyan-900/50 dark:text-cyan-300",
+      quoteBorder: "border-l-cyan-500",
+      buttonBg: "bg-cyan-50 text-cyan-700 dark:bg-cyan-950/70 dark:text-cyan-300 hover:bg-cyan-100 border-cyan-200 dark:border-cyan-800",
+      accentLeft: "border-l-cyan-500",
+    };
+  }
+
+  // 7. ILAE (Epilepsy) - Indigo theme
+  if (s.includes("ILAE")) {
+    return {
+      cardBorder: "border-indigo-300 dark:border-indigo-800",
+      headerBg: "bg-indigo-50/90 dark:bg-indigo-950/40",
+      headerBorder: "border-indigo-200 dark:border-indigo-800/60",
+      badge: "bg-indigo-100 text-indigo-800 border-indigo-300 dark:bg-indigo-950/80 dark:text-indigo-200 dark:border-indigo-700",
+      yearBadge: "bg-indigo-100/70 text-indigo-800 dark:bg-indigo-900/50 dark:text-indigo-300",
+      quoteBorder: "border-l-indigo-500",
+      buttonBg: "bg-indigo-50 text-indigo-700 dark:bg-indigo-950/70 dark:text-indigo-300 hover:bg-indigo-100 border-indigo-200 dark:border-indigo-800",
+      accentLeft: "border-l-indigo-500",
+    };
+  }
+
+  // 8. MDS (Movement Disorders) - Teal theme
+  if (s.includes("MDS")) {
+    return {
+      cardBorder: "border-teal-300 dark:border-teal-800",
+      headerBg: "bg-teal-50/90 dark:bg-teal-950/40",
+      headerBorder: "border-teal-200 dark:border-teal-800/60",
+      badge: "bg-teal-100 text-teal-800 border-teal-300 dark:bg-teal-950/80 dark:text-teal-200 dark:border-teal-700",
+      yearBadge: "bg-teal-100/70 text-teal-800 dark:bg-teal-900/50 dark:text-teal-300",
+      quoteBorder: "border-l-teal-500",
+      buttonBg: "bg-teal-50 text-teal-700 dark:bg-teal-950/70 dark:text-teal-300 hover:bg-teal-100 border-teal-200 dark:border-teal-800",
+      accentLeft: "border-l-teal-500",
+    };
+  }
+
+  // Fallback palettes for other societies
+  const FALLBACKS: SocietyTheme[] = [
+    {
+      cardBorder: "border-fuchsia-300 dark:border-fuchsia-800",
+      headerBg: "bg-fuchsia-50/90 dark:bg-fuchsia-950/40",
+      headerBorder: "border-fuchsia-200 dark:border-fuchsia-800/60",
+      badge: "bg-fuchsia-100 text-fuchsia-800 border-fuchsia-300 dark:bg-fuchsia-950/80 dark:text-fuchsia-200 dark:border-fuchsia-700",
+      yearBadge: "bg-fuchsia-100/70 text-fuchsia-800 dark:bg-fuchsia-900/50 dark:text-fuchsia-300",
+      quoteBorder: "border-l-fuchsia-500",
+      buttonBg: "bg-fuchsia-50 text-fuchsia-700 dark:bg-fuchsia-950/70 dark:text-fuchsia-300 hover:bg-fuchsia-100 border-fuchsia-200 dark:border-fuchsia-800",
+      accentLeft: "border-l-fuchsia-500",
+    },
+    {
+      cardBorder: "border-lime-300 dark:border-lime-800",
+      headerBg: "bg-lime-50/90 dark:bg-lime-950/40",
+      headerBorder: "border-lime-200 dark:border-lime-800/60",
+      badge: "bg-lime-100 text-lime-900 border-lime-300 dark:bg-lime-950/80 dark:text-lime-200 dark:border-lime-700",
+      yearBadge: "bg-lime-100/70 text-lime-900 dark:bg-lime-900/50 dark:text-lime-300",
+      quoteBorder: "border-l-lime-500",
+      buttonBg: "bg-lime-50 text-lime-700 dark:bg-lime-950/70 dark:text-lime-300 hover:bg-lime-100 border-lime-200 dark:border-lime-800",
+      accentLeft: "border-l-lime-500",
+    },
+    {
+      cardBorder: "border-sky-300 dark:border-sky-800",
+      headerBg: "bg-sky-50/90 dark:bg-sky-950/40",
+      headerBorder: "border-sky-200 dark:border-sky-800/60",
+      badge: "bg-sky-100 text-sky-800 border-sky-300 dark:bg-sky-950/80 dark:text-sky-200 dark:border-sky-700",
+      yearBadge: "bg-sky-100/70 text-sky-800 dark:bg-sky-900/50 dark:text-sky-300",
+      quoteBorder: "border-l-sky-500",
+      buttonBg: "bg-sky-50 text-sky-700 dark:bg-sky-950/70 dark:text-sky-300 hover:bg-sky-100 border-sky-200 dark:border-sky-800",
+      accentLeft: "border-l-sky-500",
+    },
+  ];
+
+  let hash = 0;
+  for (let i = 0; i < s.length; i++) {
+    hash = (hash << 5) - hash + s.charCodeAt(i);
+    hash |= 0;
+  }
+  const idx = Math.abs(hash) % FALLBACKS.length;
+  return FALLBACKS[idx];
+}
+
+function getSocietyBadgeStyle(society: string): string {
+  return getSocietyTheme(society).badge;
 }
 
 function getDirectionBadge(dir: string) {
@@ -160,6 +313,9 @@ export function ClinicalNavigatorTab({
   const [onlyPracticeChanges, setOnlyPracticeChanges] = useState<boolean>(
     initialPresetOrQuery?.onlyPracticeChanges ?? false
   );
+  const [verificationFilter, setVerificationFilter] = useState<"all" | "approved" | "unlabeled_or_review">(
+    initialPresetOrQuery?.verificationFilter || "all"
+  );
   const [activePresetId, setActivePresetId] = useState<string | null>(null);
 
   // Sync if user jumps from Clinical Scenarios via "Explore in Navigator ->"
@@ -181,6 +337,7 @@ export function ClinicalNavigatorTab({
       setSelectedDirectionFilter(initialPresetOrQuery.directionFilter || "all");
       setSelectedSocieties(initialPresetOrQuery.societies || []);
       setOnlyPracticeChanges(initialPresetOrQuery.onlyPracticeChanges ?? false);
+      setVerificationFilter(initialPresetOrQuery.verificationFilter || "all");
       setActivePresetId(null);
     }
   }, [initialPresetOrQuery]);
@@ -220,6 +377,7 @@ export function ClinicalNavigatorTab({
       societies: selectedSocieties.length > 0 ? selectedSocieties : undefined,
       includeAiChecked: true,
       onlyPracticeChanges,
+      verificationFilter,
     }),
     [
       deferredSearchText,
@@ -232,6 +390,7 @@ export function ClinicalNavigatorTab({
       selectedDirectionFilter,
       selectedSocieties,
       onlyPracticeChanges,
+      verificationFilter,
     ]
   );
 
@@ -369,6 +528,7 @@ export function ClinicalNavigatorTab({
     setSelectedDirectionFilter(preset.query.directionFilter || "all");
     setSelectedSocieties(preset.query.societies || []);
     setOnlyPracticeChanges(preset.query.onlyPracticeChanges ?? false);
+    setVerificationFilter(preset.query.verificationFilter || "all");
     setVisibleCountBySociety({});
   };
 
@@ -385,6 +545,7 @@ export function ClinicalNavigatorTab({
     setSelectedDirectionFilter("all");
     setSelectedSocieties([]);
     setOnlyPracticeChanges(false);
+    setVerificationFilter("all");
     setVisibleCountBySociety({});
   };
 
@@ -470,6 +631,14 @@ export function ClinicalNavigatorTab({
         onRemove: () => setSelectedDirectionFilter("all"),
       });
     }
+    if (verificationFilter !== "all") {
+      chips.push({
+        id: `verif:${verificationFilter}`,
+        label: verificationFilter === "approved" ? "✓ Đã kiểm duyệt" : "⚠️ Chưa gắn nhãn / Cần kiểm duyệt",
+        color: verificationFilter === "approved" ? "bg-emerald-600 text-white" : "bg-amber-600 text-white",
+        onRemove: () => setVerificationFilter("all"),
+      });
+    }
     return chips;
   }, [
     selectedSubspecialty,
@@ -479,6 +648,7 @@ export function ClinicalNavigatorTab({
     selectedDiagnosisTags,
     selectedInterventionTags,
     selectedDirectionFilter,
+    verificationFilter,
   ]);
 
   const handleSaveAsScenario = async () => {
@@ -1237,6 +1407,56 @@ export function ClinicalNavigatorTab({
                       className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 h-3.5 w-3.5"
                     />
                   </label>
+
+                  {/* Labeling & Verification Status Filter */}
+                  <div className="pt-2 border-t border-slate-100 dark:border-slate-800/80 space-y-1.5">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[11px] font-semibold text-slate-600 dark:text-slate-400">
+                        Trạng thái gắn nhãn &amp; duyệt:
+                      </span>
+                      {navResult.unlabeledCount > 0 && (
+                        <span className="px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-950/70 dark:text-amber-300 border border-amber-300 dark:border-amber-800">
+                          {navResult.unlabeledCount} cần nhãn
+                        </span>
+                      )}
+                    </div>
+                    <div className="grid grid-cols-3 gap-1">
+                      <button
+                        type="button"
+                        onClick={() => setVerificationFilter("all")}
+                        className={`px-1.5 py-1 rounded text-[10px] font-semibold border transition-all text-center ${
+                          verificationFilter === "all"
+                            ? "bg-slate-800 text-white border-slate-800 dark:bg-slate-200 dark:text-slate-900"
+                            : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700 hover:border-slate-400"
+                        }`}
+                      >
+                        Tất cả
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setVerificationFilter("approved")}
+                        className={`px-1.5 py-1 rounded text-[10px] font-semibold border transition-all text-center ${
+                          verificationFilter === "approved"
+                            ? "bg-emerald-600 text-white border-emerald-600 shadow-sm"
+                            : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700 hover:border-emerald-400"
+                        }`}
+                      >
+                        ✓ Đã duyệt
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setVerificationFilter("unlabeled_or_review")}
+                        className={`px-1.5 py-1 rounded text-[10px] font-semibold border transition-all text-center ${
+                          verificationFilter === "unlabeled_or_review"
+                            ? "bg-amber-600 text-white border-amber-600 shadow-sm"
+                            : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700 hover:border-amber-400"
+                        }`}
+                        title="Lọc các khuyến cáo chưa được gắn nhãn đầy đủ hoặc chưa được chuyên gia phê duyệt"
+                      >
+                        ⚠️ Cần nhãn
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
@@ -1522,6 +1742,7 @@ export function ClinicalNavigatorTab({
                   ) : (
                     <div className="space-y-5">
                       {navResult.crossSocietyMatrix.map((socGroup) => {
+                        const theme = getSocietyTheme(socGroup.society);
                         const tierMeta =
                           TIER_CONFIG[socGroup.highestTier] || TIER_CONFIG[2];
                         const dirMeta = getDirectionBadge(socGroup.dominantDirection);
@@ -1542,19 +1763,21 @@ export function ClinicalNavigatorTab({
                         return (
                           <div
                             key={socGroup.society}
-                            className="rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden"
+                            className={`rounded-2xl border-2 border-l-[6px] overflow-hidden shadow-xs transition-all ${theme.cardBorder} ${theme.accentLeft} bg-white dark:bg-slate-900`}
                           >
                             {/* Society Group Header */}
-                            <div className="px-4 py-3 bg-slate-50 dark:bg-slate-800/70 border-b border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-2">
+                            <div
+                              className={`px-4 py-3 border-b flex flex-wrap items-center justify-between gap-2 ${theme.headerBg} ${theme.headerBorder}`}
+                            >
                               <div className="flex flex-wrap items-center gap-2">
                                 <span
-                                  className={`px-2.5 py-1 rounded-lg text-xs font-extrabold border ${getSocietyBadgeStyle(
-                                    socGroup.society
-                                  )}`}
+                                  className={`px-3 py-1 rounded-lg text-xs font-black border shadow-xs ${theme.badge}`}
                                 >
-                                  {socGroup.society}
+                                  🏛️ {socGroup.society}
                                 </span>
-                                <span className="text-xs font-bold text-slate-700 dark:text-slate-300">
+                                <span
+                                  className={`px-2 py-0.5 rounded-md text-xs font-bold ${theme.yearBadge}`}
+                                >
                                   Editions: {socGroup.yearsPresent.join(", ")}
                                 </span>
                                 <span
@@ -1581,6 +1804,7 @@ export function ClinicalNavigatorTab({
                                 <RecommendationMatrixCard
                                   key={rec.recId}
                                   rec={rec}
+                                  theme={theme}
                                 />
                               ))}
                             </div>
@@ -1597,7 +1821,7 @@ export function ClinicalNavigatorTab({
                                         visibleCap + LOAD_MORE_RECS_STEP,
                                     }))
                                   }
-                                  className="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-indigo-50 text-indigo-700 dark:bg-indigo-950/70 dark:text-indigo-300 hover:bg-indigo-100 border border-indigo-200 dark:border-indigo-800 transition"
+                                  className={`px-3.5 py-1.5 rounded-lg text-xs font-bold border transition ${theme.buttonBg}`}
                                 >
                                   Show more {socGroup.society} recommendations (+
                                   {remainingCount} remaining) ▾
@@ -1632,6 +1856,7 @@ export function ClinicalNavigatorTab({
                                         key={sRec.recId}
                                         rec={sRec}
                                         isSupporting
+                                        theme={theme}
                                       />
                                     ))}
                                   </div>
@@ -2097,31 +2322,15 @@ export function ClinicalNavigatorTab({
 function RecommendationMatrixCard({
   rec,
   isSupporting = false,
+  theme,
 }: {
   rec: IndexedNavigatorRecommendation;
   isSupporting?: boolean;
+  theme?: SocietyTheme;
 }) {
   const tierMeta = TIER_CONFIG[rec.normalizedTier] || TIER_CONFIG[2];
   const dirValue = rec.v3Labels?.direction || "recommended";
   const dirMeta = getDirectionBadge(dirValue);
-
-  const v3DisplayTags = useMemo(() => {
-    const tags: string[] = [];
-    for (const cid of rec.v3Labels?.conditionIds || []) {
-      const c = getConditionByIdV3(cid);
-      if (c) tags.push(c.label);
-    }
-    for (const twId of rec.v3Labels?.timeWindowIds || []) {
-      tags.push(`⏱ ${getTagLabelByIdV3(twId)}`);
-    }
-    for (const dtId of rec.v3Labels?.diagnosisTags || []) {
-      tags.push(getTagLabelByIdV3(dtId));
-    }
-    for (const itId of rec.v3Labels?.interventionTags || []) {
-      tags.push(getTagLabelByIdV3(itId));
-    }
-    return Array.from(new Set(tags)).slice(0, 6);
-  }, [rec.v3Labels]);
 
   return (
     <div
@@ -2167,9 +2376,16 @@ function RecommendationMatrixCard({
             <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950/70 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800">
               ✓ Clinician Approved
             </span>
+          ) : rec.isUnlabeled ? (
+            <span
+              className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-900 dark:bg-amber-950/70 dark:text-amber-300 border border-amber-300 dark:border-amber-800"
+              title={rec.missingLabelReasons?.join(" • ") || "Chưa gắn nhãn hoàn chỉnh"}
+            >
+              ⚠️ Chưa gắn nhãn đầy đủ
+            </span>
           ) : (
             <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-sky-100 text-sky-800 dark:bg-sky-950/70 dark:text-sky-300 border border-sky-300 dark:border-sky-800">
-              🛡️ AI Checked
+              🛡️ AI Auto-labeled
             </span>
           )}
           <span className="text-[10px] font-mono text-slate-400">
@@ -2177,6 +2393,16 @@ function RecommendationMatrixCard({
           </span>
         </div>
       </div>
+
+      {/* Unlabeled / Incomplete Label Warning for Clinicians */}
+      {rec.isUnlabeled && rec.missingLabelReasons && rec.missingLabelReasons.length > 0 && (
+        <div className="text-[10.5px] text-amber-800 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/40 px-2.5 py-1 rounded-md border border-amber-200 dark:border-amber-900/60 flex items-center gap-1.5">
+          <span className="shrink-0">⚠️</span>
+          <span>
+            <strong className="font-semibold">Cần bổ sung nhãn:</strong> {rec.missingLabelReasons.join(" • ")}
+          </span>
+        </div>
+      )}
 
       {/* Section / PICO Provenance */}
       <div className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 flex flex-wrap items-center gap-1.5">
@@ -2198,7 +2424,11 @@ function RecommendationMatrixCard({
       </div>
 
       {/* Verbatim Recommendation Statement */}
-      <blockquote className="pl-3 border-l-2 border-indigo-500 text-xs sm:text-sm text-slate-900 dark:text-slate-100 font-medium leading-relaxed">
+      <blockquote
+        className={`pl-3 border-l-4 ${
+          theme?.quoteBorder || "border-l-indigo-500"
+        } text-xs sm:text-sm text-slate-900 dark:text-slate-100 font-medium leading-relaxed`}
+      >
         &ldquo;{rec.text}&rdquo;
       </blockquote>
 
@@ -2211,39 +2441,32 @@ function RecommendationMatrixCard({
         </div>
       )}
 
-      {/* V3.0 Canonical Tags & Cited Trials */}
-      <div className="flex flex-wrap items-center justify-between gap-2 pt-1">
-        <div className="flex flex-wrap items-center gap-1.5">
-          {v3DisplayTags.map((lbl) => (
-            <span
-              key={lbl}
-              className="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-50 text-indigo-800 dark:bg-indigo-950/60 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800"
-            >
-              {lbl}
-            </span>
-          ))}
+      {/* Cited Trials & Official Guideline Link (Tags/labels hidden to avoid visual clutter) */}
+      {(rec.drivingTrials.length > 0 || rec.officialUrl) && (
+        <div className="flex flex-wrap items-center justify-between gap-2 pt-1">
+          <div className="flex flex-wrap items-center gap-1.5">
+            {rec.drivingTrials.map((tr) => (
+              <span
+                key={tr}
+                className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800"
+              >
+                🔬 {tr}
+              </span>
+            ))}
+          </div>
 
-          {rec.drivingTrials.map((tr) => (
-            <span
-              key={tr}
-              className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800"
+          {rec.officialUrl && (
+            <a
+              href={rec.officialUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[11px] font-bold text-indigo-600 dark:text-indigo-400 hover:underline shrink-0"
             >
-              🔬 {tr}
-            </span>
-          ))}
+              Official Guideline ↗
+            </a>
+          )}
         </div>
-
-        {rec.officialUrl && (
-          <a
-            href={rec.officialUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[11px] font-bold text-indigo-600 dark:text-indigo-400 hover:underline shrink-0"
-          >
-            Official Guideline ↗
-          </a>
-        )}
-      </div>
+      )}
     </div>
   );
 }

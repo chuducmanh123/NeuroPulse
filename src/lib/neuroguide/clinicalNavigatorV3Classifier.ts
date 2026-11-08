@@ -969,9 +969,14 @@ export function classifyRecommendationV3(
     precomputedTier?: NormalizedTier
 ): RecommendationV3Labels {
     if (change.v3Labels && change.v3Labels.conditionIds.length > 0) {
-        return change.v3Labels;
+        return {
+            ...change.v3Labels,
+            isFallbackCondition: false,
+            isExplicit: true,
+        };
     }
 
+    let isFallbackCondition = false;
     const sectionPath = `${change.category || ''} — ${change.topic || ''}`;
     const fullText = `${doc.title || ''} ${sectionPath} ${change.currentText || ''} ${change.expertConsensusStatement || ''} ${(change.drivingTrials || []).join(' ')}`;
     const recText = `${sectionPath} ${change.currentText || ''} ${change.expertConsensusStatement || ''}`;
@@ -1011,6 +1016,7 @@ export function classifyRecommendationV3(
 
     // Final fallback by subspecialty
     if (matchedConditionIds.size === 0) {
+        isFallbackCondition = true;
         const defaultBySub: Record<string, string> = {
             Stroke: 'cond_ischemic_stroke',
             'Neurocritical Care': 'cond_status_epilepticus',
@@ -1157,6 +1163,8 @@ export function classifyRecommendationV3(
         timeWindowIds: Array.from(timeWindowIds),
         interventionTags: Array.from(interventionTags),
         direction,
+        isFallbackCondition,
+        isExplicit: false,
     };
 }
 
