@@ -1099,38 +1099,40 @@ export default function NeuroGuidePage() {
             })}
           </div>
 
-          {/* Universal Search Input active across Guidelines, Conferences & Scenarios */}
-          <div className="relative w-full sm:w-72">
-            <span className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-slate-400 text-xs">
-              🔍
-            </span>
-            <input
-              type="text"
-              placeholder={
-                activeTab === "guidelines"
-                  ? "Search guidelines, trials, topics..."
-                  : activeTab === "conf"
-                  ? "Search conferences, trials..."
-                  : "Search clinical scenarios..."
-              }
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className={`w-full pl-8 pr-7 py-1.5 text-xs rounded-lg border outline-none transition-all ${
-                darkMode
-                  ? "bg-slate-800 border-slate-700 text-slate-100 placeholder-slate-400 focus:border-amber-500"
-                  : "bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400 focus:border-amber-500"
-              }`}
-            />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery("")}
-                className="absolute inset-y-0 right-2.5 flex items-center text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
-                title="Clear search"
-              >
-                ✕
-              </button>
-            )}
-          </div>
+          {/* Universal Search Input active across Guidelines, Conferences & Scenarios (Hidden in Navigator) */}
+          {activeTab !== "navigator" && (
+            <div className="relative w-full sm:w-72">
+              <span className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-slate-400 text-xs">
+                🔍
+              </span>
+              <input
+                type="text"
+                placeholder={
+                  activeTab === "guidelines"
+                    ? "Search guidelines, trials, topics..."
+                    : activeTab === "conf"
+                    ? "Search conferences, trials..."
+                    : "Search clinical scenarios..."
+                }
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className={`w-full pl-8 pr-7 py-1.5 text-xs rounded-lg border outline-none transition-all ${
+                  darkMode
+                    ? "bg-slate-800 border-slate-700 text-slate-100 placeholder-slate-400 focus:border-amber-500"
+                    : "bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400 focus:border-amber-500"
+                }`}
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery("")}
+                  className="absolute inset-y-0 right-2.5 flex items-center text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+                  title="Clear search"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+          )}
         </nav>
 
         {/* =========================================================================

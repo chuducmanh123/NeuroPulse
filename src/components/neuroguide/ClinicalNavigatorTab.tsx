@@ -54,7 +54,6 @@ const INITIAL_VISIBLE_RECS_PER_SOCIETY = 10;
 const LOAD_MORE_RECS_STEP = 15;
 
 type RightSectionFilter =
-  | "ALL"
   | "MATRIX"
   | "DIFF"
   | "TRIALS"
@@ -191,7 +190,7 @@ export function ClinicalNavigatorTab({
   const normalizedFilterSearch = filterSearchTerm.trim().toLowerCase();
   const [isFilterExpanded, setIsFilterExpanded] = useState<boolean>(true);
   const [isTopicsExpanded, setIsTopicsExpanded] = useState<boolean>(false);
-  const [sectionView, setSectionView] = useState<RightSectionFilter>("ALL");
+  const [sectionView, setSectionView] = useState<RightSectionFilter>("MATRIX");
   const [showSupportingBySociety, setShowSupportingBySociety] = useState<
     Record<string, boolean>
   >({});
@@ -810,7 +809,7 @@ export function ClinicalNavigatorTab({
                     type="text"
                     value={filterSearchTerm}
                     onChange={(e) => setFilterSearchTerm(e.target.value)}
-                    placeholder="Filter tags (e.g. DOAC, Tenecteplase, VP Shunt, EEG)..."
+                    placeholder="Filter tags..."
                     className="w-full pl-3.5 pr-8 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/80 text-slate-900 dark:text-white text-xs font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   />
                   {filterSearchTerm && (
@@ -1324,7 +1323,7 @@ export function ClinicalNavigatorTab({
                   setSearchText(e.target.value);
                   setVisibleCountBySociety({});
                 }}
-                placeholder="Search free-text recommendations, dosing (e.g. 0.25 mg/kg), targets (130–140 mmHg, ASPECTS 3–5), or trials (SELECT2, ESETT, Clarity AD)..."
+                placeholder="Search recommendations, dosing, targets, or trials..."
                 className="w-full pl-4 pr-20 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/90 text-slate-900 dark:text-white text-xs sm:text-sm font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500"
               />
               {searchText && (
@@ -1393,11 +1392,6 @@ export function ClinicalNavigatorTab({
                   <div className="flex flex-wrap gap-1.5">
                     {(
                       [
-                        {
-                          id: "ALL",
-                          label: "All 5 Synthesis Sections",
-                          count: null,
-                        },
                         {
                           id: "MATRIX",
                           label: "1. Cross-Society Matrix",
@@ -1499,7 +1493,7 @@ export function ClinicalNavigatorTab({
               {/* =====================================================================
                   SECTION 1: CROSS-SOCIETY GUIDELINE MATRIX (With Per-Society Pagination)
                  ===================================================================== */}
-              {(sectionView === "ALL" || sectionView === "MATRIX") && (
+              {sectionView === "MATRIX" && (
                 <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
                     <div>
@@ -1655,7 +1649,7 @@ export function ClinicalNavigatorTab({
               {/* =====================================================================
                   SECTION 2: SEQUENTIAL GUIDELINE DIFF (INTRA-SOCIETY EVOLUTION)
                  ===================================================================== */}
-              {(sectionView === "ALL" || sectionView === "DIFF") && (
+              {sectionView === "DIFF" && (
                 <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
                   <div className="border-b border-slate-100 dark:border-slate-800 pb-3">
                     <h3 className="text-base font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
@@ -1773,7 +1767,7 @@ export function ClinicalNavigatorTab({
               {/* =====================================================================
                   SECTION 3: PIVOTAL TRIALS & CONFERENCE EVIDENCE BRIDGE
                  ===================================================================== */}
-              {(sectionView === "ALL" || sectionView === "TRIALS") && (
+              {sectionView === "TRIALS" && (
                 <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-5">
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
                     <div>
@@ -1840,7 +1834,7 @@ export function ClinicalNavigatorTab({
               {/* =====================================================================
                   SECTION 4: EVIDENCE CONCORDANCE & APPRAISAL SUMMARY
                  ===================================================================== */}
-              {(sectionView === "ALL" || sectionView === "CONCORDANCE") && (
+              {sectionView === "CONCORDANCE" && (
                 <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
                   <div className="border-b border-slate-100 dark:border-slate-800 pb-3">
                     <h3 className="text-base font-extrabold text-slate-900 dark:text-white">
@@ -1992,7 +1986,7 @@ export function ClinicalNavigatorTab({
               {/* =====================================================================
                   SECTION 5: RELATED NEUROPULSE LITERATURE
                  ===================================================================== */}
-              {(sectionView === "ALL" || sectionView === "LITERATURE") && (
+              {sectionView === "LITERATURE" && (
                 <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
                   <div className="border-b border-slate-100 dark:border-slate-800 pb-3 flex items-center justify-between">
                     <div>
