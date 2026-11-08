@@ -235,7 +235,12 @@ export function generateSafeGuidelineSlug(title: string): string {
   return slug.slice(0, 50).replace(/-+$/, "");
 }
 
-export function generateSafeGuidelineId(society: string, year: number | string, title: string): string {
+export function generateSafeGuidelineId(
+  society: string,
+  year: number | string,
+  title: string,
+  existingOrDeletedIds?: Set<string> | string[]
+): string {
   const socSlug = (society || "guide").toLowerCase().replace(/[^a-z0-9]/g, "");
   const slug = generateSafeGuidelineSlug(title);
   let hash = 0;
@@ -244,7 +249,23 @@ export function generateSafeGuidelineId(society: string, year: number | string, 
     hash = ((hash << 5) - hash + s.charCodeAt(i)) | 0;
   }
   const hashStr = Math.abs(hash).toString(36).slice(0, 4);
-  return `${socSlug}-${year}-${slug}-${hashStr}`;
+  const baseId = `${socSlug}-${year}-${slug}-${hashStr}`;
+
+  if (existingOrDeletedIds) {
+    const idSet =
+      existingOrDeletedIds instanceof Set
+        ? existingOrDeletedIds
+        : new Set(existingOrDeletedIds.map((x) => String(x).toLowerCase().trim()));
+
+    let candidate = baseId;
+    let counter = 1;
+    while (idSet.has(candidate.toLowerCase())) {
+      candidate = `${baseId}-v${counter}`;
+      counter++;
+    }
+    return candidate;
+  }
+  return baseId;
 }
 
 /**
@@ -253,11 +274,13 @@ export function generateSafeGuidelineId(society: string, year: number | string, 
 export function parseNotebookLMContent(
   rawContent: string,
   overrides?: {
+    id?: string;
     title?: string;
     society?: string;
     year?: number;
     subspecialty?: SubspecialtyType;
     officialUrl?: string;
+    existingOrDeletedIds?: Set<string> | string[];
   }
 ): ParsedNotebookLMResult {
   const lines = rawContent.split(/\r?\n/).map((l) => l.trim());
@@ -716,8 +739,10 @@ export function parseNotebookLMContent(
     }
   }
 
-  // 4. Slug & ID Generation
-  const docId = generateSafeGuidelineId(detectedSociety, year, docTitle);
+  // 4. Slug & ID Generation (Guaranteed unique against existing & deleted guideline IDs)
+  const docId =
+    overrides?.id ||
+    generateSafeGuidelineId(detectedSociety, year, docTitle, overrides?.existingOrDeletedIds);
 
   // Update IDs in practice changes to be unique to this doc
   practiceChanges.forEach((c, idx) => {

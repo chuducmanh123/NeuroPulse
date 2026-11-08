@@ -33,14 +33,18 @@ async function run() {
     return;
   }
 
-  console.log("Syncing updated aha2026_test to Supabase...");
+  console.log(`Syncing clean ${aha.allPracticeChanges?.length || 0}-rec aha2026_test to Supabase...`);
   const { error } = await supabase
     .from("neuroguide_docs")
-    .update({
+    .upsert({
+      id: "aha2026_test",
+      title: aha.title,
+      organization: aha.society || "AHA/ASA",
+      year: "2026",
+      status: "approved",
       data: aha,
       updated_at: new Date().toISOString(),
-    })
-    .eq("id", "aha2026_test");
+    }, { onConflict: "id" });
 
   if (error) {
     console.error("Supabase update error:", error);

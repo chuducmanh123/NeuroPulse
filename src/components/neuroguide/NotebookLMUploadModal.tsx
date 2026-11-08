@@ -11,6 +11,7 @@ interface NotebookLMUploadModalProps {
   onClose: () => void;
   onSuccess: (newDoc: GuidelineDoc) => void;
   darkMode: boolean;
+  existingGuidelines?: GuidelineDoc[];
 }
 
 export function NotebookLMUploadModal({
@@ -18,6 +19,7 @@ export function NotebookLMUploadModal({
   onClose,
   onSuccess,
   darkMode,
+  existingGuidelines,
 }: NotebookLMUploadModalProps) {
   const [activeTab, setActiveTab] = useState<"file" | "paste">("paste");
   const [rawText, setRawText] = useState<string>("");
@@ -53,6 +55,22 @@ export function NotebookLMUploadModal({
       return null;
     }
   }, [rawText, overrideTitle, overrideSociety, overrideYear, overrideSubspecialty]);
+
+  const candidateTitle = (overrideTitle || parsedPreview?.doc.title || "").trim();
+
+  // Kiểm tra trùng lặp thời gian thực với guideline đang có sẵn trong hệ thống
+  const duplicateMatch = useMemo(() => {
+    if (!candidateTitle || !existingGuidelines || existingGuidelines.length === 0) return null;
+    const candNorm = candidateTitle.toLowerCase().replace(/[^a-z0-9]/g, "");
+    const candTrim = candidateTitle.toLowerCase();
+    return (
+      existingGuidelines.find((g) => {
+        const gNorm = (g.title || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+        const gTrim = (g.title || "").trim().toLowerCase();
+        return gNorm === candNorm || gTrim === candTrim;
+      }) || null
+    );
+  }, [candidateTitle, existingGuidelines]);
 
   if (!isOpen) return null;
 
@@ -154,6 +172,13 @@ export function NotebookLMUploadModal({
     e.preventDefault();
     if (!rawText || rawText.trim().length < 20) {
       setErrorMessage("Vui lòng tải lên tệp tin (.md, .txt, .docx, .doc, .pdf) hoặc dán nội dung tóm tắt từ NotebookLM.");
+      return;
+    }
+
+    if (duplicateMatch) {
+      setErrorMessage(
+        `⚠️ Tên guideline "${candidateTitle}" trùng hoàn toàn với guideline đã có sẵn: "${duplicateMatch.title}" (${duplicateMatch.year || ""}). Hệ thống không tự động gộp hoặc ẩn tài liệu hiện có. Vui lòng đổi tên hoặc thêm năm/phiên bản trước khi lưu.`
+      );
       return;
     }
 
@@ -425,16 +450,35 @@ export function NotebookLMUploadModal({
             </span>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5">
               <div className="sm:col-span-2">
-                <label className="block text-[11px] font-semibold text-slate-500 mb-1">Guideline Title:</label>
+                <div className="flex items-center justify-between mb-1">
+                  <label className="block text-[11px] font-semibold text-slate-500">Guideline Title:</label>
+                  {duplicateMatch && (
+                    <span className="text-[10px] font-black uppercase text-rose-500 tracking-wider animate-pulse">
+                      Trùng tên có sẵn!
+                    </span>
+                  )}
+                </div>
                 <input
                   type="text"
                   value={overrideTitle || parsedPreview?.doc.title || ""}
                   onChange={(e) => setOverrideTitle(e.target.value)}
                   placeholder="e.g. 2023 AHA/ASA Guideline for aSAH"
-                  className={`w-full px-2.5 py-1.5 text-xs rounded-lg border outline-none ${
-                    darkMode ? "bg-slate-900 border-slate-700 text-slate-200" : "bg-white border-slate-300 text-slate-800"
+                  className={`w-full px-2.5 py-1.5 text-xs rounded-lg border outline-none transition-all ${
+                    duplicateMatch
+                      ? "border-rose-500 bg-rose-500/5 text-rose-700 dark:text-rose-300 ring-1 ring-rose-500/40"
+                      : darkMode
+                      ? "bg-slate-900 border-slate-700 text-slate-200"
+                      : "bg-white border-slate-300 text-slate-800"
                   }`}
                 />
+                {duplicateMatch && (
+                  <div className="mt-1.5 p-2 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-400 text-[11px] font-medium flex items-start gap-1.5">
+                    <span className="shrink-0 text-xs">⚠️</span>
+                    <span>
+                      <strong>Trùng hoàn toàn với guideline đã có:</strong> &quot;{duplicateMatch.title}&quot; ({duplicateMatch.year}). Hệ thống không tự động gộp hoặc ẩn tài liệu hiện có. Vui lòng đổi tên hoặc thêm năm/phiên bản trước khi lưu.
+                    </span>
+                  </div>
+                )}
               </div>
 
               <div>
@@ -632,9 +676,9 @@ export function NotebookLMUploadModal({
             </button>
             <button
               type="submit"
-              disabled={isLoading || !rawText || (parsedPreview?.stats.totalRecommendations || 0) === 0}
+              disabled={isLoading || !rawText || (parsedPreview?.stats.totalRecommendations || 0) === 0 || Boolean(duplicateMatch)}
               className={`px-5 py-2.5 rounded-xl text-xs font-black transition-all flex items-center gap-2 shadow-sm ${
-                isLoading || !rawText || (parsedPreview?.stats.totalRecommendations || 0) === 0
+                isLoading || !rawText || (parsedPreview?.stats.totalRecommendations || 0) === 0 || Boolean(duplicateMatch)
                   ? "bg-slate-300 dark:bg-slate-800 text-slate-500 cursor-not-allowed"
                   : "bg-gradient-to-r from-amber-500 to-rose-500 text-white hover:from-amber-600 hover:to-rose-600 shadow-md cursor-pointer"
               }`}
@@ -643,6 +687,11 @@ export function NotebookLMUploadModal({
                 <>
                   <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                   <span>Generating &amp; Persisting Guideline...</span>
+                </>
+              ) : duplicateMatch ? (
+                <>
+                  <span>⚠️</span>
+                  <span>Trùng tên với guideline có sẵn (Đổi tên để lưu)</span>
                 </>
               ) : (
                 <>

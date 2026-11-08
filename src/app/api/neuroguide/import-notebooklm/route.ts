@@ -7,6 +7,7 @@ import {
   loadMergedNeuroGuideData,
   saveNeuroGuideToActiveStorage,
   mergeGuidelines,
+  normalizeGuidelineTitle,
 } from "@/lib/neuroguide/guidelineStorage";
 import { SubspecialtyType } from "@/types/neuroguide";
 import { verifyAdminToken } from "@/utils/security";
@@ -100,12 +101,34 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Parse the document using our high-fidelity deterministic engine
+    // Tải cơ sở dữ liệu hiện hành trước để kiểm tra trùng lặp và thu thập các ID đã dùng/đã xóa
+    const currentStore = await loadMergedNeuroGuideData();
+
+    // Thu thập danh sách ID và Tiêu đề đang hoạt động (active) cũng như đã từng xóa (deleted)
+    const existingActiveIds = new Set<string>();
+    const activeNormTitles = new Map<string, (typeof currentStore.guidelines)[0]>();
+    const activeTrimTitles = new Map<string, (typeof currentStore.guidelines)[0]>();
+
+    for (const g of currentStore.guidelines) {
+      if (g.id) existingActiveIds.add(g.id.toLowerCase().trim());
+      if (g.title) {
+        activeNormTitles.set(normalizeGuidelineTitle(g.title), g);
+        activeTrimTitles.set(g.title.trim().toLowerCase(), g);
+      }
+    }
+
+    const allExcludedIds = new Set<string>([
+      ...existingActiveIds,
+      ...(currentStore.deletedGuidelineIds || []).map((x) => x.toLowerCase().trim()),
+    ]);
+
+    // Parse tài liệu với bộ ID loại trừ để đảm bảo doc.id không trùng với guideline có sẵn hay guideline đã từng xóa
     const { doc, stats } = parseNotebookLMContent(rawText, {
       title,
       society,
       year,
       subspecialty,
+      existingOrDeletedIds: allExcludedIds,
     });
 
     if (stats.totalRecommendations === 0) {
@@ -118,24 +141,39 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // KIỂM TRA TRÙNG HOÀN TOÀN VỚI TÊN GUIDELINE CÓ SẴN (BÁO TRÙNG - TUYỆT ĐỐI KHÔNG TỰ ĐỘNG GỘP HOẶC ẨN)
+    const candNormTitle = normalizeGuidelineTitle(doc.title);
+    const candTrimTitle = (doc.title || "").trim().toLowerCase();
+
+    const existingMatch = activeNormTitles.get(candNormTitle) || activeTrimTitles.get(candTrimTitle);
+    if (existingMatch) {
+      return NextResponse.json(
+        {
+          ok: false,
+          duplicate: true,
+          error: `Phát hiện guideline trùng hoàn toàn với guideline đã có sẵn: "${existingMatch.title}" (ID: "${existingMatch.id}", Năm: ${existingMatch.year}). Hệ thống không tự ý gộp khuyến cáo hoặc ẩn tài liệu hiện có. Vui lòng kiểm tra lại hoặc đổi tên/năm tài liệu trước khi tải lên.`,
+          existingGuideline: {
+            id: existingMatch.id,
+            title: existingMatch.title,
+            year: existingMatch.year,
+            society: existingMatch.society,
+            recommendationsCount: existingMatch.allPracticeChanges?.length || 0,
+          },
+        },
+        { status: 409 }
+      );
+    }
+
     // 1. Lưu vào guidelines_store ở trạng thái đã phê duyệt (APPROVED) để đồng nhất với Active Storage
     await registerCandidateGuideline(doc, { approved: true });
 
-    // 2. Tải cơ sở dữ liệu hiện hành và đồng bộ vào Active Storage (Supabase / Local Disk)
-    const currentStore = await loadMergedNeuroGuideData();
+    // 2. Đồng bộ vào Active Storage (Supabase / Local Disk)
     const allGuidelines = mergeGuidelines([doc], currentStore.guidelines);
 
-    // Xóa sạch mọi key/alias/title liên quan đến doc mới khỏi deletedGuidelineIds
-    const normTitle = (doc.title || "").toLowerCase().replace(/[^a-z0-9]/g, "");
-    const simplified = (doc.title || "")
-      .toLowerCase()
-      .replace(/european\s+stroke\s+organisation/gi, "eso")
-      .replace(/american\s+heart\s+association/gi, "aha")
-      .replace(/american\s+stroke\s+association/gi, "asa")
-      .replace(/[^a-z0-9]/g, "");
+    // Xóa sạch mọi key/alias/title liên quan đến doc mới khỏi deletedGuidelineIds để đảm bảo không bị ẩn
     const cleanDeleted = (currentStore.deletedGuidelineIds || []).filter((d) => {
       const lowerD = (d || "").toLowerCase().trim();
-      return lowerD !== doc.id.toLowerCase() && lowerD !== normTitle && lowerD !== simplified;
+      return lowerD !== doc.id.toLowerCase() && lowerD !== candNormTitle && lowerD !== candTrimTitle;
     });
 
     const saveResult = await saveNeuroGuideToActiveStorage({

@@ -1811,6 +1811,7 @@ export default function NeuroGuidePage() {
         <NotebookLMUploadModal
           isOpen={showNotebookLMModal}
           onClose={() => setShowNotebookLMModal(false)}
+          existingGuidelines={guidelineDocs}
           onSuccess={(newDoc) => {
             setGuidelineDocs((prev) => [newDoc, ...prev.filter((d) => d.id !== newDoc.id)]);
             setExpandedGuidelineIds((prev) => ({ ...prev, [newDoc.id]: true }));
