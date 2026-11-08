@@ -1,7 +1,12 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from "react";
-import type { GuidelineDoc, PracticeChangeDetail, SubspecialtyType } from "@/types/neuroguide";
+import type {
+  GuidelineDoc,
+  PracticeChangeDetail,
+  SubspecialtyType,
+  RecommendationV3Labels,
+} from "@/types/neuroguide";
 import { NEUROLOGY_SUBSPECIALTIES } from "@/types/neuroguide";
 import { ESO_GRADE_QUALITY_CONFIG } from "./EsoGuidelineTable";
 import { normalizeEsoStrength } from "@/lib/neuroguide/esoPicoGrouper";
@@ -12,6 +17,18 @@ import {
   GUIDELINE_FORMS,
   detectGuidelineFormFormat,
 } from "@/lib/neuroguide/guidelineFormat";
+import {
+  CLINICAL_CONDITIONS_V3,
+  getConditionsForSubspecialtyV3,
+  getConditionByIdV3,
+  getAllDiagnosisTagsV3,
+  getTagLabelByIdV3,
+  toCanonicalTagId,
+  type ClinicalDomainV3,
+  type DirectionFilterV3,
+  type TaxonomyTagV3,
+} from "@/data/clinicalNavigatorTaxonomyV3";
+import { classifyRecommendationV3 } from "@/lib/neuroguide/clinicalNavigatorV3Classifier";
 
 export type { GuidelineFormFormat } from "@/lib/neuroguide/guidelineFormat";
 
@@ -336,6 +353,16 @@ export function EditGuidelineModal({
   const [ahaLoe, setAhaLoe] = useState<string>("A");
   const [generalGrade, setGeneralGrade] = useState("");
 
+  // V3 Taxonomy & Labels State (Dual-Primary Axis)
+  const [isCustomizingV3, setIsCustomizingV3] = useState<boolean>(false);
+  const [customConditionId, setCustomConditionId] = useState<string>("");
+  const [customDomain, setCustomDomain] = useState<"diagnosis" | "treatment" | "prevention">("treatment");
+  const [customTimeWindowId, setCustomTimeWindowId] = useState<string>("all");
+  const [customInterventionTags, setCustomInterventionTags] = useState<string[]>([]);
+  const [customDiagnosisTags, setCustomDiagnosisTags] = useState<string[]>([]);
+  const [customDirection, setCustomDirection] = useState<"recommended" | "conditional" | "harm">("recommended");
+  const [customTagInput, setCustomTagInput] = useState<string>("");
+
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -492,6 +519,198 @@ export function EditGuidelineModal({
     setAhaCor(parseAhaCor(rec.currentGrade));
     setAhaLoe(parseAhaLoe(rec.currentGrade));
     setGeneralGrade(rec.currentGrade || "Level A");
+
+    if (rec.v3Labels && rec.v3Labels.isExplicit) {
+      setIsCustomizingV3(true);
+      setCustomConditionId(rec.v3Labels.conditionIds?.[0] || "");
+      setCustomDomain((rec.v3Labels.domains?.[0] as "diagnosis" | "treatment" | "prevention") || "treatment");
+      setCustomTimeWindowId(rec.v3Labels.timeWindowIds?.[0] || "all");
+      setCustomInterventionTags(rec.v3Labels.interventionTags || []);
+      setCustomDiagnosisTags(rec.v3Labels.diagnosisTags || []);
+      setCustomDirection(rec.v3Labels.direction || "recommended");
+    } else {
+      setIsCustomizingV3(false);
+      if (rec.v3Labels) {
+        setCustomConditionId(rec.v3Labels.conditionIds?.[0] || "");
+        setCustomDomain((rec.v3Labels.domains?.[0] as "diagnosis" | "treatment" | "prevention") || "treatment");
+        setCustomTimeWindowId(rec.v3Labels.timeWindowIds?.[0] || "all");
+        setCustomInterventionTags(rec.v3Labels.interventionTags || []);
+        setCustomDiagnosisTags(rec.v3Labels.diagnosisTags || []);
+        setCustomDirection(rec.v3Labels.direction || "recommended");
+      } else {
+        setCustomConditionId("");
+        setCustomDomain("treatment");
+        setCustomTimeWindowId("all");
+        setCustomInterventionTags([]);
+        setCustomDiagnosisTags([]);
+        setCustomDirection("recommended");
+      }
+    }
+    setCustomTagInput("");
+  };
+
+  const computedAutoV3Labels = useMemo<RecommendationV3Labels>(() => {
+    const currentGrade = isAha ? `Class ${ahaCor}, Level ${ahaLoe}` : generalGrade;
+    const trials = recTrialsStr
+      .split(",")
+      .map((t) => t.trim())
+      .filter(Boolean);
+
+    return classifyRecommendationV3(
+      {
+        id: docId || guidelineDoc?.id || "doc",
+        title: docTitle || guidelineDoc?.title || "",
+        society: docSociety || guidelineDoc?.society || "AHA/ASA",
+        year: parseInt(docYear, 10) || 2026,
+        subspecialty: docSubspecialty,
+      },
+      {
+        id: practiceChanges[selectedRecIndex]?.id || "rec-1",
+        category: recCategory,
+        topic: recTopic,
+        currentText: recStatement,
+        currentGrade,
+        cor: isAha ? ahaCor : undefined,
+        loe: isAha ? ahaLoe : undefined,
+        drivingTrials: trials,
+        v3Labels: undefined,
+      }
+    );
+  }, [
+    docId,
+    guidelineDoc,
+    docTitle,
+    docSociety,
+    docYear,
+    docSubspecialty,
+    practiceChanges,
+    selectedRecIndex,
+    recCategory,
+    recTopic,
+    recStatement,
+    ahaCor,
+    ahaLoe,
+    generalGrade,
+    isAha,
+    recTrialsStr,
+  ]);
+
+  const activeV3Labels = useMemo<RecommendationV3Labels>(() => {
+    if (isCustomizingV3) {
+      const condId = customConditionId || computedAutoV3Labels.conditionIds[0] || "cond_ischemic_stroke";
+      return {
+        subspecialties: [docSubspecialty],
+        conditionIds: [condId],
+        domains: [customDomain],
+        diagnosisTags: customDiagnosisTags,
+        timeWindowIds: customTimeWindowId && customTimeWindowId !== "all" ? [customTimeWindowId] : [],
+        interventionTags: customInterventionTags,
+        direction: customDirection,
+        isExplicit: true,
+        isFallbackCondition: false,
+      };
+    }
+    return computedAutoV3Labels;
+  }, [
+    isCustomizingV3,
+    customConditionId,
+    computedAutoV3Labels,
+    docSubspecialty,
+    customDomain,
+    customDiagnosisTags,
+    customTimeWindowId,
+    customInterventionTags,
+    customDirection,
+  ]);
+
+  const activeConditionId = activeV3Labels.conditionIds[0] || "cond_ischemic_stroke";
+  const activeConditionObj = useMemo(() => {
+    return (
+      getConditionByIdV3(activeConditionId) ||
+      CLINICAL_CONDITIONS_V3.find((c) => c.subspecialties.includes(docSubspecialty)) ||
+      CLINICAL_CONDITIONS_V3[0]
+    );
+  }, [activeConditionId, docSubspecialty]);
+
+  const availableConditions = useMemo(() => {
+    const forSub = getConditionsForSubspecialtyV3(docSubspecialty);
+    const others = CLINICAL_CONDITIONS_V3.filter(
+      (c) => !c.subspecialties.includes(docSubspecialty)
+    );
+    return { forSub, others };
+  }, [docSubspecialty]);
+
+  const suggestedTags = useMemo<TaxonomyTagV3[]>(() => {
+    if (!activeConditionObj) return [];
+    const tags: TaxonomyTagV3[] = [];
+    const seen = new Set<string>();
+
+    const addList = (list: TaxonomyTagV3[] | undefined) => {
+      if (!Array.isArray(list)) return;
+      for (const t of list) {
+        if (!seen.has(t.id)) {
+          seen.add(t.id);
+          tags.push(t);
+        }
+      }
+    };
+
+    const dom = isCustomizingV3 ? customDomain : activeV3Labels.domains[0] || "treatment";
+    if (dom === "diagnosis") {
+      addList(getAllDiagnosisTagsV3());
+    } else if (dom === "treatment") {
+      addList(activeConditionObj.treatment.drugs);
+      addList(activeConditionObj.treatment.interventions);
+      addList(activeConditionObj.treatment.otherCare);
+    } else if (dom === "prevention") {
+      addList(activeConditionObj.prevention.pharmacologicalProphylaxis);
+      addList(activeConditionObj.prevention.proceduralDevice);
+      addList(activeConditionObj.prevention.lifestyleRehabMonitoring);
+    } else {
+      addList(getAllDiagnosisTagsV3());
+      addList(activeConditionObj.treatment.drugs);
+      addList(activeConditionObj.treatment.interventions);
+      addList(activeConditionObj.prevention.pharmacologicalProphylaxis);
+    }
+
+    return tags;
+  }, [activeConditionObj, isCustomizingV3, customDomain, activeV3Labels.domains]);
+
+  const handleAddCustomTag = (tagText?: string) => {
+    const raw = (tagText || customTagInput).trim();
+    if (!raw) return;
+    const tagId = toCanonicalTagId(raw);
+    const isDiag = (isCustomizingV3 ? customDomain : activeV3Labels.domains[0]) === "diagnosis";
+    if (isDiag) {
+      if (!customDiagnosisTags.includes(tagId)) {
+        setCustomDiagnosisTags((prev) => [...prev, tagId]);
+      }
+    } else {
+      if (!customInterventionTags.includes(tagId)) {
+        setCustomInterventionTags((prev) => [...prev, tagId]);
+      }
+    }
+    setCustomTagInput("");
+  };
+
+  const handleEnableCustomV3 = () => {
+    setIsCustomizingV3(true);
+    setCustomConditionId(activeV3Labels.conditionIds[0] || "cond_ischemic_stroke");
+    setCustomDomain(activeV3Labels.domains[0] || "treatment");
+    setCustomTimeWindowId(activeV3Labels.timeWindowIds[0] || "all");
+    setCustomInterventionTags([...activeV3Labels.interventionTags]);
+    setCustomDiagnosisTags([...activeV3Labels.diagnosisTags]);
+    setCustomDirection(activeV3Labels.direction || "recommended");
+  };
+
+  const handleResetToAutoV3 = () => {
+    setIsCustomizingV3(false);
+    setCustomConditionId(computedAutoV3Labels.conditionIds[0] || "");
+    setCustomDomain(computedAutoV3Labels.domains[0] || "treatment");
+    setCustomTimeWindowId(computedAutoV3Labels.timeWindowIds[0] || "all");
+    setCustomInterventionTags([...computedAutoV3Labels.interventionTags]);
+    setCustomDiagnosisTags([...computedAutoV3Labels.diagnosisTags]);
+    setCustomDirection(computedAutoV3Labels.direction || "recommended");
   };
 
   const syncStandardRecToMemory = () => {
@@ -514,11 +733,14 @@ export function EditGuidelineModal({
       category: recCategory || "Recommendations",
       topic: recTopic || `Recommendation ${selectedRecIndex + 1}`,
       currentGrade: computedGrade,
+      cor: isAha ? ahaCor : undefined,
+      loe: isAha ? ahaLoe : undefined,
       currentText: recStatement,
       drivingTrials: trials,
       changeType: recChangeType,
       previousGrade: recPrevGrade || undefined,
       previousText: recPrevText || undefined,
+      v3Labels: activeV3Labels,
     };
 
     const nextList = [...practiceChanges];
@@ -1903,6 +2125,26 @@ export function EditGuidelineModal({
                             <p className="text-slate-500 dark:text-slate-400 text-[11px] line-clamp-1 mt-0.5">
                               {rec.currentText || "(No recommendation statement entered)"}
                             </p>
+
+                            {rec.v3Labels && (rec.v3Labels.conditionIds?.length > 0 || rec.v3Labels.interventionTags?.length > 0) && (
+                              <div className="flex flex-wrap items-center gap-1 mt-1.5 pt-1 border-t border-slate-100 dark:border-slate-800/60">
+                                {rec.v3Labels.conditionIds?.[0] && (
+                                  <span className="text-[9.5px] font-bold text-indigo-600 dark:text-indigo-400">
+                                    🎯 {getConditionByIdV3(rec.v3Labels.conditionIds[0])?.label || rec.v3Labels.conditionIds[0]}
+                                  </span>
+                                )}
+                                {rec.v3Labels.interventionTags?.slice(0, 2).map((t) => (
+                                  <span key={t} className="text-[9px] px-1 py-0.2 rounded bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 font-semibold">
+                                    {getTagLabelByIdV3(t) || t}
+                                  </span>
+                                ))}
+                                {(rec.v3Labels.interventionTags?.length || 0) > 2 && (
+                                  <span className="text-[9px] text-slate-400 font-bold">
+                                    +{(rec.v3Labels.interventionTags?.length || 0) - 2}
+                                  </span>
+                                )}
+                              </div>
+                            )}
                           </div>
                         );
                       })}
@@ -2122,6 +2364,373 @@ export function EditGuidelineModal({
                             </div>
                           </div>
                         )}
+
+                        {/* ==============================================================
+                            TAXONOMY & CLINICAL NAVIGATOR LABELS (V3)
+                            ============================================================== */}
+                        <div
+                          className={`p-3.5 sm:p-4 rounded-xl border space-y-3.5 transition-all ${
+                            isCustomizingV3
+                              ? darkMode
+                                ? "bg-indigo-950/25 border-indigo-700/60"
+                                : "bg-indigo-50/60 border-indigo-200"
+                              : darkMode
+                              ? "bg-slate-900/60 border-slate-700/70"
+                              : "bg-slate-50/80 border-slate-200"
+                          }`}
+                        >
+                          {/* Header: Title + Mode Badge + Toggle Button */}
+                          <div className="flex flex-wrap items-center justify-between gap-2 border-b pb-2.5 dark:border-slate-800">
+                            <div className="flex items-center gap-2">
+                              <span className="text-base sm:text-lg">🏷️</span>
+                              <div>
+                                <h4 className="font-extrabold text-xs text-slate-900 dark:text-slate-100 flex items-center gap-2">
+                                  <span>Phân loại &amp; Nhãn lâm sàng (Clinical Navigator V3)</span>
+                                  {isCustomizingV3 ? (
+                                    <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300 border border-indigo-300 dark:border-indigo-700">
+                                      ✏️ Gán nhãn thủ công (Customized)
+                                    </span>
+                                  ) : (
+                                    <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-sky-100 text-sky-700 dark:bg-sky-900/50 dark:text-sky-300 border border-sky-300 dark:border-sky-700">
+                                      🤖 Tự động nhận diện (Auto-classified)
+                                    </span>
+                                  )}
+                                </h4>
+                                <p className="text-[10.5px] text-slate-500 dark:text-slate-400 mt-0.5">
+                                  Xác định cách khuyến cáo này hiển thị và được lọc trong bộ lọc đa trục của Clinical Navigator.
+                                </p>
+                              </div>
+                            </div>
+
+                            <div className="flex items-center gap-1.5">
+                              {isCustomizingV3 ? (
+                                <button
+                                  type="button"
+                                  onClick={handleResetToAutoV3}
+                                  className="px-2.5 py-1 rounded-lg text-[10.5px] font-bold bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors cursor-pointer"
+                                  title="Hủy gán đè thủ công, quay lại chế độ máy tự động phân loại"
+                                >
+                                  🔄 Khôi phục tự động
+                                </button>
+                              ) : (
+                                <button
+                                  type="button"
+                                  onClick={handleEnableCustomV3}
+                                  className="px-2.5 py-1 rounded-lg text-[10.5px] font-bold bg-indigo-600 hover:bg-indigo-700 text-white shadow-2xs transition-colors flex items-center gap-1 cursor-pointer"
+                                  title="Tự tay chọn bệnh lý, giai đoạn và gán/gỡ nhãn theo ý muốn"
+                                >
+                                  <span>✏️ Chỉnh sửa nhãn</span>
+                                </button>
+                              )}
+                            </div>
+                          </div>
+
+                          {/* 3 Main Axis Controls */}
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            {/* 1. Clinical Condition */}
+                            <div>
+                              <label className="block font-bold mb-1 text-[11px] text-slate-700 dark:text-slate-300">
+                                Bệnh lý (Clinical Condition):
+                              </label>
+                              {isCustomizingV3 ? (
+                                <select
+                                  value={customConditionId || activeV3Labels.conditionIds[0] || ""}
+                                  onChange={(e) => {
+                                    setCustomConditionId(e.target.value);
+                                    setCustomTimeWindowId("all");
+                                  }}
+                                  className={`w-full p-2 rounded-xl border font-bold text-xs ${
+                                    darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
+                                  }`}
+                                >
+                                  <optgroup label={`Thuộc chuyên khoa ${docSubspecialty}`}>
+                                    {availableConditions.forSub.map((c) => (
+                                      <option key={c.id} value={c.id}>
+                                        {c.label}
+                                      </option>
+                                    ))}
+                                  </optgroup>
+                                  {availableConditions.others.length > 0 && (
+                                    <optgroup label="Các chuyên khoa khác">
+                                      {availableConditions.others.map((c) => (
+                                        <option key={c.id} value={c.id}>
+                                          {c.label} ({c.subspecialties.join(", ")})
+                                        </option>
+                                      ))}
+                                    </optgroup>
+                                  )}
+                                </select>
+                              ) : (
+                                <div
+                                  className={`p-2 rounded-xl border font-extrabold text-xs flex items-center gap-1.5 ${
+                                    darkMode
+                                      ? "bg-slate-800/80 border-slate-700 text-indigo-300"
+                                      : "bg-white border-slate-200 text-indigo-700"
+                                  }`}
+                                >
+                                  <span>🎯</span>
+                                  <span className="truncate">
+                                    {activeConditionObj?.label || activeV3Labels.conditionIds[0] || "Chưa xác định"}
+                                  </span>
+                                </div>
+                              )}
+                            </div>
+
+                            {/* 2. Clinical Domain */}
+                            <div>
+                              <label className="block font-bold mb-1 text-[11px] text-slate-700 dark:text-slate-300">
+                                Giai đoạn lâm sàng (Domain):
+                              </label>
+                              {isCustomizingV3 ? (
+                                <select
+                                  value={customDomain}
+                                  onChange={(e) => setCustomDomain(e.target.value as "diagnosis" | "treatment" | "prevention")}
+                                  className={`w-full p-2 rounded-xl border font-bold text-xs ${
+                                    darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
+                                  }`}
+                                >
+                                  <option value="treatment">💊 Treatment (Điều trị cấp &amp; chủ động)</option>
+                                  <option value="diagnosis">🔍 Diagnosis (Chẩn đoán &amp; Đánh giá)</option>
+                                  <option value="prevention">🛡️ Prevention (Dự phòng thứ phát)</option>
+                                </select>
+                              ) : (
+                                <div
+                                  className={`p-2 rounded-xl border font-extrabold text-xs flex items-center gap-1.5 capitalize ${
+                                    darkMode
+                                      ? "bg-slate-800/80 border-slate-700 text-emerald-300"
+                                      : "bg-white border-slate-200 text-emerald-700"
+                                  }`}
+                                >
+                                  <span>
+                                    {activeV3Labels.domains[0] === "diagnosis"
+                                      ? "🔍"
+                                      : activeV3Labels.domains[0] === "prevention"
+                                      ? "🛡️"
+                                      : "💊"}
+                                  </span>
+                                  <span>{activeV3Labels.domains[0] || "treatment"}</span>
+                                </div>
+                              )}
+                            </div>
+
+                            {/* 3. Recommendation Direction */}
+                            <div>
+                              <label className="block font-bold mb-1 text-[11px] text-slate-700 dark:text-slate-300">
+                                Hướng can thiệp (Direction):
+                              </label>
+                              {isCustomizingV3 ? (
+                                <select
+                                  value={customDirection}
+                                  onChange={(e) => setCustomDirection(e.target.value as "recommended" | "conditional" | "harm")}
+                                  className={`w-full p-2 rounded-xl border font-bold text-xs ${
+                                    darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
+                                  }`}
+                                >
+                                  <option value="recommended">🟢 Strong Recommended (Class I, IIa)</option>
+                                  <option value="conditional">🟡 Marginal / Conditional (Class IIb)</option>
+                                  <option value="harm">🔴 Contraindicated / Harm (Class III)</option>
+                                </select>
+                              ) : (
+                                <div
+                                  className={`p-2 rounded-xl border font-extrabold text-xs flex items-center gap-1.5 ${
+                                    activeV3Labels.direction === "harm"
+                                      ? "bg-rose-100 dark:bg-rose-950/50 text-rose-700 dark:text-rose-300 border-rose-300 dark:border-rose-800"
+                                      : activeV3Labels.direction === "conditional"
+                                      ? "bg-amber-100 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 border-amber-300 dark:border-amber-800"
+                                      : "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border-emerald-300 dark:border-emerald-800"
+                                  }`}
+                                >
+                                  <span>
+                                    {activeV3Labels.direction === "harm"
+                                      ? "🔴"
+                                      : activeV3Labels.direction === "conditional"
+                                      ? "🟡"
+                                      : "🟢"}
+                                  </span>
+                                  <span className="capitalize">{activeV3Labels.direction}</span>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+
+                          {/* Optional: Time Window (Only if Domain is treatment) */}
+                          {(isCustomizingV3 ? customDomain === "treatment" : activeV3Labels.domains.includes("treatment")) &&
+                            activeConditionObj?.treatment.timeWindows &&
+                            activeConditionObj.treatment.timeWindows.length > 0 && (
+                              <div>
+                                <label className="block font-bold mb-1 text-[11px] text-slate-700 dark:text-slate-300">
+                                  Cửa sổ thời gian can thiệp (Time Window):
+                                </label>
+                                {isCustomizingV3 ? (
+                                  <div className="flex flex-wrap gap-1.5">
+                                    <button
+                                      type="button"
+                                      onClick={() => setCustomTimeWindowId("all")}
+                                      className={`px-2.5 py-1 rounded-lg text-xs font-bold border transition-all cursor-pointer ${
+                                        customTimeWindowId === "all" || !customTimeWindowId
+                                          ? "bg-indigo-600 text-white border-indigo-600 shadow-2xs"
+                                          : darkMode
+                                          ? "bg-slate-800 text-slate-300 border-slate-700"
+                                          : "bg-white text-slate-700 border-slate-200"
+                                      }`}
+                                    >
+                                      Tất cả cửa sổ
+                                    </button>
+                                    {activeConditionObj.treatment.timeWindows.map((tw) => {
+                                      const isSel = customTimeWindowId === tw.id;
+                                      return (
+                                        <button
+                                          key={tw.id}
+                                          type="button"
+                                          onClick={() => setCustomTimeWindowId(tw.id)}
+                                          className={`px-2.5 py-1 rounded-lg text-xs font-bold border transition-all cursor-pointer ${
+                                            isSel
+                                              ? "bg-indigo-600 text-white border-indigo-600 shadow-2xs"
+                                              : darkMode
+                                              ? "bg-slate-800 text-slate-300 border-slate-700"
+                                              : "bg-white text-slate-700 border-slate-200"
+                                          }`}
+                                        >
+                                          ⏱️ {tw.label}
+                                        </button>
+                                      );
+                                    })}
+                                  </div>
+                                ) : (
+                                  <div className="flex items-center gap-1.5 text-xs text-slate-600 dark:text-slate-300 font-semibold">
+                                    <span>⏱️ Cửa sổ:</span>
+                                    <span className="font-bold text-indigo-600 dark:text-indigo-400">
+                                      {activeConditionObj.treatment.timeWindows.find(
+                                        (tw) => tw.id === activeV3Labels.timeWindowIds[0]
+                                      )?.label || "Không áp dụng cửa sổ cụ thể"}
+                                    </span>
+                                  </div>
+                                )}
+                              </div>
+                            )}
+
+                          {/* Tags: Assigned Chips + Tag Adder */}
+                          <div className="space-y-2 pt-1 border-t dark:border-slate-800">
+                            <div className="flex items-center justify-between gap-2">
+                              <label className="font-bold text-[11px] text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+                                <span>Thẻ can thiệp &amp; Chẩn đoán đang gán:</span>
+                                <span className="px-1.5 py-0.2 rounded-full text-[10px] font-black bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                                  {(isCustomizingV3
+                                    ? [...customInterventionTags, ...customDiagnosisTags]
+                                    : [...activeV3Labels.interventionTags, ...activeV3Labels.diagnosisTags]
+                                  ).length}
+                                </span>
+                              </label>
+                              {isCustomizingV3 && (
+                                <span className="text-[10.5px] text-slate-400">
+                                  Bấm dấu × để gỡ nhãn, hoặc nhấp gợi ý bên dưới để thêm nhanh
+                                </span>
+                              )}
+                            </div>
+
+                            {/* Display Assigned Tags */}
+                            <div className="flex flex-wrap gap-1.5 min-h-[34px] p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 items-center">
+                              {(isCustomizingV3
+                                ? [...customInterventionTags, ...customDiagnosisTags]
+                                : [...activeV3Labels.interventionTags, ...activeV3Labels.diagnosisTags]
+                              ).length === 0 ? (
+                                <span className="text-xs text-slate-400 italic">
+                                  Chưa có thẻ can thiệp/chẩn đoán nào được gán cho khuyến cáo này.
+                                </span>
+                              ) : (
+                                (isCustomizingV3
+                                  ? [...customInterventionTags, ...customDiagnosisTags]
+                                  : [...activeV3Labels.interventionTags, ...activeV3Labels.diagnosisTags]
+                                ).map((tagId) => {
+                                  const label = getTagLabelByIdV3(tagId) || tagId;
+                                  return (
+                                    <span
+                                      key={tagId}
+                                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold bg-indigo-50 text-indigo-800 dark:bg-indigo-950/70 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 shadow-2xs"
+                                    >
+                                      <span>{label}</span>
+                                      {isCustomizingV3 && (
+                                        <button
+                                          type="button"
+                                          onClick={() => {
+                                            setCustomInterventionTags((prev) => prev.filter((id) => id !== tagId));
+                                            setCustomDiagnosisTags((prev) => prev.filter((id) => id !== tagId));
+                                          }}
+                                          className="hover:text-rose-500 font-black text-sm leading-none ml-0.5 cursor-pointer"
+                                          title={`Gỡ nhãn "${label}"`}
+                                        >
+                                          ×
+                                        </button>
+                                      )}
+                                    </span>
+                                  );
+                                })
+                              )}
+                            </div>
+
+                            {/* If customizing: Add Tag Input + Quick Suggestion Chips */}
+                            {isCustomizingV3 && (
+                              <div className="space-y-2 pt-2">
+                                {/* Custom Input */}
+                                <div className="flex items-center gap-2">
+                                  <input
+                                    type="text"
+                                    value={customTagInput}
+                                    onChange={(e) => setCustomTagInput(e.target.value)}
+                                    onKeyDown={(e) => {
+                                      if (e.key === "Enter") {
+                                        e.preventDefault();
+                                        handleAddCustomTag();
+                                      }
+                                    }}
+                                    placeholder="Nhập tên nhãn muốn thêm (ví dụ: Tenecteplase, Dual Antiplatelet, MRI DWI...)..."
+                                    className={`flex-1 p-2 rounded-xl border text-xs font-medium ${
+                                      darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
+                                    }`}
+                                  />
+                                  <button
+                                    type="button"
+                                    onClick={() => handleAddCustomTag()}
+                                    className="px-3.5 py-2 rounded-xl text-xs font-bold bg-indigo-600 hover:bg-indigo-700 text-white cursor-pointer shadow-xs whitespace-nowrap"
+                                  >
+                                    + Thêm nhãn
+                                  </button>
+                                </div>
+
+                                {/* Quick Canonical Suggestions */}
+                                {suggestedTags.length > 0 && (
+                                  <div>
+                                    <span className="block text-[10.5px] font-bold text-slate-500 dark:text-slate-400 mb-1">
+                                      Gợi ý nhãn danh định theo bệnh lý &amp; giai đoạn này (Bấm để thêm nhanh):
+                                    </span>
+                                    <div className="flex flex-wrap gap-1.5 max-h-28 overflow-y-auto custom-scrollbar p-1">
+                                      {suggestedTags.map((st) => {
+                                        const isAlreadyAdded =
+                                          customInterventionTags.includes(st.id) || customDiagnosisTags.includes(st.id);
+                                        return (
+                                          <button
+                                            key={st.id}
+                                            type="button"
+                                            disabled={isAlreadyAdded}
+                                            onClick={() => handleAddCustomTag(st.label)}
+                                            className={`px-2 py-0.5 rounded-md text-[10.5px] font-semibold border transition-colors cursor-pointer ${
+                                              isAlreadyAdded
+                                                ? "opacity-40 bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700 cursor-not-allowed"
+                                                : "bg-slate-100 hover:bg-indigo-100 dark:bg-slate-800 dark:hover:bg-indigo-950 text-slate-700 hover:text-indigo-700 dark:text-slate-300 dark:hover:text-indigo-300 border-slate-200 dark:border-slate-700"
+                                            }`}
+                                          >
+                                            {isAlreadyAdded ? "✓ " : "+ "}
+                                            {st.label}
+                                          </button>
+                                        );
+                                      })}
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        </div>
                       </div>
                     ) : (
                       <div className="flex-1 flex flex-col items-center justify-center p-6 text-slate-400">
