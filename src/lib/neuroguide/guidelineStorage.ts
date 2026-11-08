@@ -407,7 +407,9 @@ export function mergeGuidelines(
 
     const normT = normalizeTitle(doc.title);
     const coreKey = getCoreTopicKey(doc);
-    const existing = topicMap.get(coreKey) || titleMap.get(normT) || idMap.get(id);
+    const yr = doc.year || (doc.title || "").match(/\b(20\d{2}|19\d{2})\b/)?.[1] || "";
+    const topicKey = yr ? `${coreKey}-${yr}` : coreKey;
+    const existing = topicMap.get(topicKey) || titleMap.get(normT) || idMap.get(id);
 
     if (existing) {
       const existingChanges = existing.allPracticeChanges?.length || 0;
@@ -430,11 +432,11 @@ export function mergeGuidelines(
       idMap.delete(discarded.id.toLowerCase());
       titleMap.delete(normalizeTitle(discarded.title));
 
-      topicMap.set(coreKey, chosen);
+      topicMap.set(topicKey, chosen);
       titleMap.set(normalizeTitle(chosen.title), chosen);
       idMap.set(chosen.id.toLowerCase(), chosen);
     } else {
-      topicMap.set(coreKey, doc);
+      topicMap.set(topicKey, doc);
       titleMap.set(normT, doc);
       idMap.set(id, doc);
     }

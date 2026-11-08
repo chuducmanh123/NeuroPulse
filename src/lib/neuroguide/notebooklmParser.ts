@@ -341,15 +341,78 @@ export function parseNotebookLMContent(
   const corBreakdown: Record<string, number> = {};
 
   // =========================================================================
-  // STRATEGY 1: PARSE MARKDOWN TABLE ROWS
+  // STRATEGY 1: PARSE MARKDOWN TABLE ROWS (SUPPORTS MULTIPLE TABLES)
   // =========================================================================
-  if (tableHeaderIndex !== -1) {
-    const headerLine = lines[tableHeaderIndex];
-    const rawHeaderParts = headerLine.split("|").map(cleanCell);
-    // Remove boundary pipes
+  interface TableBlock {
+    headerIndex: number;
+    headerCols: string[];
+    isRecTable: boolean;
+    rowLines: string[];
+  }
+
+  const detectedTables: TableBlock[] = [];
+  let tIdx = 0;
+  while (tIdx < lines.length) {
+    const line = lines[tIdx];
+    if (!line || !line.includes("|")) {
+      tIdx++;
+      continue;
+    }
+
+    const nextLine = tIdx + 1 < lines.length ? lines[tIdx + 1] : "";
+    const isHeaderSep =
+      nextLine.includes("|") &&
+      nextLine.replace(/[|\s\-\:]/g, "").length === 0;
+
+    const rawHeaderParts = line.split("|").map(cleanCell);
     if (rawHeaderParts.length > 0 && rawHeaderParts[0] === "") rawHeaderParts.shift();
     if (rawHeaderParts.length > 0 && rawHeaderParts[rawHeaderParts.length - 1] === "") rawHeaderParts.pop();
     const headerCols = rawHeaderParts.map((c) => c.toLowerCase());
+
+    const hasKeywords = headerCols.some((c) => tableKeywords.some((k) => c.includes(k)));
+
+    if (hasKeywords || isHeaderSep) {
+      const isRecTable = hasKeywords;
+      const rowLines: string[] = [];
+      let r = isHeaderSep ? tIdx + 2 : tIdx + 1;
+      while (r < lines.length && lines[r].includes("|")) {
+        // Skip separator rows like | --- | --- |
+        if (lines[r].replace(/[|\s\-\:]/g, "").length === 0) {
+          r++;
+          continue;
+        }
+
+        // Check if a new table header starts here
+        const nextNext = r + 1 < lines.length ? lines[r + 1] : "";
+        const nextIsSep = nextNext.includes("|") && nextNext.replace(/[|\s\-\:]/g, "").length === 0;
+        const checkParts = lines[r].split("|").map(cleanCell);
+        if (checkParts.length > 0 && checkParts[0] === "") checkParts.shift();
+        if (checkParts.length > 0 && checkParts[checkParts.length - 1] === "") checkParts.pop();
+        const checkCols = checkParts.map((c) => c.toLowerCase());
+        if (nextIsSep && checkCols.some((c) => tableKeywords.some((k) => c.includes(k)))) {
+          break;
+        }
+
+        rowLines.push(lines[r]);
+        r++;
+      }
+      detectedTables.push({
+        headerIndex: tIdx,
+        headerCols,
+        isRecTable,
+        rowLines,
+      });
+      tIdx = r;
+    } else {
+      tIdx++;
+    }
+  }
+
+  const hasAnyExplicitRecTable = detectedTables.some((t) => t.isRecTable);
+  const targetTables = hasAnyExplicitRecTable ? detectedTables.filter((t) => t.isRecTable) : detectedTables;
+
+  for (const tbl of targetTables) {
+    const headerCols = tbl.headerCols;
 
     const isAhaTable =
       detectedSociety.toUpperCase().includes("AHA") ||
@@ -397,8 +460,7 @@ export function parseNotebookLMContent(
     let activePicoNum: number | string = 1;
     let activePicoQuestion = "";
 
-    for (let i = tableHeaderIndex + 1; i < lines.length; i++) {
-      const line = lines[i];
+    for (const line of tbl.rowLines) {
       if (!line || !line.includes("|")) continue;
       // Skip markdown separator row like | --- | --- |
       if (line.replace(/[|\s\-\:]/g, "").length === 0) continue;

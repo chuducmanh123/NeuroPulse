@@ -115,4 +115,35 @@ describe("NotebookLM Practice Guideline Ingestion Engine", () => {
     assert.ok(bpId.includes("blood-pressure"));
     assert.ok(aphasiaId.includes("aphasia"));
   });
+
+  test("should skip metadata tables and parse all clinical recommendation tables across multi-table docx markdown", () => {
+    const multiTableText = `
+# 2019 Update ACC AHA Guidelines for the Early Management of Patients With Acute Ischemic Stroke
+
+Table 1. Writing Group Members and Affiliations
+| Name | Role | Affiliation | Disclosures |
+| --- | --- | --- | --- |
+| Dr. John Doe | Chair | Neurology Institute | None |
+
+Some narrative overview about early management of acute ischemic stroke.
+
+Table 4. Neuroimaging Recommendations
+| Clinical Domain | Recommendation Statement | COR / LOE | Key Evidence |
+| --- | --- | --- | --- |
+| Neuroimaging: Initial CT | Emergency noncontrast CT is recommended for suspected AIS. | Class 1  LOE A | NINDS, DEFUSE |
+| Neuroimaging: MRI Diffusion | Brain MRI is reasonable to establish acute infarct core. | Class 2a  LOE B-NR | DAWN trial |
+
+Table 5. Intravenous Thrombolysis Recommendations
+| Clinical Domain | Recommendation Statement | COR / LOE | Key Evidence |
+| --- | --- | --- | --- |
+| Thrombolysis: Alteplase | IV Alteplase (0.9 mg/kg) is recommended within 3 hours. | Class 1  LOE A | ECASS III, NINDS |
+| Thrombolysis: Tenecteplase | IV Tenecteplase (0.25 mg/kg) may be considered. | Class 2b  LOE B-R | EXTEND-IA TNK |
+`;
+
+    const { doc, stats } = parseNotebookLMContent(multiTableText);
+    assert.strictEqual(stats.totalRecommendations, 4, "Should extract all 4 recommendations across both tables");
+    assert.ok(doc.allPracticeChanges.some(r => r.currentText.includes("noncontrast CT")));
+    assert.ok(doc.allPracticeChanges.some(r => r.currentText.includes("Alteplase")));
+    assert.ok(!doc.allPracticeChanges.some(r => r.currentText.includes("Neurology Institute")), "Should NOT extract writing group members as recommendations");
+  });
 });

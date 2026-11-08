@@ -437,12 +437,11 @@ export default function NeuroGuidePage() {
         id: "navigator" as const,
         label: "🧭 Clinical Navigator",
         mobileLabel: "🧭 Navigator",
-        badge: `${pivotalTrials.length} Trials`,
       },
     ];
 
     return tabs;
-  }, [guidelineDocs.length, pivotalTrials.length]);
+  }, [guidelineDocs.length]);
 
   // Expandable cards states (details reveal only on click)
   const [expandedGuidelineIds, setExpandedGuidelineIds] = useState<Record<string, boolean>>({});
