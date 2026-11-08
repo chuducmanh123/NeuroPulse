@@ -1136,33 +1136,35 @@ export default function NeuroGuidePage() {
         {/* =========================================================================
             SUBSPECIALTY FILTER CHIPS (Horizontal Scroll Bar)
            ========================================================================= */}
-        <div
-          className={`mb-6 p-2 rounded-xl border overflow-x-auto scrollbar-none flex items-center gap-1.5 ${
-            darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200 shadow-xs"
-          }`}
-        >
-          <span className="text-[10.5px] font-black uppercase tracking-wider text-slate-400 whitespace-nowrap ml-1 mr-1">
-            Subspecialty:
-          </span>
-          {NEUROLOGY_SUBSPECIALTIES.map((sub) => {
-            const isSelected = selectedSubspecialty === sub;
-            return (
-              <button
-                key={sub}
-                onClick={() => setSelectedSubspecialty(sub)}
-                className={`px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${
-                  isSelected
-                    ? "bg-amber-500 text-white shadow-xs font-bold"
-                    : darkMode
-                    ? "bg-slate-800/80 text-slate-300 hover:bg-slate-800 hover:text-white"
-                    : "bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900"
-                }`}
-              >
-                {sub}
-              </button>
-            );
-          })}
-        </div>
+        {activeTab !== "navigator" && (
+          <div
+            className={`mb-6 p-2 rounded-xl border overflow-x-auto scrollbar-none flex items-center gap-1.5 ${
+              darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200 shadow-xs"
+            }`}
+          >
+            <span className="text-[10.5px] font-black uppercase tracking-wider text-slate-400 whitespace-nowrap ml-1 mr-1">
+              Subspecialty:
+            </span>
+            {NEUROLOGY_SUBSPECIALTIES.map((sub) => {
+              const isSelected = selectedSubspecialty === sub;
+              return (
+                <button
+                  key={sub}
+                  onClick={() => setSelectedSubspecialty(sub)}
+                  className={`px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${
+                    isSelected
+                      ? "bg-amber-500 text-white shadow-xs font-bold"
+                      : darkMode
+                      ? "bg-slate-800/80 text-slate-300 hover:bg-slate-800 hover:text-white"
+                      : "bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900"
+                  }`}
+                >
+                  {sub}
+                </button>
+              );
+            })}
+          </div>
+        )}
 
         {/* =========================================================================
             TAB 1: PRACTICE GUIDELINES (Distinct theme colors, details revealed on click)
