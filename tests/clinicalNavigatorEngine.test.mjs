@@ -9,6 +9,7 @@ import {
   toCanonicalTagId,
   toTimeWindowId,
   getConditionsForSubspecialtyV3,
+  getConditionByIdV3,
   getTreatmentSchemaForScopeV3,
   getPreventionSchemaForScopeV3,
 } from "../src/data/clinicalNavigatorTaxonomyV3.ts";
@@ -297,4 +298,35 @@ test("Clinical Feasibility Test Cases on Ingested Practical Guidelines & Unlabel
     c17SearchCombo.coreRecommendations.every((r) => r.text.toLowerCase().includes("0.25 mg/kg")),
     "Case 17: Right-Pane Search strictly filters recommendation text"
   );
+});
+
+test("Axis 1B -> Axis 1A Sync: Condition selection resolves to correct corresponding Subspecialty", () => {
+  function resolveSubspecialtyOnConditionSelect(currentSub, condId) {
+    if (condId === "all") return currentSub;
+    const cond = getConditionByIdV3(condId);
+    if (!cond || !cond.subspecialties || cond.subspecialties.length === 0) return currentSub;
+    if (currentSub === "all" || !cond.subspecialties.includes(currentSub)) {
+      return cond.subspecialties[0];
+    }
+    return currentSub;
+  }
+
+  // 1. When Axis 1A is "all", selecting an Axis 1B condition switches Axis 1A to its subspecialty
+  assert.equal(resolveSubspecialtyOnConditionSelect("all", "cond_ischemic_stroke"), "Stroke");
+  assert.equal(resolveSubspecialtyOnConditionSelect("all", "cond_status_epilepticus"), "Neurocritical Care");
+  assert.equal(resolveSubspecialtyOnConditionSelect("all", "cond_new_onset_seizure"), "Epilepsy");
+  assert.equal(resolveSubspecialtyOnConditionSelect("all", "cond_migraine"), "Headache & Pain");
+
+  // 2. When Axis 1A is already on another subspecialty, selecting a condition switches to the condition's subspecialty
+  assert.equal(resolveSubspecialtyOnConditionSelect("Epilepsy", "cond_ischemic_stroke"), "Stroke");
+  assert.equal(resolveSubspecialtyOnConditionSelect("Stroke", "cond_migraine"), "Headache & Pain");
+
+  // 3. When Axis 1A is already on a valid subspecialty for a multi-parent condition, keep it
+  assert.equal(resolveSubspecialtyOnConditionSelect("Movement Disorders", "cond_lbd"), "Movement Disorders");
+  assert.equal(resolveSubspecialtyOnConditionSelect("Dementia", "cond_lbd"), "Dementia");
+  assert.equal(resolveSubspecialtyOnConditionSelect("all", "cond_lbd"), "Dementia");
+
+  // 4. Selecting "all" conditions does not alter current subspecialty
+  assert.equal(resolveSubspecialtyOnConditionSelect("Stroke", "all"), "Stroke");
+  assert.equal(resolveSubspecialtyOnConditionSelect("all", "all"), "all");
 });

@@ -282,6 +282,8 @@ export function ClinicalNavigatorTab({
       initialPresetOrQuery.subspecialty !== "all" &&
       initialPresetOrQuery.subspecialty !== "All Subspecialties"
       ? (initialPresetOrQuery.subspecialty as Subspecialty)
+      : initialPresetOrQuery?.conditionId && initialPresetOrQuery.conditionId !== "all"
+      ? (getConditionByIdV3(initialPresetOrQuery.conditionId)?.subspecialties[0] as Subspecialty) || "all"
       : "all"
   );
   const [selectedConditionId, setSelectedConditionId] = useState<string | "all">(
@@ -317,13 +319,15 @@ export function ClinicalNavigatorTab({
   useEffect(() => {
     if (initialPresetOrQuery) {
       setSearchText(initialPresetOrQuery.searchText || "");
-      setSelectedSubspecialty(
+      const resolvedSub =
         initialPresetOrQuery.subspecialty &&
-          initialPresetOrQuery.subspecialty !== "all" &&
-          initialPresetOrQuery.subspecialty !== "All Subspecialties"
+        initialPresetOrQuery.subspecialty !== "all" &&
+        initialPresetOrQuery.subspecialty !== "All Subspecialties"
           ? (initialPresetOrQuery.subspecialty as Subspecialty)
-          : "all"
-      );
+          : initialPresetOrQuery.conditionId && initialPresetOrQuery.conditionId !== "all"
+          ? (getConditionByIdV3(initialPresetOrQuery.conditionId)?.subspecialties[0] as Subspecialty) || "all"
+          : "all";
+      setSelectedSubspecialty(resolvedSub);
       setSelectedConditionId(initialPresetOrQuery.conditionId || "all");
       setSelectedDomain(initialPresetOrQuery.domain || "all");
       setSelectedDiagnosisTags(initialPresetOrQuery.diagnosisTags || []);
@@ -459,6 +463,13 @@ export function ClinicalNavigatorTab({
     if (condId !== "all") {
       const cond = getConditionByIdV3(condId);
       if (cond) {
+        // Auto-switch Axis 1A to corresponding subspecialty
+        if (cond.subspecialties && cond.subspecialties.length > 0) {
+          if (selectedSubspecialty === "all" || !cond.subspecialties.includes(selectedSubspecialty)) {
+            setSelectedSubspecialty(cond.subspecialties[0]);
+          }
+        }
+
         const validIds = new Set([
           ...cond.treatment.drugs.map((t) => t.id),
           ...cond.treatment.interventions.map((t) => t.id),
