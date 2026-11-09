@@ -267,7 +267,25 @@ function changesToEsoPicos(changes: PracticeChangeDetail[]): EsoPicoDraft[] {
       voting,
       drivingTrials: item.drivingTrials || [],
       changeType: item.changeType || "STANDARD",
-      v3Labels: item.v3Labels,
+      v3Labels:
+        item.v3Labels ||
+        (item.currentText
+          ? classifyRecommendationV3(
+              {
+                id: "eso-guideline",
+                title: "",
+                society: "ESO",
+                subspecialty: "Stroke",
+                year: 2024,
+              },
+              {
+                ...item,
+                category: item.category || "Recommendations",
+                topic: item.topic || item.currentText.slice(0, 60),
+                currentGrade: item.currentGrade || item.strength || "",
+              }
+            )
+          : undefined),
     });
   });
 
@@ -382,6 +400,10 @@ export function EditGuidelineModal({
   // Drag & drop state for Standard/AHA recommendations (left pane)
   const [draggedStandardRecIndex, setDraggedStandardRecIndex] = useState<number | null>(null);
   const [dragOverStandardRecIndex, setDragOverStandardRecIndex] = useState<number | null>(null);
+
+  // ESO Recommendation V3 Label Editor state
+  const [editingEsoRecIndex, setEditingEsoRecIndex] = useState<number | null>(null);
+  const [esoCustomTagInput, setEsoCustomTagInput] = useState<string>("");
 
   // Active form flags
   const isEso = formFormat === "ESO";
@@ -831,6 +853,121 @@ export function EditGuidelineModal({
     };
     setEsoPicos((prev) => [...prev, newPico]);
     setSelectedPicoIndex(esoPicos.length);
+  };
+
+  const getEffectiveEsoRecV3 = (rec: EsoRecDraft): RecommendationV3Labels => {
+    if (rec.v3Labels) return rec.v3Labels;
+    return classifyRecommendationV3(
+      {
+        id: docId || guidelineDoc?.id || "eso-guideline",
+        title: docTitle || guidelineDoc?.title || "",
+        society: docSociety || guidelineDoc?.society || "ESO",
+        year: parseInt(docYear, 10) || 2026,
+        subspecialty: docSubspecialty,
+      },
+      {
+        id: rec.id || "rec-1",
+        currentText: rec.statement,
+        strength: rec.strength,
+        quality: rec.quality,
+        drivingTrials: rec.drivingTrials,
+        category: "Recommendations",
+        topic: rec.statement.slice(0, 60),
+        currentGrade: rec.strength || "",
+      }
+    );
+  };
+
+  const updateEsoRecV3 = (rIdx: number, patch: Partial<RecommendationV3Labels>) => {
+    const curPico = esoPicos[selectedPicoIndex];
+    if (!curPico) return;
+    const curRec = curPico.recommendations[rIdx];
+    if (!curRec) return;
+    const baseV3 = getEffectiveEsoRecV3(curRec);
+    const nextV3: RecommendationV3Labels = {
+      ...baseV3,
+      ...patch,
+      isExplicit: true,
+    };
+    updateEsoRec(rIdx, { v3Labels: nextV3 });
+  };
+
+  const handleResetEsoRecV3 = (rIdx: number) => {
+    const curPico = esoPicos[selectedPicoIndex];
+    if (!curPico) return;
+    const curRec = curPico.recommendations[rIdx];
+    if (!curRec) return;
+    const autoV3 = classifyRecommendationV3(
+      {
+        id: docId || guidelineDoc?.id || "eso-guideline",
+        title: docTitle || guidelineDoc?.title || "",
+        society: docSociety || guidelineDoc?.society || "ESO",
+        year: parseInt(docYear, 10) || 2026,
+        subspecialty: docSubspecialty,
+      },
+      {
+        id: curRec.id || "rec-1",
+        currentText: curRec.statement,
+        strength: curRec.strength,
+        quality: curRec.quality,
+        drivingTrials: curRec.drivingTrials,
+        category: "Recommendations",
+        topic: curRec.statement.slice(0, 60),
+        currentGrade: curRec.strength || "",
+      }
+    );
+    updateEsoRec(rIdx, { v3Labels: { ...autoV3, isExplicit: false } });
+  };
+
+  const handleAddEsoCustomTag = (rIdx: number) => {
+    const raw = esoCustomTagInput.trim();
+    if (!raw) return;
+    const tagId = toCanonicalTagId(raw);
+    const curPico = esoPicos[selectedPicoIndex];
+    if (!curPico) return;
+    const curRec = curPico.recommendations[rIdx];
+    if (!curRec) return;
+    const v3 = getEffectiveEsoRecV3(curRec);
+    const isDiag = v3.domains?.[0] === "diagnosis";
+    if (isDiag) {
+      if (!v3.diagnosisTags?.includes(tagId)) {
+        updateEsoRecV3(rIdx, { diagnosisTags: [...(v3.diagnosisTags || []), tagId] });
+      }
+    } else {
+      if (!v3.interventionTags?.includes(tagId)) {
+        updateEsoRecV3(rIdx, { interventionTags: [...(v3.interventionTags || []), tagId] });
+      }
+    }
+    setEsoCustomTagInput("");
+  };
+
+  const handleRemoveEsoRecTag = (rIdx: number, tagId: string) => {
+    const curPico = esoPicos[selectedPicoIndex];
+    if (!curPico) return;
+    const curRec = curPico.recommendations[rIdx];
+    if (!curRec) return;
+    const v3 = getEffectiveEsoRecV3(curRec);
+    updateEsoRecV3(rIdx, {
+      interventionTags: (v3.interventionTags || []).filter((t) => t !== tagId),
+      diagnosisTags: (v3.diagnosisTags || []).filter((t) => t !== tagId),
+    });
+  };
+
+  const handleToggleEsoTag = (rIdx: number, tagId: string, isDiagnosis: boolean) => {
+    const curPico = esoPicos[selectedPicoIndex];
+    if (!curPico) return;
+    const curRec = curPico.recommendations[rIdx];
+    if (!curRec) return;
+    const v3 = getEffectiveEsoRecV3(curRec);
+    if (isDiagnosis) {
+      const exists = (v3.diagnosisTags || []).includes(tagId);
+      const next = exists ? v3.diagnosisTags.filter((t) => t !== tagId) : [...(v3.diagnosisTags || []), tagId];
+      updateEsoRecV3(rIdx, { diagnosisTags: next });
+    } else {
+      const exists = (v3.interventionTags || []).includes(tagId);
+      const next = exists ? v3.interventionTags.filter((t) => t !== tagId) : [...(v3.interventionTags || []), tagId];
+      updateEsoRecV3(rIdx, { interventionTags: next });
+    }
   };
 
   const handleDeletePico = (pIdx: number) => {
@@ -1990,56 +2127,376 @@ export function EditGuidelineModal({
                                 </div>
 
                                 {/* 5. CLINICAL NAVIGATOR V3 LABELS (Per-recommendation distinct labels) */}
-                                <div className="p-2.5 rounded-lg bg-white/70 dark:bg-slate-900/60 border border-blue-200/50 dark:border-blue-900/40 space-y-1.5 text-xs">
-                                  <div className="flex items-center justify-between gap-2">
-                                    <span className="font-extrabold text-[11px] text-blue-900 dark:text-blue-300 flex items-center gap-1">
-                                      <span>🏷️</span>
-                                      <span>Clinical Navigator Label (Riêng cho khuyến cáo này)</span>
-                                    </span>
-                                    {rec.v3Labels?.isExplicit && (
-                                      <span className="text-[10px] px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 font-bold">
-                                        ✓ Nhãn chuẩn riêng
-                                      </span>
-                                    )}
-                                  </div>
-                                  <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
-                                    {rec.v3Labels ? (
-                                      <>
-                                        <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-200 uppercase">
-                                          {rec.v3Labels.domains?.[0] || "treatment"}
-                                        </span>
-                                        <span className={`px-1.5 py-0.5 rounded text-[10px] font-bold uppercase ${
-                                          rec.v3Labels.direction === "recommended"
-                                            ? "bg-green-100 text-green-800 dark:bg-green-950 dark:text-green-300"
-                                            : rec.v3Labels.direction === "harm"
-                                            ? "bg-red-100 text-red-800 dark:bg-red-950 dark:text-red-300"
-                                            : "bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300"
-                                        }`}>
-                                          {rec.v3Labels.direction || "conditional"}
-                                        </span>
-                                        {rec.v3Labels.conditionIds?.map((cId) => (
-                                          <span key={cId} className="px-1.5 py-0.5 rounded text-[10.5px] font-semibold bg-indigo-50 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
-                                            🎯 {getConditionByIdV3(cId)?.label || cId}
+                                {(() => {
+                                  const effV3 = getEffectiveEsoRecV3(rec);
+                                  const isEditingThisRec = editingEsoRecIndex === rIdx;
+                                  const recCondId = effV3.conditionIds?.[0] || "cond_ischemic_stroke";
+                                  const recCondObj = getConditionByIdV3(recCondId) || activeConditionObj;
+                                  const recDomain = effV3.domains?.[0] || "treatment";
+                                  const recTimeWindows = recCondObj?.treatment?.timeWindows || [];
+
+                                  const recSuggestedTags: TaxonomyTagV3[] = [];
+                                  const seenTagIds = new Set<string>();
+                                  const addTags = (list?: TaxonomyTagV3[]) => {
+                                    if (!Array.isArray(list)) return;
+                                    for (const t of list) {
+                                      if (!seenTagIds.has(t.id)) {
+                                        seenTagIds.add(t.id);
+                                        recSuggestedTags.push(t);
+                                      }
+                                    }
+                                  };
+                                  if (recDomain === "diagnosis") {
+                                    addTags(getAllDiagnosisTagsV3());
+                                  } else if (recDomain === "treatment") {
+                                    addTags(recCondObj?.treatment.drugs);
+                                    addTags(recCondObj?.treatment.interventions);
+                                    addTags(recCondObj?.treatment.otherCare);
+                                  } else if (recDomain === "prevention") {
+                                    addTags(recCondObj?.prevention.pharmacologicalProphylaxis);
+                                    addTags(recCondObj?.prevention.proceduralDevice);
+                                    addTags(recCondObj?.prevention.lifestyleRehabMonitoring);
+                                  } else {
+                                    addTags(recCondObj?.treatment.drugs);
+                                    addTags(recCondObj?.treatment.interventions);
+                                  }
+
+                                  return (
+                                    <div
+                                      className={`p-3 rounded-xl border transition-all text-xs ${
+                                        isEditingThisRec
+                                          ? darkMode
+                                            ? "bg-indigo-950/30 border-indigo-700/70"
+                                            : "bg-indigo-50/70 border-indigo-200"
+                                          : darkMode
+                                          ? "bg-slate-900/60 border-blue-900/40"
+                                          : "bg-white/80 border-blue-200/60"
+                                      }`}
+                                    >
+                                      {/* Header bar */}
+                                      <div className="flex flex-wrap items-center justify-between gap-2 border-b pb-2 dark:border-slate-800">
+                                        <div className="flex items-center gap-1.5">
+                                          <span className="text-sm">🏷️</span>
+                                          <span className="font-extrabold text-[11px] text-blue-900 dark:text-blue-300">
+                                            Nhãn lâm sàng (Clinical Navigator V3)
                                           </span>
-                                        ))}
-                                        {rec.v3Labels.interventionTags?.map((tId) => (
-                                          <span key={tId} className="px-1.5 py-0.5 rounded text-[10.5px] font-semibold bg-sky-50 text-sky-700 dark:bg-sky-950 dark:text-sky-300 border border-sky-200 dark:border-sky-800">
-                                            💊 {getTagLabelByIdV3(tId) || tId}
+                                          {rec.v3Labels?.isExplicit ? (
+                                            <span className="text-[9.5px] px-1.5 py-0.2 rounded font-bold bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+                                              ✏️ Đã chỉnh thủ công
+                                            </span>
+                                          ) : (
+                                            <span className="text-[9.5px] px-1.5 py-0.2 rounded font-bold bg-sky-100 text-sky-700 dark:bg-sky-900/50 dark:text-sky-300 border border-sky-200 dark:border-sky-800">
+                                              🤖 Tự động phân loại
+                                            </span>
+                                          )}
+                                        </div>
+
+                                        <div className="flex items-center gap-1.5">
+                                          {isEditingThisRec ? (
+                                            <>
+                                              <button
+                                                type="button"
+                                                onClick={() => handleResetEsoRecV3(rIdx)}
+                                                className="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors cursor-pointer"
+                                                title="Khôi phục phân loại tự động từ văn bản"
+                                              >
+                                                🔄 Tự động lại
+                                              </button>
+                                              <button
+                                                type="button"
+                                                onClick={() => setEditingEsoRecIndex(null)}
+                                                className="px-2.5 py-0.5 rounded text-[10.5px] font-bold bg-emerald-600 hover:bg-emerald-700 text-white transition-colors cursor-pointer shadow-2xs"
+                                              >
+                                                ✓ Xong
+                                              </button>
+                                            </>
+                                          ) : (
+                                            <>
+                                              <button
+                                                type="button"
+                                                onClick={() => handleResetEsoRecV3(rIdx)}
+                                                className="px-2 py-0.5 rounded text-[10px] font-semibold text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 border border-slate-200 dark:border-slate-700 cursor-pointer"
+                                                title="Chạy phân loại tự động"
+                                              >
+                                                🔄
+                                              </button>
+                                              <button
+                                                type="button"
+                                                onClick={() => setEditingEsoRecIndex(rIdx)}
+                                                className="px-2.5 py-0.5 rounded text-[10.5px] font-bold bg-indigo-600 hover:bg-indigo-700 text-white transition-colors cursor-pointer flex items-center gap-1 shadow-2xs"
+                                              >
+                                                <span>✏️</span>
+                                                <span>Sửa nhãn</span>
+                                              </button>
+                                            </>
+                                          )}
+                                        </div>
+                                      </div>
+
+                                      {/* Body */}
+                                      {isEditingThisRec ? (
+                                        <div className="pt-2.5 space-y-2.5">
+                                          {/* Row 1: Condition selector */}
+                                          <div>
+                                            <label className="block font-bold mb-1 text-[10.5px] text-slate-700 dark:text-slate-300">
+                                              Bệnh lý (Clinical Condition):
+                                            </label>
+                                            <select
+                                              value={effV3.conditionIds?.[0] || "cond_ischemic_stroke"}
+                                              onChange={(e) => updateEsoRecV3(rIdx, { conditionIds: [e.target.value] })}
+                                              className={`w-full p-1.5 rounded-lg border font-bold text-xs ${
+                                                darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
+                                              }`}
+                                            >
+                                              <optgroup label={`Thuộc chuyên khoa ${docSubspecialty}`}>
+                                                {availableConditions.forSub.map((c) => (
+                                                  <option key={c.id} value={c.id}>
+                                                    {c.label}
+                                                  </option>
+                                                ))}
+                                              </optgroup>
+                                              {availableConditions.others.length > 0 && (
+                                                <optgroup label="Các chuyên khoa khác">
+                                                  {availableConditions.others.map((c) => (
+                                                    <option key={c.id} value={c.id}>
+                                                      {c.label} ({c.subspecialties.join(", ")})
+                                                    </option>
+                                                  ))}
+                                                </optgroup>
+                                              )}
+                                            </select>
+                                          </div>
+
+                                          {/* Row 2: Domain, Direction & Time Window */}
+                                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                                            {/* Domain */}
+                                            <div>
+                                              <label className="block font-bold mb-1 text-[10.5px] text-slate-700 dark:text-slate-300">
+                                                Trục can thiệp (Domain):
+                                              </label>
+                                              <div className="grid grid-cols-3 gap-1">
+                                                {(["treatment", "diagnosis", "prevention"] as const).map((dm) => (
+                                                  <button
+                                                    key={dm}
+                                                    type="button"
+                                                    onClick={() => updateEsoRecV3(rIdx, { domains: [dm] })}
+                                                    className={`py-1 rounded text-[10px] font-extrabold capitalize cursor-pointer border ${
+                                                      effV3.domains?.[0] === dm
+                                                        ? "bg-indigo-600 text-white border-indigo-600 shadow-2xs"
+                                                        : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700"
+                                                    }`}
+                                                  >
+                                                    {dm}
+                                                  </button>
+                                                ))}
+                                              </div>
+                                            </div>
+
+                                            {/* Direction */}
+                                            <div>
+                                              <label className="block font-bold mb-1 text-[10.5px] text-slate-700 dark:text-slate-300">
+                                                Chiều khuyến cáo (Direction):
+                                              </label>
+                                              <div className="grid grid-cols-3 gap-1">
+                                                {[
+                                                  { id: "recommended", label: "Ủng hộ", bg: "bg-emerald-600", activeBg: "bg-emerald-600 text-white border-emerald-600" },
+                                                  { id: "conditional", label: "Cân nhắc", bg: "bg-amber-600", activeBg: "bg-amber-600 text-white border-amber-600" },
+                                                  { id: "harm", label: "Chống chỉ định", bg: "bg-rose-600", activeBg: "bg-rose-600 text-white border-rose-600" },
+                                                ].map((dir) => (
+                                                  <button
+                                                    key={dir.id}
+                                                    type="button"
+                                                    onClick={() => updateEsoRecV3(rIdx, { direction: dir.id as "recommended" | "conditional" | "harm" })}
+                                                    className={`py-1 rounded text-[10px] font-extrabold cursor-pointer border ${
+                                                      effV3.direction === dir.id
+                                                        ? `${dir.activeBg} shadow-2xs`
+                                                        : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700"
+                                                    }`}
+                                                  >
+                                                    {dir.label}
+                                                  </button>
+                                                ))}
+                                              </div>
+                                            </div>
+
+                                            {/* Time Window */}
+                                            <div>
+                                              <label className="block font-bold mb-1 text-[10.5px] text-slate-700 dark:text-slate-300">
+                                                Cửa sổ thời gian (Time Window):
+                                              </label>
+                                              <select
+                                                value={effV3.timeWindowIds?.[0] || "all"}
+                                                onChange={(e) => updateEsoRecV3(rIdx, { timeWindowIds: e.target.value === "all" ? [] : [e.target.value] })}
+                                                className={`w-full p-1.5 rounded-lg border font-medium text-xs ${
+                                                  darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
+                                                }`}
+                                              >
+                                                <option value="all">Tất cả / Không phân biệt</option>
+                                                {recTimeWindows.map((tw) => (
+                                                  <option key={tw.id} value={tw.id}>
+                                                    {tw.label}
+                                                  </option>
+                                                ))}
+                                              </select>
+                                            </div>
+                                          </div>
+
+                                          {/* Row 3: Assigned Tags with Remove buttons */}
+                                          <div>
+                                            <label className="block font-bold mb-1 text-[10.5px] text-slate-700 dark:text-slate-300">
+                                              Nhãn can thiệp &amp; chẩn đoán đã gán:
+                                            </label>
+                                            <div className="flex flex-wrap gap-1 min-h-[30px] p-1.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 items-center">
+                                              {[...(effV3.interventionTags || []), ...(effV3.diagnosisTags || [])].length === 0 ? (
+                                                <span className="text-[11px] text-slate-400 italic">
+                                                  Chưa có nhãn can thiệp/chẩn đoán nào. Chọn gợi ý bên dưới hoặc nhập thêm.
+                                                </span>
+                                              ) : (
+                                                [...(effV3.interventionTags || []), ...(effV3.diagnosisTags || [])].map((tagId) => {
+                                                  const isDiag = effV3.diagnosisTags?.includes(tagId);
+                                                  return (
+                                                    <span
+                                                      key={tagId}
+                                                      className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-bold border shadow-2xs ${
+                                                        isDiag
+                                                          ? "bg-purple-50 text-purple-800 dark:bg-purple-950/70 dark:text-purple-300 border-purple-200 dark:border-purple-800"
+                                                          : "bg-indigo-50 text-indigo-800 dark:bg-indigo-950/70 dark:text-indigo-300 border-indigo-200 dark:border-indigo-800"
+                                                      }`}
+                                                    >
+                                                      <span>{isDiag ? "🔬" : "💊"}</span>
+                                                      <span>{getTagLabelByIdV3(tagId) || tagId}</span>
+                                                      <button
+                                                        type="button"
+                                                        onClick={() => handleRemoveEsoRecTag(rIdx, tagId)}
+                                                        className="ml-0.5 hover:text-red-600 transition-colors cursor-pointer text-slate-400 hover:text-red-500 font-bold"
+                                                        title="Gỡ nhãn"
+                                                      >
+                                                        ✕
+                                                      </button>
+                                                    </span>
+                                                  );
+                                                })
+                                              )}
+                                            </div>
+                                          </div>
+
+                                          {/* Row 4: Custom Tag Input */}
+                                          <div className="flex items-center gap-1.5">
+                                            <input
+                                              type="text"
+                                              value={esoCustomTagInput}
+                                              onChange={(e) => setEsoCustomTagInput(e.target.value)}
+                                              onKeyDown={(e) => {
+                                                if (e.key === "Enter") {
+                                                  e.preventDefault();
+                                                  handleAddEsoCustomTag(rIdx);
+                                                }
+                                              }}
+                                              placeholder="Thêm nhãn tự do (vd: Tenecteplase, EVT, ASPECTS...)"
+                                              className={`flex-1 p-1.5 rounded-lg border text-xs ${
+                                                darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
+                                              }`}
+                                            />
+                                            <button
+                                              type="button"
+                                              onClick={() => handleAddEsoCustomTag(rIdx)}
+                                              className="px-3 py-1.5 rounded-lg text-xs font-bold bg-indigo-600 hover:bg-indigo-700 text-white transition-colors cursor-pointer"
+                                            >
+                                              + Thêm nhãn
+                                            </button>
+                                          </div>
+
+                                          {/* Row 5: Suggested Quick Chips */}
+                                          {recSuggestedTags.length > 0 && (
+                                            <div className="pt-1">
+                                              <span className="block text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-1">
+                                                Gợi ý nhãn nhanh theo bệnh lý (Click để bật/tắt):
+                                              </span>
+                                              <div className="flex flex-wrap gap-1 max-h-24 overflow-y-auto p-1 bg-slate-50/50 dark:bg-slate-900/40 rounded border border-slate-200/50 dark:border-slate-800/50">
+                                                {recSuggestedTags.map((tag) => {
+                                                  const isDiag = recDomain === "diagnosis";
+                                                  const isAssigned = isDiag
+                                                    ? effV3.diagnosisTags?.includes(tag.id)
+                                                    : effV3.interventionTags?.includes(tag.id);
+                                                  return (
+                                                    <button
+                                                      key={tag.id}
+                                                      type="button"
+                                                      onClick={() => handleToggleEsoTag(rIdx, tag.id, isDiag)}
+                                                      className={`px-2 py-0.5 rounded text-[10px] font-semibold transition-all cursor-pointer border flex items-center gap-1 ${
+                                                        isAssigned
+                                                          ? "bg-indigo-600 text-white border-indigo-600 shadow-2xs"
+                                                          : darkMode
+                                                          ? "bg-slate-800 text-slate-300 border-slate-700 hover:border-slate-600"
+                                                          : "bg-white text-slate-700 border-slate-200 hover:border-indigo-300"
+                                                      }`}
+                                                    >
+                                                      <span>{isAssigned ? "✓" : "+"}</span>
+                                                      <span>{tag.label}</span>
+                                                    </button>
+                                                  );
+                                                })}
+                                              </div>
+                                            </div>
+                                          )}
+                                        </div>
+                                      ) : (
+                                        /* Collapsed View: Compact badge pills */
+                                        <div className="pt-1.5 flex flex-wrap items-center gap-1.5">
+                                          <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-200 uppercase">
+                                            {effV3.domains?.[0] || "treatment"}
                                           </span>
-                                        ))}
-                                        {rec.v3Labels.diagnosisTags?.map((dId) => (
-                                          <span key={dId} className="px-1.5 py-0.5 rounded text-[10.5px] font-semibold bg-purple-50 text-purple-700 dark:bg-purple-950 dark:text-purple-300 border border-purple-200 dark:border-purple-800">
-                                            🔬 {getTagLabelByIdV3(dId) || dId}
+                                          <span
+                                            className={`px-1.5 py-0.5 rounded text-[10px] font-bold uppercase ${
+                                              effV3.direction === "recommended"
+                                                ? "bg-green-100 text-green-800 dark:bg-green-950 dark:text-green-300"
+                                                : effV3.direction === "harm"
+                                                ? "bg-red-100 text-red-800 dark:bg-red-950 dark:text-red-300"
+                                                : "bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300"
+                                            }`}
+                                          >
+                                            {effV3.direction || "conditional"}
                                           </span>
-                                        ))}
-                                      </>
-                                    ) : (
-                                      <span className="text-slate-400 text-[11px] italic">
-                                        Tự động phân loại dựa trên nội dung câu khuyến cáo này
-                                      </span>
-                                    )}
-                                  </div>
-                                </div>
+                                          {effV3.conditionIds?.map((cId) => (
+                                            <span
+                                              key={cId}
+                                              className="px-1.5 py-0.5 rounded text-[10.5px] font-semibold bg-indigo-50 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800"
+                                            >
+                                              🎯 {getConditionByIdV3(cId)?.label || cId}
+                                            </span>
+                                          ))}
+                                          {effV3.interventionTags?.map((tId) => (
+                                            <span
+                                              key={tId}
+                                              className="px-1.5 py-0.5 rounded text-[10.5px] font-semibold bg-sky-50 text-sky-700 dark:bg-sky-950 dark:text-sky-300 border border-sky-200 dark:border-sky-800"
+                                            >
+                                              💊 {getTagLabelByIdV3(tId) || tId}
+                                            </span>
+                                          ))}
+                                          {effV3.diagnosisTags?.map((dId) => (
+                                            <span
+                                              key={dId}
+                                              className="px-1.5 py-0.5 rounded text-[10.5px] font-semibold bg-purple-50 text-purple-700 dark:bg-purple-950 dark:text-purple-300 border border-purple-200 dark:border-purple-800"
+                                            >
+                                              🔬 {getTagLabelByIdV3(dId) || dId}
+                                            </span>
+                                          ))}
+                                          {effV3.timeWindowIds?.map((twId) => {
+                                            const twObj = recTimeWindows.find((w) => w.id === twId);
+                                            return (
+                                              <span
+                                                key={twId}
+                                                className="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border border-slate-300 dark:border-slate-700"
+                                              >
+                                                ⏱️ {twObj?.label || twId}
+                                              </span>
+                                            );
+                                          })}
+                                        </div>
+                                      )}
+                                    </div>
+                                  );
+                                })()}
                               </div>
                             );
                           })}

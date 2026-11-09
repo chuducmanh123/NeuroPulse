@@ -1,5 +1,6 @@
 import type { PracticeChangeDetail, RecommendationV3Labels } from "@/types/neuroguide";
 import type { EsoPicoItem, EsoEvidenceQuality, EsoRecommendationStrength } from "@/components/neuroguide/EsoGuidelineTable";
+import { classifyRecommendationV3 } from "./clinicalNavigatorV3Classifier.ts";
 
 /**
  * Compare two PICO identifiers (e.g. "1a", "1b", "2", "3a", "10") in natural clinical order.
@@ -1466,7 +1467,24 @@ export function convertEsoPicoItemsToPracticeChanges(
         currentText: rec.statement,
         expertConsensusStatement: recConsensus,
         drivingTrials: trials,
-        v3Labels: rec.v3Labels || pico.v3Labels,
+        v3Labels:
+          rec.v3Labels ||
+          pico.v3Labels ||
+          (rec.statement
+            ? classifyRecommendationV3(
+                { id: gPrefix || "eso", title: "", society: "ESO", subspecialty: "Stroke", year: 2024 },
+                {
+                  id: `${gPrefix}pico-${pNumStr.toLowerCase()}${suffix}`,
+                  currentText: rec.statement,
+                  strength: s,
+                  quality: q,
+                  drivingTrials: trials,
+                  category: defaultCategory,
+                  topic: `PICO ${pNumStr} ${pQuestion}`.trim(),
+                  currentGrade: `GRADE ${s} (Evidence: ${q})`,
+                }
+              )
+            : undefined),
       });
     });
   });
@@ -1658,7 +1676,20 @@ export function groupPracticeChangesIntoEsoPicos(
       drivingTrials: item.drivingTrials || [],
       expertConsensusStatement: recConsensus,
       voting: recVoting,
-      v3Labels: item.v3Labels,
+      v3Labels:
+        item.v3Labels ||
+        (item.currentText
+          ? classifyRecommendationV3(
+              {
+                id: guidelineId || "eso-guideline",
+                title: guidelineTitle || "",
+                society: "ESO",
+                subspecialty: "Stroke",
+                year: 2024,
+              },
+              item
+            )
+          : undefined),
     });
   });
 

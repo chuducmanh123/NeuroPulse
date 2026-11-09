@@ -1,6 +1,7 @@
 import type { GuidelineDoc, PracticeChangeDetail, SubspecialtyType } from "../../types/neuroguide.ts";
 import { detectSociety, detectSubspecialty } from "./pubmedDiscovery.ts";
 import { normalizeEsoStrength } from "./esoPicoGrouper.ts";
+import { classifyRecommendationV3 } from "./clinicalNavigatorV3Classifier.ts";
 
 export interface ParsedNotebookLMResult {
   doc: GuidelineDoc;
@@ -808,6 +809,13 @@ export function parseNotebookLMContent(
     aiSynthesized: true,
     synthesizedAt: new Date().toISOString(),
   };
+
+  // Auto-classify Clinical Navigator V3 labels for every recommendation if not already provided
+  practiceChanges.forEach((c) => {
+    if (!c.v3Labels && c.currentText) {
+      c.v3Labels = classifyRecommendationV3(doc, c);
+    }
+  });
 
   return {
     doc,
