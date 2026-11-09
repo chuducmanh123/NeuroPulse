@@ -2237,6 +2237,19 @@ function RecommendationMatrixCard({
               {rec.changeType}
             </span>
           )}
+
+          {/* Time Window Badges */}
+          {rec.v3Labels?.timeWindowIds &&
+            rec.v3Labels.timeWindowIds.length > 0 &&
+            rec.v3Labels.timeWindowIds.map((twId) => (
+              <span
+                key={twId}
+                className="px-2 py-0.5 rounded-md text-[10.5px] font-bold bg-amber-50 text-amber-900 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-200 dark:border-amber-800/60 flex items-center gap-1"
+              >
+                <span>⏱️</span>
+                <span>{getTagLabelByIdV3(twId)}</span>
+              </span>
+            ))}
         </div>
 
         {/* Verification Badge + Rec ID */}
@@ -2415,6 +2428,13 @@ function PivotalTrialCard({
               {trial.pico.comparator}
             </span>
           </div>
+          {trial.pico.timeWindow && (
+            <div className="flex items-center gap-1.5 pt-1 border-t border-slate-100 dark:border-slate-800/80 text-[11px] text-amber-700 dark:text-amber-400">
+              <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-amber-500/10 dark:bg-amber-500/15 border border-amber-500/20 font-bold">
+                ⏱ Cửa sổ: {trial.pico.timeWindow}
+              </span>
+            </div>
+          )}
         </div>
 
         {/* Primary & Safety Endpoints */}

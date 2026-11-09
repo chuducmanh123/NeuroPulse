@@ -826,17 +826,12 @@ export function runClinicalNavigatorQuery(params: {
     }
 
     if (reqTimeWindowId) {
-      // Section 5.2: TimeMatch = (rec.time_window == Selected_Window) OR (rec.time_window == 'all_phases' / empty)
+      // AND relationship: When Time Window is selected, recommendations must match the selected time window
       const hasSpecificWindow = rec.v3Labels.timeWindowIds.includes(reqTimeWindowId);
-      const isAllPhases = rec.v3Labels.timeWindowIds.length === 0;
       const textMentionsWindow = rec.text
         .toLowerCase()
         .includes(getTagLabelByIdV3(reqTimeWindowId).toLowerCase().split("(")[0].trim());
-      if (!hasSpecificWindow && !textMentionsWindow && !isAllPhases) {
-        continue;
-      }
-      // If user explicitly picked a narrow window and rec is generic (`isAllPhases`), prefer recs that match the window or intervention
-      if (!hasSpecificWindow && !textMentionsWindow && reqInterventions.length === 0) {
+      if (!hasSpecificWindow && !textMentionsWindow) {
         continue;
       }
     }
@@ -1097,6 +1092,11 @@ export function runClinicalNavigatorQuery(params: {
     }
     if (reqConditionId && !trV3.conditionIds.includes(reqConditionId)) {
       return false;
+    }
+    if (reqTimeWindowId) {
+      if (!trV3.timeWindowIds || !trV3.timeWindowIds.includes(reqTimeWindowId)) {
+        return false;
+      }
     }
     if (reqInterventions.length > 0 && !reqInterventions.some((it) => trV3.interventionTags.includes(it))) {
       return false;

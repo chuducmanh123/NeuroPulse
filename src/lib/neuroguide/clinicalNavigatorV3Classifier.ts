@@ -1094,13 +1094,17 @@ export function classifyRecommendationV3(
         for (const tw of cond.treatment.timeWindows) {
             const twLower = tw.label.toLowerCase();
             if (
-                (twLower.includes('4.5h') && !twLower.includes('24h') && /\b4\.5\s*h|\bwithin 4\.5|\b<4\.5/i.test(txtLower)) ||
-                (twLower.includes('4.5h–24h') && /\b4\.5\s*(?:to|–|-)\s*24|\b6\s*(?:to|–|-)\s*24|\bwithin 24\s*h|\blate window|\bextended window/i.test(txtLower)) ||
-                (twLower.includes('unknown onset') && /\bwake-up\b|\bunknown onset\b|\bunwitnessed\b/i.test(txtLower)) ||
-                (twLower.includes('< 6h') && /\bwithin 6\s*h|\b<6\s*h|\bwithin 2\s*h|\bhyperacute/i.test(txtLower)) ||
-                (twLower.includes('6h–24h') && /\b6\s*(?:to|–|-)\s*24|\bfirst 24\s*h/i.test(txtLower)) ||
-                (twLower.includes('< 72h') && /\bwithin 72\s*h|\b<72\s*h|\bwithin 24\s*h|\bearly aneurysm/i.test(txtLower)) ||
+                (twLower.includes('4.5h') && !twLower.includes('24h') && /\b4\.5\s*h|\bwithin 4\.5|\b< ?4\.5|\bwithin 3\s*h|\b< ?3\s*h|\b0\s*(?:to|–|-)\s*3\s*h|\b3(?:\.0)?\s*(?:to|–|-)\s*4\.5\s*h|\bwithin 6\s*h|\b< ?6\s*h|\b0\s*(?:to|–|-)\s*6\s*h|\bearly window\b|\bgolden hour\b|\bdoor-to-needle\b|\bprehospital/i.test(txtLower)) ||
+                ((twLower.includes('4.5h–24h') || twLower.includes('extended window')) && /\b4\.5\s*(?:to|–|-)\s*(?:9|12|16|24)|\b6\s*(?:to|–|-)\s*(?:12|16|24)|\bwithin (?:7|8|10|12|16|24)\s*h|\b< ?(?:12|16|24)\s*h|\blate window|\bextended window|\blate-window|\bextended-window/i.test(txtLower)) ||
+                (twLower.includes('unknown onset') && /\bwake-up\b|\bunknown onset\b|\bunwitnessed\b|\bunclear onset\b|\blast known well\b|\bdwi-flair mismatch/i.test(txtLower)) ||
+                (twLower.includes('beyond 24h') && /\bbeyond 24\s*h|\b> ?24\s*h|\b24\s*(?:to|–|-)\s*72\s*h|\bwithin 48\s*h|\b≤ ?48\s*h|\b< ?48\s*h|\bday 2|\bday 3|\bsubacute\b|\bday 0[–-]3\b|\bday 1[–-]2\b/i.test(txtLower)) ||
+                (twLower.includes('< 6h') && /\bwithin 6\s*h|\b< ?6\s*h|\bwithin 4\.5\s*h|\bwithin 2\s*h|\bhyperacute|\bacute lowering of sbp|\bacute bp lowering|\b150 and 220 mm hg/i.test(txtLower)) ||
+                (twLower.includes('6h–24h') && /\b6\s*(?:to|–|-)\s*24|\bfirst 24\s*h|\bwithin 24\s*h|\b< ?24\s*h/i.test(txtLower)) ||
+                (twLower.includes('subacute (24h–72h)') && /\b24\s*(?:to|–|-)\s*72\s*h|\b12\s*(?:to|–|-)\s*72\s*h|\bsubacute\b|\bday 2|\bday 3/i.test(txtLower)) ||
+                (twLower.includes('< 72h') && /\bwithin 72\s*h|\b< ?72\s*h|\bwithin 24\s*h|\bearly aneurysm\b|\bpre-securing\b|\bcoiling\b|\bclipping\b|\bobliteration of the ruptured aneurysm\b|\bsecure the rupture site\b/i.test(txtLower)) ||
                 (twLower.includes('day 3–14') && /\bvasospasm\b|\bdelayed cerebral isch|\bday 3|\bdays 3/i.test(txtLower)) ||
+                (twLower.includes('> 72h') && /\b> ?72\s*h|\bdelayed\b|\bweeks? after/i.test(txtLower)) ||
+                (twLower.includes('> 14 days') && /\b> ?14\s*days?|\bchronic\b|\blong-term\b/i.test(txtLower)) ||
                 (twLower.includes('0–5 min') && /\b0\s*(?:to|–|-)\s*5\s*min|\bfirst-line\b|\bimpending\b|\bprehospital/i.test(txtLower)) ||
                 (twLower.includes('5–30 min') && /\b5\s*(?:to|–|-)\s*30\s*min|\bestablished status|\bsecond-line/i.test(txtLower)) ||
                 (twLower.includes('30 min–24h') && /\brefractory status|\brse\b|\bmidazolam infusion|\bpropofol|\bketamine/i.test(txtLower)) ||
@@ -1186,7 +1190,7 @@ export function classifyPivotalTrialV3(trial: PivotalTrialRecord): NonNullable<P
         id: trial.id,
         category: trial.pico.population,
         topic: trial.pico.intervention,
-        currentText: `${trial.title} ${trial.pico.population} ${trial.pico.intervention} ${trial.bottomLine}`,
+        currentText: `${trial.title} ${trial.pico.population} ${trial.pico.timeWindow || ''} ${trial.pico.intervention} ${trial.bottomLine}`,
         currentGrade: 'Class I',
         drivingTrials: [trial.acronym],
     };
