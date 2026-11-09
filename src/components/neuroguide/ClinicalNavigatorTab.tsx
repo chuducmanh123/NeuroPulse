@@ -1429,11 +1429,11 @@ export function ClinicalNavigatorTab({
                 htmlFor="navigator-right-content-search"
                 className="text-xs font-extrabold uppercase tracking-wider text-slate-700 dark:text-slate-200 flex items-center gap-1.5"
               >
-                <span>🔍 Search Guideline Content, Dosing, Thresholds &amp; Trials</span>
+                <span>🔍 Search Guidelines, Trials &amp; Dosing</span>
               </label>
               {isQueryActive && (
                 <span className="text-[11px] font-bold text-indigo-600 dark:text-indigo-400">
-                  {navResult.coreRecommendations.length} matching recommendations •{" "}
+                  {navResult.coreRecommendations.length} recommendations •{" "}
                   {navResult.pivotalTrials.length + navResult.lateBreakingTrials.length} trials
                 </span>
               )}
@@ -1516,16 +1516,17 @@ export function ClinicalNavigatorTab({
                   <div className="px-4 py-2.5 bg-slate-50/70 dark:bg-slate-800/40 border-b border-slate-100 dark:border-slate-800/80 flex flex-wrap items-center justify-between gap-2.5">
                     {/* Cross-Ecosystem Quick Tools */}
                     <div className="flex flex-wrap items-center gap-1.5 text-xs">
-                      <span className="text-[10px] font-black uppercase tracking-wider text-slate-400 flex items-center gap-1 mr-1">
+                      <span className="text-[10px] font-black uppercase tracking-wider text-slate-400 flex items-center gap-1 mr-1 shrink-0">
                         <span>🔗</span> Cross-Ecosystem:
                       </span>
                       {navResult.ecosystemLinks.slice(0, 3).map((link, idx) => (
                         <Link
                           key={`${link.app}-${idx}`}
                           href={link.href}
-                          className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-teal-500 hover:text-teal-600 dark:hover:text-teal-400 transition-all flex items-center gap-1 shadow-2xs"
+                          title={link.description || link.label}
+                          className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-teal-500 hover:text-teal-600 dark:hover:text-teal-400 transition-all flex items-center gap-1 shadow-2xs whitespace-nowrap shrink-0"
                         >
-                          <span>👉 {link.app}:</span>
+                          <span className="font-bold text-teal-600 dark:text-teal-400">{link.app}:</span>
                           <span>{link.label}</span>
                         </Link>
                       ))}
@@ -1550,24 +1551,27 @@ export function ClinicalNavigatorTab({
                 )}
 
                 {/* Modern Clean Tab Navigation */}
-                <div className="px-4 sm:px-6 border-b border-slate-200 dark:border-slate-800 flex items-center gap-2 sm:gap-6 overflow-x-auto scrollbar-none">
+                <div className="px-4 sm:px-6 border-b border-slate-200 dark:border-slate-800 flex items-center gap-2 sm:gap-4 md:gap-6 overflow-x-auto scrollbar-none">
                   {(
                     [
                       {
                         id: "MATRIX",
-                        label: "Guideline Recommendations",
+                        label: "Recommendations",
+                        fullTitle: "Guideline Recommendations",
                         icon: "⚖️",
                         count: navResult.coreRecommendations.length,
                       },
                       {
                         id: "DIFF",
-                        label: "Guideline Updates",
+                        label: "Updates",
+                        fullTitle: "Guideline Updates & Shifts",
                         icon: "⏳",
                         count: navResult.intraSocietyDiffs.length,
                       },
                       {
                         id: "TRIALS",
-                        label: "Clinical Trials",
+                        label: "Trials",
+                        fullTitle: "Pivotal & Late-Breaking Clinical Trials",
                         icon: "🔬",
                         count:
                           navResult.pivotalTrials.length +
@@ -1575,13 +1579,15 @@ export function ClinicalNavigatorTab({
                       },
                       {
                         id: "CONCORDANCE",
-                        label: "Consensus & Divergence",
+                        label: "Consensus",
+                        fullTitle: "Consensus & Divergence Matrix",
                         icon: "⚡",
                         count: navResult.concordanceAppraisal.societyStances.length,
                       },
                       {
                         id: "LITERATURE",
-                        label: "Related Literature",
+                        label: "Literature",
+                        fullTitle: "Related Literature Articles",
                         icon: "📚",
                         count: navResult.relatedArticles.length,
                       },
@@ -1592,8 +1598,9 @@ export function ClinicalNavigatorTab({
                       <button
                         key={tab.id}
                         type="button"
+                        title={tab.fullTitle}
                         onClick={() => setSectionView(tab.id as RightSectionFilter)}
-                        className={`pb-3 pt-3 px-1 text-xs sm:text-sm font-bold border-b-2 whitespace-nowrap transition-all flex items-center gap-2 -mb-px ${
+                        className={`pb-3 pt-3 px-1 text-xs sm:text-sm font-bold border-b-2 whitespace-nowrap transition-all flex items-center gap-1.5 sm:gap-2 -mb-px shrink-0 ${
                           active
                             ? "border-amber-500 text-amber-600 dark:text-amber-400"
                             : "border-transparent text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:border-slate-300 dark:hover:border-slate-700"

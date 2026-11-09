@@ -64,14 +64,14 @@ export const MOCK_CLINICAL_SCENARIOS: ClinicalScenario[] = [
       {
         "app": "NeuroRx",
         "href": "#",
-        "label": "Calculate TNK Dose by Weight",
+        "label": "TNK Dosing",
         "badge": "0.25 mg/kg",
         "description": "Automatic bolus calculation with strict 25 mg ceiling and reconstitution guidelines."
       },
       {
         "app": "NeuroCalc",
         "href": "#",
-        "label": "NIHSS Scoring Calculator",
+        "label": "NIHSS Score",
         "badge": "IVT Eligibility",
         "description": "Quantify stroke neurological deficits pre- and post-thrombolytic administration."
       }
@@ -121,14 +121,14 @@ export const MOCK_CLINICAL_SCENARIOS: ClinicalScenario[] = [
       {
         "app": "NeuroVision",
         "href": "#",
-        "label": "ASPECTS 10-Region Automated Scoring",
+        "label": "ASPECTS Scoring",
         "badge": "AI Imaging",
         "description": "Map MCA territorial hypoattenuation on non-contrast CT and volumetric core perfusion."
       },
       {
         "app": "NeuroCase",
         "href": "/neurocase",
-        "label": "Clinical Case: M1 Occlusion with ASPECTS 4",
+        "label": "M1 Occlusion Case",
         "badge": "Case Study",
         "description": "Review procedural angiograms and 90-day clinical outcome in a large core challenge."
       }
@@ -174,14 +174,14 @@ export const MOCK_CLINICAL_SCENARIOS: ClinicalScenario[] = [
       {
         "app": "NeuroRx",
         "href": "#",
-        "label": "Nicardipine & Labetalol Infusion Protocol",
+        "label": "Nicardipine Protocol",
         "badge": "Dosing",
         "description": "Stepwise titration increments and continuous blood pressure control guidelines."
       },
       {
         "app": "NeuroCalc",
         "href": "#",
-        "label": "ICH Score Calculator",
+        "label": "ICH Score",
         "badge": "Prognostication",
         "description": "30-day mortality risk stratification based on GCS, hematoma volume, and IVH."
       }
@@ -215,7 +215,7 @@ export const MOCK_CLINICAL_SCENARIOS: ClinicalScenario[] = [
       {
         "app": "NeuroRx",
         "href": "#",
-        "label": "Second-Line IV ASM Weight-Based Dosing",
+        "label": "IV ASM Dosing",
         "badge": "ESETT Protocol",
         "description": "Levetiracetam 60 mg/kg (max 4.5g), Valproate 40 mg/kg (max 3g)."
       }
@@ -352,14 +352,14 @@ export const MOCK_CLINICAL_SCENARIOS: ClinicalScenario[] = [
       {
         "app": "NeuroRx",
         "href": "#",
-        "label": "Oral Nimodipine 21-Day Protocol",
+        "label": "Nimodipine Protocol",
         "badge": "60mg q4h",
         "description": "Standardized enterally administered Nimodipine protocol to prevent delayed cerebral ischemia."
       },
       {
         "app": "NeuroCalc",
         "href": "#",
-        "label": "WFNS & Hunt-Hess Scoring Calculator",
+        "label": "WFNS & Hunt-Hess",
         "badge": "Grading",
         "description": "Emergency clinical grade stratification and prognostic risk calculator for aSAH."
       }

@@ -34133,14 +34133,14 @@
           "app": "NeuroRx",
           "href": "#",
           "badge": "0.25 mg/kg",
-          "label": "Calculate TNK Dose by Weight",
+          "label": "TNK Dosing",
           "description": "Automatic bolus calculation with strict 25 mg ceiling and reconstitution guidelines."
         },
         {
           "app": "NeuroCalc",
           "href": "#",
           "badge": "IVT Eligibility",
-          "label": "NIHSS Scoring Calculator",
+          "label": "NIHSS Score",
           "description": "Quantify stroke neurological deficits pre- and post-thrombolytic administration."
         }
       ],
@@ -34204,14 +34204,14 @@
           "app": "NeuroVision",
           "href": "#",
           "badge": "AI Imaging",
-          "label": "ASPECTS 10-Region Automated Scoring",
+          "label": "ASPECTS Scoring",
           "description": "Map MCA territorial hypoattenuation on non-contrast CT and volumetric core perfusion."
         },
         {
           "app": "NeuroCase",
           "href": "/neurocase",
           "badge": "Case Study",
-          "label": "Clinical Case: M1 Occlusion with ASPECTS 4",
+          "label": "M1 Occlusion Case",
           "description": "Review procedural angiograms and 90-day clinical outcome in a large core challenge."
         }
       ],
@@ -34258,14 +34258,14 @@
           "app": "NeuroRx",
           "href": "#",
           "badge": "Dosing",
-          "label": "Nicardipine & Labetalol Infusion Protocol",
+          "label": "Nicardipine Protocol",
           "description": "Stepwise titration increments and continuous blood pressure control guidelines."
         },
         {
           "app": "NeuroCalc",
           "href": "#",
           "badge": "Prognostication",
-          "label": "ICH Score Calculator",
+          "label": "ICH Score",
           "description": "30-day mortality risk stratification based on GCS, hematoma volume, and IVH."
         }
       ],
@@ -34314,7 +34314,7 @@
           "app": "NeuroRx",
           "href": "#",
           "badge": "ESETT Protocol",
-          "label": "Second-Line IV ASM Weight-Based Dosing",
+          "label": "IV ASM Dosing",
           "description": "Levetiracetam 60 mg/kg (max 4.5g), Valproate 40 mg/kg (max 3g)."
         }
       ],
@@ -34422,14 +34422,14 @@
           "app": "NeuroRx",
           "href": "#",
           "badge": "60mg q4h",
-          "label": "Oral Nimodipine 21-Day Protocol",
+          "label": "Nimodipine Protocol",
           "description": "Standardized enterally administered Nimodipine protocol to prevent delayed cerebral ischemia."
         },
         {
           "app": "NeuroCalc",
           "href": "#",
           "badge": "Grading",
-          "label": "WFNS & Hunt-Hess Scoring Calculator",
+          "label": "WFNS & Hunt-Hess",
           "description": "Emergency clinical grade stratification and prognostic risk calculator for aSAH."
         }
       ],

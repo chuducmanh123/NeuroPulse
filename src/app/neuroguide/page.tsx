@@ -423,13 +423,13 @@ export default function NeuroGuidePage() {
     const tabs: { id: NavTabId; label: string; mobileLabel: string; badge?: string }[] = [
       {
         id: "guidelines" as const,
-        label: "🔥 Practice Guidelines",
+        label: "🔥 Guidelines",
         mobileLabel: "🔥 Guidelines",
         badge: `${guidelineDocs.length}`,
       },
       {
         id: "conf" as const,
-        label: "🎙️ Conferences & Late-Breaking Trials",
+        label: "🎙️ Conferences & Trials",
         mobileLabel: "🎙️ Conferences",
         badge: `${MOCK_CONFERENCE_EVENTS.length}`,
       },
