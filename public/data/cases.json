@@ -1,5 +1,222 @@
 [
   {
+    "id": "nc-2026-037",
+    "case_code": "NC-2026-037",
+    "title": "Acute Neurological Deterioration Following Transradial Vertebral Artery Stenting",
+    "subspecialty": "Stroke",
+    "subspecialties": [
+      "Stroke",
+      "Interventional Neurology",
+      "Vascular Neurology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-11-10",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13663151",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-05098-8",
+      "pmcid": "PMC13663151",
+      "pmid": "42477621",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "63-year-old male",
+      "chief_complaint": "Acute altered consciousness and right hemiplegia post-procedure",
+      "history_of_present_illness": "The patient underwent uncomplicated right transradial vertebral artery stenting for severe ostial stenosis. Ten minutes post-procedure, he experienced an acute coughing episode followed by altered consciousness, mixed aphasia, and sudden right hemiplegia with an NIHSS score escalation from 0 to 16.",
+      "past_medical_history": "Hypertension, prior cerebral infarction (6 years prior) with baseline mRS 1, compliant with optimal medical therapy including aspirin and atorvastatin.",
+      "vitals": {
+        "bp": "145/85 mmHg",
+        "hr": "78 bpm",
+        "rr": "18 /min",
+        "temp": "36.7 °C",
+        "spo2": "98% on room air"
+      },
+      "neuro_exam": "Altered consciousness, mixed aphasia, unable to follow commands. Spontaneous movements present in left extremities; no withdrawal to painful stimuli on the right side.",
+      "key_labs_csf": "Platelets, coagulation profile, and basic metabolic panel within normal limits.",
+      "imaging": [
+        {
+          "modality": "Pre-admission CTA & Admission Brain MRI",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13663151)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13663151_fig1.webp",
+          "pmcid": "PMC13663151",
+          "doi_url": "https://doi.org/10.1186/s12883-026-05098-8",
+          "caption": "A Pre-admission CTA revealing severe stenosis at the bilateral VA origins. B Admission MRI: prior right frontoparietal and corona radiata infarcts exhibited central hypointensity with peripheral hyperintensity on Fluid-Attenuated Inversion Recovery (FLAIR), consistent with encephalomalacia and perifocal gliosis. C , D The prior left cerebellar hemisphere infarct showed FLAIR hypointensity, representing encephalomalacia foci",
+          "findings_summary": "CTA confirmed severe bilateral vertebral artery ostial stenosis; MRI revealed prior right frontoparietal, corona radiata, and left cerebellar infarcts now converted to encephalomalacia."
+        },
+        {
+          "modality": "Digital Subtraction Angiography & Postoperative CT",
+          "sequence_badge": "Figure 2 • BMC neurology (PMC13663151)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC13663151_fig2.webp",
+          "pmcid": "PMC13663151",
+          "doi_url": "https://doi.org/10.1186/s12883-026-05098-8",
+          "caption": "Digital Subtraction Angiography (DSA) findings. A Pre-intervention severe right VA ostial stenosis (white arrow). B Post-stenting patent vessel lumen (white arrow). C Post-stent implantation, right VA intracranial angiography: no visualization of left PCA (blue arrow). D , E Acute left MCA M2 segment occlusion (red arrow); left PCA visualized via left posterior communicating artery (PCoA), consistent with complete fetal-type posterior cerebral artery (CFPCA) (blue arrow)",
+          "findings_summary": "DSA demonstrated successful right VA stenting but acute occlusion of the left MCA M2 segment, while post-procedure CT revealed linear hyperdensities in left cerebral sulci consistent with contrast extravasation."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely etiology for this patient's acute neurological deterioration following vertebral artery stenting?",
+      "question_type": "Diagnosis",
+      "correct_option": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "Acute intracranial hemorrhage from secondary rupture",
+          "peer_percentage": 12,
+          "rationale": "Incorrect. Immediate postoperative CT showed linear hyperdensities representing contrast extravasation rather than parenchymal or subarachnoid hemorrhage."
+        },
+        {
+          "id": "B",
+          "text": "Procedural iatrogenic thromboembolism to the contralateral anterior circulation",
+          "peer_percentage": 74,
+          "rationale": "Correct! The acute onset of aphasia and right hemiplegia immediately following vertebral artery stenting, combined with angiography proving left MCA M2 occlusion, confirms an iatrogenic embolic stroke to the contralateral territory during catheter manipulation."
+        },
+        {
+          "id": "C",
+          "text": "Hypertensive encephalopathy due to blood pressure surges",
+          "peer_percentage": 9,
+          "rationale": "Incorrect. Blood pressure was well-controlled and focal neurological signs with a discrete M2 occlusion on angiography point directly to a thromboembolic vascular event."
+        },
+        {
+          "id": "D",
+          "text": "Recurrence of prior brainstem infarction",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. The patient's symptoms (aphasia, right hemiplegia) localize to the left middle cerebral artery territory, not the vertebrobasilar system or prior infarct beds."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Iatrogenic left middle cerebral artery embolism secondary to vertebral artery stenting",
+      "clinical_discussion": "Periprocedural stroke is a rare but devastating complication of vertebral artery stenting. This case highlights a paradoxical embolic event affecting the contralateral anterior circulation during a posterior circulation endovascular intervention. Catheter manipulation within the aortic arch or subclavian-vertebral junction can dislodge atheromatous debris or thrombi, which may propagate into unaffected cerebral territories. Despite attempts at mechanical thrombectomy, severe vascular tortuosity can preclude successful recanalization, necessitating alternative management strategies such as glycoprotein IIb/IIIa inhibitors (tirofiban), dual antiplatelet therapy, and intensive supportive care.\n\nPost-procedural neuroimaging is critical to differentiate true intracranial hemorrhage from contrast extravasation (CE), a benign phenomenon resulting from blood-brain barrier disruption or stagnant flow during angiography. Recognizing CE prevents unwarranted discontinuation of antiplatelet therapies and inappropriate emergent surgical interventions. Long-term management requires careful balancing of ischemic stroke recurrence prevention against hemorrhagic transformation risks, paired with early, comprehensive neurorehabilitation to optimize functional recovery.",
+      "teaching_points": [
+        "Vertebral artery stenting carries a procedural risk of distal or cross-territory thromboembolism due to catheter manipulation in the aortic arch.",
+        "Postoperative CT linear sulcal hyperdensities often represent benign contrast extravasation rather than true hemorrhagic transformation.",
+        "Severe vascular tortuosity can limit the technical success of mechanical thrombectomy, requiring medical rescue strategies such as intra-arterial and intravenous tirofiban."
+      ],
+      "clinical_pitfalls": [
+        "Mistaking contrast extravasation for acute intracranial hemorrhage on non-contrast head CT, which can lead to inappropriate cessation of necessary antiplatelet therapy.",
+        "Underestimating the risk of anterior circulation embolization during posterior circulation endovascular procedures."
+      ],
+      "related_keywords": [
+        "Vertebral artery stenting",
+        "Periprocedural stroke",
+        "Contrast extravasation",
+        "Mechanical thrombectomy",
+        "Tirofiban"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-038",
+    "case_code": "NC-2026-038",
+    "title": "Acute Bulbar Failure, Albuminocytological Dissociation, and Areflexia in an Immunocompetent Man",
+    "subspecialty": "Neuromuscular",
+    "subspecialties": [
+      "Neuromuscular",
+      "Neuroinfectious Disease"
+    ],
+    "difficulty": "Attending",
+    "estimated_time_sec": 120,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-11-10",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC12323041",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-025-04245-x",
+      "pmcid": "PMC12323041",
+      "pmid": "40764927",
+      "pub_year": "2025"
+    },
+    "presentation": {
+      "demographics": "64-year-old male",
+      "chief_complaint": "Acute progressive bulbar dysfunction and respiratory failure",
+      "history_of_present_illness": "The patient presented with acute bulbar symptoms including progressive difficulty swallowing, change in phonation, and drooling that worsened over days, ultimately requiring intubation due to declining lung function and inability to manage secretions. He had no fever, recent infection, travel history, or vaccinations. Initial evaluation for a suspected lower motor neuron neuropathy showed absent gag/cough reflexes, tongue atrophy without fasciculations, and areflexia, prompting treatment with intravenous immunoglobulin for presumptive Guillain-Barré syndrome.",
+      "past_medical_history": "Hypertension and remote unprovoked pulmonary embolism",
+      "vitals": {
+        "bp": "132/80 mmHg",
+        "hr": "82 bpm",
+        "rr": "20 /min",
+        "temp": "37.0 °C",
+        "spo2": "96% on ventilator"
+      },
+      "neuro_exam": "Alert and cooperative. Cranial nerves: CN IX and X dysfunction with absent gag and cough reflexes; mild tongue atrophy (CN XII) without fasciculations; no ophthalmoplegia, ptosis, or facial weakness. Motor: normal muscle bulk and strength in limbs. Sensory: intact to all modalities. Coordination: normal. Reflexes: absent at triceps and ankles, hyporeflexia at biceps and knees.",
+      "key_labs_csf": "Lumbar puncture showed albuminocytological dissociation with a markedly elevated protein of 9.8 g/L, nonerythroid cell count of 13 cells/µL (77% lymphocytes), and normal glucose ratio. CSF PCR subsequently returned positive for Varicella-Zoster Virus (VZV). Autoimmune and paraneoplastic panels were negative.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (Axial T2 and T2-FLAIR with gadolinium)",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC12323041)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC12323041_fig1.jpg",
+          "pmcid": "PMC12323041",
+          "doi_url": "https://doi.org/10.1186/s12883-025-04245-x",
+          "caption": "Image A , Axial T2 MRI brain, 2-weeks after presentation, shows a small focus of hyperintense signal in the left dorsal aspect of the medulla oblongata (arrow). Image B , Axial T2 fluid-attenuated inversion recovery (FLAIR) MRI brain with gadolinium shows correlated enhancement of the same area (arrows), with no cranial nerve enhancement",
+          "findings_summary": "Axial T2 and FLAIR images show a focal hyperintense signal and corresponding gadolinium enhancement in the left dorsal aspect of the medulla oblongata."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "Bulbar-variant Guillain-Barré syndrome",
+          "peer_percentage": 25,
+          "rationale": "Incorrect. Although albuminocytological dissociation and areflexia initially suggested Guillain-Barré syndrome, the lack of clinical improvement following IVIG, the positive CSF viral PCR, and MRI demonstration of a medullary parenchymal lesion point to central nervous system infection rather than a peripheral neuropathy."
+        },
+        {
+          "id": "B",
+          "text": "Brainstem glioma",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. While brainstem gliomas can cause progressive bulbar symptoms, the acute presentation, inflammatory CSF profile, and positive CSF VZV PCR rule out a primary glial neoplasm."
+        },
+        {
+          "id": "C",
+          "text": "Varicella-zoster virus rhombencephalitis",
+          "peer_percentage": 66,
+          "rationale": "Correct! The patient presented with acute bulbar dysfunction and profound CSF protein elevation, initially mimicking Guillain-Barré syndrome. However, the identification of VZV in the CSF alongside T2-hyperintense, enhancing medullary lesions on brain MRI confirms the diagnosis of VZV rhombencephalitis."
+        },
+        {
+          "id": "D",
+          "text": "Bickerstaff brainstem encephalitis",
+          "peer_percentage": 4,
+          "rationale": "Incorrect. Bickerstaff brainstem encephalitis typically presents with ophthalmoplegia, ataxia, and encephalopathy, often associated with anti-GQ1b antibodies, which does not match this patient's presentation or positive VZV CSF PCR."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Varicella-Zoster Virus Rhombencephalitis masquerading as Guillain-Barré syndrome",
+      "clinical_discussion": "This case illustrates a rare and deceptive clinical presentation where a central nervous system infection masqueraded as a peripheral neuropathy. The patient initially presented with isolated bulbar weakness, areflexia, and profound albuminocytological dissociation (protein 9.8 g/L) on lumbar puncture, which strongly pointed toward a diagnosis of Guillain-Barré syndrome (GBS), specifically a bulbar variant. Consequently, he was treated with standard intravenous immunoglobulin therapy without clinical benefit.\n\nFurther evaluation revealed cerebrospinal fluid positive for varicella-zoster virus (VZV), and neuroimaging demonstrated focal inflammation within the dorsal medulla oblongata, confirming rhombencephalitis. Rhombencephalitis affects the hindbrain (brainstem and cerebellum) and can present with lower cranial neuropathies and bulbar failure. This case highlights that severe CSF albuminocytological dissociation is not exclusively seen in peripheral neuropathies like GBS; central infections, particularly viral rhombencephalitis, can also produce marked protein elevation, leading to diagnostic pitfalls.",
+      "teaching_points": [
+        "Varicella-zoster virus can cause rhombencephalitis presenting with acute bulbar palsy, mimicking lower cranial nerve Guillain-Barré syndrome.",
+        "Cerebrospinal fluid albuminocytological dissociation (profound protein elevation with minimal lymphocytic pleocytosis) can occur in central nervous system infections such as VZV rhombencephalitis.",
+        "Brainstem parenchymal lesions and focal cranial nerve root entry zone enhancement on MRI distinguish brainstem encephalitis from peripheral polyradiculoneuropathies."
+      ],
+      "clinical_pitfalls": [
+        "Assuming that profound albuminocytological dissociation with areflexia exclusively indicates a peripheral neuropathy like Guillain-Barré syndrome.",
+        "Failing to perform comprehensive CSF viral PCR panels when central brainstem signs overlap with peripheral nervous system manifestations."
+      ],
+      "related_keywords": [
+        "Rhombencephalitis",
+        "Varicella-zoster virus",
+        "Guillain-Barré syndrome",
+        "Albuminocytological dissociation",
+        "Bulbar palsy"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-035",
     "case_code": "NC-2026-035",
     "title": "Stereotyped Sensory Spells and Sulcal Subarachnoid Blood in Severe Extracranial ICA Stenosis",
