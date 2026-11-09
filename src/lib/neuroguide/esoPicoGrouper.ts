@@ -1457,9 +1457,11 @@ export function convertEsoPicoItemsToPracticeChanges(
         id: `${gPrefix}pico-${pNumStr.toLowerCase()}${suffix}`,
         picoNumber: pico.picoNumber,
         picoQuestion: pQuestion,
-        category: defaultCategory,
-        topic: `PICO ${pNumStr} ${pQuestion}`.trim(),
-        changeType: s.toLowerCase().includes("against") ? "DOWNGRADED" : "NEW",
+        category: defaultCategory && defaultCategory.length > 50 && defaultCategory.includes(pQuestion.slice(0, 30))
+          ? "ESO Clinical Practice Guideline"
+          : defaultCategory,
+        topic: `PICO ${pNumStr}: ${pQuestion}`.trim(),
+        changeType: (rec as any).changeType || (pico as any).changeType || "STANDARD",
         quality: q,
         strength: s,
         voting: recVoting,

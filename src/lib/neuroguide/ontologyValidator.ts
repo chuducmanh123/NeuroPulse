@@ -196,13 +196,28 @@ function buildTermRegex(term: string): RegExp {
  * stripping PDF control characters cleanly.
  */
 export function toLabelerInput(doc: GuidelineDoc, change: PracticeChangeDetail, index = 0): RecommendationLabelInput {
-  const cleanCategory = sanitizeControlChars(change.category);
-  const cleanTopic = sanitizeControlChars(change.topic);
-  const cleanPicoQ = sanitizeControlChars(change.picoQuestion);
-  const sectionPath =
-    cleanCategory && cleanTopic && cleanCategory !== cleanTopic
-      ? `${cleanCategory} > ${cleanTopic}`
-      : cleanTopic || cleanCategory || doc.title;
+  const cleanCategory = sanitizeControlChars(change.category).trim();
+  const cleanTopic = sanitizeControlChars(change.topic).trim();
+  const cleanPicoQ = sanitizeControlChars(change.picoQuestion).trim();
+
+  let sectionPath = cleanTopic || cleanCategory || doc.title;
+  if (cleanCategory && cleanTopic && cleanCategory !== cleanTopic) {
+    const catLower = cleanCategory.toLowerCase();
+    const topLower = cleanTopic.toLowerCase();
+    const isPrefixOrOverlap =
+      topLower.includes(catLower) ||
+      catLower.includes(topLower) ||
+      (catLower.length >= 15 && topLower.includes(catLower.slice(0, 15)));
+
+    if (isPrefixOrOverlap) {
+      sectionPath = cleanTopic.length >= cleanCategory.length ? cleanTopic : cleanCategory;
+    } else {
+      sectionPath = `${cleanCategory} > ${cleanTopic}`;
+    }
+  }
+
+  // Clean redundant question marks and multiple PICO prefixes in sectionPath
+  sectionPath = sectionPath.replace(/^PICO\s*\d+[a-z]?[:.\s-]*PICO\s*\d+[a-z]?[:.\s-]*/i, "PICO: ");
   const parentContext = cleanPicoQ
     ? `PICO ${change.picoNumber || ""}: ${cleanPicoQ} (${sectionPath})`.trim()
     : `${sectionPath} — ${sanitizeControlChars(doc.title)}`;

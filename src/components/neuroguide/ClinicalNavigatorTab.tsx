@@ -2032,6 +2032,106 @@ export function ClinicalNavigatorTab({
                     </div>
                   )}
 
+                  {/* Topic-by-Topic Concordance Cards */}
+                  {navResult.concordanceAppraisal.topicClusters &&
+                    navResult.concordanceAppraisal.topicClusters.length > 0 && (
+                      <div className="space-y-3 pt-2">
+                        <div className="flex items-center justify-between">
+                          <h4 className="text-xs font-black uppercase tracking-wider text-slate-700 dark:text-slate-300 flex items-center gap-2">
+                            <span>🎯</span>
+                            <span>Topic-by-Topic Consensus Matrix ({navResult.concordanceAppraisal.topicClusters.length} Clinical Clusters)</span>
+                          </h4>
+                          <span className="text-[11px] text-slate-500 font-medium">
+                            Grouped by PICO Clinical Fingerprint
+                          </span>
+                        </div>
+
+                        <div className="grid grid-cols-1 gap-3">
+                          {navResult.concordanceAppraisal.topicClusters.slice(0, 12).map((cluster) => {
+                            return (
+                              <div
+                                key={cluster.clusterId}
+                                className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-800/30 hover:border-slate-300 dark:hover:border-slate-700 transition space-y-3"
+                              >
+                                <div className="flex flex-wrap items-center justify-between gap-2">
+                                  <div className="flex flex-wrap items-center gap-2">
+                                    <span
+                                      className={`px-2.5 py-0.5 rounded-full text-[11px] font-extrabold border flex items-center gap-1.5 ${cluster.statusBadge.pillClass}`}
+                                    >
+                                      <span>{cluster.statusBadge.icon}</span>
+                                      <span>{cluster.statusBadge.label}</span>
+                                    </span>
+                                    <h5 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-slate-100">
+                                      {cluster.topicTitle}
+                                    </h5>
+                                  </div>
+                                  {cluster.timeWindowLabel && (
+                                    <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-200/80 dark:bg-slate-700 text-slate-700 dark:text-slate-300">
+                                      ⏱️ {cluster.timeWindowLabel}
+                                    </span>
+                                  )}
+                                </div>
+
+                                {/* Society Positions Side-by-Side */}
+                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+                                  {cluster.societyPositions.map((pos) => {
+                                    const dirMeta = getDirectionBadge(pos.direction);
+                                    return (
+                                      <div
+                                        key={`${pos.society}-${pos.recId}`}
+                                        className="p-2.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5"
+                                      >
+                                        <div className="flex items-center justify-between gap-1">
+                                          <span
+                                            className={`px-2 py-0.5 rounded text-[11px] font-extrabold border ${getSocietyBadgeStyle(
+                                              pos.society
+                                            )}`}
+                                          >
+                                            {pos.society} ({pos.year})
+                                          </span>
+                                          <span
+                                            className={`px-1.5 py-0.5 rounded text-[10px] font-bold border ${dirMeta.cls}`}
+                                          >
+                                            {dirMeta.label}
+                                          </span>
+                                        </div>
+                                        <div className="text-[11px] font-bold text-slate-700 dark:text-slate-300">
+                                          {pos.grade}
+                                        </div>
+                                        <p className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                                          {pos.excerpt}
+                                        </p>
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+
+                                {/* Clinical Consensus Synthesis */}
+                                <div className="p-2.5 rounded-lg bg-indigo-50/60 dark:bg-indigo-950/30 border border-indigo-100 dark:border-indigo-900/40 text-xs text-indigo-950 dark:text-indigo-200 font-medium leading-relaxed">
+                                  <span className="font-bold text-indigo-700 dark:text-indigo-400">Clinical Synthesis: </span>
+                                  {cluster.consensusSynthesis}
+                                </div>
+
+                                {cluster.keyDrivingTrials.length > 0 && (
+                                  <div className="flex flex-wrap items-center gap-1.5">
+                                    <span className="text-[10px] font-bold text-slate-400 uppercase">Evidence Trials:</span>
+                                    {cluster.keyDrivingTrials.map((tr) => (
+                                      <span
+                                        key={tr}
+                                        className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800"
+                                      >
+                                        🔬 {tr}
+                                      </span>
+                                    ))}
+                                  </div>
+                                )}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+
                   {/* Points of Agreement & Points of Divergence */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="p-4 rounded-xl bg-emerald-50/40 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900/50 space-y-2">

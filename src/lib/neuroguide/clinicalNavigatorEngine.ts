@@ -34,6 +34,13 @@ import {
 } from "../../data/clinicalNavigatorTaxonomyV3.ts";
 import { buildRecommendationRelations } from "./relationBuilder.ts";
 import { mergePivotalTrialsWithConferences } from "../../data/pivotalTrialsSeed.ts";
+import {
+  generateIntraSocietyGuidelineDiffs,
+  clusterAndAppraiseConsensus,
+  type ConsensusTopicCluster,
+} from "./picoMatcher.ts";
+
+export type { ConsensusTopicCluster };
 
 export interface IndexedNavigatorRecommendation {
   recId: string;
@@ -120,6 +127,7 @@ export interface EvidenceConcordanceAppraisal {
   divergencePoints: string[];
   clinicalBottomLine: string;
   citedRecIds: string[];
+  topicClusters?: ConsensusTopicCluster[];
 }
 
 export interface ScoredNeuroPulseArticle {
@@ -508,138 +516,13 @@ export function hasActiveNavigatorQuery(query: NavigatorQuery): boolean {
 }
 
 /**
- * Computes deterministic Evidence Concordance across societies from matched Core recommendations.
+ * Computes deterministic Evidence Concordance across societies from matched Core recommendations
+ * by clustering around PICO Fingerprints.
  */
 export function computeEvidenceConcordance(
   coreRecs: IndexedNavigatorRecommendation[]
 ): EvidenceConcordanceAppraisal {
-  if (coreRecs.length === 0) {
-    return {
-      consensusLevel: "NO_MATCHING_EVIDENCE",
-      concordanceScore: 0,
-      headline: "No matching recommendations for the selected filters",
-      societyStances: [],
-      agreementPoints: [],
-      divergencePoints: [],
-      clinicalBottomLine: "Adjust your Clinical Navigator V3.0 filters on the left or refine your search keywords in the right pane.",
-      citedRecIds: [],
-    };
-  }
-
-  const bySoc = new Map<string, IndexedNavigatorRecommendation[]>();
-  for (const r of coreRecs) {
-    const list = bySoc.get(r.society) || [];
-    list.push(r);
-    bySoc.set(r.society, list);
-  }
-
-  const societyStances: SocietyStanceSummary[] = [];
-  for (const [society, recs] of bySoc.entries()) {
-    const latestYear = Math.max(...recs.map((x) => x.year));
-    const v3Dirs = new Set(recs.map((x) => x.v3Labels.direction));
-    let dominantDirection: SocietyStanceSummary["dominantDirection"] = "for";
-    if (v3Dirs.has("recommended") && v3Dirs.has("harm")) {
-      dominantDirection = "mixed";
-    } else if (v3Dirs.has("harm") && !v3Dirs.has("recommended")) {
-      dominantDirection = "against";
-    } else if (v3Dirs.has("conditional") && !v3Dirs.has("recommended")) {
-      dominantDirection = "uncertain";
-    }
-
-    const highestTier = Math.min(...recs.map((x) => x.normalizedTier)) as NormalizedTier;
-    const rawGradesSummary = Array.from(new Set(recs.slice(0, 3).map((x) => x.rawGrade)));
-    societyStances.push({
-      society,
-      latestYear,
-      recCount: recs.length,
-      dominantDirection,
-      highestTier,
-      rawGradesSummary,
-    });
-  }
-
-  societyStances.sort((a, b) => b.recCount - a.recCount || b.latestYear - a.latestYear);
-
-  const agreementPoints: string[] = [];
-  const divergencePoints: string[] = [];
-  const citedRecIds = coreRecs.slice(0, 8).map((r) => r.recId);
-
-  const positiveRecs = coreRecs.filter((r) => r.v3Labels.direction === "recommended");
-  const negativeRecs = coreRecs.filter((r) => r.v3Labels.direction === "harm");
-  const conditionalRecs = coreRecs.filter((r) => r.v3Labels.direction === "conditional");
-
-  if (positiveRecs.length > 0) {
-    const posSocieties = Array.from(new Set(positiveRecs.map((r) => `${r.society} (${r.year})`)));
-    const topPosIds = positiveRecs.slice(0, 3).map((r) => `[${r.recId}]`).join(", ");
-    agreementPoints.push(
-      `Endorsed / Recommended FOR (${positiveRecs.length} recommendation${positiveRecs.length > 1 ? "s" : ""}) across ${posSocieties.join(", ")} — e.g., ${positiveRecs[0].rawGrade} ${topPosIds}.`
-    );
-  }
-
-  if (negativeRecs.length > 0) {
-    const negSocieties = Array.from(new Set(negativeRecs.map((r) => `${r.society} (${r.year})`)));
-    const topNegIds = negativeRecs.slice(0, 3).map((r) => `[${r.recId}]`).join(", ");
-    if (positiveRecs.length > 0) {
-      divergencePoints.push(
-        `Contraindications / Harm / Class III boundaries (${negativeRecs.length} recommendation${negativeRecs.length > 1 ? "s" : ""}) specified by ${negSocieties.join(", ")} (${negativeRecs[0].rawGrade}) ${topNegIds} — verify specific subgroup, timing, or blood pressure/dosing thresholds.`
-      );
-    } else {
-      agreementPoints.push(
-        `Consensus AGAINST / Class III Harm (${negativeRecs.length} recommendation${negativeRecs.length > 1 ? "s" : ""}) across ${negSocieties.join(", ")} (${negativeRecs[0].rawGrade}) ${topNegIds}.`
-      );
-    }
-  }
-
-  if (conditionalRecs.length > 0) {
-    const uncSocieties = Array.from(new Set(conditionalRecs.map((r) => `${r.society} (${r.year})`)));
-    const topUncIds = conditionalRecs.slice(0, 2).map((r) => `[${r.recId}]`).join(", ");
-    divergencePoints.push(
-      `Conditional / Class IIb evidence noted in ${uncSocieties.join(", ")} (${conditionalRecs[0].rawGrade}) ${topUncIds}.`
-    );
-  }
-
-  let consensusLevel: EvidenceConcordanceAppraisal["consensusLevel"] = "HIGH_CONCORDANCE";
-  let concordanceScore = 92;
-  let headline = "High Concordance Across Guideline Societies";
-
-  if (societyStances.length === 1) {
-    consensusLevel = "SINGLE_SOCIETY_EVIDENCE";
-    concordanceScore = 85;
-    headline = `Single-Society Evidence (${societyStances[0].society} ${societyStances[0].latestYear})`;
-  } else {
-    const uniqueDominantDirs = new Set(societyStances.map((s) => s.dominantDirection));
-    const tiers = societyStances.map((s) => s.highestTier);
-    const tierSpread = Math.max(...tiers) - Math.min(...tiers);
-
-    if (
-      (uniqueDominantDirs.has("for") && (uniqueDominantDirs.has("against") || uniqueDominantDirs.has("no_benefit"))) ||
-      tierSpread >= 3
-    ) {
-      consensusLevel = "MAJOR_DIVERGENCE";
-      concordanceScore = 54;
-      headline = "Major Divergence / Subgroup-Specific Contraindications Across Guidelines";
-    } else if (uniqueDominantDirs.size > 1 || tierSpread >= 1 || conditionalRecs.length > 0) {
-      consensusLevel = "MODERATE_VARIATION";
-      concordanceScore = 78;
-      headline = "Moderate Variation in Recommendation Strength or Eligibility Criteria";
-    }
-  }
-
-  const leadRec = coreRecs.slice().sort((a, b) => a.normalizedTier - b.normalizedTier || b.year - a.year)[0];
-  const clinicalBottomLine = leadRec
-    ? `Primary Evidence Anchor [${leadRec.recId}] (${leadRec.society} ${leadRec.year}, ${leadRec.rawGrade}): "${leadRec.text.slice(0, 220)}${leadRec.text.length > 220 ? "..." : ""}"`
-    : "Review individual society recommendations above for exact eligibility criteria.";
-
-  return {
-    consensusLevel,
-    concordanceScore,
-    headline,
-    societyStances,
-    agreementPoints,
-    divergencePoints,
-    clinicalBottomLine,
-    citedRecIds,
-  };
+  return clusterAndAppraiseConsensus(coreRecs);
 }
 
 /**
@@ -971,36 +854,9 @@ export function runClinicalNavigatorQuery(params: {
     return b.coreRecommendations.length - a.coreRecommendations.length;
   });
 
-  // Build Intra-Society Sequential Guideline Diffs
-  const intraSocietyDiffs: IntraSocietyDiffItem[] = [];
-  const seenDiffIds = new Set<string>();
-
-  for (const rec of coreRecommendations) {
-    if (rec.previousGrade || rec.previousText || (rec.changeType && rec.changeType !== "STANDARD")) {
-      const diffId = `diff-${rec.recId}`;
-      if (seenDiffIds.has(diffId)) continue;
-      seenDiffIds.add(diffId);
-      const prevYear = rec.society.includes("AHA") && rec.year === 2026 ? 2019 : rec.year - 4;
-      intraSocietyDiffs.push({
-        id: diffId,
-        society: rec.society,
-        guidelineTitle: rec.guidelineTitle,
-        topic: rec.sectionPath,
-        previousYear: prevYear,
-        previousGrade: rec.previousGrade || "Prior Guideline Edition",
-        previousText: rec.previousText,
-        currentYear: rec.year,
-        currentGrade: rec.rawGrade,
-        currentText: rec.text,
-        shiftDirection:
-          rec.changeType === "UPGRADED" || rec.changeType === "DOWNGRADED" || rec.changeType === "NEW" || rec.changeType === "REVISED"
-            ? rec.changeType
-            : "REVISED",
-        drivingTrials: rec.drivingTrials,
-        sourceRecId: rec.recId,
-      });
-    }
-  }
+  // Build Intra-Society Sequential Guideline Diffs via semantic PICO Fingerprint pairing
+  const intraSocietyDiffs = generateIntraSocietyGuidelineDiffs(coreRecommendations, fullPool);
+  const seenDiffIds = new Set<string>(intraSocietyDiffs.map((d) => d.id));
 
   // Match ClinicalScenarios for ecosystemLinks & temporalEvolution
   const activeTagLabelsLower = new Set<string>([
