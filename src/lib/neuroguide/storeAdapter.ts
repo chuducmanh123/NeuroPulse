@@ -8,6 +8,7 @@ import {
   convertEsoPicoItemsToPracticeChanges,
   isEsoBpGuideline,
   isEsoAsahGuideline,
+  isEsoPfoGuideline,
 } from "./esoPicoGrouper.ts";
 import { parseAhaCorAndLoe } from "./notebooklmParser.ts";
 
@@ -54,6 +55,8 @@ export function convertGuidelineRecordToDoc(record: any, includePending = false)
       ? "Blood Pressure"
       : isEsoAsahGuideline(metadata.title, record.guideline_id)
       ? "Aneurysmal Subarachnoid Haemorrhage"
+      : isEsoPfoGuideline(metadata.title, record.guideline_id)
+      ? "Patent Foramen Ovale"
       : "ESO Synoptic Table Recommendation";
     practiceChanges = convertEsoPicoItemsToPracticeChanges(canonicalEsoPicos, defaultCat);
   } else {

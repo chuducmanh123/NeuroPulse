@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import type { RecommendationV3Labels } from "@/types/neuroguide";
 
 export type EsoEvidenceQuality =
   | "High"
@@ -26,6 +27,7 @@ export interface EsoRecommendationDetail {
   expertConsensusStatement?: string;
   expertConsensusStatements?: string[];
   voting?: string;
+  v3Labels?: RecommendationV3Labels;
 }
 
 export interface EsoPicoItem {
@@ -35,6 +37,7 @@ export interface EsoPicoItem {
   expertConsensusStatement?: string;
   voting?: string; // e.g., "Vote: 10/10"
   drivingTrials?: string[];
+  v3Labels?: RecommendationV3Labels;
 }
 
 export interface EsoGuidelineTableProps {
@@ -365,6 +368,49 @@ export function EsoGuidelineTable({
                               ))}
                             </div>
                           )}
+
+                          {/* Clinical Navigator Labels */}
+                          {(rec.v3Labels || pico.v3Labels) && (
+                            <div className="pt-1 flex flex-wrap items-center gap-1 text-[10.5px]">
+                              {(rec.v3Labels?.domains || pico.v3Labels?.domains)?.map((d) => (
+                                <span
+                                  key={d}
+                                  className="px-1.5 py-0.2 rounded text-[9.5px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 uppercase"
+                                >
+                                  {d}
+                                </span>
+                              ))}
+                              {(rec.v3Labels?.direction || pico.v3Labels?.direction) && (
+                                <span
+                                  className={`px-1.5 py-0.2 rounded text-[9.5px] font-bold uppercase ${
+                                    (rec.v3Labels?.direction || pico.v3Labels?.direction) === "recommended"
+                                      ? "bg-green-100 text-green-800 dark:bg-green-950/80 dark:text-green-300"
+                                      : (rec.v3Labels?.direction || pico.v3Labels?.direction) === "harm"
+                                      ? "bg-red-100 text-red-800 dark:bg-red-950/80 dark:text-red-300"
+                                      : "bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300"
+                                  }`}
+                                >
+                                  {rec.v3Labels?.direction || pico.v3Labels?.direction}
+                                </span>
+                              )}
+                              {(rec.v3Labels?.interventionTags || pico.v3Labels?.interventionTags)?.map((t) => (
+                                <span
+                                  key={t}
+                                  className="inline-flex items-center gap-0.5 px-1.5 py-0.2 rounded font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60"
+                                >
+                                  💊 {t.replace(/^tag_/, "").replace(/_/g, " ")}
+                                </span>
+                              ))}
+                              {(rec.v3Labels?.diagnosisTags || pico.v3Labels?.diagnosisTags)?.map((d) => (
+                                <span
+                                  key={d}
+                                  className="inline-flex items-center gap-0.5 px-1.5 py-0.2 rounded font-semibold bg-purple-50 dark:bg-purple-950/40 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800/60"
+                                >
+                                  🔬 {d.replace(/^tag_/, "").replace(/_/g, " ")}
+                                </span>
+                              ))}
+                            </div>
+                          )}
                         </div>
                       </div>
 
@@ -560,6 +606,54 @@ export function EsoGuidelineTable({
                                     >
                                       <span>📊</span>
                                       <span>{study}</span>
+                                    </span>
+                                  ))}
+                                </div>
+                              )}
+
+                              {/* Clinical Navigator Labels */}
+                              {(rec.v3Labels || pico.v3Labels) && (
+                                <div className="pt-2 flex flex-wrap items-center gap-1.5 text-xs">
+                                  <span className="text-[11px] font-bold text-slate-600 dark:text-slate-400">
+                                    Nhãn lâm sàng:
+                                  </span>
+                                  {(rec.v3Labels?.domains || pico.v3Labels?.domains)?.map((d) => (
+                                    <span
+                                      key={d}
+                                      className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 uppercase shadow-2xs"
+                                    >
+                                      {d}
+                                    </span>
+                                  ))}
+                                  {(rec.v3Labels?.direction || pico.v3Labels?.direction) && (
+                                    <span
+                                      className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase shadow-2xs ${
+                                        (rec.v3Labels?.direction || pico.v3Labels?.direction) === "recommended"
+                                          ? "bg-green-100 text-green-800 dark:bg-green-950/80 dark:text-green-300 border border-green-300/40"
+                                          : (rec.v3Labels?.direction || pico.v3Labels?.direction) === "harm"
+                                          ? "bg-red-100 text-red-800 dark:bg-red-950/80 dark:text-red-300 border border-red-300/40"
+                                          : "bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border border-amber-300/40"
+                                      }`}
+                                    >
+                                      {rec.v3Labels?.direction || pico.v3Labels?.direction}
+                                    </span>
+                                  )}
+                                  {(rec.v3Labels?.interventionTags || pico.v3Labels?.interventionTags)?.map((t) => (
+                                    <span
+                                      key={t}
+                                      className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 shadow-2xs"
+                                    >
+                                      <span>💊</span>
+                                      <span>{t.replace(/^tag_/, "").replace(/_/g, " ")}</span>
+                                    </span>
+                                  ))}
+                                  {(rec.v3Labels?.diagnosisTags || pico.v3Labels?.diagnosisTags)?.map((d) => (
+                                    <span
+                                      key={d}
+                                      className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-semibold bg-purple-50 dark:bg-purple-950/40 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800/60 shadow-2xs"
+                                    >
+                                      <span>🔬</span>
+                                      <span>{d.replace(/^tag_/, "").replace(/_/g, " ")}</span>
                                     </span>
                                   ))}
                                 </div>

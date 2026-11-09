@@ -100,5 +100,18 @@
     "rejected_count": 0,
     "grading_system": "GRADE_ESO",
     "updated_at": "2026-11-07T22:42:12.250882+00:00"
+  },
+  "ahaasa-2026-early-ischemic-stroke-f6bx": {
+    "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+    "title": "2026 AHA/ASA Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+    "society": "AHA/ASA",
+    "year": 2026,
+    "latest_version": 1,
+    "total_recommendations": 202,
+    "pending_count": 0,
+    "approved_count": 202,
+    "rejected_count": 0,
+    "grading_system": "AHA_ACC",
+    "updated_at": "2026-11-09T08:05:51.893+00:00"
   }
 }

@@ -138,6 +138,7 @@ export interface EsoRecDraft {
   voting?: string;
   drivingTrials?: string[];
   changeType?: PracticeChangeDetail["changeType"];
+  v3Labels?: RecommendationV3Labels;
 }
 
 export interface EsoPicoDraft {
@@ -266,6 +267,7 @@ function changesToEsoPicos(changes: PracticeChangeDetail[]): EsoPicoDraft[] {
       voting,
       drivingTrials: item.drivingTrials || [],
       changeType: item.changeType || "STANDARD",
+      v3Labels: item.v3Labels,
     });
   });
 
@@ -295,6 +297,7 @@ function esoPicosToChanges(picos: EsoPicoDraft[]): PracticeChangeDetail[] {
         drivingTrials: rec.drivingTrials || [],
         changeType: rec.changeType || "STANDARD",
         previousText: rec.expertConsensusStatement?.trim() || undefined,
+        v3Labels: rec.v3Labels,
       });
     });
   });
@@ -1983,6 +1986,58 @@ export function EditGuidelineModal({
                                         darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-200"
                                       }`}
                                     />
+                                  </div>
+                                </div>
+
+                                {/* 5. CLINICAL NAVIGATOR V3 LABELS (Per-recommendation distinct labels) */}
+                                <div className="p-2.5 rounded-lg bg-white/70 dark:bg-slate-900/60 border border-blue-200/50 dark:border-blue-900/40 space-y-1.5 text-xs">
+                                  <div className="flex items-center justify-between gap-2">
+                                    <span className="font-extrabold text-[11px] text-blue-900 dark:text-blue-300 flex items-center gap-1">
+                                      <span>🏷️</span>
+                                      <span>Clinical Navigator Label (Riêng cho khuyến cáo này)</span>
+                                    </span>
+                                    {rec.v3Labels?.isExplicit && (
+                                      <span className="text-[10px] px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 font-bold">
+                                        ✓ Nhãn chuẩn riêng
+                                      </span>
+                                    )}
+                                  </div>
+                                  <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
+                                    {rec.v3Labels ? (
+                                      <>
+                                        <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-200 uppercase">
+                                          {rec.v3Labels.domains?.[0] || "treatment"}
+                                        </span>
+                                        <span className={`px-1.5 py-0.5 rounded text-[10px] font-bold uppercase ${
+                                          rec.v3Labels.direction === "recommended"
+                                            ? "bg-green-100 text-green-800 dark:bg-green-950 dark:text-green-300"
+                                            : rec.v3Labels.direction === "harm"
+                                            ? "bg-red-100 text-red-800 dark:bg-red-950 dark:text-red-300"
+                                            : "bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300"
+                                        }`}>
+                                          {rec.v3Labels.direction || "conditional"}
+                                        </span>
+                                        {rec.v3Labels.conditionIds?.map((cId) => (
+                                          <span key={cId} className="px-1.5 py-0.5 rounded text-[10.5px] font-semibold bg-indigo-50 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+                                            🎯 {getConditionByIdV3(cId)?.label || cId}
+                                          </span>
+                                        ))}
+                                        {rec.v3Labels.interventionTags?.map((tId) => (
+                                          <span key={tId} className="px-1.5 py-0.5 rounded text-[10.5px] font-semibold bg-sky-50 text-sky-700 dark:bg-sky-950 dark:text-sky-300 border border-sky-200 dark:border-sky-800">
+                                            💊 {getTagLabelByIdV3(tId) || tId}
+                                          </span>
+                                        ))}
+                                        {rec.v3Labels.diagnosisTags?.map((dId) => (
+                                          <span key={dId} className="px-1.5 py-0.5 rounded text-[10.5px] font-semibold bg-purple-50 text-purple-700 dark:bg-purple-950 dark:text-purple-300 border border-purple-200 dark:border-purple-800">
+                                            🔬 {getTagLabelByIdV3(dId) || dId}
+                                          </span>
+                                        ))}
+                                      </>
+                                    ) : (
+                                      <span className="text-slate-400 text-[11px] italic">
+                                        Tự động phân loại dựa trên nội dung câu khuyến cáo này
+                                      </span>
+                                    )}
                                   </div>
                                 </div>
                               </div>

@@ -25,6 +25,8 @@ import {
   getCanonicalEsoPicos,
   convertEsoPicoItemsToPracticeChanges,
   isEsoBpGuideline,
+  isEsoAsahGuideline,
+  isEsoPfoGuideline,
 } from "./esoPicoGrouper.ts";
 
 const LOCAL_STORAGE_PATH = path.join(process.cwd(), "public", "data", "neuroguide_cloud.json");
@@ -397,7 +399,11 @@ export function mergeGuidelines(
         canonicalEsoPicos,
         isEsoBpGuideline(rawDoc.title, rawDoc.id)
           ? "Blood Pressure Management (ESO GRADE)"
-          : "Aneurysmal Subarachnoid Haemorrhage (ESO GRADE)"
+          : isEsoAsahGuideline(rawDoc.title, rawDoc.id)
+          ? "Aneurysmal Subarachnoid Haemorrhage (ESO GRADE)"
+          : isEsoPfoGuideline(rawDoc.title, rawDoc.id)
+          ? "Patent Foramen Ovale (ESO GRADE)"
+          : "ESO GRADE Synoptic Table"
       );
       doc = {
         ...rawDoc,

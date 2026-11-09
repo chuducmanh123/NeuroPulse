@@ -295,7 +295,7 @@ test("Clinical Feasibility Test Cases on Ingested Practical Guidelines & Unlabel
   });
   assert.ok(c17SearchCombo.coreRecommendations.length >= 1, "Case 17: Right-Pane Search '0.25 mg/kg' + Left-Pane Filter");
   assert.ok(
-    c17SearchCombo.coreRecommendations.every((r) => r.text.toLowerCase().includes("0.25 mg/kg")),
+    c17SearchCombo.coreRecommendations.every((r) => /0\.25[\s-]mg\/kg/i.test(r.text)),
     "Case 17: Right-Pane Search strictly filters recommendation text"
   );
 });

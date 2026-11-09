@@ -1,0 +1,3748 @@
+{
+  "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+  "version": 1,
+  "metadata": {
+    "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+    "title": "2026 AHA/ASA Guideline for the Early Management of Patients With Acute Ischemic Stroke",
+    "society": "AHA/ASA",
+    "year": 2026,
+    "source_url": "https://scholar.google.com/scholar?q=2026%20AHA%2FASA%20Guideline%20for%20the%20Early%20Management%20of%20Patients%20With%20Acute%20Ischemic%20Stroke",
+    "top_takeaways": []
+  },
+  "total_recommendations": 202,
+  "pending_count": 0,
+  "approved_count": 202,
+  "rejected_count": 0,
+  "recommendations": [
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-1",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "For the general public, implementation of educational programs on stroke recognition in patients of all ages and the need to seek emergency care (calling 9-1-1) is recommended and should be implemented by public health and community leaders and medical professionals to reduce gaps in knowledge about stroke warning signs and to improve stroke preparedness.¹⁻¹⁰",
+      "approval_status": "APPROVED",
+      "category": "2.1 Stroke Awareness",
+      "topic": "2.1 Stroke Awareness",
+      "currentGrade": "Class 1, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1–10: Hodgson et al. 2007",
+        "Morgenstern et al. 2002",
+        "Kleindorfer et al. 2008",
+        "Wall et al. 2008",
+        "Mikulik et al. 2011",
+        "Fogle et al. 2008",
+        "Marx et al. 2010",
+        "Becker et al. 2001",
+        "Matsuzono et al. 2015",
+        "Mellor et al. 2015"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-2",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "For the general public, educational programs on stroke recognition should be designed to reach diverse communities and populations (ie, diversity by age, race and ethnicity, sex and gender, and other social determinants of health such as education, income, and neighborhood) to reduce knowledge gaps in stroke warning signs and improve stroke preparedness across all demographics.¹⁻⁴,⁹⁻¹²",
+      "approval_status": "APPROVED",
+      "category": "2.1 Stroke Awareness",
+      "topic": "2.1 Stroke Awareness",
+      "currentGrade": "Class 1, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1–4",
+        "9–12: Hodgson et al. 2007",
+        "Morgenstern et al. 2002",
+        "Kleindorfer et al. 2008",
+        "Wall et al. 2008",
+        "Matsuzono et al. 2015",
+        "Mellor et al. 2015",
+        "Robinson et al. 2013",
+        "Skolarus et al. 2011"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-3",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "For the general public, educational programs on stroke recognition should be sustained over time to improve long-term knowledge of stroke warning signs and stroke preparedness.⁴,⁷,¹¹",
+      "approval_status": "APPROVED",
+      "category": "2.1 Stroke Awareness",
+      "topic": "2.1 Stroke Awareness",
+      "currentGrade": "Class 1, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 4",
+        "11: Wall et al. 2008",
+        "Marx et al. 2010",
+        "Robinson et al. 2013"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-4",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In addition to the general public, emergency medical services (EMS) professionals, physicians (including primary care professionals), and other health care personnel should receive targeted stroke educational programs to reduce prehospital delays and maximize eligibility for acute treatment of ischemic stroke (eg, thrombolysis).¹³⁻¹⁶",
+      "approval_status": "APPROVED",
+      "category": "2.1 Stroke Awareness",
+      "topic": "2.1 Stroke Awareness",
+      "currentGrade": "Class 1, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 13–16: Acker et al. 2007",
+        "Case et al. 2011",
+        "Xian et al. 2017",
+        "Birbeck et al. 2006"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-5",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "Health care policy makers should establish regional systems of stroke care to increase access to time-sensitive therapies that include the determination of: a) health care facilities that provide initial emergency care, including administration of IVT, and b) centers capable of performing endovascular stroke treatment with comprehensive periprocedural care to which rapid transport must be arranged when appropriate.¹",
+      "approval_status": "APPROVED",
+      "category": "2.2 EMS Systems",
+      "topic": "2.2 EMS Systems",
+      "currentGrade": "Class 1, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Ref 1: Kolls et al. IMPROVE Stroke Care Program (Am Heart J 2024;269:72–83)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-6",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "EMS leaders, together with local experts, regional or state agencies, and medical authorities, should develop prehospital triage protocols to ensure that patients with suspected stroke are rapidly identified, assessed with a validated tool for stroke screening, and preferentially transported to the most appropriate stroke centers.²⁻¹³",
+      "approval_status": "APPROVED",
+      "category": "2.2 EMS Systems",
+      "topic": "2.2 EMS Systems",
+      "currentGrade": "Class 1, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 2–13: LAPSS (Kidwell et al. 2000)",
+        "CPSS (De Luca et al. 2019)",
+        "Asimos et al. 2014",
+        "MASS (Bray et al. 2005)",
+        "Chenkin et al. 2009",
+        "Chaudhary et al. 2022",
+        "Rudd et al. 2016",
+        "PRESTO (Dekker et al. 2024)",
+        "Brandler et al. 2014",
+        "Zhelev et al. Cochrane 2019",
+        "FAST4D (Claudi et al. 2024)",
+        "BE-FAST (Tanglay et al. 2024)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-7",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "Monitoring and feedback on quality metrics related to prehospital care can be useful to reduce delays from symptom onset to ischemic stroke reperfusion treatment and increase the odds of discharge to home.¹⁴⁻¹⁶",
+      "approval_status": "APPROVED",
+      "category": "2.2 EMS Systems",
+      "topic": "2.2 EMS Systems",
+      "currentGrade": "Class 2a, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 14–16: Oostema et al. 2024 (Stroke 2024;55:101–109)",
+        "Oostema et al. 2014",
+        "Li et al. 2021"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-8",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In callers to 9-1-1, EMS dispatch use of a telephone stroke assessment tool is reasonable and can be beneficial in early identification of stroke, reduced on-scene time, and/or prioritization of transport.¹,²",
+      "approval_status": "APPROVED",
+      "category": "2.3 Prehospital Assessment",
+      "topic": "2.3 Prehospital Assessment & Management",
+      "currentGrade": "Class 2a, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1",
+        "2: Abbas et al. 2022 (J Stroke Cerebrovasc Dis 2022;31:106228)",
+        "Wenstrup et al. 2024 (Eur Stroke J 2024;9:283–294)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-9",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with suspected stroke transported by ambulance, use of a brief stroke assessment tool by prehospital personnel is recommended to improve early stroke identification, including large vessel occlusion (LVO) stroke.³,⁴",
+      "approval_status": "APPROVED",
+      "category": "2.3 Prehospital Assessment",
+      "topic": "2.3 Prehospital Assessment & Management",
+      "currentGrade": "Class 1, Level A",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 3",
+        "4: PRESTO Study (Duvekot et al. Lancet Neurol 2021;20:213–221)",
+        "Helwig et al. JAMA Neurol 2019;76:1484–1492"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-10",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with suspected stroke transported by ambulance, prehospital personnel should provide advance notification to the receiving hospital of an inbound suspected stroke to reduce in-hospital evaluation times, increase thrombolytic use, and decrease mortality.⁵,⁶",
+      "approval_status": "APPROVED",
+      "category": "2.3 Prehospital Assessment",
+      "topic": "2.3 Prehospital Assessment & Management",
+      "currentGrade": "Class 1, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 5",
+        "6: Lin et al. Get With The Guidelines-Stroke (Circ Cardiovasc Qual Outcomes 2012;5:514–522)",
+        "Nielsen et al. Paul Coverdell Registry (Prehosp Emerg Care 2023;27:639–645)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-11",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with suspected stroke transported by ambulance, ambulance-initiated remote ischemic conditioning (RIC) with arm blood pressure (BP) cuff inflation does not improve functional outcome and is not recommended.⁷",
+      "approval_status": "APPROVED",
+      "category": "2.3 Prehospital Assessment",
+      "topic": "2.3 Prehospital Assessment & Management",
+      "currentGrade": "Class 3: No Benefit, Level B-R",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Ref 7: RESIST Landmark RCT (Blauenfeldt et al. JAMA 2023;330:1236–1246)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-12",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with suspected stroke transported by ambulance, prehospital initiation of stroke treatment with transdermal glyceryl trinitrate (GTN, nitroglycerin) does not improve functional outcome and is potentially harmful.⁸⁻¹¹",
+      "approval_status": "APPROVED",
+      "category": "2.3 Prehospital Assessment",
+      "topic": "2.3 Prehospital Assessment & Management",
+      "currentGrade": "Class 3: Harm, Level A",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 8–11: RIGHT-2 Trial (Bath et al. Stroke 2019 & Lancet 2019)",
+        "MR ASAP Trial (van den Berg et al. Lancet Neurol 2022)",
+        "Woodhouse et al. BMJ Neurol Open 2023"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-13",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with suspected stroke transported by ambulance, intensive BP control in the field to a target of 130 to 140 mm Hg systolic does not improve functional outcome.¹²",
+      "approval_status": "APPROVED",
+      "category": "2.3 Prehospital Assessment",
+      "topic": "2.3 Prehospital Assessment & Management",
+      "currentGrade": "Class 3: No Benefit, Level B-R",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Ref 12: INTERACT4 Landmark Ambulance RCT (Li et al. N Engl J Med 2024;390:1862–1872)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-14",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In pediatric patients with suspected stroke transported by ambulance, the usefulness of common adult stroke screening tools is uncertain because they perform poorly for identification of stroke. Newer pediatric stroke screening tools demonstrate good interrater reliability; however, their sensitivity, specificity, and predictive value in the prehospital setting remain to be determined, and their usefulness is unknown.¹³⁻¹⁶",
+      "approval_status": "APPROVED",
+      "category": "2.3 Prehospital Assessment",
+      "topic": "2.3 Prehospital Assessment & Management",
+      "currentGrade": "Class 2b, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 13–16: Mackay et al. Neurology 2016",
+        "Neville & Lo 2016",
+        "PedNIHSS (Ichord et al. 2011)",
+        "PedRACE (Turon-Vinas et al. Stroke 2024;55:2240–2246)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-15",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with suspected acute stroke, EMS professionals should prioritize transport to the closest appropriate facility (acute stroke-ready hospital [ASRH], primary stroke center [PSC], thrombectomy-capable stroke center [TSC], or comprehensive stroke center [CSC]) to reduce time to treatment compared with transport to a nonstroke capable hospital.¹⁻⁵",
+      "approval_status": "APPROVED",
+      "category": "2.4 EMS Destination Management",
+      "topic": "2.4 EMS Destination Management",
+      "currentGrade": "Class 1, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1–5: Prehospital Stroke System Consensus (Jauch et al. Stroke 2021)",
+        "Prabhakaran et al. 2013",
+        "Gladstone et al. 2009",
+        "Holodinsky et al. 2018",
+        "Ali et al. 2018"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-16",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients identified by EMS professionals as having a suspected LVO stroke, direct transport to a TSC can be beneficial to increase EVT rates and reduce time to treatment compared with initial transport to a non-TSC with secondary hospital-to-hospital transfer.⁶⁻⁸",
+      "approval_status": "APPROVED",
+      "category": "2.4 EMS Destination Management",
+      "topic": "2.4 EMS Destination Management",
+      "currentGrade": "Class 2a, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 6–8: Kass-Hout et al. JAMA Neurol 2021",
+        "Zaidi et al. 2017",
+        "Mohamad et al. 2016"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-17",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In areas without well-coordinated stroke systems of care (SSOC) and local hospital(s) proficient in thrombolysis delivery and secondary interhospital transfer, it may be reasonable for EMS professionals to consider direct transport of suspected LVO patients to the closest appropriate TSC (if transport will not disqualify the patient from IVT) to increase rates of EVT and reduce time to treatment, compared with initial transport to a local stroke center with secondary hospital-to-hospital transfer for treatment.⁹",
+      "approval_status": "APPROVED",
+      "category": "2.4 EMS Destination Management",
+      "topic": "2.4 EMS Destination Management",
+      "currentGrade": "Class 2b, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Ref 9: Romoli et al. Systematic Review & Meta-Analysis (J Stroke 2020;22:317–323)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-18",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In areas with well-coordinated SSOC and local hospital(s) proficient in thrombolysis delivery and secondary interhospital transfer, direct transport of patients with suspected LVO to a distant (eg, 45–60 min) TSC compared with transport to a local stroke center does not improve 3-month clinical outcomes.¹⁰⁻¹⁴",
+      "approval_status": "APPROVED",
+      "category": "2.4 EMS Destination Management",
+      "topic": "2.4 EMS Destination Management",
+      "currentGrade": "Class 3: No Benefit, Level B-R",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 10–14: RACECAT Landmark RCT (Perez de la Ossa et al. JAMA 2022 & Ramos-Pachon et al. JAMA Neurol 2023)",
+        "TRIAGE-STROKE RCT (Behrndtz et al. Stroke 2023)",
+        "Young et al. 2023",
+        "Garcia-Tornel et al. 2022"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-19",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "Hospitals and EMS professionals should establish agreements and protocols to prioritize interhospital transfer of patients with acute stroke needing a higher level of care to reduce door-in–door-out (DIDO) times.¹⁵",
+      "approval_status": "APPROVED",
+      "category": "2.4 EMS Destination Management",
+      "topic": "2.4 EMS Destination Management",
+      "currentGrade": "Class 1, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Ref 15: Stamm et al. Door-in-Door-Out Transfer Study (JAMA 2023;330:636–649)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-20",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with suspected AIS, the use of MSUs over conventional EMS where available is recommended for the transport and management of thrombolytic-eligible patients to ensure the fastest achievable onset-to-treatment time and improve functional outcomes.¹⁻⁷",
+      "approval_status": "APPROVED",
+      "category": "2.5 Role of Mobile Stroke Units",
+      "topic": "2.5 Role of Mobile Stroke Units",
+      "currentGrade": "Class 1, Level A",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1–7: BEST-MSU Landmark RCT (Grotta et al. NEJM 2021)",
+        "B_PROUD Landmark RCT (Ebinger et al. JAMA 2021)",
+        "Turc et al. JAMA Neurol Meta-Analysis 2022",
+        "Mac Grory et al. 2024",
+        "Ebinger et al. 2014",
+        "Walter et al. 2012",
+        "Larsen et al. 2021"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-21",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with suspected acute stroke, MSUs must be equipped to diagnose and treat patients with IVT.¹⁻⁷",
+      "approval_status": "APPROVED",
+      "category": "2.5 Role of Mobile Stroke Units",
+      "topic": "2.5 Role of Mobile Stroke Units",
+      "currentGrade": "Class 1, Level A",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1–7: BEST-MSU (Grotta et al. 2021)",
+        "B_PROUD (Ebinger et al. 2021)",
+        "Turc et al. 2022",
+        "Mac Grory et al. 2024",
+        "Ebinger et al. 2014",
+        "Walter et al. 2012",
+        "Larsen et al. 2021"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-22",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with suspected acute stroke, MSU care, including streamlined protocols and use of neurological expertise, either in-person or remote telemedicine consultation, is beneficial for emergent evaluation and treatment of patient symptoms without safety concerns.²⁻⁴,⁸⁻¹⁰",
+      "approval_status": "APPROVED",
+      "category": "2.5 Role of Mobile Stroke Units",
+      "topic": "2.5 Role of Mobile Stroke Units",
+      "currentGrade": "Class 1, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 2–4",
+        "8–10: B_PROUD (2021)",
+        "Turc et al. (2022)",
+        "Mac Grory et al. (2024)",
+        "Geisler et al. STEMO (2019)",
+        "Bowry et al. (2018)",
+        "Wu et al. (2017)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-23",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In endovascular thrombectomy-eligible patients, use of MSUs can be beneficial to identify and triage patients to the appropriate thrombectomy-capable facility with prehospital notification of receiving stroke teams.²⁻⁴,¹¹⁻¹⁵",
+      "approval_status": "APPROVED",
+      "category": "2.5 Role of Mobile Stroke Units",
+      "topic": "2.5 Role of Mobile Stroke Units",
+      "currentGrade": "Class 2a, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 2–4",
+        "11–15: B_PROUD",
+        "Turc et al.",
+        "Mac Grory et al.",
+        "Helwig et al. 2019",
+        "Cerejo et al. 2015",
+        "Zhao et al. Melbourne MSU 2020",
+        "Wendt et al. STEMO 2015",
+        "NYC MIST (Morey et al. 2020)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-24",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In hospitals caring for patients with AIS, certification as a stroke specialty hospital certified by an external health care credentialing agency that uses national evidence-based standard criteria is recommended.¹⁻⁷",
+      "approval_status": "APPROVED",
+      "category": "2.6 Hospital Stroke Capabilities",
+      "topic": "2.6 Hospital Stroke Capabilities",
+      "currentGrade": "Class 1, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1–7: Joint Commission / AHA Certification Guidelines",
+        "Brain Attack Coalition Statements",
+        "Xian et al. 2017",
+        "Leifer et al. 2011",
+        "Song et al. 2016",
+        "Lichtman et al. 2017",
+        "Joynt et al. 2015"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-25",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "Patients of all ages, including pediatric patients, with acute neurological deficits should benefit from an organized protocol for the emergent evaluation of their symptoms in terms of early recognition and treatment.¹⁻⁵",
+      "approval_status": "APPROVED",
+      "category": "2.7 Emergency Evaluation",
+      "topic": "2.7 Emergency Evaluation & Stroke Teams",
+      "currentGrade": "Class 1, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1–5: Hacke et al. ATLANTIS/ECASS/NINDS Pooled 2004",
+        "Marler et al. NINDS 2000",
+        "Ashcraft et al. 2021",
+        "Srinivasan et al. 2009",
+        "DeLaroche et al. 2016"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-26",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In pediatric patients with sudden onset and ongoing focal neurological deficits, including first-time seizure, acute stroke should be suspected to provide timely diagnosis.",
+      "approval_status": "APPROVED",
+      "category": "2.7 Emergency Evaluation",
+      "topic": "2.7 Emergency Evaluation & Stroke Teams",
+      "currentGrade": "Class 1, Level C-EO",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Expert Consensus / AHA Pediatric Stroke Statement (Ferriero et al. 2019)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-27",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "Patients with suspected stroke should benefit from designation of an acute stroke team, including clinicians, nurses, and laboratory/radiology personnel to ensure careful clinical assessment, including neurological examination.³,⁶,⁷",
+      "approval_status": "APPROVED",
+      "category": "2.7 Emergency Evaluation",
+      "topic": "2.7 Emergency Evaluation & Stroke Teams",
+      "currentGrade": "Class 1, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 3",
+        "7: Ashcraft et al. AHA Nursing Statement 2021",
+        "Stroke Unit Trialists' Collaboration (Langhorne & Ramachandra Cochrane 2020)",
+        "Eustace et al. 2025"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-28",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "Patients with suspected stroke should benefit from the development and education of multidisciplinary stroke teams with access to stroke expertise to safely increase the rate of IVT treatment.⁸⁻¹¹",
+      "approval_status": "APPROVED",
+      "category": "2.7 Emergency Evaluation",
+      "topic": "2.7 Emergency Evaluation & Stroke Teams",
+      "currentGrade": "Class 1, Level A",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 8–11: INSTINCT Cluster RCT (Scott et al. Lancet Neurol 2013)",
+        "PRACTISE Trial (Dirks et al. Stroke 2011)",
+        "AVC II Stepped-Wedge Trial (Haesebaert et al. 2018)",
+        "TIPS Cluster RCT (Levi et al. 2020)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-29",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "Thrombolytic-eligible patients and EVT-eligible patients should benefit from stroke teams to ensure the fastest achievable onset-to-treatment time and best clinical outcomes.¹²⁻¹⁹",
+      "approval_status": "APPROVED",
+      "category": "2.7 Emergency Evaluation",
+      "topic": "2.7 Emergency Evaluation & Stroke Teams",
+      "currentGrade": "Class 1, Level A",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 12–19: NINDS tPA Trial (N Engl J Med 1995)",
+        "ECASS-III (Hacke et al. 2008)",
+        "Lees et al. Pooled Analysis 2010",
+        "Saver et al. GWTG-Stroke 2013",
+        "HERMES EVT Meta-Analysis (Saver et al. JAMA 2016 & Goyal et al. Lancet 2016)",
+        "DAWN Trial (Nogueira et al. 2018)",
+        "DEFUSE 3 (Albers et al. 2018)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-30",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "For patients with suspected stroke in the prehospital setting, telemedicine in the ambulance should be considered, when feasible, to complement paramedic assessment to identify candidates for reperfusion interventions.¹⁻⁴",
+      "approval_status": "APPROVED",
+      "category": "2.8 Telemedicine",
+      "topic": "2.8 Telemedicine",
+      "currentGrade": "Class 1, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1–4: Scott et al. Prehospital Telestroke Cluster RCT (Neurology 2022)",
+        "Thilemann et al. 2023",
+        "Belt et al. 2016",
+        "Al Kasab et al. 2021"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-31",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "For patients with AIS presenting to EDs without in-house imaging interpretation expertise, teleradiology systems are recommended for timely review of brain imaging, identification of contraindications to thrombolysis, and facilitation of IVT decision-making.⁵⁻⁷",
+      "approval_status": "APPROVED",
+      "category": "2.8 Telemedicine",
+      "topic": "2.8 Telemedicine",
+      "currentGrade": "Class 1, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 5–7: STRokE DOC Trials (Spokoyny et al. 2014)",
+        "Demaerschalk et al. 2012",
+        "Amort et al. 2015"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-32",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "For patients with AIS presenting to EDs without acute neurological expertise, telestroke systems are effective over usual care by the ED team for IVT decision-making and optimal thrombolytic delivery including increased thrombolytic administration and shorter time to delivery.⁸⁻²⁰",
+      "approval_status": "APPROVED",
+      "category": "2.8 Telemedicine",
+      "topic": "2.8 Telemedicine",
+      "currentGrade": "Class 1, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 8–20: STRokE DOC RCTs (Meyer et al. 2008",
+        "Demaerschalk et al. 2012)",
+        "AZ TIME Trial",
+        "Waite et al. 2021",
+        "Wilcock et al. 2021",
+        "Switzer et al. 2016",
+        "Kepplinger et al. 2016",
+        "Pedragosa et al. 2020",
+        "Drennan et al. 2019",
+        "Jagolino-Cole et al. 2019",
+        "Zachrison et al. 2021",
+        "Barlinn et al. 2021",
+        "Al Kasab et al. 2020"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-33",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "For patients with AIS treated at hospitals without local stroke expertise, telestroke is reasonable to reduce short-term mortality.¹¹,¹⁶,²⁰⁻²²",
+      "approval_status": "APPROVED",
+      "category": "2.8 Telemedicine",
+      "topic": "2.8 Telemedicine",
+      "currentGrade": "Class 2a, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 11",
+        "20–22: Wilcock et al. Difference-in-Differences Analysis 2021",
+        "Switzer et al. 2016",
+        "Al Kasab et al. 2020",
+        "Bladin et al. 2015",
+        "Zachrison et al. 2021"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-34",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "For patients with AIS treated at hospitals without in-house stroke expertise or telestroke capabilities, decision-making support by telephone consultation with a stroke specialist can be beneficial for IVT decision-making and consideration of EVT eligibility.⁸⁻¹⁰,²³",
+      "approval_status": "APPROVED",
+      "category": "2.8 Telemedicine",
+      "topic": "2.8 Telemedicine",
+      "currentGrade": "Class 2a, Level C-LD",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 8–10",
+        "23: Meyer et al. 2008",
+        "Demaerschalk et al. 2012",
+        "AZ TIME Trial",
+        "Pervez et al. 2010"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-35",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "Health care institutions, government payers, and vendors should support the use of telemedicine/telestroke resources and systems to ensure adequate 24-hour/day and 7-day/week coverage and care of patients with AIS in various settings.",
+      "approval_status": "APPROVED",
+      "category": "2.8 Telemedicine",
+      "topic": "2.8 Telemedicine",
+      "currentGrade": "Class 1, Level C-EO",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "AHA/ASA Scientific Statement on Telestroke Networks (Zachrison et al. 2025)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-36",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "For patients with AIS presenting to hospitals with telestroke capability, use of telestroke may be reasonable for triage of patients who may be eligible for appropriate interfacility transfer for emergency EVT versus local care.¹²,¹⁴,¹⁵,²²,²⁴⁻²⁷",
+      "approval_status": "APPROVED",
+      "category": "2.8 Telemedicine",
+      "topic": "2.8 Telemedicine",
+      "currentGrade": "Class 2b, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 12",
+        "24–27: Kepplinger et al. 2016",
+        "Telestroke Transfer Meta-Analysis (Turc et al. 2018)",
+        "Pedragosa et al. 2020",
+        "Zachrison et al. 2021",
+        "Hassan et al. 2018",
+        "Al Kasab et al. 2019",
+        "Nyström et al. 2020",
+        "Martí-Fàbregas et al. 2021"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-37",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "Hospitals should participate in an accountable SSOC that consists of an integrated network of certified hospitals (ie, ASRH, PSC, TSC, CSC) and prehospital EMS systems designed so patients in need of acute stroke care receive appropriate and timely evaluation, diagnosis, treatment, and interhospital transfer (when appropriate) that optimizes their long-term outcomes.",
+      "approval_status": "APPROVED",
+      "category": "2.9 Organization",
+      "topic": "2.9 Organization & Integration",
+      "currentGrade": "Class 1, Level C-EO",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "AHA/ASA Regional Stroke Destination Consensus Statement (Jauch et al. 2021)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-38",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "Hospitals caring for patients with acute stroke that do not provide 24/7 thrombectomy treatment (eg, ASRH, PSC hospitals) should develop interhospital transfer protocols and procedures to ensure fast, safe, and efficient transfer of patients who are potentially eligible for EVT.",
+      "approval_status": "APPROVED",
+      "category": "2.9 Organization",
+      "topic": "2.9 Organization & Integration",
+      "currentGrade": "Class 1, Level C-EO",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "AHA/ASA Stroke Systems of Care Statement 2021"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-39",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "PSC hospitals caring for patients with acute stroke that do not provide 24/7 thrombectomy treatment and therefore rely on interhospital patient transfers should have the capability to rapidly perform and interpret intracranial vascular imaging (CTA or magnetic resonance angiography [MRA]) to identify patients with LVO eligible for EVT.¹⁻⁶",
+      "approval_status": "APPROVED",
+      "category": "2.9 Organization",
+      "topic": "2.9 Organization & Integration",
+      "currentGrade": "Class 1, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1–6: Hill et al. Stroke 2022",
+        "Mayer et al. CTA-for-All (Stroke 2020;51:331–334)",
+        "Flores et al. RACECAT Substudy (JNIS 2024 & J Stroke Cerebrovasc Dis 2022)",
+        "Alberts et al. BAC 2000",
+        "2011"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-40",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "Hospitals caring for patients with acute stroke should develop and adopt care protocols that reflect current clinical guidelines as established by national and international professional organizations or state or federal agencies and laws.⁷⁻¹⁰",
+      "approval_status": "APPROVED",
+      "category": "2.9 Organization",
+      "topic": "2.9 Organization & Integration",
+      "currentGrade": "Class 1, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 7–10: Alberts et al. BAC 2000",
+        "2011",
+        "Douglas et al. 2005",
+        "Xian et al. Target: Stroke Phase III (Stroke 2022;53:1328–1338)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-41",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "Hospitals caring for patients with acute stroke that provide EVT (ie, TSC, CSC hospitals) should develop a system to comprehensively track key time metrics and other care processes relevant to thrombectomy (eg, door-to-puncture time, successful reperfusion), as well as long-term patient outcomes.¹,¹¹⁻¹³",
+      "approval_status": "APPROVED",
+      "category": "2.9 Organization",
+      "topic": "2.9 Organization & Integration",
+      "currentGrade": "Class 1, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1",
+        "11–13: Hill et al. 2022",
+        "Hansen et al. Dutch Acute Stroke Audit Cluster RCT (JAMA Neurol 2025;82:160–167)",
+        "Lopez-Rivera et al. 2021",
+        "Sacks et al. Multisociety Consensus (Int J Stroke 2018)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-42",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "Hospitals caring for patients with acute stroke that provide EVT (ie, TSC, CSC hospitals) should credential neurointerventionalists using established and agreed upon training and certification standards.",
+      "approval_status": "APPROVED",
+      "category": "2.9 Organization",
+      "topic": "2.9 Organization & Integration",
+      "currentGrade": "Class 1, Level C-EO",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Multisociety Training Standards in Neuroendovascular Surgery (Day et al. Stroke 2017)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-43",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "ASRH caring for patients with acute stroke that rely on interhospital patient transfers can consider having the capability to rapidly perform and interpret intracranial vascular imaging (CTA or MRA) to identify patients with LVO eligible for EVT.³⁻⁶",
+      "approval_status": "APPROVED",
+      "category": "2.9 Organization",
+      "topic": "2.9 Organization & Integration",
+      "currentGrade": "Class 2a, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 3–6: Brinjikji et al. 2017",
+        "Mayer et al. 2020",
+        "Flores et al. 2024",
+        "Flores et al. 2022"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-44",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "Depending on the characteristics of the local and regional systems of care, individual SSOC may consider developing mobile intervention teams to improve timely delivery of EVT.¹⁴⁻¹⁶",
+      "approval_status": "APPROVED",
+      "category": "2.9 Organization",
+      "topic": "2.9 Organization & Integration",
+      "currentGrade": "Class 2b, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 14–16: Hubert et al. Flying Intervention Team RCT (JAMA 2022;327:1795–1805)",
+        "NYC MIST (Morey et al. Stroke 2020)",
+        "NEUROSQUAD Study (Seker et al. 2020)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-45",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "Hospitals treating patients with acute stroke should engage in a multicomponent QI process that involves the continuous monitoring, review, and feedback of stroke quality indicators, benchmarks, and evidence-based practices, in order to increase quality of care, improve patient outcomes, and reduce health care disparities.¹⁻⁸",
+      "approval_status": "APPROVED",
+      "category": "2.10 Registries",
+      "topic": "2.10 Registries & Quality Improvement",
+      "currentGrade": "Class 1, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1–8: GOLDEN BRIDGE-AIS Cluster RCT (Wang et al. JAMA 2018)",
+        "MISSION Cluster RCT (Zhong et al. PLoS Med 2022)",
+        "Cadilhac et al. 2022",
+        "PREVENT Cluster Trial (Bravata et al. 2020)",
+        "Cadilhac et al. 2015",
+        "Xian et al. Target: Stroke Phase I-III (2022)",
+        "Kolls et al. IMPROVE (2024)",
+        "Fonarow et al. (2011)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-46",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "Hospitals treating patients with acute stroke should participate in stroke data registries to increase the adherence to quality indicators and guideline recommendations and improve patient outcomes.¹,³,⁷,⁹⁻¹⁷",
+      "approval_status": "APPROVED",
+      "category": "2.10 Registries",
+      "topic": "2.10 Registries & Quality Improvement",
+      "currentGrade": "Class 1, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1",
+        "9–17: GOLDEN BRIDGE-AIS (2018)",
+        "Cadilhac et al. (2022)",
+        "Xian et al. (2022)",
+        "Get With The Guidelines-Stroke (Fonarow et al. 2011)",
+        "Paul Coverdell National Acute Stroke Program (Nielsen et al. 2023)",
+        "Swedish Riks-Stroke",
+        "Dutch Acute Stroke Audit (Kuhrij et al. 2018)",
+        "Australian Stroke Clinical Registry (Kilkenny et al. 2019)",
+        "German Stroke Registry",
+        "UK SSNAP Registry (Parry-Jones et al. 2016)",
+        "US Veteran Affairs Registry (Bravata et al. 2020)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-47",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "Hospitals treating patients with acute stroke should measure and document baseline stroke severity (eg, NIHSS score) in all acute stroke patients so that risk adjustment models used to compare hospital performance can be sufficiently accurate and reliable.¹⁸⁻²⁹",
+      "approval_status": "APPROVED",
+      "category": "2.10 Registries",
+      "topic": "2.10 Registries & Quality Improvement",
+      "currentGrade": "Class 1, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 18–29: SITS-MOST (Wahlgren et al. Stroke 2008)",
+        "Medicare NIHSS Risk Adjustment (Kumar et al. J Gen Intern Med 2022)",
+        "SITS-ISTR (Tsivgoulis et al. 2023)",
+        "Mistry et al. 2021",
+        "Chalos et al. 2020",
+        "Meyer & Lyden 2009",
+        "Fonarow et al. 2012",
+        "Smith et al. 2010",
+        "Xian et al. 2015",
+        "Turner et al. 2016",
+        "Krumholz et al. 2011",
+        "Austin et al. 2014"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-48",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with suspected AIS, the use of a stroke severity rating scale, preferably the NIHSS, is recommended for measuring clinical deficits at baseline and after reperfusion therapies.¹,²",
+      "approval_status": "APPROVED",
+      "category": "3.1 Stroke Scales",
+      "topic": "3.1 Stroke Scales",
+      "currentGrade": "Class 1, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1",
+        "2: SITS-MOST Trial (Wahlgren et al. Stroke 2008)",
+        "Medicare NIHSS Outcomes Study (Kumar et al. J Gen Intern Med 2022;37:2719–2726)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-49",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with suspected AIS, emergent brain imaging with NCCT or MRI is recommended on initial evaluation to assess ischemic burden (eg, ASPECTS) and exclude intracranial hemorrhage before initiating reperfusion interventions.",
+      "approval_status": "APPROVED",
+      "category": "3.2 Neuroimaging",
+      "topic": "3.2 Neuroimaging",
+      "currentGrade": "Class 1, Level A",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "NINDS tPA Trial (1995)",
+        "ECASS Trials",
+        "HERMES Endovascular Collaboration (Lancet 2016)",
+        "Provost et al. (Stroke 2019;50:659–664)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-50",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In hospital systems that care for patients with suspected AIS, protocols based on process improvement initiatives should be established so that emergent brain imaging can be performed as rapidly as possible (eg, within 25 minutes) to facilitate timely reperfusion interventions.¹,²",
+      "approval_status": "APPROVED",
+      "category": "3.2 Neuroimaging",
+      "topic": "3.2 Neuroimaging",
+      "currentGrade": "Class 1, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1",
+        "2: Provost et al. (Stroke 2019;50:659–664)",
+        "Brain Attack Coalition Primary Stroke Center Criteria (Alberts et al. JAMA 2000;283:3102–3109)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-51",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with suspected AIS and LVO, emergent vascular imaging with contrast-enhanced CTA and/or CTP should not be delayed to obtain serum creatinine concentration.³,⁴",
+      "approval_status": "APPROVED",
+      "category": "3.2 Neuroimaging",
+      "topic": "3.2 Neuroimaging",
+      "currentGrade": "Class 1, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 3",
+        "4: Brinjikji et al. Neurons Over Nephrons Meta-Analysis (Stroke 2017;48:1862–1868)",
+        "Myung et al. (AJNR Am J Neuroradiol 2020;41:632–636)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-52",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In pediatric patients with suspected AIS, emergent brain and vascular imaging with MRI/MRA of the cervical and intracranial vessels is reasonable to identify patients with large vessel occlusion and to differentiate arterial ischemic stroke from hemorrhagic stroke or stroke mimics.⁵⁻⁸",
+      "approval_status": "APPROVED",
+      "category": "3.2 Neuroimaging",
+      "topic": "3.2 Neuroimaging",
+      "currentGrade": "Class 2a, Level C-LD",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 5–8: Daverio et al. (Acad Emerg Med 2016)",
+        "Martin et al. Swiss Neuropediatric Registry (2011)",
+        "Sporns et al. Nat Rev Dis Primers 2022",
+        "Sporns et al. Lancet Child Adolesc Health 2021"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-53",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In pediatric patients with suspected AIS, emergent brain and vascular imaging with CT/CTA of the cervical and intracranial vessels is reasonable if MRI/MRA imaging is not available immediately (within 25 minutes) to identify patients with large vessel occlusion.⁵⁻⁹",
+      "approval_status": "APPROVED",
+      "category": "3.2 Neuroimaging",
+      "topic": "3.2 Neuroimaging",
+      "currentGrade": "Class 2a, Level C-LD",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 5–9: Daverio et al. 2016",
+        "Martin et al. 2011",
+        "Sporns et al. 2022",
+        "Sporns et al. 2021",
+        "Alberts et al. 2000"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-54",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with suspected AIS who awaken from symptoms or have unknown time of onset >4.5 hours from last known well, but are otherwise eligible for thrombolysis, MRI DWI-FLAIR mismatch selection can be useful to determine eligibility for extended window IVT.¹⁰,¹¹",
+      "approval_status": "APPROVED",
+      "category": "3.2 Neuroimaging",
+      "topic": "3.2 Neuroimaging",
+      "currentGrade": "Class 2a, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 10",
+        "11: WAKE-UP Landmark RCT (Thomalla et al. N Engl J Med 2018;379:611–622)",
+        "THAWS RCT (Koga et al. Stroke 2020;51:1530–1538)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-55",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with suspected AIS who awaken with symptoms or have unknown time of onset 4.5 to 24 hours from last known well, CTP or MR DWI-PWI (perfusion-weighted imaging) selection with automated postprocessing software analysis can be useful to determine eligibility for extended window IVT.¹²,¹³",
+      "approval_status": "APPROVED",
+      "category": "3.2 Neuroimaging",
+      "topic": "3.2 Neuroimaging",
+      "currentGrade": "Class 2a, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 12",
+        "13: EXTEND Landmark Perfusion RCT (Ma et al. N Engl J Med 2019;380:1795–1803)",
+        "TRACE III Perfusion RCT (Xiong et al. Stroke Vasc Neurol 2024;9:82–89)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-56",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with suspected AIS and LVO presenting within 24 hours of last known well, emergent brain and vascular imaging (CT/CTA or MRI/MRA) of the cervical and intracranial vessels should be performed as rapidly as possible for EVT selection and treatment planning.",
+      "approval_status": "APPROVED",
+      "category": "3.2 Neuroimaging",
+      "topic": "3.2 Neuroimaging",
+      "currentGrade": "Class 1, Level A",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "MR CLEAN",
+        "ESCAPE",
+        "EXTEND-IA",
+        "SWIFT PRIME",
+        "REVASCAT",
+        "THRACE (2015–2016)",
+        "DAWN (2018)",
+        "DEFUSE 3 (2018)",
+        "HERMES Collaboration (Lancet 2016)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-57",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with suspected AIS and LVO presenting within 6 to 24 hours of last known well, adjunctive CTP, MRI (DWI-FLAIR mismatch), or MR DWI-PWI with automated postprocessing software analysis can be useful in the evaluation for EVT, if immediately available.¹⁴",
+      "approval_status": "APPROVED",
+      "category": "3.2 Neuroimaging",
+      "topic": "3.2 Neuroimaging",
+      "currentGrade": "Class 2a, Level A",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Ref 14: Martinez-Gutierrez et al. Automated LVO Detection Software Trial (JAMA Neurol 2023;80:1182–1190)",
+        "DAWN (2018)",
+        "DEFUSE 3 (2018)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-58",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with suspected AIS and LVO based on prehospital assessment with a validated stroke severity scale (eg, RACE >4) and eligible for EVT, direct triage to the angiography suite (DTAS) for flat-panel head CT versus conventional imaging workflow followed by catheter-based angiography may be considered to reduce time to intervention and improve functional outcomes.¹⁵⁻¹⁷",
+      "approval_status": "APPROVED",
+      "category": "3.2 Neuroimaging",
+      "topic": "3.2 Neuroimaging",
+      "currentGrade": "Class 2b, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 15–17: Requena et al. Direct to Angiography Suite RCT (JAMA Neurol 2021;78:1099–1107)",
+        "Mendez et al. Stroke 2018",
+        "Pfaff et al. Stroke 2020;51:2630–2638"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-59",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In emergently transferred patients with suspected AIS due to LVO (based on imaging or clinical assessment) and eligible for EVT, DTAS may be considered without repeat brain imaging (unless there is clinical change or transfer delay) on arrival to the thrombectomy center.¹⁶,¹⁸⁻²⁰",
+      "approval_status": "APPROVED",
+      "category": "3.2 Neuroimaging",
+      "topic": "3.2 Neuroimaging",
+      "currentGrade": "Class 2b, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 16",
+        "18–20: Mendez et al. 2018",
+        "Sarraj et al. JAMA Neurol 2021;78:916–926",
+        "Jadhav et al. Stroke 2017",
+        "Nguyen et al. Cost-Effectiveness Study (Neurology 2023)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-60",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with suspected acute stroke, baseline electrocardiographic assessment is recommended but should not delay initiation of IVT or EVT.¹⁻⁴",
+      "approval_status": "APPROVED",
+      "category": "3.3 Other Diagnostic Tests",
+      "topic": "3.3 Other Diagnostic Tests",
+      "currentGrade": "Class 1, Level C-LD",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1–4: Christensen et al. 2005",
+        "Lanthier et al. 2007",
+        "Kallmünzer et al. 2012",
+        "National Acute Stroke Care Standards"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-61",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with suspected acute stroke, baseline troponin is recommended but should not delay initiation of IVT or EVT.⁵⁻⁹",
+      "approval_status": "APPROVED",
+      "category": "3.3 Other Diagnostic Tests",
+      "topic": "3.3 Other Diagnostic Tests",
+      "currentGrade": "Class 1, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 5–9: Scheitz et al. Troponin & Stroke Outcomes (2012",
+        "2014)",
+        "Ahn et al. 2017",
+        "Faiz et al. 2014",
+        "Barlas et al. 2019"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-62",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with acute stroke and decreased consciousness or bulbar dysfunction, airway support and ventilatory assistance are recommended as needed to provide airway maintenance, protection and adequate ventilation and oxygenation.¹⁻³",
+      "approval_status": "APPROVED",
+      "category": "4.1 Airway, Breathing",
+      "topic": "4.1 Airway, Breathing & Oxygenation",
+      "currentGrade": "Class 1, Level C-LD",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1–3: Lee et al. Lancet Respir Med 2024",
+        "Walls Manual of Emergency Airway Management (6th ed",
+        "2023)",
+        "Robba et al. Crit Care 2019;23:388"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-63",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS with hypoxia, supplemental oxygen should be provided to maintain oxygen saturation (SpO2) >94%.⁴,⁵",
+      "approval_status": "APPROVED",
+      "category": "4.1 Airway, Breathing",
+      "topic": "4.1 Airway, Breathing & Oxygenation",
+      "currentGrade": "Class 1, Level C-LD",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 4",
+        "5: Akca et al. J Stroke Cerebrovasc Dis 2020;29:104556",
+        "Ouyang et al. HeadPoST Subanalysis (Clin Neurol Neurosurg 2021;207:106796)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-64",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS within 6 hours from onset, NIHSS score 10 to 20, CT ASPECTS of ≥6, and anterior circulation LVO (M1 or carotid terminus) with planned EVT (with or without IVT) normobaric hyperoxia (NBO) before EVT may be reasonable to improve functional outcomes at 90 days.⁶⁻⁹",
+      "approval_status": "APPROVED",
+      "category": "4.1 Airway, Breathing",
+      "topic": "4.1 Airway, Breathing & Oxygenation",
+      "currentGrade": "Class 2b, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 6–9: Cheng et al. NBO RCT (J Neurol Sci 2022)",
+        "Li et al. NBO RCT (Neurology 2022;99:e824–e834)",
+        "Li et al. Stroke 2024",
+        "OPENS-2 Trial (Li et al. Lancet 2025;405:486–496)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-65",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS due to arterial air embolism, hyperbaric oxygen (HBO) may be reasonable to improve clinical outcome.¹⁰",
+      "approval_status": "APPROVED",
+      "category": "4.1 Airway, Breathing",
+      "topic": "4.1 Airway, Breathing & Oxygenation",
+      "currentGrade": "Class 2b, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Ref 10: Hyperbaric Oxygen Therapy for Air Embolism (Dumas et al. 2019",
+        "Undersea Hyperb Med Guidance)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-66",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS without hypoxia who are ineligible for EVT, supplemental oxygen is not recommended to improve functional outcomes.¹¹⁻¹⁶",
+      "approval_status": "APPROVED",
+      "category": "4.1 Airway, Breathing",
+      "topic": "4.1 Airway, Breathing & Oxygenation",
+      "currentGrade": "Class 3: No Benefit, Level B-R",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 11–16: Stroke Oxygen Study (SO2S Landmark RCT - Roffe et al. JAMA 2017)",
+        "Singhal et al. 2005",
+        "Khoury et al. 2019",
+        "Ronning & Guldvog 1999",
+        "Shi et al. 2020",
+        "Cornet et al. 2021"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-67",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS, not associated with air embolism, HBO is not recommended to improve functional outcomes.¹⁷",
+      "approval_status": "APPROVED",
+      "category": "4.1 Airway, Breathing",
+      "topic": "4.1 Airway, Breathing & Oxygenation",
+      "currentGrade": "Class 3: No Benefit, Level B-R",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Ref 17: Bennett et al. Cochrane Systematic Review of Hyperbaric Oxygen for AIS (2014)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-68",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS overall, there is no benefit of routine 0-degree head positioning compared with 30 degrees for 24 hours, to improve functional outcome.¹,²",
+      "approval_status": "APPROVED",
+      "category": "4.2 Head Positioning",
+      "topic": "4.2 Head Positioning",
+      "currentGrade": "Class 3: No Benefit, Level B-R",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1",
+        "2: HeadPoST Landmark Cluster RCT (Anderson et al. N Engl J Med 2017;377:623–633)",
+        "Olavarría et al. 2018"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-69",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS with probable large artery atherosclerosis cause for whom no reperfusion intervention is available, there is no benefit of routine Trendelenburg positioning (−20 degrees) compared with 0- to 30-degree head positioning to improve functional outcome.³",
+      "approval_status": "APPROVED",
+      "category": "4.2 Head Positioning",
+      "topic": "4.2 Head Positioning",
+      "currentGrade": "Class 3: No Benefit, Level B-R",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Ref 3: HOPES-2 Trial (Hospitalized Stroke Patients 90-day Outcomes Trial",
+        "2023)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-70",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS, hypotension and hypovolemia should be corrected to maintain systemic perfusion levels necessary to support organ function.¹⁻³",
+      "approval_status": "APPROVED",
+      "category": "4.3 Blood Pressure Management",
+      "topic": "4.3 Blood Pressure Management",
+      "currentGrade": "Class 1, Level C-LD",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1–3: Muscari et al. 2013",
+        "Visvanathan et al. Cochrane 2015",
+        "Parenteral Fluid Regimens in Acute Stroke"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-71",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS, early treatment of hypertension is indicated when required by comorbid conditions (eg, concomitant acute coronary event, acute heart failure, aortic dissection, post-thrombolysis sICH, or preeclampsia/eclampsia) to reduce the risk of complications.",
+      "approval_status": "APPROVED",
+      "category": "4.3 Blood Pressure Management",
+      "topic": "4.3 Blood Pressure Management",
+      "currentGrade": "Class 1, Level C-EO",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "2017 ACC/AHA Hypertension Guidelines & Critical Care Consensus Standards"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-72",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with BP ≥220/120 mm Hg who did not receive IVT or EVT and have no comorbid conditions requiring urgent antihypertensive treatment, the benefit of initiating or reinitiating treatment of hypertension within the first 48 to 72 hours is uncertain.",
+      "approval_status": "APPROVED",
+      "category": "4.3 Blood Pressure Management",
+      "topic": "4.3 Blood Pressure Management",
+      "currentGrade": "Class 2b, Level C-EO",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "ENOS",
+        "CATIS",
+        "ACCESS",
+        "and CHHIPS Trial Subgroup Evaluations"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-73",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with BP <220/120 mm Hg who did not receive IVT or EVT and do not have a comorbid condition requiring urgent antihypertensive treatment, initiating or reinitiating treatment of hypertension within the first 48 to 72 hours after an AIS is not effective to prevent death or dependency.⁴",
+      "approval_status": "APPROVED",
+      "category": "4.3 Blood Pressure Management",
+      "topic": "4.3 Blood Pressure Management",
+      "currentGrade": "Class 3: No Benefit, Level A",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Ref 4: CATIS Landmark RCT (He et al. JAMA 2014;311:479–489)",
+        "ENOS Trial (Lancet 2015)",
+        "ACCESS (2003)",
+        "COSSACS (2010)",
+        "CHHIPS (2009)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-74",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "Patients with AIS who have elevated BP and are otherwise eligible for treatment with IVT should have their SBP lowered to <185 mm Hg and diastolic blood pressure (DBP) <110 mm Hg before IVT therapy is initiated to reduce hemorrhagic complications.⁵⁻⁹",
+      "approval_status": "APPROVED",
+      "category": "4.3 Blood Pressure Management",
+      "topic": "4.3 Blood Pressure Management",
+      "currentGrade": "Class 1, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 5–9: NINDS tPA Trial (1995)",
+        "ECASS-III (2008)",
+        "AcT Trial (Menon et al. 2022)",
+        "TRUTH RCT (2022)",
+        "Ahmed et al. SITS-ISTR (2009)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-75",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients for whom EVT is planned and who have not received IVT therapy, it is reasonable to maintain BP ≤185/110 mm Hg before the procedure to avoid complications and improve patient outcomes.¹⁰",
+      "approval_status": "APPROVED",
+      "category": "4.3 Blood Pressure Management",
+      "topic": "4.3 Blood Pressure Management",
+      "currentGrade": "Class 2a, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Ref 10: Protocol Criteria from MR CLEAN",
+        "ESCAPE",
+        "SWIFT PRIME",
+        "REVASCAT",
+        "EXTEND-IA",
+        "DAWN",
+        "DEFUSE 3",
+        "SELECT2",
+        "and ANGEL-ASPECT"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-76",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "BP should be maintained at <180/105 mm Hg for at least the first 24 hours after IVT treatment.¹¹⁻¹³",
+      "approval_status": "APPROVED",
+      "category": "4.3 Blood Pressure Management",
+      "topic": "4.3 Blood Pressure Management",
+      "currentGrade": "Class 1, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 11–13: ENCHANTED BP Arm RCT (Wang et al. Lancet 2019 & Stroke 2022)",
+        "AcT Trial (2022)",
+        "Waltimo et al. (2016)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-77",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with mild to moderate severity AIS who have been treated with IVT, intensive SBP reduction (target of <140 mm Hg compared with <180 mm Hg) is not recommended because it is not associated with an improvement in functional outcome.¹¹",
+      "approval_status": "APPROVED",
+      "category": "4.3 Blood Pressure Management",
+      "topic": "4.3 Blood Pressure Management",
+      "currentGrade": "Class 3: No Benefit, Level B-R",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Ref 11: ENCHANTED BP Arm Landmark RCT (Anderson et al. Lancet 2019;393:877–888",
+        "Wang et al. Stroke 2022;53:779–787)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-78",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients who undergo EVT, it is reasonable to maintain BP at a level ≤180/105 mm Hg during and for 24 hours after the procedure.¹⁴⁻¹⁷",
+      "approval_status": "APPROVED",
+      "category": "4.3 Blood Pressure Management",
+      "topic": "4.3 Blood Pressure Management",
+      "currentGrade": "Class 2a, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 14–17: BP-TARGET RCT (Mazighi et al. 2021)",
+        "ENCHANTED2-MT RCT (Yang et al. 2022)",
+        "OPTIMAL-BP RCT (Nam et al. 2023)",
+        "BEST-II RCT (2023)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-79",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS with LVO of the anterior circulation who have been successfully recanalized by endovascular therapy (mTICI 2b, 2c, or 3) and without other indication for blood pressure management target, intensive SBP reduction target of <140 mm Hg for the first 72 hours is harmful and not recommended.¹⁸⁻²¹",
+      "approval_status": "APPROVED",
+      "category": "4.3 Blood Pressure Management",
+      "topic": "4.3 Blood Pressure Management",
+      "currentGrade": "Class 3: Harm, Level A",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 18–21: ENCHANTED2-MT Landmark RCT (Yang et al. Lancet 2022;400:1585–1596)",
+        "OPTIMAL-BP Landmark RCT (Nam et al. JAMA 2023;330:832–842)",
+        "Ghozy et al. Meta-Analysis (JAMA Netw Open 2024)",
+        "Minhas et al. (2021)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-80",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS who have hyperthermia, targeting normothermia, including using nurse-initiated protocols for managing fever, is recommended for improving functional outcomes and reducing death.¹⁻³",
+      "approval_status": "APPROVED",
+      "category": "4.4 Temperature Management",
+      "topic": "4.4 Temperature Management",
+      "currentGrade": "Class 1, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1–3: Bergen NORSTROKE Study (Kvistad et al. 2012)",
+        "Fukuoka Stroke Registry (Mezuki et al. 2024)",
+        "Saxena et al. (Intensive Care Med 2015)",
+        "QASC Trial (Middleton et al. Lancet 2011)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-81",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS and hyperthermia, sources of hyperthermia, such as infection, should be identified and treated to avoid complications.",
+      "approval_status": "APPROVED",
+      "category": "4.4 Temperature Management",
+      "topic": "4.4 Temperature Management",
+      "currentGrade": "Class 1, Level C-EO",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Elkind et al. AHA Infection & Stroke Statement (Stroke 2020)",
+        "Hocker et al. (2013)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-82",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS and normothermia, treatment with induced hypothermia or prophylactic fever prevention is not recommended for the purpose of improving outcomes.⁴⁻⁷",
+      "approval_status": "APPROVED",
+      "category": "4.4 Temperature Management",
+      "topic": "4.4 Temperature Management",
+      "currentGrade": "Class 3: No Benefit, Level B-R",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 4–7: INTREPID Landmark RCT (Greer et al. JAMA 2024;332:1525–1534)",
+        "Kasner et al. (2002)",
+        "ICTuS 2 Trial (Lyden et al. Stroke 2016)",
+        "Neugebauer et al. (JAMA Neurol 2019)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-83",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS, hypoglycemia (blood glucose <60 mg/dL) should be treated to avoid complications.¹,²",
+      "approval_status": "APPROVED",
+      "category": "4.5 Blood Glucose Management",
+      "topic": "4.5 Blood Glucose Management",
+      "currentGrade": "Class 1, Level C-LD",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1",
+        "2: Ntaios et al. (Stroke 2010)",
+        "Ahmed et al. SITS-ISTR Glucose Analysis (Arch Neurol 2010)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-84",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS, it is reasonable to treat persistent hyperglycemia to achieve blood glucose levels in a range of 140 to 180 mg/dL with close monitoring to prevent worse functional outcomes.¹,²",
+      "approval_status": "APPROVED",
+      "category": "4.5 Blood Glucose Management",
+      "topic": "4.5 Blood Glucose Management",
+      "currentGrade": "Class 2a, Level C-LD",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1",
+        "2: Ntaios et al. 2010",
+        "Ahmed et al. SITS-ISTR 2010",
+        "Bladin et al. TEXAIS Trial (Stroke 2023)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-85",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In hospitalized patients with AIS with hyperglycemia, treatment with IV insulin to achieve blood glucose levels in the range of 80 to 130 mg/dL is not recommended to improve 3-month functional outcomes.³⁻⁵",
+      "approval_status": "APPROVED",
+      "category": "4.5 Blood Glucose Management",
+      "topic": "4.5 Blood Glucose Management",
+      "currentGrade": "Class 3: No Benefit, Level A",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 3–5: SHINE Landmark Phase III RCT (Johnston et al. JAMA 2019;322:326–335)",
+        "Cerecedo-Lopez et al. Meta-Analysis (2020)",
+        "Wu et al. Meta-Analysis (Int J Stroke 2024)",
+        "Southerland et al. (Neurology 2024)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-86",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In adult patients with AIS with disabling deficits, regardless of NIHSS score, and eligible for IVT, faster treatment improves functional outcomes.¹",
+      "approval_status": "APPROVED",
+      "category": "4.6.1 Thrombolysis Decision-Making",
+      "topic": "4.6.1 Thrombolysis Decision-Making",
+      "currentGrade": "Class 1, Level A",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Ref 1: Stroke Thrombolysis Trialists' Collaborative Group IPD Meta-Analysis (Emberson et al. Lancet 2014;384:1929–1935)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-87",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In adult patients with AIS who are eligible for IVT within 4.5 hours of symptom onset, treatment should be initiated as quickly as possible, assuring safe administration and avoiding potential delays associated with additional multimodal neuroimaging, such as CTA/MRA, and CT/MR perfusion imaging.²,³",
+      "approval_status": "APPROVED",
+      "category": "4.6.1 Thrombolysis Decision-Making",
+      "topic": "4.6.1 Thrombolysis Decision-Making",
+      "currentGrade": "Class 1, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 2",
+        "3: NINDS tPA Trial (N Engl J Med 1995)",
+        "ECASS-III Trial (Hacke et al. N Engl J Med 2008)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-88",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS undergoing IVT, health care professionals should be prepared to treat potential emergent adverse effects, including bleeding complications and angioedema, which may cause partial airway obstruction, to reduce poor clinical outcomes.⁴⁻²⁰",
+      "approval_status": "APPROVED",
+      "category": "4.6.1 Thrombolysis Decision-Making",
+      "topic": "4.6.1 Thrombolysis Decision-Making",
+      "currentGrade": "Class 1, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 4–20: Sloan et al. 1995",
+        "Mahaffey et al. GUSTO-I 1999",
+        "Goldstein et al. 2010",
+        "French et al. 2012",
+        "Yaghi et al. 2014",
+        "2015",
+        "Stone et al. 2017",
+        "Frontera et al. NCS/SCCM Guidelines 2016",
+        "Foster-Goldman & McCarthy 2013"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-89",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS eligible for IVT, health care professionals should discuss its potential risks and benefits with competent patients and/or available patient representatives, when feasible, to ensure shared decision-making.",
+      "approval_status": "APPROVED",
+      "category": "4.6.1 Thrombolysis Decision-Making",
+      "topic": "4.6.1 Thrombolysis Decision-Making",
+      "currentGrade": "Class 1, Level C-EO",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Shared Decision-Making Framework / AHA Patient-Centered Care Guidelines"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-90",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with suspected ischemic stroke, treating health care professionals should determine blood glucose levels before IVT initiation to assess and urgently treat severe hypoglycemia and hyperglycemia, which may mimic acute stroke presentations.⁴⁻²⁰",
+      "approval_status": "APPROVED",
+      "category": "4.6.1 Thrombolysis Decision-Making",
+      "topic": "4.6.1 Thrombolysis Decision-Making",
+      "currentGrade": "Class 1, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 4–20: NINDS tPA Trial",
+        "ECASS-III",
+        "Target: Stroke Guidelines",
+        "SHINE Trial Protocol"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-91",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with suspected ischemic stroke with severe hypoglycemia or hyperglycemia, if symptoms of disabling stroke persist despite correction to normoglycemia, administration of IVT is recommended to improve functional outcomes.",
+      "approval_status": "APPROVED",
+      "category": "4.6.1 Thrombolysis Decision-Making",
+      "topic": "4.6.1 Thrombolysis Decision-Making",
+      "currentGrade": "Class 1, Level C-LD",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "AHA/ASA Scientific Rationale for Fibrinolysis (Demaerschalk et al. Stroke 2016)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-92",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS who are otherwise eligible for IVT with early ischemic change of mild to moderate extent (other than frank hypodensity attributable to the clinical presentation) on initial brain imaging, IVT is recommended to improve functional outcome.²¹,²²",
+      "approval_status": "APPROVED",
+      "category": "4.6.1 Thrombolysis Decision-Making",
+      "topic": "4.6.1 Thrombolysis Decision-Making",
+      "currentGrade": "Class 1, Level A",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 21",
+        "22: NINDS tPA Study Group CT Analysis (1997)",
+        "ECASS-II ASPECTS Evaluation (2000)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-93",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In eligible adult patients with AIS presenting with mild non-disabling stroke deficits (eg, isolated sensory syndrome in many cases) within 4.5 hours of symptom onset or last known well, IVT is not recommended as it has not shown superiority in improving functional outcomes compared to double antiplatelet treatment.²³⁻²⁹",
+      "approval_status": "APPROVED",
+      "category": "4.6.1 Thrombolysis Decision-Making",
+      "topic": "4.6.1 Thrombolysis Decision-Making",
+      "currentGrade": "Class 3: No Benefit, Level B-R",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 23–29: PRISMS Landmark Phase III RCT (Yeatts et al. Int J Stroke 2018",
+        "Asdaghi et al. Stroke 2021)",
+        "TEMPO-2 Landmark RCT (Coutts et al. Lancet 2024;403:2597–2605)",
+        "ARAMIS Subanalysis (Cui et al. 2024)",
+        "POINT Trial",
+        "CHANCE Trial"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-94",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In suspected patients with AIS who are taking single or DAPT and are otherwise eligible for IVT, IVT is recommended to improve functional outcomes despite an increase in risk of sICH compared with no antiplatelet therapy.³⁰",
+      "approval_status": "APPROVED",
+      "category": "4.6.1 Thrombolysis Decision-Making",
+      "topic": "4.6.1 Thrombolysis Decision-Making",
+      "currentGrade": "Class 1, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Ref 30: Peng et al. Prestroke Dual Antiplatelet Use and sICH Risk Study (JAMA Neurol 2024;81:722–731)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-95",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS within 4.5 hours of last known well and eligible for IVT, it is reasonable that IVT not be delayed while waiting for hematologic or coagulation testing if there is no reason to suspect an abnormal result.³¹,³²",
+      "approval_status": "APPROVED",
+      "category": "4.6.1 Thrombolysis Decision-Making",
+      "topic": "4.6.1 Thrombolysis Decision-Making",
+      "currentGrade": "Class 2a, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 31",
+        "32: Lees et al. Pooled Analysis 2010",
+        "Target: Stroke Initiative Phase I-III (Fonarow et al. Stroke 2011 & 2022)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-96",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS who are eligible for IVT within 4.5 hours of symptom onset with unknown burden of cerebral microbleeds (CMB), it is recommended that IVT be administered without first obtaining MRI to exclude CMBs.³³⁻³⁷",
+      "approval_status": "APPROVED",
+      "category": "4.6.1 Thrombolysis Decision-Making",
+      "topic": "4.6.1 Thrombolysis Decision-Making",
+      "currentGrade": "Class 1, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 33–37: Schlemm et al. Stroke 2020",
+        "Oraby et al. 2024",
+        "WAKE-UP MRI Subanalysis (Thomalla et al. 2018 & Schlemm et al. Neurology 2022)",
+        "Tipirneni et al. Meta-Analysis 2023"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-97",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS within 4.5 hours of last known well and who are eligible for IVT, administration of IVT is reasonable to achieve better functional outcomes if a small number (eg, 1–10) of CMBs was demonstrated on MRI.³³⁻³⁷",
+      "approval_status": "APPROVED",
+      "category": "4.6.1 Thrombolysis Decision-Making",
+      "topic": "4.6.1 Thrombolysis Decision-Making",
+      "currentGrade": "Class 2a, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 33–37: Schlemm et al. 2020",
+        "Oraby et al. 2024",
+        "WAKE-UP Microbleed Substudy (Schlemm et al. 2022)",
+        "Tipirneni et al. 2023"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-98",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS within 4.5 hours of last known well and who are eligible for IVT, if they previously had a high burden (eg, >10) of CMBs demonstrated on MRI, usefulness of IVT is uncertain as it may be associated with an increased risk of sICH.³³,³⁴,³⁷",
+      "approval_status": "APPROVED",
+      "category": "4.6.1 Thrombolysis Decision-Making",
+      "topic": "4.6.1 Thrombolysis Decision-Making",
+      "currentGrade": "Class 2b, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 33",
+        "37: Schlemm et al. Stroke 2020",
+        "Oraby et al. 2024",
+        "Schlemm et al. Neurology 2022"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-99",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In pediatric patients aged 28 days to 18 years with confirmed AIS presenting within 4.5 hours of symptom onset and disabling deficits, IVT with alteplase may be considered as it is safe, but efficacy is uncertain.³⁸⁻⁴²",
+      "approval_status": "APPROVED",
+      "category": "4.6.1 Thrombolysis Decision-Making",
+      "topic": "4.6.1 Thrombolysis Decision-Making",
+      "currentGrade": "Class 2b, Level C-LD",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 38–42: Amlie-Lefond et al. Stroke 2020",
+        "KidClot Group (Kossorotoff et al. JAMA Netw Open 2022)",
+        "Bigi et al. Ann Neurol 2018",
+        "Dicpinigaitis et al. Int J Stroke 2023",
+        "Tabone et al. Stroke 2017"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-100",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In adult patients with AIS presenting within 4.5 hours of symptom onset or last known well and eligible for IVT, tenecteplase at a dose of 0.25 mg/kg body weight (max 25 mg) or alteplase at a dose of 0.9 mg/kg body weight is recommended to improve functional outcomes.¹⁻⁵",
+      "approval_status": "APPROVED",
+      "category": "4.6.2 Choice of Thrombolytic Agent",
+      "topic": "4.6.2 Choice of Thrombolytic Agent",
+      "currentGrade": "Class 1, Level A",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1–5: ATTEST-2 Landmark Phase 3 RCT (Muir et al. Lancet Neurol 2024;23:1087–1096)",
+        "AcT Landmark Phase 3 Trial (Menon et al. Lancet 2022;400:161–169)",
+        "TRACE-2 Landmark Phase 3 Trial (Wang et al. Lancet 2023;401:645–654)",
+        "TASTE Phase 3 Trial (Parsons et al. Lancet Neurol 2024)",
+        "ORIGINAL Phase 3 Trial (Meng et al. JAMA 2024)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-101",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In adult patients with AIS presenting within 4.5 hours of symptom onset or last known well and eligible for IVT, tenecteplase at a dose of 0.4 mg/kg body weight is not recommended.⁶⁻⁹",
+      "approval_status": "APPROVED",
+      "category": "4.6.2 Choice of Thrombolytic Agent",
+      "topic": "4.6.2 Choice of Thrombolytic Agent",
+      "currentGrade": "Class 3: No Benefit, Level A",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 6–9: NOR-TEST 2 Part A (Kvistad et al. Lancet Neurol 2022)",
+        "Haley et al. Tenecteplase Phase IIB/III (Stroke 2010)",
+        "NOR-TEST Trial (Logallo et al. Lancet Neurol 2017)",
+        "EXTEND-IA TNK Part 2 (Campbell et al. JAMA 2020)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-102",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS who (a) have unknown time of onset and are within 4.5 hours from symptom recognition and (b) have an MRI-DWI lesion smaller than one-third of the MCA territory and no marked signal change on FLAIR, IVT administered within 4.5 hours of stroke symptom recognition can be beneficial to improve functional outcomes.¹",
+      "approval_status": "APPROVED",
+      "category": "4.6.3 Extended Time Windows for IVT",
+      "topic": "4.6.3 Extended Time Windows for IVT",
+      "currentGrade": "Class 2a, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Ref 1: WAKE-UP Landmark Phase III RCT (Thomalla et al. N Engl J Med 2018;379:611–622)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-103",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS who have salvageable ischemic penumbra detected on automated perfusion imaging and who (a) awake with stroke symptoms within 9 hours from the midpoint of sleep or (b) are 4.5–9 hours from last known well, IV thrombolysis may be reasonable to improve functional outcomes.²,³",
+      "approval_status": "APPROVED",
+      "category": "4.6.3 Extended Time Windows for IVT",
+      "topic": "4.6.3 Extended Time Windows for IVT",
+      "currentGrade": "Class 2a, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 2",
+        "3: EXTEND Landmark Phase III RCT (Ma et al. N Engl J Med 2019;380:1795–1803)",
+        "EXTEND",
+        "ECASS-4",
+        "and EPITHET Individual Patient Data Meta-Analysis (Campbell et al. Lancet 2019;394:139–147)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-104",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS due to LVO with salvageable ischemic penumbra, presenting within 4.5 to 24 hours from symptom onset or last known well, and who cannot receive EVT, treatment with IVT directed by individuals with expertise in thrombolytic stroke care may be beneficial to improve functional outcomes.²⁻⁵",
+      "approval_status": "APPROVED",
+      "category": "4.6.3 Extended Time Windows for IVT",
+      "topic": "4.6.3 Extended Time Windows for IVT",
+      "currentGrade": "Class 2b, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 2–5: EXTEND (Ma et al. 2019)",
+        "Campbell et al. IPDMA (2019)",
+        "ECASS-4 (Ringleb et al. 2019)",
+        "TIMELESS Landmark RCT (Albers et al. N Engl J Med 2024;390:701–711)",
+        "TRACE-III RCT (Xiong et al. N Engl J Med 2024)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-105",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In eligible patients with AIS presenting within 4.5 hours from last known normal and not undergoing EVT, IV reteplase, instead of alteplase, may be considered to increase the odds of excellent functional outcome at 90 days.¹,²",
+      "approval_status": "APPROVED",
+      "category": "4.6.4 Other IV Fibrinolytics",
+      "topic": "4.6.4 Other IV Fibrinolytics & Sonothrombolysis",
+      "currentGrade": "Class 2b, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1",
+        "2: RAISE Landmark Phase III RCT (Li et al. N Engl J Med 2024;390:2264–2273)",
+        "Li et al. Phase II Trial (Stroke 2024;55:366–375)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-106",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In eligible patients with AIS within 4.5 hours from last known normal and not undergoing EVT, IV mutant prourokinase, instead of alteplase, may be considered due to lower odds of bleeding and noninferiority for odds of excellent functional outcome at 90 days.³,⁴",
+      "approval_status": "APPROVED",
+      "category": "4.6.4 Other IV Fibrinolytics",
+      "topic": "4.6.4 Other IV Fibrinolytics & Sonothrombolysis",
+      "currentGrade": "Class 2b, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 3",
+        "4: PROST Phase III RCT (Song et al. JAMA Netw Open 2023;6:e2325415)",
+        "PROST-2 Noninferiority Trial (2024)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-107",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In eligible patients with AIS presenting within 3 to 9 hours from last known normal, IV desmoteplase is not recommended for improving functional independence at 90 days.⁵⁻⁸",
+      "approval_status": "APPROVED",
+      "category": "4.6.4 Other IV Fibrinolytics",
+      "topic": "4.6.4 Other IV Fibrinolytics & Sonothrombolysis",
+      "currentGrade": "Class 3: No Benefit, Level A",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 5–8: DIAS-3 Trial (Albers et al. Lancet Neurol 2015)",
+        "DIAS-4 Trial (von Kummer et al. Stroke 2016)",
+        "DIAS-2 Trial (Hacke et al. 2009)",
+        "Wardlaw et al. Cochrane 2014"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-108",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In eligible patients with AIS within 4.5 hours from last known normal, IV mutant prourokinase in conjunction with low-dose alteplase is not recommended to improve functional outcomes.⁹,¹⁰",
+      "approval_status": "APPROVED",
+      "category": "4.6.4 Other IV Fibrinolytics",
+      "topic": "4.6.4 Other IV Fibrinolytics & Sonothrombolysis",
+      "currentGrade": "Class 3: No Benefit, Level B-R",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 9",
+        "10: DUMAS Trial (van der Ende et al. JAMA Neurol 2023;80:714–722)",
+        "Song et al. 2023"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-109",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In eligible patients with AIS within 6 hours from last known normal, IV urokinase is not beneficial for decreasing the odds of death or dependency.⁸",
+      "approval_status": "APPROVED",
+      "category": "4.6.4 Other IV Fibrinolytics",
+      "topic": "4.6.4 Other IV Fibrinolytics & Sonothrombolysis",
+      "currentGrade": "Class 3: No Benefit, Level B-R",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Ref 8: Wardlaw et al. Cochrane Systematic Review of Thrombolysis for Acute Ischemic Stroke (2014)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-110",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In eligible patients with AIS within 6 hours from last known normal, IV streptokinase should not be administered because it does not result in improved rate of functional independence at 90 days and is associated with increased early mortality.⁸",
+      "approval_status": "APPROVED",
+      "category": "4.6.4 Other IV Fibrinolytics",
+      "topic": "4.6.4 Other IV Fibrinolytics & Sonothrombolysis",
+      "currentGrade": "Class 3: Harm, Level A",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Ref 8: Wardlaw et al. Cochrane Systematic Review (2014)",
+        "MAST-I",
+        "MAST-E",
+        "and ASK Trials"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-111",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS, sonothrombolysis as an adjunctive therapy to IVT compared with IVT alone is not recommended as it did not increase the odds of early neurological improvement nor improve functional outcome at 90 days.¹¹,¹²",
+      "approval_status": "APPROVED",
+      "category": "4.6.4 Other IV Fibrinolytics",
+      "topic": "4.6.4 Other IV Fibrinolytics & Sonothrombolysis",
+      "currentGrade": "Class 3: No Benefit, Level A",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 11",
+        "12: CLOTBUST-ER Landmark Phase III RCT (Alexandrov et al. Lancet Neurol 2019;18:338–347)",
+        "NOR-SASS RCT (Nacu et al. Stroke 2017)",
+        "Tsivgoulis et al. IPDMA 2021"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-112",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In eligible adult patients with AIS with known sickle cell disease, IVT can be beneficial to improve functional outcome without increased sICH, life-threatening systemic hemorrhage, or other thrombolytic complications.¹",
+      "approval_status": "APPROVED",
+      "category": "4.6.5 Other Specific Circumstances",
+      "topic": "4.6.5 Other Specific Circumstances",
+      "currentGrade": "Class 2a, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Ref 1: Adams et al. Get With The Guidelines-Stroke Sickle Cell Analysis (Stroke 2017;48:686–691)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-113",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In adults with acute nonarteritic central retinal artery occlusion (CRAO) causing disabling visual loss, and who are otherwise eligible for IVT, the usefulness of treatment with IVT within 4.5 hours of time last known well is uncertain.²⁻⁶",
+      "approval_status": "APPROVED",
+      "category": "4.6.5 Other Specific Circumstances",
+      "topic": "4.6.5 Other Specific Circumstances",
+      "currentGrade": "Class 2b, Level C-LD",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 2–6: Chen et al. CRAO RCT (Stroke 2011)",
+        "Mac Grory et al. Cohort & IPDMA (Stroke 2020)",
+        "Shahjouei et al. IPDMA (Int J Stroke 2024)",
+        "Schrag et al. JAMA Neurol 2015",
+        "Bustamante et al. 2024"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-114",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS who are eligible for both IVT and EVT, IVT is safe and recommended to improve overall reperfusion efficacy and clinical outcomes.",
+      "approval_status": "APPROVED",
+      "category": "4.7.1 Concomitant With IVT",
+      "topic": "4.7.1 Concomitant With IVT",
+      "currentGrade": "Class 1, Level A",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1–8: DIRECT-MT RCT (Yang et al. NEJM 2020)",
+        "DEVT RCT (Zi et al. JAMA 2021)",
+        "SKIP RCT (Suzuki et al. JAMA 2021)",
+        "MR CLEAN-NO IV (LeCouffe et al. NEJM 2021)",
+        "DIRECT-SAFE (Mitchell et al. Lancet 2022)",
+        "SWIFT DIRECT (Fischer et al. Lancet 2022)",
+        "IRIS Meta-Analysis (Kaesmacher et al. JAMA 2024)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-115",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS who are eligible for both IVT and EVT, IVT should be administered as rapidly as possible, without observation, to assess clinical response or delay in initiating EVT, to improve treatment times and clinical outcomes.",
+      "approval_status": "APPROVED",
+      "category": "4.7.1 Concomitant With IVT",
+      "topic": "4.7.1 Concomitant With IVT",
+      "currentGrade": "Class 1, Level A",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "HERMES Collaboration (Saver et al. JAMA 2016",
+        "Goyal et al. Lancet 2016)",
+        "Kaesmacher et al. IRIS (2024)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-116",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS from anterior circulation proximal LVO of the ICA or M1, presenting within 6 hours from onset of symptoms, with NIHSS score ≥6, prestroke mRS score of 0 to 1, and ASPECTS 3 to 10, EVT is recommended to improve functional clinical outcomes and reduce mortality.¹⁻¹¹",
+      "approval_status": "APPROVED",
+      "category": "4.7.2 EVT for Adult Patients",
+      "topic": "4.7.2 EVT for Adult Patients",
+      "currentGrade": "Class 1, Level A",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1–11: MR CLEAN",
+        "ESCAPE",
+        "SWIFT PRIME",
+        "EXTEND-IA",
+        "REVASCAT",
+        "THRACE Landmark RCTs (2015–2016)",
+        "SELECT2 (Sarraj et al. NEJM 2023)",
+        "ANGEL-ASPECT (Huo et al. NEJM 2023)",
+        "LASTE (Costalat et al. NEJM 2024)",
+        "RESCUE-JAPAN LIMIT (Yoshimura et al. NEJM 2022)",
+        "TENSION (Bendszus et al. Lancet 2023)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-117",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS from anterior circulation proximal LVO of the ICA or M1 presenting between 6 and 24 hours from onset of symptoms, with NIHSS score ≥6, prestroke mRS score 0 to 1 and ASPECTS ≥6, EVT is recommended to improve functional clinical outcomes and reduce mortality.¹²⁻¹⁴",
+      "approval_status": "APPROVED",
+      "category": "4.7.2 EVT for Adult Patients",
+      "topic": "4.7.2 EVT for Adult Patients",
+      "currentGrade": "Class 1, Level A",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 12–14: DAWN Landmark RCT (Nogueira et al. N Engl J Med 2018)",
+        "DEFUSE 3 Landmark RCT (Albers et al. N Engl J Med 2018)",
+        "AURORA IPD Meta-Analysis (Jovin et al. Lancet 2022)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-118",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In selected patients* with AIS from anterior circulation proximal LVO of the ICA or M1, presenting between 6 and 24 hours from onset of symptoms, with age <80 years, NIHSS score ≥6, prestroke mRS score 0 to 1, ASPECTS 3 to 5, and without significant mass effect on imaging, EVT is recommended to improve functional clinical outcomes and reduce mortality.⁷,⁸",
+      "approval_status": "APPROVED",
+      "category": "4.7.2 EVT for Adult Patients",
+      "topic": "4.7.2 EVT for Adult Patients",
+      "currentGrade": "Class 1, Level A",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 7",
+        "8: SELECT2 Landmark Large-Core RCT (Sarraj et al. N Engl J Med 2023;388:1259–1271)",
+        "ANGEL-ASPECT Landmark Large-Core RCT (Huo et al. N Engl J Med 2023;388:1272–1283)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-119",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In selected patients† with AIS from anterior circulation proximal LVO of the ICA or M1 presenting within 6 hours from onset of symptoms, with age <80 years, NIHSS score ≥6, prestroke mRS 0 to 1, ASPECTS 0 to 2, and without significant mass effect on imaging, EVT is reasonable to improve functional clinical outcomes and reduce mortality.⁸,¹⁰,¹¹",
+      "approval_status": "APPROVED",
+      "category": "4.7.2 EVT for Adult Patients",
+      "topic": "4.7.2 EVT for Adult Patients",
+      "currentGrade": "Class 2a, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 8",
+        "11: ANGEL-ASPECT (Huo et al. 2023)",
+        "RESCUE-JAPAN LIMIT (Yoshimura et al. 2022)",
+        "TENSION Large-Infarct RCT (Bendszus et al. Lancet 2023)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-120",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS from anterior circulation proximal LVO of the ICA or M1 presenting within 6 hours from onset of symptoms, with NIHSS score ≥6, and ASPECTS ≥6, who have a prestroke mRS score of 2, EVT is reasonable to improve functional clinical outcomes and reduce accumulated disability.¹⁵,¹⁶",
+      "approval_status": "APPROVED",
+      "category": "4.7.2 EVT for Adult Patients",
+      "topic": "4.7.2 EVT for Adult Patients",
+      "currentGrade": "Class 2a, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 15",
+        "16: HERMES Prestroke Morbidity Substudy (McDonough et al. JNIS 2023)",
+        "Zhao et al. Systematic Review (Front Neurol 2022)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-121",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS from anterior circulation proximal LVO of the ICA or M1 presenting within 6 hours from onset of symptoms, with NIHSS score ≥6, and ASPECTS of ≥6, who have a prestroke mRS score of 3 to 4, EVT might be reasonable to improve functional clinical outcomes and reduce accumulated disability.¹⁷⁻²⁰",
+      "approval_status": "APPROVED",
+      "category": "4.7.2 EVT for Adult Patients",
+      "topic": "4.7.2 EVT for Adult Patients",
+      "currentGrade": "Class 2b, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 17–20: Seker et al. AJNR 2019",
+        "Ganesh et al. 2024",
+        "MR CLEAN Registry Subanalysis (Benali et al. JNIS 2023)",
+        "Zhao et al. 2022"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-122",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS from occlusion of the dominant proximal M2 division of the MCA presenting within 6 hours from onset of symptoms with a prestroke mRS score of 0 to 1, NIHSS score of ≥6, and ASPECTS of ≥6, EVT is reasonable to improve functional outcomes, but the benefits are uncertain.²¹⁻²³",
+      "approval_status": "APPROVED",
+      "category": "4.7.2 EVT for Adult Patients",
+      "topic": "4.7.2 EVT for Adult Patients",
+      "currentGrade": "Class 2a, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 21–23: EXTEND-IA",
+        "INSPIRE",
+        "and SELECT M2 Pooled Analysis (Neurology 2022)",
+        "HERMES M2 Subgroup Meta-Analysis (Menon et al. JNIS 2019)",
+        "Goyal et al. Medium-Vessel Occlusion Review (NEJM 2025)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-123",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS from occlusion of the proximal nondominant or codominant division proximal M2 segment of the MCA, or distal MCA, anterior cerebral artery (ACA), or posterior cerebral artery (PCA), EVT is not recommended to improve functional outcomes.²³,²⁴",
+      "approval_status": "APPROVED",
+      "category": "4.7.2 EVT for Adult Patients",
+      "topic": "4.7.2 EVT for Adult Patients",
+      "currentGrade": "Class 3: No Benefit, Level A",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 23",
+        "24: DISCOUNT & DISTAL Landmark Medium-Vessel Occlusion RCTs (Psychogios et al. N Engl J Med 2025;392:1374–1384 & Goyal et al. N Engl J Med 2025;392:1385–1395)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-124",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS, with basilar artery occlusion, a baseline mRS score of 0 to 1, NIHSS score ≥10 at presentation, and PC-ASPECTS ≥6 (mild ischemic damage), EVT within 24 hours from onset of symptoms is recommended to achieve better functional outcome and reduce mortality.",
+      "approval_status": "APPROVED",
+      "category": "4.7.3 Posterior Circulation Stroke",
+      "topic": "4.7.3 Posterior Circulation Stroke",
+      "currentGrade": "Class 1, Level A",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "ATTENTION Landmark RCT (Tao et al. N Engl J Med 2022;387:1361–1372)",
+        "BAOCHE Landmark RCT (Jovin et al. N Engl J Med 2022)",
+        "Lo et al. Ann Intern Med 2023"
+      ]
+    },
+    {
+      "rec_id": "rec-16289",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS, with basilar artery occlusion, a baseline mRS score of 0 to 1, NIHSS score 6 to 9 at presentation, and PC-ASPECTS ≥6 (mild ischemic damage) the effectiveness of EVT within 24 hours to improve functional outcomes and reduce mortality is not well established.",
+      "approval_status": "APPROVED",
+      "category": "4.7.3 Posterior Circulation Stroke",
+      "topic": "4.7.3 Posterior Circulation Stroke",
+      "currentGrade": "Class 2b, Level B-R",
+      "strength_of_recommendation": "",
+      "quality_of_evidence": "",
+      "driving_trials": []
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-125",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS due to an LVO, EVT with stent retrievers, contact aspiration, or combination techniques is recommended to achieve rapid and adequate reperfusion.¹⁻⁴",
+      "approval_status": "APPROVED",
+      "category": "4.7.4 Endovascular Techniques",
+      "topic": "4.7.4 Endovascular Techniques",
+      "currentGrade": "Class 1, Level A",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1–4: ASTER Landmark RCT (Lapergue et al. JAMA 2017)",
+        "COMPASS Landmark RCT (Turk et al. Lancet 2019)",
+        "ASTER2 RCT (Lapergue et al. JAMA 2021)",
+        "Martini et al. 2019"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-126",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS undergoing EVT, reperfusion to an extended TICI grade 2b/2c/3 is recommended as early as possible within the therapeutic window to achieve maximum functional benefit at 90 days.¹,⁵,⁶",
+      "approval_status": "APPROVED",
+      "category": "4.7.4 Endovascular Techniques",
+      "topic": "4.7.4 Endovascular Techniques",
+      "currentGrade": "Class 1, Level A",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1",
+        "6: HERMES Collaboration (Goyal et al. Lancet 2016)",
+        "LeCouffe et al. eTICI Score Target Study (Stroke 2020;51:1790–1796)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-127",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS undergoing EVT, either general anesthesia or procedural sedation are recommended to facilitate EVT.⁷⁻⁹",
+      "approval_status": "APPROVED",
+      "category": "4.7.4 Endovascular Techniques",
+      "topic": "4.7.4 Endovascular Techniques",
+      "currentGrade": "Class 1, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 7–9: AMETIS Landmark RCT (Chabanne et al. JAMA Neurol 2023;80:474–483)",
+        "DIRECT-MT Anesthesia Substudy (2023)",
+        "Howard et al. 2021"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-128",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS undergoing EVT, the use of a proximal balloon to guide catheters to achieve improved outcomes remains uncertain.¹⁰⁻¹²",
+      "approval_status": "APPROVED",
+      "category": "4.7.4 Endovascular Techniques",
+      "topic": "4.7.4 Endovascular Techniques",
+      "currentGrade": "Class 2b, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 10–12: PROTECT-MT Balloon Guide RCT (Liu et al. Lancet 2024;404:2165–2174)",
+        "Pederson et al. Meta-Analysis (2024)",
+        "DAWN Subanalysis (Tekle et al. 2020)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-129",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS from occlusion of medium or distal vessels of the anterior, middle (nondominant or codominant M2, M3), or posterior cerebral arteries, EVT with stent retrievers is of no benefit for improving functional outcomes.¹³,¹⁴",
+      "approval_status": "APPROVED",
+      "category": "4.7.4 Endovascular Techniques",
+      "topic": "4.7.4 Endovascular Techniques",
+      "currentGrade": "Class 3: No Benefit, Level A",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 13",
+        "14: DISTAL Phase III RCT (Psychogios et al. NEJM 2025) and DISCOUNT Phase III RCT (Goyal et al. NEJM 2025)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-130",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS undergoing EVT in the setting of tandem extracranial-intracranial anterior circulation occlusions, acute treatment of both, including emergent extracranial stenting, may be reasonable to achieve higher good functional outcome.⁵,¹⁵⁻¹⁸",
+      "approval_status": "APPROVED",
+      "category": "4.7.4 Endovascular Techniques",
+      "topic": "4.7.4 Endovascular Techniques",
+      "currentGrade": "Class 2b, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 5",
+        "15–18: HERMES Tandem Substudy (Goyal et al. 2016)",
+        "TITAN Collaborative Analysis (Gory et al. Eur J Neurol 2018)",
+        "Diana et al. Meta-Analysis (JNIS 2023)",
+        "PICASSO Survey (Zevallos et al. 2021)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-131",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS in the setting of failed EVT, the use of rescue intracranial balloon angioplasty and/or stenting to improve functional outcome remains uncertain.¹⁹⁻²¹",
+      "approval_status": "APPROVED",
+      "category": "4.7.4 Endovascular Techniques",
+      "topic": "4.7.4 Endovascular Techniques",
+      "currentGrade": "Class 2b, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 19–21: ANGEL-REBOOT RCT (Gao et al. Lancet Neurol 2024;23:797–806)",
+        "RESCUE-ICAS Registry (Al Kasab et al. Stroke 2025)",
+        "Ifergan et al. ETIS Registry (JNIS 2024)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-132",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS who achieve complete or near-complete EVT (modified TICI 2b or greater), the administration of adjunctive intraarterial thrombolytics with urokinase, alteplase, or tenecteplase may be reasonable to improve cerebral reperfusion and 90-day functional outcome.²²⁻²⁵",
+      "approval_status": "APPROVED",
+      "category": "4.7.4 Endovascular Techniques",
+      "topic": "4.7.4 Endovascular Techniques",
+      "currentGrade": "Class 2b, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 22–25: CHOICE RCT (Renu et al. JAMA 2022)",
+        "POST-UK RCT (Liu et al. JAMA 2025)",
+        "ATTENTION-IA RCT (Hu et al. BMJ 2025)",
+        "POST-TNK RCT (Huang et al. JAMA 2025)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-133",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In the management of patients with AIS in the setting of LVO, preoperative administration of tirofiban before EVT is not useful to improve 90-day functional outcome.²⁶,²⁷",
+      "approval_status": "APPROVED",
+      "category": "4.7.4 Endovascular Techniques",
+      "topic": "4.7.4 Endovascular Techniques",
+      "currentGrade": "Class 3: No Benefit, Level B-R",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 26",
+        "27: RESCUE BT Landmark Phase III RCT (Qiu et al. JAMA 2022;328:543–553)",
+        "Al-Salihi et al. Meta-Analysis (2023)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-134",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In pediatric patients ≥6 years with acute neurological symptoms and ischemic stroke due to LVO and within 6 hours from symptom onset, EVT can be effective if performed by experienced neurointerventionalists to improve functional outcomes.¹⁻⁴",
+      "approval_status": "APPROVED",
+      "category": "4.7.5 EVT in Pediatric Patients",
+      "topic": "4.7.5 EVT in Pediatric Patients",
+      "currentGrade": "Class 2a, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1–4: Save ChildS Pro International Prospective Registry (Sporns et al. Lancet Child Adolesc Health 2024;8:882–890)",
+        "Save ChildS Multicenter Study (Sporns et al. JAMA Neurol 2020)",
+        "Bhatia et al. JAMA Neurol 2023",
+        "Bilgin et al. Meta-Analysis 2023"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-135",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In pediatric patients ≥6 years with acute neurological symptoms and ischemic stroke due to LVO, 6 to 24 hours from symptom onset, and with potentially salvageable brain tissue, EVT can be effective to improve functional outcomes.¹⁻³",
+      "approval_status": "APPROVED",
+      "category": "4.7.5 EVT in Pediatric Patients",
+      "topic": "4.7.5 EVT in Pediatric Patients",
+      "currentGrade": "Class 2a, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1–3: Save ChildS Pro Registry (Sporns et al. 2024)",
+        "Save ChildS (Sporns et al. 2020)",
+        "Bhatia et al. (2023)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-136",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In pediatric patients aged 28 days to 6 years with acute neurological symptoms, including first-time seizure and AIS due to LVO, within 24 hours from symptom onset, and with potentially salvageable brain tissue, EVT performed by neurointerventionalists with pediatric experience may be reasonable to improve functional outcomes.¹⁻³",
+      "approval_status": "APPROVED",
+      "category": "4.7.5 EVT in Pediatric Patients",
+      "topic": "4.7.5 EVT in Pediatric Patients",
+      "currentGrade": "Class 2b, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1–3: Save ChildS Pro Registry (2024)",
+        "Save ChildS Study (2020)",
+        "Bhatia et al. (2023)",
+        "Rule of 5 Pediatric Vessel Caliber Study (He et al. 2016)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-137",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS, administration of aspirin is recommended within 48 hours after stroke onset to reduce risk of death and dependency.¹⁻³",
+      "approval_status": "APPROVED",
+      "category": "4.8 Antiplatelet Treatment",
+      "topic": "4.8 Antiplatelet Treatment",
+      "currentGrade": "Class 1, Level A",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1–3: International Stroke Trial (IST 1997)",
+        "Chinese Acute Stroke Trial (CAST 1997)",
+        "Sandercock et al. Cochrane 2014"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-138",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS who have received IVT, the risk of antiplatelet therapy in the first 24 hours after IVT (with or without mechanical thrombectomy) is uncertain. Use might be considered in the presence of concomitant conditions for which such treatment given in the absence of IVT is known to provide substantial benefit or when withholding such treatment is known to cause substantial risk.",
+      "approval_status": "APPROVED",
+      "category": "4.8 Antiplatelet Treatment",
+      "topic": "4.8 Antiplatelet Treatment",
+      "currentGrade": "Class 2b, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "OPTIMIST Trial (Faigle et al. 2020)",
+        "AHA Get With The Guidelines-Stroke Antiplatelet Analysis"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-139",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS, the efficacy of IV tirofiban to improve clinical outcomes is not well established.⁴,⁵",
+      "approval_status": "APPROVED",
+      "category": "4.8 Antiplatelet Treatment",
+      "topic": "4.8 Antiplatelet Treatment",
+      "currentGrade": "Class 2b, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 4",
+        "5: SaTIS Trial (Siebler et al. Stroke 2011)",
+        "TREND Trial (Zhao et al. JAMA Neurol 2024;81:594–602)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-140",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS, the administration of IV abciximab is not recommended due to increased bleeding complications.⁶,⁷",
+      "approval_status": "APPROVED",
+      "category": "4.8 Antiplatelet Treatment",
+      "topic": "4.8 Antiplatelet Treatment",
+      "currentGrade": "Class 3: Harm, Level B-R",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 6",
+        "7: Ciccone et al. Cochrane 2014",
+        "AbESTT-II Trial (Adams et al. Stroke 2008)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-141",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with noncardioembolic AIS or TIA, antiplatelet therapy is indicated in preference to oral anticoagulation to reduce the risk of recurrent ischemic stroke and other cardiovascular events, while minimizing the risk of bleeding.⁸,⁹",
+      "approval_status": "APPROVED",
+      "category": "4.8 Antiplatelet Treatment",
+      "topic": "4.8 Antiplatelet Treatment",
+      "currentGrade": "Class 1, Level A",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 8",
+        "9: De Schryver et al. Cochrane 2012",
+        "WARSS Trial (Mohr et al. N Engl J Med 2001)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-142",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with noncardioembolic AIS or TIA, the selection of an antiplatelet agent for early secondary stroke prevention should be individualized on the basis of patient risk factor profiles, cost, tolerance, relative known efficacy of the agents, and other clinical characteristics.",
+      "approval_status": "APPROVED",
+      "category": "4.8 Antiplatelet Treatment",
+      "topic": "4.8 Antiplatelet Treatment",
+      "currentGrade": "Class 1, Level C-EO",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "AHA/ASA Secondary Prevention Guidelines (Kleindorfer et al. Stroke 2021)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-143",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS and extracranial carotid or vertebral arterial dissection, treatment with either antiplatelet or anticoagulant therapy for at least 3 months is reasonable to prevent recurrent stroke.¹⁰⁻¹²",
+      "approval_status": "APPROVED",
+      "category": "4.8 Antiplatelet Treatment",
+      "topic": "4.8 Antiplatelet Treatment",
+      "currentGrade": "Class 2a, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 10–12: CADISS Landmark RCT (Markus et al. Lancet Neurol 2015)",
+        "TREAT-CAD RCT",
+        "Yaghi et al. Systematic Review & Meta-Analysis (Stroke 2024)",
+        "Kaufmann et al. IPDMA (JAMA Neurol 2024)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-144",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "For patients already taking aspirin at the time of noncardioembolic ischemic stroke or TIA, the effectiveness of increasing the dose of aspirin or changing to another antiplatelet medication is not well established.¹³,¹⁴",
+      "approval_status": "APPROVED",
+      "category": "4.8 Antiplatelet Treatment",
+      "topic": "4.8 Antiplatelet Treatment",
+      "currentGrade": "Class 2b, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 13",
+        "14: Lee et al. Meta-Analysis (Stroke 2017)",
+        "Kim et al. Korean Stroke Registry (Stroke 2016)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-145",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with minor (NIHSS score ≤3) noncardioembolic AIS or high-risk TIA (ABCD2 score ≥4), ticagrelor is not recommended over aspirin to reduce the composite endpoint of stroke, myocardial infarction, or death.¹⁵",
+      "approval_status": "APPROVED",
+      "category": "4.8 Antiplatelet Treatment",
+      "topic": "4.8 Antiplatelet Treatment",
+      "currentGrade": "Class 3: No Benefit, Level B-R",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Ref 15: SOCRATES Landmark RCT (Johnston & Amarenco N Engl J Med 2016;375:1395)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-146",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with noncardioembolic ischemic stroke, treatment with triple antiplatelet therapy (aspirin and clopidogrel and dipyridamole) for secondary stroke prevention should not be administered due to increased risk of bleeding.¹⁶",
+      "approval_status": "APPROVED",
+      "category": "4.8 Antiplatelet Treatment",
+      "topic": "4.8 Antiplatelet Treatment",
+      "currentGrade": "Class 3: Harm, Level B-R",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Ref 16: TARDIS Landmark RCT (Bath et al. Lancet 2018)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-147",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with ischemic stroke and AF without active CAD or recent intravascular stent, the routine addition of antiplatelet therapy to oral anticoagulation is potentially harmful because of increased bleeding risk and is not recommended.¹⁷,¹⁸",
+      "approval_status": "APPROVED",
+      "category": "4.8 Antiplatelet Treatment",
+      "topic": "4.8 Antiplatelet Treatment",
+      "currentGrade": "Class 3: Harm, Level B-NR",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 17",
+        "18: ACTIVE W Trial (Connolly et al. 2006)",
+        "RE-LY & ARISTOTLE Antiplatelet Substudies"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-148",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with minor (NIHSS score ≤3) noncardioembolic AIS or high-risk TIA (ABCD2 score ≥4) who did not receive IVT, DAPT (aspirin and clopidogrel with loading dose of clopidogrel) should be initiated early (within 24 hours after symptom onset) and continued for 21 days, followed by single antiplatelet therapy (SAPT) to reduce the 90-day risk of recurrent ischemic stroke.¹⁹⁻²⁵",
+      "approval_status": "APPROVED",
+      "category": "4.8 Antiplatelet Treatment",
+      "topic": "4.8 Antiplatelet Treatment",
+      "currentGrade": "Class 1, Level A",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 19–25: CHANCE Landmark RCT (Wang et al. N Engl J Med 2013)",
+        "POINT Landmark RCT (Johnston et al. N Engl J Med 2018)",
+        "Pan et al. Meta-Analysis 2019",
+        "INSPIRES RCT 2023"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-149",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with recent (<24 hours) minor (NIHSS score ≤5) noncardioembolic AIS or high-risk TIA (ABCD2 score ≥6 or symptomatic intracranial or extracranial ≥50% stenosis of an artery that could account for TIA) who did not receive IVT, DAPT with ticagrelor (including loading dose) plus aspirin for 30 days may be considered to reduce the risk of 30-day recurrent stroke.²⁶",
+      "approval_status": "APPROVED",
+      "category": "4.8 Antiplatelet Treatment",
+      "topic": "4.8 Antiplatelet Treatment",
+      "currentGrade": "Class 2b, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Ref 26: THALES Landmark Phase III RCT (Johnston et al. N Engl J Med 2020;383:207–217)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-150",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with minor (NIHSS score ≤5) noncardioembolic AIS or high-risk TIA (ABCD2 score ≥4) within 24 to 72 hours from stroke onset, or NIHSS score of 4 to 5 within 24 hours from onset, who did not receive IVT, with presumed atherosclerotic cause (≥50% stenosis of intracranial or extracranial stenosis that was likely to have accounted for clinical presentation or acute new infarctions on imaging of presumed large artery atherosclerosis origin), DAPT (clopidogrel and aspirin) for 21 days followed by SAPT is reasonable to reduce the 90-day risk of recurrent stroke.²⁷",
+      "approval_status": "APPROVED",
+      "category": "4.8 Antiplatelet Treatment",
+      "topic": "4.8 Antiplatelet Treatment",
+      "currentGrade": "Class 2a, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Ref 27: ARAMIS Landmark RCT (Wang et al. JAMA 2023;329:2135–2144)",
+        "Cui et al. (2024)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-151",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with minor (NIHSS score ≤3) noncardioembolic AIS or high-risk TIA (ABCD2 score ≥4) within 24 hours after symptom onset who did not receive IVT and who carry the CYP2C19 loss-of-function allele, DAPT with ticagrelor and aspirin for 21 days (followed by ticagrelor monotherapy) may be reasonable in preference over DAPT with clopidogrel and aspirin to reduce the 90-day risk of recurrent stroke.²⁸",
+      "approval_status": "APPROVED",
+      "category": "4.8 Antiplatelet Treatment",
+      "topic": "4.8 Antiplatelet Treatment",
+      "currentGrade": "Class 2b, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Ref 28: CHANCE-2 Pharmacogenomic Landmark RCT (Wang et al. N Engl J Med 2021;385:2443–2452)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-152",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS who are otherwise eligible for IVT or mechanical thrombectomy, aspirin is not recommended as a substitute for acute stroke treatment to improve patient outcomes.",
+      "approval_status": "APPROVED",
+      "category": "4.8 Antiplatelet Treatment",
+      "topic": "4.8 Antiplatelet Treatment",
+      "currentGrade": "Class 3: Harm, Level B-R",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "NINDS tPA Trial",
+        "ECASS-III",
+        "HERMES Endovascular Meta-Analysis"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-153",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS who are eligible for IVT, IV aspirin should not be administered concurrently or within 90 minutes after the start of IVT given the risk of hemorrhage.",
+      "approval_status": "APPROVED",
+      "category": "4.8 Antiplatelet Treatment",
+      "topic": "4.8 Antiplatelet Treatment",
+      "currentGrade": "Class 3: Harm, Level B-R",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "ARTIS Landmark Trial (Zinkstok et al. Lancet 2012)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-154",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS treated with IVT within 3 hours after symptom onset, adjunctive treatment with IV eptifibatide is not recommended to reduce disability at 3 months.²⁹,³⁰",
+      "approval_status": "APPROVED",
+      "category": "4.8 Antiplatelet Treatment",
+      "topic": "4.8 Antiplatelet Treatment",
+      "currentGrade": "Class 3: No Benefit, Level B-R",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 29",
+        "30: MOST Phase III RCT (Adeoye et al. N Engl J Med 2024;391:810–820)",
+        "CLEAR Pilot Trial (Pancioli et al. Stroke 2008)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-155",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In carefully selected (eg, milder severity) patients with AIS with atrial fibrillation, a strategy of early oral anticoagulation poststroke is low risk and is reasonable compared with a strategy of delayed anticoagulation, although the efficacy of early anticoagulation for prevention of early recurrent stroke is not established.¹⁻³",
+      "approval_status": "APPROVED",
+      "category": "4.9 Anticoagulants",
+      "topic": "4.9 Anticoagulants",
+      "currentGrade": "Class 2a, Level A",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1–3: ELAN Landmark Phase III RCT (Fischer et al. N Engl J Med 2023;388:2411–2421)",
+        "OPTIMAS RCT (Werring et al. Lancet 2024)",
+        "TIMING RCT (Oldgren et al. Circulation 2022)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-156",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with an AIS and ipsilateral, high-grade ICA stenosis, the benefit of urgent anticoagulation is not well established.⁴,⁵",
+      "approval_status": "APPROVED",
+      "category": "4.9 Anticoagulants",
+      "topic": "4.9 Anticoagulants",
+      "currentGrade": "Class 2b, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 4",
+        "5: TOAST Trial (Adams et al. 1999)",
+        "IST Trial (1997)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-157",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS with an ipsilateral, nonocclusive, extracranial intraluminal thrombus, the safety and efficacy of short-term anticoagulation are not well established.⁶⁻⁸",
+      "approval_status": "APPROVED",
+      "category": "4.9 Anticoagulants",
+      "topic": "4.9 Anticoagulants",
+      "currentGrade": "Class 2b, Level C-LD",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 6–8: Mokin et al. JNIS 2013",
+        "Vellimana et al. J Neurosurg 2013",
+        "Singh et al. Stroke 2019"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-158",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS who experience HT, initiation or continuation of anticoagulation may be considered depending on the specific clinical scenario and underlying indication.⁹⁻¹¹",
+      "approval_status": "APPROVED",
+      "category": "4.9 Anticoagulants",
+      "topic": "4.9 Anticoagulants",
+      "currentGrade": "Class 2b, Level C-LD",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 9–11: Gioia et al. Stroke 2016",
+        "Kim et al. PLoS One 2014",
+        "England et al. TAIST Subanalysis 2010"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-159",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS, the use of argatroban is not effective as an adjunctive therapy with IVT to improve long-term functional outcomes.¹²⁻¹⁵",
+      "approval_status": "APPROVED",
+      "category": "4.9 Anticoagulants",
+      "topic": "4.9 Anticoagulants",
+      "currentGrade": "Class 3: No Benefit, Level A",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 12–15: MOST Phase III RCT (Adeoye et al. N Engl J Med 2024)",
+        "ARAIS RCT (Chen et al. JAMA 2023)",
+        "ARTSS-2 Trial (Barreto et al. Stroke 2017)",
+        "Barreto et al. 2012"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-160",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS, early anticoagulation (within 48 hours of stroke onset) does not reduce the likelihood of early neurological worsening or increase the likelihood of a favorable functional outcome and is not recommended.⁴,¹⁶⁻²⁴",
+      "approval_status": "APPROVED",
+      "category": "4.9 Anticoagulants",
+      "topic": "4.9 Anticoagulants",
+      "currentGrade": "Class 3: No Benefit, Level A",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 4",
+        "16–24: IST Trial (Lancet 1997)",
+        "TOAST Trial (1999)",
+        "Kay et al. LMWH Trial (NEJM 1995)",
+        "Cerebral Embolism Study Group (1983)",
+        "Duke et al. (1986)",
+        "Whiteley et al. IPDMA (Lancet Neurol 2013)",
+        "Wang et al. Cochrane 2021"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-161",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS, hemodynamic augmentation using hemodilution,¹ high-dose albumin,²,³ or chemical vasodilators such as pentoxifylline is not recommended to improve functional clinical outcomes.",
+      "approval_status": "APPROVED",
+      "category": "4.10 Volume Expansion",
+      "topic": "4.10 Volume Expansion",
+      "currentGrade": "Class 3: No Benefit, Level A",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1–3: Chang & Jensen Cochrane 2014",
+        "ALIAS Part 1 & Part 2 Landmark Trials (Ginsberg et al. Lancet Neurol 2013",
+        "Martin et al. Stroke 2016)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-162",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS, mechanical hemodynamic augmentation with counterpulsation devices⁴ or sphenopalatine ganglion stimulation⁵,⁶ is not recommended to improve functional clinical outcomes.",
+      "approval_status": "APPROVED",
+      "category": "4.10 Volume Expansion",
+      "topic": "4.10 Volume Expansion",
+      "currentGrade": "Class 3: No Benefit, Level B-R",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 4–6: CUFFS Trial (Guluma et al. J Stroke Cerebrovasc Dis 2015)",
+        "ImpACT-24A Trial (Bornstein et al. Stroke 2019)",
+        "ImpACT-24B Landmark Trial (Bornstein et al. Lancet 2019;394:219–229)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-163",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS, pharmacological neuroprotective agents (eg, nerinetide, citicoline, edaravone, magnesium, piracetam) are not recommended to improve functional clinical outcomes.",
+      "approval_status": "APPROVED",
+      "category": "4.11 Neuroprotective Agents",
+      "topic": "4.11 Neuroprotective Agents",
+      "currentGrade": "Class 3: No Benefit, Level A",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "ESCAPE-NA1 Trial (Hill et al. Lancet 2020)",
+        "FAST-MAG Trial (Saver et al. NEJM 2015)",
+        "ICTUS Trial (2012)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-164",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS or unstable neurological status (eg, stroke in evolution) caused by a high-grade carotid stenosis or occlusion without intracranial occlusion, emergent carotid endarterectomy (within 48 hours) is not beneficial to improve functional outcomes.¹⁻³",
+      "approval_status": "APPROVED",
+      "category": "4.12 Emergency Carotid Endarterectomy",
+      "topic": "4.12 Emergency Carotid Endarterectomy",
+      "currentGrade": "Class 3: No Benefit, Level B-NR",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1–3: Coelho et al. Systematic Review & Meta-Analysis (Eur J Vasc Endovasc Surg 2022;63:3–23)",
+        "Swedvasc Registry (Strömberg et al. Stroke 2012)",
+        "UK National Vascular Registry (Loftus et al. 2016)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-165",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS of all ages, treatment within an organized inpatient stroke care unit supported by a specialty trained, interdisciplinary care team (ie, acute stroke units, rehabilitation stroke units, comprehensive stroke units, and mixed rehabilitation units) that incorporates standardized stroke care order sets and protocols is recommended to reduce the odds of poor outcomes and death.¹⁻¹⁶",
+      "approval_status": "APPROVED",
+      "category": "5.1 Stroke Units",
+      "topic": "5.1 Stroke Units",
+      "currentGrade": "Class 1, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1–16: Stroke Unit Trialists' Collaboration Meta-Analyses (Langhorne & Ramachandra Cochrane 2020 & Stroke 2013)",
+        "QASC Trial (Middleton et al. Lancet 2011)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-166",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS, performing a bedside swallow screening prior to initiation of liquid or food intake is recommended to screen for patients at increased risk for aspiration.",
+      "approval_status": "APPROVED",
+      "category": "5.2 Dysphagia",
+      "topic": "5.2 Dysphagia",
+      "currentGrade": "Class 1, Level C-EO",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "QASC Trial (Middleton et al. 2011)",
+        "Hinchey et al. (2005)",
+        "AHA Nursing Guidelines (Ashcraft et al. 2021)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-167",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS, it is reasonable for dysphagia screening to be performed by speech pathologists or other trained health care professionals.¹",
+      "approval_status": "APPROVED",
+      "category": "5.2 Dysphagia",
+      "topic": "5.2 Dysphagia",
+      "currentGrade": "Class 2a, Level C-LD",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Ref 1: Eltringham et al. Systematic Review of Dysphagia Screening (2018)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-168",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS who have failed or are unable to participate in a bedside swallow screening due to neurological disabilities, it is reasonable to perform an endoscopic examination of swallowing function to aid in determination of dysphagia severity and aspiration risk.²⁻⁴",
+      "approval_status": "APPROVED",
+      "category": "5.2 Dysphagia",
+      "topic": "5.2 Dysphagia",
+      "currentGrade": "Class 2a, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 2–4: Warnecke et al. FEES Study 2017",
+        "Dziewas et al. 2014",
+        "Umay et al. 2019"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-169",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS, an oral hygiene protocol may be reasonable to reduce the risk for pneumonia.⁵,⁶",
+      "approval_status": "APPROVED",
+      "category": "5.2 Dysphagia",
+      "topic": "5.2 Dysphagia",
+      "currentGrade": "Class 2b, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 5",
+        "6: Bellissimo et al. Oral Hygiene Protocol 2021",
+        "Brady et al. Cochrane 2006"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-170",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with stroke with dysphagia, treatment with pharyngeal electrical stimulation (PES), can be beneficial to reduce dysphagia severity and decrease the risk of aspiration.⁷⁻⁹",
+      "approval_status": "APPROVED",
+      "category": "5.2 Dysphagia",
+      "topic": "5.2 Dysphagia",
+      "currentGrade": "Class 2a, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 7–9: PHADER Landmark Trial (Bath et al. EClinicalMedicine 2019)",
+        "STEPS Trial (Bath et al. 2016)",
+        "Vasant et al. 2016"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-171",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with severe stroke with dysphagia requiring tracheotomy and mechanical ventilation, treatment with PES, after ventilator weaning can be beneficial to decrease dysphagia severity, reduce the risk of aspiration, and expedite decannulation.⁷,⁹⁻¹¹",
+      "approval_status": "APPROVED",
+      "category": "5.2 Dysphagia",
+      "topic": "5.2 Dysphagia",
+      "currentGrade": "Class 2a, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 7",
+        "9–11: PHADER Trial (Bath et al. 2019)",
+        "Dziewas et al. PHAST-TRAC Trial (Lancet Neurol 2018;17:849–859)",
+        "Bath et al. 2020"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-172",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS, enteral diet should be started within 7 days of admission after an AIS.¹⁻⁶",
+      "approval_status": "APPROVED",
+      "category": "5.3 Nutrition",
+      "topic": "5.3 Nutrition",
+      "currentGrade": "Class 1, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1–6: FOOD Landmark Trial (FOOD Trial Collaboration Lancet 2005)",
+        "Dennis et al. 2006",
+        "Systematic Reviews"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-173",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS, nutritional screening is recommended to direct nutritional management early into hospitalization, preferably within 48 hours of admission, with a nutritional screening or assessment tool that has been validated in patients with acute stroke.²⁻⁹",
+      "approval_status": "APPROVED",
+      "category": "5.3 Nutrition",
+      "topic": "5.3 Nutrition",
+      "currentGrade": "Class 1, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 2–9: FOOD Trial 2005",
+        "MUST Screening Tool Validation",
+        "ESPEN Guidelines on Clinical Nutrition in Neurology"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-174",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS with dysphagia, it is reasonable to use nasogastric tubes initially for feeding within the first 7 days and to place percutaneous gastrostomy tubes in patients with longer anticipated persistent inability to swallow safely (>2–3 weeks).¹",
+      "approval_status": "APPROVED",
+      "category": "5.3 Nutrition",
+      "topic": "5.3 Nutrition",
+      "currentGrade": "Class 2a, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Ref 1: FOOD Trial Substudy 2 (FOOD Trial Collaboration Lancet 2005;365:764–772)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-175",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS who have impaired mobility and do not have contraindications to intermittent pneumatic compression (IPC), IPC in addition to routine care is recommended over routine care alone to reduce the risk of deep vein thrombosis (DVT).",
+      "approval_status": "APPROVED",
+      "category": "5.4 Deep Vein Thrombosis Prophylaxis",
+      "topic": "5.4 Deep Vein Thrombosis Prophylaxis",
+      "currentGrade": "Class 1, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": []
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-176",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS who have impaired mobility, either prophylactic-dose subcutaneous heparin (UFH or LMWH) is reasonable to reduce the risk of VTE.",
+      "approval_status": "APPROVED",
+      "category": "5.4 Deep Vein Thrombosis Prophylaxis",
+      "topic": "5.4 Deep Vein Thrombosis Prophylaxis",
+      "currentGrade": "Class 2a, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": []
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-178",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": " In patients with AIS who have impaired mobility, the benefit of prophylactic-dose subcutaneous heparin (UFH or LMWH) over no prophylacticdose heparin is not well established to increase overall survival.",
+      "approval_status": "APPROVED",
+      "category": "5.4 Deep Vein Thrombosis Prophylaxis",
+      "topic": "5.4 Deep Vein Thrombosis Prophylaxis",
+      "currentGrade": "Class 2b, Level A",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": []
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-179",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS who have impaired mobility and who are selected for prophylactic anticoagulation, the benefit of prophylactic-dose LMWH over prophylactic-dose UFH to prevent DVT is uncertain.",
+      "approval_status": "APPROVED",
+      "category": "5.4 Deep Vein Thrombosis Prophylaxis",
+      "topic": "5.4 Deep Vein Thrombosis Prophylaxis",
+      "currentGrade": "Class 2b, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": []
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-177",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": " In patients with AIS who have impaired mobility, elastic compression stockings cause harm, including skin breakdown, ulceration, and tissue necrosis, compared with usual care.",
+      "approval_status": "APPROVED",
+      "category": "5.4 Deep Vein Thrombosis Prophylaxis",
+      "topic": "5.4 Deep Vein Thrombosis Prophylaxis",
+      "currentGrade": "Class 3: Harm, Level B-R",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": []
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-180",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS, administration of a structured depression inventory is recommended to routinely screen for poststroke depression (PSD), although the optimal timing of screening is uncertain.",
+      "approval_status": "APPROVED",
+      "category": "5.5 Depression",
+      "topic": "5.5 Depression",
+      "currentGrade": "Class 1, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1",
+        "2: Towfighi et al. Poststroke Depression Scientific Statement (Stroke 2017)",
+        "Villa et al. 2018"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-181",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients diagnosed with PSD, treatment with antidepressants and/or nonpharmacological interventions (ie, psychotherapy, noninvasive brain stimulation, acupuncture) is recommended to improve depressive symptoms.",
+      "approval_status": "APPROVED",
+      "category": "5.5 Depression",
+      "topic": "5.5 Depression",
+      "currentGrade": "Class 1, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 3–5: FOCUS",
+        "AFFINITY",
+        "and EFFECTS Meta-Analyses (Lancet 2019–2020)",
+        "Allida et al. Cochrane 2020",
+        "Legg et al. Cochrane 2019"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-182",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "For select patients with AIS and their families, referral to palliative care resources is reasonable as appropriate.",
+      "approval_status": "APPROVED",
+      "category": "5.6 Other In-Hospital Considerations",
+      "topic": "5.6 Other In-Hospital Considerations",
+      "currentGrade": "Class 2a, Level C-EO",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "AHA/ASA Palliative Care in Stroke Scientific Statement (Creutzfeldt et al. Stroke 2015)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-183",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS, routine use of prophylactic antibiotics has not been shown to be beneficial in improving functional outcomes.¹⁻⁵",
+      "approval_status": "APPROVED",
+      "category": "5.6 Other In-Hospital Considerations",
+      "topic": "5.6 Other In-Hospital Considerations",
+      "currentGrade": "Class 3: No Benefit, Level A",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1–5: PASS Landmark RCT (Westendorp et al. Lancet 2015)",
+        "STROKE-INF Landmark RCT (Kalra et al. Lancet 2015)",
+        "PRECIOUS Trial (De Jonge et al. 2024)",
+        "Ulm et al. 2017"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-184",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS, routine placement of indwelling bladder catheters should not be performed because of the associated risk of catheter-associated urinary tract infections (UTIs).⁶",
+      "approval_status": "APPROVED",
+      "category": "5.6 Other In-Hospital Considerations",
+      "topic": "5.6 Other In-Hospital Considerations",
+      "currentGrade": "Class 3: Harm, Level C-LD",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Ref 6: CDC Guidelines for Prevention of Catheter-Associated UTIs (Gould et al. 2019)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-185",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS, in-hospital, formal, interdisciplinary assessment and provision of rehabilitation at a level appropriate for the individual patient is recommended to improve functional recovery.",
+      "approval_status": "APPROVED",
+      "category": "5.7 Rehabilitation",
+      "topic": "5.7 Rehabilitation",
+      "currentGrade": "Class 1, Level A",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1–3: AHA/ASA Post-Stroke Rehabilitation Guidelines (Winstein et al. Stroke 2016)",
+        "Stroke Unit Trialists' Collaboration (Cochrane 2020)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-186",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS, SSRIs are not effective for improving motor recovery or functional status.",
+      "approval_status": "APPROVED",
+      "category": "5.7 Rehabilitation",
+      "topic": "5.7 Rehabilitation",
+      "currentGrade": "Class 3: No Benefit, Level A",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 4",
+        "5: AVERT Landmark Phase III RCT (Avert Trial Collaboration Lancet 2015;385:2259–2267)",
+        "Bernhardt et al. 2016"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-187",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS, high-dose, very early mobilization within 24 hours of stroke onset is not recommended to improve the odds of a favorable outcome at 3 months and may be harmful.",
+      "approval_status": "APPROVED",
+      "category": "5.7 Rehabilitation",
+      "topic": "5.7 Rehabilitation",
+      "currentGrade": "Class 3: Harm, Level B-R",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Ref 4: AVERT Landmark Phase III RCT (Avert Trial Collaboration Lancet 2015;385:2259–2267",
+        "Bernhardt et al. 2016)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-188",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with large cerebral or cerebellar infarctions at high risk for developing brain swelling and herniation, an early discussion of care options and possible outcomes should take place with patients (if feasible) and family or next of kin to ascertain patient-centered preferences in shared decision-making, especially during prognosis\nformation and when considering interventions or limitations in care.",
+      "approval_status": "APPROVED",
+      "category": "6.1 Brain Swelling (General)",
+      "topic": "6.1 Brain Swelling (General)",
+      "currentGrade": "Class 1, Level C-EO",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "NCS/AHA Critical Care Management Guidelines for Malignant Infarction"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-189",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with large cerebral or cerebellar infarctions, close monitoring of the patient for signs of neurological worsening during the first days after stroke is recommended to rapidly evaluate the need for potential interventions.",
+      "approval_status": "APPROVED",
+      "category": "6.1 Brain Swelling (General)",
+      "topic": "6.1 Brain Swelling (General)",
+      "currentGrade": "Class 1, Level C-EO",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Torner et al. 2017",
+        "Kamel et al. 2011",
+        "Fink et al. 2005"
+      ]
+    },
+    {
+      "rec_id": "rec-79700",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with large cerebral or cerebellar infarctions who are at increased risk for malignant brain swelling, early transfer to an institution with appropriate neurosurgical and critical care expertise is recommended to ensure timely treatment.",
+      "approval_status": "APPROVED",
+      "category": "Brain Swelling (General)",
+      "topic": "Brain Swelling (General)",
+      "currentGrade": "Class 1, Level C-LD",
+      "strength_of_recommendation": "",
+      "quality_of_evidence": "",
+      "driving_trials": []
+    },
+    {
+      "rec_id": "rec-22022",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with large cerebral or cerebellar infarctions and neurological decline from brain swelling, the use of osmotic therapy as a bridge to a surgical intervention is reasonable to improve functional outcome and reduce mortality.",
+      "approval_status": "APPROVED",
+      "category": "6.2 Brain Swelling (Medical)",
+      "topic": "6.2 Brain Swelling (Medical)",
+      "currentGrade": "Class 2a, Level C-LD",
+      "strength_of_recommendation": "",
+      "quality_of_evidence": "",
+      "driving_trials": []
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-190",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with large hemispheric infarction 18 to 70 years of age, the use of IV glibenclamide does not result in improved functional outcome and is not recommended.",
+      "approval_status": "APPROVED",
+      "category": "6.2 Brain Swelling (Medical)",
+      "topic": "6.2 Brain Swelling (Medical)",
+      "currentGrade": "Class 3: No Benefit, Level B-R",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "CHARM Landmark Phase III RCT (Sheth et al. Circulation 2023)"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-191",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with large cerebral or cerebellar infarctions and brain swelling, hypothermia, barbiturates, or corticosteroids should not be administered to treat brain swelling due to the lack of evidence of efficacy and potential of increased adverse effects.",
+      "approval_status": "APPROVED",
+      "category": "6.2 Brain Swelling (Medical)",
+      "topic": "6.2 Brain Swelling (Medical)",
+      "currentGrade": "Class 3: Harm, Level C-LD",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Feigin et al. Cochrane Systematic Review of Corticosteroids in Acute Ischemic Stroke (2005)"
+      ]
+    },
+    {
+      "rec_id": "rec-06197",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": " In patients with large territorial cerebral infarctions at high risk for developing brain swelling and herniation, decreased level of consciousness attributed to brain swelling is a reasonable trigger for decompressive hemicraniectomy selection.",
+      "approval_status": "APPROVED",
+      "category": "6.3 Supratentorial Infarction (Surgical)",
+      "topic": "6.3 Supratentorial Infarction (Surgical)",
+      "currentGrade": "Class 2a, Level B-NR",
+      "strength_of_recommendation": "",
+      "quality_of_evidence": "",
+      "driving_trials": []
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-192",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients ≤60 years of age who experience neurological deterioration from severe brain swelling within 48 hours of large hemispheric infarction, decompressive hemicraniectomy is recommended to reduce mortality and improve functional outcome.¹⁻⁴",
+      "approval_status": "APPROVED",
+      "category": "6.3 Supratentorial Infarction (Surgical)",
+      "topic": "6.3 Supratentorial Infarction (Surgical)",
+      "currentGrade": "Class 1, Level A",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1–4: DECIMAL",
+        "DESTINY",
+        "and HAMLET Pooled Analysis (Vahedi et al. Lancet Neurol 2007;6:215–222)",
+        "DESTINY II Trial (Jüttler et al. NEJM 2014)",
+        "Zhao et al. 2018"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-193",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients >60 years of age with unilateral MCA infarctions who deteriorate neurologically within 48 hours from brain swelling despite medical therapy, decompressive craniectomy with dural expansion may be considered to reduce mortality.",
+      "approval_status": "APPROVED",
+      "category": "6.3 Supratentorial Infarction (Surgical)",
+      "topic": "6.3 Supratentorial Infarction (Surgical)",
+      "currentGrade": "Class 2b, Level B-R",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 3",
+        "4: DESTINY II Landmark RCT (Jüttler et al. N Engl J Med 2014;370:1091–1100)",
+        "HAMLET Subanalysis (2014)"
+      ]
+    },
+    {
+      "rec_id": "rec-16937",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with AIS who received IV tPA thrombolysis and develop malignant cerebral edema despite medical therapy, early decompressive craniectomy within 48 hours may still be considered without additional safety concerns",
+      "approval_status": "APPROVED",
+      "category": "6.3 Supratentorial Infarction (Surgical)",
+      "topic": "6.3 Supratentorial Infarction (Surgical)",
+      "currentGrade": "Class 2b, Level B-NR",
+      "strength_of_recommendation": "",
+      "quality_of_evidence": "",
+      "driving_trials": []
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-194",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with cerebellar infarction and obstructive hydrocephalus, ventriculostomy is recommended to improve neurological function and decrease mortality. Concomitant or subsequent decompressive craniectomy may or may not be necessary on the basis of factors such as the size of the infarction, neurological condition, degree\nof brainstem compression, and effectiveness of medical management.",
+      "approval_status": "APPROVED",
+      "category": "6.4 Cerebellar Infarction (Surgical)",
+      "topic": "6.4 Cerebellar Infarction (Surgical)",
+      "currentGrade": "Class 1, Level C-LD",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1–4: Pfefferkorn et al. 2009",
+        "Kim et al. 2016",
+        "Raco et al. 2008",
+        "Tsitsopoulos et al. 2012"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-195",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In patients with cerebellar infarction causing neurological deterioration from brainstem compression or volumes ≥35 mL, decompressive suboccipital craniectomy with dural expansion should be performed to improve outcomes and\ndecrease mortality.",
+      "approval_status": "APPROVED",
+      "category": "6.4 Cerebellar Infarction (Surgical)",
+      "topic": "6.4 Cerebellar Infarction (Surgical)",
+      "currentGrade": "Class 1, Level B-NR",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 5",
+        "6: Hornig et al. 1994",
+        "Chen et al. 2015"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-198",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In adult patients with an unprovoked seizure after AIS, management that includes antiseizure medication is recommended on the basis of specific patient characteristics to reduce the risk of seizure recurrence.",
+      "approval_status": "APPROVED",
+      "category": "6.5 Seizures",
+      "topic": "6.5 Seizures",
+      "currentGrade": "Class 1, Level C-LD",
+      "strength_of_recommendation": "Strong",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "AES/AAN Practice Guidelines on Post-Stroke Seizures"
+      ]
+    },
+    {
+      "rec_id": "chg-ahaasa-2026-early-ischemic-stroke-f6bx-199",
+      "guideline_id": "ahaasa-2026-early-ischemic-stroke-f6bx",
+      "grading_system": "ACC/AHA",
+      "page_num": 1,
+      "statement": "In adult patients with AIS, prophylactic treatment with antiseizure medication is not recommended to prevent seizures or improve functional outcome.¹,²",
+      "approval_status": "APPROVED",
+      "category": "6.5 Seizures",
+      "topic": "6.5 Seizures",
+      "currentGrade": "Class 3: No Benefit, Level C-LD",
+      "strength_of_recommendation": "Conditional",
+      "quality_of_evidence": "Moderate",
+      "driving_trials": [
+        "Refs 1",
+        "2: Angriman et al. Stroke 2019",
+        "Sheth et al. ERICH Study 2015"
+      ]
+    }
+  ],
+  "updated_at": "2026-11-09T08:05:51.893+00:00"
+}

@@ -464,13 +464,17 @@ export function parseNotebookLMContent(
     let colVotingIdx = headerCols.findIndex((c) => c.includes("vote") || c.includes("voting") || c.includes("bỏ phiếu") || c.includes("biểu quyết"));
     let colEvidenceIdx = headerCols.findIndex(
       (c) =>
-        c.includes("studies") ||
-        c.includes("study") ||
-        c.includes("trials") ||
-        c.includes("trial") ||
-        c.includes("nghiên cứu") ||
-        c.includes("thử nghiệm") ||
-        (c.includes("evidence") && !c.includes("quality"))
+        (c.includes("studies") ||
+          c.includes("study") ||
+          c.includes("trials") ||
+          c.includes("trial") ||
+          c.includes("nghiên cứu") ||
+          c.includes("thử nghiệm") ||
+          (c.includes("evidence") && !c.includes("quality"))) &&
+        !c.includes("recommendation") &&
+        !c.includes("khuyến cáo") &&
+        !c.includes("verbatim") &&
+        !c.includes("statement")
     );
 
     // Fallbacks

@@ -1044,9 +1044,16 @@ export function classifyRecommendationV3(
     }
 
     // 2. Identify Diagnosis Modalities
+    // In multi-recommendation PICO contexts, match interventions and diagnoses
+    // primarily against the specific recommendation text (currentText) to prevent
+    // tags from the overarching PICO question or consensus statements leaking into every sub-recommendation.
+    const specificRecText = (change.currentText || '').trim();
+    const hasMeaningfulStatement = specificRecText.length >= 12;
+    const scanText = hasMeaningfulStatement ? specificRecText : recText;
+
     const diagnosisTags = new Set<string>();
     for (const dRule of DIAGNOSIS_TAG_RULES) {
-        if (dRule.patterns.some((rx) => rx.test(recText))) {
+        if (dRule.patterns.some((rx) => rx.test(scanText))) {
             diagnosisTags.add(dRule.id);
         }
     }
@@ -1079,18 +1086,18 @@ export function classifyRecommendationV3(
 
         for (const tag of allCondTags) {
             const labelLower = tag.label.toLowerCase();
-            if (recText.toLowerCase().includes(labelLower)) {
+            if (scanText.toLowerCase().includes(labelLower)) {
                 interventionTags.add(tag.id);
                 continue;
             }
             const synPatterns = INTERVENTION_SYNONYM_MAP[tag.id];
-            if (synPatterns && synPatterns.some((rx) => rx.test(recText))) {
+            if (synPatterns && synPatterns.some((rx) => rx.test(scanText))) {
                 interventionTags.add(tag.id);
             }
         }
 
         // Time window detection for this condition
-        const txtLower = recText.toLowerCase();
+        const txtLower = scanText.toLowerCase();
         for (const tw of cond.treatment.timeWindows) {
             const twLower = tw.label.toLowerCase();
             if (
@@ -1118,6 +1125,15 @@ export function classifyRecommendationV3(
 
     // Global synonym check if no condition-specific intervention tag matched yet
     if (interventionTags.size === 0) {
+        for (const [tagId, patterns] of Object.entries(INTERVENTION_SYNONYM_MAP)) {
+            if (patterns.some((rx) => rx.test(scanText))) {
+                interventionTags.add(tagId);
+            }
+        }
+    }
+
+    // Fallback to sectionPath only if specific recommendation text had zero tags and was uninformative
+    if (interventionTags.size === 0 && !hasMeaningfulStatement) {
         for (const [tagId, patterns] of Object.entries(INTERVENTION_SYNONYM_MAP)) {
             if (patterns.some((rx) => rx.test(recText))) {
                 interventionTags.add(tagId);

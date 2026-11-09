@@ -1,4 +1,4 @@
-import type { PracticeChangeDetail } from "@/types/neuroguide";
+import type { PracticeChangeDetail, RecommendationV3Labels } from "@/types/neuroguide";
 import type { EsoPicoItem, EsoEvidenceQuality, EsoRecommendationStrength } from "@/components/neuroguide/EsoGuidelineTable";
 
 /**
@@ -62,12 +62,14 @@ export function parseConsensusList(
   if (!statementText || !statementText.trim()) return [];
 
   const raw = statementText.trim();
+  // Pre-normalize numbered items that may have been joined with spaces instead of newlines, e.g. "(Vote: 8/9) 2." or ". 2."
+  const normalizedRaw = raw.replace(/(?:(?<=[.)]|\))\s+)(?=\d+[\.\)]\s+)/g, "\n\n");
 
   // 1. Check if string contains multiple numbered points (e.g. "1. ...\n2. ..." or "1. ... 2. ...")
-  const hasNumberedItems = /(?:^|\n)\s*(\d+)[\.\)]\s+/.test(raw);
+  const hasNumberedItems = /(?:^|\n)\s*(\d+)[\.\)]\s+/.test(normalizedRaw);
 
   if (hasNumberedItems) {
-    const blocks = raw
+    const blocks = normalizedRaw
       .split(/(?:^|\n+)(?=\d+[\.\)]\s+)/)
       .map((b) => b.trim())
       .filter((b) => b.length > 0);
@@ -241,6 +243,16 @@ export const CANONICAL_ESO_2025_BP_PICOS: EsoPicoItem[] = [
         qualityOfEvidence: "Moderate",
         strengthOfRecommendation: "Strong against intervention",
         drivingTrials: ["RIGHT", "RIGHT-2", "MR ASAP", "INTERACT-4"],
+        v3Labels: {
+          conditionIds: ["cond_ischemic_stroke", "cond_ich"],
+          subspecialties: ["Stroke"],
+          domains: ["treatment"],
+          diagnosisTags: [],
+          timeWindowIds: ["cond_ischemic_stroke_tw_early_window_le_4_5h"],
+          interventionTags: ["tag_blood_pressure_control"],
+          direction: "harm",
+          isExplicit: true,
+        },
       },
     ],
   },
@@ -257,6 +269,16 @@ export const CANONICAL_ESO_2025_BP_PICOS: EsoPicoItem[] = [
         qualityOfEvidence: "Moderate",
         strengthOfRecommendation: "Weak against intervention",
         drivingTrials: ["ENOS", "SCAST", "CATIS"],
+        v3Labels: {
+          conditionIds: ["cond_ischemic_stroke"],
+          subspecialties: ["Stroke"],
+          domains: ["treatment"],
+          diagnosisTags: [],
+          timeWindowIds: ["cond_ischemic_stroke_tw_extended_window_4_5h_24h"],
+          interventionTags: ["tag_blood_pressure_control"],
+          direction: "harm",
+          isExplicit: true,
+        },
       },
     ],
   },
@@ -271,6 +293,16 @@ export const CANONICAL_ESO_2025_BP_PICOS: EsoPicoItem[] = [
         qualityOfEvidence: "Very low",
         strengthOfRecommendation: "Weak for intervention",
         drivingTrials: ["ENCHANTED", "ENOS", "ENCHANTED2-MT"],
+        v3Labels: {
+          conditionIds: ["cond_ischemic_stroke"],
+          subspecialties: ["Stroke"],
+          domains: ["treatment"],
+          diagnosisTags: [],
+          timeWindowIds: ["cond_ischemic_stroke_tw_extended_window_4_5h_24h"],
+          interventionTags: ["tag_alteplase", "tag_blood_pressure_control"],
+          direction: "recommended",
+          isExplicit: true,
+        },
       },
       {
         number: 2,
@@ -278,6 +310,16 @@ export const CANONICAL_ESO_2025_BP_PICOS: EsoPicoItem[] = [
         qualityOfEvidence: "Low",
         strengthOfRecommendation: "Weak against intervention",
         drivingTrials: ["ENCHANTED", "OPTIMAL-BP", "BP-TARGET"],
+        v3Labels: {
+          conditionIds: ["cond_ischemic_stroke"],
+          subspecialties: ["Stroke"],
+          domains: ["treatment"],
+          diagnosisTags: [],
+          timeWindowIds: ["cond_ischemic_stroke_tw_beyond_24h"],
+          interventionTags: ["tag_alteplase", "tag_blood_pressure_control"],
+          direction: "harm",
+          isExplicit: true,
+        },
       },
     ],
   },
@@ -294,6 +336,16 @@ export const CANONICAL_ESO_2025_BP_PICOS: EsoPicoItem[] = [
         qualityOfEvidence: "Very low",
         strengthOfRecommendation: "Weak against intervention",
         drivingTrials: ["BP-TARGET", "ENCHANTED2-MT", "BEST-II"],
+        v3Labels: {
+          conditionIds: ["cond_ischemic_stroke"],
+          subspecialties: ["Stroke"],
+          domains: ["treatment"],
+          diagnosisTags: [],
+          timeWindowIds: ["cond_ischemic_stroke_tw_extended_window_4_5h_24h"],
+          interventionTags: ["tag_mechanical_thrombectomy", "tag_blood_pressure_control"],
+          direction: "recommended",
+          isExplicit: true,
+        },
       },
       {
         number: 2,
@@ -301,6 +353,16 @@ export const CANONICAL_ESO_2025_BP_PICOS: EsoPicoItem[] = [
         qualityOfEvidence: "Moderate",
         strengthOfRecommendation: "Weak against intervention",
         drivingTrials: ["INDIVIDUATE", "DETERMINE"],
+        v3Labels: {
+          conditionIds: ["cond_ischemic_stroke"],
+          subspecialties: ["Stroke"],
+          domains: ["treatment"],
+          diagnosisTags: [],
+          timeWindowIds: [],
+          interventionTags: ["tag_mechanical_thrombectomy", "tag_blood_pressure_control"],
+          direction: "harm",
+          isExplicit: true,
+        },
       },
       {
         number: 3,
@@ -308,6 +370,16 @@ export const CANONICAL_ESO_2025_BP_PICOS: EsoPicoItem[] = [
         qualityOfEvidence: "High",
         strengthOfRecommendation: "Strong against intervention",
         drivingTrials: ["ENCHANTED2-MT", "OPTIMAL-BP", "BEST-II"],
+        v3Labels: {
+          conditionIds: ["cond_ischemic_stroke"],
+          subspecialties: ["Stroke"],
+          domains: ["treatment"],
+          diagnosisTags: [],
+          timeWindowIds: ["cond_ischemic_stroke_tw_extended_window_4_5h_24h"],
+          interventionTags: ["tag_mechanical_thrombectomy", "tag_blood_pressure_control"],
+          direction: "harm",
+          isExplicit: true,
+        },
       },
       {
         number: 4,
@@ -315,6 +387,16 @@ export const CANONICAL_ESO_2025_BP_PICOS: EsoPicoItem[] = [
         qualityOfEvidence: "Very low",
         strengthOfRecommendation: "Strong against intervention",
         drivingTrials: ["SAGA", "SIESTA", "ANSTROKE", "GOLIATH"],
+        v3Labels: {
+          conditionIds: ["cond_ischemic_stroke"],
+          subspecialties: ["Stroke"],
+          domains: ["treatment"],
+          diagnosisTags: [],
+          timeWindowIds: [],
+          interventionTags: ["tag_mechanical_thrombectomy", "tag_blood_pressure_control"],
+          direction: "recommended",
+          isExplicit: true,
+        },
       },
     ],
   },
@@ -331,6 +413,16 @@ export const CANONICAL_ESO_2025_BP_PICOS: EsoPicoItem[] = [
         qualityOfEvidence: "Very low",
         strengthOfRecommendation: "Weak against intervention",
         drivingTrials: ["SETIN-HYPERTENSION", "MAPAS"],
+        v3Labels: {
+          conditionIds: ["cond_ischemic_stroke"],
+          subspecialties: ["Stroke"],
+          domains: ["treatment"],
+          diagnosisTags: [],
+          timeWindowIds: [],
+          interventionTags: ["tag_blood_pressure_control"],
+          direction: "harm",
+          isExplicit: true,
+        },
       },
     ],
   },
@@ -347,6 +439,16 @@ export const CANONICAL_ESO_2025_BP_PICOS: EsoPicoItem[] = [
         qualityOfEvidence: "Low",
         strengthOfRecommendation: "Weak against intervention",
         drivingTrials: ["COSSACS", "ENOS", "CATIS-2"],
+        v3Labels: {
+          conditionIds: ["cond_ischemic_stroke"],
+          subspecialties: ["Stroke"],
+          domains: ["treatment"],
+          diagnosisTags: [],
+          timeWindowIds: [],
+          interventionTags: ["tag_blood_pressure_control"],
+          direction: "harm",
+          isExplicit: true,
+        },
       },
     ],
   },
@@ -363,6 +465,16 @@ export const CANONICAL_ESO_2025_BP_PICOS: EsoPicoItem[] = [
         qualityOfEvidence: "Moderate",
         strengthOfRecommendation: "Uncertain",
         drivingTrials: ["INTERACT", "INTERACT2", "ATACH-2", "ICH-ADAPT", "INTERACT4"],
+        v3Labels: {
+          conditionIds: ["cond_ich"],
+          subspecialties: ["Stroke"],
+          domains: ["treatment"],
+          diagnosisTags: [],
+          timeWindowIds: ["cond_ich_tw_hyperacute_lt_6h"],
+          interventionTags: ["tag_blood_pressure_control"],
+          direction: "conditional",
+          isExplicit: true,
+        },
       },
     ],
   },
@@ -379,6 +491,16 @@ export const CANONICAL_ESO_2025_BP_PICOS: EsoPicoItem[] = [
         qualityOfEvidence: "Moderate",
         strengthOfRecommendation: "Uncertain",
         drivingTrials: ["COSSACS", "ENOS"],
+        v3Labels: {
+          conditionIds: ["cond_ich"],
+          subspecialties: ["Stroke"],
+          domains: ["treatment"],
+          diagnosisTags: [],
+          timeWindowIds: [],
+          interventionTags: ["tag_blood_pressure_control"],
+          direction: "conditional",
+          isExplicit: true,
+        },
       },
     ],
   },
@@ -474,6 +596,16 @@ export const CANONICAL_ESO_2026_ASAH_PICOS: EsoPicoItem[] = [
         qualityOfEvidence: "High",
         strengthOfRecommendation: "Strong for intervention",
         drivingTrials: ["BRANT"],
+        v3Labels: {
+          conditionIds: ["cond_sah"],
+          subspecialties: ["Stroke"],
+          domains: ["prevention", "treatment"],
+          diagnosisTags: [],
+          timeWindowIds: ["cond_sah_tw_vasospasm_window_day_3_14"],
+          interventionTags: ["tag_nimodipine"],
+          direction: "recommended",
+          isExplicit: true,
+        },
       },
       {
         number: 2,
@@ -481,6 +613,16 @@ export const CANONICAL_ESO_2026_ASAH_PICOS: EsoPicoItem[] = [
         qualityOfEvidence: "Moderate",
         strengthOfRecommendation: "Strong against intervention",
         drivingTrials: ["MASH-2", "IMASH", "CONSCIOUS-1", "CONSCIOUS-2", "REACT", "STASH"],
+        v3Labels: {
+          conditionIds: ["cond_sah"],
+          subspecialties: ["Stroke"],
+          domains: ["prevention", "treatment"],
+          diagnosisTags: [],
+          timeWindowIds: ["cond_sah_tw_vasospasm_window_day_3_14"],
+          interventionTags: ["tag_statin"],
+          direction: "harm",
+          isExplicit: true,
+        },
       },
       {
         number: 3,
@@ -488,6 +630,16 @@ export const CANONICAL_ESO_2026_ASAH_PICOS: EsoPicoItem[] = [
         qualityOfEvidence: "Low",
         strengthOfRecommendation: "Uncertain / Ongoing trials",
         drivingTrials: ["PILLAR"],
+        v3Labels: {
+          conditionIds: ["cond_sah"],
+          subspecialties: ["Stroke"],
+          domains: ["prevention", "treatment"],
+          diagnosisTags: [],
+          timeWindowIds: ["cond_sah_tw_vasospasm_window_day_3_14"],
+          interventionTags: ["tag_sapt", "tag_lumbar_drain"],
+          direction: "conditional",
+          isExplicit: true,
+        },
       },
     ],
     drivingTrials: ["BRANT", "MASH-2", "REACT"],
@@ -629,6 +781,309 @@ export const CANONICAL_ESO_2026_ASAH_PICOS: EsoPicoItem[] = [
 ];
 
 /**
+ * Canonical 2024 European Stroke Organisation (ESO) Guidelines on Patent Foramen Ovale (PFO) After Stroke
+ * Full 6 PICOs with 10 distinct recommendations, official GRADE ratings, Expert Consensus Statements with line breaks and voting ratios, and key referenced studies.
+ */
+export const CANONICAL_ESO_2024_PFO_PICOS: EsoPicoItem[] = [
+  {
+    picoNumber: "1.1, 1.2 & 1.3",
+    picoQuestion:
+      "Diagnostic Performance of c-TCD, c-TTE, and c-TOE\nIn patients with cryptogenic stroke, what is the diagnostic performance of c-TCD and c-TTE compared with c-TOE for identifying a PFO-related right-to-left shunt (RLS)?",
+    expertConsensusStatement:
+      "1. As there is no technique that can be considered as a gold standard, we advise locally agreed diagnostic algorithms using the available techniques (c-TCD, c-TTE and c-TOE) to diagnose an RLS, keeping into consideration that c-TCD is suggested when c-TTE and/or c-TOE are inconclusive. (Vote: 8/9)\n\n2. In light of the available data, the MMG acknowledges that TCD demonstrates superior sensitivity relative to TTE in the RLS screening. (Vote: 6/9)\n\n3. In patients without an obvious cause of stroke, but with positive diagnosis of RLS on initial assessment, we suggest TOE to gain additional information about the presence and anatomy of the PFO. (Vote: 9/9)",
+    voting: "Vote: 8/9",
+    drivingTrials: [
+      "c-TCD vs c-TOE Meta-Analysis: 34 observational studies (n=3133; pooled sensitivity 0.96, 95% CI: 0.93–0.98; pooled specificity 0.90, 95% CI: 0.83–0.95; AUC 0.96; e.g., Belvís et al. 2006; Caputi et al. 2009; Chino et al. 2022; Park et al. 2021)",
+      "c-TTE vs c-TOE Meta-Analysis: 19 observational studies (n=2575; pooled sensitivity 0.71, 95% CI: 0.50–0.86; pooled specificity 0.99, 95% CI: 0.93–1.00; AUC 0.71; e.g., Kühl et al. 1999; Maffè et al. 2010; Takaya et al. 2022)",
+      "Robot-assisted TCD Trial: Rubin et al. Stroke 2023 (raTCD detected RLS in 64% vs 20% by TTE)",
+    ],
+    recommendations: [
+      {
+        number: 1,
+        statement:
+          "In patients without an obvious cause of stroke, there is continued uncertainty over the most accurate diagnostic approach for detecting any RLS, because of the lack of a proper gold standard. Therefore, we are unable to offer an evidence-based recommendation. Please see the expert consensus statement below.",
+        qualityOfEvidence: "Very low",
+        strengthOfRecommendation: "Uncertain / Ongoing trials",
+        drivingTrials: [
+          "c-TCD vs c-TOE Meta-Analysis: 34 observational studies (n=3133; pooled sensitivity 0.96, 95% CI: 0.93–0.98; pooled specificity 0.90, 95% CI: 0.83–0.95; AUC 0.96)",
+          "c-TTE vs c-TOE Meta-Analysis: 19 observational studies (n=2575; pooled sensitivity 0.71, 95% CI: 0.50–0.86; pooled specificity 0.99, 95% CI: 0.93–1.00; AUC 0.71)",
+          "Robot-assisted TCD Trial: Rubin et al. Stroke 2023 (raTCD detected RLS in 64% vs 20% by TTE)",
+        ],
+        v3Labels: {
+          conditionIds: ["cond_ischemic_stroke"],
+          subspecialties: ["Stroke"],
+          domains: ["diagnosis"],
+          diagnosisTags: ["tag_ultrasound_doppler"],
+          timeWindowIds: [],
+          interventionTags: [],
+          direction: "conditional",
+          isExplicit: true,
+        },
+      },
+    ],
+  },
+  {
+    picoNumber: 2,
+    picoQuestion:
+      "Percutaneous PFO Closure vs. Medical Therapy Alone\nIn patients with cryptogenic stroke and PFO, does percutaneous closure of PFO plus antiplatelet therapy, as compared to antiplatelet therapy alone, reduce the risk of stroke recurrence?",
+    expertConsensusStatement:
+      "1. This panel encourages the inclusion of patients older than 60 years old with stroke and PFO in randomised trials whenever possible, or at least in a registry. If this is not possible, the majority of the module working group members suggest using the PASCAL Classification System and clinical judgement to guide therapy. (Vote: 8/9)\n\n2. This panel suggests PFO closure in selected patients aged between 13 and 17 with PFO-related stroke according to PFO anatomy. (Vote: 9/9)\n\n3. In patients aged 18–60 years with unlikely PFO-related stroke according to the PASCAL classification, this panel suggests PFO closure in various combinations of the following situations, which suggest a high probability of clinical causality: non-cerebral embolism, deep venous thrombosis and/or pulmonary embolism close to index stroke, pulmonary arterial hypertension, history of sleep apnoea or other hypoxaemic conditions associated with PFO, Valsalva at stroke onset, recent history of prolonged immobility, recent airline travel, presence of venous thrombophilia, decompressive illness in divers, platypnea-orthodeoxia syndrome or a Eustachian valve or other anatomical features on echocardiography to enhance the risk of paradoxical embolism. (Vote: 7/9)\n\n4. Given the lack of evidence for the timing of PFO closure, the panel suggests considering PFO closure within 6 months post-index stroke, based on randomised studies. However, as secondary prevention procedures are time-dependent, PFO closure should be performed as soon as possible based on each patient’s clinical scenario, including stroke lesion size and risk profile. (Vote: 9/9)",
+    voting: "Vote: 8/9",
+    drivingTrials: [
+      "6 Pivotal RCTs: CLOSURE I (Furlan et al. NEJM 2012), PC Trial (Meier et al. NEJM 2013), RESPECT (Saver et al. NEJM 2013, 2017), CLOSE (Mas et al. NEJM 2017), Gore REDUCE (Søndergaard et al. NEJM 2017), DEFENCE-PFO (Lee et al. JACC 2018)",
+      "SCOPE Individual Patient Data Meta-Analysis (SCOPE IPDMA): Kent et al. JAMA 2021 (n=3728; adjusted HR 0.41, 95% CI: 0.28–0.60; 2-year ARR 1.7%)",
+      "Risk Scores: RoPE Score (Kent et al. Neurology 2013) & PASCAL Classification System (Kent et al. JAMA 2021; Mas et al. JAMA Neurol 2022)",
+    ],
+    recommendations: [
+      {
+        number: 1,
+        statement:
+          "In patients aged 18–60 years in whom no other evident cause of stroke is found but a PFO (i.e. PFO-associated stroke), we recommend PFO closure in selected patients, in addition to antiplatelet therapy (please see below for details).",
+        qualityOfEvidence: "High",
+        strengthOfRecommendation: "Strong for intervention",
+        drivingTrials: [
+          "6 Pivotal RCTs (CLOSURE I, PC, RESPECT, CLOSE, Gore REDUCE, DEFENCE-PFO)",
+          "SCOPE IPDMA: Kent et al. JAMA 2021 (n=3728; adjusted HR 0.41)",
+        ],
+        v3Labels: {
+          conditionIds: ["cond_ischemic_stroke"],
+          subspecialties: ["Stroke"],
+          domains: ["prevention"],
+          diagnosisTags: [],
+          timeWindowIds: [],
+          interventionTags: ["tag_pfo_closure", "tag_sapt"],
+          direction: "recommended",
+          isExplicit: true,
+        },
+      },
+      {
+        number: 2,
+        statement:
+          "In patients aged 18–60 years with possible or probable PFO-related stroke according to the PASCAL classification, we recommend PFO closure in addition to antiplatelet therapy.",
+        qualityOfEvidence: "Moderate",
+        strengthOfRecommendation: "Strong for intervention",
+        drivingTrials: [
+          "SCOPE IPDMA: Kent et al. JAMA 2021",
+          "PASCAL Classification System: Mas et al. JAMA Neurol 2022",
+        ],
+        v3Labels: {
+          conditionIds: ["cond_ischemic_stroke"],
+          subspecialties: ["Stroke"],
+          domains: ["prevention"],
+          diagnosisTags: ["tag_etiology_classification"],
+          timeWindowIds: [],
+          interventionTags: ["tag_pfo_closure", "tag_sapt"],
+          direction: "recommended",
+          isExplicit: true,
+        },
+      },
+      {
+        number: 3,
+        statement:
+          "In patients aged 18–60 years with unlikely PFO-related stroke according to the PASCAL classification, we suggest against PFO closure unless there is a high probability of clinical causality (please see the Expert consensus below).",
+        qualityOfEvidence: "Low",
+        strengthOfRecommendation: "Weak against intervention",
+        drivingTrials: [
+          "SCOPE IPDMA: Kent et al. JAMA 2021",
+          "PASCAL Classification System",
+        ],
+        v3Labels: {
+          conditionIds: ["cond_ischemic_stroke"],
+          subspecialties: ["Stroke"],
+          domains: ["prevention"],
+          diagnosisTags: ["tag_etiology_classification"],
+          timeWindowIds: [],
+          interventionTags: ["tag_pfo_closure"],
+          direction: "harm",
+          isExplicit: true,
+        },
+      },
+      {
+        number: 4,
+        statement:
+          "In patients older than 60 and younger than 18 years, no evidence-based recommendation can be provided. Please see the expert consensus statements below.",
+        qualityOfEvidence: "Very low",
+        strengthOfRecommendation: "Uncertain / Ongoing trials",
+        drivingTrials: [
+          "Pivotal RCTs excluded patients >60 and <18 years",
+        ],
+        v3Labels: {
+          conditionIds: ["cond_ischemic_stroke"],
+          subspecialties: ["Stroke"],
+          domains: ["prevention"],
+          diagnosisTags: [],
+          timeWindowIds: [],
+          interventionTags: ["tag_pfo_closure"],
+          direction: "conditional",
+          isExplicit: true,
+        },
+      },
+    ],
+  },
+  {
+    picoNumber: 3,
+    picoQuestion:
+      "Percutaneous PFO Closure vs. Oral Anticoagulation\nIn patients with cryptogenic stroke and PFO, does percutaneous closure of the PFO plus antiplatelet therapy compared with oral anticoagulants (VKA or DOACs) reduce the risk of stroke recurrence?",
+    expertConsensusStatement: "None developed beyond the PICO 2 timing consensus statement.",
+    drivingTrials: [
+      "CLOSE 3-arm RCT Subgroup: Mas et al. NEJM 2017 (238 PFO closure vs 187 anticoagulants; HR 0.14, 95% CI: 0.00–1.45, p=0.08)",
+      "Meta-Analysis of Non-randomized Data from CLOSURE I & RESPECT: Turc et al. JAHA 2018 (OR for stroke recurrence with OAC 0.74, 95% CI: 0.20–2.74)",
+      "SCOPE IPDMA: Kent et al. JAMA 2021",
+    ],
+    recommendations: [
+      {
+        number: 1,
+        statement:
+          "In patients aged 18–60 years with possible or probable PFO-related stroke according to the PASCAL classification, there is continued uncertainty regarding the risks and benefits of long-term anticoagulation vs. PFO closure. Nonetheless, we suggest PFO closure in addition to antiplatelet therapy instead of long-term oral anticoagulants alone, based on (1) the cumulative risk of major bleedings associated with long-term anticoagulation; (2) superiority of PFO closure over antithrombotic therapy demonstrated in the pivotal RCTs.",
+        qualityOfEvidence: "Low",
+        strengthOfRecommendation: "Weak for intervention",
+        drivingTrials: [
+          "CLOSE 3-arm RCT Subgroup: Mas et al. NEJM 2017 (HR 0.14, 95% CI: 0.00–1.45)",
+          "Meta-Analysis of Non-randomized Data from CLOSURE I & RESPECT: Turc et al. JAHA 2018",
+          "SCOPE IPDMA: Kent et al. JAMA 2021",
+        ],
+        v3Labels: {
+          conditionIds: ["cond_ischemic_stroke"],
+          subspecialties: ["Stroke"],
+          domains: ["prevention"],
+          diagnosisTags: ["tag_etiology_classification"],
+          timeWindowIds: [],
+          interventionTags: ["tag_pfo_closure", "tag_sapt", "tag_doac", "tag_vka"],
+          direction: "recommended",
+          isExplicit: true,
+        },
+      },
+    ],
+  },
+  {
+    picoNumber: 4,
+    picoQuestion:
+      "Oral Anticoagulation vs. Antiplatelet Therapy\nIn patients with cryptogenic stroke and PFO, does oral anticoagulation compared with antiplatelet therapy reduce the risk of recurrent stroke?",
+    expertConsensusStatement:
+      "In light of the results of the meta-analyses including both randomised trials and observational studies, the majority of this panel suggest an individualised approach to the choice of antithrombotic therapy for patients with PFO-related stroke who refuse PFO closure. The choice of anticoagulation over antiplatelet therapy should balance the expected lower risk of PFO-related stroke recurrence with a possible increase in the long-term risk of major bleeding and take into account the patient’s preference. (Vote: 9/9)",
+    voting: "Vote: 9/9",
+    drivingTrials: [
+      "Meta-Analysis of 2 RCTs & 3 Subgroup Analyses (n=1562): CLOSE (Mas et al. 2017), NAVIGATE ESUS (Hart et al. NEJM 2018), PICSS (Homma et al. Circulation 2002), RE-SPECT ESUS (Diener et al. NEJM 2019), Shariat et al. (J Res Med Sci 2013) -> Stroke Recurrence RR 0.76 (95% CI: 0.43–1.32); Major Bleeding RR 1.63 (95% CI: 0.77–3.43)",
+      "Systematic Reviews: Turc et al. JAHA 2018; Angelini et al. Cardiovasc Drugs Ther 2021 (16 studies, 3953 patients; OAC vs APT RR 0.65, 95% CI: 0.44–0.95)",
+    ],
+    recommendations: [
+      {
+        number: 1,
+        statement:
+          "There is continued uncertainty over the risks and benefits of the use of anticoagulation vs. antiplatelet therapy in patients in whom no other evident cause of stroke is found but a PFO (i.e., PFO-associated stroke).",
+        qualityOfEvidence: "Low",
+        strengthOfRecommendation: "Uncertain / Ongoing trials",
+        drivingTrials: [
+          "Meta-Analysis of 2 RCTs & 3 Subgroup Analyses (n=1562: CLOSE, NAVIGATE ESUS, PICSS, RE-SPECT ESUS, Shariat)",
+          "Angelini et al. Cardiovasc Drugs Ther 2021 (16 studies, 3953 patients; OAC vs APT RR 0.65)",
+        ],
+        v3Labels: {
+          conditionIds: ["cond_ischemic_stroke"],
+          subspecialties: ["Stroke"],
+          domains: ["prevention"],
+          diagnosisTags: [],
+          timeWindowIds: [],
+          interventionTags: ["tag_doac", "tag_vka", "tag_sapt"],
+          direction: "conditional",
+          isExplicit: true,
+        },
+      },
+    ],
+  },
+  {
+    picoNumber: 5,
+    picoQuestion:
+      "Antithrombotic Management After PFO Closure\nAfter percutaneous closure in patients with PFO-related stroke, does dual antiplatelet therapy after the procedure compared with single antiplatelet therapy reduce the risk of recurrent stroke?",
+    expertConsensusStatement:
+      "In patients with PFO-related stroke who underwent percutaneous closure, according to the protocol design of the majority of positive randomised controlled trials this panel suggests prescribing a dual antiplatelet therapy for 1–6 months and to continue a single antiplatelet therapy in the long term, for at least 5 years after percutaneous closure. (Vote: 9/9)",
+    voting: "Vote: 9/9",
+    drivingTrials: [
+      "Observational Studies: Adhikari et al. J Nepal Health Res Counc 2021; Wintzer-Wehekind et al. JACC 2019 (n=453; median follow-up 8 years; propensity score-matched analysis showing no difference in stroke rates upon SAPT/antithrombotic cessation)",
+      "Protocol Designs of the 6 Pivotal RCTs (CLOSURE I, PC, RESPECT, CLOSE, Gore REDUCE, DEFENCE-PFO)",
+    ],
+    recommendations: [
+      {
+        number: 1,
+        statement:
+          "In patients undergoing PFO we suggest dual antiplatelet therapy followed by single antiplatelet therapy to reduce the risk of recurrent stroke, based on the protocol of available RCTs (please see the Expert consensus below for details).",
+        qualityOfEvidence: "Low",
+        strengthOfRecommendation: "Weak for intervention",
+        drivingTrials: [
+          "Protocol Designs of the 6 Pivotal RCTs (CLOSURE I, PC, RESPECT, CLOSE, Gore REDUCE, DEFENCE-PFO)",
+          "Wintzer-Wehekind et al. JACC 2019 (n=453)",
+        ],
+        v3Labels: {
+          conditionIds: ["cond_ischemic_stroke"],
+          subspecialties: ["Stroke"],
+          domains: ["prevention"],
+          diagnosisTags: [],
+          timeWindowIds: [],
+          interventionTags: ["tag_dapt", "tag_sapt", "tag_pfo_closure"],
+          direction: "recommended",
+          isExplicit: true,
+        },
+      },
+      {
+        number: 2,
+        statement:
+          "No evidence-based recommendation can be formulated regarding the duration of the single antiplatelet treatment.",
+        qualityOfEvidence: "Very low",
+        strengthOfRecommendation: "Uncertain / Ongoing trials",
+        drivingTrials: [
+          "Protocol Designs of the 6 Pivotal RCTs (CLOSURE I, PC, RESPECT, CLOSE, Gore REDUCE, DEFENCE-PFO)",
+        ],
+        v3Labels: {
+          conditionIds: ["cond_ischemic_stroke"],
+          subspecialties: ["Stroke"],
+          domains: ["prevention"],
+          diagnosisTags: [],
+          timeWindowIds: [],
+          interventionTags: ["tag_sapt", "tag_pfo_closure"],
+          direction: "conditional",
+          isExplicit: true,
+        },
+      },
+    ],
+  },
+  {
+    picoNumber: 6,
+    picoQuestion:
+      "Prolonged Cardiac Monitoring After PFO Closure\nIn patients with PFO-related stroke who have undergone percutaneous closure, does prolonged cardiac monitoring compared with no prolonged cardiac monitoring, reduce the risk of recurrent stroke?",
+    expertConsensusStatement:
+      "1. In line with the ESO guidelines on screening for AF after cryptogenic stroke, this panel suggests that in patients aged 18–60 years in whom no other evident cause of stroke is found but a PFO (i.e. PFO-associated stroke), a basic cardiac monitoring during 24 h by telemetry or Holter-ECG should be performed before closure. (Vote: 8/9)\n\n2. In line with the ESO guidelines on screening for atrial fibrillation after cryptogenic stroke, we suggest using an ILR to detect paroxysmal AF in patients with cryptogenic stroke and PFO older than 60 years. (Vote: 7/9)\n\n3. We suggest that patients that have been implanted a loop recorder before PFO closure continue monitoring AF until the end-of-life of the recorder. (Vote: 8/9)\n\n4. We advise in favour of a systematic use of ILR in patients with recurrent stroke after PFO closure, negative short-term ECG monitoring and no other obvious causes for recurrence, regardless of age. (Vote: 8/9)\n\n5. We advise against systematic implantation of monitoring devices after PFO closure. (Vote: 8/9)",
+    voting: "Vote: 8/9",
+    drivingTrials: [
+      "Meta-Analysis of 5 Observational ILR Studies (n=2076): Guedeney et al. JACC Cardiovasc Interv 2022; Leclercq et al. Int J Cardiol Hear Vasc 2021; Oliva et al. Heart Rhythm 2022; Scacciatella et al. J Cardiovasc Med 2019; Gaspardone et al. JACC 2013 -> Pooled AF detection rate 10% (95% CI: 5–15%)",
+      "SCOPE IPDMA AF Analysis: Kent et al. JAMA 2021 (AF risk elevated within 45 days post-procedure, adjusted RR 4.54)",
+      "ESO AF Screening Guideline: Rubiera et al. Eur Stroke J 2022",
+    ],
+    recommendations: [
+      {
+        number: 1,
+        statement:
+          "In patients aged 18–60 years in whom no other evident cause of stroke is found but a PFO, there is continued uncertainty over the risks and benefits of the use of long-term cardiac monitoring (i.e. ILR) to increase the detection of subclinical AF. Please see the Expert Consensus Statement below.",
+        qualityOfEvidence: "Very low",
+        strengthOfRecommendation: "Uncertain / Ongoing trials",
+        drivingTrials: [
+          "Meta-Analysis of 5 Observational ILR Studies (n=2076; pooled AF detection rate 10%)",
+          "SCOPE IPDMA AF Analysis: Kent et al. JAMA 2021",
+        ],
+        v3Labels: {
+          conditionIds: ["cond_ischemic_stroke"],
+          subspecialties: ["Stroke"],
+          domains: ["diagnosis", "prevention"],
+          diagnosisTags: [],
+          timeWindowIds: [],
+          interventionTags: ["tag_holter_telemetry", "tag_pfo_closure"],
+          direction: "conditional",
+          isExplicit: true,
+        },
+      },
+    ],
+  },
+];
+
+/**
  * Helper to determine if a guideline belongs to AHA / ASA / ACC
  */
 export function isAhaGuideline(title?: string, id?: string): boolean {
@@ -707,6 +1162,29 @@ export function isEsoAsahGuideline(title?: string, id?: string): boolean {
 }
 
 /**
+ * Detect if a guideline document corresponds specifically to the ESO 2024 Patent Foramen Ovale (PFO) Guideline
+ */
+export function isEsoPfoGuideline(title?: string, id?: string): boolean {
+  if (isAhaGuideline(title, id)) return false;
+
+  const normTitle = (title || "").toLowerCase();
+  const normId = (id || "").toLowerCase();
+
+  const hasEso =
+    normId.includes("eso") ||
+    normTitle.includes("eso") ||
+    normTitle.includes("european stroke");
+  if (!hasEso) return false;
+
+  return (
+    normId.includes("pfo") ||
+    normTitle.includes("pfo") ||
+    normTitle.includes("patent foramen ovale") ||
+    normTitle.includes("lỗ bầu dục")
+  );
+}
+
+/**
  * Safely resolves the canonical ESO PICO collection for known guidelines.
  * Returns null if the guideline is generic or another topic (prevents content bleed between guidelines).
  */
@@ -716,6 +1194,9 @@ export function getCanonicalEsoPicos(title?: string, id?: string): EsoPicoItem[]
   }
   if (isEsoBpGuideline(title, id)) {
     return CANONICAL_ESO_2025_BP_PICOS;
+  }
+  if (isEsoPfoGuideline(title, id)) {
+    return CANONICAL_ESO_2024_PFO_PICOS;
   }
   return null;
 }
@@ -738,6 +1219,9 @@ export function normalizeEsoStrength(raw?: string, statement?: string): EsoRecom
     norm.includes("not assessable") ||
     norm.includes("unassessable") ||
     norm.includes("not assessed") ||
+    norm.includes("unable to offer an evidence-based recommendation") ||
+    norm.includes("no evidence-based recommendation") ||
+    norm.includes("continued uncertainty") ||
     norm.includes("không thể đánh giá") ||
     norm.includes("không đánh giá") ||
     norm.includes("không khuyến cáo được") ||
@@ -847,6 +1331,11 @@ export function normalizeEsoStrength(raw?: string, statement?: string): EsoRecom
     stmtNorm.includes("no recommendation can be") ||
     stmtNorm.includes("no recommendation is made") ||
     stmtNorm.includes("no suggestion can be given") ||
+    stmtNorm.includes("unable to offer an evidence-based recommendation") ||
+    stmtNorm.includes("no evidence-based recommendation can be provided") ||
+    stmtNorm.includes("no evidence-based recommendation can be formulated") ||
+    stmtNorm.includes("no evidence-based recommendation") ||
+    stmtNorm.includes("continued uncertainty") ||
     stmtNorm.includes("insufficient evidence to recommend") ||
     stmtNorm.includes("current evidence is insufficient") ||
     stmtNorm.includes("current data are insufficient") ||
@@ -935,9 +1424,20 @@ export function parseEsoGrade(gradeStr?: string, statement?: string): {
  */
 export function convertEsoPicoItemsToPracticeChanges(
   picos: EsoPicoItem[],
-  defaultCategory = "ESO Synoptic Table Recommendation"
+  defaultCategory = "ESO Synoptic Table Recommendation",
+  guidelineId?: string
 ): PracticeChangeDetail[] {
   const result: PracticeChangeDetail[] = [];
+  const gPrefix = guidelineId
+    ? `${guidelineId.replace(/^eso-\d{4}-/i, "").slice(0, 10)}-`
+    : isEsoPfoGuideline(defaultCategory, guidelineId)
+    ? "eso-pfo-"
+    : isEsoBpGuideline(defaultCategory, guidelineId)
+    ? "eso-bp-"
+    : isEsoAsahGuideline(defaultCategory, guidelineId)
+    ? "eso-asah-"
+    : "eso-";
+
   picos.forEach((pico) => {
     const pNumStr = String(pico.picoNumber).trim();
     const pQuestion = pico.picoQuestion.trim();
@@ -953,7 +1453,7 @@ export function convertEsoPicoItemsToPracticeChanges(
       const recConsensus = rec.expertConsensusStatement?.trim() || (pico.recommendations.length === 1 ? consensus : undefined);
       const recVoting = rec.voting?.trim() || (recConsensus && recConsensus === consensus ? voting : undefined);
       result.push({
-        id: `eso-pico-${pNumStr.toLowerCase()}${suffix}`,
+        id: `${gPrefix}pico-${pNumStr.toLowerCase()}${suffix}`,
         picoNumber: pico.picoNumber,
         picoQuestion: pQuestion,
         category: defaultCategory,
@@ -966,6 +1466,7 @@ export function convertEsoPicoItemsToPracticeChanges(
         currentText: rec.statement,
         expertConsensusStatement: recConsensus,
         drivingTrials: trials,
+        v3Labels: rec.v3Labels || pico.v3Labels,
       });
     });
   });
@@ -1048,6 +1549,13 @@ export function groupPracticeChangesIntoEsoPicos(
         (combinedText.includes("acute ischaemic stroke") && combinedText.includes("spontaneous ich"))
       ) {
         canonicalList = CANONICAL_ESO_2025_BP_PICOS;
+      } else if (
+        combinedText.includes("patent foramen ovale") ||
+        combinedText.includes("pfo") ||
+        combinedText.includes("right-to-left shunt") ||
+        combinedText.includes("pfo closure")
+      ) {
+        canonicalList = CANONICAL_ESO_2024_PFO_PICOS;
       }
     }
   }
@@ -1059,8 +1567,10 @@ export function groupPracticeChangesIntoEsoPicos(
       recommendations: cp.recommendations.map((r) => ({
         ...r,
         drivingTrials: r.drivingTrials ? [...r.drivingTrials] : undefined,
+        v3Labels: r.v3Labels ? { ...r.v3Labels } : undefined,
       })),
       drivingTrials: cp.drivingTrials ? [...cp.drivingTrials] : undefined,
+      v3Labels: cp.v3Labels ? { ...cp.v3Labels } : undefined,
     }));
 
     return clonedCanonical.sort((a, b) => comparePicoNumbers(a.picoNumber, b.picoNumber));
@@ -1148,6 +1658,7 @@ export function groupPracticeChangesIntoEsoPicos(
       drivingTrials: item.drivingTrials || [],
       expertConsensusStatement: recConsensus,
       voting: recVoting,
+      v3Labels: item.v3Labels,
     });
   });
 
