@@ -260,29 +260,6 @@ export default function NeuroCasePage() {
     const applyCasesData = (loadedCases: ClinicalCase[]) => {
       const merged = Array.isArray(loadedCases) ? loadedCases : [];
       setCases(merged);
-
-      const todayIso = getLocalTodayIso();
-      const isDailyCase = (c: ClinicalCase) =>
-        !c.archive_only && c.is_daily_challenge === true;
-
-      const activeDailies = merged
-        .filter(
-          (c) =>
-            (!c.status || c.status === "approved") &&
-            isDailyCase(c) &&
-            c.published_date <= todayIso
-        )
-        .sort((a, b) => b.published_date.localeCompare(a.published_date));
-
-      const firstDaily =
-        activeDailies[0] ||
-        merged
-          .filter((c) => (!c.status || c.status === "approved") && isDailyCase(c))
-          .sort((a, b) => b.published_date.localeCompare(a.published_date))[0] ||
-        merged[0];
-      if (firstDaily) {
-        setActiveCaseId((prev) => prev || firstDaily.id);
-      }
     };
 
     // 1. TỐC ĐỘ 0ms: Nạp ngay từ Cache trình duyệt nếu có (Local Cache-First)
@@ -347,6 +324,7 @@ export default function NeuroCasePage() {
       const data: ClinicalCase[] = await res.json();
       if (Array.isArray(data) && data.length > 0) {
         setCases(data);
+        localStorage.setItem("neurocase_cached_cases_v2", JSON.stringify(data));
         setServerSyncSuccess(`✓ Synchronized with server (${data.length} cases)`);
         setTimeout(() => setServerSyncSuccess(""), 4000);
       } else {
@@ -433,7 +411,7 @@ export default function NeuroCasePage() {
 
   const currentCase = useMemo(
     () =>
-      approvedCases.find((c) => c.id === activeCaseId) ||
+      (activeCaseId ? approvedCases.find((c) => c.id === activeCaseId) : null) ||
       dailyChallengeCases[0] ||
       approvedCases[0],
     [approvedCases, dailyChallengeCases, activeCaseId]
@@ -493,7 +471,7 @@ export default function NeuroCasePage() {
     if (!currentCase || list.length === 0) return;
     const idx = list.findIndex((c) => c.id === currentCase.id);
     const nextIdx = idx >= 0 ? (idx + 1) % list.length : 0;
-    setActiveCaseId(list[nextIdx].id);
+    setActiveCaseId(nextIdx === 0 ? "" : list[nextIdx].id);
     setShowDetailedWorkup(false);
   };
 
@@ -797,7 +775,13 @@ export default function NeuroCasePage() {
                 <button
                   key={tab.id}
                   type="button"
-                  onClick={() => setActiveTab(tab.id as typeof activeTab)}
+                  onClick={() => {
+                    setActiveTab(tab.id as typeof activeTab);
+                    if (tab.id === "daily") {
+                      setActiveCaseId("");
+                      setShowDetailedWorkup(false);
+                    }
+                  }}
                   className={`px-3.5 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
                     active
                       ? "bg-indigo-600 text-white shadow-sm"
@@ -848,7 +832,7 @@ export default function NeuroCasePage() {
             difficultyBadges={DIFFICULTY_BADGES}
             formatChallengeDate={formatChallengeDate}
             onSelectCase={(caseId) => {
-              setActiveCaseId(caseId);
+              setActiveCaseId(caseId === dailyChallengeCases[0]?.id ? "" : caseId);
               setShowDetailedWorkup(false);
             }}
             onSelectOption={handleSelectOption}

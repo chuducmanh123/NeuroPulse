@@ -854,17 +854,24 @@ export default function AdminCommandCenter() {
             <div className="text-[10px] text-slate-500">NIHSS, mRS, ICH</div>
           </div>
 
-          <div className={`p-3 rounded-xl border opacity-75 border-l-4 border-l-cyan-500 ${darkMode ? "bg-slate-900/40 border-slate-800" : "bg-slate-50 border-slate-200"}`}>
+          <Link
+            href="/neurovision"
+            className={`p-3 rounded-xl border text-left transition-all cursor-pointer border-l-4 border-l-cyan-500 ${
+              darkMode
+                ? "bg-slate-900/60 border-slate-800 hover:bg-slate-800/60 hover:border-cyan-500/40"
+                : "bg-white border-slate-200 shadow-xs hover:bg-cyan-50/40 hover:border-cyan-300"
+            }`}
+          >
             <div className="flex items-center justify-between text-slate-400 text-[11px]">
               <span className="font-bold text-cyan-600 dark:text-cyan-400 flex items-center gap-1">
                 <span>👁️</span>
                 <span>NeuroVision</span>
               </span>
-              <span className="text-[9px] uppercase px-1 rounded bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 font-bold">Coming Soon</span>
+              <span className="w-2 h-2 rounded-full bg-cyan-500"></span>
             </div>
-            <div className="text-base font-bold mt-1 text-slate-700 dark:text-slate-300">Imaging AI</div>
-            <div className="text-[10px] text-slate-500">ASPECTS &amp; CTP</div>
-          </div>
+            <div className="text-base font-black mt-1 text-slate-900 dark:text-white">Imaging AI</div>
+            <div className="text-[10px] text-cyan-600 dark:text-cyan-400 font-medium">ASPECTS &amp; CTP</div>
+          </Link>
 
           <div className={`p-3 rounded-xl border opacity-75 border-l-4 border-l-rose-500 ${darkMode ? "bg-slate-900/40 border-slate-800" : "bg-slate-50 border-slate-200"}`}>
             <div className="flex items-center justify-between text-slate-400 text-[11px]">
@@ -935,7 +942,7 @@ export default function AdminCommandCenter() {
               {
                 id: "system" as const,
                 label: "⚙️ Architecture & Storage (System Core)",
-                badge: healthData?.diagnostics?.storage?.blobConnected ? "Online" : undefined,
+                badge: (healthData?.diagnostics?.storage?.supabase?.connected || healthData?.diagnostics?.storage?.supabase?.configured || healthData?.diagnostics?.storage?.blobConnected) ? "Online" : undefined,
                 activeClass: "bg-indigo-600 text-white shadow-md shadow-indigo-500/25 ring-1 ring-indigo-400/40",
                 inactiveClass: darkMode
                   ? "text-slate-300 hover:bg-indigo-950/40 hover:text-indigo-300"
@@ -1648,29 +1655,29 @@ export default function AdminCommandCenter() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5">
                 {/* 1. Storage Health */}
                 <div
-                  className={`p-4 rounded-xl border border-l-4 border-l-sky-500 space-y-2.5 ${
-                    darkMode ? "bg-sky-950/20 border-sky-900/40" : "bg-sky-50/70 border-sky-200"
+                  className={`p-4 rounded-xl border border-l-4 border-l-emerald-500 space-y-2.5 ${
+                    darkMode ? "bg-emerald-950/20 border-emerald-900/40" : "bg-emerald-50/70 border-emerald-200"
                   }`}
                 >
                   <div className="flex items-center justify-between text-xs font-bold">
-                    <span className="text-sky-950 dark:text-sky-100 flex items-center gap-1.5">
-                      <span>☁️</span>
-                      <span>Vercel Blob Cloud</span>
+                    <span className="text-emerald-950 dark:text-emerald-100 flex items-center gap-1.5">
+                      <span>⚡</span>
+                      <span>Supabase</span>
                     </span>
                     <span
                       className={`px-2 py-0.5 rounded-full text-[10px] font-black ${
-                        healthData?.diagnostics?.storage?.blobConnected
+                        healthData?.diagnostics?.storage?.supabase?.connected || healthData?.diagnostics?.storage?.supabase?.configured
                           ? "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30"
                           : "bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30"
                       }`}
                     >
-                      {healthData?.diagnostics?.storage?.blobConnected ? "Connected" : "Fallback Ready"}
+                      {healthData?.diagnostics?.storage?.supabase?.connected ? "Connected" : healthData?.diagnostics?.storage?.supabase?.configured ? "Connected" : "Fallback Ready"}
                     </span>
                   </div>
                   <div className="text-xs text-slate-600 dark:text-slate-400 space-y-1">
-                    <div>Blobs Stored: <strong className="text-slate-900 dark:text-slate-200">{healthData?.diagnostics?.storage?.blobFilesCount ?? 0} files</strong></div>
-                    <div>Store ID: <span className="font-mono text-[11px] bg-slate-200/60 dark:bg-slate-800 px-1.5 py-0.5 rounded">{healthData?.diagnostics?.storage?.blobStoreId || "Configured"}</span></div>
-                    <div className="text-[10.5px] text-sky-600 dark:text-sky-400 font-medium">Auto Multi-tier Fallback Active</div>
+                    <div>Storage Bucket: <strong className="text-slate-900 dark:text-slate-200">{healthData?.diagnostics?.storage?.supabase?.storageBucket || "guidelines-pdf"}</strong></div>
+                    <div>Database: <span className="font-mono text-[11px] bg-slate-200/60 dark:bg-slate-800 px-1.5 py-0.5 rounded">{healthData?.diagnostics?.storage?.supabase?.connected ? "PostgreSQL Active" : "Configured"}</span></div>
+                    <div className="text-[10.5px] text-emerald-600 dark:text-emerald-400 font-medium">PostgreSQL &amp; Cloud Storage Active</div>
                   </div>
                 </div>
 
@@ -1696,7 +1703,6 @@ export default function AdminCommandCenter() {
                     </span>
                   </div>
                   <div className="text-xs text-slate-600 dark:text-slate-400 space-y-1">
-                    <div>Active Key: <span className="font-mono text-[11px] bg-slate-200/60 dark:bg-slate-800 px-1.5 py-0.5 rounded">{healthData?.diagnostics?.ai?.maskedKey || "AIzaSy..."}</span></div>
                     <div>Model: <strong className="text-slate-900 dark:text-slate-200">Gemini 2.5 Flash / Pro</strong></div>
                     <div className="text-[10.5px] text-violet-600 dark:text-violet-400 font-medium">SSE Real-Time Stream Ready</div>
                   </div>
@@ -1732,15 +1738,15 @@ export default function AdminCommandCenter() {
                   <span>Detailed Ecosystem Service Matrix</span>
                 </div>
 
-                <div className={`flex items-center justify-between p-3.5 rounded-xl border border-l-4 border-l-sky-500 transition-all ${
+                <div className={`flex items-center justify-between p-3.5 rounded-xl border border-l-4 border-l-emerald-500 transition-all ${
                   darkMode ? "bg-slate-800/40 border-slate-800" : "bg-slate-50/70 border-slate-200"
                 }`}>
                   <div>
                     <div className="font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
-                      <span className="text-sky-500">☁️</span>
-                      <span>Dynamic Storage Multi-Tier Engine</span>
+                      <span className="text-emerald-500">⚡</span>
+                      <span>Supabase Cloud Storage &amp; Database</span>
                     </div>
-                    <div className="text-slate-500 text-[11px] mt-0.5">Automatic multi-tier fallback between Vercel Blob, Vercel KV, and local JSON</div>
+                    <div className="text-slate-500 text-[11px] mt-0.5">PostgreSQL database and guidelines-pdf storage bucket with local cache fallback</div>
                   </div>
                   <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
                     Active &amp; Ready

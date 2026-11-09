@@ -115,6 +115,22 @@ const STUDY_TYPE_TABS = [
   "Editorial / Perspective",
 ];
 
+// Month Options for Publication Time Filter
+const MONTH_OPTIONS = [
+  { value: "01", label: "January (01)", shortLabel: "Jan" },
+  { value: "02", label: "February (02)", shortLabel: "Feb" },
+  { value: "03", label: "March (03)", shortLabel: "Mar" },
+  { value: "04", label: "April (04)", shortLabel: "Apr" },
+  { value: "05", label: "May (05)", shortLabel: "May" },
+  { value: "06", label: "June (06)", shortLabel: "Jun" },
+  { value: "07", label: "July (07)", shortLabel: "Jul" },
+  { value: "08", label: "August (08)", shortLabel: "Aug" },
+  { value: "09", label: "September (09)", shortLabel: "Sep" },
+  { value: "10", label: "October (10)", shortLabel: "Oct" },
+  { value: "11", label: "November (11)", shortLabel: "Nov" },
+  { value: "12", label: "December (12)", shortLabel: "Dec" },
+];
+
 // Trọng số điểm Study Type cho Morning Clinical Briefing (RCT & Guideline thực sự được ưu tiên cao nhất)
 const STUDY_TYPE_WEIGHTS: Record<string, number> = {
   RCT: 55,
@@ -456,6 +472,8 @@ export default function HomePage() {
   const [selectedSub, setSelectedSub] = useState<string>("All");
   const [selectedJournal, setSelectedJournal] = useState<string>("All");
   const [selectedType, setSelectedType] = useState<string>("All");
+  const [selectedYear, setSelectedYear] = useState<string>("All");
+  const [selectedMonth, setSelectedMonth] = useState<string>("All");
   const [showSavedOnly, setShowSavedOnly] = useState<boolean>(false);
   const [showBriefing, setShowBriefing] = useState<boolean>(true);
   const [briefingCopied, setBriefingCopied] = useState<boolean>(false);
@@ -618,6 +636,41 @@ export default function HomePage() {
     return counts;
   }, [articles]);
 
+  // Dynamic publication years and recent active months for English time filter
+  const availableYears = useMemo(() => {
+    const years = new Set<string>();
+    for (const a of articles) {
+      if (a.pub_date && a.pub_date.length >= 4) {
+        years.add(a.pub_date.slice(0, 4));
+      }
+    }
+    return Array.from(years).sort((a, b) => b.localeCompare(a));
+  }, [articles]);
+
+  const recentActiveMonths = useMemo(() => {
+    const counts: Record<string, number> = {};
+    for (const a of articles) {
+      if (a.pub_date && a.pub_date.length >= 7) {
+        const ym = a.pub_date.slice(0, 7);
+        counts[ym] = (counts[ym] || 0) + 1;
+      }
+    }
+    return Object.keys(counts)
+      .sort((a, b) => b.localeCompare(a))
+      .slice(0, 4)
+      .map((ym) => {
+        const [year, month] = ym.split("-");
+        const monthObj = MONTH_OPTIONS.find((m) => m.value === month);
+        return {
+          year,
+          month,
+          ym,
+          label: `${monthObj?.shortLabel || month} ${year}`,
+          count: counts[ym],
+        };
+      });
+  }, [articles]);
+
   // Hot Topics: Tự động chấm điểm "Độ nóng" mỗi ngày từ dữ liệu bài báo thực tế dựa trên số lượng bài báo nhắc tới chủ đề và độ mới
   const hotTopics = useMemo(() => {
     return calculateDailyHotTopics(articles, 5);
@@ -631,6 +684,8 @@ export default function HomePage() {
       setSelectedSub("All");
       setSelectedJournal("All");
       setSelectedType("All");
+      setSelectedYear("All");
+      setSelectedMonth("All");
       setShowSavedOnly(false);
     }
     setVisibleCount(35);
@@ -746,6 +801,17 @@ export default function HomePage() {
         selectedType === "All" ||
         types.some((t) => t.toLowerCase() === selectedType.toLowerCase());
 
+      // Filter by Publication Date (Year & Month)
+      if (selectedYear !== "All") {
+        const artYear = article.pub_date ? article.pub_date.slice(0, 4) : "";
+        if (artYear !== selectedYear) return false;
+      }
+
+      if (selectedMonth !== "All") {
+        const artMonth = article.pub_date ? article.pub_date.slice(5, 7) : "";
+        if (artMonth !== selectedMonth) return false;
+      }
+
       const noteText = (clinicalNotes[article.id] || "").toLowerCase();
       const searchableCorpus = `${article.title} ${article.abstract} ${article.ai_takeaways?.conclusion_vi || ""} ${subs.join(" ")} ${article.neurology_classification.topics.join(" ")} ${article.authors.join(" ")} ${noteText}`.toLowerCase();
 
@@ -777,6 +843,8 @@ export default function HomePage() {
     selectedSub,
     selectedJournal,
     selectedType,
+    selectedYear,
+    selectedMonth,
     showSavedOnly,
     bookmarks,
     deferredSearchQuery,
@@ -835,6 +903,8 @@ export default function HomePage() {
     selectedSub !== "All" ||
     selectedJournal !== "All" ||
     selectedType !== "All" ||
+    selectedYear !== "All" ||
+    selectedMonth !== "All" ||
     showSavedOnly ||
     searchQuery.trim() !== "";
 
@@ -842,6 +912,8 @@ export default function HomePage() {
     setSelectedSub("All");
     setSelectedJournal("All");
     setSelectedType("All");
+    setSelectedYear("All");
+    setSelectedMonth("All");
     setShowSavedOnly(false);
     setSearchQuery("");
     setVisibleCount(35);
@@ -1288,6 +1360,144 @@ export default function HomePage() {
                   ))}
                 </div>
               </div>
+
+              {/* FILTER BY PUBLICATION TIME (MONTH + YEAR) */}
+              <div
+                className={`pt-3 border-t ${
+                  darkMode ? "border-slate-800" : "border-slate-100"
+                }`}
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                    FILTER BY TIME (PERIOD):
+                  </div>
+                  {(selectedYear !== "All" || selectedMonth !== "All") && (
+                    <button
+                      onClick={() => {
+                        setSelectedYear("All");
+                        setSelectedMonth("All");
+                        setVisibleCount(35);
+                      }}
+                      className="text-[10px] font-bold text-blue-500 hover:text-blue-400 underline cursor-pointer"
+                    >
+                      Clear Date
+                    </button>
+                  )}
+                </div>
+
+                {/* Quick Recent Active Months */}
+                {recentActiveMonths.length > 0 && (
+                  <div className="flex flex-wrap items-center gap-1.5 mb-2.5">
+                    {recentActiveMonths.map((item) => {
+                      const isSelected =
+                        selectedYear === item.year && selectedMonth === item.month;
+                      return (
+                        <button
+                          key={item.ym}
+                          onClick={() => {
+                            if (isSelected) {
+                              setSelectedYear("All");
+                              setSelectedMonth("All");
+                            } else {
+                              setSelectedYear(item.year);
+                              setSelectedMonth(item.month);
+                            }
+                            setVisibleCount(35);
+                          }}
+                          className={`px-2 py-1 rounded-md text-[11px] font-semibold transition-all flex items-center gap-1 cursor-pointer ${
+                            isSelected
+                              ? "bg-teal-600 text-white shadow-xs"
+                              : darkMode
+                              ? "bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white"
+                              : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                          }`}
+                          title={`Filter articles published in ${item.label}`}
+                        >
+                          <span>{item.label}</span>
+                          <span
+                            className={`text-[9.5px] px-1 py-0.2 rounded-full ${
+                              isSelected
+                                ? "bg-white/20 text-white"
+                                : darkMode
+                                ? "bg-black/30 text-slate-400"
+                                : "bg-slate-200 text-slate-600"
+                            }`}
+                          >
+                            {item.count}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+
+                {/* Year & Month Dropdowns */}
+                <div className="grid grid-cols-2 gap-2">
+                  <div>
+                    <label className="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">
+                      Year
+                    </label>
+                    <select
+                      value={selectedYear}
+                      onChange={(e) => {
+                        setSelectedYear(e.target.value);
+                        setVisibleCount(35);
+                      }}
+                      aria-label="Filter by publication year"
+                      className={`w-full px-2 py-1.5 rounded-lg text-xs font-semibold border outline-none transition-colors cursor-pointer ${
+                        selectedYear !== "All"
+                          ? "bg-teal-600 text-white border-teal-500 font-bold"
+                          : darkMode
+                          ? "bg-slate-800 border-slate-700 text-slate-200"
+                          : "bg-slate-50 border-slate-200 text-slate-700"
+                      }`}
+                    >
+                      <option value="All">All Years</option>
+                      {availableYears.map((y) => (
+                        <option
+                          key={y}
+                          value={y}
+                          className={darkMode ? "bg-slate-900 text-white" : "bg-white text-slate-900"}
+                        >
+                          {y}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">
+                      Month
+                    </label>
+                    <select
+                      value={selectedMonth}
+                      onChange={(e) => {
+                        setSelectedMonth(e.target.value);
+                        setVisibleCount(35);
+                      }}
+                      aria-label="Filter by publication month"
+                      className={`w-full px-2 py-1.5 rounded-lg text-xs font-semibold border outline-none transition-colors cursor-pointer ${
+                        selectedMonth !== "All"
+                          ? "bg-teal-600 text-white border-teal-500 font-bold"
+                          : darkMode
+                          ? "bg-slate-800 border-slate-700 text-slate-200"
+                          : "bg-slate-50 border-slate-200 text-slate-700"
+                      }`}
+                    >
+                      <option value="All">All Months</option>
+                      {MONTH_OPTIONS.map((m) => (
+                        <option
+                          key={m.value}
+                          value={m.value}
+                          className={darkMode ? "bg-slate-900 text-white" : "bg-white text-slate-900"}
+                        >
+                          {m.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+              </div>
             </div>
           </aside>
 
@@ -1359,9 +1569,28 @@ export default function HomePage() {
                 {selectedType !== "All" && (
                   <button
                     onClick={() => setSelectedType("All")}
-                    className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-violet-600 text-white flex items-center gap-1"
+                    className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-violet-600 text-white flex items-center gap-1 cursor-pointer"
                   >
                     <span>Type: {selectedType}</span>
+                    <span>✕</span>
+                  </button>
+                )}
+                {(selectedYear !== "All" || selectedMonth !== "All") && (
+                  <button
+                    onClick={() => {
+                      setSelectedYear("All");
+                      setSelectedMonth("All");
+                    }}
+                    className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-teal-600 text-white flex items-center gap-1 cursor-pointer"
+                  >
+                    <span>
+                      Date:{" "}
+                      {selectedMonth !== "All"
+                        ? MONTH_OPTIONS.find((m) => m.value === selectedMonth)?.shortLabel || selectedMonth
+                        : ""}
+                      {selectedMonth !== "All" && selectedYear !== "All" ? " " : ""}
+                      {selectedYear !== "All" ? selectedYear : selectedMonth !== "All" ? "(All Years)" : ""}
+                    </span>
                     <span>✕</span>
                   </button>
                 )}

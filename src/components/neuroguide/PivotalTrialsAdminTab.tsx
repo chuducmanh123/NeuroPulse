@@ -26,6 +26,19 @@ export function PivotalTrialsAdminTab({
   const [selectedSource, setSelectedSource] = useState<string>("ALL");
   const [selectedVerdict, setSelectedVerdict] = useState<string>("ALL");
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
+
+  const toggleExpand = (id: string) => {
+    setExpandedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  };
 
   // Statistics calculation for Executive Dashboard
   const stats = useMemo(() => {
@@ -117,6 +130,17 @@ export function PivotalTrialsAdminTab({
       );
     });
   }, [trials, searchQuery, selectedSubspecialty, selectedSource, selectedVerdict]);
+
+  const allExpanded =
+    filteredTrials.length > 0 && expandedIds.size === filteredTrials.length;
+
+  const toggleAll = () => {
+    if (allExpanded) {
+      setExpandedIds(new Set());
+    } else {
+      setExpandedIds(new Set(filteredTrials.map((t) => t.id)));
+    }
+  };
 
   const handleDelete = async (trial: PivotalTrialRecord) => {
     setDeletingId(trial.id);
@@ -228,16 +252,19 @@ export function PivotalTrialsAdminTab({
         }`}
       >
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-200 dark:border-slate-800">
-          <div>
-            <h3 className="text-base font-bold flex items-center gap-2">
-              <span>🔬 Landmark Clinical Trials &amp; Late-Breaking Registry</span>
-              <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
-                {filteredTrials.length} / {trials.length} Active
-              </span>
-            </h3>
-            <p className="text-xs text-slate-500 mt-0.5">
-              Structured quantitative PICO endpoints (~700 bytes/trial) driving evidence-based guideline recommendations
-            </p>
+          <div className="flex items-center gap-2.5">
+            <span className="text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
+              {filteredTrials.length} / {trials.length} Active
+            </span>
+            {filteredTrials.length > 0 && (
+              <button
+                type="button"
+                onClick={toggleAll}
+                className="text-xs font-medium text-slate-500 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400 px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-indigo-400 transition-all cursor-pointer"
+              >
+                {allExpanded ? "Thu gọn tất cả" : "Mở rộng tất cả"}
+              </button>
+            )}
           </div>
 
           {/* Action buttons: Add Trial & Refresh */}
@@ -355,22 +382,31 @@ export function PivotalTrialsAdminTab({
           ) : (
             filteredTrials.map((trial) => {
               const isDeleting = deletingId === trial.id;
+              const isExpanded = expandedIds.has(trial.id);
               const verdictStyle = getVerdictBadgeStyle(trial.primaryEndpoint?.verdict);
 
               return (
                 <div
                   key={trial.id}
-                  className={`p-4 rounded-xl border transition-all space-y-3 ${
+                  className={`rounded-xl border transition-all overflow-hidden ${
                     darkMode
                       ? "bg-slate-800/40 border-slate-700/60 hover:border-indigo-500/40"
                       : "bg-slate-50/80 border-slate-200 hover:border-indigo-400 hover:shadow-xs"
                   }`}
                 >
-                  {/* Top Bar: Acronym, Badges, Verdict, and Action Buttons */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  {/* Summary Bar: Tên + Tạp chí + Năm + Badges + Actions */}
+                  <div
+                    onClick={() => toggleExpand(trial.id)}
+                    className="p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 cursor-pointer select-none hover:bg-indigo-50/30 dark:hover:bg-slate-800/60 transition-colors"
+                    title={isExpanded ? "Bấm để thu gọn chi tiết" : "Bấm để xem chi tiết nghiên cứu"}
+                  >
                     <div className="flex items-center gap-2 flex-wrap">
+                      <span className="text-xs text-indigo-500 dark:text-indigo-400 font-bold transition-transform duration-150 inline-block w-3 text-center">
+                        {isExpanded ? "▼" : "▶"}
+                      </span>
+
                       <span className="text-sm font-extrabold text-indigo-600 dark:text-indigo-400">
-                        {trial.acronym}
+                        {trial.acronym || trial.title}
                       </span>
                       <span className="text-xs text-slate-500 font-medium">
                         ({trial.journal || "Journal"} {trial.year})
@@ -397,7 +433,10 @@ export function PivotalTrialsAdminTab({
                       )}
                     </div>
 
-                    <div className="flex items-center gap-2 self-end sm:self-center">
+                    <div
+                      className="flex items-center gap-2 self-end sm:self-center"
+                      onClick={(e) => e.stopPropagation()}
+                    >
                       <span
                         className={`px-2 py-0.5 rounded text-[10.5px] font-black border ${verdictStyle}`}
                       >
@@ -406,7 +445,11 @@ export function PivotalTrialsAdminTab({
 
                       <button
                         type="button"
-                        onClick={() => onEditTrial(trial)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setExpandedIds((prev) => new Set(prev).add(trial.id));
+                          onEditTrial(trial);
+                        }}
                         className="px-2.5 py-1 rounded-lg text-xs font-bold bg-indigo-600 hover:bg-indigo-500 text-white transition-all flex items-center gap-1 cursor-pointer shadow-xs"
                         title="Edit trial details, PICO, and endpoints"
                       >
@@ -417,7 +460,10 @@ export function PivotalTrialsAdminTab({
                       <button
                         type="button"
                         disabled={isDeleting}
-                        onClick={() => handleDelete(trial)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDelete(trial);
+                        }}
                         className="px-2 py-1 rounded-lg text-xs font-bold bg-rose-500/10 text-rose-600 dark:text-rose-400 hover:bg-rose-500/20 border border-rose-500/20 transition-all flex items-center gap-1 cursor-pointer"
                         title="Delete trial from library"
                       >
@@ -426,118 +472,123 @@ export function PivotalTrialsAdminTab({
                     </div>
                   </div>
 
-                  {/* Full Title */}
-                  <div className="text-xs font-semibold text-slate-800 dark:text-slate-200">
-                    {trial.title}
-                  </div>
-
-                  {/* Compact PICO Box */}
-                  <div className="p-2.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 text-[11.5px] space-y-1">
-                    <div>
-                      <strong className="text-slate-500 font-bold">P (Population):</strong>{" "}
-                      <span className="text-slate-800 dark:text-slate-200">
-                        {trial.pico?.population || "Not specified"}
-                      </span>
-                    </div>
-                    <div>
-                      <strong className="text-indigo-600 dark:text-indigo-400 font-bold">
-                        I (Intervention):
-                      </strong>{" "}
-                      <span className="text-slate-800 dark:text-slate-200 font-medium">
-                        {trial.pico?.intervention || "Not specified"}
-                      </span>{" "}
-                      <strong className="text-slate-400 font-bold">vs. C (Comparator):</strong>{" "}
-                      <span className="text-slate-600 dark:text-slate-400">
-                        {trial.pico?.comparator || "Standard care"}
-                      </span>
-                    </div>
-                    {trial.pico?.timeWindow && (
-                      <div className="text-slate-500 text-[10.5px]">
-                        <strong>Time Window:</strong> {trial.pico.timeWindow}
+                  {/* Chi tiết nội dung nghiên cứu (Chỉ hiện ra khi bấm vào hoặc edit) */}
+                  {isExpanded && (
+                    <div className="px-4 pb-4 pt-2 space-y-3 border-t border-slate-200/80 dark:border-slate-800 bg-white/50 dark:bg-slate-900/40">
+                      {/* Full Title */}
+                      <div className="text-xs font-semibold text-slate-800 dark:text-slate-200 pt-1">
+                        {trial.title}
                       </div>
-                    )}
-                  </div>
 
-                  {/* Primary & Safety Endpoints */}
-                  <div className="space-y-1.5 text-xs">
-                    <div className="p-2 rounded-lg bg-emerald-50/70 dark:bg-emerald-950/25 border border-emerald-200/70 dark:border-emerald-900/50">
-                      <span className="font-bold text-emerald-800 dark:text-emerald-300">
-                        Primary ({trial.primaryEndpoint?.metric || "Outcome"}):{" "}
-                      </span>
-                      <span className="font-semibold text-slate-900 dark:text-slate-100">
-                        {trial.primaryEndpoint?.resultStats || "Reported in trial"}
-                      </span>
-                    </div>
-
-                    {(trial.safetyEndpoint?.sICH ||
-                      trial.safetyEndpoint?.mortality90d ||
-                      trial.safetyEndpoint?.note) && (
-                      <div className="px-2 py-0.5 text-[11px] text-slate-600 dark:text-slate-400 flex flex-wrap gap-x-3 gap-y-0.5 font-medium">
-                        {trial.safetyEndpoint.sICH && (
-                          <span>
-                            <strong>sICH:</strong> {trial.safetyEndpoint.sICH}
+                      {/* Compact PICO Box */}
+                      <div className="p-2.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 text-[11.5px] space-y-1">
+                        <div>
+                          <strong className="text-slate-500 font-bold">P (Population):</strong>{" "}
+                          <span className="text-slate-800 dark:text-slate-200">
+                            {trial.pico?.population || "Not specified"}
                           </span>
-                        )}
-                        {trial.safetyEndpoint.mortality90d && (
-                          <span>
-                            <strong>90d Mortality:</strong> {trial.safetyEndpoint.mortality90d}
+                        </div>
+                        <div>
+                          <strong className="text-indigo-600 dark:text-indigo-400 font-bold">
+                            I (Intervention):
+                          </strong>{" "}
+                          <span className="text-slate-800 dark:text-slate-200 font-medium">
+                            {trial.pico?.intervention || "Not specified"}
+                          </span>{" "}
+                          <strong className="text-slate-400 font-bold">vs. C (Comparator):</strong>{" "}
+                          <span className="text-slate-600 dark:text-slate-400">
+                            {trial.pico?.comparator || "Standard care"}
                           </span>
+                        </div>
+                        {trial.pico?.timeWindow && (
+                          <div className="text-slate-500 text-[10.5px]">
+                            <strong>Time Window:</strong> {trial.pico.timeWindow}
+                          </div>
                         )}
-                        {trial.safetyEndpoint.note && <span>• {trial.safetyEndpoint.note}</span>}
                       </div>
-                    )}
-                  </div>
 
-                  {/* Bottom-Line Clinical Takeaway */}
-                  {trial.bottomLine && (
-                    <div className="text-[11.5px] text-amber-900 dark:text-amber-200 bg-amber-500/10 p-2 rounded-lg border border-amber-500/20 font-medium">
-                      💡 <span className="font-bold">Takeaway:</span> {trial.bottomLine}
+                      {/* Primary & Safety Endpoints */}
+                      <div className="space-y-1.5 text-xs">
+                        <div className="p-2 rounded-lg bg-emerald-50/70 dark:bg-emerald-950/25 border border-emerald-200/70 dark:border-emerald-900/50">
+                          <span className="font-bold text-emerald-800 dark:text-emerald-300">
+                            Primary ({trial.primaryEndpoint?.metric || "Outcome"}):{" "}
+                          </span>
+                          <span className="font-semibold text-slate-900 dark:text-slate-100">
+                            {trial.primaryEndpoint?.resultStats || "Reported in trial"}
+                          </span>
+                        </div>
+
+                        {(trial.safetyEndpoint?.sICH ||
+                          trial.safetyEndpoint?.mortality90d ||
+                          trial.safetyEndpoint?.note) && (
+                          <div className="px-2 py-0.5 text-[11px] text-slate-600 dark:text-slate-400 flex flex-wrap gap-x-3 gap-y-0.5 font-medium">
+                            {trial.safetyEndpoint.sICH && (
+                              <span>
+                                <strong>sICH:</strong> {trial.safetyEndpoint.sICH}
+                              </span>
+                            )}
+                            {trial.safetyEndpoint.mortality90d && (
+                              <span>
+                                <strong>90d Mortality:</strong> {trial.safetyEndpoint.mortality90d}
+                              </span>
+                            )}
+                            {trial.safetyEndpoint.note && <span>• {trial.safetyEndpoint.note}</span>}
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Bottom-Line Clinical Takeaway */}
+                      {trial.bottomLine && (
+                        <div className="text-[11.5px] text-amber-900 dark:text-amber-200 bg-amber-500/10 p-2 rounded-lg border border-amber-500/20 font-medium">
+                          💡 <span className="font-bold">Takeaway:</span> {trial.bottomLine}
+                        </div>
+                      )}
+
+                      {/* Footer Citation Links & Ontology Tags */}
+                      <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-200 dark:border-slate-800 text-[11px]">
+                        <div className="flex items-center gap-3">
+                          {trial.pmid && (
+                            <a
+                              href={`https://pubmed.ncbi.nlm.nih.gov/${trial.pmid}/`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-0.5"
+                            >
+                              <span>PMID: {trial.pmid}</span>
+                              <span>↗</span>
+                            </a>
+                          )}
+                          {trial.doi && (
+                            <a
+                              href={`https://doi.org/${trial.doi.replace(/^https?:\/\/(dx\.)?doi\.org\//i, "")}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="font-bold text-slate-600 dark:text-slate-400 hover:underline flex items-center gap-0.5"
+                            >
+                              <span>DOI: {trial.doi}</span>
+                              <span>↗</span>
+                            </a>
+                          )}
+                        </div>
+
+                        {/* Ontology Tags Summary Pill */}
+                        {trial.ontologyTags && Object.keys(trial.ontologyTags).length > 0 && (
+                          <div className="flex items-center gap-1 flex-wrap">
+                            {Object.entries(trial.ontologyTags).flatMap(([facet, tags]) =>
+                              (tags || []).slice(0, 3).map((tag) => (
+                                <span
+                                  key={`${facet}-${tag}`}
+                                  className="px-1.5 py-0.2 rounded text-[9.5px] font-mono bg-slate-200/60 dark:bg-slate-700/60 text-slate-600 dark:text-slate-300"
+                                >
+                                  {tag}
+                                </span>
+                              ))
+                            )}
+                          </div>
+                        )}
+                      </div>
                     </div>
                   )}
-
-                  {/* Footer Citation Links & Ontology Tags */}
-                  <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-200 dark:border-slate-800 text-[11px]">
-                    <div className="flex items-center gap-3">
-                      {trial.pmid && (
-                        <a
-                          href={`https://pubmed.ncbi.nlm.nih.gov/${trial.pmid}/`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-0.5"
-                        >
-                          <span>PMID: {trial.pmid}</span>
-                          <span>↗</span>
-                        </a>
-                      )}
-                      {trial.doi && (
-                        <a
-                          href={`https://doi.org/${trial.doi.replace(/^https?:\/\/(dx\.)?doi\.org\//i, "")}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="font-bold text-slate-600 dark:text-slate-400 hover:underline flex items-center gap-0.5"
-                        >
-                          <span>DOI: {trial.doi}</span>
-                          <span>↗</span>
-                        </a>
-                      )}
-                    </div>
-
-                    {/* Ontology Tags Summary Pill */}
-                    {trial.ontologyTags && Object.keys(trial.ontologyTags).length > 0 && (
-                      <div className="flex items-center gap-1 flex-wrap">
-                        {Object.entries(trial.ontologyTags).flatMap(([facet, tags]) =>
-                          (tags || []).slice(0, 3).map((tag) => (
-                            <span
-                              key={`${facet}-${tag}`}
-                              className="px-1.5 py-0.2 rounded text-[9.5px] font-mono bg-slate-200/60 dark:bg-slate-700/60 text-slate-600 dark:text-slate-300"
-                            >
-                              {tag}
-                            </span>
-                          ))
-                        )}
-                      </div>
-                    )}
-                  </div>
                 </div>
               );
             })
