@@ -210,6 +210,7 @@
         "Dementia"
       ],
       "topics": [
+        "Alzheimer",
         "Dementia"
       ]
     },
@@ -343,9 +344,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-06T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Original Article",
     "article_types": [
-      "Editorial / Perspective"
+      "Original Article"
     ],
     "authors": [
       "Yuan Xiaoqin",
@@ -366,11 +367,11 @@
         "Spinal"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Figure Images in Spinal Dural Arteriovenous Fistula (A) Sagittal T2-weighted MRI demonstrates intramedullary hyperintensity and perimedullary flow voids.(B) Sagittal maximum intensity projection (MIP), (C) volume-rendered reconstruction of the photon-counting CT angiography (PCCTA) localizes the fistula at the T12 level.(D) Selective digital subtraction angiography (DSA) confirms the fistula.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "Photon-counting CT angiography (PCCTA) provides noninvasive, highly precise anatomic localization of thoracic spinal dural arteriovenous fistulas. Utilizing PCCTA for targeted pre-angiographic planning can streamline diagnostic digital subtraction angiography and optimize operative localization.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -824,11 +825,11 @@
         "Neurology"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "A 30-year-old man presented with vertigo, vomiting, headaches, and dysarthria.Brain MRI (Figure 1) showed acute bilateral cerebellar infarctions and supratentorial obstructive hydrocephalus.Twenty-four hours after extraventricular device insertion, the patient became mute.Cortical aphasia and apraxia of speech were ruled out by intact comprehension and absent articulatory programming errors, confirming profound speech loss with preserved cognition, recognized as cerebellar mutism syndrome.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "Cerebellar mutism syndrome can occur after bilateral cerebellar strokes, presenting as profound speech loss with preserved cognition and comprehension. Neurologists should recognize this syndrome in post-stroke patients presenting with acute mutism following the acute management of obstructive hydrocephalus.",
       "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
