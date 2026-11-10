@@ -1,5 +1,863 @@
 [
   {
+    "id": "10.1001/jamaneurol.2026.4165",
+    "title": "Arrival of CAR T-Cell Therapies for Stiff Person Syndrome",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-11-09T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Gupta Sasha",
+      "Gelfand Jeffrey M."
+    ],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4165",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at JAMA Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1001/jamaneurol.2026.4155",
+    "title": "Mivocabtagene Autoleucel CD19 Chimeric Antigen Receptor T-Cell Therapy in Stiff Person Syndrome",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-11-09T00:00:00Z",
+    "article_type": "Clinical Trial",
+    "article_types": [
+      "Clinical Trial",
+      "Original Article"
+    ],
+    "authors": [
+      "Piquet Amanda L.",
+      "Zekeridou Anastasia",
+      "Gergis Usama",
+      "Gutman Jonathan",
+      "Kenderian Saad S.",
+      "Lowe Mallory",
+      "Eggmann Sadie",
+      "McKeon Andrew",
+      "Pittock Sean J.",
+      "Rakocevic Goran",
+      "Yi Jessica J.",
+      "Newsome Scott D.",
+      "Chou Justin",
+      "Van Blarcom Tom",
+      "Sun John",
+      "Sengupta Shouvonik",
+      "Tooker Ryan",
+      "Mehta Aditi",
+      "Li Xiaoming",
+      "Grayson Dena",
+      "Gehchan Naji",
+      "Dalakas Marinos C."
+    ],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4155",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Importance: Stiff person syndrome (SPS) is a progressive, autoimmune neurologic disease characterized by muscle stiffness and painful spasms, leading to substantial disability. Mivocabtagene autoleucel, a fully human, autologous CD19 chimeric antigen receptor (CAR) T-cell therapy with CD28 costimulation, showed durable clinical benefit on a named-patient basis in SPS. Objective: To evaluate the efficacy and safety of mivocabtagene autoleucel in adult SPS. Design, Setting, and Participants: This pivotal, single-arm, open-label, nonrandomized phase 2 study enrolled participants from September 2024 to May 2025 at 3 US sites. Individuals aged 18 to 75 years with antibody-positive SPS and inadequate response to immunomodulatory/immunosuppressive therapies as determined by investigators were included. Intervention: Patients received low-dose lymphodepletion (fludarabine, 30 mg/m 2 /d, and cyclophosphamide, 300 mg/m 2 /d, for 3 days), followed by a single mivocabtagene autoleucel infusion (1 × 10 8 CAR T cells). Main Outcomes and Measures: Primary end points were the change from baseline to week 16 in the timed 25-ft walk (T25FW) and safety. Secondary end points were modified Rankin Scale score, Distribution of Stiffness Index score, Heightened Sensitivity Scale score, and Hauser Ambulation Index score. Exploratory end points included pharmacokinetic and pharmacodynamic assessments and biomarkers. Results: Of 27 patients enrolled, 26 (median [range] age, 56.0 [32.0-73.0] years; 16 [61.5%] female) were treated. Median (range) follow-up was 6.5 (4.4-12.2) months. The primary efficacy end point was met, with significant week 16 improvement from baseline in T25FW of a mean of −7.69 seconds (SD, 10.03; 95% CI, −11.74 to −3.64; P < .001) and a median (IQR) of −4.8 (−11.9 to −2.5) seconds (45.6% median improvement); improvement was sustained (median, 44.4%) among 16 of 26 patients who reached the 24-week time point. All secondary efficacy end points showed significant week 16 improvements from baseline (modified Rankin Scale score: mean, −0.8 points [SD, 0.86; 95% CI, −1.1 to −0.4; P < .001], Distribution of Stiffness Index score: mean, −1.5 points [SD, 1.75; 95% CI, −2.2 to −0.8; P < .001]; Heightened Sensitivity Scale score: mean, −3.2 points [SD, 2.01; 95% CI, −4.0 to −2.3; P < .001]; Hauser Ambulation Index score: mean, −1.6 points [SD, 1.13; 95% CI, −2.1 to −1.2; P < .001]). The most common grade 3/4 treatment-related adverse event was neutropenia (5/26 patients [19.2%]). Low-grade cytokine release syndrome and immune effector cell–associated neurotoxicity syndrome occurred in 24 of 26 patients (92.3%; 10/26 [38.5%] grade 1; 14/26 [53.8%] grade 2) and 3 of 26 patients (11.5%; all grade 1), respectively; all resolved without sequelae. B-cell depletion and clear changes suggestive of immune reset were observed. At last follow-up, all patients remained free of immunomodulatory therapies for SPS. Conclusions and Relevance: In this nonrandomized clinical trial, a single dose of mivocabtagene autoleucel resulted in immunotherapy-free remissions with a consistent, well-tolerated safety profile, demonstrating a highly effective therapy in antibody-positive SPS with the potential for durable remissions. Long-term follow-up is ongoing. Trial Registration: ClinicalTrials.gov Identifier: NCT06588491",
+    "ai_takeaways": {
+      "conclusion_vi": "In patients with refractory antibody-positive stiff person syndrome, a single infusion of mivocabtagene autoleucel significantly improved gait speed (T25FW mean change −7.69 seconds; 95% CI, −11.74 to −3.64; P < .001) and disability (mRS mean change −0.8 points; 95% CI, −1.1 to −0.4; P < .001) at 16 weeks, achieving immunotherapy-free remissions with manageable toxicity.",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1001/jamaneurol.2026.4491",
+    "title": "Azetukalner in Adults With Focal Seizures",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-11-09T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4491",
+    "neurology_classification": {
+      "subspecialty": "Epilepsy",
+      "subspecialties": [
+        "Epilepsy"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at JAMA Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Epilepsy practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1001/jamaneurol.2026.4141",
+    "title": "Azetukalner in Adults With Focal Seizures",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-11-09T00:00:00Z",
+    "article_type": "Clinical Trial",
+    "article_types": [
+      "Clinical Trial",
+      "Original Article"
+    ],
+    "authors": [
+      "French Jacqueline A.",
+      "LaFrance W. Curt",
+      "Ryvlin Philippe",
+      "Trinka Eugen",
+      "Villanueva Vicente",
+      "Wechsler Robert",
+      "Beatch Gregory N.",
+      "Dhakar Monica B.",
+      "Forgacs Peter B.",
+      "Luzon Rosenblut Constanza",
+      "McIntosh Joseph W.",
+      "Namdari Rostam",
+      "Qian Jenny",
+      "Kenney Christopher",
+      "Klein Pavel",
+      "Rafiuddin Asfi",
+      "Zhang Lixin",
+      "Sperling Michael",
+      "Liow Kore",
+      "Steriade Claude",
+      "Henninger Heidi",
+      "Drapcho Ben",
+      "Wechsler Robert",
+      "Sadek Ahmed",
+      "Tsai Jeffrey",
+      "Terman Samuel",
+      "Biton Victor",
+      "Aboumatar Sami",
+      "Li George",
+      "Izadyar Shahram",
+      "Burghardt Tyson",
+      "Shah Aashit",
+      "Fertig Evan",
+      "Cahill Joseph",
+      "Fakhoury Toufic",
+      "Marcuse Lara",
+      "Aggarwal Rajiv",
+      "Naritoku Dean",
+      "Perkins Alvin Thomas",
+      "Ryan Timothy",
+      "Bensalem-Owen Meriem",
+      "Hogan Robert Edward",
+      "Gursky Jonathan",
+      "Labiner David",
+      "Jacobson Mercedes",
+      "Dave Hina Narendra",
+      "Lhatoo Samden Dorjee",
+      "Flitman Steven",
+      "Benmoshe Danny",
+      "Winkel Daniel",
+      "Popli Gautam",
+      "Husain Aatif",
+      "Harid Nitish",
+      "Agrawal Shubhi",
+      "Sosa Veronica",
+      "Fabris Rachel",
+      "Szabo Charles Akos",
+      "Pritchard Jennifer",
+      "Shah Vishal",
+      "Graf Daniel",
+      "Weisholtz Daniel",
+      "Kostandy Alison",
+      "Kandula Padmaja",
+      "Rossi Marvin",
+      "Afra Pegah",
+      "Herekar Aamr",
+      "Jaramillo Sergio",
+      "Escasena Carlos",
+      "Weber Dan",
+      "Haagensen Jennifer",
+      "Wang Tian",
+      "Amiri Michael",
+      "Benbadis Selim",
+      "Winder Toni",
+      "Mirsattari Seyed",
+      "Pellegrino Giovanni",
+      "Keezer Mark",
+      "Suastegui Roman Roberto Alfonso",
+      "Lopez Meza Elmer",
+      "Mohanraj Rajiv",
+      "Hamandi Khalid",
+      "Datta Prabal",
+      "Sen Arjune",
+      "Maguire Melissa",
+      "Samarasekera Shanika",
+      "Koepp Matthias",
+      "Galizia Elizabeth",
+      "Rosenow Felix",
+      "Remi Jan",
+      "Wagner Jan",
+      "Brandt Christian",
+      "Schmitz Bettina",
+      "Lerche Holger",
+      "Schulze-Bonhage Andreas",
+      "Knake Susanne",
+      "Mayer Thomas",
+      "Surges Rainer",
+      "Toledano Rafael",
+      "Serratosa Fernández Jose María",
+      "Gil-Nagel Antonio",
+      "Serrano-Castro Pedro",
+      "Villanueva Vicente",
+      "Campos Blanco Dulce",
+      "Saiz Diaz Rosa Ana",
+      "Garcia Morales Irene",
+      "Toledo Manuel",
+      "Aledo-Serrano Ángel",
+      "Bajacek Michal",
+      "Di Bonaventura Carlo",
+      "Pizzanelli Chiara",
+      "Mostacci Barbara",
+      "Sensi Stefano Luca",
+      "Lisewski Pawel",
+      "Zielinski Tomasz",
+      "Majkowska Zwolińska Beata",
+      "Rego Ricardo",
+      "Grebe Peter",
+      "Cruto Catarina",
+      "Kastrev Sasho",
+      "Nieto Flavia",
+      "Thomson Alejandro",
+      "Estol Conrado",
+      "Jose Jorge Gustavo",
+      "Garcia Maria Del Carmen",
+      "Deri Norma",
+      "Consalvo Damian",
+      "Kochen Silvia",
+      "Uribe Reinaldo",
+      "Matamala Gonzalo",
+      "Kwan Kwok Leung Patrick",
+      "Chang Richard",
+      "Nicolo John-Paul",
+      "Perucca Piero",
+      "D'Souza Wendyl",
+      "Craig Donald",
+      "Cordato Dennis",
+      "Wijayath Manori",
+      "Wong Toh Hock",
+      "Nikpour Armin",
+      "Zentner Christian",
+      "Romero Ferrando Beatriz",
+      "Walker Elizabeth",
+      "Kasradze Sofia",
+      "Gzirishvili Nino",
+      "Widdess Walsh Peter",
+      "Karelis Guntis",
+      "Pucite Elina"
+    ],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4141",
+    "neurology_classification": {
+      "subspecialty": "Epilepsy",
+      "subspecialties": [
+        "Epilepsy"
+      ],
+      "topics": [
+        "Epilepsy",
+        "Seizure"
+      ]
+    },
+    "abstract": "Importance: Despite more than 30 approved antiseizure medications, many individuals with focal epilepsy continue to experience seizures, indicating a persistent need for novel therapies. Objective: To determine efficacy and safety of the novel, potent K V 7 channel opener azetukalner for treatment of focal seizures. Design, Setting, and Participants: This phase 3, placebo-controlled randomized clinical trial of azetukalner was conducted over a 12-week double-blind period (November 18, 2022, to February 3, 2026) at 138 sites in North America, South America, Europe, and Asia Pacific. Adults with focal epilepsy experiencing 4 or more focal seizures per month despite stable treatment with 1 to 3 antiseizure medications were enrolled. Data were analyzed using a dataset derived from the database lock dated February 26, 2026. Interventions: Participants were randomized 1:1:1 to receive placebo or 15 or 25 mg of azetukalner once daily with the evening meal for 12 weeks with no titration period. Participants completing the double-blind period could enter an open-label extension. Main Outcomes and Measures: The primary efficacy end point was median percentage change from baseline in monthly (28-day) focal seizure frequency during the double-blind period for azetukalner vs placebo. Safety and tolerability were assessed by recording treatment-emergent adverse events, changes in clinical laboratory findings, vital signs, and electrocardiogram. Results: Of 607 adults screened, 374 participants (190 [50.8%] female; mean [SD] age, 40.0 [12.9] years) were enrolled, randomized and treated with placebo (125 participants), 15-mg azetukalner (125 participants), or 25-mg azetukalner (124 participants). Participants had a baseline median (IQR) of 12.75 (7.56 to 32.97) seizures per month and had previously tried and stopped a median (IQR) of 5 (3 to 8) antiseizure medications. Most (336 participants [89.8%]) were receiving 2 to 3 concomitant antiseizure medications. The median (IQR) change from baseline in monthly seizure frequency was −10.4% (−39.1% to 8.3%) for the placebo group, −34.5% (−61.6% to −12.3%) for the 15-mg azetukalner group ( P < .001 vs placebo), and −53.2% (−77.2% to −28.8%) for the 25-mg azetukalner group ( P < .001 vs placebo). Azetukalner was generally well tolerated, and treatment-emergent adverse events were comparable to those observed in the phase 2b X-TOLE trial. Conclusions and Relevance: This randomized clinical trial found that azetukalner demonstrated robust, rapid, and durable reductions in seizure frequency with a favorable benefit-risk profile. Treatment with azetukalner resulted in one of the largest median percentage reductions in seizure frequency vs placebo reported to date in patients with drug-resistant epilepsy, supporting azetukalner as a promising novel antiseizure medication with significant opportunity to improve clinical outcomes. Trial Registration: ClinicalTrials.gov Identifier: NCT05614063",
+    "ai_takeaways": {
+      "conclusion_vi": "In adults with drug-resistant focal epilepsy, once-daily azetukalner significantly reduced monthly seizure frequency compared to placebo (-34.5% for 15 mg and -53.2% for 25 mg vs -10.4% for placebo; P < .001 for both doses). Azetukalner was generally well tolerated, offering a novel Kv7 channel opener mechanism for highly treatment-refractory patients.",
+      "clinical_significance": "Clinical significance for Epilepsy practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1001/jamaneurol.2026.4017",
+    "title": "Identification of RIMKLA-IgG Paraneoplastic Neurological Syndrome With Cerebellar Ataxia",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-11-09T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Mandel-Brehm Caleigh",
+      "Witek Natalie",
+      "Kung Andrew F.",
+      "Do Le-Duy",
+      "Picard Géraldine",
+      "Huynh Trung",
+      "Tran Baouyen",
+      "Zorn Kelsey C.",
+      "Lin Jinxia",
+      "Khan Lillian",
+      "Sample Hannah",
+      "Knudsen Giselle",
+      "Chalkey Robert J.",
+      "O’Donovan Brian",
+      "Alvarez Enrique",
+      "Pastula Daniel M.",
+      "Douglas Vanja",
+      "Gelfand Jeffrey M.",
+      "Wilson Michael R.",
+      "Pleasure Samuel J.",
+      "Honnorat Jerome",
+      "DeRisi Joseph L."
+    ],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.4017",
+    "neurology_classification": {
+      "subspecialty": "Movement Disorders",
+      "subspecialties": [
+        "Movement Disorders",
+        "Neuroimmunology"
+      ],
+      "topics": [
+        "Encephalitis",
+        "Neurological",
+        "Ataxia"
+      ]
+    },
+    "abstract": "Importance: Autoimmune cerebellar ataxias are debilitating neurological syndromes that need early detection and intervention. Antineural antibodies are a crucial diagnostic marker, however, lack of knowledge of specific autoantibodies in seronegative patients remains a significant challenge. Objective: To pair a cutting-edge, standardized, and rigorous autoantibody detection pathway with global clinical networks to identify novel autoantibody markers of autoimmune ataxia. Design, Setting, and Participants: This was a multicenter case series study that included samples of patients with uncharacterized central nervous system disorders, collected between 2015 and 2020 at the University of California, San Francisco (UCSF). A comprehensive screening for additional patients was conducted using a blinded cell-based and tissue-based assay in the French reference center on paraneoplastic neurological syndrome (PNS) and autoimmune encephalitis (AE). Analysis was completed in 2026. Referred participants included those with idiopathic neurological disease with suspicion of autoimmune etiology, controls with noninflammatory disease, and patients with known paraneoplastic autoantibody associations who served as positive controls. Sera and cerebrospinal fluid were collected for autoantibody screening and validation experiments. Exposures: Autoantibody screening and candidate antibody validations. Main Outcomes and Measures: Detection of autoantibodies and characterization of their usefulness as biomarkers of autoimmune clinical symptoms. Results: A total of 35 patients were referred, and 8 patients (median [IQR] age, 65 [47-74] years; 6 male [75%]) were identified to have IgG targeting the intracellular neural protein ribosomal modification protein RimK-like family member A (RIMKLA). Initially, cerebrospinal fluid (CSF) from a UCSF index patient with small cell lung cancer and inflammatory cerebellar ataxia showed a specific staining pattern in the deep nuclei of the cerebellum and brainstem but was seronegative on all known panels of PNS biomarkers. Subsequent screening identified 7 additional patients sharing a similar clinical profile characterized by progressive cerebellar ataxia, diplopia, cranial VI paresis, and sensory and motor abnormalities. The majority of patients (6 of 8 [75%]) had associated small cell lung cancer. All patients also exhibited inflammatory CSF and immunoglobulin synthesis. Conclusions and Relevance: In this case series, novel PNS autoantibodies targeting the neural protein RIMKLA were identified in patients with small cell lung cancer and cerebellar ataxia. RIMKLA-IgG represents a new diagnostic biomarker for an intracellular-antigen PNS associated with cerebellar and hindbrain encephalitis with possible peripheral and motor involvement.",
+    "ai_takeaways": {
+      "conclusion_vi": "RIMKLA-IgG is a novel autoantibody biomarker for paraneoplastic cerebellar ataxia and hindbrain encephalitis presenting with progressive ataxia, diplopia, and inflammatory CSF. Identification should prompt urgent evaluation for underlying small cell lung cancer, which was diagnosed in 6 of 8 (75%) patients.",
+      "clinical_significance": "Clinical significance for Movement Disorders practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1161/strokeaha.126.056058",
+    "title": "Stroke Triggered by Respiratory Viruses: Ecological Study of Temporal and Spatiotemporal Associations",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-11-09T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Nguyen Tu Q.",
+      "Spelman Tim",
+      "Dalli Lachlan L.",
+      "Zhao Eric",
+      "Atkins Benjamin D.",
+      "Weinman Aaron L.",
+      "Clothier Hazel J.",
+      "Mavoa Suzanne",
+      "Kilkenny Monique F.",
+      "Reid Christopher M.",
+      "Buttery Jim P.",
+      "Korman Tony",
+      "Daley Andrew",
+      "Clifford Vanessa",
+      "Jenney Adam",
+      "Bond Katherine",
+      "Chean Roy",
+      "Hersusianto Yvonne",
+      "Athan Eugene",
+      "Black Jim"
+    ],
+    "doi_url": "https://doi.org/10.1161/strokeaha.126.056058",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Stroke",
+        "Ischemic"
+      ]
+    },
+    "abstract": "BACKGROUND: Infections have been linked as short-term triggers for stroke, but the extent of their contribution is unclear. We examined population-level temporal and spatiotemporal associations between common respiratory viruses and stroke in an ecological study in Victoria, Australia. METHODS: The statewide Victorian Admitted Episodes data set, covering all hospital admissions for stroke between June 2010 and December 2022, was analyzed against statewide representative data from SnotWatch respiratory polymerase chain reaction tests. Population size, climate, and air pollution data sets for the same period were treated as population-level confounders. Time-series analysis was used to model weekly stroke events and respiratory virus levels (% of polymerase chain reaction tests positive for each pathogen), and attributable fractions were computed using distributed lag nonlinear modeling. To examine spatiotemporal variation, the weekly association by Statistical Area Level 2 was modeled using a Bayesian Integrated Nested Laplace Approximation. RESULTS: We analyzed 153 730 stroke events (61% ischemic, 25% hemorrhagic, and 14% unspecified) and 6 180 896 respiratory specimens. In the time-series analysis, higher weekly levels of specific respiratory viruses were associated with increased rates of stroke after controlling for confounders. Our model estimated that the fractions of strokes attributed to enterovirus and human metapneumovirus 4.6% (95% CI, 2.5–6.6) and 1.3% (95% CI, 0.3–2.3), respectively, which rose during peak viral weeks. The attributable fractions differed between ischemic stroke (human metapneumovirus 3.7%) and hemorrhagic stroke (enterovirus, 5.8%; parainfluenza, 3.2%). Spatiotemporal analysis revealed greater effect sizes in areas potentially associated with agricultural/industrial activity, as well as in outer-urban areas, based on the regionality of the Statistical Area Level 2 of usual patient residence. CONCLUSIONS: At the population level, there were clear, observable time- and space-time-related associations between respiratory virus activity and stroke. People living in higher-risk areas during peak respiratory virus periods may be more susceptible to acute stroke. This warrants further investigation.",
+    "ai_takeaways": {
+      "conclusion_vi": "At the population level, enterovirus and human metapneumovirus activity triggered acute stroke, accounting for attributable fractions of 4.6% (95% CI, 2.5–6.6) and 1.3% (95% CI, 0.3–2.3) of cases, respectively. Neurologists should recognize seasonal respiratory viral peaks and patient residence in outer-urban or industrial/agricultural areas as periods of heightened stroke susceptibility.",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218741",
+    "title": "Clinical Reasoning: A 69-Year-Old Female Patient With Rapid-Onset Levodopa-Responsive Rest Tremor, Parkinsonism, and Gait Freezing",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-09T00:00:00Z",
+    "article_type": "Case Report",
+    "article_types": [
+      "Case Report"
+    ],
+    "authors": [
+      "Georgiades Matthew J.",
+      "Becker San Martin Paloma I.",
+      "Jeyakumar Niroshan",
+      "Manser David",
+      "Elstub Hannah",
+      "Buckland Michael E.",
+      "Morales-Briceño Hugo"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218741",
+    "neurology_classification": {
+      "subspecialty": "Movement Disorders",
+      "subspecialties": [
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Tremor"
+      ]
+    },
+    "abstract": "The evaluation of rapid-onset parkinsonism can be challenging, and the differential diagnosis encompasses a broad spectrum of etiology, management, and prognosis. We present a 69-year-old patient who developed rapid-onset resting tremor and parkinsonism with gait freezing. Her upper limb resting tremor began unilaterally but rapidly progressed to involve the contralateral limb and subsequently the lower limbs. This evolved within 3 months to also include generalized parkinsonism and a shuffling gait with prominent freezing and frequent falls. Her tremor was levodopa responsive; however, other symptoms were resistant to treatment. Through this case, we will demonstrate the diagnostic approach to rapid-onset parkinsonism, summarizing a comprehensive evaluation of history, examination, and investigations. Readers will consider atypical features revealed by examination and investigations, ultimately arriving at a conclusive and critical diagnosis not to be missed in the presentation of parkinsonism.",
+    "ai_takeaways": {
+      "conclusion_vi": "Rapid-onset levodopa-responsive parkinsonism progressing within months warrants an urgent, comprehensive evaluation to rule out critical secondary, vascular, structural, or autoimmune etiologies. Clinicians must carefully investigate atypical exam features and neuroimaging to avoid missing reversible or rapidly progressive non-idiopathic conditions mimicking Parkinson's disease.",
+      "clinical_significance": "Clinical significance for Movement Disorders practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218774",
+    "title": "Right Brain: Climbing an Infinite Mountain",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-09T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Acurio Ortiz Karlos"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218774",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Brain"
+      ]
+    },
+    "abstract": "This is the story of the events that transpired after I found out I had matched into neurology in the United States. It is not a story of triumph over adversity, but rather an honest admission of vulnerability-of anxiety and fear experienced during this process. It is the story of a migrant in an unfamiliar place, but also of the uncertainty that everyone feels before starting residency. I draw on childhood memories of the majestic Andean mountains to reflect on the idea that the climb never ends-and that with every step, our perspective expands.",
+    "ai_takeaways": {
+      "conclusion_vi": "This personal narrative contains no clinical trial data or quantitative statistical outcomes to guide medical practice. It reflects on the emotional vulnerabilities, anxiety, and continuous professional growth experienced by international medical graduates transitioning into U.S. neurology residency programs.",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218740",
+    "title": "Clinical Reasoning: A 33-Year-Old Man With Rapidly Progressive Ataxia",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-09T00:00:00Z",
+    "article_type": "Case Report",
+    "article_types": [
+      "Case Report"
+    ],
+    "authors": [
+      "Chandrasekhar Pallavi",
+      "Pham Vy X.",
+      "Timple Liz",
+      "Deiss Robert",
+      "Ellis Ronald J.",
+      "Dunn-Pirio Anastasie",
+      "Longardner Katherine"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218740",
+    "neurology_classification": {
+      "subspecialty": "Movement Disorders",
+      "subspecialties": [
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Ataxia"
+      ]
+    },
+    "abstract": "Immunocompromised patients presenting with subacute neurologic deficits pose a diagnostic challenge given the broad differential diagnosis including infections and autoimmune disorders. We describe a 33-year-old man with AIDS who presented with subacute onset of progressive confusion, blurry vision, diplopia, and generalized cerebellar ataxia following hospitalizations for opportunistic infections. This case emphasizes the clinical and diagnostic approach used to refine the differential diagnosis of rhombencephalitis in an immunocompromised patient. Readers will gain an understanding of the various infectious, immunologic, and neoplastic etiologies to consider as well as the interplay between these pathologies.",
+    "ai_takeaways": {
+      "conclusion_vi": "In immunocompromised patients presenting with subacute rhombencephalitis, clinicians must systematically evaluate a broad differential of opportunistic infections, post-infectious inflammatory processes, and neoplasms. Diagnostic refinement requires integrating neuroimaging with targeted CSF studies to uncover overlapping etiologies in this vulnerable population.",
+      "clinical_significance": "Clinical significance for Movement Disorders practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218703",
+    "title": "Sex Differences in Blood Pressure Dynamics and Outcomes After Endovascular Thrombectomy",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-09T00:00:00Z",
+    "article_type": "Clinical Trial",
+    "article_types": [
+      "Clinical Trial",
+      "Original Article"
+    ],
+    "authors": [
+      "Gu Renjun",
+      "Zhu Xuan",
+      "Wang Zhenlin",
+      "Shen Hongjian",
+      "Shen Fang",
+      "Huyan Meihua",
+      "Jiang Yi",
+      "Zhang Minmin",
+      "Chen Lei",
+      "Zhang Yongxin",
+      "Zhang Lei",
+      "Li Zifu",
+      "Yang Pengfei",
+      "Zhang Xiaoxi",
+      "Zhang Yongwei",
+      "Xing Pengfei",
+      "Liu Jianmin"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218703",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Thrombectomy",
+        "Endovascular"
+      ]
+    },
+    "abstract": "BACKGROUND AND OBJECTIVES: Optimal blood pressure (BP) management after endovascular thrombectomy (EVT) for acute ischemic stroke (AIS) remains controversial, and whether early BP dynamics differentially affect outcomes among female and male participants is unclear. METHODS: This was an exploratory secondary analysis of ENCHANTED2/MT, a multicenter, open-label, blinded-end point randomized trial conducted in 44 tertiary hospitals in China. Eligible adults had AIS due to large-vessel occlusion, successful reperfusion after EVT, and persistent elevated systolic BP (SBP) within 3 hours after reperfusion. Serial BP measurements obtained during the first 72 hours after randomization were used to estimate patient-specific mean BP trajectories and short-term BP variability with a location-scale mixed-effects modeling approach. Associations of mean BP, BP variability, and randomized intensive vs standard BP lowering strategy with clinical outcomes were examined, with sex being evaluated as an effect modifier. The primary outcome was the 90-day modified Rankin Scale (mRS). RESULTS: Among 816 patients (mean age 67.6 ± 12.0 years; 38% female), intensive BP management was associated with worse 90-day ordinal mRS outcome among male participants (adjusted common odds ratio [acOR] 1.91; 95% CI 1.29-2.83), whereas the corresponding estimate among female participants was closer to null (acOR 0.94; 95% CI 0.56-1.57; ratio of acORs 0.49; 95% CI 0.26-0.94). In separate postrandomization BP exposure models, each 5 mm Hg higher mean SBP was associated with worse 90-day mRS outcome among male participants (acOR 1.11; 95% CI 1.03-1.20), whereas no clear adverse association was observed among female participants (acOR 0.95; 95% CI 0.85-1.05; ratio of acORs 0.85; 95% CI 0.75-0.97). SBP variability showed weaker and less consistent sex differential associations. Findings across secondary outcomes were directionally similar but exploratory. DISCUSSION: In this exploratory secondary analysis of ENCHANTED2/MT, randomized BP management strategy and early post-thrombectomy BP dynamics showed sex-stratified associations with outcomes. These associations may reflect biological sex and sex-related differences in baseline clinical and vascular characteristics. These findings are hypothesis generating and should be confirmed in prospectively designed studies before informing sex-specific BP management after EVT. TRIAL REGISTRATION INFORMATION: ClinicalTrials.gov number, NCT04140110; the Registration Date, October 22, 2019.",
+    "ai_takeaways": {
+      "conclusion_vi": "In male patients with successful post-EVT reperfusion, intensive BP lowering worsened 90-day functional outcomes (acOR 1.91; 95% CI 1.29-2.83) and higher mean SBP predicted worse mRS scores (acOR 1.11; 95% CI 1.03-1.20 per 5 mm Hg), whereas female patients showed no such harm.",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218778",
+    "title": "Pearls & Oy-sters: Anti-GABA A Receptor Encephalitis Presenting as Fulminant Hemicerebellitis in a 5-Year-Old Girl",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-09T00:00:00Z",
+    "article_type": "Case Report",
+    "article_types": [
+      "Case Report"
+    ],
+    "authors": [
+      "Krohn Kellie E.",
+      "Luke Rebecca",
+      "Lacy Adrian",
+      "Santoro Jonathan D.",
+      "Honeycutt John",
+      "Cope-Yokoyama Sandy",
+      "Balasa Alfred"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218778",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Encephalitis"
+      ]
+    },
+    "abstract": "A previously healthy 5-year-old girl presented with several days of fever/malaise followed by acute neurologic decline. Head CT demonstrated fulminant right cerebellitis with edema and fourth-ventricle effacement concerning for impending herniation. She underwent emergent posterior fossa decompression. CSF showed mild pleocytosis, and MRI revealed right cerebellar nonenhancing T2/fluid-attenuated inversion recovery hyperintense lesions with evolving supratentorial cortical involvement. Despite empiric antimicrobials and initial immunotherapy (high-dose IV methylprednisolone and tocilizumab followed by IV immunoglobulin/plasma exchange), she developed progressive neuroinflammation with new seizures and markedly elevated CSF IL-6, prompting escalation to additional IL-6-directed therapy with tocilizumab and rescue intrathecal dexamethasone. She subsequently stabilized with radiographic improvement and meaningful neurologic recovery. Expanded antibody testing later confirmed anti-GABAA receptor (anti-GABAAR) encephalitis. This case highlights fulminant cerebellitis as a life-threatening presentation of anti-GABAAR encephalitis and underscores the importance of early posterior fossa decompression, parallel diagnostic evaluation (including expanded antibody panels), and coordinated, time-sensitive immunotherapy escalation in select critically ill presentations.",
+    "ai_takeaways": {
+      "conclusion_vi": "Anti-GABA A receptor encephalitis can present as fulminant, life-threatening hemicerebellitis requiring emergent posterior fossa decompression. Neurointensivists should initiate early expanded autoantibody testing and pursue aggressive, coordinated immunotherapy escalation—including targeted IL-6 blockade—in refractory cases to achieve meaningful recovery.",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218623",
+    "title": "Slipping Rib Syndrome as a Movement Disorder Mimic",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-09T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Renaud Alexis",
+      "Bally Julien F.",
+      "Vicino Alex"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218623",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218753",
+    "title": "Toward Personalized Sex-Informed Management of Blood Pressure After Stroke Thrombectomy Reperfusion",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-09T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Tudisco Valentina",
+      "Romoli Michele"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218753",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Stroke",
+        "Thrombectomy"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218709",
+    "title": "Teaching NeuroImage: Neuronal Intranuclear Inclusion Disease Presenting With Both Macular and Higher Visual Dysfunction",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-09T00:00:00Z",
+    "article_type": "Case Report",
+    "article_types": [
+      "Case Report"
+    ],
+    "authors": [
+      "Sim Jingwei",
+      "Tan Xiu Ling",
+      "Chia Karen Jhi Wen",
+      "Tan Yi Jayne",
+      "Ng Adeline S.L."
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218709",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218745",
+    "title": "Teaching NeuroImage: Reversible Hyperintense Vessel Sign in Transient Ischemic Attack",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-09T00:00:00Z",
+    "article_type": "Case Report",
+    "article_types": [
+      "Case Report"
+    ],
+    "authors": [
+      "Furuya Tsuyoshi",
+      "Koinuma Takahiro",
+      "Sekimoto Satoko",
+      "Nakajima Asuka",
+      "Fuse Atsuhito",
+      "Eguchi Hiroto",
+      "Shimo Yasushi"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218745",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Ischemic"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218711",
+    "title": "Age-Dependent Nonlinear Association Between Gait Impairment and Incident Dementia",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-09T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Choi Youjung",
+      "Jeong Jiyoung",
+      "Han Ji Won",
+      "Oh Dae Jong",
+      "Kim Tae Hui",
+      "Kwak Kyung Phil",
+      "Kim Bongjo",
+      "Kim Shin Gyeom",
+      "Kim Jeong Lan",
+      "Moon Seok Woo",
+      "Park Joon Hyuk",
+      "Ryu Seung-Ho",
+      "Lee Dong Woo",
+      "Lee Seok Bum",
+      "Lee Jung Jae",
+      "Jhoo Jin Hyeong",
+      "Kim Ki Woong"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218711",
+    "neurology_classification": {
+      "subspecialty": "Dementia",
+      "subspecialties": [
+        "Dementia"
+      ],
+      "topics": [
+        "Dementia"
+      ]
+    },
+    "abstract": "BACKGROUND AND OBJECTIVES: Gait impairment is associated with incident dementia, yet whether this association varies with age or follows a linear dose-response relationship remains unclear. The aim of this study was to examine the nonlinear dose-response relationship between Performance-Oriented Mobility Assessment (POMA) gait performance and incident dementia and to test whether this association is modified by age. METHODS: This prospective cohort study used data from the Korean Longitudinal Study on Cognitive Aging and Dementia (baseline enrollment, 2010-2012; follow-up through 2020; median follow-up, 6.2 years). The primary outcome was incident dementia diagnosed by Diagnostic and Statistical Manual of Mental Disorders IV (DSM-IV) criteria. Gait and balance were assessed using the POMA. Cause-specific Cox proportional hazards regression with death treated as a competing event was used. Restricted cubic splines (RCS) modeled the nonlinear dose-response relationship between gait performance and incident dementia, and RCS-by-age interaction terms were used to test age modification and estimate age-specific hazard ratios and 95% CIs. RESULTS: Of 6,818 eligible participants, 4,822 met inclusion criteria (mean (SD) age, 69.6 (6.3) years; 2,719 (56.4%) female; median follow-up 6.2 years [IQR, 3.8-8.1]). During follow-up, 251 developed dementia and 458 died. The gait-dementia association was significantly nonlinear (p = 0.002), with hazard ratios rising steeply as scores departed from the ceiling and peaking near 9 to 10, below which estimates were imprecise. The association was strongly and inversely modified by age (interaction p < 0.001), indicating that the predictive value of gait deficits for dementia progressively diminishes with advancing age: the hazard ratio for a gait score of 11 vs 12 was 3.13 (95% CI 1.82-5.37) at age 65 years, 1.36 (95% CI 0.98-1.87) at age 75 years, and 0.59 (95% CI 0.37-0.94) at age 85 years. The estimated crossing age was 78.6 years. The age-dependent attenuation was specific to gait and not observed for balance in models including both components. DISCUSSION: Gait impairment predicted incident dementia in a nonlinear, age-dependent manner, with the association strongest in adults aged 65-75 years and not evident beyond approximately age 80 years. These findings suggest gait assessment may be most informative for dementia screening in younger-old adults. Limitations include an ethnically homogeneous cohort.",
+    "ai_takeaways": {
+      "conclusion_vi": "Gait impairment predicts incident dementia in a nonlinear, age-dependent manner, with the predictive value of mild gait deficits (POMA score 11 vs 12) strongest in younger-old adults at age 65 (HR 3.13, 95% CI 1.82-5.37) but diminishing significantly by age 75 (HR 1.36, 95% CI 0.98-1.87; interaction p < 0.001).",
+      "clinical_significance": "Clinical significance for Dementia practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000218776",
+    "title": "Gait and Dementia Risk in Older Adults",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2026-11-09T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Urso Daniele",
+      "Logroscino Giancarlo"
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000218776",
+    "neurology_classification": {
+      "subspecialty": "Dementia",
+      "subspecialties": [
+        "Dementia"
+      ],
+      "topics": [
+        "Dementia"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Dementia practice.",
+      "ai_verified": false
+    }
+  },
+  {
     "id": "10.1056/nejmoa2612924",
     "title": "Intensive Blood-Pressure Control in Patients with Previous Ischemic Stroke",
     "journal": {
@@ -9,8 +867,10 @@
       "badge_text": "#991B1B"
     },
     "pub_date": "2026-11-07T00:00:00Z",
-    "article_type": "Original Article",
+    "article_type": "RCT",
     "article_types": [
+      "RCT",
+      "Clinical Trial",
       "Original Article"
     ],
     "authors": [
@@ -66,16 +926,16 @@
         "Ischemic"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at NEJM via DOI.",
+    "abstract": "BACKGROUND: Whether intensive blood-pressure control reduces cardiovascular risk after cerebrovascular events remains uncertain. METHODS: In this multicenter, open-label, randomized trial conducted at 30 sites in Brazil, we assigned participants with elevated blood pressure and previous ischemic stroke or transient ischemic attack to receive intensive treatment targeting a systolic blood pressure of less than 120 mm Hg or to receive standard treatment targeting a systolic blood pressure of less than 140 mm Hg. The primary outcome was a composite of death from cardiovascular causes, nonfatal myocardial infarction, nonfatal stroke, or hospitalization for unstable angina or heart failure. RESULTS: A total of 4368 participants were enrolled, with 2172 assigned to intensive treatment and 2196 to standard treatment. The mean (±SD) age of the participants was 63.9±11.2 years, and 2093 (47.9%) were women. During the follow-up period, excluding the first 3 months, the mean systolic blood pressure was 122.0±11.5 mm Hg (median, 119.6 mm Hg) in the intensive-treatment group and 135.2±9.7 mm Hg (median, 135.0 mm Hg) in the standard-treatment group, with a between-group mean difference of 13.1 mm Hg (95% confidence interval [CI], 12.5 to 13.8). Over a median follow-up of 3.9 years, a primary-outcome event occurred in 236 participants (10.9%; 3.25 events per 100 person-years) with intensive treatment and in 297 (13.5%; 4.11 events per 100 person-years) with standard treatment (hazard ratio, 0.79; 95% CI, 0.67 to 0.94; P = 0.007). The composite renal outcome (sustained reduction of ≥50% in the estimated glomerular filtration rate or progression to end-stage renal disease) was more common with intensive treatment. The overall incidence of serious adverse events was similar in the two groups. CONCLUSIONS: Among participants with previous ischemic stroke or transient ischemic attack, targeting a systolic blood pressure of less than 120 mm Hg resulted in a lower incidence of major cardiovascular events than targeting a systolic blood pressure of less than 140 mm Hg. (Funded by Hospital Israelita Albert Einstein and the Brazilian Ministry of Health; OPTIMAL-STROKE ClinicalTrials.gov number, NCT04036409.).",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "In patients with prior ischemic stroke or TIA, intensive SBP targeting <120 mm Hg significantly reduced major cardiovascular events compared to standard targeting <140 mm Hg (HR 0.79; 95% CI, 0.67 to 0.94; P = 0.007). Intensive control increased renal risk, though overall serious adverse event rates were similar.",
       "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
     "id": "10.1016/s0140-6736(26)00695-1",
-    "title": "Vertigo, multifocal brain lesions, and a diagnostic clue on the skin",
+    "title": "Vertigo, multifocal brain lesions, and a diagnostic clue on the skin.",
     "journal": {
       "name": "The Lancet",
       "short_name": "The Lancet",
@@ -88,11 +948,11 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "López Olaia Quintana",
-      "Rodríguez Saúl Silvarrey",
-      "Gómez-Muga Juan José",
-      "Santos-Morales Edison",
-      "García-Moncó Juan Carlos"
+      "López OQ",
+      "Rodríguez SS",
+      "Gómez-Muga JJ",
+      "Santos-Morales E",
+      "García-Moncó JC."
     ],
     "doi_url": "https://doi.org/10.1016/s0140-6736(26)00695-1",
     "neurology_classification": {
@@ -113,7 +973,7 @@
   },
   {
     "id": "10.1001/jama.2026.20042",
-    "title": "Ultraprocessed Foods Linked With Vascular Brain Injury in Midlife",
+    "title": "Ultraprocessed Foods Linked With Vascular Brain Injury in Midlife.",
     "journal": {
       "name": "JAMA",
       "short_name": "JAMA",
@@ -126,7 +986,7 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Richmond Sari"
+      "Richmond S."
     ],
     "doi_url": "https://doi.org/10.1001/jama.2026.20042",
     "neurology_classification": {
@@ -223,7 +1083,7 @@
   },
   {
     "id": "10.1212/wnl.0000000000218744",
-    "title": "Teaching Video NeuroImage: Posture-Dependent Hypernasal Dysarthria With Velopharyngeal Insufficiency in Myasthenia Gravis",
+    "title": "Teaching Video NeuroImage: Posture-Dependent Hypernasal Dysarthria With Velopharyngeal Insufficiency in Myasthenia Gravis.",
     "journal": {
       "name": "Neurology (AAN)",
       "short_name": "Neurology",
@@ -236,13 +1096,13 @@
       "Case Report"
     ],
     "authors": [
-      "Taniguchi Yoko",
-      "Inoue Hiroyasu",
-      "Takemoto Naoki",
-      "Madokoro Yuta",
-      "Uchida Yuto",
-      "Oomura Masahiro",
-      "Matsukawa Noriyuki"
+      "Taniguchi Y",
+      "Inoue H",
+      "Takemoto N",
+      "Madokoro Y",
+      "Uchida Y",
+      "Oomura M",
+      "Matsukawa N."
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218744",
     "neurology_classification": {
@@ -263,7 +1123,7 @@
   },
   {
     "id": "10.1212/wnl.0000000000218734",
-    "title": "Diabetic Striatopathy With Dentate Nucleus Involvement in a Child",
+    "title": "Diabetic Striatopathy With Dentate Nucleus Involvement in a Child.",
     "journal": {
       "name": "Neurology (AAN)",
       "short_name": "Neurology",
@@ -276,10 +1136,10 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Chawla Siddhi",
-      "Saini Lokesh",
-      "Meena Ankit Kumar",
-      "Chityala Ashwini"
+      "Chawla S",
+      "Saini L",
+      "Meena AK",
+      "Chityala A."
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218734",
     "neurology_classification": {
@@ -412,53 +1272,8 @@
     }
   },
   {
-    "id": "10.1056/nejmc2606815",
-    "title": "Chemogenetic Neuromodulation for Refractory Epilepsy",
-    "journal": {
-      "name": "The New England Journal of Medicine",
-      "short_name": "NEJM",
-      "badge_bg": "#FEE2E2",
-      "badge_text": "#991B1B"
-    },
-    "pub_date": "2026-11-05T00:00:00Z",
-    "article_type": "Editorial / Perspective",
-    "article_types": [
-      "Editorial / Perspective"
-    ],
-    "authors": [
-      "Dai Yang",
-      "Liu Quanlei",
-      "Wang Yihe",
-      "Yu Tao",
-      "Zhang Huaqiang",
-      "Weng Danwei",
-      "Wang Yi",
-      "Shi Minmin",
-      "Li Zhiming",
-      "Shan Yongzhi",
-      "Luo Minmin",
-      "Zhao Guoguang"
-    ],
-    "doi_url": "https://doi.org/10.1056/nejmc2606815",
-    "neurology_classification": {
-      "subspecialty": "Epilepsy",
-      "subspecialties": [
-        "Epilepsy"
-      ],
-      "topics": [
-        "Epilepsy"
-      ]
-    },
-    "abstract": "Original abstract and full manuscript available at NEJM via DOI.",
-    "ai_takeaways": {
-      "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Epilepsy practice.",
-      "ai_verified": false
-    }
-  },
-  {
     "id": "10.1001/jama.2026.19120",
-    "title": "Mechanical Thrombectomy in Ischemic Stroke With a Medium or Distal Arterial Occlusion—Reply",
+    "title": "Mechanical Thrombectomy in Ischemic Stroke With a Medium or Distal Arterial Occlusion-Reply.",
     "journal": {
       "name": "JAMA",
       "short_name": "JAMA",
@@ -471,9 +1286,9 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Clarençon Frédéric",
-      "Dechartres Agnès",
-      "Alamowitch Sonia"
+      "Clarençon F",
+      "Dechartres A",
+      "Alamowitch S."
     ],
     "doi_url": "https://doi.org/10.1001/jama.2026.19120",
     "neurology_classification": {
@@ -496,7 +1311,7 @@
   },
   {
     "id": "10.1001/jama.2026.19117",
-    "title": "Mechanical Thrombectomy in Ischemic Stroke With a Medium or Distal Arterial Occlusion",
+    "title": "Mechanical Thrombectomy in Ischemic Stroke With a Medium or Distal Arterial Occlusion.",
     "journal": {
       "name": "JAMA",
       "short_name": "JAMA",
@@ -509,9 +1324,9 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Sheng Hansong",
-      "Lin Jinyu",
-      "Shen Fang"
+      "Sheng H",
+      "Lin J",
+      "Shen F."
     ],
     "doi_url": "https://doi.org/10.1001/jama.2026.19117",
     "neurology_classification": {
@@ -649,7 +1464,7 @@
   },
   {
     "id": "10.1212/wnl.0000000000218714",
-    "title": "Teaching NeuroImage: Arterial Spin Labeling Demonstrates Cerebral Hemispheric Hypoperfusion in Hemiplegic Migraine",
+    "title": "Teaching NeuroImage: Arterial Spin Labeling Demonstrates Cerebral Hemispheric Hypoperfusion in Hemiplegic Migraine.",
     "journal": {
       "name": "Neurology (AAN)",
       "short_name": "Neurology",
@@ -662,9 +1477,9 @@
       "Case Report"
     ],
     "authors": [
-      "Kuerbitz Jeffrey S.",
-      "Das Abhijit",
-      "Lyons-Warren Ariel M."
+      "Kuerbitz JS",
+      "Das A",
+      "Lyons-Warren AM."
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218714",
     "neurology_classification": {
@@ -761,7 +1576,7 @@
   },
   {
     "id": "10.1212/wnl.0000000000218758",
-    "title": "Toward a Biology-Driven Diagnosis of Multiple Sclerosis",
+    "title": "Toward a Biology-Driven Diagnosis of Multiple Sclerosis: What the 2024 McDonald Criteria Mean for Radiologically Isolated Syndrome.",
     "journal": {
       "name": "Neurology (AAN)",
       "short_name": "Neurology",
@@ -774,8 +1589,8 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Frase Sibylle",
-      "Wiendl Heinz"
+      "Frase S",
+      "Wiendl H."
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218758",
     "neurology_classification": {
@@ -822,7 +1637,8 @@
         "Stroke"
       ],
       "topics": [
-        "Neurology"
+        "Brain",
+        "Hydrocephalus"
       ]
     },
     "abstract": "A 30-year-old man presented with vertigo, vomiting, headaches, and dysarthria.Brain MRI (Figure 1) showed acute bilateral cerebellar infarctions and supratentorial obstructive hydrocephalus.Twenty-four hours after extraventricular device insertion, the patient became mute.Cortical aphasia and apraxia of speech were ruled out by intact comprehension and absent articulatory programming errors, confirming profound speech loss with preserved cognition, recognized as cerebellar mutism syndrome.",
@@ -881,7 +1697,7 @@
   },
   {
     "id": "10.1212/wnl.0000000000218747",
-    "title": "Timing Is Everything",
+    "title": "Timing Is Everything: Occupational Petrolatum-Based Lubricant Exposure and Multiple Sclerosis.",
     "journal": {
       "name": "Neurology (AAN)",
       "short_name": "Neurology",
@@ -894,22 +1710,22 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Marrie Ruth Ann"
+      "Marrie RA."
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218747",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Neuroimmunology",
       "subspecialties": [
-        "Other"
+        "Neuroimmunology"
       ],
       "topics": [
-        "Neurology"
+        "Multiple sclerosis"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
     "ai_takeaways": {
       "conclusion_vi": "",
-      "clinical_significance": "Clinical significance for Other practice.",
+      "clinical_significance": "Clinical significance for Neuroimmunology practice.",
       "ai_verified": false
     }
   },
@@ -1004,7 +1820,7 @@
   },
   {
     "id": "10.1212/wnl.0000000000218814",
-    "title": "Lifetime Estrogen Exposure",
+    "title": "Lifetime Estrogen Exposure: A Potential Target for Improving Brain Health for Women in Later Life?",
     "journal": {
       "name": "Neurology (AAN)",
       "short_name": "Neurology",
@@ -1017,7 +1833,7 @@
       "Editorial / Perspective"
     ],
     "authors": [
-      "Madsen Tracy E."
+      "Madsen TE."
     ],
     "doi_url": "https://doi.org/10.1212/wnl.0000000000218814",
     "neurology_classification": {
@@ -1026,7 +1842,7 @@
         "Other"
       ],
       "topics": [
-        "Neurology"
+        "Brain"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
@@ -1782,6 +2598,51 @@
       "conclusion_vi": "Patients with Parkinson's disease and pathogenic *GBA1* variants exhibit accelerated, domain-generalized cognitive decline and earlier impairment in processing speed and visuoperceptual function compared to *GBA1*-wildtype patients. Male sex, depressive symptoms, and severe *GBA1* mutations identify a subgroup at the highest risk for rapid cognitive deterioration.",
       "clinical_significance": "Clinical significance for Dementia practice.",
       "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1056/nejmc2606815",
+    "title": "Chemogenetic Neuromodulation for Refractory Epilepsy.",
+    "journal": {
+      "name": "The New England Journal of Medicine",
+      "short_name": "NEJM",
+      "badge_bg": "#FEE2E2",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2026-11-01T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Dai Y",
+      "Liu Q",
+      "Wang Y",
+      "Yu T",
+      "Zhang H",
+      "Weng D",
+      "Wang Y",
+      "Shi M",
+      "Li Z",
+      "Shan Y",
+      "Luo M",
+      "Zhao G."
+    ],
+    "doi_url": "https://doi.org/10.1056/nejmc2606815",
+    "neurology_classification": {
+      "subspecialty": "Epilepsy",
+      "subspecialties": [
+        "Epilepsy"
+      ],
+      "topics": [
+        "Epilepsy"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at NEJM via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Epilepsy practice.",
+      "ai_verified": false
     }
   },
   {
@@ -4305,7 +5166,8 @@
         "Epilepsy"
       ],
       "topics": [
-        "Epilepsy"
+        "Epilepsy",
+        "Neurology"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
@@ -4474,6 +5336,7 @@
         "Headache & Pain"
       ],
       "topics": [
+        "Neurology",
         "Migraine"
       ]
     },
@@ -5653,7 +6516,8 @@
         "Stroke"
       ],
       "topics": [
-        "Stroke"
+        "Stroke",
+        "Neurology"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
@@ -6147,6 +7011,7 @@
         "Movement Disorders"
       ],
       "topics": [
+        "Neurology",
         "Huntington"
       ]
     },
@@ -6223,7 +7088,8 @@
         "Neuroimmunology"
       ],
       "topics": [
-        "Multiple sclerosis"
+        "Multiple sclerosis",
+        "Neurology"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
@@ -11928,12 +12794,11 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.056890",
     "neurology_classification": {
-      "subspecialty": "Stroke",
+      "subspecialty": "Other",
       "subspecialties": [
-        "Stroke"
+        "Other"
       ],
       "topics": [
-        "Stroke",
         "Cerebral"
       ]
     },
@@ -12165,12 +13030,11 @@
     ],
     "doi_url": "https://doi.org/10.1161/strokeaha.126.056587",
     "neurology_classification": {
-      "subspecialty": "Stroke",
+      "subspecialty": "Other",
       "subspecialties": [
-        "Stroke"
+        "Other"
       ],
       "topics": [
-        "Stroke",
         "Intracranial"
       ]
     },
@@ -12356,6 +13220,7 @@
         "Stroke"
       ],
       "topics": [
+        "Stroke",
         "Ischemic"
       ]
     },
@@ -13254,6 +14119,105 @@
     }
   },
   {
+    "id": "10.1001/jamaneurol.2026.3088",
+    "title": "Intravenous Immunoglobulin Add-On in Newly Diagnosed Idiopathic Inflammatory Myopathies",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-09-14T00:00:00Z",
+    "article_type": "Clinical Trial",
+    "article_types": [
+      "Clinical Trial",
+      "Original Article"
+    ],
+    "authors": [
+      "Özkaynar Pinar",
+      "Evers Sanne",
+      "Kamperman Renske",
+      "Smithuis Frank",
+      "Eftimov Filip",
+      "Bogaards Johannes A.",
+      "van Schaik Ivo",
+      "van der Kooi Anneke J.",
+      "Raaphorst Joost",
+      "Aronica Eleonora",
+      "Badrising Umesh",
+      "Besseling Rens",
+      "Bronner Irene",
+      "Brusse Esther",
+      "de Borgie Corianne",
+      "Colen-de Koning Jantine",
+      "Groepenhoff Floor",
+      "Hemke Robert",
+      "Hoogendijk Jessica",
+      "Maas Mario",
+      "Saris Christiaan",
+      "Verhamme Camiel",
+      "de Visser Marianne",
+      "Voermans Nicol",
+      "Walter Hannah"
+    ],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.3088",
+    "neurology_classification": {
+      "subspecialty": "Neuromuscular",
+      "subspecialties": [
+        "Neuromuscular"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Importance: Preliminary evidence suggests that intravenous immune globulin (IVIG) may be valuable as an add-on treatment in newly diagnosed idiopathic inflammatory myopathies (IIMs), but a randomized clinical trial is warranted. Objective: To determine whether 3 cycles of add-on IVIG lead to superior improvement, with acceptable safety, in patients with newly diagnosed IIMs treated with high-dose prednisone (1 mg/kg/d; maximum 80 mg/d). Design, Setting, and Participants: This was a double-blind, randomized, placebo-controlled clinical trial conducted at a tertiary referral center for IIM between September 2021 and September 2025, with the primary end point at week 12. Adult patients with newly diagnosed IIMs, without (or with limited) prior immunosuppressive treatment, were assessed for inclusion; of 94 assessed, 50 were excluded or declined participation. Intervention: All patients initiated treatment with standard of care high-dose prednisone and were assigned in a 1:1 ratio to receive add-on IVIG (2.0 g/kg body weight) or placebo at 0, 4, and 8 weeks Main Outcomes and Measures: The primary outcome was the Total Improvement Score (TIS) at 12 weeks: a weighted composite score from 6 measures reflecting change in myositis activity over time. Secondary outcomes included moderate (TIS ≥40) and major (TIS ≥60; post hoc analysis) improvement, time to reach improvement, and safety outcomes. Results: Of 44 adult patients with newly diagnosed IIMs included, 42 reached a primary end point (mean [SD] age, 58.7 [15.2] years; 21 [50%] female); 23 received IVIG and 19 received placebo. The mean TIS at 12 weeks was 60.0 (95% CI, 52.6-67.4) in the IVIG group and 42.5 (95% CI, 30.6-54.4) in the placebo group ( P = .01). Moderate and major improvement were achieved in 21 participants in the IVIG group (91%; 95% CI, 79-100) vs 10 in placebo (53%; 95% CI, 28-78; P = .01) and 16 in the IVIG group (70%; 95% CI, 49-90) vs 5 in placebo (26%; 95% CI, 5-48; P = .005), respectively. The median time to moderate response was 4 (95% CI, 4-8) weeks in the IVIG group and 12 (95% CI, 4-12) weeks in the placebo group ( P = .005). One asymptomatic deep venous thrombosis was found in the IVIG group. Conclusions and Relevance: Adult patients with newly diagnosed IIMs treated with IVIG in addition to standard high-dose prednisone showed greater and faster improvement compared to patients who received standard high-dose prednisone. Trial Registration: EudraCT Identifier: EUCTR2020-001710-37-NL",
+    "ai_takeaways": {
+      "conclusion_vi": "In newly diagnosed idiopathic inflammatory myopathies, adding three cycles of IVIG to high-dose prednisone significantly improved 12-week Total Improvement Scores (60.0 vs 42.5; P = .01) and accelerated time to moderate response (4 vs 12 weeks; P = .005) compared to prednisone alone.",
+      "clinical_significance": "Clinical significance for Neuromuscular practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1001/jamaneurol.2026.3164",
+    "title": "Cerebral Amyloid Angiopathy–Like Brain Imaging and Dural Arteriovenous Fistula",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-09-14T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Donnard Baptiste",
+      "Beaufort Quentin",
+      "Bala Fouzi"
+    ],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.3164",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke",
+        "Dementia"
+      ],
+      "topics": [
+        "Aneurysm",
+        "Cerebral",
+        "Brain",
+        "Amyloid"
+      ]
+    },
+    "abstract": "This case report describes a patient in their 70s initially diagnosed with cerebral amyloid angiopathy whose diagnosis was challenged with repeat magnetic resonance imaging, which revealed arterialized left temporal cortical vein with an adjacent venous aneurysm.",
+    "ai_takeaways": {
+      "conclusion_vi": "Repeat neuroimaging should be considered when clinical or radiographic features atypical for cerebral amyloid angiopathy emerge, as dural arteriovenous fistulas can mimic CAA-like cortical microbleeds or superficial siderosis and represent a treatable cause of intracranial hemorrhage.",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": true
+    }
+  },
+  {
     "id": "10.1161/strokeaha.126.056159",
     "title": "Sodium-Glucose Cotransporter 2 Inhibitor Use and Functional Outcomes After Endovascular Thrombectomy in Diabetic Stroke",
     "journal": {
@@ -14069,6 +15033,42 @@
     }
   },
   {
+    "id": "10.1001/jamaneurol.2026.3048",
+    "title": "Exhaled Carbon Monoxide Levels May Offer Clues on the Etiology of Parkinson Disease",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-09-08T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Darweesh Sirwan K.L.",
+      "Remz Matthew A.",
+      "Goldman Samuel M."
+    ],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.3048",
+    "neurology_classification": {
+      "subspecialty": "Movement Disorders",
+      "subspecialties": [
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Parkinson"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at JAMA Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Movement Disorders practice.",
+      "ai_verified": false
+    }
+  },
+  {
     "id": "10.1161/strokeaha.126.055839",
     "title": "Social Determinants of Health in Early to Mid-Adulthood and Risk of Early-Onset Stroke",
     "journal": {
@@ -14333,6 +15333,315 @@
     }
   },
   {
+    "id": "10.1001/jamaneurol.2026.2778",
+    "title": "Anti-CD320 Autoantibodies and Central Nervous System Vitamin B 12 Deficiency in Idiopathic Myelopathy",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-08-17T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Pluvinage John V.",
+      "Acero-Garces David",
+      "Greco Giacomo",
+      "Moseley Carson E.",
+      "Sidhu Sukhman",
+      "Zorn Kelsey C.",
+      "Kondapavulur Sravani",
+      "Mohan Sonam",
+      "Neely John",
+      "Masciocchi Stefano",
+      "Businaro Pietro",
+      "Sarreón Alexis García",
+      "Gifreu Fraixinó Ariadna",
+      "McCutcheon Krista",
+      "Caspar Colette",
+      "Dela Rosa Richard",
+      "Zamecnik Colin",
+      "Tubati Asritha",
+      "Asencor Andoni I.",
+      "Tugizova Madina",
+      "Chow Felicia",
+      "Galati Alexandra",
+      "Mina Yair",
+      "Toro Camilo",
+      "Kang Min",
+      "Guo Chu-Yueh",
+      "Wesley Sarah F.",
+      "Kvam Kathryn",
+      "Lee Sydney",
+      "Abdelhak Ahmed",
+      "Martin Thomas",
+      "Huang Yun-Han",
+      "Berman Sarah B.",
+      "Linnoila Jenny",
+      "Engstrom John",
+      "McCaddon Andrew",
+      "Green Ari J.",
+      "Green Ralph",
+      "Cree Bruce A.C.",
+      "Hauser Stephen L.",
+      "DeRisi Joseph L.",
+      "Pleasure Samuel J.",
+      "Gelfand Jeffrey M.",
+      "Bravo Gary Álvarez",
+      "Gastaldi Matteo",
+      "Pardo Carlos A.",
+      "Wilson Michael R.",
+      "Richie Megan",
+      "Douglas Vanja",
+      "Shah Maulik",
+      "Guterman Elan L.",
+      "Nath Avindra",
+      "Suen Catherine G.",
+      "Louine Martineau",
+      "Zuroff Leah",
+      "Gerdts Josiah",
+      "Karalius Mary",
+      "Nylander Alyssa",
+      "Bevan Carolyn",
+      "Liu Max",
+      "Daghlas Iyas",
+      "Suleiman Leena",
+      "Nguyen Todd",
+      "Meyer Benjamin",
+      "Ibarra Karen"
+    ],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.2778",
+    "neurology_classification": {
+      "subspecialty": "Neuroimmunology",
+      "subspecialties": [
+        "Neuroimmunology"
+      ],
+      "topics": [
+        "Neurological",
+        "Spinal",
+        "Myelitis"
+      ]
+    },
+    "abstract": "Importance: Disorders affecting the spinal cord (myelopathies) can cause severe disability. Despite diagnostic advances, approximately 12% to 18% of myelopathy cases continue to elude an etiological diagnosis, hampering effective treatment. Objective: To describe a novel autoantibody associated with idiopathic myelopathy (IM) and report its clinical, radiographic, and metabolic characteristics. Design, Setting, and Participants: This retrospective case-control study was conducted from May 2014 to October 2025 at 4 tertiary care centers. Biofluids from 148 patients diagnosed with IM were evaluated based on clinical evidence of myelopathy without an identified etiology. Biofluids from patients with other neurological diseases (ONDs; n = 32) or known autoimmune myelitis (n = 30) were used for comparison. Proteomewide phage display was used to discover novel autoantibodies. Targeted immunoassays were used to screen for a candidate autoantibody. Downstream metabolites were measured in the cerebrospinal fluid (CSF). Exposure: Autoantibody status. Main Outcomes and Measures: Prevalence, clinical phenotype, CSF profile, and magnetic resonance imaging pattern of autoantibody-positive IM. Results: Autoantibodies targeting the transcobalamin receptor (CD320) responsible for cellular transport of vitamin B 12 were identified in 18 of 32 individuals with IM (56%) in a discovery cohort (mean [SD] age, 54 [14] years; 19 male). Bioactive vitamin B 12 concentration was decreased in the CSF of individuals with positive anti-CD320 test results compared with that of control individuals with ONDs (mean [SD], 15.1 [2.3] pmol/L vs 22.9 [10.7] pmol/L; P = .03), indicative of autoimmune vitamin B 12 central deficiency. Compared to individuals with IM and negative anti-CD320 test results, those with IM and positive anti-CD320 test results demonstrated a higher frequency of subacute time course (n = 10 [56%] vs n = 1 [7%]; P = .008), normal CSF profile (n = 15 [83%] vs n = 7 [50%]; P = .04), and dorsolateral spinal cord abnormalities on magnetic resonance imaging (n = 11 [61%] vs n = 1 [7%]; P = .003). In 2 independent validation cohorts comprising 91 and 25 patients with IM, anti-CD320 was detected in 41 (45%) and 12 (48%) patients, respectively. Comorbid anti-CD320 antibodies were detected in a smaller proportion of patients with other known autoimmune etiologies of myelopathy. Five individuals with IM and positive anti-CD320 test results received vitamin B 12 supplementation with or without concurrent immunosuppression, and 4 of 5 showed clinical improvement. Conclusions and Relevance: In this study, autoimmune vitamin B 12 central deficiency was associated with IM. Screening for anti-CD320 antibodies followed by metabolic confirmation of a CNS-restricted vitamin B 12 deficiency may be considered in the diagnostic evaluation of myelopathy.",
+    "ai_takeaways": {
+      "conclusion_vi": "Anti-CD320 autoantibodies define a novel cause of idiopathic myelopathy characterized by autoimmune central vitamin B12 deficiency, subacute onset, non-inflammatory CSF (p = .04), and dorsolateral spinal cord MRI lesions (p = .003). Clinicians should screen for anti-CD320 antibodies in unexplained myelopathy, as targeted vitamin B12 supplementation with or without immunosuppression can yield clinical improvement.",
+      "clinical_significance": "Clinical significance for Neuroimmunology practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1001/jamaneurol.2026.2645",
+    "title": "Worsening Spastic Paraparesis After Lumbar Puncture in a Young Adult",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-08-10T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Sun Hui",
+      "Wu Lei",
+      "Huang Dehui"
+    ],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.2645",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurological"
+      ]
+    },
+    "abstract": "This case report describes a patient with a history of progressive sensory disturbance whose lumbar puncture resulted in acute neurological deterioration due to positional cord compression.",
+    "ai_takeaways": {
+      "conclusion_vi": "Before performing a lumbar puncture in patients with progressive myelopathy, clinicians must carefully exclude mass lesions or severe spinal stenosis to prevent acute mechanical cord compression and neurological deterioration induced by CSF pressure shifts.",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1001/jamaneurol.2026.2543",
+    "title": "Global and Partial Cataplexy, Geste Antagoniste, and Startle Response in Narcolepsy Type 1",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-08-03T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Di Giacomo Roberta",
+      "Pesce Lorella",
+      "Didato Giuseppe"
+    ],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.2543",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "This case report describes a 60-year-old woman presenting with sudden loss of muscle tone with preserved consciousness and severe daytime sleepiness.",
+    "ai_takeaways": {
+      "conclusion_vi": "In patients presenting with sudden tone loss and excessive daytime sleepiness, recognizing partial cataplexy variants—including startle-induced triggers and alleviating motor maneuvers (geste antagoniste)—is critical for accurately diagnosing Narcolepsy Type 1.",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1001/jamaneurol.2026.2120",
+    "title": "Joey’s Seizure",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-07-13T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Demas Alexis"
+    ],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.2120",
+    "neurology_classification": {
+      "subspecialty": "Epilepsy",
+      "subspecialties": [
+        "Epilepsy"
+      ],
+      "topics": [
+        "Epilepsy",
+        "Seizure"
+      ]
+    },
+    "abstract": "This essay describes the author’s experience as a neurologist with a dog that has epilepsy.",
+    "ai_takeaways": {
+      "conclusion_vi": "This reflective piece highlights the personal and empathetic insights gained by a practicing neurologist managing canine epilepsy, reinforcing the value of the human-animal bond in clinical practice. It contains no formal statistical outcomes or empirical data.",
+      "clinical_significance": "Clinical significance for Epilepsy practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1001/jamaneurol.2026.2065",
+    "title": "The Machine Is Just as Loud",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-07-06T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Zitter Sasha"
+    ],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.2065",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "This essay describes the author’s experience with postseizure workups and scans and the protection that she felt was attached to professional status on both occasions.",
+    "ai_takeaways": {
+      "conclusion_vi": "As a qualitative narrative reflection rather than a quantitative clinical trial, this essay underscores the profound impact of perceived socio-professional status on patient experience during postseizure neuroimaging workups. Neurologists should recognize how structural privileges influence patient anxiety, doctor-patient communication, and the overall perception of care during acute neurologic evaluations.",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1001/jamaneurol.2026.1992",
+    "title": "Superficial Siderosis and a Spinal Cord Cleft",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-06-29T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Schievink Wouter I.",
+      "Maya Marcel M.",
+      "Levy Michael"
+    ],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.1992",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Spinal"
+      ]
+    },
+    "abstract": "This case report describes a 71-year-old woman presenting with altered speech, gait difficulties, and hearing loss diagnosed with infratentorial superficial siderosis and a thoracic spinal cord cleft.",
+    "ai_takeaways": {
+      "conclusion_vi": "Infratentorial superficial siderosis should prompt a thorough neuroimaging evaluation of the entire neuraxis to identify occult structural lesions, such as spinal cord clefts, that may serve as sources of chronic subarachnoid hemorrhage. Identifying these sources is critical to guide surgical intervention and halt progressive neurological decline.",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1001/jamaneurol.2026.0265",
+    "title": "JAMA Neurology Peer Reviewers in 2025",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2026-05-11T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2026.0265",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at JAMA Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
     "id": "10.1016/s1474-4422(26)00096-7",
     "title": "Neurootologists' role as piano technicians",
     "journal": {
@@ -14360,6 +15669,40 @@
       ]
     },
     "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1001/jamaneurol.2025.4790",
+    "title": "JAMA Neurology Editorial Fellowship",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2025-11-10T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Josephson S. Andrew"
+    ],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2025.4790",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at JAMA Neurol via DOI.",
     "ai_takeaways": {
       "conclusion_vi": "",
       "clinical_significance": "Clinical significance for Other practice.",
@@ -14442,6 +15785,38 @@
     }
   },
   {
+    "id": "10.1001/jamaneurol.2025.0293",
+    "title": "JAMA Neurology Peer Reviewers in 2024",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2025-05-12T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2025.0293",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at JAMA Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
     "id": "10.1161/strokeaha.123.042912",
     "title": "Air Pollution and Stroke: What Nurses Need to Know",
     "journal": {
@@ -14507,6 +15882,38 @@
       ]
     },
     "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1001/jamaneurol.2024.0288",
+    "title": "JAMA Neurology Peer Reviewers in 2023",
+    "journal": {
+      "name": "JAMA Neurology",
+      "short_name": "JAMA Neurol",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#E11D48"
+    },
+    "pub_date": "2024-05-13T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [],
+    "doi_url": "https://doi.org/10.1001/jamaneurol.2024.0288",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at JAMA Neurol via DOI.",
     "ai_takeaways": {
       "conclusion_vi": "",
       "clinical_significance": "Clinical significance for Other practice.",
@@ -16465,6 +17872,1807 @@
       "Lokody Isabel"
     ],
     "doi_url": "https://doi.org/10.1016/s1474-4422(17)30154-0",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(17)30041-8",
+    "title": "Stakeholder collaboration for spinal muscular atrophy therapy development",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2017-03-14T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Aartsma-Rus Annemieke",
+      "Balabanov Pavel",
+      "Binetti Luca",
+      "Haas Manuel",
+      "Haberkamp Marion",
+      "Mitchell Joanna",
+      "Rosa Mário Miguel",
+      "Muntoni Francesco",
+      "Finkel Richard",
+      "Mercuri Eugenio"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(17)30041-8",
+    "neurology_classification": {
+      "subspecialty": "Neuromuscular",
+      "subspecialties": [
+        "Neuromuscular"
+      ],
+      "topics": [
+        "Spinal"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Neuromuscular practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(16)30388-x",
+    "title": "Neurology or psychiatry—it's all in your head!",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2017-01-13T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Easton Ava",
+      "Chapman Phillippa"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(16)30388-x",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(16)30198-3",
+    "title": "Glyburide for cerebral oedema: could an old dog have a new trick?",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2016-08-25T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Hankey Graeme J"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(16)30198-3",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Cerebral"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(16)30138-7",
+    "title": "Alzheimer's disease risk: amyloid versus neurodegeneration",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2016-07-20T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Bischof Gérard N"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(16)30138-7",
+    "neurology_classification": {
+      "subspecialty": "Dementia",
+      "subspecialties": [
+        "Dementia"
+      ],
+      "topics": [
+        "Alzheimer",
+        "Amyloid"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Dementia practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(16)00113-7",
+    "title": "Optical coherence tomography in multiple sclerosis",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2016-03-24T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Aboulenein-Djamshidian Fahmy",
+      "Serbecic Nermin",
+      "Kristoferitsch Wolfgang"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(16)00113-7",
+    "neurology_classification": {
+      "subspecialty": "Neuroimmunology",
+      "subspecialties": [
+        "Neuroimmunology"
+      ],
+      "topics": [
+        "Multiple sclerosis"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Neuroimmunology practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(16)00073-9",
+    "title": "South Africa: stroke units out of the blue",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2016-03-07T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Burton Adrian"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(16)00073-9",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Stroke"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(15)00257-4",
+    "title": "The diagnosis of posterior reversible encephalopathy syndrome – Authors' reply",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2015-10-12T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Fugate Jennifer E",
+      "Rabinstein Alejandro A"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(15)00257-4",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Encephalopathy"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(15)00030-7",
+    "title": "News in brief",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2015-04-12T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(15)00030-7",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(14)70272-8",
+    "title": "Raising standards in dementia care",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2014-11-10T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "The Lancet Neurology"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(14)70272-8",
+    "neurology_classification": {
+      "subspecialty": "Dementia",
+      "subspecialties": [
+        "Dementia"
+      ],
+      "topics": [
+        "Dementia"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Dementia practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(14)70205-4",
+    "title": "Sepsis-associated encephalopathy versus sepsis-induced encephalopathy",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2014-09-15T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Golzari Samad EJ",
+      "Mahmoodpoor Ata"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(14)70205-4",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Encephalopathy"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(14)70174-7",
+    "title": "Complexity of the endovascular intervention and clinical outcomes in acute ischaemic stroke",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2014-08-17T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Ciccone Alfonso"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(14)70174-7",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Stroke",
+        "Endovascular"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(14)70061-4",
+    "title": "21st century telemetry",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2014-03-20T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Goodrick Steven"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(14)70061-4",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1212/wnl.0000000000000277",
+    "title": "EDITORIAL EXPRESSION OF CONCERN: Herpes zoster as a risk factor for stroke and TIA: A retrospective cohort study in the UK",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2014-02-05T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [],
+    "doi_url": "https://doi.org/10.1212/wnl.0000000000000277",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Stroke"
+      ]
+    },
+    "abstract": "With regard to the research article “Herpes zoster as a risk factor for stroke and TIA: A retrospective cohort study in the UK” by J. Breuer et al. ([ Neurology ® 2014;82:206–212][1]; published ahead of print January 2, 2014), we are publishing this Expression of Concern to alert readers that errors of data presentation have been uncovered since publication. The authors are preparing a corrected version of the paper. [1]: /lookup/volpage/82/206?iss=3",
+    "ai_takeaways": {
+      "conclusion_vi": "An Expression of Concern has been issued regarding the 2014 study on herpes zoster as a risk factor for stroke and TIA due to data presentation errors, and readers should await a forthcoming correction from the authors.",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1212/01.wnl.0000437303.36064.f8-01",
+    "title": "Prognosis of juvenile myoclonic epilepsy 45 years after onset: Seizure outcome and predictors",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2013-12-20T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Senf P.",
+      "Schmitz B.",
+      "Holtkamp M.",
+      "Janz D."
+    ],
+    "doi_url": "https://doi.org/10.1212/01.wnl.0000437303.36064.f8-01",
+    "neurology_classification": {
+      "subspecialty": "Epilepsy",
+      "subspecialties": [
+        "Epilepsy"
+      ],
+      "topics": [
+        "Epilepsy",
+        "Seizure"
+      ]
+    },
+    "abstract": "OBJECTIVES: Juvenile myoclonic epilepsy (JME) is the most common idiopathic generalized epilepsy subsyndrome, contributing to approximately 3% to 11% of adolescent and adult cases of epilepsy. However, little is known about the long-term medical evolution of this clinical entity. The aim of this study was to analyze long-term outcome in a clinically well-defined series of patients with JME for seizure evolution and predictors of seizure outcome. METHODS: In this retrospective cohort study, we analyzed seizure outcome in 66 patients who had JME, were treated at the Department of Neurology, Charité-Universitätsmedizin Berlin, and were initially diagnosed by a single senior epileptologist. RESULTS: After a mean follow-up time of 44.6 years (20-69 years), 59.1% of patients remained free of seizures for at least 5 years before the last contact. Among the seizure-free patients, 28 (71.8%) were still taking antiepileptic drugs and 11 (28.2%) were off medication for at least the last 5 years. We identified manifestation of additional absence seizures at onset of JME as an independent predictor of an unfavorable outcome regarding seizure freedom. CONCLUSIONS: A significant proportion of patients with JME were seizure-free and off antiepileptic drug therapy in the later course of their disorder. Patients with JME and additional absence seizures might represent a different JME subtype with a worse outcome.",
+    "ai_takeaways": {
+      "conclusion_vi": "With a mean follow-up of nearly 45 years, 59.1% of juvenile myoclonic epilepsy patients achieved at least 5-year seizure freedom, with 28.2% successfully discontinuing antiseizure medication. The manifestation of additional absence seizures at onset serves as an independent predictor of unfavorable long-term seizure outcomes.",
+      "clinical_significance": "Clinical significance for Epilepsy practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1212/wnl.78.1_meetingabstracts.p05.169",
+    "title": "The Fast Skeletal Troponin Activator, CK-2017357, Increases Muscle Function and Survival in SOD1 (G93A) Mice; a Model of ALS (P05.169)",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2012-04-22T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Malik F.",
+      "Russell A.",
+      "Pannirselvam M.",
+      "Hinken A.",
+      "Thomsen K.",
+      "Ardiana A.",
+      "Godinez G.",
+      "Jia Z.",
+      "Saikali K.",
+      "Chen M.",
+      "Morgans D.",
+      "Jasper J."
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.78.1_meetingabstracts.p05.169",
+    "neurology_classification": {
+      "subspecialty": "Neuromuscular",
+      "subspecialties": [
+        "Neuromuscular"
+      ],
+      "topics": [
+        "Als"
+      ]
+    },
+    "abstract": "Objective: To examine the effects of CK-2017357 in a mouse model of ALS. Background: CK-2017357 is a small molecule activator of fast skeletal troponin that sensitizes the sarcomere to calcium and amplifies the muscle9s response to motor neuron input at sub-tetanic forces. Design/Methods: The potential effects of CK-2017357 were examined on muscle force, respiratory function and survival in SOD1 G93A mutant transgenic mice, a model of amyotrophic lateral sclerosis (ALS) in humans. Results: Extensor digitorum longus (EDL) muscle was stimulated via the peroneal nerve over a range of frequencies (10-200 Hz, 350 ms trains) to establish the force-frequency relationship. EDL tetanic force (26.3 ± 4.4 N/cm 2 ) was reduced by 44% ± 3.9% in 90-100 day-old SOD1 vs. WT and 66% ± 7.7% in 100-110 day-old SOD1 vs. WT, reflecting progressive loss of muscle force with disease progression. Infusion of CK-2017357 resulted in dose-dependent increases (mean ± SEM) in force at 30 Hz compared to baseline in WT (206% ± 29%), 90-100 day-old (200% ± 52%) and 100-110 day-old (153% ± 55%) SOD1 G93A mice. In female SOD1 G93A mice fed chow containing CK-2017357 (400 ppm) beginning at 11 weeks of age, animals survived to a humane endpoint longer compared to control chow-fed mice (p=0.024; hazard ratio=0.66). Body weight was similar in the two groups. There were no differences in respiratory parameters (breathing frequency, tidal volume and ventilation during hypercapnic challenge) in CK-2017357 chow-fed SOD1 G93A mice compared to WT mice. SOD1 G93A mice fed 400 ppm CK-2017357 chow exhibited a significant increase in hindlimb grip strength compared to control chow fed SOD1 G93A mice, while forelimb grip strength was not altered. Conclusions: CK-2017357 increased isometric in situ muscle force and hindlimb grip strength in SOD1 G93A mice and improved survival. These results indicate that CK-2017357 has the potential to improve muscle function in patients suffering from ALS. Supported by: Cytokinetics, Inc. Disclosure: Dr. Malik has received personal compensation for activities with Cytokinetics, Inc. Dr. Malik holds stock and/or stock options in Cytokinetics, Inc. Dr. Malik has received research support from Cytokinetics, Inc. Mr. Russell holds stock and/or stock options in Former Cytokinetics, Inc. which sponsored research in which Mr. Russell was involved as an investigator. Dr. Pannirselvam holds stock and/or stock options in Cytokinetics, Inc., which sponsored research in which Dr. Pannirselvam was involved as an investigator.Dr. Pannirselvam has received research support from Cytokinetics, Inc. Dr. Hinken holds stock and/or stock options in Cytokinetics, Inc., which sponsored research in which Dr. Hinken was involved as an investigator.Dr. Hinken has received research support from Cytokinetics, Inc. Dr. Thomsen holds stock and/or stock options in Cytokinetics, Inc., which sponsored research in which Dr. Thomsen was involved as an investigator. Dr. Thomsen has received research support from Cytokinetics, Inc. Dr. Ardiana holds stock and/or stock options in Cytokinetics, Inc., which sponsored research in which Dr. Ardiana was involved as an investigator. Dr. Ardiana has received research support from Cytokinetics, Inc. as an employee. Dr. Godinez holds stock and/or stock options in Cytokinetics, Inc., which sponsored research in which Dr. Godinez was involved as an investigator. Dr. Jia holds stock and/or stock options in Cytokinetics, Inc., which sponsored research in which Dr. Jia was involved as an investigator. Dr. Saikali holds stock and/or stock options in Cytokinetics, Inc. Dr. Saikali has received research support from Cytokinetics, Inc. Dr. Chen holds stock and/or stock options in Cytokinetics, Inc., which sponsored research in which Dr. Chen was involved as an investigator. Dr. Chen has received research support from Cytokinetics, Inc. Dr. Morgans holds stock and/or stock options in Cytokinetics, Inc. Dr. Morgans has received research support from Cytokinetics, Inc. Dr. Jasper holds stock and/or stock options in Cytokinetics, Inc., which sponsored research in which Dr. Jasper was involved as an investigator.Dr. Jasper has received research support from Cytokinetics, Inc..",
+    "ai_takeaways": {
+      "conclusion_vi": "In SOD1 G93A transgenic ALS mice, the fast skeletal troponin activator CK-2017357 significantly increased sub-tetanic muscle force and hindlimb grip strength while extending survival (p=0.024; hazard ratio=0.66). These preclinical findings suggest that targeting sarcomere calcium sensitivity may improve skeletal muscle function in ALS.",
+      "clinical_significance": "Clinical significance for Neuromuscular practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1212/wnl.78.1_meetingabstracts.p02.021",
+    "title": "Safety, Tolerability and Pharmacokinetics of the Anti-LINGO-1 Monoclonal Antibody BIIB033 in Healthy Volunteers and Subjects with Multiple Sclerosis (P02.021)",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2012-04-22T00:00:00Z",
+    "article_type": "Clinical Trial",
+    "article_types": [
+      "Clinical Trial",
+      "Original Article"
+    ],
+    "authors": [
+      "Tran J.",
+      "Palaparthy R.",
+      "Zhao J.",
+      "Brosofsky K.",
+      "Ray S.",
+      "Rana J.",
+      "Cadavid D."
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.78.1_meetingabstracts.p02.021",
+    "neurology_classification": {
+      "subspecialty": "Neuroimmunology",
+      "subspecialties": [
+        "Neuroimmunology"
+      ],
+      "topics": [
+        "Multiple sclerosis"
+      ]
+    },
+    "abstract": "Objective: To evaluate the safety, tolerability, and pharmacokinetics (PK) of the anti-LINGO-1 monoclonal antibody BIIB033 in healthy volunteers and subjects with multiple sclerosis (MS). Background: LINGO-1 antagonism enhances remyelination and functional recovery in diverse rodent models. Biogen Idec is developing the anti-LINGO-1 monoclonal antibody, BIIB033, as a potential therapy to promote remyelination and functional recovery in MS. Design/Methods: In two separate randomized, placebo-controlled Phase 1 studies, single ascending doses (0.1 to 100 mg/kg) and multiple ascending doses (0.3 to 100 mg/kg; 2 doses separated by 14 days) of BIIB033 or placebo were administered via intravenous infusion to 64 healthy adult volunteers and 42 subjects with RRMS or SPMS, respectively. Safety was assessed by adverse event (AE) monitoring, vital signs, ECGs, laboratory tests, physical and neurological examinations, brain MRIs, VEP, SSEP, OCT, and retinal examination. Serum and cerebrospinal fluid (CSF) samples were collected to measure BIIB033 concentrations. All subjects were followed for 12-16 weeks after the last dose. Results: BIIB033 infusions were well tolerated. The frequency of AEs was similar between BIIB033 and placebo, with headache being the most frequently reported AE. There were no serious AEs or deaths. No clinically significant changes in any of the safety parameters were observed. BIIB033 PK was similar between healthy adults and MS subjects. Both Cmax and AUC increased in an approximately dose-proportional manner. The mean terminal half-life (t1/2) was approximately 15-21 days. Doses at 10 mg/kg or higher resulted in BIIB033 concentrations similar to or higher than concentration associated with 90% of the maximum remyelination effect in rats (EC90). The mean CSF/serum ratio of BIIB033 was approximately 0.06-0.09% which is similar to that observed in rat models. Conclusions: BIIB033 exhibits favorable safety profile, desirable PK and predicted brain penetration as suggested from CSF levels. These findings support advancing its development into proof-of-concept studies in MS. Supported by: Biogen Idec. Disclosure: Dr. Tran has received personal compensation for activities with Biogen Idec as an employee. Dr. Tran holds stock and/or stock options in Biogen Idec, which sponsored research in which Dr. Tran was involved as an investigator. Dr. Tran has received research support from Biogen Idec. Dr. Palaparthy has received personal compensation for activities with Biogen Idec as an employee.Dr. Palaparthy holds stock and/or stock options in Biogen Idec, which sponsored research in which Dr. Palaparthy was involved as an investigator.Dr. Palaparthy has received research support from Biogen Idec. Dr. Zhao has received personal compensation for activities with Biogen Idec as an employee. Dr. Zhao holds stock and/or stock options in Biogen Idec, which sponsored research in which Dr. Zhao was involved as an investigator. Dr. Zhao has received research support from Biogen Idec. Dr. Brosofsky has received personal compensation for activities with ALG Partners Inc. Dr. Brosofsky has received research support from ALG Partners Inc. Dr. Ray has received personal compensation for activities with Biogen Idec as an employee.Dr. Ray holds stock and/or stock options in Biogen Idec.Dr. Ray has received research support from Biogen Idec. Dr. Rana has received personal compensation for activities with Biogen Idec as an employee.Dr. Rana holds stock and/or stock options in Biogen Idec, which sponsored research in which Dr. Rana was involved in as an investigator.Dr. Rana has received research support from Biogen Idec. Dr. Cadavid has received personal compensation for activities with Biogen Idec as an employee. Dr. Cadavid holds stock and/or stock options in Biogen Idec, which sponsored research in which Dr. Cadavid was involved as an investigator. Dr. Cadavid has received research support from Biogen Idec.",
+    "ai_takeaways": {
+      "conclusion_vi": "BIIB033 (anti-LINGO-1) demonstrated a favorable safety profile, dose-proportional pharmacokinetics, and adequate CSF penetration across single and multiple ascending doses in healthy volunteers and multiple sclerosis patients. These Phase 1 findings support advancing the monoclonal antibody into clinical proof-of-concept trials aimed at promoting remyelination.",
+      "clinical_significance": "Clinical significance for Neuroimmunology practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1212/wnl.78.1_meetingabstracts.p01.043",
+    "title": "Are Menopausal Women with Epilepsy at Higher Risk for Mood Disorders and Suicide Risk? (P01.043)",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2012-04-22T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Patel S.",
+      "Foldvary-Schaefer N.",
+      "Jehi L.",
+      "Tesar G.",
+      "Viguera A."
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.78.1_meetingabstracts.p01.043",
+    "neurology_classification": {
+      "subspecialty": "Epilepsy",
+      "subspecialties": [
+        "Epilepsy"
+      ],
+      "topics": [
+        "Epilepsy"
+      ]
+    },
+    "abstract": "Objective: To compare the prevalence of mood and anxiety disorders and suicide risk in premenopausal and menopausal women with epilepsy. Background: The risk for mood and anxiety disorders during the menopause period among women with epilepsy have not been systematically investigated. The prevalence of psychiatric disorders in patients with epilepsy is higher than the general population. During the menopausal transition women are at increased risk for depression. Thus, we hypothesize that psychiatric co-morbidities are higher in menopausal women with epilepsy as well. Design/Methods: Women with epilepsy admitted to the Cleveland Clinic Epilepsy Monitoring Unit were invited to participate. Subjects were interviewed by a psychiatrist or neurologist using the Mini-International Neuropsychiatry Interview (MINI), which is a validated and standardized psychiatric diagnostic interview. The study was IRB approved. Statistical analysis was descriptive as the study is on going. Results: Fifty five women with epilepsy participated. Subjects had a mean age of 39 year (19-67); 80% were Caucasian. Epilepsy classification includes temporal lobe (32%), extra temporal (23%), undefined focal epilepsy (36%), generalized (5%), and multifocal (2%). Average seizure frequency was 77 per 6 months and the average age of epilepsy onset was 24. In regards to AED, majority of patients were on polytherapy (84%). Based on MINI, 27% women met criteria for major depressive disorder (MDD), 9% generalized anxiety disorder (GAD), and 34.5% had suicidal ideation. Compared to premenopausal women, menopausal women experienced a higher prevalence of MDD (34.7% vs. 22%), GAD (13% vs. 6%), and suicide ideation (39% vs. 31%). Conclusions: This study suggests that menopausal women with epilepsy have a higher prevalence of MDD, GAD, and suicide ideation compared with premenopausal women. Further investigation on the psychiatric effects of menopause in this population is needed to increase awareness and enhance quality of patient care. Disclosure: Dr. Patel has nothing to disclose. Dr. Foldvary-Schaefer has received personal compensation for activities with Jazz Pharma and UCB Pharma. Dr. Foldvary-Schaefer has received research support from UCB Pharma, CleveMed, and Lundbeck. Dr. Jehi has nothing to disclose. Dr. Tesar has nothing to disclose. Dr. Viguera has nothing to disclose.",
+    "ai_takeaways": {
+      "conclusion_vi": "Menopausal women with epilepsy experience a higher prevalence of major depressive disorder (34.7% vs. 22%), generalized anxiety disorder (13% vs. 6%), and suicidal ideation (39% vs. 31%) compared to premenopausal women. Neurologists should prioritize targeted psychiatric screening during the menopausal transition in this vulnerable population.",
+      "clinical_significance": "Clinical significance for Epilepsy practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1212/wnl.78.1_meetingabstracts.p06.244",
+    "title": "Angiographic Patterns in Patients with HIV at Hahnemann University Hospital (P06.244)",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2012-04-22T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Nair S.",
+      "Venkatesh Y."
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.78.1_meetingabstracts.p06.244",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Objective: To cerebral angiographic patterns of patients with HIV at Hahnemann University Hospital. Background: Central nervous system vascular involvement in patients with HIV is due to infections, neoplastic disease, or abuse of toxic drugs. Nogueras et al. observed recurrent stroke as a manifestation of primary angiitis in a patient with HIV [1]. They demonstrated the presence of HIV-integrated DNA in the basal ganglionic tissues of their patient, which suggested that HIV plays a role in the vasculitic process. HIV has been demonstrated in perivascular multinucleated giant cells and endothelial cells by Gray et al. [2]. O9Chareon et al. reported a patient with HIV-associated vasculitis, demonstrated aneurysmal dilatation of cerebral arteries with alternate areas of narrowing and mural enhancement [3]. Dubrovsky et al. identified pediatric patients with AIDS who have cerebral aneurysmal arteriopathy [4]. Design/Methods: A retrospective chart review of patients who had magnetic resonance angiograms and conventional angiograms, at Hahnemann University Hospital from January 2005 to December 2010. Inclusion criteria: Patients over the age of 18 with HIV. Exclusion criteria: Patients with a known history of cerebral aneurysm prior to being diagnosed with HIV. Results: We identified 30 patients with HIV after randomization who had either an magnetic resonance angiogram or a conventional angiogram. Of those, 72% had CD4 counts Conclusions: The frequency of aneurysms in patients with HIV (3%) was not higher than that in the general population (5%-6%). In the future, we could look at subset of patients with HIV who are more likely to have aneurysms. Disclosure: Dr. Nair has nothing to disclose. Dr. Venkatesh has nothing to disclose.",
+    "ai_takeaways": {
+      "conclusion_vi": "Among patients with HIV, the frequency of cerebral aneurysms was 3%, which is not higher than the 5%-6% observed in the general population.",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1212/wnl.78.1_meetingabstracts.p07.205",
+    "title": "PEO1 Gene (Twinkle) Mutation and Multi-Organ Failure Following Propofol Infusion (P07.205)",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2012-04-22T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Harrison R.",
+      "Valerio J.",
+      "Buffam F.",
+      "Mezei M."
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.78.1_meetingabstracts.p07.205",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1212/wnl.78.1_meetingabstracts.in4-2.001",
+    "title": "Transcranial Direct Current Stimulation Enhances Contralateral Visual Target Detection (IN4-2.001)",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2012-04-22T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Hamilton R.",
+      "Medina J.",
+      "Beauvais J.",
+      "Datta A.",
+      "Bikson M.",
+      "Coslett H."
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.78.1_meetingabstracts.in4-2.001",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1212/wnl.78.1_meetingabstracts.p06.188",
+    "title": "Disease-Modifying Drugs for Multiple Sclerosis in Pregnancy: A Systematic Review (P06.188)",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2012-04-22T00:00:00Z",
+    "article_type": "Meta-Analysis",
+    "article_types": [
+      "Meta-Analysis",
+      "Review",
+      "Original Article"
+    ],
+    "authors": [
+      "Lu E.",
+      "Wang B. W.",
+      "Guimond C.",
+      "Synnes A.",
+      "Sadovnick D.",
+      "Tremlett H."
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.78.1_meetingabstracts.p06.188",
+    "neurology_classification": {
+      "subspecialty": "Neuroimmunology",
+      "subspecialties": [
+        "Neuroimmunology"
+      ],
+      "topics": [
+        "Multiple sclerosis"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Neuroimmunology practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1212/wnl.78.1_meetingabstracts.p06.210",
+    "title": "Complications Associated with Eptifibatide Use during Carotid Artery Stenting (P06.210)",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2012-04-22T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Alshekhlee A.",
+      "Vora N.",
+      "Edgell R.",
+      "Kaushal R.",
+      "Mehta S.",
+      "Storkan M.",
+      "Kitchener J.",
+      "Callison R."
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.78.1_meetingabstracts.p06.210",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Carotid"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1212/wnl.78.1_meetingabstracts.p06.120",
+    "title": "Effects of Concomitant Lamotrigine or Valproate Therapy on Clobazam for Lennox-Gastaut Syndrome: Subanalyses of the CONTAIN Trial (P06.120)",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2012-04-22T00:00:00Z",
+    "article_type": "Clinical Trial",
+    "article_types": [
+      "Clinical Trial",
+      "Original Article"
+    ],
+    "authors": [
+      "Renfroe J.",
+      "Conry J.",
+      "Ng Y.-t.",
+      "Drummond R.",
+      "Owen R."
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.78.1_meetingabstracts.p06.120",
+    "neurology_classification": {
+      "subspecialty": "Epilepsy",
+      "subspecialties": [
+        "Epilepsy"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Objective: We conducted a subanalysis of a Phase III trial to evaluate clobazam9s efficacy with concomitant lamotrigine or valproate therapy. Background: In CONTAIN,1 clobazam, a 1,5-benzodiazepine, significantly decreased weekly frequency of drop and total seizures associated with LGS.1 Design/Methods: CONTAIN, a double-blind, placebo-controlled study, compared 3 dosages of clobazam with placebo as adjunctive therapy for LGS. Patients 2–60 years of age with LGS enrolled.1 In this post-hoc subanalysis, we evaluated results from baseline to 12-week maintenance phase for patients who also received lamotrigine or valproate therapy. We also used a popPK model to assess interactions of clobazam and its active metabolite (N-CLB) with lamotrigine and valproate. Results: As reported1, 301 patients were screened, 238 were randomized, 217 comprised the mITT population, and 177 completed the study. At baseline, patients9 mean age was 12.4 years, and 60.5% were male. Demographics/clinical characteristics were similar between groups. Clobazam significantly decreased weekly frequencies of drop and total seizures associated with LGS.1 For 72 patients receiving concomitant lamotrigine, all clobazam groups achieved a greater mean percentage decrease in average weekly rate of drop seizures from baseline to maintenance period vs. placebo. For 113 patients receiving concomitant valproate, all dosage groups had a greater mean reduction in average weekly rate of drop attacks vs. placebo. Efficacy was dosage-dependent for patients receiving clobazam and either concomitant lamotrigine or valproate, consistent with overall results. Kruskal-Wallis analysis indicated no significant effects between clobazam or N-CLB and lamotrigine or valproate concentrations. Conclusions: In CONTAIN, clobazam was consistently efficacious in decreasing weekly rates of drop seizures from baseline to maintenance phase vs. placebo for patients receiving either concomitant lamotrigine or valproate. Efficacy was dosage-dependent, consistent with overall results. No dosage adjustment of lamotrigine or valproate appears to be required when coadministered with clobazam. 1Ng YT, et al. Neurology. 2011;77:1473–81. Supported by: Lundbeck Inc. Disclosure: Dr. Renfroe has received research support from Lundbeck Inc. Dr. Conry has received personal compensation for activities with Lundbeck Research USA, Inc., and ID&A. Dr. Conry has received personal compensation for activities with Lundbeck Research USA, Inc., Marinus, Eisai Inc., King, and Abbott Laboratories, Inc. Dr. Ng has received personal compensation for activities with UCB Pharma, Cyberonics, Inc., and Lundbeck Research USA, Inc. Dr. Ng has received research support from UCB Pharma. Dr. Drummond has received personal compensation for activities with Lundbeck, Inc. as an employee. Dr. Owen has received personal compensation for activities with Lundbeck Research USA, Inc.",
+    "ai_takeaways": {
+      "conclusion_vi": "Clobazam adjunctive therapy effectively and in a dose-dependent manner reduces drop seizures in patients with Lennox-Gastaut Syndrome when coadministered with lamotrigine or valproate. Furthermore, pharmacokinetic analysis indicates no significant drug interactions, suggesting that lamotrigine or valproate dosage adjustments are not required when coadministered with clobazam.",
+      "clinical_significance": "Clinical significance for Epilepsy practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1212/wnl.78.1_meetingabstracts.p01.024",
+    "title": "Time-Dependent Biphasic Echogenicity and Histological Correlates of Experimental Blood Clots. A Serial Ultrasound Study (P01.024)",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2012-04-22T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Watanabe M.",
+      "Majidi S.",
+      "Chaudhry S.",
+      "Qureshi A."
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.78.1_meetingabstracts.p01.024",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1212/wnl.78.1_meetingabstracts.p02.267",
+    "title": "Case Report: HIV-2 Encephalitis in a Patient with Subacute Cognitive Decline (P02.267)",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2012-04-22T00:00:00Z",
+    "article_type": "Case Report",
+    "article_types": [
+      "Case Report"
+    ],
+    "authors": [
+      "Lyons J.",
+      "Phillips R.",
+      "Wood B.",
+      "Johnson J.",
+      "Folkerth R.",
+      "Milner D.",
+      "Klein J."
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.78.1_meetingabstracts.p02.267",
+    "neurology_classification": {
+      "subspecialty": "Dementia",
+      "subspecialties": [
+        "Dementia"
+      ],
+      "topics": [
+        "Encephalitis"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Dementia practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1212/wnl.78.1_meetingabstracts.p06.020",
+    "title": "The Natural History of Intravascular Lymphoma (P06.020)",
+    "journal": {
+      "name": "Neurology (AAN)",
+      "short_name": "Neurology",
+      "badge_bg": "#DCFCE7",
+      "badge_text": "#166534"
+    },
+    "pub_date": "2012-04-22T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Fonkem E.",
+      "Robison D.",
+      "Lok E.",
+      "Gautam S.",
+      "Wong E."
+    ],
+    "doi_url": "https://doi.org/10.1212/wnl.78.1_meetingabstracts.p06.020",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(10)70305-7",
+    "title": "Paediatric neurology: understanding risk and improving therapeutic choices",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2010-12-15T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Kennedy Colin"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(10)70305-7",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/strokeaha.109.576421",
+    "title": "Orthotic Devices After Stroke and Other Nonprogressive Brain Lesions",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2010-02-18T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Tyson S. F.",
+      "Kent R. M."
+    ],
+    "doi_url": "https://doi.org/10.1161/strokeaha.109.576421",
+    "neurology_classification": {
+      "subspecialty": "Stroke",
+      "subspecialties": [
+        "Stroke"
+      ],
+      "topics": [
+        "Stroke",
+        "Brain"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Stroke practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(10)70012-0",
+    "title": "Errata",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2010-01-19T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(10)70012-0",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/strokeaha.109.548438",
+    "title": "Advances in Interventional Neuroradiology",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2009-04-27T00:00:00Z",
+    "article_type": "RCT",
+    "article_types": [
+      "RCT",
+      "Clinical Trial",
+      "Original Article"
+    ],
+    "authors": [
+      "Wakhloo A. K.",
+      "Deleo M. J.",
+      "Brown M. M."
+    ],
+    "doi_url": "https://doi.org/10.1161/strokeaha.109.548438",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "In 2008 we witnessed a rapid advancement in stent technology, which is reflected in the high number of case reports, publications of case series, and randomized trials. Stents not only served for a combined intrasaccular and extrasaccular treatment of challenging aneurysms but also assisted the revascularization in acute and chronic ischemic conditions of the neurovascular system. Although a self-expanding nitinol semiopen cell stent is currently used for intracranial occlusive disease, a new retrievable closed-cell designed stent is widely used for aneurysms because of its easy delivery through a microcatheter in frequently tortuous head and neck as well as cerebrovascular circulation (Figure 1). However, despite numerous publications in the field, the widespread acceptance of the use of stents to routinely treat carotid stenosis awaits the results of the multicenter randomized clinical trials that should be available in 2009. The role of interventional neuroradiology in the treatment of acute ischemic stroke continues to expand and excite interest.",
+    "ai_takeaways": {
+      "conclusion_vi": "Stent advancements expand endovascular options for complex aneurysms and neurovascular ischemic conditions using nitinol semiopen-cell and retrievable closed-cell designs. However, routine stenting for carotid stenosis awaits validation from pending randomized controlled trials.",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1161/strokeaha.109.551820",
+    "title": "Introduction",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2009-04-27T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Fisher M."
+    ],
+    "doi_url": "https://doi.org/10.1161/strokeaha.109.551820",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/strokeaha.107.502153",
+    "title": "Response to the Letter by Fisher et al",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2007-09-27T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Ginsberg M. D."
+    ],
+    "doi_url": "https://doi.org/10.1161/strokeaha.107.502153",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/strokeaha.107.500819",
+    "title": "Issues Pertaining to the Critiques of the SAINT-I Trial",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2007-09-27T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Fisher M.",
+      "Hess D. C.",
+      "Less K."
+    ],
+    "doi_url": "https://doi.org/10.1161/strokeaha.107.500819",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/01.str.0000251582.07152.63",
+    "title": "Time Is Brain",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2006-11-09T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Furlan A. J."
+    ],
+    "doi_url": "https://doi.org/10.1161/01.str.0000251582.07152.63",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Brain"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(06)70586-5",
+    "title": "Deep-brain stimulation in Parkinson's disease",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2006-10-18T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Weaver Frances M",
+      "Stern Matthew B",
+      "Follett Kenneth"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(06)70586-5",
+    "neurology_classification": {
+      "subspecialty": "Movement Disorders",
+      "subspecialties": [
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Parkinson",
+        "Brain"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Movement Disorders practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(06)70511-7",
+    "title": "Notch so good news for cancer",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2006-07-19T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Siva Nayanah"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(06)70511-7",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(06)70506-3",
+    "title": "Intranasal anticonvulsive treatment in rural settings of developing countries",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2006-07-19T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Odermatt Peter",
+      "Preux Pierre-Marie"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(06)70506-3",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(06)70473-2",
+    "title": "Epidemiology of neurological diseases in elderly people: what did we learn from the Rotterdam Study?",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2006-05-20T00:00:00Z",
+    "article_type": "Original Article",
+    "article_types": [
+      "Original Article"
+    ],
+    "authors": [
+      "Hofman Albert",
+      "de Jong Paulus TVM",
+      "van Duijn Cornelia M",
+      "Breteler Monique MB"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(06)70473-2",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurological"
+      ]
+    },
+    "abstract": "The Rotterdam Study is a prospective cohort study that has been ongoing since 1990 in the city of Rotterdam, the Netherlands, among 7983 people aged 55 years or older. One part of the study targets neurological diseases, others deal with cardiovascular, ophthalmological, and endocrine diseases. The findings of the Rotterdam Study have been presented in some . Here we give the reasons for the study and its design, and present a summary of what has been learned about the frequencies and causes of neurological diseases. Perhaps the most important message from the Rotterdam Study is the great potential for prevention or postponement of neurological diseases in elderly people. The time for preventive nihilism is over.",
+    "ai_takeaways": {
+      "conclusion_vi": "Data from the Rotterdam prospective cohort study (n = 7983, aged ≥ 55 years) demonstrate substantial potential to prevent or postpone neurological diseases in older adults. Clinicians must reject preventive nihilism and actively target modifiable risk factors in aging populations.",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": true
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(06)70437-9",
+    "title": "Pure genius",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2006-04-24T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Butcher James"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(06)70437-9",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/01.str.0000217469.28030.e0",
+    "title": "Response",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2006-03-30T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Randall M."
+    ],
+    "doi_url": "https://doi.org/10.1161/01.str.0000217469.28030.e0",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1161/01.str.0000217369.61669.02",
+    "title": "Response",
+    "journal": {
+      "name": "Stroke (AHA)",
+      "short_name": "Stroke",
+      "badge_bg": "#FFE4E6",
+      "badge_text": "#991B1B"
+    },
+    "pub_date": "2006-03-23T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Topakian R."
+    ],
+    "doi_url": "https://doi.org/10.1161/01.str.0000217369.61669.02",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Stroke via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(05)70241-6",
+    "title": "Networks of neglect",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2005-11-18T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Hayward Peter"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(05)70241-6",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(05)70093-4",
+    "title": "Neuro-oncology for non-oncologists",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2005-05-20T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Macleod Malcolm"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(05)70093-4",
+    "neurology_classification": {
+      "subspecialty": "Neuro-Oncology",
+      "subspecialties": [
+        "Neuro-Oncology"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Neuro-Oncology practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(05)70079-x",
+    "title": "Prevalence of Parkinson's disease in China",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2005-05-20T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Rocca Walter A"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(05)70079-x",
+    "neurology_classification": {
+      "subspecialty": "Movement Disorders",
+      "subspecialties": [
+        "Movement Disorders"
+      ],
+      "topics": [
+        "Parkinson"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Movement Disorders practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(03)00627-6",
+    "title": "Media Watch",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2003-12-18T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Cole Jonathan"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(03)00627-6",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(03)00591-x",
+    "title": "New discoveries about the second gene for familial hemiplegic migraine, ATP1A2",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2003-11-20T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Vanmolkot Kaate RJ",
+      "van den Maagdenberg Arn MJM",
+      "Haan Joost",
+      "Ferrari Michel D"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(03)00591-x",
+    "neurology_classification": {
+      "subspecialty": "Headache & Pain",
+      "subspecialties": [
+        "Headache & Pain"
+      ],
+      "topics": [
+        "Migraine"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Headache & Pain practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(03)00574-x",
+    "title": "Red Cien to tackle Alzheimer's in Spain",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2003-10-16T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Bosch Xavier"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(03)00574-x",
+    "neurology_classification": {
+      "subspecialty": "Dementia",
+      "subspecialties": [
+        "Dementia"
+      ],
+      "topics": [
+        "Alzheimer"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Dementia practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/0140-6736(93)90734-x",
+    "title": "Lack of association between myelin basic protein gene microsatellite and multiple sclerosis",
+    "journal": {
+      "name": "The Lancet",
+      "short_name": "The Lancet",
+      "badge_bg": "#DBEAFE",
+      "badge_text": "#1E40AF"
+    },
+    "pub_date": "2003-10-09T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Graham C.A.",
+      "Kirk C.W.",
+      "Nevin N.C.",
+      "Droogan A.G.",
+      "Hawkins S.A.",
+      "Mcmillan S.A.",
+      "Mcneill T.A."
+    ],
+    "doi_url": "https://doi.org/10.1016/0140-6736(93)90734-x",
+    "neurology_classification": {
+      "subspecialty": "Neuroimmunology",
+      "subspecialties": [
+        "Neuroimmunology"
+      ],
+      "topics": [
+        "Multiple sclerosis"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at The Lancet via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Neuroimmunology practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(03)00329-6",
+    "title": "Media Watch",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2003-02-28T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Visser Marianne de"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(03)00329-6",
+    "neurology_classification": {
+      "subspecialty": "Other",
+      "subspecialties": [
+        "Other"
+      ],
+      "topics": [
+        "Neurology"
+      ]
+    },
+    "abstract": "Original abstract and full manuscript available at Lancet Neurol via DOI.",
+    "ai_takeaways": {
+      "conclusion_vi": "",
+      "clinical_significance": "Clinical significance for Other practice.",
+      "ai_verified": false
+    }
+  },
+  {
+    "id": "10.1016/s1474-4422(02)00142-4",
+    "title": "Simply dreamy sleep sites",
+    "journal": {
+      "name": "The Lancet Neurology",
+      "short_name": "Lancet Neurol",
+      "badge_bg": "#CFFAFE",
+      "badge_text": "#0E7490"
+    },
+    "pub_date": "2002-10-09T00:00:00Z",
+    "article_type": "Editorial / Perspective",
+    "article_types": [
+      "Editorial / Perspective"
+    ],
+    "authors": [
+      "Larkin Marilynn"
+    ],
+    "doi_url": "https://doi.org/10.1016/s1474-4422(02)00142-4",
     "neurology_classification": {
       "subspecialty": "Other",
       "subspecialties": [
