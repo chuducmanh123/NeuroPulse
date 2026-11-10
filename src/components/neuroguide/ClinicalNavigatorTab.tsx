@@ -379,7 +379,7 @@ function MultiSelectFilterDropdown({
       </button>
 
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 mt-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl z-40 p-2 space-y-2">
+        <div className="mt-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xs p-2 space-y-2">
           {enableSearch && (
             <div className="relative">
               <input
@@ -590,6 +590,18 @@ export function ClinicalNavigatorTab({
   const [filterSearchTerm, setFilterSearchTerm] = useState<string>("");
   const normalizedFilterSearch = filterSearchTerm.trim().toLowerCase();
   const [isFilterExpanded, setIsFilterExpanded] = useState<boolean>(true);
+  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState<boolean>(false);
+
+  // Lock body scroll when mobile filter sheet is open
+  useEffect(() => {
+    if (isMobileFilterOpen) {
+      const originalStyle = window.getComputedStyle(document.body).overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = originalStyle;
+      };
+    }
+  }, [isMobileFilterOpen]);
   const [isTopicsExpanded, setIsTopicsExpanded] = useState<boolean>(false);
   const [sectionView, setSectionView] = useState<RightSectionFilter>("MATRIX");
   const [showSupportingBySociety, setShowSupportingBySociety] = useState<
@@ -1202,139 +1214,8 @@ export function ClinicalNavigatorTab({
     );
   };
 
-  return (
+  const renderFilterControls = () => (
     <div className="space-y-4">
-      {statusBanner && (
-        <div
-          className={`px-4 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-between ${
-            statusBanner.type === "success"
-              ? "bg-emerald-50 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-200 border border-emerald-300 dark:border-emerald-800"
-              : "bg-rose-50 text-rose-800 dark:bg-rose-950/60 dark:text-rose-200 border border-rose-300 dark:border-rose-800"
-          }`}
-        >
-          <span>{statusBanner.text}</span>
-          <button
-            type="button"
-            onClick={() => setStatusBanner(null)}
-            className="opacity-70 hover:opacity-100 ml-4"
-          >
-            ✕
-          </button>
-        </div>
-      )}
-
-      {/* Main 12-Column Split Layout: Left V3.0 Dual-Primary Axis Filter (4 cols) | Right Search + Evidence Synthesis (8 cols) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        {/* LEFT PANE: 1. V3.0 Dual-Primary Axis Filter -> 2. High-Yield Clinical Topics */}
-        <aside className="lg:col-span-4 space-y-4 lg:sticky lg:top-20">
-          {/* 1. V3.0 DUAL-PRIMARY AXIS FILTER CARD */}
-          <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3.5">
-            <div className="flex items-center justify-between">
-              <button
-                type="button"
-                onClick={() => setIsFilterExpanded((prev) => !prev)}
-                className="flex-1 flex items-center justify-between text-left"
-              >
-                <div className="flex items-center gap-2">
-                  <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-800 dark:text-slate-200">
-                    🧭 Clinical Filter
-                  </h3>
-                  {isQueryActive && (
-                    <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-600 text-white">
-                      {activeFilterSummaryChips.length +
-                        selectedSocieties.length +
-                        (searchText.trim().length >= 2 ? 1 : 0) +
-                        (onlyPracticeChanges ? 1 : 0)}
-                    </span>
-                  )}
-                </div>
-                <span className="text-xs text-slate-400 ml-2">
-                  {isFilterExpanded ? "▾" : "▸"}
-                </span>
-              </button>
-              {isQueryActive && (
-                <button
-                  type="button"
-                  onClick={handleClearAllFilters}
-                  className="ml-3 text-[11px] font-bold text-rose-600 dark:text-rose-400 hover:underline shrink-0"
-                >
-                  Reset All
-                </button>
-              )}
-            </div>
-
-            {/* Active Query Chips Summary */}
-            {isQueryActive && (
-              <div className="p-2.5 rounded-xl bg-indigo-50/50 dark:bg-indigo-950/30 border border-indigo-100 dark:border-indigo-900/60 space-y-1.5">
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
-                    Active Filter Matrix
-                  </span>
-                  <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400">
-                    {navResult.coreRecommendations.length} Core Recs
-                  </span>
-                </div>
-                <div className="flex flex-wrap gap-1">
-                  {searchText.trim().length >= 2 && (
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-bold bg-amber-100 text-amber-900 dark:bg-amber-950/70 dark:text-amber-300 border border-amber-300 dark:border-amber-800">
-                      🔍 &ldquo;{searchText.trim()}&rdquo;
-                      <button
-                        type="button"
-                        onClick={() => setSearchText("")}
-                        className="hover:text-rose-600 ml-0.5"
-                      >
-                        ×
-                      </button>
-                    </span>
-                  )}
-                  {activeFilterSummaryChips.map((chip) => (
-                    <span
-                      key={chip.id}
-                      className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-bold ${chip.color}`}
-                    >
-                      {chip.label}
-                      <button
-                        type="button"
-                        onClick={chip.onRemove}
-                        className="hover:opacity-75 ml-0.5"
-                      >
-                        ×
-                      </button>
-                    </span>
-                  ))}
-                  {selectedSocieties.map((soc) => (
-                    <span
-                      key={soc}
-                      className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-bold bg-slate-200 text-slate-800 dark:bg-slate-800 dark:text-slate-200"
-                    >
-                      {soc}
-                      <button
-                        type="button"
-                        onClick={() => handleToggleSociety(soc)}
-                        className="hover:text-rose-600 ml-0.5"
-                      >
-                        ×
-                      </button>
-                    </span>
-                  ))}
-                  {onlyPracticeChanges && (
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950/70 dark:text-emerald-300">
-                      New / Upgraded Only
-                      <button
-                        type="button"
-                        onClick={() => setOnlyPracticeChanges(false)}
-                        className="hover:text-rose-600 ml-0.5"
-                      >
-                        ×
-                      </button>
-                    </span>
-                  )}
-                </div>
-              </div>
-            )}
-
-            {isFilterExpanded && (
-              <div className="space-y-4 pt-2 border-t border-slate-100 dark:border-slate-800/80 max-h-[75vh] overflow-y-auto pr-1">
                 {/* Filter Tag Quick-Search with Autocomplete Popover (Requirement 4) */}
                 <div className="relative">
                   <input
@@ -1357,7 +1238,7 @@ export function ClinicalNavigatorTab({
 
                   {/* Autocomplete dropdown popover to select tags directly (Requirement 4) */}
                   {filterSearchTerm.trim().length > 0 && (
-                    <div className="absolute top-full left-0 right-0 mt-1.5 max-h-72 overflow-y-auto bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl shadow-2xl z-50 p-2 space-y-1">
+                    <div className="mt-1.5 max-h-60 overflow-y-auto bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl shadow-md p-2 space-y-1">
                       <div className="flex items-center justify-between px-2 py-1 text-[10px] font-bold text-slate-400 border-b border-slate-100 dark:border-slate-800">
                         <span>{quickSearchMatchingTags.length} matching tags</span>
                         <span className="text-[9px] text-indigo-600 dark:text-indigo-400">Click to toggle</span>
@@ -1764,6 +1645,143 @@ export function ClinicalNavigatorTab({
                     </div>
                   </div>
                 </div>
+    </div>
+  );
+
+  return (
+    <div className="space-y-4">
+      {statusBanner && (
+        <div
+          className={`px-4 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-between ${
+            statusBanner.type === "success"
+              ? "bg-emerald-50 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-200 border border-emerald-300 dark:border-emerald-800"
+              : "bg-rose-50 text-rose-800 dark:bg-rose-950/60 dark:text-rose-200 border border-rose-300 dark:border-rose-800"
+          }`}
+        >
+          <span>{statusBanner.text}</span>
+          <button
+            type="button"
+            onClick={() => setStatusBanner(null)}
+            className="opacity-70 hover:opacity-100 ml-4"
+          >
+            ✕
+          </button>
+        </div>
+      )}
+
+      {/* Main 12-Column Split Layout: Left V3.0 Dual-Primary Axis Filter (4 cols) | Right Search + Evidence Synthesis (8 cols) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        {/* LEFT PANE: 1. V3.0 Dual-Primary Axis Filter -> 2. High-Yield Clinical Topics */}
+        <aside className="hidden lg:block lg:col-span-4 space-y-4 lg:sticky lg:top-20">
+          {/* 1. V3.0 DUAL-PRIMARY AXIS FILTER CARD */}
+          <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3.5">
+            <div className="flex items-center justify-between">
+              <button
+                type="button"
+                onClick={() => setIsFilterExpanded((prev) => !prev)}
+                className="flex-1 flex items-center justify-between text-left"
+              >
+                <div className="flex items-center gap-2">
+                  <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-800 dark:text-slate-200">
+                    🧭 Clinical Filter
+                  </h3>
+                  {isQueryActive && (
+                    <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-600 text-white">
+                      {activeFilterSummaryChips.length +
+                        selectedSocieties.length +
+                        (searchText.trim().length >= 2 ? 1 : 0) +
+                        (onlyPracticeChanges ? 1 : 0)}
+                    </span>
+                  )}
+                </div>
+                <span className="text-xs text-slate-400 ml-2">
+                  {isFilterExpanded ? "▾" : "▸"}
+                </span>
+              </button>
+              {isQueryActive && (
+                <button
+                  type="button"
+                  onClick={handleClearAllFilters}
+                  className="ml-3 text-[11px] font-bold text-rose-600 dark:text-rose-400 hover:underline shrink-0"
+                >
+                  Reset All
+                </button>
+              )}
+            </div>
+
+            {/* Active Query Chips Summary */}
+            {isQueryActive && (
+              <div className="p-2.5 rounded-xl bg-indigo-50/50 dark:bg-indigo-950/30 border border-indigo-100 dark:border-indigo-900/60 space-y-1.5">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+                    Active Filter Matrix
+                  </span>
+                  <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400">
+                    {navResult.coreRecommendations.length} Core Recs
+                  </span>
+                </div>
+                <div className="flex flex-wrap gap-1">
+                  {searchText.trim().length >= 2 && (
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-bold bg-amber-100 text-amber-900 dark:bg-amber-950/70 dark:text-amber-300 border border-amber-300 dark:border-amber-800">
+                      🔍 &ldquo;{searchText.trim()}&rdquo;
+                      <button
+                        type="button"
+                        onClick={() => setSearchText("")}
+                        className="hover:text-rose-600 ml-0.5"
+                      >
+                        ×
+                      </button>
+                    </span>
+                  )}
+                  {activeFilterSummaryChips.map((chip) => (
+                    <span
+                      key={chip.id}
+                      className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-bold ${chip.color}`}
+                    >
+                      {chip.label}
+                      <button
+                        type="button"
+                        onClick={chip.onRemove}
+                        className="hover:opacity-75 ml-0.5"
+                      >
+                        ×
+                      </button>
+                    </span>
+                  ))}
+                  {selectedSocieties.map((soc) => (
+                    <span
+                      key={soc}
+                      className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-bold bg-slate-200 text-slate-800 dark:bg-slate-800 dark:text-slate-200"
+                    >
+                      {soc}
+                      <button
+                        type="button"
+                        onClick={() => handleToggleSociety(soc)}
+                        className="hover:text-rose-600 ml-0.5"
+                      >
+                        ×
+                      </button>
+                    </span>
+                  ))}
+                  {onlyPracticeChanges && (
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950/70 dark:text-emerald-300">
+                      New / Upgraded Only
+                      <button
+                        type="button"
+                        onClick={() => setOnlyPracticeChanges(false)}
+                        className="hover:text-rose-600 ml-0.5"
+                      >
+                        ×
+                      </button>
+                    </span>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {isFilterExpanded && (
+              <div className="space-y-4 pt-2 border-t border-slate-100 dark:border-slate-800/80 max-h-[75vh] overflow-y-auto pr-1">
+                {renderFilterControls()}
               </div>
             )}
           </div>
@@ -1822,10 +1840,107 @@ export function ClinicalNavigatorTab({
           </div>
         </aside>
 
-        {/* RIGHT PANE: Persistent Right-Pane Content Search Bar + Evidence Synthesis Dashboard */}
-        <section className="lg:col-span-8 space-y-5">
-          {/* PERSISTENT RIGHT-PANE CONTENT SEARCH BAR (Combines via AND logic with Left-Pane V3.0 Filters) */}
-          <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+        {/* RIGHT PANE: Persistent Content Search Bar + Evidence Synthesis Dashboard */}
+        <section className="col-span-1 lg:col-span-8 space-y-5">
+          {/* Mobile-Only Quick Control Bar (Compact Search & Filter Drawer Trigger) */}
+          <div className="block lg:hidden space-y-2.5">
+            <div className="flex items-center gap-2">
+              <div className="relative flex-1">
+                <input
+                  type="text"
+                  value={searchText}
+                  onChange={(e) => {
+                    setSearchText(e.target.value);
+                    setVisibleCountBySociety({});
+                  }}
+                  placeholder="Search guidelines, trials..."
+                  className="w-full pl-8 pr-7 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-2xs"
+                />
+                <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs">
+                  🔍
+                </span>
+                {searchText && (
+                  <button
+                    type="button"
+                    onClick={() => setSearchText("")}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs font-bold"
+                  >
+                    ✕
+                  </button>
+                )}
+              </div>
+
+              {/* Mobile Filter Button */}
+              <button
+                type="button"
+                onClick={() => setIsMobileFilterOpen(true)}
+                className={`px-3 py-2.5 rounded-xl text-xs font-bold border transition flex items-center gap-1.5 shrink-0 shadow-2xs cursor-pointer ${
+                  isQueryActive
+                    ? "bg-indigo-600 text-white border-indigo-600 shadow-indigo-500/20"
+                    : "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-300 dark:border-slate-700 hover:border-indigo-400"
+                }`}
+              >
+                <span>🧭 Filters</span>
+                {isQueryActive && (
+                  <span className="px-1.5 py-0.2 rounded-full text-[10px] font-black bg-white text-indigo-700">
+                    {activeFilterSummaryChips.length +
+                      selectedSocieties.length +
+                      (searchText.trim().length >= 2 ? 1 : 0) +
+                      (onlyPracticeChanges ? 1 : 0)}
+                  </span>
+                )}
+              </button>
+            </div>
+
+            {/* Horizontal Scroll Active Filter Chips (Mobile) */}
+            {isQueryActive && (
+              <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none py-0.5 text-xs">
+                <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 shrink-0">
+                  Active ({navResult.coreRecommendations.length}):
+                </span>
+                {activeFilterSummaryChips.map((chip) => (
+                  <span
+                    key={chip.id}
+                    className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-lg text-[11px] font-bold whitespace-nowrap shrink-0 ${chip.color}`}
+                  >
+                    <span>{chip.label}</span>
+                    <button
+                      type="button"
+                      onClick={chip.onRemove}
+                      className="hover:opacity-70 ml-0.5"
+                    >
+                      ×
+                    </button>
+                  </span>
+                ))}
+                {selectedSocieties.map((soc) => (
+                  <span
+                    key={soc}
+                    className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg text-[11px] font-bold bg-slate-200 text-slate-800 dark:bg-slate-800 dark:text-slate-200 whitespace-nowrap shrink-0"
+                  >
+                    <span>{soc}</span>
+                    <button
+                      type="button"
+                      onClick={() => handleToggleSociety(soc)}
+                      className="hover:text-rose-600 ml-0.5"
+                    >
+                      ×
+                    </button>
+                  </span>
+                ))}
+                <button
+                  type="button"
+                  onClick={handleClearAllFilters}
+                  className="text-[11px] font-bold text-rose-600 dark:text-rose-400 hover:underline px-1 py-0.5 shrink-0 whitespace-nowrap cursor-pointer"
+                >
+                  Reset
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* PERSISTENT RIGHT-PANE CONTENT SEARCH BAR (Desktop Only) */}
+          <div className="hidden lg:block p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
             <div className="flex items-center justify-between gap-2">
               <label
                 htmlFor="navigator-right-content-search"
@@ -2716,6 +2831,77 @@ export function ClinicalNavigatorTab({
           });
         }}
       />
+
+      {/* Mobile Bottom Sheet Drawer for Clinical Filters (< lg) */}
+      {isMobileFilterOpen && (
+        <div className="fixed inset-0 z-50 flex flex-col justify-end lg:hidden">
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-slate-900/60 dark:bg-black/75 backdrop-blur-xs transition-opacity"
+            onClick={() => setIsMobileFilterOpen(false)}
+          />
+
+          {/* Sheet Panel */}
+          <div className="relative z-10 w-full max-h-[88vh] bg-white dark:bg-slate-900 rounded-t-3xl shadow-2xl flex flex-col border-t border-slate-200 dark:border-slate-800 overflow-hidden animate-in slide-in-from-bottom duration-200">
+            {/* Grab Handle */}
+            <div className="pt-3 pb-1 flex justify-center shrink-0">
+              <div className="w-12 h-1.5 bg-slate-300 dark:bg-slate-700 rounded-full" />
+            </div>
+
+            {/* Sheet Header */}
+            <div className="px-5 py-3 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between shrink-0">
+              <div className="flex items-center gap-2">
+                <h3 className="text-sm font-extrabold uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-1.5">
+                  <span>🧭</span> Clinical Filters
+                </h3>
+                {isQueryActive && (
+                  <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-600 text-white">
+                    {activeFilterSummaryChips.length +
+                      selectedSocieties.length +
+                      (searchText.trim().length >= 2 ? 1 : 0) +
+                      (onlyPracticeChanges ? 1 : 0)}
+                  </span>
+                )}
+              </div>
+              <div className="flex items-center gap-3">
+                {isQueryActive && (
+                  <button
+                    type="button"
+                    onClick={handleClearAllFilters}
+                    className="text-xs font-bold text-rose-600 dark:text-rose-400 hover:underline cursor-pointer"
+                  >
+                    Reset All
+                  </button>
+                )}
+                <button
+                  type="button"
+                  onClick={() => setIsMobileFilterOpen(false)}
+                  className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-800 dark:hover:text-white flex items-center justify-center text-sm font-bold transition cursor-pointer"
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+
+            {/* Sheet Scrollable Body */}
+            <div className="px-5 py-4 overflow-y-auto space-y-4 flex-1 overscroll-contain">
+              {renderFilterControls()}
+            </div>
+
+            {/* Sheet Sticky Bottom CTA */}
+            <div className="p-4 border-t border-slate-200 dark:border-slate-800 bg-slate-50/90 dark:bg-slate-900/90 backdrop-blur-sm shrink-0">
+              <button
+                type="button"
+                onClick={() => setIsMobileFilterOpen(false)}
+                className="w-full py-3 px-4 rounded-xl font-extrabold text-sm text-white bg-indigo-600 hover:bg-indigo-500 shadow-md transition flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <span>View {navResult.coreRecommendations.length} Recommendations</span>
+                <span>→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -2738,7 +2924,7 @@ function RecommendationMatrixCard({
 
   return (
     <div
-      className={`p-4 space-y-2.5 ${
+      className={`p-4 space-y-2.5 max-w-full overflow-hidden break-words ${
         isSupporting
           ? "rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800"
           : "bg-white dark:bg-slate-900"
@@ -2844,7 +3030,7 @@ function RecommendationMatrixCard({
       <blockquote
         className={`pl-3 border-l-4 ${
           theme?.quoteBorder || "border-l-indigo-500"
-        } text-xs sm:text-sm text-slate-900 dark:text-slate-100 font-medium leading-relaxed`}
+        } text-xs sm:text-sm text-slate-900 dark:text-slate-100 font-medium leading-relaxed break-words`}
       >
         &ldquo;{rec.text}&rdquo;
       </blockquote>
