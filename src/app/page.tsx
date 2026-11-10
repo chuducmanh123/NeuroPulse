@@ -636,39 +636,22 @@ export default function HomePage() {
     return counts;
   }, [articles]);
 
-  // Dynamic publication years and recent active months for English time filter
+  // Dynamic publication years for English time filter (bắt đầu từ 2026, loại bỏ 2025 trở về trước, tự động bổ sung các năm sau)
   const availableYears = useMemo(() => {
+    const BASELINE_START_YEAR = 2026;
     const years = new Set<string>();
+    years.add(String(BASELINE_START_YEAR));
+
     for (const a of articles) {
       if (a.pub_date && a.pub_date.length >= 4) {
-        years.add(a.pub_date.slice(0, 4));
+        const yStr = a.pub_date.slice(0, 4);
+        const yNum = parseInt(yStr, 10);
+        if (!isNaN(yNum) && yNum >= BASELINE_START_YEAR) {
+          years.add(yStr);
+        }
       }
     }
     return Array.from(years).sort((a, b) => b.localeCompare(a));
-  }, [articles]);
-
-  const recentActiveMonths = useMemo(() => {
-    const counts: Record<string, number> = {};
-    for (const a of articles) {
-      if (a.pub_date && a.pub_date.length >= 7) {
-        const ym = a.pub_date.slice(0, 7);
-        counts[ym] = (counts[ym] || 0) + 1;
-      }
-    }
-    return Object.keys(counts)
-      .sort((a, b) => b.localeCompare(a))
-      .slice(0, 4)
-      .map((ym) => {
-        const [year, month] = ym.split("-");
-        const monthObj = MONTH_OPTIONS.find((m) => m.value === month);
-        return {
-          year,
-          month,
-          ym,
-          label: `${monthObj?.shortLabel || month} ${year}`,
-          count: counts[ym],
-        };
-      });
   }, [articles]);
 
   // Hot Topics: Tự động chấm điểm "Độ nóng" mỗi ngày từ dữ liệu bài báo thực tế dựa trên số lượng bài báo nhắc tới chủ đề và độ mới
@@ -1384,52 +1367,6 @@ export default function HomePage() {
                     </button>
                   )}
                 </div>
-
-                {/* Quick Recent Active Months */}
-                {recentActiveMonths.length > 0 && (
-                  <div className="flex flex-wrap items-center gap-1.5 mb-2.5">
-                    {recentActiveMonths.map((item) => {
-                      const isSelected =
-                        selectedYear === item.year && selectedMonth === item.month;
-                      return (
-                        <button
-                          key={item.ym}
-                          onClick={() => {
-                            if (isSelected) {
-                              setSelectedYear("All");
-                              setSelectedMonth("All");
-                            } else {
-                              setSelectedYear(item.year);
-                              setSelectedMonth(item.month);
-                            }
-                            setVisibleCount(35);
-                          }}
-                          className={`px-2 py-1 rounded-md text-[11px] font-semibold transition-all flex items-center gap-1 cursor-pointer ${
-                            isSelected
-                              ? "bg-teal-600 text-white shadow-xs"
-                              : darkMode
-                              ? "bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white"
-                              : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-                          }`}
-                          title={`Filter articles published in ${item.label}`}
-                        >
-                          <span>{item.label}</span>
-                          <span
-                            className={`text-[9.5px] px-1 py-0.2 rounded-full ${
-                              isSelected
-                                ? "bg-white/20 text-white"
-                                : darkMode
-                                ? "bg-black/30 text-slate-400"
-                                : "bg-slate-200 text-slate-600"
-                            }`}
-                          >
-                            {item.count}
-                          </span>
-                        </button>
-                      );
-                    })}
-                  </div>
-                )}
 
                 {/* Year & Month Dropdowns */}
                 <div className="grid grid-cols-2 gap-2">

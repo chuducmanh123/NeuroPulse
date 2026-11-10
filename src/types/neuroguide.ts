@@ -361,8 +361,11 @@ export interface PivotalTrialRecord {
 export interface NavigatorQuery {
   searchText?: string;
   subspecialty?: SubspecialtyType | "all";
+  subspecialties?: (SubspecialtyType | string)[];
   conditionId?: string | "all";
+  conditionIds?: string[];
   domain?: "all" | "diagnosis" | "treatment" | "prevention";
+  domains?: ("all" | "diagnosis" | "treatment" | "prevention")[];
   diagnosisTags?: string[];
   timeWindowId?: string | "all";
   interventionTags?: string[];

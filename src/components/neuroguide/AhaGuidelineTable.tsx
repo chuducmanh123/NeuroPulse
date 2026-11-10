@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { cleanGuidelineTitle } from "@/lib/neuroguide/guidelineFormat";
 
 export interface AhaRecommendationItem {
   id?: string;
@@ -128,7 +129,7 @@ export function AhaGuidelineTable({
       <div className="bg-[#b91c1c] text-white px-4 py-3 sm:px-5 sm:py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3">
         <div className="min-w-0 flex-1">
           <h2 className="text-xs sm:text-base font-extrabold tracking-wide uppercase leading-snug">
-            {title}
+            {cleanGuidelineTitle(title)}
           </h2>
           {subSupplementText && (
             <p className="text-[11px] sm:text-xs text-red-100 font-medium mt-0.5 italic leading-relaxed">

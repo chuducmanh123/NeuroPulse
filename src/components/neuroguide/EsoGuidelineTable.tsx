@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import type { RecommendationV3Labels } from "@/types/neuroguide";
+import { cleanGuidelineTitle } from "@/lib/neuroguide/guidelineFormat";
 
 export type EsoEvidenceQuality =
   | "High"
@@ -235,7 +236,7 @@ export function EsoGuidelineTable({
               Synoptic table of all recommendations and expert consensus statements
             </div>
             <h2 className="text-xs sm:text-base font-extrabold tracking-wide uppercase leading-snug mt-0.5">
-              {title}
+              {cleanGuidelineTitle(title)}
             </h2>
           </div>
           <button

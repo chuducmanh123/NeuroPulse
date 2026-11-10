@@ -16,6 +16,7 @@ import {
   type GuidelineFormFormat,
   GUIDELINE_FORMS,
   detectGuidelineFormFormat,
+  cleanGuidelineTitle,
 } from "@/lib/neuroguide/guidelineFormat";
 import {
   CLINICAL_CONDITIONS_V3,
@@ -1267,7 +1268,7 @@ export function EditGuidelineModal({
             <span className="text-xl flex-shrink-0">✏️</span>
             <div className="min-w-0">
               <h3 className="text-sm sm:text-base font-extrabold truncate">
-                Edit Guideline: {docTitle || guidelineDoc?.title || "Clinical Practice Guideline"}
+                Edit Guideline: {cleanGuidelineTitle(docTitle || guidelineDoc?.title) || "Clinical Practice Guideline"}
               </h3>
               <div className="flex flex-wrap items-center gap-2 mt-0.5">
                 <span

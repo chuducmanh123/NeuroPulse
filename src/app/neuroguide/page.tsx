@@ -73,6 +73,7 @@ const GuidelinePresentationRenderer = dynamic(
   { ssr: false }
 );
 import { groupPracticeChangesIntoEsoPicos } from "../../lib/neuroguide/esoPicoGrouper";
+import { cleanGuidelineTitle } from "../../lib/neuroguide/guidelineFormat";
 import type { PracticeChangeDetail } from "../../types/neuroguide";
 import { getAdminHeaders, getStoredAdminToken } from "@/utils/clientAuth";
 
@@ -1188,11 +1189,7 @@ export default function NeuroGuidePage() {
                           <span className="text-[11px] sm:text-xs font-semibold text-slate-500 dark:text-slate-400">
                             {doc.documentType} • {doc.journalTarget}
                           </span>
-                          {doc.fullTextStatus === "FULL_TEXT_PARSED" ? (
-                            <span className="px-1.5 py-0.5 rounded-md text-[9.5px] sm:text-[10px] font-black uppercase tracking-wider bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 flex items-center gap-1">
-                              ✨ AI Verified
-                            </span>
-                          ) : (
+                          {doc.fullTextStatus !== "FULL_TEXT_PARSED" && (
                             <span className="px-1.5 py-0.5 rounded-md text-[9.5px] sm:text-[10px] font-semibold text-slate-500 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
                               Abstract
                             </span>
@@ -1242,7 +1239,7 @@ export default function NeuroGuidePage() {
 
                       {/* Title */}
                       <h3 className="text-sm sm:text-lg font-bold leading-snug text-slate-900 dark:text-white">
-                        {doc.title}
+                        {cleanGuidelineTitle(doc.title)}
                       </h3>
 
                       {/* Bottom Prompt Bar: Changes Badge + Click Indicator */}

@@ -501,14 +501,18 @@ function getLazyRelations(indexed: IndexedNavigatorRecommendation[]): Recommenda
 export function hasActiveNavigatorQuery(query: NavigatorQuery): boolean {
   if (query.searchText && query.searchText.trim().length >= 2) return true;
   if (query.subspecialty && query.subspecialty !== "all" && query.subspecialty !== "All Subspecialties") return true;
+  if (query.subspecialties && query.subspecialties.filter((s) => s && s !== "all" && s !== "All Subspecialties").length > 0) return true;
   if (query.conditionId && query.conditionId !== "all") return true;
+  if (query.conditionIds && query.conditionIds.filter((c) => c && c !== "all").length > 0) return true;
   if (query.domain && query.domain !== "all") return true;
+  if (query.domains && query.domains.filter((d) => (d as string) !== "all").length > 0) return true;
   if (query.diagnosisTags && query.diagnosisTags.length > 0) return true;
   if (query.timeWindowId && query.timeWindowId !== "all") return true;
   if (query.interventionTags && query.interventionTags.length > 0) return true;
   if (query.directionFilter && query.directionFilter !== "all") return true;
   if (query.societies && query.societies.length > 0) return true;
   if (query.onlyPracticeChanges) return true;
+  if (query.verificationFilter && query.verificationFilter !== "all") return true;
   for (const vals of Object.values(query.facets || {})) {
     if (Array.isArray(vals) && vals.length > 0) return true;
   }
@@ -588,10 +592,14 @@ export function runClinicalNavigatorQuery(params: {
       v3Counts.subspecialties[sub] = (v3Counts.subspecialties[sub] || 0) + 1;
     }
     const matchesSub =
-      !query.subspecialty ||
-      query.subspecialty === "all" ||
-      query.subspecialty === "All Subspecialties" ||
-      r.v3Labels.subspecialties.includes(query.subspecialty);
+      (!query.subspecialty ||
+        query.subspecialty === "all" ||
+        query.subspecialty === "All Subspecialties" ||
+        r.v3Labels.subspecialties.includes(query.subspecialty)) &&
+      (!query.subspecialties ||
+        query.subspecialties.length === 0 ||
+        query.subspecialties.includes("all") ||
+        r.v3Labels.subspecialties.some((s) => query.subspecialties!.includes(s)));
     if (!matchesSub) continue;
 
     for (const cid of r.v3Labels.conditionIds) {
@@ -599,9 +607,13 @@ export function runClinicalNavigatorQuery(params: {
     }
 
     const matchesCond =
-      !query.conditionId ||
-      query.conditionId === "all" ||
-      r.v3Labels.conditionIds.includes(query.conditionId);
+      (!query.conditionId ||
+        query.conditionId === "all" ||
+        r.v3Labels.conditionIds.includes(query.conditionId)) &&
+      (!query.conditionIds ||
+        query.conditionIds.length === 0 ||
+        query.conditionIds.includes("all") ||
+        r.v3Labels.conditionIds.some((c) => query.conditionIds!.includes(c)));
     if (!matchesCond) continue;
 
     for (const dom of r.v3Labels.domains) {
@@ -671,13 +683,24 @@ export function runClinicalNavigatorQuery(params: {
     ([, arr]) => Array.isArray(arr) && arr.length > 0
   ) as [OntologyFacetId, string[]][];
 
-  const reqSubspecialty =
-    query.subspecialty && query.subspecialty !== "all" && query.subspecialty !== "All Subspecialties"
-      ? query.subspecialty
-      : undefined;
-  const reqConditionId =
-    query.conditionId && query.conditionId !== "all" ? query.conditionId : undefined;
-  const reqDomain = query.domain && query.domain !== "all" ? query.domain : undefined;
+  const reqSubspecialties: SubspecialtyType[] =
+    query.subspecialties && query.subspecialties.length > 0
+      ? (query.subspecialties.filter((s) => s && s !== "all" && s !== "All Subspecialties") as SubspecialtyType[])
+      : query.subspecialty && query.subspecialty !== "all" && query.subspecialty !== "All Subspecialties"
+      ? [query.subspecialty]
+      : [];
+  const reqConditionIds: string[] =
+    query.conditionIds && query.conditionIds.length > 0
+      ? query.conditionIds.filter((c) => c && c !== "all")
+      : query.conditionId && query.conditionId !== "all"
+      ? [query.conditionId]
+      : [];
+  const reqDomains: ("diagnosis" | "treatment" | "prevention")[] =
+    query.domains && query.domains.length > 0
+      ? (query.domains.filter((d) => (d as string) !== "all") as ("diagnosis" | "treatment" | "prevention")[])
+      : query.domain && query.domain !== "all"
+      ? [query.domain]
+      : [];
   const reqDiagTags = query.diagnosisTags || [];
   const reqTimeWindowId =
     query.timeWindowId && query.timeWindowId !== "all" ? query.timeWindowId : undefined;
@@ -689,16 +712,16 @@ export function runClinicalNavigatorQuery(params: {
   const coreRecIdSet = new Set<string>();
 
   for (const rec of fullPool) {
-    // 1. Axis 1: Subspecialty & Canonical Condition (supports Multi-Parent `cond_lbd` and `cond_paraneoplastic`)
-    if (reqSubspecialty && !rec.v3Labels.subspecialties.includes(reqSubspecialty)) {
+    // 1. Subspecialty & Canonical Condition
+    if (reqSubspecialties.length > 0 && !rec.v3Labels.subspecialties.some((s) => reqSubspecialties.includes(s))) {
       continue;
     }
-    if (reqConditionId && !rec.v3Labels.conditionIds.includes(reqConditionId)) {
+    if (reqConditionIds.length > 0 && !rec.v3Labels.conditionIds.some((cid) => reqConditionIds.includes(cid))) {
       continue;
     }
 
-    // 2. Axis 2: Clinical Domain & Domain Sub-filters (Section 5.2 Boolean Algebra)
-    if (reqDomain && !rec.v3Labels.domains.includes(reqDomain)) {
+    // 2. Clinical Domain & Domain Sub-filters (Section 5.2 Boolean Algebra)
+    if (reqDomains.length > 0 && !rec.v3Labels.domains.some((d) => reqDomains.includes(d))) {
       continue;
     }
 
@@ -924,7 +947,7 @@ export function runClinicalNavigatorQuery(params: {
         (cited) => cited === acrLower || cited.startsWith(`${acrLower} `) || cited.includes(`(${acrLower})`)
       );
       if (!searchMatch && !citedMatch) return false;
-      if (searchMatch && !reqConditionId && reqInterventions.length === 0) return true;
+      if (searchMatch && reqConditionIds.length === 0 && reqInterventions.length === 0) return true;
     }
 
     // 2. Direct citation in matched Core recommendations
@@ -943,10 +966,17 @@ export function runClinicalNavigatorQuery(params: {
     }
 
     // 3. V3.0 Condition & Intervention Tag match
-    if (reqSubspecialty && tr.subspecialty !== reqSubspecialty && !trV3.conditionIds.some((cid) => getConditionByIdV3(cid)?.subspecialties.includes(reqSubspecialty))) {
+    if (
+      reqSubspecialties.length > 0 &&
+      !reqSubspecialties.includes(tr.subspecialty) &&
+      !trV3.conditionIds.some((cid) => {
+        const cond = getConditionByIdV3(cid);
+        return cond?.subspecialties.some((s) => reqSubspecialties.includes(s));
+      })
+    ) {
       return false;
     }
-    if (reqConditionId && !trV3.conditionIds.includes(reqConditionId)) {
+    if (reqConditionIds.length > 0 && !trV3.conditionIds.some((cid) => reqConditionIds.includes(cid))) {
       return false;
     }
     if (reqTimeWindowId) {
@@ -958,7 +988,7 @@ export function runClinicalNavigatorQuery(params: {
       return false;
     }
 
-    return Boolean(reqConditionId || reqInterventions.length > 0 || reqSubspecialty);
+    return Boolean(reqConditionIds.length > 0 || reqInterventions.length > 0 || reqSubspecialties.length > 0);
   });
 
   const pivotalTrials = matchedTrials.filter((t) => t.evidenceSource === "PEER_REVIEWED_PUBLISHED");
@@ -974,8 +1004,8 @@ export function runClinicalNavigatorQuery(params: {
   );
 
   const activeAliasTerms: { term: string; label: string; weight: number }[] = [];
-  if (reqConditionId) {
-    const condObj = getConditionByIdV3(reqConditionId);
+  for (const cid of reqConditionIds) {
+    const condObj = getConditionByIdV3(cid);
     if (condObj) {
       activeAliasTerms.push({ term: condObj.label.toLowerCase(), label: condObj.label, weight: 18 });
     }

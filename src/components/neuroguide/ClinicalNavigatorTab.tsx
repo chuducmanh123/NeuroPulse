@@ -15,16 +15,22 @@ import { TIER_CONFIG } from "../../types/neuroguide";
 import type { Article } from "../../types/article";
 import {
   NAVIGATOR_SUBSPECIALTIES_V3,
+  CLINICAL_CONDITIONS_V3,
   DIAGNOSIS_CATEGORIES_V3,
   getConditionsForSubspecialtyV3,
+  getConditionsForSubspecialtiesV3,
   getConditionByIdV3,
   getTreatmentSchemaForScopeV3,
+  getTreatmentSchemaForScopesV3,
   getPreventionSchemaForScopeV3,
+  getPreventionSchemaForScopesV3,
   getTagLabelByIdV3,
+  getAllDiagnosisTagsV3,
   type Subspecialty,
   type ClinicalDomainV3,
   type DirectionFilterV3,
   type TaxonomyTagV3,
+  type ClinicalConditionV3,
 } from "../../data/clinicalNavigatorTaxonomyV3";
 import {
   runClinicalNavigatorQuery,
@@ -259,6 +265,209 @@ function getDirectionBadge(dir: string) {
   }
 }
 
+interface FilterDropdownOption {
+  id: string;
+  label: string;
+  count?: number;
+  hint?: string;
+}
+
+interface MultiSelectFilterDropdownProps {
+  label: string;
+  selectedIds: string[];
+  options: FilterDropdownOption[];
+  onToggle: (id: string) => void;
+  onClear: () => void;
+  allLabel?: string;
+  enableSearch?: boolean;
+}
+
+function MultiSelectFilterDropdown({
+  label,
+  selectedIds,
+  options,
+  onToggle,
+  onClear,
+  allLabel = "All",
+  enableSearch = false,
+}: MultiSelectFilterDropdownProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [innerSearch, setInnerSearch] = useState("");
+  const dropdownRef = React.useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    }
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => document.removeEventListener("mousedown", handleClickOutside);
+    }
+  }, [isOpen]);
+
+  const filteredOptions = useMemo(() => {
+    if (!innerSearch.trim()) return options;
+    const q = innerSearch.toLowerCase();
+    return options.filter((o) => o.label.toLowerCase().includes(q));
+  }, [options, innerSearch]);
+
+  const summaryText = useMemo(() => {
+    if (selectedIds.length === 0) {
+      return `${allLabel} (${options.length})`;
+    }
+    if (selectedIds.length === 1) {
+      const match = options.find((o) => o.id === selectedIds[0]);
+      return match ? match.label : selectedIds[0];
+    }
+    if (selectedIds.length === 2) {
+      const m1 = options.find((o) => o.id === selectedIds[0]);
+      const m2 = options.find((o) => o.id === selectedIds[1]);
+      return `${m1?.label || selectedIds[0]}, ${m2?.label || selectedIds[1]}`;
+    }
+    return `${selectedIds.length} selected`;
+  }, [selectedIds, options, allLabel]);
+
+  const totalSelectedCount = useMemo(() => {
+    return selectedIds.reduce((sum, id) => {
+      const match = options.find((o) => o.id === id);
+      return sum + (match?.count || 0);
+    }, 0);
+  }, [selectedIds, options]);
+
+  return (
+    <div className="relative" ref={dropdownRef}>
+      <div className="flex items-center justify-between mb-1.5">
+        <span className="text-[11px] font-extrabold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+          {label} ({options.length})
+        </span>
+        {selectedIds.length > 0 && (
+          <button
+            type="button"
+            onClick={onClear}
+            className="text-[10px] font-bold text-rose-600 dark:text-rose-400 hover:underline"
+          >
+            Clear ({selectedIds.length})
+          </button>
+        )}
+      </div>
+
+      <button
+        type="button"
+        onClick={() => setIsOpen((prev) => !prev)}
+        className={`w-full px-3 py-2 rounded-xl text-xs font-semibold border transition flex items-center justify-between gap-2 text-left ${
+          selectedIds.length > 0
+            ? "bg-indigo-50/80 dark:bg-indigo-950/50 border-indigo-400 dark:border-indigo-600 text-slate-900 dark:text-white shadow-2xs"
+            : "bg-slate-50 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:border-indigo-400"
+        }`}
+      >
+        <div className="flex items-center gap-1.5 min-w-0">
+          {selectedIds.length > 0 && (
+            <span className="w-2 h-2 rounded-full bg-indigo-600 shrink-0" />
+          )}
+          <span className="truncate">{summaryText}</span>
+        </div>
+        <div className="flex items-center gap-1.5 shrink-0 text-slate-400">
+          {selectedIds.length > 0 && totalSelectedCount > 0 && (
+            <span className="text-[10px] px-1.5 py-0.5 rounded-full font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-300">
+              {totalSelectedCount}
+            </span>
+          )}
+          <span className="text-xs">{isOpen ? "▴" : "▾"}</span>
+        </div>
+      </button>
+
+      {isOpen && (
+        <div className="absolute top-full left-0 right-0 mt-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl z-40 p-2 space-y-2">
+          {enableSearch && (
+            <div className="relative">
+              <input
+                type="text"
+                value={innerSearch}
+                onChange={(e) => setInnerSearch(e.target.value)}
+                placeholder={`Search ${label.toLowerCase()}...`}
+                className="w-full pl-2.5 pr-6 py-1.5 text-xs rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                autoFocus
+              />
+              {innerSearch && (
+                <button
+                  type="button"
+                  onClick={() => setInnerSearch("")}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+          )}
+
+          <div className="flex items-center justify-between px-1 text-[10px] font-bold text-slate-400 border-b border-slate-100 dark:border-slate-800 pb-1">
+            <button
+              type="button"
+              onClick={onClear}
+              className={`hover:text-indigo-600 ${selectedIds.length === 0 ? "text-indigo-600 font-extrabold" : ""}`}
+            >
+              All ({options.length})
+            </button>
+            <span>{filteredOptions.length} available</span>
+          </div>
+
+          <div className="max-h-56 overflow-y-auto space-y-0.5 pr-0.5">
+            {filteredOptions.length === 0 ? (
+              <div className="py-3 text-center text-xs text-slate-400">
+                No matches found
+              </div>
+            ) : (
+              filteredOptions.map((opt) => {
+                const isSelected = selectedIds.includes(opt.id);
+                return (
+                  <button
+                    key={opt.id}
+                    type="button"
+                    onClick={() => onToggle(opt.id)}
+                    className={`w-full px-2 py-1.5 rounded-lg text-xs font-medium flex items-center justify-between transition text-left ${
+                      isSelected
+                        ? "bg-indigo-50 dark:bg-indigo-950/60 text-indigo-900 dark:text-indigo-200"
+                        : "hover:bg-slate-50 dark:hover:bg-slate-800/80 text-slate-700 dark:text-slate-300"
+                    }`}
+                  >
+                    <div className="flex items-center gap-2 min-w-0">
+                      <span
+                        className={`w-3.5 h-3.5 rounded flex items-center justify-center border text-[9px] shrink-0 ${
+                          isSelected
+                            ? "bg-indigo-600 border-indigo-600 text-white font-bold"
+                            : "border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800"
+                        }`}
+                      >
+                        {isSelected ? "✓" : ""}
+                      </span>
+                      <span className="truncate" title={opt.hint || opt.label}>
+                        {opt.label}
+                      </span>
+                    </div>
+                    {opt.count !== undefined && opt.count > 0 && (
+                      <span
+                        className={`text-[10px] px-1.5 py-0.2 rounded font-bold shrink-0 ml-1.5 ${
+                          isSelected
+                            ? "bg-indigo-200/60 dark:bg-indigo-900/80 text-indigo-900 dark:text-indigo-200"
+                            : "bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400"
+                        }`}
+                      >
+                        {opt.count}
+                      </span>
+                    )}
+                  </button>
+                );
+              })
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export function ClinicalNavigatorTab({
   guidelines,
   recommendationAtoms,
@@ -276,22 +485,41 @@ export function ClinicalNavigatorTab({
   );
   const deferredSearchText = useDeferredValue(searchText);
 
-  // V3.0 Dual-Primary Axis Filter State
-  const [selectedSubspecialty, setSelectedSubspecialty] = useState<Subspecialty | "all">(
-    initialPresetOrQuery?.subspecialty &&
-      initialPresetOrQuery.subspecialty !== "all" &&
-      initialPresetOrQuery.subspecialty !== "All Subspecialties"
-      ? (initialPresetOrQuery.subspecialty as Subspecialty)
-      : initialPresetOrQuery?.conditionId && initialPresetOrQuery.conditionId !== "all"
-      ? (getConditionByIdV3(initialPresetOrQuery.conditionId)?.subspecialties[0] as Subspecialty) || "all"
-      : "all"
-  );
-  const [selectedConditionId, setSelectedConditionId] = useState<string | "all">(
-    initialPresetOrQuery?.conditionId || "all"
-  );
-  const [selectedDomain, setSelectedDomain] = useState<ClinicalDomainV3>(
-    initialPresetOrQuery?.domain || "all"
-  );
+  // Clinical Multi-Select Filters State
+  const [selectedSubspecialties, setSelectedSubspecialties] = useState<Subspecialty[]>(() => {
+    if (initialPresetOrQuery?.subspecialties && initialPresetOrQuery.subspecialties.length > 0) {
+      return initialPresetOrQuery.subspecialties.filter((s) => s !== "all" && s !== "All Subspecialties") as Subspecialty[];
+    }
+    if (initialPresetOrQuery?.subspecialty && initialPresetOrQuery.subspecialty !== "all" && initialPresetOrQuery.subspecialty !== "All Subspecialties") {
+      return [initialPresetOrQuery.subspecialty as Subspecialty];
+    }
+    if (initialPresetOrQuery?.conditionId && initialPresetOrQuery.conditionId !== "all") {
+      const condSubs = getConditionByIdV3(initialPresetOrQuery.conditionId)?.subspecialties || [];
+      return condSubs as Subspecialty[];
+    }
+    return [];
+  });
+
+  const [selectedConditionIds, setSelectedConditionIds] = useState<string[]>(() => {
+    if (initialPresetOrQuery?.conditionIds && initialPresetOrQuery.conditionIds.length > 0) {
+      return initialPresetOrQuery.conditionIds.filter((c) => c !== "all");
+    }
+    if (initialPresetOrQuery?.conditionId && initialPresetOrQuery.conditionId !== "all") {
+      return [initialPresetOrQuery.conditionId];
+    }
+    return [];
+  });
+
+  const [selectedDomains, setSelectedDomains] = useState<ClinicalDomainV3[]>(() => {
+    if (initialPresetOrQuery?.domains && initialPresetOrQuery.domains.length > 0) {
+      return initialPresetOrQuery.domains.filter((d) => (d as string) !== "all");
+    }
+    if (initialPresetOrQuery?.domain && initialPresetOrQuery.domain !== "all") {
+      return [initialPresetOrQuery.domain];
+    }
+    return [];
+  });
+
   const [selectedDiagnosisTags, setSelectedDiagnosisTags] = useState<string[]>(
     initialPresetOrQuery?.diagnosisTags || []
   );
@@ -319,17 +547,34 @@ export function ClinicalNavigatorTab({
   useEffect(() => {
     if (initialPresetOrQuery) {
       setSearchText(initialPresetOrQuery.searchText || "");
-      const resolvedSub =
-        initialPresetOrQuery.subspecialty &&
-        initialPresetOrQuery.subspecialty !== "all" &&
-        initialPresetOrQuery.subspecialty !== "All Subspecialties"
-          ? (initialPresetOrQuery.subspecialty as Subspecialty)
+      const resolvedSubs: Subspecialty[] =
+        initialPresetOrQuery.subspecialties && initialPresetOrQuery.subspecialties.length > 0
+          ? (initialPresetOrQuery.subspecialties.filter((s) => s !== "all" && s !== "All Subspecialties") as Subspecialty[])
+          : initialPresetOrQuery.subspecialty &&
+            initialPresetOrQuery.subspecialty !== "all" &&
+            initialPresetOrQuery.subspecialty !== "All Subspecialties"
+          ? [initialPresetOrQuery.subspecialty as Subspecialty]
           : initialPresetOrQuery.conditionId && initialPresetOrQuery.conditionId !== "all"
-          ? (getConditionByIdV3(initialPresetOrQuery.conditionId)?.subspecialties[0] as Subspecialty) || "all"
-          : "all";
-      setSelectedSubspecialty(resolvedSub);
-      setSelectedConditionId(initialPresetOrQuery.conditionId || "all");
-      setSelectedDomain(initialPresetOrQuery.domain || "all");
+          ? ((getConditionByIdV3(initialPresetOrQuery.conditionId)?.subspecialties || []) as Subspecialty[])
+          : [];
+
+      const resolvedConds: string[] =
+        initialPresetOrQuery.conditionIds && initialPresetOrQuery.conditionIds.length > 0
+          ? initialPresetOrQuery.conditionIds.filter((c) => c !== "all")
+          : initialPresetOrQuery.conditionId && initialPresetOrQuery.conditionId !== "all"
+          ? [initialPresetOrQuery.conditionId]
+          : [];
+
+      const resolvedDoms: ClinicalDomainV3[] =
+        initialPresetOrQuery.domains && initialPresetOrQuery.domains.length > 0
+          ? initialPresetOrQuery.domains.filter((d) => (d as string) !== "all")
+          : initialPresetOrQuery.domain && initialPresetOrQuery.domain !== "all"
+          ? [initialPresetOrQuery.domain]
+          : [];
+
+      setSelectedSubspecialties(resolvedSubs);
+      setSelectedConditionIds(resolvedConds);
+      setSelectedDomains(resolvedDoms);
       setSelectedDiagnosisTags(initialPresetOrQuery.diagnosisTags || []);
       setSelectedTimeWindowId(initialPresetOrQuery.timeWindowId || "all");
       setSelectedInterventionTags(initialPresetOrQuery.interventionTags || []);
@@ -341,7 +586,7 @@ export function ClinicalNavigatorTab({
     }
   }, [initialPresetOrQuery]);
 
-  // Left-Pane Filter Quick-Search State: Searches V3.0 filter tags only
+  // Left-Pane Filter Quick-Search State: Searches filter tags only
   const [filterSearchTerm, setFilterSearchTerm] = useState<string>("");
   const normalizedFilterSearch = filterSearchTerm.trim().toLowerCase();
   const [isFilterExpanded, setIsFilterExpanded] = useState<boolean>(true);
@@ -365,9 +610,12 @@ export function ClinicalNavigatorTab({
   const activeQuery: NavigatorQuery = useMemo(
     () => ({
       searchText: deferredSearchText,
-      subspecialty: selectedSubspecialty,
-      conditionId: selectedConditionId,
-      domain: selectedDomain,
+      subspecialty: selectedSubspecialties.length === 1 ? selectedSubspecialties[0] : (selectedSubspecialties.length === 0 ? "all" : undefined),
+      subspecialties: selectedSubspecialties,
+      conditionId: selectedConditionIds.length === 1 ? selectedConditionIds[0] : (selectedConditionIds.length === 0 ? "all" : undefined),
+      conditionIds: selectedConditionIds,
+      domain: selectedDomains.length === 1 ? selectedDomains[0] : (selectedDomains.length === 0 ? "all" : undefined),
+      domains: selectedDomains,
       diagnosisTags: selectedDiagnosisTags.length > 0 ? selectedDiagnosisTags : undefined,
       timeWindowId: selectedTimeWindowId !== "all" ? selectedTimeWindowId : undefined,
       interventionTags: selectedInterventionTags.length > 0 ? selectedInterventionTags : undefined,
@@ -379,9 +627,9 @@ export function ClinicalNavigatorTab({
     }),
     [
       deferredSearchText,
-      selectedSubspecialty,
-      selectedConditionId,
-      selectedDomain,
+      selectedSubspecialties,
+      selectedConditionIds,
+      selectedDomains,
       selectedDiagnosisTags,
       selectedTimeWindowId,
       selectedInterventionTags,
@@ -417,21 +665,39 @@ export function ClinicalNavigatorTab({
     activeQuery,
   ]);
 
-  // Dynamic conditions for Axis 1
-  const availableConditions = useMemo(() => {
-    const conds = getConditionsForSubspecialtyV3(selectedSubspecialty);
-    if (!normalizedFilterSearch) return conds;
-    return conds.filter((c) => c.label.toLowerCase().includes(normalizedFilterSearch));
-  }, [selectedSubspecialty, normalizedFilterSearch]);
+  // Requirement 1: Nội dung sắp xếp theo thứ tự bảng chữ cái
+  const sortedSubspecialties = useMemo(
+    () => [...NAVIGATOR_SUBSPECIALTIES_V3].sort((a, b) => a.localeCompare(b)),
+    []
+  );
 
-  // Dynamic Treatment & Prevention schemas for Axis 2
+  // Dynamic conditions for Subspecialty:
+  // Requirement 3: khi chọn subspecialty thì các lựa chọn khác trong clinical condition không thuộc subspecialty đó sẽ biến mất
+  // Requirement 1: Nội dung sắp xếp theo thứ tự bảng chữ cái
+  const availableConditions = useMemo(() => {
+    const conds = getConditionsForSubspecialtiesV3(selectedSubspecialties);
+    return [...conds].sort((a, b) => a.label.localeCompare(b.label));
+  }, [selectedSubspecialties]);
+
+  // Requirement 1: Clinical Domains sorted alphabetically
+  const sortedDomains = useMemo(
+    () =>
+      [
+        { id: "diagnosis" as const, label: "1. Diagnosis" },
+        { id: "prevention" as const, label: "3. Prevention & Care" },
+        { id: "treatment" as const, label: "2. Treatment" },
+      ].sort((a, b) => a.label.localeCompare(b.label)),
+    []
+  );
+
+  // Dynamic Treatment & Prevention schemas
   const treatmentSchema = useMemo(
-    () => getTreatmentSchemaForScopeV3(selectedSubspecialty, selectedConditionId),
-    [selectedSubspecialty, selectedConditionId]
+    () => getTreatmentSchemaForScopesV3(selectedSubspecialties, selectedConditionIds),
+    [selectedSubspecialties, selectedConditionIds]
   );
   const preventionSchema = useMemo(
-    () => getPreventionSchemaForScopeV3(selectedSubspecialty, selectedConditionId),
-    [selectedSubspecialty, selectedConditionId]
+    () => getPreventionSchemaForScopesV3(selectedSubspecialties, selectedConditionIds),
+    [selectedSubspecialties, selectedConditionIds]
   );
 
   const filterTagsBySearch = (tags: TaxonomyTagV3[]) => {
@@ -439,59 +705,56 @@ export function ClinicalNavigatorTab({
     return tags.filter((t) => t.label.toLowerCase().includes(normalizedFilterSearch));
   };
 
-  const handleSelectSubspecialty = (sub: Subspecialty | "all") => {
+  const handleToggleSubspecialty = (sub: Subspecialty) => {
     setActivePresetId(null);
     setVisibleCountBySociety({});
-    setSelectedSubspecialty(sub);
-    // Keep condition only if it also belongs to the new subspecialty (Multi-Parent support)
-    if (sub !== "all" && selectedConditionId !== "all") {
-      const cond = getConditionByIdV3(selectedConditionId);
-      if (!cond || !cond.subspecialties.includes(sub)) {
-        setSelectedConditionId("all");
-        setSelectedTimeWindowId("all");
-        setSelectedInterventionTags([]);
+    setSelectedSubspecialties((prev) => {
+      const nextSubs = prev.includes(sub)
+        ? prev.filter((s) => s !== sub)
+        : [...prev, sub];
+
+      // Requirement 3: khi chọn subspecialty thì các lựa chọn khác trong clinical condition không thuộc subspecialty đó sẽ biến mất
+      // Clean up any conditions that no longer belong to active subspecialties
+      if (nextSubs.length > 0) {
+        setSelectedConditionIds((prevConds) =>
+          prevConds.filter((cid) => {
+            const cond = getConditionByIdV3(cid);
+            return cond && cond.subspecialties.some((s) => nextSubs.includes(s));
+          })
+        );
       }
-    }
+      return nextSubs;
+    });
   };
 
-  const handleSelectCondition = (condId: string | "all") => {
+  const handleToggleCondition = (condId: string) => {
     setActivePresetId(null);
     setVisibleCountBySociety({});
-    setSelectedConditionId(condId);
     setSelectedTimeWindowId("all");
-    // Preserve cross-domain or shared tags that also exist in the newly selected condition
-    if (condId !== "all") {
-      const cond = getConditionByIdV3(condId);
-      if (cond) {
-        // Auto-switch Axis 1A to corresponding subspecialty
-        if (cond.subspecialties && cond.subspecialties.length > 0) {
-          if (selectedSubspecialty === "all" || !cond.subspecialties.includes(selectedSubspecialty)) {
-            setSelectedSubspecialty(cond.subspecialties[0]);
-          }
+    setSelectedConditionIds((prev) => {
+      const isAlready = prev.includes(condId);
+      if (isAlready) {
+        return prev.filter((id) => id !== condId);
+      } else {
+        const next = [...prev, condId];
+        // Requirement 2: khi chọn 1 clinical condition thì tự động chọn subspecialty
+        const condObj = getConditionByIdV3(condId);
+        if (condObj && condObj.subspecialties.length > 0) {
+          setSelectedSubspecialties((prevSubs) => {
+            return Array.from(new Set([...prevSubs, ...condObj.subspecialties]));
+          });
         }
-
-        const validIds = new Set([
-          ...cond.treatment.drugs.map((t) => t.id),
-          ...cond.treatment.interventions.map((t) => t.id),
-          ...cond.treatment.otherCare.map((t) => t.id),
-          ...cond.prevention.pharmacologicalProphylaxis.map((t) => t.id),
-          ...cond.prevention.proceduralDevice.map((t) => t.id),
-          ...cond.prevention.lifestyleRehabMonitoring.map((t) => t.id),
-        ]);
-        setSelectedInterventionTags((prev) => prev.filter((id) => validIds.has(id)));
+        return next;
       }
-    }
+    });
   };
 
-  const handleSelectDomain = (dom: ClinicalDomainV3) => {
+  const handleToggleDomain = (dom: ClinicalDomainV3) => {
     setActivePresetId(null);
     setVisibleCountBySociety({});
-    setSelectedDomain(dom);
-    // Note: Per Rule 2 (Cross-Domain Single Label Principle), we preserve `selectedInterventionTags`
-    // when switching between Treatment, Prevention, and All Domains so tags like `DOAC`, `SAPT`, `VP Shunt` seamlessly pivot!
-    if (dom === "diagnosis") {
-      setSelectedTimeWindowId("all");
-    }
+    setSelectedDomains((prev) => {
+      return prev.includes(dom) ? prev.filter((d) => d !== dom) : [...prev, dom];
+    });
   };
 
   const handleToggleDiagnosisTag = (tagId: string) => {
@@ -516,15 +779,31 @@ export function ClinicalNavigatorTab({
     setActivePresetId(preset.id);
     setSearchText(preset.query.searchText || "");
     setFilterSearchTerm("");
-    setSelectedSubspecialty(
-      preset.query.subspecialty &&
-        preset.query.subspecialty !== "all" &&
-        preset.query.subspecialty !== "All Subspecialties"
-        ? (preset.query.subspecialty as Subspecialty)
-        : "all"
-    );
-    setSelectedConditionId(preset.query.conditionId || "all");
-    setSelectedDomain(preset.query.domain || "all");
+
+    if (preset.query.subspecialties && preset.query.subspecialties.length > 0) {
+      setSelectedSubspecialties(preset.query.subspecialties.filter((s) => s !== "all" && s !== "All Subspecialties") as Subspecialty[]);
+    } else if (preset.query.subspecialty && preset.query.subspecialty !== "all" && preset.query.subspecialty !== "All Subspecialties") {
+      setSelectedSubspecialties([preset.query.subspecialty as Subspecialty]);
+    } else {
+      setSelectedSubspecialties([]);
+    }
+
+    if (preset.query.conditionIds && preset.query.conditionIds.length > 0) {
+      setSelectedConditionIds(preset.query.conditionIds.filter((c) => c !== "all"));
+    } else if (preset.query.conditionId && preset.query.conditionId !== "all") {
+      setSelectedConditionIds([preset.query.conditionId]);
+    } else {
+      setSelectedConditionIds([]);
+    }
+
+    if (preset.query.domains && preset.query.domains.length > 0) {
+      setSelectedDomains(preset.query.domains.filter((d) => (d as string) !== "all"));
+    } else if (preset.query.domain && preset.query.domain !== "all") {
+      setSelectedDomains([preset.query.domain]);
+    } else {
+      setSelectedDomains([]);
+    }
+
     setSelectedDiagnosisTags(preset.query.diagnosisTags || []);
     setSelectedTimeWindowId(preset.query.timeWindowId || "all");
     setSelectedInterventionTags(preset.query.interventionTags || []);
@@ -539,9 +818,9 @@ export function ClinicalNavigatorTab({
     setActivePresetId(null);
     setSearchText("");
     setFilterSearchTerm("");
-    setSelectedSubspecialty("all");
-    setSelectedConditionId("all");
-    setSelectedDomain("all");
+    setSelectedSubspecialties([]);
+    setSelectedConditionIds([]);
+    setSelectedDomains([]);
     setSelectedDiagnosisTags([]);
     setSelectedTimeWindowId("all");
     setSelectedInterventionTags([]);
@@ -560,37 +839,216 @@ export function ClinicalNavigatorTab({
     );
   };
 
+  // Requirement 4: Matching tags for "filter tag" search popover
+  const quickSearchMatchingTags = useMemo(() => {
+    const term = normalizedFilterSearch;
+    if (!term) return [];
+
+    interface MatchingTagItem {
+      id: string;
+      label: string;
+      category: "Subspecialty" | "Condition" | "Domain" | "Diagnosis" | "Treatment / Drug" | "Prevention" | "Time Window";
+      categoryColor: string;
+      count?: number;
+      isSelected: boolean;
+      onToggle: () => void;
+    }
+
+    const results: MatchingTagItem[] = [];
+    const seen = new Set<string>();
+
+    // 1. Subspecialties
+    for (const sub of NAVIGATOR_SUBSPECIALTIES_V3) {
+      if (sub.toLowerCase().includes(term)) {
+        const key = `sub:${sub}`;
+        if (!seen.has(key)) {
+          seen.add(key);
+          results.push({
+            id: sub,
+            label: sub,
+            category: "Subspecialty",
+            categoryColor: "bg-indigo-100 text-indigo-800 dark:bg-indigo-950/80 dark:text-indigo-300 border-indigo-200 dark:border-indigo-800",
+            count: navResult.v3Counts.subspecialties[sub] || 0,
+            isSelected: selectedSubspecialties.includes(sub),
+            onToggle: () => handleToggleSubspecialty(sub),
+          });
+        }
+      }
+    }
+
+    // 2. Conditions
+    for (const cond of CLINICAL_CONDITIONS_V3) {
+      if (cond.label.toLowerCase().includes(term)) {
+        const key = `cond:${cond.id}`;
+        if (!seen.has(key)) {
+          seen.add(key);
+          results.push({
+            id: cond.id,
+            label: cond.label,
+            category: "Condition",
+            categoryColor: "bg-blue-100 text-blue-800 dark:bg-blue-950/80 dark:text-blue-300 border-blue-200 dark:border-blue-800",
+            count: navResult.v3Counts.conditions[cond.id] || 0,
+            isSelected: selectedConditionIds.includes(cond.id),
+            onToggle: () => handleToggleCondition(cond.id),
+          });
+        }
+      }
+    }
+
+    // 3. Domains
+    const domList: { id: ClinicalDomainV3; label: string }[] = [
+      { id: "diagnosis", label: "1. Diagnosis" },
+      { id: "treatment", label: "2. Treatment" },
+      { id: "prevention", label: "3. Prevention & Care" },
+    ];
+    for (const dom of domList) {
+      if (dom.label.toLowerCase().includes(term)) {
+        const key = `dom:${dom.id}`;
+        if (!seen.has(key)) {
+          seen.add(key);
+          results.push({
+            id: dom.id,
+            label: dom.label,
+            category: "Domain",
+            categoryColor: "bg-purple-100 text-purple-800 dark:bg-purple-950/80 dark:text-purple-300 border-purple-200 dark:border-purple-800",
+            count: navResult.v3Counts.domains[dom.id] || 0,
+            isSelected: selectedDomains.includes(dom.id),
+            onToggle: () => handleToggleDomain(dom.id),
+          });
+        }
+      }
+    }
+
+    // 4. Diagnosis tags
+    for (const diag of getAllDiagnosisTagsV3()) {
+      if (diag.label.toLowerCase().includes(term)) {
+        const key = `diag:${diag.id}`;
+        if (!seen.has(key)) {
+          seen.add(key);
+          results.push({
+            id: diag.id,
+            label: diag.label,
+            category: "Diagnosis",
+            categoryColor: "bg-cyan-100 text-cyan-800 dark:bg-cyan-950/80 dark:text-cyan-300 border-cyan-200 dark:border-cyan-800",
+            count: navResult.v3Counts.diagnosisTags[diag.id] || 0,
+            isSelected: selectedDiagnosisTags.includes(diag.id),
+            onToggle: () => handleToggleDiagnosisTag(diag.id),
+          });
+        }
+      }
+    }
+
+    // 5. Treatment and Prevention tags
+    for (const cond of CLINICAL_CONDITIONS_V3) {
+      for (const tw of cond.treatment.timeWindows) {
+        if (tw.label.toLowerCase().includes(term)) {
+          const key = `tw:${tw.id}`;
+          if (!seen.has(key)) {
+            seen.add(key);
+            results.push({
+              id: tw.id,
+              label: tw.label,
+              category: "Time Window",
+              categoryColor: "bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border-amber-200 dark:border-amber-800",
+              count: navResult.v3Counts.timeWindows[tw.id] || 0,
+              isSelected: selectedTimeWindowId === tw.id,
+              onToggle: () => setSelectedTimeWindowId((prev) => (prev === tw.id ? "all" : tw.id)),
+            });
+          }
+        }
+      }
+
+      const allInterventions = [
+        ...cond.treatment.drugs,
+        ...cond.treatment.interventions,
+        ...cond.treatment.otherCare,
+      ];
+      for (const it of allInterventions) {
+        if (it.label.toLowerCase().includes(term)) {
+          const key = `int:${it.id}`;
+          if (!seen.has(key)) {
+            seen.add(key);
+            results.push({
+              id: it.id,
+              label: it.label,
+              category: "Treatment / Drug",
+              categoryColor: "bg-teal-100 text-teal-800 dark:bg-teal-950/80 dark:text-teal-300 border-teal-200 dark:border-teal-800",
+              count: navResult.v3Counts.interventionTags[it.id] || 0,
+              isSelected: selectedInterventionTags.includes(it.id),
+              onToggle: () => handleToggleInterventionTag(it.id),
+            });
+          }
+        }
+      }
+
+      const allPrev = [
+        ...cond.prevention.pharmacologicalProphylaxis,
+        ...cond.prevention.proceduralDevice,
+        ...cond.prevention.lifestyleRehabMonitoring,
+      ];
+      for (const pt of allPrev) {
+        if (pt.label.toLowerCase().includes(term)) {
+          const key = `prev:${pt.id}`;
+          if (!seen.has(key)) {
+            seen.add(key);
+            results.push({
+              id: pt.id,
+              label: pt.label,
+              category: "Prevention",
+              categoryColor: "bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800",
+              count: navResult.v3Counts.interventionTags[pt.id] || 0,
+              isSelected: selectedInterventionTags.includes(pt.id),
+              onToggle: () => handleToggleInterventionTag(pt.id),
+            });
+          }
+        }
+      }
+    }
+
+    results.sort((a, b) => a.label.localeCompare(b.label));
+    return results;
+  }, [
+    normalizedFilterSearch,
+    navResult.v3Counts,
+    selectedSubspecialties,
+    selectedConditionIds,
+    selectedDomains,
+    selectedDiagnosisTags,
+    selectedTimeWindowId,
+    selectedInterventionTags,
+  ]);
+
   const activeFilterSummaryChips = useMemo(() => {
     const chips: { id: string; label: string; onRemove: () => void; color: string }[] = [];
-    if (selectedSubspecialty !== "all") {
+    for (const sub of selectedSubspecialties) {
       chips.push({
-        id: `sub:${selectedSubspecialty}`,
-        label: selectedSubspecialty,
+        id: `sub:${sub}`,
+        label: sub,
         color: "bg-slate-800 text-white dark:bg-slate-200 dark:text-slate-900",
-        onRemove: () => handleSelectSubspecialty("all"),
+        onRemove: () => handleToggleSubspecialty(sub),
       });
     }
-    if (selectedConditionId !== "all") {
-      const cond = getConditionByIdV3(selectedConditionId);
+    for (const cid of selectedConditionIds) {
+      const cond = getConditionByIdV3(cid);
       chips.push({
-        id: `cond:${selectedConditionId}`,
-        label: cond?.label || selectedConditionId,
+        id: `cond:${cid}`,
+        label: cond?.label || cid,
         color: "bg-indigo-600 text-white",
-        onRemove: () => handleSelectCondition("all"),
+        onRemove: () => handleToggleCondition(cid),
       });
     }
-    if (selectedDomain !== "all") {
+    for (const dom of selectedDomains) {
       const domLabel =
-        selectedDomain === "diagnosis"
+        dom === "diagnosis"
           ? "1. Diagnosis"
-          : selectedDomain === "treatment"
+          : dom === "treatment"
           ? "2. Treatment"
-          : "3. Prevention & Secondary Care";
+          : "3. Prevention & Care";
       chips.push({
-        id: `dom:${selectedDomain}`,
+        id: `dom:${dom}`,
         label: domLabel,
         color: "bg-violet-600 text-white",
-        onRemove: () => handleSelectDomain("all"),
+        onRemove: () => handleToggleDomain(dom),
       });
     }
     if (selectedTimeWindowId !== "all") {
@@ -637,16 +1095,16 @@ export function ClinicalNavigatorTab({
     if (verificationFilter !== "all") {
       chips.push({
         id: `verif:${verificationFilter}`,
-        label: verificationFilter === "approved" ? "✓ Đã kiểm duyệt" : "⚠️ Chưa gắn nhãn / Cần kiểm duyệt",
+        label: verificationFilter === "approved" ? "✓ Approved" : "⚠️ Needs Review",
         color: verificationFilter === "approved" ? "bg-emerald-600 text-white" : "bg-amber-600 text-white",
         onRemove: () => setVerificationFilter("all"),
       });
     }
     return chips;
   }, [
-    selectedSubspecialty,
-    selectedConditionId,
-    selectedDomain,
+    selectedSubspecialties,
+    selectedConditionIds,
+    selectedDomains,
     selectedTimeWindowId,
     selectedDiagnosisTags,
     selectedInterventionTags,
@@ -779,7 +1237,7 @@ export function ClinicalNavigatorTab({
               >
                 <div className="flex items-center gap-2">
                   <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-800 dark:text-slate-200">
-                    🧭 Clinical Filter (V3.0)
+                    🧭 Clinical Filter
                   </h3>
                   {isQueryActive && (
                     <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-600 text-white">
@@ -877,7 +1335,7 @@ export function ClinicalNavigatorTab({
 
             {isFilterExpanded && (
               <div className="space-y-4 pt-2 border-t border-slate-100 dark:border-slate-800/80 max-h-[75vh] overflow-y-auto pr-1">
-                {/* Filter Tag Quick-Search */}
+                {/* Filter Tag Quick-Search with Autocomplete Popover (Requirement 4) */}
                 <div className="relative">
                   <input
                     type="text"
@@ -896,172 +1354,111 @@ export function ClinicalNavigatorTab({
                       ✕
                     </button>
                   )}
+
+                  {/* Autocomplete dropdown popover to select tags directly (Requirement 4) */}
+                  {filterSearchTerm.trim().length > 0 && (
+                    <div className="absolute top-full left-0 right-0 mt-1.5 max-h-72 overflow-y-auto bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl shadow-2xl z-50 p-2 space-y-1">
+                      <div className="flex items-center justify-between px-2 py-1 text-[10px] font-bold text-slate-400 border-b border-slate-100 dark:border-slate-800">
+                        <span>{quickSearchMatchingTags.length} matching tags</span>
+                        <span className="text-[9px] text-indigo-600 dark:text-indigo-400">Click to toggle</span>
+                      </div>
+                      {quickSearchMatchingTags.length === 0 ? (
+                        <div className="p-3 text-center text-xs text-slate-400">
+                          No tags match &ldquo;{filterSearchTerm}&rdquo;
+                        </div>
+                      ) : (
+                        quickSearchMatchingTags.map((tag) => (
+                          <button
+                            key={`${tag.category}-${tag.id}`}
+                            type="button"
+                            onClick={tag.onToggle}
+                            className={`w-full text-left px-2 py-1.5 rounded-lg text-xs flex items-center justify-between transition cursor-pointer ${
+                              tag.isSelected
+                                ? "bg-indigo-50 dark:bg-indigo-950/60 text-indigo-900 dark:text-indigo-200"
+                                : "hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300"
+                            }`}
+                          >
+                            <div className="flex items-center gap-2 min-w-0">
+                              <span
+                                className={`w-3.5 h-3.5 rounded flex items-center justify-center border text-[9px] shrink-0 ${
+                                  tag.isSelected
+                                    ? "bg-indigo-600 border-indigo-600 text-white font-bold"
+                                    : "border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800"
+                                }`}
+                              >
+                                {tag.isSelected ? "✓" : ""}
+                              </span>
+                              <span className="truncate font-medium">{tag.label}</span>
+                            </div>
+                            <div className="flex items-center gap-1.5 shrink-0 ml-2">
+                              <span
+                                className={`text-[9px] font-bold px-1.5 py-0.5 rounded border ${tag.categoryColor}`}
+                              >
+                                {tag.category}
+                              </span>
+                              {tag.count !== undefined && tag.count > 0 && (
+                                <span className="text-[10px] px-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-500">
+                                  {tag.count}
+                                </span>
+                              )}
+                            </div>
+                          </button>
+                        ))
+                      )}
+                    </div>
+                  )}
                 </div>
 
-                {/* =========================================================
-                    AXIS 1: SUBSPECIALTY -> CLINICAL CONDITION
-                   ========================================================= */}
-                <div className="space-y-2.5">
-                  <div>
-                    <span className="block text-[11px] font-extrabold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-1.5">
-                      Axis 1A • Subspecialty (10)
-                    </span>
-                    <div className="flex flex-wrap gap-1.5">
-                      <button
-                        type="button"
-                        onClick={() => handleSelectSubspecialty("all")}
-                        className={`px-2.5 py-1 rounded-lg text-[11px] font-bold border transition ${
-                          selectedSubspecialty === "all"
-                            ? "bg-slate-900 text-white border-slate-900 dark:bg-white dark:text-slate-900"
-                            : "bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-indigo-400"
-                        }`}
-                      >
-                        All Subspecialties
-                      </button>
-                      {NAVIGATOR_SUBSPECIALTIES_V3.map((sub) => {
-                        const active = selectedSubspecialty === sub;
-                        const count = navResult.v3Counts.subspecialties[sub] || 0;
-                        return (
-                          <button
-                            key={sub}
-                            type="button"
-                            onClick={() => handleSelectSubspecialty(sub)}
-                            className={`px-2.5 py-1 rounded-lg text-[11px] font-bold border transition flex items-center gap-1 ${
-                              active
-                                ? "bg-indigo-600 text-white border-indigo-600 shadow-sm"
-                                : "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-indigo-400"
-                            }`}
-                          >
-                            <span>{sub}</span>
-                            {count > 0 && (
-                              <span
-                                className={`text-[10px] px-1 rounded ${
-                                  active
-                                    ? "bg-indigo-500 text-white"
-                                    : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300"
-                                }`}
-                              >
-                                {count}
-                              </span>
-                            )}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
+                {/* SUBSPECIALTY DROPDOWN (Requirement 1 & 5: Alphabetical, Multi-select checkboxes, No Axis 1A) */}
+                <MultiSelectFilterDropdown
+                  label="Subspecialty"
+                  options={sortedSubspecialties.map((sub) => ({
+                    id: sub,
+                    label: sub,
+                    count: navResult.v3Counts.subspecialties[sub] || 0,
+                  }))}
+                  selectedIds={selectedSubspecialties}
+                  onToggle={(id) => handleToggleSubspecialty(id as Subspecialty)}
+                  onClear={() => setSelectedSubspecialties([])}
+                  allLabel="All Subspecialties"
+                />
 
-                  {/* Clinical Condition Pills */}
-                  <div className="pt-2 border-t border-slate-100 dark:border-slate-800/80">
-                    <span className="block text-[11px] font-extrabold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-1.5">
-                      Axis 1B • Clinical Condition ({availableConditions.length})
-                    </span>
-                    <div className="flex flex-wrap gap-1.5 max-h-40 overflow-y-auto pr-1">
-                      <button
-                        type="button"
-                        onClick={() => handleSelectCondition("all")}
-                        className={`px-2.5 py-1 rounded-lg text-[11px] font-bold border transition ${
-                          selectedConditionId === "all"
-                            ? "bg-slate-900 text-white border-slate-900 dark:bg-white dark:text-slate-900"
-                            : "bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700"
-                        }`}
-                      >
-                        All Conditions
-                      </button>
-                      {availableConditions.map((cond) => {
-                        const active = selectedConditionId === cond.id;
-                        const count = navResult.v3Counts.conditions[cond.id] || 0;
-                        const isMultiParent = cond.subspecialties.length > 1;
-                        return (
-                          <button
-                            key={cond.id}
-                            type="button"
-                            onClick={() => handleSelectCondition(cond.id)}
-                            title={
-                              isMultiParent
-                                ? `Shared across: ${cond.subspecialties.join(" & ")}`
-                                : cond.label
-                            }
-                            className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold border transition flex items-center gap-1 ${
-                              active
-                                ? "bg-indigo-600 text-white border-indigo-600 shadow-sm"
-                                : count > 0
-                                ? "bg-slate-50 dark:bg-slate-800/90 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:border-indigo-400"
-                                : "bg-slate-50/50 dark:bg-slate-900 text-slate-500 dark:text-slate-400 border-slate-200/70 dark:border-slate-800 hover:border-indigo-400"
-                            }`}
-                          >
-                            <span>{cond.label}</span>
-                            {count > 0 && (
-                              <span
-                                className={`text-[10px] px-1 rounded ${
-                                  active
-                                    ? "bg-indigo-500 text-white"
-                                    : "bg-slate-200/80 dark:bg-slate-700 text-slate-600 dark:text-slate-300"
-                                }`}
-                              >
-                                {count}
-                              </span>
-                            )}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
+                {/* CLINICAL CONDITION DROPDOWN (Requirement 1, 2, 3, 5: Alphabetical, Multi-select checkboxes, auto-select subspecialty, auto-filter, No Axis 1B) */}
+                <MultiSelectFilterDropdown
+                  label="Clinical Condition"
+                  options={availableConditions.map((cond) => ({
+                    id: cond.id,
+                    label: cond.label,
+                    count: navResult.v3Counts.conditions[cond.id] || 0,
+                    hint: cond.subspecialties.length > 1 ? `Shared: ${cond.subspecialties.join(", ")}` : undefined,
+                  }))}
+                  selectedIds={selectedConditionIds}
+                  onToggle={handleToggleCondition}
+                  onClear={() => setSelectedConditionIds([])}
+                  allLabel="All Conditions"
+                  enableSearch={true}
+                />
 
-                {/* =========================================================
-                    AXIS 2: CLINICAL DOMAIN & DYNAMIC SUB-FILTERS
-                   ========================================================= */}
-                <div className="pt-2.5 border-t border-slate-200 dark:border-slate-800 space-y-3">
-                  <div>
-                    <span className="block text-[11px] font-extrabold uppercase tracking-wider text-violet-600 dark:text-violet-400 mb-1.5">
-                      Axis 2 • Clinical Domain
-                    </span>
-                    <div className="grid grid-cols-2 gap-1.5">
-                      {(
-                        [
-                          { id: "all", label: "All Domains" },
-                          { id: "diagnosis", label: "1. Diagnosis" },
-                          { id: "treatment", label: "2. Treatment" },
-                          { id: "prevention", label: "3. Prevention & Care" },
-                        ] as const
-                      ).map((dom) => {
-                        const active = selectedDomain === dom.id;
-                        const count =
-                          dom.id === "all"
-                            ? null
-                            : navResult.v3Counts.domains[dom.id] || 0;
-                        return (
-                          <button
-                            key={dom.id}
-                            type="button"
-                            onClick={() => handleSelectDomain(dom.id)}
-                            className={`px-2.5 py-1.5 rounded-xl text-[11px] font-bold border transition flex items-center justify-between ${
-                              active
-                                ? "bg-violet-600 text-white border-violet-600 shadow-sm"
-                                : "bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:border-violet-400"
-                            }`}
-                          >
-                            <span className="truncate">{dom.label}</span>
-                            {count !== null && count > 0 && (
-                              <span
-                                className={`text-[10px] px-1.5 rounded-full ml-1 ${
-                                  active
-                                    ? "bg-violet-500 text-white"
-                                    : "bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300"
-                                }`}
-                              >
-                                {count}
-                              </span>
-                            )}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
+                {/* CLINICAL DOMAIN DROPDOWN (Requirement 1 & 5: Alphabetical, Multi-select checkboxes, No Axis 2) */}
+                <MultiSelectFilterDropdown
+                  label="Clinical Domain"
+                  options={sortedDomains.map((dom) => ({
+                    id: dom.id,
+                    label: dom.label,
+                    count: navResult.v3Counts.domains[dom.id] || 0,
+                  }))}
+                  selectedIds={selectedDomains}
+                  onToggle={(id) => handleToggleDomain(id as ClinicalDomainV3)}
+                  onClear={() => setSelectedDomains([])}
+                  allLabel="All Domains"
+                />
 
+                {/* DYNAMIC SUB-FILTERS FOR CLINICAL DOMAINS */}
+                <div className="pt-2 border-t border-slate-200 dark:border-slate-800 space-y-3">
                   {/* BRANCH 1: 1. DIAGNOSIS (System-Wide Canonical 5 Modalities) */}
-                  {(selectedDomain === "diagnosis" ||
-                    (selectedDomain === "all" && normalizedFilterSearch.length > 0)) && (
+                  {(selectedDomains.includes("diagnosis") ||
+                    (selectedDomains.length === 0 &&
+                      (normalizedFilterSearch.length > 0 || selectedDiagnosisTags.length > 0))) && (
                     <div className="p-3 rounded-xl bg-cyan-50/40 dark:bg-cyan-950/20 border border-cyan-200/70 dark:border-cyan-900/50 space-y-2.5">
                       <span className="block text-[11px] font-extrabold text-cyan-800 dark:text-cyan-300">
                         🔬 1. Diagnosis Modalities (System-Wide Canonical)
@@ -1114,9 +1511,12 @@ export function ClinicalNavigatorTab({
                   )}
 
                   {/* BRANCH 2: 2. TREATMENT (Condition-Specific Time Window + Drug / Surgical / Other) */}
-                  {(selectedDomain === "treatment" ||
-                    (selectedDomain === "all" &&
-                      (selectedConditionId !== "all" || normalizedFilterSearch.length > 0))) && (
+                  {(selectedDomains.includes("treatment") ||
+                    (selectedDomains.length === 0 &&
+                      (selectedConditionIds.length > 0 ||
+                        normalizedFilterSearch.length > 0 ||
+                        selectedInterventionTags.length > 0 ||
+                        selectedTimeWindowId !== "all"))) && (
                     <div className="p-3 rounded-xl bg-teal-50/40 dark:bg-teal-950/20 border border-teal-200/70 dark:border-teal-900/50 space-y-3">
                       <span className="block text-[11px] font-extrabold text-teal-800 dark:text-teal-300">
                         💊 2. Treatment &amp; Acute Management
@@ -1188,9 +1588,11 @@ export function ClinicalNavigatorTab({
                   )}
 
                   {/* BRANCH 3: 3. PREVENTION & SECONDARY CARE */}
-                  {(selectedDomain === "prevention" ||
-                    (selectedDomain === "all" &&
-                      (selectedConditionId !== "all" || normalizedFilterSearch.length > 0))) && (
+                  {(selectedDomains.includes("prevention") ||
+                    (selectedDomains.length === 0 &&
+                      (selectedConditionIds.length > 0 ||
+                        normalizedFilterSearch.length > 0 ||
+                        selectedInterventionTags.length > 0))) && (
                     <div className="p-3 rounded-xl bg-emerald-50/40 dark:bg-emerald-950/20 border border-emerald-200/70 dark:border-emerald-900/50 space-y-3">
                       <span className="block text-[11px] font-extrabold text-emerald-800 dark:text-emerald-300">
                         🛡️ 3. Prevention &amp; Secondary Care
@@ -1302,25 +1704,25 @@ export function ClinicalNavigatorTab({
                   {/* Practice Changes Filter Checkbox */}
                   <label className="pt-2 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between cursor-pointer">
                     <span className="text-[11px] font-semibold text-slate-600 dark:text-slate-400">
-                      Only New / Upgraded Recs:
+                      Only New / Upgraded Recs
                     </span>
                     <input
                       type="checkbox"
                       checked={onlyPracticeChanges}
                       onChange={(e) => setOnlyPracticeChanges(e.target.checked)}
-                      className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 h-3.5 w-3.5"
+                      className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 h-3.5 w-3.5 cursor-pointer"
                     />
                   </label>
 
-                  {/* Labeling & Verification Status Filter */}
+                  {/* Labeling & Verification Status Filter (Requirement 7: English translation) */}
                   <div className="pt-2 border-t border-slate-100 dark:border-slate-800/80 space-y-1.5">
                     <div className="flex items-center justify-between">
                       <span className="text-[11px] font-semibold text-slate-600 dark:text-slate-400">
-                        Trạng thái gắn nhãn &amp; duyệt:
+                        Verification &amp; Labeling Status:
                       </span>
                       {navResult.unlabeledCount > 0 && (
                         <span className="px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-950/70 dark:text-amber-300 border border-amber-300 dark:border-amber-800">
-                          {navResult.unlabeledCount} cần nhãn
+                          {navResult.unlabeledCount} needs review
                         </span>
                       )}
                     </div>
@@ -1328,36 +1730,36 @@ export function ClinicalNavigatorTab({
                       <button
                         type="button"
                         onClick={() => setVerificationFilter("all")}
-                        className={`px-1.5 py-1 rounded text-[10px] font-semibold border transition-all text-center ${
+                        className={`px-1.5 py-1 rounded text-[10px] font-semibold border transition-all text-center cursor-pointer ${
                           verificationFilter === "all"
                             ? "bg-slate-800 text-white border-slate-800 dark:bg-slate-200 dark:text-slate-900"
                             : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700 hover:border-slate-400"
                         }`}
                       >
-                        Tất cả
+                        All
                       </button>
                       <button
                         type="button"
                         onClick={() => setVerificationFilter("approved")}
-                        className={`px-1.5 py-1 rounded text-[10px] font-semibold border transition-all text-center ${
+                        className={`px-1.5 py-1 rounded text-[10px] font-semibold border transition-all text-center cursor-pointer ${
                           verificationFilter === "approved"
                             ? "bg-emerald-600 text-white border-emerald-600 shadow-sm"
                             : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700 hover:border-emerald-400"
                         }`}
                       >
-                        ✓ Đã duyệt
+                        ✓ Approved
                       </button>
                       <button
                         type="button"
                         onClick={() => setVerificationFilter("unlabeled_or_review")}
-                        className={`px-1.5 py-1 rounded text-[10px] font-semibold border transition-all text-center ${
+                        className={`px-1.5 py-1 rounded text-[10px] font-semibold border transition-all text-center cursor-pointer ${
                           verificationFilter === "unlabeled_or_review"
                             ? "bg-amber-600 text-white border-amber-600 shadow-sm"
                             : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700 hover:border-amber-400"
                         }`}
-                        title="Lọc các khuyến cáo chưa được gắn nhãn đầy đủ hoặc chưa được chuyên gia phê duyệt"
+                        title="Filter recommendations requiring full labeling or expert review"
                       >
-                        ⚠️ Cần nhãn
+                        ⚠️ Needs Review
                       </button>
                     </div>
                   </div>
@@ -1463,49 +1865,75 @@ export function ClinicalNavigatorTab({
           </div>
 
           {!isQueryActive ? (
-            /* ZERO-QUERY EMPTY STATE */
-            <div className="p-8 sm:p-12 text-center rounded-2xl border border-dashed border-slate-300 dark:border-slate-800 bg-white/70 dark:bg-slate-900/50 space-y-5">
-              <div className="w-16 h-16 mx-auto rounded-2xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-3xl">
-                🧭
-              </div>
-              <div className="space-y-1.5 max-w-lg mx-auto">
-                <h3 className="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white">
-                  Select a Clinical Filter on the Left or Search Content Above
-                </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400">
-                  Choose a Subspecialty &amp; Condition (Axis 1), Clinical Domain (Axis 2: Diagnosis, Treatment, or Prevention), or type a clinical keyword in the search bar above.
-                </p>
-              </div>
-
-              {/* Quick Start Topic Pills */}
-              <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
-                {NAVIGATOR_QUICK_PRESETS.map((preset) => (
-                  <button
-                    key={preset.id}
-                    type="button"
-                    onClick={() => handleApplyPreset(preset.id)}
-                    className="px-3.5 py-2 rounded-xl text-xs font-bold bg-indigo-50 text-indigo-700 dark:bg-indigo-950/60 dark:text-indigo-300 hover:bg-indigo-100 dark:hover:bg-indigo-900/70 border border-indigo-200 dark:border-indigo-800/80 transition flex items-center gap-1.5"
-                  >
-                    <span>⚡</span>
-                    <span>{preset.title}</span>
-                  </button>
-                ))}
-              </div>
-
-              {isAdminVerified && (
-                <div className="pt-3 border-t border-slate-200/70 dark:border-slate-800 flex justify-center">
+            /* ZERO-QUERY EMPTY STATE WITH AUTO-DISPLAYED HIGH-YIELD TOPICS */
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 shadow-sm space-y-6">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-4 border-b border-slate-100 dark:border-slate-800">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl shrink-0">
+                    🧭
+                  </div>
+                  <div>
+                    <h3 className="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white">
+                      High-Yield Clinical Topics
+                    </h3>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">
+                      Explore featured practice-changing trials, guidelines, and international concordance
+                    </p>
+                  </div>
+                </div>
+                {isAdminVerified && (
                   <button
                     type="button"
                     onClick={() => {
                       setEditingTrial(null);
                       setIsTrialModalOpen(true);
                     }}
-                    className="px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-xs transition flex items-center gap-1.5"
+                    className="px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-xs transition flex items-center gap-1.5 self-start sm:self-auto cursor-pointer"
                   >
                     <span>＋</span> Add Pivotal Trial
                   </button>
-                </div>
-              )}
+                )}
+              </div>
+
+              {/* High-Yield Clinical Topics Cards (Requirement 8) */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                {NAVIGATOR_QUICK_PRESETS.map((preset) => {
+                  const isSelected = activePresetId === preset.id;
+                  return (
+                    <button
+                      key={preset.id}
+                      type="button"
+                      onClick={() => handleApplyPreset(preset.id)}
+                      className={`text-left p-4 rounded-xl border transition-all flex flex-col justify-between gap-2.5 group hover:shadow-md cursor-pointer ${
+                        isSelected
+                          ? "bg-indigo-50/90 dark:bg-indigo-950/50 border-indigo-400 dark:border-indigo-500 ring-2 ring-indigo-500/20"
+                          : "bg-white dark:bg-slate-800/60 border-slate-200 dark:border-slate-700 hover:border-indigo-300 dark:hover:border-indigo-600"
+                      }`}
+                    >
+                      <div className="space-y-1.5">
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-100 text-indigo-700 dark:bg-indigo-900/60 dark:text-indigo-300">
+                            ⚡ {preset.badge}
+                          </span>
+                          <span className="text-[11px] font-bold text-indigo-600 dark:text-indigo-400 group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
+                            Explore <span>→</span>
+                          </span>
+                        </div>
+                        <h4 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                          {preset.title}
+                        </h4>
+                        <p className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                          {preset.subtitle}
+                        </p>
+                      </div>
+                      <div className="pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[10px] text-slate-400">
+                        <span>Subspecialty: <strong className="text-slate-600 dark:text-slate-300">{preset.query.subspecialty || "All"}</strong></span>
+                        <span className="text-slate-400">1-Click Preset</span>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           ) : (
             <>

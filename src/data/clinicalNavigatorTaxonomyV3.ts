@@ -924,6 +924,14 @@ export function getConditionsForSubspecialtyV3(subspecialty: Subspecialty | 'all
     return CLINICAL_CONDITIONS_V3.filter((c) => c.subspecialties.includes(subspecialty));
 }
 
+export function getConditionsForSubspecialtiesV3(subspecialties: (Subspecialty | string)[]): ClinicalConditionV3[] {
+    const valid = subspecialties.filter((s) => s && s !== 'all' && s !== 'All Subspecialties');
+    if (valid.length === 0) {
+        return CLINICAL_CONDITIONS_V3;
+    }
+    return CLINICAL_CONDITIONS_V3.filter((c) => c.subspecialties.some((s) => valid.includes(s as Subspecialty)));
+}
+
 export function getConditionByIdV3(conditionId: string): ClinicalConditionV3 | undefined {
     return CLINICAL_CONDITIONS_V3.find((c) => c.id === conditionId);
 }
@@ -940,12 +948,35 @@ export function getTreatmentSchemaForScopeV3(
     subspecialty: Subspecialty | 'all',
     conditionId: string | 'all'
 ): ConditionTreatmentSchemaV3 {
-    if (conditionId !== 'all') {
-        const cond = getConditionByIdV3(conditionId);
-        if (cond) return cond.treatment;
+    return getTreatmentSchemaForScopesV3(
+        subspecialty === 'all' ? [] : [subspecialty],
+        conditionId === 'all' ? [] : [conditionId]
+    );
+}
+
+export function getTreatmentSchemaForScopesV3(
+    subspecialties: (Subspecialty | string)[],
+    conditionIds: string[]
+): ConditionTreatmentSchemaV3 {
+    const validCondIds = conditionIds.filter((c) => c && c !== 'all');
+    if (validCondIds.length > 0) {
+        const conditions = validCondIds.map((id) => getConditionByIdV3(id)).filter(Boolean) as ClinicalConditionV3[];
+        const dedupe = (items: TaxonomyTagV3[]) => {
+            const seen = new Map<string, TaxonomyTagV3>();
+            for (const item of items) {
+                if (!seen.has(item.id)) seen.set(item.id, item);
+            }
+            return Array.from(seen.values());
+        };
+        return {
+            timeWindows: dedupe(conditions.flatMap((c) => c.treatment.timeWindows)),
+            drugs: dedupe(conditions.flatMap((c) => c.treatment.drugs)),
+            interventions: dedupe(conditions.flatMap((c) => c.treatment.interventions)),
+            otherCare: dedupe(conditions.flatMap((c) => c.treatment.otherCare)),
+        };
     }
 
-    const conditions = getConditionsForSubspecialtyV3(subspecialty);
+    const conditions = getConditionsForSubspecialtiesV3(subspecialties);
     const dedupe = (items: TaxonomyTagV3[]) => {
         const seen = new Map<string, TaxonomyTagV3>();
         for (const item of items) {
@@ -970,12 +1001,34 @@ export function getPreventionSchemaForScopeV3(
     subspecialty: Subspecialty | 'all',
     conditionId: string | 'all'
 ): ConditionPreventionSchemaV3 {
-    if (conditionId !== 'all') {
-        const cond = getConditionByIdV3(conditionId);
-        if (cond) return cond.prevention;
+    return getPreventionSchemaForScopesV3(
+        subspecialty === 'all' ? [] : [subspecialty],
+        conditionId === 'all' ? [] : [conditionId]
+    );
+}
+
+export function getPreventionSchemaForScopesV3(
+    subspecialties: (Subspecialty | string)[],
+    conditionIds: string[]
+): ConditionPreventionSchemaV3 {
+    const validCondIds = conditionIds.filter((c) => c && c !== 'all');
+    if (validCondIds.length > 0) {
+        const conditions = validCondIds.map((id) => getConditionByIdV3(id)).filter(Boolean) as ClinicalConditionV3[];
+        const dedupe = (items: TaxonomyTagV3[]) => {
+            const seen = new Map<string, TaxonomyTagV3>();
+            for (const item of items) {
+                if (!seen.has(item.id)) seen.set(item.id, item);
+            }
+            return Array.from(seen.values());
+        };
+        return {
+            pharmacologicalProphylaxis: dedupe(conditions.flatMap((c) => c.prevention.pharmacologicalProphylaxis)),
+            proceduralDevice: dedupe(conditions.flatMap((c) => c.prevention.proceduralDevice)),
+            lifestyleRehabMonitoring: dedupe(conditions.flatMap((c) => c.prevention.lifestyleRehabMonitoring)),
+        };
     }
 
-    const conditions = getConditionsForSubspecialtyV3(subspecialty);
+    const conditions = getConditionsForSubspecialtiesV3(subspecialties);
     const dedupe = (items: TaxonomyTagV3[]) => {
         const seen = new Map<string, TaxonomyTagV3>();
         for (const item of items) {

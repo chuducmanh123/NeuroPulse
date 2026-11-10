@@ -170,3 +170,13 @@ export function detectGuidelineFormFormat(params: {
 export function getGuidelineFormDef(format: GuidelineFormFormat): GuidelineFormDefinition {
   return GUIDELINE_FORMS.find((f) => f.id === format) || GUIDELINE_FORMS[GUIDELINE_FORMS.length - 1];
 }
+
+/**
+ * Strips any legacy or trailing 'AI VERIFIED' / '(AI VERIFIED)' suffixes from guideline titles.
+ */
+export function cleanGuidelineTitle(title?: string | null): string {
+  if (!title) return "";
+  return title
+    .replace(/\s*[-–—|•]?\s*(\[|\()?AI\s+VERIFIED(\]|\))?\s*$/i, "")
+    .trim();
+}
