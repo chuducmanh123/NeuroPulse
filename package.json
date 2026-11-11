@@ -10,6 +10,7 @@
     "rx:validate": "node --experimental-strip-types scripts/neurorx/validate.ts",
     "rx:check-quotes": "node --experimental-strip-types scripts/neurorx/check-quotes.ts",
     "rx:check-constants": "node --experimental-strip-types scripts/neurorx/check-no-clinical-constants.ts",
+    "rx:sync": "node scripts/neurorx/sync_remote_to_local.mjs",
     "rx:verify": "node --experimental-strip-types scripts/neurorx/verify.ts"
   },
   "dependencies": {

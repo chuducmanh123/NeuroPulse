@@ -429,8 +429,13 @@ export function DrugAccordions({
 
                 {/* Hemodialysis note */}
                 {drug.renal_impairment?.hemodialysis?.value && (
-                  <div className="p-2 rounded-lg bg-rose-500/10 border border-rose-500/20 text-xs text-rose-800 dark:text-rose-300 font-medium">
-                    <strong>Hemodialysis / ESRD:</strong> {drug.renal_impairment.hemodialysis.value}
+                  <div className="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between gap-2 text-xs">
+                    <span className="font-semibold text-slate-700 dark:text-slate-300 shrink-0">
+                      Hemodialysis / ESRD:
+                    </span>
+                    <span className="font-medium text-slate-600 dark:text-slate-400 text-right">
+                      {drug.renal_impairment.hemodialysis.value}
+                    </span>
                   </div>
                 )}
               </div>

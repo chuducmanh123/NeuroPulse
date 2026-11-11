@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import {
   RotateCcw,
   Activity,
@@ -11,22 +11,73 @@ import {
   Ruler,
   Droplet,
   Sliders,
+  Calculator,
+  Package,
+  Syringe,
+  Info,
+  CheckCircle2,
+  Sparkles,
 } from "lucide-react";
-import type { DrugRecord } from "@/types/neurorx";
+import type { DrugRecord, Regimen } from "@/types/neurorx";
 import { useNeuroRxStore } from "@/store/useNeuroRxStore";
 import { resolveRenalFunction } from "@/lib/neurorx/patient";
+import { resolveRegimen } from "@/lib/neurorx/dosing";
+import { toProductUnits } from "@/lib/neurorx/formulation";
+import { computeInfusion } from "@/lib/neurorx/infusion";
 
 interface PatientBarProps {
   drug: DrugRecord;
+  regimens?: Regimen[];
+  selectedRegimenIndex?: number;
+  onSelectRegimenIndex?: (index: number) => void;
   darkMode?: boolean;
 }
 
-export function PatientBar({ drug, darkMode = false }: PatientBarProps) {
+export function PatientBar({
+  drug,
+  regimens = drug.regimens || [],
+  selectedRegimenIndex = 0,
+  onSelectRegimenIndex,
+  darkMode = false,
+}: PatientBarProps) {
   const { patientInput, patientParsed, errors, setField, clearPatient } =
     useNeuroRxStore();
 
   const renalBasis = drug.renal_basis?.value || "cg_abw";
   const renalResult = resolveRenalFunction(patientParsed, renalBasis);
+
+  const activeRegimen = regimens[selectedRegimenIndex] || regimens[0];
+
+  const resolution = useMemo(() => {
+    if (!activeRegimen) {
+      return {
+        state: "needs_input" as const,
+        ruleText: "No active regimen configured",
+        explanation: [],
+      };
+    }
+    return resolveRegimen(drug, activeRegimen, patientParsed, renalResult);
+  }, [drug, activeRegimen, patientParsed, renalResult]);
+
+  // Product units
+  const productUnits =
+    resolution.state === "computed" && resolution.amount
+      ? toProductUnits(resolution.amount, drug.vn_products?.value)
+      : [];
+  const productUnitText =
+    productUnits.length > 0 ? productUnits[0].displayText : undefined;
+
+  // Infusion
+  const infusionCalc =
+    resolution.state === "computed" &&
+    resolution.amount &&
+    activeRegimen.dose?.infusion
+      ? computeInfusion(
+          resolution.amount,
+          resolution.unit || "mg",
+          activeRegimen.dose.infusion
+        )
+      : null;
 
   // SCr unit toggle
   const currentScrUnit = patientInput.scr?.unit || "umol/L";
@@ -333,6 +384,149 @@ export function PatientBar({ drug, darkMode = false }: PatientBarProps) {
           )}
         </div>
       )}
+
+      {/* 8. COMPUTED DOSAGE SECTION */}
+      <div className="mt-4 pt-4 border-t border-slate-200/80 dark:border-slate-800 space-y-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div className="flex items-center gap-2">
+            <Calculator className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200">
+              Computed Dosage (Bedside Calculation)
+            </h4>
+          </div>
+
+          {/* Indication selector if multiple regimens exist */}
+          {regimens.length > 1 && (
+            <div className="flex items-center gap-2">
+              <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 whitespace-nowrap">
+                Indication:
+              </span>
+              <select
+                value={selectedRegimenIndex}
+                onChange={(e) => onSelectRegimenIndex?.(parseInt(e.target.value, 10))}
+                className={`text-xs font-semibold py-1 px-2.5 rounded-lg border focus:outline-none focus:ring-2 focus:ring-emerald-500/20 max-w-[280px] truncate ${
+                  darkMode
+                    ? "bg-slate-800 border-slate-700 text-white"
+                    : "bg-slate-50 border-slate-300 text-slate-900"
+                }`}
+              >
+                {regimens.map((reg, idx) => (
+                  <option key={reg.id || idx} value={idx}>
+                    {reg.indication} ({reg.route})
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+        </div>
+
+        {/* State 1: Computed */}
+        {resolution.state === "computed" && (
+          <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/25 space-y-2.5">
+            <div className="flex items-center justify-between flex-wrap gap-2">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
+                Computed Dosage:
+              </span>
+              {activeRegimen && (
+                <span className="text-[11px] font-bold px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-800 dark:text-emerald-300">
+                  {activeRegimen.route} • {activeRegimen.indication}
+                </span>
+              )}
+            </div>
+
+            <div className="flex items-baseline gap-2.5 flex-wrap">
+              <span className="text-2xl sm:text-3xl font-extrabold font-mono text-emerald-600 dark:text-emerald-400">
+                {resolution.amount} {resolution.unit}
+              </span>
+              <span className="text-sm font-bold text-slate-700 dark:text-slate-300">
+                {resolution.frequency}
+              </span>
+
+              {resolution.capped && (
+                <span className="px-2 py-0.5 rounded-md text-[11px] font-bold bg-amber-500/20 text-amber-700 dark:text-amber-300 border border-amber-500/30">
+                  Capped at max
+                </span>
+              )}
+
+              {patientParsed.weightKg && (
+                <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium ml-auto">
+                  Based on: {patientParsed.weightKg} kg
+                </span>
+              )}
+            </div>
+
+            {resolution.cappedReason && (
+              <p className="text-xs text-amber-700 dark:text-amber-300 font-medium">
+                ⚠️ {resolution.cappedReason}
+              </p>
+            )}
+
+            {/* Renal adjustment notification if active */}
+            {resolution.renalBandMatched && (
+              <div className="p-2 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-xs font-medium text-cyan-800 dark:text-cyan-300 flex items-center gap-1.5">
+                <Info className="w-3.5 h-3.5 text-cyan-600 shrink-0" />
+                <span>
+                  Renal adjusted dose applied for CrCl {resolution.renalBandMatched.min ?? 0}-{resolution.renalBandMatched.max ?? "∞"} mL/min: {resolution.renalBandMatched.dose_text}
+                </span>
+              </div>
+            )}
+
+            {/* Formulation Product Units Line */}
+            {productUnitText && (
+              <div className="flex items-center gap-2 p-2 rounded-lg bg-white/70 dark:bg-slate-800/80 text-xs font-semibold text-slate-700 dark:text-slate-300 border border-slate-200/60 dark:border-slate-700/60">
+                <Package className="w-4 h-4 text-sky-500 shrink-0" />
+                <span>Formulation: {productUnitText}</span>
+              </div>
+            )}
+
+            {/* Infusion Line */}
+            {infusionCalc && (
+              <div className="flex items-center gap-2 p-2 rounded-lg bg-blue-500/10 border border-blue-500/20 text-xs font-semibold text-blue-700 dark:text-blue-300">
+                <Syringe className="w-4 h-4 text-blue-500 shrink-0" />
+                <span>
+                  IV Infusion: {infusionCalc.volumeMl} mL @ {infusionCalc.rateMlPerHour} mL/h over {infusionCalc.durationMin} min
+                </span>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* State 2: Needs Input */}
+        {resolution.state === "needs_input" && (
+          <div className="p-4 rounded-xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 space-y-2">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block">
+              Dosage Formula:
+            </span>
+            <p className="text-sm font-bold text-slate-800 dark:text-slate-200">
+              {resolution.ruleText}
+            </p>
+            <div className="flex items-center gap-1.5 text-xs font-semibold text-sky-600 dark:text-sky-400 pt-1">
+              <Info className="w-4 h-4 shrink-0" />
+              <span>Enter patient weight in the field above to calculate exact bedside dose.</span>
+            </div>
+          </div>
+        )}
+
+        {/* State 3: Text Only */}
+        {resolution.state === "text_only" && (
+          <div className="p-4 rounded-xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 space-y-1.5">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block">
+              Prescribing Guidance:
+            </span>
+            <p className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 whitespace-pre-wrap leading-relaxed">
+              {resolution.ruleText}
+            </p>
+          </div>
+        )}
+
+        {/* State 4: Blocked Draft */}
+        {resolution.state === "blocked_draft" && (
+          <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-800 dark:text-amber-300 text-xs flex items-center gap-2">
+            <AlertTriangle className="w-4 h-4 shrink-0 text-amber-600" />
+            <span>Bedside dosage calculation is blocked until this draft drug record is verified.</span>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -1,158 +1,156 @@
 {
   "id": "alteplase",
-  "generic_name": "alteplase",
-  "tall_man": {
-    "value": "alteplase",
-    "refs": [
-      {
-        "source_id": "fda-alteplase-label",
-        "locator": "Section 11 DESCRIPTION",
-        "quote": "Alteplase is a tissue plasminogen activator produced by recombinant DNA technology. It is a sterile, purified glycoprotein of 527 amino acids."
+  "pgx": {
+    "note": "No pharmacogenomic requirements",
+    "refs": [],
+    "value": null
+  },
+  "bhyt": {
+    "note": "BHYT circular data pending user source submission",
+    "refs": [],
+    "value": null
+  },
+  "tools": {
+    "iv_infusion": {
+      "refs": [
+        {
+          "quote": "The recommended dose is 0.9 mg/kg (not to exceed 90 mg total dose), with 10% of the total dose administered as an initial intravenous bolus over 1 minute and the remainder infused over 60 minutes.",
+          "locator": "Section 2.1 Acute Ischemic Stroke",
+          "source_id": "fda-alteplase-label"
+        },
+        {
+          "quote": "Activase is for intravenous administration only. Do not add any other medication to infusion solutions containing Activase. Extravasation of Activase infusion can cause ecchymosis or inflammation. If extravasation occurs, terminate the infusion at that intravenous site and apply local therapy. Use within 8 hours following reconstitution (when stored at 2–30°C).",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "source_id": "fda-alteplase-label"
+        }
+      ],
+      "value": {
+        "rate": "10% bolus over 1 minute; remainder 90% infused over 60 minutes",
+        "diluent": "Reconstitute with Sterile Water for Injection (SWFI) without preservatives to 1 mg/mL",
+        "instructions": "Activase is for intravenous administration only. Do not add any other medication to infusion solutions containing Activase. The recommended dose is 0.9 mg/kg (not to exceed 90 mg total dose), with 10% of the total dose administered as an initial intravenous bolus over 1 minute and the remainder infused over 60 minutes. Use within 8 hours following reconstitution."
       }
-    ],
-    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+    }
+  },
+  "status": "draft",
+  "ae_tags": {
+    "refs": [],
+    "value": null
   },
   "classes": [
     "thrombolytic",
     "tissue plasminogen activator (tPA)",
     "serine protease"
   ],
-  "subspecialties": [
-    "stroke",
-    "neurocritical_care"
-  ],
-  "vn_products": {
-    "value": null,
+  "hepatic": {
+    "note": "No dosage adjustment necessary for hepatic impairment.",
     "refs": [],
-    "note": "Pending user source submission"
+    "value": null
   },
-  "bhyt": {
-    "value": null,
+  "ng_tube": {
+    "note": "Intravenous solution only; not for enteral administration",
     "refs": [],
-    "note": "BHYT circular data pending user source submission"
+    "value": null
   },
   "regimens": [
     {
       "id": "alt-iv-ais-bolus-infusion",
-      "indication": "Acute Ischemic Stroke (AIS, initiated as soon as possible within 3 hours after symptom onset)",
-      "setting": "acute_inpatient",
-      "route": "IV",
-      "refs": [
-        {
-          "source_id": "fda-alteplase-label",
-          "locator": "Section 1.1 Acute Ischemic Stroke",
-          "quote": "Activase is indicated for the treatment of acute ischemic stroke. Exclude intracranial hemorrhage as the primary cause of stroke signs and symptoms prior to initiation of treatment [see Contraindications (4.1) ] . Initiate treatment as soon as possible but within 3 hours after symptom onset."
-        },
-        {
-          "source_id": "fda-alteplase-label",
-          "locator": "Section 2.1 Acute Ischemic Stroke",
-          "quote": "The recommended dose is 0.9 mg/kg (not to exceed 90 mg total dose), with 10% of the total dose administered as an initial intravenous bolus over 1 minute and the remainder infused over 60 minutes."
-        }
-      ],
       "dose": {
         "kind": "weight",
-        "amount": 0.9,
         "unit": "mg/kg",
+        "amount": 0.9,
         "frequency": "once",
-        "max_single": 90,
-        "max_daily": 90
-      },
-      "dose_text": "0.9 mg/kg (maximum total dose 90 mg): 10% of the calculated total dose administered as an IV bolus over 1 minute, followed by the remaining 90% infused continuously over 60 minutes. Monitor blood pressure frequently during and after infusion."
-    }
-  ],
-  "renal_basis": {
-    "value": "none",
-    "refs": [
-      {
-        "source_id": "fda-alteplase-label",
-        "locator": "Section 11 DESCRIPTION",
-        "quote": "Alteplase is a tissue plasminogen activator produced by recombinant DNA technology. It is a sterile, purified glycoprotein of 527 amino acids."
-      }
-    ],
-    "note": "No dosage adjustment needed for renal impairment"
-  },
-  "hepatic": {
-    "value": null,
-    "refs": [],
-    "note": "Hepatic clearance; monitor closely for coagulopathy"
-  },
-  "black_box": {
-    "value": null,
-    "refs": []
-  },
-  "mg_safety": {
-    "value": "safe",
-    "refs": [
-      {
-        "source_id": "fda-alteplase-label",
-        "locator": "Section 12.1 Mechanism of Action",
-        "quote": "Alteplase is a serine protease responsible for fibrin-enhanced conversion of plasminogen to plasmin. It produces limited conversion of plasminogen in the absence of fibrin."
-      }
-    ],
-    "note": "Thrombolytic agents do not impair neuromuscular junction transmission; safe in myasthenia gravis"
-  },
-  "ng_tube": {
-    "value": null,
-    "refs": [],
-    "note": "Intravenous solution only; not for enteral administration"
-  },
-  "pgx": {
-    "value": null,
-    "refs": [],
-    "note": "No pharmacogenomic requirements"
-  },
-  "ae_tags": {
-    "value": null,
-    "refs": []
-  },
-  "mechanism_of_action": {
-    "value": "Alteplase is a serine protease responsible for fibrin-enhanced conversion of plasminogen to plasmin. It produces limited conversion of plasminogen in the absence of fibrin. When introduced into the systemic circulation at pharmacologic concentration, alteplase binds to fibrin in a thrombus and converts the entrapped plasminogen to plasmin. This initiates local fibrinolysis.",
-    "refs": [
-      {
-        "source_id": "fda-alteplase-label",
-        "locator": "Section 12.1 Mechanism of Action",
-        "quote": "Alteplase is a serine protease responsible for fibrin-enhanced conversion of plasminogen to plasmin. It produces limited conversion of plasminogen in the absence of fibrin. When introduced into the systemic circulation at pharmacologic concentration, alteplase binds to fibrin in a thrombus and converts the entrapped plasminogen to plasmin. This initiates local fibrinolysis"
-      }
-    ]
-  },
-  "enzyme_profile": {
-    "value": {
-      "qt_risk": "none",
-      "serotonergic": false
-    },
-    "refs": [
-      {
-        "source_id": "fda-alteplase-label",
-        "locator": "Section 12.1 Mechanism of Action",
-        "quote": "Alteplase is a serine protease responsible for fibrin-enhanced conversion of plasminogen to plasmin. It produces limited conversion of plasminogen in the absence of fibrin."
-      }
-    ]
-  },
-  "tools": {
-    "iv_infusion": {
-      "value": {
-        "diluent": "Reconstitute with Sterile Water for Injection (SWFI) without preservatives to 1 mg/mL",
-        "rate": "10% bolus over 1 minute; remainder 90% infused over 60 minutes",
-        "instructions": "Activase is for intravenous administration only. Do not add any other medication to infusion solutions containing Activase. The recommended dose is 0.9 mg/kg (not to exceed 90 mg total dose), with 10% of the total dose administered as an initial intravenous bolus over 1 minute and the remainder infused over 60 minutes. Use within 8 hours following reconstitution."
+        "max_daily": 90,
+        "max_single": 90
       },
       "refs": [
         {
-          "source_id": "fda-alteplase-label",
-          "locator": "Section 2.1 Acute Ischemic Stroke",
-          "quote": "The recommended dose is 0.9 mg/kg (not to exceed 90 mg total dose), with 10% of the total dose administered as an initial intravenous bolus over 1 minute and the remainder infused over 60 minutes."
+          "quote": "Activase is indicated for the treatment of acute ischemic stroke. Exclude intracranial hemorrhage as the primary cause of stroke signs and symptoms prior to initiation of treatment [see Contraindications (4.1) ] . Initiate treatment as soon as possible but within 3 hours after symptom onset.",
+          "locator": "Section 1.1 Acute Ischemic Stroke",
+          "source_id": "fda-alteplase-label"
         },
         {
-          "source_id": "fda-alteplase-label",
-          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
-          "quote": "Activase is for intravenous administration only. Do not add any other medication to infusion solutions containing Activase. Extravasation of Activase infusion can cause ecchymosis or inflammation. If extravasation occurs, terminate the infusion at that intravenous site and apply local therapy. Use within 8 hours following reconstitution (when stored at 2–30°C)."
+          "quote": "The recommended dose is 0.9 mg/kg (not to exceed 90 mg total dose), with 10% of the total dose administered as an initial intravenous bolus over 1 minute and the remainder infused over 60 minutes.",
+          "locator": "Section 2.1 Acute Ischemic Stroke",
+          "source_id": "fda-alteplase-label"
         }
-      ]
+      ],
+      "route": "IV",
+      "setting": "acute_inpatient",
+      "dose_text": "0.9 mg/kg (maximum total dose 90 mg): 10% of the calculated total dose administered as an IV bolus over 1 minute, followed by the remaining 90% infused continuously over 60 minutes. Monitor blood pressure frequently during and after infusion.",
+      "indication": "Acute Ischemic Stroke (AIS, initiated as soon as possible within 3 hours after symptom onset)"
+    }
+  ],
+  "tall_man": {
+    "refs": [
+      {
+        "quote": "Alteplase is a tissue plasminogen activator produced by recombinant DNA technology. It is a sterile, purified glycoprotein of 527 amino acids.",
+        "locator": "Section 11 DESCRIPTION",
+        "source_id": "fda-alteplase-label"
+      }
+    ],
+    "value": "alteplase"
+  },
+  "black_box": {
+    "refs": [],
+    "value": null
+  },
+  "mg_safety": {
+    "refs": [
+      {
+        "quote": "Alteplase is a serine protease responsible for fibrin-enhanced conversion of plasminogen to plasmin. It produces limited conversion of plasminogen in the absence of fibrin.",
+        "locator": "Section 12.1 Mechanism of Action",
+        "source_id": "fda-alteplase-label"
+      }
+    ],
+    "value": "safe"
+  },
+  "renal_basis": {
+    "refs": [
+      {
+        "quote": "Alteplase is a tissue plasminogen activator produced by recombinant DNA technology. It is a sterile, purified glycoprotein of 527 amino acids.",
+        "locator": "Section 11 DESCRIPTION",
+        "source_id": "fda-alteplase-label"
+      }
+    ],
+    "value": "none"
+  },
+  "vn_products": {
+    "note": "Pending user source submission",
+    "refs": [],
+    "value": null
+  },
+  "generic_name": "alteplase",
+  "verification": {
+    "verified_at": null,
+    "verified_by": null,
+    "content_hash": null
+  },
+  "enzyme_profile": {
+    "refs": [
+      {
+        "quote": "Alteplase is a serine protease responsible for fibrin-enhanced conversion of plasminogen to plasmin. It produces limited conversion of plasminogen in the absence of fibrin.",
+        "locator": "Section 12.1 Mechanism of Action",
+        "source_id": "fda-alteplase-label"
+      }
+    ],
+    "value": {
+      "qt_risk": "none",
+      "acb_score": 0,
+      "serotonergic": false
     }
   },
-  "status": "draft",
-  "verification": {
-    "verified_by": null,
-    "verified_at": null,
-    "content_hash": null
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "mechanism_of_action": {
+    "refs": [
+      {
+        "quote": "Alteplase is a serine protease responsible for fibrin-enhanced conversion of plasminogen to plasmin. It produces limited conversion of plasminogen in the absence of fibrin. When introduced into the systemic circulation at pharmacologic concentration, alteplase binds to fibrin in a thrombus and converts the entrapped plasminogen to plasmin. This initiates local fibrinolysis",
+        "locator": "Section 12.1 Mechanism of Action",
+        "source_id": "fda-alteplase-label"
+      }
+    ],
+    "value": "Alteplase is a serine protease responsible for fibrin-enhanced conversion of plasminogen to plasmin. It produces limited conversion of plasminogen in the absence of fibrin. When introduced into the systemic circulation at pharmacologic concentration, alteplase binds to fibrin in a thrombus and converts the entrapped plasminogen to plasmin. This initiates local fibrinolysis."
   }
 }

@@ -25,6 +25,8 @@ interface DoseCardProps {
   setting?: "acute_inpatient" | "maintenance_outpatient" | "unified";
   patient: PatientParsed;
   renal: RenalResolutionResult;
+  selectedIndex?: number;
+  onSelectIndex?: (index: number) => void;
   darkMode?: boolean;
 }
 
@@ -34,14 +36,24 @@ export function DoseCard({
   setting = "unified",
   patient,
   renal,
+  selectedIndex,
+  onSelectIndex,
   darkMode = false,
 }: DoseCardProps) {
   // If multiple regimens for this setting, allow user to toggle between indications
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [internalIndex, setInternalIndex] = useState(0);
+  const activeIndex = selectedIndex !== undefined ? selectedIndex : internalIndex;
+  const handleSelectIndex = (idx: number) => {
+    if (onSelectIndex) {
+      onSelectIndex(idx);
+    } else {
+      setInternalIndex(idx);
+    }
+  };
 
   const isAcute = setting === "acute_inpatient";
   const isMaintenance = setting === "maintenance_outpatient";
-  const activeRegimen = regimens[selectedIndex] || regimens[0];
+  const activeRegimen = regimens[activeIndex] || regimens[0];
 
   if (!activeRegimen) {
     return (
@@ -141,8 +153,8 @@ export function DoseCard({
                 Clinical Indication:
               </label>
               <select
-                value={selectedIndex}
-                onChange={(e) => setSelectedIndex(parseInt(e.target.value, 10))}
+                value={activeIndex}
+                onChange={(e) => handleSelectIndex(parseInt(e.target.value, 10))}
                 className={`w-full text-xs font-semibold p-2 rounded-xl border focus:outline-none focus:ring-2 focus:ring-sky-500/20 ${
                   darkMode
                     ? "bg-slate-800 border-slate-700 text-white"
@@ -163,70 +175,46 @@ export function DoseCard({
           )}
         </div>
 
-        {/* Card Body: Dosage Resolution */}
+        {/* Card Body: Dosage Resolution & Administration */}
         <div className="p-4 sm:p-5 space-y-4">
-          {/* State 1: Computed */}
+          {/* Bedside Computed Dosage Reference */}
           {resolution.state === "computed" && (
-            <div className="space-y-3">
-              <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400 block mb-1">
-                  Computed Dosage:
+            <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-between flex-wrap gap-2 text-xs">
+              <div className="flex items-center gap-2">
+                <span className="font-bold text-emerald-800 dark:text-emerald-300 uppercase tracking-wider text-[11px]">
+                  Bedside Dose:
                 </span>
-                <div className="flex items-baseline gap-2 flex-wrap">
-                  <span className="text-2xl sm:text-3xl font-extrabold font-mono text-emerald-600 dark:text-emerald-400">
-                    {resolution.amount} {resolution.unit}
+                <span className="font-mono font-extrabold text-emerald-600 dark:text-emerald-400 text-sm">
+                  {resolution.amount} {resolution.unit}
+                </span>
+                <span className="text-slate-700 dark:text-slate-300 font-semibold">
+                  {resolution.frequency}
+                </span>
+                {resolution.capped && (
+                  <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-700 dark:text-amber-300">
+                    Capped
                   </span>
-                  <span className="text-sm font-semibold text-slate-700 dark:text-slate-300">
-                    {resolution.frequency}
-                  </span>
-
-                  {resolution.capped && (
-                    <span className="px-2 py-0.5 rounded-md text-[11px] font-bold bg-amber-500/20 text-amber-700 dark:text-amber-300 border border-amber-500/30">
-                      Capped at max
-                    </span>
-                  )}
-                </div>
-
-                {resolution.cappedReason && (
-                  <p className="text-xs text-amber-700 dark:text-amber-300 mt-2 font-medium">
-                    ⚠️ {resolution.cappedReason}
-                  </p>
                 )}
               </div>
-
-              {/* Formulation Product Units Line */}
-              {productUnitText && (
-                <div className="flex items-center gap-2 p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/60 text-xs font-semibold text-slate-700 dark:text-slate-300">
-                  <Package className="w-4 h-4 text-sky-500 shrink-0" />
-                  <span>Formulation: {productUnitText}</span>
-                </div>
-              )}
-
-              {/* Infusion Line */}
-              {infusionCalc && (
-                <div className="flex items-center gap-2 p-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20 text-xs font-semibold text-blue-700 dark:text-blue-300">
-                  <Syringe className="w-4 h-4 text-blue-500 shrink-0" />
-                  <span>
-                    IV Infusion: {infusionCalc.volumeMl} mL @ {infusionCalc.rateMlPerHour} mL/h over {infusionCalc.durationMin} min
-                  </span>
-                </div>
-              )}
+              <span className="text-[11px] text-slate-500 dark:text-slate-400 italic">
+                (Adjusted via Bedside Patient Variables)
+              </span>
             </div>
           )}
 
-          {/* State 2: Needs Input */}
           {resolution.state === "needs_input" && (
-            <div className="p-4 rounded-xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 space-y-2">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block">
-                Dosage Formula:
-              </span>
-              <p className="text-sm font-bold text-slate-800 dark:text-slate-200">
-                {resolution.ruleText}
-              </p>
-              <div className="flex items-center gap-1.5 text-xs font-semibold text-sky-600 dark:text-sky-400 pt-1">
-                <Info className="w-4 h-4 shrink-0" />
-                <span>Enter patient weight in the patient bar above to calculate exact bedside dose.</span>
+            <div className="p-3 rounded-xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 text-xs flex items-center justify-between flex-wrap gap-2">
+              <div className="flex items-center gap-2">
+                <span className="font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-[11px]">
+                  Formula:
+                </span>
+                <span className="font-bold text-slate-800 dark:text-slate-200">
+                  {resolution.ruleText}
+                </span>
               </div>
+              <span className="text-[11px] text-sky-600 dark:text-sky-400 font-semibold">
+                Enter weight in Bedside Patient Variables to calculate
+              </span>
             </div>
           )}
 
@@ -323,49 +311,26 @@ export function DoseCard({
             </div>
           )}
 
-          {/* Renal Clearance Bands Table */}
-          {(isAcute || setting === "unified" || !setting) && renalBands.length > 0 && resolution.state !== "blocked_draft" && (
-            <div className="space-y-1.5 pt-2">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block">
-                Renal Clearance Bands ({drug.renal_basis?.value || "cg_abw"}):
-              </span>
-              <div className="space-y-1 text-xs">
-                {renalBands.map((band, idx) => {
-                  const isMatched = resolution.renalBandMatched === band;
-                  return (
-                    <div
-                      key={idx}
-                      className={`p-2.5 rounded-xl border transition-all flex items-center justify-between gap-2 ${
-                        isMatched
-                          ? "bg-sky-50 dark:bg-sky-950/70 border-sky-400 dark:border-sky-700 font-bold text-sky-900 dark:text-sky-200 shadow-xs"
-                          : "bg-slate-50 dark:bg-slate-800/40 border-slate-200/60 dark:border-slate-800 text-slate-600 dark:text-slate-400"
-                      }`}
-                    >
-                      <div className="flex items-center gap-2">
-                        {isMatched ? (
-                          <CheckCircle2 className="w-4 h-4 text-sky-600 dark:text-sky-400 shrink-0" />
-                        ) : (
-                          <div className="w-4 h-4 rounded-full border border-slate-300 dark:border-slate-600 shrink-0" />
-                        )}
-                        <span className="font-mono">
-                          {band.min === null
-                            ? `< ${band.max}`
-                            : band.max === null
-                            ? `> ${band.min}`
-                            : `${band.min} – ${band.max}`} mL/min:
-                        </span>
-                        <span className="font-semibold">{band.dose_text}</span>
-                      </div>
-
-                      {isMatched && (
-                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-sky-500 text-white uppercase tracking-wider shrink-0">
-                          Active Band
-                        </span>
-                      )}
-                    </div>
-                  );
-                })}
+          {/* Matched Renal Clearance Band Notice (only displayed when patient CrCl matches a specific band) */}
+          {resolution.renalBandMatched && (
+            <div className="p-3.5 rounded-xl bg-sky-50 dark:bg-sky-950/70 border border-sky-400 dark:border-sky-700 text-xs flex items-center justify-between gap-2 text-sky-900 dark:text-sky-200 shadow-xs">
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-sky-600 dark:text-sky-400 shrink-0" />
+                <div>
+                  <span className="font-bold">
+                    Adjusted for Renal Function ({resolution.renalBandMatched.min === null
+                      ? `< ${resolution.renalBandMatched.max}`
+                      : resolution.renalBandMatched.max === null
+                      ? `> ${resolution.renalBandMatched.min}`
+                      : `${resolution.renalBandMatched.min} – ${resolution.renalBandMatched.max}`}{" "}
+                    mL/min):
+                  </span>{" "}
+                  <span>{resolution.renalBandMatched.dose_text}</span>
+                </div>
               </div>
+              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-sky-500 text-white uppercase tracking-wider shrink-0">
+                Active Band
+              </span>
             </div>
           )}
         </div>

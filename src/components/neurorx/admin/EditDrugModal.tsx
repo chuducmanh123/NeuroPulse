@@ -16,6 +16,7 @@ import {
   Pill,
   Sparkles,
   Layers,
+  Wand2,
 } from "lucide-react";
 import type {
   DrugRecord,
@@ -96,6 +97,19 @@ export function EditDrugModal({
       },
     ];
   });
+
+  // Smart Sentence Builder structured state per regimen
+  const [builders, setBuilders] = useState<
+    Record<
+      number,
+      {
+        startingDose: string;
+        titration: string;
+        targetDose: string;
+        adminNotes: string;
+      }
+    >
+  >({});
 
   // Form states - Renal & Hepatic
   const [renalDesc, setRenalDesc] = useState(
@@ -212,6 +226,116 @@ export function EditDrugModal({
     );
   };
 
+  // Sentence composer logic
+  const composeSentence = (
+    starting: string,
+    titration: string,
+    target: string,
+    notes: string
+  ): string => {
+    const parts: string[] = [];
+    const s = starting.trim();
+    const t = titration.trim();
+    const tg = target.trim();
+    const n = notes.trim();
+
+    if (s) {
+      const hasVerb = /^initiate|^start|^administer|^give|^take/i.test(s);
+      const startStr = hasVerb ? s : `Initiate ${s}`;
+      parts.push(startStr.endsWith(".") ? startStr : `${startStr}.`);
+    }
+
+    if (t && tg) {
+      const tgStr = tg.startsWith("to ") ? tg : `to ${tg}`;
+      const titrateStr = `${t} ${tgStr}`;
+      parts.push(titrateStr.endsWith(".") ? titrateStr : `${titrateStr}.`);
+    } else if (t) {
+      parts.push(t.endsWith(".") ? t : `${t}.`);
+    } else if (tg) {
+      const tgStr = tg.startsWith("to ") ? `Titrate ${tg}` : `Target: ${tg}`;
+      parts.push(tgStr.endsWith(".") ? tgStr : `${tgStr}.`);
+    }
+
+    if (n) {
+      parts.push(n.endsWith(".") ? n : `${n}.`);
+    }
+
+    return parts.join(" ");
+  };
+
+  const updateBuilderField = (
+    idx: number,
+    field: "startingDose" | "titration" | "targetDose" | "adminNotes",
+    val: string
+  ) => {
+    const current = builders[idx] || {
+      startingDose: "",
+      titration: "",
+      targetDose: "",
+      adminNotes: "",
+    };
+    const updated = { ...current, [field]: val };
+    setBuilders((prev) => ({ ...prev, [idx]: updated }));
+
+    const autoComposed = composeSentence(
+      updated.startingDose,
+      updated.titration,
+      updated.targetDose,
+      updated.adminNotes
+    );
+    if (autoComposed) {
+      handleUpdateRegimen(idx, { dose_text: autoComposed });
+    }
+  };
+
+  const handleApplyPreset = (
+    idx: number,
+    preset: "oral_titration" | "iv_bolus" | "fixed_daily"
+  ) => {
+    const reg = regimens[idx];
+    const amount = reg.dose?.amount || 500;
+    const unit = reg.dose?.unit || "mg";
+    const freq = reg.dose?.frequency || "twice daily";
+    const maxDaily = reg.dose?.max_daily;
+
+    let s = "";
+    let t = "";
+    let tg = "";
+    let n = "";
+
+    if (preset === "oral_titration") {
+      const dailyTotal = freq.toLowerCase().includes("twice")
+        ? amount * 2
+        : amount;
+      s = `${amount} ${unit} ${freq} (${dailyTotal} ${unit}/day)`;
+      t = `Increase by ${amount} ${unit} ${freq} every 2 weeks`;
+      tg = maxDaily
+        ? `maximum ${maxDaily / 2} ${unit} ${freq} (${maxDaily} ${unit}/day)`
+        : `recommended maintenance dose`;
+      n = `Swallow whole; do not chew or crush. Take with or without food.`;
+    } else if (preset === "iv_bolus") {
+      s = `${amount} ${unit} (maximum total ${reg.dose?.max_single || 90} mg)`;
+      t = `10% of total calculated dose administered as an initial IV bolus over 1 minute`;
+      tg = `remainder infused continuously over 60 minutes`;
+      n = `Monitor blood pressure and neurologic status frequently during and after infusion.`;
+    } else if (preset === "fixed_daily") {
+      s = `${amount} ${unit} ${freq}`;
+      t = ``;
+      tg = ``;
+      n = `Administer at the same time every day.`;
+    }
+
+    const updated = {
+      startingDose: s,
+      titration: t,
+      targetDose: tg,
+      adminNotes: n,
+    };
+    setBuilders((prev) => ({ ...prev, [idx]: updated }));
+    const composed = composeSentence(s, t, tg, n);
+    handleUpdateRegimen(idx, { dose_text: composed });
+  };
+
   // Renal band management
   const handleAddRenalBand = () => {
     const newBand: RenalBand = {
@@ -238,13 +362,13 @@ export function EditDrugModal({
       {
         min: 80,
         max: null,
-        dose_text: "Standard maintenance dose (No adjustment)",
+        dose_text: "Standard maintenance dose (No dosage adjustment necessary)",
         refs: [],
       },
       {
         min: 50,
         max: 80,
-        dose_text: "75% of standard dose or normal interval",
+        dose_text: "75% of standard dose or normal dosing interval",
         refs: [],
       },
       {
@@ -256,7 +380,7 @@ export function EditDrugModal({
       {
         min: null,
         max: 30,
-        dose_text: "25% to 50% standard dose, or avoid use",
+        dose_text: "25% to 50% standard dose, or avoid use in severe impairment",
         refs: [],
       },
     ]);
@@ -641,11 +765,11 @@ export function EditDrugModal({
                     onChange={(e) => setStatus(e.target.value as any)}
                     className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-xs sm:text-sm font-semibold focus:ring-2 focus:ring-sky-500 focus:outline-none"
                   >
-                    <option value="draft">Draft (Bản nháp - Unverified)</option>
+                    <option value="draft">Draft (Pending Verification)</option>
                     <option value="verified">
-                      Verified (Đã xác thực lâm sàng)
+                      Verified (Clinically Verified)
                     </option>
-                    <option value="retired">Retired (Đã lưu trữ / ngừng)</option>
+                    <option value="retired">Retired (Archived)</option>
                   </select>
                 </div>
               </div>
@@ -715,7 +839,7 @@ export function EditDrugModal({
                     Clinical Indications &amp; Dosing Regimens ({regimens.length})
                   </h4>
                   <p className="text-xs text-slate-500 dark:text-slate-400">
-                    Mỗi chỉ định lâm sàng có liều tính toán và hướng dẫn dùng thuốc riêng biệt.
+                    Each clinical indication has its own dosage formula and clinical instructions.
                   </p>
                 </div>
                 <button
@@ -748,8 +872,8 @@ export function EditDrugModal({
                         </span>
                         <span className="px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
                           {reg.setting === "acute_inpatient"
-                            ? "Acute"
-                            : "Maintenance"}
+                            ? "Acute / Inpatient"
+                            : "Maintenance / Outpatient"}
                         </span>
                       </div>
 
@@ -799,10 +923,10 @@ export function EditDrugModal({
                           className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold focus:ring-2 focus:ring-sky-500"
                         >
                           <option value="maintenance_outpatient">
-                            Maintenance / Outpatient (Duy trì / Ngoại trú)
+                            Maintenance / Outpatient
                           </option>
                           <option value="acute_inpatient">
-                            Acute / Inpatient (Cấp tính / Nội trú)
+                            Acute / Inpatient
                           </option>
                         </select>
                       </div>
@@ -968,11 +1092,114 @@ export function EditDrugModal({
                       )}
                     </div>
 
-                    {/* Clinical Guidance Text */}
+                    {/* SMART CLINICAL SENTENCE GENERATOR */}
+                    <div className="p-3.5 rounded-xl bg-sky-500/10 border border-sky-500/20 space-y-2.5">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <div className="flex items-center gap-1.5 text-xs font-bold text-sky-800 dark:text-sky-300">
+                          <Wand2 className="w-3.5 h-3.5 text-sky-500" />
+                          <span>Smart Dosing Sentence Builder</span>
+                        </div>
+                        <div className="flex items-center gap-1 flex-wrap">
+                          <span className="text-[10px] font-semibold text-slate-500 mr-1">
+                            Templates:
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => handleApplyPreset(idx, "oral_titration")}
+                            className="px-2 py-0.5 rounded bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-sky-500 text-[10px] font-semibold text-slate-700 dark:text-slate-300 shadow-2xs cursor-pointer"
+                          >
+                            Oral Titration
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => handleApplyPreset(idx, "iv_bolus")}
+                            className="px-2 py-0.5 rounded bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-sky-500 text-[10px] font-semibold text-slate-700 dark:text-slate-300 shadow-2xs cursor-pointer"
+                          >
+                            IV Bolus + Infusion
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => handleApplyPreset(idx, "fixed_daily")}
+                            className="px-2 py-0.5 rounded bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-sky-500 text-[10px] font-semibold text-slate-700 dark:text-slate-300 shadow-2xs cursor-pointer"
+                          >
+                            Fixed Daily
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+                        <div>
+                          <label className="block text-[10px] font-bold text-slate-600 dark:text-slate-400 mb-0.5">
+                            1. Starting Dose:
+                          </label>
+                          <input
+                            type="text"
+                            value={builders[idx]?.startingDose || ""}
+                            onChange={(e) =>
+                              updateBuilderField(idx, "startingDose", e.target.value)
+                            }
+                            placeholder="e.g. 500 mg twice daily (1000 mg/day)"
+                            className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-[10px] font-bold text-slate-600 dark:text-slate-400 mb-0.5">
+                            2. Titration Increment:
+                          </label>
+                          <input
+                            type="text"
+                            value={builders[idx]?.titration || ""}
+                            onChange={(e) =>
+                              updateBuilderField(idx, "titration", e.target.value)
+                            }
+                            placeholder="e.g. Increase by 500 mg twice daily every 2 weeks"
+                            className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-[10px] font-bold text-slate-600 dark:text-slate-400 mb-0.5">
+                            3. Target / Max Dose:
+                          </label>
+                          <input
+                            type="text"
+                            value={builders[idx]?.targetDose || ""}
+                            onChange={(e) =>
+                              updateBuilderField(idx, "targetDose", e.target.value)
+                            }
+                            placeholder="e.g. to maximum 1500 mg twice daily (3000 mg/day)"
+                            className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-[10px] font-bold text-slate-600 dark:text-slate-400 mb-0.5">
+                          4. Administration &amp; Patient Instructions (optional):
+                        </label>
+                        <input
+                          type="text"
+                          value={builders[idx]?.adminNotes || ""}
+                          onChange={(e) =>
+                            updateBuilderField(idx, "adminNotes", e.target.value)
+                          }
+                          placeholder="e.g. Swallow whole with water; do not chew or crush. Take with or without food."
+                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Resulting Clinical Guidance Text */}
                     <div>
-                      <label className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">
-                        Clinical Administration Guidance &amp; Titration (`dose_text`):
-                      </label>
+                      <div className="flex items-center justify-between mb-1">
+                        <label className="block text-[11px] font-bold text-slate-700 dark:text-slate-300">
+                          Complete Clinical Guidance Sentence (`dose_text`):
+                        </label>
+                        <span className="text-[10px] text-slate-400">
+                          Auto-composed above; fine-tuning permitted below.
+                        </span>
+                      </div>
                       <textarea
                         value={reg.dose_text || ""}
                         onChange={(e) =>
@@ -1101,7 +1328,7 @@ export function EditDrugModal({
                       </h4>
                     </div>
                     <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                      Phân tầng khoảng CrCl (mL/min) và liều điều trị tương ứng theo chức năng thận.
+                      Stratified CrCl ranges (mL/min) and corresponding dosage adjustments based on renal function.
                     </p>
                   </div>
 
@@ -1128,9 +1355,9 @@ export function EditDrugModal({
 
                 {renalBands.length === 0 ? (
                   <div className="p-4 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 text-center text-xs text-slate-400 space-y-1">
-                    <p className="font-medium">Chưa có khoảng chỉnh liều thận nào.</p>
+                    <p className="font-medium">No renal adjustment bands defined yet.</p>
                     <p className="text-[11px]">
-                      Bấm <strong>Add CrCl Band</strong> để tạo khoảng hoặc <strong>Standard Preset</strong> để nạp dải 4 mức chuẩn.
+                      Click <strong>Add CrCl Band</strong> to create an interval or <strong>Standard Preset</strong> to load standard 4-stage CKD tiers.
                     </p>
                   </div>
                 ) : (
@@ -1170,7 +1397,7 @@ export function EditDrugModal({
                         <div className="grid grid-cols-2 gap-3 text-xs">
                           <div>
                             <label className="block text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-1 uppercase tracking-wider">
-                              Min CrCl (mL/min) <span className="font-normal text-slate-400">(trống nếu &lt; Max)</span>:
+                              Min CrCl (mL/min) <span className="font-normal text-slate-400">(leave empty if &lt; Max)</span>:
                             </label>
                             <input
                               type="number"
@@ -1190,7 +1417,7 @@ export function EditDrugModal({
 
                           <div>
                             <label className="block text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-1 uppercase tracking-wider">
-                              Max CrCl (mL/min) <span className="font-normal text-slate-400">(trống nếu &gt; Min)</span>:
+                              Max CrCl (mL/min) <span className="font-normal text-slate-400">(leave empty if &gt; Min)</span>:
                             </label>
                             <input
                               type="number"
@@ -1344,13 +1571,17 @@ export function EditDrugModal({
                     onChange={(e) => setMgSafety(e.target.value as any)}
                     className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold focus:ring-2 focus:ring-sky-500"
                   >
-                    <option value="safe">safe (An toàn trong Nhược cơ)</option>
-                    <option value="caution">caution (Cần thận trọng)</option>
+                    <option value="safe">
+                      Safe (No neuromuscular junction impairment)
+                    </option>
+                    <option value="caution">
+                      Caution (Use with close monitoring)
+                    </option>
                     <option value="may_worsen">
-                      may_worsen (Có thể làm nặng nhược cơ)
+                      May Worsen (Exacerbates muscle weakness)
                     </option>
                     <option value="avoid">
-                      avoid (Chống chỉ định / Tránh dùng)
+                      Avoid (Contraindicated in Myasthenia Gravis)
                     </option>
                   </select>
                 </div>
