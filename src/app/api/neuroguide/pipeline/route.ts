@@ -88,7 +88,7 @@ export async function POST(request: NextRequest) {
     }
 
     const isVercelServerless = Boolean(
-      process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME || !fs.existsSync(PYTHON_PATH)
+      process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME || !fs.existsSync(/* turbopackIgnore: true */ PYTHON_PATH)
     );
 
     // =========================================================================

@@ -157,14 +157,14 @@ export async function POST(request: NextRequest) {
 
     // 3. Xóa triệt để khỏi kho guidelines_store (STORE_DIR, TMP_DIR, catalog.json)
     for (const dir of [TMP_DIR, STORE_DIR]) {
-      if (fs.existsSync(dir)) {
+      if (fs.existsSync(/* turbopackIgnore: true */ dir)) {
         try {
-          const files = fs.readdirSync(dir).filter((f) => f.endsWith(".json"));
+          const files = fs.readdirSync(/* turbopackIgnore: true */ dir).filter((f) => f.endsWith(".json"));
           for (const f of files) {
-            const fullPath = path.join(dir, f);
+            const fullPath = path.join(/* turbopackIgnore: true */ dir, f);
             if (f === "catalog.json") {
               try {
-                const catalog = JSON.parse(fs.readFileSync(fullPath, "utf-8"));
+                const catalog = JSON.parse(fs.readFileSync(/* turbopackIgnore: true */ fullPath, "utf-8"));
                 let changed = false;
                 for (const k of Object.keys(catalog)) {
                   const entry = catalog[k];
@@ -184,12 +184,12 @@ export async function POST(request: NextRequest) {
                   }
                 }
                 if (changed) {
-                  fs.writeFileSync(fullPath, JSON.stringify(catalog, null, 2), "utf-8");
+                  fs.writeFileSync(/* turbopackIgnore: true */ fullPath, JSON.stringify(catalog, null, 2), "utf-8");
                 }
               } catch {}
             } else if (f.endsWith("_latest.json") || f.endsWith("_v1.json") || f.endsWith("_v2.json") || f.endsWith("_v3.json")) {
               try {
-                const content = fs.readFileSync(fullPath, "utf-8");
+                const content = fs.readFileSync(/* turbopackIgnore: true */ fullPath, "utf-8");
                 const data = JSON.parse(content);
                 const fileGId = (data.guideline_id || "").toLowerCase();
                 const cleanFileName = f.replace(/_latest\.json$/i, "").toLowerCase();
@@ -205,7 +205,7 @@ export async function POST(request: NextRequest) {
                       (fileGId.includes(id) || id.includes(fileGId) || cleanFileName.includes(id) || id.includes(cleanFileName))
                   );
                 if (isMatch) {
-                  fs.unlinkSync(fullPath);
+                  fs.unlinkSync(/* turbopackIgnore: true */ fullPath);
                 }
               } catch {}
             }

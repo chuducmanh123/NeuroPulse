@@ -630,10 +630,10 @@ export async function POST(request: NextRequest) {
           // Xóa file khỏi STORE_DIR (nếu có quyền ghi) và ghi đè tombstone vào TMP_DIR nếu STORE_DIR là read-only (trên Vercel)
           for (const dir of [STORE_DIR, TMP_DIR]) {
             try {
-              const fullLatest = path.join(dir, fileName);
-              if (fs.existsSync(fullLatest)) fs.unlinkSync(fullLatest);
-              const fullV1 = path.join(dir, fileName.replace(/_latest\.json$/i, "_v1.json"));
-              if (fs.existsSync(fullV1)) fs.unlinkSync(fullV1);
+              const fullLatest = path.join(/* turbopackIgnore: true */ dir, fileName);
+              if (fs.existsSync(/* turbopackIgnore: true */ fullLatest)) fs.unlinkSync(/* turbopackIgnore: true */ fullLatest);
+              const fullV1 = path.join(/* turbopackIgnore: true */ dir, fileName.replace(/_latest\.json$/i, "_v1.json"));
+              if (fs.existsSync(/* turbopackIgnore: true */ fullV1)) fs.unlinkSync(/* turbopackIgnore: true */ fullV1);
             } catch {}
           }
 
@@ -768,14 +768,14 @@ export async function POST(request: NextRequest) {
 
       let purgedFiles = 0;
       for (const dir of [TMP_DIR, STORE_DIR]) {
-        if (fs.existsSync(dir)) {
+        if (fs.existsSync(/* turbopackIgnore: true */ dir)) {
           try {
-            const files = fs.readdirSync(dir).filter((f) => f.endsWith(".json"));
+            const files = fs.readdirSync(/* turbopackIgnore: true */ dir).filter((f) => f.endsWith(".json"));
             for (const f of files) {
               if (f === "catalog.json" || f === "jobs.json") continue;
-              const full = path.join(dir, f);
+              const full = path.join(/* turbopackIgnore: true */ dir, f);
               try {
-                const content = fs.readFileSync(full, "utf-8");
+                const content = fs.readFileSync(/* turbopackIgnore: true */ full, "utf-8");
                 const data = JSON.parse(content);
                 const gId = (data.guideline_id || "").toLowerCase().trim();
                 const cleanF = f.replace(/_latest\.json$/i, "").toLowerCase();
@@ -791,7 +791,7 @@ export async function POST(request: NextRequest) {
                   );
 
                 if (isDel) {
-                  fs.unlinkSync(full);
+                  fs.unlinkSync(/* turbopackIgnore: true */ full);
                   purgedFiles++;
                 }
               } catch {}
@@ -1148,12 +1148,12 @@ export async function POST(request: NextRequest) {
       // Thử tìm theo tiêu đề hoặc file tương đương nếu chưa tìm thấy bằng targetDocId
       if (!fileInfo) {
         for (const dir of [TMP_DIR, STORE_DIR]) {
-          if (fs.existsSync(dir)) {
+          if (fs.existsSync(/* turbopackIgnore: true */ dir)) {
             try {
-              const files = fs.readdirSync(dir).filter((f) => f.endsWith("_latest.json"));
+              const files = fs.readdirSync(/* turbopackIgnore: true */ dir).filter((f) => f.endsWith("_latest.json"));
               for (const f of files) {
-                const fullP = path.join(dir, f);
-                const raw = fs.readFileSync(fullP, "utf-8");
+                const fullP = path.join(/* turbopackIgnore: true */ dir, f);
+                const raw = fs.readFileSync(/* turbopackIgnore: true */ fullP, "utf-8");
                 const parsed = JSON.parse(raw);
                 const gIdLower = (parsed.guideline_id || "").toLowerCase();
                 const parsedTitleLower = normalizeTitle(parsed.metadata?.title);
