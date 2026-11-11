@@ -44,7 +44,7 @@ export function DataHealth({ health, versionHash, darkMode = false }: DataHealth
         >
           <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 text-xs font-semibold mb-1">
             <ShieldCheck className="w-4 h-4" />
-            <span>Verified (Đã xác thực)</span>
+            <span>Verified Records</span>
           </div>
           <span className="text-xl font-extrabold font-mono text-emerald-600 dark:text-emerald-400">
             {health.verified_count}

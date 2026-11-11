@@ -87,12 +87,19 @@ export function resolveRegimen(
     }
   }
 
-  // RULE 3: Weight-based dosing (per_kg) requires weightKg
-  if (activeDose.kind === "per_kg") {
+  // RULE 3: Weight-based dosing (per_kg, weight, weight_based, or unit ending in /kg) requires weightKg
+  const isWeightBased =
+    activeDose.kind === "per_kg" ||
+    (activeDose.kind as string) === "weight" ||
+    (activeDose.kind as string) === "weight_based" ||
+    activeDose.unit?.toLowerCase().includes("/kg");
+
+  if (isWeightBased) {
+    const cleanUnit = (activeDose.unit || "mg").replace(/\/kg/gi, "").trim();
     if (patient.weightKg === undefined || patient.weightKg <= 0) {
-      let rule = `${activeDose.amount} ${activeDose.unit}/kg ${activeDose.frequency}`;
+      let rule = `${activeDose.amount} ${cleanUnit}/kg ${activeDose.frequency}`;
       if (activeDose.max_single) {
-        rule += `, max single ${activeDose.max_single} ${activeDose.unit}`;
+        rule += `, max single ${activeDose.max_single} ${cleanUnit}`;
       }
       return {
         state: "needs_input",
@@ -105,7 +112,7 @@ export function resolveRegimen(
 
     // Compute per_kg dose
     let rawAmount = activeDose.amount * patient.weightKg;
-    explanation.push(`Calculated weight-based dose: ${activeDose.amount} ${activeDose.unit}/kg * ${patient.weightKg} kg = ${rawAmount} ${activeDose.unit}`);
+    explanation.push(`Calculated weight-based dose: ${activeDose.amount} ${cleanUnit}/kg * ${patient.weightKg} kg = ${rawAmount} ${cleanUnit}`);
 
     let capped = false;
     let cappedReason: string | undefined = undefined;
@@ -113,7 +120,7 @@ export function resolveRegimen(
     if (activeDose.max_single && rawAmount > activeDose.max_single) {
       rawAmount = activeDose.max_single;
       capped = true;
-      cappedReason = `Dose capped at maximum single dose of ${activeDose.max_single} ${activeDose.unit}`;
+      cappedReason = `Dose capped at maximum single dose of ${activeDose.max_single} ${cleanUnit}`;
       explanation.push(cappedReason);
     }
 
@@ -122,13 +129,13 @@ export function resolveRegimen(
     return {
       state: "computed",
       amount: roundedAmount,
-      unit: activeDose.unit,
+      unit: cleanUnit,
       frequency: activeDose.frequency,
       capped,
       cappedReason,
       renalBandMatched: matchedBand,
       hemodialysisNote: hdNote,
-      ruleText: `${roundedAmount} ${activeDose.unit} ${activeDose.frequency}`,
+      ruleText: `${roundedAmount} ${cleanUnit} ${activeDose.frequency}`,
       explanation,
     };
   }

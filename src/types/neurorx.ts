@@ -195,6 +195,11 @@ export interface ContextualToolsData {
     dose_rule: string;
     vn_available?: boolean;
   }[]>;
+  iv_infusion?: Sourced<{
+    diluent?: string;
+    rate?: string;
+    instructions?: string;
+  }>;
 }
 
 export interface NovelTherapyData {

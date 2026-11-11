@@ -361,60 +361,79 @@ export function DrugAccordions({
           {openSections.pk && (
             <div className="p-4 sm:p-5 pt-0 space-y-4 border-t border-slate-100 dark:border-slate-800/80 text-xs sm:text-sm">
               {/* Renal Impairment Guidance */}
-              {(drug.renal_impairment || drug.renal_basis) && (
-                <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/50 space-y-2 mt-3">
-                  <div className="flex items-center justify-between">
-                    <span className="font-bold text-slate-800 dark:text-slate-200">
-                      Renal Impairment Guidance:
-                    </span>
-                    <SourcePopover
-                      refs={drug.renal_impairment?.refs || drug.renal_basis?.refs}
-                      sources={sources}
-                      darkMode={darkMode}
-                    />
-                  </div>
-                  <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                    {drug.renal_impairment?.description ||
-                      `Dosing adjustments stratified by renal function (${drug.renal_basis?.value || "cg_abw"}).`}
-                  </p>
-
-                  {/* Renal bands summary if available */}
-                  {drug.renal_impairment?.bands && drug.renal_impairment.bands.length > 0 && (
-                    <div className="space-y-1 pt-1">
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block">
-                        Renal Dosage Adjustments ({drug.renal_basis?.value || "cg_abw"}):
-                      </span>
-                      <div className="space-y-1 text-xs">
-                        {drug.renal_impairment.bands.map((b, idx) => (
-                          <div
-                            key={idx}
-                            className="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between gap-2"
-                          >
-                            <span className="font-mono font-semibold text-slate-700 dark:text-slate-300">
-                              {b.min === null
-                                ? `< ${b.max}`
-                                : b.max === null
-                                ? `> ${b.min}`
-                                : `${b.min} – ${b.max}`}{" "}
-                              mL/min:
-                            </span>
-                            <span className="font-medium text-slate-600 dark:text-slate-400">
-                              {b.dose_text}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Hemodialysis note */}
-                  {drug.renal_impairment?.hemodialysis?.value && (
-                    <div className="p-2 rounded-lg bg-rose-500/10 border border-rose-500/20 text-xs text-rose-800 dark:text-rose-300 font-medium">
-                      <strong>Hemodialysis / ESRD:</strong> {drug.renal_impairment.hemodialysis.value}
-                    </div>
-                  )}
+              <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/50 space-y-2 mt-3">
+                <div className="flex items-center justify-between">
+                  <span className="font-bold text-slate-800 dark:text-slate-200">
+                    Renal Impairment Guidance:
+                  </span>
+                  <SourcePopover
+                    refs={drug.renal_impairment?.refs || drug.renal_basis?.refs}
+                    sources={sources}
+                    darkMode={darkMode}
+                  />
                 </div>
-              )}
+                <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                  {(() => {
+                    const desc = drug.renal_impairment?.description?.trim();
+                    const hasBands = Boolean(
+                      drug.renal_impairment?.bands && drug.renal_impairment.bands.length > 0
+                    );
+                    const basisValue = drug.renal_basis?.value;
+                    const isNone = (basisValue as any) === "none" || !basisValue;
+
+                    if (isNone && !hasBands) {
+                      return "No dosage adjustment necessary for renal impairment.";
+                    }
+                    if (
+                      desc &&
+                      desc !== "Dosing adjustments stratified by renal function." &&
+                      desc !== "Adjust dosage based on patient's estimated Creatinine Clearance (CrCl)..."
+                    ) {
+                      return desc;
+                    }
+                    if (hasBands && !isNone) {
+                      return `Dosing adjustments stratified by renal function (${basisValue || "cg_abw"}).`;
+                    }
+                    return "No dosage adjustment necessary for renal impairment.";
+                  })()}
+                </p>
+
+                {/* Renal bands summary if available */}
+                {drug.renal_impairment?.bands && drug.renal_impairment.bands.length > 0 && (
+                  <div className="space-y-1 pt-1">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block">
+                      Renal Dosage Adjustments ({drug.renal_basis?.value || "cg_abw"}):
+                    </span>
+                    <div className="space-y-1 text-xs">
+                      {drug.renal_impairment.bands.map((b, idx) => (
+                        <div
+                          key={idx}
+                          className="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between gap-2"
+                        >
+                          <span className="font-mono font-semibold text-slate-700 dark:text-slate-300">
+                            {b.min === null
+                              ? `< ${b.max}`
+                              : b.max === null
+                              ? `> ${b.min}`
+                              : `${b.min} – ${b.max}`}{" "}
+                            mL/min:
+                          </span>
+                          <span className="font-medium text-slate-600 dark:text-slate-400">
+                            {b.dose_text}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Hemodialysis note */}
+                {drug.renal_impairment?.hemodialysis?.value && (
+                  <div className="p-2 rounded-lg bg-rose-500/10 border border-rose-500/20 text-xs text-rose-800 dark:text-rose-300 font-medium">
+                    <strong>Hemodialysis / ESRD:</strong> {drug.renal_impairment.hemodialysis.value}
+                  </div>
+                )}
+              </div>
 
               {/* Hepatic Impairment */}
               <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/50 space-y-1">
@@ -425,7 +444,7 @@ export function DrugAccordions({
                   <SourcePopover refs={drug.hepatic?.refs} sources={sources} darkMode={darkMode} />
                 </div>
                 <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                  {drug.hepatic?.value || "No recommendation in sources"}
+                  {drug.hepatic?.value || "No dosage adjustment necessary for hepatic impairment."}
                 </p>
               </div>
 

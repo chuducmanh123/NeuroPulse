@@ -78,7 +78,7 @@ export function DrugDetail({
   const handleSaveDrug = async (updatedDrug: DrugRecord, oldId?: string): Promise<boolean> => {
     let token = getStoredAdminToken();
     if (!token) {
-      const input = window.prompt("Nhập mã quản trị viên (Admin Passcode) để lưu thuốc (mặc định: @neuro2026):");
+      const input = window.prompt("Enter Admin Passcode to save drug updates (default: @neuro2026):");
       if (!input) return false;
       token = input.trim();
       try {
@@ -96,10 +96,10 @@ export function DrugDetail({
       });
       const json = await res.json();
       if (!res.ok || !json.ok) {
-        alert("Lỗi khi lưu: " + (json.error || "Không thể lưu thay đổi"));
+        alert("Save failed: " + (json.error || "Unable to save changes"));
         return false;
       }
-      alert(json.message || "✓ Lưu thông tin thuốc thành công!");
+      alert(json.message || "✓ Drug saved successfully!");
       setCurrentDrugItem({
         drug: updatedDrug,
         effectiveStatus: updatedDrug.status === "verified" ? "verified" : "draft",
@@ -108,7 +108,7 @@ export function DrugDetail({
       window.dispatchEvent(new CustomEvent("neurorx_drug_updated"));
       return true;
     } catch (err: any) {
-      alert("Lỗi lưu thuốc: " + err?.message);
+      alert("Error saving drug: " + err?.message);
       return false;
     }
   };
@@ -170,10 +170,10 @@ export function DrugDetail({
                 type="button"
                 onClick={() => setIsEditModalOpen(true)}
                 className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold border border-sky-400/50 hover:border-sky-500 bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-400 shadow-xs hover:bg-sky-100 dark:hover:bg-sky-900/40 transition-all cursor-pointer"
-                title="Chỉnh sửa thông tin và liều dùng của thuốc"
+                title="Edit drug details and dosing regimens"
               >
                 <Edit className="w-3.5 h-3.5" />
-                <span>Chỉnh sửa (Edit)</span>
+                <span>Edit</span>
               </button>
             </div>
 
@@ -295,7 +295,7 @@ export function DrugDetail({
             <div className="flex items-center gap-2.5">
               <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0" />
               <span>
-                <strong>Bản nháp (Draft Record):</strong> Thuốc này đang ở trạng thái bản nháp. Bạn có thể xem phác đồ liều bên dưới hoặc bấm <strong>Chỉnh sửa</strong> để hoàn thiện.
+                <strong>Draft Record:</strong> This drug record is currently in draft status. You can review the dosing guidance below or click <strong>Edit</strong> to finalize.
               </span>
             </div>
             <button
@@ -303,7 +303,7 @@ export function DrugDetail({
               onClick={() => setIsEditModalOpen(true)}
               className="px-3 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shrink-0 self-start sm:self-auto cursor-pointer shadow-xs"
             >
-              Chỉnh sửa liều
+              Edit Dosing
             </button>
           </div>
         )}
@@ -360,15 +360,15 @@ export function DrugDetail({
                   </div>
                   <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
                     {showPatientVars
-                      ? "Bấm để thu gọn thông số bệnh nhân"
-                      : "Bấm để nhập thông số bệnh nhân (Cân nặng, Tuổi, Giới tính, Creatinine, CrCl...)"}
+                      ? "Click to collapse patient variables"
+                      : "Click to enter patient variables (Weight, Age, Sex, Creatinine, CrCl...)"}
                   </p>
                 </div>
               </div>
 
               <div className="flex items-center gap-1.5 text-slate-400 shrink-0">
                 <span className="text-xs font-semibold hidden sm:inline">
-                  {showPatientVars ? "Thu gọn" : "Chỉnh thông số"}
+                  {showPatientVars ? "Collapse" : "Adjust Variables"}
                 </span>
                 <ChevronDown
                   className={`w-4 h-4 transition-transform duration-200 ${

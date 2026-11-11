@@ -4,8 +4,6 @@ import React, { useState } from "react";
 import {
   Zap,
   Pill,
-  Check,
-  Copy,
   AlertCircle,
   Clock,
   Sparkles,
@@ -13,13 +11,13 @@ import {
   CheckCircle2,
   Syringe,
   Package,
+  FileText,
 } from "lucide-react";
 import type { DrugRecord, Regimen, RenalBand } from "@/types/neurorx";
 import type { PatientParsed, RenalResolutionResult } from "@/lib/neurorx/patient";
 import { resolveRegimen } from "@/lib/neurorx/dosing";
 import { toProductUnits } from "@/lib/neurorx/formulation";
 import { computeInfusion } from "@/lib/neurorx/infusion";
-import { buildOrderText, CLINICAL_DISCLAIMER } from "@/lib/neurorx/orderText";
 
 interface DoseCardProps {
   drug: DrugRecord;
@@ -40,7 +38,6 @@ export function DoseCard({
 }: DoseCardProps) {
   // If multiple regimens for this setting, allow user to toggle between indications
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [copied, setCopied] = useState(false);
 
   const isAcute = setting === "acute_inpatient";
   const isMaintenance = setting === "maintenance_outpatient";
@@ -53,7 +50,7 @@ export function DoseCard({
           darkMode ? "bg-slate-900/50 border-slate-800" : "bg-white border-slate-200"
         } text-center text-slate-400 text-xs`}
       >
-        Chưa có thông tin liều dùng cho thuốc này.
+        No dosing regimen available for this drug.
       </div>
     );
   }
@@ -81,19 +78,6 @@ export function DoseCard({
   // 4. Relevant renal bands (from regimen or drug-level impairment)
   const renalBands: RenalBand[] =
     activeRegimen.renal_bands || drug.renal_impairment?.bands || [];
-
-  // Copy order handler
-  const handleCopyOrder = () => {
-    const orderOutput = buildOrderText(
-      drug,
-      activeRegimen,
-      resolution,
-      productUnitText
-    );
-    navigator.clipboard.writeText(orderOutput.multiLine);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
-  };
 
   return (
     <div
@@ -140,7 +124,7 @@ export function DoseCard({
                   ? "⚡ Acute / Inpatient"
                   : isMaintenance
                   ? "💊 Maintenance / Outpatient"
-                  : "💊 Liều dùng & Chế độ điều trị (Dosing Regimen)"}
+                  : "💊 Clinical Dosing Regimen"}
               </span>
             </span>
 
@@ -203,9 +187,11 @@ export function DoseCard({
                   )}
                 </div>
 
-                <p className="text-xs text-slate-600 dark:text-slate-400 mt-2 font-medium">
-                  {resolution.ruleText}
-                </p>
+                {resolution.cappedReason && (
+                  <p className="text-xs text-amber-700 dark:text-amber-300 mt-2 font-medium">
+                    ⚠️ {resolution.cappedReason}
+                  </p>
+                )}
               </div>
 
               {/* Formulation Product Units Line */}
@@ -224,20 +210,6 @@ export function DoseCard({
                     IV Infusion: {infusionCalc.volumeMl} mL @ {infusionCalc.rateMlPerHour} mL/h over {infusionCalc.durationMin} min
                   </span>
                 </div>
-              )}
-
-              {/* Explanation Collapsible */}
-              {resolution.explanation.length > 0 && (
-                <details className="text-xs text-slate-500 dark:text-slate-400">
-                  <summary className="cursor-pointer font-semibold hover:text-slate-700 dark:hover:text-slate-200">
-                    Show clinical calculation steps ({resolution.explanation.length})
-                  </summary>
-                  <ul className="list-disc list-inside mt-2 space-y-1 pl-1">
-                    {resolution.explanation.map((step, idx) => (
-                      <li key={idx}>{step}</li>
-                    ))}
-                  </ul>
-                </details>
               )}
             </div>
           )}
@@ -262,7 +234,7 @@ export function DoseCard({
           {resolution.state === "text_only" && (
             <div className="p-4 rounded-xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 space-y-2">
               <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block">
-                Prescribing Guidance (Hướng dẫn liều):
+                Prescribing Guidance:
               </span>
               <p className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 whitespace-pre-wrap leading-relaxed">
                 {resolution.ruleText}
@@ -272,26 +244,70 @@ export function DoseCard({
 
           {/* State 4: Blocked Draft */}
           {resolution.state === "blocked_draft" && (
-            <div className="space-y-3">
-              <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/25 space-y-1">
-                <div className="flex items-center gap-2 text-amber-700 dark:text-amber-400 font-bold text-xs uppercase tracking-wider">
-                  <AlertCircle className="w-4 h-4" />
-                  <span>Bản nháp (Draft Record)</span>
-                </div>
-                <p className="text-xs text-amber-700 dark:text-amber-300 font-medium">
-                  Hồ sơ thuốc đang ở trạng thái bản nháp (Draft). Dưới đây là phác đồ liều dùng đã ghi nhận:
-                </p>
+            <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/25 space-y-1">
+              <div className="flex items-center gap-2 text-amber-700 dark:text-amber-400 font-bold text-xs uppercase tracking-wider">
+                <AlertCircle className="w-4 h-4" />
+                <span>Draft Record</span>
               </div>
-              {activeRegimen.dose_text && (
-                <div className="p-4 rounded-xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 space-y-2">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block">
-                    Liều dùng lâm sàng (Dosing Guidance):
-                  </span>
-                  <p className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 whitespace-pre-wrap leading-relaxed">
-                    {activeRegimen.dose_text}
-                  </p>
-                </div>
+              <p className="text-xs text-amber-700 dark:text-amber-300 font-medium">
+                This drug record is currently in draft status. Registered dosing guidance is shown below:
+              </p>
+            </div>
+          )}
+
+          {/* Specific Clinical Administration & Instructions */}
+          {activeRegimen.dose_text && resolution.state !== "text_only" && (
+            <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-800 space-y-1.5">
+              <div className="flex items-center gap-2">
+                <FileText className="w-4 h-4 text-sky-500 shrink-0" />
+                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                  Clinical Administration &amp; Dosing Instructions:
+                </span>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
+                {activeRegimen.dose_text}
+              </p>
+            </div>
+          )}
+
+          {/* IV Infusion Protocol / Preparation */}
+          {drug.tools?.iv_infusion?.value && (activeRegimen.route === "IV" || !activeRegimen.route) && (
+            <div className="p-3.5 rounded-xl bg-sky-500/10 border border-sky-500/20 space-y-2 text-xs">
+              <div className="flex items-center gap-2 font-bold text-sky-800 dark:text-sky-300">
+                <Syringe className="w-4 h-4 text-sky-500 shrink-0" />
+                <span>IV Preparation &amp; Administration Protocol:</span>
+              </div>
+              {drug.tools.iv_infusion.value.instructions && (
+                <p className="text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
+                  {drug.tools.iv_infusion.value.instructions}
+                </p>
               )}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 text-[11px]">
+                {drug.tools.iv_infusion.value.diluent && (
+                  <div className="p-2 rounded-lg bg-white dark:bg-slate-900 border border-sky-200/60 dark:border-sky-800/60">
+                    <strong className="text-sky-700 dark:text-sky-400 block mb-0.5">Reconstitution / Diluent:</strong>
+                    <span className="text-slate-600 dark:text-slate-400">{drug.tools.iv_infusion.value.diluent}</span>
+                  </div>
+                )}
+                {drug.tools.iv_infusion.value.rate && (
+                  <div className="p-2 rounded-lg bg-white dark:bg-slate-900 border border-sky-200/60 dark:border-sky-800/60">
+                    <strong className="text-sky-700 dark:text-sky-400 block mb-0.5">Infusion Rate:</strong>
+                    <span className="text-slate-600 dark:text-slate-400">{drug.tools.iv_infusion.value.rate}</span>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Enteral / NG Tube Guidance */}
+          {drug.ng_tube?.value?.instructions && (activeRegimen.route === "NG" || activeRegimen.route === "PO") && (
+            <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs space-y-1">
+              <span className="font-bold text-amber-800 dark:text-amber-300 block">
+                Enteral / NG Tube Administration:
+              </span>
+              <p className="text-slate-700 dark:text-slate-300 font-medium">
+                {drug.ng_tube.value.instructions}
+              </p>
             </div>
           )}
 
@@ -353,36 +369,6 @@ export function DoseCard({
             </div>
           )}
         </div>
-      </div>
-
-      {/* Card Footer: 1-Click Copy Order */}
-      <div className="p-4 sm:p-5 pt-0">
-        <button
-          type="button"
-          onClick={handleCopyOrder}
-          disabled={resolution.state === "blocked_draft"}
-          className={`w-full py-2.5 px-4 rounded-xl text-xs font-bold transition-all min-h-[44px] flex items-center justify-center gap-2 ${
-            copied
-              ? "bg-emerald-600 text-white shadow-xs"
-              : resolution.state === "blocked_draft"
-              ? "bg-slate-200 dark:bg-slate-800 text-slate-400 cursor-not-allowed"
-              : darkMode
-              ? "bg-slate-800 text-slate-200 hover:bg-slate-700 hover:text-white border border-slate-700"
-              : "bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200/80 shadow-xs"
-          }`}
-        >
-          {copied ? (
-            <>
-              <Check className="w-4 h-4 text-white" />
-              <span>Copied order snippet with disclaimer!</span>
-            </>
-          ) : (
-            <>
-              <Copy className="w-4 h-4" />
-              <span>📋 Copy EHR Order Snippet</span>
-            </>
-          )}
-        </button>
       </div>
     </div>
   );
