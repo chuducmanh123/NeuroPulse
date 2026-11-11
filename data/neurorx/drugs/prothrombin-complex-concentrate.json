@@ -1,0 +1,221 @@
+{
+  "id": "prothrombin-complex-concentrate",
+  "generic_name": "prothrombin complex concentrate (human) [4-factor]",
+  "tall_man": {
+    "value": "prothrombin complex concentrate",
+    "refs": [
+      {
+        "source_id": "fda-4fpcc-kcentra-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "KCENTRA is a purified, heat-treated, nanofiltered and lyophilized non-activated four-factor Prothrombin Complex Concentrate (Human) prepared from human U.S. Source Plasma (21 CFR 640.60)."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "hemostatic agent",
+    "prothrombin complex concentrate",
+    "reversal agent",
+    "blood coagulation factor"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "BHYT circular data pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "pcc-iv-inr-2-4",
+      "indication": "Urgent VKA Anticoagulation Reversal in Acute Major Bleeding or Urgent Surgery (Baseline INR 2 to < 4)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-4fpcc-kcentra-label",
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "KCENTRA, (Prothrombin Complex Concentrate (Human)), is a blood coagulation factor replacement product indicated for the urgent reversal of acquired coagulation factor deficiency induced by Vitamin K antagonist (VKA, e.g., warfarin) therapy in adult patients with: acute major bleeding or need for an urgent surgery/invasive procedure."
+        },
+        {
+          "source_id": "fda-4fpcc-kcentra-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Administer Vitamin K concurrently to patients receiving KCENTRA to maintain factor levels once the effects of KCENTRA have diminished. The safety and effectiveness of repeat dosing have not been established and it is not recommended. ( 2.1 ) Administer reconstituted KCENTRA at a rate of 0.12 mL/kg/min (~3 units/kg/min) up to a maximum rate of 8.4 mL/min (~210 units/min). ( 2.3 )"
+        }
+      ],
+      "dose": {
+        "kind": "weight",
+        "amount": 25,
+        "unit": "units/kg",
+        "frequency": "once",
+        "max_single": 2500,
+        "max_daily": 2500
+      },
+      "dose_text": "25 units Factor IX / kg body weight (maximum dose 2500 units, based on body weight up to 100 kg). Administer concurrent Vitamin K."
+    },
+    {
+      "id": "pcc-iv-inr-4-6",
+      "indication": "Urgent VKA Anticoagulation Reversal in Acute Major Bleeding or Urgent Surgery (Baseline INR 4 to 6)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-4fpcc-kcentra-label",
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "KCENTRA, (Prothrombin Complex Concentrate (Human)), is a blood coagulation factor replacement product indicated for the urgent reversal of acquired coagulation factor deficiency induced by Vitamin K antagonist (VKA, e.g., warfarin) therapy in adult patients with: acute major bleeding or need for an urgent surgery/invasive procedure."
+        },
+        {
+          "source_id": "fda-4fpcc-kcentra-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Administer Vitamin K concurrently to patients receiving KCENTRA to maintain factor levels once the effects of KCENTRA have diminished. The safety and effectiveness of repeat dosing have not been established and it is not recommended. ( 2.1 ) Administer reconstituted KCENTRA at a rate of 0.12 mL/kg/min (~3 units/kg/min) up to a maximum rate of 8.4 mL/min (~210 units/min). ( 2.3 )"
+        }
+      ],
+      "dose": {
+        "kind": "weight",
+        "amount": 35,
+        "unit": "units/kg",
+        "frequency": "once",
+        "max_single": 3500,
+        "max_daily": 3500
+      },
+      "dose_text": "35 units Factor IX / kg body weight (maximum dose 3500 units, based on body weight up to 100 kg). Administer concurrent Vitamin K."
+    },
+    {
+      "id": "pcc-iv-inr-gt-6",
+      "indication": "Urgent VKA Anticoagulation Reversal in Acute Major Bleeding or Urgent Surgery (Baseline INR > 6)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-4fpcc-kcentra-label",
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "KCENTRA, (Prothrombin Complex Concentrate (Human)), is a blood coagulation factor replacement product indicated for the urgent reversal of acquired coagulation factor deficiency induced by Vitamin K antagonist (VKA, e.g., warfarin) therapy in adult patients with: acute major bleeding or need for an urgent surgery/invasive procedure."
+        },
+        {
+          "source_id": "fda-4fpcc-kcentra-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Administer Vitamin K concurrently to patients receiving KCENTRA to maintain factor levels once the effects of KCENTRA have diminished. The safety and effectiveness of repeat dosing have not been established and it is not recommended. ( 2.1 ) Administer reconstituted KCENTRA at a rate of 0.12 mL/kg/min (~3 units/kg/min) up to a maximum rate of 8.4 mL/min (~210 units/min). ( 2.3 )"
+        }
+      ],
+      "dose": {
+        "kind": "weight",
+        "amount": 50,
+        "unit": "units/kg",
+        "frequency": "once",
+        "max_single": 5000,
+        "max_daily": 5000
+      },
+      "dose_text": "50 units Factor IX / kg body weight (maximum dose 5000 units, based on body weight up to 100 kg). Administer concurrent Vitamin K."
+    }
+  ],
+  "renal_basis": {
+    "value": "none",
+    "refs": [
+      {
+        "source_id": "fda-4fpcc-kcentra-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "KCENTRA contains the Vitamin K-dependent coagulation Factors II (FII), VII (FVII), IX (FIX), and X (FX), together known as the Prothrombin Complex, and the antithrombotic Protein C and Protein S."
+      }
+    ],
+    "note": "No dosage adjustment needed for renal impairment"
+  },
+  "hepatic": {
+    "value": null,
+    "refs": [],
+    "note": "No dosage adjustment required for hepatic impairment"
+  },
+  "black_box": {
+    "value": [
+      "WARNING: ARTERIAL AND VENOUS THROMBOEMBOLIC COMPLICATIONS: Patients being treated with Vitamin K antagonists (VKA) therapy have underlying disease states that predispose them to thromboembolic events. Potential benefits of reversing VKA should be weighed against the potential risks of thromboembolic events (TE), especially in patients with the history of a thromboembolic event. Resumption of anticoagulation should be carefully considered as soon as the risk of thromboembolic events outweighs the risk of acute bleeding."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-4fpcc-kcentra-label",
+        "locator": "Section BOXED WARNING",
+        "quote": "WARNING: ARTERIAL AND VENOUS THROMBOEMBOLIC COMPLICATIONS Patients being treated with Vitamin K antagonists (VKA) therapy have underlying disease states that predispose them to thromboembolic events. Potential benefits of reversing VKA should be weighed against the potential risks of thromboembolic events (TE), especially in patients with the history of a thromboembolic event."
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-4fpcc-kcentra-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "KCENTRA contains the Vitamin K-dependent coagulation Factors II (FII), VII (FVII), IX (FIX), and X (FX), together known as the Prothrombin Complex, and the antithrombotic Protein C and Protein S."
+      }
+    ],
+    "note": "Prothrombin complex concentrates do not impair neuromuscular junction transmission; safe in myasthenia gravis"
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "For intravenous infusion after reconstitution only; not for enteral administration"
+  },
+  "pgx": {
+    "value": null,
+    "refs": [],
+    "note": "No pharmacogenomic requirements"
+  },
+  "ae_tags": {
+    "value": null,
+    "refs": []
+  },
+  "mechanism_of_action": {
+    "value": "KCENTRA contains the Vitamin K-dependent coagulation Factors II (FII), VII (FVII), IX (FIX), and X (FX), together known as the Prothrombin Complex, and the antithrombotic Protein C and Protein S. A dose-dependent acquired deficiency of the Vitamin K-dependent coagulation factors occurs during Vitamin K antagonist treatment.",
+    "refs": [
+      {
+        "source_id": "fda-4fpcc-kcentra-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "KCENTRA contains the Vitamin K-dependent coagulation Factors II (FII), VII (FVII), IX (FIX), and X (FX), together known as the Prothrombin Complex, and the antithrombotic Protein C and Protein S. A dose-dependent acquired deficiency of the Vitamin K-dependent coagulation factors occurs during Vitamin K antagonist treatment."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-4fpcc-kcentra-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "KCENTRA contains the Vitamin K-dependent coagulation Factors II (FII), VII (FVII), IX (FIX), and X (FX), together known as the Prothrombin Complex, and the antithrombotic Protein C and Protein S."
+      }
+    ]
+  },
+  "tools": {
+    "iv_infusion": {
+      "value": {
+        "diluent": "Reconstitute with Sterile Water for Injection (provided transfer device)",
+        "rate": "0.12 mL/kg/min (~3 units/kg/min) up to a maximum rate of 8.4 mL/min (~210 units/min)",
+        "instructions": "Do not mix KCENTRA with other medicinal products; administer through a separate infusion line. Visually inspect reconstituted solution. Administer by intravenous infusion at a rate of 0.12 mL/kg/min (~3 units/kg/min) up to a maximum rate of 8.4 mL/min (~210 units/min)."
+      },
+      "refs": [
+        {
+          "source_id": "fda-4fpcc-kcentra-label",
+          "locator": "Section 2.3 Administration",
+          "quote": "Do not mix KCENTRA with other medicinal products; administer through a separate infusion line. Visually inspect the reconstituted solution for particulate matter and discoloration prior to administration whenever solution and container permit. Reconstituted KCENTRA solution should be colorless, clear to slightly opalescent, and free from visible particles."
+        },
+        {
+          "source_id": "fda-4fpcc-kcentra-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Administer reconstituted KCENTRA at a rate of 0.12 mL/kg/min (~3 units/kg/min) up to a maximum rate of 8.4 mL/min (~210 units/min). ( 2.3 )"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

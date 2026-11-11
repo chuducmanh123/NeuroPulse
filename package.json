@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "node --experimental-strip-types --test \"tests/*.test.mjs\""
+    "test": "node --experimental-strip-types --test \"tests/*.test.mjs\" && node --experimental-strip-types scripts/neurorx/validate.ts && node --experimental-strip-types scripts/neurorx/check-quotes.ts && node --experimental-strip-types scripts/neurorx/check-no-clinical-constants.ts",
+    "rx:validate": "node --experimental-strip-types scripts/neurorx/validate.ts",
+    "rx:check-quotes": "node --experimental-strip-types scripts/neurorx/check-quotes.ts",
+    "rx:check-constants": "node --experimental-strip-types scripts/neurorx/check-no-clinical-constants.ts",
+    "rx:verify": "node --experimental-strip-types scripts/neurorx/verify.ts"
   },
   "dependencies": {
     "@niivue/niivue": "^0.69.0",

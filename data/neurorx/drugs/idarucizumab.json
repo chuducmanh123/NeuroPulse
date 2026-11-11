@@ -1,0 +1,153 @@
+{
+  "id": "idarucizumab",
+  "generic_name": "idarucizumab",
+  "tall_man": {
+    "value": "idarucizumab",
+    "refs": [
+      {
+        "source_id": "fda-idarucizumab-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "Idarucizumab is a humanized monoclonal antibody fragment (Fab) derived from an IgG1 isotype molecule, whose target is the direct thrombin inhibitor dabigatran."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "antidote",
+    "reversal agent",
+    "monoclonal antibody fragment (Fab)"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "BHYT circular data pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "ida-iv-dabigatran-reversal",
+      "indication": "Reversal of Anticoagulant Effects of Dabigatran (Emergency Surgery/Urgent Procedures or Life-Threatening/Uncontrolled Bleeding)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-idarucizumab-label",
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "PRAXBIND is indicated in patients treated with Pradaxa when reversal of the anticoagulant effects of dabigatran is needed: For emergency surgery/urgent procedures In life-threatening or uncontrolled bleeding"
+        },
+        {
+          "source_id": "fda-idarucizumab-label",
+          "locator": "Section 2.1 Recommended Dose",
+          "quote": "The recommended dose of PRAXBIND is 5 g, provided as two separate vials each containing 2.5 g/50 mL idarucizumab (see Figure 1 ). Both vials are packaged together in one carton. For intravenous use only. There is limited data to support administration of an additional 5 g of PRAXBIND [see Warnings and Precautions (5.2) ]."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 5,
+        "unit": "g",
+        "frequency": "once",
+        "max_single": 5,
+        "max_daily": 10
+      },
+      "dose_text": "5 g IV (administered as two consecutive 2.5 g/50 mL vials, either as consecutive infusions over 5-10 minutes each or as consecutive bolus injections via syringe)."
+    }
+  ],
+  "renal_basis": {
+    "value": "none",
+    "refs": [
+      {
+        "source_id": "fda-idarucizumab-label",
+        "locator": "Section 12.3 Pharmacokinetics",
+        "quote": "Renal Impairment Idarucizumab has been studied in 12 subjects with mild renal impairment (creatinine clearance [CrCl] 60 to <90 mL/min, by Cockcroft-Gault equation) and 6 subjects with moderate impairment (CrCl30 to <60 mL/min)."
+      }
+    ],
+    "note": "No dosage adjustment required for renal impairment"
+  },
+  "hepatic": {
+    "value": null,
+    "refs": [],
+    "note": "No dose adjustment required in hepatic impairment"
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-idarucizumab-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Idarucizumab is a specific reversal agent for dabigatran. It is a humanized monoclonal antibody fragment (Fab) that binds to dabigatran and its acylglucuronide metabolites with higher affinity than the binding affinity of dabigatran to thrombin, neutralizing their anticoagulant effect."
+      }
+    ],
+    "note": "Monoclonal antibody fragments do not impair neuromuscular transmission; safe in myasthenia gravis"
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "Intravenous solution only; not for enteral administration"
+  },
+  "pgx": {
+    "value": null,
+    "refs": [],
+    "note": "No pharmacogenomic requirements"
+  },
+  "ae_tags": {
+    "value": null,
+    "refs": []
+  },
+  "mechanism_of_action": {
+    "value": "Idarucizumab is a specific reversal agent for dabigatran. It is a humanized monoclonal antibody fragment (Fab) that binds to dabigatran and its acylglucuronide metabolites with higher affinity than the binding affinity of dabigatran to thrombin, neutralizing their anticoagulant effect.",
+    "refs": [
+      {
+        "source_id": "fda-idarucizumab-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Idarucizumab is a specific reversal agent for dabigatran. It is a humanized monoclonal antibody fragment (Fab) that binds to dabigatran and its acylglucuronide metabolites with higher affinity than the binding affinity of dabigatran to thrombin, neutralizing their anticoagulant effect."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-idarucizumab-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Idarucizumab is a specific reversal agent for dabigatran. It is a humanized monoclonal antibody fragment (Fab) that binds to dabigatran and its acylglucuronide metabolites with higher affinity than the binding affinity of dabigatran to thrombin, neutralizing their anticoagulant effect."
+      }
+    ]
+  },
+  "tools": {
+    "iv_infusion": {
+      "value": {
+        "diluent": "Undiluted solution (sterile 0.9% Sodium Chloride line flush prior to infusion)",
+        "rate": "Two consecutive infusions (5-10 minutes each) or consecutive bolus injections via syringe",
+        "instructions": "Do not mix with other medicinal products. A pre-existing intravenous line may be used for administration of PRAXBIND. The line must be flushed with sterile 0.9% Sodium Chloride Injection, USP solution prior to infusion. No other infusion should be administered in parallel via the same intravenous access."
+      },
+      "refs": [
+        {
+          "source_id": "fda-idarucizumab-label",
+          "locator": "Section 2.3 Administration",
+          "quote": "Do not mix with other medicinal products. Use aseptic technique when administering PRAXBIND. Intravenously administer the dose of 5 g (2 vials, each contains 2.5 g) as Two consecutive infusions (see Figure 2 ) or Bolus injection by injecting both vials consecutively one after another via syringe (see Figure 3 ). A pre-existing intravenous line may be used for administration of PRAXBIND. The line must be flushed with sterile 0.9% Sodium Chloride Injection, USP solution prior to infusion."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

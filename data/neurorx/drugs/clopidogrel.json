@@ -1,0 +1,210 @@
+{
+  "id": "clopidogrel",
+  "generic_name": "clopidogrel",
+  "tall_man": {
+    "value": "clopidogrel",
+    "refs": [
+      {
+        "source_id": "fda-clopidogrel-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "Plavix (clopidogrel tablets) is a thienopyridine class inhibitor of P2Y 12 ADP platelet receptors."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "antiplatelet",
+    "thienopyridine",
+    "P2Y12 inhibitor",
+    "antithrombotic"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "BHYT circular data pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "clop-po-stroke-prevention",
+      "indication": "Secondary Prevention of Stroke in Patients with History of Recent Stroke, Recent MI, or Established PAD",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-clopidogrel-label",
+          "locator": "Section 1.2 Recent MI, Recent Stroke, or Established Peripheral Arterial Disease",
+          "quote": "In patients with established peripheral arterial disease or with a history of recent myocardial infarction (MI) or recent stroke Plavix is indicated to reduce the rate of MI and stroke."
+        },
+        {
+          "source_id": "fda-clopidogrel-label",
+          "locator": "Section 2.2 Recent MI, Recent Stroke, or Established Peripheral Arterial Disease",
+          "quote": "75 mg once daily orally without a loading dose [see Clinical Pharmacology (12.3) and Clinical Studies (14.2) ] ."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 75,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 75,
+        "max_daily": 75
+      },
+      "dose_text": "75 mg once daily orally without a loading dose."
+    },
+    {
+      "id": "clop-po-acs-loading",
+      "indication": "Acute Coronary Syndrome / Acute Loading Dose",
+      "setting": "loading_dose",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-clopidogrel-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Initiate Plavix with a single 300 mg oral loading dose and then continue at 75 mg once daily. – Initiating Plavix without a loading dose will delay establishment of an antiplatelet effect by several days."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 300,
+        "unit": "mg",
+        "frequency": "once",
+        "max_single": 300,
+        "max_daily": 300
+      },
+      "dose_text": "Initiate Plavix with a single 300 mg oral loading dose and then continue at 75 mg once daily."
+    }
+  ],
+  "renal_basis": {
+    "value": "none",
+    "refs": [
+      {
+        "source_id": "fda-clopidogrel-label",
+        "locator": "Section 8.6 Renal Impairment",
+        "quote": "Experience is limited in patients with severe and moderate renal impairment [see Clinical Pharmacology (12.2) ] ."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "No dosage adjustment is necessary in patients with hepatic impairment.",
+    "refs": [
+      {
+        "source_id": "fda-clopidogrel-label",
+        "locator": "Section 8.7 Hepatic Impairment",
+        "quote": "No dosage adjustment is necessary in patients with hepatic impairment [see Clinical Pharmacology (12.2) ] ."
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "WARNING: DIMINISHED ANTIPLATELET EFFECT IN PATIENTS WITH TWO LOSS-OF-FUNCTION ALLELES OF THE CYP2C19 GENE: Effectiveness of Plavix depends on conversion to an active metabolite by the cytochrome P450 (CYP) system, principally CYP2C19. Tests are available to identify patients who are CYP2C19 poor metabolizers. Consider use of another platelet P2Y12 inhibitor in patients identified as CYP2C19 poor metabolizers."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-clopidogrel-label",
+        "locator": "Section BOXED WARNING",
+        "quote": "Effectiveness of Plavix depends on conversion to an active metabolite by the cytochrome P450 (CYP) system, principally CYP2C19. ( 5.1 , 12.3 ) Tests are available to identify patients who are CYP2C19 poor metabolizers. ( 12.5 ) Consider use of another platelet P2Y 12 inhibitor in patients identified as CYP2C19 poor metabolizers."
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-clopidogrel-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Clopidogrel is an inhibitor of platelet activation and aggregation through the irreversible binding of its active metabolite to the P2Y 12 class of ADP receptors on platelets."
+      }
+    ],
+    "note": "Antiplatelet P2Y12 inhibitors do not impair neuromuscular junction transmission; safe in myasthenia gravis"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "Plavix (clopidogrel) 75 mg or 300 mg film-coated tablets may be crushed and suspended in water for administration via nasogastric or gastric tube."
+    },
+    "refs": [
+      {
+        "source_id": "fda-clopidogrel-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "Plavix (clopidogrel tablets) is a thienopyridine class inhibitor of P2Y 12 ADP platelet receptors."
+      }
+    ]
+  },
+  "pgx": {
+    "value": {
+      "gene": "CYP2C19",
+      "testing_recommended": true,
+      "clinical_action": "CYP2C19 poor metabolizers have diminished active metabolite formation and reduced antiplatelet response. Consider alternative P2Y12 inhibitor (e.g. ticagrelor) in CYP2C19 poor metabolizers."
+    },
+    "refs": [
+      {
+        "source_id": "fda-clopidogrel-label",
+        "locator": "Section 12.5 Pharmacogenomics",
+        "quote": "CYP2C19 is involved in the formation of both the active metabolite and the 2-oxo-clopidogrel intermediate metabolite. Clopidogrel active metabolite pharmacokinetics and antiplatelet effects, as measured by ex vivo platelet aggregation assays, differ according to CYP2C19 genotype. Patients who are homozygous for nonfunctional alleles of the CYP2C19 gene are termed \"CYP2C19 poor metabolizers.\""
+      }
+    ]
+  },
+  "ae_tags": {
+    "value": null,
+    "refs": []
+  },
+  "mechanism_of_action": {
+    "value": "Clopidogrel is an inhibitor of platelet activation and aggregation through the irreversible binding of its active metabolite to the P2Y 12 class of ADP receptors on platelets.",
+    "refs": [
+      {
+        "source_id": "fda-clopidogrel-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Clopidogrel is an inhibitor of platelet activation and aggregation through the irreversible binding of its active metabolite to the P2Y 12 class of ADP receptors on platelets."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp2c19": "substrate",
+      "cyp3a4": "substrate",
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-clopidogrel-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Clopidogrel is metabolized to its active metabolite in part by CYP2C19. Concomitant use of drugs that inhibit the activity of this enzyme results in reduced plasma concentrations of the active metabolite of clopidogrel and a reduction in platelet inhibition [see Warnings and Precautions (5.1) ] . Omeprazole or Esomeprazole Avoid concomitant use of Plavix with omeprazole or esomeprazole"
+      }
+    ]
+  },
+  "tools": {
+    "reversal": {
+      "agent": "Platelet Transfusion",
+      "dose": "Empiric platelet transfusion based on clinical bleeding urgency",
+      "notes": "Platelet inhibition by Plavix is irreversible and will last for the life of the platelet. Overdose following clopidogrel administration may result in bleeding complications. Based on biological plausibility, platelet transfusion may restore clotting ability.",
+      "refs": [
+        {
+          "source_id": "fda-clopidogrel-label",
+          "locator": "Section 10 OVERDOSAGE",
+          "quote": "Platelet inhibition by Plavix is irreversible and will last for the life of the platelet. Overdose following clopidogrel administration may result in bleeding complications."
+        },
+        {
+          "source_id": "fda-clopidogrel-label",
+          "locator": "Section 10 OVERDOSAGE",
+          "quote": "Based on biological plausibility, platelet transfusion may restore clotting ability."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

@@ -1,0 +1,243 @@
+{
+  "id": "topiramate",
+  "generic_name": "topiramate",
+  "tall_man": {
+    "value": "topiramate",
+    "refs": [
+      {
+        "source_id": "fda-topiramate-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "TOPAMAX is indicated as initial monotherapy for the treatment of partial-onset or primary generalized tonic-clonic seizures in patients 2 years of age and older."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "anticonvulsant",
+    "anti-seizure medication (ASM)",
+    "carbonic anhydrase inhibitor",
+    "AMPA/kainate antagonist"
+  ],
+  "subspecialties": [
+    "epilepsy",
+    "headache"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "top-monotherapy-adult",
+      "indication": "Epilepsy Monotherapy (Partial-Onset or Primary Generalized Seizures)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-topiramate-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "TOPAMAX is indicated as initial monotherapy for the treatment of partial-onset or primary generalized tonic-clonic seizures in patients 2 years of age and older."
+        },
+        {
+          "source_id": "fda-topiramate-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "400 mg/day in two divided doses. The dose should be achieved by titration according to the following schedule (Table 1): Table 1: Monotherapy Titration Schedule for Adults and Pediatric Patients 10 years and older Mornin"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 25,
+        "unit": "mg",
+        "frequency": "twice daily",
+        "max_single": 200,
+        "max_daily": 400
+      },
+      "dose_text": "Recommended total daily dose as initial monotherapy in adults is 400 mg/day in two divided doses. Titrate slowly starting at 25 mg twice daily.",
+      "renal_bands": [
+        {
+          "min": null,
+          "max": 70,
+          "dose_text": "CrCl < 70 mL/min/1.73 m²: Reduce dose by 50% (one-half usual adult dose).",
+          "dose": {
+            "kind": "fixed",
+            "amount": 25,
+            "unit": "mg",
+            "frequency": "daily",
+            "max_daily": 200
+          },
+          "refs": [
+            {
+              "source_id": "fda-topiramate-label",
+              "locator": "DOSAGE AND ADMINISTRATION",
+              "quote": "creatinine clearance less than 70 mL/min/1.73 m 2 ), one-half of the usual adult dose of TOPAMAX is recommended [see Use in Specific Populations (8.5 , 8.6) , Clinical Pharmacology (12.3) ] ."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_normalized_1_73",
+    "refs": [
+      {
+        "source_id": "fda-topiramate-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "creatinine clearance less than 70 mL/min/1.73 m 2 ), one-half of the usual adult dose of TOPAMAX is recommended [see Use in Specific Populations (8.5 , 8.6) , Clinical Pharmacology (12.3) ] ."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Topiramate clearance decreased by a mean of 26% in moderate to severe hepatic impairment; administer with caution.",
+    "refs": [
+      {
+        "source_id": "fda-topiramate-label",
+        "locator": "CLINICAL PHARMACOLOGY",
+        "quote": "Hepatic Impairment Plasma clearance of topiramate decreased a mean of 26% in patients with moderate to severe hepatic impairment."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-topiramate-label",
+        "locator": "WARNINGS AND PRECAUTIONS",
+        "quote": "Somnolence or fatigue. Adult Patients Cognitive-Related Dysfunction Rapid titration rate and higher initial dose were associated with higher incidences of cognitive-related dysfunction."
+      }
+    ],
+    "note": "Sedative, carbonic anhydrase inhibitor; monitor for fatigue and cognitive slowing"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "Immediate-release tablets can be crushed if necessary for enteral tube feeding; sprinkle capsules may be opened and mixed with soft food."
+    },
+    "refs": [
+      {
+        "source_id": "fda-topiramate-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "Sprinkle Capsules TOPAMAX Sprinkle Capsules may be swallowed whole or may be administered by carefully opening the capsule and sprinkling the entire contents on a small amount (teaspoon) of soft food."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "weight_loss",
+      "nephrolithiasis",
+      "confusion_delirium",
+      "ataxia",
+      "sedation_somnolence"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-topiramate-label",
+        "locator": "WARNINGS AND PRECAUTIONS",
+        "quote": "Somnolence or fatigue. Adult Patients Cognitive-Related Dysfunction Rapid titration rate and higher initial dose were associated with higher incidences of cognitive-related dysfunction."
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Blocks voltage-dependent sodium channels, potentiates GABA-A activity, and inhibits AMPA/kainate glutamate receptors and carbonic anhydrase.",
+    "refs": [
+      {
+        "source_id": "fda-topiramate-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "TOPAMAX is indicated as initial monotherapy for the treatment of partial-onset or primary generalized tonic-clonic seizures in patients 2 years of age and older."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp2c19": "inhibitor_weak",
+      "cyp3a4": "inducer_weak"
+    },
+    "refs": [
+      {
+        "source_id": "fda-topiramate-label",
+        "locator": "CLINICAL PHARMACOLOGY",
+        "quote": "Hepatic Impairment Plasma clearance of topiramate decreased a mean of 26% in patients with moderate to severe hepatic impairment."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "avoid",
+      "refs": [
+        {
+          "source_id": "fda-topiramate-label",
+          "locator": "WARNINGS AND PRECAUTIONS",
+          "quote": "TOPAMAX can cause fetal harm when administered to a pregnant woman."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": "Daily folic acid supplementation is recommended for women of childbearing potential.",
+      "refs": [
+        {
+          "source_id": "fda-topiramate-label",
+          "locator": "WARNINGS AND PRECAUTIONS",
+          "quote": "TOPAMAX can cause fetal harm when administered to a pregnant woman."
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Topiramate clearance is increased during pregnancy; monitor serum concentrations closely.",
+      "refs": [
+        {
+          "source_id": "fda-topiramate-label",
+          "locator": "WARNINGS AND PRECAUTIONS",
+          "quote": "TOPAMAX can cause fetal harm when administered to a pregnant woman."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": "Doses > 200 mg/day induce CYP3A4 and decrease estrogen component of oral contraceptives; use high-dose estrogen or barrier methods.",
+      "refs": [
+        {
+          "source_id": "fda-topiramate-label",
+          "locator": "CLINICAL PHARMACOLOGY",
+          "quote": "Hepatic Impairment Plasma clearance of topiramate decreased a mean of 26% in patients with moderate to severe hepatic impairment."
+        }
+      ]
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Topiramate is excreted in human milk; monitor nursing infant for sedation and diarrhea.",
+      "refs": [
+        {
+          "source_id": "fda-topiramate-label",
+          "locator": "WARNINGS AND PRECAUTIONS",
+          "quote": "TOPAMAX can cause fetal harm when administered to a pregnant woman."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

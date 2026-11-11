@@ -1,0 +1,193 @@
+{
+  "id": "phenytoin",
+  "generic_name": "phenytoin",
+  "tall_man": {
+    "value": "phenytoin",
+    "refs": [
+      {
+        "source_id": "fda-phenytoin-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "DILANTIN (phenytoin) is related to the barbiturates in chemical structure, but has a five-membered ring. The chemical name is 5,5-diphenyl-2,4 imidazolidinedione"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "anticonvulsant",
+    "anti-seizure medication (ASM)",
+    "hydantoin",
+    "sodium channel blocker"
+  ],
+  "subspecialties": [
+    "epilepsy",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "BHYT circular data pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "phe-po-initial-maintenance",
+      "indication": "Treatment of Tonic-Clonic (Grand Mal) and Psychomotor (Temporal Lobe) Seizures",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-phenytoin-label",
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "DILANTIN is indicated for the treatment of tonic-clonic (grand mal) and psychomotor (temporal lobe) seizures and prevention and treatment of seizures occurring during or following neurosurgery. ( 1 )"
+        },
+        {
+          "source_id": "fda-phenytoin-label",
+          "locator": "Section 2.1 Adult Dosage",
+          "quote": "The recommended starting dose for adult patients who have received no previous treatment is one 100-mg DILANTIN (extended phenytoin sodium capsule, USP) by mouth three times daily. Adjust the dosage to suit individual requirements up to a maximum of two capsules three times a day. For most adults, the satisfactory maintenance dosage will be one capsule three to four times a day."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 100,
+        "unit": "mg",
+        "frequency": "three times daily",
+        "max_single": 200,
+        "max_daily": 600
+      },
+      "dose_text": "Adult starting dose in previously untreated patients is 100 mg orally three times daily. Satisfactory maintenance dose for most adults is 300 to 400 mg daily (divided 100 mg 3 to 4 times daily, or 300 mg once daily once seizure control is established). Titrate based on serum concentration determinations (target 10 to 20 mcg/mL)."
+    },
+    {
+      "id": "phe-po-neurosurgery-seizure-prophylaxis",
+      "indication": "Prevention and Treatment of Seizures Occurring During or Following Neurosurgery",
+      "setting": "acute_inpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-phenytoin-label",
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "DILANTIN is indicated for the treatment of tonic-clonic (grand mal) and psychomotor (temporal lobe) seizures and prevention and treatment of seizures occurring during or following neurosurgery. ( 1 )"
+        },
+        {
+          "source_id": "fda-phenytoin-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Serum blood level determinations may be necessary for optimal dosage adjustments—the clinically effective serum total concentration is 10 to 20 mcg/mL (unbound phenytoin concentration is 1 to 2 mcg/mL). ( 2.3 )"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 100,
+        "unit": "mg",
+        "frequency": "three times daily",
+        "max_single": 200,
+        "max_daily": 600
+      },
+      "dose_text": "100 mg orally three times daily (or 300 to 400 mg daily in divided doses) with dose adjustments guided by serum concentration determinations (target 10 to 20 mcg/mL)."
+    }
+  ],
+  "renal_basis": {
+    "value": "none",
+    "refs": [
+      {
+        "source_id": "fda-phenytoin-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "DILANTIN (phenytoin) is related to the barbiturates in chemical structure, but has a five-membered ring. The chemical name is 5,5-diphenyl-2,4 imidazolidinedione"
+      }
+    ],
+    "note": "In renal failure or hypoalbuminemia, total phenytoin level underestimates active free drug due to decreased plasma protein binding; adjust using Sheiner-Tozer formula or measure unbound phenytoin"
+  },
+  "hepatic": {
+    "value": null,
+    "refs": [],
+    "note": "Contraindicated in history of prior acute hepatotoxicity attributable to phenytoin; extensively metabolized by hepatic CYP2C9/2C19"
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-phenytoin-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "The precise mechanism by which phenytoin exerts its therapeutic effect has not been established but is thought to involve the voltage-dependent blockade of membrane sodium channels resulting in a reduction in sustained high-frequency neuronal discharges."
+      }
+    ],
+    "note": "Phenytoin may impair neuromuscular transmission and exacerbate muscle weakness in myasthenia gravis; use with extreme caution"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "Prompt-release chewable tablets may be crushed; extended-release capsules should not be crushed. Enteral feeding formulas bind phenytoin and decrease bioavailability: hold continuous tube feedings 1 to 2 hours before and after administration and monitor serum levels closely."
+    },
+    "refs": [
+      {
+        "source_id": "fda-phenytoin-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "DILANTIN (phenytoin) is related to the barbiturates in chemical structure, but has a five-membered ring. The chemical name is 5,5-diphenyl-2,4 imidazolidinedione"
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": [],
+    "note": "HLA-B*1502 testing recommended in patients of Asian ancestry due to increased risk of Stevens-Johnson syndrome (SJS) and toxic epidermal necrolysis (TEN)"
+  },
+  "ae_tags": {
+    "value": null,
+    "refs": []
+  },
+  "mechanism_of_action": {
+    "value": "The precise mechanism by which phenytoin exerts its therapeutic effect has not been established but is thought to involve the voltage-dependent blockade of membrane sodium channels resulting in a reduction in sustained high-frequency neuronal discharges.",
+    "refs": [
+      {
+        "source_id": "fda-phenytoin-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "The precise mechanism by which phenytoin exerts its therapeutic effect has not been established but is thought to involve the voltage-dependent blockade of membrane sodium channels resulting in a reduction in sustained high-frequency neuronal discharges."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp3a4": "inducer",
+      "cyp2c9": "substrate",
+      "cyp2c19": "substrate",
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-phenytoin-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "The precise mechanism by which phenytoin exerts its therapeutic effect has not been established but is thought to involve the voltage-dependent blockade of membrane sodium channels resulting in a reduction in sustained high-frequency neuronal discharges."
+      }
+    ]
+  },
+  "tools": {
+    "therapeutic_drug_monitoring": {
+      "value": {
+        "target_trough": "10 to 20 mcg/mL (total) or 1 to 2 mcg/mL (unbound)",
+        "toxic_threshold": "> 20 mcg/mL (nystagmus), > 30 mcg/mL (ataxia, slurred speech), > 40 mcg/mL (lethargy, coma)",
+        "sampling_timing": "Trough serum concentration immediately before morning dose at steady state (typically 5 to 7 days)",
+        "notes": "Nonlinear Michaelis-Menten elimination kinetics: small dose increments can lead to disproportionately large increases in serum concentrations."
+      },
+      "refs": [
+        {
+          "source_id": "fda-phenytoin-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Serum blood level determinations may be necessary for optimal dosage adjustments—the clinically effective serum total concentration is 10 to 20 mcg/mL (unbound phenytoin concentration is 1 to 2 mcg/mL). ( 2.3 )"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

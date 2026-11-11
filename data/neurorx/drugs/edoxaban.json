@@ -1,0 +1,271 @@
+{
+  "id": "edoxaban",
+  "generic_name": "edoxaban",
+  "tall_man": {
+    "value": "edoxaban",
+    "refs": [
+      {
+        "source_id": "fda-edoxaban-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "Edoxaban, a factor Xa inhibitor, is supplied as edoxaban tosylate monohydrate. The chemical name is N- (5-Chloropyridin-2-yl)- N'- [(1 S ,2 R ,4 S )-4-( N,N- dimethylcarbamoyl)-2-(5-methyl-4,5,6,7-tetrahydro[1,3]thiazolo[5,4-c]pyridine-2-carboxamido)cyclohexyl] oxamide mono (4-methylbenzenesulfonate) monohydrate."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "direct oral anticoagulant",
+    "factor Xa inhibitor",
+    "antithrombotic"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "BHYT circular data pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "edo-po-stroke-prevention-afib-standard",
+      "indication": "Nonvalvular Atrial Fibrillation (CrCl > 50 to ≤ 95 mL/min)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-edoxaban-label",
+          "locator": "Section 2.1 Nonvalvular Atrial Fibrillation",
+          "quote": "The recommended dose of SAVAYSA is 60 mg taken orally once daily [see Warnings and Precautions (5.1) and Clinical Studies (14.1) ] . Assess creatinine clearance, as calculated using the Cockcroft-Gault equation Cockcroft-Gault CrCL = (140-age) × (weight in kg) × (0.85 if female) / (72 × creatinine in mg/dL). , before initiating therapy with SAVAYSA."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 60,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 60,
+        "max_daily": 60
+      },
+      "dose_text": "60 mg taken orally once daily. Do not use in patients with CrCl > 95 mL/min due to increased rate of ischemic stroke compared to warfarin.",
+      "renal_bands": [
+        {
+          "min": 95,
+          "max": null,
+          "dose_text": "Do not use SAVAYSA in patients with CrCl > 95 mL/min (increased risk of ischemic stroke vs warfarin)",
+          "refs": [
+            {
+              "source_id": "fda-edoxaban-label",
+              "locator": "Section 2.1 Nonvalvular Atrial Fibrillation",
+              "quote": "Do not use SAVAYSA in patients with CrCL > 95 mL/min."
+            }
+          ]
+        },
+        {
+          "min": 50,
+          "max": 95,
+          "dose_text": "60 mg once daily",
+          "dose": {
+            "kind": "fixed",
+            "amount": 60,
+            "unit": "mg",
+            "frequency": "once daily",
+            "max_single": 60,
+            "max_daily": 60
+          },
+          "refs": [
+            {
+              "source_id": "fda-edoxaban-label",
+              "locator": "Section 2.1 Nonvalvular Atrial Fibrillation",
+              "quote": "The recommended dose of SAVAYSA is 60 mg taken orally once daily [see Warnings and Precautions (5.1) and Clinical Studies (14.1) ] ."
+            }
+          ]
+        },
+        {
+          "min": 15,
+          "max": 50,
+          "dose_text": "30 mg once daily",
+          "dose": {
+            "kind": "fixed",
+            "amount": 30,
+            "unit": "mg",
+            "frequency": "once daily",
+            "max_single": 30,
+            "max_daily": 30
+          },
+          "refs": [
+            {
+              "source_id": "fda-edoxaban-label",
+              "locator": "Section 2.1 Nonvalvular Atrial Fibrillation",
+              "quote": "Reduce SAVAYSA dose to 30 mg once daily in patients with CrCL 15 to 50 mL/min [see Use in Specific Populations (8.6) , and Clinical Pharmacology (12.3) ] ."
+            }
+          ]
+        },
+        {
+          "min": null,
+          "max": 15,
+          "dose_text": "Not recommended (CrCl < 15 mL/min)",
+          "refs": [
+            {
+              "source_id": "fda-edoxaban-label",
+              "locator": "Section 2.1 Nonvalvular Atrial Fibrillation",
+              "quote": "Reduce SAVAYSA dose to 30 mg once daily in patients with CrCL 15 to 50 mL/min [see Use in Specific Populations (8.6) , and Clinical Pharmacology (12.3) ] ."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edo-po-stroke-prevention-afib-reduced",
+      "indication": "Nonvalvular Atrial Fibrillation (Dose-Reduced for CrCl 15 to 50 mL/min)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-edoxaban-label",
+          "locator": "Section 2.1 Nonvalvular Atrial Fibrillation",
+          "quote": "Reduce SAVAYSA dose to 30 mg once daily in patients with CrCL 15 to 50 mL/min [see Use in Specific Populations (8.6) , and Clinical Pharmacology (12.3) ] ."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 30,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 30,
+        "max_daily": 30
+      },
+      "dose_text": "30 mg taken orally once daily for patients with CrCl 15 to 50 mL/min."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-edoxaban-label",
+        "locator": "Section 2.1 Nonvalvular Atrial Fibrillation",
+        "quote": "Assess creatinine clearance, as calculated using the Cockcroft-Gault equation Cockcroft-Gault CrCL = (140-age) × (weight in kg) × (0.85 if female) / (72 × creatinine in mg/dL). , before initiating therapy with SAVAYSA."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "The use of SAVAYSA in patients with moderate or severe hepatic impairment (Child-Pugh B and C) is not recommended as these patients may have intrinsic coagulation abnormalities. No dose reduction is required in patients with mild hepatic impairment (Child-Pugh A).",
+    "refs": [
+      {
+        "source_id": "fda-edoxaban-label",
+        "locator": "Section 8.7 Hepatic Impairment",
+        "quote": "The use of SAVAYSA in patients with moderate or severe hepatic impairment (Child-Pugh B and C) is not recommended as these patients may have intrinsic coagulation abnormalities. No dose reduction is required in patients with mild hepatic impairment (Child-Pugh A) [see Clinical Pharmacology (12.3) ] ."
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "REDUCED EFFICACY IN NONVALVULAR ATRIAL FIBRILLATION PATIENTS WITH CrCL > 95 mL/min: SAVAYSA should not be used in patients with CrCL > 95 mL/min. In the ENGAGE AF-TIMI 48 study, NVAF patients with CrCL > 95 mL/min had an increased rate of ischemic stroke with SAVAYSA 60 mg once daily compared to patients treated with warfarin. In these patients another anticoagulant should be used.",
+      "PREMATURE DISCONTINUATION OF SAVAYSA INCREASES THE RISK OF ISCHEMIC EVENTS: Premature discontinuation of any oral anticoagulant in the absence of adequate alternative anticoagulation increases the risk of ischemic events.",
+      "SPINAL/EPIDURAL HEMATOMA: Epidural or spinal hematomas may occur in patients treated with SAVAYSA who are receiving neuraxial anesthesia or undergoing spinal puncture."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-edoxaban-label",
+        "locator": "BOXED WARNING",
+        "quote": "SAVAYSA should not be used in patients with CrCL > 95 mL/min. In the ENGAGE AF-TIMI 48 study, nonvalvular atrial fibrillation patients with CrCL > 95 mL/min had an increased rate of ischemic stroke with SAVAYSA 60 mg once daily compared to patients treated with warfarin. In these patients another anticoagulant should be used"
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-edoxaban-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Edoxaban is a selective inhibitor of FXa. It does not require antithrombin III for antithrombotic activity. Edoxaban inhibits free FXa, and prothrombinase activity and inhibits thrombin-induced platelet aggregation."
+      }
+    ],
+    "note": "Factor Xa inhibitors do not impair neuromuscular transmission; safe in myasthenia gravis"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "For patients who are unable to swallow whole tablets, SAVAYSA tablets may be crushed and mixed with 2 to 3 ounces of water and immediately administered by mouth or through a gastric tube."
+    },
+    "refs": [
+      {
+        "source_id": "fda-edoxaban-label",
+        "locator": "Section 2.6 Administration Options",
+        "quote": "For patients who are unable to swallow whole tablets, SAVAYSA tablets may be crushed and mixed with 2 to 3 ounces of water and immediately administered by mouth or through a gastric tube."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": [],
+    "note": "No pharmacogenomic testing requirement in FDA label"
+  },
+  "ae_tags": {
+    "value": null,
+    "refs": []
+  },
+  "mechanism_of_action": {
+    "value": "Edoxaban is a selective inhibitor of FXa. It does not require antithrombin III for antithrombotic activity. Edoxaban inhibits free FXa, and prothrombinase activity and inhibits thrombin-induced platelet aggregation.",
+    "refs": [
+      {
+        "source_id": "fda-edoxaban-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Edoxaban is a selective inhibitor of FXa. It does not require antithrombin III for antithrombotic activity. Edoxaban inhibits free FXa, and prothrombinase activity and inhibits thrombin-induced platelet aggregation."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "pgp": "substrate",
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-edoxaban-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Rifampin: Avoid concomitant use ( 7.2 )"
+      }
+    ]
+  },
+  "tools": {
+    "missed_dose": {
+      "value": "If a dose of SAVAYSA is missed, the dose should be taken as soon as possible on the same day. Dosing should resume the next day according to the normal dosing schedule. The dose should not be doubled to make up for a missed dose.",
+      "refs": [
+        {
+          "source_id": "fda-edoxaban-label",
+          "locator": "Section 2.3 Administration Information",
+          "quote": "If a dose of SAVAYSA is missed, the dose should be taken as soon as possible on the same day. Dosing should resume the next day according to the normal dosing schedule. The dose should not be doubled to make up for a missed dose."
+        }
+      ]
+    },
+    "hold_restart": {
+      "value": [
+        {
+          "procedure": "Invasive or surgical procedures",
+          "hold_hours": "At least 24 hours before procedure",
+          "restart_timing": "Restart as soon as adequate hemostasis has been established"
+        }
+      ],
+      "refs": [
+        {
+          "source_id": "fda-edoxaban-label",
+          "locator": "Section 2.5 Discontinuation for Surgery and Other Interventions",
+          "quote": "Discontinue SAVAYSA at least 24 hours before invasive or surgical procedures because of the risk of bleeding [see Warnings and Precautions (5.3) ] ."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

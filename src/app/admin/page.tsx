@@ -18,6 +18,7 @@ import { EditGuidelineModal } from "@/components/neuroguide/EditGuidelineModal";
 import { PivotalTrialsAdminTab } from "@/components/neuroguide/PivotalTrialsAdminTab";
 import { PivotalTrialModal } from "@/components/neuroguide/PivotalTrialModal";
 import { getStoredAdminToken } from "@/utils/clientAuth";
+import { NeuroRxAdminSection } from "@/components/neurorx/admin/NeuroRxAdminSection";
 
 function getLocalTodayIso(): string {
   const d = new Date();
@@ -123,7 +124,7 @@ export default function AdminCommandCenter() {
   // =========================================================================
   // ADMIN SECTION TABS
   // =========================================================================
-  const [adminTab, setAdminTab] = useState<"neuropulse" | "neurocase" | "guidelines" | "system">("neuropulse");
+  const [adminTab, setAdminTab] = useState<"neuropulse" | "neurocase" | "guidelines" | "system" | "neurorx">("neuropulse");
 
   // Guideline Review & Radar Combined State
   const [guidelineSubTab, setGuidelineSubTab] = useState<"queue" | "repository" | "trials">("queue");
@@ -950,6 +951,17 @@ export default function AdminCommandCenter() {
                 badgeActive: "bg-white/20 text-white",
                 badgeInactive: "bg-indigo-500/15 text-indigo-700 dark:text-indigo-300 border border-indigo-500/25",
                 dotColor: "bg-indigo-500",
+              },
+              {
+                id: "neurorx" as const,
+                label: "💊 NeuroRx (Drugs & Dosing CDSS)",
+                activeClass: "bg-sky-600 text-white shadow-md shadow-sky-500/25 ring-1 ring-sky-400/40",
+                inactiveClass: darkMode
+                  ? "text-slate-300 hover:bg-sky-950/40 hover:text-sky-300"
+                  : "text-slate-700 hover:bg-sky-50 hover:text-sky-700",
+                badgeActive: "bg-white/20 text-white",
+                badgeInactive: "bg-sky-500/15 text-sky-700 dark:text-sky-300 border border-sky-500/25",
+                dotColor: "bg-sky-500",
               },
             ].map((tab) => {
               const active = adminTab === tab.id;
@@ -1784,6 +1796,13 @@ export default function AdminCommandCenter() {
                 </div>
               </div>
             </div>
+          </div>
+        )}
+
+        {/* TAB 5: NEURORX CDSS & PROVENANCE HUB */}
+        {adminTab === "neurorx" && (
+          <div className="space-y-4">
+            <NeuroRxAdminSection darkMode={darkMode} />
           </div>
         )}
 

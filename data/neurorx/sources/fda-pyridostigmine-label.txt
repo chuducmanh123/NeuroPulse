@@ -1,0 +1,31 @@
+TITLE: MESTINON (pyridostigmine bromide) PRESCRIBING INFORMATION
+SET_ID: a851795e-b7a8-40c3-9922-5e79d3eb4d92
+EFFECTIVE_TIME: 20201202
+PUBLISHER: US Food and Drug Administration / DailyMed
+
+=== INDICATIONS AND USAGE ===
+INDICATION: MESTINON is useful in the treatment of myasthenia gravis.
+
+=== DOSAGE AND ADMINISTRATION ===
+DOSAGE AND ADMINISTRATION: MESTINON is available in three dosage forms: Oral Solution - raspberry-flavored, containing 60 mg pyridostigmine bromide per teaspoonful (5 mL). This form permits accurate dosage adjustment for children and “brittle” myasthenic patients who require fractions of 60 mg doses. It is more easily swallowed, especially in the morning, by patients with bulbar involvement. Conventional tablets - each containing 60 mg pyridostigmine bromide. TIMESPAN tablets - each containing 180 mg pyridostigmine bromide. This form provides uniformly slow release, hence prolonged duration of drug action; it facilitates control of myasthenic symptoms with fewer individual doses daily. The immediate effect of a 180 mg TIMESPAN tablet is about equal to that of a 60 mg Conventional tablet; however, its duration of effectiveness, although varying in individual patients, averages 2½ times that of a 60 mg dose. Dosage: The size and frequency of the dosage must be adjusted to the needs of the individual patient. Oral Solution and Conventional tablets - The average dose is ten 60 mg tablets or ten 5 mL teaspoonfuls daily, spaced to provide maximum relief when maximum strength is needed. In severe cases as many as 25 tablets or teaspoonfuls a day may be required, while in mild cases one to six tablets or teaspoonfuls a day may suffice. TIMESPAN tablets - One to three 180 mg tablets, once or twice daily, will usually be sufficient to control symptoms; however, the needs of certain individuals may vary markedly from this average. The interval between doses should be at least 6 hours. For optimum control, it may be necessary to use the more rapidly acting regular tablets or oral solution in conjunction with TIMESPAN therapy. NOTE: For information on a diagnostic test for myasthenia gravis, and for the evaluation and stabilization of therapy, please see product literature on Tensilon (edrophonium chloride).
+
+=== CONTRAINDICATIONS ===
+CONTRAINDICATIONS: MESTINON is contraindicated in mechanical intestinal or urinary obstruction, and particular caution should be used in its administration to patients with bronchial asthma. Care should be observed in the use of atropine for counteracting side effects, as discussed below.
+
+=== ADVERSE REACTIONS ===
+ADVERSE REACTIONS: The side effects of MESTINON are most commonly related to overdosage and generally are of two varieties, muscarinic and nicotinic. Among those in the former group are nausea, vomiting, diarrhea, abdominal cramps, increased peristalsis, increased salivation, increased bronchial secretions, miosis and diaphoresis. Nicotinic side effects are comprised chiefly of muscle cramps, fasciculation and weakness. Muscarinic side effects can usually be counteracted by atropine, but for reasons shown in the preceding section the expedient is not without danger. As with any compound containing the bromide radical, a skin rash may be seen in an occasional patient. Such reactions usually subside promptly upon discontinuance of the medication. To report SUSPECTED ADVERSE REACTIONS, contact Bausch Health US, LLC at 1-800-321-4576 or FDA at 1-800-FDA-1088 or www.fda.gov/medwatch.
+
+=== PREGNANCY ===
+Usage in Pregnancy : The safety of MESTINON during pregnancy or lactation in humans has not been established. Therefore, use of MESTINON in women who may become pregnant requires weighing the drug’s potential benefits against its possible hazards to mother and child.
+
+=== PEDIATRIC USE ===
+Pediatric Use: Safety and effectiveness in pediatric patients have not been established.
+
+=== DESCRIPTION ===
+DESCRIPTION: MESTINON (pyridostigmine bromide) is an orally active cholinesterase inhibitor. Chemically, pyridostigmine bromide is 3-hydroxy-1-methylpyridinium bromide dimethylcarbamate. Its structural formula is: MESTINON is available in the following forms: Oral Solution containing 60 mg pyridostigmine bromide per teaspoonful in a vehicle containing 5% alcohol, glycerin, lactic acid, sodium benzoate, sorbitol, sucrose, FD&C Red No. 40, FD&C Blue No. 1, flavors and water. Tablets containing 60 mg pyridostigmine bromide; each tablet also contains lactose, silicon dioxide and stearic acid. TIMESPAN tablets containing 180 mg pyridostigmine bromide; each tablet also contains carnauba wax, corn-derived proteins, isopropyl alcohol, magnesium stearate, silica gel, tribasic calcium phosphate and water. mestinon-01.jpg
+
+=== MECHANISM OF ACTION ===
+ACTIONS: MESTINON inhibits the destruction of acetylcholine by cholinesterase and thereby permits freer transmission of nerve impulses across the neuromuscular junction. Pyridostigmine is an analog of neostigmine (Prostigmin), but differs from it in certain clinically significant respects; for example, pyridostigmine is characterized by a longer duration of action and fewer gastrointestinal side effects.
+
+=== HOW SUPPLIED ===
+HOW SUPPLIED: Oral Solution, 60 mg pyridostigmine bromide per teaspoonful (5 mL) and 5% alcohol - bottles of 1 pint (473 mL) (NDC 0187-3012-20). Tablets, are available as white, flat-faced tablets containing 60 mg pyridostigmine bromide in bottles of 100 (NDC 0187-3010-30). Each tablet is engraved “MESTINON 60 V” on one side and is quadrisect scored on the other. TIMESPAN tablets, are available as light straw-colored, capsule-shaped tablets containing 180 mg pyridostigmine bromide in bottles of 30 (NDC 0187-3013-30). Each tablet is engraved “MES V 180” on one side and is single-scored on the other. Note: Because of the hygroscopic nature of the TIMESPAN tablets, mottling may occur. This does not affect their efficacy. Store MESTINON (pyridostigmine bromide) Oral Solution, USP, MESTINON tablets, and TIMESPAN tablets at 25°C (77°F); excursions permitted to 15° to 30°C (59° to 86°F). Keep MESTINON tablets and TIMESPAN tablets in a dry place with the silica gel enclosed.

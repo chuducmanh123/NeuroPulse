@@ -1,0 +1,215 @@
+{
+  "id": "duloxetine",
+  "generic_name": "duloxetine",
+  "tall_man": {
+    "value": "duloxetine",
+    "refs": [
+      {
+        "source_id": "fda-duloxetine-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "management of neuropathic pain associated with diabetic peripheral neuropathy [see Clinical Studies (14.4) ] , the mean duration of diabetes was approximately 12 years, the mean ba"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "serotonin and norepinephrine reuptake inhibitor (SNRI)",
+    "neuropathic pain analgesic",
+    "antidepressant"
+  ],
+  "subspecialties": [
+    "neuromuscular",
+    "headache"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "dul-dpnp-maintenance",
+      "indication": "Diabetic Peripheral Neuropathic Pain and Chronic Musculoskeletal Pain",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-duloxetine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "management of neuropathic pain associated with diabetic peripheral neuropathy [see Clinical Studies (14.4) ] , the mean duration of diabetes was approximately 12 years, the mean ba"
+        },
+        {
+          "source_id": "fda-duloxetine-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Administer 60 mg once daily in adults with diabetic peripheral neuropathic pain."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 60,
+        "unit": "mg",
+        "frequency": "once daily (may start at 30 mg once daily for 1 week to improve tolerability)",
+        "max_single": 60,
+        "max_daily": 60
+      },
+      "dose_text": "60 mg once daily. For patients for whom tolerability is a concern, start at 30 mg once daily for 1 week before increasing to 60 mg daily. There is no evidence that doses higher than 60 mg/day confer additional significant benefit for neuropathic pain."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-duloxetine-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "Administer 60 mg once daily in adults with diabetic peripheral neuropathic pain."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Avoid use in patients with chronic liver disease or cirrhosis; cases of hepatic failure reported.",
+    "refs": [
+      {
+        "source_id": "fda-duloxetine-label",
+        "locator": "WARNINGS AND PRECAUTIONS",
+        "quote": "Hepatic Impairment Avoid use in patients with chronic liver disease or cirrhosis [see Dosage and Administration (2.7) , Warnings and Precautions (5.2) , and Use in Specific Populat"
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "SUICIDAL THOUGHTS AND BEHAVIORS: ANTIDEPRESSANTS INCREASED THE RISK COMPARED TO PLACEBO OF SUICIDAL THOUGHTS AND BEHAVIORS IN PEDIATRIC AND YOUNG ADULT PATIENTS."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-duloxetine-label",
+        "locator": "BOXED WARNING",
+        "quote": "management of neuropathic pain associated with diabetic peripheral neuropathy [see Clinical Studies (14.4) ] , the mean duration of diabetes was approximately 12 years, the mean ba"
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-duloxetine-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "management of neuropathic pain associated with diabetic peripheral neuropathy [see Clinical Studies (14.4) ] , the mean duration of diabetes was approximately 12 years, the mean ba"
+      }
+    ],
+    "note": "Dual SNRI; no neuromuscular junction blocking activity"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Swallow whole; do not crush, chew, or open capsule. The delayed-release enteric pellets must remain intact to avoid gastric acid hydrolysis."
+    },
+    "refs": [
+      {
+        "source_id": "fda-duloxetine-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "Administer 60 mg once daily in adults with diabetic peripheral neuropathic pain."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "serotonin_syndrome",
+      "hyponatremia",
+      "hepatotoxicity"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-duloxetine-label",
+        "locator": "WARNINGS AND PRECAUTIONS",
+        "quote": "Do not start duloxetine in a patient who is being treated with linezolid or intravenous methylene blue because there is an increased risk of serotonin syndrome."
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Potent dual inhibitor of neuronal serotonin (5-HT) and norepinephrine (NE) reuptake, potentiating descending inhibitory antinociceptive pathways in the brainstem and spinal dorsal horn.",
+    "refs": [
+      {
+        "source_id": "fda-duloxetine-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "management of neuropathic pain associated with diabetic peripheral neuropathy [see Clinical Studies (14.4) ] , the mean duration of diabetes was approximately 12 years, the mean ba"
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp1a2": "substrate",
+      "cyp2d6": "inhibitor_moderate"
+    },
+    "refs": [
+      {
+        "source_id": "fda-duloxetine-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "management of neuropathic pain associated with diabetic peripheral neuropathy [see Clinical Studies (14.4) ] , the mean duration of diabetes was approximately 12 years, the mean ba"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-duloxetine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "management of neuropathic pain associated with diabetic peripheral neuropathy [see Clinical Studies (14.4) ] , the mean duration of diabetes was approximately 12 years, the mean ba"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Exposure late in the third trimester may increase the risk for neonatal complications (poor neonatal adaptation syndrome) and postpartum hemorrhage.",
+      "refs": [
+        {
+          "source_id": "fda-duloxetine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "management of neuropathic pain associated with diabetic peripheral neuropathy [see Clinical Studies (14.4) ] , the mean duration of diabetes was approximately 12 years, the mean ba"
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Excreted into human milk at low levels (relative infant dose < 1%); evaluate maternal need.",
+      "refs": [
+        {
+          "source_id": "fda-duloxetine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "management of neuropathic pain associated with diabetic peripheral neuropathy [see Clinical Studies (14.4) ] , the mean duration of diabetes was approximately 12 years, the mean ba"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

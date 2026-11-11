@@ -1,0 +1,296 @@
+{
+  "id": "lacosamide",
+  "generic_name": "lacosamide",
+  "tall_man": {
+    "value": "lacosamide",
+    "refs": [
+      {
+        "source_id": "fda-lacosamide-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "The chemical name of lacosamide, the single (R)-enantiomer, is (R)-2-acetamido-N-benzyl-3-methoxypropionamide (IUPAC). Lacosamide is a functionalized amino acid."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "anticonvulsant",
+    "anti-seizure medication (ASM)",
+    "sodium channel slow inactivation enhancer"
+  ],
+  "subspecialties": [
+    "epilepsy",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "BHYT circular data pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "lac-po-iv-monotherapy",
+      "indication": "Treatment of Partial-Onset Seizures (Monotherapy)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-lacosamide-label",
+          "locator": "Section 1.1 Partial-Onset Seizures",
+          "quote": "VIMPAT is indicated for the treatment of partial-onset seizures in patients 1 month of age and older."
+        },
+        {
+          "source_id": "fda-lacosamide-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Adults (17 years and older): Initial dosage for monotherapy for the treatment of partial-onset seizures is 100 mg twice daily ( 2.1 ) Initial dosage for adjunctive therapy for the treatment of partial-onset seizures or primary generalized tonic-clonic seizures is 50 mg twice daily ( 2.1 ) Maximum recommended dosage for monotherapy and adjunctive therapy is 200 mg twice daily ( 2.1 )"
+        }
+      ],
+      "dose": {
+        "kind": "titration",
+        "amount": 100,
+        "unit": "mg",
+        "frequency": "twice daily",
+        "max_single": 200,
+        "max_daily": 400
+      },
+      "dose_text": "Initial dosage for monotherapy is 100 mg orally twice daily (200 mg/day). Titrate based on clinical response and tolerability, no more frequently than once per week, up to a maximum recommended dosage of 200 mg twice daily (400 mg/day)."
+    },
+    {
+      "id": "lac-po-iv-adjunctive",
+      "indication": "Partial-Onset Seizures and Primary Generalized Tonic-Clonic Seizures (Adjunctive Therapy)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-lacosamide-label",
+          "locator": "Section 1.2 Primary Generalized Tonic-Clonic Seizures",
+          "quote": "VIMPAT is indicated as adjunctive therapy in the treatment of primary generalized tonic-clonic seizures in patients 4 years of age and older."
+        },
+        {
+          "source_id": "fda-lacosamide-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Initial dosage for adjunctive therapy for the treatment of partial-onset seizures or primary generalized tonic-clonic seizures is 50 mg twice daily ( 2.1 ) Maximum recommended dosage for monotherapy and adjunctive therapy is 200 mg twice daily ( 2.1 )"
+        }
+      ],
+      "dose": {
+        "kind": "titration",
+        "amount": 50,
+        "unit": "mg",
+        "frequency": "twice daily",
+        "max_single": 200,
+        "max_daily": 400
+      },
+      "dose_text": "Initial dosage for adjunctive therapy is 50 mg orally twice daily (100 mg/day). May increase weekly by 50 mg twice daily based on clinical response up to a maximum recommended dosage of 200 mg twice daily (400 mg/day)."
+    },
+    {
+      "id": "lac-iv-loading",
+      "indication": "Rapid Maintenance Target / Acute Status Epilepticus Loading Dose",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-lacosamide-label",
+          "locator": "Section 2.1 Dosage Information",
+          "quote": "The loading dose should be administered with medical supervision because of the possibility of increased incidence of adverse reactions, including central nervous system (CNS) and cardiovascular adverse reactions [see Warnings and Precautions (5.2 , 5.3) , Adverse Reactions (6.1) , and Clinical Pharmacology (12.3) ] ."
+        },
+        {
+          "source_id": "fda-lacosamide-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Injection: for intravenous use only when oral administration is temporarily not feasible; the recommended dosage is based on body weight and is administered two or three times daily over 15 to 60 minutes; obtaining ECG before initiation is recommended in certain patients ( 2.7 , 5.3 )"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 200,
+        "unit": "mg",
+        "frequency": "once",
+        "max_single": 200,
+        "max_daily": 400
+      },
+      "dose_text": "Single IV loading dose of 200 mg infused over 15 to 60 minutes under medical supervision (consider baseline ECG), followed 12 hours later by 100 mg twice daily (200 mg/day). In refractory status epilepticus protocols, guidelines endorse up to 400 mg IV."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-lacosamide-label",
+        "locator": "Section 2.4 Dosage Information for Patients with Renal Impairment",
+        "quote": "For patients with severe renal impairment [creatinine clearance (CL CR ) less than 30 mL/min as estimated by the Cockcroft-Gault equation for adults; CL CR less than 30 mL/min/1.73m 2 as estimated by the Schwartz equation for pediatric patients] or end-stage renal disease, a reduction of 25% of the maximum dosage is recommended."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "For patients with mild or moderate hepatic impairment, a reduction of 25% of the maximum dosage is recommended. The dose initiation and titration should be based on clinical response and tolerability in patients with hepatic impairment. VIMPAT use is not recommended in patients with severe hepatic impairment.",
+    "refs": [
+      {
+        "source_id": "fda-lacosamide-label",
+        "locator": "Section 2.5 Dosage Information for Patients with Hepatic Impairment",
+        "quote": "For patients with mild or moderate hepatic impairment, a reduction of 25% of the maximum dosage is recommended. The dose initiation and titration should be based on clinical response and tolerability in patients with hepatic impairment. VIMPAT use is not recommended in patients with severe hepatic impairment."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-lacosamide-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "In vitro electrophysiological studies have shown that lacosamide selectively enhances slow inactivation of voltage-gated sodium channels, resulting in stabilization of hyperexcitable neuronal membranes and inhibition of repetitive neuronal firing."
+      }
+    ],
+    "note": "Lacosamide selectively enhances slow sodium channel inactivation and does not impair neuromuscular transmission; safe in myasthenia gravis"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "VIMPAT tablets may be crushed and mixed with water for enteral feeding tube administration. VIMPAT oral solution (10 mg/mL) is also available and can be administered via nasogastric or gastrostomy tube."
+    },
+    "refs": [
+      {
+        "source_id": "fda-lacosamide-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "The chemical name of lacosamide, the single (R)-enantiomer, is (R)-2-acetamido-N-benzyl-3-methoxypropionamide (IUPAC). Lacosamide is a functionalized amino acid."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": [],
+    "note": "CYP2C19 poor metabolizers have modestly increased lacosamide exposure, but no dose adjustment required"
+  },
+  "ae_tags": {
+    "value": null,
+    "refs": []
+  },
+  "mechanism_of_action": {
+    "value": "The precise mechanism by which VIMPAT exerts its antiepileptic effects in humans remains to be fully elucidated. In vitro electrophysiological studies have shown that lacosamide selectively enhances slow inactivation of voltage-gated sodium channels, resulting in stabilization of hyperexcitable neuronal membranes and inhibition of repetitive neuronal firing.",
+    "refs": [
+      {
+        "source_id": "fda-lacosamide-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "The precise mechanism by which VIMPAT exerts its antiepileptic effects in humans remains to be fully elucidated. In vitro electrophysiological studies have shown that lacosamide selectively enhances slow inactivation of voltage-gated sodium channels, resulting in stabilization of hyperexcitable neuronal membranes and inhibition of repetitive neuronal firing."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp3a4": "substrate",
+      "cyp2c9": "substrate",
+      "cyp2c19": "substrate",
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-lacosamide-label",
+        "locator": "Section 2.4 Dosage Information for Patients with Renal Impairment",
+        "quote": "Dose reduction may be necessary in patients with renal impairment who are taking strong inhibitors of CYP3A4 and CYP2C9 [see Drug Interactions (7.1) , Use in Specific Populations (8.6) , and Clinical Pharmacology (12.3) ] ."
+      }
+    ]
+  },
+  "tools": {
+    "titration": {
+      "schedules": [
+        {
+          "id": "monotherapy-titration",
+          "label": "Adult Monotherapy Titration",
+          "condition_text": "Partial-onset seizures monotherapy (adults 17 years and older)",
+          "steps": [
+            {
+              "week_from": 1,
+              "week_to": 1,
+              "dose_text": "100 mg twice daily (200 mg per day)",
+              "dose_mg_per_day": 200
+            },
+            {
+              "week_from": 2,
+              "week_to": 2,
+              "dose_text": "150 mg twice daily (300 mg per day)",
+              "dose_mg_per_day": 300
+            },
+            {
+              "week_from": 3,
+              "week_to": 4,
+              "dose_text": "150 mg to 200 mg twice daily (300 mg to 400 mg per day)",
+              "dose_mg_per_day": 400
+            }
+          ],
+          "refs": [
+            {
+              "source_id": "fda-lacosamide-label",
+              "locator": "Section 2.1 Table 1",
+              "quote": "Adults (17 years and older) Monotherapy Monotherapy for partial-onset seizures only : 100 mg twice daily (200 mg per day) Adjunctive Therapy: 50 mg twice daily (100 mg per day) Increase by 50 mg twice daily (100 mg per day) every week Monotherapy : 150 mg to 200 mg twice daily (300 mg to 400 mg per day) Adjunctive Therapy: 100 mg to 200 mg twice daily (200 mg to 400 mg per day)"
+            }
+          ]
+        },
+        {
+          "id": "adjunctive-titration",
+          "label": "Adult Adjunctive Therapy Titration",
+          "condition_text": "Partial-onset seizures or PGTC seizures adjunctive therapy",
+          "steps": [
+            {
+              "week_from": 1,
+              "week_to": 1,
+              "dose_text": "50 mg twice daily (100 mg per day)",
+              "dose_mg_per_day": 100
+            },
+            {
+              "week_from": 2,
+              "week_to": 2,
+              "dose_text": "100 mg twice daily (200 mg per day)",
+              "dose_mg_per_day": 200
+            },
+            {
+              "week_from": 3,
+              "week_to": 3,
+              "dose_text": "150 mg twice daily (300 mg per day)",
+              "dose_mg_per_day": 300
+            },
+            {
+              "week_from": 4,
+              "week_to": 6,
+              "dose_text": "100 mg to 200 mg twice daily (200 mg to 400 mg per day)",
+              "dose_mg_per_day": 400
+            }
+          ],
+          "refs": [
+            {
+              "source_id": "fda-lacosamide-label",
+              "locator": "Section 2.1 Table 1",
+              "quote": "Adults (17 years and older) Monotherapy Monotherapy for partial-onset seizures only : 100 mg twice daily (200 mg per day) Adjunctive Therapy: 50 mg twice daily (100 mg per day) Increase by 50 mg twice daily (100 mg per day) every week Monotherapy : 150 mg to 200 mg twice daily (300 mg to 400 mg per day) Adjunctive Therapy: 100 mg to 200 mg twice daily (200 mg to 400 mg per day)"
+            }
+          ]
+        }
+      ]
+    },
+    "iv_infusion": {
+      "value": {
+        "diluent": "Administer undiluted or dilute with 0.9% Sodium Chloride, 5% Dextrose, or Lactated Ringer's Injection",
+        "rate": "Infuse over 15 to 60 minutes",
+        "instructions": "VIMPAT injection may be administered intravenously without further dilution or diluted in 0.9% Sodium Chloride, 5% Dextrose, or Lactated Ringer's. Infuse over 15 to 60 minutes. Obtaining an ECG before initiation is recommended in patients with known cardiac conduction abnormalities."
+      },
+      "refs": [
+        {
+          "source_id": "fda-lacosamide-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Injection: for intravenous use only when oral administration is temporarily not feasible; the recommended dosage is based on body weight and is administered two or three times daily over 15 to 60 minutes; obtaining ECG before initiation is recommended in certain patients ( 2.7 , 5.3 )"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

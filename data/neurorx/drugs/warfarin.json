@@ -1,0 +1,246 @@
+{
+  "id": "warfarin",
+  "generic_name": "warfarin",
+  "tall_man": {
+    "value": "warfarin",
+    "refs": [
+      {
+        "source_id": "fda-warfarin-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "Warfarin sodium tablets, USP contain warfarin sodium, an anticoagulant that acts by inhibiting vitamin K-dependent coagulation factors."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "anticoagulant",
+    "vitamin K antagonist",
+    "antithrombotic"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "BHYT circular data pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "war-po-afib-stroke-prevention",
+      "indication": "Prophylaxis and Treatment of Thromboembolic Complications Associated with Atrial Fibrillation (Target INR 2.0-3.0)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-warfarin-label",
+          "locator": "Section 2.2 Recommended Target INR Ranges and Durations",
+          "quote": "Atrial Fibrillation In patients with non-valvular AF, anticoagulate with warfarin to target INR of 2.5 (range, 2 to 3)."
+        },
+        {
+          "source_id": "fda-warfarin-label",
+          "locator": "Section 2.3 Initial and Maintenance Dosing",
+          "quote": "If the patient’s CYP2C9 and VKORC1 genotypes are not known, the initial dose of warfarin sodium tablets is usually 2 to 5 mg once daily. Determine each patient’s dosing needs by close monitoring of the INR response and consideration of the indication being treated. Typical maintenance doses are 2 to 10 mg once daily."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 5,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 10,
+        "max_daily": 10
+      },
+      "dose_text": "Initial dose is usually 2 to 5 mg once daily (without consideration of genotype). Adjust dose based on INR response to maintain target INR of 2.5 (range 2.0 to 3.0). Typical maintenance doses are 2 to 10 mg once daily."
+    },
+    {
+      "id": "war-po-post-mi-stroke-reduction",
+      "indication": "Reduction in Risk of Recurrent MI and Thromboembolic Events (Stroke or Systemic Embolization) Post-MI",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-warfarin-label",
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "Reduction in the risk of death, recurrent myocardial infarction (MI), and thromboembolic events such as stroke or systemic embolization after myocardial infarction."
+        },
+        {
+          "source_id": "fda-warfarin-label",
+          "locator": "Section 2.3 Initial and Maintenance Dosing",
+          "quote": "If the patient’s CYP2C9 and VKORC1 genotypes are not known, the initial dose of warfarin sodium tablets is usually 2 to 5 mg once daily. Determine each patient’s dosing needs by close monitoring of the INR response and consideration of the indication being treated. Typical maintenance doses are 2 to 10 mg once daily."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 5,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 10,
+        "max_daily": 10
+      },
+      "dose_text": "Initiate at 2 to 5 mg orally once daily and titrate individualized maintenance dose to target INR 2.0 to 3.0."
+    }
+  ],
+  "renal_basis": {
+    "value": "none",
+    "refs": [
+      {
+        "source_id": "fda-warfarin-label",
+        "locator": "Section 8.6 Renal Impairment",
+        "quote": "Renal clearance is considered to be a minor determinant of anticoagulant response to warfarin. No dosage adjustment is necessary for patients with renal impairment. Instruct patients with renal impairment taking warfarin to monitor their INR more frequently [see Warnings and Precautions ( 5.4 )] ."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Hepatic impairment can potentiate the response to warfarin through impaired synthesis of clotting factors and decreased metabolism of warfarin. Conduct more frequent monitoring for bleeding when using warfarin sodium in these patients.",
+    "refs": [
+      {
+        "source_id": "fda-warfarin-label",
+        "locator": "Section 8.7 Hepatic Impairment",
+        "quote": "Hepatic impairment can potentiate the response to warfarin through impaired synthesis of clotting factors and decreased metabolism of warfarin. Conduct more frequent monitoring for bleeding when using warfarin sodium in these patients."
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "WARNING: BLEEDING RISK: Warfarin sodium can cause major or fatal bleeding. Perform regular monitoring of INR in all treated patients. Drugs, dietary changes, and other factors affect INR levels achieved with warfarin sodium therapy. Instruct patients about prevention measures to minimize risk of bleeding and to report immediately to health care provider signs and symptoms of bleeding."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-warfarin-label",
+        "locator": "Section BOXED WARNING",
+        "quote": "WARNING: BLEEDING RISK Warfarin sodium can cause major or fatal bleeding [see Warnings and Precautions ( 5.1 )] . Perform regular monitoring of INR in all treated patients [see Dosage and Administration ( 2.1 )] . Drugs, dietary changes, and other factors affect INR levels achieved with warfarin sodium therapy [see Drug Interactions ( 7 )] ."
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-warfarin-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Warfarin acts by inhibiting the synthesis of vitamin K-dependent clotting factors, which include Factors II, VII, IX, and X, and the anticoagulant proteins C and S."
+      }
+    ],
+    "note": "Vitamin K antagonists do not impair neuromuscular transmission; safe in myasthenia gravis"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "Warfarin sodium tablets may be crushed and administered via nasogastric tube. Enteral nutrition formulas may bind warfarin; hold tube feeds 1 hour before and 1 hour after administration and monitor INR closely."
+    },
+    "refs": [
+      {
+        "source_id": "fda-warfarin-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "Warfarin sodium tablets, USP contain warfarin sodium, an anticoagulant that acts by inhibiting vitamin K-dependent coagulation factors."
+      }
+    ]
+  },
+  "pgx": {
+    "value": {
+      "gene": "CYP2C9 / VKORC1",
+      "testing_recommended": true,
+      "clinical_action": "CYP2C9 and VKORC1 genotypes influence initial dose selection and maintenance requirements. If known, consider lower initial doses for patients with variant alleles."
+    },
+    "refs": [
+      {
+        "source_id": "fda-warfarin-label",
+        "locator": "Section 12.5 Pharmacogenomics",
+        "quote": "The S -enantiomer of warfarin is mainly metabolized to 7-hydroxywarfarin by CYP2C9, a polymorphic enzyme. The variant alleles, CYP2C9*2 and CYP2C9*3, result in decreased in vitro CYP2C9 enzymatic 7-hydroxylation of S-warfarin."
+      }
+    ]
+  },
+  "ae_tags": {
+    "value": null,
+    "refs": []
+  },
+  "mechanism_of_action": {
+    "value": "Warfarin acts by inhibiting the synthesis of vitamin K-dependent clotting factors, which include Factors II, VII, IX, and X, and the anticoagulant proteins C and S.",
+    "refs": [
+      {
+        "source_id": "fda-warfarin-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Warfarin acts by inhibiting the synthesis of vitamin K-dependent clotting factors, which include Factors II, VII, IX, and X, and the anticoagulant proteins C and S."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp2c9": "substrate",
+      "cyp1a2": "substrate",
+      "cyp3a4": "substrate",
+      "cyp2c19": "substrate",
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-warfarin-label",
+        "locator": "Section 12.5 Pharmacogenomics",
+        "quote": "The S -enantiomer of warfarin is mainly metabolized to 7-hydroxywarfarin by CYP2C9, a polymorphic enzyme. The variant alleles, CYP2C9*2 and CYP2C9*3, result in decreased in vitro CYP2C9 enzymatic 7-hydroxylation of S-warfarin."
+      }
+    ]
+  },
+  "tools": {
+    "missed_dose": {
+      "value": "The anticoagulant effect of warfarin sodium tablets persists beyond 24 hours. If a patient misses a dose of warfarin sodium tablets at the intended time of day, the patient should take the dose as soon as possible on the same day. The patient should not double the dose the next day to make up for a missed dose.",
+      "refs": [
+        {
+          "source_id": "fda-warfarin-label",
+          "locator": "Section 2.1 Individualized Dosing",
+          "quote": "The anticoagulant effect of warfarin sodium tablets persists beyond 24 hours. If a patient misses a dose of warfarin sodium tablets at the intended time of day, the patient should take the dose as soon as possible on the same day. The patient should not double the dose the next day to make up for a missed dose."
+        }
+      ]
+    },
+    "hold_restart": {
+      "value": [
+        {
+          "procedure": "Surgery or Dental Procedures",
+          "hold_hours": "Typically 5 days (120 hours) prior to major surgery to allow INR normalization",
+          "restart_timing": "Resume when adequate hemostasis is established, often 12 to 24 hours post-surgery"
+        }
+      ],
+      "refs": [
+        {
+          "source_id": "fda-warfarin-label",
+          "locator": "Section 2.7 Treatment During Dentistry and Surgery",
+          "quote": "Some dental or surgical procedures may necessitate the interruption or change in the dose of warfarin sodium tablets therapy. Consider the benefits and risks when discontinuing warfarin sodium tablets even for a short period of time. Determine the INR immediately prior to any dental or surgical procedure."
+        }
+      ]
+    },
+    "reversal": {
+      "value": [
+        {
+          "agent": "4-Factor Prothrombin Complex Concentrate (KCENTRA)",
+          "dose_rule": "25 to 50 units Factor IX/kg IV based on baseline INR (25 U/kg for INR 2 to <4; 35 U/kg for INR 4-6; 50 U/kg for INR >6; max dose 100 kg); administer concurrently with Vitamin K1",
+          "vn_available": true
+        },
+        {
+          "agent": "Phytonadione (Vitamin K1)",
+          "dose_rule": "5 to 10 mg slow IV infusion administered concurrently with 4F-PCC to sustain normal clotting factor synthesis",
+          "vn_available": true
+        }
+      ],
+      "refs": [
+        {
+          "source_id": "fda-4fpcc-kcentra-label",
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "KCENTRA, (Prothrombin Complex Concentrate (Human)), is a blood coagulation factor replacement product indicated for the urgent reversal of acquired coagulation factor deficiency induced by Vitamin K antagonist (VKA, e.g., warfarin) therapy in adult patients with: acute major bleeding or need for an urgent surgery/invasive procedure."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

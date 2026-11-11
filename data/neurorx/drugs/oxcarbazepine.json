@@ -1,0 +1,244 @@
+{
+  "id": "oxcarbazepine",
+  "generic_name": "oxcarbazepine",
+  "tall_man": {
+    "value": "oxcarbazepine",
+    "refs": [
+      {
+        "source_id": "fda-oxcarbazepine-label",
+        "locator": "DESCRIPTION",
+        "quote": "TRILEPTAL is an AED available as 150 mg, 300 mg, and 600 mg film-coated tablets for oral administration."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "anticonvulsant",
+    "anti-seizure medication (ASM)",
+    "sodium channel blocker"
+  ],
+  "subspecialties": [
+    "epilepsy"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "oxc-partial-onset-adult",
+      "indication": "Partial-Onset Seizures (Monotherapy or Adjunctive)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-oxcarbazepine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "1 INDICATIONS AND USAGE TRILEPTAL is indicated for use as monotherapy or adjunctive therapy in the treatment of partial-onset seizures in adults"
+        },
+        {
+          "source_id": "fda-oxcarbazepine-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "2.1 Adjunctive Therapy for Adults Initiate TRILEPTAL with a dose of 600 mg/day, given twice a day. If clinically indicated, the dose may be increased by a maximum of 600 mg/day at approximately weekly intervals; the maximum recommended daily dose is 1200 mg/day."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 300,
+        "unit": "mg",
+        "frequency": "twice daily",
+        "max_single": 1200,
+        "max_daily": 2400
+      },
+      "dose_text": "Initiate at 300 mg twice daily (600 mg/day). Titrate by up to 600 mg/day at approximately weekly intervals to recommended target of 1200 mg/day (max 2400 mg/day).",
+      "renal_bands": [
+        {
+          "min": null,
+          "max": 30,
+          "dose_text": "CrCl < 30 mL/min: Initiate at 150 mg twice daily (300 mg/day); titrate slowly.",
+          "dose": {
+            "kind": "fixed",
+            "amount": 150,
+            "unit": "mg",
+            "frequency": "twice daily",
+            "max_daily": 1200
+          },
+          "refs": [
+            {
+              "source_id": "fda-oxcarbazepine-label",
+              "locator": "DOSAGE AND ADMINISTRATION",
+              "quote": "In patients with impaired renal function (creatinine clearance < 30 mL/min), initiate TRILEPTAL at one-half the usual starting dose (300 mg/day, given twice a day), and increase slowly to achieve the desired clinical response"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-oxcarbazepine-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "In patients with impaired renal function (creatinine clearance < 30 mL/min), initiate TRILEPTAL at one-half the usual starting dose (300 mg/day, given twice a day), and increase slowly to achieve the desired clinical response"
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Mild-to-moderate hepatic impairment did not affect the pharmacokinetics of oxcarbazepine and MHD.",
+    "refs": [
+      {
+        "source_id": "fda-oxcarbazepine-label",
+        "locator": "CLINICAL PHARMACOLOGY",
+        "quote": "Mild-to-moderate hepatic impairment did not affect the pharmacokinetics of oxcarbazepine and MHD"
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-oxcarbazepine-label",
+        "locator": "ADVERSE REACTIONS",
+        "quote": "The most common (≥ 10% more than placebo for adjunctive or low dose for monotherapy) adverse reactions in adults and pediatrics were: dizziness, somnolence, diplopia, fatigue, nausea, vomiting, ataxia, abnormal vision, headache, nystagmus, tremor, and abnormal gait"
+      }
+    ],
+    "note": "Voltage-gated sodium channel blocker; monitor for exacerbation in myasthenia gravis"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "Film-coated tablets may be crushed or oral suspension used via enteral tube."
+    },
+    "refs": [
+      {
+        "source_id": "fda-oxcarbazepine-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "TRILEPTAL oral suspension and TRILEPTAL film-coated tablets may be substituted at equal doses."
+      }
+    ]
+  },
+  "pgx": {
+    "value": "Consider testing for HLA-B*1502 in genetically at-risk populations before initiating therapy due to cross-reactivity with carbamazepine for SJS/TEN.",
+    "refs": [
+      {
+        "source_id": "fda-oxcarbazepine-label",
+        "locator": "DESCRIPTION",
+        "quote": "TRILEPTAL is an AED available as 150 mg, 300 mg, and 600 mg film-coated tablets for oral administration."
+      }
+    ]
+  },
+  "ae_tags": {
+    "value": [
+      "hyponatremia",
+      "sedation_somnolence",
+      "ataxia"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-oxcarbazepine-label",
+        "locator": "WARNINGS AND CAUTIONS",
+        "quote": "Clinically significant hyponatremia (sodium < 125 mmol/L) can develop during TRILEPTAL use."
+      },
+      {
+        "source_id": "fda-oxcarbazepine-label",
+        "locator": "ADVERSE REACTIONS",
+        "quote": "The most common (≥ 10% more than placebo for adjunctive or low dose for monotherapy) adverse reactions in adults and pediatrics were: dizziness, somnolence, diplopia, fatigue, nausea, vomiting, ataxia, abnormal vision, headache, nystagmus, tremor, and abnormal gait"
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "The pharmacological activity of TRILEPTAL is primarily exerted through the 10-monohydroxy metabolite (MHD) of oxcarbazepine, blocking voltage-sensitive sodium channels.",
+    "refs": [
+      {
+        "source_id": "fda-oxcarbazepine-label",
+        "locator": "CLINICAL PHARMACOLOGY",
+        "quote": "The pharmacological activity of TRILEPTAL is primarily exerted through the 10-monohydroxy metabolite (MHD) of oxcarbazepine"
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp3a4": "inducer_weak",
+      "cyp2c19": "inhibitor_weak"
+    },
+    "refs": [
+      {
+        "source_id": "fda-oxcarbazepine-label",
+        "locator": "DRUG INTERACTIONS",
+        "quote": "The inhibition of CYP2C19 by oxcarbazepine and MHD can cause increased plasma concentrations of drugs that are substrates of CYP2C19, which is clinically relevant."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-oxcarbazepine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "1 INDICATIONS AND USAGE TRILEPTAL is indicated for use as monotherapy or adjunctive therapy in the treatment of partial-onset seizures in adults"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "MHD plasma concentrations may decrease during pregnancy; monitor clinical response and levels.",
+      "refs": [
+        {
+          "source_id": "fda-oxcarbazepine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "1 INDICATIONS AND USAGE TRILEPTAL is indicated for use as monotherapy or adjunctive therapy in the treatment of partial-onset seizures in adults"
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": "Induction of CYP3A4 can decrease the efficacy of hormonal contraceptives; use additional non-hormonal contraception.",
+      "refs": [
+        {
+          "source_id": "fda-oxcarbazepine-label",
+          "locator": "DRUG INTERACTIONS",
+          "quote": "The inhibition of CYP2C19 by oxcarbazepine and MHD can cause increased plasma concentrations of drugs that are substrates of CYP2C19, which is clinically relevant."
+        }
+      ]
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Oxcarbazepine and its active metabolite (MHD) are excreted in human milk; evaluate developmental and health benefits along with clinical need.",
+      "refs": [
+        {
+          "source_id": "fda-oxcarbazepine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "1 INDICATIONS AND USAGE TRILEPTAL is indicated for use as monotherapy or adjunctive therapy in the treatment of partial-onset seizures in adults"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

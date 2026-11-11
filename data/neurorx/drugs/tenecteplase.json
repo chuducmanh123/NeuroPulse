@@ -1,0 +1,154 @@
+{
+  "id": "tenecteplase",
+  "generic_name": "tenecteplase",
+  "tall_man": {
+    "value": "tenecteplase",
+    "refs": [
+      {
+        "source_id": "fda-tenecteplase-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "Tenecteplase is a tissue plasminogen activator (tPA) produced by recombinant DNA technology using a mammalian cell line (Chinese Hamster Ovary cells)."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "thrombolytic",
+    "tissue plasminogen activator (tPA)",
+    "recombinant fibrinolytic enzyme"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "BHYT circular data pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "tnk-iv-single-bolus",
+      "indication": "Acute Thrombolytic Revascularization (Single IV Bolus)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-tenecteplase-label",
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "TNKase is a tissue plasminogen activator, indicated to reduce the risk of death associated with acute ST elevation myocardial infarction (STEMI). ( 1 )"
+        },
+        {
+          "source_id": "fda-tenecteplase-label",
+          "locator": "Section 2.1 Recommended Dosage",
+          "quote": "TNKase is for intravenous (IV) administration only, administered as a single bolus over 5 seconds. Individualize dosage based on the patient's weight (see Table 1 )."
+        }
+      ],
+      "dose": {
+        "kind": "weight",
+        "amount": 0.5,
+        "unit": "mg/kg",
+        "frequency": "once",
+        "max_single": 50,
+        "max_daily": 50
+      },
+      "dose_text": "TNKase is for intravenous (IV) administration only, administered as a single bolus over 5 seconds. Dose ranges from 30 mg (< 60 kg) to 50 mg (>= 90 kg). In acute stroke clinical practice guidelines, 0.25 mg/kg IV single bolus (maximum 25 mg) is endorsed."
+    }
+  ],
+  "renal_basis": {
+    "value": "none",
+    "refs": [
+      {
+        "source_id": "fda-tenecteplase-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "Tenecteplase is a tissue plasminogen activator (tPA) produced by recombinant DNA technology using a mammalian cell line (Chinese Hamster Ovary cells)."
+      }
+    ],
+    "note": "No dosage adjustment needed for renal impairment"
+  },
+  "hepatic": {
+    "value": null,
+    "refs": [],
+    "note": "Cleared predominantly by the liver; monitor bleeding risk"
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-tenecteplase-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Tenecteplase is a modified form of human tissue plasminogen activator (tPA) that binds to fibrin and converts plasminogen to plasmin."
+      }
+    ],
+    "note": "Thrombolytics do not impair neuromuscular junction transmission; safe in myasthenia gravis"
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "Intravenous solution only; not for enteral administration"
+  },
+  "pgx": {
+    "value": null,
+    "refs": [],
+    "note": "No pharmacogenomic requirements"
+  },
+  "ae_tags": {
+    "value": null,
+    "refs": []
+  },
+  "mechanism_of_action": {
+    "value": "Tenecteplase is a modified form of human tissue plasminogen activator (tPA) that binds to fibrin and converts plasminogen to plasmin. In the presence of fibrin, in vitro studies demonstrate that tenecteplase-mediated conversion of plasminogen to plasmin is increased relative to its conversion in the absence of fibrin. This fibrin specificity decreases systemic activation of plasminogen.",
+    "refs": [
+      {
+        "source_id": "fda-tenecteplase-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Tenecteplase is a modified form of human tissue plasminogen activator (tPA) that binds to fibrin and converts plasminogen to plasmin. In the presence of fibrin, in vitro studies demonstrate that tenecteplase-mediated conversion of plasminogen to plasmin is increased relative to its conversion in the absence of fibrin. This fibrin specificity decreases systemic activation of plasminogen"
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-tenecteplase-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Tenecteplase is a modified form of human tissue plasminogen activator (tPA) that binds to fibrin and converts plasminogen to plasmin."
+      }
+    ]
+  },
+  "tools": {
+    "iv_push": {
+      "value": {
+        "speed": "Administer as a single IV bolus over 5 seconds",
+        "dilution": "Reconstitute 50 mg vial with 10 mL Sterile Water for Injection (SWFI) to 5 mg/mL",
+        "flushes": "Flush line with 0.9% sodium chloride before and after (incompatible with dextrose lines)",
+        "instructions": "TNKase is for intravenous administration only, administered as a single bolus over 5 seconds. Reconstitute with 10 mL SWFI. Dextrose-containing lines must be flushed with 0.9% sodium chloride prior to and following administration."
+      },
+      "refs": [
+        {
+          "source_id": "fda-tenecteplase-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "TNKase is for intravenous administration only, administered as a single bolus over 5 seconds. Individualize dosage based on patient's weight. ( 2.1 )"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

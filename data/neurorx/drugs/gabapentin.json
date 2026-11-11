@@ -1,0 +1,207 @@
+{
+  "id": "gabapentin",
+  "generic_name": "gabapentin",
+  "tall_man": {
+    "value": "gabapentin",
+    "refs": [
+      {
+        "source_id": "fda-gabapentin-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "Management of postherpetic neuralgia in adults • Adjunctive therapy in the treatment of partial onset seizures, with and without secondary generalization, in adults and pediatric p"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "voltage-gated calcium channel alpha-2-delta ligand",
+    "neuropathic pain analgesic",
+    "antiseizure medication"
+  ],
+  "subspecialties": [
+    "neuromuscular",
+    "epilepsy",
+    "headache"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "gab-phn-titration",
+      "indication": "Postherpetic Neuralgia and Neuropathic Pain",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-gabapentin-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Management of postherpetic neuralgia in adults • Adjunctive therapy in the treatment of partial onset seizures, with and without secondary generalization, in adults and pediatric p"
+        },
+        {
+          "source_id": "fda-gabapentin-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "In adults with postherpetic neuralgia, NEURONTIN may be initiated on Day 1 as a single 300 mg dose, on Day 2 as 600 mg/day (300 mg two times a day), and on Day 3 as 900 mg/day (300 mg three times a da"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 300,
+        "unit": "mg",
+        "frequency": "Day 1: 300 mg once; Day 2: 300 mg BID; Day 3: 300 mg TID; titrate to 600 mg TID (1800 mg/day)",
+        "max_single": 1200,
+        "max_daily": 3600
+      },
+      "dose_text": "Initiate on Day 1 as 300 mg single dose, Day 2 as 600 mg/day (300 mg BID), Day 3 as 900 mg/day (300 mg TID). Subsequently titrate up for pain relief to recommended dose of 1800 mg/day (600 mg TID). Maximum dose 3600 mg/day. Adjust dose in renal impairment."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-gabapentin-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "Dosage adjustment in patients 12 years of age and older with renal impairment or undergoing hemodialysis is recommended, as follows (see dosing recommendations above for effective"
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Gabapentin undergoes negligible hepatic metabolism and is eliminated solely by renal excretion; no dosage adjustment in hepatic impairment.",
+    "refs": [
+      {
+        "source_id": "fda-gabapentin-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "Management of postherpetic neuralgia in adults • Adjunctive therapy in the treatment of partial onset seizures, with and without secondary generalization, in adults and pediatric p"
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-gabapentin-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "Management of postherpetic neuralgia in adults • Adjunctive therapy in the treatment of partial onset seizures, with and without secondary generalization, in adults and pediatric p"
+      }
+    ],
+    "note": "Alpha-2-delta calcium channel ligand; does not block neuromuscular junction transmission"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "Capsules may be opened and mixed with water or soft food, or oral solution (250 mg/5 mL) may be administered via enteral feeding tube."
+    },
+    "refs": [
+      {
+        "source_id": "fda-gabapentin-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "In adults with postherpetic neuralgia, NEURONTIN may be initiated on Day 1 as a single 300 mg dose, on Day 2 as 600 mg/day (300 mg two times a day), and on Day 3 as 900 mg/day (300 mg three times a da"
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "sedation_somnolence",
+      "ataxia",
+      "hyponatremia"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-gabapentin-label",
+        "locator": "WARNINGS AND PRECAUTIONS",
+        "quote": "Driving Impairment; Somnolence/Sedation and Dizziness: Warn patients not to drive until they have gained sufficient experience to assess whether their ability to drive or operate h"
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Binds with high affinity to the auxiliary alpha-2-delta subunit of voltage-gated calcium channels in presynaptic CNS neurons, decreasing calcium influx and attenuating excitatory neurotransmitter release.",
+    "refs": [
+      {
+        "source_id": "fda-gabapentin-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "Management of postherpetic neuralgia in adults • Adjunctive therapy in the treatment of partial onset seizures, with and without secondary generalization, in adults and pediatric p"
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "metabolism": "not appreciably metabolized; eliminated unchanged in urine by renal excretion"
+    },
+    "refs": [
+      {
+        "source_id": "fda-gabapentin-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "Management of postherpetic neuralgia in adults • Adjunctive therapy in the treatment of partial onset seizures, with and without secondary generalization, in adults and pediatric p"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-gabapentin-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Management of postherpetic neuralgia in adults • Adjunctive therapy in the treatment of partial onset seizures, with and without secondary generalization, in adults and pediatric p"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Crosses the human placenta; pregnancy registry data show no distinct pattern of major structural malformations.",
+      "refs": [
+        {
+          "source_id": "fda-gabapentin-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Management of postherpetic neuralgia in adults • Adjunctive therapy in the treatment of partial onset seizures, with and without secondary generalization, in adults and pediatric p"
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Excreted into human milk; monitor infant for drowsiness and weight gain.",
+      "refs": [
+        {
+          "source_id": "fda-gabapentin-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Management of postherpetic neuralgia in adults • Adjunctive therapy in the treatment of partial onset seizures, with and without secondary generalization, in adults and pediatric p"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

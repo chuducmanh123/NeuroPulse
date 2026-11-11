@@ -1,0 +1,233 @@
+{
+  "id": "lamotrigine",
+  "generic_name": "lamotrigine",
+  "tall_man": {
+    "value": "lamotrigine",
+    "refs": [
+      {
+        "source_id": "fda-lamotrigine-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "LAMICTAL XR is indicated for: • adjunctive therapy for primary generalized tonic-clonic seizures (PGTC) and partial-onset seizures with or without secondary generalization in patients aged 13 years and older."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "anticonvulsant",
+    "anti-seizure medication (ASM)",
+    "voltage-gated sodium channel inhibitor"
+  ],
+  "subspecialties": [
+    "epilepsy"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "ltg-monotherapy-adult",
+      "indication": "Epilepsy (Partial-Onset Seizures Monotherapy)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-lamotrigine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "LAMICTAL XR is indicated for: • adjunctive therapy for primary generalized tonic-clonic seizures (PGTC) and partial-onset seizures with or without secondary generalization in patients aged 13 years and older."
+        },
+        {
+          "source_id": "fda-lamotrigine-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "monotherapy is 250 to 300 mg given once daily. The recommended initial dose and subsequent dose escalations for LAMICTAL XR should not be exceeded [see Boxed Warning ] ."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 25,
+        "unit": "mg",
+        "frequency": "daily",
+        "max_single": 300,
+        "max_daily": 400
+      },
+      "dose_text": "Monotherapy target dosage range is 250 to 300 mg given once daily. Initiate and titrate slowly per schedule based on concomitant AEDs to reduce the risk of serious skin rashes."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-lamotrigine-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "Initial doses of LAMICTAL XR should be based on patients’ concomitant medications (see Table 1 ); reduced maintenance doses may be effective for patients with significant renal impairment [see Use in Specific Populations"
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Reduce starting, escalation, and maintenance doses by approximately 25% in moderate and severe liver impairment without ascites, and by 50% in severe liver impairment with ascites.",
+    "refs": [
+      {
+        "source_id": "fda-lamotrigine-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "Initial, escalation, and maintenance doses should generally be reduced by approximately 25% in patients with moderate and severe liver impairment without ascites and 50% in patients with severe liver impairment with ascites."
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "SERIOUS SKIN RASHES INCLUDING STEVENS-JOHNSON SYNDROME (SJS) AND TOXIC EPIDERMAL NECROLYSIS (TEN). HIGHER RISK ASSOCIATED WITH RAPID TITRATION OR CO-ADMINISTRATION WITH VALPROATE."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-lamotrigine-label",
+        "locator": "BOXED WARNING",
+        "quote": "WARNING: SERIOUS SKIN RASHES LAMICTAL XR can cause serious rashes requiring hospitalization and discontinuation of treatment."
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-lamotrigine-label",
+        "locator": "ADVERSE REACTIONS",
+        "quote": "Most common adverse reactions with use as adjunctive therapy (treatment difference between LAMICTAL XR and placebo ≥4%) were dizziness, tremor/intention tremor, vomiting, and diplopia."
+      }
+    ],
+    "note": "Sodium channel blocker; monitor closely in neuromuscular junction disorders"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "LAMICTAL XR extended-release tablets must be swallowed whole and must not be chewed, crushed, or divided. Immediate-release formulations can be crushed if available."
+    },
+    "refs": [
+      {
+        "source_id": "fda-lamotrigine-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "crushed, or divided. • Do not exceed the recommended initial dosage and subsequent dose escalation."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "rash_sjs_ten",
+      "ataxia",
+      "sedation_somnolence"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-lamotrigine-label",
+        "locator": "ADVERSE REACTIONS",
+        "quote": "Most common adverse reactions with use as adjunctive therapy (treatment difference between LAMICTAL XR and placebo ≥4%) were dizziness, tremor/intention tremor, vomiting, and diplopia."
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Voltage-gated sodium channel inhibitor, reducing repetitive neuronal firing and inhibiting glutamate release.",
+    "refs": [
+      {
+        "source_id": "fda-lamotrigine-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "LAMICTAL XR is indicated for: • adjunctive therapy for primary generalized tonic-clonic seizures (PGTC) and partial-onset seizures with or without secondary generalization in patients aged 13 years and older."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "ugt": [
+        "UGT1A4"
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-lamotrigine-label",
+        "locator": "CLINICAL PHARMACOLOGY",
+        "quote": "Because lamotrigine is metabolized predominantly by glucuronic acid conjugation, drugs that are known to induce or inhibit glucuronidation may affect the apparent clearance of lamotrigine."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "preferred",
+      "refs": [
+        {
+          "source_id": "fda-lamotrigine-label",
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "Based on animal data may cause fetal harm. ( 8.1 ) • Hepatic impairment: Dosage adjustments required in patients with moderate and severe liver impairment."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": "Folic acid supplementation is recommended before conception and throughout pregnancy.",
+      "refs": [
+        {
+          "source_id": "fda-lamotrigine-label",
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "Based on animal data may cause fetal harm. ( 8.1 ) • Hepatic impairment: Dosage adjustments required in patients with moderate and severe liver impairment."
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Lamotrigine clearance markedly increases during pregnancy (due to enhanced glucuronidation), often requiring dose increases to maintain baseline serum levels. Monitor levels monthly.",
+      "refs": [
+        {
+          "source_id": "fda-lamotrigine-label",
+          "locator": "CLINICAL PHARMACOLOGY",
+          "quote": "Because lamotrigine is metabolized predominantly by glucuronic acid conjugation, drugs that are known to induce or inhibit glucuronidation may affect the apparent clearance of lamotrigine."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": "Rapidly decrease lamotrigine dose over 1-2 weeks postpartum to pre-pregnancy baseline to avoid toxicity.",
+      "refs": [
+        {
+          "source_id": "fda-lamotrigine-label",
+          "locator": "CLINICAL PHARMACOLOGY",
+          "quote": "Because lamotrigine is metabolized predominantly by glucuronic acid conjugation, drugs that are known to induce or inhibit glucuronidation may affect the apparent clearance of lamotrigine."
+        }
+      ]
+    },
+    "contraception": {
+      "value": "Combined oral contraceptives containing estrogen lower lamotrigine serum concentrations by ~50%; dose adjustments required.",
+      "refs": [
+        {
+          "source_id": "fda-lamotrigine-label",
+          "locator": "CLINICAL PHARMACOLOGY",
+          "quote": "Because lamotrigine is metabolized predominantly by glucuronic acid conjugation, drugs that are known to induce or inhibit glucuronidation may affect the apparent clearance of lamotrigine."
+        }
+      ]
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Lamotrigine passes into human milk; monitor infant for sedation, poor feeding, and rash.",
+      "refs": [
+        {
+          "source_id": "fda-lamotrigine-label",
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "Based on animal data may cause fetal harm. ( 8.1 ) • Hepatic impairment: Dosage adjustments required in patients with moderate and severe liver impairment."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

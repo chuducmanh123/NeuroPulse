@@ -1,0 +1,205 @@
+{
+  "id": "trihexyphenidyl",
+  "generic_name": "trihexyphenidyl",
+  "tall_man": {
+    "value": "trihexyphenidyl",
+    "refs": [
+      {
+        "source_id": "fda-trihexyphenidyl-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "adjunct in the treatment of all forms of parkinsonism (postencephalitic, arteriosclerotic, and idiopathic)."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "anticholinergic agent",
+    "muscarinic antagonist",
+    "antiparkinson agent"
+  ],
+  "subspecialties": [
+    "movement_disorders"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "thp-pd-tremor",
+      "indication": "Parkinsonian Tremor & Medication-Induced Extrapyramidal Symptoms (Dystonia)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-trihexyphenidyl-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "adjunct in the treatment of all forms of parkinsonism (postencephalitic, arteriosclerotic, and idiopathic)."
+        },
+        {
+          "source_id": "fda-trihexyphenidyl-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Dosage should be individualized. The initial dose should be low and then increased gradually, especially in patients over 60 years of age.Whether trihexyphenidyl may best be given before or after meal"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1,
+        "unit": "mg",
+        "frequency": "once to three times daily",
+        "max_single": 5,
+        "max_daily": 15
+      },
+      "dose_text": "Initial starting dose: 1 mg daily. Gradually increase by 2 mg increments at intervals of 3 to 5 days, up to a total of 6 to 10 mg daily in 3 divided doses with meals. Avoid in elderly patients (>65 years) due to high risk of acute delirium, confusion, memory impairment, and urinary retention (Beer's Criteria)."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-trihexyphenidyl-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "Dosage should be individualized. The initial dose should be low and then increased gradually, especially in patients over 60 years of age.Whether trihexyphenidyl may best be given before or after meal"
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Metabolized by liver; use with caution in hepatic impairment.",
+    "refs": [
+      {
+        "source_id": "fda-trihexyphenidyl-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "Dosage should be individualized. The initial dose should be low and then increased gradually, especially in patients over 60 years of age.Whether trihexyphenidyl may best be given before or after meal"
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "contraindicated",
+    "refs": [
+      {
+        "source_id": "fda-trihexyphenidyl-label",
+        "locator": "CONTRAINDICATIONS",
+        "quote": "contraindicated in patients with hypersensitivity to trihexyphenidyl or to any of the other ingredients."
+      }
+    ],
+    "note": "Potent central and peripheral anticholinergic (ACB = 3); directly antagonizes acetylcholine receptor transmission and exacerbates myasthenia gravis"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "Immediate-release tablets can be crushed; oral elixir (2 mg/5 mL) is available for enteral administration."
+    },
+    "refs": [
+      {
+        "source_id": "fda-trihexyphenidyl-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "Dosage should be individualized. The initial dose should be low and then increased gradually, especially in patients over 60 years of age.Whether trihexyphenidyl may best be given before or after meal"
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "confusion_delirium",
+      "psychiatric_behavioral",
+      "sedation_somnolence"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-trihexyphenidyl-label",
+        "locator": "ADVERSE REACTIONS",
+        "quote": "Minor side effects, such as dryness of the mouth, blurred vision, dizziness, mild nausea or nervousness, will be experienced by 30 to 50 percent of all patients."
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Synthetic tertiary amine muscarinic receptor antagonist that exerts a direct inhibitory effect upon the parasympathetic nervous system and central cholinergic striatal pathways, rebalancing the dopamine-acetylcholine ratio.",
+    "refs": [
+      {
+        "source_id": "fda-trihexyphenidyl-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "adjunct in the treatment of all forms of parkinsonism (postencephalitic, arteriosclerotic, and idiopathic)."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "metabolism": "hepatic hydroxylation and glucuronidation"
+    },
+    "refs": [
+      {
+        "source_id": "fda-trihexyphenidyl-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "adjunct in the treatment of all forms of parkinsonism (postencephalitic, arteriosclerotic, and idiopathic)."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-trihexyphenidyl-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "adjunct in the treatment of all forms of parkinsonism (postencephalitic, arteriosclerotic, and idiopathic)."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Animal reproduction studies have not been conducted with trihexyphenidyl; give to a pregnant woman only if clearly needed.",
+      "refs": [
+        {
+          "source_id": "fda-trihexyphenidyl-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "adjunct in the treatment of all forms of parkinsonism (postencephalitic, arteriosclerotic, and idiopathic)."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "May inhibit lactation due to anticholinergic effects on prolactin; excretion in human milk unknown.",
+      "refs": [
+        {
+          "source_id": "fda-trihexyphenidyl-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "adjunct in the treatment of all forms of parkinsonism (postencephalitic, arteriosclerotic, and idiopathic)."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

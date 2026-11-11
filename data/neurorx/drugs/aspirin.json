@@ -1,0 +1,187 @@
+{
+  "id": "aspirin",
+  "generic_name": "aspirin",
+  "tall_man": {
+    "value": "aspirin",
+    "refs": [
+      {
+        "source_id": "fda-aspirin-label",
+        "locator": "Section DESCRIPTION",
+        "quote": "Aspirin is an odorless white, needle-like crystalline or powdery substance. When exposed to moisture, aspirin hydrolyzes into salicylic and acetic acids, and gives off a vinegary-odor. It is highly lipid soluble and slightly soluble in water."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "antiplatelet",
+    "cyclooxygenase inhibitor",
+    "salicylate",
+    "antithrombotic"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care",
+    "headache"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "BHYT circular data pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "asa-po-stroke-tia-maintenance",
+      "indication": "Ischemic Stroke and Transient Ischemic Attack (TIA) Secondary Prevention",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-aspirin-label",
+          "locator": "Section INDICATIONS AND USAGE",
+          "quote": "Aspirin is indicated to: (1) Reduce the combined risk of death and nonfatal stroke in patients who have had ischemic stroke or transient ischemia of the brain due to fibrin platelet emboli"
+        },
+        {
+          "source_id": "fda-aspirin-label",
+          "locator": "Section DOSAGE AND ADMINISTRATION",
+          "quote": "Ischemic Stroke and TIA: 50-325 mg once a day. Continue therapy indefinitely."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 81,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 325,
+        "max_daily": 325
+      },
+      "dose_text": "50-325 mg once a day. Continue therapy indefinitely. Common clinical outpatient secondary prevention dose is 81 mg once daily (or 325 mg once daily)."
+    },
+    {
+      "id": "asa-po-carotid-endarterectomy",
+      "indication": "Carotid Endarterectomy (CEA) Pre- and Post-Procedure Thromboembolic Prophylaxis",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-aspirin-label",
+          "locator": "Section DOSAGE AND ADMINISTRATION",
+          "quote": "Carotid Endarterectomy: Doses of 80 mg once daily to 650 mg twice daily, started presurgery, are recommended. Continue therapy indefinitely."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 81,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 650,
+        "max_daily": 1300
+      },
+      "dose_text": "Doses of 80 mg once daily to 650 mg twice daily, started presurgery, are recommended. Continue therapy indefinitely."
+    }
+  ],
+  "renal_basis": {
+    "value": "egfr",
+    "refs": [
+      {
+        "source_id": "fda-aspirin-label",
+        "locator": "Section PRECAUTIONS",
+        "quote": "Renal Failure: Avoid aspirin in patients with severe renal failure (glomerular filtration rate less than 10 mL/minute)."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Avoid aspirin in patients with severe hepatic insufficiency.",
+    "refs": [
+      {
+        "source_id": "fda-aspirin-label",
+        "locator": "Section PRECAUTIONS",
+        "quote": "Hepatic Insufficiency: Avoid aspirin in patients with severe hepatic insufficiency."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-aspirin-label",
+        "locator": "Section CLINICAL PHARMACOLOGY",
+        "quote": "Aspirin is a more potent inhibitor of both prostaglandin synthesis and platelet aggregation than other salicylic acid derivatives."
+      }
+    ],
+    "note": "Aspirin does not impair neuromuscular junction transmission; safe in myasthenia gravis"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "Non-enteric-coated (immediate-release or chewable) aspirin tablets may be crushed and dissolved in water for administration via nasogastric or gastric tube. Do not crush enteric-coated (safety-coated) tablets."
+    },
+    "refs": [
+      {
+        "source_id": "fda-aspirin-label",
+        "locator": "Section DESCRIPTION",
+        "quote": "Aspirin is an odorless white, needle-like crystalline or powdery substance. When exposed to moisture, aspirin hydrolyzes into salicylic and acetic acids, and gives off a vinegary-odor. It is highly lipid soluble and slightly soluble in water."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": [],
+    "note": "No mandatory pharmacogenomic testing in FDA professional label"
+  },
+  "ae_tags": {
+    "value": null,
+    "refs": []
+  },
+  "mechanism_of_action": {
+    "value": "Aspirin is a more potent inhibitor of both prostaglandin synthesis and platelet aggregation than other salicylic acid derivatives. The differences in activity between aspirin and salicylic acid are thought to be due to the acetyl group on the aspirin molecule. This acetyl group is responsible for the inactivation of cyclo-oxygenase via acetylation.",
+    "refs": [
+      {
+        "source_id": "fda-aspirin-label",
+        "locator": "Section CLINICAL PHARMACOLOGY",
+        "quote": "Aspirin is a more potent inhibitor of both prostaglandin synthesis and platelet aggregation than other salicylic acid derivatives. The differences in activity between aspirin and salicylic acid are thought to be due to the acetyl group on the aspirin molecule. This acetyl group is responsible for the inactivation of cyclo-oxygenase via acetylation."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-aspirin-label",
+        "locator": "Section CLINICAL PHARMACOLOGY",
+        "quote": "Aspirin is a more potent inhibitor of both prostaglandin synthesis and platelet aggregation than other salicylic acid derivatives."
+      }
+    ]
+  },
+  "tools": {
+    "reversal": {
+      "agent": "Activated Charcoal, Urine Alkalinization, Hemodialysis",
+      "dose": "Activated charcoal slurry within 3 hours of ingestion; IV sodium bicarbonate to achieve urine pH >= 7.5; hemodialysis for severe poisoning",
+      "notes": "Treatment consists primarily of supporting vital functions, increasing salicylate elimination, and correcting the acid-base disturbance. After lavage and/or emesis, administration of activated charcoal, as a slurry, is beneficial, if less than 3 hours have passed since ingestion.",
+      "refs": [
+        {
+          "source_id": "fda-aspirin-label",
+          "locator": "Section OVERDOSAGE",
+          "quote": "Treatment consists primarily of supporting vital functions, increasing salicylate elimination, and correcting the acid-base disturbance. Gastric emptying and/or lavage is recommended as soon as possible after ingestion, even if the patient has vomited spontaneously. After lavage and/or emesis, administration of activated charcoal, as a slurry, is beneficial, if less than 3 hours have passed since ingestion."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

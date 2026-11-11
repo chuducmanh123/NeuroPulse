@@ -1,0 +1,206 @@
+{
+  "id": "acyclovir",
+  "generic_name": "acyclovir",
+  "tall_man": {
+    "value": "acyclovir",
+    "refs": [
+      {
+        "source_id": "fda-acyclovir-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of herpes simplex encephalitis. Neonatal Herpes Simplex Virus Infection Acyclovir Sodium Injection is indicated for the treatment of neonatal herpes infections."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "synthetic purine nucleoside analogue",
+    "antiviral DNA polymerase inhibitor",
+    "neuro-infectious emergency agent"
+  ],
+  "subspecialties": [
+    "neuro_infectious",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "acy-hsv-encephalitis-iv",
+      "indication": "Herpes Simplex Encephalitis (HSV-1, HSV-2) and VZV CNS Infections",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-acyclovir-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "treatment of herpes simplex encephalitis. Neonatal Herpes Simplex Virus Infection Acyclovir Sodium Injection is indicated for the treatment of neonatal herpes infections."
+        },
+        {
+          "source_id": "fda-acyclovir-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "HERPES SIMPLEX ENCEPHALITIS Adults and Adolescents (12 years of age and older) 10 mg/kg infused at a constant rate over 1 hour, every 8 hours for 10 days."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 10,
+        "unit": "mg",
+        "frequency": "every 8 hours infused over 1 hour for 10 to 14 days",
+        "max_single": 1000,
+        "max_daily": 3000
+      },
+      "dose_text": "10 mg/kg IV infused at a constant rate over at least 1 hour, every 8 hours for 10 to 14 days (up to 21 days in immunocompromised patients). Obese patients should be dosed using Ideal Body Weight (IBW). Maintain adequate patient hydration to prevent renal tubular crystal precipitation."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-acyclovir-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "Table 5: Dosage Adjustments for Patients with Renal Impairment Creatinine Clearance (mL/min/1.73 m 2 ) Percent of Recommended Dose Dosing Interval (hours) >50 100% 8 25 to 50 100%"
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Acyclovir is cleared primarily unchanged by renal excretion; no specific dosage adjustment in hepatic impairment.",
+    "refs": [
+      {
+        "source_id": "fda-acyclovir-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of herpes simplex encephalitis. Neonatal Herpes Simplex Virus Infection Acyclovir Sodium Injection is indicated for the treatment of neonatal herpes infections."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-acyclovir-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of herpes simplex encephalitis. Neonatal Herpes Simplex Virus Infection Acyclovir Sodium Injection is indicated for the treatment of neonatal herpes infections."
+      }
+    ],
+    "note": "Antiviral nucleoside analogue; no neuromuscular junction blocking properties"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Intravenous formulation required for HSV encephalitis to achieve therapeutic CSF concentrations; oral acyclovir is strictly inadequate for CNS viral infections."
+    },
+    "refs": [
+      {
+        "source_id": "fda-acyclovir-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "HERPES SIMPLEX ENCEPHALITIS Adults and Adolescents (12 years of age and older) 10 mg/kg infused at a constant rate over 1 hour, every 8 hours for 10 days."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "confusion_delirium",
+      "myoclonus",
+      "sedation_somnolence"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-acyclovir-label",
+        "locator": "ADVERSE REACTIONS",
+        "quote": "transient elevations of serum creatinine or BUN in 5% to 10% (the higher incidence occurred usually following rapid [less than 10 minutes] intravenous infusion)."
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Selectively monophosphorylated by viral thymidine kinase, then di- and tri-phosphorylated by host cellular enzymes into acyclovir triphosphate, which selectively inhibits viral DNA polymerase and terminates viral DNA elongation.",
+    "refs": [
+      {
+        "source_id": "fda-acyclovir-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of herpes simplex encephalitis. Neonatal Herpes Simplex Virus Infection Acyclovir Sodium Injection is indicated for the treatment of neonatal herpes infections."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "metabolism": "minimal hepatic metabolism; >80% excreted unchanged by glomerular filtration and tubular secretion"
+    },
+    "refs": [
+      {
+        "source_id": "fda-acyclovir-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of herpes simplex encephalitis. Neonatal Herpes Simplex Virus Infection Acyclovir Sodium Injection is indicated for the treatment of neonatal herpes infections."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "preferred",
+      "refs": [
+        {
+          "source_id": "fda-acyclovir-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "treatment of herpes simplex encephalitis. Neonatal Herpes Simplex Virus Infection Acyclovir Sodium Injection is indicated for the treatment of neonatal herpes infections."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Extensive prospective pregnancy registry data show no increase in overall birth defects compared with general population; indicated for maternal CNS viral infection.",
+      "refs": [
+        {
+          "source_id": "fda-acyclovir-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "treatment of herpes simplex encephalitis. Neonatal Herpes Simplex Virus Infection Acyclovir Sodium Injection is indicated for the treatment of neonatal herpes infections."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Excreted in human milk; compatible with breastfeeding; evaluate clinical necessity.",
+      "refs": [
+        {
+          "source_id": "fda-acyclovir-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "treatment of herpes simplex encephalitis. Neonatal Herpes Simplex Virus Infection Acyclovir Sodium Injection is indicated for the treatment of neonatal herpes infections."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

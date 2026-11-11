@@ -1,0 +1,19 @@
+Title: Managing Parkinson's disease during surgery
+Authors: K. A. Brennan, R. W. Genever
+Journal: BMJ 2010; 341:c5734
+DOI: 10.1136/bmj.c5734
+Publisher: BMJ Publishing Group Ltd
+Year: 2010
+
+Text Excerpt:
+Section: Management of patients who are nil by mouth (NPO)
+Abrupt cessation of antiparkinsonian medication must be avoided because of the risk of acute akinesia, aspiration, neuroleptic malignant-like syndrome (parkinsonism-hyperpyrexia syndrome), and severe disability.
+
+Rotigotine transdermal patch conversion:
+When oral medication cannot be administered and enteral tube access is unavailable, transdermal rotigotine patch provides continuous dopaminergic stimulation.
+To convert oral antiparkinsonian medication to a rotigotine patch:
+Calculate the total levodopa equivalent daily dose (LEDD in mg). Divide total daily LEDD by 30 to determine the 24-hour rotigotine patch dose in mg.
+Patches are available in strengths of 2 mg/24h, 4 mg/24h, 6 mg/24h, and 8 mg/24h. The maximum standard recommended daily patch dose is 16 mg/24h. Do not cut rotigotine patches.
+
+Enteral tube administration:
+If a nasogastric (NG) tube or gastrostomy is in place, dispersible levodopa/benserazide or crushed standard immediate-release levodopa tablets may be given through the tube, maintaining equivalent total daily levodopa dose divided across the day.

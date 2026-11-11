@@ -1,0 +1,210 @@
+{
+  "id": "apixaban",
+  "generic_name": "apixaban",
+  "tall_man": {
+    "value": "apixaban",
+    "refs": [
+      {
+        "source_id": "fda-apixaban-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "ELIQUIS (apixaban), a factor Xa (FXa) inhibitor, is chemically described as 1-(4-methoxyphenyl)-7-oxo-6-[4-(2-oxopiperidin-1-yl)phenyl]-4,5,6,7-tetrahydro-1 H -pyrazolo[3,4- c ]pyridine-3-carboxamide."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "direct oral anticoagulant",
+    "factor Xa inhibitor",
+    "antithrombotic"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "BHYT circular data pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "api-po-stroke-prevention-afib",
+      "indication": "Reduction of Risk of Stroke and Systemic Embolism in Patients with Nonvalvular Atrial Fibrillation (Standard Dose)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-apixaban-label",
+          "locator": "Section 2.1 Recommended Dose",
+          "quote": "The recommended dose of ELIQUIS for most patients is 5 mg taken orally twice daily. The recommended dose of ELIQUIS is 2.5 mg twice daily in patients with at least two of the following characteristics: age greater than or equal to 80 years body weight less than or equal to 60 kg serum creatinine greater than or equal to 1.5 mg/dL"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 5,
+        "unit": "mg",
+        "frequency": "twice daily",
+        "max_single": 5,
+        "max_daily": 10
+      },
+      "dose_text": "5 mg taken orally twice daily. Dose is reduced to 2.5 mg twice daily if the patient meets at least 2 of 3 criteria: age >= 80 years, weight <= 60 kg, or SCr >= 1.5 mg/dL."
+    },
+    {
+      "id": "api-po-stroke-reduction-dose",
+      "indication": "Reduction of Risk of Stroke in NVAF (Dose-Reduced: ≥ 2 of Age ≥ 80 y, Weight ≤ 60 kg, SCr ≥ 1.5 mg/dL)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-apixaban-label",
+          "locator": "Section 2.1 Recommended Dose",
+          "quote": "The recommended dose of ELIQUIS is 2.5 mg twice daily in patients with at least two of the following characteristics: age greater than or equal to 80 years body weight less than or equal to 60 kg serum creatinine greater than or equal to 1.5 mg/dL"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 2.5,
+        "unit": "mg",
+        "frequency": "twice daily",
+        "max_single": 2.5,
+        "max_daily": 5
+      },
+      "dose_text": "2.5 mg taken orally twice daily for patients with at least two characteristics: age >= 80 years, weight <= 60 kg, serum creatinine >= 1.5 mg/dL (133 µmol/L)."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-apixaban-label",
+        "locator": "Section 8.6 Renal Impairment",
+        "quote": "No dose adjustment is recommended for patients with renal impairment, including those with ESRD on dialysis"
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "No dose adjustment is required in patients with mild hepatic impairment (Child-Pugh class A). Because patients with moderate hepatic impairment (Child-Pugh class B) may have intrinsic coagulation abnormalities and there is limited clinical experience with ELIQUIS in these patients, dosing recommendations cannot be provided. ELIQUIS is not recommended in patients with severe hepatic impairment (Child-Pugh class C).",
+    "refs": [
+      {
+        "source_id": "fda-apixaban-label",
+        "locator": "Section 8.7 Hepatic Impairment",
+        "quote": "No dose adjustment is required in patients with mild hepatic impairment (Child-Pugh class A). Because patients with moderate hepatic impairment (Child-Pugh class B) may have intrinsic coagulation abnormalities and there is limited clinical experience with ELIQUIS in these patients, dosing recommendations cannot be provided"
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "PREMATURE DISCONTINUATION OF ELIQUIS INCREASES THE RISK OF THROMBOTIC EVENTS: Premature discontinuation of any oral anticoagulant, including ELIQUIS, increases the risk of thrombotic events. If anticoagulation with ELIQUIS is discontinued for a reason other than pathological bleeding or completion of a course of therapy, consider coverage with another anticoagulant.",
+      "SPINAL/EPIDURAL HEMATOMA: Epidural or spinal hematomas may occur in patients treated with ELIQUIS who are receiving neuraxial anesthesia or undergoing spinal puncture. These hematomas may result in long-term or permanent paralysis."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-apixaban-label",
+        "locator": "BOXED WARNING",
+        "quote": "PREMATURE DISCONTINUATION OF ELIQUIS INCREASES THE RISK OF THROMBOTIC EVENTS Premature discontinuation of any oral anticoagulant, including ELIQUIS, increases the risk of thrombotic events. If anticoagulation with ELIQUIS is discontinued for a reason other than pathological bleeding or completion of a course of therapy, consider coverage with another anticoagulant"
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-apixaban-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Apixaban is a selective inhibitor of FXa. It does not require antithrombin III for antithrombotic activity. Apixaban inhibits free and clot-bound FXa, and prothrombinase activity."
+      }
+    ],
+    "note": "Factor Xa inhibitors do not impair neuromuscular transmission; safe in myasthenia gravis"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "ELIQUIS tablets may be crushed and suspended in 60 mL of water or D5W and promptly delivered through a nasogastric (NG) tube."
+    },
+    "refs": [
+      {
+        "source_id": "fda-apixaban-label",
+        "locator": "Section 2.6 Administration Options",
+        "quote": "Alternatively, ELIQUIS tablets may be crushed and suspended in 60 mL of water or D5W and promptly delivered through a nasogastric tube [see Clinical Pharmacology (12.3) ] ."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": [],
+    "note": "No pharmacogenomic testing requirement in FDA label"
+  },
+  "ae_tags": {
+    "value": null,
+    "refs": []
+  },
+  "mechanism_of_action": {
+    "value": "Apixaban is a selective inhibitor of FXa. It does not require antithrombin III for antithrombotic activity. Apixaban inhibits free and clot-bound FXa, and prothrombinase activity. Apixaban has no direct effect on platelet aggregation, but indirectly inhibits platelet aggregation induced by thrombin.",
+    "refs": [
+      {
+        "source_id": "fda-apixaban-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Apixaban is a selective inhibitor of FXa. It does not require antithrombin III for antithrombotic activity. Apixaban inhibits free and clot-bound FXa, and prothrombinase activity. Apixaban has no direct effect on platelet aggregation, but indirectly inhibits platelet aggregation induced by thrombin."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp3a4": "substrate",
+      "pgp": "substrate",
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-apixaban-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Apixaban is a substrate of both CYP3A4 and P-gp. Inhibitors of CYP3A4 and P-gp increase exposure to apixaban and increase the risk of bleeding. Inducers of CYP3A4 and P-gp decrease exposure to apixaban and increase the risk of stroke and other thromboembolic events."
+      }
+    ]
+  },
+  "tools": {
+    "missed_dose": {
+      "value": "If a dose of ELIQUIS is not taken at the scheduled time, the dose should be taken as soon as possible on the same day and twice-daily administration should be resumed. The dose should not be doubled to make up for a missed dose.",
+      "refs": [
+        {
+          "source_id": "fda-apixaban-label",
+          "locator": "Section 2.2 Missed Dose",
+          "quote": "If a dose of ELIQUIS is not taken at the scheduled time, the dose should be taken as soon as possible on the same day and twice-daily administration should be resumed. The dose should not be doubled to make up for a missed dose."
+        }
+      ]
+    },
+    "hold_restart": {
+      "value": [
+        {
+          "procedure": "Elective surgery / invasive procedure with moderate or high risk of clinically significant bleeding",
+          "hold_hours": "At least 48 hours",
+          "restart_timing": "Restart after procedure as soon as adequate hemostasis has been established"
+        },
+        {
+          "procedure": "Elective surgery / invasive procedure with low risk of bleeding",
+          "hold_hours": "At least 24 hours",
+          "restart_timing": "Restart after procedure as soon as adequate hemostasis has been established"
+        }
+      ],
+      "refs": [
+        {
+          "source_id": "fda-apixaban-label",
+          "locator": "Section 2.3 Temporary Interruption for Surgery and Other Interventions",
+          "quote": "ELIQUIS should be discontinued at least 48 hours prior to elective surgery or invasive procedures with a moderate or high risk of unacceptable or clinically significant bleeding [see Warnings and Precautions (5.2) ] . ELIQUIS should be discontinued at least 24 hours prior to elective surgery or invasive procedures with a low risk of bleeding"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

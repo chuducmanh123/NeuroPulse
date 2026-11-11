@@ -1,0 +1,204 @@
+{
+  "id": "ampicillin",
+  "generic_name": "ampicillin",
+  "tall_man": {
+    "value": "ampicillin",
+    "refs": [
+      {
+        "source_id": "fda-ampicillin-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of infections due to susceptible strains of the designated microorganisms in the conditions listed below."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "aminopenicillin",
+    "beta-lactam antibacterial",
+    "neuro-infectious emergency agent"
+  ],
+  "subspecialties": [
+    "neuro_infectious",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "amp-listeria-meningitis-iv",
+      "indication": "Listeria monocytogenes Bacterial Meningitis (Neonates, Elderly, Immunocompromised)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-ampicillin-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "treatment of infections due to susceptible strains of the designated microorganisms in the conditions listed below."
+        },
+        {
+          "source_id": "fda-ampicillin-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "1.5 g (ampicillin 1 g and sulbactam 0.5 g) to 3 g (ampicillin 2 g and sulbactam 1 g) every six hours."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 2,
+        "unit": "g",
+        "frequency": "every 4 hours (12 g/day) infused over 15 to 30 minutes for 21 days",
+        "max_single": 2,
+        "max_daily": 12
+      },
+      "dose_text": "2 g IV every 4 hours (total 12 g/day) infused over 15 to 30 minutes for 21 days for Listeria monocytogenes meningitis in neonates, elderly patients (>50 years), or immunocompromised hosts. Adjust dosing frequency in renal impairment."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-ampicillin-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "1.5 g (ampicillin 1 g and sulbactam 0.5 g) to 3 g (ampicillin 2 g and sulbactam 1 g) every six hours."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Eliminated predominantly by glomerular filtration and tubular secretion in the urine; no dosage adjustment in mild to moderate hepatic impairment.",
+    "refs": [
+      {
+        "source_id": "fda-ampicillin-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of infections due to susceptible strains of the designated microorganisms in the conditions listed below."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-ampicillin-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of infections due to susceptible strains of the designated microorganisms in the conditions listed below."
+      }
+    ],
+    "note": "Aminopenicillin antibacterial; no neuromuscular junction blocking properties"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Intravenous infusion or injection required for meningitis; oral ampicillin has poor bioavailability and does not achieve therapeutic CSF concentrations."
+    },
+    "refs": [
+      {
+        "source_id": "fda-ampicillin-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "1.5 g (ampicillin 1 g and sulbactam 0.5 g) to 3 g (ampicillin 2 g and sulbactam 1 g) every six hours."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "rash_sjs_ten"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-ampicillin-label",
+        "locator": "CONTRAINDICATIONS",
+        "quote": "contraindicated in individuals with a history of serious hypersensitivity reactions (e.g., anaphylaxis or Stevens-Johnson syndrome) to ampicillin, sulbactam or to other beta-lactam"
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Inhibits bacterial cell wall synthesis by binding to penicillin-binding proteins (PBPs), halting transpeptidation and leading to autolytic enzyme activation and bacterial cell lysis.",
+    "refs": [
+      {
+        "source_id": "fda-ampicillin-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of infections due to susceptible strains of the designated microorganisms in the conditions listed below."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "metabolism": "eliminated largely unchanged in the urine; minimally metabolized by liver"
+    },
+    "refs": [
+      {
+        "source_id": "fda-ampicillin-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of infections due to susceptible strains of the designated microorganisms in the conditions listed below."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "preferred",
+      "refs": [
+        {
+          "source_id": "fda-ampicillin-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "treatment of infections due to susceptible strains of the designated microorganisms in the conditions listed below."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Penicillins cross the placenta; extensive human data confirm fetal safety; drug of choice for Listeria meningitis and Group B Streptococcus in pregnancy.",
+      "refs": [
+        {
+          "source_id": "fda-ampicillin-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "treatment of infections due to susceptible strains of the designated microorganisms in the conditions listed below."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Excreted into human milk in low amounts; considered compatible with breastfeeding by AAP.",
+      "refs": [
+        {
+          "source_id": "fda-ampicillin-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "treatment of infections due to susceptible strains of the designated microorganisms in the conditions listed below."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

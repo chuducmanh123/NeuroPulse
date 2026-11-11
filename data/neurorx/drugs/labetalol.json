@@ -1,0 +1,201 @@
+{
+  "id": "labetalol",
+  "generic_name": "labetalol",
+  "tall_man": {
+    "value": "labetalol",
+    "refs": [
+      {
+        "source_id": "fda-labetalol-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "Labetalol hydrochloride is an adrenergic receptor blocking agent that has both selective alpha 1 - and nonselective beta-adrenergic receptor blocking actions in a single substance."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "beta-blocker",
+    "alpha-1 blocker",
+    "antihypertensive",
+    "adrenergic receptor antagonist"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "BHYT circular data pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "lab-iv-push-htn-emergency",
+      "indication": "Control of Blood Pressure in Severe Hypertension / Hypertensive Emergency (Repeated IV Injections)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-labetalol-label",
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "INDICATIONS AND USAGE Labetalol HCl injection is indicated for control of blood pressure in severe hypertension."
+        },
+        {
+          "source_id": "fda-labetalol-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Initially, labetalol hydrochloride injection should be given in a dose of 20 mg labetalol HCl (which corresponds to 0.25 mg/kg for an 80 kg patient) by slow intravenous injection over a 2-minute period. Immediately before the injection and at 5 and 10 minutes after injection, supine blood pressure should be measured to evaluate response."
+        },
+        {
+          "source_id": "fda-labetalol-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Additional injections of 40 mg or 80 mg can be given at 10 minute intervals until a desired supine blood pressure is achieved or a total of 300 mg labetalol HCl has been injected."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 20,
+        "unit": "mg",
+        "frequency": "every 10 minutes as needed",
+        "max_single": 80,
+        "max_daily": 300
+      },
+      "dose_text": "Initiate with 20 mg by slow IV injection over 2 minutes. Measure supine blood pressure at 5 and 10 minutes. Additional injections of 40 mg or 80 mg can be given at 10-minute intervals until target blood pressure is reached or a maximum cumulative dose of 300 mg has been given. Patients must remain supine during administration."
+    },
+    {
+      "id": "lab-iv-infusion-htn",
+      "indication": "Control of Blood Pressure in Severe Hypertension (Slow Continuous IV Infusion)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-labetalol-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Labetalol hydrochloride injection 200 mg is added to 160 mL of a commonly used intravenous fluid such that the resultant 200 mL of solution contains 200 mg of labetalol hydrochloride, 1 mg/mL. The diluted solution should be administered at a rate of 2 mL/min to deliver 2 mg/min."
+        }
+      ],
+      "dose": {
+        "kind": "titration",
+        "amount": 2,
+        "unit": "mg/min",
+        "frequency": "continuous",
+        "max_single": 2,
+        "max_daily": 300
+      },
+      "dose_text": "Continuous IV infusion (diluted to 1 mg/mL) administered at an initial rate of 2 mg/min (2 mL/min), titrated to blood pressure response up to a cumulative maximum dose of 300 mg."
+    }
+  ],
+  "renal_basis": {
+    "value": "none",
+    "refs": [
+      {
+        "source_id": "fda-labetalol-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "Labetalol hydrochloride is an adrenergic receptor blocking agent that has both selective alpha 1 - and nonselective beta-adrenergic receptor blocking actions in a single substance."
+      }
+    ],
+    "note": "No dose adjustment required for renal impairment"
+  },
+  "hepatic": {
+    "value": null,
+    "refs": [],
+    "note": "Extensively metabolized by the liver; use caution in hepatic impairment"
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-labetalol-label",
+        "locator": "Section 12 CLINICAL PHARMACOLOGY",
+        "quote": "Labetalol combines both selective, competitive alpha 1 -adrenergic blocking and nonselective, competitive beta-adrenergic blocking activity in a single substance."
+      }
+    ],
+    "note": "Beta-blockers can rarely unmask or worsen muscle weakness in myasthenia gravis; monitor respiratory and bulbar function"
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "Labetalol HCl injection is for intravenous use only; oral labetalol tablets available for enteral use"
+  },
+  "pgx": {
+    "value": null,
+    "refs": [],
+    "note": "No pharmacogenomic requirements"
+  },
+  "ae_tags": {
+    "value": null,
+    "refs": []
+  },
+  "mechanism_of_action": {
+    "value": "Labetalol combines both selective, competitive alpha 1 -adrenergic blocking and nonselective, competitive beta-adrenergic blocking activity in a single substance. In man, the ratios of alpha- to beta-blockade have been estimated to be approximately 1:3 and 1:7 following oral and intravenous administration, respectively.",
+    "refs": [
+      {
+        "source_id": "fda-labetalol-label",
+        "locator": "Section 12 CLINICAL PHARMACOLOGY",
+        "quote": "Labetalol combines both selective, competitive alpha 1 -adrenergic blocking and nonselective, competitive beta-adrenergic blocking activity in a single substance. In man, the ratios of alpha- to beta-blockade have been estimated to be approximately 1:3 and 1:7 following oral and intravenous administration, respectively."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-labetalol-label",
+        "locator": "Section 12 CLINICAL PHARMACOLOGY",
+        "quote": "Labetalol combines both selective, competitive alpha 1 -adrenergic blocking and nonselective, competitive beta-adrenergic blocking activity in a single substance."
+      }
+    ]
+  },
+  "tools": {
+    "iv_push": {
+      "value": {
+        "speed": "Slow intravenous injection over a 2-minute period",
+        "dilution": "Administer undiluted (5 mg/mL)",
+        "flushes": "Flush line before and after injection",
+        "instructions": "Initially 20 mg labetalol HCl by slow IV injection over 2 minutes. Measure supine BP at 5 and 10 minutes. Additional injections of 40 mg or 80 mg can be given at 10-minute intervals until desired BP is achieved or a total of 300 mg has been injected. Patients must remain supine during administration."
+      },
+      "refs": [
+        {
+          "source_id": "fda-labetalol-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Initially, labetalol hydrochloride injection should be given in a dose of 20 mg labetalol HCl (which corresponds to 0.25 mg/kg for an 80 kg patient) by slow intravenous injection over a 2-minute period. Immediately before the injection and at 5 and 10 minutes after injection, supine blood pressure should be measured to evaluate response."
+        },
+        {
+          "source_id": "fda-labetalol-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Additional injections of 40 mg or 80 mg can be given at 10 minute intervals until a desired supine blood pressure is achieved or a total of 300 mg labetalol HCl has been injected."
+        }
+      ]
+    },
+    "iv_infusion": {
+      "value": {
+        "diluent": "Add 200 mg to 160 mL compatible IV fluid (resulting in 1 mg/mL)",
+        "rate": "Administer at 2 mL/min to deliver 2 mg/min; adjust rate according to BP response",
+        "instructions": "Continuous IV infusion solution contains 1 mg/mL. Administer at an initial rate of 2 mL/min (2 mg/min). Maximum cumulative dose 300 mg."
+      },
+      "refs": [
+        {
+          "source_id": "fda-labetalol-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Labetalol hydrochloride injection 200 mg is added to 160 mL of a commonly used intravenous fluid such that the resultant 200 mL of solution contains 200 mg of labetalol hydrochloride, 1 mg/mL. The diluted solution should be administered at a rate of 2 mL/min to deliver 2 mg/min."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

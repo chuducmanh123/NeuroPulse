@@ -1,0 +1,187 @@
+{
+  "id": "diazepam",
+  "generic_name": "diazepam",
+  "tall_man": {
+    "value": "diazepam",
+    "refs": [
+      {
+        "source_id": "fda-diazepam-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "Diazepam Injection, USP is a sterile, nonpyrogenic solution intended for intramuscular or intravenous administration. Each milliliter (mL) contains 5 mg diazepam; 40% propylene glycol; 10% alcohol; 5% sodium benzoate and benzoic acid added as buffers; and 1.5% benzyl alcohol added as a preservative. pH 6.6 (6.2 to 6.9)."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "benzodiazepine",
+    "anticonvulsant",
+    "sedative",
+    "GABA-A positive allosteric modulator"
+  ],
+  "subspecialties": [
+    "epilepsy",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "BHYT circular data pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "dzp-status-epilepticus-adult",
+      "indication": "Status Epilepticus & Severe Recurrent Convulsive Seizures (Adult)",
+      "setting": "status_epilepticus",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-diazepam-label",
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "Diazepam injection is a useful adjunct in status epilepticus."
+        },
+        {
+          "source_id": "fda-diazepam-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "5 mg to 10 mg initially (intravenous preferred). This injection may be repeated if necessary at 10 to 15 minute intervals up to a maximum dose of 30 mg. If necessary, therapy with diazepam may be repeated in 2 to 4 hours; however, residual active metabolites may persist, and readministration should be made with this consideration."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 10,
+        "unit": "mg",
+        "frequency": "once, repeat in 10-15 min prn",
+        "max_single": 10,
+        "max_daily": 30
+      },
+      "dose_text": "5 mg to 10 mg IV slowly (at least 1 min per 5 mg). May repeat every 10 to 15 minutes as needed up to a maximum cumulative dose of 30 mg. Therapy may be repeated in 2 to 4 hours if necessary."
+    },
+    {
+      "id": "dzp-status-epilepticus-pediatric",
+      "indication": "Status Epilepticus in Pediatric Patients (3 months to 17 years)",
+      "setting": "status_epilepticus",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-diazepam-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Children 3 months up to 17 years of age with status epilepticus: First dose: 0.2 mg/kg (maximum 8 mg) by slow intravenous push (one minute in duration). Second dose (if necessary; 5 minutes after the first dose): 0.1 mg/kg (maximum 4 mg) by slow intravenous push (one minute in duration)."
+        }
+      ],
+      "dose": {
+        "kind": "weight",
+        "amount": 0.2,
+        "unit": "mg/kg",
+        "frequency": "once, repeat 0.1 mg/kg in 5 min prn",
+        "max_single": 8,
+        "max_daily": 12
+      },
+      "dose_text": "First dose: 0.2 mg/kg IV push over 1 minute (maximum single dose 8 mg). Second dose (if necessary; 5 minutes after first dose): 0.1 mg/kg IV push over 1 minute (maximum single dose 4 mg)."
+    }
+  ],
+  "renal_basis": {
+    "value": "none",
+    "refs": [
+      {
+        "source_id": "fda-diazepam-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "Diazepam is a benzodiazepine derivative chemically designated as 7-chloro-1,3-dihydro-1-methyl-5- phenyl-2H-1,4-benzodiazepin-2-one."
+      }
+    ],
+    "note": "Renal clearance is minimal; active metabolites (desmethyldiazepam, oxazepam) may accumulate in severe chronic kidney disease"
+  },
+  "hepatic": {
+    "value": null,
+    "refs": [],
+    "note": "Extensively metabolized by hepatic CYP2C19 and CYP3A4; half-life prolonged and clearance decreased in hepatic impairment and cirrhosis; use with caution and lower doses"
+  },
+  "black_box": {
+    "value": [
+      "WARNING: RISKS FROM CONCOMITANT USE WITH OPIOIDS; ABUSE, MISUSE, AND ADDICTION; and DEPENDENCE AND WITHDRAWAL REACTIONS: Concomitant use of benzodiazepines and opioids may result in profound sedation, respiratory depression, coma, and death. Reserve concomitant prescribing of these drugs in patients for whom alternative treatment options are inadequate. Limit dosages and durations to the minimum required. Follow patients for signs and symptoms of respiratory depression and sedation."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-diazepam-label",
+        "locator": "Section BOXED WARNING",
+        "quote": "Concomitant use of benzodiazepines and opioids may result in profound sedation, respiratory depression, coma, and death (see WARNINGS ). Reserve concomitant prescribing of these drugs in patients for whom alternative treatment options are inadequate. Limit dosages and durations to the minimum required."
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-diazepam-label",
+        "locator": "Section 6 ADVERSE REACTIONS",
+        "quote": "Side effects most commonly reported were drowsiness, fatigue and ataxia; venous thrombosis and phlebitis at the site of injection."
+      }
+    ],
+    "note": "Benzodiazepines may exacerbate muscle weakness and induce respiratory depression in myasthenia gravis; contraindicated or use with extreme caution"
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "Injectable formulation is for IV or IM administration; oral tablets or oral solutions available for enteral tube administration"
+  },
+  "pgx": {
+    "value": null,
+    "refs": [],
+    "note": "CYP2C19 poor metabolizers may exhibit increased diazepam plasma concentrations and prolonged half-life"
+  },
+  "ae_tags": {
+    "value": null,
+    "refs": []
+  },
+  "mechanism_of_action": {
+    "value": "Diazepam is a long-acting benzodiazepine that enhances the inhibitory action of gamma-aminobutyric acid (GABA) by binding to stereospecific benzodiazepine receptors on postsynaptic GABA-A receptor complexes in the central nervous system.",
+    "refs": [
+      {
+        "source_id": "fda-diazepam-label",
+        "locator": "Section 12 CLINICAL PHARMACOLOGY",
+        "quote": "In animals, diazepam appears to act on parts of the limbic system, the thalamus and hypothalamus, and induces calming effects."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp2c19": "substrate",
+      "cyp3a4": "substrate",
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-diazepam-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "Diazepam is a benzodiazepine derivative chemically designated as 7-chloro-1,3-dihydro-1-methyl-5- phenyl-2H-1,4-benzodiazepin-2-one."
+      }
+    ]
+  },
+  "tools": {
+    "iv_push": {
+      "value": {
+        "speed": "Inject slowly taking at least one minute for each 5 mg (1 mL) given",
+        "dilution": "Do not mix or dilute diazepam with other solutions or drugs in syringe or infusion container",
+        "flushes": "If not feasible to administer directly IV, inject slowly through infusion tubing as close as possible to vein insertion",
+        "instructions": "Do not use small veins (dorsum of hand or wrist). Extreme care should be taken to avoid intra-arterial administration or extravasation. Facilities for respiratory assistance should be readily available."
+      },
+      "refs": [
+        {
+          "source_id": "fda-diazepam-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "For other indications, the solution should be injected slowly taking at least on minute for each 5 mg (1mL) given. Do not use small veins, such as those on the dorsum of the hand or wrist. Extreme care should be taken to avoid intra-arterial administration or extravasation."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

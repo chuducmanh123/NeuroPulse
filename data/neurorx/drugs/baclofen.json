@@ -1,0 +1,207 @@
+{
+  "id": "baclofen",
+  "generic_name": "baclofen",
+  "tall_man": {
+    "value": "baclofen",
+    "refs": [
+      {
+        "source_id": "fda-baclofen-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "alleviation of signs and symptoms of spasticity resulting from multiple sclerosis, particularly for the relief of flexor spasms and concomitant pain, clonus, and muscular rigidity."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "GABA-B receptor agonist",
+    "centrally acting skeletal muscle relaxant",
+    "antispasticity agent"
+  ],
+  "subspecialties": [
+    "neuromuscular",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "bac-spasticity-oral",
+      "indication": "Spasticity of Multiple Sclerosis or Spinal Cord Injury Origin",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-baclofen-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "alleviation of signs and symptoms of spasticity resulting from multiple sclerosis, particularly for the relief of flexor spasms and concomitant pain, clonus, and muscular rigidity."
+        },
+        {
+          "source_id": "fda-baclofen-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "5 mg t.i.d. for 3 days 10 mg t.i.d. for 3 days 15 mg t.i.d. for 3 days 20 mg t.i.d."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 5,
+        "unit": "mg",
+        "frequency": "three times daily; titrate every 3 days by 5 mg TID up to 20 mg TID (max 80 mg/day)",
+        "max_single": 20,
+        "max_daily": 80
+      },
+      "dose_text": "Titration schedule: 5 mg TID for 3 days, 10 mg TID for 3 days, 15 mg TID for 3 days, 20 mg TID for 3 days. Total daily dose should not exceed 80 mg daily (20 mg QID). Do not discontinue abruptly due to risk of withdrawal hallucinations and seizures."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-baclofen-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "alleviation of signs and symptoms of spasticity resulting from multiple sclerosis, particularly for the relief of flexor spasms and concomitant pain, clonus, and muscular rigidity."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Eliminated predominantly unchanged by renal excretion (70-80%); hepatic dosage adjustment usually not required.",
+    "refs": [
+      {
+        "source_id": "fda-baclofen-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "alleviation of signs and symptoms of spasticity resulting from multiple sclerosis, particularly for the relief of flexor spasms and concomitant pain, clonus, and muscular rigidity."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-baclofen-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "alleviation of signs and symptoms of spasticity resulting from multiple sclerosis, particularly for the relief of flexor spasms and concomitant pain, clonus, and muscular rigidity."
+      }
+    ],
+    "note": "Central muscle relaxant can exacerbate skeletal muscle weakness in myasthenia gravis; use with caution"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "Immediate-release tablets may be crushed and suspended in water for administration via enteral feeding tube."
+    },
+    "refs": [
+      {
+        "source_id": "fda-baclofen-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "5 mg t.i.d. for 3 days 10 mg t.i.d. for 3 days 15 mg t.i.d. for 3 days 20 mg t.i.d."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "sedation_somnolence",
+      "confusion_delirium",
+      "ataxia",
+      "psychiatric_behavioral"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-baclofen-label",
+        "locator": "ADVERSE REACTIONS",
+        "quote": "The most common is transient drowsiness (10 to 63%)."
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Structural GABA analogue that stimulates presynaptic GABA-B receptors at spinal cord interneurons, restricting calcium influx, hyperpolarizing motor terminals, and depressing monosynaptic and polysynaptic reflexes.",
+    "refs": [
+      {
+        "source_id": "fda-baclofen-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "alleviation of signs and symptoms of spasticity resulting from multiple sclerosis, particularly for the relief of flexor spasms and concomitant pain, clonus, and muscular rigidity."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "metabolism": "excreted mostly unchanged by kidneys with minimal hepatic metabolism"
+    },
+    "refs": [
+      {
+        "source_id": "fda-baclofen-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "alleviation of signs and symptoms of spasticity resulting from multiple sclerosis, particularly for the relief of flexor spasms and concomitant pain, clonus, and muscular rigidity."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-baclofen-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "alleviation of signs and symptoms of spasticity resulting from multiple sclerosis, particularly for the relief of flexor spasms and concomitant pain, clonus, and muscular rigidity."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Crosses the placenta; neonatal withdrawal (tremor, hypertonia, seizures) reported after maternal third-trimester use; taper slowly if indicated.",
+      "refs": [
+        {
+          "source_id": "fda-baclofen-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "alleviation of signs and symptoms of spasticity resulting from multiple sclerosis, particularly for the relief of flexor spasms and concomitant pain, clonus, and muscular rigidity."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Excreted into breast milk in small amounts; monitor infant for drowsiness.",
+      "refs": [
+        {
+          "source_id": "fda-baclofen-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "alleviation of signs and symptoms of spasticity resulting from multiple sclerosis, particularly for the relief of flexor spasms and concomitant pain, clonus, and muscular rigidity."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

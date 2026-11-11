@@ -1,0 +1,204 @@
+{
+  "id": "vancomycin",
+  "generic_name": "vancomycin",
+  "tall_man": {
+    "value": "vancomycin",
+    "refs": [
+      {
+        "source_id": "fda-vancomycin-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "indicated for the treatment of serious or severe infections caused by susceptible strains of methicillin-resistant (β-lactam-resistant) staphylococci."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "glycopeptide antibacterial",
+    "cell wall synthesis inhibitor",
+    "neuro-infectious emergency agent"
+  ],
+  "subspecialties": [
+    "neuro_infectious",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "van-cns-infection-iv",
+      "indication": "Empiric Bacterial Meningitis and MRSA/PRSP CNS Infections",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-vancomycin-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "indicated for the treatment of serious or severe infections caused by susceptible strains of methicillin-resistant (β-lactam-resistant) staphylococci."
+        },
+        {
+          "source_id": "fda-vancomycin-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "usual daily intravenous dose is 2 g divided either as 500 mg every 6 hours or 1 g every 12 hours."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 15,
+        "unit": "mg",
+        "frequency": "every 8 to 12 hours (target AUC/MIC 400-600 or trough 15-20 mcg/mL); infuse at <= 10 mg/min",
+        "max_single": 2000,
+        "max_daily": 4000
+      },
+      "dose_text": "15 to 20 mg/kg IV every 8 to 12 hours (usual initial adult dose 1 g to 1.5 g IV every 12 hours). Administer by IV infusion over at least 60 minutes at a rate not exceeding 10 mg/min to prevent infusion-related reactions (red man syndrome). Therapeutic drug monitoring required: target AUC/MIC 400 to 600 or trough 15 to 20 mcg/mL."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-vancomycin-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "usual daily intravenous dose is 2 g divided either as 500 mg every 6 hours or 1 g every 12 hours."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Vancomycin is eliminated almost entirely unchanged by glomerular filtration; no specific dosage adjustment in hepatic impairment.",
+    "refs": [
+      {
+        "source_id": "fda-vancomycin-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "indicated for the treatment of serious or severe infections caused by susceptible strains of methicillin-resistant (β-lactam-resistant) staphylococci."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-vancomycin-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "indicated for the treatment of serious or severe infections caused by susceptible strains of methicillin-resistant (β-lactam-resistant) staphylococci."
+      }
+    ],
+    "note": "Rare reports of potentiation of neuromuscular blockade in surgical patients; monitor in myasthenia gravis"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Intravenous formulation must be infused IV for CNS infections. Oral vancomycin is not absorbed systemically and is completely ineffective for meningitis."
+    },
+    "refs": [
+      {
+        "source_id": "fda-vancomycin-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "usual daily intravenous dose is 2 g divided either as 500 mg every 6 hours or 1 g every 12 hours."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "rash_sjs_ten"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-vancomycin-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "infusion-related events. An infusion rate of 10 mg/min or less is associated with fewer infusion-related events (see ADVERSE REACTIONS )."
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Binds tightly to D-alanyl-D-alanine termini of cell wall peptidoglycan pentapeptide precursors, sterically blocking transpeptidase and transglycosylase cross-linking and halting cell wall synthesis.",
+    "refs": [
+      {
+        "source_id": "fda-vancomycin-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "indicated for the treatment of serious or severe infections caused by susceptible strains of methicillin-resistant (β-lactam-resistant) staphylococci."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "metabolism": "negligible hepatic metabolism; eliminated unchanged by renal glomerular filtration"
+    },
+    "refs": [
+      {
+        "source_id": "fda-vancomycin-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "indicated for the treatment of serious or severe infections caused by susceptible strains of methicillin-resistant (β-lactam-resistant) staphylococci."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-vancomycin-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "indicated for the treatment of serious or severe infections caused by susceptible strains of methicillin-resistant (β-lactam-resistant) staphylococci."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Crosses the placenta; clinical studies in pregnant women have not demonstrated drug-induced sensorineural hearing loss or nephrotoxicity in newborns; monitor serum levels.",
+      "refs": [
+        {
+          "source_id": "fda-vancomycin-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "indicated for the treatment of serious or severe infections caused by susceptible strains of methicillin-resistant (β-lactam-resistant) staphylococci."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Excreted into breast milk; poorly absorbed from infant GI tract; compatible with breastfeeding.",
+      "refs": [
+        {
+          "source_id": "fda-vancomycin-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "indicated for the treatment of serious or severe infections caused by susceptible strains of methicillin-resistant (β-lactam-resistant) staphylococci."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

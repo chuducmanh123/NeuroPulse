@@ -1,0 +1,207 @@
+{
+  "id": "pyridostigmine",
+  "generic_name": "pyridostigmine",
+  "tall_man": {
+    "value": "pyridostigmine",
+    "refs": [
+      {
+        "source_id": "fda-pyridostigmine-label",
+        "locator": "DESCRIPTION",
+        "quote": "MESTINON (pyridostigmine bromide) is an orally active cholinesterase inhibitor. Chemically, pyridostigmine bromide is 3-hydroxy-1-methylpyridinium bromide dimethylcarbamate."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "acetylcholinesterase inhibitor",
+    "parasympathomimetic",
+    "neuromuscular agent"
+  ],
+  "subspecialties": [
+    "neuromuscular"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "pyr-mg-symptomatic",
+      "indication": "Myasthenia Gravis (Symptomatic Treatment)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-pyridostigmine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "MESTINON is useful in the treatment of myasthenia gravis. === DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION: MESTINON is available in three dosage forms: Oral Solution - raspberry-flavored,"
+        },
+        {
+          "source_id": "fda-pyridostigmine-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Conventional tablets - The average dose is ten 60 mg tablets or ten 5 mL teaspoonfuls daily, spaced to provide maximum relief when maximum strength is needed."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 60,
+        "unit": "mg",
+        "frequency": "every 4 to 6 hours",
+        "max_single": 120,
+        "max_daily": 600
+      },
+      "dose_text": "Initial: 60 mg orally every 4 to 6 hours while awake. Adjust size and frequency of dose to clinical response. Average dose is 600 mg daily (ten 60 mg tablets). Timespan 180 mg 1-2 times daily may be used at bedtime for nocturnal/morning symptoms."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-pyridostigmine-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "MESTINON is useful in the treatment of myasthenia gravis. === DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION: MESTINON is available in three dosage forms: Oral Solution - raspberry-flavored,"
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "No dosage adjustment provided in product labeling; primarily excreted unchanged by kidneys.",
+    "refs": [
+      {
+        "source_id": "fda-pyridostigmine-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "MESTINON is useful in the treatment of myasthenia gravis. === DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION: MESTINON is available in three dosage forms: Oral Solution - raspberry-flavored,"
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "first_line",
+    "refs": [
+      {
+        "source_id": "fda-pyridostigmine-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "MESTINON is useful in the treatment of myasthenia gravis. === DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION: MESTINON is available in three dosage forms: Oral Solution - raspberry-flavored,"
+      }
+    ],
+    "note": "First-line symptomatic therapy for myasthenia gravis; distinguish cholinergic crisis (overdose) from myasthenic crisis (underdose)"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "Conventional 60 mg tablets may be crushed; oral solution (60 mg/5 mL) is available and easily administered via tube. TIMESPAN extended-release tablets must NOT be crushed or chewed."
+    },
+    "refs": [
+      {
+        "source_id": "fda-pyridostigmine-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "TIMESPAN tablets - each containing 180 mg pyridostigmine bromide."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [],
+    "refs": [
+      {
+        "source_id": "fda-pyridostigmine-label",
+        "locator": "ADVERSE REACTIONS",
+        "quote": "ADVERSE REACTIONS: The side effects of MESTINON are most commonly related to overdosage and generally are of two varieties, muscarinic and nicotinic."
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Reversibly inhibits acetylcholinesterase, prolonging the action of acetylcholine at the neuromuscular junction.",
+    "refs": [
+      {
+        "source_id": "fda-pyridostigmine-label",
+        "locator": "MECHANISM OF ACTION",
+        "quote": "ACTIONS: MESTINON inhibits the destruction of acetylcholine by cholinesterase and thereby permits freer transmission of nerve impulses across the neuromuscular junction."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "metabolism": "hydrolyzed by cholinesterases; minor hepatic microsomal metabolism"
+    },
+    "refs": [
+      {
+        "source_id": "fda-pyridostigmine-label",
+        "locator": "MECHANISM OF ACTION",
+        "quote": "ACTIONS: MESTINON inhibits the destruction of acetylcholine by cholinesterase and thereby permits freer transmission of nerve impulses across the neuromuscular junction."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "acceptable",
+      "refs": [
+        {
+          "source_id": "fda-pyridostigmine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "MESTINON is useful in the treatment of myasthenia gravis. === DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION: MESTINON is available in three dosage forms: Oral Solution - raspberry-flavored,"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Requirements may fluctuate during pregnancy; titrate to clinical symptoms.",
+      "refs": [
+        {
+          "source_id": "fda-pyridostigmine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "MESTINON is useful in the treatment of myasthenia gravis. === DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION: MESTINON is available in three dosage forms: Oral Solution - raspberry-flavored,"
+        }
+      ]
+    },
+    "postpartum": {
+      "value": "Watch for transient neonatal myasthenia gravis in 10-20% of infants born to myasthenic mothers.",
+      "refs": [
+        {
+          "source_id": "fda-pyridostigmine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "MESTINON is useful in the treatment of myasthenia gravis. === DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION: MESTINON is available in three dosage forms: Oral Solution - raspberry-flavored,"
+        }
+      ]
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Excreted into breast milk in small amounts; generally considered compatible with breastfeeding with infant monitoring for cholinergic signs.",
+      "refs": [
+        {
+          "source_id": "fda-pyridostigmine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "MESTINON is useful in the treatment of myasthenia gravis. === DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION: MESTINON is available in three dosage forms: Oral Solution - raspberry-flavored,"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

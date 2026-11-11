@@ -1,0 +1,219 @@
+{
+  "id": "donanemab",
+  "generic_name": "donanemab",
+  "tall_man": {
+    "value": "donanemab",
+    "refs": [
+      {
+        "source_id": "fda-donanemab-label",
+        "locator": "BOXED WARNING",
+        "quote": "AMYLOID RELATED IMAGING ABNORMALITIES Monoclonal antibodies directed against aggregated forms of beta amyloid, including KISUNLA, can cause amyloid related imaging abnormalities (ARIA), characterized as ARIA with edema (ARIA-E) and ARIA wit"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "anti-amyloid beta monoclonal antibody",
+    "plaque-specific targeted biologic",
+    "disease-modifying biologic"
+  ],
+  "subspecialties": [
+    "dementia"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "don-ad-monthly",
+      "indication": "Mild Cognitive Impairment or Mild Dementia due to Alzheimer's Disease (Amyloid Positive)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-donanemab-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "treatment of Alzheimer's disease. Treatment with KISUNLA should be initiated in patients with mild cognitive impairment or mild dementia stage of disease, the population in which treatment was initiat"
+        },
+        {
+          "source_id": "fda-donanemab-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "700 mg Infusion 3: 1,050 mg Infusion 4 and beyond: 1,400 mg Consider stopping dosing with KISUNLA based on reduction of amyloid plaques to minimal levels on amyloid PET imaging."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 700,
+        "unit": "mg",
+        "frequency": "every 4 weeks × 3 doses, then 1400 mg every 4 weeks",
+        "max_single": 1400,
+        "max_daily": 1400
+      },
+      "dose_text": "700 mg IV infusion over 30 minutes every 4 weeks for the first 3 doses (Weeks 0, 4, 8), followed by 1400 mg IV every 4 weeks thereafter. Treatment may be paused or discontinued upon confirmed amyloid plaque clearance on PET imaging. Mandatory brain MRI monitoring: baseline within 1 year; safety MRIs prior to the 2nd, 3rd, 4th, and 7th infusions. ApoE epsilon 4 genotyping recommended prior to treatment."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-donanemab-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of Alzheimer's disease. Treatment with KISUNLA should be initiated in patients with mild cognitive impairment or mild dementia stage of disease, the population in which treatment was initiat"
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Proteolytic catabolism; no dosage adjustment in hepatic impairment.",
+    "refs": [
+      {
+        "source_id": "fda-donanemab-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of Alzheimer's disease. Treatment with KISUNLA should be initiated in patients with mild cognitive impairment or mild dementia stage of disease, the population in which treatment was initiat"
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "AMYLOID RELATED IMAGING ABNORMALITIES (ARIA): ARIA-E (BRAIN EDEMA/SWELLING) AND ARIA-H (MICROHEMORRHAGES AND SUPERFICIAL SIDEROSIS).",
+      "APOE EPSILON 4 HOMOZYGOTES EXPERIENCE SUBSTANTIALLY HIGHER INCIDENCE AND SEVERITY OF ARIA.",
+      "MANDATORY BASELINE BRAIN MRI AND SCHEDULED SAFETY MRIS PRIOR TO 2ND, 3RD, 4TH, AND 7TH INFUSIONS."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-donanemab-label",
+        "locator": "BOXED WARNING",
+        "quote": "AMYLOID RELATED IMAGING ABNORMALITIES Monoclonal antibodies directed against aggregated forms of beta amyloid, including KISUNLA, can cause amyloid related imaging abnormalities (ARIA), characterized as ARIA with edema (ARIA-E) and ARIA wit"
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-donanemab-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of Alzheimer's disease. Treatment with KISUNLA should be initiated in patients with mild cognitive impairment or mild dementia stage of disease, the population in which treatment was initiat"
+      }
+    ],
+    "note": "Plaque-specific IgG1 monoclonal antibody without neuromuscular junction activity"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Intravenous infusion only; strictly not for oral or enteral feeding tube administration."
+    },
+    "refs": [
+      {
+        "source_id": "fda-donanemab-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of Alzheimer's disease. Treatment with KISUNLA should be initiated in patients with mild cognitive impairment or mild dementia stage of disease, the population in which treatment was initiat"
+      }
+    ]
+  },
+  "pgx": {
+    "value": "Testing for ApoE epsilon 4 status should be performed prior to initiation of treatment to inform the risk of developing ARIA; homozygotes have the highest risk.",
+    "refs": [
+      {
+        "source_id": "fda-donanemab-label",
+        "locator": "BOXED WARNING",
+        "quote": "AMYLOID RELATED IMAGING ABNORMALITIES Monoclonal antibodies directed against aggregated forms of beta amyloid, including KISUNLA, can cause amyloid related imaging abnormalities (ARIA), characterized as ARIA with edema (ARIA-E) and ARIA wit"
+      }
+    ]
+  },
+  "ae_tags": {
+    "value": [
+      "confusion_delirium"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-donanemab-label",
+        "locator": "BOXED WARNING",
+        "quote": "AMYLOID RELATED IMAGING ABNORMALITIES Monoclonal antibodies directed against aggregated forms of beta amyloid, including KISUNLA, can cause amyloid related imaging abnormalities (ARIA), characterized as ARIA with edema (ARIA-E) and ARIA wit"
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Humanized IgG1 monoclonal antibody directed specifically against N-terminally truncated pyroglutamate-amyloid beta (pGlu-Abeta), an epitope present selectively within established brain amyloid plaques, clearing plaques through microglial phagocytosis.",
+    "refs": [
+      {
+        "source_id": "fda-donanemab-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of Alzheimer's disease. Treatment with KISUNLA should be initiated in patients with mild cognitive impairment or mild dementia stage of disease, the population in which treatment was initiat"
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "metabolism": "cleared by reticuloendothelial proteolysis into peptides and amino acids"
+    },
+    "refs": [
+      {
+        "source_id": "fda-donanemab-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of Alzheimer's disease. Treatment with KISUNLA should be initiated in patients with mild cognitive impairment or mild dementia stage of disease, the population in which treatment was initiat"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-donanemab-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "treatment of Alzheimer's disease. Treatment with KISUNLA should be initiated in patients with mild cognitive impairment or mild dementia stage of disease, the population in which treatment was initiat"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "IgG1 antibodies cross the placenta; no human pregnancy data. Target population is post-reproductive.",
+      "refs": [
+        {
+          "source_id": "fda-donanemab-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "treatment of Alzheimer's disease. Treatment with KISUNLA should be initiated in patients with mild cognitive impairment or mild dementia stage of disease, the population in which treatment was initiat"
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Excretion in human milk unknown; evaluate clinical benefit vs infant risk.",
+      "refs": [
+        {
+          "source_id": "fda-donanemab-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "treatment of Alzheimer's disease. Treatment with KISUNLA should be initiated in patients with mild cognitive impairment or mild dementia stage of disease, the population in which treatment was initiat"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "id": "protamine",
+  "generic_name": "protamine sulfate",
+  "tall_man": {
+    "value": "protamine sulfate",
+    "refs": [
+      {
+        "source_id": "fda-protamine-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "Protamines are simple proteins of low molecular weight that are rich in arginine and strongly basic. They occur in the sperm of salmon and certain other species of fish."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "antidote",
+    "heparin antagonist",
+    "reversal agent"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "BHYT circular data pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "pro-iv-heparin-reversal",
+      "indication": "Treatment of Heparin Overdosage / Heparin Neutralization",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-protamine-label",
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "INDICATIONS AND USAGE: Protamine Sulfate Injection, USP is indicated in the treatment of heparin overdosage."
+        },
+        {
+          "source_id": "fda-protamine-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Each mg of protamine sulfate, calculated on the dried basis, neutralizes not less than 100 USP Heparin Units. Protamine sulfate injection should be given by very slow intravenous injection over a 10-minute period in doses not to exceed 50 mg (see WARNINGS )."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 50,
+        "unit": "mg",
+        "frequency": "once",
+        "max_single": 50,
+        "max_daily": 50
+      },
+      "dose_text": "Each mg of protamine sulfate neutralizes not less than 100 USP Heparin Units. Administer by very slow IV injection over 10 minutes in doses not to exceed 50 mg. Dose decreases rapidly with time elapsed since heparin administration (e.g. 50% dose if 30 min post-heparin)."
+    }
+  ],
+  "renal_basis": {
+    "value": "none",
+    "refs": [
+      {
+        "source_id": "fda-protamine-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "Protamines are simple proteins of low molecular weight that are rich in arginine and strongly basic. They occur in the sperm of salmon and certain other species of fish."
+      }
+    ],
+    "note": "No dosage adjustment needed for renal impairment"
+  },
+  "hepatic": {
+    "value": null,
+    "refs": [],
+    "note": "No dosage adjustment needed for hepatic impairment"
+  },
+  "black_box": {
+    "value": [
+      "WARNING: Protamine sulfate can cause severe hypotension, cardiovascular collapse, noncardiogenic pulmonary edema, catastrophic pulmonary vasoconstriction, and pulmonary hypertension. Risk factors include high dose or overdose, rapid administration, repeated doses, previous administration of protamine, and current or previous use of protamine-containing drugs (NPH insulin, protamine zinc insulin, certain beta-blockers). Allergy to fish and previous vasectomy increase risk."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-protamine-label",
+        "locator": "Section BOXED WARNING",
+        "quote": "Protamine sulfate can cause severe hypotension, cardiovascular collapse, noncardiogenic pulmonary edema, catastrophic pulmonary vasoconstriction, and pulmonary hypertension. Risk factors include high dose or overdose, rapid administration (see WARNINGS and DOSAGE AND ADMINISTRATION ), repeated doses, previous administration of protamine, and current or previous use of protamine-containing drugs"
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-protamine-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "Protamines are simple proteins of low molecular weight that are rich in arginine and strongly basic. They occur in the sperm of salmon and certain other species of fish."
+      }
+    ],
+    "note": "Protamine sulfate does not impair neuromuscular transmission; safe in myasthenia gravis"
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "Intravenous injection only; not for enteral administration"
+  },
+  "pgx": {
+    "value": null,
+    "refs": [],
+    "note": "No pharmacogenomic requirements"
+  },
+  "ae_tags": {
+    "value": null,
+    "refs": []
+  },
+  "mechanism_of_action": {
+    "value": "When administered alone, protamine has an anticoagulant effect. However, when it is given in the presence of heparin (which is strongly acidic), a stable salt is formed and the anticoagulant activity of both drugs is lost. Protamine sulfate has a rapid onset of action. Neutralization of heparin occurs within five minutes after intravenous administration.",
+    "refs": [
+      {
+        "source_id": "fda-protamine-label",
+        "locator": "Section 12 CLINICAL PHARMACOLOGY",
+        "quote": "When administered alone, protamine has an anticoagulant effect. However, when it is given in the presence of heparin (which is strongly acidic), a stable salt is formed and the anticoagulant activity of both drugs is lost. Protamine sulfate has a rapid onset of action. Neutralization of heparin occurs within five minutes after intravenous administration of an appropriate dose of protamine sulfate."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-protamine-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "Protamines are simple proteins of low molecular weight that are rich in arginine and strongly basic. They occur in the sperm of salmon and certain other species of fish."
+      }
+    ]
+  },
+  "tools": {
+    "iv_push": {
+      "value": {
+        "speed": "Very slow IV injection over 10 minutes",
+        "dilution": "Undiluted (or diluted in D5-W or normal saline; discard unused portion)",
+        "flushes": "Flush line before and after injection",
+        "instructions": "Protamine sulfate injection should be given by very slow intravenous injection over a 10-minute period in doses not to exceed 50 mg. Protamine sulfate is intended for injection without further dilution; however, if further dilution is desired, D5-W or normal saline may be used."
+      },
+      "refs": [
+        {
+          "source_id": "fda-protamine-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Protamine sulfate injection should be given by very slow intravenous injection over a 10-minute period in doses not to exceed 50 mg (see WARNINGS ). Protamine sulfate is intended for injection without further dilution; however, if further dilution is desired, D5-W or normal saline may be used. Diluted solutions should not be stored since they contain no preservative."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

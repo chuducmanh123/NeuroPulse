@@ -1,0 +1,188 @@
+{
+  "id": "atorvastatin",
+  "generic_name": "atorvastatin",
+  "tall_man": {
+    "value": "atorvastatin",
+    "refs": [
+      {
+        "source_id": "fda-atorvastatin-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "LIPITOR (atorvastatin) is an inhibitor of 3-hydroxy-3-methylglutaryl-coenzyme A (HMG-CoA) reductase."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "HMG-CoA reductase inhibitor",
+    "statin",
+    "lipid-lowering agent"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "BHYT circular data pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "ator-po-secondary-stroke-prevention",
+      "indication": "Secondary Prevention of Stroke and Major Adverse Cardiovascular Events (High-Intensity Statin)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-atorvastatin-label",
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "Non-fatal MI, fatal and non-fatal stroke, revascularization procedures, hospitalization for congestive heart failure, and angina in adults with clinically evident CHD"
+        },
+        {
+          "source_id": "fda-atorvastatin-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Recommended starting dosage is 10 or 20 mg once daily; dosage range is 10 mg to 80 mg once daily. o Patients requiring LDL-C reduction >45% may start at 40 mg once daily."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 80,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 80,
+        "max_daily": 80
+      },
+      "dose_text": "80 mg orally once daily (or 40 mg once daily in patients intolerant to 80 mg) for high-intensity lipid-lowering and plaque stabilization following ischemic stroke or TIA. Administer at any time of day, with or without food."
+    },
+    {
+      "id": "ator-po-primary-prevention",
+      "indication": "Primary Prevention of Stroke and Cardiovascular Disease in High-Risk Patients",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-atorvastatin-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Recommended starting dosage is 10 or 20 mg once daily; dosage range is 10 mg to 80 mg once daily. o Patients requiring LDL-C reduction >45% may start at 40 mg once daily."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 20,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 80,
+        "max_daily": 80
+      },
+      "dose_text": "10 to 20 mg orally once daily (or 40 mg once daily for patients requiring >45% LDL-C reduction). Titrate based on LDL-C response up to 80 mg daily."
+    }
+  ],
+  "renal_basis": {
+    "value": "none",
+    "refs": [
+      {
+        "source_id": "fda-atorvastatin-label",
+        "locator": "Section 8.6 Renal Impairment",
+        "quote": "Renal impairment does not affect the plasma concentrations of LIPITOR, therefore there is no dosage adjustment in patients with renal impairment [see Warnings and Precautions (5.1) and Clinical Pharmacology (12.3) ] ."
+      }
+    ],
+    "note": "No dosage adjustment needed for renal impairment"
+  },
+  "hepatic": {
+    "value": "LIPITOR is contraindicated in patients with acute liver failure or decompensated cirrhosis.",
+    "refs": [
+      {
+        "source_id": "fda-atorvastatin-label",
+        "locator": "Section 8.7 Hepatic Impairment",
+        "quote": "LIPITOR is contraindicated in patients with acute liver failure or decompensated cirrhosis [see Contraindications (4) ] ."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-atorvastatin-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "LIPITOR is a selective, competitive inhibitor of HMG-CoA reductase, the rate-limiting enzyme that converts 3-hydroxy-3-methylglutaryl-coenzyme A to mevalonate, a precursor of sterols, including cholesterol."
+      }
+    ],
+    "note": "Statins can rarely worsen myasthenia gravis weakness or induce necrotizing autoimmune myopathy (anti-HMGCR antibodies); use with caution and monitor symptoms"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "LIPITOR film-coated tablets may be crushed and dispersed in water for administration via nasogastric or gastrostomy tube."
+    },
+    "refs": [
+      {
+        "source_id": "fda-atorvastatin-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "LIPITOR (atorvastatin) is an inhibitor of 3-hydroxy-3-methylglutaryl-coenzyme A (HMG-CoA) reductase."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": [],
+    "note": "SLCO1B1 genotyping can inform myopathy risk, but testing is not mandated in FDA label"
+  },
+  "ae_tags": {
+    "value": null,
+    "refs": []
+  },
+  "mechanism_of_action": {
+    "value": "LIPITOR is a selective, competitive inhibitor of HMG-CoA reductase, the rate-limiting enzyme that converts 3-hydroxy-3-methylglutaryl-coenzyme A to mevalonate, a precursor of sterols, including cholesterol. In animal models, LIPITOR lowers plasma cholesterol and lipoprotein levels by inhibiting HMG-CoA reductase and cholesterol synthesis in the liver.",
+    "refs": [
+      {
+        "source_id": "fda-atorvastatin-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "LIPITOR is a selective, competitive inhibitor of HMG-CoA reductase, the rate-limiting enzyme that converts 3-hydroxy-3-methylglutaryl-coenzyme A to mevalonate, a precursor of sterols, including cholesterol."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp3a4": "substrate",
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-atorvastatin-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "See full prescribing information for details regarding concomitant use of LIPITOR with other drugs or grapefruit juice that increase the risk of myopathy and rhabdomyolysis ( 2.5 , 7.1 )."
+      }
+    ]
+  },
+  "tools": {
+    "crush_compatibility": {
+      "value": {
+        "crushable": true,
+        "instructions": "LIPITOR immediate-release film-coated tablets may be crushed and suspended in water for enteral tube administration."
+      },
+      "refs": [
+        {
+          "source_id": "fda-atorvastatin-label",
+          "locator": "Section 11 DESCRIPTION",
+          "quote": "LIPITOR (atorvastatin) is an inhibitor of 3-hydroxy-3-methylglutaryl-coenzyme A (HMG-CoA) reductase."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

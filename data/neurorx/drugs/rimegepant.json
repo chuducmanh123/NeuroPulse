@@ -1,0 +1,230 @@
+{
+  "id": "rimegepant",
+  "generic_name": "rimegepant",
+  "tall_man": {
+    "value": "rimegepant",
+    "refs": [
+      {
+        "source_id": "fda-rimegepant-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "acute treatment of migraine with or without aura in adults ( 1.1 ) preventive treatment of episodic migraine in adults ( 1.2 ) 1.1 Acute Treatment of Migraine NURTEC ODT is indicat"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "calcitonin gene-related peptide (CGRP) receptor antagonist",
+    "gepant",
+    "antimigraine agent"
+  ],
+  "subspecialties": [
+    "headache"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "rim-acute-migraine",
+      "indication": "Acute Treatment of Migraine Attacks with or without Aura",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-rimegepant-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "acute treatment of migraine with or without aura in adults ( 1.1 ) preventive treatment of episodic migraine in adults ( 1.2 ) 1.1 Acute Treatment of Migraine NURTEC ODT is indicat"
+        },
+        {
+          "source_id": "fda-rimegepant-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "recommended dose of NURTEC ODT is 75 mg taken orally, as needed. The maximum dose in a 24-hour period is 75 mg."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 75,
+        "unit": "mg",
+        "frequency": "as needed; maximum 75 mg in 24 hours",
+        "max_single": 75,
+        "max_daily": 75
+      },
+      "dose_text": "75 mg orally as needed. The maximum dose in a 24-hour period is 75 mg. The safety of using more than 18 doses in a 30-day period has not been established."
+    },
+    {
+      "id": "rim-preventive-migraine",
+      "indication": "Preventive Treatment of Episodic Migraine",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-rimegepant-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "acute treatment of migraine with or without aura in adults ( 1.1 ) preventive treatment of episodic migraine in adults ( 1.2 ) 1.1 Acute Treatment of Migraine NURTEC ODT is indicat"
+        },
+        {
+          "source_id": "fda-rimegepant-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "recommended dose of NURTEC ODT is 75 mg taken orally, as needed. The maximum dose in a 24-hour period is 75 mg."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 75,
+        "unit": "mg",
+        "frequency": "once every other day",
+        "max_single": 75,
+        "max_daily": 75
+      },
+      "dose_text": "75 mg orally taken once every other day for preventive treatment of episodic migraine."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-rimegepant-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "acute treatment of migraine with or without aura in adults ( 1.1 ) preventive treatment of episodic migraine in adults ( 1.2 ) 1.1 Acute Treatment of Migraine NURTEC ODT is indicat"
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Avoid use in patients with severe hepatic impairment (Child-Pugh Class C); no dosage adjustment in mild or moderate impairment.",
+    "refs": [
+      {
+        "source_id": "fda-rimegepant-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "acute treatment of migraine with or without aura in adults ( 1.1 ) preventive treatment of episodic migraine in adults ( 1.2 ) 1.1 Acute Treatment of Migraine NURTEC ODT is indicat"
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-rimegepant-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "acute treatment of migraine with or without aura in adults ( 1.1 ) preventive treatment of episodic migraine in adults ( 1.2 ) 1.1 Acute Treatment of Migraine NURTEC ODT is indicat"
+      }
+    ],
+    "note": "Small molecule CGRP receptor antagonist; no neuromuscular junction blockade"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Orally disintegrating tablet (ODT); place on or under tongue to dissolve in saliva. Strictly do not crush or administer via enteral tube."
+    },
+    "refs": [
+      {
+        "source_id": "fda-rimegepant-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "recommended dose of NURTEC ODT is 75 mg taken orally, as needed. The maximum dose in a 24-hour period is 75 mg."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "rash_sjs_ten"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-rimegepant-label",
+        "locator": "WARNINGS AND PRECAUTIONS",
+        "quote": "Hypersensitivity Reactions: If a serious hypersensitivity reaction occurs, discontinue NURTEC ODT and initiate appropriate therapy."
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Small molecule antagonist that selectively binds to the human calcitonin gene-related peptide (CGRP) receptor, inhibiting CGRP-induced cranial vasodilation and neurogenic inflammation.",
+    "refs": [
+      {
+        "source_id": "fda-rimegepant-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "acute treatment of migraine with or without aura in adults ( 1.1 ) preventive treatment of episodic migraine in adults ( 1.2 ) 1.1 Acute Treatment of Migraine NURTEC ODT is indicat"
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp3a4": "substrate"
+    },
+    "refs": [
+      {
+        "source_id": "fda-rimegepant-label",
+        "locator": "DRUG INTERACTIONS",
+        "quote": "Concomitant administration of NURTEC ODT with strong inhibitors of CYP3A4 results in a significant increase in rimegepant exposure."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-rimegepant-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "acute treatment of migraine with or without aura in adults ( 1.1 ) preventive treatment of episodic migraine in adults ( 1.2 ) 1.1 Acute Treatment of Migraine NURTEC ODT is indicat"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Insufficient human data to evaluate drug-associated risk of major birth defects or miscarriage.",
+      "refs": [
+        {
+          "source_id": "fda-rimegepant-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "acute treatment of migraine with or without aura in adults ( 1.1 ) preventive treatment of episodic migraine in adults ( 1.2 ) 1.1 Acute Treatment of Migraine NURTEC ODT is indicat"
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Excreted into human milk at very low levels (relative infant dose < 1%); consider benefits of breastfeeding alongside maternal need.",
+      "refs": [
+        {
+          "source_id": "fda-rimegepant-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "acute treatment of migraine with or without aura in adults ( 1.1 ) preventive treatment of episodic migraine in adults ( 1.2 ) 1.1 Acute Treatment of Migraine NURTEC ODT is indicat"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

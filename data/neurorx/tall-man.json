@@ -1,0 +1,255 @@
+[
+  {
+    "generic": "acetazolamide",
+    "tall_man": "acetoHEXAMIDE",
+    "refs": [
+      {
+        "source_id": "fda-tallman-list",
+        "locator": "FDA Name Differentiation List",
+        "quote": "acetoHEXAMIDE"
+      }
+    ]
+  },
+  {
+    "generic": "buspirone",
+    "tall_man": "buPROPion",
+    "refs": [
+      {
+        "source_id": "fda-tallman-list",
+        "locator": "FDA Name Differentiation List",
+        "quote": "buPROPion"
+      }
+    ]
+  },
+  {
+    "generic": "chlorpropamide",
+    "tall_man": "chlorproMAZINE",
+    "refs": [
+      {
+        "source_id": "fda-tallman-list",
+        "locator": "FDA Name Differentiation List",
+        "quote": "chlorproMAZINE"
+      }
+    ]
+  },
+  {
+    "generic": "carboplatin",
+    "tall_man": "CISplatin",
+    "refs": [
+      {
+        "source_id": "fda-tallman-list",
+        "locator": "FDA Name Differentiation List",
+        "quote": "CISplatin"
+      }
+    ]
+  },
+  {
+    "generic": "clomipramine",
+    "tall_man": "clomiPHENE",
+    "refs": [
+      {
+        "source_id": "fda-tallman-list",
+        "locator": "FDA Name Differentiation List",
+        "quote": "clomiPHENE"
+      }
+    ]
+  },
+  {
+    "generic": "cycloserine",
+    "tall_man": "cycloSPORINE",
+    "refs": [
+      {
+        "source_id": "fda-tallman-list",
+        "locator": "FDA Name Differentiation List",
+        "quote": "cycloSPORINE"
+      }
+    ]
+  },
+  {
+    "generic": "doxorubicin",
+    "tall_man": "DAUNOrubicin",
+    "refs": [
+      {
+        "source_id": "fda-tallman-list",
+        "locator": "FDA Name Differentiation List",
+        "quote": "DAUNOrubicin"
+      }
+    ]
+  },
+  {
+    "generic": "diphenhydramine",
+    "tall_man": "dimenhyDRINATE",
+    "refs": [
+      {
+        "source_id": "fda-tallman-list",
+        "locator": "FDA Name Differentiation List",
+        "quote": "dimenhyDRINATE"
+      }
+    ]
+  },
+  {
+    "generic": "dopamine",
+    "tall_man": "DOBUTamine",
+    "refs": [
+      {
+        "source_id": "fda-tallman-list",
+        "locator": "FDA Name Differentiation List",
+        "quote": "DOBUTamine"
+      }
+    ]
+  },
+  {
+    "generic": "glyburide",
+    "tall_man": "glipiZIDE",
+    "refs": [
+      {
+        "source_id": "fda-tallman-list",
+        "locator": "FDA Name Differentiation List",
+        "quote": "glipiZIDE"
+      }
+    ]
+  },
+  {
+    "generic": "hydroxyzine",
+    "tall_man": "hydrALAZINE",
+    "refs": [
+      {
+        "source_id": "fda-tallman-list",
+        "locator": "FDA Name Differentiation List",
+        "quote": "hydrALAZINE"
+      }
+    ]
+  },
+  {
+    "generic": "hydromorphone",
+    "tall_man": "HYDROmorphone",
+    "refs": [
+      {
+        "source_id": "fda-tallman-list",
+        "locator": "FDA Name Differentiation List",
+        "quote": "HYDROmorphone"
+      }
+    ]
+  },
+  {
+    "generic": "methyltestosterone",
+    "tall_man": "medroxyPROGESTERone",
+    "refs": [
+      {
+        "source_id": "fda-tallman-list",
+        "locator": "FDA Name Differentiation List",
+        "quote": "medroxyPROGESTERone"
+      }
+    ]
+  },
+  {
+    "generic": "methyltestosterone",
+    "tall_man": "methylPREDNISolone",
+    "refs": [
+      {
+        "source_id": "fda-tallman-list",
+        "locator": "FDA Name Differentiation List",
+        "quote": "methylPREDNISolone"
+      }
+    ]
+  },
+  {
+    "generic": "miglustat",
+    "tall_man": "migALAstat",
+    "refs": [
+      {
+        "source_id": "fda-tallman-list",
+        "locator": "FDA Name Differentiation List",
+        "quote": "migALAstat"
+      }
+    ]
+  },
+  {
+    "generic": "mitoxantrone",
+    "tall_man": "mitoXANTRONE",
+    "refs": [
+      {
+        "source_id": "fda-tallman-list",
+        "locator": "FDA Name Differentiation List",
+        "quote": "mitoXANTRONE"
+      }
+    ]
+  },
+  {
+    "generic": "nifedipine",
+    "tall_man": "niCARdipine",
+    "refs": [
+      {
+        "source_id": "fda-tallman-list",
+        "locator": "FDA Name Differentiation List",
+        "quote": "niCARdipine"
+      }
+    ]
+  },
+  {
+    "generic": "prednisolone",
+    "tall_man": "predniSONE",
+    "refs": [
+      {
+        "source_id": "fda-tallman-list",
+        "locator": "FDA Name Differentiation List",
+        "quote": "predniSONE"
+      }
+    ]
+  },
+  {
+    "generic": "ropinirole",
+    "tall_man": "risperiDONE",
+    "refs": [
+      {
+        "source_id": "fda-tallman-list",
+        "locator": "FDA Name Differentiation List",
+        "quote": "risperiDONE"
+      }
+    ]
+  },
+  {
+    "generic": "sulfisoxazole",
+    "tall_man": "sulfADIAZINE",
+    "refs": [
+      {
+        "source_id": "fda-tallman-list",
+        "locator": "FDA Name Differentiation List",
+        "quote": "sulfADIAZINE"
+      }
+    ]
+  },
+  {
+    "generic": "tolbutamide",
+    "tall_man": "TOLAZamide",
+    "refs": [
+      {
+        "source_id": "fda-tallman-list",
+        "locator": "FDA Name Differentiation List",
+        "quote": "TOLAZamide"
+      }
+    ]
+  },
+  {
+    "generic": "tramadol",
+    "tall_man": "traZODone",
+    "refs": [
+      {
+        "source_id": "fda-tallman-list",
+        "locator": "FDA Name Differentiation List",
+        "quote": "traZODone"
+      }
+    ]
+  },
+  {
+    "generic": "vincristine",
+    "tall_man": "vinBLAStine",
+    "refs": [
+      {
+        "source_id": "fda-tallman-list",
+        "locator": "FDA Name Differentiation List",
+        "quote": "vinBLAStine"
+      }
+    ]
+  }
+]

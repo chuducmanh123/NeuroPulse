@@ -1,0 +1,213 @@
+{
+  "id": "dantrolene",
+  "generic_name": "dantrolene",
+  "tall_man": {
+    "value": "dantrolene",
+    "refs": [
+      {
+        "source_id": "fda-dantrolene-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "indicated, along with appropriate supportive measures, for the management of the fulminant hypermetabolism of skeletal muscle characteristic of malignant hyperthermia crises in pat"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "ryanodine receptor 1 (RyR1) antagonist",
+    "direct-acting skeletal muscle relaxant",
+    "antidote for malignant hyperthermia"
+  ],
+  "subspecialties": [
+    "neurocritical_care",
+    "neuromuscular"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "dan-mh-crisis-iv",
+      "indication": "Malignant Hyperthermia Crisis and Neuroleptic Malignant Syndrome (Emergency IV)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-dantrolene-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "indicated, along with appropriate supportive measures, for the management of the fulminant hypermetabolism of skeletal muscle characteristic of malignant hyperthermia crises in pat"
+        },
+        {
+          "source_id": "fda-dantrolene-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "continuous rapid intravenous push beginning at a minimum dose of 1 mg/kg, and continuing until symptoms subside or the maximum cumulative dose of 10 mg/kg has been reached."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 1,
+        "unit": "mg",
+        "frequency": "continuous rapid IV push until physiological symptoms subside (maximum cumulative 10 mg/kg)",
+        "max_single": 300,
+        "max_daily": 700
+      },
+      "dose_text": "Administer by continuous rapid intravenous push beginning at a minimum dose of 1 mg/kg, and continuing until physiological and metabolic symptoms subside or the maximum cumulative dose of 10 mg/kg has been reached. Reconstitute each 20 mg vial with 60 mL sterile water for injection without bacteriostatic agent."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-dantrolene-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "indicated, along with appropriate supportive measures, for the management of the fulminant hypermetabolism of skeletal muscle characteristic of malignant hyperthermia crises in pat"
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Metabolized by hepatic microsomal enzymes. Use with extreme caution in pre-existing liver disease; monitor hepatic enzymes.",
+    "refs": [
+      {
+        "source_id": "fda-dantrolene-label",
+        "locator": "WARNINGS",
+        "quote": "hepatotoxicity following the use of intravenous dantrolene products."
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "HEPATOTOXICITY: DANTROLENE SODIUM HAS A POTENTIAL FOR PRODUCING IDIOSYNCRATIC HEPATOTOXICITY INCLUDING FATAL HEPATITIS."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-dantrolene-label",
+        "locator": "WARNINGS",
+        "quote": "hepatotoxicity following the use of intravenous dantrolene products."
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "contraindicated",
+    "refs": [
+      {
+        "source_id": "fda-dantrolene-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "indicated, along with appropriate supportive measures, for the management of the fulminant hypermetabolism of skeletal muscle characteristic of malignant hyperthermia crises in pat"
+      }
+    ],
+    "note": "Direct-acting muscle relaxant that uncouples excitation-contraction coupling; contraindicated in myasthenia gravis due to severe uncalibrated generalized paralysis"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Intravenous Dantrium must be reconstituted with sterile water without preservatives and administered as rapid IV push. Strictly not for enteral tube administration."
+    },
+    "refs": [
+      {
+        "source_id": "fda-dantrolene-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "continuous rapid intravenous push beginning at a minimum dose of 1 mg/kg, and continuing until symptoms subside or the maximum cumulative dose of 10 mg/kg has been reached."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "hepatotoxicity",
+      "sedation_somnolence"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-dantrolene-label",
+        "locator": "WARNINGS",
+        "quote": "hepatotoxicity following the use of intravenous dantrolene products."
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Directly blocks ryanodine receptor-1 (RyR1) channels in the sarcoplasmic reticulum of skeletal muscle, inhibiting intracellular calcium release and uncoupling excitation-contraction mechanisms.",
+    "refs": [
+      {
+        "source_id": "fda-dantrolene-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "indicated, along with appropriate supportive measures, for the management of the fulminant hypermetabolism of skeletal muscle characteristic of malignant hyperthermia crises in pat"
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "metabolism": "metabolized by hepatic microsomal enzymes into 5-hydroxy and acetylamino metabolites"
+    },
+    "refs": [
+      {
+        "source_id": "fda-dantrolene-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "indicated, along with appropriate supportive measures, for the management of the fulminant hypermetabolism of skeletal muscle characteristic of malignant hyperthermia crises in pat"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-dantrolene-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "indicated, along with appropriate supportive measures, for the management of the fulminant hypermetabolism of skeletal muscle characteristic of malignant hyperthermia crises in pat"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Crosses the placenta; in maternal malignant hyperthermia emergency, life-saving maternal resuscitation takes absolute priority.",
+      "refs": [
+        {
+          "source_id": "fda-dantrolene-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "indicated, along with appropriate supportive measures, for the management of the fulminant hypermetabolism of skeletal muscle characteristic of malignant hyperthermia crises in pat"
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Excreted into human breast milk in small amounts; evaluate maternal clinical necessity.",
+      "refs": [
+        {
+          "source_id": "fda-dantrolene-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "indicated, along with appropriate supportive measures, for the management of the fulminant hypermetabolism of skeletal muscle characteristic of malignant hyperthermia crises in pat"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

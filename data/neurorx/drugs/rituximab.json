@@ -1,0 +1,226 @@
+{
+  "id": "rituximab",
+  "generic_name": "rituximab",
+  "tall_man": {
+    "value": "rituximab",
+    "refs": [
+      {
+        "source_id": "fda-rituximab-label",
+        "locator": "BOXED WARNING",
+        "quote": "WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LEUKOENCEPHALOPATHY WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LE"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "anti-CD20 monoclonal antibody",
+    "B-cell depleting biologic",
+    "immunosuppressant"
+  ],
+  "subspecialties": [
+    "neuroimmunology",
+    "neuromuscular"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "rtx-neuro-induction",
+      "indication": "Neuromyelitis Optica Spectrum Disorder (NMOSD) / MuSK-Myasthenia Gravis / Autoimmune Encephalitis",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-rituximab-label",
+          "locator": "BOXED WARNING",
+          "quote": "WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LEUKOENCEPHALOPATHY WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LE"
+        },
+        {
+          "source_id": "fda-rituximab-label",
+          "locator": "WARNINGS AND CAUTIONS",
+          "quote": "infusion-related reactions with fatal outcome have been reported with the use of intravenous formulations of rituximab products, with an onset ranging within 30 minutes to 2 hours after starting the f"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1000,
+        "unit": "mg",
+        "frequency": "two doses 14 days apart",
+        "max_single": 1000,
+        "max_daily": 1000
+      },
+      "dose_text": "Standard neurology protocol: 1000 mg IV on Day 1 and Day 15 (fixed dose protocol), OR 375 mg/m² IV weekly × 4 doses. Premedicate with IV methylprednisolone 100 mg, oral acetaminophen 650-1000 mg, and antihistamine (diphenhydramine 50 mg) 30 minutes prior to every infusion."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-rituximab-label",
+        "locator": "BOXED WARNING",
+        "quote": "WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LEUKOENCEPHALOPATHY WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LE"
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "HBV screening (HBsAg and anti-HBc) is mandatory prior to initiation due to risk of fulminant hepatitis B reactivation.",
+    "refs": [
+      {
+        "source_id": "fda-rituximab-label",
+        "locator": "BOXED WARNING",
+        "quote": "WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LEUKOENCEPHALOPATHY WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LE"
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "FATAL INFUSION-RELATED REACTIONS WITHIN 24 HOURS OF INFUSION (80% WITH FIRST INFUSION).",
+      "SEVERE MUCOCUTANEOUS REACTIONS INCLUDING STEVENS-JOHNSON SYNDROME (SJS) AND TOXIC EPIDERMAL NECROLYSIS (TEN).",
+      "HEPATITIS B VIRUS (HBV) REACTIVATION RESULTING IN FULMINANT HEPATITIS, HEPATIC FAILURE, AND DEATH.",
+      "PROGRESSIVE MULTIFOCAL LEUKOENCEPHALOPATHY (PML) CAUSED BY JC VIRUS INFECTION RESULTING IN SEVERE DISABILITY OR DEATH."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-rituximab-label",
+        "locator": "BOXED WARNING",
+        "quote": "WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LEUKOENCEPHALOPATHY WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LE"
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "first_line",
+    "refs": [
+      {
+        "source_id": "fda-rituximab-label",
+        "locator": "BOXED WARNING",
+        "quote": "WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LEUKOENCEPHALOPATHY WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LE"
+      }
+    ],
+    "note": "Highly effective first-line therapy for anti-MuSK positive myasthenia gravis and refractory anti-AChR generalized myasthenia gravis"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Monoclonal antibody IV infusion only; never administer by mouth or enteral feeding tube."
+    },
+    "refs": [
+      {
+        "source_id": "fda-rituximab-label",
+        "locator": "BOXED WARNING",
+        "quote": "WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LEUKOENCEPHALOPATHY WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LE"
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "rash_sjs_ten"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-rituximab-label",
+        "locator": "BOXED WARNING",
+        "quote": "WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LEUKOENCEPHALOPATHY WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LE"
+      },
+      {
+        "source_id": "fda-rituximab-label",
+        "locator": "ADVERSE REACTIONS",
+        "quote": "Most common adverse reactions (incidence of ≥ 20%) are: ( 6.1 ) FL: infections, neutropenia, nausea, constipation, cough, and fatigue DLBCL: infections, neutropenia, alopecia, nausea, and anemia CLL:"
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Genetically engineered chimeric murine/human monoclonal IgG1-kappa antibody directed against the CD20 antigen on pre-B and mature B lymphocytes, mediating complement-dependent cytotoxicity (CDC) and antibody-dependent cellular cytotoxicity (ADCC).",
+    "refs": [
+      {
+        "source_id": "fda-rituximab-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "CD20-directed cytolytic antibody, and hyaluronidase human, an endoglycosidase, indicated for the treatment of adult patients with: Follicular Lymphoma (FL) ( 1.1 ) Relapsed or refractory, follicular l"
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "metabolism": "catabolized through general protein reticuloendothelial degradation"
+    },
+    "refs": [
+      {
+        "source_id": "fda-rituximab-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "CD20-directed cytolytic antibody, and hyaluronidase human, an endoglycosidase, indicated for the treatment of adult patients with: Follicular Lymphoma (FL) ( 1.1 ) Relapsed or refractory, follicular l"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-rituximab-label",
+          "locator": "BOXED WARNING",
+          "quote": "WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LEUKOENCEPHALOPATHY WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LE"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Crosses placenta in 2nd and 3rd trimesters, causing transient neonatal B-cell lymphopenia and hypogammaglobulinemia. Defer live vaccines in neonates exposed in utero for at least 6 months.",
+      "refs": [
+        {
+          "source_id": "fda-rituximab-label",
+          "locator": "BOXED WARNING",
+          "quote": "WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LEUKOENCEPHALOPATHY WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LE"
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": "Effective contraception recommended during treatment and for 6 to 12 months after the last infusion.",
+      "refs": [
+        {
+          "source_id": "fda-rituximab-label",
+          "locator": "BOXED WARNING",
+          "quote": "WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LEUKOENCEPHALOPATHY WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LE"
+        }
+      ]
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Large protein molecule excreted in milk in minimal amounts and poorly absorbed orally by mature infant gut; considered generally compatible by consensus guidelines.",
+      "refs": [
+        {
+          "source_id": "fda-rituximab-label",
+          "locator": "BOXED WARNING",
+          "quote": "WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LEUKOENCEPHALOPATHY WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LE"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

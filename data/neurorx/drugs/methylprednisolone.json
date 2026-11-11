@@ -1,0 +1,207 @@
+{
+  "id": "methylprednisolone",
+  "generic_name": "methylprednisolone",
+  "tall_man": {
+    "value": "methylprednisolone",
+    "refs": [
+      {
+        "source_id": "fda-methylprednisolone-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "Acute exacerbations of multiple sclerosis; cerebral edema associated with primary or metastatic brain tumor, or craniotomy."
+      }
+    ],
+    "note": "ISMP Tall Man: methylPREDNISolone vs medroxyPROGESTERone; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "corticosteroid",
+    "glucocorticoid",
+    "immunosuppressant",
+    "anti-inflammatory"
+  ],
+  "subspecialties": [
+    "neuroimmunology",
+    "neuromuscular",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "mp-pulse-neuro-relapse",
+      "indication": "Acute Relapse of Multiple Sclerosis / Optic Neuritis / NMOSD / Autoimmune Encephalitis",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-methylprednisolone-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Acute exacerbations of multiple sclerosis; cerebral edema associated with primary or metastatic brain tumor, or craniotomy."
+        },
+        {
+          "source_id": "fda-methylprednisolone-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "initial dosage will vary from 10 to 40 mg of methylprednisolone depending on the specific disease entity being treated."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1000,
+        "unit": "mg",
+        "frequency": "once daily for 3 to 5 days",
+        "max_single": 1000,
+        "max_daily": 1000
+      },
+      "dose_text": "High-dose pulse therapy: 1000 mg IV infusion daily (infused over 1-2 hours) for 3 to 5 consecutive days. Monitor blood pressure, blood glucose, electrolytes, and cardiac rhythm during infusion."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-methylprednisolone-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "Acute exacerbations of multiple sclerosis; cerebral edema associated with primary or metastatic brain tumor, or craniotomy."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Metabolized extensively in liver; caution in severe hepatic dysfunction.",
+    "refs": [
+      {
+        "source_id": "fda-methylprednisolone-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "Acute exacerbations of multiple sclerosis; cerebral edema associated with primary or metastatic brain tumor, or craniotomy."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-methylprednisolone-label",
+        "locator": "PRECAUTIONS",
+        "quote": "myasthenia gravis. If possible, anticholinesterase agents should be withdrawn at least 24 hours before initiating corticosteroid therapy."
+      }
+    ],
+    "note": "Transient early exacerbation of myasthenic weakness can occur during first 1-2 weeks; if possible, anticholinesterase therapy should be adjusted with respiratory monitoring"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "Oral tablets (Medrol) may be crushed. For parenteral therapy, IV methylprednisolone sodium succinate (Solu-Medrol) is preferred."
+    },
+    "refs": [
+      {
+        "source_id": "fda-methylprednisolone-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "initial dosage will vary from 10 to 40 mg of methylprednisolone depending on the specific disease entity being treated."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "psychiatric_behavioral",
+      "weight_gain"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-methylprednisolone-label",
+        "locator": "ADVERSE REACTIONS",
+        "quote": "Fluid and electrolyte disturbances: Congestive heart failure in susceptible patients, fluid retention, hypokalemic alkalosis, potassium loss, sodium retention."
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Potent synthetic glucocorticoid with minimal mineralocorticoid activity; inhibits leukocyte trafficking, nuclear factor kappa B (NF-kB), and pro-inflammatory cytokine expression.",
+    "refs": [
+      {
+        "source_id": "fda-methylprednisolone-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "Acute exacerbations of multiple sclerosis; cerebral edema associated with primary or metastatic brain tumor, or craniotomy."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp3a4": "substrate"
+    },
+    "refs": [
+      {
+        "source_id": "fda-methylprednisolone-label",
+        "locator": "DRUG INTERACTIONS",
+        "quote": "myasthenia gravis. If possible, anticholinesterase agents should be withdrawn at least 24 hours before initiating corticosteroid therapy."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "acceptable",
+      "refs": [
+        {
+          "source_id": "fda-methylprednisolone-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Acute exacerbations of multiple sclerosis; cerebral edema associated with primary or metastatic brain tumor, or craniotomy."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Inactivated by placental 11-beta-HSD2; high-dose pulse therapy should be reserved for severe maternal relapse.",
+      "refs": [
+        {
+          "source_id": "fda-methylprednisolone-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Acute exacerbations of multiple sclerosis; cerebral edema associated with primary or metastatic brain tumor, or craniotomy."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Minimal excretion in breast milk; after high-dose IV pulse, waiting 2 to 4 hours before nursing further minimizes infant exposure.",
+      "refs": [
+        {
+          "source_id": "fda-methylprednisolone-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Acute exacerbations of multiple sclerosis; cerebral edema associated with primary or metastatic brain tumor, or craniotomy."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

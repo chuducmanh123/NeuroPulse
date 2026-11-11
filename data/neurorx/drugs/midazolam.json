@@ -1,0 +1,198 @@
+{
+  "id": "midazolam",
+  "generic_name": "midazolam",
+  "tall_man": {
+    "value": "midazolam",
+    "refs": [
+      {
+        "source_id": "fda-midazolam-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "Midazolam Injection, USP is a water-soluble benzodiazepine available as a sterile, nonpyrogenic parenteral dosage form for intravenous or intramuscular injection."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "benzodiazepine",
+    "anticonvulsant",
+    "sedative",
+    "GABA-A positive allosteric modulator"
+  ],
+  "subspecialties": [
+    "epilepsy",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "BHYT circular data pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "mid-im-status-epilepticus",
+      "indication": "Emergency Seizure Cessation / Acute Prolonged Seizure (Intramuscular Administration)",
+      "setting": "status_epilepticus",
+      "route": "IM",
+      "refs": [
+        {
+          "source_id": "fda-midazolam-label",
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "Midazolam injection is indicated: intramuscularly or intravenously for preoperative sedation/anxiolysis/amnesia; intravenously as an agent for sedation/anxiolysis/amnesia prior to or during diagnostic, therapeutic or endoscopic procedures"
+        },
+        {
+          "source_id": "fda-midazolam-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "adult patients below the age of 60 years is 0.07 to 0.08 mg/kg IM (approximately 5 mg IM) administered up to 1 hour before surgery. The dose must be individualized and reduced when IM midazolam is administered to patients with chronic obstructive pulmonary disease, other higher risk surgical patients, patients 60 or more years of age"
+        }
+      ],
+      "dose": {
+        "kind": "weight",
+        "amount": 0.08,
+        "unit": "mg/kg",
+        "frequency": "once as needed",
+        "max_single": 10,
+        "max_daily": 20
+      },
+      "dose_text": "0.07 to 0.08 mg/kg IM. In status epilepticus clinical practice guidelines (e.g., AES guidelines / RAMPART trial), 10 mg IM single dose is recommended for adults > 40 kg (5 mg IM for 13 to 40 kg)."
+    },
+    {
+      "id": "mid-iv-slow-titration",
+      "indication": "Acute Intravenous Sedation / Seizure Control (Slow IV Titration)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-midazolam-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "The initial dose and all subsequent doses should always be titrated slowly; administer over at least 2 minutes and allow an additional 2 or more minutes to fully evaluate the sedative effect."
+        }
+      ],
+      "dose": {
+        "kind": "titration",
+        "amount": 1,
+        "unit": "mg",
+        "frequency": "every 2 minutes as needed",
+        "max_single": 2.5,
+        "max_daily": 10
+      },
+      "dose_text": "Initial IV dose 1 mg to 2.5 mg administered slowly over at least 2 minutes. Wait an additional 2 or more minutes to evaluate response before giving small incremental doses. Monitor respiratory and cardiac function continuously."
+    }
+  ],
+  "renal_basis": {
+    "value": "none",
+    "refs": [
+      {
+        "source_id": "fda-midazolam-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "Midazolam Injection, USP is a water-soluble benzodiazepine available as a sterile, nonpyrogenic parenteral dosage form for intravenous or intramuscular injection."
+      }
+    ],
+    "note": "Active glucuronide metabolites may accumulate in severe renal failure; monitor for prolonged sedation"
+  },
+  "hepatic": {
+    "value": null,
+    "refs": [],
+    "note": "Hepatic clearance; reduce doses in patients with severe hepatic impairment"
+  },
+  "black_box": {
+    "value": [
+      "WARNING: PERSONNEL AND EQUIPMENT FOR MONITORING AND RESUSCITATION: Intravenous midazolam hydrochloride has been associated with respiratory depression and respiratory arrest, especially when used for sedation in noncritical care settings. In some cases, where this was not recognized promptly and treated effectively, death or hypoxic encephalopathy has resulted. Intravenous midazolam hydrochloride should be used only in settings that provide for continuous monitoring of respiratory and cardiac function."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-midazolam-label",
+        "locator": "Section BOXED WARNING",
+        "quote": "Intravenous midazolam hydrochloride has been associated with respiratory depression and respiratory arrest, especially when used for sedation in noncritical care settings. In some cases, where this was not recognized promptly and treated effectively, death or hypoxic encephalopathy has resulted."
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-midazolam-label",
+        "locator": "Section 12 CLINICAL PHARMACOLOGY",
+        "quote": "Midazolam is a short-acting benzodiazepine central nervous system (CNS) depressant."
+      }
+    ],
+    "note": "Benzodiazepines can induce severe respiratory depression and exacerbate muscle weakness in myasthenia gravis; use with extreme caution"
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "Midazolam injection is for IV or IM administration; oral syrups or buccal solutions available for enteral use"
+  },
+  "pgx": {
+    "value": null,
+    "refs": [],
+    "note": "No pharmacogenomic requirements"
+  },
+  "ae_tags": {
+    "value": null,
+    "refs": []
+  },
+  "mechanism_of_action": {
+    "value": "Midazolam is a short-acting benzodiazepine central nervous system (CNS) depressant that binds to stereospecific benzodiazepine receptors on the postsynaptic GABA-A receptor complex, enhancing the inhibitory actions of GABA.",
+    "refs": [
+      {
+        "source_id": "fda-midazolam-label",
+        "locator": "Section 12 CLINICAL PHARMACOLOGY",
+        "quote": "Midazolam is a short-acting benzodiazepine central nervous system (CNS) depressant."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp3a4": "substrate",
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-midazolam-label",
+        "locator": "Section 12 CLINICAL PHARMACOLOGY",
+        "quote": "Midazolam is a short-acting benzodiazepine central nervous system (CNS) depressant."
+      }
+    ]
+  },
+  "tools": {
+    "reversal": {
+      "agent": "Flumazenil",
+      "dose": "0.2 mg IV over 15 seconds; repeat 0.2 mg every 60 seconds as needed up to 1 mg (caution: may precipitate seizures)",
+      "notes": "Flumazenil is a specific benzodiazepine receptor antagonist. May precipitate acute withdrawal seizures in patients with epilepsy.",
+      "refs": [
+        {
+          "source_id": "fda-midazolam-label",
+          "locator": "Section 10 OVERDOSAGE",
+          "quote": "Flumazenil, a specific benzodiazepine receptor antagonist indicated for the complete or partial reversal of the sedative effects of benzodiazepines in the management of benzodiazepine overdosage, can lead to withdrawal and adverse reactions, including seizures, particularly in the context of mixed overdosage with drugs that increase seizure risk (e.g., tricyclic and tetracyclic antidepressants) an"
+        }
+      ]
+    },
+    "iv_push": {
+      "value": {
+        "speed": "Very slow IV injection over at least 2 minutes",
+        "dilution": "Can be diluted with 0.9% NaCl or D5W",
+        "flushes": "Flush line before and after injection",
+        "instructions": "Administer initial dose of 1 to 2.5 mg slowly over at least 2 minutes. Wait an additional 2 or more minutes to evaluate sedative effect before repeating incremental doses. Continuous monitoring of respiratory and cardiac function is required."
+      },
+      "refs": [
+        {
+          "source_id": "fda-midazolam-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "The initial dose and all subsequent doses should always be titrated slowly; administer over at least 2 minutes and allow an additional 2 or more minutes to fully evaluate the sedative effect."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

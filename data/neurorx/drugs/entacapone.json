@@ -1,0 +1,206 @@
+{
+  "id": "entacapone",
+  "generic_name": "entacapone",
+  "tall_man": {
+    "value": "entacapone",
+    "refs": [
+      {
+        "source_id": "fda-entacapone-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "adjunct to levodopa and carbidopa to treat end-of-dose \"wearing-off\" in patients with Parkinson's disease (see CLINICAL PHARMACOLOGY, Clinical Studies )."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "COMT inhibitor",
+    "catechol-O-methyltransferase inhibitor",
+    "antiparkinson agent"
+  ],
+  "subspecialties": [
+    "movement_disorders"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "ent-pd-adjunct",
+      "indication": "Parkinson's Disease with End-of-Dose 'Wearing-Off' Motor Fluctuations",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-entacapone-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "adjunct to levodopa and carbidopa to treat end-of-dose \"wearing-off\" in patients with Parkinson's disease (see CLINICAL PHARMACOLOGY, Clinical Studies )."
+        },
+        {
+          "source_id": "fda-entacapone-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "recommended dose of entacapone is one 200 mg tablet administered concomitantly with each levodopa and carbidopa dose to a maximum of 8 times daily (200 mg × 8 = 1,600 mg per day)."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 200,
+        "unit": "mg",
+        "frequency": "with each dose of levodopa/carbidopa",
+        "max_single": 200,
+        "max_daily": 1600
+      },
+      "dose_text": "200 mg taken concomitantly with each dose of carbidopa/levodopa, up to a maximum of 8 times daily (1600 mg/day). Levodopa dose may need reduction by 10-30% upon initiation to prevent dyskinesias. Harmless brownish-orange urine discoloration is common."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-entacapone-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "adjunct to levodopa and carbidopa to treat end-of-dose \"wearing-off\" in patients with Parkinson's disease (see CLINICAL PHARMACOLOGY, Clinical Studies )."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Metabolized extensively in liver; caution should be exercised when administering to patients with biliary obstruction or hepatic impairment.",
+    "refs": [
+      {
+        "source_id": "fda-entacapone-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "adjunct to levodopa and carbidopa to treat end-of-dose \"wearing-off\" in patients with Parkinson's disease (see CLINICAL PHARMACOLOGY, Clinical Studies )."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-entacapone-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "adjunct to levodopa and carbidopa to treat end-of-dose \"wearing-off\" in patients with Parkinson's disease (see CLINICAL PHARMACOLOGY, Clinical Studies )."
+      }
+    ],
+    "note": "Selective peripheral COMT inhibitor without adverse effect on neuromuscular junction transmission"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "Film-coated tablets may be crushed and administered via enteral feeding tube immediately prior to or with carbidopa/levodopa."
+    },
+    "refs": [
+      {
+        "source_id": "fda-entacapone-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "recommended dose of entacapone is one 200 mg tablet administered concomitantly with each levodopa and carbidopa dose to a maximum of 8 times daily (200 mg × 8 = 1,600 mg per day)."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "psychiatric_behavioral",
+      "confusion_delirium"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-entacapone-label",
+        "locator": "ADVERSE REACTIONS",
+        "quote": "Urine discoloration 10 0 BODY AS A WHOLE - GENERAL DISORDERS Back pain 4 2 Fatigue 6 4 Asthenia 2 1 RESISTANCE MECHANISM DISORDERS Infection bacterial 1 0 Effects of Gender and Age"
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Reversible and selective inhibitor of catechol-O-methyltransferase (COMT) in peripheral tissues, preventing the O-methylation of levodopa to 3-O-methyldopa (3-OMD) and increasing the area under the curve (AUC) of levodopa reaching the brain.",
+    "refs": [
+      {
+        "source_id": "fda-entacapone-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "adjunct to levodopa and carbidopa to treat end-of-dose \"wearing-off\" in patients with Parkinson's disease (see CLINICAL PHARMACOLOGY, Clinical Studies )."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "ugt": [
+        "UGT1A9"
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-entacapone-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "adjunct to levodopa and carbidopa to treat end-of-dose \"wearing-off\" in patients with Parkinson's disease (see CLINICAL PHARMACOLOGY, Clinical Studies )."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-entacapone-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "adjunct to levodopa and carbidopa to treat end-of-dose \"wearing-off\" in patients with Parkinson's disease (see CLINICAL PHARMACOLOGY, Clinical Studies )."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "In animal studies, entacapone crossed the placental barrier; human pregnancy data are lacking.",
+      "refs": [
+        {
+          "source_id": "fda-entacapone-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "adjunct to levodopa and carbidopa to treat end-of-dose \"wearing-off\" in patients with Parkinson's disease (see CLINICAL PHARMACOLOGY, Clinical Studies )."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Excreted into animal milk; human milk excretion unknown. Use caution during breastfeeding.",
+      "refs": [
+        {
+          "source_id": "fda-entacapone-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "adjunct to levodopa and carbidopa to treat end-of-dose \"wearing-off\" in patients with Parkinson's disease (see CLINICAL PHARMACOLOGY, Clinical Studies )."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

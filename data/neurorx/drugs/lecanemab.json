@@ -1,0 +1,218 @@
+{
+  "id": "lecanemab",
+  "generic_name": "lecanemab",
+  "tall_man": {
+    "value": "lecanemab",
+    "refs": [
+      {
+        "source_id": "fda-lecanemab-label",
+        "locator": "BOXED WARNING",
+        "quote": "AMYLOID RELATED IMAGING ABNORMALITIES Monoclonal antibodies directed against aggregated forms of beta amyloid, including LEQEMBI, can cause amyloid related imaging abnormalities (ARIA), characterized as ARIA with edema (ARIA-E) and ARIA wit"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "anti-amyloid beta monoclonal antibody",
+    "disease-modifying biologic",
+    "targeted Alzheimer's biologic"
+  ],
+  "subspecialties": [
+    "dementia"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "lec-ad-biweekly",
+      "indication": "Mild Cognitive Impairment (MCI) or Mild Dementia due to Alzheimer's Disease (Amyloid Positive)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-lecanemab-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "treatment of Alzheimer’s disease. Treatment with LEQEMBI should be initiated in patients with mild cognitive impairment or mild dementia stage of disease, the population in which treatment was initiat"
+        },
+        {
+          "source_id": "fda-lecanemab-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "10 mg/kg once every 2 weeks administered after dilution as an intravenous infusion over approximately one hour."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 10,
+        "unit": "mg",
+        "frequency": "once every two weeks",
+        "max_single": 1200
+      },
+      "dose_text": "10 mg/kg IV infusion over approximately 1 hour every 2 weeks. Confirm presence of amyloid-beta pathology prior to initiation. Mandatory brain MRI monitoring protocol: baseline MRI within 1 year; safety monitoring MRIs prior to the 5th (Week 9), 7th (Week 13), and 14th (Week 27) infusions. ApoE epsilon 4 genotyping strongly recommended prior to initiation due to substantially higher ARIA risk in homozygotes."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-lecanemab-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of Alzheimer’s disease. Treatment with LEQEMBI should be initiated in patients with mild cognitive impairment or mild dementia stage of disease, the population in which treatment was initiat"
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Degraded into small peptides and amino acids by catabolic pathways; no dosage adjustment required.",
+    "refs": [
+      {
+        "source_id": "fda-lecanemab-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of Alzheimer’s disease. Treatment with LEQEMBI should be initiated in patients with mild cognitive impairment or mild dementia stage of disease, the population in which treatment was initiat"
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "AMYLOID RELATED IMAGING ABNORMALITIES (ARIA): ARIA-E (BRAIN EDEMA/EFFUSION) AND ARIA-H (MICROHEMORRHAGES AND SUPERFICIAL SIDEROSIS).",
+      "APOE EPSILON 4 HOMOZYGOTES HAVE SUBSTANTIALLY HIGHER INCIDENCE AND SEVERITY OF ARIA AND INTRACEREBRAL HEMORRHAGE.",
+      "MANDATORY BASELINE BRAIN MRI AND SCHEDULED SAFETY MRIS PRIOR TO 5TH, 7TH, AND 14TH INFUSIONS."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-lecanemab-label",
+        "locator": "BOXED WARNING",
+        "quote": "AMYLOID RELATED IMAGING ABNORMALITIES Monoclonal antibodies directed against aggregated forms of beta amyloid, including LEQEMBI, can cause amyloid related imaging abnormalities (ARIA), characterized as ARIA with edema (ARIA-E) and ARIA wit"
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-lecanemab-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of Alzheimer’s disease. Treatment with LEQEMBI should be initiated in patients with mild cognitive impairment or mild dementia stage of disease, the population in which treatment was initiat"
+      }
+    ],
+    "note": "Humanized IgG1 monoclonal antibody targeting amyloid-beta; no neuromuscular junction blocking activity"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Intravenous infusion only; strictly not for oral or enteral feeding tube administration."
+    },
+    "refs": [
+      {
+        "source_id": "fda-lecanemab-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of Alzheimer’s disease. Treatment with LEQEMBI should be initiated in patients with mild cognitive impairment or mild dementia stage of disease, the population in which treatment was initiat"
+      }
+    ]
+  },
+  "pgx": {
+    "value": "Testing for ApoE epsilon 4 status should be performed prior to initiation of treatment to inform the risk of developing ARIA; ApoE e4 homozygotes have the highest risk of ARIA-E (33%) and symptomatic ARIA.",
+    "refs": [
+      {
+        "source_id": "fda-lecanemab-label",
+        "locator": "BOXED WARNING",
+        "quote": "AMYLOID RELATED IMAGING ABNORMALITIES Monoclonal antibodies directed against aggregated forms of beta amyloid, including LEQEMBI, can cause amyloid related imaging abnormalities (ARIA), characterized as ARIA with edema (ARIA-E) and ARIA wit"
+      }
+    ]
+  },
+  "ae_tags": {
+    "value": [
+      "confusion_delirium"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-lecanemab-label",
+        "locator": "BOXED WARNING",
+        "quote": "AMYLOID RELATED IMAGING ABNORMALITIES Monoclonal antibodies directed against aggregated forms of beta amyloid, including LEQEMBI, can cause amyloid related imaging abnormalities (ARIA), characterized as ARIA with edema (ARIA-E) and ARIA wit"
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Recombinant humanized IgG1 monoclonal antibody that selectively binds to soluble amyloid-beta protofibrils and fibrillar aggregates, clearing neurotoxic amyloid deposits and slowing clinical cognitive decline.",
+    "refs": [
+      {
+        "source_id": "fda-lecanemab-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of Alzheimer’s disease. Treatment with LEQEMBI should be initiated in patients with mild cognitive impairment or mild dementia stage of disease, the population in which treatment was initiat"
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "metabolism": "cellular catabolism into small peptides and amino acids via general proteolytic pathways"
+    },
+    "refs": [
+      {
+        "source_id": "fda-lecanemab-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of Alzheimer’s disease. Treatment with LEQEMBI should be initiated in patients with mild cognitive impairment or mild dementia stage of disease, the population in which treatment was initiat"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-lecanemab-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "treatment of Alzheimer’s disease. Treatment with LEQEMBI should be initiated in patients with mild cognitive impairment or mild dementia stage of disease, the population in which treatment was initiat"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Crosses the placenta in late pregnancy; Alzheimer's disease predominantly affects post-reproductive populations.",
+      "refs": [
+        {
+          "source_id": "fda-lecanemab-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "treatment of Alzheimer’s disease. Treatment with LEQEMBI should be initiated in patients with mild cognitive impairment or mild dementia stage of disease, the population in which treatment was initiat"
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Excretion in human milk unknown; evaluate clinical necessity.",
+      "refs": [
+        {
+          "source_id": "fda-lecanemab-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "treatment of Alzheimer’s disease. Treatment with LEQEMBI should be initiated in patients with mild cognitive impairment or mild dementia stage of disease, the population in which treatment was initiat"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

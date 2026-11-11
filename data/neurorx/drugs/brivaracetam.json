@@ -1,0 +1,199 @@
+{
+  "id": "brivaracetam",
+  "generic_name": "brivaracetam",
+  "tall_man": {
+    "value": "brivaracetam",
+    "refs": [
+      {
+        "source_id": "fda-brivaracetam-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "BRIVIACT is indicated for the treatment of partial-onset seizures in patients 1 month of age and older."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "anticonvulsant",
+    "anti-seizure medication (ASM)",
+    "SV2A ligand"
+  ],
+  "subspecialties": [
+    "epilepsy"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "brv-partial-onset-adult",
+      "indication": "Partial-Onset Seizures (Monotherapy or Adjunctive)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-brivaracetam-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "BRIVIACT is indicated for the treatment of partial-onset seizures in patients 1 month of age and older."
+        },
+        {
+          "source_id": "fda-brivaracetam-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "The recommended starting dosage for monotherapy or adjunctive therapy is 50 mg twice daily (100 mg per day)."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 50,
+        "unit": "mg",
+        "frequency": "twice daily",
+        "max_single": 100,
+        "max_daily": 200
+      },
+      "dose_text": "Recommended starting dosage is 50 mg twice daily (100 mg per day). Maintenance range: 25 mg twice daily to 100 mg twice daily (up to 200 mg per day). No titration required at start."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-brivaracetam-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "Dose adjustments are not required for patients with impaired renal function."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "For all stages of hepatic impairment: recommended starting dosage is 25 mg twice daily (50 mg/day); maximum dosage 75 mg twice daily (150 mg/day).",
+    "refs": [
+      {
+        "source_id": "fda-brivaracetam-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "for all stages of hepatic impairment. ( 2.5 ) 2.1 Dosage Information Monotherapy or Adjunctive Therapy The recommended dosage for patients 1 month of age and older is included in Table 1."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-brivaracetam-label",
+        "locator": "WARNINGS AND PRECAUTIONS",
+        "quote": "somnolence and fatigue, and advise patients not to drive or operate machinery until they have gained sufficient experience on BRIVIACT."
+      }
+    ],
+    "note": "SV2A ligand; low risk of neuromuscular transmission blockade, monitor somnolence and fatigue"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "Film-coated tablets may be crushed; oral solution or IV injection (1:1 conversion) available."
+    },
+    "refs": [
+      {
+        "source_id": "fda-brivaracetam-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "oral solution. The clinical study experience with BRIVIACT injection is up to 4 consecutive days of treatment."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "sedation_somnolence",
+      "psychiatric_behavioral",
+      "ataxia"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-brivaracetam-label",
+        "locator": "WARNINGS AND PRECAUTIONS",
+        "quote": "somnolence and fatigue, and advise patients not to drive or operate machinery until they have gained sufficient experience on BRIVIACT."
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Brivaracetam displays high and selective affinity for synaptic vesicle protein 2A (SV2A) in the brain, inhibiting presynaptic neurotransmitter exocytosis.",
+    "refs": [
+      {
+        "source_id": "fda-brivaracetam-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "BRIVIACT is indicated for the treatment of partial-onset seizures in patients 1 month of age and older."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp2c19": "substrate"
+    },
+    "refs": [
+      {
+        "source_id": "fda-brivaracetam-label",
+        "locator": "CLINICAL PHARMACOLOGY",
+        "quote": "CYP2C19 induction [see Clinical Pharmacology (12.3) ] . Prescribers should increase the BRIVIACT dose by up to 100% (i.e., double the dosage) in patie"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-brivaracetam-label",
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "In animal studies, brivaracetam produced evidence of developmental toxicity (increased embryofetal mortality and decreased fetal body weights in rabbits; decreased growth, delayed"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Brivaracetam is excreted in human milk. Balance the benefits of breastfeeding with maternal need and any potential adverse effects on the infant.",
+      "refs": [
+        {
+          "source_id": "fda-brivaracetam-label",
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "In animal studies, brivaracetam produced evidence of developmental toxicity (increased embryofetal mortality and decreased fetal body weights in rabbits; decreased growth, delayed"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

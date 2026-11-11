@@ -1,0 +1,219 @@
+{
+  "id": "valproate",
+  "generic_name": "valproate sodium",
+  "tall_man": {
+    "value": "valproate sodium",
+    "refs": [
+      {
+        "source_id": "fda-valproate-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "Valproate sodium is the sodium salt of valproic acid designated as sodium 2-propylpentanoate."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "anticonvulsant",
+    "anti-seizure medication (ASM)",
+    "GABA transaminase inhibitor"
+  ],
+  "subspecialties": [
+    "epilepsy",
+    "neurocritical_care",
+    "headache"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "BHYT circular data pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "val-iv-acute-loading",
+      "indication": "Acute Seizure Episodes / Rapid Intravenous Replacement in Epilepsy",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-valproate-label",
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "Valproate sodium injection is indicated as an intravenous alternative in patients in whom oral administration of valproate products is temporarily not feasible in the following conditions: • Monotherapy and adjunctive therapy of complex partial seizures and simple and complex absence seizures; adjunctive therapy in patients with multiple seizure types that include absence seizures ( 1 )"
+        },
+        {
+          "source_id": "fda-valproate-label",
+          "locator": "Section 2.1 Epilepsy",
+          "quote": "In one clinical safety study, approximately 90 patients with epilepsy and with no measurable plasma levels of valproate were given single infusions of valproate sodium injection (up to 15 mg/kg and mean dose of 1,184 mg) over 5 to 10 minutes (1.5 to 3 mg/kg/min). Patients generally tolerated the more rapid infusions well [see Adverse Reactions ( 6.1 )] ."
+        }
+      ],
+      "dose": {
+        "kind": "weight",
+        "amount": 15,
+        "unit": "mg/kg",
+        "frequency": "once",
+        "max_single": 3000,
+        "max_daily": 4500
+      },
+      "dose_text": "Single IV infusion up to 15 mg/kg (over 5 to 10 minutes at 1.5 to 3 mg/kg/min) or standard infusion over 60 minutes (rate not to exceed 20 mg/min). In status epilepticus protocols, guidelines endorse up to 30 to 40 mg/kg IV."
+    },
+    {
+      "id": "val-iv-maintenance",
+      "indication": "Complex Partial Seizures and Absence Seizures (Maintenance IV Dosing)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-valproate-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Complex Partial Seizures in Adults and Children 10 years of age or older: Initial dose is 10 to 15 mg/kg/day, increasing at 1 week intervals by 5 to 10 mg/kg/day to achieve optimal clinical response. Maximum recommended dose is 60 mg/kg/day ( 2.1 )."
+        },
+        {
+          "source_id": "fda-valproate-label",
+          "locator": "Section 2.1 Epilepsy",
+          "quote": "Valproate sodium injection should be administered as a 60 minute infusion (but not more than 20 mg/min) with the same frequency as the oral products, although plasma concentration monitoring and dosage adjustments may be necessary."
+        }
+      ],
+      "dose": {
+        "kind": "weight",
+        "amount": 15,
+        "unit": "mg/kg/day",
+        "frequency": "divided every 6 to 8 hours",
+        "max_single": 1500,
+        "max_daily": 4500
+      },
+      "dose_text": "Initial maintenance dose 10 to 15 mg/kg/day administered in divided doses every 6 to 8 hours (each dose infused over 60 minutes, not exceeding 20 mg/min). Increase at 1-week intervals by 5 to 10 mg/kg/day to achieve optimal clinical response (usual therapeutic target 50 to 100 mcg/mL). Maximum recommended dose 60 mg/kg/day."
+    }
+  ],
+  "renal_basis": {
+    "value": "none",
+    "refs": [
+      {
+        "source_id": "fda-valproate-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "Valproate sodium is the sodium salt of valproic acid designated as sodium 2-propylpentanoate."
+      }
+    ],
+    "note": "Renal impairment does not alter valproate clearance, but unbound drug fraction is increased; monitor unbound (free) valproate levels in severe renal failure"
+  },
+  "hepatic": {
+    "value": "Valproate sodium injection should not be administered to patients with hepatic disease or significant hepatic dysfunction.",
+    "refs": [
+      {
+        "source_id": "fda-valproate-label",
+        "locator": "Section 4 CONTRAINDICATIONS",
+        "quote": "Valproate sodium injection should not be administered to patients with hepatic disease or significant hepatic dysfunction [see Warnings and Precautions ( 5.1 )] ."
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "WARNING: LIFE THREATENING ADVERSE REACTIONS: Hepatotoxicity, including fatalities, usually during the first 6 months of treatment. Children under two years of age and patients with mitochondrial disorders are at higher risk. Monitor patients closely and perform serum liver testing prior to therapy and at frequent intervals thereafter. Fetal Risk: Major congenital malformations, particularly neural tube defects, and decreased IQ. Pancreatitis: Life-threatening pancreatitis including hemorrhagic cases."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-valproate-label",
+        "locator": "Section BOXED WARNING",
+        "quote": "Hepatotoxicity, including fatalities, usually during the first 6 months of treatment. Children under the age of two years and patients with mitochondrial disorders are at higher risk. Monitor patients closely, and perform serum liver testing prior to therapy and at frequent intervals thereafter ( 5.1 ) • Fetal Risk, particularly neural tube defects, other major malformations, and decreased IQ"
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-valproate-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Valproate sodium exists as the valproate ion in the blood. The mechanisms by which valproate exerts its therapeutic effects have not been established. It has been suggested that its activity in epilepsy is related to increased brain concentrations of gamma-aminobutyric acid (GABA)."
+      }
+    ],
+    "note": "Valproate does not impair neuromuscular transmission; considered a safe ASM in myasthenia gravis"
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "Valproate sodium injection is for intravenous use; oral divalproex sodium sprinkle capsules or oral solution are preferred for enteral tube administration"
+  },
+  "pgx": {
+    "value": {
+      "gene": "POLG",
+      "testing_recommended": true,
+      "clinical_action": "Contraindicated in patients known to have mitochondrial disorders caused by mutations in mitochondrial DNA polymerase gamma (POLG; e.g. Alpers-Huttenlocher syndrome) due to high risk of fatal hepatotoxicity."
+    },
+    "refs": [
+      {
+        "source_id": "fda-valproate-label",
+        "locator": "Section 4 CONTRAINDICATIONS",
+        "quote": "Valproate sodium injection is contraindicated in patients known to have mitochondrial disorders caused by mutations in mitochondrial DNA polymerase γ (POLG; e.g., Alpers-Huttenlocher Syndrome) and children under two years of age who are suspected of having a POLG-related disorder [see Warnings and Precautions ( 5.1 )] ."
+      }
+    ]
+  },
+  "ae_tags": {
+    "value": null,
+    "refs": []
+  },
+  "mechanism_of_action": {
+    "value": "Valproate sodium exists as the valproate ion in the blood. The mechanisms by which valproate exerts its therapeutic effects have not been established. It has been suggested that its activity in epilepsy is related to increased brain concentrations of gamma-aminobutyric acid (GABA).",
+    "refs": [
+      {
+        "source_id": "fda-valproate-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Valproate sodium exists as the valproate ion in the blood. The mechanisms by which valproate exerts its therapeutic effects have not been established. It has been suggested that its activity in epilepsy is related to increased brain concentrations of gamma-aminobutyric acid (GABA)."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp2c9": "inhibitor",
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-valproate-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Valproate sodium exists as the valproate ion in the blood. The mechanisms by which valproate exerts its therapeutic effects have not been established. It has been suggested that its activity in epilepsy is related to increased brain concentrations of gamma-aminobutyric acid (GABA)."
+      }
+    ]
+  },
+  "tools": {
+    "therapeutic_drug_monitoring": {
+      "value": {
+        "target_trough": "50 to 100 mcg/mL (total valproate)",
+        "toxic_threshold": "Thrombocytopenia increases significantly above 110 mcg/mL in females and 135 mcg/mL in males; severe toxicity above 150-175 mcg/mL",
+        "sampling_timing": "Trough level immediately prior to next dose at steady state (typically after 2-4 days)",
+        "notes": "The usually accepted therapeutic range is 50 to 100 mcg/mL. In hypoalbuminemia or renal disease, total levels may underestimate free active drug."
+      },
+      "refs": [
+        {
+          "source_id": "fda-valproate-label",
+          "locator": "Section 2.1 Epilepsy",
+          "quote": "ey are in the usually accepted therapeutic range (50 to 100 mcg/mL). No recommendation regarding the safety of valproate for use at doses above 60 mg/kg/day can be made. The probability of thrombocytopenia increases significantly at total trough valproate plasma concentrations above 110 mcg/mL in females and 135 mcg/mL in males."
+        }
+      ]
+    },
+    "iv_infusion": {
+      "value": {
+        "diluent": "Compatible with 0.9% NaCl, 5% Dextrose, or Lactated Ringer's Injection",
+        "rate": "Standard maintenance: infuse over 60 minutes (rate not to exceed 20 mg/min). Rapid replacement: up to 15 mg/kg over 5 to 10 minutes (1.5 to 3 mg/kg/min)",
+        "instructions": "Valproate sodium injection should be administered as a 60 minute infusion (but not more than 20 mg/min) with the same frequency as the oral products. Rapid infusion over 5 to 10 minutes at 1.5 to 3 mg/kg/min was generally well tolerated in clinical safety studies."
+      },
+      "refs": [
+        {
+          "source_id": "fda-valproate-label",
+          "locator": "Section 2.1 Epilepsy",
+          "quote": "Valproate sodium injection should be administered as a 60 minute infusion (but not more than 20 mg/min) with the same frequency as the oral products, although plasma concentration monitoring and dosage adjustments may be necessary."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

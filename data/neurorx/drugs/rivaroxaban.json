@@ -1,0 +1,259 @@
+{
+  "id": "rivaroxaban",
+  "generic_name": "rivaroxaban",
+  "tall_man": {
+    "value": "rivaroxaban",
+    "refs": [
+      {
+        "source_id": "fda-rivaroxaban-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "Rivaroxaban, a factor Xa (FXa) inhibitor, is the active ingredient in XARELTO ® Tablets and XARELTO ® for oral suspension with the chemical name 5-Chloro-N-({(5S)-2-oxo-3-[4-(3-oxo-4-morpholinyl)phenyl]-1,3-oxazolidin-5-yl}methyl)-2-thiophenecarboxamide."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "direct oral anticoagulant",
+    "factor Xa inhibitor",
+    "antithrombotic"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "BHYT circular data pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "riva-po-stroke-prevention-afib-standard",
+      "indication": "Reduction in Risk of Stroke in Nonvalvular Atrial Fibrillation (CrCl > 50 mL/min)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-rivaroxaban-label",
+          "locator": "Section 2.1 Table 1",
+          "quote": "Reduction in Risk of Stroke in Nonvalvular Atrial Fibrillation CrCl >50 mL/min 20 mg once daily Take with evening meal"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 20,
+        "unit": "mg",
+        "frequency": "once daily with evening meal",
+        "max_single": 20,
+        "max_daily": 20
+      },
+      "dose_text": "20 mg orally once daily with the evening meal.",
+      "renal_bands": [
+        {
+          "min": 50,
+          "max": null,
+          "dose_text": "20 mg once daily with evening meal",
+          "dose": {
+            "kind": "fixed",
+            "amount": 20,
+            "unit": "mg",
+            "frequency": "once daily with evening meal",
+            "max_single": 20,
+            "max_daily": 20
+          },
+          "refs": [
+            {
+              "source_id": "fda-rivaroxaban-label",
+              "locator": "Section 2.1 Table 1",
+              "quote": "Reduction in Risk of Stroke in Nonvalvular Atrial Fibrillation CrCl >50 mL/min 20 mg once daily Take with evening meal"
+            }
+          ]
+        },
+        {
+          "min": 15,
+          "max": 50,
+          "dose_text": "15 mg once daily with evening meal",
+          "dose": {
+            "kind": "fixed",
+            "amount": 15,
+            "unit": "mg",
+            "frequency": "once daily with evening meal",
+            "max_single": 15,
+            "max_daily": 15
+          },
+          "refs": [
+            {
+              "source_id": "fda-rivaroxaban-label",
+              "locator": "Section 2.1 Table 1",
+              "quote": "CrCl ≤50 mL/min Patients with CrCl <30 mL/min were not studied, but administration of XARELTO is expected to result in serum concentrations of rivaroxaban similar to those in patients with moderate renal impairment (CrCl 30 to <50 mL/min) [see Use in Specific Populations (8.6) ] . 15 mg once daily Take with evening meal"
+            }
+          ]
+        },
+        {
+          "min": null,
+          "max": 15,
+          "dose_text": "Avoid use (CrCl < 15 mL/min not evaluated)",
+          "refs": [
+            {
+              "source_id": "fda-rivaroxaban-label",
+              "locator": "Section 2.1 Table 1",
+              "quote": "CrCl ≤50 mL/min Patients with CrCl <30 mL/min were not studied, but administration of XARELTO is expected to result in serum concentrations of rivaroxaban similar to those in patients with moderate renal impairment (CrCl 30 to <50 mL/min) [see Use in Specific Populations (8.6) ] . 15 mg once daily Take with evening meal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "riva-po-stroke-prevention-afib-reduced",
+      "indication": "Reduction in Risk of Stroke in NVAF (CrCl 15 to 50 mL/min)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-rivaroxaban-label",
+          "locator": "Section 2.1 Table 1",
+          "quote": "CrCl ≤50 mL/min Patients with CrCl <30 mL/min were not studied, but administration of XARELTO is expected to result in serum concentrations of rivaroxaban similar to those in patients with moderate renal impairment (CrCl 30 to <50 mL/min) [see Use in Specific Populations (8.6) ] . 15 mg once daily Take with evening meal"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 15,
+        "unit": "mg",
+        "frequency": "once daily with evening meal",
+        "max_single": 15,
+        "max_daily": 15
+      },
+      "dose_text": "15 mg orally once daily with the evening meal for patients with CrCl 15 to 50 mL/min."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-rivaroxaban-label",
+        "locator": "Section 2.1 Table 1",
+        "quote": "Calculate CrCl based on actual weight [see Warnings and Precautions (5.4) and Use in Specific Populations (8.6) ] ."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Avoid the use of XARELTO in patients with moderate (Child-Pugh B) and severe (Child-Pugh C) hepatic impairment or with any hepatic disease associated with coagulopathy.",
+    "refs": [
+      {
+        "source_id": "fda-rivaroxaban-label",
+        "locator": "Section 8.7 Hepatic Impairment",
+        "quote": "Avoid the use of XARELTO in patients with moderate (Child-Pugh B) and severe (Child-Pugh C) hepatic impairment or with any hepatic disease associated with coagulopathy."
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "PREMATURE DISCONTINUATION OF XARELTO INCREASES THE RISK OF THROMBOTIC EVENTS: Premature discontinuation of any oral anticoagulant, including XARELTO, increases the risk of thrombotic events. If anticoagulation with XARELTO is discontinued for a reason other than pathological bleeding or completion of a course of therapy, consider coverage with another anticoagulant.",
+      "SPINAL/EPIDURAL HEMATOMA: Epidural or spinal hematomas may occur in patients treated with XARELTO who are receiving neuraxial anesthesia or undergoing spinal puncture. These hematomas may result in long-term or permanent paralysis."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-rivaroxaban-label",
+        "locator": "BOXED WARNING",
+        "quote": "Premature discontinuation of any oral anticoagulant, including XARELTO, increases the risk of thrombotic events. If anticoagulation with XARELTO is discontinued for a reason other than pathological bleeding or completion of a course of therapy, consider coverage with another anticoagulant"
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-rivaroxaban-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "XARELTO is a selective inhibitor of FXa. It does not require a cofactor (such as Anti-thrombin III) for activity. Rivaroxaban inhibits free FXa and prothrombinase activity. Rivaroxaban has no direct effect on platelet aggregation, but indirectly inhibits platelet aggregation induced by thrombin."
+      }
+    ],
+    "note": "Factor Xa inhibitors do not impair neuromuscular transmission; safe in myasthenia gravis"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "After confirming gastric placement of the tube, XARELTO tablets (all strengths) may be crushed and suspended in 50 mL of water and administered via an NG tube or gastric feeding tube."
+    },
+    "refs": [
+      {
+        "source_id": "fda-rivaroxaban-label",
+        "locator": "Section 2.6 Administration Options",
+        "quote": "After confirming gastric placement of the tube, XARELTO tablets (all strengths) may be crushed and suspended in 50 mL of water and administered via an NG tube or gastric feeding tube."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": [],
+    "note": "No pharmacogenomic testing requirement in FDA label"
+  },
+  "ae_tags": {
+    "value": null,
+    "refs": []
+  },
+  "mechanism_of_action": {
+    "value": "XARELTO is a selective inhibitor of FXa. It does not require a cofactor (such as Anti-thrombin III) for activity. Rivaroxaban inhibits free FXa and prothrombinase activity. Rivaroxaban has no direct effect on platelet aggregation, but indirectly inhibits platelet aggregation induced by thrombin.",
+    "refs": [
+      {
+        "source_id": "fda-rivaroxaban-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "XARELTO is a selective inhibitor of FXa. It does not require a cofactor (such as Anti-thrombin III) for activity. Rivaroxaban inhibits free FXa and prothrombinase activity. Rivaroxaban has no direct effect on platelet aggregation, but indirectly inhibits platelet aggregation induced by thrombin."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp3a4": "substrate",
+      "pgp": "substrate",
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-rivaroxaban-label",
+        "locator": "Section 7.1 General Inhibition and Induction Properties",
+        "quote": "Rivaroxaban is a substrate of CYP3A4/5, CYP2J2, and the P-gp and ATP-binding cassette G2 (ABCG2) transporters, the latter also known as breast cancer resistance protein (BCRP). Combined P-gp and strong CYP3A inhibitors increase exposure to rivaroxaban and may increase the risk of bleeding."
+      }
+    ]
+  },
+  "tools": {
+    "missed_dose": {
+      "value": "For patients receiving 20 mg, 15 mg or 10 mg once daily: The patient should take the missed XARELTO dose immediately. The dose should not be doubled within the same day to make up for a missed dose.",
+      "refs": [
+        {
+          "source_id": "fda-rivaroxaban-label",
+          "locator": "Section 2.5 Missed Dose",
+          "quote": "For patients receiving 20 mg, 15 mg or 10 mg once daily: The patient should take the missed XARELTO dose immediately. The dose should not be doubled within the same day to make up for a missed dose."
+        }
+      ]
+    },
+    "hold_restart": {
+      "value": [
+        {
+          "procedure": "Surgical or other procedures requiring anticoagulation discontinuation",
+          "hold_hours": "At least 24 hours before procedure",
+          "restart_timing": "Restart as soon as adequate hemostasis has been established"
+        }
+      ],
+      "refs": [
+        {
+          "source_id": "fda-rivaroxaban-label",
+          "locator": "Section 2.4 Discontinuation for Surgery and other Interventions",
+          "quote": "If anticoagulation must be discontinued to reduce the risk of bleeding with surgical or other procedures, XARELTO should be stopped at least 24 hours before the procedure to reduce the risk of bleeding"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

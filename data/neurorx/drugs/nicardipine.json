@@ -1,0 +1,160 @@
+{
+  "id": "nicardipine",
+  "generic_name": "nicardipine",
+  "tall_man": {
+    "value": "niCARdipine",
+    "refs": [
+      {
+        "source_id": "fda-tallman-list",
+        "locator": "FDA and ISMP Lists of Look-Alike Drug Names with Recommended Tall Man Letters",
+        "quote": "Nicardipine\r\n\t\t\tNifedipine\tniCARdipine\r\n\t\t\tNIFEdipine"
+      }
+    ],
+    "note": "ISMP/FDA Tall Man lettering distinguishes niCARdipine from NIFEdipine"
+  },
+  "classes": [
+    "calcium channel blocker",
+    "dihydropyridine",
+    "antihypertensive",
+    "vasodilator"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "BHYT circular data pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "nic-iv-htn-infusion",
+      "indication": "Short-Term Treatment of Severe Hypertension / Acute BP Control in Stroke & Neurocritical Care",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-nicardipine-label",
+          "locator": "Section 1.1 Hypertension",
+          "quote": "CARDENE I.V. (nicardipine hydrochloride) is indicated in adults for the short-term treatment of hypertension when oral therapy is not feasible or not desirable. For prolonged control of blood pressure, transfer patients to oral medication as soon as their clinical condition permits [see Dosage and Administration (2.1) ]."
+        },
+        {
+          "source_id": "fda-nicardipine-label",
+          "locator": "Section 2.1 Recommended Dosage",
+          "quote": "Initiate therapy at 50 mL/hr (5 mg/hr). If desired blood pressure reduction is not achieved at this dose, the infusion rate may be increased by 25 mL/hr (2.5 mg/hr) every 5 minutes (for rapid titration) to 15 minutes (for gradual titration) up to a maximum of 150 mL/hr (15 mg/hr), until desired blood pressure reduction is achieved."
+        }
+      ],
+      "dose": {
+        "kind": "titration",
+        "amount": 5,
+        "unit": "mg/hr",
+        "frequency": "continuous",
+        "max_single": 15,
+        "max_daily": 360
+      },
+      "dose_text": "Initiate IV infusion at 5 mg/hr (50 mL/hr of 0.1 mg/mL). Increase rate by 2.5 mg/hr every 5 minutes (rapid titration) to 15 minutes (gradual titration) up to a maximum of 15 mg/hr (150 mL/hr) until target blood pressure is achieved. Once blood pressure goal is reached, reduce to maintenance rate (typically 3 mg/hr)."
+    }
+  ],
+  "renal_basis": {
+    "value": "none",
+    "refs": [
+      {
+        "source_id": "fda-nicardipine-label",
+        "locator": "Section 2.1 Recommended Dosage",
+        "quote": "Special Populations Titrate CARDENE I.V. slowly in patients with heart failure or impaired hepatic or renal function [see Warnings and Precautions (5.2 , 5.3 and 5.4 )]"
+      }
+    ],
+    "note": "Titrate slowly in patients with renal impairment"
+  },
+  "hepatic": {
+    "value": "Titrate CARDENE I.V. slowly in patients with heart failure or impaired hepatic or renal function.",
+    "refs": [
+      {
+        "source_id": "fda-nicardipine-label",
+        "locator": "Section 2.1 Recommended Dosage",
+        "quote": "Special Populations Titrate CARDENE I.V. slowly in patients with heart failure or impaired hepatic or renal function [see Warnings and Precautions (5.2 , 5.3 and 5.4 )]"
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-nicardipine-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Nicardipine inhibits the transmembrane influx of calcium ions into cardiac muscle and smooth muscle without changing serum calcium concentrations."
+      }
+    ],
+    "note": "Calcium channel blockers may rarely unmask or worsen weakness in patients with myasthenia gravis; use with caution and monitor motor function"
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "CARDENE I.V. is for intravenous infusion only; oral formulations (capsules) available for oral/enteral use"
+  },
+  "pgx": {
+    "value": null,
+    "refs": [],
+    "note": "No pharmacogenomic requirements"
+  },
+  "ae_tags": {
+    "value": null,
+    "refs": []
+  },
+  "mechanism_of_action": {
+    "value": "Nicardipine inhibits the transmembrane influx of calcium ions into cardiac muscle and smooth muscle without changing serum calcium concentrations. The contractile processes of cardiac muscle and vascular smooth muscle are dependent upon the movement of extracellular calcium ions into these cells through specific ion channels. The effects of nicardipine are more selective to vascular smooth muscle than cardiac muscle.",
+    "refs": [
+      {
+        "source_id": "fda-nicardipine-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Nicardipine inhibits the transmembrane influx of calcium ions into cardiac muscle and smooth muscle without changing serum calcium concentrations. The contractile processes of cardiac muscle and vascular smooth muscle are dependent upon the movement of extracellular calcium ions into these cells through specific ion channels."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp3a4": "substrate",
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-nicardipine-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Nicardipine inhibits the transmembrane influx of calcium ions into cardiac muscle and smooth muscle without changing serum calcium concentrations."
+      }
+    ]
+  },
+  "tools": {
+    "iv_infusion": {
+      "value": {
+        "diluent": "Available as ready-to-use 20 mg in 200 mL (0.1 mg/mL) or 40 mg in 200 mL (0.2 mg/mL) in 0.9% NaCl or D5W",
+        "rate": "Initiate at 5 mg/hr (50 mL/hr of 0.1 mg/mL); titrate by 2.5 mg/hr every 5-15 min; maximum 15 mg/hr (150 mL/hr)",
+        "instructions": "Administer CARDENE I.V. by continuous intravenous infusion. Change infusion site every 12 hours if administered via peripheral vein to reduce risk of venous irritation. Monitor blood pressure and heart rate continuously during infusion."
+      },
+      "refs": [
+        {
+          "source_id": "fda-nicardipine-label",
+          "locator": "Section 2.1 Recommended Dosage",
+          "quote": "Initiate therapy at 50 mL/hr (5 mg/hr). If desired blood pressure reduction is not achieved at this dose, the infusion rate may be increased by 25 mL/hr (2.5 mg/hr) every 5 minutes (for rapid titration) to 15 minutes (for gradual titration) up to a maximum of 150 mL/hr (15 mg/hr), until desired blood pressure reduction is achieved."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

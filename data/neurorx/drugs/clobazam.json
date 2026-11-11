@@ -1,0 +1,218 @@
+{
+  "id": "clobazam",
+  "generic_name": "clobazam",
+  "tall_man": {
+    "value": "clobazam",
+    "refs": [
+      {
+        "source_id": "fda-clobazam-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "ONFI is a benzodiazepine indicated for adjunctive treatment of seizures associated with Lennox-Gastaut syndrome (LGS) in patients 2 years of age or older ( 1 ) === DOSAGE AND ADMINISTRATION === 2 DOS"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "benzodiazepine",
+    "anti-seizure medication (ASM)",
+    "GABA-A positive allosteric modulator"
+  ],
+  "subspecialties": [
+    "epilepsy",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "clob-lgs-adult",
+      "indication": "Adjunctive Treatment of Seizures in Lennox-Gastaut Syndrome (Adult / > 30 kg)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-clobazam-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "ONFI is a benzodiazepine indicated for adjunctive treatment of seizures associated with Lennox-Gastaut syndrome (LGS) in patients 2 years of age or older ( 1 ) === DOSAGE AND ADMINISTRATION === 2 DOS"
+        },
+        {
+          "source_id": "fda-clobazam-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "doses above 5 mg/day administer in two divided doses ( 2.1 ) Patients ≤30 kg body weight: Initiate at 5 mg daily and titrate as tolerated up to 20 mg daily ( 2.1 ) Patients >30 kg"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 5,
+        "unit": "mg",
+        "frequency": "twice daily",
+        "max_single": 20,
+        "max_daily": 40
+      },
+      "dose_text": "For patients > 30 kg: Start with 10 mg/day (5 mg twice daily). At Day 7, advance to 20 mg/day (10 mg twice daily). At Day 14, advance to recommended target maintenance dose of 40 mg/day (20 mg twice daily). Doses > 5 mg/day should be administered in 2 divided doses."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-clobazam-label",
+        "locator": "USE IN SPECIFIC POPULATIONS",
+        "quote": "mild and moderate renal impairment. There is no experience with ONFI in patients with severe renal impairment or end stage renal disease (ESRD)."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Mild to moderate hepatic impairment: Start with 5 mg/day (<= 30 kg) or 10 mg/day (> 30 kg) and titrate slowly. Severe hepatic impairment: No data available.",
+    "refs": [
+      {
+        "source_id": "fda-clobazam-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "For patients with mild to moderate hepatic impairment (Child-Pugh score 5-9), the starting dose should be 5 mg/day in both weight groups."
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "CONCOMITANT USE OF BENZODIAZEPINES AND OPIOIDS MAY RESULT IN PROFOUND SEDATION, RESPIRATORY DEPRESSION, COMA, AND DEATH.",
+      "ABUSE, MISUSE, AND ADDICTION RISK LEADING TO OVERDOSE OR DEATH.",
+      "PHYSICAL DEPENDENCE AND WITHDRAWAL REACTIONS UPON ABRUPT DISCONTINUATION OR RAPID DOSE REDUCTION."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-clobazam-label",
+        "locator": "BOXED WARNING",
+        "quote": "WARNING: RISKS FROM CONCOMITANT USE WITH OPIOIDS; ABUSE, MISUSE, AND ADDICTION; and DEPENDENCE AND WITHDRAWAL REACTIONS Concomitant use of benzodiazepines and opioids may result in profound sedation, respiratory depression, coma, and death."
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "avoid",
+    "refs": [
+      {
+        "source_id": "fda-clobazam-label",
+        "locator": "BOXED WARNING",
+        "quote": "WARNING: RISKS FROM CONCOMITANT USE WITH OPIOIDS; ABUSE, MISUSE, AND ADDICTION; and DEPENDENCE AND WITHDRAWAL REACTIONS Concomitant use of benzodiazepines and opioids may result in profound sedation, respiratory depression, coma, and death."
+      }
+    ],
+    "note": "Benzodiazepines can precipitate severe respiratory depression and exacerbate myasthenic weakness"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "Tablets can be administered whole, or crushed and mixed with applesauce. Oral suspension also available."
+    },
+    "refs": [
+      {
+        "source_id": "fda-clobazam-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "crushed and mixed in applesauce. ONFI Oral Suspension Oral Administration ONFI oral suspension can be taken with or without food [see Clinical Pharmacology ( 12.3 )] ."
+      }
+    ]
+  },
+  "pgx": {
+    "value": "In CYP2C19 poor metabolizers, N-desmethylclobazam (active metabolite) plasma levels are 3- to 5-fold higher. Dose adjustment may be necessary.",
+    "refs": [
+      {
+        "source_id": "fda-clobazam-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "For patients with mild to moderate hepatic impairment (Child-Pugh score 5-9), the starting dose should be 5 mg/day in both weight groups."
+      }
+    ]
+  },
+  "ae_tags": {
+    "value": [
+      "sedation_somnolence",
+      "ataxia",
+      "confusion_delirium"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-clobazam-label",
+        "locator": "BOXED WARNING",
+        "quote": "WARNING: RISKS FROM CONCOMITANT USE WITH OPIOIDS; ABUSE, MISUSE, AND ADDICTION; and DEPENDENCE AND WITHDRAWAL REACTIONS Concomitant use of benzodiazepines and opioids may result in profound sedation, respiratory depression, coma, and death."
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Positive allosteric modulator at GABA-A receptors, increasing neuronal membrane permeability to chloride ions.",
+    "refs": [
+      {
+        "source_id": "fda-clobazam-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "ONFI is a benzodiazepine indicated for adjunctive treatment of seizures associated with Lennox-Gastaut syndrome (LGS) in patients 2 years of age or older ( 1 ) === DOSAGE AND ADMINISTRATION === 2 DOS"
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp3a4": "substrate",
+      "cyp2c19": "substrate",
+      "cyp2d6": "inhibitor_weak"
+    },
+    "refs": [
+      {
+        "source_id": "fda-clobazam-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "For patients with mild to moderate hepatic impairment (Child-Pugh score 5-9), the starting dose should be 5 mg/day in both weight groups."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "avoid",
+      "refs": [
+        {
+          "source_id": "fda-clobazam-label",
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "Pregnancy: Based on animal data, may cause fetal harm ( 8.1 ) 8.1 Pregnancy Pregnancy Registry There is a pregnancy exposure registry that monitors pregnancy ou"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Clobazam is excreted in human milk. Monitor breastfed infants for sedation and poor feeding.",
+      "refs": [
+        {
+          "source_id": "fda-clobazam-label",
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "Pregnancy: Based on animal data, may cause fetal harm ( 8.1 ) 8.1 Pregnancy Pregnancy Registry There is a pregnancy exposure registry that monitors pregnancy ou"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

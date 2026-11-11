@@ -1,0 +1,127 @@
+{
+  "spl_product_data_elements": [
+    "BAYER Aspirin Extra Strength Caplets BAYER Aspirin Extra Strength CARNAUBA WAX STARCH, CORN D&C RED NO. 7 ALUMINUM OXIDE FD&C BLUE NO. 2 FD&C RED NO. 40 HYPROMELLOSES POWDERED CELLULOSE PROPYLENE GLYCOL SHELLAC TITANIUM DIOXIDE TRIACETIN ASPIRIN ASPIRIN Extra;Strength;BAYER"
+  ],
+  "spl_unclassified_section": [
+    "Drug Facts"
+  ],
+  "active_ingredient": [
+    "Active ingredient (in each caplet) Aspirin 500 mg (NSAID) nonsteroidal anti-inflammatory drug"
+  ],
+  "purpose": [
+    "Pain reliever/fever reducer"
+  ],
+  "indications_and_usage": [
+    "Uses temporarily relieves headache pain and fever of colds muscle pain menstrual pain toothache minor pain of arthritis"
+  ],
+  "warnings": [
+    "Warnings Reye’s syndrome : Children and teenagers who have or are recovering from chicken pox or flu-like symptoms should not use this product. When using this product, if changes in behavior with nausea and vomiting occur, consult a doctor because these symptoms could be an early sign of Reye’s syndrome, a rare but serious illness. Allergy alert : Aspirin may cause a severe allergic reaction which may include: hives facial swelling asthma (wheezing) shock Stomach bleeding warni ng: This product contains an NSAID, which may cause severe stomach bleeding. The chance is higher if you are age 60 or older have had stomach ulcers or bleeding problems take a blood thinning (anticoagulant) or steroid drug take other drugs containing prescription or nonprescription NSAIDs (aspirin, ibuprofen, naproxen, or others) have 3 or more alcoholic drinks every day while using this product take more or for a longer time than directed"
+  ],
+  "do_not_use": [
+    "Do not use if you are allergic to aspirin or any other pain reliever/fever reducer if you have ever had an allergic reaction to this product or any of its ingredients"
+  ],
+  "ask_doctor": [
+    "Ask a doctor before use if stomach bleeding warning applies to you you have a history of stomach problems, such as heartburn you have high blood pressure, heart disease, liver cirrhosis, or kidney disease you are taking a diuretic you have asthma"
+  ],
+  "ask_doctor_or_pharmacist": [
+    "Ask a doctor or pharmacist before use if you are taking a prescription drug for gout diabetes arthritis"
+  ],
+  "stop_use": [
+    "Stop use and ask a doctor if an allergic reaction occurs. Seek medical help right away. you experience any of the following signs of stomach bleeding: ● feel faint ● vomit blood ● have bloody or black stools ● have stomach pain that does not get better pain gets worse or lasts more than 10 days redness or swelling is present fever lasts more than 3 days new symptoms occur ringing in the ears or a loss of hearing occurs"
+  ],
+  "pregnancy_or_breast_feeding": [
+    "If pregnant or breast-feedin g, ask a health professional before use. It is especially important not to use aspirin during the last 3 months of pregnancy unless definitely directed to do so by a doctor because it may cause problems in the unborn child or complications during delivery."
+  ],
+  "keep_out_of_reach_of_children": [
+    "Keep out of reach of children. In case of overdose, get medical help or contact a Poison Control Center right away."
+  ],
+  "dosage_and_administration": [
+    "Directions drink a full glass of water with each dose adults and children 12 years and over: take 1 or 2 caplets every 4 to 6 hours not to exceed 8 caplets in 24 hours children under 12 years: consult a doctor"
+  ],
+  "other_safety_information": [
+    "Other Information save carton for full directions and warnings store at room temperature. Avoid excessive heat above 40ºC (104ºF)."
+  ],
+  "inactive_ingredient": [
+    "Inactive ingredients carnauba wax, corn starch, D&C red #7 calcium lake, FD&C blue #2 aluminum lake, FD&C red #40 aluminum lake, hypromellose, powdered cellulose, propylene glycol, shellac, titanium dioxide, triacetin"
+  ],
+  "questions": [
+    "Questions or comments? 1-800-331-4536 (Mon – Fri 9AM – 5PM EST)"
+  ],
+  "package_label_principal_display_panel": [
+    "Carton 100 caplets Carton"
+  ],
+  "set_id": "0ae64cdb-4ea0-23af-e054-00144ff88e88",
+  "id": "4526b08f-a640-90b9-e063-6294a90a1189",
+  "effective_time": "20251204",
+  "version": "6",
+  "openfda": {
+    "application_number": [
+      "M013"
+    ],
+    "brand_name": [
+      "BAYER Aspirin Extra Strength Caplets"
+    ],
+    "generic_name": [
+      "BAYER ASPIRIN EXTRA STRENGTH"
+    ],
+    "manufacturer_name": [
+      "Bayer HealthCare LLC."
+    ],
+    "product_ndc": [
+      "0280-2020"
+    ],
+    "product_type": [
+      "HUMAN OTC DRUG"
+    ],
+    "route": [
+      "ORAL"
+    ],
+    "substance_name": [
+      "ASPIRIN"
+    ],
+    "rxcui": [
+      "198471",
+      "211887"
+    ],
+    "spl_id": [
+      "4526b08f-a640-90b9-e063-6294a90a1189"
+    ],
+    "spl_set_id": [
+      "0ae64cdb-4ea0-23af-e054-00144ff88e88"
+    ],
+    "package_ndc": [
+      "0280-2020-10"
+    ],
+    "is_original_packager": [
+      true
+    ],
+    "upc": [
+      "0312843555075"
+    ],
+    "nui": [
+      "N0000000160",
+      "N0000008836",
+      "M0001335",
+      "N0000175722",
+      "N0000175578",
+      "N0000008832"
+    ],
+    "pharm_class_moa": [
+      "Cyclooxygenase Inhibitors [MoA]"
+    ],
+    "pharm_class_pe": [
+      "Decreased Prostaglandin Production [PE]",
+      "Decreased Platelet Aggregation [PE]"
+    ],
+    "pharm_class_cs": [
+      "Anti-Inflammatory Agents, Non-Steroidal [CS]"
+    ],
+    "pharm_class_epc": [
+      "Nonsteroidal Anti-inflammatory Drug [EPC]",
+      "Platelet Aggregation Inhibitor [EPC]"
+    ],
+    "unii": [
+      "R16CO5Y76E"
+    ]
+  }
+}

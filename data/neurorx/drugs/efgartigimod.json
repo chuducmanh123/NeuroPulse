@@ -1,0 +1,201 @@
+{
+  "id": "efgartigimod",
+  "generic_name": "efgartigimod",
+  "tall_man": {
+    "value": "efgartigimod",
+    "refs": [
+      {
+        "source_id": "fda-efgartigimod-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "generalized myasthenia gravis (gMG) chronic inflammatory demyelinating polyneuropathy (CIDP) VYVGART HYTRULO is a combination of efgartigimod alfa, a neonatal Fc receptor blocker, and hyaluronidase, an endoglycosidase, i"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "neonatal Fc receptor (FcRn) blocker",
+    "monoclonal antibody fragment",
+    "targeted biologic"
+  ],
+  "subspecialties": [
+    "neuromuscular",
+    "neuroimmunology"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "efg-gmg-cycle",
+      "indication": "Generalized Myasthenia Gravis (AChR-Ab Positive Adults)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-efgartigimod-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "generalized myasthenia gravis (gMG) chronic inflammatory demyelinating polyneuropathy (CIDP) VYVGART HYTRULO is a combination of efgartigimod alfa, a neonatal Fc receptor blocker, and hyaluronidase, an endoglycosidase, i"
+        },
+        {
+          "source_id": "fda-efgartigimod-label",
+          "locator": "CLINICAL STUDIES",
+          "quote": "one cycle of once-weekly administrations for 4 weeks of either efgartigimod alfa-fcab 10 mg/kg (n=58) or placebo (n=61)."
+        }
+      ],
+      "dose": {
+        "kind": "weight_based",
+        "amount": 10,
+        "unit": "mg/kg",
+        "frequency": "once weekly for 4 weeks (1 cycle)",
+        "max_single": 1200
+      },
+      "dose_text": "10 mg/kg administered as an IV infusion over 1 hour once weekly for 4 weeks (one treatment cycle). Maximum single dose is 1200 mg (for patients >= 120 kg). Administer subsequent treatment cycles based on clinical evaluation (cycle intervals typically >= 50 days)."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-efgartigimod-label",
+        "locator": "USE IN SPECIFIC POPULATIONS",
+        "quote": "Renal Impairment No dose adjustment of VYVGART HYTRULO is needed for patients with mild renal impairment."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Monoclonal antibody fragments are degraded into small peptides and amino acids; no dosage adjustment required.",
+    "refs": [
+      {
+        "source_id": "fda-efgartigimod-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "generalized myasthenia gravis (gMG) chronic inflammatory demyelinating polyneuropathy (CIDP) VYVGART HYTRULO is a combination of efgartigimod alfa, a neonatal Fc receptor blocker, and hyaluronidase, an endoglycosidase, i"
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "first_line",
+    "refs": [
+      {
+        "source_id": "fda-efgartigimod-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "generalized myasthenia gravis (gMG) chronic inflammatory demyelinating polyneuropathy (CIDP) VYVGART HYTRULO is a combination of efgartigimod alfa, a neonatal Fc receptor blocker, and hyaluronidase, an endoglycosidase, i"
+      }
+    ],
+    "note": "First-in-class targeted FcRn blocker with rapid onset of clinical improvement in anti-AChR positive generalized myasthenia gravis"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Biologic IV infusion / SC injection only; not for oral or enteral tube administration."
+    },
+    "refs": [
+      {
+        "source_id": "fda-efgartigimod-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "generalized myasthenia gravis (gMG) chronic inflammatory demyelinating polyneuropathy (CIDP) VYVGART HYTRULO is a combination of efgartigimod alfa, a neonatal Fc receptor blocker, and hyaluronidase, an endoglycosidase, i"
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [],
+    "refs": [
+      {
+        "source_id": "fda-efgartigimod-label",
+        "locator": "ADVERSE REACTIONS",
+        "quote": "most common adverse reactions (≥ 10%) in patients with gMG treated with efgartigimod alfa-fcab were respiratory tract infections, headache, and urinary tract infection."
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Human IgG1 antibody Fc fragment that binds to the neonatal Fc receptor (FcRn), preventing IgG recycling and accelerating degradation of pathogenic autoantibodies including anti-AChR IgG.",
+    "refs": [
+      {
+        "source_id": "fda-efgartigimod-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "neonatal Fc receptor blocker, and hyaluronidase, an endoglycosidase, indicated for the treatment of adult patients with: generalized myasthenia gravis (gMG) ( 1 ) chronic inflammat"
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "metabolism": "catabolized by ubiquitous lysosomal proteolytic enzymes into small peptides"
+    },
+    "refs": [
+      {
+        "source_id": "fda-efgartigimod-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "neonatal Fc receptor blocker, and hyaluronidase, an endoglycosidase, indicated for the treatment of adult patients with: generalized myasthenia gravis (gMG) ( 1 ) chronic inflammat"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-efgartigimod-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "generalized myasthenia gravis (gMG) chronic inflammatory demyelinating polyneuropathy (CIDP) VYVGART HYTRULO is a combination of efgartigimod alfa, a neonatal Fc receptor blocker, and hyaluronidase, an endoglycosidase, i"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "FcRn blockade reduces transplacental transfer of maternal IgG to the fetus, potentially leaving the neonate transiently hypogammaglobulinemic. Evaluate clinical benefit vs fetal risk.",
+      "refs": [
+        {
+          "source_id": "fda-efgartigimod-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "generalized myasthenia gravis (gMG) chronic inflammatory demyelinating polyneuropathy (CIDP) VYVGART HYTRULO is a combination of efgartigimod alfa, a neonatal Fc receptor blocker, and hyaluronidase, an endoglycosidase, i"
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Maternal IgG is excreted into colostrum/milk; consider potential for FcRn blockade in infant GI tract vs maternal need.",
+      "refs": [
+        {
+          "source_id": "fda-efgartigimod-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "generalized myasthenia gravis (gMG) chronic inflammatory demyelinating polyneuropathy (CIDP) VYVGART HYTRULO is a combination of efgartigimod alfa, a neonatal Fc receptor blocker, and hyaluronidase, an endoglycosidase, i"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

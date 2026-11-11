@@ -1,0 +1,270 @@
+{
+  "id": "carbamazepine",
+  "generic_name": "carbamazepine",
+  "tall_man": {
+    "value": "carbamazepine",
+    "refs": [
+      {
+        "source_id": "fda-carbamazepine-label",
+        "locator": "DESCRIPTION",
+        "quote": "Tegretol, carbamazepine USP, is an anticonvulsant and specific analgesic for trigeminal neuralgia"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "anticonvulsant",
+    "anti-seizure medication (ASM)",
+    "sodium channel blocker",
+    "CYP3A4 inducer"
+  ],
+  "subspecialties": [
+    "epilepsy",
+    "neuromuscular"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "cbz-epilepsy-adult",
+      "indication": "Epilepsy (Partial Seizures, Generalized Tonic-Clonic Seizures)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-carbamazepine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Partial seizures with complex symptomatology (psychomotor, temporal lobe)."
+        },
+        {
+          "source_id": "fda-carbamazepine-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Adults and children over 12 years of age-Initial: Either 200 mg twice a day for tablets and XR tablets, or 1 teaspoon four times a day for suspension (400 mg/day). Increase at weekly intervals by adding up to 200 mg/day using a twice a day regimen of Tegretol-XR or a three times a day or four times a day regimen of the other formulations until the optimal response is obtained."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 200,
+        "unit": "mg",
+        "frequency": "twice daily",
+        "max_single": 400,
+        "max_daily": 1200
+      },
+      "dose_text": "Initial: 200 mg orally twice daily (400 mg/day). Increase at weekly intervals by adding up to 200 mg/day until optimal response. Maximum recommended dosage is 1200 mg daily."
+    },
+    {
+      "id": "cbz-trigeminal-neuralgia",
+      "indication": "Trigeminal Neuralgia / Glossopharyngeal Neuralgia",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-carbamazepine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Tegretol is indicated in the treatment of the pain associated with true trigeminal neuralgia."
+        },
+        {
+          "source_id": "fda-carbamazepine-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Initial: On the first day, either 100 mg twice a day for tablets or XR tablets, or ½ teaspoon four times a day for suspension, for a total daily dose of 200 mg. This daily dose may be increased by up to 200 mg/day using increments of 100 mg every 12 hours for tablets or XR tablets, or 50 mg (½ teaspoon) four times a day for suspension, only as needed to achieve freedom from pain."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 100,
+        "unit": "mg",
+        "frequency": "twice daily",
+        "max_single": 400,
+        "max_daily": 1200
+      },
+      "dose_text": "Initial: 100 mg twice daily (total 200 mg/day). Increase by up to 200 mg/day in increments of 100 mg every 12 hours as needed to control pain (maximum 1200 mg daily)."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-carbamazepine-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "Partial seizures with complex symptomatology (psychomotor, temporal lobe)."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Liver damage and hepatitis reported; baseline and periodic liver function monitoring required.",
+    "refs": [
+      {
+        "source_id": "fda-carbamazepine-label",
+        "locator": "ADVERSE REACTIONS",
+        "quote": "Liver: Abnormalities in liver function tests, cholestatic and hepatocellular jaundice, hepatitis, very rare cases of hepatic failure."
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "SERIOUS AND SOMETIMES FATAL DERMATOLOGIC REACTIONS (TEN AND SJS) - HLA-B*1502 GENETIC SCREENING RECOMMENDED",
+      "APLASTIC ANEMIA AND AGRANULOCYTOSIS RISK"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-carbamazepine-label",
+        "locator": "BOXED WARNING",
+        "quote": "SERIOUS AND SOMETIMES FATAL DERMATOLOGIC REACTIONS, INCLUDING TOXIC EPIDERMAL NECROLYSIS (TEN) AND STEVENS-JOHNSON SYNDROME (SJS)"
+      },
+      {
+        "source_id": "fda-carbamazepine-label",
+        "locator": "BOXED WARNING",
+        "quote": "APLASTIC ANEMIA AND AGRANULOCYTOSIS HAVE BEEN REPORTED IN ASSOCIATION WITH THE USE OF TEGRETOL."
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "may_worsen",
+    "refs": [
+      {
+        "source_id": "fda-carbamazepine-label",
+        "locator": "ADVERSE REACTIONS",
+        "quote": "The most frequently observed adverse reactions, particularly during the initial phases of therapy, are dizziness, drowsiness, unsteadiness, nausea, and vomiting."
+      }
+    ],
+    "note": "Voltage-gated sodium channel blocker; can exacerbate neuromuscular junction weakness"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Immediate-release tablets may be crushed; XR formulations must never be crushed or chewed. Oral suspension available."
+    },
+    "refs": [
+      {
+        "source_id": "fda-carbamazepine-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "Tegretol -XR tablets must be swallowed whole and never crushed or chewed."
+      }
+    ]
+  },
+  "pgx": {
+    "value": "Screening for HLA-B*1502 recommended in genetically at-risk populations before initiating therapy due to extreme risk of SJS/TEN.",
+    "refs": [
+      {
+        "source_id": "fda-carbamazepine-label",
+        "locator": "BOXED WARNING",
+        "quote": "SERIOUS AND SOMETIMES FATAL DERMATOLOGIC REACTIONS, INCLUDING TOXIC EPIDERMAL NECROLYSIS (TEN) AND STEVENS-JOHNSON SYNDROME (SJS)"
+      }
+    ]
+  },
+  "ae_tags": {
+    "value": [
+      "rash_sjs_ten",
+      "hyponatremia",
+      "ataxia",
+      "sedation_somnolence",
+      "hepatotoxicity"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-carbamazepine-label",
+        "locator": "ADVERSE REACTIONS",
+        "quote": "The most frequently observed adverse reactions, particularly during the initial phases of therapy, are dizziness, drowsiness, unsteadiness, nausea, and vomiting."
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Carbamazepine acts by voltage-dependent block of voltage-gated sodium channels, reducing repetitive neuronal firing.",
+    "refs": [
+      {
+        "source_id": "fda-carbamazepine-label",
+        "locator": "CLINICAL PHARMACOLOGY",
+        "quote": "Mechanism of Action Tegretol has demonstrated anticonvulsant properties in rats and mice with electrically and chemically induced seizures."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp3a4": "inducer_strong",
+      "cyp1a2": "inducer_strong",
+      "cyp2c9": "inducer_strong"
+    },
+    "refs": [
+      {
+        "source_id": "fda-carbamazepine-label",
+        "locator": "CLINICAL PHARMACOLOGY",
+        "quote": "Cytochrome P450 3A4 was identified as the major isoform responsible for the formation of carbamazepine-10,11-epoxide from Tegretol."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "avoid",
+      "refs": [
+        {
+          "source_id": "fda-carbamazepine-label",
+          "locator": "PREGNANCY",
+          "quote": "Carbamazepine can cause fetal harm when administered to a pregnant woman."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": "Folic acid supplementation is recommended before conception and during pregnancy.",
+      "refs": [
+        {
+          "source_id": "fda-carbamazepine-label",
+          "locator": "PREGNANCY",
+          "quote": "Carbamazepine can cause fetal harm when administered to a pregnant woman."
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Decreased carbamazepine concentrations and increased clearance may occur during pregnancy; monitor plasma levels.",
+      "refs": [
+        {
+          "source_id": "fda-carbamazepine-label",
+          "locator": "PREGNANCY",
+          "quote": "Carbamazepine can cause fetal harm when administered to a pregnant woman."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": "Strong enzyme induction decreases the efficacy of hormonal contraceptives; use alternative non-hormonal contraception.",
+      "refs": [
+        {
+          "source_id": "fda-carbamazepine-label",
+          "locator": "CLINICAL PHARMACOLOGY",
+          "quote": "Cytochrome P450 3A4 was identified as the major isoform responsible for the formation of carbamazepine-10,11-epoxide from Tegretol."
+        }
+      ]
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Carbamazepine and its epoxide metabolite transfer into breast milk; monitor nursing infants for hepatic dysfunction and sedation.",
+      "refs": [
+        {
+          "source_id": "fda-carbamazepine-label",
+          "locator": "PREGNANCY",
+          "quote": "Carbamazepine can cause fetal harm when administered to a pregnant woman."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

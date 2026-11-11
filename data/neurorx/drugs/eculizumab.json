@@ -1,0 +1,244 @@
+{
+  "id": "eculizumab",
+  "generic_name": "eculizumab",
+  "tall_man": {
+    "value": "eculizumab",
+    "refs": [
+      {
+        "source_id": "fda-eculizumab-label",
+        "locator": "BOXED WARNING",
+        "quote": "MENINGOCOCCAL INFECTIONS SOLIRIS, a complement inhibitor, increases the risk of serious infections caused by Neisseria meningitidis [see Warnings and Precautions (5.1) ] ."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "terminal complement (C5) inhibitor",
+    "humanized monoclonal antibody",
+    "targeted neuroimmunology biologic"
+  ],
+  "subspecialties": [
+    "neuromuscular",
+    "neuroimmunology"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "ecu-gmg-adult",
+      "indication": "Generalized Myasthenia Gravis (AChR-Ab Positive Adults)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-eculizumab-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "myasthenia gravis (gMG) in adult and pediatric patients six years of age and older who are anti-acetylcholine receptor (AChR) antibody positive."
+        },
+        {
+          "source_id": "fda-eculizumab-label",
+          "locator": "BOXED WARNING",
+          "quote": "MENINGOCOCCAL INFECTIONS SOLIRIS, a complement inhibitor, increases the risk of serious infections caused by Neisseria meningitidis [see Warnings and Precautions (5.1) ] ."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 900,
+        "unit": "mg",
+        "frequency": "weekly for first 4 weeks, then 1200 mg at week 5 and every 2 weeks thereafter",
+        "max_single": 1200,
+        "max_daily": 1200
+      },
+      "dose_text": "Induction: 900 mg IV infusion weekly for the first 4 weeks, followed by 1200 mg for the fifth dose 1 week later, then 1200 mg every 2 weeks thereafter. Meningococcal vaccination (both ACWY and B) must be administered at least 2 weeks prior to first dose or antibacterial prophylaxis provided."
+    },
+    {
+      "id": "ecu-nmosd-adult",
+      "indication": "Neuromyelitis Optica Spectrum Disorder (AQP4-Ab Positive Adults)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-eculizumab-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "treatment of neuromyelitis optica spectrum disorder (NMOSD) in adult patients who are anti-aquaporin-4 (AQP4) antibody positive."
+        },
+        {
+          "source_id": "fda-eculizumab-label",
+          "locator": "BOXED WARNING",
+          "quote": "MENINGOCOCCAL INFECTIONS SOLIRIS, a complement inhibitor, increases the risk of serious infections caused by Neisseria meningitidis [see Warnings and Precautions (5.1) ] ."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 900,
+        "unit": "mg",
+        "frequency": "weekly for first 4 weeks, then 1200 mg at week 5 and every 2 weeks thereafter",
+        "max_single": 1200,
+        "max_daily": 1200
+      },
+      "dose_text": "Induction: 900 mg IV weekly for 4 weeks, followed by 1200 mg at Week 5, then 1200 mg every 2 weeks maintenance. Crucial: complete meningococcal immunization before initiation."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-eculizumab-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "myasthenia gravis (gMG) in adult and pediatric patients six years of age and older who are anti-acetylcholine receptor (AChR) antibody positive."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Antibodies are cleared by non-saturable pinocytosis and lysosomal catabolism; no dosage adjustment in hepatic impairment.",
+    "refs": [
+      {
+        "source_id": "fda-eculizumab-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "myasthenia gravis (gMG) in adult and pediatric patients six years of age and older who are anti-acetylcholine receptor (AChR) antibody positive."
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "SERIOUS AND POTENTIALLY FATAL MENINGOCOCCAL INFECTIONS (SEPTICEMIA AND/OR MENINGITIS) CAUSED BY NEISSERIA MENINGITIDIS.",
+      "VACCINATE WITH MENINGOCOCCAL VACCINES (SEROGROUPS ACWY AND B) AT LEAST 2 WEEKS PRIOR TO INITIATING THERAPY.",
+      "MONITOR PATIENTS FOR EARLY SIGNS OF MENINGOCOCCAL INFECTION AND EVALUATE IMMEDIATELY IF SUSPECTED."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-eculizumab-label",
+        "locator": "BOXED WARNING",
+        "quote": "MENINGOCOCCAL INFECTIONS SOLIRIS, a complement inhibitor, increases the risk of serious infections caused by Neisseria meningitidis [see Warnings and Precautions (5.1) ] ."
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "first_line",
+    "refs": [
+      {
+        "source_id": "fda-eculizumab-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "myasthenia gravis (gMG) in adult and pediatric patients six years of age and older who are anti-acetylcholine receptor (AChR) antibody positive."
+      }
+    ],
+    "note": "Targeted terminal complement inhibitor; approved and highly effective for refractory AChR-Ab positive generalized myasthenia gravis"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Intravenous infusion only; strictly not for oral or enteral feeding tube administration."
+    },
+    "refs": [
+      {
+        "source_id": "fda-eculizumab-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "myasthenia gravis (gMG) in adult and pediatric patients six years of age and older who are anti-acetylcholine receptor (AChR) antibody positive."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [],
+    "refs": [
+      {
+        "source_id": "fda-eculizumab-label",
+        "locator": "BOXED WARNING",
+        "quote": "MENINGOCOCCAL INFECTIONS SOLIRIS, a complement inhibitor, increases the risk of serious infections caused by Neisseria meningitidis [see Warnings and Precautions (5.1) ] ."
+      },
+      {
+        "source_id": "fda-eculizumab-label",
+        "locator": "ADVERSE REACTIONS",
+        "quote": "most common adverse reactions from gMG Study 1 that occurred in ≥5% of SOLIRIS-treated patients and at a greater frequency than on placebo."
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Recombinant humanized IgG2/4-kappa monoclonal antibody that binds with high affinity to terminal complement protein C5, inhibiting its cleavage to C5a and C5b and preventing terminal complement complex (MAC / C5b-9) assembly.",
+    "refs": [
+      {
+        "source_id": "fda-eculizumab-label",
+        "locator": "BOXED WARNING",
+        "quote": "MENINGOCOCCAL INFECTIONS SOLIRIS, a complement inhibitor, increases the risk of serious infections caused by Neisseria meningitidis [see Warnings and Precautions (5.1) ] ."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "metabolism": "catabolized by cellular endocytosis into small peptides and amino acids"
+    },
+    "refs": [
+      {
+        "source_id": "fda-eculizumab-label",
+        "locator": "BOXED WARNING",
+        "quote": "MENINGOCOCCAL INFECTIONS SOLIRIS, a complement inhibitor, increases the risk of serious infections caused by Neisseria meningitidis [see Warnings and Precautions (5.1) ] ."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-eculizumab-label",
+          "locator": "BOXED WARNING",
+          "quote": "MENINGOCOCCAL INFECTIONS SOLIRIS, a complement inhibitor, increases the risk of serious infections caused by Neisseria meningitidis [see Warnings and Precautions (5.1) ] ."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "IgG crosses placenta; clinical registry data in PNH and aHUS show favorable outcomes, but assess maternal benefits against neonatal complement deficiency risks.",
+      "refs": [
+        {
+          "source_id": "fda-eculizumab-label",
+          "locator": "BOXED WARNING",
+          "quote": "MENINGOCOCCAL INFECTIONS SOLIRIS, a complement inhibitor, increases the risk of serious infections caused by Neisseria meningitidis [see Warnings and Precautions (5.1) ] ."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Eculizumab has not been detected in breast milk; considered compatible with breastfeeding with infant monitoring.",
+      "refs": [
+        {
+          "source_id": "fda-eculizumab-label",
+          "locator": "BOXED WARNING",
+          "quote": "MENINGOCOCCAL INFECTIONS SOLIRIS, a complement inhibitor, increases the risk of serious infections caused by Neisseria meningitidis [see Warnings and Precautions (5.1) ] ."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

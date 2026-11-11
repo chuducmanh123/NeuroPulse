@@ -1,0 +1,206 @@
+{
+  "id": "rivastigmine",
+  "generic_name": "rivastigmine",
+  "tall_man": {
+    "value": "rivastigmine",
+    "refs": [
+      {
+        "source_id": "fda-rivastigmine-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "dementia of the Alzheimer’s type (AD). ( 1.1 ) • Mild-to-moderate dementia associated with Parkinson’s disease (PD)."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "acetylcholinesterase & butyrylcholinesterase inhibitor",
+    "pseudo-irreversible carbamate AChEI",
+    "anti-dementia agent"
+  ],
+  "subspecialties": [
+    "dementia",
+    "movement_disorders"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "riv-ad-patch",
+      "indication": "Alzheimer's Disease or Parkinson's Disease Dementia",
+      "setting": "maintenance_outpatient",
+      "route": "TD",
+      "refs": [
+        {
+          "source_id": "fda-rivastigmine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "dementia of the Alzheimer’s type (AD). ( 1.1 ) • Mild-to-moderate dementia associated with Parkinson’s disease (PD)."
+        },
+        {
+          "source_id": "fda-rivastigmine-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "intact skin for a 24-hour period; replace with a new patch every 24 hours. ( 2.1 , 2.4 ) • Initial Dose: Initiate treatment with 4.6 mg/24 hours EXELON PATCH."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 4.6,
+        "unit": "mg",
+        "frequency": "once daily (replace every 24 hours)",
+        "max_single": 13.3,
+        "max_daily": 13.3
+      },
+      "dose_text": "Transdermal patch: Initial dose 4.6 mg/24 hours patch applied once daily to clean, intact skin. After a minimum of 4 weeks, increase to recommended maintenance dose of 9.5 mg/24 hours. May increase to 13.3 mg/24 hours in severe dementia. Rotate application sites daily (upper/lower back, upper arm, chest); do not apply to same site for 14 days. Transdermal formulation significantly reduces gastrointestinal adverse effects."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-rivastigmine-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "intact skin for a 24-hour period; replace with a new patch every 24 hours. ( 2.1 , 2.4 ) • Initial Dose: Initiate treatment with 4.6 mg/24 hours EXELON PATCH."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "In patients with mild to moderate hepatic impairment, maximum recommended dose of transdermal patch is 4.6 mg/24 hours.",
+    "refs": [
+      {
+        "source_id": "fda-rivastigmine-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "intact skin for a 24-hour period; replace with a new patch every 24 hours. ( 2.1 , 2.4 ) • Initial Dose: Initiate treatment with 4.6 mg/24 hours EXELON PATCH."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-rivastigmine-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "dementia of the Alzheimer’s type (AD). ( 1.1 ) • Mild-to-moderate dementia associated with Parkinson’s disease (PD)."
+      }
+    ],
+    "note": "Inhibits AChE and BuChE; caution with concomitant pyridostigmine to avoid cholinergic excess"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Transdermal patch applied to intact skin; oral solution (2 mg/mL) is available for enteral feeding tube administration if required."
+    },
+    "refs": [
+      {
+        "source_id": "fda-rivastigmine-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "intact skin for a 24-hour period; replace with a new patch every 24 hours. ( 2.1 , 2.4 ) • Initial Dose: Initiate treatment with 4.6 mg/24 hours EXELON PATCH."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "weight_loss",
+      "confusion_delirium",
+      "sedation_somnolence"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-rivastigmine-label",
+        "locator": "WARNINGS AND PRECAUTIONS",
+        "quote": "EXELON PATCH can cause gastrointestinal adverse reactions, including significant nausea, vomiting, diarrhea, anorexia/decreased appetite, and weight loss."
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Carbamate-derivative pseudoirreversible inhibitor of acetylcholinesterase and butyrylcholinesterase, slowing the degradation of acetylcholine released by functional cholinergic neurons.",
+    "refs": [
+      {
+        "source_id": "fda-rivastigmine-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "dementia of the Alzheimer’s type (AD). ( 1.1 ) • Mild-to-moderate dementia associated with Parkinson’s disease (PD)."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "metabolism": "hydrolyzed by cholinesterase enzymes; independent of hepatic cytochrome P450 enzymes (low DDI risk)"
+    },
+    "refs": [
+      {
+        "source_id": "fda-rivastigmine-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "dementia of the Alzheimer’s type (AD). ( 1.1 ) • Mild-to-moderate dementia associated with Parkinson’s disease (PD)."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-rivastigmine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "dementia of the Alzheimer’s type (AD). ( 1.1 ) • Mild-to-moderate dementia associated with Parkinson’s disease (PD)."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "No adequate human data; in animal studies, no teratogenicity was observed.",
+      "refs": [
+        {
+          "source_id": "fda-rivastigmine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "dementia of the Alzheimer’s type (AD). ( 1.1 ) • Mild-to-moderate dementia associated with Parkinson’s disease (PD)."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Excretion in human milk unknown; weigh clinical benefits against potential infant cholinergic adverse effects.",
+      "refs": [
+        {
+          "source_id": "fda-rivastigmine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "dementia of the Alzheimer’s type (AD). ( 1.1 ) • Mild-to-moderate dementia associated with Parkinson’s disease (PD)."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

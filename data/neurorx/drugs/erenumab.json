@@ -1,0 +1,200 @@
+{
+  "id": "erenumab",
+  "generic_name": "erenumab",
+  "tall_man": {
+    "value": "erenumab",
+    "refs": [
+      {
+        "source_id": "fda-erenumab-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "preventive treatment of migraine in adults. AIMOVIG is a calcitonin gene-related peptide receptor antagonist indicated for the preventive treatment of migraine in adults."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "human anti-CGRP receptor monoclonal antibody",
+    "preventive migraine biologic"
+  ],
+  "subspecialties": [
+    "headache"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "ere-migraine-prevention",
+      "indication": "Preventive Treatment of Episodic or Chronic Migraine",
+      "setting": "maintenance_outpatient",
+      "route": "SC",
+      "refs": [
+        {
+          "source_id": "fda-erenumab-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "preventive treatment of migraine in adults. AIMOVIG is a calcitonin gene-related peptide receptor antagonist indicated for the preventive treatment of migraine in adults."
+        },
+        {
+          "source_id": "fda-erenumab-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "recommended dosage of AIMOVIG is 70 mg injected subcutaneously once monthly. Some patients may benefit from a dosage of 140 mg injected subcutaneously once monthly."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 70,
+        "unit": "mg",
+        "frequency": "subcutaneous injection once monthly (may increase to 140 mg once monthly)",
+        "max_single": 140,
+        "max_daily": 140
+      },
+      "dose_text": "70 mg injected subcutaneously once monthly. Some patients may benefit from a dosage of 140 mg once monthly (administered as two consecutive 70 mg injections or one 140 mg injection). Administer in abdomen, thigh, or upper arm."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-erenumab-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "preventive treatment of migraine in adults. AIMOVIG is a calcitonin gene-related peptide receptor antagonist indicated for the preventive treatment of migraine in adults."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Monoclonal antibody cleared via non-saturable proteolytic catabolism; no dosage adjustment required in hepatic impairment.",
+    "refs": [
+      {
+        "source_id": "fda-erenumab-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "preventive treatment of migraine in adults. AIMOVIG is a calcitonin gene-related peptide receptor antagonist indicated for the preventive treatment of migraine in adults."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-erenumab-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "preventive treatment of migraine in adults. AIMOVIG is a calcitonin gene-related peptide receptor antagonist indicated for the preventive treatment of migraine in adults."
+      }
+    ],
+    "note": "Fully human monoclonal antibody targeting CGRP receptor; no neuromuscular junction activity"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Subcutaneous autoinjector or prefilled syringe only. Strictly not for oral or enteral feeding tube administration."
+    },
+    "refs": [
+      {
+        "source_id": "fda-erenumab-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "recommended dosage of AIMOVIG is 70 mg injected subcutaneously once monthly. Some patients may benefit from a dosage of 140 mg injected subcutaneously once monthly."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [],
+    "refs": [
+      {
+        "source_id": "fda-erenumab-label",
+        "locator": "WARNINGS AND PRECAUTIONS",
+        "quote": "Hypertension Development of hypertension and worsening of pre-existing hypertension have been reported following the use of AIMOVIG in the postmarketing setting."
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Human monoclonal antibody that specifically binds to and antagonizes the calcitonin gene-related peptide (CGRP) receptor, inhibiting CGRP-mediated trigeminal neurovascular transmission.",
+    "refs": [
+      {
+        "source_id": "fda-erenumab-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "preventive treatment of migraine in adults. AIMOVIG is a calcitonin gene-related peptide receptor antagonist indicated for the preventive treatment of migraine in adults."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "metabolism": "degraded into small peptides and amino acids via general proteolytic pathways"
+    },
+    "refs": [
+      {
+        "source_id": "fda-erenumab-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "preventive treatment of migraine in adults. AIMOVIG is a calcitonin gene-related peptide receptor antagonist indicated for the preventive treatment of migraine in adults."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-erenumab-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "preventive treatment of migraine in adults. AIMOVIG is a calcitonin gene-related peptide receptor antagonist indicated for the preventive treatment of migraine in adults."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Human IgG antibodies cross the placental barrier in the second and third trimesters; developmental toxicity data in humans are limited.",
+      "refs": [
+        {
+          "source_id": "fda-erenumab-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "preventive treatment of migraine in adults. AIMOVIG is a calcitonin gene-related peptide receptor antagonist indicated for the preventive treatment of migraine in adults."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "No data on presence in human milk; large molecular weight biologic antibody with minimal gastrointestinal absorption by infant.",
+      "refs": [
+        {
+          "source_id": "fda-erenumab-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "preventive treatment of migraine in adults. AIMOVIG is a calcitonin gene-related peptide receptor antagonist indicated for the preventive treatment of migraine in adults."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

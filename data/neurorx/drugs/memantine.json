@@ -1,0 +1,225 @@
+{
+  "id": "memantine",
+  "generic_name": "memantine",
+  "tall_man": {
+    "value": "memantine",
+    "refs": [
+      {
+        "source_id": "fda-memantine-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of moderate to severe dementia of the Alzheimer’s type."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "uncompetitive NMDA receptor antagonist",
+    "neuroprotective agent",
+    "anti-dementia agent"
+  ],
+  "subspecialties": [
+    "dementia"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "mem-ad-moderate-severe",
+      "indication": "Moderate to Severe Alzheimer's Disease Dementia",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-memantine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "treatment of moderate to severe dementia of the Alzheimer’s type."
+        },
+        {
+          "source_id": "fda-memantine-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "starting dose of memantine hydrochloride extended-release capsules is 7 mg once daily; the dose should be increased in 7 mg increments to the recommended maintenance dose of 28 mg once daily; the mini"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 7,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 28,
+        "max_daily": 28
+      },
+      "dose_text": "Extended-release: Initial dose is 7 mg once daily. Titrate in 7 mg weekly increments: Week 2: 14 mg/day; Week 3: 21 mg/day; Week 4: target 28 mg once daily. For immediate-release: initial 5 mg daily, titrate weekly to target 10 mg BID (20 mg/day). May be taken with or without food.",
+      "renal_bands": [
+        {
+          "min": 5,
+          "max": 29,
+          "dose_text": "Severe renal impairment (CrCl 5 to 29 mL/min): Recommended target dose is 14 mg/day for extended-release capsules (or 5 mg twice daily for immediate-release).",
+          "dose": {
+            "kind": "fixed",
+            "amount": 14,
+            "unit": "mg",
+            "frequency": "once daily",
+            "max_daily": 14
+          },
+          "refs": [
+            {
+              "source_id": "fda-memantine-label",
+              "locator": "DOSAGE AND ADMINISTRATION",
+              "quote": "renal impairment: the recommended maintenance dose of memantine hydrochloride extended-release capsules is 14 mg once daily."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-memantine-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "renal impairment: the recommended maintenance dose of memantine hydrochloride extended-release capsules is 14 mg once daily."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "No dosage adjustment needed in mild or moderate hepatic impairment; caution in severe hepatic impairment.",
+    "refs": [
+      {
+        "source_id": "fda-memantine-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "renal impairment: the recommended maintenance dose of memantine hydrochloride extended-release capsules is 14 mg once daily."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-memantine-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of moderate to severe dementia of the Alzheimer’s type."
+      }
+    ],
+    "note": "Uncompetitive NMDA antagonist without significant peripheral neuromuscular blockade"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Extended-release capsules should not be crushed; capsules may be opened and the intact beads sprinkled on applesauce immediately before swallowing. Immediate-release tablets can be crushed; oral solution (2 mg/mL) is available for enteral feeding tubes."
+    },
+    "refs": [
+      {
+        "source_id": "fda-memantine-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "starting dose of memantine hydrochloride extended-release capsules is 7 mg once daily; the dose should be increased in 7 mg increments to the recommended maintenance dose of 28 mg once daily; the mini"
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "confusion_delirium",
+      "sedation_somnolence"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-memantine-label",
+        "locator": "ADVERSE REACTIONS",
+        "quote": "dizziness. (6.1) To report SUSPECTED ADVERSE REACTIONS, contact Aurobindo Pharma USA, Inc. at 1-866-850-2876 or FDA at 1-800-FDA-1088 or www.fda.gov/medwatch."
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Low- to moderate-affinity, uncompetitive, voltage-dependent NMDA receptor antagonist that binds to NMDA open channels, blocking pathological tonic levels of glutamate that lead to excitotoxicity without interfering with physiological neurotransmission.",
+    "refs": [
+      {
+        "source_id": "fda-memantine-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of moderate to severe dementia of the Alzheimer’s type."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "elimination": "primarily excreted unchanged in urine (~48%); alkalinization of urine (carbonic anhydrase inhibitors, sodium bicarbonate) markedly decreases clearance"
+    },
+    "refs": [
+      {
+        "source_id": "fda-memantine-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "renal impairment: the recommended maintenance dose of memantine hydrochloride extended-release capsules is 14 mg once daily."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-memantine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "treatment of moderate to severe dementia of the Alzheimer’s type."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Animal reproduction studies showed adverse embryofetal effects at maternally toxic doses; no adequate human pregnancy data.",
+      "refs": [
+        {
+          "source_id": "fda-memantine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "treatment of moderate to severe dementia of the Alzheimer’s type."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Excretion in human milk unknown; evaluate maternal benefit vs infant risk.",
+      "refs": [
+        {
+          "source_id": "fda-memantine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "treatment of moderate to severe dementia of the Alzheimer’s type."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

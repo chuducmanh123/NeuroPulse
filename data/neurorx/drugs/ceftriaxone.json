@@ -1,0 +1,204 @@
+{
+  "id": "ceftriaxone",
+  "generic_name": "ceftriaxone",
+  "tall_man": {
+    "value": "ceftriaxone",
+    "refs": [
+      {
+        "source_id": "fda-ceftriaxone-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "Meningitis Caused by Haemophilus influenzae, Neisseria meningitidis or Streptococcus pneumoniae ."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "third-generation cephalosporin",
+    "beta-lactam antibacterial",
+    "neuro-infectious emergency agent"
+  ],
+  "subspecialties": [
+    "neuro_infectious",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "cef-meningitis-iv",
+      "indication": "Acute Bacterial Meningitis (S. pneumoniae, N. meningitidis, H. influenzae)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-ceftriaxone-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Meningitis Caused by Haemophilus influenzae, Neisseria meningitidis or Streptococcus pneumoniae ."
+        },
+        {
+          "source_id": "fda-ceftriaxone-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "In the treatment of meningitis, it is recommended that the initial therapeutic dose be 100 mg/kg (not to exceed 4 grams)."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 2,
+        "unit": "g",
+        "frequency": "every 12 hours (total 4 g/day) infused over 30 minutes for 7 to 14 days",
+        "max_single": 2,
+        "max_daily": 4
+      },
+      "dose_text": "In bacterial meningitis, initial dose 100 mg/kg (up to 4 g), then 2 g IV every 12 hours (4 g/day total) infused over 30 minutes for 7 to 14 days. Do not administer simultaneously with calcium-containing IV solutions."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-ceftriaxone-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "Meningitis Caused by Haemophilus influenzae, Neisseria meningitidis or Streptococcus pneumoniae ."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Dual renal and biliary elimination; no dosage adjustment required in isolated renal or hepatic impairment unless both severe impairment coexist.",
+    "refs": [
+      {
+        "source_id": "fda-ceftriaxone-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "Meningitis Caused by Haemophilus influenzae, Neisseria meningitidis or Streptococcus pneumoniae ."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-ceftriaxone-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "Meningitis Caused by Haemophilus influenzae, Neisseria meningitidis or Streptococcus pneumoniae ."
+      }
+    ],
+    "note": "Third-generation cephalosporin; safe in myasthenia gravis, does not interfere with neuromuscular junction transmission"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Intravenous infusion or deep intramuscular injection only; strictly not for enteral administration."
+    },
+    "refs": [
+      {
+        "source_id": "fda-ceftriaxone-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "In the treatment of meningitis, it is recommended that the initial therapeutic dose be 100 mg/kg (not to exceed 4 grams)."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "rash_sjs_ten"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-ceftriaxone-label",
+        "locator": "CONTRAINDICATIONS",
+        "quote": "Hyperbilirubinemic neonates, especially prematures, should not be treated with ceftriaxone for injection."
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Binds to and inactivates penicillin-binding proteins (PBPs) involved in bacterial cell wall peptidoglycan cross-linking, causing bacterial cell wall lysis and bactericidal death.",
+    "refs": [
+      {
+        "source_id": "fda-ceftriaxone-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "Meningitis Caused by Haemophilus influenzae, Neisseria meningitidis or Streptococcus pneumoniae ."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "metabolism": "eliminated through dual biliary excretion (40%) and urinary glomerular filtration (60%)"
+    },
+    "refs": [
+      {
+        "source_id": "fda-ceftriaxone-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "Meningitis Caused by Haemophilus influenzae, Neisseria meningitidis or Streptococcus pneumoniae ."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "preferred",
+      "refs": [
+        {
+          "source_id": "fda-ceftriaxone-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Meningitis Caused by Haemophilus influenzae, Neisseria meningitidis or Streptococcus pneumoniae ."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Crosses the placenta; extensive human clinical experience confirms safety in pregnancy; preferred cephalosporin for CNS infections in pregnancy.",
+      "refs": [
+        {
+          "source_id": "fda-ceftriaxone-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Meningitis Caused by Haemophilus influenzae, Neisseria meningitidis or Streptococcus pneumoniae ."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Excreted in human milk in low concentrations; compatible with breastfeeding.",
+      "refs": [
+        {
+          "source_id": "fda-ceftriaxone-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Meningitis Caused by Haemophilus influenzae, Neisseria meningitidis or Streptococcus pneumoniae ."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

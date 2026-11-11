@@ -1,0 +1,219 @@
+{
+  "id": "perampanel",
+  "generic_name": "perampanel",
+  "tall_man": {
+    "value": "perampanel",
+    "refs": [
+      {
+        "source_id": "fda-perampanel-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of partial-onset seizures with or without secondarily generalized seizures in patients with epilepsy 4 years of age and older."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "anticonvulsant",
+    "anti-seizure medication (ASM)",
+    "AMPA receptor antagonist"
+  ],
+  "subspecialties": [
+    "epilepsy"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "per-adjunctive-epilepsy",
+      "indication": "Partial-Onset Seizures or Primary Generalized Tonic-Clonic Seizures (Adjunctive)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-perampanel-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "treatment of partial-onset seizures with or without secondarily generalized seizures in patients with epilepsy 4 years of age and older."
+        },
+        {
+          "source_id": "fda-perampanel-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Starting dose: 2 mg once daily orally at bedtime ( 2.1 , 2.2 ) May increase dose based on clinical response and tolerability by increments of 2 mg once daily no more frequently than at weekly intervals ( 2.1 , 2.2 ) Reco"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 2,
+        "unit": "mg",
+        "frequency": "once daily at bedtime",
+        "max_single": 12,
+        "max_daily": 12
+      },
+      "dose_text": "Starting dose: 2 mg once daily at bedtime. Titrate by 2 mg/day increments weekly to maintenance target of 8 mg to 12 mg once daily at bedtime."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-perampanel-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "FYCOMPA is not recommended in patients with severe renal impairment or patients undergoing hemodialysis [ see Use in Specific Populations (8.7) , Clinical Pharmacology (12.3) ] . 2."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Maximum recommended daily dose is 6 mg for mild hepatic impairment and 4 mg for moderate hepatic impairment once daily at bedtime. Not recommended in severe hepatic impairment.",
+    "refs": [
+      {
+        "source_id": "fda-perampanel-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "Maximum recommended daily dose is 6 mg (mild) and 4 mg (moderate) once daily at bedtime ( 2.4 ) Severe Hepatic Impairment: Not recommended ( 2.4 ) Severe Renal Impairment or on Hemodialysis: Not recom"
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "SERIOUS PSYCHIATRIC AND BEHAVIORAL REACTIONS: HOMICIDAL IDEATION, THREATS, AGGRESSION, HOSTILITY, IRRITABILITY, AND ANGER."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-perampanel-label",
+        "locator": "BOXED WARNING",
+        "quote": "SERIOUS PSYCHIATRIC AND BEHAVIORAL REACTIONS Serious or life-threatening psychiatric and behavioral adverse reactions including aggression, hostility, irritability, anger, and homicidal ideation and threats have been reported in patients ta"
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-perampanel-label",
+        "locator": "WARNINGS AND PRECAUTIONS",
+        "quote": "dizziness and vertigo were reported in 35% and 47% of patients randomized to receive FYCOMPA at doses of 8 mg and 12 mg per day, respectively, compared to 10% of placebo-treated pa"
+      }
+    ],
+    "note": "CNS depressant; monitor for ataxia, gait disturbance, and falls"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "FYCOMPA tablets may be crushed or oral suspension (0.5 mg/mL) used for tube administration."
+    },
+    "refs": [
+      {
+        "source_id": "fda-perampanel-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "oral suspension using provided adaptor and dosing syringe ( 2.7 ) D osing in the p resence of c oncomitant moderate or strong CY P3A4 inducers : see s"
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "psychiatric_behavioral",
+      "sedation_somnolence",
+      "ataxia",
+      "weight_gain"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-perampanel-label",
+        "locator": "BOXED WARNING",
+        "quote": "SERIOUS PSYCHIATRIC AND BEHAVIORAL REACTIONS Serious or life-threatening psychiatric and behavioral adverse reactions including aggression, hostility, irritability, anger, and homicidal ideation and threats have been reported in patients ta"
+      },
+      {
+        "source_id": "fda-perampanel-label",
+        "locator": "WARNINGS AND PRECAUTIONS",
+        "quote": "dizziness and vertigo were reported in 35% and 47% of patients randomized to receive FYCOMPA at doses of 8 mg and 12 mg per day, respectively, compared to 10% of placebo-treated pa"
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Non-competitive antagonist of AMPA glutamate receptors on postsynaptic neurons.",
+    "refs": [
+      {
+        "source_id": "fda-perampanel-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of partial-onset seizures with or without secondarily generalized seizures in patients with epilepsy 4 years of age and older."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp3a4": "substrate"
+    },
+    "refs": [
+      {
+        "source_id": "fda-perampanel-label",
+        "locator": "DRUG INTERACTIONS",
+        "quote": "CYP3A4 inducers Starting dose: 2 mg once daily orally at bedtime ( 2.1 , 2.2 ) May increase dose based on clinical response and tolerability by increments of 2 mg once daily no mor"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-perampanel-label",
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "Pregnancy: Based on animal data, may cause fetal harm ( 8.1 ) 8.1 Pregnancy Pregnancy Exposure Registry There is a pregnancy exposure registry that monitors pre"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": "Doses of 12 mg/day decrease levonorgestrel exposure; consider additional non-hormonal contraception.",
+      "refs": [
+        {
+          "source_id": "fda-perampanel-label",
+          "locator": "DRUG INTERACTIONS",
+          "quote": "CYP3A4 inducers Starting dose: 2 mg once daily orally at bedtime ( 2.1 , 2.2 ) May increase dose based on clinical response and tolerability by increments of 2 mg once daily no mor"
+        }
+      ]
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Perampanel is excreted in animal milk; evaluate developmental and clinical benefits against potential adverse effects.",
+      "refs": [
+        {
+          "source_id": "fda-perampanel-label",
+          "locator": "USE IN SPECIFIC POPULATIONS",
+          "quote": "Pregnancy: Based on animal data, may cause fetal harm ( 8.1 ) 8.1 Pregnancy Pregnancy Exposure Registry There is a pregnancy exposure registry that monitors pre"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

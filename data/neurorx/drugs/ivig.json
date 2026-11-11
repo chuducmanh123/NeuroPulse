@@ -1,0 +1,253 @@
+{
+  "id": "ivig",
+  "generic_name": "immune globulin intravenous",
+  "tall_man": {
+    "value": "immune globulin intravenous",
+    "refs": [
+      {
+        "source_id": "fda-ivig-label",
+        "locator": "DESCRIPTION",
+        "quote": "immune globulin intravenous) PRESCRIBING INFORMATION SET_ID: 7e5649da-75be-4a42-8eeb-4aeba562c401 EFFECTIVE_TIME: 20260504 PUBLISHER: US Food and Drug Administration / DailyMed =="
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "intravenous immunoglobulin (IVIG)",
+    "immunomodulating biologic",
+    "blood product"
+  ],
+  "subspecialties": [
+    "neuromuscular",
+    "neuroimmunology",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "ivig-neuro-immunomodulation",
+      "indication": "Guillain-Barré Syndrome / Myasthenia Gravis Crisis / CIDP / Stiff-Person Syndrome",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-ivig-label",
+          "locator": "WARNINGS AND CAUTIONS",
+          "quote": "RENAL DYSFUNCTION AND ACUTE RENAL FAILURE Thrombosis may occur with immune globulin products 1-3 , including PRIVIGEN."
+        },
+        {
+          "source_id": "fda-ivig-label",
+          "locator": "WARNINGS AND CAUTIONS",
+          "quote": "Aseptic meningitis syndrome (AMS) may occur, especially with high doses or rapid infusion. ( 5.5 ) Hemolysis that is either intravascular or due to enhanced red blood cell sequestration may occur."
+        }
+      ],
+      "dose": {
+        "kind": "weight_based",
+        "amount": 2,
+        "unit": "g/kg",
+        "frequency": "total dose over 2 to 5 days",
+        "max_daily": 70
+      },
+      "dose_text": "Total immunomodulatory dose: 2 g/kg divided equally over 2 consecutive days (1 g/kg/day × 2 days) or 5 consecutive days (0.4 g/kg/day × 5 days). Administer using adjusted ideal body weight in obese patients. Start infusion slowly (0.5 mg/kg/min) and titrate as tolerated.",
+      "renal_bands": [
+        {
+          "min": null,
+          "max": 30,
+          "dose_text": "Renal impairment or diabetes/elderly: Infuse at minimum concentration and slowest infusion rate (< 2 mg/kg/min); ensure adequate hydration prior to infusion.",
+          "dose": {
+            "kind": "weight_based",
+            "amount": 2,
+            "unit": "g/kg",
+            "frequency": "divided over 5 days",
+            "max_daily": 40
+          },
+          "refs": [
+            {
+              "source_id": "fda-ivig-label",
+              "locator": "BOXED WARNING",
+              "quote": "RENAL DYSFUNCTION AND ACUTE RENAL FAILURE Thrombosis may occur with immune globulin products 1-3 , including PRIVIGEN."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_adj_40",
+    "refs": [
+      {
+        "source_id": "fda-ivig-label",
+        "locator": "BOXED WARNING",
+        "quote": "RENAL DYSFUNCTION AND ACUTE RENAL FAILURE Thrombosis may occur with immune globulin products 1-3 , including PRIVIGEN."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "No hepatic metabolism; cleared by reticuloendothelial catabolism.",
+    "refs": [
+      {
+        "source_id": "fda-ivig-label",
+        "locator": "DESCRIPTION",
+        "quote": "immune globulin intravenous) PRESCRIBING INFORMATION SET_ID: 7e5649da-75be-4a42-8eeb-4aeba562c401 EFFECTIVE_TIME: 20260504 PUBLISHER: US Food and Drug Administration / DailyMed =="
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "THROMBOSIS MAY OCCUR WITH IMMUNE GLOBULIN PRODUCTS (ARTERIAL AND VENOUS THROMBOEMBOLISM, ISCHEMIC STROKE, MYOCARDIAL INFARCTION, PE).",
+      "RENAL DYSFUNCTION, ACUTE RENAL FAILURE, OSMOTIC NEPHROSIS, AND DEATH (PRIMARILY IN SUCROSE-CONTAINING PRODUCTS)."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-ivig-label",
+        "locator": "BOXED WARNING",
+        "quote": "RENAL DYSFUNCTION AND ACUTE RENAL FAILURE Thrombosis may occur with immune globulin products 1-3 , including PRIVIGEN."
+      },
+      {
+        "source_id": "fda-ivig-label",
+        "locator": "BOXED WARNING",
+        "quote": "Thrombosis may occur following treatment with immune globulin products 1-3 , including PRIVIGEN."
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "first_line",
+    "refs": [
+      {
+        "source_id": "fda-ivig-label",
+        "locator": "DESCRIPTION",
+        "quote": "immune globulin intravenous) PRESCRIBING INFORMATION SET_ID: 7e5649da-75be-4a42-8eeb-4aeba562c401 EFFECTIVE_TIME: 20260504 PUBLISHER: US Food and Drug Administration / DailyMed =="
+      }
+    ],
+    "note": "First-line emergency rescue therapy for myasthenic crisis and acute severe exacerbations alongside plasma exchange"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Human plasma fraction IV infusion only; never administer orally or through enteral tubes."
+    },
+    "refs": [
+      {
+        "source_id": "fda-ivig-label",
+        "locator": "DESCRIPTION",
+        "quote": "immune globulin intravenous) PRESCRIBING INFORMATION SET_ID: 7e5649da-75be-4a42-8eeb-4aeba562c401 EFFECTIVE_TIME: 20260504 PUBLISHER: US Food and Drug Administration / DailyMed =="
+      }
+    ]
+  },
+  "pgx": {
+    "value": "Patients with severe anti-IgA antibodies (IgA deficiency) have high risk of severe anaphylactic reactions to IgA-containing formulations.",
+    "refs": [
+      {
+        "source_id": "fda-ivig-label",
+        "locator": "DESCRIPTION",
+        "quote": "immune globulin intravenous) PRESCRIBING INFORMATION SET_ID: 7e5649da-75be-4a42-8eeb-4aeba562c401 EFFECTIVE_TIME: 20260504 PUBLISHER: US Food and Drug Administration / DailyMed =="
+      }
+    ]
+  },
+  "ae_tags": {
+    "value": [],
+    "refs": [
+      {
+        "source_id": "fda-ivig-label",
+        "locator": "WARNINGS AND CAUTIONS",
+        "quote": "Aseptic meningitis syndrome (AMS) may occur, especially with high doses or rapid infusion. ( 5.5 ) Hemolysis that is either intravascular or due to enhanced red blood cell sequestration may occur."
+      },
+      {
+        "source_id": "fda-ivig-label",
+        "locator": "BOXED WARNING",
+        "quote": "RENAL DYSFUNCTION AND ACUTE RENAL FAILURE Thrombosis may occur with immune globulin products 1-3 , including PRIVIGEN."
+      },
+      {
+        "source_id": "fda-ivig-label",
+        "locator": "BOXED WARNING",
+        "quote": "Thrombosis may occur following treatment with immune globulin products 1-3 , including PRIVIGEN."
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Provides polyvalent human IgG antibodies that neutralize autoantibodies, saturate Fc receptors, inhibit complement deposition, and modulate pathogenic Fc-gamma receptor expression on macrophages and microglial cells.",
+    "refs": [
+      {
+        "source_id": "fda-ivig-label",
+        "locator": "DESCRIPTION",
+        "quote": "immune globulin intravenous) PRESCRIBING INFORMATION SET_ID: 7e5649da-75be-4a42-8eeb-4aeba562c401 EFFECTIVE_TIME: 20260504 PUBLISHER: US Food and Drug Administration / DailyMed =="
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "metabolism": "catabolized by cellular endocytosis and lysosomal proteolysis"
+    },
+    "refs": [
+      {
+        "source_id": "fda-ivig-label",
+        "locator": "DESCRIPTION",
+        "quote": "immune globulin intravenous) PRESCRIBING INFORMATION SET_ID: 7e5649da-75be-4a42-8eeb-4aeba562c401 EFFECTIVE_TIME: 20260504 PUBLISHER: US Food and Drug Administration / DailyMed =="
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "acceptable",
+      "refs": [
+        {
+          "source_id": "fda-ivig-label",
+          "locator": "DESCRIPTION",
+          "quote": "immune globulin intravenous) PRESCRIBING INFORMATION SET_ID: 7e5649da-75be-4a42-8eeb-4aeba562c401 EFFECTIVE_TIME: 20260504 PUBLISHER: US Food and Drug Administration / DailyMed =="
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Endogenous human IgG crosses placenta naturally; widely used and considered safe rescue therapy for myasthenia crisis or GBS during pregnancy.",
+      "refs": [
+        {
+          "source_id": "fda-ivig-label",
+          "locator": "DESCRIPTION",
+          "quote": "immune globulin intravenous) PRESCRIBING INFORMATION SET_ID: 7e5649da-75be-4a42-8eeb-4aeba562c401 EFFECTIVE_TIME: 20260504 PUBLISHER: US Food and Drug Administration / DailyMed =="
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Natural component of human breast milk; completely compatible with breastfeeding.",
+      "refs": [
+        {
+          "source_id": "fda-ivig-label",
+          "locator": "DESCRIPTION",
+          "quote": "immune globulin intravenous) PRESCRIBING INFORMATION SET_ID: 7e5649da-75be-4a42-8eeb-4aeba562c401 EFFECTIVE_TIME: 20260504 PUBLISHER: US Food and Drug Administration / DailyMed =="
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

@@ -1,0 +1,242 @@
+{
+  "id": "mycophenolate",
+  "generic_name": "mycophenolate",
+  "tall_man": {
+    "value": "mycophenolate",
+    "refs": [
+      {
+        "source_id": "fda-mycophenolate-label",
+        "locator": "BOXED WARNING",
+        "quote": "WARNING: EMBRYOFETAL TOXICITY, MALIGNANCIES and SERIOUS INFECTIONS Use during pregnancy is associated with increased risks of first trimester pregnancy loss and congenital malformations."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "immunosuppressant",
+    "IMPDH inhibitor",
+    "antimetabolite"
+  ],
+  "subspecialties": [
+    "neuromuscular",
+    "neuroimmunology"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "mmf-neuro-maintenance",
+      "indication": "Myasthenia Gravis / NMOSD / Autoimmune Encephalitis Maintenance",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-mycophenolate-label",
+          "locator": "BOXED WARNING",
+          "quote": "WARNING: EMBRYOFETAL TOXICITY, MALIGNANCIES and SERIOUS INFECTIONS Use during pregnancy is associated with increased risks of first trimester pregnancy loss and congenital malformations."
+        },
+        {
+          "source_id": "fda-mycophenolate-label",
+          "locator": "WARNINGS AND CAUTIONS",
+          "quote": "inosine monophosphate dehydrogenase (IMPDH) inhibitor; therefore it should be avoided in patients with hereditary deficiencies of hypoxanthine-guanine phosphoribosyl-transferase (HGPRT) such as Lesch-Nyhan and Kelley-See"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1000,
+        "unit": "mg",
+        "frequency": "twice daily",
+        "max_single": 1000,
+        "max_daily": 2000
+      },
+      "dose_text": "1000 mg orally twice daily (total 2000 mg/day) taken on an empty stomach. May initiate at 500 mg twice daily and advance over 2-4 weeks to mitigate GI intolerance.",
+      "renal_bands": [
+        {
+          "min": null,
+          "max": 25,
+          "dose_text": "Severe chronic renal impairment (GFR < 25 mL/min/1.73 m²): Avoid doses > 1000 mg twice daily; monitor carefully.",
+          "dose": {
+            "kind": "fixed",
+            "amount": 1000,
+            "unit": "mg",
+            "frequency": "twice daily",
+            "max_daily": 2000
+          },
+          "refs": [
+            {
+              "source_id": "fda-mycophenolate-label",
+              "locator": "USE IN SPECIFIC POPULATIONS",
+              "quote": "severe chronic renal impairment. CELLCEPT may be used for heart or liver transplant patients with severe chronic renal impairment if the potential benefits outweigh the potential risks."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_normalized_1_73",
+    "refs": [
+      {
+        "source_id": "fda-mycophenolate-label",
+        "locator": "USE IN SPECIFIC POPULATIONS",
+        "quote": "severe chronic renal impairment. CELLCEPT may be used for heart or liver transplant patients with severe chronic renal impairment if the potential benefits outweigh the potential risks."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "No dosage adjustment necessary for patients with severe hepatic parenchymal disease.",
+    "refs": [
+      {
+        "source_id": "fda-mycophenolate-label",
+        "locator": "USE IN SPECIFIC POPULATIONS",
+        "quote": "severe chronic renal impairment. CELLCEPT may be used for heart or liver transplant patients with severe chronic renal impairment if the potential benefits outweigh the potential risks."
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "EMBRYOFETAL TOXICITY: FIRST TRIMESTER PREGNANCY LOSS AND CONGENITAL MALFORMATIONS (FACIAL, EAR, CARDIAC, AND ESOPHAGEAL DEFECTS).",
+      "INCREASED RISK OF DEVELOPING LYMPHOMAS AND OTHER MALIGNANCIES, PARTICULARLY OF THE SKIN.",
+      "INCREASED SUSCEPTIBILITY TO SERIOUS INFECTIONS, INCLUDING OPPORTUNISTIC INFECTIONS AND VIRAL REACTIVATION (PML, BK VIRUS)."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-mycophenolate-label",
+        "locator": "BOXED WARNING",
+        "quote": "WARNING: EMBRYOFETAL TOXICITY, MALIGNANCIES and SERIOUS INFECTIONS Use during pregnancy is associated with increased risks of first trimester pregnancy loss and congenital malformations."
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-mycophenolate-label",
+        "locator": "BOXED WARNING",
+        "quote": "WARNING: EMBRYOFETAL TOXICITY, MALIGNANCIES and SERIOUS INFECTIONS Use during pregnancy is associated with increased risks of first trimester pregnancy loss and congenital malformations."
+      }
+    ],
+    "note": "Standard steroid-sparing oral immunosuppressant in myasthenia gravis; effective onset requires 3 to 6 months"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Tablets should not be crushed and capsules should not be opened. Avoid inhalation or direct contact with skin/mucous membranes due to teratogenic and cytotoxic properties."
+    },
+    "refs": [
+      {
+        "source_id": "fda-mycophenolate-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "CELLCEPT tablets should not be crushed and CELLCEPT capsules should not be opened or crushed."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [],
+    "refs": [
+      {
+        "source_id": "fda-mycophenolate-label",
+        "locator": "ADVERSE REACTIONS",
+        "quote": "most common adverse reactions in clinical trials (20 % or greater) include diarrhea, leukopenia, infection, vomiting, and there is evidence of a higher frequency of certain types of infections e.g., opportunistic infecti"
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Reversible, non-competitive inhibitor of inosine monophosphate dehydrogenase (IMPDH), selectively blocking de novo guanine nucleotide synthesis in T and B lymphocytes.",
+    "refs": [
+      {
+        "source_id": "fda-mycophenolate-label",
+        "locator": "WARNINGS AND CAUTIONS",
+        "quote": "inosine monophosphate dehydrogenase (IMPDH) inhibitor; therefore it should be avoided in patients with hereditary deficiencies of hypoxanthine-guanine phosphoribosyl-transferase (HGPRT) such as Lesch-Nyhan and Kelley-See"
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "ugt": [
+        "UGT1A9",
+        "UGT2B7"
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-mycophenolate-label",
+        "locator": "WARNINGS AND CAUTIONS",
+        "quote": "inosine monophosphate dehydrogenase (IMPDH) inhibitor; therefore it should be avoided in patients with hereditary deficiencies of hypoxanthine-guanine phosphoribosyl-transferase (HGPRT) such as Lesch-Nyhan and Kelley-See"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "contraindicated",
+      "refs": [
+        {
+          "source_id": "fda-mycophenolate-label",
+          "locator": "BOXED WARNING",
+          "quote": "WARNING: EMBRYOFETAL TOXICITY, MALIGNANCIES and SERIOUS INFECTIONS Use during pregnancy is associated with increased risks of first trimester pregnancy loss and congenital malformations."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Contraindicated in pregnancy. Severe teratogen: 45-49% first trimester miscarriage rate, 23-27% major congenital malformations. Discontinue at least 6 weeks prior to planned conception.",
+      "refs": [
+        {
+          "source_id": "fda-mycophenolate-label",
+          "locator": "BOXED WARNING",
+          "quote": "WARNING: EMBRYOFETAL TOXICITY, MALIGNANCIES and SERIOUS INFECTIONS Use during pregnancy is associated with increased risks of first trimester pregnancy loss and congenital malformations."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": "Must use two acceptable forms of reliable effective contraception simultaneously before beginning therapy, during therapy, and for 6 weeks following discontinuation.",
+      "refs": [
+        {
+          "source_id": "fda-mycophenolate-label",
+          "locator": "BOXED WARNING",
+          "quote": "WARNING: EMBRYOFETAL TOXICITY, MALIGNANCIES and SERIOUS INFECTIONS Use during pregnancy is associated with increased risks of first trimester pregnancy loss and congenital malformations."
+        }
+      ]
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Excretion in human milk is unknown; due to the potential for serious adverse reactions in nursing infants, avoid breastfeeding during therapy.",
+      "refs": [
+        {
+          "source_id": "fda-mycophenolate-label",
+          "locator": "BOXED WARNING",
+          "quote": "WARNING: EMBRYOFETAL TOXICITY, MALIGNANCIES and SERIOUS INFECTIONS Use during pregnancy is associated with increased risks of first trimester pregnancy loss and congenital malformations."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

@@ -1,0 +1,206 @@
+{
+  "id": "prednisolone",
+  "generic_name": "prednisolone",
+  "tall_man": {
+    "value": "prednisolone",
+    "refs": [
+      {
+        "source_id": "fda-prednisolone-label",
+        "locator": "DESCRIPTION",
+        "quote": "Naturally occurring glucocorticoids (hydrocortisone and cortisone), which also have salt-retaining properties, are used as replacement therapy in adrenocortical deficiency states."
+      }
+    ],
+    "note": "ISMP Tall Man: predniSONE vs prednisoLONE; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "corticosteroid",
+    "glucocorticoid",
+    "immunosuppressant",
+    "anti-inflammatory"
+  ],
+  "subspecialties": [
+    "neuromuscular",
+    "neuroimmunology"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "pred-neuro-immunosuppression",
+      "indication": "Autoimmune Neurological Disorders (MS, Myasthenia Gravis, CIDP, Autoimmune Encephalitis)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-prednisolone-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "multiple sclerosis 13. Miscellaneous Tuberculous meningitis with subarachnoid block or impending block when used concurrently with appropriate antituberculous chemotherapy Trichinosis with neurologic"
+        },
+        {
+          "source_id": "fda-prednisolone-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "initial dosage of prednisolone tablets may vary from 5 mg to 60 mg per day depending on the specific disease entity being treated."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 60,
+        "unit": "mg",
+        "frequency": "once daily in morning",
+        "max_single": 80,
+        "max_daily": 80
+      },
+      "dose_text": "Initial dosage ranges from 5 mg to 60 mg per day depending on disease entity. For acute neurological relapse or induction, commonly 0.75-1 mg/kg/day (up to 60-80 mg daily), followed by gradual taper or alternate-day dosing to minimize HPA axis suppression."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-prednisolone-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "multiple sclerosis 13. Miscellaneous Tuberculous meningitis with subarachnoid block or impending block when used concurrently with appropriate antituberculous chemotherapy Trichinosis with neurologic"
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Active metabolite of prednisone; preferred over prednisone in severe hepatic impairment since it does not require hepatic 11-beta-HSD bioactivation.",
+    "refs": [
+      {
+        "source_id": "fda-prednisolone-label",
+        "locator": "DESCRIPTION",
+        "quote": "Naturally occurring glucocorticoids (hydrocortisone and cortisone), which also have salt-retaining properties, are used as replacement therapy in adrenocortical deficiency states."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-prednisolone-label",
+        "locator": "ADVERSE REACTIONS",
+        "quote": "Fluid and Electrolyte Disturbances Sodium retention. Fluid retention. Congestive heart failure in susceptible patients. Potassium loss. Hypokalemic alkalosis. Hypertension."
+      }
+    ],
+    "note": "Glucocorticoids may cause transient early exacerbation of myasthenic weakness in first 1-2 weeks; initiate at low dose or with respiratory support available"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "Immediate-release tablets may be crushed; oral solution (15 mg/5 mL) is available for enteral feeding tube administration."
+    },
+    "refs": [
+      {
+        "source_id": "fda-prednisolone-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "initial dosage of prednisolone tablets may vary from 5 mg to 60 mg per day depending on the specific disease entity being treated."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "psychiatric_behavioral",
+      "weight_gain"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-prednisolone-label",
+        "locator": "ADVERSE REACTIONS",
+        "quote": "Fluid and Electrolyte Disturbances Sodium retention. Fluid retention. Congestive heart failure in susceptible patients. Potassium loss. Hypokalemic alkalosis. Hypertension."
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Binds to intracellular glucocorticoid receptors, modulating gene expression to suppress pro-inflammatory cytokines and lymphocyte proliferation.",
+    "refs": [
+      {
+        "source_id": "fda-prednisolone-label",
+        "locator": "DESCRIPTION",
+        "quote": "Naturally occurring glucocorticoids (hydrocortisone and cortisone), which also have salt-retaining properties, are used as replacement therapy in adrenocortical deficiency states."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp3a4": "substrate"
+    },
+    "refs": [
+      {
+        "source_id": "fda-prednisolone-label",
+        "locator": "DESCRIPTION",
+        "quote": "Naturally occurring glucocorticoids (hydrocortisone and cortisone), which also have salt-retaining properties, are used as replacement therapy in adrenocortical deficiency states."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "acceptable",
+      "refs": [
+        {
+          "source_id": "fda-prednisolone-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "multiple sclerosis 13. Miscellaneous Tuberculous meningitis with subarachnoid block or impending block when used concurrently with appropriate antituberculous chemotherapy Trichinosis with neurologic"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Substantial placental 11-beta-HSD2 inactivation protects the fetus; monitor maternal blood pressure and glucose closely.",
+      "refs": [
+        {
+          "source_id": "fda-prednisolone-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "multiple sclerosis 13. Miscellaneous Tuberculous meningitis with subarachnoid block or impending block when used concurrently with appropriate antituberculous chemotherapy Trichinosis with neurologic"
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Prednisolone transfers into breast milk in low concentrations; wait 3-4 hours after high maternal oral doses before nursing.",
+      "refs": [
+        {
+          "source_id": "fda-prednisolone-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "multiple sclerosis 13. Miscellaneous Tuberculous meningitis with subarachnoid block or impending block when used concurrently with appropriate antituberculous chemotherapy Trichinosis with neurologic"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

@@ -1,0 +1,227 @@
+{
+  "id": "amantadine",
+  "generic_name": "amantadine",
+  "tall_man": {
+    "value": "amantadine",
+    "refs": [
+      {
+        "source_id": "fda-amantadine-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of dyskinesia in patients with Parkinson's disease receiving levodopa-based therapy, with or without concomitant dopaminergic medications As adjunctive treatment to levod"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "NMDA receptor antagonist",
+    "dopamine reuptake inhibitor",
+    "antiparkinson agent"
+  ],
+  "subspecialties": [
+    "movement_disorders",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "ama-pd-dyskinesia",
+      "indication": "Levodopa-Induced Dyskinesia & 'Off' Episodes in Parkinson's Disease",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-amantadine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "treatment of dyskinesia in patients with Parkinson's disease receiving levodopa-based therapy, with or without concomitant dopaminergic medications As adjunctive treatment to levod"
+        },
+        {
+          "source_id": "fda-amantadine-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "initial daily dosage is 137 mg; after 1 week, increase to the recommended daily dosage of 274 mg ( 2.1 ) Swallow whole; may sprinkle contents on soft food ( 2.2 ) May be taken with or without food; av"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 137,
+        "unit": "mg",
+        "frequency": "once daily at bedtime",
+        "max_single": 274,
+        "max_daily": 274
+      },
+      "dose_text": "Extended-release: Initial dose 137 mg orally once daily at bedtime; after 1 week, increase to recommended maintenance dose of 274 mg once daily at bedtime. Immediate-release amantadine is dosed at 100 mg BID (max 400 mg/day). Do not discontinue abruptly due to risk of neuroleptic malignant-like syndrome.",
+      "renal_bands": [
+        {
+          "min": 30,
+          "max": 59,
+          "dose_text": "Moderate renal impairment (eGFR 30 to 59 mL/min/1.73 m²): Initial 68.5 mg at bedtime; after 1 week, increase to 137 mg once daily at bedtime.",
+          "dose": {
+            "kind": "fixed",
+            "amount": 68.5,
+            "unit": "mg",
+            "frequency": "once daily at bedtime",
+            "max_daily": 137
+          },
+          "refs": [
+            {
+              "source_id": "fda-amantadine-label",
+              "locator": "USE IN SPECIFIC POPULATIONS",
+              "quote": "moderate and severe renal impairment [see Use in Special Populations ( 8.6 ) and Dosage and Administration ( 2.3 )]."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "renal_basis": {
+    "value": "kdigo_ckd_epi",
+    "refs": [
+      {
+        "source_id": "fda-amantadine-label",
+        "locator": "USE IN SPECIFIC POPULATIONS",
+        "quote": "moderate and severe renal impairment [see Use in Special Populations ( 8.6 ) and Dosage and Administration ( 2.3 )]."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Excreted largely unchanged by the kidneys (85-90%); hepatic impairment has minimal effect on clearance.",
+    "refs": [
+      {
+        "source_id": "fda-amantadine-label",
+        "locator": "USE IN SPECIFIC POPULATIONS",
+        "quote": "moderate and severe renal impairment [see Use in Special Populations ( 8.6 ) and Dosage and Administration ( 2.3 )]."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-amantadine-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of dyskinesia in patients with Parkinson's disease receiving levodopa-based therapy, with or without concomitant dopaminergic medications As adjunctive treatment to levod"
+      }
+    ],
+    "note": "Weak peripheral anticholinergic and NMDA receptor blocking effects; monitor for exacerbation in myasthenia gravis"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Extended-release capsules (Gocovri) should be swallowed whole; capsules may be opened and sprinkled on applesauce immediately before swallowing without chewing. Immediate-release capsules can be dissolved in water."
+    },
+    "refs": [
+      {
+        "source_id": "fda-amantadine-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "initial daily dosage is 137 mg; after 1 week, increase to the recommended daily dosage of 274 mg ( 2.1 ) Swallow whole; may sprinkle contents on soft food ( 2.2 ) May be taken with or without food; av"
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "psychiatric_behavioral",
+      "confusion_delirium",
+      "sedation_somnolence"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-amantadine-label",
+        "locator": "WARNINGS AND PRECAUTIONS",
+        "quote": "Hallucinations/Psychotic Behavior: Patients with major psychotic disorder should ordinarily not be treated with GOCOVRI; observe patients for the occurrence of hallucinations throughout treatment, esp"
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Weak, non-competitive antagonist of NMDA-type glutamate receptors, also stimulating dopamine release and inhibiting dopamine reuptake in central striatal pathways.",
+    "refs": [
+      {
+        "source_id": "fda-amantadine-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of dyskinesia in patients with Parkinson's disease receiving levodopa-based therapy, with or without concomitant dopaminergic medications As adjunctive treatment to levod"
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "elimination": "primarily excreted unchanged in urine by glomerular filtration and tubular secretion"
+    },
+    "refs": [
+      {
+        "source_id": "fda-amantadine-label",
+        "locator": "USE IN SPECIFIC POPULATIONS",
+        "quote": "moderate and severe renal impairment [see Use in Special Populations ( 8.6 ) and Dosage and Administration ( 2.3 )]."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "avoid",
+      "refs": [
+        {
+          "source_id": "fda-amantadine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "treatment of dyskinesia in patients with Parkinson's disease receiving levodopa-based therapy, with or without concomitant dopaminergic medications As adjunctive treatment to levod"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Teratogenic in animal studies (cardiovascular and skeletal malformations); avoid during pregnancy unless potential benefit justifies risk.",
+      "refs": [
+        {
+          "source_id": "fda-amantadine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "treatment of dyskinesia in patients with Parkinson's disease receiving levodopa-based therapy, with or without concomitant dopaminergic medications As adjunctive treatment to levod"
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Excreted into human milk; may cause vomiting, rash, and urinary retention in breastfed infants and suppresses lactation.",
+      "refs": [
+        {
+          "source_id": "fda-amantadine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "treatment of dyskinesia in patients with Parkinson's disease receiving levodopa-based therapy, with or without concomitant dopaminergic medications As adjunctive treatment to levod"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "id": "rasagiline",
+  "generic_name": "rasagiline",
+  "tall_man": {
+    "value": "rasagiline",
+    "refs": [
+      {
+        "source_id": "fda-rasagiline-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "AZILECT (rasagiline tablets) is indicated for the treatment of Parkinson’s disease (PD)."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "MAO-B inhibitor",
+    "irreversible monoamine oxidase inhibitor",
+    "antiparkinson agent"
+  ],
+  "subspecialties": [
+    "movement_disorders"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "ras-pd-monotherapy",
+      "indication": "Parkinson's Disease (Monotherapy or Adjunct to Levodopa)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-rasagiline-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "AZILECT (rasagiline tablets) is indicated for the treatment of Parkinson’s disease (PD)."
+        },
+        {
+          "source_id": "fda-rasagiline-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Monotherapy: AZILECT 1 mg once daily ( 2.1 ) As adjunct without levodopa: AZILECT 1 mg once daily ( 2.1 ) As adjunct to levodopa: AZILECT 0.5 mg once daily."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 1,
+        "max_daily": 1
+      },
+      "dose_text": "Monotherapy: 1 mg once daily. Adjunct to levodopa: initiate at 0.5 mg once daily; if sufficient clinical response is not achieved, may increase to 1 mg once daily. When added to levodopa, levodopa dose reduction may be required to reduce dyskinesia."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-rasagiline-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "Monotherapy: AZILECT 1 mg once daily ( 2.1 ) As adjunct without levodopa: AZILECT 1 mg once daily ( 2.1 ) As adjunct to levodopa: AZILECT 0.5 mg once daily."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Mild hepatic impairment: recommended dose is 0.5 mg once daily. Moderate to severe hepatic impairment: contraindicated.",
+    "refs": [
+      {
+        "source_id": "fda-rasagiline-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "Monotherapy: AZILECT 1 mg once daily ( 2.1 ) As adjunct without levodopa: AZILECT 1 mg once daily ( 2.1 ) As adjunct to levodopa: AZILECT 0.5 mg once daily."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-rasagiline-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "AZILECT (rasagiline tablets) is indicated for the treatment of Parkinson’s disease (PD)."
+      }
+    ],
+    "note": "Selective MAO-B inhibitor without adverse neuromuscular junction blockade"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "Tablets may be crushed and administered via enteral feeding tube."
+    },
+    "refs": [
+      {
+        "source_id": "fda-rasagiline-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "Monotherapy: AZILECT 1 mg once daily ( 2.1 ) As adjunct without levodopa: AZILECT 1 mg once daily ( 2.1 ) As adjunct to levodopa: AZILECT 0.5 mg once daily."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "psychiatric_behavioral",
+      "serotonin_syndrome",
+      "confusion_delirium"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-rasagiline-label",
+        "locator": "WARNINGS AND PRECAUTIONS",
+        "quote": "May cause serotonin syndrome when used with antidepressants ( 5.2 ) May cause falling asleep during activities of daily living, daytime drowsiness, and somnolence ( 5.3 ) May cause"
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Selective, irreversible inhibitor of monoamine oxidase type B (MAO-B), preventing the central enzymatic breakdown of dopamine and increasing striatal synaptic dopamine levels.",
+    "refs": [
+      {
+        "source_id": "fda-rasagiline-label",
+        "locator": "CLINICAL PHARMACOLOGY",
+        "quote": "irreversible inhibitor of MAO-B in platelets. The precise mechanisms of action of rasagiline are unknown."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp1a2": "substrate"
+    },
+    "refs": [
+      {
+        "source_id": "fda-rasagiline-label",
+        "locator": "CLINICAL PHARMACOLOGY",
+        "quote": "irreversible inhibitor of MAO-B in platelets. The precise mechanisms of action of rasagiline are unknown."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-rasagiline-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "AZILECT (rasagiline tablets) is indicated for the treatment of Parkinson’s disease (PD)."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Limited human pregnancy data; animal studies showed decreased pup survival and weight at high exposures.",
+      "refs": [
+        {
+          "source_id": "fda-rasagiline-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "AZILECT (rasagiline tablets) is indicated for the treatment of Parkinson’s disease (PD)."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Excretion in human milk unknown; may inhibit prolactin secretion due to enhanced dopaminergic tone.",
+      "refs": [
+        {
+          "source_id": "fda-rasagiline-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "AZILECT (rasagiline tablets) is indicated for the treatment of Parkinson’s disease (PD)."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "id": "ropinirole",
+  "generic_name": "ropinirole",
+  "tall_man": {
+    "value": "ropinirole",
+    "refs": [
+      {
+        "source_id": "fda-ropinirole-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "non-ergoline dopamine agonist indicated for the treatment of Parkinson’s disease (PD) and moderate-to-severe primary Restless Legs Syndrome (RLS)."
+      }
+    ],
+    "note": "ISMP Tall Man: ropiniROLE vs risperiDONE; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "non-ergot dopamine agonist",
+    "D2/D3 receptor agonist",
+    "antiparkinson agent"
+  ],
+  "subspecialties": [
+    "movement_disorders"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "rop-pd-titration",
+      "indication": "Parkinson's Disease (Early Monotherapy or Adjunctive to Levodopa)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-ropinirole-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "non-ergoline dopamine agonist indicated for the treatment of Parkinson’s disease (PD) and moderate-to-severe primary Restless Legs Syndrome (RLS)."
+        },
+        {
+          "source_id": "fda-ropinirole-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "recommended starting dose is 0.25 mg taken three times daily; titrate to a maximum daily dose of 24 mg."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 0.25,
+        "unit": "mg",
+        "frequency": "three times daily",
+        "max_single": 8,
+        "max_daily": 24
+      },
+      "dose_text": "Starting dose: 0.25 mg three times daily (0.75 mg/day). Titrate weekly: Week 2: 0.5 mg TID; Week 3: 0.75 mg TID; Week 4: 1 mg TID. Then increase by up to 1.5 mg/day weekly up to 9 mg/day, and by up to 3 mg/day weekly up to maximum 24 mg/day."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-ropinirole-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "recommended starting dose is 0.25 mg taken three times daily; titrate to a maximum daily dose of 24 mg."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Extensively metabolized in liver by CYP1A2; use with caution in hepatic impairment.",
+    "refs": [
+      {
+        "source_id": "fda-ropinirole-label",
+        "locator": "DRUG INTERACTIONS",
+        "quote": "CYP1A2: May alter the clearance of ropinirole; dose adjustment of ropinirole may be required."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-ropinirole-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "non-ergoline dopamine agonist indicated for the treatment of Parkinson’s disease (PD) and moderate-to-severe primary Restless Legs Syndrome (RLS)."
+      }
+    ],
+    "note": "No adverse effect on neuromuscular junction transmission"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "Immediate-release film-coated tablets can be crushed and administered via enteral tube. Extended-release tablets (Requip XL) must not be crushed."
+    },
+    "refs": [
+      {
+        "source_id": "fda-ropinirole-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "recommended starting dose is 0.25 mg taken three times daily; titrate to a maximum daily dose of 24 mg."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "sedation_somnolence",
+      "psychiatric_behavioral",
+      "confusion_delirium"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-ropinirole-label",
+        "locator": "WARNINGS AND PRECAUTIONS",
+        "quote": "falling asleep while engaged in activities of daily living, including driving or operating machinery, which sometimes resulted in accidents."
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Non-ergoline dopamine agonist with high in vitro specificity for dopamine D2 and D3 receptors, stimulating postsynaptic dopamine receptors in the corpus striatum.",
+    "refs": [
+      {
+        "source_id": "fda-ropinirole-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "non-ergoline dopamine agonist indicated for the treatment of Parkinson’s disease (PD) and moderate-to-severe primary Restless Legs Syndrome (RLS)."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp1a2": "substrate"
+    },
+    "refs": [
+      {
+        "source_id": "fda-ropinirole-label",
+        "locator": "DRUG INTERACTIONS",
+        "quote": "CYP1A2: May alter the clearance of ropinirole; dose adjustment of ropinirole may be required."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-ropinirole-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "non-ergoline dopamine agonist indicated for the treatment of Parkinson’s disease (PD) and moderate-to-severe primary Restless Legs Syndrome (RLS)."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "In animal studies, ropinirole disrupted implantation and caused digit malformations; avoid during pregnancy unless clinical need is compelling.",
+      "refs": [
+        {
+          "source_id": "fda-ropinirole-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "non-ergoline dopamine agonist indicated for the treatment of Parkinson’s disease (PD) and moderate-to-severe primary Restless Legs Syndrome (RLS)."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Inhibits prolactin secretion and suppresses lactation; contraindicated or avoided during nursing.",
+      "refs": [
+        {
+          "source_id": "fda-ropinirole-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "non-ergoline dopamine agonist indicated for the treatment of Parkinson’s disease (PD) and moderate-to-severe primary Restless Legs Syndrome (RLS)."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

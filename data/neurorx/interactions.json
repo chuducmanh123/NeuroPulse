@@ -1,0 +1,495 @@
+[
+  {
+    "id": "valproate-phenobarbital",
+    "drug_a": "valproate",
+    "drug_b": "phenobarbital",
+    "severity": "major",
+    "mechanism": "Valproate inhibits the hepatic metabolism of phenobarbital, significantly decreasing phenobarbital plasma clearance and prolonging its elimination half-life.",
+    "clinical_effect": "Significantly elevated serum phenobarbital levels and severe CNS depression, somnolence, and respiratory depression, with or without significant elevations of valproate levels.",
+    "management": "Closely monitor patients receiving concomitant barbiturate therapy for neurological toxicity. Obtain serum barbiturate concentrations and decrease phenobarbital dosage as clinically indicated.",
+    "alternatives": [
+      {
+        "drug_id": "levetiracetam-oral",
+        "rationale": "Levetiracetam does not undergo hepatic CYP/UGT metabolism and does not inhibit phenobarbital clearance"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-valproate-label",
+        "locator": "Section 7.2 Effects of Valproate on Other Drugs",
+        "quote": "Valproate was found to inhibit the metabolism of phenobarbital. Co-administration of valproate (250 mg BID for 14 days) with phenobarbital to normal subjects (n = 6) resulted in a 50% increase in half-life and a 30% decrease in plasma clearance of phenobarbital (60 mg single-dose)."
+      }
+    ]
+  },
+  {
+    "id": "valproate-phenytoin",
+    "drug_a": "valproate",
+    "drug_b": "phenytoin",
+    "severity": "major",
+    "mechanism": "Valproate displaces phenytoin from plasma albumin binding sites and inhibits its hepatic metabolism. Conversely, phenytoin induces hepatic enzymes and can double the clearance of valproate.",
+    "clinical_effect": "Increased free (unbound) fraction of phenytoin causing clinical phenytoin toxicity despite total serum levels in the normal range. Reports of breakthrough seizures have also occurred due to reduced valproate concentrations.",
+    "management": "Monitor free (unbound) phenytoin plasma concentrations rather than total levels. Adjust phenytoin dosage based on clinical presentation and free levels. Increase valproate dose as needed to maintain seizure control.",
+    "alternatives": [
+      {
+        "drug_id": "levetiracetam-oral",
+        "rationale": "Levetiracetam does not displace phenytoin from albumin or inhibit hepatic CYP enzymes"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-valproate-label",
+        "locator": "Section 7.2 Effects of Valproate on Other Drugs",
+        "quote": "Valproate displaces phenytoin from its plasma albumin binding sites and inhibits its hepatic metabolism. Co-administration of valproate (400 mg TID) with phenytoin (250 mg) in normal volunteers (n = 7) was associated with a 60% increase in the free fraction of phenytoin."
+      }
+    ]
+  },
+  {
+    "id": "valproate-diazepam",
+    "drug_a": "valproate",
+    "drug_b": "diazepam",
+    "severity": "moderate",
+    "mechanism": "Valproate displaces diazepam from its plasma albumin binding sites and inhibits its hepatic metabolism.",
+    "clinical_effect": "Increased free fraction of diazepam (90% increase in free fraction) and 25% reduction in free diazepam clearance, resulting in enhanced sedation, prolonged CNS depression, and ataxia.",
+    "management": "Monitor for excessive sedation and motor impairment when initiating or adjusting concomitant therapy; lower diazepam doses may be needed.",
+    "alternatives": [
+      {
+        "drug_id": "midazolam",
+        "rationale": "Midazolam has shorter duration of action, though benzodiazepine CNS depressant effects remain additive"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-valproate-label",
+        "locator": "Section 7.2 Effects of Valproate on Other Drugs",
+        "quote": "Valproate displaces diazepam from its plasma albumin binding sites and inhibits its metabolism. Co-administration of valproate (1,500 mg daily) increased the free fraction of diazepam (10 mg) by 90% in healthy volunteers (n = 6). Plasma clearance and volume of distribution for free diazepam were reduced by 25% and 20%, respectively, in the presence of valproate."
+      }
+    ]
+  },
+  {
+    "id": "warfarin-aspirin",
+    "drug_a": "warfarin",
+    "drug_b": "aspirin",
+    "severity": "major",
+    "mechanism": "Additive pharmacodynamic inhibition of hemostasis: impairment of vitamin K-dependent coagulation factors by warfarin combined with irreversible platelet cyclooxygenase-1 inhibition by aspirin.",
+    "clinical_effect": "Significantly increased risk of major bleeding, gastrointestinal hemorrhage, and intracranial hemorrhage.",
+    "management": "Reserve concomitant therapy for specific indications where benefit outweighs risk (e.g. mechanical heart valves or post-acute coronary intervention). Limit aspirin dose to 75-100 mg daily and perform frequent INR monitoring.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-warfarin-label",
+        "locator": "Section 7.3 Drugs that Increase Bleeding Risk",
+        "quote": "Because bleeding risk is increased when these drugs are used concomitantly with warfarin, closely monitor patients receiving any such drug with warfarin."
+      }
+    ]
+  },
+  {
+    "id": "warfarin-clopidogrel",
+    "drug_a": "warfarin",
+    "drug_b": "clopidogrel",
+    "severity": "major",
+    "mechanism": "Additive pharmacodynamic inhibition of primary platelet aggregation (P2Y12 ADP receptor antagonism) and secondary coagulation cascade (vitamin K-dependent factor inhibition).",
+    "clinical_effect": "Substantially increased risk of major bleeding, gastrointestinal bleeding, and hemorrhagic stroke.",
+    "management": "Closely monitor patients receiving concomitant warfarin and clopidogrel for signs and symptoms of bleeding. Minimize the duration of dual therapy and monitor INR frequently, targeting the lower therapeutic range.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-warfarin-label",
+        "locator": "Section 7.3 Drugs that Increase Bleeding Risk",
+        "quote": "Because bleeding risk is increased when these drugs are used concomitantly with warfarin, closely monitor patients receiving any such drug with warfarin."
+      }
+    ]
+  },
+  {
+    "id": "warfarin-phenobarbital",
+    "drug_a": "warfarin",
+    "drug_b": "phenobarbital",
+    "severity": "major",
+    "mechanism": "Phenobarbital strongly induces hepatic microsomal enzymes (including CYP2C9 and CYP3A4), markedly accelerating the clearance and metabolism of warfarin.",
+    "clinical_effect": "Decreased anticoagulant response and subtherapeutic INR, increasing the risk of thromboembolic events. Conversely, abrupt discontinuation of phenobarbital can cause severe bleeding due to elevated warfarin exposure.",
+    "management": "Perform serial PT/INR determinations. Patients stabilized on warfarin may require substantial dosage increases when phenobarbital is added, and prompt dose reductions when phenobarbital is withdrawn.",
+    "alternatives": [
+      {
+        "drug_id": "levetiracetam-oral",
+        "rationale": "Levetiracetam lacks hepatic enzyme-inducing properties and does not alter warfarin metabolism"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-phenobarbital-label",
+        "locator": "Section DRUG INTERACTIONS",
+        "quote": "Barbiturates can induce hepatic microsomal enzymes resulting in increased metabolism and decreased anticoagulant response of oral anticoagulants (e.g., warfarin, acenocoumarol, dicumarol, and phenprocoumon). Patients stabilized on anticoagulant therapy may require dosage adjustments if barbiturates are added to or withdrawn from their dosage regimen."
+      }
+    ]
+  },
+  {
+    "id": "warfarin-phenytoin",
+    "drug_a": "warfarin",
+    "drug_b": "phenytoin",
+    "severity": "major",
+    "mechanism": "Biphasic pharmacokinetic interaction: competitive plasma protein binding displacement and CYP2C9 inhibition by phenytoin initially increase free warfarin and INR, while chronic CYP enzyme induction can later accelerate warfarin clearance. Warfarin also inhibits phenytoin metabolism.",
+    "clinical_effect": "Unstable and unpredictable PT/INR responses (both increased and decreased INR reported), with elevated risks of bleeding or thromboembolism, alongside potential phenytoin toxicity.",
+    "management": "Monitor INR frequently upon initiating, adjusting, or discontinuing phenytoin. Monitor serum phenytoin levels closely and adjust doses of both drugs as clinically indicated.",
+    "alternatives": [
+      {
+        "drug_id": "levetiracetam-oral",
+        "rationale": "Levetiracetam does not inhibit or induce CYP2C9 and does not displace warfarin from plasma proteins"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-phenytoin-label",
+        "locator": "Section 7.2 Drugs Affected by Phenytoin",
+        "quote": "Warfarin Increased and decreased PT/INR responses have been reported when phenytoin is coadministered with warfarin."
+      }
+    ]
+  },
+  {
+    "id": "clopidogrel-aspirin",
+    "drug_a": "clopidogrel",
+    "drug_b": "aspirin",
+    "severity": "moderate",
+    "mechanism": "Additive antiplatelet inhibition through dual blockade of the P2Y12 platelet adenosine diphosphate (ADP) receptor and cyclooxygenase-1 (COX-1) thromboxane A2 pathway.",
+    "clinical_effect": "Increased risk of bleeding, primarily gastrointestinal bleeding and puncture site hematoma.",
+    "management": "DAPT is standard following acute ischemic stroke / high-risk TIA or ACS, but should be time-limited (e.g., 21 days for minor stroke/TIA per CHANCE/POINT guidelines). Promptly evaluate any signs or symptoms of blood loss.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-clopidogrel-label",
+        "locator": "Section 7.7 Other Antiplatelet Agents",
+        "quote": "Coadministration of antiplatelet agents increase the risk of bleeding due to an additive effect. Promptly evaluate any signs or symptoms of blood loss if patients are treated concomitantly with other antiplatelet agents [see Warnings and Precautions (5.2) ] ."
+      }
+    ]
+  },
+  {
+    "id": "ticagrelor-aspirin",
+    "drug_a": "ticagrelor",
+    "drug_b": "aspirin",
+    "severity": "contraindicated",
+    "mechanism": "Maintenance doses of aspirin above 100 mg daily decrease the clinical effectiveness and cardiovascular/cerebrovascular protection of ticagrelor.",
+    "clinical_effect": "Loss of superior cardiovascular efficacy of ticagrelor over clopidogrel, alongside increased risk of bleeding with higher aspirin doses.",
+    "management": "Use ticagrelor only with low daily maintenance doses of aspirin (75 mg to 100 mg). Avoid maintenance aspirin doses greater than 100 mg/day.",
+    "alternatives": [
+      {
+        "drug_id": "clopidogrel",
+        "rationale": "Clopidogrel efficacy is not diminished by higher aspirin maintenance doses, though low-dose aspirin is still preferred"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-ticagrelor-label",
+        "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+        "quote": "Use BRILINTA with a daily maintenance dose of aspirin of 75-100 mg. (2 ) However, in patients who have undergone PCI, consider single antiplatelet therapy with BRILINTA based on the evolving risk for thrombotic versus bleeding events."
+      }
+    ]
+  },
+  {
+    "id": "apixaban-aspirin",
+    "drug_a": "apixaban",
+    "drug_b": "aspirin",
+    "severity": "major",
+    "mechanism": "Additive impairment of hemostasis from direct factor Xa inhibition and irreversible platelet COX-1 inhibition.",
+    "clinical_effect": "Significantly increased risk of major bleeding and clinically relevant non-major bleeding.",
+    "management": "Avoid concomitant use unless specifically indicated (e.g., recent ACS or percutaneous coronary intervention). When co-prescribed, minimize treatment duration and monitor closely for signs of bleeding.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-apixaban-label",
+        "locator": "Section 7.3 Anticoagulants and Antiplatelet Agents",
+        "quote": "Coadministration of antiplatelet agents, fibrinolytics, heparin, aspirin, and chronic NSAID use increases the risk of bleeding."
+      }
+    ]
+  },
+  {
+    "id": "edoxaban-aspirin",
+    "drug_a": "edoxaban",
+    "drug_b": "aspirin",
+    "severity": "major",
+    "mechanism": "Additive impairment of primary and secondary hemostatic pathways.",
+    "clinical_effect": "Significantly elevated risk of bleeding complications.",
+    "management": "Avoid concomitant use due to increased risk of bleeding. If combination therapy is required, closely monitor patients for clinical evidence of hemorrhagic events.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-edoxaban-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Anticoagulants, Antiplatelets, Thrombolytics, and Selective Serotonin Reuptake Inhibitors (SSRIs)/Serotonin Norepinephrine Reuptake Inhibitors (SNRIs): Avoid concomitant use due to increased risk of bleeding."
+      }
+    ]
+  },
+  {
+    "id": "nimodipine-phenytoin",
+    "drug_a": "nimodipine",
+    "drug_b": "phenytoin",
+    "severity": "contraindicated",
+    "mechanism": "Phenytoin is a strong inducer of hepatic CYP3A4 and significantly increases the clearance and metabolism of nimodipine.",
+    "clinical_effect": "Markedly reduced nimodipine plasma concentrations, resulting in loss of efficacy in preventing cerebral vasospasm and delayed cerebral ischemia after aneurysmal subarachnoid hemorrhage (aSAH).",
+    "management": "Strong CYP3A4 inducers should generally be avoided with nimodipine. If an antiepileptic drug is needed post-aSAH, select an agent without strong CYP3A4 inducing activity.",
+    "alternatives": [
+      {
+        "drug_id": "levetiracetam-oral",
+        "rationale": "Levetiracetam does not induce CYP3A4 and is the preferred first-line ASM for seizure prophylaxis in aSAH"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-nimodipine-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "3A4 inducers (e.g., carbamazepine, phenobarbital, phenytoin, rifampin, St. John's wort) should generally be avoided [see Warnings and Precautions (5.4) ] . Moderate and weak inducers of CYP3A4 may also reduce the efficacy of nimodipine. Patients on these should be closely monitored for lack of effect"
+      }
+    ]
+  },
+  {
+    "id": "nimodipine-phenobarbital",
+    "drug_a": "nimodipine",
+    "drug_b": "phenobarbital",
+    "severity": "contraindicated",
+    "mechanism": "Phenobarbital is a potent CYP3A4 inducer that substantially accelerates nimodipine clearance.",
+    "clinical_effect": "Marked reduction in nimodipine bioavailability and loss of neuroprotective efficacy in aneurysmal subarachnoid hemorrhage.",
+    "management": "Strong CYP3A4 inducers should generally be avoided with nimodipine. Replace phenobarbital with an antiepileptic that does not induce CYP3A4.",
+    "alternatives": [
+      {
+        "drug_id": "levetiracetam-oral",
+        "rationale": "Levetiracetam does not induce CYP3A4 and does not decrease nimodipine exposure"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-nimodipine-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "3A4 inducers (e.g., carbamazepine, phenobarbital, phenytoin, rifampin, St. John's wort) should generally be avoided [see Warnings and Precautions (5.4) ] . Moderate and weak inducers of CYP3A4 may also reduce the efficacy of nimodipine. Patients on these should be closely monitored for lack of effect"
+      }
+    ]
+  },
+  {
+    "id": "lamotrigine-valproate",
+    "drug_a": "lamotrigine",
+    "drug_b": "valproate",
+    "severity": "major",
+    "mechanism": "Valproate inhibits the hepatic glucuronidation (UGT) of lamotrigine, more than doubling its elimination half-life and significantly decreasing apparent clearance.",
+    "clinical_effect": "Markedly elevated lamotrigine serum concentrations with dramatically increased risk of serious, potentially fatal dermatologic toxicity including Stevens-Johnson syndrome (SJS) and toxic epidermal necrolysis (TEN), as well as ataxia and sedation.",
+    "management": "Reduce initial and maintenance lamotrigine dosage by greater than 50% per titration schedule when co-administered with valproate.",
+    "alternatives": [
+      {
+        "drug_id": "levetiracetam-oral",
+        "rationale": "Levetiracetam is not metabolized by glucuronidation and does not interact with valproate"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-lamotrigine-label",
+        "locator": "WARNINGS AND PRECAUTIONS",
+        "quote": "valproate reduces the clearance of lamotrigine, the dosage of lamotrigine in the presence of valproate is less than half of that required in its absence [see Dosage and Administration ( 2.1 , 2.2 ), Drug Interactions ( 7 )] ."
+      }
+    ]
+  },
+  {
+    "id": "carbamazepine-rivaroxaban",
+    "drug_a": "carbamazepine",
+    "drug_b": "rivaroxaban",
+    "severity": "contraindicated",
+    "mechanism": "Carbamazepine is a potent inducer of both CYP3A4 and P-glycoprotein (P-gp), which mediate the elimination of direct oral anticoagulants (DOACs).",
+    "clinical_effect": "Substantial reduction in rivaroxaban plasma concentrations and loss of anticoagulant efficacy, creating high risk for ischemic stroke and systemic embolism.",
+    "management": "Concomitant use of carbamazepine with rivaroxaban, apixaban, dabigatran, or edoxaban should be avoided. Use an antiepileptic without enzyme-inducing properties.",
+    "alternatives": [
+      {
+        "drug_id": "levetiracetam-oral",
+        "rationale": "Levetiracetam does not induce CYP3A4 or P-gp and does not alter DOAC concentrations"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-carbamazepine-label",
+        "locator": "DRUG INTERACTIONS",
+        "quote": "Concomitant use of carbamazepine with rivaroxaban, apixaban, dabigatran, and edoxaban (direct acting oral anticoagulants) is expected to result in decreased plasma concentrations of these anticoagulants that may be insufficient to achieve the intended therapeutic effect. In general, coadministration of carbamazepine with rivaroxaban, apixaban, dabigatran, and edoxaban should be avoided."
+      }
+    ]
+  },
+  {
+    "id": "carbamazepine-apixaban",
+    "drug_a": "carbamazepine",
+    "drug_b": "apixaban",
+    "severity": "contraindicated",
+    "mechanism": "Strong induction of CYP3A4 and P-gp by carbamazepine decreases apixaban exposure by approximately 50%.",
+    "clinical_effect": "Marked reduction in apixaban exposure and increased risk of thromboembolic stroke or systemic embolism.",
+    "management": "Avoid coadministration of carbamazepine with apixaban; switch to a non-inducing antiepileptic.",
+    "alternatives": [
+      {
+        "drug_id": "levetiracetam-oral",
+        "rationale": "Non-inducing ASM with no pharmacokinetic interaction with apixaban"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-carbamazepine-label",
+        "locator": "DRUG INTERACTIONS",
+        "quote": "Concomitant use of carbamazepine with rivaroxaban, apixaban, dabigatran, and edoxaban (direct acting oral anticoagulants) is expected to result in decreased plasma concentrations of these anticoagulants that may be insufficient to achieve the intended therapeutic effect. In general, coadministration of carbamazepine with rivaroxaban, apixaban, dabigatran, and edoxaban should be avoided."
+      }
+    ]
+  },
+  {
+    "id": "donepezil-trihexyphenidyl",
+    "drug_a": "donepezil",
+    "drug_b": "trihexyphenidyl",
+    "severity": "major",
+    "mechanism": "Pharmacodynamic antagonism between an acetylcholinesterase inhibitor (donepezil) and a centrally acting muscarinic acetylcholine receptor antagonist (trihexyphenidyl).",
+    "clinical_effect": "Mutual reduction in therapeutic efficacy: loss of pro-cognitive benefits of donepezil, worsening dementia or acute delirium, and reduced control of parkinsonian tremor.",
+    "management": "Avoid concurrent administration. If parkinsonian tremor requires management in a patient with cognitive impairment or dementia, prefer dopaminergic therapies over anticholinergics.",
+    "alternatives": [
+      {
+        "drug_id": "levodopa-carbidopa",
+        "rationale": "Dopaminergic therapy treats tremor without anticholinergic cognitive impairment"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-donepezil-label",
+        "locator": "Section 7.1 Use with Anticholinergics",
+        "quote": "Because of their mechanism of action, cholinesterase inhibitors have the potential to interfere with the activity of anticholinergic medications."
+      }
+    ]
+  },
+  {
+    "id": "rivastigmine-trihexyphenidyl",
+    "drug_a": "rivastigmine",
+    "drug_b": "trihexyphenidyl",
+    "severity": "major",
+    "mechanism": "Pharmacodynamic antagonism between a cholinesterase inhibitor (rivastigmine) and an antimuscarinic agent (trihexyphenidyl).",
+    "clinical_effect": "Diminished cognitive therapeutic response to rivastigmine, exacerbation of cognitive decline or delirium, and blunted anticholinergic control of parkinsonian tremor.",
+    "management": "Concomitant use is not recommended unless deemed clinically necessary. Anticholinergic medications should generally be avoided in patients with dementia.",
+    "alternatives": [
+      {
+        "drug_id": "levodopa-carbidopa",
+        "rationale": "Levodopa treats parkinsonian motor symptoms without opposing central cholinergic pathways"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-rivastigmine-label",
+        "locator": "Section 7.2 Cholinomimetic and Anticholinergic Medications",
+        "quote": "EXELON PATCH may increase the cholinergic effects of other cholinomimetic medications and may also interfere with the activity of anticholinergic medications (e.g., oxybutynin, tolterodine). Concomitant use of EXELON PATCH with medications having these pharmacologic effects is not recommended unless deemed clinically necessary"
+      }
+    ]
+  },
+  {
+    "id": "lecanemab-warfarin",
+    "drug_a": "lecanemab",
+    "drug_b": "warfarin",
+    "severity": "major",
+    "mechanism": "Monoclonal antibodies targeting amyloid-beta cause amyloid-related imaging abnormalities with microhemorrhages and superficial siderosis (ARIA-H); systemic anticoagulation significantly amplifies the risk of macroscopic intracerebral hemorrhage.",
+    "clinical_effect": "Substantially higher risk of intracerebral hemorrhage greater than 1 cm (2.5% vs 0% on placebo in clinical trials), including fatal intracranial bleeding events.",
+    "management": "Exercise extreme caution when considering systemic anticoagulation in patients receiving lecanemab. Carefully weigh the benefits of anti-amyloid therapy against hemorrhagic risk, obtain regular monitoring brain MRIs, and counsel patients on bleeding risks.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-lecanemab-label",
+        "locator": "Section 5.1 Amyloid Related Imaging Abnormalities",
+        "quote": "Patients taking LEQEMBI with an anticoagulant alone or combined with an antiplatelet medication or aspirin had an incidence of intracerebral hemorrhage of 2.5% (2/79 patients), compared to none in patients who received placebo."
+      }
+    ]
+  },
+  {
+    "id": "lecanemab-alteplase",
+    "drug_a": "lecanemab",
+    "drug_b": "alteplase",
+    "severity": "contraindicated",
+    "mechanism": "Lecanemab-induced ARIA-E causes focal neurological deficits mimicking acute ischemic stroke, while underlying amyloid angiopathy with vessel fragility renders intravenous thrombolysis highly hazardous.",
+    "clinical_effect": "High risk of massive or fatal intracerebral hemorrhage if intravenous thrombolysis (alteplase) is administered to a patient with acute focal neurological deficits caused by ARIA-E rather than ischemic stroke.",
+    "management": "In a patient treated with lecanemab presenting with acute focal stroke-like symptoms, strongly consider ARIA-E before giving thrombolytic therapy. Urgent neuroimaging (including MRI gradient-echo/SWI and FLAIR) should be performed to rule out ARIA-E and microhemorrhages prior to any thrombolytic administration.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-lecanemab-label",
+        "locator": "BOXED WARNING",
+        "quote": "Because ARIA-E can cause focal neurologic deficits that can mimic an ischemic stroke, treating clinicians should consider whether such symptoms could be due to ARIA-E before giving thrombolytic therapy to a patient being treated with LEQEMBI"
+      }
+    ]
+  },
+  {
+    "id": "amitriptyline-rasagiline",
+    "drug_a": "amitriptyline",
+    "drug_b": "rasagiline",
+    "severity": "contraindicated",
+    "mechanism": "Concomitant administration of tricyclic antidepressants with monoamine oxidase inhibitors (including selective MAO-B inhibitors) blocks both the reuptake and catabolism of biogenic amines, precipitating dangerous serotonin excess and adrenergic surge.",
+    "clinical_effect": "Life-threatening serotonin syndrome (hyperpyrexia, muscular rigidity, myoclonus, delirium, autonomic instability) and severe hypertensive crises.",
+    "management": "Concomitant use is not recommended or contraindicated. Allow an appropriate washout period (at least 14 days) between discontinuation of an antidepressant and initiation of rasagiline.",
+    "alternatives": [
+      {
+        "drug_id": "gabapentin",
+        "rationale": "Non-serotonergic agent for neuropathic pain that does not interact with MAO inhibitors"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-rasagiline-label",
+        "locator": "Section 5.2 Serotonin Syndrome",
+        "quote": "In the postmarketing period, potentially life-threatening serotonin syndrome has been reported in patients treated with antidepressants concomitantly with AZILECT. Concomitant use of AZILECT with one of many classes of antidepressants (e.g., SSRIs, SNRIs, triazolopyridine, tricyclic or tetracyclic antidepressants) is not recommended"
+      }
+    ]
+  },
+  {
+    "id": "sumatriptan-duloxetine",
+    "drug_a": "sumatriptan",
+    "drug_b": "duloxetine",
+    "severity": "major",
+    "mechanism": "Additive serotonergic pharmacodynamic stimulation from a 5-HT1B/1D receptor agonist (sumatriptan) combined with a serotonin reuptake inhibitor (duloxetine).",
+    "clinical_effect": "Risk of serotonin syndrome characterized by mental status changes (agitation, hallucinations, coma), autonomic instability (tachycardia, labile blood pressure, hyperthermia), and neuromuscular aberrations (hyperreflexia, incoordination).",
+    "management": "Monitor patients closely for symptoms of serotonin syndrome, particularly during initiation of therapy or dosage increases. If symptoms occur, discontinue both agents immediately.",
+    "alternatives": [
+      {
+        "drug_id": "rimegepant",
+        "rationale": "Calcitonin gene-related peptide (CGRP) receptor antagonist devoid of serotonergic agonist activity"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-sumatriptan-label",
+        "locator": "Section 7.4 Selective Serotonin Reuptake Inhibitors",
+        "quote": "Cases of serotonin syndrome have been reported during coadministration of triptans and SSRIs, SNRIs, TCAs, and MAO inhibitors [see Warnings and Precautions (5.7)] ."
+      }
+    ]
+  },
+  {
+    "id": "dexamethasone-phenytoin",
+    "drug_a": "dexamethasone",
+    "drug_b": "phenytoin",
+    "severity": "major",
+    "mechanism": "Phenytoin is a potent inducer of hepatic CYP3A4 enzymes, accelerating the metabolic clearance of dexamethasone by up to 50% or more.",
+    "clinical_effect": "Markedly reduced dexamethasone plasma concentrations, loss of therapeutic anti-inflammatory efficacy, and potentially dangerous rebound vasogenic cerebral edema in patients with brain tumors or neurosurgical edema.",
+    "management": "Double or titrate the dexamethasone dose upward as necessary based on clinical symptoms and neuroimaging. When phenytoin is discontinued, gradually reduce dexamethasone to avoid steroid overexposure.",
+    "alternatives": [
+      {
+        "drug_id": "levetiracetam-oral",
+        "rationale": "Non-inducing ASM with no hepatic CYP3A4 induction that does not reduce corticosteroid levels"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-dexamethasone-label",
+        "locator": "DRUG INTERACTIONS",
+        "quote": "Drugs which induce cytochrome P450 3A4 (CYP 3A4) enzyme activity (e.g., barbiturates, phenytoin, carbamazepine, rifampin) may enhance the metabolism of corticosteroids and require that the dosage of the corticosteroid be increased."
+      }
+    ]
+  },
+  {
+    "id": "dexamethasone-carbamazepine",
+    "drug_a": "dexamethasone",
+    "drug_b": "carbamazepine",
+    "severity": "major",
+    "mechanism": "Carbamazepine is a potent inducer of CYP3A4, substantially increasing the clearance of dexamethasone.",
+    "clinical_effect": "Decreased corticosteroid bioavailability leading to inadequate control of cerebral edema, tumor-associated swelling, or meningitis inflammation.",
+    "management": "Anticipate the need for higher dexamethasone doses during concomitant carbamazepine administration. Consider non-inducing antiseizure alternatives in neuro-oncology.",
+    "alternatives": [
+      {
+        "drug_id": "levetiracetam-oral",
+        "rationale": "Non-enzyme inducing antiepileptic that preserves corticosteroid therapeutic efficacy"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-dexamethasone-label",
+        "locator": "DRUG INTERACTIONS",
+        "quote": "Drugs which induce cytochrome P450 3A4 (CYP 3A4) enzyme activity (e.g., barbiturates, phenytoin, carbamazepine, rifampin) may enhance the metabolism of corticosteroids and require that the dosage of the corticosteroid be increased."
+      }
+    ]
+  }
+]

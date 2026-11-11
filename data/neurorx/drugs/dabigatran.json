@@ -1,0 +1,279 @@
+{
+  "id": "dabigatran",
+  "generic_name": "dabigatran",
+  "tall_man": {
+    "value": "dabigatran",
+    "refs": [
+      {
+        "source_id": "fda-dabigatran-capsules-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "The chemical name for dabigatran etexilate mesylate, a direct thrombin inhibitor, is β-Alanine, N-[[2-[[[4-[[[(hexyloxy)carbonyl]amino]iminomethyl]phenyl]amino]methyl]-1-methyl-1H-benzimidazol-5-yl]carbonyl]-N-2-pyridinyl-,ethyl ester, methanesulfonate."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "direct oral anticoagulant",
+    "direct thrombin inhibitor",
+    "antithrombotic"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "BHYT circular data pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "dabi-po-stroke-prevention-afib-standard",
+      "indication": "Reduction in Risk of Stroke and Systemic Embolism in Non-valvular AF (CrCl > 30 mL/min)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-dabigatran-capsules-label",
+          "locator": "Section 2.2 Recommended Dabigatran Etexilate Capsules Dosage for Adults",
+          "quote": "Reduction in Risk of Stroke and Systemic Embolism in Non-valvular AF CrCl >30 mL/min: 150 mg twice daily CrCl 15 to 30 mL/min: 75 mg twice daily CrCl <15 mL/min or on dialysis: Dosing recommendations cannot be provided"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 150,
+        "unit": "mg",
+        "frequency": "twice daily",
+        "max_single": 150,
+        "max_daily": 300
+      },
+      "dose_text": "150 mg orally twice daily.",
+      "renal_bands": [
+        {
+          "min": 30,
+          "max": null,
+          "dose_text": "150 mg twice daily",
+          "dose": {
+            "kind": "fixed",
+            "amount": 150,
+            "unit": "mg",
+            "frequency": "twice daily",
+            "max_single": 150,
+            "max_daily": 300
+          },
+          "refs": [
+            {
+              "source_id": "fda-dabigatran-capsules-label",
+              "locator": "Section 2.2 Recommended Dabigatran Etexilate Capsules Dosage for Adults",
+              "quote": "Reduction in Risk of Stroke and Systemic Embolism in Non-valvular AF CrCl >30 mL/min: 150 mg twice daily CrCl 15 to 30 mL/min: 75 mg twice daily CrCl <15 mL/min or on dialysis: Dosing recommendations cannot be provided"
+            }
+          ]
+        },
+        {
+          "min": 15,
+          "max": 30,
+          "dose_text": "75 mg twice daily",
+          "dose": {
+            "kind": "fixed",
+            "amount": 75,
+            "unit": "mg",
+            "frequency": "twice daily",
+            "max_single": 75,
+            "max_daily": 150
+          },
+          "refs": [
+            {
+              "source_id": "fda-dabigatran-capsules-label",
+              "locator": "Section 2.2 Recommended Dabigatran Etexilate Capsules Dosage for Adults",
+              "quote": "CrCl 15 to 30 mL/min: 75 mg twice daily"
+            }
+          ]
+        },
+        {
+          "min": null,
+          "max": 15,
+          "dose_text": "Dosing recommendations cannot be provided (avoid use)",
+          "refs": [
+            {
+              "source_id": "fda-dabigatran-capsules-label",
+              "locator": "Section 2.2 Recommended Dabigatran Etexilate Capsules Dosage for Adults",
+              "quote": "CrCl <15 mL/min or on dialysis: Dosing recommendations cannot be provided"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dabi-po-stroke-prevention-afib-reduced",
+      "indication": "Reduction in Risk of Stroke in Non-valvular AF (CrCl 15 to 30 mL/min)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-dabigatran-capsules-label",
+          "locator": "Section 2.2 Recommended Dabigatran Etexilate Capsules Dosage for Adults",
+          "quote": "CrCl 15 to 30 mL/min: 75 mg twice daily"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 75,
+        "unit": "mg",
+        "frequency": "twice daily",
+        "max_single": 75,
+        "max_daily": 150
+      },
+      "dose_text": "75 mg orally twice daily."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-dabigatran-capsules-label",
+        "locator": "Section 2.4 Dosage Adjustments",
+        "quote": "Assess renal function prior to initiation of treatment with dabigatran etexilate capsules"
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Administration of dabigatran etexilate capsules in adult patients with moderate hepatic impairment (Child-Pugh B) showed a large inter-subject variability, but no evidence of a consistent change in exposure or pharmacodynamics.",
+    "refs": [
+      {
+        "source_id": "fda-dabigatran-capsules-label",
+        "locator": "Section 12.3 Hepatic Impairment",
+        "quote": "Administration of dabigatran etexilate capsules in adult patients with moderate hepatic impairment (Child-Pugh B) showed a large inter-subject variability, but no evidence of a consistent change in exposure or pharmacodynamics."
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "PREMATURE DISCONTINUATION OF DABIGATRAN ETEXILATE CAPSULES INCREASES THE RISK OF THROMBOTIC EVENTS: Premature discontinuation of any oral anticoagulant, including dabigatran etexilate capsules, increases the risk of thrombotic events.",
+      "SPINAL/EPIDURAL HEMATOMA: Epidural or spinal hematomas may occur in patients treated with dabigatran etexilate capsules who are receiving neuraxial anesthesia or undergoing spinal puncture. These hematomas may result in long-term or permanent paralysis."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-dabigatran-capsules-label",
+        "locator": "BOXED WARNING",
+        "quote": "Premature discontinuation of any oral anticoagulant, including dabigatran etexilate capsules , increases the risk of thrombotic events. If anticoagulation with dabigatran etexilate capsules a re discontinued for a reason other than pathological bleeding or completion of a course of therapy, consider coverage with another anticoagulant"
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-dabigatran-capsules-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Dabigatran and its acyl glucuronides are competitive, direct thrombin inhibitors. Because thrombin (serine protease) enables the conversion of fibrinogen into fibrin during the coagulation cascade, its inhibition prevents the development of a thrombus."
+      }
+    ],
+    "note": "Direct thrombin inhibitors do not impair neuromuscular transmission; safe in myasthenia gravis"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Dabigatran etexilate capsules should be swallowed whole. Breaking, chewing, or emptying the contents of the capsule can result in increased exposure. Do not open or administer through feeding tubes."
+    },
+    "refs": [
+      {
+        "source_id": "fda-dabigatran-capsules-label",
+        "locator": "Section 2.5 Administration",
+        "quote": "Dabigatran etexilate capsules should be swallowed whole. Dabigatran etexilate capsules should be taken with a full glass of water. Breaking, chewing, or emptying the contents of the capsule can result in increased exposure [see Clinical Pharmacology (12.3)] ."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": [],
+    "note": "No pharmacogenomic testing requirement in FDA label"
+  },
+  "ae_tags": {
+    "value": null,
+    "refs": []
+  },
+  "mechanism_of_action": {
+    "value": "Dabigatran and its acyl glucuronides are competitive, direct thrombin inhibitors. Because thrombin (serine protease) enables the conversion of fibrinogen into fibrin during the coagulation cascade, its inhibition prevents the development of a thrombus. Both free and clot-bound thrombin, and thrombin-induced platelet aggregation are inhibited by the active moieties.",
+    "refs": [
+      {
+        "source_id": "fda-dabigatran-capsules-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Dabigatran and its acyl glucuronides are competitive, direct thrombin inhibitors. Because thrombin (serine protease) enables the conversion of fibrinogen into fibrin during the coagulation cascade, its inhibition prevents the development of a thrombus."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "pgp": "substrate",
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-dabigatran-capsules-label",
+        "locator": "Section 7.1 Reduction of Risk of Stroke and Systemic Embolism in Non-valvular Atrial Fibrillation in Adult Patients",
+        "quote": "The concomitant use of dabigatran etexilate with P-gp inducers (e.g., rifampin) reduces exposure to dabigatran and should generally be avoided [see Clinical Pharmacology (12.3)] ."
+      }
+    ]
+  },
+  "tools": {
+    "missed_dose": {
+      "value": "If a dose of dabigatran etexilate capsules are not taken at the scheduled time, the dose should be taken as soon as possible on the same day; the missed dose should be skipped if it cannot be taken at least 6 hours before the next scheduled dose. The dose of dabigatran etexilate capsules should not be doubled to make up for a missed dose.",
+      "refs": [
+        {
+          "source_id": "fda-dabigatran-capsules-label",
+          "locator": "Section 2.5 Administration",
+          "quote": "If a dose of dabigatran etexilate capsules are not taken at the scheduled time, the dose should be taken as soon as possible on the same day; the missed dose should be skipped if it cannot be taken at least 6 hours before the next scheduled dose. The dose of dabigatran etexilate capsules should not be doubled to make up for a missed dose."
+        }
+      ]
+    },
+    "hold_restart": {
+      "value": [
+        {
+          "procedure": "Invasive or surgical procedures in adults (CrCl ≥ 50 mL/min)",
+          "hold_hours": "Discontinue 1 to 2 days before procedure",
+          "restart_timing": "Restart after procedure as soon as adequate hemostasis has been established"
+        },
+        {
+          "procedure": "Invasive or surgical procedures with CrCl < 50 mL/min, or major surgery / spinal puncture",
+          "hold_hours": "Discontinue 3 to 5 days before procedure",
+          "restart_timing": "Restart as soon as complete hemostasis has been established"
+        }
+      ],
+      "refs": [
+        {
+          "source_id": "fda-dabigatran-capsules-label",
+          "locator": "Section 2.8 Discontinuation for Surgery and Other Interventions",
+          "quote": "If possible, discontinue dabigatran etexilate capsules in adults 1 to 2 days (CrCl ≥50 mL/min) or 3 to 5 days (CrCl <50 mL/min) before invasive or surgical procedures because of the increased risk of bleeding. Consider longer times for patients undergoing major surgery, spinal puncture, or placement of a spinal or epidural catheter or port"
+        }
+      ]
+    },
+    "reversal": {
+      "value": [
+        {
+          "agent": "idarucizumab (PRAXBIND)",
+          "dose_rule": "5 g IV administered as two separate vials each containing 2.5 g/50 mL",
+          "vn_available": true
+        }
+      ],
+      "refs": [
+        {
+          "source_id": "fda-idarucizumab-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "The recommended dose of PRAXBIND is 5 g, provided as two separate vials each containing 2.5 g/50 mL idarucizumab."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

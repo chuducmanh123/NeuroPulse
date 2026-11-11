@@ -1,0 +1,204 @@
+{
+  "id": "sumatriptan",
+  "generic_name": "sumatriptan",
+  "tall_man": {
+    "value": "sumatriptan",
+    "refs": [
+      {
+        "source_id": "fda-sumatriptan-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "acute treatment of migraine with or without aura in adults. Limitations of Use: • Use only if a clear diagnosis of migraine headache has been established."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "serotonin 5-HT1B/1D receptor agonist",
+    "triptan",
+    "antimigraine agent"
+  ],
+  "subspecialties": [
+    "headache"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "sum-acute-migraine-po",
+      "indication": "Acute Migraine Headache with or without Aura",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-sumatriptan-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "acute treatment of migraine with or without aura in adults. Limitations of Use: • Use only if a clear diagnosis of migraine headache has been established."
+        },
+        {
+          "source_id": "fda-sumatriptan-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "The recommended dose of IMITREX tablets is 25 mg, 50 mg, or 100 mg."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 50,
+        "unit": "mg",
+        "frequency": "once at headache onset; may repeat after at least 2 hours if partial response",
+        "max_single": 100,
+        "max_daily": 200
+      },
+      "dose_text": "Single dose of 25 mg, 50 mg, or 100 mg taken at the onset of migraine attack. If the headache returns or only partially improves, a second dose may be administered at least 2 hours after the first dose. The maximum daily dose is 200 mg in a 24-hour period. In mild to moderate hepatic impairment, maximum single dose is 50 mg."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-sumatriptan-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "acute treatment of migraine with or without aura in adults. Limitations of Use: • Use only if a clear diagnosis of migraine headache has been established."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "In patients with mild to moderate hepatic impairment, the maximum single dose should not exceed 50 mg. Contraindicated in severe hepatic impairment.",
+    "refs": [
+      {
+        "source_id": "fda-sumatriptan-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "The recommended dose of IMITREX tablets is 25 mg, 50 mg, or 100 mg."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-sumatriptan-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "acute treatment of migraine with or without aura in adults. Limitations of Use: • Use only if a clear diagnosis of migraine headache has been established."
+      }
+    ],
+    "note": "Selective 5-HT1B/1D receptor agonist; no neuromuscular junction blocking properties"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "Immediate-release tablets may be crushed and mixed with water for enteral tube administration if required."
+    },
+    "refs": [
+      {
+        "source_id": "fda-sumatriptan-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "The recommended dose of IMITREX tablets is 25 mg, 50 mg, or 100 mg."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "serotonin_syndrome",
+      "confusion_delirium"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-sumatriptan-label",
+        "locator": "DRUG INTERACTIONS",
+        "quote": "Cases of serotonin syndrome have been reported during coadministration of triptans and SSRIs, SNRIs, TCAs, and MAO inhibitors [see Warnings and Precautions (5.7)] . === USE IN SPE"
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Selective agonist of vascular 5-HT1B and neuronal 5-HT1D receptors in cranial arteries and sensory nerve endings, promoting cranial vasoconstriction and inhibiting peripheral trigeminovascular calcitonin gene-related peptide (CGRP) release.",
+    "refs": [
+      {
+        "source_id": "fda-sumatriptan-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "acute treatment of migraine with or without aura in adults. Limitations of Use: • Use only if a clear diagnosis of migraine headache has been established."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "metabolism": "metabolized primarily by monoamine oxidase type A (MAO-A) into indole acetic acid analogue"
+    },
+    "refs": [
+      {
+        "source_id": "fda-sumatriptan-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "acute treatment of migraine with or without aura in adults. Limitations of Use: • Use only if a clear diagnosis of migraine headache has been established."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-sumatriptan-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "acute treatment of migraine with or without aura in adults. Limitations of Use: • Use only if a clear diagnosis of migraine headache has been established."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "No increase in overall major congenital malformations observed in pregnancy registries; use during pregnancy only if potential benefit justifies potential risk.",
+      "refs": [
+        {
+          "source_id": "fda-sumatriptan-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "acute treatment of migraine with or without aura in adults. Limitations of Use: • Use only if a clear diagnosis of migraine headache has been established."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Sumatriptan is excreted into human milk; infant exposure can be minimized by avoiding breastfeeding for 12 hours after treatment.",
+      "refs": [
+        {
+          "source_id": "fda-sumatriptan-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "acute treatment of migraine with or without aura in adults. Limitations of Use: • Use only if a clear diagnosis of migraine headache has been established."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

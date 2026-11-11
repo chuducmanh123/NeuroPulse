@@ -1,0 +1,204 @@
+{
+  "id": "levodopa-carbidopa",
+  "generic_name": "carbidopa/levodopa",
+  "tall_man": {
+    "value": "carbidopa/levodopa",
+    "refs": [
+      {
+        "source_id": "fda-levodopa-carbidopa-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of Parkinson's disease, post-encephalitic parkinsonism, and symptomatic parkinsonism that may follow carbon monoxide intoxication or manganese intoxication."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "dopamine precursor / dopa decarboxylase inhibitor",
+    "antiparkinson agent"
+  ],
+  "subspecialties": [
+    "movement_disorders",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "cd-ld-initial-titration",
+      "indication": "Parkinson's Disease (Idiopathic, Post-encephalitic, or Symptomatic)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-levodopa-carbidopa-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "treatment of Parkinson's disease, post-encephalitic parkinsonism, and symptomatic parkinsonism that may follow carbon monoxide intoxication or manganese intoxication."
+        },
+        {
+          "source_id": "fda-levodopa-carbidopa-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "optimum daily dosage of SINEMET must be determined by careful titration in each patient."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 100,
+        "unit": "mg",
+        "frequency": "three times daily (levodopa 100 mg / carbidopa 25 mg)",
+        "max_daily": 800
+      },
+      "dose_text": "Initial starting dose: one tablet of carbidopa/levodopa 25/100 mg three times daily. Titrate by adding one tablet every day or every other day as needed up to a daily dosage of 8 tablets of 25/100 mg (200/800 mg/day). At least 70 to 100 mg of carbidopa daily is required to prevent peripheral dopa decarboxylation side effects."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-levodopa-carbidopa-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of Parkinson's disease, post-encephalitic parkinsonism, and symptomatic parkinsonism that may follow carbon monoxide intoxication or manganese intoxication."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Decarboxylation occurs in peripheral tissues; no specific dosage adjustment in hepatic impairment.",
+    "refs": [
+      {
+        "source_id": "fda-levodopa-carbidopa-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of Parkinson's disease, post-encephalitic parkinsonism, and symptomatic parkinsonism that may follow carbon monoxide intoxication or manganese intoxication."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-levodopa-carbidopa-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of Parkinson's disease, post-encephalitic parkinsonism, and symptomatic parkinsonism that may follow carbon monoxide intoxication or manganese intoxication."
+      }
+    ],
+    "note": "No deleterious effect on neuromuscular junction transmission; safe in myasthenia gravis"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "Immediate-release tablets can be crushed and administered via enteral feeding tube or dissolved in ascorbic acid solution. Extended-release formulations (Sinemet CR) must not be crushed."
+    },
+    "refs": [
+      {
+        "source_id": "fda-levodopa-carbidopa-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "optimum daily dosage of SINEMET must be determined by careful titration in each patient."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "psychiatric_behavioral",
+      "confusion_delirium",
+      "sedation_somnolence"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-levodopa-carbidopa-label",
+        "locator": "ADVERSE REACTIONS",
+        "quote": "most common adverse reactions reported with SINEMET have included dyskinesias, such as choreiform, dystonic, and other involuntary movements, and nausea."
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Levodopa is the metabolic precursor of dopamine that crosses the blood-brain barrier and is decarboxylated to dopamine in the striatum. Carbidopa inhibits peripheral dopa decarboxylase, increasing central levodopa availability without crossing the blood-brain barrier.",
+    "refs": [
+      {
+        "source_id": "fda-levodopa-carbidopa-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "treatment of Parkinson's disease, post-encephalitic parkinsonism, and symptomatic parkinsonism that may follow carbon monoxide intoxication or manganese intoxication."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "metabolism": "peripheral aromatic L-amino acid decarboxylase (AADC) and catechol-O-methyltransferase (COMT)"
+    },
+    "refs": [
+      {
+        "source_id": "fda-levodopa-carbidopa-label",
+        "locator": "CONTRAINDICATIONS",
+        "quote": "Nonselective monoamine oxidase (MAO) inhibitors are contraindicated for use with SINEMET."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-levodopa-carbidopa-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "treatment of Parkinson's disease, post-encephalitic parkinsonism, and symptomatic parkinsonism that may follow carbon monoxide intoxication or manganese intoxication."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Levodopa crosses the placenta; limited human pregnancy data suggest low malformation risk, but evaluate maternal motor benefit vs fetal safety.",
+      "refs": [
+        {
+          "source_id": "fda-levodopa-carbidopa-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "treatment of Parkinson's disease, post-encephalitic parkinsonism, and symptomatic parkinsonism that may follow carbon monoxide intoxication or manganese intoxication."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Levodopa inhibits prolactin secretion and may suppress lactation; excretion in human milk is documented.",
+      "refs": [
+        {
+          "source_id": "fda-levodopa-carbidopa-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "treatment of Parkinson's disease, post-encephalitic parkinsonism, and symptomatic parkinsonism that may follow carbon monoxide intoxication or manganese intoxication."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

@@ -1,0 +1,415 @@
+{
+  "id": "levetiracetam-oral",
+  "generic_name": "levetiracetam (oral: tablets & oral solution)",
+  "tall_man": {
+    "value": "levetiracetam",
+    "refs": [
+      {
+        "source_id": "fda-keppra-label",
+        "locator": "TITLE",
+        "quote": "TITLE: KEPPRA (levetiracetam) TABLETS AND ORAL SOLUTION - FDA PRESCRIBING INFORMATION"
+      }
+    ],
+    "note": "Not listed on FDA Name Differentiation Project list; kept as standard lowercase"
+  },
+  "classes": [
+    "Antiepileptic Drug (AED)",
+    "SV2A Ligand"
+  ],
+  "subspecialties": [
+    "epilepsy",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "DAV registration data pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "BHYT circular data pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "lev-po-partial-adult",
+      "indication": "Partial-Onset Seizures in Adults 16 Years of Age and Older",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-keppra-label",
+          "locator": "Section 2.2 Adults 16 Years of Age and Older",
+          "quote": "Adults 16 Years of Age and Older Initiate treatment with a daily dose of 1000 mg/day, given as twice-daily dosing (500 mg twice daily). Additional dosing increments may be given (1000 mg/day additional every 2 weeks) to a maximum recommended daily dose of 3000 mg."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 500,
+        "unit": "mg",
+        "frequency": "twice daily",
+        "max_single": 1500,
+        "max_daily": 3000
+      },
+      "dose_text": "Initiate 500 mg twice daily (1000 mg/day). Increase by 500 mg twice daily every 2 weeks to maximum 1500 mg twice daily (3000 mg/day)."
+    },
+    {
+      "id": "lev-po-myoclonic-adult-jme",
+      "indication": "Myoclonic Seizures in Patients 12 Years of Age and Older with Juvenile Myoclonic Epilepsy",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-keppra-label",
+          "locator": "Section 2.3",
+          "quote": "2.3 Dosing for Myoclonic Seizures in Patients 12 Years of Age and Older with Juvenile Myoclonic Epilepsy Initiate treatment with a dose of 1000 mg/day, given as twice-daily dosing (500 mg twice daily). Increase the dosage by 1000 mg/day every 2 weeks to the recommended daily dose of 3000 mg."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 500,
+        "unit": "mg",
+        "frequency": "twice daily",
+        "max_single": 1500,
+        "max_daily": 3000
+      },
+      "dose_text": "Initiate 500 mg twice daily (1000 mg/day). Increase dosage by 500 mg twice daily every 2 weeks to recommended daily dose of 1500 mg twice daily (3000 mg/day)."
+    },
+    {
+      "id": "lev-po-pgtc-adult",
+      "indication": "Primary Generalized Tonic-Clonic Seizures in Adults 16 Years of Age and Older",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-keppra-label",
+          "locator": "Section 2.4",
+          "quote": "2.4 Dosing for Primary Generalized Tonic-Clonic Seizures Adults 16 Years of Age and Older Initiate treatment with a dose of 1000 mg/day, given as twice-daily dosing (500 mg twice daily). Increase dosage by 1000 mg/day every 2 weeks to the recommended daily dose of 3000 mg."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 500,
+        "unit": "mg",
+        "frequency": "twice daily",
+        "max_single": 1500,
+        "max_daily": 3000
+      },
+      "dose_text": "Initiate 500 mg twice daily (1000 mg/day). Increase dosage by 500 mg twice daily every 2 weeks to recommended daily dose of 1500 mg twice daily (3000 mg/day)."
+    }
+  ],
+  "renal_impairment": {
+    "description": "KEPPRA dosing must be individualized according to the patient's renal function status based on creatinine clearance adjusted for body surface area.",
+    "renal_basis": {
+      "value": "cg_normalized_1_73",
+      "refs": [
+        {
+          "source_id": "fda-keppra-label",
+          "locator": "Section 2.5 Dosage Adjustments in Adult Patients with Renal Impairment",
+          "quote": "In order to calculate the dose recommended for patients with renal impairment, creatinine clearance adjusted for body surface area must be calculated."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 80,
+        "max": null,
+        "dose_text": "500 to 1,500 mg every 12 hours",
+        "dose": {
+          "kind": "fixed",
+          "amount": 500,
+          "unit": "mg",
+          "frequency": "every 12 hours",
+          "max_single": 1500,
+          "max_daily": 3000
+        },
+        "refs": [
+          {
+            "source_id": "fda-keppra-label",
+            "locator": "Section 2.5 Table 1",
+            "quote": "Normal | > 80 | 500 to 1,500 | Every 12 hours"
+          }
+        ]
+      },
+      {
+        "min": 50,
+        "max": 80,
+        "dose_text": "500 to 1,000 mg every 12 hours",
+        "dose": {
+          "kind": "fixed",
+          "amount": 500,
+          "unit": "mg",
+          "frequency": "every 12 hours",
+          "max_single": 1000,
+          "max_daily": 2000
+        },
+        "refs": [
+          {
+            "source_id": "fda-keppra-label",
+            "locator": "Section 2.5 Table 1",
+            "quote": "Mild | 50 – 80 | 500 to 1,000 | Every 12 hours"
+          }
+        ]
+      },
+      {
+        "min": 30,
+        "max": 50,
+        "dose_text": "250 to 750 mg every 12 hours",
+        "dose": {
+          "kind": "fixed",
+          "amount": 250,
+          "unit": "mg",
+          "frequency": "every 12 hours",
+          "max_single": 750,
+          "max_daily": 1500
+        },
+        "refs": [
+          {
+            "source_id": "fda-keppra-label",
+            "locator": "Section 2.5 Table 1",
+            "quote": "Moderate | 30 – 50 | 250 to 750 | Every 12 hours"
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 30,
+        "dose_text": "250 to 500 mg every 12 hours",
+        "dose": {
+          "kind": "fixed",
+          "amount": 250,
+          "unit": "mg",
+          "frequency": "every 12 hours",
+          "max_single": 500,
+          "max_daily": 1000
+        },
+        "refs": [
+          {
+            "source_id": "fda-keppra-label",
+            "locator": "Section 2.5 Table 1",
+            "quote": "Severe | < 30 | 250 to 500 | Every 12 hours"
+          }
+        ]
+      }
+    ],
+    "hemodialysis": {
+      "value": "500 to 1,000 mg every 24 hours. Following dialysis, a 250 to 500 mg supplemental dose is recommended.",
+      "refs": [
+        {
+          "source_id": "fda-keppra-label",
+          "locator": "Section 2.5 Table 1",
+          "quote": "ESRD patients using dialysis | ---- | 500 to 1,000 | Every 24 hours"
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-keppra-label",
+        "locator": "Section 2.5 Table 1",
+        "quote": "Table 1: Dosing Adjustment Regimen for Adult Patients with Renal Impairment"
+      }
+    ]
+  },
+  "renal_basis": {
+    "value": "cg_normalized_1_73",
+    "refs": [
+      {
+        "source_id": "fda-keppra-label",
+        "locator": "Section 2.5 Dosage Adjustments in Adult Patients with Renal Impairment",
+        "quote": "In order to calculate the dose recommended for patients with renal impairment, creatinine clearance adjusted for body surface area must be calculated."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "No dose adjustment is needed for patients with hepatic impairment. In patients with severe hepatic impairment (Child-Pugh C), total body clearance was 50% that of normal subjects, but decreased renal clearance accounted for most of the decrease.",
+    "refs": [
+      {
+        "source_id": "fda-keppra-label",
+        "locator": "Section 8.6 Hepatic Impairment",
+        "quote": "In patients with severe hepatic impairment (Child-Pugh C), total body clearance was 50% that of normal subjects, but decreased renal clearance accounted for most of the decrease. No dose adjustment is needed for patients with hepatic impairment."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": [],
+    "note": "No boxed warning in FDA prescribing information"
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-keppra-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "The precise mechanism(s) by which levetiracetam exerts its antiepileptic effect is unknown."
+      }
+    ],
+    "note": "Not reported to exacerbate myasthenia gravis"
+  },
+  "mechanism_of_action": {
+    "value": "The precise mechanism(s) by which levetiracetam exerts its antiepileptic effect is unknown. A saturable and stereoselective neuronal binding site in rat brain tissue has been described for levetiracetam: the synaptic vesicle protein SV2A, thought to be involved in the regulation of vesicle exocytosis.",
+    "refs": [
+      {
+        "source_id": "fda-keppra-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Experimental data indicate that this binding site is the synaptic vesicle protein SV2A, thought to be involved in the regulation of vesicle exocytosis."
+      }
+    ]
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "KEPPRA tablets should be swallowed whole. KEPPRA tablets should not be chewed or crushed. Prescribe oral solution for patients who cannot swallow tablets or have feeding tubes."
+    },
+    "refs": [
+      {
+        "source_id": "fda-keppra-label",
+        "locator": "Section 2.1 Important Administration Instructions",
+        "quote": "KEPPRA tablets should be swallowed whole. KEPPRA tablets should not be chewed or crushed."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": [],
+    "note": "No pharmacogenomic testing requirement"
+  },
+  "ae_tags": {
+    "value": [
+      "sedation_somnolence",
+      "ataxia",
+      "psychiatric_behavioral",
+      "rash_sjs_ten"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-keppra-label",
+        "locator": "Section 5.3 Somnolence and Fatigue",
+        "quote": "KEPPRA may cause somnolence and fatigue. Patients should be monitored for these signs and symptoms and advised not to drive or operate machinery"
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Somnolence",
+        "Asthenia",
+        "Infection",
+        "Dizziness"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-keppra-label",
+          "locator": "Section 6 Adverse Reactions",
+          "quote": "Most common adverse reactions (incidence ≥ 5% more than placebo) include: Adult patients: somnolence, asthenia, infection and dizziness ( 6.1 )"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Behavioral Abnormalities and Psychotic Symptoms (irritability, aggression, depression, suicidal ideation)",
+        "Serious Dermatological Reactions (Stevens-Johnson syndrome, toxic epidermal necrolysis)",
+        "Drug Reaction with Eosinophilia and Systemic Symptoms (DRESS)",
+        "Anaphylaxis and Angioedema"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-keppra-label",
+          "locator": "Section 5.1 Psychiatric Signs and Symptoms",
+          "quote": "Behavioral abnormalities including psychotic symptoms, suicidal ideation, irritability, and aggressive behavior have been observed; monitor patients for psychiatric signs and symptoms"
+        },
+        {
+          "source_id": "fda-keppra-label",
+          "locator": "Section 5.5 Serious Dermatological Reactions",
+          "quote": "Serious Dermatological Reactions: Discontinue KEPPRA at the first sign of rash unless clearly not drug related"
+        },
+        {
+          "source_id": "fda-keppra-label",
+          "locator": "Section 5.6 DRESS",
+          "quote": "Drug Reaction with Eosinophilia and Systemic Symptoms (DRESS)/Multiorgan Hypersensitivity"
+        }
+      ]
+    }
+  },
+  "enzyme_profile": {
+    "value": {
+      "qt_risk": "none",
+      "serotonergic": false,
+      "acb_score": 0
+    },
+    "refs": [
+      {
+        "source_id": "fda-keppra-label",
+        "locator": "Section 12.3 Pharmacokinetics - Metabolism",
+        "quote": "are neither inhibitors of, nor high affinity substrates for, human liver cytochrome P450 isoforms, epoxide hydrolase or UDP-glucuronidation enzymes."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-keppra-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "Physiological changes during pregnancy may affect levetiracetam concentration."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Physiological changes during pregnancy may affect levetiracetam concentration. Decrease in levetiracetam plasma concentrations has been observed during pregnancy. This decrease is more pronounced during the third trimester.",
+      "refs": [
+        {
+          "source_id": "fda-keppra-label",
+          "locator": "Section 8.1 Pregnancy - Clinical Considerations",
+          "quote": "Physiological changes during pregnancy may affect levetiracetam concentration. Decrease in levetiracetam plasma concentrations has been observed during pregnancy. This decrease is more pronounced during the third trimester."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": "Co-administration of KEPPRA (500 mg twice daily) did not influence the pharmacokinetics of oral contraceptives.",
+      "refs": [
+        {
+          "source_id": "fda-keppra-label",
+          "locator": "Section 12.3 Pharmacokinetics - Drug Interactions",
+          "quote": "KEPPRA (500 mg twice daily) did not influence the pharmacokinetics of an oral contraceptive containing 0.03 mg ethinyl estradiol and 0.15 mg levonorgestrel"
+        }
+      ]
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Levetiracetam is excreted in human milk. The developmental and health benefits of breastfeeding should be considered along with the mother's clinical need for KEPPRA and any potential adverse effects on the breastfed infant.",
+      "refs": [
+        {
+          "source_id": "fda-keppra-label",
+          "locator": "Section 8.2 Lactation",
+          "quote": "Levetiracetam is excreted in human milk. There are no data on the effects of KEPPRA on the breastfed infant, or the effects on milk production. The developmental and health benefits of breastfeeding should be considered along with the mother's clinical need for KEPPRA and any potential adverse effects on the breastfed infant"
+        }
+      ]
+    }
+  },
+  "tools": {
+    "missed_dose": {
+      "value": null,
+      "refs": []
+    }
+  },
+  "status": "verified",
+  "verification": {
+    "verified_by": "Admin",
+    "verified_at": "2026-11-11",
+    "content_hash": "83b82b236adb3727a3dc6082bb785e74faff6f2a2c061c25697f9841b0feb9d8"
+  }
+}

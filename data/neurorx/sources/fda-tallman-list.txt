@@ -1,0 +1,70 @@
+FDA NAME DIFFERENTIATION PROJECT - TALL MAN LETTERS LIST
+Source: U.S. Food and Drug Administration (FDA)
+
+Acetohexamide
+			Acetazolamide	acetoHEXAMIDE
+			acetaZOLAMIDE
+Bupropion
+			Buspirone	buPROPion
+			busPIRone
+Chlorpromazine
+			Chlorpropamide	chlorproMAZINE
+			chlorproPAMIDE
+Cisplatin
+			Carboplatin	CISplatin
+			CARBOplatin
+Clomiphene
+			Clomipramine	clomiPHENE
+			clomiPRAMINE
+Cyclosporine
+			Cycloserine	cycloSPORINE
+			cycloSERINE
+Daunorubicin
+			Doxorubicin	DAUNOrubicin
+			DOXOrubicin
+Dimenhydrinate
+			Diphenhydramine	dimenhyDRINATE
+			diphenhydrAMINE
+Dobutamine
+			Dopamine	DOBUTamine
+			DOPamine
+Glipizide
+			Glyburide	glipiZIDE
+			glyBURIDE
+Hydralazine
+			Hydroxyzine	hydrALAZINE
+			hydrOXYzine
+Hydromorphone	HYDROmorphone
+Medroxyprogesterone
+			Methylprednisolone
+			Methyltestosterone	medroxyPROGESTERone
+			methylPREDNISolone
+			methylTESTOSTERone
+Methylprednisolone
+			Methyltestosterone	methylPREDNISolone
+			methylTESTOSTERone
+Migalastat
+			Miglustat	migALAstat
+			migLUstat
+Mitoxantrone	mitoXANTRONE
+Nicardipine
+			Nifedipine	niCARdipine
+			NIFEdipine
+Prednisone
+			Prednisolone	predniSONE
+			prednisoLONE
+Risperidone
+			Ropinirole	risperiDONE
+			rOPINIRole
+Sulfadiazine
+			Sulfisoxazole	sulfADIAZINE
+			sulfiSOXAZOLE
+Tolazamide
+			Tolbutamide	TOLAZamide
+			TOLBUTamide
+Trazodone
+			Tramadol	traZODone
+			traMADol
+Vinblastine
+			Vincristine	vinBLAStine
+			vinCRIStine

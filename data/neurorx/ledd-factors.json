@@ -1,0 +1,195 @@
+{
+  "factors": [
+    {
+      "drug_id": "levodopa-ir",
+      "drug_name": "Levodopa (standard / immediate-release)",
+      "factor": 1.0,
+      "unit": "mg",
+      "refs": [
+        {
+          "source_id": "ledd-tomlinson-2010",
+          "locator": "Table 1",
+          "quote": "Levodopa (standard / immediate release): dose (mg) x 1."
+        }
+      ]
+    },
+    {
+      "drug_id": "levodopa-cr",
+      "drug_name": "Levodopa (controlled-release / CR)",
+      "factor": 0.75,
+      "unit": "mg",
+      "refs": [
+        {
+          "source_id": "ledd-tomlinson-2010",
+          "locator": "Table 1",
+          "quote": "Levodopa (controlled release / CR): dose (mg) x 0.75."
+        }
+      ]
+    },
+    {
+      "drug_id": "pramipexole",
+      "drug_name": "Pramipexole",
+      "factor": 100.0,
+      "unit": "mg",
+      "refs": [
+        {
+          "source_id": "ledd-tomlinson-2010",
+          "locator": "Table 1",
+          "quote": "Pramipexole: dose (mg) x 100."
+        }
+      ]
+    },
+    {
+      "drug_id": "ropinirole",
+      "drug_name": "Ropinirole",
+      "factor": 20.0,
+      "unit": "mg",
+      "refs": [
+        {
+          "source_id": "ledd-tomlinson-2010",
+          "locator": "Table 1",
+          "quote": "Ropinirole: dose (mg) x 20."
+        }
+      ]
+    },
+    {
+      "drug_id": "rotigotine",
+      "drug_name": "Rotigotine (transdermal patch)",
+      "factor": 30.0,
+      "unit": "mg/24h",
+      "refs": [
+        {
+          "source_id": "ledd-tomlinson-2010",
+          "locator": "Table 1",
+          "quote": "Rotigotine transdermal patch: dose (mg/24h) x 30."
+        }
+      ]
+    },
+    {
+      "drug_id": "rasagiline",
+      "drug_name": "Rasagiline",
+      "factor": 100.0,
+      "unit": "mg",
+      "refs": [
+        {
+          "source_id": "ledd-tomlinson-2010",
+          "locator": "Table 1",
+          "quote": "Rasagiline: dose (mg) x 100."
+        }
+      ]
+    },
+    {
+      "drug_id": "selegiline-oral",
+      "drug_name": "Selegiline (oral)",
+      "factor": 10.0,
+      "unit": "mg",
+      "refs": [
+        {
+          "source_id": "ledd-tomlinson-2010",
+          "locator": "Table 1",
+          "quote": "Selegiline (oral): dose (mg) x 10."
+        }
+      ]
+    },
+    {
+      "drug_id": "selegiline-sublingual",
+      "drug_name": "Selegiline (sublingual)",
+      "factor": 80.0,
+      "unit": "mg",
+      "refs": [
+        {
+          "source_id": "ledd-tomlinson-2010",
+          "locator": "Table 1",
+          "quote": "Selegiline (sublingual): dose (mg) x 80."
+        }
+      ]
+    },
+    {
+      "drug_id": "amantadine",
+      "drug_name": "Amantadine",
+      "factor": 1.0,
+      "unit": "mg",
+      "refs": [
+        {
+          "source_id": "ledd-tomlinson-2010",
+          "locator": "Table 1",
+          "quote": "Amantadine: dose (mg) x 1."
+        }
+      ]
+    },
+    {
+      "drug_id": "apomorphine",
+      "drug_name": "Apomorphine (subcutaneous)",
+      "factor": 10.0,
+      "unit": "mg",
+      "refs": [
+        {
+          "source_id": "ledd-tomlinson-2010",
+          "locator": "Table 1",
+          "quote": "Apomorphine (subcutaneous): dose (mg) x 10."
+        }
+      ]
+    },
+    {
+      "drug_id": "entacapone",
+      "drug_name": "Entacapone (co-administered)",
+      "factor": 0.33,
+      "unit": "multiplier_of_levodopa",
+      "conditions": "Applied as +33% modifier to co-administered levodopa dose (x 1.33)",
+      "refs": [
+        {
+          "source_id": "ledd-tomlinson-2010",
+          "locator": "Table 1",
+          "quote": "Levodopa with entacapone: levodopa dose (mg) x 1.33."
+        }
+      ]
+    },
+    {
+      "drug_id": "tolcapone",
+      "drug_name": "Tolcapone (co-administered)",
+      "factor": 0.50,
+      "unit": "multiplier_of_levodopa",
+      "conditions": "Applied as +50% modifier to co-administered levodopa dose (x 1.50)",
+      "refs": [
+        {
+          "source_id": "ledd-tomlinson-2010",
+          "locator": "Table 1",
+          "quote": "Levodopa with tolcapone: levodopa dose (mg) x 1.50."
+        }
+      ]
+    }
+  ],
+  "npo_conversions": [
+    {
+      "from": "Oral antiparkinsonian regimen (total daily LEDD)",
+      "to": "Rotigotine transdermal patch",
+      "rule_text": "Divide total daily LEDD by 30 to determine the 24-hour rotigotine patch dose in mg (available strengths: 2 mg/24h, 4 mg/24h, 6 mg/24h, 8 mg/24h; maximum standard recommended daily patch dose is 16 mg/24h). Do not cut transdermal patches.",
+      "computable": {
+        "target_drug_id": "rotigotine",
+        "divisor": 30,
+        "unit": "mg/24h",
+        "max_dose": 16,
+        "available_strengths": [2, 4, 6, 8]
+      },
+      "refs": [
+        {
+          "source_id": "brennan-2010-npo",
+          "locator": "Rotigotine transdermal patch conversion",
+          "quote": "Divide total daily LEDD by 30 to determine the 24-hour rotigotine patch dose in mg."
+        }
+      ]
+    },
+    {
+      "from": "Oral levodopa / dopaminergic therapy",
+      "to": "Enteral tube (NG / gastrostomy)",
+      "rule_text": "If a nasogastric (NG) tube or gastrostomy is in place, dispersible levodopa/benserazide or crushed standard immediate-release levodopa tablets may be given through the tube, maintaining equivalent total daily levodopa dose divided across the day.",
+      "refs": [
+        {
+          "source_id": "brennan-2010-npo",
+          "locator": "Enteral tube administration",
+          "quote": "dispersible levodopa/benserazide or crushed standard immediate-release levodopa tablets may be given through the tube, maintaining equivalent total daily levodopa dose divided across the day."
+        }
+      ]
+    }
+  ]
+}

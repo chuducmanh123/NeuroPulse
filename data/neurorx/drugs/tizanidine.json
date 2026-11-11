@@ -1,0 +1,206 @@
+{
+  "id": "tizanidine",
+  "generic_name": "tizanidine",
+  "tall_man": {
+    "value": "tizanidine",
+    "refs": [
+      {
+        "source_id": "fda-tizanidine-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "management of spasticity. Because of the short duration of therapeutic effect, treatment with Zanaflex should be reserved for those daily activities and times when relief of spasti"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "central alpha-2 adrenergic agonist",
+    "skeletal muscle relaxant",
+    "antispasticity agent"
+  ],
+  "subspecialties": [
+    "neuromuscular",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "tiz-spasticity-titration",
+      "indication": "Skeletal Muscle Spasticity (Multiple Sclerosis, Spinal Cord Injury)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-tizanidine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "management of spasticity. Because of the short duration of therapeutic effect, treatment with Zanaflex should be reserved for those daily activities and times when relief of spasti"
+        },
+        {
+          "source_id": "fda-tizanidine-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "The recommended starting dose is 2 mg. Because the effect of Zanaflex peaks at approximately 1 to 2 hours post-dose and dissipates between 3 to 6 hours post-dose, treatment can be"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 2,
+        "unit": "mg",
+        "frequency": "every 6 to 8 hours as needed (maximum 3 doses in 24 hours)",
+        "max_single": 8,
+        "max_daily": 36
+      },
+      "dose_text": "Recommended starting dose 2 mg repeated at 6 to 8 hour intervals as needed, up to a maximum of 3 doses in 24 hours. Dosage can be gradually increased by 2 mg to 4 mg per dose, with 1 to 4 days between increases; total daily dose should not exceed 36 mg."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-tizanidine-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "The recommended starting dose is 2 mg. Because the effect of Zanaflex peaks at approximately 1 to 2 hours post-dose and dissipates between 3 to 6 hours post-dose, treatment can be"
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Use with caution in hepatic impairment; individual doses should be reduced and aminotransferase levels monitored. Contraindicated with potent CYP1A2 inhibitors.",
+    "refs": [
+      {
+        "source_id": "fda-tizanidine-label",
+        "locator": "CONTRAINDICATIONS",
+        "quote": "Zanaflex is contraindicated in patients taking potent inhibitors of CYP1A2, such as fluvoxamine or ciprofloxacin [see Drug Interactions ( 7.1 , 7.2 )] ."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-tizanidine-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "management of spasticity. Because of the short duration of therapeutic effect, treatment with Zanaflex should be reserved for those daily activities and times when relief of spasti"
+      }
+    ],
+    "note": "Central alpha-2 adrenergic agonist; sedative and hypotensive properties may worsen myasthenic weakness"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "Tablets may be crushed; capsules may be opened and sprinkled on food. Note that pharmacokinetic profiles differ between fed and fasted states."
+    },
+    "refs": [
+      {
+        "source_id": "fda-tizanidine-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "The recommended starting dose is 2 mg. Because the effect of Zanaflex peaks at approximately 1 to 2 hours post-dose and dissipates between 3 to 6 hours post-dose, treatment can be"
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "sedation_somnolence",
+      "confusion_delirium",
+      "hepatotoxicity"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-tizanidine-label",
+        "locator": "WARNINGS AND PRECAUTIONS",
+        "quote": "Hypotension: monitor for signs and symptoms of hypotension, in particular in patients receiving concurrent antihypertensives; Zanaflex should not be used with other α 2 -adrenergic"
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Centrally active alpha-2 adrenergic receptor agonist that increases presynaptic inhibition of motor neurons in the spinal cord, suppressing polysynaptic reflex activity and reducing muscle spasticity.",
+    "refs": [
+      {
+        "source_id": "fda-tizanidine-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "management of spasticity. Because of the short duration of therapeutic effect, treatment with Zanaflex should be reserved for those daily activities and times when relief of spasti"
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp1a2": "substrate"
+    },
+    "refs": [
+      {
+        "source_id": "fda-tizanidine-label",
+        "locator": "CONTRAINDICATIONS",
+        "quote": "Zanaflex is contraindicated in patients taking potent inhibitors of CYP1A2, such as fluvoxamine or ciprofloxacin [see Drug Interactions ( 7.1 , 7.2 )] ."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-tizanidine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "management of spasticity. Because of the short duration of therapeutic effect, treatment with Zanaflex should be reserved for those daily activities and times when relief of spasti"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Limited data in pregnant women; animal studies demonstrate developmental toxicity; evaluate risk/benefit.",
+      "refs": [
+        {
+          "source_id": "fda-tizanidine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "management of spasticity. Because of the short duration of therapeutic effect, treatment with Zanaflex should be reserved for those daily activities and times when relief of spasti"
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Excretion in human milk unknown; lipid-soluble; consider potential for infant sedation and hypotension.",
+      "refs": [
+        {
+          "source_id": "fda-tizanidine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "management of spasticity. Because of the short duration of therapeutic effect, treatment with Zanaflex should be reserved for those daily activities and times when relief of spasti"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

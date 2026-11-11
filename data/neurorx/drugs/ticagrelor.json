@@ -1,0 +1,205 @@
+{
+  "id": "ticagrelor",
+  "generic_name": "ticagrelor",
+  "tall_man": {
+    "value": "ticagrelor",
+    "refs": [
+      {
+        "source_id": "fda-ticagrelor-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "BRILINTA contains ticagrelor, a cyclopentyltriazolopyrimidine, inhibitor of platelet activation and aggregation mediated by the P2Y 12 ADP-receptor."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "antiplatelet",
+    "cyclopentyltriazolopyrimidine",
+    "P2Y12 inhibitor",
+    "antithrombotic"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "BHYT circular data pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "tica-po-stroke-tia-loading",
+      "indication": "Acute Ischemic Stroke (NIHSS <= 5) or High-Risk TIA (Loading Dose)",
+      "setting": "loading_dose",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-ticagrelor-label",
+          "locator": "Section 1.3 Acute Ischemic Stroke or Transient Ischemic Attack (TIA)",
+          "quote": "BRILINTA is indicated to reduce the risk of stroke in patients with acute ischemic stroke (NIH Stroke Scale score ≤5) or high-risk transient ischemic attack (TIA) [see Clinical Studies (14.3) ] ."
+        },
+        {
+          "source_id": "fda-ticagrelor-label",
+          "locator": "Section 2.4 Acute Ischemic Stroke or Transient Ischemic Attack (TIA)",
+          "quote": "Initiate treatment with a 180 mg loading dose of BRILINTA and then continue with 90 mg twice daily for up to 30 days. Administer the first maintenance dose 6 to 12 hours after the loading dose. Use BRILINTA with a loading dose of aspirin (300 mg to 325 mg) and a daily maintenance dose of aspirin of 75 mg to 100 mg [see Clinical Studies (14) ]."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 180,
+        "unit": "mg",
+        "frequency": "once",
+        "max_single": 180,
+        "max_daily": 180
+      },
+      "dose_text": "Initiate treatment with a single 180 mg oral loading dose of BRILINTA, administered with a loading dose of aspirin (300 mg to 325 mg)."
+    },
+    {
+      "id": "tica-po-stroke-tia-maintenance",
+      "indication": "Acute Ischemic Stroke or High-Risk TIA (Maintenance Dosing for up to 30 days)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-ticagrelor-label",
+          "locator": "Section 2.4 Acute Ischemic Stroke or Transient Ischemic Attack (TIA)",
+          "quote": "Initiate treatment with a 180 mg loading dose of BRILINTA and then continue with 90 mg twice daily for up to 30 days. Administer the first maintenance dose 6 to 12 hours after the loading dose. Use BRILINTA with a loading dose of aspirin (300 mg to 325 mg) and a daily maintenance dose of aspirin of 75 mg to 100 mg [see Clinical Studies (14) ]."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 90,
+        "unit": "mg",
+        "frequency": "twice daily",
+        "max_single": 90,
+        "max_daily": 180
+      },
+      "dose_text": "90 mg orally twice daily for up to 30 days. Administer the first maintenance dose 6 to 12 hours after the loading dose. Use with daily maintenance aspirin (75 mg to 100 mg)."
+    }
+  ],
+  "renal_basis": {
+    "value": "none",
+    "refs": [
+      {
+        "source_id": "fda-ticagrelor-label",
+        "locator": "Section 8.7 Renal Impairment",
+        "quote": "No dosage adjustment is needed in patients with renal impairment [see Clinical Pharmacology (12.3) ] ."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Ticagrelor is metabolized by the liver and impaired hepatic function can increase risks for bleeding and other adverse events. Avoid use of BRILINTA in patients with severe hepatic impairment. There is limited experience with BRILINTA in patients with moderate hepatic impairment; consider the risks and benefits of treatment, noting the probable increase in exposure to ticagrelor. No dosage adjustment is needed in patients with mild hepatic impairment.",
+    "refs": [
+      {
+        "source_id": "fda-ticagrelor-label",
+        "locator": "Section 8.6 Hepatic Impairment",
+        "quote": "Avoid use of BRILINTA in patients with severe hepatic impairment. There is limited experience with BRILINTA in patients with moderate hepatic impairment; consider the risks and benefits of treatment, noting the probable increase in exposure to ticagrelor. No dosage adjustment is needed in patients with mild hepatic impairment"
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "WARNING: BLEEDING RISK: BRILINTA, like other antiplatelet agents, can cause significant, sometimes fatal bleeding. Do not use BRILINTA in patients with active pathological bleeding or a history of intracranial hemorrhage. Do not start BRILINTA in patients undergoing urgent coronary artery bypass graft surgery (CABG). If possible, manage bleeding without discontinuing BRILINTA. Stopping BRILINTA increases the risk of subsequent cardiovascular events."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-ticagrelor-label",
+        "locator": "Section BOXED WARNING",
+        "quote": "BRILINTA, like other antiplatelet agents, can cause significant, sometimes fatal bleeding ( 5.1 , 6.1 ). Do not use BRILINTA in patients with active pathological bleeding or a history of intracranial hemorrhage ( 4.1 , 4.2 ). Do not start BRILINTA in patients undergoing urgent coronary artery bypass graft surgery (CABG) ( 5.1 , 6.1 )."
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-ticagrelor-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Ticagrelor and its major metabolite reversibly interact with the platelet P2Y 12 ADP-receptor to prevent signal transduction and platelet activation."
+      }
+    ],
+    "note": "Antiplatelet agents do not impair neuromuscular junction transmission; safe in myasthenia gravis"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "For patients who are unable to swallow tablets whole, BRILINTA tablets can be crushed, mixed with water, and drunk. The mixture can also be administered via a nasogastric tube (CH8 or greater)."
+    },
+    "refs": [
+      {
+        "source_id": "fda-ticagrelor-label",
+        "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+        "quote": "For patients who are unable to swallow tablets whole, BRILINTA tablets can be crushed, mixed with water, and drunk. The mixture can also be administered via a nasogastric tube (CH8 or greater) [see Clinical Pharmacology (12.3) ]."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": [],
+    "note": "Ticagrelor does not require CYP2C19 bioactivation; directly active reversible P2Y12 inhibitor"
+  },
+  "ae_tags": {
+    "value": null,
+    "refs": []
+  },
+  "mechanism_of_action": {
+    "value": "Ticagrelor and its major metabolite reversibly interact with the platelet P2Y 12 ADP-receptor to prevent signal transduction and platelet activation. Ticagrelor and its active metabolite are approximately equipotent.",
+    "refs": [
+      {
+        "source_id": "fda-ticagrelor-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Ticagrelor and its major metabolite reversibly interact with the platelet P2Y 12 ADP-receptor to prevent signal transduction and platelet activation. Ticagrelor and its active metabolite are approximately equipotent."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp3a4": "substrate",
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-ticagrelor-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Avoid use with strong CYP3A inhibitors or CYP3A inducers. (7.1 , 7.2)"
+      }
+    ]
+  },
+  "tools": {
+    "missed_dose": {
+      "value": "Advise patients who miss a dose of BRILINTA to take their next dose at its scheduled time.",
+      "refs": [
+        {
+          "source_id": "fda-ticagrelor-label",
+          "locator": "Section 2.1 General Instructions",
+          "quote": "Advise patients who miss a dose of BRILINTA to take their next dose at its scheduled time."
+        }
+      ]
+    },
+    "reversal": {
+      "agent": "None specific (platelet transfusion ineffective)",
+      "dose": "Supportive care; ticagrelor is not dialyzable",
+      "notes": "There is currently no known treatment to reverse the effects of BRILINTA, and ticagrelor is not dialyzable. Platelet transfusion did not reverse the antiplatelet effect of BRILINTA in healthy volunteers and is unlikely to be of clinical benefit in patients with bleeding.",
+      "refs": [
+        {
+          "source_id": "fda-ticagrelor-label",
+          "locator": "Section 10 OVERDOSAGE",
+          "quote": "There is currently no known treatment to reverse the effects of BRILINTA, and ticagrelor is not dialyzable. Treatment of overdose should follow local standard medical practice. Bleeding is the expected pharmacologic effect of overdosing. If bleeding occurs, appropriate supportive measures should be taken. Platelet transfusion did not reverse the antiplatelet effect of BRILINTA in healthy volunteers and is unlikely to be of clinical benefit in patients with bleeding."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

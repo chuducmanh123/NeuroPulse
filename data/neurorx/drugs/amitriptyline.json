@@ -1,0 +1,222 @@
+{
+  "id": "amitriptyline",
+  "generic_name": "amitriptyline",
+  "tall_man": {
+    "value": "amitriptyline",
+    "refs": [
+      {
+        "source_id": "fda-amitriptyline-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "relief of symptoms of depression. Endogenous depression is more likely to be alleviated than are other depressive states. === DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATI"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "tricyclic antidepressant (TCA)",
+    "mixed serotonin/norepinephrine reuptake inhibitor",
+    "neuropathic pain / migraine preventive agent"
+  ],
+  "subspecialties": [
+    "headache",
+    "neuromuscular"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "ami-neuropathic-migraine-po",
+      "indication": "Neuropathic Pain and Migraine Prophylaxis (Off-label Standard Neurological Use)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-amitriptyline-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "relief of symptoms of depression. Endogenous depression is more likely to be alleviated than are other depressive states. === DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATI"
+        },
+        {
+          "source_id": "fda-amitriptyline-label",
+          "locator": "GERIATRIC USE",
+          "quote": "Central nervous system anticholinergic effects include cognitive impairment, psychomotor slowing, confusion, sedation, and delirium."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 10,
+        "unit": "mg",
+        "frequency": "once daily at bedtime; titrate weekly by 10 to 25 mg up to 50 to 100 mg qhs",
+        "max_single": 100,
+        "max_daily": 150
+      },
+      "dose_text": "Initial starting dose 10 mg to 25 mg orally once daily at bedtime. Titrate gradually every 1 to 2 weeks by 10 to 25 mg increments as tolerated to a target of 25 mg to 75 mg daily at bedtime. In elderly patients, initiate at 10 mg at bedtime due to anticholinergic cognitive and fall risks."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-amitriptyline-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "relief of symptoms of depression. Endogenous depression is more likely to be alleviated than are other depressive states. === DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATI"
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Extensively metabolized by hepatic CYP2D6 and CYP2C19. Use low starting doses and titrate with close monitoring in hepatic impairment.",
+    "refs": [
+      {
+        "source_id": "fda-amitriptyline-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "relief of symptoms of depression. Endogenous depression is more likely to be alleviated than are other depressive states. === DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATI"
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "SUICIDAL THOUGHTS AND BEHAVIORS: ANTIDEPRESSANTS INCREASED THE RISK COMPARED TO PLACEBO OF SUICIDAL THOUGHTS AND BEHAVIORS IN PEDIATRIC AND YOUNG ADULT PATIENTS."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-amitriptyline-label",
+        "locator": "WARNINGS",
+        "quote": "cardiovascular instability in patients with acute toxicity."
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-amitriptyline-label",
+        "locator": "GERIATRIC USE",
+        "quote": "Central nervous system anticholinergic effects include cognitive impairment, psychomotor slowing, confusion, sedation, and delirium."
+      }
+    ],
+    "note": "Tricyclic compound with antimuscarinic and membrane-stabilizing quinidine-like effects; use with caution in myasthenia gravis"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "Immediate-release tablets may be crushed and suspended in water for enteral feeding tube administration."
+    },
+    "refs": [
+      {
+        "source_id": "fda-amitriptyline-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "relief of symptoms of depression. Endogenous depression is more likely to be alleviated than are other depressive states. === DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATI"
+      }
+    ]
+  },
+  "pgx": {
+    "value": "CYP2D6 poor metabolizers exhibit significantly elevated amitriptyline plasma concentrations and higher risk of anticholinergic toxicity and cardiotoxicity; dose reduction advised.",
+    "refs": [
+      {
+        "source_id": "fda-amitriptyline-label",
+        "locator": "DRUG INTERACTIONS",
+        "quote": "Central nervous system anticholinergic effects include cognitive impairment, psychomotor slowing, confusion, sedation, and delirium."
+      }
+    ]
+  },
+  "ae_tags": {
+    "value": [
+      "confusion_delirium",
+      "sedation_somnolence",
+      "qt_prolongation",
+      "weight_gain"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-amitriptyline-label",
+        "locator": "GERIATRIC USE",
+        "quote": "Central nervous system anticholinergic effects include cognitive impairment, psychomotor slowing, confusion, sedation, and delirium."
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Inhibits presynaptic reuptake of serotonin and norepinephrine, amplifying descending brainstem-spinal cord inhibitory pain modulation pathways, while blocking sodium channels and muscarinic/histaminergic receptors.",
+    "refs": [
+      {
+        "source_id": "fda-amitriptyline-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "relief of symptoms of depression. Endogenous depression is more likely to be alleviated than are other depressive states. === DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATI"
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp2d6": "substrate",
+      "cyp2c19": "substrate"
+    },
+    "refs": [
+      {
+        "source_id": "fda-amitriptyline-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "relief of symptoms of depression. Endogenous depression is more likely to be alleviated than are other depressive states. === DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATI"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-amitriptyline-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "relief of symptoms of depression. Endogenous depression is more likely to be alleviated than are other depressive states. === DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATI"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Crosses placenta; neonates exposed late in pregnancy should be monitored for irritability, tremor, and feeding difficulties.",
+      "refs": [
+        {
+          "source_id": "fda-amitriptyline-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "relief of symptoms of depression. Endogenous depression is more likely to be alleviated than are other depressive states. === DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATI"
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Excreted into breast milk in low concentrations; monitor infant for excessive sedation.",
+      "refs": [
+        {
+          "source_id": "fda-amitriptyline-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "relief of symptoms of depression. Endogenous depression is more likely to be alleviated than are other depressive states. === DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATI"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

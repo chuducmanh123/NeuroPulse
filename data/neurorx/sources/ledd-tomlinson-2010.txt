@@ -1,0 +1,31 @@
+Title: Systematic review of levodopa dose equivalency reporting in Parkinson's disease
+Authors: Claire L. Tomlinson, Rebecca Stowe, Smitaa Patel, Caroline Rick, Richard Gray, Carl E. Clarke
+Journal: Movement Disorders, Vol. 25, No. 15, 2010, pp. 2649-2653
+DOI: 10.1002/mds.23429
+Publisher: Movement Disorder Society / Wiley-Liss, Inc.
+Year: 2010
+
+Abstract:
+Levodopa equivalent dose (LED) calculation formulas allow comparison of antiparkinsonian drug regimens. To establish consensus conversion factors for calculating LED, we systematically reviewed the medical literature.
+
+Table 1. Conversion factors to calculate levodopa equivalent dose (LED):
+Levodopa (standard / immediate release): dose (mg) x 1.
+Levodopa (controlled release / CR): dose (mg) x 0.75.
+Levodopa with entacapone: levodopa dose (mg) x 1.33.
+Levodopa with tolcapone: levodopa dose (mg) x 1.50.
+Pramipexole: dose (mg) x 100.
+Ropinirole: dose (mg) x 20.
+Rotigotine transdermal patch: dose (mg/24h) x 30.
+Bromocriptine: dose (mg) x 10.
+Cabergoline: dose (mg) x 50.
+Piribedil: dose (mg) x 1.
+Apomorphine (subcutaneous): dose (mg) x 10.
+Selegiline (oral): dose (mg) x 10.
+Selegiline (sublingual): dose (mg) x 80.
+Rasagiline: dose (mg) x 100.
+Amantadine: dose (mg) x 1.
+Entacapone (co-administered with levodopa): levodopa dose (mg) x 0.33.
+Tolcapone (co-administered with levodopa): levodopa dose (mg) x 0.50.
+
+Summary of Formulas:
+Total LED is calculated by multiplying each antiparkinsonian medication daily dose by its respective conversion factor and summing the products.

@@ -1,0 +1,172 @@
+{
+  "id": "phenobarbital",
+  "generic_name": "phenobarbital",
+  "tall_man": {
+    "value": "phenobarbital",
+    "refs": [
+      {
+        "source_id": "fda-phenobarbital-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "The barbiturates are nonselective central nervous system (CNS) depressants that are primarily used as sedative-hypnotics. In sub-hypnotic doses, they are also used as anticonvulsants."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "anticonvulsant",
+    "anti-seizure medication (ASM)",
+    "barbiturate",
+    "GABA-A positive allosteric modulator"
+  ],
+  "subspecialties": [
+    "epilepsy",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "BHYT circular data pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "pb-po-maintenance-epilepsy",
+      "indication": "Treatment of Generalized and Partial Seizures (Maintenance Therapy)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-phenobarbital-label",
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "INDICATIONS AND USAGE A. Sedative B. Anticonvulsant–For the treatment of generalized and partial seizures."
+        },
+        {
+          "source_id": "fda-phenobarbital-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Adults: 60 to 200 mg/day. Pediatric Patients: 3 to 6 mg/kg/day. Special Patient Population –Dosage should be reduced in the elderly or debilitated because these patients may be more sensitive to barbiturates. Dosage should be reduced for patients with impaired renal function or hepatic disease."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 60,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 200,
+        "max_daily": 200
+      },
+      "dose_text": "Adults: 60 to 200 mg/day (administered once daily at bedtime or in 2 to 3 divided doses). Dosage should be reduced in elderly or debilitated patients and patients with impaired renal function or hepatic disease. Therapeutic target: 15 to 40 mcg/mL."
+    }
+  ],
+  "renal_basis": {
+    "value": "none",
+    "refs": [
+      {
+        "source_id": "fda-phenobarbital-label",
+        "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+        "quote": "Dosage should be reduced for patients with impaired renal function or hepatic disease."
+      }
+    ],
+    "note": "Reduce dosage in patients with impaired renal function"
+  },
+  "hepatic": {
+    "value": "Phenobarbital is contraindicated in patients with marked impairment of liver function. Dosage should be reduced for patients with hepatic disease.",
+    "refs": [
+      {
+        "source_id": "fda-phenobarbital-label",
+        "locator": "Section 4 CONTRAINDICATIONS",
+        "quote": "CONTRAINDICATIONS Phenobarbital is contraindicated in patients who are hypersensitive to barbiturates, in patients with a history of manifest or latent porphyria, and in patients with marked impairment of liver function or respiratory disease in which dyspnea or obstruction is evident."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-phenobarbital-label",
+        "locator": "Section 12 CLINICAL PHARMACOLOGY",
+        "quote": "Barbiturates depress the sensory cortex, decrease motor activity, alter cerebellar function, and produce drowsiness, sedation, and hypnosis."
+      }
+    ],
+    "note": "CNS depressant effects of barbiturates can exacerbate respiratory muscle fatigue in myasthenia gravis; use with caution"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "Phenobarbital immediate-release tablets may be crushed and mixed with water or feeding solution for enteral tube administration."
+    },
+    "refs": [
+      {
+        "source_id": "fda-phenobarbital-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "The barbiturates are nonselective central nervous system (CNS) depressants that are primarily used as sedative-hypnotics. In sub-hypnotic doses, they are also used as anticonvulsants."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": [],
+    "note": "No mandatory pharmacogenomic testing"
+  },
+  "ae_tags": {
+    "value": null,
+    "refs": []
+  },
+  "mechanism_of_action": {
+    "value": "Barbiturates depress the sensory cortex, decrease motor activity, alter cerebellar function, and produce drowsiness, sedation, and hypnosis. In high enough therapeutic doses, barbiturates induce anesthesia.",
+    "refs": [
+      {
+        "source_id": "fda-phenobarbital-label",
+        "locator": "Section 12 CLINICAL PHARMACOLOGY",
+        "quote": "Barbiturates depress the sensory cortex, decrease motor activity, alter cerebellar function, and produce drowsiness, sedation, and hypnosis."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp3a4": "inducer",
+      "cyp2c9": "inducer",
+      "cyp2c19": "inducer",
+      "cyp1a2": "inducer",
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-phenobarbital-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "The barbiturates are nonselective central nervous system (CNS) depressants that are primarily used as sedative-hypnotics. In sub-hypnotic doses, they are also used as anticonvulsants."
+      }
+    ]
+  },
+  "tools": {
+    "therapeutic_drug_monitoring": {
+      "value": {
+        "target_trough": "15 to 40 mcg/mL",
+        "toxic_threshold": "> 40 mcg/mL (somnolence, nystagmus, ataxia), > 60-80 mcg/mL (coma, respiratory arrest)",
+        "sampling_timing": "Trough serum level immediately prior to dose after reaching steady state (due to long half-life of 79-118 hours, steady state is reached after 2 to 3 weeks)",
+        "notes": "Potent hepatic microsomal enzyme inducer; enhances clearance of co-administered medications."
+      },
+      "refs": [
+        {
+          "source_id": "fda-phenobarbital-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Anticonvulsant Use –Clinical laboratory reference values should be used to determine the therapeutic anticonvulsant level of phenobarbital in the serum. To achieve the blood levels considered therapeutic in pediatric patients, higher per-kilogram dosages are generally necessary for phenobarbital and most other anticonvulsants."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

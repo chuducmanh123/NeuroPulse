@@ -1,0 +1,206 @@
+{
+  "id": "donepezil",
+  "generic_name": "donepezil",
+  "tall_man": {
+    "value": "donepezil",
+    "refs": [
+      {
+        "source_id": "fda-donepezil-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "ARICEPT is indicated for the treatment of dementia of the Alzheimer’s type. Efficacy has been demonstrated in patients with mild, moderate, and severe Alzheimer’s disease."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "acetylcholinesterase inhibitor",
+    "reversible AChEI",
+    "anti-dementia agent"
+  ],
+  "subspecialties": [
+    "dementia"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "don-ad-mild-moderate",
+      "indication": "Alzheimer's Disease (Mild, Moderate, or Severe Dementia)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-donepezil-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "ARICEPT is indicated for the treatment of dementia of the Alzheimer’s type. Efficacy has been demonstrated in patients with mild, moderate, and severe Alzheimer’s disease."
+        },
+        {
+          "source_id": "fda-donepezil-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Mild to Moderate Alzheimer’s Disease: 5 mg to 10 mg once daily ( 2.1 ) Moderate to Severe Alzheimer’s Disease: 10 mg to 23 mg once daily ( 2.2 ) 2.1 Dosing in Mild to Moderate Alzheimer’s Disease The"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 5,
+        "unit": "mg",
+        "frequency": "once daily at bedtime",
+        "max_single": 23,
+        "max_daily": 23
+      },
+      "dose_text": "Mild to moderate AD: Initial dose is 5 mg once daily at bedtime. May increase to 10 mg once daily after 4 to 6 weeks. Severe AD: 10 mg once daily; may increase to 23 mg once daily after at least 3 months on 10 mg daily. Take with or without food. Monitor for symptomatic bradycardia and syncope."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-donepezil-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "Mild to Moderate Alzheimer’s Disease: 5 mg to 10 mg once daily ( 2.1 ) Moderate to Severe Alzheimer’s Disease: 10 mg to 23 mg once daily ( 2.2 ) 2.1 Dosing in Mild to Moderate Alzheimer’s Disease The"
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Metabolized by CYP2D6 and CYP3A4; clearance in mild to moderate hepatic impairment is decreased but no formal dose modification is mandated.",
+    "refs": [
+      {
+        "source_id": "fda-donepezil-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "Mild to Moderate Alzheimer’s Disease: 5 mg to 10 mg once daily ( 2.1 ) Moderate to Severe Alzheimer’s Disease: 10 mg to 23 mg once daily ( 2.2 ) 2.1 Dosing in Mild to Moderate Alzheimer’s Disease The"
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-donepezil-label",
+        "locator": "WARNINGS AND PRECAUTIONS",
+        "quote": "succinylcholine-type muscle relaxation during anesthesia ( 5.1 ) Cholinesterase inhibitors may have vagotonic effects on the sinoatrial and atrioventricular nodes manifesting as br"
+      }
+    ],
+    "note": "Centrally selective reversible AChEI; can cause additive cholinergic stimulation or paradoxical cholinergic crisis if used with pyridostigmine"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "5 mg and 10 mg tablets can be crushed and administered via enteral feeding tube or orally disintegrating tablets (ODT) placed on tongue. 23 mg tablets must be swallowed whole and not crushed."
+    },
+    "refs": [
+      {
+        "source_id": "fda-donepezil-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "Mild to Moderate Alzheimer’s Disease: 5 mg to 10 mg once daily ( 2.1 ) Moderate to Severe Alzheimer’s Disease: 10 mg to 23 mg once daily ( 2.2 ) 2.1 Dosing in Mild to Moderate Alzheimer’s Disease The"
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "weight_loss",
+      "confusion_delirium",
+      "sedation_somnolence"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-donepezil-label",
+        "locator": "WARNINGS AND PRECAUTIONS",
+        "quote": "Nausea and Vomiting ARICEPT, as a predictable consequence of its pharmacological properties, has been shown to produce diarrhea, nausea, and vomiting."
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Reversible inhibitor of the enzyme acetylcholinesterase, augmenting cholinergic neurotransmission in the cerebral cortex and hippocampus.",
+    "refs": [
+      {
+        "source_id": "fda-donepezil-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "ARICEPT is indicated for the treatment of dementia of the Alzheimer’s type. Efficacy has been demonstrated in patients with mild, moderate, and severe Alzheimer’s disease."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp2d6": "substrate",
+      "cyp3a4": "substrate"
+    },
+    "refs": [
+      {
+        "source_id": "fda-donepezil-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "Mild to Moderate Alzheimer’s Disease: 5 mg to 10 mg once daily ( 2.1 ) Moderate to Severe Alzheimer’s Disease: 10 mg to 23 mg once daily ( 2.2 ) 2.1 Dosing in Mild to Moderate Alzheimer’s Disease The"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-donepezil-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "ARICEPT is indicated for the treatment of dementia of the Alzheimer’s type. Efficacy has been demonstrated in patients with mild, moderate, and severe Alzheimer’s disease."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "There are no adequate and well-controlled studies in pregnant women; use during pregnancy only if the potential benefit justifies potential fetal risk.",
+      "refs": [
+        {
+          "source_id": "fda-donepezil-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "ARICEPT is indicated for the treatment of dementia of the Alzheimer’s type. Efficacy has been demonstrated in patients with mild, moderate, and severe Alzheimer’s disease."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Excretion in human breast milk is unknown; not recommended during nursing.",
+      "refs": [
+        {
+          "source_id": "fda-donepezil-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "ARICEPT is indicated for the treatment of dementia of the Alzheimer’s type. Efficacy has been demonstrated in patients with mild, moderate, and severe Alzheimer’s disease."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

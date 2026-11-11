@@ -1,0 +1,188 @@
+{
+  "id": "nimodipine",
+  "generic_name": "nimodipine",
+  "tall_man": {
+    "value": "nimodipine",
+    "refs": [
+      {
+        "source_id": "fda-nimodipine-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "NYMALIZE contains nimodipine, a dihydropyridine calcium channel blocker. Nimodipine is isopropyl 2-methoxyethyl 1,4-dihydro-2,6-dimethyl-4-( m -nitrophenyl)-3,5-pyridinedicarboxylate."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "calcium channel blocker",
+    "dihydropyridine",
+    "cerebral vasodilator"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "BHYT circular data pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "nim-po-sah-ischemic-deficit",
+      "indication": "Improvement of Neurological Outcome by Reducing Ischemic Deficits in Subarachnoid Hemorrhage (aSAH)",
+      "setting": "acute_inpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-nimodipine-label",
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "NYMALIZE is a dihydropyridine calcium channel blocker indicated for the improvement of neurological outcome by reducing the incidence and severity of ischemic deficits in adult patients with subarachnoid hemorrhage (SAH) from ruptured intracranial berry aneurysms regardless of their post-ictus neurological condition (i.e., Hunt and Hess Grades I-V). ( 1 )"
+        },
+        {
+          "source_id": "fda-nimodipine-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Administer only enterally (e.g., oral, nasogastric tube, or gastric tube route). Do not administer intravenously or by other parenteral routes. ( 2.1 ) Give one hour before a meal or two hours after a meal. ( 2.1 ) Start dosing within 96 hours of the SAH. ( 2.1 ) Recommended dose is 10 mL (60 mg) every 4 hours for 21 consecutive days. ( 2.2 )"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 60,
+        "unit": "mg",
+        "frequency": "every 4 hours",
+        "max_single": 60,
+        "max_daily": 360
+      },
+      "dose_text": "60 mg (10 mL oral solution) enterally every 4 hours for 21 consecutive days. Initiate within 96 hours of SAH onset. Give 1 hour before or 2 hours after meals. WARNING: Administer ONLY enterally (oral, NG, or PEG tube). NEVER administer intravenously (fatal cardiovascular collapse has occurred with IV administration of nimodipine)."
+    },
+    {
+      "id": "nim-po-sah-cirrhosis",
+      "indication": "Subarachnoid Hemorrhage in Patients with Cirrhosis (Dose-Reduced)",
+      "setting": "acute_inpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-nimodipine-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Patients with Cirrhosis: Reduce dosage to 5 mL (30 mg) every 4 hours. ( 2.4 )"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 30,
+        "unit": "mg",
+        "frequency": "every 4 hours",
+        "max_single": 30,
+        "max_daily": 180
+      },
+      "dose_text": "Reduce dosage to 30 mg (5 mL) enterally every 4 hours for 21 consecutive days in patients with cirrhosis."
+    }
+  ],
+  "renal_basis": {
+    "value": "none",
+    "refs": [
+      {
+        "source_id": "fda-nimodipine-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "NYMALIZE contains nimodipine, a dihydropyridine calcium channel blocker. Nimodipine is isopropyl 2-methoxyethyl 1,4-dihydro-2,6-dimethyl-4-( m -nitrophenyl)-3,5-pyridinedicarboxylate."
+      }
+    ],
+    "note": "No dosage adjustment needed for renal impairment"
+  },
+  "hepatic": {
+    "value": "Patients with Cirrhosis: Reduce dosage to 5 mL (30 mg) every 4 hours.",
+    "refs": [
+      {
+        "source_id": "fda-nimodipine-label",
+        "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+        "quote": "Patients with Cirrhosis: Reduce dosage to 5 mL (30 mg) every 4 hours. ( 2.4 )"
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-nimodipine-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Nimodipine is a dihydropyridine calcium channel blocker. The contractile processes of smooth muscle cells are dependent upon calcium ions, which enter these cells during depolarization as slow ionic transmembrane currents."
+      }
+    ],
+    "note": "Calcium channel blockers may rarely unmask or worsen muscle weakness in myasthenia gravis; use with caution"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "Administer only enterally (oral, nasogastric tube, or gastric tube route). For NG/gastric tube: administer 10 mL (60 mg) every 4 hours with supplied oral syringe, then refill syringe with 10 mL of 0.9% saline solution and flush tube into stomach. NEVER administer intravenously."
+    },
+    "refs": [
+      {
+        "source_id": "fda-nimodipine-label",
+        "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+        "quote": "Nasogastric or Gastric Tube Administration: Administer 10 mL (60 mg) every 4 hours with supplied prefilled oral syringe. Refill syringe with 10 mL of 0.9% saline water solution; flush remaining contents from nasogastric or gastric tube into stomach. ( 2.3 )"
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": [],
+    "note": "No pharmacogenomic requirements"
+  },
+  "ae_tags": {
+    "value": null,
+    "refs": []
+  },
+  "mechanism_of_action": {
+    "value": "Nimodipine is a dihydropyridine calcium channel blocker. The contractile processes of smooth muscle cells are dependent upon calcium ions, which enter these cells during depolarization as slow ionic transmembrane currents. Nimodipine inhibits calcium ion transfer into these cells and thus inhibits contractions of vascular smooth muscle.",
+    "refs": [
+      {
+        "source_id": "fda-nimodipine-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Nimodipine is a dihydropyridine calcium channel blocker. The contractile processes of smooth muscle cells are dependent upon calcium ions, which enter these cells during depolarization as slow ionic transmembrane currents. Nimodipine inhibits calcium ion transfer into these cells and thus inhibits contractions of vascular smooth muscle."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp3a4": "substrate",
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-nimodipine-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "CYP3A4 Moderate and Weak Inhibitors: May increase risk of hypotension. Monitor blood pressure. Dose reduction of NYMALIZE may be needed. Avoid grapefruit juice. ( 7.2 )"
+      }
+    ]
+  },
+  "tools": {
+    "crush_compatibility": {
+      "value": {
+        "crushable": true,
+        "instructions": "Administer NYMALIZE oral solution enterally via oral route, NG tube, or PEG tube. Do not administer IV. If administering capsules, liquid contents may be extracted via needle and administered into NG tube followed by saline flush."
+      },
+      "refs": [
+        {
+          "source_id": "fda-nimodipine-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Administer only enterally (e.g., oral, nasogastric tube, or gastric tube route). Do not administer intravenously or by other parenteral routes. ( 2.1 ) Give one hour before a meal or two hours after a meal. ( 2.1 ) Start dosing within 96 hours of the SAH. ( 2.1 ) Recommended dose is 10 mL (60 mg) every 4 hours for 21 consecutive days. ( 2.2 )"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

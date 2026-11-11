@@ -1,0 +1,234 @@
+{
+  "id": "dexamethasone",
+  "generic_name": "dexamethasone",
+  "tall_man": {
+    "value": "dexamethasone",
+    "refs": [
+      {
+        "source_id": "fda-dexamethasone-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "cerebral edema associated with primary or metastatic brain tumor, craniotomy, or head injury."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "potent synthetic glucocorticoid",
+    "anti-inflammatory / cerebral edema agent",
+    "adjunctive meningitis steroid"
+  ],
+  "subspecialties": [
+    "neuro_infectious",
+    "neurocritical_care",
+    "headache"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "dex-meningitis-adjunctive",
+      "indication": "Adjunctive Anti-inflammatory Therapy in Acute Bacterial Meningitis (S. pneumoniae)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-dexamethasone-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "tuberculous meningitis with subarachnoid block or impending block when used with appropriate antituberculous chemotherapy."
+        },
+        {
+          "source_id": "fda-dexamethasone-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "initial dosage varies from 0.75 to 9 mg a day depending on the disease being treated."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 10,
+        "unit": "mg",
+        "frequency": "every 6 hours for 4 days; initiate with or immediately before first antibiotic dose",
+        "max_single": 10,
+        "max_daily": 40
+      },
+      "dose_text": "10 mg IV every 6 hours for 4 days. Administer prior to or concurrently with the first dose of antimicrobial therapy. Decreases subarachnoid space cytokine production, hearing loss, and neurological sequelae in S. pneumoniae meningitis."
+    },
+    {
+      "id": "dex-cerebral-edema",
+      "indication": "Cerebral Edema Associated with Primary or Metastatic Brain Tumor or Neurosurgery",
+      "setting": "acute_inpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-dexamethasone-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "cerebral edema associated with primary or metastatic brain tumor, craniotomy, or head injury."
+        },
+        {
+          "source_id": "fda-dexamethasone-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "initial dosage varies from 0.75 to 9 mg a day depending on the disease being treated."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 4,
+        "unit": "mg",
+        "frequency": "every 6 hours orally or IV following a 10 mg initial IV loading dose",
+        "max_single": 10,
+        "max_daily": 24
+      },
+      "dose_text": "Initial loading dose 10 mg IV, followed by 4 mg orally or IV every 6 hours until cerebral edema symptoms subside, then gradually taper over 5 to 7 days."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-dexamethasone-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "cerebral edema associated with primary or metastatic brain tumor, craniotomy, or head injury."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Metabolized hepatically by CYP3A4. Corticosteroid half-life may be prolonged in severe liver disease; monitor clinical response and hyperglycemia.",
+    "refs": [
+      {
+        "source_id": "fda-dexamethasone-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "cerebral edema associated with primary or metastatic brain tumor, craniotomy, or head injury."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-dexamethasone-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "cerebral edema associated with primary or metastatic brain tumor, craniotomy, or head injury."
+      }
+    ],
+    "note": "High-dose glucocorticoids may cause transient paradoxical exacerbation of myasthenic weakness during the first 1-2 weeks of treatment; monitor closely in hospital"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "Immediate-release tablets may be crushed and administered via enteral feeding tube, or oral solution may be used."
+    },
+    "refs": [
+      {
+        "source_id": "fda-dexamethasone-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "initial dosage varies from 0.75 to 9 mg a day depending on the disease being treated."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "psychiatric_behavioral",
+      "confusion_delirium",
+      "weight_gain"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-dexamethasone-label",
+        "locator": "DRUG INTERACTIONS",
+        "quote": "Convulsions have been reported with this concurrent use."
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Potent synthetic glucocorticoid with negligible mineralocorticoid action that represses nuclear factor-kB, downregulates pro-inflammatory cytokines (IL-1, TNF-alpha), restores blood-brain barrier tight junctions, and reduces vasogenic cerebral edema.",
+    "refs": [
+      {
+        "source_id": "fda-dexamethasone-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "cerebral edema associated with primary or metastatic brain tumor, craniotomy, or head injury."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp3a4": "inducer_weak"
+    },
+    "refs": [
+      {
+        "source_id": "fda-dexamethasone-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "cerebral edema associated with primary or metastatic brain tumor, craniotomy, or head injury."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-dexamethasone-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "cerebral edema associated with primary or metastatic brain tumor, craniotomy, or head injury."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Dexamethasone readily crosses the human placenta; in maternal neuro-emergencies (meningitis, brain edema), life-saving maternal indication takes priority.",
+      "refs": [
+        {
+          "source_id": "fda-dexamethasone-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "cerebral edema associated with primary or metastatic brain tumor, craniotomy, or head injury."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Excreted into breast milk in small amounts; high doses may suppress infant growth; use lowest effective dose.",
+      "refs": [
+        {
+          "source_id": "fda-dexamethasone-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "cerebral edema associated with primary or metastatic brain tumor, craniotomy, or head injury."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

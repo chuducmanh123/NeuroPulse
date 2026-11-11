@@ -1,0 +1,59 @@
+name: NeuroRx FDA Label Watcher
+
+on:
+  schedule:
+    # Run weekly on Sunday at 04:00 UTC (11:00 AM VN)
+    - cron: '0 4 * * 0'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  watch-labels:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Label Watcher
+        run: node --experimental-strip-types scripts/neurorx/watch-labels.ts
+
+      - name: Check for Update Queue Changes
+        id: check_changes
+        run: |
+          if [ -n "$(git status --porcelain data/neurorx/updates_queue.json)" ]; then
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create Pull Request for Label Changes
+        if: steps.check_changes.outputs.has_changes == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BRANCH_NAME="neurorx/label-updates-$(date +%Y%m%d-%H%M%S)"
+          git config --global user.name "NeuroRx-Bot"
+          git config --global user.email "bot@neurorx.org"
+          git checkout -b "$BRANCH_NAME"
+          git add data/neurorx/updates_queue.json
+          git commit -m "chore(neurorx): detected FDA prescribing label update(s)"
+          git push origin "$BRANCH_NAME"
+          gh pr create \
+            --title "NeuroRx: Detected FDA Prescribing Label Update(s)" \
+            --body "Automated notification from NeuroRx Label Watcher. One or more FDA drug labels have published newer SPL versions on DailyMed/openFDA. Please review the affected drug records against the official source text before updating data files and running rx:verify." \
+            --base main \
+            --head "$BRANCH_NAME"

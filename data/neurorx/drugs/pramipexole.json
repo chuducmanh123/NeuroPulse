@@ -1,0 +1,227 @@
+{
+  "id": "pramipexole",
+  "generic_name": "pramipexole",
+  "tall_man": {
+    "value": "pramipexole",
+    "refs": [
+      {
+        "source_id": "fda-pramipexole-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "extended-release tablets are indicated for the treatment of Parkinson's disease."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "non-ergot dopamine agonist",
+    "D2/D3 receptor agonist",
+    "antiparkinson agent"
+  ],
+  "subspecialties": [
+    "movement_disorders"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "prami-pd-er",
+      "indication": "Parkinson's Disease (Monotherapy or Adjunct to Levodopa)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-pramipexole-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "extended-release tablets are indicated for the treatment of Parkinson's disease."
+        },
+        {
+          "source_id": "fda-pramipexole-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Starting dose is 0.375 mg given once daily (2.2) Dose may be increased gradually, not more frequently than every 5 to 7 days, first to 0.75 mg per day and then by 0.75 mg increments up to a maximum recommended dose of 4."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 0.375,
+        "unit": "mg",
+        "frequency": "once daily in morning",
+        "max_single": 4.5,
+        "max_daily": 4.5
+      },
+      "dose_text": "Extended-release: Starting dose is 0.375 mg once daily. Titrate gradually no more frequently than every 5-7 days: Week 2: 0.75 mg/day; Week 3: 1.5 mg/day; Week 4: 2.25 mg/day; Week 5: 3 mg/day (max 4.5 mg/day). In immediate-release, dose is given TID (initial 0.125 mg TID up to max 1.5 mg TID).",
+      "renal_bands": [
+        {
+          "min": 30,
+          "max": 50,
+          "dose_text": "CrCl 30 to 50 mL/min: Take ER tablets initially every other day (0.375 mg Q48H); evaluate tolerability before advancing.",
+          "dose": {
+            "kind": "fixed",
+            "amount": 0.375,
+            "unit": "mg",
+            "frequency": "every other day",
+            "max_daily": 2.25
+          },
+          "refs": [
+            {
+              "source_id": "fda-pramipexole-label",
+              "locator": "USE IN SPECIFIC POPULATIONS",
+              "quote": "In patients with moderate renal impairment (creatinine clearance between 30 and 50 mL/min), pramipexole dihydrochloride extended-release tablets should initially be taken every other day."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-pramipexole-label",
+        "locator": "USE IN SPECIFIC POPULATIONS",
+        "quote": "In patients with moderate renal impairment (creatinine clearance between 30 and 50 mL/min), pramipexole dihydrochloride extended-release tablets should initially be taken every other day."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Excreted ~90% unchanged in urine; hepatic impairment is not expected to significantly alter clearance.",
+    "refs": [
+      {
+        "source_id": "fda-pramipexole-label",
+        "locator": "USE IN SPECIFIC POPULATIONS",
+        "quote": "In patients with moderate renal impairment (creatinine clearance between 30 and 50 mL/min), pramipexole dihydrochloride extended-release tablets should initially be taken every other day."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-pramipexole-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "extended-release tablets are indicated for the treatment of Parkinson's disease."
+      }
+    ],
+    "note": "Non-ergot dopamine agonist with no neuromuscular junction blockade"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Extended-release tablets (ER) must be swallowed whole and must not be chewed, crushed, or divided. Immediate-release tablets can be crushed if necessary for enteral tube feeding."
+    },
+    "refs": [
+      {
+        "source_id": "fda-pramipexole-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "Tablets must be swallowed whole and must not be chewed, crushed, or divided (2.1) Starting dose is 0.375 mg given once daily (2.2) Dose may be increased gradually, not more frequen"
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "sedation_somnolence",
+      "psychiatric_behavioral",
+      "confusion_delirium",
+      "weight_gain"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-pramipexole-label",
+        "locator": "WARNINGS AND PRECAUTIONS",
+        "quote": "falling asleep while engaged in activities of daily living, including the operation of motor vehicles, which sometimes resulted in accidents."
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Non-ergot dopamine agonist with high relative in vitro specificity and full intrinsic activity at dopamine D2 and D3 receptor sub-types, preferentially stimulating postsynaptic D3 striatal receptors.",
+    "refs": [
+      {
+        "source_id": "fda-pramipexole-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "extended-release tablets are indicated for the treatment of Parkinson's disease."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "elimination": "renal tubular secretion via organic cation transport (OCT) system; inhibited by cimetidine"
+    },
+    "refs": [
+      {
+        "source_id": "fda-pramipexole-label",
+        "locator": "USE IN SPECIFIC POPULATIONS",
+        "quote": "In patients with moderate renal impairment (creatinine clearance between 30 and 50 mL/min), pramipexole dihydrochloride extended-release tablets should initially be taken every other day."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-pramipexole-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "extended-release tablets are indicated for the treatment of Parkinson's disease."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "In animal studies, caused embryonic loss and inhibition of implantation; limited human pregnancy data available.",
+      "refs": [
+        {
+          "source_id": "fda-pramipexole-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "extended-release tablets are indicated for the treatment of Parkinson's disease."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Dopamine agonism inhibits prolactin secretion and lactation; avoid during breastfeeding.",
+      "refs": [
+        {
+          "source_id": "fda-pramipexole-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "extended-release tablets are indicated for the treatment of Parkinson's disease."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

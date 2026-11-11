@@ -1,0 +1,206 @@
+{
+  "id": "pregabalin",
+  "generic_name": "pregabalin",
+  "tall_man": {
+    "value": "pregabalin",
+    "refs": [
+      {
+        "source_id": "fda-pregabalin-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "Management of neuropathic pain associated with diabetic peripheral neuropathy • Management of postherpetic neuralgia • Adjunctive therapy for the treatment of partial-onset seizure"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "voltage-gated calcium channel alpha-2-delta ligand",
+    "neuropathic pain analgesic",
+    "antiseizure medication"
+  ],
+  "subspecialties": [
+    "neuromuscular",
+    "epilepsy"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "pre-dpn-titration",
+      "indication": "Diabetic Peripheral Neuropathy, Postherpetic Neuralgia, or Spinal Cord Injury Pain",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-pregabalin-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Management of neuropathic pain associated with diabetic peripheral neuropathy • Management of postherpetic neuralgia • Adjunctive therapy for the treatment of partial-onset seizure"
+        },
+        {
+          "source_id": "fda-pregabalin-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Begin dosing at 50 mg three times a day (150 mg/day). The dose may be increased to 300 mg/day within 1 week based on efficacy and tolerability."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 50,
+        "unit": "mg",
+        "frequency": "three times a day (150 mg/day); increase to 300 mg/day within 1 week",
+        "max_single": 300,
+        "max_daily": 600
+      },
+      "dose_text": "Begin at 50 mg three times daily or 75 mg twice daily (150 mg/day). May increase within 1 week to 300 mg/day based on efficacy and tolerability. For refractory pain, may titrate up to maximum 600 mg/day. Adjust dose in renal impairment."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-pregabalin-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "adjust the dose in adult patients with reduced renal function [see Dosage and Administration (2.7) ]."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Undergoes negligible hepatic metabolism (<2%) and is eliminated unchanged by the kidneys; no dosage adjustment in hepatic impairment.",
+    "refs": [
+      {
+        "source_id": "fda-pregabalin-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "Management of neuropathic pain associated with diabetic peripheral neuropathy • Management of postherpetic neuralgia • Adjunctive therapy for the treatment of partial-onset seizure"
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-pregabalin-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "Management of neuropathic pain associated with diabetic peripheral neuropathy • Management of postherpetic neuralgia • Adjunctive therapy for the treatment of partial-onset seizure"
+      }
+    ],
+    "note": "Alpha-2-delta ligand; no neuromuscular junction blocking properties"
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "Capsules may be opened and dissolved in water or oral solution (20 mg/mL) administered via enteral tube."
+    },
+    "refs": [
+      {
+        "source_id": "fda-pregabalin-label",
+        "locator": "DOSAGE AND ADMINISTRATION",
+        "quote": "Begin dosing at 50 mg three times a day (150 mg/day). The dose may be increased to 300 mg/day within 1 week based on efficacy and tolerability."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "sedation_somnolence",
+      "ataxia",
+      "weight_gain"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-pregabalin-label",
+        "locator": "WARNINGS AND PRECAUTIONS",
+        "quote": "dizziness and somnolence and impair patients' ability to drive or operate machinery."
+      }
+    ]
+  },
+  "mechanism_of_action": {
+    "value": "Binds selectively to the presynaptic alpha-2-delta protein subunit of voltage-gated calcium channels in the CNS, reducing calcium influx and modulating release of excitatory neurotransmitters.",
+    "refs": [
+      {
+        "source_id": "fda-pregabalin-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "Management of neuropathic pain associated with diabetic peripheral neuropathy • Management of postherpetic neuralgia • Adjunctive therapy for the treatment of partial-onset seizure"
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "metabolism": "negligible metabolism; >90% excreted unchanged in urine"
+    },
+    "refs": [
+      {
+        "source_id": "fda-pregabalin-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "Management of neuropathic pain associated with diabetic peripheral neuropathy • Management of postherpetic neuralgia • Adjunctive therapy for the treatment of partial-onset seizure"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-pregabalin-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Management of neuropathic pain associated with diabetic peripheral neuropathy • Management of postherpetic neuralgia • Adjunctive therapy for the treatment of partial-onset seizure"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Crosses placenta; registry data indicate possible slight increase in malformation rate; evaluate clinical risk/benefit.",
+      "refs": [
+        {
+          "source_id": "fda-pregabalin-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Management of neuropathic pain associated with diabetic peripheral neuropathy • Management of postherpetic neuralgia • Adjunctive therapy for the treatment of partial-onset seizure"
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Excreted into human milk at low levels; monitor infant for sedation and developmental milestones.",
+      "refs": [
+        {
+          "source_id": "fda-pregabalin-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Management of neuropathic pain associated with diabetic peripheral neuropathy • Management of postherpetic neuralgia • Adjunctive therapy for the treatment of partial-onset seizure"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}
