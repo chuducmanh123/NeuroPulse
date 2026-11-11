@@ -194,5 +194,39 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Decreased tidal volume and respiratory rate depression",
+        "Hypotension and heart rate variations",
+        "Somnolence, sedation, and anterograde amnesia",
+        "Nausea, vomiting, and hiccups",
+        "Injection site pain and tenderness"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-midazolam-label",
+          "locator": "Section ADVERSE REACTIONS",
+          "quote": "Fluctuations in vital signs were the most frequently seen findings following parenteral administration of midazolam in adults and included decreased tidal volume and/or respiratory rate decrease (23.3% of patients following IV and 10.8% of"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Severe cardiorespiratory depression, hypoventilation, airway obstruction, and apnea (Boxed Warning, requires continuous capnography / pulse oximetry)",
+        "Severe cardiovascular collapse and refractory hypotension",
+        "Paradoxical excitement, hostility, and involuntary muscle movements",
+        "Anaphylactoid reactions and laryngospasm",
+        "Profound coma and prolonged sedation in patients with hepatic or renal impairment"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-midazolam-label",
+          "locator": "Section BOXED WARNING",
+          "quote": "CARDIORESPIRATORY ADVERSE EVENTS HAVE BEEN REPORTED, PROVISION FOR MONITORING, DETECTION AND CORRECTION OF THESE REACTIONS MUST BE MADE FOR EVERY PATIENT T0 WHOM MIDAZOLAM HYDROCHLORIDE INJECTION IS ADMINISTERED, REGARDLESS OF AGE OR HEALTH STATUS."
+        }
+      ]
+    }
   }
 }

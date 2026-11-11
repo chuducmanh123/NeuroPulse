@@ -223,5 +223,40 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Nausea and dyspepsia",
+        "Dizziness and postural hypotension",
+        "Somnolence and daytime sedation",
+        "Constipation",
+        "Insomnia and asthenia",
+        "Peripheral edema (bilateral leg swelling)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-pramipexole-label",
+          "locator": "Section 6 ADVERSE REACTIONS",
+          "quote": "The adverse reaction most commonly causing discontinuation of treatment with pramipexole dihydrochloride extended-release tablets was nausea (2%)."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Falling asleep while engaged in activities of daily living (including motor vehicle accidents)",
+        "Symptomatic orthostatic hypotension and syncope",
+        "Visual hallucinations and paranoid delusions",
+        "Impulse control disorders (pathological gambling, compulsive shopping, hypersexuality)",
+        "Dopamine Agonist Withdrawal Syndrome (DAWS with severe anxiety, dysphoria, panic, and pain upon taper)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-pramipexole-label",
+          "locator": "Section 5.1 Falling Asleep During Activities of Daily Living",
+          "quote": "Falling Asleep During Activities of Daily Living and Somnolence Patients treated with pramipexole have reported falling asleep while engaged in activities of da"
+        }
+      ]
+    }
   }
 }

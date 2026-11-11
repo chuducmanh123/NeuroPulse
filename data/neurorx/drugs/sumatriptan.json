@@ -200,5 +200,40 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Atypical sensations (tingling, warm/cold sensations, numbness)",
+        "Chest, throat, neck, or jaw tightness, pressure, or heaviness (non-cardiac triptan sensations)",
+        "Dizziness, vertigo, and somnolence",
+        "Nausea, vomiting, and malaise/fatigue",
+        "Flushing and diaphoresis"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-sumatriptan-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "Only treatment-emergent adverse reactions that occurred at a frequency of 2% or more in any group treated with IMITREX tablets and that occurred at a frequency greater than the placebo group are included in Table 1. Table 1."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Myocardial ischemia, acute myocardial infarction, coronary artery vasospasm, and Prinzmetal's angina",
+        "Life-threatening cardiac arrhythmias (ventricular tachycardia, ventricular fibrillation, cardiac arrest)",
+        "Cerebral hemorrhage, subarachnoid hemorrhage, and ischemic stroke",
+        "Peripheral vascular ischemia and colonic ischemia (ischemic colitis)",
+        "Medication Overuse Headache (MOH) with frequent use (>=10 days/month)",
+        "Serotonin syndrome (especially when combined with SSRIs, SNRIs, or MAOIs)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-sumatriptan-label",
+          "locator": "Section 5.1 Myocardial Ischemia and Infarction",
+          "quote": "Myocardial ischemia/infarction and Prinzmetal’s angina: Perform cardiac evaluation in patients with multiple cardiovascular risk factors. ( 5.1 ) • Arrhythmias: Discontinue IMITREX if occurs."
+        }
+      ]
+    }
   }
 }

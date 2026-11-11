@@ -223,5 +223,41 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Visual hallucinations and illusions",
+        "Dizziness, lightheadedness, and ataxia",
+        "Dry mouth and xerostomia",
+        "Peripheral edema (bilateral lower extremity swelling)",
+        "Constipation and nausea",
+        "Falls and gait instability"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-amantadine-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "adverse reactions reported in >10% of GOCOVRI-treated patients and more frequently than on placebo were: hallucinations, dizziness, dry mouth, peripheral edema, constipation, falls, and orthostatic hypotension."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Severe visual and auditory hallucinations, delirium, and paranoid psychosis",
+        "Suicidality and depression (monitor for depressed mood or suicidal ideation)",
+        "Falling asleep during activities of daily living and somnolence",
+        "Livedo reticularis (reddish-blue reticular skin discoloration, especially in lower extremities)",
+        "Corneal edema and visual impairment (reversible upon cessation)",
+        "Neuroleptic Malignant Syndrome-like withdrawal crisis on sudden cessation"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-amantadine-label",
+          "locator": "Section 5.3 Hallucinations / Psychotic Behavior",
+          "quote": "Hallucinations/Psychotic Behavior: Patients with major psychotic disorder should ordinarily not be treated with GOCOVRI; observe patients for the occurrence of hallucinations throughout treatment, especially at initiation and after dose increases ( 5.3 ) Dizzi"
+        }
+      ]
+    }
   }
 }

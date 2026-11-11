@@ -238,5 +238,42 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Diarrhea (most common GI adverse effect, dose-dependent)",
+        "Nausea, vomiting, dyspepsia, and abdominal pain",
+        "Leukopenia and anemia",
+        "Infections (viral, bacterial, urinary tract)",
+        "Headache, dizziness, and insomnia",
+        "Peripheral edema and tremor"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-mycophenolate-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "The most common adverse reactions in clinical trials (20 % or greater) include diarrhea, leukopenia, infection, vomiting, and there is evidence of a higher frequency of certain types of infections e.g., opportunistic infection."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Embryofetal Toxicity (Boxed Warning: increased risk of first-trimester pregnancy loss and severe congenital malformations; mandatory negative pregnancy test and effective contraception)",
+        "Lymphoma and other malignancies (Boxed Warning: particularly skin cancer and post-transplant lymphoproliferative disorder)",
+        "Serious, fatal, and opportunistic infections (Boxed Warning: CMV, fungal, bacterial, and viral reactivation)",
+        "Progressive Multifocal Leukoencephalopathy (PML) associated with JC virus",
+        "Pure Red Cell Aplasia (PRCA)",
+        "Gastrointestinal hemorrhage, ulceration, and perforation",
+        "BK virus-associated nephropathy"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-mycophenolate-label",
+          "locator": "Section BOXED WARNING - Embryofetal Toxicity & Malignancies",
+          "quote": "EMBRYOFETAL TOXICITY, MALIGNANCIES and SERIOUS INFECTIONS Use during pregnancy is associated with increased risks of first trimester pregnancy loss and congenital malformations. Avoid if safer treatment options are available."
+        }
+      ]
+    }
   }
 }

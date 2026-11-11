@@ -255,5 +255,39 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Bleeding (hematoma, epistaxis, hematuria)",
+        "Gastrointestinal bleeding (melena, hematochezia)",
+        "Abdominal pain and dyspepsia",
+        "Pruritus and minor rash",
+        "Back pain and extremity pain"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-rivaroxaban-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "The most common adverse reaction (>5%) in adult patients was bleeding ( 6.1 ) The most common adverse reactions (>10%) in pediatric patients were bleeding, coug"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Major fatal hemorrhage (gastrointestinal, retroperitoneal, intracranial)",
+        "Spinal / epidural hematoma with permanent paraplegia",
+        "Increased risk of thrombotic events after premature discontinuation",
+        "Hepatic impairment and jaundice",
+        "Thrombocytopenia"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-rivaroxaban-label",
+          "locator": "Section 5.3 Spinal/Epidural Anesthesia or Puncture",
+          "quote": "Epidural or spinal hematomas have occurred in patients treated with XARELTO who are receiving neuraxial anesthesia or undergoing spinal puncture. These hematomas may result in long-term or permanent paralysis."
+        }
+      ]
+    }
   }
 }

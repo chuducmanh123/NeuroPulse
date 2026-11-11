@@ -214,5 +214,39 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Somnolence, sedation, and lethargy",
+        "Drooling (salivary hypersecretion)",
+        "Constipation and decreased appetite",
+        "Pyrexia and upper respiratory tract infections",
+        "Ataxia and psychomotor slowing"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-clobazam-label",
+          "locator": "Section 6 ADVERSE REACTIONS",
+          "quote": "Adverse reactions that occurred at least 10% more frequently than placebo in any ONFI dose included constipation, somnolence or sedation, pyrexia, lethargy, and drooling ( 6.1 ) To report SUSPECTED ADVERSE REACTIONS, con"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Profound sedation, respiratory depression, coma, and death from concomitant use with opioids or other CNS depressants (Boxed Warning)",
+        "Physical dependence and severe life-threatening withdrawal syndrome (status epilepticus, delirium)",
+        "Severe dermatological reactions (Stevens-Johnson syndrome, Toxic Epidermal Necrolysis)",
+        "Drug Reaction with Eosinophilia and Systemic Symptoms (DRESS)",
+        "Paradoxical behavioral reactions and aggression"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-clobazam-label",
+          "locator": "Section BOXED WARNING",
+          "quote": "WARNING: RISKS FROM CONCOMITANT USE WITH OPIOIDS; ABUSE, MISUSE, AND ADDICTION; and DEPENDENCE AND WITHDRAWAL REACTIONS Concomitant use of benzodiazepines and opioids may result in profound sedation,"
+        }
+      ]
+    }
   }
 }

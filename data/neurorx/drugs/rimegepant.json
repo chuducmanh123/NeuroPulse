@@ -226,5 +226,36 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Nausea (2% vs 0.4% placebo)",
+        "Abdominal pain / dyspepsia (2.4% with every-other-day preventive dosing)",
+        "Drowsiness and fatigue",
+        "Dry mouth"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-rimegepant-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "most common adverse reaction in Study 1 was nausea (2% in patients who received NURTEC ODT compared to 0.4% of patients who received placebo)."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Severe hypersensitivity reactions including dyspnea, rash, pruritus, and facial swelling (can occur days after administration)",
+        "Severe anaphylaxis and angioedema",
+        "Drug interactions with strong CYP3A4 inhibitors / inducers and P-gp inhibitors"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-rimegepant-label",
+          "locator": "Section 5.1 Hypersensitivity Reactions",
+          "quote": "Hypersensitivity Reactions: If a serious hypersensitivity reaction occurs, discontinue NURTEC ODT and initiate appropriate therapy. Severe hypersensitivity reactions have included anaphylaxis, dyspnea, and rash, and can occur days after administration."
+        }
+      ]
+    }
   }
 }

@@ -202,5 +202,40 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Dry mouth (xerostomia, up to 49%)",
+        "Somnolence and sedation (up to 48%)",
+        "Asthenia, muscle weakness, and fatigue (up to 41%)",
+        "Dizziness and lightheadedness (up to 16%)",
+        "Urinary tract infections and urinary frequency",
+        "Constipation and nausea"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-tizanidine-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "The most common adverse reactions (greater than 2% of 264 patients taking tizanidine and greater than in placebo-treated patients in three multiple dose, placebo-controlled studies) were dry mouth, somnolence, asthenia, dizziness, urinary tract infection, cons"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Severe hypotension, bradycardia, orthostasis, and syncope (dose-dependent alpha-2 adrenergic agonism; contraindicated with CYP1A2 inhibitors like ciprofloxacin/fluvoxamine)",
+        "Hepatotoxicity and liver injury (elevated transaminases ALT/AST >3x ULN, hepatitis; monitor baseline and periodic LFTs)",
+        "Severe visual hallucinations and psychotic-like symptoms (delusions, hallucinations, paranoid thinking)",
+        "Severe sedation and impaired mental alertness",
+        "Rebound hypertension, tachycardia, and hypertonia upon abrupt withdrawal"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-tizanidine-label",
+          "locator": "Section 5.1 Hypotension",
+          "quote": "Hypotension: monitor for signs and symptoms of hypotension, in particular in patients receiving concurrent antihypertensives; Zanaflex should not be used with other α 2 -adrenergic agonists ( 5.1 , 7.7 ) Risk of liver injury: monitor ALTs; discontinue Zanaflex"
+        }
+      ]
+    }
   }
 }

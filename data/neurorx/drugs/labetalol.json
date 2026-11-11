@@ -197,5 +197,39 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Dizziness and lightheadedness",
+        "Nausea and vomiting",
+        "Fatigue and somnolence",
+        "Scalp tingling and pruritus",
+        "Paresthesias"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-labetalol-label",
+          "locator": "Section ADVERSE REACTIONS",
+          "quote": "Dizziness in 9; tingling of the scalp/skin 7; hypoesthesia (numbness) and vertigo, 1 each. Gastrointestinal System: Nausea in 13; vomiting 4; dyspepsia and taste distortion, 1 each."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Severe symptomatic postural hypotension and syncope",
+        "Marked bradycardia and second- or third-degree heart block",
+        "Bronchospasm in patients with reactive airway disease",
+        "Precipitation or exacerbation of acute heart failure",
+        "Hepatotoxicity and hepatic necrosis"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-labetalol-label",
+          "locator": "Section WARNINGS",
+          "quote": "Symptomatic postural hypotension (incidence 58%) is likely to occur if patients are tilted or allowed to assume the upright position within 3 hours of receiving labetalol injection."
+        }
+      ]
+    }
   }
 }

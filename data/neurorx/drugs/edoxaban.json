@@ -267,5 +267,38 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Bleeding (epistaxis, vaginal bleeding, hematoma)",
+        "Anemia and decreased hemoglobin",
+        "Cutaneous puncture bleeding",
+        "Gastrointestinal hemorrhage (lower GI, upper GI)",
+        "Rash and pruritus"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-edoxaban-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "The most common adverse reactions (≥ 5%) are bleeding and anemia ( 6.1 ) Treatment of DVT and PE : The most common adverse reactions (≥ 1%) are bleeding, rash,"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Increased ischemic stroke risk in patients with supranormal renal clearance (CrCl > 95 mL/min)",
+        "Major fatal internal bleeding and intracranial hemorrhage",
+        "Spinal / epidural hematoma following neuraxial puncture",
+        "Rebound thromboembolism upon premature discontinuation"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-edoxaban-label",
+          "locator": "Section 5.1 Reduced Efficacy in NVAF with CrCL > 95 mL/min",
+          "quote": "In the ENGAGE AF-TIMI 48 study, nonvalvular atrial fibrillation patients with CrCL > 95 mL/min had an increased rate of ischemic stroke with SAVAYSA 60 mg once daily compared to patients treated with warfarin."
+        }
+      ]
+    }
   }
 }

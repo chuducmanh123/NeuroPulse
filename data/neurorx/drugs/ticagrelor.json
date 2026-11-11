@@ -201,5 +201,38 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Bleeding (superficial bruising, epistaxis, hematoma)",
+        "Dyspnea (usually self-limiting, onset typically within 3–5 days)",
+        "Elevated serum creatinine and hyperuricemia",
+        "Dizziness and nausea"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-ticagrelor-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "Most common adverse reactions (>5%) are bleeding and dyspnea."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Fatal and major intracranial hemorrhage",
+        "Ventricular pauses and bradyarrhythmias (sinus bradycardia, heart block)",
+        "Severe persistent dyspnea requiring discontinuation",
+        "Thrombotic thrombocytopenic purpura (TTP)",
+        "Central sleep apnea (Cheyne-Stokes respiration)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-ticagrelor-label",
+          "locator": "Section BOXED WARNING",
+          "quote": "BRILINTA, like other antiplatelet agents, can cause significant, sometimes fatal bleeding ( 5.1 , 6.1 )."
+        }
+      ]
+    }
   }
 }

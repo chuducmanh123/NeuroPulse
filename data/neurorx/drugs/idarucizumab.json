@@ -149,5 +149,37 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Headache (reported in healthy volunteers)",
+        "Hypokalemia",
+        "Delirium and agitation",
+        "Constipation and nausea",
+        "Pyrexia"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-idarucizumab-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "Among those subjects treated with idarucizumab, adverse reactions reported in ≥5% of subjects was headache (12/224, 5%)."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Thromboembolic events (stroke, DVT, PE, MI) due to loss of anticoagulation",
+        "Hypersensitivity reactions (bronchospasm, rash, pruritus)",
+        "Risk of serious adverse reactions in patients with hereditary fructose intolerance (due to sorbitol excipient)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-idarucizumab-label",
+          "locator": "Section 5.1 Thromboembolic Risk",
+          "quote": "Reversing dabigatran therapy exposes patients to the thrombotic risk of their underlying disease. To reduce this risk, resumption of anticoagulant therapy should be considered as soon as medically appropriate."
+        }
+      ]
+    }
   }
 }

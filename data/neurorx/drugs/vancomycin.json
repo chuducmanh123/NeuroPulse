@@ -200,5 +200,40 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Infusion-related reactions ('Red Man Syndrome'): flushing of upper body/neck, pruritus, erythema, urticaria, chills (rate-dependent; prevent by infusing <=10 mg/min or over >=60 min)",
+        "Injection site thrombophlebitis and local pain",
+        "Nausea, vomiting, and diarrhea",
+        "Fever and drug-related rigors",
+        "Mild transient creatinine elevation"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-vancomycin-label",
+          "locator": "Section ADVERSE REACTIONS - Infusion-Related Events",
+          "quote": "Infusion-Related Events During or soon after rapid infusion of vancomycin hydrochloride for injection, patients may develop anaphylactoid reactions, including hypotension (see ANIMAL PHARMACOLOGY ), wheezing, dyspnea, urticaria, or pruritus."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Nephrotoxicity and Acute Kidney Injury (AKI; dose- and trough-dependent, significantly increased with AUC >600 mg*h/L, troughs >20 mcg/mL, or concomitant nephrotoxic agents like aminoglycosides, piperacillin-tazobactam, NSAIDs; monitor AUC/MIC or troughs)",
+        "Ototoxicity (sensorineural hearing loss, tinnitus, vertigo; may be permanent; risk increased with high serum concentrations or concomitant ototoxic drugs)",
+        "Severe anaphylaxis and hypotension / cardiovascular collapse during rapid infusion",
+        "Severe cutaneous adverse reactions: DRESS syndrome, Stevens-Johnson syndrome, linear IgA bullous dermatosis",
+        "Neutropenia (reversible on cessation; periodic CBC monitoring for prolonged courses >1-2 weeks)",
+        "Clostridioides difficile-associated diarrhea (CDAD)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-vancomycin-label",
+          "locator": "Section WARNINGS - Nephrotoxicity",
+          "quote": "Nephrotoxicity Systemic vancomycin exposure may result in acute kidney injury (AKI). The risk of AKI increases as systemic exposure/serum levels increase."
+        }
+      ]
+    }
   }
 }

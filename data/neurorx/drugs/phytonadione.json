@@ -163,5 +163,37 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Flushing sensations and diaphoresis",
+        "Altered taste perception (dysgeusia)",
+        "Injection site pain and swelling",
+        "Dizziness and lightheadedness"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-phytonadione-label",
+          "locator": "Section ADVERSE REACTIONS",
+          "quote": "Transient “flushing sensations” and “peculiar” sensations of taste have been observed, as well as rare instances of dizziness, rapid and weak pulse, profuse sweating, brief hypotension, dyspnea, and c"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Fatal anaphylactoid reactions and circulatory collapse with intravenous administration (Black Box Warning)",
+        "Bronchospasm, shock, and cardiac arrest",
+        "Cutaneous reactions including erythematous indurated plaques and eczematous lesions",
+        "Temporary resistance to prothrombin-depressing anticoagulants"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-phytonadione-label",
+          "locator": "Section BOXED WARNING",
+          "quote": "Severe reactions, including fatalities, have occurred during and immediately after INTRAVENOUS injection of phytonadione, even when precautions have been taken to dilute the phytonadione and to avoid rapid infusion."
+        }
+      ]
+    }
   }
 }

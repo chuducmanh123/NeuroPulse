@@ -215,5 +215,40 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Nausea, vomiting, and dyspepsia",
+        "Somnolence and sedation",
+        "Tremor (intention and postural)",
+        "Weight gain and increased appetite",
+        "Alopecia (hair thinning and hair loss)",
+        "Thrombocytopenia"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-valproate-label",
+          "locator": "Section 6 ADVERSE REACTIONS",
+          "quote": "The most common adverse reactions leading to discontinuation were 2 cases each of nausea/vomiting and elevated amylase."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Fatal hepatotoxicity, especially during the first 6 months (Boxed Warning, mitochondrial mutation POLG contraindication)",
+        "Life-threatening pancreatitis (hemorrhagic and necrotizing)",
+        "Hyperammonemic encephalopathy (with normal or mildly elevated LFTs)",
+        "Major congenital malformations (neural tube defects) and neurodevelopmental disorders (decreased IQ / autism spectrum)",
+        "Thrombocytopenia and dose-dependent coagulopathies"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-valproate-label",
+          "locator": "Section BOXED WARNING",
+          "quote": "Hepatotoxicity, including fatalities, usually during the first 6 months of treatment."
+        }
+      ]
+    }
   }
 }

@@ -217,5 +217,38 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Headache and dizziness",
+        "Nausea and vomiting",
+        "Hypotension and tachycardia",
+        "Arthralgia",
+        "Anemia"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-4fpcc-kcentra-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "The most common adverse reactions (ARs) (frequency ≥2.8%) observed in subjects receiving KCENTRA were headache, nausea/vomiting, hypotension, and anemia."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Arterial and venous thromboembolism (pulmonary embolism, DVT, stroke, myocardial infarction)",
+        "Disseminated intravascular coagulation (DIC)",
+        "Severe hypersensitivity reactions including anaphylaxis",
+        "Microvascular thrombosis"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-4fpcc-kcentra-label",
+          "locator": "Section BOXED WARNING",
+          "quote": "Patients being treated with Vitamin K antagonists (VKA) therapy have underlying disease states that predispose them to thromboembolic events."
+        }
+      ]
+    }
   }
 }

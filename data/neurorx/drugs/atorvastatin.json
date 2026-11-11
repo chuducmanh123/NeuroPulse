@@ -184,5 +184,39 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Nasopharyngitis and upper respiratory symptoms",
+        "Arthralgia and pain in extremities",
+        "Diarrhea and dyspepsia",
+        "Musculoskeletal pain and muscle spasms",
+        "Urinary tract infections"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-atorvastatin-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "Most common adverse reactions (incidence ≥5%) are nasopharyngitis, arthralgia, diarrhea, pain in extremity, and urinary tract infection ( 6.1 )."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Rhabdomyolysis with myoglobinuria and acute renal failure",
+        "Severe myopathy (muscle weakness, creatine kinase > 10x ULN)",
+        "Immune-mediated necrotizing myopathy (IMNM with anti-HMGCR antibodies)",
+        "Hepatotoxicity and persistent transaminase elevations (> 3x ULN)",
+        "New-onset hyperglycemia and HbA1c elevation"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-atorvastatin-label",
+          "locator": "Section 6 ADVERSE REACTIONS",
+          "quote": "Myopathy and Rhabdomyolysis [see Warnings and Precautions (5.1) ] • Immune-Mediated Necrotizing Myopathy [see Warnings and Precautions (5.2) ] • Hepatic Dysfunction [see Warnings a"
+        }
+      ]
+    }
   }
 }

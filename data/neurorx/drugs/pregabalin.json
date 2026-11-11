@@ -58,6 +58,33 @@
         "max_daily": 600
       },
       "dose_text": "Begin at 50 mg three times daily or 75 mg twice daily (150 mg/day). May increase within 1 week to 300 mg/day based on efficacy and tolerability. For refractory pain, may titrate up to maximum 600 mg/day. Adjust dose in renal impairment."
+    },
+    {
+      "id": "preg-adjunctive-partial-seizures-po",
+      "indication": "Adjunctive Therapy for Adult Patients with Partial-Onset Seizures",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-pregabalin-label",
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "Adjunctive therapy for the treatment of partial-onset seizures in patients 1 month of age and older • Management of fibromyalgia • Management of neuropathic pain associated with spinal cord injury LYR"
+        },
+        {
+          "source_id": "fda-pregabalin-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "For adult indications, begin dosing at 150 mg/day. For partial-onset seizure dosing in pediatric patients 1 month of age and older, refer to section 2.4."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 75,
+        "unit": "mg",
+        "frequency": "twice daily",
+        "max_single": 300,
+        "max_daily": 600
+      },
+      "dose_text": "Initiate 75 mg orally twice daily (150 mg/day). Based on clinical response and tolerability, dose may be increased to 300 mg/day after 1 week, and up to a maximum recommended dose of 600 mg/day divided twice or three times daily."
     }
   ],
   "renal_basis": {
@@ -202,5 +229,40 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Dizziness and lightheadedness",
+        "Somnolence, sedation, and fatigue",
+        "Peripheral edema and weight gain",
+        "Dry mouth and constipation",
+        "Blurred vision and diplopia",
+        "Cognitive difficulty with concentration and attention"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-pregabalin-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "Most common adverse reactions (greater than or equal to 5% and twice placebo) in adults are dizziness, somnolence, dry mouth, edema, blurred vision, weight gain, and thinking abnormal (primarily difficulty with concentration/attention)."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Life-threatening respiratory depression (especially when co-prescribed with opioids, sedatives, or in elderly/pulmonary disease)",
+        "Severe angioedema with swelling of face, throat, and larynx (airway compromise)",
+        "Suicidal thoughts and behavior",
+        "Severe physical and psychological dependence and misuse",
+        "Rhabdomyolysis and creatine kinase elevation"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-pregabalin-label",
+          "locator": "Section 5.1 Angioedema",
+          "quote": "Angioedema and hypersensitivity reactions have occurred in patients receiving pregabalin therapy [see Warnings and Precautions (5.2) ]. • Known hypersensitivity to pregabalin or any of its components."
+        }
+      ]
+    }
   }
 }

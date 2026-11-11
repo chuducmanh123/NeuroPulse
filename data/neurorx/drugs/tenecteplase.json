@@ -150,5 +150,39 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Bleeding at puncture sites and vascular access access sites",
+        "Gastrointestinal bleeding",
+        "Hematoma and ecchymosis",
+        "Epistaxis and oral mucosal bleeding",
+        "Mild hypersensitivity rash and urticaria"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-tenecteplase-label",
+          "locator": "Section 6 ADVERSE REACTIONS",
+          "quote": "The most common adverse reactions are bleeding and hypersensitivity."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Fatal or disabling intracranial hemorrhage (ICH)",
+        "Major retroperitoneal or gastrointestinal hemorrhage",
+        "Severe anaphylaxis and angioedema",
+        "Cholesterol crystal embolization",
+        "Reperfusion-induced ventricular arrhythmias"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-tenecteplase-label",
+          "locator": "Section 4 CONTRAINDICATIONS",
+          "quote": "TNKase is contraindicated in patients with [see Warnings and Precautions (5.1) ] : Active internal bleeding History of cerebrovascular accident Intracranial or intraspinal surgery or trauma within 2 months Intracranial n"
+        }
+      ]
+    }
   }
 }

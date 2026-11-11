@@ -242,5 +242,39 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Hemorrhage from various sites (epistaxis, gingival, hematuria)",
+        "Gastrointestinal bleeding and melena",
+        "Bruising and ecchymoses",
+        "Nausea, vomiting, and diarrhea",
+        "Alopecia and dermatitis"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-warfarin-label",
+          "locator": "Section 6 ADVERSE REACTIONS",
+          "quote": "Most common adverse reactions to warfarin sodium are fatal and nonfatal hemorrhage from any tissue or organ."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Major and fatal intracranial hemorrhage",
+        "Tissue necrosis and gangrene (skin necrosis from protein C deficiency)",
+        "Calciphylaxis (calcific uremic arteriolopathy with painful ischemic skin lesions)",
+        "Systemic cholesterol microembolization ('Purple Toes Syndrome')",
+        "Acute kidney injury secondary to glomerular hemorrhage (anticoagulant-related nephropathy)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-warfarin-label",
+          "locator": "Section BOXED WARNING",
+          "quote": "Warfarin sodium can cause major or fatal bleeding [see Warnings and Precautions ( 5.1 )] . Perform regular monitoring of INR in all treated patients [see Dosage and Administration ( 2.1 )] ."
+        }
+      ]
+    }
   }
 }

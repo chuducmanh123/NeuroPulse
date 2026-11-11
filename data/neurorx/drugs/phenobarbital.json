@@ -168,5 +168,39 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Sedation, drowsiness, and morning hangover effect",
+        "Lethargy and psychomotor slowing",
+        "Vertigo and dizziness",
+        "Nystagmus and ataxia",
+        "Paradoxical excitation, hyperactivity, or irritability (pediatrics and elderly)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-phenobarbital-label",
+          "locator": "Section ADVERSE REACTIONS",
+          "quote": "The following adverse reactions and their incidence were compiled from surveillance of thousands of hospitalized patients who received barbiturates."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Life-threatening respiratory depression and hypoventilation (especially with IV administration or concomitant sedatives)",
+        "Severe physical and psychological dependence with life-threatening withdrawal seizures and delirium tremens",
+        "Exfoliative dermatitis, toxic epidermal necrolysis, and Stevens-Johnson syndrome",
+        "Hypotension and cardiovascular collapse with rapid IV administration",
+        "Megaloblastic anemia and hepatic dysfunction"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-phenobarbital-label",
+          "locator": "Section OVERDOSAGE",
+          "quote": "The manifestations of a long-acting barbiturate in overdose include nystagmus, ataxia, CNS depression, respiratory depression, hypothermia, and hypotension."
+        }
+      ]
+    }
   }
 }

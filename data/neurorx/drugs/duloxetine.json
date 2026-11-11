@@ -211,5 +211,43 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Nausea (most frequent, often transient)",
+        "Dry mouth (xerostomia)",
+        "Somnolence, fatigue, and insomnia",
+        "Constipation and decreased appetite / weight loss",
+        "Hyperhidrosis (excessive sweating)",
+        "Dizziness and headache",
+        "Sexual dysfunction (erectile dysfunction, delayed ejaculation, anorgasmia)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-duloxetine-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "Diabetic Peripheral Neuropathic Pain: nausea, somnolence, decreased appetite, constipation, hyperhidrosis, and dry mouth. Fibromyalgia: nausea, dry mouth, constipation, somnolence, decreased appetite, hyperhidrosis, and agitation."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Severe hepatotoxicity, cholestatic jaundice, hepatic necrosis, and hepatic failure (sometimes fatal)",
+        "Boxed Warning: Increased suicidal thoughts and behaviors in adolescents and young adults",
+        "Orthostatic hypotension, syncope, and falls (especially in elderly patients)",
+        "Serotonin syndrome (especially with concomitant MAOIs, triptans, or other serotonergic drugs)",
+        "Hyponatremia and SIADH (Syndrome of Inappropriate Antidiuretic Hormone Secretion)",
+        "Abnormal bleeding / hemorrhage (impairment of platelet aggregation via serotonin reuptake inhibition)",
+        "Severe discontinuation syndrome upon abrupt cessation (electric shock-like sensations, dizziness, paresthesias)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-duloxetine-label",
+          "locator": "Section 5.2 Hepatotoxicity",
+          "quote": "Hepatotoxicity : Hepatic failure, sometimes fatal, has been reported."
+        }
+      ]
+    }
   }
 }

@@ -240,5 +240,40 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Dizziness and somnolence",
+        "Diplopia and nystagmus",
+        "Nausea and vomiting",
+        "Ataxia and abnormal gait",
+        "Fatigue and tremor",
+        "Headache"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-oxcarbazepine-label",
+          "locator": "Section 6 ADVERSE REACTIONS",
+          "quote": "The most common (≥ 10% more than placebo for adjunctive or low dose for monotherapy) adverse reactions in adults and pediatrics were: dizziness, somnolence, diplopia, fatigue, nausea, vomiting, ataxia, abnormal vision, headache, nystagmus,"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Clinically significant hyponatremia (serum sodium < 125 mmol/L, risk of seizures/encephalopathy)",
+        "Serious dermatologic reactions (SJS, TEN, especially in HLA-B*1502 positive patients)",
+        "Multi-organ hypersensitivity reactions (DRESS)",
+        "Anaphylaxis and angioedema",
+        "Suicidal behavior and ideation"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-oxcarbazepine-label",
+          "locator": "Section 5.4 Serious Dermatological Reactions",
+          "quote": "Serious dermatological reactions, including Stevens-Johnson syndrome (SJS) and toxic epidermal necrolysis (TEN), have been reported in both children and adults in association with TRILEPTAL use."
+        }
+      ]
+    }
   }
 }

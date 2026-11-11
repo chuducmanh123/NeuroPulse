@@ -200,5 +200,41 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Diarrhea / loose stools (2.7%)",
+        "Eosinophilia (6%), thrombocytosis (5.1%), and leukopenia (2.1%)",
+        "Local injection site pain, tenderness, and induration",
+        "Rash (1.7%) and pruritus",
+        "Elevation of liver enzymes (ALT, AST, alkaline phosphatase) and BUN",
+        "Nausea, vomiting, and dysgeusia"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-ceftriaxone-label",
+          "locator": "Section ADVERSE REACTIONS - Gastrointestinal",
+          "quote": "Gastrointestinal Diarrhea/loose stools (2.7%). Less frequently reported (<1%) were nausea or vomiting, and dysgeusia. The onset of pseudomembranous colitis symptoms may occur during or after antibacterial treatment (see WARNINGS )."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Severe hypersensitivity and anaphylactic shock (contraindicated in patients with severe cephalosporin or beta-lactam hypersensitivity)",
+        "Calcium-ceftriaxone precipitation in lungs and kidneys (fatal precipitation reported in neonates; contraindicated with calcium-containing IV solutions)",
+        "Clostridioides difficile-associated diarrhea (CDAD) and pseudomembranous colitis",
+        "Biliary sludging / pseudolithiasis (biliary colic due to precipitation of ceftriaxone-calcium salt in gallbladder; usually reversible)",
+        "Immune-mediated hemolytic anemia (can be severe or fatal)",
+        "Coagulopathy and hypoprothrombinemia / bleeding (prolongation of PT/INR; vitamin K-reversible)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-ceftriaxone-label",
+          "locator": "Section CONTRAINDICATIONS - Hypersensitivity",
+          "quote": "Hypersensitivity Ceftriaxone for injection is contraindicated in patients with known hypersensitivity to ceftriaxone, any of its excipients or to any other cephalosporin."
+        }
+      ]
+    }
   }
 }

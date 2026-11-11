@@ -35,6 +35,33 @@
   },
   "regimens": [
     {
+      "id": "asp-acute-ais-inpatient",
+      "indication": "Acute Ischemic Stroke Early Inpatient Initiation (within 24–48 hours)",
+      "setting": "acute_inpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-aspirin-label",
+          "locator": "Section INDICATIONS AND USAGE",
+          "quote": "Reduce the combined risk of death and nonfatal stroke in patients who have had ischemic stroke or transient ischemia of the brain due to fibrin platelet emboli,"
+        },
+        {
+          "source_id": "fda-aspirin-label",
+          "locator": "Section DOSAGE AND ADMINISTRATION",
+          "quote": "Ischemic Stroke and TIA: 50-325 mg once a day."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 160,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 325,
+        "max_daily": 325
+      },
+      "dose_text": "Administer 160 to 325 mg orally once daily, initiated between 24 and 48 hours after acute ischemic stroke onset (or deferred 24 hours post-IV thrombolysis). Non-enteric coated formulation preferred for rapid absorption."
+    },
+    {
       "id": "asa-po-stroke-tia-maintenance",
       "indication": "Ischemic Stroke and Transient Ischemic Attack (TIA) Secondary Prevention",
       "setting": "maintenance_outpatient",
@@ -183,5 +210,39 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Dyspepsia, heartburn, and epigastric discomfort",
+        "Nausea and vomiting",
+        "Abdominal pain",
+        "Occult gastrointestinal blood loss",
+        "Prolonged bleeding time"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-aspirin-label",
+          "locator": "Section ADVERSE REACTIONS",
+          "quote": "Many adverse reactions due to aspirin ingestion are dose-related. The following is a list of adverse reactions that have been reported in the literature. (See Warnings."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Major gastrointestinal ulceration, hemorrhage, and perforation",
+        "Subdural or intracranial hemorrhage",
+        "Aspirin-induced asthma / bronchospasm (Samter's triad)",
+        "Salicylate toxicity (tinnitus, metabolic acidosis, encephalopathy)",
+        "Reye's syndrome in children and adolescents with viral illness"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-aspirin-label",
+          "locator": "Section ADVERSE REACTIONS - Central Nervous System",
+          "quote": "Central Nervous System: Agitation, cerebral edema, coma, confusion, dizziness, headache, subdural or intracranial hemorrhage, lethargy, seizures. Fluid and Electrolyte: Dehydration, hyperkalemia, metabolic acidosis"
+        }
+      ]
+    }
   }
 }

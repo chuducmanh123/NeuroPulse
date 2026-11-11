@@ -81,6 +81,33 @@
         "max_daily": 300
       },
       "dose_text": "Initiate Plavix with a single 300 mg oral loading dose and then continue at 75 mg once daily."
+    },
+    {
+      "id": "clop-dapt-minor-stroke-tia",
+      "indication": "Dual Antiplatelet Therapy (DAPT) in Minor Ischemic Stroke (NIHSS ≤ 3) or High-Risk TIA (ABCD2 ≥ 4)",
+      "setting": "acute_inpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-clopidogrel-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Recent MI, recent stroke, or established peripheral arterial disease: 75 mg once daily orally without a loading dose."
+        },
+        {
+          "source_id": "fda-clopidogrel-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Initiate Plavix with a single 300 mg oral loading dose and then continue at 75 mg once daily."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 300,
+        "unit": "mg",
+        "frequency": "once",
+        "max_single": 300,
+        "max_daily": 300
+      },
+      "dose_text": "Initiate 300 mg oral loading dose on Day 1, followed by 75 mg orally once daily in combination with aspirin (75–81 mg daily) for 21 days, followed by antiplatelet monotherapy. Initiate within 24 hours of symptom onset."
     }
   ],
   "renal_basis": {
@@ -206,5 +233,36 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Bleeding (epistaxis, hematoma, purpura, bruising)",
+        "Gastrointestinal discomfort (dyspepsia, diarrhea, abdominal pain)",
+        "Pruritus and minor rash"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-clopidogrel-label",
+          "locator": "Section 6 ADVERSE REACTIONS",
+          "quote": "Bleeding, including life-threatening and fatal bleeding, is the most commonly reported adverse reaction. ( 6.1 ) To report SUSPECTED ADVERSE REACTIONS, contact sanofi-aventis U.S."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Thrombotic Thrombocytopenic Purpura (TTP, potentially fatal requiring emergent plasmapheresis)",
+        "Major intracranial and gastrointestinal hemorrhage",
+        "Severe neutropenia and agranulocytosis",
+        "Premature discontinuation stent thrombosis or recurrent ischemic stroke"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-clopidogrel-label",
+          "locator": "Section 6 ADVERSE REACTIONS",
+          "quote": "Thrombotic thrombocytopenic purpura [see Warnings and Precautions (5.4) ] Bleeding, including life-threatening and fatal bleeding, is the most commonl"
+        }
+      ]
+    }
   }
 }

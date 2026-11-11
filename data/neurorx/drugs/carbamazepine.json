@@ -266,5 +266,39 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Dizziness, drowsiness, and unsteadiness (ataxia)",
+        "Nausea and vomiting",
+        "Visual disturbances (diplopia, blurred vision)",
+        "Fatigue and lethargy",
+        "Dry mouth and abdominal pain"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-carbamazepine-label",
+          "locator": "Section ADVERSE REACTIONS",
+          "quote": "The most frequently observed adverse reactions, particularly during the initial phases of therapy, are dizziness, drowsiness, unsteadiness, nausea, and vomiting."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Severe and fatal dermatologic reactions (Stevens-Johnson syndrome [SJS], Toxic Epidermal Necrolysis [TEN] strongly associated with HLA-B*1502)",
+        "Aplastic anemia, agranulocytosis, and bone marrow depression (Boxed Warning)",
+        "Drug Reaction with Eosinophilia and Systemic Symptoms (DRESS)",
+        "Hyponatremia and SIADH (syndrome of inappropriate antidiuretic hormone)",
+        "Hepatic failure and acute hepatitis"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-carbamazepine-label",
+          "locator": "Section BOXED WARNING",
+          "quote": "SERIOUS AND SOMETIMES FATAL DERMATOLOGIC REACTIONS, INCLUDING TOXIC EPIDERMAL NECROLYSIS (TEN) AND STEVENS-JOHNSON SYNDROME (SJS), HAVE BEEN REPORTED DURING TREATMENT WITH TEGRETOL."
+        }
+      ]
+    }
   }
 }

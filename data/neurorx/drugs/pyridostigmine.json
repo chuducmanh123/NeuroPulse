@@ -203,5 +203,39 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Muscarinic gastrointestinal symptoms: abdominal cramps, diarrhea, nausea, vomiting, increased peristalsis",
+        "Increased salivation (sialorrhea) and increased bronchial secretions",
+        "Diaphoresis (excessive sweating)",
+        "Miosis (constricted pupils) and blurred vision",
+        "Urinary urgency and frequency"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-pyridostigmine-label",
+          "locator": "Section ADVERSE REACTIONS - Muscarinic Effects",
+          "quote": "Among those in the former group are nausea, vomiting, diarrhea, abdominal cramps, increased peristalsis, increased salivation, increased bronchial secretions, miosis and diaphoresis."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Cholinergic Crisis (depolarizing neuromuscular blockade resulting in generalized flaccid muscle paralysis, respiratory failure, and apnea; must be differentiated from myasthenic crisis; requires immediate atropine and ventilatory support)",
+        "Severe nicotinic symptoms: prominent muscle fasciculations, muscle cramps, and profound muscle weakness",
+        "Severe bronchospasm, laryngospasm, and copious pulmonary secretions leading to airway obstruction (contraindicated in bronchial asthma)",
+        "Marked bradycardia, nodal rhythms, AV block, and syncope",
+        "Mechanical intestinal or urinary obstruction exacerbation (contraindicated)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-pyridostigmine-label",
+          "locator": "Section ADVERSE REACTIONS - Nicotinic Effects",
+          "quote": "Nicotinic side effects are comprised chiefly of muscle cramps, fasciculation and weakness."
+        }
+      ]
+    }
   }
 }

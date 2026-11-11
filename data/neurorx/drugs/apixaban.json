@@ -206,5 +206,38 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Gingival bleeding and epistaxis",
+        "Hematuria and microscopic urine blood loss",
+        "Gastrointestinal hemorrhage and rectal bleeding",
+        "Subcutaneous hematoma and contusion",
+        "Anemia"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-apixaban-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "Most common adverse reactions (>1%) are related to bleeding."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Major fatal bleeding and intracranial hemorrhage",
+        "Spinal / epidural hematoma resulting in long-term or permanent paralysis",
+        "Thrombotic events and ischemic stroke associated with premature discontinuation",
+        "Severe hypersensitivity reactions (anaphylaxis, angioedema, erythema multiforme)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-apixaban-label",
+          "locator": "Section 5.3 Spinal/Epidural Anesthesia or Puncture",
+          "quote": "Epidural or spinal hematomas may occur in patients treated with ELIQUIS who are receiving neuraxial anesthesia or undergoing spinal puncture. These hematomas may result in long-term or permanent paralysis."
+        }
+      ]
+    }
   }
 }

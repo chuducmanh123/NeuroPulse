@@ -292,5 +292,38 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Dizziness and ataxia",
+        "Headache",
+        "Diplopia and blurred vision",
+        "Nausea and vomiting",
+        "Somnolence and fatigue"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-lacosamide-label",
+          "locator": "Section 6 ADVERSE REACTIONS",
+          "quote": "Most common adverse reactions in adults (≥10% and greater than placebo) are diplopia, headache, dizziness, nausea, and somnolence ( 6.1 ) Monotherapy: Most common adverse reactions are similar to those seen in adjunctive"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Cardiac rhythm and conduction abnormalities (PR interval prolongation, first/second-degree AV block, ventricular tachyarrhythmias)",
+        "Syncope and orthostatic bradyarrhythmias",
+        "Suicidal behavior and ideation",
+        "Drug Reaction with Eosinophilia and Systemic Symptoms (DRESS) / Multiorgan hypersensitivity"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-lacosamide-label",
+          "locator": "Section 5.3 Cardiac Rhythm and Conduction Abnormalities",
+          "quote": "Obtaining an ECG before beginning VIMPAT and after VIMPAT is titrated to steady-state maintenance dose is recommended in patients with underlying proarrhythmic conditions or on concomitant medications that affect cardiac conduction [see Dru"
+        }
+      ]
+    }
   }
 }

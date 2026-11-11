@@ -214,5 +214,39 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Infusion-related reactions (fever, chills, flushing, joint pain, nausea, occurring typically with first infusion)",
+        "Amyloid-Related Imaging Abnormalities with edema (ARIA-E)",
+        "Amyloid-Related Imaging Abnormalities with cerebral microhemorrhages (ARIA-H)",
+        "Headache",
+        "Superficial siderosis of the central nervous system",
+        "Falls and dizziness"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-lecanemab-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "Most common adverse reactions (at approximately 10% and higher incidence compared to placebo): infusion-related reactions, amyloid related imaging abnormality-microhemorrhages, amyloid related imaging abnormality-edema/effusion, and headache."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Amyloid-Related Imaging Abnormalities (ARIA-E cerebral sulcal/parenchymal edema and ARIA-H microhemorrhages/superficial siderosis, Boxed Warning, highest risk in ApoE ε4 homozygotes)",
+        "Symptomatic and potentially fatal intracerebral hemorrhage (ICH > 1 cm, markedly increased risk with concurrent anticoagulation)",
+        "Severe infusion-related anaphylactoid reactions and bronchospasm",
+        "Subacute encephalopathy or confusion associated with ARIA"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-lecanemab-label",
+          "locator": "Section BOXED WARNING",
+          "quote": "WARNING: AMYLOID RELATED IMAGING ABNORMALITIES Monoclonal antibodies directed against aggregated forms of beta amyloid, including LEQEMBI, can cause amyloid related imaging abnormalities (ARIA), characterized as ARIA with edema (ARIA-E) and ARIA with hemosider"
+        }
+      ]
+    }
   }
 }

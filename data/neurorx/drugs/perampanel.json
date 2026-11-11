@@ -215,5 +215,39 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Dizziness and vertigo",
+        "Somnolence, fatigue, and lethargy",
+        "Irritability and hostility",
+        "Ataxia and gait disturbance (dose-dependent fall risk)",
+        "Nausea, weight gain, and contusion"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-perampanel-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "Most common adverse reactions (≥5% and ≥1% higher than placebo) include dizziness, somnolence, fatigue, irritability, falls, nausea, weight gain, vertigo, ataxia, headache, vomiting, contusion, abdominal pain, and anxiety ( 6.1 ) To report"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Severe psychiatric and behavioral reactions including aggression, hostility, homicidal ideation, and threat of violence (Boxed Warning)",
+        "Suicidal behavior and ideation",
+        "Severe falls and fall-related injuries (especially in elderly patients)",
+        "Multi-organ hypersensitivity reactions (DRESS)",
+        "Rebound status epilepticus following sudden withdrawal"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-perampanel-label",
+          "locator": "Section BOXED WARNING",
+          "quote": "Serious or life-threatening psychiatric and behavioral adverse reactions including aggression, hostility, irritability, anger, and homicidal ideation and threats have been reported in patients taking FYCOMPA ( 5.1 ) ."
+        }
+      ]
+    }
   }
 }

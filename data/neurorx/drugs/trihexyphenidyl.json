@@ -201,5 +201,39 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Dry mouth (xerostomia)",
+        "Blurred vision and cycloplegia / mydriasis",
+        "Dizziness and lightheadedness",
+        "Mild nausea and nervousness",
+        "Constipation and urinary hesitancy"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-trihexyphenidyl-label",
+          "locator": "Section ADVERSE REACTIONS",
+          "quote": "Minor side effects, such as dryness of the mouth, blurred vision, dizziness, mild nausea or nervousness, will be experienced by 30 to 50 percent of all patients."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Acute angle-closure glaucoma (contraindicated in narrow-angle glaucoma)",
+        "Urinary retention (especially in elderly males with prostatic hypertrophy)",
+        "Severe central anticholinergic toxicity (confusion, memory loss, agitation, delirium, hallucinations)",
+        "Anhidrosis and severe hyperthermia / heat stroke in warm environments",
+        "Paralytic ileus and toxic megacolon"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-trihexyphenidyl-label",
+          "locator": "Section CONTRAINDICATIONS",
+          "quote": "Trihexyphenidyl is also contraindicated in patients with narrow angle glaucoma."
+        }
+      ]
+    }
   }
 }

@@ -152,5 +152,39 @@
       }
     ],
     "value": "Alteplase is a serine protease responsible for fibrin-enhanced conversion of plasminogen to plasmin. It produces limited conversion of plasminogen in the absence of fibrin. When introduced into the systemic circulation at pharmacologic concentration, alteplase binds to fibrin in a thrombus and converts the entrapped plasminogen to plasmin. This initiates local fibrinolysis."
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Bleeding (superficial at puncture sites and internal)",
+        "Gastrointestinal hemorrhage",
+        "Genitourinary bleeding",
+        "Ecchymosis and hematoma",
+        "Epistaxis and gingival bleeding"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-alteplase-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "The most frequent adverse reaction associated with Activase in all approved indications is bleeding."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Symptomatic intracranial hemorrhage (ICH) within 36 hours",
+        "Fatal internal hemorrhage (gastrointestinal or retroperitoneal)",
+        "Anaphylactoid and hypersensitivity reactions (angioedema, laryngeal edema)",
+        "Cholesterol embolization and arterial thromboembolism",
+        "Cerebral herniation and severe post-thrombolytic cerebral edema"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-alteplase-label",
+          "locator": "Section 6.1 Acute Ischemic Stroke",
+          "quote": "These data indicate a significant increase in intracranial hemorrhage following Activase treatment, particularly symptomatic intracranial hemorrhage within 36 hours."
+        }
+      ]
+    }
   }
 }

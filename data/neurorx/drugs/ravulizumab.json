@@ -213,5 +213,38 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Upper respiratory tract infection and nasopharyngitis",
+        "Headache (usually transient)",
+        "Diarrhea and nausea",
+        "Pyrexia and fatigue",
+        "Pain in extremity and arthralgia"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-ravulizumab-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "Most common adverse reactions in patients with PNH (incidence ≥ 10%) were upper respiratory tract infection and headache."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Life-threatening and fatal meningococcal infections (Neisseria meningitidis; Boxed Warning; mandatory vaccination serogroups ACWY + B)",
+        "Severe systemic encapsulated bacterial infections",
+        "Infusion-related reactions (lower back pain, chest pain, dyspnea, rash)",
+        "Post-discontinuation disease exacerbation / severe hemolysis or myasthenic relapse"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-ravulizumab-label",
+          "locator": "Section BOXED WARNING - Meningococcal Infections",
+          "quote": "MENINGOCOCCAL INFECTIONS ULTOMIRIS, a complement inhibitor, increases the risk of serious infections caused by Neisseria meningitidis [see Warnings and Precautions (5.1) ] ."
+        }
+      ]
+    }
   }
 }

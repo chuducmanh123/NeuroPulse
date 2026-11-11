@@ -221,5 +221,40 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Dizziness and balance impairment",
+        "Headache",
+        "Confusion and somnolence",
+        "Constipation",
+        "Hypertension",
+        "Cough and dyspnea"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-memantine-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "The most commonly observed adverse reactions occurring at a frequency of at least 5% and greater than placebo with administration of memantine hydrochloride extended-release capsules 28 mg/day were headache, diarrhea and dizziness."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Seizures (evaluated with caution in patients with a history of seizure disorder)",
+        "Hallucinations, agitation, and psychotic reactions",
+        "Severe confusion and cognitive worsening",
+        "Urinary tract infections and urinary incontinence",
+        "Heart failure and thromboembolic events (rarely reported in postmarketing)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-memantine-label",
+          "locator": "Section 5.3 Seizure Disorders",
+          "quote": "In clinical trials of memantine, seizures occurred in 0.3% of patients treated with memantine and 0.6% of patients treated with placebo."
+        }
+      ]
+    }
   }
 }

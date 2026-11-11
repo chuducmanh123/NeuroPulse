@@ -80,6 +80,33 @@
           ]
         }
       ]
+    },
+    {
+      "id": "top-po-migraine-prophylaxis",
+      "indication": "Preventive Treatment of Migraine Headache in Adults and Adolescents",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-topiramate-label",
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "Migraine TOPAMAX is indicated for the preventive treatment of migraine in patients 12 years of age and older. === DOSAGE AND ADMINISTRATION === 2 DOSAGE AND ADMINISTRATION TOPAMAX initial dose, titra"
+        },
+        {
+          "source_id": "fda-topiramate-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "The recommended total daily dose of TOPAMAX as treatment for patients 12 years of age and older for the preventive treatment of migraine is 100 mg/day administered in two divided doses (Table 3)."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 25,
+        "unit": "mg",
+        "frequency": "twice daily",
+        "max_single": 50,
+        "max_daily": 100
+      },
+      "dose_text": "Initiate 25 mg orally at night for Week 1; 25 mg twice daily for Week 2; 25 mg morning and 50 mg evening for Week 3; reach target 50 mg twice daily (100 mg/day) at Week 4. Maintain hydration to minimize nephrolithiasis risk."
     }
   ],
   "renal_basis": {
@@ -239,5 +266,39 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Paresthesias (tingling in fingers and toes)",
+        "Anorexia, weight loss, and taste perversion (dysgeusia, carbonated beverages taste flat)",
+        "Cognitive slowing, word-finding difficulty, and memory impairment ('dopamax' effect)",
+        "Somnolence, fatigue, and dizziness",
+        "Nervousness and mood swings"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-topiramate-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "Epilepsy : Most common (≥10% more frequent than placebo or low-dose TOPAMAX) adverse reactions in adult and pediatric patients were: paresthesia, anorexia, weight loss, speech disorders/related speech problems, fatigue, dizziness, somnolenc"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Hyperchloremic non-anion gap metabolic acidosis (carbonic anhydrase inhibition)",
+        "Acute myopia and secondary angle-closure glaucoma (ocular emergency, discontinue immediately)",
+        "Oligohidrosis and hyperthermia (decreased sweating, risk of heat stroke especially in children)",
+        "Kidney stones (nephrolithiasis / calcium phosphate urolithiasis)",
+        "Major congenital malformations (cleft lip/palate, oral clefts) and microcephaly/SGA"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-topiramate-label",
+          "locator": "Section 5.4 Metabolic Acidosis",
+          "quote": "TOPAMAX can cause hyperchloremic, non-anion gap, metabolic acidosis (i.e., decreased serum bicarbonate below the normal reference range in the absence of chronic respiratory alkalosis)."
+        }
+      ]
+    }
   }
 }

@@ -196,5 +196,37 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Injection site reactions (pain, erythema, pruritus)",
+        "Constipation (usually mild to moderate, occurring within days of first dose)",
+        "Muscle spasms",
+        "Upper respiratory tract infection"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-erenumab-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "The most common adverse reactions in AIMOVIG clinical studies (occurring in at least 3% of treated patients and more often than placebo) are injection site reactions and constipation."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Constipation with serious complications (bowel obstruction, severe impaction, obstipation, requiring hospitalization or surgical intervention)",
+        "New-onset or worsening of preexisting hypertension (including hypertensive crisis / urgency)",
+        "Severe systemic hypersensitivity reactions (rash, angioedema, anaphylaxis)",
+        "Raynaud's phenomenon and peripheral vasospasm"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-erenumab-label",
+          "locator": "Section 5.2 Constipation with Serious Complications",
+          "quote": "Constipation with Serious Complications: Serious complications of constipation may occur. ( 5.2 ) Hypertension: New-onset or worsening of pre-existing hypertension may occur."
+        }
+      ]
+    }
   }
 }

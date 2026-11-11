@@ -59,6 +59,33 @@
         "max_daily": 3600
       },
       "dose_text": "Initiate on Day 1 as 300 mg single dose, Day 2 as 600 mg/day (300 mg BID), Day 3 as 900 mg/day (300 mg TID). Subsequently titrate up for pain relief to recommended dose of 1800 mg/day (600 mg TID). Maximum dose 3600 mg/day. Adjust dose in renal impairment."
+    },
+    {
+      "id": "gab-adjunctive-partial-seizures-po",
+      "indication": "Adjunctive Therapy in the Treatment of Partial-Onset Seizures with or without Secondary Generalization",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-gabapentin-label",
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "treatment of partial onset seizures, with and without secondary generalization, in adults and pediatric patients 3 years and older with epilepsy NEURONTIN is in"
+        },
+        {
+          "source_id": "fda-gabapentin-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "The starting dose is 300 mg three times a day. The recommended maintenance dose of NEURONTIN is 300 mg to 600 mg three times a day."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 300,
+        "unit": "mg",
+        "frequency": "three times daily",
+        "max_single": 1200,
+        "max_daily": 3600
+      },
+      "dose_text": "Initiate 300 mg orally on Day 1; 300 mg twice daily on Day 2; 300 mg three times daily on Day 3. Titrate as needed up to maintenance of 900 to 1800 mg/day divided three times daily (max 3600 mg/day). Maximum time between doses should not exceed 12 hours."
     }
   ],
   "renal_basis": {
@@ -203,5 +230,39 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Dizziness and lightheadedness",
+        "Somnolence, sedation, and fatigue",
+        "Peripheral edema (bilateral lower extremity)",
+        "Ataxia and uncoordinated gait",
+        "Weight gain and dry mouth"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-gabapentin-label",
+          "locator": "Section 5.4 Somnolence and Dizziness",
+          "quote": "Moreover, because NEURONTIN causes somnolence and dizziness [see Warnings and Precautions (5.4) ] , patients should be advised not to operate complex machinery until they have gain"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Life-threatening respiratory depression (especially when combined with opioids or in patients with severe COPD/elderly)",
+        "Drug Reaction with Eosinophilia and Systemic Symptoms (DRESS) / Multiorgan hypersensitivity",
+        "Anaphylaxis and angioedema",
+        "Suicidal behavior and ideation",
+        "Rebound seizures and withdrawal status epilepticus upon abrupt cessation"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-gabapentin-label",
+          "locator": "Section 5.1 Discontinuation Symptoms",
+          "quote": "Withdrawal symptoms, or suicidal behavior and ideation have been observed after discontinuation ( 5.6 ) • Respiratory Depression: May occur with NEURONTIN when used with concomitan"
+        }
+      ]
+    }
   }
 }

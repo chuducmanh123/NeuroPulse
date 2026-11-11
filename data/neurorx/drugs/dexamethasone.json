@@ -230,5 +230,42 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Hyperglycemia and glycosuria",
+        "Cushingoid state and weight gain",
+        "Fluid and electrolyte disturbances (potassium loss, sodium retention)",
+        "Insomnia, restlessness, and mood alterations",
+        "Gastric irritation and dyspepsia",
+        "Increased appetite"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-dexamethasone-label",
+          "locator": "Section ADVERSE REACTIONS - Endocrine",
+          "quote": "development of cushingoid state, hyperglycemia, glycosuria, hirsutism, hypertrichosis, increased requirements for insulin or oral hypoglycemic agents in diabetes, manifestations of latent diabetes mellitus, menstrual irregularities, secondary adrenocortical an"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Neurological/psychiatric toxicity: convulsions, severe depression, psychosis, emotional instability",
+        "Pseudotumor cerebri (benign intracranial hypertension with papilledema) usually following discontinuation",
+        "Avascular necrosis of femoral and humeral heads, severe osteoporosis, and pathologic fractures",
+        "Peptic ulceration with perforation and massive hemorrhage",
+        "Acute adrenal insufficiency / crisis upon rapid withdrawal",
+        "Opportunistic infections and masking of infection signs",
+        "Cardiovascular: hypertension, arrhythmias, congestive heart failure"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-dexamethasone-label",
+          "locator": "Section ADVERSE REACTIONS - Neurological/Psychiatric",
+          "quote": "Neurological/Psychiatric: Convulsions, depression, emotional instability, euphoria, headache, increased intracranial pressure with papilledema (pseudotumor cerebri) usually following discontinuation of treatment, insomnia, mood swings, neuritis, neuropathy, pa"
+        }
+      ]
+    }
   }
 }

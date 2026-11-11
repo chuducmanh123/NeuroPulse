@@ -203,5 +203,44 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Hyperglycemia and acute worsening of diabetic control",
+        "Development of cushingoid features (moon facies, buffalo hump, central adiposity)",
+        "Fluid retention, sodium retention, and peripheral edema",
+        "Hypertension",
+        "Insomnia, euphoria, anxiety, and mood lability",
+        "Dyspepsia and gastric irritation",
+        "Weight gain and increased appetite"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-methylprednisolone-label",
+          "locator": "Section ADVERSE REACTIONS - Endocrine",
+          "quote": "Endocrine: Decreased carbohydrate and glucose tolerance, development of cushingoid state, glycosuria, hirsutism, hypertrichosis, increased requirements for insulin or oral hypoglycemic agents in diabetes, manifestations of latent diabetes mellitus, menstrual i"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Aseptic osteonecrosis / avascular necrosis of femoral and humeral heads",
+        "Severe steroid-induced osteoporosis and pathologic vertebral compression fractures",
+        "Peptic ulcer disease with gastrointestinal perforation and hemorrhage",
+        "Steroid psychosis, severe mania, depression, and cognitive disturbances",
+        "Secondary adrenocortical and pituitary unresponsiveness (adrenal crisis on rapid withdrawal)",
+        "Severe immunosuppression and reactivation of latent infections (tuberculosis, fungal, strongyloides)",
+        "Cardiovascular collapse, cardiac arrest, arrhythmias, and hypertension with rapid IV infusion",
+        "Posterior subcapsular cataracts and elevated intraocular pressure / glaucoma"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-methylprednisolone-label",
+          "locator": "Section ADVERSE REACTIONS - Musculoskeletal",
+          "quote": "Musculoskeletal: Aseptic necrosis of femoral and humeral heads, Charcot-like arthropathy, loss of muscle mass, muscle weakness, osteoporosis, pathologic fracture of long bones, postinjection flare (following intra-articular use), steroid myopathy, tendon ruptu"
+        }
+      ]
+    }
   }
 }

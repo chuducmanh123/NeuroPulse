@@ -158,5 +158,38 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Transitory hypotension and facial flushing",
+        "Mild bradycardia",
+        "Nausea and vomiting",
+        "Lassitude and dyspnea",
+        "Back and thoracic pain"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-protamine-label",
+          "locator": "Section ADVERSE REACTIONS",
+          "quote": "Rapid administration of protamine is more likely to result in bradycardia, dyspnea, a sensation of warmth, flushing, and severe hypotension. Hypertension has also occurred."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Catastrophic pulmonary vasoconstriction and acute pulmonary hypertension",
+        "Severe cardiovascular collapse and refractory hypotension",
+        "Noncardiogenic pulmonary edema",
+        "Fatal anaphylactoid and hypersensitivity reactions (higher risk with prior vasectomy or fish allergy)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-protamine-label",
+          "locator": "Section BOXED WARNING",
+          "quote": "Protamine sulfate can cause severe hypotension, cardiovascular collapse, noncardiogenic pulmonary edema, catastrophic pulmonary vasoconstriction, and pulmonary hypertension."
+        }
+      ]
+    }
   }
 }

@@ -215,5 +215,38 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Amyloid-Related Imaging Abnormalities with edema/sulcal effusion (ARIA-E in 24% of patients)",
+        "Amyloid-Related Imaging Abnormalities with microhemorrhage (ARIA-H in 31% of patients)",
+        "Headache",
+        "Superficial siderosis of the brain",
+        "Infusion-related reactions (chills, nausea, erythema, diaphoresis)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-donanemab-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "Most common adverse reactions (at least 10% and higher incidence compared to placebo): ARIA-E, ARIA-H microhemorrhage, ARIA-H superficial siderosis, and headache."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Symptomatic and serious ARIA (cerebral edema, focal neurological deficits, encephalopathy, seizures; Boxed Warning, higher risk in ApoE ε4 homozygotes)",
+        "Major intracranial hemorrhage and fatal brain hemorrhages (especially in patients taking antithrombotics)",
+        "Severe systemic hypersensitivity reactions and anaphylaxis",
+        "Permanent neurological disability associated with severe ARIA episodes"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-donanemab-label",
+          "locator": "Section BOXED WARNING",
+          "quote": "WARNING: AMYLOID RELATED IMAGING ABNORMALITIES Monoclonal antibodies directed against aggregated forms of beta amyloid, including KISUNLA, can cause amyloid related imaging abnormalities (ARIA), characterized as ARIA with edema (ARIA-E) and ARIA with hemosider"
+        }
+      ]
+    }
   }
 }

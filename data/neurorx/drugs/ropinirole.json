@@ -201,5 +201,40 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Nausea and vomiting",
+        "Somnolence and excessive fatigue",
+        "Dizziness and lightheadedness",
+        "Syncope and orthostatic hypotension",
+        "Abdominal pain, dyspepsia, and anorexia",
+        "Peripheral edema"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-ropinirole-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "Most common adverse reactions (incidence with ropinirole at least 5% greater than placebo) in the respective indications were: • Early PD: Nausea, somnolence, dizziness, syncope, asthenic condition, viral infection, leg edema, vomiting, and dyspepsia."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Sudden sleep onset episodes during daily activities without prior warning",
+        "Syncope and severe orthostatic hypotension (dose-dependent, especially during titration)",
+        "Hallucinations, paranoia, and psychotic-like behavior",
+        "Impulse control disorders and compulsive behaviors",
+        "Dyskinesias (potentiation of preexisting levodopa-induced dyskinesias)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-ropinirole-label",
+          "locator": "Section 5.1 Falling Asleep During Activities of Daily Living",
+          "quote": "Patients treated with ropinirole have reported falling asleep while engaged in activities of daily living, including driving or operating machinery, which sometimes resulted in accidents."
+        }
+      ]
+    }
   }
 }

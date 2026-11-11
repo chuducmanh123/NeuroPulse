@@ -184,5 +184,38 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Hypotension and blood pressure drop",
+        "Headache",
+        "Nausea and abdominal discomfort",
+        "Bradycardia and heart rate slowing",
+        "Peripheral edema and facial flushing"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-nimodipine-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "Most common adverse reactions (incidence ≥1% and ≥1% placebo) were hypotension, headache, nausea, and bradycardia. ( 6.1 ) To report SUSPECTED ADVERSE REACTIONS, contact Azurity Pharmaceuticals, Inc."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Inadvertent intravenous administration leading to cardiac arrest, cardiovascular collapse, and death (Boxed Warning)",
+        "Severe hypotension causing secondary cerebral ischemia in acute aSAH",
+        "Elevated hepatic enzymes and abnormal liver function",
+        "Paralytic ileus secondary to calcium-channel inhibition"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-nimodipine-label",
+          "locator": "Section 2.1 Administration Instructions",
+          "quote": "Do not administer intravenously or by other parenteral routes. ( 2.1 ) Give one hour before a meal or two hours after a meal. ( 2.1 ) Start dosing within 96 hours of the SAH."
+        }
+      ]
+    }
   }
 }

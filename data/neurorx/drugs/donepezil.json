@@ -57,6 +57,33 @@
         "max_daily": 23
       },
       "dose_text": "Mild to moderate AD: Initial dose is 5 mg once daily at bedtime. May increase to 10 mg once daily after 4 to 6 weeks. Severe AD: 10 mg once daily; may increase to 23 mg once daily after at least 3 months on 10 mg daily. Take with or without food. Monitor for symptomatic bradycardia and syncope."
+    },
+    {
+      "id": "don-po-ad-severe-23mg",
+      "indication": "Moderate to Severe Alzheimer's Disease Dementia (High-Dose Regimen)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-donepezil-label",
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "ARICEPT is indicated for the treatment of dementia of the Alzheimer’s type."
+        },
+        {
+          "source_id": "fda-donepezil-label",
+          "locator": "Section 2.2 Dosing in Moderate to Severe Alzheimer’s Disease",
+          "quote": "A dose of 23 mg per day should not be administered until patients have been on a daily dose of 10 mg for at least 3 months. 2.3 Administration Information ARICEPT should be taken in the evening, just prior to retiring."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 23,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 23,
+        "max_daily": 23
+      },
+      "dose_text": "Administer 23 mg orally once daily at bedtime in patients with moderate to severe Alzheimer's disease who have been established on a stable dose of 10 mg once daily for at least 3 months. Swallow tablet whole with liquid; do not chew or crush."
     }
   ],
   "renal_basis": {
@@ -202,5 +229,40 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Nausea and diarrhea",
+        "Insomnia and abnormal dreams",
+        "Vomiting and anorexia",
+        "Muscle cramps and fatigue",
+        "Dizziness and headache",
+        "Weight loss"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-donepezil-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "These include nausea, diarrhea, insomnia, vomiting, muscle cramp, fatigue, and anorexia."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Severe bradycardia, sick sinus syndrome, and AV heart block (vagotonic cardiac effects with syncope and falls)",
+        "Peptic ulcer disease and gastrointestinal bleeding (stimulation of gastric acid secretion)",
+        "Generalized convulsions / seizures",
+        "Bladder outflow obstruction",
+        "Exaggeration of succinylcholine-type muscle relaxation during anesthesia"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-donepezil-label",
+          "locator": "Section 5.2 Cardiovascular Conditions",
+          "quote": "bradycardia or heart block ( 5.2 ) ARICEPT can cause vomiting."
+        }
+      ]
+    }
   }
 }

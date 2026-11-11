@@ -209,5 +209,39 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Loss of grip strength and generalized leg/skeletal muscle weakness",
+        "Drowsiness, fatigue, and sedation",
+        "Dizziness and lightheadedness",
+        "Injection site thrombophlebitis, tissue necrosis, and extravasation injury",
+        "Nausea, vomiting, and diarrhea"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-dantrolene-label",
+          "locator": "Section ADVERSE REACTIONS",
+          "quote": "The administration of Dantrium Intravenous to human volunteers is associated with loss of grip strength and weakness in the legs, as well as drowsiness and dizziness."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Fatal and non-fatal hepatotoxicity and symptomatic hepatitis (Boxed Warning with chronic use; monitor LFTs)",
+        "Severe muscle weakness and respiratory depression / ventilatory failure in patients with preexisting neuromuscular disease",
+        "Severe cardiovascular collapse and hyperkalemia (especially when co-administered with verapamil or calcium-channel blockers)",
+        "Extravasation tissue necrosis and deep tissue sloughing (high pH alkaline solution)",
+        "Anaphylactoid reactions and urticaria"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-dantrolene-label",
+          "locator": "Section PRECAUTIONS - Hepatic Impairment",
+          "quote": "There have been reported cases of hepatotoxicity following the use of intravenous dantrolene products."
+        }
+      ]
+    }
   }
 }

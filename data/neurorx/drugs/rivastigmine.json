@@ -58,6 +58,33 @@
         "max_daily": 13.3
       },
       "dose_text": "Transdermal patch: Initial dose 4.6 mg/24 hours patch applied once daily to clean, intact skin. After a minimum of 4 weeks, increase to recommended maintenance dose of 9.5 mg/24 hours. May increase to 13.3 mg/24 hours in severe dementia. Rotate application sites daily (upper/lower back, upper arm, chest); do not apply to same site for 14 days. Transdermal formulation significantly reduces gastrointestinal adverse effects."
+    },
+    {
+      "id": "riv-patch-ad-maintenance",
+      "indication": "Mild, Moderate, or Severe Alzheimer's Disease Dementia (Transdermal Patch)",
+      "setting": "maintenance_outpatient",
+      "route": "TD",
+      "refs": [
+        {
+          "source_id": "fda-rivastigmine-label",
+          "locator": "Section 1.1 Alzheimer’s Disease",
+          "quote": "EXELON PATCH is indicated for the treatment of dementia of the Alzheimer’s type (AD)."
+        },
+        {
+          "source_id": "fda-rivastigmine-label",
+          "locator": "Section 2.1 Recommended Dosage",
+          "quote": "Initial Dose: Initiate treatment with 4.6 mg/24 hours EXELON PATCH."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 9.5,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 13.3,
+        "max_daily": 13.3
+      },
+      "dose_text": "Apply one 4.6 mg/24h transdermal patch once daily for at least 4 weeks; if well tolerated, increase to 9.5 mg/24h (standard effective maintenance dose). May further titrate to 13.3 mg/24h for severe dementia. Rotate application site daily (upper back, lower back, upper arm, or chest); do not reapply to same site within 14 days."
     }
   ],
   "renal_basis": {
@@ -202,5 +229,40 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Nausea and vomiting (prominent, dose-related)",
+        "Diarrhea and abdominal pain",
+        "Anorexia and weight loss",
+        "Dizziness and headache",
+        "Application site erythema and pruritus (with transdermal patch)",
+        "Tremor and worsening of parkinsonian symptoms"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-rivastigmine-label",
+          "locator": "Section 2.2 Dosing in Low Body Weight",
+          "quote": "Most common adverse reactions (less than 5% and higher than with placebo): Nausea, vomiting, and diarrhea."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Severe gastrointestinal toxicity with excessive vomiting and esophageal rupture (Boerhaave's syndrome)",
+        "Severe bradycardia, syncope, and sinoatrial/atrioventricular heart block",
+        "Severe contact dermatitis and generalized allergic skin reactions (allergic contact dermatitis)",
+        "Worsening of extrapyramidal motor symptoms in patients with Parkinson's disease dementia",
+        "Peptic ulcer disease and gastrointestinal hemorrhage"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-rivastigmine-label",
+          "locator": "Section 5.1 Gastrointestinal Adverse Reactions",
+          "quote": "Gastrointestinal Adverse Reactions: May include significant nausea, vomiting, diarrhea, anorexia/decreased appetite, and weight loss, and may necessitate treatment interruption."
+        }
+      ]
+    }
   }
 }

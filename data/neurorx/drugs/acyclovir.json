@@ -202,5 +202,40 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Local injection site inflammation, phlebitis, and pain (~9%)",
+        "Transient elevations of serum creatinine or BUN (5% to 10%; higher with rapid IV bolus)",
+        "Nausea and vomiting (~7%)",
+        "Itching, rash, or hives (~2%)",
+        "Transient transaminase elevations (1% to 2%)",
+        "Headache and malaise"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-acyclovir-label",
+          "locator": "Section ADVERSE REACTIONS",
+          "quote": "The most frequent adverse reactions reported during administration of acyclovir were inflammation or phlebitis at the injection site in approximately 9% of the patients, and transient elevations of serum creatinine or BUN in 5% to 10% (the higher incidence occ"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Acute Kidney Injury / crystal nephropathy (intratubular precipitation of acyclovir crystals; prevent by slow IV infusion over >=1 hour and adequate intravenous hydration)",
+        "Severe neurotoxicity and encephalopathy: delirium, hallucinations, agitation, ataxia, tremor, myoclonus, seizures, and coma (higher risk in elderly or patients with preexisting renal impairment)",
+        "Severe hypersensitivity reactions and anaphylaxis",
+        "Extravasation tissue necrosis and chemical thrombophlebitis (high alkaline pH ~11)",
+        "Disseminated intravascular coagulation and hemolytic uremic syndrome (rare)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-acyclovir-label",
+          "locator": "Section ADVERSE REACTIONS - Postmarketing / Nervous",
+          "quote": "Nervous: Aggressive behavior, agitation, ataxia, coma, confusion, delirium, dizziness, dysarthria, encephalopathy, hallucinations, obtundation, paresthesia, psychosis, seizure, somnolence, tremor."
+        }
+      ]
+    }
   }
 }

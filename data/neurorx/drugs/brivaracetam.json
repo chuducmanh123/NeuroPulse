@@ -195,5 +195,38 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Somnolence and sedation",
+        "Dizziness and gait instability",
+        "Fatigue and asthenia",
+        "Nausea and vomiting",
+        "Irritability and anxiety"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-brivaracetam-label",
+          "locator": "Section 5.1 Somnolence and Fatigue",
+          "quote": "Adverse Reactions : Monitor for somnolence and fatigue, and advise patients not to drive or operate machinery until they have gained sufficient experience on BRIVIACT."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Psychiatric and behavioral symptoms (agitation, aggression, depression, paranoia, psychosis)",
+        "Suicidal behavior and ideation",
+        "Hypersensitivity reactions (bronchospasm and angioedema)",
+        "Risk of status epilepticus upon abrupt discontinuation"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-brivaracetam-label",
+          "locator": "Section 5.2 Suicidal Behavior and Ideation",
+          "quote": "Suicidal Behavior and Ideation : Monitor patients for suicidal behavior and ideation."
+        }
+      ]
+    }
   }
 }

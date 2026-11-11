@@ -156,5 +156,38 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Headache (15%)",
+        "Hypotension (6%)",
+        "Reflex tachycardia and palpitations (4%)",
+        "Nausea and vomiting (3%)",
+        "Peripheral edema and facial flushing"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-nicardipine-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "Most common adverse reactions: are headache (15%), hypotension (6%), tachycardia (4%) and nausea/vomiting (5%)."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Excessive symptomatic hypotension with cerebral hypoperfusion",
+        "Exacerbation of myocardial ischemia and angina",
+        "Worsening heart failure in patients with preexisting left ventricular dysfunction",
+        "Infusion site phlebitis and pain (minimize by changing peripheral site q12h)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-nicardipine-label",
+          "locator": "Section 5.1 Excessive Hypotension",
+          "quote": "If there is concern of impending hypotension or tachycardia, the infusion should be discontinued. Then, when blood pressure has stabilized, infusion of CARDENE I.V."
+        }
+      ]
+    }
   }
 }

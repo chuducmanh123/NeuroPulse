@@ -218,5 +218,42 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Anticholinergic effects: dry mouth, blurred vision, cycloplegia, constipation",
+        "Marked sedation, drowsiness, and fatigue (histaminergic H1 blockade)",
+        "Weight gain and increased appetite",
+        "Orthostatic hypotension and dizziness",
+        "Urinary retention and urinary hesitancy",
+        "Tremor and ataxia"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-amitriptyline-label",
+          "locator": "Section ADVERSE REACTIONS - Anticholinergic",
+          "quote": "Anticholinergic: Paralytic ileus, hyperpyrexia; urinary retention, dilatation of the urinary tract; constipation; blurred vision, disturbance of accommodation, increased ocular pressure, mydriasis; dry mouth."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Cardiovascular toxicity: fatal ventricular arrhythmias (torsades de pointes), QT prolongation, AV heart block, myocardial infarction, stroke",
+        "Boxed Warning: Increased risk of suicidal thoughts and behaviors in young adults / pediatric patients",
+        "Paralytic ileus and toxic megacolon",
+        "Acute angle-closure glaucoma",
+        "Central anticholinergic delirium, hallucinations, and confusion (high risk in elderly)",
+        "Lowering of seizure threshold / generalized convulsions",
+        "Serotonin syndrome (when combined with other serotonergic agents or MAOIs)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-amitriptyline-label",
+          "locator": "Section ADVERSE REACTIONS - Cardiovascular",
+          "quote": "Cardiovascular: Myocardial infarction; stroke; nonspecific ECG changes and changes in AV conduction; heart block; arrhythmias; hypotension, particularly orthostatic hypotension; syncope; hypertension; tachycardia; palpitation."
+        }
+      ]
+    }
   }
 }

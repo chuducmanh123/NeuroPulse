@@ -57,6 +57,33 @@
         "max_daily": 400
       },
       "dose_text": "Monotherapy target dosage range is 250 to 300 mg given once daily. Initiate and titrate slowly per schedule based on concomitant AEDs to reduce the risk of serious skin rashes."
+    },
+    {
+      "id": "lam-adjunctive-epilepsy-po",
+      "indication": "Adjunctive Therapy in Focal Seizures and Primary Generalized Tonic-Clonic Seizures",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-lamotrigine-label",
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "LAMICTAL XR is indicated as adjunctive therapy for primary generalized tonic-clonic (PGTC) seizures and partial-onset seizures with or without secondary general"
+        },
+        {
+          "source_id": "fda-lamotrigine-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Adjunctive therapy: Target therapeutic dosage range is 200 to 600 mg daily and is dependent on concomitant AEDs. ( 2.2 ) o Conversion to monotherapy: Target therapeutic dosage range is 250 to 300 mg daily."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 25,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 200,
+        "max_daily": 400
+      },
+      "dose_text": "Initiate 25 mg orally once daily for Weeks 1 and 2; increase to 50 mg daily for Weeks 3 and 4; then titrate by 50 mg/day every 1 to 2 weeks to target maintenance dose of 200 to 400 mg/day. DO NOT escalate faster than recommended due to high risk of serious cutaneous rash."
     }
   ],
   "renal_basis": {
@@ -229,5 +256,39 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Dizziness and ataxia",
+        "Diplopia and blurred vision",
+        "Headache and somnolence",
+        "Nausea, vomiting, and diarrhea",
+        "Insomnia and rhinitis"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-lamotrigine-label",
+          "locator": "Section 6 ADVERSE REACTIONS",
+          "quote": "adverse reactions, such as dizziness, ataxia, and diplopia."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Life-threatening skin rashes (Stevens-Johnson syndrome, Toxic Epidermal Necrolysis, Boxed Warning, rate increased by rapid titration or co-administration with valproate)",
+        "Hemophagocytic Lymphohistiocytosis (HLH, severe immune activation with fever, cytopenias, hepatomegaly)",
+        "Drug Reaction with Eosinophilia and Systemic Symptoms (DRESS)",
+        "Aseptic meningitis",
+        "Cardiac rhythm abnormalities (sodium channel blockade / PR interval prolongation / ventricular arrhythmias in structural heart disease)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-lamotrigine-label",
+          "locator": "Section BOXED WARNING",
+          "quote": "WARNING: SERIOUS SKIN RASHES LAMICTAL XR can cause serious rashes requiring hospitalization and discontinuation of treatment."
+        }
+      ]
+    }
   }
 }

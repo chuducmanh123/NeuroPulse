@@ -197,5 +197,39 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Respiratory tract infections (nasopharyngitis, sinusitis, bronchitis, pharyngitis; ~33%)",
+        "Headache (~32%)",
+        "Urinary tract infections (~10%)",
+        "Paresthesias and hypoesthesia",
+        "Myalgia",
+        "Injection site reactions (erythema, pruritus, hematoma with subcutaneous formulation)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-efgartigimod-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "The most common adverse reactions (≥ 10%) in patients with gMG treated with efgartigimod alfa-fcab were respiratory tract infections, headache, and urinary tract infection."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Severe hypersensitivity reactions (anaphylaxis, hypotension leading to syncope, angioedema, dyspnea, urticaria)",
+        "Severe and opportunistic infections (due to transient, profound reduction in circulating IgG levels)",
+        "Infusion/injection-related reactions",
+        "Transient neutropenia"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-efgartigimod-label",
+          "locator": "Section 5.2 Hypersensitivity Reactions",
+          "quote": "Hypersensitivity Reactions: Anaphylaxis, hypotension leading to syncope, angioedema, dyspnea, rash, and urticaria have occurred in patients treated with VYVGART HYTRULO or intravenous efgartigimod alfa-fcab product."
+        }
+      ]
+    }
   }
 }

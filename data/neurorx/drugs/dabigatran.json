@@ -275,5 +275,38 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Dyspepsia and gastritis-like symptoms (heartburn, burning sensation, nausea)",
+        "Abdominal pain and epigastric discomfort",
+        "Gastrointestinal bleeding and ulceration",
+        "Epistaxis and hematuria",
+        "Cutaneous hematoma and bruising"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-dabigatran-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "Most common adverse reactions (> 15%) are gastrointestinal adverse reactions and bleeding."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Major fatal hemorrhage (gastrointestinal, intracranial)",
+        "Spinal / epidural hematoma with permanent motor deficits",
+        "Rebound stroke risk following premature interruption",
+        "Thromboembolic complications in patients with mechanical prosthetic heart valves (contraindicated)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-dabigatran-label",
+          "locator": "Section 5.1 Premature Discontinuation",
+          "quote": "To reduce this risk, consider coverage with another anticoagulant if PRADAXA is discontinued for a reason other than pathological bleeding or completion of a course of therapy ( 2.5 , 2.6 , 2.7 , 5.1 )."
+        }
+      ]
+    }
   }
 }

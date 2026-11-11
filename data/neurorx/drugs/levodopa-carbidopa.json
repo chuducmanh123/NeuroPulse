@@ -200,5 +200,39 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Dyskinesias (choreiform, dystonic, and other involuntary movements)",
+        "Nausea, vomiting, and anorexia",
+        "Dizziness, lightheadedness, and orthostatic hypotension",
+        "Somnolence and excessive daytime sleepiness",
+        "Dream abnormalities, insomnia, and vivid nightmares"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-levodopa-carbidopa-label",
+          "locator": "Section ADVERSE REACTIONS",
+          "quote": "The most common adverse reactions reported with SINEMET have included dyskinesias, such as choreiform, dystonic, and other involuntary movements, and nausea."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Visual hallucinations, paranoid ideation, psychosis, and delirium",
+        "Motor fluctuations (severe 'on-off' phenomenon and end-of-dose wearing-off)",
+        "Sudden sleep attacks (falling asleep while engaged in activities of daily living)",
+        "Impulse control and compulsive behaviors (pathological gambling, hypersexuality, binge eating)",
+        "Neuroleptic Malignant Syndrome-like hyperpyrexia and confusion on abrupt reduction or withdrawal"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-levodopa-carbidopa-label",
+          "locator": "Section ADVERSE REACTIONS",
+          "quote": "hallucinations, and paranoid ideation, bradykinetic episodes (\"on-off\" phenomenon), confusion, agitation, dizziness, somnolence, dream abnormalities including nightmares, insomnia, paresthesia, headache, depression with"
+        }
+      ]
+    }
   }
 }

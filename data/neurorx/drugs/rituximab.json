@@ -222,5 +222,41 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Infusion-related reactions (fever, chills, rigors, nausea, pruritus, angioedema, headache, bronchospasm, hypotension)",
+        "Infections (upper respiratory tract, urinary tract, nasopharyngitis)",
+        "Asthenia and fatigue",
+        "Peripheral edema and hypertension",
+        "Transient neutropenia and lymphopenia"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-rituximab-label",
+          "locator": "Section 6 ADVERSE REACTIONS",
+          "quote": "The following clinically significant adverse reactions are described elsewhere in the labeling: Mucocutaneous reactions [see Warnings and Precautions (5.1) ] Hepatitis B reactivation including fulminant hepatitis [see Warnings and Precautions (5.2) ] Progressi"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Fatal Infusion-Related Reactions (severe cytokine release syndrome, cardiogenic shock, ARDS; Boxed Warning)",
+        "Severe Mucocutaneous Reactions (Stevens-Johnson syndrome, Toxic Epidermal Necrolysis, paraneoplastic pemphigus; Boxed Warning)",
+        "Hepatitis B Virus (HBV) Reactivation leading to fulminant hepatitis, hepatic failure, and death (Boxed Warning; screen prior to initiation)",
+        "Progressive Multifocal Leukoencephalopathy (PML) caused by JC virus (often fatal or permanently disabling; Boxed Warning)",
+        "Severe, life-threatening viral, bacterial, and fungal infections (including hypogammaglobulinemia)",
+        "Cardiac arrhythmias (ventricular tachycardia, fibrillation, angina) and myocardial infarction",
+        "Bowel obstruction and intestinal perforation"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-rituximab-label",
+          "locator": "Section 5.3 Progressive Multifocal Leukoencephalopathy",
+          "quote": "Progressive Multifocal Leukoencephalopathy (PML), including fatal PML, can occur in patients receiving rituximab-containing products, including RITUXAN HYCELA [see Warnings and Precautions (5.3) and Adverse Reactions (6.1) ]. === INDICATIONS AND USAGE === 1 I"
+        }
+      ]
+    }
   }
 }

@@ -202,5 +202,40 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Harmless brownish-orange urine discoloration",
+        "Dyskinesia and hyperkinesia (due to increased levodopa bioavailability)",
+        "Nausea, abdominal pain, vomiting, and dry mouth",
+        "Diarrhea (onset typically between 4 to 12 weeks of treatment)",
+        "Dizziness and fatigue"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-entacapone-label",
+          "locator": "Section ADVERSE REACTIONS",
+          "quote": "The most commonly observed adverse reactions (incidence at least 3% greater than placebo) in double-blind, placebo-controlled studies (N=1,003) associated with the use of entacapone were: dyskinesia, urine discoloration, diarrhea, nausea, hyperkinesia, abdomin"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Hyperpyrexia and confusion resembling Neuroleptic Malignant Syndrome (NMS) upon rapid withdrawal or dose reduction",
+        "Severe, persistent, or watery diarrhea and microscopic colitis (may require drug discontinuation and electrolyte repletion)",
+        "Severe exacerbation of preexisting levodopa-induced dyskinesias",
+        "Hallucinations, agitation, and confusion",
+        "Symptomatic orthostatic hypotension and syncope",
+        "Rhabdomyolysis and elevated creatine kinase"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-entacapone-label",
+          "locator": "Section DOSAGE AND ADMINISTRATION - Withdrawing Patients",
+          "quote": "Rapid withdrawal or abrupt reduction in the entacapone dose could lead to emergence of signs and symptoms of Parkinson's disease (see CLINICAL PHARMACOLOGY, Clinical Studies ), and may lead to hyperpyrexia and confusion, a symptom complex resembling NMS (see P"
+        }
+      ]
+    }
   }
 }

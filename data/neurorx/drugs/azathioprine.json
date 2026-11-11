@@ -242,5 +242,40 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Gastrointestinal intolerance: nausea, vomiting, anorexia, abdominal discomfort (can be minimized by dividing doses or taking with food)",
+        "Leukopenia and macrocytosis",
+        "Mild elevation of transaminases / alkaline phosphatase",
+        "Infections (upper respiratory, herpes simplex, herpes zoster)",
+        "Fatigue and malaise"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-azathioprine-label",
+          "locator": "Section ADVERSE REACTIONS",
+          "quote": "ADVERSE REACTIONS: The principal and potentially serious toxic effects of IMURAN are hematologic and gastrointestinal. The risks of secondary infection and malignancy are also significant (see WARNINGS )."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Malignancy (Boxed Warning: lymphomas, post-transplant lymphoproliferative disorders, hepatosplenic T-cell lymphoma, non-melanoma skin cancer)",
+        "Severe bone marrow suppression / myelosuppression (profound leukopenia, neutropenia, thrombocytopenia, aplastic anemia; markedly exacerbated in patients with TPMT or NUDT15 deficiency)",
+        "Severe, life-threatening opportunistic infections (bacterial, viral, fungal, protozoal)",
+        "Acute pancreatitis (hypersensitivity reaction, typically within weeks of starting; requires immediate cessation)",
+        "Hepatotoxicity (cholestasis, sinusoidal obstruction syndrome / veno-occlusive disease, peliosis hepatis)",
+        "Severe systemic hypersensitivity reactions (fever, rash, hypotension, arthralgias)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-azathioprine-label",
+          "locator": "Section BOXED WARNING - Malignancy",
+          "quote": "MALIGNANCY Chronic immunosuppression with IMURAN, a purine antimetabolite increases risk of malignancy in humans. Reports of malignancy include post-transplant lymphoma and hepatosplenic T-cell lymphoma (HSTCL) in patients with inflammatory bowel disease."
+        }
+      ]
+    }
   }
 }

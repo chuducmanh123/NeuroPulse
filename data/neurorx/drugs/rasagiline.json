@@ -201,5 +201,40 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Flu-like syndrome and malaise",
+        "Arthralgia and musculoskeletal pain",
+        "Depression and insomnia",
+        "Dyspepsia and abdominal pain",
+        "Headache and dizziness",
+        "Dyskinesia (when used as adjunct to levodopa)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-rasagiline-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "Most common adverse reactions (incidence 3% or greater than placebo): AZILECT monotherapy: flu syndrome, arthralgia, depression, dyspepsia ( 6.1 ) AZILECT used as adjunct without levodopa: peripheral edema, fall, arthralgia, cough, and inso"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Hypertensive crisis / cheese reaction (loss of MAO-B selectivity at supratherapeutic doses or high tyramine ingestion)",
+        "Serotonin syndrome when combined with SSRIs, SNRIs, tricyclic antidepressants, or opioids",
+        "Melanoma risk (increased incidence in Parkinson's disease population, dermatologic monitoring advised)",
+        "Severe orthostatic hypotension and syncope",
+        "Hallucinations and psychotic-like behavior"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-rasagiline-label",
+          "locator": "Section 5.1 Hypertension",
+          "quote": "Patients should be advised to avoid foods containing a very large amount of tyramine while taking recommended doses of AZILECT because of the potential for large increases in blood pressure including clinical syndromes referred to as hypert"
+        }
+      ]
+    }
   }
 }

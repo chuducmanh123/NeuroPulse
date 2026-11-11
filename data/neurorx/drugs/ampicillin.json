@@ -200,5 +200,40 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Diarrhea (~3%) and loose stools",
+        "Maculopapular rash (<2%) and pruritus",
+        "Injection site pain (IM 16%, IV 3%) and thrombophlebitis",
+        "Nausea, vomiting, and abdominal cramps",
+        "Transient elevation of serum transaminases (ALT, AST)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-ampicillin-label",
+          "locator": "Section ADVERSE REACTIONS",
+          "quote": "The most frequently reported adverse reactions were diarrhea in 3% of the patients and rash in less than 2% of the patients."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Severe, life-threatening anaphylactic reactions and angioedema (Boxed Warning / Contraindicated in severe beta-lactam allergy)",
+        "Severe cutaneous adverse reactions: Stevens-Johnson syndrome (SJS), Toxic Epidermal Necrolysis (TEN), DRESS syndrome",
+        "Clostridioides difficile-associated diarrhea (CDAD) and toxic megacolon",
+        "Drug-induced liver injury (cholestatic jaundice, hepatitis)",
+        "Hematologic toxicity: leukopenia, neutropenia, thrombocytopenia, hemolytic anemia",
+        "Neurotoxicity and seizures (especially with very high doses or in patients with renal failure)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-ampicillin-label",
+          "locator": "Section CONTRAINDICATIONS",
+          "quote": "The use of ampicillin and sulbactam for injection is contraindicated in individuals with a history of serious hypersensitivity reactions (e.g., anaphylaxis or Stevens-Johnson syndrome) to ampicillin, sulbactam or to other beta-lactam antibacterial drugs (e.g.,"
+        }
+      ]
+    }
   }
 }

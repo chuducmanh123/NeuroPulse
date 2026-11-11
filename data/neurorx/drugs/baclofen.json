@@ -203,5 +203,40 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Transient drowsiness (10% to 63%) and sedation",
+        "Dizziness and lightheadedness (5% to 15%)",
+        "Generalized muscle weakness and hypotonia (5% to 15%)",
+        "Fatigue and lethargy (2% to 4%)",
+        "Nausea, constipation, and dry mouth",
+        "Urinary frequency and hesitancy"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-baclofen-label",
+          "locator": "Section ADVERSE REACTIONS",
+          "quote": "The most common is transient drowsiness (10 to 63%). In one controlled study of 175 patients, transient drowsiness was observed in 63% of those receiving baclofen compared to 36% of those in the placebo group."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Severe withdrawal syndrome upon abrupt cessation (auditory/visual hallucinations, delirium, severe spasticity rebound, hyperpyrexia, status epilepticus)",
+        "Severe central nervous system depression, respiratory depression, and coma (especially with renal impairment or overdose)",
+        "Neuropsychiatric deterioration: acute confusion, severe depression, paranoia, and memory loss",
+        "Lowering of seizure threshold in patients with epilepsy",
+        "Hypotension and syncope"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-baclofen-label",
+          "locator": "Section DOSAGE AND ADMINISTRATION - Titration & Withdrawal",
+          "quote": "If benefits are not evident after a reasonable trial period, patients should be slowly withdrawn from the drug (See WARNINGS , Abrupt Drug Withdrawal ). === CONTRAINDICATIONS === CONTRAINDICATIONS Hypersensitivity to baclofen. === ADVERSE REACTIONS === ADVER"
+        }
+      ]
+    }
   }
 }

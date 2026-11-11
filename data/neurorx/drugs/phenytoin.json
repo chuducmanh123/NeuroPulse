@@ -189,5 +189,39 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Nystagmus, ataxia, and loss of coordination (concentration-dependent cerebellar-vestibular signs)",
+        "Slurred speech and mental confusion",
+        "Gingival hyperplasia (chronic therapy)",
+        "Hirsutism and coarsening of facial features",
+        "Nausea and epigastric distress"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-phenytoin-label",
+          "locator": "Section ADVERSE REACTIONS - Nervous System",
+          "quote": "Reactions include nystagmus, ataxia, slurred speech, decreased coordination, somnolence, and mental confusion."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Cardiovascular collapse, severe hypotension, and ventricular arrhythmias with rapid IV infusion (Boxed Warning, max infusion rate 50 mg/min)",
+        "Purple Glove Syndrome (soft-tissue necrosis and limb ischemia from peripheral extravasation)",
+        "Severe cutaneous adverse reactions (SJS, TEN, DRESS syndrome)",
+        "Hematopoietic toxicity (megaloblastic anemia, agranulocytosis, leukopenia)",
+        "Toxic hepatitis and hepatic necrosis"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-phenytoin-label",
+          "locator": "Section ADVERSE REACTIONS - Skin and Appendages",
+          "quote": "Dermatological manifestations sometimes accompanied by fever have included scarlatiniform or morbilliform rashes. A morbilliform rash (measles-like) is the most common; other types of dermatitis are seen more rarely."
+        }
+      ]
+    }
   }
 }

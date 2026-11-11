@@ -249,5 +249,42 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Headache (very common, may be severe)",
+        "Pyrexia, chills, rigors, and elevated body temperature",
+        "Nausea, vomiting, and abdominal pain",
+        "Fatigue, asthenia, and malaise",
+        "Back pain, arthralgia, and myalgia",
+        "Flushing, urticaria, and pruritus"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-ivig-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "The most common adverse reactions (incidence >5%) were: PI –headache, fatigue, nausea, chills, vomiting, back pain, pain, elevated body temperature, abdominal pain, diarrhea, cough, stomach discomfort, chest pain, joint swelling/effusion, influenza-like illnes"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Thrombosis and arterial/venous thromboembolic events (stroke, myocardial infarction, DVT, PE; Boxed Warning; associated with increased blood viscosity)",
+        "Renal dysfunction and acute renal failure / osmotic nephrosis (Boxed Warning; especially with sucrose-containing formulations or preexisting kidney disease)",
+        "Aseptic Meningitis Syndrome (AMS; severe headache, nuchal rigidity, photophobia, fever, CSF pleocytosis)",
+        "Hemolysis and hemolytic anemia (direct Coombs-positive hemolysis due to isoagglutinins)",
+        "Transfusion-Related Acute Lung Injury (TRALI; severe non-cardiogenic pulmonary edema, hypoxemia)",
+        "Severe anaphylaxis (especially in IgA-deficient patients with anti-IgA antibodies)",
+        "Volume overload and congestive heart failure"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-ivig-label",
+          "locator": "Section BOXED WARNING - Thrombosis and Renal Dysfunction",
+          "quote": "THROMBOSIS, RENAL DYSFUNCTION AND ACUTE RENAL FAILURE Thrombosis may occur with immune globulin products 1-3 , including PRIVIGEN."
+        }
+      ]
+    }
   }
 }

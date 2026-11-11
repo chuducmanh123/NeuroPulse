@@ -183,5 +183,39 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Drowsiness, somnolence, and sedation",
+        "Fatigue and lethargy",
+        "Ataxia and loss of coordination",
+        "Venous thrombosis and local phlebitis at IV injection site",
+        "Confusion and muscle weakness"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-diazepam-label",
+          "locator": "Section ADVERSE REACTIONS",
+          "quote": "Side effects most commonly reported were drowsiness, fatigue and ataxia; venous thrombosis and phlebitis at the site of injection."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Severe respiratory depression, airway obstruction, apnea, and respiratory arrest",
+        "Cardiovascular collapse, hypotension, and bradycardia with rapid IV bolus",
+        "Life-threatening physical dependence, withdrawal delirium, and rebound seizures",
+        "Paradoxical excitement, acute rage, and agitation",
+        "Coma and death when co-administered with opioids or other CNS depressants (Boxed Warning)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-diazepam-label",
+          "locator": "Section BOXED WARNING",
+          "quote": "WARNING: RISKS FROM CONCOMITANT USE WITH OPIOIDS; ABUSE, MISUSE, AND ADDICTION; and DEPENDENCE AND WITHDRAWAL REACTIONS Concomitant use of benzodiazepines and opioids may result in profound sedation,"
+        }
+      ]
+    }
   }
 }

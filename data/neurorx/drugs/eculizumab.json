@@ -240,5 +240,38 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Headache (up to 44%, most frequent after initial infusions)",
+        "Nasopharyngitis and upper respiratory tract infections",
+        "Back pain and arthralgia",
+        "Nausea and diarrhea",
+        "Fatigue and pyrexia"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-eculizumab-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "The most frequently reported adverse reactions in the PNH randomized trial (≥10% overall and greater than placebo) are: headache, nasopharyngitis, back pain, and nausea."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Life-threatening and fatal meningococcal infections (Neisseria meningitidis; Boxed Warning; mandatory vaccination against serogroups A, C, W, Y, and B at least 2 weeks prior to initiation)",
+        "Severe systemic encapsulated bacterial infections (Streptococcus pneumoniae, Haemophilus influenzae)",
+        "Infusion-related reactions and anaphylaxis",
+        "Severe disease exacerbation / breakthrough hemolysis upon abrupt discontinuation"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-eculizumab-label",
+          "locator": "Section BOXED WARNING - Meningococcal Infections",
+          "quote": "MENINGOCOCCAL INFECTIONS SOLIRIS, a complement inhibitor, increases the risk of serious infections caused by Neisseria meningitidis [see Warnings and Precautions (5.1) ] ."
+        }
+      ]
+    }
   }
 }

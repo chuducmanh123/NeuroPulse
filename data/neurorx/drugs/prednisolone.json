@@ -202,5 +202,43 @@
     "verified_by": null,
     "verified_at": null,
     "content_hash": null
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Fluid and sodium retention, peripheral edema",
+        "Hypertension",
+        "Potassium loss and hypokalemic alkalosis",
+        "Hyperglycemia and cushingoid features",
+        "Insomnia, nervousness, and mood swings",
+        "Dyspepsia and increased appetite"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-prednisolone-label",
+          "locator": "Section ADVERSE REACTIONS - Fluid and Electrolytes",
+          "quote": "Fluid and Electrolyte Disturbances Sodium retention. Fluid retention. Congestive heart failure in susceptible patients. Potassium loss. Hypokalemic alkalosis. Hypertension. Musculoskeletal Muscle weakness. Steroid myopathy. Loss of muscle mass. Osteoporosis."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Peptic ulcer disease with possible perforation and gastrointestinal hemorrhage",
+        "Acute pancreatitis and ulcerative esophagitis",
+        "Steroid myopathy, muscle mass loss, osteoporosis, and compression fractures",
+        "Aseptic necrosis of femoral and humeral heads",
+        "Adrenal suppression and acute adrenal crisis upon sudden tapering",
+        "Severe immunosuppression and opportunistic infections",
+        "Glaucoma, increased intraocular pressure, and subcapsular cataracts",
+        "Psychiatric disorders (steroid psychosis, depression, mania)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-prednisolone-label",
+          "locator": "Section ADVERSE REACTIONS - Gastrointestinal",
+          "quote": "Gastrointestinal Peptic ulcer with possible perforation and hemorrhage. Pancreatitis. Abdominal distention. Ulcerative esophagitis. Dermatologic Impaired wound healing. Thin fragile skin. Petechiae and ecchymoses. Facial erythema. Increased sweating."
+        }
+      ]
+    }
   }
 }
