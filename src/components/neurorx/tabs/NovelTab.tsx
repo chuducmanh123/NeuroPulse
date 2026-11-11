@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { Sparkles, Info, BookOpen } from "lucide-react";
 import type { DrugWithEffectiveStatus } from "@/lib/neurorx/data";
 import type { Source, Subspecialty } from "@/types/neurorx";
 import { NovelCard } from "./NovelCard";
@@ -47,39 +46,7 @@ export function NovelTab({
 
   return (
     <div className="space-y-6">
-      {/* 1. Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div>
-          <h2 className="text-base font-extrabold text-slate-900 dark:text-slate-100 flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-indigo-500" />
-            <span>Novel Neuro-Therapeutics & Monoclonal Protocols</span>
-          </h2>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-            Administration schedules, ARIA MRI safety monitoring timelines, and genomic/antibody screening prerequisites.
-          </p>
-        </div>
-      </div>
-
-      {/* 2. Empty State when no novel records in current wave */}
-      {novelDrugs.length === 0 ? (
-        <div
-          className={`p-10 rounded-2xl border text-center transition-colors ${
-            darkMode
-              ? "bg-slate-900/40 border-slate-800"
-              : "bg-white border-slate-200/80 shadow-sm"
-          }`}
-        >
-          <div className="inline-flex p-3 rounded-2xl bg-indigo-500/10 text-indigo-500 mb-3">
-            <Sparkles className="w-6 h-6" />
-          </div>
-          <h3 className="text-base font-bold text-slate-800 dark:text-slate-200">
-            Novel therapy records arrive in Data Waves 2–3
-          </h3>
-          <p className="text-xs text-slate-500 dark:text-slate-400 max-w-md mx-auto mt-1 leading-relaxed">
-            Wave 1 encompasses core acute stroke, antithrombotic, and acute ASM therapies. Anti-amyloid monoclonal antibodies (e.g. lecanemab, donanemab), FcRn blockers (efgartigimod), and CGRP antagonists will be ingested in subsequent data waves.
-          </p>
-        </div>
-      ) : (
+      {novelDrugs.length > 0 && (
         <div className="space-y-6">
           {/* Subspecialty Filter Pills */}
           {subspecialties.length > 1 && (

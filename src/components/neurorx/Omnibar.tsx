@@ -119,14 +119,14 @@ export function Omnibar({
       <div
         className={`relative flex items-center w-full rounded-2xl border transition-all ${
           isOpen
-            ? "border-sky-500 ring-2 ring-sky-500/20"
+            ? "border-cyan-500 ring-2 ring-cyan-500/20 shadow-md shadow-cyan-500/10"
             : darkMode
-            ? "border-slate-700/80 hover:border-slate-600 bg-slate-900/90"
-            : "border-slate-300 hover:border-slate-400 bg-white shadow-sm"
+            ? "border-slate-800 hover:border-slate-700 bg-slate-900/90"
+            : "border-slate-200 hover:border-slate-300 bg-white shadow-xs"
         }`}
       >
         <div className="pl-4 pr-2 text-slate-400">
-          <Search className="w-5 h-5 text-sky-500" />
+          <Search className="w-5 h-5 text-cyan-500" />
         </div>
 
         <input
@@ -172,12 +172,12 @@ export function Omnibar({
           </span>
 
           {parsed.patient.weightKg !== undefined && (
-            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800/60">
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-cyan-50 dark:bg-cyan-950/60 text-cyan-700 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800/60">
               <span>⚖️ {parsed.patient.weightKg} kg</span>
               <button
                 type="button"
                 onClick={() => removePatientParam("weight")}
-                className="hover:text-sky-900 dark:hover:text-white p-0.5 rounded-full"
+                className="hover:text-cyan-900 dark:hover:text-white p-0.5 rounded-full"
                 aria-label="Remove weight parameter"
               >
                 <X className="w-3 h-3" />
@@ -283,7 +283,7 @@ export function Omnibar({
                     isSelected
                       ? darkMode
                         ? "bg-slate-800/90 text-white"
-                        : "bg-sky-50/80 text-slate-900"
+                        : "bg-cyan-50/90 text-slate-900"
                       : darkMode
                       ? "hover:bg-slate-800/50 text-slate-200"
                       : "hover:bg-slate-50 text-slate-800"
@@ -328,7 +328,7 @@ export function Omnibar({
                     </div>
                   </div>
 
-                  <div className="text-xs font-semibold text-sky-600 dark:text-sky-400 whitespace-nowrap pl-2">
+                  <div className="text-xs font-semibold text-cyan-600 dark:text-cyan-400 whitespace-nowrap pl-2">
                     Open &rarr;
                   </div>
                 </div>

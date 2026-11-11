@@ -115,20 +115,8 @@ export function RegimenTagInput({
         darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200"
       }`}
     >
-      <div className="flex items-center justify-between gap-3 mb-3">
-        <div>
-          <h2 className="text-sm font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2">
-            <span>Regimen Medications</span>
-            <span className="text-xs px-2 py-0.5 rounded-full font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
-              {selectedDrugIds.length} {selectedDrugIds.length === 1 ? "drug" : "drugs"}
-            </span>
-          </h2>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-            Add 2 or more drugs to analyze pairwise DDIs, mechanism flags, and myasthenia gravis safety.
-          </p>
-        </div>
-
-        {selectedDrugIds.length > 0 && (
+      {selectedDrugIds.length > 0 && (
+        <div className="flex items-center justify-end mb-2.5">
           <button
             onClick={onClearAll}
             className={`text-xs font-semibold px-2.5 py-1.5 rounded-lg border transition-all ${
@@ -139,8 +127,8 @@ export function RegimenTagInput({
           >
             Clear all
           </button>
-        )}
-      </div>
+        </div>
+      )}
 
       {/* Selected Drug Chips */}
       {selectedDrugIds.length > 0 && (

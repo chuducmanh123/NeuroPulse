@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useMemo, useTransition } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
-  Zap,
   ArrowRightLeft,
   RotateCcw,
   ShieldAlert,
@@ -220,30 +219,7 @@ export function InteractionsTab({
         </div>
       )}
 
-      {/* 3. Empty State (< 2 drugs) */}
-      {selectedDrugIds.length < 2 && (
-        <div
-          className={`p-8 rounded-2xl border text-center transition-colors ${
-            darkMode
-              ? "bg-slate-900/40 border-slate-800"
-              : "bg-white border-slate-200/80 shadow-sm"
-          }`}
-        >
-          <div className="inline-flex p-3 rounded-2xl bg-amber-500/10 text-amber-500 mb-3">
-            <Zap className="w-6 h-6" />
-          </div>
-          <h3 className="text-base font-bold text-slate-800 dark:text-slate-200">
-            {selectedDrugIds.length === 0
-              ? "Add Medications to Begin DDI Analysis"
-              : "Add at Least One More Medication"}
-          </h3>
-          <p className="text-xs text-slate-500 dark:text-slate-400 max-w-md mx-auto mt-1 leading-relaxed">
-            Select 2 or more active medications from the omnibar above. NeuroRx will screen for pairwise clinical drug-drug interactions, mechanism-based enzymatic warnings, and neuromuscular vulnerability.
-          </p>
-        </div>
-      )}
-
-      {/* 4. Empty State (≥ 2 drugs, 0 alerts found) */}
+      {/* 2. Empty State (≥ 2 drugs, 0 alerts found) */}
       {selectedDrugIds.length >= 2 && totalAlertsCount === 0 && (
         <div
           className={`p-6 rounded-2xl border transition-colors ${

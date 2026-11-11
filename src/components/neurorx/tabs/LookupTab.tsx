@@ -24,30 +24,12 @@ interface LookupTabProps {
   darkMode?: boolean;
 }
 
-interface SubspecialtyOption {
-  id: string;
-  label: string;
-  subspecialty: Subspecialty | null;
-}
-
-const SUBSPECIALTY_OPTIONS: SubspecialtyOption[] = [
-  { id: "all", label: "All", subspecialty: null },
-  { id: "icu", label: "⚡ Emergency/ICU", subspecialty: "neurocritical_care" },
-  { id: "stroke", label: "Stroke", subspecialty: "stroke" },
-  { id: "epilepsy", label: "Epilepsy", subspecialty: "epilepsy" },
-  { id: "headache", label: "Headache", subspecialty: "headache" },
-  { id: "neuromuscular", label: "Neuromuscular", subspecialty: "neuromuscular" },
-  { id: "dementia", label: "Dementia", subspecialty: "dementia" },
-  { id: "movement", label: "Movement", subspecialty: "movement_disorders" },
-];
-
 export function LookupTab({ drugs, sources = [], darkMode = false }: LookupTabProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
   // Search input state
   const [query, setQuery] = useState("");
-  const [selectedSubspecialty, setSelectedSubspecialty] = useState<Subspecialty | null>(null);
 
   // Parse omnibar query in real time
   const parsed = useMemo(() => parseQuery(query), [query]);
@@ -61,18 +43,8 @@ export function LookupTab({ drugs, sources = [], darkMode = false }: LookupTabPr
 
   // Filter and rank drugs
   const searchResults = useMemo(() => {
-    // 1. First rank by omnibar query terms
-    let list = searchDrugs(parsed.terms, drugs);
-
-    // 2. Filter by subspecialty if active
-    if (selectedSubspecialty) {
-      list = list.filter((res) =>
-        res.drug.subspecialties?.includes(selectedSubspecialty)
-      );
-    }
-
-    return list;
-  }, [drugs, parsed.terms, selectedSubspecialty]);
+    return searchDrugs(parsed.terms, drugs);
+  }, [drugs, parsed.terms]);
 
   // Handle selecting a drug from Omnibar or Card click
   const handleSelectDrug = (drugId: string, patientParams?: ParsedPatientParams) => {
@@ -127,32 +99,7 @@ export function LookupTab({ drugs, sources = [], darkMode = false }: LookupTabPr
         darkMode={darkMode}
       />
 
-      {/* 2. Subspecialty Filter Pills */}
-      <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
-        {SUBSPECIALTY_OPTIONS.map((opt) => {
-          const isActive = selectedSubspecialty === opt.subspecialty;
-          return (
-            <button
-              key={opt.id}
-              type="button"
-              onClick={() => setSelectedSubspecialty(opt.subspecialty)}
-              className={`px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all min-h-[44px] flex items-center gap-1.5 ${
-                isActive
-                  ? darkMode
-                    ? "bg-sky-500 text-white shadow-sm"
-                    : "bg-sky-600 text-white shadow-sm"
-                  : darkMode
-                  ? "bg-slate-800/80 text-slate-300 hover:text-white hover:bg-slate-800 border border-slate-700/60"
-                  : "bg-white text-slate-700 hover:text-slate-900 hover:bg-slate-50 border border-slate-200/80 shadow-xs"
-              }`}
-            >
-              <span>{opt.label}</span>
-            </button>
-          );
-        })}
-      </div>
-
-      {/* 3. Drug Cards Grid */}
+      {/* 2. Drug Cards Grid */}
       <div className="space-y-3">
         <div className="flex items-center justify-between px-1">
           <span className="text-xs font-semibold tracking-wider uppercase text-slate-500 dark:text-slate-400">
@@ -175,7 +122,7 @@ export function LookupTab({ drugs, sources = [], darkMode = false }: LookupTabPr
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
             {searchResults.map((res) => {
               const drug = res.drug;
               const isVerified = res.effectiveStatus === "verified";
@@ -185,10 +132,10 @@ export function LookupTab({ drugs, sources = [], darkMode = false }: LookupTabPr
                 <div
                   key={drug.id}
                   onClick={() => handleSelectDrug(drug.id)}
-                  className={`p-4 sm:p-5 rounded-2xl border transition-all cursor-pointer flex items-center justify-between gap-4 ${
+                  className={`group p-4 sm:p-5 rounded-2xl border transition-all cursor-pointer flex items-center justify-between gap-4 hover:-translate-y-0.5 ${
                     darkMode
-                      ? "bg-slate-900/70 border-slate-800 hover:border-slate-700 hover:bg-slate-900"
-                      : "bg-white border-slate-200/80 hover:border-sky-300 hover:shadow-sm"
+                      ? "bg-slate-900/70 border-slate-800/90 hover:border-cyan-500/50 hover:bg-slate-900 hover:shadow-lg hover:shadow-cyan-950/20"
+                      : "bg-white border-slate-200/90 hover:border-cyan-400 hover:shadow-md hover:shadow-cyan-100/40"
                   }`}
                 >
                   <div className="flex-1 min-w-0">
@@ -236,8 +183,8 @@ export function LookupTab({ drugs, sources = [], darkMode = false }: LookupTabPr
                     </div>
                   </div>
 
-                  <div className="flex items-center text-slate-400 hover:text-sky-500 pl-2">
-                    <ChevronRight className="w-5 h-5" />
+                  <div className="flex items-center text-slate-400 group-hover:text-cyan-500 pl-2">
+                    <ChevronRight className="w-5 h-5 transition-transform group-hover:translate-x-0.5" />
                   </div>
                 </div>
               );

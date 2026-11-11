@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Baby, Activity, Brain, Shield, HeartPulse, Sparkles } from "lucide-react";
+import { Activity, Brain, Shield, HeartPulse, Sparkles } from "lucide-react";
 import type { DrugWithEffectiveStatus } from "@/lib/neurorx/data";
 import type { Source } from "@/types/neurorx";
 import { ReproBoard } from "./ReproBoard";
@@ -92,20 +92,7 @@ export function PregnancyTab({
 
   return (
     <div className="space-y-6">
-      {/* 1. Header & Context */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div>
-          <h2 className="text-base font-extrabold text-slate-900 dark:text-slate-100 flex items-center gap-2">
-            <Baby className="w-5 h-5 text-rose-500" />
-            <span>Reproductive & Lactation Safety Board</span>
-          </h2>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-            Per-registry Major Congenital Malformation (MCM %) risks, therapeutic drug monitoring, and lactation exposure.
-          </p>
-        </div>
-      </div>
-
-      {/* 2. Disease Group Selector Pills */}
+      {/* 1. Disease Group Selector Pills */}
       <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
         {GROUPS.map((grp) => {
           const isSelected = selectedGroup === grp.id;
