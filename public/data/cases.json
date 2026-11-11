@@ -1,5 +1,222 @@
 [
   {
+    "id": "nc-2026-039",
+    "case_code": "NC-2026-039",
+    "title": "A 35-Year-Old Woman with Subacute Bulbar Palsy, Right-Sided Lower Cranial Neuropathies, and Prior Corpus Callosal Stroke",
+    "subspecialty": "Stroke",
+    "subspecialties": [
+      "Stroke",
+      "Neurovascular",
+      "Neuroimmunology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-11-11",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13726052",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-05247-z",
+      "pmcid": "PMC13726052",
+      "pmid": "42972523",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "35-year-old Sri Lankan female",
+      "chief_complaint": "Subacute dysphagia, dysphonia, and nasal dysarthria",
+      "history_of_present_illness": "The patient presented with a 3-month history of progressive dysphagia affecting liquids worse than solids, accompanied by coughing, nasal regurgitation, and a nasal quality to her voice. She had a history of a left-sided cerebral infarction 1 year prior involving the corpus callosum. She denied headaches, visual changes, seizures, or limb weakness, and her bulbar symptoms had stabilized without fatiguability.",
+      "past_medical_history": "History of left cerebral infarction (corpus callosal involvement) 1 year prior; otherwise unremarkable.",
+      "vitals": {
+        "bp": "122/78 mmHg",
+        "hr": "74 bpm",
+        "rr": "16 /min",
+        "temp": "36.7 °C",
+        "spo2": "99% on room air"
+      },
+      "neuro_exam": "Alert and oriented. Cranial nerve examination revealed right upper motor neuron facial nerve palsy, deviation of the palate to the left, diminished right gag reflex, right tongue hemiatrophy with deviation to the right upon protrusion, and weak right sternocleidomastoid/trapezius contraction (Collet-Sicard syndrome, involving cranial nerves IX, X, XI, and XII). Motor examination showed mild right upper motor neuron hemiparesis with an extensor plantar response on the right and flexor on the left.",
+      "key_labs_csf": "Cerebrospinal fluid analysis revealed mild lymphocytic pleocytosis and elevated protein, with negative bacterial, fungal, and viral PCR panels, and negative cytology.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (DWI, T2, ADC, MRA)",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13726052)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13726052_fig1.webp",
+          "pmcid": "PMC13726052",
+          "doi_url": "https://doi.org/10.1186/s12883-026-05247-z",
+          "caption": "Magnetic resonance imaging at the time of right hemiparesis. Infarctions (arrows) are seen as hyperintense lesions in the corpus callosum on DWI ( A ) and T2-weighted axial ( C ) and sagittal ( D ) images, with corresponding hypointensities on the ADC map B . MRA ( E , F ) demonstrates a focal stenosis in the right MCA (arrowhead in E). DWI, diffusion-weighted imaging; ADC, apparent diffusion coefficient; MRA, magnetic resonance angiography; MCA, middle cerebral artery",
+          "findings_summary": "Demonstrates hyperintense corpus callosal infarctions on DWI/T2 with corresponding ADC hypointensities, alongside a focal stenosis in the right middle cerebral artery."
+        },
+        {
+          "modality": "Cerebral Digital Subtraction Angiography (DSA)",
+          "sequence_badge": "Figure 2 • BMC neurology (PMC13726052)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC13726052_fig2.webp",
+          "pmcid": "PMC13726052",
+          "doi_url": "https://doi.org/10.1186/s12883-026-05247-z",
+          "caption": "Cerebral digital subtraction angiography. Panels A and B show anteroposterior views of the right and left anterior circulations, respectively, while panel C shows a sagittal view of the right anterior circulation. Insets 1 and 2 provide magnified views of the right pericallosal (PCA) and callosomarginal arteries (CMA), respectively. Panel A demonstrates focal narrowing of the right MCA (arrow). Irregular luminal narrowing is also noted in the right callosomarginal artery (inset 2) and pericallosal artery (inset 1). MCA, middle cerebral artery; ACA, anterior cerebral artery; CMA, calloso-margin",
+          "findings_summary": "Revealed multifocal intracranial arterial stenoses and luminal irregularities in the right MCA, pericallosal, and callosomarginal arteries."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "D",
+      "options": [
+        {
+          "id": "A",
+          "text": "Glomus jugulare tumor",
+          "peer_percentage": 8,
+          "rationale": "Incorrect. While glomus tumors can cause jugular foramen syndromes, contrast-enhanced CT and high-resolution MRI of the skull base were entirely normal with no bony erosion or mass."
+        },
+        {
+          "id": "B",
+          "text": "Skull-base osteomyelitis",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. Skull-base osteomyelitis typically presents with severe local pain, cranial neuropathies, and characteristic inflammatory or destructive changes on skull-base imaging, which were absent here."
+        },
+        {
+          "id": "C",
+          "text": "Jugular vein thrombosis",
+          "peer_percentage": 12,
+          "rationale": "Incorrect. Jugular vein thrombosis can involve the lower cranial nerves within the foramen, but neuroimaging specifically confirmed the absence of venous thrombosis or jugular foramen pathology."
+        },
+        {
+          "id": "D",
+          "text": "Intracranial vasculitic arteriopathy with vasa nervorum involvement",
+          "peer_percentage": 70,
+          "rationale": "Correct! The patient presents with Collet-Sicard syndrome (IX, X, XI, XII palsies) alongside prior unusual corpus callosal infarction and angiographic evidence of multifocal intracranial stenoses. With normal skull-base imaging excluding local structural compression, the lower cranial neuropathies are attributed to vasculitic involvement of the vasa nervorum in the setting of probable intracranial vasculitic arteriopathy."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Collet-Sicard syndrome secondary to probable intracranial vasculitic arteriopathy",
+      "clinical_discussion": "Collet-Sicard syndrome is characterized by the simultaneous involvement of cranial nerves IX, X, XI, and XII, typically localizing pathology to the jugular foramen and hypoglossal canal. Classical etiologies include neoplasms, trauma, and vascular lesions such as ICA dissections. However, when skull-base neuroimaging is entirely unrevealing, clinicians must consider non-structural or systemic processes. \n\nIn this patient, the presence of a prior corpus callosal infarction at a young age coupled with digital subtraction angiography demonstrating multifocal intracranial stenoses and luminal irregularities strongly pointed toward an intracranial vasculopathy. Given the absence of systemic rheumatologic markers, primary central nervous system or intracranial vasculitis affecting the vasa nervorum of the lower cranial nerves represents the most coherent pathophysiological explanation for this rare presentation.",
+      "teaching_points": [
+        "Collet-Sicard syndrome involves ipsilateral palsies of cranial nerves IX, X, XI, and XII, localizing to the jugular foramen and hypoglossal canal.",
+        "When structural skull-base pathologies (tumors, fractures, infections, venous thrombosis) are ruled out by high-resolution neuroimaging, alternative mechanisms such as vasculitic vasa nervorum infarction should be investigated.",
+        "Multifocal intracranial arterial stenoses and irregularities on digital subtraction angiography in young stroke patients should raise suspicion for intracranial vasculitic arteriopathy."
+      ],
+      "clinical_pitfalls": [
+        "Failing to look beyond local structural lesions at the skull base when evaluating lower cranial neuropathies, thereby missing systemic or intracranial vascular etiologies.",
+        "Overlooking unusual stroke locations (such as corpus callosal infarcts) as potential clues to an underlying systemic or central nervous system vasculopathy."
+      ],
+      "related_keywords": [
+        "Collet-Sicard syndrome",
+        "Intracranial vasculitis",
+        "Vasa nervorum",
+        "Lower cranial neuropathies",
+        "Digital subtraction angiography"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-040",
+    "case_code": "NC-2026-040",
+    "title": "Progressive Chorea, Orofacial Dystonia, and Cognitive Decline in a Young Adult",
+    "subspecialty": "Movement Disorders",
+    "subspecialties": [
+      "Movement Disorders",
+      "Neuromuscular Medicine"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-11-11",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13647549",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-05170-3",
+      "pmcid": "PMC13647549",
+      "pmid": "42426634",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "37-year-old female",
+      "chief_complaint": "Severe involuntary facial and limb movements, difficulty speaking, and progressive cognitive decline over 10 years.",
+      "history_of_present_illness": "The patient presented with progressive generalized choreiform movements and severe lingual/orofacial dystonia that first began at age 27. Her family notes that her feeding dystonia and tongue protrusion are severe, though placing a folded towel in her mouth partially relieves the dystonic spasms, suggestive of a sensory trick. Over the past decade, she has experienced gradual cognitive decline and mood changes. Her older brother was independently evaluated for mild distal paresthesias and distal lower extremity weakness at age 32, later developing facial involuntary movements. Their parents are second cousins and neurologically unimpaired.",
+      "past_medical_history": "Consanguineous parental lineage (first cousins once removed / second cousins). No other chronic medical conditions.",
+      "vitals": {
+        "bp": "122/76 mmHg",
+        "hr": "74 bpm",
+        "rr": "16 /min",
+        "temp": "36.6 °C",
+        "spo2": "99%"
+      },
+      "neuro_exam": "Alert, attentive, but demonstrates moderate global cognitive impairment (MMSE 21/30). Cranial nerve examination reveals prominent dysarthria, frequent involuntary tongue protrusion, and severe orofacial dystonia during attempt at speech or swallowing. Continuous moderate-to-severe choreic movements are observed in the neck, trunk, and upper and lower extremities. Muscle tone is variable with distal lower extremity hyporeflexia and symmetric distal sensory loss to vibration and pinprick. Plantar responses are flexor bilaterally.",
+      "key_labs_csf": "Serum creatine kinase: 480 U/L (elevated). Liver function tests: Mild elevation in AST and ALT. Peripheral blood smear: 8% acanthocytes documented on fresh wet preparation. Nerve conduction studies: Sensorimotor axonal polyneuropathy with reduced compound muscle action potentials and sensory nerve action potentials in lower extremities.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (Axial T2 & Coronal FLAIR) and Peripheral Blood Smear",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13647549)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13647549_fig1.webp",
+          "pmcid": "PMC13647549",
+          "doi_url": "https://doi.org/10.1186/s12883-026-05170-3",
+          "caption": "Brain MRI of the younger sister and peripheral blood smear of the older brother. A , B Brain MRI of the younger sister obtained in 2016, approximately 10 years after symptom onset, showing findings suggestive of mild caudate atrophy on axial T2-weighted and coronal FLAIR images. Quantitative volumetric analysis was unavailable. C Peripheral blood smear from the older brother showing acanthocytosis (5%). Acanthocytosis was also documented in the younger sister (8%), although her smear image was unavailable. Scale bar = 14 μm",
+          "findings_summary": "Axial T2 and coronal FLAIR images demonstrate mild caudate head atrophy with secondary enlargement of the frontal horns of the lateral ventricles, while peripheral blood smear confirms acanthocytosis."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "A",
+      "options": [
+        {
+          "id": "A",
+          "text": "Chorea-acanthocytosis (VPS13A disease)",
+          "peer_percentage": 72,
+          "rationale": "Correct! The combination of generalized chorea, severe feeding orofacial dystonia with lingual involvement, sensory tricks (towel in mouth), distal axonal neuropathy, elevated CK, acanthocytosis on peripheral blood smear, caudate atrophy, and autosomal recessive inheritance (consanguinity) is characteristic of chorea-acanthocytosis caused by pathogenic variants in VPS13A."
+        },
+        {
+          "id": "B",
+          "text": "Huntington disease",
+          "peer_percentage": 18,
+          "rationale": "Incorrect. While Huntington disease presents with chorea, cognitive decline, and caudate atrophy, it follows an autosomal dominant inheritance pattern (HTT CAG expansion) and is typically not associated with peripheral axonal neuropathy, elevated serum CK, or acanthocytosis on blood smear."
+        },
+        {
+          "id": "C",
+          "text": "McLeod syndrome",
+          "peer_percentage": 6,
+          "rationale": "Incorrect. McLeod syndrome is an X-linked recessive neuroacanthocytosis disorder caused by mutations in the XK gene on the X chromosome. It affects males predominantly and is characterized by absent Kx antigen and weak Kell antigen expression on red blood cells, often accompanied by cardiomyopathy."
+        },
+        {
+          "id": "D",
+          "text": "Pantothenate kinase-associated neurodegeneration (PKAN)",
+          "peer_percentage": 4,
+          "rationale": "Incorrect. PKAN (PANK2 mutations) is an autosomal recessive neurodegeneration with brain iron accumulation (NBIA) disorder that classically presents in childhood with dystonia, spasticity, and the characteristic 'eye-of-the-tiger' sign on T2-weighted brain MRI (globus pallidus hyperintensity surrounded by hypointensity), rather than primary caudate atrophy and peripheral acanthocytosis."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Chorea-acanthocytosis (VPS13A disease)",
+      "clinical_discussion": "Chorea-acanthocytosis (ChAc) is a rare autosomal recessive neurodegenerative disorder belonging to the core neuroacanthocytosis syndromes, caused by loss-of-function or pathogenic variants in the VPS13A gene on chromosome 9q21. VPS13A encodes chorein, a protein involved in inter-organelle lipid transfer and intracellular membrane trafficking. The clinical spectrum is marked by adult-onset movement disorders (most commonly generalized chorea and severe feeding dystonia characterized by tongue protrusion and involuntary bite injuries), cognitive impairment, psychiatric features, peripheral sensorimotor axonal neuropathy, elevated serum creatine kinase levels, and acanthocytes on peripheral blood smear.\n\nPhenotypic variability can be marked even among siblings carrying identical homozygous genetic variants. As illustrated in this family, entry points can range from hyperkinetic-dystonic dominated phenotypes to neuropathy-predominant presentations where distal sensory symptoms and hyporeflexia precede involuntary extrapyramidal movements by several years. Recognition of peripheral nerve involvement, sensory tricks (such as holding objects or towels in the mouth), elevated CK, and caudate atrophy on MRI should prompt peripheral blood smear evaluation and VPS13A genetic testing.",
+      "teaching_points": [
+        "Chorea-acanthocytosis (VPS13A disease) is an autosomal recessive neuroacanthocytosis disorder characterized by chorea, feeding orofacial dystonia, cognitive/psychiatric changes, axonal polyneuropathy, and peripheral acanthocytosis.",
+        "Intrafamilial phenotypic heterogeneity can occur with VPS13A variants, ranging from early hyperkinetic-dystonic presentations to neuropathy-predominant onset.",
+        "Diagnostic workup should include fresh blood smears (to evaluate for acanthocytes), serum CK level, nerve conduction studies, brain MRI (caudate head atrophy), and VPS13A genetic sequencing."
+      ],
+      "clinical_pitfalls": [
+        "Misdiagnosing VPS13A disease as Huntington disease due to overlapping chorea, dementia, and caudate atrophy without ordering a blood smear or checking serum CK levels.",
+        "Failing to perform fresh wet blood smears or repeating blood smears, as acanthocyte percentages can fluctuate and standard automated blood counts often miss subtle acanthocytosis."
+      ],
+      "related_keywords": [
+        "Chorea-acanthocytosis",
+        "VPS13A",
+        "Neuroacanthocytosis",
+        "Orofacial dystonia",
+        "Caudate atrophy"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-037",
     "case_code": "NC-2026-037",
     "title": "Acute Neurological Deterioration Following Transradial Vertebral Artery Stenting",
