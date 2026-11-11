@@ -9,12 +9,6 @@ import {
   Zap,
   Baby,
   Sparkles,
-  ShieldCheck,
-  AlertCircle,
-  Activity,
-  Layers,
-  HeartPulse,
-  Info,
 } from "lucide-react";
 import { AdminButton } from "@/components/ecosystem/AdminButton";
 import { AppSwitcher } from "@/components/ecosystem/AppSwitcher";
@@ -82,6 +76,24 @@ export function NeuroRxShell({
       : "lookup"
   );
 
+  // Live Drugs State — synced with initial server render and live updates
+  const [drugs, setDrugs] = useState<DrugWithEffectiveStatus[]>(initialDrugs);
+
+  useEffect(() => {
+    const handleDrugUpdated = () => {
+      fetch("/api/neurorx/drugs")
+        .then((r) => r.json())
+        .then((data) => {
+          if (data.ok && Array.isArray(data.drugs)) {
+            setDrugs(data.drugs);
+          }
+        })
+        .catch(() => {});
+    };
+    window.addEventListener("neurorx_drug_updated", handleDrugUpdated);
+    return () => window.removeEventListener("neurorx_drug_updated", handleDrugUpdated);
+  }, []);
+
   useEffect(() => {
     if (["lookup", "interactions", "pregnancy", "novel"].includes(tabParam)) {
       setActiveTab(tabParam);
@@ -96,9 +108,8 @@ export function NeuroRxShell({
   };
 
   // Count verified drugs and stats
-  const verifiedCount = initialDrugs.filter((d) => d.effectiveStatus === "verified").length;
-  const draftCount = initialDrugs.filter((d) => d.effectiveStatus === "draft").length;
-  const novelCount = initialDrugs.filter((d) => Boolean(d.drug.novel)).length;
+  const verifiedCount = drugs.filter((d) => d.effectiveStatus === "verified").length;
+  const novelCount = drugs.filter((d) => Boolean(d.drug.novel)).length;
 
   return (
     <div
@@ -163,133 +174,6 @@ export function NeuroRxShell({
             <AppSwitcher currentApp="neurorx" darkMode={darkMode} />
           </div>
         </header>
-
-        {/* =========================================================================
-            QUICK CLINICAL CDSS STATS STRIP (Overview metric cards)
-           ========================================================================= */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
-          {/* Stat 1: Formulary Drugs */}
-          <div
-            onClick={() => handleTabChange("lookup")}
-            className={`p-3.5 sm:p-4 rounded-2xl border transition-all cursor-pointer ${
-              activeTab === "lookup"
-                ? darkMode
-                  ? "bg-slate-900/90 border-cyan-500/50 ring-1 ring-cyan-500/30"
-                  : "bg-white border-cyan-400 ring-1 ring-cyan-400/30 shadow-xs"
-                : darkMode
-                ? "bg-slate-900/40 border-slate-800/80 hover:bg-slate-900/80 hover:border-slate-700"
-                : "bg-white/80 border-slate-200/80 hover:bg-white hover:border-slate-300 shadow-xs"
-            }`}
-          >
-            <div className="flex items-center justify-between mb-1.5">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                Formulary
-              </span>
-              <Pill className="w-4 h-4 text-cyan-500" />
-            </div>
-            <div className="flex items-baseline gap-1.5">
-              <span className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white">
-                {verifiedCount}
-              </span>
-              <span className="text-xs text-slate-500 dark:text-slate-400">
-                / {initialDrugs.length} verified
-              </span>
-            </div>
-            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 truncate">
-              Chỉnh liều CrCl &amp; xông dạ dày
-            </p>
-          </div>
-
-          {/* Stat 2: Drug Interactions */}
-          <div
-            onClick={() => handleTabChange("interactions")}
-            className={`p-3.5 sm:p-4 rounded-2xl border transition-all cursor-pointer ${
-              activeTab === "interactions"
-                ? darkMode
-                  ? "bg-slate-900/90 border-amber-500/50 ring-1 ring-amber-500/30"
-                  : "bg-white border-amber-400 ring-1 ring-amber-400/30 shadow-xs"
-                : darkMode
-                ? "bg-slate-900/40 border-slate-800/80 hover:bg-slate-900/80 hover:border-slate-700"
-                : "bg-white/80 border-slate-200/80 hover:bg-white hover:border-slate-300 shadow-xs"
-            }`}
-          >
-            <div className="flex items-center justify-between mb-1.5">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                Interactions
-              </span>
-              <Zap className="w-4 h-4 text-amber-500" />
-            </div>
-            <div className="flex items-baseline gap-1.5">
-              <span className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white">
-                {interactions.length}
-              </span>
-              <span className="text-xs text-slate-500 dark:text-slate-400">cặp tương tác</span>
-            </div>
-            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 truncate">
-              CYP/P-gp &amp; gợi ý phác đồ thế chỗ
-            </p>
-          </div>
-
-          {/* Stat 3: Pregnancy & Lactation */}
-          <div
-            onClick={() => handleTabChange("pregnancy")}
-            className={`p-3.5 sm:p-4 rounded-2xl border transition-all cursor-pointer ${
-              activeTab === "pregnancy"
-                ? darkMode
-                  ? "bg-slate-900/90 border-rose-500/50 ring-1 ring-rose-500/30"
-                  : "bg-white border-rose-400 ring-1 ring-rose-400/30 shadow-xs"
-                : darkMode
-                ? "bg-slate-900/40 border-slate-800/80 hover:bg-slate-900/80 hover:border-slate-700"
-                : "bg-white/80 border-slate-200/80 hover:bg-white hover:border-slate-300 shadow-xs"
-            }`}
-          >
-            <div className="flex items-center justify-between mb-1.5">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                ReproTox
-              </span>
-              <Baby className="w-4 h-4 text-rose-500" />
-            </div>
-            <div className="flex items-baseline gap-1.5">
-              <span className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white">
-                LactMed
-              </span>
-              <span className="text-xs text-slate-500 dark:text-slate-400">&amp; EURAP</span>
-            </div>
-            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 truncate">
-              Phân tầng rủi ro thai kỳ &amp; sữa mẹ
-            </p>
-          </div>
-
-          {/* Stat 4: Novel Therapies */}
-          <div
-            onClick={() => handleTabChange("novel")}
-            className={`p-3.5 sm:p-4 rounded-2xl border transition-all cursor-pointer ${
-              activeTab === "novel"
-                ? darkMode
-                  ? "bg-slate-900/90 border-indigo-500/50 ring-1 ring-indigo-500/30"
-                  : "bg-white border-indigo-400 ring-1 ring-indigo-400/30 shadow-xs"
-                : darkMode
-                ? "bg-slate-900/40 border-slate-800/80 hover:bg-slate-900/80 hover:border-slate-700"
-                : "bg-white/80 border-slate-200/80 hover:bg-white hover:border-slate-300 shadow-xs"
-            }`}
-          >
-            <div className="flex items-center justify-between mb-1.5">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                Novel Biologics
-              </span>
-              <Sparkles className="w-4 h-4 text-indigo-500" />
-            </div>
-            <div className="flex items-baseline gap-1.5">
-              <span className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white">
-                {novelCount}
-              </span>
-              <span className="text-xs text-slate-500 dark:text-slate-400">mAbs &amp; Gene</span>
-            </div>
-            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 truncate">
-              Phác đồ truyền &amp; giám sát ARIA
-            </p>
-          </div>
-        </div>
 
         {/* =========================================================================
             NAVIGATION: 4 Clean Clinical Pill Tabs
@@ -394,12 +278,12 @@ export function NeuroRxShell({
            ========================================================================= */}
         <main className="min-h-[500px]">
           {activeTab === "lookup" && (
-            <LookupTab drugs={initialDrugs} sources={sources} darkMode={darkMode} />
+            <LookupTab drugs={drugs} sources={sources} darkMode={darkMode} />
           )}
 
           {activeTab === "interactions" && (
             <InteractionsTab
-              drugs={initialDrugs}
+              drugs={drugs}
               interactions={interactions}
               sources={sources}
               darkMode={darkMode}
@@ -408,7 +292,7 @@ export function NeuroRxShell({
 
           {activeTab === "pregnancy" && (
             <PregnancyTab
-              drugs={initialDrugs}
+              drugs={drugs}
               sources={sources}
               darkMode={darkMode}
             />
@@ -416,7 +300,7 @@ export function NeuroRxShell({
 
           {activeTab === "novel" && (
             <NovelTab
-              drugs={initialDrugs}
+              drugs={drugs}
               sources={sources}
               darkMode={darkMode}
             />

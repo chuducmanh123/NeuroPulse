@@ -2179,15 +2179,15 @@ export function EditGuidelineModal({
                                         <div className="flex items-center gap-1.5">
                                           <span className="text-sm">🏷️</span>
                                           <span className="font-extrabold text-[11px] text-blue-900 dark:text-blue-300">
-                                            Nhãn lâm sàng (Clinical Navigator V3)
+                                            Clinical Navigator V3 Labels
                                           </span>
                                           {rec.v3Labels?.isExplicit ? (
                                             <span className="text-[9.5px] px-1.5 py-0.2 rounded font-bold bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
-                                              ✏️ Đã chỉnh thủ công
+                                              ✏️ Manually Customized
                                             </span>
                                           ) : (
                                             <span className="text-[9.5px] px-1.5 py-0.2 rounded font-bold bg-sky-100 text-sky-700 dark:bg-sky-900/50 dark:text-sky-300 border border-sky-200 dark:border-sky-800">
-                                              🤖 Tự động phân loại
+                                              🤖 Auto-classified
                                             </span>
                                           )}
                                         </div>
@@ -2199,16 +2199,16 @@ export function EditGuidelineModal({
                                                 type="button"
                                                 onClick={() => handleResetEsoRecV3(rIdx)}
                                                 className="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors cursor-pointer"
-                                                title="Khôi phục phân loại tự động từ văn bản"
+                                                title="Restore auto-classification from text"
                                               >
-                                                🔄 Tự động lại
+                                                🔄 Reset to Auto
                                               </button>
                                               <button
                                                 type="button"
                                                 onClick={() => setEditingEsoRecIndex(null)}
                                                 className="px-2.5 py-0.5 rounded text-[10.5px] font-bold bg-emerald-600 hover:bg-emerald-700 text-white transition-colors cursor-pointer shadow-2xs"
                                               >
-                                                ✓ Xong
+                                                ✓ Done
                                               </button>
                                             </>
                                           ) : (
@@ -2217,7 +2217,7 @@ export function EditGuidelineModal({
                                                 type="button"
                                                 onClick={() => handleResetEsoRecV3(rIdx)}
                                                 className="px-2 py-0.5 rounded text-[10px] font-semibold text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 border border-slate-200 dark:border-slate-700 cursor-pointer"
-                                                title="Chạy phân loại tự động"
+                                                title="Run auto-classification"
                                               >
                                                 🔄
                                               </button>
@@ -2227,7 +2227,7 @@ export function EditGuidelineModal({
                                                 className="px-2.5 py-0.5 rounded text-[10.5px] font-bold bg-indigo-600 hover:bg-indigo-700 text-white transition-colors cursor-pointer flex items-center gap-1 shadow-2xs"
                                               >
                                                 <span>✏️</span>
-                                                <span>Sửa nhãn</span>
+                                                <span>Edit Labels</span>
                                               </button>
                                             </>
                                           )}
@@ -2240,7 +2240,7 @@ export function EditGuidelineModal({
                                           {/* Row 1: Condition selector */}
                                           <div>
                                             <label className="block font-bold mb-1 text-[10.5px] text-slate-700 dark:text-slate-300">
-                                              Bệnh lý (Clinical Condition):
+                                              Clinical Condition:
                                             </label>
                                             <select
                                               value={effV3.conditionIds?.[0] || "cond_ischemic_stroke"}
@@ -2249,7 +2249,7 @@ export function EditGuidelineModal({
                                                 darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
                                               }`}
                                             >
-                                              <optgroup label={`Thuộc chuyên khoa ${docSubspecialty}`}>
+                                              <optgroup label={`Under Subspecialty: ${docSubspecialty}`}>
                                                 {availableConditions.forSub.map((c) => (
                                                   <option key={c.id} value={c.id}>
                                                     {c.label}
@@ -2257,7 +2257,7 @@ export function EditGuidelineModal({
                                                 ))}
                                               </optgroup>
                                               {availableConditions.others.length > 0 && (
-                                                <optgroup label="Các chuyên khoa khác">
+                                                <optgroup label="Other Subspecialties">
                                                   {availableConditions.others.map((c) => (
                                                     <option key={c.id} value={c.id}>
                                                       {c.label} ({c.subspecialties.join(", ")})
@@ -2273,7 +2273,7 @@ export function EditGuidelineModal({
                                             {/* Domain */}
                                             <div>
                                               <label className="block font-bold mb-1 text-[10.5px] text-slate-700 dark:text-slate-300">
-                                                Trục can thiệp (Domain):
+                                                Clinical Domain:
                                               </label>
                                               <div className="grid grid-cols-3 gap-1">
                                                 {(["treatment", "diagnosis", "prevention"] as const).map((dm) => (
@@ -2296,13 +2296,13 @@ export function EditGuidelineModal({
                                             {/* Direction */}
                                             <div>
                                               <label className="block font-bold mb-1 text-[10.5px] text-slate-700 dark:text-slate-300">
-                                                Chiều khuyến cáo (Direction):
+                                                Recommendation Direction:
                                               </label>
                                               <div className="grid grid-cols-3 gap-1">
                                                 {[
-                                                  { id: "recommended", label: "Ủng hộ", bg: "bg-emerald-600", activeBg: "bg-emerald-600 text-white border-emerald-600" },
-                                                  { id: "conditional", label: "Cân nhắc", bg: "bg-amber-600", activeBg: "bg-amber-600 text-white border-amber-600" },
-                                                  { id: "harm", label: "Chống chỉ định", bg: "bg-rose-600", activeBg: "bg-rose-600 text-white border-rose-600" },
+                                                  { id: "recommended", label: "Recommended", bg: "bg-emerald-600", activeBg: "bg-emerald-600 text-white border-emerald-600" },
+                                                  { id: "conditional", label: "Conditional", bg: "bg-amber-600", activeBg: "bg-amber-600 text-white border-amber-600" },
+                                                  { id: "harm", label: "Harm / Avoid", bg: "bg-rose-600", activeBg: "bg-rose-600 text-white border-rose-600" },
                                                 ].map((dir) => (
                                                   <button
                                                     key={dir.id}
@@ -2323,7 +2323,7 @@ export function EditGuidelineModal({
                                             {/* Time Window */}
                                             <div>
                                               <label className="block font-bold mb-1 text-[10.5px] text-slate-700 dark:text-slate-300">
-                                                Cửa sổ thời gian (Time Window):
+                                                Time Window:
                                               </label>
                                               <select
                                                 value={effV3.timeWindowIds?.[0] || "all"}
@@ -2332,7 +2332,7 @@ export function EditGuidelineModal({
                                                   darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
                                                 }`}
                                               >
-                                                <option value="all">Tất cả / Không phân biệt</option>
+                                                <option value="all">All Time Windows</option>
                                                 {recTimeWindows.map((tw) => (
                                                   <option key={tw.id} value={tw.id}>
                                                     {tw.label}
@@ -2345,12 +2345,12 @@ export function EditGuidelineModal({
                                           {/* Row 3: Assigned Tags with Remove buttons */}
                                           <div>
                                             <label className="block font-bold mb-1 text-[10.5px] text-slate-700 dark:text-slate-300">
-                                              Nhãn can thiệp &amp; chẩn đoán đã gán:
+                                              Assigned Intervention &amp; Diagnostic Tags:
                                             </label>
                                             <div className="flex flex-wrap gap-1 min-h-[30px] p-1.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 items-center">
                                               {[...(effV3.interventionTags || []), ...(effV3.diagnosisTags || [])].length === 0 ? (
                                                 <span className="text-[11px] text-slate-400 italic">
-                                                  Chưa có nhãn can thiệp/chẩn đoán nào. Chọn gợi ý bên dưới hoặc nhập thêm.
+                                                  No intervention/diagnostic tags assigned. Select suggestions below or add new.
                                                 </span>
                                               ) : (
                                                 [...(effV3.interventionTags || []), ...(effV3.diagnosisTags || [])].map((tagId) => {
@@ -2370,7 +2370,7 @@ export function EditGuidelineModal({
                                                         type="button"
                                                         onClick={() => handleRemoveEsoRecTag(rIdx, tagId)}
                                                         className="ml-0.5 hover:text-red-600 transition-colors cursor-pointer text-slate-400 hover:text-red-500 font-bold"
-                                                        title="Gỡ nhãn"
+                                                        title="Remove tag"
                                                       >
                                                         ✕
                                                       </button>
@@ -2393,7 +2393,7 @@ export function EditGuidelineModal({
                                                   handleAddEsoCustomTag(rIdx);
                                                 }
                                               }}
-                                              placeholder="Thêm nhãn tự do (vd: Tenecteplase, EVT, ASPECTS...)"
+                                              placeholder="Add custom tag (e.g. Tenecteplase, EVT, ASPECTS...)"
                                               className={`flex-1 p-1.5 rounded-lg border text-xs ${
                                                 darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
                                               }`}
@@ -2403,7 +2403,7 @@ export function EditGuidelineModal({
                                               onClick={() => handleAddEsoCustomTag(rIdx)}
                                               className="px-3 py-1.5 rounded-lg text-xs font-bold bg-indigo-600 hover:bg-indigo-700 text-white transition-colors cursor-pointer"
                                             >
-                                              + Thêm nhãn
+                                              + Add Tag
                                             </button>
                                           </div>
 
@@ -2411,7 +2411,7 @@ export function EditGuidelineModal({
                                           {recSuggestedTags.length > 0 && (
                                             <div className="pt-1">
                                               <span className="block text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-1">
-                                                Gợi ý nhãn nhanh theo bệnh lý (Click để bật/tắt):
+                                                Suggested quick tags for condition (Click to toggle):
                                               </span>
                                               <div className="flex flex-wrap gap-1 max-h-24 overflow-y-auto p-1 bg-slate-50/50 dark:bg-slate-900/40 rounded border border-slate-200/50 dark:border-slate-800/50">
                                                 {recSuggestedTags.map((tag) => {
@@ -2898,19 +2898,19 @@ export function EditGuidelineModal({
                               <span className="text-base sm:text-lg">🏷️</span>
                               <div>
                                 <h4 className="font-extrabold text-xs text-slate-900 dark:text-slate-100 flex items-center gap-2">
-                                  <span>Phân loại &amp; Nhãn lâm sàng (Clinical Navigator V3)</span>
+                                  <span>Classification &amp; Clinical Tags (Clinical Navigator V3)</span>
                                   {isCustomizingV3 ? (
                                     <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300 border border-indigo-300 dark:border-indigo-700">
-                                      ✏️ Gán nhãn thủ công (Customized)
+                                      ✏️ Manually Customized
                                     </span>
                                   ) : (
                                     <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-sky-100 text-sky-700 dark:bg-sky-900/50 dark:text-sky-300 border border-sky-300 dark:border-sky-700">
-                                      🤖 Tự động nhận diện (Auto-classified)
+                                      🤖 Auto-classified
                                     </span>
                                   )}
                                 </h4>
                                 <p className="text-[10.5px] text-slate-500 dark:text-slate-400 mt-0.5">
-                                  Xác định cách khuyến cáo này hiển thị và được lọc trong bộ lọc đa trục của Clinical Navigator.
+                                  Defines how this recommendation is indexed and filtered in Clinical Navigator.
                                 </p>
                               </div>
                             </div>
@@ -2921,18 +2921,18 @@ export function EditGuidelineModal({
                                   type="button"
                                   onClick={handleResetToAutoV3}
                                   className="px-2.5 py-1 rounded-lg text-[10.5px] font-bold bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors cursor-pointer"
-                                  title="Hủy gán đè thủ công, quay lại chế độ máy tự động phân loại"
+                                  title="Reset to automated classification"
                                 >
-                                  🔄 Khôi phục tự động
+                                  🔄 Reset to Auto
                                 </button>
                               ) : (
                                 <button
                                   type="button"
                                   onClick={handleEnableCustomV3}
                                   className="px-2.5 py-1 rounded-lg text-[10.5px] font-bold bg-indigo-600 hover:bg-indigo-700 text-white shadow-2xs transition-colors flex items-center gap-1 cursor-pointer"
-                                  title="Tự tay chọn bệnh lý, giai đoạn và gán/gỡ nhãn theo ý muốn"
+                                  title="Customize condition, domain, and tags"
                                 >
-                                  <span>✏️ Chỉnh sửa nhãn</span>
+                                  <span>✏️ Edit Labels</span>
                                 </button>
                               )}
                             </div>
@@ -2943,7 +2943,7 @@ export function EditGuidelineModal({
                             {/* 1. Clinical Condition */}
                             <div>
                               <label className="block font-bold mb-1 text-[11px] text-slate-700 dark:text-slate-300">
-                                Bệnh lý (Clinical Condition):
+                                Clinical Condition:
                               </label>
                               {isCustomizingV3 ? (
                                 <select
@@ -2956,7 +2956,7 @@ export function EditGuidelineModal({
                                     darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
                                   }`}
                                 >
-                                  <optgroup label={`Thuộc chuyên khoa ${docSubspecialty}`}>
+                                  <optgroup label={`Under Subspecialty: ${docSubspecialty}`}>
                                     {availableConditions.forSub.map((c) => (
                                       <option key={c.id} value={c.id}>
                                         {c.label}
@@ -2964,7 +2964,7 @@ export function EditGuidelineModal({
                                     ))}
                                   </optgroup>
                                   {availableConditions.others.length > 0 && (
-                                    <optgroup label="Các chuyên khoa khác">
+                                    <optgroup label="Other Subspecialties">
                                       {availableConditions.others.map((c) => (
                                         <option key={c.id} value={c.id}>
                                           {c.label} ({c.subspecialties.join(", ")})
@@ -2983,7 +2983,7 @@ export function EditGuidelineModal({
                                 >
                                   <span>🎯</span>
                                   <span className="truncate">
-                                    {activeConditionObj?.label || activeV3Labels.conditionIds[0] || "Chưa xác định"}
+                                    {activeConditionObj?.label || activeV3Labels.conditionIds[0] || "Unspecified"}
                                   </span>
                                 </div>
                               )}
@@ -2992,7 +2992,7 @@ export function EditGuidelineModal({
                             {/* 2. Clinical Domain */}
                             <div>
                               <label className="block font-bold mb-1 text-[11px] text-slate-700 dark:text-slate-300">
-                                Giai đoạn lâm sàng (Domain):
+                                Clinical Domain:
                               </label>
                               {isCustomizingV3 ? (
                                 <select
@@ -3002,9 +3002,9 @@ export function EditGuidelineModal({
                                     darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
                                   }`}
                                 >
-                                  <option value="treatment">💊 Treatment (Điều trị cấp &amp; chủ động)</option>
-                                  <option value="diagnosis">🔍 Diagnosis (Chẩn đoán &amp; Đánh giá)</option>
-                                  <option value="prevention">🛡️ Prevention (Dự phòng thứ phát)</option>
+                                  <option value="treatment">💊 Treatment (Acute &amp; Active Management)</option>
+                                  <option value="diagnosis">🔍 Diagnosis (Assessment &amp; Evaluation)</option>
+                                  <option value="prevention">🛡️ Prevention (Secondary Prevention)</option>
                                 </select>
                               ) : (
                                 <div
@@ -3029,7 +3029,7 @@ export function EditGuidelineModal({
                             {/* 3. Recommendation Direction */}
                             <div>
                               <label className="block font-bold mb-1 text-[11px] text-slate-700 dark:text-slate-300">
-                                Hướng can thiệp (Direction):
+                                Recommendation Direction:
                               </label>
                               {isCustomizingV3 ? (
                                 <select
@@ -3072,7 +3072,7 @@ export function EditGuidelineModal({
                             activeConditionObj.treatment.timeWindows.length > 0 && (
                               <div>
                                 <label className="block font-bold mb-1 text-[11px] text-slate-700 dark:text-slate-300">
-                                  Cửa sổ thời gian can thiệp (Time Window):
+                                  Intervention Time Window:
                                 </label>
                                 {isCustomizingV3 ? (
                                   <div className="flex flex-wrap gap-1.5">
@@ -3087,7 +3087,7 @@ export function EditGuidelineModal({
                                           : "bg-white text-slate-700 border-slate-200"
                                       }`}
                                     >
-                                      Tất cả cửa sổ
+                                      All Windows
                                     </button>
                                     {activeConditionObj.treatment.timeWindows.map((tw) => {
                                       const isSel = customTimeWindowId === tw.id;
@@ -3111,11 +3111,11 @@ export function EditGuidelineModal({
                                   </div>
                                 ) : (
                                   <div className="flex items-center gap-1.5 text-xs text-slate-600 dark:text-slate-300 font-semibold">
-                                    <span>⏱️ Cửa sổ:</span>
+                                    <span>⏱️ Window:</span>
                                     <span className="font-bold text-indigo-600 dark:text-indigo-400">
                                       {activeConditionObj.treatment.timeWindows.find(
                                         (tw) => tw.id === activeV3Labels.timeWindowIds[0]
-                                      )?.label || "Không áp dụng cửa sổ cụ thể"}
+                                      )?.label || "No specific time window applied"}
                                     </span>
                                   </div>
                                 )}
@@ -3126,7 +3126,7 @@ export function EditGuidelineModal({
                           <div className="space-y-2 pt-1 border-t dark:border-slate-800">
                             <div className="flex items-center justify-between gap-2">
                               <label className="font-bold text-[11px] text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
-                                <span>Thẻ can thiệp &amp; Chẩn đoán đang gán:</span>
+                                <span>Assigned Intervention &amp; Diagnostic Tags:</span>
                                 <span className="px-1.5 py-0.2 rounded-full text-[10px] font-black bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
                                   {(isCustomizingV3
                                     ? [...customInterventionTags, ...customDiagnosisTags]
@@ -3136,7 +3136,7 @@ export function EditGuidelineModal({
                               </label>
                               {isCustomizingV3 && (
                                 <span className="text-[10.5px] text-slate-400">
-                                  Bấm dấu × để gỡ nhãn, hoặc nhấp gợi ý bên dưới để thêm nhanh
+                                  Click × to remove tag, or click suggestions below to add quickly
                                 </span>
                               )}
                             </div>
@@ -3148,7 +3148,7 @@ export function EditGuidelineModal({
                                 : [...activeV3Labels.interventionTags, ...activeV3Labels.diagnosisTags]
                               ).length === 0 ? (
                                 <span className="text-xs text-slate-400 italic">
-                                  Chưa có thẻ can thiệp/chẩn đoán nào được gán cho khuyến cáo này.
+                                  No intervention/diagnostic tags assigned to this recommendation yet.
                                 </span>
                               ) : (
                                 (isCustomizingV3
@@ -3170,7 +3170,7 @@ export function EditGuidelineModal({
                                             setCustomDiagnosisTags((prev) => prev.filter((id) => id !== tagId));
                                           }}
                                           className="hover:text-rose-500 font-black text-sm leading-none ml-0.5 cursor-pointer"
-                                          title={`Gỡ nhãn "${label}"`}
+                                          title={`Remove tag "${label}"`}
                                         >
                                           ×
                                         </button>
@@ -3196,7 +3196,7 @@ export function EditGuidelineModal({
                                         handleAddCustomTag();
                                       }
                                     }}
-                                    placeholder="Nhập tên nhãn muốn thêm (ví dụ: Tenecteplase, Dual Antiplatelet, MRI DWI...)..."
+                                    placeholder="Enter tag to add (e.g. Tenecteplase, Dual Antiplatelet, MRI DWI...)..."
                                     className={`flex-1 p-2 rounded-xl border text-xs font-medium ${
                                       darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-300"
                                     }`}
@@ -3206,7 +3206,7 @@ export function EditGuidelineModal({
                                     onClick={() => handleAddCustomTag()}
                                     className="px-3.5 py-2 rounded-xl text-xs font-bold bg-indigo-600 hover:bg-indigo-700 text-white cursor-pointer shadow-xs whitespace-nowrap"
                                   >
-                                    + Thêm nhãn
+                                    + Add Tag
                                   </button>
                                 </div>
 
@@ -3214,7 +3214,7 @@ export function EditGuidelineModal({
                                 {suggestedTags.length > 0 && (
                                   <div>
                                     <span className="block text-[10.5px] font-bold text-slate-500 dark:text-slate-400 mb-1">
-                                      Gợi ý nhãn danh định theo bệnh lý &amp; giai đoạn này (Bấm để thêm nhanh):
+                                      Suggested canonical tags for this condition &amp; domain (Click to add):
                                     </span>
                                     <div className="flex flex-wrap gap-1.5 max-h-28 overflow-y-auto custom-scrollbar p-1">
                                       {suggestedTags.map((st) => {

@@ -109,6 +109,7 @@ export async function GET(req: NextRequest) {
         },
         updates_queue: updatesQueue,
         drafts,
+        all_drugs: allDrugs.map((d) => d.drug),
       },
     });
   } catch (err: any) {

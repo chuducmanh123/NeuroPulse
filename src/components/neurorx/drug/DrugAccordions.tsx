@@ -352,7 +352,7 @@ export function DrugAccordions({
                 <FlaskConical className="w-4 h-4" />
               </div>
               <span className="text-slate-900 dark:text-white">
-                🧪 Pharmacokinetics, Hepatic &amp; Metabolism
+                🧪 Pharmacokinetics, Renal, Hepatic &amp; Metabolism
               </span>
             </div>
             {openSections.pk ? <ChevronUp className="w-5 h-5 text-slate-400" /> : <ChevronDown className="w-5 h-5 text-slate-400" />}
@@ -360,8 +360,64 @@ export function DrugAccordions({
 
           {openSections.pk && (
             <div className="p-4 sm:p-5 pt-0 space-y-4 border-t border-slate-100 dark:border-slate-800/80 text-xs sm:text-sm">
+              {/* Renal Impairment Guidance */}
+              {(drug.renal_impairment || drug.renal_basis) && (
+                <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/50 space-y-2 mt-3">
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-slate-800 dark:text-slate-200">
+                      Renal Impairment Guidance:
+                    </span>
+                    <SourcePopover
+                      refs={drug.renal_impairment?.refs || drug.renal_basis?.refs}
+                      sources={sources}
+                      darkMode={darkMode}
+                    />
+                  </div>
+                  <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                    {drug.renal_impairment?.description ||
+                      `Dosing adjustments stratified by renal function (${drug.renal_basis?.value || "cg_abw"}).`}
+                  </p>
+
+                  {/* Renal bands summary if available */}
+                  {drug.renal_impairment?.bands && drug.renal_impairment.bands.length > 0 && (
+                    <div className="space-y-1 pt-1">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block">
+                        Renal Dosage Adjustments ({drug.renal_basis?.value || "cg_abw"}):
+                      </span>
+                      <div className="space-y-1 text-xs">
+                        {drug.renal_impairment.bands.map((b, idx) => (
+                          <div
+                            key={idx}
+                            className="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between gap-2"
+                          >
+                            <span className="font-mono font-semibold text-slate-700 dark:text-slate-300">
+                              {b.min === null
+                                ? `< ${b.max}`
+                                : b.max === null
+                                ? `> ${b.min}`
+                                : `${b.min} – ${b.max}`}{" "}
+                              mL/min:
+                            </span>
+                            <span className="font-medium text-slate-600 dark:text-slate-400">
+                              {b.dose_text}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Hemodialysis note */}
+                  {drug.renal_impairment?.hemodialysis?.value && (
+                    <div className="p-2 rounded-lg bg-rose-500/10 border border-rose-500/20 text-xs text-rose-800 dark:text-rose-300 font-medium">
+                      <strong>Hemodialysis / ESRD:</strong> {drug.renal_impairment.hemodialysis.value}
+                    </div>
+                  )}
+                </div>
+              )}
+
               {/* Hepatic Impairment */}
-              <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/50 space-y-1 mt-3">
+              <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/50 space-y-1">
                 <div className="flex items-center justify-between">
                   <span className="font-bold text-slate-800 dark:text-slate-200">
                     Hepatic Impairment Guidance:
@@ -373,49 +429,102 @@ export function DrugAccordions({
                 </p>
               </div>
 
-              {/* Enzyme & Interaction Profile */}
+              {/* Enzyme & Interaction Profile - Hiển thị dạng chữ nổi bật, không kẻ bảng */}
               {enz && (
-                <div className="space-y-2">
+                <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/50 space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="font-bold text-slate-700 dark:text-slate-300">
+                    <span className="font-bold text-slate-800 dark:text-slate-200">
                       CYP &amp; Transporter Metabolism Profile:
                     </span>
                     <SourcePopover refs={drug.enzyme_profile?.refs} sources={sources} darkMode={darkMode} />
                   </div>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
-                    <div className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
-                      <span className="text-slate-400 text-[10px] uppercase font-bold block">CYP3A4</span>
-                      <span className="font-semibold text-slate-800 dark:text-slate-200">{enz.cyp3a4 || "none"}</span>
-                    </div>
-                    <div className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
-                      <span className="text-slate-400 text-[10px] uppercase font-bold block">CYP2C19</span>
-                      <span className="font-semibold text-slate-800 dark:text-slate-200">{enz.cyp2c19 || "none"}</span>
-                    </div>
-                    <div className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
-                      <span className="text-slate-400 text-[10px] uppercase font-bold block">P-gp</span>
-                      <span className="font-semibold text-slate-800 dark:text-slate-200">{enz.pgp || "none"}</span>
-                    </div>
-                    <div className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
-                      <span className="text-slate-400 text-[10px] uppercase font-bold block">QT Risk</span>
-                      <span className="font-semibold text-slate-800 dark:text-slate-200 capitalize">{enz.qt_risk || "none"}</span>
-                    </div>
-                  </div>
 
-                  {/* Serotonergic or Anticholinergic tags */}
-                  {(enz.serotonergic || enz.acb_score !== undefined) && (
-                    <div className="flex flex-wrap gap-2 pt-1 text-xs">
-                      {enz.serotonergic && (
-                        <span className="px-2.5 py-1 rounded-lg bg-purple-500/10 text-purple-700 dark:text-purple-300 font-semibold border border-purple-500/20">
-                          Serotonergic Activity: Review suggested
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-slate-600 dark:text-slate-300 pt-0.5">
+                    <span className="inline-flex items-center gap-1.5">
+                      <span className="font-medium text-slate-500 dark:text-slate-400">CYP3A4:</span>
+                      <span
+                        className={
+                          enz.cyp3a4
+                            ? "font-extrabold uppercase text-amber-600 dark:text-amber-400"
+                            : "font-semibold text-slate-800 dark:text-slate-200"
+                        }
+                      >
+                        {enz.cyp3a4 || "none"}
+                      </span>
+                    </span>
+
+                    <span className="text-slate-300 dark:text-slate-700">•</span>
+
+                    <span className="inline-flex items-center gap-1.5">
+                      <span className="font-medium text-slate-500 dark:text-slate-400">CYP2C19:</span>
+                      <span
+                        className={
+                          enz.cyp2c19
+                            ? "font-extrabold uppercase text-amber-600 dark:text-amber-400"
+                            : "font-semibold text-slate-800 dark:text-slate-200"
+                        }
+                      >
+                        {enz.cyp2c19 || "none"}
+                      </span>
+                    </span>
+
+                    <span className="text-slate-300 dark:text-slate-700">•</span>
+
+                    <span className="inline-flex items-center gap-1.5">
+                      <span className="font-medium text-slate-500 dark:text-slate-400">P-gp:</span>
+                      <span
+                        className={
+                          enz.pgp
+                            ? "font-extrabold uppercase text-amber-600 dark:text-amber-400"
+                            : "font-semibold text-slate-800 dark:text-slate-200"
+                        }
+                      >
+                        {enz.pgp || "none"}
+                      </span>
+                    </span>
+
+                    <span className="text-slate-300 dark:text-slate-700">•</span>
+
+                    <span className="inline-flex items-center gap-1.5">
+                      <span className="font-medium text-slate-500 dark:text-slate-400">QT Risk:</span>
+                      <span
+                        className={
+                          enz.qt_risk && enz.qt_risk !== "none"
+                            ? "font-extrabold capitalize text-rose-600 dark:text-rose-400"
+                            : "font-semibold capitalize text-slate-800 dark:text-slate-200"
+                        }
+                      >
+                        {enz.qt_risk || "none"}
+                      </span>
+                    </span>
+
+                    {enz.acb_score !== undefined && (
+                      <>
+                        <span className="text-slate-300 dark:text-slate-700">•</span>
+                        <span className="inline-flex items-center gap-1.5">
+                          <span className="font-medium text-slate-500 dark:text-slate-400">ACB Score:</span>
+                          <span
+                            className={
+                              enz.acb_score > 0
+                                ? "font-extrabold text-amber-600 dark:text-amber-400"
+                                : "font-semibold text-slate-800 dark:text-slate-200"
+                            }
+                          >
+                            {enz.acb_score}
+                          </span>
                         </span>
-                      )}
-                      {enz.acb_score !== undefined && (
-                        <span className="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold">
-                          Anticholinergic Cognitive Burden (ACB): {enz.acb_score}
+                      </>
+                    )}
+
+                    {enz.serotonergic && (
+                      <>
+                        <span className="text-slate-300 dark:text-slate-700">•</span>
+                        <span className="font-bold text-purple-600 dark:text-purple-400">
+                          ⚡ Serotonergic Activity
                         </span>
-                      )}
-                    </div>
-                  )}
+                      </>
+                    )}
+                  </div>
                 </div>
               )}
             </div>

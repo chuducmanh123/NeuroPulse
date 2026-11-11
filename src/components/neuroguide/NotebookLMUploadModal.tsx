@@ -58,7 +58,7 @@ export function NotebookLMUploadModal({
 
   const candidateTitle = (overrideTitle || parsedPreview?.doc.title || "").trim();
 
-  // Kiểm tra trùng lặp thời gian thực với guideline đang có sẵn trong hệ thống
+  // Real-time duplicate check with existing guidelines in repository
   const duplicateMatch = useMemo(() => {
     if (!candidateTitle || !existingGuidelines || existingGuidelines.length === 0) return null;
     const candNorm = candidateTitle.toLowerCase().replace(/[^a-z0-9]/g, "");
@@ -95,7 +95,7 @@ export function NotebookLMUploadModal({
 
         const data = await res.json().catch(() => null);
         if (!res.ok || !data?.ok) {
-          throw new Error(data?.error || `Không thể trích xuất nội dung từ tệp .${ext}. Vui lòng thử lại.`);
+          throw new Error(data?.error || `Could not extract content from .${ext} file. Please try again.`);
         }
 
         setRawText(data.text);
@@ -103,9 +103,9 @@ export function NotebookLMUploadModal({
         if (detectedSoc && detectedSoc !== "Other" && !overrideSociety) {
           setOverrideSociety(detectedSoc);
         }
-        setSuccessMessage(`Đã trích xuất thành công nội dung từ "${file.name}" (${(data.charCount || data.text.length).toLocaleString()} ký tự).`);
+        setSuccessMessage(`Successfully extracted content from "${file.name}" (${(data.charCount || data.text.length).toLocaleString()} characters).`);
       } catch (err: unknown) {
-        const msg = err instanceof Error ? err.message : "Lỗi khi xử lý tệp tài liệu";
+        const msg = err instanceof Error ? err.message : "Error processing document file";
         setErrorMessage(msg);
       } finally {
         setIsParsingFile(false);
@@ -122,7 +122,7 @@ export function NotebookLMUploadModal({
         }
       };
       reader.onerror = () => {
-        setErrorMessage("Không thể đọc tệp tin. Vui lòng thử lại hoặc dán văn bản trực tiếp.");
+        setErrorMessage("Could not read file. Please try again or paste text directly.");
       };
       reader.readAsText(file);
     }
@@ -154,14 +154,14 @@ export function NotebookLMUploadModal({
 
       const data = await res.json().catch(() => null);
       if (!res.ok || !data?.ok || !data?.formattedText) {
-        throw new Error(data?.error || "Không thể trích xuất khuyến cáo qua AI. Vui lòng thử lại.");
+        throw new Error(data?.error || "Could not extract recommendations via AI. Please try again.");
       }
 
       setRawText(data.formattedText);
       setShowExtractedText(true);
-      setSuccessMessage("🎉 AI đã chuyển đổi thành công văn bản thành bảng khuyến cáo lâm sàng chuẩn!");
+      setSuccessMessage("AI successfully structured text into standardized clinical recommendations!");
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : "Lỗi khi trích xuất qua AI";
+      const msg = err instanceof Error ? err.message : "Error during AI extraction";
       setErrorMessage(msg);
     } finally {
       setIsAiExtracting(false);
@@ -171,13 +171,13 @@ export function NotebookLMUploadModal({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!rawText || rawText.trim().length < 20) {
-      setErrorMessage("Vui lòng tải lên tệp tin (.md, .txt, .docx, .doc, .pdf) hoặc dán nội dung tóm tắt từ NotebookLM.");
+      setErrorMessage("Please upload a document (.md, .txt, .docx, .doc, .pdf) or paste NotebookLM summary text.");
       return;
     }
 
     if (duplicateMatch) {
       setErrorMessage(
-        `⚠️ Tên guideline "${candidateTitle}" trùng hoàn toàn với guideline đã có sẵn: "${duplicateMatch.title}" (${duplicateMatch.year || ""}). Hệ thống không tự động gộp hoặc ẩn tài liệu hiện có. Vui lòng đổi tên hoặc thêm năm/phiên bản trước khi lưu.`
+        `Guideline title "${candidateTitle}" duplicates an existing guideline: "${duplicateMatch.title}" (${duplicateMatch.year || ""}). Existing guidelines are not overwritten. Please rename or specify year/version.`
       );
       return;
     }
@@ -367,22 +367,22 @@ export function NotebookLMUploadModal({
                 {isParsingFile ? (
                   <div>
                     <p className="text-sm font-bold text-amber-600 dark:text-amber-400">
-                      Đang đọc và trích xuất dữ liệu từ {selectedFile?.name}...
+                      Reading and extracting data from {selectedFile?.name}...
                     </p>
-                    <p className="text-xs text-slate-400 mt-1">Đang phân tích bảng và khuyến cáo lâm sàng</p>
+                    <p className="text-xs text-slate-400 mt-1">Analyzing tables and clinical recommendations</p>
                   </div>
                 ) : selectedFile ? (
                   <div>
                     <p className="text-sm font-bold text-amber-600 dark:text-amber-400">{selectedFile.name}</p>
                     <p className="text-xs text-slate-400 mt-0.5">
-                      {(selectedFile.size / 1024).toFixed(1)} KB • Click hoặc kéo thả tệp khác để thay thế
+                      {(selectedFile.size / 1024).toFixed(1)} KB • Click or drag another file to replace
                     </p>
                   </div>
                 ) : (
                   <div>
-                    <p className="text-sm font-bold">Kéo thả tệp NotebookLM/Tài liệu hoặc nhấp để duyệt</p>
+                    <p className="text-sm font-bold">Drag &amp; drop NotebookLM / document file or click to browse</p>
                     <p className="text-xs text-slate-400 mt-1">
-                      Hỗ trợ Word (.docx, .doc), PDF (.pdf), Markdown (.md), Văn bản (.txt), CSV (.csv)
+                      Supports Word (.docx, .doc), PDF (.pdf), Markdown (.md), Text (.txt), CSV (.csv)
                     </p>
                   </div>
                 )}
@@ -393,14 +393,14 @@ export function NotebookLMUploadModal({
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
                       <span>📄</span>
-                      <span>Văn bản trích xuất ({rawText.length.toLocaleString()} ký tự)</span>
+                      <span>Extracted Text ({rawText.length.toLocaleString()} characters)</span>
                     </span>
                     <button
                       type="button"
                       onClick={() => setShowExtractedText(!showExtractedText)}
                       className="text-[11px] font-bold text-amber-600 dark:text-amber-400 hover:underline cursor-pointer"
                     >
-                      {showExtractedText ? "Thu gọn ▲" : "Xem & chỉnh sửa ▼"}
+                      {showExtractedText ? "Collapse ▲" : "View & Edit ▼"}
                     </button>
                   </div>
                   {showExtractedText && (
@@ -414,10 +414,10 @@ export function NotebookLMUploadModal({
                             ? "bg-slate-950 border-slate-700 text-slate-200 focus:border-amber-500"
                             : "bg-white border-slate-300 text-slate-900 focus:border-amber-500"
                         }`}
-                        placeholder="Nội dung văn bản trích xuất từ tệp..."
+                        placeholder="Extracted text content from file..."
                       />
                       <p className="text-[10px] text-slate-400">
-                        💡 Bạn có thể chỉnh sửa trực tiếp nội dung văn bản ở trên; bảng khuyến cáo bên dưới sẽ tự động cập nhật ngay lập tức.
+                        💡 You can edit the text directly above; the recommendation table below will automatically update.
                       </p>
                     </div>
                   )}
@@ -454,7 +454,7 @@ export function NotebookLMUploadModal({
                   <label className="block text-[11px] font-semibold text-slate-500">Guideline Title:</label>
                   {duplicateMatch && (
                     <span className="text-[10px] font-black uppercase text-rose-500 tracking-wider animate-pulse">
-                      Trùng tên có sẵn!
+                      Duplicate title exists!
                     </span>
                   )}
                 </div>
@@ -475,7 +475,7 @@ export function NotebookLMUploadModal({
                   <div className="mt-1.5 p-2 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-400 text-[11px] font-medium flex items-start gap-1.5">
                     <span className="shrink-0 text-xs">⚠️</span>
                     <span>
-                      <strong>Trùng hoàn toàn với guideline đã có:</strong> &quot;{duplicateMatch.title}&quot; ({duplicateMatch.year}). Hệ thống không tự động gộp hoặc ẩn tài liệu hiện có. Vui lòng đổi tên hoặc thêm năm/phiên bản trước khi lưu.
+                      <strong>Exact duplicate of existing guideline:</strong> &quot;{duplicateMatch.title}&quot; ({duplicateMatch.year}). Existing guidelines are not overwritten. Please rename or adjust year/version before saving.
                     </span>
                   </div>
                 )}
@@ -571,10 +571,10 @@ export function NotebookLMUploadModal({
                           <div className="flex flex-col items-center justify-center gap-2 py-2">
                             <span className="text-3xl">📋</span>
                             <p className="font-bold text-xs text-slate-700 dark:text-slate-300">
-                              Chưa phát hiện bảng hoặc danh sách khuyến cáo hợp lệ
+                              No valid recommendation table or list detected yet
                             </p>
                             <p className="text-[11.5px] max-w-md text-slate-500 dark:text-slate-400">
-                              Nội dung tài liệu có thể đang ở dạng văn bản tóm tắt tự do. Nhấn nút <strong className="text-amber-600 dark:text-amber-400">Trích xuất bằng AI (Gemini)</strong> bên dưới để AI tự động phân loại PICO, COR/LOE và cấu trúc hóa bảng khuyến cáo.
+                              The document may be in freeform text format. Click <strong className="text-amber-600 dark:text-amber-400">Extract with AI (Gemini)</strong> below to automatically parse PICO questions, COR/LOE grades, and structured recommendation tables.
                             </p>
                           </div>
                         </td>
@@ -621,10 +621,10 @@ export function NotebookLMUploadModal({
                 <span className="text-2xl">✨</span>
                 <div>
                   <p className="text-xs font-bold text-amber-700 dark:text-amber-400">
-                    Tự động nhận diện &amp; cấu trúc hóa khuyến cáo bằng AI
+                    Automated Recommendation Extraction via AI
                   </p>
                   <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                    Sử dụng Gemini AI để quét toàn bộ văn bản và trích xuất bảng khuyến cáo PICO / COR-LOE hoàn chỉnh.
+                    Use Gemini AI to scan the entire text and build a complete structured PICO / COR-LOE recommendation table.
                   </p>
                 </div>
               </div>
@@ -637,12 +637,12 @@ export function NotebookLMUploadModal({
                 {isAiExtracting ? (
                   <>
                     <span className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    <span>Đang trích xuất qua AI...</span>
+                    <span>Extracting via AI...</span>
                   </>
                 ) : (
                   <>
                     <span>🤖</span>
-                    <span>Trích xuất bằng AI (Gemini)</span>
+                    <span>Extract with AI (Gemini)</span>
                   </>
                 )}
               </button>
@@ -691,7 +691,7 @@ export function NotebookLMUploadModal({
               ) : duplicateMatch ? (
                 <>
                   <span>⚠️</span>
-                  <span>Trùng tên với guideline có sẵn (Đổi tên để lưu)</span>
+                  <span>Duplicate guideline title (Rename to save)</span>
                 </>
               ) : (
                 <>

@@ -262,7 +262,7 @@ export function PivotalTrialsAdminTab({
                 onClick={toggleAll}
                 className="text-xs font-medium text-slate-500 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400 px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-indigo-400 transition-all cursor-pointer"
               >
-                {allExpanded ? "Thu gọn tất cả" : "Mở rộng tất cả"}
+                {allExpanded ? "Collapse All" : "Expand All"}
               </button>
             )}
           </div>
@@ -394,11 +394,11 @@ export function PivotalTrialsAdminTab({
                       : "bg-slate-50/80 border-slate-200 hover:border-indigo-400 hover:shadow-xs"
                   }`}
                 >
-                  {/* Summary Bar: Tên + Tạp chí + Năm + Badges + Actions */}
+                  {/* Summary Bar: Title + Journal + Year + Badges + Actions */}
                   <div
                     onClick={() => toggleExpand(trial.id)}
                     className="p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 cursor-pointer select-none hover:bg-indigo-50/30 dark:hover:bg-slate-800/60 transition-colors"
-                    title={isExpanded ? "Bấm để thu gọn chi tiết" : "Bấm để xem chi tiết nghiên cứu"}
+                    title={isExpanded ? "Click to collapse details" : "Click to view study details"}
                   >
                     <div className="flex items-center gap-2 flex-wrap">
                       <span className="text-xs text-indigo-500 dark:text-indigo-400 font-bold transition-transform duration-150 inline-block w-3 text-center">
@@ -472,7 +472,7 @@ export function PivotalTrialsAdminTab({
                     </div>
                   </div>
 
-                  {/* Chi tiết nội dung nghiên cứu (Chỉ hiện ra khi bấm vào hoặc edit) */}
+                  {/* Detailed study content (Displayed when expanded or edited) */}
                   {isExpanded && (
                     <div className="px-4 pb-4 pt-2 space-y-3 border-t border-slate-200/80 dark:border-slate-800 bg-white/50 dark:bg-slate-900/40">
                       {/* Full Title */}

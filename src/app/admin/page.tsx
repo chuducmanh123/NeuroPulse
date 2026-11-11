@@ -717,31 +717,6 @@ export default function AdminCommandCenter() {
 
           {/* Quick ecosystem navigation & tools */}
           <div className="flex items-center gap-2 self-end sm:self-auto flex-wrap">
-            <Link
-              href="/"
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all ${
-                darkMode ? "bg-slate-900 border-slate-800 hover:bg-slate-800" : "bg-white border-slate-200 hover:bg-slate-100"
-              }`}
-            >
-              Pulse
-            </Link>
-            <Link
-              href="/neurocase"
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all ${
-                darkMode ? "bg-slate-900 border-slate-800 hover:bg-slate-800" : "bg-white border-slate-200 hover:bg-slate-100"
-              }`}
-            >
-              Case
-            </Link>
-            <Link
-              href="/neuroguide"
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all ${
-                darkMode ? "bg-slate-900 border-slate-800 hover:bg-slate-800" : "bg-white border-slate-200 hover:bg-slate-100"
-              }`}
-            >
-              Guide
-            </Link>
-
             <button
               onClick={toggleDarkMode}
               className={`px-3 py-1.5 rounded-lg text-xs font-bold border transition-all flex items-center gap-1.5 ${
@@ -757,7 +732,7 @@ export default function AdminCommandCenter() {
 
             <button
               onClick={handleLogout}
-              className="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-red-500/10 hover:bg-red-500/20 text-red-600 dark:text-red-400 border border-red-500/20 transition-all"
+              className="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-red-500/10 hover:bg-red-500/20 text-red-600 dark:text-red-400 border border-red-500/20 transition-all cursor-pointer"
               title="Sign out of Admin Session"
             >
               Sign Out
@@ -843,6 +818,30 @@ export default function AdminCommandCenter() {
             </div>
           </button>
 
+          <button
+            type="button"
+            onClick={() => setAdminTab("neurorx")}
+            className={`p-3 rounded-xl border text-left transition-all cursor-pointer border-l-4 border-l-rose-500 ${
+              adminTab === "neurorx"
+                ? darkMode
+                  ? "bg-rose-950/30 border-rose-500/50 shadow-xs ring-1 ring-rose-500/30"
+                  : "bg-rose-50/80 border-rose-300 shadow-xs ring-1 ring-rose-400/30"
+                : darkMode
+                ? "bg-slate-900/60 border-slate-800 hover:bg-slate-800/60 hover:border-rose-500/40"
+                : "bg-white border-slate-200 shadow-xs hover:bg-rose-50/40 hover:border-rose-300"
+            }`}
+          >
+            <div className="flex items-center justify-between text-slate-400 text-[11px]">
+              <span className="font-bold text-rose-600 dark:text-rose-400 flex items-center gap-1">
+                <span>💊</span>
+                <span>NeuroRx</span>
+              </span>
+              <span className="w-2 h-2 rounded-full bg-rose-500"></span>
+            </div>
+            <div className="text-base font-black mt-1 text-slate-900 dark:text-white">69 Drugs</div>
+            <div className="text-[10px] text-rose-600 dark:text-rose-400 font-medium">Dosing &amp; Interactions</div>
+          </button>
+
           <div className={`p-3 rounded-xl border opacity-75 border-l-4 border-l-purple-500 ${darkMode ? "bg-slate-900/40 border-slate-800" : "bg-slate-50 border-slate-200"}`}>
             <div className="flex items-center justify-between text-slate-400 text-[11px]">
               <span className="font-bold text-purple-600 dark:text-purple-400 flex items-center gap-1">
@@ -873,31 +872,19 @@ export default function AdminCommandCenter() {
             <div className="text-base font-black mt-1 text-slate-900 dark:text-white">Imaging AI</div>
             <div className="text-[10px] text-cyan-600 dark:text-cyan-400 font-medium">ASPECTS &amp; CTP</div>
           </Link>
-
-          <div className={`p-3 rounded-xl border opacity-75 border-l-4 border-l-rose-500 ${darkMode ? "bg-slate-900/40 border-slate-800" : "bg-slate-50 border-slate-200"}`}>
-            <div className="flex items-center justify-between text-slate-400 text-[11px]">
-              <span className="font-bold text-rose-600 dark:text-rose-400 flex items-center gap-1">
-                <span>💊</span>
-                <span>NeuroRx</span>
-              </span>
-              <span className="text-[9px] uppercase px-1 rounded bg-rose-500/10 text-rose-600 dark:text-rose-400 font-bold">Coming Soon</span>
-            </div>
-            <div className="text-base font-bold mt-1 text-slate-700 dark:text-slate-300">Pharma</div>
-            <div className="text-[10px] text-slate-500">Dosing &amp; Interactions</div>
-          </div>
         </div>
 
         {/* ADMIN OPERATION NAVIGATION TABS */}
         <nav
-          className={`mb-6 p-2 rounded-2xl border flex flex-wrap items-center justify-between gap-2 shadow-xs transition-colors ${
+          className={`mb-6 p-2 rounded-2xl border flex items-center overflow-x-auto scrollbar-none shadow-xs transition-colors ${
             darkMode ? "bg-slate-900/90 border-slate-800 backdrop-blur-md" : "bg-white/95 border-slate-200 backdrop-blur-md"
           }`}
         >
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex items-center gap-2 min-w-max">
             {[
               {
                 id: "neuropulse" as const,
-                label: "📰 Journal Feeds (NeuroPulse)",
+                label: "📰 NeuroPulse",
                 badge: String(articlesCount),
                 activeClass: "bg-blue-600 text-white shadow-md shadow-blue-500/25 ring-1 ring-blue-400/40",
                 inactiveClass: darkMode
@@ -909,8 +896,8 @@ export default function AdminCommandCenter() {
               },
               {
                 id: "neurocase" as const,
-                label: "🛡️ Case Moderation (NeuroCase)",
-                badge: pendingCases.length > 0 ? `${pendingCases.length} Pending` : `${cases.length} Cases`,
+                label: "🛡️ NeuroCase",
+                badge: pendingCases.length > 0 ? `${pendingCases.length} Pending` : `${cases.length}`,
                 activeClass: "bg-amber-600 text-white shadow-md shadow-amber-500/25 ring-1 ring-amber-400/40",
                 inactiveClass: darkMode
                   ? "text-slate-300 hover:bg-amber-950/40 hover:text-amber-300"
@@ -924,11 +911,11 @@ export default function AdminCommandCenter() {
               },
               {
                 id: "guidelines" as const,
-                label: "📋 Guidelines & Radar (NeuroGuide)",
+                label: "📋 NeuroGuide",
                 badge:
                   reviewQueueCount > 0
                     ? `${reviewQueueCount} Pending`
-                    : `${guidelineDocs.length} Docs`,
+                    : `${guidelineDocs.length}`,
                 activeClass: "bg-emerald-600 text-white shadow-md shadow-emerald-500/25 ring-1 ring-emerald-400/40",
                 inactiveClass: darkMode
                   ? "text-slate-300 hover:bg-emerald-950/40 hover:text-emerald-300"
@@ -941,8 +928,20 @@ export default function AdminCommandCenter() {
                 dotColor: "bg-emerald-500",
               },
               {
+                id: "neurorx" as const,
+                label: "💊 NeuroRx",
+                badge: "69",
+                activeClass: "bg-rose-600 text-white shadow-md shadow-rose-500/25 ring-1 ring-rose-400/40",
+                inactiveClass: darkMode
+                  ? "text-slate-300 hover:bg-rose-950/40 hover:text-rose-300"
+                  : "text-slate-700 hover:bg-rose-50 hover:text-rose-700",
+                badgeActive: "bg-white/20 text-white",
+                badgeInactive: "bg-rose-500/15 text-rose-700 dark:text-rose-300 border border-rose-500/25",
+                dotColor: "bg-rose-500",
+              },
+              {
                 id: "system" as const,
-                label: "⚙️ Architecture & Storage (System Core)",
+                label: "⚙️ System Core",
                 badge: (healthData?.diagnostics?.storage?.supabase?.connected || healthData?.diagnostics?.storage?.supabase?.configured || healthData?.diagnostics?.storage?.blobConnected) ? "Online" : undefined,
                 activeClass: "bg-indigo-600 text-white shadow-md shadow-indigo-500/25 ring-1 ring-indigo-400/40",
                 inactiveClass: darkMode
@@ -951,17 +950,6 @@ export default function AdminCommandCenter() {
                 badgeActive: "bg-white/20 text-white",
                 badgeInactive: "bg-indigo-500/15 text-indigo-700 dark:text-indigo-300 border border-indigo-500/25",
                 dotColor: "bg-indigo-500",
-              },
-              {
-                id: "neurorx" as const,
-                label: "💊 NeuroRx (Drugs & Dosing CDSS)",
-                activeClass: "bg-sky-600 text-white shadow-md shadow-sky-500/25 ring-1 ring-sky-400/40",
-                inactiveClass: darkMode
-                  ? "text-slate-300 hover:bg-sky-950/40 hover:text-sky-300"
-                  : "text-slate-700 hover:bg-sky-50 hover:text-sky-700",
-                badgeActive: "bg-white/20 text-white",
-                badgeInactive: "bg-sky-500/15 text-sky-700 dark:text-sky-300 border border-sky-500/25",
-                dotColor: "bg-sky-500",
               },
             ].map((tab) => {
               const active = adminTab === tab.id;

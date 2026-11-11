@@ -278,8 +278,8 @@ export function DoseCard({
             </div>
           )}
 
-          {/* Renal Clearance Bands Table */}
-          {renalBands.length > 0 && resolution.state !== "blocked_draft" && (
+          {/* Renal Clearance Bands Table (Only in Acute setting; Maintenance shows basic therapeutic dosing) */}
+          {isAcute && renalBands.length > 0 && resolution.state !== "blocked_draft" && (
             <div className="space-y-1.5 pt-2">
               <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block">
                 Renal Clearance Bands ({drug.renal_basis?.value || "cg_abw"}):

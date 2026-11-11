@@ -168,18 +168,45 @@ export function ExtractorPanel({ darkMode = false }: ExtractorPanelProps) {
 
   return (
     <div className="space-y-6">
-      {/* 1. Mandatory Workflow & Guardrail Banner */}
-      <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-900 dark:text-amber-200 text-xs space-y-2">
-        <div className="flex items-center gap-2 font-bold text-sm text-amber-800 dark:text-amber-300">
-          <Info className="w-4 h-4 flex-shrink-0" />
-          <span>Extraction Workflow: Commit both files via the repo; then review and run rx:verify.</span>
+      {/* 1. Quick Extraction Process Guide */}
+      <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 text-xs">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="flex items-start gap-2.5">
+            <span className="w-6 h-6 rounded-full bg-sky-500/15 text-sky-600 dark:text-sky-400 font-black flex items-center justify-center shrink-0 text-xs">
+              1
+            </span>
+            <div>
+              <span className="font-bold text-slate-800 dark:text-slate-200 block">Select Source Document</span>
+              <span className="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed block mt-0.5">
+                Upload FDA prescribing information (PDF/DOCX) or paste official monograph text directly.
+              </span>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-2.5">
+            <span className="w-6 h-6 rounded-full bg-sky-500/15 text-sky-600 dark:text-sky-400 font-black flex items-center justify-center shrink-0 text-xs">
+              2
+            </span>
+            <div>
+              <span className="font-bold text-slate-800 dark:text-slate-200 block">Automated AI Extraction</span>
+              <span className="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed block mt-0.5">
+                Automatically extract dosing regimens, organ adjustments, and verify quotes.
+              </span>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-2.5">
+            <span className="w-6 h-6 rounded-full bg-sky-500/15 text-sky-600 dark:text-sky-400 font-black flex items-center justify-center shrink-0 text-xs">
+              3
+            </span>
+            <div>
+              <span className="font-bold text-slate-800 dark:text-slate-200 block">Review &amp; Ingest</span>
+              <span className="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed block mt-0.5">
+                Preview structured JSON, download files, or commit directly to the formulary.
+              </span>
+            </div>
+          </div>
         </div>
-        <p className="text-amber-700/90 dark:text-amber-300/80 leading-relaxed">
-          NeuroRx strictly enforces zero hallucination. All AI-extracted fields must have verbatim quotes from the
-          uploaded source text. Any value with a missing or fabricated quote is automatically rejected and nulled by the
-          Quote-Guard. This tool never writes to the repo directly: download both the draft JSON and source text, commit
-          them via git, review against the original document, and run <code className="font-mono bg-amber-500/20 px-1 py-0.5 rounded">npm run rx:verify -- &lt;id&gt; --by &quot;Name&quot;</code>.
-        </p>
       </div>
 
       {/* 2. Extraction Form */}
@@ -187,31 +214,38 @@ export function ExtractorPanel({ darkMode = false }: ExtractorPanelProps) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
             <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-              Target Drug ID <span className="text-rose-500">*</span>
-            </label>
-            <input
-              type="text"
-              value={drugId}
-              onChange={(e) => setDrugId(e.target.value)}
-              placeholder="e.g. lacosamide"
-              className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-xs focus:ring-2 focus:ring-sky-500 focus:outline-none"
-              required
-            />
-            <span className="text-[10px] text-slate-400">Lowercase slug used for data/neurorx/drugs/&lt;id&gt;.json</span>
-          </div>
-
-          <div>
-            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-              Generic Name
+              Generic Name <span className="text-rose-500">*</span>
             </label>
             <input
               type="text"
               value={genericName}
-              onChange={(e) => setGenericName(e.target.value)}
-              placeholder="e.g. lacosamide"
+              onChange={(e) => {
+                const val = e.target.value;
+                setGenericName(val);
+                if (!drugId || drugId === genericName.toLowerCase().replace(/[^a-z0-9_-]/g, "-")) {
+                  setDrugId(val.toLowerCase().replace(/[^a-z0-9_-]/g, "-"));
+                }
+              }}
+              placeholder="e.g. Lacosamide"
               className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-xs focus:ring-2 focus:ring-sky-500 focus:outline-none"
+              required
             />
-            <span className="text-[10px] text-slate-400">Clinical generic name (defaults to drug ID)</span>
+            <span className="text-[10px] text-slate-400">International nonproprietary name</span>
+          </div>
+
+          <div>
+            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+              Drug ID <span className="text-rose-500">*</span>
+            </label>
+            <input
+              type="text"
+              value={drugId}
+              onChange={(e) => setDrugId(e.target.value.toLowerCase().replace(/[^a-z0-9_-]/g, "-"))}
+              placeholder="e.g. lacosamide"
+              className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-xs font-mono focus:ring-2 focus:ring-sky-500 focus:outline-none"
+              required
+            />
+            <span className="text-[10px] text-slate-400">Lowercase slug for data storage</span>
           </div>
 
           <div>
@@ -223,10 +257,10 @@ export function ExtractorPanel({ darkMode = false }: ExtractorPanelProps) {
               value={sourceId}
               onChange={(e) => setSourceId(e.target.value)}
               placeholder="e.g. fda-vimpat-2024"
-              className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-xs focus:ring-2 focus:ring-sky-500 focus:outline-none"
+              className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-xs font-mono focus:ring-2 focus:ring-sky-500 focus:outline-none"
               required
             />
-            <span className="text-[10px] text-slate-400">ID in sources.json and sources/&lt;source_id&gt;.txt</span>
+            <span className="text-[10px] text-slate-400">Identifier for source citation file</span>
           </div>
         </div>
 
@@ -234,7 +268,7 @@ export function ExtractorPanel({ darkMode = false }: ExtractorPanelProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
           <div>
             <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-              Upload Document (.pdf, .docx, .txt, .md)
+              Upload Original Document (.pdf, .docx, .txt)
             </label>
             <div className="border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-xl p-4 text-center hover:border-sky-500 transition-colors">
               <input
@@ -245,23 +279,23 @@ export function ExtractorPanel({ darkMode = false }: ExtractorPanelProps) {
                 className="hidden"
               />
               <label htmlFor="doc-upload" className="cursor-pointer flex flex-col items-center justify-center gap-1.5">
-                <Upload className="w-5 h-5 text-slate-400" />
-                <span className="text-xs font-medium text-sky-600 dark:text-sky-400">
-                  {file ? file.name : "Select official label or guideline document"}
+                <Upload className="w-5 h-5 text-sky-500" />
+                <span className="text-xs font-semibold text-slate-700 dark:text-slate-200">
+                  {file ? file.name : "Click to select drug label / monograph file"}
                 </span>
-                <span className="text-[10px] text-slate-400">PDF, DOCX, or plain text up to 50 MB</span>
+                <span className="text-[10px] text-slate-400">Supports PDF, DOCX, TXT up to 50 MB</span>
               </label>
             </div>
           </div>
 
           <div>
             <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-              Or Paste Text Directly (optional)
+              Or Paste Document Text Directly (Optional)
             </label>
             <textarea
               value={pastedText}
               onChange={(e) => setPastedText(e.target.value)}
-              placeholder="Paste FDA highlights or full prescribing info text here…"
+              placeholder="Paste Prescribing Information highlights or full label text here..."
               rows={4}
               className="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-xs font-mono focus:ring-2 focus:ring-sky-500 focus:outline-none resize-none"
             />
@@ -279,17 +313,17 @@ export function ExtractorPanel({ darkMode = false }: ExtractorPanelProps) {
           <button
             type="submit"
             disabled={loading}
-            className="px-4 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs flex items-center gap-2 transition-colors disabled:opacity-50 shadow-xs"
+            className="px-5 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs flex items-center gap-2 transition-colors disabled:opacity-50 shadow-xs cursor-pointer"
           >
             {loading ? (
               <>
                 <RefreshCw className="w-4 h-4 animate-spin" />
-                <span>Extracting &amp; Quote-Guarding…</span>
+                <span>AI is reading and extracting structured data...</span>
               </>
             ) : (
               <>
                 <Cpu className="w-4 h-4" />
-                <span>Run Extraction &amp; Quote-Guard</span>
+                <span>Run AI Extraction &amp; Quote-Guard</span>
               </>
             )}
           </button>
@@ -299,27 +333,26 @@ export function ExtractorPanel({ darkMode = false }: ExtractorPanelProps) {
       {/* 3. Extraction Output */}
       {extractedDraft && (
         <div className="space-y-4">
-          {/* A. Quote-Guard Rejected Values List */}
+          {/* A. Quote mismatch alert if any */}
           {rejectedValues.length > 0 && (
-            <div className="p-4 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-900 dark:text-rose-200 text-xs space-y-3">
-              <div className="flex items-center gap-2 font-bold text-sm text-rose-800 dark:text-rose-300">
-                <ShieldAlert className="w-5 h-5 flex-shrink-0 text-rose-600" />
-                <span>Rejected Values ({rejectedValues.length}) — Blocked by Quote-Guard</span>
+            <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-900 dark:text-amber-200 text-xs space-y-2">
+              <div className="flex items-center gap-2 font-bold text-sm text-amber-800 dark:text-amber-300">
+                <ShieldAlert className="w-4 h-4 flex-shrink-0 text-amber-600" />
+                <span>Quote-Guard Verification Notice ({rejectedValues.length} item(s))</span>
               </div>
-              <p className="text-rose-700 dark:text-rose-300/90">
-                The following fields contained quotes not found verbatim in the provided text. To enforce zero
-                hallucination, their clinical values were automatically set to <code className="font-mono bg-rose-500/20 px-1 py-0.5 rounded">null</code>:
+              <p className="text-amber-700 dark:text-amber-300/90 leading-relaxed">
+                The fields below lacked exact verbatim quote matching in the uploaded text, so they were safely defaulted to null (<code className="font-mono bg-amber-500/20 px-1 py-0.5 rounded">null</code>) for clinical review:
               </p>
-              <div className="divide-y divide-rose-500/20 max-h-60 overflow-y-auto pr-2">
+              <div className="divide-y divide-amber-500/20 max-h-48 overflow-y-auto pr-2">
                 {rejectedValues.map((rej, idx) => (
                   <div key={idx} className="py-2 space-y-1">
                     <div className="flex items-center justify-between">
-                      <span className="font-mono font-bold text-rose-800 dark:text-rose-300">{rej.path || rej.field}</span>
-                      <span className="text-[10px] text-rose-600 dark:text-rose-400">{rej.reason}</span>
+                      <span className="font-mono font-bold text-amber-800 dark:text-amber-300">{rej.path || rej.field}</span>
+                      <span className="text-[10px] text-amber-600 dark:text-amber-400">{rej.reason}</span>
                     </div>
                     {rej.attempted_quote && (
-                      <p className="text-[11px] font-mono bg-rose-500/10 p-1.5 rounded text-rose-700 dark:text-rose-200 truncate">
-                        Quote: &quot;{rej.attempted_quote}&quot;
+                      <p className="text-[11px] font-mono bg-amber-500/10 p-1.5 rounded text-amber-800 dark:text-amber-200 truncate">
+                        Attempted quote: &quot;{rej.attempted_quote}&quot;
                       </p>
                     )}
                   </div>
@@ -328,24 +361,7 @@ export function ExtractorPanel({ darkMode = false }: ExtractorPanelProps) {
             </div>
           )}
 
-          {/* B. Schema Validation Warnings */}
-          {validationErrors.length > 0 && (
-            <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-900 dark:text-amber-200 text-xs space-y-2">
-              <div className="flex items-center gap-2 font-bold text-sm text-amber-800 dark:text-amber-300">
-                <AlertTriangle className="w-4 h-4 flex-shrink-0 text-amber-600" />
-                <span>Schema Validation Warnings ({validationErrors.length})</span>
-              </div>
-              <ul className="list-disc list-inside space-y-1 text-amber-700 dark:text-amber-300/90 max-h-40 overflow-y-auto">
-                {validationErrors.map((err, idx) => (
-                  <li key={idx}>
-                    <span className="font-mono font-bold">{err.path}:</span> {err.message}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {/* C. Verified Draft Summary & Actions */}
+          {/* B. Extracted drug preview */}
           <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 shadow-xs space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-200 dark:border-slate-800">
               <div>
@@ -355,11 +371,11 @@ export function ExtractorPanel({ darkMode = false }: ExtractorPanelProps) {
                     Draft Generated: {extractedDraft.generic_name} ({extractedDraft.id})
                   </h4>
                   <span className="text-[10px] px-2 py-0.5 rounded-full font-bold bg-amber-500/10 text-amber-600 border border-amber-500/20">
-                    draft (locked)
+                    Draft
                   </span>
                 </div>
                 <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
-                  Extracted {extractedDraft.regimens?.length || 0} regimen(s) · Status: {extractedDraft.status} · Verification: pending human review
+                  Identified {extractedDraft.regimens?.length || 0} dosing regimen(s) · Ready for clinical review and verification
                 </p>
               </div>
 
@@ -367,7 +383,7 @@ export function ExtractorPanel({ darkMode = false }: ExtractorPanelProps) {
                 <button
                   type="button"
                   onClick={handleCopyJson}
-                  className="px-3 py-1.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-bold flex items-center gap-1 transition-colors"
+                  className="px-3 py-1.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-bold flex items-center gap-1 transition-colors cursor-pointer"
                 >
                   {copied ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
                   <span>{copied ? "Copied!" : "Copy JSON"}</span>
@@ -375,7 +391,7 @@ export function ExtractorPanel({ darkMode = false }: ExtractorPanelProps) {
                 <button
                   type="button"
                   onClick={handleDownloadDraft}
-                  className="px-3 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs flex items-center gap-1 transition-colors shadow-xs"
+                  className="px-3 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs flex items-center gap-1 transition-colors shadow-xs cursor-pointer"
                 >
                   <Download className="w-3.5 h-3.5" />
                   <span>Download {extractedDraft.id}.json</span>
@@ -384,22 +400,13 @@ export function ExtractorPanel({ darkMode = false }: ExtractorPanelProps) {
                   <button
                     type="button"
                     onClick={handleDownloadSourceText}
-                    className="px-3 py-1.5 rounded-xl border border-sky-300 dark:border-sky-700 text-sky-600 dark:text-sky-400 hover:bg-sky-50 dark:hover:bg-sky-950/40 font-bold text-xs flex items-center gap-1 transition-colors"
+                    className="px-3 py-1.5 rounded-xl border border-sky-300 dark:border-sky-700 text-sky-600 dark:text-sky-400 hover:bg-sky-50 dark:hover:bg-sky-950/40 font-bold text-xs flex items-center gap-1 transition-colors cursor-pointer"
                   >
                     <Download className="w-3.5 h-3.5" />
-                    <span>Download {sourceId}.txt</span>
+                    <span>Download Source (.txt)</span>
                   </button>
                 )}
               </div>
-            </div>
-
-            {/* Terminal Instructions */}
-            <div className="p-3 rounded-xl bg-slate-900 text-slate-100 text-xs font-mono flex items-center justify-between gap-2 overflow-x-auto">
-              <div className="flex items-center gap-2">
-                <Terminal className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                <span>npm run rx:verify -- {extractedDraft.id} --by &quot;Your Name&quot;</span>
-              </div>
-              <span className="text-[10px] text-slate-400">Run in terminal after placing files in data/neurorx/</span>
             </div>
 
             {/* JSON Preview */}

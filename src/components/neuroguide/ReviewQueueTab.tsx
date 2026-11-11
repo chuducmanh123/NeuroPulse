@@ -179,10 +179,10 @@ export function buildEsoPicoItemsFromStoredRecs(recs: StoredRec[], guidelineTitl
         lowerG.includes("(–)") ||
         lowerG.includes("(-)")
       ) q = "Uncertain / Ongoing trial";
-      else if (lowerG.includes("very low") || lowerG.includes("rất thấp")) q = "Very low";
-      else if ((lowerG.includes("low") || lowerG.includes("thấp")) && !lowerG.includes("very") && !lowerG.includes("rất")) q = "Low";
-      else if (lowerG.includes("high") || lowerG.includes("cao")) q = "High";
-      else if (lowerG.includes("moderate") || lowerG.includes("trung bình")) q = "Moderate";
+      else if (lowerG.includes("very low")) q = "Very low";
+      else if (lowerG.includes("low") && !lowerG.includes("very")) q = "Low";
+      else if (lowerG.includes("high")) q = "High";
+      else if (lowerG.includes("moderate")) q = "Moderate";
       else q = "Moderate";
     }
 
@@ -332,7 +332,7 @@ export function ReviewQueueTab({
     if (onQueueUpdated) onQueueUpdated();
     setFeedbackMessage({
       type: "success",
-      text: `🔄 Khôi phục hiển thị toàn bộ ${rawServerRecs.length} khuyến cáo đang chờ duyệt từ máy chủ.`,
+      text: `🔄 Restored and displayed all ${rawServerRecs.length} pending recommendations from server.`,
     });
   };
 
@@ -358,15 +358,15 @@ export function ReviewQueueTab({
         setQueue([]);
         setFeedbackMessage({
           type: "success",
-          text: `🗑️ Đã dọn dẹp sạch toàn bộ các hướng dẫn đã xóa trên Cloud và Local!`,
+          text: `🗑️ Successfully purged all deleted guidelines on Cloud and Local!`,
         });
         if (onQueueCountChange) onQueueCountChange(0);
         if (onQueueUpdated) onQueueUpdated();
       } else {
-        setFeedbackMessage({ type: "error", text: data.error || "Không thể dọn dẹp bộ nhớ." });
+        setFeedbackMessage({ type: "error", text: data.error || "Could not purge storage." });
       }
     } catch {
-      setFeedbackMessage({ type: "error", text: "Lỗi kết nối khi dọn dẹp bộ nhớ." });
+      setFeedbackMessage({ type: "error", text: "Connection error while purging storage." });
     } finally {
       setActionLoading(null);
     }
@@ -378,11 +378,11 @@ export function ReviewQueueTab({
       const res = await fetch("/api/neuroguide/review-queue");
       const data = await res.json();
       if (data.ok && Array.isArray(data.queue)) {
-        // Lấy danh sách ID guideline đã bị từ chối khỏi localStorage (chỉ khớp đúng guideline_id, không khớp theo title hay substring để tránh chặn nhầm guideline mới thêm vào)
+        // Retrieve rejected guideline IDs from localStorage
         const localDeleted: string[] = JSON.parse(localStorage.getItem("neuroguide_deleted_ids") || "[]");
         const deletedSet = new Set(localDeleted.map((x) => x.toLowerCase().trim()));
 
-        // Lọc bỏ các khuyến cáo có đúng guideline_id đã bị từ chối
+        // Filter out rejected recommendations
         const nonDeletedRecs = data.queue.filter((r: StoredRec) => {
           const gId = (r.guideline_id || "").toLowerCase().trim();
           return !deletedSet.has(gId);
@@ -394,7 +394,7 @@ export function ReviewQueueTab({
           return !dismissed.has(r.rec_id) && (status === "PENDING_REVIEW" || status === "PENDING");
         });
 
-        // Chỉ tính là 'ẩn tạm thời' khi khuyến cáo thực sự hợp lệ (chưa bị xóa) nhưng đang nằm trong danh sách dismissed
+        // Count items temporarily dismissed in local browser cache
         const actuallyHidden = nonDeletedRecs.filter((r: StoredRec) => {
           const status = (r.approval_status || "").toUpperCase();
           return dismissed.has(r.rec_id) && (status === "PENDING_REVIEW" || status === "PENDING");
@@ -409,7 +409,7 @@ export function ReviewQueueTab({
       }
     } catch (err) {
       console.warn("Could not fetch review queue:", err);
-      setFeedbackMessage({ type: "error", text: "Không thể kết nối đến máy chủ để tải danh sách kiểm duyệt." });
+      setFeedbackMessage({ type: "error", text: "Could not connect to server to load review queue." });
     } finally {
       setIsLoading(false);
     }
@@ -585,7 +585,7 @@ export function ReviewQueueTab({
       const data = await res.json();
       if (data.ok) {
         markRecsAsReviewedLocally(group.recommendations.map((r) => r.rec_id));
-        // Xóa ID và Title khỏi danh sách deleted_ids để đảm bảo hiển thị tức thì trên Practice Guidelines
+        // Clear ID and Title from deleted_ids to show immediately in Practice Guidelines
         try {
           const localDel: string[] = JSON.parse(localStorage.getItem("neuroguide_deleted_ids") || "[]");
           const targetIds = new Set([group.guideline_id.toLowerCase()]);
@@ -598,18 +598,18 @@ export function ReviewQueueTab({
         } catch {}
         setFeedbackMessage({
           type: "success",
-          text: `✅ Đã phê duyệt và xuất bản Guideline "${group.guideline_title}" (${group.recommendations.length} khuyến cáo) vào Clinical Practice Guidelines!`,
+          text: `✅ Approved and published Guideline "${group.guideline_title}" (${group.recommendations.length} recommendations) to Clinical Practice Guidelines!`,
         });
         setQueue((prev) => prev.filter((r) => r.guideline_id !== group.guideline_id));
         if (onQueueUpdated) onQueueUpdated();
       } else {
         setFeedbackMessage({
           type: "error",
-          text: `⚠️ ${data.error || "Có lỗi xảy ra khi phê duyệt guideline."}`,
+          text: `⚠️ ${data.error || "An error occurred while approving the guideline."}`,
         });
       }
     } catch {
-      setFeedbackMessage({ type: "error", text: "⚠️ Lỗi kết nối mạng khi phê duyệt guideline." });
+      setFeedbackMessage({ type: "error", text: "⚠️ Network error while approving guideline." });
     } finally {
       setActionLoading(null);
       setConfirmDialog((prev) => ({ ...prev, isOpen: false }));
@@ -638,7 +638,7 @@ export function ReviewQueueTab({
 
       const data = await res.json();
       if (data.ok) {
-        // Cập nhật neuroguide_deleted_ids trên local (chỉ lưu đúng ID, không lưu title để tránh chặn nhầm khi tải lại bản mới) và dọn dẹp các ID khuyến cáo khỏi dismissed cache
+        // Update neuroguide_deleted_ids locally
         try {
           const localDel: string[] = JSON.parse(localStorage.getItem("neuroguide_deleted_ids") || "[]");
           localDel.push(group.guideline_id.toLowerCase().trim());
@@ -655,7 +655,7 @@ export function ReviewQueueTab({
 
         setFeedbackMessage({
           type: "info",
-          text: `❌ Đã từ chối và xóa Guideline "${group.guideline_title}" khỏi hệ thống.`,
+          text: `❌ Rejected and removed Guideline "${group.guideline_title}" from review queue.`,
         });
         setQueue((prev) => {
           const next = prev.filter((r) => r.guideline_id !== group.guideline_id);
@@ -668,11 +668,11 @@ export function ReviewQueueTab({
       } else {
         setFeedbackMessage({
           type: "error",
-          text: `⚠️ ${data.error || "Có lỗi xảy ra khi từ chối guideline."}`,
+          text: `⚠️ ${data.error || "An error occurred while rejecting the guideline."}`,
         });
       }
     } catch {
-      setFeedbackMessage({ type: "error", text: "⚠️ Lỗi kết nối mạng khi từ chối guideline." });
+      setFeedbackMessage({ type: "error", text: "⚠️ Network error while rejecting the guideline." });
     } finally {
       setActionLoading(null);
       setConfirmDialog((prev) => ({ ...prev, isOpen: false }));
@@ -701,7 +701,7 @@ export function ReviewQueueTab({
       const data = await res.json();
       if (data.ok) {
         markRecsAsReviewedLocally(queue.map((r) => r.rec_id));
-        // Xóa tất cả các guideline được duyệt khỏi neuroguide_deleted_ids và làm mới cache
+        // Clear all approved guidelines from neuroguide_deleted_ids
         try {
           const localDel: string[] = JSON.parse(localStorage.getItem("neuroguide_deleted_ids") || "[]");
           const targetIds = new Set(queue.map((r) => r.guideline_id.toLowerCase()));
@@ -713,18 +713,18 @@ export function ReviewQueueTab({
         } catch {}
         setFeedbackMessage({
           type: "success",
-          text: `✅ ${data.message || `Đã phê duyệt toàn bộ ${queue.length} khuyến cáo vào kho hướng dẫn chính thức!`}`,
+          text: `✅ ${data.message || `Successfully approved all ${queue.length} recommendations to the official guidelines repository!`}`,
         });
         setQueue([]);
         if (onQueueUpdated) onQueueUpdated();
       } else {
         setFeedbackMessage({
           type: "error",
-          text: `⚠️ ${data.error || "Có lỗi xảy ra khi phê duyệt toàn bộ khuyến cáo."}`,
+          text: `⚠️ ${data.error || "An error occurred while approving all recommendations."}`,
         });
       }
     } catch {
-      setFeedbackMessage({ type: "error", text: "⚠️ Lỗi kết nối mạng khi phê duyệt hàng loạt." });
+      setFeedbackMessage({ type: "error", text: "⚠️ Network error while bulk approving recommendations." });
     } finally {
       setActionLoading(null);
       setConfirmDialog((prev) => ({ ...prev, isOpen: false }));
@@ -733,7 +733,7 @@ export function ReviewQueueTab({
 
   const handleDeleteSingleRecommendation = async (rec: StoredRec) => {
     const confirm = window.confirm(
-      `Bạn có chắc chắn muốn xóa khuyến cáo này khỏi danh sách kiểm duyệt?\n\n"${rec.statement?.slice(0, 120)}..."`
+      `Are you sure you want to delete this recommendation from the review queue?\n\n"${rec.statement?.slice(0, 120)}..."`
     );
     if (!confirm) return;
 
@@ -763,14 +763,14 @@ export function ReviewQueueTab({
         setRawServerRecs((prev) => prev.filter((r) => r.rec_id !== rec.rec_id));
         setFeedbackMessage({
           type: "success",
-          text: `🗑️ Đã xóa thành công 1 khuyến cáo.`,
+          text: `🗑️ Successfully deleted 1 recommendation.`,
         });
         if (onQueueUpdated) onQueueUpdated();
       } else {
-        setFeedbackMessage({ type: "error", text: data.error || "Không thể xóa khuyến cáo." });
+        setFeedbackMessage({ type: "error", text: data.error || "Could not delete recommendation." });
       }
     } catch {
-      setFeedbackMessage({ type: "error", text: "Lỗi kết nối khi xóa khuyến cáo." });
+      setFeedbackMessage({ type: "error", text: "Connection error while deleting recommendation." });
     } finally {
       setActionLoading(null);
     }
@@ -795,10 +795,10 @@ export function ReviewQueueTab({
       if (data.ok) {
         setFeedbackMessage({ type: "success", text: `🧹 ${data.message}` });
       } else {
-        setFeedbackMessage({ type: "error", text: `⚠️ ${data.error || "Lỗi khi dọn dẹp bộ nhớ Vercel Blob."}` });
+        setFeedbackMessage({ type: "error", text: `⚠️ ${data.error || "Error cleaning up Vercel Blob storage."}` });
       }
     } catch {
-      setFeedbackMessage({ type: "error", text: "⚠️ Lỗi kết nối mạng khi dọn dẹp bộ nhớ Vercel Blob." });
+      setFeedbackMessage({ type: "error", text: "⚠️ Network error while cleaning up Vercel Blob storage." });
     } finally {
       setCleanupLoading(false);
     }
@@ -874,7 +874,7 @@ export function ReviewQueueTab({
 
             return {
               id: r.rec_id || `rec-${idx + 1}`,
-              topic: r.topic || r.target_population || (isDocEso ? `PICO ${pNum || idx + 1}: Clinical Question` : `Khuyến cáo #${idx + 1}`),
+              topic: r.topic || r.target_population || (isDocEso ? `PICO ${pNum || idx + 1}: Clinical Question` : `Recommendation #${idx + 1}`),
               currentGrade,
               cor: r.cor,
               loe: r.loe,
@@ -991,7 +991,7 @@ export function ReviewQueueTab({
 
             return {
               id: r.rec_id || `rec-${idx + 1}`,
-              topic: r.topic || r.target_population || (isDocEso ? `PICO ${pNum || idx + 1}: Clinical Question` : `Khuyến cáo #${idx + 1}`),
+              topic: r.topic || r.target_population || (isDocEso ? `PICO ${pNum || idx + 1}: Clinical Question` : `Recommendation #${idx + 1}`),
               currentGrade,
               cor: r.cor,
               loe: r.loe,
@@ -1016,7 +1016,7 @@ export function ReviewQueueTab({
       title:
         parentGroup?.guideline_title ||
         rec.guideline_title ||
-        "Hướng dẫn thực hành lâm sàng",
+        "Clinical Practice Guideline",
       society: isDocEso ? "ESO" : (isAha ? "AHA/ASA" : (parentGroup?.society || rec.society || "General")),
       year: parentGroup?.year || rec.year || 2026,
       officialUrl: "",
@@ -1225,9 +1225,9 @@ export function ReviewQueueTab({
                   setConfirmDialog({
                     isOpen: true,
                     type: "APPROVE_ALL",
-                    title: "Phê duyệt toàn bộ hàng đợi?",
-                    description: `Hành động này sẽ phê duyệt toàn bộ ${guidelineGroups.length} Guidelines (${queue.length} khuyến cáo) và xuất bản ngay vào kho Clinical Practice Guidelines.`,
-                    confirmLabel: `✓ Phê duyệt toàn bộ (${queue.length} mục)`,
+                    title: "Approve Entire Review Queue?",
+                    description: `This action will approve all ${guidelineGroups.length} Guidelines (${queue.length} recommendations) and publish them to Clinical Practice Guidelines immediately.`,
+                    confirmLabel: `✓ Approve All (${queue.length} items)`,
                     confirmColor: "emerald",
                   })
                 }
@@ -1269,9 +1269,9 @@ export function ReviewQueueTab({
 
         {/* Quick Filter Pills */}
         <div className="pt-2 border-t border-slate-100 dark:border-slate-800/60 flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 scrollbar-none flex-wrap">
-          <span className="text-[11px] font-bold text-slate-400 mr-1">Hội chuyên khoa:</span>
+          <span className="text-[11px] font-bold text-slate-400 mr-1">Medical Society:</span>
           {[
-            { id: "ALL", label: "Tất cả", count: queue.length },
+            { id: "ALL", label: "All", count: queue.length },
             { id: "AHA", label: "AHA/ASA", count: societyCounts["AHA"] || 0 },
             { id: "ESO", label: "ESO", count: societyCounts["ESO"] || 0 },
             { id: "AAN", label: "AAN", count: societyCounts["AAN"] || 0 },
@@ -1314,7 +1314,7 @@ export function ReviewQueueTab({
               type="button"
               onClick={handleExpandAll}
               className="text-[11px] font-semibold text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 px-1.5 py-0.5 rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-              title="Mở rộng tất cả các tài liệu"
+              title="Expand all guidelines"
             >
               Expand all ▾
             </button>
@@ -1323,7 +1323,7 @@ export function ReviewQueueTab({
               type="button"
               onClick={handleCollapseAll}
               className="text-[11px] font-semibold text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 px-1.5 py-0.5 rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-              title="Thu gọn tất cả các tài liệu"
+              title="Collapse all guidelines"
             >
               Collapse ▴
             </button>
@@ -1365,7 +1365,7 @@ export function ReviewQueueTab({
         <div className="text-center py-20">
           <div className="animate-spin inline-block w-8 h-8 border-3 border-amber-500 border-t-transparent rounded-full mb-3"></div>
           <p className="text-xs font-medium text-slate-500 dark:text-slate-400">
-            Đang tải dữ liệu kiểm duyệt hướng dẫn lâm sàng...
+            Loading clinical guideline review queue...
           </p>
         </div>
       ) : guidelineGroups.length === 0 ? (
@@ -1376,16 +1376,16 @@ export function ReviewQueueTab({
         >
           <span className="text-4xl mb-3 block">🎉</span>
           <h3 className="text-base font-bold text-slate-800 dark:text-white">
-            Hàng đợi kiểm duyệt hiện đang trống!
+            Review queue is currently empty!
           </h3>
           <p className="text-xs mt-1.5 max-w-lg mx-auto text-slate-500 dark:text-slate-400">
-            Tất cả các khuyến cáo đã được duyệt và xuất bản vào kho Clinical Practice Guidelines chính thức. Khi tải lên hướng dẫn mới qua AI Pipeline hoặc NotebookLM, chúng sẽ xuất hiện ở đây để bác sĩ kiểm tra.
+            All recommendations have been verified and published to official Clinical Practice Guidelines. Ingesting new guidelines via the AI Pipeline or NotebookLM will surface them here for clinician review.
           </p>
 
           {rawServerCount > 0 && (
             <div className="mt-5 p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 inline-block max-w-lg text-center">
               <p className="text-xs font-semibold text-amber-700 dark:text-amber-300 mb-2.5">
-                ⚠️ Có <strong>{rawServerCount}</strong> khuyến cáo đang có trên máy chủ nhưng đang được đánh dấu ẩn tạm thời bởi trình duyệt.
+                ⚠️ There are <strong>{rawServerCount}</strong> recommendations on the server temporarily dismissed in your browser cache.
               </p>
               <div className="flex items-center justify-center gap-2 flex-wrap">
                 <button
@@ -1393,15 +1393,15 @@ export function ReviewQueueTab({
                   onClick={handleResetDismissedCache}
                   className="px-4 py-2 rounded-lg text-xs font-black bg-amber-500 hover:bg-amber-600 text-white cursor-pointer transition-all shadow-xs flex items-center gap-1.5"
                 >
-                  <span>🔄 Khôi phục và hiển thị lại ({rawServerCount} khuyến cáo)</span>
+                  <span>🔄 Restore and Display ({rawServerCount} recommendations)</span>
                 </button>
                 <button
                   type="button"
                   onClick={handlePurgeAllDeleted}
                   className="px-4 py-2 rounded-lg text-xs font-bold bg-rose-600 hover:bg-rose-700 text-white cursor-pointer transition-all shadow-xs flex items-center gap-1.5"
-                  title="Xóa vĩnh viễn trên Cloud và Local để không còn hiển thị thông báo này"
+                  title="Permanently remove on Cloud and Local"
                 >
-                  <span>🗑️ Xóa vĩnh viễn trên Cloud & Local</span>
+                  <span>🗑️ Permanently Delete on Cloud &amp; Local</span>
                 </button>
               </div>
             </div>
@@ -1455,12 +1455,12 @@ export function ReviewQueueTab({
                                 group.guideline_id
                               );
                               const totalRecs = picos.reduce((acc, p) => acc + p.recommendations.length, 0);
-                              return `${picos.length} PICO (${totalRecs} Khuyến cáo)`;
+                              return `${picos.length} PICO (${totalRecs} Recommendations)`;
                             })()
-                          : `${group.recommendations.length} Khuyến cáo`}
+                          : `${group.recommendations.length} Recommendations`}
                       </span>
                       <span className="px-2.5 py-0.5 rounded-full text-[10.5px] font-bold bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">
-                        🏷️ {group.categories.length} Chuyên mục
+                        🏷️ {group.categories.length} Categories
                       </span>
                       <span className="px-2.5 py-0.5 rounded-full text-[10.5px] font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
                         ⚡ 96% AI Grounded
@@ -1474,9 +1474,9 @@ export function ReviewQueueTab({
                         disabled={isProcessingThis}
                         onClick={() => handleOpenEditGuideline(group)}
                         className="px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 flex items-center gap-1 cursor-pointer transition-colors"
-                        title="Chỉnh sửa thông tin tài liệu"
+                        title="Edit guideline metadata"
                       >
-                        <span>✏️ Sửa</span>
+                        <span>✏️ Edit</span>
                       </button>
 
                       <button
@@ -1486,17 +1486,17 @@ export function ReviewQueueTab({
                           setConfirmDialog({
                             isOpen: true,
                             type: "REJECT_GUIDELINE",
-                            title: `Từ chối guideline "${group.guideline_title}"?`,
-                            description: `Hành động này sẽ loại bỏ tài liệu này cùng toàn bộ ${group.recommendations.length} khuyến cáo khỏi hàng đợi kiểm duyệt.`,
-                            confirmLabel: "✕ Xác nhận Từ chối",
+                            title: `Reject guideline "${group.guideline_title}"?`,
+                            description: `This action will remove this document and all ${group.recommendations.length} recommendations from the review queue.`,
+                            confirmLabel: "✕ Confirm Rejection",
                             confirmColor: "rose",
                             targetGuideline: group,
                           })
                         }
                         className="px-2.5 py-1 rounded-lg text-xs font-bold bg-rose-50 hover:bg-rose-100 dark:bg-rose-950/40 dark:hover:bg-rose-900/60 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800 flex items-center gap-1 cursor-pointer transition-colors"
-                        title="Từ chối tài liệu này"
+                        title="Reject this guideline"
                       >
-                        <span>✕ Từ chối</span>
+                        <span>✕ Reject</span>
                       </button>
 
                       <button
@@ -1506,17 +1506,17 @@ export function ReviewQueueTab({
                           setConfirmDialog({
                             isOpen: true,
                             type: "APPROVE_GUIDELINE",
-                            title: `Phê duyệt & Xuất bản Guideline?`,
-                            description: `Xác nhận phê duyệt toàn bộ ${group.recommendations.length} khuyến cáo từ:\n"${group.guideline_title}" (${group.society})\nvào danh mục hướng dẫn lâm sàng chính thức?`,
-                            confirmLabel: `✓ Phê duyệt (${group.recommendations.length} mục)`,
+                            title: `Approve & Publish Guideline?`,
+                            description: `Confirm approval of all ${group.recommendations.length} recommendations from:\n"${group.guideline_title}" (${group.society})\ninto the official clinical practice guidelines repository?`,
+                            confirmLabel: `✓ Approve (${group.recommendations.length} items)`,
                             confirmColor: "emerald",
                             targetGuideline: group,
                           })
                         }
                         className="px-3.5 py-1 rounded-lg text-xs font-black bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] text-white shadow-xs flex items-center gap-1.5 cursor-pointer transition-all disabled:opacity-50"
-                        title="Phê duyệt toàn bộ khuyến cáo của guideline này"
+                        title="Approve all recommendations in this guideline"
                       >
-                        <span>{isProcessingThis ? "Đang xử lý..." : "✓ Phê duyệt & Xuất bản"}</span>
+                        <span>{isProcessingThis ? "Processing..." : "✓ Approve & Publish"}</span>
                       </button>
                     </div>
                   </div>
@@ -1552,16 +1552,16 @@ export function ReviewQueueTab({
                                 totalConsensus += 1;
                               }
                             });
-                            return `${picos.length} PICO (${totalRecs} khuyến cáo lâm sàng${totalConsensus > 0 ? ` & ${totalConsensus} tuyên bố đồng thuận chuyên gia` : ""} chuẩn ESO GRADE)`;
+                            return `${picos.length} PICO (${totalRecs} clinical recommendations${totalConsensus > 0 ? ` & ${totalConsensus} expert consensus statements` : ""} ESO GRADE format)`;
                           })()
                         ) : (
-                          `${group.recommendations.length} khuyến cáo được phân loại vào ${group.categories.length} chuyên mục lâm sàng`
+                          `${group.recommendations.length} recommendations categorized across ${group.categories.length} clinical domains`
                         )}
                       </span>
                     </span>
 
                     <span className="text-xs font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1">
-                      <span>{isExpanded ? "Thu gọn ▴" : "Xem chi tiết & Kiểm duyệt ▾"}</span>
+                      <span>{isExpanded ? "Collapse ▴" : "View Details & Review ▾"}</span>
                     </span>
                   </div>
                 </div>
@@ -1573,7 +1573,7 @@ export function ReviewQueueTab({
                     <div className="flex flex-wrap items-center justify-between gap-2 pt-1">
                       <div className="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center gap-2">
                         <span className="px-2 py-0.5 rounded-full text-[10.5px] font-black bg-blue-500/15 text-blue-600 dark:text-blue-400 border border-blue-500/30">
-                          {isGroupAha ? "Chuẩn AHA/ASA (Class & Level of Evidence)" : isGroupEso ? "Chuẩn ESO (GRADE & PICO Format)" : "Khuyến cáo lâm sàng"}
+                          {isGroupAha ? "AHA/ASA Standard (Class & Level of Evidence)" : isGroupEso ? "ESO Standard (GRADE & PICO Format)" : "Clinical Recommendations"}
                         </span>
                       </div>
 
@@ -1587,7 +1587,7 @@ export function ReviewQueueTab({
                               : "text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
                           }`}
                         >
-                          📋 Dạng Bảng chuẩn
+                          📋 Standard Table
                         </button>
                         <button
                           type="button"
@@ -1598,7 +1598,7 @@ export function ReviewQueueTab({
                               : "text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
                           }`}
                         >
-                          🗂️ Dạng Thẻ chi tiết
+                          🗂️ Detailed Cards
                         </button>
                       </div>
                     </div>
@@ -1607,7 +1607,7 @@ export function ReviewQueueTab({
                     {viewMode === "table" ? (
                       isGroupAha ? (
                         <AhaGuidelineTable
-                          title={`Khuyến cáo: ${group.guideline_title}`}
+                          title={`Recommendations: ${group.guideline_title}`}
                           sections={group.categories.map((c) => ({
                             sectionTitle: c.name,
                             recommendations: c.items.map((it) => {
@@ -1658,7 +1658,7 @@ export function ReviewQueueTab({
                         />
                       ) : (
                         <AhaGuidelineTable
-                          title={`Khuyến cáo: ${group.guideline_title}`}
+                          title={`Recommendations: ${group.guideline_title}`}
                           sections={group.categories.map((c) => ({
                             sectionTitle: c.name,
                             recommendations: c.items.map((it) => {
@@ -1705,7 +1705,7 @@ export function ReviewQueueTab({
                                 </span>
                               </div>
                               <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
-                                {category.items.length} khuyến cáo
+                                {category.items.length} recommendations
                               </span>
                             </div>
 
@@ -1724,11 +1724,11 @@ export function ReviewQueueTab({
                                   <div className="flex flex-wrap items-center justify-between gap-2">
                                     <div className="flex items-center gap-2">
                                       <span className="font-extrabold text-slate-900 dark:text-slate-100">
-                                        {item.topic || item.target_population || "Khuyến cáo lâm sàng"}
+                                        {item.topic || item.target_population || "Clinical Recommendation"}
                                       </span>
                                       {item.page_num && (
                                         <span className="text-[10px] font-mono text-slate-400">
-                                          (Trang {item.page_num})
+                                          (Page {item.page_num})
                                         </span>
                                       )}
                                     </div>
@@ -1780,9 +1780,9 @@ export function ReviewQueueTab({
                                         type="button"
                                         onClick={() => handleOpenEditRecommendation(item)}
                                         className="px-2 py-0.5 rounded-md text-[10.5px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-amber-500/20 hover:text-amber-600 transition-colors cursor-pointer border border-slate-200 dark:border-slate-700"
-                                        title="Chỉnh sửa nội dung, phân loại hoặc cấp độ khuyến cáo"
+                                        title="Edit recommendation text, category, or grade"
                                       >
-                                        <span>✏️ Sửa</span>
+                                        <span>✏️ Edit</span>
                                       </button>
 
                                       <button
@@ -1790,9 +1790,9 @@ export function ReviewQueueTab({
                                         disabled={actionLoading === item.rec_id}
                                         onClick={() => handleDeleteSingleRecommendation(item)}
                                         className="px-2 py-0.5 rounded-md text-[10.5px] font-bold bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 hover:bg-rose-100 dark:hover:bg-rose-900/60 transition-colors cursor-pointer border border-rose-200 dark:border-rose-900"
-                                        title="Xóa khuyến cáo này khỏi danh sách kiểm duyệt"
+                                        title="Delete this recommendation from review queue"
                                       >
-                                        <span>{actionLoading === item.rec_id ? "..." : "🗑️ Xóa"}</span>
+                                        <span>{actionLoading === item.rec_id ? "..." : "🗑️ Delete"}</span>
                                       </button>
                                     </div>
                                   </div>
@@ -1807,7 +1807,7 @@ export function ReviewQueueTab({
                                     <div className="p-2.5 rounded-lg bg-slate-100/80 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 text-[11px] space-y-1.5">
                                       {item.verbatim_quote && (
                                         <div>
-                                          <span className="font-bold text-slate-500 dark:text-slate-400">📄 Trích dẫn nguyên văn PDF:</span>
+                                          <span className="font-bold text-slate-500 dark:text-slate-400">📄 Verbatim PDF Quote:</span>
                                           <p className="italic text-slate-700 dark:text-slate-300 mt-0.5 font-serif line-clamp-3 hover:line-clamp-none transition-all">
                                             "{item.verbatim_quote}"
                                           </p>
@@ -1816,7 +1816,7 @@ export function ReviewQueueTab({
                                       {item.verification_detail?.issues && item.verification_detail.issues.length > 0 && (
                                         <div className="text-amber-600 dark:text-amber-400 flex items-start gap-1">
                                           <span>⚠️</span>
-                                          <span><strong>Lưu ý AI:</strong> {item.verification_detail.issues.join("; ")}</span>
+                                          <span><strong>AI Notice:</strong> {item.verification_detail.issues.join("; ")}</span>
                                         </div>
                                       )}
                                     </div>
@@ -1826,14 +1826,14 @@ export function ReviewQueueTab({
                                   <div className="flex flex-wrap items-center gap-3 pt-1 border-t border-slate-100 dark:border-slate-800/60 text-[11px]">
                                     {item.target_population && (
                                       <span className="text-slate-500 dark:text-slate-400">
-                                        <strong className="text-slate-700 dark:text-slate-300">Quần thể đích:</strong>{" "}
+                                        <strong className="text-slate-700 dark:text-slate-300">Target Population:</strong>{" "}
                                         {item.target_population}
                                       </span>
                                     )}
 
                                     {item.driving_trials && item.driving_trials.length > 0 && (
                                       <span className="text-slate-500 dark:text-slate-400">
-                                        <strong className="text-slate-700 dark:text-slate-300">Thử nghiệm then chốt:</strong>{" "}
+                                        <strong className="text-slate-700 dark:text-slate-300">Key Trials / Evidence:</strong>{" "}
                                         {item.driving_trials.join(", ")}
                                       </span>
                                     )}
@@ -1849,7 +1849,7 @@ export function ReviewQueueTab({
                     {/* Bottom Action Footer for Guideline */}
                     <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3">
                       <div className="text-xs text-slate-500 dark:text-slate-400">
-                        🛡️ Sau khi phê duyệt, hướng dẫn sẽ xuất hiện ngay trong tab Practice Guidelines cho toàn bộ bác sĩ.
+                        🛡️ Upon approval, recommendations will appear immediately in Practice Guidelines for all clinicians.
                       </div>
 
                       <div className="flex items-center gap-2">
@@ -1860,16 +1860,16 @@ export function ReviewQueueTab({
                             setConfirmDialog({
                               isOpen: true,
                               type: "REJECT_GUIDELINE",
-                              title: `Từ chối guideline "${group.guideline_title}"?`,
-                              description: `Hành động này sẽ loại bỏ tài liệu này cùng toàn bộ ${group.recommendations.length} khuyến cáo khỏi hàng đợi kiểm duyệt.`,
-                              confirmLabel: "✕ Xác nhận Từ chối",
+                              title: `Reject guideline "${group.guideline_title}"?`,
+                              description: `This action will remove this guideline and all ${group.recommendations.length} recommendations from the review queue.`,
+                              confirmLabel: "✕ Confirm Rejection",
                               confirmColor: "rose",
                               targetGuideline: group,
                             })
                           }
                           className="px-3 py-1.5 rounded-xl text-xs font-bold text-rose-700 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/40 hover:bg-rose-100 border border-rose-200 dark:border-rose-900 cursor-pointer transition-colors"
                         >
-                          ✕ Từ chối Guideline
+                          ✕ Reject Guideline
                         </button>
 
                         <button
@@ -1879,16 +1879,16 @@ export function ReviewQueueTab({
                             setConfirmDialog({
                               isOpen: true,
                               type: "APPROVE_GUIDELINE",
-                              title: `Phê duyệt & Xuất bản Guideline?`,
-                              description: `Xác nhận phê duyệt toàn bộ ${group.recommendations.length} khuyến cáo từ:\n"${group.guideline_title}" (${group.society})\nvào danh mục hướng dẫn lâm sàng chính thức?`,
-                              confirmLabel: `✓ Phê duyệt (${group.recommendations.length} mục)`,
+                              title: `Approve & Publish Guideline?`,
+                              description: `Confirm approval of all ${group.recommendations.length} recommendations from:\n"${group.guideline_title}" (${group.society})\ninto the official clinical practice guidelines repository?`,
+                              confirmLabel: `✓ Approve (${group.recommendations.length} items)`,
                               confirmColor: "emerald",
                               targetGuideline: group,
                             })
                           }
                           className="px-4 py-1.5 rounded-xl text-xs font-black bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] text-white shadow-xs flex items-center gap-1.5 cursor-pointer transition-all disabled:opacity-50"
                         >
-                          <span>{isProcessingThis ? "Đang phê duyệt..." : `✓ Phê duyệt & Xuất bản (${group.recommendations.length} khuyến cáo)`}</span>
+                          <span>{isProcessingThis ? "Approving..." : `✓ Approve & Publish (${group.recommendations.length} recommendations)`}</span>
                         </button>
                       </div>
                     </div>
@@ -1927,7 +1927,7 @@ export function ReviewQueueTab({
                   {confirmDialog.title}
                 </h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                  Xác nhận hành động kiểm duyệt
+                  Confirm review action
                 </p>
               </div>
             </div>
@@ -1944,7 +1944,7 @@ export function ReviewQueueTab({
                   darkMode ? "hover:bg-slate-800 text-slate-400" : "hover:bg-slate-100 text-slate-600"
                 }`}
               >
-                Hủy bỏ
+                Cancel
               </button>
 
               <button
@@ -1990,7 +1990,7 @@ export function ReviewQueueTab({
         onSuccess={() => {
           fetchQueue();
           if (onQueueUpdated) onQueueUpdated();
-          setFeedbackMessage({ type: "success", text: "✅ Thay đổi đã được lưu thành công!" });
+          setFeedbackMessage({ type: "success", text: "✅ Changes saved successfully!" });
         }}
         darkMode={darkMode}
       />

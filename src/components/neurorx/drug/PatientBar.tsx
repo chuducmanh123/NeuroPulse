@@ -73,13 +73,10 @@ export function PatientBar({ drug, darkMode = false }: PatientBarProps) {
       {/* Header & Reset Button */}
       <div className="flex items-center justify-between pb-3 border-b border-slate-200/60 dark:border-slate-800">
         <div className="flex items-center gap-2">
-          <Activity className="w-4 h-4 text-sky-500" />
+          <Activity className="w-4 h-4 text-cyan-500" />
           <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200">
             Bedside Patient Variables
           </h3>
-          <span className="text-[11px] text-slate-400 hidden sm:inline">
-            (Required for weight & renal dose adjustments)
-          </span>
         </div>
 
         {hasAnyInput && (
@@ -317,29 +314,25 @@ export function PatientBar({ drug, darkMode = false }: PatientBarProps) {
         </div>
       )}
 
-      {/* Derived Renal Function Callout */}
-      <div className="mt-3.5 pt-3 border-t border-slate-200/60 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
-        <div className="flex items-center gap-2 flex-wrap">
-          <span className="font-semibold text-slate-600 dark:text-slate-300">
-            Resolved Renal Clearance:
-          </span>
-          {renalResult.value !== null ? (
-            <span className="font-mono font-bold text-sky-600 dark:text-sky-400 text-sm">
+      {/* Derived Renal Function Callout - Tự động hiển thị khi đã nhập đủ thông tin */}
+      {renalResult.value !== null && (
+        <div className="mt-3.5 pt-3 border-t border-slate-200/60 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="font-semibold text-slate-600 dark:text-slate-300">
+              Resolved Renal Clearance:
+            </span>
+            <span className="font-mono font-bold text-cyan-600 dark:text-cyan-400 text-sm">
               {renalResult.label}
             </span>
-          ) : (
-            <span className="text-slate-400 italic">
-              {renalResult.label}
+          </div>
+
+          {renalResult.warning && (
+            <span className="text-amber-600 dark:text-amber-400 font-medium">
+              ⚠️ {renalResult.warning}
             </span>
           )}
         </div>
-
-        {renalResult.warning && (
-          <span className="text-amber-600 dark:text-amber-400 font-medium">
-            ⚠️ {renalResult.warning}
-          </span>
-        )}
-      </div>
+      )}
     </div>
   );
 }

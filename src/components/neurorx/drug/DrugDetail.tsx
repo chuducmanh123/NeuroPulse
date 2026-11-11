@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import {
   ArrowLeft,
@@ -11,11 +11,14 @@ import {
   FileText,
   Layers,
   HelpCircle,
+  Activity,
+  ChevronDown,
 } from "lucide-react";
 import type { DrugRecord, Source } from "@/types/neurorx";
 import type { DrugWithEffectiveStatus } from "@/lib/neurorx/data";
 import { useNeuroRxStore } from "@/store/useNeuroRxStore";
 import { resolveRenalFunction } from "@/lib/neurorx/patient";
+import { getStoredAdminToken } from "@/utils/clientAuth";
 import { PatientBar } from "./PatientBar";
 import { DoseCard } from "./DoseCard";
 import { SourcePopover } from "./SourcePopover";
@@ -38,6 +41,13 @@ export function DrugDetail({
 }: DrugDetailProps) {
   const searchParams = useSearchParams();
   const { initFromSearchParams, patientParsed } = useNeuroRxStore();
+
+  const [showPatientVars, setShowPatientVars] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    setIsAdmin(Boolean(getStoredAdminToken()));
+  }, []);
 
   // Initialize store patient inputs from URL query params (if present, e.g. from Omnibar)
   useEffect(() => {
@@ -244,10 +254,7 @@ export function DrugDetail({
         </div>
       ) : (
         <>
-          {/* 3. Patient Context Bar */}
-          <PatientBar drug={drug} darkMode={darkMode} />
-
-          {/* 4. Tier 2: Two Dose Cards (Side-by-Side on Desktop, Stacked on Mobile) */}
+          {/* 3. Tier 2: Two Dose Cards (Side-by-Side on Desktop, Stacked on Mobile) */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             <DoseCard
               drug={drug}
@@ -268,6 +275,72 @@ export function DrugDetail({
             />
           </div>
 
+          {/* 4. Patient Context Bar - Collapsible (Chỉ hiện ra khi người dùng bấm vào) */}
+          <div className="space-y-3">
+            <button
+              type="button"
+              onClick={() => setShowPatientVars((prev) => !prev)}
+              className={`w-full p-4 rounded-2xl border transition-all flex items-center justify-between gap-3 text-left ${
+                showPatientVars
+                  ? darkMode
+                    ? "bg-slate-900 border-cyan-500/50 shadow-sm ring-1 ring-cyan-500/20"
+                    : "bg-white border-cyan-400 shadow-sm ring-1 ring-cyan-400/20"
+                  : darkMode
+                  ? "bg-slate-900/70 border-slate-800 hover:border-slate-700 hover:bg-slate-900"
+                  : "bg-white border-slate-200 hover:border-slate-300 shadow-xs"
+              }`}
+            >
+              <div className="flex items-center gap-3">
+                <div
+                  className={`p-2 rounded-xl ${
+                    darkMode ? "bg-cyan-500/10 text-cyan-400" : "bg-cyan-50 text-cyan-600"
+                  }`}
+                >
+                  <Activity className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200">
+                      Bedside Patient Variables
+                    </span>
+                    {renalResult.value !== null && (
+                      <span className="text-[11px] px-2 py-0.5 rounded-full font-bold bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20 font-mono">
+                        CrCl: {renalResult.value} mL/min
+                      </span>
+                    )}
+                    {patientParsed.weightKg !== undefined && (
+                      <span className="text-[11px] px-2 py-0.5 rounded-full font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                        {patientParsed.weightKg} kg
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+                    {showPatientVars
+                      ? "Bấm để thu gọn thông số bệnh nhân"
+                      : "Bấm để nhập thông số bệnh nhân (Cân nặng, Tuổi, Giới tính, Creatinine, CrCl...)"}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-1.5 text-slate-400 shrink-0">
+                <span className="text-xs font-semibold hidden sm:inline">
+                  {showPatientVars ? "Thu gọn" : "Chỉnh thông số"}
+                </span>
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform duration-200 ${
+                    showPatientVars ? "rotate-180" : ""
+                  }`}
+                />
+              </div>
+            </button>
+
+            {showPatientVars && (
+              <div className="animate-in fade-in slide-in-from-top-1 duration-200">
+                <PatientBar drug={drug} darkMode={darkMode} />
+              </div>
+            )}
+          </div>
+
           {/* 5. Tier 3: Contextual Tools Row */}
           <ToolsRow
             drug={drug}
@@ -280,14 +353,16 @@ export function DrugDetail({
           {/* 6. Tier 3: Reference & Pharmacology Accordions */}
           <DrugAccordions drug={drug} sources={sources} darkMode={darkMode} />
 
-          {/* 7. Tier 3: Cryptographic Audit Trail & Citations Footer */}
-          <AuditTrail
-            drug={drug}
-            effectiveStatus={drugItem.effectiveStatus}
-            hashMatches={drugItem.hashMatches}
-            sources={sources}
-            darkMode={darkMode}
-          />
+          {/* 7. Tier 3: Cryptographic Audit Trail & Citations Footer - Only visible for admin */}
+          {isAdmin && (
+            <AuditTrail
+              drug={drug}
+              effectiveStatus={drugItem.effectiveStatus}
+              hashMatches={drugItem.hashMatches}
+              sources={sources}
+              darkMode={darkMode}
+            />
+          )}
         </>
       )}
     </div>

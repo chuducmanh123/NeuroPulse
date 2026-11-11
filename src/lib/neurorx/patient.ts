@@ -224,7 +224,6 @@ export function resolveRenalFunction(
       value: null,
       basisUsed: basis,
       label: "Incomplete patient data",
-      warning: "Age, biological sex, weight, and serum creatinine are required to calculate Cockcroft-Gault CrCl.",
     };
   }
 
