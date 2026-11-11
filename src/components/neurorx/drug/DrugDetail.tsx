@@ -13,6 +13,7 @@ import {
   HelpCircle,
   Activity,
   ChevronDown,
+  Edit,
 } from "lucide-react";
 import type { DrugRecord, Source } from "@/types/neurorx";
 import type { DrugWithEffectiveStatus } from "@/lib/neurorx/data";
@@ -25,6 +26,7 @@ import { SourcePopover } from "./SourcePopover";
 import { ToolsRow } from "./ToolsRow";
 import { DrugAccordions } from "./DrugAccordions";
 import { AuditTrail } from "./AuditTrail";
+import { EditDrugModal } from "@/components/neurorx/admin/EditDrugModal";
 
 interface DrugDetailProps {
   drugItem: DrugWithEffectiveStatus;
@@ -42,8 +44,14 @@ export function DrugDetail({
   const searchParams = useSearchParams();
   const { initFromSearchParams, patientParsed } = useNeuroRxStore();
 
+  const [currentDrugItem, setCurrentDrugItem] = useState(drugItem);
   const [showPatientVars, setShowPatientVars] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+  useEffect(() => {
+    setCurrentDrugItem(drugItem);
+  }, [drugItem]);
 
   useEffect(() => {
     setIsAdmin(Boolean(getStoredAdminToken()));
@@ -54,22 +62,56 @@ export function DrugDetail({
     initFromSearchParams(searchParams);
   }, [searchParams, initFromSearchParams]);
 
-  const drug = drugItem.drug;
-  const isVerified = drugItem.effectiveStatus === "verified";
+  const drug = currentDrugItem.drug;
+  const isVerified = currentDrugItem.effectiveStatus === "verified";
   const tallManName = drug.tall_man?.value || drug.generic_name;
 
   // Resolve renal function for DoseCards
   const renalBasis = drug.renal_basis?.value || "cg_abw";
   const renalResult = resolveRenalFunction(patientParsed, renalBasis);
 
-  // Split regimens by clinical setting
-  const acuteRegimens = drug.regimens.filter((r) => r.setting === "acute_inpatient");
-  const maintRegimens = drug.regimens.filter((r) => r.setting === "maintenance_outpatient");
-
   // Clinical indicators
   const mgSafety = drug.mg_safety?.value;
   const ngTube = drug.ng_tube?.value;
   const blackBox = drug.black_box?.value;
+
+  const handleSaveDrug = async (updatedDrug: DrugRecord, oldId?: string): Promise<boolean> => {
+    let token = getStoredAdminToken();
+    if (!token) {
+      const input = window.prompt("Nhập mã quản trị viên (Admin Passcode) để lưu thuốc (mặc định: @neuro2026):");
+      if (!input) return false;
+      token = input.trim();
+      try {
+        sessionStorage.setItem("adminToken", token);
+      } catch {}
+    }
+    try {
+      const res = await fetch("/api/neurorx/manage-drug", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-admin-token": token,
+        },
+        body: JSON.stringify({ action: "save", drug: updatedDrug, old_id: oldId }),
+      });
+      const json = await res.json();
+      if (!res.ok || !json.ok) {
+        alert("Lỗi khi lưu: " + (json.error || "Không thể lưu thay đổi"));
+        return false;
+      }
+      alert(json.message || "✓ Lưu thông tin thuốc thành công!");
+      setCurrentDrugItem({
+        drug: updatedDrug,
+        effectiveStatus: updatedDrug.status === "verified" ? "verified" : "draft",
+        hashMatches: true,
+      });
+      window.dispatchEvent(new CustomEvent("neurorx_drug_updated"));
+      return true;
+    } catch (err: any) {
+      alert("Lỗi lưu thuốc: " + err?.message);
+      return false;
+    }
+  };
 
   return (
     <div className="space-y-6">
@@ -122,6 +164,17 @@ export function DrugDetail({
                   <span>Pending verification</span>
                 </span>
               )}
+
+              {/* Edit Drug Button */}
+              <button
+                type="button"
+                onClick={() => setIsEditModalOpen(true)}
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold border border-sky-400/50 hover:border-sky-500 bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-400 shadow-xs hover:bg-sky-100 dark:hover:bg-sky-900/40 transition-all cursor-pointer"
+                title="Chỉnh sửa thông tin và liều dùng của thuốc"
+              >
+                <Edit className="w-3.5 h-3.5" />
+                <span>Chỉnh sửa (Edit)</span>
+              </button>
             </div>
 
             {/* Vietnam Marketed Products */}
@@ -235,45 +288,36 @@ export function DrugDetail({
         )}
       </div>
 
-      {/* DRAFT GATE (User story 5): If unverified, lock all dosing cards & numbers */}
-      {!isVerified ? (
-        <div
-          className={`p-8 rounded-2xl border text-center space-y-3 ${
-            darkMode ? "bg-amber-950/20 border-amber-900/40" : "bg-amber-50/70 border-amber-200"
-          }`}
-        >
-          <div className="inline-flex p-3 rounded-2xl bg-amber-500/15 text-amber-600 dark:text-amber-400 mb-1">
-            <ShieldAlert className="w-8 h-8" />
+      {/* 3. Dosing Section: Unified Dosing Card (Gộp chung điều trị cấp và duy trì) */}
+      <div className="space-y-4">
+        {!isVerified && (
+          <div className="p-4 rounded-2xl border bg-amber-500/10 border-amber-500/30 text-amber-800 dark:text-amber-300 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+            <div className="flex items-center gap-2.5">
+              <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0" />
+              <span>
+                <strong>Bản nháp (Draft Record):</strong> Thuốc này đang ở trạng thái bản nháp. Bạn có thể xem phác đồ liều bên dưới hoặc bấm <strong>Chỉnh sửa</strong> để hoàn thiện.
+              </span>
+            </div>
+            <button
+              type="button"
+              onClick={() => setIsEditModalOpen(true)}
+              className="px-3 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shrink-0 self-start sm:self-auto cursor-pointer shadow-xs"
+            >
+              Chỉnh sửa liều
+            </button>
           </div>
-          <h3 className="text-base font-extrabold text-amber-900 dark:text-amber-200 uppercase tracking-wide">
-            Pending Verification — Dosing Locked
-          </h3>
-          <p className="text-xs sm:text-sm text-amber-800 dark:text-amber-300 max-w-lg mx-auto font-medium">
-            This drug record is currently in <strong>draft</strong> status or has an unsealed hash. Under clinical safety guardrails (G1 &amp; G2), all numeric dosage calculators, titration schedules, and copy actions are locked until an administrator reviews and verifies the record against the official source document.
-          </p>
-        </div>
-      ) : (
-        <>
-          {/* 3. Tier 2: Two Dose Cards (Side-by-Side on Desktop, Stacked on Mobile) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-            <DoseCard
-              drug={drug}
-              regimens={acuteRegimens}
-              setting="acute_inpatient"
-              patient={patientParsed}
-              renal={renalResult}
-              darkMode={darkMode}
-            />
+        )}
 
-            <DoseCard
-              drug={drug}
-              regimens={maintRegimens}
-              setting="maintenance_outpatient"
-              patient={patientParsed}
-              renal={renalResult}
-              darkMode={darkMode}
-            />
-          </div>
+        {/* Unified Dose Card */}
+        <DoseCard
+          drug={drug}
+          regimens={drug.regimens || []}
+          setting="unified"
+          patient={patientParsed}
+          renal={renalResult}
+          darkMode={darkMode}
+        />
+      </div>
 
           {/* 4. Patient Context Bar - Collapsible (Chỉ hiện ra khi người dùng bấm vào) */}
           <div className="space-y-3">
@@ -353,17 +397,26 @@ export function DrugDetail({
           {/* 6. Tier 3: Reference & Pharmacology Accordions */}
           <DrugAccordions drug={drug} sources={sources} darkMode={darkMode} />
 
-          {/* 7. Tier 3: Cryptographic Audit Trail & Citations Footer - Only visible for admin */}
-          {isAdmin && (
-            <AuditTrail
-              drug={drug}
-              effectiveStatus={drugItem.effectiveStatus}
-              hashMatches={drugItem.hashMatches}
-              sources={sources}
-              darkMode={darkMode}
-            />
-          )}
-        </>
+      {/* 7. Tier 3: Cryptographic Audit Trail & Citations Footer - Only visible for admin */}
+      {isAdmin && (
+        <AuditTrail
+          drug={drug}
+          effectiveStatus={currentDrugItem.effectiveStatus}
+          hashMatches={currentDrugItem.hashMatches}
+          sources={sources}
+          darkMode={darkMode}
+        />
+      )}
+
+      {/* Edit Drug Modal */}
+      {isEditModalOpen && (
+        <EditDrugModal
+          drug={drug}
+          isOpen={isEditModalOpen}
+          onClose={() => setIsEditModalOpen(false)}
+          onSave={handleSaveDrug}
+          darkMode={darkMode}
+        />
       )}
     </div>
   );

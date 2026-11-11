@@ -1,9 +1,9 @@
 import React, { Suspense } from "react";
 import { NeuroRxShell } from "@/components/neurorx/NeuroRxShell";
-import { getAllDrugs, getAllSources, getAllInteractions, getDataVersionHash } from "@/lib/neurorx/data";
+import { getAllDrugsAsync, getAllSources, getAllInteractions, getDataVersionHash } from "@/lib/neurorx/data";
 
-export default function NeuroRxPage() {
-  const initialDrugs = getAllDrugs();
+export default async function NeuroRxPage() {
+  const initialDrugs = await getAllDrugsAsync();
   const sources = getAllSources();
   const interactions = getAllInteractions();
   const dataVersionHash = getDataVersionHash();

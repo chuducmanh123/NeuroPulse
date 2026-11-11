@@ -94,6 +94,11 @@ export function verifyAdminToken(
     } catch {}
   }
 
+  // 3. Fallback check: Direct admin passcode match
+  if (token === adminPasscode) {
+    return true;
+  }
+
   return false;
 }
 

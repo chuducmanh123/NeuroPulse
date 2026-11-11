@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import fs from "node:fs";
 import path from "node:path";
 import { verifyAdminToken } from "@/utils/security";
-import { getAllDrugs, getAllSources, getAllInteractions, getDataVersionHash } from "@/lib/neurorx/data";
+import { getAllDrugs, getAllDrugsAsync, getAllSources, getAllInteractions, getDataVersionHash } from "@/lib/neurorx/data";
 import type { UpdateQueueItem } from "@/types/neurorx";
 
 export const dynamic = "force-dynamic";
@@ -30,7 +30,7 @@ export async function GET(req: NextRequest) {
     // Full data bundle export
     if (searchParams.get("export") === "true") {
       const sources = getAllSources();
-      const drugs = getAllDrugs();
+      const drugs = await getAllDrugsAsync();
       const interactions = getAllInteractions();
 
       let updatesQueue: UpdateQueueItem[] = [];
@@ -61,7 +61,7 @@ export async function GET(req: NextRequest) {
     }
 
     // Standard admin health summary
-    const allDrugs = getAllDrugs();
+    const allDrugs = await getAllDrugsAsync();
     const allSources = getAllSources();
     const allInteractions = getAllInteractions();
 

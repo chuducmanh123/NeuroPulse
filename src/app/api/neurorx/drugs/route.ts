@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
-import { getAllDrugs, getDataVersionHash } from "@/lib/neurorx/data";
+import { getAllDrugsAsync, getDataVersionHash } from "@/lib/neurorx/data";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export async function GET() {
   try {
-    const drugs = getAllDrugs();
+    const drugs = await getAllDrugsAsync();
     return NextResponse.json({
       ok: true,
       drugs,

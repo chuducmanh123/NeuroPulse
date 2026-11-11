@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { verifyAdminToken } from "@/utils/security";
 import {
   getAllDrugs,
+  getAllDrugsAsync,
   getDrugById,
   saveDrugToStorage,
   deleteDrugFromStorage,
@@ -109,7 +110,7 @@ export async function POST(req: NextRequest) {
       }
 
       case "get_all": {
-        const drugs = getAllDrugs();
+        const drugs = await getAllDrugsAsync();
         return NextResponse.json({
           ok: true,
           drugs: drugs.map((d) => d.drug),

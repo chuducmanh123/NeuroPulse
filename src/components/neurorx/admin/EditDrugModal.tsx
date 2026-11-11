@@ -55,12 +55,13 @@ export function EditDrugModal({
   const [verifiedBy, setVerifiedBy] = useState(drug.verification?.verified_by || "Admin");
 
   // Dosing
-  const [maintenanceDoseText, setMaintenanceDoseText] = useState(
-    drug.regimens?.find((r) => r.setting === "maintenance_outpatient")?.dose_text || ""
-  );
-  const [acuteDoseText, setAcuteDoseText] = useState(
-    drug.regimens?.find((r) => r.setting === "acute_inpatient")?.dose_text || ""
-  );
+  const initialDosing = React.useMemo(() => {
+    const texts = (drug.regimens || [])
+      .map((r) => r.dose_text?.trim())
+      .filter(Boolean) as string[];
+    return Array.from(new Set(texts)).join("\n\n");
+  }, [drug.regimens]);
+  const [dosingText, setDosingText] = useState(initialDosing);
 
   // Renal & Hepatic
   const [renalDesc, setRenalDesc] = useState(drug.renal_impairment?.description || "");
@@ -175,46 +176,24 @@ export function EditDrugModal({
         },
       };
 
-      // Update maintenance regimen text
-      if (maintenanceDoseText.trim()) {
-        const existingMaint = updatedDrug.regimens?.find((r) => r.setting === "maintenance_outpatient");
-        if (existingMaint) {
-          existingMaint.dose_text = maintenanceDoseText.trim();
-        } else {
-          updatedDrug.regimens = [
-            ...(updatedDrug.regimens || []),
-            {
-              id: `${cleanId}-maintenance`,
-              indication: "Standard Maintenance Therapy",
-              setting: "maintenance_outpatient",
-              route: "PO",
-              refs: [{ source_id: "system", locator: "admin", quote: maintenanceDoseText.trim() }],
-              dose: null,
-              dose_text: maintenanceDoseText.trim(),
-            },
-          ];
-        }
-      }
-
-      // Update acute regimen text
-      if (acuteDoseText.trim()) {
-        const existingAcute = updatedDrug.regimens?.find((r) => r.setting === "acute_inpatient");
-        if (existingAcute) {
-          existingAcute.dose_text = acuteDoseText.trim();
-        } else {
-          updatedDrug.regimens = [
-            ...(updatedDrug.regimens || []),
-            {
-              id: `${cleanId}-acute`,
-              indication: "Acute Inpatient Regimen",
-              setting: "acute_inpatient",
-              route: "IV",
-              refs: [{ source_id: "system", locator: "admin", quote: acuteDoseText.trim() }],
-              dose: null,
-              dose_text: acuteDoseText.trim(),
-            },
-          ];
-        }
+      // Update unified dosing regimen text
+      if (dosingText.trim()) {
+        const firstReg = updatedDrug.regimens?.[0];
+        updatedDrug.regimens = [
+          {
+            id: firstReg?.id || `${cleanId}-regimen`,
+            indication: firstReg?.indication || "Clinical Dosing Regimen",
+            setting: firstReg?.setting || "maintenance_outpatient",
+            route: firstReg?.route || "PO/IV",
+            refs:
+              firstReg?.refs && firstReg.refs.length > 0
+                ? firstReg.refs
+                : [{ source_id: "system", locator: "admin", quote: dosingText.trim().slice(0, 300) }],
+            dose: firstReg?.dose || null,
+            dose_text: dosingText.trim(),
+            renal_bands: firstReg?.renal_bands,
+          },
+        ];
       }
 
       const ok = await onSave(updatedDrug, drug.id !== cleanId ? drug.id : undefined);
@@ -291,7 +270,7 @@ export function EditDrugModal({
                 : "border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
             }`}
           >
-            Dosing (Maintenance &amp; Acute)
+            Dosing (Liều dùng)
           </button>
           <button
             type="button"
@@ -449,30 +428,18 @@ export function EditDrugModal({
             <div className="space-y-4">
               <div>
                 <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
-                  Standard Maintenance Regimen (Outpatient)
+                  Clinical Dosing Regimens &amp; Schedule (Liều dùng &amp; Chế độ điều trị)
                 </label>
                 <textarea
-                  value={maintenanceDoseText}
-                  onChange={(e) => setMaintenanceDoseText(e.target.value)}
-                  placeholder="Initial: 500 mg BID. Titrate by 500 mg/day every 2 weeks to target 1000 - 1500 mg BID. Max dose: 3000 mg/day."
-                  rows={4}
-                  className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 leading-relaxed focus:ring-2 focus:ring-sky-500 focus:outline-none resize-none"
+                  value={dosingText}
+                  onChange={(e) => setDosingText(e.target.value)}
+                  placeholder="Nhập chi tiết liều dùng: liều khởi đầu, liều nạp, liều duy trì, cách dùng, chỉnh liều..."
+                  rows={8}
+                  className="w-full p-3.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 leading-relaxed focus:ring-2 focus:ring-sky-500 focus:outline-none resize-y"
                 />
-                <span className="text-[10px] text-slate-400">Displayed directly on the Maintenance Bedside Dosing card</span>
-              </div>
-
-              <div>
-                <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
-                  Acute / Inpatient Regimen
-                </label>
-                <textarea
-                  value={acuteDoseText}
-                  onChange={(e) => setAcuteDoseText(e.target.value)}
-                  placeholder="Loading dose: 60 mg/kg IV over 10-15 min (max 4500 mg). Follow with standard maintenance PO or IV."
-                  rows={4}
-                  className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 leading-relaxed focus:ring-2 focus:ring-sky-500 focus:outline-none resize-none"
-                />
-                <span className="text-[10px] text-slate-400">Displayed directly on the Acute / Inpatient Bedside Dosing card</span>
+                <span className="text-[11px] text-slate-400">
+                  Hiển thị trực tiếp trên thẻ Liều dùng lâm sàng của NeuroRx.
+                </span>
               </div>
             </div>
           )}

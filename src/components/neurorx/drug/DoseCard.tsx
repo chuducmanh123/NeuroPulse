@@ -24,7 +24,7 @@ import { buildOrderText, CLINICAL_DISCLAIMER } from "@/lib/neurorx/orderText";
 interface DoseCardProps {
   drug: DrugRecord;
   regimens: Regimen[];
-  setting: "acute_inpatient" | "maintenance_outpatient";
+  setting?: "acute_inpatient" | "maintenance_outpatient" | "unified";
   patient: PatientParsed;
   renal: RenalResolutionResult;
   darkMode?: boolean;
@@ -33,7 +33,7 @@ interface DoseCardProps {
 export function DoseCard({
   drug,
   regimens,
-  setting,
+  setting = "unified",
   patient,
   renal,
   darkMode = false,
@@ -43,6 +43,7 @@ export function DoseCard({
   const [copied, setCopied] = useState(false);
 
   const isAcute = setting === "acute_inpatient";
+  const isMaintenance = setting === "maintenance_outpatient";
   const activeRegimen = regimens[selectedIndex] || regimens[0];
 
   if (!activeRegimen) {
@@ -52,7 +53,7 @@ export function DoseCard({
           darkMode ? "bg-slate-900/50 border-slate-800" : "bg-white border-slate-200"
         } text-center text-slate-400 text-xs`}
       >
-        No regimen documented for {isAcute ? "Acute / Inpatient" : "Maintenance / Outpatient"} setting.
+        Chưa có thông tin liều dùng cho thuốc này.
       </div>
     );
   }
@@ -110,9 +111,13 @@ export function DoseCard({
               ? darkMode
                 ? "bg-rose-950/20 border-rose-900/40"
                 : "bg-rose-50/70 border-rose-100"
+              : isMaintenance
+              ? darkMode
+                ? "bg-sky-950/20 border-sky-900/40"
+                : "bg-sky-50/70 border-sky-100"
               : darkMode
-              ? "bg-sky-950/20 border-sky-900/40"
-              : "bg-sky-50/70 border-sky-100"
+              ? "bg-slate-800/60 border-slate-700/60"
+              : "bg-slate-50 border-slate-200"
           }`}
         >
           <div className="flex items-center justify-between gap-2">
@@ -120,11 +125,23 @@ export function DoseCard({
               className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold uppercase tracking-wider ${
                 isAcute
                   ? "bg-rose-500/15 text-rose-600 dark:text-rose-400 border border-rose-500/20"
-                  : "bg-sky-500/15 text-sky-600 dark:text-sky-400 border border-sky-500/20"
+                  : isMaintenance
+                  ? "bg-sky-500/15 text-sky-600 dark:text-sky-400 border border-sky-500/20"
+                  : "bg-cyan-500/15 text-cyan-700 dark:text-cyan-300 border border-cyan-500/20"
               }`}
             >
-              {isAcute ? <Zap className="w-3.5 h-3.5" /> : <Pill className="w-3.5 h-3.5" />}
-              <span>{isAcute ? "⚡ Acute / Inpatient" : "💊 Maintenance / Outpatient"}</span>
+              {isAcute ? (
+                <Zap className="w-3.5 h-3.5" />
+              ) : (
+                <Pill className="w-3.5 h-3.5" />
+              )}
+              <span>
+                {isAcute
+                  ? "⚡ Acute / Inpatient"
+                  : isMaintenance
+                  ? "💊 Maintenance / Outpatient"
+                  : "💊 Liều dùng & Chế độ điều trị (Dosing Regimen)"}
+              </span>
             </span>
 
             {/* Route Badge */}
@@ -245,9 +262,9 @@ export function DoseCard({
           {resolution.state === "text_only" && (
             <div className="p-4 rounded-xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 space-y-2">
               <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block">
-                Prescribing Guidance:
+                Prescribing Guidance (Hướng dẫn liều):
               </span>
-              <p className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 whitespace-pre-line">
+              <p className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 whitespace-pre-wrap leading-relaxed">
                 {resolution.ruleText}
               </p>
             </div>
@@ -255,14 +272,26 @@ export function DoseCard({
 
           {/* State 4: Blocked Draft */}
           {resolution.state === "blocked_draft" && (
-            <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/25 space-y-2">
-              <div className="flex items-center gap-2 text-amber-700 dark:text-amber-400 font-bold text-xs uppercase tracking-wider">
-                <AlertCircle className="w-4 h-4" />
-                <span>Pending Verification</span>
+            <div className="space-y-3">
+              <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/25 space-y-1">
+                <div className="flex items-center gap-2 text-amber-700 dark:text-amber-400 font-bold text-xs uppercase tracking-wider">
+                  <AlertCircle className="w-4 h-4" />
+                  <span>Bản nháp (Draft Record)</span>
+                </div>
+                <p className="text-xs text-amber-700 dark:text-amber-300 font-medium">
+                  Hồ sơ thuốc đang ở trạng thái bản nháp (Draft). Dưới đây là phác đồ liều dùng đã ghi nhận:
+                </p>
               </div>
-              <p className="text-xs text-amber-700 dark:text-amber-300 font-medium">
-                Clinical dosage calculation locked. This drug record is in draft status and must be verified by an administrator before doses can be calculated.
-              </p>
+              {activeRegimen.dose_text && (
+                <div className="p-4 rounded-xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 space-y-2">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block">
+                    Liều dùng lâm sàng (Dosing Guidance):
+                  </span>
+                  <p className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 whitespace-pre-wrap leading-relaxed">
+                    {activeRegimen.dose_text}
+                  </p>
+                </div>
+              )}
             </div>
           )}
 
@@ -278,8 +307,8 @@ export function DoseCard({
             </div>
           )}
 
-          {/* Renal Clearance Bands Table (Only in Acute setting; Maintenance shows basic therapeutic dosing) */}
-          {isAcute && renalBands.length > 0 && resolution.state !== "blocked_draft" && (
+          {/* Renal Clearance Bands Table */}
+          {(isAcute || setting === "unified" || !setting) && renalBands.length > 0 && resolution.state !== "blocked_draft" && (
             <div className="space-y-1.5 pt-2">
               <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block">
                 Renal Clearance Bands ({drug.renal_basis?.value || "cg_abw"}):
