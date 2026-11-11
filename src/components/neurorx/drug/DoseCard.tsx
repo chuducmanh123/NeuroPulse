@@ -5,19 +5,13 @@ import {
   Zap,
   Pill,
   AlertCircle,
-  Clock,
-  Sparkles,
-  Info,
   CheckCircle2,
   Syringe,
-  Package,
   FileText,
 } from "lucide-react";
-import type { DrugRecord, Regimen, RenalBand } from "@/types/neurorx";
+import type { DrugRecord, Regimen } from "@/types/neurorx";
 import type { PatientParsed, RenalResolutionResult } from "@/lib/neurorx/patient";
 import { resolveRegimen } from "@/lib/neurorx/dosing";
-import { toProductUnits } from "@/lib/neurorx/formulation";
-import { computeInfusion } from "@/lib/neurorx/infusion";
 
 interface DoseCardProps {
   drug: DrugRecord;
@@ -70,27 +64,6 @@ export function DoseCard({
   // 1. Resolve clinical dosage
   const resolution = resolveRegimen(drug, activeRegimen, patient, renal);
 
-  // 2. Physical formulation product units
-  const productUnits =
-    resolution.state === "computed" && resolution.amount
-      ? toProductUnits(resolution.amount, drug.vn_products?.value)
-      : [];
-  const productUnitText = productUnits.length > 0 ? productUnits[0].displayText : undefined;
-
-  // 3. IV Infusion calculation (if IV infusion spec present)
-  const infusionCalc =
-    resolution.state === "computed" && resolution.amount && activeRegimen.dose?.infusion
-      ? computeInfusion(
-          resolution.amount,
-          resolution.unit || "mg",
-          activeRegimen.dose.infusion
-        )
-      : null;
-
-  // 4. Relevant renal bands (from regimen or drug-level impairment)
-  const renalBands: RenalBand[] =
-    activeRegimen.renal_bands || drug.renal_impairment?.bands || [];
-
   return (
     <div
       className={`rounded-2xl border flex flex-col justify-between transition-all ${
@@ -102,7 +75,7 @@ export function DoseCard({
       <div>
         {/* Card Header */}
         <div
-          className={`p-4 sm:p-5 border-b rounded-t-2xl ${
+          className={`p-3.5 sm:p-5 border-b rounded-t-2xl ${
             isAcute
               ? darkMode
                 ? "bg-rose-950/20 border-rose-900/40"
@@ -116,7 +89,7 @@ export function DoseCard({
               : "bg-slate-50 border-slate-200"
           }`}
         >
-          <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center justify-between gap-2 flex-wrap">
             <span
               className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold uppercase tracking-wider ${
                 isAcute
@@ -127,11 +100,11 @@ export function DoseCard({
               }`}
             >
               {isAcute ? (
-                <Zap className="w-3.5 h-3.5" />
+                <Zap className="w-3.5 h-3.5 shrink-0" />
               ) : (
-                <Pill className="w-3.5 h-3.5" />
+                <Pill className="w-3.5 h-3.5 shrink-0" />
               )}
-              <span>
+              <span className="truncate">
                 {isAcute
                   ? "⚡ Acute / Inpatient"
                   : isMaintenance
@@ -141,21 +114,21 @@ export function DoseCard({
             </span>
 
             {/* Route Badge */}
-            <span className="px-2.5 py-0.5 rounded-md text-xs font-bold bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+            <span className="px-2.5 py-0.5 rounded-md text-xs font-bold bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300 shrink-0">
               {activeRegimen.route}
             </span>
           </div>
 
           {/* Indication selector if multiple regimens exist */}
           {regimens.length > 1 ? (
-            <div className="mt-3">
-              <label className="block text-[11px] font-semibold text-slate-500 dark:text-slate-400 mb-1">
+            <div className="mt-2.5 sm:mt-3">
+              <label className="block text-[10px] sm:text-[11px] font-semibold text-slate-500 dark:text-slate-400 mb-1">
                 Clinical Indication:
               </label>
               <select
                 value={activeIndex}
                 onChange={(e) => handleSelectIndex(parseInt(e.target.value, 10))}
-                className={`w-full text-xs font-semibold p-2 rounded-xl border focus:outline-none focus:ring-2 focus:ring-sky-500/20 ${
+                className={`w-full text-xs font-semibold p-2 sm:p-2.5 rounded-xl border focus:outline-none focus:ring-2 focus:ring-sky-500/20 truncate ${
                   darkMode
                     ? "bg-slate-800 border-slate-700 text-white"
                     : "bg-white border-slate-300 text-slate-900"
@@ -169,72 +142,19 @@ export function DoseCard({
               </select>
             </div>
           ) : (
-            <h4 className="mt-2 text-sm font-bold text-slate-900 dark:text-white">
+            <h4 className="mt-2 text-xs sm:text-sm font-bold text-slate-900 dark:text-white break-words">
               {activeRegimen.indication}
             </h4>
           )}
         </div>
 
-        {/* Card Body: Dosage Resolution & Administration */}
-        <div className="p-4 sm:p-5 space-y-4">
-          {/* Bedside Computed Dosage Reference */}
-          {resolution.state === "computed" && (
-            <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-between flex-wrap gap-2 text-xs">
-              <div className="flex items-center gap-2">
-                <span className="font-bold text-emerald-800 dark:text-emerald-300 uppercase tracking-wider text-[11px]">
-                  Bedside Dose:
-                </span>
-                <span className="font-mono font-extrabold text-emerald-600 dark:text-emerald-400 text-sm">
-                  {resolution.amount} {resolution.unit}
-                </span>
-                <span className="text-slate-700 dark:text-slate-300 font-semibold">
-                  {resolution.frequency}
-                </span>
-                {resolution.capped && (
-                  <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-700 dark:text-amber-300">
-                    Capped
-                  </span>
-                )}
-              </div>
-              <span className="text-[11px] text-slate-500 dark:text-slate-400 italic">
-                (Adjusted via Bedside Patient Variables)
-              </span>
-            </div>
-          )}
-
-          {resolution.state === "needs_input" && (
-            <div className="p-3 rounded-xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 text-xs flex items-center justify-between flex-wrap gap-2">
-              <div className="flex items-center gap-2">
-                <span className="font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-[11px]">
-                  Formula:
-                </span>
-                <span className="font-bold text-slate-800 dark:text-slate-200">
-                  {resolution.ruleText}
-                </span>
-              </div>
-              <span className="text-[11px] text-sky-600 dark:text-sky-400 font-semibold">
-                Enter weight in Bedside Patient Variables to calculate
-              </span>
-            </div>
-          )}
-
-          {/* State 3: Text Only */}
-          {resolution.state === "text_only" && (
-            <div className="p-4 rounded-xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 space-y-2">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block">
-                Prescribing Guidance:
-              </span>
-              <p className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 whitespace-pre-wrap leading-relaxed">
-                {resolution.ruleText}
-              </p>
-            </div>
-          )}
-
-          {/* State 4: Blocked Draft */}
+        {/* Card Body: Clinical Administration & Specific Guidance */}
+        <div className="p-3.5 sm:p-5 space-y-3 sm:space-y-4">
+          {/* State: Blocked Draft */}
           {resolution.state === "blocked_draft" && (
             <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/25 space-y-1">
               <div className="flex items-center gap-2 text-amber-700 dark:text-amber-400 font-bold text-xs uppercase tracking-wider">
-                <AlertCircle className="w-4 h-4" />
+                <AlertCircle className="w-4 h-4 shrink-0" />
                 <span>Draft Record</span>
               </div>
               <p className="text-xs text-amber-700 dark:text-amber-300 font-medium">
@@ -244,41 +164,41 @@ export function DoseCard({
           )}
 
           {/* Specific Clinical Administration & Instructions */}
-          {activeRegimen.dose_text && resolution.state !== "text_only" && (
-            <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-800 space-y-1.5">
+          {(activeRegimen.dose_text || resolution.ruleText) && (
+            <div className="p-3 sm:p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-800 space-y-1.5">
               <div className="flex items-center gap-2">
                 <FileText className="w-4 h-4 text-sky-500 shrink-0" />
                 <span className="text-[11px] font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
                   Clinical Administration &amp; Dosing Instructions:
                 </span>
               </div>
-              <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
-                {activeRegimen.dose_text}
+              <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium whitespace-pre-wrap break-words">
+                {activeRegimen.dose_text || resolution.ruleText}
               </p>
             </div>
           )}
 
           {/* IV Infusion Protocol / Preparation */}
           {drug.tools?.iv_infusion?.value && (activeRegimen.route === "IV" || !activeRegimen.route) && (
-            <div className="p-3.5 rounded-xl bg-sky-500/10 border border-sky-500/20 space-y-2 text-xs">
+            <div className="p-3 sm:p-3.5 rounded-xl bg-sky-500/10 border border-sky-500/20 space-y-2 text-xs">
               <div className="flex items-center gap-2 font-bold text-sky-800 dark:text-sky-300">
                 <Syringe className="w-4 h-4 text-sky-500 shrink-0" />
-                <span>IV Preparation &amp; Administration Protocol:</span>
+                <span className="break-words">IV Preparation &amp; Administration Protocol:</span>
               </div>
               {drug.tools.iv_infusion.value.instructions && (
-                <p className="text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
+                <p className="text-slate-700 dark:text-slate-300 leading-relaxed font-medium break-words">
                   {drug.tools.iv_infusion.value.instructions}
                 </p>
               )}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 text-[11px]">
                 {drug.tools.iv_infusion.value.diluent && (
-                  <div className="p-2 rounded-lg bg-white dark:bg-slate-900 border border-sky-200/60 dark:border-sky-800/60">
+                  <div className="p-2 rounded-lg bg-white dark:bg-slate-900 border border-sky-200/60 dark:border-sky-800/60 break-words">
                     <strong className="text-sky-700 dark:text-sky-400 block mb-0.5">Reconstitution / Diluent:</strong>
                     <span className="text-slate-600 dark:text-slate-400">{drug.tools.iv_infusion.value.diluent}</span>
                   </div>
                 )}
                 {drug.tools.iv_infusion.value.rate && (
-                  <div className="p-2 rounded-lg bg-white dark:bg-slate-900 border border-sky-200/60 dark:border-sky-800/60">
+                  <div className="p-2 rounded-lg bg-white dark:bg-slate-900 border border-sky-200/60 dark:border-sky-800/60 break-words">
                     <strong className="text-sky-700 dark:text-sky-400 block mb-0.5">Infusion Rate:</strong>
                     <span className="text-slate-600 dark:text-slate-400">{drug.tools.iv_infusion.value.rate}</span>
                   </div>
@@ -289,11 +209,11 @@ export function DoseCard({
 
           {/* Enteral / NG Tube Guidance */}
           {drug.ng_tube?.value?.instructions && (activeRegimen.route === "NG" || activeRegimen.route === "PO") && (
-            <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs space-y-1">
+            <div className="p-3 sm:p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs space-y-1">
               <span className="font-bold text-amber-800 dark:text-amber-300 block">
                 Enteral / NG Tube Administration:
               </span>
-              <p className="text-slate-700 dark:text-slate-300 font-medium">
+              <p className="text-slate-700 dark:text-slate-300 font-medium break-words">
                 {drug.ng_tube.value.instructions}
               </p>
             </div>
@@ -301,22 +221,22 @@ export function DoseCard({
 
           {/* Hemodialysis guidance box if active */}
           {patient.onHemodialysis && resolution.hemodialysisNote && (
-            <div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/25 space-y-1">
+            <div className="p-3 sm:p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/25 space-y-1">
               <span className="text-[11px] font-bold uppercase tracking-wider text-rose-700 dark:text-rose-400 block">
                 Hemodialysis Guidance:
               </span>
-              <p className="text-xs text-rose-800 dark:text-rose-300 font-medium">
+              <p className="text-xs text-rose-800 dark:text-rose-300 font-medium break-words">
                 {resolution.hemodialysisNote}
               </p>
             </div>
           )}
 
-          {/* Matched Renal Clearance Band Notice (only displayed when patient CrCl matches a specific band) */}
+          {/* Matched Renal Clearance Band Notice */}
           {resolution.renalBandMatched && (
-            <div className="p-3.5 rounded-xl bg-sky-50 dark:bg-sky-950/70 border border-sky-400 dark:border-sky-700 text-xs flex items-center justify-between gap-2 text-sky-900 dark:text-sky-200 shadow-xs">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-sky-600 dark:text-sky-400 shrink-0" />
-                <div>
+            <div className="p-3 sm:p-3.5 rounded-xl bg-sky-50 dark:bg-sky-950/70 border border-sky-400 dark:border-sky-700 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-sky-900 dark:text-sky-200 shadow-xs">
+              <div className="flex items-start sm:items-center gap-2 min-w-0">
+                <CheckCircle2 className="w-4 h-4 text-sky-600 dark:text-sky-400 shrink-0 mt-0.5 sm:mt-0" />
+                <div className="min-w-0 break-words">
                   <span className="font-bold">
                     Adjusted for Renal Function ({resolution.renalBandMatched.min === null
                       ? `< ${resolution.renalBandMatched.max}`
@@ -328,7 +248,7 @@ export function DoseCard({
                   <span>{resolution.renalBandMatched.dose_text}</span>
                 </div>
               </div>
-              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-sky-500 text-white uppercase tracking-wider shrink-0">
+              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-sky-500 text-white uppercase tracking-wider shrink-0 self-start sm:self-auto">
                 Active Band
               </span>
             </div>
