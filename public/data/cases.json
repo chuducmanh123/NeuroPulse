@@ -1,5 +1,223 @@
 [
   {
+    "id": "nc-2026-041",
+    "case_code": "NC-2026-041",
+    "title": "Fulminant Encephalopathy and Visual Disturbances in Active Systemic Lupus Erythematosus",
+    "subspecialty": "Neurocritical Care",
+    "subspecialties": [
+      "Neurocritical Care",
+      "Autoimmune Neurology",
+      "Vascular Neurology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-11-12",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13141255",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-04771-2",
+      "pmcid": "PMC13141255",
+      "pmid": "41882579",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "50-year-old Asian female",
+      "chief_complaint": "Acute onset headache, visual impairment, dizziness, and generalized tonic-clonic seizures",
+      "history_of_present_illness": "The patient presented to the emergency department with an 8-hour history of severe headache, dizziness, blurry vision, and recurrent generalized tonic-clonic seizures. Each seizure lasted 3 to 4 minutes and was characterized by ocular deviation, jaw clenching, and bilateral upper and lower extremity rigidity followed by brief post-ictal confusion. She was diagnosed with active systemic lupus erythematosus (SLE) 3 months prior and developed end-stage renal failure requiring maintenance hemodialysis 2 months ago. Her disease activity has been high (SLEDAI-2K estimated score of 14).",
+      "past_medical_history": "Systemic lupus erythematosus (diagnosed 3 months ago based on photosensitivity, arthralgias, cytopenias, ANA 1:640, elevated anti-dsDNA, hypocomplementemia, and lupus anticoagulant positivity); Lupus nephritis causing renal failure on maintenance hemodialysis.",
+      "vitals": {
+        "bp": "178/102 mmHg",
+        "hr": "104 bpm",
+        "rr": "22 /min",
+        "temp": "37.2 °C",
+        "spo2": "95% on room air"
+      },
+      "neuro_exam": "Lethargic and oriented only to person. Cranial nerve examination revealed cortical visual impairment with intact pupillary light reflexes; ocular tracking was limited due to altered mental status. Motor exam showed symmetrical withdrawal to painful stimuli with bilateral extensor plantar responses (Babinski signs positive bilaterally). Deep tendon reflexes were hyperactive throughout.",
+      "key_labs_csf": "Hemoglobin: 8.2 g/dL, Platelet count: 72,000 /µL, Serum Creatinine: 6.8 mg/dL, BUN: 62 mg/dL, C3 complement: 0.45 g/L (low), C4 complement: 0.06 g/L (low), Anti-dsDNA: >100 IU/mL (elevated), Lupus Anticoagulant: Positive.",
+      "imaging": [
+        {
+          "modality": "Brain Non-Contrast CT",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13141255)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13141255_fig1.jpg",
+          "pmcid": "PMC13141255",
+          "doi_url": "https://doi.org/10.1186/s12883-026-04771-2",
+          "caption": "Timeline of clinical course and brain CT findings 3 h after symptom onset. A Chronology of the major clinical features, including the onset of headache, seizures, respiratory failure, and neurological deterioration. mo(s), month(s); h, hour(s); min(s), minute(s). B Non-contrast cerebral CT obtained 3 h after symptom onset shows patchy hypodense lesions involving the occipital, parietal, and posterior frontal lobes, more pronounced on the right side, with a small hemorrhage in the left parietal lobe",
+          "findings_summary": "Patchy hypodense lesions involving the bilateral parieto-occipital and posterior frontal lobes (more pronounced on the right) with a focal small hyperdense hemorrhage in the left parietal lobe."
+        },
+        {
+          "modality": "Brain MRI (T1, T2, DWI, ADC)",
+          "sequence_badge": "Figure 2 • BMC neurology (PMC13141255)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC13141255_fig2.jpg",
+          "pmcid": "PMC13141255",
+          "doi_url": "https://doi.org/10.1186/s12883-026-04771-2",
+          "caption": "MRI following the initial CT examination. A Axial T1-weighted image shows heterogeneous signal intensity in the bilateral parieto-occipital regions with subtle hemorrhagic components. B Axial T2-weighted image demonstrates extensive edema involving the occipital, parietal, and posterior frontal lobes, more pronounced on the right, with evident mass effect. C Axial DWI reveals mixed hyperintensity in the right parieto-occipital area. D Corresponding ADC map shows decreased signal intensity, confirming true diffusion restriction consistent with cytotoxic edema. E Axial post-contrast T1-weighted ",
+          "findings_summary": "Extensive T2 hyperintensity and parieto-occipital mass effect with corresponding DWI hyperintensity and ADC hypointensity, confirming true diffusion restriction and cytotoxic edema alongside microhemorrhagic elements."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "Primary central nervous system vasculitis",
+          "peer_percentage": 15,
+          "rationale": "Incorrect. Primary CNS vasculitis typically presents subacutely with progressive encephalopathy, multifocal ischemic infarcts of varying ages across multiple arterial territories, and vascular beading on angiographic imaging, rather than rapid onset bilateral parieto-occipital signal changes predominantly localized to posterior regions in the setting of severe hypertension."
+        },
+        {
+          "id": "B",
+          "text": "Posterior reversible encephalopathy syndrome (PRES)",
+          "peer_percentage": 70,
+          "rationale": "Correct! The constellation of severe hypertension, active SLE, renal failure requiring hemodialysis, visual symptoms, seizures, and bilateral parieto-occipital neuroimaging abnormalities is classic for posterior reversible encephalopathy syndrome (PRES). Although PRES typically demonstrates vasogenic edema (high signal on ADC), severe or fulminant cases can exhibit areas of cytotoxic edema (low ADC signal, diffusion restriction) indicating localized tissue ischemia or cytotoxic injury."
+        },
+        {
+          "id": "C",
+          "text": "Antiphospholipid antibody syndrome-induced acute arterial infarction",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. While lupus anticoagulant is present, acute arterial ischemic stroke secondary to antiphospholipid syndrome follows a distinct vascular territory (e.g., MCA or PCA thromboembolism). It does not produce widespread, symmetric, confluent subcortical white matter lesions localized across bilateral parieto-occipital regions."
+        },
+        {
+          "id": "D",
+          "text": "Cerebral venous sinus thrombosis",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. Cerebral venous sinus thrombosis typically presents with signs of elevated intracranial pressure, dense sinus signs, or hemorrhagic infarcts non-conforming to arterial boundaries, often adjacent to the superior sagittal or transverse sinuses. MR venography confirms sinus occlusion, which is not described here."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Posterior Reversible Encephalopathy Syndrome (PRES) with Cytotoxic Edema in Severe Active Systemic Lupus Erythematosus",
+      "clinical_discussion": "Posterior reversible encephalopathy syndrome (PRES) is a clinicoradiological entity classically characterized by acute headache, altered mental status, visual disturbance, seizures, and characteristic subcortical parieto-occipital vasogenic edema on neuroimaging. It occurs secondary to defective cerebrovascular autoregulation and endothelial breakdown, commonly triggered by abrupt hypertension, renal dysfunction, cytotoxic therapy, or active systemic autoimmune diseases such as systemic lupus erythematosus (SLE). Although PRES is typically considered a reversible condition with a favorable clinical recovery after blood pressure control and risk factor management, severe autoimmune inflammation and uremia can trigger significant endothelial toxicity and blood-brain barrier disruption.\n\nIn severe cases, profound endothelial disruption can cause progression from vasogenic edema to cytotoxic edema, manifested as true diffusion restriction with low values on the apparent diffusion coefficient (ADC) map on MRI. This indicates cellular energy failure and localized irreversible cellular injury. Patients with cytotoxic edema or microhemorrhage in PRES are at elevated risk for permanent neurological deficits, raised intracranial pressure, and complicated clinical courses.",
+      "teaching_points": [
+        "PRES classically manifests as vasogenic edema in parieto-occipital regions, but severe or fulminant cases can show true diffusion restriction (low ADC) representing cytotoxic edema.",
+        "Active SLE with renal involvement and uncontrolled hypertension are potent triggers for PRES due to systemic endothelial injury and impaired cerebrovascular autoregulation.",
+        "Demonstration of cytotoxic edema or intracranial microhemorrhage in PRES portends a worse clinical prognosis and higher risk of persistent neurological deficits."
+      ],
+      "clinical_pitfalls": [
+        "Assuming PRES is always benign and completely reversible, which can lead to underestimating the risk of rapid neurological decline when cytotoxic edema or intracranial bleeding is present.",
+        "Misinterpreting diffusion restriction in parieto-occipital regions solely as acute arterial thromboembolic stroke rather than severe PRES with focal cytotoxic ischemia."
+      ],
+      "related_keywords": [
+        "Posterior Reversible Encephalopathy Syndrome",
+        "Systemic Lupus Erythematosus",
+        "Cytotoxic Edema",
+        "Diffusion Weighted Imaging",
+        "Hypertensive Encephalopathy"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-042",
+    "case_code": "NC-2026-042",
+    "title": "Painful Left Sixth Nerve Palsy with Orbital Apex Enhancement and Subsequent Constitutional Decline",
+    "subspecialty": "Neuro-ophthalmology & Vascular Neurology",
+    "subspecialties": [
+      "Neuro-ophthalmology",
+      "Neuro-immunology",
+      "Vascular Neurology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 120,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-11-12",
+    "status": "approved",
+    "author_credit": "Frontiers in neurology • PMC13180592",
+    "source_journal": {
+      "name": "Frontiers in neurology",
+      "short_name": "Frontiers in neurology",
+      "doi_url": "https://doi.org/10.3389/fneur.2026.1793313",
+      "pmcid": "PMC13180592",
+      "pmid": "42158007",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "70-year-old man",
+      "chief_complaint": "Acute onset of painful left eye pain and horizontal diplopia",
+      "history_of_present_illness": "A 70-year-old man presented with a 3-day history of left periorbital pain and horizontal diplopia. He noted a 3-month history of preceding constitutional symptoms, polyarthralgia, unintentional weight loss, and progressive sensorineural hearing loss. During corticosteroid tapering following initial management of his sixth nerve palsy, he developed painful subcutaneous nodules, postprandial abdominal pain, and asymmetric lower extremity weakness with foot drop.",
+      "past_medical_history": "Unremarkable prior history aside from constitutional symptoms spanning the preceding 3 months.",
+      "vitals": {
+        "bp": "135/85 mmHg",
+        "hr": "76 bpm",
+        "rr": "16 /min",
+        "temp": "37.0 °C",
+        "spo2": "98% on room air"
+      },
+      "neuro_exam": "Left abducens (VI) nerve palsy with associated hyperesthesia in the left ophthalmic (V1) distribution. Subsequent examination revealed tender subcutaneous nodules over the lower limbs and an asymmetric sensorimotor polyneuropathy (mononeuritis multiplex) manifest as a left foot drop and right wrist drop.",
+      "key_labs_csf": "ESR 67 mm/h; CRP 42 mg/L. Mild normocytic anemia. ANCA (PR3 and MPO), ANA, complement levels (C3/C4), ACE, lysozyme, and anti-SSA/SSB were negative. Hepatitis B and C serologies negative.",
+      "imaging": [
+        {
+          "modality": "Axial T1-weighted fat-suppressed post-contrast Brain and Orbital MRI",
+          "sequence_badge": "Figure 1 • Frontiers in neurology (PMC13180592)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13180592_fig1.jpg",
+          "pmcid": "PMC13180592",
+          "doi_url": "https://doi.org/10.3389/fneur.2026.1793313",
+          "caption": "Axial T1-weighted, fat-suppressed, post-contrast MRI of the brain and orbits show enhancement in the left orbital apex involving the optic nerve sheath, without well-defined nodularity. The enhancement extends to the superior orbital fissure, the anterior aspect of the cavernous sinus, the pterygopalatine fossa, and the inferior orbital fissure.",
+          "findings_summary": "Demonstrates abnormal enhancement in the left orbital apex involving the optic nerve sheath, extending posteriorly through the superior orbital fissure into the anterior cavernous sinus, pterygopalatine fossa, and inferior orbital fissure."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely underlying systemic diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "Granulomatosis with polyangiitis (GPA)",
+          "peer_percentage": 18,
+          "rationale": "Incorrect. Although GPA frequently involves the orbit and cranial nerves, it is classically ANCA-positive (c-ANCA/PR3-ANCA in >80-90% of generalized cases) and characterized by necrotizing granulomatous lesions of the upper and lower respiratory tract."
+        },
+        {
+          "id": "B",
+          "text": "Eosinophilic granulomatosis with polyangiitis (EGPA)",
+          "peer_percentage": 12,
+          "rationale": "Incorrect. EGPA typically features prominent adult-onset asthma, severe allergic rhinitis/sinusitis, marked peripheral blood eosinophilia, and p-ANCA positivity in a subset of patients, none of which are described here."
+        },
+        {
+          "id": "C",
+          "text": "Polyarteritis nodosa (PAN)",
+          "peer_percentage": 68,
+          "rationale": "Correct! Polyarteritis nodosa is a systemic medium-vessel necrotizing vasculitis that is characteristically ANCA-negative. It features multi-system ischemic involvement, including mononeuritis multiplex (foot/wrist drop), tender cutaneous nodules, postprandial abdominal pain (mesenteric vasculitis), renal vascular involvement, and constitutional decline. Cranial neuropathies and orbital apex syndrome are recognized, albeit uncommon, presenting signs."
+        },
+        {
+          "id": "D",
+          "text": "Relapsing polychondritis",
+          "peer_percentage": 2,
+          "rationale": "Incorrect. While relapsing polychondritis can cause auricular/nasal chondritis, sclera/orbital inflammation, and sensorineural hearing loss, it does not account for tender subcutaneous skin nodules, severe abdominal angina, or classic mononeuritis multiplex."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Polyarteritis nodosa (PAN)",
+      "clinical_discussion": "Polyarteritis nodosa (PAN) is a systemic necrotizing vasculitis affecting medium-sized muscular arteries. It classically spares the pulmonary circulation and is characteristically negative for anti-neutrophil cytoplasmic antibodies (ANCA). Its clinical spectrum includes constitutional decline, tender subcutaneous cutaneous nodules, hypertension, gastrointestinal ischemia (abdominal angina), renal vascular disease, and asymmetric peripheral neuropathy (mononeuritis multiplex).\n\nCranial nerve involvement—such as isolated or combined cranial neuropathies associated with orbital apex or cavernous sinus involvement—is a rare presenting sign of systemic vasculitides, including PAN. In this patient, the orbital apex enhancement initially raised suspicion for localized orbital inflammatory disease or Tolosa-Hunt syndrome. However, relapse during steroid tapering with unmasking of systemic multi-organ involvement (mononeuritis multiplex, cutaneous nodules, abdominal angina) pointed definitively to underlying PAN. Tissue biopsy (e.g., skin, nerve, or muscle) or mesenteric angiography confirms the diagnosis. Prompt initiation of high-dose corticosteroids along with cyclophosphamide or steroid-sparing agents is crucial to prevent progressive ischemic neuropathic and end-organ damage.",
+      "teaching_points": [
+        "Polyarteritis nodosa (PAN) is a necrotizing medium-vessel vasculitis that is characteristically ANCA-negative and spares the pulmonary capillaries.",
+        "Cranial neuropathies and orbital apex syndrome can serve as atypical initial presenting manifestations of systemic necrotizing vasculitides.",
+        "Development of mononeuritis multiplex, tender cutaneous nodules, and abdominal angina during steroid tapering strongly indicates underlying systemic medium-vessel vasculitis."
+      ],
+      "clinical_pitfalls": [
+        "Misdiagnosing cranial neuropathy or orbital apex inflammation as benign idiopathic orbital pseudotumor (Tolosa-Hunt syndrome) without screening for systemic vasculitis.",
+        "Failing to recognize systemic relapse symptoms (such as foot drop or abdominal pain) during steroid tapering in patients evaluated for cranial neuropathies."
+      ],
+      "related_keywords": [
+        "Polyarteritis nodosa",
+        "Orbital apex syndrome",
+        "Abducens nerve palsy",
+        "Mononeuritis multiplex",
+        "Medium-vessel vasculitis"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-039",
     "case_code": "NC-2026-039",
     "title": "A 35-Year-Old Woman with Subacute Bulbar Palsy, Right-Sided Lower Cranial Neuropathies, and Prior Corpus Callosal Stroke",
