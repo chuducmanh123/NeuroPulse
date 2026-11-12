@@ -65,8 +65,8 @@
     "refs": [
       {
         "source_id": "fda-dantrolene-label",
-        "locator": "INDICATIONS AND USAGE",
-        "quote": "indicated, along with appropriate supportive measures, for the management of the fulminant hypermetabolism of skeletal muscle characteristic of malignant hyperthermia crises in pat"
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION: As soon as the malignant hyperthermia reaction is recognized, all anesthetic agents should be discontinued; the administration of 100% oxygen is recommended."
       }
     ]
   },
@@ -278,6 +278,27 @@
         "source_id": "fda-dantrolene-label",
         "locator": "PRECAUTIONS - Drug Interactions",
         "quote": "It is recommended that the combination of intravenous dantrolene sodium and calcium channel blockers, such as verapamil, not be used together during the management of malignant hyperthermia crisis."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-dantrolene-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION: As soon as the malignant hyperthermia reaction is recognized, all anesthetic agents should be discontinued; the administration of 100% oxygen is recommended."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-dantrolene-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION: As soon as the malignant hyperthermia reaction is recognized, all anesthetic agents should be discontinued; the administration of 100% oxygen is recommended."
       }
     ]
   }

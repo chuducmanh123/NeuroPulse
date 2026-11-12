@@ -56,28 +56,7 @@
         "max_single": 1200,
         "max_daily": 2400
       },
-      "dose_text": "Initiate at 300 mg twice daily (600 mg/day). Titrate by up to 600 mg/day at approximately weekly intervals to recommended target of 1200 mg/day (max 2400 mg/day).",
-      "renal_bands": [
-        {
-          "min": null,
-          "max": 30,
-          "dose_text": "CrCl < 30 mL/min: Initiate at 150 mg twice daily (300 mg/day); titrate slowly.",
-          "dose": {
-            "kind": "fixed",
-            "amount": 150,
-            "unit": "mg",
-            "frequency": "twice daily",
-            "max_daily": 1200
-          },
-          "refs": [
-            {
-              "source_id": "fda-oxcarbazepine-label",
-              "locator": "DOSAGE AND ADMINISTRATION",
-              "quote": "In patients with impaired renal function (creatinine clearance < 30 mL/min), initiate TRILEPTAL at one-half the usual starting dose (300 mg/day, given twice a day), and increase slowly to achieve the desired clinical response"
-            }
-          ]
-        }
-      ]
+      "dose_text": "Initiate at 300 mg twice daily (600 mg/day). Titrate by up to 600 mg/day at approximately weekly intervals to recommended target of 1200 mg/day (max 2400 mg/day)."
     }
   ],
   "renal_basis": {
@@ -85,8 +64,8 @@
     "refs": [
       {
         "source_id": "fda-oxcarbazepine-label",
-        "locator": "DOSAGE AND ADMINISTRATION",
-        "quote": "In patients with impaired renal function (creatinine clearance < 30 mL/min), initiate TRILEPTAL at one-half the usual starting dose (300 mg/day, given twice a day), and increase slowly to achieve the desired clinical response"
+        "locator": "Section 2.4 Dosage Modification for Patients With Renal Impairment",
+        "quote": "In patients with impaired renal function (creatinine clearance < 30 mL/min), initiate TRILEPTAL at one-half the usual starting dose (300 mg/day, given twice a day), and increase slowly to achieve the desired clinical response [ see Clinical Pharmacology (12. 3 ) ]."
       }
     ]
   },
@@ -323,6 +302,52 @@
         "source_id": "fda-oxcarbazepine-label",
         "locator": "Section 7.1 Effect of TRILEPTAL on Other Drugs",
         "quote": "Phenytoin levels have been shown to increase with concomitant use of TRILEPTAL at doses greater than 1200 mg/day"
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "In patients with impaired renal function (creatinine clearance < 30 mL/min), initiate TRILEPTAL at one-half the usual starting dose (300 mg/day, given twice a day), and increase slowly to achieve the desired clinical response.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-oxcarbazepine-label",
+          "locator": "Section 2.4 Dosage Modification for Patients With Renal Impairment",
+          "quote": "In patients with impaired renal function (creatinine clearance < 30 mL/min), initiate TRILEPTAL at one-half the usual starting dose (300 mg/day, given twice a day), and increase slowly to achieve the desired clinical response [ see Clinical Pharmacology (12. 3 ) ]."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 30,
+        "max": null,
+        "dose_text": "Standard starting dose (600 mg/day given twice daily) and maintenance titration",
+        "refs": [
+          {
+            "source_id": "fda-oxcarbazepine-label",
+            "locator": "Section 2.4 Dosage Modification for Patients With Renal Impairment",
+            "quote": "In patients with impaired renal function (creatinine clearance < 30 mL/min), initiate TRILEPTAL at one-half the usual starting dose (300 mg/day, given twice a day), and increase slowly to achieve the desired clinical response [ see Clinical Pharmacology (12. 3 ) ]."
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 30,
+        "dose_text": "Initiate at 300 mg/day (one-half usual starting dose given twice daily) and titrate slowly at >= 1-week intervals",
+        "refs": [
+          {
+            "source_id": "fda-oxcarbazepine-label",
+            "locator": "Section 2.4 Dosage Modification for Patients With Renal Impairment",
+            "quote": "In patients with impaired renal function (creatinine clearance < 30 mL/min), initiate TRILEPTAL at one-half the usual starting dose (300 mg/day, given twice a day), and increase slowly to achieve the desired clinical response [ see Clinical Pharmacology (12. 3 ) ]."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-oxcarbazepine-label",
+        "locator": "Section 2.4 Dosage Modification for Patients With Renal Impairment",
+        "quote": "In patients with impaired renal function (creatinine clearance < 30 mL/min), initiate TRILEPTAL at one-half the usual starting dose (300 mg/day, given twice a day), and increase slowly to achieve the desired clinical response [ see Clinical Pharmacology (12. 3 ) ]."
       }
     ]
   }

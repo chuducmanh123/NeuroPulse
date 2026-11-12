@@ -93,8 +93,8 @@
     "refs": [
       {
         "source_id": "fda-gabapentin-label",
-        "locator": "DOSAGE AND ADMINISTRATION",
-        "quote": "Dosage adjustment in patients 12 years of age and older with renal impairment or undergoing hemodialysis is recommended, as follows (see dosing recommendations above for effective"
+        "locator": "Section 2.3 Dosage Adjustment in Patients with Renal Impairment",
+        "quote": "TABLE 1. NEURONTIN Dosage Based on Renal Function TID = Three times a day; BID = Two times a day; QD = Single daily dose Renal Function Creatinine Clearance (mL/min) Total Daily Dose Range (mg/day) Dose Regimen (mg) ≥ 60 900 to 3600 300 TID 400 TID 600 TID 800 TID 1200 TID >30 to 59 400 to 1400 200 BID 300 BID 400 BID 500 BID 700 BID >15 to 29 200"
       }
     ]
   },
@@ -286,6 +286,86 @@
         "source_id": "fda-gabapentin-label",
         "locator": "Section 7.1 Opioids",
         "quote": "Respiratory depression and sedation, sometimes resulting in death, have been reported following coadministration of gabapentin with opioids (e.g., morphine, hydrocodone, oxycodone, buprenorphine)"
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "Gabapentin dosing must be individualized according to creatinine clearance (CrCl). Dosage adjustment in patients with renal impairment or undergoing hemodialysis is recommended.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-gabapentin-label",
+          "locator": "Section 2.3 Dosage Adjustment in Patients with Renal Impairment",
+          "quote": "TABLE 1. NEURONTIN Dosage Based on Renal Function TID = Three times a day; BID = Two times a day; QD = Single daily dose Renal Function Creatinine Clearance (mL/min) Total Daily Dose Range (mg/day) Dose Regimen (mg) ≥ 60 900 to 3600 300 TID 400 TID 600 TID 800 TID 1200 TID >30 to 59 400 to 1400 200 BID 300 BID 400 BID 500 BID 700 BID >15 to 29 200"
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 60,
+        "max": null,
+        "dose_text": "900 to 3600 mg/day (administered as 300 mg TID to 1200 mg TID)",
+        "refs": [
+          {
+            "source_id": "fda-gabapentin-label",
+            "locator": "Section 2.3 Dosage Adjustment in Patients with Renal Impairment",
+            "quote": "TABLE 1. NEURONTIN Dosage Based on Renal Function TID = Three times a day; BID = Two times a day; QD = Single daily dose Renal Function Creatinine Clearance (mL/min) Total Daily Dose Range (mg/day) Dose Regimen (mg) ≥ 60 900 to 3600 300 TID 400 TID 600 TID 800 TID 1200 TID >30 to 59 400 to 1400 200 BID 300 BID 400 BID 500 BID 700 BID >15 to 29 200"
+          }
+        ]
+      },
+      {
+        "min": 30,
+        "max": 59,
+        "dose_text": "400 to 1400 mg/day (administered as 200 mg BID to 700 mg BID)",
+        "refs": [
+          {
+            "source_id": "fda-gabapentin-label",
+            "locator": "Section 2.3 Dosage Adjustment in Patients with Renal Impairment",
+            "quote": ">30 to 59 400 to 1400 200 BID 300 BID 400 BID 500 BID 700 BID >15 to 29 200 to 700 200 QD 300 QD 400 QD 500 QD 700 QD 15 For patients with creatinine clearance <15 mL/min, reduce daily dose in proportion to creatinine clearance (e.g., patients with a creatinine clearance of 7.5 mL/min should receive one-half the daily dose that patients with a crea"
+          }
+        ]
+      },
+      {
+        "min": 15,
+        "max": 29,
+        "dose_text": "200 to 700 mg/day (administered as 200 mg QD to 700 mg QD)",
+        "refs": [
+          {
+            "source_id": "fda-gabapentin-label",
+            "locator": "Section 2.3 Dosage Adjustment in Patients with Renal Impairment",
+            "quote": ">15 to 29 200 to 700 200 QD 300 QD 400 QD 500 QD 700 QD 15 For patients with creatinine clearance <15 mL/min, reduce daily dose in proportion to creatinine clearance (e.g., patients with a creatinine clearance of 7.5 mL/min should receive one-half the daily dose that patients with a creatinine clearance of 15 mL/min receive)."
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 15,
+        "dose_text": "100 to 300 mg/day (reduce daily dose in proportion to creatinine clearance; e.g. CrCl 7.5 mL/min receives 50% of 15 mL/min dose)",
+        "refs": [
+          {
+            "source_id": "fda-gabapentin-label",
+            "locator": "Section 2.3 Dosage Adjustment in Patients with Renal Impairment",
+            "quote": "For patients with creatinine clearance <15 mL/min, reduce daily dose in proportion to creatinine clearance (e.g., patients with a creatinine clearance of 7.5 mL/min should receive one-half the daily dose that patients with a creatinine clearance of 15 mL/min receive)."
+          }
+        ]
+      }
+    ],
+    "hemodialysis": {
+      "value": "Maintenance dose based on CrCl plus post-hemodialysis supplemental dose of 125 to 350 mg administered after each 4-hour hemodialysis.",
+      "refs": [
+        {
+          "source_id": "fda-gabapentin-label",
+          "locator": "Section 2.3 Table 1",
+          "quote": "supplemental post-hemodialysis dose administered after each 4 hours of hemodialysis as indicated in the lower portion of the table. Hemodialysis 125 150 200 250 350 Creatinine clearance (CLCr) is difficult to measure in outpatients."
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-gabapentin-label",
+        "locator": "Section 2.3 Dosage Adjustment in Patients with Renal Impairment",
+        "quote": "TABLE 1. NEURONTIN Dosage Based on Renal Function TID = Three times a day; BID = Two times a day; QD = Single daily dose Renal Function Creatinine Clearance (mL/min) Total Daily Dose Range (mg/day) Dose Regimen (mg) ≥ 60 900 to 3600 300 TID 400 TID 600 TID 800 TID 1200 TID >30 to 59 400 to 1400 200 BID 300 BID 400 BID 500 BID 700 BID >15 to 29 200"
       }
     ]
   }

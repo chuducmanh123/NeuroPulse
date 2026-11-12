@@ -64,8 +64,8 @@
     "refs": [
       {
         "source_id": "fda-pyridostigmine-label",
-        "locator": "INDICATIONS AND USAGE",
-        "quote": "MESTINON is useful in the treatment of myasthenia gravis. === DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION: MESTINON is available in three dosage forms: Oral Solution - raspberry-flavored,"
+        "locator": "Section Precautions",
+        "quote": "Pyridostigmine is mainly excreted unchanged by the kidney. 6,7,8 Therefore, lower doses may be required in patients with renal disease, and treatment should be based on titration of drug dosage to effect."
       }
     ]
   },
@@ -259,6 +259,52 @@
         "source_id": "fda-pyridostigmine-label",
         "locator": "WARNINGS",
         "quote": "Care should be observed in the use of atropine for counteracting side effects, as discussed below."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "Pyridostigmine is mainly excreted unchanged by the kidney. Therefore, lower doses may be required in patients with renal disease, and treatment should be based on titration of drug dosage to effect.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-pyridostigmine-label",
+          "locator": "Section Precautions",
+          "quote": "Pyridostigmine is mainly excreted unchanged by the kidney. 6,7,8 Therefore, lower doses may be required in patients with renal disease, and treatment should be based on titration of drug dosage to effect."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 50,
+        "max": null,
+        "dose_text": "Standard oral dose: 60 to 120 mg every 4 to 6 hours while awake",
+        "refs": [
+          {
+            "source_id": "fda-pyridostigmine-label",
+            "locator": "Section Precautions",
+            "quote": "Pyridostigmine is mainly excreted unchanged by the kidney. 6,7,8 Therefore, lower doses may be required in patients with renal disease, and treatment should be based on titration of drug dosage to effect."
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 50,
+        "dose_text": "Lower initial doses or extended intervals may be required; titrate carefully to individual clinical response",
+        "refs": [
+          {
+            "source_id": "fda-pyridostigmine-label",
+            "locator": "Section Precautions",
+            "quote": "Pyridostigmine is mainly excreted unchanged by the kidney. 6,7,8 Therefore, lower doses may be required in patients with renal disease, and treatment should be based on titration of drug dosage to effect."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-pyridostigmine-label",
+        "locator": "Section Precautions",
+        "quote": "Pyridostigmine is mainly excreted unchanged by the kidney. 6,7,8 Therefore, lower doses may be required in patients with renal disease, and treatment should be based on titration of drug dosage to effect."
       }
     ]
   }

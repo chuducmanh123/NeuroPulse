@@ -52,73 +52,7 @@
         "max_single": 60,
         "max_daily": 60
       },
-      "dose_text": "60 mg taken orally once daily. Do not use in patients with CrCl > 95 mL/min due to increased rate of ischemic stroke compared to warfarin.",
-      "renal_bands": [
-        {
-          "min": 95,
-          "max": null,
-          "dose_text": "Do not use SAVAYSA in patients with CrCl > 95 mL/min (increased risk of ischemic stroke vs warfarin)",
-          "refs": [
-            {
-              "source_id": "fda-edoxaban-label",
-              "locator": "Section 2.1 Nonvalvular Atrial Fibrillation",
-              "quote": "Do not use SAVAYSA in patients with CrCL > 95 mL/min."
-            }
-          ]
-        },
-        {
-          "min": 50,
-          "max": 95,
-          "dose_text": "60 mg once daily",
-          "dose": {
-            "kind": "fixed",
-            "amount": 60,
-            "unit": "mg",
-            "frequency": "once daily",
-            "max_single": 60,
-            "max_daily": 60
-          },
-          "refs": [
-            {
-              "source_id": "fda-edoxaban-label",
-              "locator": "Section 2.1 Nonvalvular Atrial Fibrillation",
-              "quote": "The recommended dose of SAVAYSA is 60 mg taken orally once daily [see Warnings and Precautions (5.1) and Clinical Studies (14.1) ] ."
-            }
-          ]
-        },
-        {
-          "min": 15,
-          "max": 50,
-          "dose_text": "30 mg once daily",
-          "dose": {
-            "kind": "fixed",
-            "amount": 30,
-            "unit": "mg",
-            "frequency": "once daily",
-            "max_single": 30,
-            "max_daily": 30
-          },
-          "refs": [
-            {
-              "source_id": "fda-edoxaban-label",
-              "locator": "Section 2.1 Nonvalvular Atrial Fibrillation",
-              "quote": "Reduce SAVAYSA dose to 30 mg once daily in patients with CrCL 15 to 50 mL/min [see Use in Specific Populations (8.6) , and Clinical Pharmacology (12.3) ] ."
-            }
-          ]
-        },
-        {
-          "min": null,
-          "max": 15,
-          "dose_text": "Not recommended (CrCl < 15 mL/min)",
-          "refs": [
-            {
-              "source_id": "fda-edoxaban-label",
-              "locator": "Section 2.1 Nonvalvular Atrial Fibrillation",
-              "quote": "Reduce SAVAYSA dose to 30 mg once daily in patients with CrCL 15 to 50 mL/min [see Use in Specific Populations (8.6) , and Clinical Pharmacology (12.3) ] ."
-            }
-          ]
-        }
-      ]
+      "dose_text": "60 mg taken orally once daily. Do not use in patients with CrCl > 95 mL/min due to increased rate of ischemic stroke compared to warfarin."
     },
     {
       "id": "edo-po-stroke-prevention-afib-reduced",
@@ -148,8 +82,8 @@
     "refs": [
       {
         "source_id": "fda-edoxaban-label",
-        "locator": "Section 2.1 Nonvalvular Atrial Fibrillation",
-        "quote": "Assess creatinine clearance, as calculated using the Cockcroft-Gault equation Cockcroft-Gault CrCL = (140-age) × (weight in kg) × (0.85 if female) / (72 × creatinine in mg/dL). , before initiating therapy with SAVAYSA."
+        "locator": "Section 8.6 Renal Impairment",
+        "quote": "CrCL > 50 to < 80 mL/min, CrCL 30 to 50 mL/min, CrCL < 30 mL/min, or undergoing peritoneal dialysis, were increased by 32%, 74%, 72%, and 93%, respectively, relative to subjects with CrCL ≥ 80 mL/min [see Use in Specific Populations (8.6) ] . Hemodialysis A 4-hour hemodialysis session reduced total edoxaban exposure by less than 7%."
       }
     ]
   },
@@ -378,6 +312,76 @@
         "source_id": "fda-edoxaban-label",
         "locator": "Section 7.2 Rifampin",
         "quote": "Rifampin: Avoid concomitant use"
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "Renal clearance accounts for 50% of edoxaban elimination. Reduce dose to 30 mg once daily for CrCl 15 to 50 mL/min. DO NOT USE in nonvalvular AF patients with CrCl > 95 mL/min due to decreased efficacy.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-edoxaban-label",
+          "locator": "Section 8.6 Renal Impairment",
+          "quote": "CrCL > 50 to < 80 mL/min, CrCL 30 to 50 mL/min, CrCL < 30 mL/min, or undergoing peritoneal dialysis, were increased by 32%, 74%, 72%, and 93%, respectively, relative to subjects with CrCL ≥ 80 mL/min [see Use in Specific Populations (8.6) ] . Hemodialysis A 4-hour hemodialysis session reduced total edoxaban exposure by less than 7%."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 95,
+        "max": null,
+        "dose_text": "DO NOT USE in nonvalvular AF: significantly higher ischemic stroke rate compared to warfarin",
+        "refs": [
+          {
+            "source_id": "fda-edoxaban-label",
+            "locator": "Section 8.6 Renal Impairment",
+            "quote": "CrCL > 50 to < 80 mL/min, CrCL 30 to 50 mL/min, CrCL < 30 mL/min, or undergoing peritoneal dialysis, were increased by 32%, 74%, 72%, and 93%, respectively, relative to subjects with CrCL ≥ 80 mL/min [see Use in Specific Populations (8.6) ] . Hemodialysis A 4-hour hemodialysis session reduced total edoxaban exposure by less than 7%."
+          }
+        ]
+      },
+      {
+        "min": 50,
+        "max": 95,
+        "dose_text": "60 mg orally once daily",
+        "refs": [
+          {
+            "source_id": "fda-edoxaban-label",
+            "locator": "Section 8.6 Renal Impairment",
+            "quote": "CrCL > 50 to < 80 mL/min, CrCL 30 to 50 mL/min, CrCL < 30 mL/min, or undergoing peritoneal dialysis, were increased by 32%, 74%, 72%, and 93%, respectively, relative to subjects with CrCL ≥ 80 mL/min [see Use in Specific Populations (8.6) ] . Hemodialysis A 4-hour hemodialysis session reduced total edoxaban exposure by less than 7%."
+          }
+        ]
+      },
+      {
+        "min": 15,
+        "max": 50,
+        "dose_text": "30 mg orally once daily",
+        "refs": [
+          {
+            "source_id": "fda-edoxaban-label",
+            "locator": "Section 8.6 Renal Impairment",
+            "quote": "CrCL > 50 to < 80 mL/min, CrCL 30 to 50 mL/min, CrCL < 30 mL/min, or undergoing peritoneal dialysis, were increased by 32%, 74%, 72%, and 93%, respectively, relative to subjects with CrCL ≥ 80 mL/min [see Use in Specific Populations (8.6) ] . Hemodialysis A 4-hour hemodialysis session reduced total edoxaban exposure by less than 7%."
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 15,
+        "dose_text": "Not recommended in patients with CrCl < 15 mL/min or on dialysis",
+        "refs": [
+          {
+            "source_id": "fda-edoxaban-label",
+            "locator": "Section 8.6 Renal Impairment",
+            "quote": "CrCL > 50 to < 80 mL/min, CrCL 30 to 50 mL/min, CrCL < 30 mL/min, or undergoing peritoneal dialysis, were increased by 32%, 74%, 72%, and 93%, respectively, relative to subjects with CrCL ≥ 80 mL/min [see Use in Specific Populations (8.6) ] . Hemodialysis A 4-hour hemodialysis session reduced total edoxaban exposure by less than 7%."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-edoxaban-label",
+        "locator": "Section 8.6 Renal Impairment",
+        "quote": "CrCL > 50 to < 80 mL/min, CrCL 30 to 50 mL/min, CrCL < 30 mL/min, or undergoing peritoneal dialysis, were increased by 32%, 74%, 72%, and 93%, respectively, relative to subjects with CrCL ≥ 80 mL/min [see Use in Specific Populations (8.6) ] . Hemodialysis A 4-hour hemodialysis session reduced total edoxaban exposure by less than 7%."
       }
     ]
   }

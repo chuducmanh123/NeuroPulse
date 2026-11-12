@@ -42,9 +42,14 @@
     "serine protease"
   ],
   "hepatic": {
-    "note": "No dosage adjustment necessary for hepatic impairment.",
-    "refs": [],
-    "value": null
+    "value": "Alteplase is cleared rapidly from plasma, primarily mediated by the liver. No formal dosage adjustment is established in hepatic impairment; use with caution in severe hepatic impairment due to baseline coagulopathy.",
+    "refs": [
+      {
+        "source_id": "fda-alteplase-label",
+        "locator": "Section 12.3 Pharmacokinetics",
+        "quote": "primarily mediated by the liver. The initial volume of distribution approximates plasma volume. 12.1 Mechanism of Action Alteplase is a serine protease responsible for fibrin-enhanced conversion of plasminogen to plasmin. It produces limited conversion of plasminogen in the absence of fibrin."
+      }
+    ]
   },
   "ng_tube": {
     "note": "Intravenous solution only; not for enteral administration",
@@ -105,14 +110,14 @@
     "value": "safe"
   },
   "renal_basis": {
+    "value": "cg_abw",
     "refs": [
       {
-        "quote": "Alteplase is a tissue plasminogen activator produced by recombinant DNA technology. It is a sterile, purified glycoprotein of 527 amino acids.",
-        "locator": "Section 11 DESCRIPTION",
-        "source_id": "fda-alteplase-label"
+        "source_id": "fda-alteplase-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "USE IN SPECIFIC POPULATIONS === 8 USE IN SPECIFIC POPULATIONS 8.1 Pregnancy Risk Summary Published studies and case reports on alteplase use in pregnant women are insufficient to inform a drug associated risk of adverse developmental outcomes."
       }
-    ],
-    "value": "none"
+    ]
   },
   "vn_products": {
     "note": "Pending user source submission",
@@ -264,6 +269,27 @@
         "source_id": "fda-alteplase-label",
         "locator": "Section 7 DRUG INTERACTIONS",
         "quote": "Anticoagulants and drugs that inhibit platelet function increase the risk of bleeding when administered with Activase therapy."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-alteplase-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "USE IN SPECIFIC POPULATIONS === 8 USE IN SPECIFIC POPULATIONS 8.1 Pregnancy Risk Summary Published studies and case reports on alteplase use in pregnant women are insufficient to inform a drug associated risk of adverse developmental outcomes."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-alteplase-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "USE IN SPECIFIC POPULATIONS === 8 USE IN SPECIFIC POPULATIONS 8.1 Pregnancy Risk Summary Published studies and case reports on alteplase use in pregnant women are insufficient to inform a drug associated risk of adverse developmental outcomes."
       }
     ]
   }

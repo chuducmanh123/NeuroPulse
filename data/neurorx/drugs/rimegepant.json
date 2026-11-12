@@ -91,8 +91,8 @@
     "refs": [
       {
         "source_id": "fda-rimegepant-label",
-        "locator": "INDICATIONS AND USAGE",
-        "quote": "acute treatment of migraine with or without aura in adults ( 1.1 ) preventive treatment of episodic migraine in adults ( 1.2 ) 1.1 Acute Treatment of Migraine NURTEC ODT is indicat"
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal Impairment No dosage adjustment of NURTEC ODT is required in patients with mild, moderate, or severe renal impairment. NURTEC ODT has not been studied in patients with end-stage renal disease and in patients on dialysis."
       }
     ]
   },
@@ -318,6 +318,27 @@
         "source_id": "fda-rimegepant-label",
         "locator": "Section 7 DRUG INTERACTIONS",
         "quote": "Strong CYP3A4 Inhibitors: Avoid concomitant administration."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-rimegepant-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "Renal Impairment No dosage adjustment of NURTEC ODT is required in patients with mild, moderate, or severe renal impairment. NURTEC ODT has not been studied in patients with end-stage renal disease and in patients on dialysis."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-rimegepant-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal Impairment No dosage adjustment of NURTEC ODT is required in patients with mild, moderate, or severe renal impairment. NURTEC ODT has not been studied in patients with end-stage renal disease and in patients on dialysis."
       }
     ]
   }

@@ -713,9 +713,9 @@ export function EditDrugModal({
   };
 
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-150">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-5 bg-black/60 backdrop-blur-sm animate-in fade-in duration-150">
       <div
-        className={`w-full max-w-4xl max-h-[92vh] flex flex-col rounded-3xl border shadow-2xl overflow-hidden transition-all ${
+        className={`w-full max-w-6xl max-h-[94vh] flex flex-col rounded-3xl border shadow-2xl overflow-hidden transition-all ${
           darkMode
             ? "bg-slate-900 border-slate-800 text-slate-100"
             : "bg-white border-slate-200 text-slate-900"
@@ -723,17 +723,17 @@ export function EditDrugModal({
       >
         {/* Modal Header */}
         <div className="p-4 sm:p-5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-3 bg-slate-50/80 dark:bg-slate-950/40">
-          <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold text-lg">
-              💊
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center shrink-0">
+              <Pill className="w-5 h-5" />
             </div>
             <div>
-              <div className="flex items-center gap-2">
-                <h3 className="text-base font-black tracking-tight">
+              <div className="flex items-center gap-2 flex-wrap">
+                <h3 className="text-base sm:text-lg font-black tracking-tight text-slate-900 dark:text-white">
                   Edit Drug: {drug.generic_name}
                 </h3>
                 <span
-                  className={`text-[10px] px-2 py-0.5 rounded-full font-bold uppercase ${
+                  className={`text-xs px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider ${
                     status === "verified"
                       ? "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30"
                       : "bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30"
@@ -758,11 +758,11 @@ export function EditDrugModal({
         </div>
 
         {/* Tab Buttons */}
-        <div className="px-4 pt-3 flex items-center gap-2 border-b border-slate-200 dark:border-slate-800 overflow-x-auto scrollbar-none bg-slate-50/40 dark:bg-slate-950/20 text-xs font-bold">
+        <div className="px-4 pt-3 sm:px-6 sm:pt-3.5 flex items-center gap-2 border-b border-slate-200 dark:border-slate-800 overflow-x-auto scrollbar-none bg-slate-50/40 dark:bg-slate-950/20 text-xs sm:text-sm font-bold">
           <button
             type="button"
             onClick={() => setActiveTab("general")}
-            className={`pb-2.5 px-3 border-b-2 transition-colors cursor-pointer whitespace-nowrap ${
+            className={`pb-3 px-3.5 border-b-2 transition-colors cursor-pointer whitespace-nowrap ${
               activeTab === "general"
                 ? "border-sky-600 text-sky-600 dark:text-sky-400"
                 : "border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
@@ -773,7 +773,7 @@ export function EditDrugModal({
           <button
             type="button"
             onClick={() => setActiveTab("dosing")}
-            className={`pb-2.5 px-3 border-b-2 transition-colors cursor-pointer whitespace-nowrap ${
+            className={`pb-3 px-3.5 border-b-2 transition-colors cursor-pointer whitespace-nowrap ${
               activeTab === "dosing"
                 ? "border-sky-600 text-sky-600 dark:text-sky-400"
                 : "border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
@@ -784,7 +784,7 @@ export function EditDrugModal({
           <button
             type="button"
             onClick={() => setActiveTab("renal_hepatic")}
-            className={`pb-2.5 px-3 border-b-2 transition-colors cursor-pointer whitespace-nowrap ${
+            className={`pb-3 px-3.5 border-b-2 transition-colors cursor-pointer whitespace-nowrap ${
               activeTab === "renal_hepatic"
                 ? "border-sky-600 text-sky-600 dark:text-sky-400"
                 : "border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
@@ -795,7 +795,7 @@ export function EditDrugModal({
           <button
             type="button"
             onClick={() => setActiveTab("safety")}
-            className={`pb-2.5 px-3 border-b-2 transition-colors cursor-pointer whitespace-nowrap ${
+            className={`pb-3 px-3.5 border-b-2 transition-colors cursor-pointer whitespace-nowrap ${
               activeTab === "safety"
                 ? "border-sky-600 text-sky-600 dark:text-sky-400"
                 : "border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
@@ -806,25 +806,25 @@ export function EditDrugModal({
           <button
             type="button"
             onClick={() => setActiveTab("pregnancy")}
-            className={`pb-2.5 px-3 border-b-2 transition-colors cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+            className={`pb-3 px-3.5 border-b-2 transition-colors cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
               activeTab === "pregnancy"
                 ? "border-rose-500 text-rose-600 dark:text-rose-400"
                 : "border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
             }`}
           >
-            <Baby className="w-3.5 h-3.5" />
+            <Baby className="w-4 h-4" />
             <span>Pregnancy &amp; Lactation</span>
           </button>
           <button
             type="button"
             onClick={() => setActiveTab("interactions")}
-            className={`pb-2.5 px-3 border-b-2 transition-colors cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+            className={`pb-3 px-3.5 border-b-2 transition-colors cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
               activeTab === "interactions"
                 ? "border-purple-500 text-purple-600 dark:text-purple-400"
                 : "border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
             }`}
           >
-            <ArrowRightLeft className="w-3.5 h-3.5" />
+            <ArrowRightLeft className="w-4 h-4" />
             <span>Drug Interactions ({interactionsList.length})</span>
           </button>
         </div>
@@ -835,7 +835,7 @@ export function EditDrugModal({
           className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-5"
         >
           {error && (
-            <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-600 dark:text-rose-400 text-xs font-semibold flex items-center gap-2">
+            <div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-600 dark:text-rose-400 text-xs sm:text-sm font-semibold flex items-center gap-2">
               <AlertTriangle className="w-4 h-4 shrink-0" />
               <span>{error}</span>
             </div>
@@ -846,31 +846,31 @@ export function EditDrugModal({
             <div className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+                  <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                     Drug ID (unique key)
                   </label>
                   <input
                     type="text"
                     value={id}
                     onChange={(e) => setId(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-mono text-xs sm:text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-mono text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none"
                     placeholder="e.g. levetiracetam-oral"
                     required
                   />
-                  <span className="text-[11px] text-slate-400">
+                  <span className="text-xs text-slate-400 mt-1 block">
                     Lowercase letters, numbers, hyphens only.
                   </span>
                 </div>
 
                 <div>
-                  <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+                  <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                     Generic Name
                   </label>
                   <input
                     type="text"
                     value={genericName}
                     onChange={(e) => setGenericName(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-xs sm:text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none"
                     placeholder="e.g. levetiracetam (oral: tablets & oral solution)"
                     required
                   />
@@ -879,26 +879,26 @@ export function EditDrugModal({
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+                  <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                     Tall Man / Display Name
                   </label>
                   <input
                     type="text"
                     value={tallMan}
                     onChange={(e) => setTallMan(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-xs sm:text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none font-mono"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none"
                     placeholder="e.g. levetiracetam"
                   />
                 </div>
 
                 <div>
-                  <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+                  <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                     Verification Status
                   </label>
                   <select
                     value={status}
                     onChange={(e) => setStatus(e.target.value as any)}
-                    className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-xs sm:text-sm font-semibold focus:ring-2 focus:ring-sky-500 focus:outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-sm font-semibold focus:ring-2 focus:ring-sky-500 focus:outline-none"
                   >
                     <option value="draft">Draft (Pending Verification)</option>
                     <option value="verified">
@@ -911,34 +911,34 @@ export function EditDrugModal({
 
               {status === "verified" && (
                 <div>
-                  <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+                  <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                     Verified By (Clinical Reviewer)
                   </label>
                   <input
                     type="text"
                     value={verifiedBy}
                     onChange={(e) => setVerifiedBy(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-xs sm:text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none"
                     placeholder="e.g. Dr. Nguyen Van A, MD / Admin"
                   />
                 </div>
               )}
 
               <div>
-                <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+                <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                   Pharmacologic Classes (comma separated)
                 </label>
                 <input
                   type="text"
                   value={classesText}
                   onChange={(e) => setClassesText(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-xs sm:text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none"
                   placeholder="e.g. Antiepileptic Drug (AED), SV2A Ligand"
                 />
               </div>
 
               <div>
-                <label className="block font-bold text-slate-700 dark:text-slate-300 mb-2">
+                <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">
                   Neurological Subspecialties
                 </label>
                 <div className="flex flex-wrap gap-2">
@@ -949,7 +949,7 @@ export function EditDrugModal({
                         key={sub.id}
                         type="button"
                         onClick={() => toggleSubspecialty(sub.id)}
-                        className={`px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all cursor-pointer ${
+                        className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold border transition-all cursor-pointer ${
                           active
                             ? "bg-sky-500 text-white border-sky-600 shadow-xs"
                             : "bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:border-slate-400"
@@ -968,21 +968,21 @@ export function EditDrugModal({
           {/* TAB 2: DOSING REGIMENS */}
           {activeTab === "dosing" && (
             <div className="space-y-4">
-              <div className="flex items-center justify-between pb-1">
+              <div className="flex items-center justify-between pb-1 flex-wrap gap-2">
                 <div>
-                  <h4 className="font-bold text-slate-800 dark:text-slate-200 text-sm">
+                  <h4 className="font-extrabold text-slate-800 dark:text-slate-200 text-sm sm:text-base">
                     Clinical Indications &amp; Dosing Regimens ({regimens.length})
                   </h4>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">
+                  <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
                     Each clinical indication has its own dosage formula and clinical instructions.
                   </p>
                 </div>
                 <button
                   type="button"
                   onClick={handleAddRegimen}
-                  className="px-3 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs flex items-center gap-1.5 shadow-xs transition-colors cursor-pointer"
+                  className="px-3.5 py-2 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs sm:text-sm flex items-center gap-1.5 shadow-xs transition-colors cursor-pointer"
                 >
-                  <Plus className="w-3.5 h-3.5" />
+                  <Plus className="w-4 h-4" />
                   <span>Add Indication</span>
                 </button>
               </div>
@@ -991,21 +991,21 @@ export function EditDrugModal({
                 {regimens.map((reg, idx) => (
                   <div
                     key={idx}
-                    className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-900/40 space-y-3"
+                    className="p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-900/40 space-y-3.5"
                   >
                     {/* Regimen Card Header */}
-                    <div className="flex items-center justify-between gap-2 pb-2 border-b border-slate-200/80 dark:border-slate-800">
+                    <div className="flex items-center justify-between gap-2 pb-2.5 border-b border-slate-200/80 dark:border-slate-800">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <span className="px-2 py-0.5 rounded-md text-[11px] font-mono font-bold bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/20">
+                        <span className="px-2.5 py-0.5 rounded-md text-xs font-mono font-bold bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/20">
                           #{idx + 1}
                         </span>
-                        <span className="font-bold text-xs sm:text-sm text-slate-800 dark:text-slate-200">
+                        <span className="font-bold text-sm sm:text-base text-slate-800 dark:text-slate-200">
                           {reg.indication || `Indication #${idx + 1}`}
                         </span>
-                        <span className="px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                        <span className="px-2.5 py-0.5 rounded-md text-xs font-bold uppercase tracking-wider bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
                           {reg.route}
                         </span>
-                        <span className="px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                        <span className="px-2.5 py-0.5 rounded-md text-xs font-bold uppercase tracking-wider bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
                           {reg.setting === "acute_inpatient"
                             ? "Acute / Inpatient"
                             : "Maintenance / Outpatient"}
@@ -1026,7 +1026,7 @@ export function EditDrugModal({
 
                     {/* Indication Title */}
                     <div>
-                      <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
+                      <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                         Indication / Clinical Condition:
                       </label>
                       <input
@@ -1038,14 +1038,14 @@ export function EditDrugModal({
                           })
                         }
                         placeholder="e.g. Partial-Onset Seizures in Adults 16 Years of Age and Older"
-                        className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs sm:text-sm font-semibold focus:ring-2 focus:ring-sky-500 focus:outline-none"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-semibold focus:ring-2 focus:ring-sky-500 focus:outline-none"
                       />
                     </div>
 
                     {/* Setting & Route */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                       <div>
-                        <label className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">
+                        <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                           Clinical Setting:
                         </label>
                         <select
@@ -1055,7 +1055,7 @@ export function EditDrugModal({
                               setting: e.target.value as any,
                             })
                           }
-                          className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold focus:ring-2 focus:ring-sky-500"
+                          className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-semibold focus:ring-2 focus:ring-sky-500"
                         >
                           <option value="maintenance_outpatient">
                             Maintenance / Outpatient
@@ -1067,7 +1067,7 @@ export function EditDrugModal({
                       </div>
 
                       <div>
-                        <label className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">
+                        <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                           Route of Administration:
                         </label>
                         <select
@@ -1077,7 +1077,7 @@ export function EditDrugModal({
                               route: e.target.value as any,
                             })
                           }
-                          className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold focus:ring-2 focus:ring-sky-500"
+                          className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-semibold focus:ring-2 focus:ring-sky-500"
                         >
                           <option value="PO">PO (Oral)</option>
                           <option value="IV">IV (Intravenous)</option>
@@ -1090,9 +1090,9 @@ export function EditDrugModal({
                     </div>
 
                     {/* Computable Dose Section */}
-                    <div className="p-3 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 space-y-2.5">
-                      <div className="flex items-center justify-between">
-                        <label className="flex items-center gap-2 cursor-pointer text-xs font-bold text-slate-800 dark:text-slate-200">
+                    <div className="p-3.5 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 space-y-2.5">
+                      <div className="flex items-center justify-between flex-wrap gap-2">
+                        <label className="flex items-center gap-2 cursor-pointer text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200">
                           <input
                             type="checkbox"
                             checked={Boolean(reg.dose)}
@@ -1108,12 +1108,12 @@ export function EditDrugModal({
                                 handleUpdateRegimenDose(idx, null);
                               }
                             }}
-                            className="rounded text-sky-600 focus:ring-sky-500"
+                            className="rounded text-sky-600 focus:ring-sky-500 w-4 h-4"
                           />
                           <span>Enable Bedside Computable Formula</span>
                         </label>
                         {reg.dose && (
-                          <span className="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-bold">
+                          <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-bold">
                             Formula: {reg.dose.amount} {reg.dose.unit}{" "}
                             {reg.dose.frequency}
                           </span>
@@ -1121,9 +1121,9 @@ export function EditDrugModal({
                       </div>
 
                       {reg.dose && (
-                        <div className="grid grid-cols-2 sm:grid-cols-6 gap-2 pt-1 text-xs">
+                        <div className="grid grid-cols-2 sm:grid-cols-6 gap-2.5 pt-1 text-xs">
                           <div>
-                            <span className="block text-[10px] font-semibold text-slate-500 mb-1">
+                            <span className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
                               Type:
                             </span>
                             <select
@@ -1133,14 +1133,14 @@ export function EditDrugModal({
                                   kind: e.target.value as any,
                                 })
                               }
-                              className="w-full px-2 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900"
+                              className="w-full px-2.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs sm:text-sm"
                             >
                               <option value="fixed">Fixed</option>
                               <option value="per_kg">Weight (/kg)</option>
                             </select>
                           </div>
                           <div>
-                            <span className="block text-[10px] font-semibold text-slate-500 mb-1">
+                            <span className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
                               Amount:
                             </span>
                             <input
@@ -1152,11 +1152,11 @@ export function EditDrugModal({
                                   amount: parseFloat(e.target.value) || 0,
                                 })
                               }
-                              className="w-full px-2 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 font-mono"
+                              className="w-full px-2.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 font-mono text-xs sm:text-sm"
                             />
                           </div>
                           <div>
-                            <span className="block text-[10px] font-semibold text-slate-500 mb-1">
+                            <span className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
                               Unit:
                             </span>
                             <input
@@ -1167,12 +1167,12 @@ export function EditDrugModal({
                                   unit: e.target.value as any,
                                 })
                               }
-                              className="w-full px-2 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 font-mono"
+                              className="w-full px-2.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 font-mono text-xs sm:text-sm"
                               placeholder="mg"
                             />
                           </div>
                           <div>
-                            <span className="block text-[10px] font-semibold text-slate-500 mb-1">
+                            <span className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
                               Frequency:
                             </span>
                             <input
@@ -1183,12 +1183,12 @@ export function EditDrugModal({
                                   frequency: e.target.value,
                                 })
                               }
-                              className="w-full px-2 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900"
+                              className="w-full px-2.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs sm:text-sm"
                               placeholder="twice daily"
                             />
                           </div>
                           <div>
-                            <span className="block text-[10px] font-semibold text-slate-500 mb-1">
+                            <span className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
                               Max Single:
                             </span>
                             <input
@@ -1201,12 +1201,12 @@ export function EditDrugModal({
                                     : undefined,
                                 })
                               }
-                              className="w-full px-2 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 font-mono"
+                              className="w-full px-2.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 font-mono text-xs sm:text-sm"
                               placeholder="Optional"
                             />
                           </div>
                           <div>
-                            <span className="block text-[10px] font-semibold text-slate-500 mb-1">
+                            <span className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
                               Max Daily:
                             </span>
                             <input
@@ -1219,7 +1219,7 @@ export function EditDrugModal({
                                     : undefined,
                                 })
                               }
-                              className="w-full px-2 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 font-mono"
+                              className="w-full px-2.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 font-mono text-xs sm:text-sm"
                               placeholder="Optional"
                             />
                           </div>
@@ -1228,43 +1228,43 @@ export function EditDrugModal({
                     </div>
 
                     {/* SMART CLINICAL SENTENCE GENERATOR */}
-                    <div className="p-3.5 rounded-xl bg-sky-500/10 border border-sky-500/20 space-y-2.5">
+                    <div className="p-3.5 sm:p-4 rounded-xl bg-sky-500/10 border border-sky-500/20 space-y-3">
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                        <div className="flex items-center gap-1.5 text-xs font-bold text-sky-800 dark:text-sky-300">
-                          <Wand2 className="w-3.5 h-3.5 text-sky-500" />
+                        <div className="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-sky-800 dark:text-sky-300">
+                          <Wand2 className="w-4 h-4 text-sky-500" />
                           <span>Smart Dosing Sentence Builder</span>
                         </div>
-                        <div className="flex items-center gap-1 flex-wrap">
-                          <span className="text-[10px] font-semibold text-slate-500 mr-1">
+                        <div className="flex items-center gap-1.5 flex-wrap">
+                          <span className="text-xs font-semibold text-slate-500 mr-1">
                             Templates:
                           </span>
                           <button
                             type="button"
                             onClick={() => handleApplyPreset(idx, "oral_titration")}
-                            className="px-2 py-0.5 rounded bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-sky-500 text-[10px] font-semibold text-slate-700 dark:text-slate-300 shadow-2xs cursor-pointer"
+                            className="px-2.5 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-sky-500 text-xs font-semibold text-slate-700 dark:text-slate-300 shadow-2xs cursor-pointer"
                           >
                             Oral Titration
                           </button>
                           <button
                             type="button"
                             onClick={() => handleApplyPreset(idx, "iv_bolus")}
-                            className="px-2 py-0.5 rounded bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-sky-500 text-[10px] font-semibold text-slate-700 dark:text-slate-300 shadow-2xs cursor-pointer"
+                            className="px-2.5 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-sky-500 text-xs font-semibold text-slate-700 dark:text-slate-300 shadow-2xs cursor-pointer"
                           >
                             IV Bolus + Infusion
                           </button>
                           <button
                             type="button"
                             onClick={() => handleApplyPreset(idx, "fixed_daily")}
-                            className="px-2 py-0.5 rounded bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-sky-500 text-[10px] font-semibold text-slate-700 dark:text-slate-300 shadow-2xs cursor-pointer"
+                            className="px-2.5 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-sky-500 text-xs font-semibold text-slate-700 dark:text-slate-300 shadow-2xs cursor-pointer"
                           >
                             Fixed Daily
                           </button>
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
                         <div>
-                          <label className="block text-[10px] font-bold text-slate-600 dark:text-slate-400 mb-0.5">
+                          <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
                             1. Starting Dose:
                           </label>
                           <input
@@ -1274,12 +1274,12 @@ export function EditDrugModal({
                               updateBuilderField(idx, "startingDose", e.target.value)
                             }
                             placeholder="e.g. 500 mg twice daily (1000 mg/day)"
-                            className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs"
+                            className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs sm:text-sm"
                           />
                         </div>
 
                         <div>
-                          <label className="block text-[10px] font-bold text-slate-600 dark:text-slate-400 mb-0.5">
+                          <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
                             2. Titration Increment:
                           </label>
                           <input
@@ -1289,12 +1289,12 @@ export function EditDrugModal({
                               updateBuilderField(idx, "titration", e.target.value)
                             }
                             placeholder="e.g. Increase by 500 mg twice daily every 2 weeks"
-                            className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs"
+                            className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs sm:text-sm"
                           />
                         </div>
 
                         <div>
-                          <label className="block text-[10px] font-bold text-slate-600 dark:text-slate-400 mb-0.5">
+                          <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
                             3. Target / Max Dose:
                           </label>
                           <input
@@ -1304,13 +1304,13 @@ export function EditDrugModal({
                               updateBuilderField(idx, "targetDose", e.target.value)
                             }
                             placeholder="e.g. to maximum 1500 mg twice daily (3000 mg/day)"
-                            className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs"
+                            className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs sm:text-sm"
                           />
                         </div>
                       </div>
 
                       <div>
-                        <label className="block text-[10px] font-bold text-slate-600 dark:text-slate-400 mb-0.5">
+                        <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
                           4. Administration &amp; Patient Instructions (optional):
                         </label>
                         <input
@@ -1320,18 +1320,18 @@ export function EditDrugModal({
                             updateBuilderField(idx, "adminNotes", e.target.value)
                           }
                           placeholder="e.g. Swallow whole with water; do not chew or crush. Take with or without food."
-                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs"
+                          className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs sm:text-sm"
                         />
                       </div>
                     </div>
 
                     {/* Resulting Clinical Guidance Text */}
                     <div>
-                      <div className="flex items-center justify-between mb-1">
-                        <label className="block text-[11px] font-bold text-slate-700 dark:text-slate-300">
+                      <div className="flex items-center justify-between mb-1.5 flex-wrap gap-1">
+                        <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
                           Complete Clinical Guidance Sentence (`dose_text`):
                         </label>
-                        <span className="text-[10px] text-slate-400">
+                        <span className="text-xs text-slate-400">
                           Auto-composed above; fine-tuning permitted below.
                         </span>
                       </div>
@@ -1344,7 +1344,7 @@ export function EditDrugModal({
                         }
                         placeholder="e.g. Initiate 500 mg twice daily (1000 mg/day). Increase by 500 mg twice daily every 2 weeks to maximum 1500 mg twice daily (3000 mg/day)..."
                         rows={3}
-                        className="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs sm:text-sm leading-relaxed focus:ring-2 focus:ring-sky-500 focus:outline-none resize-y"
+                        className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm leading-relaxed focus:ring-2 focus:ring-sky-500 focus:outline-none resize-y"
                       />
                     </div>
                   </div>
@@ -1352,14 +1352,14 @@ export function EditDrugModal({
               </div>
 
               {/* IV Infusion Protocol Section */}
-              <div className="p-4 rounded-2xl border border-sky-500/20 bg-sky-500/5 space-y-3">
-                <div className="flex items-center gap-2 font-bold text-xs uppercase tracking-wider text-sky-700 dark:text-sky-300">
+              <div className="p-4 sm:p-5 rounded-2xl border border-sky-500/20 bg-sky-500/5 space-y-3.5">
+                <div className="flex items-center gap-2 font-bold text-xs sm:text-sm uppercase tracking-wider text-sky-700 dark:text-sky-300">
                   <Syringe className="w-4 h-4 text-sky-500" />
                   <span>IV Preparation &amp; Infusion Protocol (Optional for IV drugs)</span>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                   <div>
-                    <label className="block font-semibold text-slate-600 dark:text-slate-400 mb-1">
+                    <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                       Diluent &amp; Reconstitution:
                     </label>
                     <input
@@ -1367,11 +1367,11 @@ export function EditDrugModal({
                       value={ivDiluent}
                       onChange={(e) => setIvDiluent(e.target.value)}
                       placeholder="e.g. Reconstitute with Sterile Water for Injection (SWFI) to 1 mg/mL"
-                      className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800"
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:ring-2 focus:ring-sky-500"
                     />
                   </div>
                   <div>
-                    <label className="block font-semibold text-slate-600 dark:text-slate-400 mb-1">
+                    <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                       Infusion Rate:
                     </label>
                     <input
@@ -1379,12 +1379,12 @@ export function EditDrugModal({
                       value={ivRate}
                       onChange={(e) => setIvRate(e.target.value)}
                       placeholder="e.g. 10% bolus over 1 min; remainder 90% infused over 60 mins"
-                      className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800"
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:ring-2 focus:ring-sky-500"
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block font-semibold text-slate-600 dark:text-slate-400 mb-1 text-xs">
+                  <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                     Preparation &amp; Administration Instructions:
                   </label>
                   <textarea
@@ -1392,7 +1392,7 @@ export function EditDrugModal({
                     onChange={(e) => setIvInstructions(e.target.value)}
                     placeholder="Instructions for infusion solution preparation, extravasation management, and storage..."
                     rows={2}
-                    className="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs resize-y"
+                    className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm leading-relaxed resize-y focus:ring-2 focus:ring-sky-500"
                   />
                 </div>
               </div>
@@ -1403,9 +1403,9 @@ export function EditDrugModal({
           {activeTab === "renal_hepatic" && (
             <div className="space-y-5">
               {/* General Renal Impairment Guidance */}
-              <div className="space-y-3">
+              <div className="space-y-3.5">
                 <div>
-                  <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+                  <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                     Renal Impairment Guidance (General Note)
                   </label>
                   <textarea
@@ -1413,19 +1413,19 @@ export function EditDrugModal({
                     onChange={(e) => setRenalDesc(e.target.value)}
                     placeholder="No dosage adjustment necessary for renal impairment. Or adjust dosage based on patient's estimated Creatinine Clearance (CrCl)..."
                     rows={3}
-                    className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 leading-relaxed focus:ring-2 focus:ring-sky-500 focus:outline-none resize-none text-xs sm:text-sm"
+                    className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 leading-relaxed focus:ring-2 focus:ring-sky-500 focus:outline-none resize-none text-sm"
                   />
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+                    <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                       Renal Clearance Basis
                     </label>
                     <select
                       value={renalBasis}
                       onChange={(e) => setRenalBasis(e.target.value as any)}
-                      className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-sky-500 focus:outline-none text-xs sm:text-sm font-semibold"
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-sky-500 focus:outline-none text-sm font-semibold"
                     >
                       <option value="cg_abw">
                         Cockcroft-Gault (Actual Body Weight - ABW)
@@ -1438,7 +1438,7 @@ export function EditDrugModal({
                   </div>
 
                   <div>
-                    <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+                    <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                       Hemodialysis / ESRD Instructions
                     </label>
                     <input
@@ -1446,23 +1446,23 @@ export function EditDrugModal({
                       value={hemodialysisText}
                       onChange={(e) => setHemodialysisText(e.target.value)}
                       placeholder="e.g. Administer 500 - 1000 mg every 24h. Supplemental 250 - 500 mg post-dialysis"
-                      className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-sky-500 focus:outline-none text-xs sm:text-sm"
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-sky-500 focus:outline-none text-sm"
                     />
                   </div>
                 </div>
               </div>
 
               {/* CrCl RENAL ADJUSTMENT BANDS SECTION */}
-              <div className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/50 space-y-4">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-slate-200/80 dark:border-slate-800">
+              <div className="p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/50 space-y-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2.5 border-b border-slate-200/80 dark:border-slate-800">
                   <div>
                     <div className="flex items-center gap-2">
                       <Activity className="w-4 h-4 text-sky-500" />
-                      <h4 className="font-bold text-sm text-slate-800 dark:text-slate-200">
+                      <h4 className="font-extrabold text-sm sm:text-base text-slate-800 dark:text-slate-200">
                         CrCl Renal Adjustment Bands ({renalBands.length})
                       </h4>
                     </div>
-                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                    <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
                       Stratified CrCl ranges (mL/min) and corresponding dosage adjustments based on renal function.
                     </p>
                   </div>
@@ -1471,7 +1471,7 @@ export function EditDrugModal({
                     <button
                       type="button"
                       onClick={handleLoadStandardCrclBands}
-                      className="px-2.5 py-1.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:border-sky-500 bg-white dark:bg-slate-800 text-xs font-semibold text-slate-700 dark:text-slate-300 transition-colors flex items-center gap-1 shadow-2xs cursor-pointer"
+                      className="px-3 py-1.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:border-sky-500 bg-white dark:bg-slate-800 text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300 transition-colors flex items-center gap-1.5 shadow-2xs cursor-pointer"
                       title="Load standard CKD staging: >80, 50-80, 30-50, <30 mL/min"
                     >
                       <Sparkles className="w-3.5 h-3.5 text-amber-500" />
@@ -1480,7 +1480,7 @@ export function EditDrugModal({
                     <button
                       type="button"
                       onClick={handleAddRenalBand}
-                      className="px-3 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs flex items-center gap-1 shadow-xs transition-colors cursor-pointer"
+                      className="px-3.5 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs sm:text-sm flex items-center gap-1.5 shadow-xs transition-colors cursor-pointer"
                     >
                       <Plus className="w-3.5 h-3.5" />
                       <span>Add CrCl Band</span>
@@ -1489,9 +1489,9 @@ export function EditDrugModal({
                 </div>
 
                 {renalBands.length === 0 ? (
-                  <div className="p-4 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 text-center text-xs text-slate-400 space-y-1">
+                  <div className="p-4 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 text-center text-xs sm:text-sm text-slate-400 space-y-1">
                     <p className="font-medium">No renal adjustment bands defined yet.</p>
-                    <p className="text-[11px]">
+                    <p className="text-xs">
                       Click <strong>Add CrCl Band</strong> to create an interval or <strong>Standard Preset</strong> to load standard 4-stage CKD tiers.
                     </p>
                   </div>
@@ -1500,14 +1500,14 @@ export function EditDrugModal({
                     {renalBands.map((band, idx) => (
                       <div
                         key={idx}
-                        className="p-3.5 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 space-y-2.5"
+                        className="p-3.5 sm:p-4 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 space-y-2.5"
                       >
                         <div className="flex items-center justify-between gap-2">
                           <div className="flex items-center gap-2">
-                            <span className="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-sky-500/10 text-sky-600 dark:text-sky-400">
+                            <span className="px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-sky-500/10 text-sky-600 dark:text-sky-400">
                               Band #{idx + 1}
                             </span>
-                            <span className="font-mono font-bold text-xs text-slate-800 dark:text-slate-200">
+                            <span className="font-mono font-bold text-xs sm:text-sm text-slate-800 dark:text-slate-200">
                               CrCl:{" "}
                               {band.min === null || band.min === ("" as any)
                                 ? `< ${band.max}`
@@ -1524,14 +1524,14 @@ export function EditDrugModal({
                             className="p-1.5 rounded-lg text-rose-500 hover:bg-rose-500/10 transition-colors cursor-pointer"
                             title="Delete this CrCl band"
                           >
-                            <Trash2 className="w-3.5 h-3.5" />
+                            <Trash2 className="w-4 h-4" />
                           </button>
                         </div>
 
                         {/* Min and Max CrCl range inputs */}
                         <div className="grid grid-cols-2 gap-3 text-xs">
                           <div>
-                            <label className="block text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-1 uppercase tracking-wider">
+                            <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
                               Min CrCl (mL/min) <span className="font-normal text-slate-400">(leave empty if &lt; Max)</span>:
                             </label>
                             <input
@@ -1546,12 +1546,12 @@ export function EditDrugModal({
                                 })
                               }
                               placeholder="e.g. 50 (or empty)"
-                              className="w-full px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 font-mono text-xs"
+                              className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 font-mono text-xs sm:text-sm"
                             />
                           </div>
 
                           <div>
-                            <label className="block text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-1 uppercase tracking-wider">
+                            <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
                               Max CrCl (mL/min) <span className="font-normal text-slate-400">(leave empty if &gt; Min)</span>:
                             </label>
                             <input
@@ -1566,14 +1566,14 @@ export function EditDrugModal({
                                 })
                               }
                               placeholder="e.g. 80 (or empty)"
-                              className="w-full px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 font-mono text-xs"
+                              className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 font-mono text-xs sm:text-sm"
                             />
                           </div>
                         </div>
 
                         {/* Dose Text description for this band */}
                         <div>
-                          <label className="block text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-1 uppercase tracking-wider">
+                          <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
                             Dose Adjustment Instruction for this Band (`dose_text`):
                           </label>
                           <input
@@ -1585,7 +1585,7 @@ export function EditDrugModal({
                               })
                             }
                             placeholder="e.g. 500 to 1,000 mg every 12 hours, or 50% standard maintenance dose"
-                            className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-medium"
+                            className="w-full px-3 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm font-medium"
                           />
                         </div>
                       </div>
@@ -1596,7 +1596,7 @@ export function EditDrugModal({
 
               {/* Hepatic Impairment */}
               <div>
-                <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1 text-xs sm:text-sm">
+                <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                   Hepatic Impairment Guidance
                 </label>
                 <textarea
@@ -1604,7 +1604,7 @@ export function EditDrugModal({
                   onChange={(e) => setHepaticText(e.target.value)}
                   placeholder="No dosage adjustment necessary for mild-to-moderate impairment. For severe impairment (Child-Pugh C), reduce maintenance dose by 50% if renal clearance is also reduced."
                   rows={3}
-                  className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 leading-relaxed focus:ring-2 focus:ring-sky-500 focus:outline-none resize-none text-xs sm:text-sm"
+                  className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 leading-relaxed focus:ring-2 focus:ring-sky-500 focus:outline-none resize-none text-sm"
                 />
               </div>
             </div>
@@ -1614,27 +1614,27 @@ export function EditDrugModal({
           {activeTab === "safety" && (
             <div className="space-y-4">
               <div>
-                <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+                <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                   FDA Black Box Warnings (one per line)
                 </label>
                 <textarea
                   value={blackBoxText}
                   onChange={(e) => setBlackBoxText(e.target.value)}
                   placeholder="Leave empty if no black box warning applies"
-                  rows={2}
-                  className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 leading-relaxed focus:ring-2 focus:ring-sky-500 focus:outline-none resize-none font-mono"
+                  rows={3}
+                  className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 leading-relaxed focus:ring-2 focus:ring-sky-500 focus:outline-none resize-none text-sm"
                 />
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
                 <div>
-                  <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1 text-xs">
+                  <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                     CYP3A4
                   </label>
                   <select
                     value={cyp3a4}
                     onChange={(e) => setCyp3a4(e.target.value)}
-                    className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs focus:ring-2 focus:ring-sky-500"
+                    className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:ring-2 focus:ring-sky-500"
                   >
                     <option value="none">none</option>
                     <option value="substrate">substrate</option>
@@ -1646,13 +1646,13 @@ export function EditDrugModal({
                 </div>
 
                 <div>
-                  <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1 text-xs">
+                  <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                     CYP2C19
                   </label>
                   <select
                     value={cyp2c19}
                     onChange={(e) => setCyp2c19(e.target.value)}
-                    className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs focus:ring-2 focus:ring-sky-500"
+                    className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:ring-2 focus:ring-sky-500"
                   >
                     <option value="none">none</option>
                     <option value="substrate">substrate</option>
@@ -1664,13 +1664,13 @@ export function EditDrugModal({
                 </div>
 
                 <div>
-                  <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1 text-xs">
+                  <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                     P-gp
                   </label>
                   <select
                     value={pgp}
                     onChange={(e) => setPgp(e.target.value)}
-                    className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs focus:ring-2 focus:ring-sky-500"
+                    className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:ring-2 focus:ring-sky-500"
                   >
                     <option value="none">none</option>
                     <option value="substrate">substrate</option>
@@ -1680,13 +1680,13 @@ export function EditDrugModal({
                 </div>
 
                 <div>
-                  <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1 text-xs">
+                  <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                     QT Prolongation
                   </label>
                   <select
                     value={qtRisk}
                     onChange={(e) => setQtRisk(e.target.value as QtRiskTier)}
-                    className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs focus:ring-2 focus:ring-sky-500"
+                    className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:ring-2 focus:ring-sky-500"
                   >
                     <option value="none">none</option>
                     <option value="conditional">conditional</option>
@@ -1698,13 +1698,13 @@ export function EditDrugModal({
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1 text-xs">
+                  <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                     Myasthenia Gravis Safety
                   </label>
                   <select
                     value={mgSafety}
                     onChange={(e) => setMgSafety(e.target.value as any)}
-                    className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold focus:ring-2 focus:ring-sky-500"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-semibold focus:ring-2 focus:ring-sky-500"
                   >
                     <option value="safe">
                       Safe (No neuromuscular junction impairment)
@@ -1722,7 +1722,7 @@ export function EditDrugModal({
                 </div>
 
                 <div>
-                  <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1 text-xs">
+                  <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                     ACB Score (Anticholinergic Burden: 0 - 3)
                   </label>
                   <input
@@ -1733,7 +1733,7 @@ export function EditDrugModal({
                     onChange={(e) =>
                       setAcbScore(parseInt(e.target.value, 10) || 0)
                     }
-                    className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-mono focus:ring-2 focus:ring-sky-500"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-mono focus:ring-2 focus:ring-sky-500"
                   />
                 </div>
               </div>
@@ -1743,8 +1743,8 @@ export function EditDrugModal({
           {/* TAB 5: PREGNANCY & LACTATION */}
           {activeTab === "pregnancy" && (
             <div className="space-y-4">
-              <div className="p-3.5 rounded-xl bg-rose-50/60 dark:bg-rose-950/20 border border-rose-200/80 dark:border-rose-900/40 text-xs">
-                <span className="font-bold text-rose-800 dark:text-rose-300 block mb-0.5">
+              <div className="p-4 rounded-xl bg-rose-50/60 dark:bg-rose-950/20 border border-rose-200/80 dark:border-rose-900/40 text-xs sm:text-sm">
+                <span className="font-bold text-rose-800 dark:text-rose-300 block mb-1">
                   🤰 Pregnancy &amp; Lactation Risk Management
                 </span>
                 <p className="text-rose-700 dark:text-rose-400">
@@ -1754,13 +1754,13 @@ export function EditDrugModal({
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1 text-xs">
+                  <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                     Pregnancy Safety Tier
                   </label>
                   <select
                     value={pregnancyTier}
                     onChange={(e) => setPregnancyTier(e.target.value as any)}
-                    className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold focus:ring-2 focus:ring-sky-500"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-semibold focus:ring-2 focus:ring-sky-500"
                   >
                     <option value="none">None / Not Specified</option>
                     <option value="preferred">Preferred (Lowest recognized malformation risk in class)</option>
@@ -1770,7 +1770,7 @@ export function EditDrugModal({
                 </div>
 
                 <div>
-                  <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1 text-xs">
+                  <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                     Relative Infant Dose (RID) in Breastfeeding
                   </label>
                   <input
@@ -1778,13 +1778,13 @@ export function EditDrugModal({
                     value={lactationRid}
                     onChange={(e) => setLactationRid(e.target.value)}
                     placeholder="e.g. 1% to 10% (RID < 10% is generally compatible)"
-                    className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-mono focus:ring-2 focus:ring-sky-500"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-mono focus:ring-2 focus:ring-sky-500"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1 text-xs">
+                <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                   Folic Acid Supplementation Guidance
                 </label>
                 <textarea
@@ -1792,12 +1792,12 @@ export function EditDrugModal({
                   value={folicAcid}
                   onChange={(e) => setFolicAcid(e.target.value)}
                   placeholder="e.g. High-dose folic acid (4-5 mg/day) preconception and through first trimester..."
-                  className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs focus:ring-2 focus:ring-sky-500"
+                  className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm leading-relaxed focus:ring-2 focus:ring-sky-500"
                 />
               </div>
 
               <div>
-                <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1 text-xs">
+                <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                   Pregnancy Pharmacokinetics &amp; Clearance Changes
                 </label>
                 <textarea
@@ -1805,12 +1805,12 @@ export function EditDrugModal({
                   value={pregnancyPk}
                   onChange={(e) => setPregnancyPk(e.target.value)}
                   placeholder="e.g. Clearance increases significantly during second and third trimesters; monitor plasma levels..."
-                  className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs focus:ring-2 focus:ring-sky-500"
+                  className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm leading-relaxed focus:ring-2 focus:ring-sky-500"
                 />
               </div>
 
               <div>
-                <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1 text-xs">
+                <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                   Contraception &amp; Family Planning Guidance
                 </label>
                 <textarea
@@ -1818,12 +1818,12 @@ export function EditDrugModal({
                   value={contraception}
                   onChange={(e) => setContraception(e.target.value)}
                   placeholder="e.g. Enzyme-inducing interactions with hormonal contraceptives; recommend non-hormonal IUD..."
-                  className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs focus:ring-2 focus:ring-sky-500"
+                  className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm leading-relaxed focus:ring-2 focus:ring-sky-500"
                 />
               </div>
 
               <div>
-                <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1 text-xs">
+                <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                   Lactation &amp; Breastfeeding Clinical Summary
                 </label>
                 <textarea
@@ -1831,7 +1831,7 @@ export function EditDrugModal({
                   value={lactationSummary}
                   onChange={(e) => setLactationSummary(e.target.value)}
                   placeholder="e.g. Excreted into breast milk in low concentrations; monitor infant for somnolence and poor feeding..."
-                  className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs focus:ring-2 focus:ring-sky-500"
+                  className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm leading-relaxed focus:ring-2 focus:ring-sky-500"
                 />
               </div>
             </div>
@@ -1840,50 +1840,50 @@ export function EditDrugModal({
           {/* TAB 6: FDA DRUG INTERACTIONS */}
           {activeTab === "interactions" && (
             <div className="space-y-4">
-              <div className="flex items-center justify-between pb-1">
+              <div className="flex items-center justify-between pb-1 flex-wrap gap-2">
                 <div>
-                  <span className="font-bold text-slate-800 dark:text-slate-200 text-sm block">
+                  <span className="font-extrabold text-slate-800 dark:text-slate-200 text-sm sm:text-base block">
                     ⚡ FDA Prescribing Information Interactions (Section 7)
                   </span>
-                  <span className="text-xs text-slate-500 dark:text-slate-400">
+                  <span className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
                     Document critical drug-drug interactions with both neurological and non-neurological co-medications (antimicrobials, contraceptives, cardiac agents).
                   </span>
                 </div>
                 <button
                   type="button"
                   onClick={handleAddInteraction}
-                  className="px-3 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer shrink-0"
+                  className="px-3.5 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs sm:text-sm flex items-center gap-1.5 transition-colors cursor-pointer shrink-0"
                 >
-                  <Plus className="w-3.5 h-3.5" />
+                  <Plus className="w-4 h-4" />
                   <span>Add Interaction</span>
                 </button>
               </div>
 
               {interactionsList.length === 0 ? (
                 <div className="p-8 rounded-2xl border-2 border-dashed border-slate-200 dark:border-slate-800 text-center space-y-2">
-                  <p className="text-xs text-slate-500 dark:text-slate-400">
+                  <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
                     No specific FDA Section 7 interactions recorded for this drug yet.
                   </p>
                   <button
                     type="button"
                     onClick={handleAddInteraction}
-                    className="px-3.5 py-1.5 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 hover:bg-purple-500/20 font-bold text-xs inline-flex items-center gap-1.5 transition-colors cursor-pointer"
+                    className="px-4 py-2 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 hover:bg-purple-500/20 font-bold text-xs sm:text-sm inline-flex items-center gap-1.5 transition-colors cursor-pointer"
                   >
-                    <Plus className="w-3.5 h-3.5" />
+                    <Plus className="w-4 h-4" />
                     <span>Add First Interaction</span>
                   </button>
                 </div>
               ) : (
-                <div className="space-y-3">
+                <div className="space-y-3.5">
                   {interactionsList.map((item, idx) => (
                     <div
                       key={idx}
-                      className="p-4 rounded-xl border border-slate-200/90 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-900/40 space-y-3"
+                      className="p-4 sm:p-5 rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-900/40 space-y-3"
                     >
                       <div className="flex items-center justify-between gap-3">
-                        <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-2">
+                        <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-3">
                           <div className="sm:col-span-2">
-                            <label className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">
+                            <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                               Interacting Drug or Class #{idx + 1}
                             </label>
                             <input
@@ -1893,12 +1893,12 @@ export function EditDrugModal({
                                 handleUpdateInteraction(idx, "drug_or_class", e.target.value)
                               }
                               placeholder="e.g. Carbapenem Antibiotics (Meropenem, Imipenem)"
-                              className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold focus:ring-2 focus:ring-purple-500"
+                              className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-semibold focus:ring-2 focus:ring-purple-500"
                             />
                           </div>
 
                           <div>
-                            <label className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">
+                            <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                               Severity Tier
                             </label>
                             <select
@@ -1906,7 +1906,7 @@ export function EditDrugModal({
                               onChange={(e) =>
                                 handleUpdateInteraction(idx, "severity", e.target.value as any)
                               }
-                              className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold focus:ring-2 focus:ring-purple-500"
+                              className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-semibold focus:ring-2 focus:ring-purple-500"
                             >
                               <option value="contraindicated">🔴 Contraindicated</option>
                               <option value="major">🟠 Major</option>
@@ -1919,7 +1919,7 @@ export function EditDrugModal({
                         <button
                           type="button"
                           onClick={() => handleRemoveInteraction(idx)}
-                          className="p-2 rounded-lg text-rose-500 hover:bg-rose-500/10 transition-colors cursor-pointer self-start mt-4"
+                          className="p-2 rounded-lg text-rose-500 hover:bg-rose-500/10 transition-colors cursor-pointer self-start mt-6"
                           title="Remove interaction"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -1927,7 +1927,7 @@ export function EditDrugModal({
                       </div>
 
                       <div>
-                        <label className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">
+                        <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                           Clinical Effect / Pharmacokinetic Impact
                         </label>
                         <textarea
@@ -1937,12 +1937,12 @@ export function EditDrugModal({
                             handleUpdateInteraction(idx, "effect", e.target.value)
                           }
                           placeholder="e.g. Clinically significant reduction in serum valproic acid concentrations (often by 60-90%), resulting in rapid loss of seizure control."
-                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs focus:ring-2 focus:ring-purple-500"
+                          className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm leading-relaxed focus:ring-2 focus:ring-purple-500"
                         />
                       </div>
 
                       <div>
-                        <label className="block text-[11px] font-bold text-emerald-700 dark:text-emerald-400 mb-1">
+                        <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400 mb-1.5">
                           Clinical Management &amp; Dosage Recommendation
                         </label>
                         <textarea
@@ -1952,7 +1952,7 @@ export function EditDrugModal({
                             handleUpdateInteraction(idx, "management", e.target.value)
                           }
                           placeholder="e.g. Avoid concomitant use. Alternative antibacterial or anticonvulsant therapy should be considered if carbapenems are required."
-                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs focus:ring-2 focus:ring-purple-500"
+                          className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm leading-relaxed focus:ring-2 focus:ring-purple-500"
                         />
                       </div>
                     </div>
@@ -1963,11 +1963,11 @@ export function EditDrugModal({
           )}
 
           {/* Modal Footer */}
-          <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-3">
+          <div className="pt-4 sm:pt-5 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-3">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 font-bold text-slate-700 dark:text-slate-300 transition-colors cursor-pointer text-xs sm:text-sm"
+              className="px-5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 font-bold text-slate-700 dark:text-slate-300 transition-colors cursor-pointer text-xs sm:text-sm"
             >
               Cancel
             </button>
@@ -1975,7 +1975,7 @@ export function EditDrugModal({
             <button
               type="submit"
               disabled={loading}
-              className="px-5 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold flex items-center gap-2 shadow-xs transition-colors disabled:opacity-50 cursor-pointer text-xs sm:text-sm"
+              className="px-6 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold flex items-center gap-2 shadow-xs transition-colors disabled:opacity-50 cursor-pointer text-xs sm:text-sm"
             >
               {loading ? (
                 <>

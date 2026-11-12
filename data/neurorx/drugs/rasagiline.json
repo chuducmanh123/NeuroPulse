@@ -64,8 +64,8 @@
     "refs": [
       {
         "source_id": "fda-rasagiline-label",
-        "locator": "DOSAGE AND ADMINISTRATION",
-        "quote": "Monotherapy: AZILECT 1 mg once daily ( 2.1 ) As adjunct without levodopa: AZILECT 1 mg once daily ( 2.1 ) As adjunct to levodopa: AZILECT 0.5 mg once daily."
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal Impairment Dose adjustment of AZILECT is not required for patients with mild or moderate renal impairment because AZILECT plasma concentrations are not increased in patients with moderate renal impairment."
       }
     ]
   },
@@ -284,6 +284,27 @@
         "source_id": "fda-rasagiline-label",
         "locator": "Section 7.1 Meperidine",
         "quote": "Serious, sometimes fatal reactions have been precipitated with concomitant use of meperidine (e.g., Demerol and other tradenames) and MAO inhibitors including selective MAO-B inhibitors"
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-rasagiline-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "Renal Impairment Dose adjustment of AZILECT is not required for patients with mild or moderate renal impairment because AZILECT plasma concentrations are not increased in patients with moderate renal impairment."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-rasagiline-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal Impairment Dose adjustment of AZILECT is not required for patients with mild or moderate renal impairment because AZILECT plasma concentrations are not increased in patients with moderate renal impairment."
       }
     ]
   }

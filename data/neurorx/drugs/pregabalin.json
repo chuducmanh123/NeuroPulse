@@ -92,8 +92,8 @@
     "refs": [
       {
         "source_id": "fda-pregabalin-label",
-        "locator": "DOSAGE AND ADMINISTRATION",
-        "quote": "adjust the dose in adult patients with reduced renal function [see Dosage and Administration (2.7) ]."
+        "locator": "Section 2.4 Dosing for Adult Patients with Renal Impairment",
+        "quote": "eliminated primarily by renal excretion, adjust the dose in adult patients with reduced renal function [see Dosage and Administration (2.7) ]."
       }
     ]
   },
@@ -299,6 +299,86 @@
         "source_id": "fda-pregabalin-label",
         "locator": "Section 7 DRUG INTERACTIONS",
         "quote": "Since LYRICA is predominantly excreted unchanged in the urine, undergoes negligible metabolism in humans (less than 2% of a dose recovered in urine as metabolites), and does not bind to plasma proteins, its pharmacokinetics are unlikely to be affected by other agents through metabolic interactions or protein binding displacement."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "Pregabalin is eliminated primarily by renal excretion; adjust dose in adult patients with reduced renal function based on creatinine clearance.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-pregabalin-label",
+          "locator": "Section 2.4 Dosing for Adult Patients with Renal Impairment",
+          "quote": "eliminated primarily by renal excretion, adjust the dose in adult patients with reduced renal function [see Dosage and Administration (2.7) ]."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 60,
+        "max": null,
+        "dose_text": "150 to 600 mg/day (administered in 2 or 3 divided doses)",
+        "refs": [
+          {
+            "source_id": "fda-pregabalin-label",
+            "locator": "Section 2.4 Dosing for Adult Patients with Renal Impairment",
+            "quote": "eliminated primarily by renal excretion, adjust the dose in adult patients with reduced renal function [see Dosage and Administration (2.7) ]."
+          }
+        ]
+      },
+      {
+        "min": 30,
+        "max": 60,
+        "dose_text": "75 to 300 mg/day (administered in 2 or 3 divided doses, or once daily)",
+        "refs": [
+          {
+            "source_id": "fda-pregabalin-label",
+            "locator": "Section 2.4 Dosing for Adult Patients with Renal Impairment",
+            "quote": "eliminated primarily by renal excretion, adjust the dose in adult patients with reduced renal function [see Dosage and Administration (2.7) ]."
+          }
+        ]
+      },
+      {
+        "min": 15,
+        "max": 30,
+        "dose_text": "25 to 150 mg/day (administered once daily or in 2 divided doses)",
+        "refs": [
+          {
+            "source_id": "fda-pregabalin-label",
+            "locator": "Section 2.4 Dosing for Adult Patients with Renal Impairment",
+            "quote": "eliminated primarily by renal excretion, adjust the dose in adult patients with reduced renal function [see Dosage and Administration (2.7) ]."
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 15,
+        "dose_text": "25 to 75 mg/day (administered as a single daily dose)",
+        "refs": [
+          {
+            "source_id": "fda-pregabalin-label",
+            "locator": "Section 2.4 Dosing for Adult Patients with Renal Impairment",
+            "quote": "eliminated primarily by renal excretion, adjust the dose in adult patients with reduced renal function [see Dosage and Administration (2.7) ]."
+          }
+        ]
+      }
+    ],
+    "hemodialysis": {
+      "value": "Patients maintained on hemodialysis should receive daily dose adjusted for CrCl plus single supplemental dose of 25 to 100 mg immediately following 4-hour hemodialysis.",
+      "refs": [
+        {
+          "source_id": "fda-pregabalin-label",
+          "locator": "Section 2.4 Table 1",
+          "quote": "Supplementary dose is a single additional dose."
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-pregabalin-label",
+        "locator": "Section 2.4 Dosing for Adult Patients with Renal Impairment",
+        "quote": "eliminated primarily by renal excretion, adjust the dose in adult patients with reduced renal function [see Dosage and Administration (2.7) ]."
       }
     ]
   }

@@ -61,20 +61,24 @@
     }
   ],
   "renal_basis": {
-    "value": "none",
+    "value": "cg_abw",
     "refs": [
       {
         "source_id": "fda-tenecteplase-label",
-        "locator": "Section 11 DESCRIPTION",
-        "quote": "Tenecteplase is a tissue plasminogen activator (tPA) produced by recombinant DNA technology using a mammalian cell line (Chinese Hamster Ovary cells)."
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "USE IN SPECIFIC POPULATIONS === 8 USE IN SPECIFIC POPULATIONS 8.1 Pregnancy Risk Summary There are risks to the mother and fetus from acute ST elevation myocardial infarction, which is a medical emergency in pregnancy and can be fatal if left untreated (see Clinical Considerations )."
       }
-    ],
-    "note": "No dosage adjustment needed for renal impairment"
+    ]
   },
   "hepatic": {
-    "value": null,
-    "refs": [],
-    "note": "Cleared predominantly by the liver; monitor bleeding risk"
+    "value": "Liver metabolism is the major clearance mechanism for tenecteplase. No dosage adjustment in mild-to-moderate hepatic impairment; use caution in severe hepatic impairment due to baseline coagulopathy.",
+    "refs": [
+      {
+        "source_id": "fda-tenecteplase-label",
+        "locator": "Section 12.3 Pharmacokinetics",
+        "quote": "Liver metabolism is the major clearance mechanism for tenecteplase."
+      }
+    ]
   },
   "black_box": {
     "value": null,
@@ -249,6 +253,27 @@
         "source_id": "fda-tenecteplase-label",
         "locator": "Section 7 DRUG INTERACTIONS",
         "quote": "During TNKase therapy, results of coagulation tests and/or measures of fibrinolytic activity may be unreliable unless specific precautions are taken to prevent in vitro artifacts."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-tenecteplase-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "USE IN SPECIFIC POPULATIONS === 8 USE IN SPECIFIC POPULATIONS 8.1 Pregnancy Risk Summary There are risks to the mother and fetus from acute ST elevation myocardial infarction, which is a medical emergency in pregnancy and can be fatal if left untreated (see Clinical Considerations )."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-tenecteplase-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "USE IN SPECIFIC POPULATIONS === 8 USE IN SPECIFIC POPULATIONS 8.1 Pregnancy Risk Summary There are risks to the mother and fetus from acute ST elevation myocardial infarction, which is a medical emergency in pregnancy and can be fatal if left untreated (see Clinical Considerations )."
       }
     ]
   }

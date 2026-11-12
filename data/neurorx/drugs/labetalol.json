@@ -89,20 +89,24 @@
     }
   ],
   "renal_basis": {
-    "value": "none",
+    "value": "cg_abw",
     "refs": [
       {
         "source_id": "fda-labetalol-label",
-        "locator": "Section 11 DESCRIPTION",
-        "quote": "Labetalol hydrochloride is an adrenergic receptor blocking agent that has both selective alpha 1 - and nonselective beta-adrenergic receptor blocking actions in a single substance."
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "renal function in mild to severe hypertensive patients with normal renal function. Due to the alpha 1 -receptor blocking activity of labetalol, blood pressure is lowered more in the standing than in the supine position, and symptoms of postural hypotension can occur."
       }
-    ],
-    "note": "No dose adjustment required for renal impairment"
+    ]
   },
   "hepatic": {
-    "value": null,
-    "refs": [],
-    "note": "Extensively metabolized by the liver; use caution in hepatic impairment"
+    "value": "Labetalol is extensively metabolized by the liver. Severe hepatocellular injury, hepatic necrosis, and hepatitis have been reported. Use with caution in patients with hepatic impairment and monitor LFTs.",
+    "refs": [
+      {
+        "source_id": "fda-labetalol-label",
+        "locator": "Section Warnings",
+        "quote": "Hepatic necrosis, hepatitis, cholestatic jaundice, elevated liver function tests. Hypersensitivity: Rare reports of hypersensitivity (e.g., rash, urticaria, pruritus, angioedema, dyspnea) and anaphylactoid reactions."
+      }
+    ]
   },
   "black_box": {
     "value": null,
@@ -315,6 +319,27 @@
         "source_id": "fda-labetalol-label",
         "locator": "PRECAUTIONS - Drug Interactions",
         "quote": "Labetalol blunts the reflex tachycardia produced by nitroglycerin without preventing its hypotensive effect."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-labetalol-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "renal function in mild to severe hypertensive patients with normal renal function. Due to the alpha 1 -receptor blocking activity of labetalol, blood pressure is lowered more in the standing than in the supine position, and symptoms of postural hypotension can occur."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-labetalol-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "renal function in mild to severe hypertensive patients with normal renal function. Due to the alpha 1 -receptor blocking activity of labetalol, blood pressure is lowered more in the standing than in the supine position, and symptoms of postural hypotension can occur."
       }
     ]
   }

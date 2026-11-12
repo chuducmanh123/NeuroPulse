@@ -65,8 +65,8 @@
     "refs": [
       {
         "source_id": "fda-clobazam-label",
-        "locator": "USE IN SPECIFIC POPULATIONS",
-        "quote": "mild and moderate renal impairment. There is no experience with ONFI in patients with severe renal impairment or end stage renal disease (ESRD)."
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal Impairment No dose adjustment is required for patients with mild and moderate renal impairment. There is no experience with ONFI in patients with severe renal impairment or end stage renal disease (ESRD)."
       }
     ]
   },
@@ -309,6 +309,27 @@
         "source_id": "fda-clobazam-label",
         "locator": "Section 7.1 Opioids",
         "quote": "The concomitant use of benzodiazepines and opioids increases the risk of respiratory depression because of actions at different receptor sites in the CNS that control respiration."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-clobazam-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "Renal Impairment No dose adjustment is required for patients with mild and moderate renal impairment. There is no experience with ONFI in patients with severe renal impairment or end stage renal disease (ESRD)."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-clobazam-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal Impairment No dose adjustment is required for patients with mild and moderate renal impairment. There is no experience with ONFI in patients with severe renal impairment or end stage renal disease (ESRD)."
       }
     ]
   }

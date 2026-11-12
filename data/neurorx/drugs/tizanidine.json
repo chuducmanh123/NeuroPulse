@@ -65,8 +65,8 @@
     "refs": [
       {
         "source_id": "fda-tizanidine-label",
-        "locator": "DOSAGE AND ADMINISTRATION",
-        "quote": "The recommended starting dose is 2 mg. Because the effect of Zanaflex peaks at approximately 1 to 2 hours post-dose and dissipates between 3 to 6 hours post-dose, treatment can be"
+        "locator": "Section 2.2 Dosing in Patients with Renal Impairment",
+        "quote": "Zanaflex should be used with caution in patients with renal insufficiency (creatinine clearance < 25 mL/min), as clearance is reduced by more than 50%. In these patients, during titration, the individual doses should be reduced."
       }
     ]
   },
@@ -298,6 +298,52 @@
         "source_id": "fda-tizanidine-label",
         "locator": "Section 7 DRUG INTERACTIONS",
         "quote": "Concomitant use of ciprofloxacin and Zanaflex is contraindicated. Changes in pharmacokinetics of tizanidine when administered with ciprofloxacin resulted in significantly decreased blood pressure, increased drowsiness, and increased psychomotor impairment"
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "Zanaflex should be used with caution in patients with renal insufficiency (creatinine clearance < 25 mL/min), as clearance is reduced by more than 50%. In these patients, during titration, individual doses should be reduced.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-tizanidine-label",
+          "locator": "Section 2.2 Dosing in Patients with Renal Impairment",
+          "quote": "Zanaflex should be used with caution in patients with renal insufficiency (creatinine clearance < 25 mL/min), as clearance is reduced by more than 50%. In these patients, during titration, the individual doses should be reduced."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 25,
+        "max": null,
+        "dose_text": "Standard starting dose 2 mg up to TID; titrate by 2 to 4 mg increments",
+        "refs": [
+          {
+            "source_id": "fda-tizanidine-label",
+            "locator": "Section 2.2 Dosing in Patients with Renal Impairment",
+            "quote": "Zanaflex should be used with caution in patients with renal insufficiency (creatinine clearance < 25 mL/min), as clearance is reduced by more than 50%. In these patients, during titration, the individual doses should be reduced."
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 25,
+        "dose_text": "Reduce individual doses and monitor for excessive hypotension, sedation, and bradycardia",
+        "refs": [
+          {
+            "source_id": "fda-tizanidine-label",
+            "locator": "Section 2.2 Dosing in Patients with Renal Impairment",
+            "quote": "Zanaflex should be used with caution in patients with renal insufficiency (creatinine clearance < 25 mL/min), as clearance is reduced by more than 50%. In these patients, during titration, the individual doses should be reduced."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-tizanidine-label",
+        "locator": "Section 2.2 Dosing in Patients with Renal Impairment",
+        "quote": "Zanaflex should be used with caution in patients with renal insufficiency (creatinine clearance < 25 mL/min), as clearance is reduced by more than 50%. In these patients, during titration, the individual doses should be reduced."
       }
     ]
   }

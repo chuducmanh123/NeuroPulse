@@ -65,8 +65,8 @@
     "refs": [
       {
         "source_id": "fda-baclofen-label",
-        "locator": "INDICATIONS AND USAGE",
-        "quote": "alleviation of signs and symptoms of spasticity resulting from multiple sclerosis, particularly for the relief of flexor spasms and concomitant pain, clonus, and muscular rigidity."
+        "locator": "Section Clinical Pharmacology / Precautions",
+        "quote": "Baclofen is excreted primarily by the kidney in unchanged form and there is relatively large intersubject variation in absorption and/or elimination. === HOW SUPPLIED === HOW SUPPLIED Baclofen Tablets, USP 20 mg are available as a White to off white, round flat-faced, beveled edge tablets debossed with \"025\" on one side and score on other side, co"
       }
     ]
   },
@@ -260,6 +260,52 @@
         "source_id": "fda-baclofen-label",
         "locator": "PRECAUTIONS",
         "quote": "Patients should also be cautioned that the central nervous system effects of baclofen may be additive to those of alcohol and other CNS depressants."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "Baclofen is excreted primarily by the kidney in unchanged form. Reduce dosage and titrate cautiously in patients with renal impairment to avoid severe central neurotoxicity and encephalopathy.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-baclofen-label",
+          "locator": "Section Clinical Pharmacology / Precautions",
+          "quote": "Baclofen is excreted primarily by the kidney in unchanged form and there is relatively large intersubject variation in absorption and/or elimination. === HOW SUPPLIED === HOW SUPPLIED Baclofen Tablets, USP 20 mg are available as a White to off white, round flat-faced, beveled edge tablets debossed with \"025\" on one side and score on other side, co"
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 30,
+        "max": null,
+        "dose_text": "Standard starting dose 5 mg TID, titrate gradually by 5 mg TID every 3 days",
+        "refs": [
+          {
+            "source_id": "fda-baclofen-label",
+            "locator": "Section Clinical Pharmacology / Precautions",
+            "quote": "Baclofen is excreted primarily by the kidney in unchanged form and there is relatively large intersubject variation in absorption and/or elimination. === HOW SUPPLIED === HOW SUPPLIED Baclofen Tablets, USP 20 mg are available as a White to off white, round flat-faced, beveled edge tablets debossed with \"025\" on one side and score on other side, co"
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 30,
+        "dose_text": "Reduce starting dose (e.g. 2.5 to 5 mg once or twice daily); titrate very cautiously and monitor closely for sedation/coma",
+        "refs": [
+          {
+            "source_id": "fda-baclofen-label",
+            "locator": "Section Clinical Pharmacology / Precautions",
+            "quote": "Baclofen is excreted primarily by the kidney in unchanged form and there is relatively large intersubject variation in absorption and/or elimination. === HOW SUPPLIED === HOW SUPPLIED Baclofen Tablets, USP 20 mg are available as a White to off white, round flat-faced, beveled edge tablets debossed with \"025\" on one side and score on other side, co"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-baclofen-label",
+        "locator": "Section Clinical Pharmacology / Precautions",
+        "quote": "Baclofen is excreted primarily by the kidney in unchanged form and there is relatively large intersubject variation in absorption and/or elimination. === HOW SUPPLIED === HOW SUPPLIED Baclofen Tablets, USP 20 mg are available as a White to off white, round flat-faced, beveled edge tablets debossed with \"025\" on one side and score on other side, co"
       }
     ]
   }

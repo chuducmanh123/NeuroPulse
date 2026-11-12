@@ -67,8 +67,8 @@
     "refs": [
       {
         "source_id": "fda-methylprednisolone-label",
-        "locator": "INDICATIONS AND USAGE",
-        "quote": "Acute exacerbations of multiple sclerosis; cerebral edema associated with primary or metastatic brain tumor, or craniotomy."
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION NOTE: Some of the SOLU-MEDROL formulations contain benzyl alcohol (see DESCRIPTION , WARNINGS and PRECAUTIONS, Pediatric Use ) Because of possible physical incompatibilities, SOLU-MEDROL should not be diluted or mixed with other solutions."
       }
     ]
   },
@@ -277,6 +277,27 @@
         "source_id": "fda-methylprednisolone-label",
         "locator": "PRECAUTIONS - Drug Interactions",
         "quote": "When corticosteroids are administered concomitantly with potassium-depleting agents (i.e., amphotericin B, diuretics), patients should be observed closely for development of hypokalemia."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-methylprednisolone-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION NOTE: Some of the SOLU-MEDROL formulations contain benzyl alcohol (see DESCRIPTION , WARNINGS and PRECAUTIONS, Pediatric Use ) Because of possible physical incompatibilities, SOLU-MEDROL should not be diluted or mixed with other solutions."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-methylprednisolone-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION NOTE: Some of the SOLU-MEDROL formulations contain benzyl alcohol (see DESCRIPTION , WARNINGS and PRECAUTIONS, Pediatric Use ) Because of possible physical incompatibilities, SOLU-MEDROL should not be diluted or mixed with other solutions."
       }
     ]
   }

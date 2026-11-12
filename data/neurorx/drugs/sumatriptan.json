@@ -64,8 +64,8 @@
     "refs": [
       {
         "source_id": "fda-sumatriptan-label",
-        "locator": "INDICATIONS AND USAGE",
-        "quote": "acute treatment of migraine with or without aura in adults. Limitations of Use: • Use only if a clear diagnosis of migraine headache has been established."
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal Impairment: The effect of renal impairment on the pharmacokinetics of sumatriptan has not been examined. Patients with Hepatic Impairment: The liver plays an important role in the presystemic clearance of orally administered sumatriptan."
       }
     ]
   },
@@ -296,6 +296,27 @@
         "source_id": "fda-sumatriptan-label",
         "locator": "Section 7.1 Ergot-Containing Drugs",
         "quote": "use of ergotamine-containing or ergot-type medications (like dihydroergotamine or methysergide) and IMITREX tablets within 24 hours of each other is contraindicated."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-sumatriptan-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "Renal Impairment: The effect of renal impairment on the pharmacokinetics of sumatriptan has not been examined. Patients with Hepatic Impairment: The liver plays an important role in the presystemic clearance of orally administered sumatriptan."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-sumatriptan-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal Impairment: The effect of renal impairment on the pharmacokinetics of sumatriptan has not been examined. Patients with Hepatic Impairment: The liver plays an important role in the presystemic clearance of orally administered sumatriptan."
       }
     ]
   }

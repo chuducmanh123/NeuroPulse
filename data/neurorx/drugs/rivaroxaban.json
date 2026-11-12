@@ -52,61 +52,7 @@
         "max_single": 20,
         "max_daily": 20
       },
-      "dose_text": "20 mg orally once daily with the evening meal.",
-      "renal_bands": [
-        {
-          "min": 50,
-          "max": null,
-          "dose_text": "20 mg once daily with evening meal",
-          "dose": {
-            "kind": "fixed",
-            "amount": 20,
-            "unit": "mg",
-            "frequency": "once daily with evening meal",
-            "max_single": 20,
-            "max_daily": 20
-          },
-          "refs": [
-            {
-              "source_id": "fda-rivaroxaban-label",
-              "locator": "Section 2.1 Table 1",
-              "quote": "Reduction in Risk of Stroke in Nonvalvular Atrial Fibrillation CrCl >50 mL/min 20 mg once daily Take with evening meal"
-            }
-          ]
-        },
-        {
-          "min": 15,
-          "max": 50,
-          "dose_text": "15 mg once daily with evening meal",
-          "dose": {
-            "kind": "fixed",
-            "amount": 15,
-            "unit": "mg",
-            "frequency": "once daily with evening meal",
-            "max_single": 15,
-            "max_daily": 15
-          },
-          "refs": [
-            {
-              "source_id": "fda-rivaroxaban-label",
-              "locator": "Section 2.1 Table 1",
-              "quote": "CrCl ≤50 mL/min Patients with CrCl <30 mL/min were not studied, but administration of XARELTO is expected to result in serum concentrations of rivaroxaban similar to those in patients with moderate renal impairment (CrCl 30 to <50 mL/min) [see Use in Specific Populations (8.6) ] . 15 mg once daily Take with evening meal"
-            }
-          ]
-        },
-        {
-          "min": null,
-          "max": 15,
-          "dose_text": "Avoid use (CrCl < 15 mL/min not evaluated)",
-          "refs": [
-            {
-              "source_id": "fda-rivaroxaban-label",
-              "locator": "Section 2.1 Table 1",
-              "quote": "CrCl ≤50 mL/min Patients with CrCl <30 mL/min were not studied, but administration of XARELTO is expected to result in serum concentrations of rivaroxaban similar to those in patients with moderate renal impairment (CrCl 30 to <50 mL/min) [see Use in Specific Populations (8.6) ] . 15 mg once daily Take with evening meal"
-            }
-          ]
-        }
-      ]
+      "dose_text": "20 mg orally once daily with the evening meal."
     },
     {
       "id": "riva-po-stroke-prevention-afib-reduced",
@@ -136,8 +82,8 @@
     "refs": [
       {
         "source_id": "fda-rivaroxaban-label",
-        "locator": "Section 2.1 Table 1",
-        "quote": "Calculate CrCl based on actual weight [see Warnings and Precautions (5.4) and Use in Specific Populations (8.6) ] ."
+        "locator": "Section 8.6 Renal Impairment",
+        "quote": "CrCl 15 to 50 mL/min taking XARELTO 15 mg. Hemodialysis had no significant impact on rivaroxaban exposure. Protein binding was similar (86% to 89%) in healthy controls and ESRD subjects in this study."
       }
     ]
   },
@@ -388,5 +334,73 @@
         }
       ]
     }
+  },
+  "renal_impairment": {
+    "description": "In patients with CrCl 15 to 50 mL/min, reduce XARELTO dose to 15 mg once daily with the evening meal. Avoid use in patients with CrCl < 15 mL/min.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-rivaroxaban-label",
+          "locator": "Section 8.6 Renal Impairment",
+          "quote": "CrCl 15 to 50 mL/min taking XARELTO 15 mg. Hemodialysis had no significant impact on rivaroxaban exposure. Protein binding was similar (86% to 89%) in healthy controls and ESRD subjects in this study."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 50,
+        "max": null,
+        "dose_text": "20 mg orally once daily with the evening meal",
+        "refs": [
+          {
+            "source_id": "fda-rivaroxaban-label",
+            "locator": "Section 8.6 Renal Impairment",
+            "quote": "CrCl 15 to 50 mL/min taking XARELTO 15 mg. Hemodialysis had no significant impact on rivaroxaban exposure. Protein binding was similar (86% to 89%) in healthy controls and ESRD subjects in this study."
+          }
+        ]
+      },
+      {
+        "min": 15,
+        "max": 50,
+        "dose_text": "15 mg orally once daily with the evening meal",
+        "refs": [
+          {
+            "source_id": "fda-rivaroxaban-label",
+            "locator": "Section 8.6 Renal Impairment",
+            "quote": "CrCl 15 to 50 mL/min taking XARELTO 15 mg. Hemodialysis had no significant impact on rivaroxaban exposure. Protein binding was similar (86% to 89%) in healthy controls and ESRD subjects in this study."
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 15,
+        "dose_text": "Avoid use; discontinued due to increased exposure and bleeding risk",
+        "refs": [
+          {
+            "source_id": "fda-rivaroxaban-label",
+            "locator": "Section 8.6 Renal Impairment",
+            "quote": "CrCl 15 to 50 mL/min taking XARELTO 15 mg. Hemodialysis had no significant impact on rivaroxaban exposure. Protein binding was similar (86% to 89%) in healthy controls and ESRD subjects in this study."
+          }
+        ]
+      }
+    ],
+    "hemodialysis": {
+      "value": "Avoid use in patients with ESRD on hemodialysis due to lack of clinical efficacy/safety data and high bleeding hazard.",
+      "refs": [
+        {
+          "source_id": "fda-rivaroxaban-label",
+          "locator": "Section 8.6 Renal Impairment",
+          "quote": "CrCl 15 to 50 mL/min taking XARELTO 15 mg. Hemodialysis had no significant impact on rivaroxaban exposure. Protein binding was similar (86% to 89%) in healthy controls and ESRD subjects in this study."
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-rivaroxaban-label",
+        "locator": "Section 8.6 Renal Impairment",
+        "quote": "CrCl 15 to 50 mL/min taking XARELTO 15 mg. Hemodialysis had no significant impact on rivaroxaban exposure. Protein binding was similar (86% to 89%) in healthy controls and ESRD subjects in this study."
+      }
+    ]
   }
 }

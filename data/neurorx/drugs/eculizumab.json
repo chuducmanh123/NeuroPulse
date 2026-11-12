@@ -92,8 +92,8 @@
     "refs": [
       {
         "source_id": "fda-eculizumab-label",
-        "locator": "INDICATIONS AND USAGE",
-        "quote": "myasthenia gravis (gMG) in adult and pediatric patients six years of age and older who are anti-acetylcholine receptor (AChR) antibody positive."
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal Impairment 5 (29) 3 (15) 6 (15) 14 (18) Proteinuria 2 (12) 1 (5) 5 (12) 8 (10) Respiratory, Thoracic and Mediastinal Disorders Cough 4 (24) 6 (30) 8 (20) 18 (23) General Disorders and Administration Site Conditions Fatigue 3 (18) 4 (20) 3 (7) 10 (13) Peripheral edema 5 (29) 4 (20) 9 (22) 18 (23) Pyrexia 4 (24) 5 (25) 7 (17) 16 (21) Asthenia 3"
       }
     ]
   },
@@ -295,6 +295,27 @@
         "source_id": "fda-eculizumab-label",
         "locator": "Section 7.1 Plasmapheresis, Plasma Exchange, Fresh Frozen Plasma Infusion or IVIg",
         "quote": "Concomitant use of SOLIRIS with plasma exchange (PE), plasmapheresis (PP) , fresh frozen plasma infusion (PE/PI), or in patients with gMG on concomitant IVIg treatment can reduce serum eculizumab concentrations and requires a supplemental dose of SOLIRIS"
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-eculizumab-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "Renal Impairment 5 (29) 3 (15) 6 (15) 14 (18) Proteinuria 2 (12) 1 (5) 5 (12) 8 (10) Respiratory, Thoracic and Mediastinal Disorders Cough 4 (24) 6 (30) 8 (20) 18 (23) General Disorders and Administration Site Conditions Fatigue 3 (18) 4 (20) 3 (7) 10 (13) Peripheral edema 5 (29) 4 (20) 9 (22) 18 (23) Pyrexia 4 (24) 5 (25) 7 (17) 16 (21) Asthenia 3"
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-eculizumab-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal Impairment 5 (29) 3 (15) 6 (15) 14 (18) Proteinuria 2 (12) 1 (5) 5 (12) 8 (10) Respiratory, Thoracic and Mediastinal Disorders Cough 4 (24) 6 (30) 8 (20) 18 (23) General Disorders and Administration Site Conditions Fatigue 3 (18) 4 (20) 3 (7) 10 (13) Peripheral edema 5 (29) 4 (20) 9 (22) 18 (23) Pyrexia 4 (24) 5 (25) 7 (17) 16 (21) Asthenia 3"
       }
     ]
   }

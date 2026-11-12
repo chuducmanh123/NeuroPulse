@@ -83,7 +83,7 @@
       {
         "source_id": "fda-apixaban-label",
         "locator": "Section 8.6 Renal Impairment",
-        "quote": "No dose adjustment is recommended for patients with renal impairment, including those with ESRD on dialysis"
+        "quote": "Reduction of Risk of Stroke and Systemic Embolism in Patients with Nonvalvular Atrial Fibrillation The recommended dose of ELIQUIS for most patients is 5 mg taken orally twice daily."
       }
     ]
   },
@@ -338,5 +338,73 @@
         }
       ]
     }
+  },
+  "renal_impairment": {
+    "description": "The recommended dose of ELIQUIS is 5 mg orally twice daily. Reduce to 2.5 mg twice daily in patients with at least two of the following: age >= 80 years, body weight <= 60 kg, or serum creatinine >= 1.5 mg/dL.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-apixaban-label",
+          "locator": "Section 8.6 Renal Impairment",
+          "quote": "Reduction of Risk of Stroke and Systemic Embolism in Patients with Nonvalvular Atrial Fibrillation The recommended dose of ELIQUIS for most patients is 5 mg taken orally twice daily."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 30,
+        "max": null,
+        "dose_text": "5 mg orally twice daily (reduce to 2.5 mg twice daily if patient meets >= 2 of: age >= 80, weight <= 60 kg, SCr >= 1.5 mg/dL)",
+        "refs": [
+          {
+            "source_id": "fda-apixaban-label",
+            "locator": "Section 8.6 Renal Impairment",
+            "quote": "Reduction of Risk of Stroke and Systemic Embolism in Patients with Nonvalvular Atrial Fibrillation The recommended dose of ELIQUIS for most patients is 5 mg taken orally twice daily."
+          }
+        ]
+      },
+      {
+        "min": 15,
+        "max": 30,
+        "dose_text": "2.5 mg orally twice daily",
+        "refs": [
+          {
+            "source_id": "fda-apixaban-label",
+            "locator": "Section 8.6 Renal Impairment",
+            "quote": "Reduction of Risk of Stroke and Systemic Embolism in Patients with Nonvalvular Atrial Fibrillation The recommended dose of ELIQUIS for most patients is 5 mg taken orally twice daily."
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 15,
+        "dose_text": "2.5 mg orally twice daily for patients on hemodialysis; otherwise avoid use in non-dialysis CrCl < 15 mL/min",
+        "refs": [
+          {
+            "source_id": "fda-apixaban-label",
+            "locator": "Section 8.6 Renal Impairment",
+            "quote": "maintained on dialysis [see Clinical Pharmacology (12.3) ] . 8.7 Hepatic Impairment No dose adjustment is required in patients with mild hepatic impairment (Child-Pugh class A)."
+          }
+        ]
+      }
+    ],
+    "hemodialysis": {
+      "value": "Dosing recommendations are based on pharmacokinetic/pharmacodynamic data in subjects with ESRD maintained on dialysis: 2.5 mg twice daily (or 5 mg twice daily if age < 80 and weight > 60 kg).",
+      "refs": [
+        {
+          "source_id": "fda-apixaban-label",
+          "locator": "Section 8.6 Renal Impairment",
+          "quote": "maintained on dialysis [see Clinical Pharmacology (12.3) ] . 8.7 Hepatic Impairment No dose adjustment is required in patients with mild hepatic impairment (Child-Pugh class A)."
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-apixaban-label",
+        "locator": "Section 8.6 Renal Impairment",
+        "quote": "Reduction of Risk of Stroke and Systemic Embolism in Patients with Nonvalvular Atrial Fibrillation The recommended dose of ELIQUIS for most patients is 5 mg taken orally twice daily."
+      }
+    ]
   }
 }

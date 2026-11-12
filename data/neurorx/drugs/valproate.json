@@ -89,15 +89,14 @@
     }
   ],
   "renal_basis": {
-    "value": "none",
+    "value": "cg_abw",
     "refs": [
       {
         "source_id": "fda-valproate-label",
-        "locator": "Section 11 DESCRIPTION",
-        "quote": "Valproate sodium is the sodium salt of valproic acid designated as sodium 2-propylpentanoate."
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "renal impairment, and in the presence of other drugs (e.g., aspirin). Conversely, valproate may displace certain protein-bound drugs (e.g., phenytoin, carbamazepine, warfarin, and tolbutamide) [see Drug Interactions ( 7.2 ) for more detailed information on the pharmacokinetic interactions of valproate with other drugs ] ."
       }
-    ],
-    "note": "Renal impairment does not alter valproate clearance, but unbound drug fraction is increased; monitor unbound (free) valproate levels in severe renal failure"
+    ]
   },
   "hepatic": {
     "value": "Valproate sodium injection should not be administered to patients with hepatic disease or significant hepatic dysfunction.",
@@ -380,5 +379,26 @@
         }
       ]
     }
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-valproate-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "renal impairment, and in the presence of other drugs (e.g., aspirin). Conversely, valproate may displace certain protein-bound drugs (e.g., phenytoin, carbamazepine, warfarin, and tolbutamide) [see Drug Interactions ( 7.2 ) for more detailed information on the pharmacokinetic interactions of valproate with other drugs ] ."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-valproate-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "renal impairment, and in the presence of other drugs (e.g., aspirin). Conversely, valproate may displace certain protein-bound drugs (e.g., phenytoin, carbamazepine, warfarin, and tolbutamide) [see Drug Interactions ( 7.2 ) for more detailed information on the pharmacokinetic interactions of valproate with other drugs ] ."
+      }
+    ]
   }
 }

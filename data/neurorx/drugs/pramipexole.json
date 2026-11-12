@@ -56,28 +56,7 @@
         "max_single": 4.5,
         "max_daily": 4.5
       },
-      "dose_text": "Extended-release: Starting dose is 0.375 mg once daily. Titrate gradually no more frequently than every 5-7 days: Week 2: 0.75 mg/day; Week 3: 1.5 mg/day; Week 4: 2.25 mg/day; Week 5: 3 mg/day (max 4.5 mg/day). In immediate-release, dose is given TID (initial 0.125 mg TID up to max 1.5 mg TID).",
-      "renal_bands": [
-        {
-          "min": 30,
-          "max": 50,
-          "dose_text": "CrCl 30 to 50 mL/min: Take ER tablets initially every other day (0.375 mg Q48H); evaluate tolerability before advancing.",
-          "dose": {
-            "kind": "fixed",
-            "amount": 0.375,
-            "unit": "mg",
-            "frequency": "every other day",
-            "max_daily": 2.25
-          },
-          "refs": [
-            {
-              "source_id": "fda-pramipexole-label",
-              "locator": "USE IN SPECIFIC POPULATIONS",
-              "quote": "In patients with moderate renal impairment (creatinine clearance between 30 and 50 mL/min), pramipexole dihydrochloride extended-release tablets should initially be taken every other day."
-            }
-          ]
-        }
-      ]
+      "dose_text": "Extended-release: Starting dose is 0.375 mg once daily. Titrate gradually no more frequently than every 5-7 days: Week 2: 0.75 mg/day; Week 3: 1.5 mg/day; Week 4: 2.25 mg/day; Week 5: 3 mg/day (max 4.5 mg/day). In immediate-release, dose is given TID (initial 0.125 mg TID up to max 1.5 mg TID)."
     }
   ],
   "renal_basis": {
@@ -85,7 +64,7 @@
     "refs": [
       {
         "source_id": "fda-pramipexole-label",
-        "locator": "USE IN SPECIFIC POPULATIONS",
+        "locator": "Section 2.2 Recommended Dosage in Patients with Renal Impairment",
         "quote": "In patients with moderate renal impairment (creatinine clearance between 30 and 50 mL/min), pramipexole dihydrochloride extended-release tablets should initially be taken every other day."
       }
     ]
@@ -280,6 +259,76 @@
         "source_id": "fda-pramipexole-label",
         "locator": "Section 7.1 Dopamine Antagonists",
         "quote": "Since pramipexole is a dopamine agonist, it is possible that dopamine antagonists, such as the neuroleptics (phenothiazines, butyrophenones, thioxanthenes) or metoclopramide, may diminish the effectiveness of pramipexole dihydrochloride extended-release tablets."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "The elimination of pramipexole is dependent on renal function. Dosage reduction is required in patients with creatinine clearance <= 50 mL/min.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-pramipexole-label",
+          "locator": "Section 2.2 Recommended Dosage in Patients with Renal Impairment",
+          "quote": "In patients with moderate renal impairment (creatinine clearance between 30 and 50 mL/min), pramipexole dihydrochloride extended-release tablets should initially be taken every other day."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 50,
+        "max": null,
+        "dose_text": "Standard starting dose 0.125 mg TID (or 0.375 mg ER once daily)",
+        "refs": [
+          {
+            "source_id": "fda-pramipexole-label",
+            "locator": "Section 2.2 Recommended Dosage in Patients with Renal Impairment",
+            "quote": "In patients with moderate renal impairment (creatinine clearance between 30 and 50 mL/min), pramipexole dihydrochloride extended-release tablets should initially be taken every other day."
+          }
+        ]
+      },
+      {
+        "min": 30,
+        "max": 50,
+        "dose_text": "Initial dose 0.125 mg twice daily (or ER 0.375 mg taken every other day)",
+        "refs": [
+          {
+            "source_id": "fda-pramipexole-label",
+            "locator": "Section 2.2 Recommended Dosage in Patients with Renal Impairment",
+            "quote": "In patients with moderate renal impairment (creatinine clearance between 30 and 50 mL/min), pramipexole dihydrochloride extended-release tablets should initially be taken every other day."
+          }
+        ]
+      },
+      {
+        "min": 15,
+        "max": 30,
+        "dose_text": "Initial dose 0.125 mg once daily (ER formulation not recommended)",
+        "refs": [
+          {
+            "source_id": "fda-pramipexole-label",
+            "locator": "Section 2.2 Recommended Dosage in Patients with Renal Impairment",
+            "quote": "In patients with moderate renal impairment (creatinine clearance between 30 and 50 mL/min), pramipexole dihydrochloride extended-release tablets should initially be taken every other day."
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 15,
+        "dose_text": "Not recommended in end-stage renal disease (CrCl < 15 mL/min) or on dialysis",
+        "refs": [
+          {
+            "source_id": "fda-pramipexole-label",
+            "locator": "Section 2.2 Recommended Dosage in Patients with Renal Impairment",
+            "quote": "In patients with moderate renal impairment (creatinine clearance between 30 and 50 mL/min), pramipexole dihydrochloride extended-release tablets should initially be taken every other day."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-pramipexole-label",
+        "locator": "Section 2.2 Recommended Dosage in Patients with Renal Impairment",
+        "quote": "In patients with moderate renal impairment (creatinine clearance between 30 and 50 mL/min), pramipexole dihydrochloride extended-release tablets should initially be taken every other day."
       }
     ]
   }

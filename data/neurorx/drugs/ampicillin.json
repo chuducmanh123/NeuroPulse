@@ -61,12 +61,12 @@
     }
   ],
   "renal_basis": {
-    "value": "cg_abw",
+    "value": "cg_normalized_1_73",
     "refs": [
       {
         "source_id": "fda-ampicillin-label",
-        "locator": "DOSAGE AND ADMINISTRATION",
-        "quote": "1.5 g (ampicillin 1 g and sulbactam 0.5 g) to 3 g (ampicillin 2 g and sulbactam 1 g) every six hours."
+        "locator": "Section Dosage and Administration: Renal Impairment",
+        "quote": "Dosage Guide for Patients with Renal Impairment Creatinine Clearance (mL/min/1.73m 2 ) Ampicillin and Sulbactam Half-Life (Hours) Recommended Ampicillin And Sulbactam For Injection Dosage ≥ 30 1 1.5 g to 3 g every 6 to 8 hours 15 to 29 5 1.5 g to 3 g every 12 hours 5 to 14 9 1.5 g to 3 g every 24 hours When only serum creatinine is available, the f"
       }
     ]
   },
@@ -270,6 +270,74 @@
         "source_id": "fda-ampicillin-label",
         "locator": "PRECAUTIONS - Drug Interactions",
         "quote": "The concurrent administration of allopurinol and ampicillin increases substantially the incidence of rashes in patients receiving both drugs as compared to patients receiving ampicillin alone."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "In patients with severe renal impairment (creatinine clearance < 50 mL/min/1.73 m²), extend the dosing interval to avoid accumulation.",
+    "renal_basis": {
+      "value": "cg_normalized_1_73",
+      "refs": [
+        {
+          "source_id": "fda-ampicillin-label",
+          "locator": "Section Dosage and Administration: Renal Impairment",
+          "quote": "Dosage Guide for Patients with Renal Impairment Creatinine Clearance (mL/min/1.73m 2 ) Ampicillin and Sulbactam Half-Life (Hours) Recommended Ampicillin And Sulbactam For Injection Dosage ≥ 30 1 1.5 g to 3 g every 6 to 8 hours 15 to 29 5 1.5 g to 3 g every 12 hours 5 to 14 9 1.5 g to 3 g every 24 hours When only serum creatinine is available, the f"
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 50,
+        "max": null,
+        "dose_text": "Standard dose every 6 hours",
+        "refs": [
+          {
+            "source_id": "fda-ampicillin-label",
+            "locator": "Section Dosage and Administration: Renal Impairment",
+            "quote": "Dosage Guide for Patients with Renal Impairment Creatinine Clearance (mL/min/1.73m 2 ) Ampicillin and Sulbactam Half-Life (Hours) Recommended Ampicillin And Sulbactam For Injection Dosage ≥ 30 1 1.5 g to 3 g every 6 to 8 hours 15 to 29 5 1.5 g to 3 g every 12 hours 5 to 14 9 1.5 g to 3 g every 24 hours When only serum creatinine is available, the f"
+          }
+        ]
+      },
+      {
+        "min": 15,
+        "max": 50,
+        "dose_text": "Standard single dose administered every 8 to 12 hours",
+        "refs": [
+          {
+            "source_id": "fda-ampicillin-label",
+            "locator": "Section Dosage and Administration: Renal Impairment",
+            "quote": "Dosage Guide for Patients with Renal Impairment Creatinine Clearance (mL/min/1.73m 2 ) Ampicillin and Sulbactam Half-Life (Hours) Recommended Ampicillin And Sulbactam For Injection Dosage ≥ 30 1 1.5 g to 3 g every 6 to 8 hours 15 to 29 5 1.5 g to 3 g every 12 hours 5 to 14 9 1.5 g to 3 g every 24 hours When only serum creatinine is available, the f"
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 15,
+        "dose_text": "Standard single dose administered every 12 to 24 hours",
+        "refs": [
+          {
+            "source_id": "fda-ampicillin-label",
+            "locator": "Section Dosage and Administration: Renal Impairment",
+            "quote": "Dosage Guide for Patients with Renal Impairment Creatinine Clearance (mL/min/1.73m 2 ) Ampicillin and Sulbactam Half-Life (Hours) Recommended Ampicillin And Sulbactam For Injection Dosage ≥ 30 1 1.5 g to 3 g every 6 to 8 hours 15 to 29 5 1.5 g to 3 g every 12 hours 5 to 14 9 1.5 g to 3 g every 24 hours When only serum creatinine is available, the f"
+          }
+        ]
+      }
+    ],
+    "hemodialysis": {
+      "value": "Ampicillin is removed by hemodialysis; administer a dose immediately following completion of the hemodialysis session.",
+      "refs": [
+        {
+          "source_id": "fda-ampicillin-label",
+          "locator": "Section Dosage and Administration: Renal Impairment",
+          "quote": "Dosage Guide for Patients with Renal Impairment Creatinine Clearance (mL/min/1.73m 2 ) Ampicillin and Sulbactam Half-Life (Hours) Recommended Ampicillin And Sulbactam For Injection Dosage ≥ 30 1 1.5 g to 3 g every 6 to 8 hours 15 to 29 5 1.5 g to 3 g every 12 hours 5 to 14 9 1.5 g to 3 g every 24 hours When only serum creatinine is available, the f"
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-ampicillin-label",
+        "locator": "Section Dosage and Administration: Renal Impairment",
+        "quote": "Dosage Guide for Patients with Renal Impairment Creatinine Clearance (mL/min/1.73m 2 ) Ampicillin and Sulbactam Half-Life (Hours) Recommended Ampicillin And Sulbactam For Injection Dosage ≥ 30 1 1.5 g to 3 g every 6 to 8 hours 15 to 29 5 1.5 g to 3 g every 12 hours 5 to 14 9 1.5 g to 3 g every 24 hours When only serum creatinine is available, the f"
       }
     ]
   }

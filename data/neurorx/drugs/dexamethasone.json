@@ -93,8 +93,8 @@
     "refs": [
       {
         "source_id": "fda-dexamethasone-label",
-        "locator": "INDICATIONS AND USAGE",
-        "quote": "cerebral edema associated with primary or metastatic brain tumor, craniotomy, or head injury."
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION For Oral Administration The initial dosage varies from 0.75 to 9 mg a day depending on the disease being treated. It Should Be Emphasized That Dosage Requirements Are Variable And Must Be Individualized On The Basis Of The Disease Under Treatment And The Response Of The Patient."
       }
     ]
   },
@@ -289,6 +289,27 @@
         "source_id": "fda-dexamethasone-label",
         "locator": "PRECAUTIONS - Drug Interactions: Anticholinesterases",
         "quote": "Anticholinesterases: Concomitant use of anticholinesterase agents and corticosteroids may produce severe weakness in patients with myasthenia gravis. If possible, anticholinesterase agents should be withdrawn at least 24 hours before initiating corticosteroid therapy."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-dexamethasone-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION For Oral Administration The initial dosage varies from 0.75 to 9 mg a day depending on the disease being treated. It Should Be Emphasized That Dosage Requirements Are Variable And Must Be Individualized On The Basis Of The Disease Under Treatment And The Response Of The Patient."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-dexamethasone-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION For Oral Administration The initial dosage varies from 0.75 to 9 mg a day depending on the disease being treated. It Should Be Emphasized That Dosage Requirements Are Variable And Must Be Individualized On The Basis Of The Disease Under Treatment And The Response Of The Patient."
       }
     ]
   }

@@ -65,8 +65,8 @@
     "refs": [
       {
         "source_id": "fda-ceftriaxone-label",
-        "locator": "INDICATIONS AND USAGE",
-        "quote": "Meningitis Caused by Haemophilus influenzae, Neisseria meningitidis or Streptococcus pneumoniae ."
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal Impairment Hemodialysis Patients (0 to 5 mL/min) 14.7 0.65 13.7 Severe (5 to 15 mL/min) 15.7 0.56 12.5 Moderate (16 to 30 mL/min) 11.4 0.72 11.8 Mild (31 to 60 mL/min) 12.4 0.70 13.3 Patients With Liver Disease 8.8 1.1 13.6 * Creatinine clearance."
       }
     ]
   },
@@ -258,6 +258,27 @@
         "source_id": "fda-ceftriaxone-label",
         "locator": "WARNINGS - Calcium-containing Products",
         "quote": "Do not use diluents containing calcium, such as Ringer’s solution or Hartmann’s solution, to reconstitute ceftriaxone vials or to further dilute a reconstituted vial for IV administration because a precipitate can form. Precipitation of ceftriaxone-calcium can also occur when ceftriaxone is mixed with calcium-containing solutions in the same IV administration line."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-ceftriaxone-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "Renal Impairment Hemodialysis Patients (0 to 5 mL/min) 14.7 0.65 13.7 Severe (5 to 15 mL/min) 15.7 0.56 12.5 Moderate (16 to 30 mL/min) 11.4 0.72 11.8 Mild (31 to 60 mL/min) 12.4 0.70 13.3 Patients With Liver Disease 8.8 1.1 13.6 * Creatinine clearance."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-ceftriaxone-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal Impairment Hemodialysis Patients (0 to 5 mL/min) 14.7 0.65 13.7 Severe (5 to 15 mL/min) 15.7 0.56 12.5 Moderate (16 to 30 mL/min) 11.4 0.72 11.8 Mild (31 to 60 mL/min) 12.4 0.70 13.3 Patients With Liver Disease 8.8 1.1 13.6 * Creatinine clearance."
       }
     ]
   }

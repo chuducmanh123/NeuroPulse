@@ -62,20 +62,24 @@
     }
   ],
   "renal_basis": {
-    "value": "none",
+    "value": "cg_abw",
     "refs": [
       {
         "source_id": "fda-phytonadione-label",
-        "locator": "Section 11 DESCRIPTION",
-        "quote": "Phytonadione is a vitamin, which is a clear, yellow to amber, viscous, odorless or nearly odorlessliquid. It is insoluble in water, soluble in chloroform and slightly soluble in ethanol."
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "USE IN SPECIFIC POPULATIONS === Pregnancy Category C: Animal reproduction studies have not been conducted with phytonadione injectable emulsion It is also not known whether phytonadione injectable emulsion can cause fetal harm when administered to a pregnant woman or can affect reproduction capacity."
       }
-    ],
-    "note": "No dosage adjustment needed for renal impairment"
+    ]
   },
   "hepatic": {
-    "value": null,
-    "refs": [],
-    "note": "No dosage adjustment established in hepatic impairment"
+    "value": "Phytonadione promotes hepatic synthesis of clotting factors II, VII, IX, and X. In severe intrinsic liver disease where synthesis is impaired, failure to respond to phytonadione indicates severe hepatic failure.",
+    "refs": [
+      {
+        "source_id": "fda-phytonadione-label",
+        "locator": "Section Indications and Usage",
+        "quote": "faulty formation of factors II, VII, IX and X when caused by Vitamin K deficiency or interference with Vitamin K activity."
+      }
+    ]
   },
   "black_box": {
     "value": [
@@ -260,6 +264,27 @@
         "source_id": "fda-phytonadione-label",
         "locator": "PRECAUTIONS - Drug Interactions",
         "quote": "Temporary resistance to prothrombin-depressing anticoagulants may result, especially when larger doses of phytonadione are used."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-phytonadione-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "USE IN SPECIFIC POPULATIONS === Pregnancy Category C: Animal reproduction studies have not been conducted with phytonadione injectable emulsion It is also not known whether phytonadione injectable emulsion can cause fetal harm when administered to a pregnant woman or can affect reproduction capacity."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-phytonadione-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "USE IN SPECIFIC POPULATIONS === Pregnancy Category C: Animal reproduction studies have not been conducted with phytonadione injectable emulsion It is also not known whether phytonadione injectable emulsion can cause fetal harm when administered to a pregnant woman or can affect reproduction capacity."
       }
     ]
   }

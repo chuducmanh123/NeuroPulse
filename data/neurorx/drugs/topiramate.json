@@ -58,28 +58,7 @@
         "max_single": 200,
         "max_daily": 400
       },
-      "dose_text": "Recommended total daily dose as initial monotherapy in adults is 400 mg/day in two divided doses. Titrate slowly starting at 25 mg twice daily.",
-      "renal_bands": [
-        {
-          "min": null,
-          "max": 70,
-          "dose_text": "CrCl < 70 mL/min/1.73 m²: Reduce dose by 50% (one-half usual adult dose).",
-          "dose": {
-            "kind": "fixed",
-            "amount": 25,
-            "unit": "mg",
-            "frequency": "daily",
-            "max_daily": 200
-          },
-          "refs": [
-            {
-              "source_id": "fda-topiramate-label",
-              "locator": "DOSAGE AND ADMINISTRATION",
-              "quote": "creatinine clearance less than 70 mL/min/1.73 m 2 ), one-half of the usual adult dose of TOPAMAX is recommended [see Use in Specific Populations (8.5 , 8.6) , Clinical Pharmacology (12.3) ] ."
-            }
-          ]
-        }
-      ]
+      "dose_text": "Recommended total daily dose as initial monotherapy in adults is 400 mg/day in two divided doses. Titrate slowly starting at 25 mg twice daily."
     },
     {
       "id": "top-po-migraine-prophylaxis",
@@ -114,8 +93,8 @@
     "refs": [
       {
         "source_id": "fda-topiramate-label",
-        "locator": "DOSAGE AND ADMINISTRATION",
-        "quote": "creatinine clearance less than 70 mL/min/1.73 m 2 ), one-half of the usual adult dose of TOPAMAX is recommended [see Use in Specific Populations (8.5 , 8.6) , Clinical Pharmacology (12.3) ] ."
+        "locator": "Section 2.5 Dosing in Patients with Renal Impairment",
+        "quote": "In patients with renal impairment (creatinine clearance less than 70 mL/min/1.73 m 2 ), one-half of the usual adult dose of TOPAMAX is recommended [see Use in Specific Populations (8.5 , 8.6) , Clinical Pharmacology (12.3) ] ."
       }
     ]
   },
@@ -348,6 +327,62 @@
         "source_id": "fda-topiramate-label",
         "locator": "Section 7.1 Antiepileptic Drugs",
         "quote": "Concomitant administration of valproic acid and TOPAMAX has been associated with hypothermia and hyperammonemia with and without encephalopathy."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "In patients with renal impairment (creatinine clearance less than 70 mL/min/1.73 m²), one-half of the usual adult dose of TOPAMAX is recommended.",
+    "renal_basis": {
+      "value": "cg_normalized_1_73",
+      "refs": [
+        {
+          "source_id": "fda-topiramate-label",
+          "locator": "Section 2.5 Dosing in Patients with Renal Impairment",
+          "quote": "In patients with renal impairment (creatinine clearance less than 70 mL/min/1.73 m 2 ), one-half of the usual adult dose of TOPAMAX is recommended [see Use in Specific Populations (8.5 , 8.6) , Clinical Pharmacology (12.3) ] ."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 70,
+        "max": null,
+        "dose_text": "Standard adult dose (no adjustment necessary)",
+        "refs": [
+          {
+            "source_id": "fda-topiramate-label",
+            "locator": "Section 2.5 Dosing in Patients with Renal Impairment",
+            "quote": "In patients with renal impairment (creatinine clearance less than 70 mL/min/1.73 m 2 ), one-half of the usual adult dose of TOPAMAX is recommended [see Use in Specific Populations (8.5 , 8.6) , Clinical Pharmacology (12.3) ] ."
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 70,
+        "dose_text": "Reduce dose by 50% (one-half the usual adult dose) and titrate slowly",
+        "refs": [
+          {
+            "source_id": "fda-topiramate-label",
+            "locator": "Section 2.5 Dosing in Patients with Renal Impairment",
+            "quote": "In patients with renal impairment (creatinine clearance less than 70 mL/min/1.73 m 2 ), one-half of the usual adult dose of TOPAMAX is recommended [see Use in Specific Populations (8.5 , 8.6) , Clinical Pharmacology (12.3) ] ."
+          }
+        ]
+      }
+    ],
+    "hemodialysis": {
+      "value": "To avoid rapid drops in topiramate plasma concentration during hemodialysis, a supplemental dose of TOPAMAX may be required (approximately one-third to one-half daily dose).",
+      "refs": [
+        {
+          "source_id": "fda-topiramate-label",
+          "locator": "Section 2.6 Dosing in Patients Undergoing Hemodialysis",
+          "quote": "To avoid rapid drops in topiramate plasma concentration during hemodialysis, a supplemental dose of TOPAMAX may be required."
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-topiramate-label",
+        "locator": "Section 2.5 Dosing in Patients with Renal Impairment",
+        "quote": "In patients with renal impairment (creatinine clearance less than 70 mL/min/1.73 m 2 ), one-half of the usual adult dose of TOPAMAX is recommended [see Use in Specific Populations (8.5 , 8.6) , Clinical Pharmacology (12.3) ] ."
       }
     ]
   }

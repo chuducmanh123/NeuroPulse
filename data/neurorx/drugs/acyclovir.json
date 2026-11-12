@@ -61,12 +61,12 @@
     }
   ],
   "renal_basis": {
-    "value": "cg_abw",
+    "value": "cg_normalized_1_73",
     "refs": [
       {
         "source_id": "fda-acyclovir-label",
-        "locator": "DOSAGE AND ADMINISTRATION",
-        "quote": "Table 5: Dosage Adjustments for Patients with Renal Impairment Creatinine Clearance (mL/min/1.73 m 2 ) Percent of Recommended Dose Dosing Interval (hours) >50 100% 8 25 to 50 100%"
+        "locator": "Section 2.4 Dosage Adjustments in Patients with Renal Impairment",
+        "quote": "Adjustments for Patients with Renal Impairment Creatinine Clearance (mL/min/1.73 m 2 ) Percent of Recommended Dose Dosing Interval (hours) >50 100% 8 25 to 50 100% 12 10 to 25 100% 24 0 to 10 50% 24 Hemodialysis For patients who require dialysis, the mean plasma half-life of acyclovir during hemodialysis is approximately 5 hours."
       }
     ]
   },
@@ -272,6 +272,86 @@
         "source_id": "fda-acyclovir-label",
         "locator": "CLINICAL PHARMACOLOGY - Drug Interactions",
         "quote": "Coadministration of probenecid with acyclovir has been shown to increase the mean acyclovir half-life and the area under the concentration-time curve. Urinary excretion and renal clearance were correspondingly reduced."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "Dosage adjustments are required in patients with renal impairment based on creatinine clearance (mL/min/1.73 m²). Adequate hydration should be maintained.",
+    "renal_basis": {
+      "value": "cg_normalized_1_73",
+      "refs": [
+        {
+          "source_id": "fda-acyclovir-label",
+          "locator": "Section 2.4 Dosage Adjustments in Patients with Renal Impairment",
+          "quote": "Adjustments for Patients with Renal Impairment Creatinine Clearance (mL/min/1.73 m 2 ) Percent of Recommended Dose Dosing Interval (hours) >50 100% 8 25 to 50 100% 12 10 to 25 100% 24 0 to 10 50% 24 Hemodialysis For patients who require dialysis, the mean plasma half-life of acyclovir during hemodialysis is approximately 5 hours."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 50,
+        "max": null,
+        "dose_text": "100% of recommended dose every 8 hours",
+        "refs": [
+          {
+            "source_id": "fda-acyclovir-label",
+            "locator": "Section 2.4 Dosage Adjustments in Patients with Renal Impairment",
+            "quote": "Adjustments for Patients with Renal Impairment Creatinine Clearance (mL/min/1.73 m 2 ) Percent of Recommended Dose Dosing Interval (hours) >50 100% 8 25 to 50 100% 12 10 to 25 100% 24 0 to 10 50% 24 Hemodialysis For patients who require dialysis, the mean plasma half-life of acyclovir during hemodialysis is approximately 5 hours."
+          }
+        ]
+      },
+      {
+        "min": 25,
+        "max": 50,
+        "dose_text": "100% of recommended dose every 12 hours",
+        "refs": [
+          {
+            "source_id": "fda-acyclovir-label",
+            "locator": "Section 2.4 Dosage Adjustments in Patients with Renal Impairment",
+            "quote": "25 to 50 100% 12 10 to 25 100% 24 0 to 10 50% 24 Hemodialysis For patients who require dialysis, the mean plasma half-life of acyclovir during hemodialysis is approximately 5 hours. This results in a 60% decrease in plasma concentrations following a six-hour dialysis period."
+          }
+        ]
+      },
+      {
+        "min": 10,
+        "max": 25,
+        "dose_text": "100% of recommended dose every 24 hours",
+        "refs": [
+          {
+            "source_id": "fda-acyclovir-label",
+            "locator": "Section 2.4 Dosage Adjustments in Patients with Renal Impairment",
+            "quote": "10 to 25 100% 24 0 to 10 50% 24 Hemodialysis For patients who require dialysis, the mean plasma half-life of acyclovir during hemodialysis is approximately 5 hours. This results in a 60% decrease in plasma concentrations following a six-hour dialysis period."
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 10,
+        "dose_text": "50% of recommended dose every 24 hours",
+        "refs": [
+          {
+            "source_id": "fda-acyclovir-label",
+            "locator": "Section 2.4 Dosage Adjustments in Patients with Renal Impairment",
+            "quote": "0 to 10 50% 24 Hemodialysis For patients who require dialysis, the mean plasma half-life of acyclovir during hemodialysis is approximately 5 hours. This results in a 60% decrease in plasma concentrations following a six-hour dialysis period."
+          }
+        ]
+      }
+    ],
+    "hemodialysis": {
+      "value": "For patients who require dialysis, the mean plasma half-life of acyclovir during hemodialysis is approximately 5 hours; administer an additional dose after each dialysis session.",
+      "refs": [
+        {
+          "source_id": "fda-acyclovir-label",
+          "locator": "Section 2.4 Dosage Adjustments in Patients with Renal Impairment",
+          "quote": "For patients who require dialysis, the mean plasma half-life of acyclovir during hemodialysis is approximately 5 hours. This results in a 60% decrease in plasma concentrations following a six-hour dialysis period. Therefore, the patient’s dosing schedule should be adjusted so that an additional dose is administered after each dialysis."
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-acyclovir-label",
+        "locator": "Section 2.4 Dosage Adjustments in Patients with Renal Impairment",
+        "quote": "Adjustments for Patients with Renal Impairment Creatinine Clearance (mL/min/1.73 m 2 ) Percent of Recommended Dose Dosing Interval (hours) >50 100% 8 25 to 50 100% 12 10 to 25 100% 24 0 to 10 50% 24 Hemodialysis For patients who require dialysis, the mean plasma half-life of acyclovir during hemodialysis is approximately 5 hours."
       }
     ]
   }

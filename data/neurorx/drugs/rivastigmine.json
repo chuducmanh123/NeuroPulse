@@ -92,8 +92,8 @@
     "refs": [
       {
         "source_id": "fda-rivastigmine-label",
-        "locator": "DOSAGE AND ADMINISTRATION",
-        "quote": "intact skin for a 24-hour period; replace with a new patch every 24 hours. ( 2.1 , 2.4 ) • Initial Dose: Initiate treatment with 4.6 mg/24 hours EXELON PATCH."
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal Impairment No study was conducted with EXELON PATCH in subjects with renal impairment. Based on population analysis, creatinine clearance did not show any clear effect on steady-state concentrations of rivastigmine or its metabolite."
       }
     ]
   },
@@ -312,6 +312,27 @@
         "source_id": "fda-rivastigmine-label",
         "locator": "Section 7.1 Metoclopramide",
         "quote": "Due to the risk of additive extra-pyramidal adverse reactions, the concomitant use of metoclopramide and EXELON PATCH is not recommended."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-rivastigmine-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "Renal Impairment No study was conducted with EXELON PATCH in subjects with renal impairment. Based on population analysis, creatinine clearance did not show any clear effect on steady-state concentrations of rivastigmine or its metabolite."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-rivastigmine-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal Impairment No study was conducted with EXELON PATCH in subjects with renal impairment. Based on population analysis, creatinine clearance did not show any clear effect on steady-state concentrations of rivastigmine or its metabolite."
       }
     ]
   }

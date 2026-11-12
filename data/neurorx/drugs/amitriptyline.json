@@ -65,8 +65,8 @@
     "refs": [
       {
         "source_id": "fda-amitriptyline-label",
-        "locator": "INDICATIONS AND USAGE",
-        "quote": "relief of symptoms of depression. Endogenous depression is more likely to be alleviated than are other depressive states. === DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATI"
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION Oral Dosage Dosage should be initiated at a low level and increased gradually, noting carefully the clinical response and any evidence of intolerance. Initial Dosage for Adults For outpatients, 75 mg of amitriptyline hydrochloride a day in divided doses is usually satisfactory."
       }
     ]
   },
@@ -303,6 +303,27 @@
         "source_id": "fda-amitriptyline-label",
         "locator": "CONTRAINDICATIONS",
         "quote": "Hyperpyretic crises, severe convulsions, and deaths have occurred in patients receiving tricyclic antidepressant and monoamine oxidase inhibiting drugs simultaneously. When it is desired to replace a monoamine oxidase inhibitor with amitriptyline hydrochloride, a minimum of 14 days should be allowed to elapse after the former is discontinued."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-amitriptyline-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION Oral Dosage Dosage should be initiated at a low level and increased gradually, noting carefully the clinical response and any evidence of intolerance. Initial Dosage for Adults For outpatients, 75 mg of amitriptyline hydrochloride a day in divided doses is usually satisfactory."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-amitriptyline-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION Oral Dosage Dosage should be initiated at a low level and increased gradually, noting carefully the clinical response and any evidence of intolerance. Initial Dosage for Adults For outpatients, 75 mg of amitriptyline hydrochloride a day in divided doses is usually satisfactory."
       }
     ]
   }

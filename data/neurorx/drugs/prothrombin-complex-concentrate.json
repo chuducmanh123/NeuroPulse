@@ -116,20 +116,24 @@
     }
   ],
   "renal_basis": {
-    "value": "none",
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-4fpcc-kcentra-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "USE IN SPECIFIC POPULATIONS === 8 USE IN SPECIFIC POPULATIONS 8.1 Pregnancy Risk Summary There are no data with KCENTRA use in pregnancy to inform on drug-associated risk. Animal reproduction studies have not been conducted with KCENTRA."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "KCENTRA replaces Vitamin K-dependent clotting factors II, VII, IX, and X. Dosing is individualized based on baseline INR and body weight; no specific dosage adjustment is recommended for hepatic impairment.",
     "refs": [
       {
         "source_id": "fda-4fpcc-kcentra-label",
         "locator": "Section 12.1 Mechanism of Action",
-        "quote": "KCENTRA contains the Vitamin K-dependent coagulation Factors II (FII), VII (FVII), IX (FIX), and X (FX), together known as the Prothrombin Complex, and the antithrombotic Protein C and Protein S."
+        "quote": "KCENTRA contains the Vitamin K-dependent coagulation Factors II (FII), VII (FVII), IX (FIX), and X (FX), together known as the Prothrombin Complex, and the antithrombotic Protein C and Protein S. A dose-dependent acquired deficiency of the Vitamin K-dependent coagulation factors occurs during Vitamin K antagonist treatment."
       }
-    ],
-    "note": "No dosage adjustment needed for renal impairment"
-  },
-  "hepatic": {
-    "value": null,
-    "refs": [],
-    "note": "No dosage adjustment required for hepatic impairment"
+    ]
   },
   "black_box": {
     "value": [
@@ -315,6 +319,27 @@
         "source_id": "fda-4fpcc-kcentra-label",
         "locator": "Section 1 INDICATIONS AND USAGE",
         "quote": "KCENTRA, (Prothrombin Complex Concentrate (Human)), is a blood coagulation factor replacement product indicated for the urgent reversal of acquired coagulation factor deficiency induced by Vitamin K antagonist (VKA, e.g., warfarin) therapy in adult patients with: acute major bleeding or need for an urgent surgery/invasive procedure."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-4fpcc-kcentra-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "USE IN SPECIFIC POPULATIONS === 8 USE IN SPECIFIC POPULATIONS 8.1 Pregnancy Risk Summary There are no data with KCENTRA use in pregnancy to inform on drug-associated risk. Animal reproduction studies have not been conducted with KCENTRA."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-4fpcc-kcentra-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "USE IN SPECIFIC POPULATIONS === 8 USE IN SPECIFIC POPULATIONS 8.1 Pregnancy Risk Summary There are no data with KCENTRA use in pregnancy to inform on drug-associated risk. Animal reproduction studies have not been conducted with KCENTRA."
       }
     ]
   }

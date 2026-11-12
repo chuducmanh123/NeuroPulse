@@ -119,7 +119,7 @@
     "refs": [
       {
         "source_id": "fda-lacosamide-label",
-        "locator": "Section 2.4 Dosage Information for Patients with Renal Impairment",
+        "locator": "Section 2.5 Dosage Information for Patients with Renal Impairment",
         "quote": "For patients with severe renal impairment [creatinine clearance (CL CR ) less than 30 mL/min as estimated by the Cockcroft-Gault equation for adults; CL CR less than 30 mL/min/1.73m 2 as estimated by the Schwartz equation for pediatric patients] or end-stage renal disease, a reduction of 25% of the maximum dosage is recommended."
       }
     ]
@@ -403,6 +403,62 @@
         "source_id": "fda-lacosamide-label",
         "locator": "Section 5 WARNINGS AND PRECAUTIONS",
         "quote": "including those that prolong PR interval (including sodium channel blocking AEDs), because of a risk of AV block, bradycardia, or ventricular tachyarrhythmia."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dose adjustment is necessary for mild-to-moderate renal impairment (CrCl >= 30 mL/min). In patients with severe renal impairment (CrCl < 30 mL/min), reduce maximum dose by 25% to 300 mg/day.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-lacosamide-label",
+          "locator": "Section 2.5 Dosage Information for Patients with Renal Impairment",
+          "quote": "For patients with severe renal impairment [creatinine clearance (CL CR ) less than 30 mL/min as estimated by the Cockcroft-Gault equation for adults; CL CR less than 30 mL/min/1.73m 2 as estimated by the Schwartz equation for pediatric patients] or end-stage renal disease, a reduction of 25% of the maximum dosage is recommended."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 30,
+        "max": null,
+        "dose_text": "Standard maintenance dosing (no dosage adjustment necessary)",
+        "refs": [
+          {
+            "source_id": "fda-lacosamide-label",
+            "locator": "Section 2.5 Dosage Information for Patients with Renal Impairment",
+            "quote": "For patients with severe renal impairment [creatinine clearance (CL CR ) less than 30 mL/min as estimated by the Cockcroft-Gault equation for adults; CL CR less than 30 mL/min/1.73m 2 as estimated by the Schwartz equation for pediatric patients] or end-stage renal disease, a reduction of 25% of the maximum dosage is recommended."
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 30,
+        "dose_text": "Maximum recommended dose is 300 mg/day (25% reduction of maximum adult dose)",
+        "refs": [
+          {
+            "source_id": "fda-lacosamide-label",
+            "locator": "Section 2.5 Dosage Information for Patients with Renal Impairment",
+            "quote": "For patients with severe renal impairment [creatinine clearance (CL CR ) less than 30 mL/min as estimated by the Cockcroft-Gault equation for adults; CL CR less than 30 mL/min/1.73m 2 as estimated by the Schwartz equation for pediatric patients] or end-stage renal disease, a reduction of 25% of the maximum dosage is recommended."
+          }
+        ]
+      }
+    ],
+    "hemodialysis": {
+      "value": "Following a 4-hour hemodialysis treatment, dosage supplementation of up to 50% should be considered.",
+      "refs": [
+        {
+          "source_id": "fda-lacosamide-label",
+          "locator": "Section 2.5 Dosage Information for Patients with Renal Impairment",
+          "quote": "Following a 4-hour hemodialysis treatment, dosage supplementation of up to 50% should be considered."
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-lacosamide-label",
+        "locator": "Section 2.5 Dosage Information for Patients with Renal Impairment",
+        "quote": "For patients with severe renal impairment [creatinine clearance (CL CR ) less than 30 mL/min as estimated by the Cockcroft-Gault equation for adults; CL CR less than 30 mL/min/1.73m 2 as estimated by the Schwartz equation for pediatric patients] or end-stage renal disease, a reduction of 25% of the maximum dosage is recommended."
       }
     ]
   }

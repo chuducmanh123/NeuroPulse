@@ -63,8 +63,8 @@
     "refs": [
       {
         "source_id": "fda-levodopa-carbidopa-label",
-        "locator": "INDICATIONS AND USAGE",
-        "quote": "treatment of Parkinson's disease, post-encephalitic parkinsonism, and symptomatic parkinsonism that may follow carbon monoxide intoxication or manganese intoxication."
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "renal function are recommended during extended therapy. Patients with chronic wide-angle glaucoma may be treated cautiously with SINEMET provided the intraocular pressure is well-controlled and the patient is monitored carefully for changes in intraocular pressure during therapy."
       }
     ]
   },
@@ -282,6 +282,27 @@
         "source_id": "fda-levodopa-carbidopa-label",
         "locator": "CONTRAINDICATIONS",
         "quote": "Nonselective monoamine oxidase (MAO) inhibitors are contraindicated for use with SINEMET."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-levodopa-carbidopa-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "renal function are recommended during extended therapy. Patients with chronic wide-angle glaucoma may be treated cautiously with SINEMET provided the intraocular pressure is well-controlled and the patient is monitored carefully for changes in intraocular pressure during therapy."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-levodopa-carbidopa-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "renal function are recommended during extended therapy. Patients with chronic wide-angle glaucoma may be treated cautiously with SINEMET provided the intraocular pressure is well-controlled and the patient is monitored carefully for changes in intraocular pressure during therapy."
       }
     ]
   }

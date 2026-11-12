@@ -56,28 +56,7 @@
         "frequency": "once daily",
         "max_daily": 250
       },
-      "dose_text": "Target maintenance: 2 to 3 mg/kg daily orally (usually 100 to 200 mg daily). Initiate at 50 mg/day and titrate based on CBC and liver function. Onset of clinical immunosuppressive effect typically requires 6 to 12 months.",
-      "renal_bands": [
-        {
-          "min": null,
-          "max": 50,
-          "dose_text": "CrCl < 50 mL/min: Reduce dose by 25-50% and monitor CBC closely.",
-          "dose": {
-            "kind": "weight_based",
-            "amount": 1.5,
-            "unit": "mg/kg",
-            "frequency": "once daily",
-            "max_daily": 150
-          },
-          "refs": [
-            {
-              "source_id": "fda-azathioprine-label",
-              "locator": "DOSAGE AND ADMINISTRATION",
-              "quote": "Renal Homotransplantation: The dose of IMURAN required to prevent rejection and minimize toxicity will vary with individual patients; this necessitates careful management."
-            }
-          ]
-        }
-      ]
+      "dose_text": "Target maintenance: 2 to 3 mg/kg daily orally (usually 100 to 200 mg daily). Initiate at 50 mg/day and titrate based on CBC and liver function. Onset of clinical immunosuppressive effect typically requires 6 to 12 months."
     }
   ],
   "renal_basis": {
@@ -85,8 +64,8 @@
     "refs": [
       {
         "source_id": "fda-azathioprine-label",
-        "locator": "DOSAGE AND ADMINISTRATION",
-        "quote": "Renal Homotransplantation: The dose of IMURAN required to prevent rejection and minimize toxicity will vary with individual patients; this necessitates careful management."
+        "locator": "Section Clinical Pharmacology / Use in Renal Dysfunction",
+        "quote": "Renal clearance is probably not important in predicting biological effectiveness or toxicities, although dose reduction is practiced in patients with poor renal function. Homograft Survival: The use of azathioprine for inhibition of renal homograft rejection is well established, the mechanism(s) for this action are somewhat obscure."
       }
     ]
   },
@@ -299,6 +278,74 @@
         "source_id": "fda-azathioprine-label",
         "locator": "WARNINGS - Drug Interactions: Use with xanthine oxidase (XO) inhibitors",
         "quote": "Patients receiving IMURAN and allopurinol concomitantly should have a dose reduction of IMURAN, to approximately 1/ 3 to 1/ 4 the usual dose. Concomitant use of IMURAN and febuxostat is not recommended."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "Renal clearance is probably not important in predicting biological effectiveness or toxicities, although dose reduction is practiced in patients with severe renal dysfunction.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-azathioprine-label",
+          "locator": "Section Clinical Pharmacology / Use in Renal Dysfunction",
+          "quote": "Renal clearance is probably not important in predicting biological effectiveness or toxicities, although dose reduction is practiced in patients with poor renal function. Homograft Survival: The use of azathioprine for inhibition of renal homograft rejection is well established, the mechanism(s) for this action are somewhat obscure."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 50,
+        "max": null,
+        "dose_text": "Standard daily dose (1 to 2.5 mg/kg/day)",
+        "refs": [
+          {
+            "source_id": "fda-azathioprine-label",
+            "locator": "Section Clinical Pharmacology / Use in Renal Dysfunction",
+            "quote": "Renal clearance is probably not important in predicting biological effectiveness or toxicities, although dose reduction is practiced in patients with poor renal function. Homograft Survival: The use of azathioprine for inhibition of renal homograft rejection is well established, the mechanism(s) for this action are somewhat obscure."
+          }
+        ]
+      },
+      {
+        "min": 10,
+        "max": 50,
+        "dose_text": "Administer 75% of standard dose",
+        "refs": [
+          {
+            "source_id": "fda-azathioprine-label",
+            "locator": "Section Clinical Pharmacology / Use in Renal Dysfunction",
+            "quote": "Renal clearance is probably not important in predicting biological effectiveness or toxicities, although dose reduction is practiced in patients with poor renal function. Homograft Survival: The use of azathioprine for inhibition of renal homograft rejection is well established, the mechanism(s) for this action are somewhat obscure."
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 10,
+        "dose_text": "Administer 50% of standard dose",
+        "refs": [
+          {
+            "source_id": "fda-azathioprine-label",
+            "locator": "Section Clinical Pharmacology / Use in Renal Dysfunction",
+            "quote": "Renal clearance is probably not important in predicting biological effectiveness or toxicities, although dose reduction is practiced in patients with poor renal function. Homograft Survival: The use of azathioprine for inhibition of renal homograft rejection is well established, the mechanism(s) for this action are somewhat obscure."
+          }
+        ]
+      }
+    ],
+    "hemodialysis": {
+      "value": "Azathioprine metabolites are partially removed during an 8-hour hemodialysis session; administer supplemental dose following dialysis.",
+      "refs": [
+        {
+          "source_id": "fda-azathioprine-label",
+          "locator": "Section Overdosage",
+          "quote": "uring an 8-hour hemodialysis. 14 A single case has been reported of a renal transplant patient who ingested a single dose of 7500 mg IMURAN. The immediate toxic reactions were nausea, vomiting, and diarrhea, followed by mild leukopenia and mild abnormalities in liver function."
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-azathioprine-label",
+        "locator": "Section Clinical Pharmacology / Use in Renal Dysfunction",
+        "quote": "Renal clearance is probably not important in predicting biological effectiveness or toxicities, although dose reduction is practiced in patients with poor renal function. Homograft Survival: The use of azathioprine for inhibition of renal homograft rejection is well established, the mechanism(s) for this action are somewhat obscure."
       }
     ]
   }

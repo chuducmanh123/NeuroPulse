@@ -61,20 +61,24 @@
     }
   ],
   "renal_basis": {
-    "value": "none",
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-idarucizumab-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal Impairment Idarucizumab has been studied in 12 subjects with mild renal impairment (creatinine clearance [CrCl] 60 to <90 mL/min, by Cockcroft-Gault equation) and 6 subjects with moderate impairment (CrCl30 to <60 mL/min)."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Idarucizumab clearance is not mediated by hepatic metabolism; eliminated via protein catabolism primarily in kidneys. No hepatic dosage adjustment required.",
     "refs": [
       {
         "source_id": "fda-idarucizumab-label",
         "locator": "Section 12.3 Pharmacokinetics",
-        "quote": "Renal Impairment Idarucizumab has been studied in 12 subjects with mild renal impairment (creatinine clearance [CrCl] 60 to <90 mL/min, by Cockcroft-Gault equation) and 6 subjects with moderate impairment (CrCl30 to <60 mL/min)."
+        "quote": "Metabolism Several pathways have been described that may contribute to the metabolism of antibodies. All of these pathways involve biodegradation of the antibody to smaller molecules, i.e., small peptides or amino acids which are then reabsorbed and incorporated in the general protein synthesis."
       }
-    ],
-    "note": "No dosage adjustment required for renal impairment"
-  },
-  "hepatic": {
-    "value": null,
-    "refs": [],
-    "note": "No dose adjustment required in hepatic impairment"
+    ]
   },
   "black_box": {
     "value": null,
@@ -246,6 +250,27 @@
         "source_id": "fda-idarucizumab-label",
         "locator": "Section 7 DRUG INTERACTIONS - In vitro Assessment",
         "quote": "In vitro data suggest that the inhibition of dabigatran by idarucizumab is not affected by coagulation factor concentrates [3- or 4-factor prothrombin complex concentrates (PCCs), activated PCC, or recombinant Factor VIIa]."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-idarucizumab-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "Renal Impairment Idarucizumab has been studied in 12 subjects with mild renal impairment (creatinine clearance [CrCl] 60 to <90 mL/min, by Cockcroft-Gault equation) and 6 subjects with moderate impairment (CrCl30 to <60 mL/min)."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-idarucizumab-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal Impairment Idarucizumab has been studied in 12 subjects with mild renal impairment (creatinine clearance [CrCl] 60 to <90 mL/min, by Cockcroft-Gault equation) and 6 subjects with moderate impairment (CrCl30 to <60 mL/min)."
       }
     ]
   }

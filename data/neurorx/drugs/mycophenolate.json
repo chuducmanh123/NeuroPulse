@@ -57,36 +57,15 @@
         "max_single": 1000,
         "max_daily": 2000
       },
-      "dose_text": "1000 mg orally twice daily (total 2000 mg/day) taken on an empty stomach. May initiate at 500 mg twice daily and advance over 2-4 weeks to mitigate GI intolerance.",
-      "renal_bands": [
-        {
-          "min": null,
-          "max": 25,
-          "dose_text": "Severe chronic renal impairment (GFR < 25 mL/min/1.73 m²): Avoid doses > 1000 mg twice daily; monitor carefully.",
-          "dose": {
-            "kind": "fixed",
-            "amount": 1000,
-            "unit": "mg",
-            "frequency": "twice daily",
-            "max_daily": 2000
-          },
-          "refs": [
-            {
-              "source_id": "fda-mycophenolate-label",
-              "locator": "USE IN SPECIFIC POPULATIONS",
-              "quote": "severe chronic renal impairment. CELLCEPT may be used for heart or liver transplant patients with severe chronic renal impairment if the potential benefits outweigh the potential risks."
-            }
-          ]
-        }
-      ]
+      "dose_text": "1000 mg orally twice daily (total 2000 mg/day) taken on an empty stomach. May initiate at 500 mg twice daily and advance over 2-4 weeks to mitigate GI intolerance."
     }
   ],
   "renal_basis": {
-    "value": "cg_normalized_1_73",
+    "value": "cg_abw",
     "refs": [
       {
         "source_id": "fda-mycophenolate-label",
-        "locator": "USE IN SPECIFIC POPULATIONS",
+        "locator": "Section 2.4 Dosing in Patients with Renal Impairment",
         "quote": "severe chronic renal impairment. CELLCEPT may be used for heart or liver transplant patients with severe chronic renal impairment if the potential benefits outweigh the potential risks."
       }
     ]
@@ -310,6 +289,52 @@
         "source_id": "fda-mycophenolate-label",
         "locator": "Section 7 DRUG INTERACTIONS",
         "quote": "See FPI for drugs that may interfere with systemic exposure and reduce CELLCEPT efficacy: antacids with magnesium or aluminum hydroxide, proton pump inhibitors, drugs that interfere with enterohepatic recirculation, telmisartan, calcium-free phosphate binders."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "In patients with severe chronic renal impairment (GFR < 25 mL/min/1.73 m²), avoid doses greater than 1 g twice daily. No dose adjustment is needed for mild-to-moderate impairment.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-mycophenolate-label",
+          "locator": "Section 2.4 Dosing in Patients with Renal Impairment",
+          "quote": "severe chronic renal impairment. CELLCEPT may be used for heart or liver transplant patients with severe chronic renal impairment if the potential benefits outweigh the potential risks."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 25,
+        "max": null,
+        "dose_text": "Standard dose 1 g twice daily (or 1.5 g twice daily in transplant protocols)",
+        "refs": [
+          {
+            "source_id": "fda-mycophenolate-label",
+            "locator": "Section 2.4 Dosing in Patients with Renal Impairment",
+            "quote": "severe chronic renal impairment. CELLCEPT may be used for heart or liver transplant patients with severe chronic renal impairment if the potential benefits outweigh the potential risks."
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 25,
+        "dose_text": "Avoid doses > 1 g twice daily; monitor carefully for hematologic cytopenias",
+        "refs": [
+          {
+            "source_id": "fda-mycophenolate-label",
+            "locator": "Section 2.4 Dosing in Patients with Renal Impairment",
+            "quote": "severe chronic renal impairment. CELLCEPT may be used for heart or liver transplant patients with severe chronic renal impairment if the potential benefits outweigh the potential risks."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-mycophenolate-label",
+        "locator": "Section 2.4 Dosing in Patients with Renal Impairment",
+        "quote": "severe chronic renal impairment. CELLCEPT may be used for heart or liver transplant patients with severe chronic renal impairment if the potential benefits outweigh the potential risks."
       }
     ]
   }

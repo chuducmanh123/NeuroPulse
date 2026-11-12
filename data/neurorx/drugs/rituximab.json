@@ -65,8 +65,8 @@
     "refs": [
       {
         "source_id": "fda-rituximab-label",
-        "locator": "BOXED WARNING",
-        "quote": "WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LEUKOENCEPHALOPATHY WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LE"
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "renal function. ( 5.5 ) Infections: Withhold and institute appropriate anti-infective therapy. ( 5.6 ) Cardiac adverse reactions: Discontinue in case of serious or life-threatening events. ( 5.7 ) Renal toxicity: Discontinue in patients with rising serum creatinine or oliguria."
       }
     ]
   },
@@ -280,6 +280,27 @@
         "source_id": "fda-rituximab-label",
         "locator": "Section 7 DRUG INTERACTIONS",
         "quote": "Renal toxicity when used in combination with cisplatin."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-rituximab-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "renal function. ( 5.5 ) Infections: Withhold and institute appropriate anti-infective therapy. ( 5.6 ) Cardiac adverse reactions: Discontinue in case of serious or life-threatening events. ( 5.7 ) Renal toxicity: Discontinue in patients with rising serum creatinine or oliguria."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-rituximab-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "renal function. ( 5.5 ) Infections: Withhold and institute appropriate anti-infective therapy. ( 5.6 ) Cardiac adverse reactions: Discontinue in case of serious or life-threatening events. ( 5.7 ) Renal toxicity: Discontinue in patients with rising serum creatinine or oliguria."
       }
     ]
   }

@@ -57,37 +57,16 @@
         "frequency": "total dose over 2 to 5 days",
         "max_daily": 70
       },
-      "dose_text": "Total immunomodulatory dose: 2 g/kg divided equally over 2 consecutive days (1 g/kg/day × 2 days) or 5 consecutive days (0.4 g/kg/day × 5 days). Administer using adjusted ideal body weight in obese patients. Start infusion slowly (0.5 mg/kg/min) and titrate as tolerated.",
-      "renal_bands": [
-        {
-          "min": null,
-          "max": 30,
-          "dose_text": "Renal impairment or diabetes/elderly: Infuse at minimum concentration and slowest infusion rate (< 2 mg/kg/min); ensure adequate hydration prior to infusion.",
-          "dose": {
-            "kind": "weight_based",
-            "amount": 2,
-            "unit": "g/kg",
-            "frequency": "divided over 5 days",
-            "max_daily": 40
-          },
-          "refs": [
-            {
-              "source_id": "fda-ivig-label",
-              "locator": "BOXED WARNING",
-              "quote": "RENAL DYSFUNCTION AND ACUTE RENAL FAILURE Thrombosis may occur with immune globulin products 1-3 , including PRIVIGEN."
-            }
-          ]
-        }
-      ]
+      "dose_text": "Total immunomodulatory dose: 2 g/kg divided equally over 2 consecutive days (1 g/kg/day × 2 days) or 5 consecutive days (0.4 g/kg/day × 5 days). Administer using adjusted ideal body weight in obese patients. Start infusion slowly (0.5 mg/kg/min) and titrate as tolerated."
     }
   ],
   "renal_basis": {
-    "value": "cg_adj_40",
+    "value": "cg_abw",
     "refs": [
       {
         "source_id": "fda-ivig-label",
-        "locator": "BOXED WARNING",
-        "quote": "RENAL DYSFUNCTION AND ACUTE RENAL FAILURE Thrombosis may occur with immune globulin products 1-3 , including PRIVIGEN."
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "renal function deteriorates [see Boxed Warning , Warnings and Precautions (5.2 , 5.3) ] ."
       }
     ]
   },
@@ -321,6 +300,27 @@
         "source_id": "fda-ivig-label",
         "locator": "Section 7.1 Live Virus Vaccines",
         "quote": "The passive transfer of antibodies with immunoglobulin administration may interfere with the response to live virus vaccines such as measles, mumps, rubella, and varicella"
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-ivig-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "renal function deteriorates [see Boxed Warning , Warnings and Precautions (5.2 , 5.3) ] ."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-ivig-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "renal function deteriorates [see Boxed Warning , Warnings and Precautions (5.2 , 5.3) ] ."
       }
     ]
   }

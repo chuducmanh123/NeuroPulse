@@ -84,12 +84,12 @@
     }
   ],
   "renal_basis": {
-    "value": "none",
+    "value": "cg_abw",
     "refs": [
       {
         "source_id": "fda-ticagrelor-label",
-        "locator": "Section 8.7 Renal Impairment",
-        "quote": "No dosage adjustment is needed in patients with renal impairment [see Clinical Pharmacology (12.3) ] ."
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal Impairment No dosage adjustment is needed in patients with renal impairment [see Clinical Pharmacology (12.3) ] . Patients with End-Stage Renal Disease on dialysis Clinical efficacy and safety studies with BRILINTA did not enroll patients with end-stage renal disease (ESRD) on dialysis."
       }
     ]
   },
@@ -325,6 +325,27 @@
         "source_id": "fda-ticagrelor-label",
         "locator": "Section 7 DRUG INTERACTIONS",
         "quote": "Avoid use with strong CYP3A inhibitors or CYP3A inducers."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-ticagrelor-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "Renal Impairment No dosage adjustment is needed in patients with renal impairment [see Clinical Pharmacology (12.3) ] . Patients with End-Stage Renal Disease on dialysis Clinical efficacy and safety studies with BRILINTA did not enroll patients with end-stage renal disease (ESRD) on dialysis."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-ticagrelor-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal Impairment No dosage adjustment is needed in patients with renal impairment [see Clinical Pharmacology (12.3) ] . Patients with End-Stage Renal Disease on dialysis Clinical efficacy and safety studies with BRILINTA did not enroll patients with end-stage renal disease (ESRD) on dialysis."
       }
     ]
   }

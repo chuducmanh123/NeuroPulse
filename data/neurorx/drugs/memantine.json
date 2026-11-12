@@ -56,28 +56,7 @@
         "max_single": 28,
         "max_daily": 28
       },
-      "dose_text": "Extended-release: Initial dose is 7 mg once daily. Titrate in 7 mg weekly increments: Week 2: 14 mg/day; Week 3: 21 mg/day; Week 4: target 28 mg once daily. For immediate-release: initial 5 mg daily, titrate weekly to target 10 mg BID (20 mg/day). May be taken with or without food.",
-      "renal_bands": [
-        {
-          "min": 5,
-          "max": 29,
-          "dose_text": "Severe renal impairment (CrCl 5 to 29 mL/min): Recommended target dose is 14 mg/day for extended-release capsules (or 5 mg twice daily for immediate-release).",
-          "dose": {
-            "kind": "fixed",
-            "amount": 14,
-            "unit": "mg",
-            "frequency": "once daily",
-            "max_daily": 14
-          },
-          "refs": [
-            {
-              "source_id": "fda-memantine-label",
-              "locator": "DOSAGE AND ADMINISTRATION",
-              "quote": "renal impairment: the recommended maintenance dose of memantine hydrochloride extended-release capsules is 14 mg once daily."
-            }
-          ]
-        }
-      ]
+      "dose_text": "Extended-release: Initial dose is 7 mg once daily. Titrate in 7 mg weekly increments: Week 2: 14 mg/day; Week 3: 21 mg/day; Week 4: target 28 mg once daily. For immediate-release: initial 5 mg daily, titrate weekly to target 10 mg BID (20 mg/day). May be taken with or without food."
     }
   ],
   "renal_basis": {
@@ -85,8 +64,8 @@
     "refs": [
       {
         "source_id": "fda-memantine-label",
-        "locator": "DOSAGE AND ADMINISTRATION",
-        "quote": "renal impairment: the recommended maintenance dose of memantine hydrochloride extended-release capsules is 14 mg once daily."
+        "locator": "Section 2.3 Dosing in Patients with Renal Impairment",
+        "quote": "In patients with severe renal impairment (creatinine clearance of 5 to 29 mL/min, based on the Cockcroft-Gault equation), the recommended maintenance dose (and maximum recommended dose) is 14 mg/day [see Clinical Pharmacology (12.3) ] . === DOSAGE FORMS AND STRENGTHS === 3 DOSAGE FORMS AND STRENGTHS Each capsule contains 7 mg, 14 mg, 21 mg, or 28"
       }
     ]
   },
@@ -291,6 +270,64 @@
         "source_id": "fda-memantine-label",
         "locator": "Section 7.1 Drugs That Make Urine Alkaline",
         "quote": "The clearance of memantine was reduced by about 80% under alkaline urine conditions at pH 8. Therefore, alterations of urine pH towards the alkaline condition may lead to an accumulation of the drug with a possible increase in adverse effects."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is needed in patients with mild or moderate renal impairment. In patients with severe renal impairment (CrCl 5 to 29 mL/min), the recommended maintenance and maximum dose is 5 mg twice daily.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-memantine-label",
+          "locator": "Section 2.3 Dosing in Patients with Renal Impairment",
+          "quote": "In patients with severe renal impairment (creatinine clearance of 5 to 29 mL/min, based on the Cockcroft-Gault equation), the recommended maintenance dose (and maximum recommended dose) is 14 mg/day [see Clinical Pharmacology (12.3) ] . === DOSAGE FORMS AND STRENGTHS === 3 DOSAGE FORMS AND STRENGTHS Each capsule contains 7 mg, 14 mg, 21 mg, or 28"
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 30,
+        "max": null,
+        "dose_text": "Target maintenance dose: 10 mg twice daily (20 mg/day; no adjustment needed)",
+        "refs": [
+          {
+            "source_id": "fda-memantine-label",
+            "locator": "Section 2.3 Dosing in Patients with Renal Impairment",
+            "quote": "In patients with severe renal impairment (creatinine clearance of 5 to 29 mL/min, based on the Cockcroft-Gault equation), the recommended maintenance dose (and maximum recommended dose) is 14 mg/day [see Clinical Pharmacology (12.3) ] . === DOSAGE FORMS AND STRENGTHS === 3 DOSAGE FORMS AND STRENGTHS Each capsule contains 7 mg, 14 mg, 21 mg, or 28"
+          }
+        ]
+      },
+      {
+        "min": 5,
+        "max": 29,
+        "dose_text": "Recommended maintenance (and maximum) dose: 5 mg twice daily (10 mg/day)",
+        "refs": [
+          {
+            "source_id": "fda-memantine-label",
+            "locator": "Section 2.3 Dosing in Patients with Renal Impairment",
+            "quote": "In patients with severe renal impairment (creatinine clearance of 5 to 29 mL/min, based on the Cockcroft-Gault equation), the recommended maintenance dose (and maximum recommended dose) is 14 mg/day [see Clinical Pharmacology (12.3) ] . === DOSAGE FORMS AND STRENGTHS === 3 DOSAGE FORMS AND STRENGTHS Each capsule contains 7 mg, 14 mg, 21 mg, or 28"
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 5,
+        "dose_text": "Not evaluated in patients with CrCl < 5 mL/min; use with extreme caution",
+        "refs": [
+          {
+            "source_id": "fda-memantine-label",
+            "locator": "Section 2.3 Dosing in Patients with Renal Impairment",
+            "quote": "In patients with severe renal impairment (creatinine clearance of 5 to 29 mL/min, based on the Cockcroft-Gault equation), the recommended maintenance dose (and maximum recommended dose) is 14 mg/day [see Clinical Pharmacology (12.3) ] . === DOSAGE FORMS AND STRENGTHS === 3 DOSAGE FORMS AND STRENGTHS Each capsule contains 7 mg, 14 mg, 21 mg, or 28"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-memantine-label",
+        "locator": "Section 2.3 Dosing in Patients with Renal Impairment",
+        "quote": "In patients with severe renal impairment (creatinine clearance of 5 to 29 mL/min, based on the Cockcroft-Gault equation), the recommended maintenance dose (and maximum recommended dose) is 14 mg/day [see Clinical Pharmacology (12.3) ] . === DOSAGE FORMS AND STRENGTHS === 3 DOSAGE FORMS AND STRENGTHS Each capsule contains 7 mg, 14 mg, 21 mg, or 28"
       }
     ]
   }

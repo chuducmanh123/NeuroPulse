@@ -61,20 +61,24 @@
     }
   ],
   "renal_basis": {
-    "value": "none",
+    "value": "cg_abw",
     "refs": [
       {
         "source_id": "fda-protamine-label",
-        "locator": "Section 11 DESCRIPTION",
-        "quote": "Protamines are simple proteins of low molecular weight that are rich in arginine and strongly basic. They occur in the sperm of salmon and certain other species of fish."
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "DOSAGE AND ADMINISTRATION ), repeated doses, previous administration of protamine, and current or previous use of protamine-containing drugs (NPH insulin, protamine zinc insulin, and certain beta-blockers)."
       }
-    ],
-    "note": "No dosage adjustment needed for renal impairment"
+    ]
   },
   "hepatic": {
-    "value": null,
-    "refs": [],
-    "note": "No dosage adjustment needed for hepatic impairment"
+    "value": "Protamine sulfate neutralizes heparin by forming a stable, inactive salt. No hepatic dosage adjustment is provided in product labeling.",
+    "refs": [
+      {
+        "source_id": "fda-protamine-label",
+        "locator": "Section Clinical Pharmacology",
+        "quote": "When administered alone, protamine has an anticoagulant effect. However, when it is given in the presence of heparin (which is strongly acidic), a stable salt is formed and the anticoagulant activity of both drugs is lost. Protamine sulfate has a rapid onset of action."
+      }
+    ]
   },
   "black_box": {
     "value": [
@@ -256,6 +260,27 @@
         "source_id": "fda-protamine-label",
         "locator": "INDICATIONS AND USAGE",
         "quote": "Protamine Sulfate Injection, USP is indicated in the treatment of heparin overdosage."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-protamine-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "DOSAGE AND ADMINISTRATION ), repeated doses, previous administration of protamine, and current or previous use of protamine-containing drugs (NPH insulin, protamine zinc insulin, and certain beta-blockers)."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-protamine-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "DOSAGE AND ADMINISTRATION ), repeated doses, previous administration of protamine, and current or previous use of protamine-containing drugs (NPH insulin, protamine zinc insulin, and certain beta-blockers)."
       }
     ]
   }

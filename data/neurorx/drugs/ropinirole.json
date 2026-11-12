@@ -64,8 +64,8 @@
     "refs": [
       {
         "source_id": "fda-ropinirole-label",
-        "locator": "DOSAGE AND ADMINISTRATION",
-        "quote": "recommended starting dose is 0.25 mg taken three times daily; titrate to a maximum daily dose of 24 mg."
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal Impairment: The maximum recommended dose is 18 mg/day in patients with end-stage renal disease on hemodialysis. ( 2.2 ) Restless Legs Syndrome: • The recommended starting dose is 0.25 mg once daily, 1 to 3 hours before bedtime, titrate to a maximum recommended dose of 4 mg daily."
       }
     ]
   },
@@ -284,6 +284,27 @@
         "source_id": "fda-ropinirole-label",
         "locator": "Section 7 DRUG INTERACTIONS",
         "quote": "Inhibitors or inducers of CYP1A2: May alter the clearance of ropinirole; dose adjustment of ropinirole may be required."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-ropinirole-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "Renal Impairment: The maximum recommended dose is 18 mg/day in patients with end-stage renal disease on hemodialysis. ( 2.2 ) Restless Legs Syndrome: • The recommended starting dose is 0.25 mg once daily, 1 to 3 hours before bedtime, titrate to a maximum recommended dose of 4 mg daily."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-ropinirole-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal Impairment: The maximum recommended dose is 18 mg/day in patients with end-stage renal disease on hemodialysis. ( 2.2 ) Restless Legs Syndrome: • The recommended starting dose is 0.25 mg once daily, 1 to 3 hours before bedtime, titrate to a maximum recommended dose of 4 mg daily."
       }
     ]
   }

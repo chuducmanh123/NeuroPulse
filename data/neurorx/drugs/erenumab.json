@@ -63,8 +63,8 @@
     "refs": [
       {
         "source_id": "fda-erenumab-label",
-        "locator": "INDICATIONS AND USAGE",
-        "quote": "preventive treatment of migraine in adults. AIMOVIG is a calcitonin gene-related peptide receptor antagonist indicated for the preventive treatment of migraine in adults."
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "renal impairment relative to those with normal renal function. Patients with severe renal impairment (eGFR < 30 mL/min/1.73 m 2 ) have not been studied. No dedicated clinical studies were conducted to evaluate the effect of hepatic impairment or renal impairment on the pharmacokinetics of erenumab-aooe."
       }
     ]
   },
@@ -263,6 +263,27 @@
         "source_id": "fda-erenumab-label",
         "locator": "Section 12.3 Pharmacokinetics - Drug Interaction Studies",
         "quote": "Erenumab-aooe is not metabolized by cytochrome P450 enzymes; therefore, interactions with concomitant medications that are substrates, inducers, or inhibitors of cytochrome P450 enzymes are unlikely."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-erenumab-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "renal impairment relative to those with normal renal function. Patients with severe renal impairment (eGFR < 30 mL/min/1.73 m 2 ) have not been studied. No dedicated clinical studies were conducted to evaluate the effect of hepatic impairment or renal impairment on the pharmacokinetics of erenumab-aooe."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-erenumab-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "renal impairment relative to those with normal renal function. Patients with severe renal impairment (eGFR < 30 mL/min/1.73 m 2 ) have not been studied. No dedicated clinical studies were conducted to evaluate the effect of hepatic impairment or renal impairment on the pharmacokinetics of erenumab-aooe."
       }
     ]
   }

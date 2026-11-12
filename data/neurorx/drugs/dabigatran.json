@@ -52,61 +52,7 @@
         "max_single": 150,
         "max_daily": 300
       },
-      "dose_text": "150 mg orally twice daily.",
-      "renal_bands": [
-        {
-          "min": 30,
-          "max": null,
-          "dose_text": "150 mg twice daily",
-          "dose": {
-            "kind": "fixed",
-            "amount": 150,
-            "unit": "mg",
-            "frequency": "twice daily",
-            "max_single": 150,
-            "max_daily": 300
-          },
-          "refs": [
-            {
-              "source_id": "fda-dabigatran-capsules-label",
-              "locator": "Section 2.2 Recommended Dabigatran Etexilate Capsules Dosage for Adults",
-              "quote": "Reduction in Risk of Stroke and Systemic Embolism in Non-valvular AF CrCl >30 mL/min: 150 mg twice daily CrCl 15 to 30 mL/min: 75 mg twice daily CrCl <15 mL/min or on dialysis: Dosing recommendations cannot be provided"
-            }
-          ]
-        },
-        {
-          "min": 15,
-          "max": 30,
-          "dose_text": "75 mg twice daily",
-          "dose": {
-            "kind": "fixed",
-            "amount": 75,
-            "unit": "mg",
-            "frequency": "twice daily",
-            "max_single": 75,
-            "max_daily": 150
-          },
-          "refs": [
-            {
-              "source_id": "fda-dabigatran-capsules-label",
-              "locator": "Section 2.2 Recommended Dabigatran Etexilate Capsules Dosage for Adults",
-              "quote": "CrCl 15 to 30 mL/min: 75 mg twice daily"
-            }
-          ]
-        },
-        {
-          "min": null,
-          "max": 15,
-          "dose_text": "Dosing recommendations cannot be provided (avoid use)",
-          "refs": [
-            {
-              "source_id": "fda-dabigatran-capsules-label",
-              "locator": "Section 2.2 Recommended Dabigatran Etexilate Capsules Dosage for Adults",
-              "quote": "CrCl <15 mL/min or on dialysis: Dosing recommendations cannot be provided"
-            }
-          ]
-        }
-      ]
+      "dose_text": "150 mg orally twice daily."
     },
     {
       "id": "dabi-po-stroke-prevention-afib-reduced",
@@ -136,8 +82,8 @@
     "refs": [
       {
         "source_id": "fda-dabigatran-capsules-label",
-        "locator": "Section 2.4 Dosage Adjustments",
-        "quote": "Assess renal function prior to initiation of treatment with dabigatran etexilate capsules"
+        "locator": "Section 2.2 Dosage in Patients with Renal Impairment",
+        "quote": "CrCl 30 to 50 mL/min with concomitant use of P-gp inhibitors: Reduce dosage to 75 mg twice daily if given with P-gp inhibitors dronedarone or systemic ketoconazole."
       }
     ]
   },
@@ -407,5 +353,75 @@
         }
       ]
     }
+  },
+  "renal_impairment": {
+    "description": "In patients with severe renal impairment (CrCl 15 to 30 mL/min), reduce PRADAXA to 75 mg twice daily. Avoid use in CrCl < 15 mL/min or on dialysis.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-dabigatran-capsules-label",
+          "locator": "Section 2.2 Dosage in Patients with Renal Impairment",
+          "quote": "CrCl 30 to 50 mL/min with concomitant use of P-gp inhibitors: Reduce dosage to 75 mg twice daily if given with P-gp inhibitors dronedarone or systemic ketoconazole."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 50,
+        "max": null,
+        "dose_text": "150 mg orally twice daily",
+        "refs": [
+          {
+            "source_id": "fda-dabigatran-capsules-label",
+            "locator": "Section 2.2 Dosage in Patients with Renal Impairment",
+            "quote": "CrCl 30 to 50 mL/min with concomitant use of P-gp inhibitors: Reduce dosage to 75 mg twice daily if given with P-gp inhibitors dronedarone or systemic ketoconazole."
+          }
+        ]
+      },
+      {
+        "min": 30,
+        "max": 50,
+        "dose_text": "150 mg twice daily (reduce to 75 mg twice daily if taking concomitant dronedarone or ketoconazole)",
+        "refs": [
+          {
+            "source_id": "fda-dabigatran-capsules-label",
+            "locator": "Section 2.2 Dosage in Patients with Renal Impairment",
+            "quote": "CrCl 30 to 50 mL/min with concomitant use of P-gp inhibitors: Reduce dosage to 75 mg twice daily if given with P-gp inhibitors dronedarone or systemic ketoconazole."
+          }
+        ]
+      },
+      {
+        "min": 15,
+        "max": 30,
+        "dose_text": "75 mg orally twice daily",
+        "refs": [
+          {
+            "source_id": "fda-dabigatran-capsules-label",
+            "locator": "Section 2.2 Dosage in Patients with Renal Impairment",
+            "quote": "CrCl 15 to 30 mL/min: 75 mg twice daily CrCl <15 mL/min or on dialysis: Dosing recommendations cannot be provided CrCl 30 to 50 mL/min with concomitant use of P-gp inhibitors: Reduce dosage to 75 mg twice daily if given with P-gp inhibitors dronedarone or systemic ketoconazole."
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 15,
+        "dose_text": "Not recommended; dosing recommendations cannot be provided for CrCl < 15 mL/min or hemodialysis",
+        "refs": [
+          {
+            "source_id": "fda-dabigatran-capsules-label",
+            "locator": "Section 2.2 Dosage in Patients with Renal Impairment",
+            "quote": "CrCl 15 to 30 mL/min: 75 mg twice daily CrCl <15 mL/min or on dialysis: Dosing recommendations cannot be provided CrCl 30 to 50 mL/min with concomitant use of P-gp inhibitors: Reduce dosage to 75 mg twice daily if given with P-gp inhibitors dronedarone or systemic ketoconazole."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-dabigatran-capsules-label",
+        "locator": "Section 2.2 Dosage in Patients with Renal Impairment",
+        "quote": "CrCl 30 to 50 mL/min with concomitant use of P-gp inhibitors: Reduce dosage to 75 mg twice daily if given with P-gp inhibitors dronedarone or systemic ketoconazole."
+      }
+    ]
   }
 }

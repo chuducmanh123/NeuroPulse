@@ -88,12 +88,12 @@
     }
   ],
   "renal_basis": {
-    "value": "none",
+    "value": "cg_abw",
     "refs": [
       {
         "source_id": "fda-warfarin-label",
-        "locator": "Section 8.6 Renal Impairment",
-        "quote": "Renal clearance is considered to be a minor determinant of anticoagulant response to warfarin. No dosage adjustment is necessary for patients with renal impairment. Instruct patients with renal impairment taking warfarin to monitor their INR more frequently [see Warnings and Precautions ( 5.4 )] ."
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal Impairment No dosage adjustment is necessary for patients with renal failure. Monitor INR more frequently in patients with compromised renal function to maintain INR within the therapeutic range [see Warnings and Precautions ( 5.4 ) and Use in Specific Populations ( 8.6 )]."
       }
     ]
   },
@@ -381,5 +381,26 @@
         }
       ]
     }
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-warfarin-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "Renal Impairment No dosage adjustment is necessary for patients with renal failure. Monitor INR more frequently in patients with compromised renal function to maintain INR within the therapeutic range [see Warnings and Precautions ( 5.4 ) and Use in Specific Populations ( 8.6 )]."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-warfarin-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal Impairment No dosage adjustment is necessary for patients with renal failure. Monitor INR more frequently in patients with compromised renal function to maintain INR within the therapeutic range [see Warnings and Precautions ( 5.4 ) and Use in Specific Populations ( 8.6 )]."
+      }
+    ]
   }
 }

@@ -91,8 +91,8 @@
     "refs": [
       {
         "source_id": "fda-lamotrigine-label",
-        "locator": "DOSAGE AND ADMINISTRATION",
-        "quote": "Initial doses of LAMICTAL XR should be based on patients’ concomitant medications (see Table 1 ); reduced maintenance doses may be effective for patients with significant renal impairment [see Use in Specific Populations"
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal Impairment Initial doses of LAMICTAL XR should be based on patients’ concomitant medications (see Table 1 ); reduced maintenance doses may be effective for patients with significant renal impairment [see Use in Specific Populations ( 8.7 ), Clinical Pharmacology ( 12.3 )] ."
       }
     ]
   },
@@ -338,6 +338,27 @@
         "source_id": "fda-lamotrigine-label",
         "locator": "Section 7 DRUG INTERACTIONS Table 5",
         "quote": "Decreased lamotrigine concentrations approximately 50%."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-lamotrigine-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "Renal Impairment Initial doses of LAMICTAL XR should be based on patients’ concomitant medications (see Table 1 ); reduced maintenance doses may be effective for patients with significant renal impairment [see Use in Specific Populations ( 8.7 ), Clinical Pharmacology ( 12.3 )] ."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-lamotrigine-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal Impairment Initial doses of LAMICTAL XR should be based on patients’ concomitant medications (see Table 1 ); reduced maintenance doses may be effective for patients with significant renal impairment [see Use in Specific Populations ( 8.7 ), Clinical Pharmacology ( 12.3 )] ."
       }
     ]
   }

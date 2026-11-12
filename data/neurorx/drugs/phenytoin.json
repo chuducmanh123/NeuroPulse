@@ -89,20 +89,24 @@
     }
   ],
   "renal_basis": {
-    "value": "none",
+    "value": "cg_abw",
     "refs": [
       {
         "source_id": "fda-phenytoin-label",
-        "locator": "Section 11 DESCRIPTION",
-        "quote": "DILANTIN (phenytoin) is related to the barbiturates in chemical structure, but has a five-membered ring. The chemical name is 5,5-diphenyl-2,4 imidazolidinedione"
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal and/or Hepatic Impairment or Hypoalbuminemia: Monitor unbound phenytoin concentrations in these patients. ( 8.6 ) 8.1 Pregnancy Pregnancy Exposure Registry There is a pregnancy exposure registry that monitors pregnancy outcomes in women exposed to antiepileptic drugs (AEDs), such as DILANTIN, during pregnancy."
       }
-    ],
-    "note": "In renal failure or hypoalbuminemia, total phenytoin level underestimates active free drug due to decreased plasma protein binding; adjust using Sheiner-Tozer formula or measure unbound phenytoin"
+    ]
   },
   "hepatic": {
-    "value": null,
-    "refs": [],
-    "note": "Contraindicated in history of prior acute hepatotoxicity attributable to phenytoin; extensively metabolized by hepatic CYP2C9/2C19"
+    "value": "The liver is the chief site of biotransformation of phenytoin; patients with impaired liver function may show early signs of toxicity. Because the fraction of unbound phenytoin is increased in hepatic disease or hypoalbuminemia, monitor unbound phenytoin concentrations.",
+    "refs": [
+      {
+        "source_id": "fda-phenytoin-label",
+        "locator": "Section 8.6 Renal and/or Hepatic Impairment",
+        "quote": "The liver is the chief site of biotransformation of phenytoin; patients with impaired liver function, elderly patients, or those who are gravely ill may show early signs of toxicity."
+      }
+    ]
   },
   "black_box": {
     "value": null,
@@ -321,5 +325,26 @@
         }
       ]
     }
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-phenytoin-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "Renal and/or Hepatic Impairment or Hypoalbuminemia: Monitor unbound phenytoin concentrations in these patients. ( 8.6 ) 8.1 Pregnancy Pregnancy Exposure Registry There is a pregnancy exposure registry that monitors pregnancy outcomes in women exposed to antiepileptic drugs (AEDs), such as DILANTIN, during pregnancy."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-phenytoin-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal and/or Hepatic Impairment or Hypoalbuminemia: Monitor unbound phenytoin concentrations in these patients. ( 8.6 ) 8.1 Pregnancy Pregnancy Exposure Registry There is a pregnancy exposure registry that monitors pregnancy outcomes in women exposed to antiepileptic drugs (AEDs), such as DILANTIN, during pregnancy."
+      }
+    ]
   }
 }

@@ -83,15 +83,14 @@
     }
   ],
   "renal_basis": {
-    "value": "none",
+    "value": "cg_abw",
     "refs": [
       {
         "source_id": "fda-nimodipine-label",
-        "locator": "Section 11 DESCRIPTION",
-        "quote": "NYMALIZE contains nimodipine, a dihydropyridine calcium channel blocker. Nimodipine is isopropyl 2-methoxyethyl 1,4-dihydro-2,6-dimethyl-4-( m -nitrophenyl)-3,5-pyridinedicarboxylate."
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "USE IN SPECIFIC POPULATIONS === 8 USE IN SPECIFIC POPULATIONS Pregnancy: Based on animal data may cause fetal harm. ( 8.1 ) 8.1 Pregnancy Risk Summary There are no adequate data on the developmental risk associated with the use of NYMALIZE in pregnant women."
       }
-    ],
-    "note": "No dosage adjustment needed for renal impairment"
+    ]
   },
   "hepatic": {
     "value": "Patients with Cirrhosis: Reduce dosage to 5 mL (30 mg) every 4 hours.",
@@ -308,6 +307,27 @@
         "source_id": "fda-nimodipine-label",
         "locator": "Section 7.2 CYP3A4 Inhibitors",
         "quote": "Therefore, the concomitant administration of NYMALIZE and strong CYP3A4 inhibitors should generally be avoided"
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-nimodipine-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "USE IN SPECIFIC POPULATIONS === 8 USE IN SPECIFIC POPULATIONS Pregnancy: Based on animal data may cause fetal harm. ( 8.1 ) 8.1 Pregnancy Risk Summary There are no adequate data on the developmental risk associated with the use of NYMALIZE in pregnant women."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-nimodipine-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "USE IN SPECIFIC POPULATIONS === 8 USE IN SPECIFIC POPULATIONS Pregnancy: Based on animal data may cause fetal harm. ( 8.1 ) 8.1 Pregnancy Risk Summary There are no adequate data on the developmental risk associated with the use of NYMALIZE in pregnant women."
       }
     ]
   }

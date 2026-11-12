@@ -64,8 +64,8 @@
     "refs": [
       {
         "source_id": "fda-donanemab-label",
-        "locator": "INDICATIONS AND USAGE",
-        "quote": "treatment of Alzheimer's disease. Treatment with KISUNLA should be initiated in patients with mild cognitive impairment or mild dementia stage of disease, the population in which treatment was initiat"
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal or Hepatic Impairment No clinical studies were conducted to evaluate the pharmacokinetics of donanemab-azbt in patients with renal or hepatic impairment. Donanemab-azbt is degraded by proteolytic enzymes and is not expected to undergo renal elimination or metabolism by hepatic enzymes."
       }
     ]
   },
@@ -270,6 +270,27 @@
         "source_id": "fda-donanemab-label",
         "locator": "Section 5.1 Amyloid Related Imaging Abnormalities - Antithrombotic or Thrombolytic Medication",
         "quote": "Antithrombotic or Thrombolytic Medication In Study 1, baseline use of antithrombotic medication (aspirin, other antiplatelets, or anticoagulants) was allowed. The majority of exposures to antithrombotic medications were to aspirin."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-donanemab-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "Renal or Hepatic Impairment No clinical studies were conducted to evaluate the pharmacokinetics of donanemab-azbt in patients with renal or hepatic impairment. Donanemab-azbt is degraded by proteolytic enzymes and is not expected to undergo renal elimination or metabolism by hepatic enzymes."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-donanemab-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal or Hepatic Impairment No clinical studies were conducted to evaluate the pharmacokinetics of donanemab-azbt in patients with renal or hepatic impairment. Donanemab-azbt is degraded by proteolytic enzymes and is not expected to undergo renal elimination or metabolism by hepatic enzymes."
       }
     ]
   }

@@ -64,8 +64,8 @@
     "refs": [
       {
         "source_id": "fda-perampanel-label",
-        "locator": "DOSAGE AND ADMINISTRATION",
-        "quote": "FYCOMPA is not recommended in patients with severe renal impairment or patients undergoing hemodialysis [ see Use in Specific Populations (8.7) , Clinical Pharmacology (12.3) ] . 2."
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal Impairment or on Hemodialysis: Not recommended ( 2.5 ) Elderly: Increase dose no more frequently than every 2 weeks ( 2.6 ) 2.1 Dosage for Partial-Onset Seizures Monotherapy or Adjunctive Therapy The recommended starting dosage of FYCOMPA in adults and pediatric patients 4 years of age and older is 2 mg once daily taken orally at bedtime."
       }
     ]
   },
@@ -284,6 +284,27 @@
         "source_id": "fda-perampanel-label",
         "locator": "Section 7 DRUG INTERACTIONS",
         "quote": "increase clearance of perampanel and decrease perampanel plasma concentrations. When moderate or strong CYP3A4 inducers are introduced or withdrawn, monitor patients closely."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-perampanel-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "Renal Impairment or on Hemodialysis: Not recommended ( 2.5 ) Elderly: Increase dose no more frequently than every 2 weeks ( 2.6 ) 2.1 Dosage for Partial-Onset Seizures Monotherapy or Adjunctive Therapy The recommended starting dosage of FYCOMPA in adults and pediatric patients 4 years of age and older is 2 mg once daily taken orally at bedtime."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-perampanel-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal Impairment or on Hemodialysis: Not recommended ( 2.5 ) Elderly: Increase dose no more frequently than every 2 weeks ( 2.6 ) 2.1 Dosage for Partial-Onset Seizures Monotherapy or Adjunctive Therapy The recommended starting dosage of FYCOMPA in adults and pediatric patients 4 years of age and older is 2 mg once daily taken orally at bedtime."
       }
     ]
   }

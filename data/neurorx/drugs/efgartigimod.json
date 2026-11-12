@@ -64,7 +64,7 @@
     "refs": [
       {
         "source_id": "fda-efgartigimod-label",
-        "locator": "USE IN SPECIFIC POPULATIONS",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
         "quote": "Renal Impairment No dose adjustment of VYVGART HYTRULO is needed for patients with mild renal impairment."
       }
     ]
@@ -253,6 +253,27 @@
         "source_id": "fda-efgartigimod-label",
         "locator": "Section 7 DRUG INTERACTIONS",
         "quote": "Closely monitor for reduced effectiveness of medications that bind to the human neonatal Fc receptor. When concomitant long-term use of such medications is essential for patient care, consider discontinuing VYVGART HYTRULO and using alternative therapies."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-efgartigimod-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "Renal Impairment No dose adjustment of VYVGART HYTRULO is needed for patients with mild renal impairment."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-efgartigimod-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal Impairment No dose adjustment of VYVGART HYTRULO is needed for patients with mild renal impairment."
       }
     ]
   }

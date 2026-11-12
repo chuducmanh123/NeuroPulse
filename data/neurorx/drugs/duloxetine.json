@@ -65,8 +65,8 @@
     "refs": [
       {
         "source_id": "fda-duloxetine-label",
-        "locator": "DOSAGE AND ADMINISTRATION",
-        "quote": "Administer 60 mg once daily in adults with diabetic peripheral neuropathic pain."
+        "locator": "Section 8.10 Severe Renal Impairment",
+        "quote": "Severe Renal Impairment Avoid use in patients with severe renal impairment, GFR <30 mL/minute."
       }
     ]
   },
@@ -297,6 +297,52 @@
         "source_id": "fda-duloxetine-label",
         "locator": "Section 7 DRUG INTERACTIONS",
         "quote": "Both CYP1A2 and CYP2D6 are responsible for duloxetine metabolism. Potent inhibitors of CYP1A2 should be avoided"
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "Mild to moderate renal impairment has no significant effect on duloxetine clearance. Avoid use in patients with severe renal impairment (GFR < 30 mL/min) or end-stage renal disease.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-duloxetine-label",
+          "locator": "Section 8.10 Severe Renal Impairment",
+          "quote": "Severe Renal Impairment Avoid use in patients with severe renal impairment, GFR <30 mL/minute."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 30,
+        "max": null,
+        "dose_text": "Standard dosing 30 to 60 mg once daily (no dose adjustment needed)",
+        "refs": [
+          {
+            "source_id": "fda-duloxetine-label",
+            "locator": "Section 8.10 Severe Renal Impairment",
+            "quote": "Severe Renal Impairment Avoid use in patients with severe renal impairment, GFR <30 mL/minute."
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 30,
+        "dose_text": "AVOID USE in patients with severe renal impairment (GFR < 30 mL/min) or end-stage renal disease",
+        "refs": [
+          {
+            "source_id": "fda-duloxetine-label",
+            "locator": "Section 8.10 Severe Renal Impairment",
+            "quote": "Severe Renal Impairment Avoid use in patients with severe renal impairment, GFR <30 mL/minute."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-duloxetine-label",
+        "locator": "Section 8.10 Severe Renal Impairment",
+        "quote": "Severe Renal Impairment Avoid use in patients with severe renal impairment, GFR <30 mL/minute."
       }
     ]
   }

@@ -64,8 +64,8 @@
     "refs": [
       {
         "source_id": "fda-brivaracetam-label",
-        "locator": "DOSAGE AND ADMINISTRATION",
-        "quote": "Dose adjustments are not required for patients with impaired renal function."
+        "locator": "Section 8.6 Renal Impairment",
+        "quote": "There are no data in patients with end-stage renal disease undergoing dialysis, and use of BRIVIACT is not recommended in this patient population [see Clinical Pharmacology (12.3) ] ."
       }
     ]
   },
@@ -289,6 +289,52 @@
         "source_id": "fda-brivaracetam-label",
         "locator": "Section 7 DRUG INTERACTIONS",
         "quote": "Rifampin: Because of decreased concentrations, increasing BRIVIACT dosage in patients on concomitant rifampin is recommended."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with mild, moderate, or severe renal impairment. There are no data in patients with end-stage renal disease undergoing dialysis, and use of BRIVIACT is not recommended.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-brivaracetam-label",
+          "locator": "Section 8.6 Renal Impairment",
+          "quote": "There are no data in patients with end-stage renal disease undergoing dialysis, and use of BRIVIACT is not recommended in this patient population [see Clinical Pharmacology (12.3) ] ."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 30,
+        "max": null,
+        "dose_text": "Standard adult dose: 50 mg twice daily, adjusted between 25 and 100 mg twice daily",
+        "refs": [
+          {
+            "source_id": "fda-brivaracetam-label",
+            "locator": "Section 8.6 Renal Impairment",
+            "quote": "There are no data in patients with end-stage renal disease undergoing dialysis, and use of BRIVIACT is not recommended in this patient population [see Clinical Pharmacology (12.3) ] ."
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 30,
+        "dose_text": "No dose adjustment required for severe impairment not on dialysis; not recommended in ESRD undergoing dialysis",
+        "refs": [
+          {
+            "source_id": "fda-brivaracetam-label",
+            "locator": "Section 8.6 Renal Impairment",
+            "quote": "There are no data in patients with end-stage renal disease undergoing dialysis, and use of BRIVIACT is not recommended in this patient population [see Clinical Pharmacology (12.3) ] ."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-brivaracetam-label",
+        "locator": "Section 8.6 Renal Impairment",
+        "quote": "There are no data in patients with end-stage renal disease undergoing dialysis, and use of BRIVIACT is not recommended in this patient population [see Clinical Pharmacology (12.3) ] ."
       }
     ]
   }

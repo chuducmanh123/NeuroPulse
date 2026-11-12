@@ -62,15 +62,14 @@
     }
   ],
   "renal_basis": {
-    "value": "none",
+    "value": "cg_abw",
     "refs": [
       {
         "source_id": "fda-phenobarbital-label",
-        "locator": "Section 2 DOSAGE AND ADMINISTRATION",
-        "quote": "Dosage should be reduced for patients with impaired renal function or hepatic disease."
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "renal function or hepatic disease. === 4 CONTRAINDICATIONS === CONTRAINDICATIONS Phenobarbital is contraindicated in patients who are hypersensitive to barbiturates, in patients with a history of manifest or latent porphyria, and in patients with marked impairment of liver function or respiratory disease in which dyspnea or obstruction is evident"
       }
-    ],
-    "note": "Reduce dosage in patients with impaired renal function"
+    ]
   },
   "hepatic": {
     "value": "Phenobarbital is contraindicated in patients with marked impairment of liver function. Dosage should be reduced for patients with hepatic disease.",
@@ -299,6 +298,27 @@
         "source_id": "fda-phenobarbital-label",
         "locator": "PRECAUTIONS - Drug Interactions: Anticoagulants",
         "quote": "Phenobarbital lowers the plasma levels of dicumarol and causes a decrease in anticoagulant activity as measured by the prothrombin time."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-phenobarbital-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "renal function or hepatic disease. === 4 CONTRAINDICATIONS === CONTRAINDICATIONS Phenobarbital is contraindicated in patients who are hypersensitive to barbiturates, in patients with a history of manifest or latent porphyria, and in patients with marked impairment of liver function or respiratory disease in which dyspnea or obstruction is evident"
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-phenobarbital-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "renal function or hepatic disease. === 4 CONTRAINDICATIONS === CONTRAINDICATIONS Phenobarbital is contraindicated in patients who are hypersensitive to barbiturates, in patients with a history of manifest or latent porphyria, and in patients with marked impairment of liver function or respiratory disease in which dyspnea or obstruction is evident"
       }
     ]
   }

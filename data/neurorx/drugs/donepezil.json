@@ -91,8 +91,8 @@
     "refs": [
       {
         "source_id": "fda-donepezil-label",
-        "locator": "DOSAGE AND ADMINISTRATION",
-        "quote": "Mild to Moderate Alzheimer’s Disease: 5 mg to 10 mg once daily ( 2.1 ) Moderate to Severe Alzheimer’s Disease: 10 mg to 23 mg once daily ( 2.2 ) 2.1 Dosing in Mild to Moderate Alzheimer’s Disease The"
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "renal impairment (Cl C < 18 mL/min/1.73 m 2 ) the clearance of ARICEPT did not differ from 11 age- and sex-matched healthy subjects. Age No formal pharmacokinetic study was conducted to examine age-related differences in the pharmacokinetics of ARICEPT."
       }
     ]
   },
@@ -299,6 +299,27 @@
         "source_id": "fda-donepezil-label",
         "locator": "Section 7.1 Use with Anticholinergics",
         "quote": "Because of their mechanism of action, cholinesterase inhibitors have the potential to interfere with the activity of anticholinergic medications."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-donepezil-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "renal impairment (Cl C < 18 mL/min/1.73 m 2 ) the clearance of ARICEPT did not differ from 11 age- and sex-matched healthy subjects. Age No formal pharmacokinetic study was conducted to examine age-related differences in the pharmacokinetics of ARICEPT."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-donepezil-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "renal impairment (Cl C < 18 mL/min/1.73 m 2 ) the clearance of ARICEPT did not differ from 11 age- and sex-matched healthy subjects. Age No formal pharmacokinetic study was conducted to examine age-related differences in the pharmacokinetics of ARICEPT."
       }
     ]
   }

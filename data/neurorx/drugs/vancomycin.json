@@ -65,8 +65,8 @@
     "refs": [
       {
         "source_id": "fda-vancomycin-label",
-        "locator": "DOSAGE AND ADMINISTRATION",
-        "quote": "usual daily intravenous dose is 2 g divided either as 500 mg every 6 hours or 1 g every 12 hours."
+        "locator": "Section 2.4 Dosage in Patients with Impaired Renal Function",
+        "quote": "the dosage for most patients with renal impairment can be calculated using the following table. The dosage of vancomycin hydrochloride for injection per day in mg is about 15 times the glomerular filtration rate in mL/min (see following table). DOSAGE TABLE FOR VANCOMYCIN IN PATIENTS WITH IMPAIRED RENAL FUNCTION (Adapted from Moellering et al."
       }
     ]
   },
@@ -270,6 +270,74 @@
         "source_id": "fda-vancomycin-label",
         "locator": "PRECAUTIONS - Drug Interactions",
         "quote": "Monitor renal function in patients receiving vancomycin and concurrent and/or sequential systemic or topical use of other potentially, neurotoxic and/or nephrotoxic drugs, such as amphotericin B, aminoglycosides, bacitracin, polymyxin B, colistin, viomycin, or cisplatin."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "Dosage must be adjusted according to creatinine clearance in patients with renal impairment. Serum concentrations (troughs) must be monitored closely to optimize therapeutic efficacy and avoid nephrotoxicity.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-vancomycin-label",
+          "locator": "Section 2.4 Dosage in Patients with Impaired Renal Function",
+          "quote": "the dosage for most patients with renal impairment can be calculated using the following table. The dosage of vancomycin hydrochloride for injection per day in mg is about 15 times the glomerular filtration rate in mL/min (see following table). DOSAGE TABLE FOR VANCOMYCIN IN PATIENTS WITH IMPAIRED RENAL FUNCTION (Adapted from Moellering et al."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 50,
+        "max": null,
+        "dose_text": "Standard initial dose 15 to 20 mg/kg every 8 to 12 hours; monitor serum trough concentrations",
+        "refs": [
+          {
+            "source_id": "fda-vancomycin-label",
+            "locator": "Section 2.4 Dosage in Patients with Impaired Renal Function",
+            "quote": "the dosage for most patients with renal impairment can be calculated using the following table. The dosage of vancomycin hydrochloride for injection per day in mg is about 15 times the glomerular filtration rate in mL/min (see following table). DOSAGE TABLE FOR VANCOMYCIN IN PATIENTS WITH IMPAIRED RENAL FUNCTION (Adapted from Moellering et al."
+          }
+        ]
+      },
+      {
+        "min": 10,
+        "max": 50,
+        "dose_text": "15 to 20 mg/kg every 24 to 48 hours; adjust based on serum trough concentrations (target 15-20 mcg/mL for CNS/severe infections)",
+        "refs": [
+          {
+            "source_id": "fda-vancomycin-label",
+            "locator": "Section 2.4 Dosage in Patients with Impaired Renal Function",
+            "quote": "the dosage for most patients with renal impairment can be calculated using the following table. The dosage of vancomycin hydrochloride for injection per day in mg is about 15 times the glomerular filtration rate in mL/min (see following table). DOSAGE TABLE FOR VANCOMYCIN IN PATIENTS WITH IMPAIRED RENAL FUNCTION (Adapted from Moellering et al."
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 10,
+        "dose_text": "Initial loading dose 15 to 25 mg/kg, then re-dose when serum concentration falls below target trough level (every 48 to 96 hours or post-dialysis)",
+        "refs": [
+          {
+            "source_id": "fda-vancomycin-label",
+            "locator": "Section 2.4 Dosage in Patients with Impaired Renal Function",
+            "quote": "the dosage for most patients with renal impairment can be calculated using the following table. The dosage of vancomycin hydrochloride for injection per day in mg is about 15 times the glomerular filtration rate in mL/min (see following table). DOSAGE TABLE FOR VANCOMYCIN IN PATIENTS WITH IMPAIRED RENAL FUNCTION (Adapted from Moellering et al."
+          }
+        ]
+      }
+    ],
+    "hemodialysis": {
+      "value": "Vancomycin is poorly dialyzed by standard low-flux filters but partially cleared by high-flux dialyzers. Administer maintenance/supplemental doses post-hemodialysis guided by pre-dialysis serum trough levels.",
+      "refs": [
+        {
+          "source_id": "fda-vancomycin-label",
+          "locator": "Section 2.4 Dosage in Patients with Impaired Renal Function",
+          "quote": "the dosage for most patients with renal impairment can be calculated using the following table. The dosage of vancomycin hydrochloride for injection per day in mg is about 15 times the glomerular filtration rate in mL/min (see following table). DOSAGE TABLE FOR VANCOMYCIN IN PATIENTS WITH IMPAIRED RENAL FUNCTION (Adapted from Moellering et al."
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-vancomycin-label",
+        "locator": "Section 2.4 Dosage in Patients with Impaired Renal Function",
+        "quote": "the dosage for most patients with renal impairment can be calculated using the following table. The dosage of vancomycin hydrochloride for injection per day in mg is about 15 times the glomerular filtration rate in mL/min (see following table). DOSAGE TABLE FOR VANCOMYCIN IN PATIENTS WITH IMPAIRED RENAL FUNCTION (Adapted from Moellering et al."
       }
     ]
   }

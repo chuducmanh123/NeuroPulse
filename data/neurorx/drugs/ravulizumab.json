@@ -65,8 +65,8 @@
     "refs": [
       {
         "source_id": "fda-ravulizumab-label",
-        "locator": "INDICATIONS AND USAGE",
-        "quote": "myasthenia gravis (gMG) who are anti-acetylcholine receptor (AChR) antibody-positive."
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "renal impairment, including patients with proteinuria or receiving dialysis. Body weight was a clinically significant covariate on the pharmacokinetics of ravulizumab-cwvz. Drug Interactions No drug-drug interaction studies have been performed."
       }
     ]
   },
@@ -281,6 +281,27 @@
         "source_id": "fda-ravulizumab-label",
         "locator": "Section 7 DRUG INTERACTIONS",
         "quote": "Plasma Exchange, Plasmapheresis, or Intravenous Immunoglobulins: concomitant use requires supplemental dose of ULTOMIRIS."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-ravulizumab-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "renal impairment, including patients with proteinuria or receiving dialysis. Body weight was a clinically significant covariate on the pharmacokinetics of ravulizumab-cwvz. Drug Interactions No drug-drug interaction studies have been performed."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-ravulizumab-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "renal impairment, including patients with proteinuria or receiving dialysis. Body weight was a clinically significant covariate on the pharmacokinetics of ravulizumab-cwvz. Drug Interactions No drug-drug interaction studies have been performed."
       }
     ]
   }

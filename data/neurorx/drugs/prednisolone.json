@@ -66,8 +66,8 @@
     "refs": [
       {
         "source_id": "fda-prednisolone-label",
-        "locator": "INDICATIONS AND USAGE",
-        "quote": "multiple sclerosis 13. Miscellaneous Tuberculous meningitis with subarachnoid block or impending block when used concurrently with appropriate antituberculous chemotherapy Trichinosis with neurologic"
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION The initial dosage of prednisolone tablets may vary from 5 mg to 60 mg per day depending on the specific disease entity being treated. In situations of less severity, lower doses will generally suffice, while in selected patients higher initial doses may be required."
       }
     ]
   },
@@ -262,6 +262,27 @@
         "source_id": "fda-prednisolone-label",
         "locator": "PRECAUTIONS - Information for Patients",
         "quote": "Persons who are on immunosuppressant doses of corticosteroids should be warned to avoid exposure to chickenpox or measles. Patients should also be advised that if they are exposed, medical advice should be sought without delay."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-prednisolone-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION The initial dosage of prednisolone tablets may vary from 5 mg to 60 mg per day depending on the specific disease entity being treated. In situations of less severity, lower doses will generally suffice, while in selected patients higher initial doses may be required."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-prednisolone-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION The initial dosage of prednisolone tablets may vary from 5 mg to 60 mg per day depending on the specific disease entity being treated. In situations of less severity, lower doses will generally suffice, while in selected patients higher initial doses may be required."
       }
     ]
   }

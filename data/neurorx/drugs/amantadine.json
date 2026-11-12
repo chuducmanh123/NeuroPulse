@@ -57,37 +57,16 @@
         "max_single": 274,
         "max_daily": 274
       },
-      "dose_text": "Extended-release: Initial dose 137 mg orally once daily at bedtime; after 1 week, increase to recommended maintenance dose of 274 mg once daily at bedtime. Immediate-release amantadine is dosed at 100 mg BID (max 400 mg/day). Do not discontinue abruptly due to risk of neuroleptic malignant-like syndrome.",
-      "renal_bands": [
-        {
-          "min": 30,
-          "max": 59,
-          "dose_text": "Moderate renal impairment (eGFR 30 to 59 mL/min/1.73 m²): Initial 68.5 mg at bedtime; after 1 week, increase to 137 mg once daily at bedtime.",
-          "dose": {
-            "kind": "fixed",
-            "amount": 68.5,
-            "unit": "mg",
-            "frequency": "once daily at bedtime",
-            "max_daily": 137
-          },
-          "refs": [
-            {
-              "source_id": "fda-amantadine-label",
-              "locator": "USE IN SPECIFIC POPULATIONS",
-              "quote": "moderate and severe renal impairment [see Use in Special Populations ( 8.6 ) and Dosage and Administration ( 2.3 )]."
-            }
-          ]
-        }
-      ]
+      "dose_text": "Extended-release: Initial dose 137 mg orally once daily at bedtime; after 1 week, increase to recommended maintenance dose of 274 mg once daily at bedtime. Immediate-release amantadine is dosed at 100 mg BID (max 400 mg/day). Do not discontinue abruptly due to risk of neuroleptic malignant-like syndrome."
     }
   ],
   "renal_basis": {
-    "value": "kdigo_ckd_epi",
+    "value": "cg_normalized_1_73",
     "refs": [
       {
         "source_id": "fda-amantadine-label",
-        "locator": "USE IN SPECIFIC POPULATIONS",
-        "quote": "moderate and severe renal impairment [see Use in Special Populations ( 8.6 ) and Dosage and Administration ( 2.3 )]."
+        "locator": "Section 2.3 Dosing in Patients with Renal Impairment",
+        "quote": "Moderate renal impairment (30 to 59 mL/min/1.73 m 2 ) Initial dosage: 68.5 mg once daily at bedtime Maximum recommended dosage: 137 mg once daily at bedtime 1 Severe renal impairment (15 to 29 mL/min/1.73 m 2 ) 68.5 mg once daily at bedtime End Stage Renal Disease (below 15 mL/min/1.73 m 2 ) Contraindicated 2.4 Discontinuation and Missed Dose Rapid"
       }
     ]
   },
@@ -307,6 +286,76 @@
         "source_id": "fda-amantadine-label",
         "locator": "Section 7.1 Other Anticholinergic Drugs",
         "quote": "Products with anticholinergic properties may potentiate the anticholinergic-like side effects of amantadine. The dose of anticholinergic drugs or of GOCOVRI should be reduced if atropine-like effects appear when these drugs are used concurrently."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "Amantadine is excreted largely unchanged by the kidneys. Initial and maximum dosage of GOCOVRI must be adjusted according to estimated GFR/CrCl.",
+    "renal_basis": {
+      "value": "cg_normalized_1_73",
+      "refs": [
+        {
+          "source_id": "fda-amantadine-label",
+          "locator": "Section 2.3 Dosing in Patients with Renal Impairment",
+          "quote": "Moderate renal impairment (30 to 59 mL/min/1.73 m 2 ) Initial dosage: 68.5 mg once daily at bedtime Maximum recommended dosage: 137 mg once daily at bedtime 1 Severe renal impairment (15 to 29 mL/min/1.73 m 2 ) 68.5 mg once daily at bedtime End Stage Renal Disease (below 15 mL/min/1.73 m 2 ) Contraindicated 2.4 Discontinuation and Missed Dose Rapid"
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 60,
+        "max": null,
+        "dose_text": "Initial 137 mg once daily at bedtime; increase after 1 week to 274 mg once daily",
+        "refs": [
+          {
+            "source_id": "fda-amantadine-label",
+            "locator": "Section 2.3 Dosing in Patients with Renal Impairment",
+            "quote": "Moderate renal impairment (30 to 59 mL/min/1.73 m 2 ) Initial dosage: 68.5 mg once daily at bedtime Maximum recommended dosage: 137 mg once daily at bedtime 1 Severe renal impairment (15 to 29 mL/min/1.73 m 2 ) 68.5 mg once daily at bedtime End Stage Renal Disease (below 15 mL/min/1.73 m 2 ) Contraindicated 2.4 Discontinuation and Missed Dose Rapid"
+          }
+        ]
+      },
+      {
+        "min": 30,
+        "max": 60,
+        "dose_text": "Initial 68.5 mg once daily at bedtime; maximum recommended dosage 137 mg once daily at bedtime",
+        "refs": [
+          {
+            "source_id": "fda-amantadine-label",
+            "locator": "Section 2.3 Dosing in Patients with Renal Impairment",
+            "quote": "Moderate renal impairment (30 to 59 mL/min/1.73 m 2 ) Initial dosage: 68.5 mg once daily at bedtime Maximum recommended dosage: 137 mg once daily at bedtime 1 Severe renal impairment (15 to 29 mL/min/1.73 m 2 ) 68.5 mg once daily at bedtime End Stage Renal Disease (below 15 mL/min/1.73 m 2 ) Contraindicated 2.4 Discontinuation and Missed Dose Rapid"
+          }
+        ]
+      },
+      {
+        "min": 15,
+        "max": 30,
+        "dose_text": "Initial 68.5 mg every 48 hours (or every other day); maximum recommended dosage 68.5 mg once daily at bedtime",
+        "refs": [
+          {
+            "source_id": "fda-amantadine-label",
+            "locator": "Section 2.3 Dosing in Patients with Renal Impairment",
+            "quote": "Moderate renal impairment (30 to 59 mL/min/1.73 m 2 ) Initial dosage: 68.5 mg once daily at bedtime Maximum recommended dosage: 137 mg once daily at bedtime 1 Severe renal impairment (15 to 29 mL/min/1.73 m 2 ) 68.5 mg once daily at bedtime End Stage Renal Disease (below 15 mL/min/1.73 m 2 ) Contraindicated 2.4 Discontinuation and Missed Dose Rapid"
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 15,
+        "dose_text": "CONTRAINDICATED in end-stage renal disease (CrCl < 15 mL/min/1.73 m²)",
+        "refs": [
+          {
+            "source_id": "fda-amantadine-label",
+            "locator": "Section 2.3 Dosing in Patients with Renal Impairment",
+            "quote": "Moderate renal impairment (30 to 59 mL/min/1.73 m 2 ) Initial dosage: 68.5 mg once daily at bedtime Maximum recommended dosage: 137 mg once daily at bedtime 1 Severe renal impairment (15 to 29 mL/min/1.73 m 2 ) 68.5 mg once daily at bedtime End Stage Renal Disease (below 15 mL/min/1.73 m 2 ) Contraindicated 2.4 Discontinuation and Missed Dose Rapid"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-amantadine-label",
+        "locator": "Section 2.3 Dosing in Patients with Renal Impairment",
+        "quote": "Moderate renal impairment (30 to 59 mL/min/1.73 m 2 ) Initial dosage: 68.5 mg once daily at bedtime Maximum recommended dosage: 137 mg once daily at bedtime 1 Severe renal impairment (15 to 29 mL/min/1.73 m 2 ) 68.5 mg once daily at bedtime End Stage Renal Disease (below 15 mL/min/1.73 m 2 ) Contraindicated 2.4 Discontinuation and Missed Dose Rapid"
       }
     ]
   }

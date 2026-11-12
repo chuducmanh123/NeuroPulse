@@ -83,15 +83,14 @@
     }
   ],
   "renal_basis": {
-    "value": "none",
+    "value": "cg_abw",
     "refs": [
       {
         "source_id": "fda-atorvastatin-label",
-        "locator": "Section 8.6 Renal Impairment",
-        "quote": "Renal impairment does not affect the plasma concentrations of LIPITOR, therefore there is no dosage adjustment in patients with renal impairment [see Warnings and Precautions (5.1) and Clinical Pharmacology (12.3) ] ."
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal Impairment Renal impairment is a risk factor for myopathy and rhabdomyolysis. Monitor all patients with renal impairment for development of myopathy."
       }
-    ],
-    "note": "No dosage adjustment needed for renal impairment"
+    ]
   },
   "hepatic": {
     "value": "LIPITOR is contraindicated in patients with acute liver failure or decompensated cirrhosis.",
@@ -309,6 +308,27 @@
         "source_id": "fda-atorvastatin-label",
         "locator": "Section 7.1 Drug Interactions - Table 2",
         "quote": "Atorvastatin plasma levels were significantly increased with concomitant administration of LIPITOR and cyclosporine, an inhibitor of CYP3A4 and OATP1B1"
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-atorvastatin-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "Renal Impairment Renal impairment is a risk factor for myopathy and rhabdomyolysis. Monitor all patients with renal impairment for development of myopathy."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-atorvastatin-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "Renal Impairment Renal impairment is a risk factor for myopathy and rhabdomyolysis. Monitor all patients with renal impairment for development of myopathy."
       }
     ]
   }

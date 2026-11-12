@@ -112,12 +112,12 @@
     }
   ],
   "renal_basis": {
-    "value": "egfr",
+    "value": "cg_abw",
     "refs": [
       {
         "source_id": "fda-aspirin-label",
-        "locator": "Section PRECAUTIONS",
-        "quote": "Renal Failure: Avoid aspirin in patients with severe renal failure (glomerular filtration rate less than 10 mL/minute)."
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "renal function. Oral Hypoglycemics: Moderate doses of aspirin may increase the effectiveness of oral hypoglycemic drugs, leading to hypoglycemia. Uricosuric Agents (Probenecid and Sulfinpyrazone): Salicylates antagonize the uricosuric action of uricosuric agents. Carcinogenesis, Mutagenesis, Impairment of Fertility: Administration of as"
       }
     ]
   },
@@ -335,6 +335,27 @@
         "source_id": "fda-aspirin-label",
         "locator": "Drug Interactions - Anticoagulant Therapy",
         "quote": "Patients on anticoagulation therapy are at increased risk for bleeding because of drug-drug interactions and the effect on platelets."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-aspirin-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "renal function. Oral Hypoglycemics: Moderate doses of aspirin may increase the effectiveness of oral hypoglycemic drugs, leading to hypoglycemia. Uricosuric Agents (Probenecid and Sulfinpyrazone): Salicylates antagonize the uricosuric action of uricosuric agents. Carcinogenesis, Mutagenesis, Impairment of Fertility: Administration of as"
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-aspirin-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "renal function. Oral Hypoglycemics: Moderate doses of aspirin may increase the effectiveness of oral hypoglycemic drugs, leading to hypoglycemia. Uricosuric Agents (Probenecid and Sulfinpyrazone): Salicylates antagonize the uricosuric action of uricosuric agents. Carcinogenesis, Mutagenesis, Impairment of Fertility: Administration of as"
       }
     ]
   }

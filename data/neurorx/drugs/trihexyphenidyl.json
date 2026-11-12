@@ -64,8 +64,8 @@
     "refs": [
       {
         "source_id": "fda-trihexyphenidyl-label",
-        "locator": "DOSAGE AND ADMINISTRATION",
-        "quote": "Dosage should be individualized. The initial dose should be low and then increased gradually, especially in patients over 60 years of age.Whether trihexyphenidyl may best be given before or after meal"
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION Dosage should be individualized. The initial dose should be low and then increased gradually, especially in patients over 60 years of age.Whether trihexyphenidyl may best be given before or after meals should be determined by the way the patient reacts."
       }
     ]
   },
@@ -270,6 +270,27 @@
         "source_id": "fda-trihexyphenidyl-label",
         "locator": "Drug Interactions",
         "quote": "Cannabinoids, barbiturates, opiates, and alcohol may have additive effects with trihexyphenidyl, and thus, an abuse potential exists."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment is necessary for patients with renal impairment based on FDA prescribing information.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-trihexyphenidyl-label",
+          "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+          "quote": "DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION Dosage should be individualized. The initial dose should be low and then increased gradually, especially in patients over 60 years of age.Whether trihexyphenidyl may best be given before or after meals should be determined by the way the patient reacts."
+        }
+      ]
+    },
+    "bands": [],
+    "refs": [
+      {
+        "source_id": "fda-trihexyphenidyl-label",
+        "locator": "Section Use in Specific Populations / Clinical Pharmacology",
+        "quote": "DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION Dosage should be individualized. The initial dose should be low and then increased gradually, especially in patients over 60 years of age.Whether trihexyphenidyl may best be given before or after meals should be determined by the way the patient reacts."
       }
     ]
   }
