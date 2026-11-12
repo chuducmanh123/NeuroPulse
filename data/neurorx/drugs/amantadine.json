@@ -259,5 +259,55 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Anticholinergic Agents (Trihexyphenidyl, Benztropine, Atropine derivatives)",
+        "severity": "major",
+        "effect": "Additive anticholinergic side effects including acute urinary retention, severe dry mouth, confusion, and hallucinations.",
+        "management": "The dose of anticholinergic drugs or amantadine should be reduced if atropine-like effects appear when these drugs are used concurrently.",
+        "refs": [
+          {
+            "source_id": "fda-amantadine-label",
+            "locator": "Section 7.1 Other Anticholinergic Drugs",
+            "quote": "Products with anticholinergic properties may potentiate the anticholinergic-like side effects of amantadine. The dose of anticholinergic drugs or of GOCOVRI should be reduced if atropine-like effects appear when these drugs are used concurrently."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Urinary Alkalinizers (Carbonic Anhydrase Inhibitors, Sodium Bicarbonate)",
+        "severity": "major",
+        "effect": "Alkaline urine significantly impairs renal tubular clearance of amantadine, leading to accumulation and central neurotoxicity.",
+        "management": "Exercise caution and monitor closely for signs of amantadine toxicity (myoclonus, delirium, QT prolongation) if urine pH shifts alkaline.",
+        "refs": [
+          {
+            "source_id": "fda-amantadine-label",
+            "locator": "Section 7.2 Drugs Affecting Urinary pH",
+            "quote": "The pH of the urine has been reported to influence the excretion rate of amantadine. Urine pH is altered by diet, drugs (e.g., carbonic anhydrase inhibitors, sodium bicarbonate), and clinical state of the patient"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Live Attenuated Influenza Vaccines",
+        "severity": "moderate",
+        "effect": "Amantadine may interfere with viral replication in live attenuated influenza vaccines, decreasing vaccine efficacy.",
+        "management": "Live attenuated influenza vaccines are not recommended during amantadine therapy; prefer inactivated influenza vaccines.",
+        "refs": [
+          {
+            "source_id": "fda-amantadine-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Live Attenuated Influenza Vaccines: Not recommended during use"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-amantadine-label",
+        "locator": "Section 7.1 Other Anticholinergic Drugs",
+        "quote": "Products with anticholinergic properties may potentiate the anticholinergic-like side effects of amantadine. The dose of anticholinergic drugs or of GOCOVRI should be reduced if atropine-like effects appear when these drugs are used concurrently."
+      }
+    ]
   }
 }

@@ -189,5 +189,85 @@
         }
       ]
     }
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-nicardipine-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "Available data from published literature (clinical trials and case series) over decades of use of intravenous nicardipine during pregnancy have not identified a drug-associated risk of major birth defects or miscarriage."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Nicardipine is present in human milk in low amounts; no adverse effects reported in exposed infants.",
+      "refs": [
+        {
+          "source_id": "fda-nicardipine-label",
+          "locator": "Section 8.2 Lactation",
+          "quote": "Nicardipine is present in human milk in low amounts."
+        }
+      ]
+    }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Cimetidine",
+        "severity": "moderate",
+        "effect": "Cimetidine increases nicardipine plasma levels through hepatic enzyme inhibition.",
+        "management": "Monitor blood pressure closely when administering nicardipine concomitantly with cimetidine.",
+        "refs": [
+          {
+            "source_id": "fda-nicardipine-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Cimetidine increases oral nicardipine plasma levels."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Cyclosporine and Tacrolimus (Calcineurin Inhibitors)",
+        "severity": "major",
+        "effect": "Nicardipine inhibits CYP3A4, increasing blood trough levels of cyclosporine and tacrolimus and potentiating nephrotoxicity.",
+        "management": "Frequent monitoring of calcineurin inhibitor trough concentrations is recommended when co-administering intravenous nicardipine.",
+        "refs": [
+          {
+            "source_id": "fda-nicardipine-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Oral or intravenous nicardipine may increase cyclosporine and tacrolimus plasma levels."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-nicardipine-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Cimetidine increases oral nicardipine plasma levels."
+      }
+    ]
   }
 }

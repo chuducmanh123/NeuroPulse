@@ -286,5 +286,42 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Live Attenuated Viral Vaccines (Measles, Mumps, Rubella, Varicella)",
+        "severity": "major",
+        "effect": "Passively acquired antiviral antibodies neutralize vaccine viruses, inhibiting protective immune response development for up to 3 to 11 months.",
+        "management": "Defer live virus immunization for at least 3 months following IVIg infusion; revaccinate if administered within 14 days prior to IVIg.",
+        "refs": [
+          {
+            "source_id": "fda-ivig-label",
+            "locator": "Section 7.1 Live Virus Vaccines",
+            "quote": "The passive transfer of antibodies with immunoglobulin administration may interfere with the response to live virus vaccines such as measles, mumps, rubella, and varicella"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Serological Diagnostic Assays (Coombs Test, Hepatitis, Syphilis Serology)",
+        "severity": "moderate",
+        "effect": "Passive transfer of donor antibodies causes transient positive serologic testing (e.g., direct antiglobulin / Coombs test), mimicking active infection or hemolysis.",
+        "management": "Interpret serological test results with caution and account for recent IVIg administration when evaluating hemolytic or infectious markers.",
+        "refs": [
+          {
+            "source_id": "fda-ivig-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Lead to misinterpretation of the results of serological testing."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-ivig-label",
+        "locator": "Section 7.1 Live Virus Vaccines",
+        "quote": "The passive transfer of antibodies with immunoglobulin administration may interfere with the response to live virus vaccines such as measles, mumps, rubella, and varicella"
+      }
+    ]
   }
 }

@@ -234,5 +234,98 @@
         }
       ]
     }
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-ticagrelor-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "Available data from case reports with BRILINTA use in pregnant women have not identified a drug-associated risk of major birth defects, miscarriage, or adverse maternal or fetal outcomes."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Breastfeeding is not recommended during ticagrelor treatment.",
+      "refs": [
+        {
+          "source_id": "fda-ticagrelor-label",
+          "locator": "Section 8.2 Lactation",
+          "quote": "There are no data on the presence of ticagrelor or its metabolites in human milk, the effects on the breastfed infant, or the effects on milk production."
+        }
+      ]
+    }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Strong CYP3A Inhibitors & Inducers (Ketoconazole, Rifampin, Carbamazepine)",
+        "severity": "contraindicated",
+        "effect": "Strong CYP3A inhibitors markedly elevate ticagrelor exposure and bleeding risk; strong CYP3A inducers markedly decrease ticagrelor exposure and antiplatelet efficacy.",
+        "management": "Avoid concomitant use of ticagrelor with strong CYP3A inhibitors or strong CYP3A inducers.",
+        "refs": [
+          {
+            "source_id": "fda-ticagrelor-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Avoid use with strong CYP3A inhibitors or CYP3A inducers."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Opioid Agonists (Morphine, Fentanyl)",
+        "severity": "moderate",
+        "effect": "Co-administration of opioids delays and reduces the absorption and systemic exposure of ticagrelor, blunting early platelet inhibition.",
+        "management": "In acute coronary syndromes requiring opioid analgesia, consider use of a parenteral antiplatelet agent.",
+        "refs": [
+          {
+            "source_id": "fda-ticagrelor-label",
+            "locator": "Section 7.3 Opioids",
+            "quote": "Opioids: Decreased exposure to ticagrelor. Consider use of parenteral anti-platelet agent."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "High-Dose Simvastatin or Lovastatin (>40 mg/day)",
+        "severity": "moderate",
+        "effect": "Ticagrelor increases exposure to simvastatin and lovastatin, elevating the risk of statin-induced myopathy and rhabdomyolysis.",
+        "management": "Limit doses of simvastatin and lovastatin to no more than 40 mg daily when coadministered with ticagrelor.",
+        "refs": [
+          {
+            "source_id": "fda-ticagrelor-label",
+            "locator": "Section 7.4 Simvastatin and Lovastatin",
+            "quote": "Patients receiving more than 40 mg per day of simvastatin or lovastatin may be at increased risk of statin-related adverse effects."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-ticagrelor-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Avoid use with strong CYP3A inhibitors or CYP3A inducers."
+      }
+    ]
   }
 }

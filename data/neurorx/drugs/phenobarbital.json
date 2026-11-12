@@ -202,5 +202,104 @@
         }
       ]
     }
+  },
+  "reproductive": {
+    "tier": {
+      "value": "avoid",
+      "refs": [
+        {
+          "source_id": "fda-phenobarbital-label",
+          "locator": "PRECAUTIONS - Usage in Pregnancy",
+          "quote": "Reports of infants suffering from long-term barbiturate exposure in utero included the acute withdrawal syndrome of seizures and hyperirritability from birth to a delayed onset of up to 14 days"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": "Phenobarbital induces hepatic enzymes metabolizing estrogen and progestin, reducing oral contraceptive efficacy; recommend barrier or non-hormonal contraception.",
+      "refs": [
+        {
+          "source_id": "fda-phenobarbital-label",
+          "locator": "PRECAUTIONS - Drug Interactions",
+          "quote": "An alternate contraceptive method might be suggested to women taking phenobarbital."
+        }
+      ]
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Small amounts of barbiturates are excreted in milk. Caution should be exercised and infant monitored for somnolence and weight gain.",
+      "refs": [
+        {
+          "source_id": "fda-phenobarbital-label",
+          "locator": "PRECAUTIONS - Nursing Mothers",
+          "quote": "Caution should be exercised when phenobarbital is administered to a nursing woman, because small amounts of barbiturates are excreted in the milk."
+        }
+      ]
+    }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Oral Anticoagulants (Warfarin, Dicumarol)",
+        "severity": "major",
+        "effect": "Potent induction of hepatic microsomal enzymes increases metabolism of oral anticoagulants, substantially lowering anticoagulant activity and PT/INR.",
+        "management": "Monitor PT/INR closely when initiating, adjusting, or stopping phenobarbital; warfarin dosage requirements typically increase substantially.",
+        "refs": [
+          {
+            "source_id": "fda-phenobarbital-label",
+            "locator": "PRECAUTIONS - Drug Interactions: Anticoagulants",
+            "quote": "Phenobarbital lowers the plasma levels of dicumarol and causes a decrease in anticoagulant activity as measured by the prothrombin time."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Systemic Corticosteroids (Prednisone, Dexamethasone, Methylprednisolone)",
+        "severity": "major",
+        "effect": "Enhances clearance of exogenous corticosteroids via hepatic microsomal induction, potentially leading to treatment failure in neuroimmunologic disorders.",
+        "management": "Adjust corticosteroid dosage upward when coadministering with phenobarbital and monitor clinical immunosuppressive response.",
+        "refs": [
+          {
+            "source_id": "fda-phenobarbital-label",
+            "locator": "PRECAUTIONS - Drug Interactions: Corticosteroids",
+            "quote": "Barbiturates appear to enhance the metabolism of exogenous corticosteroids, probably through the induction of hepatic microsomal enzymes."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Hormonal Contraceptives",
+        "severity": "major",
+        "effect": "Induces metabolic clearance of estrogen and progestin components, causing failure of contraception and breakthrough bleeding.",
+        "management": "Advise female patients of childbearing potential to use alternative or additional non-hormonal barrier contraceptive methods.",
+        "refs": [
+          {
+            "source_id": "fda-phenobarbital-label",
+            "locator": "PRECAUTIONS - Drug Interactions: Oral Contraceptives",
+            "quote": "An alternate contraceptive method might be suggested to women taking phenobarbital."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-phenobarbital-label",
+        "locator": "PRECAUTIONS - Drug Interactions: Anticoagulants",
+        "quote": "Phenobarbital lowers the plasma levels of dicumarol and causes a decrease in anticoagulant activity as measured by the prothrombin time."
+      }
+    ]
   }
 }

@@ -235,5 +235,42 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Allopurinol",
+        "severity": "major",
+        "effect": "Concurrent administration of allopurinol and ampicillin substantially increases the incidence of erythematous and maculopapular skin rashes.",
+        "management": "Monitor for cutaneous hypersensitivity; consider alternative antimicrobial therapy if rash develops.",
+        "refs": [
+          {
+            "source_id": "fda-ampicillin-label",
+            "locator": "PRECAUTIONS - Drug Interactions",
+            "quote": "The concurrent administration of allopurinol and ampicillin increases substantially the incidence of rashes in patients receiving both drugs as compared to patients receiving ampicillin alone."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Probenecid",
+        "severity": "moderate",
+        "effect": "Probenecid competitively blocks renal tubular secretion of ampicillin and sulbactam, elevating and prolonging serum antibiotic concentrations.",
+        "management": "This interaction is sometimes utilized intentionally to achieve higher tissue/CSF levels; monitor for dose-dependent neurotoxicity.",
+        "refs": [
+          {
+            "source_id": "fda-ampicillin-label",
+            "locator": "PRECAUTIONS - Drug Interactions",
+            "quote": "Probenecid decreases the renal tubular secretion of ampicillin and sulbactam. Concurrent use of probenecid with ampicillin and sulbactam for injection may result in increased and prolonged blood levels of ampicillin and sulbactam."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-ampicillin-label",
+        "locator": "PRECAUTIONS - Drug Interactions",
+        "quote": "The concurrent administration of allopurinol and ampicillin increases substantially the incidence of rashes in patients receiving both drugs as compared to patients receiving ampicillin alone."
+      }
+    ]
   }
 }

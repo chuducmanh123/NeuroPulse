@@ -236,5 +236,55 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "CYP1A2 Inhibitors (Ciprofloxacin, Fluvoxamine) and Inducers (Smoking)",
+        "severity": "major",
+        "effect": "CYP1A2 inhibitors (e.g. ciprofloxacin) significantly increase ropinirole concentrations; CYP1A2 inducers (e.g. cigarette smoking) increase clearance and lower levels.",
+        "management": "Dose adjustments of ropinirole may be required when starting, stopping, or altering doses of CYP1A2 inhibitors or when smoking habits change.",
+        "refs": [
+          {
+            "source_id": "fda-ropinirole-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Inhibitors or inducers of CYP1A2: May alter the clearance of ropinirole; dose adjustment of ropinirole may be required."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Dopamine Antagonists (Neuroleptics, Metoclopramide)",
+        "severity": "major",
+        "effect": "Dopamine D2 antagonists diminish the therapeutic effectiveness of ropinirole.",
+        "management": "Avoid concomitant administration; if neuroleptic therapy is needed, prefer quetiapine or clozapine.",
+        "refs": [
+          {
+            "source_id": "fda-ropinirole-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Dopamine antagonists (e.g., neuroleptics, metoclopramide): May reduce efficacy of ropinirole."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Hormone Replacement Therapy (HRT / Estrogens)",
+        "severity": "moderate",
+        "effect": "Estrogens reduce ropinirole clearance, increasing systemic exposure.",
+        "management": "Starting or stopping HRT during ropinirole treatment may require dosage adjustments of ropinirole.",
+        "refs": [
+          {
+            "source_id": "fda-ropinirole-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Hormone replacement therapy (HRT): Starting or stopping HRT may require dose adjustment of ropinirole."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-ropinirole-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Inhibitors or inducers of CYP1A2: May alter the clearance of ropinirole; dose adjustment of ropinirole may be required."
+      }
+    ]
   }
 }

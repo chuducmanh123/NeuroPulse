@@ -277,5 +277,29 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Xanthine Oxidase (XO) Inhibitors (Allopurinol, Febuxostat)",
+        "severity": "contraindicated",
+        "effect": "Inhibition of xanthine oxidase blocks the primary inactivation pathway of 6-mercaptopurine, leading to severe, life-threatening pancytopenia and myelosuppression.",
+        "management": "Concomitant use with febuxostat is not recommended. If allopurinol is coadministered, reduce azathioprine dose to 25-33% of the usual dose and monitor complete blood count frequently.",
+        "refs": [
+          {
+            "source_id": "fda-azathioprine-label",
+            "locator": "WARNINGS - Drug Interactions: Use with xanthine oxidase (XO) inhibitors",
+            "quote": "Patients receiving IMURAN and allopurinol concomitantly should have a dose reduction of IMURAN, to approximately 1/ 3 to 1/ 4 the usual dose. Concomitant use of IMURAN and febuxostat is not recommended."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-azathioprine-label",
+        "locator": "WARNINGS - Drug Interactions: Use with xanthine oxidase (XO) inhibitors",
+        "quote": "Patients receiving IMURAN and allopurinol concomitantly should have a dose reduction of IMURAN, to approximately 1/ 3 to 1/ 4 the usual dose. Concomitant use of IMURAN and febuxostat is not recommended."
+      }
+    ]
   }
 }

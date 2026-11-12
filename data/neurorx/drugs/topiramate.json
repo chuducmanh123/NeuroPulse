@@ -300,5 +300,55 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Valproic Acid / Divalproex",
+        "severity": "major",
+        "effect": "Concomitant administration is associated with hypothermia and hyperammonemia with or without encephalopathy.",
+        "management": "Monitor blood ammonia levels in patients developing unexplained lethargy, vomiting, or cognitive decline.",
+        "refs": [
+          {
+            "source_id": "fda-topiramate-label",
+            "locator": "Section 7.1 Antiepileptic Drugs",
+            "quote": "Concomitant administration of valproic acid and TOPAMAX has been associated with hypothermia and hyperammonemia with and without encephalopathy."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Carbamazepine and Phenytoin (Enzyme Inducers)",
+        "severity": "major",
+        "effect": "Potent CYP induction reduces topiramate plasma concentrations significantly, potentially causing breakthrough seizures.",
+        "management": "Dosage adjustment of topiramate may be needed when starting or discontinuing enzyme-inducing AEDs.",
+        "refs": [
+          {
+            "source_id": "fda-topiramate-label",
+            "locator": "Section 7.1 Antiepileptic Drugs",
+            "quote": "Concomitant administration of phenytoin or carbamazepine with TOPAMAX resulted in a clinically significant decrease in plasma concentrations of topiramate when compared to TOPAMAX given alone."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Oral Contraceptives (Estrogen/Progestin)",
+        "severity": "major",
+        "effect": "Decreased contraceptive efficacy and increased breakthrough bleeding, especially at topiramate doses >200 mg/day.",
+        "management": "Recommend additional or alternative non-hormonal contraception or higher-dose estrogen formulations.",
+        "refs": [
+          {
+            "source_id": "fda-topiramate-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Contraceptives: decreased contraceptive efficacy and increased breakthrough bleeding, especially at doses greater than 200 mg/day"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-topiramate-label",
+        "locator": "Section 7.1 Antiepileptic Drugs",
+        "quote": "Concomitant administration of valproic acid and TOPAMAX has been associated with hypothermia and hyperammonemia with and without encephalopathy."
+      }
+    ]
   }
 }

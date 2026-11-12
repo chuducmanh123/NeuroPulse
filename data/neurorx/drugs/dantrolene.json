@@ -243,5 +243,42 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Calcium Channel Blockers (Verapamil, Diltiazem)",
+        "severity": "contraindicated",
+        "effect": "Combination of intravenous dantrolene and calcium channel blockers has resulted in hyperkalemia and cardiovascular collapse in animal models.",
+        "management": "It is recommended that the combination of intravenous dantrolene and calcium channel blockers, such as verapamil, not be used together during management of malignant hyperthermia.",
+        "refs": [
+          {
+            "source_id": "fda-dantrolene-label",
+            "locator": "PRECAUTIONS - Drug Interactions",
+            "quote": "It is recommended that the combination of intravenous dantrolene sodium and calcium channel blockers, such as verapamil, not be used together during the management of malignant hyperthermia crisis."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Nondepolarizing Neuromuscular Blocking Agents (Vecuronium)",
+        "severity": "moderate",
+        "effect": "Dantrolene may potentiate vecuronium-induced neuromuscular blockade.",
+        "management": "Monitor neuromuscular transmission with a peripheral nerve stimulator and adjust relaxant doses cautiously.",
+        "refs": [
+          {
+            "source_id": "fda-dantrolene-label",
+            "locator": "PRECAUTIONS - Drug Interactions",
+            "quote": "Administration of dantrolene may potentiate vecuronium-induced neuromuscular block."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-dantrolene-label",
+        "locator": "PRECAUTIONS - Drug Interactions",
+        "quote": "It is recommended that the combination of intravenous dantrolene sodium and calcium channel blockers, such as verapamil, not be used together during the management of malignant hyperthermia crisis."
+      }
+    ]
   }
 }

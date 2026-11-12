@@ -264,5 +264,29 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Opioid Analgesics (Morphine, Hydrocodone, Oxycodone, Buprenorphine)",
+        "severity": "major",
+        "effect": "Respiratory depression, profound sedation, and fatalities have been reported with coadministration; morphine also increases gabapentin concentrations by ~44%.",
+        "management": "Monitor closely for respiratory depression and sedation; consider gabapentin or opioid dose reductions.",
+        "refs": [
+          {
+            "source_id": "fda-gabapentin-label",
+            "locator": "Section 7.1 Opioids",
+            "quote": "Respiratory depression and sedation, sometimes resulting in death, have been reported following coadministration of gabapentin with opioids (e.g., morphine, hydrocodone, oxycodone, buprenorphine)"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-gabapentin-label",
+        "locator": "Section 7.1 Opioids",
+        "quote": "Respiratory depression and sedation, sometimes resulting in death, have been reported following coadministration of gabapentin with opioids (e.g., morphine, hydrocodone, oxycodone, buprenorphine)"
+      }
+    ]
   }
 }

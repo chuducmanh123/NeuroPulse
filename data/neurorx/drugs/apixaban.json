@@ -289,5 +289,54 @@
         "quote": "Avoid concomitant use of ELIQUIS with combined P-gp and strong CYP3A4 inducers (e.g., rifampin, carbamazepine, phenytoin, St. John’s wort) because such drugs will decrease exposure to apixaban"
       }
     ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "avoid",
+      "refs": [
+        {
+          "source_id": "fda-apixaban-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "Treatment may increase the risk of bleeding during pregnancy and delivery."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Increased risk of maternal and fetal hemorrhage; standard anticoagulant monitoring is unavailable. LMWH preferred in pregnancy.",
+      "refs": [
+        {
+          "source_id": "fda-apixaban-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "Treatment may increase the risk of bleeding during pregnancy and delivery."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Human milk transfer is unknown; because of potential serious bleeding in breastfed infants, breastfeeding is not recommended.",
+      "refs": [
+        {
+          "source_id": "fda-apixaban-label",
+          "locator": "Section 8.2 Lactation",
+          "quote": "Because human exposure through milk is unknown, breastfeeding is not recommended during treatment with ELIQUIS."
+        }
+      ]
+    }
   }
 }

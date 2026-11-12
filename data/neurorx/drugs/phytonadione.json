@@ -195,5 +195,72 @@
         }
       ]
     }
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-phytonadione-label",
+          "locator": "PRECAUTIONS - Pregnancy Category C",
+          "quote": "Animal reproduction studies have not been conducted with phytonadione injectable emulsion It is also not known whether phytonadione injectable emulsion can cause fetal harm when administered to a pregnant woman or can affect reproduction capacity."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Unknown whether phytonadione is excreted in human milk; exercise caution when administered to a nursing woman.",
+      "refs": [
+        {
+          "source_id": "fda-phytonadione-label",
+          "locator": "PRECAUTIONS - Nursing Mothers",
+          "quote": "It is not known whether this drug is excreted in human milk. Because many drugs are excreted in human milk, caution should be exercised when phytonadione injectable emulsion is administered to a nursing woman."
+        }
+      ]
+    }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Oral Anticoagulants (Coumarin/Indandione Derivatives, Warfarin)",
+        "severity": "major",
+        "effect": "Phytonadione antagonizes the actions of prothrombin-depressing anticoagulants; larger doses may induce temporary resistance to reinstitution of oral anticoagulant therapy.",
+        "management": "Use lowest dose of phytonadione required to control bleeding or correct INR; if resuming warfarin, larger doses of anticoagulant or temporary bridging with heparin may be needed.",
+        "refs": [
+          {
+            "source_id": "fda-phytonadione-label",
+            "locator": "PRECAUTIONS - Drug Interactions",
+            "quote": "Temporary resistance to prothrombin-depressing anticoagulants may result, especially when larger doses of phytonadione are used."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-phytonadione-label",
+        "locator": "PRECAUTIONS - Drug Interactions",
+        "quote": "Temporary resistance to prothrombin-depressing anticoagulants may result, especially when larger doses of phytonadione are used."
+      }
+    ]
   }
 }

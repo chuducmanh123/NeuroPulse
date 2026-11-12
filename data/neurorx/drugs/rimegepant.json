@@ -257,5 +257,68 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Strong CYP3A4 Inhibitors (Ketoconazole, Itraconazole, Clarithromycin)",
+        "severity": "contraindicated",
+        "effect": "Strong CYP3A4 inhibitors substantially increase rimegepant systemic exposure, increasing risk of adverse events.",
+        "management": "Avoid concomitant administration of rimegepant with strong CYP3A4 inhibitors.",
+        "refs": [
+          {
+            "source_id": "fda-rimegepant-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Strong CYP3A4 Inhibitors: Avoid concomitant administration."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Moderate CYP3A4 Inhibitors (Fluconazole, Diltiazem, Erythromycin)",
+        "severity": "major",
+        "effect": "Moderate CYP3A4 inhibition elevates rimegepant concentrations.",
+        "management": "Avoid another dose of rimegepant within 48 hours when administered with a moderate CYP3A4 inhibitor.",
+        "refs": [
+          {
+            "source_id": "fda-rimegepant-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Moderate CYP3A4 Inhibitors: Avoid another dose within 48 hours when administered with a moderate CYP3A4 inhibitor."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Strong and Moderate CYP3A Inducers (Rifampin, Carbamazepine, Phenytoin, St. John's Wort)",
+        "severity": "major",
+        "effect": "Significantly decreases rimegepant plasma concentrations, leading to loss of antimigraine efficacy.",
+        "management": "Avoid concomitant administration of rimegepant with strong or moderate CYP3A inducers.",
+        "refs": [
+          {
+            "source_id": "fda-rimegepant-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Strong and Moderate CYP3A Inducers: Avoid concomitant administration."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Potent Inhibitors of P-gp (Cyclosporine, Quinidine)",
+        "severity": "major",
+        "effect": "Potent P-glycoprotein inhibition increases rimegepant absorption and exposure.",
+        "management": "Avoid another dose of rimegepant within 48 hours when coadministered with a potent P-gp inhibitor.",
+        "refs": [
+          {
+            "source_id": "fda-rimegepant-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Potent Inhibitors of P-gp: Avoid another dose of NURTEC ODT within 48 hours when administered with a potent P-gp inhibitor."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-rimegepant-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Strong CYP3A4 Inhibitors: Avoid concomitant administration."
+      }
+    ]
   }
 }

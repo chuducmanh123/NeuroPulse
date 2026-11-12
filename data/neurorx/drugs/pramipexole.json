@@ -258,5 +258,29 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Dopamine Receptor Antagonists (Antipsychotics, Metoclopramide)",
+        "severity": "major",
+        "effect": "Dopamine antagonists block D2/D3 receptors, directly antagonizing the antiparkinsonian efficacy of pramipexole.",
+        "management": "Avoid concurrent dopamine receptor antagonists; if antipsychotic therapy is required, consider atypical agents with minimal D2 affinity (e.g. quetiapine, clozapine).",
+        "refs": [
+          {
+            "source_id": "fda-pramipexole-label",
+            "locator": "Section 7.1 Dopamine Antagonists",
+            "quote": "Since pramipexole is a dopamine agonist, it is possible that dopamine antagonists, such as the neuroleptics (phenothiazines, butyrophenones, thioxanthenes) or metoclopramide, may diminish the effectiveness of pramipexole dihydrochloride extended-release tablets."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-pramipexole-label",
+        "locator": "Section 7.1 Dopamine Antagonists",
+        "quote": "Since pramipexole is a dopamine agonist, it is possible that dopamine antagonists, such as the neuroleptics (phenothiazines, butyrophenones, thioxanthenes) or metoclopramide, may diminish the effectiveness of pramipexole dihydrochloride extended-release tablets."
+      }
+    ]
   }
 }

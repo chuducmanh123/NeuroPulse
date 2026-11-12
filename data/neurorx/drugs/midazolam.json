@@ -228,5 +228,85 @@
         }
       ]
     }
+  },
+  "reproductive": {
+    "tier": {
+      "value": "avoid",
+      "refs": [
+        {
+          "source_id": "fda-midazolam-label",
+          "locator": "Pregnancy: Risk Summary",
+          "quote": "Neonates born to mothers using benzodiazepines late in pregnancy have been reported to experience symptoms of sedation and/or neonatal withdrawal"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Midazolam is present in human milk in low levels. There are reports of sedation, poor feeding, and poor weight gain in nursing infants.",
+      "refs": [
+        {
+          "source_id": "fda-midazolam-label",
+          "locator": "Nursing Mothers: Risk Summary",
+          "quote": "There are reports of sedation, poor feeding and poor weight gain in infants exposed to benzodiazepines through breast milk."
+        }
+      ]
+    }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Opioid Analgesics & Other Central Depressants",
+        "severity": "contraindicated",
+        "effect": "Concomitant use with opioids substantially increases the risk of respiratory depression, profound sedation, coma, and mortality.",
+        "management": "Monitor patients closely for respiratory depression and profound sedation; have airway equipment and reversal agents immediately available.",
+        "refs": [
+          {
+            "source_id": "fda-midazolam-label",
+            "locator": "PRECAUTIONS - Concomitant Use With Opioids",
+            "quote": "Concomitant use of benzodiazepines and opioids may result in profound sedation, respiratory depression, coma, and death. Monitor patients for respiratory depression and sedation"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "CYP3A4 Inhibitors (Ketoconazole, Itraconazole, Diltiazem, Verapamil, Erythromycin)",
+        "severity": "major",
+        "effect": "Strong and moderate inhibitors of CYP3A4 decrease plasma clearance of midazolam, resulting in markedly prolonged sedation and delayed emergence.",
+        "management": "Anticipate prolonged sedative effect and consider dose reductions when coadministered with CYP3A4 inhibitors.",
+        "refs": [
+          {
+            "source_id": "fda-midazolam-label",
+            "locator": "PRECAUTIONS - Drug Interactions",
+            "quote": "These drug interactions may result in prolonged sedation due to a decrease in plasma clearance of midazolam."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-midazolam-label",
+        "locator": "PRECAUTIONS - Concomitant Use With Opioids",
+        "quote": "Concomitant use of benzodiazepines and opioids may result in profound sedation, respiratory depression, coma, and death. Monitor patients for respiratory depression and sedation"
+      }
+    ]
   }
 }

@@ -275,5 +275,42 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Antacids (Mg/Al Hydroxide) and Proton Pump Inhibitors (PPIs)",
+        "severity": "major",
+        "effect": "Antacids and PPIs decrease mycophenolate mofetil dissolution and gastrointestinal absorption, significantly reducing systemic exposure and immunosuppressive efficacy.",
+        "management": "Separate administration of antacids by at least 2 hours; evaluate the clinical necessity of PPIs or consider switching to H2-receptor antagonists if exposure is compromised.",
+        "refs": [
+          {
+            "source_id": "fda-mycophenolate-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "See FPI for drugs that may interfere with systemic exposure and reduce CELLCEPT efficacy: antacids with magnesium or aluminum hydroxide, proton pump inhibitors, drugs that interfere with enterohepatic recirculation, telmisartan, calcium-free phosphate binders."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Oral Contraceptives",
+        "severity": "major",
+        "effect": "Mycophenolate may reduce systemic exposure to gestodene/levonorgestrel, impairing oral contraceptive efficacy.",
+        "management": "Use of additional barrier contraceptive methods is recommended for female patients of childbearing potential.",
+        "refs": [
+          {
+            "source_id": "fda-mycophenolate-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "CELLCEPT may reduce effectiveness of oral contraceptives. Use of additional barrier contraceptive methods is recommended"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-mycophenolate-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "See FPI for drugs that may interfere with systemic exposure and reduce CELLCEPT efficacy: antacids with magnesium or aluminum hydroxide, proton pump inhibitors, drugs that interfere with enterohepatic recirculation, telmisartan, calcium-free phosphate binders."
+      }
+    ]
   }
 }

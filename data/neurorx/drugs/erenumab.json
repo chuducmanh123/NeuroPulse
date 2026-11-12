@@ -228,5 +228,42 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Cytochrome P450 Substrates, Inhibitors & Inducers",
+        "severity": "minor",
+        "effect": "Erenumab is an IgG2 monoclonal antibody degraded by general catabolism rather than hepatic enzymes, conferring minimal CYP drug interaction liability.",
+        "management": "No pharmacokinetic dose adjustments are required when co-administering with CYP-metabolized medications.",
+        "refs": [
+          {
+            "source_id": "fda-erenumab-label",
+            "locator": "Section 12.3 Pharmacokinetics - Drug Interaction Studies",
+            "quote": "Erenumab-aooe is not metabolized by cytochrome P450 enzymes; therefore, interactions with concomitant medications that are substrates, inducers, or inhibitors of cytochrome P450 enzymes are unlikely."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Oral Contraceptives (Ethinyl Estradiol / Norgestimate)",
+        "severity": "minor",
+        "effect": "Erenumab does not alter the pharmacokinetic profile or efficacy of combination oral contraceptive components.",
+        "management": "Standard contraceptive regimens may be maintained without dosage modification.",
+        "refs": [
+          {
+            "source_id": "fda-erenumab-label",
+            "locator": "Section 12.3 Pharmacokinetics - Oral Contraceptives",
+            "quote": "erenumab-aooe (140 mg subcutaneous, single-dose) did not affect the pharmacokinetics of a combined oral contraceptive containing ethinyl estradiol and norgestimate."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-erenumab-label",
+        "locator": "Section 12.3 Pharmacokinetics - Drug Interaction Studies",
+        "quote": "Erenumab-aooe is not metabolized by cytochrome P450 enzymes; therefore, interactions with concomitant medications that are substrates, inducers, or inhibitors of cytochrome P450 enzymes are unlikely."
+      }
+    ]
   }
 }

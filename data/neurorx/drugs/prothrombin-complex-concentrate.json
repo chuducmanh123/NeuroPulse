@@ -250,5 +250,72 @@
         }
       ]
     }
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-4fpcc-kcentra-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "There are no data with KCENTRA use in pregnancy to inform on drug-associated risk. Animal reproduction studies have not been conducted with KCENTRA."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "No information regarding excretion in human milk; use only if clearly needed in nursing women.",
+      "refs": [
+        {
+          "source_id": "fda-4fpcc-kcentra-label",
+          "locator": "Section 8.2 Lactation",
+          "quote": "Because many drugs are excreted in human milk, use KCENTRA only if clearly needed when treating a nursing woman."
+        }
+      ]
+    }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Vitamin K Antagonists (Warfarin) and Concomitant Vitamin K",
+        "severity": "moderate",
+        "effect": "Kcentra urgently restores functional levels of factors II, VII, IX, and X to reverse VKA anticoagulation; concurrent administration of vitamin K is required to sustain factor synthesis.",
+        "management": "Administer vitamin K concurrently to maintain coagulation factor production once the half-life of infused factors expires.",
+        "refs": [
+          {
+            "source_id": "fda-4fpcc-kcentra-label",
+            "locator": "Section 1 INDICATIONS AND USAGE",
+            "quote": "KCENTRA, (Prothrombin Complex Concentrate (Human)), is a blood coagulation factor replacement product indicated for the urgent reversal of acquired coagulation factor deficiency induced by Vitamin K antagonist (VKA, e.g., warfarin) therapy in adult patients with: acute major bleeding or need for an urgent surgery/invasive procedure."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-4fpcc-kcentra-label",
+        "locator": "Section 1 INDICATIONS AND USAGE",
+        "quote": "KCENTRA, (Prothrombin Complex Concentrate (Human)), is a blood coagulation factor replacement product indicated for the urgent reversal of acquired coagulation factor deficiency induced by Vitamin K antagonist (VKA, e.g., warfarin) therapy in adult patients with: acute major bleeding or need for an urgent surgery/invasive procedure."
+      }
+    ]
   }
 }

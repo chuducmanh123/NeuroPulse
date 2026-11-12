@@ -190,7 +190,7 @@ export function NeuroRxShell({
               onClick={() => handleTabChange("lookup")}
               role="tab"
               aria-selected={activeTab === "lookup"}
-              className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap min-h-[44px] ${
+              className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all whitespace-nowrap min-h-[44px] ${
                 activeTab === "lookup"
                   ? darkMode
                     ? "bg-slate-800 text-cyan-300 border border-cyan-500/30 shadow-sm"
@@ -203,7 +203,7 @@ export function NeuroRxShell({
               <Pill className="w-4 h-4 text-cyan-500" />
               <span>💊 Drug Lookup &amp; Dosing</span>
               {verifiedCount > 0 && (
-                <span className="text-[11px] px-1.5 py-0.2 rounded-full bg-cyan-500/15 text-cyan-600 dark:text-cyan-400 font-bold">
+                <span className="text-xs px-2 py-0.5 rounded-full bg-cyan-500/15 text-cyan-600 dark:text-cyan-400 font-extrabold">
                   {verifiedCount}
                 </span>
               )}
@@ -214,7 +214,7 @@ export function NeuroRxShell({
               onClick={() => handleTabChange("interactions")}
               role="tab"
               aria-selected={activeTab === "interactions"}
-              className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap min-h-[44px] ${
+              className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all whitespace-nowrap min-h-[44px] ${
                 activeTab === "interactions"
                   ? darkMode
                     ? "bg-slate-800 text-amber-300 border border-amber-500/30 shadow-sm"
@@ -233,7 +233,7 @@ export function NeuroRxShell({
               onClick={() => handleTabChange("pregnancy")}
               role="tab"
               aria-selected={activeTab === "pregnancy"}
-              className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap min-h-[44px] ${
+              className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all whitespace-nowrap min-h-[44px] ${
                 activeTab === "pregnancy"
                   ? darkMode
                     ? "bg-slate-800 text-rose-300 border border-rose-500/30 shadow-sm"
@@ -252,7 +252,7 @@ export function NeuroRxShell({
               onClick={() => handleTabChange("novel")}
               role="tab"
               aria-selected={activeTab === "novel"}
-              className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap min-h-[44px] ${
+              className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all whitespace-nowrap min-h-[44px] ${
                 activeTab === "novel"
                   ? darkMode
                     ? "bg-slate-800 text-indigo-300 border border-indigo-500/30 shadow-sm"
@@ -265,7 +265,7 @@ export function NeuroRxShell({
               <Sparkles className="w-4 h-4 text-indigo-500" />
               <span>🆕 Novel Therapies</span>
               {novelCount > 0 && (
-                <span className="text-[11px] px-1.5 py-0.2 rounded-full bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 font-bold">
+                <span className="text-xs px-2 py-0.5 rounded-full bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 font-extrabold">
                   {novelCount}
                 </span>
               )}

@@ -235,5 +235,42 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Central Nervous System Depressants, Alcohol, Cannabinoids & Opiates",
+        "severity": "major",
+        "effect": "Additive central nervous system depressant and sedative effects, with potential for impairment and substance misuse.",
+        "management": "Warn patients regarding excessive sedation; avoid alcohol and monitor closely if coadministered with sedative medications.",
+        "refs": [
+          {
+            "source_id": "fda-trihexyphenidyl-label",
+            "locator": "Drug Interactions",
+            "quote": "Cannabinoids, barbiturates, opiates, and alcohol may have additive effects with trihexyphenidyl, and thus, an abuse potential exists."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Monoamine Oxidase Inhibitors & Tricyclic Antidepressants",
+        "severity": "major",
+        "effect": "Additive anticholinergic effects precipitating paralytic ileus, narrow-angle glaucoma exacerbation, or toxic confusional states.",
+        "management": "Monitor for enhanced anticholinergic toxicity; dose reduction of one or both agents may be required.",
+        "refs": [
+          {
+            "source_id": "fda-trihexyphenidyl-label",
+            "locator": "Drug Interactions",
+            "quote": "Monoamine oxidase inhibitors and tricyclic antidepressants possessing significant anticholinergic activity may intensify the anticholinergic effects of antidyskinetic agents because of the secondary anticholinergic activities of these medications."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-trihexyphenidyl-label",
+        "locator": "Drug Interactions",
+        "quote": "Cannabinoids, barbiturates, opiates, and alcohol may have additive effects with trihexyphenidyl, and thus, an abuse potential exists."
+      }
+    ]
   }
 }

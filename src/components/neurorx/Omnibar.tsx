@@ -167,7 +167,7 @@ export function Omnibar({
       {/* 2. Parsed Patient Context Chips */}
       {hasPatientParams && (
         <div className="flex flex-wrap items-center gap-1.5 mt-2 px-1">
-          <span className="text-[11px] font-semibold tracking-wider uppercase text-slate-500 dark:text-slate-400 mr-1">
+          <span className="text-xs font-bold tracking-wider uppercase text-slate-600 dark:text-slate-400 mr-1">
             Parsed:
           </span>
 
@@ -290,27 +290,27 @@ export function Omnibar({
                   }`}
                 >
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <span className="font-bold text-sm sm:text-base tracking-wide font-mono">
+                    <div className="flex items-center gap-2.5 flex-wrap">
+                      <span className="font-extrabold text-sm sm:text-base tracking-tight text-slate-900 dark:text-white">
                         {tallManName}
                       </span>
 
                       {/* Brand Match or Product Hint */}
                       {drug.vn_products?.value && drug.vn_products.value.length > 0 && (
-                        <span className="text-xs px-2 py-0.5 rounded-full bg-slate-200/70 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium">
+                        <span className="text-xs px-2.5 py-0.5 rounded-full bg-slate-200/70 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold">
                           Brand: {drug.vn_products.value.map((p) => p.brand).join(", ")}
                         </span>
                       )}
 
                       {/* Verification Status Badge */}
                       {isVerified ? (
-                        <span className="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-semibold border border-emerald-500/20">
-                          <ShieldCheck className="w-3 h-3" />
+                        <span className="inline-flex items-center gap-1 text-xs px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-bold border border-emerald-500/20">
+                          <ShieldCheck className="w-3.5 h-3.5" />
                           <span>Verified</span>
                         </span>
                       ) : (
-                        <span className="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 font-semibold border border-amber-500/20">
-                          <AlertTriangle className="w-3 h-3" />
+                        <span className="inline-flex items-center gap-1 text-xs px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 font-bold border border-amber-500/20">
+                          <AlertTriangle className="w-3.5 h-3.5" />
                           <span>Pending verification</span>
                         </span>
                       )}

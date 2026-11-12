@@ -238,5 +238,29 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Central Nervous System Depressants and Alcohol",
+        "severity": "major",
+        "effect": "Additive central nervous system depression resulting in profound sedation, somnolence, ataxia, and respiratory compromise.",
+        "management": "Caution patients that CNS effects of baclofen may be additive to alcohol and other CNS depressants; adjust doses accordingly.",
+        "refs": [
+          {
+            "source_id": "fda-baclofen-label",
+            "locator": "PRECAUTIONS",
+            "quote": "Patients should also be cautioned that the central nervous system effects of baclofen may be additive to those of alcohol and other CNS depressants."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-baclofen-label",
+        "locator": "PRECAUTIONS",
+        "quote": "Patients should also be cautioned that the central nervous system effects of baclofen may be additive to those of alcohol and other CNS depressants."
+      }
+    ]
   }
 }

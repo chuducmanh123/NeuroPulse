@@ -339,5 +339,54 @@
         "quote": "Avoid concomitant administration of XARELTO with known combined P-gp and strong CYP3A inhibitors (e.g., ketoconazole and ritonavir)"
       }
     ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "avoid",
+      "refs": [
+        {
+          "source_id": "fda-rivaroxaban-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "Use XARELTO with caution in pregnant patients because of the potential for pregnancy related hemorrhage and/or emergent delivery."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Risk of pregnancy-related obstetric hemorrhage and emergent delivery; anticoagulant activity cannot be monitored with standard lab tests.",
+      "refs": [
+        {
+          "source_id": "fda-rivaroxaban-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "Use XARELTO with caution in pregnant patients because of the potential for pregnancy related hemorrhage and/or emergent delivery."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Rivaroxaban has been detected in human breast milk; weigh maternal benefit against potential bleeding risk in infant.",
+      "refs": [
+        {
+          "source_id": "fda-rivaroxaban-label",
+          "locator": "Section 8.2 Lactation",
+          "quote": "Rivaroxaban has been detected in human milk."
+        }
+      ]
+    }
   }
 }

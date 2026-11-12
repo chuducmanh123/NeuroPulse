@@ -218,5 +218,98 @@
         }
       ]
     }
+  },
+  "reproductive": {
+    "tier": {
+      "value": "avoid",
+      "refs": [
+        {
+          "source_id": "fda-atorvastatin-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "Discontinue LIPITOR when pregnancy is recognized. Alternatively, consider the ongoing therapeutic needs of the individual patient."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Breastfeeding is not recommended during atorvastatin treatment due to potential for serious adverse reactions in nursing infants.",
+      "refs": [
+        {
+          "source_id": "fda-atorvastatin-label",
+          "locator": "Section 8.2 Lactation",
+          "quote": "There is no information about the presence of atorvastatin in human milk, the effects of the drug on the breastfed infant or the effects of the drug on milk production."
+        }
+      ]
+    }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Cyclosporine and Gemfibrozil",
+        "severity": "contraindicated",
+        "effect": "Significantly increases atorvastatin plasma levels through inhibition of CYP3A4 and hepatic OATP1B1 uptake transporters, sharply raising myopathy/rhabdomyolysis risk.",
+        "management": "Avoid concomitant use with cyclosporine or gemfibrozil; if coadministration cannot be avoided, use lowest effective statin dose and monitor closely for muscle pain/weakness and CK elevation.",
+        "refs": [
+          {
+            "source_id": "fda-atorvastatin-label",
+            "locator": "Section 7.1 Drug Interactions - Table 2",
+            "quote": "Atorvastatin plasma levels were significantly increased with concomitant administration of LIPITOR and cyclosporine, an inhibitor of CYP3A4 and OATP1B1"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Rifampin (Dual CYP3A4 & OATP Transporter Inducer/Inhibitor)",
+        "severity": "moderate",
+        "effect": "Rifampin may reduce atorvastatin plasma concentrations due to hepatic enzyme induction.",
+        "management": "Administer rifampin simultaneously with atorvastatin; delayed administration after rifampin results in substantial reduction of statin concentrations.",
+        "refs": [
+          {
+            "source_id": "fda-atorvastatin-label",
+            "locator": "Section 7.2 Rifampin or Other Inducers of Cytochrome P450 3A4",
+            "quote": "Rifampin: May reduce atorvastatin plasma concentrations. Administer simultaneously with LIPITOR"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Digoxin",
+        "severity": "moderate",
+        "effect": "Atorvastatin may increase steady-state digoxin plasma levels by approximately 20%.",
+        "management": "Monitor digoxin serum concentrations and clinical signs of digitalis toxicity when initiating or adjusting atorvastatin therapy.",
+        "refs": [
+          {
+            "source_id": "fda-atorvastatin-label",
+            "locator": "Section 7.3 Digoxin",
+            "quote": "Digoxin: May increase digoxin plasma levels; monitor patients appropriately"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-atorvastatin-label",
+        "locator": "Section 7.1 Drug Interactions - Table 2",
+        "quote": "Atorvastatin plasma levels were significantly increased with concomitant administration of LIPITOR and cyclosporine, an inhibitor of CYP3A4 and OATP1B1"
+      }
+    ]
   }
 }

@@ -264,5 +264,42 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Anticholinergic Medications (Oxybutynin, Tolterodine, Benztropine)",
+        "severity": "major",
+        "effect": "Pharmacodynamic antagonism: donepezil reduces the efficacy of anticholinergics, and anticholinergics diminish cognitive benefits of donepezil.",
+        "management": "Avoid concurrent use where possible; evaluate whether urinary antispasmodics or other anticholinergics can be discontinued or switched.",
+        "refs": [
+          {
+            "source_id": "fda-donepezil-label",
+            "locator": "Section 7.1 Use with Anticholinergics",
+            "quote": "Because of their mechanism of action, cholinesterase inhibitors have the potential to interfere with the activity of anticholinergic medications."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Neuromuscular Blocking Agents (Succinylcholine) & Cholinergic Agonists (Bethanechol)",
+        "severity": "major",
+        "effect": "Synergistic cholinergic effects and prolongation of neuromuscular blockade during anesthesia.",
+        "management": "Inform anesthesiologists of donepezil use prior to surgical procedures utilizing depolarizing neuromuscular blockers.",
+        "refs": [
+          {
+            "source_id": "fda-donepezil-label",
+            "locator": "Section 7.2 Use with Cholinomimetics and Other Cholinesterase Inhibitors",
+            "quote": "A synergistic effect may be expected when cholinesterase inhibitors are given concurrently with succinylcholine, similar neuromuscular blocking agents, or cholinergic agonists such as bethanechol."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-donepezil-label",
+        "locator": "Section 7.1 Use with Anticholinergics",
+        "quote": "Because of their mechanism of action, cholinesterase inhibitors have the potential to interfere with the activity of anticholinergic medications."
+      }
+    ]
   }
 }

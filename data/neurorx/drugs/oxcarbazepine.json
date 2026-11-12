@@ -275,5 +275,55 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Phenytoin",
+        "severity": "major",
+        "effect": "Oxcarbazepine inhibits CYP2C19, increasing phenytoin plasma levels at oxcarbazepine doses >1200 mg/day.",
+        "management": "Monitor phenytoin plasma concentrations and reduce phenytoin dose as needed during oxcarbazepine titration.",
+        "refs": [
+          {
+            "source_id": "fda-oxcarbazepine-label",
+            "locator": "Section 7.1 Effect of TRILEPTAL on Other Drugs",
+            "quote": "Phenytoin levels have been shown to increase with concomitant use of TRILEPTAL at doses greater than 1200 mg/day"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Hormonal Contraceptives (Estrogen & Progestin)",
+        "severity": "major",
+        "effect": "Induction of CYP3A4/5 increases clearance of ethinylestradiol and levonorgestrel, reducing contraceptive efficacy.",
+        "management": "Advise women of childbearing potential to use alternative or additional non-hormonal barrier contraception.",
+        "refs": [
+          {
+            "source_id": "fda-oxcarbazepine-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Oral Contraceptive: TRILEPTAL may decrease the effectiveness of hormonal contraceptives"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Enzyme Inducers (Carbamazepine, Phenytoin, Phenobarbital)",
+        "severity": "major",
+        "effect": "Decreases plasma levels of 10-monohydroxy metabolite (MHD), the active moiety of oxcarbazepine.",
+        "management": "Dose adjustments of oxcarbazepine may be required when enzyme-inducing AEDs are added or withdrawn.",
+        "refs": [
+          {
+            "source_id": "fda-oxcarbazepine-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Carbamazepine, Phenytoin, and Phenobarbital: Decreased plasma levels of MHD (the active metabolite). Dose adjustments may be necessary"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-oxcarbazepine-label",
+        "locator": "Section 7.1 Effect of TRILEPTAL on Other Drugs",
+        "quote": "Phenytoin levels have been shown to increase with concomitant use of TRILEPTAL at doses greater than 1200 mg/day"
+      }
+    ]
   }
 }

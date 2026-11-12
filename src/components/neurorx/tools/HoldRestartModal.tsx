@@ -197,72 +197,72 @@ export function HoldRestartModal({
                             : "bg-white border-slate-200"
                         }`}
                       >
-                        <div className="flex items-start justify-between gap-2 mb-2">
-                          <span className="font-bold text-xs sm:text-sm text-slate-900 dark:text-slate-100">
+                        <div className="flex items-start justify-between gap-2 mb-2.5">
+                          <span className="font-extrabold text-sm sm:text-base text-slate-900 dark:text-slate-100">
                             {item.procedure_label}
                           </span>
                           {item.crcl_matched && (
-                            <span className="text-[10px] px-2 py-0.5 rounded-full font-bold bg-sky-500/15 text-sky-600 dark:text-sky-400 border border-sky-500/30">
+                            <span className="text-xs px-2.5 py-0.5 rounded-full font-bold bg-sky-500/15 text-sky-700 dark:text-sky-300 border border-sky-500/30">
                               Matched Renal Stratum
                             </span>
                           )}
                         </div>
 
                         {/* Visual Timeline: Last Dose / Hold -> Intervention -> Restart */}
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs pt-2">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-sm pt-2">
                           {/* Step 1: Hold */}
                           <div
-                            className={`p-2.5 rounded-lg border ${
+                            className={`p-3 rounded-xl border ${
                               darkMode ? "bg-slate-950/60 border-slate-800" : "bg-slate-50 border-slate-200"
                             }`}
                           >
-                            <span className="text-[10px] font-bold uppercase tracking-wider text-rose-500 block">
+                            <span className="text-xs font-extrabold uppercase tracking-wider text-rose-500 block">
                               1. Pre-Procedure Hold
                             </span>
-                            <span className="font-extrabold text-sm text-slate-900 dark:text-slate-100 block mt-0.5">
+                            <span className="font-black text-base sm:text-lg text-slate-900 dark:text-slate-100 block mt-1">
                               {item.hold_hours}
                             </span>
-                            <span className="text-[11px] text-slate-400 block mt-0.5">
+                            <span className="text-xs font-medium text-slate-500 dark:text-slate-400 block mt-0.5">
                               Hold prior to procedure
                             </span>
                           </div>
 
                           {/* Step 2: Procedure */}
                           <div
-                            className={`p-2.5 rounded-lg border ${
+                            className={`p-3 rounded-xl border ${
                               darkMode ? "bg-slate-950/60 border-slate-800" : "bg-slate-50 border-slate-200"
                             }`}
                           >
-                            <span className="text-[10px] font-bold uppercase tracking-wider text-amber-500 block">
+                            <span className="text-xs font-extrabold uppercase tracking-wider text-amber-500 block">
                               2. Intervention
                             </span>
-                            <span className="font-extrabold text-xs text-slate-900 dark:text-slate-100 block mt-0.5">
+                            <span className="font-bold text-sm text-slate-900 dark:text-slate-100 block mt-1">
                               {procedure === "lumbar_puncture"
                                 ? "Lumbar Puncture"
                                 : "Neurosurgery"}
                             </span>
-                            <span className="text-[11px] text-slate-400 block mt-0.5">
+                            <span className="text-xs font-medium text-slate-500 dark:text-slate-400 block mt-0.5">
                               Confirm adequate hemostasis
                             </span>
                           </div>
 
                           {/* Step 3: Restart */}
                           <div
-                            className={`p-2.5 rounded-lg border ${
+                            className={`p-3 rounded-xl border ${
                               darkMode ? "bg-slate-950/60 border-slate-800" : "bg-slate-50 border-slate-200"
                             }`}
                           >
-                            <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-500 block">
+                            <span className="text-xs font-extrabold uppercase tracking-wider text-emerald-500 block">
                               3. Post-Procedure Restart
                             </span>
-                            <span className="font-semibold text-xs text-slate-900 dark:text-slate-100 block mt-0.5 leading-snug">
+                            <span className="font-semibold text-sm text-slate-900 dark:text-slate-100 block mt-1 leading-snug">
                               {item.restart_timing}
                             </span>
                           </div>
                         </div>
 
                         {item.note && (
-                          <p className="text-[11px] text-slate-400 italic mt-2">
+                          <p className="text-xs text-slate-500 dark:text-slate-400 font-medium italic mt-2.5">
                             {item.note}
                           </p>
                         )}
@@ -277,7 +277,7 @@ export function HoldRestartModal({
 
         {/* Footer */}
         <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
-          <span className="text-[11px] text-slate-400 italic">
+          <span className="text-xs text-slate-500 dark:text-slate-400 italic font-medium">
             Reference only. Always confirm local institutional protocol and individual hemostatic risk.
           </span>
           <button

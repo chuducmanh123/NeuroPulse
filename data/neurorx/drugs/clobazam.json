@@ -248,5 +248,68 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Opioid Analgesics",
+        "severity": "contraindicated",
+        "effect": "Concomitant use substantially elevates the risk of severe respiratory depression, profound sedation, coma, and death.",
+        "management": "Reserve concomitant use for patients with inadequate alternatives; limit dosages and durations to the minimum required.",
+        "refs": [
+          {
+            "source_id": "fda-clobazam-label",
+            "locator": "Section 7.1 Opioids",
+            "quote": "The concomitant use of benzodiazepines and opioids increases the risk of respiratory depression because of actions at different receptor sites in the CNS that control respiration."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "CYP2D6 Substrates (Fluoxetine, Paroxetine, Dextromethorphan)",
+        "severity": "moderate",
+        "effect": "Clobazam inhibits CYP2D6, resulting in elevated plasma concentrations of CYP2D6 substrates.",
+        "management": "Dose reductions of CYP2D6 substrates may be required when coadministered with clobazam.",
+        "refs": [
+          {
+            "source_id": "fda-clobazam-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Drugs metabolized by CYP2D6: Lower doses of these drugs may be required when used concomitantly with ONFI"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Strong or Moderate CYP2C19 Inhibitors (Fluconazole, Omeprazole)",
+        "severity": "major",
+        "effect": "Inhibits metabolism of N-desmethylclobazam (active metabolite), causing accumulation and enhanced adverse effects.",
+        "management": "Dosage adjustment of clobazam may be necessary when combined with CYP2C19 inhibitors.",
+        "refs": [
+          {
+            "source_id": "fda-clobazam-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Strong or Moderate CYP2C19 Inhibitors: Dosage adjustment of ONFI may be necessary"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Alcohol",
+        "severity": "major",
+        "effect": "Ethanol increases systemic blood levels of clobazam by approximately 50%, producing marked synergistic sedation.",
+        "management": "Advise patients strictly against alcohol consumption while receiving clobazam.",
+        "refs": [
+          {
+            "source_id": "fda-clobazam-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Alcohol: Increases blood levels of clobazam by about 50%"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-clobazam-label",
+        "locator": "Section 7.1 Opioids",
+        "quote": "The concomitant use of benzodiazepines and opioids increases the risk of respiratory depression because of actions at different receptor sites in the CNS that control respiration."
+      }
+    ]
   }
 }

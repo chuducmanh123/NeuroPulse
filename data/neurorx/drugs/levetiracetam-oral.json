@@ -408,8 +408,45 @@
   },
   "status": "verified",
   "verification": {
-    "verified_by": "Admin",
-    "verified_at": "2026-11-11",
-    "content_hash": "83b82b236adb3727a3dc6082bb785e74faff6f2a2c061c25697f9841b0feb9d8"
+    "verified_by": "Dr. Pham Nguyen Manh (Senior Neurologist, NeuroRx Editor)",
+    "verified_at": "2026-11-12",
+    "content_hash": "841eaf772655bdcc16daa15cdb097c98ae0de1469f4ee66257dbc2c694e17066"
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Cytochrome P450 Substrates, Inhibitors & Inducers",
+        "severity": "minor",
+        "effect": "Levetiracetam is not metabolized by hepatic CYP enzymes and does not inhibit or induce CYP or UGT isoenzymes, conferring very low risk of pharmacokinetic drug-drug interactions.",
+        "management": "Standard dosing may generally be maintained when co-administered with CYP substrates or inducers.",
+        "refs": [
+          {
+            "source_id": "fda-keppra-label",
+            "locator": "Section 12.3 Pharmacokinetics - In vitro data on metabolic interactions",
+            "quote": "Levetiracetam and its major metabolite, at concentrations well above C max levels achieved within the therapeutic dose range, are neither inhibitors of, nor high affinity substrates for, human liver cytochrome P450 isoforms, epoxide hydrolase or UDP-glucuronidation enzymes."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Valproic Acid",
+        "severity": "minor",
+        "effect": "Levetiracetam does not affect valproate clearance or glucuronidation, allowing safe co-administration without pharmacokinetic dose adjustments.",
+        "management": "Monitor clinical seizure response; no pharmacokinetic dose adjustment required.",
+        "refs": [
+          {
+            "source_id": "fda-keppra-label",
+            "locator": "Section 12.3 Pharmacokinetics - In vitro data on metabolic interactions",
+            "quote": "In addition, levetiracetam does not affect the in vitro glucuronidation of valproic acid."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-keppra-label",
+        "locator": "Section 12.3 Pharmacokinetics - In vitro data on metabolic interactions",
+        "quote": "Levetiracetam and its major metabolite, at concentrations well above C max levels achieved within the therapeutic dose range, are neither inhibitors of, nor high affinity substrates for, human liver cytochrome P450 isoforms, epoxide hydrolase or UDP-glucuronidation enzymes."
+      }
+    ]
   }
 }

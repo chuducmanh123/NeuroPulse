@@ -248,5 +248,29 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Antithrombotic & Anticoagulant Medications (Aspirin, Antiplatelets, Anticoagulants)",
+        "severity": "major",
+        "effect": "Concomitant antithrombotic therapy in patients developing ARIA-H may elevate the risk or extent of intracerebral hemorrhage.",
+        "management": "Perform regular MRI surveillance for ARIA; evaluate risk-benefit carefully before administering anticoagulants or thrombolytics to patients on donanemab.",
+        "refs": [
+          {
+            "source_id": "fda-donanemab-label",
+            "locator": "Section 5.1 Amyloid Related Imaging Abnormalities - Antithrombotic or Thrombolytic Medication",
+            "quote": "Antithrombotic or Thrombolytic Medication In Study 1, baseline use of antithrombotic medication (aspirin, other antiplatelets, or anticoagulants) was allowed. The majority of exposures to antithrombotic medications were to aspirin."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-donanemab-label",
+        "locator": "Section 5.1 Amyloid Related Imaging Abnormalities - Antithrombotic or Thrombolytic Medication",
+        "quote": "Antithrombotic or Thrombolytic Medication In Study 1, baseline use of antithrombotic medication (aspirin, other antiplatelets, or anticoagulants) was allowed. The majority of exposures to antithrombotic medications were to aspirin."
+      }
+    ]
   }
 }

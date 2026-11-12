@@ -39,6 +39,12 @@ export function AuditTrail({
     collect(drug.ae_tags);
     collect(drug.mechanism_of_action);
     collect(drug.enzyme_profile);
+    collect(drug.fda_interactions);
+    if (drug.fda_interactions?.value) {
+      for (const item of drug.fda_interactions.value) {
+        if (item.refs) allRefs.push(...item.refs);
+      }
+    }
 
     if (drug.adverse_effects) {
       collect(drug.adverse_effects.most_common);

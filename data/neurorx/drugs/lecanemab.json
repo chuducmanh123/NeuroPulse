@@ -248,5 +248,29 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Antithrombotic & Anticoagulant Medications (Aspirin, Warfarin, DOACs, Heparins)",
+        "severity": "major",
+        "effect": "Co-administration during amyloid-related imaging abnormalities (ARIA) carries potential for increased risk or size of intracerebral hemorrhage.",
+        "management": "Obtain baseline and scheduled surveillance MRIs; exercise additional caution when considering anticoagulant or thrombolytic therapy in patients receiving lecanemab.",
+        "refs": [
+          {
+            "source_id": "fda-lecanemab-label",
+            "locator": "Section 5.1 Amyloid Related Imaging Abnormalities - Antithrombotic or Thrombolytic Medication",
+            "quote": "Antithrombotic or Thrombolytic Medication In Study 2, baseline use of antithrombotic medication (aspirin, other antiplatelets, or anticoagulants) was allowed if the patient was on a stable dose. The majority of exposures to antithrombotic medications were to aspirin."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-lecanemab-label",
+        "locator": "Section 5.1 Amyloid Related Imaging Abnormalities - Antithrombotic or Thrombolytic Medication",
+        "quote": "Antithrombotic or Thrombolytic Medication In Study 2, baseline use of antithrombotic medication (aspirin, other antiplatelets, or anticoagulants) was allowed if the patient was on a stable dose. The majority of exposures to antithrombotic medications were to aspirin."
+      }
+    ]
   }
 }

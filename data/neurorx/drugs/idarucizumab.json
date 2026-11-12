@@ -181,5 +181,72 @@
         }
       ]
     }
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-idarucizumab-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "There are no available data on PRAXBIND use in pregnant women to inform a drug-associated risk of major birth defects and miscarriage."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Unknown if idarucizumab is excreted in human milk; exercise caution when administered to nursing mothers.",
+      "refs": [
+        {
+          "source_id": "fda-idarucizumab-label",
+          "locator": "Section 8.2 Lactation",
+          "quote": "Because many drugs are excreted in human milk, caution should be exercised when PRAXBIND is administered to a nursing woman."
+        }
+      ]
+    }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Coagulation Factor Concentrates (3- or 4-Factor PCC, activated PCC, Factor VIIa)",
+        "severity": "moderate",
+        "effect": "In vitro data demonstrate that dabigatran reversal by idarucizumab is unaffected by concurrent or sequential administration of coagulation factor concentrates.",
+        "management": "Factor concentrates may be administered if clinical hemorrhage persists after dabigatran neutralization, without concern for negative interaction.",
+        "refs": [
+          {
+            "source_id": "fda-idarucizumab-label",
+            "locator": "Section 7 DRUG INTERACTIONS - In vitro Assessment",
+            "quote": "In vitro data suggest that the inhibition of dabigatran by idarucizumab is not affected by coagulation factor concentrates [3- or 4-factor prothrombin complex concentrates (PCCs), activated PCC, or recombinant Factor VIIa]."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-idarucizumab-label",
+        "locator": "Section 7 DRUG INTERACTIONS - In vitro Assessment",
+        "quote": "In vitro data suggest that the inhibition of dabigatran by idarucizumab is not affected by coagulation factor concentrates [3- or 4-factor prothrombin complex concentrates (PCCs), activated PCC, or recombinant Factor VIIa]."
+      }
+    ]
   }
 }

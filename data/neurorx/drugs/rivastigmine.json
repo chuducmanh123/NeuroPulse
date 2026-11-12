@@ -264,5 +264,55 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Metoclopramide",
+        "severity": "major",
+        "effect": "Additive extrapyramidal adverse effects, drug-induced parkinsonism, and dystonic reactions.",
+        "management": "Concomitant use of metoclopramide and rivastigmine is not recommended.",
+        "refs": [
+          {
+            "source_id": "fda-rivastigmine-label",
+            "locator": "Section 7.1 Metoclopramide",
+            "quote": "Due to the risk of additive extra-pyramidal adverse reactions, the concomitant use of metoclopramide and EXELON PATCH is not recommended."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Beta-Blockers (Atenolol, Metoprolol, Propranolol)",
+        "severity": "major",
+        "effect": "Additive vagotonic bradycardic effects resulting in sinus arrest, profound bradycardia, or syncope.",
+        "management": "Monitor heart rate; concomitant use is not recommended in patients exhibiting bradycardia or conduction abnormalities.",
+        "refs": [
+          {
+            "source_id": "fda-rivastigmine-label",
+            "locator": "Section 7.3 Beta-Blockers",
+            "quote": "Additive bradycardic effects resulting in syncope may occur when EXELON is used concomitantly with beta-blockers, especially cardioselective beta-blockers (including atenolol)."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Anticholinergic Medications & Other Cholinomimetics",
+        "severity": "major",
+        "effect": "Pharmacodynamic antagonism of anticholinergics and additive cholinergic toxicity with cholinomimetics.",
+        "management": "Concomitant use is not recommended unless deemed clinically necessary.",
+        "refs": [
+          {
+            "source_id": "fda-rivastigmine-label",
+            "locator": "Section 7.2 Cholinomimetic and Anticholinergic Medications",
+            "quote": "EXELON PATCH may increase the cholinergic effects of other cholinomimetic medications and may also interfere with the activity of anticholinergic medications (e.g., oxybutynin, tolterodine)."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-rivastigmine-label",
+        "locator": "Section 7.1 Metoclopramide",
+        "quote": "Due to the risk of additive extra-pyramidal adverse reactions, the concomitant use of metoclopramide and EXELON PATCH is not recommended."
+      }
+    ]
   }
 }

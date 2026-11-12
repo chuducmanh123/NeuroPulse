@@ -237,5 +237,42 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Probenecid",
+        "severity": "moderate",
+        "effect": "Probenecid competitively inhibits renal tubular secretion of acyclovir, increasing acyclovir mean elimination half-life and AUC.",
+        "management": "Monitor for acyclovir-induced neurotoxicity or nephrotoxicity when co-administering probenecid.",
+        "refs": [
+          {
+            "source_id": "fda-acyclovir-label",
+            "locator": "CLINICAL PHARMACOLOGY - Drug Interactions",
+            "quote": "Coadministration of probenecid with acyclovir has been shown to increase the mean acyclovir half-life and the area under the concentration-time curve. Urinary excretion and renal clearance were correspondingly reduced."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Nephrotoxic Medications (Aminoglycosides, Vancomycin, Amphotericin B, Contrast Agents)",
+        "severity": "major",
+        "effect": "Coadministration of nephrotoxic drugs, pre-existing renal disease, and dehydration increase the risk of acute tubular necrosis and acyclovir crystallization.",
+        "management": "Ensure adequate intravenous hydration and urine flow; monitor renal function frequently.",
+        "refs": [
+          {
+            "source_id": "fda-acyclovir-label",
+            "locator": "WARNINGS",
+            "quote": "Concomitant use of other nephrotoxic drugs, pre-existing renal disease, and dehydration make further renal impairment with acyclovir more likely."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-acyclovir-label",
+        "locator": "CLINICAL PHARMACOLOGY - Drug Interactions",
+        "quote": "Coadministration of probenecid with acyclovir has been shown to increase the mean acyclovir half-life and the area under the concentration-time curve. Urinary excretion and renal clearance were correspondingly reduced."
+      }
+    ]
   }
 }

@@ -256,5 +256,42 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Urinary Alkalinizers (Carbonic Anhydrase Inhibitors, Sodium Bicarbonate)",
+        "severity": "major",
+        "effect": "Clearance of memantine is reduced by ~80% under alkaline urine conditions (pH 8), resulting in toxic accumulation.",
+        "management": "Use with caution; avoid coadministration with carbonic anhydrase inhibitors (acetazolamide, topiramate) or monitor closely for confusion/hallucinations.",
+        "refs": [
+          {
+            "source_id": "fda-memantine-label",
+            "locator": "Section 7.1 Drugs That Make Urine Alkaline",
+            "quote": "The clearance of memantine was reduced by about 80% under alkaline urine conditions at pH 8. Therefore, alterations of urine pH towards the alkaline condition may lead to an accumulation of the drug with a possible increase in adverse effects."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Other NMDA Receptor Antagonists (Amantadine, Ketamine, Dextromethorphan)",
+        "severity": "moderate",
+        "effect": "Potential additive central NMDA blockade with increased incidence of central nervous system adverse reactions.",
+        "management": "Approach combined use with caution and monitor for exacerbated agitation, dizziness, or confusion.",
+        "refs": [
+          {
+            "source_id": "fda-memantine-label",
+            "locator": "Section 7.2 Use with Other N-methyl-D-aspartate (NMDA) Antagonists",
+            "quote": "The combined use of memantine hydrochloride extended-release capsules with other NMDA antagonists (amantadine, ketamine, and dextromethorphan) has not been systematically evaluated and such use should be approached with caution."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-memantine-label",
+        "locator": "Section 7.1 Drugs That Make Urine Alkaline",
+        "quote": "The clearance of memantine was reduced by about 80% under alkaline urine conditions at pH 8. Therefore, alterations of urine pH towards the alkaline condition may lead to an accumulation of the drug with a possible increase in adverse effects."
+      }
+    ]
   }
 }

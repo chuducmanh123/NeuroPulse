@@ -235,5 +235,42 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Nephrotoxic and Ototoxic Agents (Aminoglycosides, Amphotericin B, Polymyxin B, Cisplatin)",
+        "severity": "major",
+        "effect": "Additive or synergistic nephrotoxicity and eighth-cranial-nerve ototoxicity with concurrent or sequential systemic administration.",
+        "management": "Monitor renal function (serum creatinine, eGFR) and vancomycin trough concentrations frequently; avoid combinations when feasible.",
+        "refs": [
+          {
+            "source_id": "fda-vancomycin-label",
+            "locator": "PRECAUTIONS - Drug Interactions",
+            "quote": "Monitor renal function in patients receiving vancomycin and concurrent and/or sequential systemic or topical use of other potentially, neurotoxic and/or nephrotoxic drugs, such as amphotericin B, aminoglycosides, bacitracin, polymyxin B, colistin, viomycin, or cisplatin."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "General Anesthetic Agents",
+        "severity": "moderate",
+        "effect": "Concomitant administration has been associated with erythema, histamine-like flushing, and anaphylactoid reactions.",
+        "management": "Infuse vancomycin over at least 60 minutes prior to anesthetic induction to minimize histamine-mediated infusion reactions.",
+        "refs": [
+          {
+            "source_id": "fda-vancomycin-label",
+            "locator": "PRECAUTIONS - Drug Interactions",
+            "quote": "Concomitant administration of vancomycin and anesthetic agents has been associated with erythema and histamine-like flushing (see Pediatric Use, PRECAUTIONS ) and anaphylactoid reactions (see ADVERSE REACTIONS )."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-vancomycin-label",
+        "locator": "PRECAUTIONS - Drug Interactions",
+        "quote": "Monitor renal function in patients receiving vancomycin and concurrent and/or sequential systemic or topical use of other potentially, neurotoxic and/or nephrotoxic drugs, such as amphotericin B, aminoglycosides, bacitracin, polymyxin B, colistin, viomycin, or cisplatin."
+      }
+    ]
   }
 }

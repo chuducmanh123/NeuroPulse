@@ -242,5 +242,42 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Potassium-Depleting Diuretics and Amphotericin B",
+        "severity": "major",
+        "effect": "Additive kaliuresis producing severe, life-threatening hypokalemia and cardiac arrhythmias.",
+        "management": "Monitor serum potassium frequently and administer potassium supplementation as clinically indicated.",
+        "refs": [
+          {
+            "source_id": "fda-methylprednisolone-label",
+            "locator": "PRECAUTIONS - Drug Interactions",
+            "quote": "When corticosteroids are administered concomitantly with potassium-depleting agents (i.e., amphotericin B, diuretics), patients should be observed closely for development of hypokalemia."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Aminoglutethimide",
+        "severity": "moderate",
+        "effect": "Aminoglutethimide induces hepatic microsomal metabolism of corticosteroids, causing loss of adrenal suppression and therapeutic efficacy.",
+        "management": "Avoid concurrent use or adjust corticosteroid dosage upward.",
+        "refs": [
+          {
+            "source_id": "fda-methylprednisolone-label",
+            "locator": "PRECAUTIONS - Drug Interactions",
+            "quote": "Aminoglutethimide may lead to a loss of corticosteroid-induced adrenal suppression."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-methylprednisolone-label",
+        "locator": "PRECAUTIONS - Drug Interactions",
+        "quote": "When corticosteroids are administered concomitantly with potassium-depleting agents (i.e., amphotericin B, diuretics), patients should be observed closely for development of hypokalemia."
+      }
+    ]
   }
 }

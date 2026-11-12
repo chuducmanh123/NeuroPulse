@@ -244,5 +244,98 @@
         }
       ]
     }
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-aspirin-label",
+          "locator": "Pregnancy",
+          "quote": "Pregnant women should only take aspirin if clearly needed. Because of the known effects of NSAID's on the fetal cardiovascular system (closure of the ductus arteriosus), use during the third trimester of pregnancy should be avoided."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Salicylate is excreted in breast milk. High doses may cause rashes, platelet abnormalities, and bleeding in nursing infants; avoid high-dose therapy.",
+      "refs": [
+        {
+          "source_id": "fda-aspirin-label",
+          "locator": "Nursing Mothers",
+          "quote": "Nursing mothers should avoid using aspirin because salicylate is excreted in breast milk. Use of high doses may lead to rashes, platelet abnormalities, and bleeding in nursing infants."
+        }
+      ]
+    }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Anticoagulants (Heparin and Warfarin)",
+        "severity": "major",
+        "effect": "Aspirin inhibits platelet aggregation and can displace warfarin from protein-binding sites, significantly increasing bleeding risk.",
+        "management": "Monitor coagulation parameters (INR/aPTT) closely and assess regularly for bleeding symptoms when coadministered.",
+        "refs": [
+          {
+            "source_id": "fda-aspirin-label",
+            "locator": "Drug Interactions - Anticoagulant Therapy",
+            "quote": "Patients on anticoagulation therapy are at increased risk for bleeding because of drug-drug interactions and the effect on platelets."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Methotrexate",
+        "severity": "major",
+        "effect": "Aspirin inhibits renal tubular secretion of methotrexate, elevating serum concentrations and potentiating bone marrow and mucosal toxicity.",
+        "management": "Avoid concurrent high-dose salicylate therapy with methotrexate; monitor hematologic indices closely.",
+        "refs": [
+          {
+            "source_id": "fda-aspirin-label",
+            "locator": "Drug Interactions - Methotrexate",
+            "quote": "Salicylate can inhibit renal clearance of methotrexate, leading to bone marrow toxicity, especially in the elderly or renal impaired."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "ACE Inhibitors",
+        "severity": "moderate",
+        "effect": "Aspirin may diminish the hypotensive and natriuretic response of ACE inhibitors via inhibition of renal prostaglandins.",
+        "management": "Monitor blood pressure and renal function when aspirin is coadministered with ACE inhibitors.",
+        "refs": [
+          {
+            "source_id": "fda-aspirin-label",
+            "locator": "Drug Interactions - ACE Inhibitors",
+            "quote": "The hyponatremic and hypotensive effects of ACE inhibitors may be diminished by the concomitant administration of aspirin due to its indirect effect on the renin-angiotensin conversion pathway."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-aspirin-label",
+        "locator": "Drug Interactions - Anticoagulant Therapy",
+        "quote": "Patients on anticoagulation therapy are at increased risk for bleeding because of drug-drug interactions and the effect on platelets."
+      }
+    ]
   }
 }

@@ -240,5 +240,29 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Live Attenuated Vaccines & Infectious Pathogens",
+        "severity": "major",
+        "effect": "Immunosuppressive doses of prednisolone impair cellular and humoral immunity, risking disseminated infection from live vaccines.",
+        "management": "Persons on immunosuppressive doses should avoid exposure to measles or chickenpox; avoid live viral vaccines during therapy.",
+        "refs": [
+          {
+            "source_id": "fda-prednisolone-label",
+            "locator": "PRECAUTIONS - Information for Patients",
+            "quote": "Persons who are on immunosuppressant doses of corticosteroids should be warned to avoid exposure to chickenpox or measles. Patients should also be advised that if they are exposed, medical advice should be sought without delay."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-prednisolone-label",
+        "locator": "PRECAUTIONS - Information for Patients",
+        "quote": "Persons who are on immunosuppressant doses of corticosteroids should be warned to avoid exposure to chickenpox or measles. Patients should also be advised that if they are exposed, medical advice should be sought without delay."
+      }
+    ]
   }
 }

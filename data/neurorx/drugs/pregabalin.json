@@ -264,5 +264,42 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Cytochrome P450 Enzymes and Common Antiepileptic Drugs",
+        "severity": "minor",
+        "effect": "Pregabalin undergoes negligible metabolism (<2%) and is predominantly excreted unchanged in the urine; no pharmacokinetic interactions with carbamazepine, valproate, lamotrigine, phenytoin, or topiramate.",
+        "management": "No pharmacokinetic dose adjustment required based on metabolic interactions.",
+        "refs": [
+          {
+            "source_id": "fda-pregabalin-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Since LYRICA is predominantly excreted unchanged in the urine, undergoes negligible metabolism in humans (less than 2% of a dose recovered in urine as metabolites), and does not bind to plasma proteins, its pharmacokinetics are unlikely to be affected by other agents through metabolic interactions or protein binding displacement."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "CNS Depressants, Opioids & Ethanol (Oxycodone, Lorazepam, Alcohol)",
+        "severity": "major",
+        "effect": "Additive pharmacodynamic impairment on cognitive function, alertness, and gross motor coordination.",
+        "management": "Advise patients against driving or operating machinery; reduce doses of central depressants when used concomitantly.",
+        "refs": [
+          {
+            "source_id": "fda-pregabalin-label",
+            "locator": "Section 7 DRUG INTERACTIONS - Pharmacodynamics",
+            "quote": "Multiple oral doses of LYRICA were co-administered with oxycodone, lorazepam, or ethanol. Although no pharmacokinetic interactions were seen, additive effects on cognitive and gross motor functioning were seen when LYRICA was co-administered with these drugs."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-pregabalin-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Since LYRICA is predominantly excreted unchanged in the urine, undergoes negligible metabolism in humans (less than 2% of a dose recovered in urine as metabolites), and does not bind to plasma proteins, its pharmacokinetics are unlikely to be affected by other agents through metabolic interactions or protein binding displacement."
+      }
+    ]
   }
 }

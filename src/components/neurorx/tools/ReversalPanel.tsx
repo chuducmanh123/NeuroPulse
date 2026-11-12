@@ -92,8 +92,8 @@ export function ReversalPanel({
         </div>
 
         {!patientWeight && (
-          <span className="text-amber-600 dark:text-amber-400 text-[11px] font-semibold flex items-center gap-1">
-            <AlertCircle className="w-3.5 h-3.5" />
+          <span className="text-amber-700 dark:text-amber-400 text-xs font-bold flex items-center gap-1.5">
+            <AlertCircle className="w-4 h-4" />
             <span>Enter weight in patient bar to compute doses</span>
           </span>
         )}
@@ -104,25 +104,25 @@ export function ReversalPanel({
         {result.agents.map((agent, idx) => (
           <div
             key={idx}
-            className={`p-4 rounded-xl border transition-all ${
+            className={`p-4 sm:p-5 rounded-xl border transition-all ${
               darkMode
                 ? "bg-slate-950/40 border-slate-800"
                 : "bg-slate-50/70 border-slate-200"
             }`}
           >
-            <div className="flex items-start justify-between gap-3 mb-2">
-              <div className="flex items-center gap-2 flex-wrap">
-                <span className="font-extrabold text-sm text-slate-900 dark:text-slate-100">
+            <div className="flex items-start justify-between gap-3 mb-2.5">
+              <div className="flex items-center gap-2.5 flex-wrap">
+                <span className="font-extrabold text-sm sm:text-base text-slate-900 dark:text-slate-100">
                   {agent.agent}
                 </span>
 
                 {/* VN Availability Badge (renders ONLY if present in data) */}
                 {agent.vn_available !== undefined && (
                   <span
-                    className={`text-[10px] px-2 py-0.5 rounded-full font-bold border ${
+                    className={`text-xs px-2.5 py-0.5 rounded-full font-bold border ${
                       agent.vn_available
-                        ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20"
-                        : "bg-slate-200 dark:bg-slate-800 text-slate-500 border-slate-300"
+                        ? "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-500/25"
+                        : "bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-300"
                     }`}
                   >
                     VN Market Available: {agent.vn_available ? "Yes" : "No"}
@@ -141,39 +141,39 @@ export function ReversalPanel({
             </div>
 
             {/* Dose Rule */}
-            <div className="text-xs text-slate-600 dark:text-slate-400 space-y-1">
+            <div className="text-sm text-slate-800 dark:text-slate-200 space-y-2 leading-relaxed">
               <div>
-                <span className="font-bold text-slate-800 dark:text-slate-200">
+                <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300">
                   Dose Rule:{" "}
                 </span>
-                <span>{agent.dose_rule}</span>
+                <span className="font-medium">{agent.dose_rule}</span>
               </div>
 
               {/* Computed Dose (Only shown when weight is provided) */}
               {agent.computed_dose && (
                 <div
-                  className={`mt-2.5 p-3 rounded-lg border flex flex-col gap-1 ${
+                  className={`mt-2.5 p-3.5 sm:p-4 rounded-xl border flex flex-col gap-1.5 ${
                     darkMode
                       ? "bg-rose-950/20 border-rose-900/50 text-rose-300"
                       : "bg-rose-50 border-rose-200 text-rose-900"
                   }`}
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-[11px] font-bold uppercase tracking-wider">
+                    <span className="text-xs sm:text-sm font-extrabold uppercase tracking-wide">
                       Computed Dose
                     </span>
                     {agent.computed_dose.capped && (
-                      <span className="text-[10px] px-1.5 py-0.2 rounded font-bold bg-rose-500/20 text-rose-700 dark:text-rose-300 border border-rose-500/30">
+                      <span className="text-xs px-2 py-0.5 rounded font-extrabold bg-rose-500/20 text-rose-800 dark:text-rose-300 border border-rose-500/30">
                         Capped at Max 100 kg
                       </span>
                     )}
                   </div>
-                  <div className="text-base sm:text-lg font-black tracking-tight">
+                  <div className="text-lg sm:text-xl font-extrabold tracking-tight">
                     {agent.computed_dose.amount_exact !== undefined
                       ? `${agent.computed_dose.amount_exact.toLocaleString()} ${agent.computed_dose.unit}`
                       : `${agent.computed_dose.amount_min?.toLocaleString()} to ${agent.computed_dose.amount_max?.toLocaleString()} ${agent.computed_dose.unit}`}
                   </div>
-                  <p className="text-[11px] opacity-90 leading-relaxed">
+                  <p className="text-xs sm:text-sm font-medium opacity-90 leading-relaxed">
                     {agent.computed_dose.explanation}
                   </p>
                 </div>

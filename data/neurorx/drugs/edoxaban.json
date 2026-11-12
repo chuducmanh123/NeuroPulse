@@ -300,5 +300,85 @@
         }
       ]
     }
+  },
+  "reproductive": {
+    "tier": {
+      "value": "avoid",
+      "refs": [
+        {
+          "source_id": "fda-edoxaban-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "Available data about SAVAYSA use in pregnant women are insufficient to determine whether there are drug-associated risks for adverse developmental outcomes."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Breastfeeding is not recommended due to potential for serious bleeding and hemorrhage in nursing infants.",
+      "refs": [
+        {
+          "source_id": "fda-edoxaban-label",
+          "locator": "Section 8.2 Lactation",
+          "quote": "There are no data on the presence of edoxaban in human milk, or its effects on the breastfeeding infant or on milk production."
+        }
+      ]
+    }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "P-gp Inducers (Rifampin, Carbamazepine, Phenytoin, St. John's Wort)",
+        "severity": "major",
+        "effect": "Rifampin and other potent P-glycoprotein inducers reduce edoxaban exposure, substantially lowering systemic anticoagulant efficacy.",
+        "management": "Avoid concomitant use of edoxaban with rifampin and other P-gp inducers.",
+        "refs": [
+          {
+            "source_id": "fda-edoxaban-label",
+            "locator": "Section 7.2 Rifampin",
+            "quote": "Rifampin: Avoid concomitant use"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Anticoagulants, Antiplatelets, Thrombolytics & SSRIs/SNRIs",
+        "severity": "major",
+        "effect": "Co-administration increases the risk of clinically overt or occult bleeding.",
+        "management": "Promptly evaluate signs or symptoms of blood loss if patients are co-treated with antiplatelets, NSAIDs, or other antithrombotics.",
+        "refs": [
+          {
+            "source_id": "fda-edoxaban-label",
+            "locator": "Section 7.1 Anticoagulants, Antiplatelets, Thrombolytics, and SSRIs/SNRIs",
+            "quote": "Co-administration of anticoagulants, antiplatelet drugs, thrombolytics and SSRIs or SNRIs may increase the risk of bleeding."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-edoxaban-label",
+        "locator": "Section 7.2 Rifampin",
+        "quote": "Rifampin: Avoid concomitant use"
+      }
+    ]
   }
 }

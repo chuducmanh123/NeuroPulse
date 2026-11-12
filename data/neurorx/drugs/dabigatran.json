@@ -358,5 +358,54 @@
         "quote": "The concomitant use of dabigatran etexilate with P-gp inducers (e.g., rifampin) reduces exposure to dabigatran and should generally be avoided"
       }
     ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "avoid",
+      "refs": [
+        {
+          "source_id": "fda-dabigatran-capsules-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "There are risks to the mother associated with untreated venous thromboembolism in pregnancy and a risk of hemorrhage in the mother and fetus associated with the use of anticoagulants"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Risk of maternal and fetal hemorrhage during pregnancy and delivery; LMWH is preferred anticoagulant therapy.",
+      "refs": [
+        {
+          "source_id": "fda-dabigatran-capsules-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "There are risks to the mother associated with untreated venous thromboembolism in pregnancy and a risk of hemorrhage in the mother and fetus associated with the use of anticoagulants"
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Insufficient data on presence in human milk; breastfeeding is not recommended during dabigatran treatment.",
+      "refs": [
+        {
+          "source_id": "fda-dabigatran-capsules-label",
+          "locator": "Section 8.2 Lactation",
+          "quote": "Breastfeeding is not recommended during treatment with dabigatran etexilate."
+        }
+      ]
+    }
   }
 }

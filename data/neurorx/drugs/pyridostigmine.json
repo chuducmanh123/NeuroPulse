@@ -237,5 +237,29 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Antimuscarinic Agents (Atropine, Glycopyrrolate)",
+        "severity": "major",
+        "effect": "Atropine antagonizes muscarinic adverse effects of pyridostigmine but may mask early signs of cholinergic crisis, delaying recognition of life-threatening overdosage.",
+        "management": "Care should be observed in the use of atropine for counteracting side effects; avoid routine masking of cholinergic overdose symptoms in myasthenia gravis.",
+        "refs": [
+          {
+            "source_id": "fda-pyridostigmine-label",
+            "locator": "WARNINGS",
+            "quote": "Care should be observed in the use of atropine for counteracting side effects, as discussed below."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-pyridostigmine-label",
+        "locator": "WARNINGS",
+        "quote": "Care should be observed in the use of atropine for counteracting side effects, as discussed below."
+      }
+    ]
   }
 }

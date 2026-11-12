@@ -273,5 +273,29 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Plasma Exchange (PE), Plasmapheresis (PP), and Intravenous Immunoglobulins (IVIg)",
+        "severity": "major",
+        "effect": "Removal or FcRn displacement of eculizumab by PE, PP, or IVIg sharply reduces serum eculizumab concentrations, risking acute myasthenic or hemolytic relapse.",
+        "management": "Supplemental dosing of eculizumab is required when administered concomitantly with plasma exchange, plasmapheresis, or IVIg.",
+        "refs": [
+          {
+            "source_id": "fda-eculizumab-label",
+            "locator": "Section 7.1 Plasmapheresis, Plasma Exchange, Fresh Frozen Plasma Infusion or IVIg",
+            "quote": "Concomitant use of SOLIRIS with plasma exchange (PE), plasmapheresis (PP) , fresh frozen plasma infusion (PE/PI), or in patients with gMG on concomitant IVIg treatment can reduce serum eculizumab concentrations and requires a supplemental dose of SOLIRIS"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-eculizumab-label",
+        "locator": "Section 7.1 Plasmapheresis, Plasma Exchange, Fresh Frozen Plasma Infusion or IVIg",
+        "quote": "Concomitant use of SOLIRIS with plasma exchange (PE), plasmapheresis (PP) , fresh frozen plasma infusion (PE/PI), or in patients with gMG on concomitant IVIg treatment can reduce serum eculizumab concentrations and requires a supplemental dose of SOLIRIS"
+      }
+    ]
   }
 }

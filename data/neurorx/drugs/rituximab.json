@@ -258,5 +258,29 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Platinum-Based Chemotherapy (Cisplatin)",
+        "severity": "major",
+        "effect": "Synergistic nephrotoxicity and acute renal impairment when rituximab is administered in regimens containing cisplatin.",
+        "management": "Monitor renal function closely and maintain adequate intravenous hydration during combination therapy.",
+        "refs": [
+          {
+            "source_id": "fda-rituximab-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Renal toxicity when used in combination with cisplatin."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-rituximab-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Renal toxicity when used in combination with cisplatin."
+      }
+    ]
   }
 }

@@ -231,5 +231,91 @@
         }
       ]
     }
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-labetalol-label",
+          "locator": "PRECAUTIONS - Pregnancy: Teratogenic Effects",
+          "quote": "Teratogenic studies have been performed with labetalol in rats and rabbits at oral doses up to approximately 6 and 4 times the maximum recommended human dose (MRHD), respectively."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": "0.004%",
+      "refs": [
+        {
+          "source_id": "fda-labetalol-label",
+          "locator": "PRECAUTIONS - Nursing Mothers",
+          "quote": "Small amounts of labetalol (approximately 0.004% of the maternal dose) are excreted in human milk. Caution should be exercised when labetalol injection is administered to a nursing woman."
+        }
+      ]
+    },
+    "lactation_summary": {
+      "value": "Small amounts of labetalol (approximately 0.004% of maternal dose) are excreted in human milk. Exercise caution when administering to nursing women.",
+      "refs": [
+        {
+          "source_id": "fda-labetalol-label",
+          "locator": "PRECAUTIONS - Nursing Mothers",
+          "quote": "Small amounts of labetalol (approximately 0.004% of the maternal dose) are excreted in human milk. Caution should be exercised when labetalol injection is administered to a nursing woman."
+        }
+      ]
+    }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Nitroglycerin and Vasodilators",
+        "severity": "moderate",
+        "effect": "Labetalol blunts reflex tachycardia produced by nitroglycerin without blunting hypotensive response; additive blood pressure lowering may occur.",
+        "management": "Monitor blood pressure carefully if labetalol is used concurrently with nitrates in patients with hypertension or coronary ischemia.",
+        "refs": [
+          {
+            "source_id": "fda-labetalol-label",
+            "locator": "PRECAUTIONS - Drug Interactions",
+            "quote": "Labetalol blunts the reflex tachycardia produced by nitroglycerin without preventing its hypotensive effect."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Cimetidine",
+        "severity": "moderate",
+        "effect": "Cimetidine increases bioavailability of labetalol through enhanced absorption or inhibition of hepatic metabolism.",
+        "management": "Use special care in establishing and adjusting labetalol dosing in patients receiving cimetidine.",
+        "refs": [
+          {
+            "source_id": "fda-labetalol-label",
+            "locator": "PRECAUTIONS - Drug Interactions",
+            "quote": "Cimetidine has been shown to increase the bioavailability of labetalol administered orally."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-labetalol-label",
+        "locator": "PRECAUTIONS - Drug Interactions",
+        "quote": "Labetalol blunts the reflex tachycardia produced by nitroglycerin without preventing its hypotensive effect."
+      }
+    ]
   }
 }

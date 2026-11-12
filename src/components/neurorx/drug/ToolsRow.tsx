@@ -45,22 +45,22 @@ export function ToolsRow({
 
   return (
     <>
-      <div className="p-4 rounded-2xl border border-l-4 border-l-purple-500 border-purple-200/80 dark:border-purple-900/40 bg-gradient-to-r from-purple-500/10 via-violet-500/5 to-slate-50/70 dark:from-purple-950/20 dark:via-slate-900/60 dark:to-slate-900/40">
-        <div className="flex items-center gap-2 mb-2.5">
-          <Wrench className="w-4 h-4 text-purple-500" />
-          <span className="text-xs font-bold uppercase tracking-wider text-purple-900 dark:text-purple-300">
+      <div className="p-4 sm:p-5 rounded-2xl border border-l-4 border-l-purple-500 border-purple-200/80 dark:border-purple-900/40 bg-gradient-to-r from-purple-500/10 via-violet-500/5 to-slate-50/70 dark:from-purple-950/20 dark:via-slate-900/60 dark:to-slate-900/40 space-y-3">
+        <div className="flex items-center gap-2.5">
+          <Wrench className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+          <span className="text-sm sm:text-base font-extrabold uppercase tracking-wide text-purple-950 dark:text-purple-300">
             Contextual Bedside Tools
           </span>
         </div>
 
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2.5">
           {hasHoldRestart && (
             <button
               type="button"
               onClick={() => setActiveModal("hold_restart")}
-              className="px-3 py-2 rounded-xl text-xs font-bold bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-sky-500 text-slate-800 dark:text-slate-200 transition-colors flex items-center gap-1.5 shadow-2xs min-h-[40px]"
+              className="px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-sky-500 text-slate-800 dark:text-slate-200 transition-colors flex items-center gap-2 shadow-2xs min-h-[42px]"
             >
-              <Clock className="w-3.5 h-3.5 text-sky-500" />
+              <Clock className="w-4 h-4 text-sky-500" />
               <span>⏱️ Hold / Restart Antithrombotic</span>
             </button>
           )}
@@ -69,9 +69,9 @@ export function ToolsRow({
             <button
               type="button"
               onClick={() => setActiveModal("titration")}
-              className="px-3 py-2 rounded-xl text-xs font-bold bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-sky-500 text-slate-800 dark:text-slate-200 transition-colors flex items-center gap-1.5 shadow-2xs min-h-[40px]"
+              className="px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-sky-500 text-slate-800 dark:text-slate-200 transition-colors flex items-center gap-2 shadow-2xs min-h-[42px]"
             >
-              <Printer className="w-3.5 h-3.5 text-indigo-500" />
+              <Printer className="w-4 h-4 text-indigo-500" />
               <span>🖨️ Titration Schedule Print</span>
             </button>
           )}
@@ -80,9 +80,9 @@ export function ToolsRow({
             <button
               type="button"
               onClick={() => setActiveModal("missed_dose")}
-              className="px-3 py-2 rounded-xl text-xs font-bold bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-sky-500 text-slate-800 dark:text-slate-200 transition-colors flex items-center gap-1.5 shadow-2xs min-h-[40px]"
+              className="px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-sky-500 text-slate-800 dark:text-slate-200 transition-colors flex items-center gap-2 shadow-2xs min-h-[42px]"
             >
-              <HelpCircle className="w-3.5 h-3.5 text-amber-500" />
+              <HelpCircle className="w-4 h-4 text-amber-500" />
               <span>❓ Missed Dose Protocol</span>
             </button>
           )}
@@ -91,9 +91,9 @@ export function ToolsRow({
             <button
               type="button"
               onClick={() => setActiveModal("reversal")}
-              className="px-3 py-2 rounded-xl text-xs font-bold bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-sky-500 text-slate-800 dark:text-slate-200 transition-colors flex items-center gap-1.5 shadow-2xs min-h-[40px]"
+              className="px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-sky-500 text-slate-800 dark:text-slate-200 transition-colors flex items-center gap-2 shadow-2xs min-h-[42px]"
             >
-              <Shield className="w-3.5 h-3.5 text-rose-500" />
+              <Shield className="w-4 h-4 text-rose-500" />
               <span>🛡️ Anticoagulation Reversal</span>
             </button>
           )}
@@ -102,9 +102,9 @@ export function ToolsRow({
             <button
               type="button"
               onClick={() => setActiveModal("ledd")}
-              className="px-3 py-2 rounded-xl text-xs font-bold bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-sky-500 text-slate-800 dark:text-slate-200 transition-colors flex items-center gap-1.5 shadow-2xs min-h-[40px]"
+              className="px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-sky-500 text-slate-800 dark:text-slate-200 transition-colors flex items-center gap-2 shadow-2xs min-h-[42px]"
             >
-              <Calculator className="w-3.5 h-3.5 text-amber-500" />
+              <Calculator className="w-4 h-4 text-amber-500" />
               <span>🔄 LEDD / NPO</span>
             </button>
           )}

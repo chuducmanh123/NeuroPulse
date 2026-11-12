@@ -184,5 +184,72 @@
         }
       ]
     }
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-tenecteplase-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "There are no data on the use of tenecteplase during pregnancy to evaluate for a drug-associated risk of major birth defects, miscarriage, or adverse maternal or fetal outcomes."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "There are no data on the presence of tenecteplase in human or animal milk, effects on breastfed infant, or milk production.",
+      "refs": [
+        {
+          "source_id": "fda-tenecteplase-label",
+          "locator": "Section 8.2 Lactation",
+          "quote": "There are no data on the presence of tenecteplase in either human or animal milk, the effects on the breastfed infant, or the effect on milk production."
+        }
+      ]
+    }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Coagulation Diagnostic Tests & Fibrinolytic Reagents",
+        "severity": "moderate",
+        "effect": "Tenecteplase remains active in vitro in pharmacologic concentrations, causing artifactual degradation of fibrinogen in blood specimens.",
+        "management": "Follow specific precautions to prevent in vitro artifacts when drawing blood samples for coagulation and fibrinolytic assays.",
+        "refs": [
+          {
+            "source_id": "fda-tenecteplase-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "During TNKase therapy, results of coagulation tests and/or measures of fibrinolytic activity may be unreliable unless specific precautions are taken to prevent in vitro artifacts."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-tenecteplase-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "During TNKase therapy, results of coagulation tests and/or measures of fibrinolytic activity may be unreliable unless specific precautions are taken to prevent in vitro artifacts."
+      }
+    ]
   }
 }

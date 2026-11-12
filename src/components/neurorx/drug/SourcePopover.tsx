@@ -60,11 +60,11 @@ export function SourcePopover({
         ref={triggerRef}
         type="button"
         onClick={() => setIsOpen(true)}
-        className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md text-[11px] font-semibold text-sky-600 dark:text-sky-400 bg-sky-500/10 hover:bg-sky-500/20 transition-colors cursor-pointer"
+        className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-xs font-bold text-sky-600 dark:text-sky-400 bg-sky-500/10 hover:bg-sky-500/20 transition-colors cursor-pointer"
         title="View verbatim clinical source quote"
         aria-label="View verbatim clinical source quote"
       >
-        <Info className="w-3 h-3" />
+        <Info className="w-3.5 h-3.5" />
         {label ? <span>{label}</span> : <span>Source</span>}
       </button>
 
@@ -84,18 +84,18 @@ export function SourcePopover({
           >
             {/* Modal Header */}
             <div className="flex items-center justify-between p-4 sm:p-5 border-b border-slate-200 dark:border-slate-800">
-              <div className="flex items-center gap-2">
-                <div className="p-1.5 rounded-lg bg-sky-500/10 text-sky-500">
-                  <BookOpen className="w-4 h-4" />
+              <div className="flex items-center gap-2.5">
+                <div className="p-2 rounded-lg bg-sky-500/10 text-sky-500">
+                  <BookOpen className="w-5 h-5" />
                 </div>
                 <div>
                   <h3
                     id="source-popover-title"
-                    className="text-sm font-bold tracking-tight text-slate-900 dark:text-white"
+                    className="text-base font-extrabold tracking-tight text-slate-900 dark:text-white"
                   >
                     Clinical Source Evidence
                   </h3>
-                  <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                  <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">
                     Verbatim extract ({refs.length} citation{refs.length > 1 ? "s" : ""})
                   </p>
                 </div>
@@ -107,7 +107,7 @@ export function SourcePopover({
                 className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
                 aria-label="Close dialog"
               >
-                <X className="w-4 h-4" />
+                <X className="w-5 h-5" />
               </button>
             </div>
 
@@ -119,9 +119,9 @@ export function SourcePopover({
                 return (
                   <div key={idx} className={idx > 0 ? "pt-4" : ""}>
                     {/* Source Metadata */}
-                    <div className="space-y-1 mb-2.5">
+                    <div className="space-y-1.5 mb-2.5">
                       <div className="flex items-start justify-between gap-2">
-                        <h4 className="text-xs font-bold text-slate-800 dark:text-slate-200">
+                        <h4 className="text-sm font-extrabold text-slate-900 dark:text-slate-100">
                           {sourceMeta?.title || ref.source_id}
                         </h4>
                         {sourceMeta?.url && (
@@ -129,34 +129,34 @@ export function SourcePopover({
                             href={sourceMeta.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-[11px] font-semibold text-sky-600 dark:text-sky-400 hover:underline shrink-0"
+                            className="inline-flex items-center gap-1 text-xs font-bold text-sky-600 dark:text-sky-400 hover:underline shrink-0"
                           >
                             <span>FDA SPL</span>
-                            <ExternalLink className="w-3 h-3" />
+                            <ExternalLink className="w-3.5 h-3.5" />
                           </a>
                         )}
                       </div>
 
-                      <div className="flex items-center gap-2 flex-wrap text-[11px] text-slate-500 dark:text-slate-400">
+                      <div className="flex items-center gap-2 flex-wrap text-xs text-slate-600 dark:text-slate-400 font-medium">
                         {sourceMeta?.publisher && <span>{sourceMeta.publisher}</span>}
                         {sourceMeta?.year && <span>• {sourceMeta.year}</span>}
                         {sourceMeta?.version && (
-                          <span className="font-mono text-[10px]">
+                          <span className="text-xs text-slate-400">
                             • ID: {sourceMeta.version.slice(0, 8)}...
                           </span>
                         )}
                       </div>
 
                       {/* Section Locator */}
-                      <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[11px] font-mono text-slate-700 dark:text-slate-300">
+                      <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-xs font-bold text-slate-800 dark:text-slate-200">
                         <span>📍 {ref.locator}</span>
                       </div>
                     </div>
 
                     {/* Verbatim Quote Block */}
                     <div className="relative">
-                      <Quote className="absolute top-2 left-2 w-3.5 h-3.5 text-sky-400/40 pointer-events-none" />
-                      <blockquote className="p-3 pl-7 rounded-xl bg-slate-50 dark:bg-slate-800/60 border-l-4 border-sky-500 text-xs text-slate-700 dark:text-slate-300 font-serif italic leading-relaxed whitespace-pre-line">
+                      <Quote className="absolute top-2.5 left-2.5 w-4 h-4 text-sky-400/40 pointer-events-none" />
+                      <blockquote className="p-3.5 pl-8 rounded-xl bg-slate-50 dark:bg-slate-800/60 border-l-4 border-sky-500 text-sm text-slate-800 dark:text-slate-200 leading-relaxed whitespace-pre-line font-normal">
                         &ldquo;{ref.quote}&rdquo;
                       </blockquote>
                     </div>
@@ -166,9 +166,9 @@ export function SourcePopover({
             </div>
 
             {/* Modal Footer */}
-            <div className="p-3 bg-slate-50 dark:bg-slate-800/40 border-t border-slate-200 dark:border-slate-800 text-center">
-              <span className="text-[11px] text-slate-500 dark:text-slate-400 flex items-center justify-center gap-1.5">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
+            <div className="p-3.5 bg-slate-50 dark:bg-slate-800/40 border-t border-slate-200 dark:border-slate-800 text-center">
+              <span className="text-xs text-slate-600 dark:text-slate-400 flex items-center justify-center gap-1.5 font-medium">
+                <ShieldCheck className="w-4 h-4 text-emerald-500 shrink-0" />
                 <span>Zero-hallucination guarantee: Verbatim extracted quote verified against registered label.</span>
               </span>
             </div>

@@ -235,5 +235,68 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Ergot-Containing Drugs (Ergotamine, Dihydroergotamine, Methysergide)",
+        "severity": "contraindicated",
+        "effect": "Additive, prolonged coronary and peripheral vasoconstriction and vasospastic reactions.",
+        "management": "Use of ergot-type medications and sumatriptan within 24 hours of each other is contraindicated.",
+        "refs": [
+          {
+            "source_id": "fda-sumatriptan-label",
+            "locator": "Section 7.1 Ergot-Containing Drugs",
+            "quote": "use of ergotamine-containing or ergot-type medications (like dihydroergotamine or methysergide) and IMITREX tablets within 24 hours of each other is contraindicated."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Other 5-HT1 Receptor Agonists (Zolmitriptan, Rizatriptan, Eletriptan)",
+        "severity": "contraindicated",
+        "effect": "Additive coronary vasospastic effects with potential for myocardial ischemia or infarction.",
+        "management": "Coadministration of sumatriptan and other triptans within 24 hours of each other is contraindicated.",
+        "refs": [
+          {
+            "source_id": "fda-sumatriptan-label",
+            "locator": "Section 7.3 Other 5-HT1 Agonists",
+            "quote": "coadministration of IMITREX tablets and other 5‑HT 1 agonists (e.g., triptans) within 24 hours of each other is contraindicated."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Monoamine Oxidase-A (MAO-A) Inhibitors",
+        "severity": "contraindicated",
+        "effect": "MAO-A inhibitors increase sumatriptan systemic exposure by approximately 7-fold, markedly increasing toxicity.",
+        "management": "Sumatriptan is contraindicated in patients receiving MAO-A inhibitors or within 14 days of discontinuing them.",
+        "refs": [
+          {
+            "source_id": "fda-sumatriptan-label",
+            "locator": "Section 7.2 Monoamine Oxidase-A Inhibitors",
+            "quote": "MAO‑A inhibitors increase systemic exposure by 7-fold. Therefore, the use of IMITREX tablets in patients receiving MAO‑A inhibitors is contraindicated"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "SSRIs, SNRIs, TCAs (Serotonin Reuptake Inhibitors)",
+        "severity": "major",
+        "effect": "Potential precipitation of central and peripheral serotonin syndrome (hyperreflexia, clonus, autonomic instability, agitation).",
+        "management": "Monitor patients closely if concomitant treatment with SSRIs or SNRIs is clinically warranted, particularly during initiation and dose escalations.",
+        "refs": [
+          {
+            "source_id": "fda-sumatriptan-label",
+            "locator": "Section 7.4 Selective Serotonin Reuptake Inhibitors/Serotonin Norepinephrine Reuptake Inhibitors and Serotonin Syndrome",
+            "quote": "Cases of serotonin syndrome have been reported during coadministration of triptans and SSRIs, SNRIs, TCAs, and MAO inhibitors"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-sumatriptan-label",
+        "locator": "Section 7.1 Ergot-Containing Drugs",
+        "quote": "use of ergotamine-containing or ergot-type medications (like dihydroergotamine or methysergide) and IMITREX tablets within 24 hours of each other is contraindicated."
+      }
+    ]
   }
 }

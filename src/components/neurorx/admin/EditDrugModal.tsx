@@ -17,6 +17,8 @@ import {
   Sparkles,
   Layers,
   Wand2,
+  Baby,
+  ArrowRightLeft,
 } from "lucide-react";
 import type {
   DrugRecord,
@@ -25,6 +27,7 @@ import type {
   Regimen,
   RenalBand,
   DoseSpec,
+  DrugInteractionItem,
 } from "@/types/neurorx";
 
 interface EditDrugModalProps {
@@ -55,7 +58,7 @@ export function EditDrugModal({
   darkMode = false,
 }: EditDrugModalProps) {
   const [activeTab, setActiveTab] = useState<
-    "general" | "dosing" | "renal_hepatic" | "safety"
+    "general" | "dosing" | "renal_hepatic" | "safety" | "pregnancy" | "interactions"
   >("general");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -160,6 +163,62 @@ export function EditDrugModal({
   const [acbScore, setAcbScore] = useState<number>(
     drug.enzyme_profile?.value?.acb_score || 0
   );
+
+  // Form states - Pregnancy & Lactation
+  const [pregnancyTier, setPregnancyTier] = useState<
+    "preferred" | "caution" | "avoid" | "none"
+  >(drug.reproductive?.tier?.value || "none");
+  const [folicAcid, setFolicAcid] = useState(
+    drug.reproductive?.folic_acid?.value || ""
+  );
+  const [pregnancyPk, setPregnancyPk] = useState(
+    drug.reproductive?.pregnancy_pk?.value || ""
+  );
+  const [contraception, setContraception] = useState(
+    drug.reproductive?.contraception?.value || ""
+  );
+  const [lactationSummary, setLactationSummary] = useState(
+    drug.reproductive?.lactation_summary?.value || ""
+  );
+  const [lactationRid, setLactationRid] = useState(
+    drug.reproductive?.lactation_rid?.value || ""
+  );
+
+  // Form states - FDA Drug Interactions
+  const [interactionsList, setInteractionsList] = useState<DrugInteractionItem[]>(
+    () => {
+      if (drug.fda_interactions?.value && drug.fda_interactions.value.length > 0) {
+        return JSON.parse(JSON.stringify(drug.fda_interactions.value));
+      }
+      return [];
+    }
+  );
+
+  const handleAddInteraction = () => {
+    setInteractionsList((prev) => [
+      ...prev,
+      {
+        drug_or_class: "",
+        severity: "major",
+        effect: "",
+        management: "",
+      },
+    ]);
+  };
+
+  const handleRemoveInteraction = (idx: number) => {
+    setInteractionsList((prev) => prev.filter((_, i) => i !== idx));
+  };
+
+  const handleUpdateInteraction = (
+    idx: number,
+    field: keyof DrugInteractionItem,
+    val: any
+  ) => {
+    setInteractionsList((prev) =>
+      prev.map((item, i) => (i === idx ? { ...item, [field]: val } : item))
+    );
+  };
 
   if (!isOpen) return null;
 
@@ -585,6 +644,58 @@ export function EditDrugModal({
               }
             : {}),
         },
+        reproductive: (pregnancyTier !== "none" || folicAcid.trim() || pregnancyPk.trim() || contraception.trim() || lactationSummary.trim() || lactationRid.trim())
+          ? {
+              tier: {
+                value: pregnancyTier === "none" ? null : (pregnancyTier as any),
+                refs: drug.reproductive?.tier?.refs || [
+                  { source_id: "system", locator: "admin", quote: "Pregnancy safety tier" },
+                ],
+              },
+              mcm: drug.reproductive?.mcm || [],
+              folic_acid: {
+                value: folicAcid.trim() || null,
+                refs: drug.reproductive?.folic_acid?.refs || [
+                  { source_id: "system", locator: "admin", quote: "Folic acid" },
+                ],
+              },
+              pregnancy_pk: {
+                value: pregnancyPk.trim() || null,
+                refs: drug.reproductive?.pregnancy_pk?.refs || [
+                  { source_id: "system", locator: "admin", quote: "Pregnancy PK" },
+                ],
+              },
+              postpartum: drug.reproductive?.postpartum || { value: null, refs: [] },
+              contraception: {
+                value: contraception.trim() || null,
+                refs: drug.reproductive?.contraception?.refs || [
+                  { source_id: "system", locator: "admin", quote: "Contraception" },
+                ],
+              },
+              lactation_rid: {
+                value: lactationRid.trim() || null,
+                refs: drug.reproductive?.lactation_rid?.refs || [
+                  { source_id: "system", locator: "admin", quote: "Lactation RID" },
+                ],
+              },
+              lactation_summary: {
+                value: lactationSummary.trim() || null,
+                refs: drug.reproductive?.lactation_summary?.refs || [
+                  { source_id: "system", locator: "admin", quote: "Lactation summary" },
+                ],
+              },
+            }
+          : drug.reproductive,
+        fda_interactions: interactionsList.length > 0
+          ? {
+              value: interactionsList.filter(
+                (item) => item.drug_or_class.trim() && item.effect.trim() && item.management.trim()
+              ),
+              refs: drug.fda_interactions?.refs || [
+                { source_id: "system", locator: "Section 7 DRUG INTERACTIONS", quote: "FDA Drug Interactions" },
+              ],
+            }
+          : drug.fda_interactions,
       };
 
       const ok = await onSave(
@@ -691,6 +802,30 @@ export function EditDrugModal({
             }`}
           >
             Safety &amp; CYP Profile
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveTab("pregnancy")}
+            className={`pb-2.5 px-3 border-b-2 transition-colors cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+              activeTab === "pregnancy"
+                ? "border-rose-500 text-rose-600 dark:text-rose-400"
+                : "border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
+            }`}
+          >
+            <Baby className="w-3.5 h-3.5" />
+            <span>Pregnancy &amp; Lactation</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveTab("interactions")}
+            className={`pb-2.5 px-3 border-b-2 transition-colors cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+              activeTab === "interactions"
+                ? "border-purple-500 text-purple-600 dark:text-purple-400"
+                : "border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
+            }`}
+          >
+            <ArrowRightLeft className="w-3.5 h-3.5" />
+            <span>Drug Interactions ({interactionsList.length})</span>
           </button>
         </div>
 
@@ -1602,6 +1737,228 @@ export function EditDrugModal({
                   />
                 </div>
               </div>
+            </div>
+          )}
+
+          {/* TAB 5: PREGNANCY & LACTATION */}
+          {activeTab === "pregnancy" && (
+            <div className="space-y-4">
+              <div className="p-3.5 rounded-xl bg-rose-50/60 dark:bg-rose-950/20 border border-rose-200/80 dark:border-rose-900/40 text-xs">
+                <span className="font-bold text-rose-800 dark:text-rose-300 block mb-0.5">
+                  🤰 Pregnancy &amp; Lactation Risk Management
+                </span>
+                <p className="text-rose-700 dark:text-rose-400">
+                  Manage teratogenic risk categorization, folic acid dosing, pregnancy pharmacokinetic alterations, contraception guidance, and lactation transfer.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1 text-xs">
+                    Pregnancy Safety Tier
+                  </label>
+                  <select
+                    value={pregnancyTier}
+                    onChange={(e) => setPregnancyTier(e.target.value as any)}
+                    className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold focus:ring-2 focus:ring-sky-500"
+                  >
+                    <option value="none">None / Not Specified</option>
+                    <option value="preferred">Preferred (Lowest recognized malformation risk in class)</option>
+                    <option value="caution">Caution (Use with monitoring / intermediate risk)</option>
+                    <option value="avoid">Avoid (Contraindicated / Major teratogenic risk)</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1 text-xs">
+                    Relative Infant Dose (RID) in Breastfeeding
+                  </label>
+                  <input
+                    type="text"
+                    value={lactationRid}
+                    onChange={(e) => setLactationRid(e.target.value)}
+                    placeholder="e.g. 1% to 10% (RID < 10% is generally compatible)"
+                    className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-mono focus:ring-2 focus:ring-sky-500"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1 text-xs">
+                  Folic Acid Supplementation Guidance
+                </label>
+                <textarea
+                  rows={2}
+                  value={folicAcid}
+                  onChange={(e) => setFolicAcid(e.target.value)}
+                  placeholder="e.g. High-dose folic acid (4-5 mg/day) preconception and through first trimester..."
+                  className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs focus:ring-2 focus:ring-sky-500"
+                />
+              </div>
+
+              <div>
+                <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1 text-xs">
+                  Pregnancy Pharmacokinetics &amp; Clearance Changes
+                </label>
+                <textarea
+                  rows={2}
+                  value={pregnancyPk}
+                  onChange={(e) => setPregnancyPk(e.target.value)}
+                  placeholder="e.g. Clearance increases significantly during second and third trimesters; monitor plasma levels..."
+                  className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs focus:ring-2 focus:ring-sky-500"
+                />
+              </div>
+
+              <div>
+                <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1 text-xs">
+                  Contraception &amp; Family Planning Guidance
+                </label>
+                <textarea
+                  rows={2}
+                  value={contraception}
+                  onChange={(e) => setContraception(e.target.value)}
+                  placeholder="e.g. Enzyme-inducing interactions with hormonal contraceptives; recommend non-hormonal IUD..."
+                  className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs focus:ring-2 focus:ring-sky-500"
+                />
+              </div>
+
+              <div>
+                <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1 text-xs">
+                  Lactation &amp; Breastfeeding Clinical Summary
+                </label>
+                <textarea
+                  rows={3}
+                  value={lactationSummary}
+                  onChange={(e) => setLactationSummary(e.target.value)}
+                  placeholder="e.g. Excreted into breast milk in low concentrations; monitor infant for somnolence and poor feeding..."
+                  className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs focus:ring-2 focus:ring-sky-500"
+                />
+              </div>
+            </div>
+          )}
+
+          {/* TAB 6: FDA DRUG INTERACTIONS */}
+          {activeTab === "interactions" && (
+            <div className="space-y-4">
+              <div className="flex items-center justify-between pb-1">
+                <div>
+                  <span className="font-bold text-slate-800 dark:text-slate-200 text-sm block">
+                    ⚡ FDA Prescribing Information Interactions (Section 7)
+                  </span>
+                  <span className="text-xs text-slate-500 dark:text-slate-400">
+                    Document critical drug-drug interactions with both neurological and non-neurological co-medications (antimicrobials, contraceptives, cardiac agents).
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={handleAddInteraction}
+                  className="px-3 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer shrink-0"
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                  <span>Add Interaction</span>
+                </button>
+              </div>
+
+              {interactionsList.length === 0 ? (
+                <div className="p-8 rounded-2xl border-2 border-dashed border-slate-200 dark:border-slate-800 text-center space-y-2">
+                  <p className="text-xs text-slate-500 dark:text-slate-400">
+                    No specific FDA Section 7 interactions recorded for this drug yet.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={handleAddInteraction}
+                    className="px-3.5 py-1.5 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 hover:bg-purple-500/20 font-bold text-xs inline-flex items-center gap-1.5 transition-colors cursor-pointer"
+                  >
+                    <Plus className="w-3.5 h-3.5" />
+                    <span>Add First Interaction</span>
+                  </button>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  {interactionsList.map((item, idx) => (
+                    <div
+                      key={idx}
+                      className="p-4 rounded-xl border border-slate-200/90 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-900/40 space-y-3"
+                    >
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-2">
+                          <div className="sm:col-span-2">
+                            <label className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">
+                              Interacting Drug or Class #{idx + 1}
+                            </label>
+                            <input
+                              type="text"
+                              value={item.drug_or_class}
+                              onChange={(e) =>
+                                handleUpdateInteraction(idx, "drug_or_class", e.target.value)
+                              }
+                              placeholder="e.g. Carbapenem Antibiotics (Meropenem, Imipenem)"
+                              className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold focus:ring-2 focus:ring-purple-500"
+                            />
+                          </div>
+
+                          <div>
+                            <label className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">
+                              Severity Tier
+                            </label>
+                            <select
+                              value={item.severity || "major"}
+                              onChange={(e) =>
+                                handleUpdateInteraction(idx, "severity", e.target.value as any)
+                              }
+                              className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold focus:ring-2 focus:ring-purple-500"
+                            >
+                              <option value="contraindicated">🔴 Contraindicated</option>
+                              <option value="major">🟠 Major</option>
+                              <option value="moderate">🟡 Moderate</option>
+                              <option value="minor">⚪ Minor</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveInteraction(idx)}
+                          className="p-2 rounded-lg text-rose-500 hover:bg-rose-500/10 transition-colors cursor-pointer self-start mt-4"
+                          title="Remove interaction"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </div>
+
+                      <div>
+                        <label className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">
+                          Clinical Effect / Pharmacokinetic Impact
+                        </label>
+                        <textarea
+                          rows={2}
+                          value={item.effect}
+                          onChange={(e) =>
+                            handleUpdateInteraction(idx, "effect", e.target.value)
+                          }
+                          placeholder="e.g. Clinically significant reduction in serum valproic acid concentrations (often by 60-90%), resulting in rapid loss of seizure control."
+                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs focus:ring-2 focus:ring-purple-500"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-[11px] font-bold text-emerald-700 dark:text-emerald-400 mb-1">
+                          Clinical Management &amp; Dosage Recommendation
+                        </label>
+                        <textarea
+                          rows={2}
+                          value={item.management}
+                          onChange={(e) =>
+                            handleUpdateInteraction(idx, "management", e.target.value)
+                          }
+                          placeholder="e.g. Avoid concomitant use. Alternative antibacterial or anticonvulsant therapy should be considered if carbapenems are required."
+                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs focus:ring-2 focus:ring-purple-500"
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           )}
 

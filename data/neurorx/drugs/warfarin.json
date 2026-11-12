@@ -326,5 +326,60 @@
         "quote": "Concomitant use of drugs that increase bleeding risk, antibiotics, antifungals, botanical (herbal) products, and inhibitors and inducers of CYP2C9, 1A2, or 3A4."
       }
     ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "avoid",
+      "refs": [
+        {
+          "source_id": "fda-warfarin-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "Warfarin sodium is contraindicated in women who are pregnant except in pregnant women with mechanical heart valves, who are at high risk of thromboembolism, and for whom the benefits of warfarin sodium may outweigh the risks"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Crosses placental barrier with risks of fatal hemorrhage and warfarin embryopathy (nasal hypoplasia, stippled epiphyses, CNS defects).",
+      "refs": [
+        {
+          "source_id": "fda-warfarin-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "Warfarin sodium is contraindicated in women who are pregnant except in pregnant women with mechanical heart valves, who are at high risk of thromboembolism, and for whom the benefits of warfarin sodium may outweigh the risks"
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": "Contraindicated in women of childbearing potential unless using effective contraception; assess pregnancy status before initiation.",
+      "refs": [
+        {
+          "source_id": "fda-warfarin-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "Warfarin sodium is contraindicated in women who are pregnant except in pregnant women with mechanical heart valves, who are at high risk of thromboembolism, and for whom the benefits of warfarin sodium may outweigh the risks"
+        }
+      ]
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Warfarin was not detected in human breast milk in limited published studies; compatible with breastfeeding but monitor infant for bruising.",
+      "refs": [
+        {
+          "source_id": "fda-warfarin-label",
+          "locator": "Section 8.2 Lactation",
+          "quote": "Warfarin was not present in human milk from mothers treated with warfarin from a limited published study."
+        }
+      ]
+    }
   }
 }

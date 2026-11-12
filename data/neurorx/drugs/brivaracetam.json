@@ -228,5 +228,68 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Rifampin (Strong CYP/UGT Inducer)",
+        "severity": "major",
+        "effect": "Co-administration significantly decreases brivaracetam plasma concentrations due to hepatic CYP induction.",
+        "management": "Increasing brivaracetam dosage up to double the maintenance dose is recommended in patients taking rifampin.",
+        "refs": [
+          {
+            "source_id": "fda-brivaracetam-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Rifampin: Because of decreased concentrations, increasing BRIVIACT dosage in patients on concomitant rifampin is recommended."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Carbamazepine",
+        "severity": "moderate",
+        "effect": "Increases exposure to carbamazepine-epoxide active metabolite, potentially causing dizziness, diplopia, and ataxia.",
+        "management": "If tolerability issues arise, consider reducing the carbamazepine dosage in patients on concomitant brivaracetam.",
+        "refs": [
+          {
+            "source_id": "fda-brivaracetam-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Carbamazepine: Because of increased exposure to carbamazepine metabolite, if tolerability issues arise, consider reducing carbamazepine dosage in patients on concomitant BRIVIACT."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Phenytoin",
+        "severity": "moderate",
+        "effect": "Phenytoin concentrations can increase, elevating risk of phenytoin intoxication.",
+        "management": "Monitor phenytoin plasma levels when initiating or titrating brivaracetam.",
+        "refs": [
+          {
+            "source_id": "fda-brivaracetam-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Phenytoin: Because phenytoin concentrations can increase, phenytoin levels should be monitored in patients on concomitant BRIVIACT."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Levetiracetam",
+        "severity": "moderate",
+        "effect": "Both bind SV2A; co-administration provides no added therapeutic seizure control benefit over either agent alone.",
+        "management": "Avoid combining brivaracetam with levetiracetam; transition sequentially rather than maintaining dual therapy.",
+        "refs": [
+          {
+            "source_id": "fda-brivaracetam-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Levetiracetam: BRIVIACT had no added therapeutic benefit when co-administered with levetiracetam."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-brivaracetam-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Rifampin: Because of decreased concentrations, increasing BRIVIACT dosage in patients on concomitant rifampin is recommended."
+      }
+    ]
   }
 }

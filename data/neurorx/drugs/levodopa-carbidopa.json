@@ -234,5 +234,55 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Nonselective Monoamine Oxidase (MAO) Inhibitors (Phenelzine, Tranylcypromine)",
+        "severity": "contraindicated",
+        "effect": "Concomitant administration may precipitate severe, life-threatening hypertensive crisis; requires a 14-day washout period.",
+        "management": "Nonselective MAO inhibitors are contraindicated with carbidopa/levodopa; discontinue MAOI at least two weeks before initiating therapy.",
+        "refs": [
+          {
+            "source_id": "fda-levodopa-carbidopa-label",
+            "locator": "CONTRAINDICATIONS",
+            "quote": "Nonselective monoamine oxidase (MAO) inhibitors are contraindicated for use with SINEMET."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Antihypertensive Agents",
+        "severity": "moderate",
+        "effect": "Symptomatic postural hypotension may occur when carbidopa/levodopa is added to regimens including antihypertensive medications.",
+        "management": "Dosage adjustment of the antihypertensive drug may be required when initiating or titrating carbidopa/levodopa.",
+        "refs": [
+          {
+            "source_id": "fda-levodopa-carbidopa-label",
+            "locator": "PRECAUTIONS - Drug Interactions",
+            "quote": "Symptomatic postural hypotension occurred when SINEMET was added to the treatment of a patient receiving antihypertensive drugs."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Iron Salts and Multivitamins",
+        "severity": "moderate",
+        "effect": "Iron chelates with levodopa in the gastrointestinal tract, significantly reducing bioavailability and systemic absorption.",
+        "management": "Separate administration of oral iron supplements from carbidopa/levodopa by at least 2 hours.",
+        "refs": [
+          {
+            "source_id": "fda-levodopa-carbidopa-label",
+            "locator": "PRECAUTIONS - Information for Patients",
+            "quote": "Iron salts (such as in multivitamin tablets) may also reduce the amount of levodopa available to the body."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-levodopa-carbidopa-label",
+        "locator": "CONTRAINDICATIONS",
+        "quote": "Nonselective monoamine oxidase (MAO) inhibitors are contraindicated for use with SINEMET."
+      }
+    ]
   }
 }

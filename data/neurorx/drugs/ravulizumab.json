@@ -246,5 +246,42 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Plasma Exchange, Plasmapheresis, or Intravenous Immunoglobulins (IVIg)",
+        "severity": "major",
+        "effect": "Plasmapheresis or high-dose IVIg clears ravulizumab prematurely, significantly lowering therapeutic complement C5-inhibitory levels.",
+        "management": "Concomitant use requires a supplemental dose of ravulizumab according to official prescribing weight-tiered tables.",
+        "refs": [
+          {
+            "source_id": "fda-ravulizumab-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Plasma Exchange, Plasmapheresis, or Intravenous Immunoglobulins: concomitant use requires supplemental dose of ULTOMIRIS."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Neonatal Fc Receptor Blockers (FcRn Inhibitors, e.g., Efgartigimod)",
+        "severity": "major",
+        "effect": "FcRn blockers promote lysosomal degradation of ravulizumab, lowering its systemic exposure and accelerating clearance.",
+        "management": "Closely monitor for reduced complement inhibition and therapeutic failure of ravulizumab if coadministered with FcRn blockers.",
+        "refs": [
+          {
+            "source_id": "fda-ravulizumab-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Neonatal Fc Receptor Blockers (FcRn): Closely monitor for reduced effectiveness of ULTOMIRIS."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-ravulizumab-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Plasma Exchange, Plasmapheresis, or Intravenous Immunoglobulins: concomitant use requires supplemental dose of ULTOMIRIS."
+      }
+    ]
   }
 }

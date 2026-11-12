@@ -191,5 +191,72 @@
         }
       ]
     }
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-protamine-label",
+          "locator": "PRECAUTIONS - Pregnancy Category C",
+          "quote": "Animal reproduction studies have not been conducted with protamine sulfate. It is also not known whether protamine sulfate can cause fetal harm when administered to a pregnant woman or can affect reproduction capacity."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Unknown whether protamine is excreted in human milk; exercise caution when administered to a nursing woman.",
+      "refs": [
+        {
+          "source_id": "fda-protamine-label",
+          "locator": "PRECAUTIONS - Nursing Mothers",
+          "quote": "It is not known whether this drug is excreted in human milk. Because many drugs are excreted in human milk, caution should be exercised when protamine sulfate is administered to a nursing woman."
+        }
+      ]
+    }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Heparin and Low-Molecular-Weight Heparins",
+        "severity": "moderate",
+        "effect": "Protamine strongly binds acidic heparin molecules through ionic neutralization to form an inert salt, reversing heparin anticoagulation.",
+        "management": "Administer slowly intravenously; titrate dose precisely to heparin dose administered and time elapsed, avoiding excess protamine which can exert its own anticoagulant effect.",
+        "refs": [
+          {
+            "source_id": "fda-protamine-label",
+            "locator": "INDICATIONS AND USAGE",
+            "quote": "Protamine Sulfate Injection, USP is indicated in the treatment of heparin overdosage."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-protamine-label",
+        "locator": "INDICATIONS AND USAGE",
+        "quote": "Protamine Sulfate Injection, USP is indicated in the treatment of heparin overdosage."
+      }
+    ]
   }
 }

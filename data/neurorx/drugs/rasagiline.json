@@ -236,5 +236,55 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Meperidine and Related Opioids (Methadone, Tramadol)",
+        "severity": "contraindicated",
+        "effect": "Precipitation of potentially fatal serotonin syndrome and hyperpyrexia when combined with MAO inhibitors.",
+        "management": "Concomitant use is strictly contraindicated; allow at least 14 days between discontinuation of rasagiline and opioid administration.",
+        "refs": [
+          {
+            "source_id": "fda-rasagiline-label",
+            "locator": "Section 7.1 Meperidine",
+            "quote": "Serious, sometimes fatal reactions have been precipitated with concomitant use of meperidine (e.g., Demerol and other tradenames) and MAO inhibitors including selective MAO-B inhibitors"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Dextromethorphan",
+        "severity": "contraindicated",
+        "effect": "Risk of psychotic reactions, bizarre behavioral changes, and serotonergic toxicity.",
+        "management": "Concomitant use is contraindicated; advise patients to check OTC cough/cold product ingredients carefully.",
+        "refs": [
+          {
+            "source_id": "fda-rasagiline-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Dextromethorphan: Risk of psychosis or bizarre behavior"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Other MAO Inhibitors (Nonselective, MAO-A, or MAO-B)",
+        "severity": "contraindicated",
+        "effect": "Loss of MAO-B selectivity leading to inhibition of systemic MAO-A and risk of hypertensive crisis.",
+        "management": "Do not combine rasagiline with other MAO inhibitors; maintain a 14-day washout period between therapies.",
+        "refs": [
+          {
+            "source_id": "fda-rasagiline-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "MAO inhibitors: Risk of non-selective MAO inhibition and hypertensive crisis"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-rasagiline-label",
+        "locator": "Section 7.1 Meperidine",
+        "quote": "Serious, sometimes fatal reactions have been precipitated with concomitant use of meperidine (e.g., Demerol and other tradenames) and MAO inhibitors including selective MAO-B inhibitors"
+      }
+    ]
   }
 }

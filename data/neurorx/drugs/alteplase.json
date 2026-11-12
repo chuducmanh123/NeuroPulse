@@ -186,5 +186,85 @@
         }
       ]
     }
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-alteplase-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "Published studies and case reports on alteplase use in pregnant women are insufficient to inform a drug associated risk of adverse developmental outcomes."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "There are no data on the presence of alteplase in human milk, effects on the breastfed infant, or effects on milk production.",
+      "refs": [
+        {
+          "source_id": "fda-alteplase-label",
+          "locator": "Section 8.2 Lactation",
+          "quote": "There are no data on the presence of alteplase in human milk, the effects on the breastfed infant, or the effects on milk production."
+        }
+      ]
+    }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Anticoagulants and Antiplatelet Agents",
+        "severity": "major",
+        "effect": "Anticoagulants and drugs inhibiting platelet function increase the risk of bleeding when administered prior to, during, or after alteplase.",
+        "management": "Monitor closely for hemorrhage; withhold antiplatelet/anticoagulant therapy for 24 hours post-thrombolysis in acute ischemic stroke unless specifically indicated.",
+        "refs": [
+          {
+            "source_id": "fda-alteplase-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Anticoagulants and drugs that inhibit platelet function increase the risk of bleeding when administered with Activase therapy."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "ACE Inhibitors (Angiotensin-Converting Enzyme Inhibitors)",
+        "severity": "moderate",
+        "effect": "Concomitant administration of ACE inhibitors with alteplase is associated with an increased risk of orolingual angioedema.",
+        "management": "Monitor for airway compromise and signs of angioedema during and immediately following infusion; discontinue infusion and initiate antihistamines/corticosteroids if angioedema develops.",
+        "refs": [
+          {
+            "source_id": "fda-alteplase-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "there have been reports of angioedema in patients (primarily patients with AIS) receiving concomitant angiotensin-converting enzyme inhibitors."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-alteplase-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Anticoagulants and drugs that inhibit platelet function increase the risk of bleeding when administered with Activase therapy."
+      }
+    ]
   }
 }

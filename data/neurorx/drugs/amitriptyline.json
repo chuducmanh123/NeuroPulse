@@ -255,5 +255,55 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Monoamine Oxidase Inhibitors (Phenelzine, Tranylcypromine, Selegiline)",
+        "severity": "contraindicated",
+        "effect": "Hyperpyretic crises, severe convulsions, serotonin toxicity, and fatalities have occurred when TCAs and MAOIs are combined.",
+        "management": "Concomitant use is contraindicated; allow a minimum 14-day washout period between discontinuing an MAOI and initiating amitriptyline.",
+        "refs": [
+          {
+            "source_id": "fda-amitriptyline-label",
+            "locator": "CONTRAINDICATIONS",
+            "quote": "Hyperpyretic crises, severe convulsions, and deaths have occurred in patients receiving tricyclic antidepressant and monoamine oxidase inhibiting drugs simultaneously. When it is desired to replace a monoamine oxidase inhibitor with amitriptyline hydrochloride, a minimum of 14 days should be allowed to elapse after the former is discontinued."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Topiramate",
+        "severity": "moderate",
+        "effect": "Topiramate can produce a substantial increase in amitriptyline plasma concentrations, elevating TCA toxic risk.",
+        "management": "Dose adjustments in amitriptyline should be guided by clinical response rather than standard empiric dosing.",
+        "refs": [
+          {
+            "source_id": "fda-amitriptyline-label",
+            "locator": "Drug Interactions - Topiramate",
+            "quote": "Some patients may experience a large increase in amitriptyline concentration in the presence of topiramate and any adjustments in amitriptyline dose should be made according to the patient's clinical response and not on the basis of plasma levels."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "CYP2D6 Inhibitors (Fluoxetine, Paroxetine, Quinidine) & CYP2D6 Poor Metabolizers",
+        "severity": "major",
+        "effect": "Markedly elevated plasma levels (up to 8-fold increase in AUC) of amitriptyline and nortriptyline with cardiac conduction slowing and anticholinergic toxicity.",
+        "management": "Use lower initial doses of amitriptyline and monitor ECG and clinical signs of toxicity when coadministering CYP2D6 inhibitors.",
+        "refs": [
+          {
+            "source_id": "fda-amitriptyline-label",
+            "locator": "Drug Interactions - Drugs Metabolized by P450 2D6",
+            "quote": "Poor metabolizers have higher than expected plasma concentrations of tricyclic antidepressants (TCAs) when given usual doses."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-amitriptyline-label",
+        "locator": "CONTRAINDICATIONS",
+        "quote": "Hyperpyretic crises, severe convulsions, and deaths have occurred in patients receiving tricyclic antidepressant and monoamine oxidase inhibiting drugs simultaneously. When it is desired to replace a monoamine oxidase inhibitor with amitriptyline hydrochloride, a minimum of 14 days should be allowed to elapse after the former is discontinued."
+      }
+    ]
   }
 }

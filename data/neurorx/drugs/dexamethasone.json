@@ -267,5 +267,29 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Anticholinesterases (Pyridostigmine, Neostigmine)",
+        "severity": "major",
+        "effect": "Corticosteroids combined with anticholinesterase agents may produce severe muscular weakness in myasthenia gravis patients.",
+        "management": "If possible, withdraw anticholinesterase agents at least 24 hours prior to initiating high-dose corticosteroid therapy.",
+        "refs": [
+          {
+            "source_id": "fda-dexamethasone-label",
+            "locator": "PRECAUTIONS - Drug Interactions: Anticholinesterases",
+            "quote": "Anticholinesterases: Concomitant use of anticholinesterase agents and corticosteroids may produce severe weakness in patients with myasthenia gravis. If possible, anticholinesterase agents should be withdrawn at least 24 hours before initiating corticosteroid therapy."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-dexamethasone-label",
+        "locator": "PRECAUTIONS - Drug Interactions: Anticholinesterases",
+        "quote": "Anticholinesterases: Concomitant use of anticholinesterase agents and corticosteroids may produce severe weakness in patients with myasthenia gravis. If possible, anticholinesterase agents should be withdrawn at least 24 hours before initiating corticosteroid therapy."
+      }
+    ]
   }
 }

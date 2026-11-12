@@ -313,5 +313,72 @@
         "quote": "A clinically significant reduction in serum valproic acid concentration has been reported in patients receiving carbapenem antibiotics (for example, ertapenem, imipenem, meropenem this is not a complete list) and may result in loss of seizure control."
       }
     ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "avoid",
+      "refs": [
+        {
+          "source_id": "fda-valproate-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "For use in prophylaxis of migraine headaches, valproate is contraindicated in women who are pregnant and in women of childbearing potential who are not using effective contraception"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": "Folic acid supplementation prior to conception and during the first trimester is recommended, though it may not fully prevent valproate-induced malformations.",
+      "refs": [
+        {
+          "source_id": "fda-valproate-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "Evidence suggests that folic acid supplementation prior to conception and during the first trimester of pregnancy decreases the risk for congenital neural tube defects in the general population."
+        }
+      ]
+    },
+    "pregnancy_pk": {
+      "value": "Valproate clearance increases during pregnancy with lower total plasma concentrations; monitor unbound valproate concentrations.",
+      "refs": [
+        {
+          "source_id": "fda-valproate-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "For use in prophylaxis of migraine headaches, valproate is contraindicated in women who are pregnant and in women of childbearing potential who are not using effective contraception"
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": "Contraindicated in women of childbearing potential unless using effective contraception. Note that estrogen-containing contraceptives may lower valproate levels.",
+      "refs": [
+        {
+          "source_id": "fda-valproate-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "valproate is contraindicated in women who are pregnant and in women of childbearing potential who are not using effective contraception"
+        }
+      ]
+    },
+    "lactation_rid": {
+      "value": "1% to 10%",
+      "refs": [
+        {
+          "source_id": "fda-valproate-label",
+          "locator": "Section 8.2 Lactation",
+          "quote": "Valproate is excreted in human milk. Data in the published literature describe the presence of valproate in human milk (range: 0.4 mcg/mL to 3.9 mcg/mL), corresponding to 1% to 10% of maternal serum levels."
+        }
+      ]
+    },
+    "lactation_summary": {
+      "value": "Valproate is excreted in human milk (1% to 10% of maternal serum levels). Monitor breastfed infants for somnolence, jaundice, or bruising.",
+      "refs": [
+        {
+          "source_id": "fda-valproate-label",
+          "locator": "Section 8.2 Lactation",
+          "quote": "Valproate is excreted in human milk. Data in the published literature describe the presence of valproate in human milk (range: 0.4 mcg/mL to 3.9 mcg/mL), corresponding to 1% to 10% of maternal serum levels."
+        }
+      ]
+    }
   }
 }

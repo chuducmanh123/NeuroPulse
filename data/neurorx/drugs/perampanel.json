@@ -249,5 +249,42 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Moderate and Strong CYP3A4 Inducers (Carbamazepine, Oxcarbazepine, Phenytoin)",
+        "severity": "major",
+        "effect": "Substantially increases systemic clearance of perampanel, reducing plasma levels by 50% or more.",
+        "management": "Monitor patients closely; dosage increases of perampanel may be required to maintain seizure control.",
+        "refs": [
+          {
+            "source_id": "fda-perampanel-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "increase clearance of perampanel and decrease perampanel plasma concentrations. When moderate or strong CYP3A4 inducers are introduced or withdrawn, monitor patients closely."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Levonorgestrel-Containing Hormonal Contraceptives",
+        "severity": "major",
+        "effect": "Perampanel at doses of 12 mg daily reduces levonorgestrel exposure by approximately 40%, impairing efficacy.",
+        "management": "Recommend additional or non-hormonal barrier contraceptive methods when taking 12 mg daily doses.",
+        "refs": [
+          {
+            "source_id": "fda-perampanel-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Contraceptives: 12 mg once daily may decrease the effectiveness of hormonal contraceptives containing levonorgestrel"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-perampanel-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "increase clearance of perampanel and decrease perampanel plasma concentrations. When moderate or strong CYP3A4 inducers are introduced or withdrawn, monitor patients closely."
+      }
+    ]
   }
 }

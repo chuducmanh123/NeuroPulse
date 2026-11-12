@@ -217,5 +217,98 @@
         }
       ]
     }
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-nimodipine-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "There are no adequate data on the developmental risk associated with the use of NYMALIZE in pregnant women."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Nimodipine has been detected in human milk; weigh clinical benefits against infant exposure.",
+      "refs": [
+        {
+          "source_id": "fda-nimodipine-label",
+          "locator": "Section 8.2 Lactation",
+          "quote": "Nimodipine has been detected in human milk."
+        }
+      ]
+    }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Strong CYP3A4 Inhibitors (Ketoconazole, Itraconazole, Clarithromycin)",
+        "severity": "major",
+        "effect": "Significantly increases nimodipine plasma concentration, markedly enhancing hypotensive effects and risk of cerebral hypoperfusion.",
+        "management": "Concomitant administration of nimodipine and strong CYP3A4 inhibitors should generally be avoided.",
+        "refs": [
+          {
+            "source_id": "fda-nimodipine-label",
+            "locator": "Section 7.2 CYP3A4 Inhibitors",
+            "quote": "Therefore, the concomitant administration of NYMALIZE and strong CYP3A4 inhibitors should generally be avoided"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Strong CYP3A4 Inducers (Rifampin, Phenytoin, Carbamazepine, Phenobarbital)",
+        "severity": "major",
+        "effect": "Significantly reduces nimodipine plasma concentration and efficacy in preventing vasospasm/ischemic deficits.",
+        "management": "Concomitant use of nimodipine with strong CYP3A4 inducers should generally be avoided.",
+        "refs": [
+          {
+            "source_id": "fda-nimodipine-label",
+            "locator": "Section 7.3 CYP3A4 Inducers",
+            "quote": "Therefore, concomitant use of NYMALIZE with strong CYP3A4 inducers (e.g., carbamazepine, phenobarbital, phenytoin, rifampin, St. John's wort) should generally be avoided"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Blood Pressure Lowering Drugs (Antihypertensives)",
+        "severity": "moderate",
+        "effect": "Nimodipine may intensify the blood pressure lowering effect of concomitantly administered antihypertensive agents.",
+        "management": "Monitor blood pressure carefully; adjustment of antihypertensive dosage may be necessary to avoid excessive hypotension.",
+        "refs": [
+          {
+            "source_id": "fda-nimodipine-label",
+            "locator": "Section 7.1 Blood Pressure Lowering Drugs",
+            "quote": "Nimodipine may increase the blood pressure lowering effect of concomitantly administered anti-hypertensives"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-nimodipine-label",
+        "locator": "Section 7.2 CYP3A4 Inhibitors",
+        "quote": "Therefore, the concomitant administration of NYMALIZE and strong CYP3A4 inhibitors should generally be avoided"
+      }
+    ]
   }
 }

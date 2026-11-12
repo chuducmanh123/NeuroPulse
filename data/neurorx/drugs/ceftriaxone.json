@@ -236,5 +236,29 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Calcium-Containing IV Solutions and Diluents (Ringer's, Hartmann's, Parenteral Nutrition)",
+        "severity": "contraindicated",
+        "effect": "Incompatibility causing precipitation of insoluble ceftriaxone-calcium salt crystals; cases of fatal crystalline precipitation in lungs and kidneys of neonates.",
+        "management": "Do not use calcium-containing diluents for reconstitution or infusion lines; in non-neonates, sequential administration requires thorough flushing with compatible fluid.",
+        "refs": [
+          {
+            "source_id": "fda-ceftriaxone-label",
+            "locator": "WARNINGS - Calcium-containing Products",
+            "quote": "Do not use diluents containing calcium, such as Ringer’s solution or Hartmann’s solution, to reconstitute ceftriaxone vials or to further dilute a reconstituted vial for IV administration because a precipitate can form. Precipitation of ceftriaxone-calcium can also occur when ceftriaxone is mixed with calcium-containing solutions in the same IV administration line."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-ceftriaxone-label",
+        "locator": "WARNINGS - Calcium-containing Products",
+        "quote": "Do not use diluents containing calcium, such as Ringer’s solution or Hartmann’s solution, to reconstitute ceftriaxone vials or to further dilute a reconstituted vial for IV administration because a precipitate can form. Precipitation of ceftriaxone-calcium can also occur when ceftriaxone is mixed with calcium-containing solutions in the same IV administration line."
+      }
+    ]
   }
 }

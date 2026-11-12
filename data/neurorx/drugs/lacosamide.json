@@ -325,5 +325,85 @@
         }
       ]
     }
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-lacosamide-label",
+          "locator": "Section 8 USE IN SPECIFIC POPULATIONS",
+          "quote": "Pregnancy: Based on animal data, may cause fetal harm"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Lacosamide is present in human milk; reports describe increased sleepiness in breastfed infants. Monitor nursing infants closely.",
+      "refs": [
+        {
+          "source_id": "fda-lacosamide-label",
+          "locator": "Section 8.2 Lactation",
+          "quote": "Data from published literature indicate that lacosamide is present in human milk. There are reports of increased sleepiness in breastfed infants exposed to lacosamide"
+        }
+      ]
+    }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "PR-Interval Prolonging Medications & Sodium Channel Blockers",
+        "severity": "major",
+        "effect": "Additive prolongation of the PR interval with increased risk of first-degree, second-degree, or complete AV block, bradycardia, or ventricular arrhythmias.",
+        "management": "Exercise caution and obtain baseline and steady-state ECGs in patients concomitantly receiving beta-blockers, calcium channel blockers, or sodium channel AEDs.",
+        "refs": [
+          {
+            "source_id": "fda-lacosamide-label",
+            "locator": "Section 5 WARNINGS AND PRECAUTIONS",
+            "quote": "including those that prolong PR interval (including sodium channel blocking AEDs), because of a risk of AV block, bradycardia, or ventricular tachyarrhythmia."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Strong CYP3A4 and CYP2C9 Inhibitors",
+        "severity": "moderate",
+        "effect": "Inhibition of CYP enzymes increases lacosamide systemic exposure, especially in patients with coexisting renal impairment.",
+        "management": "Dose reduction may be necessary in patients with renal impairment who are taking strong inhibitors of CYP3A4 and CYP2C9.",
+        "refs": [
+          {
+            "source_id": "fda-lacosamide-label",
+            "locator": "Section 2.4 Dosage Information for Patients with Renal Impairment",
+            "quote": "Dose reduction may be necessary in patients with renal impairment who are taking strong inhibitors of CYP3A4 and CYP2C9"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-lacosamide-label",
+        "locator": "Section 5 WARNINGS AND PRECAUTIONS",
+        "quote": "including those that prolong PR interval (including sodium channel blocking AEDs), because of a risk of AV block, bradycardia, or ventricular tachyarrhythmia."
+      }
+    ]
   }
 }

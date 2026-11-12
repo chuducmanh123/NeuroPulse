@@ -237,5 +237,29 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Oral Anticoagulants (Warfarin)",
+        "severity": "major",
+        "effect": "Entacapone can increase R-warfarin exposure; post-marketing reports describe significant INR elevations and bleeding.",
+        "management": "Monitoring of INR is recommended when entacapone treatment is initiated or when the dose is adjusted in patients receiving warfarin.",
+        "refs": [
+          {
+            "source_id": "fda-entacapone-label",
+            "locator": "Drug Interactions",
+            "quote": "Nevertheless, cases of significantly increased INR in patients concomitantly using warfarin have been reported during the postapproval use of entacapone. Therefore, monitoring of INR is recommended when entacapone treatment is initiated or when the dose is increased for patients receiving warfarin."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-entacapone-label",
+        "locator": "Drug Interactions",
+        "quote": "Nevertheless, cases of significantly increased INR in patients concomitantly using warfarin have been reported during the postapproval use of entacapone. Therefore, monitoring of INR is recommended when entacapone treatment is initiated or when the dose is increased for patients receiving warfarin."
+      }
+    ]
   }
 }

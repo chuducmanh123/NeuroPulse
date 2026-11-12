@@ -231,5 +231,29 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "FcRn-Binding Therapies (Monoclonal Antibodies, Subcutaneous Immunoglobulins, IVIg)",
+        "severity": "major",
+        "effect": "By blocking FcRn, efgartigimod accelerates catabolism of any concomitant therapeutic IgG antibodies, reducing their systemic half-lives and exposure.",
+        "management": "Closely monitor for reduced effectiveness of medications that bind to the human neonatal Fc receptor; consider alternative therapies if long-term coadministration is essential.",
+        "refs": [
+          {
+            "source_id": "fda-efgartigimod-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Closely monitor for reduced effectiveness of medications that bind to the human neonatal Fc receptor. When concomitant long-term use of such medications is essential for patient care, consider discontinuing VYVGART HYTRULO and using alternative therapies."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-efgartigimod-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Closely monitor for reduced effectiveness of medications that bind to the human neonatal Fc receptor. When concomitant long-term use of such medications is essential for patient care, consider discontinuing VYVGART HYTRULO and using alternative therapies."
+      }
+    ]
   }
 }

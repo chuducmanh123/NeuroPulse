@@ -144,9 +144,9 @@ export function DrugDetail({
         }`}
       >
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-3 sm:gap-4">
-          <div className="space-y-1.5 min-w-0">
+          <div className="space-y-2 min-w-0">
             <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
-              <h1 className="text-xl sm:text-3xl font-extrabold font-mono tracking-wide text-slate-900 dark:text-white break-words">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white break-words">
                 {tallManName}
               </h1>
 
@@ -160,13 +160,13 @@ export function DrugDetail({
 
               {/* Verification Status */}
               {isVerified ? (
-                <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 shrink-0">
-                  <ShieldCheck className="w-3.5 h-3.5" />
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs sm:text-sm font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 shrink-0">
+                  <ShieldCheck className="w-4 h-4" />
                   <span>Verified</span>
                 </span>
               ) : (
-                <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-semibold bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 shrink-0">
-                  <AlertTriangle className="w-3.5 h-3.5" />
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs sm:text-sm font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 shrink-0">
+                  <AlertTriangle className="w-4 h-4" />
                   <span>Pending verification</span>
                 </span>
               )}
@@ -176,26 +176,26 @@ export function DrugDetail({
                 <button
                   type="button"
                   onClick={() => setIsEditModalOpen(true)}
-                  className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-bold border border-sky-400/50 hover:border-sky-500 bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-400 shadow-xs hover:bg-sky-100 dark:hover:bg-sky-900/40 transition-all cursor-pointer shrink-0"
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs sm:text-sm font-bold border border-sky-400/50 hover:border-sky-500 bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-400 shadow-xs hover:bg-sky-100 dark:hover:bg-sky-900/40 transition-all cursor-pointer shrink-0"
                   title="Edit drug details and dosing regimens"
                 >
-                  <Edit className="w-3.5 h-3.5" />
+                  <Edit className="w-4 h-4" />
                   <span>Edit</span>
                 </button>
               )}
             </div>
 
             {/* Vietnam Marketed Products */}
-            <div className="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+            <div className="text-sm text-slate-700 dark:text-slate-300">
               {drug.vn_products?.value && drug.vn_products.value.length > 0 ? (
-                <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
-                  <span className="font-semibold text-slate-700 dark:text-slate-200">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="font-extrabold uppercase tracking-wide text-xs sm:text-sm text-slate-700 dark:text-slate-200">
                     VN Formulations:
                   </span>
                   {drug.vn_products.value.map((p, idx) => (
                     <span
                       key={idx}
-                      className="px-2 py-0.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-medium text-[11px] sm:text-xs break-words"
+                      className="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-semibold text-xs sm:text-sm break-words border border-slate-200/60 dark:border-slate-700/60"
                     >
                       {p.brand} ({p.strength} {p.form})
                     </span>
@@ -208,23 +208,23 @@ export function DrugDetail({
                   />
                 </div>
               ) : (
-                <span className="italic text-slate-400">VN Products: No data yet</span>
+                <span className="italic text-slate-400 text-xs sm:text-sm">VN Products: No data yet</span>
               )}
             </div>
 
             {/* Drug Classes */}
-            <p className="text-xs text-slate-500 dark:text-slate-400 break-words">
+            <p className="text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 break-words">
               {drug.classes.join(" • ")}
             </p>
           </div>
 
           {/* Clinical Alert Badges (MG-safety & NG-tube) */}
-          <div className="flex flex-wrap md:flex-col gap-1.5 sm:gap-2 items-start md:items-end shrink-0">
+          <div className="flex flex-wrap md:flex-col gap-2 items-start md:items-end shrink-0">
             {/* Myasthenia Gravis Safety Badge */}
             {mgSafety && (
               <div className="flex items-center gap-1.5">
                 <span
-                  className={`inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-xl text-[11px] sm:text-xs font-bold border ${
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-extrabold border ${
                     mgSafety === "safe"
                       ? "bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-500/25"
                       : mgSafety === "caution"
@@ -252,7 +252,7 @@ export function DrugDetail({
             {ngTube && (
               <div className="flex items-center gap-1.5">
                 <span
-                  className={`inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-xl text-[11px] sm:text-xs font-bold border ${
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-extrabold border ${
                     ngTube.crushable
                       ? "bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-500/25"
                       : "bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-500/25"
@@ -275,14 +275,14 @@ export function DrugDetail({
 
         {/* Black-Box Warning Banner */}
         {blackBox && blackBox.length > 0 && (
-          <div className="mt-3.5 sm:mt-4 p-3.5 sm:p-4 rounded-xl bg-rose-500/10 border-2 border-rose-500/40 text-rose-900 dark:text-rose-200 text-xs sm:text-sm font-semibold flex items-start justify-between gap-3">
-            <div className="flex items-start gap-2.5 sm:gap-3 min-w-0">
-              <AlertOctagon className="w-5 h-5 text-rose-600 dark:text-rose-400 shrink-0 mt-0.5" />
+          <div className="mt-4 p-4 sm:p-5 rounded-xl bg-rose-500/10 border-2 border-rose-500/40 text-rose-950 dark:text-rose-100 flex items-start justify-between gap-3">
+            <div className="flex items-start gap-3 min-w-0">
+              <AlertOctagon className="w-6 h-6 text-rose-600 dark:text-rose-400 shrink-0 mt-0.5" />
               <div className="min-w-0 break-words">
-                <span className="font-extrabold uppercase tracking-wider block text-rose-700 dark:text-rose-400 mb-1">
+                <span className="font-extrabold uppercase tracking-wide block text-sm sm:text-base text-rose-800 dark:text-rose-300 mb-1.5">
                   FDA Boxed Warning:
                 </span>
-                <p className="whitespace-pre-line leading-relaxed text-xs sm:text-sm">
+                <p className="whitespace-pre-line leading-relaxed text-sm sm:text-base font-medium">
                   {blackBox.join("\n")}
                 </p>
               </div>
@@ -299,10 +299,10 @@ export function DrugDetail({
       {/* 3. Dosing Section: Unified Dosing Card (Chỉ định, Hướng dẫn dùng thuốc lâm sàng & Chế độ điều trị) */}
       <div className="space-y-4">
         {!isVerified && (
-          <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl border bg-amber-500/10 border-amber-500/30 text-amber-800 dark:text-amber-300 flex items-center gap-2.5 text-xs">
-            <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0" />
+          <div className="p-4 sm:p-5 rounded-xl sm:rounded-2xl border-2 bg-amber-500/10 border-amber-500/30 text-amber-900 dark:text-amber-200 flex items-center gap-3 text-sm font-medium">
+            <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0" />
             <span>
-              <strong>Draft Record:</strong> This drug record is currently in draft status.
+              <strong className="font-bold">Draft Record:</strong> This drug record is currently in draft status.
               {isAdmin && " You can review the dosing guidance below or click Edit to finalize."}
             </span>
           </div>
@@ -326,7 +326,7 @@ export function DrugDetail({
         <button
           type="button"
           onClick={() => setShowPatientVars((prev) => !prev)}
-          className={`w-full p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-l-4 border-l-cyan-500 transition-all flex items-center justify-between gap-2.5 sm:gap-3 text-left ${
+          className={`w-full p-3.5 sm:p-5 rounded-xl sm:rounded-2xl border border-l-4 border-l-cyan-500 transition-all flex items-center justify-between gap-3 text-left ${
             showPatientVars
               ? darkMode
                 ? "bg-gradient-to-r from-cyan-950/30 via-slate-900 to-slate-900 border-cyan-800 shadow-sm ring-1 ring-cyan-500/20"
@@ -336,31 +336,31 @@ export function DrugDetail({
               : "bg-white border-slate-200 hover:border-cyan-300 shadow-xs"
           }`}
         >
-          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+          <div className="flex items-center gap-3 min-w-0">
             <div
-              className={`p-1.5 sm:p-2 rounded-xl shrink-0 ${
+              className={`p-2 rounded-xl shrink-0 ${
                 darkMode ? "bg-cyan-500/10 text-cyan-400" : "bg-cyan-50 text-cyan-600"
               }`}
             >
-              <Activity className="w-4 h-4" />
+              <Activity className="w-5 h-5" />
             </div>
             <div className="min-w-0">
-              <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
-                <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200 truncate">
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="text-sm sm:text-base font-extrabold uppercase tracking-wide text-slate-900 dark:text-slate-100 truncate">
                   Bedside Patient Variables &amp; Computed Dosage
                 </span>
                 {renalResult.value !== null && (
-                  <span className="text-[10px] sm:text-[11px] px-1.5 sm:px-2 py-0.5 rounded-full font-bold bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20 font-mono shrink-0">
+                  <span className="text-xs sm:text-sm px-2.5 py-0.5 rounded-full font-bold bg-cyan-500/15 text-cyan-700 dark:text-cyan-300 border border-cyan-500/30 shrink-0">
                     CrCl: {renalResult.value} mL/min
                   </span>
                 )}
                 {patientParsed.weightKg !== undefined && (
-                  <span className="text-[10px] sm:text-[11px] px-1.5 sm:px-2 py-0.5 rounded-full font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 shrink-0">
+                  <span className="text-xs sm:text-sm px-2.5 py-0.5 rounded-full font-bold bg-slate-200/80 dark:bg-slate-800 text-slate-800 dark:text-slate-200 shrink-0">
                     {patientParsed.weightKg} kg
                   </span>
                 )}
               </div>
-              <p className="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-1 sm:line-clamp-none">
+              <p className="text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400 mt-1 line-clamp-1 sm:line-clamp-none">
                 {showPatientVars
                   ? "Click to collapse patient variables & computed dosage"
                   : "Click to enter patient variables (Weight, Age, Sex, Creatinine, CrCl...) & view computed dosage"}
@@ -368,12 +368,12 @@ export function DrugDetail({
             </div>
           </div>
 
-          <div className="flex items-center gap-1 text-slate-400 shrink-0">
-            <span className="text-[11px] sm:text-xs font-semibold hidden sm:inline">
+          <div className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400 shrink-0">
+            <span className="text-xs sm:text-sm font-bold hidden sm:inline">
               {showPatientVars ? "Collapse" : "Adjust"}
             </span>
             <ChevronDown
-              className={`w-4 h-4 transition-transform duration-200 ${
+              className={`w-5 h-5 transition-transform duration-200 ${
                 showPatientVars ? "rotate-180" : ""
               }`}
             />

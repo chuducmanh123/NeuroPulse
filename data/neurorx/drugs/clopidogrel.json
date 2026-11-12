@@ -327,5 +327,54 @@
         "quote": "Avoid concomitant use of Plavix with omeprazole or esomeprazole. In clinical studies, omeprazole was shown to reduce significantly the antiplatelet activity of Plavix when given concomitantly or 12 hours apart."
       }
     ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-clopidogrel-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "Available data from cases reported in published literature and postmarketing surveillance with clopidogrel use in pregnant women have not identified any drug-associated risks for major birth defects or miscarriage"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "No evidence of fetotoxicity, but increased risk of maternal hemorrhage during labor and delivery; discontinue 5-7 days before planned delivery if possible.",
+      "refs": [
+        {
+          "source_id": "fda-clopidogrel-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "Available data from cases reported in published literature and postmarketing surveillance with clopidogrel use in pregnant women have not identified any drug-associated risks for major birth defects or miscarriage"
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "No data on presence in human milk; consider maternal indication and potential infant risk. No adverse infant events reported in postmarketing cases.",
+      "refs": [
+        {
+          "source_id": "fda-clopidogrel-label",
+          "locator": "Section 8.2 Lactation",
+          "quote": "There are no data on the presence of clopidogrel in human milk or the effects on milk production."
+        }
+      ]
+    }
   }
 }

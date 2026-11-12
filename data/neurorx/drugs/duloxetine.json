@@ -249,5 +249,55 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Potent CYP1A2 Inhibitors (Fluvoxamine, Ciprofloxacin, Enoxacin)",
+        "severity": "contraindicated",
+        "effect": "Fluvoxamine increases duloxetine AUC approximately 6-fold and Cmax 2.5-fold, markedly increasing toxic risk.",
+        "management": "Concomitant use of duloxetine with potent CYP1A2 inhibitors should be avoided.",
+        "refs": [
+          {
+            "source_id": "fda-duloxetine-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Both CYP1A2 and CYP2D6 are responsible for duloxetine metabolism. Potent inhibitors of CYP1A2 should be avoided"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Potent CYP2D6 Inhibitors (Paroxetine, Fluoxetine, Quinidine)",
+        "severity": "major",
+        "effect": "CYP2D6 inhibition elevates duloxetine AUC by 60% or more, increasing adverse reactions.",
+        "management": "Exercise caution and consider lower duloxetine doses when coadministered with potent CYP2D6 inhibitors.",
+        "refs": [
+          {
+            "source_id": "fda-duloxetine-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Potent inhibitors of CYP2D6 may increase Duloxetine delayed-release capsules concentrations"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "CYP2D6 Substrates with Narrow Therapeutic Indices (Tricyclic Antidepressants, Flecainide)",
+        "severity": "major",
+        "effect": "Duloxetine is a moderate inhibitor of CYP2D6 and increases plasma concentrations of coadministered CYP2D6 substrates.",
+        "management": "Use caution when co-administering duloxetine with medications predominantly metabolized by CYP2D6 with narrow therapeutic indices.",
+        "refs": [
+          {
+            "source_id": "fda-duloxetine-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Duloxetine delayed-release capsules is a moderate inhibitor of CYP2D6"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-duloxetine-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Both CYP1A2 and CYP2D6 are responsible for duloxetine metabolism. Potent inhibitors of CYP1A2 should be avoided"
+      }
+    ]
   }
 }

@@ -217,5 +217,85 @@
         }
       ]
     }
+  },
+  "reproductive": {
+    "tier": {
+      "value": "avoid",
+      "refs": [
+        {
+          "source_id": "fda-diazepam-label",
+          "locator": "PRECAUTIONS - Pregnancy: Risk Summary",
+          "quote": "Neonates born to mothers using benzodiazepines late in pregnancy have been reported to experience symptoms of sedation and/or neonatal withdrawal"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Breastfeeding is not recommended during treatment with diazepam due to excretion in breast milk and risk of sedation and poor feeding in nursing infants.",
+      "refs": [
+        {
+          "source_id": "fda-diazepam-label",
+          "locator": "PRECAUTIONS - Nursing",
+          "quote": "Advise patients that breastfeeding is not recommended during treatment with diazepam"
+        }
+      ]
+    }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Opioid Analgesics and CNS Depressants",
+        "severity": "contraindicated",
+        "effect": "Concomitant use of benzodiazepines and opioids significantly worsens opioid-related respiratory depression, profound sedation, coma, and death.",
+        "management": "Reserve concomitant prescribing for patients with inadequate alternative options; limit dosages and durations to the minimum required and monitor continuously for respiratory depression.",
+        "refs": [
+          {
+            "source_id": "fda-diazepam-label",
+            "locator": "PRECAUTIONS - Drug Interactions",
+            "quote": "The concomitant use of benzodiazepines and opioids increases the risk of respiratory depression because of actions at different receptor sites in the CNS that control respiration."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Psychotropic Agents, Anticonvulsants & MAO Inhibitors",
+        "severity": "major",
+        "effect": "Compounds such as phenothiazines, barbiturates, and MAO inhibitors potentiate the central depressant and sedative actions of diazepam.",
+        "management": "Give careful consideration to pharmacology and reduce initial doses when combining psychotropic or anticonvulsant agents.",
+        "refs": [
+          {
+            "source_id": "fda-diazepam-label",
+            "locator": "PRECAUTIONS - Drug Interactions",
+            "quote": "careful consideration should be given to the pharmacology of the agents to be employed—particularly with known compounds which may potentiate the action of diazepam, such as phenothiazines, narcotics, barbiturates, MAO inhibitors and other antidepressants."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-diazepam-label",
+        "locator": "PRECAUTIONS - Drug Interactions",
+        "quote": "The concomitant use of benzodiazepines and opioids increases the risk of respiratory depression because of actions at different receptor sites in the CNS that control respiration."
+      }
+    ]
   }
 }
