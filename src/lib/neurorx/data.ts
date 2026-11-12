@@ -270,7 +270,7 @@ export function mergeDrugRecords(baseline: DrugRecord, override: DrugRecord): Dr
   );
   if (baselineHasRenalBands && !overrideHasRenalBands) {
     merged.renal_impairment = baseline.renal_impairment;
-    if (baseline.renal_basis?.value && (!override.renal_basis?.value || override.renal_basis.value === "none")) {
+    if (baseline.renal_basis?.value && !override.renal_basis?.value) {
       merged.renal_basis = baseline.renal_basis;
     }
   }
