@@ -228,6 +228,71 @@ export async function syncFromSupabase(force = false): Promise<void> {
 }
 
 /**
+ * Safely merges an override drug record with the baseline static drug record,
+ * ensuring newly deployed clinical sections (FDA interactions, pregnancy & lactation,
+ * renal bands, hepatic guidance, etc.) are never accidentally clobbered by stale snapshots.
+ */
+export function mergeDrugRecords(baseline: DrugRecord, override: DrugRecord): DrugRecord {
+  const merged: DrugRecord = { ...baseline, ...override };
+
+  // 1. FDA Interactions (preserve baseline if override is empty/missing)
+  if (!override.fda_interactions?.value?.length && baseline.fda_interactions?.value?.length) {
+    merged.fda_interactions = baseline.fda_interactions;
+  }
+
+  // 2. Pregnancy & Lactation (preserve baseline if override lacks details)
+  const baselineHasRep = Boolean(
+    baseline.reproductive && (
+      baseline.reproductive.tier?.value ||
+      (baseline.reproductive.mcm && baseline.reproductive.mcm.length > 0) ||
+      baseline.reproductive.lactation_summary?.value ||
+      baseline.reproductive.pregnancy_pk?.value
+    )
+  );
+  const overrideHasRep = Boolean(
+    override.reproductive && (
+      override.reproductive.tier?.value ||
+      (override.reproductive.mcm && override.reproductive.mcm.length > 0) ||
+      override.reproductive.lactation_summary?.value ||
+      override.reproductive.pregnancy_pk?.value
+    )
+  );
+  if (baselineHasRep && !overrideHasRep) {
+    merged.reproductive = baseline.reproductive;
+  }
+
+  // 3. Renal Impairment (preserve baseline bands if override has no bands)
+  const baselineHasRenalBands = Boolean(
+    baseline.renal_impairment?.bands && baseline.renal_impairment.bands.length > 0
+  );
+  const overrideHasRenalBands = Boolean(
+    override.renal_impairment?.bands && override.renal_impairment.bands.length > 0
+  );
+  if (baselineHasRenalBands && !overrideHasRenalBands) {
+    merged.renal_impairment = baseline.renal_impairment;
+    if (baseline.renal_basis?.value && (!override.renal_basis?.value || override.renal_basis.value === "none")) {
+      merged.renal_basis = baseline.renal_basis;
+    }
+  }
+
+  // 4. Hepatic Impairment (preserve baseline if override is empty)
+  if (baseline.hepatic?.value && !override.hepatic?.value) {
+    merged.hepatic = baseline.hepatic;
+  }
+
+  // 5. Adverse Effects (preserve baseline serious/most_common if override is empty)
+  if (!override.adverse_effects?.serious?.value?.length && baseline.adverse_effects?.serious?.value?.length) {
+    merged.adverse_effects = {
+      ...merged.adverse_effects,
+      serious: baseline.adverse_effects.serious,
+      most_common: merged.adverse_effects?.most_common || baseline.adverse_effects?.most_common,
+    };
+  }
+
+  return merged;
+}
+
+/**
  * Loads all drug records from Multi-tier Storage:
  * 1. Static seed files (DATA_DIR/drugs/*.json)
  * 2. Writable /tmp files (TMP_DRUGS_DIR/*.json)
@@ -264,7 +329,9 @@ export function getAllDrugs(): DrugWithEffectiveStatus[] {
           const fullPath = path.join(TMP_DRUGS_DIR, f);
           const drug: DrugRecord = JSON.parse(fs.readFileSync(fullPath, "utf-8"));
           if (drug && drug.id) {
-            rawDrugsMap.set(drug.id.toLowerCase().trim(), drug);
+            const normId = drug.id.toLowerCase().trim();
+            const baseline = rawDrugsMap.get(normId);
+            rawDrugsMap.set(normId, baseline ? mergeDrugRecords(baseline, drug) : drug);
           }
         } catch {}
       }
@@ -273,7 +340,8 @@ export function getAllDrugs(): DrugWithEffectiveStatus[] {
 
   // 3. Read in-memory overrides
   for (const [id, drug] of inMemoryDrugs.entries()) {
-    rawDrugsMap.set(id, drug);
+    const baseline = rawDrugsMap.get(id);
+    rawDrugsMap.set(id, baseline ? mergeDrugRecords(baseline, drug) : drug);
   }
 
   // 4. Compute effective status

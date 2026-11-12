@@ -55,15 +55,19 @@ async function pushLocalToRemote() {
     const drug = JSON.parse(fs.readFileSync(path.join(DRUGS_DIR, file), "utf-8"));
     const drugId = drug.id.toLowerCase().trim();
 
-    const { error } = await supabase.from("neuroguide_docs").upsert({
-      id: `neurorx_drug_${drugId}`,
-      title: drug.generic_name,
-      organization: "NeuroRx",
-      year: "2026",
-      status: drug.status,
-      data: drug,
-      updated_at: new Date().toISOString(),
-    });
+    // Upsert to neuroguide_docs table (prefixed with neurorx_drug_)
+    const { error } = await supabase.from("neuroguide_docs").upsert(
+      {
+        id: `neurorx_drug_${drugId}`,
+        title: drug.generic_name,
+        organization: "NeuroRx",
+        year: "2026",
+        status: drug.status,
+        data: drug,
+        updated_at: new Date().toISOString(),
+      },
+      { onConflict: "id" }
+    );
 
     if (error) {
       console.error(`❌ Failed to push ${drugId}:`, error.message);

@@ -2,6 +2,9 @@ import React, { Suspense } from "react";
 import { NeuroRxShell } from "@/components/neurorx/NeuroRxShell";
 import { getAllDrugsAsync, getAllSources, getAllInteractions, getDataVersionHash } from "@/lib/neurorx/data";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function NeuroRxPage() {
   const initialDrugs = await getAllDrugsAsync();
   const sources = getAllSources();
