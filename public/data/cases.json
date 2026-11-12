@@ -1,5 +1,222 @@
 [
   {
+    "id": "nc-2026-043",
+    "case_code": "NC-2026-043",
+    "title": "Subacute Ataxia and Gaze-Evoked Nystagmus with Normal Brain MRI",
+    "subspecialty": "Neurocritical Care",
+    "subspecialties": [
+      "Neurocritical Care",
+      "General Neurology",
+      "Neuro-Ophthalmology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-11-13",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC12418705",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-025-04399-8",
+      "pmcid": "PMC12418705",
+      "pmid": "40926195",
+      "pub_year": "2025"
+    },
+    "presentation": {
+      "demographics": "68-year-old female",
+      "chief_complaint": "Gait instability and vertigo",
+      "history_of_present_illness": "A 68-year-old female presented with an exacerbation of gait instability over nine days, accompanied by staggering vertigo while sitting, standing, and walking, as well as a lack of coordination in her left leg. She experienced nausea, daily emesis, and diarrhea for two weeks prior to admission, along with an unintentional 8 kg weight loss over the past four months.",
+      "past_medical_history": "Chronic gastrointestinal symptoms under the intake of proton pump inhibitors and recent gastrointestinal infection; chronic hypokalemia.",
+      "vitals": {
+        "bp": "125/78 mmHg",
+        "hr": "72 bpm",
+        "rr": "14 /min",
+        "temp": "36.7 °C",
+        "spo2": "99%"
+      },
+      "neuro_exam": "Horizontal gaze-induced nystagmus with a vertical component, atactic pointing and pursuing tests of the upper and lower extremities with a left-dominant intention tremor, and a wide-based atactic gait pattern. Romberg test was insecure with an undirected tendency to fall. Vestibular testing was unremarkable.",
+      "key_labs_csf": "Moderate hypokalemia (3.4 mmol/l) with normal sodium (142 mmol/l); severe unrecognized magnesium deficiency; CSF analysis entirely unremarkable.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (Axial FLAIR and Sagittal T2)",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC12418705)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC12418705_fig1.jpg",
+          "pmcid": "PMC12418705",
+          "doi_url": "https://doi.org/10.1186/s12883-025-04399-8",
+          "caption": "MRI of the patient’s neurocranium. Axial FLAIR- ( a ) and sagittal T2 ( b ) sequences of thin-layered MRI with normal presentation of infratentorial brain structures. Notably, uni- or bilateral hyperintense lesions (usually a sign of vasogenic edema), or signs of cerebellar atrophy were absent despite significant symptoms for more than two weeks. FLAIR = fluid-attenuated inversion recovery.",
+          "findings_summary": "Thin-layered high-resolution brainstem and cerebellar imaging revealed completely normal infratentorial structures without evidence of acute infarction, inflammation, tumor, or vasogenic edema."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "D",
+      "options": [
+        {
+          "id": "A",
+          "text": "Wernicke encephalopathy",
+          "peer_percentage": 15,
+          "rationale": "Incorrect. Wernicke encephalopathy typically presents with ophthalmoparesis, confusion, and ataxia, and classically demonstrates characteristic T2/FLAIR hyperintensities in the medial thalami, periaqueductal gray, and mamillary bodies, which were entirely absent here."
+        },
+        {
+          "id": "B",
+          "text": "Paraneoplastic cerebellar degeneration",
+          "peer_percentage": 12,
+          "rationale": "Incorrect. While subacute ataxia, vertigo, and weight loss can raise suspicion for a paraneoplastic process, whole-body PET imaging, CSF analysis, and antibody serology were unrevealing, and MRI lacks the characteristic cerebellar atrophy."
+        },
+        {
+          "id": "C",
+          "text": "Anti-GAD antibody-associated autoimmune ataxia",
+          "peer_percentage": 8,
+          "rationale": "Incorrect. Autoimmune and antibody-mediated ataxias typically present with subacute or chronic progressive cerebellar syndromes and positive serum/CSF autoantibody panels, which were negative in this broad workup."
+        },
+        {
+          "id": "D",
+          "text": "Medication-induced severe hypomagnesemia cerebellar syndrome",
+          "peer_percentage": 65,
+          "rationale": "Correct! Severe magnesium deficiency—exacerbated by chronic proton pump inhibitor use and gastrointestinal losses—can cause prominent central nervous system manifestations including cerebellar ataxia, nystagmus, and tremors, which completely resolve with electrolyte replacement despite a completely normal brain MRI."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Medication-induced severe hypomagnesemia-associated cerebellar syndrome",
+      "clinical_discussion": "This case highlights an uncommon yet reversible metabolic etiology of a prominent cerebellar syndrome. The patient presented with subacute gait ataxia, gaze-evoked nystagmus, and appendicular dysmetria resembling a structural or inflammatory infratentorial lesion. However, extensive diagnostic evaluations including CSF analysis, whole-body PET, antibody serology, and high-resolution thin-layer brain MRI with 4D angiography were completely unrevealing. The clinical breakthrough came from recognizing chronic electrolyte derangements—specifically, severe magnesium deficiency occurring under the chronic intake of proton pump inhibitors compounded by a recent gastrointestinal infection and persistent vomiting/diarrhea.\n\nMagnesium is an essential divalent cation crucial for ion channel function, mitochondrial energy metabolism, endothelial stability, and neuronal excitability. While clinical recognition of magnesium deficiency often centers around neuromuscular hyperexcitability (tetany, carpopedal spasms) and cardiac arrhythmias, it frequently triggers central nervous system aberrations. Systematic reviews indicate that a significant proportion of patients with symptomatic hypomagnesemia manifest movement disorders, including tremor, dysarthria, and ataxia. Prompt identification and aggressive electrolyte substitution led to full clinical recovery, proving that severe magnesium deficiency can mimic acute cerebellar pathology even in the absence of typical radiological findings such as vasogenic edema or atrophy.",
+      "teaching_points": [
+        "Severe magnesium deficiency can present with prominent central nervous system symptoms, including cerebellar ataxia, nystagmus, and intention tremor.",
+        "Proton pump inhibitors combined with gastrointestinal losses (vomiting, diarrhea) are major predisposing risk factors for chronic, refractory hypomagnesemia.",
+        "Metabolic cerebellar syndromes can present with a completely normal high-resolution brain MRI, mimicking primary neurodegenerative, inflammatory, or paraneoplastic disorders.",
+        "Electrolyte substitution remains the definitive and curative treatment for metabolic encephalopathies and ataxias induced by ion deficiencies."
+      ],
+      "clinical_pitfalls": [
+        "Failing to check serum magnesium levels in unexplained subacute cerebellar syndromes when routine electrolyte panels focus solely on sodium and potassium.",
+        "Dismissing electrolyte-induced neurological deficits simply because advanced neuroimaging (MRI and PET) shows no structural abnormalities."
+      ],
+      "related_keywords": [
+        "Hypomagnesemia",
+        "Cerebellar ataxia",
+        "Gaze-evoked nystagmus",
+        "Proton pump inhibitors",
+        "Metabolic encephalopathy"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-044",
+    "case_code": "NC-2026-044",
+    "title": "Young Female with Seizures, Hemiparesis, and Ring-Enhancing Brain Lesions",
+    "subspecialty": "CNS Infections",
+    "subspecialties": [
+      "CNS Infections",
+      "Vascular Neurology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-11-13",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13741449",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-05220-w",
+      "pmcid": "PMC13741449",
+      "pmid": "42989178",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "28-year-old female",
+      "chief_complaint": "Focal motor seizures and progressive left-sided weakness",
+      "history_of_present_illness": "A 28-year-old right-handed woman with no prior documented medical conditions presented with a 15-day history of focal seizures involving her left upper extremity. Four days prior to presentation, she developed a severe right-sided headache accompanied by a single episode of non-bilious vomiting. One day before admission, she developed sudden-onset left-sided hemiparesis. She reported no fever, head trauma, loss of consciousness, or visual disturbances, but detailed history taking revealed a history of recurrent spontaneous epistaxis since childhood and a family history of frequent nosebleeds in her mother and sisters.",
+      "past_medical_history": "Recurrent spontaneous epistaxis; no history of intravenous drug use, prior surgeries, or chronic medical conditions.",
+      "vitals": {
+        "bp": "118/74 mmHg",
+        "hr": "82 bpm",
+        "rr": "16 /min",
+        "temp": "37.1 °C",
+        "spo2": "97% on room air"
+      },
+      "neuro_exam": "Alert and fully oriented. Cranial nerve examination revealed a subtle left central facial palsy without visual field defects. Motor examination demonstrated 3/5 strength in the left upper extremity and 4/5 strength in the left lower extremity with hyperreflexia and an extensor plantar response on the left side. Sensory examination was intact to light touch and pinprick bilaterally.",
+      "key_labs_csf": "Hemoglobin: 12.8 g/dL; White Blood Cell count: 11,200 /µL; Platelets: 240,000 /µL; ESR: 38 mm/hr; CRP: 24 mg/L; HIV 1/2 antibodies: Negative; Blood cultures (3 sets): Negative for bacterial growth.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (T2, DWI, T1 Post-Contrast)",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13741449)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13741449_fig1.webp",
+          "pmcid": "PMC13741449",
+          "doi_url": "https://doi.org/10.1186/s12883-026-05220-w",
+          "caption": "Brain MRI showing two ring-enhancing brain abscesses: a T2-weighted image demonstrating a right frontoparietal lesion with significant oedema and slight midline shift (arrows). b Diffusion-weighted image (DWI) showing restricted diffusion of the same ring-enhancing lesion, consistent with a brain abscess (arrow). c Brain magnetic resonance imaging showing a 2.9 × 4.6 × 3.0 cm ring-enhancing mass in the right superior frontoparietal region associated with significant oedema and mild midline shift (arrows). d MRI showing another ring-enhancing lesion in the posterolateral temporal region (3.2 × ",
+          "findings_summary": "Two multilocated ring-enhancing lesions with central hyperintensity on DWI consistent with restricted diffusion and surrounding vasogenic edema, located in the right frontoparietal and temporal lobes."
+        },
+        {
+          "modality": "CT Pulmonary Angiography",
+          "sequence_badge": "Figure 2 • BMC neurology (PMC13741449)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC13741449_fig2.webp",
+          "pmcid": "PMC13741449",
+          "doi_url": "https://doi.org/10.1186/s12883-026-05220-w",
+          "caption": "CT Pulmonary Angiogram showing a vascular anomaly within the lower lobe of the left lung, representing AV Malformation (arrow)",
+          "findings_summary": "Vascular anomaly in the lower lobe of the left lung featuring a prominent feeding artery and draining vein, diagnostic of a pulmonary arteriovenous malformation."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely underlying genetic condition responsible for this patient's clinical presentation?",
+      "question_type": "Diagnosis",
+      "correct_option": "A",
+      "options": [
+        {
+          "id": "A",
+          "text": "Hereditary hemorrhagic telangiectasia",
+          "peer_percentage": 74,
+          "rationale": "Correct! Hereditary hemorrhagic telangiectasia (HHT, also known as Osler-Weber-Rendu syndrome) is an autosomal dominant vascular dysplasia characterized by mucocutaneous telangiectasias, recurrent epistaxis, and visceral arteriovenous malformations (AVMs). Pulmonary AVMs (PAVMs) bypass the filtering capacity of the pulmonary capillary bed, allowing paradoxical embolization of bacteria or septic thrombi directly into the systemic circulation, which frequently manifests as pyogenic brain abscesses in young patients."
+        },
+        {
+          "id": "B",
+          "text": "Von Hippel-Lindau disease",
+          "peer_percentage": 14,
+          "rationale": "Incorrect. Von Hippel-Lindau (VHL) disease is an autosomal dominant neurocutaneous disorder characterized by central nervous system hemangioblastomas, retinal angiomas, clear cell renal cell carcinomas, and pheochromocytomas. CNS hemangioblastomas typically present as cystic lesions with a hyperenhancing mural nodule rather than ring-enhancing abscesses with central restricted diffusion, and VHL does not cause pulmonary AVMs or recurrent epistaxis."
+        },
+        {
+          "id": "C",
+          "text": "Vascular Ehlers-Danlos syndrome",
+          "peer_percentage": 7,
+          "rationale": "Incorrect. Vascular Ehlers-Danlos syndrome (type IV EDS) results from mutations in COL3A1 and is characterized by arterial fragility, spontaneous vessel or organ rupture, and easy bruising. While arterial aneurysms and dissections occur, it is not associated with pulmonary arteriovenous malformations or right-to-left shunting predisposing to pyogenic brain abscesses."
+        },
+        {
+          "id": "D",
+          "text": "Tuberous sclerosis complex",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. Tuberous sclerosis complex (TSC) is characterized by cortical tubers, subependymal nodules, subependymal giant cell astrocytomas, facial angiofibromas, cardiac rhabdomyomas, and renal angiomyolipomas. It does not cause pulmonary arteriovenous malformations or predispose to cerebral abscess formation secondary to paradoxical embolization."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Brain abscesses secondary to paradoxical embolization from a pulmonary arteriovenous malformation (PAVM) in the setting of Hereditary Hemorrhagic Telangiectasia (HHT)",
+      "clinical_discussion": "Hereditary hemorrhagic telangiectasia (HHT), or Osler-Weber-Rendu syndrome, is an autosomal dominant disorder caused primarily by mutations in the ENG (HHT1) or ACVRL1/ALK1 (HHT2) genes, involved in the TGF-beta signaling pathway. The classic clinical hallmarks include recurrent spontaneous epistaxis, mucocutaneous telangiectasias, and visceral arteriovenous malformations (AVMs) in the lungs, brain, liver, and gastrointestinal tract. Diagnostic confirmation relies on the Curaçao clinical criteria: spontaneous recurrent epistaxis, multiple telangiectasias at characteristic sites, visceral lesions, and a first-degree relative with HHT.\n\nPulmonary AVMs (PAVMs) occur in up to 30–50% of HHT patients and create a direct right-to-left vascular shunt that deprives the systemic circulation of the normal capillary filtration provided by the lungs. This anatomic defect allows venous microthrombi and circulating bacteria to bypass pulmonary filtration and enter the systemic arterial circulation directly, significantly increasing the risk of ischemic stroke, transient ischemic attack, and brain abscess. In young patients presenting with cryptogenic brain abscesses or embolic strokes—especially those with a history of recurrent epistaxis or a family history of bleeding—chest imaging via contrast echocardiography or CT pulmonary angiography should be performed to evaluate for underlying PAVMs.",
+      "teaching_points": [
+        "Cryptogenic brain abscesses in young adults should prompt evaluation for right-to-left cardiovascular or pulmonary shunts, such as pulmonary arteriovenous malformations (PAVMs).",
+        "Hereditary hemorrhagic telangiectasia (HHT) is clinically diagnosed using the Curaçao criteria (spontaneous epistaxis, mucocutaneous telangiectasias, visceral AVMs, and family history).",
+        "PAVMs act as a venous-to-arterial conduit that circumvents the pulmonary capillary filter, placing patients at high risk for paradoxical embolic stroke and pyogenic brain abscess."
+      ],
+      "clinical_pitfalls": [
+        "Failing to ask about recurrent epistaxis or family history of bleeding in young patients presenting with neurological complications of suspected emboli.",
+        "Attributing CNS ring-enhancing lesions solely to primary intracranial pathology or intravenous drug use without evaluating the pulmonary vasculature."
+      ],
+      "related_keywords": [
+        "Hereditary Hemorrhagic Telangiectasia",
+        "Osler-Weber-Rendu syndrome",
+        "Pulmonary arteriovenous malformation",
+        "Brain abscess"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-041",
     "case_code": "NC-2026-041",
     "title": "Fulminant Encephalopathy and Visual Disturbances in Active Systemic Lupus Erythematosus",
