@@ -237,5 +237,68 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Fluvoxamine (Strong CYP1A2 Inhibitor)",
+        "severity": "contraindicated",
+        "effect": "Massive increase in tizanidine exposure (AUC increased 33-fold, Cmax increased 12-fold) leading to profound hypotension, severe somnolence, and psychomotor impairment.",
+        "management": "Concomitant use is contraindicated. Select an alternative muscle relaxant or antidepressant.",
+        "refs": [
+          {
+            "source_id": "fda-tizanidine-label",
+            "locator": "Section 7.1 Fluvoxamine",
+            "quote": "Concomitant use of fluvoxamine and Zanaflex is contraindicated. Changes in pharmacokinetics of tizanidine when administered with fluvoxamine resulted in significantly decreased blood pressure, increased drowsiness, and increased psychomotor impairment"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Ciprofloxacin (Fluoroquinolone / Strong CYP1A2 Inhibitor)",
+        "severity": "contraindicated",
+        "effect": "Significant increase in tizanidine exposure (AUC increased 10-fold) resulting in severe bradycardia, profound hypotension, and CNS depression.",
+        "management": "Concomitant use is contraindicated. Choose an alternative antibacterial therapy without CYP1A2 inhibitory action.",
+        "refs": [
+          {
+            "source_id": "fda-tizanidine-label",
+            "locator": "Section 7.2 Ciprofloxacin",
+            "quote": "Concomitant use of ciprofloxacin and Zanaflex is contraindicated. Changes in pharmacokinetics of tizanidine when administered with ciprofloxacin resulted in significantly decreased blood pressure, increased drowsiness, and increased psychomotor impairment"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Other CYP1A2 Inhibitors (Amiodarone, Mexiletine, Verapamil, Cimetidine, Famotidine, Acyclovir)",
+        "severity": "major",
+        "effect": "Inhibition of CYP1A2-mediated first-pass metabolism increases tizanidine blood levels and toxicity risk.",
+        "management": "Concomitant use should be avoided. If clinically necessary, initiate with 2 mg dose and titrate cautiously in 2-4 mg daily increments while monitoring BP and sedation.",
+        "refs": [
+          {
+            "source_id": "fda-tizanidine-label",
+            "locator": "Section 7.3 CYP1A2 Inhibitors other than Fluvoxamine and Ciprofloxacin",
+            "quote": "concomitant use of Zanaflex with other CYP1A2 inhibitors, such as zileuton, fluoroquinolones other than strong CYP1A2 inhibitors (which are contraindicated), antiarrhythmics (amiodarone, mexiletine, propafenone, and verapamil), cimetidine, famotidine, oral contraceptives, acyclovir, and ticlopidine) should be avoided."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Oral Contraceptives (Estrogen/Progestin)",
+        "severity": "major",
+        "effect": "Oral contraceptives reduce tizanidine clearance by approximately 50%, resulting in higher tizanidine concentrations and adverse reactions.",
+        "management": "Concomitant use is not recommended. However, if clinically necessary, initiate with 2 mg and titrate in small 2-4 mg increments based on patient tolerability.",
+        "refs": [
+          {
+            "source_id": "fda-tizanidine-label",
+            "locator": "Section 7.4 Oral Contraceptives",
+            "quote": "Concomitant use of Zanaflex with oral contraceptives is not recommended. However, if concomitant use is clinically necessary, initiate Zanaflex with a single 2 mg dose and increase in 2-4 mg steps daily based on patient response to therapy."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-tizanidine-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Concomitant use of ciprofloxacin and Zanaflex is contraindicated. Changes in pharmacokinetics of tizanidine when administered with ciprofloxacin resulted in significantly decreased blood pressure, increased drowsiness, and increased psychomotor impairment"
+      }
+    ]
   }
 }

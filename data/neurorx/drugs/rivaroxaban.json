@@ -289,5 +289,55 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Combined P-gp and Strong CYP3A Inhibitors (Systemic Ketoconazole, Ritonavir)",
+        "severity": "contraindicated",
+        "effect": "Significant increase in rivaroxaban plasma exposure and pharmacodynamic anticoagulant effect, elevating bleeding risk.",
+        "management": "Avoid concomitant administration of rivaroxaban with known combined P-gp and strong CYP3A inhibitors.",
+        "refs": [
+          {
+            "source_id": "fda-rivaroxaban-label",
+            "locator": "Section 7.2 Drugs that Inhibit Cytochrome P450 3A Enzymes and Drug Transport Systems",
+            "quote": "Avoid concomitant administration of XARELTO with known combined P-gp and strong CYP3A inhibitors (e.g., ketoconazole and ritonavir)"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Combined P-gp and Strong CYP3A Inducers (Rifampin, St. John's Wort)",
+        "severity": "contraindicated",
+        "effect": "Marked reduction in rivaroxaban plasma concentrations (~50% decrease in AUC), risking stroke and thromboembolism.",
+        "management": "Avoid concomitant use of rivaroxaban with drugs that are combined P-gp and strong CYP3A inducers.",
+        "refs": [
+          {
+            "source_id": "fda-rivaroxaban-label",
+            "locator": "Section 7.3 Drugs that Induce Cytochrome P450 3A Enzymes and Drug Transport Systems",
+            "quote": "Avoid concomitant use of XARELTO with drugs that are combined P-gp and strong CYP3A inducers (e.g., carbamazepine, phenytoin, rifampin, St. John's wort)"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Combined P-gp and Moderate CYP3A Inhibitors in Renal Impairment (Erythromycin)",
+        "severity": "major",
+        "effect": "In patients with CrCl 15 to <80 mL/min, moderate inhibitors cause disproportionate accumulation of rivaroxaban.",
+        "management": "Rivaroxaban should not be used in renal impairment (CrCl 15 to <80 mL/min) receiving moderate CYP3A/P-gp inhibitors unless benefit justifies risk.",
+        "refs": [
+          {
+            "source_id": "fda-rivaroxaban-label",
+            "locator": "Section 7.2 Drugs that Inhibit Cytochrome P450 3A Enzymes and Drug Transport Systems",
+            "quote": "XARELTO should not be used in patients with CrCl 15 to <80 mL/min who are receiving concomitant combined P-gp and moderate CYP3A inhibitors (e.g., erythromycin) unless the potential benefit justifies the potential risk"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-rivaroxaban-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Avoid concomitant administration of XARELTO with known combined P-gp and strong CYP3A inhibitors (e.g., ketoconazole and ritonavir)"
+      }
+    ]
   }
 }

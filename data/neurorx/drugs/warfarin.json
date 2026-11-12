@@ -276,5 +276,55 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Antibiotics, Antifungals & Anti-infectives (Metronidazole, Bactrim, Fluconazole, Macrolides, Quinolones)",
+        "severity": "major",
+        "effect": "Inhibition of CYP2C9/CYP3A4 or reduction of intestinal vitamin K-producing flora sharply increases INR and bleeding risk.",
+        "management": "Perform more frequent INR monitoring when initiating, discontinuing, or changing doses of antibiotics or antifungals; adjust warfarin dose accordingly.",
+        "refs": [
+          {
+            "source_id": "fda-warfarin-label",
+            "locator": "Section 7.1 General Information",
+            "quote": "More frequent INR monitoring should be performed when starting or stopping other drugs, including botanicals, or when changing dosages of other drugs, including drugs intended for short-term use (e.g., antibiotics, antifungals, corticosteroids)"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "CYP2C9, 1A2, and 3A4 Inhibitors",
+        "severity": "major",
+        "effect": "Inhibitors decrease the metabolic clearance of active S-warfarin and R-warfarin, causing elevated plasma concentrations and prolonged PT/INR.",
+        "management": "Anticipate lower warfarin dose requirements and monitor INR frequently upon co-administration.",
+        "refs": [
+          {
+            "source_id": "fda-warfarin-label",
+            "locator": "Section 7.2 CYP450 Interactions",
+            "quote": "Inhibitors of CYP2C9, 1A2, and/or 3A4 have the potential to increase the effect (increase INR) of warfarin by increasing the exposure of warfarin."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "CYP2C9, 1A2, and 3A4 Inducers (Rifampin, St. John's Wort)",
+        "severity": "major",
+        "effect": "Potent enzyme inducers accelerate warfarin hepatic clearance, decreasing INR and predisposing to recurrent thromboembolism.",
+        "management": "Higher warfarin maintenance doses are typically required; monitor INR closely when inducing agents are started or stopped.",
+        "refs": [
+          {
+            "source_id": "fda-warfarin-label",
+            "locator": "Section 7.2 CYP450 Interactions",
+            "quote": "Inducers of CYP2C9, 1A2, and/or 3A4 have the potential to decrease the effect (decrease INR) of warfarin by decreasing the exposure of warfarin."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-warfarin-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Concomitant use of drugs that increase bleeding risk, antibiotics, antifungals, botanical (herbal) products, and inhibitors and inducers of CYP2C9, 1A2, or 3A4."
+      }
+    ]
   }
 }

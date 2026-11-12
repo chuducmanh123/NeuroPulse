@@ -191,6 +191,33 @@ export function validateDrug(drug: unknown, knownSourceIds: Set<string>): Valida
   }
   errors.push(...validateSourced(d.enzyme_profile, "drug.enzyme_profile", knownSourceIds));
 
+  // FDA Drug Interactions (Section 7)
+  if (d.fda_interactions) {
+    errors.push(...validateSourced(d.fda_interactions, "drug.fda_interactions", knownSourceIds));
+    if (Array.isArray(d.fda_interactions.value)) {
+      d.fda_interactions.value.forEach((item, idx) => {
+        const itemPath = `drug.fda_interactions.value[${idx}]`;
+        if (!item.drug_or_class || typeof item.drug_or_class !== "string" || item.drug_or_class.trim() === "") {
+          errors.push({ path: `${itemPath}.drug_or_class`, message: "drug_or_class is required" });
+        }
+        if (!item.effect || typeof item.effect !== "string" || item.effect.trim() === "") {
+          errors.push({ path: `${itemPath}.effect`, message: "effect is required" });
+        }
+        if (!item.management || typeof item.management !== "string" || item.management.trim() === "") {
+          errors.push({ path: `${itemPath}.management`, message: "management is required" });
+        }
+        if (item.severity && !VALID_SEVERITIES.has(item.severity)) {
+          errors.push({ path: `${itemPath}.severity`, message: `Invalid severity: '${item.severity}'` });
+        }
+        if (item.refs && Array.isArray(item.refs)) {
+          item.refs.forEach((ref, rIdx) => {
+            errors.push(...validateSourceRef(ref, `${itemPath}.refs[${rIdx}]`, knownSourceIds));
+          });
+        }
+      });
+    }
+  }
+
   // Subspecialties
   if (!Array.isArray(d.subspecialties) || d.subspecialties.length === 0) {
     errors.push({ path: "drug.subspecialties", message: "At least one subspecialty is required" });

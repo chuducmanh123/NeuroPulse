@@ -250,5 +250,68 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Carbapenem Antibiotics (Meropenem, Imipenem, Ertapenem)",
+        "severity": "contraindicated",
+        "effect": "Clinically significant reduction in serum valproic acid concentrations (often by 60-90%), resulting in rapid loss of seizure control.",
+        "management": "Avoid concomitant use. Alternative antibacterial or anticonvulsant therapy should be considered if carbapenems are required.",
+        "refs": [
+          {
+            "source_id": "fda-valproate-label",
+            "locator": "Section 7.1 Effects of Co-Administered Drugs on Valproate Clearance",
+            "quote": "A clinically significant reduction in serum valproic acid concentration has been reported in patients receiving carbapenem antibiotics (for example, ertapenem, imipenem, meropenem this is not a complete list) and may result in loss of seizure control."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Estrogen-Containing Hormonal Contraceptives",
+        "severity": "major",
+        "effect": "Estrogen induces UGT glucuronidation, increasing valproate clearance and decreasing serum concentrations, risking breakthrough seizures.",
+        "management": "Monitor serum valproate concentrations and clinical response when adding or discontinuing estrogen-containing contraceptives; dosage adjustments may be necessary.",
+        "refs": [
+          {
+            "source_id": "fda-valproate-label",
+            "locator": "Section 7.1 Effects of Co-Administered Drugs on Valproate Clearance",
+            "quote": "Estrogen-containing hormonal contraceptives may increase the clearance of valproate, which may result in decreased concentration of valproate and potentially increased seizure frequency."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Aspirin (Salicylates)",
+        "severity": "moderate",
+        "effect": "Aspirin displaces valproate from plasma protein binding sites (4-fold increase in free fraction) and inhibits valproate hepatic beta-oxidation.",
+        "management": "Caution should be observed if valproate and aspirin are to be co-administered, especially in pediatric patients or when high aspirin doses are used.",
+        "refs": [
+          {
+            "source_id": "fda-valproate-label",
+            "locator": "Section 7.1 Effects of Co-Administered Drugs on Valproate Clearance",
+            "quote": "A study involving the co-administration of aspirin at antipyretic doses (11 to 16 mg/kg) with valproate to pediatric patients (n = 6) revealed a decrease in protein binding and an inhibition of metabolism of valproate. Valproate free fraction was increased 4-fold in the presence of aspirin compared to valproate alone."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Rifampin (CYP & UGT Inducers)",
+        "severity": "major",
+        "effect": "Rifampin increases oral clearance of valproate by ~40%, causing subtherapeutic valproate concentrations.",
+        "management": "Valproate dosage adjustment and serum concentration monitoring are necessary when co-administered with rifampin.",
+        "refs": [
+          {
+            "source_id": "fda-valproate-label",
+            "locator": "Section 7.1 Effects of Co-Administered Drugs on Valproate Clearance",
+            "quote": "A study involving the administration of a single dose of valproate (7 mg/kg) 36 hours after 5 nights of daily dosing with rifampin (600 mg) revealed a 40% increase in the oral clearance of valproate. Valproate dosage adjustment may be necessary when it is co-administered with rifampin."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-valproate-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "A clinically significant reduction in serum valproic acid concentration has been reported in patients receiving carbapenem antibiotics (for example, ertapenem, imipenem, meropenem this is not a complete list) and may result in loss of seizure control."
+      }
+    ]
   }
 }

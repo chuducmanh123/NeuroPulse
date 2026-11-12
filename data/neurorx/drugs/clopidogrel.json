@@ -264,5 +264,68 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "CYP2C19 Inhibitors (Omeprazole, Esomeprazole)",
+        "severity": "major",
+        "effect": "Omeprazole and esomeprazole inhibit CYP2C19 bioactivation, significantly decreasing active metabolite levels and antiplatelet inhibition.",
+        "management": "Avoid concomitant use of clopidogrel with omeprazole or esomeprazole. Consider pantoprazole or famotidine if acid suppression is needed.",
+        "refs": [
+          {
+            "source_id": "fda-clopidogrel-label",
+            "locator": "Section 7.2 CYP2C19 Inhibitors",
+            "quote": "Avoid concomitant use of Plavix with omeprazole or esomeprazole. In clinical studies, omeprazole was shown to reduce significantly the antiplatelet activity of Plavix when given concomitantly or 12 hours apart."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Opioid Agonists (Morphine, Fentanyl)",
+        "severity": "moderate",
+        "effect": "Opioids delay gastric emptying, delaying and reducing clopidogrel absorption and platelet inhibition in acute vascular events.",
+        "management": "Consider the use of a parenteral antiplatelet agent in acute patients requiring coadministration of morphine or other opioid agonists.",
+        "refs": [
+          {
+            "source_id": "fda-clopidogrel-label",
+            "locator": "Section 7.3 Opioids",
+            "quote": "coadministration of opioid agonists delay and reduce the absorption of clopidogrel, presumably because of slowed gastric emptying, resulting in reduced exposure to its metabolites"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Strong CYP2C19 Inducers (Rifampin)",
+        "severity": "major",
+        "effect": "Induction of CYP2C19 increases levels of clopidogrel active metabolite, potentiating platelet inhibition and bleeding risk.",
+        "management": "As a precaution, avoid concomitant use of strong CYP2C19 inducers with clopidogrel.",
+        "refs": [
+          {
+            "source_id": "fda-clopidogrel-label",
+            "locator": "Section 7.1 CYP2C19 Inducers",
+            "quote": "As a precaution, avoid concomitant use of strong CYP2C19 inducers"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Nonsteroidal Anti-inflammatory Drugs (NSAIDs)",
+        "severity": "major",
+        "effect": "Concurrent administration of NSAIDs and clopidogrel increases mucosal ulceration and occult gastrointestinal blood loss.",
+        "management": "Exercise caution when co-administering NSAIDs with clopidogrel and monitor for signs of bleeding.",
+        "refs": [
+          {
+            "source_id": "fda-clopidogrel-label",
+            "locator": "Section 7.4 Nonsteroidal Anti-inflammatory Drugs (NSAIDs)",
+            "quote": "Coadministration of Plavix and NSAIDs increases the risk of gastrointestinal bleeding."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-clopidogrel-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Avoid concomitant use of Plavix with omeprazole or esomeprazole. In clinical studies, omeprazole was shown to reduce significantly the antiplatelet activity of Plavix when given concomitantly or 12 hours apart."
+      }
+    ]
   }
 }

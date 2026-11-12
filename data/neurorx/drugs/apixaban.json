@@ -239,5 +239,55 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Combined P-gp and Strong CYP3A4 Inhibitors (Ketoconazole, Itraconazole, Ritonavir)",
+        "severity": "major",
+        "effect": "Dual inhibition of P-gp and CYP3A4 significantly increases apixaban exposure, doubling AUC and increasing the risk of major bleeding.",
+        "management": "Reduce ELIQUIS dose by 50% for patients taking 5 mg or 10 mg twice daily. If already taking 2.5 mg twice daily, avoid coadministration.",
+        "refs": [
+          {
+            "source_id": "fda-apixaban-label",
+            "locator": "Section 7.1 Combined P-gp and Strong CYP3A4 Inhibitors",
+            "quote": "For patients receiving ELIQUIS 5 mg or 10 mg twice daily, the dose of ELIQUIS should be decreased by 50% when coadministered with drugs that are combined P-gp and strong CYP3A4 inhibitors (e.g., ketoconazole, itraconazole, ritonavir)"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Combined P-gp and Strong CYP3A4 Inducers (Rifampin, St. John's Wort)",
+        "severity": "contraindicated",
+        "effect": "Strong induction decreases apixaban AUC by ~50%, markedly increasing the risk of ischemic stroke and systemic thromboembolism.",
+        "management": "Avoid concomitant use of apixaban with combined P-gp and strong CYP3A4 inducers.",
+        "refs": [
+          {
+            "source_id": "fda-apixaban-label",
+            "locator": "Section 7.2 Combined P-gp and Strong CYP3A4 Inducers",
+            "quote": "Avoid concomitant use of ELIQUIS with combined P-gp and strong CYP3A4 inducers (e.g., rifampin, carbamazepine, phenytoin, St. John’s wort) because such drugs will decrease exposure to apixaban"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Anticoagulants, Antiplatelets, NSAIDs & Aspirin",
+        "severity": "major",
+        "effect": "Additive impairment of hemostasis substantially increases the risk of clinically overt and major gastrointestinal/intracranial bleeding.",
+        "management": "Co-administer only when clinically indicated (e.g. acute ACS / post-PCI) with cautious monitoring of bleeding signs and symptoms.",
+        "refs": [
+          {
+            "source_id": "fda-apixaban-label",
+            "locator": "Section 7.3 Anticoagulants and Antiplatelet Agents",
+            "quote": "Coadministration of antiplatelet agents, fibrinolytics, heparin, aspirin, and chronic NSAID use increases the risk of bleeding."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-apixaban-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Avoid concomitant use of ELIQUIS with combined P-gp and strong CYP3A4 inducers (e.g., rifampin, carbamazepine, phenytoin, St. John’s wort) because such drugs will decrease exposure to apixaban"
+      }
+    ]
   }
 }

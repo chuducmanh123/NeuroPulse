@@ -308,5 +308,55 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "P-gp Inducers (Rifampin)",
+        "severity": "contraindicated",
+        "effect": "Rifampin reduces dabigatran exposure (AUC decreased by ~66%), leading to loss of anticoagulant protection.",
+        "management": "Avoid coadministration of dabigatran etexilate with P-gp inducers.",
+        "refs": [
+          {
+            "source_id": "fda-dabigatran-capsules-label",
+            "locator": "Section 7.1 Reduction of Risk of Stroke and Systemic Embolism in Non-valvular Atrial Fibrillation in Adult Patients",
+            "quote": "The concomitant use of dabigatran etexilate with P-gp inducers (e.g., rifampin) reduces exposure to dabigatran and should generally be avoided"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "P-gp Inhibitors in Moderate Renal Impairment (Dronedarone, Systemic Ketoconazole)",
+        "severity": "major",
+        "effect": "In patients with CrCl 30 to 50 mL/min, P-gp inhibitors increase dabigatran exposure significantly, elevating bleeding hazard.",
+        "management": "Reduce dosage of dabigatran etexilate to 75 mg twice daily when given with dronedarone or ketoconazole in CrCl 30-50 mL/min.",
+        "refs": [
+          {
+            "source_id": "fda-dabigatran-capsules-label",
+            "locator": "Section 7.1 Reduction of Risk of Stroke and Systemic Embolism in Non-valvular Atrial Fibrillation in Adult Patients",
+            "quote": "In patients with moderate renal impairment (CrCl 30 to 50 mL/min), reduce the dosage of dabigatran etexilate to 75 mg twice daily when administered concomitantly with the P-gp inhibitors dronedarone or systemic ketoconazole."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "P-gp Inhibitors in Severe Renal Impairment (CrCl 15 to 30 mL/min)",
+        "severity": "contraindicated",
+        "effect": "Synergistic accumulation from impaired renal clearance and P-gp inhibition results in massive dabigatran levels.",
+        "management": "Concomitant use of dabigatran etexilate and P-gp inhibitors should be avoided in patients with CrCl 15 to 30 mL/min.",
+        "refs": [
+          {
+            "source_id": "fda-dabigatran-capsules-label",
+            "locator": "Section 7.1 Reduction of Risk of Stroke and Systemic Embolism in Non-valvular Atrial Fibrillation in Adult Patients",
+            "quote": "The concomitant use of dabigatran etexilate and P-gp inhibitors in patients with severe renal impairment (CrCl 15 to 30 mL/min) should be avoided"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-dabigatran-capsules-label",
+        "locator": "Section 7.1 Reduction of Risk of Stroke and Systemic Embolism in Non-valvular Atrial Fibrillation in Adult Patients",
+        "quote": "The concomitant use of dabigatran etexilate with P-gp inducers (e.g., rifampin) reduces exposure to dabigatran and should generally be avoided"
+      }
+    ]
   }
 }

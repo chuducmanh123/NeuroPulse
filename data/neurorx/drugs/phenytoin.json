@@ -223,5 +223,42 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Azole Antifungals, Cimetidine, Omeprazole, Sulfonamides (Bactrim)",
+        "severity": "major",
+        "effect": "Inhibition of CYP2C9 and CYP2C19 saturable metabolism produces rapid, non-linear surges in serum phenytoin levels leading to cerebellar toxicity.",
+        "management": "Monitor phenytoin concentrations closely and anticipate dose reductions when initiating these agents.",
+        "refs": [
+          {
+            "source_id": "fda-phenytoin-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Inhibition of metabolism may produce significant increases in circulating phenytoin concentrations and enhance the risk of drug toxicity."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Oral Contraceptives, Corticosteroids & Estrogens",
+        "severity": "major",
+        "effect": "Potent hepatic microsomal enzyme induction by phenytoin accelerates steroid clearance, risking unplanned pregnancy or loss of corticosteroid efficacy.",
+        "management": "Recommend alternative non-hormonal contraception or increase corticosteroid doses as clinically required.",
+        "refs": [
+          {
+            "source_id": "fda-phenytoin-label",
+            "locator": "Section 7 DRUG INTERACTIONS",
+            "quote": "Multiple drug interactions because of extensive plasma protein binding, saturable metabolism and potent induction of hepatic enzymes."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-phenytoin-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Multiple drug interactions because of extensive plasma protein binding, saturable metabolism and potent induction of hepatic enzymes."
+      }
+    ]
   }
 }

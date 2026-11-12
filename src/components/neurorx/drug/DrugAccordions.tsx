@@ -13,6 +13,7 @@ import {
   Info,
   Dna,
   HeartPulse,
+  ArrowRightLeft,
 } from "lucide-react";
 import type { DrugRecord, Source } from "@/types/neurorx";
 import { SourcePopover } from "./SourcePopover";
@@ -33,6 +34,7 @@ export function DrugAccordions({
     pregnancy: false,
     neuro: false,
     pk: false,
+    interactions: false,
     ecosystem: false,
   });
 
@@ -73,7 +75,13 @@ export function DrugAccordions({
       enz
   );
 
-  // 4. Ecosystem Links check
+  // 4. FDA Drug Interactions (Section 7) check
+  const fdaInteractions = drug.fda_interactions;
+  const hasInteractionsData = Boolean(
+    fdaInteractions?.value && fdaInteractions.value.length > 0
+  );
+
+  // 5. Ecosystem Links check
   const links = drug.links;
   const hasLinks = Boolean(
     links &&
@@ -580,7 +588,111 @@ export function DrugAccordions({
         </div>
       )}
 
-      {/* Accordion 4: Ecosystem Links (Indigo Theme) */}
+      {/* Accordion 4: Drug Interactions (FDA Prescribing Information) (Purple Theme) */}
+      {hasInteractionsData && fdaInteractions && fdaInteractions.value && (
+        <div
+          className={`rounded-2xl border border-l-4 border-l-purple-500 transition-colors overflow-hidden ${
+            darkMode ? "bg-slate-900/80 border-purple-900/40" : "bg-white border-purple-200/80 shadow-sm"
+          }`}
+        >
+          <button
+            type="button"
+            onClick={() => toggleSection("interactions")}
+            className={`w-full p-4 sm:p-5 flex items-center justify-between gap-3 text-left font-bold text-sm sm:text-base transition-colors ${
+              openSections.interactions
+                ? darkMode
+                  ? "bg-purple-950/25 text-purple-300"
+                  : "bg-purple-50/60 text-purple-900"
+                : darkMode
+                ? "hover:bg-purple-950/20"
+                : "hover:bg-purple-50/40"
+            }`}
+          >
+            <div className="flex items-center gap-2.5">
+              <div className="p-2 rounded-xl bg-purple-500/10 text-purple-500">
+                <ArrowRightLeft className="w-4 h-4" />
+              </div>
+              <span className="text-slate-900 dark:text-white">
+                ⚡ Drug Interactions (FDA Prescribing Information)
+              </span>
+              <span className="px-2 py-0.5 rounded-md text-xs font-bold uppercase tracking-wider bg-purple-500/15 text-purple-600 dark:text-purple-400">
+                {fdaInteractions.value.length} {fdaInteractions.value.length === 1 ? "Class" : "Classes"}
+              </span>
+            </div>
+            {openSections.interactions ? (
+              <ChevronUp className="w-5 h-5 text-slate-400" />
+            ) : (
+              <ChevronDown className="w-5 h-5 text-slate-400" />
+            )}
+          </button>
+
+          {openSections.interactions && (
+            <div className="p-4 sm:p-5 pt-0 space-y-3.5 border-t border-slate-100 dark:border-slate-800/80 text-xs sm:text-sm">
+              <div className="flex items-center justify-between pt-3">
+                <p className="text-xs text-slate-500 dark:text-slate-400">
+                  Key pharmacokinetic &amp; pharmacodynamic drug interactions from FDA Section 7, including non-neurology co-medications (antimicrobials, contraceptives, cardiac agents).
+                </p>
+                <SourcePopover refs={fdaInteractions.refs} sources={sources} darkMode={darkMode} />
+              </div>
+
+              <div className="space-y-2.5">
+                {fdaInteractions.value.map((item, idx) => {
+                  const sev = item.severity;
+                  return (
+                    <div
+                      key={idx}
+                      className="p-3.5 rounded-xl border border-slate-200/80 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-800/40 space-y-2"
+                    >
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="font-bold text-slate-900 dark:text-slate-100 text-sm">
+                            {item.drug_or_class}
+                          </span>
+                          {sev && (
+                            <span
+                              className={`px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider ${
+                                sev === "contraindicated"
+                                  ? "bg-rose-500/15 text-rose-600 dark:text-rose-400 border border-rose-500/30"
+                                  : sev === "major"
+                                  ? "bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30"
+                                  : "bg-sky-500/15 text-sky-600 dark:text-sky-400 border border-sky-500/30"
+                              }`}
+                            >
+                              {sev}
+                            </span>
+                          )}
+                        </div>
+                        {item.refs && item.refs.length > 0 && (
+                          <SourcePopover refs={item.refs} sources={sources} darkMode={darkMode} />
+                        )}
+                      </div>
+
+                      <div className="text-xs space-y-1">
+                        <div>
+                          <span className="font-semibold text-slate-700 dark:text-slate-300">
+                            Effect / Mechanism:{" "}
+                          </span>
+                          <span className="text-slate-600 dark:text-slate-400">{item.effect}</span>
+                        </div>
+                        <div className="pt-0.5">
+                          <span className="font-semibold text-emerald-700 dark:text-emerald-400">
+                            Clinical Management:{" "}
+                          </span>
+                          <span className="text-slate-700 dark:text-slate-300 font-medium">
+                            {item.management}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Accordion 5: Ecosystem Links (Indigo Theme) */}
       {hasLinks && links && (
         <div
           className={`rounded-2xl border border-l-4 border-l-indigo-500 transition-colors overflow-hidden ${

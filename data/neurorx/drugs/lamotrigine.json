@@ -290,5 +290,55 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Estrogen-Containing Oral Contraceptives",
+        "severity": "major",
+        "effect": "Estrogens induce UGT glucuronidation, decreasing lamotrigine serum concentrations by ~50% (risk of breakthrough seizures during active pill weeks, toxicity during pill-free week).",
+        "management": "Dosage adjustments of lamotrigine will be necessary in most patients starting or stopping estrogen-containing contraceptives; follow official titration tables.",
+        "refs": [
+          {
+            "source_id": "fda-lamotrigine-label",
+            "locator": "Section 7 DRUG INTERACTIONS Table 5",
+            "quote": "Decreased lamotrigine concentrations approximately 50%."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Protease Inhibitors (Lopinavir/ritonavir, Atazanavir/ritonavir)",
+        "severity": "major",
+        "effect": "Antiretroviral protease inhibitors enhance glucuronidation, decreasing lamotrigine concentrations by 32% to 50%.",
+        "management": "Dose adjustment of lamotrigine may be needed when starting or stopping protease inhibitor regimens.",
+        "refs": [
+          {
+            "source_id": "fda-lamotrigine-label",
+            "locator": "Section 7 DRUG INTERACTIONS Table 5",
+            "quote": "Decreased lamotrigine concentration approximately 50%."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Rifampin (Enzyme Inducer)",
+        "severity": "major",
+        "effect": "Rifampin potently induces glucuronidation, decreasing lamotrigine AUC by approximately 40%.",
+        "management": "Follow dosing guidelines for patients receiving concomitant glucuronidation inducers.",
+        "refs": [
+          {
+            "source_id": "fda-lamotrigine-label",
+            "locator": "Section 7 DRUG INTERACTIONS Table 5",
+            "quote": "Decreased lamotrigine AUC approximately 40%."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-lamotrigine-label",
+        "locator": "Section 7 DRUG INTERACTIONS Table 5",
+        "quote": "Decreased lamotrigine concentrations approximately 50%."
+      }
+    ]
   }
 }

@@ -220,6 +220,14 @@ export interface EcosystemLinks {
 
 export type RecordStatus = "draft" | "verified" | "retired";
 
+export interface DrugInteractionItem {
+  drug_or_class: string;
+  severity?: InteractionSeverity;
+  effect: string;
+  management: string;
+  refs?: SourceRef[];
+}
+
 export interface DrugRecord {
   id: string;
   generic_name: string;
@@ -243,6 +251,7 @@ export interface DrugRecord {
   };
   mechanism_of_action?: Sourced<string>;
   enzyme_profile: Sourced<EnzymeProfile>;
+  fda_interactions?: Sourced<DrugInteractionItem[]>;
   reproductive?: ReproductiveRecord;
   tools?: ContextualToolsData;
   novel?: NovelTherapyData;

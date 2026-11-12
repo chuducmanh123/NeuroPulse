@@ -300,5 +300,55 @@
         }
       ]
     }
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "CYP3A4 Inhibitors (Macrolides, Azole Antifungals, Diltiazem, Verapamil, Ciprofloxacin, Grapefruit Juice)",
+        "severity": "major",
+        "effect": "Inhibition of CYP3A4 reduces carbamazepine clearance, elevating carbamazepine serum concentrations and risking acute neurotoxicity (ataxia, dizziness, diplopia, somnolence).",
+        "management": "Adjust Tegretol dosage and/or monitor serum levels closely when initiating or discontinuing CYP3A4 inhibitors.",
+        "refs": [
+          {
+            "source_id": "fda-carbamazepine-label",
+            "locator": "Section DRUG INTERACTIONS",
+            "quote": "CYP3A4 inhibitors inhibit Tegretol metabolism and can thus increase plasma carbamazepine levels."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "CYP3A4 Inducers (Rifampin, Theophylline, Aminophylline)",
+        "severity": "major",
+        "effect": "Enzyme induction increases rate of carbamazepine metabolism, causing subtherapeutic levels and seizure breakthrough.",
+        "management": "Monitor carbamazepine concentrations and increase dosage as clinically required.",
+        "refs": [
+          {
+            "source_id": "fda-carbamazepine-label",
+            "locator": "Section DRUG INTERACTIONS",
+            "quote": "CYP3A4 inducers can increase the rate of Tegretol metabolism."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Oral Contraceptives & Hormonal Therapies",
+        "severity": "major",
+        "effect": "Carbamazepine strongly induces CYP3A4 and UGT, substantially reducing circulating levels of estrogen and progestin, leading to contraceptive failure.",
+        "management": "Recommend alternative non-hormonal contraception (e.g. copper IUD) or dual barrier methods.",
+        "refs": [
+          {
+            "source_id": "fda-carbamazepine-label",
+            "locator": "Section DRUG INTERACTIONS",
+            "quote": "Tegretol is a potent inducer of hepatic 3A4 and is also known to be an inducer of CYP1A2, 2B6, 2C8/9/19, and may therefore reduce plasma concentrations of co-medications mainly metabolized by CYP1A2, 2B6, 2C8/9/19, and 3A4, through induction of their metabolism."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-carbamazepine-label",
+        "locator": "Section DRUG INTERACTIONS",
+        "quote": "CYP3A4 inhibitors inhibit Tegretol metabolism and can thus increase plasma carbamazepine levels."
+      }
+    ]
   }
 }
