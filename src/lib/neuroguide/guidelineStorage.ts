@@ -135,6 +135,11 @@ export async function getFromSupabase(): Promise<SupabaseNeuroGuidePayload | nul
         continue;
       }
 
+      // Tuyệt đối không nạp các bản ghi của NeuroRx lưu cùng bảng neuroguide_docs
+      if (typeof row.id === "string" && row.id.startsWith("neurorx_")) {
+        continue;
+      }
+
       const rowStatus = String(row.status || row.data?.status || "approved").toLowerCase().trim();
       const rowId = String(row.id || row.data?.id || "").toLowerCase().trim();
       const rowTitle = String(row.title || row.data?.title || "");
@@ -153,6 +158,9 @@ export async function getFromSupabase(): Promise<SupabaseNeuroGuidePayload | nul
       } else {
         const gDoc = row.data as GuidelineDoc;
         if (gDoc && (gDoc.title || row.title)) {
+          if (!gDoc.id) {
+            gDoc.id = row.id || rowId || normTitle;
+          }
           if (row.title && gDoc.title !== row.title) {
             gDoc.title = row.title;
           }
@@ -277,7 +285,7 @@ export async function setToSupabase(payload: NeuroGuideBlobPayload): Promise<{ o
       }
     }
 
-    // Dọn dẹp các bản ghi "approved" cũ đã bị gỡ hoặc trùng lặp (giữ nguyên các bản ghi "pending" và "deleted")
+    // Dọn dẹp các bản ghi "approved" cũ đã bị gỡ hoặc trùng lặp (giữ nguyên các bản ghi "pending", "deleted" và toàn bộ dữ liệu NeuroRx)
     try {
       const { data: existingRows } = await supabaseAdmin
         .from("neuroguide_docs")
@@ -286,7 +294,8 @@ export async function setToSupabase(payload: NeuroGuideBlobPayload): Promise<{ o
         const staleApprovedIds = existingRows
           .filter((r: any) => {
             const st = String(r.status || "approved").toLowerCase().trim();
-            return st === "approved" && !activeIds.has(r.id) && r.id !== "system_clinical_scenarios";
+            const idStr = String(r.id || "");
+            return st === "approved" && !activeIds.has(r.id) && idStr !== "system_clinical_scenarios" && !idStr.startsWith("neurorx_");
           })
           .map((r: any) => r.id);
         if (staleApprovedIds.length > 0) {
@@ -368,6 +377,7 @@ export function mergeGuidelines(
     const soc = (rawDoc.society || "").toUpperCase();
     const lowerTitle = (rawDoc.title || "").toLowerCase();
     if (
+      id.startsWith("neurorx_") ||
       id.startsWith("eso-pmid-") ||
       id.startsWith("esc-pmid-") ||
       id.startsWith("esc-") ||
@@ -384,6 +394,9 @@ export function mergeGuidelines(
 
     // Tự động chuẩn hóa danh sách PICO cho các guideline ESO chuẩn để loại bỏ các mục thừa
     let doc = rawDoc;
+    if (!doc.id) {
+      doc = { ...rawDoc, id: rawDoc.id || (rawDoc as any).guideline_id || id || normalizeTitle(rawDoc.title) };
+    }
     const isAha = Boolean(
       (rawDoc.society || "").toUpperCase().includes("AHA") ||
       (rawDoc.society || "").toUpperCase().includes("ACC") ||
@@ -406,7 +419,7 @@ export function mergeGuidelines(
           : "ESO GRADE Synoptic Table"
       );
       doc = {
-        ...rawDoc,
+        ...doc,
         allPracticeChanges: cleanChanges,
       };
     }
@@ -415,7 +428,8 @@ export function mergeGuidelines(
     const coreKey = getCoreTopicKey(doc);
     const yr = doc.year || (doc.title || "").match(/\b(20\d{2}|19\d{2})\b/)?.[1] || "";
     const topicKey = yr ? `${coreKey}-${yr}` : coreKey;
-    const existing = topicMap.get(topicKey) || titleMap.get(normT) || idMap.get(id);
+    const docId = (doc.id || id || normT).toLowerCase();
+    const existing = topicMap.get(topicKey) || titleMap.get(normT) || (docId ? idMap.get(docId) : undefined);
 
     if (existing) {
       const existingChanges = existing.allPracticeChanges?.length || 0;
@@ -435,16 +449,24 @@ export function mergeGuidelines(
       }
 
       const discarded = chosen === existing ? doc : existing;
-      idMap.delete(discarded.id.toLowerCase());
-      titleMap.delete(normalizeTitle(discarded.title));
+      if (discarded?.id) {
+        idMap.delete(discarded.id.toLowerCase());
+      }
+      if (discarded?.title) {
+        titleMap.delete(normalizeTitle(discarded.title));
+      }
 
       topicMap.set(topicKey, chosen);
-      titleMap.set(normalizeTitle(chosen.title), chosen);
-      idMap.set(chosen.id.toLowerCase(), chosen);
+      if (chosen?.title) {
+        titleMap.set(normalizeTitle(chosen.title), chosen);
+      }
+      if (chosen?.id) {
+        idMap.set(chosen.id.toLowerCase(), chosen);
+      }
     } else {
       topicMap.set(topicKey, doc);
-      titleMap.set(normT, doc);
-      idMap.set(id, doc);
+      if (normT) titleMap.set(normT, doc);
+      if (docId) idMap.set(docId, doc);
     }
   };
 
@@ -630,6 +652,7 @@ export async function loadMergedNeuroGuideData(): Promise<{
         continue;
       }
       if (
+        id.startsWith("neurorx_") ||
         id.startsWith("eso-pmid-") ||
         id.startsWith("esc-pmid-") ||
         id.startsWith("esc-") ||

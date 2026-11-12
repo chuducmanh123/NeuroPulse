@@ -18,6 +18,7 @@ import {
   Search,
   Sparkles,
   CheckCircle2,
+  ChevronDown,
 } from "lucide-react";
 import { getStoredAdminToken } from "@/utils/clientAuth";
 import { DataHealth } from "./DataHealth";
@@ -61,6 +62,7 @@ export function NeuroRxAdminSection({ darkMode = false }: NeuroRxAdminSectionPro
   const [actionSuccess, setActionSuccess] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<"all" | "verified" | "draft">("all");
+  const [isLibraryOpen, setIsLibraryOpen] = useState(false);
 
   const showSuccess = (msg: string) => {
     setActionSuccess(msg);
@@ -564,128 +566,165 @@ export function NeuroRxAdminSection({ darkMode = false }: NeuroRxAdminSectionPro
             </div>
           </div>
 
-          {/* 4. Full Formulary Library (Edit any drug in the system) */}
-          <div className="space-y-3 pt-4 border-t border-slate-200 dark:border-slate-800">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div>
-                <h3 className="text-xs font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200 flex items-center gap-2">
-                  <Database className="w-4 h-4 text-sky-500" />
-                  <span>NeuroRx Formulary Library ({data.all_drugs?.length || 0})</span>
-                </h3>
-                <span className="text-[11px] text-slate-500 dark:text-slate-400">
-                  Search, review dosing monographs, edit parameters, and manage drugs in the formulary
-                </span>
-              </div>
-
-              {/* Search & Filter */}
-              <div className="flex items-center gap-2">
-                <div className="relative">
-                  <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
-                  <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search by drug name, class..."
-                    className="pl-8 pr-3 py-1.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-sky-500 w-44 sm:w-56"
-                  />
-                </div>
-
-                <select
-                  value={statusFilter}
-                  onChange={(e) => setStatusFilter(e.target.value as any)}
-                  className="px-2.5 py-1.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-500"
-                >
-                  <option value="all">All ({data.all_drugs?.length || 0})</option>
-                  <option value="verified">Verified ({data.health.verified_count})</option>
-                  <option value="draft">Draft ({data.health.draft_count})</option>
-                </select>
-              </div>
-            </div>
-
-            <div
-              className={`rounded-2xl border overflow-hidden divide-y divide-slate-200 dark:divide-slate-800 max-h-[500px] overflow-y-auto ${
-                darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
-              }`}
+          {/* 4. Full Formulary Library (Collapsible - Edit any drug in the system) */}
+          <div className="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-3">
+            <button
+              type="button"
+              onClick={() => setIsLibraryOpen((prev) => !prev)}
+              className="w-full text-left p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 hover:bg-slate-100/70 dark:hover:bg-slate-850/80 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs cursor-pointer group"
             >
-              {filteredAllDrugs.length === 0 ? (
-                <div className="p-8 text-center text-xs text-slate-500">
-                  No drugs match your search criteria.
+              <div className="flex items-start sm:items-center gap-3">
+                <div className="p-2 rounded-xl bg-sky-500/10 text-sky-500 group-hover:scale-105 transition-transform shrink-0 mt-0.5 sm:mt-0">
+                  <Database className="w-4 h-4" />
                 </div>
-              ) : (
-                filteredAllDrugs.map((d) => {
-                  const isVerifying = verifyingId === d.id;
-                  const isDeleting = deletingId === d.id;
+                <div>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200">
+                      NeuroRx Formulary Library ({data.all_drugs?.length || 0})
+                    </h3>
+                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full transition-colors ${
+                      isLibraryOpen
+                        ? "bg-sky-500/15 text-sky-600 dark:text-sky-400"
+                        : "bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400"
+                    }`}>
+                      {isLibraryOpen ? "Đang mở" : "Thu gọn • Bấm để mở"}
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+                    Search, review dosing monographs, edit parameters, and manage drugs in the formulary
+                  </p>
+                </div>
+              </div>
 
-                  return (
-                    <div
-                      key={d.id}
-                      className="p-3 sm:p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs hover:bg-slate-50/60 dark:hover:bg-slate-950/40 transition-colors"
-                    >
-                      <div className="space-y-0.5">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <span className="font-bold text-slate-900 dark:text-slate-100">
-                            {d.tall_man?.value || d.generic_name}
-                          </span>
-                          <span className="font-mono text-[10px] text-slate-400">
-                            ({d.id})
-                          </span>
-                          <span
-                            className={`text-[9px] px-2 py-0.5 rounded-full font-bold uppercase ${
-                              d.status === "verified"
-                                ? "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30"
-                                : "bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30"
-                            }`}
-                          >
-                            {d.status}
-                          </span>
-                        </div>
-                        <div className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-1">
-                          {d.classes?.join(", ") || "Unclassified"}
-                        </div>
-                      </div>
+              <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto text-xs font-semibold text-slate-500 dark:text-slate-400 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
+                <span>{isLibraryOpen ? "Thu gọn" : "Xem thư viện"}</span>
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform duration-200 ${
+                    isLibraryOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </div>
+            </button>
 
-                      <div className="flex items-center gap-1.5 shrink-0 self-end sm:self-auto">
-                        {d.status !== "verified" && (
-                          <button
-                            type="button"
-                            onClick={() => handleVerifyDrug(d.id)}
-                            disabled={isVerifying}
-                            className="px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center gap-1 shadow-xs transition-colors cursor-pointer disabled:opacity-50"
-                            title="Verify and seal cryptographic hash"
-                          >
-                            {isVerifying ? (
-                              <RefreshCw className="w-3 h-3 animate-spin" />
-                            ) : (
-                              <ShieldCheck className="w-3 h-3" />
-                            )}
-                            <span>Verify</span>
-                          </button>
-                        )}
+            {/* Collapsible Content */}
+            {isLibraryOpen && (
+              <div className="space-y-3 pt-1">
+                {/* Search & Filter */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+                  <span className="text-[11px] text-slate-500 dark:text-slate-400">
+                    Hiển thị <strong>{filteredAllDrugs.length}</strong> / {data.all_drugs?.length || 0} thuốc trong thư viện
+                  </span>
 
-                        <button
-                          type="button"
-                          onClick={() => handleOpenEdit(d.id)}
-                          className="px-2.5 py-1 rounded-lg border border-slate-300 dark:border-slate-700 hover:border-sky-500 hover:bg-sky-50 dark:hover:bg-sky-950/40 text-sky-600 dark:text-sky-400 font-bold text-xs flex items-center gap-1 transition-colors cursor-pointer"
-                        >
-                          <Edit className="w-3 h-3" />
-                          <span>Edit</span>
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() => handleDeleteDrug(d.id, d.generic_name)}
-                          disabled={isDeleting}
-                          className="p-1 rounded-lg border border-rose-300 dark:border-rose-900/60 hover:bg-rose-50 dark:hover:bg-rose-950/40 text-rose-600 dark:text-rose-400 transition-colors cursor-pointer disabled:opacity-50"
-                          title="Permanently Delete"
-                        >
-                          <Trash2 className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <div className="relative">
+                      <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                      <input
+                        type="text"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        placeholder="Search by drug name, class..."
+                        className="pl-8 pr-3 py-1.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-sky-500 w-44 sm:w-56"
+                      />
                     </div>
-                  );
-                })
-              )}
-            </div>
+
+                    <select
+                      value={statusFilter}
+                      onChange={(e) => setStatusFilter(e.target.value as any)}
+                      className="px-2.5 py-1.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-500"
+                    >
+                      <option value="all">All ({data.all_drugs?.length || 0})</option>
+                      <option value="verified">Verified ({data.health.verified_count})</option>
+                      <option value="draft">Draft ({data.health.draft_count})</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div
+                  className={`rounded-2xl border overflow-hidden divide-y divide-slate-200 dark:divide-slate-800 max-h-[500px] overflow-y-auto ${
+                    darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200"
+                  }`}
+                >
+                  {filteredAllDrugs.length === 0 ? (
+                    <div className="p-8 text-center text-xs text-slate-500">
+                      No drugs match your search criteria.
+                    </div>
+                  ) : (
+                    filteredAllDrugs.map((d) => {
+                      const isVerifying = verifyingId === d.id;
+                      const isDeleting = deletingId === d.id;
+
+                      return (
+                        <div
+                          key={d.id}
+                          className="p-3 sm:p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs hover:bg-slate-50/60 dark:hover:bg-slate-950/40 transition-colors"
+                        >
+                          <div className="space-y-0.5">
+                            <div className="flex items-center gap-2 flex-wrap">
+                              <span className="font-bold text-slate-900 dark:text-slate-100">
+                                {d.tall_man?.value || d.generic_name}
+                              </span>
+                              <span className="font-mono text-[10px] text-slate-400">
+                                ({d.id})
+                              </span>
+                              <span
+                                className={`text-[9px] px-2 py-0.5 rounded-full font-bold uppercase ${
+                                  d.status === "verified"
+                                    ? "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30"
+                                    : "bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30"
+                                }`}
+                              >
+                                {d.status}
+                              </span>
+                            </div>
+                            <div className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-1">
+                              {d.classes?.join(", ") || "Unclassified"}
+                            </div>
+                          </div>
+
+                          <div className="flex items-center gap-1.5 shrink-0 self-end sm:self-auto">
+                            {d.status !== "verified" && (
+                              <button
+                                type="button"
+                                onClick={() => handleVerifyDrug(d.id)}
+                                disabled={isVerifying}
+                                className="px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center gap-1 shadow-xs transition-colors cursor-pointer disabled:opacity-50"
+                                title="Verify and seal cryptographic hash"
+                              >
+                                {isVerifying ? (
+                                  <RefreshCw className="w-3 h-3 animate-spin" />
+                                ) : (
+                                  <ShieldCheck className="w-3 h-3" />
+                                )}
+                                <span>Verify</span>
+                              </button>
+                            )}
+
+                            <button
+                              type="button"
+                              onClick={() => handleOpenEdit(d.id)}
+                              className="px-2.5 py-1 rounded-lg border border-slate-300 dark:border-slate-700 hover:border-sky-500 hover:bg-sky-50 dark:hover:bg-sky-950/40 text-sky-600 dark:text-sky-400 font-bold text-xs flex items-center gap-1 transition-colors cursor-pointer"
+                            >
+                              <Edit className="w-3 h-3" />
+                              <span>Edit</span>
+                            </button>
+
+                            <button
+                              type="button"
+                              onClick={() => handleDeleteDrug(d.id, d.generic_name)}
+                              disabled={isDeleting}
+                              className="p-1 rounded-lg border border-rose-300 dark:border-rose-900/60 hover:bg-rose-50 dark:hover:bg-rose-950/40 text-rose-600 dark:text-rose-400 transition-colors cursor-pointer disabled:opacity-50"
+                              title="Permanently Delete"
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+                        </div>
+                      );
+                    })
+                  )}
+                </div>
+              </div>
+            )}
           </div>
         </>
       )}

@@ -89,17 +89,25 @@ export function DrugAccordions({
         Clinical Reference & Pharmacology Accordions
       </h3>
 
-      {/* Accordion 1: Pregnancy & Lactation */}
+      {/* Accordion 1: Pregnancy & Lactation (Rose Theme) */}
       {hasPregnancyData && rep && (
         <div
-          className={`rounded-2xl border transition-colors overflow-hidden ${
-            darkMode ? "bg-slate-900/80 border-slate-800" : "bg-white border-slate-200/90 shadow-sm"
+          className={`rounded-2xl border border-l-4 border-l-rose-500 transition-colors overflow-hidden ${
+            darkMode ? "bg-slate-900/80 border-rose-900/40" : "bg-white border-rose-200/80 shadow-sm"
           }`}
         >
           <button
             type="button"
             onClick={() => toggleSection("pregnancy")}
-            className="w-full p-4 sm:p-5 flex items-center justify-between gap-3 text-left font-bold text-sm sm:text-base hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
+            className={`w-full p-4 sm:p-5 flex items-center justify-between gap-3 text-left font-bold text-sm sm:text-base transition-colors ${
+              openSections.pregnancy
+                ? darkMode
+                  ? "bg-rose-950/25 text-rose-300"
+                  : "bg-rose-50/60 text-rose-900"
+                : darkMode
+                ? "hover:bg-rose-950/20"
+                : "hover:bg-rose-50/40"
+            }`}
           >
             <div className="flex items-center gap-2.5">
               <div className="p-2 rounded-xl bg-rose-500/10 text-rose-500">
@@ -218,17 +226,25 @@ export function DrugAccordions({
         </div>
       )}
 
-      {/* Accordion 2: Neuro Clinical Notes & Pharmacogenomics */}
+      {/* Accordion 2: Neuro Clinical Notes & Pharmacogenomics (Amber Theme) */}
       {hasNeuroNotes && (
         <div
-          className={`rounded-2xl border transition-colors overflow-hidden ${
-            darkMode ? "bg-slate-900/80 border-slate-800" : "bg-white border-slate-200/90 shadow-sm"
+          className={`rounded-2xl border border-l-4 border-l-amber-500 transition-colors overflow-hidden ${
+            darkMode ? "bg-slate-900/80 border-amber-900/40" : "bg-white border-amber-200/80 shadow-sm"
           }`}
         >
           <button
             type="button"
             onClick={() => toggleSection("neuro")}
-            className="w-full p-4 sm:p-5 flex items-center justify-between gap-3 text-left font-bold text-sm sm:text-base hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
+            className={`w-full p-4 sm:p-5 flex items-center justify-between gap-3 text-left font-bold text-sm sm:text-base transition-colors ${
+              openSections.neuro
+                ? darkMode
+                  ? "bg-amber-950/25 text-amber-300"
+                  : "bg-amber-50/60 text-amber-900"
+                : darkMode
+                ? "hover:bg-amber-950/20"
+                : "hover:bg-amber-50/40"
+            }`}
           >
             <div className="flex items-center gap-2.5">
               <div className="p-2 rounded-xl bg-amber-500/10 text-amber-500">
@@ -335,17 +351,25 @@ export function DrugAccordions({
         </div>
       )}
 
-      {/* Accordion 3: Pharmacokinetics & Hepatic */}
+      {/* Accordion 3: Pharmacokinetics & Hepatic (Sky Theme) */}
       {hasPkData && (
         <div
-          className={`rounded-2xl border transition-colors overflow-hidden ${
-            darkMode ? "bg-slate-900/80 border-slate-800" : "bg-white border-slate-200/90 shadow-sm"
+          className={`rounded-2xl border border-l-4 border-l-sky-500 transition-colors overflow-hidden ${
+            darkMode ? "bg-slate-900/80 border-sky-900/40" : "bg-white border-sky-200/80 shadow-sm"
           }`}
         >
           <button
             type="button"
             onClick={() => toggleSection("pk")}
-            className="w-full p-4 sm:p-5 flex items-center justify-between gap-3 text-left font-bold text-sm sm:text-base hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
+            className={`w-full p-4 sm:p-5 flex items-center justify-between gap-3 text-left font-bold text-sm sm:text-base transition-colors ${
+              openSections.pk
+                ? darkMode
+                  ? "bg-sky-950/25 text-sky-300"
+                  : "bg-sky-50/60 text-sky-900"
+                : darkMode
+                ? "hover:bg-sky-950/20"
+                : "hover:bg-sky-50/40"
+            }`}
           >
             <div className="flex items-center gap-2.5">
               <div className="p-2 rounded-xl bg-blue-500/10 text-blue-500">
@@ -556,17 +580,25 @@ export function DrugAccordions({
         </div>
       )}
 
-      {/* Accordion 4: Ecosystem Links */}
+      {/* Accordion 4: Ecosystem Links (Indigo Theme) */}
       {hasLinks && links && (
         <div
-          className={`rounded-2xl border transition-colors overflow-hidden ${
-            darkMode ? "bg-slate-900/80 border-slate-800" : "bg-white border-slate-200/90 shadow-sm"
+          className={`rounded-2xl border border-l-4 border-l-indigo-500 transition-colors overflow-hidden ${
+            darkMode ? "bg-slate-900/80 border-indigo-900/40" : "bg-white border-indigo-200/80 shadow-sm"
           }`}
         >
           <button
             type="button"
             onClick={() => toggleSection("ecosystem")}
-            className="w-full p-4 sm:p-5 flex items-center justify-between gap-3 text-left font-bold text-sm sm:text-base hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
+            className={`w-full p-4 sm:p-5 flex items-center justify-between gap-3 text-left font-bold text-sm sm:text-base transition-colors ${
+              openSections.ecosystem
+                ? darkMode
+                  ? "bg-indigo-950/25 text-indigo-300"
+                  : "bg-indigo-50/60 text-indigo-900"
+                : darkMode
+                ? "hover:bg-indigo-950/20"
+                : "hover:bg-indigo-50/40"
+            }`}
           >
             <div className="flex items-center gap-2.5">
               <div className="p-2 rounded-xl bg-indigo-500/10 text-indigo-500">

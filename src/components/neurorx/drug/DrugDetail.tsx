@@ -45,7 +45,7 @@ export function DrugDetail({
   const { initFromSearchParams, patientParsed } = useNeuroRxStore();
 
   const [currentDrugItem, setCurrentDrugItem] = useState(drugItem);
-  const [showPatientVars, setShowPatientVars] = useState(true);
+  const [showPatientVars, setShowPatientVars] = useState(false);
   const [selectedRegimenIndex, setSelectedRegimenIndex] = useState(0);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -55,7 +55,12 @@ export function DrugDetail({
   }, [drugItem]);
 
   useEffect(() => {
-    setIsAdmin(Boolean(getStoredAdminToken()));
+    const checkAdmin = () => {
+      setIsAdmin(Boolean(getStoredAdminToken()));
+    };
+    checkAdmin();
+    window.addEventListener("storage", checkAdmin);
+    return () => window.removeEventListener("storage", checkAdmin);
   }, []);
 
   // Initialize store patient inputs from URL query params (if present, e.g. from Omnibar)
@@ -130,12 +135,12 @@ export function DrugDetail({
         <span>Back to drug directory</span>
       </button>
 
-      {/* 2. Tier 1 Header */}
+      {/* 2. Tier 1 Header - Medical Blue Identity Block */}
       <div
-        className={`p-4 sm:p-7 rounded-xl sm:rounded-2xl border transition-colors ${
+        className={`p-4 sm:p-7 rounded-xl sm:rounded-2xl border border-l-4 border-l-blue-500 transition-colors ${
           darkMode
-            ? "bg-slate-900/90 border-slate-800"
-            : "bg-white border-slate-200/90 shadow-sm"
+            ? "bg-gradient-to-br from-blue-950/20 via-slate-900 to-slate-900 border-blue-900/40"
+            : "bg-gradient-to-br from-blue-50/40 via-white to-indigo-50/20 border-blue-200/80 shadow-sm"
         }`}
       >
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-3 sm:gap-4">
@@ -166,16 +171,18 @@ export function DrugDetail({
                 </span>
               )}
 
-              {/* Edit Drug Button */}
-              <button
-                type="button"
-                onClick={() => setIsEditModalOpen(true)}
-                className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-bold border border-sky-400/50 hover:border-sky-500 bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-400 shadow-xs hover:bg-sky-100 dark:hover:bg-sky-900/40 transition-all cursor-pointer shrink-0"
-                title="Edit drug details and dosing regimens"
-              >
-                <Edit className="w-3.5 h-3.5" />
-                <span>Edit</span>
-              </button>
+              {/* Edit Drug Button - Only visible for authenticated admin */}
+              {isAdmin && (
+                <button
+                  type="button"
+                  onClick={() => setIsEditModalOpen(true)}
+                  className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-bold border border-sky-400/50 hover:border-sky-500 bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-400 shadow-xs hover:bg-sky-100 dark:hover:bg-sky-900/40 transition-all cursor-pointer shrink-0"
+                  title="Edit drug details and dosing regimens"
+                >
+                  <Edit className="w-3.5 h-3.5" />
+                  <span>Edit</span>
+                </button>
+              )}
             </div>
 
             {/* Vietnam Marketed Products */}
@@ -292,20 +299,12 @@ export function DrugDetail({
       {/* 3. Dosing Section: Unified Dosing Card (Chỉ định, Hướng dẫn dùng thuốc lâm sàng & Chế độ điều trị) */}
       <div className="space-y-4">
         {!isVerified && (
-          <div className="p-4 rounded-2xl border bg-amber-500/10 border-amber-500/30 text-amber-800 dark:text-amber-300 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
-            <div className="flex items-center gap-2.5">
-              <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0" />
-              <span>
-                <strong>Draft Record:</strong> This drug record is currently in draft status. You can review the dosing guidance below or click <strong>Edit</strong> to finalize.
-              </span>
-            </div>
-            <button
-              type="button"
-              onClick={() => setIsEditModalOpen(true)}
-              className="px-3 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shrink-0 self-start sm:self-auto cursor-pointer shadow-xs"
-            >
-              Edit Dosing
-            </button>
+          <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl border bg-amber-500/10 border-amber-500/30 text-amber-800 dark:text-amber-300 flex items-center gap-2.5 text-xs">
+            <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0" />
+            <span>
+              <strong>Draft Record:</strong> This drug record is currently in draft status.
+              {isAdmin && " You can review the dosing guidance below or click Edit to finalize."}
+            </span>
           </div>
         )}
 
@@ -327,14 +326,14 @@ export function DrugDetail({
         <button
           type="button"
           onClick={() => setShowPatientVars((prev) => !prev)}
-          className={`w-full p-3 sm:p-4 rounded-xl sm:rounded-2xl border transition-all flex items-center justify-between gap-2.5 sm:gap-3 text-left ${
+          className={`w-full p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-l-4 border-l-cyan-500 transition-all flex items-center justify-between gap-2.5 sm:gap-3 text-left ${
             showPatientVars
               ? darkMode
-                ? "bg-slate-900 border-cyan-500/50 shadow-sm ring-1 ring-cyan-500/20"
-                : "bg-white border-cyan-400 shadow-sm ring-1 ring-cyan-400/20"
+                ? "bg-gradient-to-r from-cyan-950/30 via-slate-900 to-slate-900 border-cyan-800 shadow-sm ring-1 ring-cyan-500/20"
+                : "bg-gradient-to-r from-cyan-50/70 via-white to-white border-cyan-300 shadow-sm ring-1 ring-cyan-400/20"
               : darkMode
-              ? "bg-slate-900/70 border-slate-800 hover:border-slate-700 hover:bg-slate-900"
-              : "bg-white border-slate-200 hover:border-slate-300 shadow-xs"
+              ? "bg-slate-900/70 border-slate-800 hover:border-cyan-800/80 hover:bg-slate-900"
+              : "bg-white border-slate-200 hover:border-cyan-300 shadow-xs"
           }`}
         >
           <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
@@ -417,8 +416,8 @@ export function DrugDetail({
         />
       )}
 
-      {/* Edit Drug Modal */}
-      {isEditModalOpen && (
+      {/* Edit Drug Modal - Admin only */}
+      {isAdmin && isEditModalOpen && (
         <EditDrugModal
           drug={drug}
           isOpen={isEditModalOpen}

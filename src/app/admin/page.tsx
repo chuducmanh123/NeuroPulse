@@ -226,6 +226,8 @@ export default function AdminCommandCenter() {
       refreshCasesFromServer();
       fetchReviewQueueCount();
       fetchHealthDiagnostics();
+      fetchGuidelinesList();
+      fetchPivotalTrials();
     }
   }, [isAdminVerified]);
 

@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import {
   Zap,
   Pill,
-  AlertCircle,
   CheckCircle2,
   Syringe,
   FileText,
@@ -66,10 +65,10 @@ export function DoseCard({
 
   return (
     <div
-      className={`rounded-2xl border flex flex-col justify-between transition-all ${
+      className={`rounded-2xl border border-l-4 border-l-emerald-500 flex flex-col justify-between transition-all ${
         darkMode
-          ? "bg-slate-900/90 border-slate-800 shadow-sm"
-          : "bg-white border-slate-200/90 shadow-sm"
+          ? "bg-slate-900/90 border-emerald-900/40 shadow-sm"
+          : "bg-white border-emerald-200/80 shadow-sm"
       }`}
     >
       <div>
@@ -85,8 +84,8 @@ export function DoseCard({
                 ? "bg-sky-950/20 border-sky-900/40"
                 : "bg-sky-50/70 border-sky-100"
               : darkMode
-              ? "bg-slate-800/60 border-slate-700/60"
-              : "bg-slate-50 border-slate-200"
+              ? "bg-gradient-to-r from-emerald-950/30 via-slate-900 to-slate-900 border-emerald-900/40"
+              : "bg-gradient-to-r from-emerald-50/70 via-teal-50/30 to-white border-emerald-200/80"
           }`}
         >
           <div className="flex items-center justify-between gap-2 flex-wrap">
@@ -96,7 +95,7 @@ export function DoseCard({
                   ? "bg-rose-500/15 text-rose-600 dark:text-rose-400 border border-rose-500/20"
                   : isMaintenance
                   ? "bg-sky-500/15 text-sky-600 dark:text-sky-400 border border-sky-500/20"
-                  : "bg-cyan-500/15 text-cyan-700 dark:text-cyan-300 border border-cyan-500/20"
+                  : "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30"
               }`}
             >
               {isAcute ? (
@@ -150,19 +149,6 @@ export function DoseCard({
 
         {/* Card Body: Clinical Administration & Specific Guidance */}
         <div className="p-3.5 sm:p-5 space-y-3 sm:space-y-4">
-          {/* State: Blocked Draft */}
-          {resolution.state === "blocked_draft" && (
-            <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/25 space-y-1">
-              <div className="flex items-center gap-2 text-amber-700 dark:text-amber-400 font-bold text-xs uppercase tracking-wider">
-                <AlertCircle className="w-4 h-4 shrink-0" />
-                <span>Draft Record</span>
-              </div>
-              <p className="text-xs text-amber-700 dark:text-amber-300 font-medium">
-                This drug record is currently in draft status. Registered dosing guidance is shown below:
-              </p>
-            </div>
-          )}
-
           {/* Specific Clinical Administration & Instructions */}
           {(activeRegimen.dose_text || resolution.ruleText) && (
             <div className="p-3 sm:p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-800 space-y-1.5">

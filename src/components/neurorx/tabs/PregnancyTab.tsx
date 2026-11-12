@@ -1,9 +1,20 @@
 "use client";
 
 import React, { useState } from "react";
-import { Activity, Brain, Shield, HeartPulse, Sparkles } from "lucide-react";
+import {
+  Layers,
+  Activity,
+  Brain,
+  Shield,
+  HeartPulse,
+  Sparkles,
+  AlertTriangle,
+  Footprints,
+  Clock,
+  Bug,
+} from "lucide-react";
 import type { DrugWithEffectiveStatus } from "@/lib/neurorx/data";
-import type { Source } from "@/types/neurorx";
+import type { Source, Subspecialty } from "@/types/neurorx";
 import { ReproBoard } from "./ReproBoard";
 import { ReproDetail } from "./ReproDetail";
 
@@ -13,15 +24,23 @@ interface PregnancyTabProps {
   darkMode?: boolean;
 }
 
-export type ReproDiseaseGroup =
-  | "epilepsy"
+export type ReproSubspecialty =
+  | "all"
   | "stroke"
-  | "migraine"
-  | "ms_nmosd"
-  | "myasthenia";
+  | "neurocritical_care"
+  | "epilepsy"
+  | "headache"
+  | "neuroimmunology"
+  | "neuromuscular"
+  | "movement_disorders"
+  | "dementia"
+  | "neuro_infectious";
+
+// Backward compatibility alias for legacy imports
+export type ReproDiseaseGroup = ReproSubspecialty | "migraine" | "ms_nmosd" | "myasthenia";
 
 interface DiseaseGroupConfig {
-  id: ReproDiseaseGroup;
+  id: ReproSubspecialty;
   label: string;
   icon: React.ReactNode;
   match: (item: DrugWithEffectiveStatus) => boolean;
@@ -29,19 +48,10 @@ interface DiseaseGroupConfig {
 
 const GROUPS: DiseaseGroupConfig[] = [
   {
-    id: "epilepsy",
-    label: "Epilepsy (ASM)",
-    icon: <Brain className="w-3.5 h-3.5" />,
-    match: (item) =>
-      item.drug.subspecialties.includes("epilepsy") ||
-      item.drug.classes.some((c) => {
-        const lower = c.toLowerCase();
-        return (
-          lower.includes("anticonvulsant") ||
-          lower.includes("antiepileptic") ||
-          lower.includes("asm")
-        );
-      }),
+    id: "all",
+    label: "All Subspecialties",
+    icon: <Layers className="w-3.5 h-3.5" />,
+    match: () => true,
   },
   {
     id: "stroke",
@@ -60,22 +70,114 @@ const GROUPS: DiseaseGroupConfig[] = [
       }),
   },
   {
-    id: "migraine",
-    label: "Migraine",
+    id: "neurocritical_care",
+    label: "Neurocritical Care",
+    icon: <AlertTriangle className="w-3.5 h-3.5" />,
+    match: (item) => item.drug.subspecialties.includes("neurocritical_care"),
+  },
+  {
+    id: "epilepsy",
+    label: "Epilepsy (ASM)",
+    icon: <Brain className="w-3.5 h-3.5" />,
+    match: (item) =>
+      item.drug.subspecialties.includes("epilepsy") ||
+      item.drug.classes.some((c) => {
+        const lower = c.toLowerCase();
+        return (
+          lower.includes("anticonvulsant") ||
+          lower.includes("antiepileptic") ||
+          lower.includes("asm")
+        );
+      }),
+  },
+  {
+    id: "headache",
+    label: "Headache & Pain",
     icon: <Sparkles className="w-3.5 h-3.5" />,
-    match: (item) => item.drug.subspecialties.includes("headache"),
+    match: (item) =>
+      item.drug.subspecialties.includes("headache") ||
+      item.drug.classes.some((c) => {
+        const lower = c.toLowerCase();
+        return (
+          lower.includes("triptan") ||
+          lower.includes("cgrp") ||
+          lower.includes("migraine")
+        );
+      }),
   },
   {
-    id: "ms_nmosd",
-    label: "MS & NMOSD",
+    id: "neuroimmunology",
+    label: "Neuroimmunology",
     icon: <Shield className="w-3.5 h-3.5" />,
-    match: (item) => item.drug.subspecialties.includes("neuroimmunology"),
+    match: (item) =>
+      item.drug.subspecialties.includes("neuroimmunology") ||
+      item.drug.classes.some((c) => {
+        const lower = c.toLowerCase();
+        return (
+          lower.includes("immunosuppressive") ||
+          lower.includes("monoclonal antibody") ||
+          lower.includes("dmt")
+        );
+      }),
   },
   {
-    id: "myasthenia",
-    label: "Myasthenia",
+    id: "neuromuscular",
+    label: "Neuromuscular",
     icon: <HeartPulse className="w-3.5 h-3.5" />,
-    match: (item) => item.drug.subspecialties.includes("neuromuscular"),
+    match: (item) =>
+      item.drug.subspecialties.includes("neuromuscular") ||
+      item.drug.classes.some((c) => {
+        const lower = c.toLowerCase();
+        return (
+          lower.includes("cholinesterase inhibitor") ||
+          lower.includes("neuromuscular")
+        );
+      }),
+  },
+  {
+    id: "movement_disorders",
+    label: "Movement Disorders",
+    icon: <Footprints className="w-3.5 h-3.5" />,
+    match: (item) =>
+      item.drug.subspecialties.includes("movement_disorders") ||
+      item.drug.classes.some((c) => {
+        const lower = c.toLowerCase();
+        return (
+          lower.includes("dopamine") ||
+          lower.includes("antiparkinson") ||
+          lower.includes("levodopa")
+        );
+      }),
+  },
+  {
+    id: "dementia",
+    label: "Dementia & Cognitive",
+    icon: <Clock className="w-3.5 h-3.5" />,
+    match: (item) =>
+      item.drug.subspecialties.includes("dementia") ||
+      item.drug.classes.some((c) => {
+        const lower = c.toLowerCase();
+        return (
+          lower.includes("alzheimer") ||
+          lower.includes("anti-amyloid") ||
+          lower.includes("nmda receptor antagonist")
+        );
+      }),
+  },
+  {
+    id: "neuro_infectious",
+    label: "CNS Infections",
+    icon: <Bug className="w-3.5 h-3.5" />,
+    match: (item) =>
+      item.drug.subspecialties.includes("neuro_infectious") ||
+      item.drug.classes.some((c) => {
+        const lower = c.toLowerCase();
+        return (
+          lower.includes("antibiotic") ||
+          lower.includes("antiviral") ||
+          lower.includes("cephalosporin")
+        );
+      }),
   },
 ];
 
@@ -84,10 +186,15 @@ export function PregnancyTab({
   sources = [],
   darkMode = false,
 }: PregnancyTabProps) {
-  const [selectedGroup, setSelectedGroup] = useState<ReproDiseaseGroup>("epilepsy");
+  const [selectedGroup, setSelectedGroup] = useState<ReproDiseaseGroup>("all");
   const [selectedDrug, setSelectedDrug] = useState<DrugWithEffectiveStatus | null>(null);
 
-  const activeGroupConfig = GROUPS.find((g) => g.id === selectedGroup) || GROUPS[0];
+  const activeGroupConfig =
+    GROUPS.find((g) => g.id === selectedGroup) ||
+    (selectedGroup === "migraine" ? GROUPS.find((g) => g.id === "headache") : undefined) ||
+    (selectedGroup === "ms_nmosd" ? GROUPS.find((g) => g.id === "neuroimmunology") : undefined) ||
+    (selectedGroup === "myasthenia" ? GROUPS.find((g) => g.id === "neuromuscular") : undefined) ||
+    GROUPS[0];
   const groupDrugs = drugs.filter((d) => activeGroupConfig.match(d));
 
   return (

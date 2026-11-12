@@ -115,10 +115,10 @@ export function PatientBar({
 
   return (
     <div
-      className={`p-3.5 sm:p-5 rounded-xl sm:rounded-2xl border transition-colors ${
+      className={`p-3.5 sm:p-5 rounded-xl sm:rounded-2xl border border-l-4 border-l-cyan-500 transition-colors ${
         darkMode
-          ? "bg-slate-900/90 border-slate-800"
-          : "bg-white border-slate-200/90 shadow-sm"
+          ? "bg-gradient-to-b from-cyan-950/20 via-slate-900 to-slate-900 border-cyan-900/40"
+          : "bg-gradient-to-b from-cyan-50/30 via-white to-white border-cyan-200/80 shadow-sm"
       }`}
     >
       {/* Header & Reset Button */}

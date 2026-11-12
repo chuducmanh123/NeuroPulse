@@ -45,10 +45,10 @@ export function ToolsRow({
 
   return (
     <>
-      <div className="p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/40">
+      <div className="p-4 rounded-2xl border border-l-4 border-l-purple-500 border-purple-200/80 dark:border-purple-900/40 bg-gradient-to-r from-purple-500/10 via-violet-500/5 to-slate-50/70 dark:from-purple-950/20 dark:via-slate-900/60 dark:to-slate-900/40">
         <div className="flex items-center gap-2 mb-2.5">
-          <Wrench className="w-4 h-4 text-sky-500" />
-          <span className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+          <Wrench className="w-4 h-4 text-purple-500" />
+          <span className="text-xs font-bold uppercase tracking-wider text-purple-900 dark:text-purple-300">
             Contextual Bedside Tools
           </span>
         </div>

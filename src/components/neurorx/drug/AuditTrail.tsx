@@ -97,7 +97,7 @@ export function AuditTrail({
 
   return (
     <div
-      className={`p-5 sm:p-6 rounded-2xl border transition-colors mt-8 space-y-4 ${
+      className={`p-5 sm:p-6 rounded-2xl border border-l-4 border-l-slate-400 dark:border-l-slate-600 transition-colors mt-8 space-y-4 ${
         darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200/90 shadow-sm"
       }`}
     >

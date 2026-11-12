@@ -175,8 +175,8 @@ async function loadUnifiedStoreRecords(): Promise<{
         .select("id, title, organization, year, status, data, updated_at");
       if (Array.isArray(data)) {
         for (const row of data as any[]) {
-          if (row.id === "system_clinical_scenarios") {
-            if (Array.isArray(row.data?.deletedGuidelineIds)) {
+          if (row.id === "system_clinical_scenarios" || String(row.id).startsWith("neurorx_")) {
+            if (row.id === "system_clinical_scenarios" && Array.isArray(row.data?.deletedGuidelineIds)) {
               row.data.deletedGuidelineIds.forEach((x: string) => {
                 if (x) supabaseDeletedKeys.add(String(x).toLowerCase().trim());
               });
