@@ -1,5 +1,221 @@
 [
   {
+    "id": "nc-2026-045",
+    "case_code": "NC-2026-045",
+    "title": "Pediatric Case of Isolated Bilateral Mydriasis and Loss of Light Reflex Following Upper Respiratory Infection",
+    "subspecialty": "Neuromuscular",
+    "subspecialties": [
+      "Neuromuscular",
+      "Neuro-Ophthalmology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-11-14",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC12004657",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-025-04180-x",
+      "pmcid": "PMC12004657",
+      "pmid": "40240898",
+      "pub_year": "2025"
+    },
+    "presentation": {
+      "demographics": "7-year-old girl",
+      "chief_complaint": "Persistent bilateral mydriasis and loss of light reflexes",
+      "history_of_present_illness": "A 7-year-old girl presents with a 7-day history of painless bilateral mydriasis and unreactive pupils following a resolved mild upper respiratory infection. Neuro-ophthalmologic evaluation reveals 7 mm pupils with complete loss of light and accommodation reflexes. There is no associated ptosis, extraocular muscle weakness, ataxia, or systemic weakness.",
+      "past_medical_history": "Amblyopia diagnosed one year prior; no history of ocular trauma, eye drops, or anticholinergic toxin exposure.",
+      "vitals": {
+        "bp": "110/70 mmHg",
+        "hr": "82 bpm",
+        "rr": "18 /min",
+        "temp": "36.5 °C",
+        "spo2": "99% on room air"
+      },
+      "neuro_exam": "Bilateral fixed mydriasis (7 mm) with absent direct and consensual light reflexes and absent accommodation reflexes. Extraocular movements are full without nystagmus or ophthalmoplegia. Deep tendon reflexes are 2+ and symmetric throughout. Gait is non-ataxic, and sensory and motor examinations are normal.",
+      "key_labs_csf": "CSF analysis reveals normal protein and cell count without albuminocytological dissociation. Serum ganglioside autoantibody testing demonstrates strongly positive anti-GQ1b and anti-GT1a IgG antibodies.",
+      "imaging": [
+        {
+          "modality": "Ophthalmologic Examination & Neuroimaging",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC12004657)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC12004657_fig1.jpg",
+          "pmcid": "PMC12004657",
+          "doi_url": "https://doi.org/10.1186/s12883-025-04180-x",
+          "caption": "Ophthalmologic examination showed bilateral pupil dilation and loss of light reflex",
+          "findings_summary": "Bilateral pupil dilation (7 mm) with complete loss of light and accommodation reflexes, alongside entirely unremarkable cranial/orbital MRI, chest CT, and ocular ultrasound."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "Adie pupil",
+          "peer_percentage": 15,
+          "rationale": "Incorrect. Adie pupil (tonic pupil) typically presents unilaterally with sector palsy of the sphincter, vermiform pupillary movements, light-near dissociation, and denervation hypersensitivity to dilute pilocarpine, rather than acute post-infectious bilateral fixed mydriasis associated with anti-GQ1b antibodies."
+        },
+        {
+          "id": "B",
+          "text": "Miller Fisher syndrome",
+          "peer_percentage": 72,
+          "rationale": "Correct. Miller Fisher syndrome (MFS) is an immune-mediated neuropathy strongly linked to anti-GQ1b and anti-GT1a IgG antibodies. While classically presenting with the triad of external ophthalmoplegia, ataxia, and areflexia, atypical or incomplete variants restricted to pupillomotor parasympathetic fibers (isolated internal ophthalmoplegia) occur, particularly following an antecedent upper respiratory or gastrointestinal prodrome."
+        },
+        {
+          "id": "C",
+          "text": "Botulism",
+          "peer_percentage": 8,
+          "rationale": "Incorrect. Infant or foodborne botulism can cause pupillary light reflex impairment, but it is characteristically accompanied by prominent fatiguable descending skeletal muscle paralysis, ptosis, bulbar dysfunction (dysphagia, dysarthria), and autonomic features such as dry mouth and constipation."
+        },
+        {
+          "id": "D",
+          "text": "Parinaud syndrome",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. Parinaud (dorsal midbrain) syndrome features upgaze paralysis, convergence-retraction nystagmus, and light-near dissociation resulting from lesions of the rostral interstitial nucleus of MLF or posterior commissure (e.g., pineal region tumors), whereas this patient has normal extraocular movements and normal brain MRI."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Miller Fisher syndrome (atypical variant with isolated internal ophthalmoplegia)",
+      "clinical_discussion": "Miller Fisher syndrome (MFS) is a post-infectious, immune-mediated neuropathy classified within the spectrum of Guillain-Barré syndrome (GBS). The classic presentation comprises external ophthalmoplegia, ataxia, and areflexia. However, incomplete or regional variants are well-described, including acute isolated internal ophthalmoplegia, acute ophthalmoparesis without ataxia, and acute ataxic neuropathy.\n\nPathophysiologically, MFS is characterized by autoantibodies targeting gangliosides, primarily GQ1b and GT1a. GQ1b gangliosides are densely expressed in the ocular motor nerves (cranial nerves III, IV, and VI), as well as in the ciliary ganglion and primary sensory afferent neurons. In isolated internal ophthalmoplegia, selective immune injury targets parasympathetic pupillomotor pathways in the ciliary ganglion or short ciliary nerves.\n\nDiagnostic confirmation relies on serum anti-GQ1b and anti-GT1a IgG antibody testing. CSF albuminocytological dissociation may be absent early in the course. Management includes monitoring and, when clinically indicated or progressive, immunomodulatory therapy such as intravenous immunoglobulin (IVIG) or plasma exchange, which generally leads to full clinical recovery.",
+      "teaching_points": [
+        "Miller Fisher syndrome can present as incomplete variants, including isolated internal ophthalmoplegia (bilateral fixed mydriasis) without classic ataxia, areflexia, or external ophthalmoplegia.",
+        "Serum anti-GQ1b and anti-GT1a IgG antibodies are highly specific serological markers for Miller Fisher syndrome spectrum disorders.",
+        "CSF albuminocytological dissociation may be absent during the initial presentation of GBS and MFS variants, making serological testing crucial when clinical suspicion is high."
+      ],
+      "clinical_pitfalls": [
+        "Misdiagnosing acute autoimmune pupillary dysfunction as pharmacological mydriasis or toxic exposure without sending serum anti-ganglioside antibody panels.",
+        "Incorrectly ruling out Miller Fisher syndrome solely due to the absence of limb ataxia, reflex loss, or external ophthalmoplegia."
+      ],
+      "related_keywords": [
+        "Miller Fisher syndrome",
+        "Anti-GQ1b antibodies",
+        "Internal ophthalmoplegia",
+        "Bilateral mydriasis",
+        "Guillain-Barré syndrome variant"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-046",
+    "case_code": "NC-2026-046",
+    "title": "Progressive Cognitive Decline and Obstructive Hydrocephalus with a Third Ventricular Foramen of Monro Mass",
+    "subspecialty": "Neuro-Oncology",
+    "subspecialties": [
+      "Neuro-Oncology",
+      "General Neurology",
+      "Neuroimaging"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-11-14",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13523265",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-05087-x",
+      "pmcid": "PMC13523265",
+      "pmid": "42316069",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "58-year-old immunocompetent man",
+      "chief_complaint": "Progressive headache, vomiting, and cognitive decline",
+      "history_of_present_illness": "Over the past month, the patient developed occasional headaches and vomiting that progressively worsened with coughing and straining, unresponsive to analgesics and lacking postural dependency. He also experienced decreased speech and memory disturbances. Over the course of the disease, his condition deteriorated with increasing lethargy and focal neurologic deficits.",
+      "past_medical_history": "No known comorbidities; negative HIV serology.",
+      "vitals": {
+        "bp": "125/80 mmHg",
+        "hr": "76 bpm",
+        "rr": "16 /min",
+        "temp": "36.7 °C",
+        "spo2": "98% on room air"
+      },
+      "neuro_exam": "Drowsy, disoriented to time and place, with decreased verbal output, memory impairment, and mild left hemiparesis. Cranial nerves grossly intact without papilledema on initial cursory exam.",
+      "key_labs_csf": "Normal routine hematological tests; HIV serology negative; mild biochemical abnormalities managed supportively.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (T1, T2/FLAIR, Post-Contrast)",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13523265)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13523265_fig1.webp",
+          "pmcid": "PMC13523265",
+          "doi_url": "https://doi.org/10.1186/s12883-026-05087-x",
+          "caption": "MRI brain showing a well-circumscribed lesion involving the roof of the third ventricle and foramen of Monro. The lesion demonstrates relatively low to intermediate signal intensity on T2/FLAIR imaging and intense homogeneous enhancement on post-contrast T1-weighted imaging. Mild ventricular dilatation is present secondary to obstruction at the level of the foramen of Monro.Differential diagnoses included colloid cyst, subependymal giant cell astrocytoma (SEGA), central neurocytoma, lymphoma, and thalamic oedema. PET-CT confirmed primary CNS lymphoma and excluded systemic disease",
+          "findings_summary": "Well-circumscribed 1.5 x 1.5 cm lesion involving the roof of the third ventricle and foramen of Monro, demonstrating low-to-intermediate T2/FLAIR signal intensity, intense homogeneous contrast enhancement, and secondary lateral ventricular dilatation."
+        },
+        {
+          "modality": "Non-contrast Head CT",
+          "sequence_badge": "Figure 2 • BMC neurology (PMC13523265)",
+          "figure_label": "Figure 2",
+          "image_url": "/data/figures/PMC13523265_fig2.webp",
+          "pmcid": "PMC13523265",
+          "doi_url": "https://doi.org/10.1186/s12883-026-05087-x",
+          "caption": "A non-contrast CT scan showing a well-defined hyperdense lesion involving the foramen of Monro and roof of the third ventricle causing ventricular obstruction",
+          "findings_summary": "Well-defined hyperdense lesion measuring 2.1 x 1.9 x 1.9 cm originating from the foramen of Monro, extending into the anterior third ventricle wall, causing ventricular obstruction, with an additional small subependymal lesion in the left lateral ventricle."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "Colloid cyst",
+          "peer_percentage": 14,
+          "rationale": "Incorrect. While colloid cysts typically occur at the foramen of Monro, they classically lack the intense, homogeneous contrast enhancement and subependymal satellite lesions seen in this patient."
+        },
+        {
+          "id": "B",
+          "text": "Central neurocytoma",
+          "peer_percentage": 18,
+          "rationale": "Incorrect. Central neurocytomas typically arise within the lateral ventricles attached to the septum pellucidum, exhibiting 'bubbly' T2-hyperintense cystic components and heterogeneous enhancement, rather than hyperdensity on non-contrast CT with dense homogeneous enhancement and subependymal spread."
+        },
+        {
+          "id": "C",
+          "text": "Primary central nervous system lymphoma (PCNSL)",
+          "peer_percentage": 64,
+          "rationale": "Correct. Imaging features of a hyperdense non-contrast CT mass with low-to-intermediate T2 signal, intense homogeneous contrast enhancement, restricted diffusion, and subependymal satellite spread point strongly toward primary central nervous system lymphoma."
+        },
+        {
+          "id": "D",
+          "text": "Subependymal giant cell astrocytoma (SEGA)",
+          "peer_percentage": 4,
+          "rationale": "Incorrect. SEGAs typically arise near the foramen of Monro in pediatric or young adult patients with tuberous sclerosis complex, commonly demonstrating prominent calcifications and heterogeneous enhancement."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Primary Central Nervous System Lymphoma (PCNSL), Diffuse Large B-Cell Lymphoma (DLBCL)",
+      "clinical_discussion": "Primary central nervous system lymphoma (PCNSL) is an extranodal non-Hodgkin lymphoma restricted to the brain, spinal cord, leptomeninges, and eyes without systemic involvement. Although it typically presents as subcortical white matter lesions in the cerebral hemispheres, intraventricular and periventricular presentations involving structures such as the foramen of Monro and the third ventricle can occur and mimic benign ventricular tumors like colloid cysts or central neurocytomas. Neuroimaging typically demonstrates hyperdensity on non-contrast CT and intense, homogeneous enhancement on T1-weighted post-contrast MRI, often showing restricted diffusion on DWI due to high tumor cellularity.\n\nPathologically, PCNSL is predominantly of the diffuse large B-cell type (DLBCL), characterized by positivity for B-cell markers such as CD20 and CD45, alongside a high Ki-67 proliferation index. Because PCNSL is considered a invasive whole-brain disease with microscopic dissemination beyond the radiologically visible tumor, curative surgical resection is not recommended; management relies on stereotactic biopsy followed by systemic chemotherapy (high-dose methotrexate-based regimens) and/or whole-brain radiotherapy.",
+      "teaching_points": [
+        "PCNSL can uncommonly present as a periventricular or intraventricular mass mimicking benign lesions like colloid cysts or neurocytomas.",
+        "Radiologically, PCNSL typically appears hyperdense on non-contrast CT, demonstrates low-to-intermediate signal on T2/FLAIR due to high nucleocytoplasmic ratios, and shows intense homogeneous contrast enhancement with restricted diffusion.",
+        "Surgical resection is avoided for PCNSL due to microscopic dissemination; tissue diagnosis is established via stereotactic biopsy, followed by high-dose methotrexate-based chemotherapy."
+      ],
+      "clinical_pitfalls": [
+        "Failing to consider PCNSL in the differential diagnosis of midline or intraventricular hyperdense enhancing masses.",
+        "Attempting aggressive surgical resection of intraventricular mass lesions that turn out to be highly infiltrative primary CNS lymphomas."
+      ],
+      "related_keywords": [
+        "Primary CNS Lymphoma",
+        "Foramen of Monro",
+        "Third Ventricle Tumor",
+        "Diffuse Large B-Cell Lymphoma"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-043",
     "case_code": "NC-2026-043",
     "title": "Subacute Ataxia and Gaze-Evoked Nystagmus with Normal Brain MRI",
