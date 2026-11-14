@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mô phỏng Quản lý Dữ liệu & Cache Hệ thống Y khoa</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          animation: {
+            'pulse-fast': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          }
+        },
+      },
+    };
+  </script>
+  <style>
+    body {
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+    .hash-badge {
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: -0.02em;
+    }
+    .node-transition {
+      transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .svg-line {
+      transition: stroke 0.45s ease, stroke-width 0.45s ease, opacity 0.45s ease;
+    }
+    @keyframes packetMove {
+      0% { transform: translateX(0); opacity: 0; }
+      15% { opacity: 1; }
+      85% { opacity: 1; }
+      100% { transform: translateX(100%); opacity: 0; }
+    }
+    .animate-packet {
+      animation: packetMove 1.4s ease-in-out forwards;
+    }
+    @keyframes packetReturn {
+      0% { transform: translateX(100%); opacity: 0; }
+      15% { opacity: 1; }
+      85% { opacity: 1; }
+      100% { transform: translateX(0); opacity: 0; }
+    }
+    .animate-packet-return {
+      animation: packetReturn 1.4s ease-in-out forwards;
+    }
+    /* Custom scrollbar for JSON logs */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-teal-100 selection:text-teal-900">
+
+  <!-- Top Header -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-teal-600 text-white flex items-center justify-center shadow-md shadow-teal-600/20 shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+            </svg>
+          </div>
+          <div>
+            <h1 class="text-lg sm:text-xl font-bold text-slate-900 tracking-tight">Phòng Thí Nghiệm Kiến Trúc Dữ Liệu Y Khoa</h1>
+            <p class="text-xs sm:text-sm text-slate-500">Mô phỏng trực quan cơ chế Hashing, Cache Tagging, Xung đột đồng thời & Đồng bộ Delta</p>
+          </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <nav class="flex bg-slate-100 p-1 rounded-xl border border-slate-200/80 overflow-x-auto" role="tablist">
+          <button id="tab-btn-1" onclick="switchTab(1)" class="tab-btn flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-white text-teal-700 shadow-sm whitespace-nowrap">
+            <span class="w-5 h-5 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center text-xs font-bold">1</span>
+            Merkle Tree & Cache Tags
+          </button>
+          <button id="tab-btn-2" onclick="switchTab(2)" class="tab-btn flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-medium text-slate-600 hover:text-slate-900 transition-all whitespace-nowrap">
+            <span class="w-5 h-5 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-xs font-bold">2</span>
+            Xung đột đồng thời
+          </button>
+          <button id="tab-btn-3" onclick="switchTab(3)" class="tab-btn flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-medium text-slate-600 hover:text-slate-900 transition-all whitespace-nowrap">
+            <span class="w-5 h-5 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-xs font-bold">3</span>
+            Đồng bộ Delta (since_seq)
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Workspace -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+    <!-- ===================================================================== -->
+    <!-- TAB 1: MERKLE TREE & GRANULAR HASHING + CACHE TAGGING                 -->
+    <!-- ===================================================================== -->
+    <section id="tab-panel-1" class="space-y-6">
+      <!-- Intro Banner -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <div class="space-y-1">
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-teal-50 text-teal-700 border border-teal-200">Cập nhật hạt mịn $O(\log N)$</span>
+            <span class="text-xs text-slate-400 font-mono">SHA-256 + RFC 6902 JSON Patch</span>
+          </div>
+          <h2 class="text-base sm:text-lg font-bold text-slate-900">Cây phân cấp Phác đồ & Vô hiệu hóa Cache theo Thẻ (Cache Tagging)</h2>
+          <p class="text-xs sm:text-sm text-slate-600">
+            Bấm vào một <strong>Block nội dung ở Tầng 3</strong> (đặc biệt là <span class="text-indigo-600 font-semibold">Block Liều Alteplase</span> dùng chung cho cả 2 phác đồ) để chỉnh sửa và quan sát cách hệ thống chỉ tính lại đúng 1 đường dẫn mã băm và làm mới đúng các trang bị ảnh hưởng.
+          </p>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <button onclick="resetTab1()" class="px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200 transition flex items-center gap-1.5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+            Đặt lại dữ liệu gốc
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Grid: Tree Visualization (Left 8 cols) + Editor & Delta Log (Right 4 cols) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <!-- Interactive Merkle Tree Canvas -->
+        <div class="lg:col-span-8 bg-white rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-sm relative overflow-hidden">
+          <!-- Legend & Stats Bar -->
+          <div class="flex flex-wrap items-center justify-between gap-3 pb-4 mb-6 border-b border-slate-100">
+            <div class="flex flex-wrap items-center gap-3 text-xs">
+              <span class="flex items-center gap-1.5 font-medium text-slate-600">
+                <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span> Cached / Không đổi (99%)
+              </span>
+              <span class="flex items-center gap-1.5 font-medium text-amber-700">
+                <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span> Đã tính lại Hash & Invalidated
+              </span>
+              <span class="flex items-center gap-1.5 font-medium text-indigo-700">
+                <span class="w-3 h-3 rounded-full bg-indigo-500 inline-block"></span> Block dùng chung (Shared Tag)
+              </span>
+            </div>
+            <div id="hash-calc-badge" class="text-xs font-mono px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600 border border-slate-200">
+              Sẵn sàng: Bấm vào 1 Block bên dưới
+            </div>
+          </div>
+
+          <!-- Tree Container -->
+          <div id="merkle-tree-wrapper" class="relative space-y-10 select-none">
+            <!-- SVG Connector Overlay -->
+            <svg id="tree-svg-lines" class="absolute inset-0 w-full h-full pointer-events-none z-0" style="overflow: visible;"></svg>
+
+            <!-- LEVEL 1: ROOT HASH -->
+            <div class="relative z-10 flex justify-center">
+              <div id="node-root" class="node-transition w-full max-w-md rounded-2xl border-2 border-emerald-200 bg-emerald-50/60 p-3.5 shadow-sm text-center">
+                <div class="flex items-center justify-between mb-1">
+                  <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Tầng 1 • Global Root Hash</span>
+                  <span id="root-status-pill" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">SYNCED</span>
+                </div>
+                <div class="text-sm font-bold text-slate-900">Kho Phác Đồ Y Khoa Quốc Gia</div>
+                <div class="mt-1.5 flex items-center justify-center gap-2 bg-white/90 rounded-lg px-2.5 py-1 border border-slate-200/80">
+                  <span class="text-[11px] text-slate-400">SHA-256:</span>
+                  <code id="hash-root" class="hash-badge text-xs font-bold text-emerald-700">9f86d081884c7d65</code>
+                </div>
+              </div>
+            </div>
+
+            <!-- LEVEL 2: PROTOCOLS -->
+            <div class="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-4">
+              <!-- Protocol 1: Stroke -->
+              <div id="node-proto-stroke" class="node-transition rounded-2xl border-2 border-emerald-200 bg-white p-3.5 shadow-sm">
+                <div class="flex items-center justify-between gap-1 mb-1.5">
+                  <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Tầng 2 • Phác đồ</span>
+                  <span id="cache-proto-stroke" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">CACHE HIT</span>
+                </div>
+                <h3 class="text-sm font-bold text-slate-900">1. Đột quỵ thiếu máu não</h3>
+                <div class="mt-2 bg-slate-50 rounded-lg px-2 py-1 border border-slate-200/70 flex items-center justify-between">
+                  <span class="text-[10px] text-slate-400">Hash:</span>
+                  <code id="hash-proto-stroke" class="hash-badge text-xs font-semibold text-slate-700">3a7bd3e2360a3d29</code>
+                </div>
+                <div class="mt-2 flex flex-wrap gap-1">
+                  <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">tag:stroke</span>
+                  <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-200">tag:alteplase</span>
+                </div>
+              </div>
+
+              <!-- Protocol 2: MI -->
+              <div id="node-proto-mi" class="node-transition rounded-2xl border-2 border-emerald-200 bg-white p-3.5 shadow-sm">
+                <div class="flex items-center justify-between gap-1 mb-1.5">
+                  <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Tầng 2 • Phác đồ</span>
+                  <span id="cache-proto-mi" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">CACHE HIT</span>
+                </div>
+                <h3 class="text-sm font-bold text-slate-900">2. Nhồi máu cơ tim cấp</h3>
+                <div class="mt-2 bg-slate-50 rounded-lg px-2 py-1 border border-slate-200/70 flex items-center justify-between">
+                  <span class="text-[10px] text-slate-400">Hash:</span>
+                  <code id="hash-proto-mi" class="hash-badge text-xs font-semibold text-slate-700">7c4a8d09ca3762af</code>
+                </div>
+                <div class="mt-2 flex flex-wrap gap-1">
+                  <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">tag:mi</span>
+                  <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-200">tag:alteplase</span>
+                </div>
+              </div>
+
+              <!-- Protocol 3: Hypertension -->
+              <div id="node-proto-htn" class="node-transition rounded-2xl border-2 border-emerald-200 bg-white p-3.5 shadow-sm">
+                <div class="flex items-center justify-between gap-1 mb-1.5">
+                  <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Tầng 2 • Phác đồ</span>
+                  <span id="cache-proto-htn" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">CACHE HIT</span>
+                </div>
+                <h3 class="text-sm font-bold text-slate-900">3. Tăng huyết áp khẩn cấp</h3>
+                <div class="mt-2 bg-slate-50 rounded-lg px-2 py-1 border border-slate-200/70 flex items-center justify-between">
+                  <span class="text-[10px] text-slate-400">Hash:</span>
+                  <code id="hash-proto-htn" class="hash-badge text-xs font-semibold text-slate-700">e4d909c290d0fb1c</code>
+                </div>
+                <div class="mt-2 flex flex-wrap gap-1">
+                  <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">tag:htn</span>
+                  <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">tag:nicardipine</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- LEVEL 3: GRANULAR CONTENT BLOCKS -->
+            <div class="relative z-10 pt-2">
+              <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-3 flex items-center justify-between">
+                <span>Tầng 3 • Các Block Nội Dung Độc Lập (Bấm vào để chỉnh sửa)</span>
+                <span class="text-teal-600 normal-case font-medium">7 Blocks đang hoạt động</span>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                <!-- Block 1: Stroke Exclusion -->
+                <button id="node-block-b1" onclick="selectBlock('b1')" class="block-card node-transition text-left rounded-xl border-2 border-slate-200 bg-white hover:border-teal-400 p-3 shadow-sm focus:outline-none">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="text-[10px] font-mono text-slate-400">id: b1</span>
+                    <span id="ver-b1" class="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">v1</span>
+                  </div>
+                  <div class="text-xs font-bold text-slate-800">Tiêu chuẩn loại trừ</div>
+                  <div id="val-preview-b1" class="text-[11px] text-slate-500 mt-1 truncate">Cửa sổ: &lt; 4.5 giờ</div>
+                  <div class="mt-2 pt-1.5 border-t border-slate-100 flex items-center justify-between">
+                    <span class="text-[10px] text-slate-400">Hash:</span>
+                    <code id="hash-b1" class="hash-badge text-[11px] text-emerald-700 font-semibold">1a2b3c4d</code>
+                  </div>
+                </button>
+
+                <!-- Block 2: SHARED ALTEPLASE BLOCK -->
+                <button id="node-block-b2" onclick="selectBlock('b2')" class="block-card node-transition text-left rounded-xl border-2 border-indigo-300 bg-indigo-50/40 hover:border-indigo-500 p-3 shadow-sm relative focus:outline-none ring-2 ring-indigo-500/20">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="text-[10px] font-mono font-bold text-indigo-600">id: alteplase</span>
+                    <span id="ver-b2" class="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-indigo-100 text-indigo-700">v1</span>
+                  </div>
+                  <div class="text-xs font-bold text-indigo-950 flex items-center gap-1">
+                    Liều Alteplase
+                    <span class="px-1.5 py-0.2 rounded bg-indigo-600 text-white text-[9px] font-bold">DÙNG CHUNG</span>
+                  </div>
+                  <div id="val-preview-b2" class="text-[11px] text-indigo-800 font-medium mt-1 truncate">Liều: 0.9 mg/kg (Max 90mg)</div>
+                  <div class="mt-2 pt-1.5 border-t border-indigo-200/60 flex items-center justify-between">
+                    <span class="text-[10px] text-indigo-500">Hash:</span>
+                    <code id="hash-b2" class="hash-badge text-[11px] text-indigo-700 font-bold">8f9e0d1c</code>
+                  </div>
+                </button>
+
+                <!-- Block 3: Stroke BP -->
+                <button id="node-block-b3" onclick="selectBlock('b3')" class="block-card node-transition text-left rounded-xl border-2 border-slate-200 bg-white hover:border-teal-400 p-3 shadow-sm focus:outline-none">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="text-[10px] font-mono text-slate-400">id: b3</span>
+                    <span id="ver-b3" class="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">v1</span>
+                  </div>
+                  <div class="text-xs font-bold text-slate-800">Kiểm soát huyết áp</div>
+                  <div id="val-preview-b3" class="text-[11px] text-slate-500 mt-1 truncate">Mục tiêu: &lt; 185/110 mmHg</div>
+                  <div class="mt-2 pt-1.5 border-t border-slate-100 flex items-center justify-between">
+                    <span class="text-[10px] text-slate-400">Hash:</span>
+                    <code id="hash-b3" class="hash-badge text-[11px] text-emerald-700 font-semibold">4e5f6a7b</code>
+                  </div>
+                </button>
+
+                <!-- Block 4: MI Aspirin -->
+                <button id="node-block-b4" onclick="selectBlock('b4')" class="block-card node-transition text-left rounded-xl border-2 border-slate-200 bg-white hover:border-teal-400 p-3 shadow-sm focus:outline-none">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="text-[10px] font-mono text-slate-400">id: b4</span>
+                    <span id="ver-b4" class="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">v1</span>
+                  </div>
+                  <div class="text-xs font-bold text-slate-800">Liều nạp Aspirin</div>
+                  <div id="val-preview-b4" class="text-[11px] text-slate-500 mt-1 truncate">Liều: 162 - 325 mg nhai</div>
+                  <div class="mt-2 pt-1.5 border-t border-slate-100 flex items-center justify-between">
+                    <span class="text-[10px] text-slate-400">Hash:</span>
+                    <code id="hash-b4" class="hash-badge text-[11px] text-emerald-700 font-semibold">9c8d7e6f</code>
+                  </div>
+                </button>
+
+                <!-- Block 5: MI PCI -->
+                <button id="node-block-b5" onclick="selectBlock('b5')" class="block-card node-transition text-left rounded-xl border-2 border-slate-200 bg-white hover:border-teal-400 p-3 shadow-sm focus:outline-none">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="text-[10px] font-mono text-slate-400">id: b5</span>
+                    <span id="ver-b5" class="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">v1</span>
+                  </div>
+                  <div class="text-xs font-bold text-slate-800">Can thiệp mạch vành</div>
+                  <div id="val-preview-b5" class="text-[11px] text-slate-500 mt-1 truncate">Door-to-Balloon &lt; 90p</div>
+                  <div class="mt-2 pt-1.5 border-t border-slate-100 flex items-center justify-between">
+                    <span class="text-[10px] text-slate-400">Hash:</span>
+                    <code id="hash-b5" class="hash-badge text-[11px] text-emerald-700 font-semibold">2b3c4d5e</code>
+                  </div>
+                </button>
+
+                <!-- Block 6: HTN Grading -->
+                <button id="node-block-b6" onclick="selectBlock('b6')" class="block-card node-transition text-left rounded-xl border-2 border-slate-200 bg-white hover:border-teal-400 p-3 shadow-sm focus:outline-none">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="text-[10px] font-mono text-slate-400">id: b6</span>
+                    <span id="ver-b6" class="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">v1</span>
+                  </div>
+                  <div class="text-xs font-bold text-slate-800">Phân độ Tăng HA</div>
+                  <div id="val-preview-b6" class="text-[11px] text-slate-500 mt-1 truncate">Độ 2: &ge; 140/90 mmHg</div>
+                  <div class="mt-2 pt-1.5 border-t border-slate-100 flex items-center justify-between">
+                    <span class="text-[10px] text-slate-400">Hash:</span>
+                    <code id="hash-b6" class="hash-badge text-[11px] text-emerald-700 font-semibold">6f7a8b9c</code>
+                  </div>
+                </button>
+
+                <!-- Block 7: HTN First-line -->
+                <button id="node-block-b7" onclick="selectBlock('b7')" class="block-card node-transition text-left rounded-xl border-2 border-slate-200 bg-white hover:border-teal-400 p-3 shadow-sm focus:outline-none sm:col-span-2">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="text-[10px] font-mono text-slate-400">id: b7</span>
+                    <span id="ver-b7" class="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">v1</span>
+                  </div>
+                  <div class="text-xs font-bold text-slate-800">Thuốc hạ áp đường tĩnh mạch</div>
+                  <div id="val-preview-b7" class="text-[11px] text-slate-500 mt-1 truncate">Nicardipine truyền 5 mg/giờ</div>
+                  <div class="mt-2 pt-1.5 border-t border-slate-100 flex items-center justify-between">
+                    <span class="text-[10px] text-slate-400">Hash:</span>
+                    <code id="hash-b7" class="hash-badge text-[11px] text-emerald-700 font-semibold">0d1e2f3a</code>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step-by-step live explanation box -->
+          <div id="tab1-explanation" class="mt-6 rounded-xl bg-slate-900 text-slate-200 p-4 text-xs leading-relaxed border border-slate-800">
+            <div class="flex items-center gap-2 text-teal-400 font-bold mb-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Nhật ký thực thi hệ thống (Live Execution Trace)
+            </div>
+            <p id="tab1-trace-text" class="text-slate-300">
+              Hệ thống đang ở trạng thái ổn định. Tất cả 3 trang phác đồ đều được phục vụ từ bộ nhớ đệm (<span class="text-emerald-400 font-mono">CACHE HIT</span>) với tốc độ ~1ms. Hãy chọn một Block ở Tầng 3 để bắt đầu chỉnh sửa.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right Panel: Block Editor & JSON Patch Audit Log -->
+        <div class="lg:col-span-4 space-y-5">
+          <!-- Block Editor Card -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-sm">
+            <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
+              <div>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-teal-600">Trình chỉnh sửa Block</span>
+                <h3 id="editor-block-title" class="text-base font-bold text-slate-900">Liều Alteplase (Dùng chung)</h3>
+              </div>
+              <span id="editor-block-id" class="px-2.5 py-1 rounded-lg bg-indigo-50 text-indigo-700 font-mono text-xs font-bold border border-indigo-200">block:alteplase</span>
+            </div>
+
+            <div class="space-y-3.5">
+              <div>
+                <label id="editor-field1-label" class="block text-xs font-semibold text-slate-700 mb-1">Liều chuẩn theo cân nặng</label>
+                <input id="editor-field1" type="text" value="0.9 mg/kg" class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm font-mono focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 outline-none transition" />
+              </div>
+              <div>
+                <label id="editor-field2-label" class="block text-xs font-semibold text-slate-700 mb-1">Liều tối đa cho phép</label>
+                <input id="editor-field2" type="text" value="90 mg" class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm font-mono focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 outline-none transition" />
+              </div>
+
+              <!-- Quick Preset Buttons for Shared Block -->
+              <div id="quick-presets-box" class="bg-slate-50 rounded-xl p-2.5 border border-slate-200/80">
+                <div class="text-[11px] font-medium text-slate-500 mb-1.5">Gợi ý cập nhật nhanh phác đồ:</div>
+                <div class="flex flex-wrap gap-1.5">
+                  <button type="button" onclick="applyPreset('0.6 mg/kg', '60 mg')" class="px-2.5 py-1 rounded-lg bg-white hover:bg-teal-50 text-teal-700 border border-slate-200 hover:border-teal-300 text-xs font-mono transition">
+                    0.6 mg/kg (Liều thấp)
+                  </button>
+                  <button type="button" onclick="applyPreset('0.9 mg/kg', '90 mg')" class="px-2.5 py-1 rounded-lg bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 text-xs font-mono transition">
+                    0.9 mg/kg (Chuẩn)
+                  </button>
+                </div>
+              </div>
+
+              <button id="btn-save-block" onclick="saveBlockChanges()" class="w-full py-2.5 px-4 rounded-xl bg-teal-600 hover:bg-teal-700 active:scale-[0.99] text-white font-semibold text-sm shadow-md shadow-teal-600/20 transition flex items-center justify-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                Lưu thay đổi & Tính lại Hash
+              </button>
+            </div>
+          </div>
+
+          <!-- JSON Patch (Delta Audit Log) Card -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-sm">
+            <div class="flex items-center justify-between mb-3">
+              <div>
+                <h3 class="text-sm font-bold text-slate-900">Lịch sử Delta (JSON Patch)</h3>
+                <p class="text-[11px] text-slate-500">Chỉ lưu phần chênh lệch (RFC 6902) thay vì cả phác đồ</p>
+              </div>
+              <button id="btn-rollback" onclick="rollbackLastChange()" disabled class="px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200 hover:bg-amber-100 disabled:opacity-40 disabled:cursor-not-allowed transition flex items-center gap-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
+                </svg>
+                Rollback
+              </button>
+            </div>
+
+            <div id="json-patch-container" class="bg-slate-900 rounded-xl p-3 font-mono text-xs text-slate-300 overflow-x-auto max-h-64 overflow-y-auto border border-slate-800">
+              <div class="text-slate-500 italic">// Chưa có thay đổi nào được ghi nhận. Hãy chỉnh sửa một Block và bấm Lưu.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 2: CONCURRENCY CONTROL (OPTIMISTIC LOCKING VS LAST-WRITE-WINS)    -->
+    <!-- ===================================================================== -->
+    <section id="tab-panel-2" class="hidden space-y-6">
+      <!-- Mode Switcher & Intro -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <div class="space-y-1">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200">Kiểm soát đồng thời (Concurrency Control)</span>
+          <h2 class="text-base sm:text-lg font-bold text-slate-900">Khi 2 Bác sĩ quản trị cùng sửa một phác đồ lúc</h2>
+          <p class="text-xs sm:text-sm text-slate-600">
+            Thử nhập dữ liệu khác nhau ở cả hai màn hình bên dưới và bấm <strong>Lưu</strong> lần lượt để thấy sự khác biệt giữa việc mất dữ liệu âm thầm và cơ chế bảo vệ bằng số phiên bản (<code class="font-mono text-xs bg-slate-100 px-1 py-0.5 rounded">version</code>).
+          </p>
+        </div>
+
+        <!-- Mode Toggle -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 shrink-0">
+          <div class="inline-flex rounded-xl bg-slate-100 p-1 border border-slate-200">
+            <button id="mode-lww-btn" onclick="setConcurrencyMode('LWW')" class="px-3 py-2 rounded-lg text-xs font-semibold transition bg-rose-600 text-white shadow-sm">
+              Không bảo vệ (Last-Write-Wins)
+            </button>
+            <button id="mode-opt-btn" onclick="setConcurrencyMode('OPTIMISTIC')" class="px-3 py-2 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 transition">
+              Khóa lạc quan (Optimistic Locking)
+            </button>
+          </div>
+          <button onclick="resetTab2()" class="px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 transition">
+            Đặt lại v1
+          </button>
+        </div>
+      </div>
+
+      <!-- Central Database State Banner -->
+      <div id="db-state-banner" class="rounded-2xl border-2 border-slate-300 bg-slate-900 text-white p-4 sm:p-5 shadow-md transition-all">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-teal-400 shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+              </svg>
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-400">PostgreSQL Database (Dữ liệu chính thức)</span>
+                <span id="db-version-badge" class="px-2 py-0.5 rounded-md bg-teal-500/20 text-teal-300 border border-teal-500/40 font-mono text-xs font-bold">version = 1</span>
+              </div>
+              <div class="text-base sm:text-lg font-mono font-bold text-white mt-0.5">
+                Alteplase Max Dose: <span id="db-current-value" class="text-amber-400">90 mg (Chuẩn quốc tế)</span>
+              </div>
+            </div>
+          </div>
+          <div class="text-xs font-mono text-slate-400 bg-slate-800/80 px-3 py-2 rounded-xl border border-slate-700">
+            Cập nhật cuối bởi: <span id="db-last-author" class="text-slate-200 font-semibold">Hệ thống gốc</span>
+          </div>
+        </div>
+
+        <!-- Alert / Lost Update Banner inside DB -->
+        <div id="db-alert-box" class="hidden mt-4 rounded-xl p-3 text-xs font-medium flex items-start gap-2.5"></div>
+      </div>
+
+      <!-- Split Screen: Doctor A & Doctor B -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Doctor A Browser -->
+        <div class="bg-white rounded-2xl border-2 border-sky-200 shadow-sm overflow-hidden flex flex-col">
+          <div class="bg-sky-50 px-4 py-3 border-b border-sky-200/80 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-sky-500"></span>
+              <span class="font-bold text-sm text-sky-950">Trình duyệt 1: BS. Nguyễn Văn A</span>
+            </div>
+            <span id="docA-local-ver" class="px-2 py-0.5 rounded bg-white text-sky-700 border border-sky-200 font-mono text-xs font-bold">Đang giữ: v1</span>
+          </div>
+          <div class="p-4 sm:p-5 space-y-4 flex-1 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="text-xs text-slate-500 bg-slate-50 p-2.5 rounded-xl border border-slate-200/70">
+                BS. A mở trang lúc 08:00 và tải về bản ghi ở <code class="font-mono font-bold text-slate-700">version = 1</code>. BS. A muốn cập nhật liều tối đa cho bệnh nhân cao tuổi.
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Chỉnh sửa Liều Alteplase tối đa:</label>
+                <input id="input-docA" type="text" value="50 mg (Giảm liều cho người > 80 tuổi)" class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm font-mono focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 outline-none" />
+              </div>
+              <div class="bg-slate-900 text-slate-300 rounded-xl p-2.5 font-mono text-[11px] overflow-x-auto">
+                <span class="text-slate-500">// Câu lệnh SQL gửi đi:</span><br/>
+                <span id="sql-preview-A" class="text-sky-300">UPDATE blocks SET val = '...' WHERE id = 'alteplase';</span>
+              </div>
+            </div>
+
+            <div class="pt-2 space-y-2">
+              <button onclick="saveDoctor('A')" class="w-full py-2.5 px-4 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-semibold text-sm shadow-sm transition">
+                BS. A bấm Lưu thay đổi
+              </button>
+              <div id="status-docA" class="text-xs text-center font-medium text-slate-400 min-h-[1.25rem]"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Doctor B Browser -->
+        <div class="bg-white rounded-2xl border-2 border-purple-200 shadow-sm overflow-hidden flex flex-col">
+          <div class="bg-purple-50 px-4 py-3 border-b border-purple-200/80 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-purple-500"></span>
+              <span class="font-bold text-sm text-purple-950">Trình duyệt 2: BS. Trần Thị B</span>
+            </div>
+            <span id="docB-local-ver" class="px-2 py-0.5 rounded bg-white text-purple-700 border border-purple-200 font-mono text-xs font-bold">Đang giữ: v1</span>
+          </div>
+          <div class="p-4 sm:p-5 space-y-4 flex-1 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="text-xs text-slate-500 bg-slate-50 p-2.5 rounded-xl border border-slate-200/70">
+                BS. B cũng mở trang lúc 08:01 (chưa biết BS. A đang sửa) nên cũng đang giữ <code class="font-mono font-bold text-slate-700">version = 1</code>. BS. B muốn bổ sung ghi chú chống chỉ định.
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Chỉnh sửa Liều Alteplase tối đa:</label>
+                <input id="input-docB" type="text" value="90 mg (Chống chỉ định nếu INR > 1.7)" class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm font-mono focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 outline-none" />
+              </div>
+              <div class="bg-slate-900 text-slate-300 rounded-xl p-2.5 font-mono text-[11px] overflow-x-auto">
+                <span class="text-slate-500">// Câu lệnh SQL gửi đi:</span><br/>
+                <span id="sql-preview-B" class="text-purple-300">UPDATE blocks SET val = '...' WHERE id = 'alteplase';</span>
+              </div>
+            </div>
+
+            <div class="pt-2 space-y-2">
+              <button onclick="saveDoctor('B')" class="w-full py-2.5 px-4 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-semibold text-sm shadow-sm transition">
+                BS. B bấm Lưu thay đổi
+              </button>
+              <div id="status-docB" class="text-xs text-center font-medium text-slate-400 min-h-[1.25rem]"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conflict Resolution Modal / Inline Panel (Appears on 409 Conflict) -->
+      <div id="conflict-resolution-panel" class="hidden rounded-2xl border-2 border-amber-400 bg-amber-50 p-5 shadow-lg space-y-4">
+        <div class="flex items-start justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold shrink-0">409</div>
+            <div>
+              <h3 class="text-base font-bold text-amber-950">Phát hiện xung đột phiên bản (HTTP 409 Conflict)!</h3>
+              <p id="conflict-desc" class="text-xs text-amber-800">Dữ liệu trên máy chủ đã tăng lên <strong>v2</strong> trong lúc bạn đang soạn thảo trên nền <strong>v1</strong>. Hệ thống đã chặn lệnh ghi đè để bảo vệ dữ liệu.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono">
+          <div class="bg-white rounded-xl p-3 border border-emerald-300">
+            <div class="text-[11px] font-sans font-bold text-emerald-700 mb-1">Bản đang lưu trên Server (Mới nhất):</div>
+            <div id="conflict-server-val" class="text-slate-900 font-semibold"></div>
+          </div>
+          <div class="bg-white rounded-xl p-3 border border-amber-300">
+            <div class="text-[11px] font-sans font-bold text-amber-700 mb-1">Bản bạn vừa bấm Lưu (Chưa được ghi):</div>
+            <div id="conflict-client-val" class="text-slate-900 font-semibold"></div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2.5 pt-1">
+          <button onclick="resolveConflict('KEEP_SERVER')" class="px-3.5 py-2 rounded-xl bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 text-xs font-semibold transition">
+            1. Hủy sửa & Tải bản mới nhất từ Server
+          </button>
+          <button onclick="resolveConflict('MERGE')" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold shadow-sm transition">
+            2. Hợp nhất thông minh cả 2 nội dung (Merge -> v3)
+          </button>
+          <button onclick="resolveConflict('FORCE_OVERWRITE')" class="px-3.5 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold transition">
+            3. Chấp nhận ghi đè lên Server (-> v3)
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 3: INCREMENTAL SYNC VIA GLOBAL SEQUENCE NUMBER (since_seq)        -->
+    <!-- ===================================================================== -->
+    <section id="tab-panel-3" class="hidden space-y-6">
+      <!-- Header Card -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <div class="space-y-1">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">Đồng bộ gia tăng (Incremental Delta Sync)</span>
+          <h2 class="text-base sm:text-lg font-bold text-slate-900">Làm sao mở trang web có 10.000 phác đồ mà không phải quét lại từ đầu?</h2>
+          <p class="text-xs sm:text-sm text-slate-600">
+            Thay vì tải lại toàn bộ 50 MB dữ liệu hoặc so sánh 100.000 mã băm, trình duyệt chỉ gửi một con số thứ tự cuối cùng (<code class="font-mono text-xs bg-slate-100 px-1 py-0.5 rounded">since_seq = 100</code>) để lấy đúng những thay đổi phát sinh sau thời điểm đó.
+          </p>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <button onclick="simulateNewServerEdit()" class="px-3.5 py-2 rounded-xl text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 transition">
+            + Giả lập Admin sửa thêm 1 mục trên Server
+          </button>
+          <button onclick="resetTab3()" class="px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200 transition">
+            Đặt lại mốc 100
+          </button>
+        </div>
+      </div>
+
+      <!-- Visual Comparison: Client Device <-> Network Pipe <-> Server DB -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        
+        <!-- Left: Client Browser / Mobile App (4 cols) -->
+        <div class="lg:col-span-4 bg-white rounded-2xl border-2 border-slate-200 p-5 shadow-sm flex flex-col justify-between space-y-4">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Thiết bị Bác sĩ (IndexedDB)</span>
+              <span id="client-sync-status" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800">Cần đồng bộ (+4)</span>
+            </div>
+            <h3 class="text-base font-bold text-slate-900">Trình duyệt / Ứng dụng Tra cứu</h3>
+            <div class="bg-slate-50 rounded-xl p-3.5 border border-slate-200 flex items-center justify-between">
+              <div>
+                <div class="text-[11px] text-slate-500">Mốc đồng bộ cục bộ (Watermark):</div>
+                <div class="text-2xl font-mono font-bold text-slate-900 mt-0.5">seq = <span id="client-seq-val" class="text-teal-600">100</span></div>
+              </div>
+              <div class="text-right text-xs text-slate-500">
+                <div>10.000 phác đồ</div>
+                <div class="font-mono text-[11px] text-slate-400">Đã lưu sẵn Offline</div>
+              </div>
+            </div>
+
+            <!-- Local Cached Items List -->
+            <div>
+              <div class="text-xs font-semibold text-slate-700 mb-2">Bản ghi mới nhận vào bộ nhớ đệm cục bộ:</div>
+              <div id="client-received-list" class="space-y-1.5 max-h-48 overflow-y-auto pr-1">
+                <div class="text-xs text-slate-400 italic bg-slate-50 p-2.5 rounded-lg border border-dashed border-slate-200">
+                  Đang dừng ở mốc seq = 100. Bấm nút "Mở trang web / Đồng bộ ngay" ở giữa để cập nhật.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bandwidth Comparison Stats -->
+          <div class="bg-emerald-50/70 rounded-xl p-3 border border-emerald-200/80 text-xs space-y-1">
+            <div class="font-bold text-emerald-900">Hiệu quả băng thông:</div>
+            <div class="flex justify-between text-slate-600">
+              <span>Tải lại toàn bộ (Full Reload):</span>
+              <span class="font-mono line-through text-rose-600">50,000 KB (50 MB)</span>
+            </div>
+            <div class="flex justify-between font-bold text-emerald-700">
+              <span>Đồng bộ Delta (since_seq):</span>
+              <span id="sync-bandwidth-saved" class="font-mono">Chưa chạy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Middle: Network Action & Packet Animation (3 cols) -->
+        <div class="lg:col-span-3 flex flex-col justify-center items-center space-y-4 py-2">
+          <button id="btn-run-sync" onclick="runIncrementalSync()" class="w-full py-3.5 px-4 rounded-2xl bg-teal-600 hover:bg-teal-700 active:scale-[0.98] text-white font-bold text-sm shadow-lg shadow-teal-600/25 transition flex flex-col items-center justify-center gap-1">
+            <span class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+              </svg>
+              Mở trang web / Đồng bộ ngay
+            </span>
+            <span id="sync-btn-sub" class="text-[11px] font-mono font-normal text-teal-100">GET /api/sync?since_seq=100</span>
+          </button>
+
+          <!-- Animated Pipe -->
+          <div class="w-full bg-white rounded-2xl border border-slate-200 p-3.5 space-y-3 shadow-sm">
+            <div class="space-y-1">
+              <div class="flex justify-between text-[10px] font-mono text-slate-500">
+                <span>1. Request (Client &rarr; Server)</span>
+                <span class="text-teal-600 font-bold">24 Bytes</span>
+              </div>
+              <div class="h-6 bg-slate-100 rounded-lg relative overflow-hidden flex items-center px-2">
+                <div id="req-packet" class="hidden px-2 py-0.5 rounded bg-teal-600 text-white font-mono text-[10px] font-bold shadow">
+                  since_seq=100
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="flex justify-between text-[10px] font-mono text-slate-500">
+                <span>2. Response (Server &rarr; Client)</span>
+                <span id="res-size-label" class="text-indigo-600 font-bold">~1.2 KB</span>
+              </div>
+              <div class="h-6 bg-slate-100 rounded-lg relative overflow-hidden flex items-center px-2">
+                <div id="res-packet" class="hidden px-2 py-0.5 rounded bg-indigo-600 text-white font-mono text-[10px] font-bold shadow">
+                  4 Delta Rows
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="sync-step-note" class="text-center text-xs text-slate-500 px-2">
+            Máy chủ dùng Index trên cột <code class="font-mono text-slate-700">seq</code> để nhảy thẳng tới các dòng mới trong 0.2ms.
+          </div>
+        </div>
+
+        <!-- Right: Server Database Change Log (5 cols) -->
+        <div class="lg:col-span-5 bg-slate-900 text-slate-200 rounded-2xl border border-slate-800 p-5 shadow-md flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-800">
+              <div>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-teal-400">Server Change Log (Indexed by seq)</span>
+                <h3 class="text-sm font-bold text-white">Nhật ký thay đổi tuần tự trên Máy chủ</h3>
+              </div>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-800 border border-slate-700 font-mono text-xs font-bold text-amber-400">
+                Server Max seq = <span id="server-seq-val">104</span>
+              </span>
+            </div>
+
+            <div id="server-seq-list" class="space-y-2 max-h-72 overflow-y-auto pr-1 font-mono text-xs">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-slate-400 flex items-center justify-between">
+            <span>SQL: <code class="text-teal-300">SELECT * FROM changes WHERE seq &gt; <span id="sql-since-val">100</span></code></span>
+            <span class="text-emerald-400">B-Tree Index Scan</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // =========================================================================
+    // UTILITY: DETERMINISTIC FAST HASH (SIMULATING SHA-256 SHORT HEX)
+    // =========================================================================
+    function pseudoSha256(str) {
+      let h1 = 0xdeadbeef, h2 = 0x41c6ce57;
+      for (let i = 0, ch; i < str.length; i++) {
+        ch = str.charCodeAt(i);
+        h1 = Math.imul(h1 ^ ch, 2654435761);
+        h2 = Math.imul(h2 ^ ch, 1597334677);
+      }
+      h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+      h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+      const hex1 = (h1 >>> 0).toString(16).padStart(8, '0');
+      const hex2 = (h2 >>> 0).toString(16).padStart(8, '0');
+      return (hex1 + hex2).slice(0, 16);
+    }
+
+    // =========================================================================
+    // TAB NAVIGATION
+    // =========================================================================
+    function switchTab(tabIndex) {
+      [1, 2, 3].forEach((idx) => {
+        const panel = document.getElementById(`tab-panel-${idx}`);
+        const btn = document.getElementById(`tab-btn-${idx}`);
+        const badge = btn.querySelector('span');
+
+        if (idx === tabIndex) {
+          panel.classList.remove('hidden');
+          btn.classList.add('bg-white', 'text-teal-700', 'shadow-sm', 'font-semibold');
+          btn.classList.remove('text-slate-600', 'font-medium');
+          badge.classList.add('bg-teal-100', 'text-teal-700');
+          badge.classList.remove('bg-slate-200', 'text-slate-600');
+        } else {
+          panel.classList.add('hidden');
+          btn.classList.remove('bg-white', 'text-teal-700', 'shadow-sm', 'font-semibold');
+          btn.classList.add('text-slate-600', 'font-medium');
+          badge.classList.remove('bg-teal-100', 'text-teal-700');
+          badge.classList.add('bg-slate-200', 'text-slate-600');
+        }
+      });
+
+      if (tabIndex === 1) {
+        setTimeout(drawMerkleLines, 50);
+      }
+    }
+
+    // =========================================================================
+    // TAB 1: MERKLE TREE, GRANULAR BLOCKS & CACHE TAGGING
+    // =========================================================================
+    const initialBlocksData = {
+      b1: {
+        id: 'b1',
+        title: 'Tiêu chuẩn loại trừ',
+        f1Label: 'Cửa sổ thời gian vàng',
+        f1Val: '< 4.5 giờ',
+        f2Label: 'Ngưỡng tiểu cầu tối thiểu',
+        f2Val: '> 100,000 /mm³',
+        version: 1,
+        protocols: ['stroke'],
+        shared: false
+      },
+      b2: {
+        id: 'alteplase',
+        title: 'Liều Alteplase (Dùng chung)',
+        f1Label: 'Liều chuẩn theo cân nặng',
+        f1Val: '0.9 mg/kg',
+        f2Label: 'Liều tối đa cho phép',
+        f2Val: '90 mg',
+        version: 1,
+        protocols: ['stroke', 'mi'],
+        shared: true
+      },
+      b3: {
+        id: 'b3',
+        title: 'Kiểm soát huyết áp',
+        f1Label: 'Huyết áp mục tiêu trước tiêu sợi huyết',
+        f1Val: '< 185/110 mmHg',
+        f2Label: 'Thuốc ưu tiên',
+        f2Val: 'Labetalol / Nicardipine',
+        version: 1,
+        protocols: ['stroke'],
+        shared: false
+      },
+      b4: {
+        id: 'b4',
+        title: 'Liều nạp Aspirin',
+        f1Label: 'Liều khởi đầu cấp cứu',
+        f1Val: '162 - 325 mg',
+        f2Label: 'Đường dùng',
+        f2Val: 'Nhai không bao tan trong ruột',
+        version: 1,
+        protocols: ['mi'],
+        shared: false
+      },
+      b5: {
+        id: 'b5',
+        title: 'Can thiệp mạch vành (PCI)',
+        f1Label: 'Thời gian cửa - bóng (Door-to-Balloon)',
+        f1Val: '< 90 phút',
+        f2Label: 'Chuyển viện tối đa',
+        f2Val: '< 120 phút',
+        version: 1,
+        protocols: ['mi'],
+        shared: false
+      },
+      b6: {
+        id: 'b6',
+        title: 'Phân độ Tăng huyết áp',
+        f1Label: 'Tăng huyết áp Độ 2',
+        f1Val: '>= 140/90 mmHg',
+        f2Label: 'Cơn tăng huyết áp cấp cứu',
+        f2Val: '> 180/120 mmHg + tổn thương cơ quan đích',
+        version: 1,
+        protocols: ['htn'],
+        shared: false
+      },
+      b7: {
+        id: 'b7',
+        title: 'Thuốc hạ áp đường tĩnh mạch',
+        f1Label: 'Liều khởi đầu Nicardipine',
+        f1Val: '5 mg/giờ',
+        f2Label: 'Tốc độ truyền tối đa',
+        f2Val: '15 mg/giờ',
+        version: 1,
+        protocols: ['htn'],
+        shared: false
+      }
+    };
+
+    let blocksState = JSON.parse(JSON.stringify(initialBlocksData));
+    let selectedBlockKey = 'b2';
+    let patchHistory = [];
+    let highlightedNodes = new Set();
+
+    function computeAllHashes() {
+      const bHashes = {};
+      Object.keys(blocksState).forEach((key) => {
+        const b = blocksState[key];
+        bHashes[key] = pseudoSha256(`${b.id}|${b.f1Val}|${b.f2Val}|v${b.version}`).slice(0, 8);
+      });
+
+      const strokeHash = pseudoSha256(`stroke|${bHashes.b1}|${bHashes.b2}|${bHashes.b3}`);
+      const miHash = pseudoSha256(`mi|${bHashes.b4}|${bHashes.b2}|${bHashes.b5}`);
+      const htnHash = pseudoSha256(`htn|${bHashes.b6}|${bHashes.b7}`);
+      const rootHash = pseudoSha256(`root|${strokeHash}|${miHash}|${htnHash}`);
+
+      return { bHashes, strokeHash, miHash, htnHash, rootHash };
+    }
+
+    function renderMerkleTree(changedBlockKey = null) {
+      const { bHashes, strokeHash, miHash, htnHash, rootHash } = computeAllHashes();
+
+      // Update Hashes & Previews in DOM
+      document.getElementById('hash-root').textContent = rootHash;
+      document.getElementById('hash-proto-stroke').textContent = strokeHash;
+      document.getElementById('hash-proto-mi').textContent = miHash;
+      document.getElementById('hash-proto-htn').textContent = htnHash;
+
+      Object.keys(blocksState).forEach((key) => {
+        const b = blocksState[key];
+        document.getElementById(`hash-${key}`).textContent = bHashes[key];
+        document.getElementById(`ver-${key}`).textContent = `v${b.version}`;
+        const previewEl = document.getElementById(`val-preview-${key}`);
+        if (key === 'b2') {
+          previewEl.textContent = `Liều: ${b.f1Val} (Max ${b.f2Val})`;
+        } else {
+          previewEl.textContent = `${b.f1Val} • ${b.f2Val}`;
+        }
+
+        // Card selection border
+        const card = document.getElementById(`node-block-${key}`);
+        if (key === selectedBlockKey) {
+          card.classList.add('ring-4', 'ring-teal-500/30');
+        } else {
+          card.classList.remove('ring-4', 'ring-teal-500/30');
+        }
+      });
+
+      // Reset all node highlight colors first
+      const allProtoKeys = ['stroke', 'mi', 'htn'];
+      allProtoKeys.forEach((pKey) => {
+        const pNode = document.getElementById(`node-proto-${pKey}`);
+        const cBadge = document.getElementById(`cache-proto-${pKey}`);
+        pNode.classList.remove('border-amber-400', 'bg-amber-50/70');
+        pNode.classList.add('border-emerald-200', 'bg-white');
+        cBadge.textContent = 'CACHE HIT';
+        cBadge.className = 'px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800';
+      });
+
+      const rootNode = document.getElementById('node-root');
+      const rootPill = document.getElementById('root-status-pill');
+      rootNode.classList.remove('border-amber-400', 'bg-amber-50/70');
+      rootNode.classList.add('border-emerald-200', 'bg-emerald-50/60');
+      rootPill.textContent = 'SYNCED';
+      rootPill.className = 'px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800';
+
+      Object.keys(blocksState).forEach((key) => {
+        const bNode = document.getElementById(`node-block-${key}`);
+        bNode.classList.remove('border-amber-500', 'bg-amber-50');
+      });
+
+      highlightedNodes.clear();
+
+      // If a block was just modified, highlight ONLY its upward path
+      if (changedBlockKey) {
+        const changedBlock = blocksState[changedBlockKey];
+        highlightedNodes.add(`block-${changedBlockKey}`);
+        highlightedNodes.add('root');
+
+        const bNode = document.getElementById(`node-block-${changedBlockKey}`);
+        bNode.classList.add('border-amber-500', 'bg-amber-50');
+
+        rootNode.classList.remove('border-emerald-200', 'bg-emerald-50/60');
+        rootNode.classList.add('border-amber-400', 'bg-amber-50/70');
+        rootPill.textContent = 'RE-HASHED (O(log N))';
+        rootPill.className = 'px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800';
+
+        changedBlock.protocols.forEach((pKey) => {
+          highlightedNodes.add(`proto-${pKey}`);
+          const pNode = document.getElementById(`node-proto-${pKey}`);
+          const cBadge = document.getElementById(`cache-proto-${pKey}`);
+          pNode.classList.remove('border-emerald-200', 'bg-white');
+          pNode.classList.add('border-amber-400', 'bg-amber-50/70');
+          cBadge.textContent = 'INVALIDATED -> REBUILT';
+          cBadge.className = 'px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500 text-white';
+        });
+      }
+
+      drawMerkleLines();
+    }
+
+    function drawMerkleLines() {
+      const svg = document.getElementById('tree-svg-lines');
+      const wrapper = document.getElementById('merkle-tree-wrapper');
+      if (!svg || !wrapper || wrapper.offsetParent === null) return;
+
+      const wrapRect = wrapper.getBoundingClientRect();
+      svg.innerHTML = '';
+
+      const connections = [
+        // Root to Protocols
+        { from: 'node-root', to: 'node-proto-stroke', active: highlightedNodes.has('proto-stroke') },
+        { from: 'node-root', to: 'node-proto-mi', active: highlightedNodes.has('proto-mi') },
+        { from: 'node-root', to: 'node-proto-htn', active: highlightedNodes.has('proto-htn') },
+        // Protocols to Blocks
+        { from: 'node-proto-stroke', to: 'node-block-b1', active: highlightedNodes.has('block-b1') },
+        { from: 'node-proto-stroke', to: 'node-block-b2', active: highlightedNodes.has('block-b2'), shared: true },
+        { from: 'node-proto-stroke', to: 'node-block-b3', active: highlightedNodes.has('block-b3') },
+        { from: 'node-proto-mi', to: 'node-block-b4', active: highlightedNodes.has('block-b4') },
+        { from: 'node-proto-mi', to: 'node-block-b2', active: highlightedNodes.has('block-b2'), shared: true },
+        { from: 'node-proto-mi', to: 'node-block-b5', active: highlightedNodes.has('block-b5') },
+        { from: 'node-proto-htn', to: 'node-block-b6', active: highlightedNodes.has('block-b6') },
+        { from: 'node-proto-htn', to: 'node-block-b7', active: highlightedNodes.has('block-b7') },
+      ];
+
+      connections.forEach((conn) => {
+        const elFrom = document.getElementById(conn.from);
+        const elTo = document.getElementById(conn.to);
+        if (!elFrom || !elTo) return;
+
+        const r1 = elFrom.getBoundingClientRect();
+        const r2 = elTo.getBoundingClientRect();
+
+        const x1 = r1.left + r1.width / 2 - wrapRect.left;
+        const y1 = r1.bottom - wrapRect.top;
+        const x2 = r2.left + r2.width / 2 - wrapRect.left;
+        const y2 = r2.top - wrapRect.top;
+
+        const midY = (y1 + y2) / 2;
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d', `M ${x1} ${y1} C ${x1} ${midY}, ${x2} ${midY}, ${x2} ${y2}`);
+        path.setAttribute('fill', 'none');
+        path.setAttribute('class', 'svg-line');
+
+        if (conn.active) {
+          path.setAttribute('stroke', '#f59e0b');
+          path.setAttribute('stroke-width', '3');
+          path.setAttribute('stroke-dasharray', '6 3');
+        } else if (conn.shared) {
+          path.setAttribute('stroke', '#818cf8');
+          path.setAttribute('stroke-width', '2');
+          path.setAttribute('opacity', '0.75');
+        } else {
+          path.setAttribute('stroke', '#cbd5e1');
+          path.setAttribute('stroke-width', '1.75');
+          path.setAttribute('opacity', '0.7');
+        }
+
+        svg.appendChild(path);
+      });
+    }
+
+    function selectBlock(key) {
+      selectedBlockKey = key;
+      const b = blocksState[key];
+
+      document.getElementById('editor-block-title').textContent = b.title;
+      document.getElementById('editor-block-id').textContent = `block:${b.id}`;
+      document.getElementById('editor-field1-label').textContent = b.f1Label;
+      document.getElementById('editor-field1').value = b.f1Val;
+      document.getElementById('editor-field2-label').textContent = b.f2Label;
+      document.getElementById('editor-field2').value = b.f2Val;
+
+      const presetsBox = document.getElementById('quick-presets-box');
+      if (key === 'b2') {
+        presetsBox.classList.remove('hidden');
+      } else {
+        presetsBox.classList.add('hidden');
+      }
+
+      renderMerkleTree(highlightedNodes.size > 0 ? Array.from(highlightedNodes).find(x => x.startsWith('block-'))?.replace('block-', '') : null);
+    }
+
+    function applyPreset(v1, v2) {
+      document.getElementById('editor-field1').value = v1;
+      document.getElementById('editor-field2').value = v2;
+    }
+
+    function saveBlockChanges() {
+      const b = blocksState[selectedBlockKey];
+      const newF1 = document.getElementById('editor-field1').value.trim();
+      const newF2 = document.getElementById('editor-field2').value.trim();
+
+      if (newF1 === b.f1Val && newF2 === b.f2Val) {
+        document.getElementById('hash-calc-badge').textContent = 'Không có thay đổi nội dung (Hash giữ nguyên)';
+        return;
+      }
+
+      // Build RFC 6902 JSON Patch operations
+      const ops = [];
+      if (newF1 !== b.f1Val) {
+        ops.push({
+          op: 'replace',
+          path: `/blocks/${b.id}/primary_value`,
+          old_value: b.f1Val,
+          new_value: newF1
+        });
+      }
+      if (newF2 !== b.f2Val) {
+        ops.push({
+          op: 'replace',
+          path: `/blocks/${b.id}/secondary_value`,
+          old_value: b.f2Val,
+          new_value: newF2
+        });
+      }
+
+      // Save snapshot for rollback
+      patchHistory.unshift({
+        revision_id: `rev_${1000 + patchHistory.length + 1}`,
+        blockKey: selectedBlockKey,
+        blockId: b.id,
+        prevF1: b.f1Val,
+        prevF2: b.f2Val,
+        prevVersion: b.version,
+        timestamp: new Date().toLocaleTimeString('vi-VN'),
+        operations: ops
+      });
+
+      // Apply update
+      b.f1Val = newF1;
+      b.f2Val = newF2;
+      b.version += 1;
+
+      renderMerkleTree(selectedBlockKey);
+      renderPatchLog();
+
+      // Update status & explanation
+      const affectedCount = b.protocols.length;
+      const unaffectedCount = 3 - affectedCount;
+      const hashRecomputedCount = 1 + affectedCount + 1; // block + affected protocols + root
+
+      document.getElementById('hash-calc-badge').textContent = `Đã tính lại ${hashRecomputedCount}/11 mã băm (0.04ms)`;
+
+      const protoNames = b.protocols.map(p => p === 'stroke' ? 'Đột quỵ cấp' : p === 'mi' ? 'Nhồi máu cơ tim' : 'Tăng huyết áp').join(' & ');
+      document.getElementById('tab1-trace-text').innerHTML = `
+        1. Đã cập nhật <span class="text-amber-300 font-mono">block:${b.id}</span> lên <span class="text-white font-mono">v${b.version}</span> và sinh bản ghi Delta chỉ nặng <strong>${JSON.stringify(ops).length} bytes</strong>.<br/>
+        2. Phát lệnh <span class="text-indigo-300 font-mono">revalidateTag('block:${b.id}')</span> &rarr; Tự động làm mới Cache của <strong>${affectedCount} phác đồ (${protoNames})</strong>.<br/>
+        3. <strong>${unaffectedCount} phác đồ còn lại</strong> giữ nguyên trạng thái <span class="text-emerald-400 font-mono">CACHE HIT</span> mà không cần truy vấn lại Database.
+      `;
+    }
+
+    function renderPatchLog() {
+      const container = document.getElementById('json-patch-container');
+      const rollbackBtn = document.getElementById('btn-rollback');
+
+      if (patchHistory.length === 0) {
+        rollbackBtn.disabled = true;
+        container.innerHTML = `<div class="text-slate-500 italic">// Chưa có thay đổi nào được ghi nhận. Hãy chỉnh sửa một Block và bấm Lưu.</div>`;
+        return;
+      }
+
+      rollbackBtn.disabled = false;
+      container.innerHTML = patchHistory.map((item, idx) => `
+        <div class="${idx > 0 ? 'mt-3 pt-3 border-t border-slate-800 opacity-75' : ''}">
+          <div class="flex items-center justify-between text-[10px] text-slate-400 mb-1">
+            <span class="text-teal-400 font-bold">${item.revision_id} • block:${item.blockId}</span>
+            <span>${item.timestamp}</span>
+          </div>
+          <pre class="text-[11px] leading-relaxed text-amber-200 whitespace-pre-wrap">${JSON.stringify(item.operations, null, 2)}</pre>
+        </div>
+      `).join('');
+    }
+
+    function rollbackLastChange() {
+      if (patchHistory.length === 0) return;
+      const last = patchHistory.shift();
+      const b = blocksState[last.blockKey];
+
+      b.f1Val = last.prevF1;
+      b.f2Val = last.prevF2;
+      b.version = last.prevVersion;
+
+      if (selectedBlockKey === last.blockKey) {
+        document.getElementById('editor-field1').value = b.f1Val;
+        document.getElementById('editor-field2').value = b.f2Val;
+      }
+
+      renderMerkleTree(patchHistory.length > 0 ? patchHistory[0].blockKey : null);
+      renderPatchLog();
+
+      document.getElementById('hash-calc-badge').textContent = `Đã Rollback block:${b.id} về v${b.version}`;
+      document.getElementById('tab1-trace-text').innerHTML = `
+        Đã hoàn tác (Rollback) thay đổi trên <span class="text-amber-300 font-mono">block:${b.id}</span> bằng cách áp dụng ngược bản ghi <span class="text-teal-300 font-mono">${last.revision_id}</span>. Mã Hash và Cache đã được khôi phục về trạng thái trước đó.
+      `;
+    }
+
+    function resetTab1() {
+      blocksState = JSON.parse(JSON.stringify(initialBlocksData));
+      patchHistory = [];
+      highlightedNodes.clear();
+      selectBlock('b2');
+      renderMerkleTree(null);
+      renderPatchLog();
+      document.getElementById('hash-calc-badge').textContent = 'Sẵn sàng: Bấm vào 1 Block bên dưới';
+      document.getElementById('tab1-trace-text').innerHTML = `
+        Hệ thống đang ở trạng thái ổn định. Tất cả 3 trang phác đồ đều được phục vụ từ bộ nhớ đệm (<span class="text-emerald-400 font-mono">CACHE HIT</span>) với tốc độ ~1ms. Hãy chọn một Block ở Tầng 3 để bắt đầu chỉnh sửa.
+      `;
+    }
+
+    // =========================================================================
+    // TAB 2: CONCURRENCY CONTROL (LWW vs OPTIMISTIC LOCKING)
+    // =========================================================================
+    let concurrencyMode = 'LWW'; // 'LWW' | 'OPTIMISTIC'
+    let dbState = {
+      version: 1,
+      value: '90 mg (Chuẩn quốc tế)',
+      author: 'Hệ thống gốc'
+    };
+    let docVersions = { A: 1, B: 1 };
+    let pendingConflict = null;
+
+    function setConcurrencyMode(mode) {
+      concurrencyMode = mode;
+      const btnLww = document.getElementById('mode-lww-btn');
+      const btnOpt = document.getElementById('mode-opt-btn');
+
+      if (mode === 'LWW') {
+        btnLww.className = 'px-3 py-2 rounded-lg text-xs font-semibold transition bg-rose-600 text-white shadow-sm';
+        btnOpt.className = 'px-3 py-2 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 transition';
+      } else {
+        btnOpt.className = 'px-3 py-2 rounded-lg text-xs font-semibold transition bg-teal-600 text-white shadow-sm';
+        btnLww.className = 'px-3 py-2 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 transition';
+      }
+
+      resetTab2();
+    }
+
+    function updateSqlPreviews() {
+      const valA = document.getElementById('input-docA').value;
+      const valB = document.getElementById('input-docB').value;
+
+      if (concurrencyMode === 'LWW') {
+        document.getElementById('sql-preview-A').textContent = `UPDATE blocks SET val = '${valA}' WHERE id = 'alteplase';`;
+        document.getElementById('sql-preview-B').textContent = `UPDATE blocks SET val = '${valB}' WHERE id = 'alteplase';`;
+      } else {
+        document.getElementById('sql-preview-A').textContent = `UPDATE blocks SET val = '${valA}', ver = ${docVersions.A + 1} WHERE id = 'alteplase' AND ver = ${docVersions.A};`;
+        document.getElementById('sql-preview-B').textContent = `UPDATE blocks SET val = '${valB}', ver = ${docVersions.B + 1} WHERE id = 'alteplase' AND ver = ${docVersions.B};`;
+      }
+    }
+
+    document.getElementById('input-docA').addEventListener('input', updateSqlPreviews);
+    document.getElementById('input-docB').addEventListener('input', updateSqlPreviews);
+
+    function saveDoctor(doc) {
+      const inputVal = document.getElementById(`input-doc${doc}`).value.trim();
+      const statusEl = document.getElementById(`status-doc${doc}`);
+      const alertBox = document.getElementById('db-alert-box');
+      const docName = doc === 'A' ? 'BS. Nguyễn Văn A' : 'BS. Trần Thị B';
+      const otherDoc = doc === 'A' ? 'B' : 'A';
+
+      if (concurrencyMode === 'LWW') {
+        const hadPriorEdit = dbState.version > 1 && dbState.author !== docName;
+        const overwrittenVal = dbState.value;
+        const overwrittenAuthor = dbState.author;
+
+        dbState.version += 1;
+        dbState.value = inputVal;
+        dbState.author = docName;
+        docVersions[doc] = dbState.version;
+
+        document.getElementById('db-version-badge').textContent = `version = ${dbState.version}`;
+        document.getElementById('db-current-value').textContent = dbState.value;
+        document.getElementById('db-last-author').textContent = dbState.author;
+        document.getElementById(`doc${doc}-local-ver`).textContent = `Đang giữ: v${docVersions[doc]}`;
+
+        statusEl.textContent = `Đã ghi đè trực tiếp vào Database lúc ${new Date().toLocaleTimeString('vi-VN')}`;
+        statusEl.className = 'text-xs text-center font-semibold text-emerald-600 min-h-[1.25rem]';
+
+        if (hadPriorEdit) {
+          alertBox.classList.remove('hidden');
+          alertBox.className = 'mt-4 rounded-xl p-3 text-xs font-medium flex items-start gap-2.5 bg-rose-500/20 border border-rose-500 text-rose-200';
+          alertBox.innerHTML = `
+            <span class="px-2 py-0.5 rounded bg-rose-600 text-white font-bold shrink-0">LOST UPDATE!</span>
+            <span><strong>${docName}</strong> vừa âm thầm ghi đè và làm mất hoàn toàn chỉnh sửa trước đó của <strong>${overwrittenAuthor}</strong> (<em>"${overwrittenVal}"</em>) mà không có bất kỳ cảnh báo nào!</span>
+          `;
+        } else {
+          alertBox.classList.remove('hidden');
+          alertBox.className = 'mt-4 rounded-xl p-3 text-xs font-medium flex items-start gap-2.5 bg-teal-500/15 border border-teal-500/40 text-teal-200';
+          alertBox.innerHTML = `
+            <span class="px-2 py-0.5 rounded bg-teal-600 text-white font-bold shrink-0">OK</span>
+            <span><strong>${docName}</strong> đã lưu thành công. Bây giờ hãy thử bấm Lưu ở màn hình của <strong>BS. ${otherDoc}</strong> để xem hiện tượng mất dữ liệu.</span>
+          `;
+        }
+      } else {
+        // OPTIMISTIC LOCKING MODE
+        const clientVer = docVersions[doc];
+        if (clientVer === dbState.version) {
+          dbState.version += 1;
+          dbState.value = inputVal;
+          dbState.author = docName;
+          docVersions[doc] = dbState.version;
+
+          document.getElementById('db-version-badge').textContent = `version = ${dbState.version}`;
+          document.getElementById('db-current-value').textContent = dbState.value;
+          document.getElementById('db-last-author').textContent = dbState.author;
+          document.getElementById(`doc${doc}-local-ver`).textContent = `Đang giữ: v${docVersions[doc]}`;
+
+          statusEl.textContent = `Lưu thành công! Phiên bản tăng lên v${dbState.version}`;
+          statusEl.className = 'text-xs text-center font-semibold text-emerald-600 min-h-[1.25rem]';
+
+          alertBox.classList.remove('hidden');
+          alertBox.className = 'mt-4 rounded-xl p-3 text-xs font-medium flex items-start gap-2.5 bg-emerald-500/15 border border-emerald-500/40 text-emerald-200';
+          alertBox.innerHTML = `
+            <span class="px-2 py-0.5 rounded bg-emerald-600 text-white font-bold shrink-0">200 OK</span>
+            <span>Điều kiện <code>WHERE ver = ${clientVer}</code> khớp! <strong>${docName}</strong> đã cập nhật dữ liệu lên <strong>v${dbState.version}</strong>.</span>
+          `;
+          document.getElementById('conflict-resolution-panel').classList.add('hidden');
+        } else {
+          // CONFLICT DETECTED!
+          statusEl.textContent = `Bị từ chối (409 Conflict): Bạn đang sửa trên v${clientVer}, DB đã là v${dbState.version}`;
+          statusEl.className = 'text-xs text-center font-bold text-rose-600 min-h-[1.25rem]';
+
+          alertBox.classList.remove('hidden');
+          alertBox.className = 'mt-4 rounded-xl p-3 text-xs font-medium flex items-start gap-2.5 bg-amber-500/20 border border-amber-500 text-amber-200';
+          alertBox.innerHTML = `
+            <span class="px-2 py-0.5 rounded bg-amber-600 text-white font-bold shrink-0">CHẶN GHI ĐÈ</span>
+            <span>SQL trả về <code>0 rows affected</code> vì điều kiện <code>WHERE ver = ${clientVer}</code> không còn đúng (Server đang là <code>v${dbState.version}</code>). Dữ liệu của <strong>${dbState.author}</strong> được bảo toàn!</span>
+          `;
+
+          pendingConflict = { doc, docName, clientVal: inputVal };
+          document.getElementById('conflict-server-val').textContent = `${dbState.value} (bởi ${dbState.author} - v${dbState.version})`;
+          document.getElementById('conflict-client-val').textContent = `${inputVal} (bởi ${docName} - trên nền v${clientVer})`;
+          document.getElementById('conflict-resolution-panel').classList.remove('hidden');
+        }
+      }
+
+      updateSqlPreviews();
+    }
+
+    function resolveConflict(action) {
+      if (!pendingConflict) return;
+      const { doc, docName, clientVal } = pendingConflict;
+      const statusEl = document.getElementById(`status-doc${doc}`);
+      const alertBox = document.getElementById('db-alert-box');
+
+      if (action === 'KEEP_SERVER') {
+        document.getElementById(`input-doc${doc}`).value = dbState.value;
+        docVersions[doc] = dbState.version;
+        document.getElementById(`doc${doc}-local-ver`).textContent = `Đang giữ: v${dbState.version}`;
+        statusEl.textContent = `Đã đồng bộ lại bản mới nhất (v${dbState.version}) từ Server`;
+        statusEl.className = 'text-xs text-center font-semibold text-teal-600 min-h-[1.25rem]';
+      } else if (action === 'MERGE') {
+        const mergedVal = `${dbState.value} + ${clientVal}`;
+        dbState.version += 1;
+        dbState.value = mergedVal;
+        dbState.author = `${docName} (Hợp nhất)`;
+        docVersions[doc] = dbState.version;
+
+        document.getElementById(`input-doc${doc}`).value = mergedVal;
+        document.getElementById('db-version-badge').textContent = `version = ${dbState.version}`;
+        document.getElementById('db-current-value').textContent = dbState.value;
+        document.getElementById('db-last-author').textContent = dbState.author;
+        document.getElementById(`doc${doc}-local-ver`).textContent = `Đang giữ: v${dbState.version}`;
+
+        statusEl.textContent = `Đã hợp nhất cả 2 thay đổi thành công lên v${dbState.version}!`;
+        statusEl.className = 'text-xs text-center font-semibold text-emerald-600 min-h-[1.25rem]';
+
+        alertBox.className = 'mt-4 rounded-xl p-3 text-xs font-medium flex items-start gap-2.5 bg-emerald-500/15 border border-emerald-500/40 text-emerald-200';
+        alertBox.innerHTML = `<span class="px-2 py-0.5 rounded bg-emerald-600 text-white font-bold shrink-0">MERGED</span><span>Không mất bất kỳ thông tin y khoa nào! Cả hai chỉnh sửa đã được gộp an toàn tại <strong>v${dbState.version}</strong>.</span>`;
+      } else if (action === 'FORCE_OVERWRITE') {
+        dbState.version += 1;
+        dbState.value = clientVal;
+        dbState.author = `${docName} (Xác nhận ghi đè)`;
+        docVersions[doc] = dbState.version;
+
+        document.getElementById('db-version-badge').textContent = `version = ${dbState.version}`;
+        document.getElementById('db-current-value').textContent = dbState.value;
+        document.getElementById('db-last-author').textContent = dbState.author;
+        document.getElementById(`doc${doc}-local-ver`).textContent = `Đang giữ: v${dbState.version}`;
+
+        statusEl.textContent = `Đã ghi đè có chủ đích lên v${dbState.version}`;
+        statusEl.className = 'text-xs text-center font-semibold text-amber-600 min-h-[1.25rem]';
+      }
+
+      pendingConflict = null;
+      document.getElementById('conflict-resolution-panel').classList.add('hidden');
+      updateSqlPreviews();
+    }
+
+    function resetTab2() {
+      dbState = {
+        version: 1,
+        value: '90 mg (Chuẩn quốc tế)',
+        author: 'Hệ thống gốc'
+      };
+      docVersions = { A: 1, B: 1 };
+      pendingConflict = null;
+
+      document.getElementById('input-docA').value = '50 mg (Giảm liều cho người > 80 tuổi)';
+      document.getElementById('input-docB').value = '90 mg (Chống chỉ định nếu INR > 1.7)';
+      document.getElementById('db-version-badge').textContent = 'version = 1';
+      document.getElementById('db-current-value').textContent = dbState.value;
+      document.getElementById('db-last-author').textContent = dbState.author;
+      document.getElementById('docA-local-ver').textContent = 'Đang giữ: v1';
+      document.getElementById('docB-local-ver').textContent = 'Đang giữ: v1';
+      document.getElementById('status-docA').textContent = '';
+      document.getElementById('status-docB').textContent = '';
+      document.getElementById('db-alert-box').classList.add('hidden');
+      document.getElementById('conflict-resolution-panel').classList.add('hidden');
+
+      updateSqlPreviews();
+    }
+
+    // =========================================================================
+    // TAB 3: INCREMENTAL SYNC VIA GLOBAL SEQUENCE NUMBER (since_seq)
+    // =========================================================================
+    const initialServerChanges = [
+      { seq: 99, block: 'block:aspirin', action: 'Cập nhật liều nạp 325mg', time: '07:45' },
+      { seq: 100, block: 'block:pci', action: 'Cập nhật mốc Door-to-Balloon < 90p', time: '08:00' },
+      { seq: 101, block: 'block:alteplase', action: 'Sửa liều tối đa 90mg -> 50mg (người cao tuổi)', time: '09:12' },
+      { seq: 102, block: 'block:nicardipine', action: 'Bổ sung cảnh báo truyền tĩnh mạch', time: '10:05' },
+      { seq: 103, block: 'block:stroke-bp', action: 'Điều chỉnh ngưỡng HA < 180/105 mmHg', time: '11:30' },
+      { seq: 104, block: 'block:htn-grade', action: 'Cập nhật tiêu chuẩn chẩn đoán ESC 2026', time: '13:15' }
+    ];
+
+    let serverChanges = JSON.parse(JSON.stringify(initialServerChanges));
+    let clientSeq = 100;
+
+    function renderTab3() {
+      const maxServerSeq = serverChanges[serverChanges.length - 1].seq;
+      const pendingCount = maxServerSeq - clientSeq;
+
+      document.getElementById('client-seq-val').textContent = clientSeq;
+      document.getElementById('server-seq-val').textContent = maxServerSeq;
+      document.getElementById('sql-since-val').textContent = clientSeq;
+      document.getElementById('sync-btn-sub').textContent = `GET /api/sync?since_seq=${clientSeq}`;
+      document.getElementById('res-size-label').textContent = pendingCount > 0 ? `~${(pendingCount * 0.3).toFixed(1)} KB` : '0.05 KB (Empty)';
+
+      const statusBadge = document.getElementById('client-sync-status');
+      if (pendingCount > 0) {
+        statusBadge.textContent = `Cần đồng bộ (+${pendingCount})`;
+        statusBadge.className = 'px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800';
+      } else {
+        statusBadge.textContent = 'Đã đồng bộ 100%';
+        statusBadge.className = 'px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800';
+      }
+
+      const listEl = document.getElementById('server-seq-list');
+      listEl.innerHTML = serverChanges.map((item) => {
+        const isNew = item.seq > clientSeq;
+        return `
+          <div class="p-2.5 rounded-xl border ${isNew ? 'bg-amber-500/10 border-amber-500/40 text-amber-100' : 'bg-slate-800/60 border-slate-800 text-slate-400'} flex items-center justify-between gap-2">
+            <div class="min-w-0">
+              <div class="flex items-center gap-2">
+                <span class="px-1.5 py-0.5 rounded text-[10px] font-bold ${isNew ? 'bg-amber-500 text-slate-950' : 'bg-slate-700 text-slate-300'}">seq: ${item.seq}</span>
+                <span class="text-teal-300 font-semibold truncate">${item.block}</span>
+              </div>
+              <div class="text-[11px] mt-1 truncate ${isNew ? 'text-white' : 'text-slate-500'}">${item.action}</div>
+            </div>
+            <span class="text-[10px] shrink-0 ${isNew ? 'text-amber-300 font-bold' : 'text-slate-500'}">
+              ${isNew ? 'MỚI' : 'Đã có'}
+            </span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function simulateNewServerEdit() {
+      const nextSeq = serverChanges[serverChanges.length - 1].seq + 1;
+      const sampleBlocks = ['block:warfarin', 'block:heparin', 'block:insulin', 'block:ceftriaxone', 'block:metformin'];
+      const sampleActions = [
+        'Cập nhật hiệu chỉnh liều theo mức lọc cầu thận (eGFR)',
+        'Bổ sung tương tác thuốc mức độ nặng',
+        'Cập nhật phác đồ xử trí sốc phản vệ đi kèm',
+        'Sửa đơn vị tính từ mcg sang mg'
+      ];
+      const randomBlock = sampleBlocks[nextSeq % sampleBlocks.length];
+      const randomAction = sampleActions[nextSeq % sampleActions.length];
+
+      serverChanges.push({
+        seq: nextSeq,
+        block: randomBlock,
+        action: randomAction,
+        time: new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })
+      });
+
+      renderTab3();
+    }
+
+    function runIncrementalSync() {
+      const maxServerSeq = serverChanges[serverChanges.length - 1].seq;
+      const deltaItems = serverChanges.filter((item) => item.seq > clientSeq);
+
+      const reqPacket = document.getElementById('req-packet');
+      const resPacket = document.getElementById('res-packet');
+
+      reqPacket.textContent = `since_seq=${clientSeq}`;
+      reqPacket.classList.remove('hidden', 'animate-packet');
+      void reqPacket.offsetWidth; // trigger reflow
+      reqPacket.classList.add('animate-packet');
+
+      setTimeout(() => {
+        resPacket.textContent = deltaItems.length > 0 ? `${deltaItems.length} Delta Rows` : '0 Changes';
+        resPacket.classList.remove('hidden', 'animate-packet-return');
+        void resPacket.offsetWidth;
+        resPacket.classList.add('animate-packet-return');
+      }, 650);
+
+      setTimeout(() => {
+        const receivedListEl = document.getElementById('client-received-list');
+        if (deltaItems.length > 0) {
+          receivedListEl.innerHTML = deltaItems.map((item) => `
+            <div class="p-2 rounded-lg bg-emerald-50 border border-emerald-200 text-xs flex items-center justify-between gap-2">
+              <div class="truncate">
+                <span class="font-mono font-bold text-emerald-800">[seq:${item.seq}]</span>
+                <span class="font-semibold text-slate-800">${item.block}:</span>
+                <span class="text-slate-600">${item.action}</span>
+              </div>
+              <span class="text-[10px] font-bold text-emerald-700 shrink-0">ĐÃ GỘP</span>
+            </div>
+          `).join('');
+
+          const kbTransferred = (deltaItems.length * 0.3).toFixed(1);
+          document.getElementById('sync-bandwidth-saved').textContent = `${kbTransferred} KB (Tiết kiệm 99.99%)`;
+        } else {
+          document.getElementById('sync-bandwidth-saved').textContent = `0.05 KB (Không có dữ liệu mới)`;
+        }
+
+        clientSeq = maxServerSeq;
+        renderTab3();
+      }, 1450);
+    }
+
+    function resetTab3() {
+      serverChanges = JSON.parse(JSON.stringify(initialServerChanges));
+      clientSeq = 100;
+      document.getElementById('client-received-list').innerHTML = `
+        <div class="text-xs text-slate-400 italic bg-slate-50 p-2.5 rounded-lg border border-dashed border-slate-200">
+          Đang dừng ở mốc seq = 100. Bấm nút "Mở trang web / Đồng bộ ngay" ở giữa để cập nhật.
+        </div>
+      `;
+      document.getElementById('sync-bandwidth-saved').textContent = 'Chưa chạy';
+      document.getElementById('req-packet').classList.add('hidden');
+      document.getElementById('res-packet').classList.add('hidden');
+      renderTab3();
+    }
+
+    // =========================================================================
+    // INITIALIZE ON LOAD
+    // =========================================================================
+    window.addEventListener('DOMContentLoaded', () => {
+      renderMerkleTree(null);
+      updateSqlPreviews();
+      renderTab3();
+    });
+
+    window.addEventListener('resize', () => {
+      drawMerkleLines();
+    });
+  </script>
+</body>
+</html>

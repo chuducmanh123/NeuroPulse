@@ -19,7 +19,7 @@
 2. Empty or invalid patient inputs ⇒ no computed dose anywhere (cards, omnibar, copy, print, drawer).
 3. Records with `status !== "verified"` or hash mismatch ⇒ treated as draft ⇒ no dosing numbers rendered.
 4. Next.js 16 has breaking changes: read the relevant guide in `node_modules/next/dist/docs/` before writing routes, metadata, manifest, service worker, or server code.
-5. No new dependencies, no Supabase, no edits to other apps beyond: AppSwitcher NeuroRx `href`, mounting the NeuroRx section in `src/app/admin/page.tsx`. Ask first otherwise.
+5. Supabase is allowed only through the Sync v2 design in `tasks/neurorx-sync/00-design-neurorx-sync.md` (tables `neurorx_drug_records`, `neurorx_drug_revisions`, `neurorx_sync_state`, `neurorx_sync_config`). No new dependencies. No edits to other apps beyond: AppSwitcher NeuroRx `href`, mounting the NeuroRx section in `src/app/admin/page.tsx`. Ask first otherwise.
 6. Each task touches ≤ ~5 files (data files excepted). Finish with `npm test` and `npm run build` green; report the output.
 7. Do not delete or weaken existing tests; do not add `@ts-ignore`/`eslint-disable` to get green.
 

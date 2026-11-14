@@ -27,12 +27,16 @@ import { ToolsRow } from "./ToolsRow";
 import { DrugAccordions } from "./DrugAccordions";
 import { AuditTrail } from "./AuditTrail";
 import { EditDrugModal } from "@/components/neurorx/admin/EditDrugModal";
+import { HistoryPanel } from "@/components/neurorx/admin/HistoryPanel";
+import type { SyncRow } from "@/lib/neurorx/sync/types";
 
 interface DrugDetailProps {
   drugItem: DrugWithEffectiveStatus;
   sources?: Source[];
   onBack: () => void;
   darkMode?: boolean;
+  syncRow?: SyncRow | null;
+  onApplyLocalWrite?: (row: SyncRow) => Promise<void> | void;
 }
 
 export function DrugDetail({
@@ -40,7 +44,10 @@ export function DrugDetail({
   sources = [],
   onBack,
   darkMode = false,
+  syncRow = null,
+  onApplyLocalWrite,
 }: DrugDetailProps) {
+  const isSyncV2 = process.env.NEXT_PUBLIC_NEURORX_SYNC_V2 === "1";
   const searchParams = useSearchParams();
   const { initFromSearchParams, patientParsed } = useNeuroRxStore();
 
@@ -49,6 +56,7 @@ export function DrugDetail({
   const [selectedRegimenIndex, setSelectedRegimenIndex] = useState(0);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [historyRow, setHistoryRow] = useState<SyncRow | null>(null);
 
   useEffect(() => {
     setCurrentDrugItem(drugItem);
@@ -82,6 +90,16 @@ export function DrugDetail({
   const blackBox = drug.black_box?.value;
 
   const handleSaveDrug = async (updatedDrug: DrugRecord, oldId?: string): Promise<boolean> => {
+    if (isSyncV2) {
+      setCurrentDrugItem({
+        drug: updatedDrug,
+        effectiveStatus: updatedDrug.status === "verified" ? "verified" : "draft",
+        hashMatches: true,
+      });
+      window.dispatchEvent(new CustomEvent("neurorx_drug_updated"));
+      return true;
+    }
+
     let token = getStoredAdminToken();
     if (!token) {
       const input = window.prompt("Enter Admin Passcode to save drug updates (default: @neuro2026):");
@@ -424,6 +442,37 @@ export function DrugDetail({
           onClose={() => setIsEditModalOpen(false)}
           onSave={handleSaveDrug}
           darkMode={darkMode}
+          syncRow={isSyncV2 ? syncRow : null}
+          onApplyLocalWrite={isSyncV2 ? onApplyLocalWrite : undefined}
+          onOpenHistory={
+            isSyncV2
+              ? (row) => {
+                  setIsEditModalOpen(false);
+                  setHistoryRow(row);
+                }
+              : undefined
+          }
+        />
+      )}
+
+      {isSyncV2 && historyRow && (
+        <HistoryPanel
+          isOpen={true}
+          uid={historyRow.uid}
+          drugName={historyRow.data.generic_name || historyRow.slug}
+          currentRev={historyRow.rev}
+          darkMode={darkMode}
+          onClose={() => setHistoryRow(null)}
+          onRestored={async (restoredRow) => {
+            await onApplyLocalWrite?.(restoredRow);
+            setCurrentDrugItem({
+              drug: restoredRow.data,
+              effectiveStatus:
+                restoredRow.data.status === "verified" ? "verified" : "draft",
+              hashMatches: false,
+            });
+            setHistoryRow(restoredRow);
+          }}
         />
       )}
     </div>

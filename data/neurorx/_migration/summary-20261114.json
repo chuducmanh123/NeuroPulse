@@ -1,0 +1,432 @@
+{
+  "total": 69,
+  "countByEffectiveStatus": {
+    "verified": 1,
+    "draft": 68,
+    "retired": 0
+  },
+  "hashMatchCount": 1,
+  "slugs": [
+    "acyclovir",
+    "alteplase",
+    "amantadine",
+    "amitriptyline",
+    "ampicillin",
+    "apixaban",
+    "aspirin",
+    "atorvastatin",
+    "azathioprine",
+    "baclofen",
+    "brivaracetam",
+    "carbamazepine",
+    "ceftriaxone",
+    "clobazam",
+    "clopidogrel",
+    "dabigatran",
+    "dantrolene",
+    "dexamethasone",
+    "diazepam",
+    "donanemab",
+    "donepezil",
+    "duloxetine",
+    "eculizumab",
+    "edoxaban",
+    "efgartigimod",
+    "entacapone",
+    "erenumab",
+    "gabapentin",
+    "idarucizumab",
+    "ivig",
+    "labetalol",
+    "lacosamide",
+    "lamotrigine",
+    "lecanemab",
+    "levetiracetam-oral",
+    "levodopa-carbidopa",
+    "memantine",
+    "methylprednisolone",
+    "midazolam",
+    "mycophenolate",
+    "nicardipine",
+    "nimodipine",
+    "oxcarbazepine",
+    "perampanel",
+    "phenobarbital",
+    "phenytoin",
+    "phytonadione",
+    "pramipexole",
+    "prednisolone",
+    "pregabalin",
+    "protamine",
+    "prothrombin-complex-concentrate",
+    "pyridostigmine",
+    "rasagiline",
+    "ravulizumab",
+    "rimegepant",
+    "rituximab",
+    "rivaroxaban",
+    "rivastigmine",
+    "ropinirole",
+    "sumatriptan",
+    "tenecteplase",
+    "ticagrelor",
+    "tizanidine",
+    "topiramate",
+    "trihexyphenidyl",
+    "valproate",
+    "vancomycin",
+    "warfarin"
+  ],
+  "perSlugContentHash": {
+    "acyclovir": "4d8af7b64e587d89ffe79e359df6808b6729e144d6567be2afffe2f3c95c9fca",
+    "alteplase": "7fc8a6bde2a4cb953c7ee6ca91c42ab10757bb558f3d25bca2cc7a6290a083af",
+    "amantadine": "d72d1aa585402176fa5c3f213bf1113e41ff588642f256b4e6ef0bca3f95c6b6",
+    "amitriptyline": "d224e78351e1d8e2cb8c63efa02cb7937afe85976f0c73dcd49ce46caec86053",
+    "ampicillin": "de21728cb738f858371c5bb3f78ca23d11100be723bfa405f1473d2326f14abc",
+    "apixaban": "eeef38e68dc406796cc11b7025ba68737fffc4bd5abd26ba4f752dfe5ec15976",
+    "aspirin": "4711b58dfa1da5f1ff70a1e3a5f731e092cc606a14e31d1a82f87aa3d8a42c29",
+    "atorvastatin": "81b6f860aa12ede4634e1b970f97e86b4af5d3029e50384ba9f283790c7fa3dd",
+    "azathioprine": "056e263059f75328097afda71398812973c13b1c6167e4220e861e90a9c9e71c",
+    "baclofen": "7a7458d9303cde6b5ee6221c3ac57be0f2e7ef30d8339278393b9f9a9b89e27e",
+    "brivaracetam": "6a1d8219ecefed4b0a11c92a08896048a9baaada23046979d936be402e99d449",
+    "carbamazepine": "1a2cd626d1657091b3e14f9ea053990322d634e7ed1bb8b0e278f5d39fbd5e2e",
+    "ceftriaxone": "7380fce1ce77cb393d53a1c5d3b1670627f2f9f1cb436af6f22363aef0763c91",
+    "clobazam": "703b048a607252101905c2deaed5e7c3e552d28d3d3442957e630cebb8ad883b",
+    "clopidogrel": "99bc59447cbea65b36e54c95e4d2fee4728309daeccadb986be7182bbd0d18d8",
+    "dabigatran": "4d91a12bf5253c8445354553e7f8a036de8ecfcd0ce192b2fd4a2ad023298341",
+    "dantrolene": "7e9fc050221ed4cb4be62d7694b85614a618b204179dc7d737605fa616ffb6c5",
+    "dexamethasone": "2db07796f4fe5559d3503c04982a4da76d3eeff37c1bbd7d914789f439f0a7c5",
+    "diazepam": "0b7ee73098e67dff79faf79e7c75dcb399894e585a5fedb0d74ba446880c4372",
+    "donanemab": "870396ca1979f07e3a4615170fa2edb62fc9734fa02843514ea9abad0bc754e5",
+    "donepezil": "c0138534e84b2a1b2378e5b256177c3f76b1a06b7e9ace5852408e83d157abb2",
+    "duloxetine": "2a7477d9751e348f798ba3ca84f26071ede0bb4cc3c103888d355c756a4d9085",
+    "eculizumab": "ad6ee2cfda7d690cb5d8ae0c9cd98a1fdc355a280fc574254987e88efa251102",
+    "edoxaban": "bca8097be8012c8b90f1c47c634e4510a2808898d893563af62a07e686c8a144",
+    "efgartigimod": "8f400db7c3aa659f37193243612760c21384bb643a5348319f02eb5e002322aa",
+    "entacapone": "033e621d27b3bf8910664c98a90cd804fffda9b6c095bfedd278f915a08b84b7",
+    "erenumab": "bcf4b10693e35f50f8146506c1f77cb941f0585574505fe7acda29c54b382cf9",
+    "gabapentin": "576934a7baa397802ad04a1cbe974e2247b3409b95ae1fb1814d02f26a5b2234",
+    "idarucizumab": "8e651dd7b5c89973cb79c801d167145ab86e7031f7ae86efd4adb14759892eb6",
+    "ivig": "fe30a20bdc3f88be6f7dca22bf25881a82a066e6c990b8ddcc4bacefdc5a457f",
+    "labetalol": "03c0994125077433215115bf11bce86de3026719d709262700a7d98ae4758d92",
+    "lacosamide": "f4be379f9c884c6a993a9ddddd0aa639951fa698083ecad3c21c6157e5471679",
+    "lamotrigine": "298be86a60c11ea9f812042a22ad6d72b0be41da4cb5ad414ce44d693bd91149",
+    "lecanemab": "4b0e54b4089dc666364fd487033ae57621c14da9d66a93288b8dfcfc889ee172",
+    "levetiracetam-oral": "841eaf772655bdcc16daa15cdb097c98ae0de1469f4ee66257dbc2c694e17066",
+    "levodopa-carbidopa": "5e70ab0fcb3badc58564cdd00af36d59604dbd1632b07dd38846ae28400e9f3a",
+    "memantine": "ad97f4513b5e49577e2ecf27819134760ab479b23ee31d25e060f5425da39c2f",
+    "methylprednisolone": "91c73c8af376bf7581b3e16dc4be9167f000a07e8fed25bc4e550bd997a4f6f7",
+    "midazolam": "7156794908d00f6e5e5a2e6cce457537fa2aaffb5637751b78be33ff4db9081a",
+    "mycophenolate": "62ec5b9163048498e9d68c84a2f85297f22b08a03fc37f0ea63c542d7edeee90",
+    "nicardipine": "9d924fe018a376fdc83fc138e83575fbddea49298bd665000fc5d5fc16357e74",
+    "nimodipine": "a9db027772a30364de0b945859f3d874dd02434b274310268a6ab751e87b2519",
+    "oxcarbazepine": "012d2894ab7af4f36c22f6801668a3db4d0a48b9035bce6b46a01eba1d161ddb",
+    "perampanel": "2ecd37e79ea70fdbbbbabd9317f93f17741bee7b557c0df99deff94988e460f7",
+    "phenobarbital": "c46b22c8f6f0cc9db9423fcc30530d17297a3af79c7871495cd5213de6f5c4ca",
+    "phenytoin": "054bd8ee58b4f67fcdc4fae83286f8229b4db92a1cae5a7cec7867cb8f783feb",
+    "phytonadione": "e98b893c120f3a5af043197399d2f7d312e2cef9dc50f1f741d6b6cb7432cb79",
+    "pramipexole": "d348c54981d024b9997ecb3365aa328c1b7e5a580a2dfa5610bf98edc3263857",
+    "prednisolone": "4596502540d78434b3cd0e2fd287a7dcc49cf6a8df1ea13c66ab0f90110aa7c8",
+    "pregabalin": "20f369a2c46ee1bd6ed39f1f907c0a953eddad5809116f8b6fde23e5dc868457",
+    "protamine": "505ac9a7a6dbce5356bbec6d658282f609e8db207efb230f9facadc2a2ddc4fe",
+    "prothrombin-complex-concentrate": "ee55bdd01b688970dc9ffd72c628e6f1901ca09c330177848daa6b50f7e02e2f",
+    "pyridostigmine": "6f6d02ffbce3d13a0fd8fef0a2c174f44654b31a5c5aa62933852871a01f4d88",
+    "rasagiline": "a42a4153c2fda55a3b23185c70d7bd54bf3099cbf9ac85d00a330fb34aaf61e0",
+    "ravulizumab": "4f5651521e6855f7c8df3d4521c8c12e4d9e8067967b826aec167cc174ec9c00",
+    "rimegepant": "78ab61165af90f501cf7e42e210bca3939bdf0417a86b90e8d399feb4a453068",
+    "rituximab": "24e4434633eaced6e53e26380190e4bfe29c841ee5ffd8077b07e0f548c7f0b0",
+    "rivaroxaban": "4a1338bd5d3b7baba99b2f4e59922590d683196171b0f2c8d0be08a2c31a497c",
+    "rivastigmine": "e74cf4623f72a6a16258c145d40130c2cee8777c3fc0061bf222b6b4e06861c8",
+    "ropinirole": "dd9d8964a65417f7d1df40fb97a8090da6e670c9ac2ae0f0d9a5def6e8d15097",
+    "sumatriptan": "e55ab17dc834246848ded5658b29bedb1de1653b4df485676cc279af2786509c",
+    "tenecteplase": "699808e804faf17c7a0e05d7818ab31e77e4e76b2b361cf291a623085250921f",
+    "ticagrelor": "16dd3a829504843f7b659361c3d54b1a4d8b8f341ee32f492b8440fc961901bd",
+    "tizanidine": "118e21be0783e6999e8ddb5e6a5d2f1b2544fbe17b017574a6c0de4391dec4a1",
+    "topiramate": "66d02963b24bd4aa34918005918543b6f1cddcb41fd3cb68f07290fa40eff48c",
+    "trihexyphenidyl": "b1ca64d6baae53b97d8d91fedc6ed32be19610ea609650d356e218babbc328af",
+    "valproate": "47b486b1788c18b86c58a6a6e3d2a541b9cc41503927d37e460b0e3b8c787ba2",
+    "vancomycin": "15679380ed4a480d7bb2c151441b6cd2c8e30f5c6e7dec7770bee6f424df5af6",
+    "warfarin": "3aa541795e267bfca641f2233540d4ea1c7f36a0a83ef16df211209d5aafc923"
+  },
+  "sourceTierHints": {
+    "acyclovir": [
+      "static",
+      "supabase"
+    ],
+    "alteplase": [
+      "static",
+      "supabase"
+    ],
+    "amantadine": [
+      "static",
+      "supabase"
+    ],
+    "amitriptyline": [
+      "static",
+      "supabase"
+    ],
+    "ampicillin": [
+      "static",
+      "supabase"
+    ],
+    "apixaban": [
+      "static",
+      "supabase"
+    ],
+    "aspirin": [
+      "static",
+      "supabase"
+    ],
+    "atorvastatin": [
+      "static",
+      "supabase"
+    ],
+    "azathioprine": [
+      "static",
+      "supabase"
+    ],
+    "baclofen": [
+      "static",
+      "supabase"
+    ],
+    "brivaracetam": [
+      "static",
+      "supabase"
+    ],
+    "carbamazepine": [
+      "static",
+      "supabase"
+    ],
+    "ceftriaxone": [
+      "static",
+      "supabase"
+    ],
+    "clobazam": [
+      "static",
+      "supabase"
+    ],
+    "clopidogrel": [
+      "static",
+      "supabase"
+    ],
+    "dabigatran": [
+      "static",
+      "supabase"
+    ],
+    "dantrolene": [
+      "static",
+      "supabase"
+    ],
+    "dexamethasone": [
+      "static",
+      "supabase"
+    ],
+    "diazepam": [
+      "static",
+      "supabase"
+    ],
+    "donanemab": [
+      "static",
+      "supabase"
+    ],
+    "donepezil": [
+      "static",
+      "supabase"
+    ],
+    "duloxetine": [
+      "static",
+      "supabase"
+    ],
+    "eculizumab": [
+      "static",
+      "supabase"
+    ],
+    "edoxaban": [
+      "static",
+      "supabase"
+    ],
+    "efgartigimod": [
+      "static",
+      "supabase"
+    ],
+    "entacapone": [
+      "static",
+      "supabase"
+    ],
+    "erenumab": [
+      "static",
+      "supabase"
+    ],
+    "gabapentin": [
+      "static",
+      "supabase"
+    ],
+    "idarucizumab": [
+      "static",
+      "supabase"
+    ],
+    "ivig": [
+      "static",
+      "supabase"
+    ],
+    "labetalol": [
+      "static",
+      "supabase"
+    ],
+    "lacosamide": [
+      "static",
+      "supabase"
+    ],
+    "lamotrigine": [
+      "static",
+      "supabase"
+    ],
+    "lecanemab": [
+      "static",
+      "supabase"
+    ],
+    "levetiracetam-oral": [
+      "static",
+      "supabase"
+    ],
+    "levodopa-carbidopa": [
+      "static",
+      "supabase"
+    ],
+    "memantine": [
+      "static",
+      "supabase"
+    ],
+    "methylprednisolone": [
+      "static",
+      "supabase"
+    ],
+    "midazolam": [
+      "static",
+      "supabase"
+    ],
+    "mycophenolate": [
+      "static",
+      "supabase"
+    ],
+    "nicardipine": [
+      "static",
+      "supabase"
+    ],
+    "nimodipine": [
+      "static",
+      "supabase"
+    ],
+    "oxcarbazepine": [
+      "static",
+      "supabase"
+    ],
+    "perampanel": [
+      "static",
+      "supabase"
+    ],
+    "phenobarbital": [
+      "static",
+      "supabase"
+    ],
+    "phenytoin": [
+      "static",
+      "supabase"
+    ],
+    "phytonadione": [
+      "static",
+      "supabase"
+    ],
+    "pramipexole": [
+      "static",
+      "supabase"
+    ],
+    "prednisolone": [
+      "static",
+      "supabase"
+    ],
+    "pregabalin": [
+      "static",
+      "supabase"
+    ],
+    "protamine": [
+      "static",
+      "supabase"
+    ],
+    "prothrombin-complex-concentrate": [
+      "static",
+      "supabase"
+    ],
+    "pyridostigmine": [
+      "static",
+      "supabase"
+    ],
+    "rasagiline": [
+      "static",
+      "supabase"
+    ],
+    "ravulizumab": [
+      "static",
+      "supabase"
+    ],
+    "rimegepant": [
+      "static",
+      "supabase"
+    ],
+    "rituximab": [
+      "static",
+      "supabase"
+    ],
+    "rivaroxaban": [
+      "static",
+      "supabase"
+    ],
+    "rivastigmine": [
+      "static",
+      "supabase"
+    ],
+    "ropinirole": [
+      "static",
+      "supabase"
+    ],
+    "sumatriptan": [
+      "static",
+      "supabase"
+    ],
+    "tenecteplase": [
+      "static",
+      "supabase"
+    ],
+    "ticagrelor": [
+      "static",
+      "supabase"
+    ],
+    "tizanidine": [
+      "static",
+      "supabase"
+    ],
+    "topiramate": [
+      "static",
+      "supabase"
+    ],
+    "trihexyphenidyl": [
+      "static",
+      "supabase"
+    ],
+    "valproate": [
+      "static",
+      "supabase"
+    ],
+    "vancomycin": [
+      "static",
+      "supabase"
+    ],
+    "warfarin": [
+      "static",
+      "supabase"
+    ]
+  },
+  "supabaseConfigured": true,
+  "supabaseReachable": true,
+  "generatedAt": "2026-11-14T11:37:11.854Z"
+}

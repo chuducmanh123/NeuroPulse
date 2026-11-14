@@ -12,7 +12,9 @@
     "rx:check-constants": "node --experimental-strip-types scripts/neurorx/check-no-clinical-constants.ts",
     "rx:sync": "node scripts/neurorx/sync_remote_to_local.mjs",
     "rx:push": "node scripts/neurorx/push_local_to_remote.mjs",
-    "rx:verify": "node --experimental-strip-types scripts/neurorx/verify.ts"
+    "rx:verify": "node --experimental-strip-types scripts/neurorx/verify.ts",
+    "rx:snapshot": "node --experimental-strip-types scripts/neurorx/export-effective-snapshot.ts",
+    "rx:migrate-v2": "node --use-system-ca --experimental-strip-types scripts/neurorx/migrate-to-v2.ts"
   },
   "dependencies": {
     "@niivue/niivue": "^0.69.0",

@@ -1,11 +1,23 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Zap, RefreshCw, Wifi, WifiOff, CheckCircle2 } from "lucide-react";
+import { Zap, RefreshCw, Wifi, WifiOff, CheckCircle2, AlertTriangle } from "lucide-react";
+import {
+  formatSyncStatusView,
+  type LookupSyncStatus,
+} from "@/lib/neurorx/sync/lookupHelpers";
+
+export { formatSyncStatusView };
 
 interface OfflineStatusProps {
   dataHash?: string;
   darkMode?: boolean;
+  syncV2?: boolean;
+  syncStatus?: LookupSyncStatus;
+  lastSyncAt?: string | null;
+  lastChangeCount?: number;
+  lastSeq?: number;
+  onRefresh?: () => Promise<void> | void;
 }
 
 type PwaStatus = "online-only" | "caching" | "ready" | "update-available";
@@ -13,6 +25,12 @@ type PwaStatus = "online-only" | "caching" | "ready" | "update-available";
 export function OfflineStatus({
   dataHash = "v1-live",
   darkMode = false,
+  syncV2 = false,
+  syncStatus = "loading",
+  lastSyncAt = null,
+  lastChangeCount = 0,
+  lastSeq = 0,
+  onRefresh,
 }: OfflineStatusProps) {
   const [status, setStatus] = useState<PwaStatus>("online-only");
   const [cachedVersion, setCachedVersion] = useState<string | null>(null);
@@ -126,6 +144,94 @@ export function OfflineStatus({
     }
     window.location.reload();
   };
+
+  if (syncV2) {
+    const view = formatSyncStatusView({
+      syncStatus,
+      lastSyncAt,
+      lastChangeCount,
+      lastSeq,
+      isOnline,
+    });
+
+    const toneClass =
+      view.kind === "offline"
+        ? darkMode
+          ? "bg-amber-950/60 border-amber-700/60 text-amber-200"
+          : "bg-amber-50 border-amber-200 text-amber-800"
+        : view.kind === "error"
+          ? darkMode
+            ? "bg-rose-950/60 border-rose-700/60 text-rose-200"
+            : "bg-rose-50 border-rose-200 text-rose-800"
+          : view.kind === "updating"
+            ? darkMode
+              ? "bg-cyan-950/60 border-cyan-800/70 text-cyan-200"
+              : "bg-cyan-50 border-cyan-200 text-cyan-800"
+            : darkMode
+              ? "bg-slate-900/90 border-slate-800 text-slate-200"
+              : "bg-white border-slate-200 text-slate-700";
+
+    return (
+      <div
+        role="status"
+        aria-live="polite"
+        className="flex flex-wrap items-center gap-1.5"
+      >
+        <span
+          className={`inline-flex items-center gap-1.5 min-h-[44px] px-3 py-1.5 rounded-lg border text-xs font-semibold ${toneClass}`}
+        >
+          {view.kind === "updating" && (
+            <RefreshCw className="w-3.5 h-3.5 shrink-0 animate-spin" aria-hidden="true" />
+          )}
+          {view.kind === "offline" && (
+            <WifiOff className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+          )}
+          {view.kind === "error" && (
+            <AlertTriangle className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+          )}
+          {view.kind === "ready" && (
+            <CheckCircle2 className="w-3.5 h-3.5 shrink-0 text-emerald-500" aria-hidden="true" />
+          )}
+          <span>{view.primaryText}</span>
+        </span>
+
+        {view.updatedBadgeText && (
+          <span
+            className={`inline-flex items-center gap-1 min-h-[44px] px-2.5 py-1 rounded-lg border text-xs font-bold ${
+              darkMode
+                ? "bg-emerald-950/60 border-emerald-700/60 text-emerald-200"
+                : "bg-emerald-50 border-emerald-200 text-emerald-800"
+            }`}
+          >
+            <Zap className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+            <span>{view.updatedBadgeText}</span>
+          </span>
+        )}
+
+        {onRefresh && (
+          <button
+            type="button"
+            onClick={() => void onRefresh()}
+            disabled={syncStatus === "loading" || syncStatus === "syncing"}
+            aria-label="Sync drugs now"
+            title="Sync drugs now"
+            className={`min-h-[44px] min-w-[44px] px-2.5 rounded-lg border text-xs font-bold inline-flex items-center justify-center transition-colors disabled:opacity-50 ${
+              darkMode
+                ? "bg-slate-900 border-slate-700 text-slate-200 hover:bg-slate-800"
+                : "bg-white border-slate-200 text-slate-700 hover:bg-slate-50"
+            }`}
+          >
+            <RefreshCw
+              className={`w-4 h-4 ${
+                syncStatus === "loading" || syncStatus === "syncing" ? "animate-spin" : ""
+              }`}
+              aria-hidden="true"
+            />
+          </button>
+        )}
+      </div>
+    );
+  }
 
   if (status === "update-available") {
     return (

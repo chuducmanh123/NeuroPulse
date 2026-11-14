@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   X,
   Save,
@@ -19,6 +19,8 @@ import {
   Wand2,
   Baby,
   ArrowRightLeft,
+  History,
+  RotateCcw,
 } from "lucide-react";
 import type {
   DrugRecord,
@@ -29,6 +31,18 @@ import type {
   DoseSpec,
   DrugInteractionItem,
 } from "@/types/neurorx";
+import {
+  DRAFT_AUTOSAVE_INTERVAL_MS,
+  clearLocalDrugDraftsForUid,
+  loadLocalDrugDraft,
+  resolveConflictChoice,
+  saveLocalDrugDraft,
+  type ConflictResolutionMode,
+  type StoredDrugDraft,
+} from "@/lib/neurorx/sync/adminHelpers";
+import type { SyncRow } from "@/lib/neurorx/sync/types";
+import { getStoredAdminToken } from "@/utils/clientAuth";
+import { ConflictDialog } from "./ConflictDialog";
 
 interface EditDrugModalProps {
   drug: DrugRecord;
@@ -36,6 +50,10 @@ interface EditDrugModalProps {
   onClose: () => void;
   onSave: (updatedDrug: DrugRecord, oldId?: string) => Promise<boolean>;
   darkMode?: boolean;
+  syncRow?: SyncRow | null;
+  isNewDrug?: boolean;
+  onApplyLocalWrite?: (row: SyncRow) => Promise<void> | void;
+  onOpenHistory?: (row: SyncRow) => void;
 }
 
 const ALL_SUBSPECIALTIES: { id: Subspecialty; label: string }[] = [
@@ -56,7 +74,12 @@ export function EditDrugModal({
   onClose,
   onSave,
   darkMode = false,
+  syncRow = null,
+  isNewDrug = false,
+  onApplyLocalWrite,
+  onOpenHistory,
 }: EditDrugModalProps) {
+  const isSyncV2 = process.env.NEXT_PUBLIC_NEURORX_SYNC_V2 === "1";
   const [activeTab, setActiveTab] = useState<
     "general" | "dosing" | "renal_hepatic" | "safety" | "pregnancy" | "interactions"
   >("general");
@@ -219,6 +242,495 @@ export function EditDrugModal({
       prev.map((item, i) => (i === idx ? { ...item, [field]: val } : item))
     );
   };
+
+  const [activeSyncRow, setActiveSyncRow] = useState<SyncRow | null>(syncRow ?? null);
+  const [baseDrugSnapshot, setBaseDrugSnapshot] = useState<DrugRecord>(() =>
+    structuredClone(syncRow?.data ?? drug)
+  );
+  const [savedLocalDraft, setSavedLocalDraft] = useState<StoredDrugDraft | null>(null);
+  const [lastAutoSaveAt, setLastAutoSaveAt] = useState<string | null>(null);
+  const [conflictState, setConflictState] = useState<{
+    mine: DrugRecord;
+    cloudRow: SyncRow;
+    baseRev: number;
+    error: string | null;
+    submitting: boolean;
+  } | null>(null);
+
+  const effectiveDraftUid =
+    activeSyncRow?.uid || (isNewDrug ? "__new__" : `slug:${drug.id || "draft"}`);
+  const effectiveBaseRev = activeSyncRow?.rev ?? 0;
+
+  const applyDrugRecordToForm = useCallback((source: DrugRecord) => {
+    setId(source.id || "");
+    setGenericName(source.generic_name || "");
+    setTallMan(source.tall_man?.value || "");
+    setClassesText((source.classes || []).join(", "));
+    setSubspecialties(source.subspecialties || []);
+    setStatus(source.status || "draft");
+    setVerifiedBy(source.verification?.verified_by || "Admin");
+    setRegimens(
+      source.regimens && source.regimens.length > 0
+        ? JSON.parse(JSON.stringify(source.regimens))
+        : [
+            {
+              id: `${source.id || "drug"}-regimen-1`,
+              indication: "Clinical Treatment Regimen",
+              setting: "maintenance_outpatient",
+              route: "PO",
+              refs: [],
+              dose: {
+                kind: "fixed",
+                amount: 500,
+                unit: "mg",
+                frequency: "twice daily",
+              },
+              dose_text: "",
+            },
+          ]
+    );
+    setRenalDesc(source.renal_impairment?.description || "");
+    setRenalBasis(source.renal_basis?.value || "cg_abw");
+    setRenalBands(
+      source.renal_impairment?.bands && source.renal_impairment.bands.length > 0
+        ? JSON.parse(JSON.stringify(source.renal_impairment.bands))
+        : []
+    );
+    setHemodialysisText(source.renal_impairment?.hemodialysis?.value || "");
+    setHepaticText(source.hepatic?.value || "");
+    setIvDiluent(source.tools?.iv_infusion?.value?.diluent || "");
+    setIvRate(source.tools?.iv_infusion?.value?.rate || "");
+    setIvInstructions(source.tools?.iv_infusion?.value?.instructions || "");
+    setBlackBoxText((source.black_box?.value || []).join("\n"));
+    setMgSafety(source.mg_safety?.value || "safe");
+    setCyp3a4(source.enzyme_profile?.value?.cyp3a4 || "none");
+    setCyp2c19(source.enzyme_profile?.value?.cyp2c19 || "none");
+    setPgp(source.enzyme_profile?.value?.pgp || "none");
+    setQtRisk(source.enzyme_profile?.value?.qt_risk || "none");
+    setAcbScore(source.enzyme_profile?.value?.acb_score || 0);
+    setPregnancyTier(source.reproductive?.tier?.value || "none");
+    setFolicAcid(source.reproductive?.folic_acid?.value || "");
+    setPregnancyPk(source.reproductive?.pregnancy_pk?.value || "");
+    setContraception(source.reproductive?.contraception?.value || "");
+    setLactationSummary(source.reproductive?.lactation_summary?.value || "");
+    setLactationRid(source.reproductive?.lactation_rid?.value || "");
+    setInteractionsList(
+      source.fda_interactions?.value && source.fda_interactions.value.length > 0
+        ? JSON.parse(JSON.stringify(source.fda_interactions.value))
+        : []
+    );
+  }, []);
+
+  const buildDrugRecordFromState = useCallback(
+    (overrideCleanId?: string, overrideCleanGeneric?: string): DrugRecord => {
+      const cleanId =
+        overrideCleanId ?? id.trim().toLowerCase().replace(/[^a-z0-9_-]/g, "-");
+      const cleanGeneric = overrideCleanGeneric ?? genericName.trim();
+      const baseRecord = activeSyncRow?.data ?? drug;
+      const fallbackSourceId = isSyncV2
+        ? baseRecord.regimens?.[0]?.refs?.[0]?.source_id ||
+          baseRecord.tall_man?.refs?.[0]?.source_id ||
+          "fda-keppra-label"
+        : "system";
+
+      const cleanRegimens: Regimen[] = regimens.map((r, idx) => ({
+        ...r,
+        id: r.id?.trim() || `${cleanId}-regimen-${idx + 1}`,
+        indication: r.indication?.trim() || `Indication #${idx + 1}`,
+        setting: r.setting || "maintenance_outpatient",
+        route: r.route || "PO",
+        dose: r.dose
+          ? {
+              kind: r.dose.kind || "fixed",
+              amount: Number(r.dose.amount) || 0,
+              unit: r.dose.unit || "mg",
+              frequency: r.dose.frequency?.trim() || "once",
+              max_single: r.dose.max_single ? Number(r.dose.max_single) : undefined,
+              max_daily: r.dose.max_daily ? Number(r.dose.max_daily) : undefined,
+            }
+          : null,
+        dose_text: r.dose_text?.trim() || undefined,
+        refs:
+          r.refs && r.refs.length > 0
+            ? r.refs
+            : [
+                {
+                  source_id: fallbackSourceId,
+                  locator: "admin",
+                  quote: r.indication?.trim() || cleanGeneric || "Clinical dosing",
+                },
+              ],
+      }));
+
+      const cleanBands: RenalBand[] = renalBands.map((b) => ({
+        min:
+          b.min === null || b.min === ("" as any) || isNaN(Number(b.min))
+            ? null
+            : Number(b.min),
+        max:
+          b.max === null || b.max === ("" as any) || isNaN(Number(b.max))
+            ? null
+            : Number(b.max),
+        dose_text: b.dose_text?.trim() || "Refer to clinical protocol",
+        refs:
+          b.refs && b.refs.length > 0
+            ? b.refs
+            : [
+                {
+                  source_id: fallbackSourceId,
+                  locator: "admin",
+                  quote: "CrCl band",
+                },
+              ],
+        dose: b.dose,
+      }));
+
+      return {
+        ...baseRecord,
+        id: cleanId,
+        generic_name: cleanGeneric,
+        tall_man: {
+          value: tallMan.trim() || cleanGeneric,
+          refs:
+            baseRecord.tall_man?.refs && baseRecord.tall_man.refs.length > 0
+              ? baseRecord.tall_man.refs
+              : [{ source_id: fallbackSourceId, locator: "admin", quote: cleanGeneric || cleanId }],
+        },
+        classes: classesText
+          .split(",")
+          .map((c) => c.trim())
+          .filter(Boolean),
+        subspecialties: subspecialties.length > 0 ? subspecialties : ["epilepsy"],
+        status,
+        verification: {
+          verified_by: status === "verified" ? verifiedBy.trim() || "Admin" : null,
+          verified_at:
+            status === "verified"
+              ? baseRecord.verification?.verified_at || new Date().toISOString().split("T")[0]
+              : null,
+          content_hash: baseRecord.verification?.content_hash || null,
+        },
+        regimens: cleanRegimens,
+        hepatic: {
+          value:
+            hepaticText.trim() ||
+            "No dosage adjustment necessary for hepatic impairment.",
+          refs:
+            baseRecord.hepatic?.refs && baseRecord.hepatic.refs.length > 0
+              ? baseRecord.hepatic.refs
+              : [
+                  {
+                    source_id: fallbackSourceId,
+                    locator: "admin",
+                    quote: "Hepatic adjustment",
+                  },
+                ],
+        },
+        renal_basis: {
+          value: renalBasis,
+          refs:
+            baseRecord.renal_basis?.refs && baseRecord.renal_basis.refs.length > 0
+              ? baseRecord.renal_basis.refs
+              : [{ source_id: fallbackSourceId, locator: "admin", quote: "CrCl" }],
+        },
+        renal_impairment: {
+          description:
+            renalDesc.trim() ||
+            (cleanBands.length > 0
+              ? `Dosing adjustments stratified by renal function (${renalBasis}).`
+              : "No dosage adjustment necessary for renal impairment."),
+          renal_basis: {
+            value: renalBasis,
+            refs:
+              baseRecord.renal_basis?.refs && baseRecord.renal_basis.refs.length > 0
+                ? baseRecord.renal_basis.refs
+                : [{ source_id: fallbackSourceId, locator: "admin", quote: "CrCl" }],
+          },
+          bands: cleanBands,
+          hemodialysis: hemodialysisText.trim()
+            ? {
+                value: hemodialysisText.trim(),
+                refs:
+                  baseRecord.renal_impairment?.hemodialysis?.refs &&
+                  baseRecord.renal_impairment.hemodialysis.refs.length > 0
+                    ? baseRecord.renal_impairment.hemodialysis.refs
+                    : [
+                        {
+                          source_id: fallbackSourceId,
+                          locator: "admin",
+                          quote: "Hemodialysis",
+                        },
+                      ],
+              }
+            : undefined,
+          refs:
+            baseRecord.renal_impairment?.refs && baseRecord.renal_impairment.refs.length > 0
+              ? baseRecord.renal_impairment.refs
+              : [{ source_id: fallbackSourceId, locator: "admin", quote: "Renal" }],
+        },
+        black_box: {
+          value: blackBoxText
+            .split("\n")
+            .map((s) => s.trim())
+            .filter(Boolean),
+          refs:
+            baseRecord.black_box?.refs && baseRecord.black_box.refs.length > 0
+              ? baseRecord.black_box.refs
+              : blackBoxText.trim()
+              ? [{ source_id: fallbackSourceId, locator: "admin", quote: "Boxed Warning" }]
+              : [],
+        },
+        mg_safety: {
+          value: mgSafety,
+          refs:
+            baseRecord.mg_safety?.refs && baseRecord.mg_safety.refs.length > 0
+              ? baseRecord.mg_safety.refs
+              : [{ source_id: fallbackSourceId, locator: "admin", quote: "MG safety" }],
+        },
+        enzyme_profile: {
+          value: {
+            ...baseRecord.enzyme_profile?.value,
+            cyp3a4: cyp3a4 === "none" ? undefined : (cyp3a4 as any),
+            cyp2c19: cyp2c19 === "none" ? undefined : (cyp2c19 as any),
+            pgp: pgp === "none" ? undefined : (pgp as any),
+            qt_risk: qtRisk,
+            acb_score: Number(acbScore) || 0,
+          },
+          refs:
+            baseRecord.enzyme_profile?.refs && baseRecord.enzyme_profile.refs.length > 0
+              ? baseRecord.enzyme_profile.refs
+              : [
+                  {
+                    source_id: fallbackSourceId,
+                    locator: "admin",
+                    quote: "Enzyme profile",
+                  },
+                ],
+        },
+        tools: {
+          ...baseRecord.tools,
+          ...(ivDiluent.trim() || ivRate.trim() || ivInstructions.trim()
+            ? {
+                iv_infusion: {
+                  value: {
+                    diluent: ivDiluent.trim(),
+                    rate: ivRate.trim(),
+                    instructions: ivInstructions.trim(),
+                  },
+                  refs:
+                    baseRecord.tools?.iv_infusion?.refs &&
+                    baseRecord.tools.iv_infusion.refs.length > 0
+                      ? baseRecord.tools.iv_infusion.refs
+                      : [
+                          {
+                            source_id: fallbackSourceId,
+                            locator: "admin",
+                            quote: "IV Infusion",
+                          },
+                        ],
+                },
+              }
+            : {}),
+        },
+        reproductive:
+          pregnancyTier !== "none" ||
+          folicAcid.trim() ||
+          pregnancyPk.trim() ||
+          contraception.trim() ||
+          lactationSummary.trim() ||
+          lactationRid.trim()
+            ? {
+                tier: {
+                  value: pregnancyTier === "none" ? null : (pregnancyTier as any),
+                  refs:
+                    baseRecord.reproductive?.tier?.refs &&
+                    baseRecord.reproductive.tier.refs.length > 0
+                      ? baseRecord.reproductive.tier.refs
+                      : [
+                          {
+                            source_id: fallbackSourceId,
+                            locator: "admin",
+                            quote: "Pregnancy safety tier",
+                          },
+                        ],
+                },
+                mcm: baseRecord.reproductive?.mcm || [],
+                folic_acid: {
+                  value: folicAcid.trim() || null,
+                  refs:
+                    baseRecord.reproductive?.folic_acid?.refs &&
+                    baseRecord.reproductive.folic_acid.refs.length > 0
+                      ? baseRecord.reproductive.folic_acid.refs
+                      : [{ source_id: fallbackSourceId, locator: "admin", quote: "Folic acid" }],
+                },
+                pregnancy_pk: {
+                  value: pregnancyPk.trim() || null,
+                  refs:
+                    baseRecord.reproductive?.pregnancy_pk?.refs &&
+                    baseRecord.reproductive.pregnancy_pk.refs.length > 0
+                      ? baseRecord.reproductive.pregnancy_pk.refs
+                      : [{ source_id: fallbackSourceId, locator: "admin", quote: "Pregnancy PK" }],
+                },
+                postpartum: baseRecord.reproductive?.postpartum || { value: null, refs: [] },
+                contraception: {
+                  value: contraception.trim() || null,
+                  refs:
+                    baseRecord.reproductive?.contraception?.refs &&
+                    baseRecord.reproductive.contraception.refs.length > 0
+                      ? baseRecord.reproductive.contraception.refs
+                      : [
+                          {
+                            source_id: fallbackSourceId,
+                            locator: "admin",
+                            quote: "Contraception",
+                          },
+                        ],
+                },
+                lactation_rid: {
+                  value: lactationRid.trim() || null,
+                  refs:
+                    baseRecord.reproductive?.lactation_rid?.refs &&
+                    baseRecord.reproductive.lactation_rid.refs.length > 0
+                      ? baseRecord.reproductive.lactation_rid.refs
+                      : [
+                          {
+                            source_id: fallbackSourceId,
+                            locator: "admin",
+                            quote: "Lactation RID",
+                          },
+                        ],
+                },
+                lactation_summary: {
+                  value: lactationSummary.trim() || null,
+                  refs:
+                    baseRecord.reproductive?.lactation_summary?.refs &&
+                    baseRecord.reproductive.lactation_summary.refs.length > 0
+                      ? baseRecord.reproductive.lactation_summary.refs
+                      : [
+                          {
+                            source_id: fallbackSourceId,
+                            locator: "admin",
+                            quote: "Lactation summary",
+                          },
+                        ],
+                },
+              }
+            : baseRecord.reproductive,
+        fda_interactions:
+          interactionsList.length > 0
+            ? {
+                value: interactionsList.filter(
+                  (item) =>
+                    item.drug_or_class.trim() && item.effect.trim() && item.management.trim()
+                ),
+                refs:
+                  baseRecord.fda_interactions?.refs &&
+                  baseRecord.fda_interactions.refs.length > 0
+                    ? baseRecord.fda_interactions.refs
+                    : [
+                        {
+                          source_id: fallbackSourceId,
+                          locator: "Section 7 DRUG INTERACTIONS",
+                          quote: "FDA Drug Interactions",
+                        },
+                      ],
+              }
+            : baseRecord.fda_interactions,
+      };
+    },
+    [
+      id,
+      genericName,
+      activeSyncRow,
+      drug,
+      isSyncV2,
+      regimens,
+      renalBands,
+      tallMan,
+      classesText,
+      subspecialties,
+      status,
+      verifiedBy,
+      hepaticText,
+      renalBasis,
+      renalDesc,
+      hemodialysisText,
+      blackBoxText,
+      mgSafety,
+      cyp3a4,
+      cyp2c19,
+      pgp,
+      qtRisk,
+      acbScore,
+      ivDiluent,
+      ivRate,
+      ivInstructions,
+      pregnancyTier,
+      folicAcid,
+      pregnancyPk,
+      contraception,
+      lactationSummary,
+      lactationRid,
+      interactionsList,
+    ]
+  );
+
+  const buildDraftRef = useRef<() => DrugRecord>(buildDrugRecordFromState);
+  buildDraftRef.current = buildDrugRecordFromState;
+
+  const baseSnapshotRef = useRef<DrugRecord>(baseDrugSnapshot);
+  baseSnapshotRef.current = baseDrugSnapshot;
+
+  // Reset modal states when opening/switching drugs & detect pending localStorage draft
+  useEffect(() => {
+    if (!isOpen) return;
+    const initialRow = syncRow ?? null;
+    const initialRecord = initialRow?.data ?? drug;
+    setActiveSyncRow(initialRow);
+    setBaseDrugSnapshot(structuredClone(initialRecord));
+    applyDrugRecordToForm(initialRecord);
+    setError(null);
+    setConflictState(null);
+    setLastAutoSaveAt(null);
+
+    if (isSyncV2 && typeof window !== "undefined") {
+      const uidForDraft =
+        initialRow?.uid || (isNewDrug ? "__new__" : `slug:${drug.id || "draft"}`);
+      const revForDraft = initialRow?.rev ?? 0;
+      const found = loadLocalDrugDraft(window.localStorage, uidForDraft, revForDraft);
+      if (found && JSON.stringify(found.data) !== JSON.stringify(initialRecord)) {
+        setSavedLocalDraft(found);
+      } else {
+        setSavedLocalDraft(null);
+      }
+    } else {
+      setSavedLocalDraft(null);
+    }
+  }, [isOpen, drug, syncRow, isSyncV2, isNewDrug, applyDrugRecordToForm]);
+
+  // Phase 6b (I15 / AC6.5): 3s local draft auto-save while modal is open
+  useEffect(() => {
+    if (!isSyncV2 || !isOpen || conflictState !== null || typeof window === "undefined") {
+      return;
+    }
+    const timer = window.setInterval(() => {
+      const snapshot = buildDraftRef.current();
+      if (JSON.stringify(snapshot) === JSON.stringify(baseSnapshotRef.current)) {
+        return;
+      }
+      const saved = saveLocalDrugDraft(
+        window.localStorage,
+        effectiveDraftUid,
+        effectiveBaseRev,
+        snapshot
+      );
+      if (saved) {
+        setLastAutoSaveAt(saved.savedAt);
+      }
+    }, DRAFT_AUTOSAVE_INTERVAL_MS);
+
+    return () => window.clearInterval(timer);
+  }, [isSyncV2, isOpen, conflictState, effectiveDraftUid, effectiveBaseRev]);
 
   if (!isOpen) return null;
 
@@ -445,6 +957,163 @@ export function EditDrugModal({
     ]);
   };
 
+  const commitV2DrugSave = async (
+    payloadData: DrugRecord,
+    opts: { isCreate: boolean; uid?: string; expectedRev?: number }
+  ): Promise<{ ok: boolean; conflict?: { cloudRow: SyncRow }; errorMsg?: string }> => {
+    const token = getStoredAdminToken();
+    const url = opts.isCreate
+      ? "/api/neurorx/sync/drugs"
+      : `/api/neurorx/sync/drugs/${encodeURIComponent(opts.uid || "")}`;
+    const method = opts.isCreate ? "POST" : "PUT";
+    const body = opts.isCreate
+      ? { data: payloadData }
+      : { data: payloadData, expectedRev: opts.expectedRev };
+
+    const res = await fetch(url, {
+      method,
+      headers: {
+        "Content-Type": "application/json",
+        "x-admin-token": token || "",
+      },
+      body: JSON.stringify(body),
+    });
+
+    const json = await res.json();
+
+    if (res.status === 409 && json?.code === "REV_CONFLICT" && json?.current) {
+      return {
+        ok: false,
+        conflict: { cloudRow: json.current as SyncRow },
+      };
+    }
+
+    if (!res.ok || !json?.row) {
+      const detailSummary = Array.isArray(json?.details)
+        ? json.details
+            .slice(0, 3)
+            .map((d: { path?: string; message?: string }) =>
+              d.path ? `${d.path}: ${d.message}` : d.message
+            )
+            .filter(Boolean)
+            .join("; ")
+        : "";
+      const errMsg = detailSummary
+        ? `${json?.error || "Save failed."} (${detailSummary})`
+        : json?.error || `Save failed (${res.status}).`;
+      return { ok: false, errorMsg: errMsg };
+    }
+
+    const savedRow = json.row as SyncRow;
+    if (typeof window !== "undefined") {
+      clearLocalDrugDraftsForUid(window.localStorage, effectiveDraftUid);
+      if (savedRow.uid !== effectiveDraftUid) {
+        clearLocalDrugDraftsForUid(window.localStorage, savedRow.uid);
+      }
+    }
+    setSavedLocalDraft(null);
+    setLastAutoSaveAt(null);
+    setConflictState(null);
+    setActiveSyncRow(savedRow);
+    setBaseDrugSnapshot(structuredClone(savedRow.data));
+    await onApplyLocalWrite?.(savedRow);
+
+    const oldSlug =
+      !opts.isCreate && activeSyncRow && activeSyncRow.slug !== savedRow.slug
+        ? activeSyncRow.slug
+        : drug.id !== savedRow.slug
+        ? drug.id
+        : undefined;
+    const ok = await onSave(savedRow.data, oldSlug);
+    if (ok) {
+      onClose();
+    }
+    return { ok: true };
+  };
+
+  const handleResolveConflict = async (
+    mode: ConflictResolutionMode,
+    conflictSelections: Record<string, "mine" | "cloud">
+  ) => {
+    if (!conflictState) return;
+    const resolved = resolveConflictChoice({
+      mode,
+      base: baseDrugSnapshot,
+      mine: conflictState.mine,
+      cloudRow: conflictState.cloudRow,
+      conflictSelections,
+    });
+
+    if (!resolved.ok) {
+      setConflictState((prev) =>
+        prev
+          ? {
+              ...prev,
+              error: "Please choose Keep Mine or Use Cloud for every overlapping conflict.",
+            }
+          : null
+      );
+      return;
+    }
+
+    if (resolved.kind === "apply_cloud") {
+      if (typeof window !== "undefined") {
+        clearLocalDrugDraftsForUid(window.localStorage, effectiveDraftUid);
+      }
+      const cloudRow = resolved.row;
+      setSavedLocalDraft(null);
+      setLastAutoSaveAt(null);
+      setActiveSyncRow(cloudRow);
+      setBaseDrugSnapshot(structuredClone(cloudRow.data));
+      applyDrugRecordToForm(cloudRow.data);
+      setConflictState(null);
+      await onApplyLocalWrite?.(cloudRow);
+      return;
+    }
+
+    setConflictState((prev) =>
+      prev ? { ...prev, submitting: true, error: null } : null
+    );
+    try {
+      const outcome = await commitV2DrugSave(resolved.data, {
+        isCreate: false,
+        uid: conflictState.cloudRow.uid,
+        expectedRev: resolved.expectedRev,
+      });
+      if (outcome.conflict) {
+        setConflictState({
+          mine: resolved.data,
+          cloudRow: outcome.conflict.cloudRow,
+          baseRev: resolved.expectedRev,
+          error: "Another cloud update arrived while resolving. Review the newer cloud revision.",
+          submitting: false,
+        });
+        return;
+      }
+      if (!outcome.ok) {
+        setConflictState((prev) =>
+          prev
+            ? {
+                ...prev,
+                submitting: false,
+                error: outcome.errorMsg || "Failed to save resolved changes.",
+              }
+            : null
+        );
+      }
+    } catch (err: any) {
+      setConflictState((prev) =>
+        prev
+          ? {
+              ...prev,
+              submitting: false,
+              error: err?.message || "Network error saving resolved changes.",
+            }
+          : null
+      );
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -460,243 +1129,31 @@ export function EditDrugModal({
     setLoading(true);
 
     try {
-      // Clean and sanitize regimens
-      const cleanRegimens: Regimen[] = regimens.map((r, idx) => ({
-        ...r,
-        id: r.id?.trim() || `${cleanId}-regimen-${idx + 1}`,
-        indication: r.indication?.trim() || `Indication #${idx + 1}`,
-        setting: r.setting || "maintenance_outpatient",
-        route: r.route || "PO",
-        dose: r.dose
-          ? {
-              kind: r.dose.kind || "fixed",
-              amount: Number(r.dose.amount) || 0,
-              unit: r.dose.unit || "mg",
-              frequency: r.dose.frequency?.trim() || "once",
-              max_single: r.dose.max_single
-                ? Number(r.dose.max_single)
-                : undefined,
-              max_daily: r.dose.max_daily
-                ? Number(r.dose.max_daily)
-                : undefined,
-            }
-          : null,
-        dose_text: r.dose_text?.trim() || undefined,
-        refs:
-          r.refs && r.refs.length > 0
-            ? r.refs
-            : [
-                {
-                  source_id: "system",
-                  locator: "admin",
-                  quote: r.indication,
-                },
-              ],
-      }));
+      const updatedDrug = buildDrugRecordFromState(cleanId, cleanGeneric);
 
-      // Clean and sanitize renal bands
-      const cleanBands: RenalBand[] = renalBands.map((b) => ({
-        min:
-          b.min === null || b.min === ("" as any) || isNaN(Number(b.min))
-            ? null
-            : Number(b.min),
-        max:
-          b.max === null || b.max === ("" as any) || isNaN(Number(b.max))
-            ? null
-            : Number(b.max),
-        dose_text: b.dose_text?.trim() || "Refer to clinical protocol",
-        refs:
-          b.refs && b.refs.length > 0
-            ? b.refs
-            : [
-                {
-                  source_id: "system",
-                  locator: "admin",
-                  quote: "CrCl band",
-                },
-              ],
-        dose: b.dose,
-      }));
+      if (isSyncV2) {
+        const isCreate = isNewDrug || !activeSyncRow;
+        const outcome = await commitV2DrugSave(updatedDrug, {
+          isCreate,
+          uid: activeSyncRow?.uid,
+          expectedRev: isCreate ? undefined : effectiveBaseRev,
+        });
 
-      // Build updated drug payload preserving existing valid refs
-      const updatedDrug: DrugRecord = {
-        ...drug,
-        id: cleanId,
-        generic_name: cleanGeneric,
-        tall_man: {
-          value: tallMan.trim() || cleanGeneric,
-          refs: drug.tall_man?.refs || [
-            { source_id: "system", locator: "admin", quote: cleanGeneric },
-          ],
-        },
-        classes: classesText
-          .split(",")
-          .map((c) => c.trim())
-          .filter(Boolean),
-        subspecialties:
-          subspecialties.length > 0 ? subspecialties : ["epilepsy"],
-        status,
-        verification: {
-          verified_by:
-            status === "verified" ? verifiedBy.trim() || "Admin" : null,
-          verified_at:
-            status === "verified"
-              ? new Date().toISOString().split("T")[0]
-              : null,
-          content_hash: drug.verification?.content_hash || null,
-        },
-        regimens: cleanRegimens,
-        hepatic: {
-          value:
-            hepaticText.trim() ||
-            "No dosage adjustment necessary for hepatic impairment.",
-          refs: drug.hepatic?.refs || [
-            {
-              source_id: "system",
-              locator: "admin",
-              quote: "Hepatic adjustment",
-            },
-          ],
-        },
-        renal_basis: {
-          value: renalBasis,
-          refs: drug.renal_basis?.refs || [
-            { source_id: "system", locator: "admin", quote: "CrCl" },
-          ],
-        },
-        renal_impairment: {
-          description:
-            renalDesc.trim() ||
-            (cleanBands.length > 0
-              ? `Dosing adjustments stratified by renal function (${renalBasis}).`
-              : "No dosage adjustment necessary for renal impairment."),
-          renal_basis: {
-            value: renalBasis,
-            refs: drug.renal_basis?.refs || [
-              { source_id: "system", locator: "admin", quote: "CrCl" },
-            ],
-          },
-          bands: cleanBands,
-          hemodialysis: hemodialysisText.trim()
-            ? {
-                value: hemodialysisText.trim(),
-                refs: drug.renal_impairment?.hemodialysis?.refs || [
-                  {
-                    source_id: "system",
-                    locator: "admin",
-                    quote: "Hemodialysis",
-                  },
-                ],
-              }
-            : undefined,
-          refs: drug.renal_impairment?.refs || [
-            { source_id: "system", locator: "admin", quote: "Renal" },
-          ],
-        },
-        black_box: {
-          value: blackBoxText
-            .split("\n")
-            .map((s) => s.trim())
-            .filter(Boolean),
-          refs: drug.black_box?.refs || [],
-        },
-        mg_safety: {
-          value: mgSafety,
-          refs: drug.mg_safety?.refs || [
-            { source_id: "system", locator: "admin", quote: "MG safety" },
-          ],
-        },
-        enzyme_profile: {
-          value: {
-            ...drug.enzyme_profile?.value,
-            cyp3a4: cyp3a4 === "none" ? undefined : (cyp3a4 as any),
-            cyp2c19: cyp2c19 === "none" ? undefined : (cyp2c19 as any),
-            pgp: pgp === "none" ? undefined : (pgp as any),
-            qt_risk: qtRisk,
-            acb_score: Number(acbScore) || 0,
-          },
-          refs: drug.enzyme_profile?.refs || [
-            {
-              source_id: "system",
-              locator: "admin",
-              quote: "Enzyme profile",
-            },
-          ],
-        },
-        tools: {
-          ...drug.tools,
-          ...(ivDiluent.trim() || ivRate.trim() || ivInstructions.trim()
-            ? {
-                iv_infusion: {
-                  value: {
-                    diluent: ivDiluent.trim(),
-                    rate: ivRate.trim(),
-                    instructions: ivInstructions.trim(),
-                  },
-                  refs: drug.tools?.iv_infusion?.refs || [
-                    {
-                      source_id: "system",
-                      locator: "admin",
-                      quote: "IV Infusion",
-                    },
-                  ],
-                },
-              }
-            : {}),
-        },
-        reproductive: (pregnancyTier !== "none" || folicAcid.trim() || pregnancyPk.trim() || contraception.trim() || lactationSummary.trim() || lactationRid.trim())
-          ? {
-              tier: {
-                value: pregnancyTier === "none" ? null : (pregnancyTier as any),
-                refs: drug.reproductive?.tier?.refs || [
-                  { source_id: "system", locator: "admin", quote: "Pregnancy safety tier" },
-                ],
-              },
-              mcm: drug.reproductive?.mcm || [],
-              folic_acid: {
-                value: folicAcid.trim() || null,
-                refs: drug.reproductive?.folic_acid?.refs || [
-                  { source_id: "system", locator: "admin", quote: "Folic acid" },
-                ],
-              },
-              pregnancy_pk: {
-                value: pregnancyPk.trim() || null,
-                refs: drug.reproductive?.pregnancy_pk?.refs || [
-                  { source_id: "system", locator: "admin", quote: "Pregnancy PK" },
-                ],
-              },
-              postpartum: drug.reproductive?.postpartum || { value: null, refs: [] },
-              contraception: {
-                value: contraception.trim() || null,
-                refs: drug.reproductive?.contraception?.refs || [
-                  { source_id: "system", locator: "admin", quote: "Contraception" },
-                ],
-              },
-              lactation_rid: {
-                value: lactationRid.trim() || null,
-                refs: drug.reproductive?.lactation_rid?.refs || [
-                  { source_id: "system", locator: "admin", quote: "Lactation RID" },
-                ],
-              },
-              lactation_summary: {
-                value: lactationSummary.trim() || null,
-                refs: drug.reproductive?.lactation_summary?.refs || [
-                  { source_id: "system", locator: "admin", quote: "Lactation summary" },
-                ],
-              },
-            }
-          : drug.reproductive,
-        fda_interactions: interactionsList.length > 0
-          ? {
-              value: interactionsList.filter(
-                (item) => item.drug_or_class.trim() && item.effect.trim() && item.management.trim()
-              ),
-              refs: drug.fda_interactions?.refs || [
-                { source_id: "system", locator: "Section 7 DRUG INTERACTIONS", quote: "FDA Drug Interactions" },
-              ],
-            }
-          : drug.fda_interactions,
-      };
+        if (outcome.conflict) {
+          setConflictState({
+            mine: updatedDrug,
+            cloudRow: outcome.conflict.cloudRow,
+            baseRev: effectiveBaseRev,
+            error: null,
+            submitting: false,
+          });
+          return;
+        }
+        if (!outcome.ok && outcome.errorMsg) {
+          setError(outcome.errorMsg);
+        }
+        return;
+      }
 
       const ok = await onSave(
         updatedDrug,
@@ -741,20 +1198,43 @@ export function EditDrugModal({
                 >
                   {status}
                 </span>
+                {isSyncV2 && activeSyncRow && (
+                  <span className="text-xs px-2.5 py-0.5 rounded-full font-mono font-bold bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-500/20">
+                    rev {activeSyncRow.rev}
+                  </span>
+                )}
               </div>
-              <span className="text-xs text-slate-400 font-mono">
-                ID: {drug.id}
-              </span>
+              <div className="flex flex-wrap items-center gap-2 text-xs text-slate-400 font-mono">
+                <span>ID: {drug.id}</span>
+                {isSyncV2 && lastAutoSaveAt && (
+                  <span className="text-emerald-600 dark:text-emerald-400 font-sans font-semibold">
+                    · Auto-saved at {new Date(lastAutoSaveAt).toLocaleTimeString()}
+                  </span>
+                )}
+              </div>
             </div>
           </div>
 
-          <button
-            type="button"
-            onClick={onClose}
-            className="p-2 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-800 transition-colors cursor-pointer"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          <div className="flex items-center gap-2 shrink-0">
+            {isSyncV2 && activeSyncRow && onOpenHistory && (
+              <button
+                type="button"
+                onClick={() => onOpenHistory(activeSyncRow)}
+                className="min-h-[44px] px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-200/60 dark:hover:bg-slate-800 text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer"
+              >
+                <History className="w-4 h-4 shrink-0" />
+                <span>History</span>
+              </button>
+            )}
+            <button
+              type="button"
+              onClick={onClose}
+              className="min-h-[44px] min-w-[44px] p-2 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-800 transition-colors cursor-pointer flex items-center justify-center"
+              aria-label="Close edit modal"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
         </div>
 
         {/* Tab Buttons */}
@@ -834,6 +1314,51 @@ export function EditDrugModal({
           onSubmit={handleSubmit}
           className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-5"
         >
+          {isSyncV2 && savedLocalDraft && (
+            <div
+              role="status"
+              className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-800 dark:text-amber-200 text-xs sm:text-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
+            >
+              <div className="space-y-0.5 min-w-0">
+                <div className="font-bold flex items-center gap-1.5">
+                  <RotateCcw className="w-4 h-4 shrink-0" />
+                  <span>Unsaved local draft found</span>
+                </div>
+                <div className="text-xs opacity-90">
+                  Saved{" "}
+                  {savedLocalDraft.savedAt
+                    ? new Date(savedLocalDraft.savedAt).toLocaleString()
+                    : "recently"}{" "}
+                  (base rev {savedLocalDraft.baseRev}).
+                </div>
+              </div>
+              <div className="flex items-center gap-2 shrink-0">
+                <button
+                  type="button"
+                  onClick={() => {
+                    applyDrugRecordToForm(savedLocalDraft.data);
+                    setSavedLocalDraft(null);
+                  }}
+                  className="min-h-[44px] px-3.5 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold transition-colors cursor-pointer"
+                >
+                  Restore Draft
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (typeof window !== "undefined") {
+                      clearLocalDrugDraftsForUid(window.localStorage, effectiveDraftUid);
+                    }
+                    setSavedLocalDraft(null);
+                  }}
+                  className="min-h-[44px] px-3.5 py-2 rounded-xl border border-amber-500/40 hover:bg-amber-500/15 text-xs font-bold transition-colors cursor-pointer"
+                >
+                  Discard
+                </button>
+              </div>
+            </div>
+          )}
+
           {error && (
             <div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-600 dark:text-rose-400 text-xs sm:text-sm font-semibold flex items-center gap-2">
               <AlertTriangle className="w-4 h-4 shrink-0" />
@@ -1967,7 +2492,7 @@ export function EditDrugModal({
             <button
               type="button"
               onClick={onClose}
-              className="px-5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 font-bold text-slate-700 dark:text-slate-300 transition-colors cursor-pointer text-xs sm:text-sm"
+              className="min-h-[44px] px-5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 font-bold text-slate-700 dark:text-slate-300 transition-colors cursor-pointer text-xs sm:text-sm"
             >
               Cancel
             </button>
@@ -1975,7 +2500,7 @@ export function EditDrugModal({
             <button
               type="submit"
               disabled={loading}
-              className="px-6 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold flex items-center gap-2 shadow-xs transition-colors disabled:opacity-50 cursor-pointer text-xs sm:text-sm"
+              className="min-h-[44px] px-6 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold flex items-center gap-2 shadow-xs transition-colors disabled:opacity-50 cursor-pointer text-xs sm:text-sm"
             >
               {loading ? (
                 <>
@@ -1992,6 +2517,21 @@ export function EditDrugModal({
           </div>
         </form>
       </div>
+
+      {isSyncV2 && conflictState && (
+        <ConflictDialog
+          isOpen={true}
+          base={baseDrugSnapshot}
+          mine={conflictState.mine}
+          cloudRow={conflictState.cloudRow}
+          baseRev={conflictState.baseRev}
+          submitting={conflictState.submitting}
+          error={conflictState.error}
+          darkMode={darkMode}
+          onResolve={handleResolveConflict}
+          onCancel={() => setConflictState(null)}
+        />
+      )}
     </div>
   );
 }

@@ -12,6 +12,8 @@ import {
 } from "lucide-react";
 import { AdminButton } from "@/components/ecosystem/AdminButton";
 import { AppSwitcher } from "@/components/ecosystem/AppSwitcher";
+import { OfflineStatus } from "@/components/neurorx/OfflineStatus";
+import { useNeuroRxDrugs } from "@/hooks/useNeuroRxDrugs";
 import type { Source, Interaction } from "@/types/neurorx";
 import type { DrugWithEffectiveStatus } from "@/lib/neurorx/data";
 import { LookupTab } from "./tabs/LookupTab";
@@ -27,6 +29,7 @@ interface NeuroRxShellProps {
   sources?: Source[];
   interactions?: Interaction[];
   dataVersionHash?: string;
+  syncV2Enabled?: boolean;
 }
 
 export function NeuroRxShell({
@@ -35,9 +38,15 @@ export function NeuroRxShell({
   sources = [],
   interactions = [],
   dataVersionHash = "v1-live",
+  syncV2Enabled = process.env.NEXT_PUBLIC_NEURORX_SYNC_V2 === "1",
 }: NeuroRxShellProps) {
+  const isSyncV2 = syncV2Enabled;
   const router = useRouter();
   const searchParams = useSearchParams();
+  const syncState = useNeuroRxDrugs({
+    initialDrugs,
+    enabled: isSyncV2,
+  });
 
   // Dark Mode State (Night Shift) - Synced with local storage and html class
   const [darkMode, setDarkMode] = useState(false);
@@ -78,9 +87,14 @@ export function NeuroRxShell({
 
   // Live Drugs State — synced with initial server render and live updates
   const [drugs, setDrugs] = useState<DrugWithEffectiveStatus[]>(initialDrugs);
+  const refreshSync = syncState.refresh;
 
   useEffect(() => {
     const handleDrugUpdated = () => {
+      if (isSyncV2) {
+        void refreshSync();
+        return;
+      }
       fetch("/api/neurorx/drugs")
         .then((r) => r.json())
         .then((data) => {
@@ -92,7 +106,7 @@ export function NeuroRxShell({
     };
     window.addEventListener("neurorx_drug_updated", handleDrugUpdated);
     return () => window.removeEventListener("neurorx_drug_updated", handleDrugUpdated);
-  }, []);
+  }, [isSyncV2, refreshSync]);
 
   useEffect(() => {
     if (["lookup", "interactions", "pregnancy", "novel"].includes(tabParam)) {
@@ -100,16 +114,40 @@ export function NeuroRxShell({
     }
   }, [tabParam]);
 
+  useEffect(() => {
+    if (!isSyncV2) return;
+    const handlePopState = () => {
+      const nextTab = (new URLSearchParams(window.location.search).get("tab") as NeuroRxTab) || "lookup";
+      if (["lookup", "interactions", "pregnancy", "novel"].includes(nextTab)) {
+        setActiveTab(nextTab);
+      } else {
+        setActiveTab("lookup");
+      }
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, [isSyncV2]);
+
   const handleTabChange = (tab: NeuroRxTab) => {
     setActiveTab(tab);
-    const params = new URLSearchParams(searchParams.toString());
+    const currentSearch =
+      isSyncV2 && typeof window !== "undefined"
+        ? window.location.search
+        : searchParams.toString();
+    const params = new URLSearchParams(currentSearch);
     params.set("tab", tab);
+    if (isSyncV2 && typeof window !== "undefined") {
+      window.history.pushState(null, "", `/neurorx?${params.toString()}`);
+      return;
+    }
     router.push(`/neurorx?${params.toString()}`, { scroll: false });
   };
 
+  const activeDrugs = isSyncV2 ? syncState.drugs : drugs;
+
   // Count verified drugs and stats
-  const verifiedCount = drugs.filter((d) => d.effectiveStatus === "verified").length;
-  const novelCount = drugs.filter((d) => Boolean(d.drug.novel)).length;
+  const verifiedCount = activeDrugs.filter((d) => d.effectiveStatus === "verified").length;
+  const novelCount = activeDrugs.filter((d) => Boolean(d.drug.novel)).length;
 
   return (
     <div
@@ -152,10 +190,23 @@ export function NeuroRxShell({
 
           {/* Quick Header Badges & Actions */}
           <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 self-start sm:self-auto">
+            {isSyncV2 && (
+              <OfflineStatus
+                dataHash={dataVersionHash}
+                darkMode={darkMode}
+                syncV2={true}
+                syncStatus={syncState.status}
+                lastSyncAt={syncState.lastSyncAt}
+                lastChangeCount={syncState.lastChangeCount}
+                lastSeq={syncState.lastSeq}
+                onRefresh={syncState.refresh}
+              />
+            )}
+
             {/* Night Shift Toggle */}
             <button
               onClick={toggleDarkMode}
-              className={`px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg text-xs font-bold border transition-all flex items-center gap-1.5 ${
+              className={`min-h-[44px] px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg text-xs font-bold border transition-all flex items-center gap-1.5 ${
                 darkMode
                   ? "bg-cyan-950/70 text-cyan-300 border-cyan-800 hover:bg-cyan-900/80"
                   : "bg-white text-slate-700 border-slate-200 hover:bg-slate-50"
@@ -277,33 +328,62 @@ export function NeuroRxShell({
             TAB CONTENT PANES
            ========================================================================= */}
         <main className="min-h-[500px]">
-          {activeTab === "lookup" && (
-            <LookupTab drugs={drugs} sources={sources} darkMode={darkMode} />
-          )}
+          {isSyncV2 && syncState.status === "loading" && activeDrugs.length === 0 ? (
+            <div role="status" aria-live="polite" className="space-y-4">
+              <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                Loading drug directory…
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                {[0, 1, 2, 3, 4, 5].map((idx) => (
+                  <div
+                    key={idx}
+                    className={`h-28 rounded-2xl border animate-pulse ${
+                      darkMode
+                        ? "bg-slate-900/60 border-slate-800"
+                        : "bg-white border-slate-200"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+          ) : (
+            <>
+              {activeTab === "lookup" && (
+                <LookupTab
+                  drugs={activeDrugs}
+                  sources={sources}
+                  darkMode={darkMode}
+                  syncV2={isSyncV2}
+                  syncRowsBySlug={isSyncV2 ? syncState.rowsBySlug : undefined}
+                  onApplyLocalWrite={isSyncV2 ? syncState.applyLocalWrite : undefined}
+                />
+              )}
 
-          {activeTab === "interactions" && (
-            <InteractionsTab
-              drugs={drugs}
-              interactions={interactions}
-              sources={sources}
-              darkMode={darkMode}
-            />
-          )}
+              {activeTab === "interactions" && (
+                <InteractionsTab
+                  drugs={activeDrugs}
+                  interactions={interactions}
+                  sources={sources}
+                  darkMode={darkMode}
+                />
+              )}
 
-          {activeTab === "pregnancy" && (
-            <PregnancyTab
-              drugs={drugs}
-              sources={sources}
-              darkMode={darkMode}
-            />
-          )}
+              {activeTab === "pregnancy" && (
+                <PregnancyTab
+                  drugs={activeDrugs}
+                  sources={sources}
+                  darkMode={darkMode}
+                />
+              )}
 
-          {activeTab === "novel" && (
-            <NovelTab
-              drugs={drugs}
-              sources={sources}
-              darkMode={darkMode}
-            />
+              {activeTab === "novel" && (
+                <NovelTab
+                  drugs={activeDrugs}
+                  sources={sources}
+                  darkMode={darkMode}
+                />
+              )}
+            </>
           )}
         </main>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import {
   ShieldCheck,
   ShieldAlert,
@@ -19,12 +19,16 @@ import {
   Sparkles,
   CheckCircle2,
   ChevronDown,
+  History,
 } from "lucide-react";
 import { getStoredAdminToken } from "@/utils/clientAuth";
+import { useNeuroRxDrugs } from "@/hooks/useNeuroRxDrugs";
+import type { SyncRow } from "@/lib/neurorx/sync/types";
 import { DataHealth } from "./DataHealth";
 import { UpdateQueueList } from "./UpdateQueueList";
 import { ExtractorPanel } from "./ExtractorPanel";
 import { EditDrugModal } from "./EditDrugModal";
+import { HistoryPanel } from "./HistoryPanel";
 import type { UpdateQueueItem, DrugRecord } from "@/types/neurorx";
 
 interface NeuroRxAdminSectionProps {
@@ -47,9 +51,12 @@ interface AdminDataResponse {
 }
 
 export function NeuroRxAdminSection({ darkMode = false }: NeuroRxAdminSectionProps) {
+  const isSyncV2 = process.env.NEXT_PUBLIC_NEURORX_SYNC_V2 === "1";
+  const syncState = useNeuroRxDrugs({ enabled: isSyncV2 });
+
   const [activeSubTab, setActiveSubTab] = useState<"dashboard" | "extractor">("dashboard");
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState<AdminDataResponse | null>(null);
+  const [adminMeta, setAdminMeta] = useState<AdminDataResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
@@ -58,11 +65,53 @@ export function NeuroRxAdminSection({ darkMode = false }: NeuroRxAdminSectionPro
   const [verifyingAll, setVerifyingAll] = useState(false);
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [editingDrug, setEditingDrug] = useState<DrugRecord | null>(null);
+  const [editingSyncRow, setEditingSyncRow] = useState<SyncRow | null>(null);
+  const [isEditingNewDrug, setIsEditingNewDrug] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [historyTargetRow, setHistoryTargetRow] = useState<SyncRow | null>(null);
   const [actionSuccess, setActionSuccess] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<"all" | "verified" | "draft">("all");
   const [isLibraryOpen, setIsLibraryOpen] = useState(false);
+
+  const data: AdminDataResponse | null = useMemo(() => {
+    if (!isSyncV2) {
+      return adminMeta;
+    }
+    if (syncState.drugs.length === 0 && !adminMeta) {
+      return null;
+    }
+    const allDrugs = syncState.drugs.map((item) => item.drug);
+    const verifiedCount = syncState.drugs.filter(
+      (item) => item.effectiveStatus === "verified"
+    ).length;
+    const draftItems = syncState.drugs.filter(
+      (item) => item.effectiveStatus === "draft"
+    );
+    const hashMismatchCount = syncState.drugs.filter(
+      (item) => item.drug.status === "verified" && !item.hashMatches
+    ).length;
+
+    return {
+      version_hash: adminMeta?.version_hash || `sync-v2-seq-${syncState.lastSeq}`,
+      health: {
+        total_drugs: allDrugs.length,
+        verified_count: verifiedCount,
+        draft_count: draftItems.length,
+        hash_mismatch_count: hashMismatchCount,
+        sources_count: adminMeta?.health.sources_count ?? 0,
+        interactions_count: adminMeta?.health.interactions_count ?? 0,
+      },
+      updates_queue: adminMeta?.updates_queue ?? [],
+      drafts: draftItems.map((item) => ({
+        id: item.drug.id,
+        name: item.drug.generic_name,
+        classes: item.drug.classes || [],
+        status: item.effectiveStatus,
+      })),
+      all_drugs: allDrugs,
+    };
+  }, [isSyncV2, adminMeta, syncState.drugs, syncState.lastSeq]);
 
   const showSuccess = (msg: string) => {
     setActionSuccess(msg);
@@ -83,7 +132,7 @@ export function NeuroRxAdminSection({ darkMode = false }: NeuroRxAdminSectionPro
       if (!res.ok || !json.ok) {
         throw new Error(json.error || "Failed to load NeuroRx admin status");
       }
-      setData(json.data);
+      setAdminMeta(json.data);
     } catch (err: any) {
       setError(err?.message || "Error connecting to NeuroRx admin API");
     } finally {
@@ -108,21 +157,46 @@ export function NeuroRxAdminSection({ darkMode = false }: NeuroRxAdminSectionPro
     setVerifyingId(drugId);
     try {
       const token = getStoredAdminToken();
+      const syncRow = isSyncV2 ? syncState.rowsBySlug.get(drugId) : undefined;
       const res = await fetch("/api/neurorx/manage-drug", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "x-admin-token": token || "",
         },
-        body: JSON.stringify({ action: "verify", drug_id: drugId, verified_by: "Admin" }),
+        body: JSON.stringify(
+          isSyncV2
+            ? {
+                action: "verify",
+                drug_id: drugId,
+                uid: syncRow?.uid,
+                expected_rev: syncRow?.rev,
+                verified_by: "Admin",
+              }
+            : { action: "verify", drug_id: drugId, verified_by: "Admin" }
+        ),
       });
       const json = await res.json();
+      if (isSyncV2 && res.status === 409 && json?.code === "REV_CONFLICT") {
+        if (json.current) {
+          await syncState.applyLocalWrite(json.current as SyncRow);
+        }
+        throw new Error(
+          `Revision conflict detected (latest server revision is rev ${
+            json.currentRev ?? "newer"
+          }). View synced; review and retry.`
+        );
+      }
       if (!res.ok || !json.ok) {
         throw new Error(json.error || "Unable to verify drug.");
       }
+      if (isSyncV2 && json.row) {
+        await syncState.applyLocalWrite(json.row as SyncRow);
+      } else {
+        await fetchAdminData();
+      }
       showSuccess(json.message || "✓ Drug successfully verified and cryptographically sealed!");
       window.dispatchEvent(new CustomEvent("neurorx_drug_updated"));
-      await fetchAdminData();
     } catch (err: any) {
       alert(`Verification error: ${err?.message || "Could not connect to server"}`);
     } finally {
@@ -149,9 +223,24 @@ export function NeuroRxAdminSection({ darkMode = false }: NeuroRxAdminSectionPro
       if (!res.ok || !json.ok) {
         throw new Error(json.error || "Unable to bulk verify all drugs.");
       }
-      showSuccess(json.message || "✓ Successfully verified all draft drugs!");
+      if (isSyncV2) {
+        if (Array.isArray(json.rows)) {
+          for (const row of json.rows as SyncRow[]) {
+            await syncState.applyLocalWrite(row);
+          }
+        }
+        await syncState.refresh();
+      } else {
+        await fetchAdminData();
+      }
+      const conflictNotice =
+        isSyncV2 && Array.isArray(json.conflicts) && json.conflicts.length > 0
+          ? ` (${json.conflicts.length} skipped due to concurrent edit conflict)`
+          : "";
+      showSuccess(
+        (json.message || "✓ Successfully verified all draft drugs!") + conflictNotice
+      );
       window.dispatchEvent(new CustomEvent("neurorx_drug_updated"));
-      await fetchAdminData();
     } catch (err: any) {
       alert(`Error: ${err?.message || "Operation failed"}`);
     } finally {
@@ -160,6 +249,12 @@ export function NeuroRxAdminSection({ darkMode = false }: NeuroRxAdminSectionPro
   };
 
   const handleSaveDrug = async (updatedDrug: DrugRecord, oldId?: string): Promise<boolean> => {
+    if (isSyncV2) {
+      showSuccess("✓ Changes saved and synced successfully!");
+      window.dispatchEvent(new CustomEvent("neurorx_drug_updated"));
+      return true;
+    }
+
     try {
       const token = getStoredAdminToken();
       const res = await fetch("/api/neurorx/manage-drug", {
@@ -195,6 +290,40 @@ export function NeuroRxAdminSection({ darkMode = false }: NeuroRxAdminSectionPro
     setDeletingId(drugId);
     try {
       const token = getStoredAdminToken();
+      if (isSyncV2) {
+        const row = syncState.rowsBySlug.get(drugId);
+        if (!row) {
+          throw new Error(`Sync record for '${drugId}' not found. Refresh and retry.`);
+        }
+        const res = await fetch(
+          `/api/neurorx/sync/drugs/${encodeURIComponent(row.uid)}?expectedRev=${row.rev}`,
+          {
+            method: "DELETE",
+            headers: {
+              "x-admin-token": token || "",
+            },
+          }
+        );
+        const json = await res.json();
+        if (res.status === 409 && json?.code === "REV_CONFLICT") {
+          if (json.current) {
+            await syncState.applyLocalWrite(json.current as SyncRow);
+          }
+          throw new Error(
+            `Revision conflict deleting "${name}". Synced latest revision (${
+              json.currentRev ?? "newer"
+            }).`
+          );
+        }
+        if (!res.ok || !json?.row) {
+          throw new Error(json?.error || "Unable to delete drug.");
+        }
+        await syncState.applyLocalWrite(json.row as SyncRow);
+        showSuccess(`✓ Drug ${name} deleted.`);
+        window.dispatchEvent(new CustomEvent("neurorx_drug_updated"));
+        return;
+      }
+
       const res = await fetch("/api/neurorx/manage-drug", {
         method: "POST",
         headers: {
@@ -218,8 +347,21 @@ export function NeuroRxAdminSection({ darkMode = false }: NeuroRxAdminSectionPro
   };
 
   const handleOpenEdit = async (drugId: string) => {
+    if (isSyncV2) {
+      const syncRow = syncState.rowsBySlug.get(drugId);
+      if (syncRow) {
+        setEditingSyncRow(syncRow);
+        setIsEditingNewDrug(false);
+        setEditingDrug(syncRow.data);
+        setIsEditModalOpen(true);
+        return;
+      }
+    }
+
     const found = data?.all_drugs?.find((d) => d.id === drugId);
     if (found) {
+      setEditingSyncRow(null);
+      setIsEditingNewDrug(false);
       setEditingDrug(found);
       setIsEditModalOpen(true);
       return;
@@ -237,6 +379,8 @@ export function NeuroRxAdminSection({ darkMode = false }: NeuroRxAdminSectionPro
       });
       const json = await res.json();
       if (json.ok && json.drug) {
+        setEditingSyncRow(null);
+        setIsEditingNewDrug(false);
         setEditingDrug(json.drug);
         setIsEditModalOpen(true);
       } else {
@@ -264,13 +408,29 @@ export function NeuroRxAdminSection({ darkMode = false }: NeuroRxAdminSectionPro
           route: "PO",
           dose: null,
           dose_text: "Initial: ... Target: ...",
-          refs: [{ source_id: "system", locator: "admin", quote: "New drug" }],
+          refs: [
+            {
+              source_id: isSyncV2 ? "fda-keppra-label" : "system",
+              locator: "admin",
+              quote: "New drug",
+            },
+          ],
         },
       ],
-      renal_basis: { value: "cg_abw", refs: [] },
+      renal_basis: {
+        value: "cg_abw",
+        refs: isSyncV2
+          ? [{ source_id: "fda-keppra-label", locator: "admin", quote: "CrCl" }]
+          : [],
+      },
       hepatic: { value: "No dose adjustment required.", refs: [] },
       black_box: { value: [], refs: [] },
-      mg_safety: { value: "safe", refs: [] },
+      mg_safety: {
+        value: "safe",
+        refs: isSyncV2
+          ? [{ source_id: "fda-keppra-label", locator: "admin", quote: "MG safety" }]
+          : [],
+      },
       ng_tube: { value: { crushable: true, instructions: "" }, refs: [] },
       pgx: { value: "", refs: [] },
       ae_tags: { value: [], refs: [] },
@@ -278,6 +438,8 @@ export function NeuroRxAdminSection({ darkMode = false }: NeuroRxAdminSectionPro
       status: "draft",
       verification: { verified_by: null, verified_at: null, content_hash: null },
     };
+    setEditingSyncRow(null);
+    setIsEditingNewDrug(true);
     setEditingDrug(template);
     setIsEditModalOpen(true);
   };
@@ -304,7 +466,11 @@ export function NeuroRxAdminSection({ darkMode = false }: NeuroRxAdminSectionPro
     }
   };
 
-  if (loading) {
+  const isViewLoading = isSyncV2
+    ? loading && syncState.drugs.length === 0 && syncState.status === "loading"
+    : loading;
+
+  if (isViewLoading) {
     return (
       <div className="p-12 text-center text-xs text-slate-500 flex items-center justify-center gap-2">
         <RefreshCw className="w-4 h-4 animate-spin text-sky-500" />
@@ -313,7 +479,7 @@ export function NeuroRxAdminSection({ darkMode = false }: NeuroRxAdminSectionPro
     );
   }
 
-  if (error || !data) {
+  if (!data || (!isSyncV2 && error)) {
     return (
       <div className="p-6 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-700 dark:text-rose-300 text-xs">
         <div className="flex items-center gap-2 font-bold mb-1">
@@ -322,7 +488,10 @@ export function NeuroRxAdminSection({ darkMode = false }: NeuroRxAdminSectionPro
         </div>
         <p>{error || "No data returned."}</p>
         <button
-          onClick={fetchAdminData}
+          onClick={() => {
+            if (isSyncV2) void syncState.refresh();
+            void fetchAdminData();
+          }}
           className="mt-3 px-3 py-1.5 rounded-lg bg-rose-600 text-white font-bold text-xs hover:bg-rose-700 cursor-pointer"
         >
           Retry
@@ -393,7 +562,10 @@ export function NeuroRxAdminSection({ darkMode = false }: NeuroRxAdminSectionPro
 
           <button
             type="button"
-            onClick={fetchAdminData}
+            onClick={() => {
+              if (isSyncV2) void syncState.refresh();
+              void fetchAdminData();
+            }}
             className="p-2 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs transition-colors cursor-pointer"
             title="Refresh"
           >
@@ -533,6 +705,20 @@ export function NeuroRxAdminSection({ darkMode = false }: NeuroRxAdminSectionPro
                           <Edit className="w-3.5 h-3.5" />
                           <span>Edit</span>
                         </button>
+
+                        {/* History Button (Sync v2) */}
+                        {isSyncV2 && syncState.rowsBySlug.get(draft.id) && (
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setHistoryTargetRow(syncState.rowsBySlug.get(draft.id) ?? null)
+                            }
+                            className="min-h-[44px] px-3 py-1.5 rounded-lg border border-indigo-300 dark:border-indigo-700 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer"
+                          >
+                            <History className="w-3.5 h-3.5" />
+                            <span>History</span>
+                          </button>
+                        )}
 
                         {/* Delete Button */}
                         <button
@@ -708,6 +894,20 @@ export function NeuroRxAdminSection({ darkMode = false }: NeuroRxAdminSectionPro
                               <span>Edit</span>
                             </button>
 
+                            {isSyncV2 && syncState.rowsBySlug.get(d.id) && (
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  setHistoryTargetRow(syncState.rowsBySlug.get(d.id) ?? null)
+                                }
+                                className="min-h-[44px] px-2.5 py-1 rounded-lg border border-indigo-300 dark:border-indigo-700 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 font-bold text-xs flex items-center gap-1 transition-colors cursor-pointer"
+                                title="View revision history"
+                              >
+                                <History className="w-3 h-3" />
+                                <span>History</span>
+                              </button>
+                            )}
+
                             <button
                               type="button"
                               onClick={() => handleDeleteDrug(d.id, d.generic_name)}
@@ -737,9 +937,46 @@ export function NeuroRxAdminSection({ darkMode = false }: NeuroRxAdminSectionPro
           onClose={() => {
             setIsEditModalOpen(false);
             setEditingDrug(null);
+            setEditingSyncRow(null);
+            setIsEditingNewDrug(false);
           }}
           onSave={handleSaveDrug}
           darkMode={darkMode}
+          syncRow={isSyncV2 ? editingSyncRow : null}
+          isNewDrug={isSyncV2 ? isEditingNewDrug : false}
+          onApplyLocalWrite={isSyncV2 ? syncState.applyLocalWrite : undefined}
+          onOpenHistory={
+            isSyncV2
+              ? (row) => {
+                  setIsEditModalOpen(false);
+                  setHistoryTargetRow(row);
+                }
+              : undefined
+          }
+        />
+      )}
+
+      {/* Revision History Panel (Sync v2) */}
+      {isSyncV2 && historyTargetRow && (
+        <HistoryPanel
+          isOpen={true}
+          uid={historyTargetRow.uid}
+          drugName={historyTargetRow.data.generic_name || historyTargetRow.slug}
+          currentRev={historyTargetRow.rev}
+          darkMode={darkMode}
+          onClose={() => setHistoryTargetRow(null)}
+          onRestored={async (restoredRow) => {
+            await syncState.applyLocalWrite(restoredRow);
+            setHistoryTargetRow(restoredRow);
+            showSuccess(
+              `✓ Restored '${restoredRow.data.generic_name}' to draft rev ${restoredRow.rev}.`
+            );
+            window.dispatchEvent(new CustomEvent("neurorx_drug_updated"));
+          }}
+          onConflict={async (currentRow) => {
+            await syncState.applyLocalWrite(currentRow);
+            setHistoryTargetRow(currentRow);
+          }}
         />
       )}
     </div>

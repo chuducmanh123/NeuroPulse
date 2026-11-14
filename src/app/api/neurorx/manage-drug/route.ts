@@ -1,6 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyAdminToken } from "@/utils/security";
 import {
+  handleVerifyAllDrugsV2,
+  handleVerifyDrugV2,
+} from "@/lib/neurorx/sync/handlers";
+import { SupabaseDrugRepo } from "@/lib/neurorx/sync/repoSupabase";
+import { invalidateSyncTag } from "@/lib/neurorx/sync/routeHelpers";
+import type { SyncRow } from "@/lib/neurorx/sync/types";
+import {
   getAllDrugs,
   getAllDrugsAsync,
   getDrugById,
@@ -37,6 +44,46 @@ export async function POST(req: NextRequest) {
 
     switch (action) {
       case "verify": {
+        if (process.env.NEXT_PUBLIC_NEURORX_SYNC_V2 === "1") {
+          const result = await handleVerifyDrugV2(
+            {
+              repo: new SupabaseDrugRepo(),
+              isAdmin: true,
+              actor:
+                typeof body?.verified_by === "string" && body.verified_by.trim()
+                  ? body.verified_by.trim()
+                  : "Admin",
+              onInvalidateTag: invalidateSyncTag,
+            },
+            body
+          );
+          if (result.status !== 200) {
+            return NextResponse.json(
+              { ok: false, ...(result.body as Record<string, unknown>) },
+              {
+                status: result.status,
+                headers: { ...result.headers, "Cache-Control": "no-store" },
+              }
+            );
+          }
+          const payload = result.body as { row: SyncRow; unchanged: boolean };
+          return NextResponse.json(
+            {
+              ok: true,
+              message: `Drug '${payload.row.data.generic_name}' has been verified and sealed cryptographically!`,
+              drug: payload.row.data,
+              row: payload.row,
+              unchanged: payload.unchanged,
+              content_hash: payload.row.contentHash,
+              version_hash: payload.row.contentHash,
+            },
+            {
+              status: 200,
+              headers: { ...result.headers, "Cache-Control": "no-store" },
+            }
+          );
+        }
+
         const { drug_id, verified_by = "Admin" } = body;
         if (!drug_id) {
           return NextResponse.json({ ok: false, error: "Missing drug_id." }, { status: 400 });
@@ -52,6 +99,52 @@ export async function POST(req: NextRequest) {
       }
 
       case "verify_all": {
+        if (process.env.NEXT_PUBLIC_NEURORX_SYNC_V2 === "1") {
+          const result = await handleVerifyAllDrugsV2(
+            {
+              repo: new SupabaseDrugRepo(),
+              isAdmin: true,
+              actor:
+                typeof body?.verified_by === "string" && body.verified_by.trim()
+                  ? body.verified_by.trim()
+                  : "Admin",
+              onInvalidateTag: invalidateSyncTag,
+            },
+            body
+          );
+          if (result.status !== 200) {
+            return NextResponse.json(
+              { ok: false, ...(result.body as Record<string, unknown>) },
+              {
+                status: result.status,
+                headers: { ...result.headers, "Cache-Control": "no-store" },
+              }
+            );
+          }
+          const payload = result.body as {
+            verified_count: number;
+            rows: SyncRow[];
+            conflicts: Array<{ uid: string; slug: string; currentRev: number }>;
+            max_seq: number;
+            root_hash: string;
+          };
+          return NextResponse.json(
+            {
+              ok: true,
+              message: `Successfully verified and unlocked ${payload.verified_count} draft drugs!`,
+              verified_count: payload.verified_count,
+              rows: payload.rows,
+              conflicts: payload.conflicts,
+              max_seq: payload.max_seq,
+              version_hash: payload.root_hash || "sync-v2",
+            },
+            {
+              status: 200,
+              headers: { ...result.headers, "Cache-Control": "no-store" },
+            }
+          );
+        }
+
         const { verified_by = "Admin" } = body;
         const result = await verifyAllDraftsInStorage(verified_by);
         return NextResponse.json({

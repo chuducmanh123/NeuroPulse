@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   Pill,
@@ -15,18 +15,34 @@ import {
 import type { Subspecialty, DrugRecord, Source } from "@/types/neurorx";
 import type { DrugWithEffectiveStatus } from "@/lib/neurorx/data";
 import { parseQuery, searchDrugs, type ParsedPatientParams } from "@/lib/neurorx/omnibar";
+import { buildDrugSelectionSearchParams } from "@/lib/neurorx/sync/lookupHelpers";
+import type { SyncRow } from "@/lib/neurorx/sync/types";
+import { useNeuroRxStore } from "@/store/useNeuroRxStore";
 import { Omnibar } from "@/components/neurorx/Omnibar";
 import { DrugDetail } from "@/components/neurorx/drug/DrugDetail";
+
+export { buildDrugSelectionSearchParams };
 
 interface LookupTabProps {
   drugs: DrugWithEffectiveStatus[];
   sources?: Source[];
   darkMode?: boolean;
+  syncV2?: boolean;
+  syncRowsBySlug?: ReadonlyMap<string, SyncRow>;
+  onApplyLocalWrite?: (row: SyncRow) => Promise<void> | void;
 }
 
-export function LookupTab({ drugs, sources = [], darkMode = false }: LookupTabProps) {
+export function LookupTab({
+  drugs,
+  sources = [],
+  darkMode = false,
+  syncV2 = process.env.NEXT_PUBLIC_NEURORX_SYNC_V2 === "1",
+  syncRowsBySlug,
+  onApplyLocalWrite,
+}: LookupTabProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const selectMarkRef = useRef<{ drugId: string; startMs: number } | null>(null);
 
   // Search input state
   const [query, setQuery] = useState("");
@@ -34,12 +50,50 @@ export function LookupTab({ drugs, sources = [], darkMode = false }: LookupTabPr
   // Parse omnibar query in real time
   const parsed = useMemo(() => parseQuery(query), [query]);
 
-  // Selected drug from URL (?drug=<id>)
-  const selectedDrugId = searchParams.get("drug");
+  // Selected drug from URL (?drug=<id>) with instant client override when syncV2 is on
+  const searchParamDrugId = searchParams.get("drug");
+  const [clientDrugId, setClientDrugId] = useState<string | null>(searchParamDrugId);
+
+  useEffect(() => {
+    setClientDrugId(searchParamDrugId);
+  }, [searchParamDrugId]);
+
+  useEffect(() => {
+    if (!syncV2) return;
+    const handlePopState = () => {
+      setClientDrugId(new URLSearchParams(window.location.search).get("drug"));
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, [syncV2]);
+
+  const selectedDrugId = syncV2 ? clientDrugId : searchParamDrugId;
   const selectedDrugItem = useMemo(() => {
     if (!selectedDrugId) return null;
     return drugs.find((d) => d.drug.id === selectedDrugId) || null;
   }, [selectedDrugId, drugs]);
+
+  useEffect(() => {
+    if (!syncV2 || !selectedDrugItem || typeof performance === "undefined") {
+      return;
+    }
+    const pending = selectMarkRef.current;
+    if (pending && pending.drugId === selectedDrugItem.drug.id) {
+      performance.mark?.("neurorx:drug-detail-render");
+      if (typeof performance.measure === "function") {
+        try {
+          performance.measure(
+            "neurorx:click-to-detail",
+            "neurorx:drug-select-start",
+            "neurorx:drug-detail-render",
+          );
+        } catch {
+          // Ignore missing mark in synthetic environments
+        }
+      }
+      selectMarkRef.current = null;
+    }
+  }, [syncV2, selectedDrugItem]);
 
   // Filter and rank drugs
   const searchResults = useMemo(() => {
@@ -48,30 +102,42 @@ export function LookupTab({ drugs, sources = [], darkMode = false }: LookupTabPr
 
   // Handle selecting a drug from Omnibar or Card click
   const handleSelectDrug = (drugId: string, patientParams?: ParsedPatientParams) => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set("tab", "lookup");
-    params.set("drug", drugId);
-
     const p = patientParams || parsed.patient;
-    if (p.weightKg !== undefined) params.set("w", String(p.weightKg));
-    if (p.crcl !== undefined) params.set("crcl", String(p.crcl));
-    if (p.scr !== undefined) {
-      params.set(
-        "scr",
-        `${p.scr.value}${p.scr.unit === "mg/dL" ? "mgdl" : ""}`
-      );
-    }
-    if (p.age !== undefined) params.set("age", String(p.age));
-    if (p.sex !== undefined) params.set("sex", p.sex);
+    const currentSearch =
+      syncV2 && typeof window !== "undefined"
+        ? window.location.search
+        : searchParams.toString();
+    const nextQuery = buildDrugSelectionSearchParams(currentSearch, drugId, p);
 
-    router.push(`/neurorx?${params.toString()}`);
+    if (syncV2 && typeof window !== "undefined") {
+      if (typeof performance !== "undefined") {
+        performance.mark?.("neurorx:drug-select-start");
+        selectMarkRef.current = { drugId, startMs: performance.now() };
+      }
+      useNeuroRxStore.getState().initFromSearchParams(new URLSearchParams(nextQuery));
+      setClientDrugId(drugId);
+      window.history.pushState(null, "", `/neurorx?${nextQuery}`);
+      return;
+    }
+
+    router.push(`/neurorx?${nextQuery}`);
   };
 
   // Back to directory
   const handleBackToDirectory = () => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.delete("drug");
-    router.push(`/neurorx?${params.toString()}`);
+    const currentSearch =
+      syncV2 && typeof window !== "undefined"
+        ? window.location.search
+        : searchParams.toString();
+    const nextQuery = buildDrugSelectionSearchParams(currentSearch, null);
+
+    if (syncV2 && typeof window !== "undefined") {
+      setClientDrugId(null);
+      window.history.pushState(null, "", nextQuery ? `/neurorx?${nextQuery}` : "/neurorx");
+      return;
+    }
+
+    router.push(`/neurorx?${nextQuery}`);
   };
 
   // If a drug is selected, render full Tier 1 & Tier 2 DrugDetail
@@ -82,6 +148,8 @@ export function LookupTab({ drugs, sources = [], darkMode = false }: LookupTabPr
         sources={sources}
         onBack={handleBackToDirectory}
         darkMode={darkMode}
+        syncRow={syncV2 ? syncRowsBySlug?.get(selectedDrugItem.drug.id) ?? null : null}
+        onApplyLocalWrite={syncV2 ? onApplyLocalWrite : undefined}
       />
     );
   }
@@ -131,8 +199,16 @@ export function LookupTab({ drugs, sources = [], darkMode = false }: LookupTabPr
               return (
                 <div
                   key={drug.id}
+                  role="button"
+                  tabIndex={0}
                   onClick={() => handleSelectDrug(drug.id)}
-                  className={`group p-4 sm:p-5 rounded-2xl border transition-all cursor-pointer flex items-center justify-between gap-4 hover:-translate-y-0.5 ${
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      handleSelectDrug(drug.id);
+                    }
+                  }}
+                  className={`group min-h-[44px] p-4 sm:p-5 rounded-2xl border transition-all cursor-pointer flex items-center justify-between gap-4 hover:-translate-y-0.5 ${
                     darkMode
                       ? "bg-slate-900/70 border-slate-800/90 hover:border-cyan-500/50 hover:bg-slate-900 hover:shadow-lg hover:shadow-cyan-950/20"
                       : "bg-white border-slate-200/90 hover:border-cyan-400 hover:shadow-md hover:shadow-cyan-100/40"
