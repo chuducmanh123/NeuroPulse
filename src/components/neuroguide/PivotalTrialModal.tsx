@@ -1,13 +1,18 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import type {
   PivotalTrialRecord,
   OntologyFacetId,
   SubspecialtyType,
 } from "../../types/neuroguide";
 import { NEUROLOGY_SUBSPECIALTIES } from "../../types/neuroguide";
-import { STROKE_ONTOLOGY } from "../../lib/neuroguide/ontologyValidator";
+import {
+  STROKE_ONTOLOGY,
+  KEY_TRIAL_FACETS,
+  EXCLUDED_TRIAL_TAG_IDS,
+  type OntologyValueDef,
+} from "../../lib/neuroguide/ontologyValidator";
 import { getAdminHeaders } from "@/utils/clientAuth";
 
 interface PivotalTrialModalProps {
@@ -18,14 +23,170 @@ interface PivotalTrialModalProps {
   onSaved: (updatedTrials: PivotalTrialRecord[], savedTrial: PivotalTrialRecord) => void;
 }
 
-const KEY_TRIAL_FACETS: OntologyFacetId[] = [
-  "condition",
-  "phase",
-  "intervention_type",
-  "drug_or_procedure",
-  "time_window",
-  "outcome_target",
-];
+function filterAndSanitizeTags(
+  raw?: Partial<Record<OntologyFacetId, string[]>>
+): Partial<Record<OntologyFacetId, string[]>> {
+  if (!raw) return {};
+  const out: Partial<Record<OntologyFacetId, string[]>> = {};
+  for (const [k, vals] of Object.entries(raw)) {
+    if (!Array.isArray(vals)) continue;
+    const clean = vals.filter((v) => !EXCLUDED_TRIAL_TAG_IDS.has(v));
+    if (clean.length > 0) out[k as OntologyFacetId] = clean;
+  }
+  return out;
+}
+
+interface FacetMultiSelectProps {
+  label: string;
+  options: OntologyValueDef[];
+  selectedIds: string[];
+  onToggle: (termId: string) => void;
+  onClear: () => void;
+}
+
+function FacetMultiSelect({
+  label,
+  options,
+  selectedIds,
+  onToggle,
+  onClear,
+}: FacetMultiSelectProps) {
+  const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [open]);
+
+  const sortedOptions = React.useMemo(() => {
+    return [...options]
+      .filter((v) => !EXCLUDED_TRIAL_TAG_IDS.has(v.id))
+      .sort((a, b) =>
+        (a.label_en || a.id).localeCompare(b.label_en || b.id, undefined, {
+          sensitivity: "base",
+        })
+      );
+  }, [options]);
+
+  const filteredOptions = React.useMemo(() => {
+    const q = search.trim().toLowerCase();
+    if (!q) return sortedOptions;
+    return sortedOptions.filter((v) =>
+      (v.label_en || v.id).toLowerCase().includes(q)
+    );
+  }, [sortedOptions, search]);
+
+  const selectedItems = sortedOptions.filter((o) => selectedIds.includes(o.id));
+
+  return (
+    <div ref={containerRef} className="relative">
+      <div className="flex items-center justify-between mb-1">
+        <label className="text-xs font-bold text-slate-700 dark:text-slate-300">
+          {label}
+        </label>
+        {selectedItems.length > 0 && (
+          <button
+            type="button"
+            onClick={onClear}
+            className="text-[11px] font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
+          >
+            Clear ({selectedItems.length})
+          </button>
+        )}
+      </div>
+      <button
+        type="button"
+        onClick={() => setOpen((prev) => !prev)}
+        className="w-full min-h-[40px] px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-left text-xs flex items-center justify-between gap-2 hover:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+      >
+        <div className="flex flex-wrap gap-1 flex-1 min-w-0">
+          {selectedItems.length === 0 ? (
+            <span className="text-slate-400 dark:text-slate-500">
+              Select {label.toLowerCase()}...
+            </span>
+          ) : (
+            selectedItems.map((item) => (
+              <span
+                key={item.id}
+                className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-200 text-[11px] font-medium"
+              >
+                <span className="truncate max-w-[160px]">{item.label_en || item.id}</span>
+                <span
+                  role="button"
+                  tabIndex={0}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onToggle(item.id);
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      onToggle(item.id);
+                    }
+                  }}
+                  className="hover:text-rose-600 dark:hover:text-rose-400 font-bold cursor-pointer"
+                >
+                  ×
+                </span>
+              </span>
+            ))
+          )}
+        </div>
+        <span className="text-slate-400 text-[10px] shrink-0">{open ? "▲" : "▼"}</span>
+      </button>
+
+      {open && (
+        <div className="absolute left-0 right-0 mt-1 z-40 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-xl overflow-hidden">
+          <div className="p-2 border-b border-slate-100 dark:border-slate-800">
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder={`Search ${label.toLowerCase()}...`}
+              className="w-full px-2.5 py-1.5 rounded-md border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            />
+          </div>
+          <div className="max-h-56 overflow-y-auto p-1.5 space-y-0.5">
+            {filteredOptions.length === 0 ? (
+              <p className="px-2.5 py-2 text-xs text-slate-400">No matching options</p>
+            ) : (
+              filteredOptions.map((val) => {
+                const checked = selectedIds.includes(val.id);
+                return (
+                  <label
+                    key={val.id}
+                    className={`flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs cursor-pointer transition ${
+                      checked
+                        ? "bg-indigo-50 dark:bg-indigo-950/50 text-indigo-800 dark:text-indigo-200 font-semibold"
+                        : "text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
+                    }`}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={checked}
+                      onChange={() => onToggle(val.id)}
+                      className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                    />
+                    <span className="leading-snug">{val.label_en || val.id}</span>
+                  </label>
+                );
+              })
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export function PivotalTrialModal({
   isOpen,
@@ -104,7 +265,7 @@ export function PivotalTrialModal({
       setMortality90d(initialTrial.safetyEndpoint?.mortality90d || "");
       setSafetyNote(initialTrial.safetyEndpoint?.note || "");
       setBottomLine(initialTrial.bottomLine || "");
-      setOntologyTags(initialTrial.ontologyTags || defaultOntologyTags || {});
+      setOntologyTags(filterAndSanitizeTags(initialTrial.ontologyTags || defaultOntologyTags));
     } else {
       setAcronym("");
       setTitle("");
@@ -127,7 +288,7 @@ export function PivotalTrialModal({
       setMortality90d("");
       setSafetyNote("");
       setBottomLine("");
-      setOntologyTags(defaultOntologyTags || {});
+      setOntologyTags(filterAndSanitizeTags(defaultOntologyTags));
     }
   }, [isOpen, initialTrial, defaultOntologyTags]);
 
@@ -151,7 +312,7 @@ export function PivotalTrialModal({
         const t = data.trial as PivotalTrialRecord;
         setAcronym(t.acronym || "");
         setTitle(t.title || "");
-        setYear(t.year || 2025);
+        setYear(t.year || new Date().getFullYear());
         setJournal(t.journal || "");
         setPmid(t.pmid || "");
         setDoi(t.doi || "");
@@ -170,29 +331,31 @@ export function PivotalTrialModal({
         setMortality90d(t.safetyEndpoint?.mortality90d || "");
         setSafetyNote(t.safetyEndpoint?.note || "");
         setBottomLine(t.bottomLine || "");
-        if (t.ontologyTags && Object.keys(t.ontologyTags).length > 0) {
-          setOntologyTags(t.ontologyTags);
-        }
+        setOntologyTags(filterAndSanitizeTags(t.ontologyTags));
+        const sourceLabel =
+          data.source === "seed"
+            ? "Landmark Seed Library"
+            : data.source === "neuropulse-local"
+            ? "NeuroPulse Local Library"
+            : data.source === "europepmc-api"
+            ? "Europe PMC API"
+            : "NCBI PubMed API";
         setLookupStatus({
           type: "success",
-          text: `Auto-filled from ${
-            data.source === "seed"
-              ? "Landmark Seed Library"
-              : data.source === "neuropulse-local"
-              ? "NeuroPulse Local Library"
-              : "NCBI PubMed API"
-          }. Review & refine PICO numbers before saving.`,
+          text: data.usedGemini
+            ? `Đã tự động điền từ ${sourceLabel} + Gemini AI dựa trên abstract. Các mục không có trong abstract được để trống.`
+            : `Đã tự động điền từ ${sourceLabel}. Vui lòng kiểm tra và bổ sung các mục còn thiếu trước khi lưu.`,
         });
       } else {
         setLookupStatus({
           type: "error",
-          text: data.error || "Could not find matching trial metadata.",
+          text: data.error || "Không tìm thấy bài báo khớp với PMID/DOI đã nhập.",
         });
       }
     } catch (err: any) {
       setLookupStatus({
         type: "error",
-        text: err?.message || "Failed to query trial lookup endpoint.",
+        text: err?.message || "Lỗi kết nối khi tìm kiếm dữ liệu bài báo.",
       });
     } finally {
       setIsLookingUp(false);
@@ -209,6 +372,13 @@ export function PivotalTrialModal({
         [facet]: next,
       };
     });
+  };
+
+  const clearOntologyFacet = (facet: OntologyFacetId) => {
+    setOntologyTags((prev) => ({
+      ...prev,
+      [facet]: [],
+    }));
   };
 
   const handleSave = async (e: React.FormEvent) => {
@@ -290,10 +460,10 @@ export function PivotalTrialModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 backdrop-blur-sm p-4 overflow-y-auto">
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[92vh] flex flex-col overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 backdrop-blur-sm p-3 sm:p-5 overflow-y-auto">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl w-[95vw] max-w-6xl max-h-[94vh] flex flex-col overflow-hidden">
         {/* Header */}
-        <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-50 dark:bg-slate-900/80">
+        <div className="px-6 sm:px-7 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-50 dark:bg-slate-900/80">
           <div>
             <div className="flex items-center gap-2">
               <span className="px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300">
@@ -316,19 +486,25 @@ export function PivotalTrialModal({
           </button>
         </div>
 
-        <form onSubmit={handleSave} className="p-6 overflow-y-auto space-y-5 text-sm">
+        <form onSubmit={handleSave} className="p-6 sm:p-7 overflow-y-auto space-y-6 text-sm">
           {/* 1-Click Auto-Fill Bar */}
-          <div className="p-3.5 rounded-xl bg-indigo-50/70 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-900/60">
+          <div className="p-4 rounded-xl bg-indigo-50/70 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-900/60">
             <label className="block text-xs font-bold uppercase tracking-wider text-indigo-800 dark:text-indigo-300 mb-1.5">
               ⚡ 1-Click Auto-Fill from PMID, DOI, or Trial Acronym
             </label>
-            <div className="flex flex-col sm:flex-row gap-2">
+            <div className="flex flex-col sm:flex-row gap-2.5">
               <input
                 type="text"
                 value={lookupInput}
                 onChange={(e) => setLookupInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    e.preventDefault();
+                    handleAutoFill();
+                  }
+                }}
                 placeholder="e.g., 36762852, 10.1056/NEJMoa2214403, SELECT2, AcT, ENRICH..."
-                className="flex-1 px-3 py-2 rounded-lg border border-indigo-200 dark:border-indigo-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="flex-1 px-3.5 py-2 rounded-lg border border-indigo-200 dark:border-indigo-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 text-[13px] focus:outline-none focus:ring-2 focus:ring-indigo-500"
               />
               <button
                 type="button"
@@ -336,7 +512,7 @@ export function PivotalTrialModal({
                 disabled={isLookingUp || !lookupInput.trim()}
                 className="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white text-xs font-semibold transition whitespace-nowrap"
               >
-                {isLookingUp ? "Looking up..." : "Auto-Fill Metadata"}
+                {isLookingUp ? "Looking up & Extracting..." : "Auto-Fill Metadata"}
               </button>
             </div>
             {lookupStatus && (
@@ -353,8 +529,8 @@ export function PivotalTrialModal({
           </div>
 
           {/* Core Trial Identity */}
-          <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
-            <div>
+          <div className="grid grid-cols-1 sm:grid-cols-12 gap-4">
+            <div className="sm:col-span-3">
               <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                 Trial Acronym *
               </label>
@@ -364,10 +540,10 @@ export function PivotalTrialModal({
                 value={acronym}
                 onChange={(e) => setAcronym(e.target.value)}
                 placeholder="e.g. SELECT2"
-                className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs font-bold"
+                className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-[13px] font-bold"
               />
             </div>
-            <div>
+            <div className="sm:col-span-2">
               <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                 Publication Year *
               </label>
@@ -376,10 +552,10 @@ export function PivotalTrialModal({
                 required
                 value={year}
                 onChange={(e) => setYear(Number(e.target.value))}
-                className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs"
+                className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-[13px]"
               />
             </div>
-            <div>
+            <div className="sm:col-span-5">
               <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                 Journal / Conference *
               </label>
@@ -389,10 +565,10 @@ export function PivotalTrialModal({
                 value={journal}
                 onChange={(e) => setJournal(e.target.value)}
                 placeholder="NEJM / Lancet / ISC"
-                className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs"
+                className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-[13px]"
               />
             </div>
-            <div>
+            <div className="sm:col-span-2">
               <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                 Sample Size (N)
               </label>
@@ -401,7 +577,7 @@ export function PivotalTrialModal({
                 value={sampleSize}
                 onChange={(e) => setSampleSize(e.target.value)}
                 placeholder="e.g. 352"
-                className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs"
+                className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-[13px]"
               />
             </div>
           </div>
@@ -410,18 +586,18 @@ export function PivotalTrialModal({
             <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
               Full Study Title *
             </label>
-            <input
-              type="text"
+            <textarea
+              rows={2}
               required
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Trial of Endovascular Thrombectomy for Large Ischemic Strokes"
-              className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs"
+              className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-[13px] leading-relaxed resize-y"
             />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-5 gap-3">
-            <div>
+          <div className="grid grid-cols-1 sm:grid-cols-12 gap-4">
+            <div className="sm:col-span-2">
               <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                 PMID
               </label>
@@ -430,10 +606,10 @@ export function PivotalTrialModal({
                 value={pmid}
                 onChange={(e) => setPmid(e.target.value)}
                 placeholder="36762852"
-                className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs"
+                className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-[13px]"
               />
             </div>
-            <div>
+            <div className="sm:col-span-3">
               <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                 DOI
               </label>
@@ -442,17 +618,17 @@ export function PivotalTrialModal({
                 value={doi}
                 onChange={(e) => setDoi(e.target.value)}
                 placeholder="10.1056/NEJMoa2214403"
-                className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs"
+                className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-[13px]"
               />
             </div>
-            <div>
+            <div className="sm:col-span-2">
               <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                 Study Design
               </label>
               <select
                 value={design}
                 onChange={(e) => setDesign(e.target.value as any)}
-                className="w-full px-2.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs"
+                className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-[13px]"
               >
                 <option value="Phase 3 RCT">Phase 3 RCT</option>
                 <option value="Phase 2 RCT">Phase 2 RCT</option>
@@ -460,27 +636,27 @@ export function PivotalTrialModal({
                 <option value="Prospective Registry">Prospective Registry</option>
               </select>
             </div>
-            <div>
+            <div className="sm:col-span-3">
               <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                 Evidence Source
               </label>
               <select
                 value={evidenceSource}
                 onChange={(e) => setEvidenceSource(e.target.value as any)}
-                className="w-full px-2.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs"
+                className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-[13px]"
               >
                 <option value="PEER_REVIEWED_PUBLISHED">Peer-Reviewed Published</option>
                 <option value="CONFERENCE_LATE_BREAKING">Conference Late-Breaking</option>
               </select>
             </div>
-            <div>
+            <div className="sm:col-span-2">
               <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                 Subspecialty
               </label>
               <select
                 value={subspecialty}
                 onChange={(e) => setSubspecialty(e.target.value as SubspecialtyType)}
-                className="w-full px-2.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs"
+                className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-[13px]"
               >
                 {NEUROLOGY_SUBSPECIALTIES.filter((s) => s !== "All Subspecialties").map((s) => (
                   <option key={s} value={s}>
@@ -492,100 +668,100 @@ export function PivotalTrialModal({
           </div>
 
           {/* Structured PICO */}
-          <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800 space-y-3">
+          <div className="p-4 sm:p-5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800 space-y-4">
             <h3 className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
               Structured PICO Architecture
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-[11px] font-semibold text-slate-600 dark:text-slate-400 mb-1">
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
                   Population (P)
                 </label>
-                <input
-                  type="text"
+                <textarea
+                  rows={2}
                   value={population}
                   onChange={(e) => setPopulation(e.target.value)}
                   placeholder="AIS with ICA/M1 occlusion and large core (ASPECTS 3-5 or core >=50 mL)"
-                  className="w-full px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs"
+                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-[13px] leading-relaxed resize-y"
                 />
               </div>
               <div>
-                <label className="block text-[11px] font-semibold text-slate-600 dark:text-slate-400 mb-1">
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
                   Time Window
                 </label>
-                <input
-                  type="text"
+                <textarea
+                  rows={2}
                   value={timeWindow}
                   onChange={(e) => setTimeWindow(e.target.value)}
                   placeholder="<=24 hours from last known well"
-                  className="w-full px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs"
+                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-[13px] leading-relaxed resize-y"
                 />
               </div>
               <div>
-                <label className="block text-[11px] font-semibold text-slate-600 dark:text-slate-400 mb-1">
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
                   Intervention (I)
                 </label>
-                <input
-                  type="text"
+                <textarea
+                  rows={2}
                   value={intervention}
                   onChange={(e) => setIntervention(e.target.value)}
                   placeholder="Endovascular thrombectomy + medical care"
-                  className="w-full px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs"
+                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-[13px] leading-relaxed resize-y"
                 />
               </div>
               <div>
-                <label className="block text-[11px] font-semibold text-slate-600 dark:text-slate-400 mb-1">
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
                   Comparator (C)
                 </label>
-                <input
-                  type="text"
+                <textarea
+                  rows={2}
                   value={comparator}
                   onChange={(e) => setComparator(e.target.value)}
                   placeholder="Standard medical management alone"
-                  className="w-full px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs"
+                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-[13px] leading-relaxed resize-y"
                 />
               </div>
             </div>
           </div>
 
           {/* Primary & Safety Endpoints */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="p-4 rounded-xl bg-emerald-50/40 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900/50 space-y-2.5">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div className="p-4 sm:p-5 rounded-xl bg-emerald-50/40 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900/50 space-y-3">
               <h3 className="text-xs font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-300">
                 Primary Efficacy Endpoint
               </h3>
               <div>
-                <label className="block text-[11px] font-semibold text-slate-600 dark:text-slate-400 mb-1">
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
                   Outcome Metric
                 </label>
-                <input
-                  type="text"
+                <textarea
+                  rows={2}
                   value={primaryMetric}
                   onChange={(e) => setPrimaryMetric(e.target.value)}
                   placeholder="90-day ordinal mRS shift / mRS 0-2"
-                  className="w-full px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs"
+                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-[13px] leading-relaxed resize-y"
                 />
               </div>
               <div>
-                <label className="block text-[11px] font-semibold text-slate-600 dark:text-slate-400 mb-1">
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
                   Quantitative Result & Effect Size
                 </label>
-                <input
-                  type="text"
+                <textarea
+                  rows={2}
                   value={primaryStats}
                   onChange={(e) => setPrimaryStats(e.target.value)}
                   placeholder="Gen OR 1.51 (95% CI 1.20-1.89, p<0.001); mRS 0-2: 20.0% vs 7.0%"
-                  className="w-full px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs"
+                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-[13px] leading-relaxed resize-y"
                 />
               </div>
               <div>
-                <label className="block text-[11px] font-semibold text-slate-600 dark:text-slate-400 mb-1">
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
                   Statistical Verdict
                 </label>
                 <select
                   value={verdict}
                   onChange={(e) => setVerdict(e.target.value as any)}
-                  className="w-full px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-bold"
+                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-[13px] font-bold"
                 >
                   <option value="POSITIVE">POSITIVE (Superiority Met)</option>
                   <option value="NON_INFERIOR">NON_INFERIOR (Non-Inferiority Met)</option>
@@ -595,13 +771,13 @@ export function PivotalTrialModal({
               </div>
             </div>
 
-            <div className="p-4 rounded-xl bg-amber-50/40 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/50 space-y-2.5">
+            <div className="p-4 sm:p-5 rounded-xl bg-amber-50/40 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/50 space-y-3">
               <h3 className="text-xs font-bold uppercase tracking-wider text-amber-800 dark:text-amber-300">
                 Key Safety Endpoints
               </h3>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-[11px] font-semibold text-slate-600 dark:text-slate-400 mb-1">
+                  <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
                     sICH Rate (Intervention vs Control)
                   </label>
                   <input
@@ -609,11 +785,11 @@ export function PivotalTrialModal({
                     value={sICH}
                     onChange={(e) => setSICH(e.target.value)}
                     placeholder="e.g. 0.6% vs 1.1%"
-                    className="w-full px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs"
+                    className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-[13px]"
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-semibold text-slate-600 dark:text-slate-400 mb-1">
+                  <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
                     90-Day Mortality
                   </label>
                   <input
@@ -621,71 +797,56 @@ export function PivotalTrialModal({
                     value={mortality90d}
                     onChange={(e) => setMortality90d(e.target.value)}
                     placeholder="e.g. 38.4% vs 41.5%"
-                    className="w-full px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs"
+                    className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-[13px]"
                   />
                 </div>
               </div>
               <div>
-                <label className="block text-[11px] font-semibold text-slate-600 dark:text-slate-400 mb-1">
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
                   Additional Safety / Subgroup Note
                 </label>
-                <input
-                  type="text"
+                <textarea
+                  rows={2}
                   value={safetyNote}
                   onChange={(e) => setSafetyNote(e.target.value)}
                   placeholder="e.g. Early neurological worsening higher with vascular access complications"
-                  className="w-full px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs"
+                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-[13px] leading-relaxed resize-y"
                 />
               </div>
               <div>
-                <label className="block text-[11px] font-semibold text-slate-600 dark:text-slate-400 mb-1">
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
                   1-Sentence Clinical Takeaway *
                 </label>
-                <input
-                  type="text"
+                <textarea
+                  rows={2}
                   required
                   value={bottomLine}
                   onChange={(e) => setBottomLine(e.target.value)}
                   placeholder="EVT significantly improved functional independence in large-core AIS up to 24h."
-                  className="w-full px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs"
+                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-[13px] leading-relaxed resize-y"
                 />
               </div>
             </div>
           </div>
 
           {/* Ontology Tag Bridge */}
-          <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">
-              Ontology Facet Tags (Links Trial to Clinical Navigator Queries)
+          <div className="p-4 sm:p-5 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-3">
+              Ontology Facet Tags
             </h3>
-            <div className="space-y-2.5 max-h-48 overflow-y-auto pr-1">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {KEY_TRIAL_FACETS.map((facetKey) => {
                 const facetDef = STROKE_ONTOLOGY.facets[facetKey];
                 if (!facetDef) return null;
-                const selectedIds = ontologyTags[facetKey] || [];
                 return (
-                  <div key={facetKey} className="flex flex-wrap items-center gap-1.5">
-                    <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 w-36 shrink-0">
-                      {facetDef.label_en || facetKey}:
-                    </span>
-                    {facetDef.values.map((val) => {
-                      const active = selectedIds.includes(val.id);
-                      return (
-                        <button
-                          key={val.id}
-                          type="button"
-                          onClick={() => toggleOntologyTag(facetKey, val.id)}
-                          className={`px-2 py-0.5 rounded-md text-[11px] font-medium border transition ${
-                            active
-                              ? "bg-indigo-600 text-white border-indigo-600"
-                              : "bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-indigo-400"
-                          }`}
-                        >
-                          {val.label_en || val.id}
-                        </button>
-                      );
-                    })}
-                  </div>
+                  <FacetMultiSelect
+                    key={facetKey}
+                    label={facetDef.label_en || facetKey}
+                    options={facetDef.values}
+                    selectedIds={ontologyTags[facetKey] || []}
+                    onToggle={(termId) => toggleOntologyTag(facetKey, termId)}
+                    onClear={() => clearOntologyFacet(facetKey)}
+                  />
                 );
               })}
             </div>

@@ -721,3 +721,21 @@ export function autoLabelRecommendationVerbatim(
 
   return candidateOutput;
 }
+
+export const KEY_TRIAL_FACETS: OntologyFacetId[] = [
+  "condition",
+  "phase",
+  "intervention_type",
+  "drug_or_procedure",
+  "time_window",
+  "outcome_target",
+];
+
+export const EXCLUDED_TRIAL_TAG_IDS = new Set<string>([
+  "patient_selection",
+  "nicardipine",
+  "labetalol",
+  "nimodipine",
+  "unspecified",
+]);
+
