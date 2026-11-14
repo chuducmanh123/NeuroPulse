@@ -1,5 +1,212 @@
 [
   {
+    "id": "nc-2026-047",
+    "case_code": "NC-2026-047",
+    "title": "Progressive Liver Cirrhosis, Tremors, and Bilateral Basal Ganglia Lesions in a Young Female",
+    "subspecialty": "Movement Disorders",
+    "subspecialties": [
+      "Movement Disorders",
+      "Neurogenetics",
+      "Hepatology"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": true,
+    "archive_only": false,
+    "published_date": "2026-11-15",
+    "status": "approved",
+    "author_credit": "Frontiers in neurology • PMC13500248",
+    "source_journal": {
+      "name": "Frontiers in neurology",
+      "short_name": "Frontiers in neurology",
+      "doi_url": "https://doi.org/10.3389/fneur.2026.1855936",
+      "pmcid": "PMC13500248",
+      "pmid": "42638654",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "27-year-old female",
+      "chief_complaint": "Progressive tremors, dystonia, and dysarthria",
+      "history_of_present_illness": "The patient was diagnosed with hepatic cirrhosis at age 24 after presenting with abnormal liver enzymes and splenomegaly of unclear etiology. Over the past 3 years, she developed a progressive right upper and lower limb tremor exacerbated by action and stress. She subsequently developed slurred speech, forced facial smiling (risus sardonicus), orofacial dystonia, and gait instability with abnormal postural reflexes.",
+      "past_medical_history": "Hepatic cirrhosis managed supportively; no prior personal or family history of neurodegenerative conditions.",
+      "vitals": {
+        "bp": "118/76 mmHg",
+        "hr": "74 bpm",
+        "rr": "16 /min",
+        "temp": "36.6 °C",
+        "spo2": "99%"
+      },
+      "neuro_exam": "Conscious with dysarthria and intact cognition. Slit-lamp ophthalmologic examination reveals bilateral brownish-golden rings at the limbus of the cornea. Orofacial dystonia and postural and kinetic tremors of the right limbs are present. Bilateral dysdiadochokinesia and a positive pull test are noted. Normal muscle strength, preserved sensation, and negative Babinski signs bilaterally.",
+      "key_labs_csf": "Serum ceruloplasmin markedly reduced at 0.04 g/L (reference: 0.20–0.60 g/L); 24-hour urinary copper excretion elevated at 180 µg/day (reference: <50 µg/day). Serum free copper is elevated.",
+      "imaging": [
+        {
+          "modality": "Brain MRI (T1-weighted and T2-weighted)",
+          "sequence_badge": "Figure 1 • Frontiers in neurology (PMC13500248)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13500248_fig1.webp",
+          "pmcid": "PMC13500248",
+          "doi_url": "https://doi.org/10.3389/fneur.2026.1855936",
+          "caption": "Brain MRI revealed abnormal signals in the bilateral putamen.",
+          "findings_summary": "Bilateral symmetric putaminal hypointensity on T1-weighted imaging and hyperintensity on T2-weighted imaging."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "D",
+      "options": [
+        {
+          "id": "A",
+          "text": "Huntington disease",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. Huntington disease presents with chorea, psychiatric disturbances, and executive dysfunction. Neuroimaging demonstrates caudate atrophy rather than isolated putaminal signal abnormalities, and hepatic involvement is not part of the phenotype."
+        },
+        {
+          "id": "B",
+          "text": "Pantothenate kinase-associated neurodegeneration (PKAN)",
+          "peer_percentage": 10,
+          "rationale": "Incorrect. PKAN typically presents in childhood with progressive dystonia and dynamic spasticity. Brain MRI demonstrates the pathognomonic 'eye-of-the-tiger' sign (medial hyperintensity surrounded by hypointensity in the globus pallidus). Hepatic cirrhosis and corneal ring deposits are absent."
+        },
+        {
+          "id": "C",
+          "text": "Primary familial brain calcification",
+          "peer_percentage": 12,
+          "rationale": "Incorrect. Primary familial brain calcification (Fahr disease) presents with parkinsonism, dystonia, or ataxia associated with extensive basal ganglia calcifications on CT or T2*-weighted MRI. It does not cause hepatopathy, low ceruloplasmin, or Kayser-Fleischer rings."
+        },
+        {
+          "id": "D",
+          "text": "Wilson disease",
+          "peer_percentage": 73,
+          "rationale": "Correct! The triad of liver cirrhosis, extrapyramidal neurologic features (wing-beating/action tremor, dysarthria, dystonia, risus sardonicus), diagnostic lab findings (low ceruloplasmin, elevated 24-hour urinary copper), Kayser-Fleischer rings, and bilateral putaminal signal changes confirms Wilson disease."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Wilson disease",
+      "clinical_discussion": "Wilson disease is an autosomal recessive inborn error of copper metabolism caused by pathogenic variants in the ATP7B gene, encoding a P-type copper-transporting ATPase. Impaired biliary copper excretion leads to toxic accumulation primarily in the liver and central nervous system.\n\nHepatic dysfunction usually presents in childhood or young adulthood as unexplained hepatitis, cirrhosis, or acute liver failure. Neurologic presentation occurs typically in the second to third decade and includes parkinsonism, dysarthria, dystonia, tremor (often dynamic/wing-beating), and psychiatric signs. Kayser-Fleischer rings reflect copper deposition in Descemet's membrane of the cornea and are present in over 90% of patients with neurologic Wilson disease. Diagnostic lab hallmarks include low serum ceruloplasmin (<0.20 g/L) and elevated 24-hour urinary copper excretion (>100 µg/24h). Neuroimaging typically reveals symmetric T2 hyperintensities in the basal ganglia, thalami, and brainstem (such as the 'face of the giant panda' sign in the midbrain).",
+      "teaching_points": [
+        "Wilson disease must be considered in any young adult presenting with unexplained movement disorders, psychiatric changes, or cryptogenic liver disease.",
+        "Kayser-Fleischer rings identified on slit-lamp examination combined with a low serum ceruloplasmin (<0.20 g/L) and elevated 24-hour urinary copper are key diagnostic markers.",
+        "Brain MRI findings characteristically demonstrate bilateral symmetric signal alterations in the basal ganglia, particularly involving the putamen and thalamus."
+      ],
+      "clinical_pitfalls": [
+        "Failing to order a slit-lamp examination in young patients presenting with atypical movement disorders or unexplained liver cirrhosis.",
+        "Assuming a normal serum ceruloplasmin level excludes Wilson disease, as ceruloplasmin is an acute-phase reactant and may be elevated into the low-normal range during acute hepatic inflammation."
+      ],
+      "related_keywords": [
+        "Wilson disease",
+        "ATP7B gene",
+        "Ceruloplasmin",
+        "Kayser-Fleischer rings",
+        "Basal ganglia hyperintensity"
+      ]
+    }
+  },
+  {
+    "id": "nc-2026-048",
+    "case_code": "NC-2026-048",
+    "title": "Progressive Four-Limb Numbness, Ataxia, and Combined Spinal Column MRI Hyperintensities",
+    "subspecialty": "General Neurology",
+    "subspecialties": [
+      "General Neurology",
+      "Spinal Cord Disorders"
+    ],
+    "difficulty": "Fellow",
+    "estimated_time_sec": 110,
+    "is_daily_challenge": false,
+    "archive_only": true,
+    "published_date": "2026-11-15",
+    "status": "approved",
+    "author_credit": "BMC neurology • PMC13749912",
+    "source_journal": {
+      "name": "BMC neurology",
+      "short_name": "BMC neurology",
+      "doi_url": "https://doi.org/10.1186/s12883-026-05283-9",
+      "pmcid": "PMC13749912",
+      "pmid": "43004190",
+      "pub_year": "2026"
+    },
+    "presentation": {
+      "demographics": "22-year-old female",
+      "chief_complaint": "Progressive numbness and weakness in all four limbs",
+      "history_of_present_illness": "A 22-year-old female presents with a 2-week history of persistent four-limb numbness accompanied by progressive weakness, upper limb clumsiness, and gait instability leading to frequent falls. She reports regular recreational nitrous oxide inhalation over the past year. Her symptoms have worsened continuously. She denies bowel or bladder dysfunction.",
+      "past_medical_history": "Chronic recreational nitrous oxide (N2O) inhalation for over 1 year",
+      "vitals": {
+        "bp": "122/76 mmHg",
+        "hr": "78 bpm",
+        "rr": "16 /min",
+        "temp": "36.7 °C",
+        "spo2": "99% on room air"
+      },
+      "neuro_exam": "Muscle strength is 5-/5 in the upper extremities and 4/5 in the lower extremities with normal tone. A right-sided Babinski sign is present. Deep tendon reflexes are generalized absent. Vibration and proprioception are markedly reduced in the lower extremities, and light touch sensation is decreased globally in a glove-and-stocking distribution.",
+      "key_labs_csf": "Serum vitamin B12: > 2,000 pg/mL (ref: 200–900 pg/mL)\nSerum methylmalonic acid: 602.0 nmol/L (ref: 87–318 nmol/L)\nElectromyography/NCS: Sensorimotor polyneuropathy with mixed axonal and demyelinating features",
+      "imaging": [
+        {
+          "modality": "Cervical Spine MRI (Axial PD and Sagittal T2 Fat-Suppressed)",
+          "sequence_badge": "Figure 1 • BMC neurology (PMC13749912)",
+          "figure_label": "Figure 1",
+          "image_url": "/data/figures/PMC13749912_fig1.webp",
+          "pmcid": "PMC13749912",
+          "doi_url": "https://doi.org/10.1186/s12883-026-05283-9",
+          "caption": "A Axial PD-weighted image showing hyperintensity in the anterior and posterior columns, forming the “butterfly sign” (yellow arrow). B Axial PD-weighted image demonstrating the “butterfly sign” in the anterior and posterior columns (yellow arrow), along with punctate hyperintensities in the lateral columns (blue arrow). C Sagittal T2-weighted fat-suppressed image showing continuous strip-like hyperintensity within the spinal cord from C2 to C6 (red arrow)",
+          "findings_summary": "Continuous strip-like hyperintensities from C2 to C6 involving the anterior, posterior, and lateral columns, with a characteristic butterfly sign."
+        }
+      ]
+    },
+    "challenge": {
+      "question": "Which of the following is the most likely diagnosis?",
+      "question_type": "Diagnosis",
+      "correct_option": "A",
+      "options": [
+        {
+          "id": "A",
+          "text": "Subacute combined degeneration secondary to nitrous oxide intoxication",
+          "peer_percentage": 74,
+          "rationale": "Correct. Chronic nitrous oxide (N2O) abuse causes functional vitamin B12 inactivation by oxidizing cob(I)alamin. This impairs methionine synthase activity and leads to subacute combined degeneration (SCD) of the spinal cord. Patients present with combined upper and lower motor neuron signs, sensory ataxia, elevated methylmalonic acid (despite potentially normal or high serum B12 levels), and longitudinally extensive cervical cord posterior/lateral column T2 hyperintensities."
+        },
+        {
+          "id": "B",
+          "text": "Amyotrophic lateral sclerosis",
+          "peer_percentage": 12,
+          "rationale": "Incorrect. Amyotrophic lateral sclerosis (ALS) presents with mixed upper and lower motor neuron signs but characteristically spares sensory pathways (no posterior column sensory loss or sensory ataxia) and does not cause extensive multi-column cervical spinal cord T2 hyperintensities or peripheral sensory polyneuropathy."
+        },
+        {
+          "id": "C",
+          "text": "Friedreich ataxia",
+          "peer_percentage": 9,
+          "rationale": "Incorrect. Friedreich ataxia is an autosomal recessive trinucleotide repeat expansion disorder presenting in childhood or adolescence with slowly progressive ataxia, loss of deep tendon reflexes, dysarthria, and hypertrophic cardiomyopathy, without subacute onset, N2O exposure, or acute extensive cervical spinal cord MRI hyperintensities."
+        },
+        {
+          "id": "D",
+          "text": "Multiple sclerosis",
+          "peer_percentage": 5,
+          "rationale": "Incorrect. Multiple sclerosis typically causes focal, peripherally located demyelinating lesions spanning less than two vertebral segments (short-segment myelitis) and is disseminated in time and space, rather than causing continuous, multi-column symmetrical T2 hyperintensities spanning C2 to C6."
+        }
+      ]
+    },
+    "resolution": {
+      "final_diagnosis": "Subacute combined degeneration (SCD) secondary to nitrous oxide (N2O) intoxication",
+      "clinical_discussion": "Nitrous oxide inactivates vitamin B12 by oxidizing its monovalent cobalt ion (cob(I)alamin to cob(III)alamin). This permanently disables methylcobalamin-dependent methionine synthase, impairing both myelin sheath maintenance and DNA synthesis. Serum vitamin B12 levels may be normal or paradoxically elevated due to impaired cellular uptake or assay artifacts. Thus, functional markers of B12 deficiency—specifically methylmalonic acid (MMA) and total plasma homocysteine—are critical diagnostic indicators.\n\nClassic subacute combined degeneration (SCD) affects the posterior and lateral columns of the spinal cord. However, severe N2O neurotoxicity can also involve the anterior columns, creating an unusual 'butterfly sign' on axial T2-weighted cervical spinal cord MRI. Early clinical recognition is paramount: treatment consists of immediate N2O cessation and high-dose intramuscular or oral parenteral vitamin B12 (hydroxocobalamin or cyanocobalamin) supplementation, which can prevent permanent neurological impairment.",
+      "teaching_points": [
+        "Nitrous oxide (N2O) inactivates vitamin B12, causing functional deficiency and subacute combined degeneration (SCD) even in the presence of normal or elevated serum B12 levels.",
+        "Serum methylmalonic acid (MMA) and homocysteine are essential functional biomarkers when testing for N2O-induced myeloneuropathy.",
+        "MRI of the spinal cord in SCD classically shows posterior column hyperintensity ('inverted V' sign), but extensive cases may involve lateral and anterior columns ('butterfly sign')."
+      ],
+      "clinical_pitfalls": [
+        "Failing to evaluate functional B12 markers (MMA and homocysteine) when serum B12 is normal or high in a patient with clinical myeloneuropathy.",
+        "Misdiagnosing N2O-induced myelopathy as multiple sclerosis or Guillain-Barré syndrome due to mixed central and peripheral neurological findings."
+      ],
+      "related_keywords": [
+        "Nitrous oxide neurotoxicity",
+        "Subacute combined degeneration",
+        "Functional vitamin B12 deficiency",
+        "Methylmalonic acid",
+        "Inverted V sign"
+      ]
+    }
+  },
+  {
     "id": "nc-2026-045",
     "case_code": "NC-2026-045",
     "title": "Pediatric Case of Isolated Bilateral Mydriasis and Loss of Light Reflex Following Upper Respiratory Infection",
