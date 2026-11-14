@@ -636,7 +636,8 @@ export function autoLabelRecommendationVerbatim(
     within_4_5h: ["4.5-hour", "4.5 hours", "within 4.5 h"],
     within_6h: ["within 6 hours", "6-hour"],
     h6_to_24h: ["6 to 24 hours", "6–24 hours", "4.5 to 9 hours", "4.5–9 hours"],
-    within_24h: ["within 24 hours", "24 hours of symptom onset"],
+    h24_to_72h: ["24 to 72 hours", "24–72 hours", "24-72h", "within 72 hours"],
+    beyond_72h: ["beyond 72 hours", ">72 hours", "> 72 hours", "after 72 hours"],
     unknown_onset_wake_up: ["wake-up stroke", "unknown onset"],
   });
 

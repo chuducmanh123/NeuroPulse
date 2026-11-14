@@ -2973,28 +2973,23 @@ function RecommendationMatrixCard({
             ))}
         </div>
 
-        {/* Verification Badge + Rec ID */}
-        <div className="flex items-center gap-2">
-          {rec.validationStatus === "human_approved" ? (
-            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950/70 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800">
-              ✓ Clinician Approved
-            </span>
-          ) : rec.isUnlabeled ? (
-            <span
-              className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-900 dark:bg-amber-950/70 dark:text-amber-300 border border-amber-300 dark:border-amber-800"
-              title={rec.missingLabelReasons?.join(" • ") || "Chưa gắn nhãn hoàn chỉnh"}
-            >
-              ⚠️ Chưa gắn nhãn đầy đủ
-            </span>
-          ) : (
-            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-sky-100 text-sky-800 dark:bg-sky-950/70 dark:text-sky-300 border border-sky-300 dark:border-sky-800">
-              🛡️ AI Auto-labeled
-            </span>
-          )}
-          <span className="text-[10px] font-mono text-slate-400">
-            [{rec.recId}]
-          </span>
-        </div>
+        {/* Verification Badge */}
+        {(rec.validationStatus === "human_approved" || rec.isUnlabeled) && (
+          <div className="flex items-center gap-2">
+            {rec.validationStatus === "human_approved" ? (
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950/70 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800">
+                ✓ Clinician Approved
+              </span>
+            ) : (
+              <span
+                className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-900 dark:bg-amber-950/70 dark:text-amber-300 border border-amber-300 dark:border-amber-800"
+                title={rec.missingLabelReasons?.join(" • ") || "Chưa gắn nhãn hoàn chỉnh"}
+              >
+                ⚠️ Chưa gắn nhãn đầy đủ
+              </span>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Unlabeled / Incomplete Label Warning for Clinicians */}
@@ -3152,7 +3147,7 @@ function PivotalTrialCard({
           {trial.pico.timeWindow && (
             <div className="flex items-center gap-1.5 pt-1 border-t border-slate-100 dark:border-slate-800/80 text-[11px] text-amber-700 dark:text-amber-400">
               <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-amber-500/10 dark:bg-amber-500/15 border border-amber-500/20 font-bold">
-                ⏱ Cửa sổ: {trial.pico.timeWindow}
+                ⏱ Window: {trial.pico.timeWindow}
               </span>
             </div>
           )}

@@ -59622,7 +59622,8 @@
           "for"
         ],
         "time_window": [
-          "within_24h"
+          "within_6h",
+          "h6_to_24h"
         ],
         "drug_or_procedure": [
           "mechanical_thrombectomy_device"
@@ -59680,7 +59681,8 @@
           "for"
         ],
         "time_window": [
-          "within_24h"
+          "within_6h",
+          "h6_to_24h"
         ],
         "drug_or_procedure": [
           "mechanical_thrombectomy_device"
@@ -59858,7 +59860,8 @@
           "for"
         ],
         "time_window": [
-          "within_24h"
+          "within_6h",
+          "h6_to_24h"
         ],
         "outcome_target": [
           "functional_outcome",
@@ -59923,7 +59926,8 @@
           "uncertain"
         ],
         "time_window": [
-          "beyond_24h"
+          "h24_to_72h",
+          "beyond_72h"
         ],
         "drug_or_procedure": []
       },
@@ -59976,7 +59980,8 @@
           "for"
         ],
         "time_window": [
-          "within_24h"
+          "within_6h",
+          "h6_to_24h"
         ],
         "drug_or_procedure": []
       },
@@ -60031,7 +60036,6 @@
         ],
         "time_window": [
           "h6_to_24h",
-          "within_24h",
           "unknown_onset_wake_up"
         ],
         "drug_or_procedure": [
@@ -60145,7 +60149,8 @@
           "against"
         ],
         "time_window": [
-          "within_24h"
+          "within_6h",
+          "h6_to_24h"
         ],
         "intervention_type": [
           "endovascular_thrombectomy"
@@ -60282,7 +60287,8 @@
           "for"
         ],
         "time_window": [
-          "within_24h"
+          "within_6h",
+          "h6_to_24h"
         ],
         "outcome_target": [
           "functional_outcome",
@@ -60607,8 +60613,7 @@
           "neutral"
         ],
         "time_window": [
-          "h6_to_24h",
-          "within_24h"
+          "h6_to_24h"
         ],
         "drug_or_procedure": [
           "tenecteplase"
@@ -60678,7 +60683,8 @@
           "for"
         ],
         "time_window": [
-          "within_24h"
+          "within_6h",
+          "h6_to_24h"
         ],
         "outcome_target": [
           "functional_outcome",
@@ -60818,7 +60824,8 @@
           "against"
         ],
         "time_window": [
-          "within_24h"
+          "within_6h",
+          "h6_to_24h"
         ],
         "drug_or_procedure": [
           "glibenclamide"
@@ -60889,8 +60896,10 @@
           "for"
         ],
         "time_window": [
-          "within_24h",
-          "beyond_24h"
+          "within_6h",
+          "h6_to_24h",
+          "h24_to_72h",
+          "beyond_72h"
         ],
         "outcome_target": [
           "recurrent_stroke",
@@ -60961,7 +60970,8 @@
           "for"
         ],
         "time_window": [
-          "beyond_24h"
+          "h24_to_72h",
+          "beyond_72h"
         ],
         "drug_or_procedure": [
           "clopidogrel",
@@ -61031,7 +61041,8 @@
           "against"
         ],
         "time_window": [
-          "within_24h"
+          "within_6h",
+          "h6_to_24h"
         ],
         "outcome_target": [
           "functional_outcome"
@@ -61166,7 +61177,8 @@
           "for"
         ],
         "time_window": [
-          "within_24h"
+          "within_6h",
+          "h6_to_24h"
         ],
         "outcome_target": [
           "functional_outcome",
@@ -61246,7 +61258,8 @@
           "for"
         ],
         "time_window": [
-          "within_24h",
+          "within_6h",
+          "h6_to_24h",
           "unknown_onset_wake_up"
         ],
         "outcome_target": [
@@ -61479,7 +61492,8 @@
           "for"
         ],
         "time_window": [
-          "within_24h"
+          "within_6h",
+          "h6_to_24h"
         ],
         "outcome_target": [
           "functional_outcome",
@@ -61552,8 +61566,7 @@
           "for"
         ],
         "time_window": [
-          "h6_to_24h",
-          "within_24h"
+          "h6_to_24h"
         ],
         "outcome_target": [
           "functional_outcome",
@@ -61623,7 +61636,8 @@
           "for"
         ],
         "time_window": [
-          "within_24h"
+          "within_6h",
+          "h6_to_24h"
         ],
         "intervention_type": [
           "intraarterial_thrombolysis",
@@ -61690,7 +61704,8 @@
           "against"
         ],
         "time_window": [
-          "beyond_24h"
+          "h24_to_72h",
+          "beyond_72h"
         ],
         "outcome_target": [
           "functional_outcome"
@@ -61857,7 +61872,8 @@
           "for"
         ],
         "time_window": [
-          "within_24h"
+          "within_6h",
+          "h6_to_24h"
         ],
         "outcome_target": [
           "functional_outcome"
@@ -62116,7 +62132,8 @@
           "for"
         ],
         "time_window": [
-          "within_24h"
+          "within_6h",
+          "h6_to_24h"
         ],
         "outcome_target": [
           "recurrent_stroke",
@@ -62226,7 +62243,8 @@
           "for"
         ],
         "time_window": [
-          "within_24h"
+          "within_6h",
+          "h6_to_24h"
         ],
         "outcome_target": [
           "recurrent_stroke",
@@ -62284,7 +62302,8 @@
           "for"
         ],
         "time_window": [
-          "within_24h"
+          "within_6h",
+          "h6_to_24h"
         ],
         "drug_or_procedure": [
           "andexanet_alfa"
@@ -62443,7 +62462,8 @@
           "neutral"
         ],
         "time_window": [
-          "within_24h"
+          "within_6h",
+          "h6_to_24h"
         ],
         "outcome_target": [
           "functional_outcome"
@@ -62547,7 +62567,8 @@
           "against"
         ],
         "time_window": [
-          "within_24h"
+          "within_6h",
+          "h6_to_24h"
         ],
         "outcome_target": [
           "functional_outcome"
@@ -62830,7 +62851,8 @@
           "for"
         ],
         "time_window": [
-          "within_24h"
+          "within_6h",
+          "h6_to_24h"
         ],
         "outcome_target": [
           "recurrent_stroke"
@@ -63114,7 +63136,8 @@
           "against"
         ],
         "time_window": [
-          "within_24h"
+          "within_6h",
+          "h6_to_24h"
         ],
         "outcome_target": [
           "functional_outcome"
@@ -63219,8 +63242,8 @@
           "for"
         ],
         "time_window": [
-          "within_24h",
-          "within_6h"
+          "within_6h",
+          "h6_to_24h"
         ],
         "outcome_target": [
           "functional_outcome"
@@ -63330,7 +63353,8 @@
           "against"
         ],
         "time_window": [
-          "within_24h"
+          "within_6h",
+          "h6_to_24h"
         ],
         "outcome_target": [
           "complications"
@@ -63382,8 +63406,8 @@
           "large_vessel_occlusion"
         ],
         "time_window": [
-          "within_24h",
-          "within_6h"
+          "within_6h",
+          "h6_to_24h"
         ],
         "outcome_target": [
           "functional_outcome"
@@ -63488,8 +63512,9 @@
           "against"
         ],
         "time_window": [
-          "beyond_24h",
-          "within_24h"
+          "h24_to_72h",
+          "within_6h",
+          "h6_to_24h"
         ],
         "outcome_target": [
           "complications"
@@ -63543,8 +63568,9 @@
           "against"
         ],
         "time_window": [
-          "beyond_24h",
-          "within_24h"
+          "h24_to_72h",
+          "within_6h",
+          "h6_to_24h"
         ],
         "outcome_target": [
           "mortality",
@@ -63598,7 +63624,7 @@
           "for"
         ],
         "time_window": [
-          "beyond_24h"
+          "h24_to_72h"
         ],
         "outcome_target": [
           "functional_outcome",
@@ -63656,7 +63682,8 @@
           "for"
         ],
         "time_window": [
-          "within_24h"
+          "within_6h",
+          "h6_to_24h"
         ],
         "outcome_target": [
           "recurrent_stroke",
@@ -63712,7 +63739,8 @@
           "for"
         ],
         "time_window": [
-          "beyond_24h"
+          "h24_to_72h",
+          "beyond_72h"
         ],
         "outcome_target": [
           "mortality",
@@ -63985,8 +64013,10 @@
           "for"
         ],
         "time_window": [
-          "within_24h",
-          "beyond_24h"
+          "within_6h",
+          "h6_to_24h",
+          "h24_to_72h",
+          "beyond_72h"
         ],
         "outcome_target": [
           "functional_outcome",

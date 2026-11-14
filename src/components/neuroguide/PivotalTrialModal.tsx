@@ -30,16 +30,71 @@ function filterAndSanitizeTags(
   const out: Partial<Record<OntologyFacetId, string[]>> = {};
   for (const [k, vals] of Object.entries(raw)) {
     if (!Array.isArray(vals)) continue;
-    const clean = vals.filter((v) => !EXCLUDED_TRIAL_TAG_IDS.has(v));
+    let clean = vals.filter((v) => !EXCLUDED_TRIAL_TAG_IDS.has(v));
+    if (k === "time_window") {
+      const migrated: string[] = [];
+      const hasLate = clean.includes("h6_to_24h");
+      for (const id of clean) {
+        if (id === "within_24h") {
+          if (!hasLate) migrated.push("within_6h", "h6_to_24h");
+          else migrated.push("h6_to_24h");
+        } else if (id === "beyond_24h") {
+          migrated.push("h24_to_72h");
+        } else {
+          migrated.push(id);
+        }
+      }
+      clean = [...new Set(migrated)];
+    }
     if (clean.length > 0) out[k as OntologyFacetId] = clean;
   }
   return out;
+}
+
+interface AutoResizeTextareaProps
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  value: string;
+}
+
+function AutoResizeTextarea({
+  value,
+  className = "",
+  onChange,
+  ...props
+}: AutoResizeTextareaProps) {
+  const ref = useRef<HTMLTextAreaElement>(null);
+
+  const adjustHeight = React.useCallback(() => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.height = "auto";
+    el.style.height = `${Math.max(el.scrollHeight, 38)}px`;
+  }, []);
+
+  useEffect(() => {
+    adjustHeight();
+  }, [value, adjustHeight]);
+
+  return (
+    <textarea
+      ref={ref}
+      rows={1}
+      value={value}
+      onChange={(e) => {
+        onChange?.(e);
+        adjustHeight();
+      }}
+      className={`resize-none overflow-hidden ${className}`}
+      {...props}
+    />
+  );
 }
 
 interface FacetMultiSelectProps {
   label: string;
   options: OntologyValueDef[];
   selectedIds: string[];
+  preserveOrder?: boolean;
   onToggle: (termId: string) => void;
   onClear: () => void;
 }
@@ -48,6 +103,7 @@ function FacetMultiSelect({
   label,
   options,
   selectedIds,
+  preserveOrder = false,
   onToggle,
   onClear,
 }: FacetMultiSelectProps) {
@@ -67,14 +123,14 @@ function FacetMultiSelect({
   }, [open]);
 
   const sortedOptions = React.useMemo(() => {
-    return [...options]
-      .filter((v) => !EXCLUDED_TRIAL_TAG_IDS.has(v.id))
-      .sort((a, b) =>
-        (a.label_en || a.id).localeCompare(b.label_en || b.id, undefined, {
-          sensitivity: "base",
-        })
-      );
-  }, [options]);
+    const filtered = options.filter((v) => !EXCLUDED_TRIAL_TAG_IDS.has(v.id));
+    if (preserveOrder) return filtered;
+    return [...filtered].sort((a, b) =>
+      (a.label_en || a.id).localeCompare(b.label_en || b.id, undefined, {
+        sensitivity: "base",
+      })
+    );
+  }, [options, preserveOrder]);
 
   const filteredOptions = React.useMemo(() => {
     const q = search.trim().toLowerCase();
@@ -473,9 +529,6 @@ export function PivotalTrialModal({
                 {initialTrial ? `Edit Pivotal Trial: ${initialTrial.acronym}` : "Add Landmark / Pivotal Clinical Trial"}
               </h2>
             </div>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-              Store high-yield trial PICO, primary efficacy, safety endpoints, and ontology tags to bridge directly with Clinical Navigator recommendations.
-            </p>
           </div>
           <button
             type="button"
@@ -586,13 +639,12 @@ export function PivotalTrialModal({
             <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
               Full Study Title *
             </label>
-            <textarea
-              rows={2}
+            <AutoResizeTextarea
               required
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Trial of Endovascular Thrombectomy for Large Ischemic Strokes"
-              className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-[13px] leading-relaxed resize-y"
+              className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-[13px] leading-relaxed"
             />
           </div>
 
@@ -677,48 +729,44 @@ export function PivotalTrialModal({
                 <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
                   Population (P)
                 </label>
-                <textarea
-                  rows={2}
+                <AutoResizeTextarea
                   value={population}
                   onChange={(e) => setPopulation(e.target.value)}
                   placeholder="AIS with ICA/M1 occlusion and large core (ASPECTS 3-5 or core >=50 mL)"
-                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-[13px] leading-relaxed resize-y"
+                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-[13px] leading-relaxed"
                 />
               </div>
               <div>
                 <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
                   Time Window
                 </label>
-                <textarea
-                  rows={2}
+                <AutoResizeTextarea
                   value={timeWindow}
                   onChange={(e) => setTimeWindow(e.target.value)}
                   placeholder="<=24 hours from last known well"
-                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-[13px] leading-relaxed resize-y"
+                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-[13px] leading-relaxed"
                 />
               </div>
               <div>
                 <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
                   Intervention (I)
                 </label>
-                <textarea
-                  rows={2}
+                <AutoResizeTextarea
                   value={intervention}
                   onChange={(e) => setIntervention(e.target.value)}
                   placeholder="Endovascular thrombectomy + medical care"
-                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-[13px] leading-relaxed resize-y"
+                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-[13px] leading-relaxed"
                 />
               </div>
               <div>
                 <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
                   Comparator (C)
                 </label>
-                <textarea
-                  rows={2}
+                <AutoResizeTextarea
                   value={comparator}
                   onChange={(e) => setComparator(e.target.value)}
                   placeholder="Standard medical management alone"
-                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-[13px] leading-relaxed resize-y"
+                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-[13px] leading-relaxed"
                 />
               </div>
             </div>
@@ -732,26 +780,24 @@ export function PivotalTrialModal({
               </h3>
               <div>
                 <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
-                  Outcome Metric
+                  Primary outcome
                 </label>
-                <textarea
-                  rows={2}
+                <AutoResizeTextarea
                   value={primaryMetric}
                   onChange={(e) => setPrimaryMetric(e.target.value)}
                   placeholder="90-day ordinal mRS shift / mRS 0-2"
-                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-[13px] leading-relaxed resize-y"
+                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-[13px] leading-relaxed"
                 />
               </div>
               <div>
                 <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
                   Quantitative Result & Effect Size
                 </label>
-                <textarea
-                  rows={2}
+                <AutoResizeTextarea
                   value={primaryStats}
                   onChange={(e) => setPrimaryStats(e.target.value)}
                   placeholder="Gen OR 1.51 (95% CI 1.20-1.89, p<0.001); mRS 0-2: 20.0% vs 7.0%"
-                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-[13px] leading-relaxed resize-y"
+                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-[13px] leading-relaxed"
                 />
               </div>
               <div>
@@ -778,26 +824,24 @@ export function PivotalTrialModal({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
-                    sICH Rate (Intervention vs Control)
+                    Primary safety outcome
                   </label>
-                  <input
-                    type="text"
+                  <AutoResizeTextarea
                     value={sICH}
                     onChange={(e) => setSICH(e.target.value)}
                     placeholder="e.g. 0.6% vs 1.1%"
-                    className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-[13px]"
+                    className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-[13px] leading-relaxed"
                   />
                 </div>
                 <div>
                   <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
-                    90-Day Mortality
+                    Mortality
                   </label>
-                  <input
-                    type="text"
+                  <AutoResizeTextarea
                     value={mortality90d}
                     onChange={(e) => setMortality90d(e.target.value)}
                     placeholder="e.g. 38.4% vs 41.5%"
-                    className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-[13px]"
+                    className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-[13px] leading-relaxed"
                   />
                 </div>
               </div>
@@ -805,25 +849,23 @@ export function PivotalTrialModal({
                 <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
                   Additional Safety / Subgroup Note
                 </label>
-                <textarea
-                  rows={2}
+                <AutoResizeTextarea
                   value={safetyNote}
                   onChange={(e) => setSafetyNote(e.target.value)}
                   placeholder="e.g. Early neurological worsening higher with vascular access complications"
-                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-[13px] leading-relaxed resize-y"
+                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-[13px] leading-relaxed"
                 />
               </div>
               <div>
                 <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
                   1-Sentence Clinical Takeaway *
                 </label>
-                <textarea
-                  rows={2}
+                <AutoResizeTextarea
                   required
                   value={bottomLine}
                   onChange={(e) => setBottomLine(e.target.value)}
                   placeholder="EVT significantly improved functional independence in large-core AIS up to 24h."
-                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-[13px] leading-relaxed resize-y"
+                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-[13px] leading-relaxed"
                 />
               </div>
             </div>
@@ -844,6 +886,7 @@ export function PivotalTrialModal({
                     label={facetDef.label_en || facetKey}
                     options={facetDef.values}
                     selectedIds={ontologyTags[facetKey] || []}
+                    preserveOrder={facetKey === "time_window"}
                     onToggle={(termId) => toggleOntologyTag(facetKey, termId)}
                     onClear={() => clearOntologyFacet(facetKey)}
                   />

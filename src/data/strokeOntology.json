@@ -1083,8 +1083,8 @@
         },
         {
           "id": "h6_to_24h",
-          "label_en": "6–24 Hours (Late Window)",
-          "label_vi": "6-24 giờ",
+          "label_en": "6–24 Hours",
+          "label_vi": "6–24 giờ",
           "def": "Between 6 and 24 hours.",
           "aliases": [
             "6 to 24 hours",
@@ -1094,22 +1094,27 @@
           ]
         },
         {
-          "id": "within_24h",
-          "label_en": "≤ 24 Hours",
-          "label_vi": "≤ 24 giờ",
-          "def": "Up to 24 hours without lower bound.",
+          "id": "h24_to_72h",
+          "label_en": "24–72 Hours",
+          "label_vi": "24–72 giờ",
+          "def": "Between 24 and 72 hours.",
           "aliases": [
-            "within 24 hours",
-            "within 24 h"
+            "24 to 72 hours",
+            "24–72 hours",
+            "24-72h",
+            "within 72 hours"
           ]
         },
         {
-          "id": "beyond_24h",
-          "label_en": "> 24 Hours",
-          "label_vi": "> 24 giờ",
-          "def": "More than 24 hours.",
+          "id": "beyond_72h",
+          "label_en": "> 72 Hours",
+          "label_vi": "> 72 giờ",
+          "def": "More than 72 hours.",
           "aliases": [
-            "beyond 24 hours"
+            "beyond 72 hours",
+            ">72 hours",
+            "> 72 hours",
+            "after 72 hours"
           ]
         },
         {
