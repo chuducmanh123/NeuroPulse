@@ -385,6 +385,11 @@ export function EditDrugModal({
         dose: b.dose,
       }));
 
+      const blackBoxItems = blackBoxText
+        .split("\n")
+        .map((s) => s.trim())
+        .filter(Boolean);
+
       return {
         ...baseRecord,
         id: cleanId,
@@ -468,18 +473,16 @@ export function EditDrugModal({
               ? baseRecord.renal_impairment.refs
               : [{ source_id: fallbackSourceId, locator: "admin", quote: "Renal" }],
         },
-        black_box: {
-          value: blackBoxText
-            .split("\n")
-            .map((s) => s.trim())
-            .filter(Boolean),
-          refs:
-            baseRecord.black_box?.refs && baseRecord.black_box.refs.length > 0
-              ? baseRecord.black_box.refs
-              : blackBoxText.trim()
-              ? [{ source_id: fallbackSourceId, locator: "admin", quote: "Boxed Warning" }]
-              : [],
-        },
+        black_box:
+          blackBoxItems.length > 0
+            ? {
+                value: blackBoxItems,
+                refs:
+                  baseRecord.black_box?.refs && baseRecord.black_box.refs.length > 0
+                    ? baseRecord.black_box.refs
+                    : [{ source_id: fallbackSourceId, locator: "admin", quote: "Boxed Warning" }],
+              }
+            : { value: null, refs: [] },
         mg_safety: {
           value: mgSafety,
           refs:

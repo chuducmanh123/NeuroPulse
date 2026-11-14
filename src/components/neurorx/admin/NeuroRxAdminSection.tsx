@@ -424,7 +424,7 @@ export function NeuroRxAdminSection({ darkMode = false }: NeuroRxAdminSectionPro
           : [],
       },
       hepatic: { value: "No dose adjustment required.", refs: [] },
-      black_box: { value: [], refs: [] },
+      black_box: { value: null, refs: [] },
       mg_safety: {
         value: "safe",
         refs: isSyncV2
