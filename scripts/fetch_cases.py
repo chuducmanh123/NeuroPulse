@@ -4,7 +4,9 @@ import os
 import re
 import socket
 import ssl
+import sys
 import time
+from pathlib import Path
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -49,15 +51,12 @@ HEADERS = {
 }
 
 GEMINI_API_KEY = load_env_key()
-# Thác nước mô hình AI ưu tiên từ cao xuống thấp (bắt đầu từ 3.8 Flash, tự động fallback nếu lỗi/hết quota)
-ACTIVE_GEMINI_MODELS = [
-    "gemini-3.8-flash",
-    "gemini-3.5-flash",
-    "gemini-3.5-flash-lite",
-    "gemini-flash-latest",
-    "gemini-flash-lite-latest",
-    "gemini-3.1-flash-lite",
-]
+# Thác nước mô hình AI ưu tiên từ cao xuống thấp (đọc từ Single Source of Truth config/gemini-models.json)
+_REPO_ROOT = str(Path(__file__).resolve().parent.parent)
+if _REPO_ROOT not in sys.path:
+    sys.path.insert(0, _REPO_ROOT)
+from core.gemini_models import get_gemini_waterfall
+ACTIVE_GEMINI_MODELS = get_gemini_waterfall()
 
 FIGURES_DIR = os.path.join("public", "data", "figures")
 CASES_JSON_PATH = os.path.join("public", "data", "cases.json")

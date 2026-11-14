@@ -4,6 +4,12 @@ import path from "path";
 import { verifyAdminToken } from "@/utils/security";
 import { supabaseAdmin, hasSupabaseConfig } from "@/lib/supabase";
 import { loadMergedNeuroGuideData } from "@/lib/neuroguide/guidelineStorage";
+import {
+  GEMINI_WATERFALL_MODELS,
+  PRIMARY_GEMINI_MODEL,
+  getGeminiFallbackLogs,
+  recordGeminiFallback,
+} from "@/lib/gemini/models";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -160,12 +166,89 @@ export async function GET(req: NextRequest) {
       } catch {}
     }
 
-    // 3. Gemini API Key check
-    const geminiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY || "";
-    const isGeminiConfigured = Boolean(geminiKey && geminiKey.trim().length > 10);
+    // 3. Gemini API Key check & optional Active Probe (?probe=ai)
+    const geminiKey = (process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY || "").trim();
+    const isGeminiConfigured = Boolean(geminiKey && geminiKey.length > 10);
     const maskedGeminiKey = isGeminiConfigured
       ? `${geminiKey.slice(0, 7)}...${geminiKey.slice(-4)}`
       : "Not configured";
+
+    const shouldProbeAi = req.nextUrl.searchParams.get("probe") === "ai";
+    let aiProbe: {
+      checkedAt: string;
+      results: Array<{
+        model: string;
+        ok: boolean;
+        status: number;
+        latencyMs: number;
+        error?: string;
+      }>;
+    } | null = null;
+
+    if (shouldProbeAi && isGeminiConfigured) {
+      const results = await Promise.all(
+        GEMINI_WATERFALL_MODELS.map(async (model) => {
+          const startedAt = Date.now();
+          try {
+            const res = await fetch(
+              `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  "x-goog-api-key": geminiKey,
+                },
+                body: JSON.stringify({
+                  contents: [{ parts: [{ text: "Reply with OK" }] }],
+                  generationConfig: { maxOutputTokens: 16 },
+                }),
+                signal: AbortSignal.timeout(8000),
+              }
+            );
+            const latencyMs = Date.now() - startedAt;
+            if (res.ok) {
+              return { model, ok: true, status: res.status, latencyMs };
+            }
+            let errMsg = res.statusText || "HTTP error";
+            try {
+              const errJson = await res.json();
+              errMsg = errJson?.error?.status || errJson?.error?.message || errMsg;
+            } catch {}
+            return {
+              model,
+              ok: false,
+              status: res.status,
+              latencyMs,
+              error: String(errMsg).slice(0, 120),
+            };
+          } catch (err: any) {
+            return {
+              model,
+              ok: false,
+              status: 0,
+              latencyMs: Date.now() - startedAt,
+              error: err?.message || "Network/timeout error",
+            };
+          }
+        })
+      );
+
+      if (results[0] && !results[0].ok) {
+        const nextWorking = results.find((r) => r.ok)?.model;
+        recordGeminiFallback({
+          source: "admin/health-probe",
+          failedModel: results[0].model,
+          status: results[0].status || undefined,
+          reason: results[0].error || "Active probe failed",
+          nextModel: nextWorking,
+        });
+      }
+
+      aiProbe = {
+        checkedAt: new Date().toISOString(),
+        results,
+      };
+    }
 
     // 4. Clinical Cases Stats from /api/neurocase or local cases.json
     const casesPath = path.join(process.cwd(), "public", "data", "cases.json");
@@ -223,8 +306,11 @@ export async function GET(req: NextRequest) {
         ai: {
           isGeminiConfigured,
           maskedKey: maskedGeminiKey,
-          model: "gemini-3.8-flash & gemini-3.5-flash",
+          model: PRIMARY_GEMINI_MODEL,
+          waterfall: GEMINI_WATERFALL_MODELS,
           streamingSSE: "Active",
+          fallbackLogs: getGeminiFallbackLogs(),
+          probe: aiProbe,
         },
         security: {
           adminAuthMode: "HMAC-SHA256 Token (24h TTL Session)",

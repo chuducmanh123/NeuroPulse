@@ -9,6 +9,7 @@ from typing import Dict, Any, List, Optional
 import requests
 import certifi
 from core.common.contracts import CoreException
+from core.gemini_models import get_gemini_waterfall
 
 
 def _ensure_ipv4():
@@ -41,14 +42,7 @@ class GeminiClient:
             )
 
         # Danh sách mô hình theo chiến lược thác nước (Waterfall Strategy)
-        self.models_priority = [
-            "gemini-3.5-flash",
-            "gemini-3.5-flash-lite",
-            "gemini-flash-lite-latest",
-            "gemini-flash-latest",
-            "gemini-3.8-flash",
-            "gemini-3.1-flash-lite",
-        ]
+        self.models_priority = get_gemini_waterfall()
 
     def _load_api_key(self) -> str:
         # 1. Thử lấy từ biến môi trường

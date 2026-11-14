@@ -6,6 +6,7 @@ import { ClinicalCase, CaseDifficulty, CaseStatus, CaseNeuroImaging } from "../.
 import { Article } from "../../types/article";
 import { AppSwitcher } from "../../components/ecosystem/AppSwitcher";
 import { AdminButton } from "../../components/ecosystem/AdminButton";
+import { MedicalDisclaimerFooter } from "../../components/ecosystem/MedicalDisclaimerFooter";
 import { NeuroImagingViewer } from "../../components/neurocase/NeuroImagingViewer";
 import { CaseChallenge } from "../../components/neurocase/CaseChallenge";
 import { AdminAuthModal } from "../../components/neurocase/modals/AdminAuthModal";
@@ -955,6 +956,8 @@ export default function NeuroCasePage() {
           onStartFullEdit={handleStartFullEdit}
           onAdminUpdateStatus={handleAdminUpdateStatus}
         />
+
+        <MedicalDisclaimerFooter darkMode={darkMode} />
       </div>
     </main>
   );

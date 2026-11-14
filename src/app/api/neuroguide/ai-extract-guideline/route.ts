@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 import { detectSociety } from "@/lib/neuroguide/pubmedDiscovery";
 import { detectGuidelineFormFormat } from "@/lib/neuroguide/guidelineFormat";
+import { GEMINI_WATERFALL_MODELS, recordGeminiFallback } from "@/lib/gemini/models";
 
 function loadGeminiKey(): string {
   const envPath = path.join(process.cwd(), ".env");
@@ -23,14 +24,7 @@ function loadGeminiKey(): string {
   return (process.env.GEMINI_API_KEY || "").trim().replace(/^["']|["']$/g, "");
 }
 
-const MODELS = [
-  "gemini-3.8-flash",
-  "gemini-3.5-flash",
-  "gemini-3.5-flash-lite",
-  "gemini-flash-latest",
-  "gemini-flash-lite-latest",
-  "gemini-3.1-flash-lite",
-];
+const MODELS = GEMINI_WATERFALL_MODELS;
 
 export async function POST(request: NextRequest) {
   try {
@@ -121,7 +115,17 @@ ${contentToAnalyze}`;
           }),
         });
 
-        if (!res.ok) continue;
+        if (!res.ok) {
+          const idx = MODELS.indexOf(model);
+          recordGeminiFallback({
+            source: "neuroguide/ai-extract-guideline",
+            failedModel: model,
+            status: res.status,
+            reason: res.statusText || "HTTP error",
+            nextModel: MODELS[idx + 1],
+          });
+          continue;
+        }
         const data = await res.json();
         let formattedText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
         if (formattedText && formattedText.trim().length > 30) {
@@ -132,8 +136,14 @@ ${contentToAnalyze}`;
             model,
           });
         }
-      } catch {
-        // Try next model
+      } catch (err: any) {
+        const idx = MODELS.indexOf(model);
+        recordGeminiFallback({
+          source: "neuroguide/ai-extract-guideline",
+          failedModel: model,
+          reason: err?.message || "Network/fetch error",
+          nextModel: MODELS[idx + 1],
+        });
       }
     }
 

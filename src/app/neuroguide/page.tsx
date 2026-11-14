@@ -25,6 +25,7 @@ import {
 } from "../../data/neuroguideMockData";
 import { AppSwitcher } from "../../components/ecosystem/AppSwitcher";
 import { AdminButton } from "../../components/ecosystem/AdminButton";
+import { MEDICAL_DISCLAIMER_TEXT } from "../../components/ecosystem/MedicalDisclaimerFooter";
 import dynamic from "next/dynamic";
 
 const ClinicalNavigatorTab = dynamic(
@@ -1864,14 +1865,22 @@ export default function NeuroGuidePage() {
               : "bg-slate-100 border-slate-200 text-slate-400"
           }`}
         >
-          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-            <div className="flex items-center gap-2">
-              <span className="font-bold text-amber-500">NEUROGUIDE</span>
-              <span>• Part of the Neuro Ecosystem</span>
+          <div className="max-w-7xl mx-auto space-y-3">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <span className="font-bold text-amber-500">NEUROGUIDE</span>
+                <span>• Part of the Neuro Ecosystem</span>
+              </div>
+              <div>
+                Clinical Practice Guidelines, Consensus Statements &amp; Conference Intelligence Radar
+              </div>
             </div>
-            <div>
-              Clinical Practice Guidelines, Consensus Statements &amp; Conference Intelligence Radar
-            </div>
+            <p className="text-[11px] leading-relaxed pt-2 border-t border-slate-200/60 dark:border-slate-800/60">
+              <span className="font-semibold text-slate-600 dark:text-slate-300">
+                Medical Disclaimer:
+              </span>{" "}
+              {MEDICAL_DISCLAIMER_TEXT}
+            </p>
           </div>
         </footer>
       </div>

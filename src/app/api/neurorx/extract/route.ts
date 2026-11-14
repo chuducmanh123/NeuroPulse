@@ -6,6 +6,7 @@ import { extractTextFromDocument } from "@/lib/neuroguide/documentParser";
 import { getAllSources } from "@/lib/neurorx/data";
 import { validateDrug } from "@/lib/neurorx/validate";
 import { applyQuoteGuard } from "@/lib/neurorx/extractGuard";
+import { GEMINI_WATERFALL_MODELS, recordGeminiFallback } from "@/lib/gemini/models";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -27,14 +28,7 @@ function loadGeminiKey(): string {
   return (process.env.GEMINI_API_KEY || "").trim().replace(/^["']|["']$/g, "");
 }
 
-const GEMINI_MODELS = [
-  "gemini-2.5-flash",
-  "gemini-2.0-flash",
-  "gemini-1.5-flash",
-  "gemini-3.8-flash",
-  "gemini-3.5-flash",
-  "gemini-flash-latest",
-];
+const GEMINI_MODELS = GEMINI_WATERFALL_MODELS;
 
 export async function POST(req: NextRequest) {
   try {
@@ -211,7 +205,17 @@ ${sourceText.slice(0, 120000)}
           }),
         });
 
-        if (!res.ok) continue;
+        if (!res.ok) {
+          const idx = GEMINI_MODELS.indexOf(model);
+          recordGeminiFallback({
+            source: "neurorx/extract",
+            failedModel: model,
+            status: res.status,
+            reason: res.statusText || "HTTP error",
+            nextModel: GEMINI_MODELS[idx + 1],
+          });
+          continue;
+        }
         const data = await res.json();
         const candidateText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
         if (candidateText && candidateText.trim().length > 30) {
@@ -219,8 +223,14 @@ ${sourceText.slice(0, 120000)}
           usedModel = model;
           break;
         }
-      } catch {
-        // Try fallback model
+      } catch (err: any) {
+        const idx = GEMINI_MODELS.indexOf(model);
+        recordGeminiFallback({
+          source: "neurorx/extract",
+          failedModel: model,
+          reason: err?.message || "Network/fetch error",
+          nextModel: GEMINI_MODELS[idx + 1],
+        });
       }
     }
 

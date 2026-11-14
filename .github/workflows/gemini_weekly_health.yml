@@ -1,0 +1,25 @@
+name: Gemini AI Waterfall Weekly Health Check
+
+on:
+  schedule:
+    # Runs every Monday at 02:00 UTC (09:00 AM GMT+7)
+    - cron: '0 2 * * 1'
+  workflow_dispatch:
+
+jobs:
+  probe_gemini_models:
+    name: Probe Gemini Waterfall Models
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Run Gemini Waterfall Active Probe
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: node scripts/check_gemini_models.mjs

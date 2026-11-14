@@ -11,6 +11,8 @@ import {
   computeNormalizedTierFromGrade,
 } from "../src/lib/neuroguide/ontologyValidator.ts";
 import { PIVOTAL_TRIALS_SEED, mergePivotalTrialsWithConferences } from "../src/data/pivotalTrialsSeed.ts";
+import { toCanonicalTagId } from "../src/data/clinicalNavigatorTaxonomyV3.ts";
+import { classifyPivotalTrialV3, classifyRecommendationV3 } from "../src/lib/neuroguide/clinicalNavigatorV3Classifier.ts";
 
 const examplesPath = path.join(process.cwd(), "core", "labeler", "labeler_fewshot_examples.json");
 const examplesData = JSON.parse(fs.readFileSync(examplesPath, "utf8"));
@@ -102,4 +104,58 @@ test("Compact Pivotal Trials seed stays under 35 KB and merges conference trials
   assert.ok(merged.length >= 15);
   assert.ok(merged.some((t) => t.acronym === "AcT"));
   assert.ok(merged.some((t) => t.acronym === "SELECT2"));
+});
+
+test("IA Thrombolysis (IAT) label is present in ontology and classifies studies and guidelines", () => {
+  const iatDef = STROKE_ONTOLOGY.facets.intervention_type.values.find((v) => v.id === "ia_thrombolysis");
+  assert.ok(iatDef, "ia_thrombolysis should exist in STROKE_ONTOLOGY.facets.intervention_type");
+  assert.equal(iatDef.label_en, "IA Thrombolysis (IAT)");
+
+  const recInput = toLabelerInput(
+    { id: "TEST-2026", title: "AIS Guideline", society: "AHA/ASA", year: 2026, subspecialty: "Stroke" },
+    {
+      id: "rec-iat-1",
+      category: "Endovascular Therapy",
+      topic: "Adjunct IA Thrombolysis",
+      currentText:
+        "In patients with acute ischemic stroke and successful recanalization after EVT, adjunct intra-arterial thrombolysis (IAT) may be reasonable.",
+      currentGrade: "Class 2b, Level B-R",
+      cor: "2b",
+      loe: "B-R",
+    },
+    0
+  );
+  const labeled = autoLabelRecommendationVerbatim(recInput, STROKE_ONTOLOGY);
+  assert.ok(
+    labeled.labels.intervention_type.some((x) => x.value === "ia_thrombolysis"),
+    "autoLabelRecommendationVerbatim should tag ia_thrombolysis"
+  );
+
+  const iatTagId = toCanonicalTagId("Intra-arterial Thrombolysis");
+  const v3Rec = classifyRecommendationV3(
+    { id: "TEST-2026", title: "AIS Guideline", society: "AHA/ASA", year: 2026, subspecialty: "Stroke" },
+    { id: "rec-iat-1", currentText: "Adjunct IA thrombolysis (IAT) after mechanical thrombectomy in AIS.", currentGrade: "Class 2b" },
+    1
+  );
+  assert.ok(v3Rec.interventionTags.includes(iatTagId), "Guideline V3 classifier should include Intra-arterial Thrombolysis tag");
+
+  const v3Trial = classifyPivotalTrialV3({
+    id: "trial-choice-iat",
+    acronym: "CHOICE",
+    title: "Intra-arterial alteplase after successful thrombectomy",
+    year: 2022,
+    journal: "JAMA",
+    subspecialty: "Stroke",
+    evidenceSource: "PEER_REVIEWED_PUBLISHED",
+    design: "Phase 2b RCT",
+    pico: {
+      population: "AIS with LVO after successful EVT",
+      intervention: "Adjunct IAT",
+      comparator: "Placebo",
+    },
+    primaryEndpoint: { metric: "mRS 0-1 at 90d", resultStats: "59.0% vs 40.4%", verdict: "POSITIVE" },
+    bottomLine: "Adjunct intra-arterial alteplase improved excellent functional outcome.",
+    ontologyTags: { intervention_type: ["ia_thrombolysis"] },
+  });
+  assert.ok(v3Trial.interventionTags.includes(iatTagId), "Trial V3 classifier should include Intra-arterial Thrombolysis tag");
 });

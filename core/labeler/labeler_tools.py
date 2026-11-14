@@ -530,7 +530,11 @@ def main():
     x = sp.add_parser("build-schema"); x.add_argument("--out")
     x = sp.add_parser("run"); x.add_argument("--in", dest="inp", required=True); x.add_argument("--out", required=True)
     x.add_argument("--provider", choices=["gemini", "anthropic"], default=os.environ.get("LABELER_PROVIDER", "gemini"))
-    x.add_argument("--model", default=os.environ.get("LABELER_MODEL", "gemini-2.5-flash")); x.add_argument("--limit", type=int)
+    _root = str(Path(__file__).resolve().parent.parent.parent)
+    if _root not in sys.path:
+        sys.path.insert(0, _root)
+    from core.gemini_models import get_default_labeler_model
+    x.add_argument("--model", default=os.environ.get("LABELER_MODEL", get_default_labeler_model())); x.add_argument("--limit", type=int)
     x = sp.add_parser("validate"); x.add_argument("--in", dest="inp", required=True); x.add_argument("--report")
     x = sp.add_parser("compare"); x.add_argument("--a", required=True); x.add_argument("--b", required=True)
     x = sp.add_parser("eval"); x.add_argument("--pred", required=True); x.add_argument("--gold")

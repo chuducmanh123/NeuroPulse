@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useNeuroVisionStore } from "../../store/useNeuroVisionStore";
 import { AppSwitcher } from "../../components/ecosystem/AppSwitcher";
+import { MEDICAL_DISCLAIMER_TEXT } from "../../components/ecosystem/MedicalDisclaimerFooter";
 import { NeuroViewerProvider } from "../../components/neurovision/NeuroViewerContext";
 import { DynamicNeuroViewer } from "../../components/neurovision/DynamicNeuroViewer";
 import ViewerToolbar from "../../components/neurovision/ViewerToolbar";
@@ -178,18 +179,17 @@ export default function NeuroVisionPage() {
           </div>
         )}
 
-        {/* 3. Mandatory Medical Educational Disclaimer (Làm gọn & có nút ẩn trên mobile) */}
+        {/* 3. Mandatory Medical Disclaimer (Compact & collapsible on mobile) */}
         {isDisclaimerVisible ? (
           <footer className="bg-amber-950/60 border-t border-amber-900/60 px-2 sm:px-4 py-1 sm:py-1.5 flex items-center justify-between text-[10px] sm:text-[11px] text-amber-200/90 shrink-0 gap-2">
             <div className="flex items-center gap-1.5 min-w-0 flex-1">
               <span className="text-amber-400 font-bold shrink-0">
-                ⚠️ <span className="hidden sm:inline">CÔNG CỤ HỌC TẬP:</span>
+                ⚠️ <span className="hidden sm:inline">Medical Disclaimer:</span>
               </span>
               <span className="truncate sm:whitespace-normal">
-                <span className="sm:hidden">Đào tạo & nghiên cứu MNI152. Không dùng chỉ định điều trị y khoa độc lập.</span>
+                <span className="sm:hidden">For educational &amp; reference use only; not for standalone clinical decisions.</span>
                 <span className="hidden sm:inline">
-                  Phần mềm được phát triển phục vụ mục đích đào tạo và nghiên cứu giải phẫu thần kinh học MNI152.
-                  Tuyệt đối không sử dụng kết quả định khu làm chỉ định điều trị y khoa độc lập.
+                  {MEDICAL_DISCLAIMER_TEXT}
                 </span>
               </span>
             </div>
@@ -201,7 +201,7 @@ export default function NeuroVisionPage() {
                 type="button"
                 onClick={() => setIsDisclaimerVisible(false)}
                 className="w-5 h-5 flex items-center justify-center rounded hover:bg-amber-900/60 text-amber-300 hover:text-amber-100 transition text-[11px] leading-none"
-                title="Ẩn dòng cảnh báo"
+                title="Hide disclaimer"
               >
                 ✕
               </button>
@@ -212,10 +212,10 @@ export default function NeuroVisionPage() {
             type="button"
             onClick={() => setIsDisclaimerVisible(true)}
             className="fixed bottom-2 right-2 z-30 bg-amber-950/90 hover:bg-amber-900 border border-amber-800/80 text-amber-300 rounded-full px-2.5 py-0.5 text-[10px] font-medium shadow-md transition flex items-center gap-1 backdrop-blur-sm opacity-75 hover:opacity-100"
-            title="Hiện lại cảnh báo đào tạo y khoa"
+            title="Show Medical Disclaimer"
           >
             <span>⚠️</span>
-            <span className="hidden sm:inline">Cảnh báo đào tạo</span>
+            <span className="hidden sm:inline">Medical Disclaimer</span>
           </button>
         )}
 

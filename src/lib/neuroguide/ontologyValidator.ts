@@ -598,6 +598,16 @@ export function autoLabelRecommendationVerbatim(
 
   // 5. Intervention type
   let intervention_type = matchMultiFacet("intervention_type", true, {
+    ia_thrombolysis: [
+      "intra-arterial thrombolysis",
+      "intraarterial thrombolysis",
+      "intra-arterial fibrinolysis",
+      "intra-arterial alteplase",
+      "intra-arterial tenecteplase",
+      "intra-arterial urokinase",
+      "IA thrombolysis",
+      "IAT",
+    ],
     iv_thrombolysis: ["intravenous thrombolysis", "thrombolytic", "fibrinolytic", "tenecteplase", "alteplase", "IVT"],
     endovascular_thrombectomy: ["endovascular thrombectomy", "mechanical thrombectomy", "endovascular therapy", "thrombectomy", "EVT"],
     bp_management: ["blood pressure", "BP lowering", "systolic BP", "antihypertensive", "hypertension"],

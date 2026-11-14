@@ -8,6 +8,7 @@ import type {
   SubspecialtyType,
 } from "../../types/neuroguide.ts";
 import { detectSociety, detectSubspecialty } from "./pubmedDiscovery.ts";
+import { GEMINI_WATERFALL_MODELS, recordGeminiFallback } from "../gemini/models.ts";
 import { generateSafeGuidelineId } from "./notebooklmParser.ts";
 
 function loadEnvKey(): string {
@@ -29,14 +30,7 @@ function loadEnvKey(): string {
   return (process.env.GEMINI_API_KEY || "").trim().replace(/^["']|["']$/g, "");
 }
 
-const WATERFALL_MODELS = [
-  "gemini-3.8-flash",
-  "gemini-3.5-flash",
-  "gemini-3.5-flash-lite",
-  "gemini-flash-latest",
-  "gemini-flash-lite-latest",
-  "gemini-3.1-flash-lite",
-];
+const WATERFALL_MODELS = GEMINI_WATERFALL_MODELS;
 
 async function callGeminiRestJson<T>(prompt: string, apiKey: string): Promise<T | null> {
   for (const model of WATERFALL_MODELS) {
@@ -57,7 +51,17 @@ async function callGeminiRestJson<T>(prompt: string, apiKey: string): Promise<T 
         }),
       });
 
-      if (!res.ok) continue;
+      if (!res.ok) {
+        const idx = WATERFALL_MODELS.indexOf(model);
+        recordGeminiFallback({
+          source: "neuroguide/geminiGuidelineExtractor",
+          failedModel: model,
+          status: res.status,
+          reason: res.statusText || "HTTP error",
+          nextModel: WATERFALL_MODELS[idx + 1],
+        });
+        continue;
+      }
       const data = await res.json();
       const parts = data?.candidates?.[0]?.content?.parts || [];
       const textParts = parts.filter((p: any) => p?.text && !p?.thought).map((p: any) => p.text);
@@ -66,8 +70,14 @@ async function callGeminiRestJson<T>(prompt: string, apiKey: string): Promise<T 
       if (!rawJson) continue;
       rawJson = rawJson.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/i, "");
       return JSON.parse(rawJson) as T;
-    } catch {
-      // Try next model in waterfall
+    } catch (err: any) {
+      const idx = WATERFALL_MODELS.indexOf(model);
+      recordGeminiFallback({
+        source: "neuroguide/geminiGuidelineExtractor",
+        failedModel: model,
+        reason: err?.message || "Network/parse error",
+        nextModel: WATERFALL_MODELS[idx + 1],
+      });
     }
   }
   return null;

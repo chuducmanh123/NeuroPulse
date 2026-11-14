@@ -112,6 +112,7 @@ Category of the intervention, test or care process the recommendation addresses.
 - neuroimaging: CT, CTA, CTP, MRI, MRA, DSA. | aliases: imaging, vascular imaging, brain imaging
 - laboratory_testing: Blood glucose, coagulation, troponin, biomarkers.
 - iv_thrombolysis: IV fibrinolytic therapy. | aliases: IVT, intravenous thrombolysis, thrombolytic, fibrinolytic
+- ia_thrombolysis: Intra-arterial fibrinolytic therapy (standalone or adjunct to EVT). | aliases: IAT, IA thrombolysis, intra-arterial thrombolysis, intraarterial thrombolysis, intra-arterial fibrinolysis, intra-arterial alteplase, intra-arterial tenecteplase, intra-arterial urokinase
 - endovascular_thrombectomy: Endovascular mechanical thrombectomy. | aliases: EVT, MT, mechanical thrombectomy, endovascular therapy, thrombectomy
 - aneurysm_securing: Surgical clipping, endovascular coiling, or flow diversion of intracranial aneurysms. | aliases: aneurysm repair, coiling, clipping, aneurysm obliteration
 - patient_selection: Eligibility, exclusion criteria, imaging-based selection. | NOT: A recommendation that only states a treatment (use that treatment type)

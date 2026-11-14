@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { AdminButton } from "@/components/ecosystem/AdminButton";
 import { AppSwitcher } from "@/components/ecosystem/AppSwitcher";
+import { MedicalDisclaimerFooter } from "@/components/ecosystem/MedicalDisclaimerFooter";
 import { OfflineStatus } from "@/components/neurorx/OfflineStatus";
 import { useNeuroRxDrugs } from "@/hooks/useNeuroRxDrugs";
 import type { Source, Interaction } from "@/types/neurorx";
@@ -390,11 +391,7 @@ export function NeuroRxShell({
         {/* =========================================================================
             GLOBAL CLINICAL CDSS FOOTER
            ========================================================================= */}
-        <footer className="mt-12 pt-6 border-t border-slate-200/80 dark:border-slate-800/80 text-center text-[11px] text-slate-500 dark:text-slate-400">
-          <p>
-            NeuroRx is a Clinical Decision Support System (CDSS) for licensed physicians. All calculations must be verified against current official product labelling.
-          </p>
-        </footer>
+        <MedicalDisclaimerFooter darkMode={darkMode} />
       </div>
     </div>
   );

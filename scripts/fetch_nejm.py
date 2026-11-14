@@ -4,7 +4,9 @@ import os
 import re
 import socket
 import ssl
+import sys
 import time
+from pathlib import Path
 import urllib.parse
 import urllib.request
 import urllib.error
@@ -45,14 +47,11 @@ HEADERS = {
 }
 
 GEMINI_API_KEY = load_env_key()
-ACTIVE_GEMINI_MODELS = [
-    "gemini-3.8-flash",
-    "gemini-3.5-flash",
-    "gemini-3.5-flash-lite",
-    "gemini-flash-latest",
-    "gemini-flash-lite-latest",
-    "gemini-3.1-flash-lite",
-]
+_REPO_ROOT = str(Path(__file__).resolve().parent.parent)
+if _REPO_ROOT not in sys.path:
+    sys.path.insert(0, _REPO_ROOT)
+from core.gemini_models import get_gemini_waterfall
+ACTIVE_GEMINI_MODELS = get_gemini_waterfall()
 GEMINI_MODEL = ACTIVE_GEMINI_MODELS[0]
 
 DATA_FILE_PATH = "public/data/articles.json"

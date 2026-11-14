@@ -511,25 +511,30 @@ export function PivotalTrialsAdminTab({
                       <div className="space-y-1.5 text-xs">
                         <div className="p-2 rounded-lg bg-emerald-50/70 dark:bg-emerald-950/25 border border-emerald-200/70 dark:border-emerald-900/50">
                           <span className="font-bold text-emerald-800 dark:text-emerald-300">
-                            Primary ({trial.primaryEndpoint?.metric || "Outcome"}):{" "}
+                            Primary outcome ({trial.primaryEndpoint?.metric || "Outcome"}):{" "}
                           </span>
                           <span className="font-semibold text-slate-900 dark:text-slate-100">
                             {trial.primaryEndpoint?.resultStats || "Reported in trial"}
                           </span>
                         </div>
 
-                        {(trial.safetyEndpoint?.sICH ||
-                          trial.safetyEndpoint?.mortality90d ||
+                        {trial.safetyEndpoint?.sICH && (
+                          <div className="p-2 rounded-lg bg-amber-50/70 dark:bg-amber-950/25 border border-amber-200/70 dark:border-amber-900/50">
+                            <span className="font-bold text-amber-800 dark:text-amber-300">
+                              Primary safety outcome:{" "}
+                            </span>
+                            <span className="font-semibold text-slate-900 dark:text-slate-100">
+                              {trial.safetyEndpoint.sICH}
+                            </span>
+                          </div>
+                        )}
+
+                        {(trial.safetyEndpoint?.mortality90d ||
                           trial.safetyEndpoint?.note) && (
                           <div className="px-2 py-0.5 text-[11px] text-slate-600 dark:text-slate-400 flex flex-wrap gap-x-3 gap-y-0.5 font-medium">
-                            {trial.safetyEndpoint.sICH && (
-                              <span>
-                                <strong>sICH:</strong> {trial.safetyEndpoint.sICH}
-                              </span>
-                            )}
                             {trial.safetyEndpoint.mortality90d && (
                               <span>
-                                <strong>90d Mortality:</strong> {trial.safetyEndpoint.mortality90d}
+                                <strong>Mortality:</strong> {trial.safetyEndpoint.mortality90d}
                               </span>
                             )}
                             {trial.safetyEndpoint.note && <span>• {trial.safetyEndpoint.note}</span>}

@@ -148,17 +148,20 @@ export default function AdminCommandCenter() {
   // Live System Health & Diagnostics State
   const [healthData, setHealthData] = useState<any>(null);
   const [isHealthLoading, setIsHealthLoading] = useState<boolean>(false);
+  const [isAiProbing, setIsAiProbing] = useState<boolean>(false);
   const [pulseSearchQuery, setPulseSearchQuery] = useState<string>("");
   const [pulseArticles, setPulseArticles] = useState<any[]>([]);
 
-  const fetchHealthDiagnostics = async () => {
-    setIsHealthLoading(true);
+  const fetchHealthDiagnostics = async (probeAi = false) => {
+    if (probeAi) setIsAiProbing(true);
+    else setIsHealthLoading(true);
     const token =
       sessionStorage.getItem("neurocase_admin_token") ||
       localStorage.getItem("neurocase_admin_token") ||
       "";
     try {
-      const res = await fetch("/api/admin/health", {
+      const url = probeAi ? "/api/admin/health?probe=ai" : "/api/admin/health";
+      const res = await fetch(url, {
         headers: token ? { "x-admin-token": token } : {},
         cache: "no-store",
       });
@@ -169,7 +172,8 @@ export default function AdminCommandCenter() {
     } catch (err) {
       console.warn("Could not fetch health diagnostics:", err);
     } finally {
-      setIsHealthLoading(false);
+      if (probeAi) setIsAiProbing(false);
+      else setIsHealthLoading(false);
     }
   };
 
@@ -1013,7 +1017,7 @@ export default function AdminCommandCenter() {
                 </div>
                 <button
                   type="button"
-                  onClick={fetchHealthDiagnostics}
+                  onClick={() => fetchHealthDiagnostics(false)}
                   disabled={isHealthLoading}
                   className="px-3.5 py-1.5 rounded-xl text-xs font-bold border bg-blue-500/10 hover:bg-blue-500/20 text-blue-600 dark:text-blue-400 border-blue-500/25 transition-all flex items-center gap-1.5 self-start sm:self-auto cursor-pointer"
                 >
@@ -1645,7 +1649,7 @@ export default function AdminCommandCenter() {
                 </div>
                 <button
                   type="button"
-                  onClick={fetchHealthDiagnostics}
+                  onClick={() => fetchHealthDiagnostics(false)}
                   disabled={isHealthLoading}
                   className="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-indigo-600 text-white hover:bg-indigo-700 transition-all flex items-center gap-1.5 self-start sm:self-auto cursor-pointer shadow-xs"
                 >
@@ -1705,9 +1709,79 @@ export default function AdminCommandCenter() {
                     </span>
                   </div>
                   <div className="text-xs text-slate-600 dark:text-slate-400 space-y-1">
-                    <div>Model: <strong className="text-slate-900 dark:text-slate-200">Gemini 2.5 Flash / Pro</strong></div>
-                    <div className="text-[10.5px] text-violet-600 dark:text-violet-400 font-medium">SSE Real-Time Stream Ready</div>
+                    <div>
+                      Primary Model:{" "}
+                      <strong className="text-slate-900 dark:text-slate-200 font-mono text-[11px]">
+                        {healthData?.diagnostics?.ai?.model || "gemini-4-hydrogen"}
+                      </strong>
+                    </div>
+                    <div className="text-[10.5px] text-violet-600 dark:text-violet-400 font-medium">
+                      Waterfall ({healthData?.diagnostics?.ai?.waterfall?.length || 6} models) • SSE Ready
+                    </div>
                   </div>
+                  <div className="pt-1 flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => fetchHealthDiagnostics(true)}
+                      disabled={isAiProbing || !healthData?.diagnostics?.ai?.isGeminiConfigured}
+                      className="px-2.5 py-1 rounded-lg text-[10.5px] font-bold bg-violet-600 hover:bg-violet-500 disabled:opacity-50 text-white transition-colors cursor-pointer"
+                    >
+                      {isAiProbing ? "Đang probe API..." : "Kiểm tra thực tế (Active Probe)"}
+                    </button>
+                  </div>
+                  {healthData?.diagnostics?.ai?.probe?.results && (
+                    <div className="pt-1.5 border-t border-violet-200/70 dark:border-violet-800/50 space-y-1">
+                      <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                        Kết quả Probe ({new Date(healthData.diagnostics.ai.probe.checkedAt).toLocaleTimeString()})
+                      </div>
+                      <div className="space-y-1 max-h-36 overflow-y-auto pr-1">
+                        {healthData.diagnostics.ai.probe.results.map((item: any) => (
+                          <div
+                            key={item.model}
+                            className="flex items-center justify-between text-[10.5px] font-mono bg-white/70 dark:bg-slate-900/50 px-2 py-1 rounded"
+                          >
+                            <span className="truncate max-w-[140px] text-slate-800 dark:text-slate-200" title={item.model}>
+                              {item.model}
+                            </span>
+                            <span
+                              className={`px-1.5 py-0.5 rounded font-bold ${
+                                item.ok
+                                  ? "bg-emerald-500/15 text-emerald-700 dark:text-emerald-400"
+                                  : "bg-rose-500/15 text-rose-700 dark:text-rose-400"
+                              }`}
+                              title={item.error || ""}
+                            >
+                              {item.ok ? `200 (${item.latencyMs}ms)` : `${item.status || "ERR"}`}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  {Array.isArray(healthData?.diagnostics?.ai?.fallbackLogs) &&
+                    healthData.diagnostics.ai.fallbackLogs.length > 0 && (
+                      <div className="pt-1.5 border-t border-amber-300/60 dark:border-amber-800/50 space-y-1">
+                        <div className="text-[10px] font-bold text-amber-700 dark:text-amber-400 flex items-center gap-1">
+                          <span>⚠️</span>
+                          <span>Cảnh báo Waterfall Fallback ({healthData.diagnostics.ai.fallbackLogs.length})</span>
+                        </div>
+                        <div className="space-y-1 max-h-28 overflow-y-auto pr-1">
+                          {healthData.diagnostics.ai.fallbackLogs.slice(0, 5).map((log: any, idx: number) => (
+                            <div
+                              key={`${log.timestamp}-${idx}`}
+                              className="text-[10px] bg-amber-500/10 text-amber-900 dark:text-amber-200 px-2 py-1 rounded"
+                            >
+                              <div className="font-mono font-semibold">
+                                {log.failedModel} {log.status ? `(${log.status})` : ""} → {log.nextModel || "none"}
+                              </div>
+                              <div className="text-[9.5px] opacity-80 truncate">
+                                [{log.source}] {log.reason}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                 </div>
 
                 {/* 3. Security Health */}

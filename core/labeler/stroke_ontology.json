@@ -545,6 +545,22 @@
           ]
         },
         {
+          "id": "ia_thrombolysis",
+          "label_en": "IA Thrombolysis (IAT)",
+          "label_vi": "Tiêu sợi huyết đường động mạch",
+          "def": "Intra-arterial fibrinolytic therapy (standalone or adjunct to EVT).",
+          "aliases": [
+            "IAT",
+            "IA thrombolysis",
+            "intra-arterial thrombolysis",
+            "intraarterial thrombolysis",
+            "intra-arterial fibrinolysis",
+            "intra-arterial alteplase",
+            "intra-arterial tenecteplase",
+            "intra-arterial urokinase"
+          ]
+        },
+        {
           "id": "endovascular_thrombectomy",
           "label_en": "Endovascular Thrombectomy (EVT)",
           "label_vi": "Lấy huyết khối cơ học",

@@ -819,6 +819,13 @@ const DIAGNOSIS_TAG_RULES: KeywordRule[] = [
 const INTERVENTION_SYNONYM_MAP: Record<string, RegExp[]> = {
     [toCanonicalTagId('Tenecteplase')]: [/\btenecteplase\b/i, /\btnk\b/i, /\btnk-tpa\b/i],
     [toCanonicalTagId('Alteplase')]: [/\balteplase\b/i, /\brt-pa\b/i, /\btpa\b/i, /\bintravenous thrombolysis\b/i, /\bivt\b/i],
+    [toCanonicalTagId('Intra-arterial Thrombolysis')]: [
+        /\bintra-?arterial thrombolysis\b/i,
+        /\bintra-?arterial fibrinolysis\b/i,
+        /\bintra-?arterial (?:alteplase|tenecteplase|urokinase|prourokinase|tpa|rt-pa|tnk)\b/i,
+        /\bia thrombolysis\b/i,
+        /\biat\b/i,
+    ],
     [toCanonicalTagId('SAPT')]: [/\bsapt\b/i, /\bsingle antiplatelet\b/i, /\baspirin monotherapy\b/i, /\bclopidogrel monotherapy\b/i, /\baspirin\b/i, /\bantiplatelet\b/i],
     [toCanonicalTagId('DAPT')]: [/\bdapt\b/i, /\bdual antiplatelet\b/i, /\baspirin plus clopidogrel\b/i, /\baspirin and clopidogrel\b/i, /\baspirin plus ticagrelor\b/i],
     [toCanonicalTagId('DOAC')]: [/\bdoac\b/i, /\bnoac\b/i, /\bdirect oral anticoagulan/i, /\bapixaban\b/i, /\brivaroxaban\b/i, /\bdabigatran\b/i, /\bedoxaban\b/i, /\boral anticoagulation\b/i],
@@ -1218,11 +1225,15 @@ export function classifyPivotalTrialV3(trial: PivotalTrialRecord): NonNullable<P
         drivingTrials: [trial.acronym],
     };
     const v3 = classifyRecommendationV3(syntheticDoc, syntheticChange, 1);
+    const interventionTags = new Set(v3.interventionTags);
+    if (trial.ontologyTags?.intervention_type?.includes('ia_thrombolysis')) {
+        interventionTags.add(toCanonicalTagId('Intra-arterial Thrombolysis'));
+    }
     return {
         conditionIds: v3.conditionIds,
         domains: v3.domains,
         diagnosisTags: v3.diagnosisTags,
         timeWindowIds: v3.timeWindowIds,
-        interventionTags: v3.interventionTags,
+        interventionTags: Array.from(interventionTags),
     };
 }

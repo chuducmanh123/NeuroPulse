@@ -8,6 +8,7 @@ import type {
   SubspecialtyType,
 } from "../../types/neuroguide.ts";
 import { NEUROLOGY_SUBSPECIALTIES } from "../../types/neuroguide.ts";
+import { GEMINI_WATERFALL_MODELS, recordGeminiFallback } from "../gemini/models.ts";
 import {
   STROKE_ONTOLOGY,
   validateLabelRecord,
@@ -44,12 +45,7 @@ function loadGeminiApiKey(): string {
   return "";
 }
 
-const GEMINI_MODELS = [
-  "gemini-2.5-flash",
-  "gemini-flash-latest",
-  "gemini-flash-lite-latest",
-  "gemini-2.0-flash",
-];
+const GEMINI_MODELS = GEMINI_WATERFALL_MODELS;
 
 /**
  * Renders a compact ontology reference block for the Gemini System Prompt.

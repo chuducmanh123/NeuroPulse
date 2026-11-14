@@ -6,6 +6,7 @@ import { detectSociety, detectSubspecialty } from "./pubmedDiscovery";
 import { saveStoreFileSafe } from "./storeAdapter";
 import { cleanupAllBlobPdfs } from "./blobCleanup";
 import { getCanonicalEsoPicos, normalizeEsoStrength } from "./esoPicoGrouper";
+import { GEMINI_WATERFALL_MODELS, recordGeminiFallback } from "../gemini/models.ts";
 
 export interface IncrementalRec {
   rec_id: string;
@@ -48,14 +49,7 @@ export interface IncrementalProgressEvent {
   error?: string;
 }
 
-const WATERFALL_MODELS = [
-  "gemini-3.8-flash",
-  "gemini-3.5-flash",
-  "gemini-3.5-flash-lite",
-  "gemini-flash-latest",
-  "gemini-flash-lite-latest",
-  "gemini-3.1-flash-lite",
-];
+const WATERFALL_MODELS = GEMINI_WATERFALL_MODELS;
 
 export function resolveApiKey(providedKey?: string): string {
   if (providedKey && providedKey.trim().length > 10) {

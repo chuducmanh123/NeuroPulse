@@ -12,6 +12,7 @@ import {
 } from "../components/ArticleCard";
 import { AppSwitcher } from "../components/ecosystem/AppSwitcher";
 import { AdminButton } from "../components/ecosystem/AdminButton";
+import { MedicalDisclaimerFooter } from "../components/ecosystem/MedicalDisclaimerFooter";
 import { SUBSPECIALTY_TABS } from "../constants/subspecialties";
 import {
   calculateDailyHotTopics,
@@ -1712,6 +1713,8 @@ export default function HomePage() {
         )}
           </div>
         </div>
+
+        <MedicalDisclaimerFooter darkMode={darkMode} />
       </div>
 
       {/* NÚT CUỘN NHANH LÊN ĐẦU TRANG (BACK TO TOP BUTTON) */}

@@ -1,6 +1,7 @@
 import zlib from "zlib";
 import fs from "fs";
 import path from "path";
+import { GEMINI_WATERFALL_MODELS, recordGeminiFallback } from "../gemini/models.ts";
 
 function loadGeminiApiKey(): string {
   const envPath = path.join(process.cwd(), ".env");
@@ -406,12 +407,7 @@ If recommendations or tables exist, format them with markdown columns:
 | Domain / Topic | Recommendation Statement | Class (COR) / Level (LOE) | Trials / Evidence |
 Do not add meta conversational text. Return only the extracted markdown.`;
 
-  const models = [
-    "gemini-3.8-flash",
-    "gemini-3.5-flash",
-    "gemini-3.5-flash-lite",
-    "gemini-flash-latest",
-  ];
+  const models = GEMINI_WATERFALL_MODELS;
   for (const model of models) {
     try {
       const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
@@ -441,14 +437,30 @@ Do not add meta conversational text. Return only the extracted markdown.`;
         }),
       });
 
-      if (!res.ok) continue;
+      if (!res.ok) {
+        const idx = models.indexOf(model);
+        recordGeminiFallback({
+          source: "neuroguide/documentParser",
+          failedModel: model,
+          status: res.status,
+          reason: res.statusText || "HTTP error",
+          nextModel: models[idx + 1],
+        });
+        continue;
+      }
       const data = await res.json();
       const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
       if (text && text.trim().length > 30) {
         return text.trim();
       }
-    } catch {
-      // Fallback
+    } catch (err: any) {
+      const idx = models.indexOf(model);
+      recordGeminiFallback({
+        source: "neuroguide/documentParser",
+        failedModel: model,
+        reason: err?.message || "Network/fetch error",
+        nextModel: models[idx + 1],
+      });
     }
   }
 
