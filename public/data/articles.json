@@ -2047,9 +2047,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Original Article",
     "article_types": [
-      "Editorial / Perspective"
+      "Original Article"
     ],
     "authors": [
       "Banerjee Abhik",
@@ -2069,11 +2069,11 @@
         "Neurology"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: To report a case of MOG antibody-associated optic perineuritis following bisphosphonate exposure, highlighting a potential role for bisphosphonate-induced immune activation as a non-infectious trigger of myelin oligodendrocyte glycoprotein antibody-associated disease (MOGAD). Background: Bisphosphonates, widely used for osteoporosis, can induce immune activation through T-cell stimulation and cytokine release and have been associated with rare cases of bisphosphonate-associated orbital inflammation (BAOI). MOGAD is a steroid-responsive demyelinating disorder that typically presents with optic neuritis but may also cause optic perineuritis and, less commonly, orbital inflammation. The relationship between BAOI and MOGAD remains poorly understood. Design/Methods A case report. Results: A 59-year-old woman with history of hyperthyroidism presented with subacute onset of left eye pain approximately five days after intravenous zoledronic acid infusion. Examination revealed left eye proptosis with preserved visual acuity and no disc edema but severe left eye pain with extraocular movements. MRI orbits demonstrated prominent left optic nerve sheath enhancement with associated periorbital soft tissue edema, conjunctival edema, and retrobulbar fat stranding. A presumptive diagnosis of BAOI was made and the patient was treated with high-dose intravenous methylprednisolone for three days with rapid resolution of symptoms. Serum MOG IgG testing obtained during the initial evaluation returned positive at 1:100 titer (live cell-based assay). Follow-up MRI at four weeks demonstrated near-complete resolution of optic nerve sheath enhancement and orbital inflammation. The patient was continued on a prolonged prednisone taper over approximately four months with no subsequent disease relapse. Conclusions: To our knowledge, this is the first reported case of MOG antibody-associated optic perineuritis following bisphosphonate exposure. This case highlights temporal, radiologic, and clinical overlap between BAOI and MOGAD and suggests that, in some cases, bisphosphonates may serve as a non-infectious trigger of MOG autoimmunity. These findings support consideration of MOG antibody testing in select patients with presumed BAOI, particularly when optic perineuritis is present.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "Bisphosphonate exposure may act as a non-infectious trigger for MOG antibody-associated disease (MOGAD), presenting as steroid-responsive optic perineuritis and orbital inflammation. Clinicians should consider serum MOG-IgG testing in patients with presumed bisphosphonate-associated orbital inflammation, particularly when MRI demonstrates optic nerve sheath enhancement.",
       "clinical_significance": "Clinical significance for Neuroimmunology practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -2086,9 +2086,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Original Article",
     "article_types": [
-      "Editorial / Perspective"
+      "Original Article"
     ],
     "authors": [
       "Bell Lauren",
@@ -2105,11 +2105,11 @@
         "Neurology"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: To characterize the cerebrospinal fluid (CSF) profile in neurosarcoidosis and its variability across disease phenotypes. Background: While CSF profiles in neurosarcoidosis typically include a lymphocytic pleocytosis, elevated protein, and hypoglycorrhachia, it is not known if the location of inflammation influences the probability of an inflammatory profile. Design/Methods In this single institution, retrospective study, the CSF profiles of adult patients with definite, probable, or possible neurosarcoidosis were analyzed. Results: 35 patients (median age of onset 46 years; female 21/35; Black 27/35) were included, most of whom (31/35) had systemic sarcoidosis. Disease was most commonly localized to the cranial leptomeninges (24/35), cranial nerves (17/35), hemispheric parenchyma (12/35), spinal leptomeninges (9/35), and cranial pachymeninges (8/35). Most (26/35) had at least one routine abnormality in the CSF: pleocytosis in 20/28 (range 0-100 cells/mm3; lymphocytic in 15/20), elevated protein in 24/34 (range 16-275 mg/dL), hypoglycorrhachia in 12/34 (range 15-114 mg/dL), elevated ACE level in 4/11, and oligoclonal bands in 4/14. Phenotypes with direct CSF contact usually exhibited a pleocytosis: spinal leptomeningitis (7/7), cranial neuropathies (13/15), cranial lepto- (15/18) and pachymeningitis (5/7), and cauda equina disease (4/5). While a pleocytosis was uniform in brain parenchymal disease (hemispheric 8/9, brainstem 5/5, and cerebellar 2/2), it was less common in spinal parenchymal disease (cervical 2/5, thoracic 1/3). A pleocytosis was most commonly present with inflammation in both the cerebral and spinal compartments (8/10), rather than in isolation (cranial 12/21, spinal 0/4). Similarly, hypoglycorrhachia was most frequently present with inflammation in both compartments (8/12) compared to in isolation (cranial 4/17, spinal 0/6). Conclusions: Inflammatory CSF profiles are more likely in phenotypes directly exposed to the CSF. Despite the lumbar location of CSF sampling, CSF inflammation was more commonly present in those with widespread inflammation and cranial phenotypes rather than ones isolated to the spinal compartment.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "In neurosarcoidosis, inflammatory CSF abnormalities—particularly pleocytosis and hypoglycorrhachia—are most common in phenotypes with direct CSF contact, widespread (cerebral and spinal) involvement, or cranial disease, rather than isolated spinal parenchymal disease. Consequently, a normal CSF profile does not exclude neurosarcoidosis, especially when inflammation is confined to the spinal cord.",
       "clinical_significance": "Clinical significance for Neuroimmunology practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -2178,11 +2178,11 @@
         "Neurology"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: We review usage of neurofilament light chain (NfL) as a biomarker for disease activity in glial fibrillary acidic protein astrocytopathy (GFAP-A). Background: GFAP-A is a monophasic or relapsing immune mediated meningoencephalomyelitis associated with IgG antibodies against GFAP. NfL, a product of axonal breakdown detected in cerebrospinal fluid (CSF) and serum, is an established biomarker of neuroinflammation/neurodegeneration. Elevated CSF and serum NfL (sNfL) were reported during acute GFAP-A. Design/Methods We describe a case of acute exacerbation of GFAP-A without increased sNfL levels. Results: A 41-year-old female presented to an outside hospital with generalized weakness, altered mental status, painful spasms, and urinary retention. MRI revealed multiple confluent supratentorial and infratentorial lesions with associated radial perivascular enhancement, and diffuse longitudinal cervical and thoracic cord signal hyperintensity, with edema and patchy enhancement. CSF revealed lymphocytic pleocytosis and elevated protein. Patient was diagnosed and treated for multiple sclerosis with 3 days of high dose intravenous steroids and 300mg of ocrelizumab. Patient then presented to our center with relapsing disease and was diagnosed with CSF confirmed GFAP-A. Patient had significant clinical improvement after plasma exchange and steroid taper, with resolved perivascular enhancement and reduction in parenchymal T2 hyperintensities. sNfl was measured (390 pg/mL, normal <17.3 pg/mL) ∼2 months after relapse and steadily declined over 7 months. At 8 months, while on 8mg prednisone, she developed expressive aphasia. Imaging revealed recurrent perivascular enhancement. Despite clinical and radiographic evidence of relapse, sNfL further decreased (31.5 pg/mL). Patient was treated with intravenous steroids, plasma exchange, and rituximab. sNfL 2 months post-treatment was stable. Conclusions: To our knowledge, no reports exist of declining NfL in acute GFAP-A. These findings suggest NfL levels may not be a reliable marker of disease activity in GFAP-A, possibly representing delayed neurodegeneration after acute inflammatory process. Further studies are needed to understand NfL trajectory throughout this disease course.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "In this case of relapsing GFAP astrocytopathy, serum neurofilament light chain (sNfL) levels declined from 390 to 31.5 pg/mL despite clinical and radiographic relapse. Clinicians should not rely on decreasing or stable sNfL levels to exclude acute disease activity in GFAP astrocytopathy.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -2261,10 +2261,15 @@
     "neurology_classification": {
       "subspecialty": "Neuroimmunology",
       "subspecialties": [
-        "Neuroimmunology"
+        "Neuroimmunology",
+        "Neuromuscular",
+        "CNS Infections"
       ],
       "topics": [
-        "Encephalitis"
+        "Encephalitis",
+        "Meningitis",
+        "Spinal",
+        "Encephalopathy"
       ]
     },
     "abstract": "Objective: We describe a case demonstrating the presence of NMDA receptor antibodies in the cerebrospinal fluid (CSF) of a patient with neurosarcoidosis. Background: Sarcoidosis involves the nervous system in 5-10% of cases. Neurosarcoidosis has variable presentations including multiple cranial neuropathies, meningitis, and myelopathy. Neurosarcoidosis can be associated with multiple CSF biomarkers including elevated protein, increased IL-2r, and lymphocyte-predominant pleocytosis. While nearly 20% of patients with neurosarcoidosis have a concurrent autoimmune disorder, there are no cases in the literature of comorbid NMDAr-encephalitis. Design/Methods NA. Results: A 63-year-old female presented with a one-year history of increasing gait instability, bilateral lower extremity weakness, and diplopia. She had a remote history of renal cell carcinoma with negative surveillance imaging. MRIs of the neuroaxis showed extensive leptomeningeal enhancement of the superior cerebellum, brainstem, and spinal cord with intrathecal nerve root thickening. CSF analysis revealed lymphocytic pleocytosis, elevated protein, elevated ACE, and elevated IL-2r; NMDAr antibody was also positive. Infectious work up, cytology, and flow cytometry were negative. Dural biopsy was performed which was notable for non-necrotizing granulomatous inflammation. Despite high suspicion for isolated neurosarcoidosis, as NMDAr-antibody mediated disease can be paraneoplastic and given history of renal cell carcinoma, PET-CT was obtained which revealed enlarged subcarinal lymph node. Fine needle aspiration revealed benign pathology. Based on this comprehensive workup and as she did not have any features of encephalopathy or behavioral changes to suggest NMDAr-antibody mediated disease, a diagnosis of neurosarcoidosis was made. The patient was initiated on high-dose corticosteroid and infliximab with improvement in symptoms. Conclusions: Despite biopsy favoring neurosarcoidosis, NMDAr antibodies in CSF were unexpected. Since NMDAr antibody testing in the CSF has significant specificity and antibodies can present with paraneoplastic syndromes, PET-CT was completed to rule out malignancy recurrence. Careful interpretation of clinical presentation, imaging, and CSF analysis is critical when diagnosing neuroinflammatory disease.",
@@ -2365,9 +2370,10 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Clinical Trial",
     "article_types": [
-      "Editorial / Perspective"
+      "Clinical Trial",
+      "Original Article"
     ],
     "authors": [
       "Yungher Benjamin",
@@ -2382,15 +2388,14 @@
         "Neuromuscular"
       ],
       "topics": [
-        "Myasthenia",
-        "Neurology"
+        "Myasthenia"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: To describe OCTAGON, a phase 4, prospective, multicenter, single-arm study (NCT07221838) evaluating the effectiveness and safety of a rapid, predefined oral corticosteroid (OCS)-tapering schedule in adult patients with generalized myasthenia gravis (gMG) receiving ravulizumab. Background: OCS are used to treat patients with anti-acetylcholine receptor antibody-positive (AChR-Ab+) gMG. However, high-dose therapy and long-term use—even at lower doses—are associated with substantial systemic adverse effects (AEs). Ravulizumab, a terminal complement component 5 inhibitor approved for AChR-Ab+ gMG, enables reduction and discontinuation of OCS, while maintaining symptom control. Treatment guidelines recommend steroid-sparing strategies, yet clinical practice trends employ prolonged OCS-tapering regimens with higher steroid exposure and risk of associated AEs compared with faster tapering. Design/Methods Planned enrollment: ∼75 adults with gMG, receiving ravulizumab Q8W and a stable OCS regimen equivalent to a daily average of ≥7.5 mg/day for ≥4 weeks. A tapering schedule based on baseline OCS dose will be assessed. Patients with baseline OCS 7.5-10 mg/day will reduce by 2.5 mg/day Q4W to 2.5 mg/day, then by 1.25 mg/day Q4W until completion. Patients with baseline OCS >10 mg/day will reduce by 5 mg/day Q2W to 10 mg/day, then follow the schedule for those with baseline OCS 7.5-10 mg/day. Primary endpoint is the proportion of patients who discontinue OCS or reduce to ≤5 mg/day (if the reason for no further OCS reduction is suspected adrenal insufficiency) and maintain for ≥4 weeks without gMG clinical deterioration. Results: OCTAGON is currently recruiting. Conclusions: OCTAGON addresses a critical unmet need for an evidence-based rapid OCS tapering schedule in patients with gMG. Results will provide a framework for effective and safe OCS management in the targeted immunotherapy era, minimizing risks associated with prolonged corticosteroid exposure, while optimizing outcomes for patients with gMG receiving ravulizumab.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "The ongoing Phase 4 OCTAGON trial is evaluating a standardized, rapid oral corticosteroid-tapering schedule in adults with generalized myasthenia gravis receiving ravulizumab. Results will inform evidence-based strategies to safely discontinue or reduce steroids to ≤5 mg/day without clinical deterioration, minimizing long-term corticosteroid toxicity.",
       "clinical_significance": "Clinical significance for Neuromuscular practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -2739,9 +2744,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Original Article",
     "article_types": [
-      "Editorial / Perspective"
+      "Original Article"
     ],
     "authors": [
       "Vu Alex",
@@ -2759,11 +2764,11 @@
         "Neurology"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: To characterize the ordering patterns of paraneoplastic antibody panels in all medical practitioners in Calgary, Alberta, Canada and implement quality improvement initiatives to improve ordering adherence to the 2021 Updated Diagnostic Criteria for Paraneoplastic Neurologic Syndromes. Background: Paraneoplastic neurologic syndromes (PNS) are inflammatory disorders of the nervous system triggered by an underlying malignancy. Neuronal antibody testing is an essential diagnostic tool for PNS. However, over-reliance on autoantibody testing with inconsistent clinical presentations can result in false positive test results. Incomplete autoantibody testing between CSF and serum samples and incomplete malignancy screening can lead to diagnostic uncertainty and missed diagnoses. Design/Methods Electronic medical records (EMR) were screened for adult patients in Calgary who had paraneoplastic antibody panels sent from December 2024 - June 2025. Charts were reviewed for presentation type, paired serum/CSF testing, malignancy screening, and false positive rates based on the 2021 paraneoplastic diagnostic guidelines. Interventions to improve adherence to guidelines included education rounds to neurologists and oncologists and EMR ordering requirements. Analysis of a 6-month period after these interventions is ongoing. Results: Pre-intervention analysis shows that 262 patients had paraneoplastic antibody tests sent from December 2024 - June 2025. 14.9% (39/262) of patients had a presentation-type that was consistent with a high- or intermediate-risk PNS presentations. 38.1% (100/262) had paired serum-CSF testing. 20.2% (53/262) had complete malignancy screening. 10.3% (27/262) of patients had positive antibody testing, of which 88.9% (24/27) were false positives. Conclusions: The ordering patterns for paraneoplastic antibody testing in Calgary, Alberta shows that a low percentage of patients being tested have a consistent paraneoplastic presentation type resulting in a high false-positive rate. When these panels are being sent there is incomplete testing of serum/CSF paired samples and malignancy screening. Paraneoplastic antibody testing requires ongoing quality improvement to improve adherence rate to published guidelines. Further analysis post-quality improvement interventions is ongoing.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "In this Canadian cohort (n=262), only 14.9% of paraneoplastic antibody panels were ordered for high- or intermediate-risk presentations, yielding a 10.3% positivity rate of which 88.9% (24/27) were false positives. Neurologists should restrict paraneoplastic testing to guideline-concordant phenotypes and ensure paired serum/CSF sampling (38.1% here) and complete malignancy screening (20.2%).",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -2790,7 +2795,10 @@
         "Neuroimmunology"
       ],
       "topics": [
-        "Mogad"
+        "Multiple sclerosis",
+        "Encephalitis",
+        "Brain",
+        "Spinal"
       ]
     },
     "abstract": "Objective: To synthesize available evidence on MOGAD in Iran and quantify the gap between AQP4-IgG seropositivity observed in Iranian NMOSD cohorts and international benchmarks, with implications for an under-recognized MOGAD burden. Background: The 2023 International MOGAD Panel criteria established MOGAD as distinct from multiple sclerosis (MS) and AQP4-IgG+ NMOSD. Although Iran maintains established MS and NMOSD registries (NMSRI, IMSS, NMORI), no dedicated MOGAD epidemiologic study has been published to date. Design/Methods Narrative of Iranian NMOSD cohorts reporting AQP4-IgG seroprevalence, and 2024–2026 international MOGAD evidence indexed in PubMed, Scopus, and Web of Science through early 2026. Results: Global MOGAD prevalence is 1.3–2.5/100,000, with annual incidence of 3.4–4.8/million, a bimodal age distribution, and no clear sex, racial, or latitude predilection. Phenotypes include optic neuritis, ADEM, myelitis, brainstem syndromes, and cortical encephalitis, with relapsing disease in 40–80% and worse outcomes in adults. Iranian NMOSD cohorts report AQP4-IgG seropositivity of 46.8% (Tehran), 54.2% (Khuzestan), and ∼52.5%, substantially below the 73–90% reported in Western series — strongly suggesting an under-recognized MOGAD population among AQP4-negative cases. Diagnosis requires serum MOG-IgG on cell-based assays (CBA) in compatible clinical/radiologic syndromes while excluding MS; fixed CBAs show high agreement with live assays (κ≈0.98), enabling diagnosis in resource-limited settings. Distinguishing MRI features include perineural optic nerve enhancement, spinal cord “H-sign,” lesion resolution over time, and low brain lesion burden. Treatment differs fundamentally from MS, whose disease-modifying therapies are ineffective or potentially harmful. Acute attacks respond to steroids, with plasma exchange for refractory cases; for relapse prevention, IVIG and oral corticosteroids show the most consistent benefit, while rituximab remains an alternatives. Conclusions: MOGAD is likely underdiagnosed in Iran. Establishing a dedicated MOGAD module within existing registries, re-examining stored AQP4-negative NMOSD/ADS sera with cell-based MOG-IgG assays, and including Iranian centers in international MOGAD registries are essential steps to define the national MOGAD burden and guide targeted management.",
@@ -2996,11 +3004,11 @@
         "Neurology"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: To determine the prevalence, characteristics and treatment course of patients with autoimmune nodopathies in the US. Background: Autoimmune nodopathies (AINs) are a rare group of disorders characterized by circulating autoantibodies targeting antigens at the node of Ranvier, usually of the immunoglobulin G4 (IgG4) subclass. About 5-10% of patients with electrodiagnostic features of a demyelinating neuropathy have autoimmune nodopathies. Patients with AINs may present with suggestive clinical features, demonstrate mixed responses to intravenous immunoglobulin (IVIg), but improve with B-cell-depleting therapy. Design/Methods This multi-center study, including over 12 centers in the US, is actively capturing the clinical features and therapeutic responses of patients with AINs. Results: To date, we have included 33 patients, with twenty-five (76%) positive for anti-neurofascin 155 (NF155), six (18%) positive for anti-Contactin IgG4 autoantibodies, and two (6%) positive for both autoantibodies. The average age of disease onset was 50.3 ± 19.6 years, and 18 (54.5%) patients were male. 55% had distal and proximal weakness, 36% predominant distal weakness, and 24% had facial weakness. Distal sensory loss, particularly loss of vibration sensation, and ataxia were common. Areflexia was noted in more than 80% of patients. Additional clinical details will be presented. Almost 40% of patients presented acutely or sub-acutely and were initially diagnosed as Guillain-Barré syndrome. Over 90% of this cohort received IVIg, but only 33% had partial benefit. Steroids were used in 50% of cases, neonatal Fc receptor (FcRn) inhibitors in 16% of cases, and PLEX in 20% of cases. Over 70% of patients received rituximab, and most showed objective benefit on clinical examination. Additional treatment details, including extent and durability of response will be presented. Conclusions: This collaborative effort across the US is providing new insights into the clinical characteristics of AIN from a large US cohort, as well as critical information on management strategies.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "In this multi-center US cohort of 33 patients with autoimmune nodopathies (76% anti-NF155), almost 40% presented acutely/sub-acutely and were initially misdiagnosed as Guillain-Barré syndrome. While >90% received IVIg with only 33% achieving partial benefit, >70% received rituximab and most demonstrated objective clinical improvement.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -3130,9 +3138,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Original Article",
     "article_types": [
-      "Editorial / Perspective"
+      "Original Article"
     ],
     "authors": [
       "Sperry Richard",
@@ -3149,15 +3157,14 @@
         "Neuromuscular"
       ],
       "topics": [
-        "Neurology",
         "Cidp"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: To identify and characterize unmet needs and system-level gaps in the CIDP (Chronic Inflammatory Demyelinating Polyneuropathy) care pathway across Europe, and to inform the development of patient-centered Principles of Care through structured collaboration between patient advocates, caregivers, and healthcare professionals. Background: Chronic Inflammatory Demyelinating Polyneuropathy (CIDP) is a rare immune-mediated neuropathy characterized by diagnostic delays, treatment variability, and unequal access to multidisciplinary care across Europe. The Principles of Care (PoC) initiative, led by the GBS | CIDP Foundation International and EPODIN with support from Patvocates, is a 4-year long project, that aims to co-develop a patient-centered European framework to guide advocacy, clinical practice, and policy. Design/Methods By employing a mixed inductive-deductive qualitative design, as part of the Phase 1 of this project, two structured face-to-face workshops were conducted separately with patient advocates and caregivers (n=17) and healthcare professionals (n=16). Discussions were organized around the patient pathway (pre-diagnosis, diagnosis, treatment, supportive care/quality of life) and informed by the COM-B model, Patient Pathway Mapping, and Patient Experience Domains. Data were analyzed using a framework analysis approach supported by AI-assisted qualitative software. Results: Participants identified recurrent unmet needs across Europe, including: prolonged diagnostic delays and misdiagnosis; inequitable access to neuromuscular specialists; inconsistent treatment monitoring; limited psychosocial and rehabilitation integration; and insufficient shared decision-making. Visual pathway mapping revealed system-level breakpoints, particularly at referral transitions and long-term follow-up. Despite national variability, convergence emerged on core priorities for timely diagnosis, coordinated multidisciplinary care, structured monitoring, and quality-of-life assessment. Conclusions: This study demonstrates the feasibility and adds value of co-developing rare disease care standards through structured patient -clinician collaboration across Europe and be replicated in other regions of the world.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "To address significant European gaps in CIDP management—including diagnostic delays, misdiagnosis, and fragmented follow-up—neurologists must prioritize timely referral to specialized neuromuscular care, implement structured treatment monitoring, and adopt a coordinated, multidisciplinary framework integrating psychosocial and rehabilitation support.",
       "clinical_significance": "Clinical significance for Neuromuscular practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -3307,10 +3314,13 @@
     "neurology_classification": {
       "subspecialty": "Epilepsy",
       "subspecialties": [
-        "Epilepsy"
+        "Epilepsy",
+        "Dementia"
       ],
       "topics": [
-        "Epilepsy"
+        "Epilepsy",
+        "Encephalitis",
+        "Brain"
       ]
     },
     "abstract": "Objective: To define neuropsychological deficits in GAD65-IgG autoimmune epilepsy and assess associations with quantitative MRI and serum neural injury biomarkers. Background: GAD65-IgG autoimmunity causes adult-onset, often pharmacoresistant epilepsy. However, the neuropsychological profile and its relationship to MRI volumetry and serum biomarkers remain incompletely defined. Design/Methods We retrospectively studied 51 patients with autoimmune epilepsy associated with high-titer GAD65-IgG who underwent comprehensive neuropsychological testing at Mayo Clinic (2000-2025). Test performance was summarized using t-scores across 28 measures. Brain MRI volumetry was performed. Serum NfL and sTREM2 were quantified (Ella, Biotechne). Associations between cognition, brain volumes, and biomarkers were analyzed. Results: Fifty-one patients were included (78% female; median onset age 27 years, IQR 18–37). Half met definite autoimmune limbic encephalitis criteria; 69% received immunotherapy. Neuropsychological testing occurred a median of 6 years after onset (IQR 1–15); 88% had ongoing seizures and 78% were on antiseizure polytherapy. Verbal memory (LISTDEL = 34) and language (BNT = 36) were the most impaired domains. Seventy-five percent of patients reported psychiatric comorbidities, including depression (87%), anxiety (42%), and sporadically irritability, apathy, and emotional lability. Compared with individuals tested <2 years from onset, immunotherapy-naïve patients assessed ≥2 years after onset (n=23) demonstrated worse naming (BNT 32 vs. 45; p=0.01) and greater memory impairment, particularly verbal delayed recall. MRI volumetry (n=33) showed predominant mesial temporal involvement (mean z-score 0.90) with hippocampal asymmetry correlating with naming deficits (r=-0.44, p=0.03). Serum NfL and sTREM2 were higher in patients (n=38) (median NFL 18.9 vs 4.96 pg/mL, p=<0.01; median sTREM2 21.687 vs 14.394 pg/mL, p=0.02). Before immunotherapy (n=20), higher NfL correlated with worse visuospatial (r=-0.7, p=0.02) and premorbid abilities (r=-0.5, p=0.04). Conclusions: GAD65-IgG autoimmune epilepsy is associated with persistent cognitive impairment, particularly in naming and verbal memory, corresponding to mesial temporal structural changes. Elevated NfL correlates with worse cognition; the role of increased sTREM2 requires further investigation.",
@@ -4036,12 +4046,17 @@
     ],
     "doi_url": "https://doi.org/10.1212/01.wnl.0001268188.46539.40",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Neuroimmunology",
       "subspecialties": [
-        "Other"
+        "Neuroimmunology",
+        "Movement Disorders",
+        "CNS Infections"
       ],
       "topics": [
-        "Neurology"
+        "Encephalitis",
+        "Neurology",
+        "Brain",
+        "Ataxia"
       ]
     },
     "abstract": "Objective: To present Epstein-Barr Virus (EBV) as a less common trigger for Acute Disseminated Encephalomyelitis (ADEM). Background: Acute disseminated encephalomyelitis (ADEM) is an immune-mediated demyelinating disorder of the central nervous system of children, which is typically preceded by an infectious illness or vaccination. Frequently, no specific pathogen is identified despite a clear infectious prodrome. When identified, common infectious triggers in vaccinated patients include Influenza A/B, Mycoplasma Pneumoniae , and Varicella Zoster Virus. Design/Methods Not applicable. Results: A 6-year-old fully vaccinated female presented with 3 weeks of progressively worsening headaches, followed by gait instability, dysarthria and emesis. Her parent reported no recent illness, vaccination, or travel history. Neurologic examination was notable for truncal ataxia, dysmetria, scanning dysarthria, and ten cafe au lait spots. MRI of the brain and spine demonstrated diffuse asymmetric supratentorial, infratentorial, cervical, and thoracic white matter FLAIR hyperintensities and cerebellar grey matter lesions. Cerebrospinal fluid analysis (CSF) revealed mild pleocytosis (16 cells/µL) with lymphocytic predominance and elevated protein (69 mg/dL). Infectious evaluation was remarkable for serum Epstein-Barr virus titer indicative of recent infection (IgG >1:160, IgM <1:10). CSF PCR panel, culture, and urine cytomegalovirus were negative. Myelin oligodendrocyte glycoprotein antibodies, aquaporin-4 antibodies, autoimmune encephalitis panel, and genetic neurofibromatosis panel were negative. Ophthalmic evaluation did not show evidence of optic neuritis. The patient subsequently became encephalopathic over the course of the admission. The patient was treated with intravenous methylprednisolone (30mg/kg for 5 days) and intravenous immunoglobulin (2g/kg divided over 2 days), with improvements in cognition, gait, and speech. She was discharged on an oral prednisone taper, and a neurology follow-up was scheduled in four weeks. Conclusions: This case highlights EBV as an infrequent trigger of ADEM. EBV serology should be considered even without a clear infectious prodrome. Timely diagnosis of ADEM guides initiation of early immunotherapy and may optimize the potential for neurologic recovery.",
@@ -4076,8 +4091,7 @@
         "Other"
       ],
       "topics": [
-        "Neurological",
-        "Neurology"
+        "Neurological"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
@@ -4097,9 +4111,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Original Article",
     "article_types": [
-      "Editorial / Perspective"
+      "Original Article"
     ],
     "authors": [
       "Baddam Ritesh",
@@ -4113,15 +4127,14 @@
         "Neuromuscular"
       ],
       "topics": [
-        "Myasthenia",
-        "Neurology"
+        "Myasthenia"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: We present a rare case of a triad of myasthenia gravis (MG), myositis, and myocarditis following a single cycle of pembrolizumab, highlighting the importance of early recognition and aggressive management of refractory neuromuscular immune-related adverse events (irAEs). Background: Immune checkpoint inhibitors (ICIs) have transformed oncologic care, but their neurological complications remain underappreciated. ICI-induced myasthenia gravis (MG) is uncommon yet far more dangerous, presenting with oculo-bulbar predominance and requiring ventilatory support up to seven times more frequently. The concurrent development of myositis and myocarditis, the IM3OS triad, escalates mortality from approximately 30% to 38–60%. No prospective treatment trials exist, and clinicians must rely on retrospective data and expert consensus to guide management. Design/Methods N/A. Results: A 77-year-old woman with stage IV serous endometrial carcinoma, treated with one cycle of pembrolizumab, was admitted after developing ptosis, generalized weakness, and myalgias. Examination revealed ophthalmoplegia with bilateral exotropia, fatigable extremity weakness, dysphagia, and dysarthria. MG was suspected and serial NIF and vital capacity monitoring were initiated. Despite negative acetylcholine receptor, MuSK, and LRP4 antibodies, clinical findings were consistent with ICI-induced MG. Creatine kinase peaked at 13,883 IU/L and troponin I at 15,060 ng/L, with atrioventricular conduction abnormalities and echocardiographic evidence of global left ventricular dysfunction (EF 45%), supporting the IM3OS triad. Additionally, the patient also developed ICI-induced hepatitis and destructive thyroiditis. Treatment included high-dose methylprednisolone, plasmapheresis, and rituximab. Cardiac function recovered, but refractory neuromuscular symptoms necessitated escalation to abatacept and ruxolitinib, after which the patient was discharged with gradual improvement. Conclusions: This case illustrates a rare but life-threatening occurrence of ICI-induced multi-system immune injury, where Myasthenia gravis emerged as the most refractory component. Early recognition of the IM3OS triad, stepwise escalation of immunosuppression for refractory neuromuscular symptoms, and coordinated multidisciplinary care are essential to improving survival outcomes in this challenging syndrome.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "Immune checkpoint inhibitor-induced myasthenia gravis, myositis, and myocarditis overlap syndrome (IM3OS) escalates mortality from ~30% to 38–60% and can present with negative MG antibodies. Early recognition and stepwise escalation of immunosuppression—including steroids, plasmapheresis, rituximab, abatacept, and ruxolitinib—are essential for survival in refractory cases.",
       "clinical_significance": "Clinical significance for Neuromuscular practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -4275,8 +4288,7 @@
         "Neuroimmunology"
       ],
       "topics": [
-        "Encephalitis",
-        "Neurology"
+        "Encephalitis"
       ]
     },
     "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
@@ -4308,10 +4320,15 @@
     "neurology_classification": {
       "subspecialty": "Neuroimmunology",
       "subspecialties": [
-        "Neuroimmunology"
+        "Neuroimmunology",
+        "Stroke",
+        "Epilepsy"
       ],
       "topics": [
-        "Neurology"
+        "Stroke",
+        "Ischemic",
+        "Hemorrhage",
+        "Intracranial"
       ]
     },
     "abstract": "Objective: To clinically characterize perivascular disease in neurosarcoidosis. Background: Granulomas in neurosarcoidosis occur commonly in the perivascular Virchow-Robin spaces and may result in perivascular enhancement on MRI, a finding that has previously been associated with ischemic stroke and intraparenchymal hemorrhage. Design/Methods Adult patients with probable or definite neurosarcoidosis were included if their MRIs demonstrated perivascular enhancement, and their clinical presentations, serum and CSF testing results, MRI findings, treatment responsiveness, and outcomes were examined. Results: Sixteen patients were included (average age 41.8 years; 9 female; 13 Black, 2 White, 1 unknown race; 11 probable and 5 definite diagnoses). Perivascular disease was the dominant disease manifestation in 4 patients. Common symptoms included headache (13), extremity numbness (7), memory loss (6), and seizures (5). Perivascular enhancement on MRI most frequently affected the deep medullary veins (13), lenticulostriate arteries (8), and cortical pial vessels (5). Larger cerebral arteries were enhancing in 2. Ischemic stroke and intraparenchymal hemorrhage occurred in 6 and 1 patients, respectively. Co-existing MRI findings included leptomeningitis (12), brain parenchymal disease (9), and cerebral white matter disease (7). CSF was obtained in 13 patients: lymphocytic pleocytosis in 10/10, elevated protein in 12/13, and hypoglycorrhachia in 2/13. Thirteen patients were treated acutely with either IV or oral corticosteroids. Nonsteroidal maintenance treatments were used in sixteen patients, with eight patients requiring 3 or more lines of treatment. The average modified Rankin scale score and Expanded Disability Status Scale score at onset were 0.60 and 1.57, respectively, which worsened to 1.08 and 1.85, respectively, by last follow-up (average follow-up 107 months). Conclusions: Perivascular disease in neurosarcoidosis principally affects the deep medullary veins and lenticulostriate arteries and presents with headache, cognitive impairment, and seizures. Disease may be treatment refractory and complicated by ischemic stroke and intracranial hemorrhage.",
@@ -4399,9 +4416,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Original Article",
     "article_types": [
-      "Editorial / Perspective"
+      "Original Article"
     ],
     "authors": [
       "Chopra Divyanshu",
@@ -4418,11 +4435,11 @@
         "Neurology"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: NA. Background: CHANTER syndrome exhibits a typical pattern of clinical and radiologic findings, which include symmetric diffusion restriction in the cerebellum, hippocampus, and basal ganglia, particularly Globus pallidus (GP). Cerebral cortex and subcortical white matter are usually not involved and the distribution of diffusion restriction does not follow a specific vascular territory, differentiating from other causes. Cerebral edema can progress to cause obstructive hydrocephalous and herniation. Here, we report an instance of CHANTER syndrome where the cause was pain medication rather than substance abuse. Design/Methods Case report with electronic medical record review. Results: A 68-year-old woman presented for acute encephalopathy characterized by perseveration, disorientation accompanied by occipital headache and photosensitivity. Of note, she recently started opioid and barbiturate pain medication for chronic back pain. Neurological exam noted disorientation to time and difficulty following complex commands; the rest of the exam, including Kernig's and Brudzinski's, was unremarkable. A CT scan of the head without contrast revealed symmetric hypodensity in the bilateral GP, without signs of hydrocephalus or edema. CTA head/neck was negative for significant vessel stenosis. The drug screen was positive for cannabis and opiates. MRI of the brain with and without contrast noted symmetric diffusion restriction in the GP, hippocampus, and cerebellum. Rest of the workup, including spinal tap, carboxy Hb, and continuous EEG, was unremarkable. She improved clinically with conservative management, and a follow-up MRI of the brain in three months noted resolution of findings. Conclusions: CHANTERS syndrome is associated with severe edema, hydrocephalus, and herniation; thus, it is critical to recognise characteristic radiological findings regardless of history of illicit drug abuse for prompt recognition. The prognosis is favourable despite the severe presentation, particularly with early treatment.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "CHANTER syndrome can occur secondary to prescribed opioid and barbiturate pain medications, even without illicit substance abuse. Prompt recognition of its characteristic symmetric diffusion restriction in the globus pallidus, hippocampus, and cerebellum on MRI is critical to guide early management and prevent severe edema or herniation.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -4607,7 +4624,10 @@
         "Neuroimmunology"
       ],
       "topics": [
-        "Neuromyelitis"
+        "Multiple sclerosis",
+        "Brain",
+        "Spinal",
+        "Myelitis"
       ]
     },
     "abstract": "Objective: This study aims to bring the importance of paroxysmal stereotypic sub-axial cervical spinal movement disorder in diagnosing Neuromyelitis Optica Spectrum Disorder. Background: Neuromyelitis Optica spectrum disorder (NMOSD) is a demyelinating disease that has classic symptoms of optic neuritis, myelitis, and autoantibody to aquaporin-4 (AQP4) water channel, though broad variety of manifestations have been recognized. Design/Methods This is a case series of 7 patients presented with sub axial cervical long segment demyelination between October 2025 to January 2026 enrolled after informed consent. Morbidity by Modified Rankin Scale (mRS) was noted at admission and discharge. Results: Among the 7 patients of demyelination, 2 (28.5%) were multiple sclerosis, 3 (42.8%) were NMOSD, and 2 (28.5%) were seronegative immune-mediated. Clinical features of motor weakness are present in all cases. Optic neuritis only in 1 case of NMOSD. Among NMOSD, all 3 (100%) had painful tonic spasm at a mean duration of 18 days Mean CSF protein among NMOSD was the least, with 79, for MS was 126, and for seronegative it was 135.5. Serum aquaporin 4 was positive in all 3 NMOSD, and OCB was positive among 2 multiple sclerosis patients. Imaging showed all 3 of NMOSD (100%) had sub axial cervical involvement. 2 of MS (100%) showed short-segment sub axial involvement. Optic neuritis and brain involvement are present in 1 among both the MS and NMOSD groups. Mean MRS at admission was 4, and at discharge was 3 among NMOSD, whereas mean MRS was 4.5 among MS at admission and at discharge was 3.5. Conclusions: All 3 seropositive NMOSD patients had both long-segment cervical demyelination as well as tonic spasms at a mean period of 18 days. The other 4, who have cervical demyelination, did not have spasms or Aquaporin 4 positive. Hence combination of sub axial cervical demyelination with tonic spasms had high diagnostic significance.",
@@ -4743,9 +4763,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Original Article",
     "article_types": [
-      "Editorial / Perspective"
+      "Original Article"
     ],
     "authors": [
       "Rajavoor Muniswamy Jai Kumar",
@@ -4765,11 +4785,11 @@
         "Neurology"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: To describe an adult-onset presentation of deficiency of adenosine deaminase 2 (DADA2) that mimicked cutaneous polyarteritis nodosa (cPAN) for over ten years until acute retinal ischemia prompted a molecular diagnosis, and to propose chronic nail-bed splinter hemorrhages as an additional cutaneous clue in DADA2. Background: DADA2 is a rare monogenic autoinflammatory vasculopathy that usually presents in childhood with recurrent lacunar strokes. Adult-onset disease without cerebral infarction is under-recognized and frequently misclassified as idiopathic vasculitis or cPAN, which often delays the diagnosis. Design/Methods A 55-year-old woman with history of recurrent lower-extremity cutaneous eruptions and fevers beginning in her mid-30s evolved to persistent livedo reticularis accompanied by chronic nail-bed splinter hemorrhages. At age 43, she developed sudden painless unilateral vision loss from a central retinal artery occlusion (CRAO) with cotton-wool spots and retinal vasculitis. Brain MRI showed no cerebral infarction, and workup for embolic and thrombotic etiologies was unrevealing. Skin biopsy demonstrated medium-vessel vasculitis confined to the subcutis, which is histologically characteristic of cPAN. Although the livedo reticularis and biopsy findings were typical of cPAN, the splinter hemorrhages and CRAO suggested vascular involvement beyond the medium-vessel territory of cPAN, which prompted a reconsideration of the diagnosis. Results: Targeted genetic testing identified compound heterozygous pathogenic ADA2 variants (c.336C>G, p.His112Gln; c.882-1G>A), thereby confirming DADA2. Treatment with adalimumab achieved sustained clinical stability without additional ischemic events. Conclusions: Chronic nail-bed splinter hemorrhages, an under-recognized cutaneous manifestation of DADA2, should prompt consideration of this diagnosis in adults with a cPAN-like phenotype, particularly when accompanied by retinal ischemia. This underscores the importance of general examination in Neurology. Early recognition redirects management from empiric immunosuppression to disease-modifying anti-TNF therapy.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "Adult-onset DADA2 can mimic cutaneous polyarteritis nodosa without cerebral infarction. Chronic nail-bed splinter hemorrhages alongside unexplained retinal ischemia should prompt ADA2 genetic testing, as early diagnosis shifts management from empiric immunosuppression to disease-modifying anti-TNF therapy.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -4782,9 +4802,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Original Article",
     "article_types": [
-      "Editorial / Perspective"
+      "Original Article"
     ],
     "authors": [
       "Saffarini Sulafa",
@@ -4802,11 +4822,11 @@
         "Neurology"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: To report a case of probable neurosarcoidosis with atypical necrotizing granulomatous inflammation and coexisting aquaporin-4 antibody positivity. Background: Necrotizing sarcoid granulomatosis of the CNS is rare, and coexistence with anti-aquaporin-4 antibodies is exceedingly uncommon. Research focuses on each disorder separately, and no clear management guidelines exist, creating a practice gap in diagnosis and treatment. Design/Methods We describe a 60-year-old African American female who initially presented with progressive numbness, tingling, and pain in the feet, evolving into bilateral leg weakness, right foot drop, gait instability, and recurrent falls. Examination revealed bilateral optic disc pallor and saccadic intrusions, right-predominant leg weakness, generalized hyperreflexia, bilateral positive Hoffman signs, wide-based gait, and impaired coordination. Brain MRI showed multiple punctate enhancing foci in the posterior fossa. Spine MRI revealed multifocal leptomeningeal enhancement throughout the cervical, thoracic, and lumbar regions, while whole-body PET demonstrated tracer uptake in the spinal canal and pelvic and inguinal lymph nodes. CSF analysis revealed lymphocytic pleocytosis (95 WBC/µL, 88% lymphocytes), hypoglycorrhachia (20 mg/dL; normal 40–70), elevated protein (197 mg/dL; normal 15–45), markedly increased IgG synthesis rate (232 mg/d; normal 0–8), elevated IgG index (1.49; normal 0.3–0.7), and 11 CSF-restricted oligoclonal bands; infectious and autoimmune panels were negative. Inguinal lymph node biopsy demonstrated focally caseating granulomatous inflammation concerning for atypical necrotizing sarcoid granulomatosis, probable neurosarcoidosis. Unexpectedly, serum aquaporin-4 IgG antibody was strongly positive at 1:1,280 via cell-based assay. The patient received high-dose corticosteroids with partial improvement, and recurrent deficits prompted initiation of Rituximab therapy, resulting in clinical benefit. Results: NA. Conclusions: The presence of anti-aquaporin-4 antibodies may indicate autoimmunity in CNS sarcoidosis, though coexistence is exceedingly rare. Recognizing this overlap is critical, as it impacts diagnosis and treatment in complex neuroinflammatory disorders. Rituximab is a plausible therapeutic option due to its off-label use and reported benefit in targeting both NMOSD and refractory sarcoidosis.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "When neurosarcoidosis features overlapping anti-aquaporin-4 antibody positivity (1:1,280), clinicians must consider dual neuroinflammatory pathology. Early B-cell depletion with rituximab provides an effective, targeted therapeutic option for patients with this rare diagnostic overlap.",
       "clinical_significance": "Clinical significance for Neuroimmunology practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -4901,9 +4921,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Original Article",
     "article_types": [
-      "Editorial / Perspective"
+      "Original Article"
     ],
     "authors": [
       "Xu Sisi",
@@ -4919,15 +4939,14 @@
       ],
       "topics": [
         "Cerebral",
-        "Neurology",
         "Amyloid"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: To describe clinical–radiographic dissociation in cerebral amyloid angiopathy–related inflammation (CAA-ri) and considerations for surveillance imaging to detect subclinical neuroinflammation during immunosuppressant therapy. Background: CAA-ri is an immune-mediated response to vascular β-amyloid deposition, typically demonstrating concordant clinical and radiographic improvement with corticosteroids. The significance of radiographic progression in the absence of clinical decline remains unclear, particularly during transition to maintenance immunosuppression. Design/Methods Case report. Results: A 68-year-old male with HTN, HLD, and T2DM presented with subacute cognitive decline and was diagnosed with CAA-ri based on clinical and MRI findings. He was treated with corticosteroids, followed by transition to mycophenolate mofetil due to a relapsing course. He demonstrated marked clinical improvement with progressive cognitive recovery (MoCA 13→19→27) and return to near-baseline function. Two months after steroid taper and approximately four months into mycophenolate therapy, surveillance MRI demonstrated new right frontal and temporal vasogenic edema. Despite these findings, he remained neurologically asymptomatic with continued cognitive improvement, consistent with clinical–radiographic dissociation. Given concern for ongoing subclinical inflammation and delayed time to efficacy of steroid-sparing therapy, corticosteroids were reinitiated while continuing mycophenolate. The patient remains clinically stable with planned serial imaging and close follow-up. Conclusions: This case highlights clinical–radiographic dissociation in CAA-ri, suggesting that radiographic progression can occur due to subclinical neuroinflammation. These findings support the role of surveillance MRI in clinically stable patients and emphasize the need to individualize treatment decisions based on both clinical and radiographic disease. Further studies are needed to define biomarkers and optimal monitoring strategies during maintenance immunosuppression.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "In cerebral amyloid angiopathy-related inflammation (CAA-ri), clinical-radiographic dissociation can occur, where subclinical neuroinflammation manifests as new radiographic vasogenic edema despite ongoing clinical improvement (e.g., MoCA 13 to 27). Practicing neurologists should utilize surveillance MRI during maintenance immunosuppressant tapering to detect subclinical disease activity and guide individualized therapy adjustments.",
       "clinical_significance": "Clinical significance for Stroke practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -4951,12 +4970,16 @@
     ],
     "doi_url": "https://doi.org/10.1212/01.wnl.0001268044.52119.14",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Dementia",
       "subspecialties": [
-        "Other"
+        "Dementia",
+        "Neuroimmunology"
       ],
       "topics": [
-        "Encephalitis"
+        "Encephalitis",
+        "Cerebral",
+        "Brain",
+        "Prion"
       ]
     },
     "abstract": "Objective: Studies have shown that Anti-DPPX Encephalitis (DPPXE) can mimic CJD, with the difference being DPPXE has a gastrointestinal prodrome. In this case report, a patient with CJD presents with positive serum DPPX antibodies, following a prolonged GI prodrome and weight loss. Background: CJD shares similarities with DPPXE such as cognitive decline and neuropsychiatric symptoms, leading to misdiagnosis. Prion disease is linked to various autoantibodies, a suspected epiphenomenon of this disease process. In our review, there were no cases correlated with co-occurrence of DPPX antibodies and a clinical presentation similar to DPPXE. Design/Methods NA. Results: A 63-year-old female with history of intermittent diarrhea and unintentional weight loss presented with involuntary movements and rapidly progressive functional and cognitive impairment over the course of one month. MRI brain on hospitalization showed asymmetric cortical ribboning in the right cerebral hemisphere and left medial parietal lobe. EEG demonstrated right posterior quadrant LPDs with occasional right frontal sharp waves. Serum studies were drawn, which revealed positive DPPX antibodies. Patient was started on lacosamide and IV Solu-Medrol due to concerns for autoimmune encephalitis. Lumbar puncture showed normal protein and leukocyte count, later indicating negative DPPX receptor antibody on CSF evaluation. In the interim, patient was transitioned off Solu-Medrol due to steroid-induced psychosis and was started on IVIG. She experienced no benefit from IVIG, which was discontinued after positive RT-QuIC result confirmed the presence of prion disease. The patient continued to experience rapid neuropsychiatric decline and was moved to comfort care. She was deceased just over two months from symptom onset. Conclusions: Our case demonstrates the importance of considering autoantibodies as a possible epiphenomenon in the setting of clinical uncertainty between CJD and DPPXE. Given the paucity of data regarding these conditions, further studies may be warranted to optimize patient care and help expedite prognostic discussions.",
@@ -5029,12 +5052,12 @@
     ],
     "doi_url": "https://doi.org/10.1212/01.wnl.0001268068.76347.c4",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Headache & Pain",
       "subspecialties": [
-        "Other"
+        "Headache & Pain"
       ],
       "topics": [
-        "Neurology"
+        "Headache"
       ]
     },
     "abstract": "Objective: The purpose of this study is to retrospectively analyze patients receiving bispecific T-cell engagers (BiTEs) at Columbia University-New York Presbyterian Hospital (CU-NYP). We aim to describe the real-world incidence of neurotoxicity associated with these agents along with other descriptive analyses of neurotoxicity associated with BITEs. Background: Bispecific T-cell engagers (BiTEs) are an immune therapy indicated for hematologic and solid tumor malignancies. They are monoclonal antibodies engineered to mobilize T-cells to specific antigen targets. While mechanistically distinct from chimeric antigen receptor T-cell (CAR-T) therapy, immune effector cell-associated neurotoxicity (ICANS) has been reported in patients receiving BiTE therapy as well as other forms of neurotoxicity. Design/MethodsThis is a retrospective single-center analysis. Patients who had received one of the following BiTEs: elranatamab, epcoritamab, glofitamab, mosunetuzumab, talquetamab, tarlatamab, teclistamab, at CU-NYP from 01/01/2020 through 03/01/2025 were identified via Epic report. Chart review was then performed and relevant deidentified clinical, diagnostic, and therapeutic information was recorded in a secure database. Results: A total of 74 patients were identified as having received at least one dose of a BiTE during the time period. The average age was 69 years. 54% percent of the patients were female. 64% of the group had multiple myeloma. 32% of the group were White and 30% were Black. 32% identified as Hispanic ethnicity. 17 cases of possible ICANS were identified. 5 other neurologic toxicities were identified, including headache, dizziness, and cranial nerve palsy. Additional case data pertaining to clinical phenotypes, treatment, and prognosis is currently being analyzed. Conclusions: The rate and severity of neurotoxicity from BiTEs in real-world may be higher than reported in clinical trials. More research is needed to help predict which patients may be more likely to experience neurotoxicity, optimize treatments, and how to better prognosticate on long term neurologic outcomes in patients with neurotoxicity.",
@@ -5142,9 +5165,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Original Article",
     "article_types": [
-      "Editorial / Perspective"
+      "Original Article"
     ],
     "authors": [
       "Rode Matthew",
@@ -5159,15 +5182,14 @@
         "Neuroimmunology"
       ],
       "topics": [
-        "Neurology",
         "Mogad"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: Evaluate the diagnostic utility of MRI findings of the anterior optic nerve in Myelin Oligodendrocyte Glycoprotein Antibody-associated Disease (MOGAD) optic neuritis (ON) versus Aquaporin-4-IgG positive Neuromyelitis Optica Spectrum Disorder (AQP4+NMOSD) and Multiple Sclerosis (MS). Background: ON is the most common attack type in MOGAD and commonly involves the anterior segment. The diagnosis of MOGAD requires a combination of clinical, radiologic, and laboratory information due to the incomplete specificity of cell-based assay. Design/MethodsThis was a retrospective study including consecutive cases of first MRI-confirmed ON from MOGAD, AQP4+NMOSD, and MS who all fulfilled their respective diagnostic criteria. Fat-suppressed orbital MRI post-gadolinium images were reviewed (blinded to diagnosis) for optic nerve tortuosity, optic nerve enhancement and its extent including that involving the optic nerve head, sheath, or extension to orbital fat or posterior sclera and posterior flattening of the globe. Differences were compared with Fischer’s exact test. Results: We included 133 patients with 164 nerves involved. This included 108 nerves affected by MOGAD (82 patients), 30 with AQP4+NMOSD (27 patients), and 26 with MS (24 patients). Optic nerve head enhancement was more common in MOGAD(24%) compared to AQP4+NMOSD(10%) and MS(0%) (p-value=0.003). Posterior flattening of the globe was also more common in MOGAD(27%) than AQP4+NMOSD(10%) and MS(0%) (p-value=0.001). Optic nerve tortuosity was more common in MOGAD(23%) compared to AQP4+NMOSD(13%) and MS(4%) (p-value=0.049). Longitudinal-extension (>50% of length of nerve) was more common in MOGAD(62%) compared to AQP4+NMOSD(30%) and MS(19%) (p-value<0.001). Enhancement of the optic nerve sheath and orbital fat were more common in MOGAD(37%, 18%) than AQP4+NMOSD(17%, 0%) and MS(15%, 4%) (p-value=0.02, 0.007, respectively). There was no significant difference in posterior scleral enhancement between MOGAD(20%), AQP4+NMOSD(13%), MS(8%) (p-value=0.29). Conclusions: Optic nerve head enhancement, optic nerve tortuosity, posterior flattening of the globe, longitudinally-extensive enhancement, and sheath and orbital fat enhancement favor ON secondary to MOGAD over AQP4+NMOSD or MS.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "Anterior orbital MRI features—including optic nerve head enhancement (p=0.003), posterior globe flattening (p=0.001), tortuosity (p=0.049), longitudinally extensive enhancement (p<0.001), and perineural sheath/orbital fat enhancement (p=0.02 and p=0.007)—significantly favor MOGAD optic neuritis over AQP4+NMOSD and MS.",
       "clinical_significance": "Clinical significance for Neuroimmunology practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -5236,10 +5258,13 @@
       "subspecialty": "Neurocritical Care",
       "subspecialties": [
         "Neurocritical Care",
-        "Neuroimmunology"
+        "Neuroimmunology",
+        "Headache & Pain"
       ],
       "topics": [
         "Intracranial",
+        "Migraine",
+        "Headache",
         "Mogad"
       ]
     },
@@ -5274,9 +5299,14 @@
     "neurology_classification": {
       "subspecialty": "Neuroimmunology",
       "subspecialties": [
-        "Neuroimmunology"
+        "Neuroimmunology",
+        "Neurocritical Care",
+        "Epilepsy"
       ],
       "topics": [
+        "Status epilepticus",
+        "Multiple sclerosis",
+        "Spinal",
         "Mogad"
       ]
     },
@@ -5297,9 +5327,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Original Article",
     "article_types": [
-      "Editorial / Perspective"
+      "Original Article"
     ],
     "authors": [
       "Karkare Swapna",
@@ -5320,11 +5350,11 @@
         "Neurology"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: To examine patients with chronic inflammatory demyelinating polyradiculoneuropathy (CIDP) with off-treatment periods, and to characterize off-treatment periods. Background: CIDP is a rare and severe autoimmune neuropathy with progressive, relapsing, or monophasic courses. Although CIDP typically requires ongoing care, some patients discontinue treatment due to suspected remission or unmet needs with available therapies including treatment burden, suboptimal efficacy, or tolerability concerns. Design/Methods Adult patients with confirmed CIDP diagnosis and treatment initiation (first observed diagnosis date as index) were identified in Komodo Health’s Patient Level Insights Data (PLAID) closed claims database 01/01/2020–04/29/2026. Eligible patients had continuous enrollment ≥1-year pre- and post-index and were followed until end of enrollment. Patients with off-treatment periods (≥6-months) after treatment initiation were selected. Demographic and clinical characteristics were assessed at index. The first observed off-treatment period was evaluated using Kaplan–Meier methods, with time zero at off-treatment start and event as CIDP treatment restart (censored at end of enrollment). Results: 2085 patients with at least one off-treatment period were analyzed. At index, mean (SD) age was 65.5 (13.7) years; 60.3% (n=1257) were male; 29.8% (n=621) used commercial insurance; mean (SD) Charlson Comorbidity Index was 2.6 (2.6). Mean (SD) follow-up was 3.3 (1.4) years. Immunoglobulin monotherapy (24%, n=503) and corticosteroid monotherapy (14%, n=295) were the most common CIDP treatments used before the first observed off-treatment period. The first observed off-treatment period lasted for a median (IQR) duration of 13.2 (8.6–21.8) months. The probability of patients resuming treatment was 33.9% at 12 months (95% CI: 31.8%–36.1%), and 58.9% at 24 months (95% CI: 56.4%–61.4%). Conclusions: Median time to treatment re-initiation of 13 months suggests that, for most patients, a pause in therapy does not reflect durable long-term remission. Importantly, factors other than disease remission may also contribute to treatment pauses.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "In patients with CIDP who pause therapy, off-treatment periods last a median of 13.2 months, with 33.9% (95% CI: 31.8%–36.1%) resuming treatment by 12 months and 58.9% (95% CI: 56.4%–61.4%) by 24 months. These high relapse rates indicate that treatment interruptions rarely represent durable remission and require close clinical monitoring.",
       "clinical_significance": "Clinical significance for Neuroimmunology practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -5375,9 +5405,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Original Article",
     "article_types": [
-      "Editorial / Perspective"
+      "Original Article"
     ],
     "authors": [
       "Rashna FNU",
@@ -5398,11 +5428,11 @@
         "Neurology"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: N/A. Background: Paraneoplastic syndromes can impact the neuro-axis, depending on the type of malignancies and the associated antibodies. In some instances, it can affect both central and peripheral nervous system. In our case, a patient who tested positive for anti-amphyphysin antibodies presented with conus medullaris syndrome, cauda equina syndrome, and peripheral neuropathy. This presentation is a rare occurrence. Case presentation: A 47-year-old-male came with a one month history of gradually progressive bilateral lower limb numbness and paresthesias, starting in the feet and ascending to the knees, worsened by cold exposure. After one month, he acutely developed urinary retention, perineal burning, and rapidly progressive bilateral symmetrical lower limb weakness within a day, along with painful calf spasms triggered by movement and cold,leading him bedbound. Upper limbs remained unaffected, with no history of trauma, backache, radiating pain, seizures, cranial nerve, systemic involvement,no prior episodes. On examination, there was reduced bulk and spastic tone in both lower limbs with 0/5 powers, absent ankle reflexes, and extensor plantar responses, saddle anesthesia and decreased pin prick upto knees bilaterally. MRI Spine showed a T2 hyperintense lesion from T11- L1. CSF revealed raised protein with lymphocytosis. Electrophysiology confirmed motor axonal neuropathy. Paraneoplastic panel was positive for anti-amphiphysin antibodies. CT Chest, Abdomen And Pelvis along with tumor markers were negative. Diagnosed as paraneoplastic myeloradiculoneurpathy, patient improved with steroids and plasmapheresis and remains on azathioprine with ongoing surveillance. Design/Methods N/A. Results: N/A. Conclusions: This case highlights the importance of combined CNS and PNS involvement as a clue to autoimmune myeloradiculoneuropathy. The presence of upper and lower motor neuron signs is often interpreted as motor neuron disease but thorough workup should prompt consideration of a paraneoplastic etiology, even in the absence of detectable malignancy. Early immunotherapy can lead to clinical improvement, while continued follow up and surveillance remains essential for underlying cancer detection.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "Overlapping upper and lower motor neuron features mimicking motor neuron disease should prompt evaluation for autoimmune or paraneoplastic myeloradiculoneuropathy, such as anti-amphiphysin syndrome. Early immunotherapy with corticosteroids and plasmapheresis can drive significant neurological recovery, even when initial screening for an underlying malignancy is negative.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -5497,9 +5527,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Original Article",
     "article_types": [
-      "Editorial / Perspective"
+      "Original Article"
     ],
     "authors": [
       "Soria Joslynn",
@@ -5512,15 +5542,14 @@
         "Other"
       ],
       "topics": [
-        "Neurological",
-        "Neurology"
+        "Neurological"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: NA. Background: Mycoplasma pneumoniae has been recognized as a trigger for extrapulmonary neurologic complications. Among the most common neurologic sequelae, transverse myelitis came second to encephalitis in children. Acute transverse myelitis (ATM) is a rare demyelinating disorder caused by inflammation of the spinal cord most often as a result of an abnormal immune response post-infection. While several pediatric cases have connected M. pneumoniae with ATM, we could not identify any previously reported cases of familial clustering in the literature. Design/Methods NA. Results: Case Presentation: Two previously healthy and developmentally appropriate sisters, ages 7 and 5, presented within two weeks of each other with neurological symptoms following pneumonia. Both initially had acute ataxia, headache, and other features of acute post-infectious cerebellitis versus meningitis. They initially improved without any pharmacological interventions, but within weeks, the older sister returned with worsening symptoms. A spine MRI was obtained and confirmed ATM. Upon lab work, both sisters had elevated M. pneumoniae IgM titers and elevated ESR while CSF PCR for M. pneumoniae was negative for the older sister. The older sister received escalating immunomodulatory therapy including intravenous methylprednisolone, intravenous immunoglobulin (IVIG), and doxycycline before achieving full recovery. The younger sister recovered with the exception of a mild gait abnormality after treatment with doxycycline and supportive care. The patients' family history was significant for autoimmune disorders in both grandmothers, including Sjögren syndrome and psoriatic arthritis. Conclusions: Genetic and immunologic factors may predispose patients to post-infectious neurological complications. To our knowledge, these cases represent the first reported familial occurrence of M. pneumoniae -associated neurological complications. In addition, they underline the importance of considering M. pneumoniae in the setting of pediatric ATM, particularly when similar clinical features occur within the same family.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "This first reported familial clustering of *Mycoplasma pneumoniae*-associated acute transverse myelitis in pediatric siblings suggests that underlying genetic and immunologic predispositions may contribute to post-infectious neurological complications. Clinicians should maintain a high index of suspicion for *M. pneumoniae* in children presenting with acute demyelinating syndromes, particularly when family members are affected.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -5549,7 +5578,10 @@
         "Neuroimmunology"
       ],
       "topics": [
-        "Myelitis"
+        "Brain",
+        "Myelitis",
+        "Neuromyelitis",
+        "Mogad"
       ]
     },
     "abstract": "Objective: To describe a case of GFAP astrocytopathy with combination of hypophysitis and longitudinally extensive transverse myelitis (LETM). Background: GFAP astrocytopathy is a recently defined CNS autoimmune disease characterized by GFAP-IgG antibodies with a typical clinical syndrome of meningoencephalomyelitis. We report a case with novel imaging findings of pituitary involvement with hypophysitis. Design/Methods Case report and review of the literature. Results: A 22-year-old man with latent tuberculosis presented with neck pain and progressive upper extremity weakness and paresthesia. MRI brain and spine showed enlarged pituitary gland with enhancement consistent with hypophysitis and longitudinally extensive myelitis extending from the cervico-medullary junction to C5. CSF showed mild pleocytosis with autoimmune myelopathy panel positive for GFAP antibody by cell-based assay with 1:2 titer. An extensive serum and CSF workup was otherwise negative including testing for infectious, systemic autoimmune and CNS demyelinating conditions including neuromyelitis optica (NMO) and myelin oligodendrocyte glycoprotein associated disease (MOGAD). Interferon-gamma release assay was positive consistent with known history of latent tuberculosis for which he was evaluated by Infectious Disease without any evidence of active tuberculosis. The patient was treated with high dose IV methylprednisolone with clinical improvement that was sustained at 3 and 6 month outpatient follow-ups. Conclusions: Typical imaging findings of GFAP astrocytopathy include radial perivascular enhancement in the white matter, periependymal or meningeal enhancement, longitudinally extensive myelitis, and optic neuritis. Hypophysitis has not been previously described with GFAP astrocytopathy and is typically in the differential for IgG4-related diseases, immune checkpoint inhibitor toxicity, sarcoidosis, and other systemic autoimmune disorders. Our case highlights the growing spectrum of radiologic findings that can be seen in GFAP astrocytopathy and reinforces the need for a comprehensive diagnostic evaluation to exclude overlapping causes.",
@@ -5610,9 +5642,9 @@
       "badge_text": "#166534"
     },
     "pub_date": "2026-11-10T00:00:00Z",
-    "article_type": "Editorial / Perspective",
+    "article_type": "Original Article",
     "article_types": [
-      "Editorial / Perspective"
+      "Original Article"
     ],
     "authors": [
       "Aaroe Ashley",
@@ -5628,11 +5660,11 @@
         "Neurology"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: To describe an association between probable germline variants in genes associated with immune dysfunction and cancer predisposition, and recurrent Parsonage-Turner syndrome (PTS) in a patient with three histologically distinct lymphomas. Background: PTS is an autoimmune-mediated brachial plexopathy which typically presents with acute shoulder pain, weakness, sensory changes, and muscle atrophy. Multiple relapses have been seen with hereditary forms, half of which are associated with germline SEPTIN9 alterations. Design/Methods Informed consent was obtained from the patient for the publication of this case report. Results: A 65-year-old man with a past medical history of mantle cell lymphoma diagnosed in 2018 in complete remission (CR), diffuse large B cell lymphoma in 2023 in CR, and peripheral T cell lymphoma (PTCL) status post autologous stem cell transplant (ASCT) 12/2025 with four episodes of PTS. The first episode occurred following orthopedic surgery at age 21. The latter two occurred in his late 20s and 40s triggered by upper respiratory infections. He developed another episode of PTS five weeks following his ASCT for PTCL. Magnetic resonance imaging and electrodiagnostic testing were consistent with PTS rather than neurolymphomatosis. SEPTIN9 genetic testing was negative. Serum paraneoplastic panel was negative. Family history was notable for lymphoma, breast cancer, and rheumatoid arthritis. There may be an underlying genetic susceptibility for recurrent PTS given pertinent personal and family history of cancer and autoimmune disorders. A blood-based next generation sequencing assay identified several germline variants that could be involved in immune dysregulation including ATM (p.L1420F) and TET2 (p.G355D). Additional genetic testing with Invitae evaluating gene variants associated with genetic disorders identified BLM c.934T>G (p.Ser312Ala). Conclusions: This case raises the possibility of a shared genetic susceptibility underlying the patient’s lymphomas and PTS, especially given then initial episodes of PTS predated the cancer diagnosis. Probable germline origins in ATM and TET2 are under evaluation with dedicated germline testing.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "In patients presenting with recurrent Parsonage-Turner syndrome predating or co-occurring with multiple malignancies, negative SEPTIN9 testing should prompt consideration of broader germline genetic profiling (including ATM and TET2 variants) to evaluate for shared underlying immune dysregulation and cancer predisposition syndromes.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -5725,9 +5757,9 @@
     ],
     "doi_url": "https://doi.org/10.1212/01.wnl.0001267752.82368.66",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Epilepsy",
       "subspecialties": [
-        "Other"
+        "Epilepsy"
       ],
       "topics": [
         "Encephalitis"
@@ -5796,12 +5828,14 @@
     ],
     "doi_url": "https://doi.org/10.1212/01.wnl.0001268296.78906.88",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Epilepsy",
       "subspecialties": [
-        "Other"
+        "Epilepsy",
+        "Movement Disorders"
       ],
       "topics": [
-        "Neurology"
+        "Epilepsy",
+        "Ataxia"
       ]
     },
     "abstract": "Objective: To establish expert consensus and identify practice variation in terminology and diagnostic approaches for stiff person syndrome (SPS) and related disorders. Background: SPS is a rare and clinically heterogeneous condition. Although expert-proposed diagnostic criteria exist, international consensus guidance is lacking, and approaches to terminology and diagnosis vary across centers, countries, and resource settings. Design/MethodsForty international experts in SPS were identified based on peer-reviewed authorship. A modified Delphi survey was designed to evaluate agreement on terminology and diagnosis. Consensus was predefined as greater than 80% agreement. Results: Of 40 invited expert clinicians, 33 (83%) from 15 countries participated. Consensus was achieved for the terminology of classic SPS; partial SPS; SPS-plus; progressive encephalomyelitis with rigidity and myoclonus (PERM); and glutamic acid decarboxylase 65 (GAD65)-associated cerebellar ataxia. Consensus was also reached for key diagnostic elements, including core clinical symptoms and signs of classic/partial SPS; supportive features (exaggerated startle responses and coexisting autoimmune comorbidities in GAD65-positive cases); the importance of serologic testing; clinically relevant high-titer GAD65 antibody thresholds according to assay methodology; the diagnostic utility of glycine receptor alpha1 antibody in suspected PERM and GAD65 antibody negative SPS cases; the role of electrophysiology, especially in seronegative cases; definite diagnostic criteria for classic/partial SPS and SPS-plus; diagnostic frameworks for PERM and GAD65-associated cerebellar ataxia; and major exclusion criteria and diagnostic pitfalls. Consensus was not reached after Round 1 for the use of stiff person spectrum disorder as an umbrella term including PERM, epilepsy and cerebellar ataxia phenotypes; probable and possible SPS diagnostic criteria; and the terminology and diagnostic approach for GAD65-associated epilepsy. Conclusions: This international Delphi survey helps identify areas of expert agreement and variation in the diagnosis of SPS and related disorders across diverse clinical settings. These findings, supplemented by the round 2 data, may help inform future consensus recommendations.",
@@ -5888,11 +5922,11 @@
         "Neurology"
       ]
     },
-    "abstract": "Original abstract and full manuscript available at Neurology via DOI.",
+    "abstract": "Objective: To synthesize the diagnostic performance of inflammatory biomarkers measured in blood or CSF for distinguishing HAM/TSP patients from HTLV-1 asymptomatic carriers and seronegative controls. Background: HTLV-1-associated myelopathy/tropical spastic paraparesis (HAM/TSP) is a chronic neuroinflammatory disorder lacking validated diagnostic biomarkers for routine clinical use. Although multiple inflammatory mediators have been investigated, no systematic review has specifically synthesized the diagnostic performance of soluble biomarkers measured directly in blood or cerebrospinal fluid (CSF). Design/MethodsWe conducted a systematic review following PRISMA-DTA 2018 and SWiM 2020 guidelines. Observational studies quantifying inflammatory biomarkers directly in serum, plasma, or CSF of HTLV-1–infected adults were included, excluding studies limited to ex vivo stimulated samples, gene expression, or anti-HTLV-1 antibodies. Risk of bias was assessed with JBI checklists and QUADAS-2. Due to substantial heterogeneity, results were synthesized narratively. Diagnostic accuracy was a pre-planned secondary sub-analysis. Results: Thirty two studies including 1,118 HAM/TSP patients, 982 asymptomatic carriers, and 878 seronegative controls were analyzed. Seventeen of 32 studies (53%) had low risk of bias (JBI), none high. The most consistently elevated biomarkers in HAM/TSP versus asymptomatic carriers were CSF CXCL10 (3/3 studies; AUC 0.988 and 0.927) and CSF neopterin (3/3 studies; AUC 0.975 and 0.942), each matching or exceeding proviral load in the same cohorts. CSF CXCL9 also discriminated well (AUC 0.971). Serum soluble IL-2 receptor (AUC 0.965, 0.920–1.000) and plasma CXCL10 (AUC 0.917, 0.844–0.989) emerged as accessible alternatives. Serum IL-6, TNF-α, and IFN-γ showed less consistent elevation. Only 5/32 studies reported formal accuracy metrics, and heterogeneity across assays was substantial. Conclusions: CSF neopterin and CXCL10 are the most consistently supported candidate diagnostic biomarkers for HAM/TSP, although evidence is limited by heterogeneity, two-gate designs, and data-driven thresholds. Plasma sIL-2R and plasma CXCL10 may provide accessible alternatives. Standardization and prospective validation are needed for clinical implementation.",
     "ai_takeaways": {
-      "conclusion_vi": "",
+      "conclusion_vi": "Cerebrospinal fluid neopterin and CXCL10 demonstrate high diagnostic accuracy (AUC up to 0.988) for distinguishing HTLV-1-associated myelopathy from asymptomatic carriers, matching proviral load performance. Plasma sIL-2R and CXCL10 offer promising accessible serum alternatives, though prospective validation and assay standardization remain necessary before routine clinical implementation.",
       "clinical_significance": "Clinical significance for Other practice.",
-      "ai_verified": false
+      "ai_verified": true
     }
   },
   {
@@ -7373,12 +7407,16 @@
     ],
     "doi_url": "https://doi.org/10.1212/01.wnl.0001268084.82995.e5",
     "neurology_classification": {
-      "subspecialty": "Other",
+      "subspecialty": "Neurocritical Care",
       "subspecialties": [
-        "Other"
+        "Neurocritical Care",
+        "Neuroimmunology",
+        "CNS Infections"
       ],
       "topics": [
-        "Encephalitis"
+        "Encephalitis",
+        "Neurological",
+        "Mogad"
       ]
     },
     "abstract": "Objective: To characterize the etiologies, clinical features, and short-term outcomes of pediatric encephalitis, and to compare infectious and immune-mediated causes. Background: Despite extensive diagnostic testing, prior studies identified a confirmed etiology in fewer than half of pediatric cases. With increasing recognition of immune-mediated encephalitis, the etiologic spectrum may have shifted, highlighting the need to reevaluate the current etiologic profile and associated clinical features. Design/Methods We retrospectively reviewed patients diagnosed with encephalitis over 10 years (2015 – 2025) in a tertiary pediatric center in the United States. Demographic data, clinical presentation, examination findings, and diagnostic study results were extracted from the electronic medical records and analyzed. Results: Among 179 suspected cases, 100 met criteria for encephalitis, including 34 (34%) confirmed, 58 (58%) probable, and 8 (8%) possible cases. Of these, 39 (39%) were classified as infectious encephalitis, most commonly due to herpes simplex virus (11/39, 28.2%), human parechovirus (8/39, 20.5%), and mycoplasma pneumoniae (5/39, 12.8%). 25 cases (25%) were immune-mediated, most commonly myelin oligodendrocyte glycoprotein antibody-associated disease (MOGAD; 10/25, 40%), anti–N-methyl-D-aspartate (NMDA) receptor encephalitis (7/25, 28%), and acute disseminated encephalomyelitis (ADEM; 4/25, 16%). The median age was overall 6 years (interquartile range [IQR], 0-12). Patients with infectious encephalitis were younger (median 0 years [IQR, 0–9.5]), whereas those with autoimmune encephalitis, including anti–NMDA receptor encephalitis and glial fibrillary acidic protein astrocytopathy in our cohort, were older (median 14 years [IQR, 10–16]). 48 (48%) required intubation, 3 (3%) died, and 14 (14%) required intensive inpatient rehabilitation due to moderate-to-severe neurological sequelae. Conclusions: Pediatric encephalitis demonstrates a diverse and evolving etiologic spectrum, with infectious causes predominating in younger children. Significant differences in age, clinical features, and outcomes across etiologies may provide clinically useful clues for early diagnostic differentiation. Despite advances in recognition, encephalitis remains associated with substantial morbidity and mortality, with high rates of critical care utilization.",
@@ -13572,7 +13610,7 @@
   },
   {
     "id": "10.1002/ana.78402",
-    "title": "Tornado-Like Enhancement in Primary Central Nervous System Lymphoma.",
+    "title": "Tornado‐Like Enhancement in Primary Central Nervous System Lymphoma",
     "journal": {
       "name": "Annals of Neurology",
       "short_name": "Ann Neurol",
@@ -13580,15 +13618,15 @@
       "badge_text": "#5B21B6"
     },
     "pub_date": "2026-10-24T00:00:00Z",
-    "article_type": "Case Report",
+    "article_type": "Editorial / Perspective",
     "article_types": [
-      "Case Report"
+      "Editorial / Perspective"
     ],
     "authors": [
-      "Zhang D",
-      "Zhang H",
-      "Li Y",
-      "Liu S."
+      "Zhang Daihui",
+      "Zhang Hongrui",
+      "Li Yuan",
+      "Liu Sha"
     ],
     "doi_url": "https://doi.org/10.1002/ana.78402",
     "neurology_classification": {
