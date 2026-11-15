@@ -75,7 +75,24 @@ async function sync() {
       continue;
     }
 
+    if (typeof row.id === "string" && row.id.startsWith("neurorx_")) {
+      continue;
+    }
+
+    const rowStatus = String(row.status || row.data?.status || "approved").toLowerCase().trim();
+    if (
+      rowStatus === "deleted" ||
+      rowStatus === "rejected" ||
+      rowStatus === "pending" ||
+      rowStatus === "pending_review"
+    ) {
+      continue;
+    }
+
     const gDoc = row.data || {};
+    if (!gDoc.title && !row.title) {
+      continue;
+    }
     gDoc.id = row.id;
     if (row.title) gDoc.title = row.title;
     if (row.organization) gDoc.society = row.organization;

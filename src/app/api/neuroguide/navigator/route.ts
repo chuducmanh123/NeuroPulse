@@ -99,20 +99,25 @@ export async function POST(request: NextRequest) {
         );
       }
 
+      const normTrialKey = (s: string) => (s || "").toLowerCase().replace(/[^a-z0-9]/g, "");
       const updatedTrials = [...currentStore.pivotalTrials];
       const existingIdx = updatedTrials.findIndex(
         (t) =>
           t.id.toLowerCase() === trial.id.toLowerCase() ||
-          (t.acronym.toLowerCase() === trial.acronym.toLowerCase() && t.year === trial.year)
+          normTrialKey(t.id) === normTrialKey(trial.id) ||
+          (normTrialKey(t.acronym) !== "" &&
+            normTrialKey(t.acronym) === normTrialKey(trial.acronym))
       );
 
       if (existingIdx >= 0) {
-        updatedTrials[existingIdx] = trial;
+        const prev = updatedTrials[existingIdx];
+        updatedTrials[existingIdx] = {
+          ...trial,
+          v3Tags: trial.v3Tags ?? prev.v3Tags,
+        };
       } else {
         updatedTrials.unshift(trial);
       }
-
-      const normTrialKey = (s: string) => (s || "").toLowerCase().replace(/[^a-z0-9]/g, "");
       const resurrectKeys = new Set([
         trial.id.toLowerCase().trim(),
         normTrialKey(trial.id),
