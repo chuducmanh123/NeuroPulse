@@ -115,6 +115,7 @@ export async function getFromSupabase(): Promise<SupabaseNeuroGuidePayload | nul
     let customRecAtoms: RecommendationAtom[] = [];
     let customPivotalTrials: PivotalTrialRecord[] = [];
     let customRecLabels: Record<string, RecommendationLabelOutput> = {};
+    let customConferences: ConferenceEvent[] | null = null;
 
     for (const row of data as any[]) {
       if (row.id === "system_clinical_scenarios") {
@@ -129,6 +130,9 @@ export async function getFromSupabase(): Promise<SupabaseNeuroGuidePayload | nul
         }
         if (row.data?.customRecLabels && typeof row.data.customRecLabels === "object") {
           customRecLabels = row.data.customRecLabels;
+        }
+        if (Array.isArray(row.data?.conferences)) {
+          customConferences = row.data.conferences;
         }
         if (Array.isArray(row.data?.deletedGuidelineIds)) {
           row.data.deletedGuidelineIds.forEach((x: string) => {
@@ -206,7 +210,12 @@ export async function getFromSupabase(): Promise<SupabaseNeuroGuidePayload | nul
     if (Object.keys(customRecLabels).length === 0 && localDisk?.customRecLabels && typeof localDisk.customRecLabels === "object") {
       customRecLabels = localDisk.customRecLabels;
     }
-    const effectiveConferences = (localDisk?.conferences && localDisk.conferences.length > 0) ? localDisk.conferences : MOCK_CONFERENCE_EVENTS;
+    const effectiveConferences =
+      customConferences !== null
+        ? customConferences
+        : Array.isArray(localDisk?.conferences)
+        ? localDisk.conferences
+        : MOCK_CONFERENCE_EVENTS;
     const deletedTrialIds = Array.from(deletedTrialSet);
 
     return {
@@ -266,6 +275,7 @@ export async function setToSupabase(payload: NeuroGuideBlobPayload): Promise<{ o
     }
 
     if (
+      payload.conferences !== undefined ||
       (payload.scenarios && payload.scenarios.length > 0) ||
       (payload.pivotalTrials && payload.pivotalTrials.length > 0) ||
       (payload.customRecLabels && Object.keys(payload.customRecLabels).length > 0) ||
@@ -281,6 +291,7 @@ export async function setToSupabase(payload: NeuroGuideBlobPayload): Promise<{ o
             year: "2026",
             status: "system",
             data: {
+              conferences: payload.conferences ?? [],
               scenarios: payload.scenarios || MOCK_CLINICAL_SCENARIOS,
               recommendationAtoms: payload.recommendationAtoms || MOCK_RECOMMENDATION_ATOMS,
               pivotalTrials: payload.pivotalTrials || PIVOTAL_TRIALS_SEED,
@@ -500,7 +511,8 @@ export function mergeConferences(
   dynamicItems: ConferenceEvent[] | null | undefined,
   staticItems: ConferenceEvent[] = MOCK_CONFERENCE_EVENTS
 ): ConferenceEvent[] {
-  if (!dynamicItems || dynamicItems.length === 0) return staticItems;
+  if (!Array.isArray(dynamicItems)) return staticItems;
+  if (dynamicItems.length === 0) return staticItems;
 
   const map = new Map<string, ConferenceEvent>();
   staticItems.forEach((c) => map.set(c.id.toLowerCase(), c));
@@ -830,7 +842,8 @@ export async function saveNeuroGuideToActiveStorage(payload: {
   let effectiveDeletedTrialIds = payload.deletedTrialIds;
   let existingPivotalTrials = payload.pivotalTrials;
   let existingCustomLabels = payload.customRecLabels;
-  if (!effectiveDeletedIds || !effectiveDeletedTrialIds || !existingPivotalTrials || !existingCustomLabels) {
+  let existingConferences = payload.conferences;
+  if (!effectiveDeletedIds || !effectiveDeletedTrialIds || !existingPivotalTrials || !existingCustomLabels || existingConferences === undefined) {
     try {
       const existingSupabase = hasSupabaseConfig() ? await getFromSupabase() : null;
       const existingLocal = await getFromLocalDisk();
@@ -857,11 +870,15 @@ export async function saveNeuroGuideToActiveStorage(payload: {
       if (!existingCustomLabels) {
         existingCustomLabels = existingSupabase?.customRecLabels || existingLocal?.customRecLabels || {};
       }
+      if (existingConferences === undefined) {
+        existingConferences = existingSupabase?.conferences ?? existingLocal?.conferences ?? MOCK_CONFERENCE_EVENTS;
+      }
     } catch {
       effectiveDeletedIds = effectiveDeletedIds || [];
       effectiveDeletedTrialIds = effectiveDeletedTrialIds || [];
       existingPivotalTrials = existingPivotalTrials || PIVOTAL_TRIALS_SEED;
       existingCustomLabels = existingCustomLabels || {};
+      existingConferences = existingConferences ?? MOCK_CONFERENCE_EVENTS;
     }
   }
 
@@ -877,7 +894,7 @@ export async function saveNeuroGuideToActiveStorage(payload: {
 
   const fullPayload: NeuroGuideBlobPayload = {
     guidelines: payload.guidelines,
-    conferences: payload.conferences || MOCK_CONFERENCE_EVENTS,
+    conferences: existingConferences ?? MOCK_CONFERENCE_EVENTS,
     scenarios: payload.scenarios || MOCK_CLINICAL_SCENARIOS,
     recommendationAtoms: payload.recommendationAtoms || MOCK_RECOMMENDATION_ATOMS,
     pivotalTrials: existingPivotalTrials,

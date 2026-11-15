@@ -314,9 +314,12 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // 3. SESSION QUOTA PART 2: Synthesize 2 Conference Late-Breaking Trials
+    // 3. SESSION QUOTA PART 2: Synthesize 2 Conference Late-Breaking Trials (only if active conferences exist)
     const targetSub: SubspecialtyType = subspecialty || (analyzedGuidelines[0]?.subspecialty as SubspecialtyType) || "Stroke";
-    const newTrials = await extractConferenceTrialsWithGemini("ESOC & ISC Congress", targetSub);
+    const newTrials =
+      currentStore.conferences.length > 0
+        ? await extractConferenceTrialsWithGemini("ESOC & ISC Congress", targetSub)
+        : [];
 
     const updatedConferences: ConferenceEvent[] = currentStore.conferences.map((conf, idx) => {
       if (idx === 0) {

@@ -21,7 +21,6 @@ import {
 import {
   MOCK_GUIDELINE_DOCS,
   MOCK_RECOMMENDATION_ATOMS,
-  MOCK_CONFERENCE_EVENTS,
 } from "../../data/neuroguideMockData";
 import { AppSwitcher } from "../../components/ecosystem/AppSwitcher";
 import { AdminButton } from "../../components/ecosystem/AdminButton";
@@ -63,6 +62,10 @@ const NotebookLMUploadModal = dynamic(
 );
 const EditGuidelineModal = dynamic(
   () => import("../../components/neuroguide/EditGuidelineModal").then((m) => m.EditGuidelineModal),
+  { ssr: false }
+);
+const ConferenceEditModal = dynamic(
+  () => import("../../components/neuroguide/ConferenceEditModal").then((m) => m.ConferenceEditModal),
   { ssr: false }
 );
 const AdminAuthModal = dynamic(
@@ -287,12 +290,18 @@ export default function NeuroGuidePage() {
   const [editingGuidelineDoc, setEditingGuidelineDoc] = useState<GuidelineDoc | null>(null);
   const [showEditModal, setShowEditModal] = useState<boolean>(false);
 
+  // Conferences dynamic state & Edit/Delete modal state
+  const [conferences, setConferences] = useState<ConferenceEvent[]>([]);
+  const [editingConference, setEditingConference] = useState<ConferenceEvent | null>(null);
+  const [showConferenceModal, setShowConferenceModal] = useState<boolean>(false);
+  const [deleteConfLoadingId, setDeleteConfLoadingId] = useState<string | null>(null);
+
   // Recommendation Atoms dynamic state
   const [recommendationAtoms, setRecommendationAtoms] = useState<RecommendationAtom[]>(MOCK_RECOMMENDATION_ATOMS);
 
   // Clinical Navigator dynamic state (Pivotal Trials, Custom Labels, NeuroPulse Articles)
   const [pivotalTrials, setPivotalTrials] = useState<PivotalTrialRecord[]>(() =>
-    mergePivotalTrialsWithConferences(PIVOTAL_TRIALS_SEED, MOCK_CONFERENCE_EVENTS)
+    mergePivotalTrialsWithConferences(PIVOTAL_TRIALS_SEED, [])
   );
   const [deletedTrialIds, setDeletedTrialIds] = useState<string[]>([]);
   const [customRecLabels, setCustomRecLabels] = useState<Record<string, RecommendationLabelOutput>>({});
@@ -342,6 +351,9 @@ export default function NeuroGuidePage() {
           if (Array.isArray(data.recommendationAtoms) && data.recommendationAtoms.length > 0) {
             setRecommendationAtoms(data.recommendationAtoms);
           }
+          if (Array.isArray(data.conferences)) {
+            setConferences(data.conferences);
+          }
           if (Array.isArray(data.guidelines)) {
             const serverDel: string[] = Array.isArray(data.deletedGuidelineIds) ? data.deletedGuidelineIds : [];
             const activeKeys = new Set<string>();
@@ -359,6 +371,7 @@ export default function NeuroGuidePage() {
                 JSON.stringify({
                   version: data.lastSyncedAt || new Date().toISOString(),
                   guidelines: valid,
+                  conferences: Array.isArray(data.conferences) ? data.conferences : [],
                   scenarios: data.scenarios,
                   recommendationAtoms: data.recommendationAtoms,
                   deletedIds: cleanDeleted,
@@ -437,7 +450,7 @@ export default function NeuroGuidePage() {
         id: "conf" as const,
         label: "🎙️ Conferences & Trials",
         mobileLabel: "🎙️ Conferences",
-        badge: `${MOCK_CONFERENCE_EVENTS.length}`,
+        badge: `${conferences.length}`,
       },
       {
         id: "navigator" as const,
@@ -447,7 +460,7 @@ export default function NeuroGuidePage() {
     ];
 
     return tabs;
-  }, [guidelineDocs.length]);
+  }, [guidelineDocs.length, conferences.length]);
 
   // Expandable cards states (details reveal only on click)
   const [expandedGuidelineIds, setExpandedGuidelineIds] = useState<Record<string, boolean>>({});
@@ -614,11 +627,113 @@ export default function NeuroGuidePage() {
     }
   };
 
+  const updateConferencesCache = (nextConfs: ConferenceEvent[]) => {
+    try {
+      const raw = localStorage.getItem(SWR_STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        localStorage.setItem(
+          SWR_STORAGE_KEY,
+          JSON.stringify({
+            ...parsed,
+            conferences: nextConfs,
+            version: new Date().toISOString(),
+          })
+        );
+      }
+    } catch {}
+  };
+
+  const handleDeleteConference = async (conf: ConferenceEvent) => {
+    const confirmDelete = window.confirm(
+      `Bạn có chắc chắn muốn XÓA conference:\n\n"${conf.name}" (${conf.acronym})?\n\nHội nghị này sẽ được gỡ bỏ khỏi hệ thống lưu trữ Cloud.`
+    );
+    if (!confirmDelete) return;
+
+    setDeleteConfLoadingId(conf.id);
+    const token = getStoredAdminToken();
+    try {
+      const res = await fetch("/api/neuroguide/conferences", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...getAdminHeaders(token),
+        },
+        body: JSON.stringify({
+          action: "delete_conference",
+          conferenceId: conf.id,
+        }),
+      });
+      const data = await res.json();
+      if (res.ok && data.ok) {
+        const nextConfs = Array.isArray(data.conferences)
+          ? data.conferences
+          : conferences.filter((c) => c.id !== conf.id);
+        setConferences(nextConfs);
+        updateConferencesCache(nextConfs);
+        setSyncMessage(`🗑️ Đã xóa conference "${conf.acronym}" thành công.`);
+      } else {
+        alert(`Lỗi khi xóa conference: ${data.error || "Không thể xóa conference"}`);
+      }
+    } catch (err: unknown) {
+      alert(`Lỗi kết nối khi xóa conference: ${err instanceof Error ? err.message : "Unknown error"}`);
+    } finally {
+      setDeleteConfLoadingId(null);
+    }
+  };
+
+  const handleDeleteConferenceTrial = async (conf: ConferenceEvent, trialId: string, trialAcronym: string) => {
+    const confirmDelete = window.confirm(
+      `Bạn có chắc chắn muốn XÓA trial "${trialAcronym}" khỏi ${conf.acronym}?`
+    );
+    if (!confirmDelete) return;
+
+    const updatedTrials = (conf.lateBreakingTrials || []).filter((t) => t.id !== trialId);
+    const updatedConf: ConferenceEvent = {
+      ...conf,
+      lateBreakingTrials: updatedTrials,
+      stats: {
+        totalLateBreakingTrials: updatedTrials.length,
+        positiveTrials: updatedTrials.filter((t) => t.verdict === "POSITIVE").length,
+        practiceChangingCount: updatedTrials.filter((t) => t.isPracticeChanging).length,
+      },
+    };
+    const token = getStoredAdminToken();
+    try {
+      const res = await fetch("/api/neuroguide/conferences", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...getAdminHeaders(token),
+        },
+        body: JSON.stringify({
+          action: "upsert_conference",
+          conference: updatedConf,
+        }),
+      });
+      const data = await res.json();
+      if (res.ok && data.ok) {
+        const nextConfs = Array.isArray(data.conferences)
+          ? data.conferences
+          : conferences.map((c) => (c.id === conf.id ? updatedConf : c));
+        setConferences(nextConfs);
+        updateConferencesCache(nextConfs);
+        setSyncMessage(`🗑️ Đã xóa trial "${trialAcronym}" khỏi ${conf.acronym}.`);
+      } else {
+        alert(`Lỗi khi xóa trial: ${data.error || "Không thể xóa trial"}`);
+      }
+    } catch (err: unknown) {
+      alert(`Lỗi kết nối khi xóa trial: ${err instanceof Error ? err.message : "Unknown error"}`);
+    }
+  };
+
   // SWR: Tải tức thì từ Local Cache (0ms), đồng thời ngầm kiểm tra Version siêu nhẹ (~150 bytes) để bảo đảm 100% tươi mới
   useEffect(() => {
     let hasLoadedFromCache = false;
+    let hasCachedConferences = false;
     let localVersion = "";
     let localCachedCount = 0;
+    let localCachedConfCount = 0;
 
     // 1. TẢI TỨC THÌ (Instant Paint): Nếu có cache hợp lệ, hiển thị ngay lập tức không cần đợi mạng
     try {
@@ -632,6 +747,11 @@ export default function NeuroGuidePage() {
         const cached = JSON.parse(cachedRaw);
         if (cached && Array.isArray(cached.recommendationAtoms) && cached.recommendationAtoms.length > 0) {
           setRecommendationAtoms(cached.recommendationAtoms);
+        }
+        if (cached && Array.isArray(cached.conferences)) {
+          setConferences(cached.conferences);
+          hasCachedConferences = true;
+          localCachedConfCount = cached.conferences.length;
         }
         if (cached && Array.isArray(cached.guidelines) && cached.guidelines.length > 0) {
           const valid = filterValidGuidelines(cached.guidelines, cached.deletedIds || []);
@@ -658,13 +778,16 @@ export default function NeuroGuidePage() {
             ? verData.deletedGuidelineIds
             : [];
           const serverTotal = typeof verData.totalGuidelines === "number" ? verData.totalGuidelines : 0;
+          const serverConfTotal = typeof verData.totalConferences === "number" ? verData.totalConferences : 0;
 
-          // Nếu phiên bản Cloud hoàn toàn trùng khớp với Local, đã hiển thị cache VÀ số lượng guideline khớp hoàn toàn
+          // Nếu phiên bản Cloud hoàn toàn trùng khớp với Local, đã hiển thị cache VÀ số lượng guideline + conference khớp hoàn toàn
           if (
             hasLoadedFromCache &&
+            hasCachedConferences &&
             localVersion &&
             localVersion === serverVersion &&
-            (serverTotal === 0 || localCachedCount === serverTotal)
+            (serverTotal === 0 || localCachedCount === serverTotal) &&
+            localCachedConfCount === serverConfTotal
           ) {
             // Đảm bảo lọc sạch nếu có ID nào mới thêm vào deletedGuidelineIds nhưng không lọc nhầm guideline đang active
             setGuidelineDocs((prev) => {
@@ -700,6 +823,8 @@ export default function NeuroGuidePage() {
                 const cleanDeleted = combinedDeleted.filter((d) => !activeKeys.has(d.toLowerCase().trim()));
                 const validGuidelines = filterValidGuidelines(data.guidelines, cleanDeleted);
                 setGuidelineDocs(validGuidelines);
+                const nextConfs = Array.isArray(data.conferences) ? data.conferences : [];
+                setConferences(nextConfs);
                 if (Array.isArray(data.recommendationAtoms) && data.recommendationAtoms.length > 0) {
                   setRecommendationAtoms(data.recommendationAtoms);
                 }
@@ -710,6 +835,7 @@ export default function NeuroGuidePage() {
                     JSON.stringify({
                       version: data.lastSyncedAt || serverVersion,
                       guidelines: validGuidelines,
+                      conferences: nextConfs,
                       scenarios: data.scenarios,
                       recommendationAtoms: data.recommendationAtoms,
                       deletedIds: cleanDeleted,
@@ -862,7 +988,7 @@ export default function NeuroGuidePage() {
     const rawQ = searchQuery.toLowerCase().trim();
     const tokens = rawQ.split(/\s+/).filter(Boolean);
 
-    const list = MOCK_CONFERENCE_EVENTS.filter((conf) => {
+    const list = conferences.filter((conf) => {
       const liveStatus = getEffectiveConferenceStatus(conf);
       const matchesStatus =
         selectedConfStatus === "ALL" || liveStatus === selectedConfStatus;
@@ -904,7 +1030,7 @@ export default function NeuroGuidePage() {
       }
       return b.year - a.year;
     });
-  }, [selectedConfStatus, selectedSubspecialty, searchQuery]);
+  }, [conferences, selectedConfStatus, selectedSubspecialty, searchQuery]);
 
   return (
     <main
@@ -1511,31 +1637,51 @@ export default function NeuroGuidePage() {
                 ))}
               </div>
 
-              <div className="text-xs text-slate-400 font-medium">
-                {filteredConferences.length} Major Conferences Monitored
+              <div className="flex items-center gap-3">
+                <div className="text-xs text-slate-400 font-medium">
+                  {filteredConferences.length} Major Conferences Monitored
+                </div>
+                {isAdminVerified && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setEditingConference(null);
+                      setShowConferenceModal(true);
+                    }}
+                    className="px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-500 text-white hover:bg-amber-600 transition-colors cursor-pointer"
+                  >
+                    + Add Conference
+                  </button>
+                )}
               </div>
             </div>
 
             {/* Conference Cards List (Colored by Status, Click to Expand Details) */}
             {filteredConferences.length === 0 ? (
               <div className="p-12 text-center rounded-2xl border border-dashed border-slate-300 dark:border-slate-800 bg-white/40 dark:bg-slate-900/40">
-                <span className="text-3xl block mb-2">🔍</span>
+                <span className="text-3xl block mb-2">{conferences.length === 0 ? "🎙️" : "🔍"}</span>
                 <h3 className="text-sm font-bold text-slate-800 dark:text-slate-200">
-                  No conferences or trials match &ldquo;{searchQuery}&rdquo;
+                  {conferences.length === 0
+                    ? "No conferences available yet"
+                    : `No conferences or trials match "${searchQuery}"`}
                 </h3>
                 <p className="text-xs text-slate-400 mt-1">
-                  Try searching for trial acronyms like &ldquo;LASTE&rdquo;, &ldquo;TRACE-III&rdquo;, &ldquo;ESCAPE-MeVO&rdquo;, or &ldquo;ESOC&rdquo;.
+                  {conferences.length === 0
+                    ? "Dữ liệu hội nghị đã được làm sạch. Admin có thể thêm hội nghị đã xác thực khi cần."
+                    : "Try adjusting your search query or status filter."}
                 </p>
-                <button
-                  onClick={() => {
-                    setSearchQuery("");
-                    setSelectedConfStatus("ALL");
-                    setSelectedSubspecialty("All Subspecialties");
-                  }}
-                  className="mt-3 px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-white hover:bg-amber-600 transition-colors"
-                >
-                  Reset Filters
-                </button>
+                {conferences.length > 0 && (
+                  <button
+                    onClick={() => {
+                      setSearchQuery("");
+                      setSelectedConfStatus("ALL");
+                      setSelectedSubspecialty("All Subspecialties");
+                    }}
+                    className="mt-3 px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-white hover:bg-amber-600 transition-colors"
+                  >
+                    Reset Filters
+                  </button>
+                )}
               </div>
             ) : (
               <div className="grid grid-cols-1 gap-3.5">
@@ -1573,16 +1719,48 @@ export default function NeuroGuidePage() {
                           </span>
                         </div>
 
-                        <a
-                          href={conf.officialUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline flex items-center gap-1"
-                        >
-                          <span>Official Website</span>
-                          <span>↗</span>
-                        </a>
+                        <div className="flex items-center gap-2">
+                          {conf.officialUrl && (
+                            <a
+                              href={conf.officialUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className="text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline flex items-center gap-1"
+                            >
+                              <span>Official Website</span>
+                              <span>↗</span>
+                            </a>
+                          )}
+                          {isAdminVerified && (
+                            <div className="flex items-center gap-1.5">
+                              <button
+                                type="button"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setEditingConference(conf);
+                                  setShowConferenceModal(true);
+                                }}
+                                className="px-2 py-0.5 rounded text-[10.5px] font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400 hover:bg-amber-500/20 border border-amber-500/30 flex items-center gap-1 cursor-pointer transition-colors"
+                                title="Edit conference"
+                              >
+                                <span>✏️ Edit</span>
+                              </button>
+                              <button
+                                type="button"
+                                disabled={deleteConfLoadingId === conf.id}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleDeleteConference(conf);
+                                }}
+                                className="px-2 py-0.5 rounded text-[10.5px] font-bold bg-rose-500/10 text-rose-600 dark:text-rose-400 hover:bg-rose-500/20 border border-rose-500/30 flex items-center gap-1 cursor-pointer transition-colors disabled:opacity-50"
+                                title="Delete conference"
+                              >
+                                <span>{deleteConfLoadingId === conf.id ? "..." : "🗑️"}</span>
+                              </button>
+                            </div>
+                          )}
+                        </div>
                       </div>
 
                       <h3 className="text-base sm:text-lg font-bold leading-snug text-slate-900 dark:text-white">
@@ -1695,6 +1873,16 @@ export default function NeuroGuidePage() {
                                         <span>↗</span>
                                       </a>
                                     )}
+                                    {isAdminVerified && (
+                                      <button
+                                        type="button"
+                                        onClick={() => handleDeleteConferenceTrial(conf, tr.id, tr.trialAcronym)}
+                                        className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-rose-500/10 text-rose-500 hover:bg-rose-500/20 border border-rose-500/30 cursor-pointer"
+                                        title="Delete trial from conference"
+                                      >
+                                        🗑️
+                                      </button>
+                                    )}
                                   </div>
                                 </div>
                               </div>
@@ -1738,7 +1926,7 @@ export default function NeuroGuidePage() {
           <ClinicalNavigatorTab
             guidelines={guidelineDocs}
             recommendationAtoms={recommendationAtoms}
-            conferences={MOCK_CONFERENCE_EVENTS}
+            conferences={conferences}
             pivotalTrials={pivotalTrials}
             customRecLabels={customRecLabels}
             deletedTrialIds={deletedTrialIds}
@@ -1852,6 +2040,23 @@ export default function NeuroGuidePage() {
                 });
                 setSyncMessage(`✓ Đã lưu thay đổi guideline "${updatedDoc.title}" lên Cloud.`);
               }
+              reloadGuidelines(true);
+            }}
+            darkMode={darkMode}
+          />
+        )}
+
+        {/* EDIT / ADD CONFERENCE MODAL */}
+        {isAdminVerified && showConferenceModal && (
+          <ConferenceEditModal
+            isOpen={showConferenceModal}
+            onClose={() => setShowConferenceModal(false)}
+            conference={editingConference}
+            adminToken={getStoredAdminToken()}
+            onSuccess={(updatedConferences, savedConf) => {
+              setConferences(updatedConferences);
+              updateConferencesCache(updatedConferences);
+              setSyncMessage(`✓ Đã lưu thay đổi conference "${savedConf.acronym}" lên Cloud.`);
               reloadGuidelines(true);
             }}
             darkMode={darkMode}
