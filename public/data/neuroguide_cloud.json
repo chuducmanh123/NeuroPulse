@@ -59537,11 +59537,11 @@
       "title": "Impact of Mobile Stroke Unit Deployment on 90-Day Disability in High-Density Asian Megacities",
       "design": "Phase 3 RCT",
       "v3Tags": {
-        "domains": [
-          "treatment"
-        ],
         "conditionIds": [
           "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
         ],
         "diagnosisTags": [],
         "timeWindowIds": [
@@ -59589,7 +59589,7 @@
       "pico": {
         "comparator": "Medical treatment alone",
         "population": "Adult patients with acute ischemic stroke (AIS) due to a primary and isolated medium or distal vessel occlusion (MDVO)",
-        "timeWindow": "Within 8 hours of symptom onset or within 24 hours of last seen well without hyperintense signal on FLAIR imaging",
+        "timeWindow": "≤ 12 hours from symptom onset (distal medium vessel EVT)",
         "intervention": "Thrombectomy in addition to medical treatment"
       },
       "pmid": "42485024",
@@ -59610,8 +59610,7 @@
           "medium_distal_vessel_occlusion"
         ],
         "time_window": [
-          "h6_to_24h",
-          "within_6h"
+          "within_24h"
         ],
         "outcome_target": [
           "functional_outcome"
@@ -59634,6 +59633,21 @@
         "metric": "Good clinical outcome at 3 months (modified Rankin Scale score 0-2)",
         "verdict": "NEGATIVE",
         "resultStats": "62% vs 68%; OR 0.73 (95% CI, 0.40-1.31); P = .29; adjusted absolute difference -6.8% (95% CI, -19.4% to 5.7%)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_extended_window_4_5h_24h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_mechanical_thrombectomy"
+        ]
       }
     },
     {
@@ -59648,11 +59662,11 @@
       "title": "Randomized Trial of Endovascular Thrombectomy for Distal Middle and Anterior Cerebral Artery Occlusions",
       "design": "Phase 3 RCT",
       "v3Tags": {
-        "domains": [
-          "treatment"
-        ],
         "conditionIds": [
           "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
         ],
         "diagnosisTags": [],
         "timeWindowIds": [
@@ -59707,11 +59721,11 @@
       "title": "Endovascular Treatment to Improve Outcomes for Medium Vessel Occlusions",
       "design": "Phase 3 RCT",
       "v3Tags": {
-        "domains": [
-          "treatment"
-        ],
         "conditionIds": [
           "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
         ],
         "diagnosisTags": [],
         "timeWindowIds": [
@@ -59765,11 +59779,11 @@
       "title": "Early Adjunctive Intravenous Ketamine for Refractory Status Epilepticus",
       "design": "Phase 3 RCT",
       "v3Tags": {
-        "domains": [
-          "treatment"
-        ],
         "conditionIds": [
           "cond_status_epilepticus"
+        ],
+        "domains": [
+          "treatment"
         ],
         "diagnosisTags": [],
         "timeWindowIds": [
@@ -59816,11 +59830,11 @@
       "title": "Large Stroke Therapy Evaluation: Thrombectomy in Extremely Large Core Infarctions",
       "design": "Phase 3 RCT",
       "v3Tags": {
-        "domains": [
-          "treatment"
-        ],
         "conditionIds": [
           "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
         ],
         "diagnosisTags": [],
         "timeWindowIds": [
@@ -59878,11 +59892,11 @@
       "title": "Endovascular Thrombectomy for Acute Mild Ischemic Stroke with Large-Vessel Occlusion (MILD-MT)",
       "design": "Phase 3 RCT",
       "v3Tags": {
-        "domains": [
-          "treatment"
-        ],
         "conditionIds": [
           "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
         ],
         "diagnosisTags": [],
         "timeWindowIds": [
@@ -59943,7 +59957,7 @@
       "pico": {
         "comparator": "Placebo plus planned dual or single antiplatelet therapy",
         "population": "Patients within 72 hours after onset of a non-cardioembolic ischemic stroke (NIHSS <16) or high-risk TIA (ABCD2 6-7)",
-        "timeWindow": "Within 72 hours after onset",
+        "timeWindow": "≤ 7 days post-stroke (subacute secondary prevention with Asundexian FXIa inhibitor)",
         "intervention": "Asundexian 50 mg once daily plus planned dual or single antiplatelet therapy"
       },
       "pmid": "41985132",
@@ -59964,7 +59978,7 @@
           "tia"
         ],
         "time_window": [
-          "other_window"
+          "beyond_24h"
         ],
         "outcome_target": [
           "recurrent_stroke"
@@ -59986,6 +60000,22 @@
         "metric": "Ischemic stroke",
         "verdict": "POSITIVE",
         "resultStats": "Followed for a median of 19 months: 6.2% vs. 8.4% (cause-specific HR 0.74; 95% CI 0.65 to 0.84; P<0.001)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment",
+          "prevention"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_beyond_24h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_sapt"
+        ]
       }
     },
     {
@@ -60045,7 +60075,8 @@
       "pico": {
         "comparator": "Early DOAC initiation at 72–96 hours (Days 3–4).",
         "population": "N = 2,200 patients with acute ischemic stroke and nonvalvular AF randomized within 24 hours of symptom onset.",
-        "intervention": "Immediate DOAC initiation within 24 hours (Day 1)."
+        "intervention": "Immediate DOAC initiation within 24 hours (Day 1).",
+        "timeWindow": "≤ 24 hours from symptom onset (Immediate Day 1 vs Early Day 3–4 DOAC in AF-AIS)"
       },
       "year": 2026,
       "title": "Immediate (Day 1) vs. Early (Day 3-4) DOAC Initiation in Patients with Acute Mild-to-Moderate Ischemic Stroke and Atrial Fibrillation",
@@ -60061,7 +60092,10 @@
         "direction": [
           "for"
         ],
-        "drug_or_procedure": []
+        "drug_or_procedure": [],
+        "time_window": [
+          "within_24h"
+        ]
       },
       "subspecialty": "Stroke",
       "evidenceSource": "CONFERENCE_LATE_BREAKING",
@@ -60072,6 +60106,21 @@
         "metric": "Primary Endpoint",
         "verdict": "POSITIVE",
         "resultStats": "Composite of recurrent ischemic stroke, systemic embolism, or major bleeding within 30 days: 2.1% vs 2.4% (Non-inferior, p < 0.001)."
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_extended_window_4_5h_24h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_doac"
+        ]
       }
     },
     {
@@ -60080,7 +60129,7 @@
       "pico": {
         "comparator": "Intravenous alteplase 0.9 mg/kg",
         "population": "Previously independent adults with acute ischaemic stroke eligible for intravenous thrombolysis <4.5 h from last known well (mITT n=1777; mean age 70.4 years, median baseline NIHSS 7)",
-        "timeWindow": "< 4.5 h from last known well / symptom onset",
+        "timeWindow": "≤ 4.5 hours from symptom onset",
         "intervention": "Intravenous tenecteplase 0.25 mg/kg"
       },
       "pmid": "39424558",
@@ -60123,6 +60172,22 @@
         "metric": "Distribution of day 90 modified Rankin Scale (mRS) score",
         "verdict": "NON_INFERIOR",
         "resultStats": "OR 1.07 (95% CI 0.90-1.27); p<0.0001 for non-inferiority; p=0.43 for superiority"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_early_window_le_4_5h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_tenecteplase",
+          "cond_ischemic_stroke_int_alteplase"
+        ]
       }
     },
     {
@@ -60131,7 +60196,7 @@
       "pico": {
         "comparator": "Placebo",
         "population": "Patients aged 18-85 years (primary mITT analysis aged 18-70 years) with large hemispheric infarction (ASPECTS 1-5 or ischaemic core lesion volume 80-300 mL on CTP or MRI DWI)",
-        "timeWindow": "Within 10 h of stroke onset",
+        "timeWindow": "≤ 10 hours from symptom onset (Cirara/IV glibenclamide for large hemispheric infarction)",
         "intervention": "Intravenous glibenclamide (8.6 mg over 72 h)"
       },
       "pmid": "39577921",
@@ -60154,8 +60219,7 @@
           "large_ischemic_core"
         ],
         "time_window": [
-          "h6_to_24h",
-          "within_6h"
+          "within_24h"
         ],
         "outcome_target": [
           "functional_outcome"
@@ -60177,6 +60241,21 @@
         "metric": "Shift in distribution of modified Rankin Scale (mRS) scores at day 90",
         "verdict": "NEGATIVE",
         "resultStats": "Common OR 1.17 (95% CI 0.80-1.71), p=0.42"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_extended_window_4_5h_24h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_hemicraniectomy"
+        ]
       }
     },
     {
@@ -60193,11 +60272,11 @@
       "title": "Trial of Early Minimally Invasive Removal of Intracerebral Hemorrhage (ENRICH)",
       "design": "Phase 3 RCT",
       "v3Tags": {
-        "domains": [
-          "treatment"
-        ],
         "conditionIds": [
           "cond_ich"
+        ],
+        "domains": [
+          "treatment"
         ],
         "diagnosisTags": [],
         "timeWindowIds": [
@@ -60253,7 +60332,7 @@
       "pico": {
         "comparator": "Usual blood-pressure management",
         "population": "Patients with suspected acute stroke causing a motor deficit and elevated systolic blood pressure (>=150 mm Hg) assessed in the ambulance within 2 hours of symptom onset",
-        "timeWindow": "Within 2 hours after symptom onset",
+        "timeWindow": "≤ 2 hours from symptom onset in the ambulance (prehospital BP reduction)",
         "intervention": "Immediate ambulance-delivered blood-pressure lowering (target systolic BP 130 to 140 mm Hg)"
       },
       "pmid": "38752650",
@@ -60294,6 +60373,23 @@
         "metric": "Modified Rankin scale (mRS) score at 90 days",
         "verdict": "NEGATIVE",
         "resultStats": "Common OR 1.00 (95% CI, 0.87 to 1.15)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ich",
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ich_tw_hyperacute_lt_6h",
+          "cond_ischemic_stroke_tw_early_window_le_4_5h"
+        ],
+        "interventionTags": [
+          "cond_ich_int_blood_pressure_control"
+        ]
       }
     },
     {
@@ -60349,6 +60445,21 @@
         "metric": "90-day utility-weighted mRS score improvement",
         "verdict": "NEGATIVE",
         "resultStats": "Both active-treatment groups had predictive probabilities of success of less than 0.20, which indicated that the trial should be stopped. The predictive probability of success if the trial were to continue was less than 0.001 for argatroban and less than 0.001 for eptifibatide."
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_early_window_le_4_5h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_alteplase"
+        ]
       }
     },
     {
@@ -60403,6 +60514,21 @@
         "metric": "Excellent functional outcome (mRS 0–1 at 90 days)",
         "verdict": "POSITIVE",
         "resultStats": "79.5% vs. 70.4% (risk ratio 1.13, 95% CI 1.05–1.21; p<0.001 for non-inferiority and superiority)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_early_window_le_4_5h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_alteplase"
+        ]
       }
     },
     {
@@ -60411,7 +60537,7 @@
       "pico": {
         "comparator": "Intravenous alteplase (0.90 mg/kg)",
         "population": "Patients aged >=18 years within 4.5 h of ischaemic stroke onset or last known well, not considered for endovascular thrombectomy, meeting target mismatch criteria on brain perfusion imaging",
-        "timeWindow": "Within 4.5 hours of ischaemic stroke onset or last known well",
+        "timeWindow": "≤ 4.5 hours from symptom onset",
         "intervention": "Intravenous tenecteplase (0.25 mg/kg)"
       },
       "pmid": "38880118",
@@ -60454,6 +60580,22 @@
         "metric": "Proportion of patients without disability (modified Rankin Scale 0-1) at 3 months",
         "verdict": "NON_INFERIOR",
         "resultStats": "ITT: 57% vs 55%, SRD=0.03 (95% CI -0.033 to 0.10), one-tailed p non-inferiority=0.031; PP: 59% vs 56%, SRD=0.05 (95% CI -0.02 to 0.12), one-tailed p non-inferiority=0.01"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_early_window_le_4_5h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_tenecteplase",
+          "cond_ischemic_stroke_int_alteplase"
+        ]
       }
     },
     {
@@ -60487,7 +60629,7 @@
         ],
         "time_window": [
           "h6_to_24h",
-          "within_6h"
+          "within_24h"
         ],
         "outcome_target": [
           "functional_outcome"
@@ -60509,6 +60651,21 @@
         "metric": "mRS score distribution (shift analysis) at 90 days",
         "verdict": "NEGATIVE",
         "resultStats": "Median mRS 3 vs. 3 (adjusted common OR 1.13, 95% CI 0.82–1.57; p=0.45). 77.3% of whom subsequently underwent thrombectomy"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_extended_window_4_5h_24h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_tenecteplase"
+        ]
       }
     },
     {
@@ -60517,7 +60674,7 @@
       "pico": {
         "comparator": "Standard medical treatment",
         "population": "Chinese patients with ischemic stroke due to large-vessel occlusion (middle cerebral artery or internal carotid artery), salvageable brain tissue on perfusion imaging, and no access to endovascular thrombectomy",
-        "timeWindow": "4.5 to 24 hours after last known well (including wake-up and unwitnessed stroke)",
+        "timeWindow": "4.5 to 24 hours from onset or wake-up stroke (penumbral mismatch without immediate EVT)",
         "intervention": "Tenecteplase (0.25 mg/kg; maximum dose, 25 mg)"
       },
       "pmid": "38884324",
@@ -60539,7 +60696,8 @@
         ],
         "time_window": [
           "h6_to_24h",
-          "within_6h"
+          "within_24h",
+          "unknown_onset_wake_up"
         ],
         "outcome_target": [
           "functional_outcome"
@@ -60561,6 +60719,22 @@
         "metric": "Absence of disability (modified Rankin scale score of 0 or 1) at day 90",
         "verdict": "POSITIVE",
         "resultStats": "33.0% vs. 24.2%; relative rate, 1.37; 95% CI, 1.04 to 1.81; P = 0.03"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_extended_window_4_5h_24h",
+          "cond_ischemic_stroke_tw_unknown_onset"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_tenecteplase"
+        ]
       }
     },
     {
@@ -60577,11 +60751,11 @@
       "title": "Study of Endovascular Therapy in Acute Anterior Circulation Large Vessel Occlusive Patients With a Large Infarct Core (ANGEL-ASPECT)",
       "design": "Phase 3 RCT",
       "v3Tags": {
-        "domains": [
-          "treatment"
-        ],
         "conditionIds": [
           "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
         ],
         "diagnosisTags": [],
         "timeWindowIds": [
@@ -60694,6 +60868,22 @@
         "metric": "Excellent functional outcome (mRS 0–1 at 90 days)",
         "verdict": "NON_INFERIOR",
         "resultStats": "93.8% vs. 91.4% (adjusted difference 2.3%, 95% CI -1.5% to 6.2%; met noninferiority margin -4.5%)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_early_window_le_4_5h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_dapt",
+          "cond_ischemic_stroke_int_alteplase"
+        ]
       }
     },
     {
@@ -60729,9 +60919,8 @@
           "for"
         ],
         "time_window": [
-          "within_6h",
-          "h6_to_24h",
-          "h24_to_72h"
+          "within_24h",
+          "beyond_24h"
         ],
         "outcome_target": [
           "recurrent_stroke",
@@ -60753,6 +60942,22 @@
         "metric": "30-day composite of recurrent ischemic stroke, systemic embolism, major extracranial bleeding, sICH, or vascular death",
         "verdict": "POSITIVE",
         "resultStats": "2.9% vs. 4.1% (risk difference -1.18%, 95% CI -2.84 to 0.47). Recurrent ischemic stroke at 30d: 1.4% vs. 2.5% (odds ratio, 0.57; 95% CI, 0.29 to 1.07)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_extended_window_4_5h_24h",
+          "cond_ischemic_stroke_tw_beyond_24h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_doac"
+        ]
       }
     },
     {
@@ -60785,7 +60990,7 @@
           "for"
         ],
         "time_window": [
-          "h24_to_72h"
+          "beyond_24h"
         ],
         "outcome_target": [
           "recurrent_stroke"
@@ -60809,6 +61014,23 @@
         "metric": "New ischemic or hemorrhagic stroke within 90 days",
         "verdict": "POSITIVE",
         "resultStats": "7.3% vs. 9.2% (hazard ratio 0.79, 95% CI 0.66–0.94; p=0.008; 21% relative reduction)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke",
+          "cond_tia"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_beyond_24h",
+          "cond_tia_tw_early_phase_day_2_7"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_dapt"
+        ]
       }
     },
     {
@@ -60845,8 +61067,7 @@
           "against"
         ],
         "time_window": [
-          "within_6h",
-          "h6_to_24h"
+          "within_24h"
         ],
         "outcome_target": [
           "functional_outcome"
@@ -60865,6 +61086,21 @@
         "metric": "Functional independence (mRS 0–2) at 90 days",
         "verdict": "NEGATIVE",
         "resultStats": "39.4% vs. 54.4% (adjusted OR 0.56, 95% CI 0.33–0.96, p=0.03; terminated early for harm)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_extended_window_4_5h_24h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_blood_pressure_control"
+        ]
       }
     },
     {
@@ -60918,6 +61154,21 @@
         "metric": "mRS 0–1 at 90 days",
         "verdict": "NON_INFERIOR",
         "resultStats": "65.2% vs. 64.3% (risk difference, 0.89; 95.4% CI, −6.52 to 8.29)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_early_window_le_4_5h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_alteplase"
+        ]
       }
     },
     {
@@ -60954,8 +61205,7 @@
           "for"
         ],
         "time_window": [
-          "within_6h",
-          "h6_to_24h"
+          "within_24h"
         ],
         "outcome_target": [
           "functional_outcome"
@@ -60977,6 +61227,21 @@
         "metric": "90-day ordinal mRS shift",
         "verdict": "POSITIVE",
         "resultStats": "4 vs. 5 (OR 1.51, 95% CI 1.20–1.89, p<0.001); mRS 0–2: 20.3% vs. 7.0% (RR 2.97)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_extended_window_4_5h_24h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_mechanical_thrombectomy"
+        ]
       }
     },
     {
@@ -61013,8 +61278,8 @@
           "for"
         ],
         "time_window": [
-          "within_6h",
-          "h6_to_24h"
+          "within_24h",
+          "unknown_onset_wake_up"
         ],
         "outcome_target": [
           "functional_outcome"
@@ -61036,6 +61301,22 @@
         "metric": "90-day ordinal mRS shift",
         "verdict": "POSITIVE",
         "resultStats": "4 vs. 6 (Adjusted common OR 2.58, 95% CI 1.60–4.15, p=0.0001); mRS 0–2: 17% vs. 2% (p=0.0016); mRS 0-3: 31% vs.13% (p=0.0018)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_extended_window_4_5h_24h",
+          "cond_ischemic_stroke_tw_unknown_onset"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_mechanical_thrombectomy"
+        ]
       }
     },
     {
@@ -61092,6 +61373,22 @@
         "metric": "mRS 0–1 at 90 days",
         "verdict": "NON_INFERIOR",
         "resultStats": "62% vs. 58% (RR 1.07, 95% CI 0.98–1.16; non-inferior)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_early_window_le_4_5h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_tenecteplase",
+          "cond_ischemic_stroke_int_alteplase"
+        ]
       }
     },
     {
@@ -61148,6 +61445,22 @@
         "metric": "mRS 0–1 at 90–120 days",
         "verdict": "NON_INFERIOR",
         "resultStats": "36.9% vs. 34.8% (unadjusted RD 2.1%, 95% CI -2.6 to 6.9; met non-inferiority)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_early_window_le_4_5h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_tenecteplase",
+          "cond_ischemic_stroke_int_alteplase"
+        ]
       }
     },
     {
@@ -61183,8 +61496,7 @@
           "for"
         ],
         "time_window": [
-          "within_6h",
-          "h6_to_24h"
+          "within_24h"
         ],
         "outcome_target": [
           "functional_outcome"
@@ -61207,6 +61519,22 @@
         "metric": "Good functional status (mRS 0–3) at 90 days",
         "verdict": "POSITIVE",
         "resultStats": "46% vs. 23% (adjusted rate ratio 2.06, 95% CI 1.46–2.91, p<0.001)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_extended_window_4_5h_24h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_basilar_thrombectomy",
+          "cond_ischemic_stroke_int_mechanical_thrombectomy"
+        ]
       }
     },
     {
@@ -61242,7 +61570,8 @@
           "for"
         ],
         "time_window": [
-          "h6_to_24h"
+          "h6_to_24h",
+          "within_24h"
         ],
         "outcome_target": [
           "functional_outcome"
@@ -61265,6 +61594,22 @@
         "metric": "mRS 0–3 at 90 days",
         "verdict": "POSITIVE",
         "resultStats": "46% vs. 24% (adjusted rate ratio 1.81, 95% CI 1.26–2.60, p<0.001)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_extended_window_4_5h_24h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_basilar_thrombectomy",
+          "cond_ischemic_stroke_int_mechanical_thrombectomy"
+        ]
       }
     },
     {
@@ -61297,8 +61642,7 @@
           "for"
         ],
         "time_window": [
-          "within_6h",
-          "h6_to_24h"
+          "within_24h"
         ],
         "outcome_target": [
           "functional_outcome"
@@ -61322,6 +61666,22 @@
         "metric": "Excellent outcome (mRS 0–1 at 90 days)",
         "verdict": "POSITIVE",
         "resultStats": "59.0% vs. 40.4% (risk difference 18.4%, 95% CI 0.3%–36.4%; adjusted OR 2.37, p=0.047)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_extended_window_4_5h_24h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_intra_arterial_thrombolysis",
+          "cond_ischemic_stroke_int_mechanical_thrombectomy"
+        ]
       }
     },
     {
@@ -61330,7 +61690,7 @@
       "pico": {
         "comparator": "Less intensive SBP target 140–180 mmHg",
         "population": "Adults with persistent hypertension (SBP ≥140 mmHg) after successful mechanical thrombectomy (eTICI 2b–3)",
-        "timeWindow": "Post-reperfusion (first 72 hours post-successful EVT)",
+        "timeWindow": "Post-reperfusion (first 72 hours post-successful EVT; SBP target < 120 mmHg harmful)",
         "intervention": "Intensive SBP target <120 mmHg"
       },
       "pmid": "36341753",
@@ -61358,9 +61718,7 @@
           "against"
         ],
         "time_window": [
-          "h24_to_72h",
-          "h6_to_24h",
-          "within_6h"
+          "beyond_24h"
         ],
         "outcome_target": [
           "functional_outcome"
@@ -61381,6 +61739,21 @@
         "metric": "90-day ordinal mRS distribution (worse functional outcome)",
         "verdict": "NEGATIVE",
         "resultStats": "Common OR for worse mRS: 1.37 (95% CI 1.07–1.76, p=0.01); trial stopped early for harm"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_beyond_24h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_blood_pressure_control"
+        ]
       }
     },
     {
@@ -61434,6 +61807,21 @@
         "metric": "Favorable outcome (mRS 0–1 at 3 months)",
         "verdict": "NEGATIVE",
         "resultStats": "32% vs. 51% (adjusted OR 0.45, 95% CI 0.25–0.81; trial stopped early for safety)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_early_window_le_4_5h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_tenecteplase"
+        ]
       }
     },
     {
@@ -61466,7 +61854,7 @@
           "neutral"
         ],
         "time_window": [
-          "within_6h"
+          "within_24h"
         ],
         "outcome_target": [
           "functional_outcome"
@@ -61484,6 +61872,21 @@
         "metric": "90-day mRS score shift",
         "verdict": "NEUTRAL",
         "resultStats": "3 vs. 3 (adjusted common OR 1.03; 95% CI 0.82–1.29; p=0.81; no functional benefit)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_extended_window_4_5h_24h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_mechanical_thrombectomy"
+        ]
       }
     },
     {
@@ -61517,6 +61920,8 @@
           "for"
         ],
         "time_window": [
+          "within_6h",
+          "h6_to_24h",
           "within_24h"
         ],
         "outcome_target": [
@@ -61539,6 +61944,22 @@
         "metric": "mRS 0–3 at 90 days",
         "verdict": "POSITIVE",
         "resultStats": "31.0% vs. 12.7% (relative risk 2.43, 95% CI 1.35–4.37; p=0.002)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_early_window_le_4_5h",
+          "cond_ischemic_stroke_tw_extended_window_4_5h_24h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_mechanical_thrombectomy"
+        ]
       }
     },
     {
@@ -61588,6 +62009,23 @@
         "metric": "Procedural death or any stroke within 30 days, or non-procedural fatal or disabling stroke at 5 years",
         "verdict": "NON_INFERIOR",
         "resultStats": "Disabling stroke or death procedurally: 1%; Non-disabling procedural stroke: 2%; 5-year non-procedural stroke: 2.5% in each group for fatal or disabling stroke, and 5·3% with CAS versus 4·5% with CEA for any stroke (rate ratio [RR] 1·16, 95% CI 0·86–1·57; p=0·33)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_carotid"
+        ],
+        "domains": [
+          "treatment",
+          "prevention"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_carotid_tw_elective_gt_14_days"
+        ],
+        "interventionTags": [
+          "cond_carotid_int_carotid_stenting",
+          "cond_carotid_int_carotid_endarterectomy"
+        ]
       }
     },
     {
@@ -61640,6 +62078,21 @@
         "metric": "mRS shift analysis across all disability grades at 3 months",
         "verdict": "POSITIVE",
         "resultStats": "1 vs 2 (adjusted common OR 1.21, 95% CI 1.01–1.44; p=0.04) in favor of MSU dispatch"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_early_window_le_4_5h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_alteplase"
+        ]
       }
     },
     {
@@ -61691,6 +62144,21 @@
         "metric": "Utility-weighted mRS at 90 days in tPA-eligible cohort",
         "verdict": "POSITIVE",
         "resultStats": "Mean score 0.73 vs. 0.67 (aOR 2.14, 95% CI, 1.55 to 2.95; p<0.001 with inverse-probability weighting)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_early_window_le_4_5h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_alteplase"
+        ]
       }
     },
     {
@@ -61723,7 +62191,7 @@
           "neutral"
         ],
         "time_window": [
-          "other_window"
+          "within_4_5h"
         ],
         "outcome_target": [
           "symptomatic_ich"
@@ -61744,6 +62212,21 @@
         "metric": "Rate of any radiographic intracranial hemorrhage on 24- to 36-hour CT",
         "verdict": "NEUTRAL",
         "resultStats": "42.2% vs. 42.9% (adjusted OR 0.96, 95% CI 0.60–1.51; p=0.84; intensive BP reduction did not reduce hemorrhage)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_early_window_le_4_5h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_blood_pressure_control"
+        ]
       }
     },
     {
@@ -61802,6 +62285,23 @@
         "metric": "New ischemic or hemorrhagic stroke within 90 days",
         "verdict": "POSITIVE",
         "resultStats": "6.0% vs. 7.6% (hazard ratio 0.77, 95% CI 0.64–0.94; p=0.008; 23% relative risk reduction)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke",
+          "cond_tia"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_extended_window_4_5h_24h",
+          "cond_tia_tw_hyperacute_lt_24h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_dapt"
+        ]
       }
     },
     {
@@ -61854,6 +62354,19 @@
         "metric": "Composite of death from cardiovascular causes, stroke, or hospitalization with worsening of heart failure or acute coronary syndrome",
         "verdict": "POSITIVE",
         "resultStats": "3.9% vs. 5.0% per year (hazard ratio 0.79, 95% CI 0.66–0.94; p=0.005; 21% relative reduction in major cardiovascular events and stroke). Stroke incidence: 0.6% vs 0.9% per year (HR 0.65, 95% CI 0.44–0.97; 35% reduction in stroke)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_doac"
+        ]
       }
     },
     {
@@ -61912,6 +62425,23 @@
         "metric": "Composite of stroke or death within 30 days",
         "verdict": "POSITIVE",
         "resultStats": "5.5% vs. 6.6% (hazard ratio, 0.83; 95% CI, 0.71 to 0.96; P=0.02). Ischemic stroke occurred in 276 patients (5.0%) in the ticagrelor–aspirin group and in 345 patients (6.3%) in the aspirin group (hazard ratio, 0.79; 95% CI, 0.68 to 0.93; P=0.004)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke",
+          "cond_tia"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_extended_window_4_5h_24h",
+          "cond_tia_tw_hyperacute_lt_24h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_dapt"
+        ]
       }
     },
     {
@@ -61965,6 +62495,22 @@
         "metric": "Excellent or good hemostatic efficacy at 12 hours + reduction in anti-factor Xa activity",
         "verdict": "POSITIVE",
         "resultStats": "82% achieved excellent or good hemostasis; anti-factor Xa activity decreased by 92% for apixaban and 92% for rivaroxaban"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ich"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ich_tw_hyperacute_lt_6h",
+          "cond_ich_tw_acute_window_6h_24h"
+        ],
+        "interventionTags": [
+          "cond_ich_int_andexanet_alfa"
+        ]
       }
     },
     {
@@ -62017,6 +62563,21 @@
         "metric": "Absence of clinically apparent seizures and improving responsiveness at 60 minutes",
         "verdict": "POSITIVE",
         "resultStats": "Levetiracetam 47%, Fosphenytoin 45%, Valproate 46% (equivalent efficacy)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_status_epilepticus"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_status_epilepticus_tw_5_30_min"
+        ],
+        "interventionTags": [
+          "cond_status_epilepticus_int_levetiracetam"
+        ]
       }
     },
     {
@@ -62025,7 +62586,7 @@
       "pico": {
         "comparator": "Placebo",
         "population": "AIS patients presenting between 4.5 and 9.0 hours from onset or wake-up stroke with automated perfusion mismatch (penumbra >10mL, mismatch ratio >1.2, core <70mL)",
-        "timeWindow": "4.5 to 9.0 hours from onset or wake-up stroke",
+        "timeWindow": "4.5 to 9.0 hours from onset or wake-up stroke (CTP/MRP mismatch)",
         "intervention": "IV Alteplase 0.9 mg/kg"
       },
       "pmid": "31067369",
@@ -62071,6 +62632,22 @@
         "metric": "Excellent functional outcome (mRS 0–1 at 90 days)",
         "verdict": "POSITIVE",
         "resultStats": "35.4% vs. 29.5% (adjusted rate ratio 1.44, 95% CI 1.01–2.06; p=0.04)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_extended_window_4_5h_24h",
+          "cond_ischemic_stroke_tw_unknown_onset"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_alteplase"
+        ]
       }
     },
     {
@@ -62079,7 +62656,7 @@
       "pico": {
         "comparator": "Standard medical management in neuro-ICU",
         "population": "Patients with non-traumatic spontaneous supratentorial ICH ≥30 mL with stable clot size at 6 hours",
-        "timeWindow": "Symptoms less than 24 hours prior to diagnostic CT (dCT) scan. Ability to randomise between 12 and 72 hours after dCT.",
+        "timeWindow": "12 to 72 hours from symptom onset (stereotactic catheter evacuation + Alteplase irrigation)",
         "intervention": "Image-guided catheter placement with stereotactic aspiration + alteplase (1.0 mg q8h for up to 9 doses)"
       },
       "pmid": "30739708",
@@ -62103,7 +62680,7 @@
           "neutral"
         ],
         "time_window": [
-          "within_24h"
+          "beyond_24h"
         ],
         "outcome_target": [
           "functional_outcome"
@@ -62122,6 +62699,21 @@
         "metric": "Good functional outcome (mRS 0–3 at 1 year)",
         "verdict": "NEUTRAL",
         "resultStats": "45% vs. 41% (adjusted risk difference 4% [95% CI –4 to 12], p=0.33)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ich"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ich_tw_subacute_24h_72h"
+        ],
+        "interventionTags": [
+          "cond_ich_int_minimally_invasive_surgery"
+        ]
       }
     },
     {
@@ -62130,7 +62722,7 @@
       "pico": {
         "comparator": "Matching transdermal sham patch",
         "population": "Adults with presumed acute stroke assessed within 4 hours by ambulance paramedics with SBP ≥120 mm Hg",
-        "timeWindow": "≤ 4 hours from symptom onset in the ambulance",
+        "timeWindow": "≤ 4 hours from symptom onset in the ambulance (prehospital GTN patch)",
         "intervention": "Transdermal glyceryl trinitrate (GTN 5 mg patch applied immediately on-scene + daily for 3 days)"
       },
       "pmid": "30738649",
@@ -62175,6 +62767,23 @@
         "metric": "Shift in 90-day mRS score across all categories",
         "verdict": "NEGATIVE",
         "resultStats": "3 vs 3 (adjusted common OR 1.25, 95% CI 0.97–1.60; p=0.08). No functional benefit, and trend toward worse disability in ICH and severe stroke subgroups"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke",
+          "cond_ich"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_early_window_le_4_5h",
+          "cond_ich_tw_hyperacute_lt_6h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_blood_pressure_control"
+        ]
       }
     },
     {
@@ -62183,7 +62792,7 @@
       "pico": {
         "comparator": "Standard glucose control with subcutaneous sliding-scale insulin targeting 80 to 179 mg/dL",
         "population": "Hyperglycemic AIS patients presenting within 12h of stroke onset with blood glucose >110 mg/dL (diabetics) or ≥150 mg/dL",
-        "timeWindow": "≤ 12 hours from symptom onset",
+        "timeWindow": "≤ 12 hours from symptom onset (intensive IV insulin target 80–130 mg/dL)",
         "intervention": "Intensive glucose control with continuous IV insulin targeting 80 to 130 mg/dL for up to 72 hours"
       },
       "pmid": "PMC6652154",
@@ -62227,6 +62836,21 @@
         "metric": "Favorable functional outcome at 90 days (mRS 0 with a baseline NIHSS score of 3-7, a mRS0-1 with a baseline NIHSS score of 8-14, and mRS 0-2 with baseline NIHSS score of 15-22)",
         "verdict": "NEGATIVE",
         "resultStats": "15.7% vs. 16.2% (unadjusted relative risk 0.97, 95% CI 0.73–1.29; p=0.82; no clinical benefit)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_extended_window_4_5h_24h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_blood_pressure_control"
+        ]
       }
     },
     {
@@ -62276,6 +62900,20 @@
         "metric": "Composite of death, dementia, or persistent physical disability",
         "verdict": "NEGATIVE",
         "resultStats": "21.5 vs. 21.2 events per 1000 person-years (hazard ratio 1.01, 95% CI 0.92–1.11; p=0.79; zero benefit in disability-free survival)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment",
+          "prevention"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_sapt"
+        ]
       }
     },
     {
@@ -62284,7 +62922,7 @@
       "pico": {
         "comparator": "Standard medical care alone",
         "population": "Anterior LVO (ICA/M1) with clinical-core mismatch: Group A (age ≥80, NIHSS ≥10, infarct <21 ml), Group B (age <80, NIHSS ≥10, infarct <31 ml), and Group C (age <80, NIHSS ≥20, infarct 31 to <51 ml).",
-        "timeWindow": "6 to 24 hours from last known well (including wake-up stroke)",
+        "timeWindow": "6 to 24 hours from last known well (including wake-up stroke; clinical-core mismatch)",
         "intervention": "Thrombectomy + standard care"
       },
       "pmid": "29129157",
@@ -62311,7 +62949,9 @@
           "for"
         ],
         "time_window": [
-          "h6_to_24h"
+          "h6_to_24h",
+          "within_24h",
+          "unknown_onset_wake_up"
         ],
         "outcome_target": [
           "functional_outcome"
@@ -62335,6 +62975,22 @@
         "metric": "Utility-weighted mRS & 90-day mRS 0–2",
         "verdict": "POSITIVE",
         "resultStats": "mRS 0–2: 49% vs. 13% (adjusted difference 33%, 95% CI 21–44; posterior probability of superiority, >0.999, NNT = 2.8)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_extended_window_4_5h_24h",
+          "cond_ischemic_stroke_tw_unknown_onset"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_mechanical_thrombectomy"
+        ]
       }
     },
     {
@@ -62370,7 +63026,8 @@
           "for"
         ],
         "time_window": [
-          "h6_to_24h"
+          "h6_to_24h",
+          "within_24h"
         ],
         "outcome_target": [
           "functional_outcome"
@@ -62394,6 +63051,21 @@
         "metric": "90-day ordinal mRS & functional independence (mRS 0–2)",
         "verdict": "POSITIVE",
         "resultStats": "Ordinal mRS: 3 vs 4 (OR 2.77, p<0.001); mRS 0–2: 45% vs 17% (RR 2.67, p<0.001)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_extended_window_4_5h_24h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_mechanical_thrombectomy"
+        ]
       }
     },
     {
@@ -62454,6 +63126,22 @@
         "metric": "Substantial reperfusion (>50% or absence of retrievable thrombus) at initial angiogram",
         "verdict": "POSITIVE",
         "resultStats": "22% vs. 10% (incidence diff 12%, p=0.002 for non-inferiority, p=0.03 for superiority). Median modified Rankin scale score, 2 vs. 3; common odds ratio, 1.7; 95% CI, 1.0 to 2.8; P=0.04"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_early_window_le_4_5h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_tenecteplase",
+          "cond_ischemic_stroke_int_mechanical_thrombectomy"
+        ]
       }
     },
     {
@@ -62513,6 +63201,23 @@
         "metric": "Major ischemic events (ischemic stroke, MI, or ischemic vascular death) at 90 days",
         "verdict": "POSITIVE",
         "resultStats": "5.0% vs. 6.5% (HR 0.75, 95% CI 0.59–0.95, p=0.02)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke",
+          "cond_tia"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_extended_window_4_5h_24h",
+          "cond_tia_tw_hyperacute_lt_24h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_dapt"
+        ]
       }
     },
     {
@@ -62567,6 +63272,22 @@
         "metric": "Favorable functional outcome (mRS 0–1 at 90 days)",
         "verdict": "NEGATIVE",
         "resultStats": "78.2% vs. 81.5% (adjusted risk difference -1.1%, 95% CI -9.4% to 7.3%; p=0.79; no benefit with alteplase)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_early_window_le_4_5h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_alteplase",
+          "cond_ischemic_stroke_int_sapt"
+        ]
       }
     },
     {
@@ -62583,11 +63304,11 @@
       "title": "MRI-Guided Thrombolysis for Stroke with Unknown Time of Onset (WAKE-UP)",
       "design": "Phase 3 RCT",
       "v3Tags": {
-        "domains": [
-          "treatment"
-        ],
         "conditionIds": [
           "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
         ],
         "diagnosisTags": [],
         "timeWindowIds": [
@@ -62641,7 +63362,7 @@
       "pico": {
         "comparator": "Standard IV nicardipine targeting SBP 140–179 mmHg",
         "population": "Spontaneous supratentorial ICH (<60 mL) within 4.5h with initial SBP ≥180 mmHg",
-        "timeWindow": "≤ 4.5 hours from symptom onset",
+        "timeWindow": "≤ 4.5 hours from symptom onset (intensive BP lowering target 110–139 mmHg)",
         "intervention": "Aggressive IV nicardipine targeting SBP 110–139 mmHg"
       },
       "pmid": "27276234",
@@ -62688,6 +63409,21 @@
         "metric": "Death or disability (mRS 4–6) at 90 days",
         "verdict": "NEGATIVE",
         "resultStats": "38.7% vs. 37.7% (RR 1.04, 95% CI 0.85–1.27; futile)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ich"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ich_tw_hyperacute_lt_6h"
+        ],
+        "interventionTags": [
+          "cond_ich_int_blood_pressure_control"
+        ]
       }
     },
     {
@@ -62696,7 +63432,7 @@
       "pico": {
         "comparator": "Standard neurocritical medical care alone",
         "population": "Adults with acute spontaneous non-traumatic supratentorial ICH within 6 hours of onset while taking antiplatelet therapy (aspirin, clopidogrel, or dipyridamole) for ≥7 days",
-        "timeWindow": "≤ 6 hours from symptom onset in antiplatelet-associated acute ICH",
+        "timeWindow": "≤ 6 hours from symptom onset in antiplatelet-associated acute ICH (platelet transfusion harmful)",
         "intervention": "Platelet transfusion initiated within 90 min of brain imaging"
       },
       "pmid": "27161709",
@@ -62742,6 +63478,21 @@
         "metric": "Ordinal shift in mRS score (death or dependence) at 3 months",
         "verdict": "NEGATIVE",
         "resultStats": "Adjusted common OR 2.05 (95% CI 1.18–3.56; p=0.011; patients receiving platelets had DOUBLE the odds of worse functional disability or death)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ich"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ich_tw_hyperacute_lt_6h"
+        ],
+        "interventionTags": [
+          "cond_ich_int_platelet_transfusion"
+        ]
       }
     },
     {
@@ -62750,7 +63501,7 @@
       "pico": {
         "comparator": "Usual stroke unit mobilization (typically starting 24–48 hours)",
         "population": "Adult acute stroke patients admitted within 24 hours of onset",
-        "timeWindow": "≤ 24 hours from onset",
+        "timeWindow": "≤ 24 hours from onset (very early out-of-bed mobilization within 24h reduced good recovery)",
         "intervention": "Very early mobilization (VEM: out-of-bed activity within 24h, high-frequency protocol)"
       },
       "pmid": "25892600",
@@ -62792,6 +63543,21 @@
         "metric": "Favorable outcome (mRS 0–2 at 3 months)",
         "verdict": "NEGATIVE",
         "resultStats": "46% vs. 50% (adjusted OR 0.73, 95% CI 0.59–0.90; p=0.004; significantly worse outcome with high-dose VEM)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_extended_window_4_5h_24h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_early_mobilization"
+        ]
       }
     },
     {
@@ -62800,7 +63566,7 @@
       "pico": {
         "comparator": "Microsurgical clipping (Surgical clip occlusion)",
         "population": "Patients presenting with acute subarachnoid hemorrhage (SAH) from a ruptured intracranial aneurysm",
-        "timeWindow": "14 days",
+        "timeWindow": "Hyperacute aSAH admission (< 72 hours; coiling vs clipping)",
         "intervention": "Endovascular coiling (Coil embolization)"
       },
       "pmid": "26115467",
@@ -62825,7 +63591,8 @@
           "for"
         ],
         "time_window": [
-          "other_window"
+          "within_24h",
+          "beyond_24h"
         ],
         "outcome_target": [
           "functional_outcome"
@@ -62846,6 +63613,22 @@
         "metric": "Poor functional outcome (mRS > 2) at 6 years",
         "verdict": "NEUTRAL",
         "resultStats": "No statistically significant difference in outcomes between groups at 6 years (p = 0.24). Outcome favored coiling in posterior circulation aneurysms, while no outcome difference was seen in anterior circulation aneurysms."
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_sah"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_sah_tw_pre_securing_lt_72h"
+        ],
+        "interventionTags": [
+          "cond_sah_int_aneurysm_coiling",
+          "cond_sah_int_surgical_clipping"
+        ]
       }
     },
     {
@@ -62879,8 +63662,7 @@
           "for"
         ],
         "time_window": [
-          "within_24h",
-          "within_6h"
+          "within_24h"
         ],
         "outcome_target": [
           "functional_outcome"
@@ -62902,6 +63684,21 @@
         "metric": "mRS at 90 days",
         "verdict": "POSITIVE",
         "resultStats": "OR (improvement of 1 point on the mRS) of 2.6 (95%CI, 1.7 to 3.8) favoring the intervention (P<0.001); mRS 0-2: 53.0% vs. 29.3% (rate ratio 1.80, 95% CI 1.34–2.42; p<0.001; absolute risk difference 23.7%, NNT=4)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_extended_window_4_5h_24h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_mechanical_thrombectomy"
+        ]
       }
     },
     {
@@ -62957,6 +63754,22 @@
         "metric": "mRS shift analysis across all disability grades at 90 days",
         "verdict": "POSITIVE",
         "resultStats": "mRS shift analysis: 3 vs 4. aOR 1.67 95% CI 1.21–2.30; p=0.002; Functional independence mRS 0–2: 32.6% vs 19.1%, ARR 13.5%, NNT=7"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_early_window_le_4_5h",
+          "cond_ischemic_stroke_tw_extended_window_4_5h_24h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_mechanical_thrombectomy"
+        ]
       }
     },
     {
@@ -63010,6 +63823,22 @@
         "metric": "Distribution of scores on the mRS",
         "verdict": "NEGATIVE",
         "resultStats": "Not associated with a shift  in the distribution of scores on the mRS (adjusted  common OR 0·94 [95% CI 0·82–1·09], p=0·41). Infection rate reduced (11% vs 17%), urinary tract infection (p<0.0001), but not pneumonia (p=0.19)."
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke",
+          "cond_stroke_other"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_extended_window_4_5h_24h"
+        ],
+        "interventionTags": [
+          "cond_stroke_other_int_broad_antibiotics"
+        ]
       }
     },
     {
@@ -63114,6 +63943,20 @@
         "metric": "Composite of myocardial infarction, acute coronary syndrome, stroke, heart failure, or cardiovascular death",
         "verdict": "POSITIVE",
         "resultStats": "1.65% vs. 2.19% per year (hazard ratio 0.75, 95% CI 0.64–0.89; p<0.001; 25% relative risk reduction; stroke HR 0.89, p=0.5; all-cause mortality HR 0.73, p=0.003)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment",
+          "prevention"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_blood_pressure_control"
+        ]
       }
     },
     {
@@ -63122,7 +63965,7 @@
       "pico": {
         "comparator": "Standard stroke unit care without antibiotic prophylaxis",
         "population": "Patients with acute stroke and dysphagia (failed bedside swallow screen) within 48h admitted to stroke units in the UK",
-        "timeWindow": "≤ 48 hours from symptom onset",
+        "timeWindow": "≤ 48 hours from symptom onset in dysphagic stroke (preventive clarithromycin/co-amoxiclav)",
         "intervention": "Clarithromycin + co-amoxiclav or cephalosporin for 14 days"
       },
       "pmid": "26343840",
@@ -63148,8 +63991,7 @@
           "against"
         ],
         "time_window": [
-          "beyond_24h",
-          "within_24h"
+          "beyond_24h"
         ],
         "outcome_target": [
           "complications"
@@ -63171,6 +64013,23 @@
         "metric": "Post-stroke pneumonia in the first 14 days",
         "verdict": "NEGATIVE",
         "resultStats": "13% vs. 10% (adjusted rate ratio 1.21, 95% CI 0.71–2.08; p=0.48; no reduction in stroke-associated pneumonia)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke",
+          "cond_stroke_other"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_beyond_24h",
+          "cond_stroke_other_tw_complication_onset"
+        ],
+        "interventionTags": [
+          "cond_stroke_other_int_broad_antibiotics"
+        ]
       }
     },
     {
@@ -63179,7 +64038,7 @@
       "pico": {
         "comparator": "Discontinuation of all antihypertensive medications for 7 days during acute phase",
         "population": "Patients with acute ischemic stroke within 48 hours of onset and elevated SBP (140–220 mm Hg) not receiving IVT or EVT",
-        "timeWindow": "≤ 48 hours from symptom onset",
+        "timeWindow": "≤ 48 hours from symptom onset (antihypertensive treatment in acute ischemic stroke)",
         "intervention": "Immediate antihypertensive treatment to lower SBP by 10%–25% within 24h and target <140/90 within 7 days"
       },
       "pmid": "24240777",
@@ -63203,8 +64062,7 @@
           "against"
         ],
         "time_window": [
-          "beyond_24h",
-          "within_24h"
+          "beyond_24h"
         ],
         "outcome_target": [
           "mortality",
@@ -63224,6 +64082,21 @@
         "metric": "Death and major disability (mRS ≥3) at 14 days or hospital discharge",
         "verdict": "NEGATIVE",
         "resultStats": "At 14 days: 33.6% vs. 33.6% (odds ratio 1.00, 95% CI 0.88–1.14; p=0.98; At 3 months: 25.2% vs 25.3%, OR 0.99, p=0.93)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_beyond_24h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_blood_pressure_control"
+        ]
       }
     },
     {
@@ -63280,6 +64153,21 @@
         "metric": "Survival without severe disability (mRS 0–4) at 6 months",
         "verdict": "POSITIVE",
         "resultStats": "38% vs. 18% (odds ratio 2.91, 95% CI 1.06–7.49; p=0.04; significant survival advantage)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_beyond_24h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_hemicraniectomy"
+        ]
       }
     },
     {
@@ -63340,6 +64228,23 @@
         "metric": "Stroke recurrence (ischemic or hemorrhagic) at 90 days",
         "verdict": "POSITIVE",
         "resultStats": "8.2% vs. 11.7% (HR 0.68, 95% CI 0.57–0.81, p<0.001)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke",
+          "cond_tia"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_extended_window_4_5h_24h",
+          "cond_tia_tw_hyperacute_lt_24h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_dapt"
+        ]
       }
     },
     {
@@ -63348,7 +64253,7 @@
       "pico": {
         "comparator": "No IPC (routine inpatient care)",
         "population": "Immobile acute ischemic or hemorrhagic stroke patients admitted within 3 days",
-        "timeWindow": "Admitted within 3 days. Application of IPC for ≥ 30 days or until discharge/mobility; 6-month follow-up",
+        "timeWindow": "Day 0–3 of acute stroke admission (intermittent pneumatic compression for DVT prevention)",
         "intervention": "Thigh-length intermittent pneumatic compression (IPC) applied for ≥30 days"
       },
       "pmid": "23727163",
@@ -63393,6 +64298,22 @@
         "metric": "Occurrence of symptomatic or asymptomatic proximal DVT on compression Doppler ultrasound",
         "verdict": "POSITIVE",
         "resultStats": "8.5% in the IPC group vs. 12.1% in the no-IPC group (adjusted OR 0.65, 95% CI 0.51–0.84; p=0.001; absolute risk reduction 3.6%)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment",
+          "prevention"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_beyond_24h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_heparin"
+        ]
       }
     },
     {
@@ -63448,6 +64369,21 @@
         "metric": "Death or major disability (mRS 3–6) & ordinal mRS shift at 90 days",
         "verdict": "POSITIVE",
         "resultStats": "mRS 3–6: 52.0% in intensive treatment group vs. 55.6% in guideline-recommended treatment group (p=0.06); ordinal shift OR 0.87 (95% CI 0.77–1.00, p=0.04)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ich"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ich_tw_hyperacute_lt_6h"
+        ],
+        "interventionTags": [
+          "cond_ich_int_blood_pressure_control"
+        ]
       }
     },
     {
@@ -63503,6 +64439,20 @@
         "metric": "Ischemic or hemorrhagic stroke or systemic embolism",
         "verdict": "POSITIVE",
         "resultStats": "1.27% per year in the apixaban group vs. 1.60% per year in the warfarin group (hazard ratio 0.79, 95% CI 0.69–0.91; p<0.001 for non-inferiority, p=0.01 for superiority; 21% relative reduction)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment",
+          "prevention"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_doac"
+        ]
       }
     },
     {
@@ -63557,6 +64507,20 @@
         "metric": "Stroke or systemic embolism",
         "verdict": "POSITIVE",
         "resultStats": "Warfarin was 1.69% per year, compared to 1.11% per year with dabigatran 150 mg (superiority, P<0.001) and 1.53% per year with dabigatran 110 mg (noninferiority, P<0.001)."
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment",
+          "prevention"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_doac"
+        ]
       }
     },
     {
@@ -63610,6 +64574,21 @@
         "metric": "Favorable outcome (mRS 0–1 at 90 days)",
         "verdict": "POSITIVE",
         "resultStats": "52.4% vs. 45.2% (odds ratio 1.34, 95% CI 1.02–1.76; p=0.04; absolute benefit 7.2%, NNT=14)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_early_window_le_4_5h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_alteplase"
+        ]
       }
     },
     {
@@ -63618,7 +64597,7 @@
       "pico": {
         "comparator": "Neurosurgical microsurgical clipping",
         "population": "Ruptured intracranial aneurysms (aSAH) anatomically suitable for both coiling and surgical clipping",
-        "timeWindow": "Acute aSAH admission. Median time from SAH to randomisation was 2 days (IQR 1–4 vs 1–5)",
+        "timeWindow": "Acute aSAH admission (< 72 hours from rupture; endovascular coiling vs surgical clipping)",
         "intervention": "Endovascular detachable platinum coiling"
       },
       "pmid": "12414200",
@@ -63669,6 +64648,22 @@
         "metric": "Death or dependency (mRS 3–6) at 1 year",
         "verdict": "POSITIVE",
         "resultStats": "23.7% vs. 30.6% (relative risk reduction 22.6%, absolute risk reduction 6.9%, p=0.0019)"
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_sah"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_sah_tw_pre_securing_lt_72h"
+        ],
+        "interventionTags": [
+          "cond_sah_int_aneurysm_coiling",
+          "cond_sah_int_surgical_clipping"
+        ]
       }
     },
     {
@@ -63722,6 +64717,21 @@
         "metric": "Complete or near-complete neurological recovery at 3 months (favorable outcome on Barthel, mRS 0–1, GOS, NIHSS 0–1)",
         "verdict": "POSITIVE",
         "resultStats": "mRS 0-1: 39% vs 26% (adjusted OR 1.7, 95% CI 1.1–2.6; p=0.019); Global outcome scales: adjusted OR 1.7, 95% CI 1.2–2.6; p=0.008; absolute benefit 11%–13%, NNT=8."
+      },
+      "v3Tags": {
+        "conditionIds": [
+          "cond_ischemic_stroke"
+        ],
+        "domains": [
+          "treatment"
+        ],
+        "diagnosisTags": [],
+        "timeWindowIds": [
+          "cond_ischemic_stroke_tw_early_window_le_4_5h"
+        ],
+        "interventionTags": [
+          "cond_ischemic_stroke_int_alteplase"
+        ]
       }
     }
   ],
@@ -63760,6 +64770,6 @@
     "guide-pmid-42817881",
     "guide-pmid-42866888"
   ],
-  "lastSyncedAt": "2026-11-15T09:24:48.017Z",
+  "lastSyncedAt": "2026-11-15T09:59:45.548Z",
   "source": "SUPABASE_SYNC"
 }

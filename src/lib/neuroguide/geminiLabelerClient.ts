@@ -19,30 +19,34 @@ import {
 } from "./ontologyValidator.ts";
 import { PIVOTAL_TRIALS_SEED } from "../../data/pivotalTrialsSeed.ts";
 
+function readGeminiKeyFromEnvFile(envPath: string): string {
+  if (!fs.existsSync(envPath)) return "";
+  try {
+    const raw = fs.readFileSync(envPath, "utf-8");
+    for (const line of raw.split("\n")) {
+      const trimmed = line.trim();
+      if (trimmed.startsWith("GEMINI_API_KEY=")) {
+        const val = trimmed
+          .slice("GEMINI_API_KEY=".length)
+          .trim()
+          .replace(/^["']|["']$/g, "");
+        if (val) return val;
+      }
+    }
+  } catch {
+    // Ignore
+  }
+  return "";
+}
+
 function loadGeminiApiKey(): string {
   const envKey = (process.env.GEMINI_API_KEY || "").trim().replace(/^["']|["']$/g, "");
   if (envKey) return envKey;
-  for (const fileName of [".env.local", ".env"]) {
-    const envPath = path.join(process.cwd(), fileName);
-    if (fs.existsSync(envPath)) {
-      try {
-        const raw = fs.readFileSync(envPath, "utf-8");
-        for (const line of raw.split("\n")) {
-          const trimmed = line.trim();
-          if (trimmed.startsWith("GEMINI_API_KEY=")) {
-            const val = trimmed
-              .slice("GEMINI_API_KEY=".length)
-              .trim()
-              .replace(/^["']|["']$/g, "");
-            if (val) return val;
-          }
-        }
-      } catch {
-        // Ignore
-      }
-    }
-  }
-  return "";
+  if (process.env.NODE_ENV === "production") return "";
+  return (
+    readGeminiKeyFromEnvFile(path.join(process.cwd(), ".env.local")) ||
+    readGeminiKeyFromEnvFile(path.join(process.cwd(), ".env"))
+  );
 }
 
 const GEMINI_MODELS = GEMINI_WATERFALL_MODELS;

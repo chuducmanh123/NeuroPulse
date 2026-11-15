@@ -95,6 +95,26 @@ async function sync() {
     }
   }
 
+  // Preserve local v3Tags / pico.timeWindow / ontologyTags.time_window when remote trial records lack them
+  const localTrialById = new Map(
+    (localCloud.pivotalTrials || []).filter((t) => t && t.id).map((t) => [t.id, t])
+  );
+  customPivotalTrials = (customPivotalTrials || []).map((t) => {
+    const prev = t && t.id ? localTrialById.get(t.id) : null;
+    if (!prev) return t;
+    const merged = { ...t };
+    if ((!merged.v3Tags || !merged.v3Tags.timeWindowIds) && prev.v3Tags) {
+      merged.v3Tags = prev.v3Tags;
+    }
+    if (!merged.pico?.timeWindow && prev.pico?.timeWindow) {
+      merged.pico = { ...(merged.pico || {}), timeWindow: prev.pico.timeWindow };
+    }
+    if (!merged.ontologyTags?.time_window && prev.ontologyTags?.time_window) {
+      merged.ontologyTags = { ...(merged.ontologyTags || {}), time_window: prev.ontologyTags.time_window };
+    }
+    return merged;
+  });
+
   // Save to public/data/neuroguide_cloud.json
   const updatedCloudPayload = {
     ...localCloud,
