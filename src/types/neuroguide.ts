@@ -386,6 +386,7 @@ export interface NeuroGuideBlobPayload {
   pivotalTrials?: PivotalTrialRecord[];
   customRecLabels?: Record<string, RecommendationLabelOutput>;
   deletedGuidelineIds?: string[];
+  deletedTrialIds?: string[];
   lastSyncedAt: string;
   source: string;
 }

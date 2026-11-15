@@ -60,6 +60,7 @@ async function sync() {
   let customPivotalTrials = localCloud.pivotalTrials || [];
   let customRecLabels = localCloud.customRecLabels || {};
   let deletedGuidelineIds = localCloud.deletedGuidelineIds || [];
+  let deletedTrialIds = localCloud.deletedTrialIds || [];
 
   let aha2026Doc = null;
 
@@ -70,6 +71,7 @@ async function sync() {
       if (row.data?.pivotalTrials) customPivotalTrials = row.data.pivotalTrials;
       if (row.data?.customRecLabels) customRecLabels = row.data.customRecLabels;
       if (row.data?.deletedGuidelineIds) deletedGuidelineIds = row.data.deletedGuidelineIds;
+      if (row.data?.deletedTrialIds) deletedTrialIds = row.data.deletedTrialIds;
       continue;
     }
 
@@ -102,6 +104,7 @@ async function sync() {
     pivotalTrials: customPivotalTrials,
     customRecLabels: customRecLabels,
     deletedGuidelineIds,
+    deletedTrialIds,
     lastSyncedAt: new Date().toISOString(),
     source: "SUPABASE_SYNC",
   };

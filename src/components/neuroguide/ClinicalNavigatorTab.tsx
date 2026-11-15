@@ -47,6 +47,7 @@ interface ClinicalNavigatorTabProps {
   conferences: ConferenceEvent[];
   pivotalTrials: PivotalTrialRecord[];
   customRecLabels: Record<string, RecommendationLabelOutput>;
+  deletedTrialIds?: string[];
   neuroPulseArticles: Article[];
   isAdminVerified: boolean;
   initialPresetOrQuery?: NavigatorQuery | null;
@@ -474,6 +475,7 @@ export function ClinicalNavigatorTab({
   conferences,
   pivotalTrials,
   customRecLabels,
+  deletedTrialIds = [],
   neuroPulseArticles,
   isAdminVerified,
   initialPresetOrQuery,
@@ -664,6 +666,7 @@ export function ClinicalNavigatorTab({
       conferences,
       customPivotalTrials: pivotalTrials,
       customRecLabels,
+      deletedTrialIds,
       neuroPulseArticles,
       query: activeQuery,
     });
@@ -673,6 +676,7 @@ export function ClinicalNavigatorTab({
     conferences,
     pivotalTrials,
     customRecLabels,
+    deletedTrialIds,
     neuroPulseArticles,
     activeQuery,
   ]);

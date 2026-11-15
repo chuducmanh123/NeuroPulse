@@ -539,6 +539,7 @@ export function runClinicalNavigatorQuery(params: {
   scenarios?: ClinicalScenario[];
   customPivotalTrials?: PivotalTrialRecord[];
   customRecLabels?: Record<string, RecommendationLabelOutput>;
+  deletedTrialIds?: string[];
   neuroPulseArticles?: Article[];
   query: NavigatorQuery;
 }): NavigatorQueryResult {
@@ -549,6 +550,7 @@ export function runClinicalNavigatorQuery(params: {
     scenarios = [],
     customPivotalTrials = [],
     customRecLabels = {},
+    deletedTrialIds = [],
     neuroPulseArticles = [],
     query,
   } = params;
@@ -927,7 +929,7 @@ export function runClinicalNavigatorQuery(params: {
   }
 
   // Match Pivotal Trials & Late-Breaking Trials
-  const allTrials = mergePivotalTrialsWithConferences(customPivotalTrials, conferences);
+  const allTrials = mergePivotalTrialsWithConferences(customPivotalTrials, conferences, deletedTrialIds);
   const citedTrialNamesLower = new Set<string>();
   for (const r of coreRecommendations) {
     for (const dt of r.drivingTrials) {

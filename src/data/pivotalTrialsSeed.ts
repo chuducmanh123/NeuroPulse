@@ -826,12 +826,33 @@ export const PIVOTAL_TRIALS_SEED: PivotalTrialRecord[] = [
  */
 export function mergePivotalTrialsWithConferences(
   customTrials: PivotalTrialRecord[] = [],
-  conferences: ConferenceEvent[] = []
+  conferences: ConferenceEvent[] = [],
+  deletedTrialIds: string[] = []
 ): PivotalTrialRecord[] {
   const byKey = new Map<string, PivotalTrialRecord>();
   const normKey = (acr: string) => (acr || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+  const deletedSet = new Set<string>();
+  for (const id of deletedTrialIds || []) {
+    const raw = (id || "").toLowerCase().trim();
+    const norm = normKey(id);
+    if (raw) deletedSet.add(raw);
+    if (norm) deletedSet.add(norm);
+  }
+  const isDeletedTrial = (id?: string, acronym?: string) => {
+    const rawId = (id || "").toLowerCase().trim();
+    const normId = normKey(id || "");
+    const rawAcr = (acronym || "").toLowerCase().trim();
+    const normAcr = normKey(acronym || "");
+    return (
+      (rawId && deletedSet.has(rawId)) ||
+      (normId && deletedSet.has(normId)) ||
+      (rawAcr && deletedSet.has(rawAcr)) ||
+      (normAcr && deletedSet.has(normAcr))
+    );
+  };
 
   for (const seed of PIVOTAL_TRIALS_SEED) {
+    if (isDeletedTrial(seed.id, seed.acronym)) continue;
     byKey.set(normKey(seed.acronym || seed.id), seed);
   }
 
@@ -839,6 +860,7 @@ export function mergePivotalTrialsWithConferences(
     for (const lbt of conf.lateBreakingTrials || []) {
       const k = normKey(lbt.trialAcronym || lbt.id);
       if (!k || byKey.has(k)) continue;
+      if (isDeletedTrial(lbt.id, lbt.trialAcronym)) continue;
       const combinedText = `${lbt.title} ${lbt.populationSummary} ${lbt.interventionGroup}`.toLowerCase();
       const conds: string[] = [];
       if (combinedText.includes("ischemic") || combinedText.includes("ischaemic") || combinedText.includes("ais")) conds.push("ais");
@@ -890,6 +912,7 @@ export function mergePivotalTrialsWithConferences(
 
   for (const ct of customTrials) {
     if (!ct || !ct.acronym) continue;
+    if (isDeletedTrial(ct.id, ct.acronym)) continue;
     byKey.set(normKey(ct.acronym), ct);
   }
 

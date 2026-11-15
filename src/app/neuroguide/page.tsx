@@ -294,6 +294,7 @@ export default function NeuroGuidePage() {
   const [pivotalTrials, setPivotalTrials] = useState<PivotalTrialRecord[]>(() =>
     mergePivotalTrialsWithConferences(PIVOTAL_TRIALS_SEED, MOCK_CONFERENCE_EVENTS)
   );
+  const [deletedTrialIds, setDeletedTrialIds] = useState<string[]>([]);
   const [customRecLabels, setCustomRecLabels] = useState<Record<string, RecommendationLabelOutput>>({});
   const [neuroPulseArticles, setNeuroPulseArticles] = useState<Article[]>([]);
   const [navigatorSeedQuery, setNavigatorSeedQuery] = useState<NavigatorQuery | null>(null);
@@ -399,6 +400,9 @@ export default function NeuroGuidePage() {
       .then((r) => (r.ok ? r.json() : null))
       .then((d) => {
         if (d?.ok) {
+          if (Array.isArray(d.deletedTrialIds)) {
+            setDeletedTrialIds(d.deletedTrialIds);
+          }
           if (Array.isArray(d.pivotalTrials) && d.pivotalTrials.length > 0) {
             setPivotalTrials(d.pivotalTrials);
           }
@@ -1737,6 +1741,7 @@ export default function NeuroGuidePage() {
             conferences={MOCK_CONFERENCE_EVENTS}
             pivotalTrials={pivotalTrials}
             customRecLabels={customRecLabels}
+            deletedTrialIds={deletedTrialIds}
             neuroPulseArticles={neuroPulseArticles}
             isAdminVerified={isAdminVerified}
             initialPresetOrQuery={navigatorSeedQuery}

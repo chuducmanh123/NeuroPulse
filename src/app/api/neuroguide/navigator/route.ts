@@ -31,6 +31,7 @@ export async function GET() {
         ontologyVersion: STROKE_ONTOLOGY.ontology_version,
         pivotalTrials: merged.pivotalTrials,
         customRecLabels: merged.customRecLabels,
+        deletedTrialIds: merged.deletedTrialIds || [],
         storageSource: merged.storageSource,
         lastSyncedAt: merged.lastSyncedAt,
       },
@@ -111,6 +112,17 @@ export async function POST(request: NextRequest) {
         updatedTrials.unshift(trial);
       }
 
+      const normTrialKey = (s: string) => (s || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+      const resurrectKeys = new Set([
+        trial.id.toLowerCase().trim(),
+        normTrialKey(trial.id),
+        trial.acronym.toLowerCase().trim(),
+        normTrialKey(trial.acronym),
+      ]);
+      const updatedDeletedTrialIds = (currentStore.deletedTrialIds || []).filter(
+        (id) => !resurrectKeys.has((id || "").toLowerCase().trim()) && !resurrectKeys.has(normTrialKey(id))
+      );
+
       const saveRes = await saveNeuroGuideToActiveStorage({
         guidelines: currentStore.guidelines,
         conferences: currentStore.conferences,
@@ -119,6 +131,7 @@ export async function POST(request: NextRequest) {
         pivotalTrials: updatedTrials,
         customRecLabels: currentStore.customRecLabels,
         deletedGuidelineIds: currentStore.deletedGuidelineIds,
+        deletedTrialIds: updatedDeletedTrialIds,
       });
 
       return NextResponse.json({
@@ -135,8 +148,22 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ ok: false, error: "trialId is required." }, { status: 400 });
       }
 
+      const targetTrial = currentStore.pivotalTrials.find(
+        (t) => t.id.toLowerCase() === trialId
+      );
       const updatedTrials = currentStore.pivotalTrials.filter(
         (t) => t.id.toLowerCase() !== trialId
+      );
+      const normTrialKey = (s: string) => (s || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+      const newTombstones = [trialId];
+      if (targetTrial?.acronym) {
+        newTombstones.push(normTrialKey(targetTrial.acronym));
+      }
+      if (body.acronym) {
+        newTombstones.push(normTrialKey(String(body.acronym)));
+      }
+      const updatedDeletedTrialIds = Array.from(
+        new Set([...(currentStore.deletedTrialIds || []), ...newTombstones.filter(Boolean)])
       );
 
       const saveRes = await saveNeuroGuideToActiveStorage({
@@ -147,6 +174,7 @@ export async function POST(request: NextRequest) {
         pivotalTrials: updatedTrials,
         customRecLabels: currentStore.customRecLabels,
         deletedGuidelineIds: currentStore.deletedGuidelineIds,
+        deletedTrialIds: updatedDeletedTrialIds,
       });
 
       return NextResponse.json({
@@ -180,6 +208,7 @@ export async function POST(request: NextRequest) {
         pivotalTrials: currentStore.pivotalTrials,
         customRecLabels: updatedLabels,
         deletedGuidelineIds: currentStore.deletedGuidelineIds,
+        deletedTrialIds: currentStore.deletedTrialIds,
       });
 
       return NextResponse.json({
