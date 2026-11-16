@@ -75,4 +75,25 @@ describe("Study Type & RCT Classification Engine", () => {
     assert.equal(primaryType, "Meta-Analysis");
     assert.ok(allTypes.includes("Review"));
   });
+
+  it("should classify a JAMA Clinical Review citing pooled randomized trial data as Review, not RCT", () => {
+    const title = "Treatment of Acute Ischemic Stroke";
+    const abstract =
+      "Importance: Acute ischemic stroke is a leading cause of disability. Observations: In appropriately selected patients with acute ischemic stroke, pooled randomized trial data show an approximately 10% absolute increase in functional outcome. Conclusions and Relevance: Intravenous thrombolysis and mechanical thrombectomy are first-line therapies.";
+    const [primaryType, allTypes] = detectStudyTypes(title, abstract, "10.1001/jama.2026.19482", 2);
+
+    assert.equal(primaryType, "Review");
+    assert.deepEqual(allTypes, ["Review"]);
+  });
+
+  it("should prioritize AI-verified study_type over keyword heuristics while respecting hard DOI guards", () => {
+    const title = "Stroke Therapy Update";
+    const abstract = "In this study, randomized patients were discussed across multiple cohorts.";
+    const [aiPrimary, aiAll] = detectStudyTypes(title, abstract, "10.1001/jama.2026.99999", 3, "Review");
+    assert.equal(aiPrimary, "Review");
+    assert.deepEqual(aiAll, ["Review"]);
+
+    const [doiPrimary] = detectStudyTypes("Editorial on Stroke", abstract, "10.1056/nejme260001", 2, "RCT");
+    assert.equal(doiPrimary, "Editorial / Perspective");
+  });
 });

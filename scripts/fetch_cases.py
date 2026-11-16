@@ -24,19 +24,24 @@ if os.name == "nt":
         pass
 
 def load_env_key() -> str:
-    env_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env")
-    if os.path.exists(env_path):
-        try:
-            with open(env_path, "r", encoding="utf-8") as f:
-                for line in f:
-                    line = line.strip()
-                    if line.startswith("GEMINI_API_KEY="):
-                        val = line.split("=", 1)[1].strip().strip('"').strip("'")
-                        if val:
-                            return val
-        except Exception:
-            pass
-    return os.environ.get("GEMINI_API_KEY", "").strip().strip('"').strip("'")
+    env_val = os.environ.get("GEMINI_API_KEY", "").strip().strip('"').strip("'")
+    if env_val:
+        return env_val
+    repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    for filename in (".env.local", ".env"):
+        env_path = os.path.join(repo_root, filename)
+        if os.path.exists(env_path):
+            try:
+                with open(env_path, "r", encoding="utf-8") as f:
+                    for line in f:
+                        line = line.strip()
+                        if line.startswith("GEMINI_API_KEY="):
+                            val = line.split("=", 1)[1].strip().strip('"').strip("'")
+                            if val:
+                                return val
+            except Exception:
+                pass
+    return ""
 
 def create_ssl_context():
     c = ssl.create_default_context()
@@ -288,29 +293,62 @@ def save_cases_to_disk(cases_list: list):
 
 
 def extract_figures_and_text_from_pmc(pmcid: str, doi: str, pmid: str, title: str, journal_title: str, journal_short: str, pub_year: str, abstract_text: str):
-    """Tải nội dung ca bệnh và trích xuất 1-2 hình ảnh thật từ PMC CDN."""
+    """Tải nội dung ca bệnh (Presentation + Discussion) và trích xuất 1-2 hình ảnh thật từ PMC CDN."""
     os.makedirs(FIGURES_DIR, exist_ok=True)
     case_body_text = abstract_text or ""
+    discussion_text = ""
     extracted_figs = []
 
     try:
         pmc_page_url = f"https://pmc.ncbi.nlm.nih.gov/articles/{pmcid}/"
         html_str = fetch_url_bytes(pmc_page_url, timeout=18).decode("utf-8", errors="ignore")
 
-        # Trích xuất các đoạn văn mô tả ca lâm sàng từ HTML bài báo
-        paragraphs = []
+        # Trích xuất tất cả các đoạn văn sạch từ HTML bài báo
+        all_paragraphs = []
         for m in re.finditer(r"<p\b[^>]*>([\s\S]*?)</p>", html_str, flags=re.IGNORECASE):
             txt = strip_html_tags(m.group(1))
+            if len(txt) > 90 and not re.search(
+                r"\b(Creative Commons|Open Access|funding|conflict of interest|competing interests|acknowledgments|ethics approval|informed consent|supplementary material)\b",
+                txt,
+                flags=re.IGNORECASE
+            ):
+                all_paragraphs.append(txt)
+
+        # Khối 1: Đoạn mô tả bệnh án (Case Presentation)
+        pres_paragraphs = []
+        for txt in all_paragraphs:
             if len(txt) > 100 and re.search(
                 r"\b(year-old|years old|man|woman|patient|presented with|admitted|history of|neurological examination|examination revealed|MRI|CT|CSF|treated with)\b",
                 txt,
                 flags=re.IGNORECASE
             ):
-                paragraphs.append(txt)
-                if len(paragraphs) >= 6:
+                pres_paragraphs.append(txt)
+                if len(pres_paragraphs) >= 6:
                     break
-        if paragraphs:
-            case_body_text = "\n\n".join(paragraphs)[:4200]
+        if pres_paragraphs:
+            case_body_text = "\n\n".join(pres_paragraphs)[:4200]
+
+        # Khối 2: Đoạn bàn luận / chẩn đoán phân biệt / thông điệp chính (Discussion & Conclusion)
+        pres_set = set(pres_paragraphs)
+        disc_paragraphs = []
+        for txt in all_paragraphs:
+            if txt in pres_set:
+                continue
+            if re.search(
+                r"\b(discussion|differential diagnosis|pitfall|misdiagnos|pathophysiology|mechanism|hallmark|in conclusion|takeaway|clinicians should|rare cause|diagnostic challenge|our patient|this case highlights|timely diagnosis|prognosis)\b",
+                txt,
+                flags=re.IGNORECASE
+            ):
+                disc_paragraphs.append(txt)
+                if len(disc_paragraphs) >= 6:
+                    break
+
+        if not disc_paragraphs and len(all_paragraphs) > len(pres_paragraphs):
+            remaining = [p for p in all_paragraphs if p not in pres_set]
+            disc_paragraphs = remaining[-4:]
+
+        if disc_paragraphs:
+            discussion_text = "\n\n".join(disc_paragraphs)[:3500]
 
         # Quét các thẻ <figure> lấy ảnh thật từ cdn.ncbi.nlm.nih.gov
         fig_blocks = re.findall(r"<figure\b[^>]*>([\s\S]*?)</figure>", html_str, flags=re.IGNORECASE)
@@ -374,6 +412,7 @@ def extract_figures_and_text_from_pmc(pmcid: str, doi: str, pmid: str, title: st
         "pub_year": pub_year,
         "abstract_text": abstract_text,
         "case_body_text": case_body_text,
+        "discussion_text": discussion_text,
         "figures": extracted_figs
     }
 
@@ -439,13 +478,44 @@ def find_new_pmc_candidate(used_pmcids: set, day_index: int, target_subspecialty
     return None
 
 
+def _normalize_peer_percentages(options: list, correct_opt: str) -> None:
+    """Đảm bảo peer_percentage của 4 phương án luôn là số nguyên có tổng bằng 100."""
+    if not isinstance(options, list) or len(options) != 4:
+        return
+    vals = []
+    for opt in options:
+        try:
+            v = int(round(float(opt.get("peer_percentage", 0))))
+        except (TypeError, ValueError):
+            v = 0
+        v = max(1, min(97, v))
+        opt["peer_percentage"] = v
+        vals.append(v)
+
+    total = sum(vals)
+    if total != 100:
+        diff = 100 - total
+        target_idx = next((i for i, o in enumerate(options) if o.get("id") == correct_opt), 0)
+        adjusted = max(1, min(97, options[target_idx]["peer_percentage"] + diff))
+        options[target_idx]["peer_percentage"] = adjusted
+        # Nếu vẫn lệch do kẹp biên, phân bổ phần còn lại
+        rem = 100 - sum(o["peer_percentage"] for o in options)
+        for i, opt in enumerate(options):
+            if rem == 0:
+                break
+            if i != target_idx:
+                cand = max(1, min(97, opt["peer_percentage"] + rem))
+                rem -= cand - opt["peer_percentage"]
+                opt["peer_percentage"] = cand
+
+
 def validate_case_quality(case: dict) -> tuple[bool, str]:
-    """Kiểm tra chất lượng học thuật và cấu trúc câu hỏi của ca lâm sàng:
-    1. Câu hỏi không được hỏi 2 ý (không chứa ' and the ', ' as well as ').
-    2. Tên chẩn đoán cuối không được lộ trong tiêu đề, câu hỏi, HPI hoặc chief complaint.
-    3. Tự động kiểm tra và làm sạch caption/findings của hình ảnh để không lộ đáp án.
-    4. question_type phải hợp lệ.
-    5. 4 options A, B, C, D phải có nội dung và correct_option phải hợp lệ.
+    """Kiểm tra chất lượng học thuật, dòng thời gian và chống lộ đáp án:
+    1. question_type phải hợp lệ và đủ 4 options A, B, C, D.
+    2. Câu hỏi không được hỏi 2 ý (Compound double-barrel question).
+    3. Tên chẩn đoán cuối không được lộ trong tiêu đề, câu hỏi, chief complaint, HPI, neuro_exam, hoặc key_labs_csf.
+    4. Kiểm tra đảo ngược thời gian giữa HPI (diễn tiến ICU/hôn mê muộn) và neuro_exam (khám tỉnh ban đầu).
+    5. Tự động làm sạch caption/findings của hình ảnh và chuẩn hóa peer_percentage về tổng 100.
     """
     challenge = case.get("challenge") or {}
     q_text = challenge.get("question", "")
@@ -456,6 +526,8 @@ def validate_case_quality(case: dict) -> tuple[bool, str]:
     pres = case.get("presentation", {})
     hpi = pres.get("history_of_present_illness", "")
     cc = pres.get("chief_complaint", "")
+    neuro_exam = pres.get("neuro_exam", "")
+    labs_csf = pres.get("key_labs_csf", "")
     final_diag = case.get("resolution", {}).get("final_diagnosis", "").strip()
 
     if q_type not in ("Diagnosis", "Acute Management", "Next Best Step", "Localization"):
@@ -470,7 +542,19 @@ def validate_case_quality(case: dict) -> tuple[bool, str]:
     if re.search(r"\bas\s+well\s+as\s+(?:the\s+)?", q_text, re.IGNORECASE):
         return False, "Compound question detected ('as well as')"
 
-    # 2. Kiểm tra lộ chẩn đoán cuối trong tiêu đề, câu hỏi, HPI, chief complaint
+    # 2. Kiểm tra đảo ngược thời gian giữa HPI và neuro_exam
+    late_hpi_re = re.compile(
+        r"\b(coma|comatose|intubated|mechanical ventilation|external ventricular drain|icu admission|subsequently deteriorated)\b",
+        re.IGNORECASE,
+    )
+    alert_exam_re = re.compile(
+        r"\b(initially alert|awake and alert|alert and oriented|normal cranial nerves and no focal)\b",
+        re.IGNORECASE,
+    )
+    if late_hpi_re.search(hpi) and alert_exam_re.search(neuro_exam):
+        return False, "Chronological reversal between HPI and neuro_exam"
+
+    # 3. Kiểm tra lộ chẩn đoán cuối trong toàn bộ dữ kiện trước khi giải
     if len(final_diag) > 4:
         diag_lower = final_diag.lower()
         if diag_lower in q_text.lower():
@@ -479,73 +563,193 @@ def validate_case_quality(case: dict) -> tuple[bool, str]:
             return False, "Final diagnosis appears inside the title"
         if diag_lower in cc.lower():
             return False, "Final diagnosis appears inside the chief complaint"
+        if diag_lower in hpi.lower():
+            return False, "Final diagnosis appears inside HPI (answer leakage)"
+        if diag_lower in neuro_exam.lower():
+            return False, "Final diagnosis appears inside neuro_exam (answer leakage)"
+        if diag_lower in labs_csf.lower():
+            return False, "Final diagnosis appears inside key_labs_csf (answer leakage)"
 
-        # 3. Làm sạch caption và findings_summary nếu lỡ chứa tên chẩn đoán cuối
+        # 4. Làm sạch caption và findings_summary nếu lỡ chứa tên chẩn đoán cuối
         for img in pres.get("imaging", []):
             if "caption" in img and diag_lower in img["caption"].lower():
                 img["caption"] = re.sub(re.escape(final_diag), "characteristic pathology", img["caption"], flags=re.IGNORECASE)
             if "findings_summary" in img and diag_lower in img["findings_summary"].lower():
                 img["findings_summary"] = re.sub(re.escape(final_diag), "the primary abnormality", img["findings_summary"], flags=re.IGNORECASE)
 
+    # 5. Chuẩn hóa peer_percentage tổng bằng 100
+    _normalize_peer_percentages(options, correct_opt)
+
     return True, "Passed"
 
 
-def critique_and_refine_with_gemini(raw_case_json: dict) -> dict:
-    """Lượt 2: Gemini đóng vai trò Senior Board Examiner phản biện và hoàn thiện ca bệnh:
-    - Loại bỏ hỏi 2 ý (Single-focus rule).
-    - Đảm bảo câu hỏi tập trung vào đúng 1 khía cạnh (Diagnosis only, Management only, etc.).
-    - Đảm bảo tiêu đề, câu hỏi, HPI và CAPTION hình ảnh tuyệt đối không lộ chẩn đoán cuối.
-    - Đảm bảo 4 đáp án đồng nhất và đáp án đúng duy nhất.
+def _call_gemini_json(prompt: str, temperature: float = 0.15, stage_label: str = "pass") -> dict | None:
+    """Gọi Gemini REST API theo Waterfall Single Source of Truth (config/gemini-models.json).
+    Tương thích đầy đủ với Gemini 4.x / 3.x thinking models (lọc bỏ part.thought, không giới hạn token quá chặt,
+    dùng header x-goog-api-key và ghi log fallback rõ ràng).
+    """
+    if not GEMINI_API_KEY:
+        return None
+
+    payload = {
+        "contents": [{"parts": [{"text": prompt}]}],
+        "generationConfig": {
+            "temperature": temperature,
+            "maxOutputTokens": 8192,
+            "responseMimeType": "application/json",
+        },
+    }
+    local_ctx = create_ssl_context()
+
+    for idx, model_name in enumerate(ACTIVE_GEMINI_MODELS):
+        next_model = ACTIVE_GEMINI_MODELS[idx + 1] if idx + 1 < len(ACTIVE_GEMINI_MODELS) else None
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent"
+
+        for attempt in range(2):
+            try:
+                req = urllib.request.Request(
+                    url,
+                    data=json.dumps(payload).encode("utf-8"),
+                    headers={
+                        "Content-Type": "application/json",
+                        "x-goog-api-key": GEMINI_API_KEY,
+                    },
+                )
+                with urllib.request.urlopen(req, context=local_ctx, timeout=45) as resp:
+                    data = json.loads(resp.read().decode("utf-8"))
+                    candidates = data.get("candidates", [])
+                    if not candidates:
+                        raise ValueError("Empty candidates array")
+                    parts = candidates[0].get("content", {}).get("parts", [])
+                    raw_str = "".join(
+                        p.get("text", "") for p in parts if "text" in p and not p.get("thought")
+                    ).strip()
+                    if not raw_str and parts and parts[0].get("text"):
+                        raw_str = str(parts[0].get("text", "")).strip()
+
+                    raw_str = re.sub(r"^```(?:json)?\s*", "", raw_str)
+                    raw_str = re.sub(r"\s*```$", "", raw_str)
+                    json_match = re.search(r"\{[\s\S]*\}", raw_str)
+                    if json_match:
+                        raw_str = json_match.group(0)
+
+                    parsed = json.loads(raw_str)
+                    if isinstance(parsed, dict):
+                        return parsed
+                    raise ValueError("Parsed Gemini output is not a JSON object")
+
+            except urllib.error.HTTPError as e:
+                if e.code in (429, 500, 502, 503, 504) and attempt == 0:
+                    time.sleep(2)
+                    continue
+                next_info = f" -> falling back to {next_model}" if next_model else " -> no more fallback models"
+                print(
+                    f"   [Gemini Waterfall Fallback] [fetch_cases:{stage_label}] "
+                    f"{model_name} (HTTP {e.code}): {e.reason}{next_info}"
+                )
+                break
+            except Exception as e:
+                next_info = f" -> falling back to {next_model}" if next_model else " -> no more fallback models"
+                print(
+                    f"   [Gemini Waterfall Fallback] [fetch_cases:{stage_label}] "
+                    f"{model_name}: {e}{next_info}"
+                )
+                break
+
+    return None
+
+
+def critique_and_refine_with_gemini(raw_case_json: dict, candidate: dict | None = None) -> dict:
+    """Stage 3 (Pass 2): Strict Senior Neurology Examiner Critique.
+    - Kiểm tra hỏi 1 ý (Single-focus rule).
+    - Kiểm tra dòng thời gian 1 chiều xuyên suốt HPI -> neuro_exam -> key_labs_csf.
+    - Chống lộ đáp án (Lexical + Semantic) và cắt xét nghiệm khẳng định/loại trừ muộn khỏi key_labs_csf.
+    - Đảm bảo 4 đáp án là chẩn đoán phân biệt thực sự và không quá hiển nhiên.
     """
     if not GEMINI_API_KEY:
         return raw_case_json
 
+    discussion_ref = (candidate or {}).get("discussion_text", "")[:2000]
     critique_prompt = f"""You are a Strict Senior Neurology Examination Committee Reviewer.
-Review the following draft clinical case vignette and MCQ:
+Review and revise the following draft clinical case vignette and MCQ:
 {json.dumps(raw_case_json, indent=2)}
 
-EXAMINER REVIEW CHECKLIST (REVISE AS NEEDED):
-1. SINGLE-FOCUS QUESTION: Ensure the question asks strictly ONE clinical concept (e.g. Diagnosis only, or Management only, NEVER both 'diagnosis and management'). No 'and the...' or 'as well as...'.
-2. ZERO ANSWER LEAKAGE:
-   - Ensure the title (`title`) DOES NOT contain the final diagnosis or correct option.
-   - Ensure the question (`question`) DOES NOT mention or hint at the final diagnosis.
-   - Ensure all figure captions (`imaging[].caption`) and findings summaries (`imaging[].findings_summary`) describe purely anatomical and radiological features WITHOUT naming the final diagnosis.
-3. HOMOGENEOUS OPTIONS: Ensure the 4 options are clinically plausible, mutually exclusive, grammatically parallel, and that option "{raw_case_json.get('challenge', {}).get('correct_option', 'A')}" is undeniably the best choice.
-4. Output the perfected case in 100% valid JSON matching the exact same schema. No markdown formatting outside the JSON."""
+ARTICLE DISCUSSION REFERENCE (for verifying differentials & diagnostic inflection point):
+{discussion_ref or "Use the clinical facts in the draft."}
 
-    payload = {
-        "contents": [{"parts": [{"text": critique_prompt}]}],
-        "generationConfig": {"temperature": 0.1, "maxOutputTokens": 4096}
-    }
-    ctx = create_ssl_context()
-    for model_name in ACTIVE_GEMINI_MODELS:
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={GEMINI_API_KEY}"
-        try:
-            req = urllib.request.Request(
-                url,
-                data=json.dumps(payload).encode("utf-8"),
-                headers={"Content-Type": "application/json"}
-            )
-            with urllib.request.urlopen(req, context=ctx, timeout=30) as resp:
-                data = json.loads(resp.read().decode("utf-8"))
-                candidates = data.get("candidates", [])
-                if not candidates:
-                    continue
-                parts = candidates[0].get("content", {}).get("parts", [])
-                raw_str = "".join(p.get("text", "") for p in parts if "text" in p and not p.get("thought")).strip()
-                raw_str = re.sub(r"^```(?:json)?\s*", "", raw_str)
-                raw_str = re.sub(r"\s*```$", "", raw_str)
-                refined = json.loads(raw_str)
-                if isinstance(refined, dict) and refined.get("challenge") and refined.get("resolution"):
-                    return refined
-        except Exception:
-            continue
+EXAMINER REVIEW CHECKLIST (REVISE STRICTLY AS NEEDED):
+1. SINGLE-FOCUS QUESTION: Ensure `challenge.question` asks strictly ONE clinical concept (`Diagnosis`, `Next Best Step`, `Acute Management`, or `Localization`). NEVER combine diagnosis and management. No 'and the...' or 'as well as...'.
+2. STRICT ONE-WAY CHRONOLOGY:
+   - The UI concatenates `history_of_present_illness + " " + neuro_exam + " " + key_labs_csf` into ONE paragraph.
+   - `history_of_present_illness` MUST stop at initial ED/clinic arrival. Remove any late hospital course, ICU deterioration, coma, intubation, or EVD from HPI if `neuro_exam` starts with an alert initial exam (or move post-arrival deterioration strictly after the initial exam / into `clinical_discussion`).
+3. ZERO LEXICAL OR SEMANTIC ANSWER LEAKAGE:
+   - Remove the final diagnosis name AND overly specific syndrome buzzwords (e.g., "encephalopathy", "meningoencephalitis", pathognomonic eponymous names when asked for diagnosis) from `title`, `chief_complaint`, `history_of_present_illness`, `neuro_exam`, `key_labs_csf`, `question`, and `imaging_metadata[].findings_summary`.
+   - Use objective clinical signs instead of diagnostic labels.
+4. DIAGNOSTIC TIMEPOINT CUTOFF (CRITICAL):
+   - Keep only INITIAL/FIRST-LINE labs and CSF in `key_labs_csf` (e.g., opening pressure, cell count, protein, glucose).
+   - STRIP late confirmatory or broad exclusion workup (e.g., negative broad viral/bacterial PCR panels, negative bacterial/fungal cultures, negative oligoclonal bands, definitive autoantibodies, biopsy results) from `key_labs_csf` if they trivially eliminate 2-3 distractors; ensure those findings are explained in `resolution.clinical_discussion` instead.
+5. NON-TRIVIAL CHALLENGE & REAL DIFFERENTIALS:
+   - Ensure all 3 distractors remain clinically plausible given the withheld late labs and reflect real differential diagnoses from the article.
+   - Keep `correct_option` as "{raw_case_json.get('challenge', {}).get('correct_option', 'A')}" and ensure `peer_percentage` values are integers summing to 100.
+   - Keep `imaging_metadata` array exact length ({len(raw_case_json.get('presentation', {}).get('imaging_metadata', []))}).
+6. Output ONLY 100% valid JSON matching the exact same schema."""
 
+    refined = _call_gemini_json(critique_prompt, temperature=0.1, stage_label="pass2_examiner")
+    if isinstance(refined, dict) and refined.get("challenge") and refined.get("resolution"):
+        return refined
     return raw_case_json
 
 
+def editorial_and_logic_review_with_gemini(case_json: dict, candidate: dict | None = None) -> dict:
+    """Stage 4 (Pass 3): Harsh Senior Medical Editor Review (NEJM / Neurology style).
+    - Kiểm tra ngữ pháp tiếng Anh y khoa, thì động từ, đơn vị đo lường.
+    - Kiểm tra tính liên tục mạch lạc khi ghép HPI + neuro_exam + key_labs_csf thành 1 đoạn văn (không lặp ý, không đảo ngược thời gian).
+    - Kiểm tra tính logic xuyên suốt từ dữ kiện đề bài -> câu hỏi & 4 options -> rationales -> clinical_discussion -> teaching_points -> clinical_pitfalls.
+    """
+    if not GEMINI_API_KEY:
+        return case_json
+
+    pres = case_json.get("presentation", {})
+    combined_vignette = (
+        f"{pres.get('history_of_present_illness', '')} "
+        f"{pres.get('neuro_exam', '')} "
+        f"{pres.get('key_labs_csf', '')}"
+    ).strip()
+
+    editor_prompt = f"""You are a Harsh Senior Medical Editor for NEJM Clinical & Imaging Challenge and Neurology Resident & Fellow Section.
+Audit and polish this clinical case JSON for academic medical prose, narrative continuity, and end-to-end clinical logic:
+{json.dumps(case_json, indent=2)}
+
+RENDERED VIGNETTE PREVIEW (this exact concatenated paragraph is what readers see before answering):
+"{combined_vignette}"
+
+HARSH EDITOR REVIEW CHECKLIST (FIX ALL DEFECTS DIRECTLY IN THE OUTPUT JSON):
+1. MEDICAL GRAMMAR, TENSE & UNITS:
+   - Use precise academic neurology terminology, past tense for patient presentation/exam/labs, and present tense for general medical principles in `teaching_points`, `clinical_pitfalls`, and pathophysiological explanations.
+   - Standardize medical units (e.g., `cmH2O`, `mg/dL`, `µL`, `mmHg`, `bpm`). Eliminate AI-sounding filler or choppy phrasing.
+2. SEAMLESS SINGLE-PARAGRAPH CONTINUITY:
+   - Read the RENDERED VIGNETTE PREVIEW word-for-word. Eliminate any repetition between `history_of_present_illness` and `neuro_exam`.
+   - Verify strict chronological flow (Onset -> Presentation -> Initial Neuro Exam -> Initial Labs/CSF). Never allow late coma/intubation/ICU events to precede an initially alert exam.
+   - Ensure smooth transitions across the 3 concatenated fields without re-introducing any leaked diagnosis or late confirmatory tests.
+3. END-TO-END CLINICAL LOGIC & CONSISTENCY:
+   - Verify that the vignette clues + imaging logically support the `correct_option` without contradicting any detail.
+   - Verify that every option's `rationale` directly matches the vignette facts (correct option starts with `"Correct! "`; incorrect options start with `"Incorrect. "`).
+   - Verify `resolution.clinical_discussion` is structured cleanly into 3 cohesive paragraphs separated by `\\n\\n`:
+     * Paragraph 1: Differential diagnosis & why the mimics were plausible.
+     * Paragraph 2: The diagnostic inflection point, the late confirmatory/exclusion tests withheld from the vignette, and pathophysiology of `final_diagnosis`.
+     * Paragraph 3: Targeted management and clinical outcome.
+   - Verify `resolution.teaching_points` (3-4 generalizable, high-yield board pearls) and `resolution.clinical_pitfalls` (2-3 concrete diagnostic/management traps) align directly with the question and the article's main lesson.
+   - Preserve `challenge.correct_option` ("{case_json.get('challenge', {}).get('correct_option', 'A')}") and exact `imaging_metadata` count ({len(pres.get('imaging_metadata', []))}).
+4. Output ONLY 100% valid JSON matching the exact same schema."""
+
+    edited = _call_gemini_json(editor_prompt, temperature=0.1, stage_label="pass3_editor")
+    if isinstance(edited, dict) and edited.get("challenge") and edited.get("resolution"):
+        return edited
+    return case_json
+
+
 def generate_clinical_case_with_gemini(candidate: dict, next_case_num: int, today_str: str, is_daily: bool = True):
-    """Gửi dữ liệu ca bệnh PMC + chú thích hình ảnh sang Gemini để tạo cấu trúc ClinicalCase JSON (2-Pass Reviewer Workflow)."""
+    """Stage 2-5: Quy trình 3-Pass AI (Board Director -> Strict Examiner -> Harsh Medical Editor) + Guardrails."""
     if not GEMINI_API_KEY:
         return None
 
@@ -553,7 +757,7 @@ def generate_clinical_case_with_gemini(candidate: dict, next_case_num: int, toda
         f"- {fig['figure_label']}: {fig['caption']}"
         for fig in candidate["figures"]
     )
-
+    discussion_text = candidate.get("discussion_text") or candidate.get("abstract_text") or ""
     target_correct_opt = ["A", "B", "C", "D"][next_case_num % 4]
 
     prompt = f"""You are a Senior Neurology & Stroke Board Examination Director.
@@ -562,27 +766,35 @@ Convert the following real Open Access PubMed Central neurological case report i
 SOURCE ARTICLE METADATA:
 - Original Title: {candidate['article_title']}
 - PMCID: {candidate['pmcid']} ({candidate['journal_title']}, {candidate['pub_year']})
-- Case Text / Abstract: {candidate['case_body_text']}
+- Case Presentation Text: {candidate['case_body_text']}
+- Discussion & Authors' Key Takeaways: {discussion_text}
 - Extracted Neuroimaging Figures:
 {figures_desc}
 
-CRITICAL DESIGN RULES:
-1. BLINDED TITLE: Write a compelling clinical presentation title (`title`) based on symptoms/signs/anatomy WITHOUT giving away the final diagnosis name in the title.
-2. DIFFICULTY: Choose one of `"Resident"`, `"Fellow"`, or `"Attending"`.
-3. IMAGING: Return an `imaging_metadata` array matching the {len(candidate['figures'])} figure(s) above in exact order, specifying `"modality"` (e.g. "Brain MRI (Axial DWI & FLAIR)") and `"findings_summary"` (1 concise sentence summarizing key radiological findings).
-4. 4-OPTION MCQ CHALLENGE & SINGLE-FOCUS QUESTION RULE:
-   - SINGLE-FOCUS RULE: The question (`question`) MUST ask about exactly ONE clinical concept. NEVER combine diagnosis and management in the same question (e.g. NEVER ask "What is the most likely diagnosis and initial treatment?").
-   - Choose strictly ONE question format:
-     * Diagnosis only: "Which of the following is the most likely diagnosis?"
-     * Management only: "What is the most appropriate initial therapeutic step?"
-     * Diagnostic step only: "Which of the following is the most appropriate next diagnostic test?"
-     * Localization only: "Where is the most likely neuroanatomical localization of this lesion?"
-   - `"question_type"` must be one of `"Diagnosis"`, `"Acute Management"`, `"Next Best Step"`, or `"Localization"`.
-   - Provide 4 options (`"A"`, `"B"`, `"C"`, `"D"`). All 4 options must be of the same clinical category.
-   - Set `"correct_option"` to `"{target_correct_opt}"` and make option `"{target_correct_opt}"` the unambiguously correct choice.
-   - `"peer_percentage"` across A, B, C, D must be integers summing to 100 (with the correct option having 64-82).
-   - `"rationale"` for the correct option must start with `"Correct! "` and explain the neuroanatomical/clinical reasoning. `"rationale"` for incorrect options must start with `"Incorrect. "` and explain why that mimic is ruled out.
-5. Output ONLY valid JSON matching this exact structure:
+CRITICAL DESIGN RULES (6-STAGE PIPELINE — PASS 1):
+1. IDENTIFY THE CLINICAL INFLECTION POINT:
+   - Read "Discussion & Authors' Key Takeaways" to identify WHY the authors published this case (e.g., a deceptive clinical mimic, difficult etiologic workup, pivotal next diagnostic test, neuroanatomical localization, or acute management trap).
+   - Do NOT ask a trivial broad-syndrome diagnosis (e.g., "encephalitis") if the clinical syndrome is already obvious and the real challenge is the underlying etiology or next best diagnostic/therapeutic step.
+2. BLINDED TITLE & ZERO LEAKAGE:
+   - Write a compelling presentation `title` based on symptoms/signs/anatomy WITHOUT naming the final diagnosis or giving away the correct answer.
+3. STRICT ONE-WAY CHRONOLOGY & DIAGNOSTIC TIMEPOINT CUTOFF:
+   - The UI renders `history_of_present_illness + " " + neuro_exam + " " + key_labs_csf` as ONE continuous NEJM-style paragraph.
+   - `history_of_present_illness`: Strictly chronological pre-arrival history up to ED/clinic presentation (3-4 sentences). NEVER include subsequent hospital deterioration, ICU admission, coma, mechanical ventilation, EVD, or final outcome here.
+   - `neuro_exam`: Initial neurological exam at presentation (avoid repeating HPI symptoms).
+   - `key_labs_csf`: ONLY initial/first-line laboratory and CSF results available at the diagnostic decision point. WITHHOLD late confirmatory or broad exclusion tests (e.g., negative broad bacterial/viral PCR panels, negative cultures, negative oligoclonal bands, definitive autoantibodies, biopsy) that would prematurely eliminate the distractors; move those results to `resolution.clinical_discussion`.
+4. IMAGING:
+   - Return `imaging_metadata` matching the {len(candidate['figures'])} figure(s) above in exact order, specifying `"modality"` and `"findings_summary"` (1 concise sentence describing purely anatomical/radiological features WITHOUT naming the final diagnosis).
+5. 4-OPTION MCQ & REAL DIFFERENTIALS (SINGLE-FOCUS RULE):
+   - Ask strictly ONE clinical concept (`"Diagnosis"`, `"Next Best Step"`, `"Acute Management"`, or `"Localization"`). NEVER combine two questions.
+   - All 3 incorrect options MUST come from plausible differential diagnoses actually relevant to or considered in the article, and remain plausible given the withheld late workup.
+   - Set `"correct_option"` to `"{target_correct_opt}"`.
+   - `"peer_percentage"` across A, B, C, D must be integers summing to 100 (correct option 64-82).
+   - `"rationale"`: correct option starts with `"Correct! "`; incorrect options start with `"Incorrect. "`.
+6. HIGH-YIELD RESOLUTION:
+   - `clinical_discussion`: 3 structured paragraphs separated by `\\n\\n` (Para 1: differential diagnosis & mimics; Para 2: diagnostic inflection point, withheld confirmatory/exclusion tests, and pathophysiology; Para 3: targeted therapy & outcome).
+   - `teaching_points`: 3-4 generalizable, high-yield board-level pearls (not single-patient trivia).
+   - `clinical_pitfalls`: 2-3 concrete diagnostic or management pitfalls highlighted by the authors.
+7. Output ONLY valid JSON matching this exact structure:
 {{
   "title": "string",
   "subspecialty": "{candidate['default_subspecialty']}",
@@ -592,7 +804,7 @@ CRITICAL DESIGN RULES:
   "presentation": {{
     "demographics": "string (e.g., '54-year-old female')",
     "chief_complaint": "string",
-    "history_of_present_illness": "string (3-4 detailed clinical sentences)",
+    "history_of_present_illness": "string",
     "past_medical_history": "string",
     "vitals": {{
       "bp": "string (e.g. '138/84 mmHg')",
@@ -623,125 +835,91 @@ CRITICAL DESIGN RULES:
   }},
   "resolution": {{
     "final_diagnosis": "string",
-    "clinical_discussion": "string (2 paragraphs separated by \\n\\n)",
+    "clinical_discussion": "string (3 paragraphs separated by \\n\\n)",
     "teaching_points": ["string", "string", "string"],
     "clinical_pitfalls": ["string", "string"],
     "related_keywords": ["string", "string", "string", "string"]
   }}
 }}"""
 
-    payload = {
-        "contents": [{"parts": [{"text": prompt}]}],
-        "generationConfig": {
-            "temperature": 0.2,
-            "maxOutputTokens": 2400,
-            "responseMimeType": "application/json"
-        }
+    # Stage 2 (Pass 1): Board Director Draft
+    parsed = _call_gemini_json(prompt, temperature=0.2, stage_label="pass1_director")
+    if not parsed or not parsed.get("challenge") or not parsed.get("resolution"):
+        return None
+
+    # Stage 3 (Pass 2): Strict Examiner Critique (Anti-Leakage, Cutoff, Chronology)
+    parsed = critique_and_refine_with_gemini(parsed, candidate)
+
+    # Stage 4 (Pass 3): Harsh Senior Medical Editor (Grammar, Continuity, Logic)
+    parsed = editorial_and_logic_review_with_gemini(parsed, candidate)
+
+    case_id = f"nc-2026-{str(next_case_num).zfill(3)}"
+    case_code = f"NC-2026-{str(next_case_num).zfill(3)}"
+    pres = parsed.get("presentation", {})
+    img_meta_list = pres.get("imaging_metadata", [])
+
+    imaging_items = []
+    for idx, fig in enumerate(candidate["figures"]):
+        meta = img_meta_list[idx] if idx < len(img_meta_list) and isinstance(img_meta_list[idx], dict) else {}
+        imaging_items.append({
+            "modality": meta.get("modality") or "Brain MRI / Neuroimaging",
+            "sequence_badge": f"{fig['figure_label']} • {candidate['journal_short']} ({candidate['pmcid']})",
+            "figure_label": fig["figure_label"],
+            "image_url": fig["image_url"],
+            "pmcid": candidate["pmcid"],
+            "doi_url": candidate["doi_url"],
+            "caption": fig["caption"],
+            "findings_summary": meta.get("findings_summary") or fig["caption"][:200]
+        })
+
+    case_obj = {
+        "id": case_id,
+        "case_code": case_code,
+        "title": parsed.get("title") or candidate["article_title"],
+        "subspecialty": parsed.get("subspecialty") or candidate["default_subspecialty"],
+        "subspecialties": parsed.get("subspecialties") or [candidate["default_subspecialty"]],
+        "difficulty": parsed.get("difficulty") if parsed.get("difficulty") in ("Resident", "Fellow", "Attending") else "Fellow",
+        "estimated_time_sec": int(parsed.get("estimated_time_sec") or 110),
+        "is_daily_challenge": is_daily,
+        "archive_only": not is_daily,
+        "published_date": today_str,
+        "status": "approved",
+        "author_credit": f"{candidate['journal_title']} • {candidate['pmcid']}",
+        "source_journal": {
+            "name": candidate["journal_title"],
+            "short_name": candidate["journal_short"],
+            "doi_url": candidate["doi_url"],
+            "pmcid": candidate["pmcid"],
+            "pmid": candidate["pmid"],
+            "pub_year": candidate["pub_year"]
+        },
+        "presentation": {
+            "demographics": pres.get("demographics", "Adult patient"),
+            "chief_complaint": pres.get("chief_complaint", ""),
+            "history_of_present_illness": pres.get("history_of_present_illness", ""),
+            "past_medical_history": pres.get("past_medical_history", "As documented in clinical presentation"),
+            "vitals": pres.get("vitals", {
+                "bp": "128/80 mmHg",
+                "hr": "78 bpm",
+                "rr": "16 /min",
+                "temp": "36.8 °C",
+                "spo2": "98%"
+            }),
+            "neuro_exam": pres.get("neuro_exam", ""),
+            "key_labs_csf": pres.get("key_labs_csf", ""),
+            "imaging": imaging_items
+        },
+        "challenge": parsed.get("challenge"),
+        "resolution": parsed.get("resolution")
     }
 
-    for model_name in ACTIVE_GEMINI_MODELS:
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={GEMINI_API_KEY}"
-        for attempt in range(2):
-            try:
-                req = urllib.request.Request(
-                    url,
-                    data=json.dumps(payload).encode("utf-8"),
-                    headers={"Content-Type": "application/json"}
-                )
-                with urllib.request.urlopen(req, context=ctx, timeout=30) as resp:
-                    data = json.loads(resp.read().decode("utf-8"))
-                    candidates = data.get("candidates", [])
-                    if not candidates:
-                        continue
-                    parts = candidates[0].get("content", {}).get("parts", [])
-                    raw_json_str = "".join(p.get("text", "") for p in parts if "text" in p and not p.get("thought")).strip()
-                    raw_json_str = re.sub(r"^```(?:json)?\s*", "", raw_json_str)
-                    raw_json_str = re.sub(r"\s*```$", "", raw_json_str)
-                    parsed = json.loads(raw_json_str)
+    # Stage 5: Kiểm tra chất lượng tự động bằng code (Deterministic Guardrails)
+    valid, reason = validate_case_quality(case_obj)
+    if not valid:
+        print(f"   [!] Case quality check failed ({reason}). Falling back to deterministic builder.")
+        return None
 
-                    case_id = f"nc-2026-{str(next_case_num).zfill(3)}"
-                    case_code = f"NC-2026-{str(next_case_num).zfill(3)}"
-
-                    img_meta_list = parsed.get("presentation", {}).get("imaging_metadata", [])
-                    imaging_items = []
-                    for idx, fig in enumerate(candidate["figures"]):
-                        meta = img_meta_list[idx] if idx < len(img_meta_list) else {}
-                        imaging_items.append({
-                            "modality": meta.get("modality") or "Brain MRI / Neuroimaging",
-                            "sequence_badge": f"{fig['figure_label']} • {candidate['journal_short']} ({candidate['pmcid']})",
-                            "figure_label": fig["figure_label"],
-                            "image_url": fig["image_url"],
-                            "pmcid": candidate["pmcid"],
-                            "doi_url": candidate["doi_url"],
-                            "caption": fig["caption"],
-                            "findings_summary": meta.get("findings_summary") or fig["caption"][:200]
-                        })
-
-                    # Lượt 2: Phản biện & Chuẩn hóa chất lượng qua Gemini Examiner Review
-                    refined_case = critique_and_refine_with_gemini(parsed)
-                    if isinstance(refined_case, dict) and refined_case.get("challenge"):
-                        parsed = refined_case
-
-                    pres = parsed.get("presentation", {})
-                    case_obj = {
-                        "id": case_id,
-                        "case_code": case_code,
-                        "title": parsed.get("title") or candidate["article_title"],
-                        "subspecialty": parsed.get("subspecialty") or candidate["default_subspecialty"],
-                        "subspecialties": parsed.get("subspecialties") or [candidate["default_subspecialty"]],
-                        "difficulty": parsed.get("difficulty") if parsed.get("difficulty") in ("Resident", "Fellow", "Attending") else "Fellow",
-                        "estimated_time_sec": int(parsed.get("estimated_time_sec") or 110),
-                        "is_daily_challenge": is_daily,
-                        "archive_only": not is_daily,
-                        "published_date": today_str,
-                        "status": "approved",
-                        "author_credit": f"{candidate['journal_title']} • {candidate['pmcid']}",
-                        "source_journal": {
-                            "name": candidate["journal_title"],
-                            "short_name": candidate["journal_short"],
-                            "doi_url": candidate["doi_url"],
-                            "pmcid": candidate["pmcid"],
-                            "pmid": candidate["pmid"],
-                            "pub_year": candidate["pub_year"]
-                        },
-                        "presentation": {
-                            "demographics": pres.get("demographics", "Adult patient"),
-                            "chief_complaint": pres.get("chief_complaint", ""),
-                            "history_of_present_illness": pres.get("history_of_present_illness", ""),
-                            "past_medical_history": pres.get("past_medical_history", "As documented in clinical presentation"),
-                            "vitals": pres.get("vitals", {
-                                "bp": "128/80 mmHg",
-                                "hr": "78 bpm",
-                                "rr": "16 /min",
-                                "temp": "36.8 °C",
-                                "spo2": "98%"
-                            }),
-                            "neuro_exam": pres.get("neuro_exam", ""),
-                            "key_labs_csf": pres.get("key_labs_csf", ""),
-                            "imaging": imaging_items
-                        },
-                        "challenge": parsed.get("challenge"),
-                        "resolution": parsed.get("resolution")
-                    }
-
-                    # Kiểm tra chất lượng tự động bằng code
-                    valid, reason = validate_case_quality(case_obj)
-                    if not valid:
-                        print(f"   [!] Case quality check failed ({reason}). Falling back to deterministic builder.")
-                        return None
-
-                    return case_obj
-            except urllib.error.HTTPError as e:
-                if e.code in (429, 500, 502, 503, 504):
-                    time.sleep(2 * (attempt + 1))
-                else:
-                    break
-            except Exception as e:
-                print(f"   [!] Lỗi phân tích Gemini ({model_name}): {e}")
-                time.sleep(1)
-                continue
-
-    return None
+    return case_obj
 
 
 def build_structured_clinical_case_deterministic(candidate: dict, next_case_num: int, today_str: str, is_daily: bool = True) -> dict:
@@ -959,7 +1137,7 @@ def run():
             print(f"   -> Ứng viên Daily: {cand_daily['pmcid']} ({cand_daily['journal_title']}) - {len(cand_daily['figures'])} hình ảnh.")
             case_daily = None
             if GEMINI_API_KEY:
-                print("   -> Đang gọi Gemini AI biên soạn Daily Challenge (2-Pass Review)...")
+                print("   -> Đang gọi Gemini AI biên soạn Daily Challenge (3-Pass Review)...")
                 case_daily = generate_clinical_case_with_gemini(cand_daily, max_num, today_str, is_daily=True)
             if not case_daily or not case_daily.get("challenge") or not case_daily.get("resolution"):
                 print("   -> Dùng bộ biên soạn lâm sàng tất định cho Daily Challenge...")

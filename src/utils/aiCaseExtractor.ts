@@ -357,7 +357,109 @@ function detectSubspecialty(text: string): string {
 }
 
 /**
- * Extracts a structured clinical case from raw article text (or PDF base64) using Gemini API (if apiKey is provided)
+ * Splits extracted article text into clinical presentation and discussion sections
+ * so the AI captures both the chronological case and the authors' key diagnostic pearl.
+ */
+function splitArticleSections(cleanedText: string): {
+  presentationSection: string;
+  discussionSection: string;
+} {
+  const withoutRefs = cleanedText
+    .replace(/\n\s*(?:References|Bibliography|Acknowledgments|Disclosures|Author Contributions)\s*\n[\s\S]*$/i, "")
+    .trim();
+
+  const discMatch = withoutRefs.search(/\n\s*(?:\d+\.?\s*)?(?:Discussion|Conclusion|Conclusions|Learning Points|Clinical Implications)\s*(?:\n|:)/i);
+  if (discMatch > 200) {
+    return {
+      presentationSection: withoutRefs.slice(0, discMatch).trim().slice(0, 9000),
+      discussionSection: withoutRefs.slice(discMatch).trim().slice(0, 6000),
+    };
+  }
+
+  return {
+    presentationSection: withoutRefs.slice(0, 10000),
+    discussionSection: withoutRefs.length > 5000 ? withoutRefs.slice(Math.floor(withoutRefs.length * 0.55)).slice(0, 5000) : "",
+  };
+}
+
+/**
+ * Calls Gemini REST API using the Single Source of Truth waterfall (config/gemini-models.json),
+ * properly handles Gemini 4.x/3.x thinking parts (p.thought), and logs fallback events.
+ */
+async function callGeminiCaseWaterfall(
+  parts: any[],
+  apiKey: string,
+  passLabel: string,
+  temperature = 0.2
+): Promise<any | null> {
+  const waterfallModels = GEMINI_WATERFALL_MODELS;
+
+  for (let idx = 0; idx < waterfallModels.length; idx++) {
+    const modelName = waterfallModels[idx];
+    const nextModel = waterfallModels[idx + 1];
+    try {
+      const res = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${encodeURIComponent(
+          apiKey.trim()
+        )}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            contents: [{ parts }],
+            generationConfig: {
+              temperature,
+              maxOutputTokens: 8192,
+              responseMimeType: "application/json",
+            },
+          }),
+        }
+      );
+
+      if (!res.ok) {
+        recordGeminiFallback({
+          source: `neurocase/aiCaseExtractor:${passLabel}`,
+          failedModel: modelName,
+          status: res.status,
+          reason: res.statusText || "HTTP error",
+          nextModel,
+        });
+        continue;
+      }
+
+      const data = await res.json();
+      const candidateParts = data?.candidates?.[0]?.content?.parts || [];
+      const textParts = candidateParts
+        .filter((p: any) => p?.text && !p?.thought)
+        .map((p: any) => p.text);
+      let rawJson = textParts.join("").trim();
+      if (!rawJson && candidateParts[0]?.text) {
+        rawJson = String(candidateParts[0].text).trim();
+      }
+      rawJson = rawJson.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/i, "");
+      const jsonMatch = rawJson.match(/\{[\s\S]*\}/);
+      if (jsonMatch) rawJson = jsonMatch[0];
+
+      const parsed = JSON.parse(rawJson);
+      if (parsed && typeof parsed === "object") {
+        return parsed;
+      }
+    } catch (modelErr: any) {
+      recordGeminiFallback({
+        source: `neurocase/aiCaseExtractor:${passLabel}`,
+        failedModel: modelName,
+        reason: modelErr?.message || "Network or JSON parse error",
+        nextModel,
+      });
+    }
+  }
+
+  return null;
+}
+
+/**
+ * Extracts a structured clinical case from raw article text (or PDF base64) using a 3-Pass Gemini pipeline
+ * (Pass 1: Board Director Draft -> Pass 2: Strict Examiner Critique -> Pass 3: Harsh Medical Editor)
  * or deterministic clinical NLP rules when no API key is set.
  */
 export async function extractClinicalCaseFromArticleText(
@@ -370,43 +472,49 @@ export async function extractClinicalCaseFromArticleText(
 
   if (geminiApiKey && geminiApiKey.trim().length > 10) {
     try {
-      const prompt = `You are an expert Academic Neurologist & Stroke Fellowship Director creating an interactive clinical challenge for NeuroCase (modeled after NEJM Image Challenge & Neurology Resident & Fellow Section).
-Read the following published neurology article/case report and return ONLY a valid JSON object matching this exact schema (all in professional academic English, with the final diagnosis REDACTED/HIDDEN in the title, history, exam, and imaging findings so the reader must deduce it):
+      const { presentationSection, discussionSection } = splitArticleSections(cleaned);
+
+      // PASS 1: Board Director Draft (Clinical Inflection Point + Chronology + Timepoint Cutoff)
+      const pass1Prompt = `You are an expert Academic Neurologist & Stroke Fellowship Director creating an interactive clinical challenge for NeuroCase (modeled after NEJM Image Challenge & Neurology Resident & Fellow Section).
+Read the published neurology article below and return ONLY a valid JSON object matching this exact schema:
 {
   "title": "Blind clinical presentation title without giving away the final diagnosis",
   "subspecialty": "One of: Stroke | Neurocritical Care | Epilepsy | Dementia | Neuroimmunology | Neuromuscular | Movement Disorders | Headache & Pain | CNS Infections | Neuro-Oncology | Other",
   "difficulty": "Resident | Fellow | Attending",
   "demographics": "Age and sex, e.g., 54-year-old right-handed woman",
-  "chief_complaint": "Concise presenting symptom(s)",
-  "history_of_present_illness": "Detailed chronological clinical history from the paper without revealing the final diagnosis",
+  "chief_complaint": "Concise presenting symptom(s) without diagnostic spoilers",
+  "history_of_present_illness": "Strictly pre-arrival chronological clinical history up to initial ED/clinic presentation (3-4 sentences). NEVER include subsequent ICU deterioration, coma, intubation, EVD, or final outcome here.",
   "past_medical_history": "Relevant past medical history",
-  "neuro_exam": "Detailed neurological examination findings from the paper",
-  "key_labs_csf": "Relevant serum, CSF, or bedside workup findings",
+  "neuro_exam": "Initial neurological examination findings at presentation without repeating HPI sentences",
+  "key_labs_csf": "ONLY initial/first-line serum or CSF labs up to the diagnostic inflection point. WITHHOLD late confirmatory/exclusion tests (e.g., negative broad PCR panels, negative cultures, oligoclonal bands, definitive autoantibodies, biopsy) and place them in clinical_discussion instead.",
   "modality": "Primary clinical or diagnostic modality (e.g., Clinical photograph, Brain MRI, CTA, EMG, Fundoscopy)",
-  "figure_caption": "Original figure caption from the article",
-  "findings_summary": "Radiological or clinical interpretation of the figure",
-  "question": "Single-focus question asking ONE concept only (e.g., 'Which of the following is the most likely diagnosis?' OR 'What is the most appropriate initial management?' — NEVER combine diagnosis and management in the same question)",
+  "figure_caption": "Original figure caption describing radiological features WITHOUT naming the final diagnosis",
+  "findings_summary": "Concise radiological interpretation WITHOUT naming the final diagnosis",
+  "question": "Single-focus question targeting the article's KEY CLINICAL INFLECTION POINT (Diagnosis of specific etiology, Next Best Step, Acute Management, or Localization) — NEVER ask a trivial broad syndrome if the syndrome is obvious, and NEVER combine two questions",
   "optA": "Option A text",
   "optARationale": "Detailed rationale explaining why Option A is correct or incorrect",
-  "optB": "Option B text",
+  "optB": "Option B text (real differential diagnosis from the article)",
   "optBRationale": "Detailed rationale explaining why Option B is correct or incorrect",
-  "optC": "Option C text",
+  "optC": "Option C text (real differential diagnosis from the article)",
   "optCRationale": "Detailed rationale explaining why Option C is correct or incorrect",
-  "optD": "Option D text",
+  "optD": "Option D text (real differential diagnosis from the article)",
   "optDRationale": "Detailed rationale explaining why Option D is correct or incorrect",
   "correctOption": "A",
   "final_diagnosis": "Complete definitive diagnosis from the article",
-  "clinical_discussion": "2-paragraph synthesis of the pathophysiology, diagnostic reasoning, and management from the article",
-  "teaching_points": ["Teaching point 1", "Teaching point 2", "Teaching point 3"],
-  "clinical_pitfalls": ["Clinical pitfall 1", "Clinical pitfall 2"]
+  "clinical_discussion": "3 paragraphs separated by \\n\\n: Para 1 = differential diagnosis & mimics; Para 2 = diagnostic inflection point, withheld confirmatory/exclusion tests, and pathophysiology; Para 3 = targeted management & outcome",
+  "teaching_points": ["Generalizable high-yield board pearl 1", "Pearl 2", "Pearl 3"],
+  "clinical_pitfalls": ["Concrete diagnostic or management trap 1", "Pitfall 2"]
 }
 
-ARTICLE TEXT:
-${cleaned.slice(0, 14000)}`;
+CASE PRESENTATION TEXT:
+${presentationSection}
 
-      const parts: any[] = [{ text: prompt }];
+DISCUSSION & AUTHORS' KEY TAKEAWAYS:
+${discussionSection || "Derive key diagnostic inflection point and differential pitfalls from the full article."}`;
+
+      const pass1Parts: any[] = [{ text: pass1Prompt }];
       if (pdfBase64) {
-        parts.unshift({
+        pass1Parts.unshift({
           inlineData: {
             mimeType: "application/pdf",
             data: pdfBase64,
@@ -414,79 +522,86 @@ ${cleaned.slice(0, 14000)}`;
         });
       }
 
-      const waterfallModels = GEMINI_WATERFALL_MODELS;
+      let parsed = await callGeminiCaseWaterfall(pass1Parts, geminiApiKey, "pass1_director", 0.2);
 
-      for (const modelName of waterfallModels) {
-        try {
-          const res = await fetch(
-            `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${encodeURIComponent(
-              geminiApiKey.trim()
-            )}`,
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                contents: [{ parts }],
-                generationConfig: {
-                  temperature: 0.2,
-                  responseMimeType: "application/json",
-                },
-              }),
-            }
-          );
+      if (parsed && parsed.question && parsed.final_diagnosis) {
+        // PASS 2: Strict Examiner Critique (Anti-Leakage, Timepoint Cutoff, Single-Focus)
+        const pass2Prompt = `You are a Strict Senior Neurology Examination Committee Reviewer.
+Audit and revise this draft clinical case JSON:
+${JSON.stringify(parsed, null, 2)}
 
-          if (res.ok) {
-            const data = await res.json();
-            const candidateParts = data?.candidates?.[0]?.content?.parts || [];
-            const textParts = candidateParts.filter((p: any) => p?.text && !p?.thought).map((p: any) => p.text);
-            let rawJson = textParts.join("").trim();
-            if (!rawJson && candidateParts[0]?.text) rawJson = candidateParts[0].text.trim();
-            const jsonMatch = rawJson.match(/\{[\s\S]*\}/);
-            if (jsonMatch) rawJson = jsonMatch[0];
-            const parsed = JSON.parse(rawJson);
-            return {
-              title: parsed.title || "Acute Neurological Syndrome — Clinical Challenge",
-              subspecialty: parsed.subspecialty || detectSubspecialty(cleaned),
-              difficulty: (parsed.difficulty as CaseDifficulty) || "Fellow",
-              author_credit: `${journal_short}${doi_url ? ` • ${doi_url}` : ""}`,
-              doi_url,
-              journal_short,
-              demographics: parsed.demographics || "Adult Neurology Patient",
-              chief_complaint: parsed.chief_complaint || parsed.title || "Acute neurological deficit",
-              history_of_present_illness: parsed.history_of_present_illness || cleaned.slice(0, 600),
-              past_medical_history: parsed.past_medical_history || "As documented in clinical vignette.",
-              neuro_exam: parsed.neuro_exam || "Focal neurological deficits as documented in clinical vignette.",
-              key_labs_csf: parsed.key_labs_csf || "Laboratory and CSF workup as detailed in text.",
-              modality: parsed.modality || "Brain MRI / Neuroimaging",
-              figure_caption:
-                parsed.figure_caption || "Published clinical neuroimaging figure from the source article.",
-              findings_summary: parsed.findings_summary || "Characteristic neuroimaging abnormality.",
-              question:
-                parsed.question || "Which of the following is the most likely diagnosis?",
-              optA: parsed.optA || parsed.final_diagnosis || "Option A",
-              optARationale:
-                parsed.optARationale || "Correct answer based on clinical and neuroimaging localization.",
-              optB: parsed.optB || "Alternative differential diagnosis B",
-              optBRationale:
-                parsed.optBRationale || "Excluded based on clinical course and neuroimaging sequence profile.",
-              optC: parsed.optC || "Alternative differential diagnosis C",
-              optCRationale:
-                parsed.optCRationale || "Excluded based on CSF and electrodiagnostic workup.",
-              optD: parsed.optD || "Alternative differential diagnosis D",
-              optDRationale:
-                parsed.optDRationale || "Does not account for the neuroanatomical localization.",
-              correctOption: (["A", "B", "C", "D"].includes(parsed.correctOption)
-                ? parsed.correctOption
-                : "A") as "A" | "B" | "C" | "D",
-              final_diagnosis: parsed.final_diagnosis || "Definitive Neurological Diagnosis",
-              clinical_discussion: parsed.clinical_discussion || "",
-              teaching_points: Array.isArray(parsed.teaching_points) ? parsed.teaching_points : [],
-              clinical_pitfalls: Array.isArray(parsed.clinical_pitfalls) ? parsed.clinical_pitfalls : [],
-            };
-          }
-        } catch (modelErr) {
-          console.warn(`Gemini model ${modelName} failed, trying next model in waterfall:`, modelErr);
+EXAMINER CHECKLIST:
+1. SINGLE-FOCUS QUESTION: Ensure 'question' asks strictly ONE clinical concept (no 'and the optimal management' or 'as well as').
+2. STRICT ONE-WAY CHRONOLOGY: The UI concatenates 'history_of_present_illness + " " + neuro_exam + " " + key_labs_csf' into ONE paragraph. Remove any late ICU/coma/intubation events from HPI if 'neuro_exam' starts with an alert initial exam.
+3. ZERO LEXICAL OR SEMANTIC LEAKAGE: Ensure 'title', 'chief_complaint', 'history_of_present_illness', 'neuro_exam', 'key_labs_csf', 'figure_caption', 'findings_summary', and 'question' NEVER reveal 'final_diagnosis' or diagnostic buzzwords.
+4. DIAGNOSTIC TIMEPOINT CUTOFF: Strip late confirmatory or broad exclusion workup (e.g., negative broad PCR panels, negative bacterial/fungal cultures, negative oligoclonal bands, definitive autoantibodies, biopsy) from 'key_labs_csf' if they prematurely rule out the distractors; move those findings into 'clinical_discussion'.
+5. REAL DIFFERENTIALS: Ensure all 4 options are homogeneous, clinically plausible given the withheld late tests, and 'correctOption' remains "${parsed.correctOption || "A"}".
+Output ONLY valid JSON matching the exact same schema.`;
+
+        const pass2 = await callGeminiCaseWaterfall([{ text: pass2Prompt }], geminiApiKey, "pass2_examiner", 0.1);
+        if (pass2 && pass2.question && pass2.final_diagnosis) {
+          parsed = pass2;
         }
+
+        // PASS 3: Harsh Senior Medical Editor (Grammar, Narrative Continuity, End-to-End Logic)
+        const combinedVignette = `${parsed.history_of_present_illness || ""} ${parsed.neuro_exam || ""} ${parsed.key_labs_csf || ""}`.trim();
+        const pass3Prompt = `You are a Harsh Senior Medical Editor for NEJM Clinical & Imaging Challenge.
+Audit and polish this clinical case JSON for academic medical prose, narrative continuity, and end-to-end clinical logic:
+${JSON.stringify(parsed, null, 2)}
+
+RENDERED VIGNETTE PREVIEW:
+"${combinedVignette}"
+
+HARSH EDITOR CHECKLIST (FIX ALL ISSUES DIRECTLY):
+1. MEDICAL GRAMMAR & TENSE: Ensure precise academic English, consistent past tense for patient history/exam/labs, present tense for general medical rules in 'teaching_points' and 'clinical_pitfalls', and standardized units (cmH2O, mg/dL, µL, mmHg).
+2. SEAMLESS CONTINUITY: Remove repetition between 'history_of_present_illness' and 'neuro_exam' and verify strict chronological flow when read together in the rendered vignette preview.
+3. END-TO-END LOGIC: Verify vignette clues + imaging findings logically support 'correctOption' without contradiction, rationales align with vignette facts, 'clinical_discussion' has 3 cohesive paragraphs explaining differentials + withheld confirmatory tests + management, and 'teaching_points' / 'clinical_pitfalls' are high-yield and aligned with the question.
+Output ONLY valid JSON matching the exact same schema.`;
+
+        const pass3 = await callGeminiCaseWaterfall([{ text: pass3Prompt }], geminiApiKey, "pass3_editor", 0.1);
+        if (pass3 && pass3.question && pass3.final_diagnosis) {
+          parsed = pass3;
+        }
+
+        return {
+          title: parsed.title || "Acute Neurological Syndrome — Clinical Challenge",
+          subspecialty: parsed.subspecialty || detectSubspecialty(cleaned),
+          difficulty: (parsed.difficulty as CaseDifficulty) || "Fellow",
+          author_credit: `${journal_short}${doi_url ? ` • ${doi_url}` : ""}`,
+          doi_url,
+          journal_short,
+          demographics: parsed.demographics || "Adult Neurology Patient",
+          chief_complaint: parsed.chief_complaint || parsed.title || "Acute neurological deficit",
+          history_of_present_illness: parsed.history_of_present_illness || cleaned.slice(0, 600),
+          past_medical_history: parsed.past_medical_history || "As documented in clinical vignette.",
+          neuro_exam: parsed.neuro_exam || "Focal neurological deficits as documented in clinical vignette.",
+          key_labs_csf: parsed.key_labs_csf || "Laboratory and CSF workup as detailed in text.",
+          modality: parsed.modality || "Brain MRI / Neuroimaging",
+          figure_caption:
+            parsed.figure_caption || "Published clinical neuroimaging figure from the source article.",
+          findings_summary: parsed.findings_summary || "Characteristic neuroimaging abnormality.",
+          question:
+            parsed.question || "Which of the following is the most likely diagnosis?",
+          optA: parsed.optA || parsed.final_diagnosis || "Option A",
+          optARationale:
+            parsed.optARationale || "Correct answer based on clinical and neuroimaging localization.",
+          optB: parsed.optB || "Alternative differential diagnosis B",
+          optBRationale:
+            parsed.optBRationale || "Excluded based on clinical course and neuroimaging sequence profile.",
+          optC: parsed.optC || "Alternative differential diagnosis C",
+          optCRationale:
+            parsed.optCRationale || "Excluded based on CSF and electrodiagnostic workup.",
+          optD: parsed.optD || "Alternative differential diagnosis D",
+          optDRationale:
+            parsed.optDRationale || "Does not account for the neuroanatomical localization.",
+          correctOption: (["A", "B", "C", "D"].includes(parsed.correctOption)
+            ? parsed.correctOption
+            : "A") as "A" | "B" | "C" | "D",
+          final_diagnosis: parsed.final_diagnosis || "Definitive Neurological Diagnosis",
+          clinical_discussion: parsed.clinical_discussion || "",
+          teaching_points: Array.isArray(parsed.teaching_points) ? parsed.teaching_points : [],
+          clinical_pitfalls: Array.isArray(parsed.clinical_pitfalls) ? parsed.clinical_pitfalls : [],
+        };
       }
     } catch (err) {
       console.warn("Gemini API extraction fallback triggered:", err);

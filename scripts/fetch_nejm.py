@@ -486,13 +486,36 @@ def classify_neurology_article(title: str, abstract: str = "", is_specialty: boo
     formatted_topics = [t.capitalize() for t in (matched_keywords[:4] if matched_keywords else ["Neurology"])]
     return True, primary_sub, matched_subs[:3], formatted_topics
 
-def detect_article_types(title: str, abstract: str, doi: str = "", crossref_type: str = "", author_count: int = 1):
+STUDY_TYPE_HIERARCHY = {
+    "Editorial / Perspective": ["Editorial / Perspective"],
+    "Case Report": ["Case Report"],
+    "Guideline": ["Guideline", "Review"],
+    "Meta-Analysis": ["Meta-Analysis", "Review", "Original Article"],
+    "Review": ["Review"],
+    "RCT": ["RCT", "Clinical Trial", "Original Article"],
+    "Clinical Trial": ["Clinical Trial", "Original Article"],
+    "Original Article": ["Original Article"],
+}
+
+
+def map_study_type_to_all_types(primary_type: str):
+    if not primary_type:
+        return None
+    normalized = primary_type.strip()
+    mapped = STUDY_TYPE_HIERARCHY.get(normalized)
+    if not mapped:
+        return None
+    return normalized, list(mapped)
+
+
+def detect_article_types(title: str, abstract: str, doi: str = "", crossref_type: str = "", author_count: int = 1, ai_study_type: str = ""):
     title_l = title.lower()
     abs_l = (abstract or "").lower()
     doi_l = (doi or "").lower()
     combined = f"{title_l} {abs_l}"
     has_real_abs = bool(abs_l) and not abs_l.startswith("original abstract") and len(abs_l) >= 80
 
+    # Tầng 1: Hard metadata/DOI/title guards
     if (
         "/nejme" in doi_l
         or "/nejmp" in doi_l
@@ -510,6 +533,12 @@ def detect_article_types(title: str, abstract: str, doi: str = "", crossref_type
     ):
         return "Case Report", ["Case Report"]
 
+    # Tầng 2: Ưu tiên kết quả phân loại của AI nếu có
+    ai_mapped = map_study_type_to_all_types(ai_study_type)
+    if ai_mapped:
+        return ai_mapped
+
+    # Tầng 3: Rule-based fallback
     # Guideline & Consensus
     if re.search(r'\b(guideline|guidelines|consensus|scientific statement|practice advisory|practice parameter|position statement|recommendations from)\b', title_l):
         return "Guideline", ["Guideline", "Review"]
@@ -521,9 +550,13 @@ def detect_article_types(title: str, abstract: str, doi: str = "", crossref_type
     ):
         return "Meta-Analysis", ["Meta-Analysis", "Review", "Original Article"]
 
+    has_methods_or_results = bool(re.search(r'\b(methods|patients and methods|study design|results|findings)\s*:', abs_l))
+    is_structured_clinical_review = bool(re.search(r'\bobservations\s*:', abs_l)) and not has_methods_or_results
+
     is_secondary_or_trial = re.search(r'\b(randomized|randomised|clinical trial|phase [123]|cohort|case-control)\b', title_l)
     if not is_secondary_or_trial and (
-        "review" in crossref_type.lower()
+        is_structured_clinical_review
+        or "review" in crossref_type.lower()
         or re.search(r'\b(review|seminar|state of the art|contemporary issues|primer)\b', title_l)
         or (has_real_abs and "methods" not in abs_l and "results" not in abs_l and re.search(r'\b(overview|we review|this review|narrative review|recent advances)\b', abs_l))
     ):
@@ -549,14 +582,26 @@ def detect_article_types(title: str, abstract: str, doi: str = "", crossref_type
         '',
         combined
     )
-    has_rct_signals = not is_observational_cohort and bool(
+    cleaned_for_rct_check = re.sub(
+        r'\b(pooled|previous|prior|existing|available|recent|data from|evidence from|results from)\s+(randomized|randomised)\s+(controlled\s+)?trials?(\s+data)?\b',
+        '',
+        cleaned_for_rct_check
+    )
+    cleaned_for_rct_check = re.sub(
+        r'\b(randomized|randomised)\s+(controlled\s+)?trials?\s+(show|demonstrate|suggest|indicate|have shown)\b',
+        '',
+        cleaned_for_rct_check
+    )
+    has_rct_signals = not is_observational_cohort and not is_structured_clinical_review and bool(
         re.search(
             r'\b(randomized|randomised|double-blind|placebo-controlled|phase 3|phase 2|phase iii|phase ii|randomly assigned|assigned in a \d+:\d+)\b',
             cleaned_for_rct_check
         )
     )
-    has_trial_signals = has_rct_signals or bool(
-        re.search(r'\b(clinical trial|trial|phase 1|phase i|open-label|intervention)\b', title_l)
+    has_trial_signals = not is_structured_clinical_review and (
+        has_rct_signals or bool(
+            re.search(r'\b(clinical trial|trial|phase 1|phase i|open-label|intervention)\b', title_l)
+        )
     )
 
     if has_rct_signals and not is_posthoc_or_non_rct:
@@ -635,25 +680,76 @@ def load_existing_cache() -> dict:
     except Exception:
         return {}
 
-def analyze_abstract_with_gemini(title: str, abstract: str) -> str:
-    if not GEMINI_API_KEY or not abstract or len(abstract) < 80:
-        return ""
+def _parse_gemini_analysis_response(raw_text: str) -> dict | None:
+    if not raw_text:
+        return None
+    cleaned = raw_text.strip()
+    # Bóc tách markdown code block nếu model trả về ```json ... ```
+    if cleaned.startswith("```"):
+        cleaned = re.sub(r'^```(?:json)?\s*', '', cleaned)
+        cleaned = re.sub(r'\s*```$', '', cleaned)
+    try:
+        parsed = json.loads(cleaned)
+        if isinstance(parsed, dict):
+            takeaway = clean_takeaway_text(str(parsed.get("takeaway", "")))
+            study_type = str(parsed.get("study_type", "")).strip()
+            if study_type not in STUDY_TYPE_HIERARCHY:
+                study_type = ""
+            if is_valid_clinical_takeaway(takeaway):
+                return {"takeaway": takeaway, "study_type": study_type}
+            return None
+    except Exception:
+        pass
 
+    # Fallback nếu model trả về plain text thay vì JSON
+    summary = clean_takeaway_text(cleaned)
+    if is_valid_clinical_takeaway(summary):
+        return {"takeaway": summary, "study_type": ""}
+    return None
+
+
+def analyze_abstract_with_gemini(title: str, abstract: str) -> dict | None:
+    if not GEMINI_API_KEY or not abstract or len(abstract) < 80:
+        return None
+
+    valid_types_str = ", ".join(f'"{t}"' for t in STUDY_TYPE_HIERARCHY.keys())
     prompt = f"""You are an expert clinical neurologist and stroke methodologist.
-Read this study abstract from a top-tier medical journal:
+Read this study title and abstract from a top-tier medical journal:
 Title: {title}
 Abstract: {abstract}
 
-Provide a concise, high-yield clinical takeaway (1-2 sentences maximum, under 55 words) for practicing neurologists. Preserve exact statistical outcomes if present (e.g., OR, HR, RR, 95% CI, p-value, mRS). Do NOT use LaTeX math syntax (no $ signs, no \\beta or \\times); use plain Unicode characters (β, α, ×, ±, ≤, ≥) instead. Do not include introductory filler, draft notes, word counting, or section headers. Return only the final takeaway."""
+Return a JSON object with exactly two fields:
+1. "study_type": Classify this specific article into exactly ONE of [{valid_types_str}].
+   - Critical rule: Distinguish an actual randomized controlled trial ("RCT") where the authors themselves randomized patients in this study, vs. a "Review", "Meta-Analysis", or "Guideline" that merely summarizes or cites pooled randomized trial data from prior studies.
+   - A JAMA/journal clinical review with "Importance / Observations / Conclusions and Relevance" (without original Methods/Results) MUST be classified as "Review", NEVER "RCT" or "Clinical Trial".
+   - Observational cohorts, Mendelian randomization, or registry analyses MUST be "Original Article", NEVER "RCT".
+   - Post-hoc, secondary, subgroup, single-arm, non-randomized, or phase 1 trials should be "Clinical Trial".
+2. "takeaway": A concise, high-yield clinical takeaway (1-2 sentences maximum, under 55 words) for practicing neurologists. Preserve exact statistical outcomes if present (e.g., OR, HR, RR, 95% CI, p-value, mRS). Do NOT use LaTeX math syntax (no $ signs, no \\beta or \\times); use plain Unicode characters (β, α, ×, ±, ≤, ≥) instead. No introductory filler or headers."""
 
-    system_instruction = "You are an expert clinical neurologist and methodologist. Return ONLY the final 1-2 sentence clinical takeaway directly. Never output reasoning, scratchpad, drafts, word counts, or preambles."
+    system_instruction = "You are an expert clinical neurologist and methodologist. Return ONLY valid JSON matching the requested schema. Never output reasoning, markdown prose, or extra keys."
+
+    response_schema = {
+        "type": "OBJECT",
+        "properties": {
+            "study_type": {
+                "type": "STRING",
+                "enum": list(STUDY_TYPE_HIERARCHY.keys()),
+            },
+            "takeaway": {
+                "type": "STRING",
+            },
+        },
+        "required": ["study_type", "takeaway"],
+    }
 
     payload_no_thinking = {
         "contents": [{"parts": [{"text": prompt}]}],
         "systemInstruction": {"parts": [{"text": system_instruction}]},
         "generationConfig": {
-            "temperature": 0.15,
+            "temperature": 0.1,
             "maxOutputTokens": 1024,
+            "responseMimeType": "application/json",
+            "responseSchema": response_schema,
             "thinkingConfig": {
                 "thinkingBudget": 0
             }
@@ -664,8 +760,9 @@ Provide a concise, high-yield clinical takeaway (1-2 sentences maximum, under 55
         "contents": [{"parts": [{"text": prompt}]}],
         "systemInstruction": {"parts": [{"text": system_instruction}]},
         "generationConfig": {
-            "temperature": 0.15,
-            "maxOutputTokens": 1024
+            "temperature": 0.1,
+            "maxOutputTokens": 1024,
+            "responseMimeType": "application/json",
         }
     }
 
@@ -690,17 +787,17 @@ Provide a concise, high-yield clinical takeaway (1-2 sentences maximum, under 55
                                 break
                             parts = candidate.get("content", {}).get("parts", [])
                             text_chunks = [p.get("text", "") for p in parts if "text" in p and not p.get("thought")]
-                            summary = clean_takeaway_text(" ".join(text_chunks))
-                            if is_valid_clinical_takeaway(summary):
+                            parsed = _parse_gemini_analysis_response(" ".join(text_chunks))
+                            if parsed:
                                 time.sleep(1.2)
-                                return summary
+                                return parsed
                             else:
                                 break
                     success = True
                     break
                 except urllib.error.HTTPError as e:
                     if e.code == 400:
-                        # thinkingConfig không được hỗ trợ trên model này, thử payload_fallback
+                        # thinkingConfig hoặc responseSchema không được hỗ trợ trên model này, thử payload_fallback
                         break
                     elif e.code in (429, 500, 502, 503, 504):
                         time.sleep(2 * (attempt + 1))
@@ -713,7 +810,7 @@ Provide a concise, high-yield clinical takeaway (1-2 sentences maximum, under 55
             if success:
                 break
 
-    return ""
+    return None
 
 def fetch_pubmed_abstract(doi: str, title: str = "") -> str:
     try:
@@ -1233,16 +1330,28 @@ def run():
                 j_short = art.get("journal", {}).get("short_name", "")
                 ai_res = analyze_abstract_with_gemini(art.get("title", ""), art.get("abstract", ""))
 
-                if ai_res and is_valid_clinical_takeaway(ai_res):
+                if ai_res and is_valid_clinical_takeaway(ai_res.get("takeaway", "")):
                     consecutive_failures = 0
                     remaining_quota -= 1
                     analyzed_count += 1
                     batch_updated = True
                     if "ai_takeaways" not in art or not isinstance(art["ai_takeaways"], dict):
                         art["ai_takeaways"] = {}
-                    art["ai_takeaways"]["conclusion_vi"] = ai_res
+                    art["ai_takeaways"]["conclusion_vi"] = ai_res["takeaway"]
                     art["ai_takeaways"]["ai_verified"] = True
-                    print(f"   [✨ Gemini AI #{analyzed_count} | {pub_day} | {j_short}] {art.get('title', '')[:55]}...")
+                    ai_study_type = ai_res.get("study_type", "")
+                    if ai_study_type:
+                        art["ai_takeaways"]["study_type"] = ai_study_type
+                        primary_t, all_t = detect_article_types(
+                            art.get("title", ""),
+                            art.get("abstract", ""),
+                            art.get("id", ""),
+                            author_count=len(art.get("authors", [])),
+                            ai_study_type=ai_study_type,
+                        )
+                        art["article_type"] = primary_t
+                        art["article_types"] = all_t
+                    print(f"   [✨ Gemini AI #{analyzed_count} | {pub_day} | {j_short} | {art.get('article_type')}] {art.get('title', '')[:50]}...")
                 else:
                     # Fallback an toàn vào kết luận chính của nghiên cứu nếu AI gặp lỗi hoặc sinh câu dở dang
                     fallback_takeaway = extract_fallback_takeaway(art.get("abstract", ""))

@@ -142,29 +142,29 @@ export function DrugAccordions({
           </button>
 
           {openSections.pregnancy && (
-            <div className="p-4 sm:p-5 pt-0 space-y-4 border-t border-slate-100 dark:border-slate-800/80">
+            <div className="p-4 sm:p-5 divide-y divide-slate-100 dark:divide-slate-800/80 border-t border-slate-100 dark:border-slate-800/80">
               {/* Reproductive Tier & Folic Acid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3">
-                <div className="p-3.5 sm:p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 space-y-1.5">
-                  <div className="flex items-center justify-between">
-                    <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-800 dark:text-slate-200">
-                      Pregnancy Safety Tier:
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 pb-4">
+                <div className="space-y-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300">
+                      Pregnancy Safety Tier
                     </span>
                     <SourcePopover refs={rep.tier?.refs} sources={sources} darkMode={darkMode} />
                   </div>
-                  <p className="text-sm sm:text-[15px] font-medium text-slate-800 dark:text-slate-200 leading-relaxed">
+                  <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
                     {rep.tier?.value ? `Classification: ${rep.tier.value}` : "No recommendation in sources"}
                   </p>
                 </div>
 
-                <div className="p-3.5 sm:p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 space-y-1.5">
-                  <div className="flex items-center justify-between">
-                    <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-800 dark:text-slate-200">
-                      Folic Acid Supplementation:
+                <div className="space-y-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300">
+                      Folic Acid Supplementation
                     </span>
                     <SourcePopover refs={rep.folic_acid?.refs} sources={sources} darkMode={darkMode} />
                   </div>
-                  <p className="text-sm sm:text-[15px] font-medium text-slate-800 dark:text-slate-200 leading-relaxed">
+                  <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
                     {rep.folic_acid?.value || "No recommendation in sources"}
                   </p>
                 </div>
@@ -172,18 +172,18 @@ export function DrugAccordions({
 
               {/* Major Congenital Malformations (MCM) */}
               {rep.mcm && rep.mcm.length > 0 && (
-                <div className="space-y-2">
-                  <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-800 dark:text-slate-200 block">
-                    Major Congenital Malformation (MCM) Registries:
+                <div className="py-4 space-y-2">
+                  <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300 block">
+                    Major Congenital Malformation (MCM) Registries
                   </span>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
                     {rep.mcm.map((m, idx) => (
                       <div
                         key={idx}
-                        className="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex items-center justify-between"
+                        className="py-1.5 flex items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800/60"
                       >
                         <div>
-                          <span className="font-extrabold text-sm text-slate-800 dark:text-slate-200">
+                          <span className="font-bold text-sm text-slate-800 dark:text-slate-200">
                             {m.registry}:
                           </span>
                           <span className="font-bold text-rose-600 dark:text-rose-400 ml-1.5 text-sm sm:text-base">
@@ -199,15 +199,15 @@ export function DrugAccordions({
               )}
 
               {/* Lactation & Postpartum */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div className="p-3.5 sm:p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 space-y-1.5">
-                  <div className="flex items-center justify-between">
-                    <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-800 dark:text-slate-200">
-                      Lactation &amp; Breastfeeding:
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 pt-4">
+                <div className="space-y-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300">
+                      Lactation &amp; Breastfeeding
                     </span>
                     <SourcePopover refs={rep.lactation_summary?.refs} sources={sources} darkMode={darkMode} />
                   </div>
-                  <p className="text-sm sm:text-[15px] font-medium text-slate-800 dark:text-slate-200 leading-relaxed">
+                  <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
                     {rep.lactation_summary?.value || "No recommendation in sources"}
                   </p>
                   {rep.lactation_rid?.value && (
@@ -217,14 +217,14 @@ export function DrugAccordions({
                   )}
                 </div>
 
-                <div className="p-3.5 sm:p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 space-y-1.5">
-                  <div className="flex items-center justify-between">
-                    <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-800 dark:text-slate-200">
-                      Postpartum &amp; Contraception:
+                <div className="space-y-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300">
+                      Postpartum &amp; Contraception
                     </span>
                     <SourcePopover refs={rep.postpartum?.refs} sources={sources} darkMode={darkMode} />
                   </div>
-                  <p className="text-sm sm:text-[15px] font-medium text-slate-800 dark:text-slate-200 leading-relaxed">
+                  <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
                     {rep.postpartum?.value || "No recommendation in sources"}
                   </p>
                 </div>
@@ -266,17 +266,17 @@ export function DrugAccordions({
           </button>
 
           {openSections.neuro && (
-            <div className="p-4 sm:p-5 pt-0 space-y-4 border-t border-slate-100 dark:border-slate-800/80">
+            <div className="p-4 sm:p-5 divide-y divide-slate-100 dark:divide-slate-800/80 border-t border-slate-100 dark:border-slate-800/80">
               {/* Mechanism of Action */}
               {drug.mechanism_of_action?.value && (
-                <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 space-y-1.5 mt-3">
-                  <div className="flex items-center justify-between">
-                    <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-800 dark:text-slate-200">
-                      Mechanism of Action:
+                <div className="pb-4 space-y-1.5">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300">
+                      Mechanism of Action
                     </span>
                     <SourcePopover refs={drug.mechanism_of_action?.refs} sources={sources} darkMode={darkMode} />
                   </div>
-                  <p className="text-sm sm:text-[15px] font-medium text-slate-800 dark:text-slate-200 leading-relaxed">
+                  <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
                     {drug.mechanism_of_action.value}
                   </p>
                 </div>
@@ -284,10 +284,10 @@ export function DrugAccordions({
 
               {/* Adverse Effect Tags */}
               {drug.ae_tags?.value && drug.ae_tags.value.length > 0 && (
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
+                <div className="py-4 first:pt-0 space-y-2">
+                  <div className="flex items-center justify-between gap-2">
                     <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300">
-                      Adverse Effect Classification Tags:
+                      Adverse Effect Classification Tags
                     </span>
                     <SourcePopover refs={drug.ae_tags?.refs} sources={sources} darkMode={darkMode} />
                   </div>
@@ -306,16 +306,16 @@ export function DrugAccordions({
 
               {/* Serious & Most Common Adverse Reactions */}
               {(drug.adverse_effects?.serious?.value || drug.adverse_effects?.most_common?.value) && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="py-4 first:pt-0 grid grid-cols-1 sm:grid-cols-2 gap-6">
                   {drug.adverse_effects?.serious?.value && (
-                    <div className="p-4 rounded-xl bg-rose-500/5 border border-rose-500/20 space-y-2">
-                      <div className="flex items-center justify-between">
+                    <div className="p-3.5 sm:p-4 rounded-xl bg-rose-500/5 border border-rose-500/20 space-y-2">
+                      <div className="flex items-center justify-between gap-2">
                         <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-rose-800 dark:text-rose-300">
-                          Serious Adverse Reactions:
+                          Serious Adverse Reactions
                         </span>
                         <SourcePopover refs={drug.adverse_effects.serious.refs} sources={sources} darkMode={darkMode} />
                       </div>
-                      <ul className="list-disc list-inside space-y-1 text-slate-800 dark:text-slate-200 text-sm leading-relaxed font-medium">
+                      <ul className="list-disc list-inside space-y-1 text-slate-800 dark:text-slate-200 text-sm leading-relaxed font-normal">
                         {drug.adverse_effects.serious.value.map((ae, idx) => (
                           <li key={idx}>{ae}</li>
                         ))}
@@ -324,14 +324,14 @@ export function DrugAccordions({
                   )}
 
                   {drug.adverse_effects?.most_common?.value && (
-                    <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 space-y-2">
-                      <div className="flex items-center justify-between">
-                        <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-800 dark:text-slate-200">
-                          Most Common Reactions (≥ 5%):
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300">
+                          Most Common Reactions (≥ 5%)
                         </span>
                         <SourcePopover refs={drug.adverse_effects.most_common.refs} sources={sources} darkMode={darkMode} />
                       </div>
-                      <ul className="list-disc list-inside space-y-1 text-slate-800 dark:text-slate-200 text-sm leading-relaxed font-medium">
+                      <ul className="list-disc list-inside space-y-1 text-slate-800 dark:text-slate-200 text-sm leading-relaxed font-normal">
                         {drug.adverse_effects.most_common.value.map((ae, idx) => (
                           <li key={idx}>{ae}</li>
                         ))}
@@ -342,15 +342,15 @@ export function DrugAccordions({
               )}
 
               {/* Pharmacogenomics (PGx) */}
-              <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 space-y-1.5">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-800 dark:text-slate-200">
+              <div className="pt-4 first:pt-0 space-y-1.5">
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2 font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300">
                     <Dna className="w-4 h-4 text-sky-500" />
-                    <span>Pharmacogenomics (PGx):</span>
+                    <span>Pharmacogenomics (PGx)</span>
                   </div>
                   <SourcePopover refs={drug.pgx?.refs} sources={sources} darkMode={darkMode} />
                 </div>
-                <p className="text-sm sm:text-[15px] font-medium text-slate-800 dark:text-slate-200 leading-relaxed">
+                <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
                   {drug.pgx?.value || "No recommendation in sources (No testing required by FDA label)"}
                 </p>
               </div>
@@ -391,12 +391,12 @@ export function DrugAccordions({
           </button>
 
           {openSections.pk && (
-            <div className="p-4 sm:p-5 pt-0 space-y-4 border-t border-slate-100 dark:border-slate-800/80">
+            <div className="p-4 sm:p-5 divide-y divide-slate-100 dark:divide-slate-800/80 border-t border-slate-100 dark:border-slate-800/80">
               {/* Renal Impairment Guidance */}
-              <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 space-y-2 mt-3">
-                <div className="flex items-center justify-between">
-                  <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-800 dark:text-slate-200">
-                    Renal Impairment Guidance:
+              <div className="pb-4 space-y-2.5">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300">
+                    Renal Impairment Guidance
                   </span>
                   <SourcePopover
                     refs={drug.renal_impairment?.refs || drug.renal_basis?.refs}
@@ -404,7 +404,7 @@ export function DrugAccordions({
                     darkMode={darkMode}
                   />
                 </div>
-                <p className="text-sm sm:text-[15px] font-medium text-slate-800 dark:text-slate-200 leading-relaxed">
+                <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
                   {(() => {
                     const desc = drug.renal_impairment?.description?.trim();
                     const hasBands = Boolean(
@@ -432,15 +432,15 @@ export function DrugAccordions({
 
                 {/* Renal bands summary if available */}
                 {drug.renal_impairment?.bands && drug.renal_impairment.bands.length > 0 && (
-                  <div className="space-y-1.5 pt-2">
-                    <span className="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-slate-700 dark:text-slate-300 block">
+                  <div className="space-y-1.5 pt-1">
+                    <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 block">
                       Renal Dosage Adjustments ({drug.renal_basis?.value || "cg_abw"}):
                     </span>
-                    <div className="space-y-1.5">
+                    <div className="divide-y divide-slate-100 dark:divide-slate-800/60 border-t border-b border-slate-100 dark:border-slate-800/60">
                       {drug.renal_impairment.bands.map((b, idx) => (
                         <div
                           key={idx}
-                          className="p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between gap-3 text-sm"
+                          className="py-2 flex items-center justify-between gap-3 text-sm"
                         >
                           <span className="font-bold text-slate-900 dark:text-slate-100">
                             {b.min === null
@@ -450,7 +450,7 @@ export function DrugAccordions({
                               : `${b.min} – ${b.max}`}{" "}
                             mL/min:
                           </span>
-                          <span className="font-medium text-slate-800 dark:text-slate-200">
+                          <span className="font-normal text-slate-700 dark:text-slate-300 text-right">
                             {b.dose_text}
                           </span>
                         </div>
@@ -461,11 +461,11 @@ export function DrugAccordions({
 
                 {/* Hemodialysis note */}
                 {drug.renal_impairment?.hemodialysis?.value && (
-                  <div className="p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between gap-3 text-sm">
-                    <span className="font-extrabold text-slate-800 dark:text-slate-200 shrink-0">
+                  <div className="pt-1 flex items-baseline justify-between gap-3 text-sm">
+                    <span className="font-bold text-slate-800 dark:text-slate-200 shrink-0">
                       Hemodialysis / ESRD:
                     </span>
-                    <span className="font-medium text-slate-800 dark:text-slate-200 text-right">
+                    <span className="font-normal text-slate-700 dark:text-slate-300 text-right">
                       {drug.renal_impairment.hemodialysis.value}
                     </span>
                   </div>
@@ -473,24 +473,24 @@ export function DrugAccordions({
               </div>
 
               {/* Hepatic Impairment */}
-              <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 space-y-1.5">
-                <div className="flex items-center justify-between">
-                  <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-800 dark:text-slate-200">
-                    Hepatic Impairment Guidance:
+              <div className="py-4 space-y-1.5">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300">
+                    Hepatic Impairment Guidance
                   </span>
                   <SourcePopover refs={drug.hepatic?.refs} sources={sources} darkMode={darkMode} />
                 </div>
-                <p className="text-sm sm:text-[15px] font-medium text-slate-800 dark:text-slate-200 leading-relaxed">
+                <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
                   {drug.hepatic?.value || "No dosage adjustment necessary for hepatic impairment."}
                 </p>
               </div>
 
               {/* Enzyme & Interaction Profile */}
               {enz && (
-                <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 space-y-2.5">
-                  <div className="flex items-center justify-between">
-                    <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-800 dark:text-slate-200">
-                      CYP &amp; Transporter Metabolism Profile:
+                <div className="pt-4 space-y-2">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300">
+                      CYP &amp; Transporter Metabolism Profile
                     </span>
                     <SourcePopover refs={drug.enzyme_profile?.refs} sources={sources} darkMode={darkMode} />
                   </div>
@@ -635,13 +635,13 @@ export function DrugAccordions({
                 <SourcePopover refs={fdaInteractions.refs} sources={sources} darkMode={darkMode} />
               </div>
 
-              <div className="space-y-3">
+              <div className="divide-y divide-slate-100 dark:divide-slate-800/80">
                 {fdaInteractions.value.map((item, idx) => {
                   const sev = item.severity;
                   return (
                     <div
                       key={idx}
-                      className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-800/40 space-y-2.5"
+                      className="py-3.5 first:pt-0 last:pb-0 space-y-2"
                     >
                       <div className="flex items-start justify-between gap-2">
                         <div className="flex items-center gap-2 flex-wrap">

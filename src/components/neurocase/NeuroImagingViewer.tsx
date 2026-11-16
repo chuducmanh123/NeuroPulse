@@ -39,7 +39,7 @@ export function NeuroImagingViewer({
               ? `${imagingList.length} Clinical Figures`
               : imagingList[0].modality || "Clinical & Imaging"}
           </span>
-          {imagingList[0].pmcid && (
+          {isSolved && imagingList[0].pmcid && (
             <a
               href={
                 imagingList[0].doi_url ||

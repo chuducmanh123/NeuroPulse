@@ -3,11 +3,33 @@ export interface StudyTypeDetectionResult {
   allTypes: string[];
 }
 
+export const STUDY_TYPE_HIERARCHY: Record<string, string[]> = {
+  "Editorial / Perspective": ["Editorial / Perspective"],
+  "Case Report": ["Case Report"],
+  Guideline: ["Guideline", "Review"],
+  "Meta-Analysis": ["Meta-Analysis", "Review", "Original Article"],
+  Review: ["Review"],
+  RCT: ["RCT", "Clinical Trial", "Original Article"],
+  "Clinical Trial": ["Clinical Trial", "Original Article"],
+  "Original Article": ["Original Article"],
+};
+
+export function mapPrimaryStudyTypeToAllTypes(
+  primaryType?: string | null
+): [string, string[]] | null {
+  if (!primaryType) return null;
+  const normalized = primaryType.trim();
+  const mapped = STUDY_TYPE_HIERARCHY[normalized];
+  if (!mapped) return null;
+  return [normalized, [...mapped]];
+}
+
 export function detectStudyTypes(
   title: string,
   abstract: string = "",
   doi: string = "",
-  authorCount: number = 1
+  authorCount: number = 1,
+  aiStudyType?: string
 ): [string, string[]] {
   const titleL = title.toLowerCase();
   const absL = (abstract || "").toLowerCase();
@@ -20,6 +42,7 @@ export function detectStudyTypes(
     !absL.startsWith("the authors declare") &&
     absL.length >= 80;
 
+  // Tầng 1: Hard metadata/DOI/title guards cho các loại bài ngắn đặc thù
   if (
     doiL.includes("/nejme") ||
     doiL.includes("/nejmp") ||
@@ -45,6 +68,13 @@ export function detectStudyTypes(
     return ["Case Report", ["Case Report"]];
   }
 
+  // Tầng 2: Ưu tiên phân loại ngữ nghĩa từ AI nếu bài đã được AI đọc và phân tích
+  const aiMapped = mapPrimaryStudyTypeToAllTypes(aiStudyType);
+  if (aiMapped) {
+    return aiMapped;
+  }
+
+  // Tầng 3: Rule-based fallback (khi bài chưa qua AI hoặc không có abstract)
   // Guideline chỉ tính khi nằm trên Tiêu đề
   if (
     /\b(guideline|guidelines|consensus|scientific statement|practice advisory|practice parameter|position statement|recommendations from)\b/i.test(
@@ -62,11 +92,17 @@ export function detectStudyTypes(
     return ["Meta-Analysis", ["Meta-Analysis", "Review", "Original Article"]];
   }
 
+  const hasMethodsOrResultsSection =
+    /\b(methods|patients and methods|study design|results|findings)\s*:/i.test(absL);
+  const isStructuredClinicalReview =
+    /\bobservations\s*:/i.test(absL) && !hasMethodsOrResultsSection;
+
   const isSecondaryOrTrial =
     /\b(randomized|randomised|clinical trial|phase [123]|cohort|case-control)\b/i.test(titleL);
   if (
     !isSecondaryOrTrial &&
-    (/\b(review|seminar|state of the art|contemporary issues|primer)\b/i.test(titleL) ||
+    (isStructuredClinicalReview ||
+      /\b(review|seminar|state of the art|contemporary issues|primer)\b/i.test(titleL) ||
       (hasRealAbs &&
         !absL.includes("methods") &&
         !absL.includes("results") &&
@@ -90,20 +126,31 @@ export function detectStudyTypes(
       combined
     );
 
-  // Loại bỏ cụm từ "warrant confirmation in randomized controlled trials" ở cuối bài khỏi tín hiệu RCT
-  const cleanedForRctCheck = combined.replace(
-    /\b(warrant\w*|need\w*|require\w*|confirm\w*|future|further)\s+(confirmation\s+in\s+|validation\s+in\s+)?(randomized|randomised)\s+(controlled\s+)?trials?\b/gi,
-    ""
-  );
+  // Loại bỏ các cụm trích dẫn/tham chiếu RCT của nghiên cứu khác khỏi tín hiệu RCT
+  const cleanedForRctCheck = combined
+    .replace(
+      /\b(warrant\w*|need\w*|require\w*|confirm\w*|future|further)\s+(confirmation\s+in\s+|validation\s+in\s+)?(randomized|randomised)\s+(controlled\s+)?trials?\b/gi,
+      ""
+    )
+    .replace(
+      /\b(pooled|previous|prior|existing|available|recent|data from|evidence from|results from)\s+(randomized|randomised)\s+(controlled\s+)?trials?(\s+data)?\b/gi,
+      ""
+    )
+    .replace(
+      /\b(randomized|randomised)\s+(controlled\s+)?trials?\s+(show|demonstrate|suggest|indicate|have shown)\b/gi,
+      ""
+    );
 
   const hasRctSignals =
     !isObservationalCohort &&
+    !isStructuredClinicalReview &&
     /\b(randomized|randomised|double-blind|placebo-controlled|phase 3|phase 2|phase iii|phase ii|randomly assigned|assigned in a \d+:\d+)\b/i.test(
       cleanedForRctCheck
     );
   const hasTrialSignals =
-    hasRctSignals ||
-    /\b(clinical trial|trial|phase 1|phase i|open-label|intervention)\b/i.test(titleL);
+    !isStructuredClinicalReview &&
+    (hasRctSignals ||
+      /\b(clinical trial|trial|phase 1|phase i|open-label|intervention)\b/i.test(titleL));
 
   if (hasRctSignals && !isPosthocOrNonRct) {
     return ["RCT", ["RCT", "Clinical Trial", "Original Article"]];

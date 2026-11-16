@@ -115,14 +115,10 @@ export function ReproDetail({
         )}
 
         {/* 3 Stages Content */}
-        <div className="space-y-5 text-xs sm:text-sm">
+        <div className="divide-y divide-slate-200 dark:divide-slate-800 text-xs sm:text-sm">
           {/* Stage 1: Preconception */}
-          <div
-            className={`p-4 rounded-xl border ${
-              darkMode ? "bg-slate-950/40 border-slate-800" : "bg-slate-50/70 border-slate-200"
-            }`}
-          >
-            <div className="flex items-center gap-2 font-bold text-indigo-600 dark:text-indigo-400 text-xs uppercase tracking-wider mb-2.5">
+          <div className="pb-4 space-y-2.5">
+            <div className="flex items-center gap-2 font-bold text-indigo-600 dark:text-indigo-400 text-xs uppercase tracking-wider">
               <HeartHandshake className="w-4 h-4" />
               <span>Stage 1: Preconception Planning</span>
             </div>
@@ -133,12 +129,8 @@ export function ReproDetail({
           </div>
 
           {/* Stage 2: Pregnancy */}
-          <div
-            className={`p-4 rounded-xl border ${
-              darkMode ? "bg-slate-950/40 border-slate-800" : "bg-slate-50/70 border-slate-200"
-            }`}
-          >
-            <div className="flex items-center gap-2 font-bold text-rose-600 dark:text-rose-400 text-xs uppercase tracking-wider mb-2.5">
+          <div className="py-4 space-y-2.5">
+            <div className="flex items-center gap-2 font-bold text-rose-600 dark:text-rose-400 text-xs uppercase tracking-wider">
               <Baby className="w-4 h-4" />
               <span>Stage 2: Pregnancy & Pharmacokinetics</span>
             </div>
@@ -154,15 +146,11 @@ export function ReproDetail({
                   Major Congenital Malformations (MCM per Registry)
                 </span>
                 {!isDraft && repro?.mcm && repro.mcm.length > 0 ? (
-                  <div className="space-y-2 mt-1.5">
+                  <div className="divide-y divide-slate-100 dark:divide-slate-800/70 mt-1">
                     {repro.mcm.map((entry, idx) => (
                       <div
                         key={idx}
-                        className={`p-2.5 rounded-lg border flex items-center justify-between text-xs ${
-                          darkMode
-                            ? "bg-slate-900 border-slate-700 text-slate-300"
-                            : "bg-white border-slate-200 text-slate-700"
-                        }`}
+                        className="py-2 flex items-center justify-between text-xs"
                       >
                         <div>
                           <div className="font-bold text-slate-900 dark:text-slate-100">
@@ -197,12 +185,8 @@ export function ReproDetail({
           </div>
 
           {/* Stage 3: Postpartum */}
-          <div
-            className={`p-4 rounded-xl border ${
-              darkMode ? "bg-slate-950/40 border-slate-800" : "bg-slate-50/70 border-slate-200"
-            }`}
-          >
-            <div className="flex items-center gap-2 font-bold text-emerald-600 dark:text-emerald-400 text-xs uppercase tracking-wider mb-2.5">
+          <div className="py-4 space-y-2.5">
+            <div className="flex items-center gap-2 font-bold text-emerald-600 dark:text-emerald-400 text-xs uppercase tracking-wider">
               <Sparkles className="w-4 h-4" />
               <span>Stage 3: Postpartum Dose Adjustment</span>
             </div>
@@ -214,12 +198,8 @@ export function ReproDetail({
           </div>
 
           {/* Lactation Block */}
-          <div
-            className={`p-4 rounded-xl border ${
-              darkMode ? "bg-slate-950/40 border-slate-800" : "bg-slate-50/70 border-slate-200"
-            }`}
-          >
-            <div className="flex items-center gap-2 font-bold text-amber-600 dark:text-amber-400 text-xs uppercase tracking-wider mb-2.5">
+          <div className="pt-4 space-y-2.5">
+            <div className="flex items-center gap-2 font-bold text-amber-600 dark:text-amber-400 text-xs uppercase tracking-wider">
               <span>🍼 Lactation & Infant Exposure (LactMed)</span>
             </div>
             <div className="space-y-2">

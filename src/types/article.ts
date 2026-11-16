@@ -23,5 +23,6 @@ export interface Article {
     conclusion_vi: string;
     clinical_significance?: string;
     ai_verified?: boolean;
+    study_type?: string;
   };
 }

@@ -153,10 +153,10 @@ export function DoseCard({
         </div>
 
         {/* Card Body: Clinical Administration & Specific Guidance */}
-        <div className="p-4 sm:p-5 space-y-3.5 sm:space-y-4">
+        <div className="p-4 sm:p-5 space-y-4">
           {/* Specific Clinical Administration & Instructions */}
           {(activeRegimen.dose_text || resolution.ruleText) && (
-            <div className="p-3.5 sm:p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 space-y-2">
+            <div className="space-y-1.5">
               <div className="flex items-center gap-2">
                 <FileText className="w-4 h-4 text-sky-600 dark:text-sky-400 shrink-0" />
                 <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200">
@@ -171,8 +171,8 @@ export function DoseCard({
 
           {/* IV Infusion Protocol / Preparation */}
           {drug.tools?.iv_infusion?.value && (activeRegimen.route === "IV" || !activeRegimen.route) && (
-            <div className="p-3.5 sm:p-4 rounded-xl bg-sky-500/10 border-2 border-sky-500/25 space-y-2.5">
-              <div className="flex items-center gap-2 font-bold text-xs sm:text-sm text-sky-950 dark:text-sky-200 uppercase tracking-wider">
+            <div className="pt-4 border-t border-slate-100 dark:border-slate-800/80 space-y-2.5">
+              <div className="flex items-center gap-2 font-bold text-xs sm:text-sm text-sky-900 dark:text-sky-300 uppercase tracking-wider">
                 <Syringe className="w-4 h-4 text-sky-600 dark:text-sky-400 shrink-0" />
                 <span className="break-words">IV Preparation &amp; Administration Protocol:</span>
               </div>
@@ -181,35 +181,37 @@ export function DoseCard({
                   {drug.tools.iv_infusion.value.instructions}
                 </p>
               )}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-                {drug.tools.iv_infusion.value.diluent && (
-                  <div className="p-3 sm:p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-sky-200 dark:border-sky-800 shadow-2xs space-y-1">
-                    <strong className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-sky-900 dark:text-sky-300 block">
-                      Reconstitution / Diluent:
-                    </strong>
-                    <span className="text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300 leading-relaxed block">
-                      {drug.tools.iv_infusion.value.diluent}
-                    </span>
-                  </div>
-                )}
-                {drug.tools.iv_infusion.value.rate && (
-                  <div className="p-3 sm:p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-sky-200 dark:border-sky-800 shadow-2xs space-y-1">
-                    <strong className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-sky-900 dark:text-sky-300 block">
-                      Infusion Rate:
-                    </strong>
-                    <span className="text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300 leading-relaxed block">
-                      {drug.tools.iv_infusion.value.rate}
-                    </span>
-                  </div>
-                )}
-              </div>
+              {(drug.tools.iv_infusion.value.diluent || drug.tools.iv_infusion.value.rate) && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+                  {drug.tools.iv_infusion.value.diluent && (
+                    <div className="space-y-1">
+                      <strong className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 block">
+                        Reconstitution / Diluent:
+                      </strong>
+                      <span className="text-xs sm:text-sm font-normal text-slate-700 dark:text-slate-300 leading-relaxed block">
+                        {drug.tools.iv_infusion.value.diluent}
+                      </span>
+                    </div>
+                  )}
+                  {drug.tools.iv_infusion.value.rate && (
+                    <div className="space-y-1">
+                      <strong className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 block">
+                        Infusion Rate:
+                      </strong>
+                      <span className="text-xs sm:text-sm font-normal text-slate-700 dark:text-slate-300 leading-relaxed block">
+                        {drug.tools.iv_infusion.value.rate}
+                      </span>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           )}
 
           {/* Enteral / NG Tube Guidance */}
           {drug.ng_tube?.value?.instructions && (activeRegimen.route === "NG" || activeRegimen.route === "PO") && (
-            <div className="p-3.5 sm:p-4 rounded-xl bg-amber-500/10 border-2 border-amber-500/25 space-y-2">
-              <span className="text-xs sm:text-sm font-bold tracking-wider uppercase text-amber-950 dark:text-amber-200 block">
+            <div className="pt-4 border-t border-slate-100 dark:border-slate-800/80 space-y-1.5">
+              <span className="text-xs sm:text-sm font-bold tracking-wider uppercase text-amber-800 dark:text-amber-300 block">
                 Enteral / NG Tube Administration:
               </span>
               <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-normal leading-relaxed break-words">
