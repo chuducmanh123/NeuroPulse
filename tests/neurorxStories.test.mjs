@@ -158,14 +158,18 @@ describe("NeuroRx Acceptance: User Stories 1–7", () => {
 
   // User Story 5: A drug in draft status shows Pending verification and no dosing numbers anywhere.
   test("User Story 5: A drug in draft status suppresses computed dosing numbers and generated orders", () => {
-    // Draft drug (e.g. apixaban before verification)
     const apixaban = allDrugs.find((d) => d.id === "apixaban");
     assert.ok(apixaban);
-    assert.equal(apixaban.status, "draft");
+    const draftApixaban = {
+      ...apixaban,
+      status: "draft",
+      verification: { verified_by: null, verified_at: null, content_hash: null },
+    };
+    assert.equal(draftApixaban.status, "draft");
 
     const patient = { weightKg: 70, ageYears: 65, scr: { value: 90, unit: "umol/L" }, isPediatric: false };
     const renal = { value: 90, basisUsed: "cg_abw", label: "Normal" };
-    const res = resolveRegimen(apixaban, apixaban.regimens[0], patient, renal);
+    const res = resolveRegimen(draftApixaban, draftApixaban.regimens[0], patient, renal);
 
     // Dose engine returns safety lockout
     assert.equal(res.state, "blocked_draft");
