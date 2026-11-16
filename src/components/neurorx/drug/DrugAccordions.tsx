@@ -15,7 +15,11 @@ import {
   HeartPulse,
   ArrowRightLeft,
 } from "lucide-react";
-import type { DrugRecord, Source } from "@/types/neurorx";
+import type { DrugRecord, Source, Sourced } from "@/types/neurorx";
+import {
+  REPRO_TIER_LABELS,
+  isReproNotApplicable,
+} from "@/lib/neurorx/reproductive";
 import { SourcePopover } from "./SourcePopover";
 
 interface DrugAccordionsProps {
@@ -49,11 +53,33 @@ export function DrugAccordions({
       (rep.tier?.value ||
         (rep.mcm && rep.mcm.length > 0) ||
         rep.folic_acid?.value ||
+        rep.pregnancy_pk?.value ||
         rep.postpartum?.value ||
         rep.contraception?.value ||
         rep.lactation_summary?.value ||
         rep.lactation_rid?.value)
   );
+
+  const renderReproFieldValue = (
+    field: Sourced<string> | undefined,
+    fallback = "No recommendation in sources"
+  ) => {
+    if (isReproNotApplicable(field)) {
+      return (
+        <span className="text-slate-400 dark:text-slate-500 italic">
+          Not clinically applicable
+        </span>
+      );
+    }
+    if (field?.value) {
+      return field.value;
+    }
+    return (
+      <span className="text-slate-400 dark:text-slate-500 italic">
+        {fallback}
+      </span>
+    );
+  };
 
   // 2. Neuro Clinical Notes & PGx Data check
   const hasNeuroNotes = Boolean(
@@ -143,64 +169,124 @@ export function DrugAccordions({
 
           {openSections.pregnancy && (
             <div className="p-4 sm:p-5 divide-y divide-slate-100 dark:divide-slate-800/80 border-t border-slate-100 dark:border-slate-800/80">
-              {/* Reproductive Tier & Folic Acid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 pb-4">
-                <div className="space-y-1">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300">
-                      Pregnancy Safety Tier
-                    </span>
-                    <SourcePopover refs={rep.tier?.refs} sources={sources} darkMode={darkMode} />
+              {/* Stage 1: Preconception Planning */}
+              <div className="pb-4 space-y-3">
+                <span className="inline-block text-[11px] font-extrabold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+                  Stage 1 · Preconception Planning
+                </span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
+                  <div className="space-y-1">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300">
+                        Folic Acid Supplementation
+                      </span>
+                      <SourcePopover refs={rep.folic_acid?.refs} sources={sources} darkMode={darkMode} />
+                    </div>
+                    <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
+                      {renderReproFieldValue(rep.folic_acid)}
+                    </p>
                   </div>
-                  <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
-                    {rep.tier?.value ? `Classification: ${rep.tier.value}` : "No recommendation in sources"}
-                  </p>
-                </div>
 
-                <div className="space-y-1">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300">
-                      Folic Acid Supplementation
-                    </span>
-                    <SourcePopover refs={rep.folic_acid?.refs} sources={sources} darkMode={darkMode} />
+                  <div className="space-y-1">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300">
+                        Contraceptive Interactions
+                      </span>
+                      <SourcePopover refs={rep.contraception?.refs} sources={sources} darkMode={darkMode} />
+                    </div>
+                    <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
+                      {renderReproFieldValue(rep.contraception)}
+                    </p>
                   </div>
-                  <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
-                    {rep.folic_acid?.value || "No recommendation in sources"}
-                  </p>
                 </div>
               </div>
 
-              {/* Major Congenital Malformations (MCM) */}
-              {rep.mcm && rep.mcm.length > 0 && (
-                <div className="py-4 space-y-2">
-                  <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300 block">
-                    Major Congenital Malformation (MCM) Registries
-                  </span>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
-                    {rep.mcm.map((m, idx) => (
-                      <div
-                        key={idx}
-                        className="py-1.5 flex items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800/60"
-                      >
-                        <div>
-                          <span className="font-bold text-sm text-slate-800 dark:text-slate-200">
-                            {m.registry}:
-                          </span>
-                          <span className="font-bold text-rose-600 dark:text-rose-400 ml-1.5 text-sm sm:text-base">
-                            {m.percent}%
-                          </span>
-                          {m.ci95 && <span className="text-slate-500 text-xs ml-1 font-medium">({m.ci95})</span>}
-                        </div>
-                        <SourcePopover refs={m.refs} sources={sources} darkMode={darkMode} />
-                      </div>
-                    ))}
+              {/* Stage 2: Pregnancy Safety, PK & Malformations */}
+              <div className="py-4 space-y-4">
+                <span className="inline-block text-[11px] font-extrabold uppercase tracking-wider text-rose-600 dark:text-rose-400">
+                  Stage 2 · Pregnancy Safety, PK &amp; Malformations
+                </span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
+                  <div className="space-y-1">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300">
+                        Pregnancy Safety Tier
+                      </span>
+                      <SourcePopover refs={rep.tier?.refs} sources={sources} darkMode={darkMode} />
+                    </div>
+                    <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
+                      {rep.tier?.value ? (
+                        REPRO_TIER_LABELS[rep.tier.value]
+                      ) : (
+                        <span className="text-slate-400 dark:text-slate-500 italic">
+                          Not specified in sources
+                        </span>
+                      )}
+                    </p>
+                  </div>
+
+                  <div className="space-y-1">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300">
+                        Pregnancy PK &amp; TDM Monitoring
+                      </span>
+                      <SourcePopover refs={rep.pregnancy_pk?.refs} sources={sources} darkMode={darkMode} />
+                    </div>
+                    <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
+                      {renderReproFieldValue(rep.pregnancy_pk)}
+                    </p>
                   </div>
                 </div>
-              )}
 
-              {/* Lactation & Postpartum */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 pt-4">
+                {rep.mcm && rep.mcm.length > 0 && (
+                  <div className="space-y-2 pt-1">
+                    <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300 block">
+                      Major Congenital Malformation (MCM) Registries
+                    </span>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
+                      {rep.mcm.map((m, idx) => (
+                        <div
+                          key={idx}
+                          className="py-1.5 flex items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800/60"
+                        >
+                          <div>
+                            <span className="font-bold text-sm text-slate-800 dark:text-slate-200">
+                              {m.registry}:
+                            </span>
+                            <span className="font-bold text-rose-600 dark:text-rose-400 ml-1.5 text-sm sm:text-base">
+                              {m.percent}%
+                            </span>
+                            {m.ci95 && <span className="text-slate-500 text-xs ml-1 font-medium">({m.ci95})</span>}
+                          </div>
+                          <SourcePopover refs={m.refs} sources={sources} darkMode={darkMode} />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Stage 3 & Stage 4: Postpartum & Lactation */}
+              <div className="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
                 <div className="space-y-1">
+                  <span className="block text-[11px] font-extrabold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-1">
+                    Stage 3 · Postpartum
+                  </span>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300">
+                      Postpartum Dose Adjustment
+                    </span>
+                    <SourcePopover refs={rep.postpartum?.refs} sources={sources} darkMode={darkMode} />
+                  </div>
+                  <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
+                    {renderReproFieldValue(rep.postpartum, "No specific postpartum dose reduction schedule in sources")}
+                  </p>
+                </div>
+
+                <div className="space-y-1">
+                  <span className="block text-[11px] font-extrabold uppercase tracking-wider text-amber-600 dark:text-amber-400 mb-1">
+                    Stage 4 · Lactation
+                  </span>
                   <div className="flex items-center justify-between gap-2">
                     <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300">
                       Lactation &amp; Breastfeeding
@@ -208,25 +294,13 @@ export function DrugAccordions({
                     <SourcePopover refs={rep.lactation_summary?.refs} sources={sources} darkMode={darkMode} />
                   </div>
                   <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
-                    {rep.lactation_summary?.value || "No recommendation in sources"}
+                    {renderReproFieldValue(rep.lactation_summary, "No lactation summary in sources")}
                   </p>
                   {rep.lactation_rid?.value && (
                     <span className="inline-block mt-1 text-xs font-bold px-2 py-0.5 rounded bg-sky-50 dark:bg-sky-950 text-sky-700 dark:text-sky-300 border border-sky-200/50">
                       Relative Infant Dose (RID): {rep.lactation_rid.value}
                     </span>
                   )}
-                </div>
-
-                <div className="space-y-1">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="font-extrabold text-xs sm:text-sm uppercase tracking-wide text-slate-700 dark:text-slate-300">
-                      Postpartum &amp; Contraception
-                    </span>
-                    <SourcePopover refs={rep.postpartum?.refs} sources={sources} darkMode={darkMode} />
-                  </div>
-                  <p className="text-sm sm:text-[15px] font-normal text-slate-800 dark:text-slate-200 leading-relaxed">
-                    {rep.postpartum?.value || "No recommendation in sources"}
-                  </p>
                 </div>
               </div>
             </div>

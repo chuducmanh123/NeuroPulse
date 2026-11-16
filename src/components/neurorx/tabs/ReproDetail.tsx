@@ -4,6 +4,11 @@ import React, { useEffect, useRef } from "react";
 import { X, Baby, HeartHandshake, ShieldAlert, Sparkles, AlertCircle } from "lucide-react";
 import type { DrugWithEffectiveStatus } from "@/lib/neurorx/sync/types";
 import type { Source, Sourced } from "@/types/neurorx";
+import {
+  REPRO_TIER_LABELS,
+  REPRO_TIER_SHORT,
+  isReproNotApplicable,
+} from "@/lib/neurorx/reproductive";
 import { SourcePopover } from "../drug/SourcePopover";
 
 interface ReproDetailProps {
@@ -39,10 +44,11 @@ export function ReproDetail({
     field: Sourced<string> | undefined,
     fallbackText = "No recommendation in sources"
   ) => {
+    const isNa = isReproNotApplicable(field);
     const text = field?.value;
     return (
       <div className="space-y-1">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-2">
           <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
             {label}
           </span>
@@ -55,9 +61,15 @@ export function ReproDetail({
             />
           )}
         </div>
-        <p className={`text-xs leading-relaxed ${text ? "text-slate-600 dark:text-slate-300" : "text-slate-400 italic"}`}>
-          {text || fallbackText}
-        </p>
+        {isNa ? (
+          <p className="text-xs text-slate-400 dark:text-slate-500 italic">
+            Not clinically applicable
+          </p>
+        ) : (
+          <p className={`text-xs leading-relaxed ${text ? "text-slate-600 dark:text-slate-300" : "text-slate-400 italic"}`}>
+            {text || fallbackText}
+          </p>
+        )}
       </div>
     );
   };
@@ -80,6 +92,19 @@ export function ReproDetail({
                 <Baby className="w-5 h-5" />
               </span>
               <h3 className="text-lg font-black tracking-tight">{displayName}</h3>
+              {repro?.tier?.value && (
+                <span
+                  className={`text-xs px-2 py-0.5 rounded-full font-bold border ${
+                    repro.tier.value === "preferred"
+                      ? "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border-emerald-500/20"
+                      : repro.tier.value === "caution"
+                      ? "bg-amber-500/15 text-amber-700 dark:text-amber-300 border-amber-500/20"
+                      : "bg-rose-500/15 text-rose-700 dark:text-rose-300 border-rose-500/20"
+                  }`}
+                >
+                  {REPRO_TIER_SHORT[repro.tier.value]}
+                </span>
+              )}
               {isDraft ? (
                 <span className="text-xs px-2 py-0.5 rounded-full font-bold bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/20">
                   Pending verification
@@ -128,13 +153,35 @@ export function ReproDetail({
             </div>
           </div>
 
-          {/* Stage 2: Pregnancy */}
+          {/* Stage 2: Pregnancy Safety, PK & Malformations */}
           <div className="py-4 space-y-2.5">
             <div className="flex items-center gap-2 font-bold text-rose-600 dark:text-rose-400 text-xs uppercase tracking-wider">
               <Baby className="w-4 h-4" />
-              <span>Stage 2: Pregnancy & Pharmacokinetics</span>
+              <span>Stage 2: Pregnancy Safety, PK &amp; Malformations</span>
             </div>
             <div className="space-y-3">
+              {/* Pregnancy Safety Tier */}
+              <div className="space-y-1">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
+                    Pregnancy Safety Tier
+                  </span>
+                  {repro?.tier?.refs && repro.tier.refs.length > 0 && (
+                    <SourcePopover
+                      refs={repro.tier.refs}
+                      sources={sources}
+                      label="Source"
+                      darkMode={darkMode}
+                    />
+                  )}
+                </div>
+                <p className={`text-xs leading-relaxed ${repro?.tier?.value ? "text-slate-600 dark:text-slate-300" : "text-slate-400 italic"}`}>
+                  {repro?.tier?.value
+                    ? REPRO_TIER_LABELS[repro.tier.value]
+                    : "Not specified in sources"}
+                </p>
+              </div>
+
               {renderSourcedField(
                 "Pregnancy PK Changes & TDM Monitoring",
                 repro?.pregnancy_pk
@@ -197,10 +244,10 @@ export function ReproDetail({
             )}
           </div>
 
-          {/* Lactation Block */}
+          {/* Stage 4: Lactation */}
           <div className="pt-4 space-y-2.5">
             <div className="flex items-center gap-2 font-bold text-amber-600 dark:text-amber-400 text-xs uppercase tracking-wider">
-              <span>🍼 Lactation & Infant Exposure (LactMed)</span>
+              <span>🍼 Stage 4: Lactation &amp; Infant Exposure</span>
             </div>
             <div className="space-y-2">
               {renderSourcedField(

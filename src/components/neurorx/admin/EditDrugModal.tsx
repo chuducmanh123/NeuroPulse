@@ -30,7 +30,12 @@ import type {
   RenalBand,
   DoseSpec,
   DrugInteractionItem,
+  McmEntry,
 } from "@/types/neurorx";
+import {
+  REPRO_NA_NOTE,
+  isReproNotApplicable,
+} from "@/lib/neurorx/reproductive";
 import {
   DRAFT_AUTOSAVE_INTERVAL_MS,
   clearLocalDrugDraftsForUid,
@@ -186,24 +191,44 @@ export function EditDrugModal({
     drug.enzyme_profile?.value?.acb_score || 0
   );
 
-  // Form states - Pregnancy & Lactation
-  const [pregnancyTier, setPregnancyTier] = useState<
-    "preferred" | "caution" | "avoid" | "none"
-  >(drug.reproductive?.tier?.value || "none");
+  // Form states - Pregnancy & Lactation (chronological)
   const [folicAcid, setFolicAcid] = useState(
     drug.reproductive?.folic_acid?.value || ""
   );
-  const [pregnancyPk, setPregnancyPk] = useState(
-    drug.reproductive?.pregnancy_pk?.value || ""
+  const [folicAcidNa, setFolicAcidNa] = useState(() =>
+    isReproNotApplicable(drug.reproductive?.folic_acid)
   );
   const [contraception, setContraception] = useState(
     drug.reproductive?.contraception?.value || ""
   );
-  const [lactationSummary, setLactationSummary] = useState(
-    drug.reproductive?.lactation_summary?.value || ""
+  const [contraceptionNa, setContraceptionNa] = useState(() =>
+    isReproNotApplicable(drug.reproductive?.contraception)
+  );
+  const [pregnancyTier, setPregnancyTier] = useState<
+    "preferred" | "caution" | "avoid" | "none"
+  >(drug.reproductive?.tier?.value || "none");
+  const [pregnancyPk, setPregnancyPk] = useState(
+    drug.reproductive?.pregnancy_pk?.value || ""
+  );
+  const [pregnancyPkNa, setPregnancyPkNa] = useState(() =>
+    isReproNotApplicable(drug.reproductive?.pregnancy_pk)
+  );
+  const [mcmList, setMcmList] = useState<McmEntry[]>(() =>
+    drug.reproductive?.mcm && drug.reproductive.mcm.length > 0
+      ? JSON.parse(JSON.stringify(drug.reproductive.mcm))
+      : []
+  );
+  const [postpartum, setPostpartum] = useState(
+    drug.reproductive?.postpartum?.value || ""
+  );
+  const [postpartumNa, setPostpartumNa] = useState(() =>
+    isReproNotApplicable(drug.reproductive?.postpartum)
   );
   const [lactationRid, setLactationRid] = useState(
     drug.reproductive?.lactation_rid?.value || ""
+  );
+  const [lactationSummary, setLactationSummary] = useState(
+    drug.reproductive?.lactation_summary?.value || ""
   );
 
   // Form states - FDA Drug Interactions
@@ -309,10 +334,20 @@ export function EditDrugModal({
     setAcbScore(source.enzyme_profile?.value?.acb_score || 0);
     setPregnancyTier(source.reproductive?.tier?.value || "none");
     setFolicAcid(source.reproductive?.folic_acid?.value || "");
-    setPregnancyPk(source.reproductive?.pregnancy_pk?.value || "");
+    setFolicAcidNa(isReproNotApplicable(source.reproductive?.folic_acid));
     setContraception(source.reproductive?.contraception?.value || "");
-    setLactationSummary(source.reproductive?.lactation_summary?.value || "");
+    setContraceptionNa(isReproNotApplicable(source.reproductive?.contraception));
+    setPregnancyPk(source.reproductive?.pregnancy_pk?.value || "");
+    setPregnancyPkNa(isReproNotApplicable(source.reproductive?.pregnancy_pk));
+    setMcmList(
+      source.reproductive?.mcm && source.reproductive.mcm.length > 0
+        ? JSON.parse(JSON.stringify(source.reproductive.mcm))
+        : []
+    );
+    setPostpartum(source.reproductive?.postpartum?.value || "");
+    setPostpartumNa(isReproNotApplicable(source.reproductive?.postpartum));
     setLactationRid(source.reproductive?.lactation_rid?.value || "");
+    setLactationSummary(source.reproductive?.lactation_summary?.value || "");
     setInteractionsList(
       source.fda_interactions?.value && source.fda_interactions.value.length > 0
         ? JSON.parse(JSON.stringify(source.fda_interactions.value))
@@ -533,90 +568,119 @@ export function EditDrugModal({
               }
             : {}),
         },
-        reproductive:
-          pregnancyTier !== "none" ||
-          folicAcid.trim() ||
-          pregnancyPk.trim() ||
-          contraception.trim() ||
-          lactationSummary.trim() ||
-          lactationRid.trim()
-            ? {
-                tier: {
-                  value: pregnancyTier === "none" ? null : (pregnancyTier as any),
-                  refs:
-                    baseRecord.reproductive?.tier?.refs &&
+        reproductive: (() => {
+          const hasAnyRepro =
+            pregnancyTier !== "none" ||
+            folicAcid.trim() ||
+            folicAcidNa ||
+            contraception.trim() ||
+            contraceptionNa ||
+            pregnancyPk.trim() ||
+            pregnancyPkNa ||
+            mcmList.length > 0 ||
+            postpartum.trim() ||
+            postpartumNa ||
+            lactationRid.trim() ||
+            lactationSummary.trim();
+
+          if (!hasAnyRepro) return baseRecord.reproductive;
+
+          const buildSourcedText = (
+            val: string,
+            isNa: boolean,
+            existing: { value: string | null; refs: any[]; note?: string } | undefined,
+            adminQuote: string
+          ) => {
+            if (isNa) {
+              return { value: null, refs: [], note: REPRO_NA_NOTE };
+            }
+            const trimmed = val.trim();
+            if (!trimmed) {
+              return { value: null, refs: [] };
+            }
+            return {
+              value: trimmed,
+              refs:
+                existing?.refs && existing.refs.length > 0
+                  ? existing.refs
+                  : [{ source_id: fallbackSourceId, locator: "admin", quote: adminQuote }],
+            };
+          };
+
+          return {
+            tier: {
+              value: pregnancyTier === "none" ? null : (pregnancyTier as any),
+              refs:
+                pregnancyTier === "none"
+                  ? []
+                  : baseRecord.reproductive?.tier?.refs &&
                     baseRecord.reproductive.tier.refs.length > 0
-                      ? baseRecord.reproductive.tier.refs
-                      : [
-                          {
-                            source_id: fallbackSourceId,
-                            locator: "admin",
-                            quote: "Pregnancy safety tier",
-                          },
-                        ],
-                },
-                mcm: baseRecord.reproductive?.mcm || [],
-                folic_acid: {
-                  value: folicAcid.trim() || null,
-                  refs:
-                    baseRecord.reproductive?.folic_acid?.refs &&
-                    baseRecord.reproductive.folic_acid.refs.length > 0
-                      ? baseRecord.reproductive.folic_acid.refs
-                      : [{ source_id: fallbackSourceId, locator: "admin", quote: "Folic acid" }],
-                },
-                pregnancy_pk: {
-                  value: pregnancyPk.trim() || null,
-                  refs:
-                    baseRecord.reproductive?.pregnancy_pk?.refs &&
-                    baseRecord.reproductive.pregnancy_pk.refs.length > 0
-                      ? baseRecord.reproductive.pregnancy_pk.refs
-                      : [{ source_id: fallbackSourceId, locator: "admin", quote: "Pregnancy PK" }],
-                },
-                postpartum: baseRecord.reproductive?.postpartum || { value: null, refs: [] },
-                contraception: {
-                  value: contraception.trim() || null,
-                  refs:
-                    baseRecord.reproductive?.contraception?.refs &&
-                    baseRecord.reproductive.contraception.refs.length > 0
-                      ? baseRecord.reproductive.contraception.refs
-                      : [
-                          {
-                            source_id: fallbackSourceId,
-                            locator: "admin",
-                            quote: "Contraception",
-                          },
-                        ],
-                },
-                lactation_rid: {
-                  value: lactationRid.trim() || null,
-                  refs:
-                    baseRecord.reproductive?.lactation_rid?.refs &&
-                    baseRecord.reproductive.lactation_rid.refs.length > 0
-                      ? baseRecord.reproductive.lactation_rid.refs
-                      : [
-                          {
-                            source_id: fallbackSourceId,
-                            locator: "admin",
-                            quote: "Lactation RID",
-                          },
-                        ],
-                },
-                lactation_summary: {
-                  value: lactationSummary.trim() || null,
-                  refs:
-                    baseRecord.reproductive?.lactation_summary?.refs &&
-                    baseRecord.reproductive.lactation_summary.refs.length > 0
-                      ? baseRecord.reproductive.lactation_summary.refs
-                      : [
-                          {
-                            source_id: fallbackSourceId,
-                            locator: "admin",
-                            quote: "Lactation summary",
-                          },
-                        ],
-                },
-              }
-            : baseRecord.reproductive,
+                  ? baseRecord.reproductive.tier.refs
+                  : [
+                      {
+                        source_id: fallbackSourceId,
+                        locator: "admin",
+                        quote: "Pregnancy safety tier",
+                      },
+                    ],
+            },
+            mcm: mcmList
+              .filter((m) => m.registry.trim() && !Number.isNaN(Number(m.percent)))
+              .map((m) => ({
+                registry: m.registry.trim(),
+                percent: Number(m.percent),
+                ...(m.ci95?.trim() ? { ci95: m.ci95.trim() } : {}),
+                ...(m.n_exposed ? { n_exposed: Number(m.n_exposed) } : {}),
+                ...(m.dose_stratum?.trim() ? { dose_stratum: m.dose_stratum.trim() } : {}),
+                refs:
+                  m.refs && m.refs.length > 0
+                    ? m.refs
+                    : [
+                        {
+                          source_id: fallbackSourceId,
+                          locator: "admin",
+                          quote: `${m.registry.trim()} MCM: ${m.percent}%`,
+                        },
+                      ],
+              })),
+            folic_acid: buildSourcedText(
+              folicAcid,
+              folicAcidNa,
+              baseRecord.reproductive?.folic_acid,
+              "Folic acid"
+            ),
+            contraception: buildSourcedText(
+              contraception,
+              contraceptionNa,
+              baseRecord.reproductive?.contraception,
+              "Contraception"
+            ),
+            pregnancy_pk: buildSourcedText(
+              pregnancyPk,
+              pregnancyPkNa,
+              baseRecord.reproductive?.pregnancy_pk,
+              "Pregnancy PK"
+            ),
+            postpartum: buildSourcedText(
+              postpartum,
+              postpartumNa,
+              baseRecord.reproductive?.postpartum,
+              "Postpartum management"
+            ),
+            lactation_rid: buildSourcedText(
+              lactationRid,
+              false,
+              baseRecord.reproductive?.lactation_rid,
+              "Lactation RID"
+            ),
+            lactation_summary: buildSourcedText(
+              lactationSummary,
+              false,
+              baseRecord.reproductive?.lactation_summary,
+              "Lactation summary"
+            ),
+          };
+        })(),
         fda_interactions:
           interactionsList.length > 0
             ? {
@@ -2256,17 +2320,97 @@ export function EditDrugModal({
 
           {/* TAB 5: PREGNANCY & LACTATION */}
           {activeTab === "pregnancy" && (
-            <div className="space-y-4">
+            <div className="space-y-5">
               <div className="p-4 rounded-xl bg-rose-50/60 dark:bg-rose-950/20 border border-rose-200/80 dark:border-rose-900/40 text-xs sm:text-sm">
                 <span className="font-bold text-rose-800 dark:text-rose-300 block mb-1">
-                  🤰 Pregnancy &amp; Lactation Risk Management
+                  🤰 Reproductive, Pregnancy &amp; Lactation Timeline
                 </span>
                 <p className="text-rose-700 dark:text-rose-400">
-                  Manage teratogenic risk categorization, folic acid dosing, pregnancy pharmacokinetic alterations, contraception guidance, and lactation transfer.
+                  Single source of truth synced to both the Drug Detail view and Pregnancy &amp; Lactation tab. Mark conditional fields as N/A when not clinically applicable.
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* Stage 1: Preconception Planning */}
+              <div className="p-4 rounded-2xl border border-indigo-200/80 dark:border-indigo-900/40 bg-indigo-50/30 dark:bg-indigo-950/10 space-y-3.5">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-extrabold uppercase tracking-wider text-indigo-700 dark:text-indigo-400">
+                    Stage 1 · Preconception Planning
+                  </span>
+                  <span className="text-[11px] text-slate-500 dark:text-slate-400">
+                    Optional / Condition-specific
+                  </span>
+                </div>
+
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-1.5">
+                    <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                      Folic Acid Supplementation
+                    </label>
+                    <label className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 dark:text-slate-400 cursor-pointer select-none">
+                      <input
+                        type="checkbox"
+                        checked={folicAcidNa}
+                        onChange={(e) => setFolicAcidNa(e.target.checked)}
+                        className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                      />
+                      <span>Not applicable (N/A)</span>
+                    </label>
+                  </div>
+                  <textarea
+                    rows={2}
+                    disabled={folicAcidNa}
+                    value={folicAcidNa ? "" : folicAcid}
+                    onChange={(e) => setFolicAcid(e.target.value)}
+                    placeholder={
+                      folicAcidNa
+                        ? "Marked as not clinically applicable"
+                        : "e.g. High-dose folic acid (4-5 mg/day) preconception and through first trimester..."
+                    }
+                    className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm leading-relaxed focus:ring-2 focus:ring-indigo-500 disabled:opacity-50 disabled:bg-slate-100 dark:disabled:bg-slate-900"
+                  />
+                </div>
+
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-1.5">
+                    <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                      Contraceptive Interactions &amp; Family Planning
+                    </label>
+                    <label className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 dark:text-slate-400 cursor-pointer select-none">
+                      <input
+                        type="checkbox"
+                        checked={contraceptionNa}
+                        onChange={(e) => setContraceptionNa(e.target.checked)}
+                        className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                      />
+                      <span>Not applicable (N/A)</span>
+                    </label>
+                  </div>
+                  <textarea
+                    rows={2}
+                    disabled={contraceptionNa}
+                    value={contraceptionNa ? "" : contraception}
+                    onChange={(e) => setContraception(e.target.value)}
+                    placeholder={
+                      contraceptionNa
+                        ? "Marked as not clinically applicable"
+                        : "e.g. Enzyme-inducing interactions with hormonal contraceptives; recommend non-hormonal IUD..."
+                    }
+                    className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm leading-relaxed focus:ring-2 focus:ring-indigo-500 disabled:opacity-50 disabled:bg-slate-100 dark:disabled:bg-slate-900"
+                  />
+                </div>
+              </div>
+
+              {/* Stage 2: Pregnancy Safety, PK & Malformations */}
+              <div className="p-4 rounded-2xl border border-rose-200/80 dark:border-rose-900/40 bg-rose-50/30 dark:bg-rose-950/10 space-y-3.5">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-extrabold uppercase tracking-wider text-rose-700 dark:text-rose-400">
+                    Stage 2 · Pregnancy Safety, PK &amp; Malformations
+                  </span>
+                  <span className="text-[11px] text-slate-500 dark:text-slate-400">
+                    Core classification &amp; registry data
+                  </span>
+                </div>
+
                 <div>
                   <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                     Pregnancy Safety Tier
@@ -2274,7 +2418,7 @@ export function EditDrugModal({
                   <select
                     value={pregnancyTier}
                     onChange={(e) => setPregnancyTier(e.target.value as any)}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-semibold focus:ring-2 focus:ring-sky-500"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-semibold focus:ring-2 focus:ring-rose-500"
                   >
                     <option value="none">None / Not Specified</option>
                     <option value="preferred">Preferred (Lowest recognized malformation risk in class)</option>
@@ -2284,69 +2428,231 @@ export function EditDrugModal({
                 </div>
 
                 <div>
+                  <div className="flex items-center justify-between gap-2 mb-1.5">
+                    <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                      Pregnancy PK Changes &amp; TDM Monitoring
+                    </label>
+                    <label className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 dark:text-slate-400 cursor-pointer select-none">
+                      <input
+                        type="checkbox"
+                        checked={pregnancyPkNa}
+                        onChange={(e) => setPregnancyPkNa(e.target.checked)}
+                        className="rounded border-slate-300 text-rose-600 focus:ring-rose-500"
+                      />
+                      <span>Not applicable (N/A)</span>
+                    </label>
+                  </div>
+                  <textarea
+                    rows={2}
+                    disabled={pregnancyPkNa}
+                    value={pregnancyPkNa ? "" : pregnancyPk}
+                    onChange={(e) => setPregnancyPk(e.target.value)}
+                    placeholder={
+                      pregnancyPkNa
+                        ? "Marked as not clinically applicable"
+                        : "e.g. Clearance increases significantly during 2nd/3rd trimesters; monitor serum levels monthly..."
+                    }
+                    className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm leading-relaxed focus:ring-2 focus:ring-rose-500 disabled:opacity-50 disabled:bg-slate-100 dark:disabled:bg-slate-900"
+                  />
+                </div>
+
+                {/* MCM Registry Entries */}
+                <div className="space-y-2.5 pt-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                      Major Congenital Malformations (MCM per Registry)
+                    </label>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setMcmList((prev) => [
+                          ...prev,
+                          { registry: "", percent: 0, ci95: "", n_exposed: undefined, dose_stratum: "", refs: [] },
+                        ])
+                      }
+                      className="px-2.5 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs flex items-center gap-1 transition-colors cursor-pointer"
+                    >
+                      <Plus className="w-3.5 h-3.5" />
+                      <span>Add Registry</span>
+                    </button>
+                  </div>
+
+                  {mcmList.length === 0 ? (
+                    <p className="text-xs text-slate-500 dark:text-slate-400 italic">
+                      No registry MCM entries added. Click &quot;Add Registry&quot; if cohort/registry malformation rates are available.
+                    </p>
+                  ) : (
+                    <div className="space-y-2.5">
+                      {mcmList.map((entry, idx) => (
+                        <div
+                          key={idx}
+                          className="p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 space-y-2"
+                        >
+                          <div className="grid grid-cols-1 sm:grid-cols-12 gap-2 items-center">
+                            <input
+                              type="text"
+                              value={entry.registry}
+                              onChange={(e) => {
+                                const val = e.target.value;
+                                setMcmList((prev) =>
+                                  prev.map((item, i) => (i === idx ? { ...item, registry: val } : item))
+                                );
+                              }}
+                              placeholder="Registry (e.g. EURAP, NAAED)"
+                              className="sm:col-span-5 px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold"
+                            />
+                            <input
+                              type="number"
+                              step="0.1"
+                              min="0"
+                              max="100"
+                              value={entry.percent}
+                              onChange={(e) => {
+                                const val = parseFloat(e.target.value);
+                                setMcmList((prev) =>
+                                  prev.map((item, i) =>
+                                    i === idx ? { ...item, percent: Number.isNaN(val) ? 0 : val } : item
+                                  )
+                                );
+                              }}
+                              placeholder="MCM %"
+                              className="sm:col-span-2 px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-mono"
+                            />
+                            <input
+                              type="text"
+                              value={entry.ci95 || ""}
+                              onChange={(e) => {
+                                const val = e.target.value;
+                                setMcmList((prev) =>
+                                  prev.map((item, i) => (i === idx ? { ...item, ci95: val } : item))
+                                );
+                              }}
+                              placeholder="95% CI (e.g. 1.6%–3.1%)"
+                              className="sm:col-span-4 px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs"
+                            />
+                            <button
+                              type="button"
+                              onClick={() =>
+                                setMcmList((prev) => prev.filter((_, i) => i !== idx))
+                              }
+                              className="sm:col-span-1 p-1.5 rounded-lg text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/40 flex items-center justify-center cursor-pointer"
+                              title="Remove registry entry"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <input
+                              type="number"
+                              min="0"
+                              value={entry.n_exposed ?? ""}
+                              onChange={(e) => {
+                                const raw = e.target.value;
+                                const val = raw ? parseInt(raw, 10) : undefined;
+                                setMcmList((prev) =>
+                                  prev.map((item, i) => (i === idx ? { ...item, n_exposed: val } : item))
+                                );
+                              }}
+                              placeholder="Exposed pregnancies (n)"
+                              className="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs"
+                            />
+                            <input
+                              type="text"
+                              value={entry.dose_stratum || ""}
+                              onChange={(e) => {
+                                const val = e.target.value;
+                                setMcmList((prev) =>
+                                  prev.map((item, i) => (i === idx ? { ...item, dose_stratum: val } : item))
+                                );
+                              }}
+                              placeholder="Dose stratum (e.g. first-trimester monotherapy)"
+                              className="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs"
+                            />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Stage 3: Postpartum Dose Adjustment */}
+              <div className="p-4 rounded-2xl border border-emerald-200/80 dark:border-emerald-900/40 bg-emerald-50/30 dark:bg-emerald-950/10 space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-extrabold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
+                    Stage 3 · Postpartum Dose Adjustment
+                  </span>
+                  <span className="text-[11px] text-slate-500 dark:text-slate-400">
+                    Optional / TDM-guided drugs
+                  </span>
+                </div>
+
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-1.5">
+                    <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                      Postpartum Management
+                    </label>
+                    <label className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 dark:text-slate-400 cursor-pointer select-none">
+                      <input
+                        type="checkbox"
+                        checked={postpartumNa}
+                        onChange={(e) => setPostpartumNa(e.target.checked)}
+                        className="rounded border-slate-300 text-emerald-600 focus:ring-emerald-500"
+                      />
+                      <span>Not applicable (N/A)</span>
+                    </label>
+                  </div>
+                  <textarea
+                    rows={2}
+                    disabled={postpartumNa}
+                    value={postpartumNa ? "" : postpartum}
+                    onChange={(e) => setPostpartum(e.target.value)}
+                    placeholder={
+                      postpartumNa
+                        ? "Marked as not clinically applicable"
+                        : "e.g. Taper dose back toward pre-pregnancy baseline within 10–14 days postpartum to prevent toxicity..."
+                    }
+                    className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm leading-relaxed focus:ring-2 focus:ring-emerald-500 disabled:opacity-50 disabled:bg-slate-100 dark:disabled:bg-slate-900"
+                  />
+                </div>
+              </div>
+
+              {/* Stage 4: Lactation & Infant Exposure */}
+              <div className="p-4 rounded-2xl border border-amber-200/80 dark:border-amber-900/40 bg-amber-50/30 dark:bg-amber-950/10 space-y-3.5">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-extrabold uppercase tracking-wider text-amber-700 dark:text-amber-400">
+                    Stage 4 · Lactation &amp; Infant Exposure
+                  </span>
+                  <span className="text-[11px] text-slate-500 dark:text-slate-400">
+                    Core breastfeeding data
+                  </span>
+                </div>
+
+                <div>
                   <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
-                    Relative Infant Dose (RID) in Breastfeeding
+                    Relative Infant Dose (RID)
                   </label>
                   <input
                     type="text"
                     value={lactationRid}
                     onChange={(e) => setLactationRid(e.target.value)}
-                    placeholder="e.g. 1% to 10% (RID < 10% is generally compatible)"
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-mono focus:ring-2 focus:ring-sky-500"
+                    placeholder="e.g. 1% to 2% (RID < 10% is generally compatible)"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-mono focus:ring-2 focus:ring-amber-500"
                   />
                 </div>
-              </div>
 
-              <div>
-                <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
-                  Folic Acid Supplementation Guidance
-                </label>
-                <textarea
-                  rows={2}
-                  value={folicAcid}
-                  onChange={(e) => setFolicAcid(e.target.value)}
-                  placeholder="e.g. High-dose folic acid (4-5 mg/day) preconception and through first trimester..."
-                  className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm leading-relaxed focus:ring-2 focus:ring-sky-500"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
-                  Pregnancy Pharmacokinetics &amp; Clearance Changes
-                </label>
-                <textarea
-                  rows={2}
-                  value={pregnancyPk}
-                  onChange={(e) => setPregnancyPk(e.target.value)}
-                  placeholder="e.g. Clearance increases significantly during second and third trimesters; monitor plasma levels..."
-                  className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm leading-relaxed focus:ring-2 focus:ring-sky-500"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
-                  Contraception &amp; Family Planning Guidance
-                </label>
-                <textarea
-                  rows={2}
-                  value={contraception}
-                  onChange={(e) => setContraception(e.target.value)}
-                  placeholder="e.g. Enzyme-inducing interactions with hormonal contraceptives; recommend non-hormonal IUD..."
-                  className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm leading-relaxed focus:ring-2 focus:ring-sky-500"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
-                  Lactation &amp; Breastfeeding Clinical Summary
-                </label>
-                <textarea
-                  rows={3}
-                  value={lactationSummary}
-                  onChange={(e) => setLactationSummary(e.target.value)}
-                  placeholder="e.g. Excreted into breast milk in low concentrations; monitor infant for somnolence and poor feeding..."
-                  className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm leading-relaxed focus:ring-2 focus:ring-sky-500"
-                />
+                <div>
+                  <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
+                    Lactation Safety Summary
+                  </label>
+                  <textarea
+                    rows={3}
+                    value={lactationSummary}
+                    onChange={(e) => setLactationSummary(e.target.value)}
+                    placeholder="e.g. Excreted into human milk in low concentrations; monitor infant for sedation or poor feeding..."
+                    className="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm leading-relaxed focus:ring-2 focus:ring-amber-500"
+                  />
+                </div>
               </div>
             </div>
           )}
