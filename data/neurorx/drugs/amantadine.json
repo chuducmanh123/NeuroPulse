@@ -34,30 +34,57 @@
   "regimens": [
     {
       "id": "ama-pd-dyskinesia",
-      "indication": "Levodopa-Induced Dyskinesia & 'Off' Episodes in Parkinson's Disease",
+      "indication": "Dyskinesia in Parkinson's Disease Receiving Levodopa-Based Therapy — Adults (Extended-Release)",
       "setting": "maintenance_outpatient",
       "route": "PO",
       "refs": [
         {
           "source_id": "fda-amantadine-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "treatment of dyskinesia in patients with Parkinson's disease receiving levodopa-based therapy, with or without concomitant dopaminergic medications As adjunctive treatment to levod"
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "For the treatment of dyskinesia in patients with Parkinson's disease receiving levodopa-based therapy, with or without concomitant dopaminergic medications"
         },
         {
           "source_id": "fda-amantadine-label",
-          "locator": "DOSAGE AND ADMINISTRATION",
-          "quote": "initial daily dosage is 137 mg; after 1 week, increase to the recommended daily dosage of 274 mg ( 2.1 ) Swallow whole; may sprinkle contents on soft food ( 2.2 ) May be taken with or without food; av"
+          "locator": "Section 2.1 Dosing Information",
+          "quote": "The initial daily dosage of GOCOVRI is 137 mg, administered orally once daily at bedtime. After one week, increase to the recommended dosage of 274 mg (two 137 mg capsules) once daily at bedtime."
         }
       ],
       "dose": {
         "kind": "fixed",
         "amount": 137,
         "unit": "mg",
-        "frequency": "once daily at bedtime",
+        "frequency": "once daily at bedtime (increase after 1 week to 274 mg once daily at bedtime)",
         "max_single": 274,
         "max_daily": 274
       },
-      "dose_text": "Extended-release: Initial dose 137 mg orally once daily at bedtime; after 1 week, increase to recommended maintenance dose of 274 mg once daily at bedtime. Immediate-release amantadine is dosed at 100 mg BID (max 400 mg/day). Do not discontinue abruptly due to risk of neuroleptic malignant-like syndrome."
+      "dose_text": "Extended-release (GOCOVRI): Initial 137 mg orally once daily at bedtime; after 1 week, increase to recommended maintenance dosage of 274 mg (two 137 mg capsules) once daily at bedtime. Swallow whole or sprinkle contents on soft food; avoid sudden discontinuation."
+    },
+    {
+      "id": "ama-pd-off-episodes",
+      "indication": "Adjunctive Treatment to Levodopa/Carbidopa for 'Off' Episodes in Parkinson's Disease — Adults (Extended-Release)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-amantadine-label",
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "As adjunctive treatment to levodopa/carbidopa in patients with Parkinson's disease experiencing \"off\" episodes"
+        },
+        {
+          "source_id": "fda-amantadine-label",
+          "locator": "Section 2.1 Dosing Information",
+          "quote": "The initial daily dosage of GOCOVRI is 137 mg, administered orally once daily at bedtime. After one week, increase to the recommended dosage of 274 mg (two 137 mg capsules) once daily at bedtime."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 137,
+        "unit": "mg",
+        "frequency": "once daily at bedtime (increase after 1 week to 274 mg once daily at bedtime)",
+        "max_single": 274,
+        "max_daily": 274
+      },
+      "dose_text": "Extended-release (GOCOVRI): Initial 137 mg orally once daily at bedtime; after 1 week, increase to recommended maintenance dosage of 274 mg (two 137 mg capsules) once daily at bedtime. Adjust dose in moderate-to-severe renal impairment; contraindicated in ESRD (<15 mL/min/1.73 m²)."
     }
   ],
   "renal_basis": {

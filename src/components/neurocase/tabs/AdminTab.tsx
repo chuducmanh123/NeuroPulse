@@ -24,6 +24,82 @@ interface AdminTabProps {
   subspecialtyTabs: { label: string; value: string }[];
 }
 
+interface AutoResizeTextareaProps
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  minRows?: number;
+  maxRows?: number;
+  value: string;
+}
+
+/**
+ * Auto-resize textarea that grows and shrinks to fit its content without manual dragging.
+ */
+function AutoResizeTextarea({
+  minRows = 2,
+  maxRows,
+  value,
+  onChange,
+  className = "",
+  ...props
+}: AutoResizeTextareaProps) {
+  const textareaRef = React.useRef<HTMLTextAreaElement>(null);
+
+  const adjustHeight = React.useCallback(() => {
+    const el = textareaRef.current;
+    if (!el) return;
+    // Reset to 0px so scrollHeight reflects true text height when shrinking
+    el.style.height = "0px";
+    const computed = window.getComputedStyle(el);
+    const lineHeight = parseFloat(computed.lineHeight) || 20;
+    const paddingTop = parseFloat(computed.paddingTop) || 0;
+    const paddingBottom = parseFloat(computed.paddingBottom) || 0;
+    const borderTop = parseFloat(computed.borderTopWidth) || 0;
+    const borderBottom = parseFloat(computed.borderBottomWidth) || 0;
+    const minH = minRows * lineHeight + paddingTop + paddingBottom + borderTop + borderBottom;
+    const maxH =
+      maxRows !== undefined
+        ? maxRows * lineHeight + paddingTop + paddingBottom + borderTop + borderBottom
+        : Infinity;
+    const contentH = el.scrollHeight + borderTop + borderBottom;
+    const targetH = Math.min(Math.max(contentH, minH), maxH);
+    el.style.height = `${targetH}px`;
+    el.style.overflowY = contentH > maxH ? "auto" : "hidden";
+  }, [minRows, maxRows]);
+
+  React.useLayoutEffect(() => {
+    adjustHeight();
+  }, [value, adjustHeight]);
+
+  React.useEffect(() => {
+    const el = textareaRef.current;
+    if (!el || typeof ResizeObserver === "undefined") return;
+    let lastWidth = el.clientWidth;
+    const observer = new ResizeObserver((entries) => {
+      const nextWidth = entries[0]?.contentRect.width ?? el.clientWidth;
+      if (Math.abs(nextWidth - lastWidth) > 1) {
+        lastWidth = nextWidth;
+        adjustHeight();
+      }
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [adjustHeight]);
+
+  return (
+    <textarea
+      ref={textareaRef}
+      rows={minRows}
+      value={value}
+      onChange={(e) => {
+        onChange?.(e);
+        adjustHeight();
+      }}
+      className={`resize-none ${className}`}
+      {...props}
+    />
+  );
+}
+
 export function AdminTab({
   darkMode,
   cases,
@@ -1003,8 +1079,8 @@ export function AdminTab({
                               <label className="font-bold block mb-1">
                                 History of Present Illness (HPI)
                               </label>
-                              <textarea
-                                rows={4}
+                              <AutoResizeTextarea
+                                minRows={3}
                                 value={editDraft.presentation.history_of_present_illness}
                                 onChange={(e) =>
                                   setEditDraft({
@@ -1026,8 +1102,8 @@ export function AdminTab({
                               <label className="font-bold block mb-1">
                                 Neurological Examination
                               </label>
-                              <textarea
-                                rows={4}
+                              <AutoResizeTextarea
+                                minRows={3}
                                 value={editDraft.presentation.neuro_exam}
                                 onChange={(e) =>
                                   setEditDraft({
@@ -1049,8 +1125,8 @@ export function AdminTab({
                               <label className="font-bold block mb-1">
                                 Key Labs, CSF &amp; Workup
                               </label>
-                              <textarea
-                                rows={4}
+                              <AutoResizeTextarea
+                                minRows={3}
                                 value={editDraft.presentation.key_labs_csf}
                                 onChange={(e) =>
                                   setEditDraft({
@@ -1340,8 +1416,8 @@ export function AdminTab({
                                       <label className="block text-[10px] font-bold text-slate-400 mb-0.5">
                                         Published Figure Caption
                                       </label>
-                                      <textarea
-                                        rows={2}
+                                      <AutoResizeTextarea
+                                        minRows={2}
                                         value={fig.caption}
                                         onChange={(e) => {
                                           const nextImgs = [...editDraft.presentation.imaging];
@@ -1366,8 +1442,8 @@ export function AdminTab({
                                       <label className="block text-[10px] font-bold text-slate-400 mb-0.5">
                                         Key Radiological / Diagnostic Findings Summary
                                       </label>
-                                      <textarea
-                                        rows={2}
+                                      <AutoResizeTextarea
+                                        minRows={2}
                                         value={fig.findings_summary}
                                         onChange={(e) => {
                                           const nextImgs = [...editDraft.presentation.imaging];
@@ -1490,8 +1566,8 @@ export function AdminTab({
                                       : "bg-slate-50 border-slate-300"
                                   }`}
                                 />
-                                <textarea
-                                  rows={2}
+                                <AutoResizeTextarea
+                                  minRows={2}
                                   value={opt.rationale}
                                   onChange={(e) => {
                                     const nextOpts = [...editDraft.challenge.options];
@@ -1536,8 +1612,8 @@ export function AdminTab({
 
                           <div>
                             <label className="font-bold block mb-1">Clinical Discussion</label>
-                            <textarea
-                              rows={4}
+                            <AutoResizeTextarea
+                              minRows={3}
                               value={editDraft.resolution.clinical_discussion}
                               onChange={(e) =>
                                 setEditDraft({
@@ -1561,8 +1637,8 @@ export function AdminTab({
                               <label className="font-bold block mb-1">
                                 High-Yield Teaching Points
                               </label>
-                              <textarea
-                                rows={3}
+                              <AutoResizeTextarea
+                                minRows={2}
                                 value={editDraft.resolution.teaching_points.join("\n")}
                                 onChange={(e) =>
                                   setEditDraft({
@@ -1587,8 +1663,8 @@ export function AdminTab({
                               <label className="font-bold block mb-1">
                                 Clinical Pitfalls to Avoid
                               </label>
-                              <textarea
-                                rows={3}
+                              <AutoResizeTextarea
+                                minRows={2}
                                 value={editDraft.resolution.clinical_pitfalls.join("\n")}
                                 onChange={(e) =>
                                   setEditDraft({
@@ -1705,8 +1781,9 @@ export function AdminTab({
                       <label className="block font-bold text-slate-400 mb-1">
                         Clinical Presentation / HPI / Case Summary:
                       </label>
-                      <textarea
-                        rows={5}
+                      <AutoResizeTextarea
+                        minRows={5}
+                        maxRows={18}
                         value={aiDraftText}
                         onChange={(e) => setAiDraftText(e.target.value)}
                         placeholder="Paste patient presentation, history of present illness, examination, or article abstract..."

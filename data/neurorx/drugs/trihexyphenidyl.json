@@ -32,31 +32,98 @@
   },
   "regimens": [
     {
-      "id": "thp-pd-tremor",
-      "indication": "Parkinsonian Tremor & Medication-Induced Extrapyramidal Symptoms (Dystonia)",
+      "id": "thp-idiopathic-parkinsonism",
+      "indication": "Idiopathic, Arteriosclerotic, and Postencephalitic Parkinsonism — Adults",
       "setting": "maintenance_outpatient",
       "route": "PO",
       "refs": [
         {
           "source_id": "fda-trihexyphenidyl-label",
           "locator": "INDICATIONS AND USAGE",
-          "quote": "adjunct in the treatment of all forms of parkinsonism (postencephalitic, arteriosclerotic, and idiopathic)."
+          "quote": "Trihexyphenidyl is indicated as an adjunct in the treatment of all forms of parkinsonism (postencephalitic, arteriosclerotic, and idiopathic)."
         },
         {
           "source_id": "fda-trihexyphenidyl-label",
-          "locator": "DOSAGE AND ADMINISTRATION",
-          "quote": "Dosage should be individualized. The initial dose should be low and then increased gradually, especially in patients over 60 years of age.Whether trihexyphenidyl may best be given before or after meal"
+          "locator": "DOSAGE AND ADMINISTRATION - Idiopathic Parkinsonism",
+          "quote": "As initial therapy for parkinsonism, 1 mg of trihexyphenidyl hydrochloride may be administered the first day. The dose may then be increased by 2 mg increments at intervals of three to five days, until a total of 6 to 10 mg is given daily."
         }
       ],
       "dose": {
         "kind": "fixed",
         "amount": 1,
         "unit": "mg",
-        "frequency": "once to three times daily",
-        "max_single": 5,
+        "frequency": "once daily initially, titrated to 3-4 divided doses daily",
         "max_daily": 15
       },
-      "dose_text": "Initial starting dose: 1 mg daily. Gradually increase by 2 mg increments at intervals of 3 to 5 days, up to a total of 6 to 10 mg daily in 3 divided doses with meals. Avoid in elderly patients (>65 years) due to high risk of acute delirium, confusion, memory impairment, and urinary retention (Beer's Criteria)."
+      "dose_text": "Initial: 1 mg PO on Day 1; increase by 2 mg increments every 3 to 5 days to 6 to 10 mg daily (postencephalitic parkinsonism may require 12 to 15 mg daily). Divide into 3 doses with meals (4 doses if >10 mg/day, 4th at bedtime). Avoid abrupt withdrawal."
+    },
+    {
+      "id": "thp-drug-induced-eps",
+      "indication": "Drug-Induced Parkinsonism / Extrapyramidal Disorders — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-trihexyphenidyl-label",
+          "locator": "DOSAGE AND ADMINISTRATION - Drug-Induced Parkinsonism",
+          "quote": "The total daily dosage usually ranges between 5 and 15 mg although, in some cases, these reactions have been satisfactorily controlled with as little as 1 mg daily. It may be advisable to commence therapy with a single 1 mg dose."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1,
+        "unit": "mg",
+        "frequency": "initial single dose, titrated empirically (usual 5-15 mg/day)",
+        "max_daily": 15
+      },
+      "dose_text": "Commence with a single 1 mg PO dose; if extrapyramidal manifestations are not controlled in a few hours, progressively increase subsequent doses empirically. Usual total daily dosage ranges between 5 and 15 mg (some controlled on 1 mg/day). Consider reducing tranquilizer dose temporarily."
+    },
+    {
+      "id": "thp-adjunct-levodopa",
+      "indication": "Parkinsonism — Concomitant Use with Levodopa (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-trihexyphenidyl-label",
+          "locator": "DOSAGE AND ADMINISTRATION - Concomitant Use with Levodopa",
+          "quote": "When trihexyphenidyl is used concomitantly with levodopa, the usual dose of each may need to be reduced. Careful adjustment is necessary, depending on side effects and degree of symptom control. A trihexyphenidyl dosage of 3 to 6 mg daily, in divided doses, is usually adequate."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 3,
+        "unit": "mg",
+        "frequency": "daily in divided doses (3 to 6 mg/day)",
+        "max_daily": 6
+      },
+      "dose_text": "When used concomitantly with levodopa, 3 to 6 mg PO daily in divided doses is usually adequate; usual doses of both trihexyphenidyl and levodopa may need reduction based on side effects and symptom control."
+    },
+    {
+      "id": "thp-geriatric",
+      "indication": "Parkinsonism — Geriatric Patients (> 60 years)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-trihexyphenidyl-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "The initial dose should be low and then increased gradually, especially in patients over 60 years of age."
+        },
+        {
+          "source_id": "fda-trihexyphenidyl-label",
+          "locator": "GERIATRIC USE",
+          "quote": "Sensitivity to the actions of parasympatholytic drugs may increase with age, particularly over the age of 60; therefore, elderly patients generally should be started on low doses of trihexyphenidyl and observed closely."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1,
+        "unit": "mg",
+        "frequency": "once daily initially, increased gradually with close observation",
+        "max_daily": 10
+      },
+      "dose_text": "Start with low initial dose (e.g., 1 mg daily) and increase gradually with close observation in patients >60 years due to increased sensitivity to parasympatholytic effects."
     }
   ],
   "renal_basis": {

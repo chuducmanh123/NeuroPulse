@@ -45,6 +45,11 @@
         },
         {
           "source_id": "fda-vancomycin-label",
+          "locator": "CLINICAL PHARMACOLOGY",
+          "quote": "Vancomycin does not readily diffuse across normal meninges into the spinal fluid; but, when the meninges are inflamed, penetration into the spinal fluid occurs."
+        },
+        {
+          "source_id": "fda-vancomycin-label",
           "locator": "DOSAGE AND ADMINISTRATION",
           "quote": "usual daily intravenous dose is 2 g divided either as 500 mg every 6 hours or 1 g every 12 hours."
         }
@@ -58,6 +63,246 @@
         "max_daily": 4000
       },
       "dose_text": "15 to 20 mg/kg IV every 8 to 12 hours (usual initial adult dose 1 g to 1.5 g IV every 12 hours). Administer by IV infusion over at least 60 minutes at a rate not exceeding 10 mg/min to prevent infusion-related reactions (red man syndrome). Therapeutic drug monitoring required: target AUC/MIC 400 to 600 or trough 15 to 20 mcg/mL."
+    },
+    {
+      "id": "van-mrsa-serious-infections-adult-iv",
+      "indication": "Serious or Severe MRSA and Susceptible Gram-Positive Infections (Septicemia, Bone, Lower Respiratory Tract, Skin and Skin Structure) — Adults",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-vancomycin-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Vancomycin Hydrochloride for Injection, USP is effective in the treatment of staphylococcal endocarditis. Its effectiveness has been documented in other infections due to staphylococci, including septicemia, bone infections, lower respiratory tract infections, skin and skin structure infections."
+        },
+        {
+          "source_id": "fda-vancomycin-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "The usual daily intravenous dose is 2 g divided either as 500 mg every 6 hours or 1 g every 12 hours. Each dose should be administered at no more than 10 mg/min or over a period of at least 60 minutes, whichever is longer."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 500,
+        "unit": "mg",
+        "frequency": "every 6 hours (or 1 g every 12 hours; usual daily dose 2 g)",
+        "max_single": 1000,
+        "max_daily": 2000
+      },
+      "dose_text": "Usual daily IV dose is 2 g divided either as 500 mg every 6 hours or 1 g every 12 hours. Infuse at <=10 mg/min or over at least 60 minutes (whichever is longer), at a concentration <=5 mg/mL (up to 10 mg/mL only in fluid-restricted patients)."
+    },
+    {
+      "id": "van-endocarditis-adult-iv",
+      "indication": "Bacterial Endocarditis (Staphylococcal, S. viridans, S. bovis, Enterococcal, Diphtheroid, Prosthetic Valve) — Adults",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-vancomycin-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Vancomycin Hydrochloride for Injection, USP has been reported to be effective alone or in combination with an aminoglycoside for endocarditis caused by S. viridans or S. bovis. For endocarditis caused by enterococci (e.g., E. faecalis), vancomycin has been reported to be effective only in combination with an aminoglycoside."
+        },
+        {
+          "source_id": "fda-vancomycin-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "The usual daily intravenous dose is 2 g divided either as 500 mg every 6 hours or 1 g every 12 hours. Each dose should be administered at no more than 10 mg/min or over a period of at least 60 minutes, whichever is longer."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1000,
+        "unit": "mg",
+        "frequency": "every 12 hours (or 500 mg every 6 hours; combine with aminoglycoside for enterococci, and rifampin/aminoglycoside for early-onset prosthetic valve endocarditis)",
+        "max_single": 1000,
+        "max_daily": 2000
+      },
+      "dose_text": "Usual adult IV dose 2 g/day divided as 500 mg every 6 hours or 1 g every 12 hours, infused at <=10 mg/min over >=60 minutes. Effective alone or with an aminoglycoside for S. viridans or S. bovis; only with an aminoglycoside for enterococci (e.g., E. faecalis); with rifampin, an aminoglycoside, or both for early-onset prosthetic valve endocarditis due to S. epidermidis or diphtheroids."
+    },
+    {
+      "id": "van-serious-infections-pediatric-iv",
+      "indication": "Serious or Severe MRSA and Susceptible Gram-Positive Infections — Pediatric Patients",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-vancomycin-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Pediatric patients The usual intravenous dosage of vancomycin is 10 mg/kg per dose given every 6 hours. Each dose should be administered over a period of at least 60 minutes."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 10,
+        "unit": "mg",
+        "frequency": "every 6 hours"
+      },
+      "dose_text": "10 mg/kg IV per dose given every 6 hours; administer each dose over at least 60 minutes. Close monitoring of serum vancomycin concentrations may be warranted."
+    },
+    {
+      "id": "van-serious-infections-neonate-week1-iv",
+      "indication": "Serious or Severe MRSA and Susceptible Gram-Positive Infections — Neonates (1st Week of Life)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-vancomycin-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "In neonates, an initial dose of 15 mg/kg is suggested, followed by 10 mg/kg every 12 hours for neonates in the 1st week of life and every 8 hours thereafter up to the age of 1 month. Each dose should be administered over 60 minutes."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 10,
+        "unit": "mg",
+        "frequency": "every 12 hours (following initial 15 mg/kg loading dose)"
+      },
+      "dose_text": "Initial dose of 15 mg/kg IV, followed by 10 mg/kg IV every 12 hours during the 1st week of life. Administer each dose over 60 minutes. Longer dosing intervals may be necessary in premature infants; monitor serum concentrations closely."
+    },
+    {
+      "id": "van-serious-infections-neonate-week2-4-iv",
+      "indication": "Serious or Severe MRSA and Susceptible Gram-Positive Infections — Neonates (Week 2 to 1 Month of Age)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-vancomycin-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "In neonates, an initial dose of 15 mg/kg is suggested, followed by 10 mg/kg every 12 hours for neonates in the 1st week of life and every 8 hours thereafter up to the age of 1 month. Each dose should be administered over 60 minutes."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 10,
+        "unit": "mg",
+        "frequency": "every 8 hours (following initial 15 mg/kg loading dose)"
+      },
+      "dose_text": "Initial dose of 15 mg/kg IV, followed by 10 mg/kg IV every 8 hours from after the 1st week of life up to 1 month of age. Administer each dose over 60 minutes. Longer dosing intervals may be necessary in premature infants; monitor serum concentrations closely."
+    },
+    {
+      "id": "van-renal-impairment-anuria-adult-iv",
+      "indication": "Serious or Severe Gram-Positive Infections in Impaired Renal Function or Anuria — Adults",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-vancomycin-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "The initial dose should be no less than 15 mg/kg, even in patients with mild to moderate renal insufficiency. The table is not valid for functionally anephric patients. For such patients, an initial dose of 15 mg/kg of body weight should be given to achieve prompt therapeutic serum concentrations."
+        },
+        {
+          "source_id": "fda-vancomycin-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "The dose required to maintain stable concentrations is 1.9 mg/kg/24 hr. In patients with marked renal impairment, it may be more convenient to give maintenance doses of 250 to 1,000 mg once every several days rather than administering the drug on a daily basis. In anuria, a dose of 1,000 mg every 7 to 10 days has been recommended."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 15,
+        "unit": "mg",
+        "frequency": "initial dose, then renal-adjusted maintenance (approx. 15 mg/day per mL/min GFR, or 1.9 mg/kg/24 hr in anephric patients)"
+      },
+      "dose_text": "Initial dose >=15 mg/kg IV (even in mild-to-moderate renal insufficiency or functionally anephric patients). Maintenance: ~15 mg/day per mL/min CrCl (Moellering table: 155 mg/24h at CrCl 10 mL/min up to 1,545 mg/24h at CrCl 100 mL/min). In functionally anephric patients: 1.9 mg/kg/24h, or 250-1,000 mg every several days; in anuria: 1,000 mg every 7 to 10 days."
+    },
+    {
+      "id": "van-cdiff-enterocolitis-adult-po",
+      "indication": "C. difficile-Associated Pseudomembranous Colitis and Staphylococcal Enterocolitis — Adults (Oral)",
+      "setting": "acute_inpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-vancomycin-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "The parenteral form of vancomycin hydrochloride may be administered orally for treatment of antibiotic-associated pseudomembranous colitis produced by C. difficile and for staphylococcal enterocolitis."
+        },
+        {
+          "source_id": "fda-vancomycin-label",
+          "locator": "DOSAGE AND ADMINISTRATION - For Oral Administration",
+          "quote": "The usual adult total daily dosage is 500 mg to 2 g given in 3 or 4 divided doses for 7 to 10 days."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 125,
+        "unit": "mg",
+        "frequency": "every 6 hours (500 mg to 2 g total daily dose in 3 or 4 divided doses for 7 to 10 days)",
+        "max_single": 500,
+        "max_daily": 2000
+      },
+      "dose_text": "500 mg to 2 g total daily oral dosage given in 3 or 4 divided doses for 7 to 10 days (diluted in 1 oz of water; common flavoring syrups may be added). Not effective by the oral route for other types of infections."
+    },
+    {
+      "id": "van-cdiff-enterocolitis-adult-ng",
+      "indication": "C. difficile-Associated Pseudomembranous Colitis and Staphylococcal Enterocolitis — Adults (Nasogastric)",
+      "setting": "acute_inpatient",
+      "route": "NG",
+      "refs": [
+        {
+          "source_id": "fda-vancomycin-label",
+          "locator": "DOSAGE AND ADMINISTRATION - For Oral Administration",
+          "quote": "The usual adult total daily dosage is 500 mg to 2 g given in 3 or 4 divided doses for 7 to 10 days."
+        },
+        {
+          "source_id": "fda-vancomycin-label",
+          "locator": "DOSAGE AND ADMINISTRATION - For Oral Administration",
+          "quote": "The diluted solution may be administered via a nasogastric tube."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 125,
+        "unit": "mg",
+        "frequency": "every 6 hours via NG tube (500 mg to 2 g total daily dose in 3 or 4 divided doses for 7 to 10 days)",
+        "max_single": 500,
+        "max_daily": 2000
+      },
+      "dose_text": "500 mg to 2 g total daily dosage given in 3 or 4 divided doses for 7 to 10 days; dilute appropriate dose in 1 oz of water and administer via nasogastric tube."
+    },
+    {
+      "id": "van-cdiff-enterocolitis-pediatric-po",
+      "indication": "C. difficile-Associated Pseudomembranous Colitis and Staphylococcal Enterocolitis — Pediatric Patients (Oral)",
+      "setting": "acute_inpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-vancomycin-label",
+          "locator": "DOSAGE AND ADMINISTRATION - For Oral Administration",
+          "quote": "The total daily dose in children is 40 mg/kg of body weight in 3 or 4 divided doses for 7 to 10 days. The total daily dosage should not exceed 2 g."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 10,
+        "unit": "mg",
+        "frequency": "every 6 hours (40 mg/kg/day in 3 or 4 divided doses for 7 to 10 days; max 2 g/day)",
+        "max_daily": 2000
+      },
+      "dose_text": "40 mg/kg/day orally in 3 or 4 divided doses for 7 to 10 days; total daily dosage should not exceed 2 g. Dilute in 1 oz of water (flavoring syrups may be added)."
+    },
+    {
+      "id": "van-cdiff-enterocolitis-pediatric-ng",
+      "indication": "C. difficile-Associated Pseudomembranous Colitis and Staphylococcal Enterocolitis — Pediatric Patients (Nasogastric)",
+      "setting": "acute_inpatient",
+      "route": "NG",
+      "refs": [
+        {
+          "source_id": "fda-vancomycin-label",
+          "locator": "DOSAGE AND ADMINISTRATION - For Oral Administration",
+          "quote": "The total daily dose in children is 40 mg/kg of body weight in 3 or 4 divided doses for 7 to 10 days. The total daily dosage should not exceed 2 g."
+        },
+        {
+          "source_id": "fda-vancomycin-label",
+          "locator": "DOSAGE AND ADMINISTRATION - For Oral Administration",
+          "quote": "The diluted solution may be administered via a nasogastric tube."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 10,
+        "unit": "mg",
+        "frequency": "every 6 hours via NG tube (40 mg/kg/day in 3 or 4 divided doses for 7 to 10 days; max 2 g/day)",
+        "max_daily": 2000
+      },
+      "dose_text": "40 mg/kg/day in 3 or 4 divided doses for 7 to 10 days (max 2 g/day); dilute appropriate dose in 1 oz of water and administer via nasogastric tube."
     }
   ],
   "renal_basis": {

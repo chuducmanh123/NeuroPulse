@@ -124,6 +124,11 @@ CRITICAL MANDATORY RULES (ZERO HALLUCINATION):
 3. VERBATIM QUOTE MANDATE: Every "quote" string MUST be an EXACT, character-for-character substring (max 400 characters) found in the source text below. Do NOT paraphrase, summarize, or edit any words. If a quote cannot be found verbatim in the source text, our server-side Quote-Guard will immediately reject and null out the entire field.
 4. NULL POLICY: If the source text does NOT explicitly state or recommend information for a field, you MUST set "value": null and "refs": []. NEVER invent, extrapolate, or provide standard medical knowledge from outside this text.
 5. STATUS & VERIFICATION: "status" MUST be "draft". "verification" MUST be { "verified_by": null, "verified_at": null, "content_hash": null }.
+6. EXHAUSTIVE INDICATIONS, ROUTES & AGE/POPULATION STRATA ("regimens"):
+   - Extract EVERY clinical indication in INDICATIONS AND USAGE and EVERY corresponding dosing regimen in DOSAGE AND ADMINISTRATION. Do NOT stop after a single representative or neurology-only indication.
+   - Create a SEPARATE object in "regimens" for each distinct combination of: (a) clinical indication, (b) age/population group (e.g. Adults & Adolescents, Pediatrics, Neonates, Elderly), (c) route ("IV" | "PO" | "IM" | "SC" | "NG" | "TD"), and (d) setting ("acute_inpatient" | "maintenance_outpatient", e.g. acute/loading vs maintenance/prophylaxis).
+   - Include the population/age group in "indication" when stratified (e.g. "Herpes Simplex Encephalitis — Pediatrics (3 months to 12 years)") and give each entry a unique slug in "id".
+   - Provide a verbatim "quote" (<= 400 chars) from DOSAGE AND ADMINISTRATION for each regimen, plus complete "dose" (kind, amount, unit, frequency, max_single, max_daily) and full "dose_text" (infusion rate, duration, weight basis like IBW, titration, hydration).
 
 JSON SCHEMA STRUCTURE TO POPULATE:
 {
@@ -136,16 +141,18 @@ JSON SCHEMA STRUCTURE TO POPULATE:
   "bhyt": { "value": null, "refs": [] },
   "regimens": [
     {
-      "id": "${drugId}-<indication-slug>",
-      "indication": "...",
+      "id": "${drugId}-<indication-population-route-slug>",
+      "indication": "<Indication Name — Population/Age Group if stratified>",
       "setting": "acute_inpatient" | "maintenance_outpatient",
-      "route": "IV" | "PO" | "IM" | "SC" | "NG",
+      "route": "IV" | "PO" | "IM" | "SC" | "NG" | "TD",
       "refs": [{ "source_id": "${sourceId}", "locator": "...", "quote": "..." }],
       "dose": {
         "kind": "fixed" | "per_kg",
         "amount": 0,
-        "unit": "mg",
-        "frequency": "..."
+        "unit": "mg" | "mcg" | "g" | "IU" | "mL",
+        "frequency": "...",
+        "max_single": 0,
+        "max_daily": 0
       },
       "dose_text": "..."
     }

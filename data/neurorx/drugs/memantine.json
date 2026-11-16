@@ -57,6 +57,72 @@
         "max_daily": 28
       },
       "dose_text": "Extended-release: Initial dose is 7 mg once daily. Titrate in 7 mg weekly increments: Week 2: 14 mg/day; Week 3: 21 mg/day; Week 4: target 28 mg once daily. For immediate-release: initial 5 mg daily, titrate weekly to target 10 mg BID (20 mg/day). May be taken with or without food."
+    },
+    {
+      "id": "mem-ad-switch-ir-to-er",
+      "indication": "Moderate to Severe Alzheimer's Disease Dementia — Switch from Immediate-Release Tablets",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-memantine-label",
+          "locator": "Section 2.2 Switching from Memantine Hydrochloride Tablets to Memantine Hydrochloride Extended-Release Capsules",
+          "quote": "It is recommended that a patient who is on a regimen of 10 mg twice daily of memantine hydrochloride tablets be switched to memantine hydrochloride extended-release capsules 28 mg once daily capsules the day following the last dose of 10 mg memantine hydrochloride tablet."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 28,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 28,
+        "max_daily": 28
+      },
+      "dose_text": "Patients on memantine immediate-release tablets 10 mg twice daily may switch directly to 28 mg extended-release capsules once daily starting the day after the last 10 mg immediate-release dose."
+    },
+    {
+      "id": "mem-ad-severe-renal",
+      "indication": "Moderate to Severe Alzheimer's Disease Dementia — Severe Renal Impairment (CrCl 5–29 mL/min)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-memantine-label",
+          "locator": "Section 2.3 Dosing in Patients with Renal Impairment",
+          "quote": "In patients with severe renal impairment (creatinine clearance of 5 to 29 mL/min, based on the Cockcroft-Gault equation), the recommended maintenance dose (and maximum recommended dose) is 14 mg/day [see Clinical Pharmacology (12.3) ] ."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 14,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 14,
+        "max_daily": 14
+      },
+      "dose_text": "In severe renal impairment (CrCl 5 to 29 mL/min by Cockcroft-Gault), the recommended maintenance and maximum dose is 14 mg once daily."
+    },
+    {
+      "id": "mem-ad-switch-ir-to-er-renal",
+      "indication": "Moderate to Severe Alzheimer's Disease Dementia — Switch from IR Tablets in Severe Renal Impairment",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-memantine-label",
+          "locator": "Section 2.2 Switching from Memantine Hydrochloride Tablets to Memantine Hydrochloride Extended-Release Capsules",
+          "quote": "In a patient with severe renal impairment, it is recommended that a patient who is on a regimen of 5 mg twice daily of memantine hydrochloride tablets be switched to memantine hydrochloride extended-release capsules 14 mg once daily capsules the day following the last dose of 5 mg memantine hydrochloride tablet."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 14,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 14,
+        "max_daily": 14
+      },
+      "dose_text": "In severe renal impairment, patients on memantine immediate-release tablets 5 mg twice daily may switch directly to 14 mg extended-release capsules once daily starting the day following the last 5 mg immediate-release dose."
     }
   ],
   "renal_basis": {

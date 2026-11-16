@@ -57,6 +57,99 @@
         "max_daily": 12
       },
       "dose_text": "Starting dose: 2 mg once daily at bedtime. Titrate by 2 mg/day increments weekly to maintenance target of 8 mg to 12 mg once daily at bedtime."
+    },
+    {
+      "id": "per-pgtc-adjunctive",
+      "indication": "Primary Generalized Tonic-Clonic Seizures — Adjunctive Therapy (Adults & Pediatrics >= 12 years)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-perampanel-label",
+          "locator": "Section 1.2 Primary Generalized Tonic-Clonic Seizures",
+          "quote": "FYCOMPA is indicated as adjunctive therapy for the treatment of primary generalized tonic-clonic seizures in patients with epilepsy 12 years of age and older."
+        },
+        {
+          "source_id": "fda-perampanel-label",
+          "locator": "Section 2.2 Dosage for Primary Generalized Tonic-Clonic Seizures Adjunctive Therapy",
+          "quote": "The recommended starting dosage of FYCOMPA in adults and pediatric patients 12 years of age and older is 2 mg once daily taken orally at bedtime. Increase dosage no more frequently than at weekly intervals by increments of 2 mg once daily based on individual clinical response and tolerability. The recommended maintenance dose is 8 mg once daily taken at bedtime."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 2,
+        "unit": "mg",
+        "frequency": "once daily at bedtime",
+        "max_single": 12,
+        "max_daily": 12
+      },
+      "dose_text": "Start at 2 mg once daily at bedtime (in absence of CYP3A4 inducers). Increase by 2 mg/day no more frequently than weekly (q2 weeks in elderly) to recommended maintenance dose of 8 mg once daily (may increase up to 12 mg if tolerated)."
+    },
+    {
+      "id": "per-cyp3a4-inducer",
+      "indication": "Partial-Onset or PGTC Seizures — With Concomitant Moderate or Strong CYP3A4 Inducers",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-perampanel-label",
+          "locator": "Section 2.3 Dosage Modifications with Concomitant Use of Moderate or Strong CYP3A4 Enzyme Inducers",
+          "quote": "Therefore, in adults and pediatric patients 4 years of age and older receiving these concomitant enzyme-inducing drugs, the recommended starting dosage of FYCOMPA is 4 mg once daily taken orally at bedtime. Increase dosage by increments of 2 mg once daily based on individual clinical response and tolerability, no more frequently than at weekly intervals."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 4,
+        "unit": "mg",
+        "frequency": "once daily at bedtime",
+        "max_single": 12,
+        "max_daily": 12
+      },
+      "dose_text": "For patients >= 4 years on concomitant moderate/strong CYP3A4 inducers (e.g., phenytoin, carbamazepine, oxcarbazepine): start at 4 mg once daily at bedtime; increase by 2 mg/day no more frequently than weekly (highest studied dose 12 mg/day)."
+    },
+    {
+      "id": "per-hepatic-mild",
+      "indication": "Partial-Onset or PGTC Seizures — Mild Hepatic Impairment",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-perampanel-label",
+          "locator": "Section 2.4 Dosage Adjustment in Patients with Hepatic Impairment",
+          "quote": "In patients with mild and moderate hepatic impairment, the starting dose of FYCOMPA is 2 mg once daily. Increase dosage by increments of 2 mg once daily no more frequently than every 2 weeks. The maximum recommended daily dose is 6 mg for patients with mild hepatic impairment and 4 mg for patients with moderate hepatic impairment."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 2,
+        "unit": "mg",
+        "frequency": "once daily at bedtime (titrate no more frequently than q2 weeks)",
+        "max_single": 6,
+        "max_daily": 6
+      },
+      "dose_text": "Start at 2 mg once daily at bedtime; increase by 2 mg/day no more frequently than every 2 weeks up to a maximum recommended daily dose of 6 mg."
+    },
+    {
+      "id": "per-hepatic-moderate",
+      "indication": "Partial-Onset or PGTC Seizures — Moderate Hepatic Impairment",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-perampanel-label",
+          "locator": "Section 2.4 Dosage Adjustment in Patients with Hepatic Impairment",
+          "quote": "In patients with mild and moderate hepatic impairment, the starting dose of FYCOMPA is 2 mg once daily. Increase dosage by increments of 2 mg once daily no more frequently than every 2 weeks. The maximum recommended daily dose is 6 mg for patients with mild hepatic impairment and 4 mg for patients with moderate hepatic impairment."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 2,
+        "unit": "mg",
+        "frequency": "once daily at bedtime (titrate no more frequently than q2 weeks)",
+        "max_single": 4,
+        "max_daily": 4
+      },
+      "dose_text": "Start at 2 mg once daily at bedtime; increase by 2 mg/day no more frequently than every 2 weeks up to a maximum recommended daily dose of 4 mg. Not recommended in severe hepatic impairment."
     }
   ],
   "renal_basis": {

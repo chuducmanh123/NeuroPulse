@@ -33,19 +33,19 @@
   "regimens": [
     {
       "id": "rop-pd-titration",
-      "indication": "Parkinson's Disease (Early Monotherapy or Adjunctive to Levodopa)",
+      "indication": "Parkinson's Disease — Adults",
       "setting": "maintenance_outpatient",
       "route": "PO",
       "refs": [
         {
           "source_id": "fda-ropinirole-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "non-ergoline dopamine agonist indicated for the treatment of Parkinson’s disease (PD) and moderate-to-severe primary Restless Legs Syndrome (RLS)."
+          "locator": "Section 1.1 Parkinson's Disease",
+          "quote": "Ropinirole tablets are indicated for the treatment of Parkinson’s disease."
         },
         {
           "source_id": "fda-ropinirole-label",
-          "locator": "DOSAGE AND ADMINISTRATION",
-          "quote": "recommended starting dose is 0.25 mg taken three times daily; titrate to a maximum daily dose of 24 mg."
+          "locator": "Section 2.2 Dosing for Parkinson's Disease",
+          "quote": "The recommended starting dose of ropinirole tablets for Parkinson’s disease is 0.25 mg 3 times daily."
         }
       ],
       "dose": {
@@ -56,7 +56,78 @@
         "max_single": 8,
         "max_daily": 24
       },
-      "dose_text": "Starting dose: 0.25 mg three times daily (0.75 mg/day). Titrate weekly: Week 2: 0.5 mg TID; Week 3: 0.75 mg TID; Week 4: 1 mg TID. Then increase by up to 1.5 mg/day weekly up to 9 mg/day, and by up to 3 mg/day weekly up to maximum 24 mg/day."
+      "dose_text": "Start 0.25 mg PO 3 times daily (0.75 mg/day); titrate weekly: Week 2: 0.5 mg TID; Week 3: 0.75 mg TID; Week 4: 1 mg TID. After Week 4, increase by 1.5 mg/day weekly up to 9 mg/day, then by up to 3 mg/day weekly up to max 24 mg/day (8 mg TID). Discontinue gradually over 7 days."
+    },
+    {
+      "id": "rop-pd-esrd-hd",
+      "indication": "Parkinson's Disease — End-Stage Renal Disease on Hemodialysis (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-ropinirole-label",
+          "locator": "Section 2.2 Dosing for Parkinson's Disease - Renal Impairment",
+          "quote": "The recommended initial dose of ropinirole for patients with end-stage renal disease on hemodialysis is 0.25 mg 3 times a day. Further dose escalations should be based on tolerability and need for efficacy. The recommended maximum total daily dose is 18 mg/day in patients receiving regular dialysis."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 0.25,
+        "unit": "mg",
+        "frequency": "three times daily",
+        "max_single": 6,
+        "max_daily": 18
+      },
+      "dose_text": "Initial: 0.25 mg PO 3 times daily; titrate based on tolerability and efficacy up to maximum total daily dose of 18 mg/day in patients on regular hemodialysis. Supplemental doses after dialysis are not required."
+    },
+    {
+      "id": "rop-rls-titration",
+      "indication": "Moderate-to-Severe Primary Restless Legs Syndrome (RLS) — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-ropinirole-label",
+          "locator": "Section 1.2 Restless Legs Syndrome",
+          "quote": "Ropinirole tablets are indicated for the treatment of moderate-to-severe primary Restless Legs Syndrome (RLS)."
+        },
+        {
+          "source_id": "fda-ropinirole-label",
+          "locator": "Section 2.3 Dosing for Restless Legs Syndrome",
+          "quote": "The recommended adult starting dose for RLS is 0.25 mg once daily 1 to 3 hours before bedtime. After 2 days, if necessary, the dose can be increased to 0.5 mg once daily, and to 1 mg once daily at the end of the first week of dosing, then as shown in Table 2 as needed to achieve efficacy."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 0.25,
+        "unit": "mg",
+        "frequency": "once daily 1 to 3 hours before bedtime",
+        "max_single": 4,
+        "max_daily": 4
+      },
+      "dose_text": "Start 0.25 mg PO once daily 1 to 3 hours before bedtime (Days 1-2); Days 3-7: 0.5 mg; Week 2: 1 mg; Week 3: 1.5 mg; Week 4: 2 mg; Week 5: 2.5 mg; Week 6: 3 mg; Week 7: 4 mg once daily (max 4 mg/day). Reduce dose gradually when discontinuing."
+    },
+    {
+      "id": "rop-rls-esrd-hd",
+      "indication": "Moderate-to-Severe Primary Restless Legs Syndrome (RLS) — End-Stage Renal Disease on Hemodialysis (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-ropinirole-label",
+          "locator": "Section 2.3 Dosing for Restless Legs Syndrome - Renal Impairment",
+          "quote": "The recommended initial dose of ropinirole for patients with end-stage renal disease on hemodialysis is 0.25 mg once daily. Further dose escalations should be based on tolerability and need for efficacy. The recommended maximum total daily dose is 3 mg/day in patients receiving regular dialysis."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 0.25,
+        "unit": "mg",
+        "frequency": "once daily 1 to 3 hours before bedtime",
+        "max_single": 3,
+        "max_daily": 3
+      },
+      "dose_text": "Initial: 0.25 mg PO once daily 1 to 3 hours before bedtime; titrate based on tolerability and efficacy up to maximum total daily dose of 3 mg/day in patients on regular hemodialysis. Supplemental doses after dialysis are not required."
     }
   ],
   "renal_basis": {

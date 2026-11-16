@@ -34,14 +34,14 @@
   "regimens": [
     {
       "id": "acy-hsv-encephalitis-iv",
-      "indication": "Herpes Simplex Encephalitis (HSV-1, HSV-2) and VZV CNS Infections",
+      "indication": "Herpes Simplex Encephalitis — Adults and Adolescents (12 years of age and older)",
       "setting": "acute_inpatient",
       "route": "IV",
       "refs": [
         {
           "source_id": "fda-acyclovir-label",
           "locator": "INDICATIONS AND USAGE",
-          "quote": "treatment of herpes simplex encephalitis. Neonatal Herpes Simplex Virus Infection Acyclovir Sodium Injection is indicated for the treatment of neonatal herpes infections."
+          "quote": "Herpes Simplex Encephalitis Acyclovir Sodium Injection is indicated for the treatment of herpes simplex encephalitis."
         },
         {
           "source_id": "fda-acyclovir-label",
@@ -53,11 +53,186 @@
         "kind": "per_kg",
         "amount": 10,
         "unit": "mg",
-        "frequency": "every 8 hours infused over 1 hour for 10 to 14 days",
+        "frequency": "every 8 hours infused over 1 hour for 10 days",
         "max_single": 1000,
         "max_daily": 3000
       },
-      "dose_text": "10 mg/kg IV infused at a constant rate over at least 1 hour, every 8 hours for 10 to 14 days (up to 21 days in immunocompromised patients). Obese patients should be dosed using Ideal Body Weight (IBW). Maintain adequate patient hydration to prevent renal tubular crystal precipitation."
+      "dose_text": "10 mg/kg IV infused at a constant rate over 1 hour, every 8 hours for 10 days. Obese patients should be dosed at the recommended adult dose using Ideal Body Weight. Maximum dose equivalent to 20 mg/kg every 8 hours should not be exceeded."
+    },
+    {
+      "id": "acy-hsv-encephalitis-peds-iv",
+      "indication": "Herpes Simplex Encephalitis — Pediatrics (3 months to 12 years of age)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-acyclovir-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Herpes Simplex Encephalitis Acyclovir Sodium Injection is indicated for the treatment of herpes simplex encephalitis."
+        },
+        {
+          "source_id": "fda-acyclovir-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Pediatrics (3 months to 12 years of age) 20 mg/kg infused at a constant rate over 1 hour, every 8 hours for 10 days ."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 20,
+        "unit": "mg",
+        "frequency": "every 8 hours infused over 1 hour for 10 days"
+      },
+      "dose_text": "20 mg/kg IV infused at a constant rate over 1 hour, every 8 hours for 10 days. Do not exceed 20 mg/kg every 8 hours."
+    },
+    {
+      "id": "acy-hsv-neonatal-iv",
+      "indication": "Neonatal Herpes Simplex Virus Infections (Birth to 3 months)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-acyclovir-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Neonatal Herpes Simplex Virus Infection Acyclovir Sodium Injection is indicated for the treatment of neonatal herpes infections."
+        },
+        {
+          "source_id": "fda-acyclovir-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Neonatal Herpes Simplex Virus Infections (Birth to 3 months) 10 mg/kg infused at a constant rate over 1 hour, every 8 hours for 10 days. In neonatal herpes simplex infections, doses of 15 mg/kg or 20 mg/kg (infused at a constant rate over 1 hour every 8 hours) have been used; the safety and efficacy of these doses are not known."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 10,
+        "unit": "mg",
+        "frequency": "every 8 hours infused over 1 hour for 10 days"
+      },
+      "dose_text": "10 mg/kg IV infused at a constant rate over 1 hour, every 8 hours for 10 days. Doses of 15 mg/kg or 20 mg/kg every 8 hours have been used, though safety and efficacy of higher doses are not established."
+    },
+    {
+      "id": "acy-hsv-mucocutaneous-immunocomp-adult-iv",
+      "indication": "Mucosal and Cutaneous Herpes Simplex (HSV-1 and HSV-2) in Immunocompromised Patients — Adults and Adolescents (12 years of age and older)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-acyclovir-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Acyclovir Sodium Injection is indicated for the treatment of initial and recurrent mucosal and cutaneous herpes simplex (HSV-1 and HSV-2) in immunocompromised patients."
+        },
+        {
+          "source_id": "fda-acyclovir-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "MUCOSAL AND CUTANEOUS HERPES SIMPLEX (HSV-1 AND HSV-2) INFECTIONS IN IMMUNOCOMPROMISED PATIENTS Adults and Adolescents (12 years of age and older) 5 mg/kg infused at a constant rate over 1 hour, every 8 hours for 7 days."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 5,
+        "unit": "mg",
+        "frequency": "every 8 hours infused over 1 hour for 7 days"
+      },
+      "dose_text": "5 mg/kg IV infused at a constant rate over 1 hour, every 8 hours for 7 days. Dose obese patients using Ideal Body Weight."
+    },
+    {
+      "id": "acy-hsv-mucocutaneous-immunocomp-peds-iv",
+      "indication": "Mucosal and Cutaneous Herpes Simplex (HSV-1 and HSV-2) in Immunocompromised Patients — Pediatrics (Under 12 years of age)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-acyclovir-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Acyclovir Sodium Injection is indicated for the treatment of initial and recurrent mucosal and cutaneous herpes simplex (HSV-1 and HSV-2) in immunocompromised patients."
+        },
+        {
+          "source_id": "fda-acyclovir-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Pediatrics (Under 12 years of age) 10 mg/kg infused at a constant rate over 1 hour, every 8 hours for 7 days."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 10,
+        "unit": "mg",
+        "frequency": "every 8 hours infused over 1 hour for 7 days"
+      },
+      "dose_text": "10 mg/kg IV infused at a constant rate over 1 hour, every 8 hours for 7 days."
+    },
+    {
+      "id": "acy-hsv-genitalis-severe-iv",
+      "indication": "Severe Initial Clinical Episodes of Herpes Genitalis in Immunocompetent Patients — Adults and Adolescents (12 years of age and older)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-acyclovir-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Initial Episodes of Herpes Genitalis Acyclovir Sodium Injection is indicated for the treatment of severe initial clinical episodes of herpes genitalis in immuno-competent patients."
+        },
+        {
+          "source_id": "fda-acyclovir-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "SEVERE INITIAL CLINICAL EPISODES OF HERPES GENITALIS Adults and Adolescents (12 years of age and older) 5 mg/kg infused at a constant rate over 1 hour, every 8 hours for 5 days."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 5,
+        "unit": "mg",
+        "frequency": "every 8 hours infused over 1 hour for 5 days"
+      },
+      "dose_text": "5 mg/kg IV infused at a constant rate over 1 hour, every 8 hours for 5 days. Dose obese patients using Ideal Body Weight."
+    },
+    {
+      "id": "acy-vzv-zoster-immunocomp-adult-iv",
+      "indication": "Varicella-Zoster (Shingles) Infections in Immunocompromised Patients — Adults and Adolescents (12 years of age and older)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-acyclovir-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Varicella-Zoster Infections in Immunocompromised Patients Acyclovir Sodium Injection is indicated for the treatment of varicella-zoster (shingles) infections in immunocompromised patients."
+        },
+        {
+          "source_id": "fda-acyclovir-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "VARICELLA-ZOSTER INFECTIONS ZOSTER IN IMMUNOCOMPROMISED PATIENTS Adults and Adolescents (12 years of age and older) 10 mg/kg infused at a constant rate over 1 hour, every 8 hours for 7 days."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 10,
+        "unit": "mg",
+        "frequency": "every 8 hours infused over 1 hour for 7 days"
+      },
+      "dose_text": "10 mg/kg IV infused at a constant rate over 1 hour, every 8 hours for 7 days. Dose obese patients using Ideal Body Weight."
+    },
+    {
+      "id": "acy-vzv-zoster-immunocomp-peds-iv",
+      "indication": "Varicella-Zoster (Shingles) Infections in Immunocompromised Patients — Pediatrics (Under 12 years of age)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-acyclovir-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Varicella-Zoster Infections in Immunocompromised Patients Acyclovir Sodium Injection is indicated for the treatment of varicella-zoster (shingles) infections in immunocompromised patients."
+        },
+        {
+          "source_id": "fda-acyclovir-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Pediatrics (Under 12 years of age) 20 mg/kg infused at a constant rate over 1 hour, every 8 hours for 7 days."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 20,
+        "unit": "mg",
+        "frequency": "every 8 hours infused over 1 hour for 7 days"
+      },
+      "dose_text": "20 mg/kg IV infused at a constant rate over 1 hour, every 8 hours for 7 days."
     }
   ],
   "renal_basis": {

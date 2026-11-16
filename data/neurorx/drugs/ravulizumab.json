@@ -33,31 +33,139 @@
   },
   "regimens": [
     {
-      "id": "rav-gmg-adult",
-      "indication": "Generalized Myasthenia Gravis (AChR-Ab Positive) or NMOSD (AQP4-Ab Positive)",
+      "id": "rav-gmg-adult-iv",
+      "indication": "Generalized Myasthenia Gravis (AChR-Ab Positive) — Adults (>= 40 kg)",
       "setting": "acute_inpatient",
       "route": "IV",
       "refs": [
         {
           "source_id": "fda-ravulizumab-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "myasthenia gravis (gMG) who are anti-acetylcholine receptor (AChR) antibody-positive."
+          "locator": "Section 1.3 Generalized Myasthenia Gravis",
+          "quote": "ULTOMIRIS is indicated for the treatment of adult patients with generalized myasthenia gravis (gMG) who are anti-acetylcholine receptor (AChR) antibody-positive."
         },
         {
           "source_id": "fda-ravulizumab-label",
-          "locator": "BOXED WARNING",
-          "quote": "MENINGOCOCCAL INFECTIONS ULTOMIRIS, a complement inhibitor, increases the risk of serious infections caused by Neisseria meningitidis [see Warnings and Precautions (5.1) ] ."
+          "locator": "Section 2.3 Recommended Dosage",
+          "quote": "The recommended intravenous (IV) ULTOMIRIS loading and maintenance dosing in adult and pediatric patients, one month of age or older weighing 5 kg or greater, with PNH or aHUS, or in adult patients with gMG, NMOSD or IgAN weighing 40 kg or greater, is based on the patient's body weight, as shown in Table 1"
         }
       ],
-      "dose": {
-        "kind": "weight_based",
-        "amount": 2400,
-        "unit": "mg",
-        "frequency": "loading dose, then maintenance dose 2 weeks later and every 8 weeks thereafter",
-        "max_single": 3600,
-        "max_daily": 3600
-      },
-      "dose_text": "Weight-tiered dosing: For 60-100 kg: Loading dose 2700 mg IV, followed 2 weeks later by maintenance 3300 mg IV every 8 weeks. (40-60 kg: loading 2400 mg, maintenance 3000 mg; >=100 kg: loading 3000 mg, maintenance 3600 mg). Meningococcal vaccination (ACWY & B) required >= 2 weeks before initiation."
+      "dose": null,
+      "dose_text": "Weight-tiered IV infusion through a 0.2 or 0.22 micron filter (dilute to 50 mg/mL): 40 to <60 kg: 2,400 mg load then 3,000 mg q8w; 60 to <100 kg: 2,700 mg load then 3,300 mg q8w; >=100 kg: 3,000 mg load then 3,600 mg q8w. First maintenance dose 2 weeks after loading dose. Vaccinate against meningococcal serogroups A, C, W, Y, B >=2 weeks prior."
+    },
+    {
+      "id": "rav-nmosd-adult-iv",
+      "indication": "Neuromyelitis Optica Spectrum Disorder (AQP4-Ab Positive) — Adults (>= 40 kg)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-ravulizumab-label",
+          "locator": "Section 1.4 Neuromyelitis Optica Spectrum Disorder",
+          "quote": "ULTOMIRIS is indicated for the treatment of adult patients with neuromyelitis optica spectrum disorder (NMOSD) who are anti-aquaporin-4 (AQP4) antibody-positive."
+        },
+        {
+          "source_id": "fda-ravulizumab-label",
+          "locator": "Section 2.2 Recommended Vaccination and Prophylaxis",
+          "quote": "Vaccinate patients against meningococcal infection (serogroups A, C, W, Y and B) according to current ACIP recommendations at least 2 weeks prior to initiation of ULTOMIRIS"
+        }
+      ],
+      "dose": null,
+      "dose_text": "Weight-tiered IV infusion through a 0.2 or 0.22 micron filter: 40 to <60 kg: 2,400 mg load then 3,000 mg q8w; 60 to <100 kg: 2,700 mg load then 3,300 mg q8w; >=100 kg: 3,000 mg load then 3,600 mg q8w. First maintenance dose 2 weeks after loading dose."
+    },
+    {
+      "id": "rav-pnh-ge20kg-iv",
+      "indication": "Paroxysmal Nocturnal Hemoglobinuria (PNH) — Adults and Pediatrics (>= 1 month, >= 20 kg)",
+      "setting": "maintenance_outpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-ravulizumab-label",
+          "locator": "Section 1.1 Paroxysmal Nocturnal Hemoglobinuria",
+          "quote": "ULTOMIRIS is indicated for the treatment of adult and pediatric patients one month of age and older with paroxysmal nocturnal hemoglobinuria (PNH)."
+        }
+      ],
+      "dose": null,
+      "dose_text": "Weight-tiered IV infusion: 20 to <30 kg: 900 mg load then 2,100 mg q8w; 30 to <40 kg: 1,200 mg load then 2,700 mg q8w; 40 to <60 kg: 2,400 mg load then 3,000 mg q8w; 60 to <100 kg: 2,700 mg load then 3,300 mg q8w; >=100 kg: 3,000 mg load then 3,600 mg q8w. Maintenance starts 2 weeks after loading dose."
+    },
+    {
+      "id": "rav-pnh-5to20kg-iv",
+      "indication": "Paroxysmal Nocturnal Hemoglobinuria (PNH) — Pediatrics (>= 1 month, 5 to < 20 kg)",
+      "setting": "maintenance_outpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-ravulizumab-label",
+          "locator": "Section 1.1 Paroxysmal Nocturnal Hemoglobinuria",
+          "quote": "ULTOMIRIS is indicated for the treatment of adult and pediatric patients one month of age and older with paroxysmal nocturnal hemoglobinuria (PNH)."
+        },
+        {
+          "source_id": "fda-ravulizumab-label",
+          "locator": "Section 8.4 Pediatric Use",
+          "quote": "The safety and effectiveness of ULTOMIRIS for the treatment of PNH have been established in pediatric patients aged one month and older."
+        }
+      ],
+      "dose": null,
+      "dose_text": "Weight-tiered IV infusion: 5 to <10 kg: 600 mg load then 300 mg every 4 weeks; 10 to <20 kg: 600 mg load then 600 mg every 4 weeks. Maintenance starts 2 weeks after loading dose."
+    },
+    {
+      "id": "rav-ahus-ge20kg-iv",
+      "indication": "Atypical Hemolytic Uremic Syndrome (aHUS) — Adults and Pediatrics (>= 1 month, >= 20 kg)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-ravulizumab-label",
+          "locator": "Section 1.2 Atypical Hemolytic Uremic Syndrome",
+          "quote": "ULTOMIRIS is indicated for the treatment of adult and pediatric patients one month of age and older with atypical hemolytic uremic syndrome (aHUS) to inhibit complement-mediated thrombotic microangiopathy (TMA)."
+        }
+      ],
+      "dose": null,
+      "dose_text": "Weight-tiered IV infusion: 20 to <30 kg: 900 mg load then 2,100 mg q8w; 30 to <40 kg: 1,200 mg load then 2,700 mg q8w; 40 to <60 kg: 2,400 mg load then 3,000 mg q8w; 60 to <100 kg: 2,700 mg load then 3,300 mg q8w; >=100 kg: 3,000 mg load then 3,600 mg q8w. Not indicated for STEC-HUS."
+    },
+    {
+      "id": "rav-ahus-5to20kg-iv",
+      "indication": "Atypical Hemolytic Uremic Syndrome (aHUS) — Pediatrics (>= 1 month, 5 to < 20 kg)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-ravulizumab-label",
+          "locator": "Section 1.2 Atypical Hemolytic Uremic Syndrome",
+          "quote": "ULTOMIRIS is indicated for the treatment of adult and pediatric patients one month of age and older with atypical hemolytic uremic syndrome (aHUS) to inhibit complement-mediated thrombotic microangiopathy (TMA)."
+        }
+      ],
+      "dose": null,
+      "dose_text": "Weight-tiered IV infusion: 5 to <10 kg: 600 mg load then 300 mg every 4 weeks; 10 to <20 kg: 600 mg load then 600 mg every 4 weeks. Maintenance starts 2 weeks after loading dose. Not indicated for STEC-HUS."
+    },
+    {
+      "id": "rav-igan-adult-iv",
+      "indication": "Primary Immunoglobulin A Nephropathy (IgAN) — Adults (>= 40 kg)",
+      "setting": "maintenance_outpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-ravulizumab-label",
+          "locator": "Section 1.5 Immunoglobulin A Nephropathy",
+          "quote": "ULTOMIRIS is indicated to reduce proteinuria in adults with primary immunoglobulin A nephropathy (IgAN) at risk for disease progression."
+        }
+      ],
+      "dose": null,
+      "dose_text": "Weight-tiered IV infusion: 40 to <60 kg: 2,400 mg load then 3,000 mg q8w; 60 to <100 kg: 2,700 mg load then 3,300 mg q8w; >=100 kg: 3,000 mg load then 3,600 mg q8w. Maintenance starts 2 weeks after loading dose."
+    },
+    {
+      "id": "rav-supplemental-pe-pp-ivig",
+      "indication": "Supplemental Dosing Following Plasma Exchange (PE), Plasmapheresis (PP), or IVIg — Adults (>= 40 kg)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-ravulizumab-label",
+          "locator": "Section 2.4 Dosing Considerations",
+          "quote": "Plasma exchange (PE), plasmapheresis (PP), and intravenous immunoglobulin (IVIg) have been shown to reduce ULTOMIRIS serum levels. A supplemental dose of ULTOMIRIS is required in the setting of PE, PP, or IVIg (Table 3)."
+        }
+      ],
+      "dose": null,
+      "dose_text": "Administer within 4 hours after each PE/PP intervention or completion of IVIg cycle. For PE/PP: 40 to <60 kg: 1,200 mg (if recent 2,400 mg) or 1,500 mg (if recent 3,000 mg); 60 to <100 kg: 1,500 mg (if recent 2,700 mg) or 1,800 mg (if recent 3,300 mg); >=100 kg: 1,500 mg (if recent 3,000 mg) or 1,800 mg (if recent 3,600 mg). For IVIg: 600 mg across all >=40 kg tiers."
     }
   ],
   "renal_basis": {

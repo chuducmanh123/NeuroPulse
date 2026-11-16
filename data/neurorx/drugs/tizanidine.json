@@ -34,30 +34,60 @@
   "regimens": [
     {
       "id": "tiz-spasticity-titration",
-      "indication": "Skeletal Muscle Spasticity (Multiple Sclerosis, Spinal Cord Injury)",
+      "indication": "Management of Spasticity — Adults",
       "setting": "maintenance_outpatient",
       "route": "PO",
       "refs": [
         {
           "source_id": "fda-tizanidine-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "management of spasticity. Because of the short duration of therapeutic effect, treatment with Zanaflex should be reserved for those daily activities and times when relief of spasti"
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "Zanaflex is indicated for the management of spasticity. Because of the short duration of therapeutic effect, treatment with Zanaflex should be reserved for those daily activities and times when relief of spasticity is most important"
         },
         {
           "source_id": "fda-tizanidine-label",
-          "locator": "DOSAGE AND ADMINISTRATION",
-          "quote": "The recommended starting dose is 2 mg. Because the effect of Zanaflex peaks at approximately 1 to 2 hours post-dose and dissipates between 3 to 6 hours post-dose, treatment can be"
+          "locator": "Section 2.1 Dosing Information",
+          "quote": "The recommended starting dose is 2 mg. Because the effect of Zanaflex peaks at approximately 1 to 2 hours post-dose and dissipates between 3 to 6 hours post-dose, treatment can be repeated at 6 to 8 hour intervals, as needed, to a maximum of three doses in 24 hours."
         }
       ],
       "dose": {
         "kind": "fixed",
         "amount": 2,
         "unit": "mg",
-        "frequency": "every 6 to 8 hours as needed (maximum 3 doses in 24 hours)",
-        "max_single": 8,
+        "frequency": "every 6 to 8 hours as needed (max 3 doses in 24 hours)",
+        "max_single": 16,
         "max_daily": 36
       },
-      "dose_text": "Recommended starting dose 2 mg repeated at 6 to 8 hour intervals as needed, up to a maximum of 3 doses in 24 hours. Dosage can be gradually increased by 2 mg to 4 mg per dose, with 1 to 4 days between increases; total daily dose should not exceed 36 mg."
+      "dose_text": "Start 2 mg PO repeated at 6 to 8 hour intervals as needed (max 3 doses in 24 hours). Gradually increase by 2 to 4 mg per dose every 1 to 4 days until satisfactory tone reduction; total daily dose must not exceed 36 mg (single doses >16 mg not studied). Maintain consistent tablet/capsule formulation and fed/fasted state. Taper slowly (2-4 mg/day) when discontinuing high/prolonged doses."
+    },
+    {
+      "id": "tiz-spasticity-renal",
+      "indication": "Management of Spasticity — Renal Impairment (CrCl < 25 mL/min, Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-tizanidine-label",
+          "locator": "Section 2.2 Dosing in Patients with Renal Impairment",
+          "quote": "Zanaflex should be used with caution in patients with renal insufficiency (creatinine clearance < 25 mL/min), as clearance is reduced by more than 50%. In these patients, during titration, the individual doses should be reduced. If higher doses are required, individual doses rather than dosing frequency should be increased"
+        }
+      ],
+      "dose": null,
+      "dose_text": "In renal insufficiency (CrCl < 25 mL/min), clearance is reduced by >50%. Reduce individual doses during titration; if higher doses are required, increase individual doses rather than dosing frequency. Monitor closely for dry mouth, somnolence, asthenia, and dizziness."
+    },
+    {
+      "id": "tiz-spasticity-hepatic",
+      "indication": "Management of Spasticity — Hepatic Impairment (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-tizanidine-label",
+          "locator": "Section 2.3 Dosing in Patients with Hepatic Impairment",
+          "quote": "Zanaflex should be used with caution in patients with any hepatic impairment. In these patients, during titration, the individual doses should be reduced. If higher doses are required, individual doses rather than dosing frequency should be increased."
+        }
+      ],
+      "dose": null,
+      "dose_text": "Use with caution in any hepatic impairment; reduce individual doses during titration, and if higher doses are required, increase individual doses rather than dosing frequency. Monitor aminotransferases at baseline, 1 month after maximum dose, or if hepatic injury suspected."
     }
   ],
   "renal_basis": {

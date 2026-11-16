@@ -33,19 +33,19 @@
   "regimens": [
     {
       "id": "ras-pd-monotherapy",
-      "indication": "Parkinson's Disease (Monotherapy or Adjunct to Levodopa)",
+      "indication": "Parkinson's Disease — Monotherapy or Adjunct Without Levodopa (Adults)",
       "setting": "maintenance_outpatient",
       "route": "PO",
       "refs": [
         {
           "source_id": "fda-rasagiline-label",
-          "locator": "INDICATIONS AND USAGE",
+          "locator": "Section 1 INDICATIONS AND USAGE",
           "quote": "AZILECT (rasagiline tablets) is indicated for the treatment of Parkinson’s disease (PD)."
         },
         {
           "source_id": "fda-rasagiline-label",
-          "locator": "DOSAGE AND ADMINISTRATION",
-          "quote": "Monotherapy: AZILECT 1 mg once daily ( 2.1 ) As adjunct without levodopa: AZILECT 1 mg once daily ( 2.1 ) As adjunct to levodopa: AZILECT 0.5 mg once daily."
+          "locator": "Section 2.1 General Dosing Recommendations",
+          "quote": "When AZILECT is prescribed as monotherapy or as adjunct therapy in patients not taking levodopa, patients may start AZILECT at the recommended dose of 1 mg administered orally once daily."
         }
       ],
       "dose": {
@@ -56,7 +56,73 @@
         "max_single": 1,
         "max_daily": 1
       },
-      "dose_text": "Monotherapy: 1 mg once daily. Adjunct to levodopa: initiate at 0.5 mg once daily; if sufficient clinical response is not achieved, may increase to 1 mg once daily. When added to levodopa, levodopa dose reduction may be required to reduce dyskinesia."
+      "dose_text": "1 mg orally once daily as monotherapy or adjunct therapy in patients not taking levodopa. Do not exceed recommended dose due to risk of hypertension."
+    },
+    {
+      "id": "ras-pd-adjunct-levodopa",
+      "indication": "Parkinson's Disease — Adjunct to Levodopa (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-rasagiline-label",
+          "locator": "Section 2.1 General Dosing Recommendations",
+          "quote": "In patients taking levodopa, with or without other PD drugs (e.g., dopamine agonist, amantadine, anticholinergics), the recommended initial dose of AZILECT is 0.5 mg once daily. If the patient tolerates the daily 0.5 mg dose, but a sufficient clinical response is not achieved, the dose may be increased to 1 mg once daily."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 0.5,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 1,
+        "max_daily": 1
+      },
+      "dose_text": "Initial: 0.5 mg orally once daily. If tolerated without sufficient clinical response, may increase to 1 mg once daily. Consider levodopa dose reduction based on individual response to mitigate dyskinesia."
+    },
+    {
+      "id": "ras-pd-cyp1a2-inhibitor",
+      "indication": "Parkinson's Disease — Concomitant Ciprofloxacin or Other CYP1A2 Inhibitors (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-rasagiline-label",
+          "locator": "Section 2.2 Patients Taking Ciprofloxacin or Other CYP1A2 Inhibitors",
+          "quote": "Patients taking concomitant ciprofloxacin or other CYP1A2 inhibitors should not exceed a dose of AZILECT 0.5 mg once daily"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 0.5,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 0.5,
+        "max_daily": 0.5
+      },
+      "dose_text": "Maximum 0.5 mg orally once daily in patients taking concomitant ciprofloxacin or other CYP1A2 inhibitors (plasma concentrations may increase up to 2-fold)."
+    },
+    {
+      "id": "ras-pd-mild-hepatic",
+      "indication": "Parkinson's Disease — Mild Hepatic Impairment (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-rasagiline-label",
+          "locator": "Section 2.3 Patients with Hepatic Impairment",
+          "quote": "Patients with mild hepatic impairment should not exceed a dose of AZILECT 0.5 mg once daily. AZILECT should not be used in patients with moderate or severe hepatic impairment"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 0.5,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 0.5,
+        "max_daily": 0.5
+      },
+      "dose_text": "Maximum 0.5 mg orally once daily in patients with mild hepatic impairment. Should not be used in patients with moderate or severe hepatic impairment."
     }
   ],
   "renal_basis": {

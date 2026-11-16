@@ -32,31 +32,57 @@
   },
   "regimens": [
     {
-      "id": "pyr-mg-symptomatic",
-      "indication": "Myasthenia Gravis (Symptomatic Treatment)",
+      "id": "pyr-mg-ir-po",
+      "indication": "Myasthenia Gravis — Immediate-Release (Conventional Tablets / Oral Solution)",
       "setting": "maintenance_outpatient",
       "route": "PO",
       "refs": [
         {
           "source_id": "fda-pyridostigmine-label",
           "locator": "INDICATIONS AND USAGE",
-          "quote": "MESTINON is useful in the treatment of myasthenia gravis. === DOSAGE AND ADMINISTRATION === DOSAGE AND ADMINISTRATION: MESTINON is available in three dosage forms: Oral Solution - raspberry-flavored,"
+          "quote": "INDICATION: MESTINON is useful in the treatment of myasthenia gravis."
         },
         {
           "source_id": "fda-pyridostigmine-label",
           "locator": "DOSAGE AND ADMINISTRATION",
-          "quote": "Conventional tablets - The average dose is ten 60 mg tablets or ten 5 mL teaspoonfuls daily, spaced to provide maximum relief when maximum strength is needed."
+          "quote": "Oral Solution and Conventional tablets - The average dose is ten 60 mg tablets or ten 5 mL teaspoonfuls daily, spaced to provide maximum relief when maximum strength is needed. In severe cases as many as 25 tablets or teaspoonfuls a day may be required, while in mild cases one to six tablets or teaspoonfuls a day may suffice."
         }
       ],
       "dose": {
         "kind": "fixed",
         "amount": 60,
         "unit": "mg",
-        "frequency": "every 4 to 6 hours",
-        "max_single": 120,
-        "max_daily": 600
+        "frequency": "spaced throughout day (average 600 mg/day)",
+        "max_daily": 1500
       },
-      "dose_text": "Initial: 60 mg orally every 4 to 6 hours while awake. Adjust size and frequency of dose to clinical response. Average dose is 600 mg daily (ten 60 mg tablets). Timespan 180 mg 1-2 times daily may be used at bedtime for nocturnal/morning symptoms."
+      "dose_text": "Individualize dose and frequency. Average dose: ten 60 mg conventional tablets or ten 5 mL teaspoonfuls (60 mg/5 mL oral solution) daily (600 mg/day), spaced for maximum relief. Mild cases: 1 to 6 tablets/teaspoonfuls daily (60-360 mg/day). Severe cases: up to 25 tablets/teaspoonfuls daily (1500 mg/day). Oral solution allows fractional <60 mg dosing and easier swallowing in bulbar patients."
+    },
+    {
+      "id": "pyr-mg-er-po",
+      "indication": "Myasthenia Gravis — Extended-Release (TIMESPAN Tablets)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-pyridostigmine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "INDICATION: MESTINON is useful in the treatment of myasthenia gravis."
+        },
+        {
+          "source_id": "fda-pyridostigmine-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "TIMESPAN tablets - One to three 180 mg tablets, once or twice daily, will usually be sufficient to control symptoms; however, the needs of certain individuals may vary markedly from this average. The interval between doses should be at least 6 hours."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 180,
+        "unit": "mg",
+        "frequency": "once or twice daily (at least 6 hours apart)",
+        "max_single": 540,
+        "max_daily": 1080
+      },
+      "dose_text": "One to three 180 mg TIMESPAN extended-release tablets once or twice daily (180-1080 mg/day), with an interval of at least 6 hours between doses. Immediate effect of 180 mg TIMESPAN equals 60 mg conventional tablet, with duration averaging 2.5 times longer. May combine with immediate-release tablets or oral solution for optimum control."
     }
   ],
   "renal_basis": {

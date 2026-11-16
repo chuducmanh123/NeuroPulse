@@ -33,31 +33,139 @@
   },
   "regimens": [
     {
-      "id": "dan-mh-crisis-iv",
-      "indication": "Malignant Hyperthermia Crisis and Neuroleptic Malignant Syndrome (Emergency IV)",
+      "id": "dan-mh-crisis-adult-iv",
+      "indication": "Malignant Hyperthermia Crisis — Adults",
       "setting": "acute_inpatient",
       "route": "IV",
       "refs": [
         {
           "source_id": "fda-dantrolene-label",
           "locator": "INDICATIONS AND USAGE",
-          "quote": "indicated, along with appropriate supportive measures, for the management of the fulminant hypermetabolism of skeletal muscle characteristic of malignant hyperthermia crises in pat"
+          "quote": "Dantrium Intravenous is indicated, along with appropriate supportive measures, for the management of the fulminant hypermetabolism of skeletal muscle characteristic of malignant hyperthermia crises in patients of all ages."
         },
         {
           "source_id": "fda-dantrolene-label",
           "locator": "DOSAGE AND ADMINISTRATION",
-          "quote": "continuous rapid intravenous push beginning at a minimum dose of 1 mg/kg, and continuing until symptoms subside or the maximum cumulative dose of 10 mg/kg has been reached."
+          "quote": "Dantrium Intravenous should be administered by continuous rapid intravenous push beginning at a minimum dose of 1 mg/kg, and continuing until symptoms subside or the maximum cumulative dose of 10 mg/kg has been reached."
         }
       ],
       "dose": {
         "kind": "per_kg",
         "amount": 1,
         "unit": "mg",
-        "frequency": "continuous rapid IV push until physiological symptoms subside (maximum cumulative 10 mg/kg)",
-        "max_single": 300,
-        "max_daily": 700
+        "frequency": "continuous rapid IV push until symptoms subside (maximum cumulative 10 mg/kg)"
       },
-      "dose_text": "Administer by continuous rapid intravenous push beginning at a minimum dose of 1 mg/kg, and continuing until physiological and metabolic symptoms subside or the maximum cumulative dose of 10 mg/kg has been reached. Reconstitute each 20 mg vial with 60 mL sterile water for injection without bacteriostatic agent."
+      "dose_text": "Discontinue all anesthetic agents and administer 100% oxygen. Administer by continuous rapid IV push beginning at a minimum dose of 1 mg/kg, continuing until symptoms subside or maximum cumulative dose of 10 mg/kg is reached. May repeat regimen if physiologic and metabolic abnormalities reappear. Reconstitute each 20 mg vial with 60 mL sterile water for injection USP (without bacteriostatic agent)."
+    },
+    {
+      "id": "dan-mh-crisis-pediatric-iv",
+      "indication": "Malignant Hyperthermia Crisis — Pediatrics",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-dantrolene-label",
+          "locator": "PEDIATRIC USE",
+          "quote": "Pediatric Dose: Experience to date indicates that the dose of Dantrium Intravenous for pediatric patients is the same as for adults."
+        },
+        {
+          "source_id": "fda-dantrolene-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Dantrium Intravenous should be administered by continuous rapid intravenous push beginning at a minimum dose of 1 mg/kg, and continuing until symptoms subside or the maximum cumulative dose of 10 mg/kg has been reached."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 1,
+        "unit": "mg",
+        "frequency": "continuous rapid IV push until symptoms subside (maximum cumulative 10 mg/kg)"
+      },
+      "dose_text": "Same as adult dosing: continuous rapid IV push beginning at a minimum dose of 1 mg/kg, continuing until symptoms subside or maximum cumulative dose of 10 mg/kg is reached. May repeat if abnormalities reappear."
+    },
+    {
+      "id": "dan-mh-prophylaxis-preop-iv",
+      "indication": "Malignant Hyperthermia Prophylaxis (Preoperative) — Patients of All Ages",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-dantrolene-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Dantrium Intravenous is also indicated preoperatively, and sometimes postoperatively, to prevent or attenuate the development of clinical and laboratory signs of malignant hyperthermia in individuals judged to be malignant hyperthermia susceptible."
+        },
+        {
+          "source_id": "fda-dantrolene-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "The recommended prophylactic dose of Dantrium Intravenous is 2.5 mg/kg, starting approximately 1-1/4 hours before anticipated anesthesia and infused over approximately 1 hour."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 2.5,
+        "unit": "mg",
+        "frequency": "single IV infusion over ~1 hour starting ~1.25 hours before anesthesia"
+      },
+      "dose_text": "2.5 mg/kg IV starting approximately 1-1/4 hours before anticipated anesthesia and infused over approximately 1 hour. Additional individualized IV doses may be indicated during anesthesia/surgery if early clinical or blood gas signs appear or for prolonged surgery."
+    },
+    {
+      "id": "dan-mh-prophylaxis-preop-po",
+      "indication": "Malignant Hyperthermia Prophylaxis (Preoperative) — Oral Capsules",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-dantrolene-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Oral Administration of Dantrium Capsules: Administer 4 to 8 mg/kg/day of oral Dantrium Capsules in three or four divided doses for 1 or 2 days prior to surgery, with the last dose being given with a minimum of water approximately 3 to 4 hours before scheduled surgery."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 4,
+        "unit": "mg",
+        "frequency": "4 to 8 mg/kg/day in 3 or 4 divided doses for 1 to 2 days prior to surgery"
+      },
+      "dose_text": "4 to 8 mg/kg/day orally in 3 or 4 divided doses for 1 or 2 days prior to surgery, with the last dose given with a minimum of water approximately 3 to 4 hours before scheduled surgery. Adjust within range to avoid weakness, drowsiness, or GI irritation."
+    },
+    {
+      "id": "dan-mh-postcrisis-po",
+      "indication": "Malignant Hyperthermia Post-Crisis Follow-Up (Recurrence Prevention) — Oral Capsules",
+      "setting": "acute_inpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-dantrolene-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Post Crisis Follow-Up: Dantrium Capsules , 4 to 8 mg/kg/day, in four divided doses should be administered for 1 to 3 days following a malignant hyperthermia crisis to prevent recurrence of the manifestations of malignant hyperthermia."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 4,
+        "unit": "mg",
+        "frequency": "4 to 8 mg/kg/day in 4 divided doses for 1 to 3 days post-crisis"
+      },
+      "dose_text": "4 to 8 mg/kg/day orally in 4 divided doses for 1 to 3 days following a malignant hyperthermia crisis to prevent recurrence."
+    },
+    {
+      "id": "dan-mh-postop-iv",
+      "indication": "Malignant Hyperthermia Postoperative Recurrence Prevention (When Oral Not Practical)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-dantrolene-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Dantrium Intravenous may be used postoperatively to prevent or attenuate the recurrence of signs of malignant hyperthermia when oral administration of Dantrium Capsules is not practical. The dose of Dantrium Intravenous in the postoperative period must be individualized, starting with 1 mg/kg or more as the clinical situation dictates."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 1,
+        "unit": "mg",
+        "frequency": "individualized postoperatively starting at 1 mg/kg or more"
+      },
+      "dose_text": "Individualized IV dosing starting with 1 mg/kg or more as the clinical situation dictates when oral administration is not practical postoperatively."
     }
   ],
   "renal_basis": {

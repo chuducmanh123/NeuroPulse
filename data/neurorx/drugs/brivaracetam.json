@@ -33,7 +33,7 @@
   "regimens": [
     {
       "id": "brv-partial-onset-adult",
-      "indication": "Partial-Onset Seizures (Monotherapy or Adjunctive)",
+      "indication": "Partial-Onset Seizures (Monotherapy or Adjunctive) — Adults (16 years and older)",
       "setting": "maintenance_outpatient",
       "route": "PO",
       "refs": [
@@ -56,7 +56,142 @@
         "max_single": 100,
         "max_daily": 200
       },
-      "dose_text": "Recommended starting dosage is 50 mg twice daily (100 mg per day). Maintenance range: 25 mg twice daily to 100 mg twice daily (up to 200 mg per day). No titration required at start."
+      "dose_text": "Recommended starting dosage is 50 mg orally twice daily (100 mg per day). Maintenance range: 25 mg twice daily to 100 mg twice daily (50 mg to 200 mg per day). Gradual dose escalation is not required at initiation."
+    },
+    {
+      "id": "brv-partial-onset-adult-iv",
+      "indication": "Partial-Onset Seizures (When Oral Temporarily Not Feasible) — Adults (16 years and older)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-brivaracetam-label",
+          "locator": "Section 2.1 BRIVIACT Injection Dosage",
+          "quote": "BRIVIACT injection may be used when oral administration is temporarily not feasible [see Dosage and Administration (2.3) ]. BRIVIACT injection should be administered intravenously at the same dosage and same frequency as BRIVIACT tablets and oral solution. The clinical study experience with BRIVIACT injection is up to 4 consecutive days of treatment."
+        },
+        {
+          "source_id": "fda-brivaracetam-label",
+          "locator": "Section 2.3 Preparation and Administration Instructions for BRIVIACT Injection",
+          "quote": "BRIVIACT injection should be administered intravenously over 2 to 15 minutes."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 50,
+        "unit": "mg",
+        "frequency": "twice daily IV over 2 to 15 minutes (range 25 to 100 mg BID)",
+        "max_single": 100,
+        "max_daily": 200
+      },
+      "dose_text": "1:1 conversion from oral: 50 mg IV twice daily (range 25 mg to 100 mg twice daily; 50 mg to 200 mg/day) administered intravenously over 2 to 15 minutes. Clinical study experience is up to 4 consecutive days."
+    },
+    {
+      "id": "brv-partial-onset-peds-50kg-po",
+      "indication": "Partial-Onset Seizures — Pediatrics (1 month to < 16 years, >= 50 kg)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-brivaracetam-label",
+          "locator": "Section 2.1 Table 1",
+          "quote": "Pediatric patients weighing 50 kg or more 25 mg to 50 mg twice daily (50 mg to 100 mg per day) 25 mg to 100 mg twice daily (50 mg to 200 mg per day)"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 25,
+        "unit": "mg",
+        "frequency": "twice daily (initial 25 to 50 mg BID; maintenance 25 to 100 mg BID)",
+        "max_single": 100,
+        "max_daily": 200
+      },
+      "dose_text": "Initial: 25 mg to 50 mg orally twice daily (50 mg to 100 mg/day). Maintenance range: 25 mg to 100 mg twice daily (50 mg to 200 mg/day)."
+    },
+    {
+      "id": "brv-partial-onset-peds-20-to-50kg-po",
+      "indication": "Partial-Onset Seizures — Pediatrics (1 month to < 16 years, 20 kg to < 50 kg)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-brivaracetam-label",
+          "locator": "Section 2.1 Table 1",
+          "quote": "Pediatric patients weighing 20 kg to less than 50 kg 0.5 mg/kg to 1 mg/kg twice daily (1 mg/kg to 2 mg/kg per day) 0.5 mg/kg to 2 mg/kg twice daily (1 mg/kg to 4 mg/kg per day)"
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 0.5,
+        "unit": "mg",
+        "frequency": "twice daily (initial 0.5 to 1 mg/kg BID; maintenance 0.5 to 2 mg/kg BID)",
+        "max_single": 2,
+        "max_daily": 4
+      },
+      "dose_text": "Initial: 0.5 mg/kg to 1 mg/kg orally twice daily (1 mg/kg to 2 mg/kg/day). Maintenance range: 0.5 mg/kg to 2 mg/kg twice daily (1 mg/kg to 4 mg/kg/day)."
+    },
+    {
+      "id": "brv-partial-onset-peds-11-to-20kg-po",
+      "indication": "Partial-Onset Seizures — Pediatrics (1 month to < 16 years, 11 kg to < 20 kg)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-brivaracetam-label",
+          "locator": "Section 2.1 Table 1",
+          "quote": "Pediatric patients weighing 11 kg to less than 20 kg 0.5 mg/kg to 1.25 mg/kg twice daily (1 mg/kg to 2.5 mg/kg per day) 0.5 mg/kg to 2.5 mg/kg twice daily (1 mg/kg to 5 mg/kg per day)"
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 0.5,
+        "unit": "mg",
+        "frequency": "twice daily (initial 0.5 to 1.25 mg/kg BID; maintenance 0.5 to 2.5 mg/kg BID)",
+        "max_single": 2.5,
+        "max_daily": 5
+      },
+      "dose_text": "Initial: 0.5 mg/kg to 1.25 mg/kg orally twice daily (1 mg/kg to 2.5 mg/kg/day). Maintenance range: 0.5 mg/kg to 2.5 mg/kg twice daily (1 mg/kg to 5 mg/kg/day)."
+    },
+    {
+      "id": "brv-partial-onset-peds-under-11kg-po",
+      "indication": "Partial-Onset Seizures — Pediatrics (1 month to < 16 years, < 11 kg)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-brivaracetam-label",
+          "locator": "Section 2.1 Table 1",
+          "quote": "Pediatric patients weighing less than 11 kg 0.75 mg/kg to 1.5 mg/kg twice daily (1.5 mg/kg to 3 mg/kg per day) 0.75 mg/kg to 3 mg/kg twice daily (1.5 mg/kg to 6 mg/kg per day)"
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 0.75,
+        "unit": "mg",
+        "frequency": "twice daily (initial 0.75 to 1.5 mg/kg BID; maintenance 0.75 to 3 mg/kg BID)",
+        "max_single": 3,
+        "max_daily": 6
+      },
+      "dose_text": "Initial: 0.75 mg/kg to 1.5 mg/kg orally twice daily (1.5 mg/kg to 3 mg/kg/day). Maintenance range: 0.75 mg/kg to 3 mg/kg twice daily (1.5 mg/kg to 6 mg/kg/day)."
+    },
+    {
+      "id": "brv-partial-onset-peds-iv",
+      "indication": "Partial-Onset Seizures (When Oral Temporarily Not Feasible) — Pediatrics (1 month to < 16 years)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-brivaracetam-label",
+          "locator": "Section 2.1 BRIVIACT Injection Dosage",
+          "quote": "BRIVIACT injection should be administered intravenously at the same dosage and same frequency as BRIVIACT tablets and oral solution. The clinical study experience with BRIVIACT injection is up to 4 consecutive days of treatment."
+        },
+        {
+          "source_id": "fda-brivaracetam-label",
+          "locator": "Section 2.3 Preparation and Administration Instructions for BRIVIACT Injection",
+          "quote": "BRIVIACT injection should be administered intravenously over 2 to 15 minutes."
+        }
+      ],
+      "dose": null,
+      "dose_text": "Administer IV over 2 to 15 minutes at the same weight-based dosage and twice-daily frequency as oral tablets/solution (up to 4 consecutive days): >=50 kg: 25–100 mg BID; 20 to <50 kg: 0.5–2 mg/kg BID; 11 to <20 kg: 0.5–2.5 mg/kg BID; <11 kg: 0.75–3 mg/kg BID."
     }
   ],
   "renal_basis": {

@@ -59,6 +59,47 @@
         "max_daily": 80
       },
       "dose_text": "Initial dosage ranges from 5 mg to 60 mg per day depending on disease entity. For acute neurological relapse or induction, commonly 0.75-1 mg/kg/day (up to 60-80 mg daily), followed by gradual taper or alternate-day dosing to minimize HPA axis suppression."
+    },
+    {
+      "id": "pred-po-initial-general",
+      "indication": "Endocrine, Rheumatic, Collagen, Dermatologic, Allergic, Ophthalmic, Respiratory, Hematologic, Neoplastic, Edematous, GI & Infectious (TB Meningitis/Trichinosis) Indications",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-prednisolone-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "12 . Nervous system. Acute exacerbations of multiple sclerosis 13. Miscellaneous Tuberculous meningitis with subarachnoid block or impending block when used concurrently with appropriate antituberculous chemotherapy Trichinosis with neurologic or myocardial involvement"
+        },
+        {
+          "source_id": "fda-prednisolone-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "The initial dosage of prednisolone tablets may vary from 5 mg to 60 mg per day depending on the specific disease entity being treated. In situations of less severity, lower doses will generally suffice, while in selected patients higher initial doses may be required."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 5,
+        "unit": "mg",
+        "frequency": "daily (range 5 to 60 mg/day)",
+        "max_daily": 60
+      },
+      "dose_text": "Initial dosage varies from 5 mg to 60 mg orally per day depending on disease entity and severity. Maintain or adjust until satisfactory response, then decrease in small decrements to lowest effective maintenance dose; withdraw gradually after long-term therapy."
+    },
+    {
+      "id": "pred-po-alternate-day",
+      "indication": "Long-Term Pharmacologic Corticosteroid Therapy — Alternate-Day Regimen (Adults & Pediatrics)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-prednisolone-label",
+          "locator": "DOSAGE AND ADMINISTRATION - Alternate-Day Therapy",
+          "quote": "Alternate-Day Therapy is a corticosteroid dosing regimen in which twice the usual daily dose of corticoid is administered every other morning. The purpose of this mode of therapy is to provide the patient requiring long-term pharmacologic dose treatment with the beneficial effects of corticoids while minimizing certain undesirable effects, including pituitary-adrenal suppression,"
+        }
+      ],
+      "dose": null,
+      "dose_text": "Administer twice the usual daily dose every other morning (time of maximal adrenal cortex activity, 2 a.m. to 8 a.m.) to minimize HPA suppression, Cushingoid effects, and growth suppression in children. If transitioning from long-term daily steroids, may require tripling or quadrupling the daily maintenance dose every other day initially."
     }
   ],
   "renal_basis": {

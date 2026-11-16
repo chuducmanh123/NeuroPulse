@@ -59,6 +59,96 @@
         "max_daily": 200
       },
       "dose_text": "Adults: 60 to 200 mg/day (administered once daily at bedtime or in 2 to 3 divided doses). Dosage should be reduced in elderly or debilitated patients and patients with impaired renal function or hepatic disease. Therapeutic target: 15 to 40 mcg/mL."
+    },
+    {
+      "id": "pb-po-pediatric-epilepsy",
+      "indication": "Generalized and Partial Seizures — Maintenance Therapy (Pediatrics)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-phenobarbital-label",
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "INDICATIONS AND USAGE A. Sedative B. Anticonvulsant–For the treatment of generalized and partial seizures."
+        },
+        {
+          "source_id": "fda-phenobarbital-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Adults: 60 to 200 mg/day. Pediatric Patients: 3 to 6 mg/kg/day."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 3,
+        "unit": "mg",
+        "frequency": "daily (range 3 to 6 mg/kg/day)",
+        "max_daily": 6
+      },
+      "dose_text": "Pediatric patients: 3 to 6 mg/kg/day orally. Higher per-kilogram dosages are generally necessary in pediatric patients to achieve therapeutic serum levels."
+    },
+    {
+      "id": "pb-pediatric-loading",
+      "indication": "Seizure Loading Dose / Febrile Seizures — Pediatrics & Infants",
+      "setting": "acute_inpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-phenobarbital-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "In pediatric patients and infants, phenobarbital at a loading dose of 15 to 20 mg/kg produces blood levels of about 20 mcg/mL shortly after administration. Phenobarbital has been used in the treatment and prophylaxis of febrile seizures."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 15,
+        "unit": "mg",
+        "frequency": "single loading dose (range 15 to 20 mg/kg)",
+        "max_single": 20
+      },
+      "dose_text": "15 to 20 mg/kg loading dose in pediatric patients and infants produces serum levels of approximately 20 mcg/mL shortly after administration."
+    },
+    {
+      "id": "pb-po-sedation-adult",
+      "indication": "Daytime Sedation (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-phenobarbital-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Sedation: For sedation, the drug may be administered in single doses of 30 to 120 mg repeated at intervals; frequency will be determined by the patient’s response. It is generally considered that no more than 400 mg of phenobarbital should be administered during a 24-hour period. Adults: Daytime Sedation: 30 to 120 mg daily in 2 to 3 divided doses."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 30,
+        "unit": "mg",
+        "frequency": "daily in 2 to 3 divided doses (range 30 to 120 mg/day; max 400 mg/24h)",
+        "max_daily": 400
+      },
+      "dose_text": "Adults daytime sedation: 30 to 120 mg daily in 2 to 3 divided doses (single doses of 30 to 120 mg repeated at intervals; do not exceed 400 mg per 24 hours). Reduce dose in elderly, debilitated, or renal/hepatic impairment."
+    },
+    {
+      "id": "pb-po-hypnotic-adult",
+      "indication": "Oral Hypnotic (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-phenobarbital-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Adults: Daytime Sedation: 30 to 120 mg daily in 2 to 3 divided doses. Oral Hypnotic: 100 to 200 mg"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 100,
+        "unit": "mg",
+        "frequency": "at bedtime (range 100 to 200 mg; max 400 mg/24h)",
+        "max_single": 200,
+        "max_daily": 400
+      },
+      "dose_text": "Adults oral hypnotic: 100 to 200 mg orally (do not exceed 400 mg per 24 hours). Reduce dose in elderly, debilitated, or renal/hepatic impairment."
     }
   ],
   "renal_basis": {

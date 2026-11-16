@@ -34,19 +34,19 @@
   "regimens": [
     {
       "id": "bac-spasticity-oral",
-      "indication": "Spasticity of Multiple Sclerosis or Spinal Cord Injury Origin",
+      "indication": "Spasticity Resulting from Multiple Sclerosis (Flexor Spasms, Pain, Clonus, Muscular Rigidity)",
       "setting": "maintenance_outpatient",
       "route": "PO",
       "refs": [
         {
           "source_id": "fda-baclofen-label",
           "locator": "INDICATIONS AND USAGE",
-          "quote": "alleviation of signs and symptoms of spasticity resulting from multiple sclerosis, particularly for the relief of flexor spasms and concomitant pain, clonus, and muscular rigidity."
+          "quote": "Baclofen tablets, USP are useful for the alleviation of signs and symptoms of spasticity resulting from multiple sclerosis, particularly for the relief of flexor spasms and concomitant pain, clonus, and muscular rigidity."
         },
         {
           "source_id": "fda-baclofen-label",
           "locator": "DOSAGE AND ADMINISTRATION",
-          "quote": "5 mg t.i.d. for 3 days 10 mg t.i.d. for 3 days 15 mg t.i.d. for 3 days 20 mg t.i.d."
+          "quote": "5 mg t.i.d. for 3 days 10 mg t.i.d. for 3 days 15 mg t.i.d. for 3 days 20 mg t.i.d. for 3 days Thereafter additional increases may be necessary but the total daily dose should not exceed a maximum of 80 mg daily (20 mg q.i.d.)."
         }
       ],
       "dose": {
@@ -57,7 +57,34 @@
         "max_single": 20,
         "max_daily": 80
       },
-      "dose_text": "Titration schedule: 5 mg TID for 3 days, 10 mg TID for 3 days, 15 mg TID for 3 days, 20 mg TID for 3 days. Total daily dose should not exceed 80 mg daily (20 mg QID). Do not discontinue abruptly due to risk of withdrawal hallucinations and seizures."
+      "dose_text": "Titration schedule: 5 mg TID for 3 days, 10 mg TID for 3 days, 15 mg TID for 3 days, 20 mg TID for 3 days. Usual optimum 40–80 mg/day; total daily dose should not exceed 80 mg daily (20 mg QID). Withdraw slowly if no benefit after reasonable trial."
+    },
+    {
+      "id": "bac-spasticity-sci-oral",
+      "indication": "Spasticity in Spinal Cord Injuries and Other Spinal Cord Diseases",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-baclofen-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Baclofen tablets, USP may also be of some value in patients with spinal cord injuries and other spinal cord diseases."
+        },
+        {
+          "source_id": "fda-baclofen-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Start therapy at a low dosage and increase gradually until optimum effect is achieved (usually between 40-80 mg daily)."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 5,
+        "unit": "mg",
+        "frequency": "three times daily; titrate every 3 days by 5 mg TID up to 40 to 80 mg/day",
+        "max_single": 20,
+        "max_daily": 80
+      },
+      "dose_text": "Start at 5 mg TID for 3 days, increasing by 5 mg TID every 3 days until optimum effect (usually 40–80 mg daily; max 80 mg/day as 20 mg QID). Avoid abrupt withdrawal."
     }
   ],
   "renal_basis": {

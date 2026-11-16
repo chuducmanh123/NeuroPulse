@@ -60,10 +60,10 @@
     {
       "id": "alt-iv-ais-bolus-infusion",
       "dose": {
-        "kind": "weight",
-        "unit": "mg/kg",
+        "kind": "per_kg",
+        "unit": "mg",
         "amount": 0.9,
-        "frequency": "once",
+        "frequency": "once (10% bolus over 1 minute, 90% infused over 60 minutes)",
         "max_daily": 90,
         "max_single": 90
       },
@@ -83,6 +83,73 @@
       "setting": "acute_inpatient",
       "dose_text": "0.9 mg/kg (maximum total dose 90 mg): 10% of the calculated total dose administered as an IV bolus over 1 minute, followed by the remaining 90% infused continuously over 60 minutes. Monitor blood pressure frequently during and after infusion.",
       "indication": "Acute Ischemic Stroke (AIS, initiated as soon as possible within 3 hours after symptom onset)"
+    },
+    {
+      "id": "alt-iv-ami-accelerated",
+      "indication": "Acute Myocardial Infarction (AMI) — Accelerated Infusion (Adults)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-alteplase-label",
+          "locator": "Section 1.2 Acute Myocardial Infarction",
+          "quote": "Activase is indicated for use in acute myocardial infarction (AMI) for the reduction of mortality and reduction of the incidence of heart failure."
+        },
+        {
+          "source_id": "fda-alteplase-label",
+          "locator": "Section 2.2 Acute Myocardial Infarction",
+          "quote": "Patient weight Intravenous Bolus First 30 min Next 60 min > 67 kg 15 mg 50 mg 35 mg ≤ 67 kg 15 mg 0.75 mg/kg 0.50 mg/kg"
+        }
+      ],
+      "dose": null,
+      "dose_text": "Weight-based accelerated infusion (not to exceed 100 mg total), administered with concomitant heparin and aspirin: For patients > 67 kg: 15 mg IV bolus, then 50 mg over first 30 min, then 35 mg over next 60 min (100 mg total). For patients <= 67 kg: 15 mg IV bolus, then 0.75 mg/kg over first 30 min (not to exceed 50 mg), then 0.50 mg/kg over next 60 min (not to exceed 35 mg)."
+    },
+    {
+      "id": "alt-iv-ami-3hour",
+      "indication": "Acute Myocardial Infarction (AMI) — 3-Hour Infusion (Adults)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-alteplase-label",
+          "locator": "Section 1.2 Acute Myocardial Infarction",
+          "quote": "Activase is indicated for use in acute myocardial infarction (AMI) for the reduction of mortality and reduction of the incidence of heart failure."
+        },
+        {
+          "source_id": "fda-alteplase-label",
+          "locator": "Section 2.2 Acute Myocardial Infarction",
+          "quote": "For patients weighing ≥ 65 kg, the recommended dose is 100 mg administered as 60 mg in the first hour (6-10 mg administered as a bolus), 20 mg over the second hour, and 20 mg over the third hour. For smaller patients (< 65 kg), a dose of 1.25 mg/kg administered over 3 hours may be used."
+        }
+      ],
+      "dose": null,
+      "dose_text": "For patients >= 65 kg: 100 mg total over 3 hours — 60 mg in 1st hour (6–10 mg IV bolus, 50–54 mg over rest of 1st hour), 20 mg over 2nd hour, and 20 mg over 3rd hour. For patients < 65 kg: 1.25 mg/kg total over 3 hours (0.075 mg/kg bolus, 0.675 mg/kg rest of 1st hour, 0.25 mg/kg 2nd hour, 0.25 mg/kg 3rd hour), max 100 mg."
+    },
+    {
+      "id": "alt-iv-pe",
+      "indication": "Acute Massive Pulmonary Embolism (PE) — Adults",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-alteplase-label",
+          "locator": "Section 1.3 Pulmonary Embolism",
+          "quote": "Activase is indicated for the lysis of acute massive pulmonary embolism, defined as: Acute pulmonary emboli obstructing blood flow to a lobe or multiple lung segments. Acute pulmonary emboli accompanied by unstable hemodynamics, e.g., failure to maintain blood pressure without supportive measures."
+        },
+        {
+          "source_id": "fda-alteplase-label",
+          "locator": "Section 2.3 Pulmonary Embolism (PE)",
+          "quote": "The recommended dose is 100 mg administered by IV infusion over 2 hours. Institute parenteral anticoagulation near the end of or immediately following the Activase infusion when the partial thromboplastin time or thrombin time returns to twice normal or less."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 100,
+        "unit": "mg",
+        "frequency": "once as IV infusion over 2 hours",
+        "max_single": 100,
+        "max_daily": 100
+      },
+      "dose_text": "100 mg administered by IV infusion over 2 hours. Institute parenteral anticoagulation near the end of or immediately following the infusion when PTT or thrombin time returns to twice normal or less."
     }
   ],
   "tall_man": {

@@ -59,6 +59,122 @@
         "max_daily": 50
       },
       "dose_text": "2.5 to 10 mg (or up to 25 mg) initially. In severe bleeding or urgent reversal, 5 to 10 mg IV administered by slow infusion (not exceeding 1 mg/min). If prothrombin time has not shortened satisfactorily in 6 to 8 hours, repeat dose."
+    },
+    {
+      "id": "phy-sc-vka-reversal-adult",
+      "indication": "Anticoagulant-Induced Prothrombin Deficiency — Adults (Subcutaneous, Preferred Route)",
+      "setting": "acute_inpatient",
+      "route": "SC",
+      "refs": [
+        {
+          "source_id": "fda-phytonadione-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Whenever possible, phytonadione injectable emulsion, should be given by the subcutaneous route. (See Box Warning .)"
+        },
+        {
+          "source_id": "fda-phytonadione-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "To correct excessively prolonged prothrombin time caused by oral anticoagulant therapy—2.5 to 10 mg or up to 25 mg initially is recommended. In rare instances 50 mg may be required."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 2.5,
+        "unit": "mg",
+        "frequency": "initial dose (repeat in 6–8 hours if PT not shortened)",
+        "max_single": 25,
+        "max_daily": 50
+      },
+      "dose_text": "2.5 to 10 mg (or up to 25 mg; rarely 50 mg) SC initially. Subcutaneous route is preferred whenever possible to avoid IV/IM anaphylactoid reactions. Repeat in 6 to 8 hours if prothrombin time has not shortened satisfactorily."
+    },
+    {
+      "id": "phy-im-hdn-prophylaxis",
+      "indication": "Prophylaxis of Hemorrhagic Disease of the Newborn (Neonates)",
+      "setting": "acute_inpatient",
+      "route": "IM",
+      "refs": [
+        {
+          "source_id": "fda-phytonadione-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Prophylaxis of Hemorrhagic Diseas e of the Newborn The American Academy of Pediatrics recommends that phytonadione be given to the newborn. A single intramuscular dose of phytonadione injectable emulsion 0.5 to 1 mg within one hour of birth is recommended."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 0.5,
+        "unit": "mg",
+        "frequency": "single dose within 1 hour of birth (0.5 to 1 mg)",
+        "max_single": 1,
+        "max_daily": 1
+      },
+      "dose_text": "0.5 to 1 mg IM as a single dose within 1 hour of birth (use preservative-free diluents if diluted)."
+    },
+    {
+      "id": "phy-sc-hdn-treatment",
+      "indication": "Treatment of Hemorrhagic Disease of the Newborn (Neonates — Subcutaneous)",
+      "setting": "acute_inpatient",
+      "route": "SC",
+      "refs": [
+        {
+          "source_id": "fda-phytonadione-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Phytonadione injectable emulsion 1 mg should be given either subcutaneously or intramuscularly. Higher doses may be necessary if the mother has been receiving oral anticoagulants."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1,
+        "unit": "mg",
+        "frequency": "single dose"
+      },
+      "dose_text": "1 mg SC (higher doses may be necessary if the mother has been receiving oral anticoagulants). Prompt PT shortening in 2 to 4 hours is diagnostic."
+    },
+    {
+      "id": "phy-im-hdn-treatment",
+      "indication": "Treatment of Hemorrhagic Disease of the Newborn (Neonates — Intramuscular)",
+      "setting": "acute_inpatient",
+      "route": "IM",
+      "refs": [
+        {
+          "source_id": "fda-phytonadione-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Phytonadione injectable emulsion 1 mg should be given either subcutaneously or intramuscularly. Higher doses may be necessary if the mother has been receiving oral anticoagulants."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1,
+        "unit": "mg",
+        "frequency": "single dose"
+      },
+      "dose_text": "1 mg IM (higher doses may be necessary if the mother has been receiving oral anticoagulants). Prompt PT shortening in 2 to 4 hours is diagnostic."
+    },
+    {
+      "id": "phy-sc-other-hypoprothrombinemia-adult",
+      "indication": "Hypoprothrombinemia Due to Antibacterial Therapy, Salicylates, or Malabsorption — Adults",
+      "setting": "acute_inpatient",
+      "route": "SC",
+      "refs": [
+        {
+          "source_id": "fda-phytonadione-label",
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "hypoprothrombinemia due to antibacterial therapy; hypoprothrombinemia secondary to factors limiting absorption or synthesis of Vitamin K, e.g., obstructive jaundice, biliary fistula, sprue, ulcerative colitis, celiac disease, intestinal resection, cystic fibrosis of the pancreas, and regional enteritis;"
+        },
+        {
+          "source_id": "fda-phytonadione-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Hypoprothrombinemia Due to Other Causes in Adults A dosage of 2.5 to 25 mg or more (rarely up to 50 mg) is recommended, the amount and route of administration depending upon the severity of the condition and response obtained."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 2.5,
+        "unit": "mg",
+        "frequency": "initial dose (range 2.5 to 25 mg or more; rarely up to 50 mg)",
+        "max_single": 25,
+        "max_daily": 50
+      },
+      "dose_text": "2.5 to 25 mg or more (rarely up to 50 mg), SC preferred (route and dose depend on severity and response). Consider discontinuing or reducing interfering drugs (e.g., salicylates, antibiotics)."
     }
   ],
   "renal_basis": {

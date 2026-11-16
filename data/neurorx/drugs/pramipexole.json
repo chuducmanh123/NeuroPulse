@@ -57,6 +57,43 @@
         "max_daily": 4.5
       },
       "dose_text": "Extended-release: Starting dose is 0.375 mg once daily. Titrate gradually no more frequently than every 5-7 days: Week 2: 0.75 mg/day; Week 3: 1.5 mg/day; Week 4: 2.25 mg/day; Week 5: 3 mg/day (max 4.5 mg/day). In immediate-release, dose is given TID (initial 0.125 mg TID up to max 1.5 mg TID)."
+    },
+    {
+      "id": "prami-pd-er-renal-mod",
+      "indication": "Parkinson's Disease — Moderate Renal Impairment (CrCl 30–50 mL/min, Extended-Release)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-pramipexole-label",
+          "locator": "Section 2.2 Recommended Dosage",
+          "quote": "In patients with moderate renal impairment (creatinine clearance between 30 and 50 mL/min), pramipexole dihydrochloride extended-release tablets should initially be taken every other day. Caution should be exercised and careful assessment of therapeutic response and tolerability should be made before increasing to daily dosing after one week,"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 0.375,
+        "unit": "mg",
+        "frequency": "every other day initially (increase to daily after 1 week if tolerated)",
+        "max_single": 2.25,
+        "max_daily": 2.25
+      },
+      "dose_text": "Moderate renal impairment (CrCl 30 to 50 mL/min): initiate at 0.375 mg extended-release every other day; may increase to once daily after 1 week, then titrate in 0.375 mg increments no more frequently than weekly up to max 2.25 mg/day. Not recommended in CrCl < 30 mL/min or hemodialysis."
+    },
+    {
+      "id": "prami-pd-ir-to-er-switch",
+      "indication": "Parkinson's Disease — Overnight Switch from Immediate-Release to Extended-Release",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-pramipexole-label",
+          "locator": "Section 2.3 Switching from Immediate-Release Pramipexole Tablets to Extended-Release Pramipexole Tablets",
+          "quote": "Patients with Parkinson’s disease may be switched overnight from immediate-release pramipexole tablets to extended-release pramipexole tablets at the same daily dose. When switching between immediate-release pramipexole tablets and extended-release pramipexole tablets, patients should be monitored to determine if dosage adjustment is necessary."
+        }
+      ],
+      "dose": null,
+      "dose_text": "Switch overnight from immediate-release pramipexole tablets to extended-release tablets at the same total daily dose; monitor to determine if dosage adjustment is necessary."
     }
   ],
   "renal_basis": {

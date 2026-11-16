@@ -33,30 +33,30 @@
   "regimens": [
     {
       "id": "ent-pd-adjunct",
-      "indication": "Parkinson's Disease with End-of-Dose 'Wearing-Off' Motor Fluctuations",
+      "indication": "Parkinson's Disease with End-of-Dose 'Wearing-Off' — Adults (Adjunct to Levodopa/Carbidopa)",
       "setting": "maintenance_outpatient",
       "route": "PO",
       "refs": [
         {
           "source_id": "fda-entacapone-label",
           "locator": "INDICATIONS AND USAGE",
-          "quote": "adjunct to levodopa and carbidopa to treat end-of-dose \"wearing-off\" in patients with Parkinson's disease (see CLINICAL PHARMACOLOGY, Clinical Studies )."
+          "quote": "Entacapone tablets USP are indicated as an adjunct to levodopa and carbidopa to treat end-of-dose \"wearing-off\" in patients with Parkinson's disease (see CLINICAL PHARMACOLOGY, Clinical Studies )."
         },
         {
           "source_id": "fda-entacapone-label",
           "locator": "DOSAGE AND ADMINISTRATION",
-          "quote": "recommended dose of entacapone is one 200 mg tablet administered concomitantly with each levodopa and carbidopa dose to a maximum of 8 times daily (200 mg × 8 = 1,600 mg per day)."
+          "quote": "The recommended dose of entacapone is one 200 mg tablet administered concomitantly with each levodopa and carbidopa dose to a maximum of 8 times daily (200 mg × 8 = 1,600 mg per day)."
         }
       ],
       "dose": {
         "kind": "fixed",
         "amount": 200,
         "unit": "mg",
-        "frequency": "with each dose of levodopa/carbidopa",
+        "frequency": "concomitantly with each levodopa/carbidopa dose up to 8 times daily",
         "max_single": 200,
         "max_daily": 1600
       },
-      "dose_text": "200 mg taken concomitantly with each dose of carbidopa/levodopa, up to a maximum of 8 times daily (1600 mg/day). Levodopa dose may need reduction by 10-30% upon initiation to prevent dyskinesias. Harmless brownish-orange urine discoloration is common."
+      "dose_text": "200 mg orally concomitantly with each levodopa and carbidopa dose (immediate- or sustained-release), up to a maximum of 8 times daily (1,600 mg/day), with or without food. Patients receiving >= 800 mg/day levodopa or with moderate/severe dyskinesia may require ~25% reduction in daily levodopa dose. Use caution in hepatic impairment; avoid abrupt withdrawal."
     }
   ],
   "renal_basis": {

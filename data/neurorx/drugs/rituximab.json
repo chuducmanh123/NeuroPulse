@@ -33,31 +33,141 @@
   },
   "regimens": [
     {
-      "id": "rtx-neuro-induction",
-      "indication": "Neuromyelitis Optica Spectrum Disorder (NMOSD) / MuSK-Myasthenia Gravis / Autoimmune Encephalitis",
-      "setting": "acute_inpatient",
-      "route": "IV",
+      "id": "rtx-sc-fl-relapsed",
+      "indication": "Follicular Lymphoma (Relapsed or Refractory, Single-Agent) — Adults (SC, after >= 1 full IV rituximab dose)",
+      "setting": "maintenance_outpatient",
+      "route": "SC",
       "refs": [
         {
           "source_id": "fda-rituximab-label",
-          "locator": "BOXED WARNING",
-          "quote": "WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LEUKOENCEPHALOPATHY WARNING: SEVERE MUCOCUTANEOUS REACTIONS, HEPATITIS B VIRUS REACTIVATION and PROGRESSIVE MULTIFOCAL LE"
+          "locator": "Section 1.1 Follicular Lymphoma (FL)",
+          "quote": "RITUXAN HYCELA is indicated for the treatment of adult patients with: Relapsed or refractory, follicular lymphoma as a single agent."
         },
         {
           "source_id": "fda-rituximab-label",
-          "locator": "WARNINGS AND CAUTIONS",
-          "quote": "infusion-related reactions with fatal outcome have been reported with the use of intravenous formulations of rituximab products, with an onset ranging within 30 minutes to 2 hours after starting the f"
+          "locator": "Section 2.2 Recommended Dosage for Follicular Lymphoma (FL)",
+          "quote": "The recommended dose is RITUXAN HYCELA 1,400 mg/23,400 Units (1,400 mg rituximab and 23,400 Units hyaluronidase human) subcutaneously at a fixed dose irrespective of patient's body surface area"
         }
       ],
       "dose": {
         "kind": "fixed",
-        "amount": 1000,
+        "amount": 1400,
         "unit": "mg",
-        "frequency": "two doses 14 days apart",
-        "max_single": 1000,
-        "max_daily": 1000
+        "frequency": "once weekly for 3 or 7 weeks (after IV dose at Week 1)",
+        "max_single": 1400,
+        "max_daily": 1400
       },
-      "dose_text": "Standard neurology protocol: 1000 mg IV on Day 1 and Day 15 (fixed dose protocol), OR 375 mg/m² IV weekly × 4 doses. Premedicate with IV methylprednisolone 100 mg, oral acetaminophen 650-1000 mg, and antihistamine (diphenhydramine 50 mg) 30 minutes prior to every infusion."
+      "dose_text": "1,400 mg rituximab / 23,400 Units hyaluronidase human (11.7 mL) injected SC into abdomen over ~5 minutes once weekly for 3 or 7 weeks following 1 full IV rituximab dose at Week 1 (4 or 8 weeks total); for retreatment, once weekly for 3 weeks after Week 1 IV dose. Premedicate with acetaminophen and antihistamine (consider glucocorticoid); observe 15 minutes."
+    },
+    {
+      "id": "rtx-sc-fl-untreated-induction",
+      "indication": "Follicular Lymphoma (Previously Untreated, with First-Line Chemotherapy) — Adults (SC, after >= 1 full IV rituximab dose)",
+      "setting": "maintenance_outpatient",
+      "route": "SC",
+      "refs": [
+        {
+          "source_id": "fda-rituximab-label",
+          "locator": "Section 2.2 Recommended Dosage for Follicular Lymphoma (FL)",
+          "quote": "Administer on Day 1 of Cycles 2–8 of chemotherapy (every 21 days), for up to 7 cycles following a full dose of a rituximab product by intravenous infusion on Day 1 of Cycle 1 of chemotherapy (i.e., up to 8 cycles in total)."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1400,
+        "unit": "mg",
+        "frequency": "Day 1 of Cycles 2-8 (every 21 days)",
+        "max_single": 1400,
+        "max_daily": 1400
+      },
+      "dose_text": "1,400 mg rituximab / 23,400 Units hyaluronidase human (11.7 mL) SC into abdomen over ~5 minutes on Day 1 of Cycles 2-8 of chemotherapy (every 21 days) for up to 7 cycles, following 1 full IV rituximab dose on Day 1 of Cycle 1. Premedicate before each dose."
+    },
+    {
+      "id": "rtx-sc-fl-maintenance",
+      "indication": "Follicular Lymphoma (Single-Agent Maintenance after CR/PR) — Adults (SC)",
+      "setting": "maintenance_outpatient",
+      "route": "SC",
+      "refs": [
+        {
+          "source_id": "fda-rituximab-label",
+          "locator": "Section 2.2 Recommended Dosage for Follicular Lymphoma (FL)",
+          "quote": "In patients with complete or partial response, initiate RITUXAN HYCELA maintenance treatment 8 weeks following completion of RITUXAN HYCELA in combination with chemotherapy. Administer RITUXAN HYCELA as a single-agent every 8 weeks for 12 doses."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1400,
+        "unit": "mg",
+        "frequency": "every 8 weeks for 12 doses",
+        "max_single": 1400,
+        "max_daily": 1400
+      },
+      "dose_text": "1,400 mg rituximab / 23,400 Units hyaluronidase human (11.7 mL) SC into abdomen over ~5 minutes every 8 weeks for 12 doses, initiated 8 weeks after completion of chemoimmunotherapy in patients with complete or partial response."
+    },
+    {
+      "id": "rtx-sc-fl-post-cvp",
+      "indication": "Follicular Lymphoma (Non-Progressing after First-Line CVP) — Adults (SC, after >= 1 full IV rituximab dose)",
+      "setting": "maintenance_outpatient",
+      "route": "SC",
+      "refs": [
+        {
+          "source_id": "fda-rituximab-label",
+          "locator": "Section 2.2 Recommended Dosage for Follicular Lymphoma (FL)",
+          "quote": "Following completion of 6–8 cycles of CVP chemotherapy and a full dose of a rituximab product by intravenous infusion at week 1, administer once weekly for 3 weeks (i.e., 4 weeks in total) at 6 month intervals to a maximum of 16 doses."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1400,
+        "unit": "mg",
+        "frequency": "once weekly for 3 weeks at 6-month intervals (max 16 doses)",
+        "max_single": 1400,
+        "max_daily": 1400
+      },
+      "dose_text": "1,400 mg rituximab / 23,400 Units hyaluronidase human (11.7 mL) SC into abdomen over ~5 minutes once weekly for 3 weeks (following Week 1 IV rituximab) at 6-month intervals to a maximum of 16 doses after 6-8 cycles of CVP chemotherapy."
+    },
+    {
+      "id": "rtx-sc-dlbcl",
+      "indication": "Diffuse Large B-Cell Lymphoma (Previously Untreated, with CHOP) — Adults (SC, after >= 1 full IV rituximab dose)",
+      "setting": "maintenance_outpatient",
+      "route": "SC",
+      "refs": [
+        {
+          "source_id": "fda-rituximab-label",
+          "locator": "Section 2.3 Recommended Dosage for Diffuse Large B-Cell Lymphoma (DLBCL)",
+          "quote": "Administer RITUXAN HYCELA 1,400 mg/23,400 Units on Day 1 of Cycles 2–8 of CHOP chemotherapy for up to 7 cycles following a full dose of a rituximab product by intravenous infusion at Day 1, Cycle 1 of CHOP chemotherapy (i.e., up to 6–8 cycles in total)."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1400,
+        "unit": "mg",
+        "frequency": "Day 1 of Cycles 2-8 of CHOP",
+        "max_single": 1400,
+        "max_daily": 1400
+      },
+      "dose_text": "1,400 mg rituximab / 23,400 Units hyaluronidase human (11.7 mL) SC into abdomen over ~5 minutes on Day 1 of Cycles 2-8 of CHOP chemotherapy (up to 7 cycles) following 1 full IV rituximab dose on Day 1, Cycle 1."
+    },
+    {
+      "id": "rtx-sc-cll",
+      "indication": "Chronic Lymphocytic Leukemia (Previously Untreated or Treated, with FC) — Adults (SC, after >= 1 full IV rituximab dose)",
+      "setting": "maintenance_outpatient",
+      "route": "SC",
+      "refs": [
+        {
+          "source_id": "fda-rituximab-label",
+          "locator": "Section 2.4 Recommended Dosage for Chronic Lymphocytic Leukemia (CLL)",
+          "quote": "Administer RITUXAN HYCELA 1,600 mg/26,800 Units on Day 1 of Cycles 2–6 (every 28 days) for a total of 5 cycles following a full intravenous dose at Day 1, Cycle 1 (i.e., 6 cycles in total)."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1600,
+        "unit": "mg",
+        "frequency": "Day 1 of Cycles 2-6 (every 28 days)",
+        "max_single": 1600,
+        "max_daily": 1600
+      },
+      "dose_text": "1,600 mg rituximab / 26,800 Units hyaluronidase human (13.4 mL) SC into abdomen over ~7 minutes on Day 1 of Cycles 2-6 (every 28 days) with FC chemotherapy following 1 full IV rituximab dose on Day 1, Cycle 1. Provide PCP and herpes virus prophylaxis during treatment and up to 12 months post-treatment."
     }
   ],
   "renal_basis": {

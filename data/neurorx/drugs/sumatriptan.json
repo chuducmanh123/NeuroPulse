@@ -33,18 +33,18 @@
   "regimens": [
     {
       "id": "sum-acute-migraine-po",
-      "indication": "Acute Migraine Headache with or without Aura",
+      "indication": "Acute Migraine with or without Aura — Adults",
       "setting": "maintenance_outpatient",
       "route": "PO",
       "refs": [
         {
           "source_id": "fda-sumatriptan-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "acute treatment of migraine with or without aura in adults. Limitations of Use: • Use only if a clear diagnosis of migraine headache has been established."
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "IMITREX tablets are indicated for the acute treatment of migraine with or without aura in adults."
         },
         {
           "source_id": "fda-sumatriptan-label",
-          "locator": "DOSAGE AND ADMINISTRATION",
+          "locator": "Section 2.1 Dosing Information",
           "quote": "The recommended dose of IMITREX tablets is 25 mg, 50 mg, or 100 mg."
         }
       ],
@@ -52,11 +52,55 @@
         "kind": "fixed",
         "amount": 50,
         "unit": "mg",
-        "frequency": "once at headache onset; may repeat after at least 2 hours if partial response",
+        "frequency": "once at migraine onset; may repeat after at least 2 hours if partial response",
         "max_single": 100,
         "max_daily": 200
       },
-      "dose_text": "Single dose of 25 mg, 50 mg, or 100 mg taken at the onset of migraine attack. If the headache returns or only partially improves, a second dose may be administered at least 2 hours after the first dose. The maximum daily dose is 200 mg in a 24-hour period. In mild to moderate hepatic impairment, maximum single dose is 50 mg."
+      "dose_text": "Single oral dose of 25 mg, 50 mg, or 100 mg at migraine onset. If migraine has not resolved by 2 hours or returns after transient improvement (with some response to first dose), a second dose may be given at least 2 hours later. Maximum daily dose: 200 mg in 24 hours. Safety of treating >4 headaches per 30 days not established."
+    },
+    {
+      "id": "sum-post-injection-po",
+      "indication": "Acute Migraine Returning After Sumatriptan Injection — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-sumatriptan-label",
+          "locator": "Section 2.1 Dosing Information - Use after IMITREX Injection",
+          "quote": "If the migraine returns following an initial treatment with IMITREX (sumatriptan) injection, additional single IMITREX tablets (up to 100 mg/day) may be given with an interval of at least 2 hours between tablet doses."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 50,
+        "unit": "mg",
+        "frequency": "at least 2 hours between tablet doses (up to 100 mg/day)",
+        "max_single": 100,
+        "max_daily": 100
+      },
+      "dose_text": "If migraine returns after initial sumatriptan injection, additional single oral tablets up to 100 mg/day may be given with an interval of at least 2 hours between tablet doses."
+    },
+    {
+      "id": "sum-mild-mod-hepatic-po",
+      "indication": "Acute Migraine with or without Aura — Mild to Moderate Hepatic Impairment (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-sumatriptan-label",
+          "locator": "Section 2.2 Dosing in Patients with Hepatic Impairment",
+          "quote": "If treatment is deemed advisable in the presence of mild to moderate hepatic impairment, the maximum single dose should not exceed 50 mg"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 50,
+        "unit": "mg",
+        "frequency": "once at migraine onset (max single dose 50 mg)",
+        "max_single": 50,
+        "max_daily": 200
+      },
+      "dose_text": "In mild to moderate hepatic impairment, maximum single dose must not exceed 50 mg. Contraindicated in severe hepatic impairment."
     }
   ],
   "renal_basis": {

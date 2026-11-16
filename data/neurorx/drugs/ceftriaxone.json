@@ -34,7 +34,7 @@
   "regimens": [
     {
       "id": "cef-meningitis-iv",
-      "indication": "Acute Bacterial Meningitis (S. pneumoniae, N. meningitidis, H. influenzae)",
+      "indication": "Acute Bacterial Meningitis (S. pneumoniae, N. meningitidis, H. influenzae) — Adults",
       "setting": "acute_inpatient",
       "route": "IV",
       "refs": [
@@ -58,6 +58,230 @@
         "max_daily": 4
       },
       "dose_text": "In bacterial meningitis, initial dose 100 mg/kg (up to 4 g), then 2 g IV every 12 hours (4 g/day total) infused over 30 minutes for 7 to 14 days. Do not administer simultaneously with calcium-containing IV solutions."
+    },
+    {
+      "id": "cef-meningitis-peds-iv",
+      "indication": "Acute Bacterial Meningitis — Pediatrics",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-ceftriaxone-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Meningitis Caused by Haemophilus influenzae, Neisseria meningitidis or Streptococcus pneumoniae ."
+        },
+        {
+          "source_id": "fda-ceftriaxone-label",
+          "locator": "DOSAGE AND ADMINISTRATION - Pediatric Patients",
+          "quote": "In the treatment of meningitis, it is recommended that the initial therapeutic dose be 100 mg/kg (not to exceed 4 grams). Thereafter, a total daily dose of 100 mg/kg/day (not to exceed 4 grams daily) is recommended. The daily dose may be administered once a day (or in equally divided doses every 12 hours). The usual duration of therapy is 7 to 14 days."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 100,
+        "unit": "mg",
+        "frequency": "once daily or divided every 12 hours (50 mg/kg q12h) for 7 to 14 days",
+        "max_single": 4000,
+        "max_daily": 4000
+      },
+      "dose_text": "Initial therapeutic dose 100 mg/kg IV (not to exceed 4 g), followed by 100 mg/kg/day (not to exceed 4 g/day) once daily or divided every 12 hours for 7 to 14 days. Administer over 30 minutes (60 minutes in term neonates)."
+    },
+    {
+      "id": "cef-general-infections-adult-iv",
+      "indication": "Lower Respiratory Tract, Skin/Skin Structure, UTI, Pelvic Inflammatory Disease, Bacterial Septicemia, Bone/Joint, and Intra-Abdominal Infections — Adults (IV)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-ceftriaxone-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Ceftriaxone for injection, USP is indicated for the treatment of the following infections when caused by susceptible organisms: Lower Respiratory Tract Infections"
+        },
+        {
+          "source_id": "fda-ceftriaxone-label",
+          "locator": "DOSAGE AND ADMINISTRATION - Adults",
+          "quote": "The usual adult daily dose is 1 to 2 grams given once a day (or in equally divided doses twice a day) depending on the type and severity of infection. The total daily dose should not exceed 4 grams."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1,
+        "unit": "g",
+        "frequency": "once daily (1 to 2 g/day once daily or divided twice daily; max 4 g/day)",
+        "max_single": 2,
+        "max_daily": 4
+      },
+      "dose_text": "1 to 2 g IV once daily (or in equally divided doses twice daily) over 30 minutes, depending on type and severity of infection; total daily dose not to exceed 4 g. Usual duration 4 to 14 days (at least 10 days for S. pyogenes)."
+    },
+    {
+      "id": "cef-general-infections-adult-im",
+      "indication": "Lower Respiratory Tract, Skin/Skin Structure, UTI, Pelvic Inflammatory Disease, Bacterial Septicemia, Bone/Joint, and Intra-Abdominal Infections — Adults (IM)",
+      "setting": "acute_inpatient",
+      "route": "IM",
+      "refs": [
+        {
+          "source_id": "fda-ceftriaxone-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Ceftriaxone may be administered intravenously or intramuscularly."
+        },
+        {
+          "source_id": "fda-ceftriaxone-label",
+          "locator": "DOSAGE AND ADMINISTRATION - Adults",
+          "quote": "The usual adult daily dose is 1 to 2 grams given once a day (or in equally divided doses twice a day) depending on the type and severity of infection. The total daily dose should not exceed 4 grams."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1,
+        "unit": "g",
+        "frequency": "once daily (1 to 2 g/day once daily or divided twice daily; max 4 g/day)",
+        "max_single": 2,
+        "max_daily": 4
+      },
+      "dose_text": "1 to 2 g deep IM once daily (or in equally divided doses twice daily); total daily dose not to exceed 4 g. Usual duration 4 to 14 days."
+    },
+    {
+      "id": "cef-gonorrhea-adult-im",
+      "indication": "Uncomplicated Gonococcal Infections (Cervical/Urethral, Rectal, Pharyngeal) — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "IM",
+      "refs": [
+        {
+          "source_id": "fda-ceftriaxone-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Uncomplicated Gonorrhea (cervical/urethral and rectal) Caused by Neisseria gonorrhoeae , including both penicillinase- and nonpenicillinase-producing strains, and pharyngeal gonorrhea caused by nonpenicillinase-producing strains of Neisseria gonorrhoeae ."
+        },
+        {
+          "source_id": "fda-ceftriaxone-label",
+          "locator": "DOSAGE AND ADMINISTRATION - Adults",
+          "quote": "For the treatment of uncomplicated gonococcal infections, a single intramuscular dose of 250 mg is recommended."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 250,
+        "unit": "mg",
+        "frequency": "single IM dose",
+        "max_single": 250,
+        "max_daily": 250
+      },
+      "dose_text": "Single intramuscular dose of 250 mg. Add appropriate antichlamydial coverage if Chlamydia trachomatis is suspected."
+    },
+    {
+      "id": "cef-surgical-prophylaxis-adult-iv",
+      "indication": "Preoperative Surgical Prophylaxis — Adults",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-ceftriaxone-label",
+          "locator": "INDICATIONS AND USAGE - Surgical Prophylaxis",
+          "quote": "Surgical Prophylaxis The preoperative administration of a single 1 g dose of ceftriaxone may reduce the incidence of postoperative infections in patients undergoing surgical procedures classified as contaminated or potentially contaminated"
+        },
+        {
+          "source_id": "fda-ceftriaxone-label",
+          "locator": "DOSAGE AND ADMINISTRATION - Adults",
+          "quote": "For preoperative use (surgical prophylaxis), a single dose of 1 gram administered intravenously 1/2 to 2 hours before surgery is recommended."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1,
+        "unit": "g",
+        "frequency": "single IV dose 0.5 to 2 hours before surgery",
+        "max_single": 1,
+        "max_daily": 1
+      },
+      "dose_text": "Single 1 g IV dose administered 1/2 to 2 hours before surgery."
+    },
+    {
+      "id": "cef-skin-peds-iv",
+      "indication": "Skin and Skin Structure Infections — Pediatrics",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-ceftriaxone-label",
+          "locator": "DOSAGE AND ADMINISTRATION - Pediatric Patients",
+          "quote": "For the treatment of skin and skin structure infections, the recommended total daily dose is 50 to 75 mg/kg given once a day (or in equally divided doses twice a day). The total daily dose should not exceed 2 grams."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 50,
+        "unit": "mg",
+        "frequency": "once daily or divided twice daily (50 to 75 mg/kg/day; max 2 g/day)",
+        "max_daily": 2000
+      },
+      "dose_text": "50 to 75 mg/kg/day IV (or IM) once daily or in equally divided doses twice daily; total daily dose should not exceed 2 g."
+    },
+    {
+      "id": "cef-serious-misc-peds-iv",
+      "indication": "Serious Miscellaneous Infections Other Than Meningitis — Pediatrics",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-ceftriaxone-label",
+          "locator": "DOSAGE AND ADMINISTRATION - Pediatric Patients",
+          "quote": "For the treatment of serious miscellaneous infections other than meningitis, the recommended total daily dose is 50 to 75 mg/kg, given in divided doses every 12 hours. The total daily dose should not exceed 2 grams."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 50,
+        "unit": "mg",
+        "frequency": "total daily dose (50 to 75 mg/kg/day) given in divided doses every 12 hours (max 2 g/day)",
+        "max_daily": 2000
+      },
+      "dose_text": "50 to 75 mg/kg/day IV (or IM) given in divided doses every 12 hours; total daily dose should not exceed 2 g."
+    },
+    {
+      "id": "cef-otitis-media-peds-im",
+      "indication": "Acute Bacterial Otitis Media — Pediatrics",
+      "setting": "maintenance_outpatient",
+      "route": "IM",
+      "refs": [
+        {
+          "source_id": "fda-ceftriaxone-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Acute Bacterial Otitis Media Caused by Streptococcus pneumoniae, Haemophilus influenzae (including beta-lactamase producing strains) or Moraxella catarrhalis (including beta-lactamase producing strains)."
+        },
+        {
+          "source_id": "fda-ceftriaxone-label",
+          "locator": "DOSAGE AND ADMINISTRATION - Pediatric Patients",
+          "quote": "For the treatment of acute bacterial otitis media, a single intramuscular dose of 50 mg/kg (not to exceed 1 gram) is recommended (see INDICATIONS AND USAGE )."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 50,
+        "unit": "mg",
+        "frequency": "single IM dose (max 1 g)",
+        "max_single": 1000,
+        "max_daily": 1000
+      },
+      "dose_text": "Single intramuscular dose of 50 mg/kg (not to exceed 1 g)."
+    },
+    {
+      "id": "cef-neonate-iv-infusion",
+      "indication": "Susceptible Infections — Term Neonates (<= 28 days, Non-Hyperbilirubinemic, No Calcium IV Solutions)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-ceftriaxone-label",
+          "locator": "DOSAGE AND ADMINISTRATION - Neonates",
+          "quote": "Ceftriaxone is contraindicated in premature neonates (see CONTRAINDICATIONS ). Ceftriaxone is contraindicated in neonates (≤ 28 days) if they require (or are expected to require) treatment with calcium-containing IV solutions, including continuous calcium-containing infusions such as parenteral nutrition because of the risk of precipitation of ceftriaxone-calcium"
+        },
+        {
+          "source_id": "fda-ceftriaxone-label",
+          "locator": "DOSAGE AND ADMINISTRATION - Neonates",
+          "quote": "Intravenous doses should be given over 60 minutes in neonates to reduce the risk of bilirubin encephalopathy."
+        }
+      ],
+      "dose": null,
+      "dose_text": "Administer IV doses over 60 minutes in neonates to reduce the risk of bilirubin encephalopathy. Contraindicated in premature neonates (<= 41 weeks PMA), hyperbilirubinemic neonates, and neonates (<= 28 days) requiring calcium-containing IV solutions."
     }
   ],
   "renal_basis": {

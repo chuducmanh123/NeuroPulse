@@ -58,6 +58,108 @@
         "max_daily": 12
       },
       "dose_text": "2 g IV every 4 hours (total 12 g/day) infused over 15 to 30 minutes for 21 days for Listeria monocytogenes meningitis in neonates, elderly patients (>50 years), or immunocompromised hosts. Adjust dosing frequency in renal impairment."
+    },
+    {
+      "id": "amp-sulbactam-adult-iv",
+      "indication": "Skin/Skin Structure, Intra-Abdominal, and Gynecological Infections (Ampicillin-Sulbactam) — Adults",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-ampicillin-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Ampicillin and Sulbactam for Injection is indicated for the treatment of infections due to susceptible strains of the designated microorganisms in the conditions listed below. Skin and Skin Structure Infections"
+        },
+        {
+          "source_id": "fda-ampicillin-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "The recommended adult dosage of Ampicillin and Sulbactam for Injection is 1.5 g (ampicillin 1 g and sulbactam 0.5 g) to 3 g (ampicillin 2 g and sulbactam 1 g) every six hours."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1.5,
+        "unit": "g",
+        "frequency": "every 6 hours (1.5 g to 3 g q6h; max sulbactam 4 g/day)",
+        "max_single": 3,
+        "max_daily": 12
+      },
+      "dose_text": "1.5 g (1 g ampicillin + 0.5 g sulbactam) to 3 g (2 g ampicillin + 1 g sulbactam) IV every 6 hours by slow IV injection over 10–15 min or IV infusion over 15–30 min. Total sulbactam dose should not exceed 4 g/day."
+    },
+    {
+      "id": "amp-sulbactam-adult-im",
+      "indication": "Skin/Skin Structure, Intra-Abdominal, and Gynecological Infections (Ampicillin-Sulbactam) — Adults (Intramuscular)",
+      "setting": "acute_inpatient",
+      "route": "IM",
+      "refs": [
+        {
+          "source_id": "fda-ampicillin-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Intra-Abdominal Infections caused by beta-lactamase producing strains of Escherichia coli , Klebsiella spp. (including K. pneumoniae * ) , Bacteroides spp. (including B. fragilis ), and Enterobacter spp.* Gynecological Infections"
+        },
+        {
+          "source_id": "fda-ampicillin-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Ampicillin and Sulbactam for Injection may be administered by deep intramuscular injection (see DIRECTIONS FOR USE-Preparation for Intramuscular Injection section). The recommended adult dosage of Ampicillin and Sulbactam for Injection is 1.5 g (ampicillin 1 g and sulbactam 0.5 g) to 3 g (ampicillin 2 g and sulbactam 1 g) every six hours."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1.5,
+        "unit": "g",
+        "frequency": "every 6 hours (1.5 g to 3 g deep IM q6h; max sulbactam 4 g/day)",
+        "max_single": 3,
+        "max_daily": 12
+      },
+      "dose_text": "1.5 g (1 g ampicillin + 0.5 g sulbactam) to 3 g (2 g ampicillin + 1 g sulbactam) by deep IM injection every 6 hours. Total sulbactam dose should not exceed 4 g/day."
+    },
+    {
+      "id": "amp-sulbactam-peds-iv",
+      "indication": "Susceptible Bacterial Infections (Ampicillin-Sulbactam) — Pediatrics (1 year of age or older, < 40 kg)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-ampicillin-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Pediatric Patients 1 Year of Age or Older: The recommended daily dose of Ampicillin and Sulbactam for Injection in pediatric patients is 300 mg per kg of body weight administered via intravenous infusion in equally divided doses every 6 hours."
+        },
+        {
+          "source_id": "fda-ampicillin-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "The course of intravenous therapy should not routinely exceed 14 days."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 75,
+        "unit": "mg",
+        "frequency": "every 6 hours (300 mg/kg/day total; 200 mg ampicillin + 100 mg sulbactam/kg/day)",
+        "max_daily": 300
+      },
+      "dose_text": "300 mg/kg/day (200 mg ampicillin + 100 mg sulbactam per kg/day) IV infusion in equally divided doses every 6 hours (75 mg/kg q6h). IM route not established in pediatrics; IV course should not routinely exceed 14 days."
+    },
+    {
+      "id": "amp-sulbactam-peds-40kg-iv",
+      "indication": "Susceptible Bacterial Infections (Ampicillin-Sulbactam) — Pediatrics (>= 40 kg)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-ampicillin-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Pediatric patients weighing 40 kg or more should be dosed according to adult recommendations, and the total dose of sulbactam should not exceed 4 g per day."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1.5,
+        "unit": "g",
+        "frequency": "every 6 hours (1.5 g to 3 g q6h; max sulbactam 4 g/day)",
+        "max_single": 3,
+        "max_daily": 12
+      },
+      "dose_text": "Pediatric patients >= 40 kg: Dose according to adult recommendations — 1.5 g to 3 g IV every 6 hours; total sulbactam dose should not exceed 4 g/day."
     }
   ],
   "renal_basis": {

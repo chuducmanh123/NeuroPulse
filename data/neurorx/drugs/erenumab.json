@@ -31,31 +31,53 @@
   },
   "regimens": [
     {
-      "id": "ere-migraine-prevention",
-      "indication": "Preventive Treatment of Episodic or Chronic Migraine",
+      "id": "ere-migraine-standard-sc",
+      "indication": "Preventive Treatment of Migraine — Adults (Standard Dose)",
       "setting": "maintenance_outpatient",
       "route": "SC",
       "refs": [
         {
           "source_id": "fda-erenumab-label",
           "locator": "INDICATIONS AND USAGE",
-          "quote": "preventive treatment of migraine in adults. AIMOVIG is a calcitonin gene-related peptide receptor antagonist indicated for the preventive treatment of migraine in adults."
+          "quote": "AIMOVIG is indicated for the preventive treatment of migraine in adults."
         },
         {
           "source_id": "fda-erenumab-label",
-          "locator": "DOSAGE AND ADMINISTRATION",
-          "quote": "recommended dosage of AIMOVIG is 70 mg injected subcutaneously once monthly. Some patients may benefit from a dosage of 140 mg injected subcutaneously once monthly."
+          "locator": "DOSAGE AND ADMINISTRATION (2.1)",
+          "quote": "The recommended dosage of AIMOVIG is 70 mg injected subcutaneously once monthly."
         }
       ],
       "dose": {
         "kind": "fixed",
         "amount": 70,
         "unit": "mg",
-        "frequency": "subcutaneous injection once monthly (may increase to 140 mg once monthly)",
+        "frequency": "once monthly",
+        "max_single": 70,
+        "max_daily": 70
+      },
+      "dose_text": "70 mg injected subcutaneously once monthly into the abdomen, thigh, or upper arm. Allow to sit at room temperature for at least 30 minutes prior to administration. If a dose is missed, administer as soon as possible and schedule monthly from the date of the last dose. In geriatric patients, start at the low end (70 mg)."
+    },
+    {
+      "id": "ere-migraine-high-sc",
+      "indication": "Preventive Treatment of Migraine — Adults (Escalated Dose)",
+      "setting": "maintenance_outpatient",
+      "route": "SC",
+      "refs": [
+        {
+          "source_id": "fda-erenumab-label",
+          "locator": "DOSAGE AND ADMINISTRATION (2.1)",
+          "quote": "Some patients may benefit from a dosage of 140 mg injected subcutaneously once monthly."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 140,
+        "unit": "mg",
+        "frequency": "once monthly",
         "max_single": 140,
         "max_daily": 140
       },
-      "dose_text": "70 mg injected subcutaneously once monthly. Some patients may benefit from a dosage of 140 mg once monthly (administered as two consecutive 70 mg injections or one 140 mg injection). Administer in abdomen, thigh, or upper arm."
+      "dose_text": "140 mg injected subcutaneously once monthly into the abdomen, thigh, or upper arm (using 140 mg/mL single-dose prefilled autoinjector or syringe). Allow to sit at room temperature for at least 30 minutes prior to administration."
     }
   ],
   "renal_basis": {

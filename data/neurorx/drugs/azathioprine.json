@@ -50,13 +50,91 @@
         }
       ],
       "dose": {
-        "kind": "weight_based",
+        "kind": "per_kg",
         "amount": 2.5,
-        "unit": "mg/kg",
+        "unit": "mg",
         "frequency": "once daily",
         "max_daily": 250
       },
       "dose_text": "Target maintenance: 2 to 3 mg/kg daily orally (usually 100 to 200 mg daily). Initiate at 50 mg/day and titrate based on CBC and liver function. Onset of clinical immunosuppressive effect typically requires 6 to 12 months."
+    },
+    {
+      "id": "aza-renal-transplant-initial-po",
+      "indication": "Prevention of Rejection in Renal Homotransplantation — Initial",
+      "setting": "acute_inpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-azathioprine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Renal Homotransplantation: IMURAN is indicated as an adjunct for the prevention of rejection in renal homotransplantation."
+        },
+        {
+          "source_id": "fda-azathioprine-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "The initial dose is usually 3 to 5 mg/kg daily, beginning at the time of transplant. IMURAN is usually given as a single daily dose on the day of, and in a minority of cases 1 to 3 days before, transplantation."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 3,
+        "unit": "mg",
+        "frequency": "once daily (3 to 5 mg/kg/day starting at time of transplant)",
+        "max_daily": 5
+      },
+      "dose_text": "Initial dose: 3 to 5 mg/kg orally once daily beginning on the day of transplantation (or 1 to 3 days prior in select cases). Reduce dose in oliguric patients or TPMT/NUDT15 deficiency."
+    },
+    {
+      "id": "aza-renal-transplant-maint-po",
+      "indication": "Prevention of Rejection in Renal Homotransplantation — Maintenance",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-azathioprine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Renal Homotransplantation: IMURAN is indicated as an adjunct for the prevention of rejection in renal homotransplantation."
+        },
+        {
+          "source_id": "fda-azathioprine-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Dose reduction to maintenance levels of 1 to 3 mg/kg daily is usually possible. The dose of IMURAN should not be increased to toxic levels because of threatened rejection."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 1,
+        "unit": "mg",
+        "frequency": "once daily (maintenance 1 to 3 mg/kg/day)",
+        "max_daily": 3
+      },
+      "dose_text": "Maintenance dose: 1 to 3 mg/kg orally once daily. Do not increase to toxic levels because of threatened rejection; discontinue if severe hematologic or other toxicity develops."
+    },
+    {
+      "id": "aza-ra-po",
+      "indication": "Active Rheumatoid Arthritis — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-azathioprine-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "Rheumatoid Arthritis: IMURAN is indicated for the treatment of active rheumatoid arthritis (RA) to reduce signs and symptoms."
+        },
+        {
+          "source_id": "fda-azathioprine-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "The initial dose should be approximately 1.0 mg/kg (50 to 100 mg) given as a single dose or on a twice-daily schedule. The dose may be increased, beginning at 6 to 8 weeks and thereafter by steps at 4-week intervals, if there are no serious toxicities and if initial response is unsatisfactory. Dose increments should be 0.5 mg/kg daily, up to a maximum dose of 2.5 mg/kg per day."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 1,
+        "unit": "mg",
+        "frequency": "once daily or in two divided doses; titrate by 0.5 mg/kg/day up to 2.5 mg/kg/day",
+        "max_daily": 2.5
+      },
+      "dose_text": "Initial: ~1.0 mg/kg (50 to 100 mg) orally once daily or in 2 divided doses. Increase by 0.5 mg/kg/day at 6–8 weeks and every 4 weeks thereafter if needed, up to max 2.5 mg/kg/day. Minimum adequate trial is 12 weeks; taper by 0.5 mg/kg (~25 mg/day) q4wk to lowest effective maintenance dose."
     }
   ],
   "renal_basis": {

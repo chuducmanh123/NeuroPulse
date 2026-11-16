@@ -33,31 +33,185 @@
   },
   "regimens": [
     {
-      "id": "dul-dpnp-maintenance",
-      "indication": "Diabetic Peripheral Neuropathic Pain and Chronic Musculoskeletal Pain",
+      "id": "dul-mdd-adult-po",
+      "indication": "Major Depressive Disorder (MDD) — Adults",
       "setting": "maintenance_outpatient",
       "route": "PO",
       "refs": [
         {
           "source_id": "fda-duloxetine-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "management of neuropathic pain associated with diabetic peripheral neuropathy [see Clinical Studies (14.4) ] , the mean duration of diabetes was approximately 12 years, the mean ba"
+          "locator": "DOSAGE AND ADMINISTRATION (2.2)",
+          "quote": "The recommended starting dosage in adults with MDD is 40 mg/day (given as 20 mg twice daily) to 60 mg/day (given either once daily or as 30 mg twice daily)."
         },
         {
           "source_id": "fda-duloxetine-label",
           "locator": "DOSAGE AND ADMINISTRATION",
-          "quote": "Administer 60 mg once daily in adults with diabetic peripheral neuropathic pain."
+          "quote": "Acute Treatment: 40 mg/day (20 mg twice daily) to 60 mg/day (once daily or as 30 mg twice daily); Maintenance Treatment: 60 mg/day 120 mg/day"
         }
       ],
       "dose": {
         "kind": "fixed",
         "amount": 60,
         "unit": "mg",
-        "frequency": "once daily (may start at 30 mg once daily for 1 week to improve tolerability)",
+        "frequency": "once daily (or 40 mg/day as 20 mg twice daily; max 120 mg/day)",
+        "max_single": 120,
+        "max_daily": 120
+      },
+      "dose_text": "Starting dosage: 40 mg/day (20 mg twice daily) to 60 mg/day (once daily or 30 mg twice daily); may start at 30 mg once daily for 1 week to adjust. Maintenance: 60 mg/day. Maximum studied: 120 mg/day (no evidence doses > 60 mg/day confer additional benefit). Swallow whole."
+    },
+    {
+      "id": "dul-gad-adult-po",
+      "indication": "Generalized Anxiety Disorder (GAD) — Adults (< 65 years)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-duloxetine-label",
+          "locator": "DOSAGE AND ADMINISTRATION (2.3)",
+          "quote": "For most adults less than 65 years of age with GAD, initiate Duloxetine delayed-release capsules 60 mg once daily. For some patients, it may be desirable to start at 30 mg once daily for 1 week, to allow patients to adjust to Duloxetine delayed-release capsules before increasing to 60 mg once daily."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 60,
+        "unit": "mg",
+        "frequency": "once daily (max 120 mg/day)",
+        "max_single": 120,
+        "max_daily": 120
+      },
+      "dose_text": "Initiate at 60 mg once daily (or 30 mg once daily for 1 week before increasing to 60 mg once daily). If increased beyond 60 mg/day, increase in increments of 30 mg once daily up to maximum 120 mg/day. Swallow whole."
+    },
+    {
+      "id": "dul-gad-geriatric-po",
+      "indication": "Generalized Anxiety Disorder (GAD) — Geriatric Patients (>= 65 years)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-duloxetine-label",
+          "locator": "DOSAGE AND ADMINISTRATION (2.3)",
+          "quote": "In geriatric patients with GAD, initiate Duloxetine delayed-release capsules at a dosage of 30 mg once daily for 2 weeks before considering an increase to the target dose of 60 mg/day."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 30,
+        "unit": "mg",
+        "frequency": "once daily for 2 weeks, then target 60 mg once daily (max 120 mg/day)",
+        "max_single": 120,
+        "max_daily": 120
+      },
+      "dose_text": "Initiate at 30 mg once daily for 2 weeks before considering an increase to the target dose of 60 mg once daily. If increased beyond 60 mg/day, increase in increments of 30 mg once daily up to maximum 120 mg/day."
+    },
+    {
+      "id": "dul-gad-pediatric-po",
+      "indication": "Generalized Anxiety Disorder (GAD) — Pediatrics (7 to 17 years)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-duloxetine-label",
+          "locator": "DOSAGE AND ADMINISTRATION (2.3)",
+          "quote": "Initiate Duloxetine delayed-release capsules in pediatric patients 7 to 17 years of age with GAD at a dosage of 30 mg once daily for 2 weeks before considering an increase to 60 mg once daily. The recommended dosage range is 30 to 60 mg once daily."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 30,
+        "unit": "mg",
+        "frequency": "once daily for 2 weeks, recommended range 30 to 60 mg once daily (max 120 mg/day)",
+        "max_single": 120,
+        "max_daily": 120
+      },
+      "dose_text": "Initiate at 30 mg once daily for 2 weeks before considering an increase to 60 mg once daily. Recommended range: 30 to 60 mg once daily. May increase in 30 mg/day increments up to maximum studied dose of 120 mg/day."
+    },
+    {
+      "id": "dul-dpnp-adult-po",
+      "indication": "Diabetic Peripheral Neuropathic Pain (DPNP) — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-duloxetine-label",
+          "locator": "DOSAGE AND ADMINISTRATION (2.4)",
+          "quote": "Administer 60 mg once daily in adults with diabetic peripheral neuropathic pain. There is no evidence that doses higher than 60 mg once daily confer additional significant benefit and the higher dosage is clearly less well tolerated."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 60,
+        "unit": "mg",
+        "frequency": "once daily",
         "max_single": 60,
         "max_daily": 60
       },
-      "dose_text": "60 mg once daily. For patients for whom tolerability is a concern, start at 30 mg once daily for 1 week before increasing to 60 mg daily. There is no evidence that doses higher than 60 mg/day confer additional significant benefit for neuropathic pain."
+      "dose_text": "60 mg once daily. For patients for whom tolerability is a concern or with renal impairment, consider a lower starting dose and gradual increase. Avoid use in severe renal impairment (GFR < 30 mL/min)."
+    },
+    {
+      "id": "dul-fm-adult-po",
+      "indication": "Fibromyalgia — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-duloxetine-label",
+          "locator": "DOSAGE AND ADMINISTRATION (2.5)",
+          "quote": "The recommended Duloxetine delayed-release capsules dosage is 60 mg once daily in adults with fibromyalgia. Begin treatment at 30 mg once daily for 1 week, to allow patients to adjust to Duloxetine delayed-release capsules before increasing to 60 mg once daily."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 60,
+        "unit": "mg",
+        "frequency": "once daily (start 30 mg once daily for 1 week)",
+        "max_single": 60,
+        "max_daily": 60
+      },
+      "dose_text": "Begin at 30 mg once daily for 1 week, then increase to 60 mg once daily (some patients may respond to 30 mg/day). Doses > 60 mg/day confer no additional benefit and increase adverse reactions."
+    },
+    {
+      "id": "dul-fm-pediatric-po",
+      "indication": "Fibromyalgia — Pediatrics (13 to 17 years)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-duloxetine-label",
+          "locator": "DOSAGE AND ADMINISTRATION (2.5)",
+          "quote": "The recommended starting Duloxetine delayed-release capsules dosage in pediatric patients 13-17 years of age with fibromyalgia is 30 mg once daily. The dosage may be increased to 60 mg once daily based on response and tolerability."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 30,
+        "unit": "mg",
+        "frequency": "once daily (may increase to 60 mg once daily)",
+        "max_single": 60,
+        "max_daily": 60
+      },
+      "dose_text": "Start at 30 mg once daily; may increase to 60 mg once daily based on response and tolerability. Maximum 60 mg/day."
+    },
+    {
+      "id": "dul-cmp-adult-po",
+      "indication": "Chronic Musculoskeletal Pain — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-duloxetine-label",
+          "locator": "DOSAGE AND ADMINISTRATION (2.6)",
+          "quote": "The recommended Duloxetine delayed-release capsules dosage is 60 mg once daily in adults with chronic musculoskeletal pain. Begin treatment at 30 mg once daily for one week, to allow patients to adjust to Duloxetine delayed-release capsules before increasing to 60 mg once daily."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 60,
+        "unit": "mg",
+        "frequency": "once daily (start 30 mg once daily for 1 week)",
+        "max_single": 60,
+        "max_daily": 60
+      },
+      "dose_text": "Begin at 30 mg once daily for 1 week, then increase to 60 mg once daily. Doses > 60 mg/day confer no additional benefit and increase adverse reactions."
     }
   ],
   "renal_basis": {

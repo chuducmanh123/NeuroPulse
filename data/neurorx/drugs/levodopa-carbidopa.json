@@ -32,30 +32,113 @@
   },
   "regimens": [
     {
-      "id": "cd-ld-initial-titration",
-      "indication": "Parkinson's Disease (Idiopathic, Post-encephalitic, or Symptomatic)",
+      "id": "cd-ld-initial-25-100-po",
+      "indication": "Parkinson's Disease / Post-Encephalitic or Symptomatic Parkinsonism — Initial Dosage (25-100 mg, Adults)",
       "setting": "maintenance_outpatient",
       "route": "PO",
       "refs": [
         {
           "source_id": "fda-levodopa-carbidopa-label",
           "locator": "INDICATIONS AND USAGE",
-          "quote": "treatment of Parkinson's disease, post-encephalitic parkinsonism, and symptomatic parkinsonism that may follow carbon monoxide intoxication or manganese intoxication."
+          "quote": "SINEMET is indicated in the treatment of Parkinson's disease, post-encephalitic parkinsonism, and symptomatic parkinsonism that may follow carbon monoxide intoxication or manganese intoxication."
         },
         {
           "source_id": "fda-levodopa-carbidopa-label",
           "locator": "DOSAGE AND ADMINISTRATION",
-          "quote": "optimum daily dosage of SINEMET must be determined by careful titration in each patient."
+          "quote": "Dosage is best initiated with one tablet of SINEMET 25-100 three times a day. This dosage schedule provides 75 mg of carbidopa per day. Dosage may be increased by one tablet every day or every other day, as necessary, until a dosage of eight tablets of SINEMET 25-100 a day is reached."
         }
       ],
       "dose": {
         "kind": "fixed",
         "amount": 100,
         "unit": "mg",
-        "frequency": "three times daily (levodopa 100 mg / carbidopa 25 mg)",
+        "frequency": "three times daily (as 25 mg carbidopa / 100 mg levodopa; titrate up to 8 tablets/day)",
         "max_daily": 800
       },
-      "dose_text": "Initial starting dose: one tablet of carbidopa/levodopa 25/100 mg three times daily. Titrate by adding one tablet every day or every other day as needed up to a daily dosage of 8 tablets of 25/100 mg (200/800 mg/day). At least 70 to 100 mg of carbidopa daily is required to prevent peripheral dopa decarboxylation side effects."
+      "dose_text": "Initiate with 1 tablet of SINEMET 25-100 (25 mg carbidopa / 100 mg levodopa) orally three times daily (provides 75 mg carbidopa/day). Increase by 1 tablet every day or every other day as necessary up to 8 tablets/day (200 mg carbidopa / 800 mg levodopa)."
+    },
+    {
+      "id": "cd-ld-initial-10-100-po",
+      "indication": "Parkinson's Disease / Post-Encephalitic or Symptomatic Parkinsonism — Initial Dosage (10-100 mg, Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-levodopa-carbidopa-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "If SINEMET 10-100 is used, dosage may be initiated with one tablet three or four times a day. However, this will not provide an adequate amount of carbidopa for many patients. Dosage may be increased by one tablet every day or every other day until a total of eight tablets (2 tablets q.i.d.) is reached."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 100,
+        "unit": "mg",
+        "frequency": "three or four times daily (as 10 mg carbidopa / 100 mg levodopa; titrate up to 8 tablets/day)",
+        "max_daily": 800
+      },
+      "dose_text": "1 tablet of SINEMET 10-100 (10 mg carbidopa / 100 mg levodopa) orally 3 or 4 times daily; increase by 1 tablet every day or every other day up to 8 tablets/day (2 tablets QID = 80 mg carbidopa / 800 mg levodopa). Note: 70–100 mg/day carbidopa is needed to saturate peripheral dopa decarboxylase."
+    },
+    {
+      "id": "cd-ld-transfer-low-po",
+      "indication": "Parkinson's Disease — Transfer from Levodopa (< 1,500 mg/day, Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-levodopa-carbidopa-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Levodopa must be discontinued at least twelve hours before starting SINEMET. A daily dosage of SINEMET should be chosen that will provide approximately 25% of the previous levodopa dosage. Patients who are taking less than 1500 mg of levodopa a day should be started on one tablet of SINEMET 25-100 three or four times a day."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 100,
+        "unit": "mg",
+        "frequency": "three or four times daily (as 25-100 mg, >= 12 hours after stopping levodopa)",
+        "max_daily": 800
+      },
+      "dose_text": "Discontinue levodopa at least 12 hours prior. For patients previously taking < 1,500 mg/day levodopa, start 1 tablet of SINEMET 25-100 orally 3 or 4 times daily (providing ~25% of previous levodopa dose)."
+    },
+    {
+      "id": "cd-ld-transfer-high-po",
+      "indication": "Parkinson's Disease — Transfer from Levodopa (> 1,500 mg/day, Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-levodopa-carbidopa-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "The suggested starting dosage for most patients taking more than 1500 mg of levodopa is one tablet of carbidopa and levodopa 25-250 three or four times a day."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 250,
+        "unit": "mg",
+        "frequency": "three or four times daily (as 25-250 mg, >= 12 hours after stopping levodopa)",
+        "max_daily": 2000
+      },
+      "dose_text": "Discontinue levodopa at least 12 hours prior. For patients previously taking > 1,500 mg/day levodopa, start 1 tablet of carbidopa/levodopa 25-250 orally 3 or 4 times daily (note: SINEMET 25-250 is no longer marketed; use another carbidopa/levodopa 25-250 product)."
+    },
+    {
+      "id": "cd-ld-maintenance-po",
+      "indication": "Parkinson's Disease — Individualized Maintenance Therapy (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-levodopa-carbidopa-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Therapy should be individualized and adjusted according to the desired therapeutic response. At least 70 to 100 mg of carbidopa per day should be provided."
+        },
+        {
+          "source_id": "fda-levodopa-carbidopa-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "If necessary, the dosage of carbidopa and levodopa 25-250 may be increased by one-half or one tablet every day or every other day to a maximum of eight tablets a day. Experience with total daily dosages of carbidopa greater than 200 mg is limited."
+        }
+      ],
+      "dose": null,
+      "dose_text": "Individualize and adjust according to therapeutic response, providing at least 70–100 mg carbidopa/day (experience with > 200 mg/day carbidopa is limited). May combine 25-100 and 10-100 tablets or substitute 25-250 tablets (up to max 8 tablets/day = 200 mg carbidopa / 2,000 mg levodopa). Avoid abrupt withdrawal (NMS-like hyperpyrexia/confusion risk)."
     }
   ],
   "renal_basis": {

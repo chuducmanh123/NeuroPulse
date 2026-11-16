@@ -59,6 +59,87 @@
         "max_daily": 360
       },
       "dose_text": "Initiate IV infusion at 5 mg/hr (50 mL/hr of 0.1 mg/mL). Increase rate by 2.5 mg/hr every 5 minutes (rapid titration) to 15 minutes (gradual titration) up to a maximum of 15 mg/hr (150 mL/hr) until target blood pressure is achieved. Once blood pressure goal is reached, reduce to maintenance rate (typically 3 mg/hr)."
+    },
+    {
+      "id": "nic-iv-sub-20mg-q8h",
+      "indication": "Short-Term Hypertension — IV Substitution for Oral Nicardipine 20 mg q8h (Adults)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-nicardipine-label",
+          "locator": "Section 2.1 Recommended Dosing",
+          "quote": "The intravenous infusion rate required to produce an average plasma concentration equivalent to a given oral dose at steady state is shown in the following table: Oral CARDENE Dose Equivalent I.V. Infusion Rate 20 mg in 200 mL (0.1 mg/mL) Equivalent I.V. Infusion Rate 40 mg in 200 mL (0.2 mg/mL) 20 mg q8h 0.5 mg/hr = 5 mL/hr 0.5 mg/hr = 2.5 mL/hr"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 0.5,
+        "unit": "mg",
+        "frequency": "per hour continuous IV infusion (equivalent to 20 mg PO q8h)"
+      },
+      "dose_text": "0.5 mg/hr continuous IV infusion (5 mL/hr of 0.1 mg/mL solution, or 2.5 mL/hr of 0.2 mg/mL solution) to match steady-state plasma levels of oral nicardipine 20 mg q8h."
+    },
+    {
+      "id": "nic-iv-sub-30mg-q8h",
+      "indication": "Short-Term Hypertension — IV Substitution for Oral Nicardipine 30 mg q8h (Adults)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-nicardipine-label",
+          "locator": "Section 2.1 Recommended Dosing",
+          "quote": "30 mg q8h 1.2 mg/hr = 12 mL/hr 1.2 mg/hr = 6 mL/hr"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1.2,
+        "unit": "mg",
+        "frequency": "per hour continuous IV infusion (equivalent to 30 mg PO q8h)"
+      },
+      "dose_text": "1.2 mg/hr continuous IV infusion (12 mL/hr of 0.1 mg/mL solution, or 6 mL/hr of 0.2 mg/mL solution) to match steady-state plasma levels of oral nicardipine 30 mg q8h."
+    },
+    {
+      "id": "nic-iv-sub-40mg-q8h",
+      "indication": "Short-Term Hypertension — IV Substitution for Oral Nicardipine 40 mg q8h (Adults)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-nicardipine-label",
+          "locator": "Section 2.1 Recommended Dosing",
+          "quote": "40 mg q8h 2.2 mg/hr = 22 mL/hr 2.2 mg/hr = 11 mL/hr"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 2.2,
+        "unit": "mg",
+        "frequency": "per hour continuous IV infusion (equivalent to 40 mg PO q8h)"
+      },
+      "dose_text": "2.2 mg/hr continuous IV infusion (22 mL/hr of 0.1 mg/mL solution, or 11 mL/hr of 0.2 mg/mL solution) to match steady-state plasma levels of oral nicardipine 40 mg q8h."
+    },
+    {
+      "id": "nic-iv-restart-low",
+      "indication": "Short-Term Hypertension — Restarting IV Infusion After Hypotension/Tachycardia Stabilizes (Adults)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-nicardipine-label",
+          "locator": "Section 2.2 Monitoring",
+          "quote": "If there is concern of impending hypotension or tachycardia, the infusion should be discontinued. Then, when blood pressure has stabilized, infusion of CARDENE I.V. may be restarted at low doses such as 30-50 mL/hr (3 - 5 mg/hr) for 20 mg in 200 mL or 15-25 mL/hr (3 - 5 mg/hr) for 40 mg in 200 mL and adjusted to maintain desired blood pressure."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 3,
+        "unit": "mg",
+        "frequency": "per hour continuous IV infusion (range 3 to 5 mg/hr)",
+        "max_single": 5
+      },
+      "dose_text": "After discontinuing for hypotension/tachycardia and achieving stabilization, restart at low doses of 3 to 5 mg/hr (30-50 mL/hr of 0.1 mg/mL or 15-25 mL/hr of 0.2 mg/mL) and adjust to maintain target BP."
     }
   ],
   "renal_basis": {

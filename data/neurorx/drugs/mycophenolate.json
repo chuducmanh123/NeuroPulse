@@ -58,6 +58,208 @@
         "max_daily": 2000
       },
       "dose_text": "1000 mg orally twice daily (total 2000 mg/day) taken on an empty stomach. May initiate at 500 mg twice daily and advance over 2-4 weeks to mitigate GI intolerance."
+    },
+    {
+      "id": "mmf-kidney-tx-adult-po",
+      "indication": "Prophylaxis of Allogeneic Kidney Transplant Rejection — Adults (Oral)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-mycophenolate-label",
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "CELLCEPT [mycophenolate mofetil (MMF)] is indicated for the prophylaxis of organ rejection, in adult and pediatric recipients 3 months of age and older of allogeneic kidney [see Clinical Studies (14.1) ], heart [see Clinical Studies (14.2) ] or liver transplants [see Clinical Studies (14.3) ] , in combination with other immunosuppressants."
+        },
+        {
+          "source_id": "fda-mycophenolate-label",
+          "locator": "Section 2.2 Dosage Recommendations for Kidney Transplant Patients",
+          "quote": "The recommended dosage for adult kidney transplant patients is 1 g orally or intravenously infused over no less than 2 hours, twice daily (total daily dose of 2 g)."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1000,
+        "unit": "mg",
+        "frequency": "twice daily",
+        "max_single": 1000,
+        "max_daily": 2000
+      },
+      "dose_text": "1 g orally twice daily (total daily dose 2 g) on an empty stomach, in combination with other immunosuppressants. Do not crush tablets or open capsules."
+    },
+    {
+      "id": "mmf-kidney-tx-adult-iv",
+      "indication": "Prophylaxis of Allogeneic Kidney Transplant Rejection — Adults (Intravenous)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-mycophenolate-label",
+          "locator": "Section 2.2 Dosage Recommendations for Kidney Transplant Patients",
+          "quote": "The recommended dosage for adult kidney transplant patients is 1 g orally or intravenously infused over no less than 2 hours, twice daily (total daily dose of 2 g)."
+        },
+        {
+          "source_id": "fda-mycophenolate-label",
+          "locator": "Section 2.1 Important Administration Instructions",
+          "quote": "CELLCEPT Intravenous can be administered for up to 14 days; however, patients should be switched to oral CELLCEPT as soon as they can tolerate oral medication."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1000,
+        "unit": "mg",
+        "frequency": "twice daily over >= 2 hours (up to 14 days)",
+        "max_single": 1000,
+        "max_daily": 2000
+      },
+      "dose_text": "1 g IV infused slowly over no less than 2 hours twice daily (total 2 g/day) starting within 24 hours post-transplant for up to 14 days; switch to oral therapy as soon as tolerated."
+    },
+    {
+      "id": "mmf-kidney-tx-peds-po",
+      "indication": "Prophylaxis of Allogeneic Kidney Transplant Rejection — Pediatrics (>= 3 months, Oral)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-mycophenolate-label",
+          "locator": "Section 2.2 Dosage Recommendations for Kidney Transplant Patients",
+          "quote": "The recommended dosage of CELLCEPT oral suspension for pediatric kidney transplant patients 3 months and older is 600 mg/m 2 , administered twice daily (maximum total daily dose of 2 g or 10 mL of the oral suspension)."
+        }
+      ],
+      "dose": null,
+      "dose_text": "600 mg/m2 oral suspension twice daily (max 2 g/day or 10 mL/day). BSA 1.25 to <1.5 m2: 750 mg capsules twice daily (1.5 g/day); BSA >= 1.5 m2: 1 g capsules/tablets twice daily (2 g/day)."
+    },
+    {
+      "id": "mmf-heart-tx-adult-po",
+      "indication": "Prophylaxis of Allogeneic Heart Transplant Rejection — Adults (Oral)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-mycophenolate-label",
+          "locator": "Section 2.3 Dosage Recommendations for Heart Transplant Patients",
+          "quote": "The recommended dosage of CELLCEPT for adult heart transplant patients is 1.5 g orally or intravenously infused over no less than 2 hours administered twice daily (total daily dose of 3 g)."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1500,
+        "unit": "mg",
+        "frequency": "twice daily",
+        "max_single": 1500,
+        "max_daily": 3000
+      },
+      "dose_text": "1.5 g orally twice daily (total daily dose 3 g) on an empty stomach, in combination with other immunosuppressants."
+    },
+    {
+      "id": "mmf-heart-tx-adult-iv",
+      "indication": "Prophylaxis of Allogeneic Heart Transplant Rejection — Adults (Intravenous)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-mycophenolate-label",
+          "locator": "Section 2.3 Dosage Recommendations for Heart Transplant Patients",
+          "quote": "The recommended dosage of CELLCEPT for adult heart transplant patients is 1.5 g orally or intravenously infused over no less than 2 hours administered twice daily (total daily dose of 3 g)."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1500,
+        "unit": "mg",
+        "frequency": "twice daily over >= 2 hours (up to 14 days)",
+        "max_single": 1500,
+        "max_daily": 3000
+      },
+      "dose_text": "1.5 g IV infused slowly over no less than 2 hours twice daily (total 3 g/day) for up to 14 days; switch to oral therapy as soon as tolerated."
+    },
+    {
+      "id": "mmf-heart-tx-peds-po",
+      "indication": "Prophylaxis of Allogeneic Heart Transplant Rejection — Pediatrics (>= 3 months, Oral)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-mycophenolate-label",
+          "locator": "Section 2.3 Dosage Recommendations for Heart Transplant Patients",
+          "quote": "The recommended starting dosage of CELLCEPT oral suspension for pediatric heart transplant patients 3 months and older is 600 mg/m 2 , administered twice daily. If well tolerated, the dose can be increased to a maintenance dosage of 900 mg/m 2 twice daily (maximum total daily dose of 3 g or 15 mL of the oral suspension)."
+        }
+      ],
+      "dose": null,
+      "dose_text": "Starting dose 600 mg/m2 oral suspension twice daily; may increase if tolerated to 900 mg/m2 twice daily (max 3 g/day or 15 mL/day). BSA 1.25 to <1.5 m2: start 750 mg BID; BSA >= 1.5 m2: start 1 g BID."
+    },
+    {
+      "id": "mmf-liver-tx-adult-po",
+      "indication": "Prophylaxis of Allogeneic Liver Transplant Rejection — Adults (Oral)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-mycophenolate-label",
+          "locator": "Section 2.4 Dosage Recommendations for Liver Transplant Patients",
+          "quote": "The recommended dosage of CELLCEPT for adult liver transplant patients is 1.5 g administered orally twice daily (total daily dose of 3 g) or 1 g infused intravenously over no less than 2 hours, twice daily (total daily dose of 2 g)."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1500,
+        "unit": "mg",
+        "frequency": "twice daily",
+        "max_single": 1500,
+        "max_daily": 3000
+      },
+      "dose_text": "1.5 g orally twice daily (total daily dose 3 g) on an empty stomach, in combination with other immunosuppressants."
+    },
+    {
+      "id": "mmf-liver-tx-adult-iv",
+      "indication": "Prophylaxis of Allogeneic Liver Transplant Rejection — Adults (Intravenous)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-mycophenolate-label",
+          "locator": "Section 2.4 Dosage Recommendations for Liver Transplant Patients",
+          "quote": "The recommended dosage of CELLCEPT for adult liver transplant patients is 1.5 g administered orally twice daily (total daily dose of 3 g) or 1 g infused intravenously over no less than 2 hours, twice daily (total daily dose of 2 g)."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1000,
+        "unit": "mg",
+        "frequency": "twice daily over >= 2 hours (up to 14 days)",
+        "max_single": 1000,
+        "max_daily": 2000
+      },
+      "dose_text": "1 g IV infused slowly over no less than 2 hours twice daily (total 2 g/day) for up to 14 days; switch to oral therapy as soon as tolerated."
+    },
+    {
+      "id": "mmf-liver-tx-peds-po",
+      "indication": "Prophylaxis of Allogeneic Liver Transplant Rejection — Pediatrics (>= 3 months, Oral)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-mycophenolate-label",
+          "locator": "Section 2.4 Dosage Recommendations for Liver Transplant Patients",
+          "quote": "The recommended starting dosage of CELLCEPT oral suspension for pediatric liver transplant patients 3 months of age and older is 600 mg/m 2 , administered twice daily. If well tolerated, the dose can be increased to a maintenance dosage of 900 mg/m 2 twice daily (maximum total daily dose of 3 g or 15 mL of the oral suspension)."
+        }
+      ],
+      "dose": null,
+      "dose_text": "Starting dose 600 mg/m2 oral suspension twice daily; may increase if tolerated to 900 mg/m2 twice daily (max 3 g/day or 15 mL/day). BSA 1.25 to <1.5 m2: start 750 mg BID; BSA >= 1.5 m2: start 1 g BID."
+    },
+    {
+      "id": "mmf-ng-suspension",
+      "indication": "Prophylaxis of Allogeneic Organ Rejection — Nasogastric Tube Administration (Oral Suspension)",
+      "setting": "acute_inpatient",
+      "route": "NG",
+      "refs": [
+        {
+          "source_id": "fda-mycophenolate-label",
+          "locator": "Section 2.1 Important Administration Instructions",
+          "quote": "Once reconstituted, CELLCEPT Oral Suspension must not be mixed with any liquids prior to dose administration. If needed, CELLCEPT Oral Suspension can be administered via a nasogastric tube with a minimum size of 8 French (minimum 1.7 mm interior diameter)."
+        }
+      ],
+      "dose": null,
+      "dose_text": "Reconstituted oral suspension (200 mg/mL) may be administered via nasogastric tube >= 8 French (minimum 1.7 mm ID) at indication-specific adult or pediatric dose; do not mix with other liquids."
     }
   ],
   "renal_basis": {

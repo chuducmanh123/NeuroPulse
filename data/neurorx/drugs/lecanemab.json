@@ -32,30 +32,93 @@
   },
   "regimens": [
     {
-      "id": "lec-ad-biweekly",
-      "indication": "Mild Cognitive Impairment (MCI) or Mild Dementia due to Alzheimer's Disease (Amyloid Positive)",
+      "id": "lec-ad-starting-iv",
+      "indication": "Alzheimer's Disease (MCI or Mild Dementia) — Starting Regimen (IV)",
       "setting": "acute_inpatient",
       "route": "IV",
       "refs": [
         {
           "source_id": "fda-lecanemab-label",
           "locator": "INDICATIONS AND USAGE",
-          "quote": "treatment of Alzheimer’s disease. Treatment with LEQEMBI should be initiated in patients with mild cognitive impairment or mild dementia stage of disease, the population in which treatment was initiat"
+          "quote": "LEQEMBI is indicated for the treatment of Alzheimer’s disease. Treatment with LEQEMBI should be initiated in patients with mild cognitive impairment or mild dementia stage of disease, the population in which treatment was initiated in clinical trials."
         },
         {
           "source_id": "fda-lecanemab-label",
           "locator": "DOSAGE AND ADMINISTRATION",
-          "quote": "10 mg/kg once every 2 weeks administered after dilution as an intravenous infusion over approximately one hour."
+          "quote": "Recommended starting dosage: Intravenous infusion: 10 mg/kg once every 2 weeks administered after dilution as an intravenous infusion over approximately one hour."
         }
       ],
       "dose": {
         "kind": "per_kg",
         "amount": 10,
         "unit": "mg",
-        "frequency": "once every two weeks",
-        "max_single": 1200
+        "frequency": "once every 2 weeks (for 18 months; may continue or transition to maintenance)"
       },
-      "dose_text": "10 mg/kg IV infusion over approximately 1 hour every 2 weeks. Confirm presence of amyloid-beta pathology prior to initiation. Mandatory brain MRI monitoring protocol: baseline MRI within 1 year; safety monitoring MRIs prior to the 5th (Week 9), 7th (Week 13), and 14th (Week 27) infusions. ApoE epsilon 4 genotyping strongly recommended prior to initiation due to substantially higher ARIA risk in homozygotes."
+      "dose_text": "10 mg/kg IV once every 2 weeks, diluted in 250 mL 0.9% Sodium Chloride Injection and infused over ~1 hour through a 0.2-micron in-line filter. Confirm amyloid beta pathology and obtain baseline brain MRI prior to initiation; obtain MRIs after 1, 2, 3, and 6 months of treatment. After 18 months, continue starting dosage or transition to maintenance."
+    },
+    {
+      "id": "lec-ad-starting-sc",
+      "indication": "Alzheimer's Disease (MCI or Mild Dementia) — Starting Regimen (SC, LEQEMBI IQLIK)",
+      "setting": "maintenance_outpatient",
+      "route": "SC",
+      "refs": [
+        {
+          "source_id": "fda-lecanemab-label",
+          "locator": "DOSAGE AND ADMINISTRATION (2.2)",
+          "quote": "Subcutaneous (LEQEMBI IQLIK) 500 mg (two 250 mg injections) Once every week"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 500,
+        "unit": "mg",
+        "frequency": "once weekly (two 250 mg SC injections)",
+        "max_single": 500,
+        "max_daily": 500
+      },
+      "dose_text": "500 mg (two 250 mg injections) SC once weekly using the LEQEMBI IQLIK autoinjector (abdomen, upper thigh, or back of upper arm). Initiate under HCP guidance for at least 2 consecutive doses. Obtain baseline MRI and MRIs after 1, 2, 3, and 6 months. After 18 months, continue or transition to maintenance."
+    },
+    {
+      "id": "lec-ad-maintenance-iv",
+      "indication": "Alzheimer's Disease (MCI or Mild Dementia) — Maintenance Regimen after 18 Months (IV)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-lecanemab-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "After 18 months, continue treatment with the starting dosage or transition to an intravenous or subcutaneous maintenance dosage. (2.2) Recommended maintenance dosage: Intravenous infusion: 10 mg/kg once every 4 weeks"
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 10,
+        "unit": "mg",
+        "frequency": "once every 4 weeks"
+      },
+      "dose_text": "10 mg/kg IV once every 4 weeks over approximately 1 hour after dilution in 250 mL 0.9% Sodium Chloride Injection. Initiate 2 weeks after last IV starting dose (or 2–3 weeks after last SC starting dose)."
+    },
+    {
+      "id": "lec-ad-maintenance-sc",
+      "indication": "Alzheimer's Disease (MCI or Mild Dementia) — Maintenance Regimen after 18 Months (SC, LEQEMBI IQLIK)",
+      "setting": "maintenance_outpatient",
+      "route": "SC",
+      "refs": [
+        {
+          "source_id": "fda-lecanemab-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Subcutaneous injection: 360 mg administered once a week using the LEQEMBI IQLIK autoinjector ( 2.2 , 2.6 )."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 360,
+        "unit": "mg",
+        "frequency": "once weekly",
+        "max_single": 360,
+        "max_daily": 360
+      },
+      "dose_text": "360 mg SC once weekly using the LEQEMBI IQLIK autoinjector after 18 months of starting therapy. Initiate 1 week after last starting dose (regardless of IV or SC starting regimen)."
     }
   ],
   "renal_basis": {

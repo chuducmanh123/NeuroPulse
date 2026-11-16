@@ -34,30 +34,101 @@
   "regimens": [
     {
       "id": "clob-lgs-adult",
-      "indication": "Adjunctive Treatment of Seizures in Lennox-Gastaut Syndrome (Adult / > 30 kg)",
+      "indication": "Adjunctive Treatment of Seizures in Lennox-Gastaut Syndrome — Patients > 30 kg (2 years and older)",
       "setting": "maintenance_outpatient",
       "route": "PO",
       "refs": [
         {
           "source_id": "fda-clobazam-label",
           "locator": "INDICATIONS AND USAGE",
-          "quote": "ONFI is a benzodiazepine indicated for adjunctive treatment of seizures associated with Lennox-Gastaut syndrome (LGS) in patients 2 years of age or older ( 1 ) === DOSAGE AND ADMINISTRATION === 2 DOS"
+          "quote": "ONFI ® (clobazam) is indicated for the adjunctive treatment of seizures associated with Lennox-Gastaut syndrome (LGS) in patients 2 years of age or older."
         },
         {
           "source_id": "fda-clobazam-label",
           "locator": "DOSAGE AND ADMINISTRATION",
-          "quote": "doses above 5 mg/day administer in two divided doses ( 2.1 ) Patients ≤30 kg body weight: Initiate at 5 mg daily and titrate as tolerated up to 20 mg daily ( 2.1 ) Patients >30 kg"
+          "quote": "Patients >30 kg body weight: Initiate at 10 mg daily and titrate as tolerated up to 40 mg daily ( 2.1 )"
         }
       ],
       "dose": {
         "kind": "fixed",
         "amount": 5,
         "unit": "mg",
-        "frequency": "twice daily",
+        "frequency": "twice daily (10 mg/day initial, titrate weekly up to 20 mg BID / 40 mg/day)",
         "max_single": 20,
         "max_daily": 40
       },
       "dose_text": "For patients > 30 kg: Start with 10 mg/day (5 mg twice daily). At Day 7, advance to 20 mg/day (10 mg twice daily). At Day 14, advance to recommended target maintenance dose of 40 mg/day (20 mg twice daily). Doses > 5 mg/day should be administered in 2 divided doses."
+    },
+    {
+      "id": "clob-lgs-peds-le30kg",
+      "indication": "Adjunctive Treatment of Seizures in Lennox-Gastaut Syndrome — Patients <= 30 kg (2 years and older)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-clobazam-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "ONFI ® (clobazam) is indicated for the adjunctive treatment of seizures associated with Lennox-Gastaut syndrome (LGS) in patients 2 years of age or older."
+        },
+        {
+          "source_id": "fda-clobazam-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Patients ≤30 kg body weight: Initiate at 5 mg daily and titrate as tolerated up to 20 mg daily ( 2.1 )"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 5,
+        "unit": "mg",
+        "frequency": "once daily initially, then titrate weekly in two divided doses up to 20 mg/day",
+        "max_single": 10,
+        "max_daily": 20
+      },
+      "dose_text": "For patients <= 30 kg: Start with 5 mg once daily. Starting Day 7, advance to 10 mg/day (5 mg twice daily). Starting Day 14, advance to 20 mg/day (10 mg twice daily). Do not escalate faster than weekly."
+    },
+    {
+      "id": "clob-lgs-geriatric",
+      "indication": "Adjunctive Treatment of Seizures in Lennox-Gastaut Syndrome — Geriatric Patients",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-clobazam-label",
+          "locator": "Section 2.4 Dosage Adjustments in Geriatric Patients",
+          "quote": "The starting dose should be 5 mg/day for all elderly patients. Then titrate elderly patients according to weight, but to half the dose presented in Table 1, as tolerated. If necessary and based upon clinical response, an additional titration to the maximum dose (20 mg/day or 40 mg/day, depending on weight) may be started on day 21"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 5,
+        "unit": "mg",
+        "frequency": "once daily initially; titrate slowly to half Table 1 dose (max 20 or 40 mg/day at Day 21)",
+        "max_single": 20,
+        "max_daily": 40
+      },
+      "dose_text": "Start at 5 mg/day for all elderly patients. Titrate according to body weight to half the standard Table 1 dose as tolerated (10 mg/day for <=30 kg; 20 mg/day for >30 kg); if needed, further titration to max (20 mg/day or 40 mg/day) may start on Day 21."
+    },
+    {
+      "id": "clob-lgs-cyp2c19-pm",
+      "indication": "Adjunctive Treatment of Seizures in Lennox-Gastaut Syndrome — Known CYP2C19 Poor Metabolizers",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-clobazam-label",
+          "locator": "Section 2.5 Dosage Adjustments in CYP2C19 Poor Metabolizers",
+          "quote": "in patients known to be CYP2C19 poor metabolizers, the starting dose should be 5 mg/day and dose titration should proceed slowly according to weight, but to half the dose presented in Table 1, as tolerated. If necessary and based upon clinical response, an additional titration to the maximum dose (20 mg/day or 40 mg/day, depending on the weight group) may be started on day 21"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 5,
+        "unit": "mg",
+        "frequency": "once daily initially; titrate slowly to half Table 1 dose (max 20 or 40 mg/day at Day 21)",
+        "max_single": 20,
+        "max_daily": 40
+      },
+      "dose_text": "Start at 5 mg/day and titrate slowly according to weight to half the standard Table 1 dose as tolerated (10 mg/day for <=30 kg; 20 mg/day for >30 kg); if needed, additional titration to max (20 mg/day or 40 mg/day) may start on Day 21."
     }
   ],
   "renal_basis": {

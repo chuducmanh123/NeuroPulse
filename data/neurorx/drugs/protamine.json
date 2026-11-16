@@ -34,7 +34,7 @@
   "regimens": [
     {
       "id": "pro-iv-heparin-reversal",
-      "indication": "Treatment of Heparin Overdosage / Heparin Neutralization",
+      "indication": "Treatment of Heparin Overdosage / Heparin Neutralization (Adults)",
       "setting": "acute_inpatient",
       "route": "IV",
       "refs": [
@@ -57,7 +57,7 @@
         "max_single": 50,
         "max_daily": 50
       },
-      "dose_text": "Each mg of protamine sulfate neutralizes not less than 100 USP Heparin Units. Administer by very slow IV injection over 10 minutes in doses not to exceed 50 mg. Dose decreases rapidly with time elapsed since heparin administration (e.g. 50% dose if 30 min post-heparin)."
+      "dose_text": "Each mg of protamine sulfate neutralizes not less than 100 USP Heparin Units. Administer by very slow IV injection over a 10-minute period in doses not to exceed 50 mg. Dose decreases rapidly with time elapsed since IV heparin administration (e.g., 50% of usual dose if given 30 minutes post-heparin). Guide dosage by blood coagulation studies."
     }
   ],
   "renal_basis": {

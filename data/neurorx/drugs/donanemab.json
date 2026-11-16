@@ -32,31 +32,53 @@
   },
   "regimens": [
     {
-      "id": "don-ad-monthly",
-      "indication": "Mild Cognitive Impairment or Mild Dementia due to Alzheimer's Disease (Amyloid Positive)",
+      "id": "don-ad-titration-iv",
+      "indication": "Alzheimer's Disease (MCI or Mild Dementia) — Titration (Infusions 1–3)",
       "setting": "acute_inpatient",
       "route": "IV",
       "refs": [
         {
           "source_id": "fda-donanemab-label",
           "locator": "INDICATIONS AND USAGE",
-          "quote": "treatment of Alzheimer's disease. Treatment with KISUNLA should be initiated in patients with mild cognitive impairment or mild dementia stage of disease, the population in which treatment was initiat"
+          "quote": "KISUNLA TM is indicated for the treatment of Alzheimer's disease. Treatment with KISUNLA should be initiated in patients with mild cognitive impairment or mild dementia stage of disease, the population in which treatment was initiated in the clinical trials."
         },
         {
           "source_id": "fda-donanemab-label",
           "locator": "DOSAGE AND ADMINISTRATION",
-          "quote": "700 mg Infusion 3: 1,050 mg Infusion 4 and beyond: 1,400 mg Consider stopping dosing with KISUNLA based on reduction of amyloid plaques to minimal levels on amyloid PET imaging."
+          "quote": "Administer KISUNLA as an intravenous infusion over approximately 30 minutes every four weeks as follows ( 2.2 ): Infusion 1: 350 mg Infusion 2: 700 mg Infusion 3: 1,050 mg Infusion 4 and beyond: 1,400 mg"
         }
       ],
       "dose": {
         "kind": "fixed",
-        "amount": 700,
+        "amount": 350,
         "unit": "mg",
-        "frequency": "every 4 weeks × 3 doses, then 1400 mg every 4 weeks",
+        "frequency": "every 4 weeks (Infusion 1: 350 mg; Infusion 2: 700 mg; Infusion 3: 1,050 mg)",
+        "max_single": 1050,
+        "max_daily": 1050
+      },
+      "dose_text": "Confirm amyloid beta pathology and obtain baseline brain MRI prior to initiation. Dilute with 0.9% Sodium Chloride Injection to 4–10 mg/mL and infuse IV over ~30 minutes every 4 weeks: Infusion 1: 350 mg; Infusion 2: 700 mg; Infusion 3: 1,050 mg. Obtain safety MRIs prior to the 2nd, 3rd, 4th, and 7th infusions. Observe >= 30 minutes post-infusion."
+    },
+    {
+      "id": "don-ad-maintenance-iv",
+      "indication": "Alzheimer's Disease (MCI or Mild Dementia) — Maintenance (Infusion 4 and Beyond)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-donanemab-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Infusion 4 and beyond: 1,400 mg Consider stopping dosing with KISUNLA based on reduction of amyloid plaques to minimal levels on amyloid PET imaging."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1400,
+        "unit": "mg",
+        "frequency": "every 4 weeks",
         "max_single": 1400,
         "max_daily": 1400
       },
-      "dose_text": "700 mg IV infusion over 30 minutes every 4 weeks for the first 3 doses (Weeks 0, 4, 8), followed by 1400 mg IV every 4 weeks thereafter. Treatment may be paused or discontinued upon confirmed amyloid plaque clearance on PET imaging. Mandatory brain MRI monitoring: baseline within 1 year; safety MRIs prior to the 2nd, 3rd, 4th, and 7th infusions. ApoE epsilon 4 genotyping recommended prior to treatment."
+      "dose_text": "1,400 mg IV infusion over approximately 30 minutes every 4 weeks for Infusion 4 and beyond (diluted to 4–10 mg/mL in 0.9% Sodium Chloride Injection). Consider stopping dosing based on reduction of amyloid plaques to minimal levels on amyloid PET imaging. Observe >= 30 minutes post-infusion."
     }
   ],
   "renal_basis": {

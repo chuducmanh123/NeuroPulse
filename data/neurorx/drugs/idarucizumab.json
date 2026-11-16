@@ -33,8 +33,8 @@
   },
   "regimens": [
     {
-      "id": "ida-iv-dabigatran-reversal",
-      "indication": "Reversal of Anticoagulant Effects of Dabigatran (Emergency Surgery/Urgent Procedures or Life-Threatening/Uncontrolled Bleeding)",
+      "id": "ida-reversal-bleeding-iv",
+      "indication": "Reversal of Dabigatran — Life-Threatening or Uncontrolled Bleeding (Adults)",
       "setting": "acute_inpatient",
       "route": "IV",
       "refs": [
@@ -53,11 +53,38 @@
         "kind": "fixed",
         "amount": 5,
         "unit": "g",
-        "frequency": "once",
+        "frequency": "once (limited data for an additional 5 g if clinically indicated)",
         "max_single": 5,
         "max_daily": 10
       },
-      "dose_text": "5 g IV (administered as two consecutive 2.5 g/50 mL vials, either as consecutive infusions over 5-10 minutes each or as consecutive bolus injections via syringe)."
+      "dose_text": "5 g IV (two separate 2.5 g/50 mL vials) administered as two consecutive infusions or consecutive bolus injections via syringe. Flush pre-existing IV line with sterile 0.9% Sodium Chloride prior to infusion; do not mix with other medicinal products. Consider resuming anticoagulation as soon as medically appropriate (Pradaxa may be initiated 24 hours after administration)."
+    },
+    {
+      "id": "ida-reversal-surgery-iv",
+      "indication": "Reversal of Dabigatran — Emergency Surgery or Urgent Procedures (Adults)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-idarucizumab-label",
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "PRAXBIND is indicated in patients treated with Pradaxa when reversal of the anticoagulant effects of dabigatran is needed: For emergency surgery/urgent procedures In life-threatening or uncontrolled bleeding"
+        },
+        {
+          "source_id": "fda-idarucizumab-label",
+          "locator": "Section 2.3 Administration",
+          "quote": "Intravenously administer the dose of 5 g (2 vials, each contains 2.5 g) as Two consecutive infusions (see Figure 2 ) or Bolus injection by injecting both vials consecutively one after another via syringe (see Figure 3 )."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 5,
+        "unit": "g",
+        "frequency": "once prior to emergency surgery/urgent procedure",
+        "max_single": 5,
+        "max_daily": 10
+      },
+      "dose_text": "5 g IV (two separate 2.5 g/50 mL vials) administered as two consecutive infusions or consecutive bolus injections via syringe. Flush pre-existing IV line with sterile 0.9% Sodium Chloride prior to infusion. Limited data support an additional 5 g dose."
     }
   ],
   "renal_basis": {

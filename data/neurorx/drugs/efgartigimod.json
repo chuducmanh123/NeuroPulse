@@ -33,30 +33,117 @@
   },
   "regimens": [
     {
-      "id": "efg-gmg-cycle",
-      "indication": "Generalized Myasthenia Gravis (AChR-Ab Positive Adults)",
+      "id": "efg-gmg-sc-pfs",
+      "indication": "Generalized Myasthenia Gravis (gMG) — Adults (SC Prefilled Syringe)",
+      "setting": "maintenance_outpatient",
+      "route": "SC",
+      "refs": [
+        {
+          "source_id": "fda-efgartigimod-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "VYVGART HYTRULO is indicated for the treatment of adult patients with: generalized myasthenia gravis (gMG) chronic inflammatory demyelinating polyneuropathy (CIDP)"
+        },
+        {
+          "source_id": "fda-efgartigimod-label",
+          "locator": "DOSAGE AND ADMINISTRATION (2.3)",
+          "quote": "The recommended dosage of VYVGART HYTRULO prefilled syringe is 1,000 mg / 10,000 units (1,000 mg efgartigimod alfa and 10,000 units hyaluronidase) administered subcutaneously over approximately 20 seconds to 30 seconds in cycles of once weekly injections for 4 weeks."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1000,
+        "unit": "mg",
+        "frequency": "once weekly for 4 weeks (1 cycle); repeat cycles based on clinical evaluation",
+        "max_single": 1000,
+        "max_daily": 1000
+      },
+      "dose_text": "1,000 mg efgartigimod alfa / 10,000 units hyaluronidase SC into the abdomen over 20 to 30 seconds once weekly for 4 weeks (1 cycle). Administer subsequent cycles according to clinical evaluation. May be administered by patient or caregiver after training. Monitor >= 30 minutes for hypersensitivity."
+    },
+    {
+      "id": "efg-gmg-sc-vial",
+      "indication": "Generalized Myasthenia Gravis (gMG) — Adults (SC Single-Dose Vial, HCP Only)",
+      "setting": "acute_inpatient",
+      "route": "SC",
+      "refs": [
+        {
+          "source_id": "fda-efgartigimod-label",
+          "locator": "DOSAGE AND ADMINISTRATION (2.3)",
+          "quote": "The recommended dosage of VYVGART HYTRULO vial is 1,008 mg / 11,200 units (1,008 mg efgartigimod alfa and 11,200 units hyaluronidase) administered subcutaneously over approximately 30 seconds to 90 seconds in cycles of once weekly injections for 4 weeks."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1008,
+        "unit": "mg",
+        "frequency": "once weekly for 4 weeks (1 cycle); repeat cycles based on clinical evaluation",
+        "max_single": 1008,
+        "max_daily": 1008
+      },
+      "dose_text": "1,008 mg efgartigimod alfa / 11,200 units hyaluronidase SC via winged infusion set into the abdomen over 30 to 90 seconds once weekly for 4 weeks (1 cycle), administered by a healthcare professional only. Administer subsequent cycles based on clinical evaluation."
+    },
+    {
+      "id": "efg-gmg-iv",
+      "indication": "Generalized Myasthenia Gravis (gMG) — Adults (IV Efgartigimod Alfa-fcab)",
       "setting": "acute_inpatient",
       "route": "IV",
       "refs": [
         {
           "source_id": "fda-efgartigimod-label",
-          "locator": "INDICATIONS AND USAGE",
-          "quote": "generalized myasthenia gravis (gMG) chronic inflammatory demyelinating polyneuropathy (CIDP) VYVGART HYTRULO is a combination of efgartigimod alfa, a neonatal Fc receptor blocker, and hyaluronidase, an endoglycosidase, i"
-        },
-        {
-          "source_id": "fda-efgartigimod-label",
-          "locator": "CLINICAL STUDIES",
+          "locator": "ADVERSE REACTIONS (6.1)",
           "quote": "one cycle of once-weekly administrations for 4 weeks of either efgartigimod alfa-fcab 10 mg/kg (n=58) or placebo (n=61)."
         }
       ],
       "dose": {
-        "kind": "weight_based",
+        "kind": "per_kg",
         "amount": 10,
-        "unit": "mg/kg",
-        "frequency": "once weekly for 4 weeks (1 cycle)",
-        "max_single": 1200
+        "unit": "mg",
+        "frequency": "once weekly for 4 weeks (1 cycle)"
       },
-      "dose_text": "10 mg/kg administered as an IV infusion over 1 hour once weekly for 4 weeks (one treatment cycle). Maximum single dose is 1200 mg (for patients >= 120 kg). Administer subsequent treatment cycles based on clinical evaluation (cycle intervals typically >= 50 days)."
+      "dose_text": "10 mg/kg efgartigimod alfa-fcab administered intravenously once weekly for 4 weeks (one treatment cycle), with subsequent cycles based on clinical evaluation."
+    },
+    {
+      "id": "efg-cidp-sc-pfs",
+      "indication": "Chronic Inflammatory Demyelinating Polyneuropathy (CIDP) — Adults (SC Prefilled Syringe)",
+      "setting": "maintenance_outpatient",
+      "route": "SC",
+      "refs": [
+        {
+          "source_id": "fda-efgartigimod-label",
+          "locator": "DOSAGE AND ADMINISTRATION (2.4)",
+          "quote": "The recommended dosage of VYVGART HYTRULO prefilled syringe is 1,000 mg / 10,000 units (1,000 mg efgartigimod alfa and 10,000 units hyaluronidase) administered subcutaneously over approximately 20 to 30 seconds as once weekly injections."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1000,
+        "unit": "mg",
+        "frequency": "once weekly",
+        "max_single": 1000,
+        "max_daily": 1000
+      },
+      "dose_text": "1,000 mg efgartigimod alfa / 10,000 units hyaluronidase SC into the abdomen over ~20 to 30 seconds once weekly. If a scheduled injection is missed, may administer up to 3 days after the scheduled time point."
+    },
+    {
+      "id": "efg-cidp-sc-vial",
+      "indication": "Chronic Inflammatory Demyelinating Polyneuropathy (CIDP) — Adults (SC Single-Dose Vial, HCP Only)",
+      "setting": "acute_inpatient",
+      "route": "SC",
+      "refs": [
+        {
+          "source_id": "fda-efgartigimod-label",
+          "locator": "DOSAGE AND ADMINISTRATION (2.4)",
+          "quote": "The recommended dosage of VYVGART HYTRULO vial is 1,008 mg / 11,200 units (1,008 mg efgartigimod alfa and 11,200 units hyaluronidase) administered subcutaneously over approximately 30 seconds to 90 seconds as once weekly injections."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1008,
+        "unit": "mg",
+        "frequency": "once weekly",
+        "max_single": 1008,
+        "max_daily": 1008
+      },
+      "dose_text": "1,008 mg efgartigimod alfa / 11,200 units hyaluronidase SC via winged infusion set into the abdomen over ~30 to 90 seconds once weekly, administered by a healthcare professional only."
     }
   ],
   "renal_basis": {
