@@ -1,0 +1,554 @@
+{
+  "id": "levothyroxine",
+  "generic_name": "levothyroxine",
+  "tall_man": {
+    "value": "levothyroxine",
+    "refs": [
+      {
+        "source_id": "fda-levothyroxine-label",
+        "locator": "1 INDICATIONS AND USAGE",
+        "quote": "SYNTHROID is a L-thyroxine (T4) indicated in adult and pediatric patients, including neonates, for:"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "thyroid hormone",
+    "L-thyroxine (T4) replacement"
+  ],
+  "subspecialties": [
+    "dementia",
+    "stroke",
+    "neuromuscular"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "lev-hypothyroid-adult-po",
+      "indication": "Primary, Secondary, and Tertiary Hypothyroidism — Adults (including Geriatric and Cardiac Disease)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-levothyroxine-label",
+          "locator": "1 INDICATIONS AND USAGE",
+          "quote": "SYNTHROID is indicated in adult and pediatric patients, including neonates, as a replacement therapy in primary (thyroidal), secondary (pituitary), and tertiary (hypothalamic) congenital or acquired hypothyroidism."
+        },
+        {
+          "source_id": "fda-levothyroxine-label",
+          "locator": "2.3 Recommended Dosage and Titration - Table 1",
+          "quote": "Adults diagnosed with hypothyroidism Full replacement dose is 1.6 mcg/kg/day. Some patients require a lower starting dose. Titrate dosage by 12.5 to 25 mcg increments every 4 to 6 weeks, as needed until the patient is euthyroid."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 1.6,
+        "unit": "mcg",
+        "frequency": "once daily on an empty stomach, 30 to 60 minutes before breakfast"
+      },
+      "dose_text": "Full replacement dose: 1.6 mcg/kg/day orally once daily on an empty stomach, 30–60 minutes before breakfast (at least 4 hours apart from drugs interfering with absorption). Titrate by 12.5 to 25 mcg increments every 4 to 6 weeks until euthyroid (dosages >200 mcg/day seldom required). In geriatric patients or adults with underlying cardiac disease or risk of atrial fibrillation, start at <1.6 mcg/kg/day and titrate every 6 to 8 weeks."
+    },
+    {
+      "id": "lev-hypothyroid-peds-0-3m-po",
+      "indication": "Hypothyroidism — Pediatrics (0 to 3 months)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-levothyroxine-label",
+          "locator": "2.3 Recommended Dosage and Titration - Table 2",
+          "quote": "0-3 months 10-15 mcg/kg/day 3-6 months 8-10 mcg/kg/day 6-12 months 6-8 mcg/kg/day 1-5 years 5-6 mcg/kg/day 6-12 years 4-5 mcg/kg/day Greater than 12 years but growth and puberty incomplete 2-3 mcg/kg/day Growth and puberty complete 1.6 mcg/kg/day"
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 10,
+        "unit": "mcg",
+        "frequency": "once daily (range 10 to 15 mcg/kg/day)"
+      },
+      "dose_text": "10–15 mcg/kg/day orally once daily; titrate every 2 weeks based on serum TSH or free-T4 (start at a lower dose and increase every 4–6 weeks in infants from birth to 3 months at risk for cardiac failure)."
+    },
+    {
+      "id": "lev-hypothyroid-peds-3-6m-po",
+      "indication": "Hypothyroidism — Pediatrics (3 to 6 months)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-levothyroxine-label",
+          "locator": "2.3 Recommended Dosage and Titration - Table 2",
+          "quote": "0-3 months 10-15 mcg/kg/day 3-6 months 8-10 mcg/kg/day 6-12 months 6-8 mcg/kg/day 1-5 years 5-6 mcg/kg/day 6-12 years 4-5 mcg/kg/day Greater than 12 years but growth and puberty incomplete 2-3 mcg/kg/day Growth and puberty complete 1.6 mcg/kg/day"
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 8,
+        "unit": "mcg",
+        "frequency": "once daily (range 8 to 10 mcg/kg/day)"
+      },
+      "dose_text": "8–10 mcg/kg/day orally once daily; titrate every 2 weeks based on serum TSH or free-T4."
+    },
+    {
+      "id": "lev-hypothyroid-peds-6-12m-po",
+      "indication": "Hypothyroidism — Pediatrics (6 to 12 months)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-levothyroxine-label",
+          "locator": "2.3 Recommended Dosage and Titration - Table 2",
+          "quote": "0-3 months 10-15 mcg/kg/day 3-6 months 8-10 mcg/kg/day 6-12 months 6-8 mcg/kg/day 1-5 years 5-6 mcg/kg/day 6-12 years 4-5 mcg/kg/day Greater than 12 years but growth and puberty incomplete 2-3 mcg/kg/day Growth and puberty complete 1.6 mcg/kg/day"
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 6,
+        "unit": "mcg",
+        "frequency": "once daily (range 6 to 8 mcg/kg/day)"
+      },
+      "dose_text": "6–8 mcg/kg/day orally once daily; titrate every 2 weeks based on serum TSH or free-T4."
+    },
+    {
+      "id": "lev-hypothyroid-peds-1-5y-po",
+      "indication": "Hypothyroidism — Pediatrics (1 to 5 years)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-levothyroxine-label",
+          "locator": "2.3 Recommended Dosage and Titration - Table 2",
+          "quote": "0-3 months 10-15 mcg/kg/day 3-6 months 8-10 mcg/kg/day 6-12 months 6-8 mcg/kg/day 1-5 years 5-6 mcg/kg/day 6-12 years 4-5 mcg/kg/day Greater than 12 years but growth and puberty incomplete 2-3 mcg/kg/day Growth and puberty complete 1.6 mcg/kg/day"
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 5,
+        "unit": "mcg",
+        "frequency": "once daily (range 5 to 6 mcg/kg/day)"
+      },
+      "dose_text": "5–6 mcg/kg/day orally once daily; titrate every 2 weeks based on serum TSH or free-T4."
+    },
+    {
+      "id": "lev-hypothyroid-peds-6-12y-po",
+      "indication": "Hypothyroidism — Pediatrics (6 to 12 years)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-levothyroxine-label",
+          "locator": "2.3 Recommended Dosage and Titration - Table 2",
+          "quote": "0-3 months 10-15 mcg/kg/day 3-6 months 8-10 mcg/kg/day 6-12 months 6-8 mcg/kg/day 1-5 years 5-6 mcg/kg/day 6-12 years 4-5 mcg/kg/day Greater than 12 years but growth and puberty incomplete 2-3 mcg/kg/day Growth and puberty complete 1.6 mcg/kg/day"
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 4,
+        "unit": "mcg",
+        "frequency": "once daily (range 4 to 5 mcg/kg/day)"
+      },
+      "dose_text": "4–5 mcg/kg/day orally once daily; titrate every 2 weeks based on serum TSH or free-T4."
+    },
+    {
+      "id": "lev-hypothyroid-peds-gt12y-po",
+      "indication": "Hypothyroidism — Pediatrics (>12 years, growth and puberty incomplete)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-levothyroxine-label",
+          "locator": "2.3 Recommended Dosage and Titration - Table 2",
+          "quote": "Greater than 12 years but growth and puberty incomplete 2-3 mcg/kg/day Growth and puberty complete 1.6 mcg/kg/day"
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 2,
+        "unit": "mcg",
+        "frequency": "once daily (2 to 3 mcg/kg/day if growth/puberty incomplete; 1.6 mcg/kg/day when complete)"
+      },
+      "dose_text": "2–3 mcg/kg/day orally once daily when growth and puberty are incomplete; 1.6 mcg/kg/day once growth and puberty are complete."
+    },
+    {
+      "id": "lev-hypothyroid-pregnancy-po",
+      "indication": "Hypothyroidism — Pregnant Patients (Pre-existing & New Onset)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-levothyroxine-label",
+          "locator": "2.3 Recommended Dosage and Titration - Table 3",
+          "quote": "Pre-existing primary hypothyroidism with serum TSH above normal trimester-specific range Pre-pregnancy dosage may increase during pregnancy Increase SYNTHROID dosage by 12.5 to 25 mcg per day. Monitor TSH every 4 weeks until a stable dose is reached and serum TSH is within normal trimester-specific range."
+        },
+        {
+          "source_id": "fda-levothyroxine-label",
+          "locator": "2.3 Recommended Dosage and Titration - Table 3",
+          "quote": "New onset hypothyroidism (TSH ≥ 10 mIU per liter) 1.6 mcg/kg/day Monitor serum TSH every 4 weeks and adjust SYNTHROID dosage until serum TSH is within normal trimester-specific range. New onset hypothyroidism (TSH < 10 mIU per liter) 1.0 mcg/kg/day"
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 1.6,
+        "unit": "mcg",
+        "frequency": "once daily (new onset TSH >=10 mIU/L; 1.0 mcg/kg/day if TSH <10 mIU/L)"
+      },
+      "dose_text": "Pre-existing primary hypothyroidism with TSH above trimester-specific range: increase by 12.5 to 25 mcg/day and monitor TSH every 4 weeks; reduce to pre-pregnancy dose immediately after delivery. New-onset hypothyroidism: 1.6 mcg/kg/day if TSH >=10 mIU/L, or 1.0 mcg/kg/day if TSH <10 mIU/L."
+    },
+    {
+      "id": "lev-tsh-suppression-po",
+      "indication": "Pituitary TSH Suppression in Well-Differentiated Thyroid Cancer — Adults and Pediatrics",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-levothyroxine-label",
+          "locator": "1 INDICATIONS AND USAGE",
+          "quote": "SYNTHROID is indicated in adult and pediatric patients, including neonates, as an adjunct to surgery and radioiodine therapy in the management of thyrotropin-dependent well-differentiated thyroid cancer."
+        },
+        {
+          "source_id": "fda-levothyroxine-label",
+          "locator": "2.3 Recommended Dosage and Titration",
+          "quote": "TSH Suppression in Well-differentiated Thyroid Cancer in Adult and Pediatric Patients The SYNTHROID dosage is based on the target level of TSH suppression for the stage and clinical status of thyroid cancer."
+        }
+      ],
+      "dose": null,
+      "dose_text": "Dosage is individualized based on the target level of TSH suppression for the stage and clinical status of thyroid cancer, as an adjunct to surgery and radioiodine therapy."
+    }
+  ],
+  "renal_basis": {
+    "value": null,
+    "refs": []
+  },
+  "hepatic": {
+    "value": null,
+    "refs": []
+  },
+  "black_box": {
+    "value": [
+      "NOT FOR TREATMENT OF OBESITY OR FOR WEIGHT LOSS: Thyroid hormones, including SYNTHROID, either alone or with other therapeutic agents, should not be used for the treatment of obesity or for weight loss. In euthyroid patients, doses within daily hormonal requirements are ineffective for weight reduction; larger doses may produce serious or even life-threatening manifestations of toxicity, particularly with sympathomimetic amines."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-levothyroxine-label",
+        "locator": "BOXED WARNING",
+        "quote": "WARNING: NOT FOR TREATMENT OF OBESITY OR FOR WEIGHT LOSS Thyroid hormones, including SYNTHROID, either alone or with other therapeutic agents, should not be used for the treatment of obesity or for weight loss."
+      },
+      {
+        "source_id": "fda-levothyroxine-label",
+        "locator": "BOXED WARNING",
+        "quote": "Larger doses may produce serious or even life - threatening manifestations of toxicity, particularly when given in association with sympathomimetic amines such as those used for their anorectic effects"
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-levothyroxine-label",
+        "locator": "12.2 Pharmacodynamics",
+        "quote": "Oral levothyroxine sodium is a synthetic T4 hormone that exerts the same physiologic effect as endogenous T4, thereby maintaining normal T4 levels when a deficiency is present."
+      }
+    ],
+    "note": "Synthetic T4 replacement hormone with no neuromuscular junction blocking activity."
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "Crush the tablet, suspend the freshly crushed tablet in 5 to 10 mL of water, and immediately administer the full suspension; do not store the suspension and do not administer in foods that decrease absorption (such as soybean-based infant formula)."
+    },
+    "refs": [
+      {
+        "source_id": "fda-levothyroxine-label",
+        "locator": "2.1 Important Administration Instructions",
+        "quote": "crushing the tablet, suspending the freshly crushed tablet in a small amount (5 to 10 mL) of water and immediately administering the suspension by spoon or dropper. Ensure the patient ingests the full amount of the suspension. Do not store the suspension. Do not administer in foods that decrease absorption of SYNTHROID, such as soybean-based infant formula"
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "weight_loss",
+      "confusion_delirium",
+      "hepatotoxicity"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-levothyroxine-label",
+        "locator": "6 ADVERSE REACTIONS",
+        "quote": "General: fatigue, increased appetite, weight loss, heat intolerance, fever, excessive sweating"
+      },
+      {
+        "source_id": "fda-levothyroxine-label",
+        "locator": "6 ADVERSE REACTIONS",
+        "quote": "Gastrointestinal: diarrhea, vomiting, abdominal cramps, elevations in liver function tests"
+      },
+      {
+        "source_id": "fda-levothyroxine-label",
+        "locator": "10 OVERDOSAGE",
+        "quote": "In addition, confusion and disorientation may occur. Cerebral embolism, shock, coma, and death have been reported."
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Hyperthyroidism signs/symptoms from therapeutic overdosage: fatigue, increased appetite, weight loss, heat intolerance, fever, excessive sweating",
+        "CNS: headache, hyperactivity, nervousness, anxiety, irritability, emotional lability, insomnia",
+        "Musculoskeletal: tremors, muscle weakness, muscle spasm",
+        "GI: diarrhea, vomiting, abdominal cramps, elevations in liver function tests",
+        "Dermatologic/Endocrine/Reproductive: hair loss, flushing, rash, decreased bone mineral density, menstrual irregularities, impaired fertility"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-levothyroxine-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "Adverse reactions associated with SYNTHROID therapy are primarily those of hyperthyroidism due to therapeutic overdosage [see Warnings and Precautions ( 5 ) and Overdosage ( 10 ) ] ."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Cardiovascular toxicity: arrhythmias (including atrial fibrillation in elderly), tachycardia, angina, myocardial infarction, heart failure, cardiac arrest",
+        "Seizures (rarely reported with institution of levothyroxine therapy)",
+        "Pediatric: pseudotumor cerebri, slipped capital femoral epiphysis, craniosynostosis in infants, premature epiphyseal closure",
+        "Overdosage toxicity: confusion, disorientation, cerebral embolism, shock, coma, death",
+        "Hypersensitivity reactions to inactive ingredients (angioedema, serum sickness, wheezing)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-levothyroxine-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "Cardiovascular: palpitations, tachycardia, arrhythmias, increased pulse and blood pressure, heart failure, angina, myocardial infarction, cardiac arrest"
+        },
+        {
+          "source_id": "fda-levothyroxine-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "Seizures have been reported rarely with the institution of levothyroxine therapy. Adverse Reactions in Pediatric Patients Pseudotumor cerebri and slipped capital femoral epiphysis have been reported in pediatric patients receiving levothyroxine therapy."
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Synthetic L-thyroxine (T4) hormone that controls DNA transcription and protein synthesis via nuclear thyroid receptor binding; predominantly converted to triiodothyronine (T3, ~80%) by peripheral deiodination.",
+    "refs": [
+      {
+        "source_id": "fda-levothyroxine-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "Triiodothyronine (T3) and L-thyroxine (T4) diffuse into the cell nucleus and bind to thyroid receptor proteins attached to DNA. This hormone nuclear receptor complex activates gene transcription and synthesis of messenger RNA and cytoplasmic proteins."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "ugt": [
+        "UGT (glucuronide conjugation)"
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-levothyroxine-label",
+        "locator": "7.1 Drugs Known to Affect Thyroid Hormone Pharmacokinetics - Table 7",
+        "quote": "Phenobarbital increases L-thyroxine metabolism by inducing uridine 5’-diphospho-glucuronosyltransferase (UGT) and leads to lower T4 serum levels."
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Phosphate Binders, Bile Acid Sequestrants, and Ion Exchange Resins (Calcium Carbonate, Ferrous Sulfate, Sevelamer, Lanthanum, Colesevelam, Cholestyramine, Kayexalate)",
+        "severity": "moderate",
+        "effect": "Bind levothyroxine in the GI tract and decrease absorption, potentially resulting in hypothyroidism.",
+        "management": "Administer SYNTHROID at least 4 hours before or after these agents.",
+        "refs": [
+          {
+            "source_id": "fda-levothyroxine-label",
+            "locator": "7.1 Table 5. Drugs That May Decrease T4 Absorption",
+            "quote": "Phosphate binders may bind to levothyroxine. Administer SYNTHROID at least 4 hours apart from these agents."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Proton Pump Inhibitors, Sucralfate, Antacids, Orlistat",
+        "severity": "moderate",
+        "effect": "May cause hypochlorhydria or interfere with GI absorption of levothyroxine.",
+        "management": "Monitor patients appropriately for changes in thyroid function.",
+        "refs": [
+          {
+            "source_id": "fda-levothyroxine-label",
+            "locator": "7.1 Table 5. Drugs That May Decrease T4 Absorption",
+            "quote": "Sucralfate, antacids and proton pump inhibitors may cause hypochlorhydria, affect intragastric pH, and reduce levothyroxine absorption. Monitor patients appropriately."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Hepatic Enzyme Inducers & Antiepileptics (Phenobarbital, Rifampin, Phenytoin, Carbamazepine)",
+        "severity": "moderate",
+        "effect": "Phenobarbital (UGT induction) and rifampin accelerate hepatic T4 degradation; phenytoin and carbamazepine displace T4 from serum protein binding, reducing total and free T4 by 20% to 40%.",
+        "management": "Closely monitor thyroid hormone parameters and adjust SYNTHROID dose as needed.",
+        "refs": [
+          {
+            "source_id": "fda-levothyroxine-label",
+            "locator": "7.1 Table 6 & Table 7",
+            "quote": "Phenytoin and carbamazepine reduce serum protein binding of levothyroxine, and total and free T4 may be reduced by 20% to 40%, but most patients have normal serum TSH levels and are clinically euthyroid. Closely monitor thyroid hormone parameters."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Oral Anticoagulants (e.g., Warfarin)",
+        "severity": "major",
+        "effect": "SYNTHROID increases the response to oral anticoagulant therapy.",
+        "management": "A decrease in anticoagulant dose may be warranted when correcting hypothyroidism or increasing SYNTHROID dose; closely monitor coagulation tests.",
+        "refs": [
+          {
+            "source_id": "fda-levothyroxine-label",
+            "locator": "7.3 Oral Anticoagulants",
+            "quote": "SYNTHROID increases the response to oral anticoagulant therapy. Therefore, a decrease in the dose of anticoagulant may be warranted with correction of the hypothyroid state or when the SYNTHROID dose is increased. Closely monitor coagulation tests to permit appropriate and timely dosage adjustments."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Tricyclic/Tetracyclic Antidepressants & Sertraline",
+        "severity": "moderate",
+        "effect": "TCAs/tetracyclics + SYNTHROID increase therapeutic and toxic effects of both (cardiac arrhythmias, CNS stimulation); sertraline may increase SYNTHROID requirements.",
+        "management": "Monitor for cardiac arrhythmias/CNS toxicity with TCAs; monitor TSH and adjust SYNTHROID dose with sertraline.",
+        "refs": [
+          {
+            "source_id": "fda-levothyroxine-label",
+            "locator": "7.5 Antidepressant Therapy",
+            "quote": "Concurrent use of tricyclic (e.g., amitriptyline) or tetracyclic (e.g., maprotiline) antidepressants and SYNTHROID may increase the therapeutic and toxic effects of both drugs, possibly due to increased receptor sensitivity to catecholamines."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Sympathomimetics & Ketamine",
+        "severity": "major",
+        "effect": "Sympathomimetics increase risk of coronary insufficiency in CAD patients; ketamine + SYNTHROID may produce marked hypertension and tachycardia.",
+        "management": "Closely monitor blood pressure, heart rate, and cardiac ischemia risk.",
+        "refs": [
+          {
+            "source_id": "fda-levothyroxine-label",
+            "locator": "7.6 Ketamine & 7.7 Sympathomimetics",
+            "quote": "Concurrent use of ketamine and SYNTHROID may produce marked hypertension and tachycardia. Closely monitor blood pressure and heart rate in these patients."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Antidiabetic Therapy & Digitalis Glycosides",
+        "severity": "moderate",
+        "effect": "SYNTHROID may worsen glycemic control (increasing antidiabetic/insulin requirements) and decrease serum digitalis glycoside levels.",
+        "management": "Monitor glycemic control and digitalis levels/response closely when starting, changing, or discontinuing SYNTHROID.",
+        "refs": [
+          {
+            "source_id": "fda-levothyroxine-label",
+            "locator": "7.2 Antidiabetic Therapy",
+            "quote": "Addition of SYNTHROID therapy in patients with diabetes mellitus may worsen glycemic control and result in increased antidiabetic agent or insulin requirements. Carefully monitor glycemic control, especially when thyroid therapy is started, changed, or discontinued"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Biotin, Amiodarone, Beta-Blockers (>160 mg/day Propranolol), Glucocorticoids, Tyrosine-Kinase Inhibitors",
+        "severity": "moderate",
+        "effect": "Amiodarone, high-dose propranolol, and glucocorticoids decrease peripheral T4-to-T3 conversion; TKIs (imatinib) may cause hypothyroidism; biotin interferes with TSH/T4/T3 immunoassays.",
+        "management": "Stop biotin at least 2 days before thyroid testing; monitor TSH/free-T4 with TKIs or amiodarone.",
+        "refs": [
+          {
+            "source_id": "fda-levothyroxine-label",
+            "locator": "7.10 Drug-Laboratory Test Interactions",
+            "quote": "Biotin supplementation is known to interfere with thyroid hormone immunoassays that are based on a biotin and streptavidin interaction, which may result in erroneous thyroid hormone test results. Stop biotin and biotin-containing supplements for at least 2 days prior to thyroid testing."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-levothyroxine-label",
+        "locator": "7.1 Drugs Known to Affect Thyroid Hormone Pharmacokinetics",
+        "quote": "Many drugs can exert effects on thyroid hormone pharmacokinetics and metabolism (e.g., absorption, synthesis, secretion, catabolism, protein binding, and target tissue response) and may alter the therapeutic response to SYNTHROID ( Tables 5 to 8 )."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "preferred",
+      "note": "Clinical experience including postmarketing studies in pregnant women treated with oral levothyroxine to maintain euthyroid state has not reported increased rates of major birth defects, miscarriages, or adverse maternal/fetal outcomes. SYNTHROID should not be discontinued during pregnancy, and untreated maternal hypothyroidism adversely affects fetal neurocognitive development.",
+      "refs": [
+        {
+          "source_id": "fda-levothyroxine-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "The clinical experience, including data from postmarketing studies, in pregnant women treated with oral levothyroxine to maintain euthyroid state have not reported increased rates of major birth defects, miscarriages, or other adverse maternal or fetal outcomes ."
+        },
+        {
+          "source_id": "fda-levothyroxine-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "SYNTHROID should not be discontinued during pregnancy and hypothyroidism diagnosed during pregnancy should be promptly treated."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Pregnancy may increase SYNTHROID requirements. Measure serum TSH and free-T4 as soon as pregnancy is confirmed and at minimum each trimester; increase dosage by 12.5 to 25 mcg/day if TSH is above the trimester-specific range and monitor TSH every 4 weeks.",
+      "refs": [
+        {
+          "source_id": "fda-levothyroxine-label",
+          "locator": "8.1 Pregnancy - Dose Adjustments During Pregnancy and the Postpartum Period",
+          "quote": "Pregnancy may increase SYNTHROID requirements. Serum TSH levels should be monitored and the SYNTHROID dosage adjusted during pregnancy."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": "Since postpartum TSH levels are similar to preconception values, the SYNTHROID dosage should return to the pre-pregnancy dose immediately after delivery; monitor serum TSH 4 to 8 weeks postpartum.",
+      "refs": [
+        {
+          "source_id": "fda-levothyroxine-label",
+          "locator": "8.1 Pregnancy - Dose Adjustments During Pregnancy and the Postpartum Period",
+          "quote": "Since postpartum TSH levels are similar to preconception values, the SYNTHROID dosage should return to the pre-pregnancy dose immediately after delivery [see Dosage and Administration ( 2.3 ) ]."
+        }
+      ]
+    },
+    "contraception": {
+      "value": "Estrogens and estrogen-containing oral contraceptives increase thyroxine-binding globulin (TBG) concentration; measure unbound (free) T4 and/or FT4I when interpreting thyroid labs.",
+      "refs": [
+        {
+          "source_id": "fda-levothyroxine-label",
+          "locator": "7.10 Drug-Laboratory Test Interactions",
+          "quote": "Pregnancy, infectious hepatitis, estrogens, estrogen-containing oral contraceptives, and acute intermittent porphyria increase TBG concentration."
+        }
+      ]
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Present in human milk following oral administration; no adverse effects on the breastfed infant have been reported, and adequate levothyroxine treatment during lactation may normalize milk production in hypothyroid lactating mothers with low milk supply.",
+      "refs": [
+        {
+          "source_id": "fda-levothyroxine-label",
+          "locator": "8.2 Lactation",
+          "quote": "Published studies report that levothyroxine is present in human milk following the administration of oral levothyroxine. No adverse effects on the breastfed infant have been reported and there is no information on the effects of levothyroxine on milk production. Adequate levothyroxine treatment during lactation may normalize milk production in hypothyroid lactating mothers with low milk supply."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

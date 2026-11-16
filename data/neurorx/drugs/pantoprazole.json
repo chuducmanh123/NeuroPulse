@@ -1,0 +1,494 @@
+{
+  "id": "pantoprazole",
+  "generic_name": "pantoprazole",
+  "tall_man": {
+    "value": "pantoprazole",
+    "refs": [
+      {
+        "source_id": "fda-pantoprazole-label",
+        "locator": "1 INDICATIONS AND USAGE",
+        "quote": "PROTONIX is a proton pump inhibitor (PPI) indicated for the following:"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "proton pump inhibitor (PPI)",
+    "substituted benzimidazole",
+    "gastric acid-pump inhibitor"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "pantoprazole-ee-adult-po",
+      "indication": "Short-Term Treatment of Erosive Esophagitis (EE) Associated with GERD — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-pantoprazole-label",
+          "locator": "2.1 Recommended Dosing Schedule",
+          "quote": "Short-Term Treatment of Erosive Esophagitis Associated With GERD Adults 40 mg Once daily for up to 8 weeks For adult patients who have not healed after 8 weeks of treatment, an additional 8-week course of PROTONIX may be considered."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 40,
+        "unit": "mg",
+        "frequency": "once daily for up to 8 weeks (additional 8-week course if not healed)",
+        "max_single": 40,
+        "max_daily": 40
+      },
+      "dose_text": "40 mg PO once daily for up to 8 weeks; an additional 8-week course may be considered if not healed."
+    },
+    {
+      "id": "pantoprazole-ee-peds-15to40kg-po",
+      "indication": "Short-Term Treatment of Erosive Esophagitis (EE) Associated with GERD — Pediatric patients (>= 5 years, >= 15 kg to < 40 kg)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-pantoprazole-label",
+          "locator": "2.1 Recommended Dosing Schedule",
+          "quote": "Children (5 years and older) ≥ 15 kg to < 40 kg 20 mg Once daily for up to 8 weeks ≥ 40 kg 40 mg"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 20,
+        "unit": "mg",
+        "frequency": "once daily for up to 8 weeks",
+        "max_single": 20,
+        "max_daily": 20
+      },
+      "dose_text": "20 mg PO once daily for up to 8 weeks (delayed-release tablet; do not divide 40 mg oral suspension packet)."
+    },
+    {
+      "id": "pantoprazole-ee-peds-ge40kg-po",
+      "indication": "Short-Term Treatment of Erosive Esophagitis (EE) Associated with GERD — Pediatric patients (>= 5 years, >= 40 kg)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-pantoprazole-label",
+          "locator": "2.1 Recommended Dosing Schedule",
+          "quote": "Children (5 years and older) ≥ 15 kg to < 40 kg 20 mg Once daily for up to 8 weeks ≥ 40 kg 40 mg"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 40,
+        "unit": "mg",
+        "frequency": "once daily for up to 8 weeks",
+        "max_single": 40,
+        "max_daily": 40
+      },
+      "dose_text": "40 mg PO once daily for up to 8 weeks."
+    },
+    {
+      "id": "pantoprazole-ee-maint-adult-po",
+      "indication": "Maintenance of Healing of Erosive Esophagitis (EE) — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-pantoprazole-label",
+          "locator": "2.1 Recommended Dosing Schedule",
+          "quote": "Maintenance of Healing of Erosive Esophagitis Adults 40 mg Once daily Controlled studies did not extend beyond 12 months"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 40,
+        "unit": "mg",
+        "frequency": "once daily (controlled studies <= 12 months)",
+        "max_single": 40,
+        "max_daily": 40
+      },
+      "dose_text": "40 mg PO once daily (controlled studies did not extend beyond 12 months)."
+    },
+    {
+      "id": "pantoprazole-hypersecretory-po",
+      "indication": "Pathological Hypersecretory Conditions Including Zollinger-Ellison Syndrome — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-pantoprazole-label",
+          "locator": "2.1 Recommended Dosing Schedule",
+          "quote": "Pathological Hypersecretory Conditions Including Zollinger-Ellison Syndrome Adults 40 mg Twice daily Dosage regimens should be adjusted to individual patient needs and should continue for as long as clinically indicated. Doses up to 240 mg daily have been administered."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 40,
+        "unit": "mg",
+        "frequency": "twice daily (adjust to individual needs; up to 240 mg/day)",
+        "max_single": 120,
+        "max_daily": 240
+      },
+      "dose_text": "40 mg PO twice daily; adjust to individual patient needs and continue as long as clinically indicated (doses up to 240 mg/day have been administered)."
+    },
+    {
+      "id": "pantoprazole-ee-ng",
+      "indication": "Erosive Esophagitis (via Nasogastric or Gastrostomy Tube using Delayed-Release Oral Suspension) — Adults and Pediatrics >= 40 kg",
+      "setting": "acute_inpatient",
+      "route": "NG",
+      "refs": [
+        {
+          "source_id": "fda-pantoprazole-label",
+          "locator": "2.2 Administration Instructions",
+          "quote": "Administer PROTONIX For Delayed-Release Oral Suspension approximately 30 minutes prior to a meal via oral administration in apple juice or applesauce or nasogastric tube in apple juice only."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 40,
+        "unit": "mg",
+        "frequency": "once daily 30 minutes prior to a meal",
+        "max_single": 40,
+        "max_daily": 40
+      },
+      "dose_text": "40 mg once daily via >=16 French NG/G-tube using Delayed-Release Oral Suspension packet in apple juice only (10 mL apple juice flush x 3)."
+    }
+  ],
+  "renal_basis": {
+    "value": null,
+    "refs": [],
+    "note": "Section 12.3 states pharmacokinetic parameters in severe renal impairment are similar to healthy subjects; no CrCl cutoff specified."
+  },
+  "hepatic": {
+    "value": "In mild to severe hepatic impairment (Child-Pugh Class A to C), AUC increases 5- to 7-fold (similar to CYP2C19 poor metabolizers) with minimal accumulation on once-daily dosing; no dosage adjustment warranted for 40 mg/day. Doses higher than 40 mg/day have not been studied in hepatically impaired patients.",
+    "refs": [
+      {
+        "source_id": "fda-pantoprazole-label",
+        "locator": "12.3 Pharmacokinetics",
+        "quote": "Although serum half-life values increased to 7–9 hours and AUC values increased by 5- to 7-fold in hepatic-impaired patients, these increases were no greater than those observed in CYP2C19 poor metabolizers, where no dosage adjustment is warranted."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-pantoprazole-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "Pantoprazole is a PPI that suppresses the final step in gastric acid production by covalently binding to the (H + , K + )-ATPase enzyme system at the secretory surface of the gastric parietal cell."
+      }
+    ],
+    "note": "Proton pump inhibitor; no neuromuscular junction blocking warnings."
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Do not split, chew, or crush Delayed-Release Tablets or Oral Suspension granules. For NG or G-tube (>=16 French), use 40 mg For Delayed-Release Oral Suspension packet with apple juice only: empty packet into 60 mL catheter-tip syringe barrel attached to tube, add 10 mL apple juice, gently tap/shake, and repeat rinse at least twice more with 10 mL apple juice."
+    },
+    "refs": [
+      {
+        "source_id": "fda-pantoprazole-label",
+        "locator": "2.2 Administration Instructions",
+        "quote": "Do not split, chew, or crush PROTONIX Delayed-Release Tablets and PROTONIX For Delayed-Release Oral Suspension."
+      },
+      {
+        "source_id": "fda-pantoprazole-label",
+        "locator": "2.2 Administration Instructions",
+        "quote": "Add 10 mL (2 teaspoonfuls) of apple juice and gently tap and/or shake the barrel of the syringe to help rinse the syringe and tube. Repeat at least twice more using the same amount of apple juice (10 mL or 2 teaspoonfuls) each time. No granules should remain in the syringe."
+      }
+    ]
+  },
+  "pgx": {
+    "value": "CYP2C19 poor metabolizers (~3% of Caucasians/African-Americans, 17% to 23% of Asians) have minimal accumulation (<=23%) with once-daily dosing; no dosage adjustment is needed in adults. Pediatric CYP2C19*2/*2 poor metabolizers exhibit >6-fold higher AUC and ~10-fold lower clearance; consider dose reduction in known pediatric poor metabolizers.",
+    "refs": [
+      {
+        "source_id": "fda-pantoprazole-label",
+        "locator": "12.5 Pharmacogenomics",
+        "quote": "For adult patients who are CYP2C19 poor metabolizers, no dosage adjustment is needed. Similar to adults, pediatric patients who have the poor metabolizer genotype of CYP2C19 (CYP2C19 *2/*2) exhibited greater than a 6-fold increase in AUC compared to pediatric extensive (CYP2C19 *1/*1) and intermediate (CYP2C19 *1/*x) metabolizers."
+      },
+      {
+        "source_id": "fda-pantoprazole-label",
+        "locator": "12.5 Pharmacogenomics",
+        "quote": "For known pediatric poor metabolizers, a dose reduction should be considered."
+      }
+    ]
+  },
+  "ae_tags": {
+    "value": [
+      "hepatotoxicity",
+      "rash_sjs_ten",
+      "hyponatremia",
+      "confusion_delirium",
+      "psychiatric_behavioral"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-pantoprazole-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "Hepatobiliary Disorders: hepatocellular damage leading to jaundice and hepatic failure"
+      },
+      {
+        "source_id": "fda-pantoprazole-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "Skin and Subcutaneous Tissue Disorders: severe dermatologic reactions (some fatal), including erythema multiforme, SJS/TEN, DRESS, AGEP, angioedema (Quincke's edema) and cutaneous lupus erythematosus"
+      },
+      {
+        "source_id": "fda-pantoprazole-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "Metabolism and Nutritional Disorders: hypomagnesemia, hypocalcemia, hypokalemia, hyponatremia"
+      },
+      {
+        "source_id": "fda-pantoprazole-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "Psychiatric Disorders: hallucination, confusion, insomnia, somnolence"
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Headache (12.2%)",
+        "Diarrhea (8.8%)",
+        "Nausea (7.0%)",
+        "Abdominal pain (6.2%)",
+        "Vomiting (4.3%)",
+        "Flatulence (3.9%)",
+        "Dizziness (3.0%)",
+        "Arthralgia (2.8%)",
+        "URI, headache, fever, diarrhea, vomiting, rash, and abdominal pain (>4% in pediatrics)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-pantoprazole-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "Most common adverse reactions are: • For adult use (>2%): headache, diarrhea, nausea, abdominal pain, vomiting, flatulence, dizziness, and arthralgia. ( 6.1 ) • For pediatric use (>4%): URI, headache, fever, diarrhea, vomiting, rash, and abdominal pain. ( 6.1 )"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Acute tubulointerstitial nephritis",
+        "Clostridium difficile-associated diarrhea",
+        "Bone fracture",
+        "Severe cutaneous adverse reactions (erythema multiforme, SJS/TEN, DRESS, AGEP)",
+        "Cutaneous and systemic lupus erythematosus",
+        "Cyanocobalamin (Vitamin B-12) deficiency and hypomagnesemia",
+        "Fundic gland polyps",
+        "Hepatocellular damage/hepatic failure, rhabdomyolysis, pancytopenia, agranulocytosis (postmarketing)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-pantoprazole-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "The following serious adverse reactions are described below and elsewhere in labeling: • Acute Tubulointerstitial Nephritis [see Warnings and Precautions (5.2) ] • Clostridium difficile- Associated Diarrhea [see Warnings and Precautions (5.3) ] • Bone Fracture [see Warnings and Precautions (5.4) ] • Severe Cutaneous Adverse Reactions [see Warnings and Precautions (5.5) ]"
+        },
+        {
+          "source_id": "fda-pantoprazole-label",
+          "locator": "6.2 Postmarketing Experience",
+          "quote": "Musculoskeletal Disorders: rhabdomyolysis, bone fracture"
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Proton pump inhibitor that suppresses the final step in gastric acid production by covalently binding to the (H+, K+)-ATPase enzyme system at the secretory surface of the gastric parietal cell, inhibiting both basal and stimulated acid secretion for >24 hours.",
+    "refs": [
+      {
+        "source_id": "fda-pantoprazole-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "Pantoprazole is a PPI that suppresses the final step in gastric acid production by covalently binding to the (H + , K + )-ATPase enzyme system at the secretory surface of the gastric parietal cell."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp2c19": "substrate",
+      "cyp3a4": "substrate"
+    },
+    "refs": [
+      {
+        "source_id": "fda-pantoprazole-label",
+        "locator": "12.3 Pharmacokinetics",
+        "quote": "The main metabolic pathway is demethylation, by CYP2C19, with subsequent sulfation; other metabolic pathways include oxidation by CYP3A4."
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Rilpivirine-containing products",
+        "severity": "contraindicated",
+        "effect": "Decreased exposure of rilpivirine may reduce antiviral effect and promote drug resistance.",
+        "management": "Concomitant use with PROTONIX is contraindicated.",
+        "refs": [
+          {
+            "source_id": "fda-pantoprazole-label",
+            "locator": "7 DRUG INTERACTIONS Table 4",
+            "quote": "Rilpivirine-containing products: Concomitant use with PROTONIX is contraindicated [see Contraindications (4) ] ."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Nelfinavir",
+        "severity": "major",
+        "effect": "Decreased exposure of nelfinavir may reduce antiviral effect and promote resistance.",
+        "management": "Avoid concomitant use with PROTONIX.",
+        "refs": [
+          {
+            "source_id": "fda-pantoprazole-label",
+            "locator": "7 DRUG INTERACTIONS Table 4",
+            "quote": "Nelfinavir: Avoid concomitant use with PROTONIX. See prescribing information for nelfinavir."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Saquinavir",
+        "severity": "major",
+        "effect": "Increased exposure of saquinavir may increase antiretroviral toxicity.",
+        "management": "Monitor for potential saquinavir toxicities; see saquinavir prescribing information.",
+        "refs": [
+          {
+            "source_id": "fda-pantoprazole-label",
+            "locator": "7 DRUG INTERACTIONS Table 4",
+            "quote": "Saquinavir: See the prescribing information for saquinavir and monitor for potential saquinavir toxicities."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Warfarin",
+        "severity": "major",
+        "effect": "Increased INR and prothrombin time, which may lead to abnormal bleeding and death.",
+        "management": "Monitor INR and prothrombin time; dose adjustment of warfarin may be needed.",
+        "refs": [
+          {
+            "source_id": "fda-pantoprazole-label",
+            "locator": "7 DRUG INTERACTIONS Table 4",
+            "quote": "Monitor INR and prothrombin time. Dose adjustment of warfarin may be needed to maintain target INR range."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Clopidogrel",
+        "severity": "minor",
+        "effect": "No clinically important effect on exposure to active metabolite of clopidogrel or clopidogrel-induced platelet inhibition.",
+        "management": "No dose adjustment of clopidogrel is necessary when administered with an approved dose of PROTONIX.",
+        "refs": [
+          {
+            "source_id": "fda-pantoprazole-label",
+            "locator": "7 DRUG INTERACTIONS Table 4",
+            "quote": "No dose adjustment of clopidogrel is necessary when administered with an approved dose of PROTONIX."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Methotrexate (primarily high-dose)",
+        "severity": "major",
+        "effect": "May elevate and prolong serum concentrations of methotrexate and/or hydroxymethotrexate, possibly leading to methotrexate toxicities.",
+        "management": "A temporary withdrawal of PROTONIX may be considered in some patients receiving high-dose methotrexate.",
+        "refs": [
+          {
+            "source_id": "fda-pantoprazole-label",
+            "locator": "7 DRUG INTERACTIONS Table 4",
+            "quote": "A temporary withdrawal of PROTONIX may be considered in some patients receiving high-dose methotrexate."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Mycophenolate Mofetil (MMF) and Drugs Dependent on Gastric pH",
+        "severity": "moderate",
+        "effect": "Pantoprazole reduces absorption of pH-dependent drugs (MMF active metabolite MPA Cmax -57% to -78%, AUC -27% to -45%).",
+        "management": "Use PROTONIX with caution in transplant patients receiving MMF.",
+        "refs": [
+          {
+            "source_id": "fda-pantoprazole-label",
+            "locator": "7 DRUG INTERACTIONS Table 4",
+            "quote": "Use PROTONIX with caution in transplant patients receiving MMF. See the prescribing information for other drugs dependent on gastric pH for absorption."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-pantoprazole-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Table 4 includes drugs with clinically important drug interactions and interaction with diagnostics when administered concomitantly with PROTONIX"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "Published observational studies (ENTIS n=53, Denmark n=549, meta-analysis n=1,530) did not show an association with major malformations or adverse pregnancy outcomes, and organogenesis animal studies were negative up to 88x/16x human dose; however, pre/postnatal rat studies at 1-6x human dose showed pup mortality, decreased weight, and bone morphology changes, and label warns to advise pregnant women of potential fetal harm.",
+      "refs": [
+        {
+          "source_id": "fda-pantoprazole-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "Available data from published observational studies did not demonstrate an association of major malformations or other adverse pregnancy outcomes with pantoprazole."
+        },
+        {
+          "source_id": "fda-pantoprazole-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "Advise pregnant women of the potential risk of fetal harm."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": "0.14% of the weight-adjusted maternal dose",
+      "refs": [
+        {
+          "source_id": "fda-pantoprazole-label",
+          "locator": "8.2 Lactation",
+          "quote": "The relative dose to the infant was estimated to be 7.3 mcg of pantoprazole, which is equivalent to 0.14% of the weight-adjusted maternal dose."
+        }
+      ]
+    },
+    "lactation_summary": {
+      "value": "Detected in breast milk at low levels after a single 40 mg oral dose (milk-to-plasma ratio 0.022 at 2 hours; estimated infant dose 7.3 mcg or 0.14% of weight-adjusted maternal dose; undetectable <10 mcg/L by 6 hours); no infant adverse events reported.",
+      "refs": [
+        {
+          "source_id": "fda-pantoprazole-label",
+          "locator": "8.2 Lactation",
+          "quote": "Pantoprazole has been detected in breast milk of a nursing mother after a single 40 mg oral dose of pantoprazole. There were no effects on the breastfed infant (see Data ) ."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

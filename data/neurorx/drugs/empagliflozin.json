@@ -1,0 +1,402 @@
+{
+  "id": "empagliflozin",
+  "generic_name": "empagliflozin",
+  "tall_man": {
+    "value": "empagliflozin",
+    "refs": [
+      {
+        "source_id": "fda-empagliflozin-label",
+        "locator": "1 INDICATIONS AND USAGE",
+        "quote": "JARDIANCE is a sodium-glucose co-transporter 2 (SGLT2) inhibitor indicated:"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "SGLT2 inhibitor",
+    "antihyperglycemic agent",
+    "cardioprotective agent"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "emp-t2dm-adult-po",
+      "indication": "Type 2 Diabetes Mellitus (Glycemic Control & Cardiovascular Death Reduction in Established CVD) — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-empagliflozin-label",
+          "locator": "1 INDICATIONS AND USAGE",
+          "quote": "to reduce the risk of cardiovascular death in adults with type 2 diabetes mellitus and established cardiovascular disease. as an adjunct to diet and exercise to improve glycemic control in adults with type 2 diabetes mellitus."
+        },
+        {
+          "source_id": "fda-empagliflozin-label",
+          "locator": "2.2 Recommended Dosage",
+          "quote": "The recommended dose of JARDIANCE is 10 mg once daily in the morning, taken with or without food. For additional glycemic control, the dose may be increased to 25 mg in patients tolerating JARDIANCE."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 10,
+        "unit": "mg",
+        "frequency": "once daily in the morning, with or without food; may increase to 25 mg once daily",
+        "max_daily": 25
+      },
+      "dose_text": "10 mg orally once daily in the morning, taken with or without food. For additional glycemic control, dose may be increased to 25 mg once daily in patients tolerating JARDIANCE. Assess renal function and correct volume depletion before initiating."
+    },
+    {
+      "id": "emp-hf-adult-po",
+      "indication": "Heart Failure (Cardiovascular Death & Heart Failure Hospitalization Reduction) — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-empagliflozin-label",
+          "locator": "1 INDICATIONS AND USAGE",
+          "quote": "JARDIANCE is indicated: to reduce the risk of cardiovascular death and hospitalization for heart failure in adults with heart failure."
+        },
+        {
+          "source_id": "fda-empagliflozin-label",
+          "locator": "2.2 Recommended Dosage",
+          "quote": "The recommended dose of JARDIANCE is 10 mg once daily in the morning, taken with or without food."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 10,
+        "unit": "mg",
+        "frequency": "once daily in the morning, with or without food"
+      },
+      "dose_text": "10 mg orally once daily in the morning, taken with or without food. Data are insufficient for heart failure patients with eGFR <20 mL/min/1.73 m²; contraindicated in patients on dialysis."
+    }
+  ],
+  "renal_basis": {
+    "value": "egfr",
+    "refs": [
+      {
+        "source_id": "fda-empagliflozin-label",
+        "locator": "2.2 Recommended Dosage",
+        "quote": "Use for glycemic control is not recommended in patients with an eGFR less than 30 mL/min/1.73 m 2 ."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "Assess renal function before initiating and as clinically indicated. Glycemic control use is not recommended when eGFR <30 mL/min/1.73 m²; data are insufficient for T2DM with established CVD when eGFR <30 mL/min/1.73 m² or for heart failure when eGFR <20 mL/min/1.73 m². Contraindicated in patients on dialysis.",
+    "renal_basis": {
+      "value": "egfr",
+      "refs": [
+        {
+          "source_id": "fda-empagliflozin-label",
+          "locator": "2.2 Recommended Dosage",
+          "quote": "Use for glycemic control is not recommended in patients with an eGFR less than 30 mL/min/1.73 m 2 . Data are insufficient to provide a dosing recommendation in patients; who have type 2 diabetes and established cardiovascular disease with an eGFR less than 30 mL/min/1.73 m 2 , or who have heart failure with an eGFR less than 20 mL/min/1.73 m 2"
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 30,
+        "max": null,
+        "dose_text": "Standard dosing: 10 mg once daily (may increase to 25 mg once daily for glycemic control in T2DM).",
+        "refs": [
+          {
+            "source_id": "fda-empagliflozin-label",
+            "locator": "8.6 Renal Impairment",
+            "quote": "The efficacy and safety of JARDIANCE for glycemic control were evaluated in a study of patients with type 2 diabetes mellitus with mild and moderate renal impairment (eGFR 30 to less than 90 mL/min/1.73 m 2 )"
+          }
+        ]
+      },
+      {
+        "min": 20,
+        "max": 30,
+        "dose_text": "Not recommended for glycemic control in T2DM (likely ineffective); insufficient data for T2DM with established CVD. For heart failure, studies enrolled patients with eGFR >=20 mL/min/1.73 m² with no dose adjustment recommended (10 mg once daily).",
+        "refs": [
+          {
+            "source_id": "fda-empagliflozin-label",
+            "locator": "8.6 Renal Impairment",
+            "quote": "Studies of patients with heart failure [see Clinical Studies (14) ] enrolled patients with eGFR equal to or above 20 mL/min/1.73 m 2 . No dose adjustment is recommended for these patients. There are insufficient data to support a dosing recommendation in patients with eGFR below 20 mL/min/1.73 m 2 ."
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 20,
+        "dose_text": "Insufficient data to support a dosing recommendation (eGFR <20 mL/min/1.73 m²); contraindicated in patients on dialysis.",
+        "refs": [
+          {
+            "source_id": "fda-empagliflozin-label",
+            "locator": "8.6 Renal Impairment",
+            "quote": "There are insufficient data to support a dosing recommendation in patients with eGFR below 20 mL/min/1.73 m 2 . Efficacy and safety studies with JARDIANCE did not enroll patients with an eGFR less than 20 mL/min/1.73 m 2 . JARDIANCE is contraindicated in patients on dialysis [see Contraindications (4) ]."
+          }
+        ]
+      }
+    ],
+    "hemodialysis": {
+      "value": "Contraindicated in patients on dialysis. Removal of empagliflozin by hemodialysis has not been studied.",
+      "refs": [
+        {
+          "source_id": "fda-empagliflozin-label",
+          "locator": "4 CONTRAINDICATIONS",
+          "quote": "Patients on dialysis [see Use in Specific Populations (8.6) ] ."
+        },
+        {
+          "source_id": "fda-empagliflozin-label",
+          "locator": "10 OVERDOSAGE",
+          "quote": "Removal of empagliflozin by hemodialysis has not been studied."
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-empagliflozin-label",
+        "locator": "2.2 Recommended Dosage",
+        "quote": "Use for glycemic control is not recommended in patients with an eGFR less than 30 mL/min/1.73 m 2 . Data are insufficient to provide a dosing recommendation in patients; who have type 2 diabetes and established cardiovascular disease with an eGFR less than 30 mL/min/1.73 m 2 , or who have heart failure with an eGFR less than 20 mL/min/1.73 m 2"
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "May be used in patients with hepatic impairment without dosage adjustment.",
+    "refs": [
+      {
+        "source_id": "fda-empagliflozin-label",
+        "locator": "8.7 Hepatic Impairment",
+        "quote": "JARDIANCE may be used in patients with hepatic impairment [see Clinical Pharmacology (12.3) ] ."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-empagliflozin-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "Empagliflozin is an inhibitor of the sodium-glucose co-transporter 2 (SGLT2), the predominant transporter responsible for reabsorption of glucose from the glomerular filtrate back into the circulation."
+      }
+    ],
+    "note": "SGLT2 inhibitor with no neuromuscular junction blocking activity."
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": []
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": null,
+    "refs": []
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Urinary tract infection (9.3% at 10 mg, 7.6% at 25 mg vs 7.6% placebo)",
+        "Female genital mycotic infections (5.4% at 10 mg, 6.4% at 25 mg vs 1.5% placebo)",
+        "Increased urination / polyuria / nocturia (3.4% at 10 mg, 3.2% at 25 mg vs 1.0% placebo)",
+        "Upper respiratory tract infection (3.1%–4.0%)",
+        "Dyslipidemia (2.9%–3.9%)",
+        "Male genital mycotic infections (3.1% at 10 mg, 1.6% at 25 mg vs 0.4% placebo)",
+        "Arthralgia (2.3%–2.4%) and nausea (1.1%–2.3%)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-empagliflozin-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "Most common adverse reactions (5% or greater incidence) were urinary tract infections and female genital mycotic infections ( 6.1 )"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Ketoacidosis",
+        "Volume depletion, hypotension, and syncope",
+        "Urosepsis and pyelonephritis",
+        "Hypoglycemia with concomitant insulin or insulin secretagogues",
+        "Necrotizing fasciitis of the perineum (Fournier's gangrene)",
+        "Acute kidney injury",
+        "Hypersensitivity reactions and angioedema"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-empagliflozin-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "The following important adverse reactions are described below and elsewhere in the labeling: Ketoacidosis [see Warnings and Precautions (5.1) ] Volume Depletion [see Warnings and Precautions (5.2) ] Urosepsis and Pyelonephritis [see Warnings and Precautions (5.3) ]"
+        },
+        {
+          "source_id": "fda-empagliflozin-label",
+          "locator": "6.2 Postmarketing Experience",
+          "quote": "Infections: Necrotizing fasciitis of the perineum (Fournier's gangrene), urosepsis and pyelonephritis Metabolism and Nutrition Disorders: Ketoacidosis Renal and Urinary Disorders: Acute kidney injury Skin and Subcutaneous Tissue Disorders: Angioedema, skin reactions (e.g., rash, urticaria)"
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Inhibitor of sodium-glucose co-transporter 2 (SGLT2) in the proximal renal tubules; reduces reabsorption of filtered glucose, lowers the renal threshold for glucose, increases urinary glucose excretion, and reduces sodium reabsorption with increased distal tubular sodium delivery.",
+    "refs": [
+      {
+        "source_id": "fda-empagliflozin-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "By inhibiting SGLT2, empagliflozin reduces renal reabsorption of filtered glucose and lowers the renal threshold for glucose, and thereby increases urinary glucose excretion. Empagliflozin also reduces sodium reabsorption and increases the delivery of sodium to the distal tubule."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "ugt": [
+        "UGT2B7",
+        "UGT1A3",
+        "UGT1A8",
+        "UGT1A9"
+      ],
+      "pgp": "substrate",
+      "qt_risk": "none"
+    },
+    "refs": [
+      {
+        "source_id": "fda-empagliflozin-label",
+        "locator": "12.3 Pharmacokinetics - Metabolism",
+        "quote": "In vitro studies suggested that the primary route of metabolism of empagliflozin in humans is glucuronidation by the uridine 5'-diphospho-glucuronosyltransferases UGT2B7, UGT1A3, UGT1A8, and UGT1A9."
+      },
+      {
+        "source_id": "fda-empagliflozin-label",
+        "locator": "12.3 Pharmacokinetics - Drug Interactions",
+        "quote": "Empagliflozin is a substrate for P-glycoprotein (P-gp) and breast cancer resistance protein (BCRP), but it does not inhibit these efflux transporters at therapeutic doses."
+      },
+      {
+        "source_id": "fda-empagliflozin-label",
+        "locator": "12.2 Pharmacodynamics - Cardiac Electrophysiology",
+        "quote": "No increase in QTc was observed with either 25 mg or 200 mg empagliflozin."
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Diuretics",
+        "severity": "moderate",
+        "effect": "Coadministration with diuretics resulted in increased urine volume and frequency of voids, which might enhance the potential for volume depletion.",
+        "management": "Assess volume status and renal function before initiating; correct volume depletion prior to initiation and monitor for volume depletion and renal function after initiating.",
+        "refs": [
+          {
+            "source_id": "fda-empagliflozin-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "Diuretics Clinical Impact Coadministration of empagliflozin with diuretics resulted in increased urine volume and frequency of voids, which might enhance the potential for volume depletion. Intervention Before initiating JARDIANCE, assess volume status and renal function."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Insulin or Insulin Secretagogues (e.g., Sulfonylurea)",
+        "severity": "moderate",
+        "effect": "Increased risk of hypoglycemia when used in combination with insulin or insulin secretagogues.",
+        "management": "May require lower doses of the insulin secretagogue or insulin to reduce the risk of hypoglycemia.",
+        "refs": [
+          {
+            "source_id": "fda-empagliflozin-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "The risk of hypoglycemia is increased when JARDIANCE is used in combination with insulin secretagogues (e.g., sulfonylurea) or insulin. Intervention Coadministration of JARDIANCE with an insulin secretagogue (e.g., sulfonylurea) or insulin may require lower doses of the insulin secretagogue or insulin to reduce the risk of hypoglycemia."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Lithium",
+        "severity": "moderate",
+        "effect": "Concomitant use of an SGLT2 inhibitor with lithium may decrease serum lithium concentrations.",
+        "management": "Monitor serum lithium concentration more frequently during JARDIANCE initiation and dosage changes.",
+        "refs": [
+          {
+            "source_id": "fda-empagliflozin-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "Lithium Clinical Impact Concomitant use of an SGLT2 inhibitor with lithium may decrease serum lithium concentrations. Intervention Monitor serum lithium concentration more frequently during JARDIANCE initiation and dosage changes."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Urine Glucose Tests and 1,5-Anhydroglucitol (1,5-AG) Assay",
+        "severity": "minor",
+        "effect": "Increases urinary glucose excretion leading to positive urine glucose tests and renders 1,5-AG assays unreliable.",
+        "management": "Monitoring glycemic control with urine glucose tests or 1,5-AG assay is not recommended; use alternative methods.",
+        "refs": [
+          {
+            "source_id": "fda-empagliflozin-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "SGLT2 inhibitors increase urinary glucose excretion and will lead to positive urine glucose tests. Intervention Monitoring glycemic control with urine glucose tests is not recommended in patients taking SGLT2 inhibitors."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-empagliflozin-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Table 3 Clinically Relevant Interactions with JARDIANCE"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "avoid",
+      "note": "Not recommended during the second and third trimesters of pregnancy based on animal data showing adverse renal pelvic and tubular dilatations during renal development; limited human data are insufficient to determine first-trimester risk, and use is not recommended while breastfeeding due to potential risk to developing infant kidney.",
+      "refs": [
+        {
+          "source_id": "fda-empagliflozin-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "Based on animal data showing adverse renal effects, JARDIANCE is not recommended during the second and third trimesters of pregnancy. The limited available data with JARDIANCE in pregnant women are not sufficient to determine a drug-associated risk for major birth defects and miscarriage."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Not recommended while breastfeeding. Limited human milk data; present in rat milk (milk-to-plasma ratio 0.634 to 5) and juvenile rat exposure caused renal pelvic and tubular dilatations, posing a potential risk to the developing human kidney during the first 2 years of life.",
+      "refs": [
+        {
+          "source_id": "fda-empagliflozin-label",
+          "locator": "8.2 Lactation",
+          "quote": "Because of the potential for serious adverse reactions in a breastfed infant, including the potential for empagliflozin to affect postnatal renal development, advise patients that use of JARDIANCE is not recommended while breastfeeding."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

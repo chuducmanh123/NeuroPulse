@@ -1,0 +1,703 @@
+{
+  "id": "levofloxacin",
+  "generic_name": "levofloxacin",
+  "tall_man": {
+    "value": "levofloxacin",
+    "refs": [
+      {
+        "source_id": "fda-levofloxacin-label",
+        "locator": "1 INDICATIONS & USAGE",
+        "quote": "Levofloxacin is a fluoroquinolone antibacterial indicated in adults (18 years of age and older) with infections caused by designated, susceptible bacteria and in pediatric patients where indicated (1, 12.4)."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "fluoroquinolone antibacterial",
+    "DNA gyrase / topoisomerase IV inhibitor"
+  ],
+  "subspecialties": [
+    "neuro_infectious",
+    "neurocritical_care",
+    "neuromuscular"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "levo-nosocomial-pna-po",
+      "indication": "Nosocomial Pneumonia — Adults",
+      "setting": "acute_inpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-levofloxacin-label",
+          "locator": "2.1 Dosage in Adult Patients - Table 1",
+          "quote": "Nosocomial Pneumonia 750 mg 7 to 14"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 750,
+        "unit": "mg",
+        "frequency": "every 24 hours for 7 to 14 days"
+      },
+      "dose_text": "750 mg PO every 24 hours for 7 to 14 days (oral and IV routes are interchangeable mg-for-mg; add anti-pseudomonal beta-lactam if P. aeruginosa is documented or presumptive)."
+    },
+    {
+      "id": "levo-cap-7to14d-po",
+      "indication": "Community-Acquired Pneumonia (7 to 14 day regimen, including MDRSP) — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-levofloxacin-label",
+          "locator": "2.1 Dosage in Adult Patients - Table 1",
+          "quote": "Community Acquired Pneumonia ‡ 500 mg ‡ 7 to 14 ‡"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 500,
+        "unit": "mg",
+        "frequency": "every 24 hours for 7 to 14 days"
+      },
+      "dose_text": "500 mg PO every 24 hours for 7 to 14 days."
+    },
+    {
+      "id": "levo-cap-5d-po",
+      "indication": "Community-Acquired Pneumonia (5-day regimen, excluding MDRSP) — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-levofloxacin-label",
+          "locator": "2.1 Dosage in Adult Patients - Table 1",
+          "quote": "Community Acquired Pneumonia § 750 mg § 5 §"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 750,
+        "unit": "mg",
+        "frequency": "every 24 hours for 5 days"
+      },
+      "dose_text": "750 mg PO every 24 hours for 5 days."
+    },
+    {
+      "id": "levo-complicated-sssi-po",
+      "indication": "Complicated Skin and Skin Structure Infections (SSSI) — Adults",
+      "setting": "acute_inpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-levofloxacin-label",
+          "locator": "2.1 Dosage in Adult Patients - Table 1",
+          "quote": "Complicated Skin and Skin Structure Infections (SSSI) 750 mg 7 to 14"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 750,
+        "unit": "mg",
+        "frequency": "every 24 hours for 7 to 14 days"
+      },
+      "dose_text": "750 mg PO every 24 hours for 7 to 14 days."
+    },
+    {
+      "id": "levo-uncomplicated-sssi-po",
+      "indication": "Uncomplicated Skin and Skin Structure Infections (SSSI) — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-levofloxacin-label",
+          "locator": "2.1 Dosage in Adult Patients - Table 1",
+          "quote": "Uncomplicated SSSI 500 mg 7 to 10"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 500,
+        "unit": "mg",
+        "frequency": "every 24 hours for 7 to 10 days"
+      },
+      "dose_text": "500 mg PO every 24 hours for 7 to 10 days."
+    },
+    {
+      "id": "levo-chronic-prostatitis-po",
+      "indication": "Chronic Bacterial Prostatitis — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-levofloxacin-label",
+          "locator": "2.1 Dosage in Adult Patients - Table 1",
+          "quote": "Chronic Bacterial Prostatitis 500 mg 28"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 500,
+        "unit": "mg",
+        "frequency": "every 24 hours for 28 days"
+      },
+      "dose_text": "500 mg PO every 24 hours for 28 days."
+    },
+    {
+      "id": "levo-anthrax-adult-peds-ge50kg-po",
+      "indication": "Inhalational Anthrax (Post-Exposure) — Adults and Pediatric Patients >= 50 kg",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-levofloxacin-label",
+          "locator": "2.2 Dosage in Pediatric Patients - Table 2",
+          "quote": "Pediatric patients weighing 50 kg or greater 500 mg every 24 hours 60 days §"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 500,
+        "unit": "mg",
+        "frequency": "every 24 hours for 60 days"
+      },
+      "dose_text": "500 mg PO every 24 hours for 60 days."
+    },
+    {
+      "id": "levo-anthrax-peds-30to49kg-po",
+      "indication": "Inhalational Anthrax (Post-Exposure) — Pediatric Patients 30 kg to < 50 kg",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-levofloxacin-label",
+          "locator": "2.2 Dosage in Pediatric Patients - Table 2",
+          "quote": "Pediatric patients weighing 30 kg to less than 50 kg 250 mg every 12 hours 60 days §"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 250,
+        "unit": "mg",
+        "frequency": "every 12 hours for 60 days"
+      },
+      "dose_text": "250 mg PO every 12 hours for 60 days. Tablets cannot be administered to patients < 30 kg."
+    },
+    {
+      "id": "levo-plague-adult-peds-ge50kg-po",
+      "indication": "Plague (Treatment and Prophylaxis) — Adults and Pediatric Patients >= 50 kg",
+      "setting": "acute_inpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-levofloxacin-label",
+          "locator": "2.2 Dosage in Pediatric Patients - Table 2",
+          "quote": "Plague ¶ Pediatric patients weighing 50 kg or greater 500 mg every 24 hours 10 to 14 days"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 500,
+        "unit": "mg",
+        "frequency": "every 24 hours for 10 to 14 days"
+      },
+      "dose_text": "500 mg PO every 24 hours for 10 to 14 days."
+    },
+    {
+      "id": "levo-plague-peds-30to49kg-po",
+      "indication": "Plague (Treatment and Prophylaxis) — Pediatric Patients 30 kg to < 50 kg",
+      "setting": "acute_inpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-levofloxacin-label",
+          "locator": "2.2 Dosage in Pediatric Patients - Table 2",
+          "quote": "Pediatric patients weighing 30 kg to less than 50 kg 250 mg every 12 hours 10 to 14 days"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 250,
+        "unit": "mg",
+        "frequency": "every 12 hours for 10 to 14 days"
+      },
+      "dose_text": "250 mg PO every 12 hours for 10 to 14 days. Tablets cannot be administered to patients < 30 kg."
+    },
+    {
+      "id": "levo-cuti-ap-5d-po",
+      "indication": "Complicated UTI or Acute Pyelonephritis (5-day regimen) — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-levofloxacin-label",
+          "locator": "2.1 Dosage in Adult Patients - Table 1",
+          "quote": "Complicated Urinary Tract Infection (cUTI) or Acute Pyelonephritis (AP) ¶ 750 mg 5"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 750,
+        "unit": "mg",
+        "frequency": "every 24 hours for 5 days"
+      },
+      "dose_text": "750 mg PO every 24 hours for 5 days."
+    },
+    {
+      "id": "levo-cuti-ap-10d-po",
+      "indication": "Complicated UTI or Acute Pyelonephritis (10-day regimen) — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-levofloxacin-label",
+          "locator": "2.1 Dosage in Adult Patients - Table 1",
+          "quote": "Complicated Urinary Tract Infection (cUTI) or Acute Pyelonephritis (AP) # 250 mg # 10 #"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 250,
+        "unit": "mg",
+        "frequency": "every 24 hours for 10 days"
+      },
+      "dose_text": "250 mg PO every 24 hours for 10 days."
+    },
+    {
+      "id": "levo-uncomplicated-uti-po",
+      "indication": "Uncomplicated Urinary Tract Infection — Adults (reserve for no alternative)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-levofloxacin-label",
+          "locator": "2.1 Dosage in Adult Patients - Table 1",
+          "quote": "Uncomplicated Urinary Tract Infection 250 mg 3"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 250,
+        "unit": "mg",
+        "frequency": "every 24 hours for 3 days"
+      },
+      "dose_text": "250 mg PO every 24 hours for 3 days. Reserve for patients who have no alternative treatment options."
+    },
+    {
+      "id": "levo-abecb-po",
+      "indication": "Acute Bacterial Exacerbation of Chronic Bronchitis (ABECB) — Adults (reserve for no alternative)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-levofloxacin-label",
+          "locator": "2.1 Dosage in Adult Patients - Table 1",
+          "quote": "Acute Bacterial Exacerbation of Chronic Bronchitis (ABECB) 500 mg 7"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 500,
+        "unit": "mg",
+        "frequency": "every 24 hours for 7 days"
+      },
+      "dose_text": "500 mg PO every 24 hours for 7 days. Reserve for patients who have no alternative treatment options."
+    },
+    {
+      "id": "levo-abs-5d-po",
+      "indication": "Acute Bacterial Sinusitis (5-day regimen) — Adults (reserve for no alternative)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-levofloxacin-label",
+          "locator": "2.1 Dosage in Adult Patients - Table 1",
+          "quote": "Acute Bacterial Sinusitis (ABS) 750 mg 5 500 mg 10 to 14"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 750,
+        "unit": "mg",
+        "frequency": "every 24 hours for 5 days"
+      },
+      "dose_text": "750 mg PO every 24 hours for 5 days (or 500 mg PO every 24 hours for 10 to 14 days). Reserve for patients who have no alternative treatment options."
+    },
+    {
+      "id": "levo-abs-10to14d-po",
+      "indication": "Acute Bacterial Sinusitis (10 to 14 day regimen) — Adults (reserve for no alternative)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-levofloxacin-label",
+          "locator": "2.1 Dosage in Adult Patients - Table 1",
+          "quote": "Acute Bacterial Sinusitis (ABS) 750 mg 5 500 mg 10 to 14"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 500,
+        "unit": "mg",
+        "frequency": "every 24 hours for 10 to 14 days"
+      },
+      "dose_text": "500 mg PO every 24 hours for 10 to 14 days. Reserve for patients who have no alternative treatment options."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-levofloxacin-label",
+        "locator": "2.3 Dosage Adjustment in Adults with Renal Impairment",
+        "quote": "In patients with renal impairment (creatinine clearance less than 50 mL/min), adjustment of the dosage regimen is necessary to avoid the accumulation of levofloxacin due to decreased clearance [see Use in Specific Populations ( 8.6 )]. No adjustment is necessary for patients with a creatinine clearance greater than or equal to 50 mL/minute."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "Dosage adjustment is required in adults with creatinine clearance < 50 mL/min to avoid accumulation. Supplemental doses are not required following hemodialysis or CAPD.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-levofloxacin-label",
+          "locator": "2.3 Dosage Adjustment in Adults with Renal Impairment",
+          "quote": "In patients with renal impairment (creatinine clearance less than 50 mL/min), adjustment of the dosage regimen is necessary to avoid the accumulation of levofloxacin due to decreased clearance"
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 50,
+        "max": null,
+        "dose_text": "No dosage adjustment required (750 mg, 500 mg, or 250 mg every 24 hours per indication).",
+        "refs": [
+          {
+            "source_id": "fda-levofloxacin-label",
+            "locator": "2.3 Dosage Adjustment in Adults with Renal Impairment",
+            "quote": "No adjustment is necessary for patients with a creatinine clearance greater than or equal to 50 mL/minute."
+          }
+        ]
+      },
+      {
+        "min": 20,
+        "max": 49,
+        "dose_text": "750 mg regimen: 750 mg every 48 hours. 500 mg regimen: 500 mg initial dose, then 250 mg every 24 hours. 250 mg regimen: No dosage adjustment required.",
+        "refs": [
+          {
+            "source_id": "fda-levofloxacin-label",
+            "locator": "2.3 Dosage Adjustment in Adults with Renal Impairment - Table 3",
+            "quote": "750 mg every 24 hours 750 mg every 48 hours 750 mg initial dose, then 500 mg every 48 hours 750 mg initial dose, then 500 mg every 48 hours 500 mg every 24 hours 500 mg initial dose, then 250 mg every 24 hours"
+          }
+        ]
+      },
+      {
+        "min": 10,
+        "max": 19,
+        "dose_text": "750 mg regimen: 750 mg initial dose, then 500 mg every 48 hours. 500 mg regimen: 500 mg initial dose, then 250 mg every 48 hours. 250 mg regimen: 250 mg every 48 hours (if treating uncomplicated UTI, no dosage adjustment required).",
+        "refs": [
+          {
+            "source_id": "fda-levofloxacin-label",
+            "locator": "2.3 Dosage Adjustment in Adults with Renal Impairment - Table 3",
+            "quote": "250 mg every 48 hours. If treating uncomplicated UTI, then no dosage adjustment is required"
+          }
+        ]
+      }
+    ],
+    "hemodialysis": {
+      "value": "750 mg regimen: 750 mg initial dose, then 500 mg every 48 hours. 500 mg regimen: 500 mg initial dose, then 250 mg every 48 hours. 250 mg regimen: No information on dosing adjustment is available. Supplemental doses are not required following hemodialysis or CAPD.",
+      "refs": [
+        {
+          "source_id": "fda-levofloxacin-label",
+          "locator": "8.6 Renal Impairment",
+          "quote": "Neither hemodialysis nor continuous ambulatory peritoneal dialysis (CAPD) is effective in removal of levofloxacin from the body, indicating that supplemental doses of levofloxacin are not required following hemodialysis or CAPD"
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-levofloxacin-label",
+        "locator": "2.3 Dosage Adjustment in Adults with Renal Impairment",
+        "quote": "Table 3 shows how to adjust dose based on creatinine clearance."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Pharmacokinetic studies in patients with hepatic impairment have not been conducted; due to the limited extent of levofloxacin metabolism (~87% excreted unchanged in urine), pharmacokinetics are not expected to be affected. However, severe and sometimes fatal hepatotoxicity has been reported postmarketing (majority in patients >= 65 years).",
+    "refs": [
+      {
+        "source_id": "fda-levofloxacin-label",
+        "locator": "8.7 Hepatic Impairment",
+        "quote": "Pharmacokinetic studies in patients with hepatic impairment have not been conducted. Due to the limited extent of levofloxacin metabolism, the pharmacokinetics of levofloxacin are not expected to be affected by hepatic impairment."
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "Disabling and potentially irreversible serious adverse reactions including tendinitis and tendon rupture, peripheral neuropathy, and central nervous system effects; discontinue immediately and avoid fluoroquinolones if any occur.",
+      "Exacerbation of myasthenia gravis: Fluoroquinolones, including levofloxacin, may exacerbate muscle weakness in patients with myasthenia gravis; avoid levofloxacin in patients with a known history of myasthenia gravis.",
+      "Reserve levofloxacin for patients with no alternative treatment options for uncomplicated UTI, acute bacterial exacerbation of chronic bronchitis, and acute bacterial sinusitis."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-levofloxacin-label",
+        "locator": "BOXED WARNING",
+        "quote": "Fluoroquinolones, including levofloxacin, may exacerbate muscle weakness in patients with myasthenia gravis. Avoid levofloxacin in patients with a known history of myasthenia gravis [see Warnings and Precautions ( 5.5)]."
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "avoid",
+    "refs": [
+      {
+        "source_id": "fda-levofloxacin-label",
+        "locator": "BOXED WARNING",
+        "quote": "Fluoroquinolones, including levofloxacin, may exacerbate muscle weakness in patients with myasthenia gravis. Avoid levofloxacin in patients with a known history of myasthenia gravis [see Warnings and Precautions ( 5.5)]."
+      }
+    ],
+    "note": "FDA Boxed Warning: Avoid in patients with a known history of myasthenia gravis."
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Film-coated tablets (250 mg, 500 mg, 750 mg); no NG tube crushing instructions in label. Note that IV and oral routes are bioequivalent (mg-for-mg interchangeable)."
+    },
+    "refs": [
+      {
+        "source_id": "fda-levofloxacin-label",
+        "locator": "12.3 Pharmacokinetics - Absorption",
+        "quote": "The plasma concentration profile of levofloxacin after IV administration is similar and comparable in extent of exposure (AUC) to that observed for levofloxacin tablets when equal doses (mg/mg) are administered. Therefore, the oral and IV routes of administration can be considered interchangeable."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "confusion_delirium",
+      "psychiatric_behavioral",
+      "sedation_somnolence",
+      "qt_prolongation",
+      "hepatotoxicity",
+      "rash_sjs_ten",
+      "pancreatitis"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-levofloxacin-label",
+        "locator": "6.2 Clinical Trial Experience - Table 5",
+        "quote": "Psychiatric Disorders anxiety agitation confusion depression hallucination nightmare * [see Warnings and Precautions ( 5.4 )] sleep disorder * anorexia abnormal dreaming * Nervous System Disorders tremorconvulsions [see Warnings and Precautions ( 5.4 )] paresthesia [see Warnings and Precautions ( 5.3 )] vertigo hypertonia hyperkinesias abnormal gait somnolence * syncope"
+      },
+      {
+        "source_id": "fda-levofloxacin-label",
+        "locator": "6.3 Postmarketing Experience - Table 6",
+        "quote": "Cardiac Disorders isolated reports of torsade de pointes electrocardiogram QT prolonged [see Warnings and Precautions ( 5.11 )] tachycardia"
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Nausea (7%)",
+        "Headache (6%)",
+        "Diarrhea (5%)",
+        "Insomnia (4%)",
+        "Constipation (3%)",
+        "Dizziness (3%)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-levofloxacin-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "The most common reactions (≥3%) were nausea, headache, diarrhea, insomnia, constipation and dizziness ( 6.2 )."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Tendinitis and tendon rupture",
+        "Peripheral neuropathy (may be irreversible)",
+        "Central nervous system effects (encephalopathy, convulsions, psychosis, suicidal ideation, pseudotumor cerebri)",
+        "Exacerbation of myasthenia gravis",
+        "Aortic aneurysm and dissection",
+        "Severe and sometimes fatal hepatotoxicity",
+        "QT prolongation and torsades de pointes",
+        "Severe cutaneous adverse reactions (SJS, TEN, erythema multiforme) and fatal hypersensitivity/anaphylaxis",
+        "Clostridioides difficile-associated diarrhea (CDAD)",
+        "Blood glucose disturbances (hypoglycemia/hyperglycemia)",
+        "Rhabdomyolysis and muscle rupture"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-levofloxacin-label",
+          "locator": "6.1 Serious and Otherwise Important Adverse Reactions",
+          "quote": "• Disabling and Potentially Irreversible Serious Adverse Reactions [ see Warnings and Precautions (5.1)] • Tendinitis and Tendon Rupture [see Warnings and Precautions ( 5.2)] • Peripheral Neuropathy [see Warnings and Precautions (5.3)] • Central Nervous System Effects [see Warnings and Precautions ( 5.4)] • Exacerbation of Myasthenia Gravis [see Warnings and Precautions ( 5.5)]"
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Fluoroquinolone (L-isomer of ofloxacin) bactericidal antibacterial that inhibits bacterial topoisomerase IV and DNA gyrase (type II topoisomerases), enzymes required for DNA replication, transcription, repair, and recombination.",
+    "refs": [
+      {
+        "source_id": "fda-levofloxacin-label",
+        "locator": "12.4 Microbiology - Mechanism of Action",
+        "quote": "The mechanism of action of levofloxacin and other fluoroquinolone antimicrobials involves inhibition of bacterial topoisomerase IV and DNA gyrase (both of which are type II topoisomerases), enzymes required for DNA replication, transcription, repair and recombination."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "qt_risk": "possible"
+    },
+    "refs": [
+      {
+        "source_id": "fda-levofloxacin-label",
+        "locator": "6.3 Postmarketing Experience - Table 6",
+        "quote": "Cardiac Disorders isolated reports of torsade de pointes electrocardiogram QT prolonged [see Warnings and Precautions ( 5.11 )] tachycardia"
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Multivalent Cation-Containing Products (Magnesium/Aluminum Antacids, Sucralfate, Iron, Zinc, Didanosine)",
+        "severity": "moderate",
+        "effect": "Chelation interferes with GI absorption of levofloxacin, resulting in considerably lower systemic levels.",
+        "management": "Administer levofloxacin tablets at least 2 hours before or 2 hours after these agents.",
+        "refs": [
+          {
+            "source_id": "fda-levofloxacin-label",
+            "locator": "7.1 Chelation Agents",
+            "quote": "Tablets with antacids containing magnesium, aluminum, as well as sucralfate, metal cations such as iron, and multivitamin preparations with zinc or didanosine may substantially interfere with the gastrointestinal absorption of levofloxacin, resulting in systemic levels considerably lower than desired."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Warfarin",
+        "severity": "moderate",
+        "effect": "Postmarketing reports indicate levofloxacin may enhance the effects of warfarin, with elevated prothrombin time associated with bleeding episodes.",
+        "management": "Closely monitor prothrombin time, INR, or other anticoagulation tests and monitor for bleeding.",
+        "refs": [
+          {
+            "source_id": "fda-levofloxacin-label",
+            "locator": "7.2 Warfarin",
+            "quote": "Prothrombin time, International Normalized Ratio (INR), or other suitable anticoagulation tests should be closely monitored if levofloxacin is administered concomitantly with warfarin. Patients should also be monitored for evidence of bleeding"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Antidiabetic Agents",
+        "severity": "moderate",
+        "effect": "Disturbances of blood glucose, including hyperglycemia and hypoglycemia, have been reported during concomitant therapy.",
+        "management": "Carefully monitor blood glucose when co-administered.",
+        "refs": [
+          {
+            "source_id": "fda-levofloxacin-label",
+            "locator": "7.3 Antidiabetic Agents",
+            "quote": "Disturbances of blood glucose, including hyperglycemia and hypoglycemia, have been reported in patients treated concomitantly with fluoroquinolones and an antidiabetic agent. Therefore, careful monitoring of blood glucose is recommended when these agents are co-administered"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Non-Steroidal Anti-Inflammatory Drugs (NSAIDs)",
+        "severity": "moderate",
+        "effect": "Concomitant administration of an NSAID with a fluoroquinolone may increase the risk of CNS stimulation and convulsive seizures.",
+        "management": "Monitor for CNS stimulation and seizure activity.",
+        "refs": [
+          {
+            "source_id": "fda-levofloxacin-label",
+            "locator": "7.4 Non-Steroidal Anti-Inflammatory Drugs",
+            "quote": "The concomitant administration of a non-steroidal anti-inflammatory drug with a fluoroquinolone, including levofloxacin, may increase the risk of CNS stimulation and convulsive seizures"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Theophylline",
+        "severity": "moderate",
+        "effect": "Although healthy volunteer study showed no PK change, other fluoroquinolones increase serum theophylline levels and adverse reactions including seizures (which may occur with or without elevated theophylline levels).",
+        "management": "Closely monitor theophylline levels and make appropriate dosage adjustments when co-administered.",
+        "refs": [
+          {
+            "source_id": "fda-levofloxacin-label",
+            "locator": "7.5 Theophylline",
+            "quote": "Therefore, theophylline levels should be closely monitored and appropriate dosage adjustments made when levofloxacin is co-administered. Adverse reactions, including seizures, may occur with or without an elevation in serum theophylline levels"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-levofloxacin-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Multivalent cation-containing products including antacids, metal cations or didanosine Absorption of levofloxacin is decreased when the tablets are taken within 2 hours of these products. (2.4, 7.1) Warfarin Effect may be enhanced. Monitor prothrombin time, INR and watch for bleeding (7.2) Antidiabetic agents Carefully monitor blood glucose (5.13, 7.3)"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "Pregnancy Category C: no adequate and well-controlled studies in pregnant women; not teratogenic in rats up to 810 mg/kg/day (9.4x human BSA, though caused decreased fetal body weight and increased fetal mortality) or rabbits up to 50 mg/kg/day (1.1x human BSA); label states levofloxacin should be used during pregnancy only if potential benefit justifies fetal risk.",
+      "refs": [
+        {
+          "source_id": "fda-levofloxacin-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "Pregnancy Category C. Levofloxacin was not teratogenic in rats at doses as high as 810 mg/kg/day which corresponds to 9.4 times the highest recommended oral human dose based upon relative body surface area. The oral dose of 810 mg/kg/day to rats caused decreased fetal body weight and increased fetal mortality."
+        },
+        {
+          "source_id": "fda-levofloxacin-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "There are, however, no adequate and well-controlled studies in pregnant women. Levofloxacin should be used during pregnancy only if the potential benefit justifies the potential risk to the fetus."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Presumed to be excreted in human milk; because of potential for serious adverse reactions in nursing infants, decide whether to discontinue nursing or discontinue levofloxacin, taking into account importance of the drug to the mother.",
+      "refs": [
+        {
+          "source_id": "fda-levofloxacin-label",
+          "locator": "8.3 Nursing Mothers",
+          "quote": "Based on data on other fluoroquinolones and very limited data on levofloxacin, it can be presumed that levofloxacin will be excreted in human milk. Because of the potential for serious adverse reactions from levofloxacin in nursing infants, a decision should be made whether to discontinue nursing or to discontinue the drug, taking into account the importance of the drug to the mother."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

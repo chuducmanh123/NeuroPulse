@@ -1,0 +1,673 @@
+{
+  "id": "ciprofloxacin",
+  "generic_name": "ciprofloxacin",
+  "tall_man": {
+    "value": "ciprofloxacin",
+    "refs": [
+      {
+        "source_id": "fda-ciprofloxacin-label",
+        "locator": "1 INDICATIONS AND USAGE",
+        "quote": "CIPRO is a fluoroquinolone antibacterial indicated in adults (18 years of age and older) with the following infections caused by designated, susceptible bacteria and in pediatric patients where indicated:"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "fluoroquinolone antibacterial",
+    "DNA gyrase / topoisomerase IV inhibitor"
+  ],
+  "subspecialties": [
+    "neuro_infectious",
+    "neurocritical_care",
+    "neuromuscular"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "cipro-skin-bone-lrti-plague-po",
+      "indication": "Skin and Skin Structure Infections, Bone and Joint Infections, Lower Respiratory Tract Infections (AECB reserve for no alternative), and Plague — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-ciprofloxacin-label",
+          "locator": "2.1 Dosage in Adults - Table 1",
+          "quote": "Skin and Skin Structure 500–750 mg every 12 hours 7 to 14 days Bone and Joint 500–750 mg every 12 hours 4 to 8 weeks"
+        },
+        {
+          "source_id": "fda-ciprofloxacin-label",
+          "locator": "2.1 Dosage in Adults - Table 1",
+          "quote": "Plague 500–750 mg every 12 hours 14 days Chronic Bacterial Prostatitis 500 mg every 12 hours 28 days Lower Respiratory Tract Infections 500–750 mg every 12 hours 7 to 14 days"
+        }
+      ],
+      "dose": null,
+      "dose_text": "500 to 750 mg PO every 12 hours (Skin/Skin Structure: 7–14 days; Bone and Joint: 4–8 weeks; Lower Respiratory Tract: 7–14 days; Plague: 14 days). Reserve AECB for patients with no alternative treatment options."
+    },
+    {
+      "id": "cipro-ciai-diarrhea-typhoid-prostatitis-sinusitis-po",
+      "indication": "Complicated Intra-Abdominal (with metronidazole), Infectious Diarrhea, Typhoid Fever, Chronic Bacterial Prostatitis, and Acute Sinusitis (reserve for no alternative) — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-ciprofloxacin-label",
+          "locator": "2.1 Dosage in Adults - Table 1",
+          "quote": "Complicated Intra–Abdominal Used in conjunction with metronidazole. 500 mg every 12 hours 7 to 14 days Infectious Diarrhea 500 mg every 12 hours 5 to 7 days Typhoid Fever 500 mg every 12 hours 10 days"
+        },
+        {
+          "source_id": "fda-ciprofloxacin-label",
+          "locator": "2.1 Dosage in Adults - Table 1",
+          "quote": "Acute Sinusitis 500 mg every 12 hours 10 days"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 500,
+        "unit": "mg",
+        "frequency": "every 12 hours"
+      },
+      "dose_text": "500 mg PO every 12 hours (Complicated Intra-Abdominal with metronidazole: 7–14 days; Infectious Diarrhea: 5–7 days; Typhoid Fever: 10 days; Chronic Bacterial Prostatitis: 28 days; Acute Sinusitis: 10 days, reserve for no alternative)."
+    },
+    {
+      "id": "cipro-anthrax-adult-po",
+      "indication": "Inhalational Anthrax (Post-Exposure) — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-ciprofloxacin-label",
+          "locator": "2.1 Dosage in Adults - Table 1",
+          "quote": "Inhalational anthrax (post-exposure) Begin drug administration as soon as possible after suspected or confirmed exposure. 500 mg every 12 hours 60 days"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 500,
+        "unit": "mg",
+        "frequency": "every 12 hours for 60 days"
+      },
+      "dose_text": "500 mg PO every 12 hours for 60 days; begin administration as soon as possible after suspected or confirmed exposure."
+    },
+    {
+      "id": "cipro-uti-adult-po",
+      "indication": "Urinary Tract Infections — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-ciprofloxacin-label",
+          "locator": "2.1 Dosage in Adults - Table 1",
+          "quote": "Urinary Tract Infections 250–500 mg every 12 hours 7 to 14 days Acute Uncomplicated Cystitis 250 mg every 12 hours 3 days"
+        }
+      ],
+      "dose": null,
+      "dose_text": "250 to 500 mg PO every 12 hours for 7 to 14 days."
+    },
+    {
+      "id": "cipro-uncomplicated-cystitis-adult-po",
+      "indication": "Acute Uncomplicated Cystitis — Adult Females (reserve for no alternative)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-ciprofloxacin-label",
+          "locator": "2.1 Dosage in Adults - Table 1",
+          "quote": "Acute Uncomplicated Cystitis 250 mg every 12 hours 3 days"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 250,
+        "unit": "mg",
+        "frequency": "every 12 hours for 3 days"
+      },
+      "dose_text": "250 mg PO every 12 hours for 3 days. Reserve for patients who have no alternative treatment options."
+    },
+    {
+      "id": "cipro-gonorrhea-adult-po",
+      "indication": "Uncomplicated Cervical and Urethral Gonorrhea — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-ciprofloxacin-label",
+          "locator": "2.1 Dosage in Adults - Table 1",
+          "quote": "Uncomplicated Urethral and Cervical Gonococcal Infections 250 mg single dose single dose"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 250,
+        "unit": "mg",
+        "frequency": "single dose"
+      },
+      "dose_text": "250 mg PO as a single dose."
+    },
+    {
+      "id": "cipro-iv-equivalent-adult",
+      "indication": "Equivalent IV Dosing Regimens (for conversion between IV and PO) — Adults",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-ciprofloxacin-label",
+          "locator": "2.1 Dosage in Adults - Table 2",
+          "quote": "250 mg Tablet every 12 hours 200 mg intravenous every 12 hours 500 mg Tablet every 12 hours 400 mg intravenous every 12 hours 750 mg Tablet every 12 hours 400 mg intravenous every 8 hours"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 400,
+        "unit": "mg",
+        "frequency": "every 8 to 12 hours (or 200 mg every 12 hours)"
+      },
+      "dose_text": "200 mg IV q12h (equivalent to 250 mg PO q12h), 400 mg IV q12h (equivalent to 500 mg PO q12h), or 400 mg IV q8h (equivalent to 750 mg PO q12h)."
+    },
+    {
+      "id": "cipro-peds-cuti-pyelonephritis-po",
+      "indication": "Complicated Urinary Tract Infection and Pyelonephritis — Pediatric Patients (1 to 17 years of age)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-ciprofloxacin-label",
+          "locator": "2.2 Dosage in Pediatric Patients - Table 3",
+          "quote": "Complicated Urinary Tract or Pyelonephritis (patients from 1 to 17 years of age) 10 mg/kg to 20 mg/kg (maximum 750 mg per dose; not to be exceeded even in patients weighing more than 51 kg) Every 12 hours 10–21 days"
+        }
+      ],
+      "dose": null,
+      "dose_text": "10 to 20 mg/kg PO every 12 hours for 10–21 days (maximum 750 mg per dose, not to be exceeded even in patients > 51 kg). Not a drug of first choice in pediatrics due to musculoskeletal/joint adverse reactions."
+    },
+    {
+      "id": "cipro-peds-anthrax-po",
+      "indication": "Inhalational Anthrax (Post-Exposure) — Pediatric Patients (Birth to 17 years of age)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-ciprofloxacin-label",
+          "locator": "2.2 Dosage in Pediatric Patients - Table 3",
+          "quote": "Inhalational Anthrax (Post-Exposure) 2 15 mg/kg (maximum 500 mg per dose) Every 12 hours 60 days"
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 15,
+        "unit": "mg",
+        "frequency": "every 12 hours for 60 days",
+        "max_single": 500
+      },
+      "dose_text": "15 mg/kg PO every 12 hours for 60 days (maximum 500 mg per dose)."
+    },
+    {
+      "id": "cipro-peds-plague-po",
+      "indication": "Plague (Treatment and Prophylaxis) — Pediatric Patients (Birth to 17 years of age)",
+      "setting": "acute_inpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-ciprofloxacin-label",
+          "locator": "2.2 Dosage in Pediatric Patients - Table 3",
+          "quote": "Plague 2,3 15 mg/kg (maximum 500 mg per dose) Every 8 to 12 hours 14 days"
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 15,
+        "unit": "mg",
+        "frequency": "every 8 to 12 hours for 14 days",
+        "max_single": 500
+      },
+      "dose_text": "15 mg/kg PO every 8 to 12 hours for 14 days (maximum 500 mg per dose)."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-ciprofloxacin-label",
+        "locator": "2.3 Dosage Modifications in Patients with Renal Impairment",
+        "quote": "When only the serum creatinine concentration is known, the following formulas may be used to estimate creatinine clearance: Men - Creatinine clearance (mL/min) = Weight (kg) x (140–age) 72 x serum creatinine (mg/dL) Women - 0.85 x the value calculated for men."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "Dosage modification is recommended in adult patients with impaired renal function (CrCl <= 50 mL/min) based on Cockcroft-Gault creatinine clearance. No data available for pediatric patients with moderate to severe renal insufficiency (CrCl < 50 mL/min/1.73 m²).",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-ciprofloxacin-label",
+          "locator": "2.3 Dosage Modifications in Patients with Renal Impairment",
+          "quote": "Men - Creatinine clearance (mL/min) = Weight (kg) x (140–age) 72 x serum creatinine (mg/dL) Women - 0.85 x the value calculated for men."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 50,
+        "max": null,
+        "dose_text": "See usual adult dosage.",
+        "refs": [
+          {
+            "source_id": "fda-ciprofloxacin-label",
+            "locator": "2.3 Dosage Modifications in Patients with Renal Impairment - Table 4",
+            "quote": "Creatinine Clearance (mL/min) Dose > 50 See Usual Dosage. 30–50 250–500 mg every 12 hours 5–29 250–500 mg every 18 hours"
+          }
+        ]
+      },
+      {
+        "min": 30,
+        "max": 50,
+        "dose_text": "250–500 mg every 12 hours (750 mg unit dose may be used in severe infections with careful monitoring).",
+        "refs": [
+          {
+            "source_id": "fda-ciprofloxacin-label",
+            "locator": "2.3 Dosage Modifications in Patients with Renal Impairment - Table 4",
+            "quote": "30–50 250–500 mg every 12 hours 5–29 250–500 mg every 18 hours"
+          }
+        ]
+      },
+      {
+        "min": 5,
+        "max": 29,
+        "dose_text": "250–500 mg every 18 hours (750 mg unit dose may be used in severe infections with careful monitoring).",
+        "refs": [
+          {
+            "source_id": "fda-ciprofloxacin-label",
+            "locator": "2.3 Dosage Modifications in Patients with Renal Impairment - Table 4",
+            "quote": "5–29 250–500 mg every 18 hours Patients on hemodialysis or Peritoneal dialysis 250–500 mg every 24 hours (after dialysis)"
+          }
+        ]
+      }
+    ],
+    "hemodialysis": {
+      "value": "250–500 mg every 24 hours (administered after dialysis) for patients on hemodialysis or peritoneal dialysis; less than 10% is removed by dialysis.",
+      "refs": [
+        {
+          "source_id": "fda-ciprofloxacin-label",
+          "locator": "2.3 Dosage Modifications in Patients with Renal Impairment - Table 4",
+          "quote": "Patients on hemodialysis or Peritoneal dialysis 250–500 mg every 24 hours (after dialysis)"
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-ciprofloxacin-label",
+        "locator": "2.3 Dosage Modifications in Patients with Renal Impairment",
+        "quote": "Nonetheless, some modification of dosage is recommended, particularly for patients with severe renal dysfunction. Dosage guidelines for use in patients with renal impairment are shown in Table 4."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "In preliminary studies in patients with stable chronic liver cirrhosis, no significant changes in ciprofloxacin pharmacokinetics have been observed. Pharmacokinetics in acute hepatic insufficiency have not been studied.",
+    "refs": [
+      {
+        "source_id": "fda-ciprofloxacin-label",
+        "locator": "8.7 Hepatic Impairment",
+        "quote": "In preliminary studies in patients with stable chronic liver cirrhosis, no significant changes in ciprofloxacin pharmacokinetics have been observed. The pharmacokinetics of ciprofloxacin in patients with acute hepatic insufficiency, have not been studied."
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "Disabling and potentially irreversible serious adverse reactions including tendinitis and tendon rupture, peripheral neuropathy, and central nervous system effects; discontinue immediately and avoid fluoroquinolones if any occur.",
+      "Exacerbation of myasthenia gravis: Fluoroquinolones, including CIPRO, may exacerbate muscle weakness in patients with myasthenia gravis; avoid CIPRO in patients with known history of myasthenia gravis.",
+      "Reserve CIPRO for patients with no alternative treatment options for acute exacerbation of chronic bronchitis, acute uncomplicated cystitis, and acute sinusitis."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-ciprofloxacin-label",
+        "locator": "BOXED WARNING",
+        "quote": "WARNING: SERIOUS ADVERSE REACTIONS INCLUDING TENDINITIS, TENDON RUPTURE, PERIPHERAL NEUROPATHY, CENTRAL NERVOUS SYSTEM EFFECTS AND EXACERBATION OF MYASTHENIA GRAVIS"
+      },
+      {
+        "source_id": "fda-ciprofloxacin-label",
+        "locator": "BOXED WARNING",
+        "quote": "Fluoroquinolones, including CIPRO, may exacerbate muscle weakness in patients with myasthenia gravis. Avoid CIPRO in patients with known history of myasthenia gravis ."
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "avoid",
+    "refs": [
+      {
+        "source_id": "fda-ciprofloxacin-label",
+        "locator": "BOXED WARNING",
+        "quote": "Fluoroquinolones, including CIPRO, may exacerbate muscle weakness in patients with myasthenia gravis. Avoid CIPRO in patients with known history of myasthenia gravis ."
+      }
+    ],
+    "note": "FDA Boxed Warning: Avoid in patients with known history of myasthenia gravis."
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "CIPRO Oral Suspension should NOT be administered through feeding or NG (nasogastric) tubes due to its physical characteristics; microcapsules should not be chewed. CIPRO 250 mg and 500 mg tablets are functionally scored and can be split in half."
+    },
+    "refs": [
+      {
+        "source_id": "fda-ciprofloxacin-label",
+        "locator": "2.5 Directions for Reconstitution of the CIPRO Microcapsules for Oral Suspension",
+        "quote": "CIPRO Oral Suspension should not be administered through feeding or NG (nasogastric) tubes due to its physical characteristics."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "confusion_delirium",
+      "psychiatric_behavioral",
+      "ataxia",
+      "myoclonus",
+      "qt_prolongation",
+      "hepatotoxicity",
+      "rash_sjs_ten",
+      "pancreatitis"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-ciprofloxacin-label",
+        "locator": "6.1 Clinical Trials Experience - Table 8",
+        "quote": "Central Nervous System Restlessness Dizziness Insomnia Nightmares Hallucinations Paranoia Psychosis (toxic) Manic Reaction Irritability Tremor Ataxia Seizures (including Status Epilepticus)"
+      },
+      {
+        "source_id": "fda-ciprofloxacin-label",
+        "locator": "6.2 Postmarketing Experience - Table 10",
+        "quote": "Cardiovascular QT prolongation Torsade de Pointes Vasculitis and ventricular arrhythmia"
+      },
+      {
+        "source_id": "fda-ciprofloxacin-label",
+        "locator": "6.2 Postmarketing Experience - Table 10",
+        "quote": "Musculoskeletal Myalgia Myoclonus Tendinitis Tendon rupture Psychiatric Disorders Agitation Confusion Delirium"
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Nausea (2.5%)",
+        "Diarrhea (1.6%)",
+        "Abnormal liver function tests (1.3%)",
+        "Vomiting (1%)",
+        "Rash (1%)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-ciprofloxacin-label",
+          "locator": "6.1 Clinical Trials Experience",
+          "quote": "The most frequently reported adverse reactions, from clinical trials of all formulations, all dosages, all drug-therapy durations, and for all indications of ciprofloxacin therapy were nausea (2.5%), diarrhea (1.6%), liver function tests abnormal (1.3%), vomiting (1%), and rash (1%)."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Tendinitis and tendon rupture (increased risk in elderly and with corticosteroids)",
+        "Peripheral neuropathy (potentially irreversible)",
+        "Central nervous system effects (seizures including status epilepticus, psychosis, hallucinations, suicidal ideation, confusion, delirium)",
+        "Exacerbation of myasthenia gravis",
+        "Aortic aneurysm and dissection",
+        "QT prolongation and torsades de pointes",
+        "Hepatotoxicity / hepatic failure (including fatal cases)",
+        "Severe cutaneous adverse reactions (SJS, TEN, AGEP, exfoliative dermatitis) and anaphylactic shock",
+        "Clostridioides difficile-associated diarrhea (CDAD)",
+        "Hypoglycemia / hyperglycemia"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-ciprofloxacin-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "The following serious and otherwise important adverse drug reactions are discussed in greater detail in other sections of labeling: • Disabling and Potentially Irreversible Serious Adverse Reactions [see Warnings and Precautions ( 5.1 )] • Tendinitis and Tendon Rupture [see Warnings and Precautions ( 5.2 )] • Peripheral Neuropathy [see Warnings and Precautions ( 5.3 )]"
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Fluoroquinolone bactericidal antibacterial that inhibits bacterial topoisomerase II (DNA gyrase) and topoisomerase IV, which are required for bacterial DNA replication, transcription, repair, and recombination.",
+    "refs": [
+      {
+        "source_id": "fda-ciprofloxacin-label",
+        "locator": "12.4 Microbiology - Mechanism of Action",
+        "quote": "The bactericidal action of ciprofloxacin results from inhibition of the enzymes topoisomerase II (DNA gyrase) and topoisomerase IV (both Type II topoisomerases), which are required for bacterial DNA replication, transcription, repair, and recombination."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp1a2": "inhibitor_strong",
+      "qt_risk": "possible"
+    },
+    "refs": [
+      {
+        "source_id": "fda-ciprofloxacin-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Ciprofloxacin is an inhibitor of human cytochrome P450 1A2 (CYP1A2) mediated metabolism. Co-administration of CIPRO with other drugs primarily metabolized by CYP1A2 results in increased plasma concentrations of these drugs and could lead to clinically significant adverse events of the co-administered drug."
+      },
+      {
+        "source_id": "fda-ciprofloxacin-label",
+        "locator": "6.2 Postmarketing Experience - Table 10",
+        "quote": "Cardiovascular QT prolongation Torsade de Pointes Vasculitis and ventricular arrhythmia"
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Tizanidine",
+        "severity": "contraindicated",
+        "effect": "Tizanidine Cmax increased 7-fold and AUC increased 10-fold via CYP1A2 inhibition, potentiating hypotensive and sedative effects.",
+        "management": "Concomitant administration of tizanidine and CIPRO is contraindicated.",
+        "refs": [
+          {
+            "source_id": "fda-ciprofloxacin-label",
+            "locator": "7 DRUG INTERACTIONS - Table 11",
+            "quote": "Tizanidine Contraindicated Concomitant administration of tizanidine and CIPRO is contraindicated due to the potentiation of hypotensive and sedative effects of tizanidine"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Theophylline",
+        "severity": "major",
+        "effect": "Plasma exposure likely to be increased and prolonged, resulting in increased risk of CNS or other serious/fatal adverse reactions.",
+        "management": "Avoid concomitant use; if unavoidable, monitor serum theophylline levels and adjust dosage as appropriate.",
+        "refs": [
+          {
+            "source_id": "fda-ciprofloxacin-label",
+            "locator": "7 DRUG INTERACTIONS - Table 11",
+            "quote": "Theophylline Avoid Use (Plasma Exposure Likely to be Increased and Prolonged) Concurrent administration of CIPRO with theophylline may result in increased risk of a patient developing central nervous system (CNS) or other adverse reactions. If concomitant use cannot be avoided, monitor serum levels of theophylline and adjust dosage as appropriate"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Drugs Known to Prolong QT Interval (Class IA/III antiarrhythmics, TCAs, macrolides, antipsychotics)",
+        "severity": "major",
+        "effect": "CIPRO may further prolong the QT interval in patients receiving QT-prolonging drugs.",
+        "management": "Avoid concomitant use.",
+        "refs": [
+          {
+            "source_id": "fda-ciprofloxacin-label",
+            "locator": "7 DRUG INTERACTIONS - Table 11",
+            "quote": "Drugs Known to Prolong QT Interval Avoid Use CIPRO may further prolong the QT interval in patients receiving drugs known to prolong the QT interval (for example, class IA or III antiarrhythmics, tricyclic antidepressants, macrolides, antipsychotics)"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Duloxetine",
+        "severity": "major",
+        "effect": "Potential 5-fold increase in duloxetine exposure via CYP1A2 inhibition.",
+        "management": "Avoid use; if unavoidable, monitor for duloxetine toxicity.",
+        "refs": [
+          {
+            "source_id": "fda-ciprofloxacin-label",
+            "locator": "7 DRUG INTERACTIONS - Table 11",
+            "quote": "Duloxetine Avoid Use Five-fold increase in duloxetine exposure If unavoidable, monitor for duloxetine toxicity"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Zolpidem",
+        "severity": "major",
+        "effect": "Co-administration with ciprofloxacin may increase blood levels of zolpidem.",
+        "management": "Avoid use; concurrent use is not recommended.",
+        "refs": [
+          {
+            "source_id": "fda-ciprofloxacin-label",
+            "locator": "7 DRUG INTERACTIONS - Table 11",
+            "quote": "Zolpidem Avoid Use Co-administration with ciprofloxacin may increase blood levels of zolpidem, concurrent use is not recommended"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Oral Antidiabetic Drugs (e.g., Sulfonylureas: glyburide, glimepiride)",
+        "severity": "major",
+        "effect": "Glucose-lowering effect potentiated; severe hypoglycemia, including fatalities, has been reported.",
+        "management": "Use with caution and monitor blood glucose closely when co-administered.",
+        "refs": [
+          {
+            "source_id": "fda-ciprofloxacin-label",
+            "locator": "7 DRUG INTERACTIONS - Table 11",
+            "quote": "Hypoglycemia sometimes severe has been reported when CIPRO and oral antidiabetic agents, mainly sulfonylureas (for example, glyburide, glimepiride), were co-administered, presumably by intensifying the action of the oral antidiabetic agent. Fatalities have been reported . Monitor blood glucose when CIPRO is co-administered with oral antidiabetic drugs"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Phenytoin",
+        "severity": "moderate",
+        "effect": "Altered serum levels of phenytoin (increased and decreased).",
+        "management": "Use with caution; monitor phenytoin serum concentrations during and shortly after co-administration to avoid loss of seizure control or toxicity.",
+        "refs": [
+          {
+            "source_id": "fda-ciprofloxacin-label",
+            "locator": "7 DRUG INTERACTIONS - Table 11",
+            "quote": "To avoid the loss of seizure control associated with decreased phenytoin levels and to prevent phenytoin overdose-related adverse reactions upon CIPRO discontinuation in patients receiving both agents, monitor phenytoin therapy, including phenytoin serum concentration during and shortly after co-administration of CIPRO with phenytoin."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Oral Anticoagulants (e.g., Warfarin)",
+        "severity": "moderate",
+        "effect": "Enhances oral anticoagulant effect (increased INR/prothrombin time).",
+        "management": "Use with caution; monitor prothrombin time, INR, and bleeding frequently during and shortly after co-administration.",
+        "refs": [
+          {
+            "source_id": "fda-ciprofloxacin-label",
+            "locator": "7 DRUG INTERACTIONS - Table 11",
+            "quote": "Monitor prothrombin time and INR frequently during and shortly after co-administration of CIPRO with an oral anti-coagulant (for example, warfarin)."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Ropinirole",
+        "severity": "moderate",
+        "effect": "Ropinirole Cmax and AUC increased by 60% and 84%, respectively, via CYP1A2 inhibition.",
+        "management": "Use with caution; monitor for ropinirole-related adverse reactions and adjust ropinirole dose as appropriate.",
+        "refs": [
+          {
+            "source_id": "fda-ciprofloxacin-label",
+            "locator": "7 DRUG INTERACTIONS - Table 11",
+            "quote": "Ropinirole Use with caution Monitoring for ropinirole-related adverse reactions and appropriate dose adjustment of ropinirole is recommended during and shortly after co-administration with CIPRO"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Clozapine",
+        "severity": "moderate",
+        "effect": "Serum concentrations of clozapine and N-desmethylclozapine increased by 29% and 31%, respectively.",
+        "management": "Use with caution; monitor for clozapine adverse reactions and adjust clozapine dose during and shortly after co-administration.",
+        "refs": [
+          {
+            "source_id": "fda-ciprofloxacin-label",
+            "locator": "7 DRUG INTERACTIONS - Table 11",
+            "quote": "Clozapine Use with caution Careful monitoring of clozapine associated adverse reactions and appropriate adjustment of clozapine dosage during and shortly after co-administration with CIPRO are advised."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Multivalent Cation-Containing Products (Antacids, Sucralfate, Didanosine, Calcium, Iron, Zinc, Dairy Products)",
+        "severity": "moderate",
+        "effect": "Decreases oral absorption of ciprofloxacin (antacids may reduce bioavailability by up to 90%).",
+        "management": "Administer CIPRO at least 2 hours before or 6 hours after multivalent cation-containing products.",
+        "refs": [
+          {
+            "source_id": "fda-ciprofloxacin-label",
+            "locator": "7 DRUG INTERACTIONS - Table 11",
+            "quote": "CIPRO should be taken at least two hours before or six hours after Multivalent cation-containing products administration [see Dosage and Administration ( 2.4 )]. Decrease CIPRO absorption, resulting in lower serum and urine levels"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-ciprofloxacin-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Ciprofloxacin is an inhibitor of human cytochrome P450 1A2 (CYP1A2) mediated metabolism. Co-administration of CIPRO with other drugs primarily metabolized by CYP1A2 results in increased plasma concentrations of these drugs and could lead to clinically significant adverse events of the co-administered drug."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "PLLR Pregnancy section: prospective observational studies (n=200 and n=549 fluoroquinolone exposures) have not identified increased risk of major birth defects or miscarriage, and animal organogenesis studies (mice/rats up to 100 mg/kg PO; rabbits up to 30 mg/kg PO or 20 mg/kg IV) showed no fetal malformations; however, human studies have small sample sizes insufficient for definitive conclusions and juvenile animal arthropathy is a known fluoroquinolone risk.",
+      "refs": [
+        {
+          "source_id": "fda-ciprofloxacin-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "Prolonged experience with ciprofloxacin in pregnant women over several decades, based on available published information from case reports, case control studies and observational studies on ciprofloxacin administered during pregnancy, have not identified any drug-associated risk of major birth defects, miscarriage or adverse maternal or fetal outcomes (see Data) ."
+        },
+        {
+          "source_id": "fda-ciprofloxacin-label",
+          "locator": "8.1 Pregnancy - Human Data",
+          "quote": "However, these small postmarketing epidemiology studies, of which most experience is from short term, first trimester exposure, are insufficient to evaluate the risk for less common defects or to permit reliable and definitive conclusions regarding the safety of ciprofloxacin in pregnant women and their developing fetuses."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Present in human milk; breastfeeding is not recommended during treatment and for an additional 2 days (5 half-lives) after the last dose (may pump and discard breast milk) due to potential risk of serious adverse reactions including arthropathy; exception for inhalational anthrax post-exposure.",
+      "refs": [
+        {
+          "source_id": "fda-ciprofloxacin-label",
+          "locator": "8.2 Lactation",
+          "quote": "Alternatively, advise a woman that breastfeeding is not recommended during treatment with CIPRO and for an additional two days (five half-lives) after the last dose."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

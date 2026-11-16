@@ -1,0 +1,593 @@
+{
+  "id": "celecoxib",
+  "generic_name": "celecoxib",
+  "tall_man": {
+    "value": "celecoxib",
+    "refs": [
+      {
+        "source_id": "fda-celecoxib-label",
+        "locator": "11 DESCRIPTION",
+        "quote": "CELEBREX (celecoxib) capsule is a nonsteroidal anti-inflammatory drug, available as capsules containing 50 mg, 100 mg, 200 mg and 400 mg celecoxib for oral administration."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "nonsteroidal anti-inflammatory drug (NSAID)",
+    "selective COX-2 inhibitor",
+    "analgesic",
+    "anti-inflammatory"
+  ],
+  "subspecialties": [
+    "headache"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "celecoxib-oa-po",
+      "indication": "Osteoarthritis (OA) — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-celecoxib-label",
+          "locator": "2.2 Osteoarthritis",
+          "quote": "For OA, the dosage is 200 mg per day administered as a single dose or as 100 mg twice daily."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 200,
+        "unit": "mg",
+        "frequency": "once daily (or 100 mg twice daily)",
+        "max_single": 200,
+        "max_daily": 200
+      },
+      "dose_text": "200 mg PO once daily or 100 mg PO twice daily."
+    },
+    {
+      "id": "celecoxib-ra-po",
+      "indication": "Rheumatoid Arthritis (RA) — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-celecoxib-label",
+          "locator": "2.3 Rheumatoid Arthritis",
+          "quote": "For RA, the dosage is 100 mg to 200 mg twice daily."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 100,
+        "unit": "mg",
+        "frequency": "twice daily (range 100-200 mg twice daily)",
+        "max_single": 200,
+        "max_daily": 400
+      },
+      "dose_text": "100 mg to 200 mg PO twice daily."
+    },
+    {
+      "id": "celecoxib-jra-10to25kg-po",
+      "indication": "Juvenile Rheumatoid Arthritis (JRA) — Pediatrics (>= 2 years, >= 10 kg to <= 25 kg)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-celecoxib-label",
+          "locator": "2.4 Juvenile Rheumatoid Arthritis",
+          "quote": "For patients ≥10 kg to ≤25 kg the recommended dose is 50 mg twice daily."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 50,
+        "unit": "mg",
+        "frequency": "twice daily",
+        "max_single": 50,
+        "max_daily": 100
+      },
+      "dose_text": "50 mg PO twice daily for pediatric patients 2 years and older weighing >= 10 kg to <= 25 kg."
+    },
+    {
+      "id": "celecoxib-jra-gt25kg-po",
+      "indication": "Juvenile Rheumatoid Arthritis (JRA) — Pediatrics (>= 2 years, > 25 kg)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-celecoxib-label",
+          "locator": "2.4 Juvenile Rheumatoid Arthritis",
+          "quote": "For patients >25 kg the recommended dose is 100 mg twice daily."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 100,
+        "unit": "mg",
+        "frequency": "twice daily",
+        "max_single": 100,
+        "max_daily": 200
+      },
+      "dose_text": "100 mg PO twice daily for pediatric patients 2 years and older weighing > 25 kg."
+    },
+    {
+      "id": "celecoxib-as-po",
+      "indication": "Ankylosing Spondylitis (AS) — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-celecoxib-label",
+          "locator": "2.5 Ankylosing Spondylitis",
+          "quote": "For AS, the dosage of CELEBREX is 200 mg daily in single (once per day) or divided (twice per day) doses. If no effect is observed after 6 weeks, a trial of 400 mg daily may be worthwhile."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 200,
+        "unit": "mg",
+        "frequency": "once daily or 100 mg twice daily (trial of 400 mg/day after 6 weeks if needed)",
+        "max_single": 400,
+        "max_daily": 400
+      },
+      "dose_text": "200 mg PO once daily or 100 mg PO twice daily; if no effect after 6 weeks, a trial of 400 mg daily (single or divided doses) may be worthwhile."
+    },
+    {
+      "id": "celecoxib-acute-pain-po",
+      "indication": "Acute Pain — Adults",
+      "setting": "acute_inpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-celecoxib-label",
+          "locator": "2.6 Management of Acute Pain and Treatment of Primary Dysmenorrhea",
+          "quote": "For management of Acute Pain and Treatment of Primary Dysmenorrhea, the dosage is 400 mg initially, followed by an additional 200 mg dose if needed on the first day. On subsequent days, the recommended dose is 200 mg twice daily as needed."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 400,
+        "unit": "mg",
+        "frequency": "initially, plus 200 mg if needed on day 1; then 200 mg twice daily as needed",
+        "max_single": 400,
+        "max_daily": 600
+      },
+      "dose_text": "400 mg PO initially, followed by an additional 200 mg dose if needed on day 1; on subsequent days, 200 mg PO twice daily as needed."
+    },
+    {
+      "id": "celecoxib-dysmenorrhea-po",
+      "indication": "Primary Dysmenorrhea — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-celecoxib-label",
+          "locator": "2.6 Management of Acute Pain and Treatment of Primary Dysmenorrhea",
+          "quote": "For management of Acute Pain and Treatment of Primary Dysmenorrhea, the dosage is 400 mg initially, followed by an additional 200 mg dose if needed on the first day. On subsequent days, the recommended dose is 200 mg twice daily as needed."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 400,
+        "unit": "mg",
+        "frequency": "initially, plus 200 mg if needed on day 1; then 200 mg twice daily as needed",
+        "max_single": 400,
+        "max_daily": 600
+      },
+      "dose_text": "400 mg PO initially, followed by an additional 200 mg dose if needed on day 1; on subsequent days, 200 mg PO twice daily as needed."
+    }
+  ],
+  "renal_basis": {
+    "value": null,
+    "refs": [],
+    "note": "Section 8.7 states CELEBREX is not recommended in patients with severe renal insufficiency without specifying a numeric CrCl cutoff."
+  },
+  "hepatic": {
+    "value": "Reduce daily recommended dose by 50% in patients with moderate hepatic impairment (Child-Pugh Class B). Use in patients with severe hepatic impairment (Child-Pugh Class C) is not recommended.",
+    "refs": [
+      {
+        "source_id": "fda-celecoxib-label",
+        "locator": "8.6 Hepatic Impairment",
+        "quote": "The daily recommended dose of CELEBREX capsules in patients with moderate hepatic impairment (Child-Pugh Class B) should be reduced by 50%. The use of CELEBREX in patients with severe hepatic impairment is not recommended"
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "Cardiovascular Thrombotic Events: NSAIDs cause an increased risk of serious cardiovascular thrombotic events, including myocardial infarction and stroke, which can be fatal; contraindicated in the setting of CABG surgery.",
+      "Gastrointestinal Bleeding, Ulceration, and Perforation: NSAIDs cause an increased risk of serious GI adverse events including bleeding, ulceration, and perforation of the stomach or intestines, which can be fatal."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-celecoxib-label",
+        "locator": "BOXED WARNING",
+        "quote": "Nonsteroidal anti-inflammatory drugs (NSAIDs) cause an increased risk of serious cardiovascular thrombotic events, including myocardial infarction, and stroke, which can be fatal. This risk may occur early in the treatment and may increase with duration of use [see Warnings and Precautions (5.1) ] ."
+      },
+      {
+        "source_id": "fda-celecoxib-label",
+        "locator": "BOXED WARNING",
+        "quote": "NSAIDs cause an increased risk of serious gastrointestinal (GI) adverse events including bleeding, ulceration, and perforation of the stomach or intestines, which can be fatal."
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-celecoxib-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "The mechanism of action of CELEBREX is believed to be due to inhibition of prostaglandin synthesis, primarily via inhibition of COX-2."
+      }
+    ],
+    "note": "Selective COX-2 inhibitor NSAID; no neuromuscular junction blocking warnings."
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "For patients who have difficulty swallowing capsules, the entire capsule contents can be carefully emptied onto a level teaspoon of cool or room temperature applesauce and ingested immediately with water (stable up to 6 hours refrigerated at 2°C to 8°C)."
+    },
+    "refs": [
+      {
+        "source_id": "fda-celecoxib-label",
+        "locator": "2.4 Juvenile Rheumatoid Arthritis",
+        "quote": "For patients who have difficulty swallowing capsules, the contents of a CELEBREX capsule can be added to applesauce. The entire capsule contents are carefully emptied onto a level teaspoon of cool or room temperature applesauce and ingested immediately with water."
+      }
+    ]
+  },
+  "pgx": {
+    "value": "In adult patients known or suspected to be CYP2C9 poor metabolizers (e.g., CYP2C9*3/*3, which have 3- to 7-fold higher systemic levels), initiate treatment with half of the lowest recommended dose. In JRA patients who are CYP2C9 poor metabolizers, consider alternative treatments.",
+    "refs": [
+      {
+        "source_id": "fda-celecoxib-label",
+        "locator": "8.8 Poor Metabolizers of CYP2C9 Substrates",
+        "quote": "In patients who are known or suspected to be poor CYP2C9 metabolizers (i.e., CYP2C9*3/*3), based on genotype or previous history/experience with other CYP2C9 substrates (such as warfarin, phenytoin) administer CELEBREX starting with half the lowest recommended dose. Alternative management should be considered in JRA patients identified to be CYP2C9 poor metabolizers"
+      }
+    ]
+  },
+  "ae_tags": {
+    "value": [
+      "hepatotoxicity",
+      "rash_sjs_ten",
+      "hyponatremia",
+      "pancreatitis",
+      "nephrolithiasis"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-celecoxib-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "Liver and biliary: Liver necrosis, hepatitis, jaundice, hepatic failure Hemic and lymphatic: Agranulocytosis, aplastic anemia, pancytopenia, leucopenia Metabolic: Hypoglycemia, hyponatremia"
+      },
+      {
+        "source_id": "fda-celecoxib-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "Skin and Appendages: Erythema multiforme, exfoliative dermatitis, Stevens-Johnson Syndrome (SJS), toxic epidermal necrolysis (TEN), drug reaction with eosinophilia and systemic symptoms (DRESS), acute generalized exanthematous pustulosis (AGEP), and fixed drug eruption (FDE)"
+      },
+      {
+        "source_id": "fda-celecoxib-label",
+        "locator": "6.1 Clinical Trials Experience",
+        "quote": "Nephrolithiasis 2.1% 0.8%"
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Dyspepsia (8.8%)",
+        "Upper respiratory tract infection (8.1%)",
+        "Diarrhea (5.6%)",
+        "Sinusitis (5.0%)",
+        "Abdominal pain (4.1%)",
+        "Accidental injury (2.9%)",
+        "Pharyngitis (2.3%)",
+        "Flatulence and rash (2.2% each)",
+        "Peripheral edema (2.1%)",
+        "Dizziness and rhinitis (2.0% each)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-celecoxib-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "Most common adverse reactions in arthritis trials (>2% and >placebo) are: abdominal pain, diarrhea, dyspepsia, flatulence, peripheral edema, accidental injury, dizziness, pharyngitis, rhinitis, sinusitis, upper respiratory tract infection, rash."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Cardiovascular thrombotic events (myocardial infarction, stroke)",
+        "Gastrointestinal bleeding, ulceration, and perforation",
+        "Hepatotoxicity (liver necrosis, hepatitis, jaundice, hepatic failure)",
+        "Serious skin reactions (SJS, TEN, DRESS, AGEP, erythema multiforme)",
+        "Anaphylactic/anaphylactoid reactions and angioedema",
+        "Renal toxicity, acute renal failure, interstitial nephritis, and hyperkalemia",
+        "Aseptic meningitis and fatal intracranial hemorrhage (postmarketing)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-celecoxib-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "The following adverse reactions are discussed in greater detail in other sections of the labeling: • Cardiovascular Thrombotic Events [see Warnings and Precautions (5.1) ] • GI Bleeding, Ulceration and Perforation [see Warnings and Precautions (5.2) ] • Hepatotoxicity [see Warnings and Precautions (5.3) ]"
+        },
+        {
+          "source_id": "fda-celecoxib-label",
+          "locator": "6.2 Postmarketing Experience",
+          "quote": "Nervous: Aseptic meningitis, ageusia, anosmia, fatal intracranial hemorrhage Renal: Interstitial nephritis"
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Nonsteroidal anti-inflammatory drug with analgesic, anti-inflammatory, and antipyretic properties; inhibits prostaglandin synthesis primarily via selective inhibition of COX-2.",
+    "refs": [
+      {
+        "source_id": "fda-celecoxib-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "Celecoxib has analgesic, anti-inflammatory, and antipyretic properties. The mechanism of action of CELEBREX is believed to be due to inhibition of prostaglandin synthesis, primarily via inhibition of COX-2."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp2c9": "substrate",
+      "cyp2d6": "inhibitor_weak"
+    },
+    "refs": [
+      {
+        "source_id": "fda-celecoxib-label",
+        "locator": "12.3 Pharmacokinetics",
+        "quote": "Celecoxib metabolism is primarily mediated via CYP2C9."
+      },
+      {
+        "source_id": "fda-celecoxib-label",
+        "locator": "7 DRUG INTERACTIONS Table 3",
+        "quote": "In vitro studies indicate that celecoxib, although not a substrate, is an inhibitor of CYP2D6. Therefore, there is a potential for an in vivo drug interaction with drugs that are metabolized by CYP2D6 (e.g., atomoxetine), and celecoxib may enhance the exposure and toxicity of these drugs."
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Drugs that Interfere with Hemostasis (Anticoagulants, Antiplatelets, SSRIs, SNRIs)",
+        "severity": "major",
+        "effect": "Synergistic effect on bleeding with warfarin/anticoagulants; SSRIs/SNRIs may potentiate NSAID bleeding risk.",
+        "management": "Monitor patients with concomitant use of CELEBREX with anticoagulants (e.g., warfarin), antiplatelet drugs (e.g., aspirin), SSRIs, and SNRIs for signs of bleeding.",
+        "refs": [
+          {
+            "source_id": "fda-celecoxib-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "Monitor patients with concomitant use of CELEBREX with anticoagulants (e.g., warfarin), antiplatelet drugs (e.g., aspirin), SSRIs, and SNRIs for signs of bleeding [see Warnings and Precautions (5.12) ] ."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Aspirin (Analgesic Doses)",
+        "severity": "major",
+        "effect": "Significantly increases GI adverse reactions and bleeding risk without greater therapeutic effect (celecoxib 200-400 mg/day did not interfere with cardioprotective antiplatelet effect of aspirin 100-325 mg).",
+        "management": "Concomitant use of CELEBREX and analgesic doses of aspirin is not generally recommended.",
+        "refs": [
+          {
+            "source_id": "fda-celecoxib-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "Concomitant use of CELEBREX and analgesic doses of aspirin is not generally recommended because of the increased risk of bleeding [see Warnings and Precautions (5.12) ] ."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "ACE Inhibitors, ARBs, and Beta-Blockers",
+        "severity": "major",
+        "effect": "May diminish antihypertensive effect; co-administration with ACE inhibitors or ARBs in elderly, volume-depleted, or renally impaired patients may cause deterioration of renal function including acute renal failure.",
+        "management": "Monitor blood pressure; in elderly, volume-depleted, or renally impaired patients, ensure adequate hydration and monitor renal function at baseline and periodically.",
+        "refs": [
+          {
+            "source_id": "fda-celecoxib-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "During concomitant use of CELEBREX and ACE inhibitors or ARBs in patients who are elderly, volume-depleted, or have impaired renal function, monitor for signs of worsening renal function [see Warnings and Precautions (5.6) ] ."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Diuretics (Loop and Thiazide)",
+        "severity": "moderate",
+        "effect": "Reduces natriuretic effect of loop (e.g., furosemide) and thiazide diuretics.",
+        "management": "Observe patients for signs of worsening renal function and assure diuretic efficacy including antihypertensive effects.",
+        "refs": [
+          {
+            "source_id": "fda-celecoxib-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "During concomitant use of CELEBREX with diuretics, observe patients for signs of worsening renal function, in addition to assuring diuretic efficacy including antihypertensive effects [see Warnings and Precautions (5.6) ] ."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Digoxin",
+        "severity": "major",
+        "effect": "Increases serum concentration and prolongs half-life of digoxin.",
+        "management": "Monitor serum digoxin levels during concomitant use.",
+        "refs": [
+          {
+            "source_id": "fda-celecoxib-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "During concomitant use of CELEBREX and digoxin, monitor serum digoxin levels."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Lithium",
+        "severity": "major",
+        "effect": "Elevates plasma lithium levels (+17% in celecoxib study) and reduces renal lithium clearance (~20%).",
+        "management": "Monitor patients for signs of lithium toxicity during concomitant use.",
+        "refs": [
+          {
+            "source_id": "fda-celecoxib-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "During concomitant use of CELEBREX and lithium, monitor patients for signs of lithium toxicity."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Methotrexate",
+        "severity": "major",
+        "effect": "May increase risk for methotrexate toxicity (neutropenia, thrombocytopenia, renal dysfunction).",
+        "management": "Monitor patients for methotrexate toxicity during concomitant use.",
+        "refs": [
+          {
+            "source_id": "fda-celecoxib-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "During concomitant use of CELEBREX and methotrexate, monitor patients for methotrexate toxicity."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Cyclosporine",
+        "severity": "major",
+        "effect": "May increase cyclosporine nephrotoxicity.",
+        "management": "Monitor patients for signs of worsening renal function.",
+        "refs": [
+          {
+            "source_id": "fda-celecoxib-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "During concomitant use of CELEBREX and cyclosporine, monitor patients for signs of worsening renal function."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Other NSAIDs and Salicylates",
+        "severity": "major",
+        "effect": "Increases risk of GI toxicity with little or no increase in efficacy.",
+        "management": "Concomitant use of Celecoxib with other NSAIDs or salicylates is not recommended.",
+        "refs": [
+          {
+            "source_id": "fda-celecoxib-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "The concomitant use of Celecoxib with other NSAIDs or salicylates is not recommended."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Pemetrexed",
+        "severity": "major",
+        "effect": "May increase risk of pemetrexed-associated myelosuppression, renal, and GI toxicity.",
+        "management": "In patients with CrCl 45 to 79 mL/min, monitor for myelosuppression, renal, and GI toxicity.",
+        "refs": [
+          {
+            "source_id": "fda-celecoxib-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "During concomitant use of CELEBREX and pemetrexed, in patients with renal impairment whose creatinine clearance ranges from 45 to 79 mL/min, monitor for myelosuppression, renal and GI toxicity."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "CYP2C9 Inhibitors or Inducers (e.g., fluconazole, rifampin)",
+        "severity": "moderate",
+        "effect": "CYP2C9 inhibitors (e.g., fluconazole, 2-fold increase) enhance exposure and toxicity of celecoxib; CYP2C9 inducers (e.g., rifampin) may compromise efficacy.",
+        "management": "Evaluate patient medical history; a dosage adjustment may be warranted when administered with CYP2C9 inhibitors or inducers.",
+        "refs": [
+          {
+            "source_id": "fda-celecoxib-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "A dosage adjustment may be warranted when celecoxib is administered with CYP2C9 inhibitors or inducers [see Clinical Pharmacology (12.3) ] ."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "CYP2D6 Substrates (e.g., atomoxetine)",
+        "severity": "moderate",
+        "effect": "Celecoxib inhibits CYP2D6 and may enhance exposure and toxicity of CYP2D6 substrates.",
+        "management": "Evaluate patient medical history; a dosage adjustment may be warranted when administered with CYP2D6 substrates.",
+        "refs": [
+          {
+            "source_id": "fda-celecoxib-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "A dosage adjustment may be warranted when celecoxib is administered with CYP2D6 substrates [see Clinical Pharmacology (12.3) ] ."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Corticosteroids",
+        "severity": "moderate",
+        "effect": "Concomitant use may increase risk of GI ulceration or bleeding.",
+        "management": "Monitor patients with concomitant use of CELEBREX with corticosteroids for signs of bleeding.",
+        "refs": [
+          {
+            "source_id": "fda-celecoxib-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "Monitor patients with concomitant use of CELEBREX with corticosteroids for signs of bleeding [see Warnings and Precautions (5.2) ] ."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-celecoxib-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "See Table 3 for clinically significant drug interactions with celecoxib."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "avoid",
+      "note": "Avoid use at about 30 weeks gestation and later due to premature closure of fetal ductus arteriosus; limit dose/duration at >=20 weeks due to oligohydramnios/neonatal renal impairment (monitor with ultrasound if >48 hours). Animal studies showed ventricular septal defects (2x MRHD), diaphragmatic hernias (6x MRHD), and pre/post-implantation losses; associated with reversible female infertility.",
+      "refs": [
+        {
+          "source_id": "fda-celecoxib-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "Because of these risks, limit dose and duration of CELEBREX use between about 20 and 30 weeks of gestation and avoid CELEBREX use at about 30 weeks of gestation and later in pregnancy (see Clinical Considerations , Data ) ."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": "less than 1% of the weight-based therapeutic dose for a two-year old-child (10 to 40 mcg/kg/day)",
+      "refs": [
+        {
+          "source_id": "fda-celecoxib-label",
+          "locator": "8.2 Lactation",
+          "quote": "The calculated average daily infant dose was 10 to 40 mcg/kg/day, less than 1% of the weight-based therapeutic dose for a two-year old-child."
+        }
+      ]
+    },
+    "lactation_summary": {
+      "value": "Low levels in breast milk (10 to 40 mcg/kg/day, <1% of weight-based therapeutic dose for a 2-year-old child) across 12 breastfeeding women; no adverse events reported in two breastfed infants (17 and 22 months); exercise caution.",
+      "refs": [
+        {
+          "source_id": "fda-celecoxib-label",
+          "locator": "8.2 Lactation",
+          "quote": "Limited data from 3 published reports that included a total of 12 breastfeeding women showed low levels of CELEBREX in breast milk. The calculated average daily infant dose was 10 to 40 mcg/kg/day, less than 1% of the weight-based therapeutic dose for a two-year old-child."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

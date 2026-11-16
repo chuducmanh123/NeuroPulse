@@ -1,0 +1,413 @@
+{
+  "id": "metformin",
+  "generic_name": "metformin",
+  "tall_man": {
+    "value": "metformin",
+    "refs": [
+      {
+        "source_id": "fda-metformin-label",
+        "locator": "1 INDICATIONS AND USAGE",
+        "quote": "GLUMETZA is a biguanide indicated as an adjunct to diet and exercise to improve glycemic control in adults with type 2 diabetes mellitus."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "biguanide",
+    "antihyperglycemic agent"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "met-t2dm-er-adult-po",
+      "indication": "Type 2 Diabetes Mellitus — Adults (Extended-Release)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-metformin-label",
+          "locator": "1 INDICATIONS AND USAGE",
+          "quote": "GLUMETZA is indicated as an adjunct to diet and exercise to improve glycemic control in adults with type 2 diabetes mellitus."
+        },
+        {
+          "source_id": "fda-metformin-label",
+          "locator": "2.1 Adult Dosage and Administration",
+          "quote": "The recommended starting dose of GLUMETZA is 500 mg orally once daily with the evening meal. • Increase the dose in increments of 500 mg every 1 to 2 weeks on the basis of glycemic control and tolerability, up to a maximum of 2,000 mg once daily with the evening meal."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 500,
+        "unit": "mg",
+        "frequency": "once daily with the evening meal; titrate by 500 mg every 1 to 2 weeks",
+        "max_daily": 2000
+      },
+      "dose_text": "Starting dose: 500 mg orally once daily with the evening meal. Increase in increments of 500 mg every 1 to 2 weeks based on glycemic control and tolerability, up to a maximum of 2,000 mg once daily with the evening meal. Patients receiving metformin HCl tablets may switch to GLUMETZA once daily at the same total daily dose up to 2,000 mg/day. Swallow whole; never crush, cut, or chew."
+    }
+  ],
+  "renal_basis": {
+    "value": "egfr",
+    "refs": [
+      {
+        "source_id": "fda-metformin-label",
+        "locator": "2.2 Recommendations for Use in Renal Impairment",
+        "quote": "GLUMETZA is contraindicated in patients with an estimated glomerular filtration rate (eGFR) below 30 mL/minute/1.73 m 2 . • Initiation of GLUMETZA in patients with an eGFR between 30 to 45 mL/minute/1.73 m 2 is not recommended."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "Assess eGFR prior to initiation and periodically thereafter. Contraindicated if eGFR <30 mL/min/1.73 m²; initiation not recommended if eGFR 30–45 mL/min/1.73 m². Discontinue at or prior to iodinated contrast imaging in patients with eGFR 30–60 mL/min/1.73 m², history of liver disease, alcoholism, heart failure, or intra-arterial contrast, and re-evaluate eGFR 48 hours later.",
+    "renal_basis": {
+      "value": "egfr",
+      "refs": [
+        {
+          "source_id": "fda-metformin-label",
+          "locator": "2.2 Recommendations for Use in Renal Impairment",
+          "quote": "Assess renal function prior to initiation of GLUMETZA and periodically thereafter. • GLUMETZA is contraindicated in patients with an estimated glomerular filtration rate (eGFR) below 30 mL/minute/1.73 m 2 ."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 45,
+        "max": null,
+        "dose_text": "Standard dosing (500 mg to 2,000 mg once daily); discontinue at or prior to iodinated contrast imaging if eGFR is 30 to 60 mL/min/1.73 m² and re-evaluate eGFR 48 hours post-procedure.",
+        "refs": [
+          {
+            "source_id": "fda-metformin-label",
+            "locator": "2.3 Discontinuation for Iodinated Contrast Imaging Procedures",
+            "quote": "Discontinue GLUMETZA at the time of, or prior to, an iodinated contrast imaging procedure in patients with an eGFR between 30 and 60 mL/minute/1.73 m 2 ; in patients with a history of liver disease, alcoholism or heart failure; or in patients who will be administered intra-arterial iodinated contrast."
+          }
+        ]
+      },
+      {
+        "min": 30,
+        "max": 45,
+        "dose_text": "Initiation is not recommended. In patients taking GLUMETZA whose eGFR later falls below 45 mL/min/1.73 m², assess the benefit-risk of continuing therapy.",
+        "refs": [
+          {
+            "source_id": "fda-metformin-label",
+            "locator": "2.2 Recommendations for Use in Renal Impairment",
+            "quote": "Initiation of GLUMETZA in patients with an eGFR between 30 to 45 mL/minute/1.73 m 2 is not recommended. • In patients taking GLUMETZA whose eGFR later falls below 45 mL/minute/1.73 m 2 , assess the benefit risk of continuing therapy."
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 30,
+        "dose_text": "Contraindicated; discontinue if eGFR falls below 30 mL/min/1.73 m².",
+        "refs": [
+          {
+            "source_id": "fda-metformin-label",
+            "locator": "2.2 Recommendations for Use in Renal Impairment",
+            "quote": "GLUMETZA is contraindicated in patients with an estimated glomerular filtration rate (eGFR) below 30 mL/minute/1.73 m 2 . • Initiation of GLUMETZA in patients with an eGFR between 30 to 45 mL/minute/1.73 m 2 is not recommended."
+          }
+        ]
+      }
+    ],
+    "hemodialysis": {
+      "value": "Contraindicated in severe renal impairment (eGFR <30 mL/min/1.73 m²). In overdose or metformin-associated lactic acidosis, metformin is dialyzable with a clearance of up to 170 mL/minute under good hemodynamic conditions; prompt hemodialysis is recommended.",
+      "refs": [
+        {
+          "source_id": "fda-metformin-label",
+          "locator": "10 OVERDOSAGE",
+          "quote": "Metformin is dialyzable with a clearance of up to 170 mL/minute under good hemodynamic conditions. Therefore, hemodialysis may be useful for removal of accumulated drug from patients in whom metformin overdosage is suspected."
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-metformin-label",
+        "locator": "2.2 Recommendations for Use in Renal Impairment",
+        "quote": "Assess renal function prior to initiation of GLUMETZA and periodically thereafter. • GLUMETZA is contraindicated in patients with an estimated glomerular filtration rate (eGFR) below 30 mL/minute/1.73 m 2 ."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Not recommended / avoid use in patients with hepatic impairment; use of metformin in patients with hepatic impairment has been associated with cases of lactic acidosis.",
+    "refs": [
+      {
+        "source_id": "fda-metformin-label",
+        "locator": "8.7 Hepatic Impairment",
+        "quote": "Use of metformin in patients with hepatic impairment has been associated with some cases of lactic acidosis. GLUMETZA is not recommended in patients with hepatic impairment [see Warnings and Precautions ( 5.1 )]."
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "LACTIC ACIDOSIS: Postmarketing cases of metformin-associated lactic acidosis have resulted in death, hypothermia, hypotension, and resistant bradyarrhythmias. Risk factors include renal impairment, concomitant use of certain drugs (e.g., carbonic anhydrase inhibitors such as topiramate), age >=65 years, radiological studies with contrast, surgery, hypoxic states, excessive alcohol intake, hepatic impairment, and mitochondrial diseases. If suspected, immediately discontinue and institute supportive measures; prompt hemodialysis is recommended."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-metformin-label",
+        "locator": "BOXED WARNING",
+        "quote": "WARNING: LACTIC ACIDOSIS Postmarketing cases of metformin-associated lactic acidosis have resulted in death, hypothermia, hypotension, and resistant bradyarrhythmias."
+      },
+      {
+        "source_id": "fda-metformin-label",
+        "locator": "BOXED WARNING",
+        "quote": "If metformin-associated lactic acidosis is suspected, immediately discontinue GLUMETZA and institute general supportive measures in a hospital setting. Prompt hemodialysis is recommended [see Warnings and Precautions ( 5.1 )]."
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-metformin-label",
+        "locator": "1 INDICATIONS AND USAGE",
+        "quote": "GLUMETZA is a biguanide indicated as an adjunct to diet and exercise to improve glycemic control in adults with type 2 diabetes mellitus."
+      }
+    ],
+    "note": "Biguanide antihyperglycemic with no neuromuscular junction blocking activity; note Boxed Warning lists mitochondrial diseases as a risk factor for lactic acidosis."
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Swallow GLUMETZA extended-release tablets whole and never crush, cut or chew."
+    },
+    "refs": [
+      {
+        "source_id": "fda-metformin-label",
+        "locator": "2.1 Adult Dosage and Administration",
+        "quote": "Swallow GLUMETZA whole and never crush, cut or chew."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "sedation_somnolence",
+      "hepatotoxicity"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-metformin-label",
+        "locator": "BOXED WARNING",
+        "quote": "The onset of metformin-associated lactic acidosis is often subtle, accompanied only by nonspecific symptoms such as malaise, myalgias, respiratory distress, somnolence, and abdominal pain."
+      },
+      {
+        "source_id": "fda-metformin-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "Cholestatic, hepatocellular, and mixed hepatocellular liver injury have been reported with postmarketing use of metformin."
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Hypoglycemia (14% when combined with glyburide vs 5% placebo)",
+        "Diarrhea (13% vs 6% placebo)",
+        "Nausea (7% vs 4% placebo)",
+        "Decreased serum vitamin B12 levels (~7% in 29-week metformin HCl trials)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-metformin-label",
+          "locator": "6.1 Clinical Trials Experience",
+          "quote": "Adverse reactions occurring >5% in GLUMETZA clinical trials: hypoglycemia, diarrhea, and nausea. ( 6.1 )"
+        },
+        {
+          "source_id": "fda-metformin-label",
+          "locator": "6.1 Clinical Trials Experience",
+          "quote": "In clinical trials of 29-week duration with metformin HCl tablets, a decrease to subnormal levels of previously normal serum vitamin B12 levels was observed in approximately 7% of patients."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Metformin-associated lactic acidosis (fatalities, hypothermia, hypotension, resistant bradyarrhythmias)",
+        "Vitamin B12 deficiency",
+        "Cholestatic, hepatocellular, and mixed hepatocellular liver injury (postmarketing)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-metformin-label",
+          "locator": "BOXED WARNING",
+          "quote": "WARNING: LACTIC ACIDOSIS Postmarketing cases of metformin-associated lactic acidosis have resulted in death, hypothermia, hypotension, and resistant bradyarrhythmias."
+        },
+        {
+          "source_id": "fda-metformin-label",
+          "locator": "6.2 Postmarketing Experience",
+          "quote": "Cholestatic, hepatocellular, and mixed hepatocellular liver injury have been reported with postmarketing use of metformin."
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Biguanide antihyperglycemic agent that decreases hepatic glucose production, decreases intestinal absorption of glucose, and improves insulin sensitivity by increasing peripheral glucose uptake and utilization; insulin secretion remains unchanged.",
+    "refs": [
+      {
+        "source_id": "fda-metformin-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "Metformin decreases hepatic glucose production, decreases intestinal absorption of glucose, and improves insulin sensitivity by increasing peripheral glucose uptake and utilization. With metformin therapy, insulin secretion remains unchanged while fasting insulin levels and day-long plasma insulin response may decrease."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "metabolism": "Excreted unchanged in the urine; does not undergo hepatic metabolism nor biliary excretion; eliminated via renal tubular secretion (OCT2/MATE)."
+    },
+    "refs": [
+      {
+        "source_id": "fda-metformin-label",
+        "locator": "12.3 Pharmacokinetics - Metabolism",
+        "quote": "Intravenous, single-dose studies in healthy subjects demonstrate that metformin is excreted unchanged in the urine and does not undergo hepatic metabolism (no metabolites have been identified in humans), nor biliary excretion."
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Carbonic Anhydrase Inhibitors (Topiramate, Zonisamide, Acetazolamide, Dichlorphenamide)",
+        "severity": "moderate",
+        "effect": "Carbonic anhydrase inhibitors frequently cause decreased serum bicarbonate and non-anion gap, hyperchloremic metabolic acidosis; concomitant use may increase the risk for lactic acidosis.",
+        "management": "Consider more frequent monitoring of these patients.",
+        "refs": [
+          {
+            "source_id": "fda-metformin-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "Carbonic anhydrase inhibitors frequently cause a decrease in serum bicarbonate and induce non-anion gap, hyperchloremic metabolic acidosis. Concomitant use of these drugs with GLUMETZA may increase the risk for lactic acidosis. Intervention: Consider more frequent monitoring of these patients. Examples: Topiramate, zonisamide, acetazolamide or dichlorphenamide."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Drugs that Reduce Metformin Clearance (OCT2/MATE Inhibitors: Ranolazine, Vandetanib, Dolutegravir, Cimetidine)",
+        "severity": "moderate",
+        "effect": "Interferes with renal tubular transport systems involved in metformin elimination, increasing systemic exposure to metformin and risk for lactic acidosis.",
+        "management": "Consider the benefits and risks of concomitant use with GLUMETZA.",
+        "refs": [
+          {
+            "source_id": "fda-metformin-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "Concomitant use of drugs that interfere with common renal tubular transport systems involved in the renal elimination of metformin (e.g., organic cationic transporter-2 [OCT2] / multidrug and toxin extrusion [MATE] inhibitors) could increase systemic exposure to metformin and may increase the risk for lactic acidosis"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Alcohol",
+        "severity": "major",
+        "effect": "Alcohol potentiates the effect of metformin on lactate metabolism, increasing lactic acidosis risk.",
+        "management": "Warn patients against excessive alcohol intake while receiving GLUMETZA.",
+        "refs": [
+          {
+            "source_id": "fda-metformin-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "Alcohol Clinical Impact: Alcohol is known to potentiate the effect of metformin on lactate metabolism. Intervention: Warn patients against excessive alcohol intake while receiving GLUMETZA."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Insulin Secretagogues or Insulin",
+        "severity": "moderate",
+        "effect": "Coadministration with an insulin secretagogue (e.g., sulfonylurea) or insulin may increase the risk of hypoglycemia.",
+        "management": "Patients receiving an insulin secretagogue or insulin may require lower doses of the insulin secretagogue or insulin.",
+        "refs": [
+          {
+            "source_id": "fda-metformin-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "Coadministration of GLUMETZA with an insulin secretagogue (e.g., sulfonylurea) or insulin may increase the risk of hypoglycemia. Intervention: Patients receiving an insulin secretagogue or insulin may require lower doses of the insulin secretagogue or insulin."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Drugs Affecting Glycemic Control (Thiazides, Corticosteroids, Phenothiazines, Thyroid products, Estrogens, Oral contraceptives, Phenytoin, Nicotinic acid, Sympathomimetics, CCBs, Isoniazid)",
+        "severity": "moderate",
+        "effect": "Certain drugs tend to produce hyperglycemia and may lead to loss of glycemic control.",
+        "management": "Observe patient closely for loss of blood glucose control when administered, and for hypoglycemia when withdrawn.",
+        "refs": [
+          {
+            "source_id": "fda-metformin-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "Certain drugs tend to produce hyperglycemia and may lead to loss of glycemic control. Intervention: When such drugs are administered to a patient receiving GLUMETZA, observe the patient closely for loss of blood glucose control. When such drugs are withdrawn from a patient receiving GLUMETZA, observe the patient closely for hypoglycemia."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-metformin-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Table 2 presents clinically significant drug interactions with GLUMETZA."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "Limited data in pregnant women are insufficient to determine drug-associated risk; published postmarketing studies show no clear association with major birth defects or miscarriage but have methodological limitations (small sample size, inconsistent comparators). Animal studies negative at 1–3x clinical dose; poorly controlled diabetes in pregnancy carries substantial maternal/fetal risk.",
+      "refs": [
+        {
+          "source_id": "fda-metformin-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "Limited data with GLUMETZA in pregnant women are not sufficient to determine a drug-associated risk for major birth defects or miscarriage. Published studies with metformin use during pregnancy have not reported a clear association with metformin and major birth defect or miscarriage risk [see Data]."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": "Discuss the potential for unintended pregnancy with premenopausal women as therapy with GLUMETZA may result in ovulation in some anovulatory women.",
+      "refs": [
+        {
+          "source_id": "fda-metformin-label",
+          "locator": "8.3 Females and Males of Reproductive Potential",
+          "quote": "Discuss the potential for unintended pregnancy with premenopausal women as therapy with GLUMETZA may result in ovulation in some anovulatory women."
+        }
+      ]
+    },
+    "lactation_rid": {
+      "value": "0.11% to 1% of maternal weight-adjusted dosage",
+      "refs": [
+        {
+          "source_id": "fda-metformin-label",
+          "locator": "8.2 Lactation",
+          "quote": "Published clinical lactation studies report that metformin is present in human milk which resulted in infant doses approximately 0.11% to 1% of the maternal weight-adjusted dosage and a milk/plasma ratio ranging between 0.13 and 1."
+        }
+      ]
+    },
+    "lactation_summary": {
+      "value": "Present in human milk (infant dose ~0.11% to 1% of maternal weight-adjusted dosage; milk/plasma ratio 0.13 to 1); insufficient information on effects on breastfed infant or milk production. Consider developmental/health benefits of breastfeeding alongside mother's clinical need.",
+      "refs": [
+        {
+          "source_id": "fda-metformin-label",
+          "locator": "8.2 Lactation",
+          "quote": "However, there is insufficient information to determine the effects of metformin on the breastfed infant and no available information on the effects of metformin on milk production. Therefore, the developmental and health benefits of breastfeeding should be considered along with the mother’s clinical need for GLUMETZA"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

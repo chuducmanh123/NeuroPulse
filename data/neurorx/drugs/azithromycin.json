@@ -1,0 +1,415 @@
+{
+  "id": "azithromycin",
+  "generic_name": "azithromycin",
+  "tall_man": {
+    "value": "azithromycin",
+    "refs": [
+      {
+        "source_id": "fda-azithromycin-label",
+        "locator": "1 INDICATIONS AND USAGE",
+        "quote": "ZITHROMAX is a macrolide antibacterial drug indicated for the treatment of the following infections caused by designated susceptible microorganisms:"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "macrolide antibacterial",
+    "azalide"
+  ],
+  "subspecialties": [
+    "neuro_infectious",
+    "neurocritical_care",
+    "neuromuscular"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "azithro-cap-iv",
+      "indication": "Community-Acquired Pneumonia (CAP) — Adults requiring initial IV therapy",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-azithromycin-label",
+          "locator": "2.1 Recommended Dosage for Community-Acquired Pneumonia",
+          "quote": "The recommended dosage of ZITHROMAX for injection for the treatment of adult patients with community-acquired pneumonia due to the indicated organisms is 500 mg as a single daily dose by the intravenous route for at least two days."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 500,
+        "unit": "mg",
+        "frequency": "once daily for at least 2 days (infuse 1 mg/mL over 3 hr or 2 mg/mL over 1 hr)",
+        "infusion": {
+          "diluent": "0.9% NaCl, 0.45% NaCl, D5W, Lactated Ringer's, or Normosol-M/R in D5W",
+          "final_concentration": "1 mg/mL or 2 mg/mL",
+          "duration_min": 60
+        }
+      },
+      "dose_text": "500 mg IV once daily for at least 2 days (infuse at 1 mg/mL over 3 hours or 2 mg/mL over 1 hour; do not give as bolus or IM), followed by oral azithromycin 500 mg once daily to complete a 7- to 10-day course."
+    },
+    {
+      "id": "azithro-cap-po-stepdown",
+      "indication": "Community-Acquired Pneumonia (CAP) — Oral step-down therapy in adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-azithromycin-label",
+          "locator": "2.1 Recommended Dosage for Community-Acquired Pneumonia",
+          "quote": "Intravenous therapy should be followed by azithromycin by the oral route at a single, daily dose of 500 mg, administered as two 250 mg tablets to complete a 7- to 10-day course of therapy."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 500,
+        "unit": "mg",
+        "frequency": "once daily to complete 7- to 10-day total course"
+      },
+      "dose_text": "500 mg PO once daily (administered as two 250 mg tablets) following at least 2 days of IV therapy to complete a 7- to 10-day total course."
+    },
+    {
+      "id": "azithro-pid-iv",
+      "indication": "Pelvic Inflammatory Disease (PID) — Adults requiring initial IV therapy",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-azithromycin-label",
+          "locator": "2.2 Recommended Dosage for Pelvic Inflammatory Disease",
+          "quote": "The recommended dosage of ZITHROMAX for injection for the treatment of adult patients with pelvic inflammatory disease due to the indicated organisms is 500 mg as a single daily dose by the intravenous route for one or two days."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 500,
+        "unit": "mg",
+        "frequency": "once daily for 1 to 2 days (infuse 1 mg/mL over 3 hr or 2 mg/mL over 1 hr)",
+        "infusion": {
+          "diluent": "0.9% NaCl, 0.45% NaCl, D5W, Lactated Ringer's, or Normosol-M/R in D5W",
+          "final_concentration": "1 mg/mL or 2 mg/mL",
+          "duration_min": 60
+        }
+      },
+      "dose_text": "500 mg IV once daily for 1 or 2 days, followed by oral azithromycin 250 mg once daily to complete a 7-day course. Add anaerobic coverage if anaerobes are suspected."
+    },
+    {
+      "id": "azithro-pid-po-stepdown",
+      "indication": "Pelvic Inflammatory Disease (PID) — Oral step-down therapy in adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-azithromycin-label",
+          "locator": "2.2 Recommended Dosage for Pelvic Inflammatory Disease",
+          "quote": "Intravenous therapy should be followed by azithromycin by the oral route at a single, daily dose of 250 mg to complete a 7-day course of therapy."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 250,
+        "unit": "mg",
+        "frequency": "once daily to complete 7-day total course"
+      },
+      "dose_text": "250 mg PO once daily following 1 to 2 days of IV therapy to complete a 7-day total course."
+    }
+  ],
+  "renal_basis": {
+    "value": "egfr",
+    "refs": [
+      {
+        "source_id": "fda-azithromycin-label",
+        "locator": "12.3 Pharmacokinetics - Patients with Renal Impairment",
+        "quote": "Following the oral administration of a single 1,000 mg dose of azithromycin, mean C max and AUC 0–120 increased by 5.1% and 4.2%, respectively in subjects with GFR 10 to 80 mL/min compared to subjects with GFR >80 mL/min. The mean C max and AUC 0–120 increased 61% and 35%, respectively in subjects with GFR <10 mL/min compared to subjects with GFR >80 mL/min."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No formal dosage adjustment table is provided; Cmax and AUC0-120 increased by 61% and 35%, respectively, in subjects with GFR < 10 mL/min compared to GFR > 80 mL/min, with minimal change (4-5%) for GFR 10 to 80 mL/min.",
+    "renal_basis": {
+      "value": "egfr",
+      "refs": [
+        {
+          "source_id": "fda-azithromycin-label",
+          "locator": "12.3 Pharmacokinetics - Patients with Renal Impairment",
+          "quote": "The mean C max and AUC 0–120 increased 61% and 35%, respectively in subjects with GFR <10 mL/min compared to subjects with GFR >80 mL/min."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 10,
+        "max": 80,
+        "dose_text": "Minimal PK change (mean Cmax +5.1%, AUC0-120 +4.2%); no specific dosage adjustment specified in label.",
+        "refs": [
+          {
+            "source_id": "fda-azithromycin-label",
+            "locator": "12.3 Pharmacokinetics - Patients with Renal Impairment",
+            "quote": "mean C max and AUC 0–120 increased by 5.1% and 4.2%, respectively in subjects with GFR 10 to 80 mL/min compared to subjects with GFR >80 mL/min."
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 10,
+        "dose_text": "Use with caution; mean Cmax and AUC0-120 increased by 61% and 35%, respectively, in GFR < 10 mL/min.",
+        "refs": [
+          {
+            "source_id": "fda-azithromycin-label",
+            "locator": "12.3 Pharmacokinetics - Patients with Renal Impairment",
+            "quote": "The mean C max and AUC 0–120 increased 61% and 35%, respectively in subjects with GFR <10 mL/min compared to subjects with GFR >80 mL/min."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-azithromycin-label",
+        "locator": "12.3 Pharmacokinetics - Patients with Renal Impairment",
+        "quote": "Following the oral administration of a single 1,000 mg dose of azithromycin, mean C max and AUC 0–120 increased by 5.1% and 4.2%, respectively in subjects with GFR 10 to 80 mL/min compared to subjects with GFR >80 mL/min."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Pharmacokinetics in hepatic impairment have not been established. Contraindicated in patients with a history of cholestatic jaundice/hepatic dysfunction associated with prior use of azithromycin; biliary excretion is a major route of elimination.",
+    "refs": [
+      {
+        "source_id": "fda-azithromycin-label",
+        "locator": "12.3 Pharmacokinetics - Patients with Hepatic Impairment",
+        "quote": "The pharmacokinetics of azithromycin in subjects with hepatic impairment has not been established."
+      },
+      {
+        "source_id": "fda-azithromycin-label",
+        "locator": "4.2 Hepatic Dysfunction",
+        "quote": "ZITHROMAX is contraindicated in patients with a history of cholestatic jaundice/hepatic dysfunction associated with prior use of azithromycin."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "may_worsen",
+    "refs": [
+      {
+        "source_id": "fda-azithromycin-label",
+        "locator": "6 ADVERSE REACTIONS",
+        "quote": "Exacerbation of Myasthenia Gravis [see Warnings and Precautions (5.7) ]"
+      }
+    ],
+    "note": "FDA label warns of exacerbation of myasthenia gravis (Warnings and Precautions 5.7)."
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "Source label is ZITHROMAX for Injection (IV lyophilized powder); no NG/enteral crushing instructions provided."
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "qt_prolongation",
+      "hepatotoxicity",
+      "rash_sjs_ten",
+      "sedation_somnolence"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-azithromycin-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "Cardiovascular: Arrhythmias including ventricular tachycardia and hypotension. There have been reports of QT prolongation, torsades de pointes, and cardiovascular death."
+      },
+      {
+        "source_id": "fda-azithromycin-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "Liver/biliary: Abnormal liver function, hepatitis, cholestatic jaundice, hepatic necrosis, and hepatic failure."
+      },
+      {
+        "source_id": "fda-azithromycin-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "Skin/appendages: Pruritus, serious skin reactions including, erythema multiforme, AGEP, Stevens-Johnson syndrome, toxic epidermal necrolysis, and DRESS."
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Diarrhea/loose stools (4%)",
+        "Nausea (4%)",
+        "Abdominal pain (3%)",
+        "Vomiting (1%)",
+        "IV injection site pain (6.5%) and local inflammation (3.1%)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-azithromycin-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "Most common adverse reactions are nausea (4%), diarrhea (4%), abdominal pain (3%), or vomiting (1%)."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "QT prolongation, torsades de pointes, ventricular tachycardia, and cardiovascular death",
+        "Exacerbation of myasthenia gravis",
+        "Hepatotoxicity (hepatitis, cholestatic jaundice, hepatic necrosis, hepatic failure)",
+        "Severe cutaneous adverse reactions (SJS, TEN, DRESS, AGEP, erythema multiforme)",
+        "Anaphylaxis (including fatalities) and angioedema",
+        "Clostridioides difficile-associated diarrhea (CDAD)",
+        "Infantile hypertrophic pyloric stenosis (IHPS)",
+        "Hearing loss / deafness / tinnitus"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-azithromycin-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "The following clinically significant adverse reactions are described elsewhere in labeling: • Hypersensitivity [see Warnings and Precautions (5.1) ] • Hepatotoxicity [see Warnings and Precautions (5.2) ] • Infantile Hypertrophic Pyloric Stenosis (IHPS) [see Warnings and Precautions (5.3) ] • QT Prolongation [see Warnings and Precautions (5.4) ]"
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Macrolide (azalide) antibacterial that binds to the 23S rRNA of the 50S ribosomal subunit of susceptible microorganisms, inhibiting bacterial protein synthesis and impeding 50S ribosomal subunit assembly.",
+    "refs": [
+      {
+        "source_id": "fda-azithromycin-label",
+        "locator": "12.4 Microbiology - Mechanism of Action",
+        "quote": "Azithromycin acts by binding to the 23S rRNA of the 50S ribosomal subunit of susceptible microorganisms inhibiting bacterial protein synthesis and impeding the assembly of the 50S ribosomal subunit."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "qt_risk": "known"
+    },
+    "refs": [
+      {
+        "source_id": "fda-azithromycin-label",
+        "locator": "12.2 Pharmacodynamics - Cardiac Electrophysiology",
+        "quote": "Co-administration of azithromycin increased the QTc interval in a dose- and concentration- dependent manner."
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Nelfinavir",
+        "severity": "moderate",
+        "effect": "Co-administration of nelfinavir at steady-state with a single oral dose of azithromycin increased azithromycin Cmax (2.36-fold) and AUC (2.12-fold).",
+        "management": "Dose adjustment of azithromycin is not recommended, but close monitoring for known adverse reactions (liver enzyme abnormalities, hearing impairment) is warranted.",
+        "refs": [
+          {
+            "source_id": "fda-azithromycin-label",
+            "locator": "7.1 Nelfinavir",
+            "quote": "Although a dose adjustment of azithromycin is not recommended when administered in combination with nelfinavir, close monitoring for known adverse reactions of azithromycin, such as liver enzyme abnormalities and hearing impairment, is warranted."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Warfarin / Oral Anticoagulants",
+        "severity": "moderate",
+        "effect": "Spontaneous postmarketing reports suggest concomitant azithromycin may potentiate the effects of oral anticoagulants such as warfarin.",
+        "management": "Carefully monitor prothrombin times while patients are receiving azithromycin and oral anticoagulants concomitantly.",
+        "refs": [
+          {
+            "source_id": "fda-azithromycin-label",
+            "locator": "7.2 Warfarin",
+            "quote": "Spontaneous postmarketing reports suggest that concomitant administration of azithromycin may potentiate the effects of oral anticoagulants such as warfarin, although the prothrombin time was not affected in the dedicated drug interaction study with azithromycin and warfarin."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Digoxin, Colchicine, or Phenytoin",
+        "severity": "moderate",
+        "effect": "Drug interactions have been observed with other macrolide products, though not reported in clinical trials with azithromycin.",
+        "management": "Careful monitoring of patients is advised when digoxin, colchicine, or phenytoin are used with azithromycin.",
+        "refs": [
+          {
+            "source_id": "fda-azithromycin-label",
+            "locator": "7.3 Potential Drug-Drug Interaction with Macrolides",
+            "quote": "However, drug interactions have been observed with other macrolide products. Until further data are developed regarding drug interactions when digoxin, colchicine or phenytoin are used with azithromycin careful monitoring of patients is advised."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-azithromycin-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "• Nelfinavir: Close monitoring for known adverse reactions of azithromycin, such as liver enzyme abnormalities and hearing impairment, is warranted. ( 7.1 ) • Warfarin: Use with azithromycin may increase coagulation times; monitor prothrombin time. ( 7.2 )"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "PLLR Pregnancy section: published observational studies, case series, and case reports over several decades have not identified drug-associated risks for major birth defects, miscarriage, or adverse maternal/fetal outcomes, and animal organogenesis studies showed no malformations up to 2-4x human BSA dose; however, label notes observational data lack randomization and cannot control for confounders, and pre/postnatal rat toxicity occurred at 4x human dose.",
+      "refs": [
+        {
+          "source_id": "fda-azithromycin-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "Available data from published literature and postmarketing experience over several decades with azithromycin use in pregnant women have not identified any drug-associated risks for major birth defects, miscarriage, or adverse maternal or fetal outcomes (see Data )."
+        },
+        {
+          "source_id": "fda-azithromycin-label",
+          "locator": "8.1 Pregnancy - Human Data",
+          "quote": "Limitations of these data include the lack of randomization and inability to control for confounders such as underlying maternal disease and maternal use of concomitant medications."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Azithromycin is present in human milk (persisting up to 48 hours after 500 mg IV and up to 4 weeks after 2 g PO). Non-serious adverse reactions (diarrhea, vomiting, rash) have been reported in breastfed infants; monitor breastfed infants for diarrhea, vomiting, or rash.",
+      "refs": [
+        {
+          "source_id": "fda-azithromycin-label",
+          "locator": "8.2 Lactation",
+          "quote": "Azithromycin is present in human milk (see Data ) . Non-serious adverse reactions have been reported in breastfed infants after maternal administration of azithromycin (see Clinical Considerations ) ."
+        },
+        {
+          "source_id": "fda-azithromycin-label",
+          "locator": "8.2 Lactation - Clinical Considerations",
+          "quote": "Advise women to monitor the breastfed infant for diarrhea, vomiting, or rash."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

@@ -786,5 +786,255 @@
     "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=01cfaa3e-5e30-18fa-e063-6394a90a084e",
     "file": "fda-dexamethasone-label.txt",
     "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-amlodipine-label",
+    "type": "fda_label",
+    "title": "Norvasc (amlodipine) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Viatris Specialty LLC",
+    "year": 2026,
+    "version": "7367289c-b0b0-466a-83e2-558e2985c29f",
+    "file": "fda-amlodipine-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-lisinopril-label",
+    "type": "fda_label",
+    "title": "Zestril (lisinopril) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Upsher-Smith Laboratories, LLC",
+    "year": 2026,
+    "version": "838c2d78-d2d8-4981-9ec9-e50ef9e1a5d8",
+    "file": "fda-lisinopril-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-losartan-label",
+    "type": "fda_label",
+    "title": "COZAAR (losartan) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Organon LLC",
+    "year": 2026,
+    "version": "9949448f-c3b9-44ee-94ed-c1aca8c90f39",
+    "file": "fda-losartan-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-metoprolol-label",
+    "type": "fda_label",
+    "title": "Lopressor (metoprolol) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Validus Pharmaceuticals LLC",
+    "year": 2026,
+    "version": "0283bc9d-6998-493a-824a-d4c85f704111",
+    "file": "fda-metoprolol-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-furosemide-label",
+    "type": "fda_label",
+    "title": "Lasix (furosemide) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Validus Pharmaceuticals LLC",
+    "year": 2026,
+    "version": "2c9b4d8f-0770-482d-a9e6-9c616a440b1a",
+    "file": "fda-furosemide-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-spironolactone-label",
+    "type": "fda_label",
+    "title": "Aldactone (spironolactone) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Pfizer Laboratories Div Pfizer Inc",
+    "year": 2026,
+    "version": "0fed2822-3a03-4b64-9857-c682fcd462bc",
+    "file": "fda-spironolactone-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-amiodarone-label",
+    "type": "fda_label",
+    "title": "Pacerone (amiodarone) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Aphena Pharma Solutions - Tennessee, LLC",
+    "year": 2026,
+    "version": "02f4a736-63ed-4ad4-a1f1-b21a71e928bd",
+    "file": "fda-amiodarone-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-metformin-label",
+    "type": "fda_label",
+    "title": "Glumetza (metformin) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Santarus, Inc.",
+    "year": 2026,
+    "version": "fb832474-88d9-4e29-95cd-fbc446944cc4",
+    "file": "fda-metformin-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-empagliflozin-label",
+    "type": "fda_label",
+    "title": "JARDIANCE (empagliflozin) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / A-S Medication Solutions",
+    "year": 2026,
+    "version": "1782b947-4a72-4feb-a488-1469d9af82bd",
+    "file": "fda-empagliflozin-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-sitagliptin-label",
+    "type": "fda_label",
+    "title": "JANUVIA (sitagliptin) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / A-S Medication Solutions",
+    "year": 2026,
+    "version": "194c3718-5eb5-4cf5-85d0-2bb1ed8293b8",
+    "file": "fda-sitagliptin-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-glimepiride-label",
+    "type": "fda_label",
+    "title": "Glimepiride (glimepiride) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / American Health Packaging",
+    "year": 2026,
+    "version": "0003458f-352a-46fa-9d99-230daa76ae29",
+    "file": "fda-glimepiride-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-insulin-glargine-label",
+    "type": "fda_label",
+    "title": "LANTUS SOLOSTAR (insulin glargine) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / A-S Medication Solutions",
+    "year": 2026,
+    "version": "3a97c40f-0c83-42d7-a8ee-484b208db4e3",
+    "file": "fda-insulin-glargine-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-levothyroxine-label",
+    "type": "fda_label",
+    "title": "Synthroid (levothyroxine) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / AbbVie Inc.",
+    "year": 2026,
+    "version": "1e11ad30-1041-4520-10b0-8f9d30d30fcc",
+    "file": "fda-levothyroxine-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-acetaminophen-label",
+    "type": "fda_label",
+    "title": "Acetaminophen (acetaminophen) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Baxter Healthcare Corporation",
+    "year": 2026,
+    "version": "0f67c1bd-915b-4681-88dd-22f5154a80b3",
+    "file": "fda-acetaminophen-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-ibuprofen-label",
+    "type": "fda_label",
+    "title": "Caldolor (ibuprofen) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Cumberland Pharmaceuticals Inc.",
+    "year": 2026,
+    "version": "1eaa7790-f1a1-4f51-b10a-cbbaf033f684",
+    "file": "fda-ibuprofen-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-celecoxib-label",
+    "type": "fda_label",
+    "title": "CELEBREX (celecoxib) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Viatris Specialty LLC",
+    "year": 2026,
+    "version": "2d6675e4-5859-4be2-8037-a20ce9f707aa",
+    "file": "fda-celecoxib-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-tramadol-label",
+    "type": "fda_label",
+    "title": "TRAMADOL HYDROCHLORIDE (tramadol) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Sun Pharmaceutical Industries, Inc.",
+    "year": 2026,
+    "version": "004de5a4-80f8-4040-a6ea-be5e99352a36",
+    "file": "fda-tramadol-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-omeprazole-label",
+    "type": "fda_label",
+    "title": "Omeprazole (omeprazole) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / PD-Rx Pharmaceuticals, Inc.",
+    "year": 2026,
+    "version": "0344268f-d8e6-48d5-b1e1-f750ed1d8a52",
+    "file": "fda-omeprazole-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-pantoprazole-label",
+    "type": "fda_label",
+    "title": "Protonix Delayed-Release (pantoprazole) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Wyeth Pharmaceuticals LLC, a subsidiary of Pfizer Inc.",
+    "year": 2026,
+    "version": "08098cb2-c048-4640-f387-6beec4a38936",
+    "file": "fda-pantoprazole-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-amoxicillin-clavulanate-label",
+    "type": "fda_label",
+    "title": "Augmentin (amoxicillin and clavulanate potassium) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Allegis Holdings, LLC",
+    "year": 2026,
+    "version": "04a31a42-d79e-bbb4-e063-6394a90a63ee",
+    "file": "fda-amoxicillin-clavulanate-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-azithromycin-label",
+    "type": "fda_label",
+    "title": "Zithromax (azithromycin) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Pfizer Laboratories Div Pfizer Inc",
+    "year": 2026,
+    "version": "3b631aa1-2d46-40bc-a614-d698301ea4f9",
+    "file": "fda-azithromycin-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-ciprofloxacin-label",
+    "type": "fda_label",
+    "title": "Cipro (ciprofloxacin) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Bayer HealthCare Pharmaceuticals Inc.",
+    "year": 2026,
+    "version": "888dc7f9-ad9c-4c00-8d50-8ddfd9bd27c0",
+    "file": "fda-ciprofloxacin-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-levofloxacin-label",
+    "type": "fda_label",
+    "title": "Levofloxacin (levofloxacin) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / NuCare Pharmaceuticals,Inc.",
+    "year": 2026,
+    "version": "05d179f5-b200-8597-e063-6394a90a10cc",
+    "file": "fda-levofloxacin-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-rosuvastatin-label",
+    "type": "fda_label",
+    "title": "Crestor (rosuvastatin) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / AstraZeneca Pharmaceuticals LP",
+    "year": 2026,
+    "version": "325a5d0e-9a72-4015-9fcd-1655fb504cee",
+    "file": "fda-rosuvastatin-label.txt",
+    "accessed": "2026-11-11"
+  },
+  {
+    "id": "fda-simvastatin-label",
+    "type": "fda_label",
+    "title": "ZOCOR (simvastatin) Prescribing Information",
+    "publisher": "U.S. Food and Drug Administration / Organon LLC",
+    "year": 2026,
+    "version": "8f55d5de-5a4f-4a39-8c84-c53976dd6af9",
+    "file": "fda-simvastatin-label.txt",
+    "accessed": "2026-11-11"
   }
 ]

@@ -1,0 +1,504 @@
+{
+  "id": "spironolactone",
+  "generic_name": "spironolactone",
+  "tall_man": {
+    "value": "spironolactone",
+    "refs": [
+      {
+        "source_id": "fda-spironolactone-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "ALDACTONE oral tablets contain 25 mg, 50 mg, or 100 mg of the aldosterone antagonist spironolactone"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "aldosterone receptor antagonist",
+    "potassium-sparing diuretic",
+    "antihypertensive"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "spiro-po-hf-adult",
+      "indication": "NYHA Class III-IV Heart Failure with Reduced Ejection Fraction (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-spironolactone-label",
+          "locator": "Section 2.2 Treatment of Heart Failure",
+          "quote": "In patients with serum potassium ≤5.0 mEq/L and eGFR >50 mL/min/1.73 m 2 , initiate treatment at 25 mg once daily. Patients who tolerate 25 mg once daily may have their dosage increased to 50 mg once daily as clinically indicated."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 25,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 50,
+        "max_daily": 50
+      },
+      "dose_text": "Initiate at 25 mg orally once daily (if K+ <= 5.0 mEq/L and eGFR > 50 mL/min/1.73 m2); may increase to 50 mg once daily. For eGFR 30-50 mL/min/1.73 m2, consider initiating at 25 mg every other day. Reduce to 25 mg every other day if hyperkalemia develops."
+    },
+    {
+      "id": "spiro-po-htn-adult",
+      "indication": "Essential Hypertension (Add-On Therapy, Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-spironolactone-label",
+          "locator": "Section 2.3 Treatment of Essential Hypertension",
+          "quote": "The recommended initial daily dose is 25 to 100 mg of ALDACTONE administered in either single or divided doses is recommended. Dosage can be titrated at two-week intervals. Doses greater than 100 mg/day generally do not provide additional reductions in blood pressure."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 25,
+        "unit": "mg",
+        "frequency": "daily in single or divided doses",
+        "max_single": 100,
+        "max_daily": 100
+      },
+      "dose_text": "25 to 100 mg orally daily in single or divided doses; titrate at two-week intervals. Doses > 100 mg/day generally do not provide additional BP reduction."
+    },
+    {
+      "id": "spiro-po-edema-adult",
+      "indication": "Edema Associated with Hepatic Cirrhosis or Nephrotic Syndrome (Adults)",
+      "setting": "acute_inpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-spironolactone-label",
+          "locator": "Section 2.4 Treatment of Edema",
+          "quote": "In patients with cirrhosis, initiate therapy in a hospital setting and titrate slowly [see Use in Specific Populations (8.7) ] . The recommended initial daily dosage is 100 mg of ALDACTONE administered in either single or divided doses, but may range from 25 to 200 mg daily."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 100,
+        "unit": "mg",
+        "frequency": "daily in single or divided doses",
+        "max_single": 200,
+        "max_daily": 200
+      },
+      "dose_text": "Initial daily dosage: 100 mg orally in single or divided doses (range 25 to 200 mg daily); initiate in a hospital setting and titrate slowly in patients with cirrhosis. Administer for at least 5 days before increasing dose when used as sole diuretic."
+    },
+    {
+      "id": "spiro-po-hyperaldo-preop",
+      "indication": "Primary Hyperaldosteronism - Short-Term Preoperative Treatment (Adults)",
+      "setting": "acute_inpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-spironolactone-label",
+          "locator": "Section 2.5 Treatment of Primary Hyperaldosteronism",
+          "quote": "Administer ALDACTONE in doses of 100 to 400 mg daily in preparation for surgery."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 100,
+        "unit": "mg",
+        "frequency": "daily",
+        "max_single": 400,
+        "max_daily": 400
+      },
+      "dose_text": "100 to 400 mg orally daily in preparation for surgery."
+    },
+    {
+      "id": "spiro-po-hyperaldo-maint",
+      "indication": "Primary Hyperaldosteronism - Long-Term Maintenance (Adults Unsuitable for Surgery)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-spironolactone-label",
+          "locator": "Section 2.5 Treatment of Primary Hyperaldosteronism",
+          "quote": "For patients who are considered unsuitable for surgery, ALDACTONE can be used as long-term maintenance therapy at the lowest effective dosage determined for the individual patient."
+        }
+      ],
+      "dose": null,
+      "dose_text": "Use the lowest effective dosage determined for the individual patient."
+    }
+  ],
+  "renal_impairment": {
+    "description": "Substantially excreted by the kidney; patients with renal impairment are at increased risk of hyperkalemia and adverse reactions. Monitor potassium closely. In heart failure with eGFR 30-50 mL/min/1.73 m2, consider initiating at 25 mg every other day.",
+    "renal_basis": {
+      "value": "egfr",
+      "refs": [
+        {
+          "source_id": "fda-spironolactone-label",
+          "locator": "Section 2.2 Treatment of Heart Failure",
+          "quote": "In patients with serum potassium ≤5.0 mEq/L and eGFR >50 mL/min/1.73 m 2 , initiate treatment at 25 mg once daily."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 51,
+        "max": null,
+        "dose_text": "eGFR > 50 mL/min/1.73 m2 (Heart Failure): Initiate at 25 mg once daily (if K+ <= 5.0 mEq/L).",
+        "dose": {
+          "kind": "fixed",
+          "amount": 25,
+          "unit": "mg",
+          "frequency": "once daily",
+          "max_single": 50,
+          "max_daily": 50
+        },
+        "refs": [
+          {
+            "source_id": "fda-spironolactone-label",
+            "locator": "Section 2.2 Treatment of Heart Failure",
+            "quote": "In patients with serum potassium ≤5.0 mEq/L and eGFR >50 mL/min/1.73 m 2 , initiate treatment at 25 mg once daily."
+          }
+        ]
+      },
+      {
+        "min": 30,
+        "max": 50,
+        "dose_text": "eGFR 30-50 mL/min/1.73 m2 (Heart Failure): Consider initiating at 25 mg every other day due to risk of hyperkalemia.",
+        "dose": {
+          "kind": "fixed",
+          "amount": 25,
+          "unit": "mg",
+          "frequency": "every other day",
+          "max_single": 25,
+          "max_daily": 25
+        },
+        "refs": [
+          {
+            "source_id": "fda-spironolactone-label",
+            "locator": "Section 2.2 Treatment of Heart Failure",
+            "quote": "In patients with an eGFR between 30 and 50 mL/min/1.73 m 2 , consider initiating therapy at 25 mg every other day because of the risk of hyperkalemia"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-spironolactone-label",
+        "locator": "Section 8.6 Use in Renal Impairment",
+        "quote": "ALDACTONE is substantially excreted by the kidney, and the risk of adverse reactions to this drug may be greater in patients with impaired renal function. Patients with renal impairment are at increased risk of hyperkalemia. Monitor potassium closely."
+      }
+    ]
+  },
+  "renal_basis": {
+    "value": "egfr",
+    "refs": [
+      {
+        "source_id": "fda-spironolactone-label",
+        "locator": "Section 2.2 Treatment of Heart Failure",
+        "quote": "In patients with serum potassium ≤5.0 mEq/L and eGFR >50 mL/min/1.73 m 2 , initiate treatment at 25 mg once daily."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "In patients with cirrhosis and ascites, initiate in the hospital with the lowest initial dose and titrate slowly; sudden fluid/electrolyte shifts may precipitate impaired neurological function, worsening hepatic encephalopathy, and coma.",
+    "refs": [
+      {
+        "source_id": "fda-spironolactone-label",
+        "locator": "Section 8.7 Use in Hepatic Impairment",
+        "quote": "ALDACTONE can cause sudden alterations of fluid and electrolyte balance which may precipitate impaired neurological function, worsening hepatic encephalopathy and coma in patients with hepatic disease with cirrhosis and ascites. In these patients, initiate ALDACTONE in the hospital"
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-spironolactone-label",
+        "locator": "Section 6 ADVERSE REACTIONS",
+        "quote": "Metabolism: Hyperkalemia, electrolyte disturbances [see Warnings and Precautions (5.1 , 5.3) ] , hyponatremia, hypovolemia."
+      }
+    ],
+    "note": "Can cause hyperkalemia and hyponatremia; monitor electrolytes in myasthenia gravis patients."
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "ALDACTONE film-coated immediate-release tablets (25 mg, 50 mg, 100 mg) may be crushed if needed; label does not specify dedicated NG tube instructions."
+    },
+    "refs": [
+      {
+        "source_id": "fda-spironolactone-label",
+        "locator": "Section 3 DOSAGE FORMS AND STRENGTHS",
+        "quote": "Tablets: 25 mg, 50 mg, and 100 mg"
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "hyponatremia",
+      "confusion_delirium",
+      "ataxia",
+      "sedation_somnolence",
+      "hepatotoxicity",
+      "rash_sjs_ten"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-spironolactone-label",
+        "locator": "Section 6 ADVERSE REACTIONS",
+        "quote": "Metabolism: Hyperkalemia, electrolyte disturbances [see Warnings and Precautions (5.1 , 5.3) ] , hyponatremia, hypovolemia. Musculoskeletal: Leg cramps. Nervous system/psychiatric: Lethargy, mental confusion, ataxia, dizziness, headache, drowsiness."
+      },
+      {
+        "source_id": "fda-spironolactone-label",
+        "locator": "Section 6 ADVERSE REACTIONS",
+        "quote": "Liver/biliary: A very few cases of mixed cholestatic/hepatocellular toxicity, with one reported fatality, have been reported with spironolactone administration. Renal: Renal dysfunction (including renal failure). Skin: Stevens-Johnson Syndrome (SJS), toxic epidermal necrolysis (TEN), drug rash with eosinophilia and systemic symptoms (DRESS), alopecia, pruritis."
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Gynecomastia (most common)",
+        "Hyperkalemia",
+        "Dizziness, drowsiness, lethargy, headache",
+        "Nausea, vomiting, diarrhea, cramping",
+        "Breast and nipple pain, irregular menses, decreased libido, erectile dysfunction"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-spironolactone-label",
+          "locator": "Section 6 ADVERSE REACTIONS",
+          "quote": "The most common adverse reaction with ALDACTONE treatment is gynecomastia"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Severe hyperkalemia",
+        "Worsening hepatic encephalopathy and coma in cirrhotic patients",
+        "Hypotension and worsening renal function / renal failure",
+        "Stevens-Johnson Syndrome (SJS), TEN, and DRESS",
+        "Agranulocytosis and thrombocytopenia",
+        "Mixed cholestatic/hepatocellular toxicity",
+        "Gastric bleeding and ulceration"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-spironolactone-label",
+          "locator": "Section 6 ADVERSE REACTIONS",
+          "quote": "The following clinically significant adverse reactions are described elsewhere in the labeling: • Hyperkalemia [see Warnings and Precautions (5.1) ] • Hypotension and Worsening Renal Function [see Warnings and Precautions (5.2) ]"
+        },
+        {
+          "source_id": "fda-spironolactone-label",
+          "locator": "Section 6 ADVERSE REACTIONS",
+          "quote": "Skin: Stevens-Johnson Syndrome (SJS), toxic epidermal necrolysis (TEN), drug rash with eosinophilia and systemic symptoms (DRESS), alopecia, pruritis."
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Spironolactone and its active metabolites are specific pharmacologic antagonists of aldosterone, acting primarily through competitive binding of receptors at the aldosterone-dependent sodium-potassium exchange site in the distal convoluted renal tubule, increasing sodium and water excretion while retaining potassium.",
+    "refs": [
+      {
+        "source_id": "fda-spironolactone-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Spironolactone and its active metabolites are specific pharmacologic antagonists of aldosterone, acting primarily through competitive binding of receptors at the aldosterone-dependent sodium-potassium exchange site in the distal convoluted renal tubule."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-spironolactone-label",
+        "locator": "Section 12.3 Pharmacokinetics",
+        "quote": "Spironolactone is rapidly and extensively metabolized. Metabolites can be divided into two main categories: those in which sulfur of the parent molecule is removed (e.g., canrenone) and those in which the sulfur is retained"
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Eplerenone",
+        "severity": "contraindicated",
+        "effect": "Concomitant use of eplerenone with spironolactone is contraindicated due to additive hyperkalemia risk.",
+        "management": "Contraindicated; do not co-administer with eplerenone.",
+        "refs": [
+          {
+            "source_id": "fda-spironolactone-label",
+            "locator": "Section 4 CONTRAINDICATIONS",
+            "quote": "ALDACTONE is contraindicated in the patients with: • Hyperkalemia • Addison's disease • Concomitant use of eplerenone"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Mitotane",
+        "severity": "contraindicated",
+        "effect": "Spironolactone reduces mitotane plasma levels.",
+        "management": "Avoid concomitant use of ALDACTONE and mitotane.",
+        "refs": [
+          {
+            "source_id": "fda-spironolactone-label",
+            "locator": "Section 7.8 Mitotane",
+            "quote": "Avoid concomitant use of ALDACTONE and mitotane. Spironolactone reduces mitotane plasma levels"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Drugs and Supplements Increasing Serum Potassium (ACEi, ARBs, NSAIDs, heparin/LMWH, trimethoprim, K+ supplements)",
+        "severity": "major",
+        "effect": "Concomitant administration may lead to severe hyperkalemia.",
+        "management": "In general, discontinue potassium supplementation in heart failure patients starting ALDACTONE; check serum potassium when ACEi or ARB therapy is altered.",
+        "refs": [
+          {
+            "source_id": "fda-spironolactone-label",
+            "locator": "Section 7.1 Drugs and Supplements Increasing Serum Potassium",
+            "quote": "Concomitant administration of ALDACTONE with potassium supplementation or drugs that can increase potassium may lead to severe hyperkalemia. In general, discontinue potassium supplementation in heart failure patients who start ALDACTONE"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Lithium",
+        "severity": "major",
+        "effect": "Reduces renal clearance of lithium, increasing the risk of lithium toxicity.",
+        "management": "Monitor lithium levels periodically when ALDACTONE is coadministered.",
+        "refs": [
+          {
+            "source_id": "fda-spironolactone-label",
+            "locator": "Section 7.2 Lithium",
+            "quote": "Like other diuretics, ALDACTONE reduces the renal clearance of lithium, thus increasing the risk of lithium toxicity. Monitor lithium levels periodically when ALDACTONE is coadministered"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Cholestyramine",
+        "severity": "major",
+        "effect": "Hyperkalemic metabolic acidosis has been reported with concurrent use.",
+        "management": "Monitor electrolytes and acid-base status if co-administered.",
+        "refs": [
+          {
+            "source_id": "fda-spironolactone-label",
+            "locator": "Section 7.5 Cholestyramine",
+            "quote": "Hyperkalemic metabolic acidosis has been reported in patients given ALDACTONE concurrently with cholestyramine."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "NSAIDs and Acetylsalicylic Acid (ASA)",
+        "severity": "moderate",
+        "effect": "NSAIDs and ASA may reduce the diuretic, natriuretic, and antihypertensive efficacy of spironolactone.",
+        "management": "Monitor closely for desired diuretic/antihypertensive effect; higher maintenance doses of ALDACTONE may be needed with ASA.",
+        "refs": [
+          {
+            "source_id": "fda-spironolactone-label",
+            "locator": "Section 7.3 Nonsteroidal Anti-Inflammatory Drugs (NSAIDs)",
+            "quote": "In some patients, the administration of an NSAID can reduce the diuretic, natriuretic, and antihypertensive effect of diuretics. Therefore, when ALDACTONE and NSAIDs are used concomitantly, monitor closely to determine if the desired effect of the diuretic is obtained"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Digoxin",
+        "severity": "moderate",
+        "effect": "Spironolactone and its metabolites interfere with radioimmunoassays for digoxin, increasing apparent digoxin exposure.",
+        "management": "Use a digoxin assay that does not interact with spironolactone.",
+        "refs": [
+          {
+            "source_id": "fda-spironolactone-label",
+            "locator": "Section 7.4 Digoxin",
+            "quote": "Spironolactone and its metabolites interfere with radioimmunoassays for digoxin and increase the apparent exposure to digoxin. It is unknown to what extent, if any, spironolactone may increase actual digoxin exposure. In patients taking concomitant digoxin, use an assay that does not interact with spironolactone."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Abiraterone",
+        "severity": "major",
+        "effect": "Spironolactone binds to the androgen receptor and may increase PSA levels in abiraterone-treated prostate cancer patients.",
+        "management": "Concomitant use of spironolactone and abiraterone is not recommended.",
+        "refs": [
+          {
+            "source_id": "fda-spironolactone-label",
+            "locator": "Section 7.7 Abiraterone",
+            "quote": "Spironolactone binds to the androgen receptor and may increase prostate-specific antigen (PSA) levels in abiraterone-treated prostate cancer patients. Concomitant use of spironolactone and abiraterone is not recommended."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-spironolactone-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Agents increasing serum potassium: Concomitant administration can lead to hyperkalemia ( 5.1 , 7.1 ). • Lithium: Increased risk of lithium toxicity ( 7.2 )."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "avoid",
+      "refs": [
+        {
+          "source_id": "fda-spironolactone-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "Because of the potential risk to the male fetus due to anti-androgenic properties of spironolactone and animal data, avoid spironolactone in pregnant women or advise a pregnant woman of the potential risk to a male fetus."
+        }
+      ],
+      "note": "5-axis synthesis: Label explicitly recommends avoiding spironolactone in pregnant women due to anti-androgenic properties; rat embryofetal studies demonstrated feminization of male fetuses and persistent endocrine dysfunction in offspring."
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Spironolactone is not present in breastmilk; limited data report the active metabolite canrenone in human breastmilk in low amounts expected to be clinically inconsequential, with no adverse effects reported after short-term exposure.",
+      "refs": [
+        {
+          "source_id": "fda-spironolactone-label",
+          "locator": "Section 8.2 Lactation",
+          "quote": "Spironolactone is not present in breastmilk; however, limited data from a lactating woman at 17 days postpartum reports the presence of the active metabolite, canrenone, in human breast milk in low amounts that are expected to be clinically inconsequential."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

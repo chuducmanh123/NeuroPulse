@@ -667,5 +667,400 @@
         "quote": "Tegretol causes, or would be expected to cause, decreased levels of the following drugs, for which monitoring of concentrations or dosage adjustment may be necessary: acetaminophen, albendazole, alprazolam, aprepitant, buprenorphone, bupropion, citalopram, clo"
       }
     ]
+  },
+  {
+    "id": "clopidogrel-omeprazole",
+    "drug_a": "clopidogrel",
+    "drug_b": "omeprazole",
+    "severity": "major",
+    "mechanism": "Omeprazole inhibits CYP2C19-mediated bioactivation of the prodrug clopidogrel to its active thiol metabolite, reducing platelet P2Y12 receptor inhibition.",
+    "clinical_effect": "Significantly reduced antiplatelet activity of clopidogrel and increased risk of major adverse cardiovascular or cerebrovascular events (stent thrombosis, recurrent stroke, myocardial infarction).",
+    "management": "Avoid concomitant use of clopidogrel with omeprazole (or esomeprazole), even when dosed 12 hours apart. Switch to a PPI with minimal CYP2C19 inhibition such as pantoprazole.",
+    "alternatives": [
+      {
+        "drug_id": "pantoprazole",
+        "rationale": "Pantoprazole has minimal CYP2C19 inhibition and does not clinically impair clopidogrel antiplatelet activity"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-clopidogrel-label",
+        "locator": "Section 7.1 CYP2C19 Inhibitors",
+        "quote": "Omeprazole or Esomeprazole Avoid concomitant use of Plavix with omeprazole or esomeprazole. In clinical studies, omeprazole was shown to reduce significantly the antiplatelet activity of Plavix when given concomitantly or 12 hours apart."
+      }
+    ]
+  },
+  {
+    "id": "tizanidine-ciprofloxacin",
+    "drug_a": "tizanidine",
+    "drug_b": "ciprofloxacin",
+    "severity": "contraindicated",
+    "mechanism": "Ciprofloxacin is a potent inhibitor of CYP1A2, the primary metabolic enzyme responsible for tizanidine clearance, causing dramatic increases in tizanidine systemic exposure.",
+    "clinical_effect": "Markedly elevated tizanidine plasma concentrations leading to severe, prolonged hypotension, bradycardia, profound sedation, and psychomotor impairment.",
+    "management": "Concomitant use is strictly contraindicated. Select an alternative antibiotic that does not inhibit CYP1A2 or discontinue tizanidine before initiating ciprofloxacin.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-tizanidine-label",
+        "locator": "Section 4 CONTRAINDICATIONS",
+        "quote": "4 CONTRAINDICATIONS Zanaflex is contraindicated in patients taking potent inhibitors of CYP1A2, such as fluvoxamine or ciprofloxacin [see Drug Interactions ( 7.1 , 7.2 )] ."
+      }
+    ]
+  },
+  {
+    "id": "warfarin-amiodarone",
+    "drug_a": "warfarin",
+    "drug_b": "amiodarone",
+    "severity": "major",
+    "mechanism": "Amiodarone and its active metabolite inhibit CYP2C9 and CYP3A4, impairing the hepatic clearance of both S-warfarin and R-warfarin.",
+    "clinical_effect": "Markedly potentiated anticoagulant response (prothrombin time/INR can increase by 100% within 3 to 4 days) with high risk of serious or fatal hemorrhage; effect persists for weeks after amiodarone discontinuation due to its long half-life.",
+    "management": "Reduce warfarin dose by one-third to one-half when initiating amiodarone and monitor PT/INR closely and frequently until stabilized.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-amiodarone-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Warfarin Potentiates anticoagulant response and can result in serious or fatal bleeding. Coadministration increases prothrombin time by 100% after 3 to 4 days. Reduce warfarin dose by one-third to one-half and monitor prothrombin times."
+      }
+    ]
+  },
+  {
+    "id": "warfarin-ciprofloxacin",
+    "drug_a": "warfarin",
+    "drug_b": "ciprofloxacin",
+    "severity": "major",
+    "mechanism": "Ciprofloxacin inhibits CYP1A2 (affecting R-warfarin metabolism) and may alter vitamin K-producing gut flora and plasma protein binding, enhancing warfarin anticoagulant activity.",
+    "clinical_effect": "Elevated prothrombin time/INR and increased risk of serious bleeding.",
+    "management": "Monitor prothrombin time and INR frequently during and shortly after co-administration of ciprofloxacin with warfarin, and adjust warfarin dosage as needed.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-ciprofloxacin-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Monitor prothrombin time and INR frequently during and shortly after co-administration of CIPRO with an oral anti-coagulant (for example, warfarin)."
+      }
+    ]
+  },
+  {
+    "id": "warfarin-acetaminophen",
+    "drug_a": "warfarin",
+    "drug_b": "acetaminophen",
+    "severity": "moderate",
+    "mechanism": "Acetaminophen metabolite (NAPQI) can inhibit vitamin K-dependent carboxylase and deplete reduced vitamin K in the vitamin K cycle, potentiating warfarin's anticoagulant effect at high or chronic doses.",
+    "clinical_effect": "Elevated INR and increased bleeding risk, particularly with chronic oral acetaminophen use at doses approaching 4,000 mg/day.",
+    "management": "Acetaminophen remains the preferred analgesic over NSAIDs in warfarin-treated patients, but limit total daily dose (typically <= 2,000-3,000 mg/day for chronic use) and monitor INR when initiating or changing regular acetaminophen regimens.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-acetaminophen-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Chronic oral acetaminophen use at a dose of 4000 mg/day has been shown to cause an increase in international normalized ratio (INR) in some patients who have been stabilized on sodium warfarin as an anticoagulant. (7.2)"
+      }
+    ]
+  },
+  {
+    "id": "warfarin-ibuprofen",
+    "drug_a": "warfarin",
+    "drug_b": "ibuprofen",
+    "severity": "major",
+    "mechanism": "Synergistic impairment of hemostasis (warfarin inhibits vitamin K-dependent clotting factors while ibuprofen reversibly inhibits platelet COX-1) combined with NSAID-induced gastrointestinal mucosal injury.",
+    "clinical_effect": "Significantly increased risk of serious gastrointestinal and systemic bleeding compared to either drug alone.",
+    "management": "Avoid concomitant use whenever possible. If analgesia is required, prefer acetaminophen with INR monitoring; if coadministration cannot be avoided, monitor closely for signs of bleeding and consider gastroprotection.",
+    "alternatives": [
+      {
+        "drug_id": "acetaminophen",
+        "rationale": "Acetaminophen does not cause GI mucosal ulceration or inhibit platelet aggregation, though high chronic doses still warrant INR monitoring"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-ibuprofen-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Ibuprofen and anticoagulants such as warfarin have a synergistic effect on bleeding. The concomitant use of ibuprofen and anticoagulants have an increased risk of serious bleeding compared to the use of either drug alone."
+      }
+    ]
+  },
+  {
+    "id": "warfarin-celecoxib",
+    "drug_a": "warfarin",
+    "drug_b": "celecoxib",
+    "severity": "major",
+    "mechanism": "Synergistic bleeding risk with anticoagulants plus CYP2C9 competition/inhibition (both celecoxib and S-warfarin are metabolized by CYP2C9), which can elevate warfarin exposure and INR.",
+    "clinical_effect": "Increased risk of serious bleeding and elevated INR, especially in patients with reduced CYP2C9 activity.",
+    "management": "Avoid concomitant use when possible and prefer acetaminophen for pain relief. If celecoxib is necessary, monitor INR closely after initiation or dose changes and watch for bleeding.",
+    "alternatives": [
+      {
+        "drug_id": "acetaminophen",
+        "rationale": "Acetaminophen avoids NSAID-related GI/bleeding synergy and CYP2C9 competition with S-warfarin"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-celecoxib-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Celecoxib and anticoagulants such as warfarin have a synergistic effect on bleeding. The concomitant use of Celecoxib and anticoagulants have an increased risk of serious bleeding compared to the use of either drug alone."
+      }
+    ]
+  },
+  {
+    "id": "apixaban-amiodarone",
+    "drug_a": "apixaban",
+    "drug_b": "amiodarone",
+    "severity": "moderate",
+    "mechanism": "Amiodarone inhibits P-glycoprotein (P-gp) and CYP3A4, both of which mediate apixaban intestinal efflux and hepatic/renal elimination, modestly increasing apixaban systemic exposure.",
+    "clinical_effect": "Increased apixaban plasma concentrations and potentially elevated risk of bleeding, particularly in patients with additional risk factors (renal impairment, advanced age, low body weight, or concurrent antiplatelets).",
+    "management": "Monitor closely for signs and symptoms of bleeding. Unlike strong combined P-gp/CYP3A4 inhibitors, routine apixaban dose reduction is not universally mandated for amiodarone alone unless other dose-reduction criteria apply.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-amiodarone-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Amiodarone inhibits P-glycoprotein and CYP1A2, CYP2C9, CYP2D6, and CYP3A, increasing exposure to other drugs. ( 7 )"
+      }
+    ]
+  },
+  {
+    "id": "dabigatran-amiodarone",
+    "drug_a": "dabigatran",
+    "drug_b": "amiodarone",
+    "severity": "major",
+    "mechanism": "Dabigatran etexilate is a P-glycoprotein (P-gp) substrate; oral amiodarone inhibits P-gp-mediated intestinal efflux, increasing dabigatran absorption and systemic exposure.",
+    "clinical_effect": "Elevated serum dabigatran concentrations and increased risk of major or fatal hemorrhage, especially in patients with moderate renal impairment (CrCl 30-50 mL/min).",
+    "management": "Monitor closely for bleeding and assess renal function. Avoid concomitant use in patients with severe renal impairment and follow renal-adjusted dabigatran dosing or consider an alternative anticoagulant if bleeding risk is high.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-amiodarone-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Dabigatran etexilate when taken concomitantly with oral amiodarone can result in elevated serum concentration of dabigatran."
+      }
+    ]
+  },
+  {
+    "id": "simvastatin-amiodarone",
+    "drug_a": "simvastatin",
+    "drug_b": "amiodarone",
+    "severity": "major",
+    "mechanism": "Amiodarone inhibits CYP3A4-mediated metabolism of simvastatin, substantially increasing systemic exposure to simvastatin and simvastatin acid.",
+    "clinical_effect": "Markedly increased risk of statin-induced myopathy and life-threatening rhabdomyolysis with acute kidney injury.",
+    "management": "Do not exceed simvastatin 20 mg once daily when coadministered with amiodarone, or switch to a non-CYP3A4-metabolized statin such as rosuvastatin.",
+    "alternatives": [
+      {
+        "drug_id": "rosuvastatin",
+        "rationale": "Rosuvastatin is minimally metabolized by CYP3A4 and does not have a 20 mg dose cap with amiodarone"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-simvastatin-label",
+        "locator": "Section 2.2 Recommended Dosage / Drug Interactions",
+        "quote": "Patients taking Amiodarone, Amlodipine, or Ranolazine Do not exceed ZOCOR 20 mg once daily."
+      }
+    ]
+  },
+  {
+    "id": "simvastatin-amlodipine",
+    "drug_a": "simvastatin",
+    "drug_b": "amlodipine",
+    "severity": "major",
+    "mechanism": "Amlodipine inhibits CYP3A4-mediated first-pass and hepatic metabolism of simvastatin, increasing simvastatin systemic exposure.",
+    "clinical_effect": "Increased risk of dose-dependent myopathy and rhabdomyolysis.",
+    "management": "Do not exceed simvastatin 20 mg once daily when taken concomitantly with amlodipine, or switch to a statin without CYP3A4 interaction such as rosuvastatin.",
+    "alternatives": [
+      {
+        "drug_id": "rosuvastatin",
+        "rationale": "Rosuvastatin is not significantly metabolized via CYP3A4 and avoids the simvastatin-amlodipine exposure increase"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-simvastatin-label",
+        "locator": "Section 2.2 Recommended Dosage / Drug Interactions",
+        "quote": "Patients taking Amiodarone, Amlodipine, or Ranolazine Do not exceed ZOCOR 20 mg once daily."
+      }
+    ]
+  },
+  {
+    "id": "tramadol-duloxetine",
+    "drug_a": "tramadol",
+    "drug_b": "duloxetine",
+    "severity": "major",
+    "mechanism": "Additive serotonergic activity (both tramadol and duloxetine inhibit serotonin reuptake) plus duloxetine-mediated CYP2D6 inhibition, which can alter tramadol metabolism to its active opioid metabolite and further elevate parent tramadol.",
+    "clinical_effect": "Increased risk of potentially life-threatening serotonin syndrome, seizures, and reduced opioid analgesic conversion.",
+    "management": "Avoid concomitant use when possible and consider non-serotonergic analgesia such as acetaminophen. If combined, monitor closely for serotonin syndrome (agitation, clonus, hyperthermia, autonomic instability) and seizure risk.",
+    "alternatives": [
+      {
+        "drug_id": "acetaminophen",
+        "rationale": "Acetaminophen provides analgesia without serotonergic activity, CYP2D6 interaction, or lowering of the seizure threshold"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-duloxetine-label",
+        "locator": "Section 5.4 Serotonin Syndrome",
+        "quote": "use of other serotonergic drugs (including triptans, tricyclic antidepressants, fentanyl, lithium, tramadol, meperidine, methadone, tryptophan, buspirone, amphetamines, and St. John's Wort)"
+      }
+    ]
+  },
+  {
+    "id": "tramadol-rasagiline",
+    "drug_a": "tramadol",
+    "drug_b": "rasagiline",
+    "severity": "contraindicated",
+    "mechanism": "Combined monoamine oxidase-B inhibition by rasagiline and serotonin/norepinephrine reuptake inhibition by tramadol causes excessive central serotonergic accumulation.",
+    "clinical_effect": "High risk of severe, potentially fatal serotonin syndrome (hyperthermia, rigidity, autonomic instability, delirium, coma) and CNS toxicity.",
+    "management": "Concomitant use is contraindicated. Allow at least 14 days after discontinuing rasagiline before initiating tramadol, and use a non-serotonergic analgesic such as acetaminophen.",
+    "alternatives": [
+      {
+        "drug_id": "acetaminophen",
+        "rationale": "Acetaminophen has no serotonergic or MAOI interaction and is safe for pain management with rasagiline"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-rasagiline-label",
+        "locator": "Section 4 CONTRAINDICATIONS",
+        "quote": "4 CONTRAINDICATIONS AZILECT is contraindicated for use with meperidine, tramadol, methadone, propoxyphene, and MAO inhibitors (MAOIs), including other selective MAO-B inhibitors, because of risk of serotonin syndrome [see Warnings and Precautions ( 5.2 )] ."
+      }
+    ]
+  },
+  {
+    "id": "tramadol-carbamazepine",
+    "drug_a": "tramadol",
+    "drug_b": "carbamazepine",
+    "severity": "major",
+    "mechanism": "Carbamazepine potently induces CYP3A4, markedly accelerating tramadol metabolism and reducing tramadol concentrations, while both agents independently affect seizure risk.",
+    "clinical_effect": "Significantly reduced analgesic efficacy of tramadol and increased risk of seizures.",
+    "management": "Concomitant administration is not recommended. Use an alternative non-CYP3A4-dependent analgesic such as acetaminophen (noting carbamazepine may also modestly affect acetaminophen metabolism at high doses).",
+    "alternatives": [
+      {
+        "drug_id": "acetaminophen",
+        "rationale": "Acetaminophen avoids tramadol's seizure risk and loss of opioid efficacy via CYP3A4 induction"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-tramadol-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Patients taking carbamazepine, a CYP3A4 inducer, may have a significantly reduced analgesic effect of tramadol. Because carbamazepine increases tramadol metabolism and because of the seizure risk associated with tramadol,"
+      }
+    ]
+  },
+  {
+    "id": "lisinopril-spironolactone",
+    "drug_a": "lisinopril",
+    "drug_b": "spironolactone",
+    "severity": "major",
+    "mechanism": "Additive inhibition of aldosterone-mediated renal potassium excretion: ACE inhibition (lisinopril) reduces aldosterone secretion while mineralocorticoid receptor antagonism (spironolactone) blocks distal tubular potassium excretion.",
+    "clinical_effect": "Significantly increased risk of severe, potentially life-threatening hyperkalemia and cardiac arrhythmias, especially in patients with renal impairment or diabetes.",
+    "management": "Use together only when clinically indicated (e.g., HFrEF) with low starting doses, avoid potassium supplements, and monitor serum potassium and renal function frequently.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-lisinopril-label",
+        "locator": "Section 7.1 Diuretics",
+        "quote": "Potassium-sparing diuretics (spironolactone, amiloride, triamterene, and others) can increase the risk of hyperkalemia. Therefore, if concomitant use of such agents is indicated, monitor the patient’s serum potassium frequently."
+      }
+    ]
+  },
+  {
+    "id": "losartan-spironolactone",
+    "drug_a": "losartan",
+    "drug_b": "spironolactone",
+    "severity": "major",
+    "mechanism": "Additive suppression of aldosterone activity: angiotensin II receptor blockade (losartan) decreases aldosterone release while spironolactone directly blocks mineralocorticoid receptors in the collecting duct.",
+    "clinical_effect": "Increased risk of clinically significant hyperkalemia, arrhythmias, and worsening renal function.",
+    "management": "Monitor serum potassium and renal function closely and frequently if coadministration is required; avoid additional potassium-sparing agents or potassium supplements.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-losartan-label",
+        "locator": "Section 7.1 Agents Increasing Serum Potassium",
+        "quote": "7.1 Agents Increasing Serum Potassium Coadministration of losartan with other drugs that raise serum potassium levels may result in hyperkalemia. Monitor serum potassium in such patients."
+      }
+    ]
+  },
+  {
+    "id": "lisinopril-ibuprofen",
+    "drug_a": "lisinopril",
+    "drug_b": "ibuprofen",
+    "severity": "moderate",
+    "mechanism": "NSAID-mediated inhibition of renal prostaglandin synthesis causes afferent arteriolar vasoconstriction, which combined with ACE inhibitor-induced efferent arteriolar dilation reduces glomerular filtration rate and attenuates antihypertensive vasodilatory prostaglandins.",
+    "clinical_effect": "Deterioration of renal function (including acute kidney injury, especially in elderly, volume-depleted, or diuretic-treated patients) and loss of lisinopril's antihypertensive efficacy.",
+    "management": "Avoid chronic NSAID use; prefer acetaminophen for analgesia. If ibuprofen is used, keep duration short, ensure adequate hydration, and monitor renal function and blood pressure periodically.",
+    "alternatives": [
+      {
+        "drug_id": "acetaminophen",
+        "rationale": "Acetaminophen does not inhibit renal prostaglandins or blunt ACE inhibitor antihypertensive efficacy"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-lisinopril-label",
+        "locator": "Section 7.3 Non-Steroidal Anti-Inflammatory Agents",
+        "quote": "In patients who are elderly, volume-depleted (including those on diuretic therapy), or with compromised renal function, coadministration of NSAIDs, including selective COX-2 inhibitors, with ACE inhibitors, including lisinopril, may result in deterioration"
+      }
+    ]
+  },
+  {
+    "id": "levothyroxine-omeprazole",
+    "drug_a": "levothyroxine",
+    "drug_b": "omeprazole",
+    "severity": "moderate",
+    "mechanism": "Omeprazole increases intragastric pH (hypochlorhydria), impairing the dissolution and gastrointestinal absorption of oral levothyroxine sodium tablets.",
+    "clinical_effect": "Reduced levothyroxine bioavailability leading to elevated serum TSH and subtherapeutic thyroid hormone replacement.",
+    "management": "Monitor serum TSH levels when initiating, discontinuing, or changing the dose of omeprazole, and adjust levothyroxine dosage as clinically indicated.",
+    "alternatives": [],
+    "refs": [
+      {
+        "source_id": "fda-levothyroxine-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Gastric acidity is an essential requirement for adequate absorption of levothyroxine. Sucralfate, antacids and proton pump inhibitors may cause hypochlorhydria, affect intraga"
+      }
+    ]
+  },
+  {
+    "id": "phenytoin-omeprazole",
+    "drug_a": "phenytoin",
+    "drug_b": "omeprazole",
+    "severity": "moderate",
+    "mechanism": "Omeprazole inhibits hepatic CYP2C19 metabolism, reducing the clearance of phenytoin (a narrow-therapeutic-index CYP2C9/CYP2C19 substrate).",
+    "clinical_effect": "Potential for increased phenytoin serum concentrations and dose-dependent neurotoxicity (nystagmus, ataxia, diplopia, lethargy).",
+    "management": "Monitor serum phenytoin concentrations when starting or stopping omeprazole and adjust phenytoin dose as needed, or use a PPI with minimal CYP2C19 inhibition such as pantoprazole.",
+    "alternatives": [
+      {
+        "drug_id": "pantoprazole",
+        "rationale": "Pantoprazole has minimal CYP2C19 inhibition and does not significantly alter phenytoin clearance"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-omeprazole-label",
+        "locator": "Section 7 DRUG INTERACTIONS - CYP2C19 Substrates",
+        "quote": "Phenytoin Clinical Impact: Potential for increased exposure of phenytoin. Intervention: Monitor phenytoin serum concentrations. Dose adjustment may be needed to maintain therapeutic drug concentrations."
+      }
+    ]
+  },
+  {
+    "id": "diazepam-omeprazole",
+    "drug_a": "diazepam",
+    "drug_b": "omeprazole",
+    "severity": "moderate",
+    "mechanism": "Omeprazole inhibits CYP2C19-mediated hepatic metabolism of diazepam, decreasing diazepam clearance by approximately 27% and increasing elimination half-life by 36%.",
+    "clinical_effect": "Increased systemic exposure to diazepam, leading to enhanced and prolonged sedation, psychomotor impairment, and fall risk.",
+    "management": "Monitor patients for increased sedation and reduce diazepam dose as needed, or switch to a PPI with minimal CYP2C19 inhibition such as pantoprazole.",
+    "alternatives": [
+      {
+        "drug_id": "pantoprazole",
+        "rationale": "Pantoprazole does not significantly inhibit CYP2C19 and avoids prolonged diazepam exposure"
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-omeprazole-label",
+        "locator": "Section 7 DRUG INTERACTIONS - CYP2C19 Substrates",
+        "quote": "Diazepam Clinical Impact: Increased exposure of diazepam [see Clinical Pharmacology (12.3) ]. Intervention: Monitor patients for increased sedation and reduce the dose of diazepam as needed."
+      }
+    ]
   }
 ]

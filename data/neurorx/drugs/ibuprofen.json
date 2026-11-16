@@ -1,0 +1,485 @@
+{
+  "id": "ibuprofen",
+  "generic_name": "ibuprofen",
+  "tall_man": {
+    "value": "ibuprofen",
+    "refs": [
+      {
+        "source_id": "fda-ibuprofen-label",
+        "locator": "11 DESCRIPTION",
+        "quote": "CALDOLOR (ibuprofen injection) is a nonsteroidal anti-inflammatory drug"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "nonsteroidal anti-inflammatory drug (NSAID)",
+    "non-selective COX-1/COX-2 inhibitor",
+    "analgesic",
+    "antipyretic"
+  ],
+  "subspecialties": [
+    "headache",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "ibuprofen-adult-pain-iv",
+      "indication": "Mild to moderate pain (including postoperative pain) and moderate to severe pain (adjunct to opioid analgesics) — Adults",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-ibuprofen-label",
+          "locator": "1 INDICATIONS AND USAGE",
+          "quote": "CALDOLOR is indicated in adults and pediatric patients aged 3 months and older for the: management of mild to moderate pain, including postoperative pain management of moderate to severe pain, including postoperative pain, as an adjunct to opioid analgesics reduction of fever"
+        },
+        {
+          "source_id": "fda-ibuprofen-label",
+          "locator": "2.2 Adults",
+          "quote": "For Analgesia (pain) : The dose is 400 mg to 800 mg intravenously every 6 hours as necessary. Infusion time must be at least 30 minutes. Maximum daily dose is 3,200 mg."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 400,
+        "unit": "mg",
+        "frequency": "every 6 hours as necessary (400-800 mg) over >= 30 minutes",
+        "max_single": 800,
+        "max_daily": 3200,
+        "infusion": {
+          "duration_min": 30
+        }
+      },
+      "dose_text": "400 mg to 800 mg IV every 6 hours as necessary; infuse over at least 30 minutes. Maximum daily dose 3,200 mg."
+    },
+    {
+      "id": "ibuprofen-adult-fever-iv",
+      "indication": "Reduction of fever — Adults",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-ibuprofen-label",
+          "locator": "2.2 Adults",
+          "quote": "For Fever : The dose is 400 mg intravenously, followed by 400 mg every 4 to 6 hours or 100 mg to 200 mg every 4 hours as necessary. Infusion time must be at least 30 minutes. Maximum daily dose is 3,200 mg."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 400,
+        "unit": "mg",
+        "frequency": "initial, then 400 mg every 4 to 6 hours (or 100-200 mg every 4 hours) over >= 30 minutes",
+        "max_single": 400,
+        "max_daily": 3200,
+        "infusion": {
+          "duration_min": 30
+        }
+      },
+      "dose_text": "400 mg IV initial dose, followed by 400 mg every 4 to 6 hours or 100 mg to 200 mg every 4 hours as necessary; infuse over at least 30 minutes. Maximum daily dose 3,200 mg."
+    },
+    {
+      "id": "ibuprofen-peds-12to17y-iv",
+      "indication": "Pain and fever — Pediatric patients aged 12 to 17 years",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-ibuprofen-label",
+          "locator": "2.3 Pediatric Patients",
+          "quote": "Ages 12 to 17 years The dose is 400 mg intravenously every 4 to 6 hours as necessary. Infusion time must be at least 10 minutes. Maximum daily dose is 40 mg/kg or 2,400 mg, whichever is less."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 400,
+        "unit": "mg",
+        "frequency": "every 4 to 6 hours as necessary over >= 10 minutes",
+        "max_single": 400,
+        "max_daily": 2400,
+        "infusion": {
+          "duration_min": 10
+        }
+      },
+      "dose_text": "400 mg IV every 4 to 6 hours as necessary; infuse over at least 10 minutes. Maximum daily dose 40 mg/kg or 2,400 mg, whichever is less."
+    },
+    {
+      "id": "ibuprofen-peds-6mo-to-11y-iv",
+      "indication": "Pain and fever — Pediatric patients aged 6 months to less than 12 years",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-ibuprofen-label",
+          "locator": "2.3 Pediatric Patients",
+          "quote": "Ages 6 months to less than 12 years The dose is 10 mg/kg intravenously up to a maximum single dose of 400 mg every 4 to 6 hours as necessary. Infusion time must be at least 10 minutes. Maximum daily dose is 40 mg/kg or 2,400 mg, whichever is less."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 10,
+        "unit": "mg",
+        "frequency": "every 4 to 6 hours as necessary over >= 10 minutes",
+        "max_single": 400,
+        "max_daily": 2400,
+        "infusion": {
+          "duration_min": 10
+        }
+      },
+      "dose_text": "10 mg/kg IV (max single dose 400 mg) every 4 to 6 hours as necessary; infuse over at least 10 minutes. Maximum daily dose 40 mg/kg or 2,400 mg, whichever is less."
+    },
+    {
+      "id": "ibuprofen-peds-3to6mo-iv",
+      "indication": "Pain and fever — Pediatric patients aged 3 months to less than 6 months",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-ibuprofen-label",
+          "locator": "2.3 Pediatric Patients",
+          "quote": "Ages 3 months to less than 6 months The dose is a single dose at 10 mg/kg intravenously up to a maximum single dose of 100 mg. Infusion time must be at least 10 minutes."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 10,
+        "unit": "mg",
+        "frequency": "single dose over >= 10 minutes",
+        "max_single": 100,
+        "infusion": {
+          "duration_min": 10
+        }
+      },
+      "dose_text": "Single dose of 10 mg/kg IV up to a maximum single dose of 100 mg; infuse over at least 10 minutes."
+    }
+  ],
+  "renal_basis": {
+    "value": null,
+    "refs": []
+  },
+  "hepatic": {
+    "value": null,
+    "refs": []
+  },
+  "black_box": {
+    "value": [
+      "Cardiovascular Thrombotic Events: NSAIDs cause an increased risk of serious cardiovascular thrombotic events, including myocardial infarction and stroke, which can be fatal; contraindicated in the setting of coronary artery bypass graft (CABG) surgery.",
+      "Gastrointestinal Bleeding, Ulceration, and Perforation: NSAIDs cause an increased risk of serious GI adverse events including bleeding, ulceration, and perforation of the stomach or intestines, which can be fatal."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-ibuprofen-label",
+        "locator": "BOXED WARNING",
+        "quote": "Non-steroidal anti-inflammatory drugs (NSAIDs) cause an increased risk of serious cardiovascular thrombotic events, including myocardial infarction and stroke, which can be fatal. This risk may occur early in treatment and may increase with duration of use. ( 5.1 ) CALDOLOR is contraindicated in the setting of coronary artery bypass graft (CABG) surgery."
+      },
+      {
+        "source_id": "fda-ibuprofen-label",
+        "locator": "BOXED WARNING",
+        "quote": "NSAIDs cause an increased risk of serious gastrointestinal (GI) adverse events including bleeding, ulceration, and perforation of the stomach or intestines, which can be fatal."
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-ibuprofen-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "The mechanism of action of CALDOLOR, like that of other NSAIDs, is not completely understood but involves inhibition of cyclooxygenase (COX-1 and COX-2)."
+      }
+    ],
+    "note": "NSAID; no neuromuscular junction blocking warnings."
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "Label is for intravenous injection (CALDOLOR); no nasogastric tube instructions provided."
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "hepatotoxicity",
+      "rash_sjs_ten"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-ibuprofen-label",
+        "locator": "6 ADVERSE REACTIONS",
+        "quote": "Hepatotoxicity [ see Warnings and Precautions ( 5.3 ) ]"
+      },
+      {
+        "source_id": "fda-ibuprofen-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "Skin and Appendages: Exfoliative dermatitis, Stevens-Johnson Syndrome (SJS), toxic epidermal necrolysis (TEN), and fixed drug eruption (FDE)."
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Nausea, flatulence, vomiting, headache, hemorrhage, and dizziness (>5% in adults)",
+        "Infusion site pain, vomiting, nausea, anemia, and headache (>=2% in pediatric patients)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-ibuprofen-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "The most common adverse reactions are nausea, flatulence, vomiting, headache, hemorrhage and dizziness (>5%). The most common adverse reactions in pediatric patients are infusion site pain, vomiting, nausea, anemia and headache (≥2%)."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Cardiovascular thrombotic events (myocardial infarction, stroke)",
+        "Gastrointestinal bleeding, ulceration, and perforation",
+        "Hepatotoxicity",
+        "Hypertension, heart failure, and edema",
+        "Renal toxicity and hyperkalemia",
+        "Anaphylactic reactions and serious skin reactions (exfoliative dermatitis, SJS, TEN)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-ibuprofen-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "The following serious adverse reactions are discussed in greater detail in other sections of the labeling: Cardiovascular Thrombotic Events [see Warnings and Precautions ( 5.1 )] GI Bleeding, Ulceration and Perforation [see Warnings and Precautions ( 5.2 )] Hepatotoxicity [ see Warnings and Precautions ( 5.3 ) ] Hypertension [ see Warnings and Precautions ( 5.4 ) ]"
+        },
+        {
+          "source_id": "fda-ibuprofen-label",
+          "locator": "6.2 Postmarketing Experience",
+          "quote": "Skin and Appendages: Exfoliative dermatitis, Stevens-Johnson Syndrome (SJS), toxic epidermal necrolysis (TEN), and fixed drug eruption (FDE)."
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Nonsteroidal anti-inflammatory drug that inhibits cyclooxygenase (COX-1 and COX-2), decreasing prostaglandin synthesis in peripheral tissues.",
+    "refs": [
+      {
+        "source_id": "fda-ibuprofen-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "The mechanism of action of CALDOLOR, like that of other NSAIDs, is not completely understood but involves inhibition of cyclooxygenase (COX-1 and COX-2). Ibuprofen is a potent inhibitor of prostaglandin synthesis in vitro."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {},
+    "refs": [
+      {
+        "source_id": "fda-ibuprofen-label",
+        "locator": "12.3 Pharmacokinetics",
+        "quote": "Ibuprofen is a racemic mixture of [-]R- and [+]S-isomers. In vivo and in vitro studies indicate that the [+]S-isomer is responsible for clinical activity. The [-]R-form, while thought to be pharmacologically inactive, is slowly and incompletely (~60%) interconverted into the active [+]S species in adults."
+      }
+    ],
+    "note": "No specific CYP enzyme profile detailed in this label."
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Drugs That Interfere with Hemostasis (Anticoagulants, Antiplatelets, SSRIs, SNRIs)",
+        "severity": "major",
+        "effect": "Synergistic effect on bleeding with warfarin/anticoagulants; SSRIs/SNRIs may potentiate NSAID bleeding risk.",
+        "management": "Monitor patients with concomitant use of CALDOLOR with anticoagulants (e.g., warfarin), antiplatelet agents (e.g., aspirin), SSRIs, and SNRIs for signs of bleeding.",
+        "refs": [
+          {
+            "source_id": "fda-ibuprofen-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "Monitor patients with concomitant use of CALDOLOR with anticoagulants (e.g., warfarin), antiplatelet agents (e.g., aspirin), selective serotonin reuptake inhibitors (SSRIs), and serotonin norepinephrine reuptake inhibitors (SNRIs) for signs of bleeding"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Aspirin",
+        "severity": "major",
+        "effect": "Interferes with antiplatelet activity of low-dose aspirin (especially enteric-coated or when ibuprofen is dosed prior to aspirin); analgesic aspirin doses significantly increase GI adverse reactions.",
+        "management": "For patients taking low-dose aspirin for cardioprotection, consider an NSAID that does not interfere with aspirin or non-NSAID analgesics; concomitant analgesic doses of aspirin are not generally recommended.",
+        "refs": [
+          {
+            "source_id": "fda-ibuprofen-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "Concomitant use of CALDOLOR and analgesic doses of aspirin is not generally recommended because of the increased risk of bleeding [ see Warnings and Precautions ( 5.11 ) ]."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "ACE Inhibitors, Angiotensin Receptor Blockers (ARBs), and Beta-Blockers",
+        "severity": "major",
+        "effect": "May diminish antihypertensive effect; co-administration with ACE inhibitors or ARBs in elderly, volume-depleted, or renally impaired patients may cause deterioration of renal function including acute renal failure.",
+        "management": "Monitor blood pressure; in elderly, volume-depleted, or renally impaired patients, ensure adequate hydration and monitor renal function at baseline and periodically.",
+        "refs": [
+          {
+            "source_id": "fda-ibuprofen-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "During concomitant use of CALDOLOR and ACE-inhibitors or ARBs in patients who are elderly, volume-depleted, or have impaired renal function, monitor for signs of worsening renal function [ see Warnings and Precautions ( 5.6 ) ]."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Diuretics (Loop and Thiazide)",
+        "severity": "moderate",
+        "effect": "NSAIDs reduce the natriuretic effect of loop (e.g., furosemide) and thiazide diuretics via inhibition of renal prostaglandin synthesis.",
+        "management": "Observe patients for signs of worsening renal function and assure diuretic efficacy including antihypertensive effects.",
+        "refs": [
+          {
+            "source_id": "fda-ibuprofen-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "During concomitant use of CALDOLOR with diuretics, observe patients for signs of worsening renal function, in addition to assuring diuretic efficacy including antihypertensive effects"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Digoxin",
+        "severity": "major",
+        "effect": "Concomitant use of ibuprofen with digoxin increases serum concentration and prolongs the half-life of digoxin.",
+        "management": "Monitor serum digoxin levels during concomitant use.",
+        "refs": [
+          {
+            "source_id": "fda-ibuprofen-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "During concomitant use of CALDOLOR and digoxin, monitor serum digoxin levels."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Lithium",
+        "severity": "major",
+        "effect": "NSAIDs elevate plasma lithium levels (mean minimum concentration +15%) and reduce renal lithium clearance (~20%).",
+        "management": "Monitor patients for signs of lithium toxicity during concomitant use.",
+        "refs": [
+          {
+            "source_id": "fda-ibuprofen-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "During concomitant use of CALDOLOR and lithium, monitor patients for signs of lithium toxicity."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Methotrexate",
+        "severity": "major",
+        "effect": "Concomitant use may increase the risk for methotrexate toxicity (neutropenia, thrombocytopenia, renal dysfunction).",
+        "management": "Monitor patients for methotrexate toxicity during concomitant use.",
+        "refs": [
+          {
+            "source_id": "fda-ibuprofen-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "During concomitant use of CALDOLOR and methotrexate, monitor patients for methotrexate toxicity."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Cyclosporine",
+        "severity": "major",
+        "effect": "Concomitant use may increase cyclosporine nephrotoxicity.",
+        "management": "Monitor patients for signs of worsening renal function.",
+        "refs": [
+          {
+            "source_id": "fda-ibuprofen-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "During concomitant use of CALDOLOR and cyclosporine, monitor patients for signs of worsening renal function."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Other NSAIDs and Salicylates",
+        "severity": "major",
+        "effect": "Increases risk of GI toxicity with little or no increase in efficacy.",
+        "management": "Concomitant use of ibuprofen with other NSAIDs or salicylates is not recommended.",
+        "refs": [
+          {
+            "source_id": "fda-ibuprofen-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "The concomitant use of ibuprofen with other NSAIDs or salicylates is not recommended."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Pemetrexed",
+        "severity": "major",
+        "effect": "May increase risk of pemetrexed-associated myelosuppression, renal, and GI toxicity.",
+        "management": "In patients with CrCl 45 to 79 mL/min, monitor for myelosuppression, renal, and GI toxicity; avoid short-half-life NSAIDs for 2 days before, day of, and 2 days after pemetrexed.",
+        "refs": [
+          {
+            "source_id": "fda-ibuprofen-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "During concomitant use of CALDOLOR and pemetrexed, in patients with renal impairment whose creatinine clearance ranges from 45 to 79 mL/min, monitor for myelosuppression, renal and GI toxicity."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-ibuprofen-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "See Table 3 for clinically significant drug interactions with ibuprofen."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "avoid",
+      "note": "Avoid use at about 30 weeks gestation and later due to premature closure of fetal ductus arteriosus; limit dose/duration at >=20 weeks due to fetal renal dysfunction and oligohydramnios (monitor with ultrasound if >48 hours). Animal studies showed ventricular septal defects and pre/post-implantation loss; associated with reversible female infertility.",
+      "refs": [
+        {
+          "source_id": "fda-ibuprofen-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "Because of these risks, limit dose and duration of CALDOLOR use between about 20 and 30 weeks of gestation, and avoid CALDOLOR use at about 30 weeks of gestation and later in pregnancy ( see Clinical Considerations , Data )."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": "0.06% to 0.6% of the maternal weight-adjusted daily dose",
+      "refs": [
+        {
+          "source_id": "fda-ibuprofen-label",
+          "locator": "8.2 Lactation",
+          "quote": "limited published literature reports that, following oral administration, ibuprofen is present in human milk at relative infant doses of 0.06% to 0.6% of the maternal weight-adjusted daily dose."
+        }
+      ]
+    },
+    "lactation_summary": {
+      "value": "Present in human milk at relative infant doses of 0.06% to 0.6% of maternal weight-adjusted daily dose after oral administration; no reports of adverse effects on breastfed infants or milk production.",
+      "refs": [
+        {
+          "source_id": "fda-ibuprofen-label",
+          "locator": "8.2 Lactation",
+          "quote": "There are no reports of adverse effects on the breastfed infant and no effects on milk production."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

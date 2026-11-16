@@ -1,0 +1,439 @@
+{
+  "id": "amlodipine",
+  "generic_name": "amlodipine",
+  "tall_man": {
+    "value": "amlodipine",
+    "refs": [
+      {
+        "source_id": "fda-amlodipine-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "NORVASC is the besylate salt of amlodipine, a long‑acting calcium channel blocker."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "dihydropyridine calcium channel blocker",
+    "antihypertensive",
+    "antianginal"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "amlod-po-htn-adult",
+      "indication": "Hypertension (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-amlodipine-label",
+          "locator": "Section 1.1 Hypertension",
+          "quote": "NORVASC ® is indicated for the treatment of hypertension, to lower blood pressure. Lowering blood pressure reduces the risk of fatal and nonfatal cardiovascular events, primarily strokes and myocardial infarctions."
+        },
+        {
+          "source_id": "fda-amlodipine-label",
+          "locator": "Section 2.1 Adults",
+          "quote": "The usual initial antihypertensive oral dose of NORVASC is 5 mg once daily, and the maximum dose is 10 mg once daily. Small, fragile, or elderly patients, or patients with hepatic insufficiency may be started on 2.5 mg once daily"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 5,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 10,
+        "max_daily": 10
+      },
+      "dose_text": "Usual initial oral dose: 5 mg once daily (2.5 mg once daily in small, fragile, elderly, or hepatic insufficiency patients, or when adding to other antihypertensive therapy). Maximum dose: 10 mg once daily. Wait 7 to 14 days between titration steps."
+    },
+    {
+      "id": "amlod-po-htn-pediatric",
+      "indication": "Hypertension (Pediatric Patients Ages 6-17 Years)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-amlodipine-label",
+          "locator": "Section 2.2 Children",
+          "quote": "The effective antihypertensive oral dose in pediatric patients ages 6–17 years is 2.5 mg to 5 mg once daily. Doses in excess of 5 mg daily have not been studied in pediatric patients"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 2.5,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 5,
+        "max_daily": 5
+      },
+      "dose_text": "2.5 mg to 5 mg orally once daily in pediatric patients ages 6 to 17 years. Doses in excess of 5 mg daily have not been studied in pediatric patients."
+    },
+    {
+      "id": "amlod-po-angina-adult",
+      "indication": "Chronic Stable Angina and Vasospastic (Prinzmetal's) Angina (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-amlodipine-label",
+          "locator": "Section 1.2 Coronary Artery Disease (CAD)",
+          "quote": "NORVASC is indicated for the symptomatic treatment of chronic stable angina."
+        },
+        {
+          "source_id": "fda-amlodipine-label",
+          "locator": "Section 2.1 Adults",
+          "quote": "Angina : The recommended dose for chronic stable or vasospastic angina is 5–10 mg, with the lower dose suggested in the elderly and in patients with hepatic insufficiency. Most patients will require 10 mg for adequate effect."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 5,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 10,
+        "max_daily": 10
+      },
+      "dose_text": "5 to 10 mg orally once daily (lower dose suggested in elderly and hepatic insufficiency; most patients will require 10 mg for adequate effect)."
+    },
+    {
+      "id": "amlod-po-cad-adult",
+      "indication": "Angiographically Documented Coronary Artery Disease without Heart Failure or EF <40% (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-amlodipine-label",
+          "locator": "Section 1.2 Coronary Artery Disease (CAD)",
+          "quote": "In patients with recently documented CAD by angiography and without heart failure or an ejection fraction <40%, NORVASC is indicated to reduce the risk of hospitalization for angina and to reduce the risk of a coronary revascularization procedure."
+        },
+        {
+          "source_id": "fda-amlodipine-label",
+          "locator": "Section 2.1 Adults",
+          "quote": "Coronary artery disease: The recommended dose range for patients with coronary artery disease is 5–10 mg once daily. In clinical studies, the majority of patients required 10 mg"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 10,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 10,
+        "max_daily": 10
+      },
+      "dose_text": "5 to 10 mg orally once daily; in clinical studies, the majority of patients required 10 mg once daily."
+    }
+  ],
+  "renal_impairment": {
+    "description": "The pharmacokinetics of amlodipine are not significantly influenced by renal impairment; patients with renal failure may receive the usual initial dose. Not dialyzable.",
+    "renal_basis": {
+      "value": null,
+      "refs": []
+    },
+    "bands": [],
+    "hemodialysis": {
+      "value": "As NORVASC is highly protein bound, hemodialysis is not likely to be of benefit.",
+      "refs": [
+        {
+          "source_id": "fda-amlodipine-label",
+          "locator": "Section 10 OVERDOSAGE",
+          "quote": "As NORVASC is highly protein bound, hemodialysis is not likely to be of benefit."
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-amlodipine-label",
+        "locator": "Section 12.3 Pharmacokinetics",
+        "quote": "The pharmacokinetics of amlodipine are not significantly influenced by renal impairment. Patients with renal failure may therefore receive the usual initial dose."
+      }
+    ]
+  },
+  "renal_basis": {
+    "value": null,
+    "refs": []
+  },
+  "hepatic": {
+    "value": "Start at 2.5 mg once daily in patients with hepatic insufficiency (and use lower 5 mg dose for angina). Patients with hepatic insufficiency have decreased clearance of amlodipine with a resulting increase in AUC of approximately 40–60%.",
+    "refs": [
+      {
+        "source_id": "fda-amlodipine-label",
+        "locator": "Section 2.1 Adults",
+        "quote": "Small, fragile, or elderly patients, or patients with hepatic insufficiency may be started on 2.5 mg once daily"
+      },
+      {
+        "source_id": "fda-amlodipine-label",
+        "locator": "Section 12.3 Pharmacokinetics",
+        "quote": "Elderly patients and patients with hepatic insufficiency have decreased clearance of amlodipine with a resulting increase in AUC of approximately 40–60%, and a lower initial dose may be required."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-amlodipine-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Amlodipine is a dihydropyridine calcium antagonist (calcium ion antagonist or slow‑channel blocker) that inhibits the transmembrane influx of calcium ions into vascular smooth muscle and cardiac muscle."
+      }
+    ],
+    "note": "Calcium channel blockers can rarely exacerbate muscle weakness in myasthenia gravis; not specifically contraindicated in FDA label, use with clinical monitoring."
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "Immediate-release NORVASC tablets (2.5 mg, 5 mg, 10 mg) are non-enteric-coated, non-extended-release tablets; label does not provide dedicated NG tube instructions."
+    },
+    "refs": [
+      {
+        "source_id": "fda-amlodipine-label",
+        "locator": "Section 3 DOSAGE FORMS AND STRENGTHS",
+        "quote": "Tablets: 2.5 mg, 5 mg, and 10 mg"
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": [],
+    "note": "Label notes CYP3A5 genotype status was evaluated with tacrolimus co-administration, but no pharmacogenomic testing is required for amlodipine."
+  },
+  "ae_tags": {
+    "value": [
+      "sedation_somnolence",
+      "extrapyramidal",
+      "hepatotoxicity",
+      "pancreatitis"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-amlodipine-label",
+        "locator": "Section 6 ADVERSE REACTIONS",
+        "quote": "Other adverse experiences not dose related but reported with an incidence >1.0% are fatigue, nausea, abdominal pain, and somnolence."
+      },
+      {
+        "source_id": "fda-amlodipine-label",
+        "locator": "Section 6.2 Postmarketing Experience",
+        "quote": "In postmarketing experience, jaundice and hepatic enzyme elevations (mostly consistent with cholestasis or hepatitis), in some cases severe enough to require hospitalization, have been reported in association with use of amlodipine. Postmarketing reporting has also revealed a possible association between extrapyramidal disorder and amlodipine."
+      },
+      {
+        "source_id": "fda-amlodipine-label",
+        "locator": "Section 6.1 Clinical Trials Experience",
+        "quote": "Gastrointestinal: anorexia, constipation, dysphagia, diarrhea, flatulence, pancreatitis, vomiting, gingival hyperplasia."
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Edema (dose-related, more common in women)",
+        "Dizziness",
+        "Flushing",
+        "Palpitations",
+        "Fatigue",
+        "Nausea and abdominal pain",
+        "Somnolence"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-amlodipine-label",
+          "locator": "Section 6 ADVERSE REACTIONS",
+          "quote": "Most common adverse reaction to amlodipine is edema which occurred in a dose related manner. Other adverse experiences not dose related but reported with an incidence >1.0% are fatigue, nausea, abdominal pain, and somnolence."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Arrhythmia (including ventricular tachycardia and atrial fibrillation) and syncope",
+        "Jaundice and hepatic enzyme elevations (cholestasis or hepatitis, rarely requiring hospitalization)",
+        "Angioedema and erythema multiforme",
+        "Pancreatitis",
+        "Leukopenia and thrombocytopenia",
+        "Extrapyramidal disorder"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-amlodipine-label",
+          "locator": "Section 6.2 Postmarketing Experience",
+          "quote": "In postmarketing experience, jaundice and hepatic enzyme elevations (mostly consistent with cholestasis or hepatitis), in some cases severe enough to require hospitalization, have been reported in association with use of amlodipine."
+        },
+        {
+          "source_id": "fda-amlodipine-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "Cardiovascular: arrhythmia (including ventricular tachycardia and atrial fibrillation), bradycardia, chest pain, peripheral ischemia, syncope, tachycardia, vasculitis."
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Amlodipine is a dihydropyridine calcium antagonist that selectively inhibits the transmembrane influx of calcium ions into vascular smooth muscle and cardiac muscle, with a greater effect on vascular smooth muscle cells. It acts as a peripheral arterial vasodilator to reduce peripheral vascular resistance and blood pressure.",
+    "refs": [
+      {
+        "source_id": "fda-amlodipine-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Amlodipine is a dihydropyridine calcium antagonist (calcium ion antagonist or slow‑channel blocker) that inhibits the transmembrane influx of calcium ions into vascular smooth muscle and cardiac muscle."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp3a4": "inhibitor_weak",
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-amlodipine-label",
+        "locator": "Section 12.3 Pharmacokinetics",
+        "quote": "Amlodipine is a weak inhibitor of CYP3A and may increase exposure to CYP3A substrates."
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Simvastatin",
+        "severity": "major",
+        "effect": "Co-administration of simvastatin with amlodipine increases systemic exposure of simvastatin (77% increase with amlodipine 10 mg + simvastatin 80 mg).",
+        "management": "Limit the dose of simvastatin in patients on amlodipine to 20 mg daily.",
+        "refs": [
+          {
+            "source_id": "fda-amlodipine-label",
+            "locator": "Section 7.2 Impact of Amlodipine on Other Drugs",
+            "quote": "Co-administration of simvastatin with amlodipine increases the systemic exposure of simvastatin. Limit the dose of simvastatin in patients on amlodipine to 20 mg daily"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Immunosuppressants (Cyclosporine, Tacrolimus)",
+        "severity": "major",
+        "effect": "Amlodipine may increase systemic exposure of cyclosporine (average 40% increase in trough levels) or tacrolimus (2.5- to 4-fold increase in CYP3A5 expressers).",
+        "management": "Frequent monitoring of trough blood levels of cyclosporine and tacrolimus is recommended and adjust the dose when appropriate.",
+        "refs": [
+          {
+            "source_id": "fda-amlodipine-label",
+            "locator": "Section 7.2 Impact of Amlodipine on Other Drugs",
+            "quote": "Amlodipine may increase the systemic exposure of cyclosporine or tacrolimus when co-administered. Frequent monitoring of trough blood levels of cyclosporine and tacrolimus is recommended and adjust the dose when appropriate"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "CYP3A Inhibitors (moderate and strong, e.g., diltiazem, itraconazole, clarithromycin)",
+        "severity": "moderate",
+        "effect": "Co-administration with moderate or strong CYP3A inhibitors results in increased systemic exposure to amlodipine (e.g., 60% increase with diltiazem 180 mg daily).",
+        "management": "Monitor for symptoms of hypotension and edema when co-administered with CYP3A inhibitors to determine the need for amlodipine dose reduction.",
+        "refs": [
+          {
+            "source_id": "fda-amlodipine-label",
+            "locator": "Section 7.1 Impact of Other Drugs on Amlodipine",
+            "quote": "Co-administration with CYP3A inhibitors (moderate and strong) results in increased systemic exposure to amlodipine and may require dose reduction. Monitor for symptoms of hypotension and edema when amlodipine is co-administered with CYP3A inhibitors to determine the need for dose adjustment"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "CYP3A Inducers",
+        "severity": "moderate",
+        "effect": "Quantitative effects of CYP3A inducers on amlodipine exposure have not been established.",
+        "management": "Closely monitor blood pressure when amlodipine is co-administered with CYP3A inducers.",
+        "refs": [
+          {
+            "source_id": "fda-amlodipine-label",
+            "locator": "Section 7.1 Impact of Other Drugs on Amlodipine",
+            "quote": "No information is available on the quantitative effects of CYP3A inducers on amlodipine. Blood pressure should be closely monitored when amlodipine is co-administered with CYP3A inducers."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Sildenafil",
+        "severity": "moderate",
+        "effect": "Each agent independently exerts its own blood pressure lowering effect when used in combination.",
+        "management": "Monitor for hypotension when sildenafil is co-administered with amlodipine.",
+        "refs": [
+          {
+            "source_id": "fda-amlodipine-label",
+            "locator": "Section 7.1 Impact of Other Drugs on Amlodipine",
+            "quote": "Monitor for hypotension when sildenafil is co-administered with amlodipine"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-amlodipine-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Do not exceed doses greater than 20 mg daily of simvastatin."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-amlodipine-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "The limited available data based on post-marketing reports with NORVASC use in pregnant women are not sufficient to inform a drug-associated risk for major birth defects and miscarriage. There are risks to the mother and fetus associated with poorly controlled hypertension in pregnancy"
+        }
+      ],
+      "note": "5-axis synthesis: No boxed warning or pregnancy contraindication; limited post-marketing human data are insufficient to inform risk; animal studies showed no teratogenicity at 10-20x MRHD, though rats had decreased litter size (~50%), 5-fold increase in intrauterine deaths, and prolonged gestation/labor at 10x MRHD; untreated hypertension carries maternal/fetal risks."
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": "4.2%",
+      "refs": [
+        {
+          "source_id": "fda-amlodipine-label",
+          "locator": "Section 8.2 Lactation",
+          "quote": "Limited available data from a published clinical lactation study reports that amlodipine is present in human milk at an estimated median relative infant dose of 4.2%."
+        }
+      ]
+    },
+    "lactation_summary": {
+      "value": "Amlodipine is present in human milk at an estimated median relative infant dose of 4.2%; no adverse effects on the breastfed infant have been observed, and no information is available on effects on milk production.",
+      "refs": [
+        {
+          "source_id": "fda-amlodipine-label",
+          "locator": "Section 8.2 Lactation",
+          "quote": "Limited available data from a published clinical lactation study reports that amlodipine is present in human milk at an estimated median relative infant dose of 4.2%. No adverse effects of amlodipine on the breastfed infant have been observed. There is no available information on the effects of amlodipine on milk production."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

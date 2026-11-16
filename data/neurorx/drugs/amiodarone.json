@@ -1,0 +1,464 @@
+{
+  "id": "amiodarone",
+  "generic_name": "amiodarone",
+  "tall_man": {
+    "value": "amiodarone",
+    "refs": [
+      {
+        "source_id": "fda-amiodarone-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "Pacerone (amiodarone hydrochloride tablets, USP) are an antiarrhythmic drug, available for oral administration as 100 mg; peach tablets, 200 mg; pink tablets and 400 mg; white tablets containing amiodarone hydrochloride, USP."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "class III antiarrhythmic",
+    "antiarrhythmic"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "amio-po-loading-adult",
+      "indication": "Life-Threatening Recurrent Ventricular Fibrillation or Hemodynamically Unstable Ventricular Tachycardia - Loading Regimen (Adults)",
+      "setting": "acute_inpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-amiodarone-label",
+          "locator": "Section 1 INDICATIONS AND USAGE",
+          "quote": "Pacerone is indicated for the treatment of documented, life-threatening recurrent ventricular fibrillation and life-threatening recurrent hemodynamically unstable tachycardia in adults who have not responded to adequate doses of other available antiarrhythmics or when alternative agents cannot be tolerated."
+        },
+        {
+          "source_id": "fda-amiodarone-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Initiate treatment with a loading dose of 800 to 1600 mg/day until initial therapeutic response occurs (usually 1 to 3 weeks). Once adequate arrhythmia control is achieved, or if side effects become prominent, reduce Pacerone tablets dose to 600 to 800 mg/day for one month and then to the maintenance dose, usually 400 mg/day."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 800,
+        "unit": "mg",
+        "frequency": "daily (divided doses with meals for >=1000 mg/day) for 1-3 weeks, then 600-800 mg/day for 1 month",
+        "max_single": 1600,
+        "max_daily": 1600
+      },
+      "dose_text": "Initiate in hospital/specialist setting with continuous ECG and resuscitation available. Loading dose: 800 to 1600 mg/day until initial response (usually 1-3 weeks), then 600 to 800 mg/day for 1 month before tapering to maintenance. Divide doses with meals if >= 1000 mg/day or GI intolerance."
+    },
+    {
+      "id": "amio-po-maint-adult",
+      "indication": "Life-Threatening Recurrent Ventricular Fibrillation or Hemodynamically Unstable Ventricular Tachycardia - Maintenance Regimen (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-amiodarone-label",
+          "locator": "Section 2 DOSAGE AND ADMINISTRATION",
+          "quote": "Once adequate arrhythmia control is achieved, or if side effects become prominent, reduce Pacerone tablets dose to 600 to 800 mg/day for one month and then to the maintenance dose, usually 400 mg/day."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 400,
+        "unit": "mg",
+        "frequency": "daily (consistent with regard to meals)",
+        "max_single": 400,
+        "max_daily": 400
+      },
+      "dose_text": "Usual maintenance dose: 400 mg orally daily (use lowest effective dose; administer consistently with regard to meals)."
+    }
+  ],
+  "renal_impairment": {
+    "description": "Renal impairment does not influence the pharmacokinetics of amiodarone or DEA. Neither amiodarone nor DEA is dialyzable.",
+    "renal_basis": {
+      "value": null,
+      "refs": []
+    },
+    "bands": [],
+    "hemodialysis": {
+      "value": "Neither amiodarone nor DEA is dialyzable.",
+      "refs": [
+        {
+          "source_id": "fda-amiodarone-label",
+          "locator": "Section 12.3 Pharmacokinetics",
+          "quote": "Neither amiodarone nor DEA is dialyzable."
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-amiodarone-label",
+        "locator": "Section 12.3 Pharmacokinetics",
+        "quote": "Renal Impairment: Renal impairment does not influence the pharmacokinetics of amiodarone or DEA."
+      }
+    ]
+  },
+  "renal_basis": {
+    "value": null,
+    "refs": []
+  },
+  "hepatic": {
+    "value": "Boxed Warning for potentially fatal hepatotoxicity; obtain baseline and periodic liver transaminases and discontinue or reduce dose if transaminases exceed 3x normal or double in a patient with an elevated baseline. In cirrhotic patients, lower Cmax/average DEA levels are seen while mean amiodarone levels are unchanged.",
+    "refs": [
+      {
+        "source_id": "fda-amiodarone-label",
+        "locator": "BOXED WARNING",
+        "quote": "Pacerone can cause hepatoxicity, which can be fatal. Obtain baseline and periodic liver transaminases and discontinue or reduce dose if the increase exceeds three times normal, or doubles in a patient with an elevated baseline. Discontinue Pacerone if the patient experiences signs or symptoms of clinical liver injury"
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "WARNING: PULMONARY, HEPATIC, and CARDIAC TOXICITY: Intended only for life-threatening arrhythmias; pulmonary toxicity (hypersensitivity or interstitial/alveolar pneumonitis) occurs in up to 17% and is fatal ~10% of the time.",
+      "Hepatotoxicity, which can be fatal; obtain baseline and periodic liver transaminases.",
+      "Proarrhythmic effects: can exacerbate arrhythmias; initiate in a clinical setting with continuous ECG and cardiac resuscitation available."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-amiodarone-label",
+        "locator": "BOXED WARNING",
+        "quote": "WARNING: PULMONARY, HEPATIC and CARDIAC TOXICITY Pacerone is intended for use only in patients with the indicated life-threatening arrhythmias because its use is accompanied by substantial toxicity"
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-amiodarone-label",
+        "locator": "Section 6.2 Post-marketing Experience",
+        "quote": "Musculoskeletal: myopathy, muscle weakness, rhabdomyolysis."
+      }
+    ],
+    "note": "Can cause myopathy, muscle weakness, and demyelinating polyneuropathy; use with caution in myasthenia gravis."
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "Pacerone uncoated immediate-release tablets (100 mg, 200 mg, 400 mg) may be crushed if needed; label does not specify dedicated NG tube instructions."
+    },
+    "refs": [
+      {
+        "source_id": "fda-amiodarone-label",
+        "locator": "Section 3 DOSAGE FORMS AND STRENGTHS",
+        "quote": "Tablets: 100 mg, 200 mg and 400 mg"
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "ataxia",
+      "confusion_delirium",
+      "qt_prolongation",
+      "rash_sjs_ten",
+      "hepatotoxicity",
+      "pancreatitis"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-amiodarone-label",
+        "locator": "Section 6.1 Clinical Trials Experience",
+        "quote": "Neurologic Common: Malaise and fatigue, tremor/abnormal involuntary movements, lack of coordination, abnormal gait/ataxia, dizziness, paresthesias, decreased libido, insomnia, headache, sleep disturbances."
+      },
+      {
+        "source_id": "fda-amiodarone-label",
+        "locator": "Section 6.2 Post-marketing Experience",
+        "quote": "Psychiatric: hallucination, confusional state, disorientation, delirium."
+      },
+      {
+        "source_id": "fda-amiodarone-label",
+        "locator": "Section 6.2 Post-marketing Experience",
+        "quote": "Skin and Subcutaneous Tissue Disorders: urticaria, toxic epidermal necrolysis (sometimes fatal), erythema multiforme, Stevens-Johnson syndrome"
+      },
+      {
+        "source_id": "fda-amiodarone-label",
+        "locator": "Section 6.2 Post-marketing Experience",
+        "quote": "Gastrointestinal: pancreatitis, acute pancreatitis. Hepatic: hepatitis, cholestatic hepatitis, cirrhosis."
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Nausea and vomiting (very common)",
+        "Constipation, anorexia, abdominal pain",
+        "Malaise, fatigue, tremor, ataxia, dizziness, paresthesias",
+        "Hypothyroidism and hyperthyroidism",
+        "Solar dermatitis / photosensitivity",
+        "Abnormal liver-function tests",
+        "Visual disturbances"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-amiodarone-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "At the usual maintenance dose (400 mg/day) and above, amiodarone hydrochloride causes adverse reactions in about three-fourths of all patients, resulting in discontinuation in 7% to 18%."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Pulmonary toxicity (interstitial/alveolar pneumonitis, ARDS, pulmonary fibrosis - fatal ~10%)",
+        "Hepatotoxicity (hepatitis, cholestatic hepatitis, cirrhosis - can be fatal)",
+        "Proarrhythmia (Torsade de Pointes, VT), sinus arrest, AV block, fatal hypotension",
+        "Optic neuropathy / visual loss",
+        "Stevens-Johnson syndrome, toxic epidermal necrolysis (sometimes fatal), DRESS",
+        "Aplastic anemia, agranulocytosis, pancytopenia",
+        "Peripheral neuropathy, parkinsonian symptoms, pseudotumor cerebri"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-amiodarone-label",
+          "locator": "BOXED WARNING",
+          "quote": "Pacerone can cause pulmonary toxicity (hypersensitivity pneumonitis or interstitial/alveolar pneumonitis) that has resulted in clinically manifest disease at rates as high as 17% in some series of patients. Pulmonary toxicity has been fatal about 10% of the time"
+        },
+        {
+          "source_id": "fda-amiodarone-label",
+          "locator": "Section 6.2 Post-marketing Experience",
+          "quote": "Neurologic: pseudotumor cerebri, parkinsonian symptoms such as akinesia and bradykinesia (sometimes reversible with discontinuation of therapy), demyelinating polyneuropathy."
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Amiodarone is a class III antiarrhythmic with electrophysiologic characteristics of all four Vaughan Williams classes: it lengthens cardiac action potential and refractoriness (class III), blocks sodium channels (class I), exerts noncompetitive antisympathetic action (class II), and slows SA/AV nodal conduction (class IV).",
+    "refs": [
+      {
+        "source_id": "fda-amiodarone-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Amiodarone is considered a class III antiarrhythmic drug, but it possesses electrophysiologic characteristics of all four Vaughan Williams classes."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp1a2": "inhibitor_weak",
+      "cyp2c9": "inhibitor_weak",
+      "cyp2c19": "inhibitor_weak",
+      "cyp2d6": "inhibitor_weak",
+      "cyp3a4": "inhibitor_weak",
+      "pgp": "inhibitor",
+      "qt_risk": "known",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-amiodarone-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Amiodarone inhibits P-glycoprotein and CYP1A2, CYP2C9, CYP2D6, and CYP3A, increasing exposure to other drugs."
+      },
+      {
+        "source_id": "fda-amiodarone-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "These electrophysiologic effects are reflected in a decreased sinus rate of 15% to 20%, increased PR and QT intervals of about 10%, the development of U-waves, and changes in T-wave contour."
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "QT Prolonging Drugs (class I/III antiarrhythmics, lithium, phenothiazines, TCAs, fluoroquinolones, macrolides, azoles)",
+        "severity": "contraindicated",
+        "effect": "Increased risk of Torsade de Pointes.",
+        "management": "Avoid concomitant use.",
+        "refs": [
+          {
+            "source_id": "fda-amiodarone-label",
+            "locator": "Section 7 DRUG INTERACTIONS - Table 1",
+            "quote": "QT Prolonging Drugs class I and III antiarrhythmics, lithium, certain phenothiazines, tricyclic antidepressants, certain fluoroquinolone and macrolide antibiotics, azole antifungals, halogenated inhalation anesthetic agents Increased risk of Torsade de Pointes. Avoid concomitant use."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "CYP450 Inhibitors (grapefruit juice, fluoroquinolones, macrolides, azoles, cimetidine, protease inhibitors)",
+        "severity": "contraindicated",
+        "effect": "Increased exposure of amiodarone.",
+        "management": "Avoid concomitant use.",
+        "refs": [
+          {
+            "source_id": "fda-amiodarone-label",
+            "locator": "Section 7 DRUG INTERACTIONS - Table 1",
+            "quote": "CYP450 Inhibitors grapefruit juice, certain fluoroquinolone and macrolide antibiotics, azole antifungals, cimetidine, certain protease inhibitors Increased exposure of amiodarone. Avoid concomitant use."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Warfarin",
+        "severity": "major",
+        "effect": "Potentiates anticoagulant response and can result in serious or fatal bleeding; increases prothrombin time by 100% after 3 to 4 days.",
+        "management": "Reduce warfarin dose by one-third to one-half and monitor prothrombin times.",
+        "refs": [
+          {
+            "source_id": "fda-amiodarone-label",
+            "locator": "Section 7 DRUG INTERACTIONS - Table 1",
+            "quote": "Warfarin Potentiates anticoagulant response and can result in serious or fatal bleeding. Coadministration increases prothrombin time by 100% after 3 to 4 days. Reduce warfarin dose by one-third to one-half and monitor prothrombin times."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Digoxin",
+        "severity": "major",
+        "effect": "Increased digoxin concentration (by 70% after one day).",
+        "management": "Reduce digoxin by half or discontinue; if continued, monitor for evidence of toxicity.",
+        "refs": [
+          {
+            "source_id": "fda-amiodarone-label",
+            "locator": "Section 7 DRUG INTERACTIONS - Table 1",
+            "quote": "Digoxin Increased digoxin concentration. Reduce digoxin by half or discontinue. If continued, monitor for evidence of toxicity."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "HMG-CoA Reductase Inhibitors (simvastatin, lovastatin, atorvastatin)",
+        "severity": "major",
+        "effect": "Increased plasma concentration of HMG-CoA reductase inhibitor.",
+        "management": "Limit simvastatin to 20 mg daily and lovastatin to 40 mg daily; lower starting dose of other CYP3A4 substrates may be required.",
+        "refs": [
+          {
+            "source_id": "fda-amiodarone-label",
+            "locator": "Section 7 DRUG INTERACTIONS - Table 1",
+            "quote": "Limit the dose of lovastatin to 40 mg. Limit the coadministered dose of simvastatin to 20 mg. Lower starting dose of other CYP3A4 substrates may be required."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Sofosbuvir (Hepatitis C Direct Acting Antiviral)",
+        "severity": "major",
+        "effect": "Cases of symptomatic bradyarrhythmia requiring pacemaker insertion have been reported in patients on oral maintenance amiodarone who initiated sofosbuvir.",
+        "management": "Avoid or monitor cardiac rhythm closely if co-administration is unavoidable.",
+        "refs": [
+          {
+            "source_id": "fda-amiodarone-label",
+            "locator": "Section 7 DRUG INTERACTIONS - Table 1",
+            "quote": "Cases of symptomatic bradyarrhythmia requiring pacemaker insertion have been reported in patients on oral maintenance amiodarone who initiated therapy with sofosbuvir."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Phenytoin",
+        "severity": "major",
+        "effect": "Increased steady-state levels of phenytoin.",
+        "management": "Monitor phenytoin levels.",
+        "refs": [
+          {
+            "source_id": "fda-amiodarone-label",
+            "locator": "Section 7 DRUG INTERACTIONS - Table 1",
+            "quote": "Phenytoin Increased steady-state levels of phenytoin. Monitor phenytoin levels."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Cyclosporine",
+        "severity": "major",
+        "effect": "Increased plasma levels of cyclosporine resulting in elevated creatinine despite dose reduction.",
+        "management": "Monitor cyclosporine drug levels and renal function with concomitant use.",
+        "refs": [
+          {
+            "source_id": "fda-amiodarone-label",
+            "locator": "Section 7 DRUG INTERACTIONS - Table 1",
+            "quote": "Cyclosporine Increased plasma levels of cyclosporine have been reported resulting in elevated creatinine, despite reduction of cyclosporine dose. Monitor cyclosporine drug levels and renal function with concomitant use."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Negative Chronotropes (beta-blockers, verapamil, diltiazem, clonidine, ivabradine)",
+        "severity": "major",
+        "effect": "Potentiates electrophysiologic and hemodynamic effects of amiodarone, resulting in bradycardia, sinus arrest, and AV block.",
+        "management": "Monitor heart rate and AV conduction.",
+        "refs": [
+          {
+            "source_id": "fda-amiodarone-label",
+            "locator": "Section 7 DRUG INTERACTIONS - Table 1",
+            "quote": "Negative Chronotropes digoxin, beta blockers, verapamil, diltiazem, clonidine, ivabradine Potentiates the electrophysiologic and hemodynamic effects of amiodarone, resulting in bradycardia, sinus arrest, and AV block. Monitor heart rate."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-amiodarone-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Because of amiodarone's long half-life, expect drug interactions to persist for weeks to months after discontinuation of amiodarone."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "avoid",
+      "refs": [
+        {
+          "source_id": "fda-amiodarone-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "Available data from post-marketing reports and published case series indicate that amiodarone use in pregnant women may increase the risk for fetal adverse effects including neonatal hypo- and hyperthyroidism, neonatal bradycardia, neurodevelopmental abnormalities, preterm birth and fetal growth restriction."
+        }
+      ],
+      "note": "5-axis synthesis: Post-marketing reports and case series show significant fetal toxicity (neonatal hypo/hyperthyroidism, bradycardia, QT prolongation, neurodevelopmental abnormalities, IUGR, preterm birth); animal studies show >90% abortions in rabbits at 2.7x MRHD and fetal toxicity in mice/rats below MRHD; reserve only for refractory life-threatening maternal arrhythmias."
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": "Breakthrough arrhythmias may occur during pregnancy as therapeutic treatment levels may be difficult to maintain due to increased volume of distribution and increased drug metabolism.",
+      "refs": [
+        {
+          "source_id": "fda-amiodarone-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "Breakthrough arrhythmias may also occur during pregnancy, as therapeutic treatment levels may be difficult to maintain due to the increased volume of distribution and increased drug metabolism inherent in the pregnant state."
+        }
+      ]
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": "3.5% to 45%",
+      "refs": [
+        {
+          "source_id": "fda-amiodarone-label",
+          "locator": "Section 8.2 Lactation",
+          "quote": "Amiodarone and one of its major metabolites, DEA, are present in breastmilk at between 3.5% and 45% of the maternal weight-adjusted dosage of amiodarone."
+        }
+      ]
+    },
+    "lactation_summary": {
+      "value": "Amiodarone and DEA are present in breastmilk at 3.5% to 45% of the maternal weight-adjusted dose; cases of hypothyroidism and bradycardia in breastfed infants have been reported. Breastfeeding is not recommended during treatment.",
+      "refs": [
+        {
+          "source_id": "fda-amiodarone-label",
+          "locator": "Section 8.2 Lactation",
+          "quote": "There are cases of hypothyroidism and bradycardia in breastfed infants, although it is unclear if these effects are due to amiodarone exposure in breastmilk. Breastfeeding is not recommended during treatment with Pacerone"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

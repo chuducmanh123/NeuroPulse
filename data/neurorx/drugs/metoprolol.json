@@ -1,0 +1,414 @@
+{
+  "id": "metoprolol",
+  "generic_name": "metoprolol",
+  "tall_man": {
+    "value": "metoprolol",
+    "refs": [
+      {
+        "source_id": "fda-metoprolol-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "Lopressor tablets contain metoprolol tartrate, a selective beta 1 -adrenoreceptor blocking agent."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "beta-1 selective adrenergic receptor blocker",
+    "antihypertensive",
+    "antianginal"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care",
+    "headache"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "meto-po-htn-adult",
+      "indication": "Hypertension (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-metoprolol-label",
+          "locator": "Section 1.1 Hypertension",
+          "quote": "LOPRESSOR is indicated for the treatment of hypertension in adult patients, to lower blood pressure. Lowering blood pressure lowers the risk of fatal and non-fatal cardiovascular events, primarily strokes and myocardial infarctions."
+        },
+        {
+          "source_id": "fda-metoprolol-label",
+          "locator": "Section 2.1 Hypertension",
+          "quote": "The usual initial dosage is 100 mg daily in single or divided doses. Adjust dosage at weekly (or longer) intervals until optimum blood pressure reduction is achieved."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 100,
+        "unit": "mg",
+        "frequency": "daily in single or divided doses",
+        "max_single": 450,
+        "max_daily": 450
+      },
+      "dose_text": "Take with or immediately following meals. Usual initial dosage: 100 mg daily in single or divided doses; effective range 100 mg to 450 mg per day, titrated at weekly or longer intervals."
+    },
+    {
+      "id": "meto-po-angina-adult",
+      "indication": "Angina Pectoris (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-metoprolol-label",
+          "locator": "Section 2.2 Angina Pectoris",
+          "quote": "The usual initial dosage is 100 mg daily, given in two divided doses. Gradually increase the dosage at weekly intervals until optimum clinical response has been obtained or there is a pronounced slowing of the heart rate. The effective dosage range of Lopressor tablets is 100 to 400 mg per day."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 50,
+        "unit": "mg",
+        "frequency": "twice daily",
+        "max_single": 200,
+        "max_daily": 400
+      },
+      "dose_text": "Take with or immediately following meals. Initial dosage: 100 mg daily given in two divided doses (50 mg twice daily); effective range 100 to 400 mg per day. If discontinuing, taper gradually over 1-2 weeks."
+    },
+    {
+      "id": "meto-po-mi-early-adult",
+      "indication": "Acute Myocardial Infarction - Early Oral Phase (Hemodynamically Stable Adults)",
+      "setting": "acute_inpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-metoprolol-label",
+          "locator": "Section 2.3 Myocardial Infarction",
+          "quote": "In patients who tolerate the full intravenous dose, initiate Lopressor tablets, 50 mg every 6 hours, 15 minutes after the last intravenous dose of metoprolol and continue for 48 hours. In the case of intolerance, reduce dose to 25 mg and administer for 48 hours."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 50,
+        "unit": "mg",
+        "frequency": "every 6 hours for 48 hours",
+        "max_single": 50,
+        "max_daily": 200
+      },
+      "dose_text": "In patients who tolerate the full IV dose, initiate 50 mg orally every 6 hours starting 15 minutes after the last IV dose and continue for 48 hours (reduce to 25 mg every 6 hours in case of intolerance)."
+    },
+    {
+      "id": "meto-po-mi-maint-adult",
+      "indication": "Myocardial Infarction - Maintenance Phase (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-metoprolol-label",
+          "locator": "Section 2.3 Myocardial Infarction",
+          "quote": "Titrate, based on tolerability, to a maintenance dosage of 100 mg twice daily. Continue therapy for at least 3 months. Although the efficacy of Lopressor beyond 3 months has not been conclusively established, data from studies with other beta-blockers suggest that treatment should be continued for 1 to 3 years."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 100,
+        "unit": "mg",
+        "frequency": "twice daily",
+        "max_single": 100,
+        "max_daily": 200
+      },
+      "dose_text": "Following the 48-hour early phase, titrate based on tolerability to a maintenance dosage of 100 mg orally twice daily for at least 3 months (1 to 3 years suggested)."
+    }
+  ],
+  "renal_impairment": {
+    "description": "No reduction in dosage is needed in patients with chronic renal failure. Hemodialysis is unlikely to make a useful contribution to metoprolol elimination.",
+    "renal_basis": {
+      "value": null,
+      "refs": []
+    },
+    "bands": [],
+    "hemodialysis": {
+      "value": "Hemodialysis is unlikely to make a useful contribution to metoprolol elimination.",
+      "refs": [
+        {
+          "source_id": "fda-metoprolol-label",
+          "locator": "Section 10 OVERDOSAGE",
+          "quote": "Hemodialysis is unlikely to make a useful contribution to metoprolol elimination"
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-metoprolol-label",
+        "locator": "Section 8.7 Renal Impairment",
+        "quote": "The systemic availability and half-life of metoprolol in patients with renal failure do not differ to a clinically significant degree from those in normal subjects. No reduction in dosage is needed in patients with chronic renal failure"
+      }
+    ]
+  },
+  "renal_basis": {
+    "value": null,
+    "refs": []
+  },
+  "hepatic": {
+    "value": "Metoprolol is primarily eliminated by hepatic metabolism and blood levels are likely to increase substantially with poor hepatic function. Initiate therapy at doses lower than recommended and increase doses gradually while monitoring closely for adverse events.",
+    "refs": [
+      {
+        "source_id": "fda-metoprolol-label",
+        "locator": "Section 8.6 Hepatic Impairment",
+        "quote": "Because LOPRESSOR is metabolized by the liver, metoprolol blood levels are likely to increase substantially with poor hepatic function. Therefore, initiate therapy at doses lower than those recommended for a given indication; and increase doses gradually in patients with impaired hepatic function."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-metoprolol-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Metoprolol is a beta 1 -selective (cardioselective) adrenergic receptor blocking agent. This preferential effect is not absolute, however, and at higher plasma concentrations, metoprolol also inhibits beta 2 -adrenoreceptors, chiefly located in the bronchial and vascular musculature."
+      }
+    ],
+    "note": "Beta-blockers can exacerbate weakness in myasthenia gravis or mask hypoglycemia; use with caution and monitor neuromuscular symptoms."
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "Lopressor immediate-release scored tablets (50 mg and 100 mg) may be crushed if needed; label does not specify dedicated NG tube instructions."
+    },
+    "refs": [
+      {
+        "source_id": "fda-metoprolol-label",
+        "locator": "Section 3 DOSAGE FORMS AND STRENGTHS",
+        "quote": "LOPRESSOR (metoprolol tartrate) tablets: 50 mg and 100 mg."
+      }
+    ]
+  },
+  "pgx": {
+    "value": "CYP2D6: Absent (poor metabolizers) in ~8% of Caucasians and ~2% of most other populations. Poor metabolizers exhibit several-fold higher plasma concentrations (half-life 7-9 hours vs 3-4 hours), decreasing metoprolol's cardioselectivity.",
+    "refs": [
+      {
+        "source_id": "fda-metoprolol-label",
+        "locator": "Section 12.5 Pharmacogenomics",
+        "quote": "CYP2D6 is absent in about 8% of Caucasians (poor metabolizers) and about 2% of most other populations. CYP2D6 can be inhibited by several drugs. Poor metabolizers of CYP2D6 will have increased (several-fold) metoprolol blood levels, decreasing metoprolol's cardioselectivity."
+      }
+    ]
+  },
+  "ae_tags": {
+    "value": [
+      "confusion_delirium",
+      "hepatotoxicity"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-metoprolol-label",
+        "locator": "Section 6.1 Clinical Trials Experience",
+        "quote": "Central Nervous System: Tiredness and dizziness have occurred in about 10% of patients. Depression has been reported in about 5 of 100 patients. Mental confusion and short-term memory loss have been reported."
+      },
+      {
+        "source_id": "fda-metoprolol-label",
+        "locator": "Section 6.2 Post-Marketing Experience",
+        "quote": "Laboratory Findings: Increase in blood triglycerides, elevated transaminase and decrease in High Density Lipoprotein (HDL)"
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Tiredness and dizziness (~10%)",
+        "Depression (~5%)",
+        "Diarrhea (~5%)",
+        "Pruritus or rash (~5%)",
+        "Shortness of breath and bradycardia (~3%)",
+        "Hypotension"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-metoprolol-label",
+          "locator": "Section 6 ADVERSE REACTIONS",
+          "quote": "Most common adverse reactions: tiredness, dizziness, depression, shortness of breath, bradycardia, hypotension, diarrhea, pruritus, rash."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Severe bradycardia, second- or third-degree AV block, and cardiogenic shock",
+        "Worsening heart failure and severe hypotension",
+        "Bronchospasm / wheezing",
+        "Worsening angina or myocardial infarction upon abrupt withdrawal",
+        "Agranulocytosis and thrombocytopenic purpura",
+        "Reversible mental depression progressing to catatonia and acute confusion/disorientation"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-metoprolol-label",
+          "locator": "Section 4 CONTRAINDICATIONS",
+          "quote": "LOPRESSOR is contraindicated in severe bradycardia, second- or third-degree heart block, cardiogenic shock, systolic blood pressure <100, decompensated heart failure, sick sinus syndrome (unless a permanent pacemaker is in place)"
+        },
+        {
+          "source_id": "fda-metoprolol-label",
+          "locator": "Section 6.2 Post-Marketing Experience",
+          "quote": "Central Nervous System: Reversible mental depression progressing to catatonia; an acute reversible syndrome characterized by disorientation for time and place, short-term memory loss, emotional lability, slightly clouded sensorium, and decreased performance on neuropsychometrics."
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Metoprolol is a beta1-selective (cardioselective) adrenergic receptor blocking agent that slows sinus rate and decreases AV nodal conduction; at higher plasma concentrations it also inhibits beta2-adrenoreceptors in bronchial and vascular musculature.",
+    "refs": [
+      {
+        "source_id": "fda-metoprolol-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Metoprolol is a beta 1 -selective (cardioselective) adrenergic receptor blocking agent. This preferential effect is not absolute, however, and at higher plasma concentrations, metoprolol also inhibits beta 2 -adrenoreceptors, chiefly located in the bronchial and vascular musculature."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp2d6": "substrate",
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-metoprolol-label",
+        "locator": "Section 12.3 Pharmacokinetics",
+        "quote": "Metabolism: Lopressor is primarily metabolized by CYP2D6."
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "CYP2D6 Inhibitors (e.g., quinidine, fluoxetine, paroxetine, propafenone)",
+        "severity": "major",
+        "effect": "Strong CYP2D6 inhibitors double metoprolol concentrations (2- to 5-fold increase), decreasing metoprolol's cardioselectivity.",
+        "management": "Monitor patients closely when the combination cannot be avoided.",
+        "refs": [
+          {
+            "source_id": "fda-metoprolol-label",
+            "locator": "Section 7.3 CYP2D6 Inhibitors",
+            "quote": "Drugs that are strong inhibitors of CYP2D6 such as quinidine, fluoxetine, paroxetine, and propafenone were shown to double metoprolol concentrations. While there is no information about moderate or weak inhibitors, these too are likely to increase metoprolol concentration. Increases in plasma concentration decrease the cardioselectivity of metoprolol"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Negative Chronotropes (digitalis glycosides, clonidine, diltiazem, verapamil)",
+        "severity": "major",
+        "effect": "Slow AV conduction and decrease heart rate, increasing risk of bradycardia; beta-blockers may exacerbate rebound hypertension following clonidine withdrawal.",
+        "management": "Monitor heart rate and AV conduction. If discontinuing clonidine, withdraw the beta-blocker several days before gradual withdrawal of clonidine.",
+        "refs": [
+          {
+            "source_id": "fda-metoprolol-label",
+            "locator": "Section 7.4 Negative Chronotropes",
+            "quote": "Digitalis glycosides, clonidine, diltiazem and verapamil slow atrioventricular conduction and decrease heart rate. Concomitant use with beta-blockers can increase the risk of bradycardia. If clonidine and a beta-blocker, such as metoprolol are coadministered, withdraw the beta-blocker several days before the gradual withdrawal of clonidine"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Catecholamine-Depleting Drugs (e.g., reserpine, MAO inhibitors)",
+        "severity": "moderate",
+        "effect": "May have an additive effect when given with beta-blocking agents, causing hypotension or marked bradycardia (vertigo, syncope, postural hypotension).",
+        "management": "Observe patients treated with LOPRESSOR plus a catecholamine depletor for evidence of hypotension or marked bradycardia.",
+        "refs": [
+          {
+            "source_id": "fda-metoprolol-label",
+            "locator": "Section 7.1 Catecholamine Depleting Drugs",
+            "quote": "Catecholamine depleting drugs (e.g., reserpine, monoamine oxidase (MAO) inhibitors) may have an additive effect when given with beta-blocking agents. Observe patients treated with LOPRESSOR plus a catecholamine depletor for evidence of hypotension or marked bradycardia"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Epinephrine",
+        "severity": "moderate",
+        "effect": "Patients with history of severe anaphylactic reactions may be more reactive to repeated challenge and unresponsive to usual doses of epinephrine.",
+        "management": "Anticipate potential reduced responsiveness to standard epinephrine doses during anaphylaxis management.",
+        "refs": [
+          {
+            "source_id": "fda-metoprolol-label",
+            "locator": "Section 7.2 Epinephrine",
+            "quote": "While taking beta-blockers, patients with a history of severe anaphylactic reactions to a variety of allergens may be more reactive to repeated challenge and may be unresponsive to the usual doses of epinephrine used to treat an allergic reaction."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-metoprolol-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "CYP2D6 Inhibitors are likely to increase metoprolol concentration. ( 7.3 ) Concomitant use of glycosides, clonidine, and diltiazem and verapamil with beta-blockers can increase the risk of bradycardia. ( 7.4 )"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-metoprolol-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "Available data from published observational studies have not demonstrated an association of adverse developmental outcomes with maternal use of metoprolol during pregnancy ( see Data). Untreated hypertension and myocardial infarction during pregnancy can lead to adverse outcomes for the mother and the fetus"
+        },
+        {
+          "source_id": "fda-metoprolol-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "Metoprolol crosses the placenta. Neonates born to mothers who are receiving metoprolol during pregnancy, may be at risk for hypotension, hypoglycemia, bradycardia, and respiratory depression. Observe neonates and manage accordingly."
+        }
+      ],
+      "note": "5-axis synthesis: No boxed warning or contraindication; observational studies have not shown major congenital malformations, though methodological limitations prevent excluding risk (inconsistent IUGR/preterm birth findings); crosses placenta with neonatal risk of hypotension, hypoglycemia, bradycardia, and respiratory depression; animal post-implantation loss at 11x MRHD."
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": "0.5% to 2%",
+      "refs": [
+        {
+          "source_id": "fda-metoprolol-label",
+          "locator": "Section 8.2 Lactation",
+          "quote": "The estimated relative infant dosage was 0.5% to 2% of the mother's weight-adjusted dosage"
+        }
+      ]
+    },
+    "lactation_summary": {
+      "value": "Metoprolol is present in human milk (estimated daily infant dose 0.05 to <1 mg; RID 0.5% to 2%); no adverse reactions on breastfed infants have been identified, though infants of slow metabolizer mothers should be monitored for bradycardia and beta-blockade.",
+      "refs": [
+        {
+          "source_id": "fda-metoprolol-label",
+          "locator": "Section 8.2 Lactation",
+          "quote": "Limited available data from published literature report that metoprolol is present in human milk. The estimated daily infant dose of metoprolol received from breastmilk ranges from 0.05 mg to less than 1 mg. The estimated relative infant dosage was 0.5% to 2% of the mother's weight-adjusted dosage"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

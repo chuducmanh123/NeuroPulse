@@ -1,0 +1,455 @@
+{
+  "id": "simvastatin",
+  "generic_name": "simvastatin",
+  "tall_man": {
+    "value": "simvastatin",
+    "refs": [
+      {
+        "source_id": "fda-simvastatin-label",
+        "locator": "1 INDICATIONS AND USAGE",
+        "quote": "ZOCOR is an HMG-CoA reductase inhibitor indicated:"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "HMG-CoA reductase inhibitor (statin)",
+    "lipid-lowering agent"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neuromuscular"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "simva-adult-cv-lipid-po",
+      "indication": "Reduction of Total Mortality / CHD Death / Non-Fatal MI and Stroke Risk, Primary Hyperlipidemia, HeFH, HoFH, Primary Dysbetalipoproteinemia, and Hypertriglyceridemia — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-simvastatin-label",
+          "locator": "2.2 Recommended Dosage in Adult Patients",
+          "quote": "The recommended dosage range of ZOCOR is 20 mg to 40 mg once daily."
+        },
+        {
+          "source_id": "fda-simvastatin-label",
+          "locator": "2.1 Important Dosage and Administration Information",
+          "quote": "Take ZOCOR orally once daily in the evening. The maximum recommended dosage is ZOCOR 40 mg once daily"
+        }
+      ],
+      "dose": null,
+      "dose_text": "20 to 40 mg PO once daily in the evening (maximum recommended dosage 40 mg once daily; 80 mg daily is restricted to patients who have been taking simvastatin 80 mg daily chronically for >= 12 months without evidence of muscle toxicity). Assess LDL-C as early as 4 weeks after initiation."
+    },
+    {
+      "id": "simva-peds-hefh-10yr-plus-po",
+      "indication": "Heterozygous Familial Hypercholesterolemia (HeFH) — Pediatric Patients >= 10 years of age",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-simvastatin-label",
+          "locator": "2.3 Recommended Dosage in Pediatric Patients 10 Years of Age and Older with HeFH",
+          "quote": "The recommended dosage range of ZOCOR is 10 mg to 40 mg daily."
+        }
+      ],
+      "dose": null,
+      "dose_text": "10 to 40 mg PO once daily in the evening."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-simvastatin-label",
+        "locator": "2.4 Recommended Dosage in Patients with Renal Impairment",
+        "quote": "For patients with severe renal impairment [creatinine clearance (CLcr) 15 – 29 mL/min], the recommended starting dosage of simvastatin is 5 mg once daily"
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment recommendations for mild or moderate renal impairment. In severe renal impairment (CLcr 15–29 mL/min), recommended starting dosage is 5 mg once daily; monitor all patients with renal impairment for myopathy.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-simvastatin-label",
+          "locator": "2.4 Recommended Dosage in Patients with Renal Impairment",
+          "quote": "For patients with severe renal impairment [creatinine clearance (CLcr) 15 – 29 mL/min], the recommended starting dosage of simvastatin is 5 mg once daily"
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 30,
+        "max": null,
+        "dose_text": "No dosage adjustment recommendations for mild or moderate renal impairment.",
+        "refs": [
+          {
+            "source_id": "fda-simvastatin-label",
+            "locator": "2.4 Recommended Dosage in Patients with Renal Impairment",
+            "quote": "There are no dosage adjustment recommendations for patients with mild or moderate renal impairment."
+          }
+        ]
+      },
+      {
+        "min": 15,
+        "max": 29,
+        "dose_text": "Recommended starting dosage is simvastatin 5 mg once daily (use another simvastatin product, as ZOCOR 5 mg is no longer marketed).",
+        "dose": {
+          "kind": "fixed",
+          "amount": 5,
+          "unit": "mg",
+          "frequency": "once daily (starting dosage)"
+        },
+        "refs": [
+          {
+            "source_id": "fda-simvastatin-label",
+            "locator": "2.4 Recommended Dosage in Patients with Renal Impairment",
+            "quote": "For patients with severe renal impairment [creatinine clearance (CLcr) 15 – 29 mL/min], the recommended starting dosage of simvastatin is 5 mg once daily [see Warnings and Precautions (5.1) and Use in Specific Populations (8.6) ] . Use another simvastatin product to initiate dosing in such patients"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-simvastatin-label",
+        "locator": "8.6 Renal Impairment",
+        "quote": "Renal impairment is a risk factor for myopathy and rhabdomyolysis. Monitor all patients with renal impairment for development of myopathy. In patients with severe renal impairment (CLcr 15 – 29 mL/min), the recommended starting dosage is simvastatin 5 mg once daily"
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Contraindicated in patients with acute liver failure or decompensated cirrhosis. Persistent increases >3x ULN in serum transaminases occurred in ~1% of patients in clinical trials.",
+    "refs": [
+      {
+        "source_id": "fda-simvastatin-label",
+        "locator": "4 CONTRAINDICATIONS",
+        "quote": "Acute liver failure or decompensated cirrhosis [see Warnings and Precautions (5.3) ] ."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "may_worsen",
+    "refs": [
+      {
+        "source_id": "fda-simvastatin-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "There have been rare reports of new-onset or exacerbation of myasthenia gravis, including ocular myasthenia, and reports of recurrence when the same or a different statin was administered."
+      }
+    ],
+    "note": "Postmarketing reports of new-onset or exacerbation of myasthenia gravis (including ocular myasthenia) and recurrence on rechallenge."
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "No NG tube or crushing instructions provided in FDA label."
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "hepatotoxicity",
+      "confusion_delirium",
+      "psychiatric_behavioral",
+      "rash_sjs_ten",
+      "pancreatitis"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-simvastatin-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "Nervous System Disorders: dizziness, depression, paresthesia, peripheral neuropathy. Rare reports of cognitive impairment (e.g., memory loss, forgetfulness, amnesia, memory impairment, confusion) associated with statin use."
+      },
+      {
+        "source_id": "fda-simvastatin-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "Hepatic and Pancreatic Disorders: hepatitis/jaundice, fatal and non-fatal hepatic failure"
+      },
+      {
+        "source_id": "fda-simvastatin-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "Skin and Subcutaneous Tissue Disorders: pruritus, alopecia, a variety of skin changes (e.g., nodules, discoloration, dryness of skin/mucous membranes, changes to hair/nails), purpura, lichen planus, urticaria, photosensitivity, flushing, toxic epidermal necrolysis, erythema multiforme, including Stevens-Johnson syndrome"
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Upper respiratory infections (9%)",
+        "Headache (7%)",
+        "Abdominal pain (7%)",
+        "Constipation (7%)",
+        "Nausea (5%)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-simvastatin-label",
+          "locator": "6.1 Clinical Trials Experience",
+          "quote": "The most commonly reported adverse reactions (incidence ≥5%) in these ZOCOR clinical studies were: upper respiratory infections (9%), headache (7%), abdominal pain (7%), constipation (7%), and nausea (5%)."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Myopathy and rhabdomyolysis (higher risk at 80 mg/day and in Chinese patients)",
+        "Immune-mediated necrotizing myopathy (IMNM)",
+        "Hepatic dysfunction (hepatitis/jaundice, fatal and non-fatal hepatic failure)",
+        "Increases in HbA1c and fasting serum glucose / diabetes mellitus",
+        "New-onset or exacerbation of myasthenia gravis",
+        "Peripheral neuropathy and reversible cognitive impairment",
+        "Anaphylaxis, angioedema, and Stevens-Johnson syndrome / TEN",
+        "Pancreatitis and interstitial lung disease"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-simvastatin-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "The following important adverse reactions are described below and elsewhere in the labeling: Myopathy and Rhabdomyolysis [see Warnings and Precautions (5.1) ] Immune-Mediated Necrotizing Myopathy [see Warnings and Precautions (5.2) ] Hepatic Dysfunction [see Warnings and Precautions (5.3) ]"
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Prodrug hydrolyzed to active beta-hydroxyacid form (simvastatin acid), which inhibits HMG-CoA reductase (rate-limiting enzyme converting HMG-CoA to mevalonate), accelerating hepatic LDL-receptor expression and lowering plasma LDL-C and VLDL.",
+    "refs": [
+      {
+        "source_id": "fda-simvastatin-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "Simvastatin is a prodrug and is hydrolyzed to its active β-hydroxyacid form, simvastatin acid, after administration. Simvastatin acid and its metabolites are inhibitors of HMG-CoA reductase, the rate-limiting enzyme that converts HMG-CoA to mevalonate, a precursor of cholesterol."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp3a4": "substrate"
+    },
+    "refs": [
+      {
+        "source_id": "fda-simvastatin-label",
+        "locator": "7.1 Drug Interactions that Increase the Risk of Myopathy and Rhabdomyolysis",
+        "quote": "ZOCOR is a substrate of CYP3A4 and of the transport protein OATP1B1. ZOCOR exposure can be significantly increased with concomitant administration of inhibitors of CYP3A4 and OATP1B1."
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Strong CYP3A4 Inhibitors (itraconazole, ketoconazole, posaconazole, voriconazole, erythromycin, clarithromycin, HIV/HCV protease inhibitors, cobicistat, nefazodone)",
+        "severity": "contraindicated",
+        "effect": "Markedly increases simvastatin exposure (up to >10-fold), increasing risk of myopathy and rhabdomyolysis.",
+        "management": "Concomitant use is contraindicated; if strong CYP3A4 inhibitor treatment is unavoidable, suspend ZOCOR during the course.",
+        "refs": [
+          {
+            "source_id": "fda-simvastatin-label",
+            "locator": "7.1 Drug Interactions - Table 2",
+            "quote": "Intervention: Concomitant use of strong CYP3A4 inhibitors with ZOCOR is contraindicated [see Contraindications (4) ] . If treatment with a CYP3A4 inhibitor is unavoidable, suspend ZOCOR during the course of strong CYP3A4 inhibitor treatment."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Cyclosporine, Danazol, or Gemfibrozil",
+        "severity": "contraindicated",
+        "effect": "Increases risk of myopathy and rhabdomyolysis.",
+        "management": "Concomitant use of cyclosporine, danazol, or gemfibrozil with ZOCOR is contraindicated.",
+        "refs": [
+          {
+            "source_id": "fda-simvastatin-label",
+            "locator": "7.1 Drug Interactions - Table 2",
+            "quote": "Intervention: Concomitant use of cyclosporine, danazol, or gemfibrozil with ZOCOR is contraindicated [see Contraindications (4) ] ."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Verapamil, Diltiazem, or Dronedarone",
+        "severity": "major",
+        "effect": "Increases simvastatin exposure and risk of myopathy and rhabdomyolysis.",
+        "management": "Do not exceed ZOCOR 10 mg daily.",
+        "refs": [
+          {
+            "source_id": "fda-simvastatin-label",
+            "locator": "7.1 Drug Interactions - Table 2",
+            "quote": "Intervention: For patients taking verapamil, diltiazem, or dronedarone, do not exceed ZOCOR 10 mg daily."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Amiodarone, Amlodipine, or Ranolazine",
+        "severity": "major",
+        "effect": "Increases simvastatin exposure and risk of myopathy and rhabdomyolysis.",
+        "management": "Do not exceed ZOCOR 20 mg daily.",
+        "refs": [
+          {
+            "source_id": "fda-simvastatin-label",
+            "locator": "7.1 Drug Interactions - Table 2",
+            "quote": "For patients taking amiodarone, amlodipine, or ranolazine, do not exceed ZOCOR 20 mg daily [see Dosage and Administration (2.5) ] ."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Lomitapide",
+        "severity": "major",
+        "effect": "Simvastatin exposure is approximately doubled, increasing risk of myopathy and rhabdomyolysis.",
+        "management": "Reduce ZOCOR dose by 50% when initiating lomitapide; do not exceed 20 mg daily (or 40 mg daily for patients chronically on 80 mg).",
+        "refs": [
+          {
+            "source_id": "fda-simvastatin-label",
+            "locator": "7.1 Drug Interactions - Table 2",
+            "quote": "Intervention: Reduce the dose of ZOCOR by 50% if initiating lomitapide. Do not exceed ZOCOR 20 mg daily (or ZOCOR 40 mg daily for patients who have previously taken an 80 mg daily dosage of ZOCOR chronically)"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Daptomycin",
+        "severity": "major",
+        "effect": "Cases of rhabdomyolysis reported when simvastatin was administered with daptomycin.",
+        "management": "If treatment with daptomycin is required, consider temporarily suspending ZOCOR during daptomycin treatment.",
+        "refs": [
+          {
+            "source_id": "fda-simvastatin-label",
+            "locator": "7.1 Drug Interactions - Table 2",
+            "quote": "Intervention: If treatment with daptomycin is required, consider temporarily suspending ZOCOR during the course of daptomycin treatment."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Grapefruit Juice",
+        "severity": "major",
+        "effect": "Grapefruit juice can raise plasma levels of simvastatin (up to 7-16 fold at high dose) and increase risk of myopathy and rhabdomyolysis.",
+        "management": "Avoid grapefruit juice when taking ZOCOR.",
+        "refs": [
+          {
+            "source_id": "fda-simvastatin-label",
+            "locator": "7.1 Drug Interactions - Table 2",
+            "quote": "Grapefruit Juice Clinical Impact: Grapefruit juice can raise the plasma levels of simvastatin and may increase the risk of myopathy and rhabdomyolysis. Intervention: Avoid grapefruit juice when taking ZOCOR."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Niacin (>= 1 g/day)",
+        "severity": "major",
+        "effect": "Cases of myopathy and rhabdomyolysis observed with lipid-modifying dosages of niacin; higher risk in Chinese patients (1.24% myopathy).",
+        "management": "Not recommended in Chinese patients; in non-Chinese patients, weigh benefit vs risk and monitor for myopathy.",
+        "refs": [
+          {
+            "source_id": "fda-simvastatin-label",
+            "locator": "7.1 Drug Interactions - Table 2",
+            "quote": "Cases of myopathy and rhabdomyolysis have been observed with concomitant use of lipid modifying dosages of niacin-containing products (≥1 gram/day niacin) with ZOCOR. The risk of myopathy is greater in Chinese patients."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Fibrates (other than Gemfibrozil) or Colchicine",
+        "severity": "moderate",
+        "effect": "Increased risk of myopathy and rhabdomyolysis.",
+        "management": "Weigh benefit vs risk; monitor for signs and symptoms of myopathy, especially during initiation and upward dose titration.",
+        "refs": [
+          {
+            "source_id": "fda-simvastatin-label",
+            "locator": "7.1 Drug Interactions - Table 2",
+            "quote": "Colchicine Clinical Impact: Cases of myopathy and rhabdomyolysis have been reported with concomitant use of colchicine with ZOCOR. Intervention: Consider if the benefit of using colchicine concomitantly with ZOCOR outweighs the increased risk of myopathy and rhabdomyolysis."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Coumarin Anticoagulants (Warfarin)",
+        "severity": "moderate",
+        "effect": "May potentiate anticoagulant effect and increase INR; bleeding reported.",
+        "management": "Obtain INR before starting ZOCOR and monitor INR frequently after initiation, dose titration, or discontinuation until stable.",
+        "refs": [
+          {
+            "source_id": "fda-simvastatin-label",
+            "locator": "7.2 ZOCOR Effects on Other Drugs - Table 3",
+            "quote": "Intervention: In patients taking coumarin anticoagulants, obtain an INR before starting ZOCOR and frequently enough after initiation, dose titration, or discontinuation to ensure that no significant alteration in INR occurs."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Digoxin",
+        "severity": "moderate",
+        "effect": "Concomitant use may result in elevated plasma digoxin concentrations.",
+        "management": "Monitor digoxin levels when ZOCOR is initiated.",
+        "refs": [
+          {
+            "source_id": "fda-simvastatin-label",
+            "locator": "7.2 ZOCOR Effects on Other Drugs - Table 3",
+            "quote": "Digoxin Clinical Impact: Concomitant use of digoxin with ZOCOR may result in elevated plasma digoxin concentrations [see Clinical Pharmacology (12.3) ] . Intervention: Monitor digoxin levels in patients taking digoxin when ZOCOR is initiated."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-simvastatin-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "See full prescribing information for details regarding concomitant use of ZOCOR with other drugs or grapefruit juice that increase the risk of myopathy and rhabdomyolysis. ( 2.5 , 7.1 )"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "avoid",
+      "note": "PLLR Pregnancy section explicitly states 'Discontinue ZOCOR when pregnancy is recognized' because simvastatin decreases synthesis of cholesterol and biologically active cholesterol derivatives and may cause fetal harm, while hyperlipidemia treatment is generally unnecessary during pregnancy.",
+      "refs": [
+        {
+          "source_id": "fda-simvastatin-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "Discontinue ZOCOR when pregnancy is recognized. Alternatively, consider the ongoing therapeutic needs of the individual patient. ZOCOR decreases synthesis of cholesterol and possibly other biologically active substances derived from cholesterol; therefore, ZOCOR may cause fetal harm when administered to pregnant patients based on the mechanism of action"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "No data on presence in human milk, though another statin passes into human milk; because of potential for serious adverse reactions in a breastfed infant from decreased cholesterol synthesis, breastfeeding is not recommended during treatment.",
+      "refs": [
+        {
+          "source_id": "fda-simvastatin-label",
+          "locator": "8.2 Lactation",
+          "quote": "Because of the potential for serious adverse reactions in a breastfed infant, based on the mechanism of action, advise patients that breastfeeding is not recommended during treatment with ZOCOR"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

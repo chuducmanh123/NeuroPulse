@@ -1,0 +1,437 @@
+{
+  "id": "losartan",
+  "generic_name": "losartan",
+  "tall_man": {
+    "value": "losartan",
+    "refs": [
+      {
+        "source_id": "fda-losartan-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "COZAAR (losartan potassium) is an angiotensin II receptor blocker acting on the AT 1 receptor subtype."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "angiotensin II receptor blocker (ARB)",
+    "antihypertensive"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "losar-po-htn-adult",
+      "indication": "Hypertension (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-losartan-label",
+          "locator": "Section 1.1 Hypertension",
+          "quote": "COZAAR ® is indicated for the treatment of hypertension in adults and pediatric patients 6 years of age and older, to lower blood pressure. Lowering blood pressure lowers the risk of fatal and nonfatal cardiovascular (CV) events, primarily strokes and myocardial infarction."
+        },
+        {
+          "source_id": "fda-losartan-label",
+          "locator": "Section 2.1 Hypertension",
+          "quote": "The usual starting dose of COZAAR is 50 mg once daily. The dosage can be increased to a maximum dose of 100 mg once daily as needed to control blood pressure"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 50,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 100,
+        "max_daily": 100
+      },
+      "dose_text": "Usual starting dose: 50 mg orally once daily; may increase to maximum 100 mg once daily. A starting dose of 25 mg once daily is recommended for patients with possible intravascular depletion (e.g., on diuretic therapy) or mild-to-moderate hepatic impairment."
+    },
+    {
+      "id": "losar-po-htn-pediatric",
+      "indication": "Hypertension (Pediatric Patients >= 6 Years with eGFR >= 30 mL/min/1.73m2)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-losartan-label",
+          "locator": "Section 2.1 Hypertension",
+          "quote": "The usual recommended starting dose is 0.7 mg per kg once daily (up to 50 mg total) administered as a tablet or a suspension [see Dosage and Administration (2.5) ] . Dosage should be adjusted according to blood pressure response. Doses above 1.4 mg per kg (or in excess of 100 mg) daily have not been studied in pediatric patients"
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 0.7,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 100,
+        "max_daily": 100
+      },
+      "dose_text": "0.7 mg/kg once daily (up to 50 mg total) as tablet or compounded suspension; adjust according to BP response (doses >1.4 mg/kg or >100 mg daily not studied). Not recommended in pediatric patients <6 years or eGFR <30 mL/min/1.73m2."
+    },
+    {
+      "id": "losar-po-lvh-stroke-adult",
+      "indication": "Reduction of Risk of Stroke in Hypertensive Patients with Left Ventricular Hypertrophy (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-losartan-label",
+          "locator": "Section 1.2 Hypertensive Patients with Left Ventricular Hypertrophy",
+          "quote": "COZAAR is indicated to reduce the risk of stroke in patients with hypertension and left ventricular hypertrophy, but there is evidence that this benefit does not apply to Black patients"
+        },
+        {
+          "source_id": "fda-losartan-label",
+          "locator": "Section 2.2 Hypertensive Patients with Left Ventricular Hypertrophy",
+          "quote": "The usual starting dose is 50 mg of COZAAR once daily. Hydrochlorothiazide 12.5 mg daily should be added and/or the dose of COZAAR should be increased to 100 mg once daily followed by an increase in hydrochlorothiazide to 25 mg once daily based on blood pressure response"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 50,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 100,
+        "max_daily": 100
+      },
+      "dose_text": "Starting dose: 50 mg orally once daily. Add hydrochlorothiazide 12.5 mg daily and/or increase losartan to 100 mg once daily (then HCTZ 25 mg daily) based on blood pressure response."
+    },
+    {
+      "id": "losar-po-diabetic-nephropathy-adult",
+      "indication": "Nephropathy in Type 2 Diabetic Patients with Hypertension and Proteinuria",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-losartan-label",
+          "locator": "Section 2.3 Nephropathy in Type 2 Diabetic Patients",
+          "quote": "The usual starting dose is 50 mg once daily. The dose should be increased to 100 mg once daily based on blood pressure response"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 50,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 100,
+        "max_daily": 100
+      },
+      "dose_text": "Starting dose: 50 mg orally once daily; increase to 100 mg once daily based on blood pressure response."
+    }
+  ],
+  "renal_impairment": {
+    "description": "No dose adjustment is necessary in patients with renal impairment unless the patient is also volume depleted. Neither losartan nor its active metabolite can be removed by hemodialysis.",
+    "renal_basis": {
+      "value": null,
+      "refs": []
+    },
+    "bands": [],
+    "hemodialysis": {
+      "value": "Neither losartan nor its active metabolite can be removed by hemodialysis.",
+      "refs": [
+        {
+          "source_id": "fda-losartan-label",
+          "locator": "Section 10 OVERDOSAGE",
+          "quote": "Neither losartan nor its active metabolite can be removed by hemodialysis."
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-losartan-label",
+        "locator": "Section 8.7 Renal Impairment",
+        "quote": "No dose adjustment is necessary in patients with renal impairment unless a patient with renal impairment is also volume depleted"
+      }
+    ]
+  },
+  "renal_basis": {
+    "value": null,
+    "refs": []
+  },
+  "hepatic": {
+    "value": "In patients with mild-to-moderate hepatic impairment, the recommended starting dose is 25 mg once daily (plasma concentrations of losartan and active metabolite were 5x and 1.7x higher). Not studied in severe hepatic impairment.",
+    "refs": [
+      {
+        "source_id": "fda-losartan-label",
+        "locator": "Section 2.4 Dosage Modifications in Patients with Hepatic Impairment",
+        "quote": "In patients with mild-to-moderate hepatic impairment the recommended starting dose of COZAAR is 25 mg once daily. COZAAR has not been studied in patients with severe hepatic impairment"
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "WARNING: FETAL TOXICITY: When pregnancy is detected, discontinue COZAAR as soon as possible. Drugs that act directly on the renin-angiotensin system can cause injury and death to the developing fetus."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-losartan-label",
+        "locator": "BOXED WARNING",
+        "quote": "WARNING: FETAL TOXICITY When pregnancy is detected, discontinue COZAAR as soon as possible. Drugs that act directly on the renin-angiotensin system can cause injury and death to the developing fetus [see Warnings and Precautions (5.1) ] ."
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-losartan-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Losartan and its principal active metabolite block the vasoconstrictor and aldosterone-secreting effects of angiotensin II by selectively blocking the binding of angiotensin II to the AT 1 receptor found in many tissues, (e.g., vascular smooth muscle, adrenal gland)."
+      }
+    ],
+    "note": "ARBs do not impair neuromuscular transmission and are generally considered safe in myasthenia gravis."
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "COZAAR film-coated tablets can be dispersed in water/Ora-Plus/Ora-Sweet SF to prepare a 2.5 mg/mL oral suspension per Section 2.5, suitable for enteral administration."
+    },
+    "refs": [
+      {
+        "source_id": "fda-losartan-label",
+        "locator": "Section 2.5 Preparation of Suspension (for 200 mL of a 2.5 mg/mL suspension)",
+        "quote": "Add 10 mL of Purified Water USP to an 8 ounce (240 mL) amber polyethylene terephthalate (PET) bottle containing ten 50 mg COZAAR tablets. Immediately shake for at least 2 minutes. Let the concentrate stand for 1 hour and then shake for 1 minute to disperse the tablet contents."
+      }
+    ]
+  },
+  "pgx": {
+    "value": "CYP2C9: Subjects with a specific rare defect in CYP2C9 do not metabolize losartan to its active carboxylic acid metabolite, which is responsible for most of its AT1 receptor antagonism.",
+    "refs": [
+      {
+        "source_id": "fda-losartan-label",
+        "locator": "Section 12.3 Pharmacokinetics",
+        "quote": "Subjects who do not metabolize losartan to active metabolite have been shown to have a specific, rare defect in cytochrome P450 2C9. These data suggest that the conversion of losartan to its active metabolite is mediated primarily by P450 2C9 and not P450 3A4."
+      }
+    ]
+  },
+  "ae_tags": {
+    "value": [
+      "hyponatremia",
+      "sedation_somnolence",
+      "hepatotoxicity"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-losartan-label",
+        "locator": "Section 6.2 Postmarketing Experience",
+        "quote": "Metabolic and Nutrition: Hyponatremia."
+      },
+      {
+        "source_id": "fda-losartan-label",
+        "locator": "Section 6.1 Clinical Trials Experience",
+        "quote": "Nervous system disorders: Somnolence, headache, sleep disorders, paresthesia, migraine."
+      },
+      {
+        "source_id": "fda-losartan-label",
+        "locator": "Section 6.2 Postmarketing Experience",
+        "quote": "Digestive: Hepatitis."
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Upper respiratory infection",
+        "Dizziness",
+        "Nasal congestion",
+        "Back pain"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-losartan-label",
+          "locator": "Section 6 ADVERSE REACTIONS",
+          "quote": "Most common adverse reactions (incidence ≥2% and greater than placebo) are: dizziness, upper respiratory infection, nasal congestion, and back pain."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Fetal toxicity (oligohydramnios, fetal renal failure, skull hypoplasia, death)",
+        "Angioedema and anaphylactic reactions",
+        "Hypotension and orthostatic hypotension",
+        "Hyperkalemia and hyponatremia",
+        "Rhabdomyolysis",
+        "Hepatitis and thrombocytopenia"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-losartan-label",
+          "locator": "Section 6.2 Postmarketing Experience",
+          "quote": "Musculoskeletal: Rhabdomyolysis."
+        },
+        {
+          "source_id": "fda-losartan-label",
+          "locator": "Section 6.2 Postmarketing Experience",
+          "quote": "Hypersensitivity: Angioedema, including swelling of the larynx and glottis, causing airway obstruction and/or swelling of the face, lips, pharynx, tongue, and/or swelling of the intestine has been reported"
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Losartan and its principal active carboxylic acid metabolite selectively block the binding of angiotensin II to the AT1 receptor in vascular smooth muscle and the adrenal gland, blocking the vasoconstrictor and aldosterone-secreting effects of angiotensin II.",
+    "refs": [
+      {
+        "source_id": "fda-losartan-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Losartan and its principal active metabolite block the vasoconstrictor and aldosterone-secreting effects of angiotensin II by selectively blocking the binding of angiotensin II to the AT 1 receptor found in many tissues, (e.g., vascular smooth muscle, adrenal gland)."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp2c9": "substrate",
+      "cyp3a4": "substrate",
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-losartan-label",
+        "locator": "Section 12.3 Pharmacokinetics",
+        "quote": "In vitro studies indicate that cytochrome P450 2C9 and 3A4 are involved in the biotransformation of losartan to its metabolites."
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Aliskiren and Dual RAS Blockade (ACE inhibitors, ARBs, aliskiren)",
+        "severity": "contraindicated",
+        "effect": "Dual blockade of the RAS is associated with increased risks of hypotension, syncope, hyperkalemia, and changes in renal function (including acute renal failure).",
+        "management": "Do not coadminister aliskiren with COZAAR in patients with diabetes; avoid aliskiren in patients with GFR < 60 mL/min. In general, avoid combined use of RAS inhibitors.",
+        "refs": [
+          {
+            "source_id": "fda-losartan-label",
+            "locator": "Section 7.4 Dual Blockade of the Renin-Angiotensin System (RAS)",
+            "quote": "In general, avoid combined use of RAS inhibitors. Closely monitor blood pressure, renal function, and electrolytes in patients on COZAAR and other agents that affect the RAS. Do not coadminister aliskiren with COZAAR in patients with diabetes. Avoid use of aliskiren with COZAAR in patients with renal impairment (GFR <60 mL/min)."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Agents Increasing Serum Potassium",
+        "severity": "major",
+        "effect": "Coadministration of losartan with other drugs that raise serum potassium levels may result in hyperkalemia.",
+        "management": "Monitor serum potassium in patients receiving concomitant potassium-raising drugs.",
+        "refs": [
+          {
+            "source_id": "fda-losartan-label",
+            "locator": "Section 7.1 Agents Increasing Serum Potassium",
+            "quote": "Coadministration of losartan with other drugs that raise serum potassium levels may result in hyperkalemia. Monitor serum potassium in such patients."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Lithium",
+        "severity": "major",
+        "effect": "Increases in serum lithium concentrations and lithium toxicity have been reported during concomitant administration with ARBs.",
+        "management": "Monitor serum lithium levels during concomitant use.",
+        "refs": [
+          {
+            "source_id": "fda-losartan-label",
+            "locator": "Section 7.2 Lithium",
+            "quote": "Increases in serum lithium concentrations and lithium toxicity have been reported during concomitant administration of lithium with angiotensin II receptor antagonists. Monitor serum lithium levels during concomitant use."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "NSAIDs (including selective COX-2 inhibitors)",
+        "severity": "major",
+        "effect": "May result in deterioration of renal function including possible acute renal failure (especially in elderly, volume-depleted, or renal-impaired patients) and attenuate antihypertensive effect.",
+        "management": "Monitor renal function periodically in patients receiving losartan and NSAID therapy.",
+        "refs": [
+          {
+            "source_id": "fda-losartan-label",
+            "locator": "Section 7.3 Non-Steroidal Anti-Inflammatory Drugs (NSAIDs) Including Selective Cyclooxygenase-2 Inhibitors (COX-2 Inhibitors)",
+            "quote": "In patients who are elderly, volume-depleted (including those on diuretic therapy), or with compromised renal function, coadministration of NSAIDs, including selective COX-2 inhibitors, with angiotensin II receptor antagonists (including losartan) may result in deterioration of renal function, including possible acute renal failure."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "CYP2C9 Inhibitors (Fluconazole) and Inducers (Rifampin)",
+        "severity": "moderate",
+        "effect": "Fluconazole decreased AUC of active metabolite by ~40% and increased losartan AUC by ~70%; rifampin decreased AUC of losartan and active metabolite by 30% and 40%, respectively.",
+        "management": "Monitor antihypertensive response when co-administering with strong CYP2C9 inhibitors or rifampin.",
+        "refs": [
+          {
+            "source_id": "fda-losartan-label",
+            "locator": "Section 12.3 Pharmacokinetics - Drug Interactions",
+            "quote": "However, rifampin has been shown to decrease the AUC of losartan and its active metabolite by 30% and 40%, respectively. Fluconazole, an inhibitor of cytochrome P450 2C9, decreased the AUC of the active metabolite by approximately 40%, but increased the AUC of losartan by approximately 70% following multiple doses."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-losartan-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Agents Increasing Serum Potassium: Risk of hyperkalemia. ( 7.1 ) Lithium: Risk of lithium toxicity. ( 7.2 ) NSAIDs: Increased risk of renal impairment and reduced diuretic, natriuretic, and antihypertensive effects. ( 7.3 )"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "avoid",
+      "refs": [
+        {
+          "source_id": "fda-losartan-label",
+          "locator": "BOXED WARNING",
+          "quote": "WARNING: FETAL TOXICITY When pregnancy is detected, discontinue COZAAR as soon as possible. Drugs that act directly on the renin-angiotensin system can cause injury and death to the developing fetus"
+        },
+        {
+          "source_id": "fda-losartan-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "Oligohydramnios in pregnant women who use drugs affecting the renin-angiotensin system in the second and third trimesters of pregnancy can result in the following: reduced fetal renal function leading to anuria and renal failure, fetal lung hypoplasia, skeletal deformations, including skull hypoplasia, hypotension, and death."
+        }
+      ],
+      "note": "5-axis synthesis: Boxed Warning for fetal toxicity requiring immediate discontinuation upon pregnancy detection; 2nd/3rd trimester RAS blockade causes oligohydramnios, fetal renal failure, skull/lung hypoplasia, and neonatal death."
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "It is not known whether losartan is excreted in human milk, but significant levels of losartan and its active metabolite are present in rat milk. Decide whether to discontinue nursing or discontinue the drug due to potential for adverse effects on the nursing infant.",
+      "refs": [
+        {
+          "source_id": "fda-losartan-label",
+          "locator": "Section 8.2 Lactation",
+          "quote": "It is not known whether losartan is excreted in human milk, but significant levels of losartan and its active metabolite were shown to be present in rat milk. Because of the potential for adverse effects on the nursing infant, a decision should be made whether to discontinue nursing or discontinue the drug, taking into account the importance of the drug to the mother."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

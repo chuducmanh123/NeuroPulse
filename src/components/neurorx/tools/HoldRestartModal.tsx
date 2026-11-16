@@ -80,11 +80,11 @@ export function HoldRestartModal({
               <Clock className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-base sm:text-lg font-black tracking-tight">
+              <h3 className="text-base sm:text-lg font-bold tracking-tight">
                 ⏱️ Hold / Restart Antithrombotic Compass
               </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                Per-source procedural interruption protocols for <strong>{displayName}</strong>
+                Per-source procedural interruption protocols for <strong className="font-semibold text-slate-700 dark:text-slate-200">{displayName}</strong>
                 {renal?.crcl !== undefined && (
                   <span className="ml-1 text-indigo-600 dark:text-indigo-400 font-semibold">
                     (Patient CrCl: {renal.crcl.toFixed(1)} mL/min)
@@ -104,8 +104,8 @@ export function HoldRestartModal({
         </div>
 
         {/* Procedure Selector Toggle */}
-        <div className="mb-5 flex items-center gap-2">
-          <span className="text-xs font-bold text-slate-700 dark:text-slate-300">
+        <div className="mb-5 flex flex-wrap items-center gap-2">
+          <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">
             Procedure Type:
           </span>
           <div
@@ -115,7 +115,7 @@ export function HoldRestartModal({
           >
             <button
               onClick={() => setProcedure("lumbar_puncture")}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                 procedure === "lumbar_puncture"
                   ? darkMode
                     ? "bg-sky-900/60 text-sky-300 shadow-sm"
@@ -127,7 +127,7 @@ export function HoldRestartModal({
             </button>
             <button
               onClick={() => setProcedure("neurosurgery")}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                 procedure === "neurosurgery"
                   ? darkMode
                     ? "bg-sky-900/60 text-sky-300 shadow-sm"
@@ -170,7 +170,7 @@ export function HoldRestartModal({
                   }`}
                 >
                   <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-200/60 dark:border-slate-800/60">
-                    <div className="font-bold text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                    <div className="font-semibold text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400">
                       Source: {title}
                     </div>
                     {sourceEntries[0]?.refs && (
@@ -198,31 +198,31 @@ export function HoldRestartModal({
                         }`}
                       >
                         <div className="flex items-start justify-between gap-2 mb-2.5">
-                          <span className="font-extrabold text-sm sm:text-base text-slate-900 dark:text-slate-100">
+                          <span className="font-bold text-sm sm:text-base text-slate-900 dark:text-slate-100 leading-snug">
                             {item.procedure_label}
                           </span>
                           {item.crcl_matched && (
-                            <span className="text-xs px-2.5 py-0.5 rounded-full font-bold bg-sky-500/15 text-sky-700 dark:text-sky-300 border border-sky-500/30">
+                            <span className="text-xs px-2.5 py-0.5 rounded-full font-semibold shrink-0 bg-sky-500/15 text-sky-700 dark:text-sky-300 border border-sky-500/30">
                               Matched Renal Stratum
                             </span>
                           )}
                         </div>
 
                         {/* Visual Timeline: Last Dose / Hold -> Intervention -> Restart */}
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-sm pt-2">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-2">
                           {/* Step 1: Hold */}
                           <div
                             className={`p-3 rounded-xl border ${
                               darkMode ? "bg-slate-950/60 border-slate-800" : "bg-slate-50 border-slate-200"
                             }`}
                           >
-                            <span className="text-xs font-extrabold uppercase tracking-wider text-rose-500 block">
+                            <span className="text-[11px] font-bold uppercase tracking-wide text-rose-500 block">
                               1. Pre-Procedure Hold
                             </span>
-                            <span className="font-black text-base sm:text-lg text-slate-900 dark:text-slate-100 block mt-1">
+                            <span className="text-sm font-semibold text-slate-900 dark:text-slate-100 block mt-1.5 leading-snug">
                               {item.hold_hours}
                             </span>
-                            <span className="text-xs font-medium text-slate-500 dark:text-slate-400 block mt-0.5">
+                            <span className="text-xs text-slate-500 dark:text-slate-400 block mt-1">
                               Hold prior to procedure
                             </span>
                           </div>
@@ -233,15 +233,15 @@ export function HoldRestartModal({
                               darkMode ? "bg-slate-950/60 border-slate-800" : "bg-slate-50 border-slate-200"
                             }`}
                           >
-                            <span className="text-xs font-extrabold uppercase tracking-wider text-amber-500 block">
+                            <span className="text-[11px] font-bold uppercase tracking-wide text-amber-500 block">
                               2. Intervention
                             </span>
-                            <span className="font-bold text-sm text-slate-900 dark:text-slate-100 block mt-1">
+                            <span className="text-sm font-semibold text-slate-900 dark:text-slate-100 block mt-1.5 leading-snug">
                               {procedure === "lumbar_puncture"
                                 ? "Lumbar Puncture"
                                 : "Neurosurgery"}
                             </span>
-                            <span className="text-xs font-medium text-slate-500 dark:text-slate-400 block mt-0.5">
+                            <span className="text-xs text-slate-500 dark:text-slate-400 block mt-1">
                               Confirm adequate hemostasis
                             </span>
                           </div>
@@ -252,17 +252,17 @@ export function HoldRestartModal({
                               darkMode ? "bg-slate-950/60 border-slate-800" : "bg-slate-50 border-slate-200"
                             }`}
                           >
-                            <span className="text-xs font-extrabold uppercase tracking-wider text-emerald-500 block">
+                            <span className="text-[11px] font-bold uppercase tracking-wide text-emerald-500 block">
                               3. Post-Procedure Restart
                             </span>
-                            <span className="font-semibold text-sm text-slate-900 dark:text-slate-100 block mt-1 leading-snug">
+                            <span className="text-sm font-semibold text-slate-900 dark:text-slate-100 block mt-1.5 leading-snug">
                               {item.restart_timing}
                             </span>
                           </div>
                         </div>
 
                         {item.note && (
-                          <p className="text-xs text-slate-500 dark:text-slate-400 font-medium italic mt-2.5">
+                          <p className="text-xs text-slate-500 dark:text-slate-400 italic mt-2.5 leading-relaxed">
                             {item.note}
                           </p>
                         )}
@@ -276,8 +276,8 @@ export function HoldRestartModal({
         )}
 
         {/* Footer */}
-        <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
-          <span className="text-xs text-slate-500 dark:text-slate-400 italic font-medium">
+        <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-4">
+          <span className="text-xs text-slate-500 dark:text-slate-400 italic">
             Reference only. Always confirm local institutional protocol and individual hemostatic risk.
           </span>
           <button

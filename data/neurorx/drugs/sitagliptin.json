@@ -1,0 +1,362 @@
+{
+  "id": "sitagliptin",
+  "generic_name": "sitagliptin",
+  "tall_man": {
+    "value": "sitagliptin",
+    "refs": [
+      {
+        "source_id": "fda-sitagliptin-label",
+        "locator": "1 INDICATIONS AND USAGE",
+        "quote": "JANUVIA is a dipeptidyl peptidase-4 (DPP-4) inhibitor indicated as an adjunct to diet and exercise to improve glycemic control in adults with type 2 diabetes mellitus."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "DPP-4 inhibitor",
+    "incretin enhancer",
+    "antihyperglycemic agent"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "sit-t2dm-adult-po",
+      "indication": "Type 2 Diabetes Mellitus — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-sitagliptin-label",
+          "locator": "1 INDICATIONS AND USAGE",
+          "quote": "JANUVIA ® is indicated as an adjunct to diet and exercise to improve glycemic control in adults with type 2 diabetes mellitus."
+        },
+        {
+          "source_id": "fda-sitagliptin-label",
+          "locator": "2.1 Recommended Dosing",
+          "quote": "The recommended dose of JANUVIA is 100 mg once daily. JANUVIA can be taken with or without food."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 100,
+        "unit": "mg",
+        "frequency": "once daily, with or without food"
+      },
+      "dose_text": "100 mg orally once daily, taken with or without food. Reduce dose for eGFR <45 mL/min/1.73 m² (50 mg once daily for eGFR 30 to <45 mL/min/1.73 m²; 25 mg once daily for eGFR <30 mL/min/1.73 m² or ESRD on dialysis)."
+    }
+  ],
+  "renal_basis": {
+    "value": "egfr",
+    "refs": [
+      {
+        "source_id": "fda-sitagliptin-label",
+        "locator": "2.2 Recommendations for Use in Renal Impairment",
+        "quote": "For patients with moderate renal impairment (eGFR greater than or equal to 30 mL/min/1.73 m 2 to less than 45 mL/min/1.73 m 2 ), the dose of JANUVIA is 50 mg once daily."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "Assess renal function prior to initiation and periodically thereafter. Dosage adjustment is required for patients with eGFR <45 mL/min/1.73 m².",
+    "renal_basis": {
+      "value": "egfr",
+      "refs": [
+        {
+          "source_id": "fda-sitagliptin-label",
+          "locator": "2.2 Recommendations for Use in Renal Impairment",
+          "quote": "Assess renal function prior to initiation of JANUVIA and periodically thereafter. For patients with an estimated glomerular filtration rate [eGFR] greater than or equal to 45 mL/min/1.73 m 2 to less than 90 mL/min/1.73 m 2 , no dosage adjustment for JANUVIA is required."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 45,
+        "max": null,
+        "dose_text": "100 mg once daily (no dosage adjustment required for eGFR >=45 mL/min/1.73 m²).",
+        "dose": {
+          "kind": "fixed",
+          "amount": 100,
+          "unit": "mg",
+          "frequency": "once daily"
+        },
+        "refs": [
+          {
+            "source_id": "fda-sitagliptin-label",
+            "locator": "2.2 Recommendations for Use in Renal Impairment",
+            "quote": "For patients with an estimated glomerular filtration rate [eGFR] greater than or equal to 45 mL/min/1.73 m 2 to less than 90 mL/min/1.73 m 2 , no dosage adjustment for JANUVIA is required."
+          }
+        ]
+      },
+      {
+        "min": 30,
+        "max": 45,
+        "dose_text": "50 mg once daily (moderate renal impairment: eGFR >=30 to <45 mL/min/1.73 m²).",
+        "dose": {
+          "kind": "fixed",
+          "amount": 50,
+          "unit": "mg",
+          "frequency": "once daily"
+        },
+        "refs": [
+          {
+            "source_id": "fda-sitagliptin-label",
+            "locator": "2.2 Recommendations for Use in Renal Impairment",
+            "quote": "For patients with moderate renal impairment (eGFR greater than or equal to 30 mL/min/1.73 m 2 to less than 45 mL/min/1.73 m 2 ), the dose of JANUVIA is 50 mg once daily."
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 30,
+        "dose_text": "25 mg once daily (severe renal impairment: eGFR <30 mL/min/1.73 m², or ESRD requiring hemodialysis or peritoneal dialysis; administer without regard to timing of dialysis).",
+        "dose": {
+          "kind": "fixed",
+          "amount": 25,
+          "unit": "mg",
+          "frequency": "once daily"
+        },
+        "refs": [
+          {
+            "source_id": "fda-sitagliptin-label",
+            "locator": "2.2 Recommendations for Use in Renal Impairment",
+            "quote": "For patients with severe renal impairment (eGFR less than 30 mL/min/1.73 m 2 ) or with end-stage renal disease (ESRD) requiring hemodialysis or peritoneal dialysis, the dose of JANUVIA is 25 mg once daily. JANUVIA may be administered without regard to the timing of dialysis."
+          }
+        ]
+      }
+    ],
+    "hemodialysis": {
+      "value": "25 mg once daily; may be administered without regard to the timing of dialysis. Modestly dialyzable (~13.5% of dose removed over a 3- to 4-hour hemodialysis session).",
+      "refs": [
+        {
+          "source_id": "fda-sitagliptin-label",
+          "locator": "2.2 Recommendations for Use in Renal Impairment",
+          "quote": "with end-stage renal disease (ESRD) requiring hemodialysis or peritoneal dialysis, the dose of JANUVIA is 25 mg once daily. JANUVIA may be administered without regard to the timing of dialysis."
+        },
+        {
+          "source_id": "fda-sitagliptin-label",
+          "locator": "10 OVERDOSAGE",
+          "quote": "Sitagliptin is modestly dialyzable. In clinical studies, approximately 13.5% of the dose was removed over a 3- to 4-hour hemodialysis session."
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-sitagliptin-label",
+        "locator": "2.2 Recommendations for Use in Renal Impairment",
+        "quote": "Assess renal function prior to initiation of JANUVIA and periodically thereafter. For patients with an estimated glomerular filtration rate [eGFR] greater than or equal to 45 mL/min/1.73 m 2 to less than 90 mL/min/1.73 m 2 , no dosage adjustment for JANUVIA is required."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "In patients with moderate hepatic impairment (Child-Pugh score 7 to 9), mean AUC and Cmax increased ~21% and 13%, which are not considered clinically meaningful; no clinical experience in severe hepatic impairment (Child-Pugh score >9).",
+    "refs": [
+      {
+        "source_id": "fda-sitagliptin-label",
+        "locator": "12.3 Pharmacokinetics - Patients with Hepatic Impairment",
+        "quote": "In patients with moderate hepatic impairment (Child-Pugh score 7 to 9), mean AUC and C max of sitagliptin increased approximately 21% and 13%, respectively, compared to healthy matched controls following administration of a single 100-mg dose of sitagliptin. These differences are not considered to be clinically meaningful. There is no clinical experience in patients with severe hepatic impairment"
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-sitagliptin-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "Sitagliptin is a DPP-4 inhibitor, which is believed to exert its actions in patients with type 2 diabetes mellitus by slowing the inactivation of incretin hormones."
+      }
+    ],
+    "note": "DPP-4 inhibitor with no neuromuscular junction blocking activity."
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": []
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "pancreatitis",
+      "rash_sjs_ten"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-sitagliptin-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "exfoliative skin conditions including Stevens-Johnson syndrome; hepatic enzyme elevations; acute pancreatitis, including fatal and non-fatal hemorrhagic and necrotizing pancreatitis"
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Upper respiratory tract infection (>=5%)",
+        "Nasopharyngitis (>=5%)",
+        "Headache (>=5%)",
+        "Hypoglycemia (12.2% when added to glimepiride; 15.5% when added to insulin)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-sitagliptin-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "Adverse reactions reported in ≥5% of patients treated with JANUVIA and more commonly than in patients treated with placebo are: upper respiratory tract infection, nasopharyngitis and headache. In the add-on to sulfonylurea and add-on to insulin studies, hypoglycemia was also more commonly reported in patients treated with JANUVIA compared to placebo."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Acute pancreatitis (including fatal and non-fatal hemorrhagic and necrotizing pancreatitis)",
+        "Heart failure",
+        "Acute renal failure (sometimes requiring dialysis) and tubulointerstitial nephritis",
+        "Hypoglycemia with concomitant insulin or insulin secretagogues",
+        "Serious hypersensitivity reactions (anaphylaxis, angioedema, cutaneous vasculitis, Stevens-Johnson syndrome)",
+        "Severe and disabling arthralgia",
+        "Bullous pemphigoid",
+        "Rhabdomyolysis"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-sitagliptin-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "The following adverse reactions are also discussed elsewhere in the labeling: Pancreatitis [see Warnings and Precautions (5.1) ] Heart Failure [see Warnings and Precautions (5.2) ] Acute Renal Failure [see Warnings and Precautions (5.3) ]"
+        },
+        {
+          "source_id": "fda-sitagliptin-label",
+          "locator": "6.2 Postmarketing Experience",
+          "quote": "Hypersensitivity reactions including anaphylaxis, angioedema, rash, urticaria, cutaneous vasculitis, and exfoliative skin conditions including Stevens-Johnson syndrome; hepatic enzyme elevations; acute pancreatitis, including fatal and non-fatal hemorrhagic and necrotizing pancreatitis"
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Selective dipeptidyl peptidase-4 (DPP-4) inhibitor that slows inactivation of incretin hormones (GLP-1 and GIP), increasing active incretin levels to enhance glucose-dependent insulin release from pancreatic beta cells and decrease glucagon secretion from pancreatic alpha cells.",
+    "refs": [
+      {
+        "source_id": "fda-sitagliptin-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "By increasing and prolonging active incretin levels, sitagliptin increases insulin release and decreases glucagon levels in the circulation in a glucose-dependent manner. Sitagliptin demonstrates selectivity for DPP-4 and does not inhibit DPP-8 or DPP-9 activity in vitro at concentrations approximating those from therapeutic doses."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp3a4": "substrate",
+      "pgp": "substrate",
+      "qt_risk": "none"
+    },
+    "refs": [
+      {
+        "source_id": "fda-sitagliptin-label",
+        "locator": "12.3 Pharmacokinetics - Metabolism",
+        "quote": "Approximately 79% of sitagliptin is excreted unchanged in the urine with metabolism being a minor pathway of elimination."
+      },
+      {
+        "source_id": "fda-sitagliptin-label",
+        "locator": "12.3 Pharmacokinetics - Metabolism",
+        "quote": "In vitro studies indicated that the primary enzyme responsible for the limited metabolism of sitagliptin was CYP3A4, with contribution from CYP2C8."
+      },
+      {
+        "source_id": "fda-sitagliptin-label",
+        "locator": "12.3 Pharmacokinetics - Excretion",
+        "quote": "Sitagliptin is also a substrate of P-glycoprotein (P-gp), which may also be involved in mediating the renal elimination of sitagliptin."
+      },
+      {
+        "source_id": "fda-sitagliptin-label",
+        "locator": "12.2 Pharmacodynamics - Cardiac Electrophysiology",
+        "quote": "At the recommended dose of 100 mg, there was no effect on the QTc interval obtained at the peak plasma concentration, or at any other time during the study."
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Insulin Secretagogues (e.g., Sulfonylurea) or Insulin",
+        "severity": "moderate",
+        "effect": "Coadministration with an insulin secretagogue or insulin increases the risk of hypoglycemia.",
+        "management": "May require lower doses of the insulin secretagogue or insulin to reduce the risk of hypoglycemia.",
+        "refs": [
+          {
+            "source_id": "fda-sitagliptin-label",
+            "locator": "7.1 Insulin Secretagogues or Insulin",
+            "quote": "Coadministration of JANUVIA with an insulin secretagogue (e.g., sulfonylurea) or insulin may require lower doses of the insulin secretagogue or insulin to reduce the risk of hypoglycemia. [See Warnings and Precautions (5.4) .]"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-sitagliptin-label",
+        "locator": "7.1 Insulin Secretagogues or Insulin",
+        "quote": "Coadministration of JANUVIA with an insulin secretagogue (e.g., sulfonylurea) or insulin may require lower doses of the insulin secretagogue or insulin to reduce the risk of hypoglycemia."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "Limited available data in pregnant women are insufficient to inform drug-associated risk for major birth defects or miscarriage; animal studies showed no adverse developmental effects at 20–30x clinical dose (rib malformations at 100x with maternal toxicity). Poorly controlled diabetes in pregnancy carries substantial maternal/fetal risk.",
+      "refs": [
+        {
+          "source_id": "fda-sitagliptin-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "The limited available data with JANUVIA in pregnant women are not sufficient to inform a drug-associated risk for major birth defects and miscarriage. There are risks to the mother and fetus associated with poorly controlled diabetes in pregnancy [see Clinical Considerations ]."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "No information regarding presence in human milk, effects on the breastfed infant, or milk production; secreted in rat milk at a 4:1 milk-to-plasma ratio. Consider developmental and health benefits of breastfeeding along with the mother's clinical need.",
+      "refs": [
+        {
+          "source_id": "fda-sitagliptin-label",
+          "locator": "8.2 Lactation",
+          "quote": "There is no information regarding the presence of JANUVIA in human milk, the effects on the breastfed infant, or the effects on milk production. Sitagliptin is present in rat milk and therefore possibly present in human milk [see Data ] ."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

@@ -1,0 +1,723 @@
+{
+  "id": "omeprazole",
+  "generic_name": "omeprazole",
+  "tall_man": {
+    "value": "omeprazole",
+    "refs": [
+      {
+        "source_id": "fda-omeprazole-label",
+        "locator": "1 INDICATIONS AND USAGE",
+        "quote": "Omeprazole is a proton pump inhibitor (PPI) indicated for the:"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "proton pump inhibitor (PPI)",
+    "substituted benzimidazole",
+    "gastric acid-pump inhibitor"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "omeprazole-duodenal-ulcer-po",
+      "indication": "Treatment of Active Duodenal Ulcer — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-omeprazole-label",
+          "locator": "2 DOSAGE AND ADMINISTRATION",
+          "quote": "Treatment of Active Duodenal Ulcer 20 mg once daily for 4 weeks; some patients may require an additional 4 weeks (2.1)"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 20,
+        "unit": "mg",
+        "frequency": "once daily for 4 weeks (additional 4 weeks if needed)",
+        "max_single": 20,
+        "max_daily": 20
+      },
+      "dose_text": "20 mg PO once daily before meals for 4 weeks; some patients may require an additional 4 weeks."
+    },
+    {
+      "id": "omeprazole-hpylori-triple-po",
+      "indication": "Helicobacter pylori Eradication (Triple Therapy with amoxicillin 1000 mg and clarithromycin 500 mg) — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-omeprazole-label",
+          "locator": "2.1 Recommended Adult Dosage Regimen by Indication",
+          "quote": "Triple Therapy Omeprazole delayed-release capsules 20 mg Amoxicillin 1000 mg Clarithromycin 500 mg Take all three drugs twice daily 10 days In patients with an ulcer present at the time of initiation of therapy, continue omeprazole delayed-release capsules 20 mg once daily for an additional 18 days for ulcer healing and symptom relief."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 20,
+        "unit": "mg",
+        "frequency": "twice daily for 10 days (plus 20 mg once daily for 18 days if ulcer present)",
+        "max_single": 20,
+        "max_daily": 40
+      },
+      "dose_text": "20 mg PO twice daily (with amoxicillin 1000 mg and clarithromycin 500 mg twice daily) for 10 days; if ulcer present at initiation, continue 20 mg once daily for an additional 18 days."
+    },
+    {
+      "id": "omeprazole-hpylori-dual-po",
+      "indication": "Helicobacter pylori Eradication (Dual Therapy with clarithromycin 500 mg TID) — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-omeprazole-label",
+          "locator": "2.1 Recommended Adult Dosage Regimen by Indication",
+          "quote": "Dual Therapy Omeprazole delayed-release capsules 40 mg once daily Clarithromycin 500 mg three times daily 14 days In patients with an ulcer present at the time of initiation of therapy, an additional 14 days of omeprazole delayed-release capsules 20 mg once daily is recommended for ulcer healing and symptom relief."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 40,
+        "unit": "mg",
+        "frequency": "once daily for 14 days (plus 20 mg once daily for 14 days if ulcer present)",
+        "max_single": 40,
+        "max_daily": 40
+      },
+      "dose_text": "40 mg PO once daily (with clarithromycin 500 mg three times daily) for 14 days; if ulcer present at initiation, continue 20 mg once daily for an additional 14 days."
+    },
+    {
+      "id": "omeprazole-gastric-ulcer-po",
+      "indication": "Treatment of Active Benign Gastric Ulcer — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-omeprazole-label",
+          "locator": "2 DOSAGE AND ADMINISTRATION",
+          "quote": "Active Benign Gastric Ulcer 40 mg once daily for 4 to 8 weeks (2.1)"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 40,
+        "unit": "mg",
+        "frequency": "once daily for 4 to 8 weeks",
+        "max_single": 40,
+        "max_daily": 40
+      },
+      "dose_text": "40 mg PO once daily before meals for 4 to 8 weeks."
+    },
+    {
+      "id": "omeprazole-gerd-adult-po",
+      "indication": "Treatment of Symptomatic Gastroesophageal Reflux Disease (GERD) — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-omeprazole-label",
+          "locator": "2 DOSAGE AND ADMINISTRATION",
+          "quote": "Symptomatic GERD 20 mg once daily for up to 4 weeks (2.1)"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 20,
+        "unit": "mg",
+        "frequency": "once daily for up to 4 weeks",
+        "max_single": 20,
+        "max_daily": 20
+      },
+      "dose_text": "20 mg PO once daily before meals for up to 4 weeks."
+    },
+    {
+      "id": "omeprazole-ee-adult-po",
+      "indication": "Treatment of Erosive Esophagitis (EE) Due to Acid-Mediated GERD — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-omeprazole-label",
+          "locator": "2 DOSAGE AND ADMINISTRATION",
+          "quote": "EE due to Acid-Mediated GERD 20 mg once daily for 4 to 8 weeks (2.1)"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 20,
+        "unit": "mg",
+        "frequency": "once daily for 4 to 8 weeks",
+        "max_single": 20,
+        "max_daily": 20
+      },
+      "dose_text": "20 mg PO once daily before meals for 4 to 8 weeks; an additional 4 weeks may be given if no response."
+    },
+    {
+      "id": "omeprazole-ee-maint-adult-po",
+      "indication": "Maintenance of Healing of Erosive Esophagitis (EE) Due to Acid-Mediated GERD — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-omeprazole-label",
+          "locator": "2.1 Recommended Adult Dosage Regimen by Indication",
+          "quote": "Maintenance of Healing of EE due to Acid-Mediated GERD 20 mg once daily 3 Controlled studies do not extend beyond 12 months."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 20,
+        "unit": "mg",
+        "frequency": "once daily (reduce to 10 mg once daily in hepatic impairment or Asian patients)",
+        "max_single": 20,
+        "max_daily": 20
+      },
+      "dose_text": "20 mg PO once daily (reduce to 10 mg once daily in patients with hepatic impairment Child-Pugh Class A, B, or C and in Asian patients)."
+    },
+    {
+      "id": "omeprazole-hypersecretory-po",
+      "indication": "Pathological Hypersecretory Conditions (e.g., Zollinger-Ellison syndrome) — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-omeprazole-label",
+          "locator": "2.1 Recommended Adult Dosage Regimen by Indication",
+          "quote": "Pathological Hypersecretory Conditions Starting dose is 60 mg once daily; adjust to patient needs Daily dosages of greater than 80 mg should be administered in divided doses. Dosages up to 120 mg three times daily have been administered."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 60,
+        "unit": "mg",
+        "frequency": "once daily initially; adjust to patient needs (divided doses if >80 mg/day; up to 120 mg TID)",
+        "max_single": 120,
+        "max_daily": 360
+      },
+      "dose_text": "Starting dose 60 mg PO once daily; adjust to patient needs. Daily dosages > 80 mg should be administered in divided doses; dosages up to 120 mg three times daily have been administered."
+    },
+    {
+      "id": "omeprazole-gerd-peds-10to20kg-po",
+      "indication": "Symptomatic GERD — Pediatric patients (2 to 16 years, 10 to < 20 kg)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-omeprazole-label",
+          "locator": "2.2 Recommended Pediatric Dosage Regimen by Indication",
+          "quote": "10 to less than 20 kg: 10 mg Once daily for up to 4 weeks 20 kg and greater: 20 mg"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 10,
+        "unit": "mg",
+        "frequency": "once daily for up to 4 weeks",
+        "max_single": 10,
+        "max_daily": 10
+      },
+      "dose_text": "10 mg PO once daily for up to 4 weeks."
+    },
+    {
+      "id": "omeprazole-gerd-peds-ge20kg-po",
+      "indication": "Symptomatic GERD — Pediatric patients (2 to 16 years, >= 20 kg)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-omeprazole-label",
+          "locator": "2.2 Recommended Pediatric Dosage Regimen by Indication",
+          "quote": "10 to less than 20 kg: 10 mg Once daily for up to 4 weeks 20 kg and greater: 20 mg"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 20,
+        "unit": "mg",
+        "frequency": "once daily for up to 4 weeks",
+        "max_single": 20,
+        "max_daily": 20
+      },
+      "dose_text": "20 mg PO once daily for up to 4 weeks."
+    },
+    {
+      "id": "omeprazole-ee-peds-10to20kg-po",
+      "indication": "Treatment and Maintenance of Healing of Erosive Esophagitis (EE) — Pediatric patients (2 to 16 years, 10 to < 20 kg)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-omeprazole-label",
+          "locator": "2.2 Recommended Pediatric Dosage Regimen by Indication",
+          "quote": "Treatment of EE due to Acid-Mediated GERD 2 to 16 years 10 to less than 20 kg: 10 mg Once daily for 4 to 8 weeks"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 10,
+        "unit": "mg",
+        "frequency": "once daily (4-8 weeks acute; maintenance up to 12 months)",
+        "max_single": 10,
+        "max_daily": 10
+      },
+      "dose_text": "10 mg PO once daily for 4 to 8 weeks (acute) or once daily (maintenance; controlled studies <= 12 months)."
+    },
+    {
+      "id": "omeprazole-ee-peds-ge20kg-po",
+      "indication": "Treatment and Maintenance of Healing of Erosive Esophagitis (EE) — Pediatric patients (2 to 16 years, >= 20 kg)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-omeprazole-label",
+          "locator": "2.2 Recommended Pediatric Dosage Regimen by Indication",
+          "quote": "Maintenance of Healing of EE due to Acid-Mediated GERD 2 to 16 years 10 to less than 20 kg: 10 mg Once daily. Controlled studies do not extend beyond 12 months 20 kg and greater: 20 mg"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 20,
+        "unit": "mg",
+        "frequency": "once daily (4-8 weeks acute; maintenance up to 12 months)",
+        "max_single": 20,
+        "max_daily": 20
+      },
+      "dose_text": "20 mg PO once daily for 4 to 8 weeks (acute) or once daily (maintenance; controlled studies <= 12 months)."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_normalized_1_73",
+    "refs": [
+      {
+        "source_id": "fda-omeprazole-label",
+        "locator": "12.3 Pharmacokinetics",
+        "quote": "In patients with chronic renal impairment (creatinine clearance between 10 and 62 mL/min/1.73 m2), the disposition of omeprazole was very similar to that in healthy subjects, although there was a slight increase in bioavailability."
+      }
+    ],
+    "note": "No dosage adjustment required; slight increase in bioavailability is not clinically meaningful."
+  },
+  "hepatic": {
+    "value": "In patients with hepatic impairment (Child-Pugh Class A, B, or C), exposure increases substantially; reduce dosage to 10 mg once daily for maintenance of healing of erosive esophagitis.",
+    "refs": [
+      {
+        "source_id": "fda-omeprazole-label",
+        "locator": "8.6 Hepatic Impairment",
+        "quote": "In patients with hepatic impairment (Child-Pugh Class A, B, or C) exposure to omeprazole substantially increased compared to healthy subjects. Dosage reduction of omeprazole to 10 mg once daily is recommended for patients with hepatic impairment for maintenance of healing of EE"
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-omeprazole-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "Omeprazole belongs to a class of antisecretory compounds, the substituted benzimidazoles, that suppress gastric acid secretion by specific inhibition of the H+/K+ ATPase enzyme system at the secretory surface of the gastric parietal cell."
+      }
+    ],
+    "note": "Proton pump inhibitor; no neuromuscular junction blocking warnings."
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Swallow delayed-release capsules whole; do not chew or crush enteric-coated pellets. For patients unable to swallow intact capsules, open capsule, empty pellets onto one tablespoon of cool soft applesauce, mix, and swallow immediately with cool water without chewing or crushing pellets."
+    },
+    "refs": [
+      {
+        "source_id": "fda-omeprazole-label",
+        "locator": "2.3 Administration Instructions",
+        "quote": "Swallow omeprazole delayed-release capsules whole; do not chew. • For patients unable to swallow an intact capsule, omeprazole delayed-release capsules can be opened and administered as follows:"
+      },
+      {
+        "source_id": "fda-omeprazole-label",
+        "locator": "2.3 Administration Instructions",
+        "quote": "Swallow applesauce and pellets immediately with a glass of cool water to ensure complete swallowing of the pellets. Do not chew or crush the pellets. Do not save the applesauce and pellets for future use."
+      }
+    ]
+  },
+  "pgx": {
+    "value": "CYP2C19 poor metabolizers (~3% of Caucasians, 15% to 20% of Asians) have higher systemic exposure (AUC in Asian subjects ~4-fold higher than Caucasians). Dosage reduction to 10 mg once daily is recommended in Asian patients for maintenance of healing of erosive esophagitis.",
+    "refs": [
+      {
+        "source_id": "fda-omeprazole-label",
+        "locator": "12.5 Pharmacogenomics",
+        "quote": "Approximately 3% of Caucasians and 15 to 20% of Asians are CYP2C19 poor metabolizers. In a pharmacokinetic study of single 20 mg omeprazole dose, the AUC of omeprazole in Asian subjects was approximately four-fold of that in Caucasians"
+      },
+      {
+        "source_id": "fda-omeprazole-label",
+        "locator": "8.7 Asian Population",
+        "quote": "Dosage reduction of omeprazole to 10 mg once daily is recommended for Asian patients for maintenance of healing of EE"
+      }
+    ]
+  },
+  "ae_tags": {
+    "value": [
+      "hepatotoxicity",
+      "rash_sjs_ten",
+      "hyponatremia",
+      "pancreatitis",
+      "confusion_delirium",
+      "psychiatric_behavioral",
+      "weight_gain"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-omeprazole-label",
+        "locator": "6.3 Postmarketing Experience",
+        "quote": "Hepatic: Liver disease including hepatic failure (some fatal), liver necrosis (some fatal), hepatic encephalopathy hepatocellular disease, cholestatic disease, mixed hepatitis, jaundice, and elevations of liver function tests [ALT, AST, GGT, alkaline phosphatase, and bilirubin]"
+      },
+      {
+        "source_id": "fda-omeprazole-label",
+        "locator": "6.3 Postmarketing Experience",
+        "quote": "Skin: Severe generalized skin reactions including toxic epidermal necrolysis (some fatal), Stevens-Johnson syndrome, cutaneous lupus erythematosus and erythema multiforme"
+      },
+      {
+        "source_id": "fda-omeprazole-label",
+        "locator": "6.3 Postmarketing Experience",
+        "quote": "Metabolism and Nutritional disorders: Hypoglycemia, hypomagnesemia, with or without hypocalcemia and/or hypokalemia, hyponatremia, weight gain"
+      },
+      {
+        "source_id": "fda-omeprazole-label",
+        "locator": "6.3 Postmarketing Experience",
+        "quote": "Nervous System/Psychiatric: Psychiatric and sleep disturbances including depression, agitation, aggression, hallucinations, confusion, insomnia, nervousness, apathy, somnolence, anxiety, and dream abnormalities"
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Headache (7%)",
+        "Abdominal pain (5%)",
+        "Nausea (4%)",
+        "Diarrhea (4%)",
+        "Vomiting (3%)",
+        "Flatulence (3%)",
+        "Respiratory system events (19% in pediatric patients 2-16 years)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-omeprazole-label",
+          "locator": "6.1 Clinical Trials Experience",
+          "quote": "The most common adverse reactions reported (i.e., with an incidence rate ≥2%) from omeprazole-treated patients enrolled in these studies included headache (7%), abdominal pain (5%), nausea (4%), diarrhea (4%), vomiting (3%), and flatulence (3%)."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Acute tubulointerstitial nephritis",
+        "Clostridium difficile-associated diarrhea",
+        "Bone fracture",
+        "Cutaneous and systemic lupus erythematosus",
+        "Cyanocobalamin (Vitamin B-12) deficiency and hypomagnesemia",
+        "Fundic gland polyps",
+        "Severe skin reactions (SJS, TEN, erythema multiforme)",
+        "Hepatic failure/necrosis, pancreatitis, and agranulocytosis (postmarketing)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-omeprazole-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "The following serious adverse reactions are described below and elsewhere in labeling: • Acute Tubulointerstitial Nephritis [see Warnings and Precautions (5.2) ] • Clostridium difficile -Associated Diarrhea [see Warnings and Precautions (5.3) ] • Bone Fracture [see Warnings and Precautions (5.4) ]"
+        },
+        {
+          "source_id": "fda-omeprazole-label",
+          "locator": "6.3 Postmarketing Experience",
+          "quote": "Gastrointestinal: Pancreatitis (some fatal), anorexia, irritable colon, fecal discoloration, esophageal candidiasis"
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Substituted benzimidazole proton pump inhibitor that suppresses gastric acid secretion by specific inhibition of the H+/K+ ATPase enzyme system at the secretory surface of the gastric parietal cell, blocking the final step of acid production.",
+    "refs": [
+      {
+        "source_id": "fda-omeprazole-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "Omeprazole belongs to a class of antisecretory compounds, the substituted benzimidazoles, that suppress gastric acid secretion by specific inhibition of the H+/K+ ATPase enzyme system at the secretory surface of the gastric parietal cell."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp2c19": "inhibitor_strong",
+      "cyp3a4": "substrate"
+    },
+    "refs": [
+      {
+        "source_id": "fda-omeprazole-label",
+        "locator": "12.3 Pharmacokinetics",
+        "quote": "Omeprazole is a time-dependent inhibitor of CYP2C19, resulting in autoinhibition and nonlinear pharmacokinetics."
+      },
+      {
+        "source_id": "fda-omeprazole-label",
+        "locator": "12.3 Pharmacokinetics",
+        "quote": "The major part of its metabolism is dependent on the polymorphically expressed CYP2C19, responsible for the formation of hydroxyomeprazole, the major metabolite in plasma. The remaining part is dependent on another specific isoform, CYP3A4, responsible for the formation of omeprazole sulphone."
+      }
+    ],
+    "note": "Also a major substrate of CYP2C19 (time-dependent autoinhibitor of CYP2C19) and substrate of CYP3A4."
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Rilpivirine-containing products",
+        "severity": "contraindicated",
+        "effect": "Decreased exposure of rilpivirine (AUC -40%, Cmax -40%, Cmin -33%), reducing antiviral effect and promoting drug resistance.",
+        "management": "Concomitant use with omeprazole is contraindicated.",
+        "refs": [
+          {
+            "source_id": "fda-omeprazole-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "Rilpivirine-containing products: Concomitant use with omeprazole is contraindicated [see Contraindications (4) ]."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Clopidogrel",
+        "severity": "major",
+        "effect": "Reduced plasma concentrations of active metabolite of clopidogrel (by 41-46%) and reduced platelet inhibition.",
+        "management": "Avoid concomitant use with omeprazole; consider alternative antiplatelet therapy.",
+        "refs": [
+          {
+            "source_id": "fda-omeprazole-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "Avoid concomitant use with omeprazole. Consider use of alternative anti-platelet therapy [see Warnings and Precautions (5.7) ]."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Atazanavir and Nelfinavir",
+        "severity": "major",
+        "effect": "Markedly decreased antiretroviral exposure (atazanavir AUC -94%, nelfinavir AUC -36%), reducing antiviral efficacy.",
+        "management": "Avoid concomitant use with omeprazole.",
+        "refs": [
+          {
+            "source_id": "fda-omeprazole-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "Atazanavir: Avoid concomitant use with omeprazole. See prescribing information for atazanavir for dosing information. Nelfinavir: Avoid concomitant use with omeprazole."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Saquinavir",
+        "severity": "major",
+        "effect": "Increased saquinavir exposure (AUC +82%, Cmax +75%, Cmin +106%), increasing toxicity.",
+        "management": "Monitor clinically and with laboratory tests for saquinavir-related toxicities.",
+        "refs": [
+          {
+            "source_id": "fda-omeprazole-label",
+            "locator": "12.3 Pharmacokinetics",
+            "quote": "Therefore, clinical and laboratory monitoring for saquinavir toxicity is recommended during concurrent use with omeprazole."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Warfarin",
+        "severity": "major",
+        "effect": "Increased INR and prothrombin time, which may lead to abnormal bleeding and death.",
+        "management": "Monitor INR and prothrombin time and adjust warfarin dose if needed.",
+        "refs": [
+          {
+            "source_id": "fda-omeprazole-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "Monitor INR and prothrombin time and adjust the dose of warfarin, if needed, to maintain target INR range."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Methotrexate (primarily high-dose)",
+        "severity": "major",
+        "effect": "May elevate and prolong serum concentrations of methotrexate and/or hydroxymethotrexate, possibly leading to methotrexate toxicities.",
+        "management": "Consider temporary withdrawal of omeprazole in some patients receiving high-dose methotrexate.",
+        "refs": [
+          {
+            "source_id": "fda-omeprazole-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "A temporary withdrawal of omeprazole may be considered in some patients receiving high-dose methotrexate."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Citalopram",
+        "severity": "major",
+        "effect": "Increased exposure of citalopram leading to an increased risk of QT prolongation.",
+        "management": "Limit the dose of citalopram to a maximum of 20 mg per day.",
+        "refs": [
+          {
+            "source_id": "fda-omeprazole-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "Increased exposure of citalopram leading to an increased risk of QT prolongation [see Clinical Pharmacology (12.3) ]. Intervention: Limit the dose of citalopram to a maximum of 20 mg per day."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Cilostazol",
+        "severity": "moderate",
+        "effect": "Increased exposure of cilostazol and its active metabolite 3,4-dihydro-cilostazol.",
+        "management": "Reduce the dose of cilostazol to 50 mg twice daily.",
+        "refs": [
+          {
+            "source_id": "fda-omeprazole-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "Reduce the dose of cilostazol to 50 mg twice daily. See prescribing information for cilostazol."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Phenytoin",
+        "severity": "moderate",
+        "effect": "Potential for increased exposure of phenytoin via CYP2C19 inhibition.",
+        "management": "Monitor phenytoin serum concentrations; dose adjustment may be needed.",
+        "refs": [
+          {
+            "source_id": "fda-omeprazole-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "Monitor phenytoin serum concentrations. Dose adjustment may be needed to maintain therapeutic drug concentrations."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Diazepam",
+        "severity": "moderate",
+        "effect": "Increased exposure of diazepam (27% decreased clearance, 36% longer half-life).",
+        "management": "Monitor patients for increased sedation and reduce diazepam dose as needed.",
+        "refs": [
+          {
+            "source_id": "fda-omeprazole-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "Monitor patients for increased sedation and reduce the dose of diazepam as needed."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Digoxin",
+        "severity": "moderate",
+        "effect": "Potential for increased exposure of digoxin (bioavailability +10%).",
+        "management": "Monitor digoxin concentrations; dose adjustment may be needed.",
+        "refs": [
+          {
+            "source_id": "fda-omeprazole-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "Monitor digoxin concentrations. Dose adjustment may be needed to maintain therapeutic drug concentrations."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Mycophenolate Mofetil (MMF) and Drugs Dependent on Gastric pH",
+        "severity": "moderate",
+        "effect": "Reduced absorption/exposure (MPA Cmax -52%, AUC -23%) due to increased gastric pH.",
+        "management": "Use omeprazole with caution in transplant patients receiving MMF.",
+        "refs": [
+          {
+            "source_id": "fda-omeprazole-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "Use omeprazole with caution in transplant patients receiving MMF [see Clinical Pharmacology (12.3) ]."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Tacrolimus",
+        "severity": "moderate",
+        "effect": "Potential for increased exposure of tacrolimus, especially in CYP2C19 intermediate or poor metabolizers.",
+        "management": "Monitor tacrolimus whole blood concentrations and adjust dose if needed.",
+        "refs": [
+          {
+            "source_id": "fda-omeprazole-label",
+            "locator": "7 DRUG INTERACTIONS Table 3",
+            "quote": "Monitor tacrolimus whole blood concentrations. Dose adjustment may be needed to maintain therapeutic drug concentrations."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Strong CYP2C19 or CYP3A4 Inducers (St. John's Wort, rifampin)",
+        "severity": "major",
+        "effect": "Decreased exposure of omeprazole.",
+        "management": "Avoid concomitant use of St. John's Wort or rifampin with omeprazole.",
+        "refs": [
+          {
+            "source_id": "fda-omeprazole-label",
+            "locator": "7 DRUG INTERACTIONS Table 4",
+            "quote": "St. John’s Wort, rifampin: Avoid concomitant use with omeprazole [see Warnings and Precautions (5.10) ]."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-omeprazole-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Tables 3 and 4 include drugs with clinically important drug interactions and interaction with diagnostics when administered concomitantly with omeprazole"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "Large epidemiologic cohorts (Sweden n=955, Denmark n=1,800 first-trimester exposures) fail to demonstrate an increased risk of major congenital malformations (2.9% vs 2.6%), though no adequate well-controlled studies exist and animal studies showed dose-dependent embryo-lethality at 3.4-34x the 40 mg human dose.",
+      "refs": [
+        {
+          "source_id": "fda-omeprazole-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "There are no adequate and well-controlled studies with omeprazole in pregnant women. Available epidemiologic data fail to demonstrate an increased risk of major congenital malformations or other adverse pregnancy outcomes with first trimester omeprazole use."
+        },
+        {
+          "source_id": "fda-omeprazole-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "Reproduction studies in rats and rabbits resulted in dose-dependent embryo-lethality at omeprazole doses that were approximately 3.4 to 34 times an oral human dose of 40 mg (based on a body surface area for a 60 kg person)."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Limited data suggest omeprazole may be present in human milk; no clinical data on effects on the breastfed infant or milk production; weigh developmental and health benefits of breastfeeding against maternal clinical need.",
+      "refs": [
+        {
+          "source_id": "fda-omeprazole-label",
+          "locator": "8.2 Lactation",
+          "quote": "Limited data suggest omeprazole may be present in human milk. There are no clinical data on the effects of omeprazole on the breastfed infant or on milk production."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

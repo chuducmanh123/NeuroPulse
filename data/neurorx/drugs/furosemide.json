@@ -1,0 +1,436 @@
+{
+  "id": "furosemide",
+  "generic_name": "furosemide",
+  "tall_man": {
+    "value": "furosemide",
+    "refs": [
+      {
+        "source_id": "fda-furosemide-label",
+        "locator": "DESCRIPTION",
+        "quote": "LASIX tablets for oral administration contain furosemide as the active ingredient"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "loop diuretic",
+    "antihypertensive"
+  ],
+  "subspecialties": [
+    "neurocritical_care",
+    "stroke"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "furo-po-edema-adult",
+      "indication": "Edema Associated with Congestive Heart Failure, Cirrhosis of the Liver, and Renal Disease Including Nephrotic Syndrome (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-furosemide-label",
+          "locator": "INDICATIONS AND USAGE",
+          "quote": "LASIX is indicated in adults and pediatric patients for the treatment of edema associated with congestive heart failure, cirrhosis of the liver, and renal disease, including the nephrotic syndrome."
+        },
+        {
+          "source_id": "fda-furosemide-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Adults -- The usual initial dose of LASIX is 20 mg to 80mg given as a single dose. Ordinarily a prompt diuresis ensues. If needed, the same dose can be administered 6 to 8 hours later or the dose may be increased."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 20,
+        "unit": "mg",
+        "frequency": "single initial dose, then once or twice daily",
+        "max_single": 600,
+        "max_daily": 600
+      },
+      "dose_text": "Usual initial dose: 20 to 80 mg orally as a single dose; may repeat same dose or increase by 20-40 mg not sooner than 6-8 hours later until desired diuresis, then give once or twice daily (e.g., 8 am and 2 pm). May carefully titrate up to 600 mg/day in clinically severe edematous states."
+    },
+    {
+      "id": "furo-po-edema-pediatric",
+      "indication": "Edema Associated with Congestive Heart Failure, Cirrhosis, and Renal Disease (Pediatric Patients)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-furosemide-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Pediatric patients -- The usual initial dose of oral LASIX in pediatric patients is 2 mg/kg body weight, given as a single dose. If the diuretic response is not satisfactory after the initial dose, dosage may be increased by 1 or 2 mg/kg no sooner than 6 to 8 hours after the previous dose. Doses greater than 6 mg/kg body weight are not recommended."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 2,
+        "unit": "mg",
+        "frequency": "single initial dose, adjust to minimum effective maintenance",
+        "max_single": 6,
+        "max_daily": 6
+      },
+      "dose_text": "Usual initial oral dose: 2 mg/kg body weight as a single dose; may increase by 1 or 2 mg/kg no sooner than 6 to 8 hours later if diuresis unsatisfactory. Doses > 6 mg/kg body weight are not recommended."
+    },
+    {
+      "id": "furo-po-htn-adult",
+      "indication": "Hypertension (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-furosemide-label",
+          "locator": "DOSAGE AND ADMINISTRATION",
+          "quote": "Adults -- The usual initial dose of LASIX for hypertension is 80mg, usually divided into 40mg twice a day. Dosage should then be adjusted according to response."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 40,
+        "unit": "mg",
+        "frequency": "twice daily",
+        "max_single": 40,
+        "max_daily": 80
+      },
+      "dose_text": "Usual initial dose: 80 mg daily, usually divided into 40 mg orally twice daily; adjust according to response. Reduce dosage of other antihypertensive agents by at least 50% when adding LASIX."
+    }
+  ],
+  "renal_impairment": {
+    "description": "Contraindicated in patients with anuria. Furosemide is substantially excreted by the kidney and risk of toxic reactions may be greater in impaired renal function; hemodialysis does not accelerate elimination.",
+    "renal_basis": {
+      "value": null,
+      "refs": []
+    },
+    "bands": [],
+    "hemodialysis": {
+      "value": "Hemodialysis does not accelerate furosemide elimination.",
+      "refs": [
+        {
+          "source_id": "fda-furosemide-label",
+          "locator": "OVERDOSAGE",
+          "quote": "Hemodialysis does not accelerate furosemide elimination."
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-furosemide-label",
+        "locator": "CONTRAINDICATIONS",
+        "quote": "LASIX is contraindicated in patients with anuria and in patients with a history of hypersensitivity to furosemide."
+      },
+      {
+        "source_id": "fda-furosemide-label",
+        "locator": "Geriatric Use",
+        "quote": "This drug is known to be substantially excreted by the kidney, and the risk of toxic reactions to this drug may be greater in patients with impaired renal function."
+      }
+    ]
+  },
+  "renal_basis": {
+    "value": null,
+    "refs": []
+  },
+  "hepatic": {
+    "value": "Indicated for edema associated with cirrhosis of the liver; however, hepatic encephalopathy in patients with hepatocellular insufficiency is a listed adverse reaction.",
+    "refs": [
+      {
+        "source_id": "fda-furosemide-label",
+        "locator": "ADVERSE REACTIONS",
+        "quote": "Gastrointestinal System Reactions 1. hepatic encephalopathy in patients with hepatocellular insufficiency"
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-furosemide-label",
+        "locator": "OVERDOSAGE",
+        "quote": "The principal signs and symptoms of overdose with LASIX are dehydration, blood volume reduction, hypotension, electrolyte imbalance, hypokalemia and hypochloremic alkalosis, and are extensions of its diuretic action."
+      }
+    ],
+    "note": "Loop diuretics can cause hypokalemia and electrolyte imbalances that may worsen muscle weakness in myasthenia gravis; monitor electrolytes closely."
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "LASIX immediate-release tablets (20 mg, 40 mg, 80 mg) may be crushed if needed, or LASIX Oral Solution may be used; separate from sucralfate by at least 2 hours."
+    },
+    "refs": [
+      {
+        "source_id": "fda-furosemide-label",
+        "locator": "DESCRIPTION",
+        "quote": "LASIX is available as white tablets for oral administration in dosage strengths of 20, 40 and 80mg."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "hepatotoxicity",
+      "pancreatitis",
+      "rash_sjs_ten",
+      "nephrolithiasis"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-furosemide-label",
+        "locator": "ADVERSE REACTIONS",
+        "quote": "Gastrointestinal System Reactions 1. hepatic encephalopathy in patients with hepatocellular insufficiency 6. oral and gastric irritation 7. cramping 2. pancreatitis 8. diarrhea 3. jaundice (intrahepatic cholestatic jaundice) 9. constipation 4. increased liver enzymes"
+      },
+      {
+        "source_id": "fda-furosemide-label",
+        "locator": "ADVERSE REACTIONS",
+        "quote": "Dermatologic-Hypersensitivity Reactions 1. toxic epidermal necrolysis 7. bullous pemphigoid 2. Stevens-Johnson Syndrome"
+      },
+      {
+        "source_id": "fda-furosemide-label",
+        "locator": "Pediatric Use",
+        "quote": "In premature infants LASIX may precipitate nephrocalcinosis/nephrolithiasis. Nephrocalcinosis/nephrolithiasis has also been observed in children under 4 years of age with no history of prematurity who have been treated chronically with LASIX."
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Dehydration, hypokalemia, and hypochloremic alkalosis",
+        "Orthostatic hypotension",
+        "Dizziness, vertigo, and headache",
+        "Nausea, vomiting, and diarrhea",
+        "Hyperuricemia and hyperglycemia"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-furosemide-label",
+          "locator": "ADVERSE REACTIONS",
+          "quote": "Cardiovascular Reaction 1. Orthostatic hypotension may occur and be aggravated by alcohol, barbiturates, or narcotics."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Ototoxicity (tinnitus and hearing loss)",
+        "Hepatic encephalopathy in patients with hepatocellular insufficiency",
+        "Pancreatitis and intrahepatic cholestatic jaundice",
+        "Stevens-Johnson syndrome, toxic epidermal necrolysis, and DRESS",
+        "Aplastic anemia, agranulocytosis, and thrombocytopenia",
+        "Interstitial nephritis and nephrocalcinosis/nephrolithiasis in children"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-furosemide-label",
+          "locator": "ADVERSE REACTIONS",
+          "quote": "Central Nervous System Reactions 1. tinnitus and hearing loss"
+        },
+        {
+          "source_id": "fda-furosemide-label",
+          "locator": "ADVERSE REACTIONS",
+          "quote": "Hematologic Reactions 1. aplastic anemia 5. leukopenia 2. thrombocytopenia 6. anemia 3. agranulocytosis"
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Furosemide is a loop diuretic that inhibits primarily the absorption of sodium and chloride in the proximal and distal tubules as well as the loop of Henle, independent of carbonic anhydrase or aldosterone inhibition.",
+    "refs": [
+      {
+        "source_id": "fda-furosemide-label",
+        "locator": "CLINICAL PHARMACOLOGY",
+        "quote": "It has been demonstrated that LASIX inhibits primarily the absorption of sodium and chloride not only in the proximal and distal tubu but also in the loop of Henle. The high degree of efficacy is largely due to the unique site of action."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "ugt": ["glucuronidation"],
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-furosemide-label",
+        "locator": "CLINICAL PHARMACOLOGY",
+        "quote": "Recent evidence suggests that furosemide glucuronide is the only or at least the major biotransformation product of furosemide in man."
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Ethacrynic Acid",
+        "severity": "contraindicated",
+        "effect": "Possibility of additive ototoxicity.",
+        "management": "LASIX should not be used concomitantly with ethacrynic acid.",
+        "refs": [
+          {
+            "source_id": "fda-furosemide-label",
+            "locator": "Drug Interactions",
+            "quote": "LASIX should not be used concomitantly with ethacrynic acid because of the possibility of ototoxicity."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Aminoglycoside Antibiotics",
+        "severity": "major",
+        "effect": "LASIX may increase the ototoxic potential of aminoglycoside antibiotics, especially in the presence of impaired renal function.",
+        "management": "Except in life-threatening situations, avoid this combination.",
+        "refs": [
+          {
+            "source_id": "fda-furosemide-label",
+            "locator": "Drug Interactions",
+            "quote": "LASIX may increase the ototoxic potential of aminoglycoside antibiotics, especially in the presence of impaired renal function. Except in life-threatening situations, avoid this combination."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Lithium",
+        "severity": "major",
+        "effect": "Diuretics reduce lithium's renal clearance and add a high risk of lithium toxicity.",
+        "management": "Lithium generally should not be given with diuretics.",
+        "refs": [
+          {
+            "source_id": "fda-furosemide-label",
+            "locator": "Drug Interactions",
+            "quote": "Lithium generally should not be given with diuretics because they reduce lithium’s renal clearance and add a high risk of lithium toxicity."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Cisplatin",
+        "severity": "major",
+        "effect": "Risk of ototoxic effects and enhanced nephrotoxicity if LASIX is not given in lower doses with positive fluid balance.",
+        "management": "Use lower LASIX doses and maintain positive fluid balance when forced diuresis is required during cisplatin therapy.",
+        "refs": [
+          {
+            "source_id": "fda-furosemide-label",
+            "locator": "Drug Interactions",
+            "quote": "There is a risk of ototoxic effects if cisplatin and LASIX are given concomitantly. In addition, nephrotoxicity of nephrotoxic drugs such as cisplatin may be enhanced if LASIX is not given in lower doses and with positive fluid balance"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "ACE Inhibitors and ARBs",
+        "severity": "major",
+        "effect": "Combined use may lead to severe hypotension and deterioration in renal function, including renal failure.",
+        "management": "Interruption or reduction in the dosage of LASIX, ACE inhibitors, or ARBs may be necessary.",
+        "refs": [
+          {
+            "source_id": "fda-furosemide-label",
+            "locator": "Drug Interactions",
+            "quote": "LASIX combined with angiotensin-converting enzyme inhibitors or angiotensin II receptor blockers may lead to severe hypotension and deterioration in renal function, including renal failure. An interruption or reduction in the dosage of LASIX, angiotensin-converting enzyme inhibitors, or angiotensin receptor blockers may be necessary."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Phenytoin",
+        "severity": "moderate",
+        "effect": "Phenytoin interferes directly with renal action of LASIX and decreases intestinal absorption, lowering peak serum furosemide concentrations.",
+        "management": "Monitor diuretic response and adjust furosemide dose if needed.",
+        "refs": [
+          {
+            "source_id": "fda-furosemide-label",
+            "locator": "Drug Interactions",
+            "quote": "Phenytoin interferes directly with renal action of LASIX. There is evidence that treatment with phenytoin leads to decreased intestinal absorption of LASIX, and consequently to lower peak serum furosemide concentrations."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Sucralfate",
+        "severity": "moderate",
+        "effect": "Simultaneous administration reduces natriuretic and antihypertensive effects of LASIX.",
+        "management": "Separate intake of LASIX and sucralfate by at least two hours.",
+        "refs": [
+          {
+            "source_id": "fda-furosemide-label",
+            "locator": "Drug Interactions",
+            "quote": "Simultaneous administration of sucralfate and LASIX tablets may reduce the natriuretic and antihypertensive effects of LASIX. Patients receiving both drugs should be observed closely to determine if the desired diuretic and/or antihypertensive effect of LASIX is achieved. The intake of LASIX and sucralfate should be separated by at least two hours."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "NSAIDs (e.g., indomethacin) and High-Dose Salicylates",
+        "severity": "moderate",
+        "effect": "NSAIDs may reduce natriuretic/antihypertensive effects and increase BUN, creatinine, and potassium; high-dose salicylates may cause salicylate toxicity due to competitive renal excretion.",
+        "management": "Observe patients closely for desired diuretic/antihypertensive effect and monitor renal function and electrolytes.",
+        "refs": [
+          {
+            "source_id": "fda-furosemide-label",
+            "locator": "Drug Interactions",
+            "quote": "Literature reports indicate that coadministration of indomethacin may reduce the natriuretic and antihypertensive effects of LASIX (furosemide) in some patients by inhibiting prostaglandin synthesis."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-furosemide-label",
+        "locator": "Drug Interactions",
+        "quote": "LASIX may increase the ototoxic potential of aminoglycoside antibiotics, especially in the presence of impaired renal function. Except in life-threatening situations, avoid this combination."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "refs": [
+        {
+          "source_id": "fda-furosemide-label",
+          "locator": "Pregnancy",
+          "quote": "There are no adequate and well-controlled studies in pregnant women. LASIX should be used during pregnancy only if the potential benefit justifies the potential risk to the fetus. Treatment during pregnancy requires monitoring of fetal growth because of the potential for higher birth weights."
+        }
+      ],
+      "note": "5-axis synthesis: No adequate and well-controlled human studies; label advises use only if potential benefit justifies potential risk to fetus and requires monitoring of fetal growth; rabbit studies showed unexplained maternal deaths and abortions at 2x-8x MRHD and hydronephrosis in mice/rabbits."
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Furosemide appears in breast milk and may inhibit lactation; exercise caution when administering to a nursing mother.",
+      "refs": [
+        {
+          "source_id": "fda-furosemide-label",
+          "locator": "Nursing Mothers",
+          "quote": "Because it appears in breast milk, caution should be exercised when LASIX is administered to a nursing mother. LASIX may inhibit lactation."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

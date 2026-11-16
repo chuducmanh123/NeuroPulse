@@ -1,0 +1,444 @@
+{
+  "id": "acetaminophen",
+  "generic_name": "acetaminophen",
+  "tall_man": {
+    "value": "acetaminophen",
+    "refs": [
+      {
+        "source_id": "fda-acetaminophen-label",
+        "locator": "1 INDICATIONS AND USAGE",
+        "quote": "Acetaminophen injection is indicated for • the management of mild to moderate pain in adult and pediatric patients 2 years and older"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "non-salicylate antipyretic",
+    "non-opioid analgesic"
+  ],
+  "subspecialties": [
+    "headache",
+    "neurocritical_care",
+    "stroke"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "acetaminophen-adult-ge50kg-iv",
+      "indication": "Mild to moderate pain, moderate to severe pain (adjunct to opioids), or fever — Adults and adolescents (13 years and older) weighing >= 50 kg",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-acetaminophen-label",
+          "locator": "1 INDICATIONS AND USAGE",
+          "quote": "Acetaminophen injection is indicated for • the management of mild to moderate pain in adult and pediatric patients 2 years and older • the management of moderate to severe pain with adjunctive opioid analgesics in adult and pediatric patients 2 years and older • the reduction of fever in adult and pediatric patients."
+        },
+        {
+          "source_id": "fda-acetaminophen-label",
+          "locator": "2.2 Recommended Dosage: Adults and Adolescents",
+          "quote": "Adults and adolescents weighing 50 kg and over: the recommended dosage of acetaminophen injection is 1000 mg every 6 hours or 650 mg every 4 hours, with a maximum single dose of acetaminophen injection of 1000 mg, a minimum dosing interval of 4 hours, and a maximum daily dose of acetaminophen of 4000 mg per day"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1000,
+        "unit": "mg",
+        "frequency": "every 6 hours (or 650 mg every 4 hours) infused over 15 minutes",
+        "max_single": 1000,
+        "max_daily": 4000,
+        "infusion": {
+          "duration_min": 15
+        }
+      },
+      "dose_text": "1000 mg IV every 6 hours or 650 mg IV every 4 hours, infused over 15 minutes. Maximum single dose 1000 mg; minimum dosing interval 4 hours; maximum total daily dose 4000 mg/day from all routes and all acetaminophen-containing products."
+    },
+    {
+      "id": "acetaminophen-adult-lt50kg-iv",
+      "indication": "Mild to moderate pain, moderate to severe pain (adjunct to opioids), or fever — Adults and adolescents (13 years and older) weighing < 50 kg",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-acetaminophen-label",
+          "locator": "2.2 Recommended Dosage: Adults and Adolescents",
+          "quote": "Adults and adolescents weighing under 50 kg: the recommended dosage of acetaminophen injection is 15 mg/kg every 6 hours or 12.5 mg/kg every 4 hours, with a maximum single dose of acetaminophen injection of 15 mg/kg, a minimum dosing interval of 4 hours, and a maximum daily dose of acetaminophen of 75 mg/kg per day"
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 15,
+        "unit": "mg",
+        "frequency": "every 6 hours (or 12.5 mg/kg every 4 hours) infused over 15 minutes",
+        "max_single": 750,
+        "max_daily": 3750,
+        "infusion": {
+          "duration_min": 15
+        }
+      },
+      "dose_text": "15 mg/kg IV every 6 hours or 12.5 mg/kg IV every 4 hours, infused over 15 minutes. Maximum single dose 15 mg/kg (up to 750 mg); minimum dosing interval 4 hours; maximum total daily dose 75 mg/kg/day (up to 3750 mg) from all routes and sources."
+    },
+    {
+      "id": "acetaminophen-peds-2to12y-iv",
+      "indication": "Mild to moderate pain, moderate to severe pain (adjunct to opioids), or fever — Children (2 to 12 years of age)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-acetaminophen-label",
+          "locator": "2.3 Recommended Dosage: Children",
+          "quote": "Children 2 to 12 years of age: the recommended dosage of acetaminophen injection is 15 mg/kg every 6 hours or 12.5 mg/kg every 4 hours, with a maximum single dose of acetaminophen injection of 15 mg/kg, a minimum dosing interval of 4 hours, and a maximum daily dose of acetaminophen of 75 mg/kg per day."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 15,
+        "unit": "mg",
+        "frequency": "every 6 hours (or 12.5 mg/kg every 4 hours) infused over 15 minutes",
+        "max_single": 750,
+        "max_daily": 3750,
+        "infusion": {
+          "duration_min": 15
+        }
+      },
+      "dose_text": "15 mg/kg IV every 6 hours or 12.5 mg/kg IV every 4 hours, infused over 15 minutes. Maximum single dose 15 mg/kg (up to 750 mg); minimum dosing interval 4 hours; maximum total daily dose 75 mg/kg/day (up to 3750 mg) from all routes."
+    },
+    {
+      "id": "acetaminophen-infant-fever-iv",
+      "indication": "Reduction of fever — Infants (29 days to 2 years of age)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-acetaminophen-label",
+          "locator": "2.4 Recommended Dosage For Treatment of Fever in Neonates and Infants",
+          "quote": "Infants 29 days to 2 years of age: the recommended dosage of acetaminophen injection is 15 mg/kg every 6 hours, to a maximum daily dose of acetaminophen of 60 mg/kg per day, with a minimum dosing interval of 6 hours."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 15,
+        "unit": "mg",
+        "frequency": "every 6 hours infused over 15 minutes (max 60 mg/kg/day)",
+        "infusion": {
+          "duration_min": 15
+        }
+      },
+      "dose_text": "15 mg/kg IV every 6 hours infused over 15 minutes; minimum dosing interval 6 hours; maximum total daily dose 60 mg/kg/day from all routes."
+    },
+    {
+      "id": "acetaminophen-neonate-fever-iv",
+      "indication": "Reduction of fever — Neonates (including premature neonates born at >= 32 weeks gestational age, up to 28 days chronological age)",
+      "setting": "acute_inpatient",
+      "route": "IV",
+      "refs": [
+        {
+          "source_id": "fda-acetaminophen-label",
+          "locator": "2.4 Recommended Dosage For Treatment of Fever in Neonates and Infants",
+          "quote": "Neonates, including premature neonates born at ≥ 32 weeks gestational age, up to 28 days chronological age: the recommended dosage of acetaminophen injection is 12.5 mg/kg every 6 hours, to a maximum daily dose of acetaminophen of 50 mg/kg per day, with a minimum dosing interval of 6 hours."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 12.5,
+        "unit": "mg",
+        "frequency": "every 6 hours infused over 15 minutes (max 50 mg/kg/day)",
+        "infusion": {
+          "duration_min": 15
+        }
+      },
+      "dose_text": "12.5 mg/kg IV every 6 hours infused over 15 minutes; minimum dosing interval 6 hours; maximum total daily dose 50 mg/kg/day from all routes."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-acetaminophen-label",
+        "locator": "8.7 Patients with Renal Impairment",
+        "quote": "In cases of severe renal impairment (creatinine clearance ≤ 30 mL/min), longer dosing intervals and a reduced total daily dose of acetaminophen may be warranted."
+      }
+    ],
+    "note": "Label specifies creatinine clearance in mL/min (non-indexed)."
+  },
+  "renal_impairment": {
+    "description": "In severe renal impairment (CrCl <= 30 mL/min), longer dosing intervals and a reduced total daily dose may be warranted.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-acetaminophen-label",
+          "locator": "8.7 Patients with Renal Impairment",
+          "quote": "In cases of severe renal impairment (creatinine clearance ≤ 30 mL/min), longer dosing intervals and a reduced total daily dose of acetaminophen may be warranted."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": null,
+        "max": 30,
+        "dose_text": "Longer dosing intervals and a reduced total daily dose of acetaminophen may be warranted.",
+        "refs": [
+          {
+            "source_id": "fda-acetaminophen-label",
+            "locator": "8.7 Patients with Renal Impairment",
+            "quote": "In cases of severe renal impairment (creatinine clearance ≤ 30 mL/min), longer dosing intervals and a reduced total daily dose of acetaminophen may be warranted."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-acetaminophen-label",
+        "locator": "8.7 Patients with Renal Impairment",
+        "quote": "In cases of severe renal impairment (creatinine clearance ≤ 30 mL/min), longer dosing intervals and a reduced total daily dose of acetaminophen may be warranted."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Contraindicated in patients with severe hepatic impairment or severe active liver disease; use with caution in hepatic impairment or active liver disease, where a reduced total daily dose may be warranted.",
+    "refs": [
+      {
+        "source_id": "fda-acetaminophen-label",
+        "locator": "8.6 Patients with Hepatic Impairment",
+        "quote": "Acetaminophen is contraindicated in patients with severe hepatic impairment or severe active liver disease and should be used with caution in patients with hepatic impairment or active liver disease [ see Warnings and Precautions (5.1) and Clinical Pharmacology (12) ] . A reduced total daily dose of acetaminophen may be warranted."
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "Risk of medication errors (mg vs mL confusion, weight-based dosing <50 kg, infusion pump programming, total daily dose from all sources) which could result in accidental overdose and death.",
+      "Hepatotoxicity: associated with acute liver failure, at times resulting in liver transplant and death, mostly at doses exceeding maximum daily limits and often involving more than one acetaminophen-containing product."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-acetaminophen-label",
+        "locator": "BOXED WARNING",
+        "quote": "Take care when prescribing, preparing, and administering acetaminophen injection to avoid dosing errors which could result in accidental overdose and death."
+      },
+      {
+        "source_id": "fda-acetaminophen-label",
+        "locator": "BOXED WARNING",
+        "quote": "Acetaminophen has been associated with cases of acute liver failure, at times resulting in liver transplant and death. Most of the cases of liver injury are associated with the use of acetaminophen at doses that exceed the maximum daily limits, and often involve more than one acetaminophen-containing product"
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-acetaminophen-label",
+        "locator": "11 DESCRIPTION",
+        "quote": "Acetaminophen, USP is a non-salicylate antipyretic and non-opioid analgesic agent."
+      }
+    ],
+    "note": "Non-salicylate antipyretic and non-opioid analgesic; no neuromuscular junction blocking warnings."
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": [],
+    "note": "Label is for intravenous infusion formulation; no nasogastric tube administration instructions provided."
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "hepatotoxicity",
+      "rash_sjs_ten"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-acetaminophen-label",
+        "locator": "BOXED WARNING",
+        "quote": "Acetaminophen has been associated with cases of acute liver failure, at times resulting in liver transplant and death."
+      },
+      {
+        "source_id": "fda-acetaminophen-label",
+        "locator": "6 ADVERSE REACTIONS",
+        "quote": "The following serious adverse reactions are discussed elsewhere in the labeling: • Hepatic Injury [see Warnings and Precautions (5.1) ] • Serious Skin Reactions [see Warnings and Precautions (5.2) ] • Allergy and Hypersensitivity [see Warnings and Precautions (5.4) ]"
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Nausea (34% in adults; >=5% in pediatrics)",
+        "Vomiting (15% in adults; >=5% in pediatrics)",
+        "Headache (10% in adults)",
+        "Insomnia (7% in adults)",
+        "Constipation and pruritus (>=5% in pediatrics)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-acetaminophen-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "The most common adverse reactions in patients treated with acetaminophen injection were nausea, vomiting, headache, and insomnia in adult patients; nausea, vomiting, constipation, and pruritus in pediatric patients."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Hepatic injury / acute liver failure (including liver transplant and death)",
+        "Serious skin reactions",
+        "Allergy and hypersensitivity reactions",
+        "Renal tubular necrosis, hypoglycemic coma, and thrombocytopenia (in acute overdosage)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-acetaminophen-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "The following serious adverse reactions are discussed elsewhere in the labeling: • Hepatic Injury [see Warnings and Precautions (5.1) ] • Serious Skin Reactions [see Warnings and Precautions (5.2) ] • Allergy and Hypersensitivity [see Warnings and Precautions (5.4) ]"
+        },
+        {
+          "source_id": "fda-acetaminophen-label",
+          "locator": "10 OVERDOSAGE",
+          "quote": "In acute acetaminophen overdosage, dose-dependent, potentially fatal hepatic necrosis is the most serious adverse effect. Renal tubular necrosis, hypoglycemic coma, and thrombocytopenia may also occur."
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "The precise mechanism of the analgesic and antipyretic properties of acetaminophen is not established but is thought to primarily involve central actions.",
+    "refs": [
+      {
+        "source_id": "fda-acetaminophen-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "The precise mechanism of the analgesic and antipyretic properties of acetaminophen is not established but is thought to primarily involve central actions."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "ugt": [
+        "glucuronidation"
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-acetaminophen-label",
+        "locator": "12.3 Pharmacokinetics",
+        "quote": "Acetaminophen is primarily metabolized in the liver by first-order kinetics and involves three principal separate pathways: Conjugation with glucuronide, conjugation with sulfate, and oxidation via the cytochrome P450 enzyme pathway, primarily CYP2E1, to form a reactive intermediate metabolite (N-acetyl-p-benzoquinone imine or NAPQI)."
+      }
+    ],
+    "note": "Metabolized via glucuronidation, sulfation, and CYP2E1 oxidation to NAPQI."
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "CYP2E1 Inducers / Ethanol",
+        "severity": "moderate",
+        "effect": "Substances that induce or regulate CYP2E1 may alter acetaminophen metabolism and increase its hepatotoxic potential; excessive ethanol can induce hepatic cytochromes while also acting as a competitive inhibitor.",
+        "management": "Monitor for hepatotoxicity; clinical consequences of CYP2E1 induction have not been established.",
+        "refs": [
+          {
+            "source_id": "fda-acetaminophen-label",
+            "locator": "7.1 Effects of Other Substances on Acetaminophen",
+            "quote": "Substances that induce or regulate hepatic cytochrome enzyme CYP2E1 may alter the metabolism of acetaminophen and increase its hepatotoxic potential. The clinical consequences of these effects have not been established."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Warfarin (Oral Anticoagulants)",
+        "severity": "moderate",
+        "effect": "Chronic oral acetaminophen use at 4000 mg/day has been shown to increase INR in some patients stabilized on sodium warfarin.",
+        "management": "More frequent assessment of INR may be appropriate when administering acetaminophen in patients on oral anticoagulants.",
+        "refs": [
+          {
+            "source_id": "fda-acetaminophen-label",
+            "locator": "7.2 Anticoagulants",
+            "quote": "Chronic oral acetaminophen use at a dose of 4000 mg/day has been shown to cause an increase in international normalized ratio (INR) in some patients who have been stabilized on sodium warfarin as an anticoagulant."
+          },
+          {
+            "source_id": "fda-acetaminophen-label",
+            "locator": "7.2 Anticoagulants",
+            "quote": "As no studies have been performed evaluating the short-term use of acetaminophen injection in patients on oral anticoagulants, more frequent assessment of INR may be appropriate in such circumstances."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-acetaminophen-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Substances that induce or regulate hepatic cytochrome enzyme CYP2E1 may alter the metabolism of acetaminophen and increase its hepatotoxic potential. (7.1)"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "Large human epidemiological cohorts (n=26,424 prospective; n=11,610 case-control) with oral acetaminophen showed no increased risk of major birth defects, but methodological limitations prevent definitely ruling out risk, no animal reproduction studies exist for IV acetaminophen, and published oral animal studies at 0.85-1.2x MHDD showed fetotoxicity, fetal liver/kidney necrosis, and reduced fertility.",
+      "refs": [
+        {
+          "source_id": "fda-acetaminophen-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "Published epidemiological studies with oral acetaminophen use during pregnancy have not reported a clear association with acetaminophen use and birth defects, miscarriage, or adverse maternal or fetal outcomes [see Data] . Animal reproduction studies have not been conducted with IV acetaminophen."
+        },
+        {
+          "source_id": "fda-acetaminophen-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "However, these studies cannot definitely establish the absence of any risk because of methodological limitations, including recall bias."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": "1% to 2% of the weight-adjusted maternal dose",
+      "refs": [
+        {
+          "source_id": "fda-acetaminophen-label",
+          "locator": "8.2 Lactation",
+          "quote": "Average and maximum neonatal doses of 1% and 2%, respectively, of the weight-adjusted maternal dose are reported after a single oral administration of 1 gram APAP."
+        }
+      ]
+    },
+    "lactation_summary": {
+      "value": "Passes rapidly into human milk with similar milk and plasma levels (1% average, 2% maximum weight-adjusted maternal dose after 1 g oral); one documented case of rash in a breastfed infant that resolved upon discontinuation and recurred on rechallenge.",
+      "refs": [
+        {
+          "source_id": "fda-acetaminophen-label",
+          "locator": "8.2 Lactation",
+          "quote": "However, limited published studies report that acetaminophen passes rapidly into human milk with similar levels in the milk and plasma."
+        },
+        {
+          "source_id": "fda-acetaminophen-label",
+          "locator": "8.2 Lactation",
+          "quote": "There is one well-documented report of a rash in a breast-fed infant that resolved when the mother stopped acetaminophen use and recurred when she resumed acetaminophen use."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

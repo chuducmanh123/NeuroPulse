@@ -1,0 +1,523 @@
+{
+  "id": "lisinopril",
+  "generic_name": "lisinopril",
+  "tall_man": {
+    "value": "lisinopril",
+    "refs": [
+      {
+        "source_id": "fda-lisinopril-label",
+        "locator": "Section 11 DESCRIPTION",
+        "quote": "Lisinopril is an oral long-acting angiotensin converting enzyme (ACE) inhibitor."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "angiotensin-converting enzyme (ACE) inhibitor",
+    "antihypertensive"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "lisin-po-htn-adult",
+      "indication": "Hypertension (Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-lisinopril-label",
+          "locator": "Section 1.1 Hypertension",
+          "quote": "Zestril is indicated for the treatment of hypertension in adult patients and pediatric patients 6 years of age and older to lower blood pressure. Lowering blood pressure lowers the risk of fatal and non-fatal cardiovascular events, primarily strokes and myocardial infarctions."
+        },
+        {
+          "source_id": "fda-lisinopril-label",
+          "locator": "Section 2.1 Hypertension",
+          "quote": "Initial Therapy in adults: The recommended initial dose is 10 mg once a day. Dosage should be adjusted according to blood pressure response. The usual dosage range is 20 mg to 40 mg per day administered in a single daily dose. Doses up to 80 mg have been used but do not appear to give greater effect."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 10,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 40,
+        "max_daily": 40
+      },
+      "dose_text": "Initial dose: 10 mg orally once daily (5 mg once daily in patients taking diuretics). Usual dosage range: 20 to 40 mg once daily (doses up to 80 mg used without greater effect). Reduce initial dose to 5 mg for CrCl 10-30 mL/min and 2.5 mg for CrCl <10 mL/min or hemodialysis."
+    },
+    {
+      "id": "lisin-po-htn-pediatric",
+      "indication": "Hypertension (Pediatric Patients >= 6 Years with GFR > 30 mL/min/1.73m2)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-lisinopril-label",
+          "locator": "Section 2.1 Hypertension",
+          "quote": "For pediatric patients with glomerular filtration rate > 30 mL/min/1.73m 2 , the recommended starting dose is 0.07 mg per kg once daily (up to 5 mg total). Dosage should be adjusted according to blood pressure response up to a maximum of 0.61 mg per kg (up to 40 mg) once daily."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 0.07,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 40,
+        "max_daily": 40
+      },
+      "dose_text": "Starting dose: 0.07 mg/kg once daily (up to 5 mg total), titrated up to 0.61 mg/kg (up to 40 mg) once daily. Not recommended in pediatric patients < 6 years or with GFR < 30 mL/min/1.73m2."
+    },
+    {
+      "id": "lisin-po-hf-adult",
+      "indication": "Systolic Heart Failure (Adjunct Therapy, Adults)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-lisinopril-label",
+          "locator": "Section 2.2 Heart Failure",
+          "quote": "The recommended starting dose for Zestril, when used with diuretics and (usually) digitalis as adjunctive therapy for systolic heart failure, is 5 mg once daily. The recommended starting dose in these patients with hyponatremia (serum sodium < 130 mEq/L) is 2.5 mg once daily. Increase as tolerated to a maximum of 40 mg once daily."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 5,
+        "unit": "mg",
+        "frequency": "once daily",
+        "max_single": 40,
+        "max_daily": 40
+      },
+      "dose_text": "Starting dose: 5 mg orally once daily (2.5 mg once daily in patients with hyponatremia [serum sodium <130 mEq/L] or CrCl <= 30 mL/min). Increase as tolerated to a maximum of 40 mg once daily."
+    },
+    {
+      "id": "lisin-po-ami-adult",
+      "indication": "Reduction of Mortality in Acute Myocardial Infarction (Hemodynamically Stable Adults within 24 Hours)",
+      "setting": "acute_inpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-lisinopril-label",
+          "locator": "Section 2.3 Reduction of Mortality in Acute Myocardial Infarction",
+          "quote": "In hemodynamically stable patients within 24 hours of the onset of symptoms of acute myocardial infarction, give Zestril 5 mg orally, followed by 5 mg after 24 hours, 10 mg after 48 hours and then 10 mg once daily. Dosing should continue for at least six weeks."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 5,
+        "unit": "mg",
+        "frequency": "initial dose, then 5 mg at 24h, 10 mg at 48h, then 10 mg once daily",
+        "max_single": 10,
+        "max_daily": 10
+      },
+      "dose_text": "5 mg orally within 24 hours of symptom onset, followed by 5 mg after 24 hours, 10 mg after 48 hours, then 10 mg once daily for at least 6 weeks. Initiate at 2.5 mg if SBP <= 120 and > 100 mmHg during first 3 days (or CrCl <= 30 mL/min); withdraw if prolonged hypotension (SBP < 90 mmHg for > 1 hour)."
+    }
+  ],
+  "renal_impairment": {
+    "description": "No dose adjustment required for CrCl > 30 mL/min. Reduce initial dose by half for CrCl 10-30 mL/min, and start at 2.5 mg once daily for CrCl < 10 mL/min or hemodialysis.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-lisinopril-label",
+          "locator": "Section 2.4 Dose in Patients with Renal Impairment",
+          "quote": "No dose adjustment of Zestril is required in patients with creatinine clearance > 30 mL/min."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 31,
+        "max": null,
+        "dose_text": "CrCl > 30 mL/min: No dose adjustment required.",
+        "refs": [
+          {
+            "source_id": "fda-lisinopril-label",
+            "locator": "Section 2.4 Dose in Patients with Renal Impairment",
+            "quote": "No dose adjustment of Zestril is required in patients with creatinine clearance > 30 mL/min."
+          }
+        ]
+      },
+      {
+        "min": 10,
+        "max": 30,
+        "dose_text": "CrCl 10 to 30 mL/min: Reduce initial dose to half of usual recommended dose (hypertension: 5 mg; systolic heart failure: 2.5 mg; acute MI: 2.5 mg); up-titrate as tolerated to maximum 40 mg daily.",
+        "refs": [
+          {
+            "source_id": "fda-lisinopril-label",
+            "locator": "Section 2.4 Dose in Patients with Renal Impairment",
+            "quote": "In patients with creatinine clearance ≥ 10 mL/min and ≤ 30 mL/min, reduce the initial dose of Zestril to half of the usual recommended dose i.e., hypertension, 5 mg; systolic heart failure, 2.5 mg and acute MI, 2.5 mg. Up titrate as tolerated to a maximum of 40 mg daily."
+          }
+        ]
+      },
+      {
+        "min": 0,
+        "max": 9,
+        "dose_text": "CrCl < 10 mL/min or hemodialysis: Recommended initial dose is 2.5 mg once daily.",
+        "dose": {
+          "kind": "fixed",
+          "amount": 2.5,
+          "unit": "mg",
+          "frequency": "once daily",
+          "max_single": 40,
+          "max_daily": 40
+        },
+        "refs": [
+          {
+            "source_id": "fda-lisinopril-label",
+            "locator": "Section 2.4 Dose in Patients with Renal Impairment",
+            "quote": "For patients on hemodialysis or creatinine clearance < 10 mL/min, the recommended initial dose is 2.5 mg once daily"
+          }
+        ]
+      }
+    ],
+    "hemodialysis": {
+      "value": "Lisinopril can be removed by hemodialysis. Recommended initial dose is 2.5 mg once daily.",
+      "refs": [
+        {
+          "source_id": "fda-lisinopril-label",
+          "locator": "Section 12.3 Pharmacokinetics",
+          "quote": "Lisinopril can be removed by hemodialysis."
+        },
+        {
+          "source_id": "fda-lisinopril-label",
+          "locator": "Section 2.4 Dose in Patients with Renal Impairment",
+          "quote": "For patients on hemodialysis or creatinine clearance < 10 mL/min, the recommended initial dose is 2.5 mg once daily"
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-lisinopril-label",
+        "locator": "Section 8.7 Renal Impairment",
+        "quote": "Dose adjustment of Zestril is required in patients undergoing hemodialysis or whose creatinine clearance is ≤ 30 mL/min. No dose adjustment of Zestril is required in patients with creatinine clearance > 30 mL/min"
+      }
+    ]
+  },
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-lisinopril-label",
+        "locator": "Section 2.4 Dose in Patients with Renal Impairment",
+        "quote": "No dose adjustment of Zestril is required in patients with creatinine clearance > 30 mL/min."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": null,
+    "refs": [],
+    "note": "Lisinopril does not undergo metabolism and is excreted unchanged entirely in the urine; no hepatic dose adjustment is specified in the FDA label."
+  },
+  "black_box": {
+    "value": [
+      "WARNING: FETAL TOXICITY: When pregnancy is detected, discontinue Zestril as soon as possible. Drugs that act directly on the renin-angiotensin system can cause injury and death to the developing fetus."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-lisinopril-label",
+        "locator": "BOXED WARNING",
+        "quote": "WARNING: FETAL TOXICITY When pregnancy is detected, discontinue ZESTRIL as soon as possible [see Warnings and Precautions ( 5.1 )]. Drugs that act directly on the renin-angiotensin system can cause injury and death to the developing fetus [see Warnings and Precautions (5.1)]."
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-lisinopril-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Lisinopril inhibits angiotensin-converting enzyme (ACE) in human subjects and animals."
+      }
+    ],
+    "note": "ACE inhibitors do not impair neuromuscular transmission and are generally considered safe in myasthenia gravis."
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": true,
+      "instructions": "Zestril uncoated immediate-release tablets (2.5 mg to 40 mg) may be crushed if needed; label does not provide dedicated NG tube instructions."
+    },
+    "refs": [
+      {
+        "source_id": "fda-lisinopril-label",
+        "locator": "Section 3 DOSAGE FORMS AND STRENGTHS",
+        "quote": "2.5 mg are white, round, biconvex, uncoated tablets identified as “ZESTRIL 2 1/2” on one side and “135” on the other side."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "hyponatremia",
+      "confusion_delirium",
+      "pancreatitis",
+      "rash_sjs_ten"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-lisinopril-label",
+        "locator": "Section 6.2 Post-marketing Experience",
+        "quote": "Metabolism and nutrition disorders Hyponatremia [see Warnings and Precautions (5.4) ] , cases of hypoglycemia in diabetic patients on oral antidiabetic agents or insulin [see Drug Interactions (7.2) ] . Nervous system and psychiatric disorders Mood alterations (including depressive symptoms), mental confusion, hallucinations"
+      },
+      {
+        "source_id": "fda-lisinopril-label",
+        "locator": "Section 6.1 Clinical Trials Experience",
+        "quote": "Digestive : Pancreatitis, constipation, flatulence, dry mouth, diarrhea."
+      },
+      {
+        "source_id": "fda-lisinopril-label",
+        "locator": "Section 6.1 Clinical Trials Experience",
+        "quote": "Skin : Urticaria, alopecia, photosensitivity, erythema, flushing, diaphoresis, cutaneous pseudolymphoma, toxic epidermal necrolysis, Stevens - Johnson syndrome, and pruritus."
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Headache",
+        "Dizziness",
+        "Cough",
+        "Hypotension",
+        "Chest pain"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-lisinopril-label",
+          "locator": "Section 6 ADVERSE REACTIONS",
+          "quote": "Common adverse reactions (events 2% greater than placebo) by use: Hypertension: headache, dizziness and cough ( 6.1 ) Heart Failure: hypotension and chest pain ( 6.1 ) Acute Myocardial Infarction: hypotension ( 6.1 )"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Fetal toxicity (oligohydramnios, fetal renal failure, skull hypoplasia, death)",
+        "Angioedema (head/neck/intestinal)",
+        "Hypotension and syncope",
+        "Hyperkalemia",
+        "Acute renal dysfunction / renal failure",
+        "Stevens-Johnson syndrome and toxic epidermal necrolysis",
+        "Pancreatitis and bone marrow depression (leukopenia/neutropenia, thrombocytopenia, hemolytic anemia)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-lisinopril-label",
+          "locator": "Section 6.1 Clinical Trials Experience",
+          "quote": "Skin : Urticaria, alopecia, photosensitivity, erythema, flushing, diaphoresis, cutaneous pseudolymphoma, toxic epidermal necrolysis, Stevens - Johnson syndrome, and pruritus."
+        },
+        {
+          "source_id": "fda-lisinopril-label",
+          "locator": "Section 4 CONTRAINDICATIONS",
+          "quote": "Zestril is contraindicated in patients with: a history of angioedema or hypersensitivity related to previous treatment with an angiotensin converting enzyme inhibitor hereditary or idiopathic angioedema"
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Lisinopril inhibits angiotensin-converting enzyme (ACE), a peptidyl dipeptidase that catalyzes the conversion of angiotensin I to the vasoconstrictor angiotensin II and degrades bradykinin. Suppression of the renin-angiotensin-aldosterone system decreases plasma angiotensin II and aldosterone secretion.",
+    "refs": [
+      {
+        "source_id": "fda-lisinopril-label",
+        "locator": "Section 12.1 Mechanism of Action",
+        "quote": "Lisinopril inhibits angiotensin-converting enzyme (ACE) in human subjects and animals. ACE is a peptidyl dipeptidase that catalyzes the conversion of angiotensin I to the vasoconstrictor substance, angiotensin II."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "qt_risk": "none",
+      "serotonergic": false
+    },
+    "refs": [
+      {
+        "source_id": "fda-lisinopril-label",
+        "locator": "Section 12.3 Pharmacokinetics",
+        "quote": "Lisinopril does not undergo metabolism and is excreted unchanged entirely in the urine."
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Neprilysin Inhibitor (e.g., sacubitril/valsartan)",
+        "severity": "contraindicated",
+        "effect": "Concomitant use increases the risk of angioedema.",
+        "management": "Contraindicated in combination with a neprilysin inhibitor; do not administer Zestril within 36 hours of switching to or from sacubitril/valsartan.",
+        "refs": [
+          {
+            "source_id": "fda-lisinopril-label",
+            "locator": "Section 4 CONTRAINDICATIONS",
+            "quote": "Zestril is contraindicated in combination with a neprilysin inhibitor (e.g., sacubitril). Do not administer Zestril within 36 hours of switching to or from sacubitril/valsartan, a neprilysin inhibitor"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Aliskiren and Dual RAS Blockade (ARBs, ACE inhibitors, aliskiren)",
+        "severity": "contraindicated",
+        "effect": "Increased risks of hypotension, hyperkalemia, and renal impairment including acute renal failure compared to monotherapy.",
+        "management": "Do not co-administer aliskiren with Zestril in patients with diabetes; avoid aliskiren in patients with GFR < 60 mL/min. In general, avoid combined use of RAS inhibitors.",
+        "refs": [
+          {
+            "source_id": "fda-lisinopril-label",
+            "locator": "Section 7.4 Dual Blockade of the Renin-Angiotensin System (RAS)",
+            "quote": "In general, avoid combined use of RAS inhibitors. Closely monitor blood pressure, renal function and electrolytes in patients on Zestril and other agents that affect the RAS. Do not co-administer aliskiren with Zestril in patients with diabetes. Avoid use of aliskiren with Zestril in patients with renal impairment (GFR <60 mL/min)."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Diuretics and Potassium-Sparing Diuretics (spironolactone, amiloride, triamterene)",
+        "severity": "major",
+        "effect": "Excessive reduction in blood pressure upon initiation; potassium-sparing diuretics increase the risk of hyperkalemia.",
+        "management": "Minimize hypotension by decreasing/discontinuing diuretic or reducing starting dose of Zestril; monitor serum potassium frequently if potassium-sparing diuretics are co-administered.",
+        "refs": [
+          {
+            "source_id": "fda-lisinopril-label",
+            "locator": "Section 7.1 Diuretics",
+            "quote": "Potassium-sparing diuretics (spironolactone, amiloride, triamterene, and others) can increase the risk of hyperkalemia. Therefore, if concomitant use of such agents is indicated, monitor the patient’s serum potassium frequently."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "NSAIDs (including selective COX-2 inhibitors)",
+        "severity": "major",
+        "effect": "May result in deterioration of renal function, including possible acute renal failure (especially in elderly, volume-depleted, or renal-impaired patients), and may attenuate antihypertensive effect.",
+        "management": "Monitor renal function periodically in patients receiving lisinopril and NSAID therapy.",
+        "refs": [
+          {
+            "source_id": "fda-lisinopril-label",
+            "locator": "Section 7.3 Non-Steroidal Anti-Inflammatory Agents Including Selective Cyclooxygenase-2 Inhibitors (COX-2 Inhibitors)",
+            "quote": "In patients who are elderly, volume-depleted (including those on diuretic therapy), or with compromised renal function, coadministration of NSAIDs, including selective COX-2 inhibitors, with ACE inhibitors, including lisinopril, may result in deterioration of renal function, including possible acute renal failure."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Lithium",
+        "severity": "major",
+        "effect": "Lithium toxicity has been reported due to reduced sodium/lithium clearance.",
+        "management": "Monitor serum lithium levels during concurrent use.",
+        "refs": [
+          {
+            "source_id": "fda-lisinopril-label",
+            "locator": "Section 7.5 Lithium",
+            "quote": "Lithium toxicity has been reported in patients receiving lithium concomitantly with drugs, which cause elimination of sodium, including ACE inhibitors. Lithium toxicity was usually reversible upon discontinuation of lithium and the ACE inhibitor. Monitor serum lithium levels during concurrent use."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "mTOR Inhibitors (temsirolimus, sirolimus, everolimus)",
+        "severity": "major",
+        "effect": "Increased risk for angioedema.",
+        "management": "Monitor for signs and symptoms of angioedema during concomitant therapy.",
+        "refs": [
+          {
+            "source_id": "fda-lisinopril-label",
+            "locator": "Section 7.7 mTOR Inhibitors",
+            "quote": "Patients taking concomitant mTOR inhibitor (e.g. temsirolimus, sirolimus, everolimus) therapy may be at increased risk for angioedema."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Antidiabetic Medicines (insulins, oral hypoglycemic agents)",
+        "severity": "moderate",
+        "effect": "May cause an increased blood-glucose-lowering effect with risk of hypoglycemia.",
+        "management": "Monitor blood glucose closely when initiating or adjusting lisinopril with antidiabetic agents.",
+        "refs": [
+          {
+            "source_id": "fda-lisinopril-label",
+            "locator": "Section 7.2 Antidiabetics",
+            "quote": "Concomitant administration of Zestril and antidiabetic medicines (insulins, oral hypoglycemic agents) may cause an increased blood-glucose-lowering effect with risk of hypoglycemia."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Injectable Gold (sodium aurothiomalate)",
+        "severity": "moderate",
+        "effect": "Nitritoid reactions (facial flushing, nausea, vomiting, and hypotension) have been reported rarely.",
+        "management": "Monitor for nitritoid reactions when administering injectable gold with ACE inhibitors.",
+        "refs": [
+          {
+            "source_id": "fda-lisinopril-label",
+            "locator": "Section 7.6 Gold",
+            "quote": "Nitritoid reactions (symptoms include facial flushing, nausea, vomiting and hypotension) have been reported rarely in patients on therapy with injectable gold (sodium aurothiomalate) and concomitant ACE inhibitor therapy including Zestril."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-lisinopril-label",
+        "locator": "Section 7 DRUG INTERACTIONS",
+        "quote": "Diuretics: Excessive drop in blood pressure ( 7.1 ) NSAIDS: Increased risk of renal impairment and loss of antihypertensive efficacy ( 7.3 ) Dual inhibition of the renin-angiotensin system: Increased risk of renal impairment, hypotension and hyperkalemia ( 7.4 ) Lithium: Symptoms of lithium toxicity ( 7.5 )"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "avoid",
+      "refs": [
+        {
+          "source_id": "fda-lisinopril-label",
+          "locator": "BOXED WARNING",
+          "quote": "When pregnancy is detected, discontinue ZESTRIL as soon as possible [see Warnings and Precautions ( 5.1 )]. Drugs that act directly on the renin-angiotensin system can cause injury and death to the developing fetus"
+        },
+        {
+          "source_id": "fda-lisinopril-label",
+          "locator": "Section 8.1 Pregnancy",
+          "quote": "Oligohydramnios in pregnant women who use drugs affecting the renin-angiotensin system in the second and third trimesters of pregnancy can result in the following: reduced fetal renal function leading to anuria and renal failure, fetal lung hypoplasia and skeletal deformations, including skull hypoplasia, hypotension, and death."
+        }
+      ],
+      "note": "5-axis synthesis: Boxed Warning for fetal toxicity instructing immediate discontinuation when pregnancy is detected; 2nd/3rd trimester RAS blockade causes oligohydramnios, fetal renal failure, skull/lung hypoplasia, and neonatal death."
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "No data are available regarding presence in human milk, effects on breastfed infant, or milk production; lisinopril is present in rat milk. Advise women not to breastfeed during treatment due to potential for severe adverse reactions in the breastfed infant.",
+      "refs": [
+        {
+          "source_id": "fda-lisinopril-label",
+          "locator": "Section 8.2 Lactation",
+          "quote": "No data are available regarding the presence of lisinopril in human milk or the effects of lisinopril on the breastfed infant or on milk production. Lisinopril is present in rat milk. Because of the potential for severe adverse reactions in the breastfed infant, advise women not to breastfeed during treatment with Zestril."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

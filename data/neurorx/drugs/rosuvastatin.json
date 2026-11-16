@@ -1,0 +1,503 @@
+{
+  "id": "rosuvastatin",
+  "generic_name": "rosuvastatin",
+  "tall_man": {
+    "value": "rosuvastatin",
+    "refs": [
+      {
+        "source_id": "fda-rosuvastatin-label",
+        "locator": "1 INDICATIONS AND USAGE",
+        "quote": "CRESTOR is an HMG Co‑A reductase inhibitor (statin) indicated:"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "HMG-CoA reductase inhibitor (statin)",
+    "lipid-lowering agent"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neuromuscular"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "rosuva-adult-cv-lipid-po",
+      "indication": "Reduction of Major Adverse CV Events (including Nonfatal Stroke), Hypercholesterolemia, Atherosclerosis, Primary Dysbetalipoproteinemia, Hypertriglyceridemia, HeFH, and HoFH — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-rosuvastatin-label",
+          "locator": "2.2 Recommended Dosage in Adult Patients",
+          "quote": "• The dosage range for CRESTOR is 5 to 40 mg orally once daily. • The recommended dosage of CRESTOR depends on a patient’s indication for usage, LDL-C, and individual risk for CV events."
+        }
+      ],
+      "dose": null,
+      "dose_text": "5 to 40 mg PO once daily at any time of day, with or without food. Swallow tablets whole. Assess LDL-C as early as 4 weeks after initiation and adjust dosage if necessary."
+    },
+    {
+      "id": "rosuva-asian-adult-po",
+      "indication": "Lipid Lowering and CV Risk Reduction — Asian Patients (initiation and ceiling)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-rosuvastatin-label",
+          "locator": "2.4 Recommended Dosage in Asian Patients",
+          "quote": "Initiate CRESTOR at 5 mg orally once daily due to increased rosuvastatin plasma concentrations. Consider the risks and benefits of CRESTOR when treating Asian patients not adequately controlled at dosages up to 20 mg orally once daily"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 5,
+        "unit": "mg",
+        "frequency": "once daily (initial; consider risk/benefit above 20 mg/day)",
+        "max_daily": 20
+      },
+      "dose_text": "Initiate at 5 mg PO once daily due to ~2-fold increased plasma concentrations in Asian patients. Consider risks and benefits if not adequately controlled at dosages up to 20 mg once daily."
+    },
+    {
+      "id": "rosuva-peds-hefh-8to9yr-po",
+      "indication": "Heterozygous Familial Hypercholesterolemia (HeFH) — Pediatric Patients 8 to < 10 years of age",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-rosuvastatin-label",
+          "locator": "2.3 Recommended Dosage in Pediatric Patients",
+          "quote": "The recommended dosage range is 5 mg to 10 mg orally once daily in patients aged 8 years to less than 10 years and 5 mg to 20 mg orally once daily in patients aged 10-years and older."
+        }
+      ],
+      "dose": null,
+      "dose_text": "5 to 10 mg PO once daily."
+    },
+    {
+      "id": "rosuva-peds-hefh-10yr-plus-po",
+      "indication": "Heterozygous Familial Hypercholesterolemia (HeFH) — Pediatric Patients >= 10 years of age",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-rosuvastatin-label",
+          "locator": "2.3 Recommended Dosage in Pediatric Patients",
+          "quote": "The recommended dosage range is 5 mg to 10 mg orally once daily in patients aged 8 years to less than 10 years and 5 mg to 20 mg orally once daily in patients aged 10-years and older."
+        }
+      ],
+      "dose": null,
+      "dose_text": "5 to 20 mg PO once daily."
+    },
+    {
+      "id": "rosuva-peds-hofh-7yr-plus-po",
+      "indication": "Homozygous Familial Hypercholesterolemia (HoFH) — Pediatric Patients >= 7 years of age",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-rosuvastatin-label",
+          "locator": "2.3 Recommended Dosage in Pediatric Patients",
+          "quote": "Dosage in Pediatric Patients 7 Years of Age and Older with HoFH The recommended dosage is 20 mg orally once daily."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 20,
+        "unit": "mg",
+        "frequency": "once daily"
+      },
+      "dose_text": "20 mg PO once daily."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_normalized_1_73",
+    "refs": [
+      {
+        "source_id": "fda-rosuvastatin-label",
+        "locator": "2.5 Recommended Dosage in Patients with Renal Impairment",
+        "quote": "In patients with severe renal impairment (CLcr less than 30 mL/min/1.73 m2) not on hemodialysis, the recommended starting dosage is 5 mg orally once daily and should not exceed 10 mg orally once daily"
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "No dosage adjustment required for mild to moderate renal impairment (CLcr >= 30 mL/min/1.73 m²). In severe renal impairment (CLcr < 30 mL/min/1.73 m²) not on hemodialysis, initiate at 5 mg once daily and do not exceed 10 mg once daily.",
+    "renal_basis": {
+      "value": "cg_normalized_1_73",
+      "refs": [
+        {
+          "source_id": "fda-rosuvastatin-label",
+          "locator": "2.5 Recommended Dosage in Patients with Renal Impairment",
+          "quote": "In patients with severe renal impairment (CLcr less than 30 mL/min/1.73 m2) not on hemodialysis, the recommended starting dosage is 5 mg orally once daily and should not exceed 10 mg orally once daily"
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 30,
+        "max": null,
+        "dose_text": "No dosage adjustment recommendations for mild to moderate renal impairment (CLcr >= 30 mL/min/1.73 m²).",
+        "refs": [
+          {
+            "source_id": "fda-rosuvastatin-label",
+            "locator": "2.5 Recommended Dosage in Patients with Renal Impairment",
+            "quote": "There are no dosage adjustment recommendations for patients with mild and moderate renal impairment."
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 30,
+        "dose_text": "Initiate at 5 mg orally once daily; do not exceed 10 mg orally once daily (for patients not on hemodialysis).",
+        "dose": {
+          "kind": "fixed",
+          "amount": 5,
+          "unit": "mg",
+          "frequency": "once daily",
+          "max_daily": 10
+        },
+        "refs": [
+          {
+            "source_id": "fda-rosuvastatin-label",
+            "locator": "2.5 Recommended Dosage in Patients with Renal Impairment",
+            "quote": "In patients with severe renal impairment (CLcr less than 30 mL/min/1.73 m2) not on hemodialysis, the recommended starting dosage is 5 mg orally once daily and should not exceed 10 mg orally once daily"
+          }
+        ]
+      }
+    ],
+    "hemodialysis": {
+      "value": "Steady-state plasma concentrations in patients on chronic hemodialysis were ~50% greater compared with normal renal function; hemodialysis does not significantly enhance clearance.",
+      "refs": [
+        {
+          "source_id": "fda-rosuvastatin-label",
+          "locator": "12.3 Pharmacokinetics - Patients with Renal Impairment",
+          "quote": "Steady-state plasma concentrations of rosuvastatin in patients on chronic hemodialysis were approximately 50% greater compared with healthy volunteer subjects with normal renal function."
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-rosuvastatin-label",
+        "locator": "8.6 Renal Impairment",
+        "quote": "Renal impairment is a risk factor for myopathy and rhabdomyolysis. Monitor all patients with renal impairment for development of myopathy. In patients with severe renal impairment not on hemodialysis, the recommended starting dosage is 5 mg daily and should not exceed 10 mg daily"
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Contraindicated in acute liver failure or decompensated cirrhosis. Chronic alcoholic liver disease modestly increases exposure (Child-Pugh A: Cmax +60%, AUC +5%; Child-Pugh B: Cmax +100%, AUC +21%).",
+    "refs": [
+      {
+        "source_id": "fda-rosuvastatin-label",
+        "locator": "4 CONTRAINDICATIONS",
+        "quote": "CRESTOR is contraindicated in patients with: • Acute liver failure or decompensated cirrhosis [see Warnings and Precautions (5.3) ] ."
+      },
+      {
+        "source_id": "fda-rosuvastatin-label",
+        "locator": "12.3 Pharmacokinetics - Patients with Hepatic Impairment",
+        "quote": "In patients with Child‑Pugh A disease, C max and AUC were increased by 60% and 5%, respectively, as compared with patients with normal liver function. In patients with Child‑Pugh B disease, C max and AUC were increased 100% and 21%, respectively, compared with patients with normal liver function."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "may_worsen",
+    "refs": [
+      {
+        "source_id": "fda-rosuvastatin-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "There have been rare reports of new-onset or exacerbation of myasthenia gravis, including ocular myasthenia, and reports of recurrence when the same or a different statin was administered."
+      }
+    ],
+    "note": "Postmarketing reports of new-onset or exacerbation of myasthenia gravis (including ocular myasthenia) and recurrence on rechallenge."
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Swallow tablets whole; no NG tube or crushing instructions provided in FDA label."
+    },
+    "refs": [
+      {
+        "source_id": "fda-rosuvastatin-label",
+        "locator": "2.1 General Dosage and Administration Information",
+        "quote": "• Administer CRESTOR orally as a single dose at any time of day, with or without food. Swallow the tablets whole."
+      }
+    ]
+  },
+  "pgx": {
+    "value": "SLCO1B1 521T>C (OATP1B1): Higher plasma concentrations of rosuvastatin have been reported in small groups (n=3 to 5) with two reduced-function alleles (SLCO1B1 521 C/C; frequency <5% in most populations); impact on efficacy/safety not clearly established. Asian ancestry is also associated with ~2-fold higher median exposure (initiate at 5 mg once daily).",
+    "refs": [
+      {
+        "source_id": "fda-rosuvastatin-label",
+        "locator": "12.5 Pharmacogenomics",
+        "quote": "Higher plasma concentrations of rosuvastatin have been reported in very small groups of patients (n=3 to 5) who have two reduced function alleles of the gene that encodes OATP1B1 ( SLCO1B1 521T > C). The frequency of this genotype (i.e., SLCO1B1 521 C/C) is generally lower than 5% in most racial/ethnic groups."
+      }
+    ]
+  },
+  "ae_tags": {
+    "value": [
+      "hepatotoxicity",
+      "confusion_delirium",
+      "psychiatric_behavioral",
+      "rash_sjs_ten",
+      "pancreatitis"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-rosuvastatin-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "Nervous System Disorders : peripheral neuropathy, rare postmarketing reports of cognitive impairment (e.g., memory loss, forgetfulness, amnesia, memory impairment, and confusion) associated with the use of all statins."
+      },
+      {
+        "source_id": "fda-rosuvastatin-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "Hepatobiliary Disorders : hepatitis, jaundice, fatal and non-fatal hepatic failure"
+      },
+      {
+        "source_id": "fda-rosuvastatin-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "Skin and Subcutaneous Tissue Disorders : drug reaction with eosinophilia and systemic symptoms (DRESS), lichenoid drug eruption"
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Headache (5.5%)",
+        "Nausea (3.4%)",
+        "Myalgia (2.8%)",
+        "Asthenia (2.7%)",
+        "Constipation (2.4%)",
+        "Arthralgia"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-rosuvastatin-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "Most frequent adverse reactions (rate ≥2%) are headache, nausea, myalgia, asthenia, and constipation."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Myopathy and rhabdomyolysis",
+        "Immune-mediated necrotizing myopathy (IMNM)",
+        "Hepatic dysfunction (hepatitis, jaundice, fatal and non-fatal hepatic failure)",
+        "Proteinuria and hematuria",
+        "Increases in HbA1c and fasting serum glucose / new-onset diabetes mellitus",
+        "New-onset or exacerbation of myasthenia gravis",
+        "Peripheral neuropathy and reversible cognitive impairment",
+        "DRESS and interstitial lung disease"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-rosuvastatin-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "The following important adverse reactions are described below and elsewhere in the labeling: Myopathy and Rhabdomyolysis [see Warnings and Precautions (5.1) ] Immune-Mediated Necrotizing Myopathy [see Warnings and Precautions (5.2) ] Hepatic Dysfunction [see Warnings and Precautions (5.3) ]"
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Selective and competitive inhibitor of HMG-CoA reductase, the rate-limiting enzyme converting 3-hydroxy-3-methylglutaryl coenzyme A to mevalonate (cholesterol precursor), accelerating hepatic LDL-receptor expression and lowering plasma LDL-C and VLDL.",
+    "refs": [
+      {
+        "source_id": "fda-rosuvastatin-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "CRESTOR is an inhibitor of HMG‑CoA reductase, the rate-limiting enzyme that converts 3‑hydroxy‑3‑methylglutaryl coenzyme A to mevalonate, a precursor of cholesterol."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp2c9": "substrate"
+    },
+    "refs": [
+      {
+        "source_id": "fda-rosuvastatin-label",
+        "locator": "7.1 Drug Interactions that Increase the Risk of Myopathy and Rhabdomyolysis",
+        "quote": "Rosuvastatin is a substrate of CYP2C9 and transporters (such as OATP1B1, BCRP). Rosuvastatin plasma levels can be significantly increased with concomitant administration of inhibitors of CYP2C9 and transporters."
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Sofosbuvir/velpatasvir/voxilaprevir or Ledipasvir/sofosbuvir",
+        "severity": "major",
+        "effect": "Significantly increases rosuvastatin plasma levels (up to 7.4-fold AUC), increasing risk of myopathy and rhabdomyolysis.",
+        "management": "Avoid concomitant use with CRESTOR.",
+        "refs": [
+          {
+            "source_id": "fda-rosuvastatin-label",
+            "locator": "7.1 Drug Interactions - Table 5",
+            "quote": "Sofosbuvir/velpatasvir/voxilaprevir or Ledipasvir/sofosbuvir Prevention or Management: Avoid concomitant use with CRESTOR."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Cyclosporine",
+        "severity": "major",
+        "effect": "Cyclosporine increased rosuvastatin exposure 7-fold, increasing risk of myopathy and rhabdomyolysis.",
+        "management": "Do not exceed a dosage of CRESTOR 5 mg once daily.",
+        "refs": [
+          {
+            "source_id": "fda-rosuvastatin-label",
+            "locator": "7.1 Drug Interactions - Table 5",
+            "quote": "Cyclosporine Prevention or Management: In patients taking cyclosporine, do not exceed a dosage of CRESTOR 5 mg once daily. Mechanism and Clinical Effect(s): Cyclosporine increased rosuvastatin exposure 7-fold."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Gemfibrozil",
+        "severity": "major",
+        "effect": "Gemfibrozil significantly increased rosuvastatin exposure and may cause myopathy alone, increasing myopathy/rhabdomyolysis risk.",
+        "management": "Avoid concomitant use; if unavoidable, initiate at 5 mg once daily and do not exceed 10 mg once daily.",
+        "refs": [
+          {
+            "source_id": "fda-rosuvastatin-label",
+            "locator": "7.1 Drug Interactions - Table 5",
+            "quote": "Gemfibrozil Prevention or Management: Avoid concomitant use of gemfibrozil with CRESTOR. If use is unavoidable, initiate CRESTOR at 5 mg once daily and do not exceed a dosage of CRESTOR 10 mg once daily ."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Teriflunomide",
+        "severity": "major",
+        "effect": "Teriflunomide increased rosuvastatin exposure more than 2.5-fold, increasing risk of myopathy and rhabdomyolysis.",
+        "management": "Do not exceed a dosage of CRESTOR 10 mg once daily.",
+        "refs": [
+          {
+            "source_id": "fda-rosuvastatin-label",
+            "locator": "7.1 Drug Interactions - Table 5",
+            "quote": "Teriflunomide Prevention or Management: In patients taking teriflunomide, do not exceed a dosage of CRESTOR 10 mg once daily . Mechanism and Clinical Effect(s): Teriflunomide increased rosuvastatin exposure more than 2.5-fold."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Ticagrelor",
+        "severity": "moderate",
+        "effect": "Ticagrelor increased rosuvastatin exposure by 2.3-fold, increasing risk of myopathy and rhabdomyolysis.",
+        "management": "Do not exceed CRESTOR 20 mg once daily; in patients at increased risk for rhabdomyolysis, consider dosages < 20 mg/day.",
+        "refs": [
+          {
+            "source_id": "fda-rosuvastatin-label",
+            "locator": "7.1 Drug Interactions - Table 5",
+            "quote": "Ticagrelor Prevention or Management: In patients taking ticagrelor, do not exceed a dosage of CRESTOR 20 mg once daily. In patients at increased risk for rhabdomyolysis [see Warnings and Precautions (5.1) ] , consider dosages less than 20 mg per day."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Colchicine, Fenofibrates, or Lipid-Modifying Niacin (>= 1 g/day)",
+        "severity": "moderate",
+        "effect": "Increased risk of myopathy and rhabdomyolysis with concomitant use.",
+        "management": "Weigh benefit vs risk; if co-administered, monitor patients for signs and symptoms of myopathy, especially during initiation and upward titration.",
+        "refs": [
+          {
+            "source_id": "fda-rosuvastatin-label",
+            "locator": "7.1 Drug Interactions - Table 5",
+            "quote": "Colchicine Prevention or Management: Consider if the benefit of using colchicine concomitantly with CRESTOR outweighs the increased risk of myopathy and rhabdomyolysis. If concomitant use is decided, monitor patients for signs and symptoms of myopathy"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Aluminum and Magnesium Hydroxide Combination Antacids",
+        "severity": "moderate",
+        "effect": "Concomitant administration decreased mean rosuvastatin exposure by 50%.",
+        "management": "Administer CRESTOR at least 2 hours before the antacid.",
+        "refs": [
+          {
+            "source_id": "fda-rosuvastatin-label",
+            "locator": "7.2 Drug Interactions - Table 6",
+            "quote": "Antacids Prevention or Management: In patients taking an antacid, administer CRESTOR at least 2 hours before the antacid . Mechanism and Clinical Effect(s): Concomitant aluminum and magnesium hydroxide combination antacid administration decreased the mean exposure of rosuvastatin 50%"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Warfarin",
+        "severity": "moderate",
+        "effect": "Rosuvastatin significantly increased the INR in patients receiving warfarin.",
+        "management": "Obtain INR before starting CRESTOR and monitor INR frequently upon initiation, dosage titration, or discontinuation until stable.",
+        "refs": [
+          {
+            "source_id": "fda-rosuvastatin-label",
+            "locator": "7.3 CRESTOR Effects on Other Drugs - Table 7",
+            "quote": "Warfarin Prevention or Management: In patients taking warfarin, obtain an INR before starting CRESTOR and frequently enough after initiation, dosage titration or discontinuation to ensure that no significant alteration in INR occurs."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-rosuvastatin-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "See full prescribing information for details regarding concomitant use of CRESTOR with other drugs that increase the risk of myopathy and rhabdomyolysis. ( 7.1 )"
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "avoid",
+      "note": "PLLR Pregnancy section explicitly states 'Discontinue CRESTOR when pregnancy is recognized' because rosuvastatin decreases synthesis of cholesterol and biologically active cholesterol derivatives and may cause fetal harm, while treatment of hypercholesterolemia is generally unnecessary during pregnancy. (Although a Medicaid cohort of 1,152 statin-exposed pregnancies showed adjusted RR 1.07 for malformations, label directs discontinuation).",
+      "refs": [
+        {
+          "source_id": "fda-rosuvastatin-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "Discontinue CRESTOR when pregnancy is recognized. Alternatively, consider the ongoing therapeutic needs of the individual patient. CRESTOR decreases synthesis of cholesterol and possibly other biologically active substances derived from cholesterol; therefore, CRESTOR may cause fetal harm when administered to pregnant patients based on the mechanism of action"
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Present in human milk based on limited case reports; because of potential for serious adverse reactions in a breastfed infant due to decreased cholesterol synthesis, breastfeeding is not recommended during treatment.",
+      "refs": [
+        {
+          "source_id": "fda-rosuvastatin-label",
+          "locator": "8.2 Lactation",
+          "quote": "Limited data from case reports in published literature indicate that CRESTOR is present in human milk."
+        },
+        {
+          "source_id": "fda-rosuvastatin-label",
+          "locator": "8.2 Lactation",
+          "quote": "Because of the potential for serious adverse reactions in a breastfed infant, based on the mechanism of action, advise patients that breastfeeding is not recommended during treatment with CRESTOR"
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

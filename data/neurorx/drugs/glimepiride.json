@@ -1,0 +1,408 @@
+{
+  "id": "glimepiride",
+  "generic_name": "glimepiride",
+  "tall_man": {
+    "value": "glimepiride",
+    "refs": [
+      {
+        "source_id": "fda-glimepiride-label",
+        "locator": "1 INDICATIONS AND USAGE",
+        "quote": "Glimepiride tablets are a sulfonylurea indicated as an adjunct to diet and exercise to improve glycemic control in adults with type 2 diabetes mellitus ( 1 )."
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "sulfonylurea",
+    "insulin secretagogue",
+    "antihyperglycemic agent"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "glm-t2dm-adult-po",
+      "indication": "Type 2 Diabetes Mellitus — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-glimepiride-label",
+          "locator": "1 INDICATIONS AND USAGE",
+          "quote": "Glimepiride tablets are indicated as an adjunct to diet and exercise to improve glycemic control in adults with type 2 diabetes mellitus [see Clinical Studies (14.1) ]."
+        },
+        {
+          "source_id": "fda-glimepiride-label",
+          "locator": "2.1 Recommended Dosing",
+          "quote": "Glimepiride tablets should be administered with breakfast or the first main meal of the day. The recommended starting dose of glimepiride tablets are 1 mg or 2 mg once daily. Patients at increased risk for hypoglycemia (e.g., the elderly or patients with renal impairment) should be started on 1 mg once daily"
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 1,
+        "unit": "mg",
+        "frequency": "once daily with breakfast or first main meal; titrate by 1 to 2 mg no more frequently than every 1 to 2 weeks",
+        "max_daily": 8
+      },
+      "dose_text": "Recommended starting dose: 1 mg or 2 mg orally once daily with breakfast or the first main meal of the day (use 1 mg starting dose and conservative titration in elderly or renally impaired patients). After reaching 2 mg/day, increase in 1 mg or 2 mg increments no more frequently than every 1 to 2 weeks based on glycemic response, up to a maximum of 8 mg once daily. Administer at least 4 hours prior to colesevelam."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-glimepiride-label",
+        "locator": "12.3 Pharmacokinetics - Renal Impairment",
+        "quote": "In a single-dose, open-label study glimepiride tablets 3 mg was administered to patients with mild, moderate and severe renal impairment as estimated by creatinine clearance (CLcr): Group I consisted of 5 patients with mild renal impairment (CLcr > 50 mL/min), Group II consisted of 3 patients with moderate renal impairment (CLcr = 20 to 50 mL/min)"
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "To minimize the risk of hypoglycemia, the recommended starting dose is 1 mg once daily for all patients with type 2 diabetes and renal impairment, with a conservative titration scheme. Elimination of M1 and M2 metabolites is reduced in renal impairment.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-glimepiride-label",
+          "locator": "8.6 Renal Impairment",
+          "quote": "To minimize the risk of hypoglycemia, the recommended starting dose of glimepiride tablets are 1 mg daily for all patients with type 2 diabetes and renal impairment [see Dosage and Administration (2.1) and Warnings and Precautions (5.1) ]."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": 50,
+        "max": null,
+        "dose_text": "Start at 1 mg once daily in patients with mild renal impairment (CLcr >50 mL/min) and titrate conservatively; standard adult dosing (1–2 mg/day, max 8 mg/day) applies to normal renal function.",
+        "dose": {
+          "kind": "fixed",
+          "amount": 1,
+          "unit": "mg",
+          "frequency": "once daily",
+          "max_daily": 8
+        },
+        "refs": [
+          {
+            "source_id": "fda-glimepiride-label",
+            "locator": "8.6 Renal Impairment",
+            "quote": "To minimize the risk of hypoglycemia, the recommended starting dose of glimepiride tablets are 1 mg daily for all patients with type 2 diabetes and renal impairment [see Dosage and Administration (2.1) and Warnings and Precautions (5.1) ]."
+          }
+        ]
+      },
+      {
+        "min": null,
+        "max": 50,
+        "dose_text": "Start at 1 mg once daily and titrate conservatively; monitor closely for hypoglycemia (AUC of M1 and M2 metabolites increases substantially in moderate-to-severe renal impairment).",
+        "dose": {
+          "kind": "fixed",
+          "amount": 1,
+          "unit": "mg",
+          "frequency": "once daily",
+          "max_daily": 8
+        },
+        "refs": [
+          {
+            "source_id": "fda-glimepiride-label",
+            "locator": "2.1 Recommended Dosing",
+            "quote": "Patients at increased risk for hypoglycemia (e.g., the elderly or patients with renal impairment) should be started on 1 mg once daily [see Warnings and Precautions (5.1) and Use in Specific Populations (8.5 , 8.6) ]."
+          }
+        ]
+      }
+    ],
+    "hemodialysis": {
+      "value": null,
+      "refs": []
+    },
+    "refs": [
+      {
+        "source_id": "fda-glimepiride-label",
+        "locator": "8.6 Renal Impairment",
+        "quote": "To minimize the risk of hypoglycemia, the recommended starting dose of glimepiride tablets are 1 mg daily for all patients with type 2 diabetes and renal impairment [see Dosage and Administration (2.1) and Warnings and Precautions (5.1) ]."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Unknown effect; the pharmacokinetics of glimepiride has not been adequately evaluated in patients with hepatic impairment.",
+    "refs": [
+      {
+        "source_id": "fda-glimepiride-label",
+        "locator": "12.3 Pharmacokinetics - Hepatic Impairment",
+        "quote": "It is unknown whether there is an effect of hepatic impairment on glimepiride pharmacokinetics because the pharmacokinetics of glimepiride has not been adequately evaluated in patients with hepatic impairment."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-glimepiride-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "Glimepiride primarily lowers blood glucose by stimulating the release of insulin from pancreatic beta cells."
+      }
+    ],
+    "note": "Sulfonylurea with no neuromuscular junction blocking activity."
+  },
+  "ng_tube": {
+    "value": null,
+    "refs": []
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "weight_gain",
+      "hyponatremia",
+      "hepatotoxicity",
+      "rash_sjs_ten"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-glimepiride-label",
+        "locator": "6.1 Clinical Trials Experience - Weight gain",
+        "quote": "Glimepiride, like all sulfonylureas, can cause weight gain [see Clinical Studies (14.1) ]."
+      },
+      {
+        "source_id": "fda-glimepiride-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "Serious hypersensitivity reactions, including anaphylaxis, angioedema, and Stevens-Johnson Syndrome [see Warnings and Precautions (5.2) ]"
+      },
+      {
+        "source_id": "fda-glimepiride-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "Impairment of liver function (e.g., with cholestasis and jaundice), as well as hepatitis, which may progress to liver failure."
+      },
+      {
+        "source_id": "fda-glimepiride-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "Hyponatremia and syndrome of inappropriate antidiuretic hormone secretion (SIADH), most often in patients who are on other medications or who have medical conditions known to cause hyponatremia"
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Hypoglycemia (4%–17% in 14-week trial; 19.7% vs 3.2% placebo in 22-week trial)",
+        "Headache (8.2% vs 7.8% placebo)",
+        "Accidental injury (5.8% vs 3.4% placebo)",
+        "Flu syndrome (5.4% vs 4.4% placebo)",
+        "Nausea (5.0% vs 3.4% placebo)",
+        "Dizziness (5.0% vs 2.4% placebo)",
+        "Asthenia and weight gain"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-glimepiride-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "In clinical trials, the most common adverse reactions with glimepiride were hypoglycemia, dizziness, asthenia, headache, and nausea. Common adverse reactions in clinical trials (≥5% and more common than with placebo) include hypoglycemia, headache, nausea, and dizziness ( 6.1 )."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Severe hypoglycemia (coma, seizure, or neurological impairment)",
+        "Hemolytic anemia (in patients with and without G6PD deficiency)",
+        "Serious hypersensitivity reactions (anaphylaxis, angioedema, Stevens-Johnson syndrome)",
+        "Impairment of liver function (cholestasis, jaundice, hepatitis, liver failure)",
+        "Hematologic cytopenias (leukopenia, agranulocytosis, aplastic anemia, pancytopenia, severe thrombocytopenia)",
+        "Hyponatremia and SIADH"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-glimepiride-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "The following serious adverse reactions are discussed in more detail below and elsewhere in the labeling: Hypoglycemia [see Warnings and Precautions (5.1) ] Hemolytic anemia [see Warnings and Precautions (5.3) ]"
+        },
+        {
+          "source_id": "fda-glimepiride-label",
+          "locator": "6.2 Postmarketing Experience",
+          "quote": "Serious hypersensitivity reactions, including anaphylaxis, angioedema, and Stevens-Johnson Syndrome [see Warnings and Precautions (5.2) ] Hemolytic anemia in patients with and without G6PD deficiency [see Warnings and Precautions (5.3) ] Impairment of liver function (e.g., with cholestasis and jaundice), as well as hepatitis, which may progress to liver failure."
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Sulfonylurea that binds to the sulfonylurea receptor in the pancreatic beta-cell plasma membrane, leading to closure of ATP-sensitive potassium channels and stimulating insulin release from pancreatic beta cells.",
+    "refs": [
+      {
+        "source_id": "fda-glimepiride-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "Sulfonylureas bind to the sulfonylurea receptor in the pancreatic beta-cell plasma membrane, leading to closure of the ATP-sensitive potassium channel, thereby stimulating the release of insulin."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp2c9": "substrate"
+    },
+    "refs": [
+      {
+        "source_id": "fda-glimepiride-label",
+        "locator": "12.3 Pharmacokinetics - Metabolism",
+        "quote": "Cytochrome P450 2C9 is involved in the biotransformation of glimepiride to M1."
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Miconazole (Oral)",
+        "severity": "major",
+        "effect": "Potential interaction between oral miconazole and sulfonylureas leading to severe hypoglycemia.",
+        "management": "Monitor closely for severe hypoglycemia or avoid concomitant use.",
+        "refs": [
+          {
+            "source_id": "fda-glimepiride-label",
+            "locator": "7.2 Miconazole",
+            "quote": "A potential interaction between oral miconazole and sulfonylureas leading to severe hypoglycemia has been reported. Whether this interaction also occurs with other dosage forms of miconazole is not known."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "CYP2C9 Inhibitors (e.g., Fluconazole) and Inducers (e.g., Rifampin)",
+        "severity": "moderate",
+        "effect": "Fluconazole inhibits glimepiride metabolism, increasing plasma concentrations and hypoglycemia risk; rifampin induces metabolism, decreasing plasma concentrations and worsening glycemic control.",
+        "management": "Monitor blood glucose closely and adjust glimepiride dose as needed.",
+        "refs": [
+          {
+            "source_id": "fda-glimepiride-label",
+            "locator": "7.3 Cytochrome P450 2C9 Interactions",
+            "quote": "Fluconazole may inhibit the metabolism of glimepiride, causing increased plasma concentrations of glimepiride which may lead to hypoglycemia. Rifampin may induce the metabolism of glimepiride, causing decreased plasma concentrations of glimepiride which may lead to worsening glycemic control."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Colesevelam",
+        "severity": "moderate",
+        "effect": "Coadministration reduces maximum plasma concentration and total exposure of glimepiride.",
+        "management": "Administer glimepiride at least 4 hours prior to colesevelam.",
+        "refs": [
+          {
+            "source_id": "fda-glimepiride-label",
+            "locator": "7.4 Concomitant Administration of Colesevelam",
+            "quote": "Colesevelam can reduce the maximum plasma concentration and total exposure of glimepiride when the two are coadministered. However, absorption is not reduced when glimepiride is administered 4 hours prior to colesevelam. Therefore, glimepiride should be administered at least 4 hours prior to colesevelam."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Hypoglycemia-Potentiating Drugs (Insulin, Oral Antidiabetics, ACE Inhibitors, Fibrates, Clarithromycin, Quinolones, Fluoxetine, NSAIDs, Salicylates, Sulfonamides, MAOIs, Coumarins, Probenecid)",
+        "severity": "moderate",
+        "effect": "May increase the glucose-lowering effect of glimepiride, increasing susceptibility to and/or intensity of hypoglycemia.",
+        "management": "Monitor closely for hypoglycemia when initiated and for worsening glycemic control when withdrawn; adjust glimepiride dose as needed.",
+        "refs": [
+          {
+            "source_id": "fda-glimepiride-label",
+            "locator": "7.1 Drugs Affecting Glucose Metabolism",
+            "quote": "When these medications are administered to a patient receiving glimepiride, monitor the patient closely for hypoglycemia. When these medications are withdrawn from a patient receiving glimepiride, monitor the patient closely for worsening glycemic control."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Sympatholytic Drugs (Beta-blockers, Clonidine, Guanethidine, Reserpine)",
+        "severity": "moderate",
+        "effect": "Beta-blockers, clonidine, and reserpine may potentiate or weaken glimepiride's glucose-lowering effect; signs of hypoglycemia may be reduced or absent.",
+        "management": "Monitor blood glucose closely; educate patient that hypoglycemia symptoms may be masked.",
+        "refs": [
+          {
+            "source_id": "fda-glimepiride-label",
+            "locator": "7.1 Drugs Affecting Glucose Metabolism",
+            "quote": "Beta-blockers, clonidine, and reserpine may lead to either potentiation or weakening of glimepiride’s glucose-lowering effect. Both acute and chronic alcohol intake may potentiate or weaken the glucose-lowering action of glimepiride in an unpredictable fashion. The signs of hypoglycemia may be reduced or absent in patients taking sympatholytic drugs"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Hyperglycemia-Inducing Drugs (Corticosteroids, Thiazides, Phenothiazines, Thyroid Hormones, Estrogens, Oral Contraceptives, Phenytoin, Atypical Antipsychotics, Isoniazid, Sympathomimetics)",
+        "severity": "moderate",
+        "effect": "May reduce the glucose-lowering effect of glimepiride, leading to worsening glycemic control.",
+        "management": "Monitor closely for worsening glycemic control when initiated and for hypoglycemia when withdrawn.",
+        "refs": [
+          {
+            "source_id": "fda-glimepiride-label",
+            "locator": "7.1 Drugs Affecting Glucose Metabolism",
+            "quote": "When these medications are administered to a patient receiving glimepiride, monitor the patient closely for worsening glycemic control. When these medications are withdrawn from a patient receiving glimepiride, monitor the patient closely for hypoglycemia."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-glimepiride-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Certain medications may affect glucose metabolism, requiring glimepiride tablets dose adjustment and close monitoring of blood glucose ( 7.1 )."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "Limited published studies and postmarketing experience have not identified drug-associated risks for major birth defects or miscarriage, but sulfonylureas cross the placenta and can cause prolonged severe neonatal hypoglycemia (4 to 10 days) and respiratory distress; discontinue at least 2 weeks before expected delivery.",
+      "refs": [
+        {
+          "source_id": "fda-glimepiride-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "However, sulfonylureas (including glimepiride) cross the placenta and have been associated with neonatal adverse reactions such as hypoglycemia. Therefore, glimepiride tablets should be discontinued at least two weeks before expected delivery (see Clinical Considerations)."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": "Discontinue glimepiride tablets at least two weeks before expected delivery due to reports of prolonged severe neonatal hypoglycemia (lasting 4 to 10 days); observe newborns for symptoms of hypoglycemia and respiratory distress and manage accordingly.",
+      "refs": [
+        {
+          "source_id": "fda-glimepiride-label",
+          "locator": "8.1 Pregnancy - Dose adjustments during pregnancy and the postpartum period",
+          "quote": "Due to reports of prolonged severe hypoglycemia in neonates born to mothers receiving a sulfonylurea at the time of delivery, glimepiride tablets should be discontinued at least two weeks before expected delivery (see Fetal/Neonatal Adverse Reactions)."
+        }
+      ]
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "Not known whether glimepiride is excreted in human milk; present in rat milk (causing skeletal deformities in nursing rat pups at high maternal doses). Monitor breastfed infants for signs of hypoglycemia (jitters, cyanosis, apnea, hypothermia, excessive sleepiness, poor feeding, seizures).",
+      "refs": [
+        {
+          "source_id": "fda-glimepiride-label",
+          "locator": "8.2 Lactation",
+          "quote": "Breastfed infants of lactating women using glimepiride tablets should be monitored for symptoms of hypoglycemia (see Clinical Considerations). It is not known whether glimepiride is excreted in human milk and there are no data on the effects of glimepiride on milk production."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

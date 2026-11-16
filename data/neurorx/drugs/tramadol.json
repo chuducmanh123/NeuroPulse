@@ -1,0 +1,575 @@
+{
+  "id": "tramadol",
+  "generic_name": "tramadol",
+  "tall_man": {
+    "value": "traMADol",
+    "refs": [
+      {
+        "source_id": "fda-tallman-list",
+        "locator": "FDA Name Differentiation Project",
+        "quote": "traMADol"
+      }
+    ],
+    "note": "Tall Man lettering per FDA Name Differentiation Project list (Trazodone / Tramadol)"
+  },
+  "classes": [
+    "opioid agonist",
+    "serotonin and norepinephrine reuptake inhibitor (weak)",
+    "extended-release analgesic"
+  ],
+  "subspecialties": [
+    "headache",
+    "neuromuscular"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "tramadol-er-initial-po",
+      "indication": "Severe and persistent pain requiring an opioid analgesic (when alternative options including immediate-release opioids are inadequate) — Adults (initial / opioid-naive or converting from non-tramadol opioids)",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-tramadol-label",
+          "locator": "1 INDICATIONS AND USAGE",
+          "quote": "Tramadol hydrochloride extended-release tablets are indicated for the management of severe and persistent pain that requires an opioid analgesic and that cannot be adequately treated with alternative options, including immediate-release opioids."
+        },
+        {
+          "source_id": "fda-tramadol-label",
+          "locator": "2.3 Initial Dosage",
+          "quote": "The initial dose of tramadol hydrochloride extended-release tablets is 100 mg once daily."
+        },
+        {
+          "source_id": "fda-tramadol-label",
+          "locator": "2.4 Titration and Maintenance of Therapy",
+          "quote": "Individually titrate tramadol hydrochloride extended-release tablets by 100 mg every five days to a dose that provides adequate analgesia and minimizes adverse reactions. The maximum daily dose of tramadol hydrochloride extended-release tablets is 300 mg per day."
+        }
+      ],
+      "dose": {
+        "kind": "fixed",
+        "amount": 100,
+        "unit": "mg",
+        "frequency": "once daily initially; titrate by 100 mg every 5 days as needed",
+        "max_single": 300,
+        "max_daily": 300
+      },
+      "dose_text": "Initiate at 100 mg PO once daily at approximately the same time every day (swallow whole). Titrate by 100 mg increments every 5 days according to need and tolerance; maximum daily dose 300 mg/day. Not indicated as an as-needed (PRN) analgesic."
+    },
+    {
+      "id": "tramadol-er-from-ir-po",
+      "indication": "Severe and persistent pain — Adults converting from tramadol immediate-release (IR) products",
+      "setting": "maintenance_outpatient",
+      "route": "PO",
+      "refs": [
+        {
+          "source_id": "fda-tramadol-label",
+          "locator": "2.3 Initial Dosage",
+          "quote": "Calculate the 24-hour tramadol IR dose and initiate a total daily dose of tramadol hydrochloride extended-release tablets rounded down to the next lower 100 mg increment. . The dose should be taken once daily."
+        }
+      ],
+      "dose": null,
+      "dose_text": "Calculate total 24-hour tramadol IR dose and initiate tramadol extended-release tablets at a total daily dose rounded down to the next lower 100 mg increment once daily; titrate by 100 mg every 5 days as needed (maximum 300 mg/day). Swallow whole."
+    }
+  ],
+  "renal_basis": {
+    "value": "cg_abw",
+    "refs": [
+      {
+        "source_id": "fda-tramadol-label",
+        "locator": "8.7 Renal Impairment",
+        "quote": "Tramadol hydrochloride extended-release tablets have not been studied in patients with severe renal impairment (CL cr < 30 mL/min)."
+      }
+    ]
+  },
+  "renal_impairment": {
+    "description": "Should not be used in patients with severe renal impairment (CLcr < 30 mL/min) because limited dose strengths and once-daily dosing do not permit required dosing flexibility.",
+    "renal_basis": {
+      "value": "cg_abw",
+      "refs": [
+        {
+          "source_id": "fda-tramadol-label",
+          "locator": "8.7 Renal Impairment",
+          "quote": "Tramadol hydrochloride extended-release tablets have not been studied in patients with severe renal impairment (CL cr < 30 mL/min)."
+        }
+      ]
+    },
+    "bands": [
+      {
+        "min": null,
+        "max": 30,
+        "dose_text": "Should not be used in patients with severe renal impairment (CLcr < 30 mL/min).",
+        "refs": [
+          {
+            "source_id": "fda-tramadol-label",
+            "locator": "8.7 Renal Impairment",
+            "quote": "Therefore, tramadol hydrochloride extended-release tablets should not be used in patients with severe renal impairment [see Clinical Pharmacology ( 12.3 )] ."
+          }
+        ]
+      }
+    ],
+    "hemodialysis": {
+      "value": "Hemodialysis removes less than 7% of the administered dose of tramadol and M1 in a 4-hour dialysis period.",
+      "refs": [
+        {
+          "source_id": "fda-tramadol-label",
+          "locator": "12.3 Pharmacokinetics",
+          "quote": "The total amount of tramadol and M1 removed during a 4-hour dialysis period is less than 7% of the administered dose [see Use in Specific Populations ( 8.7 )] ."
+        }
+      ]
+    },
+    "refs": [
+      {
+        "source_id": "fda-tramadol-label",
+        "locator": "8.7 Renal Impairment",
+        "quote": "Tramadol hydrochloride extended-release tablets have not been studied in patients with severe renal impairment (CL cr < 30 mL/min)."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "Should not be used in patients with severe hepatic impairment (Child-Pugh Class C) because limited dose strengths and once-daily dosing do not permit the dosing flexibility required for safe use.",
+    "refs": [
+      {
+        "source_id": "fda-tramadol-label",
+        "locator": "8.6 Hepatic Impairment",
+        "quote": "The limited availability of dose strengths and once daily dosing of tramadol hydrochloride extended-release tablets do not permit the dosing flexibility required for safe use in patients with severe hepatic impairment (Child-Pugh Class C). Therefore, tramadol hydrochloride extended-release tablets should not be used in patients with severe hepatic impairment"
+      }
+    ]
+  },
+  "black_box": {
+    "value": [
+      "Addiction, Abuse, and Misuse: exposes patients and others to risks of opioid addiction, abuse, and misuse, which can lead to overdose and death.",
+      "Life-Threatening Respiratory Depression: serious, life-threatening, or fatal respiratory depression may occur; swallow tablets whole to avoid fatal dose exposure.",
+      "Accidental Ingestion: even one dose, especially by children, can result in fatal overdose.",
+      "Concomitant Use with Benzodiazepines or Other CNS Depressants (including alcohol): may result in profound sedation, respiratory depression, coma, and death.",
+      "Neonatal Opioid Withdrawal Syndrome (NOWS): prolonged maternal opioid use during pregnancy may cause life-threatening NOWS.",
+      "Opioid Analgesic REMS: healthcare providers strongly encouraged to complete REMS education.",
+      "Ultra-Rapid Metabolism of Tramadol (CYP2D6) and Pediatric Respiratory Depression: contraindicated in children <12 years and <18 years post-tonsillectomy/adenoidectomy; avoid in adolescents 12-18 years with respiratory risk factors.",
+      "Interactions with CYP3A4 inducers, CYP3A4 inhibitors, or CYP2D6 inhibitors: complex effects on tramadol and active metabolite M1."
+    ],
+    "refs": [
+      {
+        "source_id": "fda-tramadol-label",
+        "locator": "BOXED WARNING",
+        "quote": "Because the use of tramadol hydrochloride extended-release tablets exposes patients and other users to the risks of opioid addiction, abuse, and misuse, which can lead to overdose and death, assess each patient’s risk prior to prescribing and reassess all patients regularly"
+      },
+      {
+        "source_id": "fda-tramadol-label",
+        "locator": "BOXED WARNING",
+        "quote": "Serious, life-threatening, or fatal respiratory depression may occur with use of tramadol hydrochloride extended-release tablets , especially during initiation or following a dosage increase."
+      },
+      {
+        "source_id": "fda-tramadol-label",
+        "locator": "BOXED WARNING",
+        "quote": "Tramadol hydrochloride extended-release tablets are contraindicated in children younger than 12 years of age and in children younger than 18 years of age following tonsillectomy and/or adenoidectomy [ see Contraindications (4) ] ."
+      }
+    ]
+  },
+  "mg_safety": {
+    "value": "caution",
+    "refs": [
+      {
+        "source_id": "fda-tramadol-label",
+        "locator": "8.4 Pediatric Use",
+        "quote": "Risk factors include conditions associated with hypoventilation, such as postoperative status, obstructive sleep apnea, obesity, severe pulmonary disease, neuromuscular disease, and concomitant use of other medications that cause respiratory depression."
+      },
+      {
+        "source_id": "fda-tramadol-label",
+        "locator": "7 DRUG INTERACTIONS Table 2",
+        "quote": "Tramadol may enhance the neuromuscular blocking action of skeletal muscle relaxants and produce an increased degree of respiratory depression."
+      }
+    ],
+    "note": "Opioid respiratory depressant; neuromuscular disease is listed as a risk factor increasing sensitivity to respiratory depression, and tramadol may enhance neuromuscular blocking agents."
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Swallow tramadol hydrochloride extended-release tablets whole with liquid. Crushing, chewing, splitting, or dissolving will result in uncontrolled delivery of tramadol and can lead to overdose or death."
+    },
+    "refs": [
+      {
+        "source_id": "fda-tramadol-label",
+        "locator": "2.1 Important Dosage and Administration Instructions",
+        "quote": "Instruct patients to swallow tramadol hydrochloride extended-release tablets whole [see Patient Counseling Information (17)], and to take it with liquid. Crushing, chewing, splitting, or dissolving tramadol hydrochloride extended-release tablets will result in uncontrolled delivery of tramadol and can lead to overdose or death [see Warnings and Precautions (5.1)] ."
+      }
+    ]
+  },
+  "pgx": {
+    "value": "CYP2D6 ultra-rapid metabolizers (multiple CYP2D6 gene copies) convert tramadol to higher levels of active M1 metabolite, risking life-threatening respiratory depression and death (contraindicated in children <12 years and <18 years post-tonsillectomy/adenoidectomy; breastfeeding not recommended). CYP2D6 poor metabolizers (~7% of population) have ~20% higher tramadol and 40% lower M1 concentrations.",
+    "refs": [
+      {
+        "source_id": "fda-tramadol-label",
+        "locator": "8.4 Pediatric Use",
+        "quote": "In some of the reported cases, these events followed tonsillectomy and/or adenoidectomy, and one of the children had evidence of being an ultra-rapid metabolizer of tramadol (i.e., multiple copies of the gene for cytochrome P450 isoenzyme 2D6)."
+      },
+      {
+        "source_id": "fda-tramadol-label",
+        "locator": "12.3 Pharmacokinetics",
+        "quote": "Based on a population PK analysis of Phase 1 studies with IR tablets in healthy subjects, concentrations of tramadol were approximately 20% higher in \"poor metabolizers\" versus \"extensive metabolizers,\" while M1 concentrations were 40% lower."
+      }
+    ]
+  },
+  "ae_tags": {
+    "value": [
+      "sedation_somnolence",
+      "serotonin_syndrome",
+      "qt_prolongation",
+      "hyponatremia",
+      "pancreatitis"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-tramadol-label",
+        "locator": "6.1 Clinical Trials Experience",
+        "quote": "The most common adverse reactions from Table 1 occurring in ≥10% and ≥2 x placebo rate of the patients treated with tramadol hydrochloride extended-release tablets are dizziness (not vertigo), nausea, constipation, headache, somnolence, flushing, pruritus, vomiting, insomnia, and dry mouth."
+      },
+      {
+        "source_id": "fda-tramadol-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "Serotonin syndrome: Cases of serotonin syndrome, a potentially life-threatening condition, have been reported during concomitant use of opioids with serotonergic drugs."
+      },
+      {
+        "source_id": "fda-tramadol-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "QT prolongation/torsade de pointes: Cases of QT prolongation and/or torsade de pointes have been reported with tramadol use."
+      },
+      {
+        "source_id": "fda-tramadol-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "Hyponatremia : cases of severe hyponatremia and/or SIADH have been reported in patients taking tramadol, most often in females over the age of 65, and within the first week of therapy [see Warnings and Precautions (5.20)]."
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Dizziness (16%-28%)",
+        "Nausea (15%-26%)",
+        "Constipation (12%-30%)",
+        "Headache (12%-16%)",
+        "Somnolence (7%-20%)",
+        "Flushing (8%-16%)",
+        "Pruritus (6%-12%)",
+        "Vomiting (5%-9%)",
+        "Insomnia (7%-11%)",
+        "Dry mouth (5%-10%)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-tramadol-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "Most common adverse reactions (≥10% and ≥2 x placebo rate): Dizziness, constipation, nausea, headache, somnolence, flushing, pruritus, vomiting, insomnia, dry mouth."
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Addiction, abuse, misuse, overdose, and death",
+        "Life-threatening respiratory depression",
+        "Neonatal Opioid Withdrawal Syndrome (NOWS)",
+        "Serotonin syndrome",
+        "Seizures",
+        "Adrenal insufficiency and androgen deficiency",
+        "Severe hypotension, QT prolongation / torsade de pointes",
+        "Anaphylaxis, severe hyponatremia/SIADH, and hypoglycemia"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-tramadol-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "The following serious or otherwise important adverse reactions are described in greater detail, in other sections: Addiction, Abuse, and Misuse [see Warnings and Precautions (5.1)] Life-Threatening Respiratory Depression [see Warnings and Precautions (5.2)]"
+        },
+        {
+          "source_id": "fda-tramadol-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "Serotonin Syndrome [see Warnings and Precautions (5.9)] Seizures [see Warnings and Precautions (5.10)] Suicide [see Warnings and Precautions (5.11)] Adrenal Insufficiency [see Warnings and Precautions (5.13)] Severe Hypotension [see Warnings and Precautions (5.14)]"
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Opioid agonist (parent drug low affinity, M1 metabolite 200x higher affinity for mu-opioid receptors) and weak inhibitor of norepinephrine and serotonin reuptake.",
+    "refs": [
+      {
+        "source_id": "fda-tramadol-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "Although the mode of action of tramadol is not completely understood, the analgesic effect of tramadol is believed to be due to both binding to μ-opioid receptors and weak inhibition of reuptake of norepinephrine and serotonin."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "cyp2d6": "substrate",
+      "cyp3a4": "substrate",
+      "qt_risk": "conditional",
+      "serotonergic": true
+    },
+    "refs": [
+      {
+        "source_id": "fda-tramadol-label",
+        "locator": "12.3 Pharmacokinetics",
+        "quote": "The metabolic pathways appear to be N – demethylation (mediated by CYP3A4 and CYP2D6), O – demethylation (mediated by CYP2D6) and glucuronidation or sulfation in the liver."
+      },
+      {
+        "source_id": "fda-tramadol-label",
+        "locator": "6.2 Postmarketing Experience",
+        "quote": "Many of these cases were reported in patients taking another drug labeled for QT prolongation, in patients with a risk factor for QT prolongation (e.g., hypokalemia), or in overdose setting."
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Monoamine Oxidase Inhibitors (MAOIs)",
+        "severity": "contraindicated",
+        "effect": "MAOI interactions with opioids may manifest as serotonin syndrome or opioid toxicity (respiratory depression, coma).",
+        "management": "Do not use tramadol hydrochloride extended-release tablets in patients taking MAOIs or within 14 days of stopping such treatment.",
+        "refs": [
+          {
+            "source_id": "fda-tramadol-label",
+            "locator": "7 DRUG INTERACTIONS Table 2",
+            "quote": "Do not use tramadol hydrochloride extended-release tablets in patients taking MAOIs or within 14 days of stopping such treatment."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Mixed Agonist/Antagonist and Partial Agonist Opioid Analgesics (butorphanol, nalbuphine, pentazocine, buprenorphine)",
+        "severity": "contraindicated",
+        "effect": "May reduce the analgesic effect of tramadol and/or precipitate withdrawal symptoms.",
+        "management": "Avoid concomitant use.",
+        "refs": [
+          {
+            "source_id": "fda-tramadol-label",
+            "locator": "7 DRUG INTERACTIONS Table 2",
+            "quote": "May reduce the analgesic effect of tramadol hydrochloride extended-release tablets and/or precipitate withdrawal symptoms. Intervention: Avoid concomitant use."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Carbamazepine (CYP3A4 Inducer)",
+        "severity": "major",
+        "effect": "Carbamazepine increases tramadol metabolism, significantly reducing analgesic effect, and carries seizure risk.",
+        "management": "Concomitant administration of tramadol hydrochloride extended-release tablets and carbamazepine is not recommended.",
+        "refs": [
+          {
+            "source_id": "fda-tramadol-label",
+            "locator": "7 DRUG INTERACTIONS Table 2",
+            "quote": "Because carbamazepine increases tramadol metabolism and because of the seizure risk associated with tramadol, concomitant administration of tramadol hydrochloride extended-release tablets and carbamazepine is not recommended."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "CYP2D6 Inhibitors (quinidine, fluoxetine, paroxetine, bupropion)",
+        "severity": "major",
+        "effect": "Increases tramadol plasma concentration (risk of seizures, serotonin syndrome) and decreases M1 active metabolite (decreased analgesia / opioid withdrawal); stopping inhibitor increases M1 and respiratory depression risk.",
+        "management": "Evaluate patients frequently for opioid withdrawal, seizures, and serotonin syndrome; adjust dose if inhibitor is discontinued.",
+        "refs": [
+          {
+            "source_id": "fda-tramadol-label",
+            "locator": "7 DRUG INTERACTIONS Table 2",
+            "quote": "If concomitant use of a CYP2D6 inhibitor is necessary, evaluate patients at frequent intervals for adverse reactions including opioid withdrawal, seizures, and serotonin syndrome."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "CYP3A4 Inhibitors (erythromycin, ketoconazole, ritonavir)",
+        "severity": "major",
+        "effect": "Increases tramadol and M1 exposure, increasing risk of seizures, serotonin syndrome, and fatal respiratory depression.",
+        "management": "Consider dosage reduction of tramadol ER until stable effects achieved; monitor frequently for seizures, serotonin syndrome, respiratory depression, and sedation.",
+        "refs": [
+          {
+            "source_id": "fda-tramadol-label",
+            "locator": "7 DRUG INTERACTIONS Table 2",
+            "quote": "If concomitant use is necessary, consider dosage reduction of tramadol hydrochloride extended-release tablets until stable drug effects are achieved."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "CYP3A4 Inducers (rifampin, phenytoin)",
+        "severity": "major",
+        "effect": "Decreases tramadol levels (decreased efficacy / opioid withdrawal); stopping inducer increases tramadol levels (seizures, serotonin syndrome, respiratory depression).",
+        "management": "Consider increasing tramadol ER dosage if concomitant use is necessary and evaluate for withdrawal; reduce dose if inducer is stopped.",
+        "refs": [
+          {
+            "source_id": "fda-tramadol-label",
+            "locator": "7 DRUG INTERACTIONS Table 2",
+            "quote": "If concomitant use is necessary, consider increasing the tramadol hydrochloride extended-release tablets dosage until stable drug effects are achieved. Evaluate patients for signs of opioid withdrawal."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Benzodiazepines and Other CNS Depressants (alcohol, gabapentinoids, antipsychotics, sedatives)",
+        "severity": "major",
+        "effect": "Additive pharmacologic effect increases risk of hypotension, respiratory depression, profound sedation, coma, and death.",
+        "management": "Reserve concomitant prescribing for patients without adequate alternatives; limit dosages/durations; consider opioid overdose reversal agent.",
+        "refs": [
+          {
+            "source_id": "fda-tramadol-label",
+            "locator": "7 DRUG INTERACTIONS Table 2",
+            "quote": "Reserve concomitant prescribing of these drugs for use in patients for whom alternative treatment options are inadequate. Limit dosages and durations to the minimum required."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Serotonergic Drugs (SSRIs, SNRIs, TCAs, triptans, 5-HT3 antagonists)",
+        "severity": "major",
+        "effect": "Concomitant use has resulted in potentially life-threatening serotonin syndrome.",
+        "management": "Frequently evaluate patient, especially during initiation and dose adjustment; discontinue tramadol ER if serotonin syndrome is suspected.",
+        "refs": [
+          {
+            "source_id": "fda-tramadol-label",
+            "locator": "7 DRUG INTERACTIONS Table 2",
+            "quote": "If concomitant use is warranted, frequently evaluate the patient, particularly during treatment initiation and dose adjustment. Discontinue tramadol hydrochloride extended-release tablets if serotonin syndrome is suspected."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Skeletal Muscle Relaxants",
+        "severity": "major",
+        "effect": "Tramadol may enhance neuromuscular blocking action of skeletal muscle relaxants and increase respiratory depression.",
+        "management": "Decrease dosage of tramadol ER and/or muscle relaxant as necessary; consider opioid overdose reversal agent.",
+        "refs": [
+          {
+            "source_id": "fda-tramadol-label",
+            "locator": "7 DRUG INTERACTIONS Table 2",
+            "quote": "Because respiratory depression may be greater than otherwise expected, decrease the dosage of tramadol hydrochloride extended-release tablets and/or the muscle relaxant as necessary."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Diuretics",
+        "severity": "moderate",
+        "effect": "Opioids can reduce efficacy of diuretics by inducing ADH release.",
+        "management": "Evaluate patients for signs of diminished diuresis and/or blood pressure effects and adjust diuretic dose as needed.",
+        "refs": [
+          {
+            "source_id": "fda-tramadol-label",
+            "locator": "7 DRUG INTERACTIONS Table 2",
+            "quote": "Evaluate patients for signs of diminished diuresis and/or effects on blood pressure and increase the dosage of the diuretic as needed."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Anticholinergic Drugs",
+        "severity": "moderate",
+        "effect": "Increases risk of urinary retention and/or severe constipation, which may lead to paralytic ileus.",
+        "management": "Evaluate patients for signs of urinary retention or reduced gastric motility.",
+        "refs": [
+          {
+            "source_id": "fda-tramadol-label",
+            "locator": "7 DRUG INTERACTIONS Table 2",
+            "quote": "Evaluate patients for signs of urinary retention or reduced gastric motility when tramadol hydrochloride extended-release tablets are used concomitantly with anticholinergic drugs."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Digoxin",
+        "severity": "moderate",
+        "effect": "Rare post-marketing reports of digoxin toxicity.",
+        "management": "Evaluate patients at frequent intervals for signs of digoxin toxicity and adjust digoxin dosage as needed.",
+        "refs": [
+          {
+            "source_id": "fda-tramadol-label",
+            "locator": "7 DRUG INTERACTIONS Table 2",
+            "quote": "Evaluate patients at frequent intervals for signs of digoxin toxicity and adjust the dosage of digoxin as needed."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Warfarin",
+        "severity": "moderate",
+        "effect": "Rare post-marketing reports of alteration of warfarin effect.",
+        "management": "Monitor INR / coagulation status when co-administered.",
+        "refs": [
+          {
+            "source_id": "fda-tramadol-label",
+            "locator": "7 DRUG INTERACTIONS Table 2",
+            "quote": "Post-marketing surveillance of tramadol has revealed rare reports of alteration of warfarin effect,"
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-tramadol-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Table 2 includes clinically significant drug interactions with tramadol hydrochloride extended-release tablets."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "avoid",
+      "note": "Boxed warning for life-threatening Neonatal Opioid Withdrawal Syndrome (NOWS); post-approval reports of neonatal seizures, fetal death, and stillbirth; crosses placenta (0.83 umbilical/maternal ratio) and not recommended during or immediately prior to labor; animal embryotoxicity/fetotoxicity at 0.6-3.6x MRHD.",
+      "refs": [
+        {
+          "source_id": "fda-tramadol-label",
+          "locator": "BOXED WARNING",
+          "quote": "Advise pregnant women using opioids for an extended period of time of the risk of Neonatal Opioid Withdrawal Syndrome, which may be life-threatening if not recognized and treated."
+        },
+        {
+          "source_id": "fda-tramadol-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "Neonatal seizures, neonatal withdrawal syndrome, fetal death and stillbirth have been reported with tramadol during post-approval use of tramadol immediate-release products."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": "Tramadol hydrochloride extended-release tablets are not recommended for obstetrical preoperative medication or for post-delivery analgesia in nursing mothers.",
+      "refs": [
+        {
+          "source_id": "fda-tramadol-label",
+          "locator": "8.2 Lactation",
+          "quote": "Tramadol hydrochloride extended-release tablets are not recommended for obstetrical preoperative medication or for post-delivery analgesia in nursing mothers because its safety in infants and newborns has not been studied."
+        }
+      ]
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": "0.1% of the maternal dose (100 mcg tramadol and 27 mcg M1 within 16 hours after 100 mg IV)",
+      "refs": [
+        {
+          "source_id": "fda-tramadol-label",
+          "locator": "8.2 Lactation",
+          "quote": "Following a single IV 100 mg dose of tramadol, the cumulative excretion in breast milk within 16 hours post dose was 100 mcg of tramadol (0.1% of the maternal dose) and 27 mcg of M1."
+        }
+      ]
+    },
+    "lactation_summary": {
+      "value": "Breastfeeding is NOT recommended during treatment. Tramadol and its more potent M1 metabolite pass into human milk (and CYP2D6 ultra-rapid metabolizers can produce dangerously high M1 levels in breast milk), risking excess sedation, respiratory depression, and withdrawal in breastfed infants.",
+      "refs": [
+        {
+          "source_id": "fda-tramadol-label",
+          "locator": "8.2 Lactation",
+          "quote": "Because of the potential for serious adverse reactions, including excess sedation and respiratory depression in a breastfed infant, advise patients that breastfeeding is not recommended during treatment with tramadol hydrochloride extended-release tablets."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}

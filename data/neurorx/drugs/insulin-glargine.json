@@ -1,0 +1,348 @@
+{
+  "id": "insulin-glargine",
+  "generic_name": "insulin glargine",
+  "tall_man": {
+    "value": "insulin glargine",
+    "refs": [
+      {
+        "source_id": "fda-insulin-glargine-label",
+        "locator": "1 INDICATIONS AND USAGE",
+        "quote": "LANTUS is a long-acting human insulin analog indicated to improve glycemic control in adult and pediatric patients with diabetes mellitus. ( 1 )"
+      }
+    ],
+    "note": "Not listed in FDA/ISMP Tall Man list; generic name lowercase per EXTRACTION.md"
+  },
+  "classes": [
+    "long-acting human insulin analog",
+    "basal insulin",
+    "antihyperglycemic agent"
+  ],
+  "subspecialties": [
+    "stroke",
+    "neurocritical_care"
+  ],
+  "vn_products": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "bhyt": {
+    "value": null,
+    "refs": [],
+    "note": "Pending user source submission"
+  },
+  "regimens": [
+    {
+      "id": "insg-t1dm-adult-peds-sc",
+      "indication": "Type 1 Diabetes Mellitus — Adults and Pediatric Patients (6 to 15 years)",
+      "setting": "maintenance_outpatient",
+      "route": "SC",
+      "refs": [
+        {
+          "source_id": "fda-insulin-glargine-label",
+          "locator": "1 INDICATIONS AND USAGE",
+          "quote": "LANTUS is indicated to improve glycemic control in adult and pediatric patients with diabetes mellitus."
+        },
+        {
+          "source_id": "fda-insulin-glargine-label",
+          "locator": "2.3 Initiation of LANTUS Therapy",
+          "quote": "The recommended starting dosage of LANTUS in patients with type 1 diabetes is approximately one-third of the total daily insulin requirements. Use short-acting, premeal insulin to satisfy the remainder of the daily insulin requirements."
+        }
+      ],
+      "dose": null,
+      "dose_text": "Starting dosage in type 1 diabetes: approximately one-third of total daily insulin requirements subcutaneously once daily at the same time every day; use short-acting premeal insulin for the remainder. Individualize and adjust based on metabolic needs and blood glucose monitoring. Do not administer IV or via insulin pump; do not dilute or mix with any other insulin or solution."
+    },
+    {
+      "id": "insg-t2dm-adult-sc",
+      "indication": "Type 2 Diabetes Mellitus (Insulin-Naive) — Adults",
+      "setting": "maintenance_outpatient",
+      "route": "SC",
+      "refs": [
+        {
+          "source_id": "fda-insulin-glargine-label",
+          "locator": "1 INDICATIONS AND USAGE",
+          "quote": "LANTUS is indicated to improve glycemic control in adult and pediatric patients with diabetes mellitus."
+        },
+        {
+          "source_id": "fda-insulin-glargine-label",
+          "locator": "2.3 Initiation of LANTUS Therapy",
+          "quote": "The recommended starting dosage of LANTUS in patients with type 2 diabetes who are not currently treated with insulin is 0.2 units/kg or up to 10 units once daily."
+        }
+      ],
+      "dose": {
+        "kind": "per_kg",
+        "amount": 0.2,
+        "unit": "IU",
+        "frequency": "once daily subcutaneously at the same time every day"
+      },
+      "dose_text": "Starting dosage in insulin-naive type 2 diabetes: 0.2 units/kg or up to 10 units subcutaneously once daily at the same time every day. Individualize and adjust based on metabolic needs and blood glucose monitoring."
+    },
+    {
+      "id": "insg-switch-basal-sc",
+      "indication": "Switching from Other Basal Insulins (TOUJEO or NPH) — Adults and Pediatrics",
+      "setting": "maintenance_outpatient",
+      "route": "SC",
+      "refs": [
+        {
+          "source_id": "fda-insulin-glargine-label",
+          "locator": "2.4 Switching to LANTUS from Other Insulin Therapies",
+          "quote": "Once-daily TOUJEO (insulin glargine 300 units/mL) to once-daily LANTUS (100 units/mL), the recommended starting LANTUS dosage is 80% of the TOUJEO dosage that is being discontinued. Once-daily NPH insulin to once-daily LANTUS, the recommended starting LANTUS dosage is the same as the dosage of NPH that is being discontinued."
+        }
+      ],
+      "dose": null,
+      "dose_text": "From once-daily TOUJEO (300 units/mL): start at 80% of discontinued TOUJEO dosage. From once-daily NPH: start at the same dosage as discontinued NPH. From twice-daily NPH: start at 80% of total discontinued NPH dosage. Increase blood glucose monitoring frequency during switching."
+    }
+  ],
+  "renal_basis": {
+    "value": null,
+    "refs": []
+  },
+  "renal_impairment": {
+    "description": "The effect of kidney impairment on the pharmacokinetics of LANTUS has not been studied. Some studies with human insulin have shown increased circulating levels of insulin in patients with kidney failure; frequent glucose monitoring and dosage adjustment may be necessary.",
+    "renal_basis": {
+      "value": null,
+      "refs": []
+    },
+    "bands": [],
+    "hemodialysis": {
+      "value": null,
+      "refs": []
+    },
+    "refs": [
+      {
+        "source_id": "fda-insulin-glargine-label",
+        "locator": "8.6 Renal Impairment",
+        "quote": "The effect of kidney impairment on the pharmacokinetics of LANTUS has not been studied. Some studies with human insulin have shown increased circulating levels of insulin in patients with kidney failure. Frequent glucose monitoring and dosage adjustment may be necessary for LANTUS in patients with kidney impairment [see Warnings and Precautions (5.3) ]."
+      }
+    ]
+  },
+  "hepatic": {
+    "value": "The effect of hepatic impairment on the pharmacokinetics of LANTUS has not been studied; frequent glucose monitoring and dosage adjustment may be necessary in patients with hepatic impairment.",
+    "refs": [
+      {
+        "source_id": "fda-insulin-glargine-label",
+        "locator": "8.7 Hepatic Impairment",
+        "quote": "The effect of hepatic impairment on the pharmacokinetics of LANTUS has not been studied. Frequent glucose monitoring and dosage adjustment may be necessary for LANTUS in patients with hepatic impairment [see Warnings and Precautions (5.3) ] ."
+      }
+    ]
+  },
+  "black_box": {
+    "value": null,
+    "refs": []
+  },
+  "mg_safety": {
+    "value": "safe",
+    "refs": [
+      {
+        "source_id": "fda-insulin-glargine-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "The primary activity of insulin, including insulin glargine, is regulation of glucose metabolism."
+      }
+    ],
+    "note": "Long-acting human insulin analog with no neuromuscular junction blocking activity."
+  },
+  "ng_tube": {
+    "value": {
+      "crushable": false,
+      "instructions": "Subcutaneous injection only; do not administer orally, intravenously, or via an insulin pump, and do not dilute or mix with any other insulin or solution."
+    },
+    "refs": [
+      {
+        "source_id": "fda-insulin-glargine-label",
+        "locator": "2.1 Important Administration Instructions",
+        "quote": "Do not administer intravenously or via an insulin pump. Do not dilute or mix LANTUS with any other insulin or solution."
+      }
+    ]
+  },
+  "pgx": {
+    "value": null,
+    "refs": []
+  },
+  "ae_tags": {
+    "value": [
+      "weight_gain"
+    ],
+    "refs": [
+      {
+        "source_id": "fda-insulin-glargine-label",
+        "locator": "6.1 Clinical Trials Experience - Weight Gain",
+        "quote": "Weight gain has occurred with insulin including LANTUS and has been attributed to the anabolic effects of insulin and the decrease in glucosuria."
+      }
+    ]
+  },
+  "adverse_effects": {
+    "most_common": {
+      "value": [
+        "Hypoglycemia",
+        "Injection site reactions (pain 2.7%, redness, itching, urticaria, edema, inflammation)",
+        "Lipodystrophy (lipoatrophy or lipohypertrophy)",
+        "Peripheral edema",
+        "Weight gain",
+        "Pruritus and rash"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-insulin-glargine-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "Adverse reactions commonly associated with LANTUS include hypoglycemia, allergic reactions, injection site reactions, lipodystrophy, pruritus, rash, edema, and weight gain. ( 6.1 )"
+        }
+      ]
+    },
+    "serious": {
+      "value": [
+        "Severe hypoglycemia (coma, seizure, or neurological impairment)",
+        "Hypoglycemia due to medication errors (accidental administration of rapid-acting insulin instead of LANTUS)",
+        "Severe, life-threatening generalized hypersensitivity reactions (anaphylaxis, angioedema, bronchospasm, hypotension, shock)",
+        "Hypokalemia",
+        "Localized cutaneous amyloidosis at injection site (risk of hyperglycemia or hypoglycemia when changing injection site)"
+      ],
+      "refs": [
+        {
+          "source_id": "fda-insulin-glargine-label",
+          "locator": "6 ADVERSE REACTIONS",
+          "quote": "The following adverse reactions are discussed elsewhere: Hypoglycemia [see Warnings and Precautions (5.3) ] Hypoglycemia Due to Medication Errors [see Warnings and Precautions (5.4) ] Hypersensitivity Reactions [see Warnings and Precautions (5.5) ] Hypokalemia [see Warnings and Precautions (5.6) ]"
+        },
+        {
+          "source_id": "fda-insulin-glargine-label",
+          "locator": "6.1 Clinical Trials Experience - Systemic Reactions",
+          "quote": "Severe, life-threatening, generalized allergy, including anaphylaxis, generalized skin reactions, angioedema, bronchospasm, hypotension, and shock have occurred with insulin, including LANTUS and may be life threatening."
+        }
+      ]
+    }
+  },
+  "mechanism_of_action": {
+    "value": "Long-acting recombinant human insulin analog that regulates glucose metabolism by stimulating peripheral glucose uptake (especially by skeletal muscle and fat), inhibiting hepatic glucose production, inhibiting lipolysis and proteolysis, and enhancing protein synthesis.",
+    "refs": [
+      {
+        "source_id": "fda-insulin-glargine-label",
+        "locator": "12.1 Mechanism of Action",
+        "quote": "Insulin and its analogs lower blood glucose by stimulating peripheral glucose uptake, especially by skeletal muscle and fat, and by inhibiting hepatic glucose production. Insulin inhibits lipolysis and proteolysis, and enhances protein synthesis."
+      }
+    ]
+  },
+  "enzyme_profile": {
+    "value": {
+      "metabolism": "Partly metabolized at the carboxyl terminus of the B chain in the subcutaneous depot to two active metabolites with in vitro activity similar to human insulin: M1 (21A-Gly-insulin) and M2 (21A-Gly-des-30B-Thr-insulin)."
+    },
+    "refs": [
+      {
+        "source_id": "fda-insulin-glargine-label",
+        "locator": "12.3 Pharmacokinetics - Metabolism",
+        "quote": "A metabolism study in humans indicates that insulin glargine is partly metabolized at the carboxyl terminus of the B chain in the subcutaneous depot to form two active metabolites with in vitro activity similar to that of human insulin, M1 (21 A -Gly-insulin) and M2 (21 A -Gly-des-30 B -Thr-insulin)."
+      }
+    ]
+  },
+  "fda_interactions": {
+    "value": [
+      {
+        "drug_or_class": "Hypoglycemia-Potentiating Drugs (Antidiabetic agents, ACE inhibitors, ARBs, Disopyramide, Fibrates, Fluoxetine, MAOIs, Pentoxifylline, Pramlintide, Salicylates, Somatostatin analogs, Sulfonamide antibiotics, GLP-1 RAs, DPP-4 inhibitors, SGLT2 inhibitors)",
+        "severity": "moderate",
+        "effect": "May increase the risk of hypoglycemia when coadministered with LANTUS.",
+        "management": "Dosage reductions and increased frequency of glucose monitoring may be required.",
+        "refs": [
+          {
+            "source_id": "fda-insulin-glargine-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "Drugs that May Increase the Risk of Hypoglycemia Drugs : Antidiabetic agents, ACE inhibitors, angiotensin II receptor blocking agents, disopyramide, fibrates, fluoxetine, monoamine oxidase inhibitors, pentoxifylline, pramlintide, salicylates, somatostatin analogs (e.g., octreotide), sulfonamide antibiotics. GLP-1 receptor agonists, DPP-4 inhibitors, and SGLT-2 inhibitors."
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Hyperglycemia-Inducing Drugs (Atypical antipsychotics, Corticosteroids, Danazol, Diuretics, Estrogens, Glucagon, Isoniazid, Niacin, Oral contraceptives, Phenothiazines, Progestogens, Protease inhibitors, Somatropin, Sympathomimetics, Thyroid hormones)",
+        "severity": "moderate",
+        "effect": "May decrease the blood glucose lowering effect of LANTUS.",
+        "management": "Dosage increases and increased frequency of glucose monitoring may be required.",
+        "refs": [
+          {
+            "source_id": "fda-insulin-glargine-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "Drugs that May Decrease the Blood Glucose Lowering Effect of LANTUS Drugs : Atypical antipsychotics (e.g., olanzapine and clozapine), corticosteroids, danazol, diuretics, estrogens, glucagon, isoniazid, niacin, oral contraceptives, phenothiazines, progestogens (e.g., in oral contraceptives), protease inhibitors, somatropin, sympathomimetic agents"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Alcohol, Beta-blockers, Clonidine, Lithium salts, Pentamidine",
+        "severity": "moderate",
+        "effect": "May increase or decrease the blood glucose lowering effect of LANTUS (pentamidine may cause hypoglycemia, sometimes followed by hyperglycemia).",
+        "management": "Dosage adjustment and increased frequency of glucose monitoring may be required.",
+        "refs": [
+          {
+            "source_id": "fda-insulin-glargine-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "Drugs that May Increase or Decrease the Blood Glucose Lowering Effect of LANTUS Drugs : Alcohol, beta-blockers, clonidine, and lithium salts. Pentamidine may cause hypoglycemia, which may sometimes be followed by hyperglycemia. Intervention : Dosage adjustment and increased frequency of glucose monitoring may be required"
+          }
+        ]
+      },
+      {
+        "drug_or_class": "Antiadrenergic Drugs (Beta-blockers, Clonidine, Guanethidine, Reserpine)",
+        "severity": "moderate",
+        "effect": "Signs and symptoms of hypoglycemia may be reduced or absent.",
+        "management": "Increased frequency of glucose monitoring may be required when LANTUS is coadministered.",
+        "refs": [
+          {
+            "source_id": "fda-insulin-glargine-label",
+            "locator": "7 DRUG INTERACTIONS",
+            "quote": "Drugs that May Blunt Signs and Symptoms of Hypoglycemia Drugs : Beta-blockers, clonidine, guanethidine, and reserpine. Intervention : Increased frequency of glucose monitoring may be required when LANTUS is coadministered with these drugs."
+          }
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "source_id": "fda-insulin-glargine-label",
+        "locator": "7 DRUG INTERACTIONS",
+        "quote": "Table 8 includes clinically significant drug interactions with LANTUS."
+      }
+    ]
+  },
+  "reproductive": {
+    "tier": {
+      "value": "caution",
+      "note": "Published studies with insulin glargine during pregnancy have not reported a clear association with adverse developmental outcomes, but methodological limitations (small sample size, some lacking comparator groups) prevent definitively establishing absence of risk. Animal reproduction studies (50x rat, 10x rabbit) were generally similar to regular human insulin; poorly controlled diabetes in pregnancy carries substantial maternal/fetal risk.",
+      "refs": [
+        {
+          "source_id": "fda-insulin-glargine-label",
+          "locator": "8.1 Pregnancy",
+          "quote": "Published studies with use of insulin glargine during pregnancy have not reported a clear association with insulin glargine and adverse developmental outcomes (see Data ) . There are risks to the mother and fetus associated with poorly controlled diabetes in pregnancy (see Clinical Considerations ) ."
+        }
+      ]
+    },
+    "mcm": [],
+    "folic_acid": {
+      "value": null,
+      "refs": []
+    },
+    "pregnancy_pk": {
+      "value": null,
+      "refs": []
+    },
+    "postpartum": {
+      "value": null,
+      "refs": []
+    },
+    "contraception": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_rid": {
+      "value": null,
+      "refs": []
+    },
+    "lactation_summary": {
+      "value": "There are either no or only limited data on the presence of insulin glargine in human milk, effects on the breastfed infant, or effects on milk production; endogenous insulin is present in human milk. Consider developmental and health benefits of breastfeeding along with the mother's clinical need.",
+      "refs": [
+        {
+          "source_id": "fda-insulin-glargine-label",
+          "locator": "8.2 Lactation",
+          "quote": "There are either no or only limited data on the presence of insulin glargine in human milk, the effects on breastfed infant, or the effects on milk production. Endogenous insulin is present in human milk."
+        }
+      ]
+    }
+  },
+  "status": "draft",
+  "verification": {
+    "verified_by": null,
+    "verified_at": null,
+    "content_hash": null
+  }
+}
